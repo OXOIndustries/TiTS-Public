@@ -199,7 +199,8 @@ public function getMilkedByYancyYaSloot():void
 		clearMenu();
 		addButton(0,"Get Fucked",untreatedMilkedAndFucked,undefined,"Get Fucked","Do what comes naturally....");
 		addButton(1,"Give B.J.",untreatedGirlsSuckYancyOffAndShit,undefined,"Give Blowjob","Give Yancy a blowjob while you're milked....");
-		addButton(2,"Titfuck",untreatedTittyFucksForYancy,undefined,"Titfuck","Put those big jugs to work properly....");
+		if(pc.canTitFuck()) addButton(2,"Titfuck",untreatedTittyFucksForYancy,undefined,"Titfuck","Put those big jugs to work properly....");
+		else addDisabledButton(2,"Titfuck","Titfuck","You need a large enough rack to do this.");
 		if(pc.hasCock() && pc.cockThatFits(600) >= 0) 
 		{
 			if(flags["YANCY_BUTTFUCKED_BY_PC"] == undefined) addButton(3,"Pitch Anal",yancyGiantParagraphButtfucksByAnalmancyIncorporated,undefined,"Pitch Anal","You can’t deny that you’d like to see the bull’s cock bouncing while you fucked Yancy’s ass to the beat of the milkers. Ask him if he feels the same way... you never know!");

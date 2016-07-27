@@ -1653,7 +1653,7 @@ public function wutwutindabuttbuttFap():void
 	}
 
 	output("\n\nYou moan");
-	if (pc.isLactating() && pc.milkQ() >= 500) output(", muffled as you are with a mouthful of your own tit,");
+	if (pc.isLactating() && pc.milkQ() >= 500 && pc.biggestTitSize() >= 5) output(", muffled as you are with a mouthful of your own tit,");
 	output(" as your pleasure builds. Your [pc.hips] involuntarily twist back and forth as you drive your finger");
 	if (pc.ass.looseness() > 3) output("s");
 	output(" with increasing fervor into your [pc.asshole], trying to inch");
