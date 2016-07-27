@@ -78,7 +78,6 @@ public function naynaSexMenu():void
 {
 	clearMenu();
 	addButton(0,"Give BJ",maxLewdGogo,true,"Give BJ","Give her a blowjob.");
-	addDisabledButton(1,"Other Stuff","Other Stuff","It isn't written yet. Be patient!");
 	if(pc.hasCock()) addButton(1,"Fuck Her",fuckNayna,undefined,"Fuck Her","Fuck Nayna using a penis.");
 	else addDisabledButton(1,"Fuck Her","Fuck Her","You don't have a penis to fuck her with.");
 	addButton(2,"Anal Catch",naynaFucksYourButt,undefined,"Anal Catch","Get the shy bunny to put it in your butt.");

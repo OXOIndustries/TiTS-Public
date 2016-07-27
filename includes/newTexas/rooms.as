@@ -373,12 +373,13 @@ public function initNewTexasRooms():void
 	rooms["531"] = new RoomClass(this);
 	rooms["531"].roomName = "THE\nROAD";
 	rooms["531"].description = "You can’t go more than a few steps without hitting a divot or deeply sunken pothole in the road. The hovertrucks that trundle by don’t seem to have issue with the imperfect surface in the slightest, though they do kick up sizeable clouds of dust on their way. Thrumming ship engines sometimes emanate from the barn-turned-hangar to the southeast. The entrance is just a ways down the road. To the west, the road leads towards a field so big that it almost looks endless.";
-	rooms["531"].runOnEnter = undefined;
+	rooms["531"].runOnEnter = miscreantManorBonus;
 	rooms["531"].westExit = "532";
 	rooms["531"].eastExit = "503";
 	rooms["531"].planet = "PLANET: NEW TEXAS";
 	rooms["531"].system = "SYSTEM: NYE";
 	rooms["531"].addFlag(GLOBAL.OUTDOOR);
+	rooms["531"].addFlag(GLOBAL.OBJECTIVE);
 	rooms["531"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["532"] = new RoomClass(this);
