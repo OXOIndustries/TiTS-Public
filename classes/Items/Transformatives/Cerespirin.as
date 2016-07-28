@@ -167,13 +167,13 @@ package classes.Items.Transformatives
 				{
 					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_PLANT))
 					{
-						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well. ");
+						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well.");
 						
 						target.hairType = GLOBAL.HAIR_TYPE_PLANT;
 						if(target.hairLength < 6) target.hairLength = 6 + rand(3);
 						target.hairColor = RandomInCollection(plantHairColor);
 						
-						msg += ParseText("The cool, tingling sensation intensifies on your bald scalp, a thousand mint pencils scribbling on your head. It’s a relief when dozens of new growths sprout into being, thin stems burgeoning satisfyingly outwards, then unfurling spearhead-shaped pads as they come. The [pc.hairColor] leaves you grow out over the course of the next half hour are thin, healthy, and - ouch. Yes, definitely connected to you. You run your hands through your bonnet of plant growth, sighing at the pleasure of being able to feel each individual leaf.");
+						msg += ParseText("\n\nThe cool, tingling sensation intensifies on your bald scalp, a thousand mint pencils scribbling on your head. It’s a relief when dozens of new growths sprout into being, thin stems burgeoning satisfyingly outwards, then unfurling spearhead-shaped pads as they come. The [pc.hairColor] leaves you grow out over the course of the next half hour are thin, healthy, and - ouch. Yes, definitely connected to you. You run your hands through your bonnet of plant growth, sighing at the pleasure of being able to feel each individual leaf.");
 					}
 					else
 					{

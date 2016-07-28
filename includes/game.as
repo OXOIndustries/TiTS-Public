@@ -2225,7 +2225,7 @@ public function racialPerkUpdateCheck():void
 			pc.createStatusEffect("Latex Regrow", 0, 0, 0, 0, true, "", "", false, 720);
 		}
 	}
-	if(pc.armType == GLOBAL.TYPE_FLOWER)
+	if(pc.armType == GLOBAL.TYPE_FLOWER && pc.hasVagina())
 	{
 		if(!pc.hasWombPregnancy() && !pc.hasStatusEffect("Arm Flower"))
 		{
