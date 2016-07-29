@@ -83,7 +83,7 @@
 				else if(nonChubCocks.length == 1)
 				{
 					cockTF([target, nonChubCocks[0]]);
-					return false;
+					return true;
 				}
 				
 				kGAMECLASS.output("You have more than one eligible cock. Which one will you inject with DendroGro?\n");
@@ -111,7 +111,7 @@
 					}
 				}
 				
-				return false;
+				return true;
 			}
 			else
 			{
