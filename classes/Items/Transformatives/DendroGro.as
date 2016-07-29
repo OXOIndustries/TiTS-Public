@@ -103,7 +103,7 @@
 						}
 						if(target.cocks[i].cockColor != "") output(" " + StringUtil.toDisplayCase(target.cocks[i].cockColor) + ",");
 						output(" " + GLOBAL.TYPE_NAMES[target.cocks[i].cType]);
-						if(target.cocks[i].thickness() > 0) output(", " + formatFloat(target.cocks[i].thickness(), 3) + " in");
+						if(target.cocks[i].thickness() > 0) output(", " + formatFloat(target.cocks[i].thickness(), 3) + " in thick");
 						
 						addButton(btnSlot, "Cock " + (nonChubCocks[i] + 1), cockTF, [target, nonChubCocks[i]], StringUtil.capitalize(num2Ordinal(nonChubCocks[i] + 1)) + " Cock", "Use this on your [pc.cock " + nonChubCocks[i] + "].");
 						btnSlot++;
