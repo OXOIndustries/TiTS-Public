@@ -705,6 +705,8 @@ public function appearance(forTarget:Creature):void
 			}
 			output2(" " + target.skinTone + " latex");
 		}
+		else if(target.skinType == GLOBAL.SKIN_TYPE_PLANT) output2(", covered in " + target.skinFurScales(true, true));
+		else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) output2(", covered in a layer of " + target.skinFurScales(true, true));
 		if(target.wingType != GLOBAL.TYPE_HUMAN) {
 			output2(", and");
 			//WINGS!
