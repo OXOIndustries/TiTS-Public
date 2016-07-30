@@ -475,7 +475,7 @@ package classes.Items.Transformatives
 				{
 					msg += "You groan like a rowan in a gale as your bark skin thickens, yet more dense wood layering onto your form. It’s not a troubled groan; it’s one of sensuousness, at how <i>right</i> it feels to have this tough warmth armoring over you. You close your eyes momentarily and let the feeling of how a tree feels flow through you; huge, insurmountable, coursing with light, reaching your bows upwards to gorge in life and in turn let it settle upon you... you open them dreamily, frowning slightly. Has the light shifted? Exactly how much time just passed? Well... it doesn’t matter. There’s time enough for everything. The certainty of that knowledge is at the core of your being now.";
 					msg += "\n\nSomething else is different. Your skin is... leaking, for want of a better word. Curiously you run your finger over one of the sticky drops and examine it (this process takes you fifteen seconds, not that you notice or care). Golden, oozing and glutinous, it absolutely reeks of pine, warmth and male sex. You nod happily at this development. Undoubtedly the resin you are now producing will further your goal of attracting the vigorous, pleasure-loving wildlife you now very much want to spread your all-encompassing love into.";
-					msg += "\n\n<b>Perk Gained: Resin</b> - Your heavy bark skin slows you all the way down, but provides plenty of protection. It also produces resin. Some flighty, energetic, needy species might find it difficult to resist wanting to plaster themselves all over you...";
+					msg += "\n\n(<b>Perk Gained: Resin</b> - Your heavy bark skin slows you all the way down, but provides plenty of protection. It also produces resin. Some flighty, energetic, needy species might find it difficult to resist wanting to plaster themselves all over you...)";
 					
 					// + 2 Hours, Adds Resin perk
 					//kGAMECLASS.processTime(115 + rand(11));
@@ -523,7 +523,7 @@ package classes.Items.Transformatives
 					}
 					msg += ParseText(". You don’t mind becoming a being of pure, floral lust. With this development, the green, dormant clarity at your core feels like it has bloomed brilliantly outwards. The peacefulness remains, but now it’s of an energetic sort, a wish to share the love and life you feel with everything. How could anyone possibly resist you? It’s not just your thick, seductive pollen. With the clarity and the profound empathy permeating your body and mind you instinctively know how to draw people’s eyes, to call attention to your [pc.chest], your [pc.face] and your [pc.ass] with subtle, seemingly casual movements of your body, the exotic, eerie beauty of your orchids and [pc.hair] framing it all, almost hypnotic.");
 					msg += "\n\nYour smile widens. Time to allure. Time to arouse. Time to have endless amounts of sex, spread love and create new life. What a wonderful creature you have evolved into.";
-					msg += "\n\n<b>Perk Gained: Flower Power</b> - Everything about being a pollen-producing flower nymph is deeply arousing. It has its upsides, though: the effect you have on most foes, for instance.";
+					msg += "\n\n(<b>Perk Gained: Flower Power</b> - Everything about being a pollen-producing flower nymph is deeply arousing. It has its upsides, though: the effect you have on most foes, for instance.)";
 					
 					// + Lust, add Flower Power perk
 					target.lust(15);
