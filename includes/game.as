@@ -2217,6 +2217,14 @@ public function racialPerkUpdateCheck():void
 		msg += "\n\n(<b>Perk Lost: Icy Veins</b> - You’ve lost your insulating coat of fur, and as a result you are now weaker against cold.)";
 		pc.removePerk("Icy Veins");
 	}
+	if(flags["GALOMAX_DOSES"] >= 5)
+	{
+		if(pc.hasHair() && pc.hairType != GLOBAL.HAIR_TYPE_GOO && !pc.hasStatusEffect("Hair Regoo"))
+		{
+			msg += ParseText("\n\nThere is a slight tingling sensation at the roots of your [pc.hair].... Hm, strange....");
+			pc.createStatusEffect("Hair Regoo", 0, 0, 0, 0, true, "", "", false, 720);
+		}
+	}
 	if(pc.hasPerk("Black Latex"))
 	{
 		if(pc.skinType != GLOBAL.SKIN_TYPE_LATEX && !pc.hasStatusEffect("Latex Regrow"))
@@ -2249,9 +2257,9 @@ public function racialPerkUpdateCheck():void
 			pc.removeStatusEffect("Arm Flower");
 		}
 	}
-	else
+	else if(pc.armType != GLOBAL.TYPE_FLOWER)
 	{
-		if(pc.hasStatusEffect("Arm Flower")) pc.removeStatusEffect("Arm Flower");
+		pc.removeStatusEffect("Arm Flower");
 	}
 	if(pc.hasPerk("Resin"))
 	{

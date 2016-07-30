@@ -15802,6 +15802,16 @@
 									var flowerPower:Cerespirin = new Cerespirin();
 									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this);
 									break;
+								// Goo hair reverts back!
+								case "Hair Regoo":
+									if(hasHair() && hairType != GLOBAL.HAIR_TYPE_GOO)
+									{
+										kGAMECLASS.eventBuffer += ParseText("\n\nThe tingling along your scalp becomes stronger as you realize something has been gradually changing. As the sensation fades, you run your hand across the top of your head and notice some excess slime stick to it... It looks like <b>your [pc.hair] has reverted back into gooey hair</b>.");
+										
+										if(hairType == GLOBAL.HAIR_TYPE_TENTACLES) hairStyle == "tentacle";
+										hairType = GLOBAL.HAIR_TYPE_GOO;
+									}
+									break;
 								// Black Latex grows back!
 								case "Latex Regrow":
 									if(skinType != GLOBAL.SKIN_TYPE_LATEX)

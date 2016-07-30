@@ -148,7 +148,7 @@ package classes.Items.Transformatives
 					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_PLANT) || target.statusEffectv3("Cerespirin") >= 3)
 					{
 						var newSkinTone:String = RandomInCollection(plantSkinColor);
-						if(!InCollection(target.skinTone, ["green", "verdant", "viridescent", "emerald", "olive"]) && rand(4) != 0) newSkinTone = target.skinTone;
+						if(InCollection(target.skinTone, ["green", "verdant", "viridescent", "emerald", "olive"]) && rand(4) != 0) newSkinTone = target.skinTone;
 						
 						msg += ParseText("The cool, tingling sensation on your [pc.skin] has grown as time has gone on, making you feel like your whole body is bathed in toothpaste. It’s difficult to worry about it; the more the sensation ebbs, the more peaceful you feel and the clearer your perception seems. When you look down with a lazy, happy smile, it’s not really a surprise to see [pc.skinFurScalesNoun] falling off your arms, replaced by a smooth, hairless " + newSkinTone + " complexion across your entire body. Nor does it bother you, because more than anything it feels like a lot of frustrations and distractions are drifting away from you, replaced by an all-encompassing sensual clarity.");
 						
@@ -165,7 +165,7 @@ package classes.Items.Transformatives
 				//#2 Leaf Hair: Not leaf hair, not tentacle hair.
 				else if(select == 2)
 				{
-					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_PLANT))
+					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_PLANT) || target.statusEffectv3("Cerespirin") >= 3)
 					{
 						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well.");
 						
@@ -183,7 +183,7 @@ package classes.Items.Transformatives
 				//#3 Tentacle Hair: Not leaf hair, not tentacle hair.
 				else if(select == 3)
 				{
-					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES))
+					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES) || target.statusEffectv3("Cerespirin") >= 3)
 					{
 						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well. ");
 						
