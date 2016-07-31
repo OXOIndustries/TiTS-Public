@@ -561,7 +561,11 @@ package classes.Items.Transformatives
 				}
 				totalTFs--;
 			}
-			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
+			if(msg.length > 0) 
+			{
+				kGAMECLASS.eventBuffer += "\n\n<u>The Cerespirin drug has an effect....</u>";
+				kGAMECLASS.eventBuffer += msg;
+			}
 			return;
 		}
 		
@@ -573,7 +577,8 @@ package classes.Items.Transformatives
 			// Every 20-40 mins, roll for a viable effect.
 			if((target.getStatusMinutes("Cerespirin") % 40) != 0) return;
 			
-			kGAMECLASS.eventBuffer += "\n\n<u>The Cerespirin drug has an effect....</u>";
+			//Cut from here and appended just before output at the bottom of plantMutations(target)
+			//kGAMECLASS.eventBuffer += "\n\n<u>The Cerespirin drug has an effect....</u>";
 			
 			plantMutations(target);
 			
