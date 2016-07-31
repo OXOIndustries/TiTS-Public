@@ -3359,7 +3359,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 	author("Savin");
 
 	output("Running a hand along soft feminine flesh as you go, you circle around the desk and present your");
-	if (pc.cocks.length > 1) output(" [pc.multiCock]");
+	if (pc.cocks.length > 1) output(" [pc.multiCocks]");
 	else output(" [pc.cockOrStrapon]");
 	output(" to Anno and Marina. The girls’ mouths are already open, panting with lust and pleasure; it takes no effort to sheath your cock right in");
 	if (pc.cocks.length > 1) output(" their mouths");
@@ -3374,7 +3374,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 	
 	output("\n\nWith this kind of treatment, it’s only a matter of time before you feel that familiar pressure thrumming in your [pc.balls]. More than eager to give these lusty huskies a proper treat, you keep your [pc.hips] moving, thrusting in and out of the mouth");
 	if (pc.cocks.length > 1) output("s");
-	output(" working your [pc.multiCock].");
+	output(" working your [pc.multiCocks].");
 	if (pc.cocks.length == 1) output(" Seeing what’s about to happen, Marina greedily reaches up as best she can, licking at the base of your [pc.cockOrStrapon] and starting to pump it with her hands, adding on to the pleasure Anno’s already giving you.");
 	output(" Not long now...");
 	
@@ -3389,7 +3389,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 	output(" take care of the rest. Squeezing wetness around every inch of cockflesh is enough to send you roaring into climax.");
 	if (pc.hasCock())
 	{
-		output(" Your [pc.multiCock] throb");
+		output(" Your [pc.multiCocks] throb");
 		if (pc.cocks.length == 1) output("s");
 		output(" and cums, flooding");
 		if (pc.cocks.length > 1) output(" the sluts’");
