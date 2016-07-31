@@ -137,6 +137,7 @@
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.impregnationType = "SydianPregnancy";
+			this.cumQualityRaw = 3;
 			this.cumType = GLOBAL.FLUID_TYPE_SYDIAN_CUM;
 			this.ballSizeRaw = 3;
 			this.ballFullness = 1;
