@@ -8261,7 +8261,7 @@
 		}
 		public function tailCuntCapacity(): Number {
 			if (!hasTailCunt()) return 0;
-			if (vaginalCapacity(0) > 100) return vaginalCapacity(0);
+			if (biggestVaginalCapacity() > 300) return biggestVaginalCapacity();
 			return 100;
 		}
 		public function isBald(): Boolean {

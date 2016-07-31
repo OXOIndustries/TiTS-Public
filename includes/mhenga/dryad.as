@@ -64,6 +64,8 @@ public function dryadMeeting():void
 	if(!pc.hasStatusEffect("Dryad Encounters")) pc.createStatusEffect("Dryad Encounters", 0, 0, 0, 0, true, "", "", false, 1400);
 	pc.addStatusValue("Dryad Encounters", 1, 1);
 	
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
+
 	clearMenu();
 	addButton(0,"Give BJ", dryadBlowjob,undefined,"Give BJ","Use your mouth to get the girl off.");
 	if(pc.lust() >= 33)
@@ -75,7 +77,8 @@ public function dryadMeeting():void
 		if (pc.hasCock() && pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl's pussy to get her off.");
 		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Your dick needs to be at least a foot long before the femtaur will let you fuck her.");
 		else addDisabledButton(3, "Fuck Her", "Fuck Her", "You don't have a foot-long dick to fuck her with.");
-		if(pc.hasCuntTail()) addButton(4,"Tail Milk",tailCuntDryadFun,undefined,"Tail Milk","Use your tail to milk her needy member.");
+		if(pc.hasCuntTail() && pc.tailCuntCapacity() >= pp.cockVolume(0)) addButton(4,"Tail Milk",tailCuntDryadFun,undefined,"Tail Milk","Use your tail to milk her needy member.");
+		else if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You can't fit her inside your cunt tail.");
 		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
 	}
 	else
