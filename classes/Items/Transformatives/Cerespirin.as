@@ -185,7 +185,7 @@ package classes.Items.Transformatives
 				{
 					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES))
 					{
-						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well. ");
+						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well.\n\n");
 						
 						target.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
 						if(target.hairLength < 6) target.hairLength = 6 + rand(3);
