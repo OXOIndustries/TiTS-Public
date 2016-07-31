@@ -60,6 +60,8 @@ package classes.Items.Transformatives
 			var plantHairColor:Array = ["green", "green", "verdant", "forest green", "jungle green", "yellow-green"];
 			var plantEyeColor:Array = ["leaf green", "lime green", "turquoise", "hazel", "mahogany", "fir green"];
 			var flowerColors:Array = ["red", "yellow", "blue", "purple", "pink", "white"];
+			var hasPlantSkin:Boolean = InCollection(target.skinType, [GLOBAL.SKIN_TYPE_PLANT, GLOBAL.SKIN_TYPE_BARK]);
+			var hasPlantHair:Boolean = InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]);
 			var removePants:Boolean = false;
 			
 			//#1 Plant Skin: Non plant skin.
@@ -67,7 +69,7 @@ package classes.Items.Transformatives
 				TFList[TFList.length] = 1;
 			//#2 Leaf Hair: Not leaf hair, not tentacle hair.
 			//#3 Tentacle Hair: Not leaf hair, not tentacle hair.
-			if(!InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]))
+			if(!hasPlantHair)
 			{
 				TFList[TFList.length] = 2;
 				TFList[TFList.length] = 3;
@@ -76,34 +78,36 @@ package classes.Items.Transformatives
 			if(target.beardType != GLOBAL.HAIR_TYPE_PLANT && target.mfn("m", "f", "n") == "m" && target.hasBeard())
 				TFList[TFList.length] = 4;
 			//#5 Eye color change: Not any of the following pigments: leaf green, lime green, turquoise, hazel, mahogany, fir green.
-			if(!InCollection(target.eyeColor, plantEyeColor))
+			if(InCollection(target.eyeColor, ["citrine", "topaz", "amber", "peridot", "emerald", "jade", "aquamarine"]) && rand(10) != 0)
+				{ /* Rare change for special color eyes. */ }
+			else if(!InCollection(target.eyeColor, plantEyeColor))
 				TFList[TFList.length] = 5;
 			//#6 Branch Crown: Plant hair, no hair flowers. 3/4 vs. hair flowers if masculine.
-			if((target.hornType != GLOBAL.TYPE_DRYAD || target.hornLength < 36) && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && (!target.hasStatusEffect("Hair Flower") || (target.mfn("m", "f", "n") == "m" && rand(4) > 0)))
+			if((target.hornType != GLOBAL.TYPE_DRYAD || target.hornLength < 36) && hasPlantHair && (!target.hasStatusEffect("Hair Flower") || (target.mfn("m", "f", "n") == "m" && rand(4) != 0)))
 				TFList[TFList.length] = 6;
 			//#7 Hair Flower: Plant hair, no branch crown. 3/4 vs. branch crown if andro/feminine.
-			if(!target.hasStatusEffect("Hair Flower") && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && (target.hornType != GLOBAL.TYPE_DRYAD || (target.mfn("m", "f", "n") != "m" && rand(4) > 0)))
+			if(!target.hasStatusEffect("Hair Flower") && hasPlantHair && (target.hornType != GLOBAL.TYPE_DRYAD || (target.mfn("m", "f", "n") != "m" && rand(4) != 0)))
 				TFList[TFList.length] = 7;
 			//#8 Ivy arms: Plant skin, plant hair.
-			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && target.armType != GLOBAL.TYPE_FLOWER)
+			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && hasPlantHair && target.armType != GLOBAL.TYPE_FLOWER)
 				TFList[TFList.length] = 8;
 			//#9 OH GOD I LOVE BEING A PLANT Pt. 1: Plant skin, on a planet.
 			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && !InShipInterior() && kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet.indexOf("PLANET:") != -1)
 				TFList[TFList.length] = 9;
 			//#10 OH GOD I LOVE BEING A PLANT Pt. 2: Plant skin, plant hair, type of plant cum type.
-			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && !InShipInterior() && kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet.indexOf("PLANET:") != -1)
+			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && hasPlantHair && !InShipInterior() && kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet.indexOf("PLANET:") != -1)
 				TFList[TFList.length] = 10;
 			//#11 Orchid Pussy: Non-orchid pussy, plant skin.
 			if(target.totalVaginas(GLOBAL.TYPE_FLOWER) < target.totalVaginas() && target.hasVagina() && target.skinType == GLOBAL.SKIN_TYPE_PLANT)
 				TFList[TFList.length] = 11;
 			//#12 Tentacle cocks: Plant skin, penis. Could do with being a slightly rarer TF than avg. 3-6 seems about right. Note: If allowed to count as regular penises, maximum allowed should be factored in.
-			if(target.wingType != GLOBAL.TYPE_COCKVINE && target.hasCock() && target.skinType == GLOBAL.SKIN_TYPE_PLANT && rand(3) == 0)
+			if(target.wingType != GLOBAL.TYPE_COCKVINE && target.hasCock() && hasPlantSkin && rand(3) == 0)
 				TFList[TFList.length] = 12;
 			//#13 Fruit cum: Plant skin, plant hair, penis.
-			if(target.cumType != GLOBAL.FLUID_TYPE_FRUIT_CUM && target.hasCock() && target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]))
+			if(target.cumType != GLOBAL.FLUID_TYPE_FRUIT_CUM && target.hasCock() && hasPlantSkin && hasPlantHair)
 				TFList[TFList.length] = 13;
 			//#14 Fruit femcum: Plant skin, plant hair, vagina.
-			if(target.girlCumType != GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM && target.hasVagina() && target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]))
+			if(target.girlCumType != GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM && target.hasVagina() && hasPlantSkin && hasPlantHair)
 				TFList[TFList.length] = 14;
 			//#15 Bark Skin: Plant skin, masculine, any two of the following three = true: branch crown, moss beard, fruit cum.
 			var barkScore:int = 0;
@@ -121,11 +125,18 @@ package classes.Items.Transformatives
 			if(target.hasStatusEffect("Arm Flower")) flowerScore++;
 			if(target.hasVaginaType(GLOBAL.TYPE_FLOWER)) flowerScore++;
 			if(target.tailGenitalArg == GLOBAL.TYPE_FLOWER && target.tailType != GLOBAL.TYPE_HUMAN && target.tailCount > 0) flowerScore++;
-			if(!target.hasPerk("Flower Power") && target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && target.mfn("m", "f", "n") == "f" && flowerScore >= 2)
+			if(!target.hasPerk("Flower Power") && target.skinType == GLOBAL.SKIN_TYPE_PLANT && hasPlantHair && target.mfn("m", "f", "n") == "f" && flowerScore >= 2)
 				TFList[TFList.length] = 17;
 			//#18 Flower tailcunt: Has tail-cunt, overdose.
 			if(target.hasTailCunt() && target.tailGenitalArg != GLOBAL.TYPE_FLOWER && target.statusEffectv3("Cerespirin") >= 1)
 				TFList[TFList.length] = 18;
+			
+			//Failsafe
+			if(TFList.length <= 0)
+			{
+				TFList = [0];
+				totalTFs = 1;
+			}
 			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
@@ -139,7 +150,7 @@ package classes.Items.Transformatives
 				//#0 Catch all
 				if(select == 0)
 				{
-					msg += "You feel the transformative drug flow through your system.";
+					msg += "You feel the transformative drug flow through your system, though nothing noteworthy happens.";
 				}
 				//#1 Plant Skin: Non plant skin.
 				else if(select == 1)
@@ -278,7 +289,7 @@ package classes.Items.Transformatives
 							msg += ParseText("You groan blissfully as yet more hard ash cracks and soughs its way into existence past the [pc.skin] at the top of your brow; wild and decadent growth. Your branch crown is huge now, an imposing and genuine tree all of its own, flourishing out from the top of your head. It’s heavy and makes doorways difficult, but you don’t care; you look like a forest god. You FEEL like a forest god, and if the price of that is birds nesting in you then so be it.");
 							
 							target.horns += 4 + (rand(5) * 2);
-							target.hornLength += 36;
+							target.hornLength += 24 + rand(13);
 						}
 					}
 				}
@@ -362,7 +373,7 @@ package classes.Items.Transformatives
 						target.lust(15 + rand(6));
 						
 						msg += ParseText(" discretely open your bare [pc.hips] and watch your pussy transform in a way which manages to be both beautiful and deeply alarming. Out stretch the lips of your labia, thinning down, splitting out into half a dozen different fronds and turning into dull points as they grow; bright [pc.vaginaColor " + selCunt + "] spreads downwards from their tips. The inner lips flare slightly, taking on a paler shade of [pc.vaginaColor " + selCunt + "] and leaving the wet hole of your vagina entirely exposed. [pc.EachClit] turn" + (target.vaginas[selCunt].clits == 1 ? "s" : "") + " black, " + (target.vaginas[selCunt].clits == 1 ? "a cute and obvious freckle" : "cute and obvious freckles") + " in the spectacular, gaping orchid that is now your cunt.");
-						msg += ParseText("In the peaceful, woozy blue sky of Cerespirin it’s difficult to be shocked about such a development, particularly when it’s so pretty, but... it’s not going to be that open at all times, is it? A bit of experimentation reveals that, if you close your thighs and take your mind off it, your flower pussy does close itself up a bit. The moment your fingers return to it, though... or if your mind is allowed to drift towards thoughts of gleaming, thick insect dick, coated in oily pollen... it flourishes itself eagerly, [pc.femcum] dewing its petals.");
+						msg += ParseText("\n\nIn the peaceful, woozy blue sky of Cerespirin it’s difficult to be shocked about such a development, particularly when it’s so pretty, but... it’s not going to be that open at all times, is it? A bit of experimentation reveals that, if you close your thighs and take your mind off it, your flower pussy does close itself up a bit. The moment your fingers return to it, though... or if your mind is allowed to drift towards thoughts of gleaming, thick insect dick, coated in oily pollen... it flourishes itself eagerly, [pc.femcum] dewing its petals.");
 					}
 					else
 					{
@@ -547,7 +558,7 @@ package classes.Items.Transformatives
 						var newTailGenitalColor:String = target.tailGenitalColor;
 						if(target.statusEffectv3("Cerespirin") >= 5 || target.tailGenitalColor == "") newTailGenitalColor = RandomInCollection(flowerColors);
 						
-						output("[pc.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find the [pc.tailVagina] closes up on itself and balloons out until it looks very much like a plant bulb. Curious, you take a finger and gently rub along its lip. Like a reflex reaction, the tip swells and spreads out to reveal its new form. Beautiful " + newTailGenitalColor + " pedals open and rearrange to become a lewdly-shaped flower. Finally, a dewy aroma escapes its opening, seemingly inviting a hungry cock to be milked... It seems <b>your cunt tail" + (target.tailCount == 1 ? " is capped with a pretty orchid" : "s are capped with pretty orchids") + " now!</b>");
+						msg += ParseText("[pc.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find the [pc.tailVagina] closes up on itself and balloons out until it looks very much like a plant bulb. Curious, you take a finger and gently rub along its lip. Like a reflex reaction, the tip swells and spreads out to reveal its new form. Beautiful " + newTailGenitalColor + " pedals open and rearrange to become a lewdly-shaped flower. Finally, a dewy aroma escapes its opening, seemingly inviting a hungry cock to be milked... It seems <b>your cunt tail" + (target.tailCount == 1 ? " is capped with a pretty orchid" : "s are capped with pretty orchids") + " now!</b>");
 						
 						target.tailGenitalArg = GLOBAL.TYPE_FLOWER;
 						target.tailGenitalColor = newTailGenitalColor;
