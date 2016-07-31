@@ -131,13 +131,6 @@ package classes.Items.Transformatives
 			if(target.hasTailCunt() && target.tailGenitalArg != GLOBAL.TYPE_FLOWER && target.statusEffectv3("Cerespirin") >= 1)
 				TFList[TFList.length] = 18;
 			
-			//Failsafe
-			if(TFList.length <= 0)
-			{
-				TFList = [0];
-				totalTFs = 1;
-			}
-			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
 			{	
