@@ -98,7 +98,7 @@ package classes.Items.Transformatives
 			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && hasPlantHair && !InShipInterior() && kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet.indexOf("PLANET:") != -1)
 				TFList[TFList.length] = 10;
 			//#11 Orchid Pussy: Non-orchid pussy, plant skin.
-			if(target.totalVaginas(GLOBAL.TYPE_FLOWER) < target.totalVaginas() && target.hasVagina() && target.skinType == GLOBAL.SKIN_TYPE_PLANT)
+			if(target.totalVaginas(GLOBAL.TYPE_FLOWER) < target.totalVaginas() && target.hasVagina() && hasPlantSkin)
 				TFList[TFList.length] = 11;
 			//#12 Tentacle cocks: Plant skin, penis. Could do with being a slightly rarer TF than avg. 3-6 seems about right. Note: If allowed to count as regular penises, maximum allowed should be factored in.
 			if(target.wingType != GLOBAL.TYPE_COCKVINE && target.hasCock() && hasPlantSkin && rand(3) == 0)
