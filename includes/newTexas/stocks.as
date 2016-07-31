@@ -12,6 +12,7 @@ public function showMiscreantManor():void
 
 public function miscreantManorBonus():void
 {
+	output("\n\n");
 	//Not used
 	if(flags["MISCREANT_MANORED"] == undefined)
 	{
@@ -38,7 +39,7 @@ public function miscreantManorApproach():void
 	else output("You climb up onto the platform and look around, wondering which of the white-hued markings are leftovers from your last visit. With all the farmer-cum gushing into, around, and over you last time, you have a hard time figuring out how come the whole platform hasn’t been completely whitewashed. Well, the <i>“Miscreant Manor”</i> sign is still hanging from the stocks, and the timer has reset. You could climb in for another <i>“punishment”</i> gangbang if you wanted.");
 	clearMenu();
 	addButton(0,"Use Stocks",useMiscreantManor,undefined,"Use Stocks","Let's be honest, if you do this, you're just going to get gang-banged.");
-	addButton(4,"Back",mainGameMenu);
+	addButton(14,"Back",mainGameMenu);
 }
 
 //Use ‘em
