@@ -119,7 +119,7 @@ public function getLetterFromShade():void
 		if(MailManager.hasSubject("letter_from_shade", null)) MailManager.updateEntry("letter_from_shade");
 		return;
 	}
-	if(shadeAtTheBar() || !shadeIsActive() || flags["KQ2_SHADE_ENCOUNTERED"] == 1) return;
+	if(shadeAtTheBar() || !shadeIsActive()) return;
 	
 	if(createSubjectFromShade() != "")
 	{
@@ -143,7 +143,7 @@ public function createSubjectFromShade():String
 	else if(shadeIsLover())
 	{
 		// DID encounter Shade in KQ2
-		if(flags["KQ2_SHADE_ENCOUNTERED"] >= 2) subject = "Hi...";
+		if(flags["KQ2_SHADE_ENCOUNTERED"] != undefined) subject = "Hi...";
 		// Did NOT encounter Shade in KQ2
 		else subject = "Welcome to Uveto!";
 	}

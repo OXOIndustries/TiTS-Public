@@ -60,6 +60,8 @@ package classes.Items.Transformatives
 			var plantHairColor:Array = ["green", "green", "verdant", "forest green", "jungle green", "yellow-green"];
 			var plantEyeColor:Array = ["leaf green", "lime green", "turquoise", "hazel", "mahogany", "fir green"];
 			var flowerColors:Array = ["red", "yellow", "blue", "purple", "pink", "white"];
+			var hasPlantSkin:Boolean = InCollection(target.skinType, [GLOBAL.SKIN_TYPE_PLANT, GLOBAL.SKIN_TYPE_BARK]);
+			var hasPlantHair:Boolean = InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]);
 			var removePants:Boolean = false;
 			
 			//#1 Plant Skin: Non plant skin.
@@ -67,7 +69,7 @@ package classes.Items.Transformatives
 				TFList[TFList.length] = 1;
 			//#2 Leaf Hair: Not leaf hair, not tentacle hair.
 			//#3 Tentacle Hair: Not leaf hair, not tentacle hair.
-			if(!InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]))
+			if(!hasPlantHair)
 			{
 				TFList[TFList.length] = 2;
 				TFList[TFList.length] = 3;
@@ -76,34 +78,36 @@ package classes.Items.Transformatives
 			if(target.beardType != GLOBAL.HAIR_TYPE_PLANT && target.mfn("m", "f", "n") == "m" && target.hasBeard())
 				TFList[TFList.length] = 4;
 			//#5 Eye color change: Not any of the following pigments: leaf green, lime green, turquoise, hazel, mahogany, fir green.
-			if(!InCollection(target.eyeColor, plantEyeColor))
+			if(InCollection(target.eyeColor, ["citrine", "topaz", "amber", "peridot", "emerald", "jade", "aquamarine"]) && rand(10) != 0)
+				{ /* Rare change for special color eyes. */ }
+			else if(!InCollection(target.eyeColor, plantEyeColor))
 				TFList[TFList.length] = 5;
 			//#6 Branch Crown: Plant hair, no hair flowers. 3/4 vs. hair flowers if masculine.
-			if((target.hornType != GLOBAL.TYPE_DRYAD || target.hornLength < 36) && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && (!target.hasStatusEffect("Hair Flower") || (target.mfn("m", "f", "n") == "m" && rand(4) > 0)))
+			if((target.hornType != GLOBAL.TYPE_DRYAD || target.hornLength < 36) && hasPlantHair && (!target.hasStatusEffect("Hair Flower") || (target.mfn("m", "f", "n") == "m" && rand(4) != 0)))
 				TFList[TFList.length] = 6;
 			//#7 Hair Flower: Plant hair, no branch crown. 3/4 vs. branch crown if andro/feminine.
-			if(!target.hasStatusEffect("Hair Flower") && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && (target.hornType != GLOBAL.TYPE_DRYAD || (target.mfn("m", "f", "n") != "m" && rand(4) > 0)))
+			if(!target.hasStatusEffect("Hair Flower") && hasPlantHair && (target.hornType != GLOBAL.TYPE_DRYAD || (target.mfn("m", "f", "n") != "m" && rand(4) != 0)))
 				TFList[TFList.length] = 7;
 			//#8 Ivy arms: Plant skin, plant hair.
-			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && target.armType != GLOBAL.TYPE_FLOWER)
+			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && hasPlantHair && target.armType != GLOBAL.TYPE_FLOWER)
 				TFList[TFList.length] = 8;
 			//#9 OH GOD I LOVE BEING A PLANT Pt. 1: Plant skin, on a planet.
 			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && !InShipInterior() && kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet.indexOf("PLANET:") != -1)
 				TFList[TFList.length] = 9;
 			//#10 OH GOD I LOVE BEING A PLANT Pt. 2: Plant skin, plant hair, type of plant cum type.
-			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && !InShipInterior() && kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet.indexOf("PLANET:") != -1)
+			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && hasPlantHair && !InShipInterior() && kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet.indexOf("PLANET:") != -1)
 				TFList[TFList.length] = 10;
 			//#11 Orchid Pussy: Non-orchid pussy, plant skin.
-			if(target.totalVaginas(GLOBAL.TYPE_FLOWER) < target.totalVaginas() && target.hasVagina() && target.skinType == GLOBAL.SKIN_TYPE_PLANT)
+			if(target.totalVaginas(GLOBAL.TYPE_FLOWER) < target.totalVaginas() && target.hasVagina() && hasPlantSkin)
 				TFList[TFList.length] = 11;
 			//#12 Tentacle cocks: Plant skin, penis. Could do with being a slightly rarer TF than avg. 3-6 seems about right. Note: If allowed to count as regular penises, maximum allowed should be factored in.
-			if(target.wingType != GLOBAL.TYPE_COCKVINE && target.hasCock() && target.skinType == GLOBAL.SKIN_TYPE_PLANT && rand(3) == 0)
+			if(target.wingType != GLOBAL.TYPE_COCKVINE && target.hasCock() && hasPlantSkin && rand(3) == 0)
 				TFList[TFList.length] = 12;
 			//#13 Fruit cum: Plant skin, plant hair, penis.
-			if(target.cumType != GLOBAL.FLUID_TYPE_FRUIT_CUM && target.hasCock() && target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]))
+			if(target.cumType != GLOBAL.FLUID_TYPE_FRUIT_CUM && target.hasCock() && hasPlantSkin && hasPlantHair)
 				TFList[TFList.length] = 13;
 			//#14 Fruit femcum: Plant skin, plant hair, vagina.
-			if(target.girlCumType != GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM && target.hasVagina() && target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]))
+			if(target.girlCumType != GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM && target.hasVagina() && hasPlantSkin && hasPlantHair)
 				TFList[TFList.length] = 14;
 			//#15 Bark Skin: Plant skin, masculine, any two of the following three = true: branch crown, moss beard, fruit cum.
 			var barkScore:int = 0;
@@ -121,7 +125,7 @@ package classes.Items.Transformatives
 			if(target.hasStatusEffect("Arm Flower")) flowerScore++;
 			if(target.hasVaginaType(GLOBAL.TYPE_FLOWER)) flowerScore++;
 			if(target.tailGenitalArg == GLOBAL.TYPE_FLOWER && target.tailType != GLOBAL.TYPE_HUMAN && target.tailCount > 0) flowerScore++;
-			if(!target.hasPerk("Flower Power") && target.skinType == GLOBAL.SKIN_TYPE_PLANT && InCollection(target.hairType, [GLOBAL.HAIR_TYPE_PLANT, GLOBAL.HAIR_TYPE_TENTACLES]) && target.mfn("m", "f", "n") == "f" && flowerScore >= 2)
+			if(!target.hasPerk("Flower Power") && target.skinType == GLOBAL.SKIN_TYPE_PLANT && hasPlantHair && target.mfn("m", "f", "n") == "f" && flowerScore >= 2)
 				TFList[TFList.length] = 17;
 			//#18 Flower tailcunt: Has tail-cunt, overdose.
 			if(target.hasTailCunt() && target.tailGenitalArg != GLOBAL.TYPE_FLOWER && target.statusEffectv3("Cerespirin") >= 1)
@@ -139,7 +143,7 @@ package classes.Items.Transformatives
 				//#0 Catch all
 				if(select == 0)
 				{
-					msg += "You feel the transformative drug flow through your system.";
+					msg += "You feel the transformative drug flow through your system, though nothing noteworthy happens.";
 				}
 				//#1 Plant Skin: Non plant skin.
 				else if(select == 1)
@@ -148,7 +152,7 @@ package classes.Items.Transformatives
 					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_PLANT) || target.statusEffectv3("Cerespirin") >= 3)
 					{
 						var newSkinTone:String = RandomInCollection(plantSkinColor);
-						if(!InCollection(target.skinTone, ["green", "verdant", "viridescent", "emerald", "olive"]) && rand(4) != 0) newSkinTone = target.skinTone;
+						if(InCollection(target.skinTone, ["green", "verdant", "viridescent", "emerald", "olive"]) && rand(4) != 0) newSkinTone = target.skinTone;
 						
 						msg += ParseText("The cool, tingling sensation on your [pc.skin] has grown as time has gone on, making you feel like your whole body is bathed in toothpaste. It’s difficult to worry about it; the more the sensation ebbs, the more peaceful you feel and the clearer your perception seems. When you look down with a lazy, happy smile, it’s not really a surprise to see [pc.skinFurScalesNoun] falling off your arms, replaced by a smooth, hairless " + newSkinTone + " complexion across your entire body. Nor does it bother you, because more than anything it feels like a lot of frustrations and distractions are drifting away from you, replaced by an all-encompassing sensual clarity.");
 						
@@ -165,7 +169,7 @@ package classes.Items.Transformatives
 				//#2 Leaf Hair: Not leaf hair, not tentacle hair.
 				else if(select == 2)
 				{
-					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_PLANT))
+					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_PLANT) || target.statusEffectv3("Cerespirin") >= 3)
 					{
 						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well.");
 						
@@ -183,7 +187,7 @@ package classes.Items.Transformatives
 				//#3 Tentacle Hair: Not leaf hair, not tentacle hair.
 				else if(select == 3)
 				{
-					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES))
+					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES) || target.statusEffectv3("Cerespirin") >= 3)
 					{
 						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well.\n\n");
 						
@@ -278,7 +282,7 @@ package classes.Items.Transformatives
 							msg += ParseText("You groan blissfully as yet more hard ash cracks and soughs its way into existence past the [pc.skin] at the top of your brow; wild and decadent growth. Your branch crown is huge now, an imposing and genuine tree all of its own, flourishing out from the top of your head. It’s heavy and makes doorways difficult, but you don’t care; you look like a forest god. You FEEL like a forest god, and if the price of that is birds nesting in you then so be it.");
 							
 							target.horns += 4 + (rand(5) * 2);
-							target.hornLength += 36;
+							target.hornLength += 24 + rand(13);
 						}
 					}
 				}
@@ -475,7 +479,7 @@ package classes.Items.Transformatives
 				{
 					msg += "You groan like a rowan in a gale as your bark skin thickens, yet more dense wood layering onto your form. It’s not a troubled groan; it’s one of sensuousness, at how <i>right</i> it feels to have this tough warmth armoring over you. You close your eyes momentarily and let the feeling of how a tree feels flow through you; huge, insurmountable, coursing with light, reaching your bows upwards to gorge in life and in turn let it settle upon you... you open them dreamily, frowning slightly. Has the light shifted? Exactly how much time just passed? Well... it doesn’t matter. There’s time enough for everything. The certainty of that knowledge is at the core of your being now.";
 					msg += "\n\nSomething else is different. Your skin is... leaking, for want of a better word. Curiously you run your finger over one of the sticky drops and examine it (this process takes you fifteen seconds, not that you notice or care). Golden, oozing and glutinous, it absolutely reeks of pine, warmth and male sex. You nod happily at this development. Undoubtedly the resin you are now producing will further your goal of attracting the vigorous, pleasure-loving wildlife you now very much want to spread your all-encompassing love into.";
-					msg += "\n\n<b>Perk Gained: Resin</b> - Your heavy bark skin slows you all the way down, but provides plenty of protection. It also produces resin. Some flighty, energetic, needy species might find it difficult to resist wanting to plaster themselves all over you...";
+					msg += "\n\n(<b>Perk Gained: Resin</b> - Your heavy bark skin slows you all the way down, but provides plenty of protection. It also produces resin. Some flighty, energetic, needy species might find it difficult to resist wanting to plaster themselves all over you...)";
 					
 					// + 2 Hours, Adds Resin perk
 					//kGAMECLASS.processTime(115 + rand(11));
@@ -523,7 +527,7 @@ package classes.Items.Transformatives
 					}
 					msg += ParseText(". You don’t mind becoming a being of pure, floral lust. With this development, the green, dormant clarity at your core feels like it has bloomed brilliantly outwards. The peacefulness remains, but now it’s of an energetic sort, a wish to share the love and life you feel with everything. How could anyone possibly resist you? It’s not just your thick, seductive pollen. With the clarity and the profound empathy permeating your body and mind you instinctively know how to draw people’s eyes, to call attention to your [pc.chest], your [pc.face] and your [pc.ass] with subtle, seemingly casual movements of your body, the exotic, eerie beauty of your orchids and [pc.hair] framing it all, almost hypnotic.");
 					msg += "\n\nYour smile widens. Time to allure. Time to arouse. Time to have endless amounts of sex, spread love and create new life. What a wonderful creature you have evolved into.";
-					msg += "\n\n<b>Perk Gained: Flower Power</b> - Everything about being a pollen-producing flower nymph is deeply arousing. It has its upsides, though: the effect you have on most foes, for instance.";
+					msg += "\n\n(<b>Perk Gained: Flower Power</b> - Everything about being a pollen-producing flower nymph is deeply arousing. It has its upsides, though: the effect you have on most foes, for instance.)";
 					
 					// + Lust, add Flower Power perk
 					target.lust(15);

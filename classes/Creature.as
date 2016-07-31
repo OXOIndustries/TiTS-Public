@@ -5287,7 +5287,7 @@
 		{
 			if (tailCount == 0) return "ERROR: No tails!";
 			else if (tailCount == 1) return "your " + tailDescript();
-			return "each of your " + tailDescript();
+			return "each of your " + tailsDescript();
 		}
 		public function tailsDescript():String {
 			if(tailCount == 1) return tailDescript();
@@ -9489,7 +9489,7 @@
 			if (counter > 0 && totalVaginas(GLOBAL.TYPE_FLOWER) == totalVaginas()) counter++;
 			if (counter > 1 && hasCock() && cumType == GLOBAL.FLUID_TYPE_FRUIT_CUM) counter++;
 			if (counter > 1 && hasVagina() && girlCumType == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) counter++;
-			if (skinType == GLOBAL.SKIN_TYPE_LATEX) counter--;
+			if (counter > 3 && skinType == GLOBAL.SKIN_TYPE_LATEX) counter++;
 			return counter;
 		}
 		public function raskvelScore(): int
@@ -15801,6 +15801,16 @@
 								case "Hair Flower":
 									var flowerPower:Cerespirin = new Cerespirin();
 									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this);
+									break;
+								// Goo hair reverts back!
+								case "Hair Regoo":
+									if(hasHair() && hairType != GLOBAL.HAIR_TYPE_GOO)
+									{
+										kGAMECLASS.eventBuffer += ParseText("\n\nThe tingling along your scalp becomes stronger as you realize something has been gradually changing. As the sensation fades, you run your hand across the top of your head and notice some excess slime stick to it... It looks like <b>your [pc.hair] has reverted back into gooey hair</b>.");
+										
+										if(hairType == GLOBAL.HAIR_TYPE_TENTACLES) hairStyle == "tentacle";
+										hairType = GLOBAL.HAIR_TYPE_GOO;
+									}
 									break;
 								// Black Latex grows back!
 								case "Latex Regrow":

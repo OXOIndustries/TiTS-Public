@@ -2151,14 +2151,14 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 			{
 				output("\n\nHer grin widens as her fingers sink down still further to grip your [pc.breasts " + 0 + "]. She plays with your second set of nipples for a time, sending acute pleasure shivering through you before gripping them between her fingers, squeezing your second pair of breasts ruthlessly hard, using them as leverage to fuck your top row with firm drives of her hips. You groan to the intensity of it, in turn pressing the boobs in your own hands into her rapidly moving prick.");
 			}
+			if(pc.isLactating()) output("\n\nIt doesn’t take long underneath this fierce treatment for [pc.milk] to begin to dribble and squirt freely from your [pc.nipples], slicking Sera’s hands with the proof of the shameless enjoyment you’re taking from being titfucked. She giggles to herself softly at the sight and takes the time to rub her straining dick over each nipple, teasing your wet, delicate nubs at the same time as slathering her hardness with your own juices; then she slaps it between your [pc.chest] and begins to thrust into your presented rack again, going at you even harder now that she’s thoroughly lubricated both of you.");
+			output("\n\nShe pants as she fucks your softness faster and faster, arching her head back and pushing her thick thighs into you as she rises towards her orgasm. The submissive notion of licking her bulging end as it presents itself between your pre-cum");
+			if(pc.isLactating()) output(" and [pc.milk]");
+			output(" slicked boobs dimly occurs to you, but she’s fucking you so frenetically it’s not even an option. She reaches down and");
+			if(pc.hasCuntNipples() || pc.hasLipples()) output(" fingers");
+			else output(" pinches");
+			output(" your nipples intently as her slit dilates, so that your cries join hers as she orgasms; yours however are swiftly drowned out by the warm jizz which is fountained onto you with each upward thrust of hard meat between your [pc.chest]. Sera doesn’t stop until she has caked your face and much of your [pc.hair] with her glorious love, her final few spatters providing you with a presentable pearl necklace too.");
 		}
-		if(pc.isLactating()) output("\n\nIt doesn’t take long underneath this fierce treatment for [pc.milk] to begin to dribble and squirt freely from your [pc.nipples], slicking Sera’s hands with the proof of the shameless enjoyment you’re taking from being titfucked. She giggles to herself softly at the sight and takes the time to rub her straining dick over each nipple, teasing your wet, delicate nubs at the same time as slathering her hardness with your own juices; then she slaps it between your [pc.chest] and begins to thrust into your presented rack again, going at you even harder now that she’s thoroughly lubricated both of you.");
-		output("\n\nShe pants as she fucks your softness faster and faster, arching her head back and pushing her thick thighs into you as she rises towards her orgasm. The submissive notion of licking her bulging end as it presents itself between your pre-cum");
-		if(pc.isLactating()) output(" and [pc.milk]");
-		output(" slicked boobs dimly occurs to you, but she’s fucking you so frenetically it’s not even an option. She reaches down and");
-		if(pc.hasCuntNipples() || pc.hasLipples()) output(" fingers");
-		else output(" pinches");
-		output(" your nipples intently as her slit dilates, so that your cries join hers as she orgasms; yours however are swiftly drowned out by the warm jizz which is fountained onto you with each upward thrust of hard meat between your [pc.chest]. Sera doesn’t stop until she has caked your face and much of your [pc.hair] with her glorious love, her final few spatters providing you with a presentable pearl necklace too.");
 		
 		processTime(15);
 		pc.lust(15);

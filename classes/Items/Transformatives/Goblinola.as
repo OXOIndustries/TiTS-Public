@@ -593,7 +593,7 @@ package classes.Items.Transformatives
 				else if(select == 9)
 				{
 					msg += ParseText("Hm, you feel a little more bottom heavy than usual. You squeeze your [pc.hip] only to find it getting taut between your fingers. Giving your [pc.butt] a slap, it rebounds back with an odd sensation. Your body seems to have changed to adapt to its fertile nature, flaring out and becoming womanly, at least for your lower body anyway...");
-					msg += "\n\n<b>Perk Gained: Fecund Figure</b> - Gradually, your hips and ass will permanently increase in size during pregnancy.";
+					msg += "\n\n(<b>Perk Gained: Fecund Figure</b> - Gradually, your hips and ass will permanently increase in size during pregnancy.)";
 					
 					// Perk: "Fecund Figure"
 					// v1: hip size bonus
@@ -606,7 +606,7 @@ package classes.Items.Transformatives
 				else if(select == 10)
 				{
 					msg += "Your mind frees up all of a sudden, as if any intrusive or distracting thoughts have been neatly organized and packed away. Your bond with robotics must have advanced and adapted on a deeper biological level. You feel that the more you interact with technology, the more you will be able to learn and retain. You have definitely become one with the machine.";
-					msg += "\n\n<b>Perk Gained: Cybernetic Synchronization</b> - Being naturally inclined to technology, your body and mind become one with machine, augmenting your intelligence with each cybernetic enhancement.";
+					msg += "\n\n(<b>Perk Gained: Cybernetic Synchronization</b> - Being naturally inclined to technology, your body and mind become one with machine, augmenting your intelligence with each cybernetic enhancement.)";
 					
 					// Perk: "Cybernetic Synchronization"
 					// v1: max intelligence bonus for each enhancement
