@@ -649,7 +649,7 @@ public function talkToGianna(display:Boolean = true):void
 				return;
 			}
 			output(".");
-			output("\n\nGianna’s eyes widen and brighten. <i>\"Like... really?”</i> She slowly folds her legs into a prim posture. <i>\"All the new " + pc.mfn("bull","cows","people") + " I’ve met usually just want to take me for a roll in the hay. Synthetic creatures that can do what I can are something of a rarity here.”</i> She sighs wistfully. <i>\"Not much reason to import artificial pussies when there’s a buffet of all-naturals lined up, I guess.”</i> She leans against the wall and lets a welcoming smile return to her features, primly crossing her legs. <i>\"Don’t expect me to start bothering with clothes any time soon, but I’d love to talk. Just pick a topic!”</i>");
+			output("\n\nGianna’s eyes widen and brighten. <i>\"Like... really?”</i> She slowly folds her legs into a prim posture. <i>\"All the new " + pc.mfn("bulls","cows","people") + " I’ve met usually just want to take me for a roll in the hay. Synthetic creatures that can do what I can are something of a rarity here.”</i> She sighs wistfully. <i>\"Not much reason to import artificial pussies when there’s a buffet of all-naturals lined up, I guess.”</i> She leans against the wall and lets a welcoming smile return to her features, primly crossing her legs. <i>\"Don’t expect me to start bothering with clothes any time soon, but I’d love to talk. Just pick a topic!”</i>");
 			flags["MET_GIANNAS_TALK_MENU"] = 1;
 		}
 		//Repeat

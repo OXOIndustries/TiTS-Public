@@ -876,5 +876,5 @@ public function jeromePeggingMerge():void
 	output("\n\nBy the time you step out of steam-infused room and back into your bedroom, Jerome is gone. Presumably he slinked back off to his own bed to recover.");
 
 	clearMenu();
-	mainGameMenu();
+	addButton(0,"Next",mainGameMenu);
 }
