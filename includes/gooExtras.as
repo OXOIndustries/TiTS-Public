@@ -2019,6 +2019,8 @@ public function nutShrinkGo():void
 	output2("You sag with relief as your body reabsorbs some of the weight from your [pc.sack]. Getting around will certainly be a little easier!");
 	gooBiomass(nutShrinkCost());
 	pc.ballSizeRaw = (pc.ballSizeRaw/Math.PI-1) * Math.PI;
+	//Failsafe!
+	if(pc.ballSizeRaw < 0.5) pc.ballSizeRaw = 0.5;
 	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu);
@@ -2069,6 +2071,12 @@ public function expandoNuts():void
 	}
 	gooBiomass(nutExpansionCost() * -1);
 	pc.ballSizeRaw = (pc.ballSizeRaw/Math.PI+1) * Math.PI;
+	//Failsafe!
+	if(pc.ballSizeRaw < 0.5) 
+	{
+		output2("\n\n<b>Something went wrong! BallSizeRaw reported as " + pc.ballSizeRaw + ". Too low. Resetting to 1. Please report this as a bug on the bug report forums with a copy/paste of this message as well as any other pertinent information.</b>");
+		pc.ballSizeRaw = 1;
+	}
 	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
 	pc.lust(15);
 	while(pc.lust() < 33) { pc.lust(5); }
