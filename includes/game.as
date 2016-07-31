@@ -328,7 +328,7 @@ public function showCodex():void
 	{
 		if(flags["KQ2_MYRELLION_STATE"] == 1) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad's resources to track down her whereabouts - assuming she made it out in one piece.");
 		else addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
-
+	}
 	addGhostButton(4, "Back", backToPrimaryOutput);
 }
 
