@@ -1571,7 +1571,7 @@ public function sydianPregnancyEnds():void
 
 	output("\n\n" + (numChildren == 1 ? "A soft touch" : "Soft touches") + " on your hand bring" + (numChildren == 1 ? "s" : "") + " you out of your reverie -- your bab" + (numChildren == 1 ? "y seems" : "ies seem") + " to know there's more work to do. Sighing, you clean up and cut the cord" + (numChildren == 1 ? "" : "s") + ", then prepare to send " + (numChildren == 1 ? (babym ? "him":"her") : "the newborns") + " off. While the shuttle is in transit, you spend some time playing, letting your little one" + (numChildren == 1 ? "" : "s") + " squeeze your fingers and giggle while you meditate on " + (numChildren == 1 ? ("a name that suits" + (babym ? "him":"her")) : "names that suit them") + ". You even hold up the shuttle, ignoring the drone's automated requests until you can't wait any longer. With a pang in your heart, you bundle your child" + (numChildren == 1 ? "" : "ren") + " into the climate-controlled device and watch it return to the shuttle.");
 	
-	SydianPregnancyHandler.sydianCleanupData();
+	pc.removeStatusEffect("Sydian Pregnancy Ends");
 	
 	processTime(49 + (13 * numChildren));
 	

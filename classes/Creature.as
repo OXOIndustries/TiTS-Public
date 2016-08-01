@@ -4891,14 +4891,14 @@
 			output += noun;
 			return output;
 		}
-		public function skinFurScales(forceTone: Boolean = false, forceAdjective: Boolean = false, skin: Boolean = false): String {
+		public function skinFurScales(forceTone: Boolean = false, forceAdjective: Boolean = false, skin: Boolean = false, appearance: Boolean = false): String {
 			var output: String = "";
 			var temp:*;
 			var adjectives:Array = [];
 			//33% of the time, add an adjective.
 			if (forceAdjective || rand(3) == 0) {
 				//Omnisuit overrides normal skin descs.
-				if(!skin && armor is Omnisuit)
+				if(!appearance && !skin && armor is Omnisuit)
 				{
 					adjectives.push(RandomInCollection(["slick","artificial","body-encasing","sensation-enhancing","touch-enhancing","tactile-enhancing","gleaming","shining","perfectly molded"]));
 				}
@@ -5008,7 +5008,7 @@
 			var output: String = "";
 			var temp: int = 0;
 			//Set skin words.
-			if(armor is Omnisuit && !skin) output += RandomInCollection(["latex","rubber","suit"]);
+			if(armor is Omnisuit && !skin && !appearance) output += RandomInCollection(["latex","rubber","suit"]);
 			else if (skinType == GLOBAL.SKIN_TYPE_SKIN || skin) {
 				temp = rand(10);
 				//if (temp <= 8) 
@@ -5046,8 +5046,8 @@
 			}
 			return output;
 		}
-		public function skin(forceTone: Boolean = false, forceAdjective: Boolean = false): String {
-			return skinFurScales(forceTone, forceAdjective, true);
+		public function skin(forceTone: Boolean = false, forceAdjective: Boolean = false, appearance:Boolean = false): String {
+			return skinFurScales(forceTone, forceAdjective, true, appearance);
 		}
 		public function face(forceAdjectives: Boolean = false): String {
 			var output: String = "";
@@ -8261,7 +8261,7 @@
 		}
 		public function tailCuntCapacity(): Number {
 			if (!hasTailCunt()) return 0;
-			if (vaginalCapacity(0) > 100) return vaginalCapacity(0);
+			if (biggestVaginalCapacity() > 300) return biggestVaginalCapacity();
 			return 100;
 		}
 		public function isBald(): Boolean {

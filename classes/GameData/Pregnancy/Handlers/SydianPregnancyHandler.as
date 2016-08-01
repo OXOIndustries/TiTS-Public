@@ -25,7 +25,7 @@ package classes.GameData.Pregnancy.Handlers
 			_ignoreInfertility = false;
 			_ignoreFatherInfertility = false;
 			_ignoreMotherInfertility = false;
-			_allowMultiplePregnancies = false;
+			_allowMultiplePregnancies = true;
 			_canImpregnateButt = false;
 			_canImpregnateVagina = true;
 			_canFertilizeEggs = false;
@@ -125,8 +125,9 @@ package classes.GameData.Pregnancy.Handlers
 			if (!mother.hasStatusEffect("Sydian Pregnancy Ends"))
 			{
 				// Baby count check (just in case)
-				var babies:int = 0;
-				var belly:int = 0;
+				var babies:int = mother.pregnancyData[pregSlot].pregnancyQuantity;
+				var belly:int = mother.pregnancyData[pregSlot].pregnancyBellyRatingContribution;
+				/*Lets not poop out half-formed sydians
 				for (var i:int = 0; i < mother.pregnancyData.length; i++)
 				{
 					if (mother.pregnancyData[i].pregnancyType == "SydianPregnancy")
@@ -134,34 +135,26 @@ package classes.GameData.Pregnancy.Handlers
 						babies += mother.pregnancyData[i].pregnancyQuantity;
 						belly += mother.pregnancyData[i].pregnancyBellyRatingContribution;
 					}
-				}
+				}*/
+				SydianPregnancyHandler.sydianCleanupData(mother, pregSlot, thisPtr);
 				
 				mother.createStatusEffect("Sydian Pregnancy Ends", babies, belly, pregSlot, 0, true);
 			}
-			
 			if (kGAMECLASS.eventQueue.indexOf(kGAMECLASS.sydianPregnancyEnds) == -1)
 			{
 				kGAMECLASS.eventQueue.push(kGAMECLASS.sydianPregnancyEnds);
 			}
 		}
-		
-		public static function sydianCleanupData():void
+		public static function sydianCleanupData(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
-			for (var i:int = 0; i < kGAMECLASS.pc.pregnancyData.length; i++)
-			{
-				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[i];
-				if (pData.pregnancyType == "SydianPregnancy")
-				{
-					StatTracking.track("pregnancy/sydian births", pData.pregnancyQuantity);
-					StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
-					kGAMECLASS.pc.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
-					pData.reset();
-				}
-			}
+			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
-			kGAMECLASS.pc.removeStatusEffect("Sydian Pregnancy Ends");
-		}
-		
+			StatTracking.track("pregnancy/sydian births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			
+			pData.reset();
+		}		
 	}
 
 }
