@@ -621,7 +621,7 @@ public function jeromeHipbusterII(s:Object):void
 
 	if (s.vGape < 4)
 	{
-		output("\n\nSlowly you begin to lower yourself down, putting weight on the joining between your "+s.simpleHoleStr()+" and the tree trunk of a dick attempting to batter its way inside you. It’s slow going, but between the bears over productive balls");
+		output("\n\nSlowly you begin to lower yourself down, putting weight on the joining between your "+s.simpleHoleStr()+" and the tree trunk of a dick attempting to batter its way inside you. It’s slow going, but between the bear's over productive balls");
 		if ((s.vIdx == -1 && pc.ass.wetness() >= 4) || pc.vaginas[s.vIdx].wetness() >= 4)
 		{
 			output(", your own sopping wet "+s.simpleHoleStr+",");
@@ -667,7 +667,7 @@ public function jeromeHipbusterII(s:Object):void
 	output("\n\nThe sensation comes to a stop all too soon, and it’s only with its absence that the lust-fueled befuddlement clouding your mind starts to dissipate. Your legs are straight, stood as high as you can, and");
 	if (pc.tallness >= 72) output(" the bears chunky cockhead is still buried in your");
 	else if (pc.tallness >= 60) output(" there’s still a couple of inches of fat bearcock buried in your");
-	else output(" half of the bears thick dick is still buried in your");
+	else output(" half of the bear's thick dick is still buried in your");
 	output(" " + s.simpleHoleStr() + ". Guess there’s only one thing for it then...");
 	
 	processTime(10 + rand(3));
