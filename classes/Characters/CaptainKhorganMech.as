@@ -214,7 +214,7 @@
 			long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams \"party-shop pirate,\" with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
 			if(percent >= 66) long += " This monstrosity could probably give a military suit a run for its money, and against you? Better bring your A-game, Steele!";
 			else if(percent >= 33) long += " The mech's armor plates are starting to fall off, and smoke and sparks fly from damaged servos and circuits. Keep up the pressure!";
-			else long += " The suit is smoking like cigar, shuddering with every moment as the captain struggles to keep it standing. Almost there!";
+			else long += " The suit is smoking like a cigar, shuddering with every moment as the captain struggles to keep it standing. Almost there!";
 
 			//Actual enemy AI function nau!
 

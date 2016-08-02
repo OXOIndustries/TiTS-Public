@@ -12,7 +12,7 @@ public function encounterMaleSydian():void
 		author("Lukadoc");
 		flags["MET_SYDIAN_MALE"] = 0;
 		output("\n\nA nearby junkpile shudders, drawing your attention. You look closer, and this time you see something besides rotten rubber and discarded machinery: a pair of wiggling antennae that seem to be groping around rusted metal, further corroding it with every touch. Then, as if somehow aware of your presence, the creature below moves, sending the concealing mound shuddering. Tiny cascades of detritus roll down the side as a vaguely humanoid mass rises up out of it, chewing metallic flakes as the dust settles.");
-		output("\n\nThe creature dusts itself off as it regards you, giving you time to do the same. It stands about seven feet tall. It's shape is the fairly common bipedal configuration with thick, powerful limbs covered in reddish armor plating. A long, powerful tail sways behind it, tipped feathery feelers that look similar to its antennae and plumage.");
+		output("\n\nThe creature dusts itself off as it regards you, giving you time to do the same. It stands about seven feet tall. Its shape is the fairly common bipedal configuration with thick, powerful limbs covered in reddish armor plating. A long, powerful tail sways behind it, tipped feathery feelers that look similar to its antennae and plumage.");
 		//No new PG
 		//Met lady rust monster
 		if(flags["MET_FEMALE_SYDIAN"] != undefined) output(" It has to be a male sydian!");
@@ -28,7 +28,7 @@ public function encounterMaleSydian():void
 	//Repeat
 	else
 	{
-		output("\n\nA male sydian emerges from heap that he was rifling through and smiles at your approach, obviously intending to subdue you by force. You'll have to fight!");
+		output("\n\nA male sydian emerges from the heap that he was rifling through and smiles at your approach, obviously intending to subdue you by force. You'll have to fight!");
 	}
 	flags["MET_SYDIAN_MALE"]++;
 	
@@ -58,7 +58,7 @@ public function beatUpARustMonster():void
 	//Win by Lust:
 	else
 	{
-		output("Panting with lust, the sydian falls to his knees, stroking his [enemy.cock]. As you approach, he looks up to you with lust addled eyes. <i>“Mhmm, I give up. " + pc.mf("","I don’t care that you’re girl. ") + "Do whatever you want with me,”</i> he says, licking his lips as he continues to shamelessly masturbate before you.\n\n");
+		output("Panting with lust, the sydian falls to his knees, stroking his [enemy.cock]. As you approach, he looks up to you with lust addled eyes. <i>“Mhmm, I give up. " + pc.mf("","I don’t care that you’re a girl. ") + "Do whatever you want with me,”</i> he says, licking his lips as he continues to shamelessly masturbate before you.\n\n");
 	}
 	if(pc.lust() < 33) 
 	{
@@ -152,7 +152,7 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	}
 	//Already nuddies
 	else {
-		output("You roll your exposed shoulders and smile lecherously, revelling in your nudity and the ease with which it allows your prick");
+		output("You roll your exposed shoulders and smile lecherously, reveling in your nudity and the ease with which it allows your prick");
 		if(pc.cockTotal() > 1) output("s");
 		output(" to swell to full tumescence, unfettered by restraining garments or armors.");
 	}
@@ -168,7 +168,7 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	if(pc.hasKnot(x)) output(" At that point, the additional girth catches, but it's nothing a few gentle rubs of your new fuck-buddy's ass won't help him relax for. A few pushes later, and you're in.");
 	output("\n\nDroplets of what looks like pure silver slowly roll out of his lust-bloated cocktip as you ream him, liquid evidence of his enjoyment. A bass groan rumbles out of his chest as you pull back only to turn into a higher-pitched yelp when you roughly jackhammer in a second thrust. You rebound off his ass for another and another, and another... and another. Your [pc.cock " + x + "] blasts through his black hole rapid-fire, focused entirely on using him as little more than a pleasing sleeve, but he seems to enjoy it all the same.");
 	pc.cockChange(true,false);
-	output("\n\nThe sydian's tail is slaps your [pc.butt] every time you slow, spurring you to further - and harder - into your chosen cum-dumpster. The repeated strikes leave behind more of that sticky secretion. It may absorb into your [pc.skinFurScales] almost immediately, but it leaves behind a little more heat and a little excess need with every strike. [pc.EachCock] feels overburdened with blood, so hard that it's becoming painful. With your need always on the rise, you piston harder and faster, squeezing more silvery pre-jizz out of him from the inside.");
+	output("\n\nThe sydian's tail slaps your [pc.butt] every time you slow, spurring you to thrust further - and harder - into your chosen cum-dumpster. The repeated strikes leave behind more of that sticky secretion. It may absorb into your [pc.skinFurScales] almost immediately, but it leaves behind a little more heat and a little excess need with every strike. [pc.EachCock] feels overburdened with blood, so hard that it's becoming painful. With your need always on the rise, you piston harder and faster, squeezing more silvery pre-jizz out of him from the inside.");
 	output("\n\n<i>\"More!\"</i> the encouraging sydian growls from below. <i>\"Harder!\"</i>");
 
 	output("\n\nYour next thrust hits him hard enough to grind his cheek into the sand. It's good enough that you can feel his ring clamping down around, spasming with wild abandon and pleasure. His cock visibly throbs and pulsates beneath him, spewing long ropes of gooey, mirrored jism, unable to contain so much pleasure any longer. Regardless of whether he's cumming or not, you redouble your efforts, using his puckered entrance to climb to an orgasm all your own.");
@@ -208,7 +208,7 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	if(pc.hasKnot(x))
 	{
 		output("\n\nFinishing takes a good long while with a knot, but you don't mind. You rock your hips back and forth gently rubbing his sensitive internals while trickling your entire load into him, working him dry well before your bulb shrinks enough for you to pop out.");
-		if(pc.cumQ() >= 500) output(" A waterfall of [pc.cum] pours out after you, rolling out of his knot-ruined pucker like a sexual parody of niagra falls.");
+		if(pc.cumQ() >= 500) output(" A waterfall of [pc.cum] pours out after you, rolling out of his knot-ruined pucker like a sexual parody of Niagra Falls.");
 	}
 	//Not knotted
 	else
@@ -256,7 +256,7 @@ public function chicksRideASydian():void
 	output(" male");
 	if(!pc.isNude()) output(" and peel your [pc.gear] off as sensuously as possible.");
 	else output(" and let your hands play across your [pc.skin] as sensuously as possible.");
-	output(" You want him hard when you take you take him.");
+	output(" You want him hard when you take him.");
 
 	if(enemy.lust() >= enemy.lustMax()) output("\n\nNot that you needed to bother with the enticement, he was already helplessly stroking himself off from your previous antics. All you did was make his jaw drop and his tongue loll.");
 	else 
@@ -278,16 +278,16 @@ public function chicksRideASydian():void
 	else output("place a [pc.foot] square on his chest for good measure.");
 	output(" <i>\"You don't have to be sure,\"</i> you say as you sidle into position above him. <i>\"You just have to stay hard for me.\"</i>");
 	output("\n\nThe male's tail, folded beside him by own supine position, flicks back and forth in agitation, but he does not respond. His gaze remains fixedly aimed at the ground in a gesture of submission, though his three-fingered hands clench in irritation. So long as he doesn't get any bright ideas about being on top, you'll get along fine.");
-	output("\n\nEasing yourself down, you grab hold of his fuzzy, orange prick. The thousands of little brushes that coat it wriggle and squirm against your hand, made sticky by the liquid-excitement he's leaking. You can't wait to have them inside you, squirming and rubbing along the inside of your tunnel, massaging pleasure into every square inch of nerve-packed skin. Trickles of moisture leak down your [pc.legOrLegs]. You don't really mind; the extra lubrication is just going to make this all the more pleasurable.");
+	output("\n\nEasing yourself down, you grab hold of his fuzzy, orange prick. The thousands of little brushes that coat it wriggle and squirm against your hand, made sticky by the liquid excitement he's leaking. You can't wait to have them inside you, squirming and rubbing along the inside of your tunnel, massaging pleasure into every square inch of nerve-packed skin. Trickles of moisture leak down your [pc.legOrLegs]. You don't really mind; the extra lubrication is just going to make this all the more pleasurable.");
 	output("\n\nThe turgid, alien cock's cilia flutter against your netherlips as the greater bulk of his mass parts them, wracking you with far more sensation than simple insertion alone should provide. Then again, most tools don't come with build-in stimulation functions. Your [pc.lips] open wider than their sisters down south as you moan and slip down, letting a half-dozen inches of thick, orange prick deep into your canal. Every bit of him is covered in those squirming tendrils, and the ones coming into contact with you kick lightning-fast, stroking your walls with hellishly distracting pleasure.");
 	//Cuntchange: half volume.
 	pc.cuntChange(x,enemy.cockVolume(0)/2,true,true,false);
 	output("\n\nShuddering, you try to still your body's frantic desire for a deeper, more fulfilling fuck and ultimately fail. Your hips drop, impaling you all " + num2Text(Math.round(enemy.cocks[0].cLength())) + " inches of hole-stretching, wall-massaging cunt-stuffer at once.");
 	if(pc.vaginalCapacity(x)/2 > enemy.cockVolume(0)) output(" Silently, you wish he was a little bigger.");
-	else if(pc.vaginalCapacity(x)/1.5 > enemy.cockVolume(0)) output(" Its slips into your capacitive slit like a hand into a tailored glove.");
+	else if(pc.vaginalCapacity(x)/1.5 > enemy.cockVolume(0)) output(" It slips into your capacious slit like a hand into a tailored glove.");
 	else if(pc.vaginalCapacity(x) * .9 >= enemy.cockVolume(0)) output(" It slips into your slit tightly but not tightly enough to be painful. If it wasn't for how wet you've gotten, you might not be enjoying this as much.");
 	else output(" It slips in with more than a little bit of pain, stretching your walls further apart than they were meant to go before pushing at your cervix like a battering ram. You hold still as your [pc.vagina " + x + "] adjusts to the oversized intrusion, thumping a fist at the chitinous brute's pecs until the fiery pain cools to warm pleasure.");
-	output(" His member's unique attributes all moving now, wriggling and slipping against your insides, feeling every nook and cranny.");
+	output(" His member's unique attributes all move now, wriggling and slipping against your insides, feeling every nook and cranny.");
 	pc.cuntChange(x,enemy.cockVolume(0),true,true,false);
 	output("\n\nThis moment, right here, right now, is the moment the sydian was waiting for - the moment when his tool sufficiently distracted you, the moment when your nervous system was too overwhelmed by cascades of sensation to function properly. He grabs you by the arms and pulls, dragging you down to his chest, your [pc.chest] pressed flat against him. His tongue lolls out to lick to against your cheek while he forcefully lifts his hips and begins bouncing you in place, fucking you like a ragdoll. There's no skill to it, just rough, animal fucking - one pair of hips slapping into another again and again.");
 	output("\n\nEyes crossed in ecstasy, you try not to let it show how much you're enjoying this or that you expected something like this to happen all along. Instead you focus on the rough plowing of your [pc.vagina " + x + "] and wrapping your arms around your stud's neck so that you can steady yourself against the rampant fuck and nuzzle into his neck at the same time. He growls, a powerful bass rumble that vibrates out of his throat more than his mouth but doesn't move to stop you. In fact, he licks your cheek with a long orange tongue, slobbering his affections as his dick grows thicker within you.");
@@ -407,7 +407,7 @@ public function haveADrinkOnMeWithSnowBallsMrRustBro():void
 	else output("over your head");
 	output(" as you nurse at his cock. It’s clear that he won’t last very long - not after all of your teasing.");
 
-	output("\n\nYour prediction is correct, and as give his balls a final squeeze, taking his length all of the way into your mouth, he cums, shooting several long jets directly down your throat, filling your gullet with heavy, hot seed. You draw back, lips still around his cockhead, tongue tickling his slit as you take the last jet directly in your mouth, warm and salty, and wonderfully thick.");
+	output("\n\nYour prediction is correct, and as you give his balls a final squeeze, taking his length all of the way into your mouth, he cums, shooting several long jets directly down your throat, filling your gullet with heavy, hot seed. You draw back, lips still around his cockhead, tongue tickling his slit as you take the last jet directly in your mouth, warm and salty, and wonderfully thick.");
 	output("\n\nYou remove your mouth from his cock, looking up at the panting brute, utterly collapsed and exhausted against the scrap heap. You climb up his muscular frame, body ");
 	if(pc.biggestTitSize() >= 1) output("and breasts ");
 	output("rubbing against his glistening, rippling muscles until you reach his face. You cup the sides of his face with your cum-slick fingers, turning it to you as you press your lips against his.");
@@ -439,7 +439,7 @@ public function greatFootjerbSavin():void
 	else if(pc.legCount > 2) output("one of your many [pc.legs]");
 	else output("the tip of your [pc.foot]");
 	output(", you get him on his back and wedge his legs apart. He resists at first, but the prize between them betrays its master before he can say a word, a tent-pole of alien meat rising to prominence as your [pc.leg] spreads his apart. You playfully tsk your tongue as the alien's shaft reveals itself as your [pc.foot] works up the inside of his thigh, sending a visible shudder up his powerful, yet prostrate body.");
-	output("\n\n<i>\"Oh, don't tell me you get turned on by losing!\"</i> You tease, [pc.foot] dancing up his leg until your brush against the swell of his sack, hooking yourself underneath it so that you can really feel the heft of his nuts, the heat of them. You chuckle to yourself as he looks pointedly away from you, cock bobbing in the air, all but drooling already. <i>\"Or are you just so pent up that you don't care how you get fucked? Must be hard finding a willing lay out here, huh?\"</i>");
+	output("\n\n<i>\"Oh, don't tell me you get turned on by losing!\"</i> You tease, [pc.foot] dancing up his leg until you brush against the swell of his sack, hooking yourself underneath it so that you can really feel the heft of his nuts, the heat of them. You chuckle to yourself as he looks pointedly away from you, cock bobbing in the air, all but drooling already. <i>\"Or are you just so pent up that you don't care how you get fucked? Must be hard finding a willing lay out here, huh?\"</i>");
 	output("\n\nHe mumbles something in response, shifting his surprisingly broad hips slightly. <i>\"What was that?\"</i> you grin, gripping your " + lazySavinToes() + " around his sack.");
 	output("\n\n<i>\"Just do what you're gonna do,\"</i> he grumbles, rising up to his elbows, his large eyes finally look up definitely at you, awaiting whatever sexual torment you're intent on bringing down upon him. Poor thing's convinced himself he's not going to enjoy this. You shake your head in mock disappointment, scooting up towards your would-be attacker to give yourself some more room to work with, your [pc.leg] looming large over his exposed shaft. Slowly, you shift up from his heavy sack, feeling more than seeing as you make your way up the soft, tender skin of the alien man's balls to the rigid hardness of his undercarriage. When you touch it, the rusty-hued man freezes up, body tensing as you touch the tenderest parts of him, slowly and sensually slipping up the underside of his sex, shivering yourself as your skin comes into contact with the legions of pulsating, writhing sicilia along his thick member's haft.");
 	output("\n\n<i>\"Ugh. That feels... that feels...\"</i>");
@@ -470,7 +470,7 @@ public function greatFootjerbSavin():void
 	output("\n\nWith a final, bestial roar of pleasure, the sydian male cums. You gasp in surprise as a sudden flood of warmth smears across the ");
 	if(pc.legType == GLOBAL.TYPE_HUMAN) output("sole of your foot");
 	else output("bottom of your [pc.foot]");
-	output(", basting your [pc.skin] with a hot, creamy spurt of spunk. As he does so, his ass-muscles clamp down so hard around your tailcock that you can't help but whine, tail writhing as your cock is milked by the convulsing corridor of his ass. Your tail pounds into his hole, fucking the sydian's tight little ass with growing speed as his orgasm dwindles, hoping to join him in his pleasure before its too late.");
+	output(", basting your [pc.skin] with a hot, creamy spurt of spunk. As he does so, his ass-muscles clamp down so hard around your tailcock that you can't help but whine, your tail writhing as your cock is milked by the convulsing corridor of his ass. Your tail pounds into his hole, fucking the sydian's tight little ass with growing speed as his orgasm dwindles, hoping to join him in his pleasure before it’s too late.");
 	output("\n\nYou make it to the edge of climax just as the sydian man is collapsing back, panting heavily. With a final thrust and a gasp of pleasure, you feel your tentacle-like appendage swelling with seed before letting loose, spraying his colon with [pc.cum]. The alien grunts with approval, shuddering slightly as he feels himself filling with your hot seed. Your tail gives a few final thrusts, milking itself out of every drop it can splooge out before finally starting to go soft inside him, easily slipping out of his now-loose hole.");
 	output("\n\n<i>\"Not so bad, was it?\"</i> you grin, patting the rusty-hued alien on his chitinous leg.");
 	output("\n\n<i>\"No. Not bad,\"</i> he sighs, head reclining back into his hands as his own wiggling tool retracts into the sea of spooge on his belly. You gather your [pc.gear] back up and leave him there, basking in the afterglow to contemplate his new experience.\n\n");
@@ -492,8 +492,8 @@ public function hungryhungryTailginasThirst():void
 		if(pc.tailCount > 1) output("s");
 		output(" to sway around your body and into your hand");
 		if(pc.tailCount > 1) output("s");
-		if(pc.tailCount > 2) output(", the excess spread around you an obscene, eager halo");
-		output(". Your fingers slip inside the dusky, symbiotic genitalia to show the prone sydian just how wet and eager your body is, nevermind the worry in the back of your mind that ");
+		if(pc.tailCount > 2) output(", as the excess spread around you an obscene, eager halo");
+		output(". Your fingers slip inside the dusky, symbiotic genitalia to show the prone sydian just how wet and eager your body is, never mind the worry in the back of your mind that ");
 		if(pc.tailCount == 1) output("it");
 		else output("they");
 		output(" might be ");
@@ -510,7 +510,7 @@ public function hungryhungryTailginasThirst():void
 		if(pc.tailCount == 1) output("it one-handed");
 		else if(pc.tailCount == 2) output("them in each hand");
 		else output("two in your hands");
-		output(", stuffing them with fingertips to temporarily sate their fuck-thirst ");
+		output(", stuffing them with your fingertips to temporarily sate their fuck-thirst ");
 		if(pc.tailCount == 1) output("its");
 		else output("their");
 		output(" drooling entrance");
@@ -518,18 +518,18 @@ public function hungryhungryTailginasThirst():void
 		output(" while you look down at the prone sydian and ");
 		if(enemy.HP() < 1) output("his rapidly stiffening member");
 		else output("wonderfully throbbing, alien erection");
-		output(". The sight of such a hard cock right triggers a surge of pleasure from your [pc.tails]. You're going to feed, and feeding makes you feel good.");
+		output(". The sight of such a hard cock triggers a surge of pleasure from your [pc.tails]. You're going to feed, and feeding makes you feel good.");
 	}
 	//Merge
 	//Nice
 	if(pc.isNice()) output("\n\n<i>\"Sorry for the fight. I needed to make sure we could do this my way. Lie back now; I promise this is going to feel wonderful,\"</i> you explain to your captive audience as you mount his chest, dropping your [pc.butt] down on his chitin-armored chest.");
 	//Mischievous
-	else if(pc.isMischievous()) output("\n\n<i>\"I hope your dick has a little more vim and vigor than it's owner. Surely you could've put up a better fight than that?\"</i> you tease as you settle into position atop his chest. <i>\"Lucky for you, I was in the mood for cum.\"</i>");
+	else if(pc.isMischievous()) output("\n\n<i>\"I hope your dick has a little more vim and vigor than its owner. Surely you could've put up a better fight than that?\"</i> you tease as you settle into position atop his chest. <i>\"Lucky for you, I was in the mood for cum.\"</i>");
 	//Asshole
-	else output("\n\n<i>\"I don't know why you even bothered to fight me. You never had a chance. All you had to do was kneel obediently, and you could've gotten to the good part so much quicker,\"</i> you explain as you settle into place on his chest. A few teasing slaps his face to punctuate your points. <i>\"Dumb slut.\"</i>");
+	else output("\n\n<i>\"I don't know why you even bothered to fight me. You never had a chance. All you had to do was kneel obediently, and you could've gotten to the good part so much quicker,\"</i> you explain as you settle into place on his chest. You deliver a few teasing slaps upon his face to punctuate your points. <i>\"Dumb slut.\"</i>");
 	//Merge
 	output(" Your hands find their way to his armored pectorals and slide across the gleaming, almost-polished surface, admiring the masculine shape and the shine that's so uncommon on this world.");
-	if(pc.hasCock() || pc.hasVagina()) output(" A pleasant tingle runs through your [pc.crotch], earning a few pleasured twitches of your [pc.hips]. You still the errand motions to give your [pc.tails] maximum stability. No point in making it harder to hit your target after all.");
+	if(pc.hasCock() || pc.hasVagina()) output(" A pleasant tingle runs through your [pc.crotch], earning a few pleasured twitches of your [pc.hips]. You still the errant motions to give your [pc.tails] maximum stability. No point in making it harder to hit your target after all.");
 	output("\n\n<i>\"I didn-\"</i> the sydian starts in quiet protest.");
 	output("\n\nHis words die when [pc.oneTailgina] whips over to his cilia-covered cock, brushing its lips against its head as if to taste it.");
 	if(pc.tailCount == 2) output(" The second one comes in a second later, kissing and slurping against his side, sometimes bumping at the one on his head as if to push it aside.");
@@ -538,7 +538,7 @@ public function hungryhungryTailginasThirst():void
 	output("\n\nThe distracting bliss makes it difficult to focus on anything but the automatic motions of your posterior limb");
 	if(pc.tailCount > 1) output("s as they worship");
 	else output(" as it worships");
-	output(" the lucky alien's blood-swollen seed-dispenser. Unfortunately, the sydian has a tail of his own, and he brings to caress the side of your neck and face. While it's ultimately soft and pleasurable, it's also coated in something that immediately wicks into your [pc.skinFurScales], leaving a pleasant heat in its wake that gathers in your [pc.tails] and loins. Your [pc.tailgina], perhaps encouraged by the chemical aphrodisiac, lunges downward to take him to the root, filling and stretching itself in way that makes it difficult to control yourself, let alone maintain conscious thought.");
+	output(" the lucky alien's blood-swollen seed-dispenser. Unfortunately, the sydian has a tail of his own, and he brings it forward to caress the side of your neck and face. While it's ultimately soft and pleasurable, it's also coated in something that immediately wicks into your [pc.skinFurScales], leaving a pleasant heat in its wake that gathers in your [pc.tails] and loins. Your [pc.tailgina], perhaps encouraged by the chemical aphrodisiac, lunges downward to take him to the root, filling and stretching itself in a way that makes it difficult to control yourself, let alone maintain conscious thought.");
 	output("\n\nThe rings of muscle that line your prehensile pussy go to work on the sydian while his vibrant phallus' cilia swirl against them. He obviously did not expect such a strong, skillful milking, and his eyes roll back. His tongue drools from the corner of his mouth, and he begins making happy-sounding grunts accompanied by gentle, needy twitches of his hips.");
 	output("\n\nOf course, nothing could prepare you for the sensory artillery his cilia turned out to be. If your nervous system is like a power grid, then everything behind your [pc.butt] is experiencing a power surge, sparking and trembling, too sizzlingly hot to handle. Your vision goes black when your eyes roll back, useless to the ecstasy-addicted mind controlling you, and your body sags down atop supine sydian, [pc.chest] to hardened chest. Your head lolls ");
 	if(pc.tallness > 90) output("above his");
@@ -589,9 +589,9 @@ public function hungryhungryTailginasThirst():void
 		output(" [pc.eachVagina] as ");
 		if(pc.totalVaginas() == 1) output("it gives");
 		else output("they give");
-		output(" into to the rampant coruscating pleasure that's jumping between your nerves like electricity from a live wire.");
+		output(" in to the rampant coruscating pleasure that's jumping between your nerves like electricity from a live wire.");
 	}
-	output("\n\nYour moans grow louder rather than dying down, while the alien's grunts fade into pleased sighs. Quiet slurps and sucks sound from your conjoined organs, drinking the last few drops from the alien's powerful tool, it's outline visible in stark relief through your tail's contorting shape. He starts going limp before your [pc.tailgina] stops sucking, and when it does finally deign to pull off, his orange dick and bristles are slick with your [pc.girlCum]. Not a single droplet of his silvery spunk remains.");
+	output("\n\nYour moans grow louder rather than dying down, while the alien's grunts fade into pleased sighs. Quiet slurps and sucks sound from your conjoined organs, drinking the last few drops from the alien's powerful tool, its outline visible in stark relief through your tail's contorting shape. He starts going limp before your [pc.tailgina] stops sucking, and when it does finally deign to pull off, his orange dick and bristles are slick with your [pc.girlCum]. Not a single droplet of his silvery spunk remains.");
 	output("\n\nStaggering up panting, you stumble around drunkenly. That orgasm was more than powerful enough to count for two, and it's a little hard to control your muscles in the wake of such an experience. You'll have to make do. The wilds of Tarkus are no place to be unawares. Your now-slumbering foe is likely to find that out on his own.\n\n");
 	processTime(35+rand(5));
 	pc.orgasm();
@@ -625,7 +625,7 @@ public function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 		if(pc.isNude()) output(" As he takes in your nude, vulnerable body, a look of approval overtakes his previous expression, and he circles in close, kneeling down beside you with a much gentler smile. <i>\"Surely a creature like you, naked of the coverings most off-worlders wear, must have come out seeking to be used, yes?\"</i> He does not wait for an answer.");
 		else output(" As he takes in your covered shape, a look of disapproval overtakes his previous expression, and he circles in close, kneeling down beside you with a huff. <i>\"This will not do.\"</i> The sydian's three-fingered hands latch onto your [pc.gear] a piece at a time, throwing your possessions aside. <i>\"Surely you would have prepared yourself if you did not want this.\"</i> He does not wait for a reply.");
 		output("\n\nThe seven foot tall male's tail curls to lay against your [pc.hip], letting you feel the soft antennae that radiate from its tip. They're incredibly soft and coated in a viscous substance that feels warm on your skin. Shivering in disgust, you squirm away only to discover that the greasy secretion is already vanishing, but where it touched you, your skin is hot and flushed. What's more, you're starting to feel warm in other places too - places you didn't think would be feeling this way around such a brutish, alien oaf.");
-		output("\n\nYou gasp as the unnamed creature brings his tail against you once more, this time draping it over your [pc.belly], slicking it with a much thicker layer of his mysterious fluid. It feels... good, better than it has any reason to. You're forced to bite your [pc.lip] to keep from crying out, and your struggle mightily to keep from rubbing the stuff all over. A whimper escapes you anyway, high pitched and keeping. Your captor smiles knowingly as his tail traces across your [pc.fullChest]. There's no hiding the ");
+		output("\n\nYou gasp as the unnamed creature brings his tail against you once more, this time draping it over your [pc.belly], slicking it with a much thicker layer of his mysterious fluid. It feels... good, better than it has any reason to. You're forced to bite your [pc.lip] to keep from crying out, and you struggle mightily to keep from rubbing the stuff all over. A whimper escapes you anyway, high pitched and keeping. Your captor smiles knowingly as his tail traces across your [pc.fullChest]. There's no hiding the ");
 		if(pc.wetness(x) <= 2) output("dew dutifully beading on your netherlips");
 		else if(pc.wetness(x) <= 3) output("slick glossiness of your netherlips");
 		else if(pc.wetness(x) <= 4) output("way your juiced-up netherlips are dribbling with need");
@@ -648,7 +648,7 @@ public function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 		if(pc.isNude()) output(" and smiles. His antennae-tipped tail runs along the side of your [pc.hip] and [pc.ass], caressing you with the odd appendage. In the process, he leaves behind a trail of some warm secretion. Ordinarily, you'd recoil at being exposed to a strange fluid, but aroused as you are, you want to be made into a hot, wet mess. Your [pc.skin] absorbs the mystery juice nearly as fast as he can spread it on, and as it vanishes, it leaves behind a tender, sensitive flush you can feel all the way down in your [pc.vaginas].");
 		//Not nakkers
 		else {
-			output(" and sighs. First, his hand busy themselves with tearing away your [pc.gear], tossing your every possession into a pile on the ground behind you to reveal the real prize - you, the hapless damsel. You squirm and press yourself against him, but his hands are as firm as they are strong, holding you still until you are completely disrobed.");
+			output(" and sighs. First, his hands busy themselves with tearing away your [pc.gear], tossing your every possession into a pile on the ground behind you to reveal the real prize - you, the hapless damsel. You squirm and press yourself against him, but his hands are as firm as they are strong, holding you still until you are completely disrobed.");
 			output("\n\nThen, his tail winds its way up to you. It brushes the side of your [pc.hip] innocently at first, and in its wake, it leaves behind a smear of some warm secretion. Too turned on for disgust, you revel in it, feeling your [pc.skin] absorb the mystery goo until nothing but a hot, urgent flush remains in its place. The alien slathers more on your [pc.belly] and [pc.fullChest], painting you with the stuff until you can feel the feverish pulsations of pleasure gathering in your [pc.vaginas].");
 		}
 		//Merge
@@ -742,7 +742,7 @@ public function getPeggedToOrgasmByRustBro():void
 	output(" But first, you are going to need a little bit of preparation, I think.\"</i>");
 	output("\n\nSuddenly, his long tail curls around your [pc.hip], and you can feel the soft antennae brushing against your [pc.ass]. You try to wiggle away in vain as a a gooey, viscous substance is being smeared all over your buttcheeks, though for what purpose you do not know. His tail also slips between your [pc.thighs] and slathers [pc.eachCock] with the sticky liquid. Whatever he's doing, you're sure the handsome sydian has something sexual in mind.");
 
-	output("\n\nAs an exquisite heat travels up from your saturated loins, you realize the sticky solution is an aphrodisiac. Suddenly [pc.oneCock] feels incredibly hypersensitive, your [pc.legOrLegs] quiver");
+	output("\n\nAs an exquisite heat travels up from your saturated loins, you realize the sticky solution is an aphrodisiac. Suddenly [pc.oneCock] feels incredibly hypersensitive; your [pc.legOrLegs] quiver");
 	if(pc.legCount == 1) output("s");
 	output(" as he grabs your tool in one of his powerful hands and begins to gently stroke it.");
 
@@ -779,7 +779,7 @@ public function getPeggedToOrgasmByRustBro():void
 	output("\n\nThis time you both climax at the same time as your rear passage is splattered and filled with his slick hot alien cum, jets of bubbling warmth spraying deep inside of you. You let out a whimpering sigh as your [pc.ass] is filled to the brink with his boiling seed, his powerful hands grabbing your waist as he makes sure every last drop shoots into the very depths of your rump.");
 	pc.orgasm();
 	output("\n\nYou instinctively milk his glorious alien cock with your ass for every last drop. Meanwhile he returns the favor, stroking the very last of your [pc.cum] from [pc.oneCock] with his prehensile appendage.");
-	output("\n\nAs a finale muscular alien man forces you to lick your own ejaculate from the tip of his tail, smearing your [pc.cumColor] [pc.cumNoun] all over your lips. You're in such a drug-addled haze that you obediently lap it all up. An indeterminate amount of time later, the male withdraws, discarding your well-fucked form onto the ground. Reflective, inhuman cum leaks out of your backside as your [pc.asshole " + x + "] is left temporarily gaped in the shape of the sydian's shaft. Exhausted by the trauma, your eyes drift closed.");
+	output("\n\nAs a finale, the muscular alien man forces you to lick your own ejaculate from the tip of his tail, smearing your [pc.cumColor] [pc.cumNoun] all over your lips. You're in such a drug-addled haze that you obediently lap it all up. An indeterminate amount of time later, the male withdraws, discarding your well-fucked form onto the ground. Reflective, inhuman cum leaks out of your backside as your [pc.asshole " + x + "] is left temporarily gaped in the shape of the sydian's shaft. Exhausted by the trauma, your eyes drift closed.");
 	output("\n\nWhen you come to, the male is gone");
 	if(!pc.hasStatusEffect("Rusted Emitters"))
 	{

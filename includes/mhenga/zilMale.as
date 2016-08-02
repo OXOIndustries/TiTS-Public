@@ -1284,7 +1284,7 @@ public function useTailOnZilWhenUWin():void
 	output(" Flat on his back, he looks up at you, first in confusion, then hungry anticipation as he feels the heat from your symbiont over his engorged cock.");
 	output("\n\nYou feel another surge of pleasure from your tail. You’re not sure how much it’s aware of, exactly, but it does seem to approve of a helpless, erect cock for its use. The surge ripples outward, and you ");
 	if(!pc.hasCock()) output("feel your nipples stiffen under your [pc.clothes]");
-	else output("and shudder with an answering stiffening from your [pc.cocks], already erect at the thought of using this helpless Zil to get you off");
+	else output("shudder with an answering stiffening from your [pc.cocks], already erect at the thought of using this helpless Zil to get you off");
 	output(". ");
 	if(pc.hasVagina()) 
 	{
@@ -1301,8 +1301,8 @@ public function useTailOnZilWhenUWin():void
 	output("\n\nYou nearly double over as your tail slides back up with a squelch, leaving a feeling of insatiate emptiness in you. The zil leans his head back, mouth agape as your tail slides down again, its tight inner walls rippling against the zil’s cock. His hips buck upward, desperate for more your symbiotic love, and your cunt tail obliges. It surges down again, drawing a loud moan from the zil-one almost drowned out by your own. When you clench your muscles and draw your tail back up again, the two of you harmonize in debauched groans of pleasure.");
 
 	output("\n\nYou look down at the zil, meeting his blissed-out expression with your own, practically drooling down on his face as your tail pumps against him. ");
-	if(!pc.isNaga()) output("The leg you’re keeping on his chest starts to tremble with ");
-	else output("Your snake-like coils on his chest shift as you squirm in delight at ");
+	if(!pc.isNaga()) output("The leg you’re keeping on his chest starts to tremble with");
+	else output("Your snake-like coils on his chest shift as you squirm in delight at");
 	output(" the shudders of pure joy running through your body. Your tail is moving faster now; you can feel it flexing inside, massaging and milking the zil’s dick.");
 
 	output("\n\nFaster and faster your cunt tail pumps. ");
@@ -1326,7 +1326,7 @@ public function useTailOnZilWhenUWin():void
 	output("Your whole body is trembling, and you’re on the verge of collapsing on top of your “victim.”");
 	output("\n\nWith a strangled groan, the zil finally cums, his cock flooding your ravenous tail with thick, sweet honey. Your mouth waters as your cunt tail shares the sensation of the heady, sacchrine zil cum running down its endless gullet. Your tail clamps down hard on the zil’s package, sealing tight and rippling as it noisily slurps every drop of his syrupy seed.");
 
-	output("\n\nIn thick jets cum oozes into your tail, and and you swear you feel your tail pulse, pumping endorphins into your system, flooding you with bliss. You gasp, hips thrusting forward as you, yourself cum.");
+	output("\n\nIn thick jets cum oozes into your tail, and you swear you feel your tail pulse, pumping endorphins into your system, flooding you with bliss. You gasp, hips thrusting forward as you yourself cum.");
 	if(pc.hasCock()) 
 	{
 		output(" You fumble at your cock");
