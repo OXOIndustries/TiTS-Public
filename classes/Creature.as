@@ -1713,6 +1713,12 @@
 				case "knotBiggest":
 					buffer = knotDescript(biggestCockIndex());
 					break;
+				case "sheathOrKnot":
+					buffer = sheathOrKnot(arg2);
+					break;
+				case "knotOrSheath":
+					buffer = knotOrSheath(arg2);
+					break;
 				case "multiCockDescript":
 				case "multiCocks":
 					buffer = multiCockDescript();
@@ -4885,14 +4891,14 @@
 			output += noun;
 			return output;
 		}
-		public function skinFurScales(forceTone: Boolean = false, forceAdjective: Boolean = false, skin: Boolean = false): String {
+		public function skinFurScales(forceTone: Boolean = false, forceAdjective: Boolean = false, skin: Boolean = false, appearance: Boolean = false): String {
 			var output: String = "";
 			var temp:*;
 			var adjectives:Array = [];
 			//33% of the time, add an adjective.
 			if (forceAdjective || rand(3) == 0) {
 				//Omnisuit overrides normal skin descs.
-				if(!skin && armor is Omnisuit)
+				if(!appearance && !skin && armor is Omnisuit)
 				{
 					adjectives.push(RandomInCollection(["slick","artificial","body-encasing","sensation-enhancing","touch-enhancing","tactile-enhancing","gleaming","shining","perfectly molded"]));
 				}
@@ -5002,7 +5008,7 @@
 			var output: String = "";
 			var temp: int = 0;
 			//Set skin words.
-			if(armor is Omnisuit && !skin) output += RandomInCollection(["latex","rubber","suit"]);
+			if(armor is Omnisuit && !skin && !appearance) output += RandomInCollection(["latex","rubber","suit"]);
 			else if (skinType == GLOBAL.SKIN_TYPE_SKIN || skin) {
 				temp = rand(10);
 				//if (temp <= 8) 
@@ -5040,8 +5046,8 @@
 			}
 			return output;
 		}
-		public function skin(forceTone: Boolean = false, forceAdjective: Boolean = false): String {
-			return skinFurScales(forceTone, forceAdjective, true);
+		public function skin(forceTone: Boolean = false, forceAdjective: Boolean = false, appearance:Boolean = false): String {
+			return skinFurScales(forceTone, forceAdjective, true, appearance);
 		}
 		public function face(forceAdjectives: Boolean = false): String {
 			var output: String = "";
@@ -5281,7 +5287,7 @@
 		{
 			if (tailCount == 0) return "ERROR: No tails!";
 			else if (tailCount == 1) return "your " + tailDescript();
-			return "each of your " + tailDescript();
+			return "each of your " + tailsDescript();
 		}
 		public function tailsDescript():String {
 			if(tailCount == 1) return tailDescript();
@@ -8255,7 +8261,7 @@
 		}
 		public function tailCuntCapacity(): Number {
 			if (!hasTailCunt()) return 0;
-			if (vaginalCapacity(0) > 100) return vaginalCapacity(0);
+			if (biggestVaginalCapacity() > 300) return biggestVaginalCapacity();
 			return 100;
 		}
 		public function isBald(): Boolean {
@@ -9483,7 +9489,7 @@
 			if (counter > 0 && totalVaginas(GLOBAL.TYPE_FLOWER) == totalVaginas()) counter++;
 			if (counter > 1 && hasCock() && cumType == GLOBAL.FLUID_TYPE_FRUIT_CUM) counter++;
 			if (counter > 1 && hasVagina() && girlCumType == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) counter++;
-			if (skinType == GLOBAL.SKIN_TYPE_LATEX) counter--;
+			if (counter > 3 && skinType == GLOBAL.SKIN_TYPE_LATEX) counter++;
 			return counter;
 		}
 		public function raskvelScore(): int
@@ -9609,6 +9615,18 @@
 		public function knotDescript(arg: Number): String {
 			if (hasKnot(arg)) return "knot";
 			return "base";
+		}
+		public function knotOrSheath(arg: Number): String
+		{
+			if (hasKnot(arg)) return knotDescript(arg);
+			else if(hasSheath(arg)) return sheathDescript(arg);
+			else return "base";
+		}
+		public function sheathOrKnot(arg: Number): String
+		{
+			if(hasSheath(arg)) return sheathDescript(arg);
+			else if (hasKnot(arg)) return knotDescript(arg);
+			else return "base";
 		}
 		public function chestDesc(): String {
 			if (biggestTitSize() < 1 && rand(2) == 0)
@@ -13596,6 +13614,10 @@
 		{
 			return (lowerUndergarment.hardLightEquipped);
 		}
+		public function hardLightVolume():Number
+		{
+			return 30;
+		}
 		// Always picks the main anatomy--no need to complicate it!
 		//Ids:
 		//-4 = catch-all "strapon"
@@ -15742,13 +15764,6 @@
 								case "Lane's Hypnosis - Willpower":
 									kGAMECLASS.baseHypnosisWearsOff((statusEffects[x] as StorageClass).storageName);
 									break;
-								case "Crabbst":
-									physiqueMod -= (statusEffects[x] as StorageClass).value2;
-									reflexesMod += (statusEffects[x] as StorageClass).value2;
-									aimMod += (statusEffects[x] as StorageClass).value2;
-									intelligenceMod += (statusEffects[x] as StorageClass).value2;
-									willpowerMod += (statusEffects[x] as StorageClass).value2;
-									break;
 								case "Horse Pill":
 									var pill:HorsePill = new HorsePill();
 									pill.lastPillTF();
@@ -15783,6 +15798,16 @@
 								case "Hair Flower":
 									var flowerPower:Cerespirin = new Cerespirin();
 									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this);
+									break;
+								// Goo hair reverts back!
+								case "Hair Regoo":
+									if(hasHair() && hairType != GLOBAL.HAIR_TYPE_GOO)
+									{
+										kGAMECLASS.eventBuffer += ParseText("\n\nThe tingling along your scalp becomes stronger as you realize something has been gradually changing. As the sensation fades, you run your hand across the top of your head and notice some excess slime stick to it... It looks like <b>your [pc.hair] has reverted back into gooey hair</b>.");
+										
+										if(hairType == GLOBAL.HAIR_TYPE_TENTACLES) hairStyle == "tentacle";
+										hairType = GLOBAL.HAIR_TYPE_GOO;
+									}
 									break;
 								// Black Latex grows back!
 								case "Latex Regrow":
@@ -15860,6 +15885,13 @@
 									}
 									else kGAMECLASS.eventBuffer += " fertility and virility should you ever have the genitals for them";
 									kGAMECLASS.eventBuffer += ". <b>Your ability to potentionally create life has been restored!</b>";
+									break;
+								case "Crabbst":
+									physiqueMod -= (statusEffects[x] as StorageClass).value2;
+									reflexesMod += (statusEffects[x] as StorageClass).value2;
+									aimMod += (statusEffects[x] as StorageClass).value2;
+									intelligenceMod += (statusEffects[x] as StorageClass).value2;
+									willpowerMod += (statusEffects[x] as StorageClass).value2;
 									break;
 								case "Mead":
 									physiqueMod -= (statusEffects[x] as StorageClass).value2;

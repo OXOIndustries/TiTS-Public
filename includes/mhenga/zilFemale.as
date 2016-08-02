@@ -993,10 +993,10 @@ public function dudesGetStangRoad():void {
 	output("\n\nThe all-consuming pleasure and arousal causes each ejaculation to blend into the next until it feels like you're shooting one long, continuous strand of liquid relief directly into the wasp-woman's ready womb. Crying out, your voice loudly announces to anyone and everything in the surrounding jungle that you're having the most exquisite climax of your life. There’s no way you could not vocalize your bliss, given how beautiful this ejaculatory nirvana is.");
 	if(pc.cumQ() <= 50) output(" Even when you run out of [pc.cum] to shoot and come down a little from your high, your [pc.cock " + x + "] remains as hard as a rock.");
 	else if(pc.cumQ() <= 150) output(" Even when you cum enough to give her uterus a thorough seeding, you never come down enough to go limp. Your [pc.cock " + x + "] seems perpetually hard as rock.");
-	else if(pc.cumQ() <= 1000) output(" Even when you've raised a decent-sized bump in her belly from the massive [pc.cum]-injection and let your orgasm ebb, your [pc.cock " + x + "] remains perfectly hard.");
-	else if(pc.cumQ() <= 5000) {
+	else if(pc.cumQ() <= 2000) output(" Even when you've raised a decent-sized bump in her belly from the massive [pc.cum]-injection and let your orgasm ebb, your [pc.cock " + x + "] remains perfectly hard.");
+	else if(pc.cumQ() <= 10000) {
 		output(" Even when you've gifted the alien a ");
-		if(pc.cumQ() <= 3000) output("noticeable");
+		if(pc.cumQ() <= 4000) output("noticeable");
 		else output("huge");
 		output(", gravid belly and let your orgasm end, your [pc.cock " + x + "] remains as hard as a rock.");
 	}
@@ -1197,7 +1197,11 @@ public function defeatHostileZil():void {
 	//Cuff&Fuck
 	cuffNFuckButton(5, enemy);
 	//Femzil prompt
-	if(pc.hasCock()) addButton(6,"Dick Fuck",normalZilgirlCockfuck);
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(enemy.vaginalCapacity()) >= 0) addButton(6,"Dick Fuck",normalZilgirlCockfuck);
+		else addDisabledButton(6,"Dick Fuck","Dick Fuck","You need a penis that can fit her vagina for this.");
+	}
 	else addDisabledButton(6,"Dick Fuck","Dick Fuck","You need a penis between your legs for this scene.");
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] == undefined) {
 		addButton(9,"Capture",useTheCaptureHarness);
@@ -1415,7 +1419,7 @@ public function numbPussyFuck(dick:Boolean = true):void {
 		//(small skeet)
 		if(pc.cumQ() <= 250) output("Spending your ardor quickly, you pull out and let the last squirt go across her thigh. Your batch drips from the slumping zil, unable as she is to tighten up and hold it inside.");
 		//(large skeet)
-		else if(pc.cumQ() < 1000) output("You pump and pump, filling her with stroke upon stroke of semen, until her pussy is full and it begins to flow back around your shaft.");
+		else if(pc.cumQ() < 7000) output("You pump and pump, filling her with stroke upon stroke of semen, until her pussy is full and it begins to flow back around your shaft.");
 		//(mega skeet)
 		else {
 			output("Unwilling to pull out, you press her tight against your base ");
@@ -1501,15 +1505,15 @@ public function smotherDatBeeSlutInDickYo():void {
 		output("\n\nThe zil tips her head back and opens her mouth, showing you that she's devoured it all just in time for the next ejaculation to tag her right between the eyes, splattering in sticky strands in another face-coating layer. Some puddles in the hollow of her neck, a tiny lake of liquid love growing ever deeper on your lover's surprised body. Her supine shape trembles through another orgasm of her own as she grinds against your meat, getting off on being smothered in cock and painted with its immense outflow. The geyser of wet warmth erupts against your underside, feeling like having the loveliest, warmest honey painted across your sensitive surface. You shudder as the next pulse readies itself.");
 		output("\n\nThere's no warning, and certainly no way the alien can prepare herself. She's too busy lying there, writhing in the mud, cumming her brains out to the feeling of being completely owned by your [pc.cockBiggest], marked and stained with the proof of your superior virility. She mewls as another layer of [pc.cum] covers her, running her hands through it to gather it. With hands full, she presses your [pc.cumColor] relief down to the fluttering hole betwixt her thighs, stuffing it inside like precious gems into an empty vault. She shovels as much as she can in while you rain it down upon her, not stopping until there's a frothy mess oozing out of her hole and the bulk of her body is smeared with it.");
 		//Huge cum addendum
-		if(pc.cumQ() >= 1500) {
+		if(pc.cumQ() >= 2500) {
 			output("\n\nThat's just the start of it, you shoot and shoot and shoot until the ground beneath your prize is a fragrant, sexual mud. Your [pc.cum] is rolling off her in slow-flowing waterfalls before puddling on the mix, leaving the zil-girl in a ");
 			if(pc.cumQ() <= 5000) output("small puddle");
 			else if(pc.cumQ() <= 10000) output("body-sized puddle");
-			else if(pc.cumQ() <= 20000) output("puddle deep enough for her to sink half-way into");
-			else if(pc.cumQ() <= 30000) output("puddle deep enough to hide everything but her face and the tops of her breasts");
+			else if(pc.cumQ() <= 30000) output("puddle deep enough for her to sink half-way into");
+			else if(pc.cumQ() <= 100000) output("puddle deep enough to hide everything but her face and the tops of her breasts");
 			else output("puddle deep enough to nearly drown her");
 			output(".");
-			if(pc.cumQ() >= 50000) output(" You keep going, eventually creating a small river of juices that drains through the jungle, flowing off towards who-knows where.");
+			if(pc.cumQ() >= 60000) output(" You keep going, eventually creating a small river of juices that drains through the jungle, flowing off towards who-knows where.");
 			pc.orgasm();
 			pc.orgasm();
 			pc.orgasm();
@@ -1581,7 +1585,7 @@ public function normalZilgirlCockfuck():void
 		
 		output("\n\nA pair of chitinous arms wrap around your shoulders, and the moans of your sweet-smelling lover fill the air. You look down at your companion’s body, taking in every inch of her glistening figure until you see her abdomen, and more importantly its venomous stinger, bobbing precariously close to your exposed [pc.skinFurScales].");
 		
-		output("\n\nShaking your head to clear your thoughts, you return your attentions to the zil’s blushing face and meet a mischievous smirk, then tense as you feel a point of pressure against your side. <i>“Worried?”</i> she coos.");
+		output("\n\nShaking your head to clear your thoughts, you return your attentions to the zil’s blushing face and meet a mischievous smirk, then tense as you feel a point of pressure against your [pc.thigh]. <i>“Worried?”</i> she coos.");
 		
 		if(pc.isAss()) output("\n\nScoffing");
 		else output("\n\nSighing");
@@ -1593,7 +1597,7 @@ public function normalZilgirlCockfuck():void
 	if (pc.isLactating()) output(", and teasing out a few droplets of [pc.milk]");
 	output(".")
 	
-	output("\n\nShe tries to say something, but her voice becomes a mess of gasps and broken whines as you drive your [pc.cock " + x + "] deeper and deeper into her womanhood, until you can go no farther. You slam into her, reaching a fever pitch as the zil’s scent pushes you over the edge of sense.");
+	output("\n\nShe tries to say something, but her voice becomes a mess of gasps and broken whines as you drive your [pc.cock " + x + "] deeper and deeper into her womanhood, until you can go no farther. You slam into her, reaching a fever pitch as the zil’s scent pushes you beyond all sense.");
 	
 	output("\n\nHer vagina draws you in, suffocating your dick with its sweet warmth. Honey spills out of her slit and collects on the ground beneath, creating a sticky puddle with an overpowering aroma. Louder and less-controlled vocalizations come from the zil as you stretch her insides with your [pc.cock " + x + "]. Before long, she’s practically screaming, and you can’t suppress a few needy groans of your own.");
 	
@@ -1615,7 +1619,7 @@ public function normalZilgirlCockfuck():void
 			output("[pc.girlCum] begins to leak from [pc.eachVagina]. The feminine lust runs along your [pc.thighs]");
 			if(pc.balls > 0) output("and drips down your [pc.balls]")
 		}
-		output(", eliciting a gasp and a shiver as your feminine half spams and twitches.");
+		output(", eliciting a gasp and a shiver as your feminine half spasms and twitches.");
 		output(" You grind your [pc.hips] against your partner, eyes clamped shut from the sheer strength of your twin orgasms.");
 	}
 	

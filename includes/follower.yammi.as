@@ -663,7 +663,7 @@ public function getYammiSmut():void
 	yammiFollowerDisplay();
 	author("Savin");
 	output("When Yammi turns her attention momentarily from you to a pot that needs stirring, you lean against the refrigerator beside her and gently clear your throat.");
-	output("\n\n<i>“So I’ve been thinking...”</i> you say, watching the gentle rise and fall of the sparadat’s perky chest beneath her tight red dress with keen interest. When you pause, Yammi stops and glances ");
+	output("\n\n<i>“So I’ve been thinking...”</i> you say, watching the gentle rise and fall of the sparadat’s perky chest beneath her tight-fitting apron with keen interest. When you pause, Yammi stops and glances ");
 	if(pc.tallness >= 72) output("up ");
 	else if(pc.tallness < 66) output("down ");
 	output("at you. She smiles and swings her spoon over to you, cutting the second half of your sentence off and planting the edge of the spoon on your lip.");

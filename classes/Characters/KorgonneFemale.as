@@ -205,8 +205,20 @@
 			//"Hard" level preferences.
 			sexualPreferences.setRandomPrefs(4 + rand(3),2);
 			//Bigdick replaces normal dick love
-			if(kGAMECLASS.flags["KORGI_BIG_DICKED"] != undefined) sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.REALLY_LIKES_SEXPREF);
-			else sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.SEXPREF_HYPER);
+			if(kGAMECLASS.flags["KORGI_BIG_DICKED"] != undefined)
+			{
+				sexualPreferences.removePref(GLOBAL.SEXPREF_COCKS);
+				sexualPreferences.removePref(GLOBAL.SEXPREF_HYPER);
+				sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.KINDA_LIKES_SEXPREF);
+				sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER, GLOBAL.KINDA_DISLIKES_SEXPREF);
+			}
+			else
+			{
+				sexualPreferences.removePref(GLOBAL.SEXPREF_HYPER);
+				sexualPreferences.removePref(GLOBAL.SEXPREF_COCKS);
+				sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER, GLOBAL.REALLY_LIKES_SEXPREF);
+				sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.KINDA_LIKES_SEXPREF);
+			}
 			
 			//Pick a shield generator
 			if(rand(4) == 0) this.shield = new ImprovisedShield();

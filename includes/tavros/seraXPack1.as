@@ -1208,7 +1208,7 @@ public function seraSexXXXhibitionBlowjob(arg:Array):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showSera();
+	showSera(true);
 	
 	var dildoSize:Number = 300;
 	var pageNum:int = arg[0];
@@ -1447,7 +1447,6 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("SERA", "JARDI");
 	showName("SERA\n& JARDI");
 	
 	// First
@@ -1455,6 +1454,8 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 	{
 		if(response == "jardis")
 		{
+			showBust("SERA", "JARDI");
+			
 			output("You kneel in front of Sera, gazing up at her unabashedly perverse form.");
 			output("\n\n<i>“Mi - ”</i> The door beeps.");
 			output("\n\n<i>“Mistress?”</i> says a breathy, female voice. <i>“I’m sorry I – oh.”</i> Sera beckons impatiently.");
@@ -1506,6 +1507,8 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 		}
 		else if(response == "hookah")
 		{
+			showBust("SERA_NUDE", "JARDI_NUDE");
+			
 			output("<i>“Good,”</i> husks Sera. She’s lying back against the bed frame, clutching her turgid cock with one hand and toying with her gleaming pussy with the other. <i>“Now take off");
 			if(!pc.isNude()) output(" each other’s");
 			else output(" her");
@@ -1560,6 +1563,8 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 		}
 		else if(response == "balls" || response == "pussy" || response == "ass")
 		{
+			showBust("SERA_NUDE", "JARDI_NUDE");
+			
 			if(response == "balls")
 			{
 				output("You slowly crawl forward, the sight of Sera’s ample thighs and behind taking up everything as she slowly buries every inch into Jardi’s plump cunt. The rahn makes a sing song gasp when her mistress’s hips touch her behind, seeping fluid from her stuffed tunnel freely. You wrap your hands around the purple, pliant warmth of the succubus’s waist and when she withdraws you envelope one of her bulging testicles in your mouth. Equal parts mistress musk and salt saturates your [pc.tongue], sending arousal wiring down to your [pc.groin].");
@@ -1671,6 +1676,8 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 	{
 		if(response == "jardis")
 		{
+			showBust("SERA", "JARDI");
+			
 			output("<i>“Mistress.”</i>");
 			output("\n\nSera looks down at you from atop her stool silently, tapping her nails on the counter. She looks like she’s waiting for something. What that might be occurs to you at the exact moment the shop door beeps.");
 			output("\n\n<i>“I won’t be late again mistress, I sw- oh.”</i> The purple dominatrix eats you and Jardi up with her eyes for a few moments, a predatory smile on her face, then without a word gets up and saunters into the back, slapping her butt cheek lightly with her tail as she does. You take a deep breath and offer your hand to the albino goo girl; she as ever takes it with a tremulous red smile. Together you head down the corridor and into the smoky, spacey gloom of Sera’s bedroom.");
@@ -1719,6 +1726,8 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 		}
 		else if(response == "hookah")
 		{
+			showBust("SERA_NUDE", "JARDI_NUDE");
+			
 			output("Your sighs, kisses and licks are overlain by the heavy sound of Sera’s breathing and the shifting, wet sound of her masturbation as she watches you. <i>“And some people pay for porn,”</i> you think you hear her groan at one point. Making out with this slim, tender rahn under the sensitizing effects of the room and smoke would be wonderfully pleasant whatever the case, but the fact it’s done for your mistress, for her own viewing pleasure makes it overwhelmingly erotic.");
 			output("\n\nWhen you clasp Jardi’s hands and kiss her deeply again, crouched opposite you, Sera makes her move. She shifts over and lays her hand behind each of your heads, kneeling over you. You continue to curl your tongue around Jardi’s, confused for a moment – until a musky, foot long prick slides in front of your lips from the side.");
 			output("\n\n<i>“Keep going dears,”</i> sighs the demon, clasping your heads firmly and moving her hips slowly, gliding you and Jardi’s lip-lock up and down her thick cock. You open your mouth wide and feel the goo-girl’s soft, red mouth on the other side of the veiny hardness shifting between you. With a bit of effort it’s possible for the two of you to continue mingling your tongues and lips whilst Sera runs all twelve inches of her sex through your joining, it just requires you to open your mouths quite wide, make sloppier and needier noises than you were before. Jardi’s hands tighten around yours when Sera ends by sliding all the way back so her pre-cum beading bulb is between you; your body throbbing with arousal and acquiescent bliss, you join the goo girl in lavishing it with your tongue.");
@@ -1746,6 +1755,8 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 		}
 		else if(response == "balls" || response == "pussy" || response == "ass")
 		{
+			showBust("SERA_NUDE", "JARDI_NUDE");
+			
 			if(response == "balls")
 			{
 				output("You slowly crawl forward, the sight of Sera’s ample thighs and behind taking up everything as she slowly buries every inch into Jardi’s plump cunt. The rahn makes a sing song gasp when her mistress’s hips touch her behind, seeping fluid from her stuffed tunnel freely. You wrap your hands around the purple, pliant warmth of the succubus’s waist and when she withdraws you envelope one of her bulging testicles in your mouth. Equal parts mistress musk and salt saturates your [pc.tongue], sending arousal wiring down to your [pc.groin].");
@@ -1872,7 +1883,7 @@ public function seraSexXXXGetRidden(arg:Array):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showSera();
+	showSera(true);
 	
 	var dildoSize:Number = 300;
 	var pageNum:int = arg[0];
@@ -2095,7 +2106,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showSera();
+	showSera(true);
 	
 	var response:String = arg[0];
 	var vagIndex:int = arg[1];
@@ -2140,14 +2151,14 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 			{
 				output("\n\nHer grin widens as her fingers sink down still further to grip your [pc.breasts " + 0 + "]. She plays with your second set of nipples for a time, sending acute pleasure shivering through you before gripping them between her fingers, squeezing your second pair of breasts ruthlessly hard, using them as leverage to fuck your top row with firm drives of her hips. You groan to the intensity of it, in turn pressing the boobs in your own hands into her rapidly moving prick.");
 			}
+			if(pc.isLactating()) output("\n\nIt doesn’t take long underneath this fierce treatment for [pc.milk] to begin to dribble and squirt freely from your [pc.nipples], slicking Sera’s hands with the proof of the shameless enjoyment you’re taking from being titfucked. She giggles to herself softly at the sight and takes the time to rub her straining dick over each nipple, teasing your wet, delicate nubs at the same time as slathering her hardness with your own juices; then she slaps it between your [pc.chest] and begins to thrust into your presented rack again, going at you even harder now that she’s thoroughly lubricated both of you.");
+			output("\n\nShe pants as she fucks your softness faster and faster, arching her head back and pushing her thick thighs into you as she rises towards her orgasm. The submissive notion of licking her bulging end as it presents itself between your pre-cum");
+			if(pc.isLactating()) output(" and [pc.milk]");
+			output(" slicked boobs dimly occurs to you, but she’s fucking you so frenetically it’s not even an option. She reaches down and");
+			if(pc.hasCuntNipples() || pc.hasLipples()) output(" fingers");
+			else output(" pinches");
+			output(" your nipples intently as her slit dilates, so that your cries join hers as she orgasms; yours however are swiftly drowned out by the warm jizz which is fountained onto you with each upward thrust of hard meat between your [pc.chest]. Sera doesn’t stop until she has caked your face and much of your [pc.hair] with her glorious love, her final few spatters providing you with a presentable pearl necklace too.");
 		}
-		if(pc.isLactating()) output("\n\nIt doesn’t take long underneath this fierce treatment for [pc.milk] to begin to dribble and squirt freely from your [pc.nipples], slicking Sera’s hands with the proof of the shameless enjoyment you’re taking from being titfucked. She giggles to herself softly at the sight and takes the time to rub her straining dick over each nipple, teasing your wet, delicate nubs at the same time as slathering her hardness with your own juices; then she slaps it between your [pc.chest] and begins to thrust into your presented rack again, going at you even harder now that she’s thoroughly lubricated both of you.");
-		output("\n\nShe pants as she fucks your softness faster and faster, arching her head back and pushing her thick thighs into you as she rises towards her orgasm. The submissive notion of licking her bulging end as it presents itself between your pre-cum");
-		if(pc.isLactating()) output(" and [pc.milk]");
-		output(" slicked boobs dimly occurs to you, but she’s fucking you so frenetically it’s not even an option. She reaches down and");
-		if(pc.hasCuntNipples() || pc.hasLipples()) output(" fingers");
-		else output(" pinches");
-		output(" your nipples intently as her slit dilates, so that your cries join hers as she orgasms; yours however are swiftly drowned out by the warm jizz which is fountained onto you with each upward thrust of hard meat between your [pc.chest]. Sera doesn’t stop until she has caked your face and much of your [pc.hair] with her glorious love, her final few spatters providing you with a presentable pearl necklace too.");
 		
 		processTime(15);
 		pc.lust(15);
@@ -2312,7 +2323,7 @@ public function seraSexXXXTitfuckLuckyDipGetItem(TFItem:String = ""):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showSera();
+	showSera(true);
 	
 	processTime(2);
 	IncrementFlag("SERA_TIT_FUCK_LUCKY_DIP");
@@ -2362,7 +2373,7 @@ public function seraSexXXXTitfuckLuckyDipPerform(TFItem:String = ""):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showSera();
+	showSera(true);
 	
 	processTime(10);
 	// “Perform” = 1 of product added + unlocked w/ discount.

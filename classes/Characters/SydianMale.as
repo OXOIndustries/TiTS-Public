@@ -137,7 +137,7 @@
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.impregnationType = "SydianPregnancy";
-			this.cumQualityRaw = 1;
+			this.cumQualityRaw = 3;
 			this.cumType = GLOBAL.FLUID_TYPE_SYDIAN_CUM;
 			this.ballSizeRaw = 3;
 			this.ballFullness = 1;
@@ -324,7 +324,7 @@
 				//Wearing armor!
 				if(target.armor.shortName != "" && !target.hasStatusEffect("Degraded Armor"))
 				{
-					output(" The strike doesn't hit hard to deal damage, but smear of your " + target.armor.longName + ". <b>Your armor is degraded and will not provide any defense for the rest of this fight!</b>");
+					output(" The strike doesn't hit hard enough to deal damage, but smears your " + target.armor.longName + ". <b>Your armor is degraded and will not provide any defense for the rest of this fight!</b>");
 					target.createStatusEffect("Degraded Armor", 0, 0, 0, 0, false, "DefenseDown", "Your armor is temporarily degraded and will not provide any defensive benefit.", true, 0);
 				}
 				else

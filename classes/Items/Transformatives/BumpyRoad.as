@@ -88,12 +88,12 @@
 				else if(nonNubbyTotal == 1 && nonNubbyCocks.length == 1)
 				{
 					cockTF([target, nonNubbyCocks[0]]);
-					return false;
+					return true;
 				}
 				else if(nonNubbyTotal == 1 && nonNubbyCunts.length == 1)
 				{
 					cuntTF([target, nonNubbyCunts[0]]);
-					return false;
+					return true;
 				}
 				
 				kGAMECLASS.output("You have more than one eligible genital. Which one will you inject with Bumpy Road?\n");

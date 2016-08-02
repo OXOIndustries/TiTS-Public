@@ -352,7 +352,7 @@ public function genesModsTalkMenu(cFunc:Function = null):void
 	
 	// Gene Chat
 	// Appears after PC has used "Me" and "Myr" talk options
-	if(flags["GENES_MODS_TALK_YOU"] != undefined && flags["GENES_MODS_TALK_MYR"] != undefined && CodexManager.entryViewed("Cockvines"))
+	if(flags["GENES_MODS_TALK_YOU"] != undefined && flags["GENES_MODS_TALK_MYR"] != undefined)
 	{
 		if (cFunc != genesModsChat) addButton(5, "Chat", genesModsChat, 0, "Chat", "Ask if there’s anything below the counter the unprincipled fanfir might be willing to sell.");
 		else addDisabledButton(5, "Chat");
@@ -716,6 +716,8 @@ public function genesModsChat(pageNum:int = 0):void
 			output("\n\n<i>“Which is?”</i> you cajole.");
 			
 			output("\n\n<i>“Let us say, purely for the sake of argument, that there is a small group of modders operating independently on this very planet,”</i> harrumphs Gene, gesticulating tersely with his synth arms. <i>“Aiming to take advantage of Xenogen’s current fixation with the gold myr to experiment with one of Myrellion’s, ahem, less celebrated species. Splicing plant DNA with animal is a notoriously difficult art, so to find a specimen that ACTIVELY SEEKS OUT such a union is of great interest to modders. They believe that, using the DNA of Hydrus Constuprula, they have created a plant TF of awesome strength and viability; able to facilitate all manner of floral metamorphoses in a subject. Not only that: I don’t think they’re lying.”</i>");
+			
+			CodexManager.unlockEntry("Cockvines");
 			
 			output("\n\n<i>“What’s the catch?”</i> you ask.");
 			

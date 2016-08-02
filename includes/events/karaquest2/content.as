@@ -67,17 +67,18 @@ public function completedKQ2Good():Boolean
 public function tryProcKQuest2Entry():Boolean
 {
 	// On enter/leave ship on Myrellion
-	// Taivra defeated
+	// Taivra defeated (or level-appropriate)
 	// Kara aided in KQuest1
 	
 	var beatTaivra:Boolean = flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["KING_NYREA"] != undefined;
+	var isLevel:Boolean = pc.level >= 8;
 	
 	// I THINK this is the simplest check for "Kara & Shade was resolved, with the PC siding with Kara."
 	var aidedKara:Boolean = flags["KARA_PAID_YOU"] != undefined; 
 	
 	var kq2NotOffered:Boolean = flags["KQ2_QUEST_OFFER"] == undefined;
 
-	if (kq2NotOffered && aidedKara && beatTaivra)
+	if (kq2NotOffered && aidedKara && (beatTaivra || isLevel))
 	{
 		kq2Offer();
 		return true;

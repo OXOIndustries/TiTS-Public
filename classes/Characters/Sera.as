@@ -2,7 +2,15 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Miscellaneous.*;
+	import classes.Items.Miscellaneous.Chocolac;
+	import classes.Items.Miscellaneous.Condensol;
+	import classes.Items.Miscellaneous.Estrobloom;
+	import classes.Items.Miscellaneous.Pussybloom;
+	import classes.Items.Miscellaneous.Pussyblossom;
+	import classes.Items.Miscellaneous.Rainbotox;
+	import classes.Items.Miscellaneous.TerranTreats;
+	import classes.Items.Miscellaneous.Tittyblossom;
+	import classes.Items.Transformatives.DendroGro;
 	import classes.Items.Transformatives.ManUp;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -12,7 +20,7 @@
 		//constructor
 		public function Sera()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -56,9 +64,9 @@
 			this.inventory.push(new Pussyblossom());
 			this.inventory.push(new ManUp());
 			this.inventory.push(new Condensol());
+			this.inventory.push(new DendroGro());
 			this.inventory.push(new Rainbotox());
 			this.inventory.push(new Chocolac());
-
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
@@ -185,6 +193,30 @@
 			this.ass.bonusCapacity = 50;
 			
 			this.createStatusEffect("Disarm Immune");
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory = UpdateInventory();
+		}
+		
+		private function UpdateInventory():Array
+		{
+			// Renew/Reorganize inventory
+			var newInventory:Array = [];
+			
+			newInventory.push(new TerranTreats().getSaveObject());
+			newInventory.push(new Estrobloom().getSaveObject());
+			newInventory.push(new Tittyblossom().getSaveObject());
+			newInventory.push(new Pussybloom().getSaveObject());
+			newInventory.push(new Pussyblossom().getSaveObject());
+			newInventory.push(new ManUp().getSaveObject());
+			newInventory.push(new Condensol().getSaveObject());
+			newInventory.push(new DendroGro().getSaveObject());
+			newInventory.push(new Rainbotox().getSaveObject());
+			newInventory.push(new Chocolac().getSaveObject());
+			
+			return newInventory;
 		}
 		
 		override public function onLeaveBuyMenu():void

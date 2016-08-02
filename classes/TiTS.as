@@ -234,6 +234,7 @@
 		include "../includes/newTexas/millie.as";
 		include "../includes/newTexas/rooms.as";
 		include "../includes/newTexas/roomFunctions.as";
+		include "../includes/newTexas/stocks.as";
 		include "../includes/newTexas/tenTonGym.as";
 		include "../includes/newTexas/treatment.as";
 		include "../includes/newTexas/varmint_wrangling.as";
@@ -408,7 +409,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.67";
+			version = "0.6.69";
 
 			//temporary nonsense variables.
 			temp = 0;
