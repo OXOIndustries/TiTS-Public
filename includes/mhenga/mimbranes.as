@@ -474,11 +474,19 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolea
 		tPC.addStatusValue(effectName, 3, actualFeed);
 		var newFeedValue:int = tPC.statusEffectv3(effectName);
 		
+		// Omit willpower change
+		if (pc.hasPerk("Mimbrane Symbiosis"))
+		{
+			if(tPC.willpowerMod != 0 && !willpowerModAffected()) tPC.willpowerMod = 0;
+		}
 		// Calc willpower change
 		// Making this a flat change at certain breakpoints, becuase otherwise it's going to be a nightmare to track and undo later
-		if (oldFeedValue < 3 && newFeedValue >= 3) tPC.willpowerMod -= 0.2;
-		if (oldFeedValue < 8 && newFeedValue >= 8) tPC.willpowerMod -= 0.2;
-		if (oldFeedValue < 13 && newFeedValue >= 13) tPC.willpowerMod -= 0.2;
+		else
+		{
+			if (oldFeedValue < 3 && newFeedValue >= 3) tPC.willpowerMod -= 0.2;
+			if (oldFeedValue < 8 && newFeedValue >= 8) tPC.willpowerMod -= 0.2;
+			if (oldFeedValue < 13 && newFeedValue >= 13) tPC.willpowerMod -= 0.2;
+		}
 		
 		// Mimbrane-specific changes
 		if (effectName == "Mimbrane Cock" && pc.cocks.length > 0)
@@ -570,9 +578,11 @@ public function willpowerModAffected():Boolean
 {
 	if
 	(	pc.isBuzzed()
+	||	pc.hasStatusEffect("Mead")
 	||	pc.hasStatusEffect("Crabbst")
 	||	pc.hasStatusEffect("Naleen Venom")
 	||	pc.hasStatusEffect("Lane Detoxing Weakness")
+	||	pc.hasStatusEffect("Lane's Hypnosis - Willpower")
 	)
 	{
 		return true;
@@ -637,9 +647,16 @@ public function resetMimbraneEffects(effectName:String):void
 	if (mimbraneDebug) trace("Resetting Mimbrane Part Modifiers for [" + effectName + "] @ " + pc.statusEffectv3(effectName));
 
 	var willMod:Number = 0;
-	if (pc.statusEffectv3(effectName) >= 3) willMod += 0.2;
-	if (pc.statusEffectv3(effectName) >= 8) willMod += 0.2;
-	if (pc.statusEffectv3(effectName) >= 13) willMod += 0.2;
+	if(pc.hasPerk("Mimbrane Symbiosis"))
+	{
+		if(pc.willpowerMod != 0 && !willpowerModAffected()) pc.willpowerMod = 0;
+	}
+	else
+	{
+		if (pc.statusEffectv3(effectName) >= 3) willMod += 0.2;
+		if (pc.statusEffectv3(effectName) >= 8) willMod += 0.2;
+		if (pc.statusEffectv3(effectName) >= 13) willMod += 0.2;
+	}
 	pc.willpowerMod += willMod;
 	
 	if (effectName == "Mimbrane Cock")
@@ -1563,6 +1580,44 @@ public function mimbraneSleepEvents():void
 	var trustedRepro:Boolean;
 	var mimNoticed:Boolean = false;
 	var mimFreq:int = 5;
+	
+	// Special Perk Gain!
+	// Face Mimbrane trust level 4 or higher and feeding at 15 or more
+	// Total Mimbrane trust 24 or higher
+	// 1/4 chance
+	if (!mimNoticed && !pc.hasPerk("Mimbrane Symbiosis") && !pc.hasStatusEffect("Disable Mimbrane Symbiosis") && pc.statusEffectv1("Mimbrane Face") >= 4 && pc.statusEffectv3("Mimbrane Face") >= 15 && rand(4) == 0)
+	{
+		var mimTotalTrust:Number = 0;
+		mimTotalTrust += pc.statusEffectv1("Mimbrane Cock");
+		mimTotalTrust += pc.statusEffectv1("Mimbrane Balls");
+		mimTotalTrust += pc.statusEffectv1("Mimbrane Pussy");
+		mimTotalTrust += pc.statusEffectv1("Mimbrane Ass");
+		mimTotalTrust += pc.statusEffectv1("Mimbrane Hand Left");
+		mimTotalTrust += pc.statusEffectv1("Mimbrane Hand Right");
+		mimTotalTrust += pc.statusEffectv1("Mimbrane Foot Left");
+		mimTotalTrust += pc.statusEffectv1("Mimbrane Foot Right");
+		mimTotalTrust += pc.statusEffectv1("Mimbrane Face");
+		
+		if(mimTotalTrust >= 24)
+		{
+			eventQueue.push(function():void {
+				clearOutput();
+				author("Jacques00");
+				
+				output("You rise to an uncomfortable feeling all around you. Your head is stuffed and congested, your vision blurry, your hearing muffled, and your limbs stiff... You shake your head and stretch yourself in an attempt to wear it off. It seems to work as you slightly limber up and your senses gradually return to you. When your sight clears up, you take a good look at your");
+				if((pc.statusEffectv3("Mimbrane Hand Left") >= 8 && pc.statusEffectv3("Mimbrane Hand Right") < 8) || (pc.statusEffectv3("Mimbrane Hand Left") < 8 && pc.statusEffectv3("Mimbrane Hand Right") >= 8)) output(" unevenly");
+				if(pc.statusEffectv3("Mimbrane Hand Left") >= 8 || pc.statusEffectv3("Mimbrane Hand Right") >= 8) output(" bloated");
+				output(" hands. Nothing out of the ordinary. However, as your hearing returns, you pick up on a constant nagging sound... of chirping and squeaking? If your twitchy, swollen lips are any indication, your Mimbranes are trying to get your attention!");
+				output("\n\nThe chirping and pulsing continues and you try your best to figure out what they want. You smell a cloud of strawberries surrounding you...");
+				
+				clearMenu();
+				addButton(0, "Next", mimbraneGainSymbiosis);
+			});
+			
+			outputDone = true;
+			mimNoticed = true;
+		}
+	}
 
 	// Reprorduction takes precedence over breathing events
 	if (!mimNoticed && pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv3("Mimbrane Cock") >= 15)
@@ -2266,7 +2321,7 @@ public function mimbraneSleepEvents():void
 		}
 	}
 
-	if (!outputDone && pc.hasStatusEffect("Mimbrane Face") && pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv1("Mimbrane Face") <= 2)
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv1("Mimbrane Face") <= 2)
 	{
 		if (rand(100) <= mimFreq)
 		{
@@ -2279,6 +2334,92 @@ public function mimbraneSleepEvents():void
 	}
 	
 	mimbraneEventHeaderDone = false;
+}
+
+public function mimbraneGainSymbiosis(response:String = "intro"):void
+{
+	clearOutput();
+	author("Jacques00");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "intro":
+			output("Suddenly, your lust skyrockets.");
+			if(pc.hasGenitals())
+			{
+				if(pc.hasStatusEffect("Genital Slit")) output(" Your gential slit parts as");
+				else output(" Your loins light up as");
+				if(pc.hasCock()) output(" [pc.eachCock] stiffens");
+				if(pc.isHerm()) output(" and");
+				if(pc.hasVagina()) output(" [pc.eachVagina] swells");
+				output(".");
+			}
+			else output(" Your [pc.asshole] swells and flexes with need.");
+			output(" Are... are they trying to get you off?");
+			output("\n\nYour hands automatically float to your most sensitive spots and begin coaxing you into peak arousal... Clearly this is a test of some kind. You could accept the urge to cum and let the Mimbranes do what they will to sate your ever-building lust, or you could try to refuse and bare the consequences of holding it in...");
+			output("\n\nWhat will you choose to do?");
+			
+			pc.lust(9000);
+			
+			addButton(0, "Accept", mimbraneGainSymbiosis, "yes", "Accept Urges", "Give in to the power of your Mimbranes.");
+			if(pc.WQ() >= 75) addButton(1, "Refuse", mimbraneGainSymbiosis, "nah", "Refuse Urges", "Actively resist the urge to give in.");
+			else addDisabledButton(1, "Refuse", "Refuse Urges", "You don’t have enough willpower to resist!");
+			break;
+		case "yes":
+			output("You allow the pink strawberry fog to consume you. The pressure of the oncoming orgasm causes you to bite your lower lip and moan before you prepare to open the flood gates. Then, relinquishing a bit of your willpower, you let go...");
+			
+			// Shed all valid mimbranes
+			var mimRep:int = 0;
+			if(pc.statusEffectv3("Mimbrane Cock") >= 15) { mimbraneReproduce("Mimbrane Cock"); mimRep++; }
+			if(pc.statusEffectv3("Mimbrane Balls") >= 15) { mimbraneReproduce("Mimbrane Balls"); mimRep++; }
+			if(pc.statusEffectv3("Mimbrane Pussy") >= 15) { mimbraneReproduce("Mimbrane Pussy"); mimRep++; }
+			if(pc.statusEffectv3("Mimbrane Ass") >= 15) { mimbraneReproduce("Mimbrane Ass"); mimRep++; }
+			if(pc.statusEffectv3("Mimbrane Hand Left") >= 15) { mimbraneReproduce("Mimbrane Hand Left"); mimRep++; }
+			if(pc.statusEffectv3("Mimbrane Hand Right") >= 15) { mimbraneReproduce("Mimbrane Hand Right"); mimRep++; }
+			if(pc.statusEffectv3("Mimbrane Foot Left") >= 15) { mimbraneReproduce("Mimbrane Foot Left"); mimRep++; }
+			if(pc.statusEffectv3("Mimbrane Foot Right") >= 15) { mimbraneReproduce("Mimbrane Foot Right"); mimRep++; }
+			if(pc.statusEffectv3("Mimbrane Face") >= 15) { mimbraneReproduce("Mimbrane Face"); mimRep++; }
+			
+			output("\n\nYou cum, and cum, and cum.... As " + (mimRep == 1 ? "a" : "each") + " reproduced Mimbrane sheds from you, a sigh of blissful relief runs across your lips.");
+			output("\n\nThe post-climax sets in and the squeaks and chirps gradually soften until all that’s left for you to hear is the sound of you exhaling. Wiping your brow with a free hand, you can’t tell if the wetness is the sweat from your body or the perspiration from the Mimbranes.");
+			output("\n\nWhen your heavy breathing dies down, so do your swelling Mimbranes; calm and barely agitated. It seems they are pleased with your subservience. Hopefully you won’t have to go through that ordeal again, at least for a while...");
+			
+			pc.willpower(-1);
+			pc.orgasm();
+			pc.orgasm();
+			pc.orgasm();
+			// Disable new message for 3 days.
+			pc.createStatusEffect("Disable Mimbrane Symbiosis", 0, 0, 0, 0, true, "", "", false, (3 * 24 * 60));
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "nah":
+			output("You suck in a deep breath and mentally build your confidence. Your hands try to roam to your sensitive bits, but you refuse to allow them to move and just set them still. The Mimbranes will not give up; they try and try again to force you to satisfy yourself but you continue to fight the urges, despite inhaling all the pink, lust-inducing mist the Mimbranes have produced to inebriate you.");
+			output("\n\nSuddenly, you have an idea. If you can’t make the Mimbranes physically stop their urges, you can at least convince the demanding parasites that you don’t need to satisfy yourself at the moment. So you close your eyes and" + (pc.isBimbo() ? ", like, try your best to concentrate and stuff" : " try to concentrate") + "...");
+			output("\n\n<i>");
+			if(pc.isBimbo()) output("Hey, I know I like to cum and all, but don’t force it--it’s no fun that way! </i>Hm... or is it?<i> Anyway, if you keep acting like little brats, I don’t think we should be friends anymore!");
+			else if(pc.isNice()) output("Please don’t be upset, little ones. You’ll have your fill when the time comes--just don’t be so impatient or I’ll have to take some drastic measures... and I don’t think it’ll be the kind you’ll like!");
+			else output("Alright, stop being a pain in the ass, you living paper sticky notes. If you’re gonna keep waking me up like this, I’ll bring out the torch and show you who’s boss! I mean it!");
+			output("</i>");
+			output("\n\nThe squeaks stop instantly. Did... did that actually work?");
+			output("\n\nYou’re not sure if it’s a mental connection or a total dependence on your well-being, but their symbiotic bond with you is so strong that the Mimbranes seem to genuinely believe you. What do you know - trust prevails after all! Well, while this won’t guarantee that you can get off scot-free when they get cranky, at least they’ll respect your free will a little more than they did previously.");
+			
+			output("\n\n(<b>Perk Gained: Mimbrane Symbiosis</b> - Due to your body’s adaptation to the Mimbranes attached to you, they will no longer drain your willpower after each feeding.)");
+			pc.createPerk("Mimbrane Symbiosis", 0, 0, 0, 0, "Attached Mimbranes will no longer drain your willpower when feeding.");
+			
+			pc.lust(9000);
+			
+			addButton(0, "Next", mainGameMenu);
+			if(pc.lust() >= 33)
+			{
+				output("\n\nYou could probably do somethng about that lust buildup too...");
+				if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(1, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+				else if(!pc.canMasturbate()) addDisabledButton(1, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+				else addButton(1, "Masturbate", masturbateMenu);
+			}
+			break;
+	}
 }
 
 public function mimbraneFaceReproduction():void
