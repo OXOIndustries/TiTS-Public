@@ -141,6 +141,7 @@
 		
 		// Misc Events
 		include "../includes/events/atha_lets_fapper.as";
+		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
@@ -465,6 +466,8 @@
 			
 			inputManager = new InputManager(stage, false);
 			setupInputControls();
+			
+			initStephEps();
 			
 			// set up the user interface: ------------------------------------------------------------
 			userInterface = new GUI(this, stage);

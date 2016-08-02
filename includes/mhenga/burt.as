@@ -1361,7 +1361,7 @@ public function stephIrsonEpisodeOnePartTwo():void
 	
 	output("\n\n<i>“This show brought to you by the Xenogen Biotech firm. Xenogen reminds you that galactic exploration is dangerous, and that natural wildlife is not to be approached without assistance from your friendly local rangers. Xenogen is not responsible for any graphic content witnessed on live galactic broadcasts or the safety of its personnel.”</i>");
 	
-	flags["STEPH_NYAN"] = 1;
+	watchStephEpisodeBroadcast("STEPH_NYAN");
 	
 	processTime(30);
 	if(flags["SYRI_TALKS"] != undefined) pc.orgasm();

@@ -860,7 +860,7 @@ public function uvetoIrson3():void
 	output("\n\n<i>“Tune in next week for - oh no!”</i> Steph yelps as several dark doggy-cocks flop onto her face, even as she’s being hauled off. Before one of them can plug itself in her lips, she manages to shout <i>“Uh, commercials! See ya next time!”</i>");
 	output("\n\n...Somehow she didn’t seem too distressed about her fate, there. Maybe she liked the korgonnes’ <i>“hugs”</i> a little too much...");
 	
-	flags["STEPH_DARGONED"] = 1;
+	watchStephEpisodeBroadcast("STEPH_DARGONED");
 	
 	pc.lust(10);
 	processTime(10);

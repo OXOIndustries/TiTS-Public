@@ -1380,7 +1380,7 @@ public function stephIrsonEp3Pt3():void
 	output("\n\n... Only to turn back, grab the camera drone right out of the air, and give it a toothy grin. <i>“That’s it for this week’s episode of </i>Galactic Slutress<i>. Tune in next week to watch this big-titted bimbo get fucked by something else. Oh - and hi, mom!”</i>");
 	output("\n\nThe camera feed cuts out, and a commercial break cuts in.");
 	
-	flags["STEPH_COWGIRL"] = 1;
+	watchStephEpisodeBroadcast("STEPH_COWGIRL");
 	
 	pc.lust(10);
 	processTime(29);
