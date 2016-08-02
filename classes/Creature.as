@@ -13614,6 +13614,10 @@
 		{
 			return (lowerUndergarment.hardLightEquipped);
 		}
+		public function hardLightVolume():Number
+		{
+			return 30;
+		}
 		// Always picks the main anatomy--no need to complicate it!
 		//Ids:
 		//-4 = catch-all "strapon"
@@ -15760,13 +15764,6 @@
 								case "Lane's Hypnosis - Willpower":
 									kGAMECLASS.baseHypnosisWearsOff((statusEffects[x] as StorageClass).storageName);
 									break;
-								case "Crabbst":
-									physiqueMod -= (statusEffects[x] as StorageClass).value2;
-									reflexesMod += (statusEffects[x] as StorageClass).value2;
-									aimMod += (statusEffects[x] as StorageClass).value2;
-									intelligenceMod += (statusEffects[x] as StorageClass).value2;
-									willpowerMod += (statusEffects[x] as StorageClass).value2;
-									break;
 								case "Horse Pill":
 									var pill:HorsePill = new HorsePill();
 									pill.lastPillTF();
@@ -15888,6 +15885,13 @@
 									}
 									else kGAMECLASS.eventBuffer += " fertility and virility should you ever have the genitals for them";
 									kGAMECLASS.eventBuffer += ". <b>Your ability to potentionally create life has been restored!</b>";
+									break;
+								case "Crabbst":
+									physiqueMod -= (statusEffects[x] as StorageClass).value2;
+									reflexesMod += (statusEffects[x] as StorageClass).value2;
+									aimMod += (statusEffects[x] as StorageClass).value2;
+									intelligenceMod += (statusEffects[x] as StorageClass).value2;
+									willpowerMod += (statusEffects[x] as StorageClass).value2;
 									break;
 								case "Mead":
 									physiqueMod -= (statusEffects[x] as StorageClass).value2;

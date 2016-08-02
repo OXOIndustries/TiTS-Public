@@ -2092,13 +2092,27 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	processTime(120+rand(30));
 
 	// Booze!
-	pc.createStatusEffect("Crabbst",0,5,0,0,false,"Icon_DizzyDrunk","Makes you stronger but at what cost?",false,180);
-		pc.physiqueMod += 5;
-		pc.reflexesMod -= 5;
-		pc.aimMod -= 5;
-		pc.intelligenceMod -= 5;
-		pc.willpowerMod -= 5;
-		pc.lust(25);
+	if(pc.hasStatusEffect("Crabbst")) {
+		if(pc.statusEffectv2("Crabbst") < 5) {
+			pc.addStatusValue("Crabbst",2,1);
+			pc.physiqueMod++;
+			pc.reflexesMod--;
+			pc.aimMod--;
+			pc.intelligenceMod--;
+			pc.willpowerMod--;
+			pc.lust(5);
+		}
+		//else output("\n\nYou've gotten everything from Crabbst you're going to get.");
+	}
+	else {
+		pc.createStatusEffect("Crabbst",0,1,0,0,false,"Icon_DizzyDrunk","Makes you stronger but at what cost?",false,180);
+		pc.physiqueMod++;
+		pc.reflexesMod--;
+		pc.aimMod--;
+		pc.intelligenceMod--;
+		pc.willpowerMod--;
+		pc.lust(5);
+	}
 
 	currentLocation = "BURT'S MAIN HALL";
 
