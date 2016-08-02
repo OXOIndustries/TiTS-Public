@@ -579,7 +579,7 @@ public function jeromeHipbuster():void
 	output("\n\nJerome lets out a little defeated grunt.");
 
 	output("\n\n");
-	if (pc.isNice()) output("<i>“Tell me what you want and then maybe I can help you out,”");
+	if (pc.isNice()) output("<i>“Tell me what you want and then maybe I can help you out,”</i>");
 	else if (pc.isMisc()) output("<i>“Tell me what you want and then maybe - </i>maybe<i> - I’ll see what I can do to help,”</i>");
 	else output("<i>“Tell me what you want and then maybe I’ll see what I can do,”</i>");
 	output(" you tell him with an authoritative tone.");
@@ -622,7 +622,7 @@ public function jeromeHipbusterII(s:Object):void
 	if (s.vGape < 4)
 	{
 		output("\n\nSlowly you begin to lower yourself down, putting weight on the joining between your "+s.simpleHoleStr()+" and the tree trunk of a dick attempting to batter its way inside you. It’s slow going, but between the bear's over productive balls");
-		if ((s.vIdx == -1 && pc.ass.wetness() >= 4) || pc.vaginas[s.vIdx].wetness() >= 4)
+		if ((s.vIdx == -1 && pc.ass.wetness() >= 4) || (pc.hasVagina() && pc.vaginas[s.vIdx].wetness() >= 4))
 		{
 			output(", your own sopping wet "+s.simpleHoleStr+",");
 		}
