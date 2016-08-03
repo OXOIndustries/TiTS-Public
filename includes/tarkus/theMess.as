@@ -524,7 +524,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 	output("\n\nWith a giddy cry of pleasure, the goo-girl lets out a powerful squirt of girl-cum right into the camera drone's eye, sending it tumbling back as its owner and her gooey captor cum and cum, screaming and bucking their hips on the ground. A few moments later, the screen goes black, followed by an <i>\"Experiencing Technical Difficulties\"</i> warning superimposed over the <i>Galactic Huntress</i> logo. In the background, though, you can still hear Steph moaning as the goo finishes with her.");
 	output("\n\n<i>\"So, you're gonna edit all that out in post, right?\"</i> the goo giggles, just as a commercial comes on.");
 	
-	flags["STEPH_GOOED"] = 1;
+	watchStephEpisodeBroadcast("STEPH_GOOED");
 	
 	processTime(19);
 	clearMenu();

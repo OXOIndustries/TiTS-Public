@@ -380,7 +380,7 @@ public function stephIrsonEpisode4Part5():void
 	output("\n\nHow the hell is this on public television still?");
 	if (pc.libido() >= 40) output(" Not that you’re complaining...");
 	
-	flags["STEPH_COCKED"] = 1;
+	watchStephEpisodeBroadcast("STEPH_COCKED");
 	
 	processTime(6);
 	pc.lust(7);

@@ -91,7 +91,19 @@ public function smutFapMenu():void
 
 	//{New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week}
 	//{Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?}
-	letsFapSelectionMenu();
+	var possibleFuncs:Array = [];
+	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let's Fap", tb: "Atha's Let's Fap episodes", f: letsFapSelectionMenu, ar: undefined } );
+	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "On demand episodes of Steph Irson: Galactic Huntress", f: stephOnDemandMenu, ar: undefined } );
+	
+	clearMenu();
+	
+	for (var i:int = 0; i < possibleFuncs.length; i++)
+	{
+		var o:Object = possibleFuncs[i];
+		addButton(i, o.t, o.f, o.ar, o.th, o.tb);
+	}
+	
+	addButton(14, "Back", masturbateMenu);
 }
 
 //[Champeon]
@@ -221,7 +233,7 @@ public function letsFapSelectionMenu():void
 		if(letsFapTrack() >= 6 && flags["LETS_FAP_LATEST"] != letsFapRahnScene) addButton(10,"Rahn",letsFapRahnScene,undefined,"Rahn","Watch Atha try out a rahn member.");
 	}
 	if(flags["CUMSTREAM_UNLOCKED"] != undefined) addButton(11,"Live Stream",liveCumstreamerEpisode,undefined,"Live CumStream","Catch her live CumStream!");
-	addButton(14,"Back",masturbateMenu);
+	addButton(14,"Back",smutFapMenu);
 }
 
 public function letsFapTrack(arg:int = 0):Number 
