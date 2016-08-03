@@ -3532,7 +3532,7 @@ public function emmyHyperFucksIntro():void
 		output("\n\nYour [pc.cocks] throb");
 		if(pc.cockTotal() == 1) output("s");
 		output(" at the suggestion.");
-		output("\n\n<i>“Yeah, and I could sit here and jack of it off with these soft, silk-wrapped pads on my feet.”</i> Emmy curls her feet ");
+		output("\n\n<i>“Yeah, and I could sit here and jack it off with these soft, silk-wrapped pads on my feet.”</i> Emmy curls her feet ");
 		if(pc.legCount > 1) output("between your [pc.legs]");
 		else output("around to the underside of your crotch");
 		output(" and ");
@@ -3692,7 +3692,7 @@ public function hyperFootjorbsForEms():void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Help",helpEmmyCleanToes);
-	addButton(4,"Leave",dontHelpEmmyCleanToes);
+	addButton(14,"Leave",dontHelpEmmyCleanToes);
 }
 
 //Help Clean Toes

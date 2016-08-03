@@ -164,7 +164,7 @@ public function trySendStephMail():void
 		if (GetGameTimestamp() > flags["STEPH_FIRST_WATCHED"] + ((60 * 24 * 3) + rand(240)))
 		{
 			MailManager.unlockEntry("steph_on_demand", GetGameTimestamp());
-			eventBuffer += "\n\n<b>new Email from GalacNet VOD (noreply@galacnet.corp)!</b>";
+			eventBuffer += "\n\n<b>New Email from GalacNet VOD (noreply@galacnet.corp)!</b>";
 		}
 	}
 }
