@@ -110,7 +110,7 @@
 				if(!pc.hasStatusEffect("Vanae Markings") && changes < changeLimit && rand(4) == 0)
 				{
 					pc.skinAccent = getVanaeAccentColor(pc);
-					outputB("\n\nAcross your " + pc.skin() + ", " + pc.skinAccent + " markings suddenly begin blossom and bloom. You watch in wonderment as the swiftly growing tattoo tree spreads across every inch of your body. It's like dozens of fingers are tracing across your form and using your body as a living canvas.");
+					outputB("\n\nAcross your " + pc.skin() + ", " + pc.skinAccent + " markings suddenly begin to blossom and bloom. You watch in wonderment as the swiftly growing tattoo tree spreads across every inch of your body. It's like dozens of fingers are tracing across your form and using your body as a living canvas.");
 					outputB("\n\nWhen the sensations subside, you shiver a little and look at your reflection in your codex. Luminous lines now break up your " + pc.skin() + ". <b>You now have " + pc.skinAccent + " body markings!</b>");
 					pc.createStatusEffect("Vanae Markings");
 					
