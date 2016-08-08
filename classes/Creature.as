@@ -8232,7 +8232,7 @@
 		public function hasTailCock(): Boolean {
 			if(tailCount > 0)
 			{
-				if(tailGenital == GLOBAL.TAIL_GENITAL_COCK || tailType == GLOBAL.TYPE_COCKVINE || hasTailFlag(GLOBAL.FLAG_TAILCOCK)) return true;
+				if(tailType == GLOBAL.TYPE_COCKVINE || hasTailFlag(GLOBAL.FLAG_TAILCOCK)) return true;
 			}
 			return false;
 		}
@@ -8248,7 +8248,7 @@
 		public function hasTailCunt(): Boolean {
 			if(tailCount > 0)
 			{
-				if(tailGenital == GLOBAL.TAIL_GENITAL_VAGINA || tailType == GLOBAL.TYPE_CUNTSNAKE || hasTailFlag(GLOBAL.FLAG_TAILCUNT)) return true;
+				if(tailType == GLOBAL.TYPE_CUNTSNAKE || hasTailFlag(GLOBAL.FLAG_TAILCUNT)) return true;
 			}
 			return false;
 		}
