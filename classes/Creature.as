@@ -8220,12 +8220,12 @@
 			flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 			return;
 		}
-		public function hasParasiteTail(): Boolean {
+		public function hasParasiteTail(typeOnly:Boolean = false): Boolean {
 			if(tailCount > 0)
 			{
 				if(InCollection(tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) return true;
-				if(hasTailFlag(GLOBAL.FLAG_TAILCUNT) && tailGenital == GLOBAL.TAIL_GENITAL_NONE) return true;
-				if(hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailGenital == GLOBAL.TAIL_GENITAL_NONE) return true;
+				if(!typeOnly && hasTailFlag(GLOBAL.FLAG_TAILCUNT) && tailGenital == GLOBAL.TAIL_GENITAL_NONE) return true;
+				if(!typeOnly && hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailGenital == GLOBAL.TAIL_GENITAL_NONE) return true;
 			}
 			return false;
 		}

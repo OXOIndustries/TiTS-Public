@@ -265,6 +265,7 @@ package classes.Items.Transformatives
 					if(target.hasTailCock() && target.tailGenitalArg != GLOBAL.TYPE_DEMONIC && rand(5) == 0)
 					{
 						var newTailColor:String = RandomInCollection(["red", "dark purple"]);
+						var isParasite:Boolean = target.hasParasiteTail(true);
 						
 						output("[pc.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find its shape slowly change and warp into a more sinister form.");
 						if(!target.hasTailFlag(GLOBAL.FLAG_KNOTTED)) output(" A large knot grows at its base, making sure the phallus stays right where it belongs during mating.");
@@ -279,6 +280,7 @@ package classes.Items.Transformatives
 						target.addTailFlag(GLOBAL.FLAG_LONG);
 						target.addTailFlag(GLOBAL.FLAG_KNOTTED);
 						target.addTailFlag(GLOBAL.FLAG_NUBBY);
+						if(!isParasite) target.addTailFlag(GLOBAL.FLAG_TAILCOCK);
 						target.tailGenitalColor = newTailColor;
 					}
 					else if(target.tailTypeUnlocked(GLOBAL.TYPE_DEMONIC))
