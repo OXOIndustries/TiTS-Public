@@ -3465,7 +3465,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIV():void
 	else output(" collect your gear");
 	output(" and hooks an arm around you, helping you walk. Your [pc.legOrLegs] feel");
 	if (pc.legCount == 1) output("s");
-	output(") like jelly, quaking when you try to move. The pair of you turn more than a few heads walking back out of the office, but... well, who really cares? Worth it.");
+	output(" like jelly, quaking when you try to move. The pair of you turn more than a few heads walking back out of the office, but... well, who really cares? Worth it.");
 
 	IncrementFlag("UVETO_HUSKAR_FOURSOME_POUNDPUPPIES");
 	flags["UVETO_HUSKAR_LAST_DAY"] = days;
