@@ -89,7 +89,7 @@ package classes.Items.Transformatives
 			if(!target.hasStatusEffect("Hair Flower") && hasPlantHair && (target.hornType != GLOBAL.TYPE_DRYAD || (target.mfn("m", "f", "n") != "m" && rand(4) != 0)))
 				TFList[TFList.length] = 7;
 			//#8 Ivy arms: Plant skin, plant hair.
-			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && hasPlantHair && target.armType != GLOBAL.TYPE_FLOWER)
+			if(target.armType != GLOBAL.TYPE_FLOWER && hasPlantSkin && hasPlantHair)
 				TFList[TFList.length] = 8;
 			//#9 OH GOD I LOVE BEING A PLANT Pt. 1: Plant skin, on a planet.
 			if(target.skinType == GLOBAL.SKIN_TYPE_PLANT && !InShipInterior() && kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet.indexOf("PLANET:") != -1)

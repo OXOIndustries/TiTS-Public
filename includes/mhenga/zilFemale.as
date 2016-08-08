@@ -593,7 +593,7 @@ public function tribAndSuckZil():void {
 	addToList("[pc.vaginas]");
 	if(pc.hasCock()) addToList("[pc.cocks]");
 	addToList("[pc.chest]");
-	output(formatList() + "to the cool breeze. Your [pc.nipples] stiffen as you straddle the waspy maiden, looking down into her clear black eyes as she grins up at you invitingly.");
+	output(formatList() + " to the cool breeze. Your [pc.nipples] stiffen as you straddle the waspy maiden, looking down into her clear black eyes as she grins up at you invitingly.");
 	
 	output("\n\n<i>“Why don't you take a little taste, hm?”</i> she buzzes, thrusting her chest again. You silence her with a quick kiss, tasting the sweet gloss on her black lips as you slide down her body, running your hands across her latex-smooth chitin until you take her two breasts in hand, cupping the soft mounds and massaging their prominent peaks. She gasps as your fingers close around her dark peaks, pinching them roughly until your fingers are completely sticky with her alien milk. Grinning, you break one kiss to start another, wrapping your lips around her teat and rolling it between your teeth, making the poor girl's breath catch in anxious anticipation. Looking up into her featureless eyes, you take your first deep suckle, mouth burning as her unnaturally sweet honey flows over the tip of your tongue, trickling like syrup into your hungry throat. Greedily, your hands massage her buxom flesh, kneading out a stronger and stronger flow of the languid substance for you to suckle; your ministrations quickly have the zil girl arching her back and moaning, her hands running through your [pc.hair].");
 	

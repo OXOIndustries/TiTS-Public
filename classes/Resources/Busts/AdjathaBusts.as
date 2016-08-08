@@ -58,6 +58,12 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha_zil.png", mimeType = "image/png")]
 		public var Bust_ATHA_ZIL:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/ben.png", mimeType = "image/png")]
+		public var Bust_BEN:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/bess.png", mimeType = "image/png")]
+		public var Bust_BESS:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/briha.png", mimeType = "image/png")]
 		public var Bust_BRIHA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/briha_nude.png", mimeType = "image/png")]
@@ -340,6 +346,12 @@ package classes.Resources.Busts
 			public var Full_ATHA_TERRAN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_zil.png", mimeType = "image/png")]
 			public var Full_ATHA_ZIL:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ben.png", mimeType = "image/png")]
+			public var Full_BEN:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/bess.png", mimeType = "image/png")]
+			public var Full_BESS:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briha.png", mimeType = "image/png")]
 			public var Full_BRIHA:Class;

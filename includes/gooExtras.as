@@ -381,12 +381,16 @@ public function galoMaxTFProc():void
 				output(" semi-transparent cock that you realize what’s happened.");
 			}
 			else output(", and it isn’t until you see the edge of a finger through a freshly-cleaned nether-lip that you realize what’s happened.");
-			output(" <b>Your genitalia... your whole pubic mound, really, has become [pc.hairColor] and gooey, just like your hair.</b>");
+			output(" <b>Your genitalia... your whole pubic mound, really, has become " + (pc.hairType == GLOBAL.HAIR_TYPE_GOO ? "[pc.hairColor]" : "green") + " and gooey");
+			if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) output(", just like your hair");
+			output(".</b>");
 		}
 		else
 		{
 			output(", and it isn’t until you see the edge of a finger through the skin that you realize what’s happened.");
-			output(" <b>Your... your whole “pubic” area really has become gooey, just like your hair.</b>");
+			output(" <b>Your... your whole “pubic” area really has become gooey");
+			if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) output(", just like your hair");
+			output(".</b>");
 		}
 		output("\n\n<i>Maybe you can shift things around down there too...</i>");
 		pc.createStatusEffect("Goo Crotch");
