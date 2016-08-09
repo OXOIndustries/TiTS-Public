@@ -11121,7 +11121,7 @@
 			else if(tailCount == 1) return tailVaginaDescript(forceAdjectives,adjectives);
 			return "ERROR: TAIL DESCRIPT CALLED WITH NO TAILS PRESENT.";
 		}
-		public function tailVaginaDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
+		public function tailVaginaDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true, appearance: Boolean = false): String {
 			//Vars
 			var vag: String = "";
 			var descripted: int = 0;
@@ -11183,12 +11183,12 @@
 			//50% of time, simple cunt.
 			if (rand(2) == 0) {
 				if (descripted > 0) vag += " ";
-				vag += vaginaNoun2(tailCuntHolder, true, "tail");
+				vag += vaginaNoun2(tailCuntHolder, true, (appearance ? "appearance" : "tail"));
 			}
 			//50% of the time, complex cunt!
 			else {
 				if (descripted > 0) vag += ", ";
-				vag += vaginaNoun2(tailCuntHolder, false, "tail");
+				vag += vaginaNoun2(tailCuntHolder, false, (appearance ? "appearance" : "tail"));
 			}
 			return vag;
 		}
@@ -11492,8 +11492,41 @@
 				adjectiveCount++;
 				wetnessDisplayed = true;
 			}
+			// Mimbrane plumpness for primary vagina
+			if(rand(2) == 0 && vaginaNum == 0 && statusEffectv3("Mimbrane Pussy") > 3 && adjectiveCount == 0)
+			{
+				var mimAdjectives:Array = [];
+				
+				if(statusEffectv3("Mimbrane Pussy") < 8)
+				{
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("swollen", "plush", "plump", "pudgy", "chubby");
+					else mimAdjectives.push("slightly swollen", "lightly swollen", "slightly chubby", "puffy", "cushy");
+				}
+				else if(statusEffectv3("Mimbrane Pussy") < 13)
+				{
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("bulgy", "large", "fat", "bulging", "lewdly bulging");
+					else mimAdjectives.push("slightly bulgy", "swollen", "plump", "pudgy", "chubby");
+				}
+				else
+				{
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("massive", "huge", "immensely swollen", "extremely thick", "enormous", "wobbly", "prodigious", "obscenely swollen");
+					else mimAdjectives.push("undeniably bulgy", "very swollen", "well-padded", "large", "fat", "bulging", "lewdly bulging");
+				}
+				
+				mimAdjectives.push("mimbrane-enhanced", "mimbrane-padded", "mimbrane-swollen");
+				
+				if(mimAdjectives.length > 0)
+				{
+					if (adjectiveCount > 0) desc += ", ";
+					desc += RandomInCollection(mimAdjectives);
+					adjectiveCount++;
+				}
+			}
 			//Pussy pump - 50% addition of no other descs - doesn't stack well with loose/wet.
-			if(rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && adjectiveCount == 0)
+			else if(rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && adjectiveCount == 0)
 			{
 				if (adjectiveCount > 0) desc += ", ";
 				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy", "slightly pumped"]);
