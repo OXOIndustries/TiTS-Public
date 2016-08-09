@@ -539,6 +539,8 @@ public function kq2KaraHotwiresSumDoors():void
 public function kq2rfEnterRNDFirstTime():void
 {
 	clearOutput();
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
 
 	if (flags["KQ2_KARA_WITH_PC"] != 1)
 	{
