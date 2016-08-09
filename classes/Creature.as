@@ -8946,7 +8946,7 @@
 			if (badgerScore() >= 4) race = "badger";
 			if (ovirScore() >= 5) race = "ovir";
 			if (myrScore() >= 4) race = "myr";
-			if (gryvainScore() >= 8) race = "gryvain";
+			if (gryvainScore() >= 9) race = "gryvain";
 			if (race == "myr" && goldMyrScore() >= 8) race = "gold myr";
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
