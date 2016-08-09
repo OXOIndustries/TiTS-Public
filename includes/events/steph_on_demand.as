@@ -209,7 +209,7 @@ public function stephOnDemandMenu():void
 		}
 		else
 		{
-			addDisabledButton(i, "Unaired Ep. " + (i + 1), STEPH_EPISODE_UIDS[i].th, STEPH_EPISODE_UIDS[i].tb);
+			addDisabledButton(i, "Unaired Ep. " + (i + 1), "Galactic Huntress - Episode " + (i + 1), "<i>This episode has yet to be aired.</i>");
 		}
 	}
 

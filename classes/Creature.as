@@ -5039,7 +5039,8 @@
 				else if (temp <= 8) output += "armor";
 				else output += "carapace";
 			} else if (skinType == GLOBAL.SKIN_TYPE_LATEX) {
-				output += RandomInCollection(["latex","rubber","plastic","casing","dermis","film"]);
+				if(!skin) output += RandomInCollection(["latex","rubber","plastic","casing","dermis","film"]);
+				else output += RandomInCollection(["skin","latex skin","rubber skin","plastic skin"]);
 			} else if (skinType == GLOBAL.SKIN_TYPE_PLANT || skinType == GLOBAL.SKIN_TYPE_BARK) {
 				if(skinType == GLOBAL.SKIN_TYPE_BARK && !skin) output += RandomInCollection(["armor","bark","skin","skin"]);
 				else output += RandomInCollection(["skin","skin","epidermis","plant skin","nymph skin"]);
