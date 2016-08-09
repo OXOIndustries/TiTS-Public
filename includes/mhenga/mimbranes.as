@@ -2413,7 +2413,7 @@ public function mimbraneGainSymbiosis(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			if(pc.lust() >= 33)
 			{
-				output("\n\nYou could probably do somethng about that lust buildup too...");
+				output("\n\nYou could probably do something about that lust buildup too...");
 				if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(1, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 				else if(!pc.canMasturbate()) addDisabledButton(1, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
 				else addButton(1, "Masturbate", masturbateMenu);
