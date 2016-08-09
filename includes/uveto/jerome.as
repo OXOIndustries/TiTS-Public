@@ -501,18 +501,18 @@ public function jeromeHipbuster():void
 		}
 	}
 
-	s.vGape = s.vIdx == -1 ? pc.ass.looseness() : pc.vaginas[s.vIdx].looseness();
+	s.vGape = (s.vIdx == -1 ? pc.ass.looseness() : pc.vaginas[s.vIdx].looseness());
 	s.vCap = (s.vIdx == -1 ? pc.analCapacity() : pc.vaginalCapacity(s.vIdx));
 	s.holeStr = (s.vIdx == -1 ? "[pc.asshole]" : ("[pc.vagina " + s.vIdx + "]"));
 	s.simpleHoleStr = function(vIdx:int):Function {
 		return function():String {
-			if (s.vIdx == -1) return RandomInCollection("ass", "asshole", "butthole");
+			if (vIdx == -1) return RandomInCollection("ass", "asshole", "butthole");
 			else return RandomInCollection("pussy", "cunt", "vagina");
 		}
 	}(s.vIdx);
 	s.va = function(vIdx:int):Function {
 		return function(v:String, a:String):String {
-			return vIdx == -1 ? a : v;
+			return (vIdx == -1 ? a : v);
 		}
 	}(s.vIdx);
 
@@ -622,14 +622,14 @@ public function jeromeHipbusterII(s:Object):void
 	if (s.vGape < 4)
 	{
 		output("\n\nSlowly you begin to lower yourself down, putting weight on the joining between your "+s.simpleHoleStr()+" and the tree trunk of a dick attempting to batter its way inside you. It’s slow going, but between the bear's over productive balls");
-		if ((s.vIdx == -1 && pc.ass.wetness() >= 4) || (pc.hasVagina() && pc.vaginas[s.vIdx].wetness() >= 4))
+		if ((s.vIdx == -1 && pc.ass.wetness() >= 4) || (s.vIdx >= 0 && pc.hasVagina() && pc.vaginas[s.vIdx].wetness() >= 4))
 		{
-			output(", your own sopping wet "+s.simpleHoleStr+",");
+			output(", your own sopping wet "+s.simpleHoleStr()+",");
 		}
 		output(" and no short amount of determination, the bulbous head of his dick gradually works its way closer to being sheathed in you.");
 		
-		if (s.vIdx >= 0) (pc as PlayerCharacter).cuntChange(s.vIdx, (jerome as Jerome).biggestCockVolume(), true, true, false);
-		else (pc as PlayerCharacter).buttChange(jerome.biggestCockVolume(), true, true, false);
+		if (s.vIdx >= 0) pc.cuntChange(s.vIdx, jerome.biggestCockVolume(), true, true, false);
+		else pc.buttChange(jerome.biggestCockVolume(), true, true, false);
 		
 		output("\n\nA needy groan builds in your throat as the tipping point is reached; one more push sees the bears tip finally slip into you, paving the way for the rest of his thick dick to follow. Inch by inch it slips deeper, the ridges and the bumps each serving as a minor roadblock before your "+s.holeStr+" once again relaxes enough to swallow them.");
 		
@@ -642,8 +642,8 @@ public function jeromeHipbusterII(s:Object):void
 	else
 	{
 		output("\n\nYou begin to lower yourself down, putting weight on the joining between your " + s.simpleHoleStr() + " and the tree trunk of a dick attempting to batter its way inside you.");
-		if (s.vIdx >= 0) (pc as PlayerCharacter).cuntChange(s.vIdx, (jerome as Jerome).biggestCockVolume(), true, true, false);
-		else (pc as PlayerCharacter).buttChange(jerome.biggestCockVolume(), true, true, false);
+		if (s.vIdx >= 0) pc.cuntChange(s.vIdx, jerome.biggestCockVolume(), true, true, false);
+		else pc.buttChange(jerome.biggestCockVolume(), true, true, false);
 		output(" As experienced as you are when it comes to handling such impressively large endowments, Jerome still proves to be somewhat of a stubborn challenge; his girth alone is beyond the limits of all but the most determined and promiscuous of potential partners. The thick ridges running all the way along its underside only seem to amplify his already ridiculous proportions to the absurd, the feature both deeply pleasurable yet difficult to acclimatize to quickly.");
 
 		output("\n\nThe bears over productive balls providing a near endless stream of lubrication directly to your "+s.simpleHoleStr()+", combined with no shortage of determination, keep your inexorable slide toward your goal on track. Inch after inch of fat bear cock disappears into you, replaced with the glowing internal warmth of your body stretching around the thick invader.");
