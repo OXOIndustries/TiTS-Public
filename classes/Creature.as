@@ -14313,7 +14313,7 @@
 		 */
 		public function virility():Number
 		{
-			if (hasStatusEffect("Infertile") || hasPerk("Firing Blanks")) return 0;
+			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks")) return 0;
 			
 			return cumQuality();
 		}
@@ -14338,7 +14338,7 @@
 		public var fertilityMod:Number = 0;
 		public function fertility():Number
 		{
-			if (hasStatusEffect("Infertile") || hasPerk("Sterile")) return 0;
+			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
 			
 			return fertilityRaw + fertilityMod;
 		}

@@ -1113,6 +1113,10 @@ public function chooseSexualGift():void {
 	{
 		pc.removePerk("Ice Cold");
 	}
+	if(pc.hasPerk("Infertile"))
+	{
+		pc.removePerk("Infertile");
+	}
 	addButton(0,"Virile",applySexualGift,"virile","Virile","Increases the quality, or impregnation chance, of the sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
 	addButton(1,"Potent",applySexualGift,"potent","Potent","Increases the quantity - the sheer amount - of sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
 	addButton(2,"Elasticity",applySexualGift,"elasticity","Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
@@ -1124,6 +1128,7 @@ public function chooseSexualGift():void {
 	addButton(8,"Bulgy",applySexualGift,"bulgy","Bulgy","Increases the size of your testicles and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains testicles in the future.</i>");
 	addButton(9,"Extra Ardor",applySexualGift,"extra ardor","Extra Ardor","Ensures that you will have a higher sex drive than normal.");
 	addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","Ensures that you will have a lower sex drive than normal.");
+	addButton(11,"Infertile",applySexualGift,"infertile","Infertile","No matter what changes are made to your virility or fertility levels, you will be unable to produce offspring naturally.");
 	addButton(13,"None",applySexualGift,"none","No Sexual Gift","You will not begin with a natural sexual gift.");
 	if(pc.hasVagina()) 
 		addButton(14,"Back",chooseYourVagina);
@@ -1183,6 +1188,9 @@ public function applySexualGift(arg:String = "none"):void {
 	}
 	else if(arg == "ice cold") {
 		pc.createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time.");
+	}
+	else if(arg == "infertile") {
+		pc.createPerk("Infertile",0,0,0,0,"You are unable to reproduce offspring naturally.");
 	}
 	chooseAPhysicalAffinity();
 }
