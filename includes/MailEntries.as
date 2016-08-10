@@ -338,7 +338,7 @@ public function initialMailConfiguration():void
 
 	output2("\n\nConfirmed.");
 
-	output2("\n\nYou have been granted Executive Trainee access. You may now enter a custom email address below. Please note that the company standard is Firstname_Lastname@SteelTech.corp. Your access mask grants you the ability to deviate from this standard for personal use. Please refrain from egregious sexual or profane phrases in your custom corporate email address. Remember: your conduct reflects on the company as a whole.");
+	output2("\n\nYou have been granted Executive Trainee access. You may now enter a custom email address below. Please note that the company standard is Firstname_Lastname@SteeleTech.corp. Your access mask grants you the ability to deviate from this standard for personal use. Please refrain from egregious sexual or profane phrases in your custom corporate email address. Remember: your conduct reflects on the company as a whole.");
 	
 	output2("\n\nPlease enter your desired address prefix now:\n");
 	
