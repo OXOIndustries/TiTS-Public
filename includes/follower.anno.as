@@ -3312,7 +3312,7 @@ public function annoUvetoHuskarFoursomePoundPuppies():void
 	else output(" slap on the ass");
 	output(", pointing towards the sodden gulf between the other huskar’s spread legs. She’s left the green cock-rock planted almost to the hilt in Marina’s pussy, letting the psionic stone stimulate her all on its own. Giving you a wink, Anno scoots out of the way. <i>“This one’s got another hole free, Boss. All nice and ready for you. Don’t leave her waiting.”</i>");
 	
-	output("\n\nWell, if Anno’s got her wet and ready, who could say no? You trade off with Anno, letting her get busy slurping up one girl’s juices while you get ready to make the other cum her brains out. Your [pc.cock] slaps wetly into Marina’s rump, gliding through the well-lubricated gulf between her meaty cheeks. Your [pc.cockHead] comes to rest naturally against the tight ring of her ass, and the hole merely winks at you, offering no resistance at your slow, steady intrusion.");
+	output("\n\nWell, if Anno’s got her wet and ready, who could say no? You trade off with Anno, letting her get busy slurping up one girl’s juices while you get ready to make the other cum her brains out. Your [pc.cockOrStrapon] slaps wetly into Marina’s rump, gliding through the well-lubricated gulf between her meaty cheeks. Your " + (pc.hasCock() ? "[pc.cockHead]" : "lewd, hardlight tip") + " comes to rest naturally against the tight ring of her ass, and the hole merely winks at you, offering no resistance at your slow, steady intrusion.");
 
 	processTime(30);
 	clearMenu();
@@ -3388,8 +3388,8 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 	
 	output("\n\nWith this kind of treatment, it’s only a matter of time before you feel that familiar pressure thrumming in your [pc.balls]. More than eager to give these lusty huskies a proper treat, you keep your [pc.hips] moving, thrusting in and out of the mouth");
 	if (pc.cocks.length > 1) output("s");
-	output(" working your [pc.multiCocks].");
-	if (pc.cocks.length == 1) output(" Seeing what’s about to happen, Marina greedily reaches up as best she can, licking at the base of your [pc.cockOrStrapon] and starting to pump it with her hands, adding on to the pleasure Anno’s already giving you.");
+	output(" working your " + (pc.hasCock() ? "[pc.multiCocks]" : "hardlight strapon") + ".");
+	if (pc.cocks.length <= 1) output(" Seeing what’s about to happen, Marina greedily reaches up as best she can, licking at the base of your [pc.cockOrStrapon] and starting to pump it with her hands, adding on to the pleasure Anno’s already giving you.");
 	output(" Not long now...");
 	
 	output("\n\nThere’s no point in holding back, so when you feel your edge coming, you just thrust deep into");
