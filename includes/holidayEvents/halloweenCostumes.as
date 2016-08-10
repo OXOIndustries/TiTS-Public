@@ -748,10 +748,10 @@ public function partyHardWivSavin():void
 	if(flags["ANNO_ANALSEXED"] != undefined) output(", and a firm black plug going the other way, knotting the draconic tail firmly in the dancer’s ass");
 	output(".");
 
-	output("\n\n<i>“Damn, girl,”</i> you smile, grabbing her by the waist and pulling her clothes. <i>“That outfit is on fire!”</i>");
+	output("\n\n<i>“Damn, girl,”</i> you smile, grabbing her by the waist and pulling her close. <i>“That outfit is on fire!”</i>");
 
 	output("\n\nShe giggles, drawing your eyes up to the slender red mask she’s wearing, shrouding a pair of big eyes with red contacts in. <i>“Thanks, gorgeous!”</i> the dragon-babe answers back, ");
-	if(!pc.hasCock()) output("slipping her hands firmly onto your butt. One of them slinks a little lower, teasing a claw around your unprotected [pc.vagOrAss] until the sensation makes you gasp, so tense on the edge of penetration that your mouth hands open.");
+	if(!pc.hasCock()) output("slipping her hands firmly onto your butt. One of them slinks a little lower, teasing a claw around your unprotected [pc.vagOrAss] until the sensation makes you gasp, so tense on the edge of penetration that your mouth hangs open.");
 	else output("slipping a hand around to firmly grab your ass... and using the other to gently brush your throbbing erection, cupping the shaft up until it’s pressed against your belly. Then she dances closer, pressing herself against you... and trapping your package between two slick, hot bodies. You moan something like <i>“God, yes!”</i> as she starts to grind, masturbating you with gleeful abandon.");
 
 	output("\n\nYou smile despite yourself, grabbing the smaller girl by the ass and picking her up. She squeals with delight, happily wrapping her legs around your hips and pressing her tits against your [pc.face]. And she never even flinches from her masturbatory movements");
