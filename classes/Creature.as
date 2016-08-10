@@ -1945,6 +1945,7 @@
 					buffer = buttDescript();
 					break;
 				case "buttsDescript":
+				case "buttcheeks":
 				case "butts":
 				case "asses":
 					buffer = buttDescript(true);
