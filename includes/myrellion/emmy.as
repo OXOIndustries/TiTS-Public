@@ -2836,7 +2836,7 @@ public function pushEmmyMassage():void
 		outputCodex("\n\n<i>“");
 		if(flags["EMMY_MASSAGED"] == undefined) outputCodex("F-fuck, you didn’t put a time limit on the massage function?");
 		else outputCodex("N-no time limit? You fiend. Get me too used to this, and I’ll never let you turn it off!");
-		outputCodex("”</i> Emmy’s hips are still travelling on their slow bump and grind, tracing figure eights against the side of the countertop. Tiny blobs appear at the top of her cock, visible for a half second before being whisked away by the herm harness’s concealed pumping mechanisms. <i>“");
+		outputCodex("”</i> Emmy’s hips are still traveling on their slow bump and grind, tracing figure eights against the side of the countertop. Tiny blobs appear at the top of her cock, visible for a half second before being whisked away by the herm harness’s concealed pumping mechanisms. <i>“");
 		if(flags["EMMY_MASSAGED"] == undefined) outputCodex("It’s not enough to get me off... but it’ll keep me close. Close enough to... mmmm... get all desperate.");
 		else outputCodex("You’d like that, wouldn’t you? Me hard and aching, desperate for any kind of attention. You could walk up to me and press my mouth into your crotch, hell, even your asshole... mmm... I’d like anything right now.");
 		outputCodex("”</i>");
@@ -2904,7 +2904,7 @@ public function emmySlowFuckHermHarness():void
 		{
 			outputCodex("\n\nLicking her lips, Emmy briefly tries to pull her tongue back into her mouth, but it rebelliously flops out once more, drooling saliva all over the cleavage. The added moisture makes her already shiny suit gleam like chromed metal, further highlighting the throbbing crown of her toy-teased dick. Pressing down on her breasts with her forearms, the pleasure-drunk herm happily transforms her slick, melon-sized tits into a second cunt for her cock to ream and slumps down against the shop’s back wall, grinning like an idiot.");
 			outputCodex("\n\nYou ask her if she’s going to be all right.");
-			outputCodex("\n\n<i>“Mo-oh-ore than all right!”</i> Emmy babbles in response while stroking her blunted claw-tips around the periphery of her nipples. It suddenly makes a lot more sense why she keeps those things trimmed so short. <i>“I’m just gonna sit here.”</i> She giggles and dreamily sighs, staring down and her own quivering cock-head. <i>“It’s so weird, I can SEE my dick right there, but her pussy... her pussy is all around it, clutching it, squeezing it... mmm... loving it.”</i>");
+			outputCodex("\n\n<i>“Mo-oh-ore than all right!”</i> Emmy babbles in response while stroking her blunted claw-tips around the periphery of her nipples. It suddenly makes a lot more sense why she keeps those things trimmed so short. <i>“I’m just gonna sit here.”</i> She giggles and dreamily sighs, staring down and her own quivering cock-head. <i>“It’s so weird, I can SEE my dick right there, but my pussy... my pussy is all around it, clutching it, squeezing it... mmm... loving it.”</i>");
 			outputCodex("\n\n<i>“What about your shop?”</i>");
 			outputCodex("\n\nEmmy gasps and struggles up to her feet. Her tongue keeps sliding out to alternately pant and drool, and she keeps wiggling her hips from side to side, but some alertness returns to her eyes. <i>“I, uh... I can run it just fine. See, [pc.name]? Nobody will know a thing.”</i> A bubble of pre-cum forms on her pointed tip, then drains away, accompanied by a low groan from the jackal. You nearly miss it.");
 			outputCodex("\n\n<i>“What was that?”</i>");

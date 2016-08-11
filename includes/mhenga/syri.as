@@ -834,6 +834,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 
 	//For Cocktail Cockwielders
 	if (pc.hasCock() && pc.hasTailCock()) addButton(5, "Tailcock", bangSyriWithTailcock, undefined, "Tailcock","Use your tailcock on Syri's ass while she sucks you off.");
+	else if (!pc.hasCock()) addDisabledButton(5,"Tailcock","Tailcock","You also need a cock for this!");
 	else addDisabledButton(5,"Tailcock","Tailcock","You don't have a tailcock, silly!");
 }
 

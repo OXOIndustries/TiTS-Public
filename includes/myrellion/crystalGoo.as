@@ -1,8 +1,12 @@
 public function showGardeGoo(nude:Boolean = false):void
 {
 	showName("CRYSTAL\nGOO");
-	if (nude) showBust("CRYSTAL_GOO_NUDE");
-	else showBust("CRYSTAL_GOO");
+	if (enemy != null)
+	{
+		if (nude) showBust(enemy.bustDisplay + "_NUDE");
+		else showBust(enemy.bustDisplay);
+	}
+	else clearBust();
 }
 public function showGooKeep():void
 {
@@ -14,7 +18,6 @@ public function showGooKeep():void
 public function crystalGooFenBurps():void
 {
 	author("Gardeford");
-	showGardeGoo();
 	
 	var gooKnight:Creature = new GooKnight();
 	setEnemy(gooKnight);
@@ -46,6 +49,8 @@ public function crystalGooFenBurps():void
 	CombatManager.victoryScene(beatUpCrystalGoo);
 	CombatManager.lossScene(gooKnightLossRouter);
 	CombatManager.displayLocation("GOO KNIGHT");
+	
+	showGardeGoo();
 	
 	addButton(0,"Next",CombatManager.beginCombat);
 }
@@ -250,7 +255,7 @@ public function beatUpCrystalGoo():void
 public function malesBeatGoo():void
 {
 	clearOutput();
-	showGardeGoo();
+	showGardeGoo(true);
 	author("Gardeford");
 	output("All that remains is a chestplate, a flimsy looking skirt, and her helmet. You walk proudly over to her, grinning as she tries to think of something to do. You pull the helmet carefully off her head, freeing a beautifully featured face sculpted from her goo body, along with [enemy.hair]. Your codex mentioned that the ganraen sometimes shape themselves like humanoids.");
 	output("\n\nYou grasp the plate covering her chest, pulling it away with a slick pop. A pair of DD-cup breasts are freed by the action, their puffy nipples already beginning to harden from the sensation. The knight gasps in alarm, attempting to cover her boobs with both hands. Her attempts are in vain when they hit so hard that they sink deeply inside, leaving her chest free for you to play with. You squeeze the [enemy.skinTone] tits, being sure to press more gently than she had. To your surprise she doesn’t have much of a reaction when you pinch her nipples near to flatness, and instead simply gives you a defiant smile.");
@@ -309,7 +314,7 @@ public function malesBeatGoo():void
 public function femaleCrystalGooWin():void
 {
 	clearOutput();
-	showGardeGoo();
+	showGardeGoo(true);
 	author("Gardeford");
 	output("All that remains is a chestplate, a flimsy looking skirt, and her helmet. You walk proudly over to her, grinning as she tries to think of something to do. You pull the helmet carefully off her head, freeing a beautifully featured face sculpted from her goo body, along with [enemy.hair]. Your codex mentioned that the ganraen sometimes shape themselves like humanoids.");
 	output("\n\nYou lean down, giving the battle-exhausted knight a sloppy kiss. Gripping her forearm with careful pressure, you guide her hand over your pelvis");
@@ -371,7 +376,7 @@ public function femaleCrystalGooWin():void
 public function centaurRideSpecialVictory():void
 {
 	clearOutput();
-	showGardeGoo();
+	showGardeGoo(true);
 	author("Gardeford");
 	output("The ganraen knight staggers from the pressure of the battle, ");
 	if(enemy.HP() < 1) output("her armor mostly decimated by your concentrated attacks");

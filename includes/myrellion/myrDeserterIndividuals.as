@@ -2904,7 +2904,7 @@ public function stolenDildoFap():void
 	//tooltip disabled, is taur and shield is at 0 or unequipped: You’d need some kind of force-field to push this thing back out once it’s up you. Goodness gracious.
 	if(hasRedDildo())
 	{
-		if((pc.isTaur() && !(pc.shield is EmptySlot)) || !pc.isTaur()) addButton(0,"Anal Vibe",useBrihasVibeAnal,undefined,"Anal Vibe","Stick the red myr’s vibrator in your booty" + (pc.hasCock()) ? " for a prostate massage" : "" + (!pc.isTaur() && pc.hasCock()) ? " then cum all over it" : "" + ".");
+		if((pc.isTaur() && !(pc.shield is EmptySlot)) || !pc.isTaur()) addButton(0,"Anal Vibe",useBrihasVibeAnal,undefined,"Anal Vibe","Stick the red myr’s vibrator in your booty" + (pc.hasCock() ? " for a prostate massage" : "") + ((!pc.isTaur() && pc.hasCock()) ? " then cum all over it" : "") + ".");
 		else addDisabledButton(0,"Anal Vibe","Anal Vibe","You’d need some kind of force-field to push this thing back out once it’s up you. Goodness gracious.");
 	}
 	//requiring Lys’s dildo
@@ -3227,9 +3227,9 @@ public function giveFlowerToLys():void
 	else
 	{
 		clearMenu();
-		if(pc.hasCock() && pc.cockThatFits(chars["GOLD_DESERTER"].vaginalCapacity(0)) >= 0) addButton(0,"Use Cock",useCockOnLysPostFlower,false,"Use Cock","Stick your dick in Lys’s pussy" + (!pc.isTaur()) ? ", and your face in her thighs or tits, whichever you can reach" : "" + ".");
+		if(pc.hasCock() && pc.cockThatFits(chars["GOLD_DESERTER"].vaginalCapacity(0)) >= 0) addButton(0,"Use Cock",useCockOnLysPostFlower,false,"Use Cock","Stick your dick in Lys’s pussy" + (!pc.isTaur() ? ", and your face in her thighs or tits, whichever you can reach" : "") + ".");
 		else addDisabledButton(0,"Use Cock","Use Cock","You don’t have any suitable cocks secreted about your person.");
-		if(pc.hasTailCock()) addButton(1,"Tailcock",useCockOnLysPostFlower,true,"Tailcock","Stick your cock-tail in Lys’s pussy" + (!pc.isTaur()) ? ", and your face in her thighs or tits, whichever you can reach" : "" + ".");
+		if(pc.hasTailCock()) addButton(1,"Tailcock",useCockOnLysPostFlower,true,"Tailcock","Stick your cock-tail in Lys’s pussy" + (!pc.isTaur() ? ", and your face in her thighs or tits, whichever you can reach" : "") + ".");
 		else addDisabledButton(1,"Tailcock","Tailcock","You don’t have any suitable cocks secreted about your person.");
 
 		//http://www.nbc.com/saturday-night-live/video/colonel-angus-comes-home/n11685

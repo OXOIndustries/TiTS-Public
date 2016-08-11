@@ -156,7 +156,7 @@ public function hanaDrinkPBlasterII():void
 
 	if (!pc.isBimbo() && !pc.isBro())
 	{
-		output("For a brief moment you become woozy, your [pc.skinfurscales] feeling flush, particularly in your arms.");
+		output("For a brief moment you become woozy, your [pc.skin] feeling flush, particularly on your arms.");
 		
 		output("\n\nYour vision grows hazy, the warm lights of the bar and central fireplace superimposing over one another into a blurry, blinding mess. Shapes swirl in your eyes - no, in your head? You can barely parse it and soon you don’t have to, the swirling mess shifting away into a white, empty void.");
 		

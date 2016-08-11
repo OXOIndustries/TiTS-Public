@@ -1278,8 +1278,8 @@ public function appearance(forTarget:Creature):void
 			else if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) cuntSnakeTexture += target.skinTone + " goo";
 			else cuntSnakeTexture += target.skinFurScales(true) + " like the rest of you";
 			
-			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + cuntSnakeTexture + " except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
-			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + "  sinuous, almost snake-like tails wave behind you, covered in " + cuntSnakeTexture + " except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
+			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + cuntSnakeTexture + " except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript(false, true, true)) + " that always seems to crave fresh sperm.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + "  sinuous, almost snake-like tails wave behind you, covered in " + cuntSnakeTexture + " except at the tip. There, they terminate in " + plural(target.tailVaginaDescript(false, true, true)) + " that always seem to crave fresh sperm.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_PANDA) {
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A short, slimy panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a gooey little accent.");
@@ -2309,6 +2309,11 @@ public function crotchStuff(forTarget:Creature = null):void
 	if(target.vaginas.length > 0) {
 		if(target.hasCock()) output2("\n\n");
 		if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
+		
+		var vagSwellBonus:int = 0;
+		if(target.vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) vagSwellBonus++;
+		if(target.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED)) vagSwellBonus++;
+		
 		//Vaginal Numbers
 		if(target.vaginaTotal() == 1) {
 			output2("You have " + indefiniteArticle(target.vaginaDescript(0,false,false,true)) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
@@ -2320,14 +2325,22 @@ public function crotchStuff(forTarget:Creature = null):void
 			{
 				if (target.statusEffectv3("Mimbrane Pussy") < 8)
 				{
-					output2("Your pussy appears slightly swollen. ");
+					output2("Your pussy appears");
+					if(vagSwellBonus <= 0) output2(" slightly");
+					else if(vagSwellBonus <= 1) output2(" a bit");
+					else output2(" very");
+					output2(" swollen. ");
 				}
 				else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 				{
 					output2("Your pussy appears noticably inflated");
 					if (!target.isCrotchExposed())
 					{
-						output2(" and creates a slight bulge beneath your");
+						output2(" and creates");
+						if(vagSwellBonus <= 0) output2(" a slight");
+						else if(vagSwellBonus <= 1) output2(" a large");
+						else output2(" an enormous");
+						output2(" bulge beneath your");
 						if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
 						else output2(" clothing");
 					}
@@ -2338,7 +2351,11 @@ public function crotchStuff(forTarget:Creature = null):void
 					output2("Your pussy appears delightfully plump");
 					if (!target.isCrotchExposed())
 					{
-						output2(", creating an undeniable bulge in your");
+						output2(", creating");
+						if(vagSwellBonus <= 0) output2(" an undeniable");
+						else if(vagSwellBonus <= 1) output2(" a massive");
+						else output2(" a gargantuan");
+						output2(" bulge in your");
 						if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
 						else output2(" clothing");
 					}
@@ -2425,14 +2442,22 @@ public function crotchStuff(forTarget:Creature = null):void
 				{
 					if (target.statusEffectv3("Mimbrane Pussy") < 8)
 					{
-						output2(" It appears slightly swollen from the mimbrane.");
+						output2(" It appears");
+						if(vagSwellBonus <= 0) output2(" slightly");
+						else if(vagSwellBonus <= 1) output2(" a bit");
+						else output2(" very");
+						output2(" swollen from the mimbrane.");
 					}
 					else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 					{
 						output2(" It appears noticably inflated");
 						if (!target.isCrotchExposed())
 						{
-							output2(" and creates a slight bulge beneath your");
+							output2(" and creates");
+							if(vagSwellBonus <= 0) output2(" a slight");
+							else if(vagSwellBonus <= 1) output2(" a large");
+							else output2(" an enormous");
+							output2(" bulge beneath your");
 							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
 							else output2(" clothing");
 						}
@@ -2443,7 +2468,11 @@ public function crotchStuff(forTarget:Creature = null):void
 						output2(" It appears delightfully plump");
 						if (!target.isCrotchExposed())
 						{
-							output2(", creating an undeniable bulge in your");
+							output2(", creating");
+							if(vagSwellBonus <= 0) output2(" an undeniable");
+							else if(vagSwellBonus <= 1) output2(" a massive");
+							else output2(" a gargantuan");
+							output2(" bulge in your");
 							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
 							else output2(" clothing");
 						}

@@ -154,7 +154,7 @@ package classes.Items.Transformatives
 						var newSkinTone:String = RandomInCollection(plantSkinColor);
 						if(InCollection(target.skinTone, ["green", "verdant", "viridescent", "emerald", "olive"]) && rand(4) != 0) newSkinTone = target.skinTone;
 						
-						msg += ParseText("The cool, tingling sensation on your [pc.skin] has grown as time has gone on, making you feel like your whole body is bathed in toothpaste. It’s difficult to worry about it; the more the sensation ebbs, the more peaceful you feel and the clearer your perception seems. When you look down with a lazy, happy smile, it’s not really a surprise to see [pc.skinFurScalesNoun] falling off your arms, replaced by a smooth, hairless " + newSkinTone + " complexion across your entire body. Nor does it bother you, because more than anything it feels like a lot of frustrations and distractions are drifting away from you, replaced by an all-encompassing sensual clarity.");
+						msg += ParseText("The cool, tingling sensation on your [pc.skin] has grown as time has gone on, making you feel like your whole body is bathed in toothpaste. It’s difficult to worry about it; the more the sensation ebbs, the more peaceful you feel and the clearer your perception seems. When you look down with a lazy, happy smile, it’s not really a surprise to see [pc.skinFurScalesNounSimple] falling off your arms, replaced by a smooth, hairless " + newSkinTone + " complexion across your entire body. Nor does it bother you, because more than anything it feels like a lot of frustrations and distractions are drifting away from you, replaced by an all-encompassing sensual clarity.");
 						
 						target.skinType = GLOBAL.SKIN_TYPE_PLANT;
 						target.skinTone = newSkinTone;

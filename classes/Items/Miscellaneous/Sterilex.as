@@ -66,7 +66,7 @@
 			if(target is PlayerCharacter)
 			{
 				// Sexless get duds:
-				if(!target.hasCock() && !target.hasVagina())
+				if(target.hasPerk("Infertile") || !target.hasGenitals())
 				{
 					useDudEffect();
 					return false;
