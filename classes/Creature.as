@@ -2035,6 +2035,7 @@
 					buffer = oneTailVaginaDescript();
 					break;
 				case "milkNoun":
+				case "milkType":
 					buffer = fluidNoun(milkType);
 					break;
 				case "milkDescript":
@@ -2053,9 +2054,11 @@
 					buffer = girlCumDescript();
 					break;
 				case "cumNoun":
+				case "cumType":
 					buffer = fluidNoun(cumType);
 					break;
 				case "girlCumNoun":
+				case "girlCumType":
 					buffer = fluidNoun(girlCumType);
 					break;
 				case "cumColor":
