@@ -4149,16 +4149,20 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_ANARRIE"] != undefined || flags["MET_SHIARE"] != undefined)
 			{
 				output2("\n<b><u>Kressia Survival Shop</u></b>");
+				if(flags["DISCOUNT_SEXED_SURVIVAL_SHOP"] != undefined) output2("\n<b>* Sales, Times Given Sex Discount:</b> " + flags["DISCOUNT_SEXED_SURVIVAL_SHOP"]);
 				// Annarie and Shiare
 				if(flags["MET_ANARRIE"] != undefined)
 				{
 					output2("\n<b>* Annarie:</b> Met her");
 					if(flags["FUCKED_ANARRIE"] != undefined) output2(", Sexed her");
+					if(flags["ANARRIE_AMBUSH"] != undefined) output2("\n<b>* Annarie, Times Ambush Sexed Her:</b> " + flags["ANARRIE_AMBUSH"]);
 				}
 				if(flags["MET_SHIARE"] != undefined)
 				{
 					output2("\n<b>* Shiare:</b> Met her");
 					if(flags["FUCKED_SHIARE"] != undefined) output2(", Sexed her");
+					if(flags["MILKED_SHIARE"] != undefined) output2("\n<b>* Shiare, Times Milked Her:</b> " + flags["MILKED_SHIARE"]);
+					if(flags["ANT_PANTIES_SHARED"] != undefined) output2("\n<b>* Shiare, Times Shared Hardlight Strap-On With:</b> " + flags["ANT_PANTIES_SHARED"]);
 				}
 				variousCount++;
 			}

@@ -105,6 +105,7 @@ public function appearance(forTarget:Creature):void
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face is fairly human in shape, but is covered in " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output2("Your face is human-shaped with " + target.skin(true,true,true) + " and lightly framed with " + target.skinFurScales(true,true,false,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN) output2("Your face is mostly human in shape, decorated with " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) output2("Your face is mostly human in shape, with hints of " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
 			// Special addons
 			if(target.faceType == GLOBAL.TYPE_SHARK || target.faceType == GLOBAL.TYPE_SIREN) output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_LAPINE) output2(" The constant twitches of your nose and the length of your incisors gives your visage a hint of bunny-like cuteness.");
