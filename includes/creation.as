@@ -1361,6 +1361,7 @@ public function chooseAlignment():void {
 
 public function alignConfirm(arg:int):void {
 	pc.personality = arg;
+	resetBabyValues();
 	chooseClass();
 	//chooseGenderIdentity();
 }
@@ -1906,6 +1907,297 @@ public function ohShitGameStarts():void {
 		addButton(0,"Next",mainGameMenu);
 	
 }
+
+
+/* UPBRINGING CORRECTION */
+
+public function fixPcUpbringing():void
+{
+	clearOutput();
+	showName("CODEX\nALERT");
+	author("Gedan");
+	
+	output("Your trusty codex vibrates incessantly, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of its features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
+	
+	output("\n\nSafely shuffled off to one side, hopefully out of the way - and out of sight - of any one or any thing that might come by, you bring your handy forearm-mounted helper to the fore to see exactly what it’s complaining about....");
+	
+	output("\n\n<i>DATA CORRUPTION DETECTED</i>");
+	
+	output("\n\nWell, shit.");
+	
+	output("\n\n<i>FIX NOW?</i>");
+	
+	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, a [pc.finger] already tapping on the key labeled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
+	if (!silly) output(" fix itself");
+	else output(" do the needful");
+	output(" before it’s vibrating away, demanding its masters dutiful attention again.");
+	
+	output("\n\n<i>UNRECOVERABLE DATA FRAGMENT LOCATED IN FILE: [pc.fullName]</i>");
+	output("\n<i>MISSING SEGMENT: SCHOOL HISTORY</i>");
+	output("\n<i>PLEASE RE-ENTER VALID DATA...</i>");
+	
+	output("\n\nThere doesn’t seem to be any way around the prompt other than to give the fucking thing an acceptable answer to devices question...");
+	
+	clearMenu();
+	addButton(0,"Pampered",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_PAMPERED);
+	addButton(1,"Athletic",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_ATHLETIC);
+	addButton(2,"Bookworm",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BOOKWORM);
+	addButton(3,"Austere",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_AUSTERE);
+	addButton(4,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
+}
+
+public function fixPcUpbringingSetNew(upType:uint):void
+{
+	clearOutput();
+	showName("CODEX\nALERT");
+	author("Gedan");
+	
+	flags["PC_UPBRINGING"] = upType;
+	
+	output("<i>INPUT REGISTERED: " + (GLOBAL.UPBRINGING_NAMES[upType] as String).toUpperCase() + "</i>");
+	output("\n<i>THANK YOU FOR YOUR COMPLIANCE.</i>");
+	
+	output("\n\nLooks like that was all the cheeky little bastard wanted from you. Another ‘Okay’ key tap and you’re back on your travels.");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+
+/* OFFSPRING CORRECTION */
+
+public function resetBabyValues():void
+{
+	// Initialize all baby values to match player character.
+	baby.originalRace = pc.originalRace;
+	baby.skinTone = pc.skinTone;
+	baby.lipColor = pc.lipColor;
+	baby.nippleColor = pc.nippleColor;
+	baby.eyeColor = pc.eyeColor;
+	baby.hairColor = pc.hairColor;
+	baby.scaleColor = pc.scaleColor;
+	baby.furColor = pc.furColor;
+}
+
+public function setBabyValuesOptions(response:String = "intro"):void
+{
+	clearOutput();
+	showName("CODEX\nALERT");
+	author("IVIysteriousPerson");
+	clearMenu();
+	
+	var i:int = 0;
+	var colorList:Array = [];
+	
+	switch(response)
+	{
+		// Intro:
+		case "intro":
+			output("Your Codex beeps several times, and you grab it to see a priority message from the U.G.C. Department of Public Health and Wellness. You raise your eyebrows, slightly perturbed, and tap the screen to open it.");
+			output("\n\n<i>Attention [pc.name] Steele:</i>");
+			output("\n\n<i>We have detected an irregularity in your birth records. Please fill out the following form with accurate information to correct this issue. We appreciate your cooperation, and apologize for any inconvenience.</i>");
+			output("\n\nAn “irregularity” in your birth records? Well, you didn’t have the most conventional entry into the world, so it’s not terribly surprising. If anyone’s birth records were going to be screwed up, you’re a pretty likely candidate.");
+			output("\n\nWith a sigh, you tap your Codex once more, and the message is replaced by a form with several empty fields. You see your name at the top, and a box labeled “Birth Race” with “" + pc.originalRace + "” already filled in. They got that right, at least...");
+			
+			// [Next] -- Go to Hair Color
+			addButton(0, "Next", setBabyValuesOptions, (pc.originalRace != "half-gryvain" ? "hair" : "gryvain"));
+			break;
+			
+		// Restart:
+		case "restart":
+			output("You clear your current inputs and decide to start over...");
+			
+			// [Next] -- Go to Hair Color
+			addButton(0, "Next", setBabyValuesOptions, (pc.originalRace != "half-gryvain" ? "hair" : "gryvain"));
+			break;
+		
+		// Hair Color:
+		case "hair":
+			output("The first empty box asks you for the hair and/or fur color you were born with, if applicable.");
+			
+			// {button list of starting hair/fur/scale colors available to the PC's starting race?} -- Go to Eye Color
+			if(pc.originalRace == "half-leithan")
+			{
+				colorList.push(["Black", "black"]);
+				colorList.push(["Gray", "gray"]);
+				colorList.push(["Silver", "silver"]);
+				colorList.push(["Dark Gold", "dark gold"]);
+			}
+			else if(pc.originalRace == "half kui-tan")
+			{
+				colorList.push(["Brown", "brown"]);
+				colorList.push(["Chocolate", "chocolate"]);
+				colorList.push(["D.Brown", "dark brown"]);
+				colorList.push(["Black", "black"]);
+			}
+			else
+			{
+				colorList.push(["Black", "black"]);
+				colorList.push(["Brown", "brown"]);
+				colorList.push(["Dirty Blond", "dirty blond"]);
+				colorList.push(["Blond", "blond"]);
+				colorList.push(["Auburn", "auburn"]);
+				colorList.push(["Red", "red"]);
+				colorList.push(["Gray", "gray"]);
+				if (pc.originalRace == "half-kaithrit") {
+					colorList.push(["Blue", "blue"]);
+					colorList.push(["Green", "green"]);
+					colorList.push(["Purple", "purple"]);
+				}
+				if(pc.originalRace == "half-ausar") {
+					colorList.push(["White", "white"]);
+				}
+			}
+			for(i = 0; i < colorList.length; i++)
+			{
+				addButton(i, colorList[i][0], setBabyHairColor, colorList[i][1], StringUtil.toDisplayCase(colorList[i][1]), ("Your original hair color " + (pc.hairColor == colorList[i][1] ? "is" : "was") + " " + colorList[i][1] + "."));
+			}
+			addButton(14, "Restart", setBabyValuesOptions, "restart", "Restart Survey", "Try again from the beginning.");
+			break;
+		
+		// Eye Color:
+		case "eyes":
+			output("The next box asks you for the eye color you were born with, if applicable.");
+			
+			// {button list of starting eye colors available to the PC's starting race?} -- Go to Skin Color
+			if(pc.originalRace == "half kui-tan")
+			{
+				colorList.push(["Brown", "brown"]);
+				colorList.push(["Green", "green"]);
+				colorList.push(["Hazel", "hazel"]);
+				colorList.push(["Amber", "amber"]);
+				colorList.push(["Gold", "gold"]);
+				colorList.push(["Copper", "copper"]);
+			}
+			else
+			{
+				colorList.push(["Blue", "blue"]);
+				colorList.push(["Green", "green"]);
+				colorList.push(["Hazel", "hazel"]);
+				colorList.push(["Brown", "brown"]);
+				if (pc.originalRace == "half-kaithrit") {
+					colorList.push(["Amber", "amber"]);
+					colorList.push(["Yellow", "yellow"]);
+					colorList.push(["Orange", "orange"]);
+					colorList.push(["Violet", "violet"]);
+					colorList.push(["Copper", "copper"]);
+				}
+				if(pc.originalRace == "half-ausar") {
+					colorList.push(["Gold", "gold"]);
+				}
+			}
+			for(i = 0; i < colorList.length; i++)
+			{
+				addButton(i, colorList[i][0], setBabyEyesColor, colorList[i][1], StringUtil.toDisplayCase(colorList[i][1]), ("Your original eye color " + (pc.eyeColor == colorList[i][1] ? "is" : "was") + " " + colorList[i][1] + "."));
+			}
+			addButton(14, "Restart", setBabyValuesOptions, "restart", "Restart Survey", "Try again from the beginning.");
+			break;
+		
+		// Gryvain:
+		case "gryvain":
+			output("The first empty box asks you for the overall color scheme of your body--this includes your hair and scales, if applicable.");
+			
+			// {button list of starting eye colors available to the PC's starting race?} -- Go to Skin Color
+			clearMenu();
+			colorList.push(["DarkBlue", "dark blue"]);
+			colorList.push(["DarkGreen", "dark green"]);
+			colorList.push(["Black", "black"]);
+			if(pc.short == "Geddy") colorList.push(["Red", "red"]);
+			for(i = 0; i < colorList.length; i++)
+			{
+				addButton(i, colorList[i][0], setBabyGryvainColor, colorList[i][1], StringUtil.toDisplayCase(colorList[i][1]), ("Your original color scheme " + (pc.scaleColor == colorList[i][1] ? "is" : "was") + " " + colorList[i][1] + " with dark yellow eyes."));
+			}
+			addButton(14, "Restart", setBabyValuesOptions, "restart", "Restart Survey", "Try again from the beginning.");
+			break;
+		
+		// Skin Color:
+		case "skin":
+			output("The final unfilled box asks you for the skin pigmentation you had when you were born, if applicable.");
+			
+			// {button list of skin pigments available to PC's starting race} -- Go to Finish
+			if (pc.originalRace == "half-gryvain")
+			{
+				colorList.push(["Pale", "pale"]);
+				colorList.push(["Tanned", "tanned"]);
+				colorList.push(["Pink", "pink"]);
+				colorList.push(["DarkRed", "dark red"]);
+				colorList.push(["DarkGreen", "dark green"]);
+			}
+			else
+			{
+				if(pc.originalRace == "half-leithan")
+				{
+					colorList.push(["Pale", "pale"]);
+					colorList.push(["Fair", "fair"]);
+					colorList.push(["Gray", "gray"]);
+					colorList.push(["Black", "black"]);
+				}
+				else
+				{
+					colorList.push(["Pale", "pale"]);
+					colorList.push(["Fair", "fair"]);
+					colorList.push(["Tan", "tan"]);
+					colorList.push(["Olive", "olive"]);
+					colorList.push(["Dark", "dark"]);
+					colorList.push(["Ebony", "ebony"]);
+				}
+			}
+			for(i = 0; i < colorList.length; i++)
+			{
+				addButton(i, colorList[i][0], setBabySkinColor, colorList[i][1], StringUtil.toDisplayCase(colorList[i][1]), ("Your original skin tone " + (pc.skinTone == colorList[i][1] ? "is" : "was") + " " + colorList[i][1] + "."));
+			}
+			addButton(14, "Restart", setBabyValuesOptions, "restart", "Restart Survey", "Try again from the beginning.");
+			break;
+		
+		// Finish:
+		case "finish":
+			output("You finish filling in the blanks, then scroll to the bottom of the form and hit “Submit.” Your Codex beeps in affirmation, then sends the data off into the extranet, where it will no doubt be received and reviewed by a bored government clerk on some faraway planet. All things considered, it was a pretty simple process, and you put your Codex away to continue onward.");
+			
+			baby.originalRace = pc.originalRace;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+public function setBabyHairColor(arg:String = "black"):void
+{
+	baby.hairColor = arg;
+	baby.furColor = arg;
+	
+	setBabyValuesOptions("eyes");
+}
+public function setBabyEyesColor(arg:String = ""):void
+{
+	baby.eyeColor = arg;
+	
+	setBabyValuesOptions("skin");
+}
+public function setBabyGryvainColor(arg:String = "black"):void
+{
+	baby.hairColor = arg;
+	baby.scaleColor = arg;
+	baby.nippleColor = arg;
+	baby.lipColor = arg;
+	baby.eyeColor = "dark yellow";
+	
+	setBabyValuesOptions("skin");
+}
+public function setBabySkinColor(arg:String = "albino"):void
+{
+	if(pc.originalRace != "half-gryvain")
+	{
+		baby.scaleColor = (pc.originalRace == "half-leithan" ? "black" : "blue");
+		if(!InCollection(pc.nippleColor, ["pink", "peach", "tan", "brown", "ebony"])) baby.nippleColor = "pink";
+		if(!InCollection(pc.lipColor, ["pink", "peach", "tan", "brown", "ebony"])) baby.lipColor = "peach";
+	}
+	baby.skinTone = arg;
+	
+	setBabyValuesOptions("finish");
+}
+
+
+/* DEMO FUNCTIONS */
+
 public function demoOver():void {
 	clearOutput();
 	setLocation("DEMO\nCOMPLETE","THANKS FOR PLAYING","AND SUPPORTING ME.");
