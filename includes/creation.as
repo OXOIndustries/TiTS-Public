@@ -1997,7 +1997,7 @@ public function setBabyValuesOptions(response:String = "intro"):void
 			output("\n\n<i>Attention [pc.name] Steele:</i>");
 			output("\n\n<i>We have detected an irregularity in your birth records. Please fill out the following form with accurate information to correct this issue. We appreciate your cooperation, and apologize for any inconvenience.</i>");
 			output("\n\nAn “irregularity” in your birth records? Well, you didn’t have the most conventional entry into the world, so it’s not terribly surprising. If anyone’s birth records were going to be screwed up, you’re a pretty likely candidate.");
-			output("\n\nWith a sigh, you tap your Codex once more, and the message is replaced by a form with several empty fields. You see your name at the top, and a box labeled “Birth Race” with “" + pc.originalRace + "” already filled in. They got that right, at least...");
+			output("\n\nWith a sigh, you tap your Codex once more, and the message is replaced by a form with several empty fields. You see your name at the top, and a box labeled “Birth Race” with “" + StringUtil.toDisplayCase(pc.originalRace) + "” already filled in. They got that right, at least...");
 			
 			// [Next] -- Go to Hair Color
 			addButton(0, "Next", setBabyValuesOptions, (pc.originalRace != "half-gryvain" ? "hair" : "gryvain"));
