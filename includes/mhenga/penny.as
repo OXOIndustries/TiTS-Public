@@ -913,7 +913,7 @@ public function firstTimePennyShowerSex():void {
 	output(". <i>“My </i>");
 	if(pc.tallness <= 50) output("<i>little </i>");
 	else if(pc.tallness >= 70) output("<i>big </i>");
-	output("<i>mate. We’ll have to do something like this again, and soon.”</i> She smiles. <i>“It is nice to finally cut loose with someone. I just hope you don’t mind to much when I get all riled up and get a little predatory on you.”</i> Her hand traces down your flank. <i>“You are one delicious piece of prey, though.”</i>");
+	output("<i>mate. We’ll have to do something like this again, and soon.”</i> She smiles. <i>“It is nice to finally cut loose with someone. I just hope you don’t mind too much when I get all riled up and get a little predatory on you.”</i> Her hand traces down your flank. <i>“You are one delicious piece of prey, though.”</i>");
 	output("\n\nThe conversation dies away, and the two of you get dressed to go on your separate ways. You find yourself on the receiving end of a tonguing kiss before Penny goes back to work, looking more satisfied than you’ve ever seen her.");
 	pc.orgasm();
 	penny.loadInCunt(pc);

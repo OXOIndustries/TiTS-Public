@@ -298,9 +298,10 @@ public function victoryFuckSyrisBunghole():void {
 	output("\n\nPrick still lodged in Syri's well-fucked ass, you heave a heavy sigh and wipe the sweat from your brow. Beneath you, the ausar girl's breath comes in short little gasps, her breasts rising and falling erratically as she tries to pick herself up from the table. <i>“D-damn, [pc.name]. You're a fucking machine. Gods and spirits I'll be sore for days after that reaming....”</i>");
 
 	output("\n\nYou reach down and squeeze one of her delightfully squishy cheeks, promising ");
-	if(pc.isNice()) output("you'll take it easy on her next time");
-	else if(pc.isMischievous()) output("that she'll have to get used to it if she doesn't get on your level next time");
-	else output("that she'll be walking bow-legged when you're done with her next time.");
+	if(pc.isNice()) output("you'll take it easy on her");
+	else if(pc.isMischievous()) output("that she'll have to get used to it if she doesn't get on your level");
+	else output("that she'll be walking bow-legged when you're done with her");
+	output(" next time.");
 
 	output("\n\n<i>“Next time... it's </i>your<i> ass, [pc.name],”</i> she growls, pulling your cock out - which only serves to unleash a flood of your pent-up seed that spills down between her cheeks and along the cleft of her swinging sack.");
 

@@ -2175,6 +2175,7 @@ public function setBabyEyesColor(arg:String = ""):void
 public function setBabyGryvainColor(arg:String = "black"):void
 {
 	baby.hairColor = arg;
+	baby.furColor = arg;
 	baby.scaleColor = arg;
 	baby.nippleColor = arg;
 	baby.lipColor = arg;
