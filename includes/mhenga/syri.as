@@ -778,7 +778,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 		//(First Time Variant) 
 		if(flags["SYRI_SEEN_PCS_SHIP_CABIN"] == undefined) {
 			flags["SYRI_SEEN_PCS_SHIP_CABIN"] = 1;
-			output("Looking around at the mostly empty bar and then at the pretty ausar girl starting up at you, you ask if she'd like to get out of here.");
+			output("Looking around at the mostly empty bar and then at the pretty ausar girl staring up at you, you ask if she'd like to get out of here.");
 
 			output("\n\n<i>“Ooh, I thought you'd never ask, " + pc.mf("handsome","beautiful") + ",”</i> Syri says with a wink and a grin, gathering up her scattered belongings. <i>“My place is kind of a wreck, so... let's head back to that ship of yours. You still owe me a tour of your ship after all, Captain...”</i>");
 

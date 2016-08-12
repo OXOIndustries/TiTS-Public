@@ -347,6 +347,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	//Emmy magic!
 	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
 	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
+	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
 	
 	// Apply and destroy coupons!
 	var usedCoupon:Boolean = false;
