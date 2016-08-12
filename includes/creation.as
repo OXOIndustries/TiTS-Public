@@ -1914,7 +1914,7 @@ public function ohShitGameStarts():void {
 public function fixPcUpbringing():void
 {
 	clearOutput();
-	showName("CODEX\nALERT");
+	creationHeader("CODEX\nALERT");
 	author("Gedan");
 	
 	output("Your trusty codex vibrates incessantly, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of its features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
@@ -1949,7 +1949,7 @@ public function fixPcUpbringing():void
 public function fixPcUpbringingSetNew(upType:uint):void
 {
 	clearOutput();
-	showName("CODEX\nALERT");
+	creationHeader("CODEX\nALERT");
 	author("Gedan");
 	
 	flags["PC_UPBRINGING"] = upType;
@@ -1982,7 +1982,7 @@ public function resetBabyValues():void
 public function setBabyValuesOptions(response:String = "intro"):void
 {
 	clearOutput();
-	showName("CODEX\nALERT");
+	creationHeader("CODEX\nALERT");
 	author("IVIysteriousPerson");
 	clearMenu();
 	
@@ -1994,7 +1994,7 @@ public function setBabyValuesOptions(response:String = "intro"):void
 		// Intro:
 		case "intro":
 			output("Your Codex beeps several times, and you grab it to see a priority message from the U.G.C. Department of Public Health and Wellness. You raise your eyebrows, slightly perturbed, and tap the screen to open it.");
-			output("\n\n<i>Attention [pc.name] Steele:</i>");
+			output("\n\n<i>Attention [pc.fullName]:</i>");
 			output("\n\n<i>We have detected an irregularity in your birth records. Please fill out the following form with accurate information to correct this issue. We appreciate your cooperation, and apologize for any inconvenience.</i>");
 			output("\n\nAn “irregularity” in your birth records? Well, you didn’t have the most conventional entry into the world, so it’s not terribly surprising. If anyone’s birth records were going to be screwed up, you’re a pretty likely candidate.");
 			output("\n\nWith a sigh, you tap your Codex once more, and the message is replaced by a form with several empty fields. You see your name at the top, and a box labeled “Birth Race” with “" + StringUtil.toDisplayCase(pc.originalRace) + "” already filled in. They got that right, at least...");
