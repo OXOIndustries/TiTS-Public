@@ -1218,11 +1218,15 @@ public function zilCallGirlAddendum(slot:int = 0):void
 	return;
 }
 
-public function showZilCallGirl(nude:Boolean = true):void
+public function showZilCallGirl(cum:Boolean = false):void
 {
 	if (CodexManager.entryViewed("Zil")) showName("ZIL\nCALL GIRL");
 	else showName("ALIEN\nCALL GIRL");
-	showBust("ZILFEMALE");
+	
+	var sBust:String = "ZIL_CALLGIRL";
+	if (zilCallGirlPregnant()) sBust += "_PREG";
+	if (cum) sBust += "_CUM";
+	showBust(sBust);
 }
 public function zilCallGirlSexed(count:Boolean = false):int
 {
@@ -1545,7 +1549,7 @@ public function zilCallGirlFuckHer():void
 {
 	clearOutput();
 	generateMapForLocation("CALLGIRL ROOM");
-	showZilCallGirl();
+	showZilCallGirl(true);
 	author("Savin");
 	
 	// Select wiener!
