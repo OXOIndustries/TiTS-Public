@@ -279,7 +279,7 @@
 			
 			for (var i:int = 0; i < 3; i++)
 			{
-				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 				output("\n");
 			}
 		}

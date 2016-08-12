@@ -306,7 +306,7 @@
 			output("The lusty frog girl licks across her body with her long tongue, moaning as the oral muscle slips over her netherlips. Without warning she lashes it at you, whipping it like a flail.");
 			var damage:TypeCollection;
 			//miss: 
-			if (combatMiss(this, target)) output("\nThe tongue flies by you, smashing into a tree and eliciting a pained gasp from its owner");
+			if (combatMiss(this, target)) output("\nThe tongue flies by you, smashing into a tree and eliciting a pained gasp from its owner.");
 			else 
 			{
 				output("\nThe tip of her tongue slams into you, ");
