@@ -838,7 +838,7 @@ package classes.GameData
 			}
 			else
 			{
-				output(" The shit hits!");
+				output(" The shot hits!");
 				
 				var dmg:TypeCollection = new TypeCollection( { burning: attacker.untypedDroneDamage() * 1.33 }, DamageFlag.LASER);
 				applyDamage(dmg, attacker, target, "minimal");
