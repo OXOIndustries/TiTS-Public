@@ -52,7 +52,7 @@ public function approachMillie():void
 		else output("crush a man’s head like a sparrow’s egg");
 		output(". She looks like she knows it too.");
 
-		output("\n\nThe buxom woman lets her grin spread until it transforms into a tooth-flashing expression of warmth and affection. You scarcely believe this friendly creature is the same girl you look at a moment ago. She bats her eyelashes and explains in a voice that sounds like silk over polished silver, <i>“You made the right choice, coming over here. My name’s Millie. Now, who are you, and how am I going to take care of you?”</i>");
+		output("\n\nThe buxom woman lets her grin spread until it transforms into a tooth-flashing expression of warmth and affection. You scarcely believe this friendly creature is the same girl you looked at a moment ago. She bats her eyelashes and explains in a voice that sounds like silk over polished silver, <i>“You made the right choice, coming over here. My name’s Millie. Now, who are you, and how am I going to take care of you?”</i>");
 
 		//Bimbo
 		if(pc.isBimbo())

@@ -171,7 +171,7 @@ public function visitorDeskApproach():void
 	output("\n\n<i>“Uh,”</i> you say as the cow-girl crawls out from under Ogram’s desk, taking a moment to straighten her skirt and flick some excess spooge off from the tops of her breasts before turning her attention to you, coming over to sit at her desk.");
 	output("\n\nJust like her partner, the visitor check-in girl’s got distinctly bovine traits, with horns and cow-ears and an absolutely massive rack. She’s easily sporting H-cup tits, barely restrained by her blouse -- it seems to be coming apart at the seams, the buttons ready to pop off at any moment. Her long, slender tail swishes as she walks, topped with a silver tuft of hair that manages to distract you somewhat from the huge, gropable behind.");
 	//if PC has Reaha on crew:
-	if(reahaIsCrew()) output("Damn, Reaha’s got nothing on the cows here....");
+	if(reahaIsCrew()) output(" Damn, Reaha’s got nothing on the cows here....");
 
 	output("\n\n<i>“Sorry about the wait!”</i> the cow-girl says with a big smile. <i>“My name’s Amma, and I just need a few things from you before you can head on out to the fields. Trust me, you’re going to have so much fun!");
 	if(pc.mf("dude","") == "dude") output(" There’s plenty of girls just like me who’re going to be so happy to meet you!");
