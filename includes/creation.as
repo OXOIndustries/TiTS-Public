@@ -1979,6 +1979,18 @@ public function resetBabyValues():void
 	baby.furColor = pc.furColor;
 }
 
+public function clearBabyValues():void
+{
+	baby.originalRace = "NOT SET";
+	baby.skinTone = "NOT SET";
+	baby.lipColor = "NOT SET";
+	baby.nippleColor = "NOT SET";
+	baby.eyeColor = "NOT SET";
+	baby.hairColor = "NOT SET";
+	baby.scaleColor = "NOT SET";
+	baby.furColor = "NOT SET";
+}
+
 public function setBabyValuesOptions(response:String = "intro"):void
 {
 	clearOutput();
@@ -2006,6 +2018,8 @@ public function setBabyValuesOptions(response:String = "intro"):void
 		// Restart:
 		case "restart":
 			output("You clear your current inputs and decide to start over...");
+			
+			clearBabyValues();
 			
 			// [Next] -- Go to Hair Color
 			addButton(0, "Next", setBabyValuesOptions, (pc.originalRace != "half-gryvain" ? "hair" : "gryvain"));
@@ -2052,7 +2066,6 @@ public function setBabyValuesOptions(response:String = "intro"):void
 			{
 				addButton(i, colorList[i][0], setBabyHairColor, colorList[i][1], StringUtil.toDisplayCase(colorList[i][1]), ("Your original hair color " + (pc.hairColor == colorList[i][1] ? "is" : "was") + " " + colorList[i][1] + "."));
 			}
-			addButton(14, "Restart", setBabyValuesOptions, "restart", "Restart Survey", "Try again from the beginning.");
 			break;
 		
 		// Eye Color:
@@ -2090,7 +2103,6 @@ public function setBabyValuesOptions(response:String = "intro"):void
 			{
 				addButton(i, colorList[i][0], setBabyEyesColor, colorList[i][1], StringUtil.toDisplayCase(colorList[i][1]), ("Your original eye color " + (pc.eyeColor == colorList[i][1] ? "is" : "was") + " " + colorList[i][1] + "."));
 			}
-			addButton(14, "Restart", setBabyValuesOptions, "restart", "Restart Survey", "Try again from the beginning.");
 			break;
 		
 		// Gryvain:
@@ -2107,7 +2119,6 @@ public function setBabyValuesOptions(response:String = "intro"):void
 			{
 				addButton(i, colorList[i][0], setBabyGryvainColor, colorList[i][1], StringUtil.toDisplayCase(colorList[i][1]), ("Your original color scheme " + (pc.scaleColor == colorList[i][1] ? "is" : "was") + " " + colorList[i][1] + " with dark yellow eyes."));
 			}
-			addButton(14, "Restart", setBabyValuesOptions, "restart", "Restart Survey", "Try again from the beginning.");
 			break;
 		
 		// Skin Color:
@@ -2146,7 +2157,14 @@ public function setBabyValuesOptions(response:String = "intro"):void
 			{
 				addButton(i, colorList[i][0], setBabySkinColor, colorList[i][1], StringUtil.toDisplayCase(colorList[i][1]), ("Your original skin tone " + (pc.skinTone == colorList[i][1] ? "is" : "was") + " " + colorList[i][1] + "."));
 			}
-			addButton(14, "Restart", setBabyValuesOptions, "restart", "Restart Survey", "Try again from the beginning.");
+			break;
+		
+		// End:
+		case "end":
+			output("You have almost reached the end of the form. Are these values correct? If so, feel free to finish and submit the document.");
+			
+			addButton(0, "Finish", setBabyValuesOptions, "finish", "Finish Survey", "Complete and submit the form.");
+			addButton(1, "Restart", setBabyValuesOptions, "restart", "Restart Survey", "Try again from the beginning.");
 			break;
 		
 		// Finish:
@@ -2157,6 +2175,15 @@ public function setBabyValuesOptions(response:String = "intro"):void
 			
 			addButton(0, "Next", mainGameMenu);
 			break;
+	}
+	
+	if(!InCollection(response, ["intro", "finish"]))
+	{
+		output("\n");
+		output("\n<b>Birth Race:</b> " + StringUtil.toDisplayCase(pc.originalRace));
+		output("\n<b>Hair Color:</b> " + StringUtil.toDisplayCase(baby.hairColor));
+		output("\n<b>Eye Color:</b> " + StringUtil.toDisplayCase(baby.eyeColor));
+		output("\n<b>Skin Tone:</b> " + StringUtil.toDisplayCase(baby.skinTone));
 	}
 }
 public function setBabyHairColor(arg:String = "black"):void
@@ -2193,7 +2220,7 @@ public function setBabySkinColor(arg:String = "albino"):void
 	}
 	baby.skinTone = arg;
 	
-	setBabyValuesOptions("finish");
+	setBabyValuesOptions("end");
 }
 
 
