@@ -1542,17 +1542,17 @@ public function soreDebuff(arg:int = 0):Number
 		{
 			pc.removeStatusEffect("Sore");
 			pc.removeStatusEffect("Very Sore");
-			pc.createStatusEffect("Worn Out", 0, 0, 0, 0, false, "Icon_Crying", "You are worn out and and unable to regain energy. Working out is also impossible in this state. Sleep to recover.", false, 0);
+			pc.createStatusEffect("Worn Out", 0, 0, 0, 0, false, "Icon_Crying", "You are worn out and and unable to regain energy. Working out is also impossible in this state. Sleep to recover.", false, 0, 0xFF0000);
 		}
 		else if(pc.statusEffectv1("Sore Counter") >= 6 && pc.statusEffectv1("Sore Counter") < 9 && !pc.hasStatusEffect("Very Sore"))
 		{
 			pc.removeStatusEffect("Sore");
-			pc.createStatusEffect("Very Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are very sore and will regain energy much slower. Sleep to recover.", false, 0);
+			pc.createStatusEffect("Very Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are very sore and will regain energy much slower. Sleep to recover.", false, 0, 0xFF8080);
 			pc.removeStatusEffect("Worn Out");
 		}
 		else if(pc.statusEffectv1("Sore Counter") >= 3 && pc.statusEffectv1("Sore Counter") < 6 && !pc.hasStatusEffect("Sore"))
 		{
-			pc.createStatusEffect("Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are sore and will regain energy slower. Sleep to recover.", false, 0);
+			pc.createStatusEffect("Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are sore and will regain energy slower. Sleep to recover.", false, 0, 0xFFFFFF);
 			pc.removeStatusEffect("Very Sore");
 			pc.removeStatusEffect("Worn Out");
 		}
@@ -1579,14 +1579,14 @@ public function soreChange(arg:int = 0):void
 		}
 		else if(pc.statusEffectv1("Sore Counter") < 6 && pc.statusEffectv1("Sore Counter") >= 3 && pc.hasStatusEffect("Very Sore"))
 		{
-			pc.createStatusEffect("Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are sore and will regain energy slower. Sleep to recover.", false, 0);
+			pc.createStatusEffect("Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are sore and will regain energy slower. Sleep to recover.", false, 0, 0xFFFFFF);
 			pc.removeStatusEffect("Very Sore");
 			pc.removeStatusEffect("Worn Out");
 		}
 		else if(pc.statusEffectv1("Sore Counter") < 9 && pc.statusEffectv1("Sore Counter") >= 6 && pc.hasStatusEffect("Worn Out"))
 		{
 			pc.removeStatusEffect("Sore");
-			pc.createStatusEffect("Very Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are very sore and will regain energy much slower. Sleep to recover.", false, 0);
+			pc.createStatusEffect("Very Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are very sore and will regain energy much slower. Sleep to recover.", false, 0, 0xFF8080);
 			pc.removeStatusEffect("Worn Out");
 		}
 	}

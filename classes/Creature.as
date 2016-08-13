@@ -5294,15 +5294,15 @@
 		}
 		public function oneTailDescript():String
 		{
-			if (tailCount == 0) return "ERROR: No tails!";
+			if (tailCount <= 0) return "ERROR: No tails!";
 			else if (tailCount == 1) return "your " + tailDescript();
-			return "one of your " + tailDescript();
+			return "one of your " + plural(tailDescript());
 		}
 		public function eachTailDescript():String
 		{
-			if (tailCount == 0) return "ERROR: No tails!";
+			if (tailCount <= 0) return "ERROR: No tails!";
 			else if (tailCount == 1) return "your " + tailDescript();
-			return "each of your " + tailsDescript();
+			return "each of your " + plural(tailDescript());
 		}
 		public function tailsDescript():String {
 			if(tailCount == 1) return tailDescript();
