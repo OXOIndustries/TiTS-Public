@@ -2182,7 +2182,13 @@ public function setBabyValuesOptions(response:String = "intro"):void
 		output("\n");
 		output("\n<b>Birth Race:</b> " + StringUtil.toDisplayCase(pc.originalRace));
 		output("\n<b>Hair Color:</b> " + StringUtil.toDisplayCase(baby.hairColor));
+		if(InCollection(pc.originalRace, ["half-ausar", "half-kaithrit", "half kui-tan"]))
+			output("\n<b>Fur Color:</b> " + StringUtil.toDisplayCase(baby.furColor));
 		output("\n<b>Eye Color:</b> " + StringUtil.toDisplayCase(baby.eyeColor));
+		if(pc.originalRace == "half-gryvain")
+			output("\n<b>Scale Color:</b> " + StringUtil.toDisplayCase(baby.scaleColor));
+		//output("\n<b>Nipple Color:</b> " + StringUtil.toDisplayCase(baby.nippleColor));
+		//output("\n<b>Lip Color:</b> " + StringUtil.toDisplayCase(baby.lipColor));
 		output("\n<b>Skin Tone:</b> " + StringUtil.toDisplayCase(baby.skinTone));
 	}
 }
@@ -2215,8 +2221,8 @@ public function setBabySkinColor(arg:String = "albino"):void
 	if(pc.originalRace != "half-gryvain")
 	{
 		baby.scaleColor = (pc.originalRace == "half-leithan" ? "black" : "blue");
-		if(!InCollection(pc.nippleColor, ["pink", "peach", "tan", "brown", "ebony"])) baby.nippleColor = "pink";
-		if(!InCollection(pc.lipColor, ["pink", "peach", "tan", "brown", "ebony"])) baby.lipColor = "peach";
+		baby.nippleColor = (InCollection(pc.nippleColor, ["pink", "peach", "tan", "brown", "ebony"]) ? pc.nippleColor : "pink");
+		baby.lipColor = (InCollection(pc.lipColor, ["pink", "peach", "tan", "brown", "ebony"]) ? pc.lipColor : "peach");
 	}
 	baby.skinTone = arg;
 	
