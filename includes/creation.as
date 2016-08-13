@@ -2185,7 +2185,7 @@ public function setBabyValuesOptions(response:String = "intro"):void
 		if(InCollection(pc.originalRace, ["half-ausar", "half-kaithrit", "half kui-tan"]))
 			output("\n<b>Fur Color:</b> " + StringUtil.toDisplayCase(baby.furColor));
 		output("\n<b>Eye Color:</b> " + StringUtil.toDisplayCase(baby.eyeColor));
-		if(pc.originalRace == "half-gryvain")
+		if(InCollection(pc.originalRace, ["half-leithan", "half-gryvain"]))
 			output("\n<b>Scale Color:</b> " + StringUtil.toDisplayCase(baby.scaleColor));
 		//output("\n<b>Nipple Color:</b> " + StringUtil.toDisplayCase(baby.nippleColor));
 		//output("\n<b>Lip Color:</b> " + StringUtil.toDisplayCase(baby.lipColor));
