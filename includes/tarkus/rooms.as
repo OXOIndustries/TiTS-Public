@@ -844,7 +844,7 @@ public function initTarkusRooms():void
 	//#56 IRON\nVALLEY
 	rooms["256"] = new RoomClass(this);
 	rooms["256"].roomName = "IRON\nVALLEY";
-	rooms["256"].description = "Sun glitters on the few places that these plates haven't been obscured by rust and corrosion, occasionally forcing you to squint your eyes. The further south you go, the narrower the space between the ridges grows. In the space of a few hundred steps, the walls of metal have all but closed together. The end not far ahead, but the gap between them is filled with dozens of smaller, erosion-sharpened slabs. There's little reason to brave such a dangerous path without some foreknowledge as to what lies beyond....";
+	rooms["256"].description = "Sun glitters on the few places that these plates haven't been obscured by rust and corrosion, occasionally forcing you to squint your eyes. The further south you go, the narrower the space between the ridges grows. In the space of a few hundred steps, the walls of metal have all but closed together. They end not far ahead, but the gap between them is filled with dozens of smaller, erosion-sharpened slabs. There's little reason to brave such a dangerous path without some foreknowledge as to what lies beyond....";
 	rooms["256"].runOnEnter = rustRidgesEncounters;
 	rooms["256"].northExit = "255";
 	rooms["256"].planet = "PLANET: TARKUS";
