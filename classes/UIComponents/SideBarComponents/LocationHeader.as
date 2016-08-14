@@ -129,7 +129,6 @@ package classes.UIComponents.SideBarComponents
 			
 			// Bust Element
 			_npcBusts = new Sprite();
-			
 			this.addChild(_npcBusts);
 			
 			_npcBusts.x = _roomBlock.x + 5;
@@ -615,6 +614,7 @@ package classes.UIComponents.SideBarComponents
 			for (var b:int = 0; b < available.length; b++)
 			{
 				var bustObj:* = new available[b]();
+				bustObj.smoothing = true;
 				bustObj.x = tarX;
 				bustObj.y = tarY - bustObj.height;
 				
