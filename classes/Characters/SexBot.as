@@ -48,7 +48,7 @@
 			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
 			this.rangedWeapon.attack = 10;
 			this.rangedWeapon.longName = "shotgun";
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
 			this.rangedWeapon.attackNoun = "buckshot";
 			this.rangedWeapon.hasRandomProperties = true;
 			

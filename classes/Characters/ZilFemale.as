@@ -36,7 +36,7 @@
 			
 			this.rangedWeapon.attack = 1;
 			this.rangedWeapon.longName = "dart";
-			this.rangedWeapon.attackVerb = "dart";
+			this.rangedWeapon.attackVerb = "shoot";
 			this.rangedWeapon.attackNoun = "dart";
 			this.rangedWeapon.hasRandomProperties = true;
 			

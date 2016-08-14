@@ -35,7 +35,7 @@
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
-			this.attackVerb = "shocking smash";
+			attackVerb = "smash";
 			attackNoun = "shocking smash";
 			
 			//Information
