@@ -32,6 +32,7 @@
 	import flash.text.TextFormat;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
+	import flash.display.StageQuality;
 	import classes.RoomClass;
 	
 	// Game content managers
@@ -399,6 +400,8 @@
 		private function init(e:Event):void
 		{	
 			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
+			
+			stage.quality = StageQuality.BEST;
 			
 			kGAMECLASS = this;
 			dataManager = new DataManager();
