@@ -54,6 +54,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO:Class;
+		public var Bounds_GRAY_GOO:Rectangle = new Rectangle(39, 0, 60, 60);
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_PRIME:Class;

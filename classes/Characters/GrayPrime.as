@@ -297,11 +297,6 @@ package classes.Characters
 			{
 				output(" Her fist slams into " + (target is PlayerCharacter ? "you" : "Anno") + " like a freighter, cracking into " + (target is PlayerCharacter ? "your" : "her") +" face and sending " + (target is PlayerCharacter ? "you" : "her") +" plummeting to the ground. Oh, fuck, that " + (target is Anno ? "looks like it " : "") + "hurt!");
 
-				var damage:TypeCollection = meleeDamage();
-				damage.add(20);
-				damageRand(damage, 15);
-				applyDamage(damage, this, target);
-
 				// 25% of knockdown
 				if (rand(4) == 0)
 				{
@@ -309,6 +304,11 @@ package classes.Characters
 					else output(" Anno doesn't look all that steady on her feet!");
 					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 				}
+
+				var damage:TypeCollection = meleeDamage();
+				damage.add(20);
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
 			}
 		}
 	

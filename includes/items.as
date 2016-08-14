@@ -111,6 +111,8 @@ public function useItem(item:ItemSlotClass):Boolean
 // A call with just an item will 
 public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {
+	showName("");
+	
 	// If we're looking at an equippable item, equip it
 	if (isEquippableItem(item))
 	{

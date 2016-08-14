@@ -1837,7 +1837,7 @@ public function joinCrewPlanetFineVersion():void
 	
 		output("\n\n<i>“Ah,”</i> you say, a bit saddened by the rejection.");
 	
-		output("\n\nAnno blanches at your reaction, her ears and tail all tucking down as she frowns. A moment later though, she gets a coy grin and leans in as if to whisper. <i>“Actually,”</i> she starts, voice seductive and dripping with sexuality. <i>“I’ve been doing some very delicate work. Classified work. But if you helped me finish, then... I’d have no reason to stick around on Tarkus, and Corporate might approve my transfer. To your ship.”</i>");
+		output("\n\nAnno blanches at your reaction, her ears and tail all tucking down as she frowns. A moment later, though, she gets a coy grin and leans in as if to whisper. <i>“Actually,”</i> she starts, voice seductive and dripping with sexuality. <i>“I’ve been doing some very delicate work. Classified work. But if you helped me finish, then... I’d have no reason to stick around on Tarkus, and Corporate might approve my transfer. To your ship.”</i>");
 	
 		output("\n\n<i>“Oh?”</i> ");
 	

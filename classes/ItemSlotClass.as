@@ -474,12 +474,12 @@
 				if (newDam > oldDam)
 				{
 					damageString += "<span class='good'><b>+";
-					damageString += String(newDam - oldDam);
+					damageString += String(Math.round((newDam - oldDam) * 100)/100);
 				}
 				else if (newDam < oldDam)
 				{
 					damageString += "<span class='bad'><b>-";
-					damageString += String(oldDam - newDam);
+					damageString += String(Math.round((oldDam - newDam) * 100)/100);
 				}
 				else
 				{
@@ -502,12 +502,12 @@
 				if (newDamage > oldDamage)
 				{
 					damAppend += "<span class='good'><b>+";
-					damAppend += String(newDamage - oldDamage);
+					damAppend += String(Math.round((newDamage - oldDamage) * 100)/100);
 				}
 				else if (newDamage < oldDamage)
 				{
 					damAppend += "<span class='bad'><b>-";
-					damAppend += String(oldDamage - newDamage);
+					damAppend += String(Math.round((oldDamage - newDamage) * 100)/100);
 				}
 				else
 				{
