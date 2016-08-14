@@ -844,7 +844,7 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 		if(pc.balls > 0) output("your [pc.sack]");
 		else if(pc.hasVagina()) output("[pc.oneVagina]");
 		else output("your [pc.base " + x + "]");
-		else output(".");
+		output(".");
 	}
 	else output(" She curls her tail around to tease your [pc.asshole], the tip circling around the edge of your ring.");
 	if(!pc.isNude()) output(" <i>\"You haven't even gotten yourself naked yet.\"</i>");
