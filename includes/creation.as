@@ -1113,6 +1113,10 @@ public function chooseSexualGift():void {
 	{
 		pc.removePerk("Ice Cold");
 	}
+	if(pc.hasPerk("Infertile"))
+	{
+		pc.removePerk("Infertile");
+	}
 	addButton(0,"Virile",applySexualGift,"virile","Virile","Increases the quality, or impregnation chance, of the sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
 	addButton(1,"Potent",applySexualGift,"potent","Potent","Increases the quantity - the sheer amount - of sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
 	addButton(2,"Elasticity",applySexualGift,"elasticity","Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
@@ -1124,6 +1128,7 @@ public function chooseSexualGift():void {
 	addButton(8,"Bulgy",applySexualGift,"bulgy","Bulgy","Increases the size of your testicles and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains testicles in the future.</i>");
 	addButton(9,"Extra Ardor",applySexualGift,"extra ardor","Extra Ardor","Ensures that you will have a higher sex drive than normal.");
 	addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","Ensures that you will have a lower sex drive than normal.");
+	addButton(11,"Infertile",applySexualGift,"infertile","Infertile","No matter what changes are made to your virility or fertility levels, you will be unable to produce offspring naturally.");
 	addButton(13,"None",applySexualGift,"none","No Sexual Gift","You will not begin with a natural sexual gift.");
 	if(pc.hasVagina()) 
 		addButton(14,"Back",chooseYourVagina);
@@ -1183,6 +1188,9 @@ public function applySexualGift(arg:String = "none"):void {
 	}
 	else if(arg == "ice cold") {
 		pc.createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time.");
+	}
+	else if(arg == "infertile") {
+		pc.createPerk("Infertile",0,0,0,0,"You are unable to reproduce offspring naturally.");
 	}
 	chooseAPhysicalAffinity();
 }
@@ -1728,7 +1736,7 @@ public function takeCelise():void {
 		output("\n\nYour only reaction is to grind your " + pc.hipsDescript() + " more forcefully into her face, whimpering as " + pc.eachVagina() + " begins to spasm. You’re so very close to orgasm that it’s getting hard to control your movements. You jerk and shake whenever Celise’s tongue finds your G-spot, something she does with increasing regularity, and you’re glad to be supported by her as she pushes and rubs against it, increasing the pressure.");
 		output("\n\nMind-numbing explosions of bliss erupt from the cunt-shattering orgasm that wracks your body; you arch your back so violently that you almost crack your head on the shelf above. Luckily, Celise’s arms pop out to grab you around the waist, steadying your lusty thrashing. She gleefully swallows, her throat bobbing as she drinks down your juices. A reverse imprint of your pussy forms on her lips, caressing your entire mound with perfect green synchronicity while her tongue swells wider inside you. As it expands, there’s a sudden shift inside you along with the sensation of something draining away, almost like she’s turned her busy pseudopod into a quim-sucking straw, ensuring that her feeding continues uninterrupted while you’re brought to new heights of climax. The pleasure continues with no end in sight. Your genitals ache, tender after an eternity of stimulation. Whenever you think relief is at hand, the inverse hood around the tip of your " + pc.clitDescript() + " vibrates and sets you off in a blaze of fresh orgasm all over again.");
 		output("\n\nBy the time you piece your consciousness back together, you find yourself babbling incoherently in the midst of a continuous, mind-shattering orgasm. Once Celise has her fill, you’re an incoherent mess. Aftershocks of pleasure quake through your still-twitching body as she detaches. She slowly separates from you, shuddering a little bit herself as you’re pulled out of her gooey embrace. The sucking holes holding your " + pc.legOrLegs() + " close up, but not before you get a glimpse of vaginal lips topped with soaked nubs. This goo-girl was fucking herself on your " + pc.legOrLegs() + " as she ate you out! The whole of your lower body is soaked and dripping with her jade moisture, particularly your " + pc.feet() + ". Your " + pc.buttDescript() + " touches the cold, metal floor as she daintily wipes her mouth on the back of a juicy palm, allowing you a moment to recover.");
-		output("\n\n<i>“That was great, and your cunny was super tasty, too! Can I come on your ship? Like Vik said, I’m super thankful you stopped to feed me!”</i> Celes bubbles.");
+		output("\n\n<i>“That was great, and your cunny was super tasty, too! Can I come on your ship? Like Vik said, I’m super thankful you stopped to feed me!”</i> Celise bubbles.");
 		output("\n\nDespite your exhaustion, you manage to give her a stern look.");
 		output("\n\n<i>“I promise not to try and force myself on you or nothing! ‘Sides, you know just how to make me melt anyhow! I can get by on water and protein paste, but if a mean ol’ alien ever gets you all wet and juicy...”</i> Celise nibbles on her lower lip, and with every tiny bite, it grows puffier and poutier, looking softer by the minute. <i>“...I’ll be the perfect little lesbian, girlspunk-dump. Or, if you grow a dick I’ll be totally happy to suck on that,”</i> she adds, nodding enthusiastically. <i>“You’ll be yummy either way!”</i>");
 		output("\n\nDo you take Celise on as your first crew member?");

@@ -2836,7 +2836,7 @@ public function pushEmmyMassage():void
 		outputCodex("\n\n<i>“");
 		if(flags["EMMY_MASSAGED"] == undefined) outputCodex("F-fuck, you didn’t put a time limit on the massage function?");
 		else outputCodex("N-no time limit? You fiend. Get me too used to this, and I’ll never let you turn it off!");
-		outputCodex("”</i> Emmy’s hips are still travelling on their slow bump and grind, tracing figure eights against the side of the countertop. Tiny blobs appear at the top of her cock, visible for a half second before being whisked away by the herm harness’s concealed pumping mechanisms. <i>“");
+		outputCodex("”</i> Emmy’s hips are still traveling on their slow bump and grind, tracing figure eights against the side of the countertop. Tiny blobs appear at the top of her cock, visible for a half second before being whisked away by the herm harness’s concealed pumping mechanisms. <i>“");
 		if(flags["EMMY_MASSAGED"] == undefined) outputCodex("It’s not enough to get me off... but it’ll keep me close. Close enough to... mmmm... get all desperate.");
 		else outputCodex("You’d like that, wouldn’t you? Me hard and aching, desperate for any kind of attention. You could walk up to me and press my mouth into your crotch, hell, even your asshole... mmm... I’d like anything right now.");
 		outputCodex("”</i>");
@@ -3532,7 +3532,7 @@ public function emmyHyperFucksIntro():void
 		output("\n\nYour [pc.cocks] throb");
 		if(pc.cockTotal() == 1) output("s");
 		output(" at the suggestion.");
-		output("\n\n<i>“Yeah, and I could sit here and jack of it off with these soft, silk-wrapped pads on my feet.”</i> Emmy curls her feet ");
+		output("\n\n<i>“Yeah, and I could sit here and jack it off with these soft, silk-wrapped pads on my feet.”</i> Emmy curls her feet ");
 		if(pc.legCount > 1) output("between your [pc.legs]");
 		else output("around to the underside of your crotch");
 		output(" and ");
@@ -3692,7 +3692,7 @@ public function hyperFootjorbsForEms():void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Help",helpEmmyCleanToes);
-	addButton(4,"Leave",dontHelpEmmyCleanToes);
+	addButton(14,"Leave",dontHelpEmmyCleanToes);
 }
 
 //Help Clean Toes

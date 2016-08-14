@@ -701,7 +701,8 @@ public function lerrisSuckleMilky69():void
 
 	output("You gently roll Lerris off of you, setting the eager kitten aside for the moment while you sprawl out on your back half way up, letting your [pc.legs] dangle off the armrest. So situated, you tell Lerris to get on and start feeding you - and");
 	if (pc.canLactate()) output(" get a drink for herself while she’s at it");
-	else output(" put those hands to work!");
+	else output(" put those hands to work");
+	output("!");
 	
 	output("\n\nShe giggles girlishly as she clambers up on top of you, leaning from over your head so that her [lerris.breasts] hang over your [pc.face], dribbling onto your lips before you catch one and start to suckle. A gasp of pleasure shudders through the kitty-slut, but she dutifully runs her tongue across your own [pc.nipple] in turn, reaching a hand down to your crotch and");
 	if (pc.hasVagina()) output(" caressing the lips of your cunt.");

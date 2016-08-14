@@ -175,7 +175,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "CRYSTAL_GOO_" + skinTone.toUpperCase();
+			return "GOO_KNIGHT_" + skinTone.toUpperCase();
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

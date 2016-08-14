@@ -3681,7 +3681,7 @@ public function phatBootyHotdogging():void
 	//Gianna lube me up, cap’n - no new pg
 	else
 	{
-		output("Reaching between Gianna’s legs, you find Gianna’s clit with a finger and circle it a few times. <i>“");
+		output(" Reaching between Gianna’s legs, you find Gianna’s clit with a finger and circle it a few times. <i>“");
 		if(pc.isNice()) output("A little lube, please.");
 		else if(pc.isMischievous()) output("Lube me up, baby.");
 		else output("I need some lubrication.");

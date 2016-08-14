@@ -48,6 +48,13 @@
 				output("You pull the bright pink Fertite pill out and peel it out of its packaging. It looks harmless enough, about the size of your thumbnail and smooth as can be. After a moment's consideration, you pop the pill into your mouth and wash it down with your canteen."); 
 
 				output("\n\nA few minutes pass, and you don't really feel any different. Your stomach is a little tight, but otherwise the pill doesn't seem to be altering you in any perceptible way.");
+				
+				if(target.hasPerk("Infertile"))
+				{
+					output(".. Looks like you can’t really do much to affect your permanent infertility.");
+					return false;
+				}
+				
 				if (target.hasCock() || target.hasVagina() || target.hasTailCock() || target.hasTailCunt())
 				{
 					output(" Your Codex beeps, though, informing you that it's detecting a change in your reproductive genes: <b>you're more");
@@ -90,7 +97,7 @@
 			}
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " takes the drug to no effect.");
+				output(target.capitalA + target.short + " takes the drug to no effect.");
 			}
 			return false;
 		}

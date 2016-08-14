@@ -182,7 +182,7 @@ public function jeromePeggingII():void
 		output(" forelegs up onto the bed. The");
 		if (cIdx >= 0) output(" [pc.cockHead "+cIdx+"]");
 		else output(" flared head of your holodick");
-		output(" sends tingles down your spine when it squishes into the bears prodigious balls, slipping lower under their weight, coming to a rest almost perfectly poised, the");
+		output(" sends tingles down your spine when it squishes into the bear’s prodigious balls, slipping lower under their weight, coming to a rest almost perfectly poised, the");
 		if (cIdx == -1) output(" simulated");
 		output(" cumvein kissing the portly guy’s plump pucker in the process.");
 
@@ -232,7 +232,7 @@ public function jeromePeggingIIITaur():void
 	if (cIdx == -1) output(" holodong");
 	else output(" [pc.cockHead "+cIdx+"]");
 	if (silly) output(" right where it belongs.");
-	else output(" into the bears pliant hole.");
+	else output(" into the bear’s pliant hole.");
 
 	output("\n\n<i>“Fuckin’ do it. Fuck me [pc.name],”</i> he half-growls in his deep, baritone voice.");
 
@@ -435,7 +435,7 @@ public function jeromePeggingIIIBiped():void
 		{
 			output(" Quart after quart throbbing along the");
 			if (pc.cocks[cIdx].thickness() > 5) output(" thick");
-			output(" length of meat impaling the bears ass; your body giving no concern to the fact that it’s pumping so much cum into a hole that can’t be bred.");
+			output(" length of meat impaling the bear’s ass; your body giving no concern to the fact that it’s pumping so much cum into a hole that can’t be bred.");
 		}
 		if (pc.cumQ() >= 7500) output(" After a while, you can feel each heavy splurt ripple out across Jerome’s gut as it touches your own, the sheer amount of spunk you’re capable of producing packing his ass full of jizz and adding an extra bit of weight to his already considerable frame.");
 	}
@@ -471,15 +471,15 @@ public function jeromeHipbuster():void
 
 	jeromeSceneIntro();
 
-	output("\n\nA burning need quickly develops in your loins, stoked hotter with every throb of the bears chunky dick within your grasp. It just looks so thick and... <i>satisfying</i> straining against the bounds of its clothy prison. You slip your fingers under the edge of his underwear and tug them down. His fat cock jounces free just as soon as you’ve given it room to do so, slapping into the bears belly with a wet and hefty <i>thud</i>.");
+	output("\n\nA burning need quickly develops in your loins, stoked hotter with every throb of the bear’s chunky dick within your grasp. It just looks so thick and... <i>satisfying</i> straining against the bounds of its clothy prison. You slip your fingers under the edge of his underwear and tug them down. His fat cock jounces free just as soon as you’ve given it room to do so, slapping into the bear’s belly with a wet and hefty <i>thud</i>.");
 
-	output("\n\nYou leave it to sit there for a moment, regarding its imposing girth as though the bears dickmeat were a dangerous creature just waiting for the perfect second to strike out at you. The thick ridges along its underside throb and bulge with every beat of Jeromes heart, the undulations only serving to intensify the illusion further; a dangerous creature, thick, corded muscles wound tight and ready to attack when the moment is right.");
+	output("\n\nYou leave it to sit there for a moment, regarding its imposing girth as though the bear’s dickmeat were a dangerous creature just waiting for the perfect second to strike out at you. The thick ridges along its underside throb and bulge with every beat of Jerome’s heart, the undulations only serving to intensify the illusion further; a dangerous creature, thick, corded muscles wound tight and ready to attack when the moment is right.");
 
 	output("\n\nThe sweltering void");
 	if (pc.isBiped()) output(" between your thighs");
 	else output(" inside you");
-	output(" returns with a vengeance, demanding that your lusts be slaked; and the perfect tool for the job is pulsing away before your very eyes. A firm shove against the bears knees has him graciously part his legs for you as they hang off the edge of bed, providing all the space you need. Turning round");
-	if (!pc.isTaur()) output(", you brace yourself against Jeromes thighs, and");
+	output(" returns with a vengeance, demanding that your lusts be slaked; and the perfect tool for the job is pulsing away before your very eyes. A firm shove against the bear’s knees has him graciously part his legs for you as they hang off the edge of bed, providing all the space you need. Turning round");
+	if (!pc.isTaur()) output(", you brace yourself against Jerome’s thighs, and");
 	output(" lower your [pc.butt] down.");
 
 	output("\n\nYou coo as the heat of the underside of his cock nestles up between your cheeks, a pleasant warmth wetly kissing at your [pc.asshole] as you settle down onto the fat cock. A firm grind of your");
@@ -501,30 +501,30 @@ public function jeromeHipbuster():void
 		}
 	}
 
-	s.vGape = s.vIdx == -1 ? pc.ass.looseness() : pc.vaginas[s.vIdx].looseness();
+	s.vGape = (s.vIdx == -1 ? pc.ass.looseness() : pc.vaginas[s.vIdx].looseness());
 	s.vCap = (s.vIdx == -1 ? pc.analCapacity() : pc.vaginalCapacity(s.vIdx));
 	s.holeStr = (s.vIdx == -1 ? "[pc.asshole]" : ("[pc.vagina " + s.vIdx + "]"));
 	s.simpleHoleStr = function(vIdx:int):Function {
 		return function():String {
-			if (s.vIdx == -1) return RandomInCollection("ass", "asshole", "butthole");
+			if (vIdx == -1) return RandomInCollection("ass", "asshole", "butthole");
 			else return RandomInCollection("pussy", "cunt", "vagina");
 		}
 	}(s.vIdx);
 	s.va = function(vIdx:int):Function {
 		return function(v:String, a:String):String {
-			return vIdx == -1 ? a : v;
+			return (vIdx == -1 ? a : v);
 		}
 	}(s.vIdx);
 
 	// 9999 prefer a hole thats at least 4 gapeness if available (ass or vag), use vidx = -1 for asses
 
 	if (s.vIdx >= 0) output(" A slight change of angle as you push back against him drags your [pc.cunts] over the ridges too, the texture pulling maddeningly softly against your netherlips.");
-	output(" His cock swells with every rock of your hips, the girth of the bears tumescent cock increasing as your [pc.buttcheeks] mold around it.");
+	output(" His cock swells with every rock of your hips, the girth of the bear’s tumescent cock increasing as your [pc.buttcheeks] mold around it.");
 
 	output("\n\nWith one last twist of your [pc.hips] you lift your ass");
 	if (s.vIdx >= 0) output(" and cunt");
 	if (pc.vaginas.length > 1) output("s");
-	output(" away from Jeromes dick to give him an eyeful of your pre-slicked undercarriage.");
+	output(" away from Jerome’s dick to give him an eyeful of your pre-slicked undercarriage.");
 	if (pc.balls > 0)
 	{
 		output("\n\nThe motion carries through your body and");
@@ -539,16 +539,16 @@ public function jeromeHipbuster():void
 		output(" just close enough for");
 		if (pc.balls == 1) output(" it");
 		else output(" them");
-		output(" to bump into the bears");
+		output(" to bump into the bear’s");
 		if (pc.ballSize() <= 3) output(" much larger");
 		else if (pc.ballSize() <= 8) output(" larger");
-		output(" velveteen own. An uncontrollable shudder lances through your [pc.legorlegs] as the soft, fuzzy covering of his sack tickles you pleasantly, your [pc.knees] weakening and lowering you just enough to fully rest your [pc.balls] atop the bears.");
-		if (pc.ballSize() <= 3) output(" They utterly dwarf your tiny nuts by comparison, as ponderously massive the bears endowments are.");
-		else if (pc.ballSize() <= 8) output(" Even your respectably large balls pale in comparison, as ponderously massive the bears endowments are.");
+		output(" velveteen own. An uncontrollable shudder lances through your [pc.legorlegs] as the soft, fuzzy covering of his sack tickles you pleasantly, your [pc.knees] weakening and lowering you just enough to fully rest your [pc.balls] atop the bear’s.");
+		if (pc.ballSize() <= 3) output(" They utterly dwarf your tiny nuts by comparison, as ponderously massive the bear’s endowments are.");
+		else if (pc.ballSize() <= 8) output(" Even your respectably large balls pale in comparison, as ponderously massive the bear’s endowments are.");
 		else if (pc.ballSize() <= 12) output(" As hefty as you consider yourself, the bear seems almost equally well equipped.");
 		else
 		{
-			output(" As ponderously massive as the bears balls may be, you’ve got him beat");
+			output(" As ponderously massive as the bear’s balls may be, you’ve got him beat");
 			if (pc.ballSize() >= 15) output(" easily");
 			output(" in that department.");
 		}
@@ -559,12 +559,12 @@ public function jeromeHipbuster():void
 	}
 	else
 	{
-		output(" A patchwork of gloopy splotches coat you from back to thighs, the bears freely flowing precum drooling thickly and getting <i>everywhere</i>. You can feel it beading on your [pc.skinFurScales] and pulling away from your body as it flows slowly, dripping down onto the bear below. Your hand subconsciously finds its way to his sack, fingers gently cupping the ponderously massive spunk factories. You can <i>feel</i> them rumbling in your grasp, so productive and overfull; it’s almost as if they’re just begging for a tight hole to thunderously unload their potent contents into.");
+		output(" A patchwork of gloopy splotches coat you from back to thighs, the bear’s freely flowing precum drooling thickly and getting <i>everywhere</i>. You can feel it beading on your [pc.skinFurScales] and pulling away from your body as it flows slowly, dripping down onto the bear below. Your hand subconsciously finds its way to his sack, fingers gently cupping the ponderously massive spunk factories. You can <i>feel</i> them rumbling in your grasp, so productive and overfull; it’s almost as if they’re just begging for a tight hole to thunderously unload their potent contents into.");
 	}
 
 	output("\n\nYou cast a fiery glance over your shoulder. Jerome is seemingly transfixed by your [pc.butt] hovering so close to his dick. His restraint is palpable, desperately holding back his desire to grab hold of the focus of his lust and fuck it senseless; the look in his eyes tells you all you need to know... but you’ve not given him your consent- your <i>permission</i> - yet.");
 
-	output("\n\n<i>“Something the matter, </i>bear<i>,”</i> you sultrily tease.");
+	output("\n\n<i>“Something the matter, </i>bear<i>?”</i> you sultrily tease.");
 	
 	output("\n\n<i>“Please...”</i> he grunts through gritted teeth.");
 	
@@ -615,43 +615,43 @@ public function jeromeHipbusterII(s:Object):void
 
 	output("<i>“Well be a good boy,”</i> you start, lifting your hips up higher, <i>“and line that fat dick up for me.”</i>");
 	
-	output("\n\nNo sooner have the words left your mouth does a heavy, wet <i>’smack’</i> greet your ears, the fat tip of the bears cock slapping into your [pc.asshole]");
+	output("\n\nNo sooner have the words left your mouth does a heavy, wet <i>’smack’</i> greet your ears, the fat tip of the bear’s cock slapping into your [pc.asshole]");
 	if (s.vIdx >= 0) output(" before trailing further forward and parting the lips of your [pc.vaginaNounSimple "+s.vIdx+"]");
-	output(" as he follows your order. Lodged in place with the fat cumvein perfectly poised, it’s not long before your "+s.holeStr+" is treated to its first direct, thick injection of Jeromes liberal lubrication.");
+	output(" as he follows your order. Lodged in place with the fat cumvein perfectly poised, it’s not long before your "+s.holeStr+" is treated to its first direct, thick injection of Jerome’s liberal lubrication.");
 
 	if (s.vGape < 4)
 	{
 		output("\n\nSlowly you begin to lower yourself down, putting weight on the joining between your "+s.simpleHoleStr()+" and the tree trunk of a dick attempting to batter its way inside you. It’s slow going, but between the bear's over productive balls");
-		if ((s.vIdx == -1 && pc.ass.wetness() >= 4) || (pc.hasVagina() && pc.vaginas[s.vIdx].wetness() >= 4))
+		if ((s.vIdx == -1 && pc.ass.wetness() >= 4) || (s.vIdx >= 0 && pc.hasVagina() && pc.vaginas[s.vIdx].wetness() >= 4))
 		{
-			output(", your own sopping wet "+s.simpleHoleStr+",");
+			output(", your own sopping wet "+s.simpleHoleStr()+",");
 		}
 		output(" and no short amount of determination, the bulbous head of his dick gradually works its way closer to being sheathed in you.");
 		
-		if (s.vIdx >= 0) (pc as PlayerCharacter).cuntChange(s.vIdx, (jerome as Jerome).biggestCockVolume(), true, true, false);
-		else (pc as PlayerCharacter).buttChange(jerome.biggestCockVolume(), true, true, false);
+		if (s.vIdx >= 0) pc.cuntChange(s.vIdx, jerome.biggestCockVolume(), true, true, false);
+		else pc.buttChange(jerome.biggestCockVolume(), true, true, false);
 		
-		output("\n\nA needy groan builds in your throat as the tipping point is reached; one more push sees the bears tip finally slip into you, paving the way for the rest of his thick dick to follow. Inch by inch it slips deeper, the ridges and the bumps each serving as a minor roadblock before your "+s.holeStr+" once again relaxes enough to swallow them.");
+		output("\n\nA needy groan builds in your throat as the tipping point is reached; one more push sees the bear’s tip finally slip into you, paving the way for the rest of his thick dick to follow. Inch by inch it slips deeper, the ridges and the bumps each serving as a minor roadblock before your "+s.holeStr+" once again relaxes enough to swallow them.");
 		
-		output("\n\nYou finally come to a stop with a quarter of his dick still left to go; the sheer thickness of the bears cock, combined with how tightly your "+s.simpleHoleStr()+" is wrapped around it, stops you from taking any more of it under your own power. Even lifting your [pc.feet] from the floor to use all of your weight as leverage barely moves you anymore. You’re not going to be satisfied having come <i>this close</i> to taking the entire thing. Only one thing for it then....");
+		output("\n\nYou finally come to a stop with a quarter of his dick still left to go; the sheer thickness of the bear’s cock, combined with how tightly your "+s.simpleHoleStr()+" is wrapped around it, stops you from taking any more of it under your own power. Even lifting your [pc.feet] from the floor to use all of your weight as leverage barely moves you anymore. You’re not going to be satisfied having come <i>this close</i> to taking the entire thing. Only one thing for it then....");
 		
 		output("\n\n<i>“Be a good boy and help a "+ pc.mf("guy", "girl") +" out?”</i>");
 		
-		output("\n\nHis hands are wrapped around your [pc.hips] in an instant, his powerful muscles working to pull you lower, yet his grip feels surprisingly measured and careful. Your slow descent resumes with Jeromes aid, his thickly ridged cock gradually burrowing its way into you even as the bears breathing grows more desperate. His need to have something wrapped tightly around the entirety of his massive cock becoming ever more pressing, testing his restraint to the limit.");
+		output("\n\nHis hands are wrapped around your [pc.hips] in an instant, his powerful muscles working to pull you lower, yet his grip feels surprisingly measured and careful. Your slow descent resumes with Jerome’s aid, his thickly ridged cock gradually burrowing its way into you even as the bear’s breathing grows more desperate. His need to have something wrapped tightly around the entirety of his massive cock becoming ever more pressing, testing his restraint to the limit.");
 	}
 	else
 	{
 		output("\n\nYou begin to lower yourself down, putting weight on the joining between your " + s.simpleHoleStr() + " and the tree trunk of a dick attempting to batter its way inside you.");
-		if (s.vIdx >= 0) (pc as PlayerCharacter).cuntChange(s.vIdx, (jerome as Jerome).biggestCockVolume(), true, true, false);
-		else (pc as PlayerCharacter).buttChange(jerome.biggestCockVolume(), true, true, false);
+		if (s.vIdx >= 0) pc.cuntChange(s.vIdx, jerome.biggestCockVolume(), true, true, false);
+		else pc.buttChange(jerome.biggestCockVolume(), true, true, false);
 		output(" As experienced as you are when it comes to handling such impressively large endowments, Jerome still proves to be somewhat of a stubborn challenge; his girth alone is beyond the limits of all but the most determined and promiscuous of potential partners. The thick ridges running all the way along its underside only seem to amplify his already ridiculous proportions to the absurd, the feature both deeply pleasurable yet difficult to acclimatize to quickly.");
 
-		output("\n\nThe bears over productive balls providing a near endless stream of lubrication directly to your "+s.simpleHoleStr()+", combined with no shortage of determination, keep your inexorable slide toward your goal on track. Inch after inch of fat bear cock disappears into you, replaced with the glowing internal warmth of your body stretching around the thick invader.");
+		output("\n\nThe bear’s over productive balls providing a near endless stream of lubrication directly to your "+s.simpleHoleStr()+", combined with no shortage of determination, keep your inexorable slide toward your goal on track. Inch after inch of fat bear cock disappears into you, replaced with the glowing internal warmth of your body stretching around the thick invader.");
 	}
 
-	output("\n\nSoft fuzz tickles at your [pc.butt] as you come to an abrupt halt, the bears hips having finally met your rear. A wiggle of your hips grinds his cock into all of your most deliciously sensitive places and settles you completely around his cock, leaving you sat flush with his pelvis. Jeromes legs tremor as you shift around; you can feel his muscles straining against your [pc.skinFurScales] as the shudder makes its way up to his hips. He’s barely keeping himself together on your behalf, his body warring against itself as he holds back his hips from thrusting, from driving his cock into the tight sheath wrapped so thoroughly around it.");
+	output("\n\nSoft fuzz tickles at your [pc.butt] as you come to an abrupt halt, the bear’s hips having finally met your rear. A wiggle of your hips grinds his cock into all of your most deliciously sensitive places and settles you completely around his cock, leaving you sat flush with his pelvis. Jerome’s legs tremor as you shift around; you can feel his muscles straining against your [pc.skinFurScales] as the shudder makes its way up to his hips. He’s barely keeping himself together on your behalf, his body warring against itself as he holds back his hips from thrusting, from driving his cock into the tight sheath wrapped so thoroughly around it.");
 
-	output("\n\nYou brace yourself against Jeromes thick thighs and lift yourself up, your "+s.holeStr+" so snug around the fat bearcock you almost feel anchored in place. The bumps and crevices adorning its surface pull at your deepest, most sensitive places as you gingerly slide up its length. Ridge after ridge slips");
+	output("\n\nYou brace yourself against Jerome’s thick thighs and lift yourself up, your "+s.holeStr+" so snug around the fat bearcock you almost feel anchored in place. The bumps and crevices adorning its surface pull at your deepest, most sensitive places as you gingerly slide up its length. Ridge after ridge slips");
 	if (s.vIdx >= 0)
 	{
 		if (pc.hasClit()) output(" past your [pc.clit]");
@@ -665,7 +665,7 @@ public function jeromeHipbusterII(s:Object):void
 	output(", grinding pleasure into your flesh as each one passes with a flick.");
 
 	output("\n\nThe sensation comes to a stop all too soon, and it’s only with its absence that the lust-fueled befuddlement clouding your mind starts to dissipate. Your legs are straight, stood as high as you can, and");
-	if (pc.tallness >= 72) output(" the bears chunky cockhead is still buried in your");
+	if (pc.tallness >= 72) output(" the bear’s chunky cockhead is still buried in your");
 	else if (pc.tallness >= 60) output(" there’s still a couple of inches of fat bearcock buried in your");
 	else output(" half of the bear's thick dick is still buried in your");
 	output(" " + s.simpleHoleStr() + ". Guess there’s only one thing for it then...");
@@ -681,12 +681,12 @@ public function jeromeHipbusterIII(s:Object):void
 	clearOutput();
 	showJerome(true);
 
-	output("Properly warmed up, your "+s.holeStr+" greedily slips back around Jeromes cock with far greater ease than the initial," +s.va("cunt-stretching", "gut-straining") +" penetration. The ridges thrum against your");
+	output("Properly warmed up, your "+s.holeStr+" greedily slips back around Jerome’s cock with far greater ease than the initial, " +s.va("cunt-stretching", "gut-straining") +" penetration. The ridges thrum against your");
 	if (s.vIdx >= 0 && pc.hasClit()) output(" [pc.clit]");
 	else if (s.vIdx >= 0) output(" cuntlips");
 	else if (pc.hasCock()) output(" [pc.prostate]");
 	else output(" [pc.asshole]");
-	output(" like an overpowered vibrator as you inexorably drop towards the bears crotch. All too soon, it feels like, you run out of cock as your [pc.ass]");
+	output(" like an overpowered vibrator as you inexorably drop towards the bear’s crotch. All too soon, it feels like, you run out of cock as your [pc.ass]");
 	if (pc.buttRating() <= 6) output(" bumps");
 	else if (pc.buttRating() <= 12) output(" slaps");
 	else output(" pancakes");
@@ -719,7 +719,7 @@ public function jeromeHipbusterIII(s:Object):void
 		else if (pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || s.vGape >= 5) output(" plump donut");
 		else output(" asshole");
 	}
-	output(" wide. The delectable strumming of the ridges calls to you before too long, your hips moving instinctively to drag the bears cock back out of you. You don’t wait around when you reach the peak this time, though, your ass sliding back down to swallow the throbbing cock much faster than your first descent. His hips meat your [pc.ass] with a thump as you reach the base of his towering pillar of fuckflesh again, another slightly-winded groan from the bear as you come to rest.");
+	output(" wide. The delectable strumming of the ridges calls to you before too long, your hips moving instinctively to drag the bear’s cock back out of you. You don’t wait around when you reach the peak this time, though, your ass sliding back down to swallow the throbbing cock much faster than your first descent. His hips meet your [pc.ass] with a thump as you reach the base of his towering pillar of fuckflesh again, another slightly-winded groan from the bear as you come to rest.");
 
 	output("\n\nYour");
 	if (s.vIdx >= 0 && pc.hasClit()) output(" [pc.clits] are thrumming");
@@ -735,7 +735,7 @@ public function jeromeHipbusterIII(s:Object):void
 	output(" straight, back as high as you can go, do you come crashing back down to the chubby, bear-shaped earth beneath your [pc.ass]. The ever increasing coating of precum Jerome is spurting thickly into your");
 	if (s.vIdx >= 0) output(" [pc.cunt]");
 	else output(" [pc.asshole]");
-	if (s.vGape <= 3) output(" - not to mention the through reaming-out his cock is giving you -");
+	if (s.vGape <= 3) output(" - not to mention the thorough reaming-out his cock is giving you -");
 	output(" lets you thunder up and down his length faster with every hip-jarring bounce. The faster you go, the better the ridges feel passing");
 	if (s.vIdx >= 0 && pc.hasClit())
 	{
@@ -744,7 +744,7 @@ public function jeromeHipbusterIII(s:Object):void
 		output(" pleasure-button");
 	}
 	else output(" through you");
-	output(". Jeromes grunts as you slam into his hips only fuel your lust to headier heights; the knowledge that you might just be too much for the bear to handle playing on your mind.");
+	output(". Jerome grunts as you slam into his hips, only fuel your lust to headier heights; the thought that you might just be too much for the bear to handle playing on your mind.");
 
 	output("\n\nThe pace of your fucking grows faster as you chase the building pleasure in your");
 	if (s.vIdx >= 0) output(" [pc.cunts]");
@@ -753,14 +753,14 @@ public function jeromeHipbusterIII(s:Object):void
 	output(", gradually shifting position as you lean further forward for extra leverage. A deep, rolling coo oozes from your throat like honey as the cock drilling into your depths grinds into you in new and interesting ways, mixing with the subtle, stinging warmth building in your [pc.ass] as you keep slamming butt-first into the bear.");
 	if (pc.balls > 0)
 	{
-		output(" He shivers under you when the changing angle of attack positions you just right for your [pc.balls] to just barely kiss Jeromes own bloated, velveteen nuts; a tender touch that you ensure repeats with every subsequent hip-battering,"+ s.va("cunt", "ass") +"-blastingly powerful stroke.");
+		output(" He shivers under you when the changing angle of attack positions you just right for your [pc.balls] to just barely kiss Jerome’s own bloated, velveteen nuts; a tender touch that you ensure repeats with every subsequent hip-battering,"+ s.va("cunt", "ass") +"-blastingly powerful stroke.");
 	}
 	
 	output("\n\n<i>“I’m gonna- I’m gonna cuu-urgh!”</i> Jerome yells, his voice breaking into a gurgling-roar as you bottom out one last time.");
 	
 	output("\n\nHis cock throbs even thicker within your "+ s.va("pussy", "ass") +", the ridges engorging and sinking into");
 	if (s.vIdx >= 0) output(" the folds of");
-	output(" your sodden flesh just enough to anchor you with your ass planted squarely atop the bears bucking hips. A bulge of extra thickness rolls up his length, the same ribs keeping you stuck in place and grinding into you");
+	output(" your sodden flesh just enough to anchor you with your ass planted squarely atop the bear’s bucking hips. A bulge of extra thickness rolls up his length, the same ribs keeping you stuck in place and grinding into you");
 	if (s.vIdx >= 0) output("r g-spot");
 	else if (pc.hasCock()) output("r prostate");
 	output(" in a long, pulsing wave.");
@@ -770,7 +770,7 @@ public function jeromeHipbusterIII(s:Object):void
 		if (pc.ballSize() <= 3) output(" on");
 		else if (pc.ballSize() <= 12) output(" against");
 		else output(" around");
-		output(" the bears balls, you can feel them pull taught, rumbling under you to fuel his spunk-spewing cock.");
+		output(" the bear’s balls, you can feel them pull taught, rumbling under you to fuel his spunk-spewing cock.");
 	}
 	output(" Heat blooms in your");
 	if (s.vIdx >= 0 && pc.isPregnant(s.vIdx)) output(" cunt");
@@ -782,7 +782,7 @@ public function jeromeHipbusterIII(s:Object):void
 	{
 		output("\n\nPermeating heat builds in your "+ s.va("womb", "ass") +" with every heavy load of cum deposited; the rolling bulges traveling along your now over-sensitive canal mixing with the instinctively satisfying final chapter of your coupling with the bear drawing out your orgasm.");
 		
-		output("\n\nIt could be minutes, or it could be seconds, you’re not sure which, but you eventually start to return to some semblance of sensical thought, drawn out of your blissful comatose by a subtle gurgling noise. Jeromes prodigal virility has proven itself well, your belly rounded out into a sizable paunch given the sheer quantity of jizz he’s managed to stuff into your");
+		output("\n\nIt could be minutes, or it could be seconds, you’re not sure which, but you eventually start to return to some semblance of sensical thought, drawn out of your blissful coma by a subtle gurgling noise. Jerome’s prodigal virility has proven itself well, your belly rounded out into a sizable paunch given the sheer quantity of jizz he’s managed to stuff into your");
 		if (s.vIdx >= 0)
 		{
 			if (pc.hasPerk("Fertility") || pc.hasPerk("Incubator")) output(" cum-hungry");
@@ -806,13 +806,13 @@ public function jeromeHipbusterIII(s:Object):void
 	{
 		output("\n\nPermeating heat builds in your pussy with every heavy load of cum deposited; the rolling bulges traveling along your now over-sensitive canal mixing with the instinctively satisfying final chapter of your coupling with the bear drawing out your orgasm.");
 		
-		output("\n\nIt could be minutes, or it could be seconds, you’re not sure which, but you eventually start to return to some semblance of sensical thought, drawn out of your blissful comatose by a subtle spattering noise. Jeromes prodigal virility has proven itself well, a near-constant stream of his waning orgasm spurting out through your cock-plugged cunt to splatter his groin.");
+		output("\n\nIt could be minutes, or it could be seconds, you’re not sure which, but you eventually start to return to some semblance of sensical thought, drawn out of your blissful coma by a subtle spattering noise. Jerome’s prodigal virility has proven itself well, a near-constant stream of his waning orgasm spurting out through your cock-plugged cunt to splatter his groin.");
 	}
 
 	output("\n\nGathering your wits, now thoroughly sated and with");
 	if ((s.vIdx >= 0 && !pc.isPregnant(s.vIdx)) || s.vIdx == -1) output(" a belly full of cum");
 	else output(" a cum-splattered crotch");
-	output(", you start the arduous task of extracting his still semi-erect cock from your well-fucked "+s.va("pussy", "ass") +". The exertion of the last half-hour has left");
+	output(", you start the arduous task of extracting his still semi-erect cock from your well-fucked "+s.va("pussy", "ass") +". The exertion of the last half-hour has left your");
 	if (pc.hasKnees()) output(" knees");
 	else output(" [pc.legOrLegs]");
 	output(" weak, but with a solid heave you manage to get to your [pc.feet] and feel his cock flop free from your still weakly spasming tunnel.");
