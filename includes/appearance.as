@@ -2187,7 +2187,7 @@ public function crotchStuff(forTarget:Creature = null):void
 		
 		//SINGLE DICKS!
 		if(target.cockTotal() == 1) {
-			output2("Your " + target.cockDescript(0) + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
+			output2("Your " + target.simpleCockNoun(0) + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
 			if(Math.floor(10*target.cocks[0].thickness())/10 < 2) {
 				if(Math.floor(10*target.cocks[0].thickness())/10 == 1) output2(int(10*target.cocks[0].thickness())/10 + " inch thick.");
 				else output2(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
@@ -2209,7 +2209,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				if(rando == 0) {
 					if(temp == 0)output2("\nYour first ");
 					else output2("\nYour next ");
-					output2(target.cockDescript(temp));
+					output2(target.simpleCockNoun(temp));
 					output2(" is ");
 					output2(int(10*target.cocks[temp].cLength())/10 + " inches long and ");
 					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches wide.");
@@ -2220,7 +2220,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				}
 				if(rando == 1) {
 					output2("\nYour " + num2Ordinal(temp + 1) + " ");
-					output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
+					output2(target.simpleCockNoun(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 					else {
 						if(target.cocks[temp].thickness() == 1) output2("one-inch thick.");
@@ -2229,7 +2229,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				}
 				if(rando == 2) {
 					output2("\nThe " + num2Ordinal(temp + 1) + " ");
-					output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
+					output2(target.simpleCockNoun(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 					else {
 						if(target.cocks[temp].thickness() == 1) output2("one-inch thick.");
@@ -2239,7 +2239,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				if(rando == 3) {
 					if(temp > 0) output2("\nYour next ");
 					else output2("\nYour first ");
-					output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
+					output2(target.simpleCockNoun(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter.");
 					else {
 						if(Math.round(target.cocks[temp].thickness()*10)/10 == 1) output2("one inch in diameter.");

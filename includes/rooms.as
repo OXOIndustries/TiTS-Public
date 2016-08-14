@@ -231,7 +231,7 @@ public function initializeRooms():void
 	
 	rooms["KIROS SHIP AIRLOCK"] = new RoomClass(this);
 	rooms["KIROS SHIP AIRLOCK"].roomName = "LEAF SHIP\nINTERIOR";
-	rooms["KIROS SHIP AIRLOCK"].description = "This is the oddly-shaped ships airlock, currently connecting it to your ship and allowing you to move between the two freely. You're hard pressed to even call such a small space a room, but the massive doors at either end of it - strong enough to survive the rigors of space - reinforce how important even tiny areas such as this can be.";
+	rooms["KIROS SHIP AIRLOCK"].description = "This is the oddly-shaped ship airlock, currently connecting it to your ship and allowing you to move between the two freely. You're hard pressed to even call such a small space a room, but the massive doors at either end of it - strong enough to survive the rigors of space - reinforce how important even tiny areas such as this can be.";
 	rooms["KIROS SHIP AIRLOCK"].northExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP AIRLOCK"].planet = "SHIP: LEAF";
 	rooms["KIROS SHIP AIRLOCK"].system = "SYSTEM: REDACTED";
