@@ -347,7 +347,7 @@
 		private function getDroneHacked(target:Creature):void
 		{
 			author("Nonesuch");
-			output("<i>“Empatrons are always pleased to see a friend you have brought along to share in the fun,”</i> the sexbot sighs, its flickering green gaze turning to your floating drone. “Stand by while I reconfigure it for optimum enjoyment.” Your robot buddy shudders and rolls in the air as the rogue droid attempts to take control of it.");
+			output("<i>“Empatrons are always pleased to see that you have brought along a friend to share in the fun,”</i> the sexbot sighs, its flickering green gaze turning to your floating drone. “Stand by while I reconfigure it for optimum enjoyment.” Your robot buddy shudders and rolls in the air as the rogue droid attempts to take control of it.");
 			//Fail: 
 			if(rand(20) + 1 + target.intelligence()/2 < 12)
 			{

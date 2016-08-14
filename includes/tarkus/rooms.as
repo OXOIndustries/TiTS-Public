@@ -968,7 +968,7 @@ public function initTarkusRooms():void
 	//#65 RUST\nFIELDS
 	rooms["265"] = new RoomClass(this);
 	rooms["265"].roomName = "RUST\nFIELDS";
-	rooms["265"].description = "The rust fields come to and end here, bordering on the edge of the scything glades. You can see how the glades get their name - the area is filled with silvery, tree-like plants, only the branches are tipped with sharp blades. As you watch, the wind carries a plastic bag into the side of one. It's impaled in a half-dozen places in seconds. There \"trees\" are too thick to risk travel to the east, and a mound of detritus to the north prevents movement that way.";
+	rooms["265"].description = "The rust fields come to and end here, bordering on the edge of the scything glades. You can see how the glades get their name - the area is filled with silvery, tree-like plants, only the branches are tipped with sharp blades. As you watch, the wind carries a plastic bag into the side of one. It's impaled in a half-dozen places in seconds. The “trees” are too thick to risk travel to the east, and a mound of detritus to the north prevents movement that way.";
 	rooms["265"].runOnEnter = rustPlainsEncounters;
 	rooms["265"].southExit = "266";
 	rooms["265"].westExit = "260";

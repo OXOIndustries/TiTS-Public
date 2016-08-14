@@ -1302,7 +1302,7 @@ public function getSlurpedOnByAnnoz():void
 
 	output("\n\n<i>\"Oops, almost embarrassed myself,\"</i> she teases, turning on a heel to put her back to you. <i>\"How unprofessional of me... boss,\"</i> she adds, emphasizing the last word with a shuddering hiss as she pulls the zipper down past her navel, shrugging out of the sleeves and leaving herself totally topless.");
 
-	output("\n\nNot done yet, Anno plants a hand on the wall behind her counter, hooking the other through her suit's belt. You watch appreciatively as she starts to pull her pants down, hips and tail both swishing gaily as she slowly pulls her waistline half way down the swells of her butt cheeks, letting her floofy white appendage pop free. It rises invitingly as she's forced to bend over to remove the rest of the suit, legs spread just enough to give you a glance at the glistening delta joining them, and a pair of heavy, full breasts hanging down from her chest as she pulls the suit down to her feet and slips out it, leaving herself bare but for the fur coating her lower limbs and the aura of need and desire practically radiating off her.");
+	output("\n\nNot done yet, Anno plants a hand on the wall behind her counter, hooking the other through her suit's belt. You watch appreciatively as she starts to pull her pants down, hips and tail both swishing gaily as she slowly pulls her waistline half way down the swells of her butt cheeks, letting her floofy white appendage pop free. It rises invitingly as she's forced to bend over to remove the rest of the suit, legs spread just enough to give you a glance at the glistening delta joining them, and a pair of heavy, full breasts hanging down from her chest as she pulls the suit down to her feet and slips out of it, leaving herself bare but for the fur coating her lower limbs and the aura of need and desire practically radiating off her.");
 
 	output("\n\nBare as an ausar can be, Anno sashays ");
 
@@ -1822,7 +1822,7 @@ public function joinCrewPlanetFineVersion():void
 	
 	output("\n\nYou chuckle. <i>“Not exactly. What I’m saying is: come with me. I’ve got room for one more on my ship, especially someone with your talents");
 	if (annoSexed()) output(", not to mention looks");
-	output("”</i>");
+	output(".”</i>");
 	
 	output("\n\nShe grins. <i>“Ah, wish I could, boss. But that memo made it pretty clear that I can’t give you");
 	if (annoSexed()) output(" too much");
@@ -1837,7 +1837,7 @@ public function joinCrewPlanetFineVersion():void
 	
 		output("\n\n<i>“Ah,”</i> you say, a bit saddened by the rejection.");
 	
-		output("\n\nAnno blanches at your reaction, her ears and tail all tucking down as she frowns. A moment later, though, she gets a coy grin and leans in as if to whisper. <i>“Actually,”</i> she starts, voice seductive and dripping with sexuality. <i>“I’ve been doing some very delicate work. Classified work. But if you helped me finish, then... I’d have no reason to stick around on Tarkus, and Corporate might approve my transfer. To your ship.”</i>");
+		output("\n\nAnno blanches at your reaction, her ears and tail all tucking down as she frowns. A moment later though, she gets a coy grin and leans in as if to whisper. <i>“Actually,”</i> she starts, voice seductive and dripping with sexuality. <i>“I’ve been doing some very delicate work. Classified work. But if you helped me finish, then... I’d have no reason to stick around on Tarkus, and Corporate might approve my transfer. To your ship.”</i>");
 	
 		output("\n\n<i>“Oh?”</i> ");
 	
@@ -2665,7 +2665,7 @@ public function deck13Breach():void
 	clearOutput();
 	author("Savin");
 
-	output("You look up to the great big hole in the overhead, through which you and Anno fell. Doesn’t look like there’s any way of getting back up there. ");
+	output("You look up to the great big hole in the overhead through which you and Anno fell. It doesn’t look like there’s any way of getting back up there. ");
 
 	if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\n<i>“I'm surprised I didn't break a leg falling through,”</i> Anno muses. <i>“Wish I'd bothered to reload the stupid grappling gun when we came in.”</i>");
 
@@ -2752,7 +2752,7 @@ public function deck13FinalFormIntro():void
 	
 	output("\n\nShe isn’t hard to find.");
 	
-	output("\n\nThe reactor room you enter is monolithic, easily taking up half the deck with thrumming power converters and a glowing fusion reactor dominating the center of the expansive room, surrounded by vats and tubes filled with gray goo. Several wires lead directly from the reactor to dozens of computer banks, servers, and hard drives scattered all through the room, like half the computers aboard the ship were all pulled and clustered around the reactor. Every device is beeping and blinking rhythmically, drawing power right from the secondary reactor itself. The heat in the room is oppressive, almost overwhelming, with so many devices running on max and clustered together. You break out in a sweat almost immediately as the heat hits you like a brick wall. ");
+	output("\n\nThe reactor room you enter is monolithic, easily taking up half the deck with thrumming power converters and a glowing fusion reactor dominating the center of the expansive room, surrounded by vats and tubes filled with gray goo. Several wires lead directly from the reactor to dozens of computer banks, servers, and hard drives scattered all throughout the room, like half the computers aboard the ship were all pulled and clustered around the reactor. Every device is beeping and blinking rhythmically, drawing power right from the secondary reactor itself. The heat in the room is oppressive, almost overwhelming, with so many devices running on max and clustered together. You break out in a sweat almost immediately as the heat hits you like a brick wall. ");
 	
 	output("\n\nSlumped against the reactor control panel is the goo-girl, breathing hard after your encounter and surrounded by a writhing, swirling lake of bubbling gray goo at her feet. She spins around as you and Anno approach, her sword forming out of her hand as she does so. Anno raises her gun, but the goo doesn’t advance. Not yet, at least. ");
 
