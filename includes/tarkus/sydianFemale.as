@@ -856,7 +856,7 @@ public function femSydianCallOthers():void
 		if (enemy.hairColor == "orange") output("The fire-headed girl shudders and whines as her destroyed covering is replaced with a bloom of enzyme; her knees clap together and she thrusts her chest forward, betrayed by her body’s lust for a sydian’s touch.");
 		else output("The girl’s pale skin quivers under his touch, and she sighs when her struggles fail to free her from the huge hand.");
 		output(" The display brings great satisfaction to the male, and his orange, fluffy prick emerges from his crotch.");
-		if (pc.hasCock()) output(" Your own [pc.cocksLight] clamor as well, swelling with blood while you watch the bug-girl get manhandled.");
+		if (pc.hasCock()) output(" Your own [pc.cocksLight] clamor" + (pc.cocks.length == 1 ? "s" : "") + " as well, swelling with blood while you watch the bug-girl get manhandled.");
 		else if (pc.hasVagina()) output(" Your [pc.vagina] demands attention as you watch his bushy cock rub against the bug-girl’s labia, and you wish you were receiving the same treatment.");
 		if (!pc.isNice() && !pc.isTaur() && (pc.hasCock() || pc.hasVagina()))
 		{
@@ -869,7 +869,7 @@ public function femSydianCallOthers():void
 		
 		output("\n\n<i>“Good dick, isn’t it?”</i> he needles, thrusting just a little to make her shiver and sweat. She switches to pushing away from his chest, attempting to lessen the impact when he slams in with full force. Encouraged by her readiness or simply not caring, he shifts his grip to her waist and begins to fuck.");
 		
-		output("\n\n<i>“Ahhh!”</i> cries the girl, scratching at her partner’s armored chest. His strokes are already so intense that her petite breasts bounce wildly. Pitters and patters of lubrication drop from the woman’s crotch, pulled out by the brush-like covering of the brute’s titian tool.");
+		output("\n\n<i>“Ahhh!”</i> cries the girl, scratching at her partner’s armored chest. His strokes are already so intense that her petite breasts bounce wildly. Pitters and patters of lubrication drop from the woman’s crotch, pulled out by the brush-like covering of the brute’s titan tool.");
 		if (!pc.isNice() && !pc.isTaur())
 		{
 			if (pc.hasCock()) output(" The soft sounds of your own dripping precum accompany them.");
@@ -903,6 +903,8 @@ public function femSydianCallOthers():void
 				if (pc.isSquirter()) output(", coating your hand and the dry ground with a thick spray of [pc.girlCum].");
 				else output(" , milking your hand.");
 			}
+			
+			pc.orgasm();
 		}
 		
 		output("\n\nThe burly sydian’s pumps weaken as his orgasm trails off, and he releases his hold on his partner. She slips off his cock and lands on her ass while his aftershocking tool swings free. He grabs it and works out the last blobs of cum, dropping them on her alabaster stomach. Pleased with his efforts, he turns and strides off, leaving the bug-girl spread eagle with silvery jizz oozing from her savaged hole. Too exhausted to talk, she stares at you, still concealed in your hiding spot, accusing you with her eyes.");

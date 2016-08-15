@@ -204,7 +204,7 @@ public function raskVelBabeGetsDoggieStyled():void
 		output(", ");
 	}
 	output("shining her thick thighs and your own [pc.legOrLegs] with moisture. Inside the raskvel's twat, you can feel the little folds as they slide over every ridge and vein of your manhood, all the way until you're hilted once more. Satisfied groans fill the air around the both of you.");
-	output("\n\nAgain, you yank back, going faster now, and plunge yourself back inside the alien's sloppy cockvice, bouncing off her sweet little ass with quickening thrusts. You can feel her heartbeat hammering against your own through your [pc.cock " + x + "], speeding to match yours until the two organs are pumping blood through genitals in perfect, sexual sync. Her body has completely given in. The once demanding alien has turned into little more than a eager dicksleeve, surrending herself utterly to you as you take her again and again");
+	output("\n\nAgain, you yank back, going faster now, and plunge yourself back inside the alien's sloppy cockvice, bouncing off her sweet little ass with quickening thrusts. You can feel her heartbeat hammering against your own through your [pc.cock " + x + "], speeding to match yours until the two organs are pumping blood through genitals in perfect, sexual sync. Her body has completely given in. The once demanding alien has turned into little more than a eager dicksleeve, surrendering herself utterly to you as you take her again and again");
 	if(pc.tallness >= 50) output(", legs swaying futilely as your larger body has its way with her");
 	output(". Her eyes are rolling back in their sockets as her purplish tongue drools out of her mouth.");
 	

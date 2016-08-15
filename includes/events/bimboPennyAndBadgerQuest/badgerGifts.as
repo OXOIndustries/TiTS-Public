@@ -288,7 +288,7 @@ public function drBadgerJobOffer():void
 	{
 		output("<i>“A job?”</i> you ask. <i>“Why would I take a job from you?”</i>");
 		output("\n\nFor a second, Dr. Badger manages to look hurt, despite all her mad scientist trappings. <i>“Why, for </i>Science<i>, surely! What other reason could you possibly need, aside from assisting the pursuit of...”</i> She pauses, running one clawed hand along the side of her skin-tight bodysuit and slapping herself on her considerable rump. <i>“..the very best kind of knowledge?”</i>");
-		output("\n\nYou stare at her in wordlessly, not dignifying that with a response. Eventually, she rolls her eyes.");
+		output("\n\nYou stare at her wordlessly, not dignifying that with a response. Eventually, she rolls her eyes.");
 		output("\n\n<i>“Fine,”</i> she sighs, <i>“if you really need more mundane incentivization, then I’ll just pay you.”</i>");
 		output("\n\nYou stay silent, simply raising an eyebrow as you look around at her ramshackle ‘lab’.");
 		output("\n\nShe takes your hint. <i>“I know, it doesn’t look like I can even afford four solid walls, let alone spare enough credits to pay you for your time. But, appearances can be deceiving. Money isn’t my problem, my problem is not being able to spend it because I have to lay low.”</i> She looks up at you with a fierce grin. <i>“But, that’s where </i>you<i> come in.”</i>");
