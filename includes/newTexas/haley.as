@@ -227,6 +227,7 @@ public function offerToHelpHaleyShedSomeWeight():void
 		pc.orgasm();
 		pc.orgasm();
 		flags["MET_HALEY"] = 1;
+		flags["FUCKED_BY_HALEY"] = 1;
 		clearMenu();
 		addButton(0,"Next",move,rooms[currentLocation].westExit);
 		return;
@@ -307,6 +308,7 @@ public function waitForHaleyToGoToTownOnYou():void
 	processTime(120);
 	pc.orgasm();
 	flags["MET_HALEY"] = 1;
+	flags["FUCKED_BY_HALEY"] = 1;
 
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	pc.loadInAss(pp);
@@ -349,6 +351,7 @@ public function waitForHaleyToGoToTownOnLadyNonTaurs():void
 	processTime(120);
 	pc.orgasm();
 	flags["MET_HALEY"] = 1;
+	flags["FUCKED_BY_HALEY"] = 1;
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	pc.loadInAss(pp);
 	clearMenu();
@@ -398,6 +401,7 @@ public function waitForHaleyToReamYouAsAManTaur():void
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	pc.loadInAss(pp);
 	flags["MET_HALEY"] = 1;
+	flags["FUCKED_BY_HALEY"] = 1;
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
@@ -449,6 +453,7 @@ public function waitToGetFuckedByHaleyAsAFemaleTaur():void
 	pc.loadInAss(pp);
 	pc.orgasm();
 	flags["MET_HALEY"] = 1;
+	flags["FUCKED_BY_HALEY"] = 1;
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
 }
@@ -893,6 +898,7 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 		pc.orgasm();
 	}
 	
+	flags["FUCKED_BY_HALEY"] = 1;
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
 }
@@ -956,6 +962,7 @@ public function getHaleyAFuckingSandwich():void
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	pc.loadInAss(pp);
 	IncrementFlag("USED_MILKER");
+	flags["FUCKED_BY_HALEY"] = 1;
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
 }
@@ -1027,6 +1034,7 @@ public function haleyChallenge():void
 		{
 			output(" What’s your name, stud? I’m Haley.”</i>");
 			output("\n\n<i>“[pc.name].”</i>");
+			flags["MET_HALEY"] = 1;
 		}
 		else
 		{
@@ -1060,6 +1068,7 @@ public function haleyChallenge():void
 		{
 			output("\n\nWhat’s your name? I’m Haley.”</i>");
 			output("\n\n<i>“[pc.name].”</i>");
+			flags["MET_HALEY"] = 1;
 		}
 		else
 		{
