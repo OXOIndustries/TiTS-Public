@@ -11859,9 +11859,11 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 	output(". You groan as [bess.heShe] presses forward, slowly sinking [bess.himHer]self inside of you, right up to the hilt.");
 	if (bess.balls > 0) output(" As [bess.heShe] bottoms out, you feel [bess.hisHer] [bess.balls] deliciously brushing against your [bess.thighs], and your whole body flushes with excitement.");
 	
+	bess.cockChange();	
+	
 	if (bTargetVag) pc.cuntChange(vagIdx, bess.cockVolume(0));
 	else pc.buttChange(bess.cockVolume(0));
-
+	
 	if (bess.hasVagina() && pc.hasCock() && bess.hasTailCunt())
 	{
 		output("\n\nAs you’re enjoying this sensation, you feel something velvety and soft brushing against your [pc.cockHead]! You suddenly realize [bess.heShe] has detached [bess.hisHer] mechanical pussy. It now lingers below your loins, attached to a long, prehensile cable [bess.heShe] can seemingly control at will.");
@@ -12803,6 +12805,8 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	else output(" [pc.asshole]");
 	output(".");
 
+	bess.cockChange();
+	
 	if (pc.hasVagina()) pc.cuntChange(vagIdx, cVolume, true, true, false);
 	else pc.buttChange(cVolume, true, true, false);
 	
