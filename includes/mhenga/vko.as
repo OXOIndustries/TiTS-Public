@@ -944,7 +944,7 @@ public function VKOBreastPumpFunction():void {
 		addButton(0,"Next",mainGameMenu);
 		return;
 	}
-	output("Her eyes light up as she processes your latest input, scanning your form and focusing particularly on your [pc.milk]-filled [pc.breasts]. Her eyes flicker as they confirm the presence of fluid, before powering down their scan mode as she says, <i>“Please confirm that this is the directive which you wish to engage.\"</i>");
+	output("Her eyes light up as she processes your latest input, scanning your form and focusing particularly on your [pc.milk]-filled [pc.breastsNoun]. Her eyes flicker as they confirm the presence of fluid, before powering down their scan mode as she says, <i>“Please confirm that this is the directive which you wish to engage.\"</i>");
 	processTime(1);
 	//[Agree][Disagree]
 	clearMenu();
@@ -988,7 +988,7 @@ public function agreeToVKoBoobSucks():void
 	if(pc.hasFuckableNipples()) output(" Though your [nipples] have no protrusions to play with, that doesn't stop the cups from fashioning themselves around your areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
 	if(pc.bRows() > 1) output(" Below your primary tits, your remaining breasts practically tingle with anticipation of their turn.");
 
-	output("\n\nHer chest starts emitting a low pumping noise, and you feel the cups begin to drain your of your [pc.milk]. You breathe a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It's not quite sexual, at least not so much that you're going to cum over the seats any moment now, but still very satisfying on a deep level.");
+	output("\n\nHer chest starts emitting a low pumping noise, and you feel the cups begin to drain you of your [pc.milk]. You breathe a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It's not quite sexual, at least not so much that you're going to cum over the seats any moment now, but still very satisfying on a deep level.");
 
 	output("\n\nYou’re so relaxed that you find yourself slipping into an almost trance-like state, the steady pumping of your breasts almost lulling you to sleep. You can’t help but groan in disappointment when the cups pop from your breasts, some of the excess [pc.milkNoun] leaking from V-Ko. Her own chest looks ");
 	if(pc.milkQ() < 500) output("at least a little inflated.");
