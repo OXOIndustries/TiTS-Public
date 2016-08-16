@@ -49,7 +49,7 @@ package classes.Characters
 			rangedWeapon.baseDamage.electric.damageValue = 1;
 			rangedWeapon.baseDamage.burning.damageValue = 1;
 			rangedWeapon.addFlag(DamageFlag.LASER);
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
 			this.rangedWeapon.attackNoun = "laser beam";
 			this.rangedWeapon.hasRandomProperties = true;
 			

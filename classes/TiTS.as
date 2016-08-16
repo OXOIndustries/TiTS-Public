@@ -1006,6 +1006,10 @@
 		{
 			return chars["PC"];
 		}
+		public function get baby():PlayerOffspring
+		{
+			return chars["PC_BABY"];
+		}
 
 		/* The following three accessors provide indirection during certain scenes, allowing generic, semantically-distict access to different characters.
 		 * 

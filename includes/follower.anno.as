@@ -2644,7 +2644,7 @@ public function annosTriberatorGatorMatorHater():void
 	output("\n\n<i>“Yes! Yes yes yes! Pleeease give it to me-!”</i> Anno moans and presses her plush ass back, carnally grinding her snatch against the phallic vibrator. Paying her back for earlier, you hotdog her with the whirring dick toy. When you press it between her fleshy buttocks, she needily clenches and milks it just like a real cock. <i>“Mmmm... lower, insiiide my pussy-!”</i>");
 	output("\n\nDeciding you’ve teased her enough, you give her what she desperately wants, pressing the curved tip against her parted folds. Anno needily arches her hips and you sheathe the quivering dildo in her quim. She gasps and ");
 	if(annoIsCrew()) output("clenches at the sheets");
-	else output("wiggles on the store floor.");
+	else output("wiggles on the store floor");
 	output(" as it bottoms out inside of her. Her tiny pussy is obscenely stretched around the knotted base.");
 
 	output("\n\n<i>“It-it feels so much bigger than it looks!”</i> she breathily exclaims. Finding her pussy is incredibly tight as well, you begin moving the ten inches of vibrating ausar cock back and forth, occasionally twisting it with no small amount of skill. Anno trembles and pants, her bushy tail lifted high in the air.");
@@ -2681,8 +2681,8 @@ public function annosTriberatorGatorMatorHater():void
 		output(" pulsing with pleasure");
 	}
 	//PcIsADamnNeuter: 
-	if(!pc.hasVagina() && !pc.hasCock()) output("lower belly is pooling with pleasure and your bare loins needily ache.");
-	output(" The more horny you get, the more wild you are with the vibrator - it’s a chain reaction of pleasure that will only end one of you getting off!");
+	if(!pc.hasVagina() && !pc.hasCock()) output("lower belly is pooling with pleasure and your bare loins needily ache");
+	output(". The more horny you get, the more wild you are with the vibrator - it’s a chain reaction of pleasure that will only end in one of you getting off!");
 
 	output("\n\nGrabbing her fluffy tail, you tug at the end. At the same time, you thrust the toy deep inside of her snatch and anus - turning the speed up to max - and Anno ecstatically cries out. Her drooling cunny and pucker clench around the whirring toy, her whole body quaking with pleasure. Her white, wolf-like ears are pressed back flat and she’s panting wildly. By her trembling thighs, she’s seconds away from creaming herself!");
 	output("\n\nBeating Anno to the punch, you plunge the whirring ausar cock into her slick netherlips and click the ‘cum’ button’. Suddenly the artificial knot begins to rapidly inflate and bulge out inside of her tight tunnel. From the tapered tip, it spastically fires thick, gooey ropes of artificial ausar cum which splash wildly inside of her warm, wet insides.");

@@ -38,7 +38,7 @@ public function deck13MakeGoo():void
 	author("Savin");
 	showName("GOO\nCONTAINER");
 
-	output("You step up to the one vat of gray goo remaining on the deck. Its humming slightly, churning as it produces and maintains a little sea of goop. There’s a spigot about six feet off the deck, controlled by a dark computer monitor that looks like it belongs in a museum. You walk over and push the screen. Nothing happens.");
+	output("You step up to the one vat of gray goo remaining on the deck. It’s humming slightly, churning as it produces and maintains a little sea of goop. There’s a spigot about six feet off the deck, controlled by a dark computer monitor that looks like it belongs in a museum. You walk over and push the screen. Nothing happens.");
 	
 	output("\n\nPoke. Nothing again.");
 	

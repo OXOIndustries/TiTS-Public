@@ -172,7 +172,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "GOOCLONE";
+			return "GRAY_GOO";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

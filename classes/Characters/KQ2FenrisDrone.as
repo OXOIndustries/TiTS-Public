@@ -49,7 +49,7 @@ package classes.Characters
 			rangedWeapon.baseDamage.electric.damageValue = 1;
 			rangedWeapon.baseDamage.burning.damageValue = 1;
 			rangedWeapon.addFlag(DamageFlag.LASER);
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
 			this.rangedWeapon.attackNoun = "laser beam";
 			this.rangedWeapon.hasRandomProperties = true;
 			
@@ -193,7 +193,7 @@ package classes.Characters
 			{
 				output(" A spray of black oil shoots out of " + uniqueName + " and splatters across " + (target is PlayerCharacter ? "you" : target.a + target.short) +", blinding " + (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) + ".");
 				
-				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
 			}
 		}
 		
@@ -208,7 +208,7 @@ package classes.Characters
 			else
 			{
 				output(" " + (target is PlayerCharacter ? "You" : "Kara") +" get" + (target is PlayerCharacter ? " your" : "s her") +" arm up in time to block the bite, but wince" + (target is PlayerCharacter ? "" : "s") +" in pain as the cyberhound's fangs sink into");
-				if (target is PlayerCharacter && target.isNude()) output(" you.");
+				if (target is PlayerCharacter && !target.hasArmor()) output(" you.");
 				else if (target is PlayerCharacter) output(" your [pc.armor].");
 				else output(" her arm.");
 				

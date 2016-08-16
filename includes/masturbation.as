@@ -3071,7 +3071,7 @@ public function shipShowerFappening(scene:String = ""):void
 		
 		n = rand(pc.totalVaginas());
 		
-		output("You lick your lips as you eye the shower nozzle. It’s currently sitting in its dock, but all it takes is reaching up and pulling it out to get it in your [pc.hand]. You can already feel [pc.eachVagina] starting to moisten as you bring the nozzle down, the spray washing over your belly. Your free hand spreads your nether lips, so that when the water finally reaches its target you feel the spray focused on your bared [pc.vaginaColor " + n + "]. You hold it there, moaning at the water striking your clit");
+		output("You lick your lips as you eye the shower nozzle. It’s currently sitting in its dock, but all it takes is reaching up and pulling it out to get it in your [pc.hand]. You can already feel [pc.eachVagina] starting to moisten as you bring the nozzle down, the spray washing over your belly. Your free hand spreads your nether lips, so that when the water finally reaches its target you feel the spray focused on your bared [pc.vaginaColor " + n + "] [pc.vaginaNoun " + n + "]. You hold it there, moaning at the water striking your clit");
 		if (pc.vaginas[n].clits != 1) output("s");
 		output(" like a hundred rapidly-tapping fingers, slowly moving the shower head closer and closer until the tip slips inside you with a satisfied gasp. The sensations of the individual streams disappear now, replaced with a constant flooding pressure that forces its way inside you.");
 		output("\n\nYou let out a long, sultry groan, water spurting out around the shower head now buried in your succulent snatch.");

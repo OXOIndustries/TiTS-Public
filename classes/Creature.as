@@ -1806,6 +1806,15 @@
 				case "cockOrStraponFull":
 					buffer = cockOrStrapon(arg2,1);
 					break;
+				case "hardlightCock":
+					buffer = cockOrStrapon(-1,0);
+					break;
+				case "hardlightCockNoun":
+					buffer = cockOrStrapon(-1,-1);
+					break;
+				case "hardlightCockFull":
+					buffer = cockOrStrapon(-1,1);
+					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
 					break;
@@ -4866,6 +4875,7 @@
 			if(hasLegFur()) noun += "fur";
 			else if(hasLegFlag(GLOBAL.FLAG_SCALED) || skinType == GLOBAL.SKIN_TYPE_SCALES) noun += "scales";
 			else if(hasLegFlag(GLOBAL.FLAG_CHITINOUS) || skinType == GLOBAL.SKIN_TYPE_CHITIN) noun += "chitin";
+			else if(skinType == GLOBAL.SKIN_TYPE_BARK) noun += "bark";
 			else if(legType == GLOBAL.TYPE_GOOEY || skinType == GLOBAL.SKIN_TYPE_GOO) noun += "goo";
 			else if(hasLegFlag(GLOBAL.FLAG_FEATHERED)) noun += "feathers";
 			else noun += "skin";
@@ -5284,15 +5294,15 @@
 		}
 		public function oneTailDescript():String
 		{
-			if (tailCount == 0) return "ERROR: No tails!";
+			if (tailCount <= 0) return "ERROR: No tails!";
 			else if (tailCount == 1) return "your " + tailDescript();
-			return "one of your " + tailDescript();
+			return "one of your " + plural(tailDescript());
 		}
 		public function eachTailDescript():String
 		{
-			if (tailCount == 0) return "ERROR: No tails!";
+			if (tailCount <= 0) return "ERROR: No tails!";
 			else if (tailCount == 1) return "your " + tailDescript();
-			return "each of your " + tailsDescript();
+			return "each of your " + plural(tailDescript());
 		}
 		public function tailsDescript():String {
 			if(tailCount == 1) return tailDescript();

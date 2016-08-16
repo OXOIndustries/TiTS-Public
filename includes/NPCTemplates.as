@@ -4,6 +4,7 @@
 	
 	prepChar(justUpdate, "CELISE", Celise);
 	prepChar(justUpdate, "RIVAL", Rival);
+	prepChar(justUpdate, "PC_BABY", PlayerOffspring);
 	prepChar(justUpdate, "GEOFF", Geoff);
 	prepChar(justUpdate, "FLAHNE", Flahne);
 	prepChar(justUpdate, "ZILPACK", ZilPack);

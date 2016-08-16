@@ -299,6 +299,15 @@ package classes.Resources.Busts
 		public var Bust_VI_LARGE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vi_large_nude.png", mimeType = "image/png")]
 		public var Bust_VI_LARGE_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl.png", mimeType = "image/png")]
+		public var Bust_ZIL_CALLGIRL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl_cum.png", mimeType = "image/png")]
+		public var Bust_ZIL_CALLGIRL_CUM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl_pregnant.png", mimeType = "image/png")]
+		public var Bust_ZIL_CALLGIRL_PREG:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl_pregnant_cum.png", mimeType = "image/png")]
+		public var Bust_ZIL_CALLGIRL_PREG_CUM:Class;
 
 		CONFIG::IMAGEPACK
 		{
@@ -586,6 +595,15 @@ package classes.Resources.Busts
 			public var Full_VI_LARGE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi_large_nude.png", mimeType = "image/png")]
 			public var Full_VI_LARGE_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl.png", mimeType = "image/png")]
+			public var Full_ZIL_CALLGIRL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl_cum.png", mimeType = "image/png")]
+			public var Full_ZIL_CALLGIRL_CUM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl_pregnant.png", mimeType = "image/png")]
+			public var Full_ZIL_CALLGIRL_PREG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl_pregnant_cum.png", mimeType = "image/png")]
+			public var Full_ZIL_CALLGIRL_PREG_CUM:Class;
 		}
 	}
 

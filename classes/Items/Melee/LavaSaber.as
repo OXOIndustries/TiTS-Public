@@ -35,7 +35,7 @@
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
-			this.attackVerb = "burning slash";
+			attackVerb = "slash";
 			attackNoun = "burning slash";
 			
 			//Information

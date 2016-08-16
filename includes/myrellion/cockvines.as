@@ -24,6 +24,8 @@ public function adultCockvineEncounter():void
 	{
 		clearMenu();
 		
+		var isSlut:Boolean = (pc.isTreated() || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM) || (pc.libido() >= 50 && pc.lust() >= 33));
+		
 		output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on, but when you glance downwards momentarily you are glad you did. You jerk to an immediate halt, staring at the thick, tubular, organic object sprawled out from a crevice across your path.");
 
 		// First Encounter
@@ -41,7 +43,7 @@ public function adultCockvineEncounter():void
 			output("\n\nThe thick snake-like thing suddenly rears and grabs at your [pc.legOrLegs]; you jump back in the nick of time. Rippling and bobbing agitatedly in the dim light now, you can see it is some sort of lithe, green tentacle with a blunt, purple head, replete with a moist, horizontal slit across the top. It is inexpressibly obscene and your eye is drawn to the thickening end disappearing into the crevice, from which more of these penis-vines are sliding into view. You can only imagine what the main body of this thing looks like: undoubtedly if it had managed to grab you, you would have found out.");
 
 			// Female Treated/Bothrioc perked/whatever slut perks
-			if (pc.isTreated() || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM))
+			if (isSlut)
 			{
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock to you – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel... you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 
@@ -71,7 +73,7 @@ public function adultCockvineEncounter():void
 			output("\n\nThe thick snake-like thing suddenly rears and grabs at your [pc.legOrLegs], but you are ready for it and jump back easily. The lithe, green tentacle with its blunt, purple head ripples and bobs agitatedly in the dim light now; you hear the slithering, swampy sound of more of it emerging from its crevice nest, rustled into action.");
 			
 			// Female Treated/Bothrioc perked/whatever slut perks
-			if (pc.isTreated() || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM))
+			if (isSlut)
 			{
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel... you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 

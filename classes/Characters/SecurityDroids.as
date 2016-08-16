@@ -48,7 +48,7 @@ package classes.Characters
 			rangedWeapon.baseDamage.electric.damageValue = 1;
 			rangedWeapon.baseDamage.burning.damageValue = 1;
 			rangedWeapon.addFlag(DamageFlag.LASER);
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
 			this.rangedWeapon.attackNoun = "laser beam";
 			this.rangedWeapon.hasRandomProperties = true;
 			
@@ -179,7 +179,7 @@ package classes.Characters
 		{
 			//Laser Barrage
 			//Lots of moderate laser attacks
-			output("Several of the drones lock onto you and let loose with a hail of laser bolts.");
+			output("Several of the drones lock onto " + ((target is Anno) ? "your ausar friend" : "you") + " and let loose with a hail of laser bolts.");
 			
 			var attacks:int = 2 + rand(2);
 
@@ -205,13 +205,18 @@ package classes.Characters
 			// Heavy attack
 			if (rangedCombatMiss(this, target))
 			{
-				output(" You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast");
-				if (kGAMECLASS.silly) output(" to the, uh, face");
-				output(".");
+				if(target is Anno) output(" Anno quickly dodges to the side, just in time to avoid the energy blast.");
+				else
+				{
+					output(" You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast");
+					if (kGAMECLASS.silly) output(" to the, uh, face");
+					output(".");
+				}
 			}
 			else
 			{
-				output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
+				if(target is Anno) output(" Anno staggers back as the heavy laser bolt slams into her with a sizzling noise--ouch!");
+				else output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
 
 				applyDamage(new TypeCollection( { burning: 20, electric:10 }, DamageFlag.LASER), this, target);
 			}
@@ -226,11 +231,13 @@ package classes.Characters
 			if(aim()/2 + rand(20) + 6 > target.reflexes()/2 + 10 && !target.hasStatusEffect("Blinded") && !target.hasBlindImmunity())
 			{
 				target.createStatusEffect("Blinded",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
-				output(" You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>!");
+				if(target is Anno) output(" Anno wasn’t able to avoid it in time as the flash grenade goes off with a deafening BANG, leaving her <b>blinded</b>!");
+				else output(" You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>!");
 			}
 			else
 			{
-				output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+				if(target is Anno) output(" Anno looks away just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+				else output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
 			}
 		}
 	}

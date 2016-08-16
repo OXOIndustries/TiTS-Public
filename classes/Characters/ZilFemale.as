@@ -36,7 +36,7 @@
 			
 			this.rangedWeapon.attack = 1;
 			this.rangedWeapon.longName = "dart";
-			this.rangedWeapon.attackVerb = "dart";
+			this.rangedWeapon.attackVerb = "shoot";
 			this.rangedWeapon.attackNoun = "dart";
 			this.rangedWeapon.hasRandomProperties = true;
 			
@@ -279,7 +279,7 @@
 			
 			for (var i:int = 0; i < 3; i++)
 			{
-				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 				output("\n");
 			}
 		}

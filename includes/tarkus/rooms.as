@@ -844,7 +844,7 @@ public function initTarkusRooms():void
 	//#56 IRON\nVALLEY
 	rooms["256"] = new RoomClass(this);
 	rooms["256"].roomName = "IRON\nVALLEY";
-	rooms["256"].description = "Sun glitters on the few places that these plates haven't been obscured by rust and corrosion, occasionally forcing you to squint your eyes. The further south you go, the narrower the space between the ridges grows. In the space of a few hundred steps, the walls of metal have all but closed together. The end not far ahead, but the gap between them is filled with dozens of smaller, erosion-sharpened slabs. There's little reason to brave such a dangerous path without some foreknowledge as to what lies beyond....";
+	rooms["256"].description = "Sun glitters on the few places that these plates haven't been obscured by rust and corrosion, occasionally forcing you to squint your eyes. The further south you go, the narrower the space between the ridges grows. In the space of a few hundred steps, the walls of metal have all but closed together. They end not far ahead, but the gap between them is filled with dozens of smaller, erosion-sharpened slabs. There's little reason to brave such a dangerous path without some foreknowledge as to what lies beyond....";
 	rooms["256"].runOnEnter = rustRidgesEncounters;
 	rooms["256"].northExit = "255";
 	rooms["256"].planet = "PLANET: TARKUS";
@@ -968,7 +968,7 @@ public function initTarkusRooms():void
 	//#65 RUST\nFIELDS
 	rooms["265"] = new RoomClass(this);
 	rooms["265"].roomName = "RUST\nFIELDS";
-	rooms["265"].description = "The rust fields come to and end here, bordering on the edge of the scything glades. You can see how the glades get their name - the area is filled with silvery, tree-like plants, only the branches are tipped with sharp blades. As you watch, the wind carries a plastic bag into the side of one. It's impaled in a half-dozen places in seconds. There \"trees\" are too thick to risk travel to the east, and a mound of detritus to the north prevents movement that way.";
+	rooms["265"].description = "The rust fields come to and end here, bordering on the edge of the scything glades. You can see how the glades get their name - the area is filled with silvery, tree-like plants, only the branches are tipped with sharp blades. As you watch, the wind carries a plastic bag into the side of one. It's impaled in a half-dozen places in seconds. The “trees” are too thick to risk travel to the east, and a mound of detritus to the north prevents movement that way.";
 	rooms["265"].runOnEnter = rustPlainsEncounters;
 	rooms["265"].southExit = "266";
 	rooms["265"].westExit = "260";

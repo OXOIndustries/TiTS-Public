@@ -111,6 +111,8 @@ public function useItem(item:ItemSlotClass):Boolean
 // A call with just an item will 
 public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {
+	showName("");
+	
 	// If we're looking at an equippable item, equip it
 	if (isEquippableItem(item))
 	{
@@ -347,6 +349,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	//Emmy magic!
 	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
 	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
+	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
 	
 	// Apply and destroy coupons!
 	var usedCoupon:Boolean = false;

@@ -266,7 +266,7 @@
 			// More complex target selection to leverage some of Annos abilities
 			for (var i:int = 0; i < hostileCreatures.length; i++)
 			{
-				if (hostileCreatures[i].hasStatusEffect("Stunned") || hostileCreatures[i].hasStatusEffect("Blinded"))
+				if ((hostileCreatures[i].hasStatusEffect("Stunned") || hostileCreatures[i].hasStatusEffect("Blinded")) && !hostileCreatures[i].isDefeated())
 				{
 					target = hostileCreatures[i] as Creature;
 					bSneak = true;
@@ -325,6 +325,7 @@
 				{
 					addStatusValue("Grappled", 1, 1);
 				}
+				output("\n");
 			}
 		}
 		

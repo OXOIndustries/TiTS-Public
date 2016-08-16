@@ -424,7 +424,7 @@ public function initTavrosRooms():void
 	//9016
 	rooms["9016"] = new RoomClass(this);
 	rooms["9016"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["9016"].description = "The cold metal flooring gives way to a high-dollar screen under your [pc.feet], advertising the latest “Sphinxes of Arachnu” flick, subtitled, “This Time, It’s Purrsonal.” It looks like the kind of movie that spent half its budget on special effects and the other half on feminine eye-candy. You doubt they spend more than twenty credits on the script.";
+	rooms["9016"].description = "The cold metal flooring gives way to a high-dollar screen under your [pc.feet], advertising the latest “Sphinxes of Arachnu” flick, subtitled, “This Time, It’s Purrsonal.” It looks like the kind of movie that spent half its budget on special effects and the other half on feminine eye-candy. You doubt they spent more than twenty credits on the script.";
 	rooms["9016"].planet = "TAVROS STATION";
 	rooms["9016"].system = "SYSTEM: KALAS";
 	rooms["9016"].westExit = "9017";
