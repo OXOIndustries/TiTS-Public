@@ -2187,7 +2187,7 @@ public function deck13BoostAnno():void
 	
 	output("\n\nA moment passes. A long moment. ");
 	
-	output("\n\nJust as you’re starting to get worried, you hear a loud CLICK from the door, followed by loud rusty squeal as the old door slides open. Behind it, Anno’s beaming. <i>“Fuck yeah! Teamwork!”</i> she cheers, following up her exclamation with a high five.");
+	output("\n\nJust as you’re starting to get worried, you hear a loud CLICK from the door, followed by a loud rusty squeal as the old door slides open. Behind it, Anno’s beaming. <i>“Fuck yeah! Teamwork!”</i> she cheers, following up her exclamation with a high five.");
 
 	deck13ArmoryEntry();
 }
