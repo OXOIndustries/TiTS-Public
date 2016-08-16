@@ -2367,7 +2367,7 @@ public function deck13ShieldControlFunc():Boolean
 		clearOutput();
 		output("Oh shit, oh shit, oh shit. <i>“ANNO!”</i> you scream, leaping through the hole in the bulkhead and into the darkness below...");
 		
-		output("\n\nYou land with a splash. You feel like you fell forever, that you should have splattered all over the deck below... but instead, you scramble up amid a floor full of... shit, you can’t see! The room’s pitch-black, but you <i>feel</i> something gel-like squirming around your [pc.feet], as if you’d landed in a pool full of gelatin. It’s only a few inches deep, though, and you’re able to stand without too much trouble despite being bit unsteady with this squirming goop all around you, below your [pc.feet]. ");
+		output("\n\nYou land with a splash. You feel like you fell forever, that you should have splattered all over the deck below... but instead, you scramble up amid a floor full of... shit, you can’t see! The room’s pitch-black, but you <i>feel</i> something gel-like squirming around your [pc.feet], as if you’d landed in a pool full of gelatin. It’s only a few inches deep, though, and you’re able to stand without too much trouble despite being a bit unsteady with this squirming goop all around you, below your [pc.feet]. ");
 		
 		output("\n\n<i>“Anno!”</i> you repeat, desperately flailing your hands around in the dark.");
 		
