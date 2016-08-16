@@ -388,6 +388,8 @@ public function lieveTalkMenu():void
 	addButton(6, "Trench Wives", lieveTalkTrenchWives, undefined, "Trench Wives", "Ask about Lieve's harem, and Trench Wives in general.");
 
 	addButton(7, "Fed.Army", lieveTalkFedArmy, undefined, "Federation Army", "Have Lieve tell you a little about the Scarlet Federation's military.");
+
+	addButton(10, "Probe", lieveTalkProbe, undefined, "Steele Tech Proble", "Lieve's a scout, right? Maybe she knows something about where your dad's probe ended up.");
 	
 	//9999 = if has talked to Jim's Warmedic ant about "Her Past"
 	if (flags["LIEVE_TALK_THEWAR"] != undefined && (9999 == 0 || CodexManager.hasViewedEntry("Red Myr"))) addButton(8, "Citizenship", lieveTalkCitizenship, undefined, "Citizenship", "Ask Lieve about Federal Citizenship. From what you understand, it's very different from how the Confederate government handles things.");
@@ -815,6 +817,28 @@ public function lieveTalkFedArmy():void
 	lieveTalkMenu();
 	addDisabledButton(7, "Fed.Army");
 }
+
+public function lieveTalkProbe():void
+{
+	clearOutput();
+	lieveHeader();
+	author("Neoptolemus");
+
+output("<i>“I’m looking for an offworld probe that crash landed somewhere around here.”</i> You explain to her. <i>“Have you or any of the other scouts seen anything like that out in the tunnels?”</i>");
+
+output("\n\nLieve considers this for a moment. <i>“My unit certainly hasn’t recovered any offworld artifacts, but there was something...”</i> she trails off and turns around to rifle through a bag lying against the bunker wall. A moment later Lieve straightens back up and unfolds a battered map. You can’t make out most of it, but from the general area and the mass of scribbled annotations, you guess that the Myr scouts use it to record their discoveries in the caverns. <i>“There we go, just before the ceasefire there was some sort of explosion west of here.”</i>");
+
+output("\n\n<i>“Command was worried the Golds had come up with some kind of new secret weapon.”</i> She grimaces. <i>“Sounds stupid now, but after the poison gas, we were all nervous about that. Anyway, we did some reconnaissance there. Something had punched down through a couple of layers of caverns, but other than that there wasn’t much to see.”</i>");
+
+output("\n\nYou nod encouragingly, this could be what you’re looking for. Those probes certainly looked like they were designed to take a heavy beating.");
+
+output("\n\n<i>“If you really want to check it out for yourself, head south west of here, you’ll find a ledge you can rappel down to reach the deep caverns. But you want to be prepared. Bad as it out there,”</i> Lieve points towards the unoccupied tunnels that stretch away outside the pillbox. <i>“It’s even worse in the deep caverns.”</i>");
+
+	processTime(10 + rand(5));
+	lieveTalkMenu();
+	addDisabledButton(10, "Probe");
+}
+
 
 public function lieveVenomToggle():void
 {

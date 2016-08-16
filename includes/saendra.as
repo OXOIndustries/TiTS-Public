@@ -314,6 +314,8 @@ public function saendraSexMenu():void
 			addDisabledButton(11, "Ride Cock", "Ride Cock", "Maybe you should talk to Saendra about various other... improvements available these days. Maybe she could pick up a cock and you could get yourself a vagina?");
 		}
 	}
+
+	if (pc.hasTailCock() && pc.hasParasiteTail() && pc.hasCock()) addButton(7, "Tailcock", saendraTailcockFuck, undefined, "Tailcock Titfuck", "Get a titfuck for your tailcock from Saendra.");
 	
 	addButton(14, "Leave", function():void {
 		saendraAffection( -5);
@@ -1697,6 +1699,61 @@ public function saendraRidesYouCowgirlStyle():void
 	
 	output("\n\nMoments later, your lover collapses atop you, body quivering as you fill her ass with more and more of your potent seed. Little spurts squirt back out of her, smearing onto your [pc.legOrLegs] and staining her sheets with frothy cream. You wrap your arms around her shoulders, holding the beautiful girl close as your orgasms slowly subside, fading into the blissful afterglow of sexual release, and then into a peaceful sleep, your [pc.cock "+ selCock +"] still fully buried inside Saen’s tight, spunk-filled ass.");
 
+	processTime(30+rand(15));
+	clearMenu();
+	addButton(0, "Next", saendraPostFuckscene);
+}
+
+public function saendraTailcockFuck():void
+{
+	saenHeader(true);
+	author("Archangel");
+	
+	output("<i>“Well...”</i> You say, grunting and pushing yourself up so you’re straddling her, before you bring your tailcock over your head like a scorpion’s stinger, till it’s hanging over her face. ");
+
+	if(pc.isBimbo()) output("<i>“Check this out, Saen! I got this thing a while ago, and I totally love it! It’s soooo amazing! Wanna try it out?”</i> you say, giggling and poking one of her breasts with the tip of your [pc.tailCock].}");
+	else if(pc.isBro()) output("<i>“I got a new toy for you to play with, slut!”</i> you say, lightly smacking the side of her face with your [pc.tailCock].");
+	else if(pc.isAss()) output("<i>“I got a new toy for you to play with, slut!”</i> you say, lightly smacking the side of her face with your [pc.tailCock].");
+	else if(pc.isMischievous()) output("<i>“How about I ‘prick’ you?”</i> you say, grinning. Saendra rolls her eyes and groans at your pun as you wag your [pc.tailCock] above her.");
+
+	output("\n\n <i>“Whoa. Where did you get that thing?”</i> she says, sitting up and grabbing your tailcock, pulling it closer for a better look. You explain how you had seen the parasite while wandering around Myrellion, chased it, and decided to get it to join with you rather than squish it into slime. She nods her understanding and lies back down. <i>“I don’t mind playing around with it, but that isn’t going inside me, and there’s nothing you can say or do to change that!”</i> she warns, smacking your [pc.butt] with her tails.  Well, it’s a partial victory, you suppose.");
+
+	output("\n\nSaen looks up at you, rubbing her chin with her hand, as if wondering what to do with you.");
+	if(pc.balls > 0) output("You feel a ticklish feeling under your [pc.balls] and look down to see the tips of Saendra’s tails swishing back and forth against your [pc.sack]. You look back up at her to see a grin on her face.");
+
+	output("\n\n<i>“I got an idea. How about...”</i> she wraps her soft, fluffy tails around your [pc.tailCock],sheathing them within a warm, furry prison. <i>“I’ll just get you off like this,”</i> she says, grinning.");
+
+	output("\n\n<i>“Actually, I got a better one,”</i> you say, flexing the muscles of your [pc.tailCock] and pushing past the confines of her tail to lodge the upper section of your [pc.tailCock] right between her hefty tits. <i>“Why not both?”</i> you add, rapidly wiggling your tailcock back and forth, motorboating her breasts and giving yourself both an impromptu titfuck and a great show of jiggling titflesh.");
+
+	output("\n\n <i>“Wha-? Hey, stop it! Ah!”</i> Saen yelps, mashing her tits together and effectively stopping any further movement. She grins up at you. <i>“Next time, a little warning, you ass!”</i> she says, playfully frowning up at you. You stick your tongue out at her and apologize.");
+
+	output("\n\n<i>“Well, now that you’ve so nicely apologized, we can move on to the main course!”</i> she teases. She wraps her tails around the middle and lower sections of your [pc.tailCock], enclosing them in a warm, tight, furry sheath, with the upper portion of your [pc.tailCock] still trapped in the valley of her soft cleavage. Saendra then starts to slowly jerk you off with her tails, almost milking you, you think, with the way her tails tighten around your [pc.tailCock].");
+
+	output("\n\nYou let out a slight groan at the sensation, and a bead of precum rolls off the top of your [pc.tailCock]. Saen wiggles her shoulders, using your own pre as lube mixed with a quick dollop of her own spit.");
+
+	output("\n\nYou shudder as you feel the wet fur and soft titflesh slide around your [pc.tailCock]. It gets even better when she finally begins to use her tails in earnest, the furry appendages making your [pc.tailCock] feel like it’s in a very long, very soft onahole!");
+
+	output("\n\nDetermined to get her off too, you spit on the fingers of one hand, then reach down and roughly shove them into her ass and pussy without warning.")
+	if (saendra.hasCock()) output(" With your other hand, your grab her kitty dick, already hard, and spit into it before pumping up and down.}");
+
+	output("\n\nSaendra gasps, her mouth falling open in a perfect ‘O’ of pleasure and surprise. <i>“Oh you little-”</i> is all she manages to get out before you start thrusting your fingers in and out of her sodden box and tight ass")
+	if (saendra.hasCock()) output(" and jerking her spiny cock off")
+	output(". She makes cute little gasps and moans, followed by a loud yelp as you smack her ass and wag your [pc.tailCock], reminding her that you need a little loving too. You’re pretty sure you hear her grumble something that sounds suspiciously like ‘asshole’ before she goes back to work.");
+
+	output("\n\nIt isn’t long before you feel the oh-so-familiar twitch in your [pc.balls]. In response, you start thrusting your fingers in and out of her even faster.");
+	if (saendra.hasCock()) output(" Her cock starting to twitch too, matching your own rising orgasmic motions.");
+	output(" Her moans and gasps increase in pitch, and her tails go into overdrive, pumping so fast that you feel like you’re fucking a real pussy!");
+
+	output("\n\nIt’s not long before the urge is too much for you to bear. With a loud groan, you stick your fingers as far as they’ll go into Saendra’s ass and pussy and let yourself cum. Your [pc.cocks] spurt ropes of [pc.cumType] into the air, most of which falls on Saendra, while your [pc.tailCock] blasts [pc.cumType] directly into her face. At this point, the stimulation and sudden, overwhelming musk of your orgasm plastering her face is too much: with a yowl, Saendra finally lets loose and joins you, adding another load to the puddle growing on her bed and body.");
+
+	output("\n\nYou both stay there for a few seconds, panting, until Saen finally says <i>“Next time, we’re doing this in the shower.”</i>");
+
+	output("\n\nYou look up at her to say something, but the moment you notice her face, you burst out laughing. With all the cum you spurted out, it looked like someone had thrown a pie onto her face. Albeit a very [pc.cumFlavor] pie. Too wiped out to do much else, you simply flop on top of her, the cum between your bodies squishing and squelching as Saendra moves around to accommodate you on the bed.");
+
+	output("\n\nYou distinctly hear what sounds like <i>“Clean up nightmare”</i> before you fall asleep, hugging your bitchkitten tight.");
+
+	pc.orgasm();
+	saendra.orgasm();
 	processTime(30+rand(15));
 	clearMenu();
 	addButton(0, "Next", saendraPostFuckscene);
