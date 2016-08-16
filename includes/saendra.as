@@ -1709,7 +1709,7 @@ public function saendraTailcockFuck():void
 	saenHeader(true);
 	author("Archangel");
 	
-	output("<i>“Well...”</i> You say, grunting and pushing yourself up so you’re straddling her, before you bring your tailcock over your head like a scorpion’s stinger, till it’s hanging over her face. ");
+	output("<i>“Well...”</i> You say, grunting and pushing yourself up so you’re straddling her, before you bring your tailcock over your head like a scorpion’s stinger, until it’s hanging over her face. ");
 
 	if(pc.isBimbo()) output("<i>“Check this out, Saen! I got this thing a while ago, and I totally love it! It’s soooo amazing! Wanna try it out?”</i> you say, giggling and poking one of her breasts with the tip of your [pc.tailCock].}");
 	else if(pc.isBro()) output("<i>“I got a new toy for you to play with, slut!”</i> you say, lightly smacking the side of her face with your [pc.tailCock].");
@@ -1719,7 +1719,7 @@ public function saendraTailcockFuck():void
 	output("\n\n <i>“Whoa. Where did you get that thing?”</i> she says, sitting up and grabbing your tailcock, pulling it closer for a better look. You explain how you had seen the parasite while wandering around Myrellion, chased it, and decided to get it to join with you rather than squish it into slime. She nods her understanding and lies back down. <i>“I don’t mind playing around with it, but that isn’t going inside me, and there’s nothing you can say or do to change that!”</i> she warns, smacking your [pc.butt] with her tails.  Well, it’s a partial victory, you suppose.");
 
 	output("\n\nSaen looks up at you, rubbing her chin with her hand, as if wondering what to do with you.");
-	if(pc.balls > 0) output("You feel a ticklish feeling under your [pc.balls] and look down to see the tips of Saendra’s tails swishing back and forth against your [pc.sack]. You look back up at her to see a grin on her face.");
+	if(pc.balls > 0) output(" You feel a ticklish feeling under your [pc.balls] and look down to see the tips of Saendra’s tails swishing back and forth against your [pc.sack]. You look back up at her to see a grin on her face.");
 
 	output("\n\n<i>“I got an idea. How about...”</i> she wraps her soft, fluffy tails around your [pc.tailCock],sheathing them within a warm, furry prison. <i>“I’ll just get you off like this,”</i> she says, grinning.");
 
