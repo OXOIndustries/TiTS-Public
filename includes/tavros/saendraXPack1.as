@@ -872,6 +872,7 @@ public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 public function sx1ShotguardPCVictory():void
 {
 	clearOutput();
+	showBust("MERCGUARD");
 	showName("VICTORY:\nVOID PIRATE");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
@@ -909,6 +910,7 @@ public function sx1ShotguardPCVictory():void
 public function sx1SkipShotguard():void
 {
 	clearOutput();
+	showBust("TECHGUARD");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
 
@@ -927,6 +929,7 @@ public function sx1SkipShotguard():void
 public function sx1ShotguardPCLoss():void
 {
 	clearOutput();
+	showBust("MERCGUARD");
 	showName("DEFEAT:\nVOID PIRATE");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
@@ -958,6 +961,7 @@ public function sx1InitTechguardFight():void
 public function sx1TechguardPCVictory():void
 {
 	clearOutput();
+	showBust("TECHGUARD");
 	showName("VICTORY:\nVOID TECHIE");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
@@ -978,6 +982,7 @@ public function sx1TechguardPCVictory():void
 public function sx1TechguardPCLoss():void
 {
 	clearOutput();
+	showBust("TECHGUARD");
 	showName("DEFEAT:\nVOID TECHIE");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
@@ -1004,6 +1009,7 @@ public function sx1TechguardPCLoss():void
 public function sx1TechguardPCLossII():void
 {
 	clearOutput();
+	clearBust();
 	showName("DEFEAT:\nVOID TECHIE");
 
 	currentLocation = "MERCHANT'S THOROUGHFARE";
