@@ -80,6 +80,10 @@ public function dryadMeeting():void
 		if(pc.hasCuntTail() && pc.tailCuntCapacity() >= pp.cockVolume(0)) addButton(4,"Tail Milk",tailCuntDryadFun,undefined,"Tail Milk","Use your tail to milk her needy member.");
 		else if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You can't fit her inside your cunt tail.");
 		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
+		//Dryad Commission – Facefuck/Deepthroat
+		//[SuckMe]
+		if(pc.hasCock()) addButton(5,"Suck Me",dryadFaceFuckSpecial,undefined,"Suck Me", "Make her suck you off. She's sexed up enough she might just cum from it.");
+		else addDisabledButton(5,"Suck Me","Suck Me","You need a dick for her to suck for this.");
 	}
 	else
 	{
@@ -437,6 +441,231 @@ public function postCuntTailDryad():void
 	processTime(120+rand(60));
 	restHeal();
 	IncrementFlag("DRYAD_FUCKED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Dryad Commission – Facefuck/Deepthroat
+//[SuckMe]
+public function dryadFaceFuckSpecial():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+
+	if(flags["DRYAD_FACEFUCKED"] == undefined)
+	{
+		output("You");
+		if(!pc.isCrotchExposed()) output(" pull down your [pc.lowerGarments] and");
+		output(" tell her to see if she can get off by sucking your dick. She looks surprised for a moment, but shrugs and sinks to her knees.");
+		output("\n\n<i>“I think pretty much anything will get me off like this,”</i> she murmurs, wrapping a hand around your [pc.cock], <i>“especially something that looks this good!”</i>");
+	}
+	else
+	{
+		output("\n\nYou");
+		if(!pc.isCrotchExposed()) output(" pull down your [pc.lowerGarments] and");
+		output(" tell her to suck your dick. She’s all too eager to repeat the experience, immediately sinking to her knees and reaching out a hand for your [pc.cock].");
+		output("\n\n<i>“I hope you’re gonna give me as much as last time!”</i>");
+	}
+	output("\n\nShe gives a lusty moan as she stretches her lips around your [pc.cockHead], dragging herself forward in the mud to slurp at your slit. A bead of precum lands on her tongue and she immediately begins sucking harder, bobbing her head until you decide to take control yourself.");
+	if(!pc.isTaur()) output("\n\nYou hold her head in place by her lightly-furred ears, and she quickly finds all she can do is play with the tip of your dick. She looks up at you while she runs her tongue over your slit again and again, pleasure radiating down your cock every time she does.");
+	else
+	{
+		output("\n\n<i>“Uh uh. You only get to play with the tip for now, girl. I’ll tell you when you can take the rest.”</i>");
+		output("\n\nShe’s receptive to the dominant assertion, and you tilt your head back while she labors away under your bulk, pleasure radiating from your cock while she runs her tongue over your slit again and again.");
+	}
+	output("\n\nBetween her gentle sucking and maddening coaxing by way of tonguing your urethra, it’s not long before you’re grunting and struggling not to just claim her throat. You groan out loud.");
+	output("\n\n<i>“Nnnfuck gonna cum, don’t stop licking!”</i>");
+
+	if(pc.cumQ() < 5000) 
+	{
+		output("\n\nHer eyes go wide when she feels you orgasm, [pc.cumFlavor] warmth landing on her tongue. She quickly recovers, lashing her tongue across your cockslit ");
+
+		if(pc.cumQ() >= 40) output("while she struggles to swallow down your loads before they spill from her lips. She springs a few leaks at the edges of her cheeks, the cum trailing down her face to drip onto her tits, but she does manage to swallow most of it.");
+		else 
+		{
+			output("to gather every single droplet of flavorful [pc.cumNoun].");
+			if(pc.cumQ() < 10) output(" There's not much there, but she clearly makes the most of it, noisily gulping around your cock in order to capture every single sperm.");
+			else output(" She playfully lets a rivulet escape the corner of her mouth to drip down to her tits, rubbing it into her nipple one-handed.");
+		}
+	}
+	else if(pc.cumQ() < 15000) output("\n\nHer eyes go wide when she feels you orgasm, [pc.cumFlavor] warmth landing on her tongue. She quickly recovers, lashing her tongue across your cockslit while she struggles to swallow down your loads before they spill from her lips. She springs a few leaks at the edges of her cheeks, and shortly after can’t keep up with your virile flow. Your jizz spurts out of her mouth, running down her chest and leaving it painted [pc.cumColor].");
+	else output("\n\nHer eyes go wide when she feels you orgasm, [pc.cumFlavor] warmth landing on her tongue. She tries to recover and swallow it all down, but she only manages a few cheek-straining gulps before your virile flow sends your jizz cascading down her tits and splattering to the ground, leaving her painted [pc.cumColor].");
+	output("\n\nShe’s panting through her nose, her cheeks flushed red with lust as she gulps down the last few spurts of seed. Time to take this up a notch.");
+
+	processTime(5);
+	pc.orgasm();
+
+	if(!pc.isTaur()) 
+	{
+		output("\n\nYou take her head in your grip, running a hand through her hair as you begin to thrust. She willingly lets you slide your cock into her throat, eagerly running her tongue along your dick and looking up at you with her big blue eyes. You grin down at the girl as you pull her down your length,");
+	}
+	else output("\n\nYou push forwards with your powerful tauric hips, your cock sliding into her throat as she eagerly runs her tongue along it. You sigh with satisfaction as her mouth travels down your length,");
+	//Dicksize <= 12:
+	if(pc.cocks[0].cLength() <= 12) output(" groaning when her lips kiss the base of your groin.");
+	else if(pc.cocks[0].cLength() <= 24) output(" groaning while she struggles to get your full length inside her throat.");
+	else output(" groaning while she struggles to get the first two feet of cock inside her throat.");
+	if(!pc.isTaur()) output(" You pull her back up and hilt yourself again, ");
+	else output(" You slide back slowly and then hilt yourself again, ");
+	output("slippery strands of spittle flying from her mouth every time you drag her down your length.");
+	output("\n\nHer back half begins to lift itself off the ground, her legs flexing and shaking every time your dick bulges her throat out. She’s definitely getting off to this, and hard. Her sloppy gurgles become wet moans around your cock, your thrusting intensifying until you’re basically just using her mouth as a warm fucktoy.");
+
+	output("\n\nOn a particularly deep thrust,");
+	if(!pc.isTaur()) output(" you watch her eyes roll back slightly ");
+	else output(" she cries out around your cock ");
+	output("as her back half seizes up. She groans, her cock vigorously painting the brush under her a pearlescent white while she vainly thrusts into the air. She continues to shudder while you fuck her gullet, her passage becoming increasingly easier to slide into as she acclimates to having you in her throat. By the time she’s stopped cumming, you’re almost ready to fill her with your spunk.");
+
+	output("\n\n<i>“Get ready to swallow!”</i>");
+
+	output("\n\nShe responds only by");
+	if(!pc.isTaur()) output(" looking up at you with half-lidded eyes, ");
+	else output(" moaning enthusiastically around your length, ");
+	output("waiting patiently until you bless her pliant mouth with a gift of hot jizz.");
+	if(!pc.isTaur()) output(" Seeing such a willing expression ");
+	else output(" Hearing such a willing expression of desire ");
+	output("you can’t help but oblige her,");
+	if(!pc.isTaur()) output(" grabbing her flowing red locks and pulling her roughly towards you. ");
+	else output(" thrusting as deep as you can before you cum. ");
+	output("\n\nYou grunt as the first spurt of spunk");
+	if(pc.cocks[0].cLength() <= 12) output(" splatters against the back of her throat, sliding into her stomach as she desperately swallows.");
+	else if(pc.cocks[0].cLength() <= 24) output(" sprays down her throat, rapidly jetting into her stomach.");
+	else output(" splashes straight into her stomach, ensuring she gets her fill.");
+	output(" Your length throbs between her lips, each load you give her accompanied by a lusty moan as it travels down to her stomach.");
+	if(!pc.isTaur()) output(" She struggles to keep looking up at you ");
+	else output(" She struggles to keep herself in place under you ");
+	output("as she cums her brains out, her back half spasmodically twitching as both her male and female organs shiver and pulse in sympathetic orgasm.");
+
+	processTime(5);
+	pc.orgasm();
+
+	output("\n\nJust watching her gets you riled up all over again, and by the time she’s stopped cumming you’re hard in her mouth. She gently bobs her head down your length, and you get the message. The slutty taurgirl might be getting off to this more than you are! The gene mods keep her almost perpetually frustrated, and fuck if she isn’t insatiable. You thrust back into the recesses of her pliable throat, jolting her head until she willingly holds it still for you.");
+	if(!pc.isTaur()) output(" She looks pretty dazed and her eyes are somewhat unfocused, ");
+	else output(" She seems pretty dazed under you after cumming so hard, ");
+	output("but given the twitching of her hindquarters she’s <i>more</i> than happy to have her face used like a cocksleeve.");
+
+	output("\n\nYou do so almost casually, raising your head in exultation while the dryad is sloppily dragged up and down your length. It’s not long before you feel another orgasm building up,");
+	if(!pc.isTaur()) output(" letting go of her hair ");
+	else output(" stopping your hip movements ");
+	output("to let her fuck her own face to get your cum. She does so with reckless abandon, sliding up and down your pole until she feels it start to thrum. She positions herself right at your tip so the first cheek-swelling load lands right on her tongue, swallowing greedily before she closes her eyes and smoothly buries your cock back in her throat, her tightness coaxing the rest of your spunk into her stomach. She cums the whole while, each load that bloats her throat matched by a splatter of jizz spewing from her cock hands-free.");
+
+	output("\n\nWhen she’s completely sure you’ve finished, she slides back up and begins licking the head of your cock again. Holy shit, you could be here all day if you let her have her way. Do you force her off or let her take control? If you let her take the lead, you’re pretty sure she’s not going to stop until you’re completely empty...");
+
+	processTime(10);
+	pc.orgasm();
+	IncrementFlag("DRYAD_FACEFUCKED");
+	IncrementFlag("DRYAD_FUCKED");
+	//[Force] [Let her]
+	clearMenu();
+	addButton(0,"Force Off",forceDryadOff);
+	addButton(1,"Let Her",letZeSuckingsCommence);
+}
+
+//[Force]
+public function forceDryadOff():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+	output("You pop yourself out of her lips before she can get you back to full hardness");
+	if(!pc.isCrotchExposed()) output(" and shove your dick back in your [pc.underGarments]");
+	output(", wagging your finger.");
+
+	output("\n\n<i>“Bad dryad. I have things to do too, you know. I can’t just stand here all day pumping cum into you,”</i> you chide her, <i>“as attractive as that prospect might be.”</i>");
+	output("\n\n<i>“Awww,”</i> Her ears droop as she hangs her head, but then she brightens up and smiles. <i>“Thanks anyway! You taste so good, and I’m feeling so much better.”</i>");
+
+	output("\n\nDamnit. You need to get out of here before you get hard again. Her brilliant smile and eager demeanor are making it difficult, but you sigh and turn away, giving her a wave as you depart.");
+	output("\n\n<i>“Come back any time, babe!”</i> she calls after you. You have a feeling you’ll see her again out in the jungle.");
+	processTime(1);
+	pc.lust(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Let her]
+public function letZeSuckingsCommence():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+	output("You shrug. What’s the worst that could happen, she swallows too much of your cum? You look down just in time to see her idly rubbing the blunt head of her own cock, collecting some of her own fresh cum and slathering it on your dick. She takes an experimental lick, then sucks you hard before pulling back.");
+	output("\n\n<i>“Oh god,”</i> she pants, grasping your ");
+	if(!pc.isTaur()) output("[pc.hips]");
+	else output("[pc.legs]");
+	output(", <i>“I can’t get enough of this! I’m cumming so fucking hard just from the feeling of it!”</i>");
+
+	output("\n\nShe immediately dives back onto your dick, messily slurping as hard as she can to get more cum out of you. The force is so great you find yourself taking footsteps backwards until you’re backed against a tree,");
+	if(!pc.isTaur()) 
+	{
+		output(" the dryad");
+		if(pc.cocks[0].cLength() <= 24) 
+		{
+			output("'s forehead butting into your [pc.stomach] with every deep suck.");
+			if(pc.balls > 1) output(" You feel her tongue slip out and massage the underside of your balls, impressive given how much of you is in her already. She <i>really</i> wants more.");
+		}
+		else
+		{
+			output("'s mouth sliding down your length. She can’t reach your base, but what she lacks in capacity she makes up for with enthusiasm, sucking and licking every little vein and bump down your massive cock.");
+		}
+	}
+	else
+	{
+		output(" your [pc.butt] being pressed into its bark as the dryad sucks you. You feel her hair brush along your underside with every motion,");
+		if(pc.cocks[0].cLength() <= 24) output(" her throat handling your full length almost effortlessly, her tongue snaking out to lick at your underside teasingly.");
+		else output(" her mouth sliding down your length. She can’t reach your base, but what she lacks in capacity she makes up for with enthusiasm, sucking and licking every little vein and bump down your massive cock.");
+	}
+
+	output("\n\nHer warm tongue and wet mouth rove all over your prick, slurping and sucking with all the subtlety of a wanton slut, a mixture of saliva and cum dripping down her chin onto her perky tits. She ceaselessly takes your throbbing dick into her throat, moaning frenziedly all the while. Under such rough treatment it’s not long before you find yourself moaning in orgasm, the swollen head of your cock throbbing in her mouth once more. She greedily hilts herself on your dick and drinks your cum down, swallowing loudly as her arms hold you around the ");
+	if(!pc.isTaur()) output("waist");
+	else output("belly");
+	output(". Her cock erupts under her stomach, hosing down the grass under your feet as she takes her fill of you.");
+
+	processTime(10);
+	pc.orgasm();
+
+	output("\n\nShe’s not nearly done with you yet though,");
+	if(!pc.isTaur()) output(" and you’re incredulous to find her lifting you, almost pushing you up the tree so that your legs are dangling in the air.");
+	else output(" her grip tightening around your midriff to stop you from moving at all.");
+	output(" You’re powerless to stop her either, as the sensations of her ravenous mouth wash over your cock trapped in her throat, all but incapacitating you with the pleasure. You can’t help but cry out the next time you cum, her sloppy facefucking earning her another batch of [pc.cumFlavor] jizz right into her stomach. She joins you in blissful, needy moans, the two of you vocalizing a cacophony of noise in the forest matched only by the wet sounds of the dryad hilting you in her over and over.");
+
+	output("\n\nConscious thought is wiped from your minds, two beasts in heat rutting in the wild, one dominantly taken by the other as a personal cum-pump. You buck and writhe in her grip, panting while an almost continuous stream of spunk is sucked straight from your [pc.balls]. Helpless to resist, you cum into her hungry mouth one orgasm after another. You have no idea how much time passes, unthinkingly ejaculating until, finally, you can give her no more. Your [pc.cock] flexes one last time in her throat as her eyes roll back, her giant underslung cock erupting once more, painting what little undrenched brush there was a pearly white. You sigh and go limp, body battered and mind tired by the fuck-frenzy ordeal the horny taur’s put you through.");
+	
+	processTime(10);
+	pc.orgasm();
+
+	if(!pc.isTaur()) output("\n\nThe dryad slowly lowers you, your legs collapsing out from under you the moment you’re on the ground.");
+	else output("\n\nThe dryad slowly slides off your cock, your legs collapsing the moment she’s not under you holding you up.");
+	output(" You’re a fucking mess, your eyes half-closed on the verge of unconsciousness and your mouth hanging open, drool running down your face. The dryad is in a similar condition, panting hard and dripping cum from both her cock and her mouth.");
+	if(pc.cumQ() < 30000) {}
+	else if(pc.cumQ() < 75000) output(" Her equine half’s belly is sagging slightly, full of the virile spunk you’ve pumped into her.");
+	else output(" Her equine half’s belly is sagging halfway to the ground, absolutely full of the virile spunk you’ve pumped into her.");
+	output(" She looks down at you and giggles.");
+
+	output("\n\n<i>“Sorry babe. I guess I got just a little bit carried away, but you just tasted sooo good,”</i> She smiles, rubbing her");
+	if(pc.cumQ() < 15000) output(" still-flat");
+	else if(pc.cumQ() < 30000) output(" slightly swollen");
+	else if(pc.cumQ() < 75000) output(" cum-stuffed");
+	else output(" prodigiously cum-stuffed");
+	output(" tummy. <i>“Thanks so much! If you’re always this delicious, you can spray your spunk into my mouth any time you want. If I’d cum any harder, I’d probably have blacked out!”</i>");
+
+	output("\n\nShe bends down and kisses you on the cheek before prancing off with a new spring in her step, her cute little tail flitting from side to side.");
+	if(pc.cumQ() >= 75000) output(" She has a little bit of trouble maneuvering when she’s so full of your spunk, though, and almost stumbles into a bush before recovering.");
+	output(" Your eyes slide shut, the roughness of her taking its toll on you. You lapse almost immediately into a dream of the dryad, cheerfully giggling as she does whatever she wants with your body.");
+
+	//30 minutes pass
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",dryadSuperCumSuckEpilogue);
+}
+
+public function dryadSuperCumSuckEpilogue():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+	output("You’re roused from your stupor by the call of a wild animal somewhere in the jungle. Probably best to get a move on, even if you’re still slightly sore from the horny taur’s treatment.");
+	if(!pc.isCrotchExposed()) output(" You gingerly place your dick back in your [pc.underGarments] and get up to continue your journey.");
+	else output(" You gingerly get up to continue your journey.");
+	processTime(25);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

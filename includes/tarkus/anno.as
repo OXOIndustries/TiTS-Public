@@ -3635,7 +3635,7 @@ public function annoxKaedeFuckThemCombine():void
 	annoSexed(1);
 	if (flags["KAEDE_FUCKED"] == undefined) flags["KAEDE_FUCKED"] = 0;
 	flags["KAEDE_FUCKED"]++;
-
+	IncrementFlag("ANNO_X_KAEDE_THREESOMED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -3714,6 +3714,7 @@ public function annoxKaedeService(inShop:Boolean = true):void
 	annoSexed(1);
 	if (flags["KAEDE_FUCKED"] == undefined) flags["KAEDE_FUCKED"] = 0;
 	flags["KAEDE_FUCKED"]++;
+	IncrementFlag("ANNO_X_KAEDE_THREESOMED");
 
 	processTime(20+rand(10));
 
