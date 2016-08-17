@@ -384,7 +384,7 @@ public function repeatNaynaApproach(backsies:Boolean = false):void
 		//Help her out routes to the earlier help her out offer.
 		clearMenu();
 		addButton(0,"Help Her Out",volunteerToHelp,true);
-		addButton(4,"Back",mainGameMenu);
+		addButton(14,"Back",mainGameMenu);
 		return;
 	}
 	//Took Quest
