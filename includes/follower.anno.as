@@ -3713,7 +3713,7 @@ public function annoCanDoShitSolo():void
 public function playAlongWithAnnoThreesome():void
 {
 	clearOutput();
-	showAnno();
+	showAnno(); //9999 needs lizard girl bust
 	author("Savin");
 	output("<i>“Yeah,”</i> you answer after a moment’s consideration, eyeing the two buxom beast-babes with growing lust. You signal to the bartender to get you a drink, all the while saying that you’re generally available for some fun.");
 	output("\n\nThe gryvain girl smiles and turns to you in a way that makes her ample curves stand out under her slinky black dress. <i>“Excellent. I’ve always wanted to chat with a brilliant scientist and a famous adventurer-magnate.”</i>");
@@ -3732,7 +3732,7 @@ public function dragonGurlAnnoThreesome():void
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
 	clearOutput();
-	showAnno();
+	showAnno(true); //9999 needs lizard girl nudebust
 	author("Savin");
 	output("A few minutes later and you’re ");
 	if(!pc.isNude() && !pc.isCrotchExposed()) output("spilling out of your [pc.clothes] and onto the bed");
