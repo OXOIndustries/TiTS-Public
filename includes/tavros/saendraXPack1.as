@@ -60,7 +60,7 @@ public function unlockSaendraXPackMail():void
 	clearBust();
 	author("Savin");
 
-	output("Your Codex beeps unexpectedly, alerting you to an incoming extranet message. When you pull your device out, you’re greeted by an message addressed from one <i>“FlyGirl@PhoenixCargo.net.”</i> No bonus points guessing who <i>that</i> is. You flip it open and start to read:");
+	output("Your Codex beeps unexpectedly, alerting you to an incoming extranet message. When you pull your device out, you’re greeted by a message addressed from one <i>“FlyGirl@PhoenixCargo.net.”</i> No bonus points guessing who <i>that</i> is. You flip it open and start to read:");
 	
 	output("\n\n<i>Hey, hero, are you anywhere near Tavros? Please say yes!</i> the message reads. <i>If you are, I could really use a hand. I’m on Deck 92, up in the construction wing. Expect trouble. Hope I see you soon!</i>");
 	

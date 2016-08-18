@@ -174,23 +174,11 @@ public function tamtamGetsPunkedByPCs():void
 public function liftStationEngineeringDeckBonusFunc():Boolean
 {
 	author("Savin");
-	if(flags["TAM_DISABLE_METHOD"] == undefined) output("RED, preventing you from descending.");
-	else output("GREEN, enabling you to take the elevator down to the rift station at the planet's core.");
-
-	output("\n\nTam-Tam is ");
-	if(flags["TAM_DISABLE_METHOD"] == undefined) output("hunched over her robotic hound, desperately trying to undo the damage you've done");
-	else if(flags["TAM_DISABLE_METHOD"] == 1) output("knocked out and chained up, her wrists affixed to one of the engines by a set of chains");
-	else 
-	{
-		if(flags["TAKEN_TAMWOLF"] == undefined) output("snoozing peacefully, taking herself a little cat-nap atop her damaged attack drone, enjoying the afterglow of your... intimate intervention.");
-		else output("snoozing peacefully, taking herself a little cat-nap on the floor, enjoying the afterglow of your... intimate intervention.");
-	}
-
+	
 	//Upon entering, first time:
 	if(flags["TAM_DISABLE_METHOD"] == undefined)
 	{
 		clearOutput();
-		author("Savin");
 		showBust("TAMTAM");
 		showName("\nTAM");
 		output("You quietly push open the door to Engineering, leading with your [pc.rangedWeapon], wary of ambush. A short, curved flight of stairs take you down just below the surface, into a room full of gently-rumbling machines, powering the Lift Station... but not the lift, you see. You take a moment to scan the room before your eyes alight on the lift control panel, currently blinking red... and right below it sits Tam.");
@@ -201,6 +189,20 @@ public function liftStationEngineeringDeckBonusFunc():Boolean
 		else addDisabledButton(1,"Fuck Her","Fuck Her","You aren't aroused enough to be interested in this.");
 		return true;
 	}
+	
+	if(flags["TAM_DISABLE_METHOD"] == undefined) output("RED, preventing you from descending.");
+	else output("GREEN, enabling you to take the elevator down to the rift station at the planet's core.");
+
+	output("\n\nTam-Tam is ");
+	if(flags["TAM_DISABLE_METHOD"] == undefined) output("hunched over her robotic hound, desperately trying to undo the damage you've done");
+	else if(flags["TAM_DISABLE_METHOD"] == 1) output("knocked out and chained up, her wrists affixed to one of the engines by a set of chains");
+	else 
+	{
+		if(flags["TAKEN_TAMWOLF"] == undefined) output("snoozing peacefully, taking herself a little cat-nap atop her damaged attack drone, enjoying the afterglow of your... intimate intervention");
+		else output("snoozing peacefully, taking herself a little cat-nap on the floor, enjoying the afterglow of your... intimate intervention");
+	}
+	output(".");
+	
 	return false;
 }
 
@@ -702,7 +704,7 @@ public function liftDownEvent():void
 		if(pc.rangedWeapon.shortName != "" && (pc as PlayerCharacter).rangedWeapon.baseDamage.hasFlag(DamageFlag.BULLET)) output("you drop the magazine from your [pc.rangedWeapon], slamming a new one home and racking the slide. Satisfied you're ready for a proper fight, y");
 		else if(pc.rangedWeapon.shortName != "") output("you check the ammunition readings on your weapon, satisfied you're up for another encounter. Y");
 		else output("you rub a bit of the drones' machine oil off of your well-used [pc.meleeWeapon]. Satisfied you're ready for a proper fight, y");
-		output("ou step back from the window and steel yourself from what's to come.");
+		output("ou step back from the window and steel yourself for what's to come.");
 
 		//output("\n\nAnd it comes much earlier than you expected.");
 		//output("\n\nAt first, you think you hear a loud gust of wind. As it grows louder, though, you finally step back up to the window to see what's wrong -- only to be thrown back a moment later as the front of the lift explodes in a shower of glass shards. You yell out, covering your eyes as a huge figure barrels into the lift with you, a fearsome warcry tearing from his lips. You leap to your feat, drawing down as the figure, a dark-skinned man, rises to his full height -- well over six feet -- and brandishes a pair of long, curved swords.");
@@ -781,7 +783,7 @@ public function goUpTarkusLift():void
 {
 	clearOutput();
 	pc.energy(75);
-	output("Stepping into the lift, you press the activation key. The elavoter hums softly and accelerates upward, replacing gravity with acceleration until you're far enough from the core for the former to return. Stowing your equipment, you try to relax for the thirty minute ride.");
+	output("Stepping into the lift, you press the activation key. The elevator hums softly and accelerates upward, replacing gravity with acceleration until you're far enough from the core for the former to return. Stowing your equipment, you try to relax for the thirty minute ride.");
 	processTime(25);
 	//Move the PC
 	currentLocation = "353";
@@ -1480,7 +1482,7 @@ public function meetUpWithKaskaZeBossSloot():void
 	output("\n\nThe sharp report of a slug-thrower being fired stops you cold in your tracks. A flurry of sparks erupts from the deckplates a scant few inches ahead of you. Whoever took that shot could've hit you if they wanted to");
 	if(pc.shields() > 0) output(". Not that it would matter with your shields operational. It'll take more than a primitive powder-blaster to drop you");
 	output(". You finger your [pc.rangedWeapon] while looking around for the source of fire, only to have the shooter reveal herself. Holy hell, does she reveal herself!");
-	output("\n\nThe alien woman that strides out from behind one of larger crates is packing heat, and not just from the oversized machine gun she's toting. A strapping, seven inch member dangles from her groin, laying flaccid atop a pair of lemon-sized balls that you couldn't miss under the smooth, shining skin of her sack. The pirate is ostensibly clothed, wearing stockings, armored leg plates, and a corset that only serve to make the lack of garments for her crotch that much noticeable.");
+	output("\n\nThe alien woman that strides out from behind one of larger crates is packing heat, and not just from the oversized machine gun she's toting. A strapping, seven inch member dangles from her groin, laying flaccid atop a pair of lemon-sized balls that you couldn't miss under the smooth, shining skin of her sack. The pirate is ostensibly clothed, wearing stockings, armored leg plates, and a corset that only serve to make the lack of garments for her crotch that much more noticeable.");
 	output("\n\nYour Codex beeps something about her being a \"dzaan,\" but you're hard-pressed to pay attention.");
 	if(!CodexManager.entryUnlocked("Dzaan"))
 	{
@@ -1928,7 +1930,7 @@ public function defeatKaska():void
 	{
 		output("Kaska doubles over, dropping to her knees and cradling a myriad of injuries. She looks hatefully in your direction, scowling as she produces a vial with a glittering, silver liquid. <i>“I really should've kept some of this unaltered...”</i> She pops the cork. <i>“Bottoms up!”</i>");
 		output("\n\nYou lunge forward to stop her from drinking the mystery fluid, but it's too late. She's already swallowed it, and the vial and cork are floating harmlessly away. Kaska groans, <i>“Last time I premix repair microsurgeons with love-toxin.”</i> A bleeding wound on her cheek closes, good as new. <i>“This stuff was meant to save some nubile cutey!”</i> Another wound closes. Kaska licks her lips, humming softly, <i>“It isn't so bad.”</i> She bats one of her hands away from her tits and smiles, her dick surging to full erectness while you watch. <i>“You ARE kind of a cutey.”</i>");
-		output("\n\nThe pirate can barely manage to keep her hands off herself, and after a few more second admiring you, she begins brazenly stroking herself to the sight of you, alleviating any concerns that that vial might lead to more fighting. Kaska crawls over to you, repeatedly licking her lips and groping herself all over while she masturbates, ignorant of the fact that the detonator on her hip is on full display.");
+		output("\n\nThe pirate can barely manage to keep her hands off herself, and after a few more seconds admiring you, she begins brazenly stroking herself to the sight of you, alleviating any concerns that that vial might lead to more fighting. Kaska crawls over to you, repeatedly licking her lips and groping herself all over while she masturbates, ignorant of the fact that the detonator on her hip is on full display.");
 		output("\n\nYou take the device in case you need it to disarm the bomb and consider your options.");
 		if(flags["TARKUS_BOMB_TIMER"] >= 60) output(" She didn't seem to be worried about the bomb going off any time soon. Maybe she would like a chance to slake your lusts.");
 	}

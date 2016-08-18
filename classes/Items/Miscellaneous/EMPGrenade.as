@@ -123,13 +123,21 @@ package classes.Items.Miscellaneous
 				
 				var d:DamageResult = applyDamage(damageRand(baseDamage, 15), attacker, cTarget, "suppress");
 				
-				output("\n\n" + cTarget.capitalA + cTarget.uniqueName + " is caught in the explosion!");
+				output("\n\n" + cTarget.capitalA + cTarget.uniqueName + " " + (cTarget.isPlural ? "are" : "is") + " caught in the explosion!");
 				outputDamage(d);
 				
 				if (!cTarget.hasStatusEffect("Blinded") && (cTarget.originalRace == "robot" || cTarget.originalRace == "Automaton") && cTarget.shieldDisplayName != "ARMOR" && !cTarget.getHPResistances().hasFlag(DamageFlag.GROUNDED))
 				{
-					cTarget.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your target!", true, 0,0xFF0000);
-					output("\n\nThe electronic burst from the grenade has temporarily disrupted " + cTarget.a + cTarget.short + "’s systems!");
+					if(cTarget is PlayerCharacter)
+					{
+						cTarget.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your equipment!", true, 0,0xFF0000);
+						output("\n\nThe electronic burst from the grenade has temporarily disrupted your systems!");
+					}
+					else
+					{
+						cTarget.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your target!", true, 0,0xFF0000);
+						output("\n\nThe electronic burst from the grenade has temporarily disrupted " + cTarget.a + cTarget.short + "’s systems!");
+					}
 				}
 			}
 		}

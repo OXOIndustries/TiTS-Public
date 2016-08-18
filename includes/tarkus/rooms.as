@@ -1120,7 +1120,7 @@ public function initTarkusRooms():void
 	//#77 PLANET\nDIVIDE
 	rooms["277"] = new RoomClass(this);
 	rooms["277"].roomName = "PLANET\nDIVIDE";
-	rooms["277"].description = "Standing on the edge of this tremendous cliff, you can't help but be overwhelmed by a sense of vertigo so powerful that you nearly topple off the edge. This is unlike any stone face you've ever seen before. Tarkus' mettalic rocks protrude jaggedly out from the edge, yet they are short enough to allow you an unobstructed view towards the core of the planet, the reddish haze of the atmosphere the only thing that stops you from seeing through to the other side. Perhaps the native goblins or raskvel used ships to mine off the more prominent, valuable protrusions.";
+	rooms["277"].description = "Standing on the edge of this tremendous cliff, you can't help but be overwhelmed by a sense of vertigo so powerful that you nearly topple off the edge. This is unlike any stone face you've ever seen before. Tarkus' metallic rocks protrude jaggedly out from the edge, yet they are short enough to allow you an unobstructed view towards the core of the planet, the reddish haze of the atmosphere the only thing that stops you from seeing through to the other side. Perhaps the native goblins or raskvel used ships to mine off the more prominent, valuable protrusions.";
 	rooms["277"].runOnEnter = rustScytheGladeEncounters;
 	rooms["277"].westExit = "276";
 	rooms["277"].planet = "PLANET: TARKUS";
@@ -1206,7 +1206,7 @@ public function initTarkusRooms():void
 	//#85 PLANET\nDIVIDE
 	rooms["285"] = new RoomClass(this);
 	rooms["285"].roomName = "PLANET\nDIVIDE";
-	rooms["285"].description = "Whoah. The view from here is outstanding. Firstly, there's the awe-inspiring chasm before you, but that's just the start of it. The walls of the seemingly bottomless pit are covered with rusty stalactites, gleaming gems, and veins of the most beautiful amethyst. Perhaps a mile away, you can make out the opposite side of the chasm. By the stars above, this thing is huge, and it runs around the entire circumference of the planet! The hazy, polluted atmosphere stops you from seeing the whole way to down whatever is holding this wreck together. The only viable direction is best to the west.";
+	rooms["285"].description = "Whoah. The view from here is outstanding. Firstly, there's the awe-inspiring chasm before you, but that's just the start of it. The walls of the seemingly bottomless pit are covered with rusty stalactites, gleaming gems, and veins of the most beautiful amethyst. Perhaps a mile away, you can make out the opposite side of the chasm. By the stars above, this thing is huge, and it runs around the entire circumference of the planet! The hazy, polluted atmosphere stops you from seeing the whole way down whatever is holding this wreck together. The only viable direction is to the west.";
 	rooms["285"].runOnEnter = rustScytheGladeEncounters;
 	rooms["285"].westExit = "284";
 	rooms["285"].planet = "PLANET: TARKUS";
