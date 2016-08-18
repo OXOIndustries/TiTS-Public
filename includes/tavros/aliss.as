@@ -1015,9 +1015,9 @@ public function condomOrNoCondomAlissButtfuck(x:int = -1, condom:Boolean = false
 		else 
 		{
 			output("A tingling overtakes your [pc.balls] as ");
-			if(pc.balls <= 1) output("it");
-			else output("they");
-			output(" empty out, delivering a fountain of cum straight into Aliss' backdoor. The hot sticky liquid fills every nook and cranny, and then some, bloating the ovir so much it looks like she might be pregnant. Streams of your [pc.cum] escape the seal around your cock, spraying out like little waterfalls to cover both your and Aliss' legs.");
+			if(pc.balls <= 1) output("it empties");
+			else output("they empty");
+			output(" out, delivering a fountain of cum straight into Aliss' backdoor. The hot sticky liquid fills every nook and cranny, and then some, bloating the ovir so much it looks like she might be pregnant. Streams of your [pc.cum] escape the seal around your cock, spraying out like little waterfalls to cover both your and Aliss' legs.");
 		}
 	}
 	output("\n\nThe two of you collapse into a ");

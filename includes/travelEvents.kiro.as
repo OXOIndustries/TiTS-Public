@@ -2628,7 +2628,7 @@ public function galLinkFuckMeetInvite():void
 	if(flags["KIRO_ORGIED"] == undefined)
 	{
 		output("<i>“Oh, you’re just in time,”</i> Kiro chirps, standing up and nonchalantly adjusting her dress to better highlight her breasts. <i>“You ever get the GalLink fuckmeet invite?”</i> Kiro waves her arm. <i>“Whatever. Doesn’t matter. Come on - there’s something of an orgy scheduled in the backroom here, and I can’t fuck all these bitches myself.");
-		output(" Just be careful you don’t end up with a dick your ass. Most of those vixens are packing heat. You gotta fuck ‘em good and hard if you want to show them who’s boss.”</i> Kiro slaps your ass.");
+		output(" Just be careful you don’t end up with a dick in your ass. Most of those vixens are packing heat. You gotta fuck ‘em good and hard if you want to show them who’s boss.”</i> Kiro slaps your ass.");
 		output(" <i>“You coming or what? We gotta get back there now ");
 		output("if we don’t want sloppy seconds.");
 		output("”</i>");

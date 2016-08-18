@@ -27,7 +27,7 @@
 			this.originalRace = "Dzaan";
 			this.a = ""; 
 			this.capitalA = "";
-			this.long = "Kaska is an imposing woman, standing seven and a half feet tall and toting a weapon bigger than a fair number of coreward races. Half her reddish purple hair is bound in tightly-cropped dreadlocks while the rest hangs over one bare shoulder. She'd cut an attractive, if oversized, figure in any number of drinking establishments if it wasn't for her aggressive, warlike expression. Then there's the matter of the seven inch python between her legs. It isn't even hard, and it already matches the average size of terran erections. She's unarmed save for a pair of armor plated shinguards. Tight leather wrappings cover her up elsewhere, covering up her nipples in a kind of obscene, faux modesty.";
+			this.long = "Kaska is an imposing woman, standing seven and a half feet tall and toting a weapon bigger than a fair number of coreward races. Half her reddish purple hair is bound in tightly-cropped dreadlocks while the rest hangs over one bare shoulder. She'd cut an attractive, if oversized, figure in any number of drinking establishments if it wasn't for her aggressive, warlike expression. Then there's the matter of the seven inch python between her legs. It isn't even hard, and it already matches the average size of terran erections. She's unarmored save for a pair of armor plated shinguards. Tight leather wrappings cover her up elsewhere, covering up her nipples in a kind of obscene, faux modesty.";
 			this.customBlock = "She springs out of the way of your attack.";
 			this.isPlural = false;
 			
