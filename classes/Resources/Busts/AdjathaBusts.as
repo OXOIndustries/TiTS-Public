@@ -272,6 +272,11 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/tank_kannon.png", mimeType = "image/png")]
 		public var Bust_TANK_KANNON:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/techie.png", mimeType = "image/png")]
+		public var Bust_TECHGUARD:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/techie_nude.png", mimeType = "image/png")]
+		public var Bust_TECHGUARD_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/terensha.png", mimeType = "image/png")]
 		public var Bust_TERENSHA:Class;
@@ -568,6 +573,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tank_kannon.png", mimeType = "image/png")]
 			public var Full_TANK_KANNON:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie.png", mimeType = "image/png")]
+			public var Full_TECHGUARD:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_nude.png", mimeType = "image/png")]
+			public var Full_TECHGUARD_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/terensha.png", mimeType = "image/png")]
 			public var Full_TERENSHA:Class;

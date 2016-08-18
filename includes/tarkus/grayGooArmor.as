@@ -134,7 +134,7 @@ public function nameThaGooII():void
 	
 	output("\n\n<i>“Yaaaaaaaaaaaay!”</i> she cheers, plucking the drive out of your hand and swallowing it.");
 	
-	output("\n\nWell shit. [goo.name] beams at you, giggling to herself as you stare and her. Looks like that plan just went out the window.");
+	output("\n\nWell shit. [goo.name] beams at you, giggling to herself as you stare at her. Looks like that plan just went out the window.");
 	
 	output("\n\n<i>“I don’t feel any different,”</i> she pouts, absently cupping one of her huge breasts. <i>“Oh well! Hey, wanna... I dunno, wanna fuck?”</i>");
 	

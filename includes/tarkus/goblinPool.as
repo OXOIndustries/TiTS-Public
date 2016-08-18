@@ -1019,7 +1019,7 @@ public function arbetzSexScenes(response:String = ""):void
 		if (pc.hasBreasts()) output(", [pc.chest] brushing gently over the sheet");
 		output(" with your ass in the air and shamelessly presenting yourself to Godi. His breath billows over your naked back as he pushes his hot cock between your butt cheeks");
 		if (!inButt) output(", his tight balls pressing against your [pc.vagina " + x + "]");
-		output(". You look over your shoulder at him provocatively, wiggling your [pc.butt]; his response is to take hold of your [pc.thighs] and drive his pink cat cock into your [pc.vagOrAss] in a single movement, the hard, feverous meat filling you up. It pushes you forward into Petr, and you happily open your mouth to accommodate him, enveloping his hard, delicious-smelling cock and hollowing your cheeks around it.");
+		output(". You look over your shoulder at him provocatively, wiggling your [pc.butt]; his response is to take hold of your [pc.thighs] and drive his pink cat cock into your " + (inButt ? "[pc.asshole]" : ("[pc.vagina " + x + "]")) + " in a single movement, the hard, feverous meat filling you up. It pushes you forward into Petr, and you happily open your mouth to accommodate him, enveloping his hard, delicious-smelling cock and hollowing your cheeks around it.");
 		
 		if (inButt) pc.buttChange(pp.cockVolume(0));
 		else pc.cuntChange(x, pp.cockVolume(0));
@@ -1048,7 +1048,7 @@ public function arbetzSexScenes(response:String = ""):void
 		output(" as you " + pc.mf("groan", "whine") + " your muffled approval.");
 		output("\n\nThe pressure and heat build and build, warm, rough hands caressing your [pc.nipples]");
 		if (pc.tailCount > 0) output(" and [pc.tail]");
-		output(" until your eyes cross and your [pc.vagOrAss] convulses around Godi’s bumpy rod,");
+		output(" until your eyes cross and your " + (inButt ? "[pc.asshole]" : ("[pc.vagina " + x + "]")) + " convulses around Godi’s bumpy rod,");
 		if (inButt) output(" your [pc.cock " + y + "] spraying [pc.cum] deliriously in response to the incessant bumping on your boy button");
 		else
 		{

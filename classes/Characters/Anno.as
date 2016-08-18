@@ -319,7 +319,7 @@
 					gPrime.createStatusEffect("Grapple Cooldown", 3);
 					
 					removeStatusEffect("Grappled");
-					output(" Anno finally brings her gun to bear and fires, pumping her entire magazine into the goo\’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. <i>“I’m fine, I’m fine!”</i> Anno groans, rubbing at her throat, now visibly bruising.");
+					output(" Anno finally brings her gun to bear and fires, pumping her entire magazine into the goo’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. <i>“I’m fine, I’m fine!”</i> Anno groans, rubbing at her throat, now visibly bruising.");
 				}
 				else
 				{

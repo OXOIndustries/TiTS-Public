@@ -42,7 +42,7 @@ public function myrellionManorEnterWarroom():Boolean
 		// [Go Inside] (Other option is to leave the "room," and meet with the following scene each time until you choose Go Inside)
 		clearMenu();
 		addButton(0, "Go Inside", myrellionManorGoInside, undefined, "Enter the room", "This looks to be the busiest room in the manor, and the head officer of the occupation is apparently inside. If you wanted to discuss anything with her, here's the best place to do it.");
-		addButton(4, "Back", move, "834");
+		addButton(14, "Back", move, "834");
 
 		return true;
 	}
@@ -56,7 +56,7 @@ public function myrellionManorEnterWarroom():Boolean
 
 		clearMenu()
 		addButton(0, "Sellera", approachSellera);
-		addButton(4, "Back", move, "834");
+		addButton(14, "Back", move, "834");
 		return true;
 	}
 }
@@ -84,7 +84,7 @@ public function myrellionManorGoInside():Boolean
 	output(" at this new guard, you quickly take a look around the room. A lift platform dominates the center of the small room, surrounded by dusty crates. This must have been an access for moving supplies up from the basement, you surmise.");
 
 	addButton(0, "Go Down", myrellionManorAdminRoom)
-	addButton(4, "Leave", move, "834");
+	addButton(14, "Leave", move, "834");
 	return false;
 }
 
@@ -154,7 +154,7 @@ public function myrellionManorAdminRoom():Boolean
 	{
 		flags["NAV_DISABLE"] = NAV_IN_DISABLE;
 		addButton(0, "Sellera", approachSellera, undefined, "Approach Sellera", "May as well visit the marshal while you're here.");
-		addButton(4, "Leave", move, "834");
+		addButton(14, "Leave", move, "834");
 		return false;
 	}
 }

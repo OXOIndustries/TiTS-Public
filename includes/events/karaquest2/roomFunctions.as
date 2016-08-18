@@ -593,6 +593,11 @@ public function kq2rfYardA1():Boolean
 		flags["KQ2_RF_KENNEL_USED"] = 1;
 		flags["TAMWOLF_FIXED_IN_KENNEL"] = 1;
 		processTime(2);
+		
+		showBust("TAMWOLF");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return true;
 	}
 	else if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolf || pc.hasItemByType(TamWolf)))
 	{
@@ -614,6 +619,11 @@ public function kq2rfYardA1():Boolean
 			pc.inventory.push(new TamWolfII());
 		}
 		processTime(2);
+		
+		showBust("TAMWOLF_II");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return true;
 	}
 
 	return false;
