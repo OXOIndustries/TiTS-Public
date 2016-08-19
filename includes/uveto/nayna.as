@@ -74,6 +74,47 @@ public function naynaClothes():String
 	else return RandomInCollection("fluffy, pink-furred winter wear","poofy winter coat","cold-weather outfit","fur-lined parka","pink-accented parka","fluffy, furry coat","squishy, warm-looking winter wear","poofy, white and pink parka");
 }
 
+public function naynaDroneBonus():Boolean
+{
+	if(flags["DRONED_UVIP F20"] == undefined && currentLocation == "UVIP F20"
+		|| flags["DRONED_UVIP T6"] == undefined && currentLocation == "UVIP T6"
+		|| flags["DRONED_UVIP V14"] == undefined && currentLocation == "UVIP V14"
+		|| flags["DRONED_UVIP X34"] == undefined && currentLocation == "UVIP X34"
+		|| flags["DRONED_UVIP L28"] == undefined && currentLocation == "UVIP L28")
+	{
+		output("\n\nA glint of shining metal peeks out of the snow.");
+		addButton(0,"Metal Glint",lookAtWeatherDrone);
+	}
+	return TundraEncounterBonus();
+}
+
+public function lookAtWeatherDrone():void
+{
+	clearOutput();
+	showName("WEATHER\nDRONE");
+	output("A closer look reveals the metal to be a piece of a beat-up looking weather drone. ");
+	if(flags["NAYNA_QUEST_STARTED"] == 1) output("This must be what Nayna was looking for. Maybe you should bring it back to her. ");
+	else output("Maybe someone back in Irestead is looking for a missing drone. Or you could just sell it. Whichever. ");
+	output("Do you take it?");
+	if(flags["NAYNA_QUEST_STARTED"] == 1) output(" ")
+	clearMenu();
+	addButton(0,"Take It",takeANaynaDrone);
+	addButton(4,"Back",mainGameMenu);
+}
+
+public function takeANaynaDrone():void
+{
+	clearOutput();
+	if(currentLocation == "UVIP F20") flags["DRONED_UVIP F20"] = 1;
+	else if(currentLocation == "UVIP T6") flags["DRONED_UVIP T6"] = 1;
+	else if(currentLocation == "UVIP V14") flags["DRONED_UVIP V14"] = 1;
+	else if(currentLocation == "UVIP X34") flags["DRONED_UVIP X34"] = 1;
+	else if(currentLocation == "UVIP L28") flags["DRONED_UVIP L28"] = 1;
+	output("You dig the poor drone out. ");
+	output("\n\n");
+	quickLoot(new WeatherDrone());
+}
+
 public function naynaSexMenu():void
 {
 	clearMenu();
@@ -349,6 +390,7 @@ public function sureNaynaIllHelp():void
 	output("\n\nNayna grabs hold of your hands and bounces up and down in excitement, hopping happily in the way that only a laquine can. <i>“Thankyouthankyou! You won’t regret this. The others involved in the project will be glad to hear that someone’s finally looking out for us academics!”</i>");
 	output("\n\nYou assure her that it’s no problem.");
 	output("\n\n<i>“Okay, well... I better not keep you. Come see me if you find any, okay?”</i>");
+	flags["NAYNA_QUEST_STARTED"] = 1;
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -394,7 +436,7 @@ public function repeatNaynaApproach(backsies:Boolean = false):void
 		{
 			output("Nayna’s ear lifts higher and higher, pivoting to follow your progress through the room. When you’re a few steps away, the other joins it, swiveling to regard you a half-second before the rest of the laquine. <i>“[pc.name]! How goes your adventures? Have you come across any of my drones yet?”</i>");
 			//No drones
-			if(9999 == 9999) 
+			if(!pc.hasItem(new WeatherDrone(),1))
 			{
 				output("\n\nYou shake your head apologetically.");
 				output("\n\n<i>“Hey, don’t worry about it,”</i> Nayna chirps. <i>“I’m sure you’ll find some before too long. After all, you’re the brave rusher, out looking for adventure!”</i>");
@@ -415,7 +457,7 @@ public function naynaMainMenu():void
 	//[Appearance] [Talk] [Give Drone] [Flirt]
 	addButton(0,"Appearance",appearanceOfNayna);
 	addButton(1,"Talk",talkToNayna);
-	if(9999 == 9999) addButton(2,"Give Drone",giveHerADrone,undefined,"Give Her A Drone","Give Nayna one of the drones she's missing. Turns out these are the drones she's looking for.");
+	if(pc.hasItem(new WeatherDrone(),1)) addButton(2,"Give Drone",giveHerADrone,undefined,"Give Her A Drone","Give Nayna one of the drones she's missing. Turns out these are the drones she's looking for.");
 	addButton(3,"Flirt",flirtWithNayna,undefined,"Flirt","Flirt with the cuddly bunny.");
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -588,11 +630,12 @@ public function uvetoTalkWithNayna():void
 	output("<i>“What brought you to Uveto?”</i>");
 	output("\n\nNayna wrinkles her nose at you. <i>“My study, silly. I can’t go into the specifics until after I get it published, but suffice to say that it is going to revolutionize cold weather modeling as well as terraforming. I’m connecting data points that everyone else ignores as inconsequential, stitching them together into a gestalt that most climatologists have waved off as random variation.”</i>");
 	//Not saved enough drones
-	if(9999 == 9999)
+	if(flags["NAYNA_DRONES_TURNED_IN"] == undefined) flags["NAYNA_DRONES_TURNED_IN"] = 0;
+	if(flags["NAYNA_DRONES_TURNED_IN"] < 3)
 	{
 		output("\n\nPausing, she looks at her toes, sighing heavily. <i>“That’s assuming I don’t get my funding cut and have to wallow in obscurity. Why couldn’t these drones be as cold tolerant as me?”</i> She kicks a loose panel, and looks over at you. <i>“I hope you can find ");
-		if(9999) output("them");
-		else if(9999) output("a few more of them");
+		if(flags["NAYNA_DRONES_TURNED_IN"] == 0) output("them");
+		else if(flags["NAYNA_DRONES_TURNED_IN"] == 1) output("a few more of them");
 		else output("another one");
 		output(".”</i>");
 	}
@@ -706,7 +749,7 @@ public function giveHerADrone():void
 		}
 	}
 	IncrementFlag("NAYNA_DRONES_TURNED_IN");
-	//9999 pc.destroyItem(new WeatherDrone());
+	pc.destroyItem(new WeatherDrone(),1);
 	processTime(2);
 	//[Accept Hug] [Nah]
 	clearMenu();
