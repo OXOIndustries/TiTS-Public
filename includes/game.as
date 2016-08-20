@@ -1691,6 +1691,9 @@ public function processTime(arg:int):void {
 			if(flags["TARKUS_BOMB_TIMER"] == 0) eventQueue[eventQueue.length] = bombExplodes;
 		}
 		
+		// Taivra's Pregnancy - Lasts 1 day until she naturally does away with them.
+		if(flags["TAIVRA_FERTILE"] > 0 && (flags["TAIVRA_FERTILE"] + (24 * 60)) < GetGameTimestamp()) flags["TAIVRA_FERTILE"] = 0;
+		
 		if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined)
 		{
 			// Still there!

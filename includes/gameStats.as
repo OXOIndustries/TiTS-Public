@@ -4319,7 +4319,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("\n<b>* Queen Taivra, Fertility:</b>");
 						if(taivraHasFertileEggs()) output2(" Has fertile eggs");
 						else output2(" Normal");
-						output2("\n<b>* Queen Taivra, Last Fertilized Her:</b> " + prettifyMinutes(GetGameTimestamp() - flags["TAIVRA_FERTILE"]) + " ago");
+						if(flags["TAIVRA_FERTILE"] > 0) output2("\n<b>* Queen Taivra, Last Fertilized Her:</b> " + prettifyMinutes(GetGameTimestamp() - flags["TAIVRA_FERTILE"]) + " ago");
 					}
 				}
 				// Queensguard
@@ -4339,6 +4339,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						else output2(", Healed from wounds");
 					}
 				}
+				// Taivra's Betas
+				if(flags["FUCKED_TAIVRAS_BETA"] > 0) output2("\n<b>* Taivra’s Egg-Stuffed Betas, Total Fucked:</b> " + flags["FUCKED_TAIVRAS_BETA"]);
 				variousCount++;
 			}
 			// No Myr's Land
