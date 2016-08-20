@@ -729,7 +729,7 @@ public function askAboutTheOwnerOfKihaCorp():void
 	output("\n\n<i>“You really think so?”</i> You give her a probing look.");
 	if(flags["MET_EMMY"] != undefined) output(" Emmy");
 	else output(" The fuzzy rep");
-	output(" shrugs noncommittally, her breasts jostling each other inside her jumpsuit like overfilled waterballoons in a cargo hold. <i>“Nah. How the fuck would I know anything about something like that? I’m about as low on the the totem pole as you can get without having a mouthful of dirt. Nobody tells me anything, so all I’ve got to go on are my hunches and storylines from daytime holo-dramas.”</i> Hopping back up onto the edge of the counter, she resumes idly swinging her feet. <i>“Go any more questions?”</i>");
+	output(" shrugs noncommittally, her breasts jostling each other inside her jumpsuit like overfilled waterballoons in a cargo hold. <i>“Nah. How the fuck would I know anything about something like that? I’m about as low on the the totem pole as you can get without having a mouthful of dirt. Nobody tells me anything, so all I’ve got to go on are my hunches and storylines from daytime holo-dramas.”</i> Hopping back up onto the edge of the counter, she resumes idly swinging her feet. <i>“Got any more questions?”</i>");
 	processTime(3);
 	emmyTalkMenu(talkToEmmyAboutKihaCorp);
 }
@@ -916,7 +916,7 @@ public function askEmmyAboutEmmy():void
 	//Not known well enough:
 	if(flags["PURCHASED_FROM_EMS"] == undefined)
 	{
-		output("\n\nThe jackal-woman fidgets and says, <i>“That’s not important right now. What is important is... uh... getting your the right equipment for your adventures. So, what will you be buying?”</i>");
+		output("\n\nThe jackal-woman fidgets and says, <i>“That’s not important right now. What is important is... uh... getting you the right equipment for your adventures. So, what will you be buying?”</i>");
 		//Reskin menu and go to shop interface
 		processTime(1);
 		emmyMainMenu();
@@ -952,7 +952,7 @@ public function askEmmyAboutEmmy():void
 		output("\n\nYou didn’t know it was possible for a jackal’s (or ausar’s) ears to sink so low. <i>“It’s Emmata, but please, just call me Emmy. It’s what all my friends call me.”</i>");
 	}
 	output("\n\nShaking your head, you explain that you still don’t understand why she doesn’t want to be known as a former ausar.");
-	output("\n\n<i>“Because the moment I start modding myself to look how I really wanted to look, instead of just changing my dick or something, they cast me out. My old friends avoided me and spread rumors behind my back. My parents still said they loved me, but they never seemed to want to go anywhere public with me. It broke my heart.”</i> Emmy balls up her fists as she fights back tears and struggles to compose herself.");
+	output("\n\n<i>“Because the moment I started modding myself to look how I really wanted to look, instead of just changing my dick or something, they cast me out. My old friends avoided me and spread rumors behind my back. My parents still said they loved me, but they never seemed to want to go anywhere public with me. It broke my heart.”</i> Emmy balls up her fists as she fights back tears and struggles to compose herself.");
 	//Nice/Mischief
 	if(pc.isNice() || pc.isMischievous()) output("\n\nYou can’t help but be moved by her situation and do your best to comfort her.");
 	//Hard
@@ -1008,7 +1008,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 	if(pc.tailCount > 0) output(", gently stroking the base of your tail with a rogue index finger");
 	else if(pc.buttRating() >= 6) output(", digging her fingers into your cheeks with such gusto that you momentarily worry she’ll slip a finger in between");
 	else output(", squeezing the pert flesh on offer");
-	output(", pulling you so tight that her enormous prick");
+	output(". She is pulling you so tight that her enormous prick");
 	if(pc.armor is EmptySlot) 
 	{
 		if(pc.hasCock()) 
@@ -1024,7 +1024,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 		}
 		else output(" is rubbing against your [pc.belly] through her jumpsuit, so hard and tight that you can feel it swelling with the hammerblows of her heartbeat.");
 	}
-	else output(" is audibly grinding against your [pc.armor], so powerfully erect that the hammerblows of her heartbeat nearly tug it out your gear out of place.");
+	else output(" is audibly grinding against your [pc.armor], so powerfully erect that the hammerblows of her heartbeat nearly tug it out of place from your gear.");
 	output(" When she breaks away, she’s panting hotly and struggling to adjust her straining suit. You can only imagine how thoroughly coated with pre-cum the crotch must be.");
 	output("\n\nEmmy holds up her hand when you start to talk, begging you to wait a moment. <i>“H-hang on a second. I... we can’t. Not yet anyway. I’ve got some things going on, and I promised myself I wouldn’t cave into them - wouldn’t let myself turn into some kind of slut.”</i> She backs away, putting the counter between your overheated crotches and begs, <i>“I can’t help being so flirty, but give me some time... please?”</i> She sounds almost plaintive.");
 	output("\n\nWhat can you do, but agree? Still, there’s got to be a way to win her heart. So long as it doesn’t involve waiting for the heat death of the universe, you can probably manage it.");
@@ -1295,7 +1295,7 @@ public function emmyPleased():void
 	output("”</i>");
 	output("\n\nEmmy giggles and replies, <i>“You’re lucky the counter is in my way or I’d pin you to the floor and stuff my face into your crotch right now.”</i>");
 	output("\n\nYou quirk an eyebrow at her, and after a moment the sheer sluttiness of her joke sinks home.");
-	output("\n\nThe jackal gasps and claps her hands over her snout. If you could see through her fur, you’re sure her skin would be blushed crimson. <i>“I didn’t... I was joking! I promise I’m in control of myself. I turned you down at first, didn’t I? And even though you’re my [pc.boy]friend, that doesn’t mean I’m going to start whipping my dick out around your or anything. We need to know each other a little bit better before something like that happens - I’m not going to be a huge slut just because we’ve started something.”</i> She puts her hands down on the countertop and stares at her nervously tapping fingertips. <i>“I’m rambling aren’t I?”</i>");
+	output("\n\nThe jackal gasps and claps her hands over her snout. If you could see through her fur, you’re sure her skin would be blushed crimson. <i>“I didn’t... I was joking! I promise I’m in control of myself. I turned you down at first, didn’t I? And even though you’re my [pc.boy]friend, that doesn’t mean I’m going to start whipping my dick out around you or anything. We need to know each other a little bit better before something like that happens - I’m not going to be a huge slut just because we’ve started something.”</i> She puts her hands down on the countertop and stares at her nervously tapping fingertips. <i>“I’m rambling aren’t I?”</i>");
 	output("\n\n<i>“A little.”</i> You smile. <i>“It’s cute.”</i>");
 	output("\n\nEmmy leans forward, squeezing her breasts between her forearms to press her cleavage directly into your view. <i>“Sometime, I’m going to have to get you to tell me what else you think about me is cute... but for right now, I believe I promised my interstellar hero" + pc.mf("","ine") + " a certain reward for [pc.hisHer] efforts.”</i> She bats her eyelashes and licks her lips, staring at your crotch. <i>“We can cross that off the list right now...”</i>");
 	//Sex!
