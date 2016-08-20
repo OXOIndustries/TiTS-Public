@@ -3,7 +3,7 @@
 //Gildenmere Hospital
 public function viBonus():Boolean
 {
-	output("There's one word for this hospital - <i>grand</i>. The sheer size of this place if overwhelming. The floors are made of shining onyx and there are pillars of gleaming crystal. The hospital beds are hidden behind fancifully embroidered partitions. The smell of antiseptic is nowhere to be found, carefully masked with lilac, jasmine, and rose.\n\nThere are many doctors and nurses bustling about, re-establishing that this place is indeed a hospital. The medical professionals are constantly in transit from one patient to another, slipping in and out from the patterned privacy screens.");
+	output("There's one word for this hospital - <i>grand</i>. The sheer size of this place is overwhelming. The floors are made of shining onyx and there are pillars of gleaming crystal. The hospital beds are hidden behind fancifully embroidered partitions. The smell of antiseptic is nowhere to be found, carefully masked with lilac, jasmine, and rose.\n\nThere are many doctors and nurses bustling about, re-establishing that this place is indeed a hospital. The medical professionals are constantly in transit from one patient to another, slipping in and out from the patterned privacy screens.");
 	//PC Has Never Met This V-Ko
 	if(flags["MET_VI"] == undefined)
 	{
@@ -903,7 +903,7 @@ public function viPotencyTest():void
 	else output("brightly");
 	output(" offers.");
 	if(flags["VI_POTENCY_TEST"] != undefined) output("\n\nLast time it was amazing, so you immediately agree");
-	else output("\n\nYou’re not sure what it involved, but your curiosity is piqued, so you agree to get one");
+	else output("\n\nYou’re not sure what it involves, but your curiosity is piqued, so you agree to get one");
 	output(". The nurse droid leads you over to a bed and, after pulling the privacy curtain closed, kneels down ");
 	//taur + backgenitals:
 	if(pc.isTaur()) output("and underneath your many-legged body");
@@ -1010,8 +1010,9 @@ public function viPotencyTest():void
 	{
 		output(" - to say nothing of the " + num2Text(totalBigBalloons) + " spunk-bag");
 		if(totalBigBalloons > 1) output("s");
-		output(" on the floor alongside her.");
+		output(" on the floor alongside her");
 	}
+	output(".");
 	output("\n\n<i>“Whew! That should do it. Now to process the results,”</i> Vi happily exclaims, picking up the [pc.cumNoun] lined condoms and examining them closely.");
 	output("\n\n<i>“");
 	if(totalCum < 100) 
@@ -1062,9 +1063,9 @@ public function yeahSureIWannaCumMoreSlut():void
 	else 
 	{
 		output("length");
-		if(pc.cockTotal()) output("s");
+		if(pc.cockTotal() > 1) output("s");
 	}
-	output(". A broiling builds up within, steadily growing, until you’re moaning and throwing back your head. Just when the pleasurable pressure is becoming unbearable, you feel a divine release, and a gigantic stream of [pc.cumNoun] shoots out from your now <i>un</i>spent [pc.cocks]. <b>Your potency has considerably increased!</b>");
+	output(" and traveling into your prostate. A broiling builds up within, steadily growing, until you’re moaning and throwing back your head. Just when the pleasurable pressure is becoming unbearable, you feel a divine release, and a gigantic stream of [pc.cumNoun] shoots out from your now <i>un</i>spent [pc.cocks]. <b>Your potency has considerably increased!</b>");
 	// Increase the PC’s potency by a fair bit. Remove 500 credits.
 	// Increase PC's ballEfficiency and cumMultiplier
 	// efficiency goal is roughly 8x multiplier - this TF aims for large amounts of repeatable ejacs.
@@ -1980,7 +1981,7 @@ public function inflateViBoobs():void
 	if(flags["INFLATED_VI"] == undefined)
 	{
 		output("You pull out your gathered reserves of silicone from New Texas, snatched from the claws of varmints. Now, you’re planning to put it to good use, pumping it into Vi’s titties to make them deliciously big and hefty.");
-		output("\n\nUpon spotting the seized silicone, Vi loudly gasps.  <i>“That’s a Kiha-corp product! You can’t possibly be planning to cross-use company merchandise?”</i> Her silky thighs rub together even more. <i>“Pumping me full of the competitor’s product... that’s so lewd!”</i>");
+		output("\n\nUpon spotting the seized silicone, Vi loudly gasps. <i>“That’s a Kiha-corp product! You can’t possibly be planning to cross-use company merchandise?”</i> Her silky thighs rub together even more. <i>“Pumping me full of the competitor’s product... that’s so lewd!”</i>");
 		output("\n\nYou ask Vi where her input slot is for the silicone. The femme-bot coughs. <i>“Um, in my nipples, " + pc.mf("sir","ma’am") + ". My unit doesn’t come with a spinal input port for that sort of thing.”</i>");
 	}
 	//Repeat Scene:

@@ -463,7 +463,7 @@ public function dontStareAtZatBitch():void
 public function stareDontStareEpilogue():void
 {
 	output("\n\nFrom her voluminous breasts downwards and running down her sides are a bunch of dark, spikey appendages. Each one is jointed and pressed flush to her skin. They resemble tiny armor chunks. She has six fingered hands concealed by dark elbow length gloves.");
-	output("\n\nThings become progressively more alien further down. Her thighs and legs are thick, bulky, and completely lack feet. Instead, they end in double-pronged toes. Despite her unconventional built, she still wears a garter belt, sexy lace panties, and a pair of stockings.");
+	output("\n\nThings become progressively more alien further down. Her thighs and legs are thick, bulky, and completely lack feet. Instead, they end in double-pronged toes. Despite her unconventional build, she still wears a garter belt, sexy lace panties, and a pair of stockings.");
 	output("\n\n<i>“My my, am I really that interesting? I feel quite flattered. I’ll let you look a little longer, I suppose.”</i> The half-nude alien woman offers in her rich, husky voice. <i>“...Though I am being rather rude. How can you get a good look when you can’t see all there is to me?”</i>");
 
 	// First time meeting a Siel.
@@ -482,7 +482,7 @@ public function stareDontStareEpilogue():void
 		output("\n\nAll of her...? You suddenly realize there’s more of her body hidden behind the clothes rack, and peer warily past her curvaceous hips. As promised, she pulls it out... and out... and out.... She’s a siel!");
 		output("\n\nThe blue-skinned woman notices the glimmer of recognition in your eyes, and quirks an eyebrow. <i>“Oh? Seems you’ve met my kind before. I hope it was a pleasant encounter.”</i>");
 		output("\n\nThe siel then moves past you, making sure to brush against your side. There, right near your ear, she stops for a brief moment and leans in to whisper. <i>“If it wasn’t, I’ll have to make things right, you know. By ");
-		if(!pc.isNude()) output("stripping off that [pc.gear] of yours");
+		if(!pc.isNude()) output("stripping off " + (pc.hasArmor() ? "that outfit" : "those undies") + " of yours");
 		else output("taking advantage of your nudity");
 		output(" and having my way with you.”</i>");
 	}

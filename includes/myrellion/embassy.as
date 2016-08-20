@@ -149,7 +149,10 @@ public function talkToJuroAbootTheNatives():void
 	output("\n\nThe ambassador takes his glasses off and rubs one of the lenses on his suit, staring at the haze accumulating on them in the planet’s oppressive humidity. <i>“At any rate, both of myr races have attracted the attention of Xenogen, who are quickly taking control of the situation here on the planet. Both have interesting biological processes which the mega-corporations are keenly interested in. If only for that, we peacemakers have a duty to keep this planet from engulfing itself in nuclear fire, with the comforting guarantee that if we fail, the Fleet will avenge us on the few survivors of the native population.”</i>");
 
 	output("\n\n<i>“Another note,”</i> he adds. <i>“Both races are entirely female-dominated. Males are an exceptional rarity on the planet, and to my understanding are kept solely for breeding purposes. ");
-	output(pc.mf("<i>“I’ll caution you, some myr can become quite desperate for male attention. Especially Red Myr breeders. Walk softly, but carry a big stick, " + pc.mf("Mister","Miss") + " Steele.”</i>","<i>“You’ll fit in well enough, " + pc.mf("Mister","Miss") + " Steele, though be wary of the hierarchical society the myrmedion have developed. Unfamiliar females may not receive the most warm welcome.”</i>"));
+	if(pc.isHerm()) output("<i>“I’ll caution you, some myr can become quite desperate for, ahem, male attention. Especially Red Myr breeders. Walk softly, but carry a big stick, " + pc.mf("Mister","Miss") + " Steele--however, be wary of the hierarchical society the myrmedion have developed. Unfamiliar females may not receive the most warm welcome.”</i>");
+	else if(pc.hasCock()) output("<i>“I’ll caution you, some myr can become quite desperate for male attention. Especially Red Myr breeders. Walk softly, but carry a big stick, " + pc.mf("Mister","Miss") + " Steele.”</i>");
+	else if(pc.hasVagina()) output("<i>“You’ll fit in well enough, " + pc.mf("Mister","Miss") + " Steele, though be wary of the hierarchical society the myrmedion have developed. Unfamiliar females may not receive the most warm welcome.”</i>");
+	else output("<i>“You’ll fit in well enough, " + pc.mf("Mister","Miss") + " Steele, and I’m sure you have little to fear from the civilians here.”</i>");
 	processTime(5);
 	jurosTalkMenu(talkToJuroAbootTheNatives);
 }
