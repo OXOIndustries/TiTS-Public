@@ -2978,6 +2978,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Haley:</b> Met her");
 					if(flags["MET_HALEY"] != undefined) output2(", Sexed her");
+					if(flags["FUCKED_BY_HALEY"] != undefined) output2(", Fucked by her");
 					if(flags["USED_MILKER"] != undefined) output2("\n<b>* Haley, Times Used Taur-Milker:</b> " + flags["USED_MILKER"]);
 					output2("\n<b>* Haley, Milking Competition, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/haley milker wins") + "/" + StatTracking.getStat("contests/haley milker losses") + ", of " + (StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins")) + " games");
 					if(pc.hasStatusEffect("Won Haley's Credits")) output2("\n<b>* Haley, Milking Competition, Time Until Next Prize:</b> " + prettifyMinutes(pc.getStatusMinutes("Won Haley's Credits")));
@@ -3286,6 +3287,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Dryad:</b> Met her");
 					if(flags["DRYAD_FUCKED"] != undefined) output2("\n<b>* Dryad, Times Sexed:</b> " + flags["DRYAD_FUCKED"]);
+					if(flags["DRYAD_FACEFUCKED"] != undefined) output2("\n<b>* Dryad, Times She Sucked Your Dick:</b> " + flags["DRYAD_FACEFUCKED"]);
 				}
 				if(flags["MET_CUNT_SNAKE"] != undefined) output2("\n<b>* Cunt Snake, Times Encountered:</b> " + flags["MET_CUNT_SNAKE"]);
 				if(flags["MET_KEROKORAS"] != undefined) output2("\n<b>* Kerokoras, Times Encountered:</b> " + flags["MET_KEROKORAS"]);
@@ -4149,16 +4151,20 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_ANARRIE"] != undefined || flags["MET_SHIARE"] != undefined)
 			{
 				output2("\n<b><u>Kressia Survival Shop</u></b>");
+				if(flags["DISCOUNT_SEXED_SURVIVAL_SHOP"] != undefined) output2("\n<b>* Sales, Times Given Sex Discount:</b> " + flags["DISCOUNT_SEXED_SURVIVAL_SHOP"]);
 				// Annarie and Shiare
 				if(flags["MET_ANARRIE"] != undefined)
 				{
 					output2("\n<b>* Annarie:</b> Met her");
 					if(flags["FUCKED_ANARRIE"] != undefined) output2(", Sexed her");
+					if(flags["ANARRIE_AMBUSH"] != undefined) output2("\n<b>* Annarie, Times Ambush Sexed Her:</b> " + flags["ANARRIE_AMBUSH"]);
 				}
 				if(flags["MET_SHIARE"] != undefined)
 				{
 					output2("\n<b>* Shiare:</b> Met her");
 					if(flags["FUCKED_SHIARE"] != undefined) output2(", Sexed her");
+					if(flags["MILKED_SHIARE"] != undefined) output2("\n<b>* Shiare, Times Milked Her:</b> " + flags["MILKED_SHIARE"]);
+					if(flags["ANT_PANTIES_SHARED"] != undefined) output2("\n<b>* Shiare, Times Shared Hardlight Strap-On With:</b> " + flags["ANT_PANTIES_SHARED"]);
 				}
 				variousCount++;
 			}

@@ -418,7 +418,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.71";
+			version = "0.6.72";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1010,6 +1010,10 @@
 		public function get pc():PlayerCharacter
 		{
 			return chars["PC"];
+		}
+		public function get baby():PlayerOffspring
+		{
+			return chars["PC_BABY"];
 		}
 
 		/* The following three accessors provide indirection during certain scenes, allowing generic, semantically-distict access to different characters.

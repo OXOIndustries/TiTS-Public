@@ -26,7 +26,8 @@ public function roamingBarEncounter(button:int = 0):void
 	if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
 	//"Help: Bodies" option, has had an update from Anno about the Nova. @ Golden Peak
 	if (flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && currentLocation == "609") NPCs.push(grayGooAtBarSetup);
-
+	//50% anno chances
+	if(annoIsCrew() && !pc.hasStatusEffect("Anno Bar Busy") && rand(2) == 0) NPCs.push(annoRandoBarBonus);
 	//Pick available NPC, run setup func
 	if(NPCs.length > 0)
 	{
@@ -530,18 +531,29 @@ public function lostDrankinContestToKiroz():void
 {
 	clearOutput();
 	showKiro(true);
-	output("Kiro uses you for hours upon hours. When you’re awake, she claims every single hole as her own, multiple times. When you’re asleep, she snuggles with you, clinging protectively to you with her immense tool plugging you from behind. She leaves at least one nocturnal protein snack for you in the morning. After that, you both shower, and she eats breakfast. You wind up sucking her off under the table for your meal, even though you aren’t really hungry at this point. Your Kui-Tan Mistress insists on it.");
-	output("\n\nIt is a long, sexually exhausting day, but when you leave, it’s as sexually sated as you’ve ever been. Unfortunately, you find yourself thinking of sex a little more readily afterward, almost eager to sink back into the constant depravity you’ve just escaped.");
+	output("Kiro uses you for hours upon hours. When you’re awake, she claims every single hole as her own, multiple times.");
+	
 	processTime(1380);
 	pc.loadInMouth(chars["KIRO"]);
 	pc.loadInMouth(chars["KIRO"]);
+	pc.buttChange(chars["KIRO"].cockVolume(0));
+	pc.buttChange(chars["KIRO"].cockVolume(0));
 	pc.loadInAss(chars["KIRO"]);
 	pc.loadInAss(chars["KIRO"]);
 	if(pc.hasVagina()) 
 	{
-		pc.loadInCunt(chars["KIRO"],rand(pc.totalVaginas()));
-		pc.loadInCunt(chars["KIRO"],rand(pc.totalVaginas()));
+		for(var i:int = 0; i < pc.vaginas.length; i++)
+		{
+			pc.cuntChange(i,chars["KIRO"].cockVolume(0));
+			pc.cuntChange(i,chars["KIRO"].cockVolume(0));
+			pc.loadInCunt(chars["KIRO"],i);
+			pc.loadInCunt(chars["KIRO"],i);
+		}
 	}
+	
+	output(" When you’re asleep, she snuggles with you, clinging protectively to you with her immense tool plugging you from behind. She leaves at least one nocturnal protein snack for you in the morning. After that, you both shower, and she eats breakfast. You wind up sucking her off under the table for your meal, even though you aren’t really hungry at this point. Your Kui-Tan Mistress insists on it.");
+	output("\n\nIt is a long, sexually exhausting day, but when you leave, it’s as sexually sated as you’ve ever been. Unfortunately, you find yourself thinking of sex a little more readily afterward, almost eager to sink back into the constant depravity you’ve just escaped.");
+	
 	sleepHeal();
 	pc.orgasm();
 	pc.orgasm();
@@ -2616,7 +2628,7 @@ public function galLinkFuckMeetInvite():void
 	if(flags["KIRO_ORGIED"] == undefined)
 	{
 		output("<i>“Oh, you’re just in time,”</i> Kiro chirps, standing up and nonchalantly adjusting her dress to better highlight her breasts. <i>“You ever get the GalLink fuckmeet invite?”</i> Kiro waves her arm. <i>“Whatever. Doesn’t matter. Come on - there’s something of an orgy scheduled in the backroom here, and I can’t fuck all these bitches myself.");
-		output(" Just be careful you don’t end up with a dick your ass. Most of those vixens are packing heat. You gotta fuck ‘em good and hard if you want to show them who’s boss.”</i> Kiro slaps your ass.");
+		output(" Just be careful you don’t end up with a dick in your ass. Most of those vixens are packing heat. You gotta fuck ‘em good and hard if you want to show them who’s boss.”</i> Kiro slaps your ass.");
 		output(" <i>“You coming or what? We gotta get back there now ");
 		output("if we don’t want sloppy seconds.");
 		output("”</i>");

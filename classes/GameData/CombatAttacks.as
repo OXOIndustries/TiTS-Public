@@ -838,7 +838,7 @@ package classes.GameData
 			}
 			else
 			{
-				output(" The shit hits!");
+				output(" The shot hits!");
 				
 				var dmg:TypeCollection = new TypeCollection( { burning: attacker.untypedDroneDamage() * 1.33 }, DamageFlag.LASER);
 				applyDamage(dmg, attacker, target, "minimal");
@@ -1621,7 +1621,7 @@ package classes.GameData
 			{
 				if (attacker is PlayerCharacter) output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
 				
-				if (target.physique()/2 + rand(20) + 1 >= attacker.aim()/2 + 10)
+				if (target.physique()/2 + rand(20) + 1 >= attacker.aim()/2 + 10 || target.hasStatusEffect("Stun Immune"))
 				{
 					output(" though " + target.a + target.uniqueName + " resists the blast. Your stun-shot failed!");
 				}

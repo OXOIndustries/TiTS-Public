@@ -877,7 +877,8 @@ public function celiseSleezeLactation():void {
 		}
 		output("\n\nAs you watch, she manages to slowly gather herself, her weary eyes widening as she reforms an arm and sees that her green color has not returned. Not only that, but stuffed to the brim with your bounty, she has no choice but to take on the most lewd proportions possible, and she groans as she bends, straightens her back and reforms her round, jiggling backside. She’ll probably be stuck like that, with her thick thighs, heaving breasts and bouncing bubble butt for some time, all the while unable to taste anything but your [pc.milk]");
 		if(pc.hasCock()) output(" and musky [pc.cumNoun]");
-		output(". Absolutely delicious. You sigh in deep satisfaction while you propel yourself to your final peak, dribbling the very last of your [pc.milk] onto her[ as you are clenched by orgasm once again, spattering her with yet more of your ");
+		output(". Absolutely delicious. You sigh in deep satisfaction while you propel yourself to your final peak, dribbling the very last of your [pc.milk] onto her");
+		if(pc.hasGenitals()) output(" as you are clenched by orgasm once again, spattering her with yet more of your ");
 		if(pc.hasCock()) output("[pc.cum]");
 		else if(pc.hasVagina()) output("[pc.girlCum]");
 		output(". She moans softly at the obscene rain, a treat she would have normally reveled in now just a reminder of how you have completely overwhelmed her.");

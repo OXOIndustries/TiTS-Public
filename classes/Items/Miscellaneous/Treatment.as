@@ -212,9 +212,22 @@ package classes.Items.Miscellaneous
 		}
 		private function setTreatmentMode(pc:Creature,arg:int = 0):void
 		{
+			//slamazon
+			if(arg == 2)
+			{
+				//v1 = boobs 14 to 23 (Max HHH-Cup)
+				//v2 = horn size
+				//v3 lip bonus
+				//v4 = unused
+			}
 			//chicks
 			if(arg == 0)
 			{
+				//v1 = boobs 9 to 30
+				//v2 = horn size
+				//v3 lip bonus
+				//v4 = unused
+
 				//Sin gets max boobs
 				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,30);
 				//Boobs from EE to JJ

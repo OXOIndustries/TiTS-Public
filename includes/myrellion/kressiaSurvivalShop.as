@@ -255,7 +255,7 @@ public function discountFlirtsFromPolyants():void
 	{
 		output("You wait for the store to be emptied of customers before walking up to Shiare and asking if her and Anarrie have time for some off-duty fun. She answers your question with a devilish smile before directing her gaze to Ana. The crimson plated ant-girl flushes, nodding and heading to the bedroom in the back of the store.");
 		//Hardlight Voyeur intro - requires sum milkin sluuuuts
-		if(flags["HARDLIGHT_ANT_PROC"] == 1)
+		if(flags["HARDLIGHT_ANT_PROC"] == 1 && pc.hasHardLightEquipped())
 		{
 			hardlightVoyeurForAntSlooooots();
 			return;
@@ -272,8 +272,9 @@ public function survivalShopSexMenu():void
 {
 	clearMenu();
 	//[milking](Tie Shiare up and milk her in front of her wife, teasing Anarrie all the while)
-	if((pc.isTaur() && pc.cockThatFits(chars["ANARRIE"].vaginalCapacity(0)) >= 0) || !pc.isTaur()) addButton(0,"Milking",milkingShiareCuckoldBullshit,undefined,"Milking","Tie Shiare up and milk her in front of her wife, teasing Anarrie all the while.");
-	else addDisabledButton(0,"Milking","Milking","To do this as a tauric creature, you need a penis that fits inside her.");
+	if((pc.isTaur() && pc.cockThatFits(chars["ANARRIE"].vaginalCapacity(0)) >= 0) || (!pc.isTaur() && (pc.cockThatFits(chars["ANARRIE"].vaginalCapacity(0)) >= 0 || pc.hasHardLightEquipped()))) addButton(0,"Milking",milkingShiareCuckoldBullshit,undefined,"Milking","Tie Shiare up and milk her in front of her wife, teasing Anarrie all the while.");
+	else if(pc.isTaur()) addDisabledButton(0,"Milking","Milking","To do this as a tauric creature, you need a penis that fits inside her.");
+	else addDisabledButton(0,"Milking","Milking","You need a penis or a hardlight strap-on that fits inside her.");
 	//[ambush](Maybe you and Shiare can help Anarrie get over some of her shyness)
 	if(pc.hasGenitals()) addButton(1,"Ambush",anarrieAmbush,undefined,"Ambush","Maybe you and Shiare can help Anarrie get over some of her shyness?");
 	else addDisabledButton(1,"Ambush","Ambush","You need genitals in order to do this.");
@@ -410,7 +411,7 @@ public function milkingShiareCuckoldBullshit():void
 	processTime(120);
 	IncrementFlag("MILKED_SHIARE");
 	IncrementFlag("DISCOUNT_SEXED_SURVIVAL_SHOP");
-	if(!pc.hasCock() && pc.hasHardLightEquipped() && flags["HARDLIGHT_ANT_PROC"] == undefined) flags["HARDLIGHT_ANT_PROC"] = 1
+	if(!pc.hasCock() && pc.hasHardLightEquipped() && flags["HARDLIGHT_ANT_PROC"] == undefined) flags["HARDLIGHT_ANT_PROC"] = 1;
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

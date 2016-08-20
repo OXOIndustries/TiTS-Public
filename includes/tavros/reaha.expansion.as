@@ -205,7 +205,7 @@ public function showReahaTalkMenu(func:Function = null):void
 	if (func != reahaTalkGeneMods) addButton(3, "GeneMods", reahaTalkGeneMods, undefined, "Her Gene Mods", "Ask Reaha about her bovine gene-mods.");
 	else addDisabledButton(3, "GeneMods");
 
-	if (func != reahaTalkHerLife) addButton(4, "Her Life", reahaTalkHerLife, undefined, "Her Life", "Ask Reaha to tell you a little bit about her life before she became a slave");
+	if (func != reahaTalkHerLife) addButton(4, "Her Life", reahaTalkHerLife, undefined, "Her Life", "Ask Reaha to tell you a little bit about her life before she became a slave.");
 	else addDisabledButton(4, "Her Life");
 	
 	if (func == reahaMilkTalk) addDisabledButton(5, "Milk Mods");
@@ -894,7 +894,7 @@ public function reahaTalkHerLife():void
 	
 	output("\n\nReaha grins, rubbing her tattoo. <i>“Right before I turned eighteen, I hopped ship off of New Texas. Well, stowed away might be a better term for it. I sort of put myself in a box and hoped for the best. Lucky me, when the captain found me, he wasn’t too upset. I guess he understood why I’d want to get out of there. He took me all the way to Earth, no charge. Not like I could have paid him anyway -- I didn’t really have any money. Which was... sort of a problem when I got to Earth. I didn’t have any skills, and I didn’t know anything about anything other than milk and boobies, so I didn’t really know what I was going to do, until the captain said I ought to think about joining the army. He’d been in the navy, he said, and learned to pilot a ship there.”</i>");
 	
-	output("\n\n<i>“Plus they’d feed, house, and pay me for a couple of years, too. That wasn’t a bad deal, either,”</i> Reaha says with a wry little chuckle. <i>“So yeah, I signed up not long after I hit Terra on a two-year contract. They put me in the infantry, seeing as I didn’t have any particular aptitudes or skills -- but I’m pretty strong and tough, or I was anyway. I didn’t really do anything special while I was in, just another grunt, you know? I was berthed on the </i>Odyssey<i> while she did a tour of the core, brand new flagship straight out of the docks. Made it up to lance corporal after a litte more more than a year. Honestly, I liked being in the army. I don’t know that I’d call it fun, but it was... it was good,”</i> Reaha says, giving you a little shrug. ");
+	output("\n\n<i>“Plus they’d feed, house, and pay me for a couple of years, too. That wasn’t a bad deal, either,”</i> Reaha says with a wry little chuckle. <i>“So yeah, I signed up not long after I hit Terra on a two-year contract. They put me in the infantry, seeing as I didn’t have any particular aptitudes or skills -- but I’m pretty strong and tough, or I was anyway. I didn’t really do anything special while I was in, just another grunt, you know? I was berthed on the </i>Odyssey<i> while she did a tour of the core, brand new flagship straight out of the docks. Made it up to lance corporal after a little more more than a year. Honestly, I liked being in the army. I don’t know that I’d call it fun, but it was... it was good,”</i> Reaha says, giving you a little shrug. ");
 	
 	output("\n\n<i>“Why’d you leave, then?”</i>");
 	

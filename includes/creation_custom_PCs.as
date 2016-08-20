@@ -731,6 +731,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.breastRows[0].breastRatingRaw = 5;
 			pc.cumMultiplierRaw = 10;
 			pc.ballEfficiency = 30;
+			pc.removePerk("Infertile");
 			pc.pregnancyIncubationBonusMotherRaw = 3;
 			pc.hipRatingRaw = 7;
 			pc.buttRatingRaw = 6;

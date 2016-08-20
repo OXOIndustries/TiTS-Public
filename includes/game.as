@@ -101,7 +101,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	
 	if (flags["PC_UPBRINGING"] == undefined)
 	{
-		eventQueue.push(fixPcUpbringing);
+		if(eventQueue.indexOf(fixPcUpbringing) == -1) eventQueue.push(fixPcUpbringing);
+	}
+	if(baby.originalRace != pc.originalRace)
+	{
+		if(eventQueue.indexOf(setBabyValuesOptions) == -1) eventQueue.push(setBabyValuesOptions);
 	}
 	
 	if (flags["CELISE_BEDSTUFF_HAPPENED"] != undefined)
@@ -2339,58 +2343,6 @@ public function badEnd(displayGG:String = "GAME OVER"):void
 	if (displayGG != "") output("\n\n<b>" + displayGG + "</b>");
 	output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
 	clearMenu();
-}
-
-public function fixPcUpbringing():void
-{
-	clearOutput();
-	showName("CODEX\nALERT");
-	author("Gedan");
-	
-	output("Your trusty codex vibrates incessantly, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of its features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
-	
-	output("\n\nSafely shuffled off to one side, hopefully out of the way - and out of sight - of any one or any thing that might come by, you bring your handy forearm-mounted helper to the fore to see exactly what it’s complaining about....");
-	
-	output("\n\n<i>DATA CORRUPTION DETECTED</i>");
-	
-	output("\n\nWell, shit.");
-	
-	output("\n\n<i>FIX NOW?</i>");
-	
-	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, a [pc.finger] already tapping on the key labeled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
-	if (!silly) output(" fix itself");
-	else output(" do the needful");
-	output(" before it’s vibrating away, demanding its masters dutiful attention again.");
-	
-	output("\n\n<i>UNRECOVERABLE DATA FRAGMENT LOCATED IN FILE: [pc.fullName]</i>");
-	output("\n<i>MISSING SEGMENT: SCHOOL HISTORY</i>");
-	output("\n<i>PLEASE RE-ENTER VALID DATA...</i>");
-	
-	output("\n\nThere doesn’t seem to be any way around the prompt other than to give the fucking thing an acceptable answer to devices question...");
-	
-	clearMenu();
-	addButton(0,"Pampered",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_PAMPERED);
-	addButton(1,"Athletic",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_ATHLETIC);
-	addButton(2,"Bookworm",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BOOKWORM);
-	addButton(3,"Austere",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_AUSTERE);
-	addButton(4,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
-}
-
-public function fixPcUpbringingSetNew(upType:uint):void
-{
-	clearOutput();
-	showName("CODEX\nALERT");
-	author("Gedan");
-	
-	flags["PC_UPBRINGING"] = upType;
-	
-	output("<i>INPUT REGISTERED: " + (GLOBAL.UPBRINGING_NAMES[upType] as String).toUpperCase() + "</i>");
-	output("\n<i>THANK YOU FOR YOUR COMPLIANCE.</i>");
-	
-	output("\n\nLooks like that was all the cheeky little bastard wanted from you. Another ‘Okay’ key tap and you’re back on your travels.");
-	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
 }
 
 // Checkin' da E-mails

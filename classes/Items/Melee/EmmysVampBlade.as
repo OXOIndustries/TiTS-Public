@@ -35,7 +35,7 @@
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
-			this.attackVerb = "crackling slice";
+			attackVerb = "strike";
 			attackNoun = "crackling slice";
 			
 			//Information

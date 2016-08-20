@@ -298,9 +298,10 @@ public function victoryFuckSyrisBunghole():void {
 	output("\n\nPrick still lodged in Syri's well-fucked ass, you heave a heavy sigh and wipe the sweat from your brow. Beneath you, the ausar girl's breath comes in short little gasps, her breasts rising and falling erratically as she tries to pick herself up from the table. <i>“D-damn, [pc.name]. You're a fucking machine. Gods and spirits I'll be sore for days after that reaming....”</i>");
 
 	output("\n\nYou reach down and squeeze one of her delightfully squishy cheeks, promising ");
-	if(pc.isNice()) output("you'll take it easy on her next time");
-	else if(pc.isMischievous()) output("that she'll have to get used to it if she doesn't get on your level next time");
-	else output("that she'll be walking bow-legged when you're done with her next time.");
+	if(pc.isNice()) output("you'll take it easy on her");
+	else if(pc.isMischievous()) output("that she'll have to get used to it if she doesn't get on your level");
+	else output("that she'll be walking bow-legged when you're done with her");
+	output(" next time.");
 
 	output("\n\n<i>“Next time... it's </i>your<i> ass, [pc.name],”</i> she growls, pulling your cock out - which only serves to unleash a flood of your pent-up seed that spills down between her cheeks and along the cleft of her swinging sack.");
 
@@ -777,7 +778,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 		//(First Time Variant) 
 		if(flags["SYRI_SEEN_PCS_SHIP_CABIN"] == undefined) {
 			flags["SYRI_SEEN_PCS_SHIP_CABIN"] = 1;
-			output("Looking around at the mostly empty bar and then at the pretty ausar girl starting up at you, you ask if she'd like to get out of here.");
+			output("Looking around at the mostly empty bar and then at the pretty ausar girl staring up at you, you ask if she'd like to get out of here.");
 
 			output("\n\n<i>“Ooh, I thought you'd never ask, " + pc.mf("handsome","beautiful") + ",”</i> Syri says with a wink and a grin, gathering up her scattered belongings. <i>“My place is kind of a wreck, so... let's head back to that ship of yours. You still owe me a tour of your ship after all, Captain...”</i>");
 

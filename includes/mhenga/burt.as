@@ -518,7 +518,7 @@ public function talkToBurtAboutMeadHall():void {
 		flags["BURT_MEAD_HALL_DISCUSSIONS"] = 1;
 		output("Burt chuckles and tucks his bar rag into a pocket on his apron, <i>“You want to know about Burt’s Badass Mead Hall, huh? Can’t say that I blame ya. Sadly, there isn’t a lot to say about it. I won it in a card game, and the previous owner didn’t really give a lick about it. Had Three-Dee running it, and she’s glitchy as hell.”</i> He shakes his head, <i>“Frankly, I’m surprised I can even keep the place going.”</i>");
 		output("\n\nYou inquire about who Three-Dee is.");
-		output("\n\nBurt grins, <i>“Three-Dee is a virtual bartender made by Kiha Corp. Stands for Digital Drink Dispenser. Basically she’s a series of robotic limbs worked into the underside of the bar, and a cheap holoprojector with a VI just smart enough to make drinks to order and take credits. But when I got here, she had been hacked so many times that she is pretty unpredictable now. I try to only use her when I need a break.”</i>");
+		output("\n\nBurt grins, <i>“Three-Dee is a virtual bartender made by KihaCorp. Stands for Digital Drink Dispenser. Basically she’s a series of robotic limbs worked into the underside of the bar, and a cheap holoprojector with a VI just smart enough to make drinks to order and take credits. But when I got here, she had been hacked so many times that she is pretty unpredictable now. I try to only use her when I need a break.”</i>");
 	}
 	//Scene2
 	else if(flags["BURT_MEAD_HALL_DISCUSSIONS"] == 1) {

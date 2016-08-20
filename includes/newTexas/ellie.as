@@ -115,7 +115,7 @@ public function mehYourTiTSDontScareMeOffworlder():void {
 	showBust("ELLIE");
 	showName("\nELLIE");
 	output("You try and play it cool, doing your best to ignore the intense need boiling through your loins. You fight with your eyes until they finally draw back from Ellie’s huge rack and up to her face.");
-	output("She gives you a playful tsk of her tongue. <i>“Aww. Most bulls would have me spread open on the counter by now. Maybe you need a little dose of the Treatment to get some confidence, huh?”</i> she teases, though her long, reptilian tail brushes meaningfully across the rack of medipens behind the counter. <i>“After all, it’s the most amazing feeling in the world - for free! So what do you say, hun? Want a medi-pen full of a lifetime of ecstasy, or do I need to do a little more convincing?”</i>");
+	output("\n\nShe gives you a playful tsk of her tongue. <i>“Aww. Most bulls would have me spread open on the counter by now. Maybe you need a little dose of the Treatment to get some confidence, huh?”</i> she teases, though her long, reptilian tail brushes meaningfully across the rack of medipens behind the counter. <i>“After all, it’s the most amazing feeling in the world - for free! So what do you say, hun? Want a medi-pen full of a lifetime of ecstasy, or do I need to do a little more convincing?”</i>");
 	processTime(1);
 	//Ellie menu
 	ellieMenu();

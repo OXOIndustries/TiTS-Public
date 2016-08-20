@@ -35,10 +35,11 @@
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This weapon is a curved sword that most resembles a primitive saber. The similarities end there, however. Shock blades are made from highly conductive alloys designed to deliver massive electrical shocks to their opponents. A small power cell is housed in the hilt, good for about 100 strikes before it must be recharged.";
-			this.attackVerb = "shocking slash";
-			attackNoun = "shocking slash";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
+			attackVerb = "slash";
+			attackNoun = "shocking slash";
 			
 			//Information
 			this.basePrice = 1450;

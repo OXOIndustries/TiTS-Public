@@ -58,6 +58,13 @@ public function annoFollowerHeader(nude:Boolean = false):void
 	author("Savin");
 }
 
+public function annoThreeWayed():Boolean
+{
+	if(flags["UVETO_HUSKAR_FOURSOME"] == 1) return true;
+	if(flags["ANNO_X_KAEDE_THREESOMED"] != undefined) return true;
+	return false;
+}
+
 // Hook this into Tarkus' ship hangar room
 public function returnToShipAfterRecruitingAnno():Boolean
 {
@@ -399,7 +406,7 @@ public function annoMorningShower():void
 
 	output("\n\nYou shoot upright when you realize somebody’s missing - an empty spot on your mattress, still warm from the heat of a body recently occupying it.");
 
-	output("\n\n<i>“Oh hey [pc.name],”</i> echos a greeting from your side. You turn to look and find Anno having just stepped out of your shower. She’s stood in the doorway to your bathroom, a towel wrapped around her body and another balled up around her hair. <i>“Sorry, I'm kind of an early riser - you don't mind me using your shower right?”</i>");
+	output("\n\n<i>“Oh hey [pc.name],”</i> echoes a greeting from your side. You turn to look and find Anno having just stepped out of your shower. She’s stood in the doorway to your bathroom, a towel wrapped around her body and another balled up around her hair. <i>“Sorry, I'm kind of an early riser - you don't mind me using your shower right?”</i>");
 
 	output("\n\nShe takes a step out into your quarters, the towel wrapped around her body parting down the side of her leg to frame a view of glistening ausar thigh, and you can’t muster anything other than an appreciative grunt. You certainly don't mind her using your shower; especially if one of the perks is getting to wake up to this kind of view.");
 
@@ -1982,7 +1989,7 @@ public function annoFollowerFirstTimeOnMhenga():void
 	output("As you dock at Mhen’ga, you feel a pair of familiar, fluffy arms wrap around your neck and shoulders as a big pair of");
 	if (anno.armor is AnnosCatsuit) output(" latex");
 	else output(" cloth");
-	output("-clad tits pressing into your back. <i>“Hey, isn’t this... yeah, Mhen’ga!”</i> Anno says, watching the jungle sprawl out through your viewscreen before slowly giving way to the town of Esbeth. ");
+	output("-clad tits press into your back. <i>“Hey, isn’t this... yeah, Mhen’ga!”</i> Anno says, watching the jungle sprawl out through your viewscreen before slowly giving way to the town of Esbeth. ");
 	
 	if (flags["TOLD_TO_ANNO_ABOUT_SYRI_RELATIONSHIP"] == undefined)
 	{
@@ -2238,7 +2245,7 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 		if(pc.cockTotal() > 1) output("s");
 		output(" swelling full, begging to be let loose to fuck her instead");
 	}
-	output(". You sate your urges - for now - by giving Anno’s spankable behind what it deserves, a sharp swat that makes her squeal... and makes her pussy do wonderful things to your hardlight shaft, squeezing and squirming around the unyielding hardness projecting from your crotch. She takes the full length of your lighdick, groaning along every inch until her ass is pressed into your crotch. Her tail wiggles up to your [pc.chest], teasing at one of your [pc.nipples] until you suck in a pleasured breath and bat it away. Anno shoots you a wink over her shoulder, and her tail goes right back to teasing you, tickling your nose when she can’t get at your [pc.chest] again.");
+	output(". You sate your urges - for now - by giving Anno’s spankable behind what it deserves, a sharp swat that makes her squeal... and makes her pussy do wonderful things to your hardlight shaft, squeezing and squirming around the unyielding hardness projecting from your crotch. She takes the full length of your light-dick, groaning along every inch until her ass is pressed into your crotch. Her tail wiggles up to your [pc.chest], teasing at one of your [pc.nipples] until you suck in a pleasured breath and bat it away. Anno shoots you a wink over her shoulder, and her tail goes right back to teasing you, tickling your nose when she can’t get at your [pc.chest] again.");
 	output("\n\nWith an annoyed grunt, you finally reach down and grab the fluffy white menace, giving it just enough tug to make Anno yelp. Though by the look she gives you after, it’s the same kind of cry she might give after a good, hard spanking. You lick your lips and give her another rough tug, punctuating her next cry with a shifting of your [pc.hips] that brings your hardlight dick in and out of her a few inches, thrusting back hard enough to make her whole backside jiggle with the impact. You start to move after that, starting off nice and slow for Anno’s sake, enjoying the tactile-feedback feeling of her wet slit’s walls gliding across your cock.");
 	output("\n\nThe slow thing doesn’t work out too long, though, before Anno groans <i>“Come on, boss... fucking pound me already!”</i>");
 	output("\n\nWell, if she wants it! You grab ahold of Anno’s flared hips and thrust faster. Before long, the bed is creaking and shaking with the force of your motions. Anno’s backside quivers and quakes as your crotch slaps against it, her whole body shuddering with the impacts as you drive your hardlight cock deep into her. With every thrust, you’re rewarded with an ever-increasing flow of ausar juices splattering back against your thighs as Anno’s excitement mounts, driving her body into overdrive with your cunt-stretching lightdick. The more you stir her up, the wetter she - and you, and her sheets - get, and the louder her voice climbs as she moans and screams in pleasure. Her fingers shift away from her gaping lips to the bud of her clit, rubbing at it with abandon as she rapidly nears her limit.");
@@ -2644,7 +2651,7 @@ public function annosTriberatorGatorMatorHater():void
 	output("\n\n<i>“Yes! Yes yes yes! Pleeease give it to me-!”</i> Anno moans and presses her plush ass back, carnally grinding her snatch against the phallic vibrator. Paying her back for earlier, you hotdog her with the whirring dick toy. When you press it between her fleshy buttocks, she needily clenches and milks it just like a real cock. <i>“Mmmm... lower, insiiide my pussy-!”</i>");
 	output("\n\nDeciding you’ve teased her enough, you give her what she desperately wants, pressing the curved tip against her parted folds. Anno needily arches her hips and you sheathe the quivering dildo in her quim. She gasps and ");
 	if(annoIsCrew()) output("clenches at the sheets");
-	else output("wiggles on the store floor.");
+	else output("wiggles on the store floor");
 	output(" as it bottoms out inside of her. Her tiny pussy is obscenely stretched around the knotted base.");
 
 	output("\n\n<i>“It-it feels so much bigger than it looks!”</i> she breathily exclaims. Finding her pussy is incredibly tight as well, you begin moving the ten inches of vibrating ausar cock back and forth, occasionally twisting it with no small amount of skill. Anno trembles and pants, her bushy tail lifted high in the air.");
@@ -2681,8 +2688,8 @@ public function annosTriberatorGatorMatorHater():void
 		output(" pulsing with pleasure");
 	}
 	//PcIsADamnNeuter: 
-	if(!pc.hasVagina() && !pc.hasCock()) output("lower belly is pooling with pleasure and your bare loins needily ache.");
-	output(" The more horny you get, the more wild you are with the vibrator - it’s a chain reaction of pleasure that will only end one of you getting off!");
+	if(!pc.hasVagina() && !pc.hasCock()) output("lower belly is pooling with pleasure and your bare loins needily ache");
+	output(". The more horny you get, the more wild you are with the vibrator - it’s a chain reaction of pleasure that will only end in one of you getting off!");
 
 	output("\n\nGrabbing her fluffy tail, you tug at the end. At the same time, you thrust the toy deep inside of her snatch and anus - turning the speed up to max - and Anno ecstatically cries out. Her drooling cunny and pucker clench around the whirring toy, her whole body quaking with pleasure. Her white, wolf-like ears are pressed back flat and she’s panting wildly. By her trembling thighs, she’s seconds away from creaming herself!");
 	output("\n\nBeating Anno to the punch, you plunge the whirring ausar cock into her slick netherlips and click the ‘cum’ button’. Suddenly the artificial knot begins to rapidly inflate and bulge out inside of her tight tunnel. From the tapered tip, it spastically fires thick, gooey ropes of artificial ausar cum which splash wildly inside of her warm, wet insides.");
@@ -3587,3 +3594,231 @@ public function annoUvetoHuskarRepeatSure():void
 	annoUvetoHuskarFoursomeMenu();
 }
 
+//Random Bar Scenes
+//Very small chance to add [Anno] to any bar the player visits while Anno is an active crewman. Overridden by her Tavros Kaede threeway scene if need be. Clicking the button generates a random scene.
+
+//Room Descript Add.
+public function annoRandoBarBonus(button:int = 0):void
+{
+	output("\n\nYou spy Anno sprawled out against the bar, sipping on a bubbly, colorful drink. She’s rocking a sexy little blouse and miniskirt outfit, showing plenty of her ample cleavage and letting her snowy tail thump freely against her seat. She seems to be enjoying herself.");
+	addButton(button,"Anno",annoBarEncounterRouter,undefined,"Anno","Anno is here. You could see what she's up to.");
+}
+
+public function annoBarEncounterRouter():void
+{
+	if(rand(4) == 0) annoShootsAGuyDownnnn();
+	else if(rand(3) == 0) annoGonnaGitIt();
+	else if(rand(2) == 0) annoGonnaGitDragonBOOOTAYYYYY();
+	else annoPupAtWork();
+}
+//Anno Shoots a Guy Down
+public function annoShootsAGuyDownnnn():void
+{
+	clearOutput();
+	showAnno();
+	author("Savin");
+	output("Deciding to check in on your science pup, you make your way over to where Anno’s sitting... just a moment too late, as a tall ausar man saunters up to her. He’s packing way more cologne than any reasonable fellow ought to, radiating off a designer-torn leather jacked and greased-back black hair that screams <i>“pretty rich boy.”</i> He leans confidently against the bar next to Anno and wiggles his towering jackal-ears, flashing her a big, toothy smile.");
+	output("\n\nBy the time you get over to them, Anno’s lips are twisted in an unbecoming grimace. The ausar stud keeps on with his wanna-be charming grin, talking just softly enough that you can’t make out exactly what he’s saying. Not that he’s being subtle about his intentions, if his gaze being locked raptly to Anno’s chest with a firm package tenting his jeans is any indication. By the time you get close enough to hear him saying something about how he and Anno would <i>“make some fuckin’ hot pups, y’know babe?”</i> you can see Anno’s had exactly enough of the oh-so-suave playboy.");
+	output("\n\nWith a disgusted grunt, Anno tosses her bubbly drink into the ausar boy’s face. He yelps, tucks his tail, and staggers back. <i>“What the fuck, bitch!?”</i>");
+	output("\n\n<i>“Grow up, pup,”</i> Anno scowls, setting her glass aside and planting her hands on her hips. <i>“What are you, sixteen?”</i>");
+	output("\n\n<i>“");
+	if(pc.isAss()) output("Leave her alone, punk,");
+	else if(pc.isBro()) output("Mine. Fuck off,");
+	else if(pc.isBimbo()) output("Like, wow, rude,");
+	else output("Back off,");
+	output("”</i> you say, finally within range to give the spurred doggie-boy a firm push away from Anno. He gives you both a scowl, but thinks better of making a scene and stomps off towards the men’s room. A few other customers giggle and jeer as he goes.");
+
+	output("\n\nAnno sighs and swipes her credit chit over a scanner at the bar. <i>“Ugh. Well, it </i>was<i> a nice ");
+	if(hours >= 5 && hours <= 19) output("day");
+	else output("evening");
+	output(". Think I’m gonna head back to the ship, Boss. Thanks for the backup, though.”</i>");
+
+	output("\n\nShe plants a kiss on your cheek and sashays out. This time, the other patrons give a few catcalls - and get a happy wiggle out of Anno’s tail for their trouble.");
+	pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,65);
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Anno Goan Git It
+public function annoGonnaGitIt():void
+{
+	clearOutput();
+	showAnno();
+	author("Savin");
+	output("Seeing Anno out and about catches your attention, and you decide to head on over. Before you’ve taken three steps, though, a huge, burly green thraggen man arrives at Anno’s side with a drink and a tusky grin.");
+	output("\n\nShe giggles and wiggles her ears at him, nuzzling up into the towering brute’s chest. He laughs at something she murmurs to him and plants a hand around her shoulder, pulling her tight against him - and grabbing a handful of boob when he thinks nobody else is looking. Anno’s clearly happy with the attentions, wagging her tail a hundred miles an hour. Looks like someone’s having fun without you!");
+	output("\n\nBy the time you’ve made it over, both of them have knocked back their drinks and are making with the bedroom eyes. Anno leans up on her tippy-toes and whispers something in the thraggen’s ear, and the next thing you know she’s squealing and kicking her legs, getting tossed onto his shoulder like an oversexed bag of potatoes. The big bruiser locks a hand on her butt to keep her steady and starts marching for the door with his prize.");
+	output("\n\n<i>“Hi-bye, boss!”</i> Anno cheers over the guy’s back as they pass you, waving energetically. <i>“Don’t wait up!”</i>");
+	output("\n\nHer booty call gives a thumb’s up back in your general direction and carries Anno off to parts unknown, and activities obvious.");
+	output("\n\nBye...?");
+	processTime(2);
+	pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,135);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Anno Loves Her dat Dragon Booty
+public function annoGonnaGitDragonBOOOTAYYYYY():void //Hi geddy
+{
+	clearOutput();
+	showAnno();
+	author("Savin");
+	output("You figure you might as well check in with Anno while you’re both here, and start heading over. You get to her at the same time as another woman does - a tall, sensuously curvy gryvain with dark green scales and wings, and horns growing from her brow decorated with jeweled silver chains.");
+	output("\n\n<i>“Oh, hey boss,”</i> Anno grins as you wander up. <i>“What’s up?”</i>");
+	output("\n\nYou shrug, saying you’d just come over to chat. You didn’t realize she was here with someone.");
+	output("\n\n<i>“Ah, yeah,”</i> she laughs, passing a drink along the bar to the gryvain woman, who takes it with an appreciative nod. <i>“Just so happened to find myself a date out here!”</i>");
+	output("\n\n<i>“This is your boss, Anno?”</i> her dragon-like companion asks, raising a flame-colored eyebrow at you. <i>“I’d have thought a big corporate C.E.O. would be... older. Definitely not a cutie.”</i>");
+	output("\n\nYou suddenly find your eyes drawn to the pair of grav-ball sized breasts straining the woman’s strapless, cleavage-heavy dress... and the slight bulge of a hermaphroditic masculinity just barely puffing out against one of her long, scaly legs.");
+	output("\n\nAnno giggles into her drink. <i>“Yeah, [pc.heShe]’s pretty great.”</i>");
+	output("\n\n");
+	//if PC hasn’t done any Anno threeway: 
+	if(!annoThreeWayed()) output("After a moment, Anno gives you a questioning look, as if to say <i>“it’s time to go.”</i> You figure you’ve interfered in her date enough if that’s the case and excuse yourself.");
+	else
+	{
+		output("Lowering her eyes playfully, Anno adds, <i>“And [pc.heShe]’s usually up for a fun time. Aren’t you, babe?”</i>");
+		output("\n\n<i>“Babe?”</i> the gryvain echoes. <i>“O-ho, I see...”</i>");
+		output("\n\nAnno gives her a grin. <i>“My profile said-”</i>");
+		output("\n\n<i>“I know!”</i> the other woman chuckles, leaning back against the bar. <i>“Didn’t say I had a problem. Quite the opposite, actually.”</i>");
+		processTime(4);
+		pc.lust(10);
+		//[Excuse Yourself] [Play Along]
+		clearMenu();
+		addButton(0,"Nah",annoCanDoShitSolo,undefined,"ExcuseYourself","Anno’s gonna have to play this one solo.");
+		addButton(1,"Play Along",playAlongWithAnnoThreesome,undefined,"Play Along","Anno’s none too subtle about wanting you to get in on this action. If you don’t mind risking some dragon-girl cock in you by night’s end, you could play along and see where things go...");
+		return;
+	}
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Excuse Yourself]
+//Anno’s gonna have to play this one solo.
+public function annoCanDoShitSolo():void
+{
+	clearOutput();
+	showAnno();
+	author("Savin");
+	output("You smile and nod, but mention that you’ve actually got places to be.");
+	output("\n\n<i>“Aw,”</i> Anno sighs, sipping on her drink. <i>“Well, see you around, boss. As for you...”</i> she adds, turning and slipping a hand around the gryvain’s shoulder. <i>“Where were we...”</i>");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Play Along]
+//Anno’s none too subtle about wanting you to get in on this action. If you don’t mind risking some dragon-girl cock in you by night’s end, you could play along and see where things go...
+//Add minimum level intoxication to PC.
+public function playAlongWithAnnoThreesome():void
+{
+	clearOutput();
+	showAnno(); //9999 needs lizard girl bust
+	author("Savin");
+	output("<i>“Yeah,”</i> you answer after a moment’s consideration, eyeing the two buxom beast-babes with growing lust. You signal to the bartender to get you a drink, all the while saying that you’re generally available for some fun.");
+	output("\n\nThe gryvain girl smiles and turns to you in a way that makes her ample curves stand out under her slinky black dress. <i>“Excellent. I’ve always wanted to chat with a brilliant scientist and a famous adventurer-magnate.”</i>");
+	output("\n\nYour drink comes quickly, and you’re soon swept up into the two girls’ flirtatious chatting. Of course, Anno’s made it pretty darn clear that none of you are really here for small talk. Getting a little tipsy and comfortable with each other is just step one on the short road between extranet dating and finding yourself in bed between a pair of smoking hot babes. Which, between your winning charm and Anno’s playful sluttiness, isn’t a hard sell at all. An hour and several emptied drinks later, and you’ve found that Anno’s getting properly gropey and giggly, and her date’s hand hasn’t left your [pc.butt] for the longest time... and that bulge she’s sporting is only getting bigger.");
+	output("\n\nFinishing off a final drink, you slip an arm around each of their waists and suggest you make your way back to your ship for a little more intimate entertainment. The stiff nipples and rock-hard dragon-cock that soon present themselves through sheer fabric is all the answer you need, and you’re quickly making your way back to the dock as quick as your inebriated [pc.feet] can take you.");
+	pc.imbibeAlcohol(30);
+	processTime(5);
+	pc.lust(40+rand(10));
+	clearMenu();
+	addButton(0,"Next",dragonGurlAnnoThreesome);
+}
+
+public function dragonGurlAnnoThreesome():void
+{
+	//MOVE TO SHIP
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	clearOutput();
+	showAnno(true); //9999 needs lizard girl nudebust
+	author("Savin");
+	output("A few minutes later and you’re ");
+	if(!pc.isNude() && !pc.isCrotchExposed()) output("spilling out of your [pc.clothes] and onto the bed");
+	else output("tumbling into bed");
+	output(", groping at Anno’s breasts and feeling a pair of clawed hands sinking into your [pc.butt]. The gryvain girl growls low in her throat, and soon you’re gasping and moaning as her slender tongue ");
+	if(pc.hasCock()) output("wraps around your [pc.cock]");
+	else output("thrusts deep into your [pc.vagOrAss]");
+	output(".");
+
+	output("\n\n<i>“Ooh, she’s hungry for it!”</i> Anno giggles, even as she’s presenting her own bare pussy to you. You dig in with the same gusto as her date, spearing her on your [pc.tongue] and lapping up all the sweet ausar juices that are soon smearing her pretty pink lips and tender thighs. She arches her back and moans like, well, an ausar bitch in heat as you slurp up her puss, pushing your head deeper into her cooch until you’re practically swimming in her excitement.");
+	var x:int = pc.cockThatFits(anno.vaginalCapacity(0));
+	if(pc.hasCock() && x >= 0)
+	{
+		if(x < 0) x = pc.smallestCockIndex();
+		output("\n\nWhen you’re satisfied with your preparations, you surge up and grab Anno by the waist, hoisting her up onto your [pc.cock " + x + "]. She squeals happily as you ram yourself hilt-deep in her quim, leaving her on her knees and straddling you reverse-cowgirl. It doesn’t exactly take much prompting for the gryvain to crawl up, push Anno onto your [pc.chest], and thrust into her pussy right along with you. Anno’s eyes go wide as she stretched to the limit, filled to the brim with [pc.cock " + x + "] and viridian dragon-cock.");
+		pc.cockChange();
+		output("\n\nBetween Anno’s rapidly-contracting cunt and the alien cock grinding against your own, you’re quickly lost in a sea of pleasure. You happily grope Anno’s succulent chest, exchanging kisses and nips along her neck, thrusting your hips in staccato rhythm with the draconic dick-girl. Before you can completely lose yourself, though, the gryvain babe grabs your ");
+		if(pc.cockTotal() > 1) output("second cock, pumping it to tumescence");
+		else output("[pc.cock " + x + "], tugging it out of Anno’s slit and hoisting it straight up");
+		output(". Flashing you a grin, she shifts her hips up and mounts you, still buried knot-deep in Anno. Suddenly, you’re immersed in a squeezing vice of a thousand tiny, hot nubs all gliding wetly around your prick, massaging you like the most exquisite onahole from crown to [pc.knot " + x + "].");
+	}
+	else
+	{
+		output("\n\nA minute later and you’re back-to-back with Anno, grinding your asses together around a throbbing shaft of drake-cock. The gryvain girl bucks her hips against you, sprawled out on her wings and groping at her breasts. She can’t take it for long; with a feral roar, she grabs you and Anno and shoves you both ass-up into the bed, and you feel a rock-hard cock slamming into your spit-lubed hole. She takes turns switching between you and your lover, grinding your groins together so she can easily switch from packing Anno’s pussy to stretching your [pc.vagOrAss] around her bulbous member.");
+		pc.cuntChange(0,100);
+		output("\n\nYour orgasm is as inevitable as it is intense, caught between bucking dragon-girl and the slutty, panting ausar clinging to you as she rides out her own climax - the latest of several, if the blissed-out look on Anno’s face is any indication. That, and the musky swamp of fem-cum spreading between her thighs, mixing with the gryvain-girl’s seed when she pulls out and blasts a creamy load across Anno’s up-turned asscheeks.");
+		if(pc.hasCock())
+		{
+			output(" You join her a moment later, pumping a thick wad of your own seed into the dragoness’s pussy");
+			if(pc.cumQ() > 25) output(" and a second straight upwards, popping out and letting your ausar-milked load splatter across the gryvain’s hefty rack, and rain back down over Anno’s back");
+			output(".");
+		}
+	}
+	output("\n\nWith a contented sigh, Anno flops down bonelessly on top of you, tracing kisses along your [pc.chest] until the gryvain girl snuggles up against you, drooling cum and breathing hard. You scoop her up in an arm and pull her close, enjoying the feeling of two busty, sultry ladies cuddling up. The smells of sex and sweat hang heavy in the air as you let exhaustion and contentment take you, drifting off to sleep in their arms...");
+
+	processTime(20);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",annoXGedanThreesomeEpilogue);
+}
+
+public function annoXGedanThreesomeEpilogue():void
+{
+	clearOutput();
+	author("Savin");
+	showAnno();
+	//Pass 6-10 hours. Move PC back to ship.
+	output("When you come to, the green gryvain babe is nowhere to be seen. Anno’s lying face-down against you, covered in cool cum and snoring into your armpit. Graceful. You yawn, roll your lover off, and hit the shower.");
+	output("\n\nBy the time you’re out, Anno’s woken up enough to be stagger up and ");
+	if(celiseIsCrew()) output("drag Celise into your quarters. She’s dumped the giggly goo onto the bed and is sat on the side of it, letting your resident cum-vacuum clean the spoogy mess up.");
+	else output("strip the spunk-soaked bed for cleaning.");
+	output("\n\n<i>“What do you say, Boss?”</i> she grins when you get out, looking back to eye your naked body. <i>“Think I should give her a ‘would date again’ on ExtraMeet?”</i>");
+	output("\n\n");
+	if(pc.isBimbo()) output("Like, t");
+	else output("T");
+	output("otally.");
+	processTime(600+rand(400));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Puppers At Work
+public function annoPupAtWork():void
+{
+	clearOutput();
+	showAnno();
+	author("Savin");
+	output("You head on over to Anno, hoping to catch a few peaceful minutes with your companion. She smiles as you take a seat beside her, but points to a small holoband clipped to one of her perky ears and then puts a finger on your lips: be quiet, got it. Anno gives you a little wink and turns back to the Codex propped up on the bar, surrounded by empty peanut packets and a drink glass so soaked in ice-sweat that it’s practically swimming.");
+	output("\n\n<i>“Yeah, no, I’ve run this through the computer ten times already. The math doesn’t add up!”</i> she says into the Codex, tapping at the screen. <i>“Every time I run the simulation, the device explodes. Badly.... no, I know it’s not a <b>perfect</b> simulation, but... No! Nobody’s going to fund... Ugh! Fine, one more time. Here, let me share my screen with you; you check the math.”</i>");
+
+	output("\n\nAnno sighs and types something out. When she’s done, she jabs a big green <i>“SIMULATE”</i> button on her screen and turns to you with an exaggerated eye-roll. She makes a circling gesture around one of her ears, sighs again, and takes a lot swig of her drink. You watch as a progress bar fills up on her screen, eventually replacing itself with a big green check-mark and a digital chirp, <i>“Simulation complete! Project success ratio: ninety-seven percent.”</i>");
+	output("\n\nAnno blinks. <i>“W-what. Why... but... what do you mean I carried a number wrong? I haven’t done math by hand in years! It was the computer doing it! I’ve been using this program for years and I’ve never had problems. I - okay, miss ego, yeah yeah, I’d have never done it without you. You’re amazing and I love you and I’ll give you a special credit when I publish this. Happy? Uh-huh. Seriously though, you’re the best. Mkay. Talk to you later, Syri.”</i>");
+	output("\n\nShe flips off the Codex and turns to you with a big, dopey grin. <i>“My sister just solved one of the most complex physics equations I’ve ever worked with. By hand. Ugh, I feel so stupid next to her sometimes!”</i>");
+	if(flags["MET_SYRI"] == undefined) 
+	{
+		output("\n\nWait... Syri? Really? You didn’t exactly picture her as an astrophysicist in disguise.");
+		output("\n\n<i>“I know, right!?”</i> Anno huffs. <i>“So much wasted potential! All she does is sit around jerking it to video games or whatever - if she just applied herself half as much as she does to slacking off, she could run laps around Akkadi and Steele’s entire R&D departments. Ugh!”</i>");
+	}
+	else output("\n\nWell, you guess genius just runs in the Dorna family. Anno chuckles and finishes off her drink, closing her eyes and relishing the taste. <i>“Maybe. Now if only motivation did, Syri might actually make something of herself. It’s so frustrating! She’s easily as smart as I am, probably <b>smarter</b>, but all she ever wants to do is the bare minimum to get by, and then waste all her time playing video games and getting hammered.”</i>");
+	output("\n\nShaking her head to herself, Anno calls the bartender over and orders you both a drink.");
+	output("\n\n<i>“To my twin sister, who once again secures me a big, fat research grant.”</i>");
+	output("\n\n<i>“To Syri,”</i> you laugh, clinking your glass to hers.");
+	output("\n\nYou spend a few minutes tipping back your drink and chatting with Anno, but unfortunately she soon says she needs to head back to the ship and start filling out paperwork for her grant. She leaves you with a big hug and a paid-for tab before sashaying out the door.");
+	processTime(20);
+	pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,135);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+
+}

@@ -106,8 +106,8 @@ public function encounterASexBot():void
 		{
 			output("\n\nYou do have some intimate desires that need addressing, and an android specifically created to do exactly that couldn’t be bad at it, could it?");
 			clearMenu();
-			addButton(0,"Yes",voluntaryFuckSexBot, tSexBot);
-			addButton(1,"No",turnDownRobotSexuals, [true, tSexBot]);
+			addButton(0,"Let It",voluntaryFuckSexBot, tSexBot);
+			addButton(1,"Don't",turnDownRobotSexuals, [true, tSexBot]);
 		}
 		else
 		{

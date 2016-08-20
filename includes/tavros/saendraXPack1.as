@@ -60,7 +60,7 @@ public function unlockSaendraXPackMail():void
 	clearBust();
 	author("Savin");
 
-	output("Your Codex beeps unexpectedly, alerting you to an incoming extranet message. When you pull your device out, you’re greeted by an message addressed from one <i>“FlyGirl@PhoenixCargo.net.”</i> No bonus points guessing who <i>that</i> is. You flip it open and start to read:");
+	output("Your Codex beeps unexpectedly, alerting you to an incoming extranet message. When you pull your device out, you’re greeted by a message addressed from one <i>“FlyGirl@PhoenixCargo.net.”</i> No bonus points guessing who <i>that</i> is. You flip it open and start to read:");
 	
 	output("\n\n<i>Hey, hero, are you anywhere near Tavros? Please say yes!</i> the message reads. <i>If you are, I could really use a hand. I’m on Deck 92, up in the construction wing. Expect trouble. Hope I see you soon!</i>");
 	
@@ -872,6 +872,7 @@ public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 public function sx1ShotguardPCVictory():void
 {
 	clearOutput();
+	showBust("MERCGUARD");
 	showName("VICTORY:\nVOID PIRATE");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
@@ -909,6 +910,7 @@ public function sx1ShotguardPCVictory():void
 public function sx1SkipShotguard():void
 {
 	clearOutput();
+	showBust("TECHGUARD");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
 
@@ -927,6 +929,7 @@ public function sx1SkipShotguard():void
 public function sx1ShotguardPCLoss():void
 {
 	clearOutput();
+	showBust("MERCGUARD");
 	showName("DEFEAT:\nVOID PIRATE");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
@@ -958,6 +961,7 @@ public function sx1InitTechguardFight():void
 public function sx1TechguardPCVictory():void
 {
 	clearOutput();
+	showBust("TECHGUARD");
 	showName("VICTORY:\nVOID TECHIE");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
@@ -978,6 +982,7 @@ public function sx1TechguardPCVictory():void
 public function sx1TechguardPCLoss():void
 {
 	clearOutput();
+	showBust("TECHGUARD");
 	showName("DEFEAT:\nVOID TECHIE");
 
 	generateMapForLocation("SX1 RESCUE ROOM");
@@ -1004,6 +1009,7 @@ public function sx1TechguardPCLoss():void
 public function sx1TechguardPCLossII():void
 {
 	clearOutput();
+	clearBust();
 	showName("DEFEAT:\nVOID TECHIE");
 
 	currentLocation = "MERCHANT'S THOROUGHFARE";
@@ -1218,11 +1224,15 @@ public function zilCallGirlAddendum(slot:int = 0):void
 	return;
 }
 
-public function showZilCallGirl(nude:Boolean = true):void
+public function showZilCallGirl(cum:Boolean = false):void
 {
 	if (CodexManager.entryViewed("Zil")) showName("ZIL\nCALL GIRL");
 	else showName("ALIEN\nCALL GIRL");
-	showBust("ZILFEMALE");
+	
+	var sBust:String = "ZIL_CALLGIRL";
+	if (zilCallGirlPregnant()) sBust += "_PREG";
+	if (cum) sBust += "_CUM";
+	showBust(sBust);
 }
 public function zilCallGirlSexed(count:Boolean = false):int
 {
@@ -1545,7 +1555,7 @@ public function zilCallGirlFuckHer():void
 {
 	clearOutput();
 	generateMapForLocation("CALLGIRL ROOM");
-	showZilCallGirl();
+	showZilCallGirl(true);
 	author("Savin");
 	
 	// Select wiener!

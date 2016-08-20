@@ -38,7 +38,7 @@ public function deck13MakeGoo():void
 	author("Savin");
 	showName("GOO\nCONTAINER");
 
-	output("You step up to the one vat of gray goo remaining on the deck. Its humming slightly, churning as it produces and maintains a little sea of goop. There’s a spigot about six feet off the deck, controlled by a dark computer monitor that looks like it belongs in a museum. You walk over and push the screen. Nothing happens.");
+	output("You step up to the one vat of gray goo remaining on the deck. It’s humming slightly, churning as it produces and maintains a little sea of goop. There’s a spigot about six feet off the deck, controlled by a dark computer monitor that looks like it belongs in a museum. You walk over and push the screen. Nothing happens.");
 	
 	output("\n\nPoke. Nothing again.");
 	
@@ -134,7 +134,7 @@ public function nameThaGooII():void
 	
 	output("\n\n<i>“Yaaaaaaaaaaaay!”</i> she cheers, plucking the drive out of your hand and swallowing it.");
 	
-	output("\n\nWell shit. [goo.name] beams at you, giggling to herself as you stare and her. Looks like that plan just went out the window.");
+	output("\n\nWell shit. [goo.name] beams at you, giggling to herself as you stare at her. Looks like that plan just went out the window.");
 	
 	output("\n\n<i>“I don’t feel any different,”</i> she pouts, absently cupping one of her huge breasts. <i>“Oh well! Hey, wanna... I dunno, wanna fuck?”</i>");
 	
@@ -888,7 +888,7 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	}
 	else if(fromCrew && InShipInterior())
 	{
-		if(!(pc.armor is GooArmor) || pc.inventory.length < pc.inventorySlots()) gooArmorAddButton(fromCrew, 4, "Take", gooArmorCrewOption, ["take", fromCrew], "Take " + chars["GOO"].short, "Ask [goo.name] to tag along with you.");
+		if(!pc.hasArmor() || pc.inventory.length < pc.inventorySlots()) gooArmorAddButton(fromCrew, 4, "Take", gooArmorCrewOption, ["take", fromCrew], "Take " + chars["GOO"].short, "Ask [goo.name] to tag along with you.");
 		else gooArmorAddDisabledButton(fromCrew, 4, "Take", "Take " + chars["GOO"].short, "You don’t have any extra room to take her! Try emptying your inventory or taking off your outfit first.");
 	}
 	

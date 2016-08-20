@@ -720,7 +720,7 @@ public function mhengaThickMistRoom1():Boolean
 		if(pc.hasScales() || pc.hasFeathers()) output(" are");
 		else output(" is");
 	}
-	output(" are damp from all the moisture in the air. Things are getting quite chilly.\n\nYou can hear a river to the west, which means you probably can't proceed that way. Everywhere else seems fine, you think...");
+	output(" damp from all the moisture in the air. Things are getting quite chilly.\n\nYou can hear a river to the west, which means you probably can't proceed that way. Everywhere else seems fine, you think...");
 	
 	return mhengaVanaeCombatZone();
 }

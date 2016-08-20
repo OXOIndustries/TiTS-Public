@@ -102,6 +102,7 @@ public function defeatAMaleNaleen():void {
 	else addDisabledButton(1,"Get Blown","Get Blown","You need a penis and to be suitably aroused in order to get a blowjob.");
 	if(pc.lust() >= 33) addButton(2,"Blow Him",maleNaleenSucksPCOff,undefined,"Blow Him","The poor kitty just needed some loving. Now that he's no longer dangerous, you can send him on his way with a smile...");
 	else addDisabledButton(2,"Blow Him","Blow Him","You're not really in the mood to hand out blowjobs.");
+	addButton(3, "Buttfuck",getButtfuckedByDudeleen,undefined,"Get Buttfucked","Have the naughty kitty plow your ass.");
 
 	addButton(14,"Leave",leaveDefeatedDudeleen);
 }
@@ -118,6 +119,141 @@ public function leaveDefeatedDudeleen():void {
 	processTime(3);
 	CombatManager.genericVictory();
 }
+
+
+//Male naleen victory scene. PC gets naleen to pork their bum with one hot dog and use their cheeks as a bun for the other, or ram both dicks into one hole. And the PC's cunt-tail can have some fun, too, if they’ve got one.
+public function getButtfuckedByDudeleen():void
+{
+	clearOutput();
+	author("IVIysteriousPerson");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
+	
+	if(pc.isAss())
+	{
+		output("You yank the naleen upright and give his cocks a rough squeeze, getting a feel for their size. Satisfied, you ");
+		if(pc.armor.shortName != "" || pc.upperUndergarment.shortName != "") output("turn away and strip down to nothing");
+		else output("sigh and run your hands across your naked body} as the alien hunter ogles you.");
+	}
+	else
+	{
+		output("You bite your lip, approaching the feline-reptile hybrid with an obvious excitement. He looks at you, following your gaze down to his twin reptilian dicks.");
+		if(pc.armor.shortName != "" || pc.upperUndergarment.shortName != "") output(" You peel off your clothing and bare your [pc.skinFurScales] to the humid jungle air");
+		else output(" He clears his throat as you flash a smile");
+		output(", ready for some fun.");
+	}
+	
+	output("\n\nWith a seductive shake of your [pc.hips], you sashay away in search of a suitable spot, leaving the naleen to stare after you. He’s shamelessly aroused already, each dick stiff and leaking precum, but you hold him in anticipation. You need to find the right spot.  A nearby tree catches your eye, perfectly sized for you to lean against it. You press your palms to the vine-covered trunk and stick out your ass, then give the naleen a sultry look over your shoulder");
+	if(pc.hasTail()) output(", raising your [pc.tails] to ensure a perfect view of all you have to offer");
+	output(". The alien hunter jumps to attention, unable to contain himself any longer. He slithers forward and runs his hands across your [pc.ass], and you scoot back into him and grind your butt against his dicks.");
+	output("\n\n<i>“Can you figure it out, or do I just need to say it?”</i> you ask as the naleen does nothing more than marvel at your backside.");
+	output("\n\nHe clears his throat and takes the hint,");
+	if(pc.hasVagina())
+	{
+		output(" but as he moves to thrust you feel a cock testing the entrance of [pc.oneVagina].");
+		output("\n\n<i>“Ah!”</i> you scold, shifting away, <i>“Hold on.”</i> You glance back and line up your [pc.asshole] with the lower of his two shafts, settling the other in between the cheeks of your ass. <i>“Much better.”</i>");
+		output("\n\nThe naleen doesn’t complain, too eager for satisfaction to care which hole he squeezes into. He flicks his tongue and grips your [pc.hips], then dives into your [pc.asshole] with a vigorous energy.");
+	}
+	else output(" lining up one of his reptilian dicks with your [pc.asshole] and sliding inside you.");
+	
+	if(pc.analVirgin)
+	{
+		output("\n\nGiven your inexperience, the process is a little rougher than you’d like, and you almost begin to regret giving in to your adventurous side. But the naleen seems to pick up on your discomfort. You hear him chuckle as he slows down and ");
+		if(pc.hasHair()) output("runs his fingers through your [pc.hair].");
+		else output("traces a claw down your back.");
+		output("\n\n<i>“You’re pretty brave, aren’t you?”</i> he asks, to which you respond with a strained smile and a shrug. The dick buried halfway in your ass swells a bit before you feel it move forward, inching deeper inside you. The naleen starts to rock his hips gently, easing himself in and out of your untrained ass. The naleen carefully stretches you with his girthy reptilian dick and, slowly but surely, pleasure replaces pain.");
+		output("\n\nThe naleen picks up his pace, but keeps his thrusts shallow, at least until your ass stops putting up so much of a fight. Just as your pleasure begins to outpace your breath, the alien lets out a predatory hiss and drives himself deeper. Your whole body tenses and you let out a cry of surprise as he starts pounding away at your [pc.ass], but he gave you enough of a warm up that you can take him decently well. You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambiance of the jungle.");
+	}
+	else
+	{
+		output("\n\nYou sigh in satisfaction and focus on relaxing your rear end to take your alien lover as deep as possible. It only takes a few thrusts before his hips meet your [pc.ass], his dick swallowed whole. The feeling of fullness coaxes out a long, lewd moan, and ");
+		if(pc.hasCock()) output("[pc.eachCock] twitch as your [pc.tongue] lolls out of your mouth.");
+		else output("you let your tongue loll out of your mouth.");
+		output(" The naleen pounds away, one shaft buried in your [pc.asshole] while the other slides between your asscheeks.");
+		if(pc.hasTail())
+		{
+			output("The upper shaft grinds against the base of your [pc.tails], hitting the deliciously sensitive spot right where ");
+			if(pc.tailCount > 1) output("they meet");
+			else output("it meets");
+			output("your spine.");
+		}
+		output("\n\n<i>“More,”</i> you say, turning back to look him in the eye, <i>“");
+		if(!silly) output("Faster! Harder!");
+		else output("Harder, better, faster stronger!");
+		output("”</i>");
+		output("\n\nHe flicks his forked tongue and winks. There’s a pause as he draws his hips back, holding you in suspense, until he surges forward and nearly slams your face against the tree. You cry out in approval, and the naleen leans forward to hammer against you. ");
+		if(pc.isNaga()) output("Your serpentine tails entangle one another, scales sliding over scales and muscles twisting every which way. Each of you coils around the other, keeping your lower halves together as your top halves maintain the excited, rhythmic fucking. ");
+		output("You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambiance of the jungle.");
+	}
+	
+	var analCap:Number = pc.analCapacity();
+	pc.buttChange(chars["NALEEN_MALE"].cockVolume(0));
+	
+	if(pc.hasVagina())
+	{
+		if(pc.totalVaginas() > 1) output("\n\nYour untouched slits let out a dribble of [pc.girlCum], as if indignant that they’ve been ignored.");
+		else output("\n\nYour untouched slit lets out a dribble of [pc.girlCum], as if indignant that it’s been ignored. ");
+		if(pc.genitalLocation() >= 2) output("Sadly, you can't reach your [pc.cunts], having to settle for the buttfuck alone. Or so you think. While the naleen may have respected where you did or did not want his dick, he's still a little eager to try out your feminine side. You giggle as you feel a few furred fingers slip into [pc.oneVagina], expertly teasing it. ");
+		else
+		{
+			output("Unable to resist, you ")
+			if(pc.hasLegs()) output("tuck a hand between your [pc.legs]");
+			else output("slide a hand towards you waist");
+			output("and set to work, giving [pc.eachClit] a little tweak. The eye-fluttering stimulation combined with naleen's thrusting is almost too much, and you groan in ecstasy.")
+		}
+	}
+	if(pc.hasCuntTail()) output("\n\nWith lust and satisfaction occupying your mind, you don't pay much attention to your tail, but the [pc.tailVagina] at its tip is determined to get in on the action, too. You unconsciously curl the prehensile length around to engulf the naleen's upper dick, surprising him enough that he actually stops his pounding. As soon as your tail gives his cock the first of many rough squeezes, though, he jumps back into action, now with both dicks buried inside you.");
+	if(analCap > 300)
+	{
+		output("\n\nThe naleen’s dick pistons in and out of you, but it’s not quite enough. You need more. You twist back and hold up a hand, signaling him to stop for a moment. He looks up at you in confusion, and you take a deep breath before pointing to his other penis.");
+		output("\n\n<i>“Both. I want both.”</i>");
+		output("\n\nHis eyes light up, and he pulls away to grab each of his reptilian dicks. He squeezes the bulbous rods together and presses both of their heads against your [pc.asshole], stretching you with twice as much girth as before.");
+		output("\n\n<i>“Fuck yes...”</i> you moan, biting your lip. You give a frantic nod as the naleen picks up where he left off, your ass filled with a huge amount of cock.");
+	}
+	
+	output("\n\nThe buttfuck gets more and more intense, and you lean heavily against the tree to keep yourself steady. Your [pc.chest] is mashed against it as the naleen continues to pound you, ");
+	if(pc.isLactating()) output("and the pressure squeezes streams of [pc.milk] from your [pc.nipples], sending trails of [pc.milkColor] racing down the tree to pool on the earth below. ");
+	else output("but the harsh pressure is really just one more bit of stimulation. ");
+	output("As the naleen begins to grunt with every increasingly powerful thrust, it almost feels like you’re holding on for dear life.")
+	if(analCap > 300) output("Your stomach swells in time with his movements, the combined girth of his dicks stretching you to an incredible extreme.")
+	output(" But the pleasure doesn’t lie, and the roughness only serves to highlight how good it all feels.");
+	
+	output("\n\nThere’s only so much you can take, though, and you feel your limits being tested. The naleen is barely holding on himself, shivering whenever your [pc.ass] ");
+	if(pc.hasCuntTail()) output("and [pc.tailVagina] squeeze his dicks.");
+	else if(analCap > 300) output("squeezes his dicks.");
+	else output("squeezes his dick.");
+	output(" Eventually a long groan overcomes him as he slams into you one final time, burying himself as deep as he can. Both of his cocks pulse as they blow their load, and the sensation of being ");
+	if(pc.hasCuntTail() || analCap > 300) output("simultaneously covered and ");
+	output("filled with cum is your breaking point.");
+
+	if(pc.hasCock())
+	{
+		output("\n\nYou arch your back, [pc.eachCock] ");
+		if(pc.cumQ() > 1000) output("letting out a flood of [pc.cum]");
+		else output("shooting ropes of [pc.cum]");
+		output(" against the base of the tree")
+		if(pc.hasVagina()) output(" and your [pc.cunts] spasming in turn");
+		output(". A series of rapid, breathy pants escape from your mouth as [pc.eachCock] paints the jungle floor [pc.cumColor], and you're too entangled in pleasure to vocalize anything of substance. You're left gasping for air, and you cling limply to the tree for support.");
+	}
+	
+	if(pc.hasVagina() && !pc.hasCock()) output("\n\nYou arch your back, [pc.eachVagina] spasming and soaking the naleen's waist with [pc.girlCum]. A series of rapid, breathy pants escape from your mouth as your body is assaulted by orgasm, and you're too entangled in pleasure to vocalize anything of substance. You're left gasping for air, and you cling limply to the tree for support.");
+	
+	if(pc.hasCuntTail()) output(" Amid it all, your tail clenches and sucks, muscles pulsing to draw the naleen's seed deep inside. It squeezes every last drop out of the naleen, not relenting until its meal is totally exhausted. Hunger satisfied, it slips off the alien's shrinking dick and flops against your [pc.ass].");
+	
+	output("\n\nBoth you and the nallen are still for a few moments as your orgasms wind down, until he withdraws to ");
+	if(pc.isNaga()) output("uncoil himself from around your tail and ");
+	output("slither away. You eventually manage to pull yourself together, semen leaking from your ass. Several feet away, the naleen sighs and stretches, giving a tired wave as you begin to collect your things. You reciprocate before ");
+	if(pc.armor.shortName != "" || pc.upperUndergarment.shortName != "") output("getting dressed and ");
+	output("wordlessly setting out into the jungle. You’re left feeling a bit winded, but definitely satisfied.");
+	
+	processTime(20);
+	pc.orgasm();
+	pc.loadInAss(chars["NALEEN_MALE"]);
+	
+	output("\n\n");
+	CombatManager.genericVictory();
+}
+
 
 //Ride Him
 //Requires PC has at least one vagina and not taur

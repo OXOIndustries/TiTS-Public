@@ -299,7 +299,7 @@ public function shortswordBuyTalk():void
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
-	output("You tap a button and it expands, displaying view of a quick, deadly-looking sword. Carly interrupts, <i>\"That's a simple shortblade. Back before we figured out how to kill each other with guns, that was the way to do it. Good for stabbing and does lots of damage. Not sure what else you'd need in a weapon.</i>\"");
+	output("You tap a button and it expands, displaying view of a quick, deadly-looking sword. Carl interrupts, <i>\"That's a simple shortblade. Back before we figured out how to kill each other with guns, that was the way to do it. Good for stabbing and does lots of damage. Not sure what else you'd need in a weapon.</i>\"");
 	output("\n\nYou nod.");
 	processTime(1);
 	

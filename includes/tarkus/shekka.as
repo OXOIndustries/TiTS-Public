@@ -313,7 +313,7 @@ public function talkToShekkaAboutRaskvel():void
 	userInterface.showName("\nSHEKKA");
 	//Unlocked via Tarkus Chat
 	output("You ask her if she'd like to talk more about her race, the raskvel.");
-	output("\n\n<i>\"Seems a little narcissistic, but if you really want, I suppose I could jabber about my people a little,\"</i> Shekka answers with an exaggerated shrug of her tiny shoulders. She gestures for you to follow and starts milling around pillars of buckers and parts, rambling all the while. <i>\"Near as I see it, we're a byproduct of ");
+	output("\n\n<i>\"Seems a little narcissistic, but if you really want, I suppose I could jabber about my people a little,\"</i> Shekka answers with an exaggerated shrug of her tiny shoulders. She gestures for you to follow and starts milling around pillars of buckets and parts, rambling all the while. <i>\"Near as I see it, we're a byproduct of ");
 	if(flags["TARKUS_DESTROYED"] == undefined) output("this metallic dustball your people have ");
 	else output("the metallic dustball your people had ");
 	output("christened Tarkus.\"</i> She stops at an oversized bucket and roots around inside it for a part. Her feet flail in the air when she dives a little too deeply and nearly falls in, but she keeps talking all the same.");
@@ -844,6 +844,7 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 		if(pc.balls > 0) output("your [pc.sack]");
 		else if(pc.hasVagina()) output("[pc.oneVagina]");
 		else output("your [pc.base " + x + "]");
+		output(".");
 	}
 	else output(" She curls her tail around to tease your [pc.asshole], the tip circling around the edge of your ring.");
 	if(!pc.isNude()) output(" <i>\"You haven't even gotten yourself naked yet.\"</i>");
@@ -885,7 +886,7 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 	output("\n\nFuck, she's getting tighter every time! It's actually starting to get hard to pull out of her, and the soaking-wet girl goo bathing you is challenging you to erupt. No, worse than that, her whole body is begging for a thick wad of your [pc.cumNoun]");
 	if(y >= 0) output(" - even her ass");
 	output(".");
-	output("\n\nShekka babbles in a brief interlude between orgasms, <i>\"Fucking fuck me! Cum!\"</i> Of course, her pink eyes roll back and a second later, and her words transform into poorly enunciated \"yes\"es and \"ahh\"s of pleasure. Bending low over top of her, you feel the rising heat inside you, signaling that your own release is soon at hand. You wrap an arm under her chest, lifting her to press against your [pc.chest]. Grabbing tight, your palm encircles her breast, and you bottom out one last time");
+	output("\n\nShekka babbles in a brief interlude between orgasms, <i>\"Fucking fuck me! Cum!\"</i> Of course, her pink eyes roll back and a second later, her words transform into poorly enunciated “yes”es and “ahh”s of pleasure. Bending low over top of her, you feel the rising heat inside you, signaling that your own release is soon at hand. You wrap an arm under her chest, lifting her to press against your [pc.chest]. Grabbing tight, your palm encircles her breast, and you bottom out one last time");
 	var knot:Boolean = false;
 	var knots:Boolean = false;
 	if(pc.hasKnot(x)) knot = true;

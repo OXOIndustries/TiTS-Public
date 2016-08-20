@@ -184,7 +184,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "BLACKVOID";
+			return "MERCGUARD";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

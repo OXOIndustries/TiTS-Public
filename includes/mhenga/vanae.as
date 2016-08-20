@@ -507,7 +507,7 @@ public function noThanksTentaSlutImOut():void
 	if (enemy is MaidenVanae) output(" vanae maiden.");
 	else output(" vanae huntress.");
 	
-	output("\n\nYou scavenge through her dropped equippment, looking for anything that might be of use, before quickly and quietly leaving the area.");
+	output("\n\nYou scavenge through her dropped equipment, looking for anything that might be of use, before quickly and quietly leaving the area.");
 	
 	output("\n\n");
 	

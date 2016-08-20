@@ -76,7 +76,7 @@ public function tanisBowTrainingFirstTime():void
 	else output(" ever since they shipped those new robot drivers out here");
 	output(".”</i>");
 
-	output("\n\nHe fishes around beneath his desk for a moment, pulling out a towering bow out from under it. It’s not <i>quite</i> like your bow: bigger, though proportional to his size, and made of a material you can’t quite place. Some alien wood, you’d imagine, though the way he hefts it around makes you think it’s much heavier than any bow you’ve ever seen before. He waves you over around the counter to a small back door that leads you out to the edge of the Mhen’gan jungle.");
+	output("\n\nHe fishes around beneath his desk for a moment, pulling a towering bow out from under it. It’s not <i>quite</i> like your bow: bigger, though proportional to his size, and made of a material you can’t quite place. Some alien wood, you’d imagine, though the way he hefts it around makes you think it’s much heavier than any bow you’ve ever seen before. He waves you over around the counter to a small back door that leads you out to the edge of the Mhen’gan jungle.");
 	
 	output("\n\n<i>“So, no formal training, right?”</i> Tanis says, less a question and more an amused statement of fact. When you nod, he chuckles. <i>“Don’t worry about it. Most people don’t. Bowmanship’s kind of a lost art these days, you know. Some of us leithans keep up the old art: nowhere in the galaxy has game like Leitha, though you have to be ready to be prey as much as predator on our homeworld. A strong, silent shot will get you further than the big bang of a rifle when there’s monsters the size of houses eager to eat you. If you can bring down a kill without drawing unwanted attention, well, you can’t do much better than a bow.”</i>");
 
