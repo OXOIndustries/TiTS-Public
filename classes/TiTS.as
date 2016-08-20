@@ -295,6 +295,11 @@
 		include "../includes/events/karaquest2/rooms.as";
 		include "../includes/events/karaquest2/roomFunctions.as";
 		
+		// Kashima
+		include "../includes/events/kashima/kashimaincident.as";
+		include "../includes/events/kashima/rooms.as";
+		include "../includes/events/kashima/roomfunctions.as";
+		
 		// Uveto
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/jerome.as";

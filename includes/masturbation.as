@@ -344,6 +344,13 @@ public function selectRandomFap(faps:Array):void
 }
 
 public function masturbateMenu(roundTwo:Boolean = false):void {
+	
+	if (flags["KASHIMA_STATE"] == 1 && flags["CHIEF_NEYKKAR_WITH_PC"] == 1)
+	{
+		lustyBugpony();
+		return;
+	}
+	
 	clearOutput();
 	clearMenu();
 	var aborted:Boolean = false;

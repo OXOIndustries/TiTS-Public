@@ -185,7 +185,14 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	}
 	else 
 	{
-		addButton(9, "Sleep", sleep);
+		if (currentLocation == "KI-H16" && flags["KI_REFUSED_VANDERBILT"] != undefined && flags["KI_VANDERBILT_WORKING"] != undefined)
+		{
+			addDisabledButton(9, "Sleep", "Sleep", "You can't afford to risk sleeping with Elenora around. Who knows if she'll be able to hold it together... or if she'll try something while you rest.");
+		}
+		else
+		{
+			addButton(9, "Sleep", sleep);
+		}
 	}
 		
 	addButton(14, "Codex", showCodex);
@@ -363,6 +370,21 @@ public function showMailsHandler(e:Event = null):void
 		return;
 	}
 	
+	if (flags["KASHIMA_STATE"] == 1)
+	{
+		if (!userInterface.isSecondaryOutputActive())
+		{
+			userInterface.showSecondaryOutput();
+			clearOutput2();
+			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something's messed up with it's quantuum comms. device... or it’s getting some serious interference. You'll not be able to use the function until you get back to your ship and tinker with it.");
+			return;
+		}
+		else
+		{
+			backToPrimaryOutput();
+		}
+	}
+	
 	if (flags["PC_EMAIL_ADDRESS"] == undefined)
 	{
 		(userInterface as GUI).showSecondaryOutput();
@@ -408,6 +430,13 @@ import classes.UIComponents.UIStyleSettings;
 
 public function updateMailStatus():void
 {
+	if (flags["KASHIMA_STATE"] == 1)
+	{
+		userInterface.mailsDisplayButton.Activate();
+		userInterface.mailsDisplayButton.iconColour = UIStyleSettings.gStatusBadColour;
+		return;
+	}
+	
 	// Initial mail config option!
 	if (flags["PC_EMAIL_ADDRESS"] == undefined)
 	{
@@ -610,6 +639,8 @@ public function sleep(outputs:Boolean = true):void {
 	
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
+	
+	if (kiMedbaySleeps()) return;
 	
 	var minutes:int = 420 + rand(80) + 1
 	
@@ -893,12 +924,17 @@ public function flyTo(arg:String):void {
 			}
 		}
 		//Normal message events.
-		var tEvent:Function = tryProcTravelEvent();
+		var tEvent:Function = tryProcTravelEvent(arg);
 		if (tEvent != null)
 		{
 			incomingMessage(tEvent, arg);
 			return;
 		}
+	}
+	
+	if (!MailManager.isEntryUnlocked("KashimaMail") && pc.level >= 7 && (shipLocation == "600" || shipLocation == "2I7" || arg == "Myrellion" || arg == "MyrellionDeepCaves"))
+	{
+		if (eventQueue.indexOf(sendKashimaMessage) == -1) eventQueue.push(sendKashimaMessage);
 	}
 	
 	var shortTravel:Boolean = false;

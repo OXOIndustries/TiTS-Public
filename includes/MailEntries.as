@@ -121,6 +121,26 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("saendrathanks", "You’re a lifesaver, captain. Just got patched up by the docs back on Tavros. Said I wouldn’t have lasted much longer, even if I didn’t get killed in the fight. Blood loss. Speaking of loss, old lefty was mangled pretty bad by that shotgun blast. Had to lose it. Good news is I’ve got myself some new chrome to replace it. Could have been a lot worse. I lived through it thanks to you. You’re my new hero, cap.\n\nI’m going to be grounded at Tavros for a bit. If you get the chance, look me up. I owe you a drink (and maybe a little more~).\n\nYour new friend,\nSaendra <3", "Thanks again, hero!", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress);
 	
+	MailManager.addMailEntry("KashimaStart", 
+	function():String {
+		var msg:String = "";
+		
+		msg += "Dear " + pc.mf("Mr.", "Ms") + " Steele,";
+		msg += "\n\nAfter some discussion among the executive board, we have decided to inform you of an opportunity for work in the Myrellion system, which";
+		if (reclaimedProbeMyrellion() == false) msg += " we have on good authority that";
+		msg += " you have recently visited. One of the company's asteroid mining vessels, the <i>U.G.C.S. Kashima</i>, recently went dark in the orbit of Myrellion's second moon. The assignment should have been relatively safe, and due to the Confederate presence in the sector, we do not believe it to have fallen victim to piracy. Whether the <i>Kashima</i>’s failure to report is due to technical difficulties or some other problem is unknown, though its transponder appears to be active." 
+		msg += "\n\nSteele Tech has taken the precaution of contracting a Nova Securities support-rescue vessel to investigate and either recover the crew or assist in repairs as needed. However, due to your proximity to the <i>Kashima</i> and the value of its cargo, it may prove prudent to have a representative of the company such as yourself present as well. And, of course, will necessitate a contractor's fee for yourself.";
+		msg += "\n\nThe <i>Kashima</i>'s last known location has been included with this message. Act accordingly.";
+		msg += "\n\nKindest regards,\n\nWilliam B. Brannagan, Director\n\nSteele Tech Job Services Department";
+		
+		return msg;
+	},
+	"Myrellion Resources",
+	"William B. Brannagan",
+	"jobservices@steeletech.corp",
+	quickPCTo,
+	quickPCToAddress);
+	
 	MailManager.addMailEntry("danemyrellioncoords", 
 	function():String {
 		var msg:String = "";

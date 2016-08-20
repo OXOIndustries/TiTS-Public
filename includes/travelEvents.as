@@ -21,7 +21,7 @@ public function flyToWrapper(destination:String):void
 
 // Try and return a travel event function. This should be a normal output function that will generally *disable* the event if turned down.
 // Travel events should take the signature of function <name>(destination:String) -- turning down the event can then direct the player to their original destination
-public function tryProcTravelEvent():Function
+public function tryProcTravelEvent(destination:String):Function
 {
 	var possibleMessages:Array = new Array();
 	if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level > 3) possibleMessages.push(fallOfThePhoenixMessage);

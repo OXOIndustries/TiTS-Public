@@ -1,6 +1,7 @@
 package classes.GameData 
 {
 	import classes.Creature;
+	import classes.StorageClass;
 	import classes.kGAMECLASS;
 	import classes.Engine.Interfaces.*;
 	
@@ -223,6 +224,24 @@ package classes.GameData
 		{
 			if (combatContainer) return combatContainer.enemiesAlive();
 			return -1;
+		}
+		
+		public static function addCombatEffect(effect:StorageClass):void
+		{
+			if (combatContainer) combatContainer.addCombatEffect(effect);
+		}
+		public static function removeCombatEffect(effectName:String):void
+		{
+			if (combatContainer) combatContainer.removeCombatEffect(effectName);
+		}
+		public static function hasCombatEffect(effectName:String):void
+		{
+			if (combatContainer) combatContainer.hasCombatEffect(effectName);
+		}
+		public static function getCombatEffect(effectName:String):StorageClass
+		{
+			if (combatContainer) return combatContainer.getCombatEffect(effectName);
+			return null;
 		}
 	}
 

@@ -266,6 +266,9 @@
 			// More complex target selection to leverage some of Annos abilities
 			for (var i:int = 0; i < hostileCreatures.length; i++)
 			{
+				// skip deadies
+				if ((hostileCreatures[i] as Creature).isDefeated()) continue;
+				
 				if (hostileCreatures[i].hasStatusEffect("Stunned") || hostileCreatures[i].hasStatusEffect("Blinded"))
 				{
 					target = hostileCreatures[i] as Creature;

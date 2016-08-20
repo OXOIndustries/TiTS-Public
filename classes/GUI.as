@@ -632,6 +632,11 @@
 			_buttonTray.resetButtons();
 		}
 		
+		public function isPrimaryOutputActive():Boolean
+		{
+			return (_currentModule.moduleName == "PrimaryOutput");
+		}
+		
 		public function showSecondaryOutput():void
 		{
 			if (_currentModule.moduleName != "SecondaryOutput")
@@ -640,6 +645,11 @@
 			}
 			
 			this.clearGhostMenu();
+		}
+		
+		public function isSecondaryOutputActive():void
+		{
+			return (_currentModule.moduleName == "SecondaryOutput");
 		}
 		
 		public function showMinigame():void
