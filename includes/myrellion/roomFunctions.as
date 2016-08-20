@@ -1000,7 +1000,7 @@ public function publicUseForDickedPCsInGildenmere():void
 	{
 		output("\n\n<i>“You there!”</i> The voice is heavy with authority, but almost casual in how it is handled. Whoever it is, they’ve grown accustomed to barking orders. <i>“Hey, you!”</i>");
 		output("\n\nYou turn back to look, coming face-to-face with a severe-looking gold myr - one wearing a few too many medals to ignore. Worse still, she’s backed up by a column of twenty grim-faced soldiers. <i>“Me?”</i>");
-		output("\n\n<i>“Yes, you.”</i> Her antennae stab accusingly in your direction. <i>“Your were due at the barracks over twenty minutes ago. I don’t care how big your dick");
+		output("\n\n<i>“Yes, you.”</i> Her antennae stab accusingly in your direction. <i>“You were due at the barracks over twenty minutes ago. I don’t care how big your dick");
 		if(pc.cockTotal() > 1) output("s are");
 		else output(" is");
 		output(". There’s no excuse for failing to keep an appointment.”</i>");
