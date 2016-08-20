@@ -84,16 +84,18 @@
 						output("\n\nBy the time you’re finished, your [pc.asshole] is clenching on its own, muscles spasming rhythmically around your fingers. Your insides feel oddly full all of a sudden, like you’ve just had a full meal... that’s settled entirely behind your [pc.cock], pressing urgently against the base of your tumescent prick. A moan escapes your lips... and a thick, creamy rope of [pc.cum] escapes from your [pc.cockHead]. You feel like one good stroke, and you could bust a nut that would make a flood look like a drizzle.");
 						
 						// Increased CumVol:
-						if(target.cumMultiplierRaw < 120 || target.cumMultiplierRaw / 3 >= target.ballEfficiency)
+						if(target.cumMultiplierRaw < 9000 || target.cumMultiplierRaw / 8 >= target.ballEfficiency)
 						{
 							output("\n\nThe way your [pc.balls] feels now, there’s no doubt about it... <b>you can cum more per orgasm, and store more seed inside you between orgasms</b>.");
 							
-							if(target.cumMultiplierRaw < 120)
+							if(target.cumMultiplierRaw < 9000)
 							{
-								target.cumMultiplierRaw += 30;
-								if(target.cumMultiplierRaw > 120) target.cumMultiplierRaw = 120;
+								if(target.cumMultiplierRaw < 1000) target.cumMultiplierRaw += 100;
+								else if(target.cumMultiplierRaw < 3000) target.cumMultiplierRaw += 50;
+								else target.cumMultiplierRaw += 30;
+								if(target.cumMultiplierRaw > 9000) target.cumMultiplierRaw = 9000;
 							}
-							if(target.cumMultiplierRaw / 3 >= target.ballEfficiency) target.ballEfficiency += 2 + rand(7);
+							if(target.cumMultiplierRaw / 8) target.ballEfficiency += (2 + rand(7)) * 10;
 						}
 						// Else, refill cum: 
 						else
