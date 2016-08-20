@@ -101,6 +101,11 @@ public function lerrisMenu():void
 public function lerrisProducts():void
 {
 	// Unlocks
+	if(pc.level >= 2)
+	{
+		if(!chars["LERRIS"].hasItem(new NukiNutbutter())) chars["LERRIS"].inventory.push(new NukiNutbutter());
+	}
+	else chars["LERRIS"].destroyItem(new NukiNutbutter());
 	if(flags["PLANET_3_UNLOCKED"] != undefined) // Lerris after clearing Tarkus makes sense.
 	{
 		if(!chars["LERRIS"].hasItem(new Anusoft())) chars["LERRIS"].inventory.push(new Anusoft());
