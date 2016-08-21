@@ -8252,8 +8252,8 @@
 			{
 				if(tailType == GLOBAL.TYPE_COCKVINE || hasTailFlag(GLOBAL.FLAG_TAILCOCK))
 				{
-					if(gType != 0 && gType == tailGenitalArg) return true;
-					else return true;
+					if(gType == 0) return true;
+					else if(gType == tailGenitalArg) return true;
 				}
 			}
 			return false;
@@ -8272,8 +8272,8 @@
 			{
 				if(tailType == GLOBAL.TYPE_CUNTSNAKE || hasTailFlag(GLOBAL.FLAG_TAILCUNT))
 				{
-					if(gType != 0 && gType == tailGenitalArg) return true;
-					else return true;
+					if(gType == 0) return true;
+					else if(gType == tailGenitalArg) return true;
 				}
 			}
 			return false;
