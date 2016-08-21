@@ -172,7 +172,7 @@ public function goOverToKaraSloot():void
 	if(pc.characterClass != GLOBAL.CLASS_ENGINEER) output("Something seems... off, about them. But in the dim, smoky light, you can’t quite place it. ");
 	else output("After a few moments of that treatment, you quickly realize something’s just slightly... off about her eyes. You steal a closer glance when you can, catching glimpses of what looks like circuitry well hidden in her slitted irises. Her eyes are cybernetic, and top-quality too.");
 
-	output("\n\nAfter a long moment, her flirtatious smile slips away. <i>“Consider the drink a down payment,”</i> she says, reaching into her pocket and flashing you a credit chit marked with C1,000. <i>“You look like a [pc.man] who can handle yourself, and I need a pretty big hand. Think you could spare a few minutes to help a girl out?”</i>");
+	output("\n\nAfter a long moment, her flirtatious smile slips away. <i>“Consider the drink a down payment,”</i> she says, reaching into her pocket and flashing you a credit chit marked with C1,000. <i>“You look like a [pc.man] who can handle [pc.him]self, and I need a pretty big hand. Think you could spare a few minutes to help a girl out?”</i>");
 	output("\n\n<i>“What do you need?”</i> you ask, looking the cat-girl over warily. Is this some sort of scam, or a trap?");
 	if(silly) output(" Dad always said to be wary of people offering you cash in bars.");
 
@@ -246,7 +246,7 @@ public function helpDisKaraSlut(finishedDrink:Boolean = false):void
 	output(". <i>“I’ll help you.”</i>");
 	output("\n\nKara flashes you a smile. <i>“You’re a lifesaver, [pc.name]. Just keep her eyes on you for a minute. I’ll meet you outside, okay?”</i>");
 	output("\n\nYou nod and stand, bracing yourself for the task at hand. Looking around the bar, it isn’t hard to find the only other kaithrit in the joint. She’s sitting in the far corner, her back to the wall and boots up on the table, eyes scanning the smoky room. The angle is just right so that Kara’s been sitting in the only place your mark couldn’t see, shielded by the throng of people at the bar. You walk over toward her, going over your play again and again in your mind, trying to decide exactly <i>how</i> you’re going to keep a total stranger distracted.");
-	output("\n\nYou take her in as you approach: at a glance, she’s your standard kaithrit cat-girl, with silver hair playing wildly around her shoulders, parted by a pair of cute feline ears atop her head. She’s a bit older than most folk you meet on the frontier, maybe in her late thirties, and holds herself with a grim determination that exudes experience. A long duster flows down from around her shoulders, intricately patterned with faintly luminescent blue wires and lightning bolts patterns. The way she’s sitting, you can’t help but notice a heavy looking pistol slung on her hip.");
+	output("\n\nYou take her in as you approach: at a glance, she’s your standard kaithrit cat-girl, with silver hair playing wildly around her shoulders, parted by a pair of cute feline ears atop her head. She’s a bit older than most folk you meet on the frontier, maybe in her late thirties, and holds herself with a grim determination that exudes experience. A long duster flows down from around her shoulders, intricately patterned with faintly luminescent blue wires and lightning bolt patterns. The way she’s sitting, you can’t help but notice a heavy looking pistol slung on her hip.");
 	output("\n\nShe gives you a small but friendly nod as you approach. A single serpentine tail slithers up from behind her, covered in green scales rather than the usual kaithrit fur and ending in a wet-looking opening.");
 	if(pc.hasCuntTail()) output(" Your cunt-tail twitches at the sight of it, as if it can sense a kindred spirit.");
 	//if Codex: Cunt snake unlocked:
@@ -756,7 +756,7 @@ public function cuntTailShadeFux():void
 		output(", cupping one of your breasts and giving it a rough squeeze");
 		if(pc.isLactating()) output(", just hard enough to draw a bead of milk from your bountiful bosom");
 	}
-	output(". Her tail moves on its own behind her, completely independant of the cat-girl’s own actions: it starts to pump your prick, shifting its full weight up and down your shaft with slow, steady strokes, more using its incredibly muscle control to wring and caress your manhood than outright fucking you.");
+	output(". Her tail moves on its own behind her, completely independant of the cat-girl’s own actions: it starts to pump your prick, shifting its full weight up and down your shaft with slow, steady strokes, more using its incredible muscle control to wring and caress your manhood than outright fucking you.");
 	output("\n\nYou lie back on the bed, content to enjoy the alien ministrations of Shade’s tail. Her hips move slowly with the shifting mass of her tail, gently guiding the movements of her alien genitalia towards a quickening pace, steadily pumping your shaft. Between that and her hand roaming across your chest, squeezing your [pc.nipples] and caressing your ");
 	if(pc.biggestTitSize() < 1) output("flat, tight chest");
 	else if(pc.biggestTitSize() < 4) output("burgeoning bosom");
