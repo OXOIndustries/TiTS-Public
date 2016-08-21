@@ -1520,9 +1520,7 @@ public function giveEmmyAnItem(item:String):void
 			{
 				if(!getRanged) 
 				{
-					output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields ");
-					if(pc.hasCock()) output("faster than I drain your dick");
-					else output("faster than I drain my dick");
+					output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields faster than I drain " + (pc.hasCock() ? "your" : "my") + " dick.");
 					emmyLoot = new EmmysVampBlade();
 				}
 				else {
@@ -1601,9 +1599,7 @@ public function giveEmmyAnItem(item:String):void
 		output(". It barely manages to hide the hardness of her nipples. <i>“You may have seen one of these around the shop, but not like this one. Check this out.”</i> She holds it out to you. <i>“");
 		if(!getRanged) 
 		{
-			output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields ");
-			if(pc.hasCock()) output("faster than I drain your dick");
-			else output("faster than I drain my dick");
+			output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields faster than I drain " + (pc.hasCock() ? "your" : "my") + " dick.");
 			emmyLoot = new EmmysVampBlade();
 		}
 		else {

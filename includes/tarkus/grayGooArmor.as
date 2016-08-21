@@ -1907,6 +1907,8 @@ public function gooArmorCheckSwimwear():String
 		}
 	}
 	
+	pc.armor.hasRandomProperties = true;
+	
 	return msg;
 }
 // Checks and changes armor flags and stats accordingly for helmet.
@@ -1954,6 +1956,8 @@ public function gooArmorCheckAirtight():String
 			}
 		}
 	}
+	
+	pc.armor.hasRandomProperties = true;
 	
 	return msg;
 }
