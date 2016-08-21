@@ -9778,7 +9778,7 @@
 				}
 				else if (balls == 4) {
 					rando = rand(3);
-					if (rando == 0) desc += "a quartette of ";
+					if (rando == 0) desc += "a quartet of ";
 					if (rando == 1) desc += "four ";
 					if (rando == 2) desc += "four ";
 				}
@@ -9806,7 +9806,7 @@
 				}
 				else if (balls == 4) {
 					rando = rand(3);
-					if (rando == 0) desc += "quartette of ";
+					if (rando == 0) desc += "quartet of ";
 					if (rando == 1) desc += "four ";
 					if (rando == 2) desc += "four ";
 				}

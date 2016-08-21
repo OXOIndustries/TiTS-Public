@@ -1051,7 +1051,7 @@ public function quadTittyFuckIrellia():void
 	//Hard
 	else
 	{
-		output("\n\n<i>“Hardly,”</i> you say while advancing, your vision clearing now that you’ve reached full mast. <i>“There’s just a limited amount of blood, and you happened to make most of mine pump south.”</i> Grinning now, you admit, <i>“Your breasts are owed some credit, of course. I don’t think I could walk away from a quartette like that in this condition.”</i>");
+		output("\n\n<i>“Hardly,”</i> you say while advancing, your vision clearing now that you’ve reached full mast. <i>“There’s just a limited amount of blood, and you happened to make most of mine pump south.”</i> Grinning now, you admit, <i>“Your breasts are owed some credit, of course. I don’t think I could walk away from a quartet like that in this condition.”</i>");
 	}
 	//Merge
 	output("\n\nQueen Irellia squeezes her chest between her lower arms harder, causing honey to cascade from her nipples down to her flat, almost flawless stomach. She uses an unoccupied hand to gather a dollop of it to drink, suckling her finger for a brief second. <i>“I quite like the sound of that, [pc.name]. Go on then, have your way with them.”</i> A droplet of moisture loudly drips to the floor beneath her chair. She smears the dripping nectar across the space between her breasts, then pulls them apart invitingly. <i>“Come on, show me what kind of drone you are.”</i>");

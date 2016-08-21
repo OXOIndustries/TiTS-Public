@@ -13,8 +13,14 @@ public function novaBustDisplay(nude:Boolean = false, special:String = "none"):S
 {
 	var bustName:String = "";
 	
-	if(!nude && chars["GOO"].hairStyle == "ponytail") bustName = "GRAY_GOO_PRIME";
-	else if(!nude && chars["GOO"].hairStyle == "loose") bustName = "GRAY_GOO";
+	if(chars["GOO"].hairStyle == "ponytail")
+	{
+		bustName = "GRAY_GOO_PRIME";
+	}
+	else if(chars["GOO"].hairStyle == "loose")
+	{
+		bustName = "GRAY_GOO";
+	}
 	else
 	{
 		bustName = "NOVA";
