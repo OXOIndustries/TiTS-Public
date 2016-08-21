@@ -11863,7 +11863,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 	
 	if (bTargetVag) pc.cuntChange(vagIdx, bess.cockVolume(0));
 	else pc.buttChange(bess.cockVolume(0));
-	
+
 	if (bess.hasVagina() && pc.hasCock() && bess.hasTailCunt())
 	{
 		output("\n\nAs you’re enjoying this sensation, you feel something velvety and soft brushing against your [pc.cockHead]! You suddenly realize [bess.heShe] has detached [bess.hisHer] mechanical pussy. It now lingers below your loins, attached to a long, prehensile cable [bess.heShe] can seemingly control at will.");
