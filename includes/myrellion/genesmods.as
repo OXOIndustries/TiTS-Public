@@ -680,7 +680,7 @@ public function genesModsTalkMyrII():void
 	{
 		output("\n\nHe gazes");
 		if (pc.tallness < 120) output(" down");
-		else output(" at you, wild lust filling his yellow eyes. <i>“I make no apologies for who I am - anymore than I shall make one for wanting every inch of you, right here and right now.”</i> An ivory claw lands upon your shoulder");
+		output(" at you, wild lust filling his yellow eyes. <i>“I make no apologies for who I am - anymore than I shall make one for wanting every inch of you, right here and right now.”</i> An ivory claw lands upon your shoulder");
 		if (pc.isChestGarbed()) output(", sliding beneath your [pc.upperGarment]");
 		output(".");
 
@@ -1140,7 +1140,7 @@ public function genesModsBellyrubRelease():void
 	clearOutput();
 	geneHeader();
 
-	output("<i>“Who’s a good boy?”</i> you say lowly. He doesn’t reply. You slow the hand around his human erection down and attack his chest spot assiduously, curling your fingers deep into the softness there assiduously. He arches his back and barks breathlessly, eyes closed.");
+	output("<i>“Who’s a good boy?”</i> you say lowly. He doesn’t reply. You slow the hand around his human erection down and attack his chest spot assiduously, curling your fingers deep into the softness there. He arches his back and barks breathlessly, eyes closed.");
 	
 	output("\n\n<i>“Who’s a good boy?”</i> you insist.");
 	
@@ -1164,7 +1164,7 @@ public function genesModsBellyrubDeny():void
 	clearOutput();
 	geneHeader();
 
-	output("<i>“Who’s a good boy?”</i> you say lowly. He doesn’t reply. You slow the hand around his human erection down and attack his chest spot assiduously, curling your fingers deep into the softness there assiduously. He arches his back and barks breathlessly, eyes closed.");
+	output("<i>“Who’s a good boy?”</i> you say lowly. He doesn’t reply. You slow the hand around his human erection down and attack his chest spot assiduously, curling your fingers deep into the softness there. He arches his back and barks breathlessly, eyes closed.");
 	
 	output("\n\n<i>“Who’s a good boy?”</i> you insist.");
 	
@@ -1250,7 +1250,7 @@ public function genesModsBellyrubFirstRelease():void
 
 	output("You reach down and clasp his smaller human dick - surely the more sensitive of the two. It barely takes more than a few pumps of your wrist to make it burningly hard. Gene’s mouth is open, sweat forming on his broad brow, as you teasingly stroke both his weak spot and cock.");
 	
-	output("\n\n<i>“Who’s a good boy?”</i> you say lowly. He doesn’t reply. You slow the hand around his human erection down and attack his chest spot assiduously, curling your fingers deep into the softness there assiduously. He arches his back and barks breathlessly, eyes closed.");
+	output("\n\n<i>“Who’s a good boy?”</i> you say lowly. He doesn’t reply. You slow the hand around his human erection down and attack his chest spot assiduously, curling your fingers deep into the softness there. He arches his back and barks breathlessly, eyes closed.");
 	
 	output("\n\n<i>“Who’s a good boy?”</i> you insist.");
 	

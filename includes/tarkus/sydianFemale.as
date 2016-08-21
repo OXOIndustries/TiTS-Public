@@ -311,7 +311,7 @@ public function sydianFemalePCLossHasCock():void
 		else output("You apologize,");
 		output(" and she sits up again. The sydian resumes swiveling her hips, stirring her pussy in pursuit of her own pleasure. Her fingertips scratch at");
 		if (pc.isNude()) output(" your [pc.skinFurScales], leaving angry scores that throb with pain and pleasure,");
-		else if (pc.hasUpperGarment()) output(" [pc.upperUndergarment], leaving angry scores that throb with pain and pleasure,");
+		else if (pc.hasUpperGarment()) output(" your [pc.upperUndergarment], leaving angry scores that throb with pain and pleasure,");
 		else if (pc.hasArmor()) output(" your [pc.armor], producing a faint hiss,");
 		output(" and she thrusts her chest out, enjoying your utter abjection. Her cunt is once again relaxed and swallows your dick right down to the [pc.knot "+c+"], slick with lubrication. It gets hotter and hotter as her gyrations become less elegant, until she’s hammering your pelvis and you’re both riding the edge of climax.");
 		

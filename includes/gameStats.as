@@ -2054,8 +2054,20 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>Drone Hunting</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["NAYNA_REJECTED"] != undefined) output2(" Refused to help Nayna");
-				else if(9999 == 0) output2(" Completed");
-				else output2(" <i>In progress...</i>");
+				else if(flags["NAYNA_QUEST_STARTED"] != undefined)
+				{
+					var naynaDrones:int = 0;
+					if(flags["DRONED_UVIP F20"] != undefined) naynaDrones++;
+					if(flags["DRONED_UVIP T6"] != undefined) naynaDrones++;
+					if(flags["DRONED_UVIP V14"] != undefined) naynaDrones++;
+					if(flags["DRONED_UVIP X34"] != undefined) naynaDrones++;
+					if(flags["DRONED_UVIP L28"] != undefined) naynaDrones++;
+					
+					if(naynaDrones >= 5) output2(" Completed");
+					else output2(" <i>In progress...</i>");
+					if(naynaDrones > 0) output2("\n<b>* Weather Drones Collected:</b> " + naynaDrones);
+				}
+				else output2(" <i>Not yet accepted...</i>");
 				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("\n<b>* Weather Drones Turned In:</b> " + flags["NAYNA_DRONES_TURNED_IN"]);
 				sideCount++;
 			}
@@ -4307,7 +4319,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("\n<b>* Queen Taivra, Fertility:</b>");
 						if(taivraHasFertileEggs()) output2(" Has fertile eggs");
 						else output2(" Normal");
-						output2("\n<b>* Queen Taivra, Last Fertilized Her:</b> " + prettifyMinutes(GetGameTimestamp() - flags["TAIVRA_FERTILE"]) + " ago");
+						if(flags["TAIVRA_FERTILE"] > 0) output2("\n<b>* Queen Taivra, Last Fertilized Her:</b> " + prettifyMinutes(GetGameTimestamp() - flags["TAIVRA_FERTILE"]) + " ago");
 					}
 				}
 				// Queensguard
@@ -4327,6 +4339,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						else output2(", Healed from wounds");
 					}
 				}
+				// Taivra's Betas
+				if(flags["FUCKED_TAIVRAS_BETA"] > 0) output2("\n<b>* Taivra’s Egg-Stuffed Betas, Total Fucked:</b> " + flags["FUCKED_TAIVRAS_BETA"]);
 				variousCount++;
 			}
 			// No Myr's Land

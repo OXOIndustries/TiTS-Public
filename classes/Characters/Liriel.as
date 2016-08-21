@@ -30,7 +30,7 @@
 			capitalA = "";
 			originalRace = "human";
 			
-			keeperBuy = "You tell Liriel you’d like to see what she has in stock.\n\n<i>“Alrighty,”</i> she bubbles, pressing a button on her stand. With a hum, shelves and racks appear before you to display her full inventory. <i>“Let me know if there’s anything you like to buy.”</i>\n";
+			keeperBuy = "You tell Liriel you’d like to see what she has in stock.\n\n<i>“Alrighty,”</i> she bubbles, pressing a button on her stand. With a hum, shelves and racks appear before you to display her full inventory. <i>“Let me know if there’s anything you’d like to buy.”</i>\n";
 			keeperSell = "";
 			
 			inventory.push(new ArmstrongSuitWhite());

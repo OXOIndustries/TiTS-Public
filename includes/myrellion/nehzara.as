@@ -247,7 +247,8 @@ public function talkToNehzaraAboutHistory():void
 	output("So, if Nehzara is this big war hero and everything, why exactly has she been placed behind a desk in the corner of a warehouse in the demilitarized zone? You pose the question ");
 	if(pc.isNice()) output("as delicately as you can");
 	else if(pc.isMischievous()) output("with as light a tone as you can manage");
-	else output("with some of your own bitterness mixed into your tone.");
+	else output("with some of your own bitterness mixed into your tone");
+	output(".");
 
 	output("\n\n<i>“Ah. A surprisingly astute observation,”</i> she responds levelly. Wait, surprisingly? Was that a dig at your intelligence? You decide to pay it no more mind and let her continue.");
 

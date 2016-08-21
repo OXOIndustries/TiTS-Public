@@ -729,7 +729,7 @@ public function askAboutTheOwnerOfKihaCorp():void
 	output("\n\n<i>“You really think so?”</i> You give her a probing look.");
 	if(flags["MET_EMMY"] != undefined) output(" Emmy");
 	else output(" The fuzzy rep");
-	output(" shrugs noncommittally, her breasts jostling each other inside her jumpsuit like overfilled waterballoons in a cargo hold. <i>“Nah. How the fuck would I know anything about something like that? I’m about as low on the the totem pole as you can get without having a mouthful of dirt. Nobody tells me anything, so all I’ve got to go on are my hunches and storylines from daytime holo-dramas.”</i> Hopping back up onto the edge of the counter, she resumes idly swinging her feet. <i>“Go any more questions?”</i>");
+	output(" shrugs noncommittally, her breasts jostling each other inside her jumpsuit like overfilled waterballoons in a cargo hold. <i>“Nah. How the fuck would I know anything about something like that? I’m about as low on the the totem pole as you can get without having a mouthful of dirt. Nobody tells me anything, so all I’ve got to go on are my hunches and storylines from daytime holo-dramas.”</i> Hopping back up onto the edge of the counter, she resumes idly swinging her feet. <i>“Got any more questions?”</i>");
 	processTime(3);
 	emmyTalkMenu(talkToEmmyAboutKihaCorp);
 }
@@ -916,7 +916,7 @@ public function askEmmyAboutEmmy():void
 	//Not known well enough:
 	if(flags["PURCHASED_FROM_EMS"] == undefined)
 	{
-		output("\n\nThe jackal-woman fidgets and says, <i>“That’s not important right now. What is important is... uh... getting your the right equipment for your adventures. So, what will you be buying?”</i>");
+		output("\n\nThe jackal-woman fidgets and says, <i>“That’s not important right now. What is important is... uh... getting you the right equipment for your adventures. So, what will you be buying?”</i>");
 		//Reskin menu and go to shop interface
 		processTime(1);
 		emmyMainMenu();
@@ -952,7 +952,7 @@ public function askEmmyAboutEmmy():void
 		output("\n\nYou didn’t know it was possible for a jackal’s (or ausar’s) ears to sink so low. <i>“It’s Emmata, but please, just call me Emmy. It’s what all my friends call me.”</i>");
 	}
 	output("\n\nShaking your head, you explain that you still don’t understand why she doesn’t want to be known as a former ausar.");
-	output("\n\n<i>“Because the moment I start modding myself to look how I really wanted to look, instead of just changing my dick or something, they cast me out. My old friends avoided me and spread rumors behind my back. My parents still said they loved me, but they never seemed to want to go anywhere public with me. It broke my heart.”</i> Emmy balls up her fists as she fights back tears and struggles to compose herself.");
+	output("\n\n<i>“Because the moment I started modding myself to look how I really wanted to look, instead of just changing my dick or something, they cast me out. My old friends avoided me and spread rumors behind my back. My parents still said they loved me, but they never seemed to want to go anywhere public with me. It broke my heart.”</i> Emmy balls up her fists as she fights back tears and struggles to compose herself.");
 	//Nice/Mischief
 	if(pc.isNice() || pc.isMischievous()) output("\n\nYou can’t help but be moved by her situation and do your best to comfort her.");
 	//Hard
@@ -1008,7 +1008,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 	if(pc.tailCount > 0) output(", gently stroking the base of your tail with a rogue index finger");
 	else if(pc.buttRating() >= 6) output(", digging her fingers into your cheeks with such gusto that you momentarily worry she’ll slip a finger in between");
 	else output(", squeezing the pert flesh on offer");
-	output(", pulling you so tight that her enormous prick");
+	output(". She is pulling you so tight that her enormous prick");
 	if(pc.armor is EmptySlot) 
 	{
 		if(pc.hasCock()) 
@@ -1024,7 +1024,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 		}
 		else output(" is rubbing against your [pc.belly] through her jumpsuit, so hard and tight that you can feel it swelling with the hammerblows of her heartbeat.");
 	}
-	else output(" is audibly grinding against your [pc.armor], so powerfully erect that the hammerblows of her heartbeat nearly tug it out your gear out of place.");
+	else output(" is audibly grinding against your [pc.armor], so powerfully erect that the hammerblows of her heartbeat nearly tug it out of place from your gear.");
 	output(" When she breaks away, she’s panting hotly and struggling to adjust her straining suit. You can only imagine how thoroughly coated with pre-cum the crotch must be.");
 	output("\n\nEmmy holds up her hand when you start to talk, begging you to wait a moment. <i>“H-hang on a second. I... we can’t. Not yet anyway. I’ve got some things going on, and I promised myself I wouldn’t cave into them - wouldn’t let myself turn into some kind of slut.”</i> She backs away, putting the counter between your overheated crotches and begs, <i>“I can’t help being so flirty, but give me some time... please?”</i> She sounds almost plaintive.");
 	output("\n\nWhat can you do, but agree? Still, there’s got to be a way to win her heart. So long as it doesn’t involve waiting for the heat death of the universe, you can probably manage it.");
@@ -1189,7 +1189,7 @@ public function venusPitcherBonusFlower():void
 	showName("AN EXOTIC\nFLOWER!");
 	if(flags["EMMY_QUEST"] == 0)
 	{
-		output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure the dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
+		output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure to dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
 		if(venusSubmission() >= 40) output(" Sadly, it doesn’t.");
 	}
 	else
@@ -1276,7 +1276,7 @@ public function polyamorousEmmy():void
 
 	output("\n\nEmmy spins the flower around and peers down into it, quietly sniffing as she considers. <i>“It’s okay, I guess. It’d be foolish to think that everyone is as caught up on finding the one as me.”</i> She squeezes your arm with her free hand. <i>“And who knows, maybe the one for me is a [pc.guyGirl] with a half-dozen other hot lovers.”</i> Her ears pick up at the thought. <i>“Does this mean you’ll share if I ever meet them?”</i>");
 	output("\n\nIt’s your turn to grin now. <i>“If they’re into you too, I don’t see why not.”</i>");
-	output("\n\nStraining her at the front of her jumpsuit, the jackaless’s swelling boner threatens to rip its way to freedom. Her tongue lolls out in a lusty pant, and Emmy coos, <i>“You... you are special. No wonder you’ve got so many lovers.”</i> She wiggles closer, barely keeping her hands away from her tenting nipples and rigid, canine phallus. <i>“Let me thank you for the flower... and your honesty.”</i>");
+	output("\n\nStraining at the front of her jumpsuit, the jackaless’s swelling boner threatens to rip its way to freedom. Her tongue lolls out in a lusty pant, and Emmy coos, <i>“You... you are special. No wonder you’ve got so many lovers.”</i> She wiggles closer, barely keeping her hands away from her tenting nipples and rigid, canine phallus. <i>“Let me thank you for the flower... and your honesty.”</i>");
 	output("\n\nThe words are music to your ears.");
 	pc.lust(5);
 	clearMenu();
@@ -1295,7 +1295,7 @@ public function emmyPleased():void
 	output("”</i>");
 	output("\n\nEmmy giggles and replies, <i>“You’re lucky the counter is in my way or I’d pin you to the floor and stuff my face into your crotch right now.”</i>");
 	output("\n\nYou quirk an eyebrow at her, and after a moment the sheer sluttiness of her joke sinks home.");
-	output("\n\nThe jackal gasps and claps her hands over her snout. If you could see through her fur, you’re sure her skin would be blushed crimson. <i>“I didn’t... I was joking! I promise I’m in control of myself. I turned you down at first, didn’t I? And even though you’re my [pc.boy]friend, that doesn’t mean I’m going to start whipping my dick out around your or anything. We need to know each other a little bit better before something like that happens - I’m not going to be a huge slut just because we’ve started something.”</i> She puts her hands down on the countertop and stares at her nervously tapping fingertips. <i>“I’m rambling aren’t I?”</i>");
+	output("\n\nThe jackal gasps and claps her hands over her snout. If you could see through her fur, you’re sure her skin would be blushed crimson. <i>“I didn’t... I was joking! I promise I’m in control of myself. I turned you down at first, didn’t I? And even though you’re my [pc.boy]friend, that doesn’t mean I’m going to start whipping my dick out around you or anything. We need to know each other a little bit better before something like that happens - I’m not going to be a huge slut just because we’ve started something.”</i> She puts her hands down on the countertop and stares at her nervously tapping fingertips. <i>“I’m rambling aren’t I?”</i>");
 	output("\n\n<i>“A little.”</i> You smile. <i>“It’s cute.”</i>");
 	output("\n\nEmmy leans forward, squeezing her breasts between her forearms to press her cleavage directly into your view. <i>“Sometime, I’m going to have to get you to tell me what else you think about me is cute... but for right now, I believe I promised my interstellar hero" + pc.mf("","ine") + " a certain reward for [pc.hisHer] efforts.”</i> She bats her eyelashes and licks her lips, staring at your crotch. <i>“We can cross that off the list right now...”</i>");
 	//Sex!
@@ -1337,7 +1337,7 @@ public function moreSeriousEmmyTalkAboutEmail():void
 	if(!(pc.armor is EmptySlot)) output("through your [pc.armor].");
 	else output("against your [pc.skin].");
 
-	output("\n\nYour head is spinning, and you’d like nothing better than to bed Emmy right here and now. Still, it sounds like she wants you to tend to her for a chance. <i>“... what?”</i> you pant, confused.");
+	output("\n\nYour head is spinning, and you’d like nothing better than to bed Emmy right here and now. Still, it sounds like she wants you to tend to her for a change. <i>“... what?”</i> you pant, confused.");
 
 	output("\n\nThe seemingly ravenous jackaless gradually masters her ardor, separating herself from you a finger at a time. <i>“Sorry, I just get so... so sex-crazy around you. You have no idea how badly I want you here. At all hours of the day, I’m just lounging around the shop and wishing you’d suck me off, tongue my pussy until your face is all shiny and I’m painting my tits white. Or that you’d just fondle me through the suit and make me work the rest of the day, soaking in my own cum, ya know?”</i>");
 
@@ -1347,7 +1347,7 @@ public function moreSeriousEmmyTalkAboutEmail():void
 	output(". <i>“Wow.”</i>");
 	output("\n\nThe lusty jackaless yanks her hand away from a bulging nipple. <i>“Uhm... yeah, but I want to be sure that we’re right for each other before I risk it. If a little midday relief turns me into a sex-crazed nympho slut, I need to know that I have someone who won’t get bored with me just because I’ve become an insatiable minx.”</i> She crosses her legs. <i>“I hope that makes sense.”</i>");
 	output("\n\nIt does. After all that groping, you’d prefer a little relief yourself. <i>“Yeah.”</i>");
-	output("\n\nNodding, Emmy replies, <i>“Great. Just... awesome. So here’s what I was thinking: we could get each other gifts. Since you’re a great adventurer, you could find me a pretty rock down there while I’m exploring. I hear they’re expensive, and I know the stuff down there is no joke. If you’d put up with all that hassle for me, I’d feel a little safer risking my job and my restraint for some not-too-slutty fun.”</i>");
+	output("\n\nNodding, Emmy replies, <i>“Great. Just... awesome. So here’s what I was thinking: we could get each other gifts. Since you’re a great adventurer, you could find me a pretty rock down there while you’re exploring. I hear they’re expensive, and I know the stuff down there is no joke. If you’d put up with all that hassle for me, I’d feel a little safer risking my job and my restraint for some not-too-slutty fun.”</i>");
 	output("\n\n<i>“You said something about getting me a gift too?”</i>");
 	output("\n\n<i>“Yeah. I’d hook you up with something from my private collection.”</i> Now that the topic has moved on from sex, Emmy looks to be calming somewhat. <i>“What kind of saleswoman would I be if I wasn’t a customer too? I’ve got a collection of weaponry back home that could outfit a small army - most of it modded to the point where you’d barely recognize it. Giving up one of my prize pieces wouldn’t be easy. I’d be giving you a piece of myself, but you’d like that, wouldn’t you?”</i> She bares her teeth in a feral grin and swivels her hips in your direction. <i>“Just don’t gag on it.”</i>");
 	output("\n\nThat sounds fair - a gemstone is a small price to pay for a deeper relationship and a sweet new weapon. Now if only you could do something about the rampant lust making your crotch itch.");
@@ -1493,12 +1493,12 @@ public function giveEmmyAnItem(item:String):void
 			{
 				if(getRanged) 
 				{
-					output("You’ve probably seen the Salamander Pistols we stock, but this beaut is special. I fitted it with a smart-linked scope system that’ll interface with damn near any optical interface, even one those fancy microsurgeon-based immune systems. You’ll be hard-pressed to find a more accurate pistol.");
+					output("You’ve probably seen the Salamander Pistols we stock, but this beaut is special. I fitted it with a smart-linked scope system that’ll interface with damn near any optical interface, even one of those fancy microsurgeon-based immune systems. You’ll be hard-pressed to find a more accurate pistol.");
 					emmyLoot = new EmmysSalamanderPistol();
 				}
 				else 
 				{
-					output("You’ve probably seen the Lava Sabers we stock, but this beaut is special. I fitted the crossguard with miniaturized shield generators. They should supplement your shield belt’s defensives enough to give you an edge.");
+					output("You’ve probably seen the Lava Sabers we stock, but this beaut is special. I fitted the crossguard with miniaturized shield generators. They should supplement your shield belt’s defenses enough to give you an edge.");
 					emmyLoot = new EmmysLavaSaber();
 				}
 				output("”</i>");
@@ -1554,12 +1554,12 @@ public function giveEmmyAnItem(item:String):void
 		output("\n\nEmmy’s bends over to a storage compartment, her hips wiggling. <i>“Nuts isn’t it? We don’t even know how lucky we are until we can get to know someone else and gain a little perspective. Life’s funny like that. Ah! Here it is!”</i> She slams the drawer closed with a heavy ‘thunk’ and straightens, balancing an expensive-looking weapon in front of the bullets of her nipples. <i>“");
 		if(getRanged) 
 		{
-			output("You’ve probably seen the Salamander Pistols we stock, but this beaut is special. I fitted it with a smart-linked scope system that’ll interface with damn near any optical interface, even one those fancy microsurgeon-based immune systems. You’ll be hard-pressed to find a more accurate pistol.");
+			output("You’ve probably seen the Salamander Pistols we stock, but this beaut is special. I fitted it with a smart-linked scope system that’ll interface with damn near any optical interface, even one of those fancy microsurgeon-based immune systems. You’ll be hard-pressed to find a more accurate pistol.");
 			emmyLoot = new EmmysSalamanderPistol();
 		}
 		else 
 		{
-			output("You’ve probably seen the Lava Sabers we stock, but this beaut is special. I fitted the crossguard with miniaturized shield generators. They should supplement your shield belt’s defensives enough to give you an edge.");
+			output("You’ve probably seen the Lava Sabers we stock, but this beaut is special. I fitted the crossguard with miniaturized shield generators. They should supplement your shield belt’s defenses enough to give you an edge.");
 			emmyLoot = new EmmysLavaSaber();
 		}
 		output("”</i>");
@@ -1911,7 +1911,7 @@ public function emmyImplantFurtherDiscussion():void
 	clearOutput();
 	showEmmy();
 	output("<i>“");
-	if(pc.isBimbo()) output("So you, like, have an implant in your head that’s making act like such a hottie?");
+	if(pc.isBimbo()) output("So you, like, have an implant in your head that’s making you act like such a hottie?");
 	else if(pc.isBro()) output("So uh, the thing in your head...?");
 	else if(pc.isNice()) output("About that libido-enhancer... could you tell me more about it?");
 	else if(pc.isMischievous()) output("So were you always this awesome before the libido-enhancer, or did you just win the side-effect lottery?");

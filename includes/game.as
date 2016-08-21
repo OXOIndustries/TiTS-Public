@@ -1722,6 +1722,9 @@ public function processTime(arg:int):void {
 			if(flags["TARKUS_BOMB_TIMER"] == 0) eventQueue[eventQueue.length] = bombExplodes;
 		}
 		
+		// Taivra's Pregnancy - Lasts 1 day until she naturally does away with them.
+		if(flags["TAIVRA_FERTILE"] > 0 && (flags["TAIVRA_FERTILE"] + (24 * 60)) < GetGameTimestamp()) flags["TAIVRA_FERTILE"] = 0;
+		
 		if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined)
 		{
 			// Still there!
@@ -2163,9 +2166,9 @@ public function racialPerkUpdateCheck():void
 {
 	var msg:String = "";
 	
-	if(pc.hasPerk("'Nuki Nuts") && pc.perkv2("'Nuki Nuts") != 1)
+	if(pc.hasPerk("'Nuki Nuts"))
 	{
-		if(pc.nukiScore() < 3)
+		if(pc.nukiScore() < 3 && pc.perkv2("'Nuki Nuts") != 1)
 		{
 			if(pc.balls >= 1)
 			{
@@ -2192,6 +2195,13 @@ public function racialPerkUpdateCheck():void
 				msg += "\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You've lost too many kui-tan transformations.)";
 				pc.removePerk("'Nuki Nuts");
 			}
+		}
+		else if(pc.balls <= 0 && pc.perkv2("'Nuki Nuts") == 1)
+		{
+			msg += ParseText("\n\nA strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!");
+			
+			msg += "\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You have no nuts to expand!)";
+			pc.removePerk("'Nuki Nuts");
 		}
 	}
 	if(pc.hasPerk("Fecund Figure"))
