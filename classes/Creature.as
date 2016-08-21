@@ -11581,7 +11581,7 @@
 			//Omnisuit!
 			if(hasStatusEffect("Rubber Wrapped") && adjectiveCount < adjectiveLimit && rand(6) == 0)
 			{
-				if(adjectives > 0) desc += ", ";
+				if(adjectiveCount > 0) desc += ", ";
 				desc += RandomInCollection("rubber-lined","latex-lined","shrink-wrapped","ebony-coated","latex-lacquered","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted");
 				adjectiveCount++;
 			}

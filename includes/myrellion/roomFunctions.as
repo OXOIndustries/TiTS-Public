@@ -737,7 +737,7 @@ public function pillarsBonusFunc():Boolean
 public function deepCavesEntranceBonus():Boolean
 {
 	if(!reclaimedProbeMyrellion()) output(" Something tells you Dad's probe is down there somewhere...");
-	output("\n\nTo the south, you can see a glowing lake, illuminated by luminescent fungus and surrounded by pillars of stone that guard a passage eastward, back to the myrmedion tunnel network");
+	output("\n\nTo the south, you can see a glowing lake, illuminated by luminescent fungus and surrounded by pillars of stone that guard a passage eastward, back to the myrmedion tunnel network.");
 	addButton(7,"Descend",deepCavesDescend,undefined,"Descend","Climbing down will take at least an hour and wear you out a good bit. Who knows what terrors lie down there.");
 	return false;
 }
