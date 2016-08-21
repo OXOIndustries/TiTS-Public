@@ -28,6 +28,15 @@ public function tryProcTravelEvent(destination:String):Function
 	if (flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) possibleMessages.push(rescueKiroMessage);
 	if (flags["ICEQUEEN COMPLETE"] == undefined && pc.level > 5) possibleMessages.push(iceQueenMessage); // 9999
 	
+	// Should only be available a week either side of hallowiener
+	if (checkDate(31, 10, 7) || debug)
+	{
+		if (!MailManager.isEntryUnlocked("KashimaMail") && pc.level >= 7 && (shipLocation == "600" || shipLocation == "2I7" || destination == "Myrellion" || destination == "MyrellionDeepCaves"))
+		{
+			possibleMessages.push(sendKashimaMessage);
+		}
+	}
+	
 	// If there's an available message, and the player has unlocked the second planet (ie had the fight with Dane):
 	// if debug, proc a random message
 	// otherwise 25% of an event
@@ -147,4 +156,9 @@ public function iceQueenMessageIgnore(destination:String):void
 
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, destination);
+}
+
+public function testKashimaEvent():void
+{
+	sendKashimaMessage("Tavros");
 }

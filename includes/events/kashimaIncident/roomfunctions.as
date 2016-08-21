@@ -1,3 +1,4 @@
+import classes.Characters.InfectedCrewmember;
 public function kiEnterShuttleLZ():void
 {
 	output("The Nova Securities shuttle that ferried you over is parked here, surrounded by pools of some unidentifiable white sludge splattered all over the ground.");
@@ -17,7 +18,7 @@ public function kiElevatorTerminal():void
 		addButton(0, "Elevators", kiGoElevators, undefined, "Elevators", "Take a look at the personnel elevators.");
 		addButton(1, "CargoLift", kiGoCargolift, undefined, "Cargo Lift", "Let's see if the cargo lift is still working. Looks like the only way you're getting out of the hangar.");
 		addButton(2, "WhiteSlime", kiElevatorWhiteStuff, undefined, "White Slime", "What's that slime on the walls... and the deck... and everywhere?");
-		flags["NAV_DISABLED"] = NAV_NORTH_DISABLED;
+		flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
 	}
 }
 
@@ -98,7 +99,7 @@ public function kiGoUseCargoLift():void
 	var h:Array = [];
 	for (var i:int = 0; i < 4; i++)
 	{
-		h.push(new InfectedCrewman());
+		h.push(new InfectedCrewmember());
 	}
 	
 	CombatManager.newGroundCombat();
@@ -129,15 +130,15 @@ public function kiEnterMedbay():Boolean
 	{
 		if (9999 == 0) output("\n\nDoctor Vanderbilt is sitting at the only operational holo-terminal in the bay, busily working on her cure.");
 
-		flags["NAV_DISABLED"] = NAV_SOUTH_DISABLED;
+		flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
 
-		addButton(0, "Vent", kiEnterMedbayVent);
+		addButton(0, "Vent", kiE9EnterVents);
 
 		return false;
 	}
 }
 
-public function kiP18CommandDeck():void
+public function kiP18CommandDeck():Boolean
 {
 	output("\n\nTo the north is a");
 	if (9999 == 0) output(" sealed");
@@ -147,11 +148,11 @@ public function kiP18CommandDeck():void
 	//In order to get in here, the PC must complete a very hard connect-the-dots puzzle, Silence style
 	// -> P16
 
-	flags["NAV_DISABLED"] = NAV_NORTH_DISABLED;
+	flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
 
 	if (flags["KASHIMA_HOLMES_DEFEATED"] != undefined)
 	{
-		flags["NAV_DISABLED"] |= NAV_EAST_DISABLED;
+		flags["NAV_DISABLED"] |= NAV_EAST_DISABLE;
 	}
 
 	return commandDeckRandomEncounter();
@@ -204,7 +205,7 @@ public function kiVentMenu():void
 	if (currentLocation != "KI-Engineering") addButton(1, "Engineering", kiEngineeringVent);
 	else addDisabledButton(1, "Engineering", "Engineering Deck", "You're already on the Engineering deck.");
 	
-	if (currentLocation !+ "KI-E9") addButton(2, "Officers Q.", kiOfficersDeckVent);
+	if (currentLocation != "KI-E9") addButton(2, "Officers Q.", kiOfficersDeckVent);
 	else addDisabledButton(2, "Officers Q.", "Officers Quarters", "You're already on the Officers Quarters deck.");
 
 	addButton(14, "Back", mainGameMenu);
@@ -290,7 +291,7 @@ public function kiE5Sexbot():void
 
 public function kiG3Exec():void
 {
-	if (flags["KIG3_SEARCHED"] == undefined) addButton(0, "Search", kiG3Searc, undefined, "Search the Room", "Toss the XO's room. Maybe you'll find something useful.");
+	if (flags["KIG3_SEARCHED"] == undefined) addButton(0, "Search", kiG3Search, undefined, "Search the Room", "Toss the XO's room. Maybe you'll find something useful.");
 }
 
 public function kiG3Search():void
@@ -309,7 +310,6 @@ public function kiI3Science():void
 {
 	if (flags["KII3_SEARCHED"] == undefined) addButton(0, "Search", kiI3ScienceSearch, undefined, "Search the Room", "Toss the Science Officer's quarters. Maybe you'll find something useful.");
 	else if (flags["KII3_CRACKED"] == undefined) addButton(0, "Safe Crack", kiI3StartSafeCrack, undefined, "Crack the Safe", "Try and crack the safe's digital code.");
-	else if (flags["KII3_CRACKED"] == 1) addButton()
 }
 
 public function kiI3ScienceSearch():void
@@ -382,6 +382,8 @@ public function kiI3SucceedSafeCrack():void
 
 	pc.createKeyItem("Parasite Sample", 0, 0, 0, 0, "A small security hardcase containing a medical sample.");
 	output("\n\n<b>Key Item Acquired: Parasite Sample - A small security hardcase containing a medical sample.</b>");
+	
+	pc.credits += 250 + rand(50);
 
 	clearMenu();
 	addButton(0, "Back", mainGameMenu);
@@ -422,7 +424,7 @@ public function kiCommandDeckTriggerEncounter():void
 	var h:Array = [];
 	for (var i:int = 0; i < numEnemies; i++)
 	{
-		h.push(new InfectedCrewman());
+		h.push(new InfectedCrewmember());
 	}
 	
 	output("\n\nYou hear a horrible screech of metal buckling and tearing. You spin around in time to see a vent shaft above you explode outwards, and");
@@ -492,7 +494,7 @@ public function kiEnterTheBridge():Boolean
 		chiefNeykkarHeader(false);
 
 		output("You approach the bridge door, but find that it doesn’t open automatically like it should. The lockdown again. Grunting in frustration, you tell the Chief to cover you as you yank off the access panel beside the door and");
-		if (pc.characterClass == GLOBAL.MERCENARY) output(" start ripping wires");
+		if (pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" start ripping wires");
 		else output(" start trying an override");
 		output(". The leithan warrior turns back towards the corridor and shoulders her gun, keeping an eye out for more of the tentacle creatures.");
 
@@ -638,29 +640,54 @@ public function kiBridgeContinued():void
 	addButton(0, "Fight!", CombatManager.beginCombat);
 }
 
-public function kiHolmesLoss():void
+public function kiHolmesLoss(asHenderson:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
-	showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
-	showName("DEFEAT:\nCAPTAIN HOLMES");
+	if (!asHenderson)
+	{
+		showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
+		showName("DEFEAT:\nCAPTAIN HOLMES");
+	}
+	else
+	{
+		showBust("COMMANDERHENDERSON", "CHIEFNEYKKAR");
+		showName("DEFEAT:\nCMDR. HENDERSON");
+	}
 
-	output("You barely register the fact that your companion’s gone down, slammed to the ground by the mutated captain’s throbbing tentacles. You’re too busy fighting off the others: four tentacle cocks groping at your arms, grabbing your wrists and [pc.legs], trying to pull you down. And in the state you’re in, it isn’t long before he succeeds. Your struggles weaken to nothing, unable to shake off the creature’s grasp as he draws you in kicking and screaming.");
+	if (!asHenderson || enemy.hasStatusEffect("Free Chief"))
+	{
+		output("You barely register the fact that your companion’s gone down, slammed to the ground by the mutated captain’s throbbing tentacles.");
+	}
+	else
+	{
+		output("There's nothing you can do for the Chief now, held tight by the squirming tentacles as she is.")
+	}
+	output(" You’re too busy fighting off the others: four tentacle cocks groping at your arms, grabbing your wrists and [pc.legs], trying to pull you down. And in the state you’re in, it isn’t long before he succeeds. Your struggles weaken to nothing, unable to shake off the creature’s grasp as he draws you in kicking and screaming.");
 
-	output("\n\nYour world suddenly goes topsy-turvy as the captain hauls you off the deck and slams you down on your back, spreading you eagle and tearing at your gear with his shoulder-tentacles until you’re completely bare, covered in the tatters of your gear. Your [pc.weapon] and Codex lie smashed on the deck beside you. Hot, musky breath washes over your [pc.face] as the captain looms over you, so close that you could almost hear his heartbeat through the pulsating growths flooding through his body. His open mouth hangs a bare inch over yours, drooling pink fluids across your face.");
+	output("\n\nYour world suddenly goes topsy-turvy as the " + (asHenderson ? "commander" : "captain") + " hauls you off the deck and slams you down on your back, spreading you eagle and tearing at your gear with his shoulder-tentacles until you’re completely bare, covered in the tatters of your gear. Your [pc.weapon] and Codex lie smashed on the deck beside you. Hot, musky breath washes over your [pc.face] as the " + (asHenderson ? "commander" : "captain") + " looms over you, so close that you could almost hear his heartbeat through the pulsating growths flooding through his body. His open mouth hangs a bare inch over yours, drooling pink fluids across your face.");
 
 	output("\n\nOne last, futile attempt to struggle against his mighty grasp ends with your [pc.legs] hauled up in the air, and two tentacles immediately thrust into your [pc.vagOrAss]. You scream, arching your back and clawing desperately at the restraints on your limbs - to no avail. Overwhelming sensation burns your mind white as the tentacles force their way into your hole, stretching you wide and blasting your [pc.vagOrAss] with the same pink fluids that the creature exudes everywhere else. A few seconds of that, and your limbs go languid, feeling leaden and boneless at your side. Heat burns through your body, spreading through your loins and up through your body, taking root and clenching at your heart. You feel the heat and cold sweat more acutely than the tentacles thrusting inside you, refusing to let you think: only pleasure remains.");
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", kiHolmesLossII, asHenderson);
 }
 
-public function kiHolmesLossII():void
+public function kiHolmesLossII(asHenderson:Boolean):void
 {
 	clearOutput();
 	author("Savin");
-	showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
-	showName("DEFEAT:\nCAPTAIN HOLMES");
+
+	if (!asHenderson)
+	{
+		showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
+		showName("DEFEAT:\nCAPTAIN HOLMES");
+	}
+	else
+	{
+		showBust("COMMANDERHENDERSON", "CHIEFNEYKKAR");
+		showName("DEFEAT:\nCMDR. HENDERSON");
+	}
 
 	output("<b>Several hours later...</b>");
 
@@ -672,7 +699,7 @@ public function kiHolmesLossII():void
 	}
 	output(" and ass. The pink slime they pump you with has left you completely leaden, able to do almost nothing but moan and cum and stare vacuously into the darkness around you. The lights have shut off, and the Chief has been dragged away by the creatures that eventually pursued you from the elevator. But you remain on the bridge, hearing but not seeing the stomping footsteps of the mutated captain.");
 	
-	output("\n\nThe tendrils inside and around you trail off to and from his body, dragging across the cum-slathered deck. You can hear screams throughout the ships, cries of endless pleasure as the remaining crew of the <i>Sunny Nebula</i> are assailed by the other mutants, fucked into submission over and over. Yet you... your fate is different. Solitary. The others didn’t touch you when they came for the Chief. Didn’t dare, when the captain roared at them, spraying lusty pink slime everywhere.");
+	output("\n\nThe tendrils inside and around you trail off to and from his body, dragging across the cum-slathered deck. You can hear screams throughout the ships, cries of endless pleasure as the remaining crew of the <i>Sunny Nebula</i> are assailed by the other mutants, fucked into submission over and over. Yet you... your fate is different. Solitary. The others didn’t touch you when they came for the Chief. Didn’t dare, when the "+ (asHenderson ? "commander" : "captain") +" roared at them, spraying lusty pink slime everywhere.");
 	
 	output("\n\nPerhaps he means something special for you? A worse fate than the others...");
 	
@@ -681,15 +708,24 @@ public function kiHolmesLossII():void
 	output("\n\nYou wonder how long it will be before you’re just another mutant, wandering the halls of the derelict <i>Kashima...</i>.");
 
 	clearMenu();
-	addButton(0, "Next", kiHolmesLossIII);
+	addButton(0, "Next", kiHolmesLossIII, asHenderson);
 }
 
-public function kiHolmesLossIII():void
+public function kiHolmesLossIII(asHenderson:Boolean):void
 {
 	clearOutput();
 	author("Savin");
-	showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
-	showName("DEFEAT:\nCAPTAIN HOLMES");
+	
+	if (!asHenderson)
+	{
+		showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
+		showName("DEFEAT:\nCAPTAIN HOLMES");
+	}
+	else
+	{
+		showBust("COMMANDERHENDERSON", "CHIEFNEYKKAR");
+		showName("DEFEAT:\nCMDR. HENDERSON");
+	}
 
 	output("<b>A week passes...</b>");
 	
@@ -853,7 +889,7 @@ public function kiRipChief():void
 	//Eventually when PC gets to the medical bay and tries to access it, go to "Meeting Dr. Vanderbilt"
 }
 
-public function kiH18RoomFunction():void
+public function kiH18RoomFunction():Boolean
 {
 	if (flags["CHIEF_NEYKKAR_WITH_PC"] == 2 && flags["KI_VANDERBILT_MET"] == undefined)
 	{
@@ -875,7 +911,7 @@ public function kiMeetingVanderbilt():void
 	var h:Array = [];
 	for (var i:int = 0; i < 3; i++)
 	{
-		h.push(new InfectedCrewman());
+		h.push(new InfectedCrewmember());
 	}
 	
 	CombatManager.newGroundCombat();
@@ -884,7 +920,7 @@ public function kiMeetingVanderbilt():void
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 3);
 	CombatManager.lossCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.victoryScene(kiMedbayFightEnds);
-	CombatManager.lossScene(kiCargoLiftLoss);
+	CombatManager.lossScene(kiRandomMutantLoss);
 	
 	clearMenu();
 	addButton(0, "Fight!", CombatManager.beginCombat);
@@ -1004,7 +1040,7 @@ public function kiDoctorEscape():void
 	output("<i>“Escape? We can’t... some of the crew escaped already. They took the shuttle. But quarantine was in effect, and our security chief... she shot them down. That was before the entire crew had succumbed. Just most of them.”</i>");
 
 	output("Damn. Well, luckily you came aboard a shuttle of your own... though it’s sealed off, and you don’t have the keys.");
-	if (pc.characterClass == GLOBAL.CLASS_TECH) output(" You might be able to override it, but that’ll take a lot of time.");
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" You might be able to override it, but that’ll take a lot of time.");
 	else output(" No way you’re going to be able to use the Nova shuttle without Chief Neykkar.");
 
 	kiDoctorMenu(kiDoctorCure);
@@ -1141,7 +1177,7 @@ public function kiDiscoverVanderbiltsSecret():void
 	output("\n\nYou blink at her in surprise, not sure what to do.");
 
 	clearMenu();
-	if (pc.hasCock() || pc.hasVagina() || pc.hasTailCock() || pc.hasTailVagina()) addButton(0, "Fuck Her", kiVanderbiltFuckHer, undefined, "Fuck Her", "She's practically begging for it. If the parasites are only suppressed by pleasure, then give her what she wants so the doc can keep her mind a little longer.");
+	if (pc.hasCock() || pc.hasVagina() || pc.hasTailCock() || pc.hasTailCunt()) addButton(0, "Fuck Her", kiVanderbiltFuckHer, undefined, "Fuck Her", "She's practically begging for it. If the parasites are only suppressed by pleasure, then give her what she wants so the doc can keep her mind a little longer.");
 	else addDisabledButton(0, "Fuck Her", "Fuck Her", "You don't have any compatible genitalia!");
 
 	addButton(1, "Refuse", kiVanderbiltRefuse, undefined, "Refuse", "No way. She might still have her mind, but the parasites could be doing the talking. You can't afford to let her infect you.");
@@ -1185,7 +1221,7 @@ public function kiVanderbiltFuckHer():void
 		output("\n\nIt seems to work, as the doctor relaxes more and more in your embrace, lovingly tending to your [pc.cock "+cIdx+"]. She moans incoherently, faint words muffled by a mouthful of your manhood. You’re half afraid Elenora’s going to fall asleep, the way she goes languid in her chair, but the your delight, the doc holds out to the very end, moaning and gasping as your dexterous fingers eventually bring her to climax, tentacles and all.");
 
 		output("\n\nPink juices squirt from the tentacles’ heads, basting her thighs until Elenora’s a wet, murky mess below the belt. Her whimpers of pleasure, the way she utterly loses control, drives you over the edge in short order. You grunt, grabbing the back of her head and driving your [pc.hips] forward until you’re");
-		if (pc.cocks[cIdex].cLength() >= 12) output(" straining Elenora’s throat with the sheer size of your massive prick");
+		if (pc.cocks[cIdx].cLength() >= 12) output(" straining Elenora’s throat with the sheer size of your massive prick");
 		else output(" grinding her lips on your crotch, completely sheathed inside her");
 		output(", and cum.");
 		if (pc.cumQ() >= 250 && pc.cumQ() <= 1000) output(" Clearly more than she was expecting, if the way her eyes snap open is any indication");

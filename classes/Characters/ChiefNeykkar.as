@@ -211,5 +211,12 @@ package classes.Characters
 		{
 			CombatAttacks.RapidFire.execute(friends, hostiles, this, target);
 		}
+		
+		public function hendersonConfig():void
+		{
+			HPRaw = HPMax() * ((75.0 + (rand(50) - 25)) / 100.0);
+			energyRaw = energyMax() * ((75.0 + (rand(50) - 25)) / 100.0);
+			lustRaw = 10 + rand(10);
+		}
 	}
 }

@@ -203,6 +203,12 @@ package classes.Characters
 		{			
 			var bDoAttack:Boolean = true;
 			
+			if (HP() < HPMax())
+			{
+				healTick();
+			}
+			
+			
 			for (var i:int = 0; i < hostiles.length; i++)
 			{
 				if (hostiles[i] is PlayerCharacter && hostiles[i].hasStatusEffect("Grappled"))
@@ -219,10 +225,11 @@ package classes.Characters
 				
 				var atks:Array = [];
 				
-				atks.push( { v: tentacleSlap, w: 40 } );
+				atks.push( { v: tentacleWhip, w: 40 } );
 				atks.push( { v: aphrodisiacSpray, w: 30 } );
 				if (target is PlayerCharacter && !hasStatusEffect("Grapple Cooldown")) atks.push( { v: tentacleRestraint, w: 15 } );
 				atks.push( { v: staggeringSlam, w: 20 } );
+				if (energy() > 55) atks.push( { v: crushingWorms, w: 25 } );
 				
 				weightedRand(atks)(target, hostiles);
 			}
@@ -359,7 +366,7 @@ package classes.Characters
 			var pcDamage:DamageResult = applyDamage(damageRand(new TypeCollection( { kinetic: 5 } ), 15), this, struct.pc, "suppress");
 			var neykkarDamage:DamageResult;
 			
-			if (bHitNeykkar = applyDamage(damageRand(new TypeCollection( { kinetic: 5 } ), 15), this, struct.neykkar, "suppress");
+			if (bHitNeykkar) neykkarDamage = applyDamage(damageRand(new TypeCollection( { kinetic: 5 } ), 15), this, struct.neykkar, "suppress");
 			
 			if (bStaggeredPC && !bStaggeredNeykkar)
 			{
@@ -402,6 +409,7 @@ package classes.Characters
 		
 		public function crushingWorms(target:Creature, hostiles:Array):void 
 		{
+			energy( -55);
 			output("Henderson slowly extends one of his mutated, writhing limbs in");
 			if (target is PlayerCharacter) output(" your");
 			else output(" the Chief's");
@@ -441,7 +449,7 @@ package classes.Characters
 			setStatusValue("Free Chief", 1, 2);
 			
 			var f:ChiefNeykkar = new ChiefNeykkar();
-			f.HendersonConfig();
+			f.hendersonConfig();
 			
 			CombatManager.addFriendlyCreature(f);
 		}
@@ -541,10 +549,25 @@ package classes.Characters
 			else output(" lowering her weapon");
 			output(". <i>“You... you did it! What did you do?”</i>");
 			
-			setStatsValue("Parasite Cure", 1, 5);
+			setStatusValue("Parasite Cure", 1, 5);
 			HPRaw = 0;
 			
 			CombatManager.processCombat();
+		}
+		
+		public function healTick():void
+		{
+			var healAmt:Number = HPMax() * 0.05;
+			if (HP() + healAmt > HPMax()) healAmt = HPMax() - HP();
+			HP(healAmt);
+			energy(energyMax() * 0.15);
+			
+			output("The commanders mutated form rapidly recovers from damage, knitting closed fresh wounds with newly-sprouted tentacles! (<b><span status='good'>+" + healAmt + "</span></b>\n\n");
+			
+			if (hasStatusEffect("Bleeding"))
+			{
+				removeStatusEffect("Bleeding");
+			}
 		}
 	}
 }

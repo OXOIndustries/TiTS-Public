@@ -24,6 +24,7 @@ package classes.GameData
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.Util.InCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * TODO:
@@ -345,7 +346,7 @@ package classes.GameData
 				}
 				else if (h.statusEffectv1("Parasite Cure") == 3)
 				{
-					addButton(11, "FireAlarm", h.fireAlarm, false, "Trigger Fire Alarm", "Hit the alarm to release the cure!");
+					addButton(11, "FireAlarm", h.triggerAlarm, false, "Trigger Fire Alarm", "Hit the alarm to release the cure!");
 				}
 			}
 		}

@@ -245,7 +245,7 @@
 			
 			if (atk == hivemindRoar)
 			{
-				atk(stunnedAllies[rand(stunnedAllies.length)]);
+				atk(stunnedAllies[rand(stunnedAllies.length)], alliedCreatures, hostileCreatures);
 			}
 			else if (atk == lustSpores)
 			{
@@ -289,7 +289,7 @@
 			if (!combatMiss(this, target))
 			{			
 				output(" [target.combatHeShe] manage");
-				if (!(target is PlayerCharacter) output("s");
+				if (!(target is PlayerCharacter)) output("s");
 				output(" to keep");
 				if (target is PlayerCharacter) output(" your");
 				else output(" [target.combatHisHer]");
@@ -306,14 +306,14 @@
 
 		}
 		
-		public function hivemindRoar(target:Creature):void
+		public function hivemindRoar(target:Creature, friendlies:Array, hostiles:Array):void
 		{
 			//Removes stun from another creature. It immediately acts.
 			output("One of the mutants grabs its stunned companion with its tentacles, roaring into its ear and thrusting into its exposed orifices with every tentacle. The stunned mutant shrieks, roused from its stupor by a sudden rush of pleasure and stimulation. It turns its attention directly towards you, eyes afire with renewed desire.");
 			
-			output("\n\n<b>" + target.a + target.uniqueName +" is no longer stunned!</b>");
+			output("\n\n<b>" + target.a + target.uniqueName +" is no longer stunned!</b>\n\n");
 			target.removeStatusEffect("Stunned");
-
+			target.CombatAI(friendlies, hostiles);
 		}
 		
 		public function lustSpores(hostileCreatures:Array):void
@@ -342,7 +342,7 @@
 					{
 						t.setStatusValue("Lust Spores", 1, 2 + rand(2));
 					}
-					else if (!target.hasAirtightSuit())
+					else if (!t.hasAirtightSuit())
 					{
 						t.createStatusEffect("Lust Spores", 2 + rand(2), 0, 0, 0, false, "LustUp", "A hazy cloud of pure lust is still lingering in the air, heating your loins despite your best efforts....", true, 0, 0xFF0000);
 					}

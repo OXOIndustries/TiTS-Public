@@ -16,7 +16,7 @@ CHIEF_NEYKKAR_WITH_PC
 	1 				with pc
 	2 				removed during event
 */
-public function sendKashimaMessage():void
+public function sendKashimaMessage(destination:String):void
 {
 	MailManager.unlockEntry("KashimaStart", GetGameTimestamp());
 	MailManager.readEntry("KashimaStart", GetGameTimestamp());
@@ -24,9 +24,7 @@ public function sendKashimaMessage():void
 	clearOutput();
 	author("Savin");
 
-	output("<b>Something happens during your journey...</b>");
-
-	output("\n\nYour ship’s comms light up with an incoming message, marked as being from Steele Tech company headquarters. That’s... unexpected, to say the least. You key the holoscreen and bring up the message:");
+	output("Your ship’s comms display lights up with the incoming message, marked as being from Steele Tech company headquarters. That’s... unexpected, to say the least. You key the holoscreen and bring up the message:");
 	
 	output("\n\nDear "+pc.mf("Mr", "Ms") +". Steele,");
 	
@@ -46,10 +44,10 @@ public function sendKashimaMessage():void
 
 	clearMenu();
 	addButton(0, "HelpNova", startKashimaJobbo, undefined, "Help Nova", "Take Steele Tech up on their offer and investigate the <i>Kashima</i>. Even if it's just a technical glitch, it's still worth a fair bit from the contract price.");
-	addButton(1, "Abandon", abandonKashimaJob, undefined, "Abandon", "The Nova Securities crew has this covered. That's their job, after all. No point in you dealing with it.");
+	addButton(1, "Abandon", abandonKashimaJob, destination, "Abandon", "The Nova Securities crew has this covered. That's their job, after all. No point in you dealing with it.");
 }
 
-public function abandonKashimaJob():void
+public function abandonKashimaJob(destination:String):void
 {
 	clearOutput();
 	author("Savin");
@@ -59,10 +57,10 @@ public function abandonKashimaJob():void
 	flags["KASHIMA_STATE"] = -1;
 
 	clearOutput();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", flyToWrapper, destination);
 }
 
-public function startKashimaJobbo():void
+public function startKashimaJobbo(destination:String):void
 {
 	clearOutput();
 	author("Savin");
@@ -73,6 +71,7 @@ public function startKashimaJobbo():void
 
 	sleep(false);
 	pc.lustRaw = pc.lustMin();
+	flags["STORED SHIP DESTINATION"] = destination;
 
 	clearMenu();
 	addButton(0, "Next", actuallyStartKashimaJob);
@@ -208,7 +207,7 @@ public function kiCargoLiftVictoryII():void
 	output("\n\n<i>“We’ve gotta... gotta get to the bridge. Send for backup. Quarantine,”</i> she says shakily. <i>“What the fuck was <b>wrong</b> with those people, Steele?”</i>");
 
 	output("\n\nYou don’t have the answers.");
-	if (pc.characterClass == GLOBAL.CLASS_MERC) output(" You’ve seen some crazy shit, but that damn near takes the cake.");
+	if (pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" You’ve seen some crazy shit, but that damn near takes the cake.");
 	else if (pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" You’ve seen all kinds of fucked-up drugs and parasites in your career, but nothing that’d do <i>that</i> to someone.");
 	else output(" And for a nerd like you, that’s really saying something.");
 	output(" But she’s right: you’ve got to get moving. You’re not doing anything to save your crew or the Nova troops sitting on your ass.");
@@ -844,6 +843,8 @@ public function kiApproachingEscapeShuttle():Boolean
 
 		return true;
 	}
+	
+	return false;
 }
 
 public function kiFinalFightVictory():void
@@ -868,7 +869,7 @@ public function kiEscapeShuttle():void
 	flags["KASHIMA_STATE"] = 3;
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
 
 	// 9999 ensure the ship goes places
 }
@@ -988,7 +989,7 @@ public function kiHendersonMedbayII():void
 	flags["KASHIMA_STATE"] = 2;
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
 }
 
 public function kiHendersonSteeleTech():void
@@ -1093,5 +1094,43 @@ public function kiHendersonSteeleTech():void
 	flags["KASHIMA_STATE"] = 2;
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
+}
+
+public function kiMutantBadEnd():void
+{
+	clearOutput();
+	author("Gardeford");
+	showName("INFECTED\nCREW");
+	showBust("INFECTEDCREWMEMBER");
+	
+	output("You awaken with a start, Spread eagle and stretched. Writhing tentacles coil around your limbs, but as far as you can feel none of them have gotten to your orifices yet. With a mad rush of strength, you pull with all of your body, somehow managing to escape the grip before it can tighten to trap you.");
+	
+	output("\n\nThe tendrils attempt to chase after you, but you roll away, staggering through what appears to be one of the ship’s maintenance tunnels. It doesn’t seem like any of them are continuing to chase you, at least for now. By sheer luck, you find an unlocked hatch leading to one of the ships hangar bays. It’s not the one your ship is in, but it appears devoid of tentacle infested crewmen.");
+	
+	output("\n\nA flutter of warmth bubbles in your stomach as you open the hatch, but you pass it off as nervousness. Your nanomachines must be powerful enough to stop something like this, if nothing else you’ll just get some fancy transformation like always. What matters now is getting off this ship alive. No amount of nanomachines can stop you getting bred by tentacles for an eternity.");
+	
+	output("\n\nMiraculously, your codex appears to be fully functional again. As quickly as you can, you send out a general distress signal. You aren’t sure whether Steeltech’s assistance will make it in time, but you send a more detailed distress signal to them as well. Within minutes you get an <i>“On the way”</i> ping from the general beacon that places the responder within a short distance of the station.");
+	
+	output("\n\nA rush of warmth floods to your nethers, along with a twisting pleasure in your gut. Nervousness might be too much to wish for now, but the responders will be able to help you. You think a mass of tentacles growing within you would be uncomfortable, but every part of it just feels a different kind of amazing, and you find yourself struggling to stay focused.");
+	
+	output("\n\nJust when you think you might not last, the unmistakeable form of a ship appears in the blackness outside the hangar. At least, you think it does; your vision has tinted a few shades of red. As the ship approaches it becomes more clear, a small and sleek personal cruiser. The thing doesn’t look like much, but it looks fast enough to get you where you need to be. You compose yourself as best you can, trying to ignore a growing feeling of hunger closing around your thoughts.");
+	
+	output("\n\nBy the time you focus enough to regain your bearings, the ship has landed, and a hatch opens from its side. A Middle-aged Kaithrit woman rushes down to meet you, an impressive bust bouncing as she does. You miss her first words as your eyes bounce along with it. Her entirety shines in an intoxicating shade of the pink that covers your vision, and you struggle to reply.");
+	
+	output("\n\nSex, sex, sex is all you can think of when you try to form words. You hold up a hand, attempting to warn her about the infected crew and ask for an airlift to safety, but pitch forward into a full bodied hug and kiss. A hot-pink tendril surges up through your throat, burying itself in the unsuspecting woman’s open mouth. Her eyes go wide as a pulse of hot sex juice follows suit, bubbling out of her clenched lips and nose.");
+	
+	output("\n\nA second tentacle emerges from your sex, slipping under the Kaithrit’s shirt and slithering around her breasts. It emerges from her cleavage only to blast the both of you with pink aphrodisiac cum. You shudder and lose your footing as another wave of cum pushes through the tendril in your throat, taking the both of you to the ground.");
+	
+	output("\n\nHeaving E cups press into your [pc.chest], and their hapless owner pulls you in closer as her tongue lolls around the invading member. Even more tentacles springing from your body search her for orifices, plugging each one with breeding fervor as you tear her clothing away. Her body feels pleasantly cool on your lust heated [pc.skinFurScales], and you explore every inch of it till it matches your boiling temperature.");
+	
+	output("\n\nWith a great deal of effort, you pull yourself away from her face, remembering vague whisps of something you were supposed to be doing; someone else who was coming to rescue you. Oh well, they can join in when they get here. You dismiss all thoughts, diving back down to taste more of your new friend.");
+
+	badEnd();
+}
+
+// 9999 - no 
+public function kiHendersonLoss():void
+{
+	kiHolmesLoss(true);
 }

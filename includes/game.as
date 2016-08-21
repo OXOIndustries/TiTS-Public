@@ -936,11 +936,6 @@ public function flyTo(arg:String):void {
 		}
 	}
 	
-	if (!MailManager.isEntryUnlocked("KashimaMail") && pc.level >= 7 && (shipLocation == "600" || shipLocation == "2I7" || arg == "Myrellion" || arg == "MyrellionDeepCaves"))
-	{
-		if (eventQueue.indexOf(sendKashimaMessage) == -1) eventQueue.push(sendKashimaMessage);
-	}
-	
 	var shortTravel:Boolean = false;
 	var interruptMenu:Boolean = false;
 	

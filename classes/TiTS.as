@@ -296,9 +296,9 @@
 		include "../includes/events/karaquest2/roomFunctions.as";
 		
 		// Kashima
-		include "../includes/events/kashima/kashimaincident.as";
-		include "../includes/events/kashima/rooms.as";
-		include "../includes/events/kashima/roomfunctions.as";
+		include "../includes/events/kashimaIncident/kashimaIncident.as";
+		include "../includes/events/kashimaIncident/rooms.as";
+		include "../includes/events/kashimaIncident/roomfunctions.as";
 		
 		// Uveto
 		include "../includes/uveto/freezer.as";

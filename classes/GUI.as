@@ -647,7 +647,7 @@
 			this.clearGhostMenu();
 		}
 		
-		public function isSecondaryOutputActive():void
+		public function isSecondaryOutputActive():Boolean
 		{
 			return (_currentModule.moduleName == "SecondaryOutput");
 		}

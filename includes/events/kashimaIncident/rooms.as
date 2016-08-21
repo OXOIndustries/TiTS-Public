@@ -92,7 +92,7 @@ public function kiInitRooms():void
 	rooms["KI-L20"].description = "You're standing in the elevator terminal that connects the handful of decks on the long, slender vessel. Bright purple and pink letters on the bulkhead read ‘COMMAND DECK’. The cargo shaft reeks of cum and other sex-fluids, and the other elevators are sealed under emergency lockdown. Looks like you're not going anywhere here!";
 	rooms["KI-L20"].runOnEnter = function():Boolean
 	{
-		flags["NAV_DISABLED"] = NAV_SOUTH_DISABLED;
+		flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
 		return false;
 	};
 	rooms["KI-L20"].planet = planetName;
