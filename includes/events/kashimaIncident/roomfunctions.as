@@ -1,4 +1,5 @@
 import classes.Characters.InfectedCrewmember;
+import classes.Items.Melee.VampBlade;
 public function kiEnterShuttleLZ():void
 {
 	output("The Nova Securities shuttle that ferried you over is parked here, surrounded by pools of some unidentifiable white sludge splattered all over the ground.");
@@ -26,7 +27,6 @@ public function kiElevatorWhiteStuff():void
 {
 	clearOutput();
 	output("In the flickering light of the emergency alarms, you squat down next to a growing pool of white sludge next to the cargo elevator shaft. You get a face-full of its pungent, musky odor. The smell is instantly, impossibly familiar: it smells like cum. You scrunch your nose and glance up into the dark depths of the cargo shaft. More of the cummy white gunk is sloughing down the walls, like");
-	// 9999
 	if (flags["RESCUE KIRO FROM BLUEBALLS"] != undefined) output(" Kiro");
 	else output(" some over-loaded kui-tan");
 	output(" had busted a torrential nut somewhere on the upper decks. What in the world...");
@@ -116,46 +116,127 @@ public function kiGoUseCargoLift():void
 
 public function kiEnterMedbay():Boolean
 {
+	flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
+	addButton(1, "Vent", kiE9EnterVents);
+		
 	if (pc.hasKeyItem("Parasite Sample"))
 	{
 		kiMedbayCure();
 		return true;
 	}
-	else if (flags["KI_VANDERBILT_WORKING"] == 1)
+	
+	if (flags["KI_VANDERBILT_WORKING"] == 1)
 	{
-		addButton(0, "Elenora", kiApproachElenora, undefined, "Elenora", "Talk with the doctor again, and see if she's ready with the cure.");
-		return false;
+		output("\n\nDoctor Vanderbilt is sitting at the only operational holo-terminal in the bay, busily working on her cure.");
+		
+		if (flags["KI_VANDERBILT_WORKING_START"] + 240 > GetGameTimestamp())
+		{
+			addButton(0, "Elenora", kiApproachElenora, undefined, "Elenora", "Talk with the doctor again, and see if she's ready with the cure.");
+		}
+		else
+		{
+			addDisabledButton(0, "Elenora", "Approach Elenora", "The doctor looks totally engrossed in her work; probably best to give her a little more time.");
+		}
 	}
-	else
-	{
-		if (9999 == 0) output("\n\nDoctor Vanderbilt is sitting at the only operational holo-terminal in the bay, busily working on her cure.");
-
-		flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
-
-		addButton(0, "Vent", kiE9EnterVents);
-
-		return false;
-	}
+	
+	return false;
 }
 
 public function kiP18CommandDeck():Boolean
 {
 	output("\n\nTo the north is a");
-	if (9999 == 0) output(" sealed");
-	else output(" unlocked");
+	if (flags["KI_P16_UNLOCKED"] != undefined)
+	{
+		flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+		output(" sealed");
+	}
+	else
+	{
+		flags["NAV_DISABLED"] = 0;
+		output(" unlocked");
+	}
 	output(" security door labeled ‘Captain's Ready Room’. To the east is the head of the ship, and a heavy-duty security door ahead bears the ’BRIDGE’ markings overhead. A pair of disabled shock-turrets once guarded these sensitive chambers, but have long since been overwhelmed by what must have been gallons of cum. They've completely shorted out.");
 
-	//In order to get in here, the PC must complete a very hard connect-the-dots puzzle, Silence style
-	// -> P16
-
-	flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
-
+	
 	if (flags["KASHIMA_HOLMES_DEFEATED"] != undefined)
 	{
 		flags["NAV_DISABLED"] |= NAV_EAST_DISABLE;
 	}
+	
+	if (flags["KI_P16_FAILURES"] == undefined || flags["KI_P16_FAILURES"] <= 3)
+	{
+		addButton(0, "Hack Door", kiTryUnlockReadyRoom, undefined, "Hack Door Lock", "Attempt to hack the door lock to the north.");
+	}
+	else
+	{
+		addDisabledButton(0, "Hack Door", "Hack Door Lock", "You’ve failed too many times and the lock has shutdown!");
+	}
 
 	return commandDeckRandomEncounter();
+}
+
+public function kiTryUnlockReadyRoom():void
+{
+	userInterface.showMinigame();
+	var gm:RotateMinigameModule = userInterface.getMinigameModule();
+	
+	var g:uint = RGMK.NODE_GOAL;
+	var i:uint = RGMK.NODE_INTERACT;
+	var l:uint = RGMK.NODE_LOCKED;
+	
+	var n:uint = RGMK.CON_NORTH;
+	var e:uint = RGMK.CON_EAST;
+	var s:uint = RGMK.CON_SOUTH;
+	var w:uint = RGMK.CON_WEST;
+	
+	// 9999 update with new puzzle
+	gm.setFailablePuzzleState(
+		kiSuccessfullyUnlockReadyRoom, 
+		kiFailedToUnlockReadyRoom, 
+		RotateMinigameModule.MAX_MOVES, 20,
+		5, 5, 
+	[
+		g | e | s, 	i | n | s, 	i | w | s, 	i | n | e, 	g | w,
+		i | e | w, 	l, 			i | s | w, 	i | n | e, 	l,
+		i | n | s, 	l, 			i | n | s, 	l, 			l,
+		i | w | n, 	i | n | e, 	i | n | e, 	i | e | w,	i | n | e,
+		i | s | e,	i | w | s,	i | s | e,	l,			g | n
+	]);
+}
+
+public function kiSuccessfullyUnlockReadyRoom():void
+{
+	clearOutput();
+	
+	output("It’s a quick matter to rip some of the wiring out, cross it, and short out the security system. After about a minute of work, the door slides open. Success!");
+		
+	flags["KI_P16_UNLOCKED"] = 1;
+
+	processTime(2);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function kiFailedToUnlockReadyRoom():void
+{
+	clearOutput();
+	
+	output("The door locks security finally detects that somebody is doing something rather untoward with it, quickly locking you out of your attempts to bypass it. Seconds tick by with agonizing slowness...");
+	
+	IncrementFlag("KI_P16_FAILURES");
+	
+	if (flags["KI_P16_FAILURES"] <= 3)
+	{
+		output(" but the display flickers back to its default layout eventually.");
+	}
+	else
+	{
+		output(" but nothing seems to happen. Looks like the device has finally locked you out. Bummer.");
+	}
+	
+	processTime(2);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kiP16CaptainsReadyRoom():void
@@ -163,7 +244,6 @@ public function kiP16CaptainsReadyRoom():void
 	if (flags["KI_TAKEN_SWORD"] == undefined)
 	{
 		output("A slender, straight-edged sword hangs from a display behind the captain's desk, next to a pair of empty holsters.");
-		//[Sword]
 		addButton(0, "Sword", kiP16TakeSword, undefined, "Take Sword", "Take the sword. Even if it's owner didn't, or couldn't, use it, you might be able to!")
 	}
 	else
@@ -176,9 +256,30 @@ public function kiP16CaptainsReadyRoom():void
 
 public function kiP16TakeSword():void
 {
-	// 9999
-	output("\n\nYou reach up and draw the sword from its place on the wall, giving the blade an experimental flick. It sings through the air, audibly slicing the wind as you move. Taking a closer look at the blade itself, you can see a dozen tiny vents and circuits woven seamlessly into the metal, barely visible until your eyes are inches from the weapon. Looks like this sword’s a little more high-tech than it lets on...");
-	//Add Vamp Blade to inventory.
+	clearOutput();
+	
+	output("You reach up and draw the sword from its place on the wall, giving the blade an experimental flick. It sings through the air, audibly slicing the wind as you move. Taking a closer look at the blade itself, you can see a dozen tiny vents and circuits woven seamlessly into the metal, barely visible until your eyes are inches from the weapon. Looks like this sword’s a little more high-tech than it lets on...");
+	
+	lootScreen = kiP16TakeSwordCheck;
+	flags["KI_TAKEN_SWORD"] = 1;
+	flags["SUPRESS_COMBAT"] = 1;
+	itemCollect([new VampBlade()]);
+}
+
+public function kiP16TakeSwordCheck():void
+{
+	if (pc.meleeWeapon is VampBlade || pc.hasItemByType(VampBlade))
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("You put the sword back where you found it.");
+	flags["KI_TAKEN_SWORD"] = undefined;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kiE9EnterVents():void
@@ -334,7 +435,8 @@ public function kiI3StartSafeCrack():void
 
 public function kiI3ActuallyStartSafeCrack():void
 {
-	// 9999 start lights out
+	// 9999 new puzzle
+	configureLightsOut(kiI3SucceedSafeCrack, kiI3FailSafeCrack, [1, 5, 6, 9, 10, 11, 12, 13], 20);
 }
 
 public function kiI3FailSafeCrack():void
@@ -1064,7 +1166,6 @@ public function kiDoctorDestruct():void
 	output("\n\n<i>“Then...”</i> she sighs, wrapping her arms around herself. <i>“If there’s no way to save the crew, we won’t have much choice, will we? I don’t think the company’s going to send more help, are they? No, not quick enough to save us. I... no, I’m not going to be responsble for that, [pc.name]. No way.”</i>");
 	
 	output("\n\nYou cross you arms, looking the doctor up and down. She’s not going to do the deed unless there’s no choice left to her. Probably smart, but you tell yourself you’ll have to be ready to force the issue if the time comes. You cannot risk this infection spreading to Steele Tech itself");
-	// 9999 not glassed myr
 	if (!pc.isAss()) output(", much less the planet below");
 	output(".");
 
@@ -1359,6 +1460,7 @@ public function kiMedbayCure():void
 
 	pc.removeKeyItem("Parasite Sample");
 	flags["KI_VANDERBILT_WORKING"] = 1;
+	flags["KI_VANDERBILT_WORKING_START"] = GetGameTimestamp();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

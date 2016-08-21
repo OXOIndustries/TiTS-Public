@@ -2,49 +2,39 @@
 
 public var lightsOutVictoryFunction:Function;
 public var lightsOutFailureFunction:Function;
-
 public var lightsArray:Array;
+public var maxLightsOutMoves:int;
+public var currentLightsOutMoves:int;
 
-public function startLightsOut(victoryFunction:Function = null, failureFunction:Function = null):void
+public function configureLightsOut(victory:Function, failure:Function, initialLights:Array, maxMoves:int = 0):void
 {
 	clearOutput();
 	showName("MANUAL\nOVERRIDE");
 	output("Circuits illustrated in purple are currently powered on. Blue circuits are presently disabled.");
 	output("\n\nDisable all circuits to disable the device as a whole. Enable all circuits to force activation.");
 	
-	if (victoryFunction == null) victoryFunction = mainGameMenu;
-	lightsOutVictoryFunction = victoryFunction;
-	if (failureFunction == null) failureFunction = mainGameMenu;
-	lightsOutFailureFunction = failureFunction;
+	lightsOutVictoryFunction = victory;
+	lightsOutFailureFunction = failure;
 	
 	clearMenu();
-	lightsArray = new Array();
+	lightsArray = [];
 	
 	for (var i:int = 0; i < 15; i++)
 	{
 		lightsArray[i] = false;
 		userInterface.setButtonBlue(i);
-		
 		addButton(i, "Off", toggleLight, i);
 	}
 	
-	var onBts:Array = [1, 5, 6, 9, 10, 11, 12, 13];
-	
-	for (i = 0; i < onBts.length; i++)
+	for (i = 0; i < initialLights.length; i++)
 	{
-		lightsArray[onBts[i]] = true;
-		userInterface.setButtonPurple(onBts[i]);
-		
-		addButton(onBts[i], "On", toggleLight, onBts[i]);
+		lightsArray[initialLights[i]] = true;
+		userInterface.setButtonPurple(initialLights[i]);
+		addButton(initialLights[i], "On", toggleLight, initialLights[i]);
 	}
-}
-
-public function testVictoryFunc():void
-{
-	clearOutput();
-	output("A winner is you! A horsecock for your butt as tribute!");
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	
+	currentLightsOutMoves = 0;
+	maxLightsOutMoves = maxMoves;
 }
 
 public function toggleSlot(slot:int):void
@@ -65,6 +55,8 @@ public function toggleSlot(slot:int):void
 
 public function toggleLight(slot:int):void
 {
+	currentLightsOutMoves++;
+	
 	toggleSlot(slot);
 	toggleNearby(slot);
 	
@@ -75,16 +67,21 @@ public function toggleLight(slot:int):void
 	{
 		if (lightsArray[i] == 1) allOff = false;
 		if (lightsArray[i] == 0) allOn = false;
-
 	}
-	if (allOn)
-	{
-		lightsOutFailureFunction();
-	}
+	
+	// Check for victory before failure, in case the player "wins" on the turn that would have maxed out and failed
 	if (allOff)
 	{
 		lightsOutVictoryFunction();
+		return;
 	}
+	
+	if (allOn || (maxLightsOutMoves != 0 && currentLightsOutMoves >= maxLightsOutMoves))
+	{
+		lightsOutFailureFunction();
+		return;
+	}
+
 }
 
 public function toggleNearby(slot:int):void

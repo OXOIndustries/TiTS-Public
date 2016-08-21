@@ -221,9 +221,6 @@ public function kiCargoLiftVictoryII():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-
-	//While on the command deck, can suffer a Random Mutant Attack. The Med Bay and Readyroom are locked; the Bridge is not. Readyroom can be bypassed with a minigame.
-	//If the PC tries to masturbate while Chief Neykkar is around, go to "Event: Lusty Bugpony"
 }
 
 public function lustyBugpony():void
@@ -275,10 +272,12 @@ public function lustyBugpony():void
 	}
 	else output(" This is... going to be kind of awkward. I guess we’ll have to take turns, unless you’re way stretcher than you look.");
 
-	// 9999
+	processTime(10 + rand(5));
+	pc.lust(15);
+	
 	clearMenu();
 	if (pc.hasVagina()) lustyBugponyNoDongle();
-	if (pc.hasCock())  lustyBugponyCocked();
+	if (pc.hasCock()) lustyBugponyCocked();
 }
 
 public function lustyBugponyNoDongle():void
@@ -870,8 +869,6 @@ public function kiEscapeShuttle():void
 
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
-
-	// 9999 ensure the ship goes places
 }
 
 public function kiHendersonMedbay():void
@@ -1129,7 +1126,6 @@ public function kiMutantBadEnd():void
 	badEnd();
 }
 
-// 9999 - no 
 public function kiHendersonLoss():void
 {
 	kiHolmesLoss(true);

@@ -345,7 +345,7 @@ public function selectRandomFap(faps:Array):void
 
 public function masturbateMenu(roundTwo:Boolean = false):void {
 	
-	if (flags["KASHIMA_STATE"] == 1 && flags["CHIEF_NEYKKAR_WITH_PC"] == 1)
+	if (flags["KASHIMA_STATE"] == 1 && flags["CHIEF_NEYKKAR_WITH_PC"] == 1 && (pc.hasCock() || pc.hasVagina()))
 	{
 		lustyBugpony();
 		return;

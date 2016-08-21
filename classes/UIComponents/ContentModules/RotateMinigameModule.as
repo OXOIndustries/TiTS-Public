@@ -75,8 +75,34 @@ package classes.UIComponents.ContentModules
 			}
 		}
 	
+		public static const NO_FAILURE_STATE:String = "NONE";
+		public static const MAX_MOVES:String = "MAX_MOVES";
+		
+		private var _FailureStateType:String;
+		private var _FailureStateArgument:*;
+		private var _nextOnFailure:Function;
+		private var _numMoves:int = 0;
+		
+		public function makeMove():void
+		{
+			_numMoves++;
+		}
+		
+		public function setFailablePuzzleState(onComplete:Function, onFailure:Function, failureState:String, failureArg:*, sizeX:int, sizeY:int, board:Array):void
+		{
+			setPuzzleState(onComplete, sizeX, sizeY, board);
+			
+			_FailureStateType = failureState;
+			_FailureStateArgument = failureArg;
+			_nextOnFailure = onFailure;
+			_numMoves = 0;
+		}
+		
 		public function setPuzzleState(onComplete:Function, sizeX:int, sizeY:int, board:Array):void
 		{
+			_FailureStateType = NO_FAILURE_STATE;
+			_FailureStateArgument = undefined;
+			
 			if (sizeX * sizeY > board.length) throw new Error("Too many board settings for the defined board size!");
 			if (sizeX % 2 != 1 || sizeY % 2 != 1) throw new Error("Boards should always feature odd-sized dimensions (3x3, 3x5 etc)");
 			if (sizeX < 3 || sizeY < 3) throw new Error("Boards should always feature at least 3 rows or columns.");
@@ -228,6 +254,7 @@ package classes.UIComponents.ContentModules
 			
 			tryConnect(_basePower);
 			checkVictory();
+			checkLoss();
 		}
 		
 		private function checkVictory():void
@@ -245,6 +272,20 @@ package classes.UIComponents.ContentModules
 				_isComplete = true;
 				clearGhostMenu();
 				addGhostButton(0, "Success", _nextOnComplete);
+			}
+		}
+		
+		private function checkLoss():void
+		{
+			// If a potential failure state has been set...
+			if (_FailureStateType != NO_FAILURE_STATE)
+			{
+				if (_FailureStateType == MAX_MOVES && _numMoves > _FailureStateArgument)
+				{
+					_isComplete = true;
+					clearGhostMenu();
+					addGhostButton(0, "Failure", _nextOnFailure);
+				}
 			}
 		}
 		
