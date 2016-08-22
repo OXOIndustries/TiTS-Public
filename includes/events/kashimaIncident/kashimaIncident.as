@@ -18,8 +18,8 @@ CHIEF_NEYKKAR_WITH_PC
 */
 public function sendKashimaMessage(destination:String):void
 {
-	MailManager.unlockEntry("KashimaStart", GetGameTimestamp());
-	MailManager.readEntry("KashimaStart", GetGameTimestamp());
+	MailManager.unlockEntry("KashimaMail", GetGameTimestamp());
+	MailManager.readEntry("KashimaMail", GetGameTimestamp());
 
 	clearOutput();
 	author("Savin");
@@ -43,7 +43,7 @@ public function sendKashimaMessage(destination:String):void
 	output("\n\nWell, they weren’t kidding: that missing mining vessel is just a couple of hours away if you hurry. A quick sensor ping shows a Nova Securities ship heading into the asteroid field from the direction of the system’s Warp Gate. Looks like you’ve got to make a decision now.");
 
 	clearMenu();
-	addButton(0, "HelpNova", startKashimaJobbo, undefined, "Help Nova", "Take Steele Tech up on their offer and investigate the <i>Kashima</i>. Even if it's just a technical glitch, it's still worth a fair bit from the contract price.");
+	addButton(0, "Help Nova", startKashimaJobbo, destination, "Help Nova", "Take Steele Tech up on their offer and investigate the <i>Kashima</i>. Even if it's just a technical glitch, it's still worth a fair bit from the contract price.");
 	addButton(1, "Abandon", abandonKashimaJob, destination, "Abandon", "The Nova Securities crew has this covered. That's their job, after all. No point in you dealing with it.");
 }
 
@@ -142,7 +142,7 @@ public function chiefNeykkarHeader(asNude:Boolean = false):void
 {
 	showName("CHIEF\nNEYKKAR");
 	author("Savin");
-	showBust(asNude ? "CHIEFNEYKKAR_NUDE" : "CHIEFNEYKKAR");
+	showBust(asNude ? "USHAMEE_NUDE" : "USHAMEE");
 }
 
 public function kiCargoLiftLoss():void
@@ -170,7 +170,8 @@ public function kiCargoLiftLoss():void
 }
 
 public function kiCargoLiftVictory():void
-{
+{	
+	showBust("USHAMEE");
 	output("You’ve dropped the closest of the creatures, buying yourself some time, but the elevator’s still clogged with bodies now. Most of the Nova troops have been dragged to the deck by writhing tentacles, their armor torn open and the bodies violated. More and more of your mutated employees are leaping down from the open doors, grabbing at whoever’s left standing.");
 	
 	output("\n\nYou have to get out of here. Right now.");
@@ -200,7 +201,7 @@ public function kiCargoLiftVictoryII():void
 	clearOutput();
 	showName("VICTORY:\nCARGO LIFT");
 	author("Savin");
-	showBust("CHIEFNEYKKAR");
+	showBust("USHAMEE");
 
 	output("<i>“What the fuck,”</i> your leithan companion says, almost matter-of-factly, as she staggers up to her feet. You expect her to turn on you, to start screaming about forcing her to follow you or yanking on her tail or... something. Instead, she just stares at the elevator shaft a long moment before picking up her gun and turning around. Her armor is slathered with pink and white gunk from the mutants, but she herself seems unharmed, at least.");
 	
@@ -652,7 +653,7 @@ public function kiHendersonVictory():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY\nCMDR. HENDERSON");
-	showBust("HENDERSON", "CHIEFNEYKKAR_NUDE");
+	showBust("SPOOPSTER", "CHIEFNEYKKAR_NUDE");
 
 	if (pc.hasKeyItem("Parasite Cure") || enemy.hasStatusEffect("Parasite Cure"))
 	{
@@ -736,7 +737,7 @@ public function kiHendersonNoCure():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY:\nCMDR. HENDERSON");
-	showBust("VANDERBILT", "CHIEFNEYKKAR_NUDE");
+	showBust("ELENORA", "USHAMEE_PREG");
 
 	output("<i>“The whole crew’s infected. Of both ships,”</i> you say, casting a glance to the leithan beside you. She’s too busy staggering and rubbing her belly to acknowledge you. <i>“The ship’s crawling with them, now.”</i>");
 
@@ -787,7 +788,7 @@ public function kiHendersonNoCureII():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY\nCMDR. HENDERSON");
-	showBust("VANDERBILT", "CHIEFNEYKKAR_NUDE");
+	showBust("ELENORA", "USHAMEE_PREG");
 
 	output("<i>“Hey, what-”</i> the Chief starts to say.");
 	
@@ -876,7 +877,7 @@ public function kiHendersonMedbay():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY:\nCMDR. HENDERSON");
-	showBust("HENDERSON", "CHIEFNEYKKAR_NUDE");
+	showBust("SPOOPSTER", "USHAMEE_PREG");
 
 	currentLocation = "KI-H16";
 	generateMapForLocation(currentLocation);
@@ -974,7 +975,7 @@ public function kiHendersonMedbayII():void
 	clearOutput();
 	author("Savin");
 	showName("KASHIMA\nEPILOGUE");
-	showBust("CHIEFNEYKKAR_NUDE");
+	showBust("USHAMEE_PREG");
 
 	output("A couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i>. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal the crew.");
 
@@ -994,7 +995,7 @@ public function kiHendersonSteeleTech():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY:\nCMDR. HENDERSON");
-	showBust("CHIEFNEYKKAR_NUDE");
+	showBust("USHAMEE_PREG");
 
 	output("<i>“Alright, listen,”</i> you say, putting a reassuring hand on the Chief’s flank. She moans, curling her tail under herself to hide her visibly swollen, drooling pussy-lips. Even with both arms around her chest, her tits are so big, and her nipples so wide and stiff, that she can do little to hide them. You try and smile for her");
 	if (pc.isTreated() || pc.isBimbo() || pc.LQ() >= 85 || pc.lust() >= 66) output(", hiding your own arousal as much as you can");
@@ -1099,7 +1100,7 @@ public function kiMutantBadEnd():void
 	clearOutput();
 	author("Gardeford");
 	showName("INFECTED\nCREW");
-	showBust("INFECTEDCREWMEMBER");
+	showBust("LUSTOMORPH_AUSAR", "LUSTOMORPH_RASKVEL", "LUSTOMORPH_GRYVAIN");
 	
 	output("You awaken with a start, Spread eagle and stretched. Writhing tentacles coil around your limbs, but as far as you can feel none of them have gotten to your orifices yet. With a mad rush of strength, you pull with all of your body, somehow managing to escape the grip before it can tighten to trap you.");
 	

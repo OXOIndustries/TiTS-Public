@@ -14,13 +14,18 @@ public function kiEnterShuttleLZ():void
 
 public function kiElevatorTerminal():void
 {
+	flags["NAV_DISABLED"] = 0;
+	
+	addButton(0, "Elevators", kiGoElevators, undefined, "Elevators", "Take a look at the personnel elevators.");
+	addButton(2, "WhiteSlime", kiElevatorWhiteStuff, undefined, "White Slime", "What's that slime on the walls... and the deck... and everywhere?");
+	
 	if (flags["KI_USED_ELEVATORS"] == undefined)
-	{
-		addButton(0, "Elevators", kiGoElevators, undefined, "Elevators", "Take a look at the personnel elevators.");
+	{	
 		addButton(1, "CargoLift", kiGoCargolift, undefined, "Cargo Lift", "Let's see if the cargo lift is still working. Looks like the only way you're getting out of the hangar.");
-		addButton(2, "WhiteSlime", kiElevatorWhiteStuff, undefined, "White Slime", "What's that slime on the walls... and the deck... and everywhere?");
-		flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+		flags["NAV_DISABLED"] |= NAV_NORTH_DISABLE;
 	}
+	
+	flags["NAV_DISABLED"] |= NAV_EAST_DISABLE;
 }
 
 public function kiElevatorWhiteStuff():void
@@ -37,30 +42,47 @@ public function kiElevatorWhiteStuff():void
 public function kiGoElevators():void
 {
 	clearOutput();
-	output("The <i>Kashima</i>’s elevator banks look to have been locked down. A red sign over each says in big, bold letters <i>“EMERGENCY.”</i> You can’t tell from here if it’s a lockdown due to structural damage to the ship, or if it’s a security lockdown. The ship seemed to be intact when you flew in, but who knows... Either way, you’re not getting anywhere this way.");
+	output("The <i>Kashima</i>’s elevator banks look to have been locked down. A red sign over each says in big, bold letters <i>“EMERGENCY.”</i> You can’t tell from here if it’s a lockdown due to structural damage to the ship, or if it’s a security lockdown. The ship seemed to be intact when you flew in, but who knows.... Either way, you’re not getting anywhere this way.");
 	addDisabledButton(0, "Elevators");
 }
 
-public function kiGoCargolift():void
+public function kiGoCargolift():Boolean
 {
 	if (flags["KI_USED_ELEVATORS"] == undefined)
 	{
 		clearOutput();
 		flags["KI_USED_ELEVATORS"] = 1;
 		currentLocation = "KI-E23";
+		generateMapForLocation(currentLocation);
+		mainGameMenu();
+	}
+	
+	return false;
+}
+
+public function kiCargoLiftRoomFunction():Boolean
+{
+	if (flags["KI_ELEVATOR_INTRO"] == undefined)
+	{
+		flags["KI_ELEVATOR_INTRO"] = 1;
+		output("\n\n<i>“Chief Neykkar!”</i> one of the Nova troopers shouts, waving the leithan amazon over in your direction. She stomps over, curling her nose as she forges into the musky haze coming off the white slime on the walls.");
+		
+		output("\n\n<i>“Ugh, what the fuck is that?”</i> she growls, hefting her machine gun onto her shoulder and covering her mouth and nose with the other hand. <i>“Smells like an ausar locker room over here.”</i>");
+		
+		output("\n\nThe merc grunt shrugs. <i>“Cargo elevator looks operational. Ship schematics say it should take us all the way to the command deck.”</i>");
+		
+		output("\n\nChief Neykkar turns her attention to you, starry blue eyes narrowing. <i>“You’re the suit here, Steele. When you’re ready, we’ll take you up to the bridge. Should be able to reactivate power from there, maybe find out where the crew’s gone.”</i>");
+		
+		output("\n\n<i>“Place gives me the creeps, " + pc.mf("sir", "ma’am") +",”</i> the Nova grunt says to you, running his hands along the top of his laser carbine.");
+	}
+	// 9999 make sure this works when returning on the way off the ship!
+	else
+	{
+		output("\n\nThe Chief is still here, waiting for you before heading into the bowels of the ship.");
 	}
 
-	output("<i>“Chief Neykkar!”</i> one of the Nova troopers shouts, waving the leithan amazon over in your direction. She stomps over, curling her nose as she forges into the musky haze coming off the white slime on the walls.");
-	
-	output("\n\n<i>“Ugh, what the fuck is that?”</i> she growls, hefting her machine gun onto her shoulder and covering her mouth and nose with the other hand. <i>“Smells like an ausar locker room over here.”</i>");
-	
-	output("\n\nThe merc grunt shrugs. <i>“Cargo elevator looks operational. Ship schematics say it should take us all the way to the command deck.”</i>");
-	
-	output("\n\nChief Neykkar turns her attention to you, starry blue eyes narrowing. <i>“You’re the suit here, Steele. When you’re ready, we’ll take you up to the bridge. Should be able to reactivate power from there, maybe find out where the crew’s gone.”</i>");
-	
-	output("\n\n<i>“Place gives me the creeps, "+ pc.mf("sir", "ma’am") +",”</i> the Nova grunt says to you, running his hands along the top of his laser carbine.");
-
 	addButton(0, "Use Lift", kiGoUseCargoLift);
+	return false;
 }
 
 public function kiGoUseCargoLift():void
@@ -748,12 +770,12 @@ public function kiHolmesLoss(asHenderson:Boolean = false):void
 	author("Savin");
 	if (!asHenderson)
 	{
-		showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
+		showBust("CAPTAINHOLMES", "USHAMEE_NUDE");
 		showName("DEFEAT:\nCAPTAIN HOLMES");
 	}
 	else
 	{
-		showBust("COMMANDERHENDERSON", "CHIEFNEYKKAR");
+		showBust("COMMANDERHENDERSON", "USHAMEE_NUDE");
 		showName("DEFEAT:\nCMDR. HENDERSON");
 	}
 
@@ -782,12 +804,12 @@ public function kiHolmesLossII(asHenderson:Boolean):void
 
 	if (!asHenderson)
 	{
-		showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
+		showBust("CAPTAINHOLMES", "USHAMEE_NUDE");
 		showName("DEFEAT:\nCAPTAIN HOLMES");
 	}
 	else
 	{
-		showBust("COMMANDERHENDERSON", "CHIEFNEYKKAR");
+		showBust("COMMANDERHENDERSON", "USHAMEE_NUDE");
 		showName("DEFEAT:\nCMDR. HENDERSON");
 	}
 
@@ -820,12 +842,12 @@ public function kiHolmesLossIII(asHenderson:Boolean):void
 	
 	if (!asHenderson)
 	{
-		showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
+		showBust("CAPTAINHOLMES", "USHAMEE_NUDE");
 		showName("DEFEAT:\nCAPTAIN HOLMES");
 	}
 	else
 	{
-		showBust("COMMANDERHENDERSON", "CHIEFNEYKKAR");
+		showBust("COMMANDERHENDERSON", "USHAMEE_NUDE");
 		showName("DEFEAT:\nCMDR. HENDERSON");
 	}
 
@@ -858,7 +880,7 @@ public function kiHolmesVictory():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
+	showBust("CAPTAINHOLMES", "USHAMEE");
 	showName("VICTORY:\nCAPTAIN HOLMES");
 
 	flags["KASHIMA_HOLMES_DEFEATED"] = 1;
@@ -921,7 +943,7 @@ public function kiHolmesVictoryII():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("CAPTAINHOLMES", "CHIEFNEYKKAR");
+	showBust("CAPTAINHOLMES", "USHAMEE");
 	showName("VICTORY:\nCAPTAIN HOLMES");
 
 	output("And just as you do, you feel something wet and slimy wrap around your [pc.leg]. You look down in alarm, yanking your [pc.foot] up. The captain’s tendrils grasp at you as the mutant man rises up again, drooling pink spittle onto the deck as he staggers to his feet.");
@@ -1032,7 +1054,7 @@ public function kiMedbayFightEnds():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VANDERBILT");
+	showBust("ELENORA");
 	showName("DOCTOR\nVANDERBILT");
 
 	currentLocation = "KI-H16";
@@ -1066,7 +1088,7 @@ public function kiMedbayFightEndsII():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VANDERBILT");
+	showBust("ELENORA");
 	showName("DOCTOR\nVANDERBILT");
 
 	pc.maxOutHP();
@@ -1118,7 +1140,7 @@ public function kiDoctorCure():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VANDERBILT");
+	showBust("ELENORA");
 	showName("DOCTOR\nVANDERBILT");
 
 	output("<i>“Whatever it is, it’s completely fought off the crew’s microsurgeons, and it resisted Henderson’s nano-machine antibiotic treatments. Like I said, if I only knew more about it - had a sample to look at - I might be able to program a new wave of nano-machines to fight it off. Of course, then we’d have to actually treat the crew, and they don’t seem like they’ll line up for their injections.”</i>");
@@ -1136,7 +1158,7 @@ public function kiDoctorEscape():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VANDERBILT");
+	showBust("ELENORA");
 	showName("DOCTOR\nVANDERBILT");
 
 	output("<i>“Escape? We can’t... some of the crew escaped already. They took the shuttle. But quarantine was in effect, and our security chief... she shot them down. That was before the entire crew had succumbed. Just most of them.”</i>");
@@ -1152,7 +1174,7 @@ public function kiDoctorDestruct():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VANDERBILT");
+	showBust("ELENORA");
 	showName("DOCTOR\nVANDERBILT");
 
 	output("<i>“W-what?”</i> Elenora gasps as you explain your intentions. <i>“No, we can’t... I mean, I could, but all those people. They’re still alive, even if something hurting them. Changing them. We can’t kill everyone aboard the </i>Kashima<i>. That’s monstrous!”</i>");
@@ -1176,7 +1198,7 @@ public function kiDoctorLeave():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VANDERBILT");
+	showBust("ELENORA");
 	showName("DOCTOR\nVANDERBILT");
 
 	output("<i>“So what’s our next move?”</i> you ask. <i>“No way we’re getting out the way I came in.”</i>");
@@ -1221,7 +1243,7 @@ public function kiDiscoverVanderbiltsSecret():void
 	clearOutput();
 	author("Savin");
 	showName("DOCTOR\nVANDERBILT");
-	showBust("VANDERBILT_NUDE");
+	showBust("ELENORA_NUDE");
 
 	processTime(30+rand(15));
 	flags["KI_VANDERBILTS_SECRET"] = 1;
@@ -1289,7 +1311,7 @@ public function kiVanderbiltFuckHer():void
 	clearOutput();
 	author("Savin");
 	showName("DOCTOR\nVANDERBILT");
-	showBust("VANDERBILT_NUDE");
+	showBust("ELENORA_NUDE");
 
 	output("You can only imagine how dangerous this maneuver is, but you’ll have to risk infection if you want to keep the doc on her feet - and the hope of you getting out of this jam in one piece alive. So you give the doctor a smile, slinking her way and shrugging off your [pc.gear]. Elenora lets loose a low moan, releasing the clamp on her legs and massaging her tentacle-laden pussy. It’s going to be awkward making this work without risking one of those tentacles getting too close to something they could crawl into. But you’ll manage, you tell yourself, putting on your most confident swagger for the demure doctor.");
 	
@@ -1408,7 +1430,7 @@ public function kiVanderbiltRefuse():void
 	clearOutput();
 	author("Savin");
 	showName("DOCTOR\nVANDERBILT");
-	showBust("VANDERBILT_NUDE");
+	showBust("ELENORA_NUDE");
 
 	output("<i>“No,”</i> you say, as firmly as you can. <i>“Can’t risk it.”</i>");
 	
@@ -1433,7 +1455,7 @@ public function kiMedbayCure():void
 	clearOutput();
 	author("Savin");
 	showName("DOCTOR\nVANDERBILT");
-	showBust("VANDERBILT");
+	showBust("ELENORA");
 
 	output("You crawl up through the vents once again, grunting with discomfort in the cramped quarters.");
 	if (pc.isTaur()) output(" Thank God for whoever made the vents big enough for your tauric form to fit in!");
@@ -1471,7 +1493,7 @@ public function kiApproachElenora():void
 	clearOutput();
 	author("Savin");
 	showName("DOCTOR\nVANDERBILT");
-	showBust("VANDERBILT");
+	showBust("ELENORA");
 
 	output("<i>“How’re you doing, doc?”</i> you ask, looking over Elenora’s shoulder. The container is open inside the glovebox, and the little parasite is moving around the shattered remains of its sample tube.");
 	

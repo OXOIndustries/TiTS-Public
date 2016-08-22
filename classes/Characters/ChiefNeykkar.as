@@ -173,7 +173,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "CHIEFNEYKKAR";
+			return (flags["CHIEF_NEYKKAR_WITH_PC"] == 1 ? "USHAMEE" : "USHAMEE_PREG");
 		}
 		
 		override public function CombatAI(allied:Array, hostile:Array):void 

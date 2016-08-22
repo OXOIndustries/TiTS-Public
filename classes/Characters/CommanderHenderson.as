@@ -196,7 +196,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "CAPTAINHOLMES";
+			return "SPOOPSTER";
 		}
 		
 		override public function CombatAI(allied:Array, hostiles:Array):void 

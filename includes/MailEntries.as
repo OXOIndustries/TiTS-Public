@@ -121,7 +121,7 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("saendrathanks", "You’re a lifesaver, captain. Just got patched up by the docs back on Tavros. Said I wouldn’t have lasted much longer, even if I didn’t get killed in the fight. Blood loss. Speaking of loss, old lefty was mangled pretty bad by that shotgun blast. Had to lose it. Good news is I’ve got myself some new chrome to replace it. Could have been a lot worse. I lived through it thanks to you. You’re my new hero, cap.\n\nI’m going to be grounded at Tavros for a bit. If you get the chance, look me up. I owe you a drink (and maybe a little more~).\n\nYour new friend,\nSaendra <3", "Thanks again, hero!", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress);
 	
-	MailManager.addMailEntry("KashimaStart", 
+	MailManager.addMailEntry("KashimaMail", 
 	function():String {
 		var msg:String = "";
 		

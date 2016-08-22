@@ -208,12 +208,16 @@
 			sexualPreferences.setRandomPrefs(4 + rand(3),1);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
 			
+			_randomBustSelection = RandomInCollection("LUSTOMORPH_AUSAR", "LUSTOMORPH_GRYVAIN", "LUSTOMORPH_RASKVEL");
+			
 			this._isLoading = false;
 		}
 		
+		private var _randomBustSelection:String;
+		
 		override public function get bustDisplay():String
 		{
-			return "INFECTED_CREWMEMBER";
+			return _randomBustSelection;
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

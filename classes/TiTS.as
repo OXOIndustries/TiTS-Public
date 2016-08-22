@@ -466,6 +466,7 @@
 			initializeMyrellionRooms();
 			kquest2InitRooms();
 			initUvetoRooms();
+			kiInitRooms();
 			
 			mapper = new Mapper(this.rooms)
 

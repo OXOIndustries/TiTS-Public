@@ -57,10 +57,10 @@ public function fallOfThePhoenixMessage(destination:String):void
 	clearOutput();
 	output("You hit the display button. A message appears on your ship's console:");
 
-	output("\n\n<i><b>Distress call detected! Message follows:</b>");
+	output("\n\n<i><b>Distress call detected! Message follows:</b></i>");
 	output("\nYou hear a woman’s voice, filled with desperation as something explodes behind her... is that gunfire? <i>“Mayday, mayday, this is the </i>Phoenix<i>! To anyone who can hear me: I’m under attack! They've boarded... cut the controls. I’m pinned down, running out of ammo. For gods’ sakes, send help!”</i>");
 
-	output("\n\n<b>Message repeats.</b></i>");
+	output("\n\n<i><b>Message repeats.</b></i>");
 	
 	output("\n\nPirates, probably. Your computer blips that the ship isn't too far out of your way; you could be there in a matter of minutes... Do you respond to the distress call?");
 	

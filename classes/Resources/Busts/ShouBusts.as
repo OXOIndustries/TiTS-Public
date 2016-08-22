@@ -312,13 +312,16 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lustomorph_ausar.png", mimeType = "image/png")]
 		public var Bust_LUSTOMORPH_AUSAR:Class;
-		public var Bounds_LUSTOMORPH_AUSAR:Rectangle = new Rectangle(30, 7, 64, 64);
+		public var Bounds_LUSTOMORPH_AUSAR:Rectangle = new Rectangle(12, 15, 74, 74);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lustomorph_gryvain.png", mimeType = "image/png")]
 		public var Bust_LUSTOMORPH_GRYVAIN:Class;
 		public var Bounds_LUSTOMORPH_GRYVAIN:Rectangle = new Rectangle(28, 29, 64, 64);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lustomorph_raskvel.png", mimeType = "image/png")]
 		public var Bust_LUSTOMORPH_RASKVEL:Class;
 		public var Bounds_LUSTOMORPH_RASKVEL:Rectangle = new Rectangle(38, 14, 64, 64);
+		
+		[Embed(source = "../../../assets/images/npcs/spoopster.png", mimeType = "image/png")]
+		public var Bust_SPOOPSTER:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/midee.png", mimeType = "image/png")]
 		public var Bust_MIDEE:Class;

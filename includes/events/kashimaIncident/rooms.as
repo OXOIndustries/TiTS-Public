@@ -1,17 +1,19 @@
+import classes.RoomClass;
 public function kiInitRooms():void
 {
-	var planetName:String = "PLANET: MYSTERY";
-	var systemName:String = "SYSTEM: SPOOPERS";
+	var planetName:String = "SHIP: KASHIMA";
+	var systemName:String = "SYSTEM: SINDATHU";
 
 	// Cargo Deck -> ShuttleLZ
 	rooms["KI-E29"] = new RoomClass(this);
-	rooms["KI-E29"].roomName = "SHUTTLE\nLZ";
+	rooms["KI-E29"].roomName = "SHUTTLE\nHANGAR";
 	rooms["KI-E29"].description = "";
 	rooms["KI-E29"].runOnEnter = kiEnterShuttleLZ;
 	rooms["KI-E29"].planet = planetName;
 	rooms["KI-E29"].system = systemName;
 	rooms["KI-E29"].northExit = "KI-E27";
 	rooms["KI-E29"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-E29"].addFlag(GLOBAL.SHIPHANGAR);
 
 	rooms["KI-E27"] = new RoomClass(this);
 	rooms["KI-E27"].roomName = "HANGAR\nDECK";
@@ -31,16 +33,26 @@ public function kiInitRooms():void
 	rooms["KI-E25"].system = systemName;
 	rooms["KI-E25"].southExit = "KI-E27";
 	rooms["KI-E25"].northExit = "KI-E23";
+	rooms["KI-E25"].eastExit = "KI-PersonalElevators";
 	rooms["KI-E25"].addFlag(GLOBAL.INDOOR);
+	
+	rooms["KI-PersonalElevators"] = new RoomClass(this);
+	rooms["KI-PersonalElevators"].roomName = "PERSONNEL\nELEVATORS";
+	rooms["KI-PersonalElevators"].planet = planetName;
+	rooms["KI-PersonalElevators"].system = systemName;
+	rooms["KI-PersonalElevators"].westExit = "KI-E25";
+	rooms["KI-PersonalElevators"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-PersonalElevators"].addFlag(GLOBAL.LIFTDOWN);
 
 	rooms["KI-E23"] = new RoomClass(this);
 	rooms["KI-E23"].roomName = "CARGO\nLIFT";
-	rooms["KI-E23"].description = "";
-	rooms["KI-E23"].runOnEnter = kiGoCargolift;
+	rooms["KI-E23"].description = "A heavy duty cargo elevator, fit for shuttling massive structural loads around the interior of the ship without breaking a sweat. The exposed, unfinished polysteel looks battered and worn from a long life serving its purpose, but you have no doubt this thing could get you where you need to go.";
+	rooms["KI-E23"].runOnEnter = kiCargoLiftRoomFunction;
 	rooms["KI-E23"].planet = planetName;
 	rooms["KI-E23"].system = systemName;
 	rooms["KI-E23"].southExit = "KI-E25";
 	rooms["KI-E23"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-E23"].addFlag(GLOBAL.LIFTDOWN);
 
 	// Command Deck -> Medbay
 	rooms["KI-H16"] = new RoomClass(this);
@@ -253,7 +265,7 @@ public function kiInitRooms():void
 	rooms["KI-Engineering"] = new RoomClass(this);
 	rooms["KI-Engineering"].roomName = "\nENGINEERING";
 	rooms["KI-Engineering"].description = "";
-	rooms["KI-Engineering"].runOnENter = null;
+	rooms["KI-Engineering"].runOnEnter = null;
 	rooms["KI-Engineering"].planet = planetName;
 	rooms["KI-Engineering"].system = systemName;
 	rooms["KI-Engineering"].addFlag(GLOBAL.INDOOR);
