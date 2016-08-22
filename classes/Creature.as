@@ -7601,6 +7601,11 @@
 			if(milkFullness >= 80 || hasPerk("Mega Milk")) return true;
 			return false;
 		}
+		public function hasMilkPerk():Boolean
+		{
+			if(hasPerk("Milky") || hasPerk("Mega Milk") || hasPerk("Treated Milk") || hasPerk("Honeypot")) return true;
+			return false;
+		}
 		public function isMilkTank():Boolean
 		{
 			//Check for infinite lactation perks!
