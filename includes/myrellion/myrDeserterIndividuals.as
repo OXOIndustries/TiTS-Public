@@ -2904,7 +2904,7 @@ public function stolenDildoFap():void
 	//tooltip disabled, is taur and shield is at 0 or unequipped: You’d need some kind of force-field to push this thing back out once it’s up you. Goodness gracious.
 	if(hasRedDildo())
 	{
-		if((pc.isTaur() && !(pc.shield is EmptySlot)) || !pc.isTaur()) addButton(0,"Anal Vibe",useBrihasVibeAnal,undefined,"Anal Vibe","Stick the red myr’s vibrator in your booty" + (pc.hasCock() ? " for a prostate massage" : "") + ((!pc.isTaur() && pc.hasCock()) ? " then cum all over it" : "") + ".");
+		if((pc.isTaur() && !(pc.shield is EmptySlot)) || !pc.isTaur()) addButton(0,"Anal Vibe",useBrihasVibeAnal,undefined,"Anal Vibe", ("Stick the red myr’s vibrator in your booty" + (pc.hasCock() ? " for a prostate massage" : "") + ((!pc.isTaur() && pc.hasCock()) ? " then cum all over it" : "") + "."));
 		else addDisabledButton(0,"Anal Vibe","Anal Vibe","You’d need some kind of force-field to push this thing back out once it’s up you. Goodness gracious.");
 	}
 	//requiring Lys’s dildo
@@ -3126,7 +3126,7 @@ public function giveFlowerToLys():void
 
 	output("\n\nWhen you produce the explosively pink-and-purple blossom, the myr leans in so fast that she almost falls over. <i>“Where ");
 	//(first time)
-	if(flags["GAVE_LYS_FLOWER"] == undefined) output("did you get that? It’s");
+	if(flags["GAVE_LYS_FLOWER"] == undefined) output("did you get that? It’s ");
 	else output("do you keep finding these? They’re ");
 	output("gorgeous!”</i> You hold it out for her appraisal, and her face disappears into the bloom for the next few seconds as she takes a long, deep sniff. When it reappears, it’s plastered with a giddy smile.");
 	if(flags["GAVE_LYS_FLOWER"] == undefined) 
@@ -3227,9 +3227,9 @@ public function giveFlowerToLys():void
 	else
 	{
 		clearMenu();
-		if(pc.hasCock() && pc.cockThatFits(chars["GOLD_DESERTER"].vaginalCapacity(0)) >= 0) addButton(0,"Use Cock",useCockOnLysPostFlower,false,"Use Cock","Stick your dick in Lys’s pussy" + (!pc.isTaur() ? ", and your face in her thighs or tits, whichever you can reach" : "") + ".");
+		if(pc.hasCock() && pc.cockThatFits(chars["GOLD_DESERTER"].vaginalCapacity(0)) >= 0) addButton(0,"Use Cock",useCockOnLysPostFlower,false,"Use Cock", ("Stick your dick in Lys’s pussy" + (!pc.isTaur() ? ", and your face in her thighs or tits, whichever you can reach" : "") + "."));
 		else addDisabledButton(0,"Use Cock","Use Cock","You don’t have any suitable cocks secreted about your person.");
-		if(pc.hasTailCock()) addButton(1,"Tailcock",useCockOnLysPostFlower,true,"Tailcock","Stick your cock-tail in Lys’s pussy" + (!pc.isTaur() ? ", and your face in her thighs or tits, whichever you can reach" : "") + ".");
+		if(pc.hasTailCock()) addButton(1,"Tailcock",useCockOnLysPostFlower,true,"Tailcock", ("Stick your cock-tail in Lys’s pussy" + (!pc.isTaur() ? ", and your face in her thighs or tits, whichever you can reach" : "") + "."));
 		else addDisabledButton(1,"Tailcock","Tailcock","You don’t have any suitable cocks secreted about your person.");
 
 		//http://www.nbc.com/saturday-night-live/video/colonel-angus-comes-home/n11685

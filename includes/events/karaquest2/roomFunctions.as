@@ -217,6 +217,16 @@ public function kq2RappelIn():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function kq2rfSewerEntrance():Boolean
+{
+	output("The ‘entrance’ Kara promised you to the base’s sewer is little more than a crack in the ground a few yards into the mouth of a surface cave.");
+	if (pc.hasAirtightSuit()) output(" Your codex’s sensors tell you there is water running below you though, luckily, you can’t smell the foul odor it must be eminating.");
+	else output(" You can hear water running below, and there is a powerful stink rising up from it.");
+	output("\n\n<i>“Ew,”</i> Kara groans, waving her hand over her nose.");
+	
+	return false;
+}
+
 public function kq2rfSewer1():Boolean
 {
 	output("The sewers under the Black Void base are all concrete and stink, a dark tunnel so low that");

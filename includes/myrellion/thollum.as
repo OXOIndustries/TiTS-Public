@@ -1017,8 +1017,8 @@ public function currentEventsYarastaTalk():void
 		output("\n\nYarasta stops talking, studying you as she decides whether to delve further into the subject. After a moment, she resumes. <i>“Many refugees from Kressia’s now-closed thollums applied to join the staff here when they first arrived. To a myr, they were refused on the grounds of supposed pragamtism. The queens and the thollum administration both consider the risk of addicts and Federation apologists infiltrating the thollum staff to be too great. I can understand their argument. But with the many, many refugee children and the additional breeding, the number of girls in the thollums is now past what the prefects can handle - I can attest to that being the case here, too. Without accepting accredited teachers from Kressia, the only choices are to increase the class sizes or relax hiring standards, either of which will hurt the Republic far more in the long run than pro-red sentiment.”</i>");
 		output("\n\nColor rises in her face as she concludes. <i>“It’s already happening, in fact! There are so many girls that we don’t have enough sumins to feed them all, so the teenagers with high honey production are being pulled from classes to spend half-days in the milking room. In effect, they’re trading a current problem for a future one, because these girls are missing the most crucial part of their educations - you can’t go anywhere professionally without good scores in your adult assessments! We can’t keep them here as sumins after graduation unless they score highly, so pulling them all but guarantees that they’re relegated to permanent careers in private sector food service.”</i>");
 		output("\n\n<i>“That");
-		if(pc.isBimbo()) output("‘s like, soo");
-		else output("sounds");
+		if(pc.isBimbo()) output("’s like, soo");
+		else output(" sounds");
 		output(" frustrating,”</i> you rejoin.");
 		output("\n\nThe myr calms down and remembers where she is. <i>“Yes, sorry. It is, but that’s no cause to raise my voice.”</i>");
 	}

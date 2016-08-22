@@ -1592,6 +1592,7 @@ public function normalZilgirlCockfuck():void
 		output(", you shift yourself forward to stare directly into her eyes, then plunge into her depths with a single, powerful thrust. She spasms, letting out a yelp as her muscles disobey her and her abdomen flops onto the ground. <i>“No,”</i> you reply.");
 	}
 	//End Cockvirgin Vars.
+	pc.cockChange();
 	
 	output("\n\nYou pump your hips, the insectile woman’s voice rising in response to your movements. She pulls you down to pant into your ear, pressing her breasts against your [pc.chest]");
 	if (pc.isLactating()) output(", and teasing out a few droplets of [pc.milk]");

@@ -1440,7 +1440,7 @@ public function taurDickSexScene():void
 	else output(" elephant");
 	output(", only this time, you’re inhaling air thick with drugged smoke and potent pheromones instead of imagining an oddly-colored animal. A rope of pre-cum surges out of your cock like a shot from a cannon, slapping into the side of the bar with a wet slap. The two glowing girls giggle, one making a sound between a purr and a chitter while stroking you seductively.");
 	output("\n\n<i>“I hope you’re ready to be a father" + pc.mf("","-mommy") + ". We can fuck here, right?”</i> They look to a four-breasted bartender for an answer.");
-	output("\n\n<i>“Of course. Drinks will be on me if you put on a good enough show.”</i> The bovine bar-wench squishes her quartette of tits together to show just what kind of drinks she plans to dispense.");
+	output("\n\n<i>“Of course. Drinks will be on me if you put on a good enough show.”</i> The bovine bar-wench squishes her quartet of tits together to show just what kind of drinks she plans to dispense.");
 	output("\n\nMa’andi laughs airily, drunk on her own heat and who knows what else. Her tail caresses the underside of your turgid beast-cock. <i>“But which one of us gets to be a mommy first?”</i>");
 	output("\n\nWhich one will have the honor of receiving your prime load?");
 	processTime(10);

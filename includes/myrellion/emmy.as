@@ -1520,9 +1520,7 @@ public function giveEmmyAnItem(item:String):void
 			{
 				if(!getRanged) 
 				{
-					output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields ");
-					if(pc.hasCock()) output("faster than I drain your dick");
-					else output("faster than I drain my dick");
+					output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields faster than I drain " + (pc.hasCock() ? "your" : "my") + " dick.");
 					emmyLoot = new EmmysVampBlade();
 				}
 				else {
@@ -1601,9 +1599,7 @@ public function giveEmmyAnItem(item:String):void
 		output(". It barely manages to hide the hardness of her nipples. <i>“You may have seen one of these around the shop, but not like this one. Check this out.”</i> She holds it out to you. <i>“");
 		if(!getRanged) 
 		{
-			output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields ");
-			if(pc.hasCock()) output("faster than I drain your dick");
-			else output("faster than I drain my dick");
+			output("I managed to get the whole blade replaced with one that had a more robust induction lattice. It’s not quite as strong as a retail model, but it can drain shields faster than I drain " + (pc.hasCock() ? "your" : "my") + " dick.");
 			emmyLoot = new EmmysVampBlade();
 		}
 		else {
@@ -2744,7 +2740,7 @@ public function eatOutEmmysVagYouPoorPussyAddictedSod():void
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(", particularly when it reaches unnaturally deep into her to probe at the entrance to her womb");
 	output(". Sadly, she’s no longer gasping and moaning quite so cutely. Something’s muffling her screams of pleasure; she’s taken your advice, it seems.");
 	output("\n\nYou intensify your cunt-eating, sucking harder, licking faster, and being sure to bathe her in feverish kisses whenever you stop to catch your breath. Emmy whines, muffled, and her balls clench in your palm. You thrust two fingers into her channel to replace your tongue, then redirect your oral organ’s caresses onto her behemoth of a clit, flicking your tongue across it, stimulating her past the breaking point.");
-	output("\n\nEmmy cums again. This time there’s far less girlcum, but her pussy’s rhythmic contractions are far, far stronger. It feels like she’s going to break your fingers off with how hard her cunt is clamping down. Her juices are sweeter this time too, this mouthful of cunt-love freshly made, just for you. You keep your dual-sexed lover lost in the throws of bliss for what feels like hours. Your mouth is sore, and your tongue exhausted, but you still lick and kiss until you feel every ounce of strength drain from the jackaless’s fucked-out form.");
+	output("\n\nEmmy cums again. This time there’s far less girlcum, but her pussy’s rhythmic contractions are far, far stronger. It feels like she’s going to break your fingers off with how hard her cunt is clamping down. Her juices are sweeter this time too, this mouthful of cunt-love freshly made, just for you. You keep your dual-sexed lover lost in the throes of bliss for what feels like hours. Your mouth is sore, and your tongue exhausted, but you still lick and kiss until you feel every ounce of strength drain from the jackaless’s fucked-out form.");
 	output("\n\nPatting her pussy as if to say, <i>“good girl,”</i> you back away and stand, stretching on ");
 	if(pc.legCount == 1) output("a ");
 	output("[pc.legOrLegs] made tired from kneeling. Emmy is flat on her back, nearly sliding off the counter. A small lake of cum is draining out from between her tits, and trickles of white ooze from both sides of her slack mouth. One of her hands is idly rubbing her dick while the other cradles a very swollen belly. Just how much cum did she swallow?");

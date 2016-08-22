@@ -8244,26 +8244,37 @@
 			}
 			return false;
 		}
-		public function hasTailCock(): Boolean {
+		public function hasTailGenital(gType:int = 0): Boolean {
+			return (hasTailCock(gType) || hasTailCunt(gType));
+		}
+		public function hasTailCock(gType:int = 0): Boolean {
 			if(tailCount > 0)
 			{
-				if(tailType == GLOBAL.TYPE_COCKVINE || hasTailFlag(GLOBAL.FLAG_TAILCOCK)) return true;
+				if(tailType == GLOBAL.TYPE_COCKVINE || hasTailFlag(GLOBAL.FLAG_TAILCOCK))
+				{
+					if(gType == 0) return true;
+					else if(gType == tailGenitalArg) return true;
+				}
 			}
 			return false;
 		}
-		public function hasCockTail(): Boolean {
-			return hasTailCock();
+		public function hasCockTail(gType:int = 0): Boolean {
+			return hasTailCock(gType);
 		}
-		public function hasTailgina(): Boolean {
-			return hasTailCunt();
+		public function hasTailgina(gType:int = 0): Boolean {
+			return hasTailCunt(gType);
 		}
-		public function hasCuntTail(): Boolean {
-			return hasTailCunt();
+		public function hasCuntTail(gType:int = 0): Boolean {
+			return hasTailCunt(gType);
 		}
-		public function hasTailCunt(): Boolean {
+		public function hasTailCunt(gType:int = 0): Boolean {
 			if(tailCount > 0)
 			{
-				if(tailType == GLOBAL.TYPE_CUNTSNAKE || hasTailFlag(GLOBAL.FLAG_TAILCUNT)) return true;
+				if(tailType == GLOBAL.TYPE_CUNTSNAKE || hasTailFlag(GLOBAL.FLAG_TAILCUNT))
+				{
+					if(gType == 0) return true;
+					else if(gType == tailGenitalArg) return true;
+				}
 			}
 			return false;
 		}
@@ -8951,8 +8962,9 @@
 			if (demonScore() >= 5) race = "demon-morph";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
-			if (kaithritScore() >= 6) race = "kaithrit"
+			if (kaithritScore() >= 6) race = "kaithrit";
 			if (felineScore() >= 5 && race != "kaithrit") race = felineRace();
+			if (canineScore() >= 5 && race != "ausar") race = canineRace();
 			if (leithanScore() >= 6) race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
 			if (vanaeScore() >= 6) race = "vanae-morph";
@@ -9028,6 +9040,12 @@
 			}
 			return "part bovine-morph";
 		}
+		public function canineRace():String
+		{
+			if (demonScore() >= 3) return "hellhound-morph";
+			else if (huskarScore() >= 3)  return "husky-morph";
+			else return "canine-morph";
+		}
 		public function felineRace():String
 		{
 			if (hasTail(GLOBAL.TYPE_FELINE) && tailCount > 1) return "nekomata";
@@ -9092,6 +9110,7 @@
 			if (armType == GLOBAL.TYPE_CANINE) counter++;
 			if (legType == GLOBAL.TYPE_CANINE && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
+			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED)) counter -= 2;
 			return counter;
 		}
 		public function huskarScore():int
@@ -9200,7 +9219,8 @@
 			if (armType == GLOBAL.TYPE_CANINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (legType == GLOBAL.TYPE_CANINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
 			if (faceType == GLOBAL.TYPE_CANINE) counter++;
-			if (counter > 1 && cockTotal(GLOBAL.TYPE_CANINE) == cockTotal() && totalKnots() == cockTotal()) counter++;
+			if (counter > 1 && hasCock() && cockTotal(GLOBAL.TYPE_CANINE) == cockTotal() && totalKnots() == cockTotal()) counter++;
+			if (counter > 1 && hasVagina() && vaginaTotal(GLOBAL.TYPE_CANINE) == vaginaTotal()) counter++;
 			return counter;
 		}
 		public function demonScore(): int
@@ -9209,7 +9229,7 @@
 			if (hasHorns(GLOBAL.TYPE_DEMONIC)) counter++;
 			if (earType == GLOBAL.TYPE_DEMONIC) counter++;
 			if (armType == GLOBAL.TYPE_DEMONIC) counter++;
-			if (hasTail(GLOBAL.TYPE_DEMONIC)) counter++;
+			if (hasTail(GLOBAL.TYPE_DEMONIC) || hasTailCock(GLOBAL.TYPE_DEMONIC)) counter++;
 			if (wingType == GLOBAL.TYPE_DEMONIC || wingType == GLOBAL.TYPE_SMALLDEMONIC) counter++;
 			if (counter > 1 && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_SUCCUBUS || legType == GLOBAL.TYPE_BOVINE)) counter++;
 			if (counter > 2 && eyeType == GLOBAL.TYPE_DEMONIC && faceType == GLOBAL.TYPE_HUMAN) counter++;
@@ -9758,7 +9778,7 @@
 				}
 				else if (balls == 4) {
 					rando = rand(3);
-					if (rando == 0) desc += "a quartette of ";
+					if (rando == 0) desc += "a quartet of ";
 					if (rando == 1) desc += "four ";
 					if (rando == 2) desc += "four ";
 				}
@@ -9786,7 +9806,7 @@
 				}
 				else if (balls == 4) {
 					rando = rand(3);
-					if (rando == 0) desc += "quartette of ";
+					if (rando == 0) desc += "quartet of ";
 					if (rando == 1) desc += "four ";
 					if (rando == 2) desc += "four ";
 				}
@@ -11561,7 +11581,7 @@
 			//Omnisuit!
 			if(hasStatusEffect("Rubber Wrapped") && adjectiveCount < adjectiveLimit && rand(6) == 0)
 			{
-				if(adjectives > 0) desc += ", ";
+				if(adjectiveCount > 0) desc += ", ";
 				desc += RandomInCollection("rubber-lined","latex-lined","shrink-wrapped","ebony-coated","latex-lacquered","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted");
 				adjectiveCount++;
 			}
