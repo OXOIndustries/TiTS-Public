@@ -66,8 +66,8 @@ public function kquest2InitRooms():void
 
 	rooms["K2_SEWERENTRANCE"] = new RoomClass(this);
 	rooms["K2_SEWERENTRANCE"].roomName = "SEWER\nENTRANCE";
-	rooms["K2_SEWERENTRANCE"].description = "The ‘entrance’ Kara promised you to the base's sewer is little more than a crack in the ground a few yards into the mouth of a surface cave. You can hear water running below, and a powerful stink rising up.\n\n<i>“Ew,”</i> Kara groans, waving her hand over her nose.";
-	rooms["K2_SEWERENTRANCE"].runOnEnter = null;
+	//rooms["K2_SEWERENTRANCE"].description = "desc";
+	rooms["K2_SEWERENTRANCE"].runOnEnter = kq2rfSewerEntrance;
 	rooms["K2_SEWERENTRANCE"].planet = planetName;
 	rooms["K2_SEWERENTRANCE"].system = systemName;
 	rooms["K2_SEWERENTRANCE"].eastExit = "K2_SEWER1";

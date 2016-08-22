@@ -736,7 +736,7 @@ public function mcallisterMyrTFsMeetThem(fromRootMenu:Boolean = false):void
 	{
 		output(" You feel a blush come over you as you realize you’re going to have to disrobe not just in front of Doctor McAllister, but the dozen or so female assistants standing placidly just outside the glass. You can feel their eyes on you, taking you in like just another specimen to study.");
 	
-		output("\n\nTaking a breath to steady yourself, you turn away from them and start to disrobe. You quickly pull off your [pc.gear] and and the rest of your equipment, stuffing it all into a bin that appears in the side of the chamber.");
+		output("\n\nTaking a breath to steady yourself, you turn away from them and start to disrobe. You quickly pull off your [pc.gear] and the rest of your equipment, stuffing it all into a bin that appears in the side of the chamber.");
 	}
 	else
 	{
@@ -804,7 +804,7 @@ public function mcallisterMeetThemIII():void
 	output("\n\n<i>“Hi!”</i> the red myr says, still fondling herself. Your eyes are immediately drawn to to pink peak of her teat, beading with golden moisture. She grins up at you. <i>“Haven’t seen you before. Are you one of Doctor McAllister’s assistants?”</i>");
 	
 	if (pc.isMasculine()) output("\n\n<i>“Can’t be,”</i> the gold giggles. <i>“He’s a dude! And... pretty handsome, too!”</i>");
-	else output("\n\nThe gold myr giggles in a way that makes her huge, fleshy bust quiver in her arms. <i>“No way, she’s too cute to be a another scientist!”</i>");
+	else output("\n\nThe gold myr giggles in a way that makes her huge, fleshy bust quiver in her arms. <i>“No way, she’s too cute to be another scientist!”</i>");
 	
 	output("\n\nYou introduce yourself: <i>“I’m [pc.name] Steele, the one who helped Doctor McAllister finish the red myr therapy.”</i>");
 	

@@ -966,7 +966,10 @@ public function vaginalWithYammi(x:int = 0):void
 	output("\n\n<i>“Oh, [pc.name],”</i> Yammi murmurs, bracing her hands on the countertop. You take the opportunity to pull out, slowly ");
 	if(x >= 0) output("withdrawing your [pc.cock " + x + "]");
 	else output("deactivating your strapon");
-	output(" and leaning your bare back against the refrigerator. Patting her butt, you pick up your [pc.gear] and slowly but surely get yourself back together. While you do, Yammi takes a long moment to catch her breath before grabbing her bra and starting to redress.");
+	output(" and leaning your bare back against the refrigerator. Patting her butt, you pick up your");
+	if(!pc.isCrotchExposed()) output(" [pc.gear]");
+	else output(" gear");
+	output(" and slowly but surely get yourself back together. While you do, Yammi takes a long moment to catch her breath before grabbing her bra and starting to redress.");
 	output("\n\n<i>“That was... that was good,”</i> she says with a grin, leaning ");
 	if(pc.tallness >= 72) output("up");
 	else if(pc.tallness < 60) output("down");

@@ -122,7 +122,7 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	output("\n\nOne");
 	if (!shortTravel) output(" lengthy journey through space and the Warp Gate network");
 	else output(" quick trip through the atmosphere later");
-	output(" and you’re zooming through the blackness of space, hurtling towards Myrellion’s further moon. The journey toward the icy blue moon isn’t particularly long, by galactic standards, but the coordinates Kara gave you lead into rocky belt encircling it. You instinctively boost your shielding, gazing out your ship’s viewports as tumbling hunks of house-sized rock and ice smash against each other. Your shields rumble and flicker as shards of debris hit you, just enough to give you a light show - no threat, so long as you keep dodging the big rocks.");
+	output(" and you’re zooming through the blackness of space, hurtling towards Myrellion’s further moon. The journey toward the icy blue moon isn’t particularly long, by galactic standards, but the coordinates Kara gave you lead into the rocky belt encircling it. You instinctively boost your shielding, gazing out your ship’s viewports as tumbling hunks of house-sized rock and ice smash against each other. Your shields rumble and flicker as shards of debris hit you, just enough to give you a light show - no threat, so long as you keep dodging the big rocks.");
 
 	output("\n\nThe coordinates are just ahead, drawing you to one of the largest hunks of rock in the belt, nearly twice the size of a hydroball field. A scan of it comes back as a big empty: no signals on it, or for miles around. You furrow your brow, wondering why Kara’s brought you all the way out here... until the rock tumbles around, revealing a huge, hollow crack in its side, permitting entry for a ship about your size. Could be interfering with your scans, and this <i>is</i> where Kara said to meet.");
 
@@ -417,7 +417,8 @@ public function kq2ThisPlace():void
 
 	output("\n\n<i>“Some tunnels. A few half-built rooms,”</i> Kara answers. <i>“I haven’t explored this place too much. Mostly because there’s no atmosphere anywhere");
 	if (kara.isMischievous()) output(", and space suits just chafe my tails, you know?");
-	output(". If you want to look around on your time, you’re welcome to - like I said, it doesn’t belong to me.”</i>");
+	else output(".");
+	output(" If you want to look around on your time, you’re welcome to - like I said, it doesn’t belong to me.”</i>");
 
 	processTime(3+rand(3));
 

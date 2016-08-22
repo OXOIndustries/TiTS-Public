@@ -458,7 +458,7 @@ public function kaedeMyrellionSexIntroII():void
 	clearOutput();
 	kaedeHeader();
 
-	output("After a couple of minutes, you hear the hiss of the cabin door sliding open. Kaede takes a long-legged stride back into the main chamber, drawing your eyes back her way. She’s mostly naked, save for a translucent pink bra that cups her small breasts, and a pair of lacey pink stockings clipped to a garter that hugs her slender hips. She’s got no panties on, showing off an eight-inch shaft of canine cock dangling freely between her legs, only just concealing a tight little sack hugging her groin");
+	output("After a couple of minutes, you hear the hiss of the cabin door sliding open. Kaede takes a long-legged stride back into the main chamber, drawing your eyes back her way. She’s mostly naked, save for a translucent pink bra that cups her small breasts, and a pair of lacey pink stockings clipped to a garter that hugs her slender hips. She’s got no panties on, showing off an eight-inch shaft of canine cock dangling freely between her legs, only just concealing a tight little sack hugging her groin.");
 	
 	output("\n\nKaede’s holding a pair of small glasses in one hand, and a dark bottle of whiskey in the other.");
 	
@@ -809,7 +809,7 @@ public function kaedeThreeSomesOrSpawnOrSomethingCassTits():void
 
 	output("\n\n<i>“I’m Cass,”</i> the part kaithrit, part cow answers, taking a jiggly step closer and giving you a lascivious wink. Now that she’s in arm’s reach, you ");
 	//if (half-)ausar/kaithrit:
-	if(InCollection(pc.race(), "kaithrit", "half-kaithrit", "ausar", "half-ausar","leithan","half-leithan")) 
+	if(pc.horseScore() >= 3 || pc.ausarScore() >= 2 || pc.kaithritScore() >= 3 || pc.leithanScore() >= 3 || pc.felineScore() >= 5 || pc.canineScore() >= 5)
 	{
 		output("suddenly get hit with an overwhelming aura of fuck-pheromones billowing off her, positively seeping through her sexy suit. You instantly feel a flush of arousal as the giggling bimbo sidles up even closer, clearly aware of the effect she’s having on you, and enjoying every second of it. You half expect her to");
 		if(pc.hasCock()) output(" bend over on the spot for you.");
