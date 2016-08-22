@@ -223,7 +223,7 @@ package classes.Characters
 		
 		private function machinePistols(target:Creature):void
 		{
-			output(StringUtil.capitalize(uniqueName, false) + " brings his machine pistol to bear, firing a burst of toward " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
+			output(StringUtil.capitalize(uniqueName, false) + " brings his machine pistol to bear, firing off a burst toward " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
 			if (rangedCombatMiss(this, target, -1, 3))
 			{
 				output(" The burst misses!");
