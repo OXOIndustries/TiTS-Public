@@ -1245,7 +1245,9 @@ public function fuckAnnoAfterBeeJay():void
 	output("\n\nAnno bites her lip, muffling a girlish whimper as your [pc.hips] rock forward, inching your [pc.cock " + x + "] into her sodden quim. You nearly join her as you feel your cock submerging into the sultry hole, surrounded by hot, wet, squirming walls as Anno's pussy clenches around your intruding member. You push forward despite her body's resistance, the ausar's incredibly wet sex making it unnaturally easy to spread her walls wide. Anno moans as you plunge deep into her sex, fingers digging into the lip of her desk, tail flicking madly as you bottom out inside her");
 	if(pc.cockVolume(x) >= (chars["ANNO"].vaginalCapacity() + 200)) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the hardwood of the desk");
 	output(".");
-
+	
+	pc.cockChange();
+	
 	output("\n\n");
 	if(pc.balls > 0) output("Balls ");
 	else output("Hilt ");
@@ -1282,7 +1284,7 @@ public function fuckAnnoAfterBeeJay():void
 }
 
 //Get Slurped
-///{Va-jay-jay-type characters} Slurp-rise!
+//{Va-jay-jay-type characters} Slurp-rise!
 //[13:21] <Fenoxo> @Savin to stretch out F/F, I suggest some full body massage that turns into her jamming her nose into your cunt in licking, then scissoring, then sixtynining up the mess
 public function getSlurpedOnByAnnoz():void
 {

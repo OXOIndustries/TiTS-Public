@@ -257,8 +257,8 @@ public function appearance(forTarget:Creature):void
 			output2(" Your eyes have a curious mix of feline and dragonic features; a pair of black vertical slits instead of rounded pupils, ");
 			if (hasMetallicEyes) output2(" sat amongst metallically glistening pools of " + target.eyeColor + " irises.");
 			else if (hasGemstoneEyes) output2(" each nestled in a shimmering gemstone-like " + target.eyeColor + " iris.");
-			else if (hasLuminousEyes) output2(" each nestled within a glowing " + target.eyeColor + " iris.");
-			else output2(" each sat within a " + target.eyeColor + " iris.");
+			else if (hasLuminousEyes) output2(" each nestled within " + indefiniteArticle(target.eyeColor) + " iris.");
+			else output2(" each sat within " + indefiniteArticle(target.eyeColor) + " iris.");
 			
 			output2(" Tendrils of black crawl across your eyeballs proper, extending from a dark ring just barely visible at the edges.");
 		}
@@ -1624,7 +1624,7 @@ public function appearance(forTarget:Creature):void
 				if(target.hasFeet())
 				{
 					output2(", ending in ");
-					if(target.legCount == 1) output2("a " + target.foot(true, true));
+					if(target.legCount == 1) output2(indefiniteArticle(target.foot(true, true)));
 					else output2(target.feet(true, true));
 				}
 				output2(".");
@@ -2650,7 +2650,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	//Snake cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_SNAKE) {
 		if(target.originalRace == "snake" || target.originalRace == "naga" || target.originalRace == "naleen" || target.originalRace == "leithan" || target.originalRace == "half-leithan") output2(" It’s a deep, iridescent " + target.cocks[x].cockColor + " in color. The shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
-		else output2(" It’s a deep, iridescent " + target.cocks[x].cockColor + " in color. Unlike a " + target.originalRace + " penis, the shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
+		else output2(" It’s a deep, iridescent " + target.cocks[x].cockColor + " in color. Unlike " + indefiniteArticle(target.originalRace) + " penis, the shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
 	}
 	//Anemone cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_ANEMONE || target.cocks[x].cType == GLOBAL.TYPE_SIREN) {

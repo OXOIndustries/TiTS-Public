@@ -486,6 +486,9 @@ public function uvetoKaedeShowerWith(fuckedHer:Boolean = false):void
 {
 	clearOutput();
 	kaedeHeader(true);
+	
+	var cIdx:int = pc.cockThatFits(250);
+	if (cIdx < 0) cIdx = pc.smallestCockIndex();
 
 	output("<i>“Mind if I hop in with you?”</i> you ask, rising");
 	if (pc.hasFeet()) output(" to your feet");
@@ -497,17 +500,17 @@ public function uvetoKaedeShowerWith(fuckedHer:Boolean = false):void
 	else output("<i>“Only if you don’t mind scrubbing some hard-to-reach places,”</i> Kaede laughs.");
 	output(" Your lover takes you by the hand and leads you through a hatch into a decidedly cramped, dark bathroom. About what you’d expect from a one-man-crew ship, though it’s definitely standing room only in her stall. Kaede gives you an apologetic smile as she taps a control panel inside, and steaming-hot water starts pumping out. She turns on a heel, leading you in and pulling you tight against herself as the water beats down from above, drenching you and your lover in a heartbeat. Kaede quickly grabs a cloth and wipes away the cum sticking to her flesh, but catches your hand when you move to do the same.");
 	
-	output("\n\nGiving you a playful smile, Kaede pushes you against the blue wall and crouches down between your [pc.legs], flicking her tongue out across your [pc.skinFurScales]. You give a little gasp as you realize what she’s doing: grooming you clean herself! Poor thing must feel guilty for giving you so much of her cum earlier");
+	output("\n\nGiving you a playful smile, Kaede pushes you against the blue wall and crouches down between your " + (pc.hasLegs() ? "[pc.legs]" : "[pc.thighs]") + ", flicking her tongue out across your [pc.skinFurScales]. You give a little gasp as you realize what she’s doing: grooming you clean herself! Poor thing must feel guilty for giving you so much of her cum earlier");
 	if (fuckedHer) output(", even though you’ve got a thick load of your own cooling in her bowels");
 	output(". She grins up at you between long, sensuous licks across your crotch, belly, and thighs, making sure every bit of mess is wiped away by her warm tongue.");
 	
 	output("\n\nBy the time she’s satisfied, your");
-	if (pc.hasCock()) output(" [pc.cock] is throbbing hard again. Watching the little ginger tongue-worship you was just too much, even so close to your last orgasm.");
+	if (pc.hasCock()) output(" [pc.cock " + cIdx + "] is throbbing hard again. Watching the little ginger tongue-worship you was just too much, even so close to your last orgasm.");
 	else output(" [pc.vagOrAss] is trembling with need and burning with renewed desire. Even if you just got a hot filling of puppy-cream a few minutes ago, watching the subby little halfbreed worshipping your body like that is just too much!");
 	output(" A glance down, though, at least reveals that there’s a turgid red rocket hanging between Kaede’s knees, and her tail is sloshing wetly across the shower floor.");
 	
 	output("\n\n<i>“I thought we were cleaning up!”</i> you chide as Kaede’s tongue");
-	if (pc.hasCock()) output(" traces along the underside of your [pc.cock], happily circling your crown.");
+	if (pc.hasCock()) output(" traces along the underside of your [pc.cock " + cIdx + "], happily circling your crown.");
 	else output(" teases your [pc.vagOrAss], circling the cum-stuffed hole.");
 	
 	output("\n\n<i>“W-were we?”</i> Kaede blinks, staring up at you");
@@ -518,7 +521,7 @@ public function uvetoKaedeShowerWith(fuckedHer:Boolean = false):void
 
 	//[Take Her Ass] [Dildo Play]
 	clearMenu();
-	if (pc.hasCock()) addButton(0, "FuckHerAss", uvetoKaedeFuckHerAss, fuckedHer, "Fuck Her Ass", "Shove Kaede against the stall's wall and pound that sweet ass of hers until she's begging for more!");
+	if (pc.hasCock()) addButton(0, "FuckHerAss", uvetoKaedeFuckHerAss, [cIdx, fuckedHer], "Fuck Her Ass", "Shove Kaede against the stall's wall and pound that sweet ass of hers until she's begging for more!");
 	else addDisabledButton(0, "FuckHerAss");
 
 	addButton(1, "Dildo Play", uvetoKaedeDildoPlay, fuckedHer, "Dildo Play", "You notice that Kaede's got a couple of sex toys unabashedly lying on her shower's shelf. The two of you could put those to use, on top of Kaede's rock-hard red rocket.");
@@ -591,7 +594,10 @@ public function uvetoKaedeDildoPlay(fuckedHer:Boolean = false):void
 	}
 	output(" Kaede moans, grinding against your crotch until you wrap your hands around her waist and pull her back into your lap, settling her against yourself as your body rises out the throes of orgasm. She gives you a husky little moan, craning her neck around to demand a kiss that you happily grant her.");
 	
-	output("\n\n<i>“I love it when a [pc.race] "+ pc.mf("boy", "girl") +" like you takes charge,”</i> she purrs, tail wiping wetly against your crotch. <i>“Wish we could stay like this forever.”</i>");
+	var pcRace:String = pc.race();
+	output("\n\n<i>“I love it when a " + pcRace);
+	if(pcRace.indexOf("boy") == -1 && pcRace.indexOf("girl") == -1) output(" " + pc.mf("boy", "girl"));
+	output(" like you takes charge,”</i> she purrs, tail wiping wetly against your crotch. <i>“Wish we could stay like this forever.”</i>");
 
 	output("\n\nYou smile and stroke her ginger hair, telling her that you’d enjoy that. But, all good things must come to an end - or she’s never going to make that meeting. Kaede sighs and squirms out from your grasp, grabbing the washcloth from the shelf and wiping herself clean once again.");
 	
@@ -617,17 +623,17 @@ public function uvetoKaedeDildoPlay(fuckedHer:Boolean = false):void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function uvetoKaedeFuckHerAss(fuckedHer:Boolean = false):void
+public function uvetoKaedeFuckHerAss(arg:Array):void
 {
 	clearOutput();
 	kaedeHeader(true);
-
-	var cIdx:int = pc.cockThatFits(250);
-	if (cIdx == -1) cIdx = pc.smallestCockIndex();
-
+	
+	var cIdx:int = arg[0];
+	var fuckedHer:Boolean = arg[1];
+	
 	output("Considering");
 	if (fuckedHer) output(" the two of you skipped right to the fun stuff");
-	else output(" didn’t even put your cock to use");
+	else output(" you didn’t even put your cock to use");
 	output(" last time, you’re more that content to let your submissive shemale lover slurp and suck to her heart’s content. Turns out the old spacer myth about dog-girls and bones is true, the way Kaede greedily handles your [pc.cock "+cIdx+"]: she eagerly kisses and caresses your [pc.cockHead "+cIdx+"], slurps at your shaft, and");
 	if (pc.balls > 0) output(" fondles your [pc.balls]");
 	if (pc.balls > 0 && pc.hasKnot(cIdx)) output(" and your");
@@ -662,6 +668,8 @@ public function uvetoKaedeFuckHerAss(fuckedHer:Boolean = false):void
 	output("\n\n<i>“G-give it to me,”</i> Kaede breathes huskily, biting her lip as she feels your [pc.cockHead "+cIdx+"] starting to spread her open. <i>“Ohgodyeeessss!”</i>");
 
 	output("\n\nYou grin and press your [pc.hips] in, holding Kaede’s hips steady as your [pc.cock "+cIdx+"] starts to sink into the welcoming embrace of the halfbreed’s lubed-up hole. She lets out an exultant groan of pleasure as you take her, while her own needy cock helplessly hammers the smooth wall and smears her excitement across it.");
+	
+	pc.cockChange();
 
 	if (pc.tallness > 70 || pc.PQ() > 90)
 	{
@@ -703,7 +711,10 @@ public function uvetoKaedeFuckHerAss(fuckedHer:Boolean = false):void
 	
 	output("\n\nChuckling to yourself, you let your fatigue take over and slump against Kaede’s back, keeping her pinned where she belongs: between you and the cum-soaked walls. She gives you a husky little moan, craning her neck around to demand a kiss that you happily grant her.");
 	
-	output("\n\n<i>“I love it when a [pc.race] "+ pc.mf("boy", "girl") +" like you takes charge,”</i> she purrs, tail wiping wetly against your crotch. <i>“Wish we could stay like this forever.”</i>");
+	var pcRace:String = pc.race();
+	output("\n\n<i>“I love it when a " + pcRace);
+	if(pcRace.indexOf("boy") == -1 && pcRace.indexOf("girl") == -1) output(" " + pc.mf("boy", "girl"));
+	output(" like you takes charge,”</i> she purrs, tail wiping wetly against your crotch. <i>“Wish we could stay like this forever.”</i>");
 	
 	output("\n\nYou smile and stroke her ginger hair, telling her that you’d enjoy that. But, all good things must come to an end - or she’s never going to make that meeting. Kaede sighs and squirms out from your grasp, grabbing the washcloth from the shelf and wiping herself clean once again.");
 	

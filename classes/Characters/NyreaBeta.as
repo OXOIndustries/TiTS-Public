@@ -312,7 +312,16 @@
 		private function nyreaMeatSpin(target:Creature):void
 		{
 			//Basic lust attack. She'll use this especially against females.
-			output("With a lusty grin, the nyrean woman pulls up her chainmail bikini, letting her massive pseudo-cock flop out. Her hands rub across the long length, emphasizing its huge, blunted head and the fearsomely thick knot at its base, clearly ready to tie you like a bitch. She thrusts her hips, making the semi-turgid member bounce. A dribble of lubricant is flicked out, splattering across your [pc.face].\n");
+			output("With a lusty grin, the nyrean woman pulls up her chainmail bikini, letting her massive pseudo-cock flop out. Her hands rub across the long length, emphasizing its huge, blunted head and the fearsomely thick knot at its base, clearly ready to tie you like a bitch. She thrusts her hips, making the semi-turgid member bounce. A dribble of lubricant is flicked out, splattering across your");
+			
+			if(target.hasAirtightSuit())
+			{
+				output(" face.");
+				output("\n\nLuckily, your head is protected and you quickly wipe the cock-drool off.");
+				return;
+			}
+			
+			output(" [pc.face].\n");
 
 			// 9999
 			if (rand(10) == 0)

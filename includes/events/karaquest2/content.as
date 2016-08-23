@@ -798,7 +798,7 @@ public function kq2WatsonTalkWatson():void
 
 	output("<i>“So, what exactly are you?”</i> you ask, eyeing the hologram as it puffs on its pipe.");
 	
-	output("\n\nIt chuckles slightly, completely devoid of humor. <i>“Why, my dear [pc.boyGirl], I should like to think the correct question is ‘who’ am I? But I digress, this is hardly the moment for a discussions on the higher philosophies of artificial intelligences. Suffice to say, I am Watson. I oversee the Black Void’s operations.”</i>");
+	output("\n\nIt chuckles slightly, completely devoid of humor. <i>“Why, my dear [pc.boyGirl], I should like to think the correct question is ‘who’ am I? But I digress, this is hardly the moment for a discussion on the higher philosophies of artificial intelligences. Suffice to say, I am Watson. I oversee the Black Void’s operations.”</i>");
 	
 	output("\n\n<i>“What operations?”</i> your companion asks.");
 	
@@ -1231,7 +1231,7 @@ public function kq2EncounterKhan():void
 	clearOutput();
 	showKhan();
 
-	output("You give Kara slight nod, signaling her to pop the hatch and open the door. You go in first, [pc.rangedWeapon] raised. The sealed lab hits you with a sultry heat the moment you step in, clinging to your [pc.skinFurScales] as your [pc.feet] tread through something wet and sticky covering the white floor. The lab’s a mess compared to the sterile facility you just passed through: computers and machinery is turned and toppled all over, and covered in a thick, musky white goo.");
+	output("You give Kara slight nod, signaling her to pop the hatch and open the door. You go in first, [pc.rangedWeapon] raised. The sealed lab hits you with a sultry heat the moment you step in, clinging to your [pc.skinFurScales] as your [pc.feet] tread through something wet and sticky covering the white floor. The lab’s a mess compared to the sterile facility you just passed through: computers and machinery are turned and toppled all over, and covered in a thick, musky white goo.");
 	
 	output("\n\nYou hear a click from across the lab, and have just enough time to dive behind an overturned desk before a lightning bolt screeches across the room, slamming into the wall just behind where you’d stood a moment ago. A laugh booms across the room, drawing your attention to a small man sitting on what at first glance is a large, tan beanbag chair in the corner of the room, a smoking pistol in his hand. Several young women surround him, gold-plated myr girls in white lab coats that hang open from bare shoulders, leaving their nude bodies underneath on shameless display for you: breasts swollen with honey, and honeypots drooling with blatant desire.");
 	
@@ -2656,10 +2656,10 @@ public function kq2KaraFuckKittysKitty():void
 	//{if PC has a knot!
 	if (pc.hasKnot())
 	{
-		output("\n\nYour hips hammer Kara’s raised rear-end, filling you with a visceral glee at seeing her derriere quiver to the beat of your thrusting hips. You barely even notice how swollen your [pc.knot] has become until Kara lets out a startled cry, and you realize you nearly buried it in her. Fuck it - you’ve earned this! You rear your hips back and ram them forward one lust time, shoving the swollen bulb of your knot into the wet embrace of Kara’s pussylips. She shrieks, a wordless cry of pleasure as your knot drives her to climax.");
+		output("\n\nYour hips hammer Kara’s raised rear-end, filling you with a visceral glee at seeing her derriere quiver to the beat of your thrusting hips. You barely even notice how swollen your [pc.knot] has become until Kara lets out a startled cry, and you realize you nearly buried it in her. Fuck it - you’ve earned this! You rear your hips back and ram them forward one last time, shoving the swollen bulb of your knot into the wet embrace of Kara’s pussylips. She shrieks, a wordless cry of pleasure as your knot drives her to climax.");
 	}
 
-	output("\n\nYou grab your lover’s hips and drive yourself as deep into her as you can, already feeling the pressure swelling in your loins. Kara’s just ahead of you, though, throwing her head back in a whorish moan as her pussy clenches around you, and her half-hard kitty-cock sprays a sheen of white cream down between her legs, bouncing with every one of her weak, orgasimic motions. <i>“[pc.name]!”</i> she manages to grunt out, eyes closed tight and cock spasming wildly. <i>“Fuck me! Fuck me!”</i>");
+	output("\n\nYou grab your lover’s hips and drive yourself as deep into her as you can, already feeling the pressure swelling in your loins. Kara’s just ahead of you, though, throwing her head back in a whorish moan as her pussy clenches around you, and her half-hard kitty-cock sprays a sheen of white cream down between her legs, bouncing with every one of her weak, orgasmic motions. <i>“[pc.name]!”</i> she manages to grunt out, eyes closed tight and cock spasming wildly. <i>“Fuck me! Fuck me!”</i>");
 
 	output("\n\n");
 	if (pc.hasKnot()) output("You can’t exactly thrust, tied as you are");

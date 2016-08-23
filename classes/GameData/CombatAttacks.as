@@ -498,7 +498,7 @@ package classes.GameData
 				if (target.customDodge.length > 0)
 				{
 					if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + ". " + target.customDodge);
-					else output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.rangedWeapon.attackVerb +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+					else output(attacker.capitalA + attacker.uniqueName + " takes " + indefiniteArticle(attacker.rangedWeapon.attackNoun) + " at " + target.a + target.uniqueName + ". " + target.customDodge);
 				}
 				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
@@ -509,7 +509,7 @@ package classes.GameData
 			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(4) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind-fired shot doesn't manage to connect.");
-				else output(attacker.capitalA + possessive(attacker.uniqueName) + " blind "+ attacker.rangedWeapon.attackNoun +" fails to connect!");
+				else output(attacker.capitalA + possessive(attacker.uniqueName) + " blind " + attacker.rangedWeapon.attackNoun + " fails to connect!");
 				return false;
 			}
 			
@@ -517,8 +517,8 @@ package classes.GameData
 			{
 				if (target.customDodge.length > 0)
 				{
-					if (attacker is PlayerCharacter) output("You take a " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + ". " + target.customDodge);
-					else output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.rangedWeapon.attackVerb +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+					if (attacker is PlayerCharacter) output("You take " + indefiniteArticle(attacker.rangedWeapon.attackNoun) + " at " + target.a + target.uniqueName + ". " + target.customDodge);
+					else output(attacker.capitalA + attacker.uniqueName + " takes " + indefiniteArticle(attacker.rangedWeapon.attackNoun) + " at " + target.a + target.uniqueName + ". " + target.customDodge);
 				}
 				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
@@ -546,7 +546,7 @@ package classes.GameData
 				if (target.customDodge.length > 0)
 				{
 					if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + ". " + target.customDodge);
-					else output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.meleeWeapon.attackVerb +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+					else output(attacker.capitalA + attacker.uniqueName + " takes " + indefiniteArticle(attacker.meleeWeapon.attackVerb) + " at " + target.a + target.uniqueName + ". " + target.customDodge);
 				}
 				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
@@ -566,7 +566,7 @@ package classes.GameData
 				if (target.customDodge.length > 1)
 				{
 					if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + ". " + target.customDodge);
-					else output(attacker.capitalA + attacker.uniqueName + " takes a "+ attacker.meleeWeapon.attackNoun +" at " + target.a + target.uniqueName + ". " + target.customDodge);
+					else output(attacker.capitalA + attacker.uniqueName + " takes " + indefiniteArticle(attacker.meleeWeapon.attackNoun) + " at " + target.a + target.uniqueName + ". " + target.customDodge);
 				}
 				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");

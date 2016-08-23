@@ -200,20 +200,29 @@ package classes.Characters
 			
 			// enemy AI
 			var enemyAttacks:Array = [];
-			enemyAttacks.push({ v: rangedAttack, 				w: 40 });
-			enemyAttacks.push({ v: machinePistols, 				w: 40 });
-
+			if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Disarmed"))
+			{
+				enemyAttacks.push({ v: rangedAttack, 				w: 40 });
+				enemyAttacks.push({ v: machinePistols, 				w: 40 });
+			}
 			if (nadesAvail)
 			{
 				enemyAttacks.push({ v: groupFlashbang, 			w: 15 });
 				enemyAttacks.push({ v: sx1GroupSmokeGrenade,	w: 15 });
 				enemyAttacks.push({ v: concGrenade, 			w: 15 });
 			}
+			
+			if (enemyAttacks.length <= 0) enemyAttacks.push( { v: attackPass, w: 100 } );
 
 			var attack:Function = weightedRand(enemyAttacks);
 			
 			if (attack == rangedAttack || attack == machinePistols) attack(target);
 			else attack(hostileCreatures);
+		}
+		
+		private function attackPass(target:Creature):void
+		{
+			output(StringUtil.capitalize(uniqueName, false) + " is unable to attack!");
 		}
 		
 		private function rangedAttack(target:Creature):void
