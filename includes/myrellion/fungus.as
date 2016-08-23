@@ -191,6 +191,7 @@ public function girlyCompassionVictoryWithInfectedMyr():void
 		output("\n\nEven her venom can’t keep you going forever, and eventually your spasming body calms down. Once you’re back in control of your functions, you look down to find a [pc.girlCum] drenched ant girl asleep in your lap. You gingerly lift her off, letting the fungal manifestation take your place as her pillow, before gathering your [pc.gear] and returning to your explorations.");
 	}
 	output("\n\n");
+	imbibeVenomEffects(true);
 	processTime(22);
 	pc.orgasm();
 	pc.orgasm();
