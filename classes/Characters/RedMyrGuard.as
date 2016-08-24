@@ -231,12 +231,11 @@
 			
 			if (doAttack)
 			{
-				var atks:Array = [
-					{ v: axeBlow, w: 10 },
-					{ v: punch, w: 10 },
-					{ v: openFire, w: 10 },
-					{ v: bite, w: 10 }
-				];
+				var atks:Array = [];
+				atks.push({ v: axeBlow, w: 10 });
+				atks.push({ v: punch, w: 10 });
+				atks.push({ v: openFire, w: 10 });
+				if(target.shields() <= 0) atks.push({ v: bite, w: 10 });
 
 				weightedRand(atks)(target);
 			}
@@ -319,13 +318,16 @@
 			}
 			else
 			{
-				output(" You feel her hot lips on you, her pointed teeth penetrating your [pc.skin]... you struggle out of her grip, but cannot stop a groan escaping your lips as you feel heat being pushed into you,");
+				output(" You feel her hot lips on you, her pointed teeth penetrating");
+				if (target.hasAirtightSuit()) output(" through your suit and into");
+				output(" your [pc.skin]... you struggle out of her grip, but cannot stop a groan escaping your lips as you feel heat being pushed into you,");
 				if (target.hasCock()) output(" [pc.eachCock] growing more and more erect");
 				if (target.isHerm()) output(" and");
 				if (target.hasVagina()) output(" [pc.eachVagina] becoming more and more flush with [pc.femcum]");
 				output(".");
 				
 				applyDamage(new TypeCollection( { drug: 10 } ), this, target, "minimal");
+				if(target is PlayerCharacter) kGAMECLASS.imbibeVenomEffects(true, true);
 			}
 		}
 	}

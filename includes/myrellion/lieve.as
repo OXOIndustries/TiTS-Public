@@ -182,6 +182,8 @@ public function lieveRepeatEncounter():void
 		output("<i>“Hey, [pc.name],”</i> Lieve beams, grabbing you by your [pc.hips] as you approach and pulling you into a fierce kiss that leaves you tingling with a sudden rush of chemical arousal. One of her hands brushes your cheek as she whispers, <i>“Good to see you.”</i>");
 	
 		output("\n\nAround her, Sierva and Mayren unsubtly shift to make themselves look more appealing for you, sitting with chests out and legs spread. After spending a moment firmly held in Lieve’s arms, you’re released and your lover asks, <i>“Need anything in particular? Or,”</i> she adds, smiling, <i>“did you just come to spend some time together?”</i>");
+		
+		imbibeVenomEffects();
 	}
 
 	processTime(10);
