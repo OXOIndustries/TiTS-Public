@@ -287,6 +287,8 @@ public function infestedVictoryOrLossMaleScene(loss:Boolean = true):void
 		output("\n\nAfter a few minutes she pushes herself off your [pc.cockBiggest], rubbing her eyes and blinking away the haze. For the first time in half an hour you see recognition in her eyes, and you swear she’s blushing, even through the flush of heat. Her mushroom companion smiles happily, kissing her on the cheek and nuzzling relentlessly at her side.");
 		output("\n\n<i>“S-sorry. I kinda blacked out there,”</i> she says with a nervous laugh. <i>“I think I’ll stay here and rest for a bit.”</i>");
 		output("\n\nYou nod and stretch yourself out, grabbing your [pc.gear] before heading back to exploring the caves.");
+		
+		imbibeVenomEffects();
 	}
 	output("\n\n");
 	processTime(19);

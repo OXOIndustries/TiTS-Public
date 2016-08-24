@@ -721,7 +721,7 @@ public function juroXLyrallPartIV():void
 		//ultrawet++
 		else
 		{
-			output("A huge puddle has already formed below thanks to your copious, overwet [pc.vaginas]. The [pc.girlCum] streams down your [pc.legsOrLeg] like a river of erotic lubrication, the unmistakable proof of your own unbridled eroticism. It’s a wonder Juro and Lyralla haven’t smelled the heady scent of your sex. It hangs around you like a cloud while you battle the instinct to try and plug the leak with an enthusiastic fist. The kui-tan doesn’t know what he’s missing. Lyralla isn’t anywhere near as slick or ready as you are.");
+			output("A huge puddle has already formed below thanks to your copious, overwet [pc.vaginas]. The [pc.girlCum] streams down your [pc.legOrLegs] like a river of erotic lubrication, the unmistakable proof of your own unbridled eroticism. It’s a wonder Juro and Lyralla haven’t smelled the heady scent of your sex. It hangs around you like a cloud while you battle the instinct to try and plug the leak with an enthusiastic fist. The kui-tan doesn’t know what he’s missing. Lyralla isn’t anywhere near as slick or ready as you are.");
 		}
 	}
 	output("\n\nNeither ambassador shows any sign of restraint or concern, too occupied by their own overstimulated mating instincts to worry about decorum, their bodies smashing against one another with wet slaps. The smaller male assaults his cybernetic lover with increasingly frenetic thrusts, his multiple knots thickening by the second. Lyralla whorishly moans, her whole body trembling. Looking back over her feebly twitching mechanical shoulder, she finds enough sense to beg, <i>“Give it to me! Fuck me!”</i>");

@@ -772,7 +772,11 @@ package classes.GameData
 			else
 			{
 				if (attacker is PlayerCharacter) output("Approaching your opponent, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
-				else if (target is PlayerCharacter) output("A spike of pain lances through your arm as " + attacker.a + attacker.uniqueName + " clamps " + (attacker.isPlural ? "their" : attacker.mfn("his", "her", "its")) + " jaws around your bicep, venom quickly coursing through your veins!");
+				else if (target is PlayerCharacter)
+				{
+					output("A spike of pain lances through your arm as " + attacker.a + attacker.uniqueName + " clamps " + (attacker.isPlural ? "their" : attacker.mfn("his", "her", "its")) + " jaws around your bicep, venom quickly coursing through your veins!");
+					kGAMECLASS.imbibeVenomEffects(true, true);
+				}
 				else output(target.capitalA + target.uniqueName + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.a + attacker.uniqueName + " clamps " + (attacker.isPlural ? "their" : attacker.mfn("his", "her", "its")) + " jaws around a limb!");
 				
 				applyDamage(new TypeCollection( { tease: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");

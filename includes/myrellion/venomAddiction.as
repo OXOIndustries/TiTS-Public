@@ -30,10 +30,13 @@ Red Myr Venom Withdrawal (Status)
 You’re currently suffering withdrawal from red myr venom. Your senses seem dulled: your lusts are rising more slowly, and you feel less amorous towards those you might otherwise find attractive - and it’s harder to rouse the lusts of others. Worst of all, even when someone does manage to turn you on, you can’t be bothered to try and bring yourself off!
  */
 
-public function imbibeVenomEffects(sexed:Boolean = true):void
+public function imbibeVenomEffects(sexed:Boolean = true, combatAttack:Boolean = false):void
 {
-	if(sexed) IncrementFlag("SEXED_MYR_VENOM");
-	else IncrementFlag("DRANK_MYR_VENOM");
+	if(!combatAttack)
+	{
+		if(sexed) IncrementFlag("SEXED_MYR_VENOM");
+		else IncrementFlag("DRANK_MYR_VENOM");
+	}
 	//In withdrawal? Do shit
 	if(pc.hasStatusEffect("Myr Venom Withdrawal"))
 	{
@@ -61,12 +64,15 @@ public function imbibeVenomEffects(sexed:Boolean = true):void
 		if(pc.getStatusMinutes("Red Myr Venom") <= 720) pc.addStatusMinutes("Red Myr Venom",720);
 		else pc.setStatusMinutes("Red Myr Venom",1440);
 	}
-	if(!sexed) 
+	if(!combatAttack)
 	{
-		pc.lust(50);
+		if(!sexed) 
+		{
+			pc.lust(50);
+		}
+		else pc.lust(1);
+		if(rand(4) == 0) pc.slowStatGain("libido",1);
 	}
-	else pc.lust(1);
-	if(rand(4) == 0) pc.slowStatGain("libido",1);
 }
 //Current progress towards addiction
 public function venomProgress(arg:Number):Number
