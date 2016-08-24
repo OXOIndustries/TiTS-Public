@@ -3300,9 +3300,10 @@ public function useCockOnLysPostFlower(tailCawk:Boolean = false):void
 		output("\n\nUsing her noises as cues, you rut mercilessly from your position of superior power. Whenever you hear a gratifying moan, you repeat the angle over and over, tagging the found spot until her cries weaken. The rampant pursuit of pleasure isn’t destabilizing Lys alone... you edge closer to blowing a load of [pc.race]-spunk with every stroke through her soaked furrows and folds.");
 	}
 	//if PC has an unused too-big (60 inches+ length) cock, append to either fork
-	if(pc.biggestCockLength() >= 60 && x != pc.biggestCockIndex())
+	var hyperCock:Boolean = (pc.biggestCockLength() >= 60 && x != pc.biggestCockIndex());
+	if(hyperCock)
 	{
-		output("\n\nOn one thrust, your [pc.cockBiggest] slaps against her golden, sticky nipple, delivering a shiver to your hips. Greedy for pleasure, you ");
+		output("\n\nIn one thrust, your [pc.cockBiggest] slaps against her golden, sticky nipple, delivering a shiver to your hips. Greedy for pleasure, you ");
 		if(pc.isTaur()) output("ask Lys to wrangle and route it between her big, cushiony breasts, which she does.");
 		else 
 		{
@@ -3316,19 +3317,19 @@ public function useCockOnLysPostFlower(tailCawk:Boolean = false):void
 	output("\n\nWith a groan, you pop. ");
 	if(pc.cumQ() < 9) 
 	{
-		output("Dribbles of [pc.cum] creep from your [pc.cocks], oozing their way into the myr’s vagina.");
-		if(pc.biggestCockLength() >= 60 && x != pc.biggestCockIndex()) output(" Her tongue intercepts the load from your second shaft, lapping it up on its way down your cock.");
+		output("Dribbles of [pc.cum] creep from your " + (tailCawk ? "[pc.tailCock]" : "[pc.cock " + x + "]") + ", oozing their way into the myr’s vagina.");
+		if(hyperCock) output(" Her tongue intercepts the load from your second shaft, lapping it up on its way down your cock.");
 	}
 	//(med cum)
 	else if(pc.cumQ() < 250)
 	{
 		output("Your spunk shoots wildly inside the myr, dosing her with [pc.cum] to give a rare taste of a queen’s happiness.");
-		if(pc.biggestCockLength() >= 60 && x != pc.biggestCockIndex()) output(" The second load drops on her face, falling into her mouth and across her eyes.");
+		if(hyperCock) output(" The second load drops on her face, falling into her mouth and across her eyes.");
 	}
 	else
 	{
 		output("Cataracts of [pc.cum] rush against your crotch from the myr’s overflowing pussy, which is packed after only a few squirts from your hyper-fertile tool.");
-		if(pc.biggestCockLength() >= 60 && x != pc.biggestCockIndex()) output(" Her open-mouthed naiveté gives way to a tight-shut face as she tries to weather the storm of sperm you unleash.");
+		if(hyperCock) output(" Her open-mouthed naiveté gives way to a tight-shut face as she tries to weather the storm of sperm you unleash.");
 	}
 	output(" Lys’s pussy ripples with her own climax, juicing you for all the seed you can deliver");
 	if(pc.cumQ() >= 1000) output(" regardless of ability to contain it");
