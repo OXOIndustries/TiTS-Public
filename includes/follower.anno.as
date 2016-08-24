@@ -458,6 +458,8 @@ public function annoFollowerBootOff():void
 
 public function annoAtAnonsAddendum(slot:int = 8):void
 {
+	if (pc.hasStatusEffect("Anno Bar Busy")) return;
+	
 	// Recruited but booted off da ship
 	if (flags["ANNO_CREWMEMBER"] == 2)
 	{
@@ -471,8 +473,10 @@ public function annoAtAnonsAddendum(slot:int = 8):void
 
 		if (haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7)
 		{
-			if (rand(3) == 0)
+			if (rand(3) == 0 || pc.hasStatusEffect("Anno x Kaede Bar"))
 			{
+				output("\n\nAnno is drinking and conversing with a red-headed friend at the bar.");
+				pc.createStatusEffect("Anno x Kaede Bar", 0, 0, 0, 0, true, "", "", false, 15);
 				addButton(slot, "Anno", annoxKaedeFollowerMeeting);
 			}
 		}
@@ -485,7 +489,7 @@ public function annoFindingALostPooch():void
 
 	if (haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7)
 	{
-		if (rand(3) == 0)
+		if (rand(3) == 0 || pc.hasStatusEffect("Anno x Kaede Bar"))
 		{
 			annoxKaedeFollowerMeeting();
 			return;
@@ -3673,7 +3677,11 @@ public function annoGonnaGitDragonBOOOTAYYYYY():void //Hi geddy
 	output("\n\nAnno giggles into her drink. <i>“Yeah, [pc.heShe]’s pretty great.”</i>");
 	output("\n\n");
 	//if PC hasn’t done any Anno threeway: 
-	if(!annoThreeWayed()) output("After a moment, Anno gives you a questioning look, as if to say <i>“it’s time to go.”</i> You figure you’ve interfered in her date enough if that’s the case and excuse yourself.");
+	if(!annoThreeWayed())
+	{
+		output("After a moment, Anno gives you a questioning look, as if to say <i>“it’s time to go.”</i> You figure you’ve interfered in her date enough if that’s the case and excuse yourself.");
+		pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,135);
+	}
 	else
 	{
 		output("Lowering her eyes playfully, Anno adds, <i>“And [pc.heShe]’s usually up for a fun time. Aren’t you, babe?”</i>");
@@ -3703,6 +3711,7 @@ public function annoCanDoShitSolo():void
 	output("You smile and nod, but mention that you’ve actually got places to be.");
 	output("\n\n<i>“Aw,”</i> Anno sighs, sipping on her drink. <i>“Well, see you around, boss. As for you...”</i> she adds, turning and slipping a hand around the gryvain’s shoulder. <i>“Where were we...”</i>");
 	processTime(1);
+	pc.createStatusEffect("Anno Bar Busy",0,0,0,0,true,"","",false,135);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3806,7 +3815,7 @@ public function annoPupAtWork():void
 	output("\n\nAnno sighs and types something out. When she’s done, she jabs a big green <i>“SIMULATE”</i> button on her screen and turns to you with an exaggerated eye-roll. She makes a circling gesture around one of her ears, sighs again, and takes a lot swig of her drink. You watch as a progress bar fills up on her screen, eventually replacing itself with a big green check-mark and a digital chirp, <i>“Simulation complete! Project success ratio: ninety-seven percent.”</i>");
 	output("\n\nAnno blinks. <i>“W-what. Why... but... what do you mean I carried a number wrong? I haven’t done math by hand in years! It was the computer doing it! I’ve been using this program for years and I’ve never had problems. I - okay, miss ego, yeah yeah, I’d have never done it without you. You’re amazing and I love you and I’ll give you a special credit when I publish this. Happy? Uh-huh. Seriously though, you’re the best. Mkay. Talk to you later, Syri.”</i>");
 	output("\n\nShe flips off the Codex and turns to you with a big, dopey grin. <i>“My sister just solved one of the most complex physics equations I’ve ever worked with. By hand. Ugh, I feel so stupid next to her sometimes!”</i>");
-	if(flags["MET_SYRI"] == undefined) 
+	if(flags["MET_SYRI"] != undefined) 
 	{
 		output("\n\nWait... Syri? Really? You didn’t exactly picture her as an astrophysicist in disguise.");
 		output("\n\n<i>“I know, right!?”</i> Anno huffs. <i>“So much wasted potential! All she does is sit around jerking it to video games or whatever - if she just applied herself half as much as she does to slacking off, she could run laps around Akkadi and Steele’s entire R&D departments. Ugh!”</i>");

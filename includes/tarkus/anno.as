@@ -900,7 +900,7 @@ public function syriTalksAboutAnno():void
 		output("\n\n<i>“Twins? I, uh...”</i> you fidget, <i>“I thought she was your older sister?”</i>");
 		output("\n\n<i>“By like, five minutes. Don't change the subject, killjoy,”</i> Syri growls, looming over you. ");
 		//If PC has a cock: 
-		if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
+		if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockNounBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
 		else output("<i>“Imagine yourself bent over, face buried in Anno's big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you've got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
 		output(" Your eyes dart down to the suddenly immense-looking bulge in Syri's pants. She's... she's not joking, is she?");
 		output("\n\nThe ausar follows your gaze, her body suddenly tense. Syri grabs you by the ");
