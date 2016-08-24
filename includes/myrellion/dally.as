@@ -109,6 +109,10 @@ public function honeyNozzleClub():Boolean
 		output("\n\nThe entrance to the cabaret is currently closed. You should find Fazian soon!");
 		addDisabledButton(1, "Cabaret", "Cabaret", "It looks like the entrance is closed at the moment.");
 	}
+	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_BRIBED)
+	{
+		CodexManager.unlockEntry("Tarratch");
+	}
 
 	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
 	{

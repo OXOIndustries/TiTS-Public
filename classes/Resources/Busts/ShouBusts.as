@@ -412,6 +412,19 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/tanis.png", mimeType = "image/png")]
 		public var Bust_TANIS:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/tarratch.png", mimeType = "image/png")]
+		public var Bust_TARRATCH:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/tarratch_nude.png", mimeType = "image/png")]
+		public var Bust_TARRATCH_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/tarratch_nude_erect.png", mimeType = "image/png")]
+		public var Bust_TARRATCH_NUDE_ERECT:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/tarratch2.png", mimeType = "image/png")]
+		public var Bust_TARRATCH2:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/tarratch2_nude.png", mimeType = "image/png")]
+		public var Bust_TARRATCH2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/tarratch2_nude_erect.png", mimeType = "image/png")]
+		public var Bust_TARRATCH2_NUDE_ERECT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee.png", mimeType = "image/png")]
 		public var Bust_USHAMEE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee_nude.png", mimeType = "image/png")]
@@ -853,6 +866,19 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tanis.png", mimeType = "image/png")]
 			public var Full_TANIS:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch.png", mimeType = "image/png")]
+			public var Full_TARRATCH:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch_nude.png", mimeType = "image/png")]
+			public var Full_TARRATCH_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch_nude_erect.png", mimeType = "image/png")]
+			public var Full_TARRATCH_NUDE_ERECT:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch2.png", mimeType = "image/png")]
+			public var Full_TARRATCH2:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch2_nude.png", mimeType = "image/png")]
+			public var Full_TARRATCH2_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch2_nude_erect.png", mimeType = "image/png")]
+			public var Full_TARRATCH2_NUDE_ERECT:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ushamee.png", mimeType = "image/png")]
 			public var Full_USHAMEE:Class;
