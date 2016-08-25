@@ -651,7 +651,7 @@ public function yeahMillieLetsFuck():void
 
 	output("\n\nOf course you want more! <i>“Yes!”</i>");
 
-	output("\n\n<i>“Too bad.”</i> Millie’s plush, angel-bow lips smirk. <i>“No more mouth-love you for you.”</i> Her soft thighs settle over your [pc.hips]. <i>“No more handies.”</i> Her finger traces a line ");
+	output("\n\n<i>“Too bad.”</i> Millie’s plush, angel-bow lips smirk. <i>“No more mouth-love for you.”</i> Her soft thighs settle over your [pc.hips]. <i>“No more handies.”</i> Her finger traces a line ");
 	if(pc.biggestTitSize() < 1) output("down the middle of your chest");
 	else output("between your [pc.fullChest]");
 	output(".");
