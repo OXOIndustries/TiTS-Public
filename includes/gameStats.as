@@ -1442,10 +1442,10 @@ public function displayQuestLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Current Effects:</b>");
 					if(pc.statusEffectv1("The Treatment") == 0) output2(" Feminine, Cow");
-					else if(pc.statusEffectv1("The Treatment") == 1) output2(" Maculine, Stud");
+					else if(pc.statusEffectv1("The Treatment") == 1) output2(" Masculine, Stud");
 					else if(pc.statusEffectv1("The Treatment") == 2) output2(" Feminine, Stud");
 					else if(pc.statusEffectv1("The Treatment") == 3) output2(" Unisex, Cow and Stud");
-					else if(pc.statusEffectv1("The Treatment") == 4) output2(" Maculine, Amazonian");
+					else if(pc.statusEffectv1("The Treatment") == 4) output2(" Masculine, Amazonian");
 					else if(pc.statusEffectv1("The Treatment") == 5) output2(" Feminine, Double Stud");
 					else if(pc.statusEffectv1("The Treatment") == 6) output2(" Feminine, Undersized");
 					// Timer stuff
