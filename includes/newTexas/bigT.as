@@ -569,7 +569,7 @@ public function pitchTOverATable():void
 	if(pc.cockTotal() > 1) output("s");
 	output(" in the most delicious way, sending jolts of delight coursing through your loins.");
 
-	output("\n\nYou moan and look forward, only to see Tee looking back with a cheeky white-toothed grin. You grab his steer horns and pull your [pc.cocks] back - you’re going to fuck him all right! With a powerful thrust, you bury [pc.biggestCock] deep inside of his massive pucker and sink it right down to the hilt. The governor groans as your [pc.biggestCockHead] teases the deepest part of his rectum, flexing and stretching against his warm insides.");
+	output("\n\nYou moan and look forward, only to see Tee looking back with a cheeky white-toothed grin. You grab his steer horns and pull your [pc.cocks] back - you’re going to fuck him all right! With a powerful thrust, you bury your [pc.biggestCock] deep inside of his massive pucker and sink it right down to the hilt. The governor groans as your [pc.biggestCockHead] teases the deepest part of his rectum, flexing and stretching against his warm insides.");
 	pc.cockChange();
 
 	output("\n\nA single flex of his donut around your [pc.sheath] and your mind utterly blanks with pleasure - one second the bull’s ass is loose, the next it’s achingly tight! It’s like your [pc.biggestCock] is on a rollercoaster ride. Giving yourself over to carnal desire, you grind your hips against his muscular ass, thoroughly fucking the big bull’s ass from behind with lusty abandon.");

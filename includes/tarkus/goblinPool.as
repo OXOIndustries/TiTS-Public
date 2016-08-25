@@ -1200,7 +1200,7 @@ public function arbetzSexScenes(response:String = ""):void
 		if (pc.tallness <= 54) output(" face");
 		else output(" [pc.chest]");
 		output(", she rides your spurting dick in total disregard, its rocklike state trapped within the squeeze of her pussy muscles as surely as if you were fitted with a cock-ring.");
-		output("\n\nYou refuse to give her inch - or rather, you want to give her every inch. You hammer your [pc.hips] into her with every pulse of your prick even as your cum");
+		output("\n\nYou refuse to give her an inch - or rather, you want to give her every inch. You hammer your [pc.hips] into her with every pulse of your prick even as your cum");
 		if (pc.isSquirter()) output(" gushes");
 		else output(" dribbles");
 		output(" filthily back out of her oozing lips, trying to force her to orgasm. Two of your fingers inch around an ample turquoise butt cheek and then suddenly spear past the tight ring of her anus; her thick, black lips open wide, she");
