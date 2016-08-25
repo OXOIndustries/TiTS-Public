@@ -6,9 +6,14 @@
 }
 public function saendraBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Needs nude and futa art!
-	//return chars["SAENDRA"].bustDisplay + (nude ? "_NUDE" : "");
-	return chars["SAENDRA"].bustDisplay;
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["SAENDRA"] != "ADJATHA") return chars["SAENDRA"].bustDisplay;
+	
+	var str:String = chars["SAENDRA"].bustDisplay;
+	
+	if(nude) str += "_NUDE";
+	
+	return str;
 }
 public function showSaendra(nude:Boolean = false):void
 {

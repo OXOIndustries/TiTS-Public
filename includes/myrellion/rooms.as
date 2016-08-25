@@ -1264,7 +1264,7 @@ public function initializeMyrellionRooms():void
 	//Street P20
 	rooms["817"] = new RoomClass(this);
 	rooms["817"].roomName = "\nSTREET";
-	rooms["817"].description = "A corner store here offers massages, hair treatments, and honey milkings for cheap. It seems to be closed at the moment, though, and most of its windows are covered with recruitment posters for the Republic Defense Force. Graffiti on the walls condemns the Federation occupation, and the war in general.\n\nTo the east is a huge warehouse, built partially into the cave wall, shadow and harsh light thrown across it by sparsely spaced spotlights. A rifle-armed red myr guards the timber entrance.";
+	rooms["817"].description = "A corner store here offers massages, hair treatments, and honey milkings for cheap. It seems to be closed at the moment, though, and most of its windows are covered with recruitment posters for the Republic Defense Force. Graffiti on the walls condemns the Federation occupation, and the war in general.";
 	rooms["817"].system = "SYSTEM: SINDATHU";
 	rooms["817"].planet = "PLANET: MYRELLION";
 	rooms["817"].northExit = "818";
@@ -1380,7 +1380,7 @@ public function initializeMyrellionRooms():void
 	//Park Path J16
 	rooms["824"] = new RoomClass(this);
 	rooms["824"].roomName = "\nSTREET";
-	rooms["824"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. Several myr of both gold and red persuasions are lounging around, clearly avoiding each other but all making them most of the fungal gardens and quiet ambiance.";
+	rooms["824"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. Several myr of both gold and red persuasions are lounging around, clearly avoiding each other but all making the most of the fungal gardens and quiet ambiance.";
 	rooms["824"].system = "SYSTEM: SINDATHU";
 	rooms["824"].planet = "PLANET: MYRELLION";
 	rooms["824"].westExit = "811";
@@ -1489,7 +1489,7 @@ public function initializeMyrellionRooms():void
 	// Bathen Hausen F10
 	rooms["831"] = new RoomClass(this);
 	rooms["831"].roomName = "BATH HOUSE\nFOYER";
-	rooms["831"].description = "The main room of the bath house is as opulent as you might have expected from a gold myr palace of pleasure: the structure seems to be made entirely of polished marble, gleaming white in the flicker of the electric lights mounted in the chandeliers. Despite the technological apparatus illuminating the hall, several sconces full of candles burn in alcoves set in regular intervals along the walls. The air is heavy with the luxurious smells of burning incense, bath salts, and just a hint of rich honey.\n\nMyr of both colorations are lounging around the lobby, either waiting their turns for the baths or wrapped up in toasty bathrobes after a dip. While most are keeping themselves discreetly segregated, there are a few red myr enjoying the attentions of their golden trench wives, or free golds flirtatiously teasing unsuspecting Federation soldiers.\n\nA matronly gold myr woman in a revealing white robe stands behind the a simple stone desk near the front door, her pillowy lips turned up into an ever-present smile. The hood of her robe is drawn up, and a veil covers her eyes down to the ridge of her nose, effectively blinding her. She seems to be the person you'd talk to about using the facilities here.";
+	rooms["831"].description = "The main room of the bath house is as opulent as you might have expected from a gold myr palace of pleasure: the structure seems to be made entirely of polished marble, gleaming white in the flicker of the electric lights mounted in the chandeliers. Despite the technological apparatus illuminating the hall, several sconces full of candles burn in alcoves set in regular intervals along the walls. The air is heavy with the luxurious smells of burning incense, bath salts, and just a hint of rich honey.\n\nMyr of both colorations are lounging around the lobby, either waiting their turns for the baths or wrapped up in toasty bathrobes after a dip. While most are keeping themselves discreetly segregated, there are a few red myr enjoying the attentions of their golden trench wives, or free golds flirtatiously teasing unsuspecting Federation soldiers.\n\nA matronly gold myr woman in a revealing white robe stands behind a simple stone desk near the front door, her pillowy lips turned up into an ever-present smile. The hood of her robe is drawn up, and a veil covers her eyes down to the ridge of her nose, effectively blinding her. She seems to be the person you'd talk to about using the facilities here.";
 	rooms["831"].system = "SYSTEM: SINDATHU";
 	rooms["831"].planet = "PLANET: MYRELLION";
 	rooms["831"].eastExit = "830";

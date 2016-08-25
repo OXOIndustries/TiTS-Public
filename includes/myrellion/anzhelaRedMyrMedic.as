@@ -84,7 +84,7 @@ public function approachAnzhela():void
 		//Have Found Pod:
 		if(reclaimedProbeMyrellion()) output(", particularly with");
 		//Else Still Searching:
-		else (". I’d be careful about searching around these parts, though. There’s");
+		else output(". I’d be careful about searching around these parts, though. There are");
 		output(" landmines all over, harmful spore plants, and nyrea running wild.”</i>");
 
 		output("\n\nAnzhela then gestures to her injured patients, some with swollen bellies and others wrapped in bandages. <i>“There’s beds to spare since the cease-fire, but I’d prefer not to see you get hurt, especially if you’ve come all this way to our planet.”</i>");
@@ -236,7 +236,7 @@ public function talkToAnzhelaAboutHerWork():void
 	clearOutput();
 	showAnzhela();
 	output("You ask Anzhela about her and her team’s work at at the central aid center. You’ve seen as many gold patients as red ones since you arrived.");
-	output("\n\n<i>“Well, there’s treating to the wounded, of course. Thankfully, there’s been hardly any critical injuries since the cease-fire - I wouldn’t have even had time to say ‘hello’ to you if you’d come in here several months ago,”</i> she blows the steam off her scova, then continues, <i>“... Most of the heavily wounded come from nyrea attacks, landmines, and scouts getting caught with their pants down.”</i>");
+	output("\n\n<i>“Well, there’s tending to the wounded, of course. Thankfully, there’s been hardly any critical injuries since the cease-fire - I wouldn’t have even had time to say ‘hello’ to you if you’d come in here several months ago,”</i> she blows the steam off her scova, then continues, <i>“... Most of the heavily wounded come from nyrea attacks, landmines, and scouts getting caught with their pants down.”</i>");
 
 	//MetLieve:
 	if(flags["MET_LIEVE"] != undefined)
@@ -306,7 +306,7 @@ public function talkToAnzhelaAboutShellshock():void
 	output("\n\n<i>“Our current theory is that it’s caused by the psychological trauma of battle, though some commanders still chalk it up to ‘cowardice’ or a ‘lack of moral fiber’.”</i>");
 	output("\n\nShe taps the side of her glasses, <i>“You can usually tell who’s got it by the ‘thousand yard stare’ they’ve got - the afflicted will just stare off into space, completely unaware of what’s going on around them. They make up the most habitual users of Ruby as well.”</i>");
 	output("\n\n<i>“In the worst cases, the patient loses all sense of reason and becomes utterly unpredictable. Quite a lot of them are put on trial for desertion or cowardice.”</i>");
-	output("\n\nLeaning back in her chair, Anzhela looks up at the decaying office roof. <i>“... Still, convincing a military court that a soldier is suffering shell-shock is tricky business - assuming it gets to a court. Out in the field, there’s no physicians to vouch for their actions. It’s an issue that, like the trench-wives, High Command would prefer to ignore.”</i>");
+	output("\n\nLeaning back in her chair, Anzhela looks up at the decaying office roof. <i>“... Still, convincing a military court that a soldier is suffering from shell-shock is tricky business - assuming it gets to a court. Out in the field, there’s no physicians to vouch for their actions. It’s an issue that, like the trench-wives, High Command would prefer to ignore.”</i>");
 	output("\n\nAnzhela then shakes her head and gives you a strained smile. <i>“I’m sorry, I got a little maudlin there. It’s symptomatic of being in a mobile army surgery hospital. Thank you for lending an ear. It’s strange to be the one talking instead of listening for once.”</i>");
 	// Return to ‘Her Work’ Talk Menu.
 	processTime(4);
@@ -428,6 +428,9 @@ public function talkToAnzhelaAboutHerPast():void
 	output("\n\n<i>“Only ex-military got a say in what happened then. I remember being so angry about it - I decided to join SCARMED for two reasons. One was to treat the many war-wounded that would need my help.”</i>");
 	output("\n\n<i>“The second was to be able to vote. My parents, even though they were upstanding citizens valued by their community, could never vote or take public office simply because they weren’t veterans.”</i>");
 	output("\n\n<i>“Maybe... maybe if more people had been able to vote...”</i> the doctor shakes her head, <i>“Sorry. None of that matters now, right? We are where we are.”</i>");
+	
+	flags["ANZHELA_HERPAST_TALK"] = 1;
+	
 	// Return to Regular Talk Menu.
 	processTime(4);
 	clearMenu();
@@ -755,7 +758,7 @@ public function sReliefAnn():void
 		}
 		else output("your [pc.thighs] quake and you bite your lower lip.");
 
-		output("\n\nWith a quirked eyebrow, Anzhela reaches down and strokes your [pc.thigh]. She traces her long talented fingers ever so close to your ");
+		output("\n\nWith a quirked eyebrow, Anzhela reaches down and strokes your [pc.thigh]. She traces her long, talented fingers ever so close to your ");
 		if(pc.hasVagina()) output("moist");
 		if(pc.isHerm()) output(" and ");
 		if(pc.hasCock()) output("raging");
@@ -767,7 +770,7 @@ public function sReliefAnn():void
 		else output("chest");
 		output(", sensuously suckling upon it. You moan in delight. She nibbles upon it; ravenous, hungry, insistent.");
 
-		output("\n\n<i>“... It’s a very bad thing for soldiers to go in the field while they’re all pent up, you know? You can lose a battle that way; it’s better if you let out all here, off the field");
+		output("\n\n<i>“... It’s a very bad thing for soldiers to go out in the field while they’re all pent up, you know? You can lose a battle that way; it’s better if you let all out here, off the field");
 		if(pc.hasCock()) output(", or perhaps in mine?");
 		else output(".");
 		output("”</i>");
@@ -881,7 +884,7 @@ public function hikeAndFuck():void
 
 	output("\n\nSliding your hands up Anzhela’s stocking-clad thighs, you slip up her black mini-skirt until it is bunched around her waist. Like an unwrapped present, her pert round buttocks are exposed to you, perfectly framed by her garter belt.");
 	output("\n\nGrabbing her hips, you slide [pc.oneCock] between her thighs. As you stroke it back and forth against her cloth-covered mound, the curly-haired doctor lets out a shivering moan.");
-	output("\n\n<i>“I... I need your [pc.cockNounSimple " + x + "],”</i> the scarlet skinned woman huskily moans, rubbing her panty clad crotch along your " + num2Text(Math.floor(pc.cocks[x].cLength())) + "-inch pillar.");
+	output("\n\n<i>“I... I need your cock,”</i> the scarlet skinned woman huskily moans, rubbing her panty clad crotch along your " + num2Text(Math.floor(pc.cocks[x].cLength())) + "-inch pillar.");
 
 	output("\n\nYou grab Anzhela’s panties and slide them down her stocking-clad thighs. The doctor is now in an incredibly lewd position; her skirt and coat hiked up as her underwear sexily clings to her knees.");
 

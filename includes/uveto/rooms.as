@@ -75,9 +75,10 @@ public function initUvetoRooms():void
 	/* Space Elevator */
 	rooms["UVS LIFT"] = new RoomClass(this);
 	rooms["UVS LIFT"].roomName = "SPACE\nELEVATOR";
-	rooms["UVS LIFT"].description = "";
+	rooms["UVS LIFT"].description = "You find yourself inside the huge Uveto Station space elevator.";
 	rooms["UVS LIFT"].planet = "UVETO STATION";
 	rooms["UVS LIFT"].system = "SYSTEM: SIRETTA";
+	rooms["UVS LIFT"].runOnEnter = uvetoSpaceElevatorInBonus;
 	rooms["UVS LIFT"].addFlag(GLOBAL.INDOOR);
 
 	/* Store? */

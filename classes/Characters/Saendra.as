@@ -1,5 +1,6 @@
 package classes.Characters 
 {
+	import classes.kGAMECLASS;
 	import classes.BreastRowClass;
 	import classes.CockClass;
 	import classes.Creature;
@@ -180,10 +181,19 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
+			// 9999 - Pre-cyborg version!
+			if(flags["FALL OF THE PHOENIX STATUS"] != 1) return "SAENDRA";
+			
 			var str:String = "SAENDRA";
 			
-			// 9999 - Futafication
-			//if(hasCock()) str += "_FUTA";
+			// Futafication
+			if(hasCock())
+			{
+				// 9999 - Special artist exceptions!
+				if(kGAMECLASS.gameOptions.configuredBustPreferences["SAENDRA"] != "ADJATHA") return str;
+				
+				str += "_FUTA";
+			}
 			
 			return str;
 		}

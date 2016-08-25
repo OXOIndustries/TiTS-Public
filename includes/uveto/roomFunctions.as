@@ -41,6 +41,15 @@ public function uvetoShipDock():Boolean
 	return false;
 }
 
+// Save failsafe (due to huskar puppysloots!)
+public function uvetoSpaceElevatorInBonus():Boolean
+{
+	output("\n\nWhere do you want to get off at?");
+	addButton(5,"Up",rideSpaceElevatorUp,undefined,"Space Elevator: Up","Ride the space elevator up to the station.");
+	addButton(7,"Down",rideSpaceElevatorDown,undefined,"Space Elevator: Down","Ride the space elevator down to the ice moon's surface.");
+	return true;
+}
+
 public function uvetoSpaceElevatorBaseBonus():Boolean
 {
 	if (flags["UVETO_GREETING_PARTY"] == undefined)
@@ -152,6 +161,7 @@ public function rideSpaceElevatorUp():void
 	
 	if (flags["UVETO_HUSKAR_FOURSOME"] == undefined && annoIsCrew() && flags["ANNO_MISSION_OFFER"] == 3)
 	{
+		rooms["UVS LIFT"].outExit = null;
 		annoUvetoHuskarFoursome();
 	}
 	else
@@ -222,7 +232,7 @@ public function flyToUveto():void
 		if (flags["MET_ORRYX"] != undefined) output(" You recognize the creature as a tove, the tiny, stuffed-animal-like race.");
 		else output(" You’re not sure what this plush-furred, squat creature is, but its beak clacks open and shut comically as it speaks.");
 		
-		output("\n\n<i>“You’ve entered into privately-owned orbital space. If you would like to dock with Camarilla station number six-three-two-oh-one, a wabeshift will intercept your path in approximately 1 hour.  Please use the time to fill out all waivers and declarations for quick and easy processing.”</i>");
+		output("\n\n<i>“You’ve entered into privately-owned orbital space. If you would like to dock with Camarilla station number six-three-two-oh-one, a wabeshift will intercept your path in approximately 1 hour. Please use the time to fill out all waivers and declarations for quick and easy processing.”</i>");
 		
 		output("\n\nYou hear multiple bings as a side monitor opens a cascade of pure-text forms and contracts. <i>“If you do not have business with the Camarilla at this time, I encourage you to adjust your orbit elsewhere, as any undocumented entry onto this planet will be construed as a breach of corporate treaty and we will be forced to sue with extreme prejudice.”</i>");
 
@@ -234,7 +244,7 @@ public function flyToUveto():void
 		
 		output("\n\nFrom what you’ve seen of the monetary penalties mentioned on every line of these documents, you’re pretty sure that means a lot coming from him.");
 		
-		output("\n\n<i>“Nono, no Tove sets down on there for more than a day or so.  However, we are the official representatives of the multi-corporate trade conglomerate that owns Uveto, pursuant to Confederate Mega-Corporate bylaws. The Camarilla is also of course responsible for the safety and security of a nativized race of ausar, who we care for greatly.”</i>");
+		output("\n\n<i>“Nono, no Tove sets down on there for more than a day or so. However, we are the official representatives of the multi-corporate trade conglomerate that owns Uveto, pursuant to Confederate Mega-Corporate bylaws. The Camarilla is also of course responsible for the safety and security of a nativized race of ausar, who we care for greatly.”</i>");
 		
 		output("\n\nHis beaked, four-eyed face is very hard to read, but you have your suspicions about that last part.");
 		
@@ -876,7 +886,7 @@ public function uvetoIrson3():void
 
 public function uvetoStationLoungeFunc():Boolean
 {
-	if (flags["UVETO_HUSKAR_FOURSOME"] != undefined && flags["UVETO_HUSKAR_FOURSOME"] == 1 && hours >= 12 && hours <= 15 && annoIsCrew() && flags["ANNO_MISSION_OFFER"] != undefined && flags["ANNO_MISSION_OFFER"] == 3 && flags["UVETO_HUSKAR_LAST_DAY"] != undefined && flags["UVETO_HUSKAR_LAST_DAY"] < days)
+	if (uvetoStationLoungeHuskarBimboActive())
 	{
 		output("\n\nGalina and Marina are lounging around in the cafe, probably on their lunch break. Though they're happily chattering away over their plates and fooling around with data-pads loaded with more science than you can shake a textbook at, they're perfectly willing to stop and flash you inviting smiles when you pass by.");
 		addButton(0, "Huskars", annoUvetoHuskarFoursomeRepeat, undefined, "Huskar Twins", "Go over and see if you can stir up some sexy trouble with the bimbo-geniuses.");

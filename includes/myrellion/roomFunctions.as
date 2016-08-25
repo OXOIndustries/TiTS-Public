@@ -508,6 +508,8 @@ public function kressiaWarehouseExterior():Boolean
 {
 	if (kressiaBasicBonusBitches()) return true;
 	
+	setNavDisabled(NAV_EAST_DISABLE);
+	
 	if (flags["FAZIAN_QUEST_RESCUE_TIMER"] != undefined)
 	{
 		if (flags["FAZIAN_QUEST_RESCUE_TIMER"] + (6 * 60) >= GetGameTimestamp())
@@ -518,13 +520,15 @@ public function kressiaWarehouseExterior():Boolean
 		{
 			output("\n\nTo the east looms the warehouse. A grim-faced kui-tan is in terse discussion with a group of red myr military brass in front of the main gate. Three other reds are popping the flashbulbs of their primitive recording devices at every inch of the warehouse’s grim facade.");
 		}
+		return false;
 	}
-	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_RESCUE)
+	
+	output("\n\nTo the east is a huge warehouse, built partially into the cave wall, shadow and harsh light thrown across it by sparsely spaced spotlights. A rifle-armed red myr guards the timber entrance.");
+	
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_RESCUE)
 	{
 		addButton(0, "Approach", fazianQuestApproachWarehouse);
 	}
-	
-	setNavDisabled(NAV_EAST_DISABLE);
 	
 	return false;
 }
