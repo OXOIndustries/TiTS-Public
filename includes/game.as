@@ -1503,6 +1503,15 @@ public function variableRoomUpdateCheck():void
 	
 	/* UVETO */
 	
+	// Huskar Bimbos
+	if(uvetoStationLoungeHuskarBimboActive())
+	{
+		rooms["UVS B7"].addFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["UVS B7"].removeFlag(GLOBAL.NPC);
+	}
 	// Shade Lover letter and home stuff
 	if(MailManager.isEntryViewed("letter_from_shade") && flags["SHADE_ON_UVETO"] == 2 && shadeIsLover() && (shadeIsSiblings() || hours >= 16))
 	{

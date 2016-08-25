@@ -2867,15 +2867,25 @@ public function annoFollowerTailcockSex(asFollower:Boolean = true):void
 	addButton(0,"Next",mainGameMenu);
 }
 
+// Anno-Huskar Foursome
+public function uvetoStationLoungeHuskarBimboActive():Boolean
+{
+	return (flags["UVETO_HUSKAR_FOURSOME"] != undefined && flags["UVETO_HUSKAR_FOURSOME"] == 1 && hours >= 12 && hours <= 15 && annoIsCrew() && flags["ANNO_MISSION_OFFER"] != undefined && flags["ANNO_MISSION_OFFER"] >= 3 && flags["UVETO_HUSKAR_LAST_DAY"] != undefined && flags["UVETO_HUSKAR_LAST_DAY"] < days);
+}
+
 public function annoUvetoHuskarFoursome():void
 {
 	showBust("ANNO", "MARINA", "GALINA");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
+	
+	rooms["UVS B7"].addFlag(GLOBAL.NPC);
+	currentLocation = "UVS B7";
+	generateMap();
 
 	output("\n\nAs you step off the elevator and back into the familiar, sterile atmosphere of Uveto Station, the normal quiet bustle of the station center is broken by a chorus of bubbly, girlish laughter. You glance around, vaguely thinking that at least one of those voices sounds familiar, and find your attention drawn to the open cafe just down the way.");
 	
-	output("\n\nSure enough, a certain snowy-haired ausar babe is sitting at the nearest table, eagerly chatting away with a pair of husky huskar... aren’t those the two who <i>“greeted”</i> you before you first when moon-side? One in a Steele Tech jumpsuit just like Anno’s, if a bit more plus-sized, and the other in a sleek blue Akkadi uniform. Now that you’ve got a look at them from a distance, though, the change in clothes is about the only thing distinguishing one from the other: they’ve got the same voluptuously hourglass figure, the same long silver hair and manes of fluff around the neck... even the same mirthful blue eyes. Either those two are twins, or they’ve got some awesome tandem mod-work done.");
+	output("\n\nSure enough, a certain snowy-haired ausar babe is sitting at the nearest table, eagerly chatting away with a pair of husky huskar... aren’t those the two who <i>“greeted”</i> you before you first went moon-side? One in a Steele Tech jumpsuit just like Anno’s, if a bit more plus-sized, and the other in a sleek blue Akkadi uniform. Now that you’ve got a look at them from a distance, though, the change in clothes is about the only thing distinguishing one from the other: they’ve got the same voluptuously hourglass figure, the same long silver hair and manes of fluff around the neck... even the same mirthful blue eyes. Either those two are twins, or they’ve got some awesome tandem mod-work done.");
 	
 	output("\n\nWithout really thinking, you wander over and plant a hand on Anno’s shoulder and say hello. She gasps and giggles the moment you announce yourself, swatting your [pc.legOrLegs] non-stop with the bushy white tail sticking out the back of her chair. <i>“Hey, boss! We were just sitting down to eat!");
 	if (pc.isTaur()) output(" Plant your pony butt over here and join us!");
@@ -2913,24 +2923,24 @@ public function annoUvetoHuskarFoursome():void
 	{
 		if (completedStellarTetherGood())
 		{
-			output(" About how you wrecked those nasty evil pirates that wanted to blow up a whole planet!");
+			output("About how you wrecked those nasty evil pirates that wanted to blow up a whole planet!");
 		}
 		if (nyreaDungeonFinished())
 		{
 			if (completedStellarTetherGood()) output(" And how");
-			else output(" How");
+			else output("How");
 			output(" you took on a whole palace full of amazon bug warrior people just to save your cousin!");
 		}
 		if (completedKQ2Good())
 		{
 			if (completedStellarTetherGood() || nyreaDungeonFinished()) output(" Or how");
-			else output(" That");
+			else output("That");
 			output(" you took on a whole base of pirates all by yourself!");
 		}
 	}
 	else
 	{
-		output(" All about your sexy, awesome stories together.");
+		output("All about your sexy, awesome stories together.");
 	}
 	output("”</i>");
 	
@@ -2972,6 +2982,7 @@ public function annoUvetoHuskarFoursomeII():void
 	output("\n\nSomething tells you getting into a private, confined space with three oversexed puppy-girls is only going to end one way...");
 
 	processTime(30);
+	pc.energy(30);
 
 	clearMenu();
 	addButton(0, "No Thanks", annoUvetoHuskarFoursomeNoThanks, undefined, "No Thanks", "You’ll take a pass on this one.");
@@ -3008,8 +3019,12 @@ public function annoUvetoHuskarFoursomeSure():void
 	showBust("ANNO_NUDE", "MARINA_NUDE", "GALINA_NUDE");
 	showName("ANNO &\nFRIENDS");
 	author("Savin");
-
-	output("<i>“Lead the way,”</i> you tell the pair, standing. They both grin and hop up, each taking one of your arms and angling you towards the Steele Tech branch. You feel Anno’s hand on your waist, loyally following along at the back of a trail of eagerly wagging tails and giggling huksy-girls.");
+	
+	// 9999 - Move to Steele Tech branch?
+	//currentLocation = "";
+	//generateMap();
+	
+	output("<i>“Lead the way,”</i> you tell the pair, standing. They both grin and hop up, each taking one of your arms and angling you towards the Steele Tech branch. You feel Anno’s hand on your waist, loyally following along at the back of a trail of eagerly wagging tails and giggling husky-girls.");
 	
 	output("\n\nThe station’s small enough that walking from the cafe to the office block is a matter of moments, and soon your troupe is bustling into a brightly lit office bearing the name <i>“Dr. Galina Avorne, P.h.D.”</i> followed by several ausari intellectual titles. The suite is relatively cramped once the four of you are inside, crowding around a shiny metal desk dominated by a triple-screen holoprojector, a bowl of lolipops, and several sealed containers of minerals all about the size of your pinky. The walls are covered in various Steele-themed travel advertisements, mostly of pretty core-ward planets and space vistas. More than one have small holos imbedded, making starts zip around or showing a repeating galaxyrise over an alien vista.");
 	
@@ -3067,8 +3082,8 @@ public function annoUvetoHuskarFoursomeMenu():void
 {
 	clearMenu();
 	addButton(0, "Mount Up", annoUvetoHuskarFoursomeMountUp, undefined, "Mount Up", "Have the scientist puppies put that giant alien donger to use on you. No doubt there's going to be an awful lot of oral action surrounding that whole affair... especially if Anno works them from behind while the twins tend to your [pc.vagOrAss]!");
-	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "Pound Puppies", annoUvetoHuskarFoursomePoundPuppies, undefined, "Pound Puppies", "They're practically begging for it at this point. Bend the twins over one after the other, maybe even at the same time if Anno can put that huge alien prick to use alongside you. She's totally loose enough to take that blunt end and use it like a strapon of her own.");
-	else addDisabledButton(1, "Pound Puppies", "Pound Puppies", "You'd need a dick of some description to pound these puppies.");
+	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "PoundPuppies", annoUvetoHuskarFoursomePoundPuppies, undefined, "Pound Puppies", "They're practically begging for it at this point. Bend the twins over one after the other, maybe even at the same time if Anno can put that huge alien prick to use alongside you. She's totally loose enough to take that blunt end and use it like a strapon of her own.");
+	else addDisabledButton(1, "PoundPuppies", "Pound Puppies", "You'd need a dick of some description to pound these puppies.");
 }
 
 public function annoUvetoHuskarFoursomeMountUp():void
@@ -3261,20 +3276,12 @@ public function annoUvetoHuskarFoursomeMountUpIV():void
 	output(" like jelly, quaking when you try to move. The pair of you turn more than a few heads walking back out of the office, but... well, who really cares? Worth it.");
 
 	IncrementFlag("UVETO_HUSKAR_FOURSOME_MOUNTUP");
+	flags["UVETO_HUSKAR_LAST_DAY"] = days;
 	
 	processTime(15);
 	clearMenu();
 	
-	if (flags["UVETO_HUSKAR_LAST_DAY"] == undefined)
-	{
-		addButton(0, "Next", move, rooms[currentLocation].outExit);
-	}
-	else
-	{
-		addButton(0, "Next", mainGameMenu);
-	}
-	
-	flags["UVETO_HUSKAR_LAST_DAY"] = days;
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function annoUvetoHuskarFoursomePoundPuppies():void
