@@ -428,6 +428,9 @@ public function talkToAnzhelaAboutHerPast():void
 	output("\n\n<i>“Only ex-military got a say in what happened then. I remember being so angry about it - I decided to join SCARMED for two reasons. One was to treat the many war-wounded that would need my help.”</i>");
 	output("\n\n<i>“The second was to be able to vote. My parents, even though they were upstanding citizens valued by their community, could never vote or take public office simply because they weren’t veterans.”</i>");
 	output("\n\n<i>“Maybe... maybe if more people had been able to vote...”</i> the doctor shakes her head, <i>“Sorry. None of that matters now, right? We are where we are.”</i>");
+	
+	flags["ANZHELA_HERPAST_TALK"] = 1;
+	
 	// Return to Regular Talk Menu.
 	processTime(4);
 	clearMenu();
@@ -755,7 +758,7 @@ public function sReliefAnn():void
 		}
 		else output("your [pc.thighs] quake and you bite your lower lip.");
 
-		output("\n\nWith a quirked eyebrow, Anzhela reaches down and strokes your [pc.thigh]. She traces her long talented fingers ever so close to your ");
+		output("\n\nWith a quirked eyebrow, Anzhela reaches down and strokes your [pc.thigh]. She traces her long, talented fingers ever so close to your ");
 		if(pc.hasVagina()) output("moist");
 		if(pc.isHerm()) output(" and ");
 		if(pc.hasCock()) output("raging");
@@ -767,7 +770,7 @@ public function sReliefAnn():void
 		else output("chest");
 		output(", sensuously suckling upon it. You moan in delight. She nibbles upon it; ravenous, hungry, insistent.");
 
-		output("\n\n<i>“... It’s a very bad thing for soldiers to go in the field while they’re all pent up, you know? You can lose a battle that way; it’s better if you let out all here, off the field");
+		output("\n\n<i>“... It’s a very bad thing for soldiers to go out in the field while they’re all pent up, you know? You can lose a battle that way; it’s better if you let all out here, off the field");
 		if(pc.hasCock()) output(", or perhaps in mine?");
 		else output(".");
 		output("”</i>");
@@ -881,7 +884,7 @@ public function hikeAndFuck():void
 
 	output("\n\nSliding your hands up Anzhela’s stocking-clad thighs, you slip up her black mini-skirt until it is bunched around her waist. Like an unwrapped present, her pert round buttocks are exposed to you, perfectly framed by her garter belt.");
 	output("\n\nGrabbing her hips, you slide [pc.oneCock] between her thighs. As you stroke it back and forth against her cloth-covered mound, the curly-haired doctor lets out a shivering moan.");
-	output("\n\n<i>“I... I need your [pc.cockNounSimple " + x + "],”</i> the scarlet skinned woman huskily moans, rubbing her panty clad crotch along your " + num2Text(Math.floor(pc.cocks[x].cLength())) + "-inch pillar.");
+	output("\n\n<i>“I... I need your cock,”</i> the scarlet skinned woman huskily moans, rubbing her panty clad crotch along your " + num2Text(Math.floor(pc.cocks[x].cLength())) + "-inch pillar.");
 
 	output("\n\nYou grab Anzhela’s panties and slide them down her stocking-clad thighs. The doctor is now in an incredibly lewd position; her skirt and coat hiked up as her underwear sexily clings to her knees.");
 

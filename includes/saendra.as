@@ -7,7 +7,7 @@
 public function saendraBustDisplay(nude:Boolean = false):String
 {
 	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["SAENDRA"] != "ADJATHA") return "SAENDRA";
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["SAENDRA"] != "ADJATHA") return chars["SAENDRA"].bustDisplay;
 	
 	var str:String = chars["SAENDRA"].bustDisplay;
 	
