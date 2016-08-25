@@ -1809,7 +1809,7 @@ public function annoFollowerSpecialGear():void
 	clearMenu();
 
 	// Merc/Smuggler + Quest Done
-	if (flags["ANNO_MISSION_OFFER"] == 3 && !anno.hasItem(new HoldoutHP()))
+	if ((pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.characterClass == GLOBAL.CLASS_MERCENARY) && flags["ANNO_MISSION_OFFER"] == 3 && !anno.hasItem(new HoldoutHP()))
 	{
 		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, undefined, "Her Gun", "Ask Anno about her personal gun. That didn't seem like a stock model.")
 	}
