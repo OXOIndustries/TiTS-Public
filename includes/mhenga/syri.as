@@ -1239,9 +1239,9 @@ public function syriSexOutro():void {
 
 	clearMenu();
 
-	addButton(1,"Sure",sureUseMyShowerAndClogTheDrainWithDogHair);
-	if(pc.libido() >= 60 || pc.lust() >= 33) addButton(2,"Don't Go",dontGoAwayYouKnotCunt);
-	else addDisabledButton(2,"Don't Go");
+	addButton(0,"Sure",sureUseMyShowerAndClogTheDrainWithDogHair);
+	if(pc.libido() >= 60 || pc.lust() >= 33) addButton(1,"Don't Go",dontGoAwayYouKnotCunt);
+	else addDisabledButton(1,"Don't Go","Don't Go","You're not aroused or sexually driven enough to continue!");
 }
 
 //Don't Go

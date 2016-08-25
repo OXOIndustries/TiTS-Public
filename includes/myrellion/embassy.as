@@ -39,7 +39,8 @@ public function theEmbassyBonusFunc():Boolean
 			//Repeat:
 			else output("\n\nLyralla's desk is empty again, and Juro isn't in sight. They must have escaped to another sensuous closet rendezvous.");
 			//[Closet]
-			addButton(1,"Closet",catchLyrallaInZeAct,undefined,"Closet","Lyralla and Juro must be in there....");
+			if(pc.hasStatusEffect("JuroXLyrallaCooldown")) addDisabledButton(1,"Closet","Closet","You’ve just seen them in action--Better not risk getting caught!");
+			else addButton(1,"Closet",catchLyrallaInZeAct,undefined,"Closet","Lyralla and Juro must be in there....");
 			removeButton(0);
 		}
 		else 
@@ -56,7 +57,11 @@ public function lyrallaAndJuroInCloset():Boolean
 	if(flags["LYRALLA_AND_JURO_RELATIONSHIP_HINTED_AT"] != undefined)
 	{
 		//Is cooldown up? If so, no go.
-		if(pc.hasStatusEffect("JuroXLyrallaCooldown")) return false;
+		if(pc.hasStatusEffect("JuroXLyrallaCooldown"))
+		{
+			if(pc.getStatusMinutes("JuroXLyrallaCooldown") < 970) return false;
+			return true;
+		}
 		//Are they still in the closet from a previous proc? If so, yes.
 		if(pc.hasStatusEffect("JuroXLyrallaActive")) return true;
 		//Not currently in the closet and no reason not to be. 1/3 chance of starting it.

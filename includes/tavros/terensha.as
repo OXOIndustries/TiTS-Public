@@ -118,8 +118,12 @@ public function meetingTerensha():void
 		else
 		{
 			clearMenu();
-			if(pc.hasCock()) addButton(0,"Quick Fuck",meetingTerenshaDancing);
-			else addDisabledButton(0,"Quick Fuck","Quick Fuck","You'll probably need a penis for that though...");
+			if(pc.credits >= 100)
+			{
+				if(pc.hasCock()) addButton(0,"Quick Fuck",meetingTerenshaDancing,undefined,"Quick Fuck","Pay Terensha to give you a quick fuck on the spot.\n\nCosts 100 Credits.");
+				else addDisabledButton(0,"Quick Fuck","Quick Fuck","You'll probably need a penis for that though...\n\nCosts 100 Credits.");
+			}
+			else addDisabledButton(0,"Quick Fuck","Quick Fuck","You don't have enough credits for that.\n\nCosts 100 Credits.");
 			addButton(14,"Back",mainGameMenu);
 		}
 		return;
@@ -142,12 +146,12 @@ public function rensMainMenu():void
 	if(pc.exhibitionism() >= 33 || pc.isBimbo() || pc.isBro()) 
 	{
 		if(pc.credits >= 75) addButton(0,"Table Service",renTableServe,undefined,"Table Service","Purchase some quick and dirty service here at Ren’s table. Should run you about 75 Credits.");
-		else addDisabledButton(0,"Table Service","Table Service","You can't afford that.");
+		else addDisabledButton(0,"Table Service","Table Service","You can't afford that.\n\nCosts 75 Credits.");
 	}
 	else addDisabledButton(0,"Table Service","Table Service","This place is a little public for that sort of thing... You'd need to be a lot sluttier for something like that.");
 	
 	if(pc.credits >= 100) addButton(1,"Room Service",roomServiceFromRensa,undefined,"Room Service","Pay Terensha to take you down to her room and give you intimate attention.\n\nCosts 100 Credits.");
-	else addDisabledButton(1,"Room Service","Room Service","You don't have enough credits for that.");
+	else addDisabledButton(1,"Room Service","Room Service","You don't have enough credits for that.\n\nCosts 100 Credits.");
 
 	if(flags["REQUEST_REN_HOME"] == undefined) addButton(2,"My Place?",tryToGoToHerPlace,undefined,"My Place?","Ask if the two of you could maybe get out of here and head back to your place... a much more intimate setting.");
 	else addDisabledButton(2,"My Place?","My Place?","You tried that. It didn't work.");
@@ -941,6 +945,8 @@ public function meetingTerenshaDancing():void
 	output(". <i>“Guess you’ve gotten a little pent up watching - or is this all for me? Either way, how about you trade me a few credits and I help you take care of that? Half goes to the tits on stage, so consider it your tip if you want.”</i>");
 
 	output("\n\nYou nod eagerly, digging your Codex out of your pack. Ren smiles and plucks a tiny data-reader off a belt on her leg and swipes your Codex, docking your your credits. Satisfied, she returns the device and plucks a bottle of translucent lubrication beside it. <i>“Perfect, cow[pc.boyGirl]. Now just relax and enjoy the show!”</i>");
+	
+	pc.credits -= 100;
 
 	output("\n\nThe horny halfbreed gives you a green-lipped smile as she crawls down from the table and into your lap, grabbing your [pc.cock] firmly as she settles in. ");
 	if(!pc.isCrotchExposed()) output("With practiced ease, Ren fishes your cock out of your clothing and gives it an experimental tug - just enough to get you diamond hard. ");
@@ -1046,7 +1052,8 @@ public function askAboutRensSuit():void
 	output("\n\n<i>“Gonna warn you now, though. There’s a story involved, and it’s not a sexy one. Up to you.”</i>");
 
 	clearMenu();
-	addButton(0,"Okay", tellMeYourStoryRen,undefined, "Okay", "That's a cheap price for what promises to be an interesting story. Why not?");
+	if(pc.credits >= 10) addButton(0, "Okay", tellMeYourStoryRen,undefined, "Okay", "That's a cheap price for what promises to be an interesting story. Why not?\n\nCosts 10 Credits.");
+	else addDisabledButton(0, "Okay", "Okay", "That's a cheap price... but it's not one you can afford.\n\nCosts 10 Credits.");
 	addButton(1,"Nevermind", jkNevermindRen);
 }
 
@@ -1070,12 +1077,7 @@ public function tellMeYourStoryRen():void
 
 	output("You nod and slip out of the booth, heading over to the bar. Doing your best to guess Ren’s preferences, you drop a few credits on a bottle of something green and gryvain-made, and turn back in time to see the catsuited whore walking towards the door down. You catch up easily enough, and soon find a sinuous tail coiling around your [pc.hips], guiding you downstairs alongside her.");
 
-	output("\n\nRen stops at the door with her name in glowing holographics and punches a code into the credit pad next to it, overriding it. The doors hisses, sliding aside. The halfbreed beckons you inside, purloining the bottle as you pass and following you in. When the door seals shut again, she takes a deep breath and plops down on the side of the bed, taking a long swig from the bottle. You ");
-
-		if(pc.isTaur()) output("plant yourself on your bestial behind");
-		else output("pull up a chair");
-
-	output("facing her, waiting for her to speak.");
+	output("\n\nRen stops at the door with her name in glowing holographics and punches a code into the credit pad next to it, overriding it. The doors hisses, sliding aside. The halfbreed beckons you inside, purloining the bottle as you pass and following you in. When the door seals shut again, she takes a deep breath and plops down on the side of the bed, taking a long swig from the bottle. You " + (pc.isTaur() ? "plant yourself on your bestial behind" : "pull up a chair") + "facing her, waiting for her to speak.");
 
 	output("\n\nRen finishes off what must be half the bottle before she finally sets it aside, planting her hands on her knees and looking you in the eye.");
 
@@ -1097,7 +1099,6 @@ public function tellMeYourStoryRen():void
 
 	clearMenu();
 	addButton(0,"Next",tellMeYourStoryRenPart2);
-
 }
 
 public function tellMeYourStoryRenPart2():void
@@ -1125,14 +1126,15 @@ public function tellMeYourStoryRenPart2():void
 
 	output("\n\nShe giggles pleasantly. <i>“Yeah, I’m in my senior year for whore-ology. I hear slut degrees are in high demand here on the frontier!”</i> Ren rolls her eyes and flops back on the bed, sprawling out. <i>“I’m studying astrophysics, actually. Specializing in warp field theory. That’s one of the reasons I’m out here instead of home on Vendiko: I love space!”</i>");
 
-	if (flags["ANNO_CREWMEMBER"] == 1) {
+	if (flags["ANNO_CREWMEMBER"] == 1)
+	{
 		flags["ANNO_REN_TUTOR"] = 1;
 
 		output("\n\nWait, she’s studying the Warp Gates? You lean over and ask if she’s ever heard of an Anno Dorna.");
 
 		output("\n\n<i>“Doctor Dorna?”</i> Ren asks back, propping herself up on her elbows and looking at you. <i>“Sure, of course. A couple of her papers on warp field miniaturization are required reading. You studying warp physics too, [pc.name]?”</i>");
 
-		output("\n\nNo, you just happen to have </i>Doctor<i> Dorna on your crew these days.");
+		output("\n\nNo, you just happen to have <i>Doctor</i> Dorna on your crew these days.");
 
 		output("\n\nRen practically shoots upright, blinking at you. <i>“Wh- how? Seriously?”</i>");
 
@@ -1140,36 +1142,33 @@ public function tellMeYourStoryRenPart2():void
 
 		output("\n\n<i>“Woah. Gimme the hook up, [pc.name]. I’d love to pick her brain on-”</i>");
 
-		output("\n\nOkay, okay. Before she starts spouting ");
-			if (pc.isTreated()) output("nerd stuff");
-			else output("science that’s way over your head");
-		output(" you pull out your Codex and bring up your contacts book. Before you hand over Anno’s address, though... maybe Terensha could find a way to make it worth your while?");
+		output("\n\nOkay, okay. Before she starts spouting " + (pc.isTreated() ? "nerd stuff" : "science that’s way over your head") + " you pull out your Codex and bring up your contacts book. Before you hand over Anno’s address, though... maybe Terensha could find a way to make it worth your while?");
 
 		output("\n\nShe laughs and hops to her feet, pushing the button on the back of her harness. The dark purple latex shoots out from it like webbing, spreading across her body and sealing her back in. She shivers at the return of sensation, then turns to you with a grin.");
 
 		output("\n\n<i>“You drive suuuuch a hard bargain,”</i> she teases, tracing a pair of fingers along the side of the bed. <i>“I’m all yours, cow[pc.boyGirl]. Should I be on top, or ");
-			if (pc.hasCock()) output("are you gonna bend me over and pound me into this bed?”</i> she smirks, wiggling her inhumanly broad hips for you.");
-			else output("would you rather take my big bad dragon for a ride?”</i> she smirks, shaking her hips in a way that makes her half-hard cock swing for you.");
+		if (pc.hasCock()) output("are you gonna bend me over and pound me into this bed?”</i> she smirks, wiggling her inhumanly broad hips for you.");
+		else output("would you rather take my big bad dragon for a ride?”</i> she smirks, shaking her hips in a way that makes her half-hard cock swing for you.");
 
-			clearMenu();
-			pc.lust(33);
-			//[Missionary] [Pitch Anal] [Ride Cock] [Tail Fuck]
-			if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(0,"Missionary",missionaryWithRensa,undefined,"Missionary","Get Ren in bed for some nice slow pussy-fucking. Considering the size of her endowments, it wouldn’t be hard to get her to titfuck herself while you plow her.");
-			//[Pitch Anal]
-			if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(1,"Pitch Anal",pitchAnalRensa,undefined,"Pitch Anal","Bend Ren over and pound her asshole. Considering her unique biology, there’s no doubt in your mind she’s going to empty those big, meaty balls of hers once you go to work.");
-			//[Ride Cock]
-			var bonusBlurb:String = "";
-			if(pc.hasCock()) bonusBlurb = " while you fuck those big, jiggly tits of hers";
-			//PC requires a pussy.
-			if(pc.hasVagina()) addButton(2,"Ride Cock",rideRensasCock,undefined,"Ride Cock","Throw Ren on her back and ride her cock cowgirl style" + bonusBlurb + ".");
-			//[Tail Fuck]
-			if(pc.hasVagina()) bonusBlurb = " while she reams you out with her big, thick cock";
-			addButton(3,"Tail Ride",tailPegStuffTimes,undefined,"Tail Ride","Bend on over and let Ren fuck you with that thick, prehensile tail of hers" + bonusBlurb + ".");
-			if(pc.hasCock()) addButton(4,"Balljob",renBalljob,undefined,"Balljob","Have Ren use her plump package to get you off: lube her nuts up and have her masturbate you with her ball-cleavage. No doubt this is going to get messy...");
-		}
-
-
-if (flags["ANNO_CREWMEMBER"] != 1) {
+		clearMenu();
+		pc.lust(33);
+		//[Missionary] [Pitch Anal] [Ride Cock] [Tail Fuck]
+		if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(0,"Missionary",missionaryWithRensa,undefined,"Missionary","Get Ren in bed for some nice slow pussy-fucking. Considering the size of her endowments, it wouldn’t be hard to get her to titfuck herself while you plow her.");
+		//[Pitch Anal]
+		if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(1,"Pitch Anal",pitchAnalRensa,undefined,"Pitch Anal","Bend Ren over and pound her asshole. Considering her unique biology, there’s no doubt in your mind she’s going to empty those big, meaty balls of hers once you go to work.");
+		//[Ride Cock]
+		var bonusBlurb:String = "";
+		if(pc.hasCock()) bonusBlurb = " while you fuck those big, jiggly tits of hers";
+		//PC requires a pussy.
+		if(pc.hasVagina()) addButton(2,"Ride Cock",rideRensasCock,undefined,"Ride Cock","Throw Ren on her back and ride her cock cowgirl style" + bonusBlurb + ".");
+		//[Tail Fuck]
+		if(pc.hasVagina()) bonusBlurb = " while she reams you out with her big, thick cock";
+		addButton(3,"Tail Ride",tailPegStuffTimes,undefined,"Tail Ride","Bend on over and let Ren fuck you with that thick, prehensile tail of hers" + bonusBlurb + ".");
+		if(pc.hasCock()) addButton(4,"Balljob",renBalljob,undefined,"Balljob","Have Ren use her plump package to get you off: lube her nuts up and have her masturbate you with her ball-cleavage. No doubt this is going to get messy...");
+	}
+	
+	if (flags["ANNO_CREWMEMBER"] != 1)
+	{
 		output("\n\nShe must, to come all the way out here just for a brothel job.");
 
 		output("\n\nRen just chuckles and rolls onto her belly, giving you a picturesque view of her jiggly behind. <i>“So... anything else you wanted to ask? Most of the time when people ‘just want to talk,’ I end up listening to spouse problems for an hour. It’s nice to be the one talking for a change.”</i>");
@@ -1188,5 +1187,4 @@ if (flags["ANNO_CREWMEMBER"] != 1) {
 		pc.lust(15);
 		addButton(0,"Next",mainGameMenu);
 	}
-	
 }

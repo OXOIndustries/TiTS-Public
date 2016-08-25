@@ -191,6 +191,7 @@ public function girlyCompassionVictoryWithInfectedMyr():void
 		output("\n\nEven her venom can’t keep you going forever, and eventually your spasming body calms down. Once you’re back in control of your functions, you look down to find a [pc.girlCum] drenched ant girl asleep in your lap. You gingerly lift her off, letting the fungal manifestation take your place as her pillow, before gathering your [pc.gear] and returning to your explorations.");
 	}
 	output("\n\n");
+	imbibeVenomEffects();
 	processTime(22);
 	pc.orgasm();
 	pc.orgasm();
@@ -286,6 +287,8 @@ public function infestedVictoryOrLossMaleScene(loss:Boolean = true):void
 		output("\n\nAfter a few minutes she pushes herself off your [pc.cockBiggest], rubbing her eyes and blinking away the haze. For the first time in half an hour you see recognition in her eyes, and you swear she’s blushing, even through the flush of heat. Her mushroom companion smiles happily, kissing her on the cheek and nuzzling relentlessly at her side.");
 		output("\n\n<i>“S-sorry. I kinda blacked out there,”</i> she says with a nervous laugh. <i>“I think I’ll stay here and rest for a bit.”</i>");
 		output("\n\nYou nod and stretch yourself out, grabbing your [pc.gear] before heading back to exploring the caves.");
+		
+		imbibeVenomEffects();
 	}
 	output("\n\n");
 	processTime(19);

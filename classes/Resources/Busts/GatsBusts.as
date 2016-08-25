@@ -250,6 +250,7 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/Tamwolf.png", mimeType = "image/png")]
 		public var Bust_TAMWOLF:Class;
+		public var Bounds_TAMWOLF:Rectangle = new Rectangle(48, 16, 64, 64);
 		
 		[Embed(source = "../../../assets/images/npcs/gats/una.png", mimeType = "image/png")]
 		public var Bust_UNA:Class;

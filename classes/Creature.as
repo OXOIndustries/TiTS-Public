@@ -7617,6 +7617,11 @@
 			if(milkFullness >= 80 || hasPerk("Mega Milk")) return true;
 			return false;
 		}
+		public function hasMilkPerk():Boolean
+		{
+			if(hasPerk("Milky") || hasPerk("Mega Milk") || hasPerk("Treated Milk") || hasPerk("Honeypot")) return true;
+			return false;
+		}
 		public function isMilkTank():Boolean
 		{
 			//Check for infinite lactation perks!
@@ -8365,8 +8370,8 @@
 		public function aCockToSuck(): int {
 			var choices: Array = new Array();
 			for (var x: int = 0; x < cocks.length; x++) {
-				if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1)
-					choices[choices.length] = x;
+				if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() / tallness >= 1 / 3) && genitalLocation() <= 1)
+					choices.push(x);
 			}
 			if (choices.length == 0) return 0;
 			return choices[rand(choices.length)];

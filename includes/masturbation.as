@@ -1817,7 +1817,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	output(" peer at you curiously, wondering what's the matter. The longer they look, the fiercer the forbidden flame burns between your loins. You yearn to stroke it, <i>expose</i> it, display it in front of everyone....");
 
 	//PCWearingArmor:
-	if(!(pc.armor is EmptySlot) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+	if(!(pc.armor is EmptySlot))
 	{
 		output("\n\nBefore their eyes, you begin slowly stripping off your [pc.armor]. They watch on with wide open eyes and mouths as you peel it off your [pc.skinFurScales], exposing your bare body to the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 		//GotUpperUndergarment:
@@ -1828,9 +1828,9 @@ public function goddamnitJimTAndYourExhibitionism():void
 	else if(!pc.isNude())
 	{
 		output("\n\nBefore their gaze, you begin touching yourself. Of course, they're already <i>looking</i>, what with you traipsing around in nothing but your ");
-		if(pc.isChestGarbed()) output("[pc.upperGarment]");
+		if(pc.isChestGarbed()) output("[pc.upperUndergarment]");
 		if(pc.isChestGarbed() && pc.isCrotchGarbed()) output(" and ");
-		if(pc.isCrotchGarbed()) output("[pc.lowerGarment]. The gaping onlookers look upon your exposed [pc.skinFurScales] with ");
+		if(pc.isCrotchGarbed()) output("[pc.lowerUndergarment]. The gaping onlookers look upon your exposed [pc.skinFurScales] with ");
 		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("obvious lust");
 		else output("a mixture of scandal and lust");
 		output(". You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");

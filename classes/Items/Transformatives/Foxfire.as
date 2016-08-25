@@ -479,9 +479,9 @@ package classes.Items.Transformatives
 						target.tailCount = Math.min(Math.max(1, target.tailCount), 9); // check bounds to be between 1 and 9 tails
 						
 						if (target.tailCount == 1)
-							kGAMECLASS.eventBuffer += "\n\nYour " + target.tailsDescript() + " feels strange somehow. Before you can figure out exactly why, it suddenly twitches and begins to morph in front of your eyes, poffing up into a fluffy vulpine tail. <b>You are now the proud owner of a fox tail!</b>";
+							kGAMECLASS.eventBuffer += "\n\nYour " + target.tailsDescript() + " feels strange somehow. Before you can figure out exactly why, it suddenly twitches and begins to morph in front of your eyes, puffing up into a fluffy vulpine tail. <b>You are now the proud owner of a fox tail!</b>";
 						else
-							kGAMECLASS.eventBuffer += "\n\nYour " + target.tailsDescript() + " feels strange somehow. Before you can figure out exactly why, your multiple tails suddenly start to twitch and morph in front of your eyes, poffing up into fluffy vulpine tails. <b>Your now have " + num2Text(target.tailCount) + " vulpine tails!</b>";
+							kGAMECLASS.eventBuffer += "\n\nYour " + target.tailsDescript() + " feels strange somehow. Before you can figure out exactly why, your multiple tails suddenly start to twitch and morph in front of your eyes, puffing up into fluffy vulpine tails. <b>Your now have " + num2Text(target.tailCount) + " vulpine tails!</b>";
 					}
 					else
 					{

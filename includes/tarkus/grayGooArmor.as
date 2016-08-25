@@ -331,22 +331,25 @@ public function gooFapNope():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-public function gooDickFap():void
+public function gooDickFap(fromCrew:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
 	showGrayGooArmor(true, "cock");
 	
 	output("You");
-	if(pc.armor is GooArmor)
+	if(!fromCrew)
 	{
-		output(" pat your");
-		if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) output(" own goo-coated");
-		else output(" naked and exposed");
-		output(" backside and");
+		if(pc.armor is GooArmor)
+		{
+			output(" pat your");
+			if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) output(" own goo-coated");
+			else output(" naked and exposed");
+			output(" backside and");
+		}
+		else if(pc.hasItemByName("Goo Armor")) output(" open your inventory and");
+		else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage and");
 	}
-	else if(pc.hasItemByName("Goo Armor")) output(" open your inventory and");
-	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage and");
 	output(" ask [goo.name] if she’s up for a little fun. Wordlessly, the goo surrounding you squirms and writhes across your [pc.skinFurScales], caressing your [pc.nipples] and [pc.crotch] in ways that make your [pc.knees] tremble.");
 	if (!(pc.lowerUndergarment is EmptySlot) || !(pc.upperUndergarment is EmptySlot))
 	{
@@ -485,16 +488,19 @@ public function gooDickFap():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-public function grayGooCockSleeve():void
+public function grayGooCockSleeve(fromCrew:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
 	showGrayGooArmor(true, "tits");
 
 	output("You reach down to your pent-up [pc.cock] and give yourself a stroke through the gooey coating hugging your body. Grinning, you");
-	if(pc.armor is GooArmor) { /* Fine here! */ }
-	else if(pc.hasItemByName("Goo Armor")) output(" open your inventory and");
-	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage and");
+	if(!fromCrew)
+	{
+		if(pc.armor is GooArmor) { /* Fine here! */ }
+		else if(pc.hasItemByName("Goo Armor")) output(" open your inventory and");
+		else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage and");
+	}
 	output(" ask [goo.name] if she’s up for a little fun.");
 	
 	output("\n\nThe answer comes as a squirming, writhing sensation of cool, wet goo around your [pc.cock]. You suck in a sharp breath, almost collapsing as your gooey bodysuit gives her response. When you hobble a little nearer to the ground, some of the goo starts to drain off of your upper body, splattering to the ground and congealing into a humanoid shape. [goo.name]’s face forms, overtop a pair of gigantic tits that would make a New Texan porn-star jealous, and wraps her hands around them with a couple of inviting pats.");
@@ -518,7 +524,7 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 	clearOutput();
 	author("Savin");
 	showGrayGooArmor(true, "tits");
-
+	
 	if (allowIt)
 	{
 		output("With a gasp, you feel the slender tendril of goo slip inside you. [goo.name] keeps it short and small, focusing more on control than just filling you with goo-cock. She hones in on the tiny little bulb of your prostate with unerring accuracy, putting just enough pressure on it to make your [pc.cock] leap and start to leak. The moment a drop of pre-cum pours into her, your gooey companion coos happily, licking her lips hungrily.");
@@ -540,7 +546,12 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 	
 	output("\n\n<i>“Oooh, you’ve been saving that up for me, haven’t you?”</i> [goo.name] giggles, running a finger around her well-fucked chest pussy. <i>“Delicious!”</i>");
 	
-	output("\n\nYou give her a grin and extend an arm to her, inviting your gooey bodysuit to envelop you once again. Back to business!");
+	output("\n\nYou give her a grin and");
+	if(pc.armor is GooArmor) output(" extend an arm to her, inviting your gooey bodysuit to envelop you once again");
+	else if(pc.hasItemByName("Goo Armor")) output(" open your inventory, inviting your gooey friend to return");
+	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage, inviting your gooey friend to return");
+	else output(" let your gooey friend on her way");
+	output(". Back to business!");
 
 	processTime(20);
 
@@ -1185,8 +1196,8 @@ public function gooArmorCrewOption(arg:Array):void
 			txt += ". <i>“Well I’m, like, totally in the mood for some fun if </i>you<i> are...”</i>";
 			txt += "\n\nWhat would you like to have her do?";
 			
-			gooArmorAddButton(fromCrew, 0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
-			if(pc.hasCock()) gooArmorAddButton(fromCrew, 1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
+			gooArmorAddButton(fromCrew, 0, "Goo Dicks", gooDickFap, true, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
+			if(pc.hasCock()) gooArmorAddButton(fromCrew, 1, "GooSleeve", grayGooCockSleeve, true, "Goo Cocksleeve", "Have [goo.name] jack you off.");
 			else gooArmorAddDisabledButton(fromCrew, 1, "GooSleeve", "Goo Cocksleeve", "You don’t have the proper anatomy for that...");
 			gooArmorAddButton(fromCrew, 14, "Back", approachGooArmorCrew, [false, fromCrew]);
 			break;

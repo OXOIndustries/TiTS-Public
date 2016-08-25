@@ -124,9 +124,7 @@ package classes.Items.Transformatives
 				else output("you’ve got " + target.breastCup(target.biggestTitRow()) + " breasts");
 				output("!</b>");
 			}
-			
-			//100% chance that lactation stops
-			if (target.milkMultiplier > 0 || target.canLactate())
+			if (!target.hasMilkPerk() && (target.milkMultiplier > 0 || target.canLactate()))
 			{
 				output("\n\nYou feel the lactation in your [pc.breasts] slow, soon coming to a stop. Well of course, bulls don’t give milk. <b>It looks like you’re no longer lactating now!</b>");
 				

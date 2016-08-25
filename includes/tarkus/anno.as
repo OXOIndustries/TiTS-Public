@@ -900,7 +900,7 @@ public function syriTalksAboutAnno():void
 		output("\n\n<i>“Twins? I, uh...”</i> you fidget, <i>“I thought she was your older sister?”</i>");
 		output("\n\n<i>“By like, five minutes. Don't change the subject, killjoy,”</i> Syri growls, looming over you. ");
 		//If PC has a cock: 
-		if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
+		if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockNounBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
 		else output("<i>“Imagine yourself bent over, face buried in Anno's big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you've got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
 		output(" Your eyes dart down to the suddenly immense-looking bulge in Syri's pants. She's... she's not joking, is she?");
 		output("\n\nThe ausar follows your gaze, her body suddenly tense. Syri grabs you by the ");
@@ -1245,7 +1245,9 @@ public function fuckAnnoAfterBeeJay():void
 	output("\n\nAnno bites her lip, muffling a girlish whimper as your [pc.hips] rock forward, inching your [pc.cock " + x + "] into her sodden quim. You nearly join her as you feel your cock submerging into the sultry hole, surrounded by hot, wet, squirming walls as Anno's pussy clenches around your intruding member. You push forward despite her body's resistance, the ausar's incredibly wet sex making it unnaturally easy to spread her walls wide. Anno moans as you plunge deep into her sex, fingers digging into the lip of her desk, tail flicking madly as you bottom out inside her");
 	if(pc.cockVolume(x) >= (chars["ANNO"].vaginalCapacity() + 200)) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the hardwood of the desk");
 	output(".");
-
+	
+	pc.cockChange();
+	
 	output("\n\n");
 	if(pc.balls > 0) output("Balls ");
 	else output("Hilt ");
@@ -1282,7 +1284,7 @@ public function fuckAnnoAfterBeeJay():void
 }
 
 //Get Slurped
-///{Va-jay-jay-type characters} Slurp-rise!
+//{Va-jay-jay-type characters} Slurp-rise!
 //[13:21] <Fenoxo> @Savin to stretch out F/F, I suggest some full body massage that turns into her jamming her nose into your cunt in licking, then scissoring, then sixtynining up the mess
 public function getSlurpedOnByAnnoz():void
 {
