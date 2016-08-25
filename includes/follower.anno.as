@@ -2888,7 +2888,7 @@ public function annoUvetoHuskarFoursome():void
 	
 	output("\n\n<i>“I’m Galina!”</i> <i>“I’m Marina!”</i> they say in such perfect unison that you can’t quite tell which said which. Your confusion must be obvious, because the both cover their mouths and start giggling.");
 	
-	output("\n\n<i>“Don’t feel bad,”</i> Anno says, giving them both a playful poke to settle them down. <i>“They did it to me, too. <i>“");
+	output("\n\n<i>“Don’t feel bad,”</i> Anno says, giving them both a playful poke to settle them down. <i>“They did it to me, too.”</i>");
 	
 	output("\n\nShe reaches up and scratches the span of hair between the Steele-uniformed ausar’s ears. <i>“This one’s Galina,”</i> your companion says, making the fluffy husky wiggle before doing the same to the Akkadi-uniformed one. <i>“And this is Marina.”</i>");
 	
