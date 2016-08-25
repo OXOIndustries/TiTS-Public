@@ -1264,7 +1264,7 @@ public function initializeMyrellionRooms():void
 	//Street P20
 	rooms["817"] = new RoomClass(this);
 	rooms["817"].roomName = "\nSTREET";
-	rooms["817"].description = "A corner store here offers massages, hair treatments, and honey milkings for cheap. It seems to be closed at the moment, though, and most of its windows are covered with recruitment posters for the Republic Defense Force. Graffiti on the walls condemns the Federation occupation, and the war in general.\n\nTo the east is a huge warehouse, built partially into the cave wall, shadow and harsh light thrown across it by sparsely spaced spotlights. A rifle-armed red myr guards the timber entrance.";
+	rooms["817"].description = "A corner store here offers massages, hair treatments, and honey milkings for cheap. It seems to be closed at the moment, though, and most of its windows are covered with recruitment posters for the Republic Defense Force. Graffiti on the walls condemns the Federation occupation, and the war in general.";
 	rooms["817"].system = "SYSTEM: SINDATHU";
 	rooms["817"].planet = "PLANET: MYRELLION";
 	rooms["817"].northExit = "818";

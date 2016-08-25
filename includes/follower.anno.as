@@ -2885,7 +2885,7 @@ public function annoUvetoHuskarFoursome():void
 
 	output("\n\nAs you step off the elevator and back into the familiar, sterile atmosphere of Uveto Station, the normal quiet bustle of the station center is broken by a chorus of bubbly, girlish laughter. You glance around, vaguely thinking that at least one of those voices sounds familiar, and find your attention drawn to the open cafe just down the way.");
 	
-	output("\n\nSure enough, a certain snowy-haired ausar babe is sitting at the nearest table, eagerly chatting away with a pair of husky huskar... aren’t those the two who <i>“greeted”</i> you before you first went moon-side? One in a Steele Tech jumpsuit just like Anno’s, if a bit more plus-sized, and the other in a sleek blue Akkadi uniform. Now that you’ve got a look at them from a distance, though, the change in clothes is about the only thing distinguishing one from the other: they’ve got the same voluptuously hourglass figure, the same long silver hair and manes of fluff around the neck... even the same mirthful blue eyes. Either those two are twins, or they’ve got some awesome tandem mod-work done.");
+	output("\n\nSure enough, a certain snowy-haired ausar babe is sitting at the nearest table, eagerly chatting away with a pair of husky huskar... aren’t those the two who “greeted” you before you first went moon-side? One in a Steele Tech jumpsuit just like Anno’s, if a bit more plus-sized, and the other in a sleek blue Akkadi uniform. Now that you’ve got a look at them from a distance, though, the change in clothes is about the only thing distinguishing one from the other: they’ve got the same voluptuously hourglass figure, the same long silver hair and manes of fluff around the neck... even the same mirthful blue eyes. Either those two are twins, or they’ve got some awesome tandem mod-work done.");
 	
 	output("\n\nWithout really thinking, you wander over and plant a hand on Anno’s shoulder and say hello. She gasps and giggles the moment you announce yourself, swatting your [pc.legOrLegs] non-stop with the bushy white tail sticking out the back of her chair. <i>“Hey, boss! We were just sitting down to eat!");
 	if (pc.isTaur()) output(" Plant your pony butt over here and join us!");
@@ -3365,7 +3365,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesII():void
 	
 	output("\n\n<i>“I know, right?”</i> Marina whines, reaching under herself to finger her gaping quim. <i>“");
 	if (silly) output("Shit’s magic, yo.");
-	else output(" It feels like magic!");
+	else output("It feels like magic!");
 	output("”</i>");
 	
 	output("\n\nOne touch made you blow your load - imagine having that crammed inside you, rubbing against your every most-tender nerve. How Anno isn’t just cumming her brains out on the spot, you’ve got no idea.");
