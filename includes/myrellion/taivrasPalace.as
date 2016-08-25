@@ -661,7 +661,7 @@ public function incubatorGooEncounter():void
 	//showIncuGoo();
 	author("Savin");
 	output("As you enter the side chamber, you’re greeted by the smell of sweet perfumes wafting off of a dozen colorful candles surrounding a richly adorned bed with silken sheets and a tall canopy. You must have stumbled into the bedroom of the palace’s queen! There’s gotta be some awesome loot in here somewhere, and maybe a hint as to where the locals have stuffed your probe... and what happened with your cousin.");
-	output("\n\nYou spend a few moment scouring the room, following the smooth curves of the stone walls with your hand as you poke through the queen’s belongings. The search quickly leads you to a girthy hole chiseled into the wall, clearly artificial in its perfectly circular, smooth shape. It almost looks like a... like a glory hole, set about at crotch height for a nyrean woman.");
+	output("\n\nYou spend a few moments scouring the room, following the smooth curves of the stone walls with your hand as you poke through the queen’s belongings. The search quickly leads you to a girthy hole chiseled into the wall, clearly artificial in its perfectly circular, smooth shape. It almost looks like a... like a glory hole, set about at crotch height for a nyrean woman.");
 	output("\n\nCocking an eyebrow, you ");
 	if(pc.tallness >= 60) output("squat down to look into");
 	else output("look straight into");
@@ -789,7 +789,7 @@ public function useDatGloryhole():void
 	//else
 	else
 	{
-		output("It’s a green goo-girl, just like Celise, as you expected. Unlike your dad’s favorite pet, though, this one’s  covered with bits of glistening crystal. Your Codex beeps, identifying it as a ganrael, a myrellion native species.");
+		output("It’s a green goo-girl, just like Celise, as you expected. Unlike your dad’s favorite pet, though, this one’s covered with bits of glistening crystal. Your Codex beeps, identifying it as a ganrael, a myrellion native species.");
 		CodexManager.unlockEntry("Ganrael");
 	}
 	output(" She’s adopted a relatively humanoid form, probably based off of a gooey interpretation of the nyrea she’s living besides: she’s got two arms, a human-like head with big elfin ears, and a curvaceous body with big tits and hips that fold down into a solid base of goo instead of legs. Her crystals, though, are what tip you off to what you’re really dealing with here: a thick dome of emerald crystal has formed around her belly, shielding a massively pregnant gut filled to the brim with what looks like hundreds of fist-sized eggs! Her middle is hugely bloated, swollen with eggs and plated with as much crystal as the goo could possibly churn out, protecting her charges rather than herself. Beneath the gemstone shield, though, you see a ");
@@ -888,7 +888,7 @@ public function pcBeatsGoo():void
 		output("\n\nFor a lusty goo-girl like her, she’s put up an awful lot of resistance to your advances. She must really love her queen... or at least, love getting pumped full of so many eggs she can barely move. You’ll just have to show her what you can do...");
 		output("\n\nThe goo slumps against the wall, desperately running her hands around her belly and pumping her fingers into her own goo. She looks pleadingly at you, whining and moaning and squirming everywhere - poor thing’s so aroused, and where’s her queen to help her. She seems to know there’s nobody else to help her, and so her big purple eyes settle on you.");
 	}
-	output("\n\n<i>“P-please...”</i> she whines, squirming around helplessly around her crystal-clad belly.");
+	output("\n\n<i>“P-please...”</i> she whines, squirming helplessly around her crystal-clad belly.");
 	output("\n\nWhat do you do?\n\n");
 	clearMenu();
 	//[Fuck Her] [Get Egged] [Leave]
@@ -990,7 +990,7 @@ public function getEggedByCrystalGoo():void
 	output("\n\n<i>“W-what’re you...”</i> the goo starts to say, trailing off as you slip down to ");
 	if(pc.legCount != 1) output("straddle her amorphous lower body");
 	else output("press your lower body into her gooey form");
-	output(", leaning in close to her.  <i>“You’re not gonna hurt my eggs, are you?”</i>");
+	output(", leaning in close to her. <i>“You’re not gonna hurt my eggs, are you?”</i>");
 
 	output("\n\n<i>“No,”</i> you assure her, reaching gingerly down to run your hand across her plated belly. You don’t want to hurt them - you want to give them a wonderful new home. Her eyes go inhumanly wide");
 	if(silly) output(" like an anime character’s");
@@ -3773,7 +3773,7 @@ public function buttFuckPrincessWhileSheFucks():void
 	processTime(22);
 	pc.orgasm();
 	flags["TOOK_PRINCESS_BUTTGINITY"] = 1;
-    flags["PRINCESS_DEFEATED"] = 3;
+	flags["PRINCESS_DEFEATED"] = 3;
 	CombatManager.genericVictory();
 }
 

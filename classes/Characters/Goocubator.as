@@ -65,7 +65,7 @@
 			this.thickness = 60;
 			this.tone = 50;
 			this.hairColor = "green";
-		    this.scaleColor = "green";
+			this.scaleColor = "green";
 			this.furColor = "green";
 			this.hairLength = 12;
 			this.hairType = 0;
@@ -213,7 +213,7 @@
 		private function crystalShieldGoo(target:Creature):void
 		{
 			output("<i>“Oooww, you’re hurting me!?”</i> the goo whines, more in surprise than pain, it seems. <i>“Don’t you dare hurt my eggs!”</i>");
-			output("\n\nThe look of bubbly determination that she’s been sporting twists into a grimace of concentration. A few moments later, the various small flecks of crystal floating around her body start to move through her, coalescing around one of her arms. They become a crystelline buckler, held together by a viscous layer of goo. <i>“Never gonna get through this!”</i> she declares with a shake of her hips.");
+			output("\n\nThe look of bubbly determination that she’s been sporting twists into a grimace of concentration. A few moments later, the various small flecks of crystal floating around her body start to move through her, coalescing around one of her arms. They become a crystalline buckler, held together by a viscous layer of goo. <i>“Never gonna get through this!”</i> she declares with a shake of her hips.");
 			createStatusEffect("Goo Shield",0,0,0,0,false,"Icon_DefUp","With her crystal shield, the goo will be much tougher to drop through violent means!",true,0);
 			armor.defense += 20;
 		}
