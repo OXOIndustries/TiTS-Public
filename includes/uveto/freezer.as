@@ -128,7 +128,7 @@ public function hanaDrinkMead():void
 
 	output("There are a dizzying amount of options just for mead alone, but you end up just going with one of the simple, cheap varieties. Can’t get too special with mead - but you can’t go wrong, either. As you tap the screen to make your order, you jealously note that there’s quite a discount for local residents - it might as well be free!");
 	
-	output("\n\nBy the time you look up from your codex again the <i>“busy”</i> barkeep has already placed the pale-golden drink in front of you in a tall glass, complete with a little glass coaster. No sooner are you served, she’s back busily cleaning glasses and paying you little mind again, leaving you with nothing to do but relax and enjoy the smooth, easy going, honey sweet booze. There really is nothing wrong with going for mead.");
+	output("\n\nBy the time you look up from your codex again the “busy” barkeep has already placed the pale-golden drink in front of you in a tall glass, complete with a little glass coaster. No sooner are you served, she’s back busily cleaning glasses and paying you little mind again, leaving you with nothing to do but relax and enjoy the smooth, easy going, honey sweet booze. There really is nothing wrong with going for mead.");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -321,7 +321,7 @@ public function hanaTalkRescue():void
 
 	output("Come to think of it, who - or what - brought you back to the meadhall in the first place? You’re rather thankful to avoid the whole, you know, freezing to death on some random snowball of a world schtick. And the recuperation, but nevermind that.");
 	
-	output("\n\nHana’s prickly demeanor shatters with your follow up quip as she barks a laugh, lips turning upwards in a wry smile that just <i>screams</i> <i>“you cheeky git.”</i> Still, she doesn’t respond immediately, leaning back to glance around the rather voluminous bar, ostentatiously to point someone out to you - and coming up empty, it seems. Oh well.");
+	output("\n\nHana’s prickly demeanor shatters with your follow up quip as she barks a laugh, lips turning upwards in a wry smile that just <i>screams</i> “you cheeky git.” Still, she doesn’t respond immediately, leaning back to glance around the rather voluminous bar, ostentatiously to point someone out to you - and coming up empty, it seems. Oh well.");
 	
 	output("\n\n<i>“One of the rangers. They’re a group employed by the local authority and, really, make up the core of it. Bunch of lone ‘wolves’ that patrol the colony outskirts to make sure none of the natives wander into town. They also quietly keep track of people wandering out, especially random tourists. It would be pretty bad publicity for our ‘corporate overlords’ if one of our visitors were to freeze to death, after all.”</i>");
 	
@@ -620,7 +620,7 @@ public function hanaFiresideRecovery():void
 
 	output("\n\nAnd then, abruptly, Hana stops. H-hey!");
 	
-	output("\n\n<i>“You’re feeling better!”</i> she titters, suddenly sitting upright along the side of the bench. The <i>“molesting”</i> hand is quickly plucked away, instead unceremoniously wiping itself along the fuzzy lining of the blanket over you.");
+	output("\n\n<i>“You’re feeling better!”</i> she titters, suddenly sitting upright along the side of the bench. The “molesting” hand is quickly plucked away, instead unceremoniously wiping itself along the fuzzy lining of the blanket over you.");
 	
 	output("\n\nHuh? Blanket? Oh... you’re naked in the middle of the bar, a blanket is probably good. Though all this heat is getting pretty uncomfortable. Tempering your worked up arousal, you shift to make yourself passingly decent while looking up to Hana in a mixture of thanks and desire.");
 
