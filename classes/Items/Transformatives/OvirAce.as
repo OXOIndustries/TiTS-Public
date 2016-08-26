@@ -74,7 +74,7 @@ package classes.Items.Transformatives
 			if (target.hasCock())
 			{
 				//Reduce masculinity, increase femininity. (High chance when masculine, lower when androgynous/feminine)
-				if (target.femininity < 90 && target.femininityUnlocked(90) && (forceChanges || (rand(100) >= target.femininity && changes < changeLimit)))
+				if (target.femininity < 90 && target.femininityUnlocked(target.femininity + 5) && (forceChanges || (rand(100) >= target.femininity && changes < changeLimit)))
 				{
 					//If masculine face
 					if (target.hasFaceFlag(GLOBAL.FLAG_ANGULAR) || target.hasBeard() || target.femininity <= 40)

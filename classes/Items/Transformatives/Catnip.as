@@ -322,7 +322,7 @@ package classes.Items.Transformatives
 			
 			// hit cap and still going up! changed this one to work differently from CoC, it unties face description from femininity stat, so you can use femininity to change gender aligment without having feminine face - you can't really recognize gender from animalistic muzzle!
 			if (target.femininity >= target.femininityMax() && target.lipRating() <= 0 && !target.hasPerk("Androgyny")) {
-				output("\n\nYour [pc.face] is now very confusing - it has imponderable tint of feminity, while lacking distinct feminine features. You suspect you could make your apparent gender even more ambiguous.");
+				output("\n\nYour [pc.face] is now very confusing - it has imponderable tint of femininity, while lacking distinct feminine features. You suspect you could make your apparent gender even more ambiguous.");
 				target.createPerk("Androgyny", 0, 0, 0, 0, "Your face is always androgynous.");
 				output("\n\n(<b>Perk Gained: Androgyny</b>)");
 			}
