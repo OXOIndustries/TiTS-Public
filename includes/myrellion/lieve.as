@@ -390,17 +390,17 @@ public function lieveTalkMenu():void
 	addButton(6, "Trench Wives", lieveTalkTrenchWives, undefined, "Trench Wives", "Ask about Lieve's harem, and Trench Wives in general.");
 
 	addButton(7, "Fed.Army", lieveTalkFedArmy, undefined, "Federation Army", "Have Lieve tell you a little about the Scarlet Federation's military.");
-
-	addButton(10, "Probe", lieveTalkProbe, undefined, "Steele Tech Proble", "Lieve's a scout, right? Maybe she knows something about where your dad's probe ended up.");
 	
-	//9999 = if has talked to Jim's Warmedic ant about "Her Past"
-	if (flags["LIEVE_TALK_THEWAR"] != undefined && (9999 == 0 || CodexManager.hasViewedEntry("Red Myr"))) addButton(8, "Citizenship", lieveTalkCitizenship, undefined, "Citizenship", "Ask Lieve about Federal Citizenship. From what you understand, it's very different from how the Confederate government handles things.");
+	//if has talked to Jim's Warmedic ant about "Her Past"
+	if (flags["LIEVE_TALK_THEWAR"] != undefined && (flags["ANZHELA_HERPAST_TALK"] != undefined || CodexManager.hasViewedEntry("Red Myr"))) addButton(8, "Citizenship", lieveTalkCitizenship, undefined, "Citizenship", "Ask Lieve about Federal Citizenship. From what you understand, it's very different from how the Confederate government handles things.");
 	else addDisabledButton(8, "Citizenship");
 
 	if (flags["NEVRIE_QUEST"] == 1 && flags["LIEVE_BLOOD_SAMPLE"] == undefined && !pc.hasKeyItem("Red Myr Blood"))
 	{
 		addButton(9, "BloodSample", lieveBloodSample, undefined, "Blood Sample", "Ask Lieve if you could get a sample of her blood for Nevrie.");
 	}
+
+	addButton(10, "Probe", lieveTalkProbe, undefined, "Steele Tech Probe", "Lieve's a scout, right? Maybe she knows something about where your dad's probe ended up.");
 	
 	addButton(14, "Back", lieveMenu);
 }

@@ -53,6 +53,7 @@ public function nozzleShowRepeat():void
 {
 	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_COMPLETE)
 	{
+		CodexManager.unlockEntry("Tarratch");
 		fazianQuestCompleteBlurbs();
 		return;
 	}
@@ -136,6 +137,8 @@ public function nozzleGoPerformance():void
 	if (days % 3 == 0) nozzlePerformanceQuaramarta();
 	else if (days % 3 == 1) nozzlePerformanceShrike();
 	else nozzlePerformanceParadise();
+	
+	CodexManager.unlockEntry("Anatae");
 }
 
 public function nozzlePerformanceParadise():void
@@ -305,6 +308,8 @@ public function fazianApproach():void
 		output("<i>“Per Steele!”</i> Fazian’s eyes smile warmly at you as you sidle up to him at the bar. After only half a second’s pause, the anat dancer grasps your hand and shakes it, not so vigorously it might dislocate your wrist. He’s getting better at it.");
 		fazianMenu();
 	}
+	
+	CodexManager.unlockEntry("Anatae");
 }
 
 public function fazianLikedIt():void
@@ -1970,6 +1975,8 @@ public function fazianQuestWarehouseMainChamber():void
 	output("\n\n<i>“QUARAMARTA!”</i> they yell. On the stage, the bare-chested Fazian comes to a juddering halt. He looks utterly exhausted, feathers askew, soaked in sweat. Still, he raises his arms in acknowledgement to the thunderous applause which comes his way.");
 	
 	output("\n\n<i>“This way, sweet maidens,”</i> says a smooth voice, close enough to be discernable beneath the clamor. You turn to see thin androgynes with moth-like antennae neck-ruffs, dressed in sleek, modern, purple armor, gracefully picking happily dazed gold myr out of the crowd near you and leading them towards a door behind the stage. <i>“Where you are going, there are plenty more like him. No honeysweet, do not worry about your injuries. The tarratch shall see to them. We shall fix you, and take you somewhere better...”</i>");
+	
+	CodexManager.unlockEntry("Tarratch");
 	
 	output("\n\n<i>“Per [pc.name]?”</i> says Fazian hoarsely, catching sight of you. Most of the room turns to you.");
 	

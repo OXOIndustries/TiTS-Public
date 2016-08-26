@@ -3380,7 +3380,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["ARBETZ_SEX_HATE_FUCK"] != undefined) output2("\n<b>* Una, Times Hate Fucked Her:</b> " + flags["ARBETZ_SEX_HATE_FUCK"]);
 				if(flags["UNA_TALKED"] >= 4)
 				{
-					output2("\n<b>* Godi & Petr:</b> Met them");
+					output2("\n<b>* Godi and Petr:</b> Met them");
 					if(flags["ARBETZ_SEX_ONE_BOY"] != undefined) output2("\n<b>* Godi, Times Sexed:</b> " + flags["ARBETZ_SEX_ONE_BOY"]);
 					if(flags["ARBETZ_SEX_TWO_BOYS"] != undefined) output2("\n<b>* Godi & Petr, Times Spitroasted By:</b> " + flags["ARBETZ_SEX_TWO_BOYS"]);
 				}
@@ -3491,6 +3491,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(flags["ANNO_ANALSEXED"] != undefined) output2("\n<b>* Anno, Times Fucked Her Ass:</b> " + flags["ANNO_ANALSEXED"]);
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined) output2("\n<b>* Anno, Times Used Her Vibrator:</b> " + flags["ANNO_TRIBERATOR_USED"]);
+					if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output2("\n<b>* Anno, Times Mounted with Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"]);
+					if(flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"] != undefined) output2("\n<b>* Anno, Times Pounded Both Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"]);
 				}
 				variousCount++;
 			}
@@ -4432,6 +4434,19 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Uveto" || showID == "All")
 		{
+			// Uveto Station
+			if(flags["UVETO_HUSKAR_FOURSOME"] != undefined)
+			{
+				output2("\n<b><u>Uveto Station</u></b>");
+				// Twin huskar bimbo scientists!
+				if(flags["UVETO_HUSKAR_FOURSOME"] != undefined)
+				{
+					output2("\n<b>* Marina and Galina:</b> Met them");
+					if(flags["UVETO_HUSKAR_FOURSOME"] == -1) output2(", Not interested in them");
+					if(flags["UVETO_HUSKAR_FOURSOME"] == 1) output2(", Sexed them");
+				}
+				variousCount++;
+			}
 			// Nerrasa
 			if(flags["MET_NERRASA"] != undefined)
 			{

@@ -64,7 +64,7 @@ public function talkToMatronAbootBathHooose():void
 	output("\n\n<i>“Spiritual,”</i> the matron gently corrects. <i>“We have been custodians of this spring for several centuries. Our order teaches us that in the same way that the body accumulates dirt and grime in the harshness of life, so too does the spirit accumulate a growing darkness over time. We must wash away the grime that gathers on the soul, don’t you think? My sisters and I exist to provide you and any who come through our doors with that cleansing: of the body, of course, but each of us is trained in many, many ways to impart spiritual quiescence upon those who call upon us.”</i>");
 	output("\n\nMatron Oserre ends that thought with a decidedly sultry note, and the slight movements of her insectile arms draw your gaze to the tremendous swells of her honey-swollen bosom. Something tells you these <i>“spiritual cleansings”</i> on offer are going to involve you getting a very happy ending.");
 	output("\n\nAfter giving you a moment to mull that over, Oserre continues, <i>“We offer many services here, of course, and ask nothing more for them than a small donation to help us ensure the house remains in pristine condition for many centuries to come. The most common is the use of the public bath: there’s nothing truly special about that service beyond access to the hot springs, and the company of several dozen young women also enjoying our service. You can also ask for a private bath, of which we have several, if you prefer your privacy... or the company of one of my sisters in the order, who can perform her cleansing arts upon you. If your spirit is particularly heavy, several members of the house may tend to you at once...”</i>");
-	output("\n\nYou’re starting to wonder of <i>“libido”</i> and <i>“spirit”</i> mean the same thing in the myr tongue.");
+	output("\n\nYou’re starting to wonder if “libido” and “spirit” mean the same thing in the myr tongue.");
 	output("\n\n<i>“So, my child,”</i> Matron Oserre says with an expectant smile, <i>“how may we best bring you pleasure today?”</i>");
 	processTime(5);
 	flags["TALKED_ABOOT_BATH_HOUSE"] = 1;
@@ -102,7 +102,7 @@ public function publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere()
 		output("\n\nA sign directs you to a small shower, insisting you scrub with soap and water before entering the hot spring pool. You do so, quickly running through the shower when the small line allows, before wrapping yourself up in a towel and heading off towards the wide open room at the end of the hall.");
 	}
 	//Combine:
-	output("\n\nYou follow a train of giggling gold myr down the hall and through an archway that leads out into the open chamber at the rear of the bath house. You find a tremendous rectangular pool stretching from side to the side of the chamber, surrounded by a slender marble walkway allowing you to enter from any side you want. A second <i>“floor”</i> of the pool sits above the first, smaller and absolutely steaming with heat, pouring its bounty down in a waterfall into the first. Several dozen young women are bathing away, either reclining on the seats ringing the pool or splitting off into small groups that are bathing each other. Even a few red myr are in here, usually alone and awkwardly watching the giddy golds, though some are trying to adapt to the alien environs they find themselves in.");
+	output("\n\nYou follow a train of giggling gold myr down the hall and through an archway that leads out into the open chamber at the rear of the bath house. You find a tremendous rectangular pool stretching from one side of the chamber to the other, surrounded by a slender marble walkway allowing you to enter from any side you want. A second <i>“floor”</i> of the pool sits above the first, smaller and absolutely steaming with heat, pouring its bounty down in a waterfall into the first. Several dozen young women are bathing away, either reclining on the seats ringing the pool or splitting off into small groups that are bathing each other. Even a few red myr are in here, usually alone and awkwardly watching the giddy golds, though some are trying to adapt to the alien environs they find themselves in.");
 	output("\n\nSteam rises in a heady mist through the room, wafting up off the hot spring water in a way that leaves a haze through the room. You breathe deep, and find your nose overwhelmed with the unmistakable smells of hot salts and honey. You eagerly circle the bath, slipping out of your towel and looking for a perfect place to hop in...");
 	processTime(13);
 	pc.shower();
@@ -303,7 +303,7 @@ public function rideDickWithRedMyrSloot():void
 	output("\n\nThe surge of vice-like pleasure is enough to push you over the edge, barely giving you enough time to thrust in ");
 	if(pc.cockVolume(x) <= 65) output("to the hilt");
 	else output("until you’re battering the back of the myr’s cunt");
-	output(" before you blow your load. You lover gasps and clenches down with crushing power, wrapping her arms around your neck and mashing her breasts into your face. You’re sure there’s more than a few eyes on the two of you now, watching with mirth as the buxom red rides her very first dick.");
+	output(" before you blow your load. Your lover gasps and clenches down with crushing power, wrapping her arms around your neck and mashing her breasts into your face. You’re sure there’s more than a few eyes on the two of you now, watching with mirth as the buxom red rides her very first dick.");
 
 	output("\n\nNot that her ride lasts very long. You flood her pussy with a thick creampie, and find yourself sighing with relief as your load finds a nice, hot home for itself. Your lover puts a hand on her belly, trying to appraise the alien sensation - and completely oblivious to the jealous looks she’s getting from the assembled gold myr around her. She spends a few more minutes in your lap, just enjoying the feeling of fullness, before she suddenly blinks and comes back to her senses.");
 	output("\n\n<i>“What did... did we just...”</i> she starts, looking frantically around the bath house and suddenly keenly aware of the stares coming your way. Blushing with embarrassment, the red beauty leaps to her feet and scampers out of the pool and towards the locker room... drooling your seed down her thighs all the way.");
@@ -385,7 +385,7 @@ public function batheAloneYouSloot():void
 	showName("PUBLIC\nBATHS");
 	author("Savin");
 	output("You decide to keep to yourself here, and find somewhere not crowded by bathing myr - not an easy prospect, considering how packed the place is. You manage to find somewhere to dip in though, and set your towel down out of splash radius before you slip into the water.");
-	output("\n\nThe springwater is hotter than you expected, almost making you flinch. You have to bite your lip as your [pc.skinFurScales] slip into the steaming water, slowly but surely lowering yourself into the pool. A few gold myr girls look your way, clearly drinking in your naked body with interest, but you avoid their gazes for now. You slip into the water, shifting ");
+	output("\n\nThe springwater is hotter than you expected, almost making you flinch. You have to bite your lip as your [pc.skinFurScalesNoun] slip" + (InCollection(pc.skinType, [GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS]) ? "" : "s") + " into the steaming water, slowly but surely lowering yourself into the pool. A few gold myr girls look your way, clearly drinking in your naked body with interest, but you avoid their gazes for now. You slip into the water, shifting ");
 	if(pc.isTaur()) output("your bestial body down into the bottom of the pool and resting your humanoid weight against the side of the pool");
 	else output("down onto the stone seat on the edge of the pool");
 	output(". You spread your arms out around the stone lip of the poolside, letting your body adjust to the heat.");
@@ -705,7 +705,7 @@ public function treasureHunt():void
 	else
 	{
 		output(" don’t make the process easier - ");
-		if(pc.hasCock()) output("[pc.eachCock] stands halfway to attention, getting snagged in your gear as you try to pull free");
+		if(pc.hasCock()) output("[pc.eachCock] stands halfway to attention, getting snagged in your gear as you try to pull free.");
 		else output("you spend as much time glued to her every jiggling inch as you do undressing, wishing slightly that you’d just propositioned her for sex instead.");
 	}
 	output("\n\nOserre finds your hand and creeps over to the edge of the pool. The myr woman hands you down, into the water, but instead of joining you immediately, turns to her dresser and opens it. Her lengthy rummage eventually turns up two containers.");
@@ -831,7 +831,7 @@ public function treasureHunt():void
 		else output("seed spills");
 		output(" continuously, changing the steamy pool into a slurry of boy butter. <i>“Oh my word,”</i> the matron remarks, as the consistency of the water around her turns to gravy. <i>“No wonder your spirit was under such strain. You may be the most... overwrought individual I’ve yet met.”</i> She raises her hands, feeling your sludge drip from her fingers, then wipes the jizz on her breasts with such obvious relish that your slightly-limp meatus squeezes out an appreciative aftershock. <i>“You must return soon - I fear the consequences if you go too long without allowing one of us to lift your encumbrance.”</i> She pauses, awkwardly. <i>“I wonder if we should use another room to finish this cleansing...”</i> You smile perversely, anticipating sullying another pool with a return visit.");
 	}
-	else  
+	else
 	{
 		output("\n\nAs your orgasm winds down, Oserre ");
 		if(!pc.hasGenitals()) output("withdraws her fingers carefully from your [pc.ass].");

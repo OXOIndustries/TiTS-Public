@@ -235,6 +235,19 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith_nude.png", mimeType = "image/png")]
 		public var Bust_SEMITH_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/saendra.png", mimeType = "image/png")]
+		public var Bust_SAENDRA:Class;
+		public var Bounds_SAENDRA:Rectangle = new Rectangle(60, 0, 60, 60);
+		[Embed(source = "../../../assets/images/npcs/adjatha/saendra_dick.png", mimeType = "image/png")]
+		public var Bust_SAENDRA_FUTA:Class;
+		public var Bounds_SAENDRA_FUTA:Rectangle = new Rectangle(60, 0, 60, 60);
+		[Embed(source = "../../../assets/images/npcs/adjatha/saendra_nude.png", mimeType = "image/png")]
+		public var Bust_SAENDRA_NUDE:Class;
+		public var Bounds_SAENDRA_NUDE:Rectangle = new Rectangle(60, 0, 60, 60);
+		[Embed(source = "../../../assets/images/npcs/adjatha/saendra_nude_dick.png", mimeType = "image/png")]
+		public var Bust_SAENDRA_FUTA_NUDE:Class;
+		public var Bounds_SAENDRA_FUTA_NUDE:Rectangle = new Rectangle(60, 0, 60, 60);
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
 		public var Bust_SIMONE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone_nude.png", mimeType = "image/png")]
@@ -535,6 +548,15 @@ package classes.Resources.Busts
 			public var Full_SEMITH:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith_nude.png", mimeType = "image/png")]
 			public var Full_SEMITH_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/saendra.png", mimeType = "image/png")]
+			public var Full_SAENDRA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/saendra_dick.png", mimeType = "image/png")]
+			public var Full_SAENDRA_FUTA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/saendra_nude.png", mimeType = "image/png")]
+			public var Full_SAENDRA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/saendra_nude_dick.png", mimeType = "image/png")]
+			public var Full_SAENDRA_FUTA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone.png", mimeType = "image/png")]
 			public var Full_SIMONE:Class;
