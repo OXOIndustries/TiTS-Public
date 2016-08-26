@@ -1813,6 +1813,7 @@ public function annoFollowerSpecialGear():void
 	{
 		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, undefined, "Her Gun", "Ask Anno about her personal gun. That didn't seem like a stock model.")
 	}
+	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) addDisabledButton(0, "Her Gun", "Her Gun", "Her gun is an old-style powder-blaster. You couldn't imagine a less interesting firearm.");
 	else addDisabledButton(0, "Her Gun", "Her Gun", "You've already asked her about her gun.");
 
 	if (pc.hasItem(new GrayMicrobots()) && !pc.hasKeyItem("Goozooka"))

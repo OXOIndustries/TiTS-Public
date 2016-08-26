@@ -190,7 +190,7 @@ public function orderUpOneTurkeyCuntPie():void
 	
 	output("\n\nYou lean into her crotch, taking a deep whiff of the sexy scent bubbling off her hot box. It takes a moment to fully recognize it, but when you do, your eyes wide. <i>“Pumpkin?”</i>");
 	
-	output("\n\n<i>“Spiced pumpkin,”</i> the cow grins, and before you can blink, she’s learned her big booty back into your face, mashing her crotch into your face and slathering you with her pussy. <i>“It’s my favorite... tasty, eh?”</i>");
+	output("\n\n<i>“Spiced pumpkin,”</i> the cow grins, and before you can blink, she’s leaned her big booty back into your face, mashing her crotch into your face and slathering you with her pussy. <i>“It’s my favorite... tasty, eh?”</i>");
 	
 	output("\n\nYou have to admit, it is. Your tongue instinctively darts out into the loose, warm channel pressed against your mouth, eagerly exploring it. The cow moans as you slide into her, her bent back arching happily as your [pc.tongue] slithers across her warm walls, teasing the lush confines of her channel and lapping up the delicious pumpkin-juice inside. It’s almost as sweet as her milk was, and a welcome change of pace from what feels like gallons of syrup churning in your belly.");
 	
