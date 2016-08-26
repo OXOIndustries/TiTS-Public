@@ -2227,7 +2227,7 @@ public function attemptToDisarmTheBomb():void
 }
 public function lightsOutBombPrep():void
 {
-	startLightsOut(disarmedTarkusBomb,failedToDisarmTarkusBomb);
+	configureLightsOut(disarmedTarkusBomb,failedToDisarmTarkusBomb, [1, 5, 6, 9, 10, 11, 12, 13]);
 }
 
 //OH SHIT SON U DON BLU IT UP

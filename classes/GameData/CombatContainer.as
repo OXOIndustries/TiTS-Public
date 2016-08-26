@@ -24,6 +24,7 @@ package classes.GameData
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.Util.InCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * TODO:
@@ -123,6 +124,7 @@ package classes.GameData
 		}
 		
 		public var encounterText:String = null;
+		public var encounterTextGenerator:Function = null;
 		
 		public static const NO_GROUP:String = "no_group";
 		public static const FRIENDLY_GROUP:String = "friendly_group";
@@ -191,6 +193,12 @@ package classes.GameData
 		 */
 		private function postHostileTurnActions():Boolean
 		{
+			// Regenerate encounter text once per round after everything has resolved
+			if (encounterTextGenerator != null)
+			{
+				encounterText = encounterTextGenerator();
+			}
+			
 			// seductionChance()
 			if (pc.hasStatusEffect("Attempt Seduction"))
 			{
@@ -247,6 +255,26 @@ package classes.GameData
 				}
 			}
 			
+			if (hasCombatEffect("Lust Spores Output"))
+			{
+				removeCombatEffect("Lust Spores Output");
+			}
+			
+			if (hasCombatEffect("Lust Spores Used"))
+			{
+				removeCombatEffect("Lust Spores Used");
+			}
+			
+			if (hasEnemyOfClass(CommanderHenderson))
+			{
+				var h:CommanderHenderson = _hostiles[0];
+				if (h.hasStatusEffect("Parasite Cure") && h.statusEffectv1("Parasite Cure") == 4)
+				{
+					h.setStatusValue("Parasite Cure", 1, 5);
+					h.triggerAlarm(true);
+				}
+			}
+			
 			return false;
 		}
 		
@@ -297,6 +325,35 @@ package classes.GameData
 						kGAMECLASS.setEnemy(null);
 					}, undefined, "Break Cage", "Try and break Dane out - that big, burly ausar might just level the playing field!");
 					return;
+				}
+			}
+			
+			if (hasEnemyOfClass(CommanderHenderson))
+			{
+				var h:CommanderHenderson = _hostiles[0];
+				
+				if (!h.hasStatusEffect("Free Chief"))
+				{
+					if (h.hasStatusEffect("Blinded") || h.hasStatusEffect("Stunned") || h.hasStatusEffect("Staggered"))
+					{
+						addButton(10, "Free Chief", h.freeChief, undefined, "Free Chief", "Get Chief Neykkar out of there! She might be able to lend a helping hand!");
+					}
+					else
+					{
+						addDisabledButton(10, "Free Chief", "Free Chief", "It’s way too dangerous to try this now! You’ve got to do something to buy yourself some time!");
+					}
+				}
+				
+				if (kGAMECLASS.pc.hasKeyItem("Parasite Cure"))
+				{
+					if (!h.hasStatusEffect("Parasite Cure") || h.statusEffectv1("Parasite Cure") < 3)
+					{
+						addButton(11, "Use Cure", h.attemptCure, undefined, "Use the Cure", "Use the cure you and Doc Vanderbilt made. You'll have to get to the Fire Suppression system, access its internal supply, and then insert the cure spray. With any luck, that will start spreading the cure, and neutralize the infected.");
+					}
+				}
+				else if (h.statusEffectv1("Parasite Cure") == 3)
+				{
+					addButton(11, "FireAlarm", h.triggerAlarm, false, "Trigger Fire Alarm", "Hit the alarm to release the cure!");
 				}
 			}
 		}
@@ -897,6 +954,45 @@ package classes.GameData
 						}
 					}
 				}
+			}
+			
+			if (target.hasStatusEffect("Lust Spores"))
+			{
+				var sporesFailed:Boolean = false;
+				var sporesEnded:Boolean = false;
+				
+				if (target.isLustImmune) sporesFailed = true;
+				if (target.hasAirtightSuit()) sporesFailed = true;
+				if (target.getLustResistances().drug.resistanceValue >= 100) sporesFailed = true;
+				
+				if (!sporesFailed)
+				{
+					var sd:TypeCollection = new TypeCollection( { drug: 3 + rand(3) } );
+					var sr:DamageResult = applyDamage(sd, null, target, "suppress");
+				}
+				
+				target.addStatusValue("Lust Spores", 1, -1);
+				if (target.statusEffectv1("Lust Spores") <= 0)
+				{
+					target.removeStatusEffect("Lust Spores");
+				}
+				
+				if (!hasCombatEffect("Lust Spores Output"))
+				{
+					addCombatEffect(new StorageClass("Lust Spores Output"));
+				
+					output("\n\nThe hazy cloud of spores continues to swirl around in the air, enveloping every thing and every one in their foul touch.");
+					if (sporesFailed)
+					{
+						outputDamage(sr);
+					}
+				}
+			}
+			
+			if (target.hasStatusEffect("Crushing Worms"))
+			{
+				output("\n\nThe little tentacles keep hammering at " + target.getCombatName() +", smashing their blunt faces and squeezing as hard as they can!");
+				applyDamage(damageRand(new TypeCollection( { kinetic: 5 }, DamageFlag.BYPASS_SHIELD), 15), null, target, "minimal");
 			}
 		}
 		
@@ -3476,6 +3572,11 @@ package classes.GameData
 			if (_combatEffects[effectName] != undefined) return true;
 			return false;
 		}
+		public function getCombatEffect(effectName:String):StorageClass
+		{
+			if (_combatEffects[effectName] != undefined) return _combatEffects[effectName];
+			return null;
+		}
 		
 		public function doCombatCleanup():void
 		{
@@ -3515,6 +3616,11 @@ package classes.GameData
 		{
 			if (_victoryFunction == null) throw new Error("No victory function has been specified.");
 			if (_lossFunction == null) throw new Error("No loss function has been specified.");
+			
+			if (encounterTextGenerator != null)
+			{
+				encounterText = encounterTextGenerator();
+			}
 		}
 		
 		public function showCombatUI(setAsInit:Boolean = false):void

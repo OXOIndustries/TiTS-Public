@@ -191,7 +191,14 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	}
 	else 
 	{
-		addButton(9, "Sleep", sleep);
+		if (currentLocation == "KI-H16" && flags["KI_REFUSED_VANDERBILT"] != undefined && flags["KI_VANDERBILT_WORKING"] != undefined)
+		{
+			addDisabledButton(9, "Sleep", "Sleep", "You can't afford to risk sleeping with Elenora around. Who knows if she'll be able to hold it together... or if she'll try something while you rest.");
+		}
+		else
+		{
+			addButton(9, "Sleep", sleep);
+		}
 	}
 		
 	addButton(14, "Codex", showCodex);
@@ -369,6 +376,22 @@ public function showMailsHandler(e:Event = null):void
 		return;
 	}
 	
+	if (flags["KASHIMA_STATE"] == 1)
+	{
+		if (!userInterface.isSecondaryOutputActive())
+		{
+			userInterface.showSecondaryOutput();
+			clearOutput2();
+			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something's messed up with it's quantuum comms. device... or it’s getting some serious interference. You'll not be able to use the function until you get back to your ship and tinker with it.");
+			return;
+		}
+		else
+		{
+			backToPrimaryOutput();
+			return;
+		}
+	}
+	
 	if (flags["PC_EMAIL_ADDRESS"] == undefined)
 	{
 		(userInterface as GUI).showSecondaryOutput();
@@ -414,6 +437,13 @@ import classes.UIComponents.UIStyleSettings;
 
 public function updateMailStatus():void
 {
+	if (flags["KASHIMA_STATE"] == 1)
+	{
+		userInterface.mailsDisplayButton.Activate();
+		userInterface.mailsDisplayButton.iconColour = UIStyleSettings.gStatusBadColour;
+		return;
+	}
+	
 	// Initial mail config option!
 	if (flags["PC_EMAIL_ADDRESS"] == undefined)
 	{
@@ -616,6 +646,8 @@ public function sleep(outputs:Boolean = true):void {
 	
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
+	
+	if (kiMedbaySleeps()) return;
 	
 	var minutes:int = 420 + rand(80) + 1
 	
@@ -899,7 +931,7 @@ public function flyTo(arg:String):void {
 			}
 		}
 		//Normal message events.
-		var tEvent:Function = tryProcTravelEvent();
+		var tEvent:Function = tryProcTravelEvent(arg);
 		if (tEvent != null)
 		{
 			incomingMessage(tEvent, arg);
@@ -2114,29 +2146,34 @@ public function processTime(arg:int):void {
 			eventQueue[eventQueue.length] = procDumbfuckStuff;
 		}
 	}
-	//NEVRIE MAIL!
-	if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
-	if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
-	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
-
-	//Emmy Mail
-	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
-	//Emmy mail stage 2 START
-	if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
-	//Emmy mail set up for sextoy go
-	if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (GetGameTimestamp() - (100 * 60))) emmyMailGet3();
-	if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
-
-	//Saendra Mail
-	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
-	//Anno Mail
-	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
-	//KIRO FUCKMEET
-	if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined) { goMailGet("kirofucknet"); kiroFuckNetBonus(); }
-	trySendStephMail();
 	
-	//Other Email Checks!
-	if (rand(100) == 0) emailRoulette();
+	// Don't send mails to the player whilst aboard the kashima
+	if (flags["KASHIMA_STATE"] != 1)
+	{
+		//NEVRIE MAIL!
+		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
+		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
+		if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
+
+		//Emmy Mail
+		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+		//Emmy mail stage 2 START
+		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
+		//Emmy mail set up for sextoy go
+		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (GetGameTimestamp() - (100 * 60))) emmyMailGet3();
+		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
+
+		//Saendra Mail
+		if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
+		//Anno Mail
+		if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
+		//KIRO FUCKMEET
+		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined) { goMailGet("kirofucknet"); kiroFuckNetBonus(); }
+		trySendStephMail();
+		
+		//Other Email Checks!
+		if (rand(100) == 0) emailRoulette();
+	}
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();

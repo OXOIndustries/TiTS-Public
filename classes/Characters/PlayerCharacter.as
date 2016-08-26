@@ -241,5 +241,10 @@ package classes.Characters
 			delete d.bonusResistances;
 			delete d.bonusLustVuln;
 		}
+		
+		override public function getCombatName():String
+		{
+			return "you";
+		}
 	}
 }

@@ -2278,6 +2278,22 @@
 				case "antennae":
 					buffer = antennaeDescript();
 					break;
+				case "combatName":
+					buffer = getCombatName();
+					break;
+				case "combatPronoun":
+				case "combatHimHer":
+					buffer = getCombatPronoun("o");
+					break;
+				case "combatHeShe":
+					buffer = getCombatPronoun("s");
+					break;
+				case "combatHisHer":
+					buffer = getCombatPronoun("pa");
+					break;
+				case "combatHerHers":
+					buffer = getCombatPronoun("pp");
+					break;
 					
 				default:
 					// error production is now done up-stream in the parser
@@ -16471,6 +16487,22 @@
 			||	(slot == GLOBAL.UPPER_UNDERGARMENT && hasStatusEffect("Upper Garment Slot Disabled"))
 			)	return false;
 			return true;
+		}
+		
+		public function getCombatName():String
+		{
+			if (isUniqueInFight) return (a + uniqueName);
+			else return uniqueName;
+		}
+				
+		public function getCombatPronoun(type:String):String
+		{
+			if (type == "s" || type == "heshe") return (this is PlayerCharacter ? "you" : mfn("he", "she", "it"));
+			if (type == "o" || type == "himher") return (this is PlayerCharacter ? "you" : mfn("him", "her", "it"));
+			if (type == "pa" || type == "hisher") return (this is PlayerCharacter ? "your" : mfn("his", "her", "its"));
+			if (type == "pp" || type == "hishers") return (this is PlayerCharacter ? "yours" : mfn("his", "hers", "its"));
+			
+			return "ERROR: <b>Unknown pronoun specifier.</b>";
 		}
 	}
 }

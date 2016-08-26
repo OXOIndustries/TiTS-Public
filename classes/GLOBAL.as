@@ -11,7 +11,7 @@
 		public static const CLASS_NAMES:Array = [
 			"Smuggler",
 			"Mercenary",
-			"Engineer"
+			"Tech Specialist"
 		];
 		
 		public static const UPBRINGING_PAMPERED:uint						= 0;

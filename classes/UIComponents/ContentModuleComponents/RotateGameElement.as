@@ -203,9 +203,7 @@ package classes.UIComponents.ContentModuleComponents
 			_connectorMid.graphics.endFill();
 			_ring.addChild(_connectorMid);
 			_connectorMid.visible = false;
-			
-			iii = 0;
-			
+		
 			_connectorNorth = new Sprite();
 			buildConnector(_connectorNorth, 10, 40, -5, -40);
 			
@@ -234,24 +232,19 @@ package classes.UIComponents.ContentModuleComponents
 				
 				setMaskState(_defState);
 				
+				game.makeMove();
 				game.resolveConnections();
 			}
 		}
 		
-		private static var iii:int = 0;
-		
 		private function buildConnector(s:Sprite, w:int, h:int, x:int, y:int):void
 		{
-			//if (iii == 0) s.graphics.beginFill(0xFF0000);
-			//if (iii == 1) s.graphics.beginFill(0x00FF00);
-			//if (iii == 2) s.graphics.beginFill(0x0000FF);
-			//if (iii == 4) s.graphics.beginFill(0xFFFFFF);
+
 			s.graphics.beginFill(0x0094FF);
 			s.graphics.drawRect(x, y, w, h);
 			s.graphics.endFill();
 			this.addChild(s);
 			s.visible = false;
-			iii++;
 		}
 		
 		public function setState(state:uint):void

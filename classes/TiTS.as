@@ -295,6 +295,11 @@
 		include "../includes/events/karaquest2/rooms.as";
 		include "../includes/events/karaquest2/roomFunctions.as";
 		
+		// Kashima
+		include "../includes/events/kashimaIncident/kashimaIncident.as";
+		include "../includes/events/kashimaIncident/rooms.as";
+		include "../includes/events/kashimaIncident/roomfunctions.as";
+		
 		// Uveto
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/jerome.as";
@@ -461,6 +466,7 @@
 			initializeMyrellionRooms();
 			kquest2InitRooms();
 			initUvetoRooms();
+			kiInitRooms();
 			
 			mapper = new Mapper(this.rooms)
 
