@@ -655,13 +655,12 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 		/* 9999 - Repeat events. Nothing planned yet? */
 		
 		//if(flags["SHADE_IS_YER_SIS"] != -1) flags["NAV_DISABLED"] = undefined;
-		if(flags["SHADE_IS_YER_SIS"] = 0)
+		if(flags["SHADE_IS_YER_SIS"] == 0)
 			{
 				response = "lover sibling decision";
 				tooltip = "This is Shade's house. Time to make a decision about where you want the pair of you to go.";
 			}
-		else if(flags["SHADE_IS_YER_SIS"] != 0)
-		return;
+		else return;
 	}
 	// Lover Shade (Sibling Unrevealed)
 	else if(shadeIsLover() && !shadeIsSiblings())
