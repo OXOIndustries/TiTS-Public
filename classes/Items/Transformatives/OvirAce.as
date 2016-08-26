@@ -73,8 +73,11 @@ package classes.Items.Transformatives
 			// Requires a wangdoodle
 			if (target.hasCock())
 			{
+				var newFem:Number = target.femininity + 5;
+				if (newFem > 90) newFem = 90;
+				
 				//Reduce masculinity, increase femininity. (High chance when masculine, lower when androgynous/feminine)
-				if (target.femininity < 90 && target.femininityUnlocked(90) && (forceChanges || (rand(100) >= target.femininity && changes < changeLimit)))
+				if (target.femininity < 90 && target.femininityUnlocked(newFem) && (forceChanges || (rand(100) >= target.femininity && changes < changeLimit)))
 				{
 					//If masculine face
 					if (target.hasFaceFlag(GLOBAL.FLAG_ANGULAR) || target.hasBeard() || target.femininity <= 40)
@@ -99,8 +102,7 @@ package classes.Items.Transformatives
 						output("\n\nYour face feels momentarily numb. As you bring a hand up to it, you feel the flesh reshaping, smoothing out and taking on an even more feminine shape.");
 					}
 
-					target.femininity += 5;
-					if (target.femininity > 90) target.femininity = 90;
+					target.femininity = newFem;
 					changes++;
 				}
 

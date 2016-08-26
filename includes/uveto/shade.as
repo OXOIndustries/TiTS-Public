@@ -51,6 +51,7 @@ public function shadeIsActive():Boolean
 	if(flags["SHADE_DISABLED"] == 1) return false;
 	if(flags["SHADE_IS_HOSTILE"] != undefined) return false;
 	if(flags["KQ2_SHADE_UNCONSCIOUS"] != undefined && flags["KQ2_SHADE_UNCONSCIOUS"] > (GetGameTimestamp() + (2 * 24 * 60))) return false;
+	if(flags["KQ2_SHADE_AWAY_TIME"] != undefined) return false;
 	return true;
 }
 public function shadeIsHome():Boolean

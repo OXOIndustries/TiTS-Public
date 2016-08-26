@@ -4607,15 +4607,34 @@
 			}
 			return output;
 		}
-		public function femininityMax(): Number {
-			if (hasPerk("Androgyny")) return 100; // perk overrides other conditions
+		public function femininityMax(): Number
+		{
+			// Perk override
+			if (hasPerk("Androgyny")) return 100;
+			// Race override
+			var sRace:String = race();
+			if (sRace.indexOf("nyrea")) return 100;
+			if (sRace.indexOf("ovir") != -1)
+			{
+				if (hasCock()) return 100;
+				if (hasVagina()) return 70;
+			}
 			//Herms + genderless
 			if ((!hasVagina() && !hasCock()) || (hasCock() && hasVagina())) return 85;
 			else if (hasCock() && !hasVagina()) return 70;
 			return 100;
 		}
-		public function femininityMin(): Number {
-			if (hasPerk("Androgyny")) return 0; // perk overrides other conditions
+		public function femininityMin(): Number
+		{
+			// Perk override
+			if (hasPerk("Androgyny")) return 0;
+			// Race override
+			var sRace:String = race();
+			if (sRace.indexOf("ovir") != -1)
+			{
+				if (hasCock()) return 80;
+				if (hasVagina()) return 50;
+			}
 			//Herms + genderless
 			if ((!hasVagina() && !hasCock()) || (hasCock() && hasVagina())) return 20;
 			else if (!hasCock() && hasVagina()) return 30;
@@ -6608,7 +6627,7 @@
 				}
 			}
 			if (raw) return breastRows[index].breastRatingRaw;
-			else return breastRows[index].breastRating();
+			return breastRows[index].breastRating();
 		}
 		public function smallestTitSize(): Number {
 			if (breastRows.length == 0) return -1;
@@ -6899,7 +6918,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if ((cocks[index].cType != GLOBAL.TYPE_EQUINE && cocks[counter].cType == GLOBAL.TYPE_EQUINE) || (cocks[index].cLength < cocks[counter].cLength() && cocks[counter].cType == GLOBAL.TYPE_EQUINE)) index = counter;
+				if ((cocks[index].cType != GLOBAL.TYPE_EQUINE && cocks[counter].cType == GLOBAL.TYPE_EQUINE) || (cocks[index].cLength() < cocks[counter].cLength() && cocks[counter].cType == GLOBAL.TYPE_EQUINE)) index = counter;
 			}
 			return cocks[index].cLength();
 		}
@@ -9065,18 +9084,18 @@
 		{
 			if (demonScore() >= 3) return "hellhound-morph";
 			else if (huskarScore() >= 3)  return "husky-morph";
-			else return "canine-morph";
+			return "canine-morph";
 		}
 		public function felineRace():String
 		{
 			if (hasTail(GLOBAL.TYPE_FELINE) && tailCount > 1) return "nekomata";
 			else if (dragonScore() >= 4 && hasScales())  return "dragonne";
-			else return "feline-morph";
+			return "feline-morph";
 		}
 		public function kitsuneRace():String
 		{
 			if (hasPerk("Enlightened Nine-tails") || hasPerk("Nine-tails") || hasPerk("Corrupted Nine-tails")) return "kitsune";
-			else return "kitsune-morph";
+			return "kitsune-morph";
 		}
 		public function plantRace():String
 		{
@@ -9676,13 +9695,13 @@
 		{
 			if (hasKnot(arg)) return knotDescript(arg);
 			else if(hasSheath(arg)) return sheathDescript(arg);
-			else return "base";
+			return "base";
 		}
 		public function sheathOrKnot(arg: Number): String
 		{
 			if(hasSheath(arg)) return sheathDescript(arg);
 			else if (hasKnot(arg)) return knotDescript(arg);
-			else return "base";
+			return "base";
 		}
 		public function chestDesc(): String {
 			if (biggestTitSize() < 1 && rand(2) == 0)
@@ -11891,7 +11910,7 @@
 							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
 						}
 					}
-					else return false;
+					return false;
 				}
 			}
 			return true;
@@ -12077,7 +12096,7 @@
 			//Unmatched get default types
 			var adjectivesArray:Array = cockAdjectivesRedux(cocks[0],2,true);
 			if(adjectivesArray[1] > 0) return plural(adjectivesArray[0] + " " + randomSimpleCockNoun());
-			else return plural(randomSimpleCockNoun());
+			return plural(randomSimpleCockNoun());
 		}
 		//Ultra-basic multiple cock description
 		public function cocksDescriptLight(): String {

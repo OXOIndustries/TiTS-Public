@@ -3103,7 +3103,7 @@ public function kq2ShadeFollowUpAmends():void
 	output("\n\nYou nod, sadly. It’s understandable, you guess, though it hurts all the same. You can only hope that maybe some day - someday soon - she’ll be ready to talk again.");
 	
 	// if Probe Dungeon Not Done:
-	if(!reclaimedProbeMyrellion())
+	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined)
 	{
 		output("\n\nShade gives you a faint smile, motioning towards the door -- a dismissal, though not entirely unkind. You give her hand a squeeze in kind before standing, giving the huntress a pause to decide on the future of your relationship. If there <i>is</i> a future.");
 		

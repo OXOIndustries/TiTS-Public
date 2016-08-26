@@ -360,6 +360,7 @@ public function suckleFuckZilFemaleYouSuckleFucker():void {
 	processTime(20+rand(10));
 	pc.orgasm();
 	pc.milkInMouth(chars["ZILFEMALE"]);
+	applyPussyDrenched(pc);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
