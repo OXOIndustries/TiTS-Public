@@ -1590,7 +1590,7 @@ public function talkToShadeAboutHerFamily():void
 		if(flags["SEXED_SHADE"] != undefined) output("but knowing you, I’d have to kill you afterwards");
 		else output("but I’d rather not have to kill you down the line");
 		output(",”</i> Shade laughs, though there’s a noticeable edge in her voice.");
-		if(flags["SEXED_SHADE"] != undefined) output(" Well, at least it’s not Saendra....");
+		if(flags["MET_SAENDRA"] != undefined) output(" Well, at least it’s not Saendra....");
 	}
 	
 	processTime(6);

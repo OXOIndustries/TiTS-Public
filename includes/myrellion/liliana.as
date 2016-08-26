@@ -260,9 +260,9 @@ public function lilianaIsTotallyRobocopAnt():void
 	processTime(5);
 	//[real][robo]
 	clearMenu();
-	if(pc.credits >= 6000) addButton(0,"Real Arm",getARealArmBabeeeeeeeeeeee,undefined,"Real Arm","Pay to have the doctor regenerate Lilian's arm.");
-	else addDisabledButton(0,"Real Arm","Real Arm","You don't have the credits to get her a real arm.");
-	addButton(1,"Robo Arm",roboArmsForAllTheLittleAntLadies,undefined,"Robo Arm","Get Liliana a robotic arm.");
+	addButton(0,"Robo Arm",roboArmsForAllTheLittleAntLadies,undefined,"Robo Arm","Get Liliana a robotic arm.\n\nCosts 2000 credits.");
+	if(pc.credits >= 6000) addButton(1,"Real Arm",getARealArmBabeeeeeeeeeeee,undefined,"Real Arm","Pay to have the doctor regenerate Lilian's arm.\n\nCosts 6000 credits.");
+	else addDisabledButton(1,"Real Arm","Real Arm","You don't have the credits to get her a real arm.\n\nCosts 6000 credits.");
 }
 
 //[Real]

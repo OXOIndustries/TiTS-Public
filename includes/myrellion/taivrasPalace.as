@@ -2430,7 +2430,7 @@ public function revealShadesDad():void
 		output(". Shade curses, setting the tablet down on top of the beeping probe. Her gaze drifts from you, and her fingers start to drum on the top of the probe. You try to ask if she’s alright, but when you approach with a comforting hand outstretched, Shade recoils onto her feet and turns away, her coat billowing back behind her.");
 		output("\n\n<i>“I, uh, I need to go,”</i> she says hastily, striding off at just short of a run. You take a step to follow her, but the perplexed pilot puts a hand on your shoulder to stop you.");
 		output("\n\nYou sigh, and let her go. You’re freaking out more than a little bit yourself... what a fucked-up little family your Dad’s left you!");
-		output("\n\nA few moments later, as you’re getting ready to return to your vessel and have said farewell to the crew of the Steele Tech salvage ship, you turn back towards the tarmac just in time to see Shade’s ship launch out of one of the hangers, burning its engines hard as it hurtles into the sky. You sigh: perhaps you should give her some space... then again, she did mention where she was going: her home world of Uveto. If you want to talk things over, that’s where you need to go.");
+		output("\n\nA few moments later, as you’re getting ready to return to your vessel and have said farewell to the crew of the Steele Tech salvage ship, you turn back towards the tarmac just in time to see Shade’s ship launch out of one of the hangars, burning its engines hard as it hurtles into the sky. You sigh: perhaps you should give her some space... then again, she did mention where she was going: her home world of Uveto. If you want to talk things over, that’s where you need to go.");
 		
 		//[Next]
 	}
@@ -2459,7 +2459,7 @@ public function revealShadesDad():void
 		output("\n\nShe gives you a smile and stuffs her hands into her coat pocket, starting to walk towards the hangar. <i>“I’m gonna... gonna take some time. Get my head around this on the way back home. Come by some time, I’ll... I’ll make you dinner. We can get to know each other a little better. You can tell me about my father, maybe.”</i>");
 
 		output("\n\nYou tell her that you’d like that. Hopefully you’ll see her again soon.");
-		output("\n\nShe waves as she walks, disappearing into the crowd of myr bustling about. Not long after, you see a huge, purple starship taking off from one of the hangers, blasting off into orbit. You shield your eyes from the brilliant burn of the engines and wave, sending her off on her homeward journey.");
+		output("\n\nShe waves as she walks, disappearing into the crowd of myr bustling about. Not long after, you see a huge, purple starship taking off from one of the hangars, blasting off into orbit. You shield your eyes from the brilliant burn of the engines and wave, sending her off on her homeward journey.");
 		output("\n\nAnd you’ve got places to be, too. Time to track [rival.name] down.");
 	}
 	flags["UVETO_UNLOCKED"] = 1;
