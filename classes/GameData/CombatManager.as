@@ -44,6 +44,10 @@ package classes.GameData
 		{
 			combatContainer.encounterText = tText;
 		}
+		public static function encounterTextGenerator(tFunc:Function):void
+		{
+			combatContainer.encounterTextGenerator = tFunc;
+		}
 		
 		private static var _friendlyCharacters:Array;
 		public static function setFriendlyCharacters(... args):void

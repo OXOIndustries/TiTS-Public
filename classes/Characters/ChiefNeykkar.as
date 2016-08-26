@@ -1,5 +1,6 @@
 package classes.Characters
 {
+	import classes.BreastRowClass;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
@@ -10,6 +11,7 @@ package classes.Characters
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.ShockBlade;
 	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.VaginaClass;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.Engine.Utility.weightedRand;
@@ -35,7 +37,7 @@ package classes.Characters
 			originalRace = "human";
 			a = "";
 			capitalA = "";
-			this.long = "Neykkar stands at the ready with his rifle poised tight against his shoulder.";
+			this.long = "Neykkar stands at the ready with her rifle poised tight against his shoulder.";
 			this.customBlock = "Neykkar's armor takes the brunt of the attack.";
 			this.isPlural = false;
 			isLustImmune = false;
@@ -63,7 +65,7 @@ package classes.Characters
 			this.HPMod = 30;
 			this.HPRaw = this.HPMax();
 			
-			this.femininity = 35;
+			this.femininity = 75;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "black";
 			this.tallness = 68;
@@ -96,7 +98,7 @@ package classes.Characters
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
-			this.genitalSpot = 0;
+			this.genitalSpot = 2;
 			this.tailType = 0;
 			this.tailCount = 0;
 			this.tailFlags = new Array();
@@ -119,7 +121,7 @@ package classes.Characters
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 0;
+			this.hipRatingRaw = 12;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -130,14 +132,21 @@ package classes.Characters
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 2;
+			this.buttRatingRaw = 14;
 			//No dicks here!
 			this.cocks = new Array();
-			this.createCock();
-			this.cocks[0].cLengthRaw = 6;
-			this.cocks[0].cThicknessRatioRaw = 1.75;
+			
+			this.vaginas = [new VaginaClass()];
+			var v:VaginaClass = vaginas[0];
+			v.loosenessRaw = 4;
+			v.wetnessRaw = 3;
+			
+			this.breastRows = [new BreastRowClass()];
+			var b:BreastRowClass = breastRows[0];
+			b.breastRatingRaw = 10;
+
 			//balls
-			this.balls = 2;
+			this.balls = 0;
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
@@ -158,7 +167,6 @@ package classes.Characters
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;

@@ -16472,7 +16472,8 @@
 		
 		public function getCombatName():String
 		{
-			return (a + uniqueName);
+			if (isUniqueInFight) return (a + uniqueName);
+			else return uniqueName;
 		}
 				
 		public function getCombatPronoun(type:String):String

@@ -124,6 +124,7 @@ package classes.GameData
 		}
 		
 		public var encounterText:String = null;
+		public var encounterTextGenerator:Function = null;
 		
 		public static const NO_GROUP:String = "no_group";
 		public static const FRIENDLY_GROUP:String = "friendly_group";
@@ -192,6 +193,12 @@ package classes.GameData
 		 */
 		private function postHostileTurnActions():Boolean
 		{
+			// Regenerate encounter text once per round after everything has resolved
+			if (encounterTextGenerator != null)
+			{
+				encounterText = encounterTextGenerator();
+			}
+			
 			// seductionChance()
 			if (pc.hasStatusEffect("Attempt Seduction"))
 			{
@@ -3609,6 +3616,11 @@ package classes.GameData
 		{
 			if (_victoryFunction == null) throw new Error("No victory function has been specified.");
 			if (_lossFunction == null) throw new Error("No loss function has been specified.");
+			
+			if (encounterTextGenerator != null)
+			{
+				encounterText = encounterTextGenerator();
+			}
 		}
 		
 		public function showCombatUI(setAsInit:Boolean = false):void

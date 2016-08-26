@@ -36,7 +36,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
-			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
+			this._neverSerialize = true;
 			
 			this.short = "infected crewmemeber";
 			this.originalRace = "human";
@@ -44,8 +44,10 @@
 			this.capitalA = "The ";
 			this.tallness = 62;
 			this.skinTone = "red";
+			this.btnTargetText = "Infected C.";
+			this.isUniqueInFight = false;
 			
-			this.long = "The short and dirty girl looks at you with wild eyes, her body covered only by tattered clothes that provide little coverage. Despite her dirtied appearance, her form looks healthy and fit. She circles you nervously, holding up her fists in a combat stance. Her issues seem more related to lust than any other malady, as indicated by the rigid length that juts from her legs. The shadowy apparition sits behind her, looking worried as she fights you, but otherwise seemingly unable to help her.";
+			this.long = "[Unused]";
 			
 			this.isPlural = false;
 			
@@ -200,13 +202,8 @@
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 3;
 			
-			credits = rand(200);
-			if (rand(40) == 0) inventory.push(new Kirkite());
-			else if(rand(20) == 0) inventory.push(new Satyrite());
-			else if (rand(20) == 0) inventory.push(new Picardine());
-			else if(rand(2) == 0) inventory.push(new RedMyrVenom());		
+			credits = rand(200);	
 			sexualPreferences.setRandomPrefs(4 + rand(3),1);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
 			
 			_randomBustSelection = RandomInCollection("LUSTOMORPH_AUSAR", "LUSTOMORPH_GRYVAIN", "LUSTOMORPH_RASKVEL");
 			
@@ -264,14 +261,16 @@
 		public function tentacleRush(target:Creature):void
 		{
 			//Heavy crushing damage. Basic physical attack.
+			/*
 			if (CombatManager.enemiesAlive() > 1) output("A");
 			else output("The");
-			output(" mutant crewman surges towards [target.combatName], flailing its tentacles wildly in front of itself.");
+			*/
+			output("[attacker.CombatName] surges towards [target.combatName], flailing its tentacles wildly in front of itself.");
 			
 			if (!combatMiss(this, target))
 			{
 				output(" One the largest tendrils hits home, slamming into [target.combatHimHer] with crushing force, sending [target.combatHimHer] staggering back.");
-				applyDamage(new TypeCollection({ kinetic: 10 }), this, target, "minimal");
+				applyDamage(damageRand(this.meleeDamage(), 15), this, target, "minimal");
 			}
 			else
 			{
@@ -283,9 +282,7 @@
 		public function faceHug(target:Creature):void
 		{
 			//Moderate lust attack, high success chance. Basic lust attack.
-			if (CombatManager.enemiesAlive() > 1) output("A");
-			else output("The");
-			output(" mutant crewman leaps forward, lunging towards [target.combatName] with an inhuman banshee's wail. It slams into [target.combatHimHer], barreling [target.combatHimHer] to the deck and pinning [target.combatHimHer] down with its knees. The several tentacles growing from the mutant's crotch lash out, groping and thrusting at");
+			output("[attacker.CombatName] leaps forward, lunging towards [target.combatName] with an inhuman banshee's wail. It slams into [target.combatHimHer], barreling [target.combatHimHer] to the deck and pinning [target.combatHimHer] down with its knees. The several tentacles growing from the mutant's crotch lash out, groping and thrusting at");
 			if (target is PlayerCharacter) output(" your");
 			else output(" [target.combatName]’s");
 			output(" face, trying to penetrate.");
@@ -325,9 +322,7 @@
 			CombatManager.addCombatEffect(new StorageClass("Lust Spores Used"));
 			
 			//Rare action. Creates a light Lust DOT on all PC-aligned creatures for 2-4 turns.
-			if (CombatManager.enemiesAlive() > 1) output("A");
-			else output("The");
-			output(" mutant rears its reddened head back and vomits forth a rush of dark red... mist!? Gas seeps out of the creature's mouth, billowing out around you. You flail your hands out at the growing cloud, trying to wave it away from you... but to no avail. A heavy cloud of red mutant-gunk settles over you");
+			output("[attacker.CombatName] rears its reddened head back and vomits forth a rush of dark red... mist!? Gas seeps out of the creature's mouth, billowing out around you. You flail your hands out at the growing cloud, trying to wave it away from you... but to no avail. A heavy cloud of red mutant-gunk settles over you");
 			
 			var bothUp:Boolean = true;
 			var airtight:Boolean = false;

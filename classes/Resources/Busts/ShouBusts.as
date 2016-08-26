@@ -286,6 +286,10 @@
 		public var Bust_KQ2ENGINEER:Class;
 		public var Bounds_KQ2ENGINEER:Rectangle = new Rectangle(33, 11, 54, 64);
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/henderson.png", mimeType = "image/png")]
+		public var Bust_HENDERSON:Class;
+		public var Bounds_HENDERSON:Rectangle = new Rectangle(82, 0, 90, 90);
+		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kyris.png", mimeType = "image/png")]
 		public var Bust_KYRIS:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kyris_nude.png", mimeType = "image/png")]
@@ -703,6 +707,9 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/haley.png", mimeType = "image/png")]
 			public var Full_HALEY:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/henderson.png", mimeType = "image/png")]
+			public var Full_HENDERSON:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/herman.png", mimeType = "image/png")]
 			public var Full_HERMAN:Class;
 

@@ -131,6 +131,10 @@ public function kiGoUseCargoLift():void
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiCargoLiftVictory);
 	CombatManager.lossScene(kiCargoLiftLoss);
+	CombatManager.encounterTextGenerator(function():String {
+		var m:String = "You’re fighting" + (CombatManager.enemiesAlive() == 1 ? " the last of the" : " several") + " Steele Tech mutant crewmen. These poor souls come in all shapes and sizes, races and sexes, but are unified in a blood-red coloration of their bodies and the writhing tendrils sprouting like cancerous growths from all over their bodies. Every one of them has several such tentacles growing from their loins, but the similarities end there. Some have tendrils drooling from their mouths where their tongues should be; others from their limbs or backs and even breasts. The crew look mindless, overcome with sadistic lust -- the fire of intelligence has long since burned out in their eyes, leaving them acting like mindless monsters, thirsting for your body.";
+		return m;
+	});
 	
 	clearMenu();
 	addButton(0, "Fight!", CombatManager.beginCombat);
