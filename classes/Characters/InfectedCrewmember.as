@@ -289,7 +289,7 @@
 			
 			if (!combatMiss(this, target))
 			{			
-				output(" [target.combatHeShe] manage");
+				output(" [target.CombatHeShe] manage");
 				if (!(target is PlayerCharacter)) output("s");
 				output(" to keep");
 				if (target is PlayerCharacter) output(" your");

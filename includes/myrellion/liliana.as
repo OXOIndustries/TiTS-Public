@@ -283,6 +283,7 @@ public function getARealArmBabeeeeeeeeeeee():void
 	flags["LILIANA_ARMS"] = 2;
 	processTime(15);
 	pc.credits -= 6000;
+	pc.addNice(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -304,6 +305,7 @@ public function roboArmsForAllTheLittleAntLadies():void
 	processTime(15);
 	flags["LILIANA_ARMS"] = 1;
 	pc.credits -= 2000;
+	pc.addNice(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

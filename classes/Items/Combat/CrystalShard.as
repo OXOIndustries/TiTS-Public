@@ -100,7 +100,7 @@
 		
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output("You hold the crystal aloft and break it apart, coating yourself with a splash of liquid goo. It clings to your body, rapidly recrystallizing into a glittering, rock-hard plates!");
+			kGAMECLASS.output("You hold the crystal aloft and break it apart, coating yourself with a splash of liquid goo. It clings to your body, rapidly recrystallizing into glittering, rock-hard plates!");
 			targetCreature.createStatusEffect("Crystal Coated",2,0,0,0,false,"Icon_DefUp","Defense is raised by 4 points thanks to a coating of rock-hard crystals!",false,1200);
 		}
 		

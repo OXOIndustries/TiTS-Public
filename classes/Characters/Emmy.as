@@ -52,7 +52,7 @@
 			this.cocks[0].cLengthRaw = 15;
 			this.cocks[0].cType = GLOBAL.TYPE_CANINE;
 			this.cocks[0].cockColor = "black";
-			this.cocks[0].cockFlags = [GLOBAL.FLAG_KNOTTED, GLOBAL.FLAG_SHEATHED, GLOBAL.FLAG_TAPERED]
+			this.cocks[0].cockFlags = [GLOBAL.FLAG_KNOTTED, GLOBAL.FLAG_SHEATHED, GLOBAL.FLAG_TAPERED];
 			
 			this.vaginas = new Array();
 			this.createVagina();

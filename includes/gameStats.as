@@ -380,7 +380,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.ballSizeRaw > 0 && pc.perkv1("'Nuki Nuts") > 0) output2(" " + formatFloat(pc.ballFullness + ((pc.perkv1("'Nuki Nuts")/pc.ballSizeRaw) * 100), 1) + " %");
 			else output2(" " + formatFloat(pc.ballFullness, 1) + " %");
 			output2("\n<b>* Cum, Current Internal:</b> " + pc.currentCum() + " mLs");
-			output2("\n<b>* Cum, Probable Ejaculation:</b>  " + pc.cumQ() + " mLs");
+			output2("\n<b>* Cum, Probable Ejaculation:</b>  " + Math.round(pc.cumQ()) + " mLs");
 			output2("\n<b>* Cum, Max:</b> " + pc.maxCum() + " mLs");
 			output2("\n<b>* Refractory Rate:</b> " + Math.round(pc.refractoryRate*1000)/10 + " %");
 			if(pc.virility() <= 0) output2("\n<b>* Virility:</b> Infertile");
@@ -1442,10 +1442,10 @@ public function displayQuestLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Current Effects:</b>");
 					if(pc.statusEffectv1("The Treatment") == 0) output2(" Feminine, Cow");
-					else if(pc.statusEffectv1("The Treatment") == 1) output2(" Maculine, Stud");
+					else if(pc.statusEffectv1("The Treatment") == 1) output2(" Masculine, Stud");
 					else if(pc.statusEffectv1("The Treatment") == 2) output2(" Feminine, Stud");
 					else if(pc.statusEffectv1("The Treatment") == 3) output2(" Unisex, Cow and Stud");
-					else if(pc.statusEffectv1("The Treatment") == 4) output2(" Maculine, Amazonian");
+					else if(pc.statusEffectv1("The Treatment") == 4) output2(" Masculine, Amazonian");
 					else if(pc.statusEffectv1("The Treatment") == 5) output2(" Feminine, Double Stud");
 					else if(pc.statusEffectv1("The Treatment") == 6) output2(" Feminine, Undersized");
 					// Timer stuff

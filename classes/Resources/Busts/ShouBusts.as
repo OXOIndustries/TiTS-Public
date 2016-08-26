@@ -248,6 +248,10 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/haley.png", mimeType = "image/png")]
 		public var Bust_HALEY:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/henderson.png", mimeType = "image/png")]
+		public var Bust_HENDERSON:Class;
+		public var Bounds_HENDERSON:Rectangle = new Rectangle(51, 0, 63, 66);
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/herman.png", mimeType = "image/png")]
 		public var Bust_HERMAN:Class;
 
@@ -286,10 +290,6 @@
 		public var Bust_KQ2ENGINEER:Class;
 		public var Bounds_KQ2ENGINEER:Rectangle = new Rectangle(33, 11, 54, 64);
 
-		[Embed(source = "../../../assets/images/npcs/shou_puppy/henderson.png", mimeType = "image/png")]
-		public var Bust_HENDERSON:Class;
-		public var Bounds_HENDERSON:Rectangle = new Rectangle(82, 0, 90, 90);
-		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kyris.png", mimeType = "image/png")]
 		public var Bust_KYRIS:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kyris_nude.png", mimeType = "image/png")]
@@ -316,16 +316,13 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lustomorph_ausar.png", mimeType = "image/png")]
 		public var Bust_LUSTOMORPH_AUSAR:Class;
-		public var Bounds_LUSTOMORPH_AUSAR:Rectangle = new Rectangle(12, 15, 74, 74);
+		public var Bounds_LUSTOMORPH_AUSAR:Rectangle = new Rectangle(30, 7, 64, 64);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lustomorph_gryvain.png", mimeType = "image/png")]
 		public var Bust_LUSTOMORPH_GRYVAIN:Class;
 		public var Bounds_LUSTOMORPH_GRYVAIN:Rectangle = new Rectangle(28, 29, 64, 64);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lustomorph_raskvel.png", mimeType = "image/png")]
 		public var Bust_LUSTOMORPH_RASKVEL:Class;
 		public var Bounds_LUSTOMORPH_RASKVEL:Rectangle = new Rectangle(38, 14, 64, 64);
-		
-		[Embed(source = "../../../assets/images/npcs/spoopster.png", mimeType = "image/png")]
-		public var Bust_SPOOPSTER:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/marina.png", mimeType = "image/png")]
 		public var Bust_MARINA:Class;
@@ -727,7 +724,7 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/henderson.png", mimeType = "image/png")]
 			public var Full_HENDERSON:Class;
-			
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/herman.png", mimeType = "image/png")]
 			public var Full_HERMAN:Class;
 
