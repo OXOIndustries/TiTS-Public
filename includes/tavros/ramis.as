@@ -35,20 +35,22 @@ public function ramisIsCrew():Boolean
 
 // Intros
 // Appears every other day in Anon’s Bar between 21:00 - 01:30
+// Edit, new time: 20:15 - 02:30
 public function ramisAtAnons():Boolean
 {
 	if(pc.hasStatusEffect("Ramis Away Time")) return false;
 	
-	if(flags["RAMIS_MET"] != undefined && pc.hasCock() && pc.mfn("m", "f", "n") != "m" && ramisFemboyHours()) return true;
+	if(flags["RAMIS_MET"] != undefined && pc.isFemboy() && ramisFemboyHours()) return true;
 	// Regular hours
-	if(hours >= 21 || (hours <= 1 && minutes <= 30)) return true;
+	if((hours == 20 && minutes >= 15) || (hours > 20 || hours < 02) || (hours == 02 && minutes <= 30)) return true;
 	
 	return false;
 }
 // Feminine male re-approaches Ramis between 01:30 - 12:15
+// Edit, new time: 02:30 - 12:15
 public function ramisFemboyHours():Boolean
 {
-	if((hours >= 1 && minutes >= 30) && (hours <= 12 && minutes <= 15)) return true;
+	if((hours == 02 && minutes >= 30) || (hours > 02 && hours < 12) || (hours == 12 && minutes <= 15)) return true;
 	return false;
 }
 public function ramisAtAnonsAddendum(btnSlot:int = 0):void
@@ -64,7 +66,7 @@ public function ramisAtAnonsAddendum(btnSlot:int = 0):void
 	else
 	{
 		// Only feminine males see this for simplicity’s sake
-		if(pc.hasCock() && pc.mfn("m", "f", "n") != "m" && ramisFemboyHours())
+		if(pc.isFemboy() && ramisFemboyHours())
 		{
 			// New blurb: 
 			output("Ramis the kaithrit is all on her own by the bar now, her friends having long since left her to it. It’s not obvious if the bar is propping up the feline amazon or vice versa.");
@@ -115,7 +117,7 @@ public function ramisAppearance(btnSlot:int = 0):void
 	showRamis();
 	
 	output("The seven foot, two-inch tall, brown-skinned, honey-haired obelisk of taut muscle and generous feminine curves that calls itself Ramis is a kaithrit, and is definitely one of the more generously sized examples of her race. Beneath her tight jeans, each of her big, brawny buttocks is the size of a basketball, and her dark tank top and sports bra do not disguise her wide, round D-cups. Ropy muscle trembles restlessly in her bare, washboard midriff and arms. Bursting out of the seat of her jeans are her twin tails, the same color as her pointed ears: tawny, with a paintbrush-like dappling of black.");
-	output("\n\nIn keeping with the rest of her, her eyes are a deep yellow. Her hair is pulled back into a ponytail, which combines with her high, proud cheekbones to give her a rather daunting profile at first glance; however, a full, expressive mouth that provides her with a huge, winning smile softens things considerably. Behind that, she has a voice and set of lungs that could be used to deafen people two planets away. Overall, she gives the impression of a boisterous late summer party looming ponderously into view.");
+	output("\n\nIn keeping with the rest of her, her eyes are a deep yellow. Her hair is pulled back into a ponytail, which combines with her high, proud cheekbones to give her a rather daunting profile at first glance; however, a full, expressive mouth that provides her with a huge, winning smile softens things considerably. Behind that, she has a voice and set of lungs that could be used to deafen people two planets away. She overall gives the impression of a boisterous late summer party looming ponderously into view.");
 	if(flags["RAMIS_SEXED"] != undefined) output("\n\nBetween her legs you know that, just like the rest of her, she’s pure female kaithrit - a single, fluffed, large but vice-like pussy is to be found there, and she has a single pink anus between her tight buttcheeks right where it belongs.");
 	
 	addDisabledButton(btnSlot, "Appearance");
@@ -171,7 +173,7 @@ public function approachRamis(special:String = "none"):void
 			addButton(2, "Back Off", ramisLeave, pc.mf("man", "fem"));
 		}
 		// 3.	PC feminine male, has done trap fuck: 
-		else if(pc.hasCock() && pc.mfn("m", "f", "n") != "m" && flags["RAMIS_SEXED_TRAP"] != undefined)
+		else if(pc.isFemboy() && flags["RAMIS_SEXED_TRAP"] != undefined)
 		{
 			output("<i>“Oh, hello you. Don’t tell me you’re back for more?”</i> Ramis grins as she considers you with half-lidded predatory eyes, downing a shot as she does. <i>“Well, you know how it goes, knickers: Come back when I’ve had my fun for the evenen’. I might want to do bad things to you then, who knows...”</i>");
 			
@@ -213,7 +215,7 @@ public function approachRamis(special:String = "none"):void
 		addButton(2, "Back Off", ramisLeave, "fem");
 	}
 	// PC is andro/feminine male, 
-	else if(pc.hasCock() && pc.mfn("m", "f", "n") != "m")
+	else if(pc.isFemboy())
 	{
 		// kaithrit score < 5
 		if(pc.kaithritScore() <= 4)
@@ -221,7 +223,7 @@ public function approachRamis(special:String = "none"):void
 			output("\n\n<i>“You’re a boyo, aren’t ya?”</i> The brown-skinned kaithrit leers and winks at you lasciviously. <i>“Can’t keep that from a kaithrit, I’m afraid! All our lads look like you. Hoping for some action?”</i>");
 			if(pc.isNude() || (pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed())) output("\n\n<i>“Wasn’t exactly hard to work it out, was it?”</i> snorts one of her human companions. <i>“He’s standing there in the nip!”</i>");
 			output("\n\nCarelessly, the big, tawny cat-woman reaches " + (pc.tallness >= 80 ? "down" : "across") + " and gives your [pc.ass] a hard squeeze.");
-			output("\n\n<i>“Nice,”</i> she pronounces. <i>“But Ramis is not in the mood for sissy boys right now. You run along, do your lipstick, and give her some space. Maybe later.”</i>");
+			output("\n\n<i>“Nice,”</i> she pronounces. <i>“But Ramis is not in the mood for sissy boys right now. You run along, do your lipstick, and give her some space. <b>Maybe later</b>.”</i>");
 			output("\n\n<i>“Yeah,”</i> sniggers a merc. <i>“When Ramis is so blasted she doesn’t care what she takes for a ride.”</i> He adeptly ducks the shot glass that is thrown at him.");
 		}
 		// kaithrit score > 4
@@ -229,7 +231,7 @@ public function approachRamis(special:String = "none"):void
 		{
 			output("\n\n<i>“What’s happenin’, boyo?”</i> Without a by-your-leave, the big, tawny cat-woman reaches her ropy arm around you and gives your [pc.ass] a hard squeeze. You are engulfed in sporty perfume. <i>“Precious like you shouldn’t be on your own in a dive like this.”</i>");
 			output("\n\n<i>“Where you might get woman-handled by someone like Ramis,”</i> snorts one of her human companions. Ramis pats you on the head fondly.");
-			output("\n\n<i>“I’m not in the mood for home boys right now,”</i> she pronounces. <i>“You run along, do your lipstick, and give me some space. Maybe later.”</i>");
+			output("\n\n<i>“I’m not in the mood for home boys right now,”</i> she pronounces. <i>“You run along, do your lipstick, and give me some space. <b>Maybe later</b>.”</i>");
 			output("\n\n<i>“Yeah,”</i> sniggers another merc. <i>“When she’s so blasted she doesn’t care what she takes for a ride.”</i> He adeptly ducks the shot glass that is thrown at him.");
 		}
 		
@@ -248,7 +250,8 @@ public function approachRamis(special:String = "none"):void
 		// [Appearance] [Flirt] [Drink] [Back Off]
 		if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
 		else addDisabledButton(0, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
-		addButton(1, "Flirt", ramisFlirt);
+		if(pc.lust() >= 33) addButton(1, "Flirt", ramisFlirt);
+		else addDisabledButton(1, "Flirt", "Flirt", "You are not aroused enough for this!");
 		addButton(2, "Back Off", ramisLeave, "man");
 	}
 	// Failsafe
@@ -370,7 +373,7 @@ public function ramisDrink(response:String = "drink"):void
 				else if(pc.race().indexOf("kaithrit") != -1) output(" When she dances with you, her tails send very clear and inviting signals, writhing and twisting around her body, drawing attention to her sumptuous curves and rippling muscles. The moment you think about pressing your lips to hers however she’s off again, either to the bar or butting into somebody else’s fledgling one night stand.");
 				else output(" Dancing with her is like being caught in a tumble dryer - a very sweaty and booby tumble dryer. Rough, clawed hands grip at your shoulders and hurl you around, and it’s all you can do to throw shapes that will stop you being thrown headfirst into other dancers.");
 				output("\n\nRamis gets wilder and wilder, however despite the world swimming with alcohol and endorphins you keep your wits about you, and manage to tear her away from the place before she’s thrown out. You can’t stop her from setting off into the vast space station almost at random, and high on the buzz you kind of want to see where her anarchy and fathomless energy will take you next. She knocks over shop stands... you run away from security... she shimmies up the giant mushroom trees on the res deck... you try to activate escape pods... she finds a pod of vodka somewhere... you run away from more security...");
-				output("\n\n<i>“Iz my bezzie,”</i> the kaithrit mumbles in your ear, as you slowly escort her towards your ship. <i>“Feel I’ve known you my whole life, y’know? Tonight we’re- we’re ziblings.”</i>");
+				output("\n\n<i>“Iz my bezzie,”</i> the kaithrit mumbles in your ear, as you slowly escort her towards your ship. <i>“Feel I’ve known you my whole life, y’know? Tonight we’re- we’re " + (pc.hasVagina() ? "zisters" : "ziblings") + ".”</i>");
 				output("\n\n<i>“Uh huh.”</i> You stagger slightly under her considerable weight.");
 				
 				// [pb]
@@ -383,7 +386,7 @@ public function ramisDrink(response:String = "drink"):void
 				output("\n\n<i>“Oh, you’re gonna regret sayin’ that! C’mon [pc.name], let’s show this station it’s never been born!”</i> She almost breaks her neck stumbling over a chair on the way to the bar, but she does make it.");
 				output("\n\nThe rest of the night is something of a blur. You definitely stay in Anon’s for a bit longer, then... fragmented memories of " + (pc.hasLegs() ? "stumbling" : "roiling") + " down Tavros’s corridors... and thumping bass and flickering lights. Where did you share the nightmarishly blue-colored drink? Even before it started sending streams of bubbles through your brain you knew that was a bad idea...");
 				output("\n\n<i>“Iz not blue!”</i> Ramis argued with someone. <i>“Iz NOT blue! This, THIS iz blue.”</i> She started unbuttoning her jeans and you were trying to stop her... did she punch someone? Oh god, not the bouncer...");
-				output("\n\n<i>“Iz my bezzie,”</i> you remember the kaithrit mumbling in your ear later, whilst the two of you searched for an escape pod you could easily take for a joy ride. Or escape station security with. Or vomit into. One of those. <i>“Feel I’ve known you my whole life, y’know? Tonight we’re- we’re zisters.”</i> The whole time you were thinking she didn’t need to say anything, because it was all so obvious...");
+				output("\n\n<i>“Iz my bezzie,”</i> you remember the kaithrit mumbling in your ear later, whilst the two of you searched for an escape pod you could easily take for a joy ride. Or escape station security with. Or vomit into. One of those. <i>“Feel I’ve known you my whole life, y’know? Tonight we’re- we’re " + (pc.hasVagina() ? "zisters" : "ziblings") + ".”</i> The whole time you were thinking she didn’t need to say anything, because it was all so obvious...");
 				
 				// [pb]
 				addButton(0, "Next", ramisDrink, "hangover");

@@ -66,7 +66,7 @@ public function saendraBarAddendum(slot:int = 7):Boolean
 			}
 			else
 			{
-				addButton(slot, "Saendra", meetSaenAtTheBar);
+				addButton(slot, "Saendra", meetSaenAtTheBar, undefined, "Saendra", "See what Saen is up to.");
 			}
 			return false;
 		}

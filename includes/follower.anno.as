@@ -464,7 +464,7 @@ public function annoAtAnonsAddendum(slot:int = 8):void
 	if (flags["ANNO_CREWMEMBER"] == 2)
 	{
 		output("\n\nAnno is sitting at the bar, nursing a whiskey and working on a glowing datapad.");
-		addButton(slot, "Anno", annoFindingALostPooch);
+		addButton(slot, "Anno", annoFindingALostPooch, undefined, "Anno", "See how the ausar recruit is doing.");
 	}
 	// Is an active crewmember - see if we can proc the Kaede event.
 	else if (flags["ANNO_CREWMEMBER"] == 1)
@@ -477,7 +477,7 @@ public function annoAtAnonsAddendum(slot:int = 8):void
 			{
 				output("\n\nAnno is drinking and conversing with a red-headed friend at the bar.");
 				pc.createStatusEffect("Anno x Kaede Bar", 0, 0, 0, 0, true, "", "", false, 15);
-				addButton(slot, "Anno", annoxKaedeFollowerMeeting);
+				addButton(slot, "Anno", annoxKaedeFollowerMeeting, undefined, ("Anno & " + (hasMetKaede() ? "Kaede" : "Friend")), "Catch up with the two.");
 			}
 		}
 	}

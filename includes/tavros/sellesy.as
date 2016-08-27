@@ -51,8 +51,8 @@ public function anonsBarWaitressAddendum(slot:int = 0):void {
 		if(flags["MET_SELLESY"] != undefined) output(", Sellesy,");
 		output(" is here again, though she hasn't yet caught sight of you. You could flag her down if you wanted.");
 	}
-	if(flags["MET_SELLESY"] == undefined) addButton(0,"Waitress",anonsBarWaitressApproach);
-	else addButton(slot,"Sellesy",anonsBarWaitressApproach);
+	if(flags["MET_SELLESY"] == undefined) addButton(0,"Waitress",anonsBarWaitressApproach,undefined,"Waitress","See if you can't get the volutpuous trilateral's attention.");
+	else addButton(slot,"Sellesy",anonsBarWaitressApproach,undefined,"Sellesy","Get some bar service.");
 }
 
 

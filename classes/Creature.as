@@ -3096,7 +3096,12 @@
 		}
 		public function isBro():Boolean
 		{
-			return hasPerk("Brute Speech");	
+			return hasPerk("Brute Speech");
+		}
+		public function isFemboy():Boolean
+		{
+			if(hasCock() && !hasVagina() && mfn("m", "f", "n") != "m") return true;
+			return false;
 		}
 		/**
 		 * Brynn has a bunch of shit that leans on this that kinda needs to be expanded.
