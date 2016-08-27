@@ -46,7 +46,7 @@ public function approachHanaMet():void
 	clearOutput();
 	showHana(false);
 
-	output("You’re standing before Hana, whom is working the bar. A huskar like most of the locals, she’s surprisingly tall and willowy in stature despite her older, maternal appearance, making her curvy waist line and immodest bosom subtle in her silhouette. Beyond her mere figure the woman is raven haired, the black strands framing her head in a bob cut with a bang hanging across the side of her face, concealing the black, simplistic eyepatch over her right eye in the process. The usual ausar fur lines her arms and, you presume, her leg - though you can’t see the latter through the bar.");
+	output("You’re standing before Hana, whom is working the bar. A huskar like most of the locals, she’s surprisingly tall and willowy in stature despite her older, maternal appearance, making her curvy waist line and immodest bosom subtle in her silhouette. Beyond her mere figure the woman is raven haired, the black strands framing her head in a bob cut with a bang hanging across the side of her face, concealing the black, simplistic eyepatch over her right eye in the process. The usual ausar fur lines her arms and, you presume, her legs - though you can’t see the latter through the bar.");
 	
 	output("\n\nUnlike typical ausar, though, she also has furr puffing up around her neckline as if she is wearing a particularly fluffy scarf or shawl, given her huskar nature. All of the fur is black, but you can see a few aging grey strands stand out both in her hair and fuzzier fur. To accentuate this, or simply to avoid being <i>too</i> warm, the beige, cozy and body hugging wool sweater she wears opens in the chest, though where there’d be cleavage on any other woman lies a massive puff of fur overshadowing it");
 	if (pc.isBimbo() || pc.isBro() || pc.LQ() >= 75 || (pc.lust() > pc.lustMax() * 0.75)) output(", disappointingly");
@@ -82,7 +82,7 @@ public function hanaDrinkMenu():void
 
 	output("<i>“Well, I wouldn’t mind a drink.”</i> You quip, leaning against the wood stained bartop expectantly.");
 	
-	output("\n\nHana merely nods her head and lifts a hand away from her rag to tap at some interface hidden away beneath the bar, silently. Your codex chirps soon after with the menu - after a brief permission prompt, anyway. It’s surprisingly robust, so much so that you spend a good minute or so just flicking through the multitude of menus. Some of it also gets prohibitively expensive, too, but you’ve come to expect that with some esoteric vintages. Quietly your narrow down the listings in your head, ready to make an easy order.");
+	output("\n\nHana merely nods her head and lifts a hand away from her rag to tap at some interface hidden away beneath the bar, silently. Your codex chirps soon after with the menu - after a brief permission prompt, anyway. It’s surprisingly robust, so much so that you spend a good minute or so just flicking through the multitude of menus. Some of it also gets prohibitively expensive, too, but you’ve come to expect that with some esoteric vintages. Quietly you narrow down the listings in your head, ready to make an easy order.");
 
 	clearMenu();
 	
