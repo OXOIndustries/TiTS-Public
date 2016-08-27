@@ -7568,18 +7568,18 @@
 			}
 			if(hasLipples(rowNum)) {
 				if(present) {
-					actions.push("puckering", "puffing up", "swelling");
+					actions.push("puckering", "puffing", "swelling");
 				}
 				else {
-					actions.push("pucker", "puff up", "swell");
+					actions.push("pucker", "puff", "swell");
 				}
 			}
 			if(hasFlatNipples(rowNum) || hasInvertedNipples(rowNum)) {
 				if(present) {
-					actions.push("expanding", "puffing up", "swelling");
+					actions.push("expanding", "puffing", "swelling");
 				}
 				else {
-					actions.push("expand", "puff up", "swell");
+					actions.push("expand", "puff", "swell");
 				}
 			}
 			
