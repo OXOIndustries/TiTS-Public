@@ -189,7 +189,7 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
-			btnTargetText = "Neykkar";
+			btnTargetText = "Henderson";
 			
 			this._isLoading = false;
 		}
@@ -562,7 +562,7 @@ package classes.Characters
 			HP(healAmt);
 			energy(energyMax() * 0.15);
 			
-			output("The commanders mutated form rapidly recovers from damage, knitting closed fresh wounds with newly-sprouted tentacles! (<b><span status='good'>+" + healAmt + "</span></b>\n\n");
+			output("The commanders mutated form rapidly recovers from damage, knitting closed fresh wounds with newly-sprouted tentacles! (<b><span status='good'>+" + healAmt + "</span></b>)\n\n");
 			
 			if (hasStatusEffect("Bleeding"))
 			{

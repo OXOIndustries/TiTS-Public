@@ -47,7 +47,7 @@
 			this.btnTargetText = "Infected C.";
 			this.isUniqueInFight = false;
 			
-			this.long = "[Unused]";
+			this.long = "";
 			
 			this.isPlural = false;
 			

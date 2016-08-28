@@ -37,7 +37,7 @@ package classes.Characters
 			originalRace = "human";
 			a = "";
 			capitalA = "";
-			this.long = "Neykkar stands at the ready with her rifle poised tight against his shoulder.";
+			this.long = "Neykkar stands at the ready with her rifle poised tight against her shoulder.";
 			this.customBlock = "Neykkar's armor takes the brunt of the attack.";
 			this.isPlural = false;
 			isLustImmune = false;

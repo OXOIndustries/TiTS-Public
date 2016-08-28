@@ -2250,15 +2250,91 @@ public function displayQuestLog(showID:String = "All"):void
 			distressCount++;
 		}
 		// Operation: Spooky Aliens
-		if(9999 == 0)
+		if(flags["KASHIMA_STATE"] != undefined)
 		{
 			output2("\n<b><u>The Kashima Incident</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(9999 == 0)
+			if(flags["KASHIMA_STATE"] == -1) output2(" Ignored call");
+			if(flags["KASHIMA_STATE"] > 0)
 			{
-				output2(" Completed");
+				output2(" Responded");
+				if(flags["KASHIMA_STATE"] < 2) output2(", <i>In progress...</i>");
 			}
-			else output2(" <i>In progress...</i>");
+			if(flags["KASHIMA_STATE"] == 2) output2(", Crew saved, Neutralized parasite, Rewarded, Completed");
+			if(flags["KASHIMA_STATE"] == 3) output2(", Crew saved, Saved parasite, Rewarded, Completed");
+			if(flags["KASHIMA_STATE"] == 4) output2(", Escaped <i>Kashima</i>, Reported incident, Completed");
+			if(flags["KI_P16_FAILURES"] != undefined || flags["KI_P16_UNLOCKED"] != undefined)
+			{
+				output2("\n<b>* <i>Kashima</i>, Captain’s Ready Room:</b>");
+				if(flags["KI_P16_FAILURES"] != undefined)
+				{
+					output2(" Failed to hack door");
+					if(flags["KI_P16_FAILURES"] == 2) output2(" twice");
+					if(flags["KI_P16_FAILURES"] > 2) output2(" " + flags["KI_P16_FAILURES"] + " times");
+				}
+				if(flags["KI_P16_UNLOCKED"] != undefined)
+				{
+					if(flags["KI_P16_FAILURES"] != undefined) output2(",");
+					output2(" Door unlocked");
+				}
+				if(flags["KI_TAKEN_SWORD"] != undefined) output2(", Looted room");
+			}
+			if(flags["KI_MEDBAY_SLEEPS"] != undefined)
+			{
+				output2("\n<b>* <i>Kashima</i>, Medical Bay:</b>");
+				if(flags["KI_MEDBAY_SLEEPS"] != undefined)
+				{
+					output2(" Slept in room");
+					if(flags["KI_MEDBAY_SLEEPS"] == 2) output2(" twice");
+					if(flags["KI_MEDBAY_SLEEPS"] > 2) output2(" " + flags["KI_MEDBAY_SLEEPS"] + " times");
+				}
+			}
+			if(flags["KIE5_SEARCHED"] != undefined)
+			{
+				output2("\n<b>* <i>Kashima</i>, Chief Engineer’s Quarters:</b>");
+				if(flags["KIE5_SEARCHED"] != undefined) output2(" Looted room");
+			}
+			if(flags["KII3_SAFECRACK_FAILS"] != undefined || flags["KII3_CRACKED"] != undefined)
+			{
+				output2("\n<b>* <i>Kashima</i>, Executive Quarters:</b>");
+				if(flags["KII3_SAFECRACK_FAILS"] != undefined)
+				{
+					output2(" Failed to open safe");
+					if(flags["KII3_SAFECRACK_FAILS"] == 2) output2(" twice");
+					if(flags["KII3_SAFECRACK_FAILS"] > 2) output2(" " + flags["KII3_SAFECRACK_FAILS"] + " times");
+				}
+				if(flags["KII3_CRACKED"] != undefined)
+				{
+					if(flags["KII3_SAFECRACK_FAILS"] != undefined) output2(",");
+					if(flags["KII3_CRACKED"] == -1) output2(" Safe locked permanently");
+					if(flags["KII3_CRACKED"] == 1) output2(" Safe unlocked and looted");
+				}
+			}
+			// Master Chief
+			var sNeykkarName:String = ("Chief " + ((flags["KASHIMA_BRIDGE"] == 1 || flags["KASHIMA_BRIDGE"] == 2) ? "Ushamee" : "") + " Neykkar");
+			output2("\n<b>* " + sNeykkarName + ":</b> Met her");
+			if(flags["KASHIMA_STATE"] < 2)
+			{
+				output2("\n<b>* " + sNeykkarName + ", Status:</b>");
+				if(flags["CHIEF_NEYKKAR_WITH_PC"] == 1) output2(" At your side");
+				else if(flags["CHIEF_NEYKKAR_WITH_PC"] == 2) output2(" Left behind");
+				else output2(" <i>Unknown</i>");
+			}
+			if(flags["FUCKED_CHIEF_NEYKKAR"] != undefined) output2("\n<b>* " + sNeykkarName + ", Times Sexed:</b> " + flags["FUCKED_CHIEF_NEYKKAR"]);
+			// The Captain
+			if(flags["KASHIMA_HOLMES_DEFEATED"] != undefined) output2("\n<b>* Captain Holmes:</b> Defeated him");
+			// Doctor, doctor! Elenora
+			if(flags["KI_VANDERBILT_MET"] != undefined)
+			{
+				output2("\n<b>* Doctor Elenora Vanderbilt:</b> Met her");
+				if(flags["KI_VANDERBILTS_SECRET"] != undefined) output2(", Know of her secret");
+				if(flags["KI_VANDERBILT_WORKING_START"] != undefined)
+				{
+					output2("\n<b>* Doctor Elenora Vanderbilt, Cure, Status:</b>");
+					if(flags["KI_VANDERBILT_WORKING_START"] + 240 <= GetGameTimestamp()) output2(" <i>Working...</i> " + prettifyMinutes((flags["KI_VANDERBILT_WORKING_START"] + 240) - GetGameTimestamp()) + " until completion");
+					else output2(" Completed");
+				}
+			}
 			distressCount++;
 		}
 		// Operation: Tanuki Problems #69
@@ -2292,7 +2368,7 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Ice Queen</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Ignored message");
+			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Ignored call");
 			if(flags["ICEQUEEN COMPLETE"] == -2) output2(" Refused to help Zaalt");
 			if(flags["ICEQUEEN COMPLETE"] == -3) output2(" Lost to Zaalt");
 			if(flags["ICEQUEEN COMPLETE"] > 0) output2(" Defeated Zaalt");
