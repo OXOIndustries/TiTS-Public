@@ -53,19 +53,19 @@ public function alexManHermIntro(slot:int = 1):void {
 	if(flags["FUCKED_ALEX"] == undefined && flags["MET_ALEX"] == undefined) 
 	{
 		output("\n\nYour attention is drawn by a tall and very pretty... Man? Woman? A very pretty person leaning against the bar, clad in baggy pants tucked into boots and a strip of cloth wrapped tightly around their very flat chest. That combined with the close-cropped hair and slight but noticeable muscle tone makes you want to say it’s a man, but their lithe, narrow waist and flared hips imply otherwise. Before you can make a call, the person in question flashes you a brilliant smile your way and beckons you over.");
-		addButton(slot,"Androgyne",approachAlex);
+		addButton(slot,"Androgyne",approachAlex,undefined,"Androgyne","They certainly look interesting...");
 	}
 	else if(flags["FUCKED_ALEX"] == undefined && flags["LAST_MINUTE_ALEX_BACK_OUT"] == undefined) 
 	{
 		output("\n\nIt looks like that androgynous man from before is around again.");
-		addButton(slot,"Androgyne",approachAlex);
+		addButton(slot,"Androgyne",approachAlex,undefined,"Androgyne","Greet the prettyboy.");
 	}
 	else 
 	{
 		output("\n\nYour ");
 		if(flags["FUCKED_ALEX"] != undefined) output("fuck-");
 		output("buddy Alex is hanging out in his usual spot at the bar, drinking something fruity looking and casting occasional lascivious glances your way.");
-		addButton(slot,"Alex",approachAlex);
+		addButton(slot,"Alex",approachAlex,undefined,"Alex","The androgyne always seems up for some fun.");
 	}
 }
 

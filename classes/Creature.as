@@ -3096,7 +3096,12 @@
 		}
 		public function isBro():Boolean
 		{
-			return hasPerk("Brute Speech");	
+			return hasPerk("Brute Speech");
+		}
+		public function isFemboy():Boolean
+		{
+			if(hasCock() && !hasVagina() && mfn("m", "f", "n") != "m") return true;
+			return false;
 		}
 		/**
 		 * Brynn has a bunch of shit that leans on this that kinda needs to be expanded.
@@ -7568,18 +7573,18 @@
 			}
 			if(hasLipples(rowNum)) {
 				if(present) {
-					actions.push("puckering", "puffing up", "swelling");
+					actions.push("puckering", "puffing", "swelling");
 				}
 				else {
-					actions.push("pucker", "puff up", "swell");
+					actions.push("pucker", "puff", "swell");
 				}
 			}
 			if(hasFlatNipples(rowNum) || hasInvertedNipples(rowNum)) {
 				if(present) {
-					actions.push("expanding", "puffing up", "swelling");
+					actions.push("expanding", "puffing", "swelling");
 				}
 				else {
-					actions.push("expand", "puff up", "swell");
+					actions.push("expand", "puff", "swell");
 				}
 			}
 			
@@ -13489,9 +13494,9 @@
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["off-white","off-white","off-white","off-white","off-white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
-				collection = ["chocolate","chocolate","chocolate","chocolate","chocolate","creamy brown, chocolate","creamy brown, chocolate","creamy brown, chocolate","dark, chocolate","dark, chocolate"];
+				collection = ["chocolate","chocolate","chocolate","chocolate","chocolate","creamy brown","creamy brown","creamy brown","dark chocolate","dark chocolate"];
 			} else if (arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
-				collection = ["pink","pink","pink","pink","pink","creamy pink","creamy pink","creamy pink","light, pink","light, pink"];
+				collection = ["pink","pink","pink","pink","pink","creamy pink","creamy pink","creamy pink","light pink","light pink"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
 				collection = ["silvery","silvery","silvery","silvery","silvery","metallic silver","metallic silver","metallic silver","silver","silver"];
 			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) {

@@ -63,7 +63,7 @@ public function iceQueenMessageHelpII():void
 	else output(" makes you gag and cover your mouth");
 	output(". The interior’s darkened with red emergency lights, casting long shadows across the deck. You duck down under the billowing smoke, waving your hands around your face and calling out.");
 	
-	output("\n\n<i>“Hey!”</i> a voice shouts from down the entrance corridor. You turn and see a man jogging down the corridor. A <b>big</b> man - easily over six and a half feet, and as he comes into better view, you can see he’s clearly inhuman. His towering, burly body is covered in a short covering of thick orange fur, itself coated in soot and grease. A pair of goggles are pulled up on his forehead, pushing up a head of black-and-ice-blue dyed hair, and a pair of small tusks jut down from the upper jaw of his short muzzle around a breathing apparatus.");
+	output("\n\n<i>“Hey!”</i> a voice shouts from down the entrance corridor. You turn and see a man jogging down the corridor. A <b>big</b> man - easily over six and a half feet, and as he comes into better view, you can see he’s clearly inhuman. His towering, burly body is covered in a short covering of thick orange fur, itself coated in soot and grease. A pair of goggles are pulled up on his forehead, pushing up a head of black-and-ice-blue dyed hair, and a pair of small tusks jut down from the upper jaw of his short muzzle behind a transparent breathing apparatus.");
 	
 	output("\n\nYou");
 	if(pc.hasAirtightSuit()) output(" wipe the ash staining your helmet for a better view. You can’t smell the outside air, but you imagine it wouldn’t be pleasant. The man grabs your shoulder and guides you past the dense smoke.");
@@ -71,7 +71,7 @@ public function iceQueenMessageHelpII():void
 	
 	output("\n\n<i>“Glad you’re here,”</i> the man says. <i>“I’m Captain Zaalt Kandar. You’re just in time...”</i>");
 	
-	output("\n\n<i>“Steele,”</i> you answer, taking in a deep breath of recycled air. <i>“[pc.name] Steele.”</i>");
+	output("\n\n<i>“Steele,”</i> you answer, taking " + (pc.hasAirtightSuit() ? "a" : "in a deep") + " breath of recycled air. <i>“[pc.name] Steele.”</i>");
 	
 	output("\n\nHe grins, showing off dark golden eyes, slitted like a cat. Now that he’s close, you can see the resemblance: more bestial than a kaithrit, but his species is definitely feline. Almost like a sabertooth. <i>“Just in time, [pc.name],”</i> he says, squeezing your shoulder in one of his big, clawed paws. <i>“We’ve finally got the drive cooled off - barely - but there’s another problem.”</i>");
 	
@@ -83,19 +83,23 @@ public function iceQueenMessageHelpII():void
 	
 	output("\n\n<i>“Got your attention, huh?”</i> Zaalt grins. <i>“With the engines under control, my crew can start repairing things. Should be able to scrub the air clean on their own, too. But there’s no way we can make our delivery. Which means you’re a damn fine sight in this mess.”</i>");
 
-	if (pc.isNice() || pc.isMisch())
+	if (pc.isNice())
 	{
-		if (pc.isNice()) output("\n\n<i>“How can I help?”</i> you say.");
-		else if (pc.isMisch()) output("\n\n<i>“I get that a lot,”</i> you answer with wink.");
-
-		output("\n\n<i>“I bet,”</i> the towering feline laughs.");
+		output("\n\n<i>“How can I help?”</i> you say.");
+		output("\n\n");
+	}
+	else if (pc.isMisch())
+	{
+		output("\n\n<i>“I get that a lot,”</i> you answer with wink.");
+		output("\n\n<i>“I bet,”</i> the towering feline laughs. ");
 	}
 	else
 	{
 		output("\n\n<i>“Start talking,”</i> you say around your mask. <i>“What do you need?”</i>");
+		output("\n\n");
 	}
 
-	output("\n\n<i>“Alright, I hate to impose, but I promise: helping me out will be more than worth your while. We’re making a delivery to Uveto - a core world’s moon, icy little snowball in rush-space ten. Mostly small computer parts... things the colonists can’t replicate on their own. The bulk of the shipment can wait here, but there’s a briefcase full that’s en-route to some mining company, Rhenwail or whatever, that’s marked urgent. No credits unless it’s delivered in...”</i>");
+	output("<i>“Alright, I hate to impose, but I promise: helping me out will be more than worth your while. We’re making a delivery to Uveto - a core world’s moon, icy little snowball in rush-space ten. Mostly small computer parts... things the colonists can’t replicate on their own. The bulk of the shipment can wait here, but there’s a briefcase full that’s en-route to some mining company, Rhenwail or whatever, that’s marked urgent. No credits unless it’s delivered in...”</i>");
 	
 	output("\n\nZaalt looks at a glowing leather-strapped holoband on his wrist, <i>“Uh, real soon. Dammit, gotta hit the space lanes right now if we’re gonna make it.”</i>");
 	
@@ -510,7 +514,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 
 	output("<b>An hour passes...</b>");
 
-	output("\n\nJust as you’re getting through with the mountain of legal gobbledygook the Tove sent you, your proximity sensors alert you to the approach of a large ship bearing the trade IDs of the Camarilla. You respond to a message blip ordering you to power down weapons and shields and follow the <i>“wabeshift”</i> to Uveto Station’s docking terminal. You do as you’re ordered and switch the autopilot on, letting it dog the Camarilla ship in towards the station.");
+	output("\n\nJust as you’re getting through with the mountain of legal gobbledygook the Tove sent you, your proximity sensors alert you to the approach of a large ship bearing the trade IDs of the Camarilla. You respond to a message blip ordering you to power down weapons and shields and follow the “wabeshift” to Uveto Station’s docking terminal. You do as you’re ordered and switch the autopilot on, letting it dog the Camarilla ship in towards the station.");
 
 	shipLocation = "UVS F15";
 	currentLocation = "SHIP INTERIOR";
@@ -525,7 +529,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 	if (pc.isAss()) output("less-than-");
 	output("gentle shake, getting a start from the snoozing cat. You can’t remember when he fell asleep, but if the way his tongue is lolled out the side of his mouth is any indication, he’s been down and out a while!");
 	
-	output("\n\n<i>“Huh!? Wha?”</i> Zaalt blinks, glancing around the bridge... and then going wide-eyed as the Camarilla cruiser passes across your bow, letting you finish the approach to Uveto Station’s docking arm in peace. <i>“What’s a Wabeshift doing here? They barely bother to roll out a tugboat when the </i>Queen<i> comes calling!”</i>");
+	output("\n\n<i>“Huh!? Wha?”</i> Zaalt blinks, glancing around the bridge... and then going wide-eyed as the Camarilla cruiser passes across your bow, letting you finish the approach to Uveto Station’s docking arm in peace. <i>“What’s a wabeship doing here? They barely bother to roll out a tugboat when the </i>Queen<i> comes calling!”</i>");
 	
 	output("\n\nYou laugh, suggesting that you must be a VIP. Maybe");
 	if (flags["MET_RHENESUNNE"] != undefined) output(" Anyxine");
@@ -538,7 +542,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 	
 	output("\n\n<i>“Alright!”</i> Zaalt cheers as the connection locks in: you’ve finally docked. He checks the device on his wrist and growls a curse. <i>“Cutting it damn close, [pc.name]! Gotta... Gaah!”</i>");
 	
-	output("\n\nZaalt’s eyes go wide and he plunges forward, just barely stopping himself on the back of your seat. You leap up and grab him before he can fall to the deck, and the moment you touch his furred flesh, you’re instantly assailed by the the sheer <i>heat</i> radiating off of him. He’s burning up!");
+	output("\n\nZaalt’s eyes go wide and he plunges forward, just barely stopping himself on the back of your seat. You leap up and grab him before he can fall to the deck, and the moment you touch his furred flesh, you’re instantly assailed by the sheer <i>heat</i> radiating off of him. He’s burning up!");
 	
 	output("\n\nYou ask if he’s okay - what’s wrong? - but all the response you get is a weak groan of pain. What the hell?");
 	
@@ -1128,11 +1132,11 @@ public function iceQueenKaraShowsUpInterruptSex():void
 	
 	output("\n\n<i>“Well, that’s it then. I think I’m going to do some investigation planetside... something about that implant rubs me the wrong way still. Heard about an expert down there who might tell me something. Have fun you two, I guess.”</i>");
 	
-	output("\n\nKara stands and adjusts her catsuit around her bust, and the package hidden within it. To you, that’s just an opportunity to get a handful of that lush posterior of her, squeezing just hard enough to make her twinned blue tails squirm, and the front of her jumpsuit’s crotch bulge with a more masculine need.");
+	output("\n\nKara stands and adjusts her catsuit around her bust, and the package hidden within it. To you, that’s just an opportunity to get a handful of that lush posterior of hers, squeezing just hard enough to make her twinned blue tails squirm, and the front of her jumpsuit’s crotch bulge with a more masculine need.");
 	
 	output("\n\n<i>“Heh, guess that’s settled. See you around, Zaalt. As for you,”</i> Kara says, pulling you to your [pc.feet] and pressing herself against you in a way that makes her ample chest spread heavily against your [pc.chest]. <i>“Just follow me.”</i>");
 	
-	output("\n\nShe leans in and plants a kiss on your lips while Zaalt walks off, leaving you two to be oggled by the cafe’s other patrons until Kara takes you by the hand and leads you back down the docking arm...");
+	output("\n\nShe leans in and plants a kiss on your lips while Zaalt walks off, leaving you two to be ogled by the cafe’s other patrons until Kara takes you by the hand and leads you back down the docking arm...");
 
 	processTime(10 + rand(5));
 	pc.credits += 8000;

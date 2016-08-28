@@ -1,4 +1,46 @@
-﻿/* BY ADJATHA 
+﻿// Smut check
+public function hasSmutOptions():Boolean
+{
+	if(MailManager.isEntryViewed("lets_fap_unlock")) return true;
+	if(MailManager.isEntryViewed("steph_on_demand")) return true;
+	return false;
+}
+
+//Enter Ship > Masturbate > Smut
+public function smutFapMenu():void
+{
+	clearOutput();
+	showName("\nSMUT");
+	output("Firing up your console with a few keystrokes, you settle back and ");
+	if(pc.isCrotchExposed()) output("absently rest your hand on your groin");
+	else output("free your crotch");
+	output(" for ease of access while tuning in. What will you watch?");
+
+	//{First time: Cock Review}
+	//{Repeat: New Let’s Fap}
+	//{If the player becomes a Champeon: Let’s Fap}
+	//{Champeons select from any of the episodes they’ve already viewed, or the newest one. The newest episode is just marked <i>“New Let’s Fap”</i> to keep the cock type a surprise.}
+
+	//{New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week}
+	//{Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?}
+	var possibleFuncs:Array = [];
+	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let's Fap", tb: "Atha's Let's Fap episodes", f: letsFapSelectionMenu, ar: undefined } );
+	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "On demand episodes of Steph Irson: Galactic Huntress", f: stephOnDemandMenu, ar: undefined } );
+	
+	clearMenu();
+	
+	for (var i:int = 0; i < possibleFuncs.length; i++)
+	{
+		var o:Object = possibleFuncs[i];
+		addButton(i, o.t, o.f, o.ar, o.th, o.tb);
+	}
+	
+	if(pc.lust() >= 33) addButton(14, "Back", masturbateMenu);
+	else addButton(14, "Back", masturbateMenu);
+}
+
+
+/* BY ADJATHA 
 
 Atha - Futa Let’s Player
 Design notes
@@ -72,38 +114,6 @@ public function futaLetsPlayerIntroEmail():String
 	var ret:String = "Hey " + pc.short + ". I saw this show that you might get a kick out of. Basically, some girl does reviews of different dicks. She uses some machine to give herself a different cock every week and ends up soaked in her own cum more often than not.\n\nIf you’re gonna watch, you probably want to do so from the privacy of your own ship, ha ha.\n\nA site address has been included below.\n\n<b>The Smut menu has been added to your ship’s Masturbate option!</b>";
 	//{Adds new option to Ship’s <i>“Masturbate”</i> menu: <i>“Smut”</i>.}
 	return ret;
-}
-
-//Enter Ship > Masturbate > Smut
-public function smutFapMenu():void
-{
-	clearOutput();
-	showName("\nSMUT");
-	output("Firing up your console with a few keystrokes, you settle back and ");
-	if(pc.isCrotchExposed()) output("absently rest your hand on your groin");
-	else output("free your crotch");
-	output(" for ease of access while tuning in. What will you watch?");
-
-	//{First time: Cock Review}
-	//{Repeat: New Let’s Fap}
-	//{If the player becomes a Champeon: Let’s Fap}
-	//{Champeons select from any of the episodes they’ve already viewed, or the newest one. The newest episode is just marked <i>“New Let’s Fap”</i> to keep the cock type a surprise.}
-
-	//{New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week}
-	//{Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?}
-	var possibleFuncs:Array = [];
-	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let's Fap", tb: "Atha's Let's Fap episodes", f: letsFapSelectionMenu, ar: undefined } );
-	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "On demand episodes of Steph Irson: Galactic Huntress", f: stephOnDemandMenu, ar: undefined } );
-	
-	clearMenu();
-	
-	for (var i:int = 0; i < possibleFuncs.length; i++)
-	{
-		var o:Object = possibleFuncs[i];
-		addButton(i, o.t, o.f, o.ar, o.th, o.tb);
-	}
-	
-	addButton(14, "Back", masturbateMenu);
 }
 
 //[Champeon]

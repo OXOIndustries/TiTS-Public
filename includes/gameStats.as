@@ -2250,15 +2250,91 @@ public function displayQuestLog(showID:String = "All"):void
 			distressCount++;
 		}
 		// Operation: Spooky Aliens
-		if(9999 == 0)
+		if(flags["KASHIMA_STATE"] != undefined)
 		{
 			output2("\n<b><u>The Kashima Incident</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(9999 == 0)
+			if(flags["KASHIMA_STATE"] == -1) output2(" Ignored call");
+			if(flags["KASHIMA_STATE"] > 0)
 			{
-				output2(" Completed");
+				output2(" Responded");
+				if(flags["KASHIMA_STATE"] < 2) output2(", <i>In progress...</i>");
 			}
-			else output2(" <i>In progress...</i>");
+			if(flags["KASHIMA_STATE"] == 2) output2(", Crew saved, Neutralized parasite, Rewarded, Completed");
+			if(flags["KASHIMA_STATE"] == 3) output2(", Crew saved, Saved parasite, Rewarded, Completed");
+			if(flags["KASHIMA_STATE"] == 4) output2(", Escaped <i>Kashima</i>, Reported incident, Completed");
+			if(flags["KI_P16_FAILURES"] != undefined || flags["KI_P16_UNLOCKED"] != undefined)
+			{
+				output2("\n<b>* <i>Kashima</i>, Captain’s Ready Room:</b>");
+				if(flags["KI_P16_FAILURES"] != undefined)
+				{
+					output2(" Failed to hack door");
+					if(flags["KI_P16_FAILURES"] == 2) output2(" twice");
+					if(flags["KI_P16_FAILURES"] > 2) output2(" " + flags["KI_P16_FAILURES"] + " times");
+				}
+				if(flags["KI_P16_UNLOCKED"] != undefined)
+				{
+					if(flags["KI_P16_FAILURES"] != undefined) output2(",");
+					output2(" Door unlocked");
+				}
+				if(flags["KI_TAKEN_SWORD"] != undefined) output2(", Looted room");
+			}
+			if(flags["KI_MEDBAY_SLEEPS"] != undefined)
+			{
+				output2("\n<b>* <i>Kashima</i>, Medical Bay:</b>");
+				if(flags["KI_MEDBAY_SLEEPS"] != undefined)
+				{
+					output2(" Slept in room");
+					if(flags["KI_MEDBAY_SLEEPS"] == 2) output2(" twice");
+					if(flags["KI_MEDBAY_SLEEPS"] > 2) output2(" " + flags["KI_MEDBAY_SLEEPS"] + " times");
+				}
+			}
+			if(flags["KIE5_SEARCHED"] != undefined)
+			{
+				output2("\n<b>* <i>Kashima</i>, Chief Engineer’s Quarters:</b>");
+				if(flags["KIE5_SEARCHED"] != undefined) output2(" Looted room");
+			}
+			if(flags["KII3_SAFECRACK_FAILS"] != undefined || flags["KII3_CRACKED"] != undefined)
+			{
+				output2("\n<b>* <i>Kashima</i>, Executive Quarters:</b>");
+				if(flags["KII3_SAFECRACK_FAILS"] != undefined)
+				{
+					output2(" Failed to open safe");
+					if(flags["KII3_SAFECRACK_FAILS"] == 2) output2(" twice");
+					if(flags["KII3_SAFECRACK_FAILS"] > 2) output2(" " + flags["KII3_SAFECRACK_FAILS"] + " times");
+				}
+				if(flags["KII3_CRACKED"] != undefined)
+				{
+					if(flags["KII3_SAFECRACK_FAILS"] != undefined) output2(",");
+					if(flags["KII3_CRACKED"] == -1) output2(" Safe locked permanently");
+					if(flags["KII3_CRACKED"] == 1) output2(" Safe unlocked and looted");
+				}
+			}
+			// Master Chief
+			var sNeykkarName:String = ("Chief " + ((flags["KASHIMA_BRIDGE"] == 1 || flags["KASHIMA_BRIDGE"] == 2) ? "Ushamee" : "") + " Neykkar");
+			output2("\n<b>* " + sNeykkarName + ":</b> Met her");
+			if(flags["KASHIMA_STATE"] < 2)
+			{
+				output2("\n<b>* " + sNeykkarName + ", Status:</b>");
+				if(flags["CHIEF_NEYKKAR_WITH_PC"] == 1) output2(" At your side");
+				else if(flags["CHIEF_NEYKKAR_WITH_PC"] == 2) output2(" Left behind");
+				else output2(" <i>Unknown</i>");
+			}
+			if(flags["FUCKED_CHIEF_NEYKKAR"] != undefined) output2("\n<b>* " + sNeykkarName + ", Times Sexed:</b> " + flags["FUCKED_CHIEF_NEYKKAR"]);
+			// The Captain
+			if(flags["KASHIMA_HOLMES_DEFEATED"] != undefined) output2("\n<b>* Captain Holmes:</b> Defeated him");
+			// Doctor, doctor! Elenora
+			if(flags["KI_VANDERBILT_MET"] != undefined)
+			{
+				output2("\n<b>* Doctor Elenora Vanderbilt:</b> Met her");
+				if(flags["KI_VANDERBILTS_SECRET"] != undefined) output2(", Know of her secret");
+				if(flags["KI_VANDERBILT_WORKING_START"] != undefined)
+				{
+					output2("\n<b>* Doctor Elenora Vanderbilt, Cure, Status:</b>");
+					if(flags["KI_VANDERBILT_WORKING_START"] + 240 <= GetGameTimestamp()) output2(" <i>Working...</i> " + prettifyMinutes((flags["KI_VANDERBILT_WORKING_START"] + 240) - GetGameTimestamp()) + " until completion");
+					else output2(" Completed");
+				}
+			}
 			distressCount++;
 		}
 		// Operation: Tanuki Problems #69
@@ -2292,7 +2368,7 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Ice Queen</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Ignored message");
+			if(flags["ICEQUEEN COMPLETE"] == -1) output2(" Ignored call");
 			if(flags["ICEQUEEN COMPLETE"] == -2) output2(" Refused to help Zaalt");
 			if(flags["ICEQUEEN COMPLETE"] == -3) output2(" Lost to Zaalt");
 			if(flags["ICEQUEEN COMPLETE"] > 0) output2(" Defeated Zaalt");
@@ -2391,7 +2467,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Anon's Bar!
-			if(flags["MET_ALEX"] != undefined || flags["SEEN_SELLESY"] != undefined || flags["APPROACHED_SHELLY"] != undefined)
+			if(flags["MET_ALEX"] != undefined || flags["SEEN_SELLESY"] != undefined || flags["APPROACHED_SHELLY"] != undefined || flags["RAMIS_MET"] != undefined)
 			{
 				output2("\n<b><u>Anon’s Bar and Board</u></b>");
 				// Alex
@@ -2402,6 +2478,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(" Met him");
 					if(flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2(", Bailed on him");
 					if(flags["FUCKED_ALEX"] != undefined) output2("\n<b>* Alex, Times Sexed:</b> " + flags["FUCKED_ALEX"]);
+				}
+				// Ramis!
+				if(flags["RAMIS_MET"] != undefined)
+				{
+					output2("\n<b>* Ramis:</b> Met her");
+					if(silly && flags["RAMIS_FIRST_IMPRESSION"] != undefined) output2(" <i>(as " + indefiniteArticle(flags["RAMIS_FIRST_IMPRESSION"]) + ")</i>");
+					if(StatTracking.getStat("contests/ramis arm wrestle losses") + StatTracking.getStat("contests/ramis arm wrestle wins") > 0) output2("\n<b>* Ramis, Arm Wrestling Contest, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/ramis arm wrestle wins") + "/" + StatTracking.getStat("contests/ramis arm wrestle losses") + ", of " + (StatTracking.getStat("contests/ramis arm wrestle losses") + StatTracking.getStat("contests/ramis arm wrestle wins")) + " games");
+					if(flags["RAMIS_TIMES_BENDER"] != undefined) output2("\n<b>* Ramis, Times Had a Hangover with Her:</b> " + flags["RAMIS_TIMES_BENDER"]);
+					if(flags["RAMIS_SEXED"] != undefined) output2("\n<b>* Ramis, Times Sexed:</b> " + flags["RAMIS_SEXED"]);
+					if(flags["RAMIS_SEXED_MAN"] != undefined) output2("\n<b>* Ramis, Times Fucked Her as a Man:</b> " + flags["RAMIS_SEXED_MAN"]);
+					if(flags["RAMIS_SEXED_TRAP"] != undefined) output2("\n<b>* Ramis, Times Fucked Her as a Trap:</b> " + flags["RAMIS_SEXED_TRAP"]);
 				}
 				// Sellesy
 				if(flags["SEEN_SELLESY"] != undefined)
@@ -2992,7 +3079,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["MET_HALEY"] != undefined) output2(", Sexed her");
 					if(flags["FUCKED_BY_HALEY"] != undefined) output2(", Fucked by her");
 					if(flags["USED_MILKER"] != undefined) output2("\n<b>* Haley, Times Used Taur-Milker:</b> " + flags["USED_MILKER"]);
-					output2("\n<b>* Haley, Milking Competition, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/haley milker wins") + "/" + StatTracking.getStat("contests/haley milker losses") + ", of " + (StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins")) + " games");
+					if(StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins") > 0) output2("\n<b>* Haley, Milking Competition, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/haley milker wins") + "/" + StatTracking.getStat("contests/haley milker losses") + ", of " + (StatTracking.getStat("contests/haley milker losses") + StatTracking.getStat("contests/haley milker wins")) + " games");
 					if(pc.hasStatusEffect("Won Haley's Credits")) output2("\n<b>* Haley, Milking Competition, Time Until Next Prize:</b> " + prettifyMinutes(pc.getStatusMinutes("Won Haley's Credits")));
 				}
 				// Millie milks!

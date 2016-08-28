@@ -173,12 +173,14 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	lootScreen = inventory;
 	addButton(13, "Inventory", inventory);
 	//Other standard buttons
-
-	if(pc.lust() < 33) {
-		if(pc.canLactate()) addButton(8, "Hand Milk", milkturbation);
+	
+	if(pc.lust() < 33)
+	{
+		if(canArouseSelf()) addButton(8, "Arousal", arousalMenu);
 		else addDisabledButton(8, "Masturbate");
 	}
-	else {
+	else
+	{
 		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
 		else addButton(8, "Masturbate", masturbateMenu);

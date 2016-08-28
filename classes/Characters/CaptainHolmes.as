@@ -189,7 +189,7 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
-			btnTargetText = "Neykkar";
+			btnTargetText = "Holmes";
 			
 			this._isLoading = false;
 		}
@@ -341,7 +341,7 @@ package classes.Characters
 			if (HP() + healAmt > HPMax()) healAmt = HPMax() - HP();
 			HP(healAmt);
 			
-			output("The captains mutated form rapidly recovers from damage, knitting closed fresh wounds with newly-sprouted tentacles! (<b><span status='good'>+" + healAmt + "</span></b>\n\n");
+			output("The captains mutated form rapidly recovers from damage, knitting closed fresh wounds with newly-sprouted tentacles! (<b><span status='good'>+" + healAmt + "</span></b>)\n\n");
 			
 			if (hasStatusEffect("Bleeding"))
 			{

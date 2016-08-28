@@ -1127,7 +1127,8 @@ public function fuckCeria():void
 	output(".");
 
 	output("\n\nYou bring your own hands up under her shirt, your kiss briefly interrupted as you pull the elf’s top up and off. She makes sure to pick it back up right where you left off as soon as her shirt falls to the side. You untie her bra as well, allowing you to get at Ceria’s bubblegum-pink nipples and give one a tweak. She moans around the kiss in response, reflexively pulling you in closer. Her pants and panties come off next, and your own gear shortly after. Each shed piece of clothing causes Ceria to step up the kiss a bit more, gradually going from just tasting to a wet, sloppy makeout session that has your tongues vying for dominance");
-	if(pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(", though with your superior flexibility it’s not even remotely a contest.");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(", though with your superior flexibility it’s not even remotely a contest");
+	output(".");
 
 	output("\n\nCeria only breaks off the kiss when one of her hands slips down between your thighs, taking a feel of your ");
 	if(pc.cockTotal() == 1) output("dick");

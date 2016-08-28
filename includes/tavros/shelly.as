@@ -15,12 +15,12 @@ public function ShellyBlurb(slot:int = 5):void
 	if(pc.hasStatusEffect("Shelly Assist Cooldown")) return;
 	if(flags["KNOW_SHELLYS_NAME"] == undefined) {
 		output("\n\nYou notice a new addition to the bar’s normal clientele; a lone woman stands near the back wall, trying to get the attention of passersby. A closer look reveals her to have tall bunny ears atop her head and a slightly distended belly.");
-		addButton(slot,"BunnyWoman",investigateSlashShelly);
+		addButton(slot,"BunnyWoman",investigateSlashShelly,undefined,"Bunny Woman","What might she be offering?");
 	}
 	else 
 	{
 		output("\n\nShelly stands at the back of the bar, trying to advertise Ovilium to anyone who will listen.");
-		addButton(slot,"Shelly",investigateSlashShelly);
+		addButton(slot,"Shelly",investigateSlashShelly,undefined,"Shelly","She looks like she needs some assistance. ");
 	}
 }
 

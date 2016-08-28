@@ -7,6 +7,87 @@ import classes.Items.Toys.TamaniBionaHole;
 import classes.Items.Toys.BubbleBuddy;
 import classes.Items.Toys.SukMastr;
 
+public function canArouseSelf():Boolean
+{
+	var faps:Array = nonLustFaps();
+	if(faps.length > 0) return true;
+	return false;
+}
+public function nonLustFaps():Array
+{
+	var faps:Array = new Array();
+	
+	if (pc.canLactate())
+	{
+		if (pc.hasItem(new MagicMilker(), 1))
+		{
+			faps.push(["Magic Milker", joyCoMagicMilker7Sucks, "", ""]);
+		}
+		
+		faps.push(["Hand Milk", milkturbation, "", ""]);
+	}
+	if(hasSmutOptions() && InShipInterior())
+	{
+		faps.push(["Smut", smutFapMenu, "Smut", "You could go check out some smutty videos on the extranet."]);
+	}
+	return faps;
+}
+public function arousalMenu():void {
+	clearOutput();
+	clearMenu();
+	
+	var aborted:Boolean = false;
+	
+	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
+	{
+		output("Masturbating here would be impossible.");
+		aborted = true;
+	}
+	else if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
+	{
+		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
+		aborted = true;
+	}
+	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 66)
+	{
+		output("Out here? In public?\n\n...Yeah, that'll do nicely.\n\n");
+	}
+	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33)
+	{
+		output("Out here? In public?\n\n...<b>it'll have to do</b>.\n\n");
+	}
+	
+	if(aborted)
+	{
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	var faps:Array = nonLustFaps();
+	var i:int = 0;
+	var btnSlot:int = 0;
+	
+	output("What do you choose to do?");
+	
+	for(i = 0; i < faps.length; i++)
+	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
+		}
+		
+		addButton(btnSlot, faps[i][0], faps[i][1], undefined, faps[i][2], faps[i][3]);
+		btnSlot++;
+		
+		if(faps.length > 14 && (i + 1) == faps.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", mainGameMenu);
+		}
+	}
+	addButton(14, "Back", mainGameMenu);
+}
+
 public function availableFaps(roundTwo:Boolean = false):Array
 {
 	var faps:Array = new Array();
@@ -27,7 +108,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	if (pc.milkFullness >= 150 && pc.isLactating() && flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] == undefined)
 	{
 		// Super-lactation, must resist urge to fap!
-		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk"))
+		if(pc.isMilkTank())
 		{
 			clearOutput();
 			output("<b>You feel a strong urge to relieve the unbearable pressure your lactating mammaries are experiencing; but thanks to the enhancements to your [pc.fullChest], you are confident they won't ever stop - or even slow down - [pc.milk] production, and you find it easy to resist.</b>");
@@ -199,7 +280,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Panty Fap";
-			fap.ttHeader = "Panty Fap"
+			fap.ttHeader = "Panty Fap";
 			fap.ttBody = "Use a pair of panties that you've collected as a cumrag.";
 			fap.func = futaBabePantyfapsRouter;
 			fap.ignoreRandomSelection = false;
@@ -214,7 +295,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		{
 			fap = new FapCommandContainer();
 			fap.text = "PantySchlick";
-			fap.ttHeader = "PantySchlick"
+			fap.ttHeader = "PantySchlick";
 			fap.ttBody = "Use a pair of panties that you've collected as fuel for feminine masturbation.";
 			fap.func = futaBabePantySchlicksRouter;
 			fap.ignoreRandomSelection = false;
@@ -225,7 +306,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "NivasB.Hole";
-		fap.ttHeader = "Nivas Oxonef BionaHole"
+		fap.ttHeader = "Nivas Oxonef BionaHole";
 		fap.ttBody = "Take the Nivas Oxonef Bionahole for a spin.";
 		fap.func = nivasFapSetup;
 		faps.push(fap);
@@ -234,7 +315,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "NivasTutorial";
-		fap.ttHeader = "Nivas Tutorial"
+		fap.ttHeader = "Nivas Tutorial";
 		fap.ttBody = "Run through the tutorial for your Nivas Oxonef BionaHole once more.";
 		fap.func = bionaHoleInstructionalBullshit;
 		faps.push(fap);
@@ -243,7 +324,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Tamani B.H.";
-		fap.ttHeader = "Tamani BionaHole"
+		fap.ttHeader = "Tamani BionaHole";
 		fap.ttBody = "Take the Tamani Ultralux edition BionaHole for a spin.";
 		fap.func = TamaniFapSetup;
 		faps.push(fap);
@@ -252,7 +333,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Tamani Tut.";
-		fap.ttHeader = "Tamani Tutorial"
+		fap.ttHeader = "Tamani Tutorial";
 		fap.ttBody = "Run through the tutorial for your Tamani Ultralux edition BionaHole once more.";
 		fap.func = tamaniBionaholeInstruction;
 		faps.push(fap);
@@ -262,7 +343,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Vi's Vagina";
-		fap.ttHeader = "Vi's Vagina"
+		fap.ttHeader = "Vi's Vagina";
 		fap.ttBody = "Use the vagina you took from the V-Ko droid on Myrellion to sate yourself.";
 		fap.func = viPussyFapScene;
 		faps.push(fap);
@@ -272,26 +353,26 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "CuffSelf";
-		fap.ttHeader = "Cuff Yourself"
+		fap.ttHeader = "Cuff Yourself";
 		fap.ttBody = "You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull or cow to give you a reaming.";
 		fap.func = cuffSelfRouter;
 		faps.push(fap);
 	}
-	if((MailManager.isEntryViewed("lets_fap_unlock") || MailManager.isEntryViewed("steph_on_demand")) && InShipInterior())
+	if(hasSmutOptions() && InShipInterior())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Smut";
-		fap.ttHeader = "Smut"
+		fap.ttHeader = "Smut";
 		fap.ttBody = "You could go check out some smutty videos on the extranet.";
 		fap.func = smutFapMenu;
-		fap.ignoreRandomSelection = true
+		fap.ignoreRandomSelection = true;
 		faps.push(fap);
 	}
 	if(hasRedDildo() || hasGoldDildo())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "StolenDildo";
-		fap.ttHeader = "Stolen Dildo"
+		fap.ttHeader = "Stolen Dildo";
 		fap.ttBody = "Make use of the dildo you stole from the smutty myr deserter.";
 		fap.func = stolenDildoFap;
 		faps.push(fap);
@@ -300,7 +381,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "BubbleBuddy";
-		fap.ttHeader = "Bubble Buddy"
+		fap.ttHeader = "Bubble Buddy";
 		fap.ttBody = "Smaller and thinner than a  normal onahole but larger than a prophylactic, the lilac-colored Bubble Buddy is a self-lubricating pocket pussy that will \"contain and sustain\" the semen of its user. Though only six inches long, the gelatinous surface seems VERY stretchy.";
 		fap.func = jackIntoDaBubbleBooty;
 		faps.push(fap);
@@ -309,7 +390,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "SukMastr";
-		fap.ttHeader = "SukMastr 2000"
+		fap.ttHeader = "SukMastr 2000";
 		fap.ttBody = "This high-quality pussy pump is perfect for a little bit of cunt-expanding fun. Comes with pump, vaginal cup, and remote.";
 		fap.func = useTheSuckMasta;
 		faps.push(fap);
@@ -353,26 +434,25 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	
 	clearOutput();
 	clearMenu();
+	
 	var aborted:Boolean = false;
+	
 	//Masturbation prevention
 	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
 	{
-		clearOutput();
 		output("Masturbating here would be impossible.");
 		aborted = true;
 	}
 	else if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
 	{
-		clearOutput();
 		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 		aborted = true;
 	}
 	//Exhibitionist fap! - overrides all other faps
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 66)
 	{
-		clearOutput();
-		output("Out here? In public?\n\n...Yeah, that'll do nicely.");
-		clearMenu();
+		output("Out here? In public?\n\n...Yeah, that'll do nicely.\n\n");
+		
 		addButton(0,"Exhibitionism",goddamnitJimTAndYourExhibitionism);
 		//Special new texas shit
 		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
@@ -385,9 +465,8 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	//Low Exhibitionist fap! - overrides all other faps
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33)
 	{
-		clearOutput();
-		output("Out here? In public?\n\n...<b>it'll have to do</b>.");
-		clearMenu();
+		output("Out here? In public?\n\n...<b>it'll have to do</b>.\n\n");
+		
 		addButton(0,"Exhibitionism",moderateExhibitionOmniFap);
 		//Special new texas shit
 		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
@@ -400,7 +479,6 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	//Pussy out, unless you're being force-fapped.
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.libido() < 70)
 	{
-		clearOutput();
 		if(pc.libido() < 10) output("You'd never even consider masturbating in public!");
 		else if(pc.libido() < 20) {
 			output("No way. You aren't the kind of person that would masturbate in public");
@@ -445,13 +523,13 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	}
 	if(aborted)
 	{
-		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return;
 	}
 	// Get available faps
 	var faps:Array = availableFaps(roundTwo);
-	var btnOffset:int = 0;
+	var i:int = 0;
+	var btnSlot:int = 0;
 	
 	// If we got back a null array from the listing functor, it should have created the button for us.
 	if (faps == null)
@@ -464,7 +542,6 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		//If anything on the screen, do as a next
 		if(userInterface.outputBuffer != "\n")
 		{
-			clearMenu();
 			addButton(0,"Next",selectRandomFap,faps);
 		}
 		else selectRandomFap(faps);
@@ -501,30 +578,35 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	// Repeat button
 	if (showRepeat)
 	{
-		addButton(btnOffset, "Repeat", filtFaps[0].func);
-		btnOffset++;
+		addButton(btnSlot, "Repeat", filtFaps[0].func);
+		btnSlot++;
 	}
 	// Random button
 	if (faps.length > 0)
 	{
-		addButton(btnOffset, "Random", selectRandomFap, faps);
-		btnOffset++;
+		addButton(btnSlot, "Random", selectRandomFap, faps);
+		btnSlot++;
 	}
 
 	// Generate all the buttons for the available funcs
-	for (var i:int = 0; i < faps.length; i++)
+	for(i = 0; i < faps.length; i++)
 	{
-		if (i + btnOffset <= 13)
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 		{
-			addButton(i + btnOffset, faps[i].text, faps[i].execute, undefined, faps[i].ttHeader, faps[i].ttBody);
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
 		}
-		else
+		
+		addButton(btnSlot, faps[i].text, faps[i].execute, undefined, faps[i].ttHeader, faps[i].ttBody);
+		btnSlot++;
+		
+		if(faps.length > 14 && (i + 1) == faps.length)
 		{
-			addButton(i + btnOffset + 1, faps[i].text, faps[i].execute, undefined, faps[i].ttHeader, faps[i].ttBody);
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", mainGameMenu);
 		}
 	}
-
-	addButton(14,"Back",mainGameMenu);
+	addButton(14, "Back", mainGameMenu);
 }
 
 //Tailcock Fapping w/ Celise

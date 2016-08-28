@@ -57,7 +57,7 @@ public function kiInitRooms():void
 	// Command Deck -> Medbay
 	rooms["KI-H16"] = new RoomClass(this);
 	rooms["KI-H16"].roomName = "\nMEDBAY";
-	rooms["KI-H16"].description = "The <i>Kashima</i>'s medical bay is about what you'd expect for a large-crew, long-mission ship: spacious, high-tech, and well-equipped. It's been ransacked by the creatures that now call the vessel home, with equipment toppled and chemicals spilled every which way. A single viewport gives you a marvelous overlook of the rocky ball the <i>Kashima</i>'s attached to: lifeless, gray, and rocky. The med-bay reeks of sex, like you just missed an orgy in here.";
+	rooms["KI-H16"].description = "The <i>Kashima</i>'s medical bay is about what you'd expect for a large-crew, long-mission ship: spacious, high-tech, and well-equipped. It's been ransacked by the creatures that now call the vessel home, with equipment toppled and chemicals spilled every which way. A single viewport gives you a marvelous overlook of the rocky ball the <i>Kashima</i>'s attached to: lifeless, gray and rocky. The med-bay reeks of sex, like you just missed an orgy in here.";
 	rooms["KI-H16"].runOnEnter = kiEnterMedbay;
 	rooms["KI-H16"].planet = planetName;
 	rooms["KI-H16"].system = systemName;

@@ -53,7 +53,7 @@ public function kiGoCargolift():Boolean
 		clearOutput();
 		flags["KI_USED_ELEVATORS"] = 1;
 		currentLocation = "KI-E23";
-		generateMapForLocation(currentLocation);
+		generateLocation(currentLocation);
 		mainGameMenu();
 	}
 	
@@ -157,7 +157,7 @@ public function kiEnterMedbay():Boolean
 		
 		if (flags["KI_VANDERBILT_WORKING_START"] + 240 > GetGameTimestamp())
 		{
-			addButton(0, "Elenora", kiApproachElenora, undefined, "Elenora", "Talk with the doctor again, and see if she's ready with the cure.");
+			addButton(0, "Elenora", kiApproachElenora, undefined, "Elenora", "Talk with the doctor again and see if she's ready with the cure.");
 		}
 		else
 		{
@@ -171,7 +171,7 @@ public function kiEnterMedbay():Boolean
 public function kiP18CommandDeck():Boolean
 {
 	output("\n\nTo the north is a");
-	if (flags["KI_P16_UNLOCKED"] != undefined)
+	if (flags["KI_P16_UNLOCKED"] == undefined)
 	{
 		flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
 		output(" sealed");
@@ -181,7 +181,7 @@ public function kiP18CommandDeck():Boolean
 		flags["NAV_DISABLED"] = 0;
 		output(" unlocked");
 	}
-	output(" security door labeled ‘Captain's Ready Room’. To the east is the head of the ship, and a heavy-duty security door ahead bears the ’BRIDGE’ markings overhead. A pair of disabled shock-turrets once guarded these sensitive chambers, but have long since been overwhelmed by what must have been gallons of cum. They've completely shorted out.");
+	output(" security door labeled ‘Captain's Ready Room’. To the east is the head of the ship, and a heavy-duty security door ahead bears the ‘BRIDGE’ markings overhead. A pair of disabled shock-turrets once guarded these sensitive chambers, but have long since been overwhelmed by what must have been gallons of cum. They've completely shorted out.");
 
 	
 	if (flags["KASHIMA_HOLMES_DEFEATED"] != undefined)
@@ -189,7 +189,11 @@ public function kiP18CommandDeck():Boolean
 		flags["NAV_DISABLED"] |= NAV_EAST_DISABLE;
 	}
 	
-	if (flags["KI_P16_FAILURES"] == undefined || flags["KI_P16_FAILURES"] <= 3)
+	if(flags["KI_P16_UNLOCKED"] != undefined)
+	{
+		addDisabledButton(0, "Hack Door", "Hack Door Lock", "You’ve sucessfully hacked the door lock.");
+	}
+	else if (flags["KI_P16_FAILURES"] == undefined || flags["KI_P16_FAILURES"] <= 3)
 	{
 		addButton(0, "Hack Door", kiTryUnlockReadyRoom, undefined, "Hack Door Lock", "Attempt to hack the door lock to the north.");
 	}
@@ -219,7 +223,7 @@ public function kiTryUnlockReadyRoom():void
 	gm.setFailablePuzzleState(
 		kiSuccessfullyUnlockReadyRoom, 
 		kiFailedToUnlockReadyRoom, 
-		RotateMinigameModule.MAX_MOVES, 20,
+		RotateMinigameModule.MAX_MOVES, 22,
 		5, 5, 
 	[
 		g | e | s, 	i | n | s, 	i | w | s, 	i | n | e, 	g | w,
@@ -235,7 +239,7 @@ public function kiSuccessfullyUnlockReadyRoom():void
 	clearOutput();
 	
 	output("It’s a quick matter to rip some of the wiring out, cross it, and short out the security system. After about a minute of work, the door slides open. Success!");
-		
+	
 	flags["KI_P16_UNLOCKED"] = 1;
 
 	processTime(2);
@@ -284,7 +288,7 @@ public function kiP16TakeSword():void
 {
 	clearOutput();
 	
-	output("You reach up and draw the sword from its place on the wall, giving the blade an experimental flick. It sings through the air, audibly slicing the wind as you move. Taking a closer look at the blade itself, you can see a dozen tiny vents and circuits woven seamlessly into the metal, barely visible until your eyes are inches from the weapon. Looks like this sword’s a little more high-tech than it lets on...");
+	output("You reach up and draw the sword from its place on the wall, giving the blade an experimental flick. It sings through the air, audibly slicing the wind as you move. Taking a closer look at the blade itself, you can see a dozen tiny vents and circuits woven seamlessly into the metal, barely visible until your eyes are inches from the weapon. Looks like this sword’s a little more high-tech than it lets on...\n\n");
 	
 	lootScreen = kiP16TakeSwordCheck;
 	flags["KI_TAKEN_SWORD"] = 1;
@@ -341,7 +345,7 @@ public function kiVentMenu():void
 public function kiMedbayVent():void
 {
 	currentLocation = "KI-H16";
-	generateMapForLocation(currentLocation);
+	generateLocation(currentLocation);
 	mainGameMenu();
 }
 
@@ -359,7 +363,7 @@ public function kiEngineeringVent():void
 public function kiOfficersDeckVent():void
 {
 	currentLocation = "KI-E9";
-	generateMapForLocation(currentLocation);
+	generateLocation(currentLocation);
 	mainGameMenu();
 }
 
@@ -378,6 +382,9 @@ public function kiK5CMOQuartersMeds():void
 	output("Taking a look through the medical kit, you find a one-shot stimulant boost of microsurgeons - strong enough to give you a quick pick-me-up after the fights you’ve been in. You flip the hypospray in your hand and inject yourself.");
 
 	output("\n\nA few moments later, you’re feeling rejuvenated and a lot less sore.");
+	
+	pc.maxOutHP();
+	pc.maxOutEnergy();
 }
 
 public function kiK5CMOSearch():void
@@ -446,6 +453,8 @@ public function kiI3ScienceSearch():void
 
 	output("\n\nYou pull a hologram projector down from the wall, causing the image of the officer’s family to flicker out of existence. Behind it, you find a safe built into the bulkhead, secure and impenetrable... and doubtless full of valuables. The Steele Tech logo sits proudly over the lock, as if daring you to try and break in through an inch of hardened steel. If there’s anything valuable or dangerous on this deck, something tells you it’s in there.");
 
+	flags["KII3_SEARCHED"] = 1;
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -588,7 +597,7 @@ public function kiRandomMutantLoss():void
 	} 
 	output(" with a dozen slimy, drooling tentacles. Your weapon clatters out of your hand, and your body begins to give in, surrendering to pleasure and pain. You lack the power to resist anymore, and your will crumbles under a haze of red mist seeping from the creatures’ mouths.");
 
-	output("\n\nYou black out");
+	output("\n\nYou black out\n\n");
 
 	CombatManager.genericLoss();
 
@@ -604,14 +613,14 @@ public function kiRandomMutantVictory():void
 	output("The creatures have all crumpled to the ground, unable to fight anymore... but they’re still moving. Their flesh contorts,");
 	if (rand(2) == 0) output(" growing new tentacles to add to those you resisted");
 	else output(" healing over the wounds you caused");
-	output(". You doubt the horrid things will stay down for long. No way you’re staying here. Time to go!");
+	output(". You doubt the horrid things will stay down for long. No way you’re staying here. Time to go!\n\n");
 
 	flags["KI_COMMAND_DECK_STEPS"] = 0;
 	flags["SUPPRESS_COMBAT"] = 1;
 
 	CombatManager.genericVictory();
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	//clearMenu();
+	//addButton(0, "Next", mainGameMenu);
 }
 
 public function kiEnterTheBridge():Boolean
@@ -629,7 +638,7 @@ public function kiEnterTheBridge():Boolean
 		output("\n\nFor the first time in what feels like hours, you’ve got a moment to breathe.");
 
 		clearMenu();
-		addButton(0, "YourName?", kiBridgeName, undefined, "Ask about her name.", "You never caught this amazonian beauty's name...");
+		addButton(0, "YourName?", kiBridgeName, undefined, "Ask About Her Name", "You never caught this amazonian beauty's name...");
 		addButton(1, "Sorry...", kiBridgeSorry, undefined, "Sorry...", "Sorry about her troops. You can only hope there's a way to save them still...");
 		addButton(2, "Experience", kiBridgeExperience, undefined, "Experiences", "You've never seen anything like what's happened to the crew. But maybe an officer of Nova Securities has some better insight?");
 		addButton(3, "StayQuiet", kiBridgeNothing, undefined, "Say Nothing", "Don't waste time talking. Get on with the mission.");
@@ -701,13 +710,15 @@ public function kiBridgeExperience():void
 
 	output("<i>“So,”</i> you say as you start pulling wires. <i>“Ever see anything like this? Those people, I mean.”</i>");
 	
-	output("\n\nThe Chief grunts something like <i>“Fuck no,”</i> smacking her tail loudly on the deck. <i>“I’ve seen combat before, Steele. Fought pirates and primitives and weird shit that lives out here in space. Never something like them before. They were... something was wrong with them. Like something’d gotten inside and changed them. Maybe some kind of gene-mod gone wrong.”</i>");
+	output("\n\nThe Chief grunts something like <i>“Fuck no,”</i> smacking her tail loudly on the deck. <i>“I’ve seen combat before, Steele. Fought pirates and primitives and weird shit that lives out here in space. Never something like them before. They were... something was wrong with them. Like something’s gotten inside and changed them. Maybe some kind of gene-mod gone wrong.”</i>");
 	
 	output("\n\nYou shake your head. <i>“This is a mining ship. Shouldn’t have been working on science projects aboard it.”</i>");
 	
 	output("\n\n<i>“Right,”</i> the leithan sneers. <i>“And mega-corps have never done shady shit on the down-low before.”</i>");
 	
-	output("\n\nOuch. Hearing your company being talked about that way hits a little close to home... and makes you think. What if she’s right? {if AnnoFollower: Maybe you should try and call Anno and see just what the science department’s been up to out on the frontier...}");
+	output("\n\nOuch. Hearing your company being talked about that way hits a little close to home... and makes you think. What if she’s right?");
+	
+	if(annoIsCrew()) output(" Maybe you should try and call Anno and see just what the science department’s been up to out on the frontier...");
 	
 	output("\n\nBefore you can worry too much about it, you find the right wire and yank it. Sparks fly, and the door’s seal breaks with a violent hiss. Looks like you’re in.");
 
@@ -738,7 +749,7 @@ public function kiBridgeContinued():void
 	chiefNeykkarHeader(false);
 
 	currentLocation = "KI-R18";
-	generateMapForLocation(currentLocation);
+	generateLocation(currentLocation);
 
 	output("The door’s barely managed to slide open before the erstwhile silence is sundered by an ear-piercing scream of terror from inside. The Chief curses and shoulder-checks the door aside, rushing in before you’ve had time to blink.");
 
@@ -770,6 +781,10 @@ public function kiBridgeContinued():void
 
 public function kiHolmesLoss(asHenderson:Boolean = false):void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	clearOutput();
 	author("Savin");
 	if (!asHenderson)
@@ -791,11 +806,11 @@ public function kiHolmesLoss(asHenderson:Boolean = false):void
 	{
 		output("There's nothing you can do for the Chief now, held tight by the squirming tentacles as she is.")
 	}
-	output(" You’re too busy fighting off the others: four tentacle cocks groping at your arms, grabbing your wrists and [pc.legs], trying to pull you down. And in the state you’re in, it isn’t long before he succeeds. Your struggles weaken to nothing, unable to shake off the creature’s grasp as he draws you in kicking and screaming.");
+	output(" You’re too busy fighting off the others: four tentacle cocks groping at your arms, grabbing your wrists and [pc.legOrLegs], trying to pull you down. And in the state you’re in, it isn’t long before he succeeds. Your struggles weaken to nothing, unable to shake off the creature’s grasp as he draws you in kicking and screaming.");
 
 	output("\n\nYour world suddenly goes topsy-turvy as the " + (asHenderson ? "commander" : "captain") + " hauls you off the deck and slams you down on your back, spreading you eagle and tearing at your gear with his shoulder-tentacles until you’re completely bare, covered in the tatters of your gear. Your [pc.weapon] and Codex lie smashed on the deck beside you. Hot, musky breath washes over your [pc.face] as the " + (asHenderson ? "commander" : "captain") + " looms over you, so close that you could almost hear his heartbeat through the pulsating growths flooding through his body. His open mouth hangs a bare inch over yours, drooling pink fluids across your face.");
 
-	output("\n\nOne last, futile attempt to struggle against his mighty grasp ends with your [pc.legs] hauled up in the air, and two tentacles immediately thrust into your [pc.vagOrAss]. You scream, arching your back and clawing desperately at the restraints on your limbs - to no avail. Overwhelming sensation burns your mind white as the tentacles force their way into your hole, stretching you wide and blasting your [pc.vagOrAss] with the same pink fluids that the creature exudes everywhere else. A few seconds of that, and your limbs go languid, feeling leaden and boneless at your side. Heat burns through your body, spreading through your loins and up through your body, taking root and clenching at your heart. You feel the heat and cold sweat more acutely than the tentacles thrusting inside you, refusing to let you think: only pleasure remains.");
+	output("\n\nOne last, futile attempt to struggle against his mighty grasp ends with your [pc.legOrLegs] hauled up in the air, and two tentacles immediately thrust into your [pc.vagOrAss]. You scream, arching your back and clawing desperately at the restraints on your limbs - to no avail. Overwhelming sensation burns your mind white as the tentacles force their way into your hole, stretching you wide and blasting your [pc.vagOrAss] with the same pink fluids that the creature exudes everywhere else. A few seconds of that, and your limbs go languid, feeling leaden and boneless at your side. Heat burns through your body, spreading through your loins and up through your body, taking root and clenching at your heart. You feel the heat and cold sweat more acutely than the tentacles thrusting inside you, refusing to let you think: only pleasure remains.");
 
 	clearMenu();
 	addButton(0, "Next", kiHolmesLossII, asHenderson);
@@ -818,8 +833,11 @@ public function kiHolmesLossII(asHenderson:Boolean):void
 	}
 
 	output("<b>Several hours later...</b>");
+	
+	hours += 4 + rand(3);
+	pc.removeAll();
 
-	output("You can’t move anymore, even if you had the energy to struggle anymore. Tentacles bind your limbs, pinning you to the bulkhead, writhing across your flesh. Others are buried deep inside you, squirming in your mouth");
+	output("\n\nYou can’t move anymore, even if you had the energy to struggle anymore. Tentacles bind your limbs, pinning you to the bulkhead, writhing across your flesh. Others are buried deep inside you, squirming in your mouth");
 	if (pc.hasVagina())
 	{
 		if (pc.vaginas.length == 1) output(", pussy,");
@@ -857,6 +875,10 @@ public function kiHolmesLossIII(asHenderson:Boolean):void
 
 	output("<b>A week passes...</b>");
 	
+	days += 7;
+	hours += rand(24);
+	minutes += rand(60);
+	
 	output("\n\nThe <i>Kashima</i> shudders violently as a boarding tether bolts on. The sleek, curving hull of the Confederate cruiser slowly glides past the derelict’s starboard windows, showing in big, blocky white letters a Terran identification number. Above them, the words <i>Odyssey</i>.");
 	
 	output("\n\nThe airlock buzzes as a plasma torch burns through it, slowly slicing it open. It takes just a minute before the steel lock falls away with a thunderous <i>thunk</i>, echoing throughout the halls. The moment it does, five pair of heavy boots stomp across the steel deck into the ship. Flashlights penetrate the darkness that’s overcome the corridors, scanning the empty walkways and busted panels on the bulkheads. Dead wires hang heavily from above, dripping with old, rancid white and pink cream. The smell is overwhelming, repulsive, making the five invaders curl their noses even through their suits.");
@@ -882,14 +904,18 @@ public function kiHolmesLossIII(asHenderson:Boolean):void
 
 public function kiHolmesVictory():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	clearOutput();
 	author("Savin");
 	showBust("CAPTAINHOLMES", "USHAMEE");
-	showName("VICTORY:\nCAPTAIN HOLMES");
+	showName("VICTORY:\nCAPT. HOLMES");
 
 	flags["KASHIMA_HOLMES_DEFEATED"] = 1;
 
-	output("The corrupted captain stumbles back, grunts, and collapses against his chair.");
+	output("The corrupted captain stumbles back, grunts, and collapses against his chair.\n\n");
 
 	CombatManager.genericVictory();
 	
@@ -948,7 +974,7 @@ public function kiHolmesVictoryII():void
 	clearOutput();
 	author("Savin");
 	showBust("CAPTAINHOLMES", "USHAMEE");
-	showName("VICTORY:\nCAPTAIN HOLMES");
+	showName("VICTORY:\nCAPT. HOLMES");
 
 	output("And just as you do, you feel something wet and slimy wrap around your [pc.leg]. You look down in alarm, yanking your [pc.foot] up. The captain’s tendrils grasp at you as the mutant man rises up again, drooling pink spittle onto the deck as he staggers to his feet.");
 
@@ -970,7 +996,7 @@ public function kiHolmesRun():void
 {
 	flags["SUPPRESS_COMBAT"] = 1;
 	currentLocation = "KI-P18";
-	generateMapForLocation(currentLocation);
+	generateLocation(currentLocation);
 	mainGameMenu();
 }
 
@@ -1254,7 +1280,7 @@ public function kiDiscoverVanderbiltsSecret():void
 
 	output("<b>Your sleep is interrupted...</b>");
 	
-	output("\n\nYour fitful dreams are disturbed by a soft, wet sounds that echo through the medical bay. At first you ignore it, sleeping through the faint but ceaseless noise. Your eyes flicker open groggily, looking throughout the dimly lit MedBay. Several mutants are pushed up against the viewport to the corridor, faces distorted in mindless ecstasy as  others fuck them from behind, pounding the weaker, less aggressive of their lot mercilessly with tentacles and cocks. The submissives’ own pricks and mutated members have all but covered the window with eruptions of tainted, pink seed - and they show no signs of stopping, rolling their eyes back and groping themselves gleefully as they’re railed in every hole.");
+	output("\n\nYour fitful dreams are disturbed by a soft, wet sounds that echo through the medical bay. At first you ignore it, sleeping through the faint but ceaseless noise. Your eyes flicker open groggily, looking throughout the dimly lit MedBay. Several mutants are pushed up against the viewport to the corridor, faces distorted in mindless ecstasy as others fuck them from behind, pounding the weaker, less aggressive of their lot mercilessly with tentacles and cocks. The submissives’ own pricks and mutated members have all but covered the window with eruptions of tainted, pink seed - and they show no signs of stopping, rolling their eyes back and groping themselves gleefully as they’re railed in every hole.");
 	
 	output("\n\nBut that’s not the source of the noise. No, the accumulated fuck-monsters outside are all but silent through the reinforced glass. Only the occasional, reverberating <i>thump</i> of a body slamming against the glass makes it through. Still rubbing the sleep from your eyes, your gaze wanders from the lustful display on the window to the shadows around you. The soft, wet sounds persist, punctuated by quiet little moans and gasps of pleasure.");
 	

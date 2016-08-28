@@ -158,6 +158,7 @@
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
 		include "../includes/tavros/oviliumBonus.as";
+		include "../includes/tavros/ramis.as";
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
 		include "../includes/tavros/rooms.as";

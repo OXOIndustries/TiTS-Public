@@ -224,21 +224,24 @@
 						pc.orgasm();
 					}
 					//Hymen restoration
-					else if(!pc.vaginas[x].hymen)
+					if(!pc.vaginas[x].hymen)
 					{
 						kGAMECLASS.output("\n\nAt first, you don’t feel any different. But then, as you check yourself over, you become aware of a slightly <i>different</i> feeling in your [pc.vagina " + x + "]. A little careful probing around reveals what’s changed - <b>you’ve regrown your hymen</b>! You might not be a virgin anymore, but you’ve got the body of one!");
 						pc.vaginas[x].hymen = true;
 						TFed = true;
 					}
 					//BonusCapacity++
-					else if(pc.vaginas[x].bonusCapacity < 500)
+					if(pc.vaginas[x].bonusCapacity < 500)
 					{
 						TFed = true;
-						kGAMECLASS.output("\n\nYour [pc.vagina " + x + "] warms over the span of a few moments. It’s a kind of mild, painless, heat that reminds you vaguely of the time you went to the sauna as a youth. Leaning back, you ");
+						kGAMECLASS.output("\n\nYour [pc.vagina " + x + "] warms over the span of a few moments. It’s a kind of mild, painless heat that reminds you vaguely of the time you went to the sauna as a youth. Leaning back, you ");
 						if(pc.legCount > 1) kGAMECLASS.output("spread your [pc.legs]");
 						else kGAMECLASS.output("stretch out your [pc.leg]");
 						kGAMECLASS.output(" and close your eyes, enjoying the pleasant sensations emanating from your crotch. You could sit like this all day, letting expensive microsurgeons tweak your feminine flesh to perfection.");
-						kGAMECLASS.output("All the heat has you feeling a little frisky. You dip a couple fingers into your slick junction, just to test it out");
+						kGAMECLASS.output(" All the heat has you feeling a little frisky. You dip a couple fingers into your slick junction, just to test it out");
+						
+						pc.vaginas[x].bonusCapacity += 100;
+						
 						if(pc.vaginalCapacity() > 400) kGAMECLASS.output(" before graduating to your fist");
 						if(pc.vaginalCapacity() > 600) kGAMECLASS.output(" and forearm");
 						kGAMECLASS.output(", finding yourself filling past your usual limits with ease.");
@@ -248,7 +251,6 @@
 						else if(x == 1) kGAMECLASS.output("second");
 						else kGAMECLASS.output("third");
 						kGAMECLASS.output(" vagina has become more capacious!</b>");
-						pc.vaginas[x].bonusCapacity += 100;
 					}
 				}
 				//Fertility gain +TF

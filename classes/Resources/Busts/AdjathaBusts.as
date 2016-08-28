@@ -185,6 +185,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys_nude.png", mimeType = "image/png")]
 		public var Bust_LYS_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/merc.png", mimeType = "image/png")]
+		public var Bust_MERCGUARD:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/midee.png", mimeType = "image/png")]
 		public var Bust_MIDEE:Class;
 		
@@ -499,6 +502,9 @@ package classes.Resources.Busts
 			public var Full_LYS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lys_nude.png", mimeType = "image/png")]
 			public var Full_LYS_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/merc.png", mimeType = "image/png")]
+			public var Full_MERCGUARD:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/midee.png", mimeType = "image/png")]
 			public var Full_MIDEE:Class;

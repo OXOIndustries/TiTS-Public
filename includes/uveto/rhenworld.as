@@ -21,7 +21,7 @@ public function rhenWorldEntranceBonus():Boolean
 {
 	showBust("KYRIS");
 	
-	output("The RhenWorld Stellar Excavations offices are warmer than the rest of the ship, and brightly colored with sandy wallpapers and potted plants surrounded an interior fountain -- very expensive decorations on a space station. A half dozen female");
+	output("The RhenWorld Stellar Excavations offices are warmer than the rest of the ship, and brightly colored with sandy wallpapers and potted plants surrounding an interior fountain -- very expensive decorations on a space station. A half dozen female");
 	if (CodexManager.hasUnlockedEntry("Leithans")) output(" leithans");
 	else output(" plated, six-legged centaurs with ashen skin");
 	output(" are sitting on their legs behind ‘U’-shaped desks, busily working on holoscreens.");
