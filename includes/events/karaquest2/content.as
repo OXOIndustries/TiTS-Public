@@ -2585,7 +2585,7 @@ public function kq2KaraTakeKittydick():void
 	else output(" her chest pressing softly against your [pc.chest]");
 	output(".");
 
-	output("\n\nWith your arms around your lover, holding her tight with her hips pound away at you, you find yourself drawn into Kara’s loving embrace. You kiss her back, passionately, letting your [pc.tongue] explore the lusty cat’s mouth. She accepts your advances eagerly, returning every advance with one of her own until your tongues are entwined in passion. Your heart’s racing, body trembling at Kara’s touch, building back up towards another crescendo.");
+	output("\n\nWith your arms around your lover, holding her tight while her hips pound away at you, you find yourself drawn into Kara’s loving embrace. You kiss her back, passionately, letting your [pc.tongue] explore the lusty cat’s mouth. She accepts your advances eagerly, returning every advance with one of her own until your tongues are entwined in passion. Your heart’s racing, body trembling at Kara’s touch, building back up towards another crescendo.");
 
 	output("\n\nYou’re not taking that lying down, though. Kara said tonight was all about you, and you want <i>more</i>. Your hands, wrapped around her waist, tighten and push, flipping your ardent lover onto her back this time, and leaving you straddling her. Kara smiles and locks her hands on your");
 	if (pc.biggestTitSize() >= 1) output(" breasts");
@@ -2608,7 +2608,10 @@ public function kq2KaraTakeKittydick():void
 	output("\n\nBy the time your orgasm subsides, you’ve left your lover a breathless, wet mess. Your head rests in the valley between her big, soft breasts until you feel a pair of hands reaching down to cup your cheeks, bringing you up and into a long, tongue-filled kiss. Kara moans happily, contentedly, and you can feel her tails raising around you.");
 	
 	output("\n\nWhen you break the kiss, you’re treated to a gorgeous smile from your lover. She nuzzles against you, brushing her short hair against your cheek in a sign of animalistic affection. <i>“Now I wish we’d done this sooner,”</i> she murmurs, reaching back to run a hand along your [pc.skinFurScales]. <i>“I guess we’ll just have to make up for lost time...”</i>");
-
+	
+	if (pc.hasVagina()) pc.loadInCunt(kara, 0);
+	else pc.loadInAss(kara);
+	
 	clearMenu();
 	addButton(0, "Next", kq2PostKaraSexyCombine, true);
 }
@@ -2624,6 +2627,8 @@ public function kq2KaraFuckKittysKitty():void
 	if (kara.isMischievous()) output("Want a little cat-girl pussy, [pc.name]?”</i>");
 	else output("Don’t lie... you’ve been looking forward to this since we first met,”</i>");
 	output(" Kara teases, licking her lips while your cockhead caresses her lower pair. She winks one of her slitted green eyes at you, and eases herself back. You both gasp, united in pleasure in that brief moment as your [pc.cock] slides into her, parting her velvet-soft folds and pressing into her tight, slick embrace.");
+	
+	pc.cockChange();
 	
 	output("\n\nYour lover makes a sated little moan as her plush behind comes to rest on your lap. <i>“Oh, yeah,”</i> she purrs, rocking her hips around your buried shaft. <i>“That’s the stuff!”</i>");
 	
@@ -2689,8 +2694,11 @@ public function kq2PostKaraSexyCombine(gotFucked:Boolean = false):void
 
 	for (var i:int = 0; i < 10; i++)
 	{
-		if (pc.hasVagina()) pc.loadInCunt(kara, 0);
-		else pc.loadInAss(kara);
+		if(gotFucked)
+		{
+			if (pc.hasVagina()) pc.loadInCunt(kara, 0);
+			else pc.loadInAss(kara);
+		}
 
 		pc.orgasm();
 		kara.orgasm();
