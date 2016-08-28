@@ -189,7 +189,7 @@ public function initUvetoRooms():void
 
 	rooms["UVS H7"] = new RoomClass(this);
 	rooms["UVS H7"].roomName = "EXECUTIVE\nLOBBY";
-	rooms["UVS H7"].description = "A very plush, posh lobby is seated at the end of the eastern wing, behind several security doors and a very threatening pair of gun pods bolted to the ceiling. The door east is labeled “Station Manager”; the one to the south indicates its the office of one Anyxine Rhenesunne, a Vice President of RhenWorld Stellar Excavations.\n\nSeveral tove are seated against the far walls, dug in behind computer banks and flickering holo-screens. Their beaked, fuzzy faces barely acknowledge you.";
+	rooms["UVS H7"].description = "A very plush, posh lobby is seated at the end of the eastern wing, behind several security doors and a very threatening pair of gun pods bolted to the ceiling. The door east is labeled “Station Manager”; the one to the south indicates it’s the office of one Anyxine Rhenesunne, a Vice President of RhenWorld Stellar Excavations.\n\nSeveral tove are seated against the far walls, dug in behind computer banks and flickering holo-screens. Their beaked, fuzzy faces barely acknowledge you.";
 	rooms["UVS H7"].planet = "UVETO STATION";
 	rooms["UVS H7"].system = "SYSTEM: SIRETTA";
 	rooms["UVS H7"].eastExit = "UVS J7";

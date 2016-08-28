@@ -26,10 +26,10 @@ public function officeOfTheCamarillaButtsBonus():Boolean
 	output("\n\n<i>“The Camarilla welcomes you to Uveto VII Station! Please enjoy your stay!”</i>");
 	output("\n<i>“Looking for the latest in Uveto VII fashion? Try Eimear's Clothes Shop! Eimear's Clothes Shop - servicing Uveto VII for 20 solar cycles!”</i>");
 	output("\n<i>“You can barely spell \"style\" without Spinnaran Silk and Steel! Spinnaran Silk and Steel - It's what separates a Rusher from a drifter colony bum!”</i>");
-	output("\n<i>“It's warm here on Uveto Station, but you'll need a thermal regulation to make planetfall. Try The Last Chance for all of your sub-zero preparations!”</i>");
+	output("\n<i>“It's warm here on Uveto Station, but you'll need thermal regulation to make planetfall. Try The Last Chance for all of your sub-zero preparations!”</i>");
 	output("\n\nUnder the advertisements, in small, quickly scrolling letters, is a wordy message: <i>“The Camarilla is not responsible for death, cryogenic suspension, pregnancy, biological manipulation, sexual assault, or atomic disintegration via protonic drills encountered on the surface of Uveto VII. By entering this station you are agreeing to abide by Camarilla regulations. A full copy of Camarilla regulations may be obtained by contacting your local Camarilla representative.”</i>");
 	output("\n\nAs you pass under the billboard, you feel a buzz from your Codex, but a glance at it shows nothing on the display.");
-	output("\n\nFlexsteel doors whoosh open, exhaling a gust of balmy air. The interior of the Camarilla office seems less suitable for an ice planet, and closer to a tropical island. Sunken lighting bathes a grassy floor with orange light, while the walls project a somewhat flat display of a sun setting on an ocean.In a series of shallow steps, the floor gradually rises up to a dias opposite the entrace, atop which sit three, meter-high doorways. The rest of the walls are lined with jutting benches. You run your [pc.foot] against the floor, confirming that the shiny grass is artificial and look around in bemusement at the synthetic paradise around you.");
+	output("\n\nFlexsteel doors whoosh open, exhaling a gust of balmy air. The interior of the Camarilla office seems less suitable for an ice planet, and closer to a tropical island. Sunken lighting bathes a grassy floor with orange light, while the walls project a somewhat flat display of a sun setting behind an ocean. In a series of shallow steps, the floor gradually rises up to a dais opposite the entrace, atop which sit three one-meter-high doorways. The rest of the walls are lined with jutting benches. You run your [pc.foot] against the floor, confirming that the shiny grass is artificial and look around in bemusement at the synthetic paradise around you.");
 	output("\n\n<i>“I'm coming! Don't be perplexitated! I'll be there in a moment!”</i> calls out a high voice from the dias.");
 	if(flags["TLAKO_BASKETS"] != undefined && flags["TLAKO_BASKETS"] >= 5 && flags["TLAKO_THANKED"] == undefined)
 	{
@@ -58,7 +58,7 @@ public function officeOfTheCamarillaButtsBonus():Boolean
 	else
 	{
 		output("\n\nThe rightmost door wooshes open, revealing the diminutive pink form of Tlako. <i>“Oh! Frabjous!”</i> she squeaks, seeing you. The tove scampers down the dias steps on all six legs, righting herself when she reaches your [pc.feet], looking up at you from her three-foot height.");
-		output("\n\nAs before, Tlako wears a simple, white bustier, forming the suggestion of feminine hips and a chest on her body. She's covered in candy-pink feathers from the tips of her rabbit like ears to her thick, raccoon-like tail. The only other color on her is the pale-gold tips of the plumage atop her head, matched by her beak and bird-like talons. She looks up at you, smiling as she adjusts the white headband holding her head plumes back.");
+		output("\n\nAs before, Tlako wears a simple, white bustier, forming the suggestion of feminine hips and a chest on her body. She's covered in candy-pink feathers from the tips of her rabbit-like ears to her thick, raccoon-like tail. The only other color on her is the pale-gold tips of the plumage atop her head, matched by her beak and bird-like talons. She looks up at you, smiling as she adjusts the white headband holding her head plumes back.");
 		output("\n\n<i>“Hello, [pc.Name],”</i> she says with a giggle, <i>“Welcome to Uveto VII Station. On behalf of the Camarilla, how may I accommodate you?”</i> she asks, grinning. <i>“Would you like to know about the history of Uveto VII Station, the Camarilla, ");
 		//If player has not met Xotchi Tzall:
 		if(flags["MET_XOTCHI"] == undefined) output("would you like to schedule an appointment with Sub-Madam Xochi Tzall, ");
@@ -276,7 +276,7 @@ public function florkDatFuckinMuppet():void
 	else output("It still feels a little weird at first.");
 	output("”</i> she says, her feathers ruffling up.");
 
-	output("\n\nYou assure her that you will and lead her to the bench reach down to ");
+	output("\n\nYou assure her that you will and lead her to the bench, reaching down to ");
 	if(pc.tallness > 48) output("pick up");
 	else output("heft");
 	output(" the round fluffball off the artificial grass. She chirps in surprise at being lifted, her tail trailing along the grass behind her.");
@@ -288,7 +288,7 @@ public function florkDatFuckinMuppet():void
 	{
 		output("\n\n<i>“It looks soft, though,”</i> Tlako says, tilting her pink head from one side to the other. <i>“Does it squish inside me?”</i>");
 		output("\n\nYou inform her that it gets hard with stimulation.");
-		output("\n\n<i>“Like this?”</i> she asks, reaching forward with one of her scaled hands. She grazes your shaft softly, as if cautiously petting a strange animal, and chirps loudly as your dick twitches light.");
+		output("\n\n<i>“Like this?”</i> she asks, reaching forward with one of her scaled hands. She grazes your shaft softly, as if cautiously petting a strange animal, and chirps loudly as your dick twitches lightly.");
 		output("\n\n<i>“It moved!”</i> she says, looking at you, her eyes wide. <i>“Is it supposed to move like that?”</i>");
 		output("\n\nYou stifle a laugh and confirm that yes, it's supposed to move, and that it's a good sign.");
 	}
@@ -297,7 +297,7 @@ public function florkDatFuckinMuppet():void
 	output("\n\nThe tove lets out a satisfied trilling noise, her movements birdlike as she tilts her head this way and that, continuing the stroking motion, letting out a musical whistle as you grow in her grip.");
 	output("\n\n<i>“Wow!”</i> she breathes. <i>“That's so neat!”</i>");
 	output("\n\n<i>“It's ready now,”</i> you smile.");
-	output("\n\nShe looks up at you, a faint trace of nervousness on her face. She looks down at you cock and clicks her beak, her expression steeling with resolve. <i>“Yes, let's do this!”</i> she chirps.");
+	output("\n\nShe looks up at you, a faint trace of nervousness on her face. She looks down at your cock and clicks her beak, her expression steeling with resolve. <i>“Yes, let's do this!”</i> she chirps.");
 	output("\n\nYou reach over to her gently, sliding your hand under her tail. Her feathers poof out and you pause.");
 	output("\n\n<i>“I'm good,”</i> she says, looking at you over her shoulder. <i>“You can keep going.”</i>");
 	output("\n\nYour fingers push through her plush feathers and soon discover ");

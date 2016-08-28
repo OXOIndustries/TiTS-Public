@@ -514,7 +514,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 
 	output("<b>An hour passes...</b>");
 
-	output("\n\nJust as you’re getting through with the mountain of legal gobbledygook the Tove sent you, your proximity sensors alert you to the approach of a large ship bearing the trade IDs of the Camarilla. You respond to a message blip ordering you to power down weapons and shields and follow the <i>“wabeshift”</i> to Uveto Station’s docking terminal. You do as you’re ordered and switch the autopilot on, letting it dog the Camarilla ship in towards the station.");
+	output("\n\nJust as you’re getting through with the mountain of legal gobbledygook the Tove sent you, your proximity sensors alert you to the approach of a large ship bearing the trade IDs of the Camarilla. You respond to a message blip ordering you to power down weapons and shields and follow the “wabeshift” to Uveto Station’s docking terminal. You do as you’re ordered and switch the autopilot on, letting it dog the Camarilla ship in towards the station.");
 
 	shipLocation = "UVS F15";
 	currentLocation = "SHIP INTERIOR";
@@ -529,7 +529,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 	if (pc.isAss()) output("less-than-");
 	output("gentle shake, getting a start from the snoozing cat. You can’t remember when he fell asleep, but if the way his tongue is lolled out the side of his mouth is any indication, he’s been down and out a while!");
 	
-	output("\n\n<i>“Huh!? Wha?”</i> Zaalt blinks, glancing around the bridge... and then going wide-eyed as the Camarilla cruiser passes across your bow, letting you finish the approach to Uveto Station’s docking arm in peace. <i>“What’s a Wabeshift doing here? They barely bother to roll out a tugboat when the </i>Queen<i> comes calling!”</i>");
+	output("\n\n<i>“Huh!? Wha?”</i> Zaalt blinks, glancing around the bridge... and then going wide-eyed as the Camarilla cruiser passes across your bow, letting you finish the approach to Uveto Station’s docking arm in peace. <i>“What’s a wabeship doing here? They barely bother to roll out a tugboat when the </i>Queen<i> comes calling!”</i>");
 	
 	output("\n\nYou laugh, suggesting that you must be a VIP. Maybe");
 	if (flags["MET_RHENESUNNE"] != undefined) output(" Anyxine");
