@@ -262,7 +262,7 @@ package classes.Characters
 				else
 				{
 					output(" your arms to your side. You are");
-					target.createStatusEffect("Grappled", 0, 30, 0, 0, false, "Constrict", "You're stuck in the pirates net!", true, 0);
+					target.createStatusEffect("Grappled", 0, 30, 0, 0, false, "Constrict", "You're stuck in the pirate's net!", true, 0);
 					// 9999 -- might need new grappletexts for this to make sense
 				}
 				
