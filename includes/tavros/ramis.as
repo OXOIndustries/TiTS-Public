@@ -72,7 +72,7 @@ public function ramisAtAnonsAddendum(btnSlot:int = 0):void
 			output("Ramis the kaithrit is all on her own by the bar now, her friends having long since left her to it. It’s not obvious if the bar is propping up the feline amazon or vice versa.");
 			
 			// [Ramis]
-			addButton(14, "Ramis", approachRamis, "femboy", "Ramis", "She is all by her lonesome. Do you keep her company?");
+			addButton(btnSlot, "Ramis", approachRamis, "femboy", "Ramis", "She is all by her lonesome. Do you keep her company?");
 			return;
 		}
 		output("Ramis and her mates are near the bar, loudly tying one on as usual.");
