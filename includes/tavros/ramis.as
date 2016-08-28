@@ -40,7 +40,7 @@ public function ramisAtAnons():Boolean
 {
 	if(pc.hasStatusEffect("Ramis Away Time")) return false;
 	
-	if(flags["RAMIS_MET"] != undefined && pc.isFemboy() && ramisFemboyHours()) return true;
+	if(flags["RAMIS_MET"] != undefined && pc.isFemboy() && looksFamiliarToRamis() && ramisFemboyHours()) return true;
 	// Regular hours
 	if((hours == 20 && minutes >= 15) || (hours > 20 || hours < 02) || (hours == 02 && minutes <= 30)) return true;
 	
@@ -66,7 +66,7 @@ public function ramisAtAnonsAddendum(btnSlot:int = 0):void
 	else
 	{
 		// Only feminine males see this for simplicity’s sake
-		if(pc.isFemboy() && ramisFemboyHours())
+		if(pc.isFemboy() && looksFamiliarToRamis() && ramisFemboyHours())
 		{
 			// New blurb: 
 			output("Ramis the kaithrit is all on her own by the bar now, her friends having long since left her to it. It’s not obvious if the bar is propping up the feline amazon or vice versa.");
@@ -94,6 +94,26 @@ public function ramisSexed(sexType:String = "normal"):void
 		case "trap": IncrementFlag("RAMIS_SEXED_TRAP"); break;
 	}
 	IncrementFlag("RAMIS_SEXED");
+}
+// Check if appearance looks the same for repeat encounters.
+public function looksFamiliarToRamis():Boolean
+{
+	var isSame:Boolean = false;
+	
+	switch(flags["RAMIS_FIRST_IMPRESSION"])
+	{
+		case "girlee":
+			if(pc.isHerm() || (!pc.hasCock() && pc.hasVagina())) isSame = true;
+			break;
+		case "boyo":
+			if(pc.isFemboy()) isSame = true;
+			break;
+		case "lad":
+			if(pc.hasCock() && !pc.hasVagina()) isSame = true;
+			break;
+	}
+	
+	return isSame;
 }
 // Create Ramis
 public function getRamisPregContainer():PregnancyPlaceholder
@@ -145,7 +165,7 @@ public function approachRamis(special:String = "none"):void
 		return;
 	}
 	// Repeat Approaches
-	if(flags["RAMIS_MET"] != undefined)
+	if(flags["RAMIS_MET"] != undefined && looksFamiliarToRamis())
 	{
 		// Ordered by priority for PCs that meet multiple requirements
 		// 1.	PC has done man fuck:
@@ -171,6 +191,7 @@ public function approachRamis(special:String = "none"):void
 			if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
 			else addDisabledButton(0, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
 			addButton(2, "Back Off", ramisLeave, pc.mf("man", "fem"));
+			return;
 		}
 		// 3.	PC feminine male, has done trap fuck: 
 		else if(pc.isFemboy() && flags["RAMIS_SEXED_TRAP"] != undefined)
@@ -208,6 +229,7 @@ public function approachRamis(special:String = "none"):void
 		output("\n\n<i>“Aw, you’re full of piss!”</i> snorts Ramis. She downs another shot and squints with thought. <i>“Or not enough piss. One of the two.”</i>");
 		
 		processTime(2);
+		flags["RAMIS_FIRST_IMPRESSION"] = "girlee";
 	
 		// [Appearance] [Drink] [Back Off]
 		if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
@@ -236,6 +258,7 @@ public function approachRamis(special:String = "none"):void
 		}
 		
 		processTime(2);
+		flags["RAMIS_FIRST_IMPRESSION"] = "boyo";
 		
 		// [Appearance] [Leave]
 		addButton(14, "Leave", mainGameMenu);
@@ -246,6 +269,9 @@ public function approachRamis(special:String = "none"):void
 		output("\n\n<i>“Ooh. You’re a right lookin’ boyo, aren’t you?”</i> the brown-skinned kaithrit leans back on her stool and openly eyeballs you with a lascivious sneer. <i>“Fancy yourself, do we? Fit lookin’ lad like you’s always welcome to join in - if you think you can keep up.”</i> She slaps the counter, and the barkeep hurries over with a bottle of amber fluid and several fresh glasses.");
 		output("\n\n<i>“Be careful,”</i> laughs one of her human companions. <i>“Drinking with Ramis will put your health at serious risk.”</i>");
 		output("\n\n<i>“Aw, you’re full of piss!”</i> snorts Ramis. She downs another shot and squints with thought. <i>“Or not enough piss. One of the two.”</i>");
+		
+		processTime(2);
+		flags["RAMIS_FIRST_IMPRESSION"] = "lad";
 		
 		// [Appearance] [Flirt] [Drink] [Back Off]
 		if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
@@ -598,6 +624,8 @@ public function ramisFuck(response:String = "none"):void
 				output("\n\n<i>“Night’s still young and I’m still horny,”</i> The kaithrit husks, looking over her shoulder into your widened eyes with a crooked grin. <i>“So keep at it, sweet lips.”</i> Your whine is muffled by the oozing, silky folds of her sex, which is already being bucked impatiently against your [pc.lips] again...");
 				
 				pc.girlCumInMouth(ppRamis);
+				
+				addButton(0, "Next", ramisCockFuck, [x, purrfectFit, "trap morning afters"]);
 			}
 			// Small Cock
 			else if(pc.cLength(x) < 5)
@@ -626,6 +654,8 @@ public function ramisFuck(response:String = "none"):void
 				
 				pc.orgasm();
 				pc.girlCumInMouth(ppRamis);
+				
+				addButton(0, "Next", ramisCockFuck, [x, purrfectFit, "trap morning afters"]);
 			}
 			// Reasonable Sized Dick (5 inch - 11 inch?)
 			else
@@ -649,15 +679,16 @@ public function ramisFuck(response:String = "none"):void
 				if(pc.race().indexOf("kaithrit") != -1 || pc.felineScore() >= 5) output(" Wow, you really are a homeboy!");
 				else output(" Wow, you kaithrit trained ‘n all?");
 				output("”</i> She gathers you into her ropey arms, pushing you into the warm give of her boobs as she props you up on the headboard, the hard smoothness of her stomach pressing against your [pc.belly]. <i>“You’re definitely getten a Ramis special in the mornen,”</i> she says, her musical slur vibrating through her warm softness. <i>“But I could definitely go for another ride now, ‘n you can spunk it up me if you want.”</i>");
+				
+				// [Another] [Sleep]
+				addButton(0, "Another", ramisCockFuck, [x, purrfectFit, "trap another"], "Another", "More snu snu. MORE.");
+				addButton(1, "Sleep", ramisCockFuck, [x, purrfectFit, "trap sleep"], "Sleep", "You’ve got enough bruises around the waist for now.");
 			}
 			
 			processTime(20 + rand(15));
 			// Lust maxed out
 			pc.lust(9000);
 			
-			// [Another] [Sleep]
-			addButton(0, "Another", ramisCockFuck, [x, purrfectFit, "trap another"], "Another", "More snu snu. MORE.");
-			addButton(1, "Sleep", ramisCockFuck, [x, purrfectFit, "trap sleep"], "Sleep", "You’ve got enough bruises around the waist for now.");
 			break;
 		// Man Fuck
 		case "man":
@@ -933,6 +964,7 @@ public function ramisCockFuck(arg:Array):void
 			//Reset lust
 			//Time forward 2 hours, put PC in front of Anon’s Bar
 			processTime(90 + rand(60));
+			pc.orgasm();
 			pc.shower();
 			currentLocation = rooms["ANON'S BAR AND BOARD"].westExit;
 			
