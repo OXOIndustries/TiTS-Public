@@ -249,7 +249,7 @@
 								kGAMECLASS.output(" swell");
 								if(pc.cockTotal() == 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(" to turgid stiffness in moments, beads of pre-cum bubbling to the surface as the fire in your veins struggle to find some outlet. Pressing the palm of your hand against the tender, throbbing [pc.skinFurScales], you wince with the effort of trying to hold back while you find somewhere to cleanly dispose of your load. Despite your efforts, the [pc.cumColor] seeping from your [pc.cockHeads] cannot be stalled and [pc.cumVisc] blobs of [pc.cumNoun] begin spurting");
-								if(pc.isCrotchExposed()) kGAMECLASS.output(" against your pc.skinFurScales].");
+								if(pc.isCrotchExposed()) kGAMECLASS.output(" against your [pc.skinFurScales].");
 								else kGAMECLASS.output(" inside your [pc.lowerGarment].");
 								kGAMECLASS.output("\n\nWhen the heat finally fades, you’re left gasping, sweat rolling down your [pc.skinFurScales]. That was more intense than you were expecting for a beauty cream. Glancing down, you can tell at once that the balm did its job - your nuts are appreciably bigger, the taut globes seemingly begging for more.");
 								
