@@ -46,11 +46,11 @@ public function ramisAtAnons():Boolean
 	
 	return false;
 }
-// Feminine male re-approaches Ramis between 01:30 - 12:15
-// Edit, new time: 02:30 - 12:15
+// Feminine male re-approaches Ramis between 00:15 - 01:30
+// Edit, new time: 00:15 - 02:30
 public function ramisFemboyHours():Boolean
 {
-	if((hours == 02 && minutes >= 30) || (hours > 02 && hours < 12) || (hours == 12 && minutes <= 15)) return true;
+	if((hours == 00 && minutes >= 15) || (hours > 00 && hours < 02) || (hours == 02 && minutes <= 30)) return true;
 	return false;
 }
 public function ramisAtAnonsAddendum(btnSlot:int = 0):void
