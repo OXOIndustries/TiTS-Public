@@ -4586,15 +4586,36 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Freezer
-			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined)
+			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["NATALIE_MET"] != undefined)
 			{
 				output2("\n<b><u>The Freezer</u></b>");
 				// Hanananana, hawt MILF
-				if(flags["MET_HANA"] != undefined) output2("\n<b>* Hana:</b> Met her");
-				if(flags["FUCKED_HANA"] != undefined) output2("\n<b>* Hana, Times Sexed:</b> " + flags["FUCKED_HANA"]);
+				if(flags["MET_HANA"] != undefined)
+				{
+					output2("\n<b>* Hana:</b> Met her");
+					if(flags["FUCKED_HANA"] != undefined) output2("\n<b>* Hana, Times Sexed:</b> " + flags["FUCKED_HANA"]);
+				}
 				// Jerbears
-				if(flags["MET_JEROME"] != undefined) output2("\n<b>* Jerome:</b> Met him");
-				if(flags["FUCKED_JEROME"] != undefined) output2("\n<b>* Jerome, Times Sexed:</b> " + flags["FUCKED_JEROME"]);
+				if(flags["MET_JEROME"] != undefined)
+				{
+					output2("\n<b>* Jerome:</b> Met him");
+					if(flags["FUCKED_JEROME"] != undefined) output2("\n<b>* Jerome, Times Sexed:</b> " + flags["FUCKED_JEROME"]);
+				}
+				// Natalie Irson
+				if(flags["NATALIE_MET"] != undefined)
+				{
+					output2("\n<b>* Natalie:</b> Met her");
+					if(flags["NATALIE_TAMES_VARMINT"] != undefined) output2(", She helped you tame a wild varmint");
+					else if(flags["NATALIE_TALK_MONSTERS"] != undefined && varmintIsWild())
+					{
+						output2(", She offered to help you with your varmint stowaway");
+						if(flags["NATALIE_NEED_SILICONE"] != undefined)
+						{
+							if(!pc.hasItem(new Silicone())) output2(", <i>Find silicone!</i>");
+							else output2(", Have silicone, <i>Return to her!</i>");
+						}
+					}
+				}
 				variousCount++;
 			}
 			// Nayna

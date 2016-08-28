@@ -687,8 +687,10 @@ public function uvetoBarBonus():Boolean
 	var jeromePresent:Boolean = jeromeAtBar(3);
 	// jerynnAtBar(jeromePresent);
 	
+	// Natalie Irson
+	natalieFreezerAddendum(4);
 	// Randoms
-	roamingBarEncounter(4);
+	roamingBarEncounter(5);
 
 	return false;
 }

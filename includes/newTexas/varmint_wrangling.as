@@ -593,8 +593,7 @@ public function getAPetVarmint():void
 	if(pc.hasEquippedWeapon()) addButton(0, "Kill It", getAPetVarmintResponse, "kill", "Kill It", "Well, you can’t just let it sit there. It could attack at any moment!");
 	else addDisabledButton(0, "Kill It", "Kill It", "You need to equip a weapon to do that!");
 	addButton(1, "Leave It", getAPetVarmintResponse, "leave", "Leave It", "Well, it doesn’t look like it wants to fight. You suppose you could just leave it...");
-	if(pc.isBimbo()) addButton(2, "Try to Tame", getAPetVarmintResponse, "tame", "Try to Tame", "You’re like, just as good as sleeping beauty or whatever. It’ll totally be your friend!");
-	else addButton(2, "Try to Tame", getAPetVarmintResponse, "tame", "Try to Tame", "Maybe you could try to tame it?");
+	addButton(2, "Try to Tame", getAPetVarmintResponse, "tame", "Try to Tame", (pc.isBimbo() ? "You’re like, just as good as sleeping beauty or whatever. It’ll totally be your friend!" : "Try to Tame", "Maybe you could try to tame it?"));
 }
 
 public function getAPetVarmintResponse(response:String = "none"):void
@@ -684,7 +683,7 @@ public function getAPetVarmintResponse(response:String = "none"):void
 			output("\n\nUh, shit. You back up, right to the edge of the hatch, and the creature slowly sits back down. Doesn’t look like it wants any of what you’re selling right now.");
 			output("\n\n<b>Maybe you should find a professional...</b>");
 			
-			// 9999 And now you have a varmint on your ship until Natalie Irson gets added :VVV
+			// And now you have a varmint on your ship until Natalie Irson gets added :VVV
 			flags["VARMINT_IS_CREW"] = 1;
 			processTime(2);
 		}
@@ -836,7 +835,7 @@ public function doVarmintPlayTime(response:String = "none"):void
 // 10% chance per day when landed on a planet with an untamed varmint.
 public function varmintDisappearChance():void
 {
-	if(!InShipInterior() || !varmintIsCrew() || pc.hasStatusEffect("Varmint Buddy") || pc.hasStatusEffect("Varmint Leashed") || pc.hasStatusEffect("Varmint Unleashed Cooldown")) return;
+	if(!InShipInterior() || !varmintIsCrew() || pc.hasStatusEffect("Varmint Buddy") || pc.hasStatusEffect("Varmint Leashed") || pc.hasStatusEffect("Varmint Unleashed Cooldown") || flags["NATALIE_TAMES_VARMINT"] != undefined) return;
 	
 	var runawayChance:int = (10 * 2 * 60);
 	if(varmintIsTame()) runawayChance *= 2;
