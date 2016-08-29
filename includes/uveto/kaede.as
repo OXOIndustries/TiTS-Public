@@ -634,16 +634,20 @@ public function uvetoKaedeFuckHerAss(arg:Array):void
 	output("Considering");
 	if (fuckedHer) output(" the two of you skipped right to the fun stuff");
 	else output(" you didn’t even put your cock to use");
-	output(" last time, you’re more that content to let your submissive shemale lover slurp and suck to her heart’s content. Turns out the old spacer myth about dog-girls and bones is true, the way Kaede greedily handles your [pc.cock "+cIdx+"]: she eagerly kisses and caresses your [pc.cockHead "+cIdx+"], slurps at your shaft, and");
-	if (pc.balls > 0) output(" fondles your [pc.balls]");
-	if (pc.balls > 0 && pc.hasKnot(cIdx)) output(" and your");
-	if (pc.hasKnot(cIdx)) output(" [pc.knot]");
-	if (pc.balls == 0 || !pc.hasKnot(cIdx)) output(" plants long kisses on your base while your length is buried deep down her throat");
+	output(" last time, you’re more than content to let your submissive shemale lover slurp and suck to her heart’s content. Turns out the old spacer myth about dog-girls and bones is true, the way Kaede greedily handles your [pc.cock "+cIdx+"]: she eagerly kisses and caresses your [pc.cockHead "+cIdx+"], slurps at your shaft, and");
+	if (pc.balls > 0 || pc.hasKnot(cIdx))
+	{
+		output(" fondles your");
+		if (pc.balls > 0) output(" [pc.balls]");
+		if (pc.balls > 0 && pc.hasKnot(cIdx)) output(" and your");
+		if (pc.hasKnot(cIdx)) output(" [pc.knot]");
+	}
+	else output(" plants long kisses on your base while your length is buried deep down her throat");
 	output(".");
 	
 	output("\n\nEventually, though, you can’t take any more - the halfbreed’s oral ministrations are so intense, so eager to please in every way possible, that you’re seconds from busting a second nut right down her throat. Not that you think she’d mind, but you aren’t letting Kaede get you off without returning the favor. As much as you’d love to do anything else, you put a commanding hand on your lover’s head, right between her soaked ausar-ears, and push her back from your shaft.");
 	
-	output("\n\nKaede looks up at you with her big blue eyes, confused. <i>“Wh-”</i> she starts to say, right until you grab her under her arms and heft her up. Her crimson pecker bobs heavily as you get her upright, just long enough to give the tender rod a consolation stroke before flipping Kaede around and pushing her face-first into the shower-stall wall. She gives a little yelps of surprise, but her sodden ginger tail lifts up as reliably as can be the moment you get behind her, inviting you to take its owner however you please.");
+	output("\n\nKaede looks up at you with her big blue eyes, confused. <i>“Wh-”</i> she starts to say, right until you grab her under her arms and heft her up. Her crimson pecker bobs heavily as you get her upright, just long enough to give the tender rod a consolation stroke before flipping Kaede around and pushing her face-first into the shower-stall wall. She gives a little yelp of surprise, but her sodden ginger tail lifts up as reliably as can be the moment you get behind her, inviting you to take its owner however you please.");
 	
 	output("\n\n<i>“Gotta get as dirty as we can before we get really clean, right?”</i> Kaede giggles as your hands reach down to explore her taut cheeks, reaching between them to roll her pouch of a sack between your fingers. The way you’ve pushed her against the wall, Kaede’s cock is flat against the wall, stiff as a tungsten rod and already tipped with a crest of white from your balls-groping. Too bad it’s not going to get any love here, but then again, you know Kaede’s got such a sensitive little back door that she’s sure to get off hands-free. In fact, you’re going to make sure she does!");
 	
@@ -663,7 +667,7 @@ public function uvetoKaedeFuckHerAss(arg:Array):void
 
 	output("\n\nYou grin, happy that Kaede loves what you’re doing to her so much. Giving her an affectionate boob-squeeze, you press yourself flush against her arched back and start to work your hands on her, thrusting your digits on one hand deep and groping and squeezing every tender spot outside with the other. It barely takes any effort to get Kaede moaning and pushing back against your buried fingers, but it’s the rhythmic <i>thump-thump</i> of her cock throbbing, slapping weakly against the wall that really tells you just how much your lusty lover’s enjoying it. Her prick bounces to the quickening beat of her heart, an undeniable and primal display of her desire... and her absolute, utter acquiescence to your control. Even without a single tender touch, you’ve gotten your lover rock hard and desperate for your touch, moaning and wiggling her svelte behind for you as if to tempt you into giving her more.");
 	
-	output("\n\nWith Kaede so willingly putting herself at your mercy, you can’t help but want to fulfil her every carnal desire. You pull out of her, letting the shower-head clean your fingers, and grab your [pc.cock]. Your teasing, and the blowjob that preceded it, has left you almost as hard as Kaede is, and it’s practically effortless to align yourself with the wide-open dark star between your lover’s ass cheeks.");
+	output("\n\nWith Kaede so willingly putting herself at your mercy, you can’t help but want to fulfill her every carnal desire. You pull out of her, letting the shower-head clean your fingers, and grab your [pc.cock]. Your teasing, and the blowjob that preceded it, has left you almost as hard as Kaede is, and it’s practically effortless to align yourself with the wide-open dark star between your lover’s ass cheeks.");
 	
 	output("\n\n<i>“G-give it to me,”</i> Kaede breathes huskily, biting her lip as she feels your [pc.cockHead "+cIdx+"] starting to spread her open. <i>“Ohgodyeeessss!”</i>");
 
