@@ -182,17 +182,19 @@ public function greetNatalie(response:String = "none"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 	}
+	output("\n\n");
 }
 public function talkNatalie(response:String = "none"):void
 {
 	clearOutput();
 	author("Savin");
-	showNatalie();
 	clearMenu();
 	
 	switch(response)
 	{
 		case "leave":
+			showNatalie();
+			
 			output("You shift out of the booth, telling Nat that you’ve gotta go.");
 			output("\n\n<i>“O-oh! Okay,”</i> she sighs. <i>“See you around, [pc.name].”</i>");
 			
@@ -201,6 +203,8 @@ public function talkNatalie(response:String = "none"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "talk":
+			showNatalie();
+			
 			output("<i>“So, tell me a little about </i>you<i>, Nat,”</i> you prompt.");
 			output("\n\n<i>“M-me?”</i> she stammers, blinking in surprise. <i>“What do you wanna know?”</i>");
 			output("\n\nYou think for a moment before saying,");
@@ -256,7 +260,7 @@ public function talkNatalie(response:String = "none"):void
 			// Interesting Monsters
 			msg = " <i>“Tell me about some of the creatures you’ve worked with.”</i>";
 			msg += "\n\n<i>“But there’s so many!”</i> Nat laughs. <i>“I’m really lucky: I’ve gotten to handle thousands of different species from across the galaxy. The Vesperian Royal Zoo had the most amazing collection, and they’d let us students come over pretty much whenever to handle them. I think the staff appreciated the help, and we loved getting to handle the exotic species.”</i>";
-			msg += "\n\nShe hums happily to herself, thinking back with a growing smile. <i>“Let’s see... probably the most interesting critter I ever got to work with was this huge, blue silicone-based life form. It was kind of like a dog, but with spikes all over, teeny little vestigial eyes, and a tail longer than it’s body and covered with razor spines. Looked like something out of a horror movie... but oh, she was just the sweetest little thing! Give her some android-grade silicone to munch on, and she’d just be putty in your arms. Those beauties really make friends for life, too: they imprint like ducks, see, and their memory lasts for decades! Every time I go back to Vesperia I swing by the zoo, and they all recognize me like we saw each other yesterday!”</i>";
+			msg += "\n\nShe hums happily to herself, thinking back with a growing smile. <i>“Let’s see... probably the most interesting critter I ever got to work with was this huge, blue silicon-based life form. It was kind of like a dog, but with spikes all over, teeny little vestigial eyes, and a tail longer than it’s body and covered with razor spines. Looked like something out of a horror movie... but oh, she was just the sweetest little thing! Give her some android-grade silicone to munch on, and she’d just be putty in your arms. Those beauties really make friends for life, too: they imprint like ducks, see, and their memory lasts for decades! Every time I go back to Vesperia I swing by the zoo, and they all recognize me like we saw each other yesterday!”</i>";
 			msg += "\n\nThese creatures she’s talking about... <i>“They’re not from New Texas, are they?”</i>";
 			msg += "\n\n<i>“They are!”</i> Nat nods, eagerly. <i>“Varmints, the New Texans call ‘em. Apparently they’re descended from a species of macro predators that fought against the colonists for decades. Really changed the way the whole planet’s ecology and terraforming process went, since the ‘varmints’ were almost impossible to kill. The col-”</i>";
 			msg += "\n\nBefore she can launch off into the story in full, you put a hand up to indicate you’d like to speak. Natalie trails off, muttering <i>“-lo. nists....”</i> into her mug before falling silent. You take the opportunity to mention a little blue problem you’ve left aboard your ship. While the varmint hasn’t caused too much trouble, it certainly isn’t comforting having a snarling, razor-toothed beast stalking around the corridors.";
@@ -298,6 +302,8 @@ public function talkNatalie(response:String = "none"):void
 			natalieMenu();
 			break;
 		case "varmint":
+			showNatalie();
+			
 			output("<i>“Hey, think you could help me with that varmint problem?”</i>");
 			output("\n\nNat blinks. <i>“O-oh, you were serious? Wow, uh, yeah I guess, sure. Do you have any silicone? A lot of it -- like, an entire bag. Varmints think with their stomachs first, brains second. Feeding ‘em will make them love you faster than anything, but if the poor darling’s already traumatized...”</i>");
 			
@@ -333,6 +339,9 @@ public function talkNatalie(response:String = "none"):void
 			pc.destroyItem(new Silicone(), 1);
 			flags["NATALIE_NEED_SILICONE"] = undefined;
 			
+			showBust(natalieBustDisplay(), "VARMINT");
+			showName("TAMING THE\nVARMINT");
+			
 			output("After a quick stop by Nat’s apartment to gather some things she claims she’ll need, the two of you make your way up the space elevator and through the docking arm back to your vessel. You lead Natalie aboard, and over towards the small recess in your ship’s supply stash where the blue-plated varmint’s made its nest. Natalie gasps when she sees the creature, but it’s one of giddy joy rather than fear.");
 			output("\n\nYou hand over the silicone bag and let your partner get to work.");
 			output("\n\n<i>“Hey there, darlin’,”</i> Natalie coos, putting a friendly hand out towards the varmint. It snarls and hoots softly, recoiling towards the bulkhead until it’s pressed flat against the cold metal, bearing its teeth. <i>“Don’t be scared, sweetie. I’m not gonna hurt you.”</i>");
@@ -348,7 +357,6 @@ public function talkNatalie(response:String = "none"):void
 			output("\n\n<i>“Well, there you go,”</i> Nat grins, watching the two of you bond over a breached silicone bag. <i>“That was fun, [pc.name]! Lemme know if you ever get another spooked critter aboard -- I’m always happy to help.”</i>");
 			output("\n\nShe certainly seems so. Nat was more in her element the last few minutes than you’ve ever seen her before. Adjusting the hem of her jacket, Natalie turns towards the airlock. <i>“I, uh, I’ll leave you two to it. See you around, [pc.name].”</i>");
 			output("\n\nNat starts walking, but stops beside you, hesitating just long enough to decide to give you a quick, air-light hug before hustling towards the airlock.");
-			output("\n\n");
 			
 			flags["NATALIE_TAMES_VARMINT"] = 1;
 			flags["VARMINT_IS_CREW"] = 2;
@@ -368,5 +376,6 @@ public function talkNatalie(response:String = "none"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 	}
+	output("\n\n");
 }
 

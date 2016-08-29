@@ -849,7 +849,7 @@ public function varmintDisappears():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VARMINT");
+	//showBust("VARMINT");
 	showName("MISSING\nVARMINT");
 	clearMenu();
 	
