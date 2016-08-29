@@ -2829,9 +2829,9 @@ public function cowgirlWivTaivra():void
 	{
 		output("pinch at your [pc.nipples]");
 	}
-	output(". Your lover pulls you close against her own chest, holding you deep on her throbbing, drooling ovi-cock. Her knot presses against your");
-	if(x >= 0) output(" pussylips");
-	else output(" asscheeks");
+	output(". Your lover pulls you close against her own chest, holding you deep on her throbbing, drooling ovi-cock. Her knot presses against your ");
+	if(x >= 0) output("pussylips");
+	else output("asscheeks");
 	output(", hot and heavy against the entrance to your hole... but never trying to push in.");
 
 	output("\n\nTaivra clearly doesn’t want you to just sit there and take a ");
