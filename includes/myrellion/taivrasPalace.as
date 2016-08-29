@@ -2835,8 +2835,8 @@ public function cowgirlWivTaivra():void
 	output(", hot and heavy against the entrance to your hole... but never trying to push in.");
 
 	output("\n\nTaivra clearly doesn’t want you to just sit there and take a ");
-	if(x >= 0) output("belly");
-	else output("womb");
+	if(x >= 0) output("womb");
+	else output("belly");
 	output("-full of eggs, and so you start to move your [pc.hips]. With a moan of enjoyment, you slowly rise up, dragging Taivra’s spines back through your [pc.vagOrAss " + x + "], letting them tease and rub at your spasming, tender channel. You can feel her cock throbbing inside you, her heartbeat causing her shaft to grow and spurt its dark, viscous lube into your ");
 	if(x >= 0) output("twat");
 	else output("asshole");
