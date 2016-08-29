@@ -155,8 +155,8 @@ public function upstairsGeoSurveyBonus():Boolean
 	if(flags["MET_NAYNA"] == undefined)
 	{
 		output("\n\nA lone scientist seems to have claimed this place for her own, ");
-		if(naynaViewNice()) output("dismal");
-		else output("amazing");
+		if(naynaViewNice()) output("amazing");
+		else output("dismal");
 		output(" view and all. She’s a short, chubby little thing with floppy bunny ears and an animalistic nose that quivers with every breath she takes. Presently, she’s pacing back and forth, looking over an incomprehensible projection from her Codex and as completely unaware of your presence as someone could possibly be.");
 		output("\n\nYour Codex seems to indicate that she’s a laquine, though she’s much shorter than any you’ve ever seen.");
 		CodexManager.unlockEntry("Laquine");
