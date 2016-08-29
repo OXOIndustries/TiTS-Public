@@ -2773,7 +2773,7 @@ public function goToTaivrasChambersForSex():void
 	processTime(7);
 	clearMenu();
 	//[Cowgirl] [Glory Fuck] [Tentacock Orgy] [Breed Her]
-	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipoistor until she’s bloating you with eggs... or at least, with her sticky fem-cum.")
+	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.")
 	if(pc.hasCock() && pc.cockThatFits(taivra.analCapacity()) >= 0) addButton(1,"Glory Fuck",gloryFuckTaivra,undefined,"Glory Fuck","Get Taivra to ram her cock into the gloryhole in her wall and fuck the jiggling goo inside while you slide your cock up the queen’s tight little behind.");
 	else addDisabledButton(1,"Glory Fuck","Glory Fuck","You need a penis to access this scene.");
 	if(pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(2,"Breed Her",dockingBonerIntensifies,undefined,"Breed Her","Slide your cock into the queen’s ovipositor and flood her womb with your seed. The position might be a little awkward, but it’s worth it to make sure you have some royal offspring.");
@@ -2782,7 +2782,7 @@ public function goToTaivrasChambersForSex():void
 }
 
 //Cowgirl
-//Roll Taivra over and mount her, riding her thick, throbbing ovipoistor until she’s bloating you with eggs... {if all holes preggers: Or at least, with her sticky fem-cum.}
+//Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... {if all holes preggers: Or at least, with her sticky fem-cum.}
 //vagOrAss scene
 public function cowgirlWivTaivra():void
 {
