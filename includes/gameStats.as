@@ -542,21 +542,24 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					output2("\n<b>* Belly, Size Rating:</b> " + formatFloat(pData.pregnancyBellyRatingContribution, 3));
 					output2("\n<b>* Pregnancy, Type:</b>");
-					if(pData.pregnancyType == "HumanPregnancy") output2(" Human");
-					else if(pData.pregnancyType == "VenusPitcherSeedCarrier") output2(" Venus Pitcher, Seed");
-					else if(pData.pregnancyType == "VenusPitcherFertilizedSeedCarrier") output2(" Venus Pitcher, Seed, Fertilized");
-					else if(pData.pregnancyType == "NyreaEggPregnancy") output2(" Nyrean Huntress, Eggs");
-					else if(pData.pregnancyType == "RoyalEggPregnancy") output2(" Royal Nyrea, Eggs");
-					else if(pData.pregnancyType == "RenvraEggPregnancy") output2(" Renvra, Eggs");
-					else if(pData.pregnancyType == "RenvraFullPregnancy") output2(" Renvra");
-					else if(pData.pregnancyType == "CockvinePregnancy") output2(" Cockvine");
-					else if(pData.pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
-					else if(pData.pregnancyType == "OviliumEggPregnancy") output2(" Ovilium, Eggs");
-					else if(pData.pregnancyType == "EggTrainerCarryTraining") output2(" Egg Trainer, Eggs");
-					else if(pData.pregnancyType == "EggTrainerFauxPreg") output2(" Egg Trainer");
-					else if(pData.pregnancyType == "PsychicTentacles") output2(" Psychic Tentacle Beast");
-					else if(pData.pregnancyType == "SydianPregnancy") output2(" Sydian");
-					else output2(" <i>Unknown</i>");
+					switch(pData.pregnancyType)
+					{
+						case "HumanPregnancy": output2(" Human"); break;
+						case "VenusPitcherSeedCarrier": output2(" Venus Pitcher, Seed"); break;
+						case "VenusPitcherFertilizedSeedCarrier": output2(" Venus Pitcher, Seed, Fertilized"); break;
+						case "NyreaEggPregnancy": output2(" Nyrean Huntress, Eggs"); break;
+						case "RoyalEggPregnancy": output2(" Royal Nyrea, Eggs"); break;
+						case "RenvraEggPregnancy": output2(" Renvra, Eggs"); break;
+						case "RenvraFullPregnancy": output2(" Renvra"); break;
+						case "CockvinePregnancy": output2(" Cockvine"); break;
+						case "DeepQueenPregnancy": output2(" Water Queen"); break;
+						case "OviliumEggPregnancy": output2(" Ovilium, Eggs"); break;
+						case "EggTrainerCarryTraining": output2(" Egg Trainer, Eggs"); break;
+						case "EggTrainerFauxPreg": output2(" Egg Trainer"); break;
+						case "PsychicTentacles": output2(" Psychic Tentacle Beast"); break;
+						case "SydianPregnancy": output2(" Sydian"); break;
+						default: output2(" <i>Unknown</i>"); break;
+					}
 					if(pData.pregnancyIncubation > -1)
 					{
 						var pIncubation:int = pData.pregnancyIncubation;
@@ -1441,13 +1444,16 @@ public function displayQuestLog(showID:String = "All"):void
 				if(pc.hasStatusEffect("The Treatment"))
 				{
 					output2("\n<b>* Current Effects:</b>");
-					if(pc.statusEffectv1("The Treatment") == 0) output2(" Feminine, Cow");
-					else if(pc.statusEffectv1("The Treatment") == 1) output2(" Masculine, Stud");
-					else if(pc.statusEffectv1("The Treatment") == 2) output2(" Feminine, Stud");
-					else if(pc.statusEffectv1("The Treatment") == 3) output2(" Unisex, Cow and Stud");
-					else if(pc.statusEffectv1("The Treatment") == 4) output2(" Masculine, Amazonian");
-					else if(pc.statusEffectv1("The Treatment") == 5) output2(" Feminine, Double Stud");
-					else if(pc.statusEffectv1("The Treatment") == 6) output2(" Feminine, Undersized");
+					switch(pc.statusEffectv1("The Treatment"))
+					{
+						case 0: output2(" Feminine, Cow"); break;
+						case 1: output2(" Masculine, Stud"); break;
+						case 2: output2(" Feminine, Stud"); break;
+						case 3: output2(" Unisex, Cow and Stud"); break;
+						case 4: output2(" Masculine, Amazonian"); break;
+						case 5: output2(" Feminine, Double Stud"); break;
+						case 6: output2(" Feminine, Undersized"); break;
+					}
 					// Timer stuff
 					var treatedMinutes:Number = 10080 - pc.getStatusMinutes("The Treatment");
 					output2("\n<b>* Duration:</b> " + prettifyMinutes(treatedMinutes));
@@ -4586,15 +4592,36 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Freezer
-			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined)
+			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["NATALIE_MET"] != undefined)
 			{
 				output2("\n<b><u>The Freezer</u></b>");
 				// Hanananana, hawt MILF
-				if(flags["MET_HANA"] != undefined) output2("\n<b>* Hana:</b> Met her");
-				if(flags["FUCKED_HANA"] != undefined) output2("\n<b>* Hana, Times Sexed:</b> " + flags["FUCKED_HANA"]);
+				if(flags["MET_HANA"] != undefined)
+				{
+					output2("\n<b>* Hana:</b> Met her");
+					if(flags["FUCKED_HANA"] != undefined) output2("\n<b>* Hana, Times Sexed:</b> " + flags["FUCKED_HANA"]);
+				}
 				// Jerbears
-				if(flags["MET_JEROME"] != undefined) output2("\n<b>* Jerome:</b> Met him");
-				if(flags["FUCKED_JEROME"] != undefined) output2("\n<b>* Jerome, Times Sexed:</b> " + flags["FUCKED_JEROME"]);
+				if(flags["MET_JEROME"] != undefined)
+				{
+					output2("\n<b>* Jerome:</b> Met him");
+					if(flags["FUCKED_JEROME"] != undefined) output2("\n<b>* Jerome, Times Sexed:</b> " + flags["FUCKED_JEROME"]);
+				}
+				// Natalie Irson
+				if(flags["NATALIE_MET"] != undefined)
+				{
+					output2("\n<b>* Natalie:</b> Met her");
+					if(flags["NATALIE_TAMES_VARMINT"] != undefined) output2(", She helped you tame a wild varmint");
+					else if(flags["NATALIE_TALK_MONSTERS"] != undefined && varmintIsWild())
+					{
+						output2(", She offered to help you with your varmint stowaway");
+						if(flags["NATALIE_NEED_SILICONE"] != undefined)
+						{
+							if(!pc.hasItem(new Silicone())) output2(", <i>Find silicone!</i>");
+							else output2(", Have silicone, <i>Return to her!</i>");
+						}
+					}
+				}
 				variousCount++;
 			}
 			// Nayna

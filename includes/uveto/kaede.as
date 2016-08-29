@@ -98,11 +98,11 @@ public function uvetoKaedeSure():void
 	
 	output("\n\nYou chuckle and tell her that you’re happy to see her nonetheless. Kaede smiles wide enough that her eyes close, and her tail wags fiercely behind her. <i>“Yeah, yeah. It’s really good to see you too, [pc.name]. I missed you.”</i>");
 	
-	output("\n\n<i>“Is that right,”</i> you say, reaching ever so subtly under the table. Kaede gasps, ears standing rigid as you pat her pert little package. It shifts and stiffens at your touch, straining against the tight confines of her thigh-hugging jeans. Her surprise turns into a soft moan as you withdraw, just spending enough time down there to get across how much you missed her in turn.");
+	output("\n\n<i>“Is that right,”</i> you say, reaching ever so subtly under the table. Kaede gasps, ears standing rigid as you pat her pert little package. It shifts and stiffens at your touch, straining against the tight confines of her thigh-hugging jeans. Her surprise turns into a soft moan as you withdraw, spending just enough time down there to get across how much you missed her in turn.");
 	
 	output("\n\nKaede’s eyes flutter heavily, emphasizing her dark eyeshadow. <i>“So,”</i> she murmurs happily, <i>“anything on your mind, [pc.name]? Or do you just wanna play grab-ass under the table till our food gets here. Not that I wouldn’t like it, but there’s people watching.”</i>");
 	
-	output("\n\nYou guys you could make small talk for a bit. Or maybe you could find something more fun...");
+	output("\n\nYou guess you could make small talk for a bit. Or maybe you could find something more fun...");
 
 	processTime(10+rand(5));
 
@@ -367,7 +367,7 @@ public function uvetoKaedeTease():void
 	
 	output("\n\nDoes she get off on being teased in public, you wonder aloud between strokes. For shame, from such a wholesome girl like her! Kaede blushes furiously, moaning a mix of <i>“S-stop,”</i> <i>“[pc.name],”</i> and other muted pleas. You just smile and keep doing what you’re doing, letting the poor thing squirm under your tender ministrations.");
 	
-	output("\n\nSure enough, the way Kaede practically doubles over on the table, tail swishing panickedly and ears flat against her head, she draws more than a few gazes your way. A good half-dozen of your fellow grizzled spacers are hanging around the cafe, and between Kaede’s moans and wriggling around, every one of them ends up looking your way sooner or later. Even people passing by on the cast curious glances your way, making your lover blush all the darker.");
+	output("\n\nSure enough, the way Kaede practically doubles over on the table, tail swishing panickedly and ears flat against her head, she draws more than a few gazes your way. A good half-dozen of your fellow grizzled spacers are hanging around the cafe, and between Kaede’s moans and wriggling around, every one of them ends up looking your way sooner or later. Even people passing by cast curious glances your way, making your lover blush all the darker.");
 	
 	output("\n\nWhen Kaede finally composes herself enough to sit back up, you flash her a grin and lean across the table, cupping her cheeks and pulling her into a kiss. She goes rigid for a moment, taken by surprise, but melts in your hands as you trade lusty teasing for passionate affection. Her big blue eyes flutter closed, abandoning their embarrassment and aggravation. After a nice, long moment, you break the kiss and lean back, keeping Kaede’s cheeks in your hands.");
 	
@@ -459,7 +459,7 @@ public function uvetoKaedeSEXYTIMESENSUE():void
 		output("\n\n<i>“I’ve been looking forward to this for a while,”</i> she says with a smirk. The ever-so-slight tent in her jeans assures you she very much so has been.");
 	}
 
-	output("\n\nYou grab a handful of half-ausar ass as Kaede hops out of her chair, making her auburn tail jump and wiggling over your arm. She blushes, and the two of you quickly make your way out of the cafe and out towards the lengthy docking arm once again. As you’re walking, Kaede’s hand slips down to yours, lacing her fingers through yours. She nestles into your shoulder and follows your lead back to where you met, where your ship and hers are parked just a stone’s throw apart.");
+	output("\n\nYou grab a handful of half-ausar ass as Kaede hops out of her chair, making her auburn tail jump and wiggle over your arm. She blushes, and the two of you quickly make your way out of the cafe and out towards the lengthy docking arm once again. As you’re walking, Kaede’s hand slips down to yours, lacing her fingers through yours. She nestles into your shoulder and follows your lead back to where you met, where your ship and hers are parked just a stone’s throw apart.");
 	
 	output("\n\nGlancing out the docking viewport, you’re treated to a view of Kaede’s vessel in all its beat-up glory. She’s an old Casstech Lancer, covered in a racer-like paintjob of red and white. A meaty looking laser turret sits under the cabin, considerably bigger than your average stock freighter ought to be packing. The words <i>“<i>Talon Rogue</i>”</i> are written in bold white letters on the long neck between the cabin and the main hold. Kaede flips a keychain out of her pocket and swipes it over a keypad next to the airlock. The ship beeps at you, and the station’s security doors slide open.");
 	
