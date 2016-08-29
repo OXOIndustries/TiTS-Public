@@ -1194,6 +1194,8 @@ public function queenPregnancyEnds():void
 	
 	output("\n\nThere isn’t time to dwell on the bliss of surrogate motherhood, however, as you’re quickly reminded that the queen laid more than one of her tiny offspring inside you....");
 
+	imbibeVenomEffects();
+	
 	clearMenu();
 	addButton(0, "Next", queenPregnancyEndsII);
 }
