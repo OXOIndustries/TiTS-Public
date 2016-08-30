@@ -3061,8 +3061,10 @@ public function treatedVagNote(butt:Boolean = false):void
 }
 public function amazonEnduranceNotice():void
 {
-	eventBuffer += "\n\n" + logTimeStamp() + " Usually, sexual release would leave you feeling a little drained, but you're still full of energy. It's like cumming isn't slowing you down at all, like your body is designed to get off with a minimum of effort so that you can keep banging until your partner's body gives out or begins to bore you.";
-	eventBuffer += "\n\n(<b>Perk Gained: Amazonian Endurance</b> - Allows you to orgasm without fatiguing.)";
+	var eBuffer:String = "";
+	eBuffer += "\n\n" + logTimeStamp() + " Usually, sexual release would leave you feeling a little drained, but you're still full of energy. It's like cumming isn't slowing you down at all, like your body is designed to get off with a minimum of effort so that you can keep banging until your partner's body gives out or begins to bore you.";
+	eBuffer += "\n\n(<b>Perk Gained: Amazonian Endurance</b> - Allows you to orgasm without fatiguing.)";
+	eventBuffer += ParseText(eBuffer);
 }
 
 public function standardTreatmentDickStuff(treatedHours:Number):void
