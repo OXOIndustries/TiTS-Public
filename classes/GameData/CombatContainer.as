@@ -384,7 +384,7 @@ package classes.GameData
 				}
 				else
 				{
-					output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName())) + " shield powers back up at one quarter power!</b>");
+					output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shield powers back up at one quarter power!</b>");
 				}
 				pc.shields(Math.round(pc.shieldsMax()/4));
 				pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
@@ -398,13 +398,13 @@ package classes.GameData
 				if (target.hasStatusEffect("Stunned") && rand(4) == 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You shake off your stun! You’re unstoppable!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " shakes off their stun!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " shakes off their stun!</b>");
 					target.removeStatusEffect("Stunned");
 				}
 				if (target.hasStatusEffect("Paralyzed") && rand(4) == 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You shake off the paralysis! You’re unstoppable!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " shakes off the paralysis!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " shakes off the paralysis!</b>");
 					target.removeStatusEffect("Paralyzed");
 				}
 			}
@@ -416,7 +416,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Burning");
 					if (target is PlayerCharacter) output("\n\n<b>At last you manage to stifle the life out of the fire on your " + target.armor.longName + ". The smell of pork hangs in your nose. You try not to think about it.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " manages to stifle the life out of the flames on their " + target.armor.longName + "!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " manages to stifle the life out of the flames on their " + target.armor.longName + "!</b>");
 				}
 				//Keep status!
 				else
@@ -434,13 +434,13 @@ package classes.GameData
 				if (target.statusEffectv2("Aphro") == 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>The aphrodisiac in your bloodstream has faded!</b>");
-					else output("\n\n<b>The aphrodisiac in " + StringUtil.capitalize(possessive(target.getCombatName())) + " bloodstream has faded!</b>");
+					else output("\n\n<b>The aphrodisiac in " + possessive(target.getCombatName()) + " bloodstream has faded!</b>");
 					target.removeStatusEffect("Aphro");
 				}
 				else
 				{
 					if (target is PlayerCharacter) output("\n\n<b>The aphrodisiac in your bloodstream continues to excite your body!</b>");
-					else output("\n\n<b>The aphrodisiac in " + StringUtil.capitalize(possessive(target.getCombatName())) + " bloodstream continues to excite " + target.mfn("him", "her", "it") + "!</b>");
+					else output("\n\n<b>The aphrodisiac in " + possessive(target.getCombatName()) + " bloodstream continues to excite " + target.mfn("him", "her", "it") + "!</b>");
 					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro") } ), null, target);
 				}
 			}
@@ -494,7 +494,7 @@ package classes.GameData
 			if (target.hasStatusEffect("Bleeding"))
 			{
 				if (target is PlayerCharacter) output("\n\n<b>Your wounds continue to take their toll on your body; " + (target.statusEffectv2("Bleeding") >= 1 ? "your microsugeons working overtime to stem the ongoing damage" : "your microsurgeons have triaged the worst of it, but you’ll need proper rest to heal") + ".</b>");
-				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName())) + " wounds continue to take a toll on their body; " + (target.statusEffectv2("Bleeding") ? "blood liberally flows from their wounds as they frantically attempt to stem the bleeding." : "the bleeding has finally stopped, but it’d take anybody some rest to properly recover from those kinds of wounds!") + "</b>");
+				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " wounds continue to take a toll on their body; " + (target.statusEffectv2("Bleeding") ? "blood liberally flows from their wounds as they frantically attempt to stem the bleeding." : "the bleeding has finally stopped, but it’d take anybody some rest to properly recover from those kinds of wounds!") + "</b>");
 				if (target.statusEffectv2("Bleeding") >= 1)
 				{
 					target.addStatusValue("Bleeding", 2, -1);
@@ -512,13 +512,13 @@ package classes.GameData
 				{
 					target.addStatusValue("Staggered", 1, -1);
 					if (target is PlayerCharacter) output("\n\n<b>You’re still reeling from the force of the blows to which you’ve been subjected.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is still reeling from the force of the blows to which they’ve been subject!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which they’ve been subject!</b>");
 				}
 				else
 				{
 					target.removeStatusEffect("Staggered");
 					if (target is PlayerCharacter) output("\n\n<b>You finally shake away the stars from your vision, your [pc.feet] planted on the floor firmly once again.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " finally shakes away the cobwebs, their " + target.feet() + " planted firmly on the floor once again.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " finally shakes away the cobwebs, their " + target.feet() + " planted firmly on the floor once again.</b>");
 				}
 			}
 	
@@ -540,7 +540,7 @@ package classes.GameData
 				if(target.hasPerk("Leap Up"))
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " jumps back onto their " + target.feet() + " almost immediately!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " jumps back onto their " + target.feet() + " almost immediately!</b>");
 					target.removeStatusEffect("Tripped");
 				}
 			}
@@ -552,21 +552,21 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Blinded");
 					if (target is PlayerCharacter) output("\n\n<b>You can see again!</b>");
-					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " are no longer blinded!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is no longer blind!</b>");
+					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " are no longer blinded!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is no longer blind!</b>");
 				}
 				else if (target.hasPerk("Sharp Eyes") && target.statusEffectv1("Blinded") <= 1) 
 				{
 					target.removeStatusEffect("Blinded");
 					if (target is PlayerCharacter) output("\n\n<b>You can see again!</b>");
-					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " are no longer blinded!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is no longer blind!</b>");
+					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " are no longer blinded!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is no longer blind!</b>");
 				}
 				else
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You are blind!</b>");
-					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " are blind.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is blind.</b>");
+					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " are blind.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is blind.</b>");
 				}
 			}
 	
@@ -582,7 +582,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Smoke Grenade");
 					if (target is PlayerCharacter) output("\n\n<b>You can see again!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " looks a little more confident in their aim!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " looks a little more confident in their aim!</b>");
 				}
 			}
 	
@@ -593,12 +593,12 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Paralyzed");
 					if (target is PlayerCharacter) output("\n\n<b>The paralytic venom wears off, and you are able to move once more.</b>");
-					else output("\n\n<b>The paralysis affecting " + StringUtil.capitalize(target.getCombatName()) + " seems to wear off, motion returning to " + target.mfn("his", "her", "its") + " limbs!</b>");
+					else output("\n\n<b>The paralysis affecting " + StringUtil.capitalize(target.getCombatName(), false) + " seems to wear off, motion returning to " + target.mfn("his", "her", "its") + " limbs!</b>");
 				}
 				else
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You’re paralyzed and unable to move!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is paralyzed and unable to move!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is paralyzed and unable to move!</b>");
 				}
 			}
 	
@@ -608,13 +608,13 @@ package classes.GameData
 				if(target.statusEffectv1("Stealth Field Generator") <= 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>Your stealth field generator collapses.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName())) + " stealth drops abruptly!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " stealth drops abruptly!</b>");
 					target.removeStatusEffect("Stealth Field Generator");
 				}
 				else 
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You are practically invisible thanks to your stealth field generator.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is practically invisible thanks to their stealth field generator.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is practically invisible thanks to their stealth field generator.</b>");
 				}
 			}
 	
@@ -625,7 +625,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Taking Cover");
 					if (target is PlayerCharacter) output("\n\n<b>You are no longer taking cover!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is no longer taking cover!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is no longer taking cover!</b>");
 				}
 				else 
 				{
@@ -642,13 +642,13 @@ package classes.GameData
 				if(temp > 0) 
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You recover " + temp + " points of shielding.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName())) + " recovers " + temp + " points of shielding!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " recovers " + temp + " points of shielding!</b>");
 					target.shields(temp);
 				}
 				if(target.statusEffectv1("Deflector Regeneration") <= 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>Your shields are no longer regenerating!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName())) + " shields are no longer regenerating!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shields are no longer regenerating!</b>");
 					target.removeStatusEffect("Deflector Regeneration");
 				}
 			}
@@ -658,7 +658,7 @@ package classes.GameData
 				target.addStatusValue("Used Smuggled Stimulant",1,-1);
 				target.energy(25);
 				if (target is PlayerCharacter) output("\n\n<b>A rush of energy fills you as the smuggled stimulant affects you.</b>");
-				else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is filled with a sudden rush of energy!</b>");
+				else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is filled with a sudden rush of energy!</b>");
 			}
 	
 			if (target.hasStatusEffect("Porno Hacked Drone"))
@@ -669,14 +669,14 @@ package classes.GameData
 					if(target.statusEffectv1("Porno Hacked Drone") <= 0)
 					{
 						if (target is PlayerCharacter) output("\n\n<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the sexbot’s hacking routine, and returns to your side.</b>");
-						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName())) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rogue instructions hacked into the thing, it returns to its owners side.</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rogue instructions hacked into the thing, it returns to its owners side.</b>");
 						target.removeStatusEffect("Porno Hacked Drone");
 					}
 					else
 					{
 						//Combat blurb:
 						if (target is PlayerCharacter) output("\n\n<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.</b>");
-						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName())) + " hacked drone continues to fly around them, projecting a series of ever lewder smutty visuals directly at " + target.mfn("him", "her", "it") + "!</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " hacked drone continues to fly around them, projecting a series of ever lewder smutty visuals directly at " + target.mfn("him", "her", "it") + "!</b>");
 						target.lust(4);
 					}
 				}
@@ -711,14 +711,14 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Disarmed");
 					if (target is PlayerCharacter) output("\n\n<b>You are no longer disarmed!</b>");
-					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " are no longer disarmed!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is no longer disarmed!</b>\n");
+					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " are no longer disarmed!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is no longer disarmed!</b>\n");
 				}
 				else 
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You are disarmed and cannot use weapon based attacks.</b>");
-					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " are disarmed.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is disarmed.</b>");
+					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " are disarmed.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is disarmed.</b>");
 				}
 			}
 	
@@ -735,7 +735,7 @@ package classes.GameData
 							if(target.hasStatusEffect("Varmint Buddy")) output("\n\n<b>A loud howl alerts you that your pet varmint has fully recovered. It quickly shakes itself awake and leaps back to your side, gnashing its razor-sharp teeth at the enemy.</b>");
 							else output("\n\n<b>There’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.</b>");
 						}
-						else output("\n\n<b>A telling hum returns to the battlefield. " + StringUtil.capitalize(possessive(target.getCombatName())) + " combat drone returns to the fold!</b>");
+						else output("\n\n<b>A telling hum returns to the battlefield. " + StringUtil.capitalize(possessive(target.getCombatName()), false) + " combat drone returns to the fold!</b>");
 					}
 				}
 			}
@@ -750,7 +750,7 @@ package classes.GameData
 					target.removeStatusEffect("Sensor Link");
 					target.aimMod -= 5;
 					if (target is PlayerCharacter) output("\n\n<b>Your equipments connection to Anno’s wanes as combat draws on, your improved accuracy diminishing.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName())) + " equipment interlink wanes, the extra assistance diminishing!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " equipment interlink wanes, the extra assistance diminishing!</b>");
 				}
 			}
 	
@@ -768,9 +768,9 @@ package classes.GameData
 				target.addStatusMinutes("Evasion Boost",-1);
 				if(target.getStatusMinutes("Evasion Boost") <= 0)
 				{
-					if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " no longer have boosted evasion!</b>");
+					if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer have boosted evasion!</b>");
 					else if (target is PlayerCharacter) output("\n\n<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " no longer has boosted evasion!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer has boosted evasion!</b>");
 					target.removeStatusEffect("Evasion Boost");
 				}
 			}
@@ -781,14 +781,14 @@ package classes.GameData
 				if (target.statusEffectv1("Resolve") <= 0)
 				{
 					target.removeStatusEffect("Resolve");
-					output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is no longer resolved!</b>");
+					output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is no longer resolved!</b>");
 					target.baseHPResistances.tease.resistanceValue -= 100;
 					target.baseHPResistances.drug.resistanceValue -= 50;
 					target.baseHPResistances.pheromone.resistanceValue -= 50;
 				}
 				else
 				{
-					output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " has a resolved, steely look in " + target.mfn("his","her","its") + " eyes!</b>");
+					output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " has a resolved, steely look in " + target.mfn("his","her","its") + " eyes!</b>");
 				}
 			}
 		
@@ -853,7 +853,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Resin");
 					if (target is PlayerCharacter) output("\n\nHardened resin snaps and clinks as it drops off of you. Not enough of it remains to act as a shield anymore.");
-					else output("\n\n" + StringUtil.capitalize(target.getCombatName()) + " no longer " + (target.isPlural ? "have" : "has") + " the protection of the hardened resin.");
+					else output("\n\n" + StringUtil.capitalize(target.getCombatName(), false) + " no longer " + (target.isPlural ? "have" : "has") + " the protection of the hardened resin.");
 					
 				}
 			}
@@ -1277,7 +1277,7 @@ package classes.GameData
 			{
 				if(target.statusEffectv1("Tripped") > 0 && !target.canFly())
 				{
-					output(StringUtil.capitalize(target.getCombatName()) + " struggles to get");
+					output(StringUtil.capitalize(target.getCombatName(), false) + " struggles to get");
 					if(target.isPlural) output(" themselves");
 					else output(" " + target.mfn("him", "her", "it") + "self");
 					output(" up, but can’t.");
@@ -1487,8 +1487,8 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Stunned");
 					if (target is PlayerCharacter) output("You manage to recover your wits and adopt a fighting stance!");
-					else if (!target.isPlural) output(StringUtil.capitalize(target.getCombatName()) + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
-					else output(StringUtil.capitalize(target.getCombatName()) + " manage to recover their wits and adopt a fighting stance!");
+					else if (!target.isPlural) output(StringUtil.capitalize(target.getCombatName(), false) + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
+					else output(StringUtil.capitalize(target.getCombatName(), false) + " manage to recover their wits and adopt a fighting stance!");
 				}
 				else
 				{
@@ -1497,8 +1497,8 @@ package classes.GameData
 					{
 						if (!target.hasStatusEffect("Lust Stunned"))
 						{
-							if (!target.isPlural) output(StringUtil.capitalize(target.getCombatName()) + " is still too stunned to act!");
-							else output(StringUtil.capitalize(target.getCombatName()) + " are still too stunned to act!");
+							if (!target.isPlural) output(StringUtil.capitalize(target.getCombatName(), false) + " is still too stunned to act!");
+							else output(StringUtil.capitalize(target.getCombatName(), false) + " are still too stunned to act!");
 						}
 						else
 						{
@@ -2928,7 +2928,7 @@ package classes.GameData
 				}
 				else if(target.isLustImmune == true) 
 				{
-					msg = "\n\n<b>" + StringUtil.capitalize(target.getCombatName());
+					msg = "\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false);
 					if(target.isPlural) msg += " don’t";
 					else msg += " doesn’t";
 					msg += " seem to care to care for your erotically-charged display.</b>";
@@ -2975,7 +2975,7 @@ package classes.GameData
 				}
 				else
 				{
-					output("\n\n" + StringUtil.capitalize(target.getCombatName()));
+					output("\n\n" + StringUtil.capitalize(target.getCombatName()), false);
 					if(target.isPlural) output(" resist");
 					else output(" resists");
 					output(" your erotically charged display... this time.");
@@ -3002,13 +3002,13 @@ package classes.GameData
 				output("\n\n");
 				if(teaseType == "SQUIRT")
 				{
-					if(target.isPlural) output(StringUtil.capitalize(target.getCombatName()) + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused. ");
-					else output(StringUtil.capitalize(target.getCombatName()) + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused. ");
+					if(target.isPlural) output(StringUtil.capitalize(target.getCombatName(), false) + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused. ");
+					else output(StringUtil.capitalize(target.getCombatName(), false) + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused. ");
 				}
 				if(teaseType == "DICK SLAP")
 				{
-					if(target.isPlural) output(StringUtil.capitalize(possessive(target.getCombatName())) + " faces look rather flush as they quickly wipe your [pc.cum] off. ");
-					else output(StringUtil.capitalize(possessive(target.getCombatName())) + " face looks rather flush as " + target.mfn("he","she","it") + " quickly wipes your [pc.cum] off. ");
+					if(target.isPlural) output(StringUtil.capitalize(possessive(target.getCombatName()), false) + " faces look rather flush as they quickly wipe your [pc.cum] off. ");
+					else output(StringUtil.capitalize(possessive(target.getCombatName()), false) + " face looks rather flush as " + target.mfn("he","she","it") + " quickly wipes your [pc.cum] off. ");
 					if(kGAMECLASS.silly) output(" Ha! GOT ‘EM! ");
 				}
 				else output(teaseReactions(damage,target));
@@ -3096,20 +3096,20 @@ package classes.GameData
 				else buffer = "The wispy amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed back, flushing wildly.";
 			}
 			else if (target.isPlural) {
-				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName())  + " seem unimpressed.";
-				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName()) + " look intrigued by what they see.";
-				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName()) + " definitely seem to be enjoying the show.";
-				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName()) + " openly stroke themselves as they watch you.";
-				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName()) + " flush hotly with desire, their eyes filled with longing.";
-				else buffer = StringUtil.capitalize(target.getCombatName()) + " lick their lips in anticipation, their hands idly stroking their bodies.";
+				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName(), false)  + " seem unimpressed.";
+				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName(), false) + " look intrigued by what they see.";
+				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName(), false) + " definitely seem to be enjoying the show.";
+				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName(), false) + " openly stroke themselves as they watch you.";
+				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName(), false) + " flush hotly with desire, their eyes filled with longing.";
+				else buffer = StringUtil.capitalize(target.getCombatName(), false) + " lick their lips in anticipation, their hands idly stroking their bodies.";
 			}
 			else {
-				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName()) + " seems unimpressed.";
-				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName()) + " looks a little intrigued by what " + target.mf("he","she") + " sees.";
-				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName()) + " definitely seems to be enjoying the show.";
-				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName()) + " openly touches " + target.mfn("him","her","it") + "self as " + target.mfn("he","she","it") + " watches you.";
-				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName()) + " flushes hotly with desire, " + target.mfn("his","her","its") + " eyes filled with longing.";
-				else buffer = StringUtil.capitalize(target.getCombatName()) + " licks " + target.mfn("his","her","its") + " lips in anticipation, " + target.mfn("his","her","its") + " hands idly stroking " + target.mfn("his","her","its") + " own body.";
+				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName(), false) + " seems unimpressed.";
+				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName(), false) + " looks a little intrigued by what " + target.mf("he","she") + " sees.";
+				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName(), false) + " definitely seems to be enjoying the show.";
+				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName(), false) + " openly touches " + target.mfn("him","her","it") + "self as " + target.mfn("he","she","it") + " watches you.";
+				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName(), false) + " flushes hotly with desire, " + target.mfn("his","her","its") + " eyes filled with longing.";
+				else buffer = StringUtil.capitalize(target.getCombatName(), false) + " licks " + target.mfn("his","her","its") + " lips in anticipation, " + target.mfn("his","her","its") + " hands idly stroking " + target.mfn("his","her","its") + " own body.";
 			}
 			return buffer;
 		}
@@ -3685,7 +3685,7 @@ package classes.GameData
 			}
 			else if (target.lust() >= target.lustMax())
 			{
-				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
 			}
 			else
 			{				
@@ -3732,11 +3732,11 @@ package classes.GameData
 				
 			if (target.HP() <= 0)
 			{
-				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " is down and out for the count!</b>");
+				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is down and out for the count!</b>");
 			}
 			else if (target.lust() >= target.lustMax())
 			{
-				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
 			}
 			else if (target.long.length > 0)
 			{
@@ -3760,12 +3760,12 @@ package classes.GameData
 			if (pc.lust() >= pc.lustMax())
 			{
 				if (enemiesAlive() > 1 || _hostiles[0].isPlural) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>");
-				else output("<b>" + StringUtil.capitalize(_hostiles[0].getCombatName()) + " has knocked you off your " + pc.feet() + "</b>");
+				else output("<b>" + StringUtil.capitalize(_hostiles[0].getCombatName(), false) + " has knocked you off your " + pc.feet() + "</b>");
 			}
 			else if (pc.HP() <= 0)
 			{
 				if (enemiesAlive() > 1 || _hostiles[0].isPlural) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>");
-				else output("<b>" + StringUtil.capitalize(_hostiles[0].getCombatName()) + " has turned you on too much to keep fighting. You give in....</b>"); // TODO should be able to pick out a defined 'leader'
+				else output("<b>" + StringUtil.capitalize(_hostiles[0].getCombatName(), false) + " has turned you on too much to keep fighting. You give in....</b>"); // TODO should be able to pick out a defined 'leader'
 			}
 			else if (_hostiles.length == 1 && _friendlies.length == 1)
 			{
@@ -3796,32 +3796,32 @@ package classes.GameData
 			}
 			else if (target.isPlural)
 			{
-				if(target.lust() < 60) output("\n" + StringUtil.capitalize(possessive(target.getCombatName())) + " skins remain flushed with the beginnings of arousal.");
-				else if(target.lust() < 70) output("\n" + StringUtil.capitalize(possessive(target.getCombatName())) + " eyes constantly dart over your most sexual parts, betraying their lust.");
+				if(target.lust() < 60) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " skins remain flushed with the beginnings of arousal.");
+				else if(target.lust() < 70) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " eyes constantly dart over your most sexual parts, betraying their lust.");
 				else if (target.lust() < 85)
 				{
-					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName()) + " are having trouble moving due to the rigid protrusions in their groins.");
-					if(target.hasVagina()) output("\n" + StringUtil.capitalize(target.getCombatName()) + " are obviously turned on; you can smell their arousal in the air.");
+					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " are having trouble moving due to the rigid protrusions in their groins.");
+					if(target.hasVagina()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " are obviously turned on; you can smell their arousal in the air.");
 				}
 				else
 				{
-					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName()) + " are panting and softly whining, each movement seeming to make their bulges more pronounced. You don’t think they can hold out much longer.");
-					if(target.hasVagina()) output("\n" + StringUtil.capitalize(possessive(target.getCombatName())) + " " + plural(target.vaginaDescript()) + " are practically soaked with their lustful secretions.");
+					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " are panting and softly whining, each movement seeming to make their bulges more pronounced. You don’t think they can hold out much longer.");
+					if(target.hasVagina()) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " " + plural(target.vaginaDescript()) + " are practically soaked with their lustful secretions.");
 				}
 			}
 			else
 			{
-				if(target.lust() < 60) output("\n" + StringUtil.capitalize(possessive(target.getCombatName())) + " " + target.skin() + " remains flushed with the beginnings of arousal.");
-				else if(target.lust() < 70) output("\n" + StringUtil.capitalize(possessive(target.getCombatName())) + " eyes constantly dart over your most sexual parts, betraying " + target.mfn("his","her","its") + " lust.");
+				if(target.lust() < 60) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " " + target.skin() + " remains flushed with the beginnings of arousal.");
+				else if(target.lust() < 70) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " eyes constantly dart over your most sexual parts, betraying " + target.mfn("his","her","its") + " lust.");
 				else if (target.lust() < 85)
 				{
-					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName()) + " is having trouble moving due to the rigid protrusion in " + target.mfn("his","her","its") + " groin.");
-					if(target.hasVagina()) output("\n" + StringUtil.capitalize(target.getCombatName()) + " is obviously turned on, you can smell " + target.mfn("his","her","its") + " arousal in the air.");
+					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " is having trouble moving due to the rigid protrusion in " + target.mfn("his","her","its") + " groin.");
+					if(target.hasVagina()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " is obviously turned on, you can smell " + target.mfn("his","her","its") + " arousal in the air.");
 				}
 				else
 				{
-					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName()) + " is panting and softly whining, each movement seeming to make " + target.mfn("his","her","its") + " bulge more pronounced. You don’t think " + target.mfn("he","she","it") + " can hold out much longer.");
-					if(target.hasVagina()) output("\n" + StringUtil.capitalize(possessive(target.getCombatName())) + " " + target.vaginaDescript() + " is practically soaked with " + target.mfn("his","her","its") + " lustful secretions.");
+					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " is panting and softly whining, each movement seeming to make " + target.mfn("his","her","its") + " bulge more pronounced. You don’t think " + target.mfn("he","she","it") + " can hold out much longer.");
+					if(target.hasVagina()) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " " + target.vaginaDescript() + " is practically soaked with " + target.mfn("his","her","its") + " lustful secretions.");
 				}
 			}
 		}
@@ -3973,7 +3973,7 @@ package classes.GameData
 				{
 					_friendlies[i].alreadyDefeated = true;
 					if (_friendlies[i] is PlayerCharacter) output("\n\nYou fall to the ground,");
-					else output("\n\n" +StringUtil.capitalize(_friendlies[i].getCombatName()) + " falls to the ground,");
+					else output("\n\n" +StringUtil.capitalize(_friendlies[i].getCombatName(), false) + " falls to the ground,");
 					if (_friendlies[i].HP() <= 0) output(" defeated.");
 					else output(" stricken with lust.");
 				}

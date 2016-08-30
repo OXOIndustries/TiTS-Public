@@ -19,6 +19,7 @@ package classes.GameData
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.StringUtil;
 	
 	/**
 	 * Static library of combat attack implementations
@@ -788,7 +789,7 @@ package classes.GameData
 		public static function DroneAttack(attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("Your");
-			else output(attacker.capitalA + possessive(attacker.getCombatName()));
+			else output(StringUtil.capitalize(possessive(attacker.getCombatName()), false));
 			output(" drone repeatedly zaps ");
 			if (target is PlayerCharacter) output("you");
 			else output(target.getCombatName());
@@ -1531,7 +1532,7 @@ package classes.GameData
 			
 			if (attacker is PlayerCharacter) output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + aTarget.getCombatName() + "!");
 			else if (target is PlayerCharacter) output("[attacker.CombatName] hucks a small device in your direction, unleashing an explosive blast scant inches from your body!");
-			else output(attacker.capitalA + attacker.uniqueName + " hucks a small device in " + possessive(aTarget.getCombatName()) + " direction, unleashing an explosive blast scant inches from " + aTarget.mfn("his", "her", "its") + " form!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " hucks a small device in " + possessive(aTarget.getCombatName()) + " direction, unleashing an explosive blast scant inches from " + aTarget.mfn("his", "her", "its") + " form!");
 				
 			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
 			var totalDamage:DamageResult = new DamageResult();
@@ -1561,13 +1562,13 @@ package classes.GameData
 			if(aTarget == null)
 			{
 				if (attacker is PlayerCharacter) output("It seems you have no target to use your gas grenade on.");
-				else output(attacker.capitalA + attacker.uniqueName + " produces a gas grenade--but with no target to use it on, " + attacker.mfn("he", "she", "it") + " puts it away.");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " produces a gas grenade--but with no target to use it on, " + attacker.mfn("he", "she", "it") + " puts it away.");
 				return;
 			}
 			
 			if (attacker is PlayerCharacter) output("Tossing a hissing grenade in the general direction of your target, you watch the gaseous stuff do its trick.");
-			else if (aTarget is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tosses a small device in your direction, great clouds of thick, gaseous vapour pouring from within its body.");
-			else output(attacker.capitalA + attacker.uniqueName + " tosses a small device in " + possessive(aTarget.getCombatName()) + " direction, a thick trail of gasous vapour hanging heavily in the air to demark the arcing path taken.");
+			else if (aTarget is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " tosses a small device in your direction, great clouds of thick, gaseous vapour pouring from within its body.");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " tosses a small device in " + possessive(aTarget.getCombatName()) + " direction, a thick trail of gasous vapour hanging heavily in the air to demark the arcing path taken.");
 			
 			var d:int = 14 + attacker.level * 2;
 			var totalDamage:DamageResult = new DamageResult();
@@ -1597,7 +1598,7 @@ package classes.GameData
 			attacker.createStatusEffect("Used Smuggled Stimulant", 3, 0, 0, 0, true, "", "", true, 0);
 			
 			if (attacker is PlayerCharacter) output("You inject yourself with a smuggled stimulant.");
-			else output(attacker.capitalA + attacker.uniqueName + " jams a small injector deep into their thigh, the stature visibly filling with energy!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " jams a small injector deep into their thigh, the stature visibly filling with energy!");
 		}
 		
 		public static var BurstOfEnergy:SingleCombatAttack;
@@ -1607,7 +1608,7 @@ package classes.GameData
 			attacker.createStatusEffect("Used Burst of Energy", 0, 0, 0, 0, true, "", "", true, 0);
 			
 			if (attacker is PlayerCharacter) output("You dig deep and find a reserve of energy from deep within yourself!\n");
-			else output(attacker.capitalA + attacker.uniqueName + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
 		}
 		
 		public static var ConcussiveShot:SingleCombatAttack;
@@ -1702,7 +1703,7 @@ package classes.GameData
 			if(aTarget == null)
 			{
 				if (attacker is PlayerCharacter) output("It seems you have no target to use your lust-inducing spores on.");
-				else output(attacker.capitalA + attacker.uniqueName + " attempts to use " + attacker.mfn("his", "her", "its") + " spores but there is not one to use it on.");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempts to use " + attacker.mfn("his", "her", "its") + " spores but there is not one to use it on.");
 				return;
 			}
 			
@@ -1712,11 +1713,11 @@ package classes.GameData
 			}
 			else
 			{
-				output(attacker.capitalA + attacker.uniqueName + " forces liquid amber from " + attacker.mfn("his", "her", "its") + " body which quickly hardens into a layer of armor.");
+				output(StringUtil.capitalize(attacker.getCombatName(), false) + " forces liquid amber from " + attacker.mfn("his", "her", "its") + " body which quickly hardens into a layer of armor.");
 			}
 			
 			var resinDur:int = 4;
-			attacker.createStatusEffect("Resin", resinDur, 0, 0, 0, false, "DefenseUp", (((attacker is PlayerCharacter) ? "You are" : attacker.capitalA + attacker.uniqueName + " is") + " covered in a sweet-smelling, hardened amber."), true, 0, 0xFFFFFF);
+			attacker.createStatusEffect("Resin", resinDur, 0, 0, 0, false, "DefenseUp", (((attacker is PlayerCharacter) ? "You are" : StringUtil.capitalize(attacker.getCombatName(), false) + " is") + " covered in a sweet-smelling, hardened amber."), true, 0, 0xFFFFFF);
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
@@ -1724,7 +1725,7 @@ package classes.GameData
 				
 				if (cTarget.isDefeated()) continue;
 				
-				cTarget.createStatusEffect("Resin Aroma", resinDur, 0, 0, 0, false, "Charmed", (((cTarget is PlayerCharacter) ? "You are" : cTarget.capitalA + cTarget.uniqueName + " is") + " standing in the path of a sweet smell."), true, 0, 0xB793C4);
+				cTarget.createStatusEffect("Resin Aroma", resinDur, 0, 0, 0, false, "Charmed", (((cTarget is PlayerCharacter) ? "You are" : StringUtil.capitalize(cTarget.getCombatName(), false) + " is") + " standing in the path of a sweet smell."), true, 0, 0xB793C4);
 			}
 		}
 		
@@ -1746,11 +1747,11 @@ package classes.GameData
 			}
 			else
 			{
-				output(attacker.capitalA + attacker.uniqueName + " emits a cloud of lust-inducing spores from " + attacker.mfn("his", "her", "its") + " body in " + ((aTarget is PlayerCharacter) ? "your" : (possessive(aTarget.getCombatName()))) + " direction.");
+				output(StringUtil.capitalize(attacker.getCombatName(), false) + " emits a cloud of lust-inducing spores from " + attacker.mfn("his", "her", "its") + " body in " + ((aTarget is PlayerCharacter) ? "your" : (possessive(aTarget.getCombatName()))) + " direction.");
 			}
 			
 			var lustDur:int = 4;
-			attacker.createStatusEffect("Pollen Veil", lustDur, 0, 0, 0, false, "Icon_Smelly", (((attacker is PlayerCharacter) ? "You are" : attacker.capitalA + attacker.uniqueName + " is") + " emitting lust-inducing spores."), true, 0, 0xFFFFFF);
+			attacker.createStatusEffect("Pollen Veil", lustDur, 0, 0, 0, false, "Icon_Smelly", (((attacker is PlayerCharacter) ? "You are" : StringUtil.capitalize(attacker.getCombatName(), false) + " is") + " emitting lust-inducing spores."), true, 0, 0xFFFFFF);
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
@@ -1758,7 +1759,7 @@ package classes.GameData
 				
 				if (cTarget.isDefeated()) continue;
 				
-				cTarget.createStatusEffect("Pollen Lust", lustDur, 0, 0, 0, false, "Charmed", (((cTarget is PlayerCharacter) ? "You are" : cTarget.capitalA + cTarget.uniqueName + " is") + " under the effects of lust-inducing spores!"), true, 0, 0xB793C4);
+				cTarget.createStatusEffect("Pollen Lust", lustDur, 0, 0, 0, false, "Charmed", (((cTarget is PlayerCharacter) ? "You are" : StringUtil.capitalize(cTarget.getCombatName(), false) + " is") + " under the effects of lust-inducing spores!"), true, 0, 0xB793C4);
 			}
 		}
 		
@@ -1768,24 +1769,24 @@ package classes.GameData
 			//Charged attack!
 			if(!attacker.hasStatusEffect("Wrench Charge"))
 			{
-				output(attacker.capitalA + attacker.uniqueName + " hefts her wrench up over her head, readying a powerful downward stroke. If you act quickly, you can interrupt her!");
+				output(StringUtil.capitalize(attacker.getCombatName(), false) + " hefts her wrench up over her head, readying a powerful downward stroke. If you act quickly, you can interrupt her!");
 				attacker.createStatusEffect("Wrench Charge", attacker.HP(),0,0,0);
 			}
 			//Already charged, lets do this!
 			else
 			{
 				//Interrupted
-				if(attacker.statusEffectv1("Wrench Charge") > attacker.HP()) output(attacker.capitalA + attacker.uniqueName + " staggers, dropping her heavy weapon down from its striking posture. She looks less than pleased by this development!");
+				if(attacker.statusEffectv1("Wrench Charge") > attacker.HP()) output(StringUtil.capitalize(attacker.getCombatName(), false) + " staggers, dropping her heavy weapon down from its striking posture. She looks less than pleased by this development!");
 				//Miss
 				else if(combatMiss(attacker, target))
 				{
-					output(attacker.capitalA + attacker.uniqueName + " brings her weapon down in a vicious two-handed strike but fails to connect!");
+					output(StringUtil.capitalize(attacker.getCombatName(), false) + " brings her weapon down in a vicious two-handed strike but fails to connect!");
 				}
 				//Hit
 				else
 				{
 					//[enemy.short][capital]
-					output(attacker.capitalA + attacker.uniqueName + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
+					output(StringUtil.capitalize(attacker.getCombatName(), false) + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
 					//{Stun chance}
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
@@ -1804,7 +1805,7 @@ package classes.GameData
 		public static var TripAttack:SingleCombatAttack;
 		private static function TripAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			output(attacker.capitalA + attacker.uniqueName + " tries to trip you! ");
+			output(StringUtil.capitalize(attacker.getCombatName(), false) + " tries to trip you! ");
 			if (target.reflexes()/2 + rand(20) + 1 >= attacker.physique()/2 + 10) output("You neatly hop over the misguided attempt.");
 			else
 			{
@@ -1822,7 +1823,7 @@ package classes.GameData
 			var hit:Boolean = true;
 			//Hacky-ass solution for male raskvel. Will need tweaked if a proper mob ever uses the attack
 			if(attacker is RaskvelMale) output("<i>“Boo! Raaaaar!”</i> shouts the big raskvel, waving his arms at you. At the same time, one of the others pulls an injector gun from his belt and fires three needles at you near soundlessly.")
-			else output(attacker.capitalA + attacker.uniqueName + " pulls a gun off her hip, levels it, and pulls the trigger. The only reports are a trio of near-silent hisses as three injectors fly through the air toward you.");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " pulls a gun off her hip, levels it, and pulls the trigger. The only reports are a trio of near-silent hisses as three injectors fly through the air toward you.");
 			//Blocked
 			if(target.shields() > 0) 
 			{

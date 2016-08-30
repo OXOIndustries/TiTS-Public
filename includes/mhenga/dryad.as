@@ -84,6 +84,15 @@ public function dryadMeeting():void
 		//[SuckMe]
 		if(pc.hasCock()) addButton(5,"Suck Me",dryadFaceFuckSpecial,undefined,"Suck Me", "Make her suck you off. She's sexed up enough she might just cum from it.");
 		else addDisabledButton(5,"Suck Me","Suck Me","You need a dick for her to suck for this.");
+		//Dryad Anal
+		//Anal (Requires >= 10" length)
+		if(pc.hasCock())
+		{
+			if(pc.shortestCockLength() < 10) addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren't long enough for her to be interested.");
+			else addButton(6,"FuckHerAss",dryadAnalFunsies,undefined,"Fuck Her Ass","Put it in her butt and go to town.");
+		}
+		else addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You need a penis in order to fuck her ass.");
+		
 	}
 	else
 	{
@@ -96,6 +105,8 @@ public function dryadMeeting():void
 		else addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, you need a dick at least a foot long to fuck her.");
 		if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You aren't aroused enough for this.");
 		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
+		addDisabledButton(5,"Suck Me","Suck Me","You aren't aroused enough for this.");
+		addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren't aroused enough for this.");
 	}
 	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don't wanna bang right now.");
 }
@@ -666,6 +677,100 @@ public function dryadSuperCumSuckEpilogue():void
 	if(!pc.isCrotchExposed()) output(" You gingerly place your dick back in your [pc.underGarments] and get up to continue your journey.");
 	else output(" You gingerly get up to continue your journey.");
 	processTime(25);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Dryad Anal
+//Anal (Requires >= 10" length)
+public function dryadAnalFunsies():void
+{
+	clearOutput();
+	dryadHeader();
+	author("Wsan");
+	var x:int = pc.cockThatFits(1400);
+	if(x < 0) x = pc.smallestCockIndex();
+	if(pc.cocks[x].cLength() < 12) x = pc.biggestCockIndex();
+
+	//First time
+	if(flags["DRYAD_ANALED"] == undefined)
+	{
+		output("You tell her you can get her off for sure, but she’s going to have to offer up her ass. She looks surprised at first, then somewhat nervous.");
+		output("\n\n<i>“Um, okay. I’ve never really done butt stuff before though... not with my own ass, anyway. As long as you can get me off! Shouldn’t be hard");
+		if(pc.cocks[x].cLength() >= 16) output(", especially with a cock that size!”</i>");
+		else output(".”</i>");
+		output("\n\nShe trots over to a tree and places her hands against it, bracing herself while she looks back at you, biting her lip.");
+		output("\n\n<i>“I know I said I haven’t really done much with my butt,”</i> she says as you ");
+		if(pc.isTaur()) output("trot");
+		else output("walk");
+		output(" up to her, <i>“but that doesn’t mean I want you to be gentle, okay?”</i>");
+		output("\n\nYou nod idly, inspecting her impressive haunches.");
+	}
+	//Repeat
+	else
+	{
+		output("You tell her you can get her off for sure, but she’s going to have to offer up her ass. She looks surprised at first, then nods eagerly, smiling.");
+		output("\n\n<i>“As long as you promise to fuck me as hard as you did last time, cutie.”</i>");
+		output("\n\nShe trots over to a tree and places her hands against it, bracing herself while she looks back at you, biting her lip.");
+		output("\n\n<i>“Is this gonna be a regular thing,”</i> she inquires as you ");
+		if(pc.isTaur()) output("trot");
+		else output("walk");
+		output(" up to her, <i>“are you gonna try and turn me into an anal slut?”</i>");
+		output("\n\n<i>“Maybe,”</i> you grin, looking down at her fluffy doe-tail and ass.");
+	}
+	output("\n\nShe’s got a hell of a butt on her, that’s for sure. You palm her jiggly buttcheeks and spread them, enticing her puffy donut ring to wink at you. Her tail flits from side to side, its owner clearly antsy for you to start fucking her. Well, too bad for her.");
+	if(flags["DRYAD_ANALED"] == undefined) output(" You at least need to make sure she’ll be able to take you, given her apparent inexperience.");
+	else output(" You feel like teasing her a bit before you get to the main event.");
+
+	output("\n\nYou slip one finger into her asshole, encountering no resistance whatsoever. She <i>is</i> tight, though - her walls are gripping your finger intensely, arresting your progress. She gasps a little at the intrusion, trying to relax herself so that you can push further in. She groans when you slide it all the way in, probing the first few inches of her ass. Wiggling your digit around, it seems like that while she’s tight she’s also very stretchy. You experimentally slip a second finger in, then a third. The taurslut moans in response, and you pull your fingers free, her puffy hole winking at you.");
+
+	output("\n\n<i>“Are you gonna stop teasing me now?”</i>");
+
+	output("\n\nThe dryad looks back at you, clearly a little annoyed you haven’t started fucking. You wave her off and step forward, preparing to assuage the needy dryad’s lust. Needing no further encouragement, you ");
+	if(pc.isTaur()) output("mount");
+	else output("grab");
+	output(" the horny taur and align your [pc.cock] with her asshole. You delicately slide your [pc.cockHead] across her protruding ring and let it settle for a moment before slowly pushing in.");
+	if(pc.cocks[x].cLength() >= 19) output(" There’s some resistance from her hole owing to your size, but as you incessantly push forward it eventually gives up, caving inwards and swallowing the first few inches of your cock.");
+	output(" Her hole eagerly swallows the first few inches of your cock, caving inwards.");
+
+	output("\n\n<i>“Fffuuuck,”</i> she groans, her erect cock dripping seed below her, <i>“I feel so full...”</i>");
+
+	output("\n\n<i>“That’s the idea,”</i> you quip from above her, slowly rocking your [pc.hips] to get your cock further into the warmth of her guts while she moans and shivers underneath you.");
+
+	if(pc.cocks[x].cLength() < 40) 
+	{
+		output("\n\nBy the time you’re halfway in, she’s panting hard against the tree, her fingers tightly gripping its bark. She whines quietly when it gets to three quarters, laying her forehead against the tree and taking deep breaths. You give her a second to acclimatize, but she <i>did</i> say not to take it easy, so you’re perhaps a little less merciful than you could be.");
+		output("\n\nYou slowly push forward, your passage being eased by the precum ");
+		if(pc.cumQ() >= 15000) output("spraying");
+		else output("dribbling");
+		output(" from your cock into her. When you finally hilt yourself, you sigh with satisfaction and look down. She gives a shuddering sigh and her upper half slackens, finally bringing her head back up and unclenching her hands.");
+	}
+	else 
+	{
+		output("\n\nThere’s no way you can fit your entire length in, but you slowly inch as much of it as you can into her. She stretches and stretches, her asshole slowly but surely swallowing your massive dick. She whines, groans, and clutches desperately at the tree in front of her as you slide further into her deepest recesses, your cock rearranging her insides to make room.");
+		output("\n\nYou give her a second to get used to your massive size, but she <i>did</i> say not to take it easy on her, so you’re perhaps a little less merciful than you could be. You slowly push forward, eliciting mindless grunts and groans of lust from the dryad’s lips. When your progress is finally arrested by the limits of her body, you give a sigh of satisfaction and look down at how much of yourself you’ve hilted in her. She gives a shuddering sigh and her upper half slackens, bringing her head back up and unclenching her hands.");
+	}
+	pc.cockChange();
+
+	output("\n\n<i>“Oh, god... it won’t stop dripping,”</i> she pants, staying still on the end of your cock.");
+	output("\n\nYou realize she’s talking about her own dick. You must be rubbing across her prostate something fierce like this, and grin eagerly at the realization. She cries out when you pull back slowly, shaking and gasping as your cock rubs her in just the right way. The moment you thrust back in she gives a strangled gasp, hugging the tree while her cock splatters its leavings across her white-furred underside.");
+	output("\n\n<i>“Gah! Ah, f-fuck,”</i> she pants, unconsciously thrusting in response to her cock cumming, only driving herself further into the throes of anal orgasm.");
+	output("\n\nYou’re content to let her push back, her asshole stretching itself back and forth over your length while she shivers helplessly, constricting your cock with every shake. You can’t help but smile watching the dryad lustfully lose herself, shamelessly fucking her own ass on the end of your dick to eke out every little bit of moaning orgasm she can.");
+	output("\n\nWhen she finally slows, her back legs shaking too much to keep going, you take back over and keep riding her through her ejaculations. Each thrust inward is a lewd moan and a spray of jizz from her pent-up cock, each pull outward is a sigh of emptiness until you cave her ring back in. You continue fucking her somewhat slowly for a few minutes, by which point her voice has become more sweetly layered with pleasure instead of effort.");
+	output("\n\nTaking that as a sign to finally give her what she asked for, you pull back and begin fucking her in earnest, your cock rapidly plunging in and out of her asshole. Her warm walls grip and stroke you all throughout her insides, the intense warmth of her body heat driving you to sweat with the effort of pinning her to the tree.");
+	output("\n\nShe suffers countless more panting orgasms being roughly shoved up against the tree with a fat cock wedged in her asshole, her ass tightening up and spasming around your [pc.cock] each time. Spurred on by her slutty reactions, you slowly build and build to your own peak of pleasure until holding yourself back is too much.");
+	output("\n\nYou push forward,");
+	if(pc.cocks[x].cLength() < 40) output(" hilting yourself against the dryad’s plump butt");
+	else output(" filling the dryad’s plump butt with as much of your cock as you can");
+	output(" as you pour all of your spunk into her guts with an animalistic grunt. She screams half in lust and half in utter satisfaction, shaking like a leaf as she noisily cums from both her cock and cunt, tightly gripping the tree so as to not fall over.");
+	output("\n\nYou give her a few last pumps, making sure you’ve truly filled her ass well and good. You pull out slowly, and the moment your [pc.cockHead] slips past her abused ring she collapses to the ground, moaning and drooling jizz from her asshole.");
+	if(pc.cumQ() >= 50000) output(" Her tauric stomach is swollen with your seed, her body branded by your hyper-virility.");
+	output("\n\n<i>“Hey,”</i> you shrug, <i>“you did say not to be gentle.”</i>");
+	output("\n\nA semi-conscious moan is her only reply as she flops onto her side, breathing deeply. In a few moments her breathing slows, and then she’s asleep. You shake your head in amusement and prepare to move on. You’d wake her up to avoid her being taken advantage of by the natives, but you’re pretty confident she can handle herself, and frankly she’d probably be grateful to get off again.");
+	IncrementFlag("DRYAD_FUCKED");
+	IncrementFlag("DRYAD_ANALED");
+	processTime(16);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

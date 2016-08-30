@@ -254,6 +254,9 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/herman.png", mimeType = "image/png")]
 		public var Bust_HERMAN:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/holmes.png", mimeType = "image/png")]
+		public var Bust_HOLMES:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/honeypot.png", mimeType = "image/png")]
 		public var Bust_HONEYPOT:Class;
@@ -729,6 +732,9 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/herman.png", mimeType = "image/png")]
 			public var Full_HERMAN:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/holmes.png", mimeType = "image/png")]
+			public var Full_HOLMES:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/honeypot.png", mimeType = "image/png")]
 			public var Full_HONEYPOT:Class;
 

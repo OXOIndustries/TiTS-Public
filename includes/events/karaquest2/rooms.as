@@ -53,6 +53,7 @@ public function kquest2InitRooms():void
 	rooms["K2_LZ"].system = systemName;
 	rooms["K2_LZ"].eastExit = "K2_RAPPEL";
 	rooms["K2_LZ"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_LZ"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_RAPPEL"] = new RoomClass(this);
 	rooms["K2_RAPPEL"].roomName = "RAPPEL\nPOINT";
@@ -63,6 +64,7 @@ public function kquest2InitRooms():void
 	//rooms["K2_RAPPEL"].outExit = "K2_SEWERENTRANCE";
 	rooms["K2_RAPPEL"].outText = "Rappel";
 	rooms["K2_RAPPEL"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_RAPPEL"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_SEWERENTRANCE"] = new RoomClass(this);
 	rooms["K2_SEWERENTRANCE"].roomName = "SEWER\nENTRANCE";
@@ -72,6 +74,7 @@ public function kquest2InitRooms():void
 	rooms["K2_SEWERENTRANCE"].system = systemName;
 	rooms["K2_SEWERENTRANCE"].eastExit = "K2_SEWER1";
 	rooms["K2_SEWERENTRANCE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_SEWERENTRANCE"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_SEWER1"] = new RoomClass(this);
 	rooms["K2_SEWER1"].roomName = "\nSEWER";
@@ -114,6 +117,7 @@ public function kquest2InitRooms():void
 	rooms["K2_BASESEWER"].northExit = "K2_YARDD2";
 	rooms["K2_BASESEWER"].eastExit = "K2_RADIOTOWER";
 	rooms["K2_BASESEWER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_BASESEWER"].addFlag(GLOBAL.HAZARD);
 
 	rooms["K2_RADIOTOWER"] = new RoomClass(this);
 	rooms["K2_RADIOTOWER"].roomName = "RADIO\nTOWER";
@@ -124,6 +128,7 @@ public function kquest2InitRooms():void
 	rooms["K2_RADIOTOWER"].northExit = "K2_YARDD3";
 	rooms["K2_RADIOTOWER"].westExit = "K2_BASESEWER";
 	rooms["K2_RADIOTOWER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["K2_RADIOTOWER"].addFlag(GLOBAL.HAZARD);
 	rooms["K2_RADIOTOWER"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["K2_YARDD2"] = new RoomClass(this);

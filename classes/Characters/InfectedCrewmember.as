@@ -85,7 +85,7 @@
 			this.level = 6;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 50;
+			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			
 			//MUCH IS PLACEHOLDER DUE TO LACK OF MYR TYPE PARTS AT CODE TIME.
@@ -232,7 +232,7 @@
 			// Anything you want to clean up at the end of a combat round, you do in postHostileTurnActions, ie
 			// this is a second layer behind regular status effects to control things from a higher level
 			// such as avoiding duplicate outputs for things like status effect processing from AoEs.
-			if (!CombatManager.hasCombatEffect("Lust Spores Used")) atks.push( { v: lustSpores, w: 5 } );
+			if (!CombatManager.hasCombatEffect("Lust Spores Used")) atks.push( { v: lustSpores, w: 15 } );
 			
 			var stunnedAllies:Array = [];
 			for (var i:int = 0; i < alliedCreatures.length; i++)

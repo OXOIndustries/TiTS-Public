@@ -301,7 +301,7 @@ public function talkToEllieYaFuckingSkank():void
 	if(pc.libido() < 70 || pc.lust() < 70) output("You’re sorely tempted to take the eager taur up on that offer, but for the moment, no. She pouts, but nods. <i>“Fine, I guess I’m not doing anything too important... but I’m warning you, the first bull to walk through with a hardon might sweep me away, if you aren’t careful!”</i> With that, Ellie sits herself down on her reptilian hind end and looks at you expectantly.");
 	else
 	{
-		output("\n\n<i>“Yeah, so can I,”</i> you say, eyeing those beautiful breasts of hers, undressing her with your mind even as the sexy taur gets ready to do it for real.");
+		output("<i>“Yeah, so can I,”</i> you say, eyeing those beautiful breasts of hers, undressing her with your mind even as the sexy taur gets ready to do it for real.");
 		// {to sex menu}
 		clearMenu();
 		addButton(0,"Next",ellieSexScene);

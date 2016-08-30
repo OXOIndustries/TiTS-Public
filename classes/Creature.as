@@ -2825,6 +2825,12 @@
 				kGAMECLASS.mimbraneFeed("vagina");
 				StatTracking.track("sex/player/orgasms");
 				removeStatusEffect("Blue Balls");
+				//Slamazon shit
+				if(hasStatusEffect("Amazonian Endurance Report Needed")) 
+				{
+					kGAMECLASS.eventQueue.push(kGAMECLASS.amazonEnduranceNotice);
+					removeStatusEffect("Amazonian Endurance Report Needed");
+				}
 			}
 			else
 			{
@@ -2844,7 +2850,7 @@
 			if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
 			
 			lustRaw = 0;
-			energy(-5);
+			if(!hasPerk("Amazonian Endurance")) energy(-5);
 			minutesSinceCum = 0;
 			timesCum++;
 		}
@@ -3128,6 +3134,10 @@
 		{
 			if (isTreated() && mf("m", "f") == "m") return true;
 			return false;
+		}
+		public function isAmazon():Boolean
+		{
+			return (isTreated() && hasStatusEffect("Treated Amazon"));
 		}
 		//Mild exhib scene: arg = +1;
 		//Full exhib scene: arg = +2
@@ -3629,6 +3639,7 @@
 		public function lustMin(): Number {
 			var bonus:int = 0;
 			if (hasPerk("Drug Fucked")) bonus += 10;
+			if (hasPerk("Amazonian Needs")) bonus += 20;
 			if (hasPerk("Black Latex")) bonus += 10;
 			if (perkv1("Flower Power") > 0) bonus += perkv2("Flower Power");
 			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
@@ -7996,6 +8007,7 @@
 			if (refractoryRate >= 10 && quantity < 100) quantity = 100;
 			if (refractoryRate >= 15 && quantity < 251) quantity = 251;
 			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000;
+			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
 			//You can't cum more than you can possibly have!
 			if(quantity > maxCum()) quantity = maxCum();
 			//Overloaded nuki' nuts will fully drain
@@ -8789,6 +8801,60 @@
 		{
 			return "Your crotch warms, but nothing happens.";
 		}
+		//General utility function for setting appropriate dick type with new-grown weiners.
+		public function setNewCockValues(arg:int = 0):void
+		{
+			cocks[arg].cLengthRaw = 5.5;
+			if(hasPerk("Hung")) cocks[arg].cLengthRaw += 2+rand(4);
+			
+			var pcRace:String = race();
+			
+			// Type changes
+			if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph", "canine-taur"))
+			{
+				shiftCock(arg,GLOBAL.TYPE_CANINE);
+				if(pcRace.indexOf("ausar") != -1) cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
+			}
+			else if (InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat"))
+			{
+				shiftCock(arg, GLOBAL.TYPE_FELINE);
+				if (pcRace.indexOf("kaithrit") != -1) // 'cause kaithrits are not cool enough to have real kitty peckers
+				{
+					cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
+					cocks[arg].delFlag(GLOBAL.FLAG_TAPERED);
+				}
+			}
+			else if(InCollection(pcRace, "leithan", "half-leithan")) shiftCock(arg,GLOBAL.TYPE_SNAKE);
+			else if(InCollection(pcRace, "kui-tan", "half kui-tan")) shiftCock(arg, GLOBAL.TYPE_KUITAN);
+			else if(InCollection(pcRace, "gryvain", "half-gryvain")) shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
+			else if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", mlpRace())) shiftCock(arg, GLOBAL.TYPE_EQUINE);
+			else if(InCollection(pcRace, "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) shiftCock(arg,GLOBAL.TYPE_VULPINE);
+			else if(pcRace == "zil") shiftCock(arg,GLOBAL.TYPE_BEE);
+			else if(InCollection(pcRace, "naleen", "naga")) shiftCock(arg,GLOBAL.TYPE_NAGA);
+			else if(InCollection(pcRace, "raskvel", "raskvel-morph", "rask-morph")) shiftCock(arg, GLOBAL.TYPE_RASKVEL);
+			else if(InCollection(pcRace, "fanfir", "dragon-morph", "dragon-taur", "dragonne", "dragonne-taur")) shiftCock(arg, GLOBAL.TYPE_DRACONIC);
+			else if(pcRace == "demon-morph") shiftCock(arg, GLOBAL.TYPE_DEMONIC);
+			else if(pcRace == "kangaroo-morph") shiftCock(arg, GLOBAL.TYPE_KANGAROO);
+			else if(pcRace == "simii") shiftCock(arg, GLOBAL.TYPE_SIMII);
+			else if(pcRace == "saurian") shiftCock(arg, GLOBAL.TYPE_SAURIAN);
+			else if(pcRace == "venus pitcher") shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
+			else if(pcRace == "sydian") shiftCock(arg, GLOBAL.TYPE_SYDIAN);
+			else if(pcRace == "daynar") shiftCock(arg, GLOBAL.TYPE_DAYNAR);
+			else if(InCollection(pcRace, "gabilani", "goblin")) shiftCock(arg, GLOBAL.TYPE_GABILANI);
+			else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant")) shiftCock(arg, GLOBAL.TYPE_TENTACLE);
+			else if(skinType == GLOBAL.SKIN_TYPE_GOO)
+			{
+				shiftCock(arg, GLOBAL.TYPE_HUMAN);
+				cocks[arg].addFlag(GLOBAL.FLAG_GOOEY);
+				cocks[arg].cockColor = skinTone;
+			}
+			/*
+			else if(pcRace == "anemone") shiftCock(arg, GLOBAL.TYPE_ANEMONE);
+			else if(pcRace == "siren") shiftCock(arg, GLOBAL.TYPE_SIREN);
+			else if(InCollection(pcRace, "synthetic", "robot", "companion droid")) shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
+			else if(pcRace == "cockvine") shiftCock(arg, GLOBAL.TYPE_COCKVINE);
+			*/
+		}
 		
 		//create vagoo
 		public function createVagina(): Boolean {
@@ -8908,12 +8974,15 @@
 		public function removeVaginasUnlocked():Boolean
 		{
 			if (hasStatusEffect("Mimbrane Pussy")) return false;
+			//Amazon Treatment prevents cunt-loss during.
+			if (hasStatusEffect("Treated Amazon") && totalVaginas() <= 1 && hasStatusEffect("The Treatment")) return false;
 			if (isPregnant(0) || isPregnant(1) || isPregnant(2)) return false;
 			return true;
 		}
 		public function removeVaginasLockedMessage():String
 		{
 			if (hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane is doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
+			if (hasStatusEffect("Treated Amazon") && totalVaginas() <= 1 && hasStatusEffect("The Treatment")) return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely. <b>It must be the Treatment, keeping you from losing your vagina until it has finished its job...</b>";
 			if (isPregnant(0) || isPregnant(1) || isPregnant(2)) return "A powerful sensation can be felt in your womb. Your body actively fights the change, keeping you from losing your pregnant vagina entirely.";
 			return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
