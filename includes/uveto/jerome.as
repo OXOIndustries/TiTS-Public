@@ -384,7 +384,7 @@ public function jeromePeggingIIIBiped():void
 		
 		output("\n\nWith a grunt you push forth one final time, your knot briefly held back by the tight ring threatening to reject its entry before being swallowed whole with an audible ‘POP!’.");
 		
-		output("\n\nThe fat intrusion nestling tight against the his prostate finally sets the bear off, his cock cradled tight");
+		output("\n\nThe fat intrusion nestling tight against the prostate finally sets the bear off, his cock cradled tight");
 		if (pc.biggestTitSize() >= 4) output(" between your [pc.chest]");
 		else output("ly against your chest");
 		output(" when his orgasm finally hits. His dick flexes and throbs within your grip as it spews his heavy, thick load");
