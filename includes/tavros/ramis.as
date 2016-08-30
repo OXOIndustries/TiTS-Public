@@ -358,7 +358,7 @@ public function ramisDrink(response:String = "drink"):void
 			output("\n\n<i>“We’re just getting started though!”</i> cries Ramis. He " + (pc.hasVagina() ? "flaps his" : "waves") + " hand at her exasperatedly and the others do nothing but chuckle as they file out. <i>“Lightweights!”</i> the kaithrit hurls at their backs. She clambers back to her feet and grins at you. <i>“You aren’t gonna bail on me like those dickheads, are you? Night’s still young. We could hit a club after this...”</i>");
 			
 			processTime(2);
-			IncrementFlag("RAMIS_TIMES_BENDER");
+			IncrementFlag("RAMIS_TIMES_DRINK");
 			
 			// [Keep going] [Nah]
 			if(pc.credits >= 300) addButton(0, "Keep Going", ramisDrink, "keep going", "Keep Going", "She’s right! This party is just getting started!\n\nCosts 300 credits.");
@@ -425,6 +425,7 @@ public function ramisDrink(response:String = "drink"):void
 				pc.imbibeAlcohol(10);
 			}
 			pc.credits -= 300;
+			IncrementFlag("RAMIS_TIMES_BENDER");
 			
 			currentLocation = "SHIP INTERIOR";
 			break;
