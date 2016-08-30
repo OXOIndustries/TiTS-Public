@@ -1150,7 +1150,7 @@ public function hugeEarShekkaFaps():void
 	if(pc.biggestCockLength() < 20) output("resting her chin down on your [pc.cockHeadBiggest]");
 	else output("resting a cheek on the side of your [pc.cockBiggest]");
 	output(". Funnily enough, your titanic rod appears to have no trouble propping up the sixty pound alien as she leans ");
-	if(pc.biggestCockLength() < 20) output("down");
+	if(pc.biggestCockLength() < 20) output("on");
 	else output("against");
 	output(" it.");
 
@@ -1288,7 +1288,7 @@ public function pageThreeOfShekkaStuffs():void
 	else output("\n\n<i>\"Still just as amazing,\"</i> she chuckles. By the way she’s blinking her eyes, you figure she knows they’re dilated again.");
 	//Merge:
 	output("\n\nShekka runs her hands deep down into the suit, dragging through the remaining rivers of fun collected within. <i>\"I’m betting this’ll be a bitch to clean up. They make these things to hold shit out, not in.\"</i>");
-	output("\n\nSpeaking in of which, being out of that suit is definitely high on your wish list. You’re careful not to go spilling any of the funky fun as you slide your wet, naked body out of the thing. Shekka isn’t as careful, wading the mess up as best she can and hauling it over to a little pile of various other garments to be dealt with. She merely shrugs uncaringly when you point out the mess. Her whole warehouse is rich with the perfume of your ");
+	output("\n\nSpeaking of which, being out of that suit is definitely high on your wish list. You’re careful not to go spilling any of the funky fun as you slide your wet, naked body out of the thing. Shekka isn’t as careful, wadding the mess up as best she can and hauling it over to a little pile of various other garments to be dealt with. She merely shrugs uncaringly when you point out the mess. Her whole warehouse is rich with the perfume of your ");
 	if(hours > 22 || hours < 4) output("late night");
 	else if(hours < 10) output("morning");
 	else if(hours <= 12) output("late morning");

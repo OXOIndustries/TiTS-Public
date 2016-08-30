@@ -446,7 +446,7 @@ public function hanaSexBackroomII():void
 		output("\n\nShifting leisurely, you drive your length along her smooth, just-cushy abdomen,");
 		if (!isHardlight && pc.smallestCockLength() > 9)
 		{
-			output("easily prodding into her plush bosom with lazy, idly humps.");
+			output(" easily prodding into her plush bosom with lazy, idle humps.");
 		}
 		else
 		{
@@ -466,7 +466,7 @@ public function hanaSexBackroomII():void
 		else output(" until your waist collides firmly with her own, mashing until both are flush together.");
 		output(" It doesn’t take very long for her to get used to the feel, but you still proactively take the time to start squeezing and playing with her exposed bosom, digging your fingers into the plush, malleable tit-flesh to further hitched gasps and weak, restrained moans.");
 
-		output("\n\nNow that you feel that sloppy cunt squeezing around your length you start humping, leisurely drawing your waist back and forth in slow, albeit powerful and thorough thrusts. Based on her reaction that melting expression and her thighs squeezing around you it’s the correct choice! You’re not sure how effective it is, but Hana even goes as far to press her hand on her belly, squeezing down as if to rub your");
+		output("\n\nNow that you feel that sloppy cunt squeezing around your length you start humping, leisurely drawing your waist back and forth in slow, albeit powerful and thorough thrusts. Based on her reaction, that melting expression and her thighs squeezing around you it’s the correct choice! You’re not sure how effective it is, but Hana even goes as far to press her hand on her belly, squeezing down as if to rub your");
 		if (isHardlight) output(" toy");
 		else output(" prick");
 		output(" through her body. Still, even if it’s not doing anything the rest of her has got you snuggly wrapped in a vice-like grip, sending little trickles of her cunny-honey down onto the mat each time you pull back.");
@@ -602,7 +602,7 @@ public function hanaFiresideRecovery():void
 	output("\n\nAll the while, Hana keeps up her work.");
 	if (pc.hasCock())
 	{
-		output("\n\nHer fingers squeeze along your girth as her palm grinds along the length of it, making milking motions as if it is a cow’s udder. Each motion stops just shy of your [pc.biggestSheath] yet also perilously close to your sensitive [pc.biggestHead], though in either case the husky ausar isn’t a perfect automaton, going beyond both - or, more often, further away. Wet, squelching sounds are hard to hear over the roaring din of the roasting pillar of fire, yet ever so often you can make them out through the crackles of flame, particularly whenever her fingers go across some blemish of feature of your prick. She must’ve lubricated herself before hand, but with those fuzzy hands you’re not sure she had to!");
+		output("\n\nHer fingers squeeze along your girth as her palm grinds along the length of it, making milking motions as if it is a cow’s udder. Each motion stops just shy of your [pc.biggestSheath] yet also perilously close to your sensitive [pc.biggestCockHead], though in either case the husky ausar isn’t a perfect automaton, going beyond both - or, more often, further away. Wet, squelching sounds are hard to hear over the roaring din of the roasting pillar of fire, yet ever so often you can make them out through the crackles of flame, particularly whenever her fingers go across some blemish of feature of your prick. She must’ve lubricated herself before hand, but with those fuzzy hands you’re not sure she had to!");
 
 		output("\n\nYour caretaker isn’t taking a particularly lively pace but, instead, a slow, methodical one, not entirely concerned with actually getting you off. It’s a lazy Sunday sort of handjob, one that you grow to enjoy more and more as time goes on.");
 	}

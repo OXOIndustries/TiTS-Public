@@ -748,7 +748,7 @@ public function applySkinTone(skinTone:String = "pale"):void {
 	pc.skinTone = skinTone;
 	if(pc.hasCock())
 	{
-		if(pc.cocks[x].cType == GLOBAL.TYPE_HUMAN)
+		if(pc.cocks[0].cType == GLOBAL.TYPE_HUMAN)
 		{
 			if(skinTone == "dark" || skinTone == "ebony")
 			{
