@@ -240,7 +240,8 @@ package classes.GameData
 		}
 		public static function hasCombatEffect(effectName:String):Boolean
 		{
-			if (combatContainer) returncombatContainer.hasCombatEffect(effectName);
+			if (combatContainer) return combatContainer.hasCombatEffect(effectName);
+			return false;
 		}
 		public static function getCombatEffect(effectName:String):StorageClass
 		{

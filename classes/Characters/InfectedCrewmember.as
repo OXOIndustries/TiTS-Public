@@ -85,7 +85,7 @@
 			this.level = 6;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 50;
+			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			
 			//MUCH IS PLACEHOLDER DUE TO LACK OF MYR TYPE PARTS AT CODE TIME.

@@ -181,7 +181,9 @@ public function kiP18CommandDeck():Boolean
 		flags["NAV_DISABLED"] = 0;
 		output(" unlocked");
 	}
-	output(" security door labeled ‘Captain's Ready Room’. To the east is the head of the ship, and a heavy-duty security door ahead bears the ‘BRIDGE’ markings overhead. A pair of disabled shock-turrets once guarded these sensitive chambers, but have long since been overwhelmed by what must have been gallons of cum. They've completely shorted out.");
+	output(" security door labeled ‘Captain's Ready Room’.");
+	
+	output("\n\nTo the east is the head of the ship, and a heavy-duty security door ahead bears the ‘BRIDGE’ markings overhead. A pair of disabled shock-turrets once guarded these sensitive chambers, but have long since been overwhelmed by what must have been gallons of cum. They've completely shorted out.");
 
 	
 	if (flags["KASHIMA_HOLMES_DEFEATED"] != undefined)
@@ -191,7 +193,7 @@ public function kiP18CommandDeck():Boolean
 	
 	if(flags["KI_P16_UNLOCKED"] != undefined)
 	{
-		addDisabledButton(0, "Hack Door", "Hack Door Lock", "You’ve sucessfully hacked the door lock.");
+		// noop
 	}
 	else if (flags["KI_P16_FAILURES"] == undefined || flags["KI_P16_FAILURES"] <= 3)
 	{
@@ -1045,6 +1047,9 @@ public function kiRipChief():void
 
 public function kiH18RoomFunction():Boolean
 {
+	flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+	output("\n\nThe control panel for the door is damaged beyond all hope of quick repair.");
+	
 	if (flags["CHIEF_NEYKKAR_WITH_PC"] == 2 && flags["KI_VANDERBILT_MET"] == undefined)
 	{
 		kiMeetingVanderbilt();

@@ -50,7 +50,7 @@ package classes.Characters
 			meleeWeapon.baseDamage.kinetic.damageValue = 24;
 			meleeWeapon.addFlag(DamageFlag.CRUSHING);
 			meleeWeapon.hasRandomProperties = true;
-			meleeWeapon.attack = -4;
+			meleeWeapon.attack = 3;
 			
 			this.rangedWeapon = new EmptySlot();
 			this.shield = new EmptySlot();
@@ -67,11 +67,11 @@ package classes.Characters
 			armor.resistances.psionic.resistanceValue = 80.0;
 			armor.resistances.tease.resistanceValue = 25.0;
 			armor.defense = 8;
-			armor.evasion = -4;
+			armor.evasion = -2;
 			armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 35;
-			this.reflexesRaw = 15;
+			this.reflexesRaw = 30;
 			this.aimRaw = 28;
 			this.intelligenceRaw = 8;
 			this.willpowerRaw = 8;
@@ -196,7 +196,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "SPOOPSTER";
+			return "HOLMES";
 		}
 		
 		override public function CombatAI(allied:Array, hostiles:Array):void 
@@ -206,7 +206,7 @@ package classes.Characters
 				runaway();
 			}
 			
-			if (HP() < HPMax())
+			if (HP() < HPMax() && energy() > 5)
 			{
 				healTick();
 			}
@@ -289,7 +289,7 @@ package classes.Characters
 				
 				if (!target.hasBlindImmunity())
 				{
-					output("<b>" + (target is PlayerCharacter ? "You" : "The Chief is") + "blinded!</b>");
+					output("<b>" + (target is PlayerCharacter ? "You" : "The Chief is") + " blinded!</b>");
 					target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
 				}
 				
@@ -337,6 +337,7 @@ package classes.Characters
 		
 		public function healTick():void
 		{
+			energy( -5);
 			var healAmt:Number = HPMax() * 0.05;
 			if (HP() + healAmt > HPMax()) healAmt = HPMax() - HP();
 			HP(healAmt);
