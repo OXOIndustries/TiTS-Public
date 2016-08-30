@@ -238,9 +238,9 @@ package classes.GameData
 		{
 			if (combatContainer) combatContainer.removeCombatEffect(effectName);
 		}
-		public static function hasCombatEffect(effectName:String):void
+		public static function hasCombatEffect(effectName:String):Boolean
 		{
-			if (combatContainer) combatContainer.hasCombatEffect(effectName);
+			if (combatContainer) returncombatContainer.hasCombatEffect(effectName);
 		}
 		public static function getCombatEffect(effectName:String):StorageClass
 		{
