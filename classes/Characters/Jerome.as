@@ -165,7 +165,7 @@ package classes.Characters
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
-			ass.loosenessRaw = 4;
+			this.ass.loosenessRaw = 4;
 			
 			this.version = _latestVersion;
 			this._isLoading = false;
