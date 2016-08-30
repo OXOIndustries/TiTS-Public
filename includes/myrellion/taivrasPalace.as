@@ -2773,7 +2773,7 @@ public function goToTaivrasChambersForSex():void
 	processTime(7);
 	clearMenu();
 	//[Cowgirl] [Glory Fuck] [Tentacock Orgy] [Breed Her]
-	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipoistor until she’s bloating you with eggs... or at least, with her sticky fem-cum.")
+	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.")
 	if(pc.hasCock() && pc.cockThatFits(taivra.analCapacity()) >= 0) addButton(1,"Glory Fuck",gloryFuckTaivra,undefined,"Glory Fuck","Get Taivra to ram her cock into the gloryhole in her wall and fuck the jiggling goo inside while you slide your cock up the queen’s tight little behind.");
 	else addDisabledButton(1,"Glory Fuck","Glory Fuck","You need a penis to access this scene.");
 	if(pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(2,"Breed Her",dockingBonerIntensifies,undefined,"Breed Her","Slide your cock into the queen’s ovipositor and flood her womb with your seed. The position might be a little awkward, but it’s worth it to make sure you have some royal offspring.");
@@ -2782,16 +2782,28 @@ public function goToTaivrasChambersForSex():void
 }
 
 //Cowgirl
-//Roll Taivra over and mount her, riding her thick, throbbing ovipoistor until she’s bloating you with eggs... {if all holes preggers: Or at least, with her sticky fem-cum.}
+//Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... {if all holes preggers: Or at least, with her sticky fem-cum.}
 //vagOrAss scene
 public function cowgirlWivTaivra():void
 {
 	clearOutput();
 	showTaivra(true);
 	author("Savin");
-	var x:int = pc.cuntThatFits(chars["TAIVRA"].cockVolume(0));
-	if(pc.hasVagina() && x < 0) x = rand(pc.totalVaginas());
-	else if(!pc.hasVagina()) x = -1;
+	var x:int;
+	var isFull:Boolean = true;
+	if (taivraHasFertileEggs()) {		
+		x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);		
+		if (x >= 0) isFull = false;
+		else if (!pc.isPregnant(3)) {
+			isFull = false;
+			x = -1;
+		}
+	}
+	if (isFull) {
+		x = pc.cuntThatFits(chars["TAIVRA"].cockVolume(0));
+		if (pc.hasVagina() && x < 0) x = pc.biggestVaginaIndex();
+		else if (!pc.hasVagina()) x = -1;
+	}
 	output("You reach up and run your hands over Taivra’s big hips, purpose-built to pass the thick, smooth orbs of her eggs. You can just imagine the clutch already growing in the thoroughly-fertile nyrea’s womb, ready to be pumped into you. It’s hard not to wonder if Taivra’s been fertilized... and if you’ll be popping out some royal heirs before long.");
 	output("\n\nExcited by the thought, you secure your hands on your lover’s waist and roll her over, putting the queen on her back and taking her place on top, straddling her breeder’s hips and reaching down to caress her horse-sized ovipositor.");
 	output("\n\n<i>“Mmm, aggressive, aren’t we?”</i> your queen purrs, obviously not displeased. She smiles, caressing your [pc.hips]. <i>“I like that...”</i>");
@@ -2818,13 +2830,13 @@ public function cowgirlWivTaivra():void
 		output("pinch at your [pc.nipples]");
 	}
 	output(". Your lover pulls you close against her own chest, holding you deep on her throbbing, drooling ovi-cock. Her knot presses against your ");
-	if(x >= 0) output(" pussylips");
-	else output(" asscheeks");
+	if(x >= 0) output("pussylips");
+	else output("asscheeks");
 	output(", hot and heavy against the entrance to your hole... but never trying to push in.");
 
 	output("\n\nTaivra clearly doesn’t want you to just sit there and take a ");
-	if(x >= 0) output("belly");
-	else output("womb");
+	if(x >= 0) output("womb");
+	else output("belly");
 	output("-full of eggs, and so you start to move your [pc.hips]. With a moan of enjoyment, you slowly rise up, dragging Taivra’s spines back through your [pc.vagOrAss " + x + "], letting them tease and rub at your spasming, tender channel. You can feel her cock throbbing inside you, her heartbeat causing her shaft to grow and spurt its dark, viscous lube into your ");
 	if(x >= 0) output("twat");
 	else output("asshole");
@@ -3124,8 +3136,8 @@ public function lapRideDatQueenAllPublicLike():void
 	output(", hot and heavy against the entrance to your hole... but never trying to push in.");
 
 	output("\n\nTaivra clearly doesn’t want you to just sit there and take a ");
-	if(x == -1) output("belly");
-	else output("womb");
+	if(x >= 0) output("womb");
+	else output("belly");
 	output("-full of eggs, and so you start to move your [pc.hips]. With a moan of enjoyment, you slowly rise up, dragging Taivra’s spines back through your [pc.vagOrAss " + x + "], letting them tease and rub at your spasming, tender channel. You can feel her cock throbbing inside you, her heartbeat causing her shaft to grow and spurt its dark, viscous lube into your ");
 	if(x >= 0) output("twat");
 	else output("asshole");
