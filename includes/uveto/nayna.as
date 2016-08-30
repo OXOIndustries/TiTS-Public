@@ -355,11 +355,11 @@ public function volunteerToHelp(late:Boolean = false):void
 	output("\n\n<i>“Just so you know, you shouldn’t use that word other laquines. It’s sort of </i>our<i> word. I mean, it’s okay for a laquine to call another laquine cute, but when other people use it, it can take on this sort of nasty connotation that’s best just avoided. Personally, I don’t really mind. I’d rather be a cute bunny than a dumb bunny.”</i> She claps her hands over her mouth and blushes hard enough for pink to peek through her fluffy, white fur.");*/
 	output("\n\n<i>“Sorry. Okay... I’m collecting extremely high resolution data on temperature anomalies on cold weather planets. The idea is that if we can perfectly understand how heat spikes or cool spots affect the flora, fauna, and geological formations, we can better predict the results of terraforming other planets - cold ones in particular, but the data is useful across a broad spectrum.”</i> Nayna smiles brightly at that, bouncing up on the balls of her feet. <i>“And not </i>just<i> for terraforming either. Extreme weather modeling has all sorts of uses. The code monkeys back at campus are begging me for more data - particularly our actual code monkey. I’m no slouch with a compiler, but that simii’s brain is magic.”</i>");
 	output("\n\nYou arch an eyebrow, wondering where you come in to all this.");
-	output("\n\nOn a roll now, Nayna grabs you by the shoulder and pulls you toward a small, inactive drone that’s lying on the floor. <i>“Satellites suck for getting fine detail thanks to all the storms this planet has, electromagnetic or otherwise, so I’m stuck using these drones. The problem is that half of them don’t make it back. I’m not sure if the locals are taking them out or if the weather is doing the job for them, but I need them back. These kinds of losses aren’t in the budget...”</i>");
+	output("\n\nOn a roll now, Nayna grabs you by the " + (pc.tallness <= 54 ? "shoulder" : "arm") + " and pulls you toward a small, inactive drone that’s lying on the floor. <i>“Satellites suck for getting fine detail thanks to all the storms this planet has, electromagnetic or otherwise, so I’m stuck using these drones. The problem is that half of them don’t make it back. I’m not sure if the locals are taking them out or if the weather is doing the job for them, but I need them back. These kinds of losses aren’t in the budget...”</i>");
 	output("\n\n");
 	if(!pc.isBimbo()) output("Ahhh, she wants you to go find her missing drones.");
 	else output("You chew on your lip and wonder when she’s going to tell you about the reward. Will it be sex? You hope it’ll be sex.");
-	output("\n\nNayna grabs hold of one of her ears in both hands and nervously kneads the tip. <i>“Do you think you bring me back any you find out there? You’d be doing a service to science... and I’d appreciate it too.”</i>");
+	output("\n\nNayna grabs hold of one of her ears in both hands and nervously kneads the tip. <i>“Do you think you can bring me back any you find out there? You’d be doing a service to science... and I’d appreciate it too.”</i>");
 	processTime(3);
 	flags["NAYNA_REJECTED"] = undefined;
 	//[No Reward?]
@@ -386,7 +386,7 @@ public function sureNaynaIllHelp():void
 {
 	clearOutput();
 	showNayna();
-	output("<i>“Sure”</i>");
+	output("<i>“Sure.”</i>");
 	output("\n\nNayna grabs hold of your hands and bounces up and down in excitement, hopping happily in the way that only a laquine can. <i>“Thankyouthankyou! You won’t regret this. The others involved in the project will be glad to hear that someone’s finally looking out for us academics!”</i>");
 	output("\n\nYou assure her that it’s no problem.");
 	output("\n\n<i>“Okay, well... I better not keep you. Come see me if you find any, okay?”</i>");

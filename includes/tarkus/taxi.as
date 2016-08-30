@@ -319,7 +319,7 @@ public function nessaFuckTimeLetsGo():void
 	else output(" Your body aches with need, and you can’t stop your dick from lurching with the clenching spasms of near-orgasm.");
 	output(" Squeezing hard on Nessa’s ass, you let her know that you can’t hold back any longer - that you’re going to cum soon, and that there’s no stopping it.");
 
-	output("\n\nSomehow, Nessa purrs even louder. Her asscheeks vibrate in your palms, and the lewd clap of her cunt bouncing on your [pc.cock " + x + "] becomes a rapid drumroll. You feel the gates inside you open up, releasing the torrential flood of jizz within your [pc.balls]. A veritable geyser of seed rockets through your bulging boner, blasting your white-hot ecstasy into her willing cunt. Nessa’s purrs cut off the moment your [pc.cum] floods her passage, and she releases a distinctly feline howl of pleasure. Clamping her hips and her pussy down on the, the quivering sex-kitten joins you in orgasm, flexing and stretching to ensure every inch of spurting cock is firmly sealed inside.");
+	output("\n\nSomehow, Nessa purrs even louder. Her asscheeks vibrate in your palms, and the lewd clap of her cunt bouncing on your [pc.cock " + x + "] becomes a rapid drumroll. You feel the gates inside you open up, releasing the torrential flood of jizz within your [pc.balls]. A veritable geyser of seed rockets through your bulging boner, blasting your white-hot ecstasy into her willing cunt. Nessa’s purrs cut off the moment your [pc.cum] floods her passage, and she releases a distinctly feline howl of pleasure. Clamping her hips and her pussy down on you, the quivering sex-kitten joins you in orgasm, flexing and stretching to ensure every inch of spurting cock is firmly sealed inside.");
 
 	//Knot and less than 40L jizz
 	if(cumSave < 40000)
@@ -332,7 +332,7 @@ public function nessaFuckTimeLetsGo():void
 			output(" vaginal canal refuses to let the pressure of your lurid load stop her from securing every single drop.");
 		}
 		//No knot and less than 40L jizz
-		else output("\n\nYou don’t feel any [pc.cum] leak from too-tight seal of her netherlips. This kaithrit seems determined to trap every single drop inside her vaginal canal, no matter how much pressure your lurid load creates.");
+		else output("\n\nYou don’t feel any [pc.cum] leak from the too-tight seal of her netherlips. This kaithrit seems determined to trap every single drop inside her vaginal canal, no matter how much pressure your lurid load creates.");
 	}
 	//TOO MUCH CUM
 	else
@@ -347,7 +347,7 @@ public function nessaFuckTimeLetsGo():void
 		if(cumSave > 40000) cumSave = 40000 + rand(Math.ceil((pc.cumQ() - 40000) / 2));
 	}
 	//Merge {noPG}
-	output("Nessa rubs her belly with every fresh ejaculation, watching her skin ");
+	output(" Nessa rubs her belly with every fresh ejaculation, watching her skin ");
 	if(nessaBellyRating() >= 5) output("grow even tighter");
 	else output("grow shiny and tight");
 	output(", a dopey smile painted on her face.");
