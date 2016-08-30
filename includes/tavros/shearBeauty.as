@@ -1357,7 +1357,7 @@ public function earFuckCeriaPart2():void
 		output(" against Ceria's silken locks, pressed between your body and hers. The human clitoris was never designed to be so big or so phallic, and you have to yank the elf back immediately lest you be overwhelmed by sensation. There's so much that you could get off in a moment if you stayed there, impaled on her ear and grinding against her head, yet you know all too well that rushing to the peak so early would be ultimately unsatisfying.");
 	}
 	output("\n\nThe trembling stylist appears to be handling herself a little better now that you're confining your attentions to a single point of contact. Her eyes are half open, and she's moaning words again, things like <i>\"yes,\"</i> <i>\"fuck,\"</i> and <i>\"faster!\"</i> Looking down at her, you smile when you see her hands on her breasts, roughly handling her well-formed breasts, making the pliant breastflesh wobble and bounce, her rigid nipples slightly crinkled as fingers slide around their areolae.");
-	output("\n\nAny attempt at conversation is abandoned, replaced by the heavy bump and grind of one sweaty body against another. Your [pc.vagina " + x + "] squelches lewdly with each back-and-forth movement, splattering more [pc.girlCumNoun] into Ceria's hair with each passing second. The scent of your pussy fills the air, tinted with the strawberry flavor of the elf's fruity ejaculations. You moan with her, tangling your fingers in her sodden locks, curling them around your knuckles as you slap your cheek with your cunt.");
+	output("\n\nAny attempt at conversation is abandoned, replaced by the heavy bump and grind of one sweaty body against another. Your [pc.vagina " + x + "] squelches lewdly with each back-and-forth movement, splattering more [pc.girlCumNoun] into Ceria's hair with each passing second. The scent of your pussy fills the air, tinted with the strawberry flavor of the elf's fruity ejaculations. You moan with her, tangling your fingers in her sodden locks, curling them around your knuckles as you slap her cheek with your cunt.");
 	output("\n\nHot, liquid twinges roll through your belly and into your [pc.vaginas], making your passage");
 	if(pc.totalVaginas() > 1) output("s");
 	output(" clench and squeeze. Your [pc.legOrLegs] tremble");
@@ -1370,7 +1370,7 @@ public function earFuckCeriaPart2():void
 		if(pc.cockTotal() == 1) output("es");
 		output(", spraying thick lines of [pc.cumColor] across her once perfectly arranged hair.");
 	}
-	output("\n\nYour fingers lose their strength, and you fall away from Ceria, her ear loudly slipping free from your twat, flinging girlish goo into the air as it snaps up to its usual angle. Aftershock roll through your sensitized quim one after another, keeping you on the floor, cumming");
+	output("\n\nYour fingers lose their strength, and you fall away from Ceria, her ear loudly slipping free from your twat, flinging girlish goo into the air as it snaps up to its usual angle. Aftershocks roll through your sensitized quim one after another, keeping you on the floor, cumming");
 	if(pc.hasCock()) output(" all over yourself");
 	else output(" everywhere");
 	output(". Ceria lies right next to you, doing the same, her panties unable to hold back her gushing strawberry flavor.");
