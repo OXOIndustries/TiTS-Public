@@ -753,7 +753,7 @@ public function jeromeHipbusterIII(s:Object):void
 	output(", gradually shifting position as you lean further forward for extra leverage. A deep, rolling coo oozes from your throat like honey as the cock drilling into your depths grinds into you in new and interesting ways, mixing with the subtle, stinging warmth building in your [pc.ass] as you keep slamming butt-first into the bear.");
 	if (pc.balls > 0)
 	{
-		output(" He shivers under you when the changing angle of attack positions you just right for your [pc.balls] to just barely kiss Jerome’s own bloated, velveteen nuts; a tender touch that you ensure repeats with every subsequent hip-battering,"+ s.va("cunt", "ass") +"-blastingly powerful stroke.");
+		output(" He shivers under you when the changing angle of attack positions you just right for your [pc.balls] to just barely kiss Jerome’s own bloated, velveteen nuts; a tender touch that you ensure repeats with every subsequent hip-battering, "+ s.va("cunt", "ass") +"-blastingly powerful stroke.");
 	}
 	
 	output("\n\n<i>“I’m gonna- I’m gonna cuu-urgh!”</i> Jerome yells, his voice breaking into a gurgling-roar as you bottom out one last time.");
