@@ -530,7 +530,7 @@ public function hanaFiresideRecovery():void
 	{
 		output("Some religions say that the afterlife is a comfortable place, something conceptually different from life itself where you might recline in blissful nothingness, awaiting your next go at things.");
 		
-		output("\n\nDimly, you think that must all be hogwash because right now you’re feeling altogether uncomfortable; the first thing you’re consciously aware of is the heat sweltering down on your body, something your instincts start to gradually realize ought to be <i>dangerous</i> , as though you were right next to something burning!");
+		output("\n\nDimly, you think that must all be hogwash because right now you’re feeling altogether uncomfortable; the first thing you’re consciously aware of is the heat sweltering down on your body, something your instincts start to gradually realize ought to be <i>dangerous</i>, as though you were right next to something burning!");
 		
 		output("\n\nAs your brain reconnoiters with the rest of your senses one by one, you hear the roaring and crackling of flame beside you - yet despite your sense of danger kicking into overdrive, you can barely work the effort to tug your eyelids apart. A heavy fatigue is overwhelming you, every minute portion of your body <i>aching</i>, yet not overtly in pain. The sort of ache that you just wanted to sprawl out and groan over like a useless lump, not the kind that would have you clutching your side and mewling pathetically for help. The afterlife fucking sucks.");
 		
