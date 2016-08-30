@@ -676,7 +676,7 @@ public function vanaeVictorySexIntro(scene:String):void
 	{
 		output(". She seems to shiver with anticipation, clearly willing to"); 
 		if (pc.isAss()) output(" carry out your command");
-		else output(" fulfil your request");
+		else output(" fulfill your request");
 		output(".");
 
 		// if Vanae Maiden & not 69 Cunni & not lust loss

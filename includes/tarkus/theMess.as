@@ -514,7 +514,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 	//If PC is fucking TrapCL: 
 	if(timesDelilahSexed() > 0 && (pc.hasCock() || pc.hasVagina()))
 	{
-		output("\n\nWell, who're you to say no? You let down your guard, releasing your body to fulfil its most primal wishes with the help of the trappy bartender. ");
+		output("\n\nWell, who're you to say no? You let down your guard, releasing your body to fulfill its most primal wishes with the help of the trappy bartender. ");
 		//Dicksex:
 		if(pc.hasCock()) output("The girly-boy gives a muted little gasp as she feels your cock swelling inside her hole, and her fingers lace through yours as you grunt and spurt, hips slapping up into her butt as your [pc.cock " + x + "] unleashes its creamy load right up her tailhole.");
 		else output("<i>\"C-cumming,\"</i> the trap moans, burying her face in your [pc.chest] as her hip-thrusts reach a new height of speed, slamming into your [pc.vagina " + x + "] with wild abandon. Grinning, you tell her to let it go, wrapping your [pc.legOrLegs] around her hips to draw her deep inside as she cums, flooding your sex with hot, creamy seed.");

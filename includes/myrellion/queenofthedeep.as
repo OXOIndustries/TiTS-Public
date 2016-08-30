@@ -1182,7 +1182,7 @@ public function queenPregnancyEnds():void
 	output("\n\nYou surrender to the chemical pleasure, moaning and shuddering as the first of your children crests");
 	if (cuntPreggers) output(" the lips of your cunt");
 	else output(" the ring of your ass");
-	output(", surging out of your body with an explosively wet <i>POP!</i> You arch your back and scream, thrashing in orgasmic bliss as you deliver new life into the world - as you fulfil the duty the Queen of the Deep Lake set before you.");
+	output(", surging out of your body with an explosively wet <i>POP!</i> You arch your back and scream, thrashing in orgasmic bliss as you deliver new life into the world - as you fulfill the duty the Queen of the Deep Lake set before you.");
 
 	output("\n\nLooking down, you see the newborn creature: it still resembles the pale jellyfish you saw before, but now that form is but a cocoon surrounding the eight-legged crab-drider body you’re familiar with, a paper-thin veneer protecting the tiny life form just opening its eyes and wailing. You scoop it up, tearing away the veneer still clinging to its soft, fragile body: inside is a tiny blue body attached to the slender, tall red bestial underside you remember from the queen.");
 

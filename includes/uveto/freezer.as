@@ -2,7 +2,7 @@ public function showHana(asNude:Boolean = false):void
 {
 	author("Magic Ted");
 	showName("\nHANA");
-	showBust(asNude ? "HANA" : "HANA_NUDE");
+	showBust(!asNude ? "HANA" : "HANA_NUDE");
 }
 
 public function approachHana():void
