@@ -139,15 +139,28 @@ package classes.Items.Miscellaneous
 					}
 					/*
 					//"Treated" - Main, permanent status effect
-					v1 - boob size result
-					v2 - horn size result
-					v3 - lip/cock size result
-					v4 - ball size result
+					VARIABLE DEPENDING ON GENDER
+					0 - Girl Mode:
+						v1 - boob size result
+						v2 - horn size result
+						v3 - lip size result
+						v4 - ball size result
+					1 - Male Mode:
+						v1 - boob size result
+						v2 - horn size result
+						v3 - cock mod
+						v4 - ball size result
+					4 - Amazon Mode:
+						v1 - boob size result
+						v2 - horn size result
+						v3 - max cock size
+						v4 - futacock size (if any)
+
 					Have a second status to store more shit.
 					//"The Treatment"
 					v1 - Gender settings.
-					0 - girl mode
-					1 - dude mode
+					* 0 - girl mode
+					* 1 - dude mode
 					2 - herm/neuter girlmode with male dick boosts.
 					3 - herm/neuter doublemode - all male and female procs.
 					4 - herm/neuter amazon - male perks + boob/lactation boosts.
@@ -164,17 +177,27 @@ package classes.Items.Miscellaneous
 					//Set values for chicks:
 					if(pc.hasVagina() && !pc.hasCock())
 					{
-						setTreatmentMode(pc,0);
+						//75% odds of Amazon if super butch
+						if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
+						//10% random Amazon chance
+						else if(rand(10) == 0) setTreatmentMode(pc,0);
+						//Normies!
+						else setTreatmentMode(pc,0);
 					}
 					//Set values for dudes
 					else if(pc.hasCock() && !pc.hasVagina())
 					{
-						setTreatmentMode(pc,1);	
+						setTreatmentMode(pc,1);
 					}
 					//Herms/neuters
 					else
 					{
-						if(rand(2) == 0) setTreatmentMode(pc,0);
+						//75% odds of Amazon if super butch
+						if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
+						//50% odds otherwise
+						else if(rand(2) == 0) setTreatmentMode(pc,4);
+						//Otherwise, 50/50 split between male and female.
+						else if(rand(2) == 0) setTreatmentMode(pc,0);
 						else setTreatmentMode(pc,1);
 					}
 				}
@@ -212,16 +235,32 @@ package classes.Items.Miscellaneous
 		}
 		private function setTreatmentMode(pc:Creature,arg:int = 0):void
 		{
+			trace("TREATMENT MODE SET: " + arg);
 			//slamazon
-			if(arg == 2)
+			if(arg == 4)
 			{
+				//Set mode to amazon mode
+				pc.setStatusValue("The Treatment",1,4);
+
 				//v1 = boobs 14 to 23 (Max HHH-Cup)
+				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,23);
+				else pc.setStatusValue("Treated",1,14 + rand(10));
 				//v2 = horn size
-				//v3 lip bonus
-				//v4 = unused
+				pc.setStatusValue("Treated",2,5 + rand(4));
+				//v3 cock bonus - if 0, don't grow a cock. 33% odds at time of this coding!
+				if(!pc.hasCock())
+				{
+					if(rand(3) == 0) pc.setStatusValue("Treated",3,2 + rand(5));
+					else pc.setStatusValue("Treated",3,0);
+				}
+				else pc.setStatusValue("Treated",3,2 + rand(5));
+				//v4 = is whether or not the amazon is milky - 50/50 odds.
+				pc.setStatusValue("Treated",4,rand(2));
+				//Set "Treated Amazon" to remember that the PC got a special proccy!
+				pc.createStatusEffect("Treated Amazon");
 			}
 			//chicks
-			if(arg == 0)
+			else if(arg == 0)
 			{
 				//v1 = boobs 9 to 30
 				//v2 = horn size
