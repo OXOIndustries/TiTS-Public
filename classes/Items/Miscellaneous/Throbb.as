@@ -247,56 +247,7 @@
 				else kGAMECLASS.output("in the center of your crotch");
 				kGAMECLASS.output(". It feels achy and a little painful but very very sensitive, and it's getting bigger with alarming ridity. The little knot is sticking an inch out past your [pc.skinFurScales], turning glossy and red as it does. You touch its tip and moan, assaulted by pleasure you barely understand, watching the bulge stretch out another inch in eager response. In seconds, you're rubbing and fondling it, coaxing more and more length from your crotch until ");
 				pc.createCock();
-				pc.cocks[arg].cLengthRaw = 5;
-				if(pc.hasPerk("Hung")) pc.cocks[arg].cLengthRaw += 2+rand(4);
-				
-				var pcRace:String = pc.race();
-				
-				// Type changes
-				if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph", "canine-taur"))
-				{
-					pc.shiftCock(arg,GLOBAL.TYPE_CANINE);
-					if(pcRace.indexOf("ausar") != -1) pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
-				}
-				else if (InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat"))
-				{
-					pc.shiftCock(arg, GLOBAL.TYPE_FELINE);
-					if (pcRace.indexOf("kaithrit") != -1) // 'cause kaithrits are not cool enough to have real kitty peckers
-					{
-						pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
-						pc.cocks[arg].delFlag(GLOBAL.FLAG_TAPERED);
-					}
-				}
-				else if(InCollection(pcRace, "leithan", "half-leithan")) pc.shiftCock(arg,GLOBAL.TYPE_SNAKE);
-				else if(InCollection(pcRace, "kui-tan", "half kui-tan")) pc.shiftCock(arg, GLOBAL.TYPE_KUITAN);
-				else if(InCollection(pcRace, "gryvain", "half-gryvain")) pc.shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
-				else if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", pc.mlpRace())) pc.shiftCock(arg, GLOBAL.TYPE_EQUINE);
-				else if(InCollection(pcRace, "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) pc.shiftCock(arg,GLOBAL.TYPE_VULPINE);
-				else if(pcRace == "zil") pc.shiftCock(arg,GLOBAL.TYPE_BEE);
-				else if(InCollection(pcRace, "naleen", "naga")) pc.shiftCock(arg,GLOBAL.TYPE_NAGA);
-				else if(InCollection(pcRace, "raskvel", "raskvel-morph", "rask-morph")) pc.shiftCock(arg, GLOBAL.TYPE_RASKVEL);
-				else if(InCollection(pcRace, "fanfir", "dragon-morph", "dragon-taur", "dragonne", "dragonne-taur")) pc.shiftCock(arg, GLOBAL.TYPE_DRACONIC);
-				else if(pcRace == "demon-morph") pc.shiftCock(arg, GLOBAL.TYPE_DEMONIC);
-				else if(pcRace == "kangaroo-morph") pc.shiftCock(arg, GLOBAL.TYPE_KANGAROO);
-				else if(pcRace == "simii") pc.shiftCock(arg, GLOBAL.TYPE_SIMII);
-				else if(pcRace == "saurian") pc.shiftCock(arg, GLOBAL.TYPE_SAURIAN);
-				else if(pcRace == "venus pitcher") pc.shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
-				else if(pcRace == "sydian") pc.shiftCock(arg, GLOBAL.TYPE_SYDIAN);
-				else if(pcRace == "daynar") pc.shiftCock(arg, GLOBAL.TYPE_DAYNAR);
-				else if(InCollection(pcRace, "gabilani", "goblin")) pc.shiftCock(arg, GLOBAL.TYPE_GABILANI);
-				else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant")) pc.shiftCock(arg, GLOBAL.TYPE_TENTACLE);
-				else if(pc.skinType == GLOBAL.SKIN_TYPE_GOO)
-				{
-					pc.shiftCock(arg, GLOBAL.TYPE_HUMAN);
-					pc.cocks[arg].addFlag(GLOBAL.FLAG_GOOEY);
-					pc.cocks[arg].cockColor = pc.skinTone;
-				}
-				/*
-				else if(pcRace == "anemone") pc.shiftCock(arg, GLOBAL.TYPE_ANEMONE);
-				else if(pcRace == "siren") pc.shiftCock(arg, GLOBAL.TYPE_SIREN);
-				else if(InCollection(pcRace, "synthetic", "robot", "companion droid")) pc.shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
-				else if(pcRace == "cockvine") pc.shiftCock(arg, GLOBAL.TYPE_COCKVINE);
-				*/
+				pc.setNewCockValues(arg);
 				
 				kGAMECLASS.output("<b>your hand is wrapped around a " + kGAMECLASS.num2Text(Math.round(pc.cocks[arg].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
 				changes++;
