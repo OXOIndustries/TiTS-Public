@@ -924,10 +924,10 @@ public function meetingTerenshaDancing():void
 	clearOutput();
 	showTerensha();
 	output("You’re certainly enjoying the performance of the ");
-	var raceVar:String = "";
+	var raceVar:String = "alien";
 	if (hours == 10 || hours == 13 || hours == 16) raceVar = "doh’rahn";
 	else if (hours == 11 || hours == 14 || hours == 17) raceVar = "human";
-	else if(hours == 12 || hours == 15) raceVar = "vanae";
+	else if(hours == 12 || hours == 15) raceVar = (CodexManager.entryUnlocked("Vanae") ? "vanae" : "tentacle-haired alien");
 	else if(hours == 18 || hours == 19 || hours == 21 || hours == 22 || hours == 24 || hours == 1 || hours == 3 || hours == 4) raceVar = "ovir";
 	//2000, 2300, 0200, 0500
 	else if(hours == 2 || hours == 5 || hours == 20 || hours == 23) raceVar = "ausar";
@@ -944,7 +944,7 @@ public function meetingTerenshaDancing():void
 	if(!pc.isCrotchExposed()) output(" through your [pc.underGarment]");
 	output(". <i>“Guess you’ve gotten a little pent up watching - or is this all for me? Either way, how about you trade me a few credits and I help you take care of that? Half goes to the tits on stage, so consider it your tip if you want.”</i>");
 
-	output("\n\nYou nod eagerly, digging your Codex out of your pack. Ren smiles and plucks a tiny data-reader off a belt on her leg and swipes your Codex, docking your your credits. Satisfied, she returns the device and plucks a bottle of translucent lubrication beside it. <i>“Perfect, cow[pc.boyGirl]. Now just relax and enjoy the show!”</i>");
+	output("\n\nYou nod eagerly, digging your Codex out of your pack. Ren smiles and plucks a tiny data-reader off a belt on her leg and swipes your Codex, docking you your credits. Satisfied, she returns the device and plucks a bottle of translucent lubrication beside it. <i>“Perfect, cow[pc.boyGirl]. Now just relax and enjoy the show!”</i>");
 	
 	pc.credits -= 100;
 
@@ -1077,7 +1077,7 @@ public function tellMeYourStoryRen():void
 
 	output("You nod and slip out of the booth, heading over to the bar. Doing your best to guess Ren’s preferences, you drop a few credits on a bottle of something green and gryvain-made, and turn back in time to see the catsuited whore walking towards the door down. You catch up easily enough, and soon find a sinuous tail coiling around your [pc.hips], guiding you downstairs alongside her.");
 
-	output("\n\nRen stops at the door with her name in glowing holographics and punches a code into the credit pad next to it, overriding it. The doors hisses, sliding aside. The halfbreed beckons you inside, purloining the bottle as you pass and following you in. When the door seals shut again, she takes a deep breath and plops down on the side of the bed, taking a long swig from the bottle. You " + (pc.isTaur() ? "plant yourself on your bestial behind" : "pull up a chair") + "facing her, waiting for her to speak.");
+	output("\n\nRen stops at the door with her name in glowing holographics and punches a code into the credit pad next to it, overriding it. The doors hisses, sliding aside. The halfbreed beckons you inside, purloining the bottle as you pass and following you in. When the door seals shut again, she takes a deep breath and plops down on the side of the bed, taking a long swig from the bottle. You " + (pc.isTaur() ? "plant yourself on your bestial behind" : "pull up a chair") + " facing her, waiting for her to speak.");
 
 	output("\n\nRen finishes off what must be half the bottle before she finally sets it aside, planting her hands on her knees and looking you in the eye.");
 
