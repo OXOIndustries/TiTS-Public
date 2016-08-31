@@ -358,7 +358,7 @@ public function ramisDrink(response:String = "drink"):void
 			output("\n\n<i>“We’re just getting started though!”</i> cries Ramis. He " + (pc.hasVagina() ? "flaps his" : "waves") + " hand at her exasperatedly and the others do nothing but chuckle as they file out. <i>“Lightweights!”</i> the kaithrit hurls at their backs. She clambers back to her feet and grins at you. <i>“You aren’t gonna bail on me like those dickheads, are you? Night’s still young. We could hit a club after this...”</i>");
 			
 			processTime(2);
-			IncrementFlag("RAMIS_TIMES_BENDER");
+			IncrementFlag("RAMIS_TIMES_DRINK");
 			
 			// [Keep going] [Nah]
 			if(pc.credits >= 300) addButton(0, "Keep Going", ramisDrink, "keep going", "Keep Going", "She’s right! This party is just getting started!\n\nCosts 300 credits.");
@@ -425,6 +425,7 @@ public function ramisDrink(response:String = "drink"):void
 				pc.imbibeAlcohol(10);
 			}
 			pc.credits -= 300;
+			IncrementFlag("RAMIS_TIMES_BENDER");
 			
 			currentLocation = "SHIP INTERIOR";
 			break;
@@ -583,7 +584,7 @@ public function ramisFuck(response:String = "none"):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showRamis();
+	showRamis(true);
 	clearMenu();
 	
 	var ppRamis:PregnancyPlaceholder = getRamisPregContainer();
@@ -698,15 +699,15 @@ public function ramisFuck(response:String = "none"):void
 			// If the PC has 100 credits:
 			if(pc.credits >= 100)
 			{
-				output("you");
+				output("you pay");
 				pc.credits -= 100;
 			}
 			// PC is a fucking bum:
 			else
 			{
-				output("she");
+				output("she pays");
 			}
-			output(" pay the desk robot, and finding the flesh warm and willing you grow increasingly bold, dipping your hand below her belt and lycra underwear to grope her big, muscular buttcheek. Inside the lift she grips you by " + (pc.isChestCovered() ? "your [pc.upperGarment]" : "the shoulders") + " and pushes her lips against yours, her tongue beckoning your own into her hot, alcohol-soaked mouth. You push her back against the wall, [pc.chest] dipping into her pliant tits, tangling your [pc.tongue] with hers as you rub your [pc.groin] against her denim-clad crotch demandingly.");
+			output(" the desk robot, and finding the flesh warm and willing you grow increasingly bold, dipping your hand below her belt and lycra underwear to grope her big, muscular buttcheek. Inside the lift she grips you by " + (pc.isChestCovered() ? "your [pc.upperGarment]" : "the shoulders") + " and pushes her lips against yours, her tongue beckoning your own into her hot, alcohol-soaked mouth. You push her back against the wall, [pc.chest] dipping into her pliant tits, tangling your [pc.tongue] with hers as you rub your [pc.groin] against her denim-clad crotch demandingly.");
 			output("\n\n<i>“It’s been so fucken long since I had a real man,”</i> she grits into your face as you paw at her breast, finding her bullet-like nipple and rubbing it intently between thumb and finger. <i>“Issall... girlees and lads who don’t like girlees who can outfight and drink ‘em...”</i>");
 			output("\n\nIt’s all you can do to suppress the urge to pull down the kaithrit’s jeans, lift her up and take her right there and then... but somehow you pull away when the lift doors open, and you " + (!pc.isNaga() ? "stumble" : "slither") + " to your room. The small scanner flicks over her eye and silently opens the door to your small, dimly lit suite. Equipped now with a good idea of what gets her going, you grip Ramis behind the knees and neck, grit your teeth and lift all seven feet of her off the ground, drawing a delighted squeal as you " + (pc.hasLegs() ? "stagger" : "inch") + " forward and tumble her onto the bed (which groans in protest). Her teeth and eyes flash in the dark as she rips her own clothes off, her gaze slowly moving down your [pc.chest] as you stand over her");
 			if(pc.isCrotchGarbed()) output(", divesting yourself of your [pc.underGarments]");
@@ -809,7 +810,7 @@ public function ramisFuck(response:String = "none"):void
 				}
 				output(" her by the hard, full thighs and dipping your head between them, rasping your [pc.tongue] along her moist slit with aggressive, predatory laps, making her tense up and twitch in your hands, cooing and giggling with husky glee. The firm lakes and rolling hills of the muscular cat-bitch go on and on in every direction, and now you’ve won your right to them fair and square, you are determined to enjoy as much of it as you can. You trail little bites and licks down her inner thighs, the taste of salt and feminine excitement tingling on your taste-buds, as your hand finds her tails beneath you, coiling your touch down the delightfully long, thick and fluffy appendages.");
 				if(pc.hasTailCock()) output(" You twist your [pc.cockTail] around and slide its bulbous girth along the sole of her clawed feet and then up her calf, using your extra dexterity to inundate her senses whilst you continue to assault her pussy and inner thighs with your nipping, probing mouth. Throbbing, expectant pleasure courses up your prehensile dick in response to the touch of her smooth, fawn skin.");
-				output("\n\nYou’re sure you actually hear purrs reverberating through her - put they turn into glorious yowls when you bury your tongue into her tight, long cunt as far as you can, nose deep in her fluffy pubis as you curl at her sensitive innards demandingly. Flailing heels and hard thighs buffet your back and [pc.ears] as Ramis writhes around you, tangy femcum freely oiling your [pc.lips].");
+				output("\n\nYou’re sure you actually hear purrs reverberating through her - but they turn into glorious yowls when you bury your tongue into her tight, long cunt as far as you can, nose deep in her fluffy pubis as you curl at her sensitive innards demandingly. Flailing heels and hard thighs buffet your back and [pc.ears] as Ramis writhes around you, tangy femcum freely oiling your [pc.lips].");
 				
 				pc.girlCumInMouth(ppRamis);
 				
@@ -857,7 +858,7 @@ public function ramisCockFuck(arg:Array):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showRamis();
+	showRamis(true);
 	clearMenu();
 	
 	var ppRamis:PregnancyPlaceholder = getRamisPregContainer();
@@ -984,6 +985,7 @@ public function ramisCockFuck(arg:Array):void
 			//Reset lust
 			//Time forward 2 hours, put PC in front of Anon’s Bar
 			processTime(90 + rand(60));
+			pc.orgasm();
 			pc.shower();
 			currentLocation = rooms["ANON'S BAR AND BOARD"].westExit;
 			

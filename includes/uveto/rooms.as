@@ -347,7 +347,7 @@ public function initUvetoRooms():void
 	/* Entrance */
 	rooms["UVI L34"] = new RoomClass(this);
 	rooms["UVI L34"].roomName = "CENTRAL HUB\nENTRANCE";
-	rooms["UVI L34"].description = "A huge steel door leads out from the central hub of Irestead, Uveto's hub city, out onto the snowy main street. You're buffeted by strong, icy winds that bite at your [pc.skinFurScales], forcing you to wrap your arms around yourself... and this is underneath the protective walls that surrounds the city. ";
+	rooms["UVI L34"].description = "A huge steel door leads out from the central hub of Irestead, Uveto's hub city, out onto the snowy main street. You're buffeted by strong, icy winds that bite at your [pc.skinFurScales], forcing you to wrap your arms around yourself... and this is within the boundaries the protective walls that surround the city. ";
 	rooms["UVI L34"].planet = "PLANET: UVETO VII";
 	rooms["UVI L34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI L34"].eastExit = "UVI N34";
@@ -442,7 +442,7 @@ public function initUvetoRooms():void
 	
 	rooms["UVI P38"] = new RoomClass(this);
 	rooms["UVI P38"].roomName = "GUARD\nPOST";
-	rooms["UVI P38"].description = "Several ausars are standing inside a small, sealed building beside the gates, all dressed in military uniforms and carrying rifles slung over their shoulders. The gate to the town is just a few yards east of you, underneath a pair of intimidating gun turrets on the walls. To the south, you see a large set of sliding glass doors under an awning with the words ‘MAGLEV STATION’ written in bright, cheerful letters.";
+	rooms["UVI P38"].description = "Several ausar are standing inside a small, sealed building beside the gates, all dressed in military uniforms and carrying rifles slung over their shoulders. The gate to the town is just a few yards east of you, underneath a pair of intimidating gun turrets on the walls. To the south, you see a large set of sliding glass doors under an awning with the words ‘MAGLEV STATION’ written in bright, cheerful letters.";
 	rooms["UVI P38"].planet = "PLANET: UVETO VII";
 	rooms["UVI P38"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P38"].eastExit = "UVIP D38"; /* To Ice Plains */

@@ -3052,7 +3052,7 @@ public function emmyHermHarnessHardFuck():void
 		//Emmy not there, nothing in progress
 		else
 		{
-			outputCodex("\n\nThat ought to give your toy-bound a slut a little something to wake her up from her boring job. She was probably lazing about at the counter, trying not to pull up porn from the extranet, and out of nowhere her cock gets wrapped in irresistable erotic sensation, a wet-feeling press of faux flesh and fast fucking that leaves no room for self control. If Emmy wasn’t rock hard before, she must be now. You bet she’s struggling not to hump a hole in the metal walls of her counter. Her instincts must be demanding she thrust into something, anything to complete the illusory experience presently sheathing her achingly throbbing genitals.");
+			outputCodex("\n\nThat ought to give your toy-bound slut a little something to wake her up from her boring job. She was probably lazing about at the counter, trying not to pull up porn from the extranet, and out of nowhere her cock gets wrapped in irresistable erotic sensation, a wet-feeling press of faux flesh and fast fucking that leaves no room for self control. If Emmy wasn’t rock hard before, she must be now. You bet she’s struggling not to hump a hole in the metal walls of her counter. Her instincts must be demanding she thrust into something, anything to complete the illusory experience presently sheathing her achingly throbbing genitals.");
 			outputCodex("\n\nA few minutes are all it should take to reduce your jackalicious girlfriend into a puddle of self-impregnating semen and debased contentment. Who knows? Maybe she kept it together, or maybe she’s stumbling up from the floor on wobbly legs and trying to find the controls to give herself a second dose.");
 		}
 		processTime(1);
