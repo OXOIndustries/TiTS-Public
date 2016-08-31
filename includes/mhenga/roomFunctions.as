@@ -42,7 +42,7 @@ public function xenogenOutsideBlurb():Boolean
 
 public function synthSapNoticeUnlock():Boolean
 {
-	return (flags["MET_VANAE_MAIDEN"] != undefined && flags["MET_VANAE_HUNTRESS"] != undefined && CodexManager.entryViewed("Vanae"));
+	return (flags["MET_VANAE_MAIDEN"] != undefined && flags["MET_VANAE_HUNTRESS"] != undefined && CodexManager.entryViewed("Vanae: History"));
 }
 
 public function mhengaActiveBounty():Boolean
