@@ -2731,7 +2731,8 @@ public function ignoreMaiHandshake():void
 	showName("HERM\nORGY");
 	showBust("MIKO_AND_MAI",flahneBustDisplay(true),kiroBustDisplay(true),"MIDEE");
 	output("You give her a slight nod but nothing more. She might start out trying to get you to kiss her hand, but before long you’d likely wind up like her sister, meekly waiting for permission to cum");
-	if(flags["KIRO_ORGIED"] != undefined) output(", or getting ass-fucked.");
+	if(flags["KIRO_ORGIED"] != undefined) output(", or getting ass-fucked");
+	output(".");
 	output("\n\nFrowning, Mai pulls her hand back. <i>“");
 	if(flags["KIRO_ORGIED"] != undefined) output("I’ll have to fuck you extra hard this time - teach you some manners.");
 	else output("I see you went to the same school of manners as our dear friend Kiro. Let’s hope your other virtues can compensate for your rudeness.");
