@@ -103,7 +103,7 @@ public function looksFamiliarToRamis():Boolean
 	switch(flags["RAMIS_FIRST_IMPRESSION"])
 	{
 		case "girlee":
-			if(pc.isHerm() || (!pc.hasCock() && pc.hasVagina())) isSame = true;
+			if(pc.hasVagina() || !pc.hasCock()) isSame = true;
 			break;
 		case "boyo":
 			if(pc.isFemboy()) isSame = true;
@@ -176,9 +176,9 @@ public function approachRamis(special:String = "none"):void
 			output("”</i>");
 			
 			// [Arm Wrestle] [Drink] [Back Off]
-			addButton(0, "Arm Wrestle", ramisFlirt, "arm wrestle");
-			if(pc.credits >= 100) addButton(1, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
-			else addDisabledButton(1, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
+			if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
+			else addDisabledButton(0, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
+			addButton(1, "Arm Wrestle", ramisFlirt, "arm wrestle");
 			addButton(2, "Back Off", ramisLeave, pc.mf("man", "fem"));
 			return;
 		}
@@ -190,6 +190,11 @@ public function approachRamis(special:String = "none"):void
 			// [Drink] [Back Off]
 			if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
 			else addDisabledButton(0, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
+			if(pc.hasCock() && !pc.hasVagina())
+			{
+				if(pc.lust() >= 33) addButton(1, "Flirt", ramisFlirt);
+				else addDisabledButton(1, "Flirt", "Flirt", "You are not aroused enough for this!");
+			}
 			addButton(2, "Back Off", ramisLeave, pc.mf("man", "fem"));
 			return;
 		}
@@ -210,9 +215,9 @@ public function approachRamis(special:String = "none"):void
 			output("<i>“Cos [pc.heShe]’s ent a bad loser! I could tell that,”</i> the big kaithrit announces, slapping you on the shoulder. You try not to wince. <i>“Nothin’ wrong with a tryer. Come and have a drink with us, mate. Or maybe you’re lookin’ for a rematch?”</i> she gives you the eye and smirks provocatively. <i>“I might even let you win, this time...”</i>");
 			
 			// [Arm Wrestle] [Drink] [Back Off]
-			addButton(0, "Arm Wrestle", ramisFlirt, "arm wrestle");
-			if(pc.credits >= 100) addButton(1, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
-			else addDisabledButton(1, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
+			if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
+			else addDisabledButton(0, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
+			addButton(1, "Arm Wrestle", ramisFlirt, "arm wrestle");
 			addButton(2, "Back Off", ramisLeave, pc.mf("man", "fem"));
 			return;
 		}
@@ -222,15 +227,17 @@ public function approachRamis(special:String = "none"):void
 	// First approach
 	output("<i>“... dangling backwards it was! Silly willy didn’t check the airlocks.”</i> As her friends guffaw, the seven foot tall kaithrit swings around on her stool to regard you with unfocused, golden eyes. She narrowly avoids whacking you with her large, tank-top clad boobs. <i>“Oh aye, what d’we have here then?”</i> Her accent lilts and lollops around the words, drawing out “l”s and making every finishing sentence a musical declamation.");
 	// PC is female or futa
-	if(pc.isHerm() || (!pc.hasCock() && pc.hasVagina()))
+	if(pc.hasVagina() || !pc.hasCock())
 	{
-		output("\n\n<i>“Come to join the party have we, girlee?”</i> A garrulous sneer appears on the kaithrit’s brown face and she slaps the bar. The tender hurries over with a bottle of amber fluid and several fresh glasses. <i>“Anyone’s welcome - if you think you can keep up.”</i>");
+		output("\n\n<i>“Come to join the party have we,");
+		if(pc.mfn("m", "f", "n") != "f") output(" uh...");
+		output(" girlee?”</i> A garrulous sneer appears on the kaithrit’s brown face and she slaps the bar. The tender hurries over with a bottle of amber fluid and several fresh glasses. <i>“Anyone’s welcome - if you think you can keep up.”</i>");
 		output("\n\n<i>“Be careful,”</i> laughs one of her human companions. <i>“Drinking with Ramis will put your health at serious risk.”</i>");
 		output("\n\n<i>“Aw, you’re full of piss!”</i> snorts Ramis. She downs another shot and squints with thought. <i>“Or not enough piss. One of the two.”</i>");
 		
 		processTime(2);
 		flags["RAMIS_FIRST_IMPRESSION"] = "girlee";
-	
+		
 		// [Appearance] [Drink] [Back Off]
 		if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
 		else addDisabledButton(0, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
@@ -283,7 +290,8 @@ public function approachRamis(special:String = "none"):void
 	// Failsafe
 	else
 	{
-		output("\n\n");
+		output("\n\nBut nothing happens!");
+		
 		addButton(14, "Leave", mainGameMenu);
 	}
 	
@@ -390,7 +398,7 @@ public function ramisDrink(response:String = "drink"):void
 			{
 				output("<i>“You really think you’re going to shake me off that easily?”</i> you grin. <i>“This place does cocktails, doesn’t it?”</i> Ramis laughs delightedly, her tails curling right up.");
 				output("\n\n<i>“Oh, you’re gonna regret sayin’ that! C’mon [pc.name], let’s show this station it’s never been born!”</i> She almost breaks her neck stumbling over a chair on the way to the bar, but she does make it.");
-				output("\n\nRamis is capable of draining brightly-colored and evil-looking fishbowls to the bottom without it apparently having any effect on her - however you’re practiced enough, and have beaten your liver into being rubbery enough, to pace yourself alongside her. After knocking back a few more at Anon’s, she whisks you out into the messy, blaring neon of Tavros’s nightlife. In between hurling yourself around the sweaty ruck of a heaving dance floor, she orders a steady stream of liqueur “for the dehydration”. She watches with rapt, intoxicated attention, blue light flaring over her long, sculpted face as you finish another shot and bang the glass down next to hers");
+				output("\n\nRamis is capable of draining brightly-colored and evil-looking fishbowls to the bottom without it apparently having any effect on her - however you’re practiced enough, and have beaten your liver into being rubbery enough, to pace yourself alongside her. After knocking back a few more at Anon’s, she whisks you out into the messy, blaring neon of Tavros’s nightlife. In between hurling yourself around the sweaty ruck of a heaving dance floor, she orders a steady stream of liquor “for the dehydration”. She watches with rapt, intoxicated attention, blue light flaring over her long, sculpted face as you finish another shot and bang the glass down next to hers");
 				if(pc.PQ() > 50) output(" hard enough to almost crack it");
 				output(".");
 				output("\n\n<i>“Everyone has either wetted out or fallen over by now,”</i> she slurs. Excitement tightens her face, teeth gleaming in the gloom. <i>“I like you, Steele.”</i>");
@@ -442,7 +450,10 @@ public function ramisDrink(response:String = "drink"):void
 				if(pc.hasCock()) output(" Not even if they got a nice willy like yours.");
 				output("”</i> She grins at you. <i>“Much more fun to hit the town with, eh? You’re a rock star, [pc.name]! Whenever you’re back on Tavros, you must come‘n see if I’m in Anon’s. We gotta do it again!”</i> She wrenches on her tank top. <i>“Right, I’m gonna go find some breakfast. I’ll let myself out [pc.name], don’t you worry - you look like you could with a bit of a lie-in.”</i>");
 			}
-			else output("\n\n<i>“Uh? Oh, no. Don’t think so anyway,”</i> Ramis replies, unsteadily pulling on her jeans. <i>“Fuckin’ someone when they’re really blotto ent right. Not as if there would be any coaxin’ life out of your downstairs in that state anyway.”</i> She grins at you. <i>“You’re far more fun to hit the town with. You’re a rock star, [pc.name]! Whenever you’re back on Tavros, you must come‘n see if I’m in Anon’s. We gotta do it again!”</i> She wrenches on her tank top. <i>“Right, I’m gonna go find some breakfast. I’ll let myself out [pc.name], don’t you worry - you look like you could with a bit of a lie-in.”</i>");
+			else
+			{
+				output("\n\n<i>“Uh? Oh, no. Don’t think so anyway,”</i> Ramis replies, unsteadily pulling on her jeans. <i>“Fuckin’ someone when they’re really blotto ent right. Not as if there would be any coaxin’ life out of your downstairs in that state anyway.”</i> She grins at you. <i>“You’re far more fun to hit the town with. You’re a rock star, [pc.name]! Whenever you’re back on Tavros, you must come‘n see if I’m in Anon’s. We gotta do it again!”</i> She wrenches on her tank top. <i>“Right, I’m gonna go find some breakfast. I’ll let myself out [pc.name], don’t you worry - you look like you could with a bit of a lie-in.”</i>");
+			}
 			output("\n\nHer loud, cheerful laughter echoes down the corridor as you close your eyes, wrap a pillow around your head and wait for everything to stop hurting quite so much.");
 			
 			processTime(15);
@@ -492,7 +503,8 @@ public function ramisFlirt(response:String = "flirt"):void
 			processTime(3);
 			
 			// [Arm wrestle] [Back Off]
-			addButton(0, "Arm Wrestle", ramisFlirt, "arm wrestle");
+			addDisabledButton(0, "Drink");
+			addButton(1, "Arm Wrestle", ramisFlirt, "arm wrestle");
 			addButton(2, "Back Off", ramisLeave, "man");
 			break;
 		// Arm Wrestle
