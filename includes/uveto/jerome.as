@@ -542,7 +542,7 @@ public function jeromeHipbuster():void
 		output(" to bump into the bear’s");
 		if (pc.ballSize() <= 3) output(" much larger");
 		else if (pc.ballSize() <= 8) output(" larger");
-		output(" velveteen own. An uncontrollable shudder lances through your [pc.legorlegs] as the soft, fuzzy covering of his sack tickles you pleasantly, your [pc.knees] weakening and lowering you just enough to fully rest your [pc.balls] atop the bear’s.");
+		output(" velveteen own. An uncontrollable shudder lances through your [pc.legOrLegs] as the soft, fuzzy covering of his sack tickles you pleasantly, your [pc.knees] weakening and lowering you just enough to fully rest your [pc.balls] atop the bear’s.");
 		if (pc.ballSize() <= 3) output(" They utterly dwarf your tiny nuts by comparison, as ponderously massive the bear’s endowments are.");
 		else if (pc.ballSize() <= 8) output(" Even your respectably large balls pale in comparison, as ponderously massive the bear’s endowments are.");
 		else if (pc.ballSize() <= 12) output(" As hefty as you consider yourself, the bear seems almost equally well equipped.");
