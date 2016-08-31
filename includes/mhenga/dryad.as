@@ -88,7 +88,7 @@ public function dryadMeeting():void
 		//Anal (Requires >= 10" length)
 		if(pc.hasCock())
 		{
-			if(pc.shortestCockLength() < 10) addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren't long enough for her to be interested.");
+			if(pc.longestCockLength() < 10) addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren't long enough for her to be interested.");
 			else addButton(6,"FuckHerAss",dryadAnalFunsies,undefined,"Fuck Her Ass","Put it in her butt and go to town.");
 		}
 		else addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You need a penis in order to fuck her ass.");
