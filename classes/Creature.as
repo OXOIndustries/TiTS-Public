@@ -12562,7 +12562,7 @@
 							break;
 						case GLOBAL.TYPE_VANAE:
 							//adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
-							desc += RandomInCollection(["alien cock","sucker-tipped cock","sucker-tipped dick","sucker-tipped prick","sucker-tipped cock","sucker-crowned cock","sucker-crowned dick","sucker-capped member","sucker-capped pahllus","alien dick","exotic vanae-cock","exotic vanae-dick","sucker-topped prick"]);
+							desc += RandomInCollection(["alien cock","sucker-tipped cock","sucker-tipped dick","sucker-tipped prick","sucker-tipped cock","sucker-crowned cock","sucker-crowned dick","sucker-capped member","sucker-capped phallus","alien dick","exotic vanae-cock","exotic vanae-dick","sucker-topped prick"]);
 							break;
 						//Basic dicks names:  "cock",
 						case GLOBAL.TYPE_HUMAN:
