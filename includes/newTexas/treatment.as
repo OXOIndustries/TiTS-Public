@@ -1,4 +1,14 @@
 ﻿//Main info found in items -> Misc -> Treatment
+
+//=========================================
+//           TABLE O CONTENTS
+//   Ctr + F the following to jump to
+//   the correct section.
+//     1. Amazon Treatment Section
+//     2. Female Treatment Section
+//     3. Male Treatment Section
+
+
 /*
 //"Treated" - Main, permanent status effect
 VARIABLE DEPENDING ON GENDER
@@ -54,6 +64,7 @@ public function treatmentHourProcs():void
 	var treatedHours:int = pc.statusEffectv3("The Treatment");
 	var x:int = 0;
 	//Amazon Effects
+	//     1. Amazon Treatment Section
 	if(pc.statusEffectv1("The Treatment") == 4)
 	{
 		if(treatedHours <= 48 && treatedHours % 2 == 0)
@@ -1179,6 +1190,7 @@ public function treatmentHourProcs():void
 	 	}
 	}
 	//Female Effects
+	//     2. Female Treatment Section
 	else if(pc.statusEffectv1("The Treatment") == 0)
 	{
 		//Over Time Intelligence + Perks
@@ -2215,6 +2227,7 @@ public function treatmentHourProcs():void
 		}
 	}
 	//REGULAR DUDEMOAD
+	//     3. Male Treatment Section
 	else if(pc.statusEffectv1("The Treatment") == 1)
 	{
 		//48 Hours of Mental Changes: slowStatGain of 2 libido an hour.
