@@ -802,7 +802,11 @@ package classes.GameData
 			output("<i>“Enemy detected, " + attacker.mf("master", "mistress") + " [attacker.combatName]! I will defend you!”</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
 			if (target is PlayerCharacter) output(" you!");
 			else output("[target.combatName].");
-			applyDamage(attacker.droneDamage(), attacker, target, "minimal");
+
+			var d:Number = attacker.untypedDroneDamage();
+			var dmg:TypeCollection = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
+
+			applyDamage(dmg, attacker, target, "minimal");
 			if (attacker is PlayerCharacter) output(" Good boy!");
 		}
 		
@@ -816,7 +820,10 @@ package classes.GameData
 			else
 			{
 				output("<i>“ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,”</i> Tam-wolf loudly announces as he lunges at " + target.a + target.uniqueName + ". He hits!");
-				applyDamage(attacker.droneDamage(), attacker, target, "minimal");
+				var d:Number = attacker.untypedDroneDamage();
+				var dmg:TypeCollection = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
+
+				applyDamage(dmg, attacker, target, "minimal");
 				if (attacker is PlayerCharacter) output(" Good boy!");
 			}
 		}
@@ -828,7 +835,7 @@ package classes.GameData
 			else output("[target.combatName].");
 			
 			var d:Number = attacker.untypedDroneDamage();
-			var dmg:TypeCollection = new TypeCollection( { kinetic: d, electric: d * 0.25 }, DamageFlag.PENETRATING);
+			var dmg:TypeCollection = new TypeCollection( { kinetic: d * 0.8, electric: d * 0.3 }, DamageFlag.PENETRATING);
 			
 			applyDamage(dmg, attacker, target, "minimal");
 			if (attacker is PlayerCharacter) output(" Good boy!");
