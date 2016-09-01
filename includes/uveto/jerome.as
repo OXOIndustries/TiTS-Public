@@ -504,7 +504,7 @@ public function jeromeHipbuster():void
 	s.vGape = (s.vIdx == -1 ? pc.ass.looseness() : pc.vaginas[s.vIdx].looseness());
 	s.vCap = (s.vIdx == -1 ? pc.analCapacity() : pc.vaginalCapacity(s.vIdx));
 	s.holeStr = (s.vIdx == -1 ? "[pc.asshole]" : ("[pc.vagina " + s.vIdx + "]"));
-	s.simpleHoleStr = function(vIdx:int):Function {
+	s.simpleHoleStr = function(vIdx:int):String {
 		return function():String {
 			if (vIdx == -1) return RandomInCollection("ass", "asshole", "butthole");
 			else return RandomInCollection("pussy", "cunt", "vagina");
