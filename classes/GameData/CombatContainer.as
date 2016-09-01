@@ -3842,7 +3842,8 @@ package classes.GameData
 		
 		private function doCombatDrone(droneUser:Creature):void
 		{
-			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null && droneUser.shields() > 0)
+			//TAMWULF DOESNT NEED POWAAAAAHHHHH
+			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null && (droneUser.shields() > 0 || droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER)))
 			{
 				var target:Creature = droneUser.droneTarget;
 				if (!target.isDefeated())
