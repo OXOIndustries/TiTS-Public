@@ -180,7 +180,7 @@ package classes.Items.Miscellaneous
 						//75% odds of Amazon if super butch
 						if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
 						//10% random Amazon chance
-						else if(rand(10) == 0) setTreatmentMode(pc,0);
+						else if(rand(10) == 0) setTreatmentMode(pc,4);
 						//Normies!
 						else setTreatmentMode(pc,0);
 					}

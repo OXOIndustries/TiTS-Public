@@ -1569,7 +1569,7 @@ public function whatSheLookedLikeBFour():void {
 public function pennyFutanariTalk():void {
 	clearOutput();
 	showPenny();
-	if (flags["PENNY_FUTA_TALK"] == undefined)
+	if (flags["PENNY_FUTA_TALK"] == undefined && !penny.hasCock())
 	{
 		flags["PENNY_FUTA_TALK"] = 1;
 		output("<i>“Grow a dick?”</i> Penny states with a dumbfounded look. Ears flattening back on her head, she admits, <i>“I did mention that, didn’t I?”</i>");
@@ -1606,6 +1606,13 @@ public function pennyFutanariTalk():void {
 				output("\n\nThe over-sized futanari fennec shifts to bring the flared head up to her lips. She swiftly slathers it in a fresh layer of spit. <i>“Part of me wants more... but...”</i> She moans, swallowing at least six inches of pulsing meat. When she pulls it back out again her cock is slick and dripping white. <i>“This is just so awesome already.”</i> A pearl-white smile spreads across her face.")
 			}
 			output("\n\nShe's no longer interested in taking Throbb.");
+			if(flags["PENNY_THROBB_USES"] == undefined || flags["PENNY_THROBB_USES"] == 0) 
+			{
+				output("\n\n<i>“You know, I’ve actually still got plenty of Throbb left over. If you ever want some, just ask.”</i> Penny glances at your groin and ");
+				if(pc.biggestCockLength() >= 15) output("smiles wickedly, licking her lips. <i>“God, imagine you with an even more enormous cock. You’d break my jaw!”</i>");
+				else output("smirks knowingly. <i>“Imagine how much harder you could make me drool if we gave you a little boost. Just enough to make your dickgirl mate </i>really<i> whimper.”</i>");
+				flags["PENNY_THROBB_PURCHASE_UNLOCKED"] = 1;
+			}
 			clearMenu();
 			if(flags["PENNY_THROBB_USES"] >= 3 && flags["PENNY_THROBB_USES"] != undefined)
 			{

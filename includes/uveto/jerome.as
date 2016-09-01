@@ -384,7 +384,7 @@ public function jeromePeggingIIIBiped():void
 		
 		output("\n\nWith a grunt you push forth one final time, your knot briefly held back by the tight ring threatening to reject its entry before being swallowed whole with an audible ‘POP!’.");
 		
-		output("\n\nThe fat intrusion nestling tight against the his prostate finally sets the bear off, his cock cradled tight");
+		output("\n\nThe fat intrusion nestling tight against his prostate finally sets the bear off, his cock cradled tight");
 		if (pc.biggestTitSize() >= 4) output(" between your [pc.chest]");
 		else output("ly against your chest");
 		output(" when his orgasm finally hits. His dick flexes and throbs within your grip as it spews his heavy, thick load");
@@ -753,7 +753,7 @@ public function jeromeHipbusterIII(s:Object):void
 	output(", gradually shifting position as you lean further forward for extra leverage. A deep, rolling coo oozes from your throat like honey as the cock drilling into your depths grinds into you in new and interesting ways, mixing with the subtle, stinging warmth building in your [pc.ass] as you keep slamming butt-first into the bear.");
 	if (pc.balls > 0)
 	{
-		output(" He shivers under you when the changing angle of attack positions you just right for your [pc.balls] to just barely kiss Jerome’s own bloated, velveteen nuts; a tender touch that you ensure repeats with every subsequent hip-battering,"+ s.va("cunt", "ass") +"-blastingly powerful stroke.");
+		output(" He shivers under you when the changing angle of attack positions you just right for your [pc.balls] to just barely kiss Jerome’s own bloated, velveteen nuts; a tender touch that you ensure repeats with every subsequent hip-battering, "+ s.va("cunt", "ass") +"-blastingly powerful stroke.");
 	}
 	
 	output("\n\n<i>“I’m gonna- I’m gonna cuu-urgh!”</i> Jerome yells, his voice breaking into a gurgling-roar as you bottom out one last time.");
