@@ -1900,6 +1900,7 @@
 				case "ball":
 					buffer = ballsDescript();
 					break;
+				case "prostate":
 				case "sack":
 					buffer = sackDescript();
 					break;
@@ -2165,6 +2166,7 @@
 					break;
 				case "leg(s)":
 				case "legOrLegs":
+				case "legsOrLeg":
 					buffer = legOrLegs();
 					break;
 				case "legFurScales":
