@@ -655,6 +655,7 @@ public function vaginalFap():void {
 	}
 	else {
 		clearList();
+		if(!(pc.armor is EmptySlot) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))) addToList("wriggle out of your [pc.armor]");
 		if(!(pc.lowerUndergarment is EmptySlot) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) {
 			addToList("push your [pc.lowerUndergarment] down");
 			trace("LOWER ON LIST");
