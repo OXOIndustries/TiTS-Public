@@ -655,18 +655,17 @@ public function vaginalFap():void {
 	}
 	else {
 		clearList();
-		if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) addToList("wriggle out of your [pc.armor]");
-		if(pc.lowerUndergarment.shortName != "" && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) {
+		if(!(pc.lowerUndergarment is EmptySlot) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) {
 			addToList("push your [pc.lowerUndergarment] down");
 			trace("LOWER ON LIST");
 		}
-		if(pc.upperUndergarment.shortName != "" && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) {
+		if(!(pc.upperUndergarment is EmptySlot) && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) {
 			addToList("pull your [pc.upperUndergarment] off");
 			trace("UPPER ON LIST");
 		}
 		output(formatList());
-		trace("UP SHORT: " + pc.upperUndergarment.shortName);
-		trace("LOW SHORT: " + pc.lowerUndergarment.shortName);
+		//trace("UP SHORT: " + pc.upperUndergarment.shortName);
+		//trace("LOW SHORT: " + pc.lowerUndergarment.shortName);
 		output(".");
 	}
 	output(" Exposed to the air, your [pc.vaginas] ");
@@ -707,6 +706,7 @@ public function vaginalFap():void {
 		output("\n\nIf one is this good... you thrust your other hand down to your crotch as fast as you can, brushing past your other wrist as you find your way to your [pc.vagina 1] and stroke it with eager, feverish need. Paroxysms of pleasure rock your body, alternately locking and convulsing your muscles but not quite bringing you off yet; this is still mere foreplay. You curl your hand into a fist and drag your knuckles up and down that slit, spreading its lips slightly around your digit, rubbing yourself with both hands and letting out quiet little moans of enjoyment. This taste of ecstasy is almost too much and yet not nearly enough, and you plunge two sets of fingers into your eager openings.");
 	}
 	//Nipple fucky
+	//9999
 	if(pc.hasFuckableNipples()) {
 		output("\n\nYour other hand finds its way up to your [pc.chest], and more importantly, to one of your ");
 		if(pc.nipplesPerBreast > 1) output("clusters of ");
@@ -717,6 +717,7 @@ public function vaginalFap():void {
 	}
 	//Regular Nips
 	else {
+		//9999
 		output("\n\nYour other hand finds its way to your [pc.chest], and more importantly, to one of your ");
 		if(pc.nipplesPerBreast > 1) output("clusters of ");
 		output("[pc.nipples]. You pinch and tweak at your sensitive bud, really working it back and forth as you toy with your nethers, tugging it from time to time to shoot darts of pleasurable agony through your licentiously contorting form. With one back-arching plunge, you work a pair of fingers into your needy slit, thrusting again and again, so hard that the wet squelches of female bliss are distinctly audible.");
