@@ -249,7 +249,7 @@
 				if(rand(4) == 0) paralyzingVenom(target);
 				else aphrodisiacBite(target);	
 			}
-			if (CombatManager.getRoundCount() % 5 == 0) 
+			else if (CombatManager.getRoundCount() % 5 == 0) 
 			{
 				paralyzingVenom(target);
 			}
