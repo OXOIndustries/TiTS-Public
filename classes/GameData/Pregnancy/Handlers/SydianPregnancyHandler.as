@@ -122,6 +122,7 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot];
 			
+			//If this is the first birth, go at it.
 			if (!mother.hasStatusEffect("Sydian Pregnancy Ends"))
 			{
 				// Baby count check (just in case)
@@ -136,14 +137,13 @@ package classes.GameData.Pregnancy.Handlers
 						belly += mother.pregnancyData[i].pregnancyBellyRatingContribution;
 					}
 				}*/
-				SydianPregnancyHandler.sydianCleanupData(mother, pregSlot, thisPtr);
-				
+
 				mother.createStatusEffect("Sydian Pregnancy Ends", babies, belly, pregSlot, 0, true);
-			}
-			if (kGAMECLASS.eventQueue.indexOf(kGAMECLASS.sydianPregnancyEnds) == -1)
-			{
+				SydianPregnancyHandler.sydianCleanupData(mother, pregSlot, thisPtr);
 				kGAMECLASS.eventQueue.push(kGAMECLASS.sydianPregnancyEnds);
 			}
+			//Delay subsequent births till the first has had time to go off.
+			else mother.pregnancyData[pregSlot].pregnancyIncubation += 24;
 		}
 		public static function sydianCleanupData(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
