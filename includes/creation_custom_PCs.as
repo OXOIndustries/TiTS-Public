@@ -318,7 +318,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.addStatusValue("Gel Body",1,1);
 			pc.createStatusEffect("Goo Vent");
 			pc.createStatusEffect("Goo Crotch");
-			flags["GALOMAX_DOSES"] == 5;
+			flags["GALOMAX_DOSES"] = 5;
 			if(pc.elasticity < 3) pc.elasticity = 3;
 			var x:int = 0;
 			for(x = 0; x < pc.totalCocks(); x++)
