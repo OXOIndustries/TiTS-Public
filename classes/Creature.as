@@ -2958,17 +2958,7 @@
 			else if(armor is EmptySlot && lowerUndergarment is EmptySlot) return false;
 			return true;
 		}
-		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
-		public function isCrotchExposed(): Boolean {
-			if(!isCrotchGarbed()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)));
-		}
-		//Badonkadonk check
-		public function isAssExposed():Boolean
-		{
-			if(!isCrotchGarbed()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)));
-		}
+		
 		public function isChestCovered(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
 			else if(armor is EmptySlot && upperUndergarment is EmptySlot) return false;
@@ -2977,8 +2967,40 @@
 		//Used to see if boobs are hanging out instead of isChestGarbed/Covered.
 		public function isChestExposed(): Boolean
 		{
-			if(!isChestCovered()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) && (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)));
+			return (isChestExposedByArmor() && isChestExposedByUpperUndergarment());
+		}
+		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
+		public function isCrotchExposed(): Boolean {
+			return (isCrotchExposedByArmor() && isCrotchExposedByLowerUndergarment());	
+		}
+		//Badonkadonk check
+		public function isAssExposed():Boolean
+		{
+			return (isAssExposedByArmor() && isAssExposedByLowerUndergarment());
+		}
+		public function isAssExposedByArmor():Boolean
+		{
+			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
+		}
+		public function isCrotchExposedByArmor():Boolean
+		{
+			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));	
+		}
+		public function isChestExposedByArmor():Boolean
+		{
+			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));		
+		}
+		public function isAssExposedByLowerUndergarment():Boolean
+		{
+			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));		
+		}
+		public function isCrotchExposedByLowerUndergarment():Boolean
+		{
+			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));		
+		}
+		public function isChestExposedByUpperUndergarment():Boolean
+		{
+			return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));		
 		}
 		public function isChestGarbed(): Boolean {
 			return isChestCovered();
