@@ -156,6 +156,7 @@
 			this.vaginas[0].loosenessRaw = 4;
 			this.vaginas[0].wetnessRaw = 5;
 			this.vaginas[0].bonusCapacity = 300;
+			this.vaginas[0].hymen = false;
 			//balls
 			this.balls = 2;
 			this.cumMultiplierRaw = 5;

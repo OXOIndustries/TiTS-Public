@@ -303,7 +303,7 @@ public function hanaTalkEyepatch():void
 	
 	output("\n\n<i>“My eyepatch.”</i> Hana repeated, the tension growing as the woman gently places the mug down on the counter top with a heavy thunk. Maybe this was a bad idea, though with the barkeep leaning forward, both hands firmly on the bar, it is far too late for second thoughts.");
 	
-	output("\n\n<i>“This... this was </i>my<i> reward for somebody else’s mistake. From someone playing hero - and </i>failing<i>. It came when my dear husband got himself killed trying to save someone else.... I don’t want to </i>talk<i> about it, traveler.”</i> Her tone is gravelly, stern with the unmistakable harsh edge of somebody speaking through gritted teeth. A sore subject, obviously. <i>“I am haleogentic. I can’t ‘fix’ it. I don’t </i>want<i> to fix it. Don’t ask about it again.”</i>");
+	output("\n\n<i>“This... this was </i>my<i> reward for somebody else’s mistake. From someone playing hero - and</i> failing<i>. It came when my dear husband got himself killed trying to save someone else.... I don’t want to </i>talk<i> about it, traveler.”</i> Her tone is gravelly, stern with the unmistakable harsh edge of somebody speaking through gritted teeth. A sore subject, obviously. <i>“I am haleogentic. I can’t ‘fix’ it. I don’t </i>want<i> to fix it. Don’t ask about it again.”</i>");
 	
 	output("\n\nSurprisingly, the ausar woman softens pretty quickly afterwards. Her glowering stare shifts into something that looks more... sad. Somber? It sounds like you dredged up a pretty sordid memory, unfortunately, so that isn’t much of a shock. Glumly, Hana snatches the mug back up and you take the cue to leave her in peace for a while, citing an apology as you backpedal right out of the mess you’ve just caused.");
 
@@ -530,7 +530,7 @@ public function hanaFiresideRecovery():void
 	{
 		output("Some religions say that the afterlife is a comfortable place, something conceptually different from life itself where you might recline in blissful nothingness, awaiting your next go at things.");
 		
-		output("\n\nDimly, you think that must all be hogwash because right now you’re feeling altogether uncomfortable; the first thing you’re consciously aware of is the heat sweltering down on your body, something your instincts start to gradually realize ought to be <i>dangerous</i> , as though you were right next to something burning!");
+		output("\n\nDimly, you think that must all be hogwash because right now you’re feeling altogether uncomfortable; the first thing you’re consciously aware of is the heat sweltering down on your body, something your instincts start to gradually realize ought to be <i>dangerous</i>, as though you were right next to something burning!");
 		
 		output("\n\nAs your brain reconnoiters with the rest of your senses one by one, you hear the roaring and crackling of flame beside you - yet despite your sense of danger kicking into overdrive, you can barely work the effort to tug your eyelids apart. A heavy fatigue is overwhelming you, every minute portion of your body <i>aching</i>, yet not overtly in pain. The sort of ache that you just wanted to sprawl out and groan over like a useless lump, not the kind that would have you clutching your side and mewling pathetically for help. The afterlife fucking sucks.");
 		
