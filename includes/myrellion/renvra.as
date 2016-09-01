@@ -1475,7 +1475,10 @@ public function renvraDoubleTrouble():void
 		if(x >= 0) output("stuff in your belly - I think you’re gonna be carrying a lot of my kids when you leave here.”</i>");
 		else output("plug the hole with - just on the fraction of a chance that the eggs weren’t already fertile.”</i>");
 
-		output("\n\nShe strokes her lengthy rod with relish, spreading the rosy pre-cum around so that it promises to set your nerves afire when it enters you. The anticipation shoots through you and down to your [pc.vagOrAss " + x + "], pulling your blood in its wake, and you strip off your [pc.gear] dubiously, bending over the desk and hoping she’s as forgiving as she says... or else, your ass is in for a world of pain.");
+		output("\n\nShe strokes her lengthy rod with relish, spreading the rosy pre-cum around so that it promises to set your nerves afire when it enters you. The anticipation shoots through you and down to your [pc.vagOrAss " + x + "], pulling your blood in its wake");
+		if(!pc.isCrotchExposed() && !pc.isAssExposed()) output(", and you strip off your [pc.gear] dubiously");
+		else output(", and you pat yourself on the back for dressing so... conveniently");
+		output(", bending over the desk and hoping she’s as forgiving as she says... or else, your ass is in for a world of pain.");
 	}
 	else
 	{

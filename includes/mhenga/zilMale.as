@@ -241,7 +241,7 @@ public function rideDatZilCawk():void {
 	else if(pc.isMischievous()) output("Smiling roguishly, you tell him that he's going to have a hard time walking when you finish.");
 	else output("Smiling cruelly, you promise that he'll be lucky to ever orgasm again once you're done with him.");
 	output(" The zil gasps as you push him flat on his back, and he openly ogles your [pc.chest]");
-	if(!pc.isNice()) output(" as you strip off your [pc.gear]");
+	if(!pc.isCrotchExposed()) output(" as you strip off your offending clothing");
 	else output(" as you admire his smooth, polished figure");
 	output(". There's no way to conceal the turgid stiffness of his member, bouncing slightly above his smooth abdominals. You actually have to stop him from tugging on the almost phimotic tool - the only way he's getting pleasure is when you stuff it in [pc.oneVagina].");
 	

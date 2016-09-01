@@ -2353,7 +2353,10 @@ public function vanaeMaidenPCDefeat():void
 		
 		output("\n\n<i>“I can’t believe I won with my sex appeal. Wait until I tell everyone about it! Well, after I help you with your frustration problem, that is.”</i> She suddenly looks a little bashful, <i>“A-as... as the victor, I have to take my prize. That’s the way my people do things. Any problems with that?”</i>");
 		
-		output("\n\nYou shake your head feverishly. If you don’t orgasm soon, you feel as if you’ll go mad! You strip off your [pc.gear] and lewdly demand that she take her prize.");
+		output("\n\nYou shake your head feverishly. If you don’t orgasm soon, you feel as if you’ll go mad!");
+		if(!pc.isCrotchExposed() && !pc.isChestExposed() && !pc.isAssExposed()) output(" You strip off your [pc.gear] and ");
+		else output(" You ");
+		output("lewdly demand that she take her prize.");
 		
 		output("\n\n<i>“Geez, you’re really forward about it! I guess it can’t be helped. You better be gentle, okay?”</i> she chastises you.");
 	}

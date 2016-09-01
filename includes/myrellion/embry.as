@@ -2548,7 +2548,9 @@ public function embryAnalSex():void
 	}
 	// Done anal before.
 	else output("\n\n<i>\"I-I really enjoyed the last time I had you, you know, in my ass.”</i> [embry.name] coughs, and nervously scuffs a foot on the floor. <i>“... I-I was thinking, maybe, you’d like to fuck it again--?”</i>");
-	output("\n\nThe moment you hear such a cute girl suggesting you fuck her ass, a red, lusty haze falls over your senses. You strip off your [pc.gear] in the blink of an eye.");
+	output("\n\nThe moment you hear such a cute girl suggesting you fuck her ass, a red, lusty haze falls over your senses.");
+	if(!pc.isCrotchExposed()) output(" You strip off your [pc.gear] in the blink of an eye.");
+	else output(" You're silently grateful to have clothing that so readily exposes your raging loins.");
 
 	// if Silly Mode
 	if(silly) 
