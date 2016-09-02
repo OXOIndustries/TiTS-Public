@@ -799,9 +799,12 @@ package classes.GameData
 		
 		public static function TamwolfAttack(attacker:Creature, target:Creature):void
 		{
-			output("<i>“Enemy detected, " + attacker.mf("master", "mistress") + " [attacker.combatName]! I will defend you!”</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
+			var ownerName:String = attacker.getCombatName();
+			if(attacker is PlayerCharacter) ownerName = attacker.short;
+			
+			output("<i>“Enemy detected, " + attacker.mf("master", "mistress") + " " + ownerName + "! I will defend you!”</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
 			if (target is PlayerCharacter) output(" you!");
-			else output("[target.combatName].");
+			else output(target.getCombatName() + ".");
 
 			var d:Number = attacker.untypedDroneDamage();
 			var dmg:TypeCollection = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
@@ -830,9 +833,12 @@ package classes.GameData
 		
 		public static function TamwolfIIAttack(attacker:Creature, target:Creature):void
 		{
-			output("<i>“Enemy detected, " + attacker.mf("master", "mistress") + " [attacker.combatName]! I will defend you!”</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
+			var ownerName:String = attacker.getCombatName();
+			if(attacker is PlayerCharacter) ownerName = attacker.short;
+
+			output("<i>“Enemy detected, " + attacker.mf("master", "mistress") + " " + ownerName + "! I will defend you!”</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
 			if (target is PlayerCharacter) output(" you!");
-			else output("[target.combatName].");
+			else output(target.getCombatName() + ".");
 			
 			var d:Number = attacker.untypedDroneDamage();
 			var dmg:TypeCollection = new TypeCollection( { kinetic: d * 0.8, electric: d * 0.3 }, DamageFlag.PENETRATING);

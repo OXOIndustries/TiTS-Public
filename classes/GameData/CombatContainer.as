@@ -274,6 +274,11 @@ package classes.GameData
 					h.triggerAlarm(true);
 				}
 			}
+			if(pc.shields() <= 0 && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
+			{
+				output("\n\n<b>Without your shields to sustain it, your drone collapses. It won’t be doing any more damage until you bring your shields back up!</b>");
+				pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
+			}
 			
 			return false;
 		}
@@ -3843,21 +3848,33 @@ package classes.GameData
 		private function doCombatDrone(droneUser:Creature):void
 		{
 			//TAMWULF DOESNT NEED POWAAAAAHHHHH
-			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null && (droneUser.shields() > 0 || droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER)))
+			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null)
 			{
-				var target:Creature = droneUser.droneTarget;
-				if (!target.isDefeated())
+				if(droneUser.shields() > 0 && droneUser.hasStatusEffect("Drone Disabled"))
 				{
-					output("\n");
-					
-					// If the user has an accessory equipped that potentially overrides the drone attack to use, use that.
-					if (droneUser.accessory.droneAttack != null)
+					droneUser.removeStatusEffect("Drone Disabled");
+					if(droneUser == pc) output("\nWith shield power restored, <b>your drone buzzes back to life</b>, ready to attack once more!");
+				}
+				else if(pc.shields() <= 0 && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
+				{
+					//This is done elsewhere for PCs, but we'll just do it late and silent for NPCs cause fuck if I can be bothered -Fen
+					if(droneUser != pc) pc.createStatusEffect("Drone Disabled",0,0,0,0,false,"Icon_Paralysis","Without shields, the drone cannot attack!",true,0,0xFF0000);
+				}
+				if(!droneUser.hasStatusEffect("Drone Disabled"))
+				{
+					var target:Creature = droneUser.droneTarget;
+					if (!target.isDefeated())
 					{
-						droneUser.accessory.droneAttack(droneUser, target);
-					}
-					else
-					{
-						CombatAttacks.DroneAttack(droneUser, target);
+						output("\n");
+						// If the user has an accessory equipped that potentially overrides the drone attack to use, use that.
+						if (droneUser.accessory.droneAttack != null)
+						{
+							droneUser.accessory.droneAttack(droneUser, target);
+						}
+						else
+						{
+							CombatAttacks.DroneAttack(droneUser, target);
+						}
 					}
 				}
 			}
