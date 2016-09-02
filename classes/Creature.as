@@ -6650,6 +6650,10 @@
 			}
 			return count;
 		}
+		public function totalFuckableNipples(): int
+		{
+			return fuckableNippleCount();
+		}
 		
 		public function biggestTitSize(raw:Boolean = false): Number {
 			if (breastRows.length == 0) return -1;
@@ -7564,6 +7568,16 @@
 				if (breastRows[counter].fuckable()) return true;
 			}
 			return false;
+		}
+		public function fuckableNippleCount(): Number
+		{
+			var nipCount:Number = 0;
+			var x: Number = breastRows.length;
+			while (x > 0) {
+				x--;
+				if (breastRows[x].fuckable()) nipCount += breastRows[x].breasts * nipplesPerBreast;
+			}
+			return nipCount;
 		}
 		public function nipplesMatch(): Boolean
 		{
