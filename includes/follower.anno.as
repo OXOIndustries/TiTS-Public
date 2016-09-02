@@ -3435,7 +3435,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 		else output(" Anno’s throat");
 		output(" with a torrent of pent-up [pc.cumNoun].");
 
-		if (pc.cocks.length == 1 && pc.cumQ() >= 1000) output(" Spunk bloats her cheeks, making Anno's eyes go wide as she tries and fails to swallow your gargantuan load. Eventually you overwhelm her completely, and [pc.cumColor] seed squirts out nose nose and around your [pc.cock].");
+		if (pc.cocks.length == 1 && pc.cumQ() >= 1000) output(" Spunk bloats her cheeks, making Anno's eyes go wide as she tries and fails to swallow your gargantuan load. Eventually you overwhelm her completely, and [pc.cumColor] seed squirts out Anno’s nose and around your [pc.cock].");
 		else
 		{
 			if (pc.cocks.length == 1) output(" Anno works");
