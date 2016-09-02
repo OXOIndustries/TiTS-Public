@@ -336,7 +336,7 @@ public function adultCockvineConsentacles():void
 
 	if (pc.hasLipples() || pc.hasFuckableNipples())
 	{
-		output("\n\nPositioning your body downwards alerts the carpet of cockvines beneath you to " + pc.totalNipples() + " orifices that have hitherto gone unmolested. You tense up with fresh glee as two new tentacles stretch into the sensitive insides of your [pc.nipples], arching your back and presenting your [pc.chest] to drive them further inside.");
+		output("\n\nPositioning your body downwards alerts the carpet of cockvines beneath you to " + pc.totalNipples() + " orifices that have hitherto gone unmolested. You tense up with fresh glee as " + num2Text(pc.fuckableNippleCount()) + " new tentacles stretch into the sensitive insides of your [pc.nipples], arching your back and presenting your [pc.chest] to drive them further inside.");
 	}
 
 	output("\n\nYour [pc.butt] turned over, the");

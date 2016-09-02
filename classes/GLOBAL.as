@@ -1008,6 +1008,7 @@
 		public static const ITEM_FLAG_HEAT_GENERATOR:int				= 13; // Some other item that provides total avoidance of damage from cold, but not nessecerily a belt.
 		public static const ITEM_FLAG_REDUCED_ACCURACY:int				= 14;
 		public static const ITEM_FLAG_COMBAT_DRONE:int					= 15; // For combat drones
+		public static const ITEM_FLAG_INTERNAL_POWER:int				= 16; // For drones that do not require shields in order to function.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",

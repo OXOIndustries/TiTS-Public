@@ -647,7 +647,7 @@ public function tailCockCeliseFaps():void {
 public function vaginalFap():void {
 	clearOutput();
 	output("You ");
-	if(pc.isNude() || (pc.isCrotchExposed() && pc.isChestCovered())) {
+	if(pc.isNude() || (pc.isCrotchExposed() && pc.isChestExposed())) {
 		output("lazily twist what little gear you wear to the side so as not to bump your arm into it while masturbating and smile to yourself about the practical advantages of being");
 		if(pc.isNude()) output(" nude");
 		else output(" mostly naked");
@@ -655,18 +655,19 @@ public function vaginalFap():void {
 	}
 	else {
 		clearList();
-		if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) addToList("wriggle out of your [pc.armor]");
-		if(pc.lowerUndergarment.shortName != "" && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) {
+		if(pc.hasArmor() && !pc.isChestExposedByArmor() && !pc.isCrotchExposedByArmor()) addToList("wriggle out of your [pc.armor]");
+		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment()) {
 			addToList("push your [pc.lowerUndergarment] down");
 			trace("LOWER ON LIST");
 		}
-		if(pc.upperUndergarment.shortName != "" && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) {
+		if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment())
+		{
 			addToList("pull your [pc.upperUndergarment] off");
 			trace("UPPER ON LIST");
 		}
 		output(formatList());
-		trace("UP SHORT: " + pc.upperUndergarment.shortName);
-		trace("LOW SHORT: " + pc.lowerUndergarment.shortName);
+		//trace("UP SHORT: " + pc.upperUndergarment.shortName);
+		//trace("LOW SHORT: " + pc.lowerUndergarment.shortName);
 		output(".");
 	}
 	output(" Exposed to the air, your [pc.vaginas] ");
@@ -707,6 +708,7 @@ public function vaginalFap():void {
 		output("\n\nIf one is this good... you thrust your other hand down to your crotch as fast as you can, brushing past your other wrist as you find your way to your [pc.vagina 1] and stroke it with eager, feverish need. Paroxysms of pleasure rock your body, alternately locking and convulsing your muscles but not quite bringing you off yet; this is still mere foreplay. You curl your hand into a fist and drag your knuckles up and down that slit, spreading its lips slightly around your digit, rubbing yourself with both hands and letting out quiet little moans of enjoyment. This taste of ecstasy is almost too much and yet not nearly enough, and you plunge two sets of fingers into your eager openings.");
 	}
 	//Nipple fucky
+	//9999
 	if(pc.hasFuckableNipples()) {
 		output("\n\nYour other hand finds its way up to your [pc.chest], and more importantly, to one of your ");
 		if(pc.nipplesPerBreast > 1) output("clusters of ");
@@ -717,6 +719,7 @@ public function vaginalFap():void {
 	}
 	//Regular Nips
 	else {
+		//9999
 		output("\n\nYour other hand finds its way to your [pc.chest], and more importantly, to one of your ");
 		if(pc.nipplesPerBreast > 1) output("clusters of ");
 		output("[pc.nipples]. You pinch and tweak at your sensitive bud, really working it back and forth as you toy with your nethers, tugging it from time to time to shoot darts of pleasurable agony through your licentiously contorting form. With one back-arching plunge, you work a pair of fingers into your needy slit, thrusting again and again, so hard that the wet squelches of female bliss are distinctly audible.");
@@ -767,9 +770,9 @@ public function singleDickFap():void {
 	clearList();
 	if(pc.isNude() || pc.isCrotchExposed()) output("You sigh and stretch, letting [pc.eachCock] hang free. Sometimes, it's good to be nude. You");
 	else {
-		if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) {
+		if(!pc.isCrotchExposedByArmor() && pc.hasArmor()) {
 			output("You go ahead and pop open the bottom half of your [pc.armor]");
-			if(!pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) output(" and [pc.lowerUndergarment]");
+			if(pc.hasLowerGarment() && pc.isCrotchExposedByLowerUndergarment()) output(" and [pc.lowerUndergarment]");
 			output(" to free [pc.eachCock], and you");
 		}
 		else output("You go ahead and pull down your [pc.lowerUndergarment] to free [pc.eachCock], and you");
@@ -916,9 +919,9 @@ public function multiCockFap():void {
 	if(!pc.isNude() || (!pc.isCrotchExposed() && !pc.isChestExposed())) {
 		output("strip out of your ");
 		clearList();
-		if(pc.armor.shortName != "" && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) addToList("[pc.armor]");
-		if(pc.lowerUndergarment.shortName != "" && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) addToList("[pc.lowerUndergarment]");
-		if(pc.upperUndergarment.shortName != "" && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) addToList("[pc.upperUndergarment]");
+		if(pc.hasArmor() && !pc.isCrotchExposedByArmor()) addToList("[pc.armor]");
+		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment()) addToList("[pc.lowerUndergarment]");
+		if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) addToList("[pc.upperUndergarment]");
 		output(formatList() + " to expose your [pc.cocks]. With the multiple endowments that you bear, there's no doubt that this is going to be a very messy, if enjoyable, experience.");
 	}
 	else output("find yourself a good spot to settle your nude form and remove the few pieces of kit you keep with you. There's no point in making a mess of your equipment after all.");
@@ -1574,18 +1577,18 @@ public function wutwutindabuttbuttFap():void
 	author("Couch/Gedan");
 
 	// {Clothes:
-	if (!pc.isNude())
+	if (!pc.isCrotchExposed() && !pc.isChestExposed() && !pc.isAssExposed())
 	{
 		output("Your gear quickly finds itself thrown into an assorted pile of all manner of equipment, item after item being discarded to a soundtrack comprising of clattering metal and hollow thunks;");
-		if (pc.hasArmor())
+		if (pc.hasArmor() && !pc.isCrotchExposedByArmor() && !pc.isChestExposedByArmor() && !pc.isAssExposedByArmor())
 		{
 			output(" your [pc.armor] finds itself added to the pile at a rapid pace");
-			if (pc.hasLowerGarment() || pc.hasUpperGarment()) output(", closely followed by");
+			if ((pc.hasLowerGarment() && !pc.isAssExposedByLowerUndergarment() && !pc.isCrotchExposedByLowerUndergarment()) || (pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment())) output(", closely followed by");
 		} 
-		if (pc.hasUpperGarment()) output(" your [pc.upperUndergarment]");
-		if (pc.hasUpperGarment() && pc.hasLowerGarment()) output(" and");
-		if (pc.hasLowerGarment()) output(" your [pc.lowerUndergarment]");
-		if (!pc.hasArmor())
+		if (pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) output(" your [pc.upperUndergarment]");
+		if ((pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) && (pc.hasLowerGarment() && !pc.isAssExposedByLowerUndergarment() && !pc.isCrotchExposedByLowerUndergarment())) output(" and");
+		if (pc.hasLowerGarment() && !pc.isAssExposedByLowerUndergarment() && !pc.isCrotchExposedByLowerUndergarment()) output(" your [pc.lowerUndergarment]");
+		if (!(pc.hasArmor() && !pc.isCrotchExposedByArmor() && !pc.isChestExposedByArmor() && !pc.isAssExposedByArmor()))
 		{
 			output(" quickly find");
 			if (pc.hasUpperGarment() && pc.hasLowerGarment()) output(" themselves");
@@ -1898,32 +1901,35 @@ public function goddamnitJimTAndYourExhibitionism():void
 	else output("onlookers");
 	output(" peer at you curiously, wondering what's the matter. The longer they look, the fiercer the forbidden flame burns between your loins. You yearn to stroke it, <i>expose</i> it, display it in front of everyone....");
 
-	//PCWearingArmor:
-	if(!(pc.armor is EmptySlot))
-	{
-		output("\n\nBefore their eyes, you begin slowly stripping off your [pc.armor]. They watch on with wide open eyes and mouths as you peel it off your [pc.skinFurScales], exposing your bare body to the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
-		//GotUpperUndergarment:
-		if(!(pc.upperUndergarment is EmptySlot)) output(" Sliding your fingers up your bare flesh, you sensuously slide off your [pc.upperUndergarment]. The slowly gathering crowd gazes upon your [pc.chest] and you shiver with delight.");
-		if(!(pc.lowerUndergarment is EmptySlot)) output(" Making a show of it, you hook your thumbs under your [pc.lowerUndergarment]. With a long, pointed bend, you strip them off, poking your bare [pc.skinFurScalesColor] buttocks at any watching bystanders. You try to control the quiver in your [pc.thighs] as you do so; it's hard to contain your mounting excitement!");
-	}
-	//Else if (PCNoArmor but wearing Upper and/or Lower Undergarment):
-	else if(!pc.isNude())
-	{
-		output("\n\nBefore their gaze, you begin touching yourself. Of course, they're already <i>looking</i>, what with you traipsing around in nothing but your ");
-		if(pc.isChestGarbed()) output("[pc.upperUndergarment]");
-		if(pc.isChestGarbed() && pc.isCrotchGarbed()) output(" and ");
-		if(pc.isCrotchGarbed()) output("[pc.lowerUndergarment]. The gaping onlookers look upon your exposed [pc.skinFurScales] with ");
-		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("obvious lust");
-		else output("a mixture of scandal and lust");
-		output(". You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
-	}
 	//Else // PC is nude:
-	else
+	if(pc.isNude() || (pc.isCrotchExposed() && pc.isAssExposed() && pc.isChestExposed()))
 	{
-		output("\n\nYou're already butt-naked, of course, wearing nothing but your [pc.skinFurScales]. ");
+		output("\n\nYou're already butt-naked, ");
+		if(pc.hasArmor() || pc.hasLowerGarment() || pc.hasUpperGarment()) output(" or close enough to it, wearing nothing but clothing designed to expose your baser attributes. ");
+		else output("of course, wearing nothing but your [pc.skinFurScales]. ");
 		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("Even here, such blatant nudity is met with lusty looks.");
 		else output("The shocked and scandalized looks on their faces gives you a thrill - what you are doing is really, obviously <i>naughty</i>.");
 		output(" They watch on with wide open eyes and mouths as you begin touching your bare body before the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
+	}
+	//PCWearingArmor that doesn't fully expose them
+	if(pc.hasArmor() && !pc.isCrotchExposedByArmor() && !pc.isChestExposedByArmor() && !pc.isAssExposedByArmor())
+	{
+		output("\n\nBefore their eyes, you begin slowly stripping off your [pc.armor]. They watch on with wide open eyes and mouths as you peel it off your [pc.skinFurScales], exposing your bare body to the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
+		//GotUpperUndergarment:
+		if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) output(" Sliding your fingers up your bare flesh, you sensuously slide off your [pc.upperUndergarment]. The slowly gathering crowd gazes upon your [pc.chest] and you shiver with delight.");
+		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment()) output(" Making a show of it, you hook your thumbs under your [pc.lowerUndergarment]. With a long, pointed bend, you strip them off, poking your bare [pc.skinFurScalesColor] buttocks at any watching bystanders. You try to control the quiver in your [pc.thighs] as you do so; it's hard to contain your mounting excitement!");
+	}
+	//Else - not wearing armor that covers shit but SOMETHING is
+	else
+	{
+		output("\n\nBefore their gaze, you begin touching yourself. Of course, they're already <i>looking</i>, what with you traipsing around in nothing but your ");
+		if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) output("[pc.upperUndergarment]");
+		if((pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) && (pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment())) output(" and ");
+		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment()) output("[pc.lowerUndergarment]");
+		output(". The gaping onlookers look upon your exposed [pc.skinFurScales] with ");
+		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("obvious lust");
+		else output("a mixture of scandal and lust");
+		output(". You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 	}
 	output("\n\nAs a number of ");
 	if(rooms[currentLocation].planet == "TAVROS STATION") output("station visitors");
@@ -2238,7 +2244,22 @@ public function futaBabePantyfaps(waifu:String = ""):void
 
 	output("\n\nReclining back, you bring " + waifu + "’s panties up to your face and drink deep of the rich, musky scent of them, smelling so wonderfully of your lover that you could easily imagine her here with you, her crotch pressed into your face with a big, throbbing hard-on for you to worship. The thought of your lover’s tumescent cock rubbing against your face, her body wrapped around yours in a passionate embrace... her hands around your [pc.cock], stroking you... yeah, that’s enough to get you going.");
 
-	output("\n\nYou pull off your [pc.gear] and get comfortable, stopping to run your tongue along the palm of your ");
+	if(!pc.isCrotchExposed()) 
+	{
+		output("\n\nYou pull off your ");
+		if(pc.hasArmor() && !pc.isCrotchExposedByArmor()) 
+		{
+			output("[pc.armor]");
+			if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment()) output(" and ");
+		}
+		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment()) output("[pc.lowerUndergarment]");
+		output(" to get comfortable, stopping to run your tongue along the palm of your ");
+	}
+	else 
+	{
+		if(pc.isNude()) output("\n\nYou congratulate yourself on making the choice to do your travels almost entirely naked, tossing your bags aside, and getting comfortable, stopping to run your tongue along the palm of your ");
+		else output("\n\nHappy that your chosen dress won't slow you down in the slightest, you get comfortable, stopping to run your tongue along the palm of your ");
+	}
 	if(silly) output("fapping ");
 	output("hand before reaching back down to encircle your prick, starting to jack off nice and easy, pretending that it’s " + waifu + "’s mouth instead. Chewing your lip, you sigh into the wonderful little shockwaves of pleasure spilling up from your dick. <i>“Ah yeah,”</i> you murmur to yourself, moving a little faster, caressing every inch of your stiffening cockflesh.");
 
@@ -2276,9 +2297,13 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 	else output(" below.");
 
 	//CrotchGarbed
-	if(pc.isCrotchGarbed())
+	if(!pc.isCrotchExposed())
 	{
-		output("\n\nOoh, you’re getting a little hot to be penned up inside the confines of your [pc.lowerGarments]. Sometimes a [pc.boy]’s got to let [pc.hisHer] inner flower bloom, and quite frankly, your petals are already soaked with dew. You kick the offending equipment off with a few deft twists of your fingers and contemptuous snap of your [pc.foot]. Your heart races. It’s just you, " + waifu + "’s panties, and your eagerly wiggling fingers, now.");
+		output("\n\nOoh, you’re getting a little hot to be penned up inside the confines of your ");
+		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment()) output("[pc.lowerUndergarment]");
+		else if(pc.hasArmor() && !pc.isCrotchExposedByArmor()) output("[pc.armor]");
+		
+		output(". Sometimes a [pc.boy]’s got to let [pc.hisHer] inner flower bloom, and quite frankly, your petals are already soaked with dew. You kick the offending equipment off with a few deft twists of your fingers and contemptuous snap of your [pc.foot]. Your heart races. It’s just you, " + waifu + "’s panties, and your eagerly wiggling fingers, now.");
 	}
 	//Nakkers
 	else output("\n\nOoh, it’s a good thing you’re already naked. It wouldn’t do to have your own underwear as fragrant with lust as " + waifu + "’s. You’re not nearly that libidinous - you’re just a [pc.boy] whose needs have risen to the point where they need taken care of, like any normal U.G.C. citizen. Left to your own devices, you’ll need to pollinate your delicate, dewy flower with naught but your fingers and the too-rich scent of your absent lover. Good thing you’ve such a wonderfully stimulating aid.");
@@ -2453,7 +2478,7 @@ public function moderateExhibitionOmniFap():void
 	author("JimThermic");
 	showName("PUBLIC\nMASTURBATION");
 	// PC is crotch garbed, not a neuter && not a taur OR a chestgarbed taur OR chestgarbed neuter.
-	if((pc.isCrotchGarbed() && pc.hasGenitals() && !pc.isTaur()) || (pc.isTaur && pc.isChestGarbed()) || (!pc.hasGenitals() && pc.isChestGarbed()))
+	if((!pc.isCrotchExposed() && pc.hasGenitals() && !pc.isTaur()) || (pc.isTaur && !pc.isChestExposed()) || (!pc.hasGenitals() && !pc.isChestExposed()))
 	{
 		output("Void, it's so hard to <i>think</i> right now! Instead, your senses are reeling, your head filled with an all-consuming, lusty haze. Your ");
 		//TaurOrNeuter:
@@ -2492,9 +2517,29 @@ public function moderateExhibitionOmniFap():void
 	output("\n\nWhat if... you weren’t to hold out? Just play with yourself here, in front of everyone? The mere thought sends a delicious shiver down your spine. You’ll just touch yourself ... just a <i>little</i> bit to calm yourself down.. then you’ll stop...");
 
 	output("\n\n");
-	if((pc.isTaur() || !pc.hasGenitals()) && pc.isChestGarbed()) output("You groan and quickly strip off your [pc.upperGarments].");
+	if((pc.isTaur() || !pc.hasGenitals()) && !pc.isChestExposed()) 
+	{
+		output("You groan and quickly strip off your ");
+		if(pc.hasArmor() && !pc.isChestExposedByArmor()) 
+		{
+			output("[pc.armor]");
+			if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) output(" and ");
+		}
+		if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) output("[pc.upperGarment]");
+		output(".");
+	}
 	//Crotchgarbed && Non-Neuter && Non Taur:
-	else if(pc.isCrotchGarbed()) output("You groan and quickly strip off your [pc.lowerGarments].");
+	else if(!pc.isCrotchExposed()) 
+	{
+		output("You groan and quickly strip off your ");
+		if(pc.hasArmor() && !pc.isCrotchExposedByArmor()) 
+		{
+			output("[pc.armor]");
+			if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment()) output(" and ");
+		}
+		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment()) output("[pc.lowerGarment]");
+		output(".");
+	}
 	output(" With trembling fingers, you slide your hands down ");
 	var taurNeuter:Boolean = (pc.isTaur() || !pc.hasGenitals());
 	//TaurORNeuter:
@@ -2747,7 +2792,7 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	else output("fish the BionaHole out of your pack");
 	output(" and twist off the vented cap, revealing the " + bionaColor(arg) + " flesh beneath. The visible part of the toy looks exactly like a perfectly shaved woman’s vulva, complete with mons and lips that glisten with just a hint of moisture. The cloned cunt looks positively delicious - enough so that you bring it up to your [pc.lips] and give it an experimental lick. The taste is lush and <i>alive</i>, warm and sweet in the same way any other pussy ought to be. And like a real cunt, the lips flush with arousal when you touch them, gently clenching around your [pc.tongue] as it passes between them.");
 	output("\n\nGrinning to yourself, you ");
-	if(!pc.isNude()) output("slip out of your clothes");
+	if(!pc.isCrotchExposed()) output("slip out of your clothes");
 	else output("toss your gear aside");
 	output(" and slip down ");
 	if(!InShipInterior()) output("onto the ground");
@@ -2910,7 +2955,10 @@ public function bionaHoleInstructionalBullshit():void
 	if(flags["NIVAS_TUTORIAL"] == undefined) output("new");
 	else output("trusty");
 	output(" BionaHole and pull off its cap, revealing the perfectly smooth, creamy ausar mons mounted in the dark blue sheath. You immediately feel the warmth radiating off of Nivas Oxonef’s puffy pink pussylips; they seem to wink at you as you drink in its lush smell and heat, gently glistening with feminine moisture.");
-	output("\n\nBut you don’t want to just sit down and jam your dick into the toy’s lips... at least, not without a little extra stimulation. As you get rid of your [pc.gear], you grab your Codex and prop it up where you can see the screen from ");
+	output("\n\nBut you don’t want to just sit down and jam your dick into the toy’s lips... at least, not without a little extra stimulation. As you get rid of your ");
+	if(!pc.isCrotchExposed()) output("annoying garments");
+	else output("equipment");
+	output(", you grab your Codex and prop it up where you can see the screen from ");
 	if(!InShipInterior()) output("somewhere comfortable on the ground");
 	else output("your bed");
 	output(". Satisfied, you scroll through your stored media until you alight on the <i>“instructional”</i> holovid that came with the toy and punch it on.");

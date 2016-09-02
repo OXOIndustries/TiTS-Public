@@ -54,6 +54,7 @@
 			droneAttack = CombatAttacks.TamwolfAttack;
 			
 			addFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE);
+			addFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER);
 			
 			this.version = _latestVersion;
 		}	

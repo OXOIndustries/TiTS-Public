@@ -2958,17 +2958,7 @@
 			else if(armor is EmptySlot && lowerUndergarment is EmptySlot) return false;
 			return true;
 		}
-		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
-		public function isCrotchExposed(): Boolean {
-			if(!isCrotchGarbed()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)));
-		}
-		//Badonkadonk check
-		public function isAssExposed():Boolean
-		{
-			if(!isCrotchGarbed()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)));
-		}
+		
 		public function isChestCovered(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
 			else if(armor is EmptySlot && upperUndergarment is EmptySlot) return false;
@@ -2977,8 +2967,40 @@
 		//Used to see if boobs are hanging out instead of isChestGarbed/Covered.
 		public function isChestExposed(): Boolean
 		{
-			if(!isChestCovered()) return true;
-			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) && (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)));
+			return (isChestExposedByArmor() && isChestExposedByUpperUndergarment());
+		}
+		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
+		public function isCrotchExposed(): Boolean {
+			return (isCrotchExposedByArmor() && isCrotchExposedByLowerUndergarment());	
+		}
+		//Badonkadonk check
+		public function isAssExposed():Boolean
+		{
+			return (isAssExposedByArmor() && isAssExposedByLowerUndergarment());
+		}
+		public function isAssExposedByArmor():Boolean
+		{
+			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
+		}
+		public function isCrotchExposedByArmor():Boolean
+		{
+			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));	
+		}
+		public function isChestExposedByArmor():Boolean
+		{
+			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));		
+		}
+		public function isAssExposedByLowerUndergarment():Boolean
+		{
+			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));		
+		}
+		public function isCrotchExposedByLowerUndergarment():Boolean
+		{
+			return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));		
+		}
+		public function isChestExposedByUpperUndergarment():Boolean
+		{
+			return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));		
 		}
 		public function isChestGarbed(): Boolean {
 			return isChestCovered();
@@ -6628,6 +6650,10 @@
 			}
 			return count;
 		}
+		public function totalFuckableNipples(): int
+		{
+			return fuckableNippleCount();
+		}
 		
 		public function biggestTitSize(raw:Boolean = false): Number {
 			if (breastRows.length == 0) return -1;
@@ -7542,6 +7568,16 @@
 				if (breastRows[counter].fuckable()) return true;
 			}
 			return false;
+		}
+		public function fuckableNippleCount(): Number
+		{
+			var nipCount:Number = 0;
+			var x: Number = breastRows.length;
+			while (x > 0) {
+				x--;
+				if (breastRows[x].fuckable()) nipCount += breastRows[x].breasts * nipplesPerBreast;
+			}
+			return nipCount;
 		}
 		public function nipplesMatch(): Boolean
 		{
@@ -12602,8 +12638,9 @@
 			//Determine length chances! - nothing for "normal" length. Bonus for super small or progressively larger!
 			bonus = 0;
 			if(cLength <= 5) bonus = 25;
-			else if(cLength >= 7) bonus = 25;
 			if(cLength <= 4) bonus += 10;
+
+			if(cLength >= 7) bonus = 25;
 			if(cLength >= 14) bonus += 3;
 			if(cLength >= 18) bonus += 3;
 			if(cLength >= 30) bonus += 3;
@@ -12629,7 +12666,7 @@
 				else if (cLength < 14) descript += RandomInCollection(["huge","foot-long",(cock.cType == GLOBAL.TYPE_CANINE) ? "mastiff-sized" : "pornstar-sized","impressive"]);
 				else if (cLength < 18) descript += RandomInCollection(["massive","knee-length","forearm-length","imposing","seam-straining","pant-bulging"]);
 				else if (cLength < 30) descript += RandomInCollection(["enormous","enormous","giant","giant",(cock.cType == GLOBAL.TYPE_EQUINE) ? "clydesdale-sized" : "arm-sized","seam-shredding","pant-ripping"])
-				else if (cLength < 50) descript += RandomInCollection(["towering","monstrous","prodigious","ultrapornstar-sized","hyper-sized","unnaturally large",""])
+				else if (cLength < 50) descript += RandomInCollection(["towering","monstrous","prodigious","ultrapornstar-sized","hyper-sized","unnaturally large"])
 				else if (cLength < 100) descript += RandomInCollection(["person-sized","ridiculously massive","extremely prodigious","overly imposing","room-dominating","body-dominating","colossal","monumental","immense"]);
 				else if (cLength < 150) descript += RandomInCollection(["car-sized","vehicle-length","movement-impairing","monumentally long","couch-length","impossibly long"]);
 				else if (cLength < 270) descript += RandomInCollection(["room-sized","hall-length","exquisitely over-sized","bus-length","ship-length","impossibly lengthy","tremendously long"]);
