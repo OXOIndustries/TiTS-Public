@@ -57,13 +57,14 @@ public function kiInitRooms():void
 	// Command Deck -> Medbay
 	rooms["KI-H16"] = new RoomClass(this);
 	rooms["KI-H16"].roomName = "\nMEDBAY";
-	rooms["KI-H16"].description = "The <i>Kashima</i>'s medical bay is about what you'd expect for a large-crew, long-mission ship: spacious, high-tech, and well-equipped. It's been ransacked by the creatures that now call the vessel home, with equipment toppled and chemicals spilled every which way. A single viewport gives you a marvelous overlook of the rocky ball the <i>Kashima</i>'s attached to: lifeless, gray and rocky. The med-bay reeks of sex, like you just missed an orgy in here.";
+	rooms["KI-H16"].description = "The <i>Kashima</i>'s medical bay is about what you'd expect for a large-crew, long-mission ship: spacious, high-tech, and well-equipped. It's been ransacked by the creatures that now call the vessel home, with equipment toppled and chemicals spilled every which way. A single viewport gives you a marvelous overlook of the rocky ball the <i>Kashima</i>'s attached to: lifeless, gray and rocky. The med-bay reeks of sex, like you just missed an orgy in here.\n\nThe place looks secure enough for you to take a load off and rest up.";
 	rooms["KI-H16"].runOnEnter = kiEnterMedbay;
 	rooms["KI-H16"].planet = planetName;
 	rooms["KI-H16"].system = systemName;
 	rooms["KI-H16"].southExit = "KI-H18";
 	rooms["KI-H16"].addFlag(GLOBAL.INDOOR);
 	rooms["KI-H16"].addFlag(GLOBAL.BED);
+	rooms["KI-H16"].addFlag(GLOBAL.MEDICAL);
 
 	rooms["KI-H18"] = new RoomClass(this);
 	rooms["KI-H18"].roomName = "COMMAND\nDECK";
@@ -90,7 +91,7 @@ public function kiInitRooms():void
 	rooms["KI-L18"] = new RoomClass(this);
 	rooms["KI-L18"].roomName = "COMMAND\nDECK";
 	rooms["KI-L18"].description = "A single long corridor runs from the <i>Kashima</i>'s bridge to the rear of the ship's body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nTo the south is a bank of elevators. One set for crew, another meant for handling heavy cargo. Both sets of elevators have been disabled... you don't think you could stand up to another ambush like that again.";
-	rooms["KI-L18"].runOnEnter = commandDeckRandomEncounter;
+	rooms["KI-L18"].runOnEnter = kiL18RoomFunction;
 	rooms["KI-L18"].planet = planetName;
 	rooms["KI-L18"].system = systemName;
 	rooms["KI-L18"].westExit = "KI-J18";
@@ -143,6 +144,7 @@ public function kiInitRooms():void
 	rooms["KI-R18"].system = systemName;
 	rooms["KI-R18"].westExit = "KI-P18";
 	rooms["KI-R18"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-R18"].addFlag(GLOBAL.HAZARD);
 
 	rooms["KI-P18"] = new RoomClass(this);
 	rooms["KI-P18"].roomName = "COMMAND\nDECK";
@@ -265,8 +267,19 @@ public function kiInitRooms():void
 	rooms["KI-Engineering"] = new RoomClass(this);
 	rooms["KI-Engineering"].roomName = "\nENGINEERING";
 	rooms["KI-Engineering"].description = "";
-	rooms["KI-Engineering"].runOnEnter = null;
+	rooms["KI-Engineering"].runOnEnter = kiEngineeringFight;
+	rooms["KI-Engineering"].westExit = "KI-EngineeringVent";
 	rooms["KI-Engineering"].planet = planetName;
 	rooms["KI-Engineering"].system = systemName;
 	rooms["KI-Engineering"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-Engineering"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["KI-EngineeringVent"] = new RoomClass(this);
+	rooms["KI-EngineeringVent"].roomName = "ACCESS\nROOM";
+	rooms["KI-EngineeringVent"].description = "A near-claustrophbic room full of random odds and ends, obviously used as a makeshift place for storage rather than its clearly intended purpose as a means of accessing an array of maintenance shafts around the ship.";
+	rooms["KI-EngineeringVent"].eastExit = "KI-Engineering";
+	rooms["KI-EngineeringVent"].runOnEnter = kiEngineeringAccessRoom;
+	rooms["KI-EngineeringVent"].planet = planetName;
+	rooms["KI-EngineeringVent"].system = systemName;
+	rooms["KI-EngineeringVent"].addFlag(GLOBAL.INDOOR);
 }
