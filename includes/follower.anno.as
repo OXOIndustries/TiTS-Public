@@ -3768,7 +3768,7 @@ public function dragonGurlAnnoThreesome():void
 	if(pc.hasCock() && x >= 0)
 	{
 		if(x < 0) x = pc.smallestCockIndex();
-		output("\n\nWhen you’re satisfied with your preparations, you surge up and grab Anno by the waist, hoisting her up onto your [pc.cock " + x + "]. She squeals happily as you ram yourself hilt-deep in her quim, leaving her on her knees and straddling you reverse-cowgirl. It doesn’t exactly take much prompting for the gryvain to crawl up, push Anno onto your [pc.chest], and thrust into her pussy right along with you. Anno’s eyes go wide as she stretched to the limit, filled to the brim with [pc.cock " + x + "] and viridian dragon-cock.");
+		output("\n\nWhen you’re satisfied with your preparations, you surge up and grab Anno by the waist, hoisting her up onto your [pc.cock " + x + "]. She squeals happily as you ram yourself hilt-deep in her quim, leaving her on her knees and straddling you reverse-cowgirl. It doesn’t exactly take much prompting for the gryvain to crawl up, push Anno onto your [pc.chest], and thrust into her pussy right along with you. Anno’s eyes go wide as she’s stretched to the limit, filled to the brim with [pc.cock " + x + "] and viridian dragon-cock.");
 		pc.cockChange();
 		output("\n\nBetween Anno’s rapidly-contracting cunt and the alien cock grinding against your own, you’re quickly lost in a sea of pleasure. You happily grope Anno’s succulent chest, exchanging kisses and nips along her neck, thrusting your hips in staccato rhythm with the draconic dick-girl. Before you can completely lose yourself, though, the gryvain babe grabs your ");
 		if(pc.cockTotal() > 1) output("second cock, pumping it to tumescence");
@@ -3778,7 +3778,8 @@ public function dragonGurlAnnoThreesome():void
 	else
 	{
 		output("\n\nA minute later and you’re back-to-back with Anno, grinding your asses together around a throbbing shaft of drake-cock. The gryvain girl bucks her hips against you, sprawled out on her wings and groping at her breasts. She can’t take it for long; with a feral roar, she grabs you and Anno and shoves you both ass-up into the bed, and you feel a rock-hard cock slamming into your spit-lubed hole. She takes turns switching between you and your lover, grinding your groins together so she can easily switch from packing Anno’s pussy to stretching your [pc.vagOrAss] around her bulbous member.");
-		pc.cuntChange(0,100);
+		if(pc.hasVagina()) pc.cuntChange(0,100);
+		else pc.buttChange(100);
 		output("\n\nYour orgasm is as inevitable as it is intense, caught between bucking dragon-girl and the slutty, panting ausar clinging to you as she rides out her own climax - the latest of several, if the blissed-out look on Anno’s face is any indication. That, and the musky swamp of fem-cum spreading between her thighs, mixing with the gryvain-girl’s seed when she pulls out and blasts a creamy load across Anno’s up-turned asscheeks.");
 		if(pc.hasCock())
 		{
@@ -3802,7 +3803,7 @@ public function annoXGedanThreesomeEpilogue():void
 	showAnno();
 	//Pass 6-10 hours. Move PC back to ship.
 	output("When you come to, the green gryvain babe is nowhere to be seen. Anno’s lying face-down against you, covered in cool cum and snoring into your armpit. Graceful. You yawn, roll your lover off, and hit the shower.");
-	output("\n\nBy the time you’re out, Anno’s woken up enough to be stagger up and ");
+	output("\n\nBy the time you’re out, Anno’s woken up enough to stagger up and ");
 	if(celiseIsCrew()) output("drag Celise into your quarters. She’s dumped the giggly goo onto the bed and is sat on the side of it, letting your resident cum-vacuum clean the spoogy mess up.");
 	else output("strip the spunk-soaked bed for cleaning.");
 	output("\n\n<i>“What do you say, Boss?”</i> she grins when you get out, looking back to eye your naked body. <i>“Think I should give her a ‘would date again’ on ExtraMeet?”</i>");

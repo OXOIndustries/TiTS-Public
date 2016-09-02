@@ -713,7 +713,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			// KQ2 done, beat Amara, saw Shade:
 			else if(flags["KQ2_QUEST_FINISHED"] != undefined)
 			{
-				output("\n\n<i>“Well, her pop’s in this hospital after you got done with her. She’s recovering back in the Cielovia system, and Astra’s off visiting. Should be home tomorrow, I think. I’ll introduce you.”</i>");
+				output("\n\n<i>“Well, her pop’s in the hospital after you got done with her. She’s recovering back in the Cielovia system, and Astra’s off visiting. Should be home tomorrow, I think. I’ll introduce you.”</i>");
 				output("\n\nYou grimace at the sneer Shade gives you when she mentions Amara, but otherwise she doesn’t bring up your... accidental altercation back on Myrellion.");
 			}
 			else
@@ -747,7 +747,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			output("\n\n<i>“Thirsty?”</i> she offers, sashaying over with a flirty swish of her hips and sock-wrapped tail. <i>“Been saving this bottle since a job on the wine-world itself.”</i>");
 			output("\n\nYou have no idea what that is, but you can assume it means good liquor! Shade passes you one of the glasses with a promise of plenty more to come -- if you’ll clear a spot for her to lay out the food. You quickly stack up the datapads, grinning when a few of them activate to reveal pages from <i>Gunslinger Monthly</i>, <i>Sensual Interrogation</i>, and <i>Heavy Weight Ballistics</i> -- the latter two showing off more cleavage than firepower, though neither are in short supply on Shade’s reading list it looks like! ");
 			output("\n\nYou manage to stifle a chuckle and clear them off to the side, just in time for Shade to return with what looks like a steaming wok gripped between a pair of mittens. Two pairs of chopsticks are sticking out of the top, propped up between what turns out to be a piping plate of sauce-slathered noodles mixed with chicken and plenty of herbal garnish.");
-			output("\n\nShade sets the dish out in front of you with a flourish, followed by a plate of steaming bread, cheeses, and salad, then swings herself into a seat across from you and curls her legs up underneath her. The Fenris done plops its head right in her lap, sniffing at her hands until she shoos it off.");
+			output("\n\nShade sets the dish out in front of you with a flourish, followed by a plate of steaming bread, cheeses, and salad, then swings herself into a seat across from you and curls her legs up underneath her. The Fenris drone plops its head right in her lap, sniffing at her hands until she shoos it off.");
 			output("\n\n<i>“My signature dish,”</i> she explains with a smile. <i>“A kaithrit favorite. Hope you like it.”</i>");
 			output("\n\nYour stomach’s grumbling so much that you don’t have much reservation about grabbing a pair of sticks and digging in. Shade’s eyes linger on you a moment, watching your reaction until she too turns her attention to the feast.");
 			output("\n\nTurns out she wasn’t kidding about cooking as well as she slings a gun: the food’s damn good, but the company’s better. Shade’s happy to make small talk while you eat, sharing little stories of her adventures or drawing out details of your own. She laughs at your cousin’s failings, shifts her weight around her chest when you tell of her your more lurid encounters, and smiles at the sweeter ones.");
@@ -821,7 +821,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			output("<i>“Fair enough,”</i> Shade sighs, reaching over and putting a hand on your shoulder. A friendly gesture, more than a lover’s touch. <i>“I don’t really know how <b>I</b> feel. Can’t expect any different from you. But... for what it’s worth, if you’re not too disgusted with me and my feelings, I’d like to at least keep in touch. Until you’re sure what you want... either as my half-sibling, or... something else.”</i>");
 			output("\n\n<i>“Something else?”</i> you echo.");
-			output("\n\nShade’s cheeks flush a bit, but she answers steadily. <i>“I mean that you and I </i>are<i> lovers. We can’t erase what we’ve done. What we were to eachother first and foremost. I know we can’t ignore what we are now, either, but... that doesn’t mean what we had before has to end. Does it?”</i>");
+			output("\n\nShade’s cheeks flush a bit, but she answers steadily. <i>“I mean that you and I </i>are<i> lovers. We can’t erase what we’ve done. What we were to each other first and foremost. I know we can’t ignore what we are now, either, but... that doesn’t mean what we had before has to end. Does it?”</i>");
 			output("\n\nYou turn, looking Shade flat in the eye. She wants to keep seeing you as a lover, is that it? To revel in your incestuous union.");
 			output("\n\nHer blush keeps strong, but she nods nevertheless. <i>“I... I do. I don’t care if we’re siblings or not. It doesn’t change how I feel about you. Or how much I want you. Understand?”</i>");
 			output("\n\nYou nod. She’s made it plenty clear.");
@@ -920,7 +920,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			// KQ2 done, beat Amara, saw Shade:
 			else if(flags["KQ2_QUEST_FINISHED"] != undefined)
 			{
-				output("\n\n<i>“Well, her pop’s in this hospital after you got done with her. She’s recovering back in the Cielovia system, and Astra’s off visiting. Should be home tomorrow, I think. I’ll introduce you.”</i>");
+				output("\n\n<i>“Well, her pop’s in the hospital after you got done with her. She’s recovering back in the Cielovia system, and Astra’s off visiting. Should be home tomorrow, I think. I’ll introduce you.”</i>");
 				output("\n\nYou grimace at the sneer Shade gives you when she mentions Amara, but otherwise she doesn’t bring up your... accidental altercation back on Myrellion. You guess your sibling revelation has mollified her distrust of you, for now at least.");
 			}
 			else
@@ -963,11 +963,11 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			
 			output("\n\nYou quickly stack up the datapads, grinning when a few of them activate to reveal pages from <i>Gunslinger Monthly</i>, <i>Sensual Interrogation</i>, and <i>Heavy Weight Ballistics</i> -- the latter two showing off more cleavage than firepower, though neither are in short supply on Shade’s reading list it looks like!");
 			output("\n\nYou manage to stifle a chuckle and clear them off to the side, just in time for Shade to return with what looks like a steaming wok gripped between a pair of mittens. Two pairs of chopsticks are sticking out of the top, propped up between what turns out to be a piping plate of sauce-slathered noodles mixed with chicken and plenty of herbal garnish.");
-			output("\n\nShade sets the dish out in front of you with a flourish, followed by a plate of steaming bread, cheeses, and salad, then swings herself into a seat across from you and curls her legs up underneath her. The Fenris done plops its head right in her lap, sniffing at her hands until she shoos it off.");
+			output("\n\nShade sets the dish out in front of you with a flourish, followed by a plate of steaming bread, cheeses, and salad, then swings herself into a seat across from you and curls her legs up underneath her. The Fenris drone plops its head right in her lap, sniffing at her hands until she shoos it off.");
 			output("\n\n<i>“My signature dish,”</i> she explains with a smile. <i>“A kaithrit favorite. Hope you like it.”</i>");
 			output("\n\nYour stomach’s grumbling so much that you don’t have much reservation about grabbing a pair of sticks and digging in. Shade’s eyes linger on you a moment, watching your reaction until she too turns her attention to the feast.");
 			output("\n\nTurns out she wasn’t kidding about cooking as well as she slings a gun: the food’s damn good, but the company’s better. Shade’s happy to make small talk while you eat, letting you talk again this time: before long, your belly is full and your dinner companion has sprawled back out on the couch, sipping at her wineglass while you tell of the first probe you found, and your climactic meeting with [rival.name] and Dane.");
-			output("\n\n<i>“Glad to know I have shitty relatives, too,”</i> Shade laughs. [rival.HeShe] actually shot at you with a gunship? Could have killed you.”</i>");
+			output("\n\n<i>“Glad to know I have shitty relatives, too,”</i> Shade laughs. <i>“[rival.HeShe] actually shot at you with a gunship? Could have killed you.”</i>");
 			output("\n\nLucky you, [rival.heShe]’s either an awful shot, or just wanted to scare you off.");
 			if(nyreaDungeonFinished()) output(" Either way, you saw [rival.himHer] get thoroughly humiliated by " + ((flags["FUCKED_TAIVRA"] != undefined && flags["KILLED_TAIVRA"] == undefined) ? "your mated queen" : "a bug-queen") + " on Myrellion. Fair trade, almost.");
 			else output(" You’ll get the " + rival.mf("bastard", "bitch") + " back for that some time.");
