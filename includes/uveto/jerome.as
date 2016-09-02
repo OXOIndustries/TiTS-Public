@@ -124,6 +124,8 @@ public function approachJerome():void
 	}
 
 	output("\n\nOne of Jerome’s massive hands clamps around the comparatively tiny drink sat on the bar in front of him, bringing it to his mouth in an attempt to disguise a nervous gulp.");
+	
+	flags["JEROME_APPROACHED"] = days;
 
 	clearMenu();
 	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(0, "Pegging", jeromePegging, undefined, "Pegging", "Teach him to be more careful.");
