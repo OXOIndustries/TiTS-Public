@@ -658,7 +658,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP J40"] = new RoomClass(this);
 	rooms["UVIP J40"].roomName = "TWISTING\nRISE";
-	rooms["UVIP J40"].description = "The snow-packed valley to the west gives way to a slight incline, bringing you up to nearly the surface of the plains. In the distance to the north, you can see a glistening lake of ice, surrounding by sloping snowbanks and distant pillars of black mineral.";
+	rooms["UVIP J40"].description = "The snow-packed valley to the west gives way to a slight incline, bringing you up to nearly the surface of the plains. In the distance to the north, you can see a glistening lake of ice, surrounded by sloping snowbanks and distant pillars of black mineral.";
 	rooms["UVIP J40"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J40"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J40"].northExit = "UVIP J38";
