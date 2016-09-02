@@ -340,10 +340,10 @@ public function kiVentMenu():void
 	if (currentLocation != "KI-H16") addButton(0, "Medbay", kiMedbayVent);
 	else addDisabledButton(0, "Medbay", "Medical Bay", "You're already near the medical bay.");
 	
-	if (currentLocation != "KI-E9") addButton(1, "Officers Q.", kiOfficersDeckVent);
+	if (currentLocation != "KI-OfficersAccessRoom") addButton(1, "Officers Q.", kiOfficersDeckVent);
 	else addDisabledButton(1, "Officers Q.", "Officers Quarters", "You're already on the Officers Quarters deck.");
 	
-	if (currentLocation != "KI-Engineering") addButton(2, "Engineering", kiEngineeringGoAccessRoom);
+	if (currentLocation != "KI-EngineeringVent") addButton(2, "Engineering", kiEngineeringGoAccessRoom);
 	else addDisabledButton(2, "Engineering", "Engineering Deck", "You're already on the Engineering deck.");
 
 	addButton(14, "Back", mainGameMenu);
@@ -381,7 +381,7 @@ public function kiEngineeringFight():void
 
 public function kiOfficersDeckVent():void
 {
-	currentLocation = "KI-E9";
+	currentLocation = "KI-OfficersAccessRoom";
 	generateLocation(currentLocation);
 	mainGameMenu();
 }
