@@ -22,7 +22,7 @@ public function jeromeAtBar(btnIdx:int):Boolean
 		output(" looks up occasionally, surveying the other patrons, and you just about catch");
 		if (!metJerome) output(" a pair of");
 		else output(" his");
-		output(" eyes lingering over your form for longer that should be considered polite.");
+		output(" eyes lingering over your form for longer than should be considered polite.");
 
 		addButton(btnIdx, metJerome ? "Jerome" : "Figure", approachJerome, undefined, "Seduce " + (metJerome ? "Jerome" : "the figure"), "Well if you're so captivating, it'd be rude not to introduce yourself....");
 
@@ -62,9 +62,9 @@ public function approachJerome():void
 	if (!metJerome) output(" their");
 	else output(" his");
 	output(" eyes briefly enlarging, before");
-	if (!metJerome) output(" they");
-	else output(" he");
-	output(" turns away back to");
+	if (!metJerome) output(" they turn");
+	else output(" he turns");
+	output(" away back to");
 	if (!metJerome) output(" their");
 	else output(" his");
 	output(" drink and hunches over the bar even further. Too late for that though; you’ve caught");
@@ -744,7 +744,7 @@ public function jeromeHipbusterIII(s:Object):void
 		output(" pleasure-button");
 	}
 	else output(" through you");
-	output(". Jerome grunts as you slam into his hips, only fuel your lust to headier heights; the thought that you might just be too much for the bear to handle playing on your mind.");
+	output(". Jerome grunts as you slam into his hips, which only fuels your lust to headier heights; the thought that you might just be too much for the bear to handle playing on your mind.");
 
 	output("\n\nThe pace of your fucking grows faster as you chase the building pleasure in your");
 	if (s.vIdx >= 0) output(" [pc.cunts]");
@@ -847,9 +847,11 @@ public function jeromeSceneIntro():void
 	else output(" H");
 	output("is limb utterly dwarfs your grip, betraying an overwhelming difference in physical potential. There’s no way you could lead him this easily if he didn’t <i>really</i> want to follow your insistent pull; this is going to be <i>good</i>.");
 
-	output("\n\nDragging him towards the docking platforms, you don’t even spare a single glance backwards. The sooner you get back to your ship, the better, and you don’t want to waste a moment... and all the better to keep the stout mountain of man from falling out from under your spell.");
+	//output("\n\nDragging him towards the docking platforms, you don’t even spare a single glance backwards. The sooner you get back to your ship, the better, and you don’t want to waste a moment... and all the better to keep the stout mountain of man from falling out from under your spell.");
+	output("\n\nDragging him towards the elevator, going up to the station proper, and making way to the docking platforms, you don’t even spare a single glance backwards. The sooner you get back to your ship, the better, and you don’t want to waste a moment... and all the better to keep the stout mountain of man from falling out from under your spell.");
 
-	output("\n\nRounding one final corner, you come face to face with your ship. A quick wave of your codex and the loading ramp responds, a heavy thunk of metal-on-metal allowing you to drag your thrall on board and into your cabin.");
+	//output("\n\nRounding one final corner, you come face to face with your ship. A quick wave of your codex and the loading ramp responds, a heavy thunk of metal-on-metal allowing you to drag your thrall on board and into your cabin.");
+	output("\n\nAfter traveling through the tether and rounding one final corner, you come face to face with your ship. A quick wave of your codex and the airlock responds. A hiss of pressurized air escapes and the door opens, allowing you to drag your thrall on board and into your cabin.");
 
 	output("\n\nA firm hand placed on the bear’s chest, followed by an insistent shove is all it takes to send him sprawling backwards, a potentially painful landing arrested by a heavy woosh of air being forced out of your bed. Now on equal footing, you turn away from him");
 	if (!(pc.armor is EmptySlot)) output(" and strip out of your [pc.armor]");
@@ -873,7 +875,7 @@ public function jeromePeggingMerge():void
 	pc.shower();
 	processTime(30+rand(10));
 	pc.orgasm();
-	output("\n\nBy the time you step out of steam-infused room and back into your bedroom, Jerome is gone. Presumably he slinked back off to his own bed to recover.");
+	output("\n\nBy the time you step out of the steam-infused room and back into your bedroom, Jerome is gone. Presumably he slinked back off to his own bed to recover.");
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
