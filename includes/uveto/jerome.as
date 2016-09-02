@@ -98,6 +98,8 @@ public function approachJerome():void
 		output("I thought you’d want to know what to moan under your breath later");
 		if (pc.isBimbo()) output(", babe");
 		output(",”</i> you tell him through a cocky grin, a reflection of your teeth clearly visible in his eyes as you lick teasingly at your canines.");
+		
+		flags["MET_JEROME"] = 1;
 	}
 	else
 	{
