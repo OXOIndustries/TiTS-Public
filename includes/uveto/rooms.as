@@ -743,7 +743,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP N46"] = new RoomClass(this);
 	rooms["UVIP N46"].roomName = "WINDING\nPATHS";
-	rooms["UVIP N46"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path here twists northwards and back east, though not quite towards Irestead.";
+	rooms["UVIP N46"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path here twists northwards and back west, though not quite towards Irestead.";
 	rooms["UVIP N46"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N46"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N46"].northExit = "UVIP N44";
@@ -945,8 +945,8 @@ public function initUvetoRooms():void
 
 	/* SOUTH EXIT TO RIFT */
 	rooms["UVIP Z34"] = new RoomClass(this); // 9999
-	rooms["UVIP Z34"].roomName = "[PH]\nGLACIAL RIFT";
-	rooms["UVIP Z34"].description = "[PH] GLACIAL RIFT MAP";
+	rooms["UVIP Z34"].roomName = "[PH] GLACIAL\nRIFT";
+	rooms["UVIP Z34"].description = "(Placeholder) GLACIAL RIFT MAP";
 	rooms["UVIP Z34"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z34"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z34"].westExit = "UVIP X34";
@@ -1507,8 +1507,8 @@ public function initUvetoRooms():void
 
 	/* NORTH RIFT EXIT */
 	rooms["UVIP Z6"] = new RoomClass(this);
-	rooms["UVIP Z6"].roomName = "[PH] GLACIAL\nRIFT";
-	rooms["UVIP Z6"].description = "[PH] GLACIAL RIFT MAP";
+	rooms["UVIP Z6"].roomName = "[PH] GLACIAL\nRIFT"; // 9999
+	rooms["UVIP Z6"].description = "(Placeholder) GLACIAL RIFT MAP";
 	rooms["UVIP Z6"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z6"].westExit = "UVIP X6";
@@ -1593,8 +1593,8 @@ public function initUvetoRooms():void
 
 	/* RELAY TOWER */
 	rooms["UVIP X18"] = new RoomClass(this);
-	rooms["UVIP X18"].roomName = "[PH] RELAY\nTOWER";
-	rooms["UVIP X18"].description = "[PH] RELAY TOWER";
+	rooms["UVIP X18"].roomName = "[PH] RELAY\nTOWER"; // 9999
+	rooms["UVIP X18"].description = "(Placeholder) RELAY TOWER";
 	rooms["UVIP X18"].planet = "PLANET: UVETO VII";
 	rooms["UVIP X18"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X18"].westExit = "UVIP V18";
@@ -1641,8 +1641,8 @@ public function initUvetoRooms():void
 
 	/* CENTER EXIT TO RIFT */
 	rooms["UVIP Z22"] = new RoomClass(this);
-	rooms["UVIP Z22"].roomName = "[PH] GLACIAL\nRIFT";
-	rooms["UVIP Z22"].description = "[PH] GLACIAL RIFT";
+	rooms["UVIP Z22"].roomName = "[PH] GLACIAL\nRIFT"; // 9999
+	rooms["UVIP Z22"].description = "(Placeholder) GLACIAL RIFT";
 	rooms["UVIP Z22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z22"].westExit = "UVIP X22";

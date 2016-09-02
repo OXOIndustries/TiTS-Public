@@ -47,13 +47,13 @@ v3 hour counter
 public function logTimeStamp():String
 {
 	var bufferButt:String = "";
-	bufferButt += "\\\\[<b>D: " + days + " T: ";
+	bufferButt += "\\\[<b>D: " + days + " T: ";
 	if(hours < 10) bufferButt += String(0) + hours;
 	else bufferButt += String(hours);
 	bufferButt += ":";
 	if(minutes < 10) bufferButt += String(0) + minutes;
 	else bufferButt += minutes;
-	bufferButt += "</b>\\\\]";
+	bufferButt += "</b>\\\]";
 	return bufferButt;
 }
 
