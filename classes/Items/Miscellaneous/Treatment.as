@@ -161,9 +161,9 @@ package classes.Items.Miscellaneous
 					v1 - Gender settings.
 					* 0 - girl mode
 					* 1 - dude mode
-					2 - herm/neuter girlmode with male dick boosts.
+					* 2 - "cum-cow" - female bimbo mods + autofellatio sluuuut
 					3 - herm/neuter doublemode - all male and female procs.
-					4 - herm/neuter amazon - male perks + boob/lactation boosts.
+					* 4 - herm/neuter amazon - male perks + boob/lactation boosts.
 					5 - herm girlmode + double dick/cum boosts.
 					6 - herm girlmode + dick shrinking to almost nothing.
 					v2 special variants
@@ -174,31 +174,39 @@ package classes.Items.Miscellaneous
 
 					pc.createStatusEffect("Treated",0,0,0,0,true,"","",false,0);
 					pc.createStatusEffect("The Treatment",0,0,0,0,false,"Icon_Cow","You are currently under the effects of the Treatment. Who knows what havoc it will wreak upon your system.",false,10080,0xB793C4);
-					//Set values for chicks:
-					if(pc.hasVagina() && !pc.hasCock())
-					{
-						//75% odds of Amazon if super butch
-						if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
-						//10% random Amazon chance
-						else if(rand(10) == 0) setTreatmentMode(pc,4);
-						//Normies!
-						else setTreatmentMode(pc,0);
-					}
-					//Set values for dudes
-					else if(pc.hasCock() && !pc.hasVagina())
-					{
-						setTreatmentMode(pc,1);
-					}
-					//Herms/neuters
+					if(kGAMECLASS.flags["TREATMENT_HAX"] != undefined) setTreatmentMode(pc,kGAMECLASS.flags["TREATMENT_HAX"]);
 					else
 					{
-						//75% odds of Amazon if super butch
-						if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
-						//50% odds otherwise
-						else if(rand(2) == 0) setTreatmentMode(pc,4);
-						//Otherwise, 50/50 split between male and female.
-						else if(rand(2) == 0) setTreatmentMode(pc,0);
-						else setTreatmentMode(pc,1);
+						//Set values for chicks:
+						if(pc.hasVagina() && !pc.hasCock())
+						{
+							//20% cumcow
+							if(rand(5) == 0) setTreatmentMode(pc,2);
+							//75% odds of Amazon if super butch
+							if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
+							//10% random Amazon chance
+							else if(rand(10) == 0) setTreatmentMode(pc,4);
+							//Normies!
+							else setTreatmentMode(pc,0);
+						}
+						//Set values for dudes
+						else if(pc.hasCock() && !pc.hasVagina())
+						{
+							setTreatmentMode(pc,1);
+						}
+						//Herms/neuters
+						else
+						{
+							//50% cumcow
+							if(rand(2) == 0) setTreatmentMode(pc,2);
+							//75% odds of Amazon if super butch
+							else if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
+							//50% odds otherwise
+							else if(rand(2) == 0) setTreatmentMode(pc,4);
+							//Otherwise, 50/50 split between male and female.
+							else if(rand(2) == 0) setTreatmentMode(pc,0);
+							else setTreatmentMode(pc,1);
+						}
 					}
 				}
 			}
@@ -236,6 +244,8 @@ package classes.Items.Miscellaneous
 		private function setTreatmentMode(pc:Creature,arg:int = 0):void
 		{
 			trace("TREATMENT MODE SET: " + arg);
+			//Cumcow
+
 			//slamazon
 			if(arg == 4)
 			{
@@ -281,6 +291,31 @@ package classes.Items.Miscellaneous
 				pc.setStatusValue("The Treatment",1,0);
 				//Set rare proc to 0.
 				pc.setStatusValue("The Treatment",2,0);
+			}
+			//hermy autofellatio moos
+			else if(arg == 2)
+			{
+				//v1 = boobs 9 to 30
+				//v2 = horn size
+				//v3 lip bonus
+				//v4 = unused
+
+				//Sin gets max boobs
+				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,30);
+				//Boobs from EE to JJ
+				else pc.setStatusValue("Treated",1,23 + rand(8));
+				//Horn size result - 1 to 3"
+				pc.setStatusValue("Treated",2,1 + rand(3));
+				//Lip Bonus 0-2
+				pc.setStatusValue("Treated",3,0 + rand(3));
+				//No balls.
+				pc.setStatusValue("Treated",4,0);
+				//Set mode to lady mode
+				pc.setStatusValue("The Treatment",1,2);
+				//Set rare proc to 0.
+				pc.setStatusValue("The Treatment",2,0);
+
+				pc.createStatusEffect("Cum-Cow");
 			}
 			else if(arg == 1)
 			{
