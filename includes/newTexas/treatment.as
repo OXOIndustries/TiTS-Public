@@ -1186,13 +1186,13 @@ public function treatmentHourProcs():void
 			if(!pc.isCrotchExposed()) eBuffer += " You barely manage to yank your [pc.lowerGarment] out of the way before collapsing flat onto your back, pumping your [pc.hips] into the air.";
 			else eBuffer += " You reach down, unsure if you're going to stroke or simply take stock of the situation, but the ecstasy knocks you flat on your back a millisecond later, your [pc.hips] pumping lewdly into the air.";
 			eBuffer += "\n\nGobs of [pc.cumNoun] spill down the sides of your [pc.cocks], venting slowly. The individual ejaculations aren't powerful to push the sperm-laden goo more than an inch above your cum-slit, yet the pleasure isn't ebbing. Your penis";
-			if(pc.totalCocks() > 1) eBuffer += "es are";
-			else eBuffer += " is";
-			eBuffer += " like a leaky faucets. Jizz drools overwhere. You wrap your hands around your slickened dick";
+			if(pc.totalCocks() > 1) eBuffer += "es are like leaky faucets";
+			else eBuffer += " is like a leaky faucet";
+			eBuffer += ". Jizz drools overwhere. You wrap your hands around your slickened dick";
 			if(pc.cockTotal() > 1) eBuffer += "s";
-			eBuffer += " and squeeze, revelling in the lubricated strokes, mooing softly when a particularly thick jet of [pc.cumColor] dribbles down your knuckles.";
+			eBuffer += " and squeeze, reveling in the lubricated strokes, mooing softly when a particularly thick jet of [pc.cumColor] dribbles down your knuckles.";
 			eBuffer += "\n\nEventually, you give yourself over entirely to the ecstatic pulses, gathering up handfuls of slick jism to smear into your [pc.thighs] and [pc.chest]. You moo, then whimper, embarrassed to sound so submissive but too blissed-out to care. Your crotch is completely on autopilot, determined to release a bathtub's worth of orgasms, and your hands have climbed along for the ride, encouraging the endless eruptions to come out thicker and more voluminous by the minute.";
-			eBuffer += "\n\nBy the time the orgasmic quivers die down, everything from your [pc.chest] to your [pc.feet] is soaked in [pc.cumColor] spooge, and the ground below is even worse off. You look like an unwilling participant in a kui-tan bukkake session, that or a victim of a ghost orgy.\n\nSomething inside your";
+			eBuffer += "\n\nBy the time the orgasmic quivers die down, everything from your [pc.chest] to your [pc.feet] is soaked in [pc.cumColor] spooge, and the ground below is even worse off. You look like an unwilling participant in a kui-tan bukkake session, that or a victim of a ghost orgy.\n\nSomething inside you";
 			if(pc.balls > 0) eBuffer += " or you [pc.balls]";
 			eBuffer += " has changed - something that's letting your body churn out [pc.cumNoun] as fast as you could possibly need it. You doubt you'll ever have an orgasm less than \"amazing\" ever again. Amazing!";
 			for(var ii:int = 0; ii < 15; ii++)
@@ -1636,7 +1636,9 @@ public function treatmentHourProcs():void
 				if(pc.cockTotal() == 1) eBuffer += "a ";
 				eBuffer += "swelling maleness";
 				if(pc.hasVagina()) eBuffer += ", or hermness in your case";
-				eBuffer += ". And you haven’t even touched yourself! You giggle drunkenly, spraying cum for what feels like hours, hypnotized by the increasing size and beauty of your members.";
+				eBuffer += ". And you haven’t even touched yourself! You giggle drunkenly, spraying cum for what feels like hours, hypnotized by the increasing size and beauty of your member";
+				if(pc.cockTotal() > 1) eBuffer += "s";
+				eBuffer += ".";
 				eBuffer += "\n\nBy the time the spunk runs out, you’re pretty sure you’ve gained at least two or three inches of length, bigger balls, and a lovely memory to think about the next time you go for a stroke. Your wilting member";
 				if(pc.cockTotal() > 1) eBuffer += "s twitch";
 				else eBuffer += " twitches";
@@ -1666,9 +1668,9 @@ public function treatmentHourProcs():void
 			//Ball Growth
 			if(treatedHours == 73 && pc.balls > 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your musings are interrupted by a sudden swaying from your [pc.balls]. They wobble so heavily that you can’t possibly ignore it, and when you reach down to shift them, you discover that they’ve bigger over the last half day or so. You gently squeeze and moan, feeling a little pre-cum ooze out from the tip";
+				eBuffer += "\n\n" + logTimeStamp() + " Your musings are interrupted by a sudden swaying from your [pc.balls]. " + (pc.balls == 1 ? "It wobbles" : "They wobble") + " so heavily that you can’t possibly ignore it, and when you reach down to shift " + (pc.balls == 1 ? "it" : "them") + ", you discover that " + (pc.balls == 1 ? "it’s" : "they’ve") + " grown bigger over the last half day or so. You gently squeeze and moan, feeling a little pre-cum ooze out from the tip";
 				if(pc.cockTotal() > 1) eBuffer += "s";
-				eBuffer += " of your [pc.cocks]. The little cum factories seem to be constantly swelling in size and pleasurability.";
+				eBuffer += " of your [pc.cocks]. The little cum " + (pc.balls == 1 ? "factory seems" : "factories seem") + " to be constantly swelling in size and pleasurability.";
 				if(pc.ballDiameter() > pc.biggestTitSize()) eBuffer += " If this keeps up, people are going to pay more attention to them than your breasts! ...Though you’re starting to think balljobs might be more fun than titfucks.";
 				pc.lust(5);
 				pc.boostCum(10);
@@ -1695,11 +1697,11 @@ public function treatmentHourProcs():void
 				if(pc.cockTotal() == 1) eBuffer += "it looks";
 				else eBuffer += "they look";
 				eBuffer += ". Your mouth waters at the sight, and you swear ";
-				if(pc.cockTotal() == 1) eBuffer += "it gets";
-				else eBuffer += "they bigger";
-				eBuffer += " before your eyes, adding an inch or two of extra size just to give you a reason to watch them longer.";
+				if(pc.cockTotal() == 1) eBuffer += "it gets bigger";
+				else eBuffer += "they get bigger";
+				eBuffer += " before your eyes, adding an inch or two of extra size just to give you a reason to watch " + (pc.cockTotal() == 1 ? "it" : "them") + " longer.";
 
-				eBuffer += "\n\nWiping the drool from your chin, you put them away and try to go about your day without thinking of the enormous weight ";
+				eBuffer += "\n\nWiping the drool from your chin, you put " + (pc.cockTotal() == 1 ? "it" : "them") + " away and try to go about your day without thinking of the enormous weight ";
 				if(!pc.isCrotchExposed()) eBuffer += "stuffed into your [pc.lowerGarments]";
 				else if(pc.legCount > 1) eBuffer += "swinging between your [pc.legs]";
 				else eBuffer += "dangling in front of you";
@@ -1720,11 +1722,11 @@ public function treatmentHourProcs():void
 			//Possible Milk-Herm Perk (Milk for Cum)
 			if(treatedHours == 100 && pc.canLactate() && pc.cumType != GLOBAL.FLUID_TYPE_MILK)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " The worst part of being a cummy, constantly ready-to-go cow-[pc.boyGirl] is definitely the fluid problem. If you think about someone pretty, or the taste of your own dickskin, or the fucking a cow-girl till she’s dopey and mooing, you inevitably start to leak pre-cum all over yourself";
+				eBuffer += "\n\n" + logTimeStamp() + " The worst part of being a cummy, constantly ready-to-go cow-[pc.boyGirl] is definitely the fluid problem. If you think about someone pretty, or the taste of your own dickskin, or fucking a cow-girl until she’s dopey and mooing, you inevitably start to leak pre-cum all over yourself";
 				if(!pc.isNude()) eBuffer += " and your clothing";
 				eBuffer += ". And then you’ll inevitably wind up doing something sexy with yourself or someone else and getting even messier - and then you smell like your own [pc.cumNoun] a... Oh fuck, you’re dripping again!";
 				eBuffer += "\n\nSomething’s different this time, though. It’s not quite as viscous as it normally is, and though it’s white, it smells sweeter, almost creamy. You gather a dollop on your finger and hold it up to your nose. It smells like... like... milk! <b>Your ejaculate has been replaced with delicious, creamy milk!</b> You grab [pc.oneCock] and squeeze a dollop onto your palm to drink. This is <i>awesome</i>.";
-				eBuffer += "\n\nCould your cockmilk still knock someone up? Like, could you stuff a girl full of milk and make her have a baby? You have a hunch the answer is yes, but it’d be way more fun to find out fiddle with the scanner on your boring old Codex.";
+				eBuffer += "\n\nCould your cockmilk still knock someone up? Like, could you stuff a girl full of milk and make her have a baby? You have a hunch the answer is yes, but it’d be way more fun to find out than to fiddle with the scanner on your boring old Codex.";
 				pc.cumType = GLOBAL.FLUID_TYPE_MILK;
 				pc.orgasm();
 				pc.boostCum(5);
@@ -1736,7 +1738,7 @@ public function treatmentHourProcs():void
 				eBuffer += "\n\n" + logTimeStamp() + " The strangest thing happens while you’re walking. You trip - but that isn’t the strange part. As you’re falling, flailing in absolute panic, your [pc.cocks] start";
 				if(pc.cockTotal() == 1) eBuffer += "s";
 				eBuffer += " firing cum everywhere.";
-				if(!pc.isCrotchExposed()) eBuffer += " Your [pc.lowerGarments] catch most of it, ensuring that you’re slicked in [pc.cum] from the waist down.";
+				if(!pc.isCrotchExposed()) eBuffer += " Your [pc.lowerGarment] catches most of it, ensuring that you’re slicked in [pc.cum] from the waist down.";
 				else eBuffer += " There’s a small lake of [pc.cum] on the ground by the time you make contact, slicking the entire front half of your body in your own delightful ejaculate.";
 				eBuffer += " You stumble up on your [pc.feet], feeling a little drained, a little confused, and unsure of just why <b>you’re able to cum when panicked.</b>";
 				eBuffer += "\n\nMaybe there’s a use for such a talent you haven’t considered, aside from sexual relief at inappropriate times.";
@@ -2720,7 +2722,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 					else eBuffer += "it ";
 					eBuffer += "some attention, or find a slippery girl in need of a good reaming soon.";
 				}
-				else eBuffer += " You give yourself a comforting squeeze and move on, revelling in the sensuous warmth that infuses you.";
+				else eBuffer += " You give yourself a comforting squeeze and move on, reveling in the sensuous warmth that infuses you.";
 
 			}
 		}
