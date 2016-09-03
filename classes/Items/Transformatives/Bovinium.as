@@ -499,14 +499,6 @@ package classes.Items.Transformatives
 					output("\n\nThat’s not enough for the drug, though. Not by a long shot! After a few moments, you see <b>thick, curly fur starts to grow on your new-grown legs</b>, covering them up to the upper thighs. At least you’ll be warm in the winter!");
 
 					output("\n\nThe bottoms of your legs take form: <b>rather than feet, they mutate into distinctly animalistic hooves.</b> You spend a good long while standing up and adjusting to your new gait, wobbling around until you get your footing. Or hoofing, as the case may be.");
-					
-					target.legCount = 2;
-					target.genitalSpot = 0;
-					target.legType = GLOBAL.TYPE_BOVINE;
-					
-					target.legFlags = [];
-					target.addLegFlag(GLOBAL.FLAG_HOOVES);
-					target.addLegFlag(GLOBAL.FLAG_FURRED);
 				}
 				//PC was a taur:
 				else if (target.isTaur())
@@ -519,16 +511,7 @@ package classes.Items.Transformatives
 						target.legType = GLOBAL.TYPE_BOVINE;
 						target.addLegFlag(GLOBAL.FLAG_FURRED);
 					}
-					target.genitalSpot = 0;					
-					target.legCount = 2;
-					target.legFlags = [];
-					target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-
-					if (target.hasLegFlag(GLOBAL.FLAG_HOOVES))
-					{
-						output("\n\nThe bottoms of your legs take form: <b>rather than feet, they mutate into distinctly animalistic hooves.</b> You spend a good long while standing up and adjusting to your new gait, wobbling around until you get your footing. Or hoofing, as the case may be.");
-						target.addLegFlag(GLOBAL.FLAG_HOOVES);
-					}
+					if (!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output("\n\nThe bottoms of your legs take form: <b>rather than feet, they mutate into distinctly animalistic hooves.</b> You spend a good long while standing up and adjusting to your new gait, wobbling around until you get your footing. Or hoofing, as the case may be.");
 				}
 				//PC was bipedal already:
 				else
@@ -536,12 +519,15 @@ package classes.Items.Transformatives
 					output("\n\nYou feel your [pc.legOrLegs] shifting, the [pc.skinFurScales] on them squirming and moving. After a few tense moments, <b>a thick coating of curly fur sprouts from your [pc.legOrLegs], covering them to the upper thigh</b>.");
 					//if not already hooves: 
 					if(!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they’re done, <b>you have a pair of cow-like hooves!</b>.");
-					target.legType = GLOBAL.TYPE_BOVINE;
-					target.legFlags = [];
-					target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-					target.addLegFlag(GLOBAL.FLAG_HOOVES);
-					target.addLegFlag(GLOBAL.FLAG_FURRED);
 				}
+				
+				target.legCount = 2;
+				target.genitalSpot = 0;
+				target.legType = GLOBAL.TYPE_BOVINE;
+				target.legFlags = [];
+				target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+				target.addLegFlag(GLOBAL.FLAG_HOOVES);
+				target.addLegFlag(GLOBAL.FLAG_FURRED);
 			}
 
 			//Moderate chance of nipple size increase
