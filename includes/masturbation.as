@@ -3305,7 +3305,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//Manual intro
 	else
 	{
-		output("Now that you finally have the time to spend some quality time with your [pc.cock " + x + "], it can’t get in your mouth soon enough. ");
+		output("Now that you finally have a moment to spend some quality time with your [pc.cock " + x + "], it can’t get in your mouth soon enough. ");
 		if(!pc.isCrotchExposed()) output("Your fingers fumble and slip over your clothes, clumsily tugging until they finally manage to let the poor, caged penis spring free.");
 		else 
 		{
