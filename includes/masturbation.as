@@ -3394,12 +3394,12 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 		output(" [pc.Milk] stains your body from the waist down. You could definitely use a shower... or someone else’s tongue.");
 		//9999 milksoaked status down the road?
 	}
+	//First time post-script addendum
+	if(pc.perkv1("Auto-Autofellatio") == 0) autoautofellatioNotice(); 
 	//Voluntary Beej gives 1 week cooldown
 	if(!special) pc.addPerkValue("Auto-Autofellatio",2,7);
 	//Involuntary give 3 day autocooldown
 	else pc.addPerkValue("Auto-Autofellatio",2,3);
-	//First time post-script addendum
-	if(pc.perkv1("Auto-Autofellatio") == 0) autoautofellatioNotice(); 
 	//Keep count, whynot.
 	pc.addPerkValue("Auto-Autofellatio",1,1);
 	pc.loadInMouth(pc);

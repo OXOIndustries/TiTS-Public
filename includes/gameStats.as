@@ -1446,13 +1446,13 @@ public function displayQuestLog(showID:String = "All"):void
 					output2("\n<b>* Current Effects:</b>");
 					switch(pc.statusEffectv1("The Treatment"))
 					{
-						case 0: output2(" Feminine, Cow"); break;
-						case 1: output2(" Masculine, Stud"); break;
-						case 2: output2(" Feminine, Stud"); break;
-						case 3: output2(" Unisex, Cow and Stud"); break;
-						case 4: output2(" Masculine, Amazonian"); break;
-						case 5: output2(" Feminine, Double Stud"); break;
-						case 6: output2(" Feminine, Undersized"); break;
+						case 0: output2(" Cow"); break;
+						case 1: output2(" Stud"); break;
+						case 2: output2(" Cum-Cow"); break;
+						case 3: output2(" Faux-Cow"); break;
+						case 4: output2(" Cow-mazon"); break;
+						case 5: output2(" Double Stud"); break;
+						case 6: output2(" Undersized"); break;
 					}
 					// Timer stuff
 					var treatedMinutes:Number = 10080 - pc.getStatusMinutes("The Treatment");

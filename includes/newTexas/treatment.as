@@ -47,13 +47,13 @@ v3 hour counter
 public function logTimeStamp():String
 {
 	var bufferButt:String = "";
-	bufferButt += "\\\[<b>D: " + days + " T: ";
+	bufferButt += "\\\\[<b>D: " + days + " T: ";
 	if(hours < 10) bufferButt += String(0) + hours;
 	else bufferButt += String(hours);
 	bufferButt += ":";
 	if(minutes < 10) bufferButt += String(0) + minutes;
 	else bufferButt += minutes;
-	bufferButt += "</b>\\\]";
+	bufferButt += "</b>\\\\]";
 	return bufferButt;
 }
 
@@ -3556,7 +3556,11 @@ public function autoautofellatioNotice():void
 {
 	var eBuffer:String = "";
 	eBuffer += "\n\n" + logTimeStamp() + " It’s super weird that would just suck yourself off without thinking about it, but then again, looking at your dick or even thinking about it too much makes your head feel sort of fuzzy and silly, like your dick is so awesome it can hypnotize you just by being there. You spend a few minutes imagining it bobbing back and forth to your heartbeat, then shake your head and smile, savoring the residual taste of [pc.cum] on your tonsils.";
-	eBuffer += "\n\n(<b>Gained Perk: Auto-Autofellatio</b> - Makes it difficult to avoid fellating yourself.)";
+	if(pc.perkv1("Auto-Autofellatio") == 0)
+	{
+		eBuffer += "\n\n(<b>Gained Perk: Auto-Autofellatio</b> - Makes it difficult to avoid fellating yourself.)";
+		if(!pc.hasPerk("Auto-Autofellatio")) pc.createPerk("Auto-Autofellatio",0,0,0,0,"You're so enamored with yourself that you can't resist a little self-love.");
+	}
 	eventBuffer += ParseText(eBuffer);
 }
 
