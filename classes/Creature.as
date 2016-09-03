@@ -7681,7 +7681,7 @@
 		{
 			if(!hasNipples()) return false;
 			//PC has reached lactation threshold!
-			if(milkMultiplier > 50 || milkFullness >= 50 || hasPerk("Mega Milk")) return true;
+			if(milkMultiplier > 50 || milkFullness >= 50 || hasPerk("Mega Milk") || hasPerk("Milk Fountain")) return true;
 			return false;
 		}
 		public function isLactating(): Boolean {
@@ -7689,7 +7689,7 @@
 			if(canLactate())
 			{
 				//Is there enough milk in yer tits for lactation?
-				if(milkFullness >= 10 || milkQ() >= 1000 || hasPerk("Mega Milk"))
+				if(milkFullness >= 10 || milkQ() >= 1000 || hasPerk("Mega Milk") || hasPerk("Milk Fountain"))
 				{
 					//yes? true!
 					return true;
@@ -7700,18 +7700,19 @@
 		}
 		public function canMilkSquirt():Boolean
 		{
-			if(milkFullness >= 80 || hasPerk("Mega Milk")) return true;
+			if(milkFullness >= 80 || hasPerk("Mega Milk") || hasPerk("Milk Fountain")) return true;
 			return false;
 		}
 		public function hasMilkPerk():Boolean
 		{
-			if(hasPerk("Milky") || hasPerk("Mega Milk") || hasPerk("Treated Milk") || hasPerk("Honeypot")) return true;
+			if(hasPerk("Milky") || hasPerk("Mega Milk") || hasPerk("Treated Milk") || hasPerk("Honeypot") || hasPerk("Milk Fountain")) return true;
 			return false;
 		}
 		public function isMilkTank():Boolean
 		{
 			//Check for infinite lactation perks!
 			if(hasPerk("Honeypot")) return true;
+			if(hasPerk("Milk Fountain")) return true;
 			if(hasPerk("Milky") && hasPerk("Treated Milk")) return true;
 			return false;
 		}
