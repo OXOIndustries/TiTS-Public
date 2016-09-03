@@ -767,7 +767,7 @@ public function treatmentHourProcs():void
 				if(pc.elasticity < 2.5) pc.elasticity = 2.5;
 				for(var cuntCount:int = 0; cuntCount < pc.totalVaginas(); cuntCount++)
 				{
-					if(pc.vaginas[cuntCount].bonusCapacity < 150) pc.vaginas[cuntCount].bonusCapacity  = 150;
+					if(pc.vaginas[cuntCount].bonusCapacity < 150) pc.vaginas[cuntCount].bonusCapacity = 150;
 				}
 			}
 			//pc.createStatusEffect("Treatment Elasticity Report Q'ed");
@@ -3578,7 +3578,7 @@ public function autoCocknosisDistraction():void
 	eBuffer += "\n\nLike a snake-charmer’s pet, it seems to respond to your gaze, twitching lightly, shifting to lie against your other thigh. It lazily lengthens, straightening folds of flesh into a column, and you watch, spellbound, too hypnotized by the view of your own member to do anything about it. The base shifts powerfully, arcing upward before the rest of it, dragging the flaccid snake inevitably towards the sky. You can see the rhythms in its pulsations now, the obvious throbbing of the veins. It’s thickening as it rises.";
 	eBuffer += "\n\nYour [pc.tongue] slips out of your mouth while you watch, moist with drool, and still your [pc.cockBiggest] engorges further. It straightens out as it rises until it transforms into a firm column of needy cockmeat, slowly bobbing back and forth in front of your eyes. It dribbles, releasing pearlescent globs of pre-cum. The glittering juices only further serve to deepen your dick-induced trance, helping you ignore everything that isn’t the pleasant, rhythmic pulsing of your own boner.";
 	eBuffer += "\n\nHours pass by in a blur. When something finally distracts you, your lips are chapped and your [pc.cocks] ache";
-	if(pc.cockTotal() > 1) eBuffer += "s";
+	if(pc.cockTotal() == 1) eBuffer += "s";
 	eBuffer += ".";
 	if(pc.hasVagina()) eBuffer += " The ground below is absolutely soaked in your pussy juices.";
 	eBuffer += " You’re as pent up as you’ve ever been, like your body spent the entire time doing nothing but turning you on and brewing ever more [pc.cum] in your [pc.balls].";
