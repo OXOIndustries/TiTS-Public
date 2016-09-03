@@ -1550,7 +1550,7 @@ public function treatmentHourProcs():void
 			}
 			//57 hours:
 			//Dick expands in size. Grow balls if none
-			if(treatedHours == 57)
+			if(treatedHours == 57 && pc.hasCock())
 			{
 				if(pc.cockTotal() == 1)
 				{
@@ -1587,6 +1587,7 @@ public function treatmentHourProcs():void
 						if(pc.canAutoFellate(-1)) eBuffer += " A quick check reveals that you can’t... at least not yet. Maybe soon.";
 					}
 					pc.balls++;
+					if(pc.ballSizeRaw < 2) pc.ballSizeRaw = 2;
 				}
 				//Multiple - grow slightly
 				else if(pc.balls > 1)
@@ -1618,6 +1619,8 @@ public function treatmentHourProcs():void
 					if(pc.canAutoFellate(-1)) eBuffer += " All you need to do is slip your [pc.cockHeadBiggest] into your lips and start sucking, and you’ll find out.";
 					else eBuffer += " All you need to do is get a little longer so that you can slip your [pc.cockHeadBiggest] between your lips, and you can suck till you find out.";
 					eBuffer += " Ooh, that’d be nice....";
+					pc.balls = 2;
+					if(pc.ballSizeRaw < 2) pc.ballSizeRaw = 2;
 				}
 				//All - max lust
 				pc.lust(pc.lustMax());
@@ -1653,15 +1656,18 @@ public function treatmentHourProcs():void
 				eBuffer += " is always going to be ready to please.";
 
 				//MIN LUST BOOOOST
-				eBuffer += "\n\n(<b>Gained Perk: Treated Readiness</b> - Increases minimum lust to 33, ensuring you're always ready to go.)";
-				pc.createPerk("Treated Readiness",0,0,0,0,"Increases minimum lust to 33, ensuring you're always ready to go.");
+				if(!pc.hasPerk("Treated Readiness"))
+				{
+					eBuffer += "\n\n(<b>Gained Perk: Treated Readiness</b> - Increases minimum lust to 33, ensuring you're always ready to go.)";
+					pc.createPerk("Treated Readiness",0,0,0,0,"Increases minimum lust to 33, ensuring you're always ready to go.");
+				}
 				pc.orgasm();
 				for(x = 0; x < pc.cockTotal(); x++)
 				{
 					pc.cocks[x].cLengthRaw += 2 + rand(2);
 				}
 				pc.ballSizeRaw += 5+rand(5);
-				pc.refractoryRate = 35;
+				pc.refractoryRate += 35;
 				pc.boostCum(25);
 			}
 			//73 hours:
@@ -1671,6 +1677,9 @@ public function treatmentHourProcs():void
 				eBuffer += "\n\n" + logTimeStamp() + " Your musings are interrupted by a sudden swaying from your [pc.balls]. " + (pc.balls == 1 ? "It wobbles" : "They wobble") + " so heavily that you can’t possibly ignore it, and when you reach down to shift " + (pc.balls == 1 ? "it" : "them") + ", you discover that " + (pc.balls == 1 ? "it’s" : "they’ve") + " grown bigger over the last half day or so. You gently squeeze and moan, feeling a little pre-cum ooze out from the tip";
 				if(pc.cockTotal() > 1) eBuffer += "s";
 				eBuffer += " of your [pc.cocks]. The little cum " + (pc.balls == 1 ? "factory seems" : "factories seem") + " to be constantly swelling in size and pleasurability.";
+				
+				pc.ballSizeRaw += 5 + rand(5);
+				
 				if(pc.ballDiameter() > pc.biggestTitSize()) eBuffer += " If this keeps up, people are going to pay more attention to them than your breasts! ...Though you’re starting to think balljobs might be more fun than titfucks.";
 				pc.lust(5);
 				pc.boostCum(10);
@@ -1750,6 +1759,8 @@ public function treatmentHourProcs():void
 			//Massive dick growth leading to autofellatio. PC marvels at how it’s just as good as sex, maybe better. (Chance of <i>“Autofellatio Queen perk unlock. Chance of Autococknosis perk unlock)
 			if(treatedHours == 125 && pc.hasCock() && pc.genitalLocation() <= 1)
 			{
+				var dickBiggered:Boolean = false;
+				
 				//Can already autofellate - no cock growth - short intro
 				if(pc.canAutoFellate(-1))
 				{
@@ -1761,7 +1772,7 @@ public function treatmentHourProcs():void
 					eBuffer += "pre, only stopping when you feel your drool splashdown onto the eager tip. <i>“Fuck it,”</i> you figure. Your cock clearly needs sucking.";
 				}
 				//Else grow till can fellate - Boom boom bigcock
-				{
+				else {
 					x = pc.longestCockIndex();
 					eBuffer += "\n\n" + logTimeStamp() + " [pc.OneCock] slaps accusingly against your [pc.belly], then your [pc.chest]. It’s growing again, faster than before. The [pc.cockHead " + x + "] is getting wider and wider as it climbs up to your collarbone, the straining surface glossy and taut, polished by the suddenly oozing pre-cum that pours from the winking slit at the summit. You rub it encouragingly";
 					if(pc.biggestTitSize() >= 3) eBuffer += " as it batters through your cleavage";
@@ -1775,7 +1786,7 @@ public function treatmentHourProcs():void
 						backupCount++;
 					}
 					if(backupCount >= 99) output(" <b>ERROR. Something was fucked with dick growth.</b>");
-					var dickBiggered:Boolean = true;
+					dickBiggered = true;
 					eBuffer += "\n\nYou barely notice your drool until it lands on the fattening rod, drooling down the side, greasing hands that suddenly seem determined to pump it faster than a butter churn. You moo, still staring at your member. Then a thought comes to mind - there’s a cock in front of you and your mouth is open. Why aren’t you sucking it? Why aren’t you slobbering all over that prick until its owner is gurgling and cumming?";
 				}
 				//Suck dat chode
@@ -1807,8 +1818,11 @@ public function treatmentHourProcs():void
 				//Gain Autofellatio Queen perk
 				pc.orgasm();
 				pc.energy(20);
-				eBuffer += "\n\n(<b>Gained Perk: Autofellatio Queen</b> - Allows you to recover energy by drinking your own seed.)";
-				pc.createPerk("Autofellatio Queen",0,0,0,0,"Allows you to recover energy by drinking your own seed.");
+				if(!pc.hasPerk("Autofellatio Queen"))
+				{
+					eBuffer += "\n\n(<b>Gained Perk: Autofellatio Queen</b> - Allows you to recover energy by drinking your own seed.)";
+					pc.createPerk("Autofellatio Queen",0,0,0,0,"Allows you to recover energy by drinking your own seed.");
+				}
 			}
 			//130 hours:
 			//Catch balls swelling and cock drooling
@@ -1848,7 +1862,7 @@ public function treatmentHourProcs():void
 				if(!pc.hasStatusEffect("Blue Balls"))
 				{
 					pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-					pc.ballFullness = 100;
+					if(pc.ballFullness < 100) pc.ballFullness = 100;
 				}
 				//Orgasm -> +5 lust
 				pc.orgasm();
@@ -1863,7 +1877,7 @@ public function treatmentHourProcs():void
 			}
 			//160 Hours:
 			//Possible Milk Fountain Perk
-			else if(treatedHours == 160 && pc.canLactate() && pc.hasPerk("Milk Fountain"))
+			else if(treatedHours == 160 && pc.canLactate() && !pc.hasPerk("Milk Fountain"))
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.nipples] feel warm and... wet. You reach up to feel, ";
 				if(!pc.isChestExposed()) eBuffer += "rubbing them through your dampening [pc.upperGarment]";
@@ -3547,7 +3561,7 @@ public function treatmentCumCowExhibitionism():void
 	eBuffer += "\n\nIt’s a vicious cycle, really. People see that you’re a cow-[pc.boyGirl] with a lot going on down below, and it turns you on, so your equipment gets even bigger and more obvious. Then still more eyes glue themselves to your equipment, and it’s everything you can do to keep from wrapping your hands around your [pc.cocks] and moaning, letting the high-pitched cries of your voice lure more onlookers to watch your impromptu show.";
 	eBuffer += "\n\nF-fuck, you’re starting to drool. You’d better go blow off some steam before that fantasy becomes a reality! <b>You suppose you’re an exhibitionist now.</b>";
 	//Instantly exhibitionist.
-	pc.exhibitionismRaw = 100;
+	if(pc.exhibitionismRaw < 100) pc.exhibitionismRaw = 100;
 	pc.removeStatusEffect("Treatment Exhibitionism Gain 4 DickGirls");
 	eventBuffer += ParseText(eBuffer);
 }
@@ -3586,7 +3600,7 @@ public function autoCocknosisDistraction():void
 	if(!pc.hasStatusEffect("Blue Balls"))
 	{
 		pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-		pc.ballFullness = 100;
+		if(pc.ballFullness < 100) pc.ballFullness = 100;
 	}
 	output(ParseText(eBuffer));
 }
