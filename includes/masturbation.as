@@ -154,7 +154,17 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = singleDickFap;
 		faps.push(fap);
 	}
-	
+	if (pc.canAutoFellate(-1))
+	{
+		eventBuffer += "\n\nFAPPY TIMES!";
+		fap = new FapCommandContainer();
+		fap.text = "Autofellatio";
+		fap.func = cumCowAutoFellatio;
+		fap.ttHeader = "Autofellatio";
+		fap.ttBody = "Suck your own dick.";
+		faps.push(fap);
+	}
+	eventBuffer += "\n\nPOST FAPPY TIMES!";
 	if (pc.cockTotal() >= 2)
 	{
 		fap = new FapCommandContainer();
@@ -233,7 +243,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 
 	//tentacle massage fun
 	//Accessed from masturbate menu on ship. Req's genitals.
-	if(celiseIsCrew() && flags["GIGACELISE"] == 1&& (pc.hasCock() || pc.hasVagina()) && InShipInterior())
+	if(celiseIsCrew() && flags["GIGACELISE"] == 1 && (pc.hasCock() || pc.hasVagina()) && InShipInterior())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "GooMassage";
@@ -3271,4 +3281,132 @@ public function shipShowerFappening(scene:String = ""):void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+//CumCow Autofellatio w/Optional Cocknosis intro
+public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 110):void
+{
+	clearOutput();
+	showName("\nCOCK");
+	var x:int = pc.aCockToSuck();
+	if(x < 0) x = pc.biggestCockIndex();
+	if(special)
+	{
+		output("You stop to take a break, but one thought keeps intruding on your desire to rest: <i>I’ve got an enormous boner.</i> You aren’t sure how long you’ve had it, but now that you’ve taken notice of the throbbing length, it’s impossible to ignore");
+		if(!pc.isCrotchExposed()) output(" it shifting under your [pc.lowerGarment]");
+		else output(" even the briefest contact against its bare [pc.dickSkin " + x + "]");
+		output(", bombarding your nervous system with messages of pleasure and hormones that beg you to touch and squeeze. It’d be a real shame if it wilted away with getting to cum at all, transformed by your inaction into a lonely, sad little penis.");
+
+		output("\n\n");
+		if(!pc.isCrotchExposed()) output("How fortunate then that your hands have already fished it out of your [pc.lowerGarments] to let it thrust proudly up toward the sky.");
+		else output("How fortunate that you didn’t try to cage such a magnificent member then, letting it just up at the sky.");
+		output(" And your mouth, you realize. Your dick is aimed squarely at your mouth. The [pc.cockHead " + x + "] looks so big from here, pulsing gently, eagerly, shining dully in light. It seems like it’s getting bigger, but that’s just you leaning down for a better look, crossing your eyes to fix the cum-slit firmly in your gaze. A pearl of pre appears within it, shining with the promise of more to come.");
+	}
+	//Manual intro
+	else
+	{
+		output("Now that you finally have the time to spend some quality time with your [pc.cock " + x + "], it can’t get in your mouth soon enough. ");
+		if(!pc.isCrotchExposed()) output("Your fingers fumble and slip over your clothes, clumsily tugging until they finally manage to let the poor, caged penis spring free.");
+		else 
+		{
+			output("And it’s right there. It’s jutting straight up at you");
+			if(pc.lust() < 75) output(", erect almost as soon as you had the idea");
+			else output(", waiting all this time for you to take note of how badly it needed sucked");
+			output(".");
+		}
+		output(" It’s beautiful. Your prick is a biological work of art, perfected by evolution and engineering into something so fabulous that’s it’s easy to lose yourself in its gleaming, perfect skin.");
+		output("\n\nIts growing bigger, or you’re leaning closer to it, one of the two. You don’t really care. The result is the same either way: you get a better view of this perfect penis. You get to go cross-eyed trying to attain a better view of its magnificence. A gasp startles you until you realize made it, surprised by the sudden appearance of a perfect sphere of pre-cum, slowly expanding upon your phallic altar.");
+	}
+	//Merge
+	output("\n\nYou extend your [pc.tongue] to lick lips that suddenly feel dry and chapped, but you forget that entirely the moment it accidentally makes contact with your cock’s perfect crown. Brushing it lovingly against the underside of your dick, you let your eyelashes flutter and give yourself over to your instinct’s demands, bobbing needfully downward, smearing pre-cum and spit everywhere you can.");
+	output("\n\nYou used to think that you had a mouth for eating, but the scales have fallen from your eyes, revealing the truth of your oral orifice: it exists to please penises, yours especially. If it didn’t, why would your lips buzz so hotly when they came in contact with cock? Why would your uvula and tonsils knowingly flatten down to stay out of the way of the far more important organ? And if you weren’t meant to worship your cock, then why would Treatment make yours such a delicious, drooly dipstick?");
+	output("\n\nPre-cum percolates up your hypersensitive urethra, pumping faster as you caress it from the outside. It rolls onto your tongue and down your throat in bubbly bursts.");
+	if(pc.biggestTitSize() >= 6) output(" You squeeze your [pc.chest] down on either side encouragingly, smothering the all-important phallus in flesh that feels custom designed to wrap around it. There’s already so much spit and pre that you can tit-fuck yourself with ease, pumping your cleavage up and down with frenetic energy, only pausing to mix things up by gently squeezing and caressing yourself with your own milk-laden tit.");
+	else output(" There’s so much spit and pre that you can pump your [pc.cock " + x + "] with ease, jacking one hand with frenetic energy while the other plies the willing cumspout with teasing caresses designed to make it jerk and quiver.");
+	output("\n\nThe best part is that you don’t even have to think about it. Your hands know how ");
+	if(pc.biggestTitSize() >= 6) output("to move your [pc.chest] for maximum effect");
+	else output("to work the shaft for maximum effect");
+	output(", and your mouth sucks, licks, and cradles ");
+	if(!silly) output("more efficiently than a custom-designed sex-toy");
+	else output("more efficiently than some kind of cock-sucking machine");
+	output(". That leaves your mind free to gorge itself on the incredible sensory buffet. The ever present, subtle dickmusk swirls around inside your head, captured in happy pink bubbles so that you’ll never forget a mote of the delectable odor. They float on a lovely, cummy ocean distilled from the salty taste of cock, itself rocking in gentle waves, stirred by the all-consuming sight of prick bouncing in and out of [pc.lipColor] lips.");
+	output("\n\nPart of you wishes you could climb out of your body just to watch. It must look so fucking good, seeing some big-breasted cow-slut short-circuiting her brain-cells on the feelings from her own [pc.cock " + x + "]. You want to see your mouth straining to take the girth");
+	if(pc.biggestTitSize() >= 6) output(", the way your tits deform and ripple around the unyielding pole");
+	output(", the glossy shine of drooling spit covering every inch, and the way your eyes must be rolling back, dilated as wide as dinner plates by pleasure and passion.");
+	output("\n\nIf someone found you like this, they could pick you up and fuck you. You wouldn’t mind. If anything, you’d thank you for helping drain the swirling, sensuous heat from ");
+	if(pc.balls <= 1) output("a ");
+	output("[pc.balls] that feel");
+	if(pc.balls <= 1) output("s");
+	output(" a bit too full to be believed. You’d suck them off afterward, just to thank them, knowing full well that their cock could never taste as heavenly as your own, that their cum would be a pale shadow of the ambrosial juices now beginning to well up onto your tongue, bathing your palate in divinity.");
+	output("\n\nAnd that [pc.cum] is coming. No dick could resist suck a perfect cock-sucker, especially not your own. It’s meant to give its bounty to your mouth on command, you’re sure of it. Muscles twist and tighten inside you, preparing to unleash a thick wad of cum, building the pressure higher and higher. Your finger grazes a vein just right, and the pressure releases, boiling up out of your dick in a wave. Spunk splatters into the back of your throat, so deep that you can barely taste it before it rushes down into your stomach.");
+	output("\n\nWhile you’re sad to miss the first burst of ejaculate, you know that going deep is providing the strongest, most intense possible pleasure for your cock. You hold it there, milking it");
+	if(pc.biggestTitSize() >= 6)
+	{
+		output(" with ");
+		if(pc.canMilkSquirt()) output("squirting");
+		else output("pillowy");
+		output(" tits");
+	}
+	output(", swallowing noisily");
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output(", putting on a hell of a show for the slowly gathering crowd. All the eyes on you and your [pc.cock " + x + "] just makes you orgasm that much harder");
+	output(". Only after your orgasm begins to ebb do you pull your head back");
+	if(pc.cumQ() >= 2000) output(", conscious of the sloshing from your abused tummy,");
+	output(" to let the rest of your [pc.cumFlavor] [pc.cum] splash across sparking, overwhelmed taste buds.");
+	//More than 40,000 mLs of cum
+	if(pc.cumQ() >= 40000) 
+	{
+		output("\n\nSadly, you’re too virile even for yourself. The [pc.cumNoun] is still shooting out like water from a firehose, and there isn’t room in your bloated gut for another drop. Catching enough to fill your mouth to the brim, you let the rest spray over your face, painting you [pc.cumColor] in the process. Streaks of it run down your neck, shoulders, and [pc.chest], but you have a hard time caring. If anyone notices, they’ll just get to see what a devoted cock-sucker you’ve become.");
+		applyCumSoaked(pc);
+	}
+	//merge
+	output("\n\nYou roll the treat around as long as you dare, bulging your cheeks so that you can contain both it and your incessant salivation. You’d hold it in there forever if you could, but even the best things must have an end. You swallow the [pc.cum] in one enormous gulp, then let loose a rather unlady-like burp, forgetting to cover your mouth until you taste the flavor of your own warm jizz on your tired tongue.");
+	
+	//If auto-suck, always this. Otherwise 50/50.
+	if(special || rand(2) == 0)
+	{
+		output("\n\nYour chrono says " + num2Text(Math.floor(timeStuff/60)) + " hours have passed.");
+		if(pc.perkv1("Auto-Autofellatio") == 0) output(" Did you spend the whole time sucking your own dick?");
+		else output(" What a great way to spend your time!");
+	}
+	//Else
+	else
+	{
+		output("\n\nOnce your [pc.cock " + x + "] finally goes soft, you check your Codex’s chrono, delighted to discover that you only spent the better part of two hours sucking yourself off. There’s not a much better compromise between indulgence and responsibility than keeping yourself to a reasonable cock-worship session.");
+	}
+	//No new PG - extra cocks
+	if(pc.cockTotal() > 1)
+	{
+		output(" You are an absolute mess, however. While you were fixated on the biggest, meatiest cock your body had to offer, the other");
+		if(pc.cockTotal() > 2) output("s were free to sympathetically spurt");
+		else output(" was free to sympathetically spurt");
+		output(" all over you");
+		if(pc.canMilkSquirt()) output(" - Not to mention all the [pc.milk] that sprayed out of your [pc.chest] the moment you came");
+		output(". You could definitely use a shower... or someone else’s tongue.");
+		applyCumSoaked(pc);
+	}
+	//No new PG - milkSquirt but no extra dicks
+	else if(pc.canMilkSquirt())
+	{
+		output(" You are an absolute mess, however. You were so fixated on your lovely tool that you didn’t even notice the [pc.milk] spraying from your [pc.chest].");
+		if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) output(" You smell like a dairy.");
+		else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY && CodexManager.entryUnlocked("Zil")) output(" You smell like a zil orgy.");
+		else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" You smell like a beehive.");
+		output(" [pc.Milk] stains your body from the waist down. You could definitely use a shower... or someone else’s tongue.");
+		//9999 milksoaked status down the road?
+	}
+	//Voluntary Beej gives 1 week cooldown
+	if(!special) pc.addPerkValue("Auto-Autofellatio",2,7);
+	//Involuntary give 3 day autocooldown
+	else pc.addPerkValue("Auto-Autofellatio",2,3);
+	//First time post-script addendum
+	if(pc.perkv1("Auto-Autofellatio") == 0) autoautofellatioNotice(); 
+	//Keep count, whynot.
+	pc.addPerkValue("Auto-Autofellatio",1,1);
+	pc.loadInMouth(pc);
+	processTime(timeStuff);
+	restHeal();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+
 }

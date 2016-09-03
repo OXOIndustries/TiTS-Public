@@ -216,6 +216,46 @@
 		true);
 
 	inputManager.AddBindableControl(
+		"Force Amazon Treatment",
+		"Force next Treatment use to make the user an Amazon.",
+		function():void {
+			Cheats.OutputStuff();
+			kGAMECLASS.output("\n\nNext Treatment dose is a guaranteed Amazon!");
+			kGAMECLASS.flags["TREATMENT_HAX"] = 4;
+		},
+		true);
+
+	inputManager.AddBindableControl(
+		"Force Cum-Cow Treatment",
+		"Force next Treatment use to make the user a Cum-Cow.",
+		function():void {
+			Cheats.OutputStuff();
+			kGAMECLASS.output("\n\nNext Treatment dose is a guaranteed Cum-Cow!");
+			kGAMECLASS.flags["TREATMENT_HAX"] = 2;
+		},
+		true);
+
+	inputManager.AddBindableControl(
+		"Force Bull Treatment",
+		"Force next Treatment use to make the user a Bull.",
+		function():void {
+			Cheats.OutputStuff();
+			kGAMECLASS.output("\n\nNext Treatment dose is a guaranteed Bull!");
+			kGAMECLASS.flags["TREATMENT_HAX"] = 1;
+		},
+		true);
+
+	inputManager.AddBindableControl(
+		"Force Cow-Girl Treatment",
+		"Force next Treatment use to make the user an Cow-Girl.",
+		function():void {
+			Cheats.OutputStuff();
+			kGAMECLASS.output("\n\nNext Treatment dose is a guaranteed Cow-Girl!");
+			kGAMECLASS.flags["TREATMENT_HAX"] = 0;
+		},
+		true);
+
+	inputManager.AddBindableControl(
 		"Infinte Item Use",
 		"Prevents items from being consumed on use.",
 		function():void {
@@ -256,6 +296,10 @@
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
 	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
+	inputManager.BindCheatSequence("Force Amazon Treatment", "amazon");
+	inputManager.BindCheatSequence("Force Cum-Cow Treatment", "cumcow");
+	inputManager.BindCheatSequence("Force Bull Treatment", "bull");
+	inputManager.BindCheatSequence("Force Cow-Girl Treatment", "bimbo");
 	inputManager.BindCheatSequence("Destinations Unlocked", "marcopolo");
 	inputManager.BindCheatSequence("Runamode Bess", "insaneinthemembrane");
 	

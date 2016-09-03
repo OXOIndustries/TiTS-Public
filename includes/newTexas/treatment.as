@@ -63,6 +63,22 @@ public function treatmentHourProcs():void
 	pc.addStatusValue("The Treatment",3,1);
 	var treatedHours:int = pc.statusEffectv3("The Treatment");
 	var x:int = 0;
+	//Genital fixin'
+	if(pc.statusEffectv1("The Treatment") == 2)
+	{
+		if(!pc.hasCock() && treatedHours > 49)
+		{
+			eBuffer += "\n\n" + logTimeStamp() + " A new penis springs out of your crotch new and fully formed. The Treatment seems determined to give you a dick. At least this one is like, totally cute.";
+			pc.createCock();
+			pc.setNewCockValues(0);
+		}
+		if(!pc.hasCock() && treatedHours > 57)
+		{
+			eBuffer += "\n\n" + logTimeStamp() + " A tremendous pressure builds in your loins, then releases into twin points of release - <b>your new testicles.</b> You suppose balls must be an important part of whatever you're going through.";
+			pc.balls = 2;
+			pc.ballSizeRaw = 4;
+		}
+	}
 	//Amazon Effects
 	//     1. Amazon Treatment Section
 	if(pc.statusEffectv1("The Treatment") == 4)
@@ -1191,7 +1207,7 @@ public function treatmentHourProcs():void
 	}
 	//Female Effects
 	//     2. Female Treatment Section
-	else if(pc.statusEffectv1("The Treatment") == 0)
+	else if(pc.statusEffectv1("The Treatment") == 0 || pc.statusEffectv1("The Treatment") == 2)
 	{
 		//Over Time Intelligence + Perks
 		//Intelligence/Willpower Reductions to 25 statquotient every 2 hours for 2 days. (time remaining % 60 == 0) for 48 hours. Played even if stats are done dropping.
@@ -1463,6 +1479,426 @@ public function treatmentHourProcs():void
 			//Weak Mind - Intelligence and Will losses doubled.
 			eBuffer += "\n\n(<b>Gained Perk: Weak Mind</b> - All intelligence and willpower losses are doubled.)";
 			pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
+		}
+		//SPECIAL CUMCOW STUFF :D
+		if(pc.statusEffectv1("The Treatment") == 2)
+		{
+			//49 hours:
+			//Grow a dick at 49 hours on the dot if doesn't have one. PC immediately becomes enthused.
+			if(treatedHours == 49)
+			{
+				if(!pc.hasCock())
+				{
+					eBuffer += "\n\n" + logTimeStamp() + " Whoah, your crotch feels all... warm and tingly!";
+					if(pc.isCrotchGarbed())
+					{
+						if(!pc.isCrotchExposed()) eBuffer += " You pull your [pc.lowerGarment] out of the way, releasing ";
+						else eBuffer += " You congratulate yourself on wearing something functional enough to allow you unimpeded access to ";
+					}
+					eBuffer += "your sordidly glowing loins.";
+					if(pc.hasVagina()) eBuffer += " [pc.GirlCum] runs down your [pc.legs] as you bend low to inspect the disturbance, accidentally putting your [pc.vaginas] on to display to anyone who dares take a peek.";
+					else eBuffer += " Your [pc.asshole] flexes sympathetically as you bend low to inspect the disturbance, putting its eagerly winking ring on to display to anyone who dares take a peek.";
+					eBuffer += " Stars! It feels so good you can barely stand!";
+					eBuffer += "\n\nYou spot the source of it all a moment later, ignorant of your [pc.butt] subtly lifting itself to better display itself. ";
+					if(pc.hasVagina()) eBuffer += "Right above your [pc.vaginas]";
+					else eBuffer += "Right in the middle of your pubic region";
+					eBuffer += " is a small bulge, red and angry and getting bigger by the minute. Gingerly, you reach down and nearly collapse from the pleasure. Touching the little nub is like touching a live wire, like fondling a clit after an hour of foreplay, like ecstatic lightning is coursing up your spine and into your brain.";
+					eBuffer += "\n\nYou sink to the ground, giiggling and cooing";
+					if(pc.legCount > 1) eBuffer += ", [pc.legs] akimbo";
+					eBuffer += ", and uncross your eyes. The bump is bigger now, maybe an inch long and visibly growing by the minute. You don’t even have to touch it; surges of delight pump out of it with every pulse of blood that surges in, feeding the bizarre growth. Confused and excited, you gently caress it, moaning as it engorges at your touch, feeling the tip gain a defining ridge, just like a penis.";
+					eBuffer += "\n\nYour eyes shoot open, but your hand won’t stop stroking what you now realize is <b>your new cock.</b> Every tug on the cute little rod is like food for the swelling, misplaced manhood, letting it get thicker, longer, and veinier. You whimper as a droplet of pre slips out, greasing your palm, and you stroke faster. You must look like quite a sight, dropped on your ass and furiously masturbating an increasingly respectable looking dick.";
+					eBuffer += "\n\nCum squirts out, cloudy and white, hard enough to slap into the underside of your chin, but you keep stroking, reveling in the pleasure and giggling in mad delight. <b>You’ve got a dick!</b> A dick that’s at six... no, seven inches long already! It surges one last time, oozing cum over your fingertips, then relaxes, spent for the moment.";
+					eBuffer += "\n\nNo wonder guys are so eager to get off all the time, if that’s what it feels like for them. It’s all warm and hot and demanding, and then there’s nothing but white-hot pleasure and cum and slickness and ohhh... you want to do it again. Your new dick twitches in agreement, bringing a smile to your lips and naughty thoughts to your mind. You can stroke it any time you want, and maybe someday you could even suck it. Your mouth waters at the unspoken thought.";
+					eBuffer += "\n\nWho cares why the Treatment gave you a dick. Dicks are <i>amazing</i>.";
+					pc.orgasm();
+					pc.createCock();
+					pc.setNewCockValues(0);
+				}
+				//Else - blurb about PC marvelling over how awesome their own dick is.
+				else
+				{
+					//Below 75% lust, acquire boner
+					if(pc.lust() < 75)
+					{
+						eBuffer += "\n\n" + logTimeStamp() + " Out of nowhere, you feel your [pc.cocks] erect, filling to a full tumescent state in a matter of seconds.";
+						if(!pc.isCrotchExposed())
+						{
+							if(pc.cockTotal() > 1) eBuffer += " They’re so hard that they threaten";
+							else eBuffer += " It’s so hard that it threatens";
+							eBuffer += " to split your [pc.lowerGarments] open. You do the sensible thing and pull your bottoms open before your inexplicable arousal overwhelms their structural integrity.";
+						}
+						eBuffer += " Fuck, ";
+						if(pc.cockTotal() == 1) eBuffer += "it’s";
+						else eBuffer += "they’re";
+						eBuffer += " as big as you’ve ever seen ";
+						if(pc.cockTotal() == 1) eBuffer += "it";
+						else eBuffer += "them";
+						eBuffer += ". The veins stand out like iron bars, the flesh taut and gleaming like polished silver. ";
+						if(pc.cockTotal() == 1) eBuffer += "It bounces";
+						else eBuffer += "They bounce";
+						eBuffer += " rhythmically with the beats of your heart, almost hypnotically.";
+					}
+					//Else
+					{
+						eBuffer += "\n\n" + logTimeStamp() + " [pc.EachCock], already hard, somehow seems to grow even harder. The full flesh tightens. The veins bulge. And the skin is pulled so taut by your tumescence that it gleams like the polished skin of a god.";
+					}
+					//Merge
+					eBuffer += "\n\nYou can’t manage to make yourself look away, but neither are you inclined to hide the sight of it with a trembling palm. So you do the only thing you can think of: stare at your own dick with a sense of growing appreciation. Sure, cocks seem pretty awesome, but this is <i>your</i> cock. This is an organ every bit as awesome as the rest of you, maybe more so. You memorize its every feature in perfect detail, watching it flex and ooze its eagerness. If it were on anyone else, you’d be between their knees, sucking. How lucky you keep it on your person at all times.";
+					eBuffer += "\n\nEventually, you shake yourself free the mesmeric charm, still just as hard and aching as before. Maybe it’s time you gave yourself some loving. Right now, you feel like your own hands would be almost as good as an eager mouth.";
+					pc.lust(45);
+				}
+			}
+			//57 hours:
+			//Dick expands in size. Grow balls if none
+			if(treatedHours == 57)
+			{
+				if(pc.cockTotal() == 1)
+				{
+					eBuffer += "\n\n" + logTimeStamp() + " Your cock fattens deliciously one moment, then surges forward the next, straining as it adds an inch, then two to its length. More and more cock pours forth from your loins, the growth aided by budding tumescence until your boner is bigger than ever before";
+					if(pc.cocks[0].hasFlag(GLOBAL.FLAG_FLARED)) eBuffer += ", the enormous flare bowing down under its own weight";
+					else if(pc.hasKnot(0)) eBuffer += ", the enormous knot pulsing with fitful bursts of pleasure, thick enough to break a bitch in half";
+					else if(pc.cocks[0].cType == GLOBAL.TYPE_FELINE) eBuffer += ", the rubbery nubs that cover it bigger and more sensitive than ever. A mere touch is enough to make you shiver";
+					else eBuffer += ", rigid and proud";
+					eBuffer += ". You stroke and giggle to yourself, just as pleased to be able to get a handjob as give one. It’s like multitasking but better!";
+					eBuffer += "\n\nBy the time you’re done grinning over your good fortune, your [pc.cock] is at least three or four inches longer and anxiously leaking pre. The gooey stuff is pouring out like water from a leaky faucet, enough to polish your jutting member, accompanied by an exotic sensation of tightness from somewhere inside you. It’s like something is reaching into you, threatening to squeeze the [pc.cumNoun] right out of you.";
+				}
+				//Dick Expansion - Multi
+				else
+				{
+					eBuffer += "\n\n" + logTimeStamp() + " Your cocks fatten delicious one moment, then surge forward the next, straining as they add an inch, then two to their perversely wobbling lengths. More and more cock pours forth from your loins, jostling against each other as they expand, the growth only aided by their increasingly tumescent forms until they’re unquestionably bigger than before.";
+					if(pc.cocks[0].hasFlag(GLOBAL.FLAG_FLARED)) eBuffer += " You can feel the heavy weight of your enormous flare dragging on dick lower, bowing it beneath the weight of its recently expanded, obscene crown.";
+					else if(pc.hasKnot(0)) eBuffer += " You can feel the paradoxical pulsing of your knot, fitfully broadcasting a newfound ability to break a bitch in half if you’re not careful.";
+					eBuffer += " You stroke two and giggle to yourself, just as pleased to give out a double handjob as to get one. It’s like, more efficient or something, like scratching two itches that seem unrelated but satisfy the exact same urge.";
+					eBuffer += "\n\nBy the time you’re able to think about anything but the friction of your palms on your pricks, your embiggened tools are at least three or four inches bigger and anxiously leaking pre. The gooey stuff pours out like water from leaky faucets, soaking your members in your pernicious polish. You aren’t sure <i>why</i> you’re so drippy, but you wager it has something to do with the budding tightness inside you, almost like something is about to squeeze the [pc.cumNoun] right out of you.";
+				}
+				for(var cc:int = 0; cc < pc.cockTotal(); cc++)
+				{
+					pc.cocks[cc].cLengthRaw += 3 + rand(2);
+				}
+				//Single Ball - add one
+				if(pc.balls == 1)
+				{
+					eBuffer += "\n\nThat pleasant internal pinching rises to a peak, then suddenly abates as you feel something <i>slip</i> down and out of you. Your [pc.sack] feels abruptly tight, and with a curious probe, you discover a second testicle has dropped. <b>You have two balls!</b> No wonder there was so much pre. You sloppily jack yourself for another minute, waiting to see if any other changes manifest, but none do.";
+					eBuffer += "\n\nYou may as well find a way to get off. You’re going to be useless until someone milks all this cum out. That someone could you";
+					if(pc.canAutoFellate(-1)) eBuffer += ". A blowie would feel good <i>and</i> give you a midday snack.";
+					else
+					{
+						eBuffer += ". Maybe you could even bend over and suck yourself off. It’d probably feel amazing <i>and</i> give you a lovely midday snack.";
+						if(pc.canAutoFellate(-1)) eBuffer += " A quick check reveals that you can’t... at least not yet. Maybe soon.";
+					}
+					pc.balls++;
+				}
+				//Multiple - grow slightly
+				else if(pc.balls > 1)
+				{
+					eBuffer += "\n\nThat pleasant pinching peaks, accompanied by a sudden straining of your [pc.sack], and then relaxes, bringing with it some additional weight";
+					if(pc.legCount > 1) eBuffer += " between your [pc.legs]";
+					else eBuffer += " below the waist";
+					eBuffer += ". You gingerly explore, giving yourself a gentle poke that nearly makes you squirt. <b>Your balls got bigger too!</b> No wonder there’s been so much pre-cum! The Treatment is making everything dick-related bigger and better, which would probably confuse you if you bothered to think about anything besides how good it feels.";
+					pc.ballSizeRaw += 2;
+					eBuffer += "\n\nYou sloppily jack yourself for another minute, waiting to see if any other changes manifest, but none do. And then you jack yourself some more, wondering if you should find a way to get off properly. You’re going to be useless until someone drains these nuts. Then again, that someone could be you. ";
+					if(pc.canAutoFellate(-1)) eBuffer += "How long has it been since you’ve sucked yourself off? Too long, for sure. T";
+					else
+					{
+						eBuffer += "There’s enough dick in your hands that you could probably suck yourself off if you were so inclined. Get a little pleasure and a little snack.";
+						eBuffer += " You lean down to check, and pout when you discover that you’re still too short. Damn. Still, t";
+					}
+					eBuffer += "he thought of all that cum in your mouth makes you a little lightheaded. Yeah, something oral would be nice....";
+				}
+				//None - GET YOU A SACK, SON
+				else
+				{
+					eBuffer += "\n\nThe pleasant pinching peaks into an uncomfortable mix of ecstasy and agony. It throbs inside you until you’re oozing pre and whimpering, incapable of doing anything anything but rubbing your sodden dick";
+					if(pc.cockTotal() > 1) eBuffer += "s";
+					eBuffer += " and hoping for some kind of release. Then something - no, two somethings slip inside you, and low, warm weight settles beneath your still-squeezing palms. You gingerly reach down and around to discover <b>your new balls</b>. It looks like you’re going to be a fully functional ";
+					if(pc.hasVagina()) eBuffer += "hermaphrodite";
+					else eBuffer += "shemale cow";
+					eBuffer += ".";
+					eBuffer += "\n\nContinuing to jack yourself off, you wait for any further changes, but nothing comes, not even your orgasm, at least not yet. If you’re going to be any use at all today, you’re probably going to need to find someone to get you off. Maybe that someone could be you. Does having proper balls make [pc.cumNoun] taste any better? Will it be thicker or sweeter?";
+					if(pc.canAutoFellate(-1)) eBuffer += " All you need to do is slip your [pc.cockHeadBiggest] into your lips and start sucking, and you’ll find out.";
+					else eBuffer += " All you need to do is get a little longer so that you can slip your [pc.cockHeadBiggest] between your lips, and you can suck till you find out.";
+					eBuffer += " Ooh, that’d be nice....";
+				}
+				//All - max lust
+				pc.lust(pc.lustMax());
+			}
+			//64 hours:
+			//Minimum lust raised to 33 + increase in refractory rate + ball swelling + cock swelling
+			if(treatedHours == 64 && pc.hasCock() && pc.balls > 1)
+			{
+				eBuffer += "\n\n" + logTimeStamp() + " A flush warms your cheeks out of nowhere, accompanied by a sudden surge in blood down below, making your [pc.cocks]";
+				if(!pc.isCrotchExposed()) eBuffer += " strain delightfully against your [pc.lowerGarment].";
+				else eBuffer += " jut delightfully in front of you.";
+				eBuffer += " Still more unexpected is the way they begin to lurch and jerk in the air, completely hands-free. The flush in your cheeks spreads to your [pc.chest], down your [pc.belly], and finally settles into your [pc.balls], suffusing them with wet heat. Whimpering, in delight and awe, you watch your [pc.cocks] begin to expand with every twitch, each movement heavier than the last.";
+				eBuffer += "\n\nOrgasm slaps you upside the head like a jilted lover, demanding your full attention as thick ropes of [pc.cum] erupt from your distended cum-slit";
+				if(pc.cockTotal() > 1) eBuffer += "s";
+				eBuffer += ", painting long lines across the ground in front of you even as you continue to grow. It’s incredible! All the pleasure of an orgasm is coursing through you mixed with the delight of ";
+				if(pc.cockTotal() == 1) eBuffer += "a ";
+				eBuffer += "swelling maleness";
+				if(pc.hasVagina()) eBuffer += ", or hermness in your case";
+				eBuffer += ". And you haven’t even touched yourself! You giggle drunkenly, spraying cum for what feels like hours, hypnotized by the increasing size and beauty of your members.";
+				eBuffer += "\n\nBy the time the spunk runs out, you’re pretty sure you’ve gained at least two or three inches of length, bigger balls, and a lovely memory to think about the next time you go for a stroke. Your wilting member";
+				if(pc.cockTotal() > 1) eBuffer += "s twitch";
+				else eBuffer += " twitches";
+				eBuffer += " at the thought, suddenly leaping back to full hardness. Are you... you’re ready to go again? You look down at the ";
+				if(pc.cumQ() < 1000) eBuffer += "small ";
+				eBuffer += "lake of cum below and the wonderful tool";
+				if(pc.cockTotal() > 1) eBuffer += "s";
+				eBuffer += " that created it and smile.";
+				eBuffer += "\n\nYou’re definitely good to go again. Somehow, you know that you’re always going to be ready to make a mess. It doesn’t matter if you just sucked yourself dry or spent an hour in New Texas’s milkers, your perfect prick";
+				if(pc.cockTotal() > 1) eBuffer += "s are";
+				else eBuffer += " is";
+				eBuffer += " is always going to be ready to please.";
+
+				//MIN LUST BOOOOST
+				eBuffer += "\n\n(<b>Gained Perk: Treated Readiness</b> - Increases minimum lust to 33, ensuring you're always ready to go.)";
+				pc.createPerk("Treated Readiness",0,0,0,0,"Increases minimum lust to 33, ensuring you're always ready to go.");
+				pc.orgasm();
+				for(x = 0; x < pc.cockTotal(); x++)
+				{
+					pc.cocks[x].cLengthRaw += 2 + rand(2);
+				}
+				pc.ballSizeRaw += 5+rand(5);
+				pc.refractoryRate = 35;
+				pc.boostCum(25);
+			}
+			//73 hours:
+			//Ball Growth
+			if(treatedHours == 73 && pc.balls > 0)
+			{
+				eBuffer += "\n\n" + logTimeStamp() + " Your musings are interrupted by a sudden swaying from your [pc.balls]. They wobble so heavily that you can’t possibly ignore it, and when you reach down to shift them, you discover that they’ve bigger over the last half day or so. You gently squeeze and moan, feeling a little pre-cum ooze out from the tip";
+				if(pc.cockTotal() > 1) eBuffer += "s";
+				eBuffer += " of your [pc.cocks]. The little cum factories seem to be constantly swelling in size and pleasurability.";
+				if(pc.ballDiameter() > pc.biggestTitSize()) eBuffer += " If this keeps up, people are going to pay more attention to them than your breasts! ...Though you’re starting to think balljobs might be more fun than titfucks.";
+				pc.lust(5);
+				pc.boostCum(10);
+			}
+			//80 hours:
+			//Cock growth
+			if(treatedHours == 80 && pc.hasCock())
+			{
+				eBuffer += "\n\n" + logTimeStamp() + " You were just thinking about how amazing your [pc.cocks] ";
+				if(pc.cockTotal() == 1) eBuffer += "looks and feels";
+				else eBuffer += "look and feel";
+				eBuffer += " when ";
+				if(pc.cockTotal() == 1) eBuffer += "it";
+				else eBuffer += "they";
+				eBuffer += " got hard out of nowhere! So you did the only sensible thing you could possibly do in such a situation - ";
+				if(!pc.isCrotchExposed()) 
+				{
+					eBuffer += "pull ";
+					if(pc.cockTotal() == 1) eBuffer += "it";
+					else eBuffer += "them";
+					eBuffer += " out and ";
+				}
+				eBuffer += "admire how amazingly sexy ";
+				if(pc.cockTotal() == 1) eBuffer += "it looks";
+				else eBuffer += "they look";
+				eBuffer += ". Your mouth waters at the sight, and you swear ";
+				if(pc.cockTotal() == 1) eBuffer += "it gets";
+				else eBuffer += "they bigger";
+				eBuffer += " before your eyes, adding an inch or two of extra size just to give you a reason to watch them longer.";
+
+				eBuffer += "\n\nWiping the drool from your chin, you put them away and try to go about your day without thinking of the enormous weight ";
+				if(!pc.isCrotchExposed()) eBuffer += "stuffed into your [pc.lowerGarments]";
+				else if(pc.legCount > 1) eBuffer += "swinging between your [pc.legs]";
+				else eBuffer += "dangling in front of you";
+				eBuffer += ". Needless to say, the organ between your ears won’t stop fantasizing about the one ";
+				if(pc.legCount > 1) eBuffer += "between your [pc.legs]";
+				else eBuffer += "below the belt";
+				eBuffer += ", and after a few minutes you stop trying to resist it. Your dick";
+				if(pc.cockTotal() > 1) eBuffer += "s are";
+				else eBuffer += " is";
+				eBuffer += " great anyway.";
+
+				for(x = 0; x < pc.cockTotal(); x++)
+				{
+					pc.cocks[x].cLengthRaw += 1 + rand(2);
+				}
+			}
+			//100 hours:
+			//Possible Milk-Herm Perk (Milk for Cum)
+			if(treatedHours == 100 && pc.canLactate() && pc.cumType != GLOBAL.FLUID_TYPE_MILK)
+			{
+				eBuffer += "\n\n" + logTimeStamp() + " The worst part of being a cummy, constantly ready-to-go cow-[pc.boyGirl] is definitely the fluid problem. If you think about someone pretty, or the taste of your own dickskin, or the fucking a cow-girl till she’s dopey and mooing, you inevitably start to leak pre-cum all over yourself";
+				if(!pc.isNude()) eBuffer += " and your clothing";
+				eBuffer += ". And then you’ll inevitably wind up doing something sexy with yourself or someone else and getting even messier - and then you smell like your own [pc.cumNoun] a... Oh fuck, you’re dripping again!";
+				eBuffer += "\n\nSomething’s different this time, though. It’s not quite as viscous as it normally is, and though it’s white, it smells sweeter, almost creamy. You gather a dollop on your finger and hold it up to your nose. It smells like... like... milk! <b>Your ejaculate has been replaced with delicious, creamy milk!</b> You grab [pc.oneCock] and squeeze a dollop onto your palm to drink. This is <i>awesome</i>.";
+				eBuffer += "\n\nCould your cockmilk still knock someone up? Like, could you stuff a girl full of milk and make her have a baby? You have a hunch the answer is yes, but it’d be way more fun to find out fiddle with the scanner on your boring old Codex.";
+				pc.cumType = GLOBAL.FLUID_TYPE_MILK;
+				pc.orgasm();
+				pc.boostCum(5);
+			}
+			//110 hours:
+			//Panic Ejaculation Unlock Chance
+			if(treatedHours == 110 && !pc.hasPerk("Panic Ejaculation"))
+			{
+				eBuffer += "\n\n" + logTimeStamp() + " The strangest thing happens while you’re walking. You trip - but that isn’t the strange part. As you’re falling, flailing in absolute panic, your [pc.cocks] start";
+				if(pc.cockTotal() == 1) eBuffer += "s";
+				eBuffer += " firing cum everywhere.";
+				if(!pc.isCrotchExposed()) eBuffer += " Your [pc.lowerGarments] catch most of it, ensuring that you’re slicked in [pc.cum] from the waist down.";
+				else eBuffer += " There’s a small lake of [pc.cum] on the ground by the time you make contact, slicking the entire front half of your body in your own delightful ejaculate.";
+				eBuffer += " You stumble up on your [pc.feet], feeling a little drained, a little confused, and unsure of just why <b>you’re able to cum when panicked.</b>";
+				eBuffer += "\n\nMaybe there’s a use for such a talent you haven’t considered, aside from sexual relief at inappropriate times.";
+				//Gain Panic Ejaculation! WEEE
+				eBuffer += "\n\n(<b>Gained Perk: Panic Ejaculation</b> - Allows you to squirt out a little cum while grappled, easing your escape!)";
+				pc.createPerk("Panic Ejaculation",0,0,0,0,"Allows you to squirt out a little cum while grappled, easing your escape!");
+			}
+			//125 hours:
+			//Massive dick growth leading to autofellatio. PC marvels at how it’s just as good as sex, maybe better. (Chance of <i>“Autofellatio Queen perk unlock. Chance of Autococknosis perk unlock)
+			if(treatedHours == 125 && pc.hasCock() && pc.genitalLocation() <= 1)
+			{
+				//Can already autofellate - no cock growth - short intro
+				if(pc.canAutoFellate(-1))
+				{
+					x = pc.longestCockIndex();
+					eBuffer += "\n\n" + logTimeStamp() + " [pc.OneCock] slaps accusingly against your [pc.chest]";
+					if(pc.biggestTitSize() >= 3) eBuffer += ", nestling itself into the cleavage";
+					eBuffer += ". You gasp and look down, suddenly overwhelmed by the sight of your [pc.cockHead " + x + "] throbbing just in front of you. Fuck, that’s sexy! You run a fingertip gingerly down your swollen cumvein, feeling it already filling up with your ";
+					if(pc.cumType == GLOBAL.FLUID_TYPE_MILK) eBuffer += "milky ";
+					eBuffer += "pre, only stopping when you feel your drool splashdown onto the eager tip. <i>“Fuck it,”</i> you figure. Your cock clearly needs sucking.";
+				}
+				//Else grow till can fellate - Boom boom bigcock
+				{
+					x = pc.longestCockIndex();
+					eBuffer += "\n\n" + logTimeStamp() + " [pc.OneCock] slaps accusingly against your [pc.belly], then your [pc.chest]. It’s growing again, faster than before. The [pc.cockHead " + x + "] is getting wider and wider as it climbs up to your collarbone, the straining surface glossy and taut, polished by the suddenly oozing pre-cum that pours from the winking slit at the summit. You rub it encouragingly";
+					if(pc.biggestTitSize() >= 3) eBuffer += " as it batters through your cleavage";
+					else eBuffer += " as it slips across your body";
+					eBuffer += ", leaving a trail of slime in its wake, climbing higher and higher.";
+
+					var backupCount:int = 0;
+					while(!pc.canAutoFellate(-1) && backupCount < 100)
+					{
+						pc.cocks[x].cLengthRaw += 2 + rand(4);
+						backupCount++;
+					}
+					if(backupCount >= 99) output(" <b>ERROR. Something was fucked with dick growth.</b>");
+					var dickBiggered:Boolean = true;
+					eBuffer += "\n\nYou barely notice your drool until it lands on the fattening rod, drooling down the side, greasing hands that suddenly seem determined to pump it faster than a butter churn. You moo, still staring at your member. Then a thought comes to mind - there’s a cock in front of you and your mouth is open. Why aren’t you sucking it? Why aren’t you slobbering all over that prick until its owner is gurgling and cumming?";
+				}
+				//Suck dat chode
+				eBuffer += "\n\nYour tongue touches down first, and that first contact is electric. A barrage of tastes and smells and synesthetic feelings assault you. You swear you can see the lust your cock exudes as a palpable object you could just reach out and touch, if you dared stop rubbing. You bend your neck a little and spread your [pc.lips] as wide as you dare, engulfing the [pc.cockHead " + x + "] in your slobbering maw a moment later. It feels just as good as it tastes.";
+				eBuffer += "\n\nYou suck greedily. The sloppy echoes of your overeager blowjob fill the air around you, but you suck uncaringly, worshiping the pole of your phallic totem with both hands, squeezing fat drops of tasty pre-cum onto your tongue. You swish it around your teeth, delighting in the sensuous flavor, and slide your tongue out further";
+				if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) eBuffer += ", wrapping it around your length like the stripes of a barber’s pole";
+				eBuffer += ", savoring the salty flavor of it all.";
+
+				eBuffer += "\n\nThis is addictive, part of you realizes, but you don’t let that stop you. You doubt you’d let anything stop you at this point. A squad of kaithrit Sphynx Warriors could stomp up to you, and you’d keep right on sucking, making love to your [pc.cock " + x + "] with your mouth so eagerly that you’re dizzy from forgetting for breathe. Cock tastes <i>amazing</i>, better than the sweetest fruit or the saltiest snack. No, not just any cock - your cock. Your cock is perfect. One last growth spurt thrusts it firmly into your maw, prying your [pc.lips] wider than ausar porn-star’s gaping cunt, filling you with phallus and pleasure alike.";
+				eBuffer += "\n\nYou flare your nostrils, drinking in as much air as you dare, then barrel down on your [pc.cock " + x + "], taking it as far back into your throat as you dare";
+				if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) eBuffer += ", feeling the flare sealing itself against your throat";
+				else if(pc.hasKnot(x)) eBuffer += ", feeling your knot inflate from the sensation";
+				eBuffer += ". Spit froths at the edges of your mouth and busily jacking hands while your urethra bloats in pre-orgasmic delight. [pc.Cum] mixes with the pre, and a sudden powerful contraction ripples through your muscles, curling tighter and tighter and tighter and then... relief!";
+				eBuffer += "\n\n[pc.Cum] splashes onto the back of your tongue and down your greedily drinking throat. You can feel it splashing into your stomach, the extra thick squirts flooding your neck in the brief moment before you completely devour them. Your eyes roll back, but you keep sucking and drinking on autopilot, like the Treatment has grown a part of your brain that can guide your body while you’re busy too busy cumming and quivering to think. It’s a good thing too, because you’re swallowing a lot of jizz. There’s enough to give your belly a little pudge and then some more, tingling on your tongue and delighting you with bliss-blasting mental fireworks.";
+				pc.loadInMouth(pc);
+				eBuffer += "\n\nThe [pc.cockHead " + x + "] escapes your [pc.lips] at some point, painting them in a lovely layer of [pc.cumColor]";
+				if(pc.cumQ() >= 10000) eBuffer += ", then keeps squirting, hosing extra spunk across your [pc.hair], shoulders, and back. It slaps wetly against you, getting a shower by standing under a firehose full of goo. There’s just so much cum! Your straining middle could never contain it all, much as you might want to, so you make do by rubbing the excess over your [pc.chest] and [pc.cocks] both, sometimes even catching some in your mouth so that you can spit it onto a spot that hasn’t been glazed yet.";
+				else eBuffer += ". More jizz dribbles out, the last dregs of your orgasm, so you take your time licking them from the pulsing length, greedily devouring every drop.";
+				if(pc.cockTotal() > 1)
+				{
+					eBuffer += " Then you turn to your other dick";
+					if(pc.cockTotal() > 1) eBuffer += "s";
+					eBuffer += ", polishing every square inch of cock-skin that you can lay your tongue on. Maybe next time you can squeeze more than one into your mouth...";
+				}
+				//Realize how fucking awesome it is and that you feel totes my goats refreshed.
+				eBuffer += "\n\nFuck yes, that was awesome! All that cumming, and if anything you feel even less tired than before. Is the Treatment like, making you better at sucking your own cock so that you can do it all the time? Or maybe it did something to your [pc.cumNoun] to help it restore your energy. Who cares! If you get tired, you can just lean down and get a cock-snack, then go right back to adventuring... or fucking, you suppose. You pat your ";
+				if(dickBiggered) eBuffer += "bigger ";
+				eBuffer += "dick and giggle delightedly, convinced that your mouth is going to taste like sex for the rest of your life.";
+				//Gain Autofellatio Queen perk
+				pc.orgasm();
+				pc.energy(20);
+				eBuffer += "\n\n(<b>Gained Perk: Autofellatio Queen</b> - Allows you to recover energy by drinking your own seed.)";
+				pc.createPerk("Autofellatio Queen",0,0,0,0,"Allows you to recover energy by drinking your own seed.");
+			}
+			//130 hours:
+			//Catch balls swelling and cock drooling
+			else if(treatedHours == 130 && pc.hasCock() && pc.balls > 1)
+			{
+				eBuffer += "\n\n" + logTimeStamp() + " Ooh, your [pc.balls] feel so warm they’re practically glowing! You dance in place, feeling them wobbling back and forth";
+				if(pc.legCount > 1) eBuffer += " between your [pc.thighs]";
+				eBuffer += ", so big and full of [pc.cum] that squish and slosh from the motions. It feels so good that you soon forget your dance and flop down";
+				if(pc.legCount > 1) eBuffer += ", [pc.legs] spread as wide as possible to make room for your swelling nutsack";
+				eBuffer += ". Your [pc.cocks] join";
+				if(pc.cockTotal() == 1) eBuffer += "s";
+				eBuffer += " right on in, jutting up as the pernicious lust infects them, already oozing their yummy goo. <i>“How do the boys do it?”</i> you wonder. How do they keep from just worshipping themselves all day long?";
+				eBuffer += "\n\nYou nuzzle up against ";
+				if(pc.cockTotal() > 1) eBuffer += "the closest";
+				else eBuffer += "your";
+				eBuffer += " dick and start licking it, roughly massaging a bloating ball with one hand, feeling them both expand. It’s not just the feel that you love but the heat and the smell, the way your flesh quivers and pulses on contact. It’s almost like your male genitalia doesn’t belong to you, like it’s an insatiable bull you get to carry around with you at all hours of the day and fuck and rub and fondle and... and... <i>service</i> forever and ever.";
+				eBuffer += "\n\nA few ropes of [pc.cum] squirt out, providing a smidgen of relief as your abruptly overfull balls vent the excess created by their inexplicable growth. They’re so soft but so full, and they aren’t the only part of you that looks a little bigger. Your dick";
+				if(pc.cockTotal() > 1) eBuffer += "s look";
+				else eBuffer += " looks";
+				eBuffer += " to have gained another inch or two as well, and as a bonus, ";
+				if(pc.cockTotal() == 1) eBuffer += "it seems";
+				else eBuffer += "they seem";
+				eBuffer += " to be retaining much more of ";
+				if(pc.cockTotal() == 1) eBuffer += "its";
+				else eBuffer += "their";
+				eBuffer += " size while flaccid. It’s going to be impossible to hide the python";
+				if(pc.cockTotal() > 1) eBuffer += "s";
+				eBuffer += " down there, but do you really want to?";
+				eBuffer += "\n\nThe idea that anyone could see your massive bulge has you flushing and eager tend to your [pc.cocks] once more, but you should probably attend to your other business first. What was it that was more important than orgasms again? You forget the question before you remember the answer. Gosh, you’re such a cum-cow!";
+				//Bigger balls & dick, + refill cum & blue balls
+				pc.ballSizeRaw += 6;
+				for(x = 0; x < pc.cockTotal(); x++)
+				{
+					pc.cocks[x].cLengthRaw += 1 + rand(2);
+					if(pc.cocks[x].flaccidMultiplier < 0.75) pc.cocks[x].flaccidMultiplier = 0.75;
+				}
+				if(!pc.hasStatusEffect("Blue Balls"))
+				{
+					pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
+					pc.ballFullness = 100;
+				}
+				//Orgasm -> +5 lust
+				pc.orgasm();
+				pc.lust(5);
+			}
+			//155 hours:
+			//Exhibitionism gains from playing with your enormous cocks.
+			//Plays the next time the PC is in a public place
+			if(treatedHours == 155 && pc.hasCock() && pc.exhibitionism() < 66)
+			{
+				pc.createStatusEffect("Treatment Exhibitionism Gain 4 DickGirls")
+			}
+			//160 Hours:
+			//Possible Milk Fountain Perk
+			else if(treatedHours == 160 && pc.canLactate() && pc.hasPerk("Milk Fountain"))
+			{
+				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.nipples] feel warm and... wet. You reach up to feel, ";
+				if(!pc.isChestExposed()) eBuffer += "rubbing them through your dampening [pc.upperGarment]";
+				else eBuffer += "rubbing your leaking chest";
+				eBuffer += ". You didn’t even have to grab them and tug, the [pc.milk] just started coming out on its own, like your teats can drip and drool every bit as eagerly as your [pc.cocks]. The Treatment isn’t just making you a cow, or a cum-cow; it’s making every part of you drip and leak at the slightest arousal. <b>You’ll probably squirt when you cum now, too.</b> Maybe not all the time, but you bet it happens super easily. Your tits wouldn’t even need to be full or anything.";
+				//Milk Fountain~
+				eBuffer += "\n\n(<b>Gained Perk: Milk Fountain</b> - Allows you to squirt milk with the greatest of ease.)";
+				pc.createPerk("Milk Fountain",0,0,0,0,"Allows you to squirt milk with the greatest of ease.");
+			}
+			//165 Hours - final negative perk
+			if(treatedHours == 165)
+			{
+				//Autococknosis - Sometimes automatically autofellate when resting or gain extra lust while resting.
+				if(!pc.hasPerk("Auto-Autofellatio"))
+				{
+					pc.createPerk("Auto-Autofellatio",0,0,0,0,"You're so enamored with yourself that you can't resist a little self-love.");
+				}
+				/*
+				//Dumb4Cum - Intelligence is reduced after 24 hours without swallowing cum.
+				else if(!pc.hasPerk("Dumb4Cum"))
+				{
+					//Procs after swallowing cum:
+
+eBuffer += "\n\nNow that you’ve swallowed all that goo, you feel positively quick-witted and exceptionally lucid, like the spunky flavor somehow greased the workings of your brain to let you think clearly once more. Not that you couldn’t go for a hot dicking at the drop of a hat, but for some reason you’re able to think completely clearly and rationally about how perfectly arousing it could be. And you bet you could calculate the coordinates for a light drive jump mid-coitus, so there’s that.";
+eBuffer += "\n\nYou estimate that you’ve gotten the <i>“Dumb4Cum”</i> Treatment modification, a variant that allows you periods of extreme clearheadedness and boosted intellect in the 24 hours after drinking cum at the expense of reduced intelligence during periods of withdrawl.";
+
+output("\n\nCum-Addict - Physique is lowered after 24 hours without cum.");
+output("\n\nYou’re starting to feel weak, like you haven’t had anything to eat all day, but the weirdest part is that you aren’t hungry for food. You’re hungry for cum. Salty, creamy, gooey jizz is all you can think about swallowing. It makes your mouth salivate so hard that your teeth are practically swimming in spit. You probably need cum to like, function at this point. If you don’t swallow spunk regularly, you’re liable to be weak as a kitten.");
+output("\n\nJust thinking about getting all weak and extra-girly just because you haven’t gotten your regular protein injection is getting you super flushed{ and extra wet/ and extra hard. At least you’ve got a steady supply at hand..}. Oh, and the Codex says something about you only needing it every 24 hours or something, but you’re pretty sure you can get lots more than that!");
+output("\n\n//Make sure ass loads can work too! Digest from either end :3");
+
+output("\n\nCum-Shakes - Body involuntarily quivers, reducing aim after 24 hours without swallowing cum");
+output("\n\nIt feels like like forever since you’ve gotten to swallow a mouthful of thick, creamy jizz - to feel it slipping and sliding over your teeth, so viscous that it practically glues your slutty little mouth shut with its virility. You whimper and shudder, feeling your hands starting to shake a little from the incessant spunk-lust. Just the taste alone would have you feeling better, you’re pretty sure. A few drops on your tongue, and your stands would probably be steady enough for brain surgery, if you’d ever want to do something as boring as that.");
+output("\n\nSomething seems a little off about getting shaky just because you need to swallow some cum, so you do the sensible thing and ask your Codex why your tongue won’t stop quivering at the thought of sucking down some bull’s load. Then you remember that you didn’t press the voice prompt button and try again, blushing furiously.");
+output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty uncommon mutation, commonly called <i>“the Cum-Shakes”</i>. It turns out that if you don’t get cum every 24 hours or so, you’ll be shaking like a jackrabbit - but really good at handjobs.");
+*/
+			}
 		}
 		//==========================
 		//MIND STUFF OVER. ON
@@ -3076,6 +3512,77 @@ public function amazonEnduranceNotice():void
 {
 	eventBuffer += "\n\n" + ParseText(logTimeStamp()) + " Usually, sexual release would leave you feeling a little drained, but you're still full of energy. It's like cumming isn't slowing you down at all, like your body is designed to get off with a minimum of effort so that you can keep banging until your partner's body gives out or begins to bore you.";
 	eventBuffer += "\n\n(<b>Perk Gained: Amazonian Endurance</b> - Allows you to orgasm without fatiguing.)";
+}
+
+//if(pc.hasStatusEffect("Treatment Exhibitionism Gain 4 DickGirls") && pc.hasCock())
+public function treatmentCumCowExhibitionism():void
+{
+	var eBuffer:String = "";
+	eBuffer += "\n\n" + logTimeStamp() + " You’re getting lots of looks as you walk around, and not just because of your lovely boobs. No, most of the curious looks are centered at your crotch.";
+	if(!pc.isCrotchExposed()) 
+	{
+		eBuffer += " There’s no hiding your [pc.cocks], not with how long ";
+		if(pc.cockTotal() == 1) eBuffer += "it is";
+		else eBuffer += "they are";
+		eBuffer += ", even flaccid. You’re a [pc.boyGirl] with a third leg";
+		if(pc.cockTotal() > 1)
+		{
+			eBuffer += " and fourth";
+			if(pc.cockTotal() > 2) eBuffer += "... and fifth...";
+		}
+		eBuffer += ".";
+	}
+	else
+	{
+		eBuffer += " There’s no hiding your [pc.cocks] anymore, not with how big ";
+		if(pc.cockTotal() == 1) eBuffer += "it stays";
+		else eBuffer += "they stay";
+		eBuffer += " even flaccid. You’ve got bulky penis";
+		if(pc.cockTotal() > 1) eBuffer += "es";
+		eBuffer += ", and no amount of clothing can hide the pent-up virility from questioning onlookers.";
+	}
+	eBuffer += " It wouldn’t be so bad if it didn’t send a shiver up your spine or warm your loins.";
+	eBuffer += "\n\nIt’s a vicious cycle, really. People see that you’re a cow-[pc.boyGirl] with a lot going on down below, and it turns you on, so your equipment gets even bigger and more obvious. Then still more eyes glue themselves to your equipment, and it’s everything you can do to keep from wrapping your hands around your [pc.cocks] and moaning, letting the high-pitched cries of your voice lure more onlookers to watch your impromptu show.";
+	eBuffer += "\n\nF-fuck, you’re starting to drool. You’d better go blow off some steam before that fantasy becomes a reality! <b>You suppose you’re an exhibitionist now.</b>";
+	//Instantly exhibitionist.
+	pc.exhibitionismRaw = 100;
+	pc.removeStatusEffect("Treatment Exhibitionism Gain 4 DickGirls");
+	eventBuffer += ParseText(eBuffer);
+}
+
+//Proc auto-autofellate, then play the following message
+//"Auto-Autofellatio"
+public function autoautofellatioNotice():void
+{
+	var eBuffer:String = "";
+	eBuffer += "\n\n" + logTimeStamp() + " It’s super weird that would just suck yourself off without thinking about it, but then again, looking at your dick or even thinking about it too much makes your head feel sort of fuzzy and silly, like your dick is so awesome it can hypnotize you just by being there. You spend a few minutes imagining it bobbing back and forth to your heartbeat, then shake your head and smile, savoring the residual taste of [pc.cum] on your tonsils.";
+	eBuffer += "\n\n(<b>Gained Perk: Auto-Autofellatio</b> - Makes it difficult to avoid fellating yourself.)";
+	eventBuffer += ParseText(eBuffer);
+}
+
+//Rare arousing rest proc - more common if cock exposed
+public function autoCocknosisDistraction():void
+{
+	var eBuffer:String = "";
+	eBuffer += "While resting, ";
+	if(pc.isCrotchExposed()) eBuffer += "you find your gaze drawn down to your [pc.cockBiggest].";
+	else eBuffer += "you realize that you’ve freed your [pc.cockBiggest] from your [pc.lowerGarment] but have a hard time convincing yourself to put it away.";
+	eBuffer += " It’s certainly more entertaining to watch than everything going on around you.";
+
+	eBuffer += "\n\nLike a snake-charmer’s pet, it seems to respond to your gaze, twitching lightly, shifting to lie against your other thigh. It lazily lengthens, straightening folds of flesh into a column, and you watch, spellbound, too hypnotized by the view of your own member to do anything about it. The base shifts powerfully, arcing upward before the rest of it, dragging the flaccid snake inevitably towards the sky. You can see the rhythms in its pulsations now, the obvious throbbing of the veins. It’s thickening as it rises.";
+	eBuffer += "\n\nYour [pc.tongue] slips out of your mouth while you watch, moist with drool, and still your [pc.cockBiggest] engorges further. It straightens out as it rises until it transforms into a firm column of needy cockmeat, slowly bobbing back and forth in front of your eyes. It dribbles, releasing pearlescent globs of pre-cum. The glittering juices only further serve to deepen your dick-induced trance, helping you ignore everything that isn’t the pleasant, rhythmic pulsing of your own boner.";
+	eBuffer += "\n\nHours pass by in a blur. When something finally distracts you, your lips are chapped and your [pc.cocks] ache";
+	if(pc.cockTotal() > 1) eBuffer += "s";
+	eBuffer += ".";
+	if(pc.hasVagina()) eBuffer += " The ground below is absolutely soaked in your pussy juices.";
+	eBuffer += " You’re as pent up as you’ve ever been, like your body spent the entire time doing nothing but turning you on and brewing ever more [pc.cum] in your [pc.balls].";
+	//Give full cum + blue balls + Lots of lust
+	if(!pc.hasStatusEffect("Blue Balls"))
+	{
+		pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
+		pc.ballFullness = 100;
+	}
+	output(ParseText(eBuffer));
 }
 
 public function standardTreatmentDickStuff(treatedHours:Number):void
