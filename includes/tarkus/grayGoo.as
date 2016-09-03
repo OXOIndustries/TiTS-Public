@@ -281,10 +281,7 @@ public function mutualGooMasturbation():void
 	author("Savin");
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
-	output("Time to put this cybernetic goo-girl's endurance to the test. You shuck your [pc.gear] and approach the defeated goo. Seeing your bared [pc.cock] hanging half-hard");
-	if(pc.legCount > 1) (" between");
-	else (" on");
-	output(" your [pc.legOrLegs], she quickly reforms into the ultra-busty babe she attacked you as, big lips pursed in a curious expression as you loom over her.");
+	output("Time to put this cybernetic goo-girl's endurance to the test. You shuck your [pc.gear] and approach the defeated goo. Seeing your bared [pc.cock] hanging half-hard " + (pc.legCount > 1 ? "between" : "on") + " your [pc.legOrLegs], she quickly reforms into the ultra-busty babe she attacked you as, big lips pursed in a curious expression as you loom over her.");
 	output("\n\n<i>\"Oooh, that's a nice [pc.cockNounSimple] you've got there,\"</i> the silver goo giggles to herself, her gray eyes locked on your stiffening shaft, crossing each other as you present it to her lips for a sucking. <i>\"Y-you want me to... but... why'd you fight me? I was gonna make you feel good anyway!\"</i>");
 	output("\n\nYou scowl down at the goo and thrust your hips forward, prodding her lips open around the [pc.cockHead] of your prick. She tries to speak, but her words are quickly muffled around the head of your cock as you take the opportunity to thrust into her open mouth; her throat is as stretchy as you might imagine, easily taking every inch you can offer the insatiable goo before you can blink. Her voice breaks into a sultry moan as your ");
 	if(pc.balls > 1) output("[pc.balls]");

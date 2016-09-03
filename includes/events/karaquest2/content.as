@@ -296,7 +296,7 @@ public function kq2KaraTalkBlackVoid():void
 
 	output("\n\nSounds like bad news. <i>“So why are you going after them?”</i>");
 
-	output("\n\nKara’s hand rubs at the back of her neck as she answers, <i>“I crossed them. Big time.”</i> She sighs, and hesitantly she adds, <i>“I’ll be honest, [pc.name], I might not have told the whole truth back at the bar. That bounty hunter was there to cash in on a price on my head. A big one. I took a chunk out of a Black Void frigate, the biggest and scariest pirate vessel I’ve ever seen, commanded by one of the Dread Lords. Because of that fight, I’m a wanted woman... and I racked up a big debt to a ‘friend,’ paying for the damage they did to my crew, my ship...");
+	output("\n\nKara’s hand rubs at the back of her neck as she answers, <i>“I crossed them. Big time.”</i> She sighs, and hesitantly she adds, <i>“I’ll be honest, [pc.name], I might not have told the whole truth back at the bar. That bounty hunter was there to cash in on a price on my head. A big one. I took a chunk out of a Black Void frigate, the biggest and scariest pirate vessel I’ve ever seen, commanded by one of the Dread Lords. Because of that fight, I’m a wanted woman... and I racked up a big debt to a ‘friend,’ paying for the damage they did to my crew, my ship...”</i>");
 
 	output("\n\n<i>“Plus, they did </i>this<i> to me,”</i> she adds, pointing a pair of fingers at her eyes.");
 
@@ -1192,7 +1192,7 @@ public function kq2GibEngyDankHoles():void
 
 	output("\n\nYou wince as you feel her cum pour into you. It’s much hotter than you were expecting, like a stream of boiling cream flooding into you and searing your walls. Giving a low groan of your own, you dig your fingers into the desk and try and bear it, gasping and moaning as the engineer continues to thrust into you as she cums. Your bowels get a thorough spunk-basting by the time she’s done, filling you with more lapinara cum than you’d have thought such a tiny girl could produce, even with those massive balls she was toting around.");
 
-	output("\n\nThe lapinara grunts as she pulls herself out of you, trailing a sticky web of spooge behind her. A little trickle of it leaks out of your well-fucked hole, drooling down your thigh. <i>“Whoo! I’ve never fucked a butt quite like that!”</i> she coos, wiping off the last traces of her orgasm off on your upraised ass. She flops back in a chair behind one of the desks and tosses a keycard to you. <i>“You earned it. Hehe, I’ll be fapping to this memory for a loooong time.”</i>");
+	output("\n\nThe lapinara grunts as she pulls herself out of you, trailing a sticky web of spooge behind her. A little trickle of it leaks out of your well-fucked hole, drooling down your thigh. <i>“Whoo! I’ve never fucked a butt quite like that!”</i> she coos, wiping the last traces of her orgasm off on your upraised ass. She flops back in a chair behind one of the desks and tosses a keycard to you. <i>“You earned it. Hehe, I’ll be fapping to this memory for a loooong time.”</i>");
 
 	output("\n\nYou spend a moment catching your breath, letting your body cool down from the rough buttfucking, before grabbing the card, cleaning up as best you can, and rejoining Kara outside.");
 
