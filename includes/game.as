@@ -2314,7 +2314,7 @@ public function racialPerkUpdateCheck():void
 		msg += "\n\n(<b>Perk Lost: Icy Veins</b> - You’ve lost your insulating coat of fur, and as a result you are now weaker against cold.)";
 		pc.removePerk("Icy Veins");
 	}
-	if(flags["GALOMAX_DOSES"] >= 5)
+	if(flags["GALOMAX_DOSES"] != undefined)
 	{
 		if(pc.hasHair() && pc.hairType != GLOBAL.HAIR_TYPE_GOO && !pc.hasStatusEffect("Hair Regoo"))
 		{
