@@ -321,6 +321,7 @@ public function saendraSexMenu():void
 	}
 
 	if (pc.hasTailCock() && pc.hasParasiteTail() && pc.hasCock()) addButton(7, "Tailcock", saendraTailcockFuck, undefined, "Tailcock Titfuck", "Get a titfuck for your tailcock from Saendra.");
+	else addDisabledButton(7, "Tailcock", "Tailcock Titfuck", "You need a tailcock for this!");
 	
 	addButton(14, "Leave", function():void {
 		saendraAffection( -5);
