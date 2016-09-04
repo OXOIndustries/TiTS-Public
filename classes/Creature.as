@@ -10248,12 +10248,12 @@
 				else if (rando == 2) desc += "broodmother-sized ";
 			}
 			//Taurs
-			if (isTaur() && rand(3) == 0) desc += "flank";
+			if (isTaur() && rand(3) == 0) {
+				desc += RandomInCollection("flank", "flank", "flank", "haunch", "hindquarter");
+			}
 			//Non taurs or taurs who didn't roll flanks
 			else {
-				rando = rand(2);
-				if (rando == 0) desc += "hip";
-				else if (rando == 1) desc += "thigh";
+				desc += RandomInCollection("hip", "hip", "hip", "side", "quarter");
 			}
 			if (asPlural) desc = plural(desc);
 			return desc;

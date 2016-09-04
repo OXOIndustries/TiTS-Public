@@ -1143,7 +1143,7 @@ public function blowNayna2():void
 	else output("You should see yourself.");
 	output("”</i>");
 	output("\n\nNayna groans, and pulls back, lining her slick dick up with your mouth and stroking herself while you continue to pleasure her spasming nutsack and tight cunt. <i>“J-just shut up and open wide. I want to feel your mouth.”</i> Her nipples are jutting out like tentpoles, hard enough that you doubt even the universe’s most padded bra could conceal them. She adds, <i>“");
-	if(flags["NAYNA_BLOWN"] == undefined) output("I want to see what it’s like to cum in someone’s mouth");
+	if(flags["NAYNA_BLOWN"] == undefined) output("I want to see what it’s like to cum in someone’s mouth.");
 	else output("I want to fill you up again, cover you in cum...");
 	output("”</i>");
 
@@ -1392,7 +1392,7 @@ public function naynaFuckEppiloggie(cum:Number):void
 {
 	clearOutput();
 	showNayna();
-	output("When you come too, Nayna is stretching next to you and smiling, watching a small robot zip over her body, harmlessly vaporizing the last patches of cum out of her hair.");
+	output("When you come to, Nayna is stretching next to you and smiling, watching a small robot zip over her body, harmlessly vaporizing the last patches of cum out of her hair.");
 	output("\n\nIt’s then that you realize all signs of your tryst are gone. No puddle remains. The console you fucked over is spotless, and you’re almost as clean as if you took a shower.");
 	if(flags["NAYNA_FUCKED"] != undefined) output(" That little bot is almost as good as a galotian.");
 	else 
@@ -1495,7 +1495,7 @@ public function naynaFucksYourButt():void
 	output(" Nayna adjusts herself, her fingers grabbing your [pc.hips] tight. Before you can say anything, she shoves her dick into you.");
 	output("\n\nYour eyes widen and your breath catches in your throat as you feel her length jam all the way up into your ass. The flared ridge of her horse cock drives first, running wide and thick up into you, followed by her throbbing shaft, pulsing hard against your insides. You can’t move for a moment, riding out the wave of sudden fullness and an immediate soreness from her rough intrusion.");
 	output("\n\nShe slides all the way in, letting you feel the thick veins and rings of her cock as they push all the way into you. When her furry, apple-sized balls finally rest against your ass, she lets out a happy moan. <i>“Oh, oh yeah... that’s the stuff,”</i> she groans. You feel a warm drop somewhere on your back. It’s not too hard to imagine that Nayna is drooling with pleasure as she buries herself inside you. She rests there for a moment, rocking softly against you, letting you feel the soft tug and push of her cock nine inches deep in your ass.");
-	output("\n\nWhen you finally do breath again, you feel her shifting her position. Her hands grasp your hips with surprising strength, raising your ass. You glance over your shoulder, seeing her sitting on her haunches, resting on the balls of her feet. Her dick is still inside you, and you see her give a few experimental bounces. Her dick shifts an inch out of you and then back in. You moan, your hole twitching around her thick shaft");
+	output("\n\nWhen you finally do breathe again, you feel her shifting her position. Her hands grasp your hips with surprising strength, raising your ass. You glance over your shoulder, seeing her sitting on her haunches, resting on the balls of her feet. Her dick is still inside you, and you see her give a few experimental bounces. Her dick shifts an inch out of you and then back in. You moan, your hole twitching around her thick shaft");
 	if(pc.hasCock())
 	{
 		output(", your ");
@@ -1519,7 +1519,7 @@ public function naynaFucksYourButt():void
 	}
 	output("\n\n<i>“It's a - ung - a good thing you like it,”</i> says Nayna. <i>“I don't think I can stop! I don't think I'll ever stop!”</i>");
 	output("\n\nNayna pushes down against you. You feel the soft squish of her balls as they nestle against your ass, her dick pushing as deep as possible inside you. You glance over her shoulder again, just in time to see her massive thighs flex, pushing her up.");
-	output("\n\nYou gasp as her cock pistons out of you. Her horse-head drags along your inner passage, feeling like she’s scraping you out. Your hips rise to meet her, but her hand slam down against the small of your back, resting half her weight on you-keeping you pinned down. Up and up and up her cock goes until her tip bumps against your pliant ring, leaving you with a sense of absolute emptiness.");
+	output("\n\nYou gasp as her cock pistons out of you. Her horse-head drags along your inner passage, feeling like she’s scraping you out. Your hips rise to meet her, but her hands slam down against the small of your back, resting half her weight on you-keeping you pinned down. Up and up and up her cock goes until her tip bumps against your pliant ring, leaving you with a sense of absolute emptiness.");
 	output("\n\nIt’s only for a moment, though, as she pauses at her apex, then drives back down. You moan, more out of pleasure than pain as she drives her cock back down into you, filling you up so quickly that the breath whooshes out of you.");
 	output("\n\n<i>“Up we go!”</i> she says cheerfully. She bounces back up, dragging her dick out of you. Once more, her weight pauses at the top of her bounce, before she plunges back into your ass. Over and over, she bounces, until you lose count, completely lost in the feeling of Nayna pumping in and out of your ass.");
 	output("\n\nFinally, she pauses on a downstroke. She wiggles her hips a bit, adjusting her weight on you. <i>“S-stars, I love this. Am... am I doing it right?”</i> she asks, waiting until you weakly affirm. <i>“Then brace yourself,”</i> she chirps.");
@@ -1577,7 +1577,7 @@ public function naynaFucksYourButt():void
 	output("\n\n<i>“OOF!”</i>");
 	output("\n\nYou both collapse to the floor in a heap, and you feel a MASSIVE surge of pressure in your swollen gut. All her cum! And you were fit to burst!");
 	output("\n\nThe sudden impact against your stomach pops Nayna’s cock free, your ass disgorging her massive dick along with a near-literal river of cum. You squeal in discomfort as her pleasure-swollen head swings out of you, slapping wetly against your leg. She grunts as her chin collides with the back of your head. Her breasts moosh against your back, her limbs splayed awkwardly atop yours. You moan in a heap under Nayna, the snow bunny groaning in pain atop you, her panting breath in your ear. You can’t seem to focus on any one thing-you’re still riding on waves of endorphins, and dealing with the sudden aches and pains of your sudden collapse.");
-	output("\n\n<i>“Owwww,”</i> she moans. You open your mouth to say something, but Nayna shifts her weight atop you, sending another gush of cum from your ass. You gasp, frozen in the sensation of being splayed out as hot, laquine spunk flows out of you. She flops off your back, sitting next to you as a small lake of he cum gradually grows around you.");
+	output("\n\n<i>“Owwww,”</i> she moans. You open your mouth to say something, but Nayna shifts her weight atop you, sending another gush of cum from your ass. You gasp, frozen in the sensation of being splayed out as hot, laquine spunk flows out of you. She flops off your back, sitting next to you as a small lake of her cum gradually grows around you.");
 	output("\n\nYou turn your head toward her, the rest of your body not particularly cooperating. She’s sitting on her butt, her spooge-drenched cock flopped out against her thighs, one hand massaging her chin, and the other cradling her breasts. She looks at you, aghast, a look of unbridled embarassment on her face.");
 
 	if(pc.isNice()) output("\n\nYou take one look at her horrified expression and start " + pc.mf("laughing","giggling") + ".");
