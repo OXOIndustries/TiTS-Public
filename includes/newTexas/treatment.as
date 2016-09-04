@@ -47,13 +47,13 @@ v3 hour counter
 public function logTimeStamp():String
 {
 	var bufferButt:String = "";
-	bufferButt += "\\\\[<b>D: " + days + " T: ";
+	bufferButt += "\\\[<b>D: " + days + " T: ";
 	if(hours < 10) bufferButt += String(0) + hours;
 	else bufferButt += String(hours);
 	bufferButt += ":";
 	if(minutes < 10) bufferButt += String(0) + minutes;
 	else bufferButt += minutes;
-	bufferButt += "</b>\\\\]";
+	bufferButt += "</b>\\\]";
 	return bufferButt;
 }
 
@@ -159,19 +159,19 @@ public function treatmentHourProcs():void
 			}
 			else if(pc.hasVagina())
 			{
-				eBuffer += "\n\nFor instance, you can smell your [pc.vaginas]. You can tell just how aroused you are, whether you're wet with need or oozing a mate's genetic material. You could probably pick out the friendliest, sluttiest girl in the room, just by walking past her.";
+				eBuffer += ParseText("\n\nFor instance, you can smell your [pc.vaginas]. You can tell just how aroused you are, whether you're wet with need or oozing a mate's genetic material. You could probably pick out the friendliest, sluttiest girl in the room, just by walking past her.");
 			}
 			pc.lust(5);	
 		}
 		//9
 		else if(treatedHours == 18)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " In a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. It starts out as little more than a lead-up to your economic rewards, but the longer you dwell on the imaginary scenario, the less you care about the credits and the more you look forward to putting your cuz in his [rival.hisHer] place. The look on [rival.hisHer] face will be priceless.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" In a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. It starts out as little more than a lead-up to your economic rewards, but the longer you dwell on the imaginary scenario, the less you care about the credits and the more you look forward to putting your cuz in his [rival.hisHer] place. The look on [rival.hisHer] face will be priceless.");
 		}
 		//10
 		else if(treatedHours == 20)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " The Treatment is doing a number on you. You're sure of it now. It shows itself in idle thoughts in fantasies and in your knee jerk reactions to the littlest inconveniences. You bumped your [pc.leg] earlier today and nearly flew into a rage. If it had been a table, you likely would've smashed it";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" The Treatment is doing a number on you. You're sure of it now. It shows itself in idle thoughts in fantasies and in your knee jerk reactions to the littlest inconveniences. You bumped your [pc.leg] earlier today and nearly flew into a rage. If it had been a table, you likely would've smashed it");
 			if(pc.AQ() > pc.PQ()) eBuffer += ", or at least shot it up or something";
 			eBuffer += ". If it was a person? You shudder,";
 			if(pc.hasCock() && pc.hasVagina()) eBuffer += " hardening and moistening";
@@ -194,7 +194,7 @@ public function treatmentHourProcs():void
 		//13 - Pussies only
 		else if(treatedHours == 26)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You stretch out and spend a minute checking over your equipment. Sure, there's a whole galaxy of challenges ahead of you, but you're the [pc.guyGirl] to get it done. Besides, that galaxy full of challenges is the same galaxy that's full of extremely fuckable aliens.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" You stretch out and spend a minute checking over your equipment. Sure, there's a whole galaxy of challenges ahead of you, but you're the [pc.guyGirl] to get it done. Besides, that galaxy full of challenges is the same galaxy that's full of extremely fuckable aliens.");
 			pc.lust(2);
 		}
 		//14
@@ -207,7 +207,7 @@ public function treatmentHourProcs():void
 		else if(treatedHours == 30)
 		{
 			eBuffer += "\n\n" + logTimeStamp() + " Stars above, there is a serious ";
-			if(pc.hasCock() && !pc.isCrotchExposed()) eBuffer += "tightness in your [pc.lowerGarment]. You take a look inside and find yourself more hard than you’ve been in a while, and just dribbling pre-cum all over the inside of your equipment. You let it snap closed and sigh. Either you’ve got to find a partner fast, or it’s time to vent some of the pressure building in your [pc.balls]. One way or the other, you’re due to blow a load.";
+			if(pc.hasCock() && !pc.isCrotchExposed()) eBuffer += ParseText("tightness in your [pc.lowerGarment]. You take a look inside and find yourself more hard than you’ve been in a while, and just dribbling pre-cum all over the inside of your equipment. You let it snap closed and sigh. Either you’ve got to find a partner fast, or it’s time to vent some of the pressure building in your [pc.balls]. One way or the other, you’re due to blow a load.");
 			else if(pc.hasCock())
 			{
 				eBuffer += "hardness in your groin. You take a look down and find yourself more hard than you’ve been in a while, dribbling pre-cum down your length";
@@ -222,19 +222,18 @@ public function treatmentHourProcs():void
 				eBuffer += ". When did that happen? Screw it; it doesn't matter. If you only had a dildo... or an eager little cowboy handy, you could just reach down and force him inside for a quick, messy orgasm. And then another. And another.";
 				pc.lust(pc.lustMax());
 			}
-
 		}
 		//16
 		else if(treatedHours == 32)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You look yourself over and sigh, evaluating everything that has changed thus far. You're more aggressive for sure, a little less self-conscious, and getting more libidinous by the minute. Thankfully, the extra lust doesn't seem to be impacting your ability to focus - just <i>how</i> you focus. Little sensuous details pop out at you in every scenario, alerting you to erotic possibilities you may have never considered mere days ago. Yes, you're going to get your inheritance, but the real prize isn't the money so much as the opportunities it presents.\n\nJust like the aliens you encounter, this quest is ripe with lustful possibilities - never-ending line of hard dicks and wet pussies juicing themselves at the thought of a chance with you. A smirk curls the corners of your [pc.lipsChaste] as you consider what's ahead of you, a Treated [pc.boyGirl] on a mission.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" You look yourself over and sigh, evaluating everything that has changed thus far. You're more aggressive for sure, a little less self-conscious, and getting more libidinous by the minute. Thankfully, the extra lust doesn't seem to be impacting your ability to focus - just <i>how</i> you focus. Little sensuous details pop out at you in every scenario, alerting you to erotic possibilities you may have never considered mere days ago. Yes, you're going to get your inheritance, but the real prize isn't the money so much as the opportunities it presents.\n\nJust like the aliens you encounter, this quest is ripe with lustful possibilities - never-ending line of hard dicks and wet pussies juicing themselves at the thought of a chance with you. A smirk curls the corners of your [pc.lipsChaste] as you consider what's ahead of you, a Treated [pc.boyGirl] on a mission.");
 		}
 		//17
 		else if(treatedHours == 34)
 		{
 			eBuffer += "\n\n" + logTimeStamp() + " You idly wonder if you should try and squeeze some gym equipment onto your ship - or make a stop back at the New Texan gym. Working out sounds almost... fun, like something you'd do to blow off steam, only without the whining you'd expect from a horned-up faux cow.\n\nYeah. That'd be nice. Maybe you could even get a faux cow and a muzzle (to keep him quiet), then bench press the little bitch, dropping his dick into your mouth with each rep. A reward for both of you. You'd know when you've had enough when he's had enough.";
 			if(pc.PQ() >= 70) eBuffer += " Mmm... if only you were that strong! You have so much work to do!";
-			eBuffer += " Oooh, and you could do squats onto a cow-girl's face. You would know you'd dropped low enough when your [pc.vagOrAss] hit tongue.\n\nMaking up your mind, you decide to give the gym a try at your earliest convenience.";
+			eBuffer += ParseText(" Oooh, and you could do squats onto a cow-girl's face. You would know you'd dropped low enough when your [pc.vagOrAss] hit tongue.\n\nMaking up your mind, you decide to give the gym a try at your earliest convenience.");
 		}
 		//18
 		else if(treatedHours == 36)
@@ -246,7 +245,7 @@ public function treatmentHourProcs():void
 				if(pc.cockTotal() > 1) eBuffer += "s";
 				eBuffer += " or leaky, eager cunt";
 				if(pc.totalVaginas() > 1) eBuffer += "s";
-				eBuffer += " will give you a break from near-constant thoughts of sex. Even your [pc.nipples] are ";
+				eBuffer += ParseText(" will give you a break from near-constant thoughts of sex. Even your [pc.nipples] are ");
 				if(pc.hasDickNipples()) eBuffer += "jutting out of their sheaths, ready to be thrust inside something";
 				else if(pc.hasLipples()) eBuffer += "drooling";
 				else if(pc.canMilkSquirt()) eBuffer += "leaking";
@@ -257,7 +256,7 @@ public function treatmentHourProcs():void
 			//Cock
 			else if(pc.hasCock()) 
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the way it keeps your [pc.cocks] so iron-hard with thoughts of near-constant sex. Even your [pc.nipples] are ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the way it keeps your [pc.cocks] so iron-hard with thoughts of near-constant sex. Even your [pc.nipples] are ");
 				if(pc.hasDickNipples()) eBuffer += "jutting out of their sheaths, ready to be thrust inside something";
 				else if(pc.hasLipples()) eBuffer += "drooling";
 				else if(pc.canMilkSquirt()) eBuffer += "leaking";
@@ -268,14 +267,14 @@ public function treatmentHourProcs():void
 			//Pussah
 			else if(pc.hasVagina())
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the constant dripping. [pc.EachClit] is achingly hard, like a bullet on a hair-trigger. The weirdest part is that you don’t really crave penetration - at least not your own. No, you want to push yourself against someone soft and yielding, really grind your weeping slit";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the constant dripping. [pc.EachClit] is achingly hard, like a bullet on a hair-trigger. The weirdest part is that you don’t really crave penetration - at least not your own. No, you want to push yourself against someone soft and yielding, really grind your weeping slit");
 				if(pc.totalVaginas()) eBuffer += "s";
 				eBuffer += " against them until you’re both covered in sweat and sexual effluvia, panting breathily with you on top.";
 			}
 			//Nothing
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You growl in dissatisfaction. You can’t seem to quell the feeling of building eroticism or odd desires. Playing with your [pc.asshole] or [pc.nipples] just won’t be enough for you anymore. You want to be <i>fucked properly</i>, not just reamed. If only had a pussy, this would be so much easier... a nice, wet, welcoming hole to please your partners. You gently press at your [pc.asshole] and smile. It's no cunt, but you bet you can make some wannabe stud melt inside.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You growl in dissatisfaction. You can’t seem to quell the feeling of building eroticism or odd desires. Playing with your [pc.asshole] or [pc.nipples] just won’t be enough for you anymore. You want to be <i>fucked properly</i>, not just reamed. If only had a pussy, this would be so much easier... a nice, wet, welcoming hole to please your partners. You gently press at your [pc.asshole] and smile. It's no cunt, but you bet you can make some wannabe stud melt inside.");
 			}
 			//Merge
 			eBuffer += "\n\nBesides, the real takeaway is just how hot and horny you’re able to get without going off. You’re able to sit there fantasizing about a pair of petite cow-boys with enormous dicks, imagining their delectible tools hardening down the legs of their jeans until the robust fabric shreds from the force of their engorging lust. Just two days ago, dwelling on something like this for so long would have driven you to masturbation. Today? You're free to think of all the things you could do them, all while continuing on your merry way. You suppose you’re getting better at it - being aroused that is. You could walk around ";
@@ -307,7 +306,7 @@ public function treatmentHourProcs():void
 		//19
 		else if(treatedHours == 38 && pc.horns == 0)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You spend a few minutes checking your forehead for horns. You should have horns, right? It feels like you should have horns. A horny [pc.boyGirl] should have horns.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" You spend a few minutes checking your forehead for horns. You should have horns, right? It feels like you should have horns. A horny [pc.boyGirl] should have horns.");
 		}
 		//20
 		else if(treatedHours == 40)
@@ -333,32 +332,32 @@ public function treatmentHourProcs():void
 			//Herms
 			if(pc.isHerm())
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You find yourself idly rubbing at [pc.oneCock], curling your index finger down to gently press against ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You find yourself idly rubbing at [pc.oneCock], curling your index finger down to gently press against ");
 				if(pc.totalVaginas() > 1) eBuffer += "a";
 				else eBuffer += "your";
-				eBuffer += " [pc.vagina]. It just happens on its own. At first, you might of tried to stop yourself or control it, but the more it goes on, the less reason you see to quit. The extra friction feels really, really <i>good</i> - like sex good, only without the rampaging drive to seek completion. And if it keeps you nice and wet for your next lay, why bother to stop?";
+				eBuffer += ParseText(" [pc.vagina]. It just happens on its own. At first, you might of tried to stop yourself or control it, but the more it goes on, the less reason you see to quit. The extra friction feels really, really <i>good</i> - like sex good, only without the rampaging drive to seek completion. And if it keeps you nice and wet for your next lay, why bother to stop?");
 				eBuffer += "\n\nYou can handle it. Dealing with constant arousal is getting to be mostly automatic. Undergarments <i>should</i> be wet with pre and pussy juice. It's practically their natural state. They slip and side so nicely when you're adjusting them, and the scent functions a broadcast to anyone with a nose that you're down for a good time. Assuming they can handle a firecracker like yourself.";
 				eBuffer += "\n\nJust because you can endure arousal that would reduce lesser " + pc.mf("men","women") + " to a shuddering wreck doesn't mean you're an easy lay, however. If anything, it makes you a harder one. You're pretty sure you can take more teasing than most people in the galaxy by now. You could probably stand in a cloud of aphrodisiacs for a few minutes and strut out with nothing more than a bit of extra wetness and extra hardness to show for it. Then you could toss the bastard responsible for the cloud inside... and fuck them into insensibility.";
 			}
 			//Cocks
 			else if(pc.hasCock())
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You find yourself just kind of idly rubbing at [pc.oneCock] whenever you have a spare moment. At first, you’d stop yourself whenever it happened, but more and more, you don’t see the logic in stopping. It feels really good to have a little friction on your length, and if it keeps your body churning up a fresh load faster, who are you to complain? Your ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You find yourself just kind of idly rubbing at [pc.oneCock] whenever you have a spare moment. At first, you’d stop yourself whenever it happened, but more and more, you don’t see the logic in stopping. It feels really good to have a little friction on your length, and if it keeps your body churning up a fresh load faster, who are you to complain? Your ");
 				if(pc.cockVirgin) eBuffer += "first";
 				else eBuffer += "next";
 				eBuffer += " lay is going to thank you for being so ready for her, you’re sure of it.";
 				eBuffer += "\n\nIt doesn’t even distract you that much, really. Dealing with arousal is an automatic thing for you now. Pre-soaked undies? You’re pretty sure you’d have no problem ignoring the sticky, moist feeling. Adjusting the fit of clothing to deal with your rigid length? Your hand is there anyway. It might as well keep you comfortable. And you can still sit there browsing the extranet with your other hand, or buying supplies... or grabbing a tit. Whatever really.";
-				eBuffer += "\n\nThe important takeaway is that you’re so much better at being rock-hard than ever before. Before, you might’ve been desperate to climax, masturbating furiously. Now? You’ve learned to control it, to ride the tide of sexual desire like a cow[pc.boyGirl] on [pc.hisHer] steed. It’s empowering.";
+				eBuffer += ParseText("\n\nThe important takeaway is that you’re so much better at being rock-hard than ever before. Before, you might’ve been desperate to climax, masturbating furiously. Now? You’ve learned to control it, to ride the tide of sexual desire like a cow[pc.boyGirl] on [pc.hisHer] steed. It’s empowering.");
 			}
 			//Cooches!
 			else if(pc.hasVagina())
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You find yourself just kind of idly rubbing at [pc.oneClit] whenever you have a spare moment. At first, you’d stop yourself and blush, but more and more, you don’t see the logic in stopping. Your clit is there. It’s hard and wants touched. So you touch it. What’s the big deal? You aren’t masturbating, just keeping yourself ready is all. Why, everyone should be pleased that you’re keeping yourself so sexually ready all the time. Your lucky ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You find yourself just kind of idly rubbing at [pc.oneClit] whenever you have a spare moment. At first, you’d stop yourself and blush, but more and more, you don’t see the logic in stopping. Your clit is there. It’s hard and wants touched. So you touch it. What’s the big deal? You aren’t masturbating, just keeping yourself ready is all. Why, everyone should be pleased that you’re keeping yourself so sexually ready all the time. Your lucky ");
 				if(pc.vaginalVirgin) eBuffer += "first";
 				else eBuffer += "next";
 				eBuffer += " partner will be the one to reap the rewards of slippery-sweet sex, after all.";
 				eBuffer += "\n\nYou don’t even really get distracted by it that much, really. The arousal burns like a pleasant heat in the back of your brain, spiking whenever your digits probe a particularly sensitive bundle of nerves, leaving the rest of your mind to do whatever mundane work it needs to do. You could probably file your taxes while a cute little faux-cow boy-toy kneels ";
-				if(pc.legCount > 1) eBuffer += "between your [pc.legs]";
+				if(pc.legCount > 1) eBuffer += ParseText("between your [pc.legs]");
 				else eBuffer += "down below";
 				eBuffer += ", putting a nice, wide bovine tongue to use, provided you had breaks for mind-shattering orgasms every now and again.";
 				eBuffer += "\n\nThe important takeaway is that you’re fucking amazing at being aroused now. Stimulation that would’ve morphed you into a mewling ball only makes you hotter and more capable of pleasure. It’ll take so much more teasing to bring you to the brink than ever before, but that just means you get to have bigger orgasms when you do. It’s win-win.";
@@ -366,7 +365,7 @@ public function treatmentHourProcs():void
 			//No Cooch!
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You find yourself just kind of oddly clenching and unclenching your [pc.asshole]. Whenever you do, pleasant flashes of desire run through your body, slithering up your spine to wrap your brain in their sensuous warmth. Before taking the treatment, you’d be so turned on that you would probably be down on the ground, trying to stuff four fingers inside yourself. Now you can ride the arousal like your own personal steed, directing it but never denying it.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You find yourself just kind of oddly clenching and unclenching your [pc.asshole]. Whenever you do, pleasant flashes of desire run through your body, slithering up your spine to wrap your brain in their sensuous warmth. Before taking the treatment, you’d be so turned on that you would probably be down on the ground, trying to stuff four fingers inside yourself. Now you can ride the arousal like your own personal steed, directing it but never denying it.");
 				eBuffer += "\n\nYou can only theorize that your brain is getting better and better at dealing with pleasure. The Treatment is making you more capable than ever before, even without normal genitalia. Why would anyone ever refuse such a gift?";
 			}
 			//All:
@@ -411,7 +410,7 @@ public function treatmentHourProcs():void
 			//2 - 5-7 points
 			else if(rand(3) == 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " A gradual, insidious heat slowly suffuses the whole of your mouth. You gasp, only to have it seem to roll out with every exhalation, spreading to your cheeks and [pc.lips] first, then to your jaw and nose after. Getting girl";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" A gradual, insidious heat slowly suffuses the whole of your mouth. You gasp, only to have it seem to roll out with every exhalation, spreading to your cheeks and [pc.lips] first, then to your jaw and nose after. Getting girl");
 				if(pc.femininity >= 50) eBuffer += "ier";
 				else eBuffer += "y";
 				eBuffer += " feels surprisingly... nice.";
@@ -421,14 +420,14 @@ public function treatmentHourProcs():void
 			//3 - 8 - 11 points
 			else if(rand(3) == 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " A whole body shudder works through you as you feel the transformative cocktail kick in. You can feel it in your cheeks and mouth, so warm you wonder if you're glowing, spreading slowly across your [pc.face] as it feminizes it.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" A whole body shudder works through you as you feel the transformative cocktail kick in. You can feel it in your cheeks and mouth, so warm you wonder if you're glowing, spreading slowly across your [pc.face] as it feminizes it.");
 				x = 8+rand(4);
 				pc.modFem(x);
 			}
 			//4 - 12-15 points
 			else if(rand(2) == 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " The inside of your mouth is all tingly... but so are your lips! You purse them before pressing them together and sliding your [pc.tongue] between them. They feel like heated pads around the oral muscle. The sensation spreads outward through the whole of your [pc.face]. You can actually feel it changing!";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" The inside of your mouth is all tingly... but so are your lips! You purse them before pressing them together and sliding your [pc.tongue] between them. They feel like heated pads around the oral muscle. The sensation spreads outward through the whole of your [pc.face]. You can actually feel it changing!");
 				x = 12+rand(4);
 				pc.modFem(x);
 			}
@@ -441,19 +440,19 @@ public function treatmentHourProcs():void
 			}
 			//Announce when passing a threshold:
 			//<= 90
-			if(y <= 90 && pc.femininity > 90) eBuffer += " <b>You can't help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It's jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>";
+			if(y <= 90 && pc.femininity > 90) eBuffer += ParseText(" <b>You can't help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It's jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>");
 			//<= 80
 			else if(y <= 80 && pc.femininity > 80) eBuffer += " <b>Your eyelashes have gotten long and luxurious, your lips have gotten fuller, and even your nose looks cuter. You're gorgeous.</b>";
 			//<= 72
-			else if(y <= 72 && pc.femininity > 72) eBuffer += " <b>There's no doubt about it. You're definitely getting hotter. Your [pc.face] looks feminine and shapely, sure to draw attention.</b>";
+			else if(y <= 72 && pc.femininity > 72) eBuffer += ParseText(" <b>There's no doubt about it. You're definitely getting hotter. Your [pc.face] looks feminine and shapely, sure to draw attention.</b>");
 			//<= 65
 			else if(y <= 65 && pc.femininity > 65) eBuffer += " <b>Checking yourself with your codex, you're delighted to find that your cheekbones look positively pretty. You're looking a lot cuter!</b>";
 			//<= 55
 			else if(y <= 55 && pc.femininity > 55) eBuffer += " <b>Your face is definitely starting to show touches of femininity at this point. Even your lips are a little fuller.</b>";
 			//< 45
-			else if(y < 45 && pc.femininity >= 45) eBuffer += " <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn't going to tell anybody what gender you are, but if the Treatment keeps working....</b>";
+			else if(y < 45 && pc.femininity >= 45) eBuffer += ParseText(" <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn't going to tell anybody what gender you are, but if the Treatment keeps working....</b>");
 			//< 35
-			else if(y < 35 && pc.femininity >= 35) eBuffer += " <b>After looking at your [pc.face] in your codex's holocam, you can only find a few hints of your masculinity left.</b>";
+			else if(y < 35 && pc.femininity >= 35) eBuffer += ParseText(" <b>After looking at your [pc.face] in your codex's holocam, you can only find a few hints of your masculinity left.</b>");
 			else if(y < 28 && pc.femininity >= 28) eBuffer += " <b>The profile of your face is getting less obviously masculine, but there's still the matter of your somewhat angular jawline to contend with.</b>";
 			else if(y < 20 && pc.femininity >= 20) eBuffer += " <b>You're definitely getting a little less handsome from this stuff, but you're still a long way from pretty.</b>";
 			else if(y < 10 && pc.femininity >= 10) eBuffer += " <b>A check with your codex confirms your jaw is getting noticeably less square.</b>";
@@ -473,9 +472,9 @@ public function treatmentHourProcs():void
 		//Once 100 is reached, unlock the Treated Milk perk.
 		if(pc.milkMultiplier >= 100 && !pc.hasPerk("Treated Milk") && pc.hasStatusEffect("Milkazon"))
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You grow increasingly aware of how productive your [pc.breasts] are. The Treatment has given you the ability to produce so much!";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" You grow increasingly aware of how productive your [pc.breasts] are. The Treatment has given you the ability to produce so much!");
 			if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) eBuffer += " You squeeze a droplet onto a finger and try it, just to sample it. It tastes exactly like the freshest, most delicious milk you've ever tasted - way better than normal. No wonder New Texas is able to export so much milk; Texan cow-milk is amazing!";
-			else eBuffer += " You squeeze a droplet onto your finger to try it, amazed at how much richer the richer the [pc.milk] tastes.";
+			else eBuffer += ParseText(" You squeeze a droplet onto your finger to try it, amazed at how much richer the richer the [pc.milk] tastes.");
 			eBuffer += " Perhaps a mid-fuck snack will allow your lovers to keep up with you.";
 			//Perk Unlocked: Treated Milk - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.
 			eBuffer += "\n\n(<b>Perk Gained: Treated Milk</b> - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.)";
@@ -488,7 +487,7 @@ public function treatmentHourProcs():void
 			//Flat chest -> .5 cup
 			if(pc.breastRows[0].breastRatingRaw < .5)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your chest feels strange. It's all puffy, and your [pc.nipples] are a little swollen. Oh snap, are you getting boobs?";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your chest feels strange. It's all puffy, and your [pc.nipples] are a little swollen. Oh snap, are you getting boobs?");
 				pc.breastRows[0].breastRatingRaw = .5;
 			}
 			//.5 cup to A cup
@@ -497,7 +496,7 @@ public function treatmentHourProcs():void
 				//clothed
 				if(!pc.isChestExposed())
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " You're noticing more and more that there's a little something extra in your [pc.upperGarment]. It has moved your center of gravity just far enough forward to shift your posture, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You've grown breasts!</b> They're still A-cups, really - barely breasts at all, but there's no way they're going to stay that small. How big will they get? Will they be big, overly sexualized melons or a pair of impressive mounds, clearing space ahead of you wherever you go?";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" You're noticing more and more that there's a little something extra in your [pc.upperGarment]. It has moved your center of gravity just far enough forward to shift your posture, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You've grown breasts!</b> They're still A-cups, really - barely breasts at all, but there's no way they're going to stay that small. How big will they get? Will they be big, overly sexualized melons or a pair of impressive mounds, clearing space ahead of you wherever you go?");
 					if(pc.bRows() > 1)
 					{
 						eBuffer += " The extra row";
@@ -509,7 +508,7 @@ public function treatmentHourProcs():void
 				//Nakers
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " You've been feeling clumsy all day, like something just isn't right with your body. It isn't until you glance down that the source of your awkwardness reveals itself - tits. <b>You've got pert little A-cups hanging off your chest!</b> They look cute - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them.\n\nOf course, they won't stay pert little melons for long. This is the first real step on your journey to having a room-dominating rack. One that'll make non-New Texans look on with a mixture of envy and lust, mostly the latter in the case of males. You give yourself a squeeze and smile, already anticipating all the ways you can show yourself off.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" You've been feeling clumsy all day, like something just isn't right with your body. It isn't until you glance down that the source of your awkwardness reveals itself - tits. <b>You've got pert little A-cups hanging off your chest!</b> They look cute - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them.\n\nOf course, they won't stay pert little melons for long. This is the first real step on your journey to having a room-dominating rack. One that'll make non-New Texans look on with a mixture of envy and lust, mostly the latter in the case of males. You give yourself a squeeze and smile, already anticipating all the ways you can show yourself off.");
 				}
 				pc.breastRows[0].breastRatingRaw = 1;
 			}
@@ -522,7 +521,7 @@ public function treatmentHourProcs():void
 			//B-C
 			else if(pc.breastRows[0].breastRatingRaw < 3)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Whenever you move, your [pc.chest] move along with you. That's no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Whenever you move, your [pc.chest] move along with you. That's no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop.");
 				if(!pc.isChestExposed()) eBuffer += " You pop open your top for a look.";
 				else eBuffer += " You look down.";
 				eBuffer += " Damn! When did you get tits like that? They're proper C-cups now - big enough to command the attention of passersby when shown off, not that you feel much need to. You flex and twist, admiring how you're filling out all over. And to think it's just getting started!";
@@ -531,7 +530,7 @@ public function treatmentHourProcs():void
 			//C-D
 			else if(pc.breastRows[0].breastRatingRaw < 4)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There's nothing wrong with making sure your girls are sitting right, and if anyone has a complaint about it, that's their problem. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze them. There's not enough for your fingers to really sink into... yet. But you're on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining the goofy looks boys will get when they see them, assuming they earn the privilege, of course.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There's nothing wrong with making sure your girls are sitting right, and if anyone has a complaint about it, that's their problem. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze them. There's not enough for your fingers to really sink into... yet. But you're on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining the goofy looks boys will get when they see them, assuming they earn the privilege, of course.");
 				//+5 lust
 				pc.lust(5);
 				pc.breastRows[0].breastRatingRaw = 4;
@@ -539,9 +538,9 @@ public function treatmentHourProcs():void
 			//D->DD
 			else if(pc.breastRows[0].breastRatingRaw < 5)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.chest] feel so nice and warm";
-				if(!pc.isChestExposed()) eBuffer += " against your [pc.upperGarment]";
-				eBuffer += " that you just have to give them a firm squeeze. Your index fingers settle on your [pc.nipples] while your palms massage the burgeoning titflesh. It just doesn't work as well as it should; your boobs are bigger and squishier than the last time you held them. You've gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD's.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.chest] feel so nice and warm");
+				if(!pc.isChestExposed()) eBuffer += ParseText(" against your [pc.upperGarment]");
+				eBuffer += ParseText(" that you just have to give them a firm squeeze. Your index fingers settle on your [pc.nipples] while your palms massage the burgeoning titflesh. It just doesn't work as well as it should; your boobs are bigger and squishier than the last time you held them. You've gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD's.");
 				//+2 lust
 				pc.lust(2);
 				pc.breastRows[0].breastRatingRaw = 5;
@@ -558,7 +557,7 @@ public function treatmentHourProcs():void
 			else if(pc.breastRows[0].breastRatingRaw < 7)
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " You give a squeal of surprise when you realize how big your tits are getting. They're way more bouncy and squishy than before. If you got measured for a cheap bra, you'd definitely be an E-cup, but you don't think you need one.";
-				if(!pc.isChestExposed()) eBuffer += " Even with your [pc.upperGarments] peeled down,";
+				if(!pc.isChestExposed()) eBuffer += ParseText(" Even with your [pc.upperGarments] peeled down,");
 				else eBuffer += " Even as naked as you are,";
 				eBuffer += " they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren't too firm or too soft. In short, they look damned near perfect on you, a beautiful compliment to match the rest of your developing body.";
 				//+2 lust
@@ -568,7 +567,7 @@ public function treatmentHourProcs():void
 			//E -> big E
 			else if(pc.breastRows[0].breastRatingRaw < 8)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You let your hand play across your [pc.nipple] during an idle moment, just to check if your sensitivity is getting crazy or anything. The cow-girls seem to enjoy it, but while it gives you a fluttery thrill, it doesn't make you weak in the knees. It doesn't make you moo and moan in equal measure, though the thought of squeezing on some slutty cow till she does makes your nips perk quite nicely. Kneading your pillowy mammaries and smiling, you admire how big they're getting, reveling in how the pliant flesh bulges between your questing fingers. It's the only part of you that's getting softer, and you're completely okay with that.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You let your hand play across your [pc.nipple] during an idle moment, just to check if your sensitivity is getting crazy or anything. The cow-girls seem to enjoy it, but while it gives you a fluttery thrill, it doesn't make you weak in the knees. It doesn't make you moo and moan in equal measure, though the thought of squeezing on some slutty cow till she does makes your nips perk quite nicely. Kneading your pillowy mammaries and smiling, you admire how big they're getting, reveling in how the pliant flesh bulges between your questing fingers. It's the only part of you that's getting softer, and you're completely okay with that.");
 				eBuffer += "\n\n<b>You're almost too big for an E-cup.</b>";
 				//+3 lust
 				pc.lust(3);
@@ -578,26 +577,26 @@ public function treatmentHourProcs():void
 			else if(pc.breastRows[0].breastRatingRaw < 9)
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " You look down, at first surprised and then pleased to see a little bit less of the ground than before. Yep, your chest is still growing.";
-				if(!pc.isChestExposed()) eBuffer += " You yank down your [pc.upperGarments] in a rush to examine it.";
+				if(!pc.isChestExposed()) eBuffer += ParseText(" You yank down your [pc.upperGarments] in a rush to examine it.");
 				eBuffer += " Your breasts give so perfectly under your fingertips that you just <i>have</i> to squeeze them, groping them every bit as eagerly as any horny bull-boy. You knead them, watching yourself do so with a lazy smile. Hmmm, already an EE-cup from the Treatment, and you could still get even bigger. The idea of luring in a cute little faux cow or blushing alien hotty with your sexy melons and riding them to the ground springs onto you out of nowhere, and you've got to admit, it's a pretty good one.";
 				pc.breastRows[0].breastRatingRaw = 9;
 			}
 			//EE -> big EE
 			else if(pc.breastRows[0].breastRatingRaw < 10)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.chest] sway and bounce with every movement. There's no stopping that now, though. They've grown to the upper end of the EE-cup range, and you couldn't stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you'd feel them shifting and rubbing against the inside of the fabric, begging to be freed. Why the fuck should you have to wear a top, anyway? Most males don't have to. You flex, squeezing your boobs between your biceps. Maybe you can convince a few planetary governors to put forth some less sexist regulations.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.chest] sway and bounce with every movement. There's no stopping that now, though. They've grown to the upper end of the EE-cup range, and you couldn't stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you'd feel them shifting and rubbing against the inside of the fabric, begging to be freed. Why the fuck should you have to wear a top, anyway? Most males don't have to. You flex, squeezing your boobs between your biceps. Maybe you can convince a few planetary governors to put forth some less sexist regulations.");
 				pc.breastRows[0].breastRatingRaw = 10;
 			}
 			//big EE -> F
 			else if(pc.breastRows[0].breastRatingRaw < 11)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Looking down, you smile. Your [pc.feet] ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Looking down, you smile. Your [pc.feet] ");
 				if(pc.legCount > 1) eBuffer += "are";
 				else eBuffer += "is";
 				eBuffer += " totally gone from view.";
 				if(pc.hasCock())
 				{
-					eBuffer += " Heck, if your [pc.cocks] ";
+					eBuffer += ParseText(" Heck, if your [pc.cocks] ");
 					if(pc.cockTotal() == 1) eBuffer += "was";
 					else eBuffer += "were";
 					eBuffer += " smaller, you wouldn't see ";
@@ -605,7 +604,7 @@ public function treatmentHourProcs():void
 					else eBuffer += "them";
 					eBuffer += " either.";
 				}
-				eBuffer += " The swelling of your bustline is truly a sight to behold. Besides, you can still see below if you bend forward a little bit, and you don't need to watch your [pc.feet] or anything - not when you've got an ocean of pillowy flesh to flaunt. You've got big, sexy F-cups now.";
+				eBuffer += ParseText(" The swelling of your bustline is truly a sight to behold. Besides, you can still see below if you bend forward a little bit, and you don't need to watch your [pc.feet] or anything - not when you've got an ocean of pillowy flesh to flaunt. You've got big, sexy F-cups now.");
 				pc.breastRows[0].breastRatingRaw = 11;
 			}
 			//F -> big F
@@ -620,10 +619,10 @@ public function treatmentHourProcs():void
 			//big F -> FF
 			else if(pc.breastRows[0].breastRatingRaw < 13)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You stumble, setting off a small earthquake in your breasts. Grinning, you mentally categorize it as a class five boobquake and grab hold for stability, stilling your boobs with a supportive grope. There! You knead them a few times, weighing their mass. You've jumped up another cup size for sure, probably to a double 'F'. You must cut quite the impressive figure in the mirror - a big [pc.boyGirl] with big, sexy boobs to match. The meek little cows of the world don't stand a chance.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You stumble, setting off a small earthquake in your breasts. Grinning, you mentally categorize it as a class five boobquake and grab hold for stability, stilling your boobs with a supportive grope. There! You knead them a few times, weighing their mass. You've jumped up another cup size for sure, probably to a double 'F'. You must cut quite the impressive figure in the mirror - a big [pc.boyGirl] with big, sexy boobs to match. The meek little cows of the world don't stand a chance.");
 				if(pc.bRows() > 1)
 				{
-					eBuffer += "You run one hand across your neglected lower [pc.nipples 1]. Maybe someday you can convince someone to make a treatment for " + pc.mf("boys","girls") + " with more than one meager row of tits."
+					eBuffer += ParseText("You run one hand across your neglected lower [pc.nipples 1]. Maybe someday you can convince someone to make a treatment for ") + pc.mf("boys","girls") + " with more than one meager row of tits."
 				}
 				//+3 lust
 				pc.lust(3);
@@ -632,17 +631,17 @@ public function treatmentHourProcs():void
 			//FF -> big FF
 			else if(pc.breastRows[0].breastRatingRaw < 14)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They're bigger than the last time you checked. How much are they going to grow?";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They're bigger than the last time you checked. How much are they going to grow?");
 				if(pc.bRows() > 1)
 				{
-					eBuffer += "\n\nIt's a shame that only your top row is seems to benefit from the Treatment, but at least your other [pc.nipples 1] are perking up to match their sisters above.";
+					eBuffer += ParseText("\n\nIt's a shame that only your top row is seems to benefit from the Treatment, but at least your other [pc.nipples 1] are perking up to match their sisters above.");
 				}
 				pc.breastRows[0].breastRatingRaw = 14;
 			}
 			//big FF -> G
 			else if(pc.breastRows[0].breastRatingRaw < 15)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You've gotten bigger again for sure. Now that you've swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming higher and to the fore. You've got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that's a piece of cake for a capable woman like yourself. Eye-candy like this is sure to put you on top of any social situation.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You've gotten bigger again for sure. Now that you've swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming higher and to the fore. You've got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that's a piece of cake for a capable woman like yourself. Eye-candy like this is sure to put you on top of any social situation.");
 				pc.breastRows[0].breastRatingRaw = 15;
 			}
 			//G -> big G
@@ -657,10 +656,10 @@ public function treatmentHourProcs():void
 			else if(pc.breastRows[0].breastRatingRaw < 17)
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " A warm, tingly feeling spreads through your chest as your breasts expand";
-				if(!pc.isChestExposed()) eBuffer += ", straining against your [pc.upperGarment] as they go";
+				if(!pc.isChestExposed()) eBuffer += ParseText(", straining against your [pc.upperGarment] as they go");
 				else eBuffer += ", shifting slightly as they go";
 				eBuffer += ". Your hands fly to them of their own accord, wrapping fingers around big, sensitive nipples and pressing palms into expanding undersides. This must be what it feels like to be a supermodel: constant improvement of a body that deserves more and more attention with every passing second. You look at yourself - and the GG-cup behemoths stacked on top of you - and chuckle. The Treatment isn't turning you into a slut. It's just making you hotter and sexier, giving you the equipment you need to distract a lover while you pound his hips into the dirt.";
-				if(pc.bRows() > 1) eBuffer += "\n\nYou idly caress a lower [pc.nippleNoun 1]. It's just as sensitive as the ones up top, but unlucky enough not to get the sexy swelling your prime rack is.";
+				if(pc.bRows() > 1) eBuffer += ParseText("\n\nYou idly caress a lower [pc.nippleNoun 1]. It's just as sensitive as the ones up top, but unlucky enough not to get the sexy swelling your prime rack is.");
 				//+7 lust
 				pc.lust(7);
 				pc.breastRows[0].breastRatingRaw = 17;
@@ -689,13 +688,13 @@ public function treatmentHourProcs():void
 			//H -> big H
 			else if(pc.breastRows[0].breastRatingRaw < 20)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You keep checking your [pc.chest] for signs of growth. It's hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you're pretty sure that your fingers are sinking a little deeper into your assets. There's a little bit more weight in your palms. You're on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] bigger, better boobs than them?";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You keep checking your [pc.chest] for signs of growth. It's hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you're pretty sure that your fingers are sinking a little deeper into your assets. There's a little bit more weight in your palms. You're on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] bigger, better boobs than them?");
 				pc.breastRows[0].breastRatingRaw = 20;
 			}
 			//big H -> HH
 			else if(pc.breastRows[0].breastRatingRaw < 21)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You glance down, pleased to note that your view of the ground is even more obstructed than before. You don't need to see your [pc.feet] anyway; balance comes completely naturally by this point, no matter how mammoth your feminine mounds. They're so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You glance down, pleased to note that your view of the ground is even more obstructed than before. You don't need to see your [pc.feet] anyway; balance comes completely naturally by this point, no matter how mammoth your feminine mounds. They're so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention.");
 				if(pc.bRows() > 1)
 				{
 					eBuffer += "\n\nMaybe you could get your other row";
@@ -719,8 +718,8 @@ public function treatmentHourProcs():void
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " Closing your eyes, you cop a feel at your bosom. It perfectly deforms around your questing fingertips, swallowing them almost wholly into itself. Each perfectly-shaped boob quivers against the other, pressed into a line of cleavage long enough to make a kui-tan cream her pants. You play with them";
 				if(pc.hasGenitals()) eBuffer += " until you feel more than a little sticky yourself";
-				else eBuffer += ", feeling a little unfilled yourself. If only you had someone to come fuck your [pc.ass] right now";
-				eBuffer += ". There's no doubt in your mind: you're a triple-H [pc.boyGirl] now.";
+				else eBuffer += ParseText(", feeling a little unfilled yourself. If only you had someone to come fuck your [pc.ass] right now");
+				eBuffer += ParseText(". There's no doubt in your mind: you're a triple-H [pc.boyGirl] now.");
 				pc.breastRows[0].breastRatingRaw = 23;
 			}
 		}
@@ -840,7 +839,7 @@ public function treatmentHourProcs():void
 			//80 - 90
 			else if(pc.tone < 90)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You do a few one-handed pushups, watching your muscles ripple under your [pc.skinFurScales] with a smile on your face. The physical exertion is calming. It helps you think and plan. When you stop, you’re covered in a light sheen of sweat that only makes your muscles stand out that much more clearly.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You do a few one-handed pushups, watching your muscles ripple under your [pc.skinFurScales] with a smile on your face. The physical exertion is calming. It helps you think and plan. When you stop, you’re covered in a light sheen of sweat that only makes your muscles stand out that much more clearly.");
 				pc.tone = 90;
 			}
 			//90-100
@@ -878,7 +877,7 @@ public function treatmentHourProcs():void
 			if(!pc.hasStatusEffect("Treatment Height Boosted"))
 			{
 				pc.createStatusEffect("Treatment Height Boosted",0,0,0,0,true,"","",false,10080);
-				eBuffer += "\n\n" + logTimeStamp() + " A kind of all-over ache has been bothering you off and on all day. It’s a deep pain, below the skin and muscles; you figure it’s your very bones. You were expecting to get taller. This must be what they mean by ‘growing pains’. A quick measurement confirms it. You’re [pc.height] tall now.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" A kind of all-over ache has been bothering you off and on all day. It’s a deep pain, below the skin and muscles; you figure it’s your very bones. You were expecting to get taller. This must be what they mean by ‘growing pains’. A quick measurement confirms it. You’re [pc.height] tall now.");
 			}
 			//Less than 6’
 			else if(pc.tallness < 72)
@@ -888,17 +887,17 @@ public function treatmentHourProcs():void
 				//1
 				if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + " The ground seems a little further away than before. At first, you think it’s your head playing tricks on you, but when you whack your head on something that you should have passed harmlessly underneath, you have to admit it. You’re getting taller. Pretty soon, nobody is going to call you short!";
 				//2
-				else eBuffer += "\n\n" + logTimeStamp() + " You stop to measure yourself with a cocky smile. There’s nothing like getting bigger and stronger to make you feel like a million creds. The Codex beeps, informing you that you’re [pc.height] tall. Now that’s more like it!";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" You stop to measure yourself with a cocky smile. There’s nothing like getting bigger and stronger to make you feel like a million creds. The Codex beeps, informing you that you’re [pc.height] tall. Now that’s more like it!");
 			}
 			//Less than 7’
 			else if(pc.tallness < 84)
 			{
 				//1
-				if(rand(3) == 0) eBuffer += "\n\n" + logTimeStamp() + " Your back abruptly pops. It doesn’t hurt or anything, but you twist and stretch to limber up, feeling it pop a few more times in different places. The ever-present dull ache of growing bones underlies it all, promising that you’re still getting bigger and taller. Right now, you’re [pc.height] tall.";
+				if(rand(3) == 0) eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your back abruptly pops. It doesn’t hurt or anything, but you twist and stretch to limber up, feeling it pop a few more times in different places. The ever-present dull ache of growing bones underlies it all, promising that you’re still getting bigger and taller. Right now, you’re [pc.height] tall.");
 				//2
 				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + " Things that used to pass right on by your head are getting closer and closer these days. Sometimes you even have to duck to avoid them. The ground seems farther away with every passing minute, a constant reminder of your Treatment-enhanced physique.";
 				//3
-				else eBuffer += "\n\n" + logTimeStamp() + " You snap out the Codex for a quick check on your amplified tallness. It beeps, displaying your new height on screen. You’re [pc.height] tall now. If this keeps up, you’re going to wind up taller than most normal terrans. And New Texans? Well... maybe you’ll catch up to the taller bulls.";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" You snap out the Codex for a quick check on your amplified tallness. It beeps, displaying your new height on screen. You’re [pc.height] tall now. If this keeps up, you’re going to wind up taller than most normal terrans. And New Texans? Well... maybe you’ll catch up to the taller bulls.");
 			}
 			//Less than 7’6”
 			else if(pc.tallness < 90)
@@ -910,14 +909,14 @@ public function treatmentHourProcs():void
 					if(CodexManager.entryUnlocked("Raskvel")) eBuffer += " Heck, the raskvel on Tarkus will probably think you a giant.";
 				}
 				//2
-				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + " You stretch your arms out high over your head and arch your back, working your sore joints. It’s one thing to revel in your added stature. It’s quite another to suffer from the constant aches and pains that come with your expanding physique. You do a quick measurement. You’re [pc.height] tall now.";
+				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + ParseText(" You stretch your arms out high over your head and arch your back, working your sore joints. It’s one thing to revel in your added stature. It’s quite another to suffer from the constant aches and pains that come with your expanding physique. You do a quick measurement. You’re [pc.height] tall now.");
 				//3
-				else eBuffer += "\n\n" + logTimeStamp() + " Your smile broadens while you look around. Your viewpoint is still rising, slowly but surely. Though it isn’t fast enough to be truly perceptible, you still find yourself taking note of your increasing height every few hours. Right now, you’re up to [pc.height] tall.";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your smile broadens while you look around. Your viewpoint is still rising, slowly but surely. Though it isn’t fast enough to be truly perceptible, you still find yourself taking note of your increasing height every few hours. Right now, you’re up to [pc.height] tall.");
 			}
 			//It’s over - hit dat cap or day 6.5
 			if(treatedHours == 168 || pc.tallness >= 90)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " The familiar, dull ache to which you have grown accustomed diminishes moment by moment. You frown when it vanishes entirely; the Treatment won’t be making you any taller. You’ll have to settle for being [pc.height] tall.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" The familiar, dull ache to which you have grown accustomed diminishes moment by moment. You frown when it vanishes entirely; the Treatment won’t be making you any taller. You’ll have to settle for being [pc.height] tall.");
 			}
 		}
 		//==========================
@@ -948,7 +947,7 @@ public function treatmentHourProcs():void
 				eBuffer += "\n\n" + logTimeStamp() + " The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?";
 				eBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".";
 				eBuffer += "\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.";
-				eBuffer += "\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all's said and done, all the better to compliment your other growing rack.";
+				eBuffer += ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all's said and done, all the better to compliment your other growing rack.");
 				pc.hornType = GLOBAL.TYPE_BOVINE;
 				pc.removeStatusEffect("Horn Bumps");
 				pc.horns = 2;
@@ -958,7 +957,7 @@ public function treatmentHourProcs():void
 			else if(pc.hornLength < 1)
 			{
 				eBuffer +="\n\n" + logTimeStamp() + " For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.";
-				eBuffer += "\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them yet. You’ll have to sharpen them up a little once they finish coming in, maybe even get them capped with ornamental steel.";
+				eBuffer += ParseText("\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them yet. You’ll have to sharpen them up a little once they finish coming in, maybe even get them capped with ornamental steel.");
 				pc.hornLength = 1;
 			}
 			//1" horns to 2" horns
@@ -1042,7 +1041,7 @@ public function treatmentHourProcs():void
 			//No tail
 			if(pc.tailCount == 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a cute little poof on the end, just like a cow's.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a cute little poof on the end, just like a cow's.");
 				pc.tailCount = 1;
 			}
 			//Multitail
@@ -1051,14 +1050,14 @@ public function treatmentHourProcs():void
 				//Multi - short
 				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips.";
-					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += " A fine layer of [pc.furColor] fur covers each one.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips.");
+					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ParseText(" A fine layer of [pc.furColor] fur covers each one.");
 					eBuffer += " You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
 				}
 				//Multi - long
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
 					eBuffer += "\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect";
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ", and a coat of fine fur is growing out over their lengths";
 					eBuffer += ". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
@@ -1067,14 +1066,14 @@ public function treatmentHourProcs():void
 			//Single - short
 			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.";
-				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += " A fine layer of [pc.furColor] fur covers the whole thing.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.");
+				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ParseText(" A fine layer of [pc.furColor] fur covers the whole thing.");
 				eBuffer += " You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
 			}
 			//Single - long
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
 				eBuffer += "\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect";
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ", and a coat of fine fur is growing out over its length";
 				eBuffer += ". In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
@@ -1087,7 +1086,7 @@ public function treatmentHourProcs():void
 		//Cow ears (maybe)
 		if(pc.earType != GLOBAL.TYPE_BOVINE && treatedHours == 160 && rand(2) == 0)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; <b>you're just listening through a pair of floppy cow-ears now</b>. Briefly, you consider how good it would feel to have someone scratch them.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; <b>you're just listening through a pair of floppy cow-ears now</b>. Briefly, you consider how good it would feel to have someone scratch them.");
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
@@ -1134,7 +1133,7 @@ public function treatmentHourProcs():void
 			//Biggish (Sub max to max)
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Moving around, you’re pleased to discover a little extra wiggle in you walk. Your [pc.butt] sways hypnotically as you go, automatically borne on a sinuous back and forth motion by your expanding [pc.hips]. You wonder if anyone will notice.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Moving around, you’re pleased to discover a little extra wiggle in you walk. Your [pc.butt] sways hypnotically as you go, automatically borne on a sinuous back and forth motion by your expanding [pc.hips]. You wonder if anyone will notice.");
 				pc.hipRatingRaw = 7 + rand(4);
 			}
 		}
@@ -1142,7 +1141,7 @@ public function treatmentHourProcs():void
 		if(treatedHours == 156 && pc.buttRatingRaw < 9)
 		{
 
-			if(!pc.isAssExposed()) eBuffer += "\n\n" + logTimeStamp() + " An increase in the tightness of your [pc.lowerGarments] gradually comes to your attention, forcing you to shift and adjust them.";
+			if(!pc.isAssExposed()) eBuffer += "\n\n" + logTimeStamp() + ParseText(" An increase in the tightness of your [pc.lowerGarments] gradually comes to your attention, forcing you to shift and adjust them.");
 			else eBuffer += "\n\nA slight shift in your balance gradually makes itself known to you, and you twist to regard your changing form, expecting to find a bigger butt.";
 			eBuffer += " Sure enough, your ass has swollen up with an influx of fresh new flesh, pushing it out into a quite squeezable, bubbly butt. The urge to shake it comes over you, but you fight it off, for now. There will be plenty of time for that sort of thing later. Not too much later, but later.";
 			pc.buttRatingRaw = 9;
@@ -1158,12 +1157,12 @@ public function treatmentHourProcs():void
 		if(treatedHours == 129 && !pc.hasCock() && pc.hasVagina() && pc.statusEffectv3("Treated") != 0)
 		{
 			eBuffer += "\n\n" + logTimeStamp() + " Oh fuck! Something is happening, something that shatters your confident facade with aplomb. You can feel it, wriggling and squirming ";
-			if(pc.legCount == 1) eBuffer += "between your [pc.legs]";
+			if(pc.legCount == 1) eBuffer += ParseText("between your [pc.legs]");
 			else eBuffer += "in your loins";
-			eBuffer += ", just up and behind your [pc.vaginas]. It's a tight, wet heat that grabs hold of your thoughts and yanks them around until they're buried six-inches deep in an imaginary cow-pussy. It's equal parts painful and exciting, burning a blistering path of lurid fucking through your fantasies and body alike.";
+			eBuffer += ParseText(", just up and behind your [pc.vaginas]. It's a tight, wet heat that grabs hold of your thoughts and yanks them around until they're buried six-inches deep in an imaginary cow-pussy. It's equal parts painful and exciting, burning a blistering path of lurid fucking through your fantasies and body alike.");
 			eBuffer += "With an audible pop, you suddenly feel immense relief from the pain - but not from the lust. You're hornier than ever, and a barrage of foreign sensations emanate from your crotch. You reach down, expecting to find a sloppily drooling pussy, and instead bump into the rigid firmness of your new maleness. <b>You have a cock.</b>";
 			eBuffer += "\n\nThe discovery isn't as unnerving as you feel it should be, though maybe that's the scintillating pleasure that it grants with every touch. In no time flat, you're wrapping a palm around and furiously stroking, humping your fist in a lewd declaration of pleasure, dribbling pre-cum over your knuckles and drool down your chin. Having a dick feels good! You whimper once, thrusting especially powerfully, then hump again, twice as hard.";
-			eBuffer += "\n\nInternal muscles clench powerfully, triggering a cascade of endorphins and blissful relief in the moment of your climax. [pc.Cum] spills out onto the ground from your whorish masturbation, but you can't bring yourself to stop, not until you squeezed every droplet of pleasure from this wondrous new appendage.";
+			eBuffer += ParseText("\n\nInternal muscles clench powerfully, triggering a cascade of endorphins and blissful relief in the moment of your climax. [pc.Cum] spills out onto the ground from your whorish masturbation, but you can't bring yourself to stop, not until you squeezed every droplet of pleasure from this wondrous new appendage.");
 			eBuffer += "\n\nAfter a minute or so of tugging on your new dick, you moo softly to yourself and finally stop, staring in awe at the instrument of your desire while imagining the possibilities it opens up. You can fuck cow-girls now! You can fuck boys in the ass, ream them till they're giggly, spunk-oozing messes. Hell, you can even rub dicks with a big bull until one of you glazes the other.";
 			eBuffer += "Awesome!";
 			pc.orgasm();
@@ -1177,24 +1176,24 @@ public function treatmentHourProcs():void
 		//* Cum Volume & Minimum CumQ - Amazonian Virility
 		if(pc.hasCock() && treatedHours == 153 && !pc.hasPerk("Amazonian Virility"))
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " Oh-ohh-ohhh-stars! Quivers of pleasure slap into you, one after another, robbing the strength from your [pc.legs] until the quivering limb";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" Oh-ohh-ohhh-stars! Quivers of pleasure slap into you, one after another, robbing the strength from your [pc.legs] until the quivering limb");
 			if(pc.legCount > 1) eBuffer += "s";
-			eBuffer += " give out entirely, spilling you to the ground. Every individual pulse is like a miniature orgasm. They surge out of your middle, flexing your [pc.cocks], making ";
+			eBuffer += ParseText(" give out entirely, spilling you to the ground. Every individual pulse is like a miniature orgasm. They surge out of your middle, flexing your [pc.cocks], making ");
 			if(pc.cockTotal() == 1) eBuffer += "its";
 			else eBuffer += "their";
-			eBuffer += " [pc.cockHeads] throb.";
-			if(!pc.isCrotchExposed()) eBuffer += " You barely manage to yank your [pc.lowerGarment] out of the way before collapsing flat onto your back, pumping your [pc.hips] into the air.";
-			else eBuffer += " You reach down, unsure if you're going to stroke or simply take stock of the situation, but the ecstasy knocks you flat on your back a millisecond later, your [pc.hips] pumping lewdly into the air.";
-			eBuffer += "\n\nGobs of [pc.cumNoun] spill down the sides of your [pc.cocks], venting slowly. The individual ejaculations aren't powerful to push the sperm-laden goo more than an inch above your cum-slit, yet the pleasure isn't ebbing. Your penis";
+			eBuffer += ParseText(" [pc.cockHeads] throb.");
+			if(!pc.isCrotchExposed()) eBuffer += ParseText(" You barely manage to yank your [pc.lowerGarment] out of the way before collapsing flat onto your back, pumping your [pc.hips] into the air.");
+			else eBuffer += ParseText(" You reach down, unsure if you're going to stroke or simply take stock of the situation, but the ecstasy knocks you flat on your back a millisecond later, your [pc.hips] pumping lewdly into the air.");
+			eBuffer += ParseText("\n\nGobs of [pc.cumNoun] spill down the sides of your [pc.cocks], venting slowly. The individual ejaculations aren't powerful to push the sperm-laden goo more than an inch above your cum-slit, yet the pleasure isn't ebbing. Your penis");
 			if(pc.totalCocks() > 1) eBuffer += "es are like leaky faucets";
 			else eBuffer += " is like a leaky faucet";
 			eBuffer += ". Jizz drools overwhere. You wrap your hands around your slickened dick";
 			if(pc.cockTotal() > 1) eBuffer += "s";
-			eBuffer += " and squeeze, reveling in the lubricated strokes, mooing softly when a particularly thick jet of [pc.cumColor] dribbles down your knuckles.";
-			eBuffer += "\n\nEventually, you give yourself over entirely to the ecstatic pulses, gathering up handfuls of slick jism to smear into your [pc.thighs] and [pc.chest]. You moo, then whimper, embarrassed to sound so submissive but too blissed-out to care. Your crotch is completely on autopilot, determined to release a bathtub's worth of orgasms, and your hands have climbed along for the ride, encouraging the endless eruptions to come out thicker and more voluminous by the minute.";
-			eBuffer += "\n\nBy the time the orgasmic quivers die down, everything from your [pc.chest] to your [pc.feet] is soaked in [pc.cumColor] spooge, and the ground below is even worse off. You look like an unwilling participant in a kui-tan bukkake session, that or a victim of a ghost orgy.\n\nSomething inside you";
-			if(pc.balls > 0) eBuffer += " or you [pc.balls]";
-			eBuffer += " has changed - something that's letting your body churn out [pc.cumNoun] as fast as you could possibly need it. You doubt you'll ever have an orgasm less than \"amazing\" ever again. Amazing!";
+			eBuffer += ParseText(" and squeeze, reveling in the lubricated strokes, mooing softly when a particularly thick jet of [pc.cumColor] dribbles down your knuckles.");
+			eBuffer += ParseText("\n\nEventually, you give yourself over entirely to the ecstatic pulses, gathering up handfuls of slick jism to smear into your [pc.thighs] and [pc.chest]. You moo, then whimper, embarrassed to sound so submissive but too blissed-out to care. Your crotch is completely on autopilot, determined to release a bathtub's worth of orgasms, and your hands have climbed along for the ride, encouraging the endless eruptions to come out thicker and more voluminous by the minute.");
+			eBuffer += ParseText("\n\nBy the time the orgasmic quivers die down, everything from your [pc.chest] to your [pc.feet] is soaked in [pc.cumColor] spooge, and the ground below is even worse off. You look like an unwilling participant in a kui-tan bukkake session, that or a victim of a ghost orgy.\n\nSomething inside you");
+			if(pc.balls > 0) eBuffer += ParseText(" or you [pc.balls]");
+			eBuffer += ParseText(" has changed - something that's letting your body churn out [pc.cumNoun] as fast as you could possibly need it. You doubt you'll ever have an orgasm less than \"amazing\" ever again. Amazing!");
 			for(var ii:int = 0; ii < 15; ii++)
 			{
 				pc.orgasm();
@@ -1246,8 +1245,8 @@ public function treatmentHourProcs():void
 			eBuffer += "\n\n" + logTimeStamp() + " It's been over eight hours since you took the treatment. Shouldn't it have done something by now?";
 			if(pc.hasVagina())
 			{
-				if(!pc.isCrotchGarbed()) eBuffer += " Glancing down, you look over your [pc.vaginas].";
-				else eBuffer += " Peeling open your [pc.underGarment], you take a look at your [pc.vaginas].";
+				if(!pc.isCrotchGarbed()) eBuffer += ParseText(" Glancing down, you look over your [pc.vaginas].");
+				else eBuffer += ParseText(" Peeling open your [pc.underGarment], you take a look at your [pc.vaginas].");
 				if(pc.totalVaginas() == 1) eBuffer += " It doesn't";
 				else eBuffer += " They don't";
 				eBuffer += " look any different. Would touching yourself feel any better than before? Surely, it wouldn't hurt to test. For science.";
@@ -1277,8 +1276,8 @@ public function treatmentHourProcs():void
 		//7
 		else if(treatedHours == 14)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You spend a few moments running your hands over your [pc.chest] and down your [pc.belly], attempting to ignore the way your [pc.nipples] harden in an attempt to catch under your fingers. It feels REALLY good.";
-			if(pc.hasHair() && pc.hairLength >= 10) eBuffer += " Even the feel of your [pc.hair] on your shoulders is amazing.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" You spend a few moments running your hands over your [pc.chest] and down your [pc.belly], attempting to ignore the way your [pc.nipples] harden in an attempt to catch under your fingers. It feels REALLY good.");
+			if(pc.hasHair() && pc.hairLength >= 10) eBuffer += ParseText(" Even the feel of your [pc.hair] on your shoulders is amazing.");
 			if(pc.hasHair()) 
 			{
 				eBuffer += " You run your hands through ";
@@ -1325,7 +1324,7 @@ public function treatmentHourProcs():void
 		{
 			if(pc.hasHair())
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Ugh! Your [pc.hair] is all wrong! Using the codex as a mirror, you spend a few minutes arranging it for maximum effect. It frames your face just so, and you purse your [pc.lips] invitingly. Yeah, that's better.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Ugh! Your [pc.hair] is all wrong! Using the codex as a mirror, you spend a few minutes arranging it for maximum effect. It frames your face just so, and you purse your [pc.lips] invitingly. Yeah, that's better.");
 			}
 			//No Hair
 			else eBuffer += "\n\n" + logTimeStamp() + " Ugh! You don't have any hair to accessorize with. Still, you could do something. You pull out your codex to use as a mirror and look over yourself. Maybe some cute earrings and some lip gloss would look on you. Pursed, inviting lips would complete the look.";
@@ -1335,7 +1334,7 @@ public function treatmentHourProcs():void
 		//12
 		else if(treatedHours == 24)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You catch one of your hands rubbing your [pc.chest] out of the blue. You probably shouldn't be walking around idly groping yourself, but it feels really good, you know? Using your other hand, you squeeze from both sides at once. A ragged moan slips from your lips, and you release yourself, contented for now. You'll need to spend some time with the girls later.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" You catch one of your hands rubbing your [pc.chest] out of the blue. You probably shouldn't be walking around idly groping yourself, but it feels really good, you know? Using your other hand, you squeeze from both sides at once. A ragged moan slips from your lips, and you release yourself, contented for now. You'll need to spend some time with the girls later.");
 			//+7 lust.
 			pc.lust(7);
 			//Libido +2
@@ -1351,7 +1350,7 @@ public function treatmentHourProcs():void
 			if(pc.legCount != 1) eBuffer += "between them";
 			else eBuffer += "inside you";
 			eBuffer +=", like you're as hollow as one of those chocolate bunnies they eat on Terra in spring. Only... a nice, hard dick would really hit the spot - a really veiny, thick one. It would complete you.";
-			if(pc.hasVagina()) eBuffer += " Dribbles of arousal leak down your [pc.legOrLegs] as you mull it over.";
+			if(pc.hasVagina()) eBuffer += ParseText(" Dribbles of arousal leak down your [pc.legOrLegs] as you mull it over.");
 			eBuffer += " Yeah... maybe a fuck break is in order.";
 			//+8 lust or lust to 33, whichever is higher.
 			if(pc.lust() + 8 < 33) pc.lust(33-pc.lust());
@@ -1376,7 +1375,7 @@ public function treatmentHourProcs():void
 		//15
 		else if(treatedHours == 30)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " This time, when you find your hands on your [pc.chest], you let them play. You aren't masturbating, per-se, just letting your fingers play a little. Hot jolts of ecstasy emanate from your [pc.nipples], and that's just fine. By the time something else distracts you, your face is as flush as your teats are hard.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" This time, when you find your hands on your [pc.chest], you let them play. You aren't masturbating, per-se, just letting your fingers play a little. Hot jolts of ecstasy emanate from your [pc.nipples], and that's just fine. By the time something else distracts you, your face is as flush as your teats are hard.");
 			//lust +7
 			pc.lust(7);
 			//Libido to 35 or +5
@@ -1403,9 +1402,9 @@ public function treatmentHourProcs():void
 		else if(treatedHours == 36)
 		{
 			eBuffer += "\n\n" + logTimeStamp() + " You rub your nipple and smile. With how good this feels, you should be whimpering on the floor in a puddle of your own ";
-			if(pc.hasVagina()) eBuffer += "[pc.girlCum]";
-			else if(pc.hasCock()) eBuffer += "[pc.cum]";
-			else if(pc.isLactating()) eBuffer += "[pc.milk]";
+			if(pc.hasVagina()) eBuffer += ParseText("[pc.girlCum]");
+			else if(pc.hasCock()) eBuffer += ParseText("[pc.cum]");
+			else if(pc.isLactating()) eBuffer += ParseText("[pc.milk]");
 			else eBuffer += "drool";
 			eBuffer += ", but... but you're not. You could probably take yourself to whole new heights of pleasure. Suddenly, regular orgasms seem like chopped liver, and you should be dining on caviar.";
 			//Inhuman Desire +20 max lust.
@@ -1428,7 +1427,7 @@ public function treatmentHourProcs():void
 		else if(treatedHours == 38)
 		{
 			eBuffer += "\n\n" + logTimeStamp() + " You giggle, ";
-			if(pc.hasHair() && pc.hairLength >= 4) eBuffer += "twirling your [pc.hair]";
+			if(pc.hasHair() && pc.hairLength >= 4) eBuffer += ParseText("twirling your [pc.hair]");
 			else
 			{
 				eBuffer += " and reach to twirl your hair before remembering you ";
@@ -1462,7 +1461,7 @@ public function treatmentHourProcs():void
 		//23
 		else if(treatedHours == 46 && pc.hasPerk("Inhuman Desire"))
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " A welcome flush rolls across your [pc.skin] as you consider your body. Your nerve endings seem alight with potential pleasure, just waiting to be touched and set off. Every part of your body begs for your attention and hands to tend to it. You idly rub your arms, [pc.hips], and [pc.legOrLegs] before letting go, tingling hotly. It's all you can do to keep from touching yourself, but at the same time, you feel so good! Your overheated body can handle so much pleasure; it's amazing! You've got to take your enhanced form for a spin and try some sex, just to see how incredible your orgasms will be. Maybe a few times in a row...";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" A welcome flush rolls across your [pc.skin] as you consider your body. Your nerve endings seem alight with potential pleasure, just waiting to be touched and set off. Every part of your body begs for your attention and hands to tend to it. You idly rub your arms, [pc.hips], and [pc.legOrLegs] before letting go, tingling hotly. It's all you can do to keep from touching yourself, but at the same time, you feel so good! Your overheated body can handle so much pleasure; it's amazing! You've got to take your enhanced form for a spin and try some sex, just to see how incredible your orgasms will be. Maybe a few times in a row...");
 			//+5 lust
 			pc.lust(5);
 			//Inhuman Desire upgrade to +40.
@@ -1492,19 +1491,19 @@ public function treatmentHourProcs():void
 					eBuffer += "\n\n" + logTimeStamp() + " Whoah, your crotch feels all... warm and tingly!";
 					if(pc.isCrotchGarbed())
 					{
-						if(!pc.isCrotchExposed()) eBuffer += " You pull your [pc.lowerGarment] out of the way, releasing ";
+						if(!pc.isCrotchExposed()) eBuffer += ParseText(" You pull your [pc.lowerGarment] out of the way, releasing ");
 						else eBuffer += " You congratulate yourself on wearing something functional enough to allow you unimpeded access to ";
 					}
 					eBuffer += "your sordidly glowing loins.";
-					if(pc.hasVagina()) eBuffer += " [pc.GirlCum] runs down your [pc.legs] as you bend low to inspect the disturbance, accidentally putting your [pc.vaginas] on to display to anyone who dares take a peek.";
-					else eBuffer += " Your [pc.asshole] flexes sympathetically as you bend low to inspect the disturbance, putting its eagerly winking ring on to display to anyone who dares take a peek.";
+					if(pc.hasVagina()) eBuffer += ParseText(" [pc.GirlCum] runs down your [pc.legs] as you bend low to inspect the disturbance, accidentally putting your [pc.vaginas] on to display to anyone who dares take a peek.");
+					else eBuffer += ParseText(" Your [pc.asshole] flexes sympathetically as you bend low to inspect the disturbance, putting its eagerly winking ring on to display to anyone who dares take a peek.");
 					eBuffer += " Stars! It feels so good you can barely stand!";
-					eBuffer += "\n\nYou spot the source of it all a moment later, ignorant of your [pc.butt] subtly lifting itself to better display itself. ";
-					if(pc.hasVagina()) eBuffer += "Right above your [pc.vaginas]";
+					eBuffer += ParseText("\n\nYou spot the source of it all a moment later, ignorant of your [pc.butt] subtly lifting itself to better display itself. ");
+					if(pc.hasVagina()) eBuffer += ParseText("Right above your [pc.vaginas]");
 					else eBuffer += "Right in the middle of your pubic region";
 					eBuffer += " is a small bulge, red and angry and getting bigger by the minute. Gingerly, you reach down and nearly collapse from the pleasure. Touching the little nub is like touching a live wire, like fondling a clit after an hour of foreplay, like ecstatic lightning is coursing up your spine and into your brain.";
 					eBuffer += "\n\nYou sink to the ground, giiggling and cooing";
-					if(pc.legCount > 1) eBuffer += ", [pc.legs] akimbo";
+					if(pc.legCount > 1) eBuffer += ParseText(", [pc.legs] akimbo");
 					eBuffer += ", and uncross your eyes. The bump is bigger now, maybe an inch long and visibly growing by the minute. You don’t even have to touch it; surges of delight pump out of it with every pulse of blood that surges in, feeding the bizarre growth. Confused and excited, you gently caress it, moaning as it engorges at your touch, feeling the tip gain a defining ridge, just like a penis.";
 					eBuffer += "\n\nYour eyes shoot open, but your hand won’t stop stroking what you now realize is <b>your new cock.</b> Every tug on the cute little rod is like food for the swelling, misplaced manhood, letting it get thicker, longer, and veinier. You whimper as a droplet of pre slips out, greasing your palm, and you stroke faster. You must look like quite a sight, dropped on your ass and furiously masturbating an increasingly respectable looking dick.";
 					eBuffer += "\n\nCum squirts out, cloudy and white, hard enough to slap into the underside of your chin, but you keep stroking, reveling in the pleasure and giggling in mad delight. <b>You’ve got a dick!</b> A dick that’s at six... no, seven inches long already! It surges one last time, oozing cum over your fingertips, then relaxes, spent for the moment.";
@@ -1520,12 +1519,12 @@ public function treatmentHourProcs():void
 					//Below 75% lust, acquire boner
 					if(pc.lust() < 75)
 					{
-						eBuffer += "\n\n" + logTimeStamp() + " Out of nowhere, you feel your [pc.cocks] erect, filling to a full tumescent state in a matter of seconds.";
+						eBuffer += "\n\n" + logTimeStamp() + ParseText(" Out of nowhere, you feel your [pc.cocks] erect, filling to a full tumescent state in a matter of seconds.");
 						if(!pc.isCrotchExposed())
 						{
 							if(pc.cockTotal() > 1) eBuffer += " They’re so hard that they threaten";
 							else eBuffer += " It’s so hard that it threatens";
-							eBuffer += " to split your [pc.lowerGarments] open. You do the sensible thing and pull your bottoms open before your inexplicable arousal overwhelms their structural integrity.";
+							eBuffer += ParseText(" to split your [pc.lowerGarments] open. You do the sensible thing and pull your bottoms open before your inexplicable arousal overwhelms their structural integrity.");
 						}
 						eBuffer += " Fuck, ";
 						if(pc.cockTotal() == 1) eBuffer += "it’s";
@@ -1540,7 +1539,7 @@ public function treatmentHourProcs():void
 					}
 					//Else
 					{
-						eBuffer += "\n\n" + logTimeStamp() + " [pc.EachCock], already hard, somehow seems to grow even harder. The full flesh tightens. The veins bulge. And the skin is pulled so taut by your tumescence that it gleams like the polished skin of a god.";
+						eBuffer += "\n\n" + logTimeStamp() + ParseText(" [pc.EachCock], already hard, somehow seems to grow even harder. The full flesh tightens. The veins bulge. And the skin is pulled so taut by your tumescence that it gleams like the polished skin of a god.");
 					}
 					//Merge
 					eBuffer += "\n\nYou can’t manage to make yourself look away, but neither are you inclined to hide the sight of it with a trembling palm. So you do the only thing you can think of: stare at your own dick with a sense of growing appreciation. Sure, cocks seem pretty awesome, but this is <i>your</i> cock. This is an organ every bit as awesome as the rest of you, maybe more so. You memorize its every feature in perfect detail, watching it flex and ooze its eagerness. If it were on anyone else, you’d be between their knees, sucking. How lucky you keep it on your person at all times.";
@@ -1560,7 +1559,7 @@ public function treatmentHourProcs():void
 					else if(pc.cocks[0].cType == GLOBAL.TYPE_FELINE) eBuffer += ", the rubbery nubs that cover it bigger and more sensitive than ever. A mere touch is enough to make you shiver";
 					else eBuffer += ", rigid and proud";
 					eBuffer += ". You stroke and giggle to yourself, just as pleased to be able to get a handjob as give one. It’s like multitasking but better!";
-					eBuffer += "\n\nBy the time you’re done grinning over your good fortune, your [pc.cock] is at least three or four inches longer and anxiously leaking pre. The gooey stuff is pouring out like water from a leaky faucet, enough to polish your jutting member, accompanied by an exotic sensation of tightness from somewhere inside you. It’s like something is reaching into you, threatening to squeeze the [pc.cumNoun] right out of you.";
+					eBuffer += ParseText("\n\nBy the time you’re done grinning over your good fortune, your [pc.cock] is at least three or four inches longer and anxiously leaking pre. The gooey stuff is pouring out like water from a leaky faucet, enough to polish your jutting member, accompanied by an exotic sensation of tightness from somewhere inside you. It’s like something is reaching into you, threatening to squeeze the [pc.cumNoun] right out of you.");
 				}
 				//Dick Expansion - Multi
 				else
@@ -1569,7 +1568,7 @@ public function treatmentHourProcs():void
 					if(pc.cocks[0].hasFlag(GLOBAL.FLAG_FLARED)) eBuffer += " You can feel the heavy weight of your enormous flare dragging on dick lower, bowing it beneath the weight of its recently expanded, obscene crown.";
 					else if(pc.hasKnot(0)) eBuffer += " You can feel the paradoxical pulsing of your knot, fitfully broadcasting a newfound ability to break a bitch in half if you’re not careful.";
 					eBuffer += " You stroke two and giggle to yourself, just as pleased to give out a double handjob as to get one. It’s like, more efficient or something, like scratching two itches that seem unrelated but satisfy the exact same urge.";
-					eBuffer += "\n\nBy the time you’re able to think about anything but the friction of your palms on your pricks, your embiggened tools are at least three or four inches bigger and anxiously leaking pre. The gooey stuff pours out like water from leaky faucets, soaking your members in your pernicious polish. You aren’t sure <i>why</i> you’re so drippy, but you wager it has something to do with the budding tightness inside you, almost like something is about to squeeze the [pc.cumNoun] right out of you.";
+					eBuffer += ParseText("\n\nBy the time you’re able to think about anything but the friction of your palms on your pricks, your embiggened tools are at least three or four inches bigger and anxiously leaking pre. The gooey stuff pours out like water from leaky faucets, soaking your members in your pernicious polish. You aren’t sure <i>why</i> you’re so drippy, but you wager it has something to do with the budding tightness inside you, almost like something is about to squeeze the [pc.cumNoun] right out of you.");
 				}
 				for(var cc:int = 0; cc < pc.cockTotal(); cc++)
 				{
@@ -1578,7 +1577,7 @@ public function treatmentHourProcs():void
 				//Single Ball - add one
 				if(pc.balls == 1)
 				{
-					eBuffer += "\n\nThat pleasant internal pinching rises to a peak, then suddenly abates as you feel something <i>slip</i> down and out of you. Your [pc.sack] feels abruptly tight, and with a curious probe, you discover a second testicle has dropped. <b>You have two balls!</b> No wonder there was so much pre. You sloppily jack yourself for another minute, waiting to see if any other changes manifest, but none do.";
+					eBuffer += ParseText("\n\nThat pleasant internal pinching rises to a peak, then suddenly abates as you feel something <i>slip</i> down and out of you. Your [pc.sack] feels abruptly tight, and with a curious probe, you discover a second testicle has dropped. <b>You have two balls!</b> No wonder there was so much pre. You sloppily jack yourself for another minute, waiting to see if any other changes manifest, but none do.");
 					eBuffer += "\n\nYou may as well find a way to get off. You’re going to be useless until someone milks all this cum out. That someone could you";
 					if(pc.canAutoFellate(-1)) eBuffer += ". A blowie would feel good <i>and</i> give you a midday snack.";
 					else
@@ -1592,8 +1591,8 @@ public function treatmentHourProcs():void
 				//Multiple - grow slightly
 				else if(pc.balls > 1)
 				{
-					eBuffer += "\n\nThat pleasant pinching peaks, accompanied by a sudden straining of your [pc.sack], and then relaxes, bringing with it some additional weight";
-					if(pc.legCount > 1) eBuffer += " between your [pc.legs]";
+					eBuffer += ParseText("\n\nThat pleasant pinching peaks, accompanied by a sudden straining of your [pc.sack], and then relaxes, bringing with it some additional weight");
+					if(pc.legCount > 1) eBuffer += ParseText(" between your [pc.legs]");
 					else eBuffer += " below the waist";
 					eBuffer += ". You gingerly explore, giving yourself a gentle poke that nearly makes you squirt. <b>Your balls got bigger too!</b> No wonder there’s been so much pre-cum! The Treatment is making everything dick-related bigger and better, which would probably confuse you if you bothered to think about anything besides how good it feels.";
 					pc.ballSizeRaw += 2;
@@ -1615,9 +1614,9 @@ public function treatmentHourProcs():void
 					if(pc.hasVagina()) eBuffer += "hermaphrodite";
 					else eBuffer += "shemale cow";
 					eBuffer += ".";
-					eBuffer += "\n\nContinuing to jack yourself off, you wait for any further changes, but nothing comes, not even your orgasm, at least not yet. If you’re going to be any use at all today, you’re probably going to need to find someone to get you off. Maybe that someone could be you. Does having proper balls make [pc.cumNoun] taste any better? Will it be thicker or sweeter?";
-					if(pc.canAutoFellate(-1)) eBuffer += " All you need to do is slip your [pc.cockHeadBiggest] into your lips and start sucking, and you’ll find out.";
-					else eBuffer += " All you need to do is get a little longer so that you can slip your [pc.cockHeadBiggest] between your lips, and you can suck till you find out.";
+					eBuffer += ParseText("\n\nContinuing to jack yourself off, you wait for any further changes, but nothing comes, not even your orgasm, at least not yet. If you’re going to be any use at all today, you’re probably going to need to find someone to get you off. Maybe that someone could be you. Does having proper balls make [pc.cumNoun] taste any better? Will it be thicker or sweeter?");
+					if(pc.canAutoFellate(-1)) eBuffer += ParseText(" All you need to do is slip your [pc.cockHeadBiggest] into your lips and start sucking, and you’ll find out.");
+					else eBuffer += ParseText(" All you need to do is get a little longer so that you can slip your [pc.cockHeadBiggest] between your lips, and you can suck till you find out.");
 					eBuffer += " Ooh, that’d be nice....";
 					pc.balls = 2;
 					if(pc.ballSizeRaw < 2) pc.ballSizeRaw = 2;
@@ -1629,11 +1628,11 @@ public function treatmentHourProcs():void
 			//Minimum lust raised to 33 + increase in refractory rate + ball swelling + cock swelling
 			if(treatedHours == 64 && pc.hasCock() && pc.balls > 1)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " A flush warms your cheeks out of nowhere, accompanied by a sudden surge in blood down below, making your [pc.cocks]";
-				if(!pc.isCrotchExposed()) eBuffer += " strain delightfully against your [pc.lowerGarment].";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" A flush warms your cheeks out of nowhere, accompanied by a sudden surge in blood down below, making your [pc.cocks]");
+				if(!pc.isCrotchExposed()) eBuffer += ParseText(" strain delightfully against your [pc.lowerGarment].");
 				else eBuffer += " jut delightfully in front of you.";
-				eBuffer += " Still more unexpected is the way they begin to lurch and jerk in the air, completely hands-free. The flush in your cheeks spreads to your [pc.chest], down your [pc.belly], and finally settles into your [pc.balls], suffusing them with wet heat. Whimpering, in delight and awe, you watch your [pc.cocks] begin to expand with every twitch, each movement heavier than the last.";
-				eBuffer += "\n\nOrgasm slaps you upside the head like a jilted lover, demanding your full attention as thick ropes of [pc.cum] erupt from your distended cum-slit";
+				eBuffer += ParseText(" Still more unexpected is the way they begin to lurch and jerk in the air, completely hands-free. The flush in your cheeks spreads to your [pc.chest], down your [pc.belly], and finally settles into your [pc.balls], suffusing them with wet heat. Whimpering, in delight and awe, you watch your [pc.cocks] begin to expand with every twitch, each movement heavier than the last.");
+				eBuffer += ParseText("\n\nOrgasm slaps you upside the head like a jilted lover, demanding your full attention as thick ropes of [pc.cum] erupt from your distended cum-slit");
 				if(pc.cockTotal() > 1) eBuffer += "s";
 				eBuffer += ", painting long lines across the ground in front of you even as you continue to grow. It’s incredible! All the pleasure of an orgasm is coursing through you mixed with the delight of ";
 				if(pc.cockTotal() == 1) eBuffer += "a ";
@@ -1674,9 +1673,9 @@ public function treatmentHourProcs():void
 			//Ball Growth
 			if(treatedHours == 73 && pc.balls > 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your musings are interrupted by a sudden swaying from your [pc.balls]. " + (pc.balls == 1 ? "It wobbles" : "They wobble") + " so heavily that you can’t possibly ignore it, and when you reach down to shift " + (pc.balls == 1 ? "it" : "them") + ", you discover that " + (pc.balls == 1 ? "it’s" : "they’ve") + " grown bigger over the last half day or so. You gently squeeze and moan, feeling a little pre-cum ooze out from the tip";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your musings are interrupted by a sudden swaying from your [pc.balls]. ") + (pc.balls == 1 ? "It wobbles" : "They wobble") + " so heavily that you can’t possibly ignore it, and when you reach down to shift " + (pc.balls == 1 ? "it" : "them") + ", you discover that " + (pc.balls == 1 ? "it’s" : "they’ve") + " grown bigger over the last half day or so. You gently squeeze and moan, feeling a little pre-cum ooze out from the tip";
 				if(pc.cockTotal() > 1) eBuffer += "s";
-				eBuffer += " of your [pc.cocks]. The little cum " + (pc.balls == 1 ? "factory seems" : "factories seem") + " to be constantly swelling in size and pleasurability.";
+				eBuffer += ParseText(" of your [pc.cocks]. The little cum ") + (pc.balls == 1 ? "factory seems" : "factories seem") + " to be constantly swelling in size and pleasurability.";
 				
 				pc.ballSizeRaw += 5 + rand(5);
 				
@@ -1688,7 +1687,7 @@ public function treatmentHourProcs():void
 			//Cock growth
 			if(treatedHours == 80 && pc.hasCock())
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You were just thinking about how amazing your [pc.cocks] ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You were just thinking about how amazing your [pc.cocks] ");
 				if(pc.cockTotal() == 1) eBuffer += "looks and feels";
 				else eBuffer += "look and feel";
 				eBuffer += " when ";
@@ -1711,11 +1710,11 @@ public function treatmentHourProcs():void
 				eBuffer += " before your eyes, adding an inch or two of extra size just to give you a reason to watch " + (pc.cockTotal() == 1 ? "it" : "them") + " longer.";
 
 				eBuffer += "\n\nWiping the drool from your chin, you put " + (pc.cockTotal() == 1 ? "it" : "them") + " away and try to go about your day without thinking of the enormous weight ";
-				if(!pc.isCrotchExposed()) eBuffer += "stuffed into your [pc.lowerGarments]";
-				else if(pc.legCount > 1) eBuffer += "swinging between your [pc.legs]";
+				if(!pc.isCrotchExposed()) eBuffer += ParseText("stuffed into your [pc.lowerGarments]");
+				else if(pc.legCount > 1) eBuffer += ParseText("swinging between your [pc.legs]");
 				else eBuffer += "dangling in front of you";
 				eBuffer += ". Needless to say, the organ between your ears won’t stop fantasizing about the one ";
-				if(pc.legCount > 1) eBuffer += "between your [pc.legs]";
+				if(pc.legCount > 1) eBuffer += ParseText("between your [pc.legs]");
 				else eBuffer += "below the belt";
 				eBuffer += ", and after a few minutes you stop trying to resist it. Your dick";
 				if(pc.cockTotal() > 1) eBuffer += "s are";
@@ -1731,10 +1730,10 @@ public function treatmentHourProcs():void
 			//Possible Milk-Herm Perk (Milk for Cum)
 			if(treatedHours == 100 && pc.canLactate() && pc.cumType != GLOBAL.FLUID_TYPE_MILK)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " The worst part of being a cummy, constantly ready-to-go cow-[pc.boyGirl] is definitely the fluid problem. If you think about someone pretty, or the taste of your own dickskin, or fucking a cow-girl until she’s dopey and mooing, you inevitably start to leak pre-cum all over yourself";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" The worst part of being a cummy, constantly ready-to-go cow-[pc.boyGirl] is definitely the fluid problem. If you think about someone pretty, or the taste of your own dickskin, or fucking a cow-girl until she’s dopey and mooing, you inevitably start to leak pre-cum all over yourself");
 				if(!pc.isNude()) eBuffer += " and your clothing";
-				eBuffer += ". And then you’ll inevitably wind up doing something sexy with yourself or someone else and getting even messier - and then you smell like your own [pc.cumNoun] a... Oh fuck, you’re dripping again!";
-				eBuffer += "\n\nSomething’s different this time, though. It’s not quite as viscous as it normally is, and though it’s white, it smells sweeter, almost creamy. You gather a dollop on your finger and hold it up to your nose. It smells like... like... milk! <b>Your ejaculate has been replaced with delicious, creamy milk!</b> You grab [pc.oneCock] and squeeze a dollop onto your palm to drink. This is <i>awesome</i>.";
+				eBuffer += ParseText(". And then you’ll inevitably wind up doing something sexy with yourself or someone else and getting even messier - and then you smell like your own [pc.cumNoun] a... Oh fuck, you’re dripping again!");
+				eBuffer += ParseText("\n\nSomething’s different this time, though. It’s not quite as viscous as it normally is, and though it’s white, it smells sweeter, almost creamy. You gather a dollop on your finger and hold it up to your nose. It smells like... like... milk! <b>Your ejaculate has been replaced with delicious, creamy milk!</b> You grab [pc.oneCock] and squeeze a dollop onto your palm to drink. This is <i>awesome</i>.");
 				eBuffer += "\n\nCould your cockmilk still knock someone up? Like, could you stuff a girl full of milk and make her have a baby? You have a hunch the answer is yes, but it’d be way more fun to find out than to fiddle with the scanner on your boring old Codex.";
 				pc.cumType = GLOBAL.FLUID_TYPE_MILK;
 				pc.orgasm();
@@ -1744,12 +1743,12 @@ public function treatmentHourProcs():void
 			//Panic Ejaculation Unlock Chance
 			if(treatedHours == 110 && !pc.hasPerk("Panic Ejaculation"))
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " The strangest thing happens while you’re walking. You trip - but that isn’t the strange part. As you’re falling, flailing in absolute panic, your [pc.cocks] start";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" The strangest thing happens while you’re walking. You trip - but that isn’t the strange part. As you’re falling, flailing in absolute panic, your [pc.cocks] start");
 				if(pc.cockTotal() == 1) eBuffer += "s";
 				eBuffer += " firing cum everywhere.";
-				if(!pc.isCrotchExposed()) eBuffer += " Your [pc.lowerGarment] catches most of it, ensuring that you’re slicked in [pc.cum] from the waist down.";
-				else eBuffer += " There’s a small lake of [pc.cum] on the ground by the time you make contact, slicking the entire front half of your body in your own delightful ejaculate.";
-				eBuffer += " You stumble up on your [pc.feet], feeling a little drained, a little confused, and unsure of just why <b>you’re able to cum when panicked.</b>";
+				if(!pc.isCrotchExposed()) eBuffer += ParseText(" Your [pc.lowerGarment] catches most of it, ensuring that you’re slicked in [pc.cum] from the waist down.");
+				else eBuffer += ParseText(" There’s a small lake of [pc.cum] on the ground by the time you make contact, slicking the entire front half of your body in your own delightful ejaculate.");
+				eBuffer += ParseText(" You stumble up on your [pc.feet], feeling a little drained, a little confused, and unsure of just why <b>you’re able to cum when panicked.</b>");
 				eBuffer += "\n\nMaybe there’s a use for such a talent you haven’t considered, aside from sexual relief at inappropriate times.";
 				//Gain Panic Ejaculation! WEEE
 				eBuffer += "\n\n(<b>Gained Perk: Panic Ejaculation</b> - Allows you to squirt out a little cum while grappled, easing your escape!)";
@@ -1765,16 +1764,16 @@ public function treatmentHourProcs():void
 				if(pc.canAutoFellate(-1))
 				{
 					x = pc.longestCockIndex();
-					eBuffer += "\n\n" + logTimeStamp() + " [pc.OneCock] slaps accusingly against your [pc.chest]";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" [pc.OneCock] slaps accusingly against your [pc.chest]");
 					if(pc.biggestTitSize() >= 3) eBuffer += ", nestling itself into the cleavage";
-					eBuffer += ". You gasp and look down, suddenly overwhelmed by the sight of your [pc.cockHead " + x + "] throbbing just in front of you. Fuck, that’s sexy! You run a fingertip gingerly down your swollen cumvein, feeling it already filling up with your ";
+					eBuffer += ParseText(". You gasp and look down, suddenly overwhelmed by the sight of your [pc.cockHead " + x + "] throbbing just in front of you. Fuck, that’s sexy! You run a fingertip gingerly down your swollen cumvein, feeling it already filling up with your ");
 					if(pc.cumType == GLOBAL.FLUID_TYPE_MILK) eBuffer += "milky ";
 					eBuffer += "pre, only stopping when you feel your drool splashdown onto the eager tip. <i>“Fuck it,”</i> you figure. Your cock clearly needs sucking.";
 				}
 				//Else grow till can fellate - Boom boom bigcock
 				else {
 					x = pc.longestCockIndex();
-					eBuffer += "\n\n" + logTimeStamp() + " [pc.OneCock] slaps accusingly against your [pc.belly], then your [pc.chest]. It’s growing again, faster than before. The [pc.cockHead " + x + "] is getting wider and wider as it climbs up to your collarbone, the straining surface glossy and taut, polished by the suddenly oozing pre-cum that pours from the winking slit at the summit. You rub it encouragingly";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" [pc.OneCock] slaps accusingly against your [pc.belly], then your [pc.chest]. It’s growing again, faster than before. The [pc.cockHead " + x + "] is getting wider and wider as it climbs up to your collarbone, the straining surface glossy and taut, polished by the suddenly oozing pre-cum that pours from the winking slit at the summit. You rub it encouragingly");
 					if(pc.biggestTitSize() >= 3) eBuffer += " as it batters through your cleavage";
 					else eBuffer += " as it slips across your body";
 					eBuffer += ", leaving a trail of slime in its wake, climbing higher and higher.";
@@ -1790,20 +1789,20 @@ public function treatmentHourProcs():void
 					eBuffer += "\n\nYou barely notice your drool until it lands on the fattening rod, drooling down the side, greasing hands that suddenly seem determined to pump it faster than a butter churn. You moo, still staring at your member. Then a thought comes to mind - there’s a cock in front of you and your mouth is open. Why aren’t you sucking it? Why aren’t you slobbering all over that prick until its owner is gurgling and cumming?";
 				}
 				//Suck dat chode
-				eBuffer += "\n\nYour tongue touches down first, and that first contact is electric. A barrage of tastes and smells and synesthetic feelings assault you. You swear you can see the lust your cock exudes as a palpable object you could just reach out and touch, if you dared stop rubbing. You bend your neck a little and spread your [pc.lips] as wide as you dare, engulfing the [pc.cockHead " + x + "] in your slobbering maw a moment later. It feels just as good as it tastes.";
+				eBuffer += ParseText("\n\nYour tongue touches down first, and that first contact is electric. A barrage of tastes and smells and synesthetic feelings assault you. You swear you can see the lust your cock exudes as a palpable object you could just reach out and touch, if you dared stop rubbing. You bend your neck a little and spread your [pc.lips] as wide as you dare, engulfing the [pc.cockHead " + x + "] in your slobbering maw a moment later. It feels just as good as it tastes.");
 				eBuffer += "\n\nYou suck greedily. The sloppy echoes of your overeager blowjob fill the air around you, but you suck uncaringly, worshiping the pole of your phallic totem with both hands, squeezing fat drops of tasty pre-cum onto your tongue. You swish it around your teeth, delighting in the sensuous flavor, and slide your tongue out further";
 				if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) eBuffer += ", wrapping it around your length like the stripes of a barber’s pole";
 				eBuffer += ", savoring the salty flavor of it all.";
 
-				eBuffer += "\n\nThis is addictive, part of you realizes, but you don’t let that stop you. You doubt you’d let anything stop you at this point. A squad of kaithrit Sphynx Warriors could stomp up to you, and you’d keep right on sucking, making love to your [pc.cock " + x + "] with your mouth so eagerly that you’re dizzy from forgetting for breathe. Cock tastes <i>amazing</i>, better than the sweetest fruit or the saltiest snack. No, not just any cock - your cock. Your cock is perfect. One last growth spurt thrusts it firmly into your maw, prying your [pc.lips] wider than ausar porn-star’s gaping cunt, filling you with phallus and pleasure alike.";
-				eBuffer += "\n\nYou flare your nostrils, drinking in as much air as you dare, then barrel down on your [pc.cock " + x + "], taking it as far back into your throat as you dare";
+				eBuffer += ParseText("\n\nThis is addictive, part of you realizes, but you don’t let that stop you. You doubt you’d let anything stop you at this point. A squad of kaithrit Sphynx Warriors could stomp up to you, and you’d keep right on sucking, making love to your [pc.cock " + x + "] with your mouth so eagerly that you’re dizzy from forgetting for breathe. Cock tastes <i>amazing</i>, better than the sweetest fruit or the saltiest snack. No, not just any cock - your cock. Your cock is perfect. One last growth spurt thrusts it firmly into your maw, prying your [pc.lips] wider than ausar porn-star’s gaping cunt, filling you with phallus and pleasure alike.");
+				eBuffer += ParseText("\n\nYou flare your nostrils, drinking in as much air as you dare, then barrel down on your [pc.cock " + x + "], taking it as far back into your throat as you dare");
 				if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) eBuffer += ", feeling the flare sealing itself against your throat";
 				else if(pc.hasKnot(x)) eBuffer += ", feeling your knot inflate from the sensation";
-				eBuffer += ". Spit froths at the edges of your mouth and busily jacking hands while your urethra bloats in pre-orgasmic delight. [pc.Cum] mixes with the pre, and a sudden powerful contraction ripples through your muscles, curling tighter and tighter and tighter and then... relief!";
-				eBuffer += "\n\n[pc.Cum] splashes onto the back of your tongue and down your greedily drinking throat. You can feel it splashing into your stomach, the extra thick squirts flooding your neck in the brief moment before you completely devour them. Your eyes roll back, but you keep sucking and drinking on autopilot, like the Treatment has grown a part of your brain that can guide your body while you’re busy too busy cumming and quivering to think. It’s a good thing too, because you’re swallowing a lot of jizz. There’s enough to give your belly a little pudge and then some more, tingling on your tongue and delighting you with bliss-blasting mental fireworks.";
+				eBuffer += ParseText(". Spit froths at the edges of your mouth and busily jacking hands while your urethra bloats in pre-orgasmic delight. [pc.Cum] mixes with the pre, and a sudden powerful contraction ripples through your muscles, curling tighter and tighter and tighter and then... relief!");
+				eBuffer += ParseText("\n\n[pc.Cum] splashes onto the back of your tongue and down your greedily drinking throat. You can feel it splashing into your stomach, the extra thick squirts flooding your neck in the brief moment before you completely devour them. Your eyes roll back, but you keep sucking and drinking on autopilot, like the Treatment has grown a part of your brain that can guide your body while you’re busy too busy cumming and quivering to think. It’s a good thing too, because you’re swallowing a lot of jizz. There’s enough to give your belly a little pudge and then some more, tingling on your tongue and delighting you with bliss-blasting mental fireworks.");
 				pc.loadInMouth(pc);
-				eBuffer += "\n\nThe [pc.cockHead " + x + "] escapes your [pc.lips] at some point, painting them in a lovely layer of [pc.cumColor]";
-				if(pc.cumQ() >= 10000) eBuffer += ", then keeps squirting, hosing extra spunk across your [pc.hair], shoulders, and back. It slaps wetly against you, getting a shower by standing under a firehose full of goo. There’s just so much cum! Your straining middle could never contain it all, much as you might want to, so you make do by rubbing the excess over your [pc.chest] and [pc.cocks] both, sometimes even catching some in your mouth so that you can spit it onto a spot that hasn’t been glazed yet.";
+				eBuffer += ParseText("\n\nThe [pc.cockHead " + x + "] escapes your [pc.lips] at some point, painting them in a lovely layer of [pc.cumColor]");
+				if(pc.cumQ() >= 10000) eBuffer += ParseText(", then keeps squirting, hosing extra spunk across your [pc.hair], shoulders, and back. It slaps wetly against you, getting a shower by standing under a firehose full of goo. There’s just so much cum! Your straining middle could never contain it all, much as you might want to, so you make do by rubbing the excess over your [pc.chest] and [pc.cocks] both, sometimes even catching some in your mouth so that you can spit it onto a spot that hasn’t been glazed yet.");
 				else eBuffer += ". More jizz dribbles out, the last dregs of your orgasm, so you take your time licking them from the pulsing length, greedily devouring every drop.";
 				if(pc.cockTotal() > 1)
 				{
@@ -1812,7 +1811,7 @@ public function treatmentHourProcs():void
 					eBuffer += ", polishing every square inch of cock-skin that you can lay your tongue on. Maybe next time you can squeeze more than one into your mouth...";
 				}
 				//Realize how fucking awesome it is and that you feel totes my goats refreshed.
-				eBuffer += "\n\nFuck yes, that was awesome! All that cumming, and if anything you feel even less tired than before. Is the Treatment like, making you better at sucking your own cock so that you can do it all the time? Or maybe it did something to your [pc.cumNoun] to help it restore your energy. Who cares! If you get tired, you can just lean down and get a cock-snack, then go right back to adventuring... or fucking, you suppose. You pat your ";
+				eBuffer += ParseText("\n\nFuck yes, that was awesome! All that cumming, and if anything you feel even less tired than before. Is the Treatment like, making you better at sucking your own cock so that you can do it all the time? Or maybe it did something to your [pc.cumNoun] to help it restore your energy. Who cares! If you get tired, you can just lean down and get a cock-snack, then go right back to adventuring... or fucking, you suppose. You pat your ");
 				if(dickBiggered) eBuffer += "bigger ";
 				eBuffer += "dick and giggle delightedly, convinced that your mouth is going to taste like sex for the rest of your life.";
 				//Gain Autofellatio Queen perk
@@ -1828,18 +1827,18 @@ public function treatmentHourProcs():void
 			//Catch balls swelling and cock drooling
 			else if(treatedHours == 130 && pc.hasCock() && pc.balls > 1)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Ooh, your [pc.balls] feel so warm they’re practically glowing! You dance in place, feeling them wobbling back and forth";
-				if(pc.legCount > 1) eBuffer += " between your [pc.thighs]";
-				eBuffer += ", so big and full of [pc.cum] that squish and slosh from the motions. It feels so good that you soon forget your dance and flop down";
-				if(pc.legCount > 1) eBuffer += ", [pc.legs] spread as wide as possible to make room for your swelling nutsack";
-				eBuffer += ". Your [pc.cocks] join";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Ooh, your [pc.balls] feel so warm they’re practically glowing! You dance in place, feeling them wobbling back and forth");
+				if(pc.legCount > 1) eBuffer += ParseText(" between your [pc.thighs]");
+				eBuffer += ParseText(", so big and full of [pc.cum] that squish and slosh from the motions. It feels so good that you soon forget your dance and flop down");
+				if(pc.legCount > 1) eBuffer += ParseText(", [pc.legs] spread as wide as possible to make room for your swelling nutsack");
+				eBuffer += ParseText(". Your [pc.cocks] join");
 				if(pc.cockTotal() == 1) eBuffer += "s";
 				eBuffer += " right on in, jutting up as the pernicious lust infects them, already oozing their yummy goo. <i>“How do the boys do it?”</i> you wonder. How do they keep from just worshipping themselves all day long?";
 				eBuffer += "\n\nYou nuzzle up against ";
 				if(pc.cockTotal() > 1) eBuffer += "the closest";
 				else eBuffer += "your";
 				eBuffer += " dick and start licking it, roughly massaging a bloating ball with one hand, feeling them both expand. It’s not just the feel that you love but the heat and the smell, the way your flesh quivers and pulses on contact. It’s almost like your male genitalia doesn’t belong to you, like it’s an insatiable bull you get to carry around with you at all hours of the day and fuck and rub and fondle and... and... <i>service</i> forever and ever.";
-				eBuffer += "\n\nA few ropes of [pc.cum] squirt out, providing a smidgen of relief as your abruptly overfull balls vent the excess created by their inexplicable growth. They’re so soft but so full, and they aren’t the only part of you that looks a little bigger. Your dick";
+				eBuffer += ParseText("\n\nA few ropes of [pc.cum] squirt out, providing a smidgen of relief as your abruptly overfull balls vent the excess created by their inexplicable growth. They’re so soft but so full, and they aren’t the only part of you that looks a little bigger. Your dick");
 				if(pc.cockTotal() > 1) eBuffer += "s look";
 				else eBuffer += " looks";
 				eBuffer += " to have gained another inch or two as well, and as a bonus, ";
@@ -1851,7 +1850,7 @@ public function treatmentHourProcs():void
 				eBuffer += " size while flaccid. It’s going to be impossible to hide the python";
 				if(pc.cockTotal() > 1) eBuffer += "s";
 				eBuffer += " down there, but do you really want to?";
-				eBuffer += "\n\nThe idea that anyone could see your massive bulge has you flushing and eager tend to your [pc.cocks] once more, but you should probably attend to your other business first. What was it that was more important than orgasms again? You forget the question before you remember the answer. Gosh, you’re such a cum-cow!";
+				eBuffer += ParseText("\n\nThe idea that anyone could see your massive bulge has you flushing and eager tend to your [pc.cocks] once more, but you should probably attend to your other business first. What was it that was more important than orgasms again? You forget the question before you remember the answer. Gosh, you’re such a cum-cow!");
 				//Bigger balls & dick, + refill cum & blue balls
 				pc.ballSizeRaw += 6;
 				for(x = 0; x < pc.cockTotal(); x++)
@@ -1879,10 +1878,10 @@ public function treatmentHourProcs():void
 			//Possible Milk Fountain Perk
 			else if(treatedHours == 160 && pc.canLactate() && !pc.hasPerk("Milk Fountain"))
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.nipples] feel warm and... wet. You reach up to feel, ";
-				if(!pc.isChestExposed()) eBuffer += "rubbing them through your dampening [pc.upperGarment]";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.nipples] feel warm and... wet. You reach up to feel, ");
+				if(!pc.isChestExposed()) eBuffer += ParseText("rubbing them through your dampening [pc.upperGarment]");
 				else eBuffer += "rubbing your leaking chest";
-				eBuffer += ". You didn’t even have to grab them and tug, the [pc.milk] just started coming out on its own, like your teats can drip and drool every bit as eagerly as your [pc.cocks]. The Treatment isn’t just making you a cow, or a cum-cow; it’s making every part of you drip and leak at the slightest arousal. <b>You’ll probably squirt when you cum now, too.</b> Maybe not all the time, but you bet it happens super easily. Your tits wouldn’t even need to be full or anything.";
+				eBuffer += ParseText(". You didn’t even have to grab them and tug, the [pc.milk] just started coming out on its own, like your teats can drip and drool every bit as eagerly as your [pc.cocks]. The Treatment isn’t just making you a cow, or a cum-cow; it’s making every part of you drip and leak at the slightest arousal. <b>You’ll probably squirt when you cum now, too.</b> Maybe not all the time, but you bet it happens super easily. Your tits wouldn’t even need to be full or anything.");
 				//Milk Fountain~
 				eBuffer += "\n\n(<b>Gained Perk: Milk Fountain</b> - Allows you to squirt milk with the greatest of ease.)";
 				pc.createPerk("Milk Fountain",0,0,0,0,"Allows you to squirt milk with the greatest of ease.");
@@ -1927,7 +1926,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Flat chest -> .5 cup
 			if(pc.breastRows[0].breastRatingRaw < .5)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your chest feels strange. It's all puffy, and your [pc.nipples] are a little swollen. Weird.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your chest feels strange. It's all puffy, and your [pc.nipples] are a little swollen. Weird.");
 				pc.breastRows[0].breastRatingRaw += .5;
 			}
 			//.5 cup to A cup
@@ -1936,10 +1935,10 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//clothed
 				if(pc.isChestGarbed())
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " You're noticing more and more that there's a little something extra in your [pc.upperGarment]. It's moved your center of gravity just far enough forward to make you feel a little awkward, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You've grown boobs.</b> They're still [pc.breastCupSize]s, really - barely tits at all. Of course they won't stay that way for long. How big are your new boobs gonna get?";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" You're noticing more and more that there's a little something extra in your [pc.upperGarment]. It's moved your center of gravity just far enough forward to make you feel a little awkward, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You've grown boobs.</b> They're still [pc.breastCupSize]s, really - barely tits at all. Of course they won't stay that way for long. How big are your new boobs gonna get?");
 				}
 				//Nakers
-				else eBuffer += "\n\n" + logTimeStamp() + " You've been feeling clumsy all day, like something just isn't right with your body. It isn't until you glance down that the source of your awkwardness reveals itself - tits. <b>You've got pert little A-cups hanging off your chest!</b> They look adorable - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them.";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" You've been feeling clumsy all day, like something just isn't right with your body. It isn't until you glance down that the source of your awkwardness reveals itself - tits. <b>You've got pert little A-cups hanging off your chest!</b> They look adorable - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them.");
 				if(pc.bRows() > 1)
 				{
 					eBuffer += " The extra row";
@@ -1958,7 +1957,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//B-C
 			else if(pc.breastRows[0].breastRatingRaw < 3)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Whenever you move, your [pc.chest] move along with you. That's no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Whenever you move, your [pc.chest] move along with you. That's no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop.");
 				if(pc.isChestGarbed()) eBuffer += " You pop open your top for a look.";
 				else eBuffer += " You look down.";
 				eBuffer += " Damn! When did you get tits like that? They're proper C-cups now - big enough to give your hands something perfectly cushy to squeeze on, which they're doing right now. It feels great, really. You sigh and let your bigger boobs go, looking at them one last time. Yeah, you're getting pretty sexy.";
@@ -1969,7 +1968,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//C-D
 			else if(pc.breastRows[0].breastRatingRaw < 4)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There's nothing wrong with making sure your girls are sitting right. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze and fondle them. There's not enough for your fingers to really sink into... yet. But you're on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining how you're going to end up, before letting go, a distant smile on your face.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There's nothing wrong with making sure your girls are sitting right. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze and fondle them. There's not enough for your fingers to really sink into... yet. But you're on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining how you're going to end up, before letting go, a distant smile on your face.");
 				pc.breastRows[0].breastRatingRaw++
 				//+5 lust
 				pc.lust(5);
@@ -1977,9 +1976,9 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//D->DD
 			else if(pc.breastRows[0].breastRatingRaw < 5)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.chest] feel so nice and warm";
-				if(pc.isChestGarbed()) eBuffer += " against your [pc.upperGarment]";
-				eBuffer += " that you just have to give it a friendly squeeze. Your index fingers settle on your [pc.nipples] while your palms attempt to cradle the burgeoning titflesh. It just doesn't work as well as it should; your boobs are bigger and squishier than the last time you held them. You've gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD's.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.chest] feel so nice and warm");
+				if(pc.isChestGarbed()) eBuffer += ParseText(" against your [pc.upperGarment]");
+				eBuffer += ParseText(" that you just have to give it a friendly squeeze. Your index fingers settle on your [pc.nipples] while your palms attempt to cradle the burgeoning titflesh. It just doesn't work as well as it should; your boobs are bigger and squishier than the last time you held them. You've gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD's.");
 				pc.breastRows[0].breastRatingRaw++
 				//+2 lust
 				pc.lust(2);
@@ -1996,7 +1995,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			else if(pc.breastRows[0].breastRatingRaw < 7)
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " You give a squeal of surprise when you realize how big your boobies are getting. They're way more bouncy and squishy than before. If you got measured for a cheap bra, you'd definitely be an E-cup, but you don't think you need one.";
-				if(pc.isChestGarbed()) eBuffer += " Even with your [pc.upperGarments] peeled down,";
+				if(pc.isChestGarbed()) eBuffer += ParseText(" Even with your [pc.upperGarments] peeled down,");
 				else eBuffer += " Even as naked as you are,";
 				eBuffer += " they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren't too firm or too soft. In short, they're perfect for a grope.";
 				pc.breastRows[0].breastRatingRaw++
@@ -2006,7 +2005,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//E -> big E
 			else if(pc.breastRows[0].breastRatingRaw < 8)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You let your hand play across your [pc.nipple] during an idle moment, just to check if like, your sensitivity is getting crazy or anything. It feels so good, but more startling is how there seems to be a little extra behind the pleasantly pulsing pleasure-bud. Your tits were already nice and big.... You squeeze them for good measure... so nice and big. They're bigger now! The thought is slow coming while you grope yourself, but it comes all the same. You're on the upper end of an E-cup now. If they keep growing, you're going to have a very hard time finding your " + pc.feet() + ", but that'll be fine.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You let your hand play across your [pc.nipple] during an idle moment, just to check if like, your sensitivity is getting crazy or anything. It feels so good, but more startling is how there seems to be a little extra behind the pleasantly pulsing pleasure-bud. Your tits were already nice and big.... You squeeze them for good measure... so nice and big. They're bigger now! The thought is slow coming while you grope yourself, but it comes all the same. You're on the upper end of an E-cup now. If they keep growing, you're going to have a very hard time finding your ") + pc.feet() + ", but that'll be fine.";
 				eBuffer += "\n\nYou fondle your expanded chest. Everything's gonna be fine.";
 				pc.breastRows[0].breastRatingRaw++
 				pc.lust(2);
@@ -2015,7 +2014,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			else if(pc.breastRows[0].breastRatingRaw < 9)
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " You look down, at first surprised and then pleased to see a little bit less of the ground than before. Your titties are still growing!";
-				if(pc.isCrotchGarbed()) eBuffer += " You yank down your [pc.upperGarments] in a rush to examine them.";
+				if(pc.isCrotchGarbed()) eBuffer += ParseText(" You yank down your [pc.upperGarments] in a rush to examine them.");
 				eBuffer += " They give so perfectly under your fingertips that you just <i>have</i> to really squeeze them, groping them like just like an overeager guy. You knead them, watching yourself do so with a lazy smile. Mmm, already an EE-cup from the Treatment, and you could still get even bigger. The idea of finding someone to give you a chest massage while you finish growing comes upon you out of nowhere, and you've gotta admit - it isn't a bad one.";
 				pc.breastRows[0].breastRatingRaw++
 				pc.lust(3);
@@ -2023,7 +2022,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//EE -> big EE
 			else if(pc.breastRows[0].breastRatingRaw < 10)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.chest] sway and bounce with every movement. There's no stopping that now, though. They've grown to the upper end of the EE-cup range, and you couldn't stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you'd feel them shifting and rubbing against the inside of the fabric, dragging enlarged and sensitized nipples back and forth. You rub one and wonder if you should go jogging....";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.chest] sway and bounce with every movement. There's no stopping that now, though. They've grown to the upper end of the EE-cup range, and you couldn't stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you'd feel them shifting and rubbing against the inside of the fabric, dragging enlarged and sensitized nipples back and forth. You rub one and wonder if you should go jogging....");
 				pc.breastRows[0].breastRatingRaw++
 				pc.lust(4);
 			}
@@ -2065,12 +2064,12 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//FF -> big FF
 			else if(pc.breastRows[0].breastRatingRaw < 14)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Every movement you make is accompanied by a matching bounce and jiggle. Your breasts are the kind that stay in almost constant motion when you move, drawing the eye of every sapient creature in sight. The thought of all those eyes on your [pc.chest] has them feeling fuzzy with heat and your [pc.nipples] growing hard. They're bigger too, which is great, you figure. They'll be even more eye-catching, and they can hold more [pc.milkNoun]";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Every movement you make is accompanied by a matching bounce and jiggle. Your breasts are the kind that stay in almost constant motion when you move, drawing the eye of every sapient creature in sight. The thought of all those eyes on your [pc.chest] has them feeling fuzzy with heat and your [pc.nipples] growing hard. They're bigger too, which is great, you figure. They'll be even more eye-catching, and they can hold more [pc.milkNoun]");
 				if(pc.canLactate()) eBuffer += ", once you start lactating";
 				eBuffer += "!";
 				if(pc.bRows() > 1)
 				{
-					eBuffer += "\n\nIt's a shame that only your top row is getting so big and sexy, but at least your other [pc.nipples] are getting sensitive to match their big sisters up top.";
+					eBuffer += ParseText("\n\nIt's a shame that only your top row is getting so big and sexy, but at least your other [pc.nipples] are getting sensitive to match their big sisters up top.");
 				}
 				pc.lust(6);
 				pc.breastRows[0].breastRatingRaw++
@@ -2078,7 +2077,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//big FF -> G
 			else if(pc.breastRows[0].breastRatingRaw < 15)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You've gotten bigger again for sure. Now that you've swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming high and forward. You've got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that's fine, you figure. Doing so displays them that much more effectively.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You've gotten bigger again for sure. Now that you've swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming high and forward. You've got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that's fine, you figure. Doing so displays them that much more effectively.");
 				//+2 lust
 				pc.lust(2);
 				pc.breastRows[0].breastRatingRaw++
@@ -2095,7 +2094,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			else if(pc.breastRows[0].breastRatingRaw < 17)
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " A warm, tingly feeling spreads through your chest as your breasts expand";
-				if(pc.isChestGarbed()) eBuffer += ", straining against your [pc.upperGarment] as they go";
+				if(pc.isChestGarbed()) eBuffer += ParseText(", straining against your [pc.upperGarment] as they go");
 				else eBuffer += ", shifting slightly as they go";
 				eBuffer += ". Your hands fly to them of their own accord, wrapping fingers around big, sensitive nipples and pressing palms into expanding undersides. This must be what it feels like to be in heaven: constant, sensitive pleasure, as your body becomes more and more perfect in every way. You look at them - the GG-cup behemoths stacked on top of you - and giggle. The Treatment isn't turning you into a slut, just making you hotter, sexier. You don't have to wrap these pillows around a dick, no matter how amazing it would feel.";
 				if(pc.bRows() > 1) eBuffer += "\n\nYou idly caress a lower nipple. It's just as sensitive as the ones up top, but unlucky enough not to get the sexy swelling your top rack is.";
@@ -2114,7 +2113,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//big GG -> H
 			else if(pc.breastRows[0].breastRatingRaw < 19)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your hands are running slowly across your expanding chest in a kind of slow dance, sending little whispers of pink-hued pleasure into your brain. It's enough to keep a happy, ditzy smile on your face and your mind placid and calm. A simple tweak of a [pc.nipple] is enough to make your [pc.legOrLegs] wobble, and the idea of someone else doing the tweaking ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your hands are running slowly across your expanding chest in a kind of slow dance, sending little whispers of pink-hued pleasure into your brain. It's enough to keep a happy, ditzy smile on your face and your mind placid and calm. A simple tweak of a [pc.nipple] is enough to make your [pc.legOrLegs] wobble, and the idea of someone else doing the tweaking ");
 				if(pc.hasVagina()) eBuffer += "makes you positively drippy";
 				else eBuffer += "has you whimpering";
 				eBuffer += ". Best of all, you're slowly coming to realize that you've grown again. You finally have H-cups!";
@@ -2126,7 +2125,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//H -> big H
 			else if(pc.breastRows[0].breastRatingRaw < 20)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You keep checking your [pc.chest] for signs of growth. It's hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobies. This time, you're pretty sure that your fingers are sinking a little deeper into your assets. There's a little bit more weight in your palms. You're on the upper edge of an H-cup bra, and you wonder if the heifers on New Texas wear H-cups. It would be terrifically appropriate, you decide. There's nothing wrong with being called a cow when you're mostly boob.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You keep checking your [pc.chest] for signs of growth. It's hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobies. This time, you're pretty sure that your fingers are sinking a little deeper into your assets. There's a little bit more weight in your palms. You're on the upper edge of an H-cup bra, and you wonder if the heifers on New Texas wear H-cups. It would be terrifically appropriate, you decide. There's nothing wrong with being called a cow when you're mostly boob.");
 				pc.breastRows[0].breastRatingRaw++
 			}
 			//big H -> HH
@@ -2146,7 +2145,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//HH -> big HH
 			else if(pc.breastRows[0].breastRatingRaw < 22)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You lean back, feeling the weight of your feminine mounds flattening them slightly against your chest, and rub your hands across them in slow circles, giving them a little massage. They've earned it after all, working so hard to swell up all big and sexy, being so sensitive and pleasant to feel. Your [pc.nipples] are like little dispensers that release pink clouds of happiness on contact. Giggling, you admire them, realizing they've gotten even bigger. You'll barely fit in an HH-cup bra anymore.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You lean back, feeling the weight of your feminine mounds flattening them slightly against your chest, and rub your hands across them in slow circles, giving them a little massage. They've earned it after all, working so hard to swell up all big and sexy, being so sensitive and pleasant to feel. Your [pc.nipples] are like little dispensers that release pink clouds of happiness on contact. Giggling, you admire them, realizing they've gotten even bigger. You'll barely fit in an HH-cup bra anymore.");
 				//+6 lust
 				pc.lust(6);
 				pc.breastRows[0].breastRatingRaw++
@@ -2156,7 +2155,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " Closing your eyes, you cop a feel at your bosom. It perfectly deforms around your questing fingertips, swallowing them almost wholly into itself. Each perfectly-shaped boob quivers against the other, pressed into a line of cleavage long enough to make a kui-tan cream her pants. You play with them";
 				if(pc.hasVagina()) eBuffer += " until you feel more than a little sticky yourself";
-				else eBuffer += ", feeling a little unfilled yourself. If only you had someone to come fuck your [pc.ass] right now";
+				else eBuffer += ParseText(", feeling a little unfilled yourself. If only you had someone to come fuck your [pc.ass] right now");
 				eBuffer += ". There's no doubt in your mind: you're a triple-H girl now.";
 				eBuffer += "\n\nYou don't even try to stop a contented 'moo' from escaping your mouth. It feels right.";
 				pc.lust(3);
@@ -2165,7 +2164,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			/*HHH -> big HHH
 			else if(pc.breastRows[0].breastRatingRaw < 24)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You wrap your arms around your [pc.chest], squeezing them together. Your breasts have gotten so big and well... fuckable lately. You squeeze tighter, making them bulge out slightly, and giggle. Huge tits can serve so many purposes! They can get you attention from guys and girls, or they can hold milk.... One of your hands starts tugging a nipple, reminding you of another important fact about big, treated boobs: they can feel really, really good. You're already bigger than some of the girls on New Texas, almost past HHH-cups. How big can you get?";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You wrap your arms around your [pc.chest], squeezing them together. Your breasts have gotten so big and well... fuckable lately. You squeeze tighter, making them bulge out slightly, and giggle. Huge tits can serve so many purposes! They can get you attention from guys and girls, or they can hold milk.... One of your hands starts tugging a nipple, reminding you of another important fact about big, treated boobs: they can feel really, really good. You're already bigger than some of the girls on New Texas, almost past HHH-cups. How big can you get?");
 				//+5 lust
 				pc.lust(5);
 				pc.breastRows[0].breastRatingRaw++
@@ -2206,7 +2205,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			else if(pc.breastRows[0].breastRatingRaw < 28)
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " Every movement sends quakes of happy feelings through your mountainous melons, the feminine orbs entirely too delighted to bounce and jiggle for the whole world to see. And you can't blame them either. They're big, delicious tits. They deserve to be grabbed and squeezed and pulled until you're whimpering and drooling all over them... just like now. You moo quietly under your breath and pull your hands away, trying not to cum. You're pretty sure they're at least J-cups by now, but it's a far less pressing concern than the needy itch between your ";
-				if(pc.hasVagina()) eBuffer += "[pc.thighs]";
+				if(pc.hasVagina()) eBuffer += ParseText("[pc.thighs]");
 				else eBuffer += "cheeks";
 				eBuffer += ".";
 				if(pc.breastRows.length > 1) eBuffer += "\n\nIf you the Treatment worked on more than one row, you could probably be having a wonderful titgasm by now.";
@@ -2244,7 +2243,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Done before max:
 			if(pc.breastRows[0].breastRating() >= pc.statusEffectv1("Treated") && !pc.hasStatusEffect("Boobgrow Done Notice"))
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " There's a kind of quivering finality about the movements of your breasts as you walk. They don't seem as constantly warm or well... active as before. The Treatment must be done working its magic on them, but at least they're still big, sexy, and oh so fun to touch. Just the idea of fondling yourself has your [pc.skin] flushing hotly.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" There's a kind of quivering finality about the movements of your breasts as you walk. They don't seem as constantly warm or well... active as before. The Treatment must be done working its magic on them, but at least they're still big, sexy, and oh so fun to touch. Just the idea of fondling yourself has your [pc.skin] flushing hotly.");
 				pc.createStatusEffect("Boobgrow Done Notice",0,0,0,0,true,"","",false,10080);
 			}
 		}
@@ -2263,13 +2262,13 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//sub 50 to 51 Femininity
 			else if(pc.femininity < 50)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.lips] feel a little dry, and when you lick them, you discover that they feel a little fuller than before. You pull out your Codex's camera function for another look. It confirms your worry. Your lips are bigger, and your face looks far more feminine than before. The Treatment has given you a fairly androgynous face. You could probably pass as either gender, if you wanted.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.lips] feel a little dry, and when you lick them, you discover that they feel a little fuller than before. You pull out your Codex's camera function for another look. It confirms your worry. Your lips are bigger, and your face looks far more feminine than before. The Treatment has given you a fairly androgynous face. You could probably pass as either gender, if you wanted.");
 				pc.femininity = 51;
 			}
 			//sub 75 to 76 femininity
 			else if(pc.femininity < 75)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You wipe a bead of sweat from your brow, then jerk in surprise at how smooth your [pc.skin] felt. It didn't use to feel that way! Hastily pulling out your Codex, you use it to examine your face. What you see shocks you. There's a pretty face with lips that are noticeably fuller than before. <b>You're actually... pretty.</b> More than that, you might even be beautiful. The confused-looking girl in the Codex purses her lips thoughtfully; you're not sure you'll ever get used to this.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You wipe a bead of sweat from your brow, then jerk in surprise at how smooth your [pc.skin] felt. It didn't use to feel that way! Hastily pulling out your Codex, you use it to examine your face. What you see shocks you. There's a pretty face with lips that are noticeably fuller than before. <b>You're actually... pretty.</b> More than that, you might even be beautiful. The confused-looking girl in the Codex purses her lips thoughtfully; you're not sure you'll ever get used to this.");
 				pc.femininity = 76;
 			}
 			//sub 100 to 100 femininity
@@ -2288,7 +2287,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//1 to 2 mod.
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You purse your [pc.lips] in front of your Codex, just to look at them. To your surprise, they're even bigger than before. You lick them, making them shine. They're almost... hypnotic. You purse your dazzling kissers, then smile. These lips are gorgeous. You could probably make guys rip holes in their pants, just by talking to them.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You purse your [pc.lips] in front of your Codex, just to look at them. To your surprise, they're even bigger than before. You lick them, making them shine. They're almost... hypnotic. You purse your dazzling kissers, then smile. These lips are gorgeous. You could probably make guys rip holes in their pants, just by talking to them.");
 				pc.lipMod = 2;
 			}
 		}
@@ -2303,7 +2302,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				if(pc.totalVaginas() == 1)
 				{
 					eBuffer += "\n\n" + logTimeStamp() + " You suddenly feel... wet, ";
-					if(pc.legCount > 1) eBuffer += "between the [pc.legs]";
+					if(pc.legCount > 1) eBuffer += ParseText("between the [pc.legs]");
 					else eBuffer += "in your crotch";
 					eBuffer += ". You didn't pee yourself - you're sure of it. Gingerly dipping a fingertip inside your feminine crevice, you discover a pleasing slipperiness. You're lubricating! This will make sex soooo much more pleasant.";
 				}
@@ -2319,7 +2318,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 					if(pc.totalVaginas() == 2) eBuffer += "both";
 					else eBuffer += "all of";
 					eBuffer += " your holes. You whimper. How are you supposed to keep your";
-					if(pc.legCount > 1) eBuffer += " [pc.legs] closed";
+					if(pc.legCount > 1) eBuffer += ParseText(" [pc.legs] closed");
 					else eBuffer += " sex away";
 					eBuffer += " when you're getting so fuckable?";
 				}
@@ -2335,16 +2334,16 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//Multipuss but only 1 changed
 				else if(cuntsBelowWetnessThreshold(2) == 1)
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Oooh, you feel a long overdue change in [pc.oneVagina]. It's palpably wetter, just like its sister";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Oooh, you feel a long overdue change in [pc.oneVagina]. It's palpably wetter, just like its sister");
 					if(pc.totalVaginas() > 2) eBuffer += "s";
 					eBuffer += ". You ";
-					if(pc.isCrotchGarbed()) eBuffer += "reach into your [pc.lowerGarment] and ";
+					if(pc.isCrotchGarbed()) eBuffer += ParseText("reach into your [pc.lowerGarment] and ");
 					eBuffer += "ease a finger inside, delighting in the hot slipperiness that you find. You're practically as wet as an ausar now. Your body is practically begging for something to try out the improved entrance. You resolve to properly finger yourself as soon as humanly possible.";
 				}
 				//Multipuss multiple changed
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " A sudden pang of warmth and wetness assaults your crotch, dropping you to your hands and [pc.knees]. You're getting so gloriously wet! You can practically smell the lubricant your body is making from your multiple honeypots, like you've got " + num2Text(pc.totalVaginas()) + " horny ausar living in your crotch.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" A sudden pang of warmth and wetness assaults your crotch, dropping you to your hands and [pc.knees]. You're getting so gloriously wet! You can practically smell the lubricant your body is making from your multiple honeypots, like you've got ") + num2Text(pc.totalVaginas()) + " horny ausar living in your crotch.";
 				}
 				//+10 lust
 				pc.lust(10);
@@ -2356,15 +2355,15 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//Singlepuss
 				if(pc.totalVaginas() == 1)
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Out of nowhere, your [pc.vagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] run unopposed down your [pc.legOrLegs]. You stare in fascination at the sensuous sight, feeling like you're half-girl, half-river. If you had a boyfriend handy, he could slip right in with no trouble at all!";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Out of nowhere, your [pc.vagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] run unopposed down your [pc.legOrLegs]. You stare in fascination at the sensuous sight, feeling like you're half-girl, half-river. If you had a boyfriend handy, he could slip right in with no trouble at all!");
 				}
 				//Multipuss but only 1 changed
 				else if(cuntsBelowWetnessThreshold(3) == 1)
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Out of nowhere, [pc.oneVagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] are running unopposed down your [pc.legOrLegs]. Finally, you're slippery all over. You feel like a brain attached to a multitude of slippery, wet holes, each signalling their readiness with fragrant arousal.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Out of nowhere, [pc.oneVagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] are running unopposed down your [pc.legOrLegs]. Finally, you're slippery all over. You feel like a brain attached to a multitude of slippery, wet holes, each signalling their readiness with fragrant arousal.");
 				}
 				//Multipuss multiple changed
-				else eBuffer += "\n\n" + logTimeStamp() + " Out of nowhere, your [pc.vaginas] alight with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] cascade down your [pc.legOrLegs]. You stare in fascination at the unquestionably sexual sight, feeling like you're little more than a woman attached to a wellspring of lust. A boy with nice, thick cocks could just slide them all right into you!";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" Out of nowhere, your [pc.vaginas] alight with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] cascade down your [pc.legOrLegs]. You stare in fascination at the unquestionably sexual sight, feeling like you're little more than a woman attached to a wellspring of lust. A boy with nice, thick cocks could just slide them all right into you!");
 				//+15 lust
 				pc.lust(15);
 				setMinimumWetness(3);
@@ -2390,7 +2389,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 		//Once 100 milkMultiplier is reached, unlock the Treated Milk perk.
 		if(pc.milkMultiplier >= 100 && treatedHours >= 78 && !pc.hasPerk("Treated Milk"))
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You grow increasingly aware of how productive and wonderful your [pc.breasts] are. The Treatment has given you the ability to produce so much!";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" You grow increasingly aware of how productive and wonderful your [pc.breasts] are. The Treatment has given you the ability to produce so much!");
 			if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) eBuffer += " You squeeze a droplet onto a finger and try it, just to sample it. It tastes exactly like the freshest, most delicious milk you've ever tasted - way better than normal. No wonder New Texas is able to export so much milk; Texan cow-milk is amazing!";
 			//Perk Unlocked: Treated Milk - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.
 			eBuffer += "\n\n(<b>Perk Gained: Treated Milk</b> - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.)";
@@ -2408,13 +2407,13 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//1.5->2
 			else if(pc.milkStorageMultiplier <= 1.5)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " A wave of warmth washes over your [pc.chest], and in its wake you're left feeling oddly... emptied. How odd. Hefting a tit in one hand, you squeeze it, delighted to see that [pc.milk] still comes out. The only conclusion you can come to is that the Treatment has somehow made your breasts... better - able to hold and give more [pc.milkNoun]. A sensation of rightness accompanies that thought. Of course! It only makes sense that your body would change itself in order to experience even longer, more exciting milkings.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" A wave of warmth washes over your [pc.chest], and in its wake you're left feeling oddly... emptied. How odd. Hefting a tit in one hand, you squeeze it, delighted to see that [pc.milk] still comes out. The only conclusion you can come to is that the Treatment has somehow made your breasts... better - able to hold and give more [pc.milkNoun]. A sensation of rightness accompanies that thought. Of course! It only makes sense that your body would change itself in order to experience even longer, more exciting milkings.");
 				pc.milkStorageMultiplier = 2;
 			}
 			//2->2.5
 			else if(pc.milkStorageMultiplier <= 2)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your attention is drawn to your chest out of the blue - not that unusual given your current state. You giggle, smooshing your boobs against one another, enjoying the feel of your lactating jugs bouncing and sloshing together like two energetic best friends. You're getting better at it too - the whole milk giving thing. Just when you think you're starting to get too full, it's like your boobs find even more room for [pc.milkNoun]. You briefly imagine your tits rearranging their furniture to add another fridge, giggling all the while.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your attention is drawn to your chest out of the blue - not that unusual given your current state. You giggle, smooshing your boobs against one another, enjoying the feel of your lactating jugs bouncing and sloshing together like two energetic best friends. You're getting better at it too - the whole milk giving thing. Just when you think you're starting to get too full, it's like your boobs find even more room for [pc.milkNoun]. You briefly imagine your tits rearranging their furniture to add another fridge, giggling all the while.");
 				pc.milkStorageMultiplier = 2.5;
 			}
 			//2.5->3
@@ -2466,7 +2465,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				eBuffer += "\n\n" + logTimeStamp() + " The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?";
 				eBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".";
 				eBuffer += "\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.";
-				eBuffer += "\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They're small little nubs at the moment - adorable really, but they do a great job telling everyone about your bovine proclivities.";
+				eBuffer += ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They're small little nubs at the moment - adorable really, but they do a great job telling everyone about your bovine proclivities.");
 				pc.hornType = GLOBAL.TYPE_BOVINE;
 				pc.removeStatusEffect("Horn Bumps");
 				pc.horns = 2;
@@ -2476,7 +2475,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			else if(pc.hornLength < 1)
 			{
 				eBuffer +="\n\n" + logTimeStamp() + " For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.";
-				eBuffer += "\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them. They're mostly there for ornamentation, you figure, like a pair of earrings for your forehead.";
+				eBuffer += ParseText("\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them. They're mostly there for ornamentation, you figure, like a pair of earrings for your forehead.");
 				pc.hornLength = 1;
 			}
 			//1" horns to 2" horns
@@ -2520,7 +2519,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//No tail
 			if(pc.tailCount == 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours, and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a cute little poof on the end, just like a cow's.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours, and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a cute little poof on the end, just like a cow's.");
 				pc.tailCount = 1;
 			}
 			//Multitail
@@ -2529,14 +2528,14 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//Multi - short
 				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips.";
-					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += " A fine layer of [pc.furColor] fur covers each one.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips.");
+					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ParseText(" A fine layer of [pc.furColor] fur covers each one.");
 					eBuffer += " You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
 				}
 				//Multi - long
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
 					eBuffer += "\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect";
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ", and a coat of fine fur is growing out over their lengths";
 					eBuffer += ". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
@@ -2545,14 +2544,14 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Single - short
 			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.";
-				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += " A fine layer of [pc.furColor] fur covers the whole thing.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.");
+				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ParseText(" A fine layer of [pc.furColor] fur covers the whole thing.");
 				eBuffer += " You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
 			}
 			//Single - long
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
 				eBuffer += "\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect";
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ", and a coat of fine fur is growing out over its length";
 				eBuffer += ". In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
@@ -2565,7 +2564,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 		//Cow ears (maybe)
 		if(pc.earType != GLOBAL.TYPE_BOVINE && treatedHours == 137 && rand(10) == 0)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.";
+			eBuffer += "\n\n" + logTimeStamp() + " You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.");
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
@@ -2599,16 +2598,16 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//Small clits gro - clothed
 				if(pc.isCrotchGarbed())
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " With every movement you make, you become increasingly aware of your [pc.clits] rubbing against your [pc.lowerGarment]. It’s impossible to ignore the constant, distracting friction on your nub";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" With every movement you make, you become increasingly aware of your [pc.clits] rubbing against your [pc.lowerGarment]. It’s impossible to ignore the constant, distracting friction on your nub");
 					if(pc.totalClits() > 1) eBuffer += "s";
-					eBuffer += ", feeding your arousal fresh fuel. You huff in annoyance and yank the offending garments down, eyeballing [pc.oneClit] to see why it’s gotten so gosh darn sensitive.";
+					eBuffer += ParseText(", feeding your arousal fresh fuel. You huff in annoyance and yank the offending garments down, eyeballing [pc.oneClit] to see why it’s gotten so gosh darn sensitive.");
 				}
 				//Small clits gro - unclothed
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " With every movement you make, you find your " + possessive(pc.vaginasDescript()) + " [pc.clits] rubbing on your netherlips as if constantly aroused and swollen. It’s a nagging, constant sensation of friction on your nub";
+					eBuffer += "\n\n" + logTimeStamp() + " With every movement you make, you find your " + possessive(pc.vaginasDescript()) + ParseText(" [pc.clits] rubbing on your netherlips as if constantly aroused and swollen. It’s a nagging, constant sensation of friction on your nub");
 					if(pc.totalClits() > 1) eBuffer += "s";
-					eBuffer += ", feeding your arousal fresh fuel. You huff in annoyance and bend over for a closer look, eyeing [pc.oneClit] to see why it’s so sensitive now.";
+					eBuffer += ParseText(", feeding your arousal fresh fuel. You huff in annoyance and bend over for a closer look, eyeing [pc.oneClit] to see why it’s so sensitive now.");
 				}
 				//Merge
 				eBuffer += "\n\n<b>Your clit is like a big, pink gumball!</b> Even when it isn’t stimulated, it’ll probably stick out of its hood. It must be three quarters of an inch long at full size. You’ll just have to get used to having such a big, easily stimulated buzzer.";
@@ -2666,13 +2665,13 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			else
 			{
 				pc.hipRatingRaw += 1 + rand(5);
-				eBuffer += "\n\n" + logTimeStamp() + " Moving around, you’re pleased to discover a little extra wiggle in you walk. Your [pc.butt] sways hypnotically as you go, automatically borne on a sinuous back and forth motion by your expanding [pc.hips]. You wonder if anyone will notice.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Moving around, you’re pleased to discover a little extra wiggle in you walk. Your [pc.butt] sways hypnotically as you go, automatically borne on a sinuous back and forth motion by your expanding [pc.hips]. You wonder if anyone will notice.");
 			}
 		}
 		//Bigger Booty Towards 7-12.
 		if(pc.buttRatingRaw < 7 && rand(24) == 0 && treatedHours > 49)
 		{
-			if(pc.isCrotchGarbed()) eBuffer += "\n\n" + logTimeStamp() + " An increase in the tightness of your [pc.lowerGarments] gradually comes to your attention, forcing you to shift and adjust them.";
+			if(pc.isCrotchGarbed()) eBuffer += "\n\n" + logTimeStamp() + ParseText(" An increase in the tightness of your [pc.lowerGarments] gradually comes to your attention, forcing you to shift and adjust them.");
 			else eBuffer += "\n\n" + logTimeStamp() + " A slight shift in your balance gradually makes itself known to you, and you twist to regard your changing form, expecting to find a bigger butt.";
 			eBuffer += " Sure enough, your ass has swollen up with an influx of fresh new flesh, pushing it out into a quite squeezable, bubbly butt. The urge to shake it comes over you, but you fight it off, for now. There will be plenty of time for that sort of thing later. Not too much later, but later.";
 			pc.buttRatingRaw = 7 + rand(6);
@@ -2773,8 +2772,8 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 		}
 		else if(treatedHours == 22)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " In a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. You’ll have a grand capital ship, staffed with the buxom women of all colors and species. [rival.name] will be there, handing out towels on the nude pool deck, forbidden from touching any of your girls. When you aren’t relaxing, you’ll sit in your captain’s chair, signing important documents while the girls tend to the needs";
-			if(pc.legCount > 1) eBuffer += " between your [pc.legs].";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" In a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. You’ll have a grand capital ship, staffed with the buxom women of all colors and species. [rival.name] will be there, handing out towels on the nude pool deck, forbidden from touching any of your girls. When you aren’t relaxing, you’ll sit in your captain’s chair, signing important documents while the girls tend to the needs");
+			if(pc.legCount > 1) eBuffer += ParseText(" between your [pc.legs].");
 			else eBuffer += " of your sex.";
 			eBuffer += "\n\nThere’s nothing wrong with a little daydreaming, after all.";
 			pc.lust(25);
@@ -2798,7 +2797,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			eBuffer += "\n\n" + logTimeStamp() + " Stars above, there is a serious ";
 			if(pc.hasCock())
 			{
-				if(pc.isCrotchGarbed()) eBuffer += "tightness in your [pc.lowerGarment]. You take a look inside and find yourself more hard than you’ve been in a while, and just dribbling pre-cum all over the inside of your equipment. You let it snap closed and sigh. Either you’ve got to find a partner fast, or it’s time to vent some of the pressure building in your " + pc.ballsDescript() + ". One way or the other, you’re due to blow a load.";
+				if(pc.isCrotchGarbed()) eBuffer += ParseText("tightness in your [pc.lowerGarment]. You take a look inside and find yourself more hard than you’ve been in a while, and just dribbling pre-cum all over the inside of your equipment. You let it snap closed and sigh. Either you’ve got to find a partner fast, or it’s time to vent some of the pressure building in your ") + pc.ballsDescript() + ". One way or the other, you’re due to blow a load.";
 				else 
 				{
 					eBuffer += "hardness in your groin. You take a look down and find yourself more hard than you’ve been in a while, dribbling pre-cum down your length";
@@ -2827,7 +2826,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Cock
 			if(pc.hasCock())
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the way it keeps your " + pc.cocksDescript() + " so iron-hard with thoughts of near-constant sex. Even your [pc.nipples] are ";
+				eBuffer += "\n\n" + logTimeStamp() + " You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the way it keeps your " + pc.cocksDescript() + ParseText(" so iron-hard with thoughts of near-constant sex. Even your [pc.nipples] are ");
 				if(pc.hasDickNipples()) eBuffer += "jutting out of their sheaths, ready to be thrust inside something";
 				else if(pc.isLactating() || pc.hasFuckableNipples()) eBuffer += "leaking";
 				else if(pc.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT || pc.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) eBuffer += "hard";
@@ -2839,7 +2838,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			else if(pc.hasVagina())
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the constant dripping.";
-				if(pc.totalClits() > 0) eBuffer += " [pc.EachClit] is achingly hard, like a bullet on a hair-trigger.";
+				if(pc.totalClits() > 0) eBuffer += ParseText(" [pc.EachClit] is achingly hard, like a bullet on a hair-trigger.");
 				eBuffer += " The weirdest part is that you don’t really crave penetration - at least not your own. No, you want to push yourself against someone soft and yielding, really grind your weeping slit";
 				if(pc.totalVaginas() > 1) eBuffer += "s";
 				eBuffer += " against them until you’re both covered in sweat and sexual effluvia, panting breathily with you on top.";
@@ -2847,7 +2846,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Nothing
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You growl in dissatisfaction. You can’t seem to quell the feeling of building eroticism or odd desires. Playing with your [pc.asshole] or [pc.nipples] just won’t be enough for you anymore. You want to <i>penetrate</i>, not be penetrated. If only had a dick, this would be so much easier... a nice, hard, throbbing prick to bury into your partners. You look at your fingers and smile. They’re no cock, but you bet you can make some cutie howl in delight if you use them right.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You growl in dissatisfaction. You can’t seem to quell the feeling of building eroticism or odd desires. Playing with your [pc.asshole] or [pc.nipples] just won’t be enough for you anymore. You want to <i>penetrate</i>, not be penetrated. If only had a dick, this would be so much easier... a nice, hard, throbbing prick to bury into your partners. You look at your fingers and smile. They’re no cock, but you bet you can make some cutie howl in delight if you use them right.");
 			}
 			//Merge
 			eBuffer += "\n\nBesides, the real takeaway is just how hot and horny you’re able to get without going off. You’re able to sit there fantasizing about a beauty so busty that her milk-stained top is about to tear off her tits well past the point where you’d have to masturbate before. You suppose you’re getting better at it - being aroused that is. You could walk around ";
@@ -2900,7 +2899,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			else if(pc.hasVagina())
 			{
 				eBuffer += "\n\n" + logTimeStamp() + " You find yourself just kind of idly rubbing at";
-				if(pc.totalClits() > 0) eBuffer += " [pc.oneClit]";
+				if(pc.totalClits() > 0) eBuffer += ParseText(" [pc.oneClit]");
 				else if(pc.totalVaginas() != 1) eBuffer += " one of your slits";
 				else eBuffer += " your slit";
 				eBuffer += " whenever you have a spare moment. At first, you’d stop yourself and blush, but more and more, you don’t see the logic in stopping. Your";
@@ -2911,7 +2910,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				else eBuffer += "next";
 				eBuffer += " partner will be the one to reap the rewards of slippery-sweet sex, after all.";
 				eBuffer += "\n\nYou don’t even really get distracted by it that much, really. The arousal burns like a pleasant heat in the back of your brain, spiking whenever your digits probe a particularly sensitive bundle of nerves, leaving the rest of your mind to do whatever mundane work it needs to do. You could probably file your taxes while a cute little faux-cow boy-toy kneels";
-				if(pc.legCount > 1) eBuffer += " between your [pc.legOrLegs]";
+				if(pc.legCount > 1) eBuffer += ParseText(" between your [pc.legOrLegs]");
 				else eBuffer += " at your crotch";
 				eBuffer += ", putting a nice, wide bovine tongue to use, provided you had breaks for mind-shattering orgasms every now and again.";
 				eBuffer += "\n\nThe important takeaway is that you’re fucking amazing at being aroused now. Stimulation that would’ve morphed you into a mewling ball only makes you hotter and more capable of pleasure. It’ll take so much more teasing to bring you to the brink than ever before, but that just means you get to have bigger orgasms when you do. It’s win-win.";
@@ -2919,7 +2918,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//No Cooch!
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You find yourself just kind of oddly clenching and unclenching your [pc.asshole]. Whenever you do, pleasant flashes of desire run through your body, slithering up your spine to wrap your brain in their sensuous warmth. Before taking the treatment, you’d be so turned on that you would probably be down on the ground, trying to stuff four fingers inside yourself. Now you can ride the arousal like your own personal steed, directing it but never denying it.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You find yourself just kind of oddly clenching and unclenching your [pc.asshole]. Whenever you do, pleasant flashes of desire run through your body, slithering up your spine to wrap your brain in their sensuous warmth. Before taking the treatment, you’d be so turned on that you would probably be down on the ground, trying to stuff four fingers inside yourself. Now you can ride the arousal like your own personal steed, directing it but never denying it.");
 				eBuffer += "\n\nYou can only theorize that your brain is getting better and better at dealing with pleasure. The Treatment is making you more capable than ever before, even without normal genitalia. Why would anyone ever refuse such a gift?";
 			}
 			//All:
@@ -2933,7 +2932,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 		}
 		else if(treatedHours == 46 && !pc.hasPerk("Brute Speech") && !pc.hasPerk("Ditz Speech"))
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You catch yourself using fewer and fewer words to communicate as the days go by, not because using them is hard or anything, but because they seem pointless. Can’t they see how you feel from the set of your jaw or the tenseness of your shoulders? Can’t they read arousal in the flush of your [pc.skin] or the smell of your pheromones? There’s no point getting fancy with it when you can just state what you mean plainly and simply.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" You catch yourself using fewer and fewer words to communicate as the days go by, not because using them is hard or anything, but because they seem pointless. Can’t they see how you feel from the set of your jaw or the tenseness of your shoulders? Can’t they read arousal in the flush of your [pc.skin] or the smell of your pheromones? There’s no point getting fancy with it when you can just state what you mean plainly and simply.");
 			eBuffer += "\n\nAll the big words are just a distraction.";
 			//Brute Speech Unlock!
 			eBuffer += "\n\n(<b>Gained Perk: Brute Speech</b> - You will now sound like more like a reticent brute in scenes that support it.)";
@@ -2949,8 +2948,8 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				if(pc.cockTotal() > 1) eBuffer += "s; they're that hard.";
 				else eBuffer += "; it’s that hard.";
 			}
-			eBuffer += " Underneath your more terse exterior and desire to fuck a big-boobed submissive, you’re still the same [pc.name] Steele.";
-			eBuffer += "\n\nA better [pc.name] Steele.";
+			eBuffer += ParseText(" Underneath your more terse exterior and desire to fuck a big-boobed submissive, you’re still the same [pc.name] Steele.");
+			eBuffer += ParseText("\n\nA better [pc.name] Steele.");
 		}
 		//Bigger Balls (egg to apple sized)
 		//INCREASE BALLS TO 9.4 - 12.5 ballSize() = Almost 3" to almost 4" diameter
@@ -2959,7 +2958,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Goodbye trap pouch
 			if(pc.hasStatusEffect("Uniball"))
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You manage to make your swaying sack smack against your [pc.thigh] in the most painful way. It almost doubles you over. How could that have happened? You had such a tight, compact pouch for your " + pc.ballsDescript() + ". Once the pain clears, you grab hold of yourself and sigh. Your almost vacuum-tight pouch is gone. In its place you’ve got a very normal, masculine-looking nutsack.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You manage to make your swaying sack smack against your [pc.thigh] in the most painful way. It almost doubles you over. How could that have happened? You had such a tight, compact pouch for your ") + pc.ballsDescript() + ". Once the pain clears, you grab hold of yourself and sigh. Your almost vacuum-tight pouch is gone. In its place you’ve got a very normal, masculine-looking nutsack.";
 				pc.removeStatusEffect("Uniball");
 				//Remove pouch
 				//pc.lust(-10);
@@ -2968,7 +2967,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Hit max - notify and disable ball TFs till treatedment is over
 			else if(pc.ballSizeRaw >= pc.statusEffectv4("Treated"))
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " A fateful tingle runs from one side of your [pc.sack] to the other, drawing your attention to the " + pc.ballsDescript() + " within. They don’t look to have gotten any bigger this time. In fact, they’re probably done growing now. Well, ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" A fateful tingle runs from one side of your [pc.sack] to the other, drawing your attention to the ") + pc.ballsDescript() + " within. They don’t look to have gotten any bigger this time. In fact, they’re probably done growing now. Well, ";
 				if(pc.balls == 1) eBuffer += "it’s";
 				else eBuffer += "they’re";
 				eBuffer += " at least as big as ";
@@ -2987,8 +2986,8 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Up to 3
 			else if(pc.ballSizeRaw < 3)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You feel a sort of effervescent heat pooling down in your loins, all warm and bubbly, like champagne inside you. It’s most concentrated in your " + pc.ballsDescript() + ", which you are very aware of pressing on the [pc.skinFurScales] of your [pc.thighs] through your [pc.sack].";
-				if(pc.isCrotchGarbed()) eBuffer += " You yank open your [pc.lowerGarment] for a look.";
+				eBuffer += "\n\n" + logTimeStamp() + " You feel a sort of effervescent heat pooling down in your loins, all warm and bubbly, like champagne inside you. It’s most concentrated in your " + pc.ballsDescript() + ParseText(", which you are very aware of pressing on the [pc.skinFurScales] of your [pc.thighs] through your [pc.sack].");
+				if(pc.isCrotchGarbed()) eBuffer += ParseText(" You yank open your [pc.lowerGarment] for a look.");
 				if(pc.balls == 1) eBuffer += " It’s";
 				else eBuffer += " They’re";
 				eBuffer += "... bigger than before. Bigger by a pretty good margin. You’ve got ";
@@ -3019,11 +3018,11 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//To 7
 			else if(pc.ballSizeRaw < 7)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " As you move about, you become very aware of a certain extra size in your crotch, pressing against your [pc.thighs] whenever you step too hastily. The sensation isn’t entirely unpleasant, as a matter of fact, the swaying feels kind of pleasant. Still, you stop to investigate, if for no other reason than to have a sense of just how big your growing cum-factor";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" As you move about, you become very aware of a certain extra size in your crotch, pressing against your [pc.thighs] whenever you step too hastily. The sensation isn’t entirely unpleasant, as a matter of fact, the swaying feels kind of pleasant. Still, you stop to investigate, if for no other reason than to have a sense of just how big your growing cum-factor");
 				if(pc.balls == 1) eBuffer += "y is";
 				else eBuffer += "ies are";
 				eBuffer += " getting on the Treatment.";
-				if(pc.isCrotchGarbed()) eBuffer += " You just have to pull your [pc.lowerGarments] open first. You don’t even bother to see if anyone is looking.";
+				if(pc.isCrotchGarbed()) eBuffer += ParseText(" You just have to pull your [pc.lowerGarments] open first. You don’t even bother to see if anyone is looking.");
 				if(pc.balls == 1) eBuffer += " It’s";
 				else eBuffer += " They’re";
 				eBuffer += " definitely bigger - over two inches across now for sure.";
@@ -3064,10 +3063,10 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//Multinutt
 				if(pc.balls > 1)
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " You heft your expanding [pc.sack] in one hand, barely able to contain the orbs that practically glow with warmth. They’re bigger now, unsurprisingly. The best part is just how good they feel, rolling around in your palm, pressed against one another. It’s enough to draw a pleased sigh from your normally reserved throat. They’re probably each three and a half inches wide or more. You probably cum like a racehorse now. Heck, you probably cum harder and longer. Your nuts give an appreciative wobble of agreement. You ought to give these guys a try once you’ve made sure they’re totally full.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" You heft your expanding [pc.sack] in one hand, barely able to contain the orbs that practically glow with warmth. They’re bigger now, unsurprisingly. The best part is just how good they feel, rolling around in your palm, pressed against one another. It’s enough to draw a pleased sigh from your normally reserved throat. They’re probably each three and a half inches wide or more. You probably cum like a racehorse now. Heck, you probably cum harder and longer. Your nuts give an appreciative wobble of agreement. You ought to give these guys a try once you’ve made sure they’re totally full.");
 				}
 				//Singlenutt
-				else eBuffer += "\n\n" + logTimeStamp() + " You heft your expanding [pc.sack] in one hand, feeling it fill your palm. It practically glows with its own, inner warmth. It’s bigger now, too. The best part is just how good it feels, rolling around in your palm, pressed against your fingers. It’s enough to draw a pleased sigh from your normally reserved throat. It’s probably each three and a half inches wide or more. You probably cum like a racehorse now. Heck, you probably cum harder and longer. Your nut gives an appreciative wobble of agreement. You ought to give this guy a try once you’ve made sure he’s totally full.";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" You heft your expanding [pc.sack] in one hand, feeling it fill your palm. It practically glows with its own, inner warmth. It’s bigger now, too. The best part is just how good it feels, rolling around in your palm, pressed against your fingers. It’s enough to draw a pleased sigh from your normally reserved throat. It’s probably each three and a half inches wide or more. You probably cum like a racehorse now. Heck, you probably cum harder and longer. Your nut gives an appreciative wobble of agreement. You ought to give this guy a try once you’ve made sure he’s totally full.");
 				pc.ballSizeRaw = 11;
 			}
 			//To 12.5
@@ -3076,10 +3075,10 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//Multi
 				if(pc.balls > 1)
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " There’s no hiding the way your [pc.sack] sways about, certainly not now that the Treatment has blown up your nuts like balloons, only these are filled with the weight of virile, cum-pumping flesh. They’re on the edge of four inches wide - as big as apples - and sensitive to boot. It’s like the bigger they get, the more sensitive they’re becoming, but that can’t be right. Can it?\n\nGrunting, you decide it doesn’t really matter one way or the other. If you’re able to get off from a honey slowly fondling and licking the things, what do the hows and whys matter? Grinning now, you wonder if you’ll be able to get someone to give them a nice, long tongue-bath. You could sit there and look down a busily bobbing head as you’re brought to the peak, then watch your [pc.cum] rain down over her hair. As big as you are, you’ll probably paint her [pc.cumColor].\n\nThere’s no getting around it. <b>You have big, Treatment-bloated balls as big as any bull is likely to get without a crazy mutation occurring.</b>";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" There’s no hiding the way your [pc.sack] sways about, certainly not now that the Treatment has blown up your nuts like balloons, only these are filled with the weight of virile, cum-pumping flesh. They’re on the edge of four inches wide - as big as apples - and sensitive to boot. It’s like the bigger they get, the more sensitive they’re becoming, but that can’t be right. Can it?\n\nGrunting, you decide it doesn’t really matter one way or the other. If you’re able to get off from a honey slowly fondling and licking the things, what do the hows and whys matter? Grinning now, you wonder if you’ll be able to get someone to give them a nice, long tongue-bath. You could sit there and look down a busily bobbing head as you’re brought to the peak, then watch your [pc.cum] rain down over her hair. As big as you are, you’ll probably paint her [pc.cumColor].\n\nThere’s no getting around it. <b>You have big, Treatment-bloated balls as big as any bull is likely to get without a crazy mutation occurring.</b>");
 				}
 				//Single
-				else eBuffer += "\n\n" + logTimeStamp() + " There’s no hiding the way your [pc.sack] sways about, certainly not now that the Treatment has blown up your nut like a balloon, only this one is filled with the weight of virile, cum-pumping flesh. It’s on the edge of four inches wide - as big as an apple - and sensitive to boot. It’s like the bigger it gets, the more sensitive it’s becoming, but that can’t be right. Can it?\n\nGrunting, you decide it doesn’t really matter one way or the other. If you’re able to get off from a honey slowly fondling and licking the thing, what do the hows and whys matter? Grinning now, you wonder if you’ll be able to get someone to give you a nice, long tongue-bath. You could sit there and look down a busily bobbing head as you’re brought to the peak, then watch your [pc.cum] rain down over her hair. As big as you are, you’ll probably paint her [pc.cumColor].\n\nThere’s no getting around it. <b>You have a big, Treatment-bloated ball as big as any bull is likely to get without a crazy mutation occurring.</b>";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" There’s no hiding the way your [pc.sack] sways about, certainly not now that the Treatment has blown up your nut like a balloon, only this one is filled with the weight of virile, cum-pumping flesh. It’s on the edge of four inches wide - as big as an apple - and sensitive to boot. It’s like the bigger it gets, the more sensitive it’s becoming, but that can’t be right. Can it?\n\nGrunting, you decide it doesn’t really matter one way or the other. If you’re able to get off from a honey slowly fondling and licking the thing, what do the hows and whys matter? Grinning now, you wonder if you’ll be able to get someone to give you a nice, long tongue-bath. You could sit there and look down a busily bobbing head as you’re brought to the peak, then watch your [pc.cum] rain down over her hair. As big as you are, you’ll probably paint her [pc.cumColor].\n\nThere’s no getting around it. <b>You have a big, Treatment-bloated ball as big as any bull is likely to get without a crazy mutation occurring.</b>");
 				pc.ballSizeRaw = 12.5;
 			}
 		}
@@ -3092,7 +3091,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			if(!pc.hasStatusEffect("Treatment Height Boosted"))
 			{
 				pc.createStatusEffect("Treatment Height Boosted",0,0,0,0,true,"","",false,10080);
-				eBuffer += "\n\n" + logTimeStamp() + " A kind of all-over ache has been bothering you off and on all day. It’s a deep pain, below the skin and muscles; you figure it’s your very bones. You were expecting to get taller. This must be what they mean by ‘growing pains’. A quick measurement confirms it. You’re [pc.height] tall now.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" A kind of all-over ache has been bothering you off and on all day. It’s a deep pain, below the skin and muscles; you figure it’s your very bones. You were expecting to get taller. This must be what they mean by ‘growing pains’. A quick measurement confirms it. You’re [pc.height] tall now.");
 			}
 			//Less than 6’
 			else if(pc.tallness < 72)
@@ -3102,17 +3101,17 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//1
 				if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + " The ground seems a little further away than before. At first, you think it’s your head playing tricks on you, but when you whack your head on something that you should have passed harmlessly underneath, you have to admit it. You’re getting taller. Pretty soon, nobody is going to call you short!";
 				//2
-				else eBuffer += "\n\n" + logTimeStamp() + " You stop to measure yourself with a cocky smile. There’s nothing like getting bigger and stronger to make you feel like a million creds. The Codex beeps, informing you that you’re [pc.height] tall. Now that’s more like it!";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" You stop to measure yourself with a cocky smile. There’s nothing like getting bigger and stronger to make you feel like a million creds. The Codex beeps, informing you that you’re [pc.height] tall. Now that’s more like it!");
 			}
 			//Less than 7’
 			else if(pc.tallness < 84)
 			{
 				//1
-				if(rand(3) == 0) eBuffer += "\n\n" + logTimeStamp() + " Your back abruptly pops. It doesn’t hurt or anything, but you twist and stretch to limber up, feeling it pop a few more times in different places. The ever-present dull ache of growing bones underlies it all, promising that you’re still getting bigger and taller. Right now, you’re [pc.height] tall.";
+				if(rand(3) == 0) eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your back abruptly pops. It doesn’t hurt or anything, but you twist and stretch to limber up, feeling it pop a few more times in different places. The ever-present dull ache of growing bones underlies it all, promising that you’re still getting bigger and taller. Right now, you’re [pc.height] tall.");
 				//2
 				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + " Things that used to pass right on by your head are getting closer and closer these days. Sometimes you even have to duck to avoid them. The ground seems farther away with every passing minute, a constant reminder of your Treatment-enhanced physique.";
 				//3
-				else eBuffer += "\n\n" + logTimeStamp() + " You snap out the Codex for a quick check on your amplified tallness. It beeps, displaying your new height on screen. You’re [pc.height] tall now. If this keeps up, you’re going to wind up taller than most normal terrans. And New Texans? Well... maybe you’ll catch up to the taller bulls.";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" You snap out the Codex for a quick check on your amplified tallness. It beeps, displaying your new height on screen. You’re [pc.height] tall now. If this keeps up, you’re going to wind up taller than most normal terrans. And New Texans? Well... maybe you’ll catch up to the taller bulls.");
 			}
 			//Less than 7’6”
 			else if(pc.tallness < 90)
@@ -3124,9 +3123,9 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 					if(CodexManager.entryUnlocked("Raskvel")) eBuffer += " Heck, the raskvel on Tarkus will probably think you a giant.";
 				}
 				//2
-				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + " You stretch your arms out high over your head and arch your back, working your sore joints. It’s one thing to revel in your added stature. It’s quite another to suffer from the constant aches and pains that come with your expanding physique. You do a quick measurement. You’re [pc.height] tall now.";
+				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + ParseText(" You stretch your arms out high over your head and arch your back, working your sore joints. It’s one thing to revel in your added stature. It’s quite another to suffer from the constant aches and pains that come with your expanding physique. You do a quick measurement. You’re [pc.height] tall now.");
 				//3
-				else eBuffer += "\n\n" + logTimeStamp() + " Your smile broadens while you look around. Your viewpoint is still rising, slowly but surely. Though it isn’t fast enough to be truly perceptible, you still find yourself taking note of your increasing height every few hours. Right now, you’re up to [pc.height] tall.";
+				else eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your smile broadens while you look around. Your viewpoint is still rising, slowly but surely. Though it isn’t fast enough to be truly perceptible, you still find yourself taking note of your increasing height every few hours. Right now, you’re up to [pc.height] tall.");
 			}
 			//Less than 8”
 			else
@@ -3134,12 +3133,12 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//1
 				if(rand(3) == 0) eBuffer += "\n\n" + logTimeStamp() + " There’s no hiding the way the Treatment is changing you. You’re definitely taller than you were yesterday - at least an inch, maybe more. With your augmented stature comes a boost to confidence; nobody is going to mess with a huge " + pc.mf("guy","gal") + " like you.";
 				//2
-				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + " More and more, you have to duck to keep from whacking your head of objects of all shapes and sizes. It’s quite onerous to always have to duck and cower all the time, but at least everyone is always looking up to you. You’re [pc.height] tall now.";
+				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp() + ParseText(" More and more, you have to duck to keep from whacking your head of objects of all shapes and sizes. It’s quite onerous to always have to duck and cower all the time, but at least everyone is always looking up to you. You’re [pc.height] tall now.");
 			}
 			//It’s over - hit dat cap or day 6.5
 			if(treatedHours == 168 || pc.tallness >= 96)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " The familiar, dull ache to which you have grown accustomed diminishes moment by moment. You frown when it vanishes entirely; the Treatment won’t be making you any taller. You’ll have to settle for being [pc.height] tall.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" The familiar, dull ache to which you have grown accustomed diminishes moment by moment. You frown when it vanishes entirely; the Treatment won’t be making you any taller. You’ll have to settle for being [pc.height] tall.");
 			}
 		}
 		//Muscle Gain
@@ -3198,7 +3197,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//80 - 90
 			else if(pc.tone < 90)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You do a few one-handed pushups, watching your muscles ripple under your [pc.skinFurScales] with a smile on your face. The physical exertion is calming. It helps you think and plan. When you stop, you’re covered in a light sheen of sweat that only makes your muscles stand out that much more clearly.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You do a few one-handed pushups, watching your muscles ripple under your [pc.skinFurScales] with a smile on your face. The physical exertion is calming. It helps you think and plan. When you stop, you’re covered in a light sheen of sweat that only makes your muscles stand out that much more clearly.");
 				pc.tone = 90;
 			}
 			//90-100
@@ -3217,7 +3216,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Balls
 			if(pc.balls > 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You feel the inside of your [pc.sack] clench and release. The feeling repeats two or three times in quick succession, each time leaving you feeling a little heavier... a little denser, like your " + pc.ballsDescript() + " ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You feel the inside of your [pc.sack] clench and release. The feeling repeats two or three times in quick succession, each time leaving you feeling a little heavier... a little denser, like your ") + pc.ballsDescript() + " ";
 				if(pc.balls > 1) eBuffer += "are";
 				else eBuffer += "is";
 				eBuffer += " somehow becoming even more capable. You’ll probably have bigger, messier orgasms with ";
@@ -3228,7 +3227,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//No Balls
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You feel a twinge deep inside you. It happens two or three more times in quick succession. Then, just as you’re trying to figure out what’s happening, a few drops of [pc.cum] drool out the end of " + pc.oneCock() + ". Is your body somehow retooling itself to produce more ejaculate? You can only imagine what’s going on with your prostate and seminal vesicles right now.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You feel a twinge deep inside you. It happens two or three more times in quick succession. Then, just as you’re trying to figure out what’s happening, a few drops of [pc.cum] drool out the end of ") + pc.oneCock() + ". Is your body somehow retooling itself to produce more ejaculate? You can only imagine what’s going on with your prostate and seminal vesicles right now.";
 			}
 			pc.boostCum(5);
 			if(pc.maxCum() < 1000) pc.boostCum(5);
@@ -3316,7 +3315,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			else if(pc.hornLength < 1)
 			{
 				eBuffer +="\n\n" + logTimeStamp() + " For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.";
-				eBuffer += "\n\nYou aggressively prod yourself, trying to find the source of the fleeting pain; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them just yet. You’ll have to sharpen them up a little once they finish coming in, maybe even get them capped with ornamental steel.";
+				eBuffer += ParseText("\n\nYou aggressively prod yourself, trying to find the source of the fleeting pain; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them just yet. You’ll have to sharpen them up a little once they finish coming in, maybe even get them capped with ornamental steel.");
 				pc.hornLength = 1;	
 			}
 			//1" horns to 2" horns
@@ -3378,15 +3377,15 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 		//Quad Balls (Uncommon)
 		if(treatedHours == 155 && pc.balls > 0 && pc.balls < 4 && rand(10) == 0)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " Your [pc.sack] sways heavily, more than ever before, the skin stretched taut. It gets your attention without even trying, really.";
+			eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.sack] sways heavily, more than ever before, the skin stretched taut. It gets your attention without even trying, really.");
 			//One nut no new PG
-			if(pc.balls == 1) eBuffer += " Your " + pc.ballsDescript() + " is huge, easily four times its old size and probably still growing. You heft it, curiously, feeling around its bulk to try and identify just what’s going on. There are seams in its surface in a number of places, splitting it into four quadrants, and the longer you poke and prod at them, the more obvious they become. You let go in shock, afraid you’ve somehow damaged your one super-nut, but it doesn’t stop the seams from growing deeper, their edges more rounded.\n\nIndeed, your ball is slowly dividing now. There’s no hiding it. That one big sphere is splitting into four smaller ones, each about the same size as your original testicle. One breaks away first, and the others follow, splitting into unique testes. All four settle at the bottom of your [pc.sack] after a moment. <b>You’ll just have to get used to having four nuts</b> and be careful not to sit on them.";
+			if(pc.balls == 1) eBuffer += " Your " + pc.ballsDescript() + ParseText(" is huge, easily four times its old size and probably still growing. You heft it, curiously, feeling around its bulk to try and identify just what’s going on. There are seams in its surface in a number of places, splitting it into four quadrants, and the longer you poke and prod at them, the more obvious they become. You let go in shock, afraid you’ve somehow damaged your one super-nut, but it doesn’t stop the seams from growing deeper, their edges more rounded.\n\nIndeed, your ball is slowly dividing now. There’s no hiding it. That one big sphere is splitting into four smaller ones, each about the same size as your original testicle. One breaks away first, and the others follow, splitting into unique testes. All four settle at the bottom of your [pc.sack] after a moment. <b>You’ll just have to get used to having four nuts</b> and be careful not to sit on them.");
 			//Two nuts no new PG
 			else if(pc.balls == 2) eBuffer += " Your " + pc.ballsDescript() + " are huge, easily double their old size and probably still growing. You heft them curiously, feeling around their bulk to try and understand just what’s going on with your genitals. There are seams in their surfaces, dividing them in half. How... why do your nuts have <i>seams</i>? Letting go in shock, afraid you’ve somehow damaged your swelling nuts, you watch with a mounting sense of trepidation.\n\nThey’re definitely dividing, you realize. Those two seams are getting deeper and deeper, the edges more rounded by the second, curving until it looks less like a pair of meganuts and more like two pairs of conjoined testes. Even then, they look like they could come apart at any second, and they do, just a moment later. You wince, expecting pain, but it doesn’t hurt at all. You simply gain an awareness of having four balls, each as big as your original two were. <b>You’ll just have to get used to having four nuts crammed into your sack.</b>";
 			//Triballs
 			else if(pc.balls == 3)
 			{
-				eBuffer += " One of your " + pc.ballsDescript() + " is huge, easily double its old size and probably still growing. You heft it, curiously, feeling around its bulk to try and identify just what’s going on without bothering the other two. There’s a seam in its surface across the middle, dividing it in half, and the longer you poke and prod at it, the more obvious it becomes. You let go in shock, afraid you’ve somehow damaged your growing super-nut, but it doesn’t stop the seam from growing deeper, the edges more rounded.\n\nIndeed, your ball is slowly dividing now. There’s no hiding it. That one big sphere is splitting into two smaller ones, each about the same size as your unmodified testicles. They round further and then divide, splitting into unique testes. The new twins settle in at the bottom of your [pc.sack] alongside their brothers a moment later. <b>You’ll just have to get used to having four nuts</b> and be careful not to sit on them.";
+				eBuffer += " One of your " + pc.ballsDescript() + ParseText(" is huge, easily double its old size and probably still growing. You heft it, curiously, feeling around its bulk to try and identify just what’s going on without bothering the other two. There’s a seam in its surface across the middle, dividing it in half, and the longer you poke and prod at it, the more obvious it becomes. You let go in shock, afraid you’ve somehow damaged your growing super-nut, but it doesn’t stop the seam from growing deeper, the edges more rounded.\n\nIndeed, your ball is slowly dividing now. There’s no hiding it. That one big sphere is splitting into two smaller ones, each about the same size as your unmodified testicles. They round further and then divide, splitting into unique testes. The new twins settle in at the bottom of your [pc.sack] alongside their brothers a moment later. <b>You’ll just have to get used to having four nuts</b> and be careful not to sit on them.");
 			}
 			pc.balls = 4;
 		}
@@ -3406,7 +3405,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//No tail
 			if(pc.tailCount == 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours, and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a gnarly little poof on the end, just like a cow's.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours, and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a gnarly little poof on the end, just like a cow's.");
 				pc.tailCount = 1;
 			}
 			//Multitail
@@ -3415,14 +3414,14 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 				//Multi - short
 				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips.";
-					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += " A fine layer of [pc.furColor] fur covers each one.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips.");
+					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ParseText(" A fine layer of [pc.furColor] fur covers each one.");
 					eBuffer += " You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
 				}
 				//Multi - long
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
 					eBuffer += "\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect";
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ", and a coat of fine fur is growing out over their lengths";
 					eBuffer += ". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
@@ -3431,14 +3430,14 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			//Single - short
 			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.";
-				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += " A fine layer of [pc.furColor] fur covers the whole thing.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.");
+				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ParseText(" A fine layer of [pc.furColor] fur covers the whole thing.");
 				eBuffer += " You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
 			}
 			//Single - long
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
 				eBuffer += "\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect";
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ", and a coat of fine fur is growing out over its length";
 				eBuffer += ". In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
@@ -3451,7 +3450,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 		//Cow ears (maybe)
 		if(pc.earType != GLOBAL.TYPE_BOVINE && treatedHours == 141 && rand(10) == 0)
 		{
-			eBuffer += "\n\n" + logTimeStamp() + " You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.";
+			eBuffer += "\n\n" + logTimeStamp() + " You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.");
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
@@ -3478,7 +3477,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			pc.addLegFlag(GLOBAL.FLAG_FURRED);
 		}
 	}
-	eventBuffer += ParseText(eBuffer);
+	eventBuffer += eBuffer;
 }
 
 public function cuntsBelowWetnessThreshold(threshold:Number = 0):Number
@@ -3509,24 +3508,24 @@ public function treatedVagNote(butt:Boolean = false):void
 	//Amazons got a special version of this.
 	if(pc.isAmazon() && !butt && pc.hasVagina())
 	{
-		eBuffer += "\n\n" + logTimeStamp() + " Taking a something in your [pc.oneVagina] has never felt so effortless, so automatic, like your vagina has been gifted with ability to expand beyond all previous limits. You shrug and slip a finger inside, uncaring if anyone sees you, shuddering with the ease with which it vanishes into your nethers. Then you add another. And another. Four digits disappear into your greedy twat before you have to pull yourself away, barely stopping yourself from devolving into full-on fisting.\n\n[pc.EachVagina] has apparently been retooled into a greedy, capacious slot, able accept the biggest, fattest cocks without an ounce of discomfort. You suppose that such a change works in your favor - as big as you are, it only makes sense that you'd be able to fuck monster pricks with ease.";
+		eBuffer += "\n\n" + logTimeStamp() + ParseText(" Taking a something in your [pc.oneVagina] has never felt so effortless, so automatic, like your vagina has been gifted with ability to expand beyond all previous limits. You shrug and slip a finger inside, uncaring if anyone sees you, shuddering with the ease with which it vanishes into your nethers. Then you add another. And another. Four digits disappear into your greedy twat before you have to pull yourself away, barely stopping yourself from devolving into full-on fisting.\n\n[pc.EachVagina] has apparently been retooled into a greedy, capacious slot, able accept the biggest, fattest cocks without an ounce of discomfort. You suppose that such a change works in your favor - as big as you are, it only makes sense that you'd be able to fuck monster pricks with ease.");
 		pc.lust(3);
 	}
 	if(!butt && pc.hasVagina())
 	{
-		eBuffer += "\n\n" + logTimeStamp() + " Weird. It felt really, really easy to slip something inside [pc.oneVagina]. Concerned, you decide a little vaginal exploration is in order. You press one finger at first, then another into your [pc.vagina], discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don't impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere's no getting around it, the Treatment has retooled [pc.eachVagina] into an elastic, powerfully coordinated pleasure palace. You doubt you'll even run into someone \"too big\" for you again.";
+		eBuffer += "\n\n" + logTimeStamp() + ParseText(" Weird. It felt really, really easy to slip something inside [pc.oneVagina]. Concerned, you decide a little vaginal exploration is in order. You press one finger at first, then another into your [pc.vagina], discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don't impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere's no getting around it, the Treatment has retooled [pc.eachVagina] into an elastic, powerfully coordinated pleasure palace. You doubt you'll even run into someone \"too big\" for you again.");
 	}
 	else
 	{
-		eBuffer += "\n\n" + logTimeStamp() + " Weird. It felt really, really easy to slip something inside your [pc.asshole]. Concerned, you decide a little rectal exploration is in order. You press one finger at first, then another into your ring, discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don't impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere's no getting around it, the Treatment has retooled your butt into an elastic, powerfully coordinated pleasure palace. You doubt you'll even run into someone \"too big\" for you again.";
+		eBuffer += "\n\n" + logTimeStamp() + ParseText(" Weird. It felt really, really easy to slip something inside your [pc.asshole]. Concerned, you decide a little rectal exploration is in order. You press one finger at first, then another into your ring, discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don't impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere's no getting around it, the Treatment has retooled your butt into an elastic, powerfully coordinated pleasure palace. You doubt you'll even run into someone \"too big\" for you again.");
 	}
 	pc.removeStatusEffect("Treatment Elasticity Report Needed");
 	pc.removeStatusEffect("Treatment Elasticity Report Q'ed");
-	eventBuffer += ParseText(eBuffer);
+	eventBuffer += eBuffer;
 }
 public function amazonEnduranceNotice():void
 {
-	eventBuffer += "\n\n" + ParseText(logTimeStamp()) + " Usually, sexual release would leave you feeling a little drained, but you're still full of energy. It's like cumming isn't slowing you down at all, like your body is designed to get off with a minimum of effort so that you can keep banging until your partner's body gives out or begins to bore you.";
+	eventBuffer += "\n\n" + logTimeStamp() + " Usually, sexual release would leave you feeling a little drained, but you're still full of energy. It's like cumming isn't slowing you down at all, like your body is designed to get off with a minimum of effort so that you can keep banging until your partner's body gives out or begins to bore you.";
 	eventBuffer += "\n\n(<b>Perk Gained: Amazonian Endurance</b> - Allows you to orgasm without fatiguing.)";
 }
 
@@ -3537,10 +3536,10 @@ public function treatmentCumCowExhibitionism():void
 	eBuffer += "\n\n" + logTimeStamp() + " You’re getting lots of looks as you walk around, and not just because of your lovely boobs. No, most of the curious looks are centered at your crotch.";
 	if(!pc.isCrotchExposed()) 
 	{
-		eBuffer += " There’s no hiding your [pc.cocks], not with how long ";
+		eBuffer += ParseText(" There’s no hiding your [pc.cocks], not with how long ");
 		if(pc.cockTotal() == 1) eBuffer += "it is";
 		else eBuffer += "they are";
-		eBuffer += ", even flaccid. You’re a [pc.boyGirl] with a third leg";
+		eBuffer += ParseText(", even flaccid. You’re a [pc.boyGirl] with a third leg");
 		if(pc.cockTotal() > 1)
 		{
 			eBuffer += " and fourth";
@@ -3550,7 +3549,7 @@ public function treatmentCumCowExhibitionism():void
 	}
 	else
 	{
-		eBuffer += " There’s no hiding your [pc.cocks] anymore, not with how big ";
+		eBuffer += ParseText(" There’s no hiding your [pc.cocks] anymore, not with how big ");
 		if(pc.cockTotal() == 1) eBuffer += "it stays";
 		else eBuffer += "they stay";
 		eBuffer += " even flaccid. You’ve got bulky penis";
@@ -3558,12 +3557,12 @@ public function treatmentCumCowExhibitionism():void
 		eBuffer += ", and no amount of clothing can hide the pent-up virility from questioning onlookers.";
 	}
 	eBuffer += " It wouldn’t be so bad if it didn’t send a shiver up your spine or warm your loins.";
-	eBuffer += "\n\nIt’s a vicious cycle, really. People see that you’re a cow-[pc.boyGirl] with a lot going on down below, and it turns you on, so your equipment gets even bigger and more obvious. Then still more eyes glue themselves to your equipment, and it’s everything you can do to keep from wrapping your hands around your [pc.cocks] and moaning, letting the high-pitched cries of your voice lure more onlookers to watch your impromptu show.";
+	eBuffer += ParseText("\n\nIt’s a vicious cycle, really. People see that you’re a cow-[pc.boyGirl] with a lot going on down below, and it turns you on, so your equipment gets even bigger and more obvious. Then still more eyes glue themselves to your equipment, and it’s everything you can do to keep from wrapping your hands around your [pc.cocks] and moaning, letting the high-pitched cries of your voice lure more onlookers to watch your impromptu show.");
 	eBuffer += "\n\nF-fuck, you’re starting to drool. You’d better go blow off some steam before that fantasy becomes a reality! <b>You suppose you’re an exhibitionist now.</b>";
 	//Instantly exhibitionist.
 	if(pc.exhibitionismRaw < 100) pc.exhibitionismRaw = 100;
 	pc.removeStatusEffect("Treatment Exhibitionism Gain 4 DickGirls");
-	eventBuffer += ParseText(eBuffer);
+	eventBuffer += eBuffer;
 }
 
 //Proc auto-autofellate, then play the following message
@@ -3571,13 +3570,13 @@ public function treatmentCumCowExhibitionism():void
 public function autoautofellatioNotice():void
 {
 	var eBuffer:String = "";
-	eBuffer += "\n\n" + logTimeStamp() + " It’s super weird that would just suck yourself off without thinking about it, but then again, looking at your dick or even thinking about it too much makes your head feel sort of fuzzy and silly, like your dick is so awesome it can hypnotize you just by being there. You spend a few minutes imagining it bobbing back and forth to your heartbeat, then shake your head and smile, savoring the residual taste of [pc.cum] on your tonsils.";
+	eBuffer += "\n\n" + logTimeStamp() + ParseText(" It’s super weird that would just suck yourself off without thinking about it, but then again, looking at your dick or even thinking about it too much makes your head feel sort of fuzzy and silly, like your dick is so awesome it can hypnotize you just by being there. You spend a few minutes imagining it bobbing back and forth to your heartbeat, then shake your head and smile, savoring the residual taste of [pc.cum] on your tonsils.");
 	if(pc.perkv1("Auto-Autofellatio") == 0)
 	{
 		eBuffer += "\n\n(<b>Gained Perk: Auto-Autofellatio</b> - Makes it difficult to avoid fellating yourself.)";
 		if(!pc.hasPerk("Auto-Autofellatio")) pc.createPerk("Auto-Autofellatio",0,0,0,0,"You're so enamored with yourself that you can't resist a little self-love.");
 	}
-	eventBuffer += ParseText(eBuffer);
+	eventBuffer += eBuffer;
 }
 
 //Rare arousing rest proc - more common if cock exposed
@@ -3585,24 +3584,24 @@ public function autoCocknosisDistraction():void
 {
 	var eBuffer:String = "";
 	eBuffer += "While resting, ";
-	if(pc.isCrotchExposed()) eBuffer += "you find your gaze drawn down to your [pc.cockBiggest].";
-	else eBuffer += "you realize that you’ve freed your [pc.cockBiggest] from your [pc.lowerGarment] but have a hard time convincing yourself to put it away.";
+	if(pc.isCrotchExposed()) eBuffer += ParseText("you find your gaze drawn down to your [pc.cockBiggest].");
+	else eBuffer += ParseText("you realize that you’ve freed your [pc.cockBiggest] from your [pc.lowerGarment] but have a hard time convincing yourself to put it away.");
 	eBuffer += " It’s certainly more entertaining to watch than everything going on around you.";
 
 	eBuffer += "\n\nLike a snake-charmer’s pet, it seems to respond to your gaze, twitching lightly, shifting to lie against your other thigh. It lazily lengthens, straightening folds of flesh into a column, and you watch, spellbound, too hypnotized by the view of your own member to do anything about it. The base shifts powerfully, arcing upward before the rest of it, dragging the flaccid snake inevitably towards the sky. You can see the rhythms in its pulsations now, the obvious throbbing of the veins. It’s thickening as it rises.";
-	eBuffer += "\n\nYour [pc.tongue] slips out of your mouth while you watch, moist with drool, and still your [pc.cockBiggest] engorges further. It straightens out as it rises until it transforms into a firm column of needy cockmeat, slowly bobbing back and forth in front of your eyes. It dribbles, releasing pearlescent globs of pre-cum. The glittering juices only further serve to deepen your dick-induced trance, helping you ignore everything that isn’t the pleasant, rhythmic pulsing of your own boner.";
-	eBuffer += "\n\nHours pass by in a blur. When something finally distracts you, your lips are chapped and your [pc.cocks] ache";
+	eBuffer += ParseText("\n\nYour [pc.tongue] slips out of your mouth while you watch, moist with drool, and still your [pc.cockBiggest] engorges further. It straightens out as it rises until it transforms into a firm column of needy cockmeat, slowly bobbing back and forth in front of your eyes. It dribbles, releasing pearlescent globs of pre-cum. The glittering juices only further serve to deepen your dick-induced trance, helping you ignore everything that isn’t the pleasant, rhythmic pulsing of your own boner.");
+	eBuffer += ParseText("\n\nHours pass by in a blur. When something finally distracts you, your lips are chapped and your [pc.cocks] ache");
 	if(pc.cockTotal() == 1) eBuffer += "s";
 	eBuffer += ".";
 	if(pc.hasVagina()) eBuffer += " The ground below is absolutely soaked in your pussy juices.";
-	eBuffer += " You’re as pent up as you’ve ever been, like your body spent the entire time doing nothing but turning you on and brewing ever more [pc.cum] in your [pc.balls].";
+	eBuffer += ParseText(" You’re as pent up as you’ve ever been, like your body spent the entire time doing nothing but turning you on and brewing ever more [pc.cum] in your [pc.balls].");
 	//Give full cum + blue balls + Lots of lust
 	if(!pc.hasStatusEffect("Blue Balls"))
 	{
 		pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
 		if(pc.ballFullness < 100) pc.ballFullness = 100;
 	}
-	output(ParseText(eBuffer));
+	output(eBuffer);
 }
 
 public function standardTreatmentDickStuff(treatedHours:Number):void
@@ -3623,7 +3622,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 			//Pants on!
 			if(pc.isCrotchGarbed())
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " You feel a growing tightness in your [pc.lowerGarment] that’s anything but comfortable. It’s the kind of tightness that demands your attention - the kind that happens when you’re sporting a hard-on that could chop wood. You shift your " + pc.cocksDescript() + " around a few times before giving up and pulling ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" You feel a growing tightness in your [pc.lowerGarment] that’s anything but comfortable. It’s the kind of tightness that demands your attention - the kind that happens when you’re sporting a hard-on that could chop wood. You shift your ") + pc.cocksDescript() + " around a few times before giving up and pulling ";
 				if(pc.cockTotal() == 1) eBuffer += "it";
 				else eBuffer += "them";
 				eBuffer += " out.";
@@ -3634,7 +3633,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				eBuffer += "\n\nYour prong";
 				if(pc.cockTotal() > 1) eBuffer += "s are";
 				else eBuffer += " is";
-				eBuffer += " at least two inches longer than before you took the Treatment and likely to get even bigger before it’s all over. You’ll just have to be careful that your " + pc.cocksDescript() + " don’t rip your [pc.lowerGarments] off the next time you get hard.";
+				eBuffer += " at least two inches longer than before you took the Treatment and likely to get even bigger before it’s all over. You’ll just have to be careful that your " + pc.cocksDescript() + ParseText(" don’t rip your [pc.lowerGarments] off the next time you get hard.");
 			}
 			//Pants Off!
 			else
@@ -3649,7 +3648,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				if(pc.cockTotal() > 1) eBuffer += "s";
 				eBuffer += " lengthen the whole time.";
 
-				eBuffer += "\n\nYour heartbeat hammers at your eardrums faster and faster. Your breath comes quicker. You couldn’t stop yourself if you wanted to, and you don’t. You don’t ever want this moment to stop. You " + pc.cockHead() + " lurches, and you’re cumming, spraying a puddle of [pc.cum] all over the ground in front of you";
+				eBuffer += ParseText("\n\nYour heartbeat hammers at your eardrums faster and faster. Your breath comes quicker. You couldn’t stop yourself if you wanted to, and you don’t. You don’t ever want this moment to stop. You " + pc.cockHead() + " lurches, and you’re cumming, spraying a puddle of [pc.cum] all over the ground in front of you");
 				if (InPublicSpace()) eBuffer += " to the dismay of the onlookers";
 				eBuffer += ". Jacking for all you’re worth, you milk every drop from your growing dick. It isn’t until it’s all over that the magnitude of what just happened sinks in.";
 				eBuffer += "\n\nThe Treatment made your " + pc.cocksDescript() + " grow bigger - a full two inches bigger, by your measurements. It might not be done either. There’s still a pleasant, lingering tingle in your groin, and it’s not the normal post-orgasmic one.";
@@ -3669,14 +3668,14 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 		{
 			eBuffer += "\n\n" + logTimeStamp() + " You grin when you realize how heavy the swaying length";
 			if(pc.cockTotal() > 1) eBuffer += "s";
-			if(pc.legCount > 1) eBuffer += " between your [pc.legs]";
+			if(pc.legCount > 1) eBuffer += ParseText(" between your [pc.legs]");
 			else eBuffer += " dangling from your crotch";
 			if(pc.cockTotal() == 1) eBuffer += " has";
 			else eBuffer += " have";
 			eBuffer += " become.";
-			if(pc.isCrotchGarbed()) eBuffer += " You yank open your [pc.lowerGarment] check it out.";
+			if(pc.isCrotchGarbed()) eBuffer += ParseText(" You yank open your [pc.lowerGarment] check it out.");
 			else eBuffer += " You figure a little self-examination won’t hurt.";
-			eBuffer += " Grabbing hold of " + pc.oneCock() + ", you decide that you’ll be sure not to get as excited as last time. Better to save the [pc.cumNoun] for someone who really wants it. Easy does it.";
+			eBuffer += " Grabbing hold of " + pc.oneCock() + ParseText(", you decide that you’ll be sure not to get as excited as last time. Better to save the [pc.cumNoun] for someone who really wants it. Easy does it.");
 
 			if(pc.lust() < 70) eBuffer += "\n\nYou stroke cautiously until you reach your full size, then try to eyeball a measurement.";
 			else eBuffer += "\n\nYou stroke a few times just to make sure you’ve reached your full size, but as horny as you are, you probably didn’t even have to touch the thing.";
@@ -3705,7 +3704,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 			eBuffer += " still growing. There’s no way you were this big a few hours ago.";
 			if(pc.isCrotchGarbed()) 
 			{
-				eBuffer += " The bulge in your [pc.lowerGarments] is getting more and more noticeable, but that’s just fine, you figure. ";
+				eBuffer += ParseText(" The bulge in your [pc.lowerGarments] is getting more and more noticeable, but that’s just fine, you figure. ");
 				if(pc.isAmazon()) eBuffer += "Maybe before long you can cock-shame a blushing faux cow.";
 				else eBuffer += "Maybe you’ll get to catch a girl giving it a look.";
 				eBuffer += " The image of a blushing, nervous smile makes your " + pc.cocksDescript() + " jump.";
@@ -3733,7 +3732,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 			//Pants!
 			if(pc.isCrotchGarbed())
 			{
-				eBuffer += "\n\n" + logTimeStamp() + " Your can barely fit in your [pc.lowerGarments] anymore. Even soft, your " + pc.cocksDescript() + " ";
+				eBuffer += "\n\n" + logTimeStamp() + ParseText(" Your can barely fit in your [pc.lowerGarments] anymore. Even soft, your ") + pc.cocksDescript() + " ";
 				if(pc.cockTotal() == 1) eBuffer += "is";
 				else eBuffer += "are";
 				eBuffer += " straining against the equipped restraints, feeling trapped no matter how elastic ";
@@ -3773,13 +3772,13 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 			eBuffer += "\n\n" + logTimeStamp() + " Your " + pc.cocksDescript() + " surge";
 			if(pc.cockTotal() == 1) eBuffer += "s";
 			eBuffer += " forward out of the blue";
-			if(pc.armor.shortName != "") eBuffer += ", snaking down the inside of your [pc.armor]";
-			else eBuffer += ", threatening to tear your [pc.underGarment] from your frame";
+			if(pc.armor.shortName != "") eBuffer += ParseText(", snaking down the inside of your [pc.armor]");
+			else eBuffer += ParseText(", threatening to tear your [pc.underGarment] from your frame");
 			eBuffer += ", gorging on ";
 			if(pc.cockTotal() == 1) eBuffer += "its";
 			else eBuffer += "their";
-			eBuffer += " own tumescent potential until you feel more dick than [pc.man]. There’s no resisting it. All you can do is ride the waves of bliss as you shoot [pc.cumVisc] ropes of [pc.cumNoun]";
-			if(pc.isCrotchGarbed()) eBuffer += " down the inside of your [pc.lowerGarment], moaning all the while.";
+			eBuffer += ParseText(" own tumescent potential until you feel more dick than [pc.man]. There’s no resisting it. All you can do is ride the waves of bliss as you shoot [pc.cumVisc] ropes of [pc.cumNoun]");
+			if(pc.isCrotchGarbed()) eBuffer += ParseText(" down the inside of your [pc.lowerGarment], moaning all the while.");
 			else eBuffer += " across the ground in front of you, moaning all the while.";
 			eBuffer += "\n\nWhen it’s all over, you realize that you’re at least an inch longer, maybe more.";
 			//Cum!
@@ -3898,7 +3897,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 					if(!pc.hasSheath(targetDick))
 					{
 						eBuffer += "an odd pinching feeling coming from your " + pc.cockDescript(targetDick) + ". Obviously concerned, you ";
-						if(pc.isCrotchGarbed()) eBuffer += "remove your [pc.lowerGarments] for a better look";
+						if(pc.isCrotchGarbed()) eBuffer += ParseText("remove your [pc.lowerGarments] for a better look");
 						else eBuffer += "take a look";
 						eBuffer += ". Something weird is happening - right around the base, the " + pc.cocks[targetDick].cockColor + " skin is bunching up into folds";
 						if(pc.cocks[targetDick].cockColor != "black") eBuffer += " and darkening to an almost glossy black";
@@ -3919,14 +3918,14 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 					var nubbed:Boolean = false;
 					if(rand(4) == 0) nubbed = true;
 					if(nubbed) eBuffer += " Sensitive nubs cover the whole of it, but you don’t have time to consider the strange mutation or how good it feels.";
-					eBuffer += " Droplets of your [pc.cum] roll out of your flaring head one after another, filling the air with the telltale scent of your own ecstasy.";
+					eBuffer += ParseText(" Droplets of your [pc.cum] roll out of your flaring head one after another, filling the air with the telltale scent of your own ecstasy.");
 
-					eBuffer += "\n\nLooking down, you realize you’re holding a rigid, cum-drooling horse-cock that’s bigger than your old dick ever was in your hand and cum, finally shooting the long lances of [pc.cumNoun] that you’ve felt coming since your oddly powerful erection.";
+					eBuffer += ParseText("\n\nLooking down, you realize you’re holding a rigid, cum-drooling horse-cock that’s bigger than your old dick ever was in your hand and cum, finally shooting the long lances of [pc.cumNoun] that you’ve felt coming since your oddly powerful erection.");
 					var knotted:Boolean = false;
 					if(rand(4) == 0) knotted = true;
 					if(knotted) eBuffer += " Each spurt comes bigger and thicker than the one behind it, and when your hand slides down to squeeze a newly-formed, canine knot, your mind buckles.";
-					eBuffer += " You fall back, splattering yourself with your [pc.cumColor] love again and again. Your cockhead has flared cartoonishly wide; you battle with an urge to whinny in delight as the eruptions coat your [pc.chest].";
-					eBuffer += "\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake.";
+					eBuffer += ParseText(" You fall back, splattering yourself with your [pc.cumColor] love again and again. Your cockhead has flared cartoonishly wide; you battle with an urge to whinny in delight as the eruptions coat your [pc.chest].");
+					eBuffer += ParseText("\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake.");
 					if(knotted) 
 					{
 						eBuffer += " The knot doesn’t shrink down for at least five minutes after. Had you been balls-deep in a ";
@@ -3961,10 +3960,10 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				//Dubstep+ cawk transform!
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp() + " Feeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do";
+					eBuffer += "\n\n" + logTimeStamp() + ParseText(" Feeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do");
 					if(pc.legCount == 1) eBuffer += "es";
 					eBuffer += ". A strange pinching feeling is overwhelming your " + pc.cocksDescript() + ". You ";
-					if(pc.isCrotchGarbed()) eBuffer += "pull your [pc.lowerGarments] down for a look";
+					if(pc.isCrotchGarbed()) eBuffer += ParseText("pull your [pc.lowerGarments] down for a look");
 					else eBuffer += "look down";
 					eBuffer += ", discovering with some shock that your phalli are withdrawing ";
 					if(pc.hasSheath(targetDick) && pc.totalSheaths() > 1) eBuffer += "completely into their sheaths until you can’t even make out their " + pc.cockHeads() + ".";
@@ -3984,12 +3983,12 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 					eBuffer += "\n\nThere’s no containing the rampant, almost feral pleasure that overwhelms you. All you can do is lie back and hump at your own hands, suddenly erupting ";
 					if(pc.cockTotal() == 2) eBuffer += "twin";
 					else eBuffer += "into a multitude of";
-					eBuffer += " fountains of [pc.cumNoun]. Lances of the [pc.cumVisc] thrust through the air before splattering all over your [pc.chest] and body.";
+					eBuffer += ParseText(" fountains of [pc.cumNoun]. Lances of the [pc.cumVisc] thrust through the air before splattering all over your [pc.chest] and body.");
 					var knotty:Boolean = false;
 					if(rand(4) == 0) knotty = true;
 					if(knotty) eBuffer += " Each spurt comes bigger and thicker than the one behind it, and when your hand slides down to squeeze a newly-formed, canine knot, your mind buckles.";
 					else eBuffer += " The goo falls thicker and thicker while you heedlessly pump, all the while fighting with an urge to whinny in delight.";
-					eBuffer += "\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake.";
+					eBuffer += ParseText("\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake.");
 					if(knotty) 
 					{
 						if(!pc.isAmazon()) eBuffer += " The knots don’t shrink down for at least five minutes after. Had you been balls-deep in a bitch, she would’ve had to sit there and let you fill her.";
@@ -4052,9 +4051,9 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 					eBuffer += " The sensation of friction between your finger and genital is almost more than you can bear. You fall back, panting noisily and rubbing all the harder.";
 
 					eBuffer += "\n\nYou can’t keep it up, though. Your bright red length is pushing your naughty digit out of your sheath, revealing its new shape to you in all its glory. <b>You have a bright red, pointed dog-dick, complete with a slight bulge at the base from your uninflated knot.</b> The sensation of the air blowing across it is almost too much to bear. Your hand wraps around it, at first to shield it from errant breezes, and then to stroke it, pumping furiously, feeding more and more pleasure to your expanding bitch-breaker.";
-					eBuffer += "\n\nYou howl, a blissful, wonderful sound of triumph, announcing that you’ve hit your peak even before it. The bulge at the base of your canine prick expands, and you just <i>have</i> to wrap your hand around it, to feel something warm squeeze against it. It’s all too much. The pulsing, animalistic bliss overwhelms you, and you abruptly erupt, launching rope after rope of [pc.cum] across your [pc.chest]";
-					if(pc.cocks[targetDick].cLength() < 18) eBuffer += " and [pc.belly]";
-					else eBuffer += " and [pc.face]";
+					eBuffer += ParseText("\n\nYou howl, a blissful, wonderful sound of triumph, announcing that you’ve hit your peak even before it. The bulge at the base of your canine prick expands, and you just <i>have</i> to wrap your hand around it, to feel something warm squeeze against it. It’s all too much. The pulsing, animalistic bliss overwhelms you, and you abruptly erupt, launching rope after rope of [pc.cum] across your [pc.chest]");
+					if(pc.cocks[targetDick].cLength() < 18) eBuffer += ParseText(" and [pc.belly]");
+					else eBuffer += ParseText(" and [pc.face]");
 					eBuffer += ". The climax drags on and on. Even when you go dry, you’re still pulsating in your grip, your rock-solid knot holding an imaginary cow-girl in place while she fountains milk along with you.";
 					eBuffer += "The orgasm eventually ends, leaving you with a slowly-receding dick that would look at home on ";
 					if(pc.originalRace != "half-ausar") eBuffer += "a big dog";
@@ -4072,14 +4071,14 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 					if(!pc.isAmazon()) eBuffer += "and turning into a faux-cow";
 					else eBuffer += "into some sort of tiny-dicked freak";
 					eBuffer += ", you stagger back";
-					if(pc.isCrotchGarbed()) eBuffer += ", reaching into your [pc.lowerGarment] with shaking hands";
+					if(pc.isCrotchGarbed()) eBuffer += ParseText(", reaching into your [pc.lowerGarment] with shaking hands");
 					else eBuffer += ", looking down with probing eyes";
 					eBuffer += ". ";
 					if(pc.totalSheaths() <= 1) eBuffer += "The strangest thing is happening. Your " + pc.cocksDescript() + " are each shrinking... and yet not. They feel more like they’re pulling back into your body, and the skin is bunching up around the base of each one, sprouting a fine layer of fur as it thickens. You gasp. Your dicks aren’t getting smaller - they’re retracting into sheaths! Canine cocksheaths!";
-					else eBuffer += "Thankfully, your members are merely retracting into their sheaths, pulling back until they’ve almost entirely vanished. More importantly, the sheaths themselves are covered in a layer of rich, [pc.furColor] fur, appearing canine in nature.";
+					else eBuffer += ParseText("Thankfully, your members are merely retracting into their sheaths, pulling back until they’ve almost entirely vanished. More importantly, the sheaths themselves are covered in a layer of rich, [pc.furColor] fur, appearing canine in nature.");
 
 					eBuffer += "\n\nWith this new development firmly in your mind, you sink to the ground, sitting ";
-					if(!pc.isTaur()) eBuffer += "on your [pc.butt]";
+					if(!pc.isTaur()) eBuffer += ParseText("on your [pc.butt]");
 					else eBuffer += "on your haunches";
 					eBuffer += " to watch the developing drama down south. It actually feels kind of... good. There’s a kind of sensual warmth to it. A whole-body flush spreads through your form while your " + pc.cocksDescript() + " finish their descent into hiding. You groan and slide your hands down to your sheaths, rubbing them affectionately, enjoying the sensation of playing with new nerves. You realize something is happening within you: your " + pc.cocksDescript() + " are changing into something else. They bulge against the inside of your sensitive folds in the most pleasant way. Just what are they changing into?";
 					eBuffer += "\n\nThey answer your question a moment later by thrusting up out of your sheaths, bright-red and pointed, narrow tips visibly quivering as more sensitive dickflesh emerges. You whimper; it sounds almost like a pant to your ears. They feel so good, and they’re so slick and hot. They almost glow to your eyes, bundles of red erotic energy just waiting to be touched, squeezed, and explosively released. Your hands are trembling and sweating, barely controlled. You aren’t sure that you could stop yourself from jacking off if you wanted to.";
@@ -4088,8 +4087,8 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 					if(rand(4) == 0) nubtacular = true;
 					if(nubtacular) eBuffer += "Small nubs grow out of the surfaces of your " + pc.cocksDescript() + " before your eyes, but the ever-increasing pressure keeps your attention focused on your impending eruption over any concerns about the shapes of your new features. ";
 					eBuffer += "You feel so pent up, like you haven’t cum in days. The knots grow ever larger, and you whine, humping the air. That pressure is almost overwhelming, blasting every thought out of your head except for one: how badly you need to release.";
-					eBuffer += "\n\nAlmost doubling in size, your knots expand once more, the sensation so hellishly pleasurable that you lose all control. Your muscles quiver. Your hips lock. Arching your back, you erupt like a geyser, spewing ropes of [pc.cum] into the air with such force that they look like a [pc.cumColor] web. A moment later, they fall down across you, but you’re already launching more up to replace them, painting yourself with layer after layer of glistening [pc.cumNoun], cumming to the feeling of your knots being so swollen. You can only imagine how good they would feel trapped in tight channels, pouring your virile energy into them with womb-filling fury.";
-					eBuffer += "\n\nThe comedown happens an indeterminate amount of time later. You have memories of seemingly unending pleasure, and you’re panting like you’ve just run a marathon. Also, you’re lying in the biggest puddle of [pc.cum] you’ve ever produced. A look at the Codex tells you that you’ve been here for the better part of a half-hour. Doing your best to clean yourself off, you find yourself smiling all the same. Tools like this are going to be extra effective at breeding bitches";
+					eBuffer += ParseText("\n\nAlmost doubling in size, your knots expand once more, the sensation so hellishly pleasurable that you lose all control. Your muscles quiver. Your hips lock. Arching your back, you erupt like a geyser, spewing ropes of [pc.cum] into the air with such force that they look like a [pc.cumColor] web. A moment later, they fall down across you, but you’re already launching more up to replace them, painting yourself with layer after layer of glistening [pc.cumNoun], cumming to the feeling of your knots being so swollen. You can only imagine how good they would feel trapped in tight channels, pouring your virile energy into them with womb-filling fury.");
+					eBuffer += ParseText("\n\nThe comedown happens an indeterminate amount of time later. You have memories of seemingly unending pleasure, and you’re panting like you’ve just run a marathon. Also, you’re lying in the biggest puddle of [pc.cum] you’ve ever produced. A look at the Codex tells you that you’ve been here for the better part of a half-hour. Doing your best to clean yourself off, you find yourself smiling all the same. Tools like this are going to be extra effective at breeding bitches");
 					if(nubtacular) eBuffer += ", extra nubs or not";
 					eBuffer += ".";
 
@@ -4114,7 +4113,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				if(!changeAllDicks)
 				{
 					eBuffer += "\n\n" + logTimeStamp() + " Your " + pc.cockDescript(targetDick) + " becomes distressingly hard in an instant";
-					if(pc.isCrotchGarbed()) eBuffer += ", threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with an ill-fitting titanium bar in your pants. You pull the offending equipment out of the way, and the relief is so palpable you could swim in it";
+					if(pc.isCrotchGarbed()) eBuffer += ParseText(", threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with an ill-fitting titanium bar in your pants. You pull the offending equipment out of the way, and the relief is so palpable you could swim in it");
 					else eBuffer += ", jutting out from your crotch like some kind of rigid, cybernetically attached lever. You aren’t sure you’d be able to stand having an erection this strong trapped within any kind of clothing";
 					eBuffer += ". It grows harder by the second. A small part of you wonders if you’re somehow going to explode.";
 					//Not yet spined
@@ -4126,7 +4125,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 					else eBuffer += "\n\nThe pent-up pressure fades as quickly as it appeared, bringing with it waves of lust and a strange quivering from the nubs that cover your " + pc.cockDescript(targetDick) + ". They wiggle, pulsating bigger for a moment before receding. You don’t have time to question the odd development as the rising tide of desire compels you to wrap a hand around the quivering length and tug, stroking the sensitive haft until droplets of pre-cum are spilling from the tip almost nonstop.";
 					//CHANGE PLACES... errr shapes
 					eBuffer += "\n\nYou jaw opens, and you release a throaty roar of satisfaction, pumping your transforming prick for all you’re worth. It changes inside your palm. The shape twists. The veins vanish. The only constant is the all-consuming enjoyment that it provides - the way it makes your synapses dance in ecstasy. The tip fattens and then narrows between your fingertips, coming to something approximating a tip. Luckily, those wonderful nubs hang on through it all, even when your dick’s transformation seems to be coming to a close, bringing with it final surges of electric, dazzling pleasure.";
-					eBuffer += "\n\nGrunting, you thrust into your palm. Those grunts transform into feral, powerful roars of triumph, and orgasm washes through you, transforming your body to a fiery volcano. Ropes of licentious release erupt from you, chased by even bigger geysers of your seed. You pump widely, clenching powerful internal muscles to drive yet more [pc.cum] from your undoubtedly feline member. The urge to clamp your jaw around your mate’s neck overwhelms you - if only you had a female here, impaled on your spurting cat-cock! The thought sends fresh squirts of [pc.cumColor] out to fall on the ground, and your eyelids roll back, your mind overloaded.";
+					eBuffer += ParseText("\n\nGrunting, you thrust into your palm. Those grunts transform into feral, powerful roars of triumph, and orgasm washes through you, transforming your body to a fiery volcano. Ropes of licentious release erupt from you, chased by even bigger geysers of your seed. You pump widely, clenching powerful internal muscles to drive yet more [pc.cum] from your undoubtedly feline member. The urge to clamp your jaw around your mate’s neck overwhelms you - if only you had a female here, impaled on your spurting cat-cock! The thought sends fresh squirts of [pc.cumColor] out to fall on the ground, and your eyelids roll back, your mind overloaded.");
 					eBuffer += "\n\nComing down, you find yourself still stroking your softening cat-cock. Having a big, fat animal-dick like this makes you feel like some kind of alpha male. You pat the shrinking thing affectionately, and resolve to live up to the predatory image it conjures in your mind. You don’t want a harem of mewling cow-girls. You want a pride. The stars can be your savanna, and you’ll be its ";
 					if(!pc.isAmazon()) eBuffer += "lord.";
 					else eBuffer += "amazon queen.";
@@ -4138,7 +4137,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				else
 				{
 					eBuffer += "\n\n" + logTimeStamp() + " In an instant, your " + pc.cocksDescript() + " become distressingly hard, ";
-					if(pc.isCrotchGarbed()) eBuffer += "threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with ill-fitting titanium bars stuffed into your pants. You pull the offending equipment out of the way, and the relief is so palpable that you could fill a pool with it";
+					if(pc.isCrotchGarbed()) eBuffer += ParseText("threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with ill-fitting titanium bars stuffed into your pants. You pull the offending equipment out of the way, and the relief is so palpable that you could fill a pool with it");
 					else eBuffer += "jutting out from your crotch like levers from a perverse control panel. You aren’t sure you’d be able to stand having erections like this trapped within any kind of clothing. For once, nudity pays off";
 					eBuffer += ". They’re getting harder by the second, still. A part of you wonders if they’re going to pump up till they burst, overwhelmed by some kind of incredible, internal pressure.";
 					//No spines
@@ -4156,10 +4155,10 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 					if(pc.balls > 1) eBuffer += " Your " + pc.ballsDescript() + " clench, and y";
 					else eBuffer += " Y";
 					eBuffer += "our rods thicken, urethras flooding with soon to be expelled goo. One thought surfaces a moment before you explode: you have thick, feline dicks, like an immense, powerful lion.";
-					eBuffer += "\n\n[pc.Cum] surges, obliterating any attempt at reason, leaving you roaring and spurting, erupting long lances of ";
+					eBuffer += ParseText("\n\n[pc.Cum] surges, obliterating any attempt at reason, leaving you roaring and spurting, erupting long lances of ");
 					if(pc.cumType == GLOBAL.FLUID_TYPE_CUM) eBuffer += "leonine jism";
 					else eBuffer += "relief";
-					eBuffer += " into a puddle on the ground. The pleasure is incandescent, burning away any worry or concern, leaving only deep-seated satisfaction in its wake and the desire to find a group of willing females to sate your rut again and again. The ribbons of [pc.cum] seem almost unending, the continuous bliss beyond your capacity to endure. Your eyes roll back, and consciousness fades to the feeling of your hands stroking one quivering tool after another.";
+					eBuffer += ParseText(" into a puddle on the ground. The pleasure is incandescent, burning away any worry or concern, leaving only deep-seated satisfaction in its wake and the desire to find a group of willing females to sate your rut again and again. The ribbons of [pc.cum] seem almost unending, the continuous bliss beyond your capacity to endure. Your eyes roll back, and consciousness fades to the feeling of your hands stroking one quivering tool after another.");
 					eBuffer += "\n\nWhen you awake, you’re still standing there with both your hands wrapped around your softening dicks, somehow. You let go and stretch, totally sated for once. But, just when you’re planning to";
 					if(pc.isCrotchGarbed()) eBuffer += " pull your gear back up and";
 					eBuffer += " get back to business as usual, you give your lion-like phalli an appraising look and remember your desire for a harem... no, a pride. You’ll have to find a few cuties to sate you soon, maybe even some that’ll love the feel of you biting at their neck while you take them.";
@@ -4178,5 +4177,6 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 			}
 		}
 	}
-	eventBuffer += ParseText(eBuffer);
+	eventBuffer += eBuffer;
 }
+
