@@ -11336,6 +11336,7 @@
 			var temp: int = 0;
 			var tailCuntHolder:VaginaClass = new VaginaClass();
 			tailCuntHolder.type = tailGenitalArg;
+			if (tailGenitalColor != "") tailCuntHolder.vaginaColor = tailGenitalColor;
 
 			//low chance of size descriptor
 			if ((adjectives && rand(100) <= 25) || forceAdjectives) {
@@ -11391,12 +11392,12 @@
 			//50% of time, simple cunt.
 			if (rand(2) == 0) {
 				if (descripted > 0) vag += " ";
-				vag += vaginaNoun2(tailCuntHolder, true, (appearance ? "appearance" : "tail"));
+				vag += vaginaNoun2(tailCuntHolder, true, (appearance ? "appearance tail" : "tail"));
 			}
 			//50% of the time, complex cunt!
 			else {
 				if (descripted > 0) vag += ", ";
-				vag += vaginaNoun2(tailCuntHolder, false, (appearance ? "appearance" : "tail"));
+				vag += vaginaNoun2(tailCuntHolder, false, (appearance ? "appearance tail" : "tail"));
 			}
 			return vag;
 		}
@@ -11409,9 +11410,9 @@
 		{
 			var desc: String = "";
 			var type:int = vag.type;
-			if(special == "appearance")
+			if(special == "appearance" || special == "appearance tail")
 			{
-				desc += vag.vaginaColor + ", ";
+				if (special != "appearance tail") desc += vag.vaginaColor + ", ";
 				if (type == GLOBAL.TYPE_EQUINE) desc += "equine ";
 				else if (type == GLOBAL.TYPE_CANINE) desc += "canine ";
 				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
