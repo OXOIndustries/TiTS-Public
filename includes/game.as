@@ -96,6 +96,20 @@ public function showLocationName():void
 	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
 }
 
+public function disableExploreEvents():Boolean
+{
+	// Stellar Tether (Bomb Timer)
+	if (flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) return true;
+	// Deck 13 Duration
+	if (flags["ANNO_MISSION_OFFER"] > 1 && flags["DECK13_COMPLETE"] == undefined) return true;
+	// Pirate Base (Bomb Timer)
+	if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
+	// Kashima Duration
+	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
+	
+	return false;
+}
+
 public function mainGameMenu(minutesMoved:Number = 0):void {
 	flags["COMBAT MENU SEEN"] = undefined;
 	
@@ -154,9 +168,10 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 		if (tryApplyUvetoColdDamage(minutesMoved)) return;
 	}
 	
-	if (tryEncounterFreedomBeef())
+	// Random events, outside of important/timed missions
+	if (!disableExploreEvents())
 	{
-		return;
+		if (tryEncounterFreedomBeef()) return;
 	}
 	
 	if(inCombat()) 
@@ -1755,7 +1770,10 @@ public function processTime(arg:int):void {
 		{
 			flags["TARKUS_BOMB_TIMER"]--;
 			bombStatusUpdate();
-			if(flags["TARKUS_BOMB_TIMER"] == 0) eventQueue[eventQueue.length] = bombExplodes;
+			if(flags["TARKUS_BOMB_TIMER"] == 0)
+			{
+				if(eventQueue.indexOf(bombExplodes) == -1) eventQueue.push(bombExplodes);
+			}
 		}
 		
 		// Taivra's Pregnancy - Lasts 1 day until she naturally does away with them.
@@ -1902,9 +1920,15 @@ public function processTime(arg:int):void {
 				flags["IRELLIA_QUEST_STATUS"] = 5;
 			}
 			//Mushroom park meeting.
-			if(flags["IRELLIA_QUEST_STATUS"] == 2 && hours == 18 && currentLocation == "708") eventQueue.push(unificationRallyEvent);
+			if(flags["IRELLIA_QUEST_STATUS"] == 2 && hours == 18 && currentLocation == "708")
+			{
+				if(eventQueue.indexOf(unificationRallyEvent) == -1) eventQueue.push(unificationRallyEvent);
+			}
 			//Bomb explosion bad-end meeting
-			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 24 && currentLocation == "725") eventQueue.push(beADumbShitFallGuyForTheRebels);
+			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 24 && currentLocation == "725")
+			{
+				if(eventQueue.indexOf(beADumbShitFallGuyForTheRebels) == -1) eventQueue.push(beADumbShitFallGuyForTheRebels);
+			}
 			//Irellia's sex cooldown
 			if(flags["IRELLIA_SEX_COOLDOWN"] != undefined)
 			{
@@ -1917,7 +1941,6 @@ public function processTime(arg:int):void {
 			if(pc.hasStatusEffect("Horse Pill"))
 			{
 				var pill:HorsePill = new HorsePill();
-				//eventQueue[eventQueue.length] = pill.pillTF;
 				pill.pillTF();
 			}
 			//Goblinola procs!
@@ -1989,7 +2012,7 @@ public function processTime(arg:int):void {
 					flags["CUNT_TAIL_PREGNANT_TIMER"]--;
 					if(flags["CUNT_TAIL_PREGNANT_TIMER"] == 1) {
 						flags["CUNT_TAIL_PREGNANT_TIMER"] = 0;
-						eventQueue[eventQueue.length] = giveBirthThroughCuntTail;
+						if(eventQueue.indexOf(giveBirthThroughCuntTail) == -1) eventQueue.push(giveBirthThroughCuntTail);
 					}
 				}
 			}
@@ -2021,7 +2044,10 @@ public function processTime(arg:int):void {
 				days++;
 				
 				//Unlock dat shiiit
-				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0)) eventQueue.push(hollidayOweenAlert);
+				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0))
+				{
+					if(eventQueue.indexOf(hollidayOweenAlert) == -1) eventQueue.push(hollidayOweenAlert);
+				}
 				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
 				//Exhibitionism reduction!
 				if
@@ -2170,9 +2196,9 @@ public function processTime(arg:int):void {
 			pc.removeStatusEffect("Dumbfuck Orgasm Procced");
 		}
 		//Add to event queue so long as it isn't on there already
-		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued") && eventQueue.indexOf(procDumbfuckStuff) == -1)
+		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
 		{
-			eventQueue[eventQueue.length] = procDumbfuckStuff;
+			if(eventQueue.indexOf(procDumbfuckStuff) == -1) eventQueue.push(procDumbfuckStuff);
 		}
 	}
 	

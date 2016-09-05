@@ -187,7 +187,7 @@ public function bodyPartUpdates(partName:String = "none"):void
 				if(canShrinkNuts()) eventBuffer += ".. well, almost nothing. A nice, long orgasm ought to fix this!";
 				else 
 				{
-					eventQueue[eventQueue.length] = bigBallBadEnd;
+					if(eventQueue.indexOf(bigBallBadEnd) == -1) eventQueue.push(bigBallBadEnd);
 					if(pc.hasPerk("'Nuki Nuts")) eventBuffer += " If a quick fap wasn’t illegal here, this would be far simpler. Too bad.";
 				}
 				pc.createStatusEffect("Endowment Immobilized", 0,0,0,0,false,"Icon_Poison", "Your endowments prevent you from moving.", false, 0);
