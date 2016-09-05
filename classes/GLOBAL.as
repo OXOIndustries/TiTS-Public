@@ -1026,7 +1026,8 @@
 			"Heat Belt",
 			"Heat Generator",
 			"Reduces Accuracy",
-			"Combat Drone"
+			"Combat Drone",
+			"Self-Powered",
 		];
 		
 		/**
