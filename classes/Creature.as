@@ -1019,6 +1019,7 @@
 		public function cockLengthUnlocked(cockIndex:int, newCockLength:Number):Boolean
 		{
 			if(hasStatusEffect("Goo Crotch")) return false;
+			if(isCumCow() && hasStatusEffect("The Treatment")) return false;
 			return true;
 		}
 		public function cockLengthLockedMessage():String
@@ -1082,6 +1083,7 @@
 		{
 			if (newBalls == 0 && hasStatusEffect("Mimbrane Balls")) return false;
 			if(hasStatusEffect("Goo Crotch")) return false;
+			if(isCumCow() && hasStatusEffect("The Treatment")) return false;
 			return true;
 		}
 		public function ballsLockedMessage():String
@@ -1131,6 +1133,7 @@
 		public function ballSizeUnlocked(newBallSize:Number):Boolean
 		{
 			if(hasStatusEffect("Goo Crotch")) return false;
+			if(isCumCow() && hasStatusEffect("The Treatment") && newBallSize < ballSizeRaw) return false;
 			return true;
 		}
 		public function ballSizeLockedMessage():String
@@ -1301,6 +1304,7 @@
 		public function breastRatingUnlocked(bRowIndex:int, newBreastRating:Number):Boolean
 		{
 			if (hasStatusEffect("Gel Body")) return false;
+			if((statusEffectv1("The Treatment") == 2 || statusEffectv1("The Treatment") == 0) && breastRows[bRowIndex].breastRatingRaw < newBreastRating) return false;
 			return true;
 		}
 		public function breastRatingLockedMessage():String
@@ -3163,6 +3167,10 @@
 		{
 			return (isTreated() && hasStatusEffect("Treated Amazon"));
 		}
+		public function isCumCow():Boolean
+		{
+			return (isTreated() && hasStatusEffect("Cum-Cow"));	
+		}
 		//Mild exhib scene: arg = +1;
 		//Full exhib scene: arg = +2
 		public function exhibitionism(arg:Number = 0):Number
@@ -3665,9 +3673,14 @@
 			if (hasPerk("Drug Fucked")) bonus += 10;
 			if (hasPerk("Amazonian Needs")) bonus += 20;
 			if (hasPerk("Black Latex")) bonus += 10;
+			//Doesn't stack for reasons.
+			if (hasPerk("Treated Readiness") && bonus < 33) bonus = 33;
 			if (perkv1("Flower Power") > 0) bonus += perkv2("Flower Power");
+
+			//Temporary Stuff
 			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
+
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
 				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
@@ -8046,6 +8059,7 @@
 			if (refractoryRate >= 15 && quantity < 251) quantity = 251;
 			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000;
 			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
+			if (hasPerk("Treated Readiness") && quantity < 200) quantity = 200;
 			//You can't cum more than you can possibly have!
 			if(quantity > maxCum()) quantity = maxCum();
 			//Overloaded nuki' nuts will fully drain
@@ -8427,12 +8441,12 @@
 			if (!hasCock()) return false;
 			if (arg >= 0) {
 				if (arg >= cocks.length) return false;
-				return (cocks[arg].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, arg) || cocks[arg].cLength() / tallness >= 1 / 3) && genitalLocation() <= 1);
+				return (cocks[arg].cLength() >= 1 / 6 * tallness && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, arg) || cocks[arg].cLength() >= tallness * 1 / 3) && genitalLocation() <= 1);
 			}
 			//Negative is code for see if any can.
 			else {
 				for (var x: int = 0; x < cocks.length; x++) {
-					if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() / tallness >= 1 / 3) && genitalLocation() <= 1)
+					if (cocks[x].cLength() >=  tallness / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() >= tallness / 3) && genitalLocation() <= 1)
 						return true;
 				}
 				return false;
@@ -8444,7 +8458,7 @@
 		public function aCockToSuck(): int {
 			var choices: Array = new Array();
 			for (var x: int = 0; x < cocks.length; x++) {
-				if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() / tallness >= 1 / 3) && genitalLocation() <= 1)
+				if (cocks[x].cLength() >= 1 / 6 * tallness && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() >= tallness * 1 / 3) && genitalLocation() <= 1)
 					choices.push(x);
 			}
 			if (choices.length == 0) return 0;
@@ -8975,11 +8989,13 @@
 		public function removeCocksUnlocked():Boolean 
 		{
 			if (hasStatusEffect("Mimbrane Cock")) return false;
+			if(isCumCow() && cockTotal() == 1) return false;
 			return true;
 		}
 		public function removeCocksLockedMessage():String 
 		{
 			if (hasStatusEffect("Mimbrane Cock")) return "The Mimbrane surrounding your " + cockDescript(0) + " suddenly bursts to life and squeezes your dick for all it’s worth. Seems the parasite’s efforts are keeping you from losing your cock entirely.";
+			if(isCumCow() && cockTotal() == 1) return "Your body absolutely resists any attempt to deprive it of the penis it adores so dearly.";
 			return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
 		
@@ -8995,11 +9011,13 @@
 		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
 			if (arraySpot == 0 && totalRemoved >= 1 && hasStatusEffect("Mimbrane Cock")) return false;
+			if(isCumCow() && cockTotal() == 1) return false;
 			return true;
 		}
 		public function removeCockLockedMessage():String
 		{
 			if (cocks.length == 1 && hasStatusEffect("Mimbrane Cock")) return "The Mimbrane surrounding your " + cockDescript(0) + " suddenly bursts to life and squeezes your dick for all it’s worth. Seems the parasite’s efforts are keeping you from losing your cock entirely.";
+			else if(isCumCow() && cockTotal() == 1) return "Your body absolutely resists any attempt to deprive it of the penis it adores so dearly.";
 			return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
 		
@@ -9037,12 +9055,14 @@
 		public function removeVaginaUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
 			if (vaginas.length == 1 && hasStatusEffect("Mimbrane Pussy")) return false;
+			if (hasStatusEffect("Treated Amazon") && totalVaginas() <= 1 && hasStatusEffect("The Treatment")) return false;
 			if (isPregnant(arraySpot)) return false;
 			return true;
 		}
 		public function removeVaginaLockedMessage():String
 		{
 			if (vaginas.length == 1 && hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane is doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
+			if (hasStatusEffect("Treated Amazon") && totalVaginas() <= 1 && hasStatusEffect("The Treatment")) return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely. <b>It must be the Treatment, keeping you from losing your vagina until it has finished its job...</b>";
 			if (isPregnant()) return "A powerful sensation can be felt in your womb. Your body actively fights the change, keeping you from losing your pregnant vagina entirely.";
 			return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}

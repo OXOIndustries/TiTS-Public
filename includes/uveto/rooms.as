@@ -476,7 +476,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI N30"] = new RoomClass(this);
 	rooms["UVI N30"].roomName = "TEMPLE\nSTREET";
-	rooms["UVI N30"].description = "The main street comes to a head here, leading up to a huge wooden building with a pair of blazing fires flickering in metal braziers outside. Wide marble steps lead up to a pair of metal-reinforced doors. A pair of armored human are standing outside, clad in snow-white ceramic plates with dark scarves, capes, and kilts over them. Each has a longspear grasped in his hands, and an energy pistol on his hip.\n\nTo the east, you can see a the nearest house to the temple. It's a small, dark gray building that you imagine must be largely built underground. A small plate beside it gives the street address, and says in flowing letters ‘Shade and Astra Irons’.";
+	rooms["UVI N30"].description = "The main street comes to a head here, leading up to a huge wooden building with a pair of blazing fires flickering in metal braziers outside. Wide marble steps lead up to a pair of metal-reinforced doors. A pair of armored humans are standing outside, clad in snow-white ceramic plates with dark scarves, capes, and kilts over them. Each has a longspear grasped in his hands, and an energy pistol on his hip.\n\nTo the east, you can see the nearest house to the temple. It's a small, dark gray building that you imagine must be largely built underground. A small plate beside it gives the street address, and says in flowing letters ‘Shade and Astra Irons’.";
 	rooms["UVI N30"].planet = "PLANET: UVETO VII";
 	rooms["UVI N30"].system = "SYSTEM: SIRETTA";
 	//rooms["UVI N30"].northExit = "UVI N28"; // 9999 CUT UNTIL READY
@@ -658,7 +658,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP J40"] = new RoomClass(this);
 	rooms["UVIP J40"].roomName = "TWISTING\nRISE";
-	rooms["UVIP J40"].description = "The snow-packed valley to the west gives way to a slight incline, bringing you up to nearly the surface of the plains. In the distance to the north, you can see a glistening lake of ice, surrounding by sloping snowbanks and distant pillars of black mineral.";
+	rooms["UVIP J40"].description = "The snow-packed valley to the west gives way to a slight incline, bringing you up to nearly the surface of the plains. In the distance to the north, you can see a glistening lake of ice, surrounded by sloping snowbanks and distant pillars of black mineral.";
 	rooms["UVIP J40"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J40"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J40"].northExit = "UVIP J38";
@@ -743,7 +743,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP N46"] = new RoomClass(this);
 	rooms["UVIP N46"].roomName = "WINDING\nPATHS";
-	rooms["UVIP N46"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path here twists northwards and back east, though not quite towards Irestead.";
+	rooms["UVIP N46"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path here twists northwards and back west, though not quite towards Irestead.";
 	rooms["UVIP N46"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N46"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N46"].northExit = "UVIP N44";
@@ -945,8 +945,8 @@ public function initUvetoRooms():void
 
 	/* SOUTH EXIT TO RIFT */
 	rooms["UVIP Z34"] = new RoomClass(this); // 9999
-	rooms["UVIP Z34"].roomName = "[PH]\nGLACIAL RIFT";
-	rooms["UVIP Z34"].description = "[PH] GLACIAL RIFT MAP";
+	rooms["UVIP Z34"].roomName = "[PH] GLACIAL\nRIFT";
+	rooms["UVIP Z34"].description = "(Placeholder) GLACIAL RIFT MAP";
 	rooms["UVIP Z34"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z34"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z34"].westExit = "UVIP X34";
@@ -1507,8 +1507,8 @@ public function initUvetoRooms():void
 
 	/* NORTH RIFT EXIT */
 	rooms["UVIP Z6"] = new RoomClass(this);
-	rooms["UVIP Z6"].roomName = "[PH] GLACIAL\nRIFT";
-	rooms["UVIP Z6"].description = "[PH] GLACIAL RIFT MAP";
+	rooms["UVIP Z6"].roomName = "[PH] GLACIAL\nRIFT"; // 9999
+	rooms["UVIP Z6"].description = "(Placeholder) GLACIAL RIFT MAP";
 	rooms["UVIP Z6"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z6"].westExit = "UVIP X6";
@@ -1593,8 +1593,8 @@ public function initUvetoRooms():void
 
 	/* RELAY TOWER */
 	rooms["UVIP X18"] = new RoomClass(this);
-	rooms["UVIP X18"].roomName = "[PH] RELAY\nTOWER";
-	rooms["UVIP X18"].description = "[PH] RELAY TOWER";
+	rooms["UVIP X18"].roomName = "[PH] RELAY\nTOWER"; // 9999
+	rooms["UVIP X18"].description = "(Placeholder) RELAY TOWER";
 	rooms["UVIP X18"].planet = "PLANET: UVETO VII";
 	rooms["UVIP X18"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X18"].westExit = "UVIP V18";
@@ -1641,8 +1641,8 @@ public function initUvetoRooms():void
 
 	/* CENTER EXIT TO RIFT */
 	rooms["UVIP Z22"] = new RoomClass(this);
-	rooms["UVIP Z22"].roomName = "[PH] GLACIAL\nRIFT";
-	rooms["UVIP Z22"].description = "[PH] GLACIAL RIFT";
+	rooms["UVIP Z22"].roomName = "[PH] GLACIAL\nRIFT"; // 9999
+	rooms["UVIP Z22"].description = "(Placeholder) GLACIAL RIFT";
 	rooms["UVIP Z22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z22"].westExit = "UVIP X22";

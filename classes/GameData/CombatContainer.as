@@ -1527,6 +1527,9 @@ package classes.GameData
 		private function doStruggleRecover(target:Creature):void
 		{
 			var latexBonus:int = 0;
+			var panicJack:Boolean = (target.hasPerk("Panic Ejaculation") && target.hasCock());
+			var panicBonus:int = 0;
+			if(panicJack) panicBonus = 5;
 			if(target.hasPerk("Black Latex")) latexBonus = 2;
 			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it			
 			if (target is PlayerCharacter) clearOutput();
@@ -1546,15 +1549,25 @@ package classes.GameData
 			{
 				if(target.hasPerk("Escape Artist"))
 				{
-					if(target.reflexes() + rand(20) + 6 + latexBonus + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
+					if(target.reflexes() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
 						output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
+						if(panicJack)
+						{
+							output(" The [pc.cumNoun] you squirt helps a little too.");
+							pc.lust(-10);
+						}
 						target.removeStatusEffect("Naleen Coiled");
 					}
 				}
 				else 
 				{
-					if(target.physique() + rand(20) + 1 + latexBonus + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
+					if(target.physique() + rand(20) + 1 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
 						output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
+						if(panicJack)
+						{
+							output(" The [pc.cumNoun] you squirt helps a little too.");
+							pc.lust(-10);
+						}
 						target.removeStatusEffect("Naleen Coiled");
 					}
 				}
@@ -1564,6 +1577,11 @@ package classes.GameData
 					if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
 					else output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
 					target.addStatusValue("Naleen Coiled",1,1);
+					if(panicJack)
+					{
+						output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
+						pc.lust(-10);
+					}
 				}
 			}
 			// Mimbrane grapplestruggle
@@ -1610,6 +1628,11 @@ package classes.GameData
 						output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your [pc.knees]. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
 						target.lust(target.lustMax(), true);
 					}
+					if(panicJack)
+					{
+						output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
+						if(pc.lust() < pc.lustMax()) pc.lust(-10);
+					}
 				}
 			}
 			// Standard grapple text
@@ -1617,17 +1640,22 @@ package classes.GameData
 			{
 				if (target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
 				{
-					if (target.reflexes() + rand(20) + 7 + latexBonus + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+					if (target.reflexes() + rand(20) + 7 + latexBonus + panicBonus + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
 					{
 						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple("Escape Artist");
 						else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
+						if(panicJack)
+						{
+							output(" The [pc.cumNoun] you squirt helps a little too.");
+							pc.lust(-10);
+						}
 						target.removeStatusEffect("Grappled");
 					}
 				}
 				else
 				{
-					if(target.physique() + rand(20) + 6 + latexBonus + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+					if(target.physique() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
 					{
 						// TODO It might be an idea to do something similar to how drone targets work now, in that the actual
 						// enemy DOING the grappling is stored as a transient property on the victim of the grapple,
@@ -1646,6 +1674,11 @@ package classes.GameData
 							output("\n\n<i>“Aww, why do you have to be that way?”</i> she pouts, wiggling away from you.");
 						}
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
+						if(panicJack)
+						{
+							output(" The [pc.cumNoun] you squirt helps a little too.");
+							pc.lust(-10);
+						}
 						target.removeStatusEffect("Grappled");
 					}
 				}
@@ -1660,6 +1693,11 @@ package classes.GameData
 					else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("Try as you might, struggling against the heavy ropes of the nyrea huntresses net, you just can’t find a way out of the net that has you restrained.");
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
+					if(panicJack)
+					{
+						output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
+						pc.lust(-10);
+					}
 					target.addStatusValue("Grappled",1,1);
 				}
 			}
@@ -2206,7 +2244,7 @@ package classes.GameData
 					if(pc.milkFullness >= 75)
 					{
 						output("Drawing your hands sensuously up your [pc.belly], you cup your milky tits, giving one a firm squeeze as you let out a low, lusty moan. With " + target.getCombatName() + "’s gaze firmly captured, you pull away your [pc.upperGarments], releasing your [pc.fullChest] to the world, the fresh air blowing across your [pc.nipples]. You aren’t done teasing yet; a delicious idea slips into your devious mind.");
-						output("\n\nGrabbing both of your exposed melons, you jiggle them, causing a hypnotizing earthquake of mammary delight while taking care to pinch your nipples. The stimulation is just enough to get you started. Your [pc.milk] flows out as you begin to rub it into your [pc.skinFurScales], the [pc.milkColor] liquid soaking into your [pc.chest]. It takes you a tremendous effort to stop yourself and cover your jugs up again. Licking your fingers clean with an <i>Mmmmm...</i> for show, you ready yourself, noting that you’ll have to clean up a little later.");
+						output("\n\nGrabbing both of your exposed melons, you jiggle them, causing a hypnotizing earthquake of mammary delight while taking care to pinch your nipples. The stimulation is just enough to get you started. Your [pc.milk] flows out as you begin to rub it into your [pc.skinFurScales], the [pc.milkColor] liquid soaking into your [pc.chest]. It takes you a tremendous effort to stop yourself and cover your jugs up again. Licking your fingers clean with an <i>“Mmmmm...”</i> for show, you ready yourself, noting that you’ll have to clean up a little later.");
 					}
 					//If Breast tease <75 Lactating.
 					else

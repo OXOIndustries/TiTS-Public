@@ -610,8 +610,30 @@ public function rest(deltaT:int = -1):void {
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
 	clearOutput();
+
+	var postRestLustBonus:Number = 0;
+
 	if (deltaT == -1)
 	{
+		if(pc.hasPerk("Auto-Autofellatio") && pc.hasCock())
+		{
+			//First time gudness
+			if(pc.perkv1("Auto-Autofellatio") == 0 && pc.canAutoFellate(-1))
+			{
+				cumCowAutoFellatio(true, (280 + rand(30) + 1));
+				return;
+			}
+			else if(pc.perkv2("Auto-Autofellatio") <= 0 && rand(3) == 0 && pc.canAutoFellate(-1))
+			{
+				cumCowAutoFellatio(true, (280 + rand(30) + 1));
+				return;
+			}
+			else if(rand(20) == 0)
+			{
+				autoCocknosisDistraction();
+				postRestLustBonus = pc.libido()/3 + 20;
+			}
+		}
 		minutes = 230 + rand(20) + 1;
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) {
 			output("You take a rest for about " + num2Text(Math.round(minutes/60)) + " hours");
@@ -626,6 +648,8 @@ public function rest(deltaT:int = -1):void {
 	}
 	restHeal();
 	processTime(minutes);
+
+	pc.lust(postRestLustBonus);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1187,7 +1211,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	flags["PREV_LOCATION"] = currentLocation;
 	currentLocation = arg;
 	generateMap();
-	
+	if(pc.hasStatusEffect("Treatment Exhibitionism Gain 4 DickGirls") && pc.hasCock() && rooms[arg].hasFlag(GLOBAL.PUBLIC)) treatmentCumCowExhibitionism();
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
@@ -2023,6 +2047,11 @@ public function processTime(arg:int):void {
 				if(chars["ALISS"].lust() >= 70)
 				{
 					chars["ALISS"].orgasm();
+				}
+				//Cooldown timer
+				if(pc.perkv2("Auto-Autofellatio") >= 1) 
+				{
+					pc.addPerkValue("Auto-Autofellatio",2,-1);
 				}
 				//Cunt snake tomfoolery
 				if(pc.hasCuntTail()) {

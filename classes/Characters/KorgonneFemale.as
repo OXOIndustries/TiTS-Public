@@ -34,7 +34,7 @@
 			this.originalRace = "korgonne";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The short, plump canid is outfitted with an eclectic assortment of arms, some clearly forged by her people, others presumably scavenged from invading off-worlders. The faint crackle of a simple shield sizzles the billowing snow around her while the savage hefts a spear tipped with black, glossy stone in one hand. In the other, she wields a  and a foot-long, thickly-braided strap. Her coat bulges with shallow pockets, the shape of various firearms sticking out at odd angles. Her eyes flare with viridian recklessness, but her too-calm movements remind you more of an arctic wolf circling its prey.";
+			this.long = "The short, plump canid is outfitted with an eclectic assortment of arms, some clearly forged by her people, others presumably scavenged from invading off-worlders. The faint crackle of a simple shield sizzles the billowing snow around her while the savage hefts a spear tipped with black, glossy stone in one hand. In the other, she wields a foot-long, thickly-braided strap. Her coat bulges with shallow pockets, the shape of various firearms sticking out at odd angles. Her eyes flare with viridian recklessness, but her too-calm movements remind you more of an arctic wolf circling its prey.";
 			this.customDodge = "She lunges forward under your attack, surprisingly agile for such a stocky pup! Inches from your face, she holds you in the thrall of her deformed pupils; her teal tongue licking the tip of her turquoise nose before she rolls to one side.";
 			this.isPlural = false;
 
