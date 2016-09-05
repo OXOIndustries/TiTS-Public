@@ -396,7 +396,9 @@ public function bigTCockSuckPartII():void
 	author("JimThermic");
 	output("<b>--- Some Time Later ---</b>");
 	// An hour
-	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily past his receptionist, half naked and too spaced out to care.");
+	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily past his receptionist,");
+	if(!pc.isNude()) output(" half");
+	output(" naked and too spaced out to care.");
 	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
 	sexedBigT();
 	// Might want to kick the player two squares south after this. 
@@ -512,7 +514,9 @@ public function drunkenCowgirlBoy():void
 	else output("ass");
 	output(".");
 
-	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your chest, your [pc.thighs] utterly coated in bull cum. You giddily past his receptionist, half naked and too spaced out to care. What a ride!");
+	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your chest, your [pc.thighs] utterly coated in bull cum. You giddily past his receptionist,");
+	if(!pc.isNude()) output(" half");
+	output(" naked and too spaced out to care. What a ride!");
 	// Might want to kick the player two squares south after this. 
 	flags["FUCKED_BY_BIGT"] = 1;
 	processTime(70);
@@ -769,7 +773,9 @@ public function bigTFucksYouEpilogue():void
 	author("JimThermic");
 	output("--- Some Time Later ---");
 	// An hour
-	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your gear to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily past his receptionist, half naked and too spaced out to care.");
+	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your gear to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily past his receptionist,");
+	if(!pc.isNude()) output(" half");
+	output(" naked and too spaced out to care.");
 	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
 	// Might want to kick the player two squares south after this. 
 	flags["FUCKED_BY_BIGT"] = 1;
