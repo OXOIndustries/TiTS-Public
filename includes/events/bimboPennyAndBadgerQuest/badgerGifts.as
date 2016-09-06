@@ -142,7 +142,7 @@ public function resetDrBadgerBimboTF():void
 		}
 	}
 	//IF PC HAS MORE THAN ONE NON-TAIL VAGINA
-	if(pc.totalVaginas() > 1 && !pc.isPregnant())
+	if(pc.totalVaginas() > 1 && !pc.hasWombPregnancy())
 	{
 		while(pc.totalVaginas() > 1)
 		{

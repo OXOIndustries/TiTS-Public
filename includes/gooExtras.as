@@ -2626,15 +2626,17 @@ public function vaginaGooRootMenu():void
 	}
 	//else addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","You have no vagina to remove.");
 	
-		var numGooVags:Number = 0;
+	var numGooVags:Number = 0;
 	var numPregVags:Number = 0;
 	var numPregTotal:Number = pc.totalPregnancies();
+	
 	if(pc.isPregnant(3)) numPregTotal--;
-		for(x = 0; x < pc.totalVaginas(); x++)
-		{
-			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY)) numGooVags++;
+	for(x = 0; x < pc.totalVaginas(); x++)
+	{
+		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY)) numGooVags++;
 		if(pc.isPregnant(x)) numPregVags++;
-		}
+	}
+	
 	if(numPregTotal > pc.totalVaginas())
 	{
 		if(pc.totalVaginas() == 0) addGhostButton(8,"Fix Womb",fixAllVags,(numPregTotal - pc.totalVaginas()),"Fix Womb","You seem to have a pregnant womb and no vaginas... You should fix this before something goes horribly wrong!\n\n<b>500 mLs Biomass</b>");
