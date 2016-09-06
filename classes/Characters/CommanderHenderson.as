@@ -21,6 +21,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.Engine.Interfaces.clearOutput;
 	import classes.StringUtil;
 	
 	
@@ -37,8 +38,8 @@ package classes.Characters
 			originalRace = "human";
 			a = "";
 			capitalA = "";
-			this.long = "[Placeholder]";
-			this.customBlock = "[Placeholder]";
+			this.long = "";
+			this.customBlock = "The commanders incredible bulk meets your attack with little effect.";
 			this.isPlural = false;
 			isLustImmune = false;
 			isUniqueInFight = true;
@@ -233,18 +234,6 @@ package classes.Characters
 				
 				weightedRand(atks)(target, hostiles);
 			}
-			
-			if (hasStatusEffect("Free Chief"))
-			{
-				if (statusEffectv1("Free Chief") == 0)
-				{
-					setStatusValue("Free Chief", 1, 1);
-				}
-				else
-				{
-					actuallyFreeChief();
-				}
-			}
 		}
 		
 		public function tentacleWhip(target:Creature, hostiles:Array):void
@@ -428,6 +417,8 @@ package classes.Characters
 		
 		public function freeChief():void
 		{
+			clearOutput();
+			
 			output("You turn to the Chief and pull out your [pc.meleeWeapon]. <i>“Hang on, I'm getting you out!”</i>");
 
 			output("\n\nShe wiggles urgently in the tentacles' grasp as you pull them off her limbs, hurrying before the Commander gets his bearings again. You slice away most of the tentacles, causing Henderson to shudder violently with pain, but you get the Chief free... save for the one huge, thick tentacle lodged in her cunt.");

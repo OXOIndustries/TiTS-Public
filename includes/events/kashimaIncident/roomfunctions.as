@@ -154,16 +154,14 @@ public function kiEnterMedbay():Boolean
 	
 	if (flags["KI_VANDERBILT_WORKING"] == 1)
 	{
-		output("\n\nDoctor Vanderbilt is sitting at the only operational holo-terminal in the bay, busily working on her cure.");
+		if (flags["KI_VANDERBILT_WORKING_START"] + 240 < GetGameTimestamp())
+		{
+			kiApproachElenora();
+			return true;
+		}
 		
-		if (flags["KI_VANDERBILT_WORKING_START"] + 240 > GetGameTimestamp())
-		{
-			addButton(1, "Elenora", kiApproachElenora, undefined, "Elenora", "Talk with the doctor again and see if she's ready with the cure.");
-		}
-		else
-		{
-			addDisabledButton(1, "Elenora", "Approach Elenora", "The doctor looks totally engrossed in her work; probably best to give her a little more time.");
-		}
+		output("\n\nDoctor Vanderbilt is sitting at the only operational holo-terminal in the bay, busily working on her cure.");
+		addDisabledButton(1, "Elenora", "Approach Elenora", "The doctor looks totally engrossed in her work; probably best to give her a little more time.");
 	}
 	else
 	{
@@ -414,10 +412,6 @@ public function kiK5CMOQuartersMeds():void
 	lootScreen = kiK5CMOMedSuppliesCheck;
 	flags["KI_CMO_MEDSUPPLIES"] = 1;
 	itemCollect([new OSStimBoost()]);
-	
-	//output("You flip the hypospray in your hand and inject yourself.");
-
-	//output("\n\nA few moments later, you’re feeling rejuvenated and a lot less sore.");
 }
 
 public function kiK5CMOMedSuppliesCheck():void
@@ -1602,6 +1596,7 @@ public function kiMedbayCure():void
 	output("\n\n<i>“This will take a while. If... if it works at all,”</i> she says over her shoulder. <i>“You should rest up. Spreading a cure around is going to be even harder than making it.”</i>");
 
 	pc.removeKeyItem("Parasite Sample");
+	
 	flags["KI_VANDERBILT_WORKING"] = 1;
 	flags["KI_VANDERBILT_WORKING_START"] = GetGameTimestamp();
 
@@ -1641,6 +1636,9 @@ public function kiApproachElenora():void
 	output("\n\nYou nod and pocket the can. Fire suppression would be down in Engineering, in the bowels of the ship’s rear. A long haul, and one you probably aren’t coming back from unless you can get the cure to work. Something tells you the big, open, warm maze of the engine deck is going to be absolutely swarming with infected.");
 
 	flags["KI_VANDERBILT_WORKING"] = 2;
+	
+	pc.createKeyItem("Parasite Cure", 0, 0, 0, 0, "A vial containing a potential cure for the parasite afflicting the crew of the Kashima.");
+	output("\n\n<b>Key Item Acquired: Parasite Cure - A vial containing a potential cure for the parasite afflicting the crew of the Kashima.</b>");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1688,6 +1686,25 @@ public function kiEngineeringBossFight():void
 	CombatManager.lossCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.victoryScene(kiHendersonVictory);
 	CombatManager.lossScene(kiHendersonLoss);
+	CombatManager.encounterTextGenerator(function():String {
+		var m:String = "Before you stands a particularly massive mutant crewman, easily seven feet tall, with skin as red as cold blood. He was human once, you're sure, but now he looks like a tentacle abomination straight out of a Neo-Tokyo ultraporn, with legs and arms nothing more than dozens of wrapped tentacles, and dozens more drooping and squirming from his crotch, chest, and face. Two pink-hued eyes, glowing as bright as embers, stare down at you from sockets surrounded by dozens of scillia-like shafts.";
+		
+		var h:Array = CombatManager.getHostileCharacters();
+		if (CombatManager.hasFriendlyOfClass(ChiefNeykkar))
+		{
+			// noop
+		}
+		else if (!h[0].hasStatusEffect("Free Chief"))
+		{
+			m += "\n\nChief Neykkar is wrapped up tightly by a squirming mass of tentacles. If you can get her free then you might have the upper hand...";
+		}
+		else
+		{
+			m += "\n\nThe Chief is free of the crushing mass of tentacles, but she's still a little out of it. She needs a minute or two to get her legs back under herself...";
+		}
+		
+		return m;
+	});
 	
 	clearMenu();
 	addButton(0, "Fight!", CombatManager.beginCombat);
