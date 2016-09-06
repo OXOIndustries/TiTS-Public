@@ -39,7 +39,7 @@ public function honeyNozzleClub():Boolean
 		}
 		else
 		{
-			output("\n\nThe entrance to the cabaret is currently closed. The signage in front says that it is open from 15:00 to 20:00.");
+			output("\n\nThe entrance to the cabaret is currently closed. The signage in front says that it is open from 15:30 to 20:30.");
 			addDisabledButton(1, "Cabaret", "Cabaret", "It looks like the entrance is closed at the moment.");
 		}
 	}
@@ -83,7 +83,7 @@ public function honeyNozzleClub():Boolean
 					output("\n\nThe entrance to the cabaret is currently closed.");
 					addDisabledButton(1, "Cabaret", "Cabaret", "It looks like the entrance is closed at the moment.");
 				}
-				output(" The signage in front says that it is open from 15:00 to 20:00.");
+				output(" The signage in front says that it is open from 15:30 to 20:30.");
 			}
 
 			var bShow:Boolean = hasSeenNozzleShow();
@@ -98,7 +98,7 @@ public function honeyNozzleClub():Boolean
 				}
 				else
 				{
-					output("\n\nThe entrance to the cabaret is currently closed. The signage in front says that it is open from 15:00 to 20:00.");
+					output("\n\nThe entrance to the cabaret is currently closed. The signage in front says that it is open from 15:30 to 20:30.");
 					addDisabledButton(1, "Cabaret", "Cabaret", "It looks like the entrance is closed at the moment.");
 				}
 			}
