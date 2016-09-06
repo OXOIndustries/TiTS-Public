@@ -274,10 +274,13 @@ package classes.GameData
 					h.triggerAlarm(true);
 				}
 			}
-			if(pc.shields() <= 0 && pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
+			if(pc.shields() <= 0)
 			{
-				output("\n\n<b>Without your shields to sustain it, your drone collapses. It won’t be doing any more damage until you bring your shields back up!</b>");
-				pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
+				if(pc.hasCombatDrone() && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
+				{
+					output("\n\n<b>Without your shields to sustain it, your drone collapses. It won’t be doing any more damage until you bring your shields back up!</b>");
+					pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
+				}
 			}
 			
 			return false;
