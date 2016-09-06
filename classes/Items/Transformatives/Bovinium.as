@@ -495,40 +495,15 @@ package classes.Items.Transformatives
 				if (target.isNaga())
 				{
 					output("\n\nA strange sensation runs through your serpentine lower body, followed by a wracking pain. You double over, hugging yourself to your coiling snake-body as the Bovinium decides to rob you of your serpent-half. The transformation is quick, but thoroughly unpleasant: your [pc.leg] splits apart wholesale, its outer parts flaking off to reveal taut, [pc.skinColor] skin. <b>You now have bipedal legs!</b>");
-
 					output("\n\nThat’s not enough for the drug, though. Not by a long shot! After a few moments, you see <b>thick, curly fur starts to grow on your new-grown legs</b>, covering them up to the upper thighs. At least you’ll be warm in the winter!");
-
 					output("\n\nThe bottoms of your legs take form: <b>rather than feet, they mutate into distinctly animalistic hooves.</b> You spend a good long while standing up and adjusting to your new gait, wobbling around until you get your footing. Or hoofing, as the case may be.");
-					
-					target.legCount = 2;
-					target.genitalSpot = 0;
-					target.legType = GLOBAL.TYPE_BOVINE;
-					
-					target.legFlags = [];
-					target.addLegFlag(GLOBAL.FLAG_HOOVES);
-					target.addLegFlag(GLOBAL.FLAG_FURRED);
 				}
 				//PC was a taur:
 				else if (target.isTaur())
 				{
 					output("\n\nYour bestial lower body is wracked with pain, and the mass of it starts convulsing, breaking apart at the seams. From the waist down, your body changes, becoming more and more humanoid as the minutes pass. When the transition ends, <b>you’re left with bipedal legs,</b> distinctly human in appearance.");
-					
-					if (target.legType != GLOBAL.TYPE_BOVINE || !target.hasLegFlag(GLOBAL.FLAG_FURRED))
-					{
-						output("\n\nThat’s not enough for the drug, though. Not by a long shot! After a few moments, you see <b>thick, curly fur starts to grow on your new-grown legs</b>, covering them up to the upper thighs. At least you’ll be warm in the winter!");
-						target.legType = GLOBAL.TYPE_BOVINE;
-						target.addLegFlag(GLOBAL.FLAG_FURRED);
-					}
-					target.genitalSpot = 0;					
-					target.legCount = 2;
-					target.legFlags = [];
-					target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-
-					if (target.hasLegFlag(GLOBAL.FLAG_HOOVES))
-					{
-						output("\n\nThe bottoms of your legs take form: <b>rather than feet, they mutate into distinctly animalistic hooves.</b> You spend a good long while standing up and adjusting to your new gait, wobbling around until you get your footing. Or hoofing, as the case may be.");
-						target.addLegFlag(GLOBAL.FLAG_HOOVES);
-					}
+					if (target.legType != GLOBAL.TYPE_BOVINE || !target.hasLegFlag(GLOBAL.FLAG_FURRED)) output("\n\nThat’s not enough for the drug, though. Not by a long shot! After a few moments, you see <b>thick, curly fur starts to grow on your new-grown legs</b>, covering them up to the upper thighs. At least you’ll be warm in the winter!");
+					if (!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output("\n\nThe bottoms of your legs take form: <b>rather than feet, they mutate into distinctly animalistic hooves.</b> You spend a good long while standing up and adjusting to your new gait, wobbling around until you get your footing. Or hoofing, as the case may be.");
 				}
 				//PC was bipedal already:
 				else
@@ -536,12 +511,15 @@ package classes.Items.Transformatives
 					output("\n\nYou feel your [pc.legOrLegs] shifting, the [pc.skinFurScales] on them squirming and moving. After a few tense moments, <b>a thick coating of curly fur sprouts from your [pc.legOrLegs], covering them to the upper thigh</b>.");
 					//if not already hooves: 
 					if(!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they’re done, <b>you have a pair of cow-like hooves!</b>.");
-					target.legType = GLOBAL.TYPE_BOVINE;
-					target.legFlags = [];
-					target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-					target.addLegFlag(GLOBAL.FLAG_HOOVES);
-					target.addLegFlag(GLOBAL.FLAG_FURRED);
 				}
+				
+				target.legCount = 2;
+				target.genitalSpot = 0;
+				target.legType = GLOBAL.TYPE_BOVINE;
+				target.legFlags = [];
+				target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+				target.addLegFlag(GLOBAL.FLAG_HOOVES);
+				target.addLegFlag(GLOBAL.FLAG_FURRED);
 			}
 
 			//Moderate chance of nipple size increase

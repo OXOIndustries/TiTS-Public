@@ -19,7 +19,7 @@ public function puntToShip():Boolean
 	showLocationName();
 	processTime(1);
 	clearMenu();
-	addButton(14,"Back",mainGameMenu);
+	addButton(0,"Next",mainGameMenu);
 	return true;
 }
 

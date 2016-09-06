@@ -1336,7 +1336,7 @@ public function rumblyInYourTummy():void
 	// 14 hours after fertilization
 	if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) return;
 
-	eventBuffer +="\n\nThe [pc.skin] across your [pc.belly] stretches as your alien young incubate inside your womb. It's actually quite a satisfying sensation, though it does leave your face a little flushed. More slime bathes your netherlips as your body gets into its role as a receptacle for venus pitcher seeds. There's so much of the slick stuff that your crotch appears practically oiled with it.";
+	eventBuffer +="\n\n" + logTimeStamp() + ParseText(" The [pc.skin] across your [pc.belly] stretches as your alien young incubate inside your womb. It's actually quite a satisfying sensation, though it does leave your face a little flushed. More slime bathes your netherlips as your body gets into its role as a receptacle for venus pitcher seeds. There's so much of the slick stuff that your crotch appears practically oiled with it.");
 
 	//Increase bellymod to 14 * amount
 	var pData:PregnancyData = (pc as PlayerCharacter).getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
@@ -1349,7 +1349,7 @@ public function poppingSoonAlert1():void
 	//20 hours after fertilization
 	if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) return;
 
-	eventBuffer += "\n\nYou stroke your [pc.belly] happily as you feel the seeds taking root inside you, using your body's nutrients to accelerate their growth. Some of them must have little tendrils; you can see them pressing against the [pc.skin] of your middle from time to time. It won't be long now. You don't know how you know that, but it's true. In a few hours, you'll be giving birth to the most wonderful young. A compulsion to go somewhere wild and untamed seizes hold of you, propelled on whispery voices and full, velvet lips - a memory of a more pleasant time, perhaps."
+	eventBuffer += "\n\n" + logTimeStamp() + ParseText(" You stroke your [pc.belly] happily as you feel the seeds taking root inside you, using your body's nutrients to accelerate their growth. Some of them must have little tendrils; you can see them pressing against the [pc.skin] of your middle from time to time. It won't be long now. You don't know how you know that, but it's true. In a few hours, you'll be giving birth to the most wonderful young. A compulsion to go somewhere wild and untamed seizes hold of you, propelled on whispery voices and full, velvet lips - a memory of a more pleasant time, perhaps.");
 }
 
 public function poppingSoonAlert2():void
@@ -1357,7 +1357,7 @@ public function poppingSoonAlert2():void
 	//23 hours after fertilization
 	if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) return;
 
-	eventBuffer += "\n\nYou'll be laying soon; you're sure of it. Your [pc.vaginas]";
+	eventBuffer += "\n\n" + logTimeStamp() + ParseText(" You'll be laying soon; you're sure of it. Your [pc.vaginas]");
 	if (pc.totalVaginas() > 1) eventBuffer += " have";
 	else eventBuffer += " has" 
 	eventBuffer += " grown wetter and eager. The birth-slime is practically dripping out of you nonstop at this point. All you need to do is protect the children inside you - the beautiful creatures just waiting to grow up into elegant venus pitchers. You just have to stay somewhere good for them, then spread yourself and allow them to root. It is a simple fact of existence, one that's making you wetter by the second.";

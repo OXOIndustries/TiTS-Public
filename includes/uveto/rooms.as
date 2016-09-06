@@ -1158,7 +1158,7 @@ public function initUvetoRooms():void
 	/* BLU ROOM */
 	rooms["UVIP D22"] = new RoomClass(this);
 	rooms["UVIP D22"].roomName = "SNOWBANK\nCAVE";
-	rooms["UVIP D22"].description = "You stand in a snowy cave, clearly dug out by hand from the titanic snowbank around you. An animal belt is spread out on the ground, providing some relief from the constant cold should you desire it. Perhaps whoever made this cave intended it to be a waystation between Irestead and the Rift? Or are you treading in someone's home...?\n\n<b>It's safe to sleep in here, even without a heat belt.</b>";
+	rooms["UVIP D22"].description = "You stand in a snowy cave, clearly dug out by hand from the titanic snowbank around you. An animal pelt is spread out on the ground, providing some relief from the constant cold should you desire it. Perhaps whoever made this cave intended it to be a waystation between Irestead and the Rift? Or are you treading in someone's home...?\n\n<b>It's safe to sleep in here, even without a heat belt.</b>";
 	rooms["UVIP D22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP D22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP D22"].eastExit = "UVIP F22";
@@ -1192,7 +1192,7 @@ public function initUvetoRooms():void
 	/* BLU ROOM */
 	rooms["UVIP J20"] = new RoomClass(this);
 	rooms["UVIP J20"].roomName = "ICE-HEWN\nCAVERN";
-	rooms["UVIP J20"].description = "You're standing in the mouth of a gaping cavern, a natural formation in the ice by the looks like things. Shards of a half-sunken black pillar can be seen through the northern wall, creating a kind of archway around a tunnel leading deeper. The way out is back east, up a slight incline.\n\n<b>It's safe to sleep in here, even without a heat belt.</b>";
+	rooms["UVIP J20"].description = "You're standing in the mouth of a gaping cavern, a natural formation in the ice by the looks like things. Shards of a half-sunken black pillar can be seen through the northern wall, creating a kind of archway around a tunnel leading deeper. The way out is back west, up a slight incline.\n\n<b>It's safe to sleep in here, even without a heat belt.</b>";
 	rooms["UVIP J20"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J20"].northExit = "UVIP J18";
@@ -1372,8 +1372,8 @@ public function initUvetoRooms():void
 	rooms["UVIP R10"].runOnEnter = function():Boolean {
 		if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined)
 		{
-			output("\n\nIt looks like the probe was damage in the crash. It's silent and dark.");
-			addButton(0, "Reactivate", uvetoReactivateProbe, undefined, "Reactivate Probe", "You could probably give this probe a repair job and use it to broadcast a signal back to Irestead. If you do, you might be able to quick transportation...");
+			output("\n\nIt looks like the probe was damaged in the crash. It's silent and dark.");
+			addButton(0, "Reactivate", uvetoReactivateProbe, undefined, "Reactivate Probe", "You could probably give this probe a repair job and use it to broadcast a signal back to Irestead. If you do, you might be able to call for quick transportation...");
 		}
 		else
 		{

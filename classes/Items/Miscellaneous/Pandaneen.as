@@ -599,12 +599,12 @@
 						//Omnileg/Naga/Goochassis -> Pandafeetz
 						if(target.legCount == 1)
 						{
-							kGAMECLASS.output("\n\nYour [pc.leg] wobbles uncertainly for a moment before losing all its strength. The fall to the ground doesn't hurt nearly as much as your bruised pride, but you're too focused on the changes happening below your waist to mind much at the moment. Your [pc.leg] is splitting lengthwise, dividing into two vaguely digitigrade shapes. They slowly resolve into a pair of normal-looking legs shod with fluffy, padded footpaws. Little claws stick out of your toes in place of toenails. <b>You have panda feet!</b>");
+							kGAMECLASS.output("\n\nYour [pc.leg] wobbles uncertainly for a moment before losing all its strength. The fall to the ground doesn't hurt nearly as much as your bruised pride, but you're too focused on the changes happening below your waist to mind much at the moment. Your [pc.leg] is splitting lengthwise, dividing into two vaguely plantigrade shapes. They slowly resolve into a pair of normal-looking legs shod with fluffy, padded footpaws. Little claws stick out of your toes in place of toenails. <b>You have panda feet!</b>");
 						}
 						//Manyleg -> Pandafeetz
 						else if(target.legCount > 2)
 						{
-							kGAMECLASS.output("\n\nA tremor of warning weakness hits your [pc.legOrLegs], but you don't react fast enough for your suddenly quivering lower body. It dumps you on the ground hard enough to hurt, though it doesn't do any actual damage. Your [pc.legOrLegs] are slowly combining together, flowing into one another, your bones like butter. Eventually, two distinct shapes resolve in the mass of shifting flesh, dividing into two digitigrade legs. Fur sprouts out of the paw-like feet at the bottom. <b>You've got panda feet with little claws on the toes instead of nails!</b>");
+							kGAMECLASS.output("\n\nA tremor of warning weakness hits your [pc.legOrLegs], but you don't react fast enough for your suddenly quivering lower body. It dumps you on the ground hard enough to hurt, though it doesn't do any actual damage. Your [pc.legOrLegs] are slowly combining together, flowing into one another, your bones like butter. Eventually, two distinct shapes resolve in the mass of shifting flesh, dividing into two plantigrade legs. Fur sprouts out of the paw-like feet at the bottom. <b>You've got panda feet with little claws on the toes instead of nails!</b>");
 						}
 						//Generic -> Pandafeetz
 						else
@@ -615,7 +615,7 @@
 						target.genitalSpot = 0;
 						target.legType = GLOBAL.TYPE_PANDA;
 						target.clearLegFlags();
-						target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+						target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 						target.addLegFlag(GLOBAL.FLAG_FURRED);
 						target.addLegFlag(GLOBAL.FLAG_PAWS);
 						changes++;

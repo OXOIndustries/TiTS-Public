@@ -340,7 +340,7 @@ public function heyDocImAHero():void
 		}
 	}
 	//IF PC HAS MORE THAN ONE NON-TAIL VAGINA
-	if(pc.totalVaginas() > 1 && !pc.isPregnant())
+	if(pc.totalVaginas() > 1 && !pc.hasWombPregnancy())
 	{
 		output("\n\nYour fingers clench involuntarily as you undergo the indescribable sensation of your superfluous vagina");
 		if(pc.totalVaginas() > 2) output("s sealing themselves");
@@ -841,7 +841,7 @@ public function removeDatCuntTail():void
 		}
 	}
 	//IF PC HAS MORE THAN ONE NON-TAIL VAGINA
-	if(pc.removeVaginaUnlocked(1,1) && pc.totalVaginas() > 1 && !pc.isPregnant() && changes < 3 && rand(3) == 0)
+	if(pc.removeVaginaUnlocked(1,1) && pc.totalVaginas() > 1 && !pc.hasWombPregnancy() && changes < 3 && rand(3) == 0)
 	{
 		output("\n\nYour fingers clench involuntarily as you undergo the indescribable sensation of your superfluous vagina");
 		if(pc.totalVaginas() > 2) output("s sealing themselves");

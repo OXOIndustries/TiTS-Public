@@ -382,6 +382,8 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 			output("\n\nBlackness takes you.");
 			if (damageResult.totalDamage > 0) outputDamage(damageResult);
 			
+			generateMapForLocation("GAME OVER");
+			
 			clearMenu();
 			addButton(0, "Next", uvetoFallToColdDamage);
 			return true;

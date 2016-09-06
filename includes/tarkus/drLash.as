@@ -233,7 +233,7 @@ public function genitalRemovalShit():void
 		if(pc.hasStatusEffect("GaloMax")) addDisabledButton(0,"Pure Purge","Pure Purge","You probably shouldn't do this while under the effects of GaloMax.");
 		else if(pc.isBimbo() && pc.hasVagina()) addDisabledButton(0,"Pure Purge","Pure Purge","Ew! You don't want to get rid of your pussy!");
 		else if(pc.isBro() && pc.hasCock()) addDisabledButton(0,"Pure Purge","Pure Purge","No way! You're not losing your junk.");
-		else if(pc.isPregnant()) addDisabledButton(0,"Pure Purge","Pure Purge","Dr. Lash has no interest in ending your unborn offspring.");
+		else if(pc.hasWombPregnancy()) addDisabledButton(0,"Pure Purge","Pure Purge","Dr. Lash has no interest in ending your unborn offspring.");
 		else if(!pc.hasGenitals()) addDisabledButton(0,"Pure Purge","Pure Purge","You don't have any genitals!");
 		else if(pc.credits >= 1000) addButton(0,"Pure Purge",lashTreatment,"pure purge","Pure Purge","1,000 credits. Removes all evidence of troublesome mating organs.");
 		else addDisabledButton(0,"Pure Purge","Pure Purge","You cannot afford this treatment.");
@@ -267,7 +267,7 @@ public function genitalRemovalShit():void
 		addDisabledButton(4,"Birth-P.","Birth-Proofing","Noooo! You don't wanna lose your lady parts!");
 		addDisabledButton(5,"Vagina R.","Vagina Removal","Noooo! You don't wanna lose your lady parts!");
 	}
-	else if(pc.hasVagina() && pc.isPregnant())
+	else if(pc.hasVagina() && pc.hasWombPregnancy())
 	{
 		addDisabledButton(4,"Birth-P.","Birth-Proofing","Dr. Lash won't perform this treatment until you're no longer pregnant.");
 		addDisabledButton(5,"Vagina R.","Vagina Removal","Dr. Lash won't perform this treatment until you're no longer pregnant.");

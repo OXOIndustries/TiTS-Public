@@ -89,7 +89,7 @@
 		}
 		public function pillTF(done:Boolean = false):void
 		{
-			kGAMECLASS.eventBuffer += "\n\n<u>The horse pills have an effect....</u>";
+			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The horse pills have an effect....</u>";
 			var oddsOfBigTF:int = kGAMECLASS.chars["PC"].statusEffectv2("Horse Pill") * 20;
 			if(oddsOfBigTF >= rand(100) + 1)
 			{

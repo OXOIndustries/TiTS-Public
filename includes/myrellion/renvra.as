@@ -767,7 +767,7 @@ public function renvraMessageHandler():void
 
 public function renvraAlmostDue():void
 {
-	eventBuffer += "\n\nYou note that your swollen belly is shifting awkwardly, and you're starting to feel very... wet. Your motherly instincts tell you that you'll be giving birth very, very soon. ";
+	eventBuffer += "\n\n" + logTimeStamp() + " You note that your swollen belly is shifting awkwardly, and you're starting to feel very... wet. Your motherly instincts tell you that you'll be giving birth very, very soon. ";
 }
 
 public function renvraBellyrubs():void
@@ -780,12 +780,12 @@ public function renvraBellyrubs():void
 		
 		if (InPublicSpace() && (kGAMECLASS.hours > 4 && kGAMECLASS.hours < 22))
 		{
-			eventBuffer += "\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
+			eventBuffer += "\n\n" + logTimeStamp() + " As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
 			if (pc.isBimbo() || pc.isTreated() || pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) eventBuffer += " Besides, people rubbing all over you feels super good!";
 		}
 		else
 		{
-			eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. Your children inside you shift slightly, making your";
+			eventBuffer += "\n\n" + logTimeStamp() + ParseText(" You stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. Your children inside you shift slightly, making your");
 			if (pc.statusEffectv1("Renvra Full Pregnancy Bellyrubs") == 3) eventBuffer += " stomach rumble";
 			else eventBuffer += " belly tremble";
 			eventBuffer += ". It's surprisingly nice to just rub your belly, enjoying the fullness of it."
@@ -825,17 +825,17 @@ public function renvraPregnancyMessage2():void
 
 public function renvraPregnancyMessage3():void
 {
-	eventBuffer += "\n\nYour belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you're not getting horribly sick in the mornings anymore!";	
+	eventBuffer += "\n\n" + logTimeStamp() + " Your belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you're not getting horribly sick in the mornings anymore!";	
 }
 
 public function renvraPregnancyMessage4():void
 {
-	eventBuffer += "\n\nYou're really starting to show, now. Anybody who looks your way can see you're obviously pregnant, and you've had to adjust your [pc.gear] to make room for your bloated gut. Every so often, you feel a slight movement under your [pc.skinFurScales] as your growing young shift or move. Occasionally, you could swear you feel them kick!\n\nFrom time to time, you find your hands wandering down to your belly, idly caressing your swollen form.";
+	eventBuffer += "\n\n" + logTimeStamp() + ParseText(" You're really starting to show, now. Anybody who looks your way can see you're obviously pregnant, and you've had to adjust your [pc.gear] to make room for your bloated gut. Every so often, you feel a slight movement under your [pc.skinFurScales] as your growing young shift or move. Occasionally, you could swear you feel them kick!\n\nFrom time to time, you find your hands wandering down to your belly, idly caressing your swollen form.");
 }
 
 public function renvraPregnancyMessage5():void
 {
-	eventBuffer += "\n\nYou find your hands wandering to your belly more and more -- as much to support the growing weight you're bearing as to caress the home of your unborn children.\n\nYou're so heavily showing now that you can't go much of anywhere without people staring. It won't be long now... maybe just a few weeks more!";
+	eventBuffer += "\n\n" + logTimeStamp() + " You find your hands wandering to your belly more and more -- as much to support the growing weight you're bearing as to caress the home of your unborn children.\n\nYou're so heavily showing now that you can't go much of anywhere without people staring. It won't be long now... maybe just a few weeks more!";
 }
 
 public function renvraMilkyTittiesGo():void
@@ -866,16 +866,16 @@ public function renvraMilkyTittiesGo():void
 	{
 		pc.milkRate = 10;
 		
-		eventBuffer += "\n\nYour breasts are starting to feel a little heavier as your body prepares for its coming young. While you're already lactating, your rate of production seems to be increasing in preparation.";
+		eventBuffer += "\n\n" + logTimeStamp() + " Your breasts are starting to feel a little heavier as your body prepares for its coming young. While you're already lactating, your rate of production seems to be increasing in preparation.";
 	}
 	else
 	{
-		eventBuffer += "\n\nYou notice that your [pc.chest]";
+		eventBuffer += "\n\n" + logTimeStamp() + ParseText(" You notice that your [pc.chest]");
 		if (pc.biggestTitSize() < 1 || pc.totalBreasts() == 1) eventBuffer += " is";
 		else eventBuffer += " are";
 		eventBuffer += " starting to grow, swelling with the beginnings of milk production. You find someplace quiet and pull your gear off, cupping your";
 		if (tBoobies) eventBuffer += " freshly engorged";
-		eventBuffer += " breasts and squeezing out a trickle of [pc.milk] from your teat.\n\n<b>It appears you're lactating now!</b>";
+		eventBuffer += ParseText(" breasts and squeezing out a trickle of [pc.milk] from your teat.\n\n<b>It appears you're lactating now!</b>");
 	}
 }
 

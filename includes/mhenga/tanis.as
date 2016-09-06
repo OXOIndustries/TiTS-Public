@@ -253,7 +253,7 @@ public function tanisBowTrainingFinaleRepeats():void
 	
 	if (flags["TANIS_BOW_TRAINING"] >= 8 && !MailManager.isEntryUnlocked("tanisarrows"))
 	{
-		eventBuffer += "\n\n<b>New Email From Tanisaran Alhelvan (Tanis_Alhelvan@UGC.gov)!</b>";
+		eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Tanisaran Alhelvan (Tanis_Alhelvan@UGC.gov)!</b>";
 		MailManager.unlockEntry("tanisarrows", GetGameTimestamp());
 	}
 

@@ -41,16 +41,36 @@ public function infiniteItems():Boolean
 	return (debug || flags["INFINITE_ITEMS"] != undefined);
 }
 
+public function logTimeStamp(logColor:String = "words"):String
+{
+	// logColor correlates to the CSS colors:
+	// 'words' = white (default - usually for normal stuff)
+	// 'good' = cyan (good news - any positive messages that need highlighting)
+	// 'bad' = red (bad news - any negative messages that need highlighting)
+	// 'caution' = yellow (active alert - usually for mission timers)
+	// 'passive' = purple (passive alert - usually for item changes)
+	
+	var bufferButt:String = "";
+	bufferButt += "\\\[<span class='" + logColor + "'><b>D: " + days + " T: ";
+	if(hours < 10) bufferButt += String(0) + hours;
+	else bufferButt += String(hours);
+	bufferButt += ":";
+	if(minutes < 10) bufferButt += String(0) + minutes;
+	else bufferButt += minutes;
+	bufferButt += "</b></span>\\\]";
+	return bufferButt;
+}
+
 // Wrap some newline shit to make eventBuffer more consistent
 public function addToEventBuffer(msg:String):void
 {
 	if (eventBuffer.length == 0)
 	{
-		eventBuffer += "\n" + msg;
+		eventBuffer += "\n" + logTimeStamp() + " " + msg;
 	}
 	else
 	{
-		eventBuffer += "\n\n" + msg;
+		eventBuffer += "\n\n" + logTimeStamp() + " " + msg;
 	}
 }
 
@@ -94,6 +114,20 @@ public function showLocationName():void
 {
 	if(InShipInterior()) setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 	else setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
+}
+
+public function disableExploreEvents():Boolean
+{
+	// Stellar Tether (Bomb Timer)
+	if (flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) return true;
+	// Deck 13 Duration
+	if (flags["ANNO_MISSION_OFFER"] > 1 && flags["DECK13_COMPLETE"] == undefined) return true;
+	// Pirate Base (Bomb Timer)
+	if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
+	// Kashima Duration
+	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
+	
+	return false;
 }
 
 public function mainGameMenu(minutesMoved:Number = 0):void {
@@ -149,14 +183,13 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	output(rooms[currentLocation].description);
 	showLocationName();
 	
-	if (pc.hasStatusEffect("Bitterly Cold") && minutesMoved > 0)
-	{
-		if (tryApplyUvetoColdDamage(minutesMoved)) return;
-	}
+	// Time passing effects
+	if(passiveTimeEffects(minutesMoved)) return;
 	
-	if (tryEncounterFreedomBeef())
+	// Random events, outside of important/timed missions
+	if (!disableExploreEvents())
 	{
-		return;
+		if (tryEncounterFreedomBeef()) return;
 	}
 	
 	if(inCombat()) 
@@ -604,8 +637,18 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	if(allcrew) return (count + other);
 	return count;
 }
+
+public function passiveTimeEffects(minPass:int = 0):Boolean
+{
+	if (minPass > 0)
+	{
+		if (pc.hasStatusEffect("Bitterly Cold") && tryApplyUvetoColdDamage(minPass)) return true;
+	}
+	return false;
+}
+
 public function rest(deltaT:int = -1):void {
-	var minutes:int;
+	var minPass:int;
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
@@ -634,20 +677,23 @@ public function rest(deltaT:int = -1):void {
 				postRestLustBonus = pc.libido()/3 + 20;
 			}
 		}
-		minutes = 230 + rand(20) + 1;
+		minPass = 230 + rand(20) + 1;
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) {
-			output("You take a rest for about " + num2Text(Math.round(minutes/60)) + " hours");
+			output("You take a rest for about " + num2Text(Math.round(minPass/60)) + " hours");
 			if(pc.HP() < pc.HPMax()) output(" and dress your injuries with some less-than-legal nanogel you appropriated on an old job");
 			output(".");
 		}
-		else output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
+		else output("You sit down and rest for around " + num2Text(Math.round(minPass/60)) + " hours.");
 	}
 	else
 	{
-		minutes = deltaT;
+		minPass = deltaT;
 	}
 	restHeal();
-	processTime(minutes);
+	processTime(minPass);
+	
+	// Time passing effects
+	if(passiveTimeEffects(minPass)) return;
 
 	pc.lust(postRestLustBonus);
 	clearMenu();
@@ -673,7 +719,7 @@ public function sleep(outputs:Boolean = true):void {
 	
 	if (kiMedbaySleeps()) return;
 	
-	var minutes:int = 420 + rand(80) + 1
+	var minPass:int = 420 + rand(80) + 1
 	
 	if(outputs) clearOutput();
 	if(InShipInterior(pc))
@@ -703,11 +749,11 @@ public function sleep(outputs:Boolean = true):void {
 			// Enable the button
 			userInterface.levelUpButton.Activate();
 			
-			eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+			eventBuffer += "\n\n" + logTimeStamp("good") + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 		}
 		else if (pc.level == 8)
 		{
-			eventBuffer += "\n\n<b>You've already reached the current maximum level. It will be raised in future builds.</b>";
+			eventBuffer += "\n\n" + logTimeStamp("good") + " <b>You've already reached the current maximum level. It will be raised in future builds.</b>";
 		}
 	}
 	if(InShipInterior(pc))
@@ -731,11 +777,11 @@ public function sleep(outputs:Boolean = true):void {
 			}
 		}
 	}
-	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
+	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minPass/60)) + " hours.");
 	
 	sleepHeal();
 	
-	processTime(minutes);
+	processTime(minPass);
 	dreamChances();
 	if(outputs)
 	{
@@ -745,6 +791,9 @@ public function sleep(outputs:Boolean = true):void {
 	
 	//remove status effects
 	pc.removeStatusEffect("Roshan Blue");
+	
+	// Time passing effects
+	if(passiveTimeEffects(minPass)) return;
 	
 	clearMenu();
 	if(InShipInterior(pc))
@@ -759,7 +808,7 @@ public function sleep(outputs:Boolean = true):void {
 			addButton(0, "Next", bessMorningEvents);
 			return;
 		}
-		if (tryProcDommyReahaTime(minutes - rand(301)))
+		if (tryProcDommyReahaTime(minPass - rand(301)))
 		{
 			addButton(0, "Next", reahaDommyFuxTime);
 			return;
@@ -1755,7 +1804,10 @@ public function processTime(arg:int):void {
 		{
 			flags["TARKUS_BOMB_TIMER"]--;
 			bombStatusUpdate();
-			if(flags["TARKUS_BOMB_TIMER"] == 0) eventQueue[eventQueue.length] = bombExplodes;
+			if(flags["TARKUS_BOMB_TIMER"] == 0)
+			{
+				if(eventQueue.indexOf(bombExplodes) == -1) eventQueue.push(bombExplodes);
+			}
 		}
 		
 		// Taivra's Pregnancy - Lasts 1 day until she naturally does away with them.
@@ -1898,13 +1950,19 @@ public function processTime(arg:int):void {
 			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours == 24 && currentLocation != "725") missedRebelExplosion();
 			if(flags["IRELLIA_QUEST_STATUS"] == 4 && hours == 24) 
 			{
-				eventBuffer += "\n\nYou receive a missive from your codex informing you that Queen Irellia would like to speak to you. Sounds like someone's about to get paid!";
+				eventBuffer += "\n\n" + logTimeStamp("good") + " You receive a missive from your codex informing you that Queen Irellia would like to speak to you. Sounds like someone's about to get paid!";
 				flags["IRELLIA_QUEST_STATUS"] = 5;
 			}
 			//Mushroom park meeting.
-			if(flags["IRELLIA_QUEST_STATUS"] == 2 && hours == 18 && currentLocation == "708") eventQueue.push(unificationRallyEvent);
+			if(flags["IRELLIA_QUEST_STATUS"] == 2 && hours == 18 && currentLocation == "708")
+			{
+				if(eventQueue.indexOf(unificationRallyEvent) == -1) eventQueue.push(unificationRallyEvent);
+			}
 			//Bomb explosion bad-end meeting
-			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 24 && currentLocation == "725") eventQueue.push(beADumbShitFallGuyForTheRebels);
+			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 24 && currentLocation == "725")
+			{
+				if(eventQueue.indexOf(beADumbShitFallGuyForTheRebels) == -1) eventQueue.push(beADumbShitFallGuyForTheRebels);
+			}
 			//Irellia's sex cooldown
 			if(flags["IRELLIA_SEX_COOLDOWN"] != undefined)
 			{
@@ -1917,7 +1975,6 @@ public function processTime(arg:int):void {
 			if(pc.hasStatusEffect("Horse Pill"))
 			{
 				var pill:HorsePill = new HorsePill();
-				//eventQueue[eventQueue.length] = pill.pillTF;
 				pill.pillTF();
 			}
 			//Goblinola procs!
@@ -1954,7 +2011,7 @@ public function processTime(arg:int):void {
 						pc.vaginas[x].loosenessRaw--;
 						if (pc.vaginas[x].loosenessRaw < pc.vaginas[x].minLooseness)
 							pc.vaginas[x].loosenessRaw = pc.vaginas[x].minLooseness;
-						msg += "\n\n<b>Your";
+						msg += "\n\n" + logTimeStamp() + " <b>Your";
 						if(pc.totalVaginas() > 1) msg += " " + num2Text2(x+1);
 						msg += " " + pc.vaginaDescript(x) + " has recovered from its ordeals, tightening up a bit.</b>";
 						eventBuffer += msg;
@@ -1976,8 +2033,8 @@ public function processTime(arg:int):void {
 				pc.ass.loosenessRaw--;
 				if (pc.ass.loosenessRaw < pc.ass.minLooseness)
 					pc.ass.loosenessRaw = pc.ass.minLooseness;
-				if(pc.ass.loosenessRaw <= 4) eventBuffer += "\n\n<b>Your " + pc.assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
-				else eventBuffer += "\n\n<b>Your " + pc.assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
+				if(pc.ass.loosenessRaw <= 4) eventBuffer += "\n\n" + logTimeStamp() + " <b>Your " + pc.assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
+				else eventBuffer += "\n\n" + logTimeStamp() + " <b>Your " + pc.assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
 			}
 			//Cunt snake pregnancy stuff
 			if (flags["CUNT_TAIL_PREGNANT_TIMER"] > 0) {
@@ -1989,7 +2046,7 @@ public function processTime(arg:int):void {
 					flags["CUNT_TAIL_PREGNANT_TIMER"]--;
 					if(flags["CUNT_TAIL_PREGNANT_TIMER"] == 1) {
 						flags["CUNT_TAIL_PREGNANT_TIMER"] = 0;
-						eventQueue[eventQueue.length] = giveBirthThroughCuntTail;
+						if(eventQueue.indexOf(giveBirthThroughCuntTail) == -1) eventQueue.push(giveBirthThroughCuntTail);
 					}
 				}
 			}
@@ -2021,7 +2078,10 @@ public function processTime(arg:int):void {
 				days++;
 				
 				//Unlock dat shiiit
-				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0)) eventQueue.push(hollidayOweenAlert);
+				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0))
+				{
+					if(eventQueue.indexOf(hollidayOweenAlert) == -1) eventQueue.push(hollidayOweenAlert);
+				}
 				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
 				//Exhibitionism reduction!
 				if
@@ -2124,7 +2184,7 @@ public function processTime(arg:int):void {
 					{
 						pc.addStatusValue("Nyrea Eggs", 1, Math.round(10 * pc.statusEffectv2("Nyrea Eggs") * pc.fertility()));
 						if(pc.hasPerk("Fertility")) pc.addStatusValue("Nyrea Eggs", 1, 10 + rand(11));
-						if(pc.statusEffectv1("Nyrea Eggs") > 1000 && rand(2) == 0) eventBuffer += "\n\nYou feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?";
+						if(pc.statusEffectv1("Nyrea Eggs") > 1000 && rand(2) == 0) eventBuffer += "\n\n" + logTimeStamp("passive") + " You feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?";
 					}
 				}
 				//Reset Emmy Special Intro lockout:
@@ -2170,9 +2230,9 @@ public function processTime(arg:int):void {
 			pc.removeStatusEffect("Dumbfuck Orgasm Procced");
 		}
 		//Add to event queue so long as it isn't on there already
-		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued") && eventQueue.indexOf(procDumbfuckStuff) == -1)
+		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
 		{
-			eventQueue[eventQueue.length] = procDumbfuckStuff;
+			if(eventQueue.indexOf(procDumbfuckStuff) == -1) eventQueue.push(procDumbfuckStuff);
 		}
 	}
 	
@@ -2221,7 +2281,7 @@ public function racialPerkUpdateCheck():void
 				//Nuts inflated:
 				if(pc.perkv1("'Nuki Nuts") > 0)
 				{
-					msg += ParseText("\n\nThe extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your");
+					msg += ParseText("\n\n" + logTimeStamp("passive") + " The extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your");
 					if(pc.originalRace.indexOf("kui-tan") != -1) msg += " natural kui-tan genes";
 					else msg += " kui-tan body-mods";
 					msg += ParseText(", you won't be swelling up with excess [pc.cumNoun] any more.");
@@ -2229,7 +2289,7 @@ public function racialPerkUpdateCheck():void
 				//Nuts not inflated:
 				else
 				{
-					msg += ParseText("\n\nA tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you've replaced too much kui-tan DNA to reap the full benefits.");
+					msg += ParseText("\n\n" + logTimeStamp("passive") + " A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you've replaced too much kui-tan DNA to reap the full benefits.");
 				}
 				msg += "\n\n(<b>Perk Lost: 'Nuki Nuts</b>)";
 				pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
@@ -2238,13 +2298,13 @@ public function racialPerkUpdateCheck():void
 			}
 			else
 			{
-				msg += "\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You've lost too many kui-tan transformations.)";
+				msg += "\n\n" + logTimeStamp("passive") + " (<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You've lost too many kui-tan transformations.)";
 				pc.removePerk("'Nuki Nuts");
 			}
 		}
 		else if(pc.balls <= 0 && pc.perkv2("'Nuki Nuts") == 1)
 		{
-			msg += ParseText("\n\nA strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!");
+			msg += "\n\n" + logTimeStamp("passive") + " A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!";
 			
 			msg += "\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You have no nuts to expand!)";
 			pc.removePerk("'Nuki Nuts");
@@ -2254,7 +2314,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(!pc.hasVagina())
 		{
-			msg += "\n\nNo longer possessing a vagina, your body tingles";
+			msg += "\n\n" + logTimeStamp("passive") + " No longer possessing a vagina, your body tingles";
 			if((pc.perkv1("Fecund Figure") + pc.perkv2("Fecund Figure") + pc.perkv3("Fecund Figure")) > 0) msg += ", rapidly changing as you lose your fertility goddess-like build";
 			msg += ".";
 			msg += "\n\n(<b>Perk Lost: Fecund Figure</b>)";
@@ -2265,7 +2325,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(pc.balls <= 0)
 		{
-			msg += "\n\nA tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that the last remnants of your " + pc.skinAccent + " testicular tattoos have left your body, leaving the area bare.";
+			msg += "\n\n" + logTimeStamp("passive") + " A tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that the last remnants of your " + pc.skinAccent + " testicular tattoos have left your body, leaving the area bare.";
 			pc.setStatusValue("Vanae Markings", 4, 0);
 		}
 	}
@@ -2273,7 +2333,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(pc.nyreaScore() < 3)
 		{
-			msg += "\n\nYou are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.";
+			msg += "\n\n" + logTimeStamp("passive") + " You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.";
 			if(pc.statusEffectv1("Nyrea Eggs") > 0)
 			{
 				msg += " Strangely, you feel";
@@ -2294,7 +2354,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(!pc.hasGenitals())
 		{
-			msg += ParseText("\n\nA sudden burning sensation hits your lower back, right above your [pc.ass]. You quickly");
+			msg += ParseText("\n\n" + logTimeStamp("passive") + " A sudden burning sensation hits your lower back, right above your [pc.ass]. You quickly");
 			if(pc.isCrotchGarbed()) msg += ParseText(" struggle through your [pc.lowerGarments],");
 			msg += " turn back and wince hard when the area is instantly struck by a refreshing coolness - as if being splashed on with cold water after being branded. When your hazed vision returns to normal, you see the slutty tattoo that resides there gradually dissolve and vanish before your eyes. It looks like your lack of genitalia makes it easier for you to cope with your libido now.";
 			
@@ -2304,21 +2364,21 @@ public function racialPerkUpdateCheck():void
 	}
 	if (pc.hasPerk("Androgyny") && pc.perkv1("Androgyny") > 0 && !pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
 	{ // racialPerkUpdateCheck: removal of Androgyny perk with the loss of muzzle.
-		msg += "\n\nWith your face becoming more human, your appearance is now no longer androgynous.";
+		msg += "\n\n" + logTimeStamp("passive") + " With your face becoming more human, your appearance is now no longer androgynous.";
 		msg += "\n\n(<b>Perk Lost: Androgyny</b> - You’ve lost your muzzle.)";
 		pc.removePerk("Androgyny");
 	}
 	if (pc.hasPerk("Icy Veins") && pc.perkv1("Icy Veins") > 0 && (!pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) || pc.skinType != GLOBAL.SKIN_TYPE_FUR))
 	{ // racialPerkUpdateCheck: removal of Icy Veins perk with he loss of fluffy fur (fork on still having fur but not fluffy flag?).
-		msg += "\n\nWithout all that thick, fluffy coat of fur you suddenly feel rather cold...";
+		msg += "\n\n" + logTimeStamp("passive") + " Without all that thick, fluffy coat of fur you suddenly feel rather cold...";
 		msg += "\n\n(<b>Perk Lost: Icy Veins</b> - You’ve lost your insulating coat of fur, and as a result you are now weaker against cold.)";
 		pc.removePerk("Icy Veins");
 	}
-	if(flags["GALOMAX_DOSES"] >= 5)
+	if(flags["GALOMAX_DOSES"] != undefined)
 	{
 		if(pc.hasHair() && pc.hairType != GLOBAL.HAIR_TYPE_GOO && !pc.hasStatusEffect("Hair Regoo"))
 		{
-			msg += ParseText("\n\nThere is a slight tingling sensation at the roots of your [pc.hair].... Hm, strange....");
+			msg += "\n\n" + logTimeStamp("passive") + ParseText(" There is a slight tingling sensation at the roots of your [pc.hair].... Hm, strange....");
 			pc.createStatusEffect("Hair Regoo", 0, 0, 0, 0, true, "", "", false, 720);
 		}
 	}
@@ -2326,7 +2386,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(pc.skinType != GLOBAL.SKIN_TYPE_LATEX && !pc.hasStatusEffect("Latex Regrow"))
 		{
-			msg += "\n\nSomehow, losing your natural latex skin makes you feel naked and insecure... You hope this feeling doesn’t last for too long...";
+			msg += "\n\n" + logTimeStamp("passive") + " Somehow, losing your natural latex skin makes you feel naked and insecure... You hope this feeling doesn’t last for too long...";
 			pc.createStatusEffect("Latex Regrow", 0, 0, 0, 0, true, "", "", false, 720);
 		}
 	}
@@ -2337,7 +2397,7 @@ public function racialPerkUpdateCheck():void
 			// Choose Flower Color
 			var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 			
-			msg += "\n\nA summery feeling spreads down your arm ivy, like tiny veins of lustful energy. You intimately feel each of the small " + flowerColor + " flowers that pop and blossom into being on the delicate vines, like little skips of the heart.";
+			msg += "\n\n" + logTimeStamp("passive") + " A summery feeling spreads down your arm ivy, like tiny veins of lustful energy. You intimately feel each of the small " + flowerColor + " flowers that pop and blossom into being on the delicate vines, like little skips of the heart.";
 			msg += "\n\nWhy have you flowered like this? The rational part of your brain doesn’t have an answer... but the clear, green part of you knows. Your empty womb and [pc.eachVagina] know. You are ripe and ready for seeding, and your body is brightly signaling that fact to anyone that looks at you the best way it knows how.";
 			
 			pc.createStatusEffect("Arm Flower", 0, 0, 0, 0, true, "", flowerColor, false);
@@ -2347,7 +2407,7 @@ public function racialPerkUpdateCheck():void
 		}
 		else if(pc.hasWombPregnancy() && pc.hasStatusEffect("Arm Flower"))
 		{
-			msg += "\n\nYour " + pc.getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].";
+			msg += "\n\n" + logTimeStamp("passive") + " Your " + pc.getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].";
 			
 			//Libido decrease of 3
 			pc.libido(-3);
@@ -2362,7 +2422,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(pc.skinType != GLOBAL.SKIN_TYPE_BARK)
 		{
-			msg += "\n\nThe surface of your body tingles and your nose briefly catches a whiff of a familiar amber aroma--which then completely dissipates into the air. Curious, you check your codex and, sure enough, due to the lack of your once bark skin, you’ve lost the ability to create a resin cast to protect yourself. Well, at least you feel a bit more nimble now...";
+			msg += "\n\n" + logTimeStamp("passive") + " The surface of your body tingles and your nose briefly catches a whiff of a familiar amber aroma--which then completely dissipates into the air. Curious, you check your codex and, sure enough, due to the lack of your once bark skin, you’ve lost the ability to create a resin cast to protect yourself. Well, at least you feel a bit more nimble now...";
 			
 			msg += "\n\n(<b>Perk Lost: Resin</b>)";
 			pc.removePerk("Resin");
@@ -2376,8 +2436,8 @@ public function racialPerkUpdateCheck():void
 		if(pc.hasVaginaType(GLOBAL.TYPE_FLOWER)) numFlowers += pc.totalVaginas(GLOBAL.TYPE_FLOWER);
 		if(pc.tailGenitalArg == GLOBAL.TYPE_FLOWER && pc.hasTailCunt()) numFlowers += pc.tailCount;
 		
-		if(pc.perkv1("Flower Power") <= 0 && numFlowers > 0) msg += "\n\nThe flower" + (numFlowers == 1 ? "" : "s") + " located on your body blossom" + (numFlowers == 1 ? "s" : "") + ", ready to unleash " + (numFlowers == 1 ? "its" : "their") + " lust-inducing spores--this also adds to your sexual appetite... not that that’s a bad thing, after all!";
-		else if(pc.perkv1("Flower Power") > 0 && numFlowers <= 0) msg += "\n\nWithout any flowers located on your body, you feel the need to produce spores fade. While this relaxes your body’s sexual urges, you know that producing any new flowers will have you ready for pollination again.";
+		if(pc.perkv1("Flower Power") <= 0 && numFlowers > 0) msg += "\n\n" + logTimeStamp("passive") + " The flower" + (numFlowers == 1 ? "" : "s") + " located on your body blossom" + (numFlowers == 1 ? "s" : "") + ", ready to unleash " + (numFlowers == 1 ? "its" : "their") + " lust-inducing spores--this also adds to your sexual appetite... not that that’s a bad thing, after all!";
+		else if(pc.perkv1("Flower Power") > 0 && numFlowers <= 0) msg += "\n\n" + logTimeStamp("passive") + " Without any flowers located on your body, you feel the need to produce spores fade. While this relaxes your body’s sexual urges, you know that producing any new flowers will have you ready for pollination again.";
 		
 		pc.setPerkValue("Flower Power", 1, numFlowers);
 	}
@@ -2409,7 +2469,7 @@ public function goMailGet(mailKey:String = "", timeStamp:int = -1):void
 		if(mailEmail.From != null) mailFrom = mailEmail.From();
 		if(mailEmail.FromAddressCache != null) mailFromAdress = mailEmail.FromAddressCache;
 		if(mailEmail.FromAddress != null) mailFromAdress = mailEmail.FromAddress();
-		eventBuffer += "\n\n<b>New Email from " + mailFrom + " ("+ mailFromAdress +")!</b>";
+		eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email from " + mailFrom + " ("+ mailFromAdress +")!</b>";
 		MailManager.unlockEntry(mailKey, timeStamp);
 	}
 }

@@ -121,7 +121,7 @@ package classes.UIComponents.ContentModules
 		
 		public function confirmSelection():void
 		{
-			kGAMECLASS.eventBuffer += "\n\nYou have gained a level. Your stats have increased and you have gained new abilities!";
+			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("good") + " You have gained a level. Your stats have increased and you have gained new abilities!";
 			
 			// Figure out autoperks that need to be applied
 			var _autoPerks:Vector.<PerkData> = kGAMECLASS.perkDB.getAutoPerksForCreature(_targetCreature);
