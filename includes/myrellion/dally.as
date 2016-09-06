@@ -16,7 +16,7 @@ public function honeyNozzleClub():Boolean
 	
 	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_OFFERING && flags["FAZIAN_QUEST_TIMER"] + (48 * 60) < GetGameTimestamp())
 	{
-		output("\n\nHepane the myr musician is stood where she normally is, by the entrance to the cabaret. She doesn’t have her clipboard though, and she looks rather worried.");
+		output("\n\nHepane, the myr musician, is stood where she normally is, by the entrance to the cabaret. She doesn’t have her clipboard though, and she looks rather worried.");
 		addButton(1, "Hepane", fazianQuestOpening);
 	}
 	else if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED)
@@ -67,7 +67,7 @@ public function honeyNozzleClub():Boolean
 				}
 				else
 				{
-					output("\n\nOn the far side of the dusky room, you can see Fazian’s accompanist Hepane taking admissions for this afternoon’s show. You could go find out what the two of them are putting on this time.");
+					output("\n\nOn the far side of the dusky room, you can see Fazian’s accompanist, Hepane, taking admissions for this afternoon’s show. You could go find out what the two of them are putting on this time.");
 					addButton(1, "Cabaret", nozzleShowRepeat, undefined, "Cabaret", "Come in and watch a show.");
 				}
 			}
