@@ -646,16 +646,22 @@ public function appearance(forTarget:Creature):void
 				if (target.isBimbo()) output2(" They’d make the most <i>adorable</i> handlebars for anybody looking to bust a nut down your throat!");
 			}
 			//Antlers!
-			else if(InCollection(target.hornType, GLOBAL.TYPE_DEER, GLOBAL.TYPE_DRYAD))
+			else if(target.hornType == GLOBAL.TYPE_DEER)
+			{
+				if(target.horns > 0)
+				{
+					if(rand(2) == 0) output2(" A pair of antlers sprout from your head, covered in velvet and indicating your status as a desirable mate.");
+					else output2(" Velvet-covered antlers sprout from your head, declaring your status as a desirable mate and formidable opponent.");
+					if(target.hornLength > 1) output2(" They are " + num2Text(int(target.hornLength)) + "-inch long and fork into " + num2Text(target.horns) + " points.");
+				}
+			}
+			else if(target.hornType == GLOBAL.TYPE_DRYAD)
 			{
 				if(target.horns > 0)
 				{
 					output2(" Two");
 					if(target.hornLength > 1) output2(" " + num2Text(int(target.hornLength)) + "-inch long");
-					output2(" antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of ");
-					if(target.hornType == GLOBAL.TYPE_DRYAD) output2("branches");
-					else output2("bone");
-					output2(".");
+					output2(" antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of branches.");
 				}
 			}
 			//Goatliness is next to godliness.
@@ -1442,6 +1448,12 @@ public function appearance(forTarget:Creature):void
 			if(target.legCount == 2) output2(" Your legs are muscled and jointed oddly, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in a pair of bestial hooves.");
 			else if(target.legCount < 4) output2(" Your legs are muscled and jointed oddly, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in bestial hooves.");
 			else output2(" You have oddly-jointed legs that end in " + target.feet(true,true) + ".");
+		}
+		else if(target.legType == GLOBAL.TYPE_DEER) 
+		{
+			if(target.legCount < 4) output2(" Your legs are lithe and agile, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in hooves");
+			else output2(" You have thin, deer-like legs that are capped with hooves");
+			output2(", enabling you to nimbly leap and prance from place to place.");
 		}
 		else if(target.legType == GLOBAL.TYPE_CANINE) 
 		{
@@ -2856,6 +2868,11 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	else if(target.vaginas[x].type == GLOBAL.TYPE_FLOWER) {
 		if(!eachOne) output2(" Like an orchid, the exterior opening is framed in beautifully-colored flower petals and has a cute freckle dotting " + (target.vaginas[x].clits == 1 ? "its" : "every") + " clit.");
 		else output2("\nLike a " + (target.totalVaginas(GLOBAL.TYPE_FLOWER) == 2 ? "pair" : "bouquet") + " of orchids, each vagina’s exterior openings are framed in beautifully-colored flower petals and has a cute freckle dotting every clit.");
+	}
+	//Deer flavor
+	else if(target.vaginas[x].type == GLOBAL.TYPE_DEER) {
+		if(!eachOne) output2(" Your labia are swollen and fat, outlining your vagina, and often shine with a wet sheen regardless of your arousal. You’re told that they wink when you’re aroused.");
+		else output2("\nEach vagina’s labia are swollen and fat, often shining with a wet sheen regardless of your arousal. You’re told that they wink when you’re aroused.");
 	}
 	
 	//Nubby
