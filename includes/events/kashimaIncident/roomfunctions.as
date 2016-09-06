@@ -1,5 +1,6 @@
 import classes.Characters.InfectedCrewmember;
 import classes.Items.Melee.VampBlade;
+import classes.Items.Miscellaneous.OSStimBoost;
 public function kiEnterShuttleLZ():void
 {
 	output("The Nova Securities shuttle that ferried you over is parked here, surrounded by pools of some unidentifiable white sludge splattered all over the ground.");
@@ -365,18 +366,19 @@ public function kiEngineeringGoAccessRoom():void
 
 public function kiEngineeringAccessRoom():void
 {
+	if (flags["KI_VANDERBILT_WORKING"] != 2)
+	{
+		output("\n\nYou don't yet have a means to combat the infection properly; venturing into the engineering deck whilst properly prepared may be your last chance to sieze back control of the ship from the infected.");
+	}
 	addButton(0, "Vents", kiE9EnterVents, undefined, "Enter Vents", "Crawl into the vents and move around the ship.");
 }
 
-public function kiEngineeringFight():void
+public function kiEngineeringFight():Boolean
 {
 	clearOutput();
 
-	if (flags["KI_VANDERBILT_WORKING"] == 2)
-	{
-		kiEngineeringBossFight();
-		return;
-	}
+	kiEngineeringBossFight();
+	return true;
 }
 
 public function kiOfficersDeckVent():void
@@ -388,7 +390,15 @@ public function kiOfficersDeckVent():void
 
 public function kiK5CMOQuarters():void
 {
-	addButton(0, "MedSupplies", kiK5CMOQuartersMeds, undefined, "Medical Supplies", "You might be able to patch yourself up here.");
+	if (flags["KI_CMO_MEDSUPPLIES"] == undefined)
+	{
+		addButton(0, "MedSupplies", kiK5CMOQuartersMeds, undefined, "Medical Supplies", "You might be able to patch yourself up here.");
+	}
+	else
+	{
+		addDisabledButton(0, "MedSupplies", "Medical Supplies", "You've already taken everything of use in the supplies!");
+	}
+	
 	if (flags["KI_CMO_SEARCHED"] == undefined)
 	{
 		addButton(1, "Search", kiK5CMOSearch, undefined, "Search", "Toss the doc's room. Maybe you'll find something useful.")
@@ -398,12 +408,32 @@ public function kiK5CMOQuarters():void
 public function kiK5CMOQuartersMeds():void
 {
 	clearOutput();
-	output("Taking a look through the medical kit, you find a one-shot stimulant boost of microsurgeons - strong enough to give you a quick pick-me-up after the fights you’ve been in. You flip the hypospray in your hand and inject yourself.");
-
-	output("\n\nA few moments later, you’re feeling rejuvenated and a lot less sore.");
 	
-	pc.maxOutHP();
-	pc.maxOutEnergy();
+	output("Taking a look through the medical kit, you find a one-shot stimulant boost of microsurgeons - strong enough to give you a quick pick-me-up after the fights you’ve been in."); 
+	
+	lootScreen = kiK5CMOMedSuppliesCheck;
+	flags["KI_CMO_MEDSUPPLIES"] = 1;
+	itemCollect([new OSStimBoost()]);
+	
+	//output("You flip the hypospray in your hand and inject yourself.");
+
+	//output("\n\nA few moments later, you’re feeling rejuvenated and a lot less sore.");
+}
+
+public function kiK5CMOMedSuppliesCheck():void
+{
+	if (pc.hasItemByType(OSStimBoost) || flags["KI_CMO_MEDSUPPLIES"] == 2)
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("You stash the hypospray back where you found it.");
+	flags["KI_CMO_MEDSUPPLIES"] = undefined;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kiK5CMOSearch():void
@@ -412,6 +442,7 @@ public function kiK5CMOSearch():void
 	flags["KI_CMO_SEARCHED"] = 1;
 	output("You spend a few minutes rifling through Elenora’s room, hoping you’ll find something interesting. There’s not much on hand here, really: you quickly find yourself staring at some black, lacy negligee hidden away in her dresser, plus some family pictures on holo-cards showing her and a young boy - her son, maybe? Nothing helpful to your current situation, at any rate.");
 
+	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -562,6 +593,20 @@ public function commandDeckRandomEncounter():Boolean
 	return false;
 }
 
+public function officersDeckRandomEncounter():Boolean
+{
+	IncrementFlag("KI_OFFICERS_DECK_STEPS");
+	
+	if (flags["KI_OFFICERS_DECK_STEPS"] > 3 && rand(100) < (flags["KI_OFFICERS_DECK_STEPS"] * 20))
+	{
+		flags["KI_OFFICERS_DECK_STEPS"] = 0;
+		kiOfficersDeckTriggerEncounter();
+		return true;
+	}
+	
+	return false;
+}
+
 public function kiCommandDeckTriggerEncounter():void
 {
 	var numEnemies:int = 2;
@@ -600,12 +645,39 @@ public function kiCommandDeckTriggerEncounter():void
 	addButton(0, "Fight!", CombatManager.beginCombat);
 }
 
+public function kiOfficersDeckTriggerEncounter():void
+{
+	var numEnemies:int = rand(5) <= 1 ? 3 : 2;
+	
+	var h:Array = [];
+	for (var i:int = 0; i < numEnemies; i++)
+	{
+		h.push(new InfectedCrewmember());
+	}
+	
+	output("\n\nYou hear a horrible screech of metal buckling and tearing. You spin around in time to see a vent shaft above you explode outwards, and");
+	if (numEnemies == 2) output(" a pair of");
+	else output(" several");
+	output(" mutants crawl out of it, leaping down onto the deck just feet away from you. Oh, shit, here we go again!");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(h);
+	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
+	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
+	CombatManager.victoryScene(kiRandomMutantVictory);
+	CombatManager.lossScene(kiRandomMutantLoss);
+
+	clearMenu();
+	addButton(0, "Fight!", CombatManager.beginCombat);
+}
+
 public function kiRandomMutantLoss():void
 {
 	clearOutput();
 	author("Savin");
 
-	output("\n\nMutated, tentacle-laden bodies washes over you, throwing you to the ground and tearing at your");
+	output("Mutated, tentacle-laden bodies washes over you, throwing you to the ground and tearing at your");
 	if (!pc.isNude()) output(" [pc.armor]");
 	else output(" gear");
 	output(", lashing at your mouth and rump");
