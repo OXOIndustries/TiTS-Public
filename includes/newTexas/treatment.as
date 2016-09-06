@@ -1573,7 +1573,7 @@ public function treatmentHourProcs():void
 						if(pc.canAutoFellate(-1)) eBuffer += " A quick check reveals that you can’t... at least not yet. Maybe soon.";
 					}
 					pc.balls++;
-					if(pc.ballSizeRaw < 2) pc.ballSizeRaw = 2;
+					if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
 				}
 				//Multiple - grow slightly
 				else if(pc.balls > 1)
@@ -1583,6 +1583,7 @@ public function treatmentHourProcs():void
 					else eBuffer += " below the waist";
 					eBuffer += ". You gingerly explore, giving yourself a gentle poke that nearly makes you squirt. <b>Your balls got bigger too!</b> No wonder there’s been so much pre-cum! The Treatment is making everything dick-related bigger and better, which would probably confuse you if you bothered to think about anything besides how good it feels.";
 					pc.ballSizeRaw += 2;
+					if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
 					eBuffer += "\n\nYou sloppily jack yourself for another minute, waiting to see if any other changes manifest, but none do. And then you jack yourself some more, wondering if you should find a way to get off properly. You’re going to be useless until someone drains these nuts. Then again, that someone could be you. ";
 					if(pc.canAutoFellate(-1)) eBuffer += "How long has it been since you’ve sucked yourself off? Too long, for sure. T";
 					else
@@ -1606,7 +1607,7 @@ public function treatmentHourProcs():void
 					else eBuffer += ParseText(" All you need to do is get a little longer so that you can slip your [pc.cockHeadBiggest] between your lips, and you can suck till you find out.");
 					eBuffer += " Ooh, that’d be nice....";
 					pc.balls = 2;
-					if(pc.ballSizeRaw < 2) pc.ballSizeRaw = 2;
+					if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
 				}
 				//All - max lust
 				pc.lust(pc.lustMax());
