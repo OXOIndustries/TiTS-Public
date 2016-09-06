@@ -93,13 +93,21 @@ public function useMiscreantManor2():void
 	else if(hours >= 20 && hours <= 22) output("under the brilliantly-colored evening sky’s radiance");
 	else output("under the stars' crystalline light");
 	output(" to be released.");
-	var inCunt:int = rand(6);
+	var inCunt:int = -1;
 	//0 - Kiro
 	//1 - Zephyr
 	//2 - hellhound
 	//3 - kaithrit futa
 	//4 - texan farmer
 	//5 - Leithan boyslut
+	var options:Array = [];
+	if(roamingKiroAvailable()) options.push(0);
+	options.push(1);
+	options.push(2);
+	options.push(3);
+	options.push(4);
+	inCunt = options[rand(options.length)];
+	
 	//Kiro first
 	if(inCunt == 0)
 	{
@@ -272,7 +280,7 @@ public function stocksOralIntros(args:Array):void
 	//4 - texan farmer
 	//5 - Leithan boyslut
 	var options:Array = [];
-	if(inCunt != 0) options.push(0);
+	if(inCunt != 0 && roamingKiroAvailable()) options.push(0);
 	if(inCunt != 1) options.push(1);
 	if(inCunt != 2) options.push(2);
 	if(inCunt != 3) options.push(3);

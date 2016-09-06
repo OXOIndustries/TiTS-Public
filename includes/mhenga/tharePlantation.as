@@ -791,7 +791,7 @@ public function thareSexResponse(response:String = "none"):void
 				output("\n\n<i>“The wonder of our star knowledge,”</i> you reply dryly. <i>“Do get back to what you were doing, little boy. You can have as much as you like...”</i>");
 			}
 			// If PC girlcum = chocolate OR fruit:
-			else if(InCollection(pc.girlCumType, [GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_VANAE_CUM, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT]))
+			else if(InCollection(pc.girlCumType, [GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_VANAE_CUM, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM]))
 			{
 				output("\n\n<i>“Sweet,”</i> he decides a moment later, head rising up as he smacks his lips contemplatively. His lower face is daubed in [pc.girlCumColor] fluid. <i>“Not like our women, but... similar.”</i> He grins suddenly. <i>“Wonderful.”</i>");
 				output("\n\n<i>“Yes, wonderful,”</i> you laugh with a shake of the head. <i>“Do get back to what you were doing, little boy. You can have as much as you like...”</i>");
