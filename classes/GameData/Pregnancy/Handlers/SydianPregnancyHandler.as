@@ -37,16 +37,16 @@ package classes.GameData.Pregnancy.Handlers
 			_onDurationEnd = sydianOnDurationEnd;
 			
 			addStageProgression(_basePregnancyIncubationTime - (45 * 24 * 60), function(pregSlot:int):void {
-				kGAMECLASS.eventBuffer += "\n\nYour stomach lurches, and you stop what you're doing. It feels like you're going to puke. Urk... bleah- nope. Just as abruptly, the nausea recedes. What was that about?";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your stomach lurches, and you stop what you're doing. It feels like you're going to puke. Urk... bleah- nope. Just as abruptly, the nausea recedes. What was that about?";
 			}, true);
 			
 			addStageProgression(_basePregnancyIncubationTime - (55 * 24 * 60), function(pregSlot:int):void {
-				kGAMECLASS.eventBuffer += "\n\nYou bend double with nausea again, your stomach violently uneasy. This is too persistent to be a common bug, and any toxic crap you ate would be vomited out by now. A suspicion begins to develop....";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " You bend double with nausea again, your stomach violently uneasy. This is too persistent to be a common bug, and any toxic crap you ate would be vomited out by now. A suspicion begins to develop....";
 			}, true);
 			
 			//three - bad sickness, tiny growth 
 			addStageProgression(_basePregnancyIncubationTime - (90 * 24 * 60), function(pregSlot:int):void {
-				kGAMECLASS.eventBuffer += ParseText("\n\nYour queasy stomach has been complaining more and more; you can barely keep meals down." + (kGAMECLASS.pc.bellyRating() < 10 ? " Despite this, your [pc.belly] seems bigger, if anything." : ""));
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" Your queasy stomach has been complaining more and more; you can barely keep meals down." + (kGAMECLASS.pc.bellyRating() < 10 ? " Despite this, your [pc.belly] seems bigger, if anything." : ""));
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 10;
@@ -55,7 +55,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			//four - start to show
 			addStageProgression(_basePregnancyIncubationTime - (120 * 24 * 60), function(pregSlot:int):void {
-				kGAMECLASS.eventBuffer += "\n\nThe cause of the terrible nausea you suffered is visible now - your womb is swollen with new life,";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " The cause of the terrible nausea you suffered is visible now - your womb is swollen with new life,";
 				if (kGAMECLASS.pc.bellyRating() < 20) kGAMECLASS.eventBuffer += " turning your belly into a cute bump.";
 				else kGAMECLASS.eventBuffer += " expanding your waistline a bit.";
 				kGAMECLASS.eventBuffer += " A very weak jerk or twitch can be felt from time to time. You're going to be a mother";
@@ -73,7 +73,7 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 10;
 				
-				kGAMECLASS.eventBuffer += ParseText("\n\nYour [pc.belly] " + (kGAMECLASS.pc.bellyRating() <= 30 ? ("bulges with your growing fetus" + (pData.pregnancyQuantity == 1 ? "" : "es")) : "is starting to show signs of pregnancy") + ", causing some trouble with your [pc.gear]. " + (kGAMECLASS.pc.isLactating() == false ? "Your nipples have also become tender and sometimes leak... you" : "You") +" feel like a mess, but for some reason you're happy.");
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" Your [pc.belly] " + (kGAMECLASS.pc.bellyRating() <= 30 ? ("bulges with your growing fetus" + (pData.pregnancyQuantity == 1 ? "" : "es")) : "is starting to show signs of pregnancy") + ", causing some trouble with your [pc.gear]. " + (kGAMECLASS.pc.isLactating() == false ? "Your nipples have also become tender and sometimes leak... you" : "You") +" feel like a mess, but for some reason you're happy.");
 				
 				kGAMECLASS.pc.milkFullness += 15;
 				
@@ -85,7 +85,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 10 + (5 * pData.pregnancyQuantity);
 				pData.pregnancyBellyRatingContribution += 10 + (5 * pData.pregnancyQuantity);
 				
-				kGAMECLASS.eventBuffer += "\n\nCarrying your pregnant belly has become like toting a medicine ball, straining your " + (kGAMECLASS.pc.isTaur() ? "legs" : "back") +" and slowing your movements. The little" + (pData.pregnancyQuantity == 1 ? "" : " sparks of") + " life within " + (pData.pregnancyQuantity == 1 ? "is" : "are") + " fairly mauling you with kicks and elbows" + (!kGAMECLASS.pc.isTaur() ? ", but rubbing your belly often seems to calm " + (pData.pregnancyQuantity == 1 ? "it" : "them") + " down" : "") +". You wonder how much longer you'll have to wait.";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Carrying your pregnant belly has become like toting a medicine ball, straining your " + (kGAMECLASS.pc.isTaur() ? "legs" : "back") +" and slowing your movements. The little" + (pData.pregnancyQuantity == 1 ? "" : " sparks of") + " life within " + (pData.pregnancyQuantity == 1 ? "is" : "are") + " fairly mauling you with kicks and elbows" + (!kGAMECLASS.pc.isTaur() ? ", but rubbing your belly often seems to calm " + (pData.pregnancyQuantity == 1 ? "it" : "them") + " down" : "") +". You wonder how much longer you'll have to wait.";
 				
 				if (kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 15;
 			}, true);
@@ -97,7 +97,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += (12 * pData.pregnancyQuantity);
 				pData.pregnancyBellyRatingContribution += (12 * pData.pregnancyQuantity);
 				
-				kGAMECLASS.eventBuffer += "\n\nJudging from the size of your swollen belly, you guess that your bab" + (pData.pregnancyQuantity == 1 ? "y" : "ies") + " will arrive within the next month. Or perhaps it would be accurate to say you <i>hope</i>. It's hard to stay active with the unwieldy weight - you continually fight back urges to lie in bed and do nothing.";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Judging from the size of your swollen belly, you guess that your bab" + (pData.pregnancyQuantity == 1 ? "y" : "ies") + " will arrive within the next month. Or perhaps it would be accurate to say you <i>hope</i>. It's hard to stay active with the unwieldy weight - you continually fight back urges to lie in bed and do nothing.";
 				
 				if (kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 25;
 				if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;
@@ -110,7 +110,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += (12 * pData.pregnancyQuantity);
 				pData.pregnancyBellyRatingContribution += (12 * pData.pregnancyQuantity);
 				
-				kGAMECLASS.eventBuffer += "\n\nThe clamor in your distended womb worsens every day as " + (pData.pregnancyQuantity == 1 ? "the" : "a") + " baby exercises its body. You expect the little hellion's birth within the week, and are torn between excitement and dread.";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " The clamor in your distended womb worsens every day as " + (pData.pregnancyQuantity == 1 ? "the" : "a") + " baby exercises its body. You expect the little hellion's birth within the week, and are torn between excitement and dread.";
 				
 				if (kGAMECLASS.pc.milkFullness < 20) kGAMECLASS.pc.milkFullness += 25;
 				if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;

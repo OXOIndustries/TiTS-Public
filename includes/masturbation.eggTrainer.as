@@ -554,7 +554,7 @@ public function carryTrainingBonusBlurbCheck():void
 		{
 			//Event: Jiggle Jiggle!
 			//Play sometimes when PC is walking. Increase Lust by 10 per Training level.
-			msg += "\n\nYour progress is interrupted by a sudden shift in your [pc.belly], making you nearly double over with intense, overwhelming pleasure. Just feeling the ";
+			msg += "\n\n" + logTimeStamp() + ParseText(" Your progress is interrupted by a sudden shift in your [pc.belly], making you nearly double over with intense, overwhelming pleasure. Just feeling the ");
 			if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 18) msg += "dozen";
 			else if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 75) msg += "dozens";
 			else msg += "close to a hundred";
@@ -572,7 +572,7 @@ public function carryTrainingBonusBlurbCheck():void
 			else msg += "little";
 			msg += " more flushed than before.";
 			
-			kGAMECLASS.eventBuffer += ParseText(msg);
+			eventBuffer += msg;
 			//Reset cooldown
 			flags["CARRY_TRAINING_BONUS_PROC"] = GetGameTimestamp();
 		}

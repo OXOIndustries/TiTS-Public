@@ -2972,14 +2972,14 @@ public function gooCrotchUpdate():void
 		if(truantCocks.length == pc.cocks.length)
 		{
 			//Singledongs
-			if(pc.cockTotal() == 1) eventBuffer += "\n\nThe " + pc.cockColor() + " skin of your " + pc.simpleCockNoun(0) + " is vanishing into a slowly creeping wave " + gooColor() + " goo, losing cohesion in exchange for infinitely morphic possibilities. <b>Your penis is now gelatinous.</b>";
+			if(pc.cockTotal() == 1) eventBuffer += "\n\n" + logTimeStamp("passive") + " The " + pc.cockColor() + " skin of your " + pc.simpleCockNoun(0) + " is vanishing into a slowly creeping wave " + gooColor() + " goo, losing cohesion in exchange for infinitely morphic possibilities. <b>Your penis is now gelatinous.</b>";
 			//Multischlongs
-			else eventBuffer += "\n\nThe skin of your " + pc.cocksDescript() + " tingles like mad as waves of translucent goo slowly replaces their skin, transforming them from fleshy wieners into semi-solid, shape-shifting pricks. <b>Your penises are now gelatinous.</b>";
+			else eventBuffer += "\n\n" + logTimeStamp("passive") + " The skin of your " + pc.cocksDescript() + " tingles like mad as waves of translucent goo slowly replaces their skin, transforming them from fleshy wieners into semi-solid, shape-shifting pricks. <b>Your penises are now gelatinous.</b>";
 		}
 		//Just partial - PC MUST have multicocks for this.
 		else
 		{
-			eventBuffer += "\n\nYour gooey, ever-slick crotch spreads down the length";
+			eventBuffer += "\n\n" + logTimeStamp("passive") + " Your gooey, ever-slick crotch spreads down the length";
 			if(truantCocks.length > 1) eventBuffer += "s of your rogue, solid dicks, transforming them into drippy, inexplicably jellied boners.";
 			else 
 			{
@@ -3013,7 +3013,7 @@ public function gooCrotchUpdate():void
 	{
 		if(truantVaginas.length == pc.totalVaginas())
 		{
-			eventBuffer += "\n\nYou're getting incredibly wet";
+			eventBuffer += "\n\n" + logTimeStamp("passive") + " You're getting incredibly wet";
 			if(pc.legCount > 1) eventBuffer += " between the [pc.legs]";
 			else eventBuffer += "... down there";
 			eventBuffer += ". Moisture seems to be dripping everywhere, transforming your puss";
@@ -3023,7 +3023,7 @@ public function gooCrotchUpdate():void
 		//Not matched. Therefore min 2 vags
 		else
 		{
-			eventBuffer += "\n\nUnsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>";
+			eventBuffer += "\n\n" + logTimeStamp("passive") + " Unsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>";
 		}
 	}
 }

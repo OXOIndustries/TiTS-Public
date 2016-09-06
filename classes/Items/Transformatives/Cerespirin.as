@@ -567,7 +567,7 @@ package classes.Items.Transformatives
 			}
 			if(msg.length > 0) 
 			{
-				kGAMECLASS.eventBuffer += "\n\n<u>The Cerespirin drug has an effect....</u>";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Cerespirin drug has an effect....</u>";
 				kGAMECLASS.eventBuffer += msg;
 			}
 			return;
@@ -582,7 +582,7 @@ package classes.Items.Transformatives
 			if((target.getStatusMinutes("Cerespirin") % 40) != 0) return;
 			
 			//Cut from here and appended just before output at the bottom of plantMutations(target)
-			//kGAMECLASS.eventBuffer += "\n\n<u>The Cerespirin drug has an effect....</u>";
+			//kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Cerespirin drug has an effect....</u>";
 			
 			plantMutations(target);
 			
@@ -603,7 +603,7 @@ package classes.Items.Transformatives
 		// Bye bye flower (unknown condition but hey it’s here so it ain’t permanent)
 		public function loseHairFlower(target:Creature):String
 		{
-			return "\n\nYour head orchid droops, loses its petals one by one, and then finally withers from your scalp entirely. Slightly annoying it might have been flopping around near your ear, but you can’t help feel rather sad at your bloom’s passing.";
+			return "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Your head orchid droops, loses its petals one by one, and then finally withers from your scalp entirely. Slightly annoying it might have been flopping around near your ear, but you can’t help feel rather sad at your bloom’s passing.";
 		}
 		
 		//METHOD ACTING!

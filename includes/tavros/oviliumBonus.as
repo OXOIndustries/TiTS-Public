@@ -112,7 +112,7 @@ public function oviliumEggBump(cumFrom:Creature = null, vagIndex:int = -1):void
 	}
 	if (changes > 0)
 	{
-		eventBuffer += "\n\nYou hear a slick pop and feel your womb expand slightly as one";
+		eventBuffer += "\n\n" + logTimeStamp("passive") + " You hear a slick pop and feel your womb expand slightly as one";
 		if (changes != 1) eventBuffer += " or two";
 		eventBuffer += " of the eggs inside multipl";
 		if (changes == 1) eventBuffer += "ies";

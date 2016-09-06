@@ -45,7 +45,7 @@ public function imbibeVenomEffects(sexed:Boolean = true, combatAttack:Boolean = 
 		//Remove withdrawal
 		pc.removeStatusEffect("Myr Venom Withdrawal");
 		//Got Yer Fix Via Sex
-		eventBuffer += "\n\nAhh, that was just what you needed. Maybe you should come back for more before this dose finishes wearing off next time. Withdrawal sucks.";
+		eventBuffer += "\n\n" + logTimeStamp("passive") + " Ahh, that was just what you needed. Maybe you should come back for more before this dose finishes wearing off next time. Withdrawal sucks.";
 	}
 	//Not in withdrawal
 	else
@@ -103,12 +103,12 @@ public function myrAddiction(arg:Number):Number
 		//If we hit rock bottom:
 		else if(flags["VENOM_ADDICTION"] <= 0) flags["VENOM_ADDICTION"] = undefined;
 		//Addiction Fading 1
-		if(original > 50 && flags["VENOM_ADDICTION"] <= 50) eventBuffer += "\n\nThe world doesn’t seems quite so drab anymore. Maybe you’re starting to get over your need for the red myr’s pernicious saliva? You give your crotch a needy squeeze, but for all the desire it elicits, you might as well be pinching your shoulder. You’d better <b>find some venom</b>... or wait even longer.";
-		else if(original > 10 && flags["VENOM_ADDICTION"] <= 10) eventBuffer += "\n\nA brief fantasy of a busty gold myr, complete with honey-swollen tits, hits you out of nowhere. Best of all, you can actually feel your body responding with a tiny mote of desire. It’s not enough to really get you going, but you must be closer to beating your addiction.";
+		if(original > 50 && flags["VENOM_ADDICTION"] <= 50) eventBuffer += "\n\n" + logTimeStamp("passive") + " The world doesn’t seems quite so drab anymore. Maybe you’re starting to get over your need for the red myr’s pernicious saliva? You give your crotch a needy squeeze, but for all the desire it elicits, you might as well be pinching your shoulder. You’d better <b>find some venom</b>... or wait even longer.";
+		else if(original > 10 && flags["VENOM_ADDICTION"] <= 10) eventBuffer += "\n\n" + logTimeStamp("passive") + " A brief fantasy of a busty gold myr, complete with honey-swollen tits, hits you out of nowhere. Best of all, you can actually feel your body responding with a tiny mote of desire. It’s not enough to really get you going, but you must be closer to beating your addiction.";
 		//Addiction Over
 		else if(original > 0 && flags["VENOM_ADDICTION"] == undefined)
 		{
-			eventBuffer += "\n\nWith a start, you realize that full sensation has returned to your body, and with it, your own desires and fantasies. You’re certain that you could drop trou and start ";
+			eventBuffer += "\n\n" + logTimeStamp("passive") + " With a start, you realize that full sensation has returned to your body, and with it, your own desires and fantasies. You’re certain that you could drop trou and start ";
 			if(pc.hasVagina()) eventBuffer += "jilling yourself off";
 			else if(pc.hasCock()) eventBuffer += "jacking off";
 			else eventBuffer += "fingering your asshole";
@@ -248,22 +248,22 @@ public function venomExpirationNotice():void
 {
 	if(!pc.hasPerk("Venom Slut") && flags["VENOM_ADDICTION"] == 100)
 	{
-		eventBuffer += "\n\nNo doubt about it, you're a venom slut at this point. You need the stuff, and even if you didn't, you'd want it every second of your life. Without it, life is a dull gray mess. With it, you're an infinitely fuckable receptable for the attentions of the nearest sapient. You've gotten so used to having your senses heightened by the myr venom that you can withstand even more lust while you're under its effects. <b>You don't think it's possible to break your addiction any longer.</b>\n\n(<b>Perk Gained: Venom Slut</b> - Gain 35 maximum lust while under the effects of red myr venom.)"
+		eventBuffer += "\n\n" + logTimeStamp("passive") + " No doubt about it, you're a venom slut at this point. You need the stuff, and even if you didn't, you'd want it every second of your life. Without it, life is a dull gray mess. With it, you're an infinitely fuckable receptable for the attentions of the nearest sapient. You've gotten so used to having your senses heightened by the myr venom that you can withstand even more lust while you're under its effects. <b>You don't think it's possible to break your addiction any longer.</b>\n\n(<b>Perk Gained: Venom Slut</b> - Gain 35 maximum lust while under the effects of red myr venom.)"
 		if(!pc.hasPerk("Venom Slut")) pc.createPerk("Venom Slut",0,0,0,0,"You're a total venom slut, raising your maximum lust while on red myr venom.");
 		if(!pc.hasStatusEffect("Myr Venom Withdrawal")) pc.createStatusEffect("Myr Venom Withdrawal",0,0,0,0,false,"Icon_LustDown","You're so used to being under the effects of red myr venom that you're incapable of getting yourself off alone. You'll need to find a lover (preferably a red myr) if you want to feel anything at all!",false,0,0xB793C4);
 	}
 	else if(pc.hasPerk("Venom Slut") || flags["VENOM_ADDICTION"] != undefined)
 	{
-		eventBuffer += "\n\nFuck! You can feel the pleasant high of your venom receding. Without it, you’re barely interested in sex, let alone living life. You can’t even masturbate like this. <b>You need to get some more red venom!</b> Maybe you could just go the front lines and become a trench-" + pc.mf("husband","wife") + ". At least you’d have access to a steady source. Then, you’d never even need to come down; you could just bump and grind the hours away in sublime pleasure...";
+		eventBuffer += "\n\n" + logTimeStamp("passive") + " Fuck! You can feel the pleasant high of your venom receding. Without it, you’re barely interested in sex, let alone living life. You can’t even masturbate like this. <b>You need to get some more red venom!</b> Maybe you could just go the front lines and become a trench-" + pc.mf("husband","wife") + ". At least you’d have access to a steady source. Then, you’d never even need to come down; you could just bump and grind the hours away in sublime pleasure...";
 		if(!pc.hasStatusEffect("Myr Venom Withdrawal")) pc.createStatusEffect("Myr Venom Withdrawal",0,0,0,0,false,"Icon_LustDown","You're so used to being under the effects of red myr venom that you're incapable of getting yourself off alone. You'll need to find a lover (preferably a red myr) if you want to feel anything at all!",false,0,0xB793C4);
 	}
 	//START ADDICTION!
 	//Venom Addiction Alert!
 	else if(flags["VENOM_ADDICTION"] == undefined && flags["VENOM_PROGRESS"] == 100)
 	{
-		eventBuffer += "\n\nOh no. You can feel the color draining your vision and the tingles of erotic ecstasy receding from your limbs, but nowhere so strongly as your crotch. You close your eyes to imagine an attractive partner, and nothing happens. Not even a little ";
+		eventBuffer += "\n\n" + logTimeStamp("passive") + " Oh no. You can feel the color draining your vision and the tingles of erotic ecstasy receding from your limbs, but nowhere so strongly as your crotch. You close your eyes to imagine an attractive partner, and nothing happens. Not even a little ";
 		if(pc.hasCock()) eventBuffer += "bit of a boner";
-		else if(pc.hasVagina()) eventBuffer += "bit of warmth in your [pc.vaginas]";
+		else if(pc.hasVagina()) eventBuffer += ParseText("bit of warmth in your [pc.vaginas]");
 		else eventBuffer += "hot flush of desire";
 		eventBuffer += ". Shit, you’ve gotten so used to being affected by the red venom that you couldn’t even masturbate if you wanted to!\n\n<b>You’re a red venom addict who needs the stuff just to get off!</b>";
 		//Start at 15
@@ -273,17 +273,17 @@ public function venomExpirationNotice():void
 	//Venom Expires Addiction Warning Numero Dos Equis
 	else if(flags["VENOM_ADDICTION"] != undefined && flags["VENOM_ADDICTION"] >= 95)
 	{
-		eventBuffer += "\n\nWith every passing second, the red heat of your favorite myr intoxicant is fading, numbing your senses under the drudgery of an unenhanced existence. You’ll have to find more if you want to feel so... sexy and fuckable once more. You might be skirting the edge of a potential addiction, but it’s worth it, right?";
+		eventBuffer += "\n\n" + logTimeStamp("passive") + " With every passing second, the red heat of your favorite myr intoxicant is fading, numbing your senses under the drudgery of an unenhanced existence. You’ll have to find more if you want to feel so... sexy and fuckable once more. You might be skirting the edge of a potential addiction, but it’s worth it, right?";
 	}
 	else if(flags["VENOM_ADDICTION"] != undefined && flags["VENOM_ADDICTION"] >= 80)
 	{
 		//Venom Expires Addiction Warning
-		eventBuffer += "\n\nNo! You can feel the heart-pounding high of the red myr venom, leaving the world empty and dull. You’d like another taste of the stuff for sure. You can take a break after the next time. You wouldn’t want to get <b>addicted</b> to it.";
+		eventBuffer += "\n\n" + logTimeStamp("passive") + " No! You can feel the heart-pounding high of the red myr venom, leaving the world empty and dull. You’d like another taste of the stuff for sure. You can take a break after the next time. You wouldn’t want to get <b>addicted</b> to it.";
 	}
 	//Venom Expires
 	else
 	{
-		eventBuffer += "\n\nYour [pc.skin] no longer feels quite so flush";
+		eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your [pc.skin] no longer feels quite so flush");
 		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers() || pc.hasChitin()) eventBuffer += " beneath your " + pc.skinNoun(false, true);
 		eventBuffer += ". Nor is it quite so sensitive to the touch. The effects of the red myr venom must be subsiding.";
 	}

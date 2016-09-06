@@ -46,11 +46,11 @@ package classes.GameData.Pregnancy.Handlers
 						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
 						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
 						
-						msg = "\n\nA ticklish throbbing ignites in your loins, signaling the start of the birthing process. It’s only a matter of time now before the eggs push their way out of you";
+						msg = "\n\n" + kGAMECLASS.logTimeStamp() + " A ticklish throbbing ignites in your loins, signaling the start of the birthing process. It’s only a matter of time now before the eggs push their way out of you";
 						if (StatTracking.getStat("pregnancy/ovilium eggs laid") > 0) msg += ", leaving you empty once more";
 						msg += ". Some part of you yearns for that release, while another is content with rubbing your pregnant-looking stomach.";
 						
-						kGAMECLASS.eventBuffer += ParseText(msg);
+						kGAMECLASS.eventBuffer += msg;
 						kGAMECLASS.pc.energy(-5);
 						kGAMECLASS.pc.lust(10);
 					}, true);
@@ -64,9 +64,9 @@ package classes.GameData.Pregnancy.Handlers
 						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
 						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
 						
-						msg = "\n\nYour stomach lets out a contraction that nearly causes you to lose your balance. The eggs inside you must be nearly ready to lay. You’d say you still have some time to get things done.";
+						msg = "\n\n" + kGAMECLASS.logTimeStamp() + " Your stomach lets out a contraction that nearly causes you to lose your balance. The eggs inside you must be nearly ready to lay. You’d say you still have some time to get things done.";
 						
-						kGAMECLASS.eventBuffer += ParseText(msg);
+						kGAMECLASS.eventBuffer += msg;
 						kGAMECLASS.pc.energy(-10);
 					}, true);
 				}
@@ -79,12 +79,12 @@ package classes.GameData.Pregnancy.Handlers
 						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
 						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
 						
-						msg = "\n\nYou";
+						msg = "\n\n" + kGAMECLASS.logTimeStamp() + " You";
 						if (kGAMECLASS.pc.hasKnees()) msg += "r knees buckle";
 						else msg += " almost trip over yourself";
 						msg += " as a contraction hits you. These eggs are coming soon, so unless you’re planning on showing everyone around, you had better get to somewhere personal. The eggs won’t wait once it’s time.";
 						
-						kGAMECLASS.eventBuffer += ParseText(msg);
+						kGAMECLASS.eventBuffer += msg;
 						kGAMECLASS.pc.energy(-20);
 					}, true);
 				}
@@ -102,13 +102,13 @@ package classes.GameData.Pregnancy.Handlers
 			// (random before laying, +lust if repeat)
 			this.addStageProgression(((2.5 * 60) + (rand(_basePregnancyIncubationTime - (3 * 60)))), function(pregSlot:int):void
 			{
-				msg = "\n\nYou find yourself idly tapping your belly, running a hand over the smooth [pc.skinFurScalesNoun]. The relatively quick pregnancy induced by the drug means you’ll be laying within the day.";
+				msg = "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You find yourself idly tapping your belly, running a hand over the smooth [pc.skinFurScalesNoun]. The relatively quick pregnancy induced by the drug means you’ll be laying within the day.");
 				if (StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 				{
 					msg += " You can’t wait.";
 					kGAMECLASS.pc.lust(10);
 				}
-				kGAMECLASS.eventBuffer += ParseText(msg);
+				kGAMECLASS.eventBuffer += msg;
 			}, true);
 			
 			_onSuccessfulImpregnation = oviliumOnSuccessfulImpregnation;

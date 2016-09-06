@@ -360,7 +360,7 @@ package classes.Items.Transformatives
 		//#5b Goblin face: Stage two happens 30 minutes after stage 1 ends, and the face type only changes when stage 2 triggers.
 		public function itemGoblinFaceTFGo(target:Creature):void
 		{
-			kGAMECLASS.eventBuffer += "\n\n<u>The goblinola bar has an effect....</u>";
+			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The goblinola bar has an effect....</u>";
 			// Transformation text (stage 2):
 			kGAMECLASS.eventBuffer += "\n\nFinally the pain in your face subsides, and you take a deep breath. You check to see what the damage is and find that your face has restructured itself. Your nose has grown longer and pointier, while your jaw has narrowed a fair bit giving your face a more angular appearance not unlike that of an upside down triangle. <b>You now have a gabilani face!</b>";
 			// Actual face type change
@@ -617,14 +617,14 @@ package classes.Items.Transformatives
 				}
 				totalTFs--;
 			}
-			if(msg.length > 0) kGAMECLASS.eventBuffer += ParseText(msg);
+			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 			return;
 		}
 		
 		// Potentials for TFs
 		public function itemGoblinTF(done:Boolean = false):void
 		{
-			kGAMECLASS.eventBuffer += "\n\n<u>The goblinola bar has an effect....</u>";
+			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The goblinola bar has an effect....</u>";
 			
 			var target:Creature = kGAMECLASS.chars["PC"];
 			var oddsOfMajorTF:int = target.statusEffectv2("Goblinola Bar") * 20;

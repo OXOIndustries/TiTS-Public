@@ -1275,49 +1275,63 @@ package classes.UIComponents
 				
 				var defaultFormat:Object = { 
 					fontFamily: "Lato",
-					fontSize: 18,
+					//fontSize: 18,
 					color: "#FFFFFF",
 					marginRight: 5
 				};
 				
 				var shieldDamage:Object = {
 					fontFamily: "Lato",
-					fontSize: 18,
+					//fontSize: 18,
 					color: "#00CCFF",
 					marginRight: 5
 				}
 				
 				var hpDamage:Object = {
 					fontFamily: "Lato",
-					fontSize: 18,
+					//fontSize: 18,
 					color: "#00CC2F",
 					marginRight: 5
 				}
 				
 				var lustDamage:Object = {
 					fontFamily: "Lato",
-					fontSize: 18,
+					//fontSize: 18,
 					color: "#DD597E",
 					marginRight: 5
 				}
 				
 				var good:Object = { 
 					fontFamily: "Lato", 
-					fontSize: 18, 
+					//fontSize: 18, 
 					color: "#00CCFF", 
 					marginRight: 5 
 				};
 				
 				var bad:Object = { 
 					fontFamily: "Lato", 
-					fontSize: 18, 
+					//fontSize: 18, 
 					color: "#CC3300", 
+					marginRight: 5 
+				};
+				
+				var caution:Object = { 
+					fontFamily: "Lato", 
+					//fontSize: 18, 
+					color: "#E8C815", 
+					marginRight: 5 
+				};
+				
+				var passive:Object = { 
+					fontFamily: "Lato", 
+					//fontSize: 18, 
+					color: "#D982EF", 
 					marginRight: 5 
 				};
 				
 				var indifferent:Object = { 
 					fontFamily: "Lato", 
-					fontSize: 18, 
+					//fontSize: 18, 
 					color: "#FFFFFF", 
 					marginRight: 5 
 				};
@@ -1368,6 +1382,8 @@ package classes.UIComponents
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".words", defaultFormat);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".good", good);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".bad", bad);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".caution", caution);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".passive", passive);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".nothing", indifferent);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".header", header);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".blockHeader", blockHeader);

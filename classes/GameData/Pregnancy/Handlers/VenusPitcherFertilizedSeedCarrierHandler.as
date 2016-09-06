@@ -5,6 +5,7 @@
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
+	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	
@@ -73,7 +74,7 @@
 			}
 			
 			// Do some outpootis.
-			kGAMECLASS.eventBuffer += "\n\nYour womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells.";
+			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" Your womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells.");
 			
 			if (kGAMECLASS.flags["LAID VENUS PITCHER SEEDS"] != undefined) kGAMECLASS.eventBuffer += " Mmmm, another batch of pods are growing inside you, fertilized by your latest tryst.";
 			else kGAMECLASS.eventBuffer += " The stuff the venus pitcher put inside you... it's growing! The latest pitcher must have done something to it... fertilized it, perhaps.";

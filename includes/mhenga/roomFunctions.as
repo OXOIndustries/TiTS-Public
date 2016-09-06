@@ -596,7 +596,7 @@ public function genericSleep(baseTime:int = 480):void
 		// Enable the button
 		userInterface.levelUpButton.Activate();
 		
-		eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+		eventBuffer += "\n\n" + logTimeStamp() + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 	}
 }
 
@@ -652,7 +652,7 @@ public function sleepInRuinedCamp():void
 		// Enable the button
 		userInterface.levelUpButton.Activate();
 		
-		eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+		eventBuffer += "\n\n" + logTimeStamp() + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

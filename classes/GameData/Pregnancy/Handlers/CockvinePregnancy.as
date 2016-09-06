@@ -43,7 +43,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 1 * pData.pregnancyQuantity;
 				pData.pregnancyBellyRatingContribution += 1 * pData.pregnancyQuantity;
 				
-				kGAMECLASS.eventBuffer += "\nThe last couple of days you’ve battled with constant pangs of hunger, despite generally feeling strangely full. You notice that your stomach has developed a bit of a curve.\n";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " The last couple of days you’ve battled with constant pangs of hunger, despite generally feeling strangely full. You notice that your stomach has developed a bit of a curve.";
 			}, true);
 			
 			this.addStageProgression(3320, function(pregSlot:int):void {
@@ -51,7 +51,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 1 * pData.pregnancyQuantity;
 				pData.pregnancyBellyRatingContribution += 1 * pData.pregnancyQuantity;
 				
-				kGAMECLASS.eventBuffer += "\nYour gut has become noticeably distended. There’s no getting around it; you’re pregnant. Unease roils queasily with the deeper tides of warmth and contentment motherhood brings; deep down you feel... green. The budding green of early spring, waiting to burst fully into life.\n";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your gut has become noticeably distended. There’s no getting around it; you’re pregnant. Unease roils queasily with the deeper tides of warmth and contentment motherhood brings; deep down you feel... green. The budding green of early spring, waiting to burst fully into life.";
 			}, true);
 			
 			this.addStageProgression(1880, function(pregSlot:int):void {
@@ -59,11 +59,11 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 1 * pData.pregnancyQuantity;
 				pData.pregnancyBellyRatingContribution += 1 * pData.pregnancyQuantity;
 				
-				var msg:String = "\nYour movement has become rounded";
+				var msg:String = "\n\n" + kGAMECLASS.logTimeStamp() + " Your movement has become rounded";
 				if (kGAMECLASS.pc.isBiped()) msg += " and splay-footed";
-				msg += " to compensate for the big baby bulge you are now sporting, packed with life. What’s inside you squirms all the time, ticklish and intimate, never letting you forget its – or rather their – presence for a moment. Your nipples have spread, your boobs plumping up as they prepare to feed your children. It makes you laugh groaningly. You suspect what you’re bearing has little interest in [pc.milk].\n";
+				msg += ParseText(" to compensate for the big baby bulge you are now sporting, packed with life. What’s inside you squirms all the time, ticklish and intimate, never letting you forget its – or rather their – presence for a moment. Your nipples have spread, your boobs plumping up as they prepare to feed your children. It makes you laugh groaningly. You suspect what you’re bearing has little interest in [pc.milk].");
 				
-				kGAMECLASS.eventBuffer += ParseText(msg);
+				kGAMECLASS.eventBuffer += msg;
 			}, true);
 			
 			this.addStageProgression(440, function(pregSlot:int):void {
@@ -71,7 +71,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 2 * pData.pregnancyQuantity;
 				pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
 				
-				kGAMECLASS.eventBuffer += ParseText("\nYou stroke your taut belly, trailing your hand over a full, sensitive breast as you do. Your stuffed womb quivers, dense and heavy with increasingly restless, serpentine life. You suppose you should feel disquieted about all of this but with both your own and the alien flora’s hormones rich in your veins it’s difficult to feel anything but complacent, warm contentment. When your thoughts drift from the task at hand they go to deep, dark, moist places; wild places, where wild things can bury themselves and become even wilder, coiling upwards, irrepressible. Your spreading [pc.vagina] oozes excitement when you go to those places.\n");
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You stroke your taut belly, trailing your hand over a full, sensitive breast as you do. Your stuffed womb quivers, dense and heavy with increasingly restless, serpentine life. You suppose you should feel disquieted about all of this but with both your own and the alien flora’s hormones rich in your veins it’s difficult to feel anything but complacent, warm contentment. When your thoughts drift from the task at hand they go to deep, dark, moist places; wild places, where wild things can bury themselves and become even wilder, coiling upwards, irrepressible. Your spreading [pc.vagina " + pregSlot + "] oozes excitement when you go to those places.");
 			}, true);
 			
 			_onSuccessfulImpregnation = cockvineOnSuccessfulImpregnantion;

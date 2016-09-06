@@ -90,7 +90,7 @@
 			// Each hour, 0.4 chance to increase libido by 1.
 			if(rand(5) < 2)
 			{
-				kGAMECLASS.eventBuffer += "\n\n<u>The Semen’s Friend candy has an effect....</u>";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Semen’s Friend candy has an effect....</u>";
 				
 				kGAMECLASS.eventBuffer += "\n\nYou exhale, deep and low, as the cold burn in your loins increases, the impatient imperative to get out there and fuck and breed every fertile hole in sight growing stronger.";
 				
