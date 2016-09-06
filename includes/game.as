@@ -183,10 +183,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	output(rooms[currentLocation].description);
 	showLocationName();
 	
-	if (pc.hasStatusEffect("Bitterly Cold") && minutesMoved > 0)
-	{
-		if (tryApplyUvetoColdDamage(minutesMoved)) return;
-	}
+	// Time passing effects
+	if(passiveTimeEffects(minutesMoved)) return;
 	
 	// Random events, outside of important/timed missions
 	if (!disableExploreEvents())
@@ -639,8 +637,18 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	if(allcrew) return (count + other);
 	return count;
 }
+
+public function passiveTimeEffects(minPass:int = 0):Boolean
+{
+	if (minPass > 0)
+	{
+		if (pc.hasStatusEffect("Bitterly Cold") && tryApplyUvetoColdDamage(minPass)) return true;
+	}
+	return false;
+}
+
 public function rest(deltaT:int = -1):void {
-	var minutes:int;
+	var minPass:int;
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
@@ -669,20 +677,23 @@ public function rest(deltaT:int = -1):void {
 				postRestLustBonus = pc.libido()/3 + 20;
 			}
 		}
-		minutes = 230 + rand(20) + 1;
+		minPass = 230 + rand(20) + 1;
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) {
-			output("You take a rest for about " + num2Text(Math.round(minutes/60)) + " hours");
+			output("You take a rest for about " + num2Text(Math.round(minPass/60)) + " hours");
 			if(pc.HP() < pc.HPMax()) output(" and dress your injuries with some less-than-legal nanogel you appropriated on an old job");
 			output(".");
 		}
-		else output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
+		else output("You sit down and rest for around " + num2Text(Math.round(minPass/60)) + " hours.");
 	}
 	else
 	{
-		minutes = deltaT;
+		minPass = deltaT;
 	}
 	restHeal();
-	processTime(minutes);
+	processTime(minPass);
+	
+	// Time passing effects
+	if(passiveTimeEffects(minPass)) return;
 
 	pc.lust(postRestLustBonus);
 	clearMenu();
@@ -708,7 +719,7 @@ public function sleep(outputs:Boolean = true):void {
 	
 	if (kiMedbaySleeps()) return;
 	
-	var minutes:int = 420 + rand(80) + 1
+	var minPass:int = 420 + rand(80) + 1
 	
 	if(outputs) clearOutput();
 	if(InShipInterior(pc))
@@ -766,11 +777,11 @@ public function sleep(outputs:Boolean = true):void {
 			}
 		}
 	}
-	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
+	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minPass/60)) + " hours.");
 	
 	sleepHeal();
 	
-	processTime(minutes);
+	processTime(minPass);
 	dreamChances();
 	if(outputs)
 	{
@@ -780,6 +791,9 @@ public function sleep(outputs:Boolean = true):void {
 	
 	//remove status effects
 	pc.removeStatusEffect("Roshan Blue");
+	
+	// Time passing effects
+	if(passiveTimeEffects(minPass)) return;
 	
 	clearMenu();
 	if(InShipInterior(pc))
@@ -794,7 +808,7 @@ public function sleep(outputs:Boolean = true):void {
 			addButton(0, "Next", bessMorningEvents);
 			return;
 		}
-		if (tryProcDommyReahaTime(minutes - rand(301)))
+		if (tryProcDommyReahaTime(minPass - rand(301)))
 		{
 			addButton(0, "Next", reahaDommyFuxTime);
 			return;
