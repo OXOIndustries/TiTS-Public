@@ -3558,6 +3558,11 @@
 			var currInt:int = intelligenceRaw + intelligenceMod;
 			
 			if (hasStatusEffect("Focus Pill")) currInt += 5;
+			if(hasPerk("Dumb4Cum"))
+			{
+				currInt += level*2;
+				if(perkv1("Dumb4Cum") > 24) currInt -= (perkv1("Dumb4Cum") - 24);
+			}
 			// Slave collar multiplier.
 			if(hasStatusEffect("Psi Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psi Slave Collar"));
 
@@ -3645,6 +3650,7 @@
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
 			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
+			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
 			
 			if (currLib > libidoMax())
 			{
@@ -3680,6 +3686,7 @@
 			//Temporary Stuff
 			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
+			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
@@ -3714,6 +3721,11 @@
 			var bonuses:int = 0;
 			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			if(hasPerk("Dumb4Cum"))
+			{
+				bonuses += level;
+				if(perkv1("Dumb4Cum") > 24) bonuses -= (perkv1("Dumb4Cum") - 24);
+			}
 			return level * 5 + bonuses;
 		}
 		public function willpowerMax(): Number {
