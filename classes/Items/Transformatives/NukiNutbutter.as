@@ -95,7 +95,7 @@
 								else target.cumMultiplierRaw += 30;
 								if(target.cumMultiplierRaw > 9000) target.cumMultiplierRaw = 9000;
 							}
-							if(target.cumMultiplierRaw / 8) target.ballEfficiency += (2 + rand(7)) * 10;
+							if(target.cumMultiplierRaw / 8 >= target.ballEfficiency) target.ballEfficiency += (2 + rand(7)) * 10;
 						}
 						// Else, refill cum: 
 						else

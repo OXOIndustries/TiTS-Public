@@ -273,11 +273,29 @@ package classes.Items.Transformatives
 				
 				var smallestVagIndex:int = target.smallestVaginaIndex();
 				
+				// Omit pregnant vaginas (if multiple).
+				var nonPregVags:Array = [];
+				if(target.totalVaginas() > 1)
+				{
+					for(var v:int = 0; v < target.vaginas.length; v++)
+					{
+						if(!target.isPregnant(v)) nonPregVags.push(v);
+					}
+				}
+				if(nonPregVags.length > 0)
+				{
+					smallestVagIndex = nonPregVags[0];
+					for(var w:int = 1; w < nonPregVags.length; w++)
+					{
+						if(target.vaginalCapacity(smallestVagIndex) > target.vaginalCapacity(nonPregVags[w])) smallestVagIndex = nonPregVags[w];
+					}
+				}
+				
 				//Vaginas vanish completely!
 				//Only if as tight as possible, should immediately proc sheath/cock/ball growth if this leaves PC genderless
 				if (target.vaginalCapacity(smallestVagIndex) <= 300)
 				{
-					if (target.removeVaginaUnlocked(smallestVagIndex, 1) && !target.isPregnant())
+					if (target.removeVaginaUnlocked(smallestVagIndex, 1))
 					{
 						output("\n\nYour vagina just keeps getting tighter and tighter, way too much so. Soon relief comes, but it’s in the form of feeling your nether lips seal entirely, the supercharged masculine hormones surging through your blood removing the offending female part. <b>");
 						
@@ -294,7 +312,7 @@ package classes.Items.Transformatives
 						else output("Your vagina is gone");
 						output("</b>!");
 					}
-					else if(target.isPregnant()) output("\n\nYour vaginal lips reflexively tighten and your womb warms, but nothing else happens. It seems your active pregnancy prevented the change.");
+					else if(target.isPregnant(smallestVagIndex)) output("\n\nYour vaginal lips reflexively tighten and your womb warms, but nothing else happens. It seems your active pregnancy prevented the change.");
 					else output("\n\n" + target.removeVaginaLockedMessage());
 				}
 			}

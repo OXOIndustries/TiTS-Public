@@ -154,9 +154,8 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = singleDickFap;
 		faps.push(fap);
 	}
-	if (pc.canAutoFellate(-1))
+	if (pc.isCumCow() && pc.canAutoFellate(-1))
 	{
-		eventBuffer += "\n\nFAPPY TIMES!";
 		fap = new FapCommandContainer();
 		fap.text = "Autofellatio";
 		fap.func = cumCowAutoFellatio;
@@ -164,7 +163,6 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ttBody = "Suck your own dick.";
 		faps.push(fap);
 	}
-	eventBuffer += "\n\nPOST FAPPY TIMES!";
 	if (pc.cockTotal() >= 2)
 	{
 		fap = new FapCommandContainer();

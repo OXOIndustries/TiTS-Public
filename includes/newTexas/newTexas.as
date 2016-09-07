@@ -5,7 +5,7 @@ public function newTexasEmail():void
 {
 	flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
 	MailManager.unlockEntry("newtexas", GetGameTimestamp());
-	eventBuffer += "\n\n<b>New Email From Benjamin Tiberius Tee (NoReply@NewTexas.gov)!</b>";
+	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Benjamin Tiberius Tee (NoReply@NewTexas.gov)!</b>";
 }
 
 //Landing on New Texas (First Time)

@@ -142,7 +142,7 @@ public function resetDrBadgerBimboTF():void
 		}
 	}
 	//IF PC HAS MORE THAN ONE NON-TAIL VAGINA
-	if(pc.totalVaginas() > 1 && !pc.isPregnant())
+	if(pc.totalVaginas() > 1 && !pc.hasWombPregnancy())
 	{
 		while(pc.totalVaginas() > 1)
 		{
@@ -1023,7 +1023,7 @@ Setup
 
 public function pennyBadgerQuestAlert():void
 {
-	eventBuffer += "\n\n<b>A beep draws your attention to your Codex. Penny has sent you a message - it looks like she’s found a way to reprogram the gun that Dr. Badger gave you. You’d better go see her!</b>";
+	eventBuffer += "\n\n" + logTimeStamp("good") + " <b>A beep draws your attention to your Codex. Penny has sent you a message - it looks like she’s found a way to reprogram the gun that Dr. Badger gave you. You’d better go see her!</b>";
 	//[when player returns to Penny after receiving the above, add the below text to Penny's interaction space]
 }
 

@@ -252,6 +252,11 @@
 		public var Bust_HENDERSON:Class;
 		public var Bounds_HENDERSON:Rectangle = new Rectangle(51, 0, 63, 66);
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/hepane.png", mimeType = "image/png")]
+		public var Bust_HEPANE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/hepane_nude.png", mimeType = "image/png")]
+		public var Bust_HEPANE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/herman.png", mimeType = "image/png")]
 		public var Bust_HERMAN:Class;
 		
@@ -728,6 +733,11 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/henderson.png", mimeType = "image/png")]
 			public var Full_HENDERSON:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/hepane.png", mimeType = "image/png")]
+			public var Full_HEPANE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/hepane_nude.png", mimeType = "image/png")]
+			public var Full_HEPANE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/herman.png", mimeType = "image/png")]
 			public var Full_HERMAN:Class;

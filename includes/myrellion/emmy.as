@@ -85,8 +85,8 @@ public function emmyCumClearance():void
 {
 	if(currentLocation == "KIHASHOP")
 	{
-		if(emmy.bellyRating() >= 40) eventBuffer += "\n\nEmmy excuses herself to the employee room. A few moments of pregnant silence follow, broken by the abrupt sound of gallons of fluid jetting from something... something that isn't a faucet. Emmy's voice can be heard moaning deliriously, and wet-sounding slaps echo out to the sales floor. You're about to go check on her when she staggers out with a smile, her belly significantly deflated.";
-		else if(emmy.bellyRating() >= 5) eventBuffer += "\n\nEmmy excuses herself to the back room, promising to return in a moment. You barely hear the sound of something wet popping out and a muffled, throaty moan. A few moments later, Emmy staggers back out with a tighter belly and a twitching dick.";
+		if(emmy.bellyRating() >= 40) eventBuffer += "\n\n" + logTimeStamp() + " Emmy excuses herself to the employee room. A few moments of pregnant silence follow, broken by the abrupt sound of gallons of fluid jetting from something... something that isn't a faucet. Emmy's voice can be heard moaning deliriously, and wet-sounding slaps echo out to the sales floor. You're about to go check on her when she staggers out with a smile, her belly significantly deflated.";
+		else if(emmy.bellyRating() >= 5) eventBuffer += "\n\n" + logTimeStamp() + " Emmy excuses herself to the back room, promising to return in a moment. You barely hear the sound of something wet popping out and a muffled, throaty moan. A few moments later, Emmy staggers back out with a tighter belly and a twitching dick.";
 	}
 }
 
@@ -94,7 +94,7 @@ public function emmyTeaseCum():void
 {
 	if(currentLocation == "KIHASHOP")
 	{
-		eventBuffer += "\n\nEmmy abruptly moans and collapses over the top of the counter, her hips furtively pumping back and forth. You don't get a good look at it, but it seems like the constant teasing has finally gotten to her, leaving the poor thing with nothing to do but quietly stuff her own womb with hours of backed-up discharge. By the time she straightens, she's gained a massively wobbling, cum-pregnant belly.";
+		eventBuffer += "\n\n" + logTimeStamp() + " Emmy abruptly moans and collapses over the top of the counter, her hips furtively pumping back and forth. You don't get a good look at it, but it seems like the constant teasing has finally gotten to her, leaving the poor thing with nothing to do but quietly stuff her own womb with hours of backed-up discharge. By the time she straightens, she's gained a massively wobbling, cum-pregnant belly.";
 	}
 }
 
@@ -1038,7 +1038,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 
 public function emmyMailGet():void
 {
-	eventBuffer += "\n\n<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
+	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
 
 	MailManager.unlockEntry("emmy_apology", GetGameTimestamp());
 }
@@ -1311,17 +1311,17 @@ public function emmyPleased():void
 //Email
 public function emmyMailGet2():void
 {
-	eventBuffer += "\n\n<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
+	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
 	MailManager.unlockEntry("emmy_gift_starter", GetGameTimestamp());
 }
 public function emmyMailGet3():void
 {
-	eventBuffer += "\n\n<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
+	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
 	MailManager.unlockEntry("emmy_implant_explain_email", GetGameTimestamp());
 }
 public function emmyMailGet4():void
 {
-	eventBuffer += "\n\n<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
+	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
 	MailManager.unlockEntry("emmy_harness_here", GetGameTimestamp());
 }
 

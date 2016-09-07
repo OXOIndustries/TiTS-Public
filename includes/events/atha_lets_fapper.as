@@ -65,7 +65,7 @@ public function letsFapEmailUnlock():void
 	{
 		flags["LETS_FAP_INVITE_FROM"] = letsFapUnlockFromName();
 		MailManager.unlockEntry("lets_fap_unlock", GetGameTimestamp());
-		eventBuffer += "\n\n<b>New Email from " + flags["LETS_FAP_INVITE_FROM"] + " ("+ letsFapUnlockFromEmail() +")!</b>";
+		eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email from " + flags["LETS_FAP_INVITE_FROM"] + " ("+ letsFapUnlockFromEmail() +")!</b>";
 	}
 }
 
@@ -198,7 +198,7 @@ public function letsFapUpdateCheck():void
 			//Time for new episode unlock!
 			if(GetGameTimestamp() - flags["LETS_FAP_RELEASE_TIMER"] >= unlockLength)
 			{
-				eventBuffer += "\n\nAtha has posted a new Let's Fap video!";
+				eventBuffer += "\n\n" + logTimeStamp("good") + " Atha has posted a new Let's Fap video!";
 				flags["LETS_FAP_RELEASE_TIMER"] = undefined;
 				if(letsFapTrack() == 1) flags["LETS_FAP_LATEST"] = letsFapLaquine;
 				else if(letsFapTrack() == 2) flags["LETS_FAP_LATEST"] = letsFapKuiTan;

@@ -596,7 +596,7 @@ public function genericSleep(baseTime:int = 480):void
 		// Enable the button
 		userInterface.levelUpButton.Activate();
 		
-		eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+		eventBuffer += "\n\n" + logTimeStamp("good") + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 	}
 }
 
@@ -617,10 +617,10 @@ public function sleepInRuinedCamp():void
 		output("The camp is still clear enough, and the smell's not so bad anymore. You crawl into one of the tents and bunker down to sleep");
 	}
 	//Standard sleep messages, etc. 
-	var minutes:int = 420 + rand(80) + 1
-	output(" for about " + num2Text(Math.round(minutes/60)) + " hours.");
+	var minPass:int = 420 + rand(80) + 1
+	output(" for about " + num2Text(Math.round(minPass/60)) + " hours.");
 	sleepHeal();
-	processTime(minutes);
+	processTime(minPass);
 	mimbraneSleepEvents();
 	//Chance for a Vanae Attack! - can't be first time
 	if (CodexManager.entryUnlocked("Vanae") && rand(4) == 0)
@@ -652,7 +652,7 @@ public function sleepInRuinedCamp():void
 		// Enable the button
 		userInterface.levelUpButton.Activate();
 		
-		eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+		eventBuffer += "\n\n" + logTimeStamp("good") + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

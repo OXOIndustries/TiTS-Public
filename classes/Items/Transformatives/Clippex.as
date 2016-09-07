@@ -91,7 +91,7 @@
 			// Each half hour, 0.4 chance to increase lust.
 			if(rand(5) < 2)
 			{
-				kGAMECLASS.eventBuffer += "\n\n<u>The Clippex drug has an effect....</u>";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Clippex drug has an effect....</u>";
 				
 				kGAMECLASS.eventBuffer += "\n\nYour breath catches in your throat as";
 				if(!target.isChestExposed()) kGAMECLASS.eventBuffer += " your [pc.nipples] rub against your [pc.upperGarment]";

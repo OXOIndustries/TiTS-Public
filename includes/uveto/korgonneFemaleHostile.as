@@ -543,7 +543,7 @@ public function korgiLicksPCPussPart2():void
 
 	output("\n\nYour first orgasm was a mere flurry compared to the whiteout of your second. Every muscle in your body tenses; your jaw so tight it aches and your thighs so taut the girl under you lets out a muffled yipe.");
 	if(pc.hasCock()) output(" Even without a hand laid on it, your [pc.cockBiggest] leaps under the intensity of your bliss, discharging thick, [pc.cumColor] streams with wild abandon. Each twitch sends it bouncing madly, arcs of spunk splattering in wild ropes against the snow while others go high, splashing against your [pc.chest] and even your [pc.hair].");
-	if(pc.balls > 0) output(" Your groaning sack wobbles as its sticky issue geysers out in a libertine spree. The wanton orbs bounce atop the girl’s face, their vulgar weight audibly slapping her with their liquid mass.");
+	if(pc.balls > 0) output(" Your groaning sack wobbles " + (pc.hasCock() ? "as its sticky issue geysers out in a libertine spree" : "with your pent-up seed") + ". The wanton orbs bounce atop the girl’s face, their vulgar weight audibly slapping her with their liquid mass.");
 
 	output("\n\nYour [pc.pussy] grips the alien tongue with desperate need, and your hips rock back and forth as you grind against her soaked muzzle. You impale yourself again and again on the korgonne girl’s coiled organ, savoring each contour and every bloated taste bud. Her upper teeth slip down, past your clittoral hood and nip once more at the raw nub of [pc.oneClit], a third orgasm building as she nibbles and munches your pearl and pussy with relentless gluttony. Your muscles burning, your body aching, your genitalia raw from the barbarian’s assault, you let yourself collapse on top of her, surrendering yourself to the savage’s tender mercies.");
 
@@ -627,8 +627,10 @@ public function pumpKorgiPuss():void
 	if(!pc.isCrotchExposed()) output("You unhook and slide out of your [pc.gear]; t");
 	else output("T");
 	output("he sharp, frigid air of the planet is actually refreshing on your overheated [pc.skin] and burning blood. Shivering slightly, you draw the savage closer, her warmth as intoxicating as any spirit.");
-	output("\n\nFuelled by the girl’s flourishing vigor, the bulk of your [pc.cocks] stiffen between you. She closes her eyes and coos with delighted impatience as you swell against her soft stomach. ");
-	if(!korgiTranslate()) output("She rockis her hips against yours with a need that transcends language.");
+	output("\n\nFueled by the girl’s flourishing vigor, the bulk of your [pc.cocks] stiffen");
+	if(pc.cocks.length == 1) output("s");
+	output(" between you. She closes her eyes and coos with delighted impatience as you swell against her soft stomach. ");
+	if(!korgiTranslate()) output("She rocks her hips against yours with a need that transcends language.");
 	else output("<i>“Share water-heat,”</i> she begs softly. <i>“Fill korgonne with seed.”</i>");
 	output(" You break the embrace slowly, lips tingling from the final lick of her blue tongue. A strand of saliva bridges the gap between the two of you as she opens her eyes, her heart fluttering against your chest. Sliding your hips back, you brace your [pc.cockHead " + x + "] against the husky mounds of her torrid labia, kissing the folds of her dripping tunnel.");
 	output("\n\nHer nose blushes a dark indigo and she nods ever so slightly and you push into the savage with a slow-but-unrelenting stroke. She tenses, clutching your shoulders as her tongue lolls from her mouth, panting steamy clouds that flicker and writhe around your eyes. Her tightness slows your stroke to a crawl, but you push on, driving your swollen inches as deeply as ");

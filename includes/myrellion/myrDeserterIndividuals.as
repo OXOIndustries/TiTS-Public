@@ -2036,7 +2036,7 @@ public function sitAndScrewGoldMyr():void
 		output(" You moan as she lowers herself onto your shaft, swallowing it whole inside her sopping wet honeypot.");
 
 		output("\n\n<i>“Ooohh queens!”</i> The nipple-pierced deserter moans. Your ");
-		if(pc.hasCock()) output("[pc.cockHead " + x + "] penetrates her until it’s lightly brushing against her cervix,");
+		if(pc.hasCock()) output("[pc.cockHead " + x + "] penetrates her until it’s lightly brushing against her cervix.");
 		else output("gilded cock is soon fully sheathed inside of her and her waist is pressed against your own.");
 		output(" Slowly, she begins to gyrate on top of you, all the while squeezing and wringing your ");
 		if(pc.hasCock()) output("sensitive");
@@ -2368,7 +2368,7 @@ public function stealDildoScene(gold:Boolean):void
 		}
 	}
 	//repeat, PC does not have this myr’s dildo
-	else if((gold && !hasGoldDildo()) || (!gold && hasRedDildo()))
+	else if((gold && !hasGoldDildo()) || (!gold && !hasRedDildo()))
 	{
 		output("You smile and point right at the myr’s kit bag. She follows the line of your finger, slumps her shoulders, and then produces the ");
 		if(!gold) output("camo-patterned");

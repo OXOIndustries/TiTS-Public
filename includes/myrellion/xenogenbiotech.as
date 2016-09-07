@@ -446,19 +446,19 @@ public function myrellionNevrieBloodVial():void
 
 public function nevriMailGet():void
 {
-	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
+	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
 
 	MailManager.unlockEntry("myrpills", GetGameTimestamp());
 }
 public function nevriOrangeMailGet():void
 {
-	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
+	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
 
 	MailManager.unlockEntry("orangepills", GetGameTimestamp());
 }
 public function nevriBJMailGet():void
 {
-	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
+	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
 
 	MailManager.unlockEntry("bjreminder", GetGameTimestamp());
 }

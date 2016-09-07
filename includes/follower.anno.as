@@ -475,7 +475,7 @@ public function annoAtAnonsAddendum(slot:int = 8):void
 		{
 			if (rand(3) == 0 || pc.hasStatusEffect("Anno x Kaede Bar"))
 			{
-				output("\n\nAnno is drinking and conversing with a red-headed friend at the bar.");
+				output("\n\nAnno is drinking and conversing with " + (hasMetKaede() ? "Kaede" : "a red-headed friend") + " at the bar.");
 				pc.createStatusEffect("Anno x Kaede Bar", 0, 0, 0, 0, true, "", "", false, 15);
 				addButton(slot, "Anno", annoxKaedeFollowerMeeting, undefined, ("Anno & " + (hasMetKaede() ? "Kaede" : "Friend")), "Catch up with the two.");
 			}

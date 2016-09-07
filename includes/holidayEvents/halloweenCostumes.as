@@ -35,7 +35,7 @@ public function hollidayOweenAlert():void
 	
 	if (!MailManager.isEntryUnlocked("the_masque"))
 	{
-		eventBuffer += "\n\n<b>New Email From Wet & Waiting (Wet.N.Waiting@GalLink.org)!</b>";
+		eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Wet & Waiting (Wet.N.Waiting@GalLink.org)!</b>";
 		MailManager.unlockEntry("the_masque", GetGameTimestamp());
 	}
 	

@@ -7,6 +7,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GameData.StatTracking;
 	import classes.Engine.Map.InPublicSpace;
 	import classes.GLOBAL;
+	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.rand;
 	
 	/**
@@ -57,7 +58,7 @@ package classes.GameData.Pregnancy.Handlers
 			this.addStageProgression(240, function(pregSlot:int):void {
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 10;
-				kGAMECLASS.eventBuffer += "\n\nYou note that your swollen belly is shifting awkwardly. The eggs clinging inside you rumble and move, and you feel distinctly... wet. You doubt you'll be carrying these eggs around with you much longer.";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " You note that your swollen belly is shifting awkwardly. The eggs clinging inside you rumble and move, and you feel distinctly... wet. You doubt you'll be carrying these eggs around with you much longer.";
 			}, true);
 			
 			_onTryImpregnate = royalEggsGooTryImpreg;
@@ -101,7 +102,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
 				if (!inPublicSpace || (kGAMECLASS.hours <= 4 && kGAMECLASS.hours >= 22))
 				{
-					kGAMECLASS.eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. The eggs inside you shift slightly, making your";
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. The eggs inside you shift slightly, making your");
 					var pSlot:int = kGAMECLASS.pc.findPregnancyOfType("RoyalEggPregnancy");
 					if (pSlot == 4) kGAMECLASS.eventBuffer += " stomach rumble";
 					else kGAMECLASS.eventBuffer += " belly tremble";
@@ -109,7 +110,7 @@ package classes.GameData.Pregnancy.Handlers
 				}
 				else
 				{
-					kGAMECLASS.eventBuffer += "\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
 					if (kGAMECLASS.pc.isBimbo() || kGAMECLASS.pc.isTreated() || kGAMECLASS.pc.race().indexOf("ausar") != -1 || kGAMECLASS.pc.race().indexOf("") != -1 ) kGAMECLASS.eventBuffer += " Besides, people rubbing all over you feels super good!";
 				}
 			}
@@ -117,12 +118,12 @@ package classes.GameData.Pregnancy.Handlers
 				
 		public static function royalEggsOnSuccessfulImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		{
-			kGAMECLASS.eventBuffer += "\n\n<b>Your belly is swollen with nyrea eggs, distending your gut as if you were truly pregnant.</b> Hopefully, the eggs will pass quickly. Until then, you spend the next few minutes trying to adjust yourself and your equipment to your new size. Walking just got really awkward....";
+			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " <b>Your belly is swollen with nyrea eggs, distending your gut as if you were truly pregnant.</b> Hopefully, the eggs will pass quickly. Until then, you spend the next few minutes trying to adjust yourself and your equipment to your new size. Walking just got really awkward....";
 		}
 		
 		public static function royalEggsOnFailedImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		{
-			kGAMECLASS.eventBuffer += "\n\nYou feel a rumbling in your gut, and your belly starts to deflate a bit. Looks like you're absorbing those eggs, slowly but surely...\n\nMaybe you'll stop feeling so full in a while.";
+			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " You feel a rumbling in your gut, and your belly starts to deflate a bit. Looks like you're absorbing those eggs, slowly but surely...\n\nMaybe you'll stop feeling so full in a while.";
 		}
 		
 		public static function royalEggsOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
