@@ -1939,6 +1939,7 @@ public function processTime(arg:int):void {
 			}
 			if(chars["SHEKKA"].lust() < 50) chars["SHEKKA"].lust(15);
 
+			if(pc.hasPerk("Dumb4Cum")) dumb4CumUpdate();
 			//Gobbles Cooldown
 			if(flags["GOBBLES_SEXYTIMES_STARTED"] == 1 && flags["GOBBLES_COOLDOWN"] != 24)
 			{

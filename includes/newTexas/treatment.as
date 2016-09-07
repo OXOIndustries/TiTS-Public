@@ -1878,18 +1878,19 @@ public function treatmentHourProcs():void
 			if(treatedHours == 165)
 			{
 				//Autococknosis - Sometimes automatically autofellate when resting or gain extra lust while resting.
-				if(!pc.hasPerk("Auto-Autofellatio"))
+				if(!pc.hasPerk("Auto-Autofellatio") && rand(3) <= 1)
 				{
-					pc.createPerk("Auto-Autofellatio",0,0,0,0,"You're so enamored with yourself that you can't resist a little self-love.");
+					pc.createPerk("Auto-Autofellatio",0,0,0,0,"Makes you so enamored of yourself that you can't resist some auto-fellatio.");
 				}
-				/*
 				//Dumb4Cum - Intelligence is reduced after 24 hours without swallowing cum.
-				else if(!pc.hasPerk("Dumb4Cum"))
+				if(!pc.hasPerk("Dumb4Cum") && rand(2) == 0)
 				{
 					//Procs after swallowing cum:
+					pc.createPerk("Dumb4Cum",0,0,0,0,"Grants extra intelligence after acquiring cum, but reduces it otherwise.");
+					pc.createStatusEffect("Dumb4CumNotice");
+				}
 
-eBuffer += "\n\nNow that you’ve swallowed all that goo, you feel positively quick-witted and exceptionally lucid, like the spunky flavor somehow greased the workings of your brain to let you think clearly once more. Not that you couldn’t go for a hot dicking at the drop of a hat, but for some reason you’re able to think completely clearly and rationally about how perfectly arousing it could be. And you bet you could calculate the coordinates for a light drive jump mid-coitus, so there’s that.";
-eBuffer += "\n\nYou estimate that you’ve gotten the <i>“Dumb4Cum”</i> Treatment modification, a variant that allows you periods of extreme clearheadedness and boosted intellect in the 24 hours after drinking cum at the expense of reduced intelligence during periods of withdrawl.";
+	/*
 
 output("\n\nCum-Addict - Physique is lowered after 24 hours without cum.");
 output("\n\nYou’re starting to feel weak, like you haven’t had anything to eat all day, but the weirdest part is that you aren’t hungry for food. You’re hungry for cum. Salty, creamy, gooey jizz is all you can think about swallowing. It makes your mouth salivate so hard that your teeth are practically swimming in spit. You probably need cum to like, function at this point. If you don’t swallow spunk regularly, you’re liable to be weak as a kitten.");
@@ -3561,8 +3562,54 @@ public function autoautofellatioNotice():void
 	eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" It’s super weird that you would just suck yourself off without thinking about it, but then again, looking at your dick or even thinking about it too much makes your head feel sort of fuzzy and silly, like your dick is so awesome it can hypnotize you just by being there. You spend a few minutes imagining it bobbing back and forth to your heartbeat, then shake your head and smile, savoring the residual taste of [pc.cum] on your tonsils.");
 	if(pc.perkv1("Auto-Autofellatio") == 0)
 	{
-		eBuffer += "\n\n(<b>Gained Perk: Auto-Autofellatio</b> - Makes it difficult to avoid fellating yourself.)";
+		eBuffer += ParseText("\n\n(<b>Gained Perk: Auto-Autofellatio</b> - Makes it difficult to avoid fellating yourself.)");
 		if(!pc.hasPerk("Auto-Autofellatio")) pc.createPerk("Auto-Autofellatio",0,0,0,0,"You're so enamored with yourself that you can't resist a little self-love.");
+	}
+	eventBuffer += eBuffer;
+}
+
+public function dumb4CumReset():void
+{
+	var eBuffer:String = "";
+	if(pc.hasStatusEffect("Dumb4CumNotice"))
+	{
+		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Now that you’ve swallowed all that goo, you feel positively quick-witted and exceptionally lucid, like the spunky flavor somehow greased the workings of your brain to let you think clearly once more. Not that you couldn’t go for a hot dicking at the drop of a hat, but for some reason you’re able to think completely clearly and rationally about how perfectly arousing it could be. And you bet you could calculate the coordinates for a light drive jump mid-coitus, so there’s that.");
+		eBuffer += ParseText("\n\nYou estimate that you’ve gotten the <i>“Dumb4Cum”</i> Treatment modification, a variant that allows you periods of extreme clearheadedness and boosted intellect in the 24 hours after drinking cum at the expense of reduced intelligence during periods of withdrawl.");
+		pc.removeStatusEffect("Dumb4CumNotice");
+	}
+	else
+	{
+		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" With the warm feeling of reproductive juices in your body, you find you're able to think clearly once more.");
+	}
+	pc.setPerkValue("Dumb4Cum",1,0);
+	eventBuffer += eBuffer;
+}
+
+public function dumb4CumUpdate():void
+{
+	var eBuffer:String = "";
+	pc.addPerkValue("Dumb4Cum",1,1);
+	var tics:Number = pc.perkv1("Dumb4Cum");
+	
+	if(tics == 24)
+	{
+		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You lick your lips, vividly imagining what cum would taste like on your tongue. You shake your head, feeling a little absentminded, and go on your way.");
+	}
+	else if(tics == 30)
+	{
+		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You thoughtlessly chew on your [pc.lipChaste], for a moment forgetting whatever it was you were thinking of. In the brief, empty interrim, a vague echo of the flavor of cum takes its place. You could go for a snack...");
+	}	
+	else if(tics == 40)
+	{
+		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Uh, it's like, getting super hard <i>not</i> to think about cum. Like one minute you're all focusing on something, and the next you can't stop fantasizing about shoveling gobs of the stuff into your lips. You'd probably fuck or suck just about anything right now.");
+	}
+	else if(tics == 48)
+	{
+		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You can't seem to go more than a minute without thinking of getting fucked or sucking someone off. When you close your eyes, all you can think about is penises. When someone asks you a question, you have to pause for a few seconds, dragging your thoughts through a melange of pink-tinged fucking. <b>You need some cum.</b>");
+	}
+	else if(tics > 60 && tics % 12 == 0)
+	{
+		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You can't seem to go more than a minute without thinking of getting fucked or sucking someone off. When you close your eyes, all you can think about is penises. When someone asks you a question, you have to pause for a few seconds, dragging your thoughts through a melange of pink-tinged fucking. <b>You need some cum.</b>");	
 	}
 	eventBuffer += eBuffer;
 }
