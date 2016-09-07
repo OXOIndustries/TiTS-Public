@@ -16580,6 +16580,12 @@
 		{
 			return (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
 		}
+		public function hasShields():Boolean
+		{
+			if(shieldDisplayName == null) return false;
+			// For actual energy shields (to damage, drain, disable, etc.)
+			return (shieldDisplayName.toLowerCase().indexOf("shield") != -1);
+		}
 		
 		public function onLeaveBuyMenu():void
 		{

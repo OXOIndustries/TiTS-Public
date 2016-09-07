@@ -222,6 +222,9 @@ package classes.GameData
 			DeflectorRegeneration.ButtonName = "D. Regen";
 			DeflectorRegeneration.EnergyCost = 20;
 			DeflectorRegeneration.RequiresPerk = "Deflector Regeneration";
+			DeflectorRegeneration.ExtendedAvailabilityCheck = function():Boolean {
+				return kGAMECLASS.pc.hasShields();
+			}
 			DeflectorRegeneration.TooltipTitle = "Deflector Regeneration";
 			DeflectorRegeneration.TooltipBody = "Restores a portion of your shields every turn for four turns. Higher intelligence will increase the amount.";
 			DeflectorRegeneration.RequiresTarget = false;
@@ -234,6 +237,9 @@ package classes.GameData
 			PowerSurge.ButtonName = "P. Surge";
 			PowerSurge.EnergyCost = 33;
 			PowerSurge.RequiresPerk = "Power Surge";
+			PowerSurge.ExtendedAvailabilityCheck = function():Boolean {
+				return kGAMECLASS.pc.hasShields();
+			}
 			PowerSurge.TooltipTitle = "Power Surge";
 			PowerSurge.TooltipBody = "Restores a moderate amount of shields based on intelligence.";
 			PowerSurge.RequiresTarget = false;
@@ -1259,7 +1265,7 @@ package classes.GameData
 		public static var ShieldHack:SingleCombatAttack;
 		private static function ShieldHackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (target.shields() <= 0)
+			if (!target.hasShields() || target.shields() <= 0)
 			{
 				if (attacker is PlayerCharacter) output("You attempt to hack the nonexistent shield protecting [target.combatName]! It doesn't work - <b>there's no shield there.</b>");
 				else if (target is PlayerCharacter) output("[attacker.CombatName] attempts to hack your shield! It doesn't work - <b>there's no shield there.</b>");
