@@ -205,6 +205,7 @@ public function useMiscreantManor2():void
 			output("\n\n\n\n\n\n\n\n\n\n\n\n(OR IS IT?)");
 			processTime(15);
 			pc.lust(10);
+			pc.exhibitionism(1);
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 			return;
@@ -675,6 +676,7 @@ public function stocksEpilogue(args:Array):void
 		pc.loadInCunt(ppRando,x);
 		pc.loadInMouth(ppRando);
 		pc.orgasm();
+		pc.exhibitionism(2);
 	}
 	pc.libido(1);
 	processTime(18);

@@ -453,32 +453,6 @@ public function boobswellStuff(time:Number = 0):void
 	}
 }
 
-public function honeyPotCheck():void
-{
-	if(pc.thickness >= 30)
-	{
-		var boobDiff:Number = 0;
-		boobDiff = pc.thickness - 10;
-		if(pc.thickness >= 30)
-		{
-			
-		}
-		boobDiff /= 10;
-
-		pc.addPerkValue("Honeypot",1,boobDiff);
-		pc.thickness = 20;
-		
-		eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your body tightens as the honeypot gene goes to work, diverting your excess bodymass into your [pc.chest], building you bigger and fuller of [pc.milkNoun].");
-		
-		if(pc.milkFullness < 100) pc.milkFullness = 100;
-		//Bump up boob sizes
-		for(var bb:int = 0; bb < pc.bRows(); bb++)
-		{
-			pc.breastRows[bb].breastRatingHoneypotMod += boobDiff;
-		}
-	}
-}
-
 public function honeyPotBump(cumShot:Boolean = false):void
 {
 	var msg:String = "";
@@ -486,11 +460,10 @@ public function honeyPotBump(cumShot:Boolean = false):void
 	if(pc.thickness >= 30)
 	{
 		pc.thickness -= 10;
-		var boobDiff:Number = 0;
-		boobDiff = 10;
-		if(pc.thickness >= 30) 
+		var boobDiff:Number = 10;
+		if(pc.thickness >= 60)
 		{
-			boobDiff = 10;
+			boobDiff += 10;
 			pc.thickness -= 10;
 		}
 		boobDiff /= 10;

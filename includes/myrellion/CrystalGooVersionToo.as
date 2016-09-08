@@ -185,7 +185,7 @@ public function crystalGooEncounterType2():void
 		else output(" stern, martial command");
 		output(". Not apt to be fooled twice, you take a defensive stance. When she sees you prepared to attack, she speaks.");
 		
-		output("\n\n<i>“Are you sure you want fight already");
+		output("\n\n<i>“Are you sure you want to fight already");
 		if (pc.race().indexOf("nyrea") != -1) output(", nyrea");
 		else if (pc.race().indexOf("myr") != -1 || pc.race().indexOf("zil") != -1) output(", myr");
 		else if (pc.isGoo()) output(", droplet");
@@ -1059,7 +1059,7 @@ public function crystalGooCuddlebug(pcVictory:Boolean = false):void
 	output("\n\nThe ganrael’s legs fold over your back, sobering you like an ice bath. You turn on reflex - the mask which seemed salutary and welcoming now leers like a predator. Squirm though you may, its cage holds tight. The bottom half of its trunk curls upward,");
 	if (pc.isGoo()) output(" parting your fluid undercarriage and covering your [pc.ass].");
 	else if (pc.legCount == 1) output(" wrapping over your [pc.leg] and pressing against your [pc.ass].");
-	else output("  forcing your legs apart and pressing against your [pc.ass].");
+	else output(" forcing your legs apart and pressing against your [pc.ass].");
 	
 	output("\n\n<i>“Relax,”</i> the ganrael warns, though you’re not liable to listen. Four legs holding your [pc.hips] release and pry at the creature’s folded-over tail. The armor plates against your butt part under their leverage, allowing the ganrael’s wet flesh to ooze out. It slides through your [pc.ass], creeping down your crack and pooling in your anus, but when you turn to watch, the alien seizes your face in its hands, forcing you to look forward. While you stare into the impassive mask, worried, the slime infiltrating you begins to take shape.");
 	
@@ -1538,7 +1538,7 @@ public function crystalGooUnsexedLoss():void
 		else output(" huge holes");
 		output(".");
 	}
-	output(" However good the clingy flesh feels against your own, the body contact is only a distraction from the oral invasion  - with a surge, <i>another</i> gooey tendril parts your [pc.lipsChaste]. It seems as if the ganrael liked your tongue so much, "+ cgender("she", "it") +" grew two! The wrangling, slick intruders flank you, caressing your tongue from either side and pushing it around your mouth like overeager dance instructors.");
+	output(" However good the clingy flesh feels against your own, the body contact is only a distraction from the oral invasion - with a surge, <i>another</i> gooey tendril parts your [pc.lipsChaste]. It seems as if the ganrael liked your tongue so much, "+ cgender("she", "it") +" grew two! The wrangling, slick intruders flank you, caressing your tongue from either side and pushing it around your mouth like overeager dance instructors.");
 
 	if (enemy.hasStatusEffect("Unarmored"))
 	{

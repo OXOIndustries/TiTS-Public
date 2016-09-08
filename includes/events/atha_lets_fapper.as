@@ -35,7 +35,7 @@ public function smutFapMenu():void
 		addButton(i, o.t, o.f, o.ar, o.th, o.tb);
 	}
 	
-	if(pc.lust() >= 33) addButton(14, "Back", masturbateMenu);
+	if(pc.lust() < 33) addButton(14, "Back", arousalMenu);
 	else addButton(14, "Back", masturbateMenu);
 }
 

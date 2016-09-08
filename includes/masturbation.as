@@ -154,14 +154,26 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = singleDickFap;
 		faps.push(fap);
 	}
-	if (pc.isCumCow() && pc.canAutoFellate(-1))
+	if (pc.hasCock() && pc.canAutoFellate(-1))
 	{
-		fap = new FapCommandContainer();
-		fap.text = "Autofellatio";
-		fap.func = cumCowAutoFellatio;
-		fap.ttHeader = "Autofellatio";
-		fap.ttBody = "Suck your own dick.";
-		faps.push(fap);
+		if(pc.isCumCow())
+		{
+			fap = new FapCommandContainer();
+			fap.text = "Autofellatio";
+			fap.func = cumCowAutoFellatio;
+			fap.ttHeader = "Autofellatio";
+			fap.ttBody = "Suck your own dick.";
+			faps.push(fap);
+		}
+		else
+		{
+			fap = new FapCommandContainer();
+			fap.text = "Autofellatio";
+			fap.func = autofellatioForNormies;
+			fap.ttHeader = "Autofellatio";
+			fap.ttBody = "Suck your own dick.";
+			faps.push(fap);	
+		}
 	}
 	if (pc.cockTotal() >= 2)
 	{
@@ -3406,5 +3418,141 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
 
+//Normal Autofellate
+public function autofellatioForNormies():void
+{
+	clearOutput();
+	showName("\nAUTO-\nFELLATIO");
+	var x:int = pc.aCockToSuck();
+	if(x < 0) x = pc.biggestCockIndex();
+	
+	output("The moment the wicked idea forms in your head, ");
+	if(pc.lust() < 66) output("you can feel your [pc.cocks] engorging");
+	else
+	{
+		if(!pc.isCrotchExposed()) output("you can feel your [pc.cocks] straining against your [pc.lowerGarment]");
+		else output("you can feel your [pc.cocks] straining upwards in lewd agreement");
+	}
+	output(".");
+	if(!pc.isCrotchExposed()) output(" You swiftly pull the offending clothing out of the way and");
+	else output(" You swiftly");
+	output(" seat yourself ");
+	if(!InShipInterior()) output("on the ground");
+	else output("on your bunk");
+	output(", looking ");
+	if(pc.cocks[x].cLength() < pc.tallness/2) output("down");
+	else output("forward");
+	output(" to get a better look at your ");
+	if(pc.cockTotal() > 1) output("biggest ");
+	output("[pc.cockNoun " + x + "]. It's definitely just as ready to go as the rest of you.");
+
+	output("\n\nYou wrap your hand around the sizeable member");
+	if(pc.cocks[x].thickness() >= 4) output(", unable to close your fingers around the girthy rod");
+	output(", groaning at the pleasure it radiates from the contact. Those first few touches always seem so much more startling than those that follow. You'd relive the sensation of going from zero contact to the pleasant frisson of skin on skin if you could, but you'll have to settle for adding your other hand, grabbing yourself in a double grip to slowly stroke your iron-hard tool.");
+	//Tits
+	if(pc.canTitFuck(true)) 
+	{
+		output("\n\nThreading your [pc.cock " + x + "] between your ");
+		if(pc.bRows() > 1) output("[pc.fullChest]");
+		else output("[pc.chest]");
+		output(" is a simple matter of levering it closer to your body. The feeling of your sensitized penis slowly sliding into your pillowy titflesh is absolutely divine, and it only increases as inch after inch of girth vanishes into your fuckable boobs. You twist your arms to slide your biceps into position on either side of your quivering mammaries, compressing them together so that they can squeeze more firmly on the object of your affections. When your [pc.cockNoun " + x + "] finally nestles home into the deepest parts of your cleavage, pressed on all sides by tits, you nearly cum on the spot.\n\n");
+	}
+	//No tits
+	else 
+	{
+		output("\n\nYou stroke a few times, making sure you're as hard as humanly");
+		if(pc.race() != "terran" && pc.race() != "human") output(" (or inhumanly)");
+		output(" possible before you get to the main event. ");
+	}
+	//Merge no new pg for no tits
+	output("The [pc.cockHead " + x + "] flushes darker, throbbing eagerly to signal its readiness. Figuring that it's now or never, you lick your lips and bend low, taking it directly into your maw. It's amazing. You can feel it all: the [pc.lips] sealed tight around your [pc.cockNoun " + x + "], the slightly salty taste of your flesh on your tongue, and the fluttering thrill of masturbating in a way that most sapients could only dream of.");
+	if(pc.isBimbo()) output(" No wonder galotians are always sucking cock! It's the tastiest thing in the galaxy! Like, totally yummy!");
+	else if(kiroTrust() >= 60) output(" No wonder Kiro seems so keen to ram her dick down every throat in the system. Blowjobs feel great!");
+	else output(" No wonder New Texan cow-girls are always wanting to suck dick. It actually tastes pretty great!");
+
+	output("\n\nYou can only take ");
+	if(!pc.hasMuzzle()) output("a few inches");
+	else output("a good seven or eight inches");
+	output(" in before physics prevents you from taking things any farther, but it's still plenty. You've got your hands");
+	if(pc.canTitFuck(true)) output(" and breasts");
+	output(" to please the rest. You slide up and back down, stroking");
+	if(pc.canTitFuck(true)) output(" and bouncing");
+	output(" to the tempo you set with your straining lips, getting yourself good and slick. Sucking yourself like this generates some of the sloppiest sounding, lewdest noises you could imagine");
+	if(pc.isTreated()) output(". You should totally record this sometime. It'd probably make a bull blow a hole in his pants.");
+	else if(pc.exhibitionism() >= 66) output(". You should totally record this sometime. It'd probably make a viewer blow a hole in his pants.");
+	else output(".");
+	output("\n\nThere's no slowing down now that you've gotten started. The faster you bob, the tighter you make your [pc.lips] and the harder you suck, increasing the raw pleasure. Hormones flood your bloodstream with every squeeze on your turgid, virile length. Your synapses fire faster and harder until you're sure your entire nervous system is a conduit of sizzling, electric pleasure. Sloppy squishes accompany your frenzied strokes as you bring yourself closer to the peak, courting your [pc.balls] to finally give up their hidden treasure.");
+	output("\n\nEcstatic contractions wrack your middle for seconds that feel like hours, and the dam finally breaks. Your [pc.cock " + x + "] goes off, spasming in your hands");
+	if(pc.canTitFuck(true)) output(", jostling your boobs, and");
+	else output(",");
+	output(" spurting its [pc.cum] directly into your waiting mouth. There's no time to pull off, not when you were that distracted by the pleasure.");
+
+	var cum:Number = pc.cumQ();
+	//Treated, no new PG
+	if(pc.isTreated())
+	{
+		if(cum < 8) 
+		{
+			output("Sadly, you can barely manage to shoot a few drops onto your tongue. You should probably wait a bit before you try this the next time, maybe take a few transformations. You ");
+			if(flags["PLANET_3_UNLOCKED"] != undefined) output("heard rumors of a nursedroid on Myrellion that can make you more potent");
+			else output("heard rumors of a transformation that'll let your balls get so full of cum that they swell up like beanbags");
+			output(". Maybe you should look into that.");
+		}
+		else if(cum < 300)
+		{
+			output("It tastes every bit as perfect as you would expect. There's just something about orgasmic juices, be they masculine or feminine, that tastes like nirvana to your Treated tongue. You make sure to swallow as little, waiting until ");
+			if(cum < 50) output("you've got bulging cheeks");
+			else output("you've got a nice little lake");
+			output(" to swallow.");
+		}
+		else if(cum < 3001)
+		{
+			output("The juicy waves that roll into your waiting maw are too voluminous not to swallow. If you waited more than a half-second to suck it down, you'd wind up choking on it. You do your best to make your swallows as pleasurable as possible, practicing for the day you're sucking spunk from someone every bit as endowed as yourself.");
+		}
+		else
+		{
+			output("There's so much that it rolls down the corners of your mouth, but you try and swallow all the same. It tastes so good that you can't imagine anything else. Cum like, totally belongs in your tummy, after all! But there's simply too much for you to keep up. You drink until your belly is full and bulging, then pull off to take the rest on your face.");
+			if(cum >= 6000) output(" Yet it won't stop coming, not even after you're wearing a gooey mask and every inch of your body from your head to your [pc.feet] is drenched. You sit there, still pumping, luxuriating in a puddle of your own creation, promising yourself that you'll do this in a tub sometime so that you can take a jizz-bath.");
+			applyCumSoaked(pc);
+		}
+		output("\n\nThe sated dick wobbles back and forth in front of you, slowly going soft");
+		if(cum >= 3001) output(" beneath its [pc.cumColor] veneer");
+		output(". You definitely need to do this again. It combines two of your favorite things: a mouth on your dick and sucking cock!");
+	}
+	//Untreated
+	else
+	{
+		if(cum < 8) output("Luckily, you only manage to shoot a few droplets onto your tongue. You might need to rest a little while, that or look into getting some mods to keep up with your excessive libido.");
+		else if(cum < 300)
+		{
+			output("Thick, juicy waves roll onto your tongue, enough to fill your mouth.");
+			if(pc.isBimbo()) output(" You eagerly gulp it down.");
+			else output(" You reluctantly gulp it down, figuring it will save on cleanup.");
+		}
+		else if(cum < 3001)
+		{
+			output("The volimunous ejaculate pours in so heavy and so fast that you have to swallow it. There isn't really a choice. If you didn't, you'd probably wind up choking on it.");
+			if(cum < 6000) output(" You spend a few minutes cumming and gulping, too dazzled by pleasure to contemplate guzzling your own [pc.cumNoun].");
+			else 
+			{
+				output("No mortal mouth could keep up with the immense waves of ejaculate you're generating. Trails of [pc.cumColor] squirt from the corners of your mouth before you manage to pull back, but by then it's too late - you're coughing up [pc.cumNoun] while your [pc.cock " + x + "] rains more on you, drenching you from head to toe in the [pc.cumFlavor] stuff. It's an absolute mess");
+				if(cum > 9000) output(", one that only grows worse the longer you orgasm, half-burying you in a lake of your own creation");
+				output(".");
+				applyCumSoaked(pc);
+			}
+		}
+		output("\n\nYour sated dick wobbles back and forth in front of you, slowly going soft");
+		if(cum >= 6000) output(" beneath its [pc.cumColor] veneer");
+		output(". That felt absolutely amazing!");
+		if(!InShipInterior()) output(" It's a good thing you don't have to clean up the mess.");
+		else if(celiseIsCrew()) output(" It's a good thing Celise will have a field day with this mess.");
+	}
+	processTime(20);
+	pc.loadInMouth(pc);
+	pc.orgasm();
+	IncrementFlag("PC_SELF_SUCKED_STANDARD");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

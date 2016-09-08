@@ -500,6 +500,9 @@ public function sexWithAntGrills(gold:Boolean = false):void
 		// PC must have cock.
 		if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
 		else addDisabledButton(2,"Anal Sex","Anal Sex","You need a penis that will fit inside her for this scene.");
+
+		if(pc.hasHardLightEquipped()) addButton(4,"CompareToys",doubleDildoBrihaStuffing,undefined,"Compare Toys","Show off your high-tech hardlight for the ant-girl" + (flags["RED_MYR_DESERT_DILDO_DONE"] != undefined) ? " and see how it stacks up to what she's used to":"" + ".");
+		else addDisabledButton(4,"CompareToys","Compare Toys","You need hardlight-enabled underwear for this.");
 	}
 	else 
 	{
@@ -516,7 +519,8 @@ public function sexWithAntGrills(gold:Boolean = false):void
 		if(!pc.isTaur()) addButton(4,"Hand-Play",handPlayForGoldWaifusInTraining,undefined,"Hand-Play","She's got four arms... put them to work.");
 		else addDisabledButton(4,"Hand-Play","Hand-Play","Tauric creatures cannot enjoy this scene.");
 	}
-	else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
+	//REPLACED BY "CompareToys" SCENE:
+	//else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
 
 	//Steal Dildo - new scene for either myr
 	//steal the dildo (or use the stolen one on her), with or without orgasm denial
@@ -937,6 +941,8 @@ public function winVsAntGrillDeserts():void
 			// PC must have cock.
 			if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
 			else addDisabledButton(2,"Anal Sex","Anal Sex","You need a penis that will fit inside her for this scene.");
+			if(pc.hasHardLightEquipped()) addButton(4,"CompareToys",doubleDildoBrihaStuffing,undefined,"Compare Toys","Show off your high-tech hardlight for the ant-girl" + (flags["RED_MYR_DESERT_DILDO_DONE"] != undefined) ? " and see how it stacks up to what she's used to":"" + ".");
+			else addDisabledButton(4,"CompareToys","Compare Toys","You need hardlight-enabled underwear for this.");
 		}
 		else 
 		{
@@ -953,7 +959,7 @@ public function winVsAntGrillDeserts():void
 			if(!pc.isTaur()) addButton(4,"Hand-Play",handPlayForGoldWaifusInTraining,undefined,"Hand-Play","She's got four arms... put them to work.");
 			else addDisabledButton(4,"Hand-Play","Hand-Play","Tauric creatures cannot enjoy this scene.");
 		}
-		else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
+		//else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
 		//Cuff&Fuck
 		cuffNFuckButton(5, enemy);
 		//Steal Dildo - new scene for either myr
@@ -3409,4 +3415,276 @@ public function enolAngusAkaColonelAngus(puss:Boolean = true):void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//double dildo stuffing on Briha [title: 'Compare Toys']
+//button name: Compare Toys
+//stick Briha's vribrator in her butt while you pound her pussy with hardlight
+//tooltip: Show off your high-tech hardlight for {(knows name)Briha/(else)the ant-girl}{(PC has seen Briha's vibrator), and see how it stacks up to what she's used to}.
+//tooltip disabled, no hardlight: You need hardlight-enabled underwear for this.
+public function doubleDildoBrihaStuffing():void
+{
+	if(!inCombat())
+	{
+		clearOutput();
+		setEnemy(new MyrRedFemaleDeserter());
+	}
+	showDeserter(false,true);
+	author("Zeikfried");
+
+	//first time: PC has not seen Briha's vibrator
+	if(flags["RED_MYR_DESERT_DILDO_DONE"] == undefined)
+	{
+		output("You regard the ant-girl like a flower in a junkyard - no friends, no companions, just a single blithely-cheerful face in a dusty, dreary, same-y set of tunnels. She cocks her head.");
+		output("\n\n<i>“What are you staring at?”</i>");
+		if(pc.isBimbo())
+		{
+			output("\n\n<i>“Um, well... don’t you get lonely out here, honey?”</i> you ask, forced to speak before your thoughts have gathered.");
+			output("\n\n<i>“I guess,”</i> ");
+			if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+			else output("the soldier");
+			output(" answers. <i>“Sometimes I want someone to talk to and there’s nobody around.”</i>");
+			output("\n\n<i>“No, like... I mean, </i>physically<i> lonely,”</i> you clarify. You rub your thighs together unconsciously.");
+		}
+		else if(pc.isBro()) output("\n\n<i>“So like, how do you get off out here, with no boyfriend and no washing machine?”</i> you ask.");
+		else if(pc.isNice() || pc.isMischievous())
+		{
+			output("\n\n<i>“Don’t mean to pry, but... do you always have to jump a stranger when you get, um, the itch?”</i> you ask. ");
+			if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+			else output("The ant");
+			output(" looks cock-eyed at you for a moment before she hits upon your meaning.");
+		}
+		else 
+		{
+			output("\n\n<i>“You must be really horny all the time,”</i> you answer.");
+			output("\n\nShe blushes. <i>“Why do you say that?”</i>");
+			output("\n\nYou grin cruelly. <i>“Because you can only get laid by beating someone, but you’re weak as a kitten with plastic fangs.”</i>");
+		}
+		output("\n\n<i>“Ah,”</i> the bug-girl answers, embarrassed. <i>“Well, actually... we were, how should I say, ‘equipped’? - to deal with that issue in basic.”</i> She reaches for her stowage and, after a few seconds, pulls out an impressive camo-patterned sex toy.");
+		output("\n\n<i>“Meet the Private,”</i> ");
+		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+		else output("the ant");
+		output(" says, beaming. She holds it up proudly, like a torch. <i>“Durable, loyal, and never jealous, he has adjustable speed, from ‘gentle massage’ up to a setting that can please even the most... </i>sociable<i> and </i>well-exercised<i> army girl.”</i>");
+		//flag Briha’s vibrator as seen
+		flags["RED_MYR_DESERT_DILDO_DONE"] = 1;
+	}
+	//first time; PC has seen Briha’s vibrator
+	else if(flags["BRIHA_HARDLIGHT_STUFFED"] == undefined)
+	{
+		output("You lean close to the ant-girl and smile disarmingly. She smiles back");
+		//(still hostile)
+		if(inCombat()) output(", nervously,");
+		output(" and asks, <i>“What are you up to?”</i>");
+
+		if(pc.isBimbo()) output("\n\n<i>“Like, you like your vibrator, right?”</i>");
+		else if(pc.isBro()) output("\n\n<i>“You like your vibrator?”</i>");
+		else output("\n\n<i>“You’re pretty happy with your little sex toy, aren’t you?”</i>");
+		output("\n\n<i>“The Private?”</i> Briha temporizes");
+		//(nonhostile)
+		if(!inCombat()) output(", blushing a litte");
+		output(". <i>“Yeah. We’ve been together since basic training. He’s just about my ideal boyfriend - quiet, loyal, stays out of the way.”</i>");
+
+	}
+	//merge first times
+	if(flags["BRIHA_HARDLIGHT_STUFFED"] == undefined)
+	{
+		output("\n\n<i>“");
+		if(pc.isBimbo()) output("Like, ");
+		output("I dunno about it being as great as all that,”</i> you tease. <i>“It’s pretty low-tech, isn’t it?”</i>");
+		output("\n\n");
+		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+		else output("The girl");
+		output(" easily intuits the question you want to hear. <i>“Compared to what?”</i> she asks.");
+
+		output("\n\n<i>“Well...”</i> you begin");
+		//(has outer garment)
+		if(!pc.isCrotchExposedByArmor()) output(", opening your [pc.armor] to expose your [pc.lowerUndergarment]");
+		output(". You slip a hand into your underwear to find the projector controls and turn them on. Emphasized by a theatrical hip thrust, a fat, photonic cock springs from your girt loins. <i>“... something like this, maybe?”</i>");
+		output("\n\n<i>“Ooh, shiny,”</i> she says. She reaches out to touch it, haltingly, as if she expects it to fade like a hologram. Instead, you push it through her hand, which closes reflexively. <i>“What... it’s solid? That’s pretty cool....”</i>");
+		output("\n\n’Size-adjustable, too,”</i> you add, pulsing it with the control.");
+		output("\n\n<i>“But does it vibrate?”</i> she asks, knowingly.");
+		output("\n\n<i>“");
+		if(pc.isBimbo()) output("Like,");
+		else output("That’s");
+		output(" not a problem,”</i> you reply. <i>“</i>I<i> vibrate.”</i> ");
+		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+		else output("The girl");
+		output(" laughs as you jiggle your hips spastically, knocking the cock against her palm.");
+
+		output("\n\n<i>“Okay,”</i> she finally agrees. <i>“What do you have in mind?”</i>");
+		output("\n\n<i>“Side-by-side comparison,”</i> you answer cryptically. <i>“Take off your pants");
+		if(pc.isNice() || pc.isBimbo()) output(", please");
+		output(".”</i>");
+	}
+	//repeat intro
+	else
+	{
+		if(pc.isBimbo()) output("<i>“Mmm, how about we both get our toys out and see how long it takes you to cum again, honey? I bet I can beat my high score.”</i>");
+		else if(pc.isBro()) output("<i>“Get out your dildo.”</i>");
+		else output("<i>“Get out your ‘Private’ and let’s play toy soldiers again.”</i>");
+
+		output("\n\n");
+		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+		else output("The ant");
+		output(" colors, embarrassed. <i>“Okay,”</i> she says meekly, and produces the toy. You ");
+		if(!pc.isCrotchExposedByArmor()) output("expose your [pc.lowerUndergarment] and ");
+		output("generate the high-tech prick from your pants while she prepares to strip.");
+	}
+	//merge all intro to main body
+	output("\n\n");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+	else output("The soldier");
+	output(" fixates on your light-dick even as her hands slide to her waistband, her face a mosaic of second thoughts. She stares as if the humming, glowing marvel could decide to stop playing nicely and burn her at any time. For that matter, it might - if she’s too nervous to get wet, she’s going to have a bad time.");
+	output("\n\n<i>“Why don’t we start with yours?”</i> you say");
+	if(pc.isBimbo() || pc.isAss()) output(" kindly");
+	output(".");
+
+	output("\n\nThe ant-girl immediately seems more at ease. Her body posture relaxes, and the movements of her hands become natural, finding her buttons and bobs easily. Her army shorts slide down her hips and she leans forward to step out of them, blocking her sex but offering a very nice consolation view, right down her shirt.");
+	output("\n\nYou stare ");
+	if(!pc.isBimbo() && !pc.isBro()) output("covertly");
+	else output("unabashedly");
+	output(" at the smooth, dusky curves under the girl’s top, waiting ");
+	if(!pc.isAss()) output("im");
+	output("patiently for her to slide her panties over her feet and in so doing, lean far enough forward to give you a glimpse of nipple. She looks up just in time to catch you peering intently, and covers your view window with a hand.");
+	output("\n\n<i>“Cheeky,”</i> she says, blushing again.");
+	if(pc.isBimbo() || pc.isNice()) output("\n\n<i>“Please?”</i> you wheedle.");
+	else output("\n\n<i>“Oh, come on,”</i> you grunt.");
+
+	output("\n\n");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+	else output("The ant");
+	output(" giggles. She finishes stepping out of her shorts and stands up, then hooks a finger under the bottom hem of her shirt. Slowly, she lifts it, exposing one side of her chest inch by inch. She stops just under the breast... but instead of revealing her nipple, she holds it there and begins to raise the other side.");
+
+	output("\n\nUnconsciously, you’ve begun to lean in, fixated on her striptease. ");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+	else output("The girl");
+	output(" smiles keenly, enjoying her power over you, and exposes a few more inches. This hand, too, stops just below her breast, where it waits with its companion until you exit your trance and look up at ");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha’s");
+	else output("the girl’s");
+	output(" face questioningly.");
+
+	output("\n\nGrinning ear to ear, she flips up the top, finally exposing her dark nipples.");
+	if(pc.hasCock()) output(" Your photonic dildo wavers a bit as if aroused, but really is only translating the stiffening of your [pc.cocks].");
+	output(" <i>“You like?”</i> ");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+	else output("the girl");
+	output(" asks. You nod furiously, and she places her hands under her breasts, caressing and buoying them. <i>“So... are we still going to play with our toy soldiers?”</i>");
+	output("\n\nHer question snaps you back, and you take one last long glance at her pert breasts before breaking away to focus on her vibrator. <i>“");
+	if(pc.isBimbo()) output("Like, l");
+	else output("L");
+	output("ie back,”</i> you instruct.");
+
+	output("\n\nShe does, though she keeps her legs closed, concealing her pussy shyly. You nose at her knees with her toy, poking at them like a friendly dog’s nose and mimicking vibrator sounds. <i>“Bzzt.”</i> <i>“Bzzt.”</i>");
+
+	output("\n\n");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+	else output("The ant");
+	output(" laughs, and her defenses drop. She allows you to push her legs apart, revealing the fine, pink slit of her sex. It glistens with lubrication, and spreads as her thighs separate, opening into a target for your affections. You tap the vibrator to your chin thoughtfully, waiting for the girl to blush and squirm under your scrutiny, which she does.");
+
+	output("\n\n<i>“C’mon,”</i> she whines. You give an excited grin of your own, and finally nudge the vibrator against her labia. The toy moves in your hand, and you fret that you bumped the knob by accident... but it’s only because ");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+	else output("the woman");
+	output(" is so horny that her pussy is twitching. She can’t wait any longer - if you continue to stall, her quivering back muscles are liable to propel her along the ground in search of penetration. Yielding to her now-monstrous desire, you slide the toy into her. The woman’s head slumps and her chest thrusts into the air, and she releases a sigh like she’s been reunited with a missing child.");
+	output("\n\nYou tease her with the toy’s familiar tip, guiding it through its old home ground with new eyes. The ant-girl’s hands drift to her breasts again, gently tickling the skin and tweaking the erect nipples. She’s really getting into it; a trickle of lubrication shivers from her pussy, slicking the tip of the well-used toy. Eager to get more, you withdraw and turn the vibrator on at the lowest setting before making another pass through her sensitive vulva.");
+	output("\n\n<i>“Oh, please!”</i> cries the lust-struck soldier. <i>“Put it back in already!”</i> Her grip on her nipples tightens, and another pussy spasm pushes out another wave of free-flowing lubrication. More than enough for your plan.");
+	output("\n\n<i>“Not here,”</i> you answer quietly. ");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+	else output("The ant");
+	output(" looks at you, then colors furiously as you slide the shaking vibrator out from between her lips, down her perineum, and come to rest touching her asshole. You pause, with the lowest setting gently buzzing against her, staring into her eyes and waiting for her to break. She chews her lip impatiently, warring with fear and lust... and then nods permission.");
+	output("\n\nThe vibrator glides into ");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha’s");
+	else output("the girl’s");
+	output(" asshole without a jerk, completely lubricated and limbered by her desire. Her reaction is immediate and audible. The ant groans in pleasure as the pulses of the toy go to work on her nerves. She writhes in it; her legs kick and rub together, trying to find a comfortable way to receive the intensifying jolts.");
+	output("\n\n<i>“More?”</i> you ask, tilting the vibrator by the end to push it against one wall.");
+	output("\n\n<i>“Gah! No!”</i> the anal lightweight gasps, arching her back futilely to try and relieve your pressure.");
+	output("\n\n<i>“");
+	if(pc.isNice()) output("Okay,”</i> you smile.");
+	else output("Maybe just a bit?”</i> you ask, wry. The poor girl jerks in place as you turn the vibrator up one single notch, rocking her with stimulation. Her sensuous breast caress has become a deathgrip and her head lolls wildly, but it looks like you were right. She’s still smiling a rictus of pleasure... at least, when she’s not moaning.");
+
+	output("\n\n<i>“Time for the comparison,”</i> you ");
+	if(pc.isNice()) output("warn");
+	else output("think");
+	output(". The ant-girl lacks the muscle control to either resist or help as you spread her legs wide for room and ");
+	if(pc.isTaur()) output("straddle her and lower your crotch");
+	else output("lift her hips");
+	output(", but her transfixed eyes give you the sign of her anticipation. Still gushing wet, the woman takes the sci-fi strap-on in a single well-aimed push.");
+
+	output("\n\n<i>“Mmmgh,”</i> she grunts through her teeth. You pause for an explanation, but the urgency in her eyes is all you get; it tells you that she wants you to thrust, <i>now</i>. It’s an easy request to answer; the ant-girl’s legs are half-clasped around you, pulling you into her pussy; all you have to do is pull back and she’s more than eager to drag you back in. Her back muscles writhe, kicking up dirt and smearing her gorgeous, dark skin with sweat-mud. The wracking vibrations in her ass shake the woman, jiggling her perky breasts which roll unrestrained on her chest, slave to every bit of momentum you push into her.");
+
+	//only if not unsexed
+	if(pc.hasGenitals())
+	{
+		output("\n\n");
+		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+		else output("The ant-girl");
+		output(" isn’t the only one being teased by the maddening vibrator, either; every time you hilt the hardlight in her eager cunny, the base of her camouflage toy rests neatly against ");
+		if(pc.balls > 0) output("your [pc.balls]");
+		else if(pc.hasVagina()) output("your [pc.clit]");
+		else output("the [pc.sheath] of your [pc.cockNounSimple]");
+		output(", shuddering a dose of stimulation into you as well.");
+	}
+	//resume all
+	output("\n\nThe ant is a rag-doll ");
+	if(pc.isTaur()) output("between your [pc.legs]");
+	else output("in your arms");
+	output(", so destabilized by double-penetration that her dark eyes have glassed over. Her pussy-juice soaks your underwear, revealing the delicate pattern of circuitry in the fabric; they stick and cling to your skin. Her hands have completely given up on her breasts and now lie outstretched at her sides, clutching and flopping weakly. In contrast, her back muscles are as stiff as compressed springs");
+	if(!pc.isTaur()) output(" in your palms");
+	output(", ready to convulse and buckle in orgasm any second. Eager to see it, you angle a stroke low to knock the vibrator in the final inch, heedless to the difficulty she’ll have getting it free after the climax wipes her out.");
+
+	output("\n\n<i>“Nnnn!”</i> ");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
+	else output("the girl");
+	output(" cries. <i>“Cuh-ming!”</i> Possessed of sudden strength, she curls up on you like a spider, wrapping her arms around you and pressing her breasts to your chest. You can feel the tremors in her stomach as her pussy convulses around the insensitive hardlight.");
+	//(not unsexed)
+	if(pc.hasGenitals()) 
+	{
+		output(" The awkward hug pushes the ant-girl’s vibrating asshole against ");
+		if(pc.balls > 1) output("your balls");
+		else if(pc.hasVagina()) output("your pussy");
+		else output("the base of your cock");
+		output(", teasing out a small orgasm from you as well");
+		if(pc.hasCock() && pc.cumQ() >= 2000 && !pc.isCrotchExposed()) output(" - at least, small as far as you’re concerned. Your lover stares openly as your underwear balloons with jism and begins to leak wildly, smearing her quivering thighs with cummy, [pc.cumColor] mud-slime");
+		output(".");
+	}
+	output("\n\nYou remain like that, locked up in her intimacy, ");
+	if(!pc.isTaur()) output("staring into one another’s eyes, ");
+	output("until ");
+	if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha’s");
+	else output("the girl’s");
+	output(" muscles relax.");
+	if(!pc.isTaur()) output(" Instead of letting you go immediately, though, she smiles bashfully, leans in, and kisses you.");
+	output(" <i>“Think you could help me take the Private out?”</i> she mumbles, weakly.");
+
+	output("\n\nYou deactivate the hardlight and extricate yourself from her hug. ");
+	if(pc.isNice()) 
+	{
+		output("<i>“Sure,");
+		if(!inCombat()) output(" honey,");
+		output("”</i> you reply. With a deft pluck, you pull the still-wet, still-shaking vibrator from her; her pussy twitches out one last sprinkle of lubrication on your hand as a thank-you. The ant sighs and reclines, lying in the dust with a sheen of sweat and satisfaction; you don’t hear anything else from her, but her eyes follow you affectionately as you leave.");
+	}
+	//(else not nice)
+	else
+	{
+		output("<i>“Sure...”</i> you reply, reaching for the vibrator. You grasp the end but, instead of pulling it out, simply twist it back down to the lowest setting. <i>“... in your dreams.”</i> ");
+		if(flags["KNOW_RED_MYR_NAME"] == undefined) output("Briha");
+		else output("The girl");
+		output(" gasps as you back away, leaving her at the mercy of her enthusiastic mechanical companion. She flops over, laid out in a haze of sex and sweat, stomach muscles working as the toy continues to ravish her; you pick up your things and leave, but don’t get far enough away before you hear the low moans of an ant-girl in orgasm reverberate through the cave a second time.");
+	}
+	//do pc orgasm unless unsexed, pass time
+	processTime(19);
+	IncrementFlag("BRIHA_HARDLIGHT_STUFFED");
+	pc.orgasm();
+	clearMenu();
+	if(inCombat()) 
+	{
+		output("\n\n");
+		if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax())) CombatManager.genericLoss();
+		else CombatManager.genericVictory();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }

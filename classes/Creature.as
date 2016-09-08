@@ -7713,6 +7713,7 @@
 		public function canMilkSquirt():Boolean
 		{
 			if(milkFullness >= 80 || hasPerk("Mega Milk") || hasPerk("Milk Fountain")) return true;
+			if(InCollection(milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) && isLactating()) return true;
 			return false;
 		}
 		public function hasMilkPerk():Boolean
@@ -7916,7 +7917,8 @@
 			//Honeypot reduction!
 			for(var bb:int = 0; bb < bRows(); bb++)
 			{
-				breastRows[bb].breastRatingHoneypotMod = 0;
+				breastRows[bb].breastRatingHoneypotMod = breastRows[bb].breastRatingHoneypotMod - (Math.round(breastRows[bb].breastRatingHoneypotMod * (amount / 100)));
+				if(breastRows[bb].breastRatingHoneypotMod < 0) breastRows[bb].breastRatingHoneypotMod = 0;
 			}
 			setBoobSwelling();
 			return milkFullness;
@@ -16579,6 +16581,12 @@
 		public function hasAirtightSuit():Boolean
 		{
 			return (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
+		}
+		public function hasShields():Boolean
+		{
+			if(shieldDisplayName == null) return false;
+			// For actual energy shields (to damage, drain, disable, etc.)
+			return (shieldDisplayName.toLowerCase().indexOf("shield") != -1);
 		}
 		
 		public function onLeaveBuyMenu():void

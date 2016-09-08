@@ -282,6 +282,7 @@ package classes.GameData
 			}
 			
 			if(pc.shields() <= 0)
+			if(!pc.hasShields() || pc.shields() <= 0)
 			{
 				if(pc.hasCombatDrone() && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
@@ -391,7 +392,7 @@ package classes.GameData
 				}
 			}
 			
-			if (target.hasPerk("Shield Regen") && target.shields() <= 0 && target.shieldsMax() > 0 && !target.hasStatusEffect("Used Shield Regen"))
+			if (target.hasPerk("Shield Regen") && target.hasShields() && target.shields() <= 0 && target.shieldsMax() > 0 && !target.hasStatusEffect("Used Shield Regen"))
 			{
 				if (target is PlayerCharacter)
 				{
@@ -649,7 +650,7 @@ package classes.GameData
 				}
 			}
 	
-			if (target.hasStatusEffect("Deflector Regeneration"))
+			if (target.hasStatusEffect("Deflector Regeneration") && target.hasShields())
 			{
 				target.addStatusValue("Deflector Regeneration",1,-1);
 				var temp:Number = target.statusEffectv2("Deflector Regeneration");
@@ -676,9 +677,9 @@ package classes.GameData
 				else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is filled with a sudden rush of energy!</b>");
 			}
 	
-			if (target.hasStatusEffect("Porno Hacked Drone"))
+			if (target.hasStatusEffect("Porno Hacked Drone") && target.hasCombatDrone())
 			{
-				if(target.shields() > 0)
+				if(target.shields() > 0 || pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
 					target.addStatusValue("Porno Hacked Drone",1,-1);
 					if(target.statusEffectv1("Porno Hacked Drone") <= 0)
@@ -1121,7 +1122,7 @@ package classes.GameData
 				
 				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
 				{
-					if(pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
+					if(!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
 					else if(pc.energy() >= 5) addButton(3,"StaticBurst", doStaticBurst);
 					else addDisabledButton(3,"StaticBurst");
 				}
@@ -1179,7 +1180,7 @@ package classes.GameData
 			{
 				if (pc.hasPerk("Static Burst"))
 				{
-					if (pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
+					if (!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
 					else if (pc.energy() >= 5) addButton(3, "Static Burst", doStaticBurst);
 					else addDisabledButton(3, "Static Burst");
 				}
@@ -1964,7 +1965,7 @@ package classes.GameData
 			teaseList.push(["Hips", teaseHips, target, "Hips Tease", "Use your [pc.hips] to tease your enemy."]);
 			
 			// Milk Squirt
-			if ((InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) && pc.isLactating()) || (pc.isMilkTank() && pc.canMilkSquirt()))
+			if (pc.canMilkSquirt())
 				teaseList.push(["Milk Squirt", teaseSquirt, target, "Milk Squirt", "Spray the enemy with your [pc.milk], arousing them."]);
 			else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) || pc.isMilkTank())
 				teaseList.push(["Milk Squirt", null, null, "Milk Squirt", "You do not currently have enough [pc.milkNoun] available to squirt any."]);
@@ -3898,12 +3899,12 @@ package classes.GameData
 			//TAMWULF DOESNT NEED POWAAAAAHHHHH
 			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null)
 			{
-				if(droneUser.shields() > 0 && droneUser.hasStatusEffect("Drone Disabled"))
+				if(((droneUser.hasShields() && droneUser.shields() > 0) || droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER)) && droneUser.hasStatusEffect("Drone Disabled"))
 				{
 					droneUser.removeStatusEffect("Drone Disabled");
 					if(droneUser == pc) output("\nWith shield power restored, <b>your drone buzzes back to life</b>, ready to attack once more!");
 				}
-				else if(droneUser.shields() <= 0 && !droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
+				else if((!droneUser.hasShields() || droneUser.shields() <= 0) && !droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
 					//This is done elsewhere for PCs, but we'll just do it late and silent for NPCs cause fuck if I can be bothered -Fen
 					if(droneUser != pc) droneUser.createStatusEffect("Drone Disabled",0,0,0,0,false,"Icon_Paralysis","Without shields, the drone cannot attack!",true,0,0xFF0000);
