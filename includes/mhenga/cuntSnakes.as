@@ -761,11 +761,11 @@ public function takeYoEggYo():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function feedCuntSnake():void {
+public function feedCuntSnake(preg:Boolean = true):void {
 	if(flags["TIMES_FED_CUNT_SNAKE"] == undefined) flags["TIMES_FED_CUNT_SNAKE"] = 1;
 	else flags["TIMES_FED_CUNT_SNAKE"]++;
 	
 	flags["DAYS_SINCE_FED_CUNT_TAIL"] = 0;
 	if(flags["CUNT_TAIL_PREGNANT_TIMER"] == undefined) flags["CUNT_TAIL_PREGNANT_TIMER"] = 0;
-	if(flags["CUNT_TAIL_PREGNANT_TIMER"] == 0 && rand(5) == 0) flags["CUNT_TAIL_PREGNANT_TIMER"] = 20+rand(9);
+	if(flags["CUNT_TAIL_PREGNANT_TIMER"] == 0 && rand(5) == 0 && preg) flags["CUNT_TAIL_PREGNANT_TIMER"] = 20+rand(9);
 }

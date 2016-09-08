@@ -168,8 +168,11 @@ package classes.Characters
 		
 		override public function loadInCuntTail(cumFrom:Creature = null):Boolean
 		{
-			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake();
-			
+			if (this.hasTailCunt()) 
+			{
+				if(cumFrom is Flahne) kGAMECLASS.feedCuntSnake(false);
+				else kGAMECLASS.feedCuntSnake();
+			}
 			if (cumFrom != null)
 			{
 				return this.tryKnockUp(cumFrom, 4);
