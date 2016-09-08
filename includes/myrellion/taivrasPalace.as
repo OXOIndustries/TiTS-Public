@@ -3099,6 +3099,7 @@ public function cockFootsies():void
 public function taivraHardlightFunzies():void
 {
 	clearOutput();
+	showTaivra(true);
 	author("Zeikfried");
 	output("Taivra watches as you ");
 	if(!(pc.armor is EmptySlot)) output("strip your gear and ");
@@ -3191,6 +3192,7 @@ public function taivraHardlightFunzies():void
 			if(pc.isBimbo()) output("Like, r");
 			else output("R");
 			output("emember it,”</i> you say sweetly, rewarding her with a bit of tenderness.");
+			if(pc.isBimbo() || pc.isBro()) output(" <i>“And like, don’t be such a bitch next time. Just go with it, ‘k?”</i>");
 			else output(" <i>“Embrace it. Love the feeling of being controlled.”</i>");
 			output("\n\n<i>“Yes,”</i> she agrees, ashamed. But despite the shame, she pushes her ass up, a tool to her own lust. You jerk her head around, pushing and pulling to align her back for the best teases... and the best poses to show off her eye-candy body. Slowly, she begins to give in to the ecstasy - her voice pipes up in cute moans and grunts, heedless of the dignity of her rank.");
 		}
@@ -3222,6 +3224,7 @@ public function taivraHardlightFunzies():void
 		if(!pc.isAss()) output("gladly");
 		else output("gleefully");
 		output(" oblige, clenching your fist on her alien mane and pulling her head up like an unruly mare’s. Taivra grunts as her neck bends, and her asshole tightens in reflex - or submissive joy. The faint hum and vibration of the device in your underwear intensifies as it has to work harder to keep the projection intact.");
+		IncrementFlag("TAIVRA_HAIRPULLED");
 	}
 	//if not on hair-pull path (nice and not bro)
 	else
