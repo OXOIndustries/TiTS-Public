@@ -216,7 +216,7 @@ package classes.Characters
 
 			var attack:Function = weightedRand(enemyAttacks);
 			
-			if (attack == rangedAttack || attack == machinePistols) attack(target);
+			if (attack == rangedAttack || attack == machinePistols || attack == attackPass) attack(target);
 			else attack(hostileCreatures);
 		}
 		
