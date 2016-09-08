@@ -126,7 +126,7 @@ package classes.Items.Miscellaneous
 				output("\n\n" + cTarget.capitalA + cTarget.uniqueName + " " + (cTarget.isPlural ? "are" : "is") + " caught in the explosion!");
 				outputDamage(d);
 				
-				if (!cTarget.hasStatusEffect("Blinded") && (cTarget.originalRace == "robot" || cTarget.originalRace == "Automaton") && cTarget.shieldDisplayName != "ARMOR" && !cTarget.getHPResistances().hasFlag(DamageFlag.GROUNDED))
+				if (!cTarget.hasStatusEffect("Blinded") && (cTarget.originalRace == "robot" || cTarget.originalRace == "Automaton") && cTarget.hasShields() && !cTarget.getHPResistances().hasFlag(DamageFlag.GROUNDED))
 				{
 					if(cTarget is PlayerCharacter)
 					{

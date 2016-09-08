@@ -180,6 +180,11 @@ public function hairworkFromCeria():void
 	else addDisabledButton(4,"Fur Color","Fur Color","You don't have fur to dye!");
 	addButton(14,"Back",approachCeria);
 }
+public function serviceFromCeriaFinish():void
+{
+	flags["CERIA_BOUGHT"] = 1;
+	approachCeria();
+}
 
 //Ceria Lengthens Your Hair
 //Lengthen Options
@@ -264,7 +269,7 @@ public function payTheLadyForLongHair(hairInches:Number):void
 	pc.hairStyle = "null";
 	pc.credits -= cost;
 	clearMenu();
-	addButton(0,"Next",approachCeria);
+	addButton(0,"Next",serviceFromCeriaFinish);
 }
 
 //Ceria Does Your Haircut
@@ -364,7 +369,7 @@ public function cutHair(hairInches:Number):void
 	pc.hairStyle = "null";
 	pc.credits -= 200;
 	clearMenu();
-	addButton(0,"Next",approachCeria);
+	addButton(0,"Next",serviceFromCeriaFinish);
 }
 
 //Ceria Does Your Hair Color
@@ -544,7 +549,7 @@ public function hairColorizing(newColor:String = "black"):void
 	if(newColor.indexOf("glowing") != -1 || newColor.indexOf("luminous") != -1 || newColor == "iridescent") pc.credits -= 100;
 	processTime(20);
 	clearMenu();
-	addButton(0,"Next",approachCeria);
+	addButton(0,"Next",serviceFromCeriaFinish);
 }
 
 //Ceria Does Your Hairstyle
@@ -625,7 +630,7 @@ public function styleDatHairGo(hStyle:String):void
 	pc.hairStyle = hStyle;
 	//[Next] Go To Ceria Main
 	clearMenu();
-	addButton(0,"Next",approachCeria);
+	addButton(0,"Next",serviceFromCeriaFinish);
 }
 
 //Ceria Does Your Fur
@@ -649,7 +654,7 @@ public function furColorMenu():void
 	else addDisabledButton(1,"Metallic","Metallic","You can't afford this.");
 	if(pc.credits >= 1800) addButton(2,"Glowing",glowFurGo,undefined,"Glowing","Glowing colors.");
 	else addDisabledButton(2,"Glowing","Glowing","You can't afford this.");
-	addButton(14,"Back",mainGameMenu);
+	addButton(14,"Back",hairworkFromCeria);
 }
 
 //Standard Fur Color
@@ -805,7 +810,7 @@ public function furColorApplication(newColor:String):void
 	//[Next] Go to Ceria Main
 	processTime(22);
 	clearMenu();
-	addButton(0,"Next",approachCeria);
+	addButton(0,"Next",serviceFromCeriaFinish);
 }
 
 //Chatting Up The Hairstylist

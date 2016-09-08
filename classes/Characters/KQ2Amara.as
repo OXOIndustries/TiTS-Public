@@ -264,7 +264,7 @@ package classes.Characters
 			}
 			else
 			{
-				output(" bathing" + (target is PlayerCharacter ? "you":"her") +" in fire!");
+				output(" bathing " + (target is PlayerCharacter ? "you":"her") +" in fire!");
 				
 				applyDamage(damageRand(new TypeCollection( { burning: 25 } ), 15), this, target, "minimal");
 				

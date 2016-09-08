@@ -68,7 +68,7 @@ package classes.Engine.Combat
 			{
 				if (target.isPlural) 
 				{
-					if (target.shieldDisplayName.toLowerCase().indexOf("shield") != -1)
+					if (target.hasShields())
 					{
 						output(" " + possessive(target.getCombatName()) + " shields crackle but hold.");
 					}
@@ -79,7 +79,7 @@ package classes.Engine.Combat
 				}
 				else
 				{
-					if (target.shieldDisplayName.toLowerCase().indexOf("shield") != -1)
+					if (target.hasShields())
 					{
 						output(" " + possessive(target.getCombatName()) + " shield crackles but holds."); 
 					}
@@ -101,7 +101,7 @@ package classes.Engine.Combat
 			{
 				if (target.isPlural) 
 				{
-					if (target.shieldDisplayName.toLowerCase().indexOf("shield") != -1)
+					if (target.hasShields())
 					{
 						output(" There is a concussive boom and tingling aftershock of energy as " + possessive(target.getCombatName()) + " shields are breached.");
 					}
@@ -112,7 +112,7 @@ package classes.Engine.Combat
 				}
 				else 
 				{
-					if (target.shieldDisplayName.toLocaleLowerCase().indexOf("shield") != -1)
+					if (target.hasShields())
 					{
 						output(" There is a concussive boom and tingling aftershock of energy as " + possessive(target.getCombatName()) + " shield is breached.");
 					}
@@ -125,17 +125,20 @@ package classes.Engine.Combat
 		}
 		
 		//Magic shield drain shit
-		if (damageResult.shieldDamage >= 2 && baseDamage.hasFlag(DamageFlag.DRAINING) && attacker.shields() < attacker.shieldsMax())
+		if (attacker.hasShields() && target.hasShields())
 		{
-			if(attacker is PlayerCharacter) output(" Your weapon drains half of the energy into your own shield!");
-			else output(" Your foes shields strengthen at your expense!");
-			attacker.shields(Math.round(damageResult.shieldDamage * .5))
-		}
-		else if (damageResult.shieldDamage > 0 && baseDamage.hasFlag(DamageFlag.GREATER_DRAINING) && attacker.shields() < attacker.shieldsMax())
-		{
-			if(attacker is PlayerCharacter) output(" Your weapon drains most of the energy into your own shield!");
-			else output(" Your foes shields strengthen at your expense!");
-			attacker.shields(Math.round(damageResult.shieldDamage * .9))
+			if (damageResult.shieldDamage >= 2 && baseDamage.hasFlag(DamageFlag.DRAINING) && attacker.shields() < attacker.shieldsMax())
+			{
+				if(attacker is PlayerCharacter) output(" Your weapon drains half of the energy into your own shield!");
+				else output(" Your foes shields strengthen at your expense!");
+				attacker.shields(Math.round(damageResult.shieldDamage * .5))
+			}
+			else if (damageResult.shieldDamage > 0 && baseDamage.hasFlag(DamageFlag.GREATER_DRAINING) && attacker.shields() < attacker.shieldsMax())
+			{
+				if(attacker is PlayerCharacter) output(" Your weapon drains most of the energy into your own shield!");
+				else output(" Your foes shields strengthen at your expense!");
+				attacker.shields(Math.round(damageResult.shieldDamage * .9))
+			}
 		}
 
 		// HP Damage
