@@ -211,16 +211,19 @@ package classes.Characters
 				enemyAttacks.push({ v: sx1GroupSmokeGrenade,	w: 15 });
 				enemyAttacks.push({ v: concGrenade, 			w: 15 });
 			}
-			
-			if (enemyAttacks.length <= 0) enemyAttacks.push( { v: attackPass, w: 100 } );
+			if (enemyAttacks.length <= 0)
+			{
+				attackPass();
+				return;
+			}
 
 			var attack:Function = weightedRand(enemyAttacks);
 			
-			if (attack == rangedAttack || attack == machinePistols || attack == attackPass) attack(target);
+			if (attack == rangedAttack || attack == machinePistols) attack(target);
 			else attack(hostileCreatures);
 		}
 		
-		private function attackPass(target:Creature):void
+		private function attackPass():void
 		{
 			output(StringUtil.capitalize(uniqueName, false) + " is unable to attack!");
 		}

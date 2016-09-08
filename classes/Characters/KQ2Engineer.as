@@ -243,7 +243,11 @@ package classes.Characters
 			if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Disarmed")) attacks.push( { v: pistolShot, w: 50 } );
 			if (CombatAttacks.Overcharge.IsAvailable(this) && !target.hasStatusEffect("Stunned")) attacks.push( { v: CombatAttacks.Overcharge, w: 20 } );
 			if (CombatAttacks.WeaponHack.IsAvailable(this) && !target.hasStatusEffect("Disarmed")) attacks.push( { v: CombatAttacks.WeaponHack, w: 10 } );
-			if (attacks.length <= 0) attacks.push( { v: attackPass, w: 100 } );
+			if (attacks.length <= 0)
+			{
+				attackPass();
+				return;
+			}
 			
 			var selection:* = weightedRand(attacks);
 			
@@ -255,7 +259,7 @@ package classes.Characters
 			}
 		}
 		
-		private function attackPass(target:Creature):void
+		private function attackPass():void
 		{
 			output("The engineer is unable to attack!");
 		}
