@@ -181,7 +181,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return (flags["CHIEF_NEYKKAR_WITH_PC"] == 1 ? "USHAMEE" : "USHAMEE_PREG");
+			return (flags["CHIEF_NEYKKAR_WITH_PC"] == 1 ? "USHAMEE" : "USHAMEE_NUDE_PREG");
 		}
 		
 		override public function CombatAI(allied:Array, hostile:Array):void 

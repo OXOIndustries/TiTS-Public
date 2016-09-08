@@ -274,21 +274,20 @@ package classes.GameData
 					{
 						h.setStatusValue("Free Chief", 1, 1);
 					}
-					else
+					else if (h.statusEffectv1("Free Chief") == 1)
 					{
 						h.actuallyFreeChief();
 					}
 				}
 			}
 			
-			if(pc.shields() <= 0 && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 			if(pc.shields() <= 0)
 			{
 				if(pc.hasCombatDrone() && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
 				output("\n\n<b>Without your shields to sustain it, your drone collapses. It won’t be doing any more damage until you bring your shields back up!</b>");
 				pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
-			}
+				}
 			}
 			
 			return false;
@@ -369,7 +368,7 @@ package classes.GameData
 				}
 				else if (h.statusEffectv1("Parasite Cure") == 3)
 				{
-					addButton(11, "FireAlarm", h.triggerAlarm, false, "Trigger Fire Alarm", "Hit the alarm to release the cure!");
+					addButton(11, "Fire Alarm", h.triggerAlarm, false, "Trigger Fire Alarm", "Hit the alarm to release the cure!");
 				}
 			}
 		}

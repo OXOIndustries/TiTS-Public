@@ -411,7 +411,7 @@ package classes.Characters
 			}
 			else
 			{
-				target.createStatusEffect("Crushing Worms", 3, 0, 0, 0, false, "Constricted", "Crushing worms are wrapped around " + (target is PlayerCharacter ? "your" : "their") +" limbs!", true, 0, 0xFF0000);
+				target.createStatusEffect("Crushing Worms", 3, 0, 0, 0, false, "Constrict", "Crushing worms are wrapped around " + (target is PlayerCharacter ? "your" : "their") +" limbs!", true, 0, 0xFF0000);
 			}
 		}
 		
@@ -447,6 +447,8 @@ package classes.Characters
 		
 		public function attemptCure():void
 		{
+			clearOutput();
+			
 			if (!hasStatusEffect("Parasite Cure"))
 			{
 				output("You wind your way around the mutated Commander Henderson, ducking and weaving out of the way of his many throbbing, goo-leaking tentacles. Through a mix of sheer luck");
