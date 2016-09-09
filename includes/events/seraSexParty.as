@@ -1683,6 +1683,8 @@ public function seraGetSalary():void
 	IncrementFlag("SERA_SALARY_PAID");
 	
 	clearMenu();
-	addButton(0, "Next", seraMenu);
+	if(pc.hasCuntTail() && rand(2) == 0) addButton(0, "Next", getTailUsedBySera);
+	else if(pc.hasParasiteTailCock() && rand(2) == 0) addButton(0, "Next", seraCockvineScene);
+	else addButton(0, "Next", seraMenu);
 }
 
