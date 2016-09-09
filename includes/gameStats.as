@@ -3980,6 +3980,9 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["EMMY_CREW_REQUESTED"] != undefined) output2(", Asked her to join your crew");
 				}
 				if(flags["EMMY_ORALED"] != undefined) output2("\n<b>* Emmy, Times She Oral Sexed You:</b> " + flags["EMMY_ORALED"]);
+				if(flags["EMMY_EATEN_OUT"] != undefined) output2("\n<b>* Emmy, Times Licked Her Out:</b> " + flags["EMMY_EATEN_OUT"]);
+				if(flags["EMMY_FUCKED"] != undefined) output2("\n<b>* Emmy, Times Fucked Her Vagina:</b> " + flags["EMMY_FUCKED"]);
+				if(flags["EMMY_PROSTATELIGHT"] != undefined) output2("\n<b>* Emmy, Times Anal Fucked Her With Hardlight Strap-On:</b> " + flags["EMMY_PROSTATELIGHT"]);
 			}
 			// Xenogen Biotech Office
 			if(flags["MET_NEVRIE"] != undefined || flags["MET_MCALLISTER"] != undefined)
