@@ -8406,6 +8406,9 @@
 		public function hasCuntSnake(): Boolean {
 			return (hasParasiteTail() && hasTailCunt()); // I hope there would not be any other parasitic tailcunts...
 		}
+		public function hasParasiteTailCock(): Boolean {
+			return (hasParasiteTail() && hasTailCock());
+		}
 		public function tailVaginaCapacity(): Number {
 			return tailCuntCapacity();
 		}

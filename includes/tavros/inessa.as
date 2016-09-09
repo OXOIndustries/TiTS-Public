@@ -799,7 +799,7 @@ public function inessaSexMenu():void
 	if(pc.hasCock()) addButton(4,"Handjob",getAHandjobFromInessy,undefined,"Handjob","Get a handjob from the slutty, sex-shop supplying sub.");
 
 	//Requires: Inessa has submitted to PC
-	if(pc.hasCockTail()) addButton(5,"Cuff&Tail",inessaWalksOnTheWildSide,undefined,"Cuff&Tail","Have some fun with a pair of grav cuffs and your cock-tail.");
+	if(pc.hasParasiteTailCock()) addButton(5,"Cuff&Tail",inessaWalksOnTheWildSide,undefined,"Cuff&Tail","Have some fun with a pair of grav cuffs and your cock-tail.");
 	else addDisabledButton(5,"Cuff&Tail","Cuff&Tail","You don't have the requisite tail-genitalia needed for this.");
 
 	addButton(14,"Back",noYoureASlut);
@@ -1994,7 +1994,7 @@ public function inessaWalksOnTheWildSide():void
 		//{merge}
 		output("\n\n<i>“Kneel here,”</i> you order, pointing at a spot right next to the counter. Inessa dutifully does as she’s told, a delighted shudder visibly running through her as she kneels in front of you. <i>“Hands behind your back.”</i> You bend down and snap her wrists together. You rise in front of her, stroking your [pc.cockTail], allowing her to see for a moment how pleased it makes you to see her knelt and helpless like this in front of you... before slowly move away, behind the counter. Your tentacle dick remains, curling and slathering with hot anticipation at her chest and neck.");
 		output("\n\n<i>“Um...”</i> the saeri quavers, starry eyes fixed on the snake-like appendage. <i>“I don’t mean to speak out of turn [pc.master], but... I do kinda have a store to run.”</i>");
-		output("\n\n<i>“That’s the whole point, bitch. Didn’t you know?”</i> you reply with mocking surprise. You rear your cockvine up and press it against her cute, soft lips. <i>“Your [pc.master] will look after your shop whilst you concentrate on what you’re good at - polishing ");
+		output("\n\n<i>“That’s the whole point, bitch. Didn’t you know?”</i> you reply with mocking surprise. You rear your " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + " up and press it against her cute, soft lips. <i>“Your [pc.master] will look after your shop whilst you concentrate on what you’re good at - polishing ");
 		var cocks:int = pc.cockTotal() + pc.tailCount;
 		if(cocks > 1) output("one of my cocks");
 		else output("my cock");
@@ -2010,12 +2010,12 @@ public function inessaWalksOnTheWildSide():void
 		//PC has grav cuffs: 
 		if(pc.hasItem(new GravCuffs()))
 		{
-			output("Inessa abandons the counter and swiftly assumes the position; knelt down, hands behind her back, petite breasts out, timorous but earnest. You give her a fond grin as you pull out the grav-cuffs, reach behind her and securely cuff her wrists together. You step back, rear your cockvine up and press its musky, dripping tip against her cute, soft lips.");
+			output("Inessa abandons the counter and swiftly assumes the position; knelt down, hands behind her back, petite breasts out, timorous but earnest. You give her a fond grin as you pull out the grav-cuffs, reach behind her and securely cuff her wrists together. You step back, rear your " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + " up and press its musky, dripping tip against her cute, soft lips.");
 			output("\n\n<i>“Remember, slut - effort and enthusiasm,”</i> you order. <i>“That’s the key to any good advertisement broad.”</i> You finally let go of all restraint and thrust inwards past her lips and teeth, inundating your [pc.cockTail]’s end in hot, silky goodness.");
 		}
 		else
 		{
-			output("\n\nAlmost in a trance, Inessa reaches beneath the counter and retrieves a pair of large metal rings. What a good girl, keeping them close at hand! You give her a knowing grin and jerk your head, and she immediately jumps to, kneeling down in full view, hands behind her back, petite breasts out, timorous but earnest. You take the grav-cuffs, reach behind her, and securely cuff her wrists together. Stepping back, you allow your cockvine to rear up and press its musky, dripping tip against her cute, soft lips.");
+			output("\n\nAlmost in a trance, Inessa reaches beneath the counter and retrieves a pair of large metal rings. What a good girl, keeping them close at hand! You give her a knowing grin and jerk your head, and she immediately jumps to, kneeling down in full view, hands behind her back, petite breasts out, timorous but earnest. You take the grav-cuffs, reach behind her, and securely cuff her wrists together. Stepping back, you allow your " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + " to rear up and press its musky, dripping tip against her cute, soft lips.");
 			output("\n\n<i>“Remember, slut - effort and enthusiasm,”</i> you order. <i>“That’s the key to any good advertisement broad.”</i> You finally let go of all restraint and thrust inwards past her lips and teeth, inundating your [pc.cockTail]’s end in hot, silky goodness.");
 		}
 	}
@@ -2054,6 +2054,7 @@ public function inessaWalksOnTheWildSide():void
 	pc.exhibitionism(2);
 	processTime(35);
 	pc.orgasm();
+	IncrementFlag("INESSA_TAILED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

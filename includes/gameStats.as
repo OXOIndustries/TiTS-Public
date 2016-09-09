@@ -2612,6 +2612,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_EXHIBITION_BLOWJOB"] != undefined) output2("\n<b>* Sera, Times She Gave You a Public Blowjob:</b> " + flags["SERA_EXHIBITION_BLOWJOB"]);
 					if(flags["SERA_IN_JARDI_THREESOME"] != undefined) output2("\n<b>* Sera, Times Sexed in Threesome with Jardi:</b> " + flags["SERA_IN_JARDI_THREESOME"]);
 					if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) output2("\n<b>* Sera, Times She Rode Your Face:</b> " + flags["SERA_FACE_RIDE_TRAINING"]);
+					if(flags["SERA_TAILED"] != undefined) output2("\n<b>* Sera, Times You Fucked Her with a Parasitic Tail Cock:</b> " + flags["SERA_TAILED"]);
 					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length:</b> " + flags["SERA_INCH_STEALING_SEX"]);
 					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock:</b> " + flags["SERA_INCH_STEALING_HELP"]);
 				}
@@ -2656,13 +2657,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["INESSA_BEING_DOMMED"] != undefined) output2(", You’ve accepted her submission");
 				else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(", You’ve refused her submission");
 				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role:</b> " + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
-				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined || flags["INESSA_HJ"] != undefined || flags["INESSA_FACE_STRAPPED"] != undefined)
+				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined || flags["INESSA_HJ"] != undefined || flags["INESSA_FACE_STRAPPED"] != undefined || flags["INESSA_TAILED"] != undefined)
 				{
 					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
 					if(flags["INESSA_BJED"] != undefined) output2(", Gave you a blowjob");
 					if(flags["INESSA_TITTYSQUIRT"] != undefined) output2(", She squirted you");
 					if(flags["INESSA_HJ"] != undefined) output2("\n<b>* Inessa, Times She’s Given You a Handjob:</b> " + flags["INESSA_HJ"]);
 					if(flags["INESSA_FACE_STRAPPED"] != undefined) output2("\n<b>* Inessa, Times She’s Used Her Face Strap-On:</b> " + flags["INESSA_FACE_STRAPPED"]);
+					if(flags["INESSA_TAILED"] != undefined) output2("\n<b>* Inessa, Times You Fucked Her with a Parasitic Tail Cock:</b> " + flags["INESSA_TAILED"]);
 				}
 				variousCount++;
 			}
