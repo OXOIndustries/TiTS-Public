@@ -21,11 +21,22 @@ public function hasIllegalInput(sText:String = ""):Boolean
 	// Cheat codes check
 	if(chars["PC"].short.length >= 1)
 	{
-		if(sText == "furfag") eventQueue.push(Cheats.infiniteItemUse);
-		else if(sText == "idclev") eventQueue.push(Cheats.RoomTeleport);
-		else if(sText == "marcopolo") eventQueue.push(Cheats.exploreUnlock);
-		else if(sText == "motherlode") eventQueue.push(Cheats.XPToLevel);
+		switch(sText)
+		{
+			// Gameplay/Debug
+			case "furfag": eventQueue.push(Cheats.infiniteItemUse); break;
+			case "idclev": eventQueue.push(Cheats.RoomTeleport); break;
+			case "marcopolo": eventQueue.push(Cheats.exploreUnlock); break;
+			case "motherlode": eventQueue.push(Cheats.XPToLevel); break;
+			
+			// Treatment
+			case "bimbo": eventQueue.push(Cheats.TryTreatmentHaxCowGirl); break;
+			case "bull": eventQueue.push(Cheats.TryTreatmentHaxBull); break;
+			case "cumcow": eventQueue.push(Cheats.TryTreatmentHaxCumCow); break;
+			case "amazon": eventQueue.push(Cheats.TryTreatmentHaxAmazon); break;
+		}
 	}
+	
 	//return r.test(sText);
 	return false;
 }
