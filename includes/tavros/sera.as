@@ -512,6 +512,10 @@ public function letSeraFuckYou():void
 	//Savin's omnigender buttfux
 	choices[choices.length] = catchEverythingInYoButtBySavinForSeraDogcock;
 
+	//Sera Cockvine Scene
+	//Add to existing pool of PC-has-submitted scenes if PC has tail-cock
+	//if(pc.hasCockTail()) choices[choices.length] = seraCockvineScene;
+
 	//pick one
 	choices[rand(choices.length)]();
 }
@@ -965,3 +969,101 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Sera Cockvine Scene
+//Add to existing pool of PC-has-submitted scenes if PC has tail-cock
+public function seraCockvineScene():void
+{
+	clearOutput();
+	showSera(true);
+	output("<i>“Oh, hello. What do we have here?”</i>");
+	output("\n\nYou shiver as you feel the flat of a purple talon run up the length of your [pc.tail]. It reacts eagerly, swelling with lust and rearing up towards your mistress’s face.");
+	output("\n\n<i>“Oh wow,”</i> she laughs, standing her curvy form over you and gazing into the thing’s moist slit. <i>“My cute little pet has got themselves infested with one of these new parasites I’ve been hearing about.”</i> She reaches out and grips the cockvine firmly, a few inches below the head.");
+	output("\n\n<i>“You... know about these things, mistress?”</i> you manage. Pleasure flares along your tail as Sera shifts her grip up and down the lust-swollen appendage.");
+	output("\n\n<i>“Uh, yeah?”</i> she snorts, whipping her own tail around, curling it around your neck with a practiced flick. <i>“One of them attached itself to some bimbo celebrity recently, and now everybody wants one.”</i> She undoes her tail suddenly, the pulpy spade slapping you sharply on the cheek as it departs. All the while her hand coils your [pc.cockTail], forcing more and more tight, floral lust down its shaft... <i>“Fucks me off to be honest. I pay top credit to get my own tail done, and then it turns out you can get one by bending over for some shrub? Typical. And typical cock-addicted </i>you<i>, letting one of these disgusting, creepy things slither themselves onto you. Ugh!”</i>");
+	output("\n\nShe neither looks nor sounds disgusted. The tone of malicious delight that you’ve come to know so well is clear to hear, and her teal lips are split with a big, toothy sneer as she strokes and fondles your parasitic tail, make it coil and ripple with greedy lust. You groan as it darts, out of your control, batting Sera in the boob as it wriggles its way downwards. <i>Oh Void, please don’t do that...</i>");
+	output("\n\n<i>“Ooh,”</i> coos the demon morph, grin widening. <i>“Does somebody smell something interesting?”</i> She parts her full, smooth thighs slightly; it takes all of your willpower to stop the [pc.cockTail] from burrowing eagerly past her thick, semi-erect dick towards the bare, damp hole it can sense back there.");
+	output("\n\n<i>“I see how it is,”</i> murmurs Sera, reaching down to again take a firm grip of the throbbing tentacle, stroking its head like an unruly pet. <i>“You aren’t really in control of this thing, are you slut? And you </i>like<i> that. You like being weak and a slave to an alien creature’s lusts, having a dripping snake-dick attached to you that does whatever it pleases, when it pleases.”</i>");
+
+	if(pc.willpower() + rand(20) + 1 >= 15)
+	{
+		output("\n\n<i>“No...”</i> you manage to groan. It’s really very difficult when she’s fondling your [pc.cockTail] so closely.");
+	}
+	else output("\n\nYou can’t say anything at all. It’s impossible when she’s fondling your [pc.cockTail] so closely.");
+	output(" Sera smirks, before slowly leading the cock-vine back behind her male sex, brushing it against her soft inner thighs and pushing its head against her slightly parted pussy lips. Fierce excitement rockets down the ropy appendage, making you gasp slightly.");
+
+	output("\n\n<i>“Let’s see, shall we?”</i> your mistress breathes, her luminescent eyes gazing imperiously down at you. <i>“I’m going to use this disgusting tail of yours to get some much-needed satisfaction - but bitches don’t get to cum inside me. If you can control yourself, I’ll reward you. If you can’t...”</i> she trails off, biting her lip. She releases her grip on your straining tail-cock, and it immediately thrusts itself into the warm, moist hole of her vagina.");
+
+	output("\n\nSera coos, eyes half-closing as the thick dick-vine eagerly wriggles itself into her deep, tight tunnel, the writhing of it evidently sending pleasure vibrating through her. Your hands ball into fists on your [pc.knees] as the [pc.cockTail] does as it so desperately wants to do - thrust its bulging, tender head into a fertile hole, plough it good and then thoroughly seed it. But you are in control of it, you are! With a slight bark of effort, you flex those strange nerve ends at the bottom of your spine and grab hold of the reigns on the coiling, frenzied appendage. Slowly the thing stops shaking around wildly, and thrusts back and forth into your mistress’s slick pussy in a measured fashion.");
+	output("\n\n<i>“Ahh,”</i> Sera sighs, somewhere between sighing arousal and slinking menace. The energetic pump of your tail-cock translates through her whole body, her big, perky boobs bouncing gently. <i>“So you can make it dance to your tune if you want! It just requires a little bit of incentive.”</i> She closes her hips, and her pliant cunt muscles suddenly clench up around the cockvine’s shaft, forcing a gasp past your [pc.lips]. The underlying current of green, alien lust flares up, and the tail-cock shivers right down its undulating shaft. Sera snickers, high pleasure plucking at her tones. <i>“Let’s see how we do once your mistress really gets what she needs, huh?”</i>");
+	output("\n\nThe succubus rocks backward and forward on her heels, breasts blatting steadily against her corset as she wrings the cock-vine stuck in her wet tightness, steadily increasing in pace as her own excitement takes over. Good fucking void can she squeeze if she wants to - has she had work done to her female sex too? Her pussy seems to be able to grip your over-stimulated tail up and down, like the warmest, wettest, most skilful hand-job imaginable. Her reptilian eyes stay fixed on your face, glorying in the sadistic power she has assumed over you. You can’t stop the sexual anguish you feel showing there; your [pc.cockTail] is now absolutely desperate to spray its load in this wonderful, tight breeding hole it’s found, and only your own urging is preventing it. A single drop of sweat works its way down your temple and you moan.");
+	output("\n\n<i>“Aww yeah, that’s it,”</i> gloats Sera, reaching down to jerk her own twelve inch dick furiously a few inches away from your nose, utterly drunk on her own dominance. <i>“Hurts so good, doesn’t it? Fuck, I wish I could paint that expression on you 24/7.”</i> Her pussy ripples around you, femcum dripping down your unbelievably pent-up tentacle cock, and your own cry combines with Sera’s squawk of joy. She rides the bulging, tender flesh inside her with violent pushes of her hips, hand thwipping down her erect cock with savage flicks of the wrist. <i>“Hold onto it for just a little longer, slut...”</i> she groans. <i>“Just a little more...”</i>");
+
+	// ++ Lust
+	pc.lust(100);
+	processTime(10);
+	clearMenu();
+	//Medium willpower check. If succeed, display choice. If fail automatically go to <i>“release”</i>. If lust > 84% go to <i>“release”</i>.
+	if(pc.willpower() + rand(20) + 1 >= 15)
+	{
+		//[Hold Back] [Release]
+		addButton(0,"Hold Back",holdBackForSera,undefined,"Hold Back","Your mistress gave you an order. You can do this!");
+		addButton(1,"Release",releaseCuntailonSera,undefined,"Release","It’s too good not to.");
+	}
+	else addButton(0,"Next",releaseCuntailonSera);
+}
+
+//Hold Back
+//Tooltip: Your mistress gave you an order. You can do this!
+public function holdBackForSera():void
+{
+	clearOutput();
+	showSera(true);
+	output("You grit your teeth, absolutely determined that your tail-cock isn’t going to cum inside your mistress’s pussy. For a moment you think it is going to get away from you - it’s utterly soaked and loaded with lust, entranced with the moistened honey-trap it’s stuck in - but you clamp down on it hard, denying it with all your will. You exhale raggedly as Sera throws her head back and cries out, her cunt rippling up and down your writhing [pc.cockTail], drops of clear lubricant squirting around her stuffed entrance. Several moments of gratuitous female orgasm cascades into a male one, and she crows as her over-sized cock swells up around her shifting fingers and shoots streamers of musky, pearly jizz onto your hot face. It barely even registers that you’re taking a load this way, even with her throbbing, dilated cockhead in your face; all of your attention is on your tender, bulging dick-tail, ruthlessly used but horribly denied. Alien desire sinks its fingers deep into your mind.");
+	output("\n\nSera rides out the last of her double orgasm and then, with a deeply satisfied sigh, she casually reaches down and pulls your [pc.cockTail] out of her relaxed, dripping twat. It shivers with angry, pent-up lust, sending one throb after another down its lithe, sturdy body - but still, you are able to stop it pulling out of her taloned hand and attempt to bury into her pussy again.");
+	output("\n\n<i>“Very well done,”</i> she croons, smiling toothily down at you. A glow of achievement spreads across your breast, and you grin back, warm cum oozing down your cheeks. <i>“All you needed was your owner telling you to do it for you to be able to! It’s what I like to see.”</i> Your grin turns into a round <i>“oh”</i> as Sera strengthens her grip on your bulging, slickened cock-vine, stroking the sensitized dick flesh. <i>“I’m guessing you want your reward now.”</i> Up and down, up and down goes her smooth, warm hand....”</i>Do you? Does bitch want [pc.hisHer] cummies?”</i>");
+	output("\n\n<i>“Yes mistress,”</i> is the only response you’re capable of giving.");
+	output("\n\n<i>“Very well,”</i> the demon morph smirks. She increases the tempo at which she’s jerking your [pc.cockTail], whipping her grip up and down its thick length with the same energy she used to wanked herself; at the same time, she inexorably bends the tail around so that its moistened head is pointing at you. Utterly intoxicated with her touch, the cockvine obeys her completely. Your moan is momentarily drowned out by a huge, warm gush of plant cum spraying you directly in the face; brilliant, overflowing release rocks your body as Sera breezily jerks you off, adding to the generous amounts of jizz she’s already plastered across your features. The back-up is such that she’s got more than enough to completely cover your face, gel your [pc.hair], artfully scribble across your [pc.chest]... a long, glorious, juicy orgasm, used to completely despoil you.");
+	output("\n\nThe last pulse oozing onto the floor and a throaty giggle tell you, at last, you can wipe your eyes clear and look up. Sera lets your lolling, throbbing cockvine fall from her hand and casually swaggers her purple butt back behind the counter, leaning on it to drink your drenched form in.");
+	output("\n\n<i>“Hmm,”</i> she smirks contentedly, toying with her hair. <i>“A lustful tail-dick attached to you that </i>I<i> control. Very nice indeed. I think we’ll do this again. Regularly.”</i>");
+	processTime(10);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Release
+//Tooltip: It’s too good not to.
+public function releaseCuntailonSera():void
+{
+	clearOutput();
+	showSera();
+	
+	output("You just can’t help yourself. Or rather, you just can’t help the cockvine; you cannot say no to that fiery alien lust wresting control from you. You clutch your [pc.knees], throw your head back and cry out as you let go and surge to orgasm, your [pc.cockTail] opening wide and fluming its thick seed into the clutch of Sera’s pussy. Too fixed upon her own high the demon-morph does nothing but hiss her disapproval, and continues to ride the spurting tentacle dick heedlessly. Denied for so long, it fills out the succubus’s fuck-pocket easily and spurts heavily around its own writhing girth, every pulse unutterably delicious. Somewhere in there Sera cums as well, her semen splattering in your face and pussy clamping up around your pulsating tail-cock, but you don’t care; it’s so good to sink back into that over-charged alien lust, bathe in that primal gratification of seeding a fertile womb... you’ve got to enjoy every moment of this, because when it ends...");
+	output("\n\n<i>“So I was right then.”</i> Sera’s malicious tone slices straight through the wonderful, happy cloud that settles upon you after you’ve pulsed your last. The traitorous cock-vine oozes itself out of her thoroughly creamed pussy and flops down, leaving you alone to face the music. <i>“You can’t control it, even if your owner demands it. You really are a slave to your own lusts, aren’t you bitch?”</i>");
+	output("\n\n<i>“I’m sorry, mistress,”</i> you try. <i>“I - <i>“");
+	output("\n\n<i>“I don’t suppose I’d have it any other way though,”</i> Sera sighs, grimacing as she parts her thighs and looks down. <i>“If you weren’t such a spineless little " + pc.mf("worm","cum dump") + " you’d never put up with my abuse, would you? And then there’d be no fun at all.”</i>");
+	output("\n\n<i>“So you aren’t mad?”</i> you say, staring at the off-white slime sliding down her flawless thighs.");
+	output("\n\n<i>“Mad? Why? Because you got yourself infested with a parasite that is going to constantly get you into trouble? Naw,”</i> laughs the succubus. She ");
+	if(!pc.hasHair()) output("pats you on the head");
+	else output("rubs your [pc.hair]");
+	output(" fondly. <i>“It means I get to punish you more often.”</i> She draws over a chair, sits herself down and fully opens her thighs, magisterially considering you kneeling in front of her.");
+	output("\n\n<i>“You will begin by cleaning up the mess you made with your tongue - pussy and the floor. Then...”</i>");
+	processTime(1);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",releaseCuntTailOnSeraCleanup);
+}
+
+public function releaseCuntTailOnSeraCleanup():void
+{
+	clearOutput();
+	showSera(true);
+	//Time forward an hour
+	//Reduce PC health by 5% and energy by 30%, move them to square outside Dark Chrysalis
+	pc.HP(-1 * pc.HPMax() * 0.05);
+	pc.energy(-1 * pc.energyMax() * 0.05);
+
+	output("You lean against the wall outside the Dark Chrysalis a while later, gathering yourself. Your mouth is absolutely caked with the musky, slightly herbal tang of plant cum, and your [pc.ass] and back sting mightily from the whip welts that have been enthusiastically applied there. You can’t help but look venomously down at your [pc.cockTail], which is still throbbing with post-coital bliss. Next time, you swear to yourself. Next time, you’ll control it.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
