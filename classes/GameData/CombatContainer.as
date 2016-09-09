@@ -281,7 +281,6 @@ package classes.GameData
 				}
 			}
 			
-			if(pc.shields() <= 0)
 			if(!pc.hasShields() || pc.shields() <= 0)
 			{
 				if(pc.hasCombatDrone() && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
