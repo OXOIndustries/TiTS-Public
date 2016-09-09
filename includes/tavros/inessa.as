@@ -816,6 +816,9 @@ public function blowjobFromInessa():void
 	clearOutput();
 	showInessa();
 	author("JimThermic");
+	
+	var x:int = pc.longestCockIndex();
+	
 	output("You ");
 	if(pc.legCount > 1) output("stride up");
 	else output("shift");
@@ -1809,6 +1812,9 @@ public function getAHandjobFromInessy():void
 	clearOutput();
 	showInessa();
 	author("JimThermic");
+	
+	var x:int = rand(pc.cocks.length);
+	
 	output("Feeling a little horny, you decide to do something about it–or rather, get someone <i>else</i> to. ");
 	if(!pc.isCrotchExposed() && !pc.isTaur()) output("You strip off your [pc.lowerGarments] and");
 	else output("You");
@@ -1837,11 +1843,11 @@ public function getAHandjobFromInessy():void
 	output("\n\nA tiny bead of pre dribbles out of your cock hole and down your flexing shaft, rolling down until it brushes her girlish fingers. Leaning forward, she gives your drip-slickened underside a long upwards lick, looking up at you with a lusty, subservient look at the same time. Just the look in her eyes is enough for you to eagerly spill out more of your spunk, which she eagerly licks and suckles up. Her dusky blue lips are slowly painted [pc.cumColor], glistening with your [pc.cumVisc], [pc.cumFlavor] fluid.");
 
 	//Pc’s dick is 4 inches or smaller: 
-	if(pc.cocks[0].cLength() <= 4) output("\n\nWith your compact-sized dick, she’s easily able to jerk most of your length off with a single hand, wrapping her warm palm around your entire length.");
+	if(pc.cocks[x].cLength() <= 4) output("\n\nWith your compact-sized dick, she’s easily able to jerk most of your length off with a single hand, wrapping her warm palm around your entire length.");
 	else if(pc.cocks[x].cLength() <= 10) output("\n\nWrapping both her warm hands around your [pc.cockNoun " + x + "], she’s able to completely encompass and jerk off your entire length.");
 	else output("\n\nYour incredibly long dick is so super-sized that even with both hands, she’s hard pressed to jerk even half of it off. Still, just having her grip <i>part</i> of it is pleasurable enough!");
 	output(" Her focused, yet soft finger force blows away the tightness of most terran pussies, winding you up until you’re actively thrusting against her hand");
-	if(pc.cocks[x].cLength() >= 5) output("s");
+	if(pc.cocks[x].cLength() > 4) output("s");
 	output(". Your thoughts begin to swim in a muddled mess, and you <i>know</i> that you’re reaching your peak. With a throaty groan, you give one final thrust... and shoot a ");
 	if(pc.cumQ() < 8) output("pleasurable little splatter");
 	else if(pc.cumQ() < 100) output("thin stream");
