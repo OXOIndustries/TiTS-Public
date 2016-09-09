@@ -1189,10 +1189,10 @@ public function femSydianGiveThrob():void
 		}
 
 		processTime(30+rand(15));
-		enemy.loadInAss(pc);
+		enemy.loadInCunt(pc, 0);
 		pc.orgasm();
 		enemy.orgasm();
-		pc.loadInMouth(enemy);
+		//pc.loadInMouth(enemy);
 	}
 
 	output("\n\nShe rests quietly with you for a long time before speaking. <i>“That was so strange,”</i> she says. <i>“Um...”</i>");
