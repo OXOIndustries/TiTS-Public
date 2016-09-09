@@ -3911,7 +3911,7 @@ public function emmyHardLightProstateFillerUp():void
 		output("\n\nEmmy quickly gets into the spirit, however. She leans on the counter, squishing her cleavage to maximum display - possibly unintentionally, but probably not - and traces some idle doodles on the countertop with her finger. <i>“Show me how.”</i>");
 		output("\n\nBaring your intent");
 		if(!pc.isChestExposed() && !pc.isCrotchExposed()) output(" and a little skin, you strip and ");
-		else output(" you ");
+		else output(", you ");
 		output("activate your sci-fi underwear. A photonic prosthetic buzzes into life, jutting garishly from the surface of your ");
 		if(pc.hasCock()) output("already-bulging ");
 		output("crotch.");
@@ -3934,10 +3934,10 @@ public function emmyHardLightProstateFillerUp():void
 		if(pc.isNice() || pc.isBimbo())  output("request.");
 		else output("demand.");
 
-		output("\n\nEmmy lowers her eyes - you’d swear she were blushing under her fur - and shyly drops herself to the ground. She turns about and stops with her big, round ass pointed at you. Wiggling it a bit, she pushes toward you, close enough that you can see her juicy balls in sharp relief, below the damp shadow of her pussy.");
+		output("\n\nEmmy lowers her eyes - you’d swear she was blushing under her fur - and shyly drops herself to the ground. She turns about and stops with her big, round ass pointed at you. Wiggling it a bit, she pushes toward you, close enough that you can see her juicy balls in sharp relief, below the damp shadow of her pussy.");
 		output("\n\n<i>“Like this?”</i> she asks. You nod, and she continues to unzip, releasing her stiff, lustful cock from its wrapper. It bobs underneath the sex-starved herm, dribbling a bit of pre that only heralds what you intend to unleash. Emmy continues to unzip until she can’t reach any further between her legs from the position you requested. <i>“You’ll have to finish me off,”</i> she says suggestively, flicking the little zipper with a long nail.");
 		output("\n\nOh, indeed. You kneel and take the zip, pulling it gingerly over her sack, sure to brush the churning, seed-stuffed orbs with the back of your hand and feel their weight. The zipper continues along her perineum, revealing ");
-		if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("the obvious shape of herm harness harness, which you swiftly yank out of place. Her sweltering pussy glistens, tempting you to visit, ");
+		if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("the obvious shape of her herm harness’s dildo, which you swiftly yank out of place. Her sweltering pussy glistens, tempting you to visit, ");
 		else output("a pussy that glistens in isolation and tempts you to visit, ");
 		output("but you continue on until... her tight little pucker is finally revealed.");
 		output(" It’s tucked into the very end of the zipper line, almost out of reach - almost. Emmy starts in surprise as you blow a puff of air at it.");
@@ -3952,7 +3952,7 @@ public function emmyHardLightProstateFillerUp():void
 		else output("You tell me,");
 		output("”</i> you answer, pressing the spit-warmed cock to her pucker. Emmy jerks away with a gasp on instinct, then steels herself and pushes back, allowing you to slide the dildo into her asshole. A soft whine comes from the front of the jackal-girl as you push in, searching by feel for her prostate.");
 		output("\n\nAnd then you find it. Emmy’s jaw drops and she grunts a ‘hnng’ as you nudge the organ; a line of pre spurts from her cock and drops to the floor with a soft sound, leaving a string of slippery fluid connected to the tip. You continue bumping it with soft strokes, teasing her anal ring on the draw-out and gently pressing in as you hilt the dildo. Emmy’s grunts turn to quick breaths as she tries to get a handle on the sensations. You wait for her to get distracted enough....");
-		output("\n\nHer sounds let you know when it’s time. Just as Emmy begins puling with prostatic pleasure, you put your shoulder into her and push her bottom half into the air.");
+		output("\n\nHer sounds let you know when it’s time. Just as Emmy begins pulsing with prostatic pleasure, you put your shoulder into her and push her bottom half into the air.");
 		output("\n\n<i>“Hey, what the...!”</i> Emmy cries, as her elevated ass forces her weight over her head instead of her arms, the latter of which buckle and leave her leaning against the wall, standing on her shoulders with her face pointed up... right at her gushing cock. You smile ");
 		if(pc.isNice()) output("apologetically");
 		else if(pc.isMischievous()) output("mischievously");
@@ -4043,7 +4043,7 @@ public function emmyHardLightProstateFillerUp():void
 		output("\n\nEmmy’s blowjob fell into a momentary lull as she climaxed, but a jab on her prostate carries new life to her lips. Her tongue springs into action, curling around your [pc.cockHead] and spiraling over the tip. But something strange is happening with the friction. Her saliva is no longer thin enough that you can feel the bumps of her tongue, but thick and slimy and... heating up. It takes a moment for the reason to come to you. It’s her cum. Emmy’s cum is oozing down the wet, matted fur of her chin and into her mouth. The thought and feel of the sticky, slimy herm spunk engulfing your cock sets you off.");
 		if(pc.cumQ() < 8) output(" Your cock twitches and deposits a few drops of your own [pc.cumNoun] in Emmy’s mouth, to mingle with hers.");
 		else if(pc.cumQ() < 100) output(" Your cock spasms, firing your batch into Emmy’s mouth and swamping her own cum with enough to push it out the sides.");
-		else if(pc.cumQ() < 1000) 
+		else
 		{
 			output(" Your cock jerks with such a huge load that Emmy almost loses her grip; your cum rushes through your slit and washes Emmy’s mouth clean, then begins to overflow onto the floor.");
 			//(not horse)

@@ -797,6 +797,11 @@ public function inessaSexMenu():void
 	//Hand Job
 	// PC must have cock.
 	if(pc.hasCock()) addButton(4,"Handjob",getAHandjobFromInessy,undefined,"Handjob","Get a handjob from the slutty, sex-shop supplying sub.");
+
+	//Requires: Inessa has submitted to PC
+	if(pc.hasCockTail()) addButton(5,"Cuff&Tail",inessaWalksOnTheWildSide,undefined,"Cuff&Tail","Have some fun with a pair of grav cuffs and your cock-tail.");
+	else addDisabledButton(5,"Cuff&Tail","Cuff&Tail","You don't have the requisite tail-genitalia needed for this.");
+
 	addButton(14,"Back",noYoureASlut);
 }
 
@@ -1959,14 +1964,96 @@ public function faceStrapOnShitForInessa():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-// Please put these two items in Doctor Badger's inventory. Wrote them while doing Inessa, but they probably fit better in her store.
-// BTW, also rewrote the Doctor Badger X-pack to be a third the size and far less dumb.
+//Requires: Inessa has submitted to PC
+public function inessaWalksOnTheWildSide():void
+{
+	clearOutput();
+	showInessa();
+	author("Nonesuch");
+	output("Grinning rakishly, you allow your [pc.cockTail] to swing around your [pc.hip] with graceless, deliberate menace, its tip flicking into Inessa’s path of vision.");
 
-/*Decided not to code this one for now. Maybe it can show up later.
-Slut Ray, Advanced
-
-// Unlocked for sale once PC reaches Myrellion
-
-// Item coded already! I will functionally disable it though!
-
-*/
+	//First
+	if(flags["INESSA_TAILED"] == undefined)
+	{
+		output("\n\n<i>“I - I noticed that when you first came in [pc.name] - I mean, [pc.master],”</i> your butterfly sub twitters, apprehension quickening her tone. There’s a flush to her dark blue cheeks as she takes in the utterly obscene appendage. <i>“What - ? Is it a mod? Or were you born - ?”</i>");
+		output("\n\n<i>“It’s a tail dick, dear,”</i> you assure her calmly. You flagrantly eye the bare-chested saeri, hot arousal veining down your parasitic cock as your gaze slides over her petite tits and pretty lips; your rightful property, to do with as you wish. <i>“Every so often I have a need to shove it into a deserving slut’s cock-hole. Nice and deep.”</i>");
+		output("\n\nInessa doesn’t know what to say to this; mouth slightly ajar, she seems paralysed by the gentle wave and wag of your [pc.tail], drawing ever closer to her, its head moist now with musky pre. You land it on her skin just south of her breasts, relishing the supple coolness of her skin as you lead it upwards, rearing it so its head dabs at her tiny, pointy nipples. It takes all of your willpower to keep the impulses of the parasite under control - it desperately wants to arrow in on the soft, warm hole it can sense above it - but it’s so much fun to fondle the sensitive little sub like this, drink in her tenderly open lips, little stutters and squeaks escaping them as you brush over her tender, navy nubs, inundating the swollen cock-head in pleasure all the while.");
+		output("\n\nWith her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows. As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
+		//PC does not have grav-cuffs: 
+		if(!pc.hasItem(new GravCuffs()))
+		{
+			output("\n\n<i>“You sell grav cuffs here, don’t you?”</i> you say levelly.");
+			output("\n\n<i>“I - yes, [pc.master], of course.”</i> She fetches a packet off and then fumbles it open, her own nervousness and eagerness to please making her clumsy, her blush climbing higher as she struggles with the packaging; it’s very cute. At last she hands you the pair of metal rings.");
+		}
+		//PC does have grav-cuffs: 
+		else
+		{
+			output("\n\nNot breaking your gaze away from her solemn, puppy-dog eyes, you pull out your pair of grav cuffs.");
+			output("\n\n<i>“O-oh...”</i> flutters Inessa, an apprehensive thrill gusting through her voice. <i>“I think I recognise those.”</i>");
+		}
+		//{merge}
+		output("\n\n<i>“Kneel here,”</i> you order, pointing at a spot right next to the counter. Inessa dutifully does as she’s told, a delighted shudder visibly running through her as she kneels in front of you. <i>“Hands behind your back.”</i> You bend down and snap her wrists together. You rise in front of her, stroking your [pc.cockTail], allowing her to see for a moment how pleased it makes you to see her knelt and helpless like this in front of you... before slowly move away, behind the counter. Your tentacle dick remains, curling and slathering with hot anticipation at her chest and neck.");
+		output("\n\n<i>“Um...”</i> the saeri quavers, starry eyes fixed on the snake-like appendage. <i>“I don’t mean to speak out of turn [pc.master], but... I do kinda have a store to run.”</i>");
+		output("\n\n<i>“That’s the whole point, bitch. Didn’t you know?”</i> you reply with mocking surprise. You rear your cockvine up and press it against her cute, soft lips. <i>“Your [pc.master] will look after your shop whilst you concentrate on what you’re good at - polishing ");
+		var cocks:int = pc.cockTotal() + pc.tailCount;
+		if(cocks > 1) output("one of my cocks");
+		else output("my cock");
+		output(". Put some effort into it - you’re your own store’s advertisement now.”</i> You finally let go of all restraint and thrust inwards past her lips and teeth, inundating your [pc.tail]’s end in hot, silky goodness.");
+	}
+	//Repeat
+	else
+	{
+		output("\n\n<i>“O-oh.”</i> Color blooms in Inessa’s cheeks. <i>“Are you saying that - ?”</i>");
+		output("\n\nHer words end in a breathy, shaky sigh as you land it on her skin just south of her breasts, relishing the supple coolness of her skin as you lead it upwards, rearing it so its head dabs at her tiny, pointy nipples. It takes all of your willpower to keep the impulses of the parasite under control - it desperately wants to arrow in on the soft, warm hole it can sense above it - but it’s so much fun to fondle the sensitive little sub like this, drink in her tenderly open lips, little stutters and squeaks escaping them as you brush over her tender, navy nubs, inundating the swollen cock-head in pleasure all the while. Arousal is soon throbbing through you, unstoppably powering your feral impulses on.");
+		output("\n\nWith her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows. As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
+		output("\n\n<i>“I shouldn’t have to tell you what to do.”</i>");
+		//PC has grav cuffs: 
+		if(pc.hasItem(new GravCuffs()))
+		{
+			output("Inessa abandons the counter and swiftly assumes the position; knelt down, hands behind her back, petite breasts out, timorous but earnest. You give her a fond grin as you pull out the grav-cuffs, reach behind her and securely cuff her wrists together. You step back, rear your cockvine up and press its musky, dripping tip against her cute, soft lips.");
+			output("\n\n<i>“Remember, slut - effort and enthusiasm,”</i> you order. <i>“That’s the key to any good advertisement broad.”</i> You finally let go of all restraint and thrust inwards past her lips and teeth, inundating your [pc.cockTail]’s end in hot, silky goodness.");
+		}
+		else
+		{
+			output("\n\nAlmost in a trance, Inessa reaches beneath the counter and retrieves a pair of large metal rings. What a good girl, keeping them close at hand! You give her a knowing grin and jerk your head, and she immediately jumps to, kneeling down in full view, hands behind her back, petite breasts out, timorous but earnest. You take the grav-cuffs, reach behind her, and securely cuff her wrists together. Stepping back, you allow your cockvine to rear up and press its musky, dripping tip against her cute, soft lips.");
+			output("\n\n<i>“Remember, slut - effort and enthusiasm,”</i> you order. <i>“That’s the key to any good advertisement broad.”</i> You finally let go of all restraint and thrust inwards past her lips and teeth, inundating your [pc.cockTail]’s end in hot, silky goodness.");
+		}
+	}
+	//{merge}
+	output("\n\nSloppy, muffled sounds fill the shop as your lithe tail dick energetically explores Inessa’s mouth. The sensation is not great at first - her teeth keep rubbing over the bulging meat of your shaft, and without hands to help her she struggles to properly get hold of the over-excited tentacle. You clamp down on the impulse to impatiently throat-fuck her, though - she’s young and inexperienced. Leaning on the counter and concentrating on the door, you husk instructions and sigh your approval when she gets it right, until she is hollowing her cheeks fulsomely around your [pc.cockTail], providing a wonderful, wet suck for you to thrust your throbbing tail into with succulent strokes. You reward her quick learning by pulling out and smearing the pre-oozing tip over her cute lips and nose; she pants for breath and coos with submissive delight, licking at the slit of her new best friend. Heavy and full with fervent arousal now, you rear it back and shove it into her fuck-hole, delighted that she immediately tightens her walls back around your shaft...");
+	output("\n\nWa-<b>TSSSHHHH!</b> It takes all of your self-discipline not to freeze as the shop door opens, and to smoothly continue undulating your [pc.cockTail] into Inessa’s face. Her eyes go wide though, and she spasms slightly in her bonds.");
+	output("\n\n<i>“I’m sorry,”</i> says the business-suited platinum blond human male, stood stock-still in the doorway, <i>“is this a bad time?”</i>");
+	output("\n\n<i>“Not at all,”</i> you reply blandly. The body of your vestigial cock writhes like a cut power-line, pleasure coursing up from its bulging head. Showing as little visible effort as you possibly can, you damp down on its excited energy, forcing the way it pushes into Inessa’s hot mouth to be gentle and slow. <i>“Welcome to Happy Tails. What can I interest you in?”</i>");
+	output("\n\n <i>“Well, I - ”</i> replies the tall, well-built man, finally tearing his eyes away from her to you. <i>“ - I’m in need of a few things I suppose, but - advice, mostly. For a couple who are looking to spice things up a little in the bedroom. What would you recommend?”</i>");
+	output("\n\n<i>“You can do much worse than starting off with a pair of premium edition grav-cuffs,”</i> you reply breezily. <i>“We have a demonstration model set up here.”</i> Your control of the situation seems to be having the effect you’re looking for - Inessa’s jaw and tongue are working again, kneading wetly away at your ancillary alien penis. Her face has turned an adorable shade of purple, and her eyes flick up to both you and the customer when you " + pc.moveAction(false,true) + " over to her knelt, cuffed form - but she continues to hollow her cheeks around the shaft of your [pc.cockTail] determinedly. What a good girl.");
+	output("\n\n<i>“These cuffs automatically adjust for comfort, but are unbreakable by anything short of military spec cutting tools,”</i> you say. Intense pleasure throbs through your appendage and you up the pace with which you thrust its saliva-coated end into the saeri, but keep your voice level. <i>“Their most impressive feature, though, is that you can adjust both their weight and the weight of the individual cuffed. Cuffs - zero.”</i>");
+	output("\n\nThe grav-cuffs hum, and Inessa emits a muffled squeak. Calmly you reach down and pick her up by the shoulder, twisting her around so that the customer can see her face, then let go. She floats in mid-air, mouth stretched around the insistent girth of your tentacle dick.");
+	output("\n\n<i>“Woah,”</i> breathes the customer, watching your navy-skinned bitch slowly revolve in the air via the excited force of the cock-vine, displaying her chastity belt. Firmly and carefully you take hold of her again, place her back on the floor, and re-establish her weight.");
+	output("\n\n<i>“The links are, of course, voice-activated,”</i> you go on. <i>“Cuffs - release.”</i> With a tinkling clink, the two metal rings fall to the floor, and you pull your [pc.cockTail] out of Inessa’s delightful suck. She looks up at you in slight, fuzzy confusion, hands vaguely touching her slim hips.");
+	output("\n\n<i>“What do you say?”</i> you ask sternly. It’s taking almost all of your willpower to hold the bulging urge of your tentacle penis back, poised near her face.");
+	output("\n\n<i>“Please [pc.master]...”</i> says Inessa, after a pause. <i>“Could- could I have some more?”</i> Without a word you reach down, [pc.chest] pushing against her petite tits as you re-attach the cuffs, and unceremoniously plug her open and waiting mouth with eager, writhing vine dick again.");
+	output("\n\n<i>“Buy some of these, learn to use them,”</i> you say, leading the man back to the counter, your tail tapering out behind you, <i>“and your sub will very quickly want to get into more advanced gear.”</i>");
+	output("\n\n<i>“I- well, I’m not the - but yes,”</i> says the customer, gazing down at your <i>“demonstration”</i>, which you are now in the process of noisily and gloriously throating, <i>“I think I would very much like to purchase a set of those.”</i>");
+	output("\n\nYou complete the transaction and smile him out of the store. Some unholy blend of what just happened - the public display of your obedient and willing sub, the grossness of your use of her, the gain of hard money - has got you extremely aroused, ");
+	if(pc.hasCock()) 
+	{
+		output("[pc.eachCock] ");
+		if(!pc.isCrotchExposed()) output("pressing hard against your [pc.lowerUndergarment]");
+		else output("rock hard");
+	}
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina()) output("[pc.eachVagina] flush and wet with arousal");
+	if(!pc.hasGenitals()) output(" rigid and pulsing");
+	output(", and you channel all of that into robustly deep-throating Inessa with your frenzied cock-vine. The time you spent getting her used to the force and extent of your [pc.cockTail] was well spent, and she takes it like a champ: mouth open, eyes closed and tethered fists clenched, a series of wet 'glork's and 'ack's reverberating around the shop as you push into that wonderful tightness beyond her mouth again, and again, and again.");
+	output("\n\nYou groan and clutch the counter as you cum, shooting a huge streamer of plant seed directly into Inessa’s tummy, bypassing her taste-buds entirely. That is a situation you rectify by drawing your [pc.cockTail] back and filling her mouth with your next two glorious pulses, off-white paste spurting around her opened lips. Whilst she’s busy attempting to swallow that down, you pull out of her mouth entirely, grip the shaft of your tail-cock and spurt the last of its load across her face and small breasts like an out-of-control hose. You sigh when it finally wilts, a glow of magnificent contentment glowing through both you and the parasite.");
+	output("\n\nYou un-cuff Inessa and draw her up in your arms, letting her know by your expression and squeeze how pleased her dom is by her obedient participation in her own humiliation (not too close though. You really did splatter her good.) Inessa responds with a tremulous, out-of-focus grin; an expression somewhere between shock and profound, submissive pleasure.");
+	output("\n\n<i>“Did I do alright, [pc.master]?”</i> she manages at last, wiping a trailer of cum off one of her star-burst eyes.");
+	output("\n\n<i>“Very,”</i> you reply. You let your gaze drift beyond her to the shelves and hoardings, a possessive hand running down Inessa’s warm, slim flank. <i>“There’s plenty of other gear to advertise in here, isn’t there? More... advanced goods, that customers need real inducement to buy. Have a long think about that before I next visit.”</i>");
+	output("\n\nYou step away and let an extremely flushed saeri hurry off to find a wash basin in the back. You think you hear her twitter curses about her chastity belt all the way.");
+	//Small Exhibitionism score bump
+	pc.exhibitionism(2);
+	processTime(35);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

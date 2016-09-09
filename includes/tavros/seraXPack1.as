@@ -1189,6 +1189,8 @@ public function seraSexXXXRouter():void
 	if(flags["SERA_UNLOCK_SEMENS"] != undefined) chance += 2;
 	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined) chance += 2;
 	if(rand(chance) == 0) choices.push(seraSexXXXTitfuckLuckyDipStart);
+	if(pc.hasCockTail()) choices.push(seraCockvineScene);
+
 	
 	// Go go sexytimes
 	if(newScenes.length > 0) newScenes[rand(newScenes.length)]();
