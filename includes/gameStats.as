@@ -625,8 +625,10 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 			}
 		}
-		if(flags["PC_SELF_SUCKED_STANDARD"] > 1) output2("\n<b>* Masturbation, Times Autofellatio:</b> " + flags["PC_SELF_SUCKED_STANDARD"]);
-		if(pc.perkv1("Auto-Autofellatio") > 1) output2("\n<b>* Masturbation, Times Auto-Autofellatio:</b> " + pc.perkv1("Auto-Autofellatio"));
+		var selfSuck:int = 0;
+		if(flags["PC_SELF_SUCKED_STANDARD"] != undefined) selfSuck += flags["PC_SELF_SUCKED_STANDARD"];
+		if(pc.hasPerk("Auto-Autofellatio")) selfSuck += pc.perkv1("Auto-Autofellatio");
+		if(selfSuck > 0) output2("\n<b>* Masturbation, Times Autofellatio:</b> " + selfSuck);
 	}
 	
 	// Other
