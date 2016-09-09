@@ -192,7 +192,10 @@ package classes.Items.Miscellaneous
 						//Set values for dudes
 						else if(pc.hasCock() && !pc.hasVagina())
 						{
-							setTreatmentMode(pc,1);
+							//20% cumcow for shemales/traps
+							if((pc.hasBreasts() || pc.femininity >= 60) && rand(5) == 0) setTreatmentMode(pc,2);
+							//Normies!
+							else setTreatmentMode(pc,1);
 						}
 						//Herms/neuters
 						else
