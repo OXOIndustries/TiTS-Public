@@ -990,7 +990,7 @@ package classes.GameData
 					addCombatEffect(new StorageClass("Lust Spores Output"));
 				
 					output("\n\nThe hazy cloud of spores continues to swirl around in the air, enveloping every thing and every one in their foul touch.");
-					if (sporesFailed)
+					if (!sporesFailed)
 					{
 						outputDamage(sr);
 					}
