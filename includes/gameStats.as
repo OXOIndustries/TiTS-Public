@@ -625,6 +625,8 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 			}
 		}
+		if(flags["PC_SELF_SUCKED_STANDARD"] > 1) output2("\n<b>* Masturbation, Times Autofellatio:</b> " + flags["PC_SELF_SUCKED_STANDARD"]);
+		if(pc.perkv1("Auto-Autofellatio") > 1) output2("\n<b>* Masturbation, Times Auto-Autofellatio:</b> " + pc.perkv1("Auto-Autofellatio"));
 	}
 	
 	// Other
@@ -3164,6 +3166,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["FLAHNE_BUBBLED"] != undefined) output2("\n<b>* Flahne, Times Given Cum Bubble:</b> " + flags["FLAHNE_BUBBLED"]);
 				if(flags["FLAHNE_SEXED"] != undefined) output2("\n<b>* Flahne, Times Sexed:</b> " + flags["FLAHNE_SEXED"]);
+				if(flags["FLAHNE_CSNAKED"] != undefined) output2("\n<b>* Flahne, Times She Fucked Your Tail Cunt:</b> " + flags["FLAHNE_CSNAKED"]);
 				variousCount++;
 			}
 			// Scrapyard
@@ -3538,8 +3541,10 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Delilah:</b> Met her");
 					if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) output2(", Took her anal virginity");
+					//if(delilahSubmissiveness() > 0) output2("\n<b>* Delilah, Submissiveness Level:</b> " + delilahSubmissiveness());
 					if(flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] > 0) output2("\n<b>* Delilah, Times Sexed:</b> " + flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"]);
 					if(flags["TIMES_ATE_DELILAH_OUT"] > 0) output2("\n<b>* Delilah, Times Sat on Her Face:</b> " + flags["TIMES_ATE_DELILAH_OUT"]);
+					if(flags["DEL_TAIL_TRAINED"] != undefined) output2("\n<b>* Delilah, Times She Fucked Your Tail Cunt:</b> " + flags["DEL_TAIL_TRAINED"]);
 				}
 				// Unknown waitress
 				if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
@@ -4421,6 +4426,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						else output2(" Normal");
 						if(flags["TAIVRA_FERTILE"] > 0) output2("\n<b>* Queen Taivra, Last Fertilized Her:</b> " + prettifyMinutes(GetGameTimestamp() - flags["TAIVRA_FERTILE"]) + " ago");
 					}
+					if(flags["TAIVRA_HAIRPULLED"] != undefined) output2("\n<b>* Queen Taivra, Times Pulled Her Hair During Hardlight Anal:</b> " + flags["TAIVRA_HAIRPULLED"]);
 				}
 				// Queensguard
 				if(metTaivra())
@@ -4481,6 +4487,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered:</b> " + flags["MET_RED_DESERTER"]);
 					if(flags["RED_DILDOED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times Used Dildo:</b> " + flags["RED_DILDOED"]);
+					if(flags["BRIHA_HARDLIGHT_STUFFED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times She Had Double Dildo Stuffing:</b> " + flags["BRIHA_HARDLIGHT_STUFFED"]);
 				}
 				variousCount++;
 			}
