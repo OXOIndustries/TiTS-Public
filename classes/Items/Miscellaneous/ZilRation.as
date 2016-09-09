@@ -74,7 +74,7 @@
 					else if(target.libido() < 30) {
 						kGAMECLASS.output("\n\nYou idly rub at your crotch");
 						if(!target.isCrotchExposed()) kGAMECLASS.output(" through your [pc.lowerGarment]");
-						kGAMECLASS.output(" while entertaining a daydream about an encounter will a zil in the jungle. " + target.mf("She","He") + " comes upon you before you're ready and instead of fighting, you offer not to resist... in exchange for more rations.\n\nShaking your head to clear away the increasingly lustful fantasy, you can't help but wonder if this stuff is effecting you somehow... spiking your libido to match the aliens' own.");
+						kGAMECLASS.output(" while entertaining a daydream about an encounter with a zil in the jungle. " + (rand(2) == 0 ? "She" : "He") + " comes upon you before you're ready and instead of fighting, you offer not to resist... in exchange for more rations.\n\nShaking your head to clear away the increasingly lustful fantasy, you can't help but wonder if this stuff is effecting you somehow... spiking your libido to match the aliens' own.");
 						target.lust(5);
 					}
 					else {
