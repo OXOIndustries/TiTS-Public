@@ -99,7 +99,8 @@ public function pennyBustDisplay(nude:Boolean = false):String
 	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{
 		if
-		(	(flags["PENNY_BADGER_BIMBO"] == undefined && kGAMECLASS.gameOptions.configuredBustPreferences["PENNY_NUDE"] == "JACQUES")
+		(	(kGAMECLASS.gameOptions.configuredBustPreferences["PENNY"] == "JACQUES")
+		||	(flags["PENNY_BADGER_BIMBO"] == undefined && kGAMECLASS.gameOptions.configuredBustPreferences["PENNY_NUDE"] == "JACQUES")
 		||	(flags["PENNY_BADGER_BIMBO"] != undefined && kGAMECLASS.gameOptions.configuredBustPreferences["PENNY_BIMBO"] == "JACQUES")
 		||	(penny.hasCock(GLOBAL.TYPE_EQUINE) && kGAMECLASS.gameOptions.configuredBustPreferences["PENNY_BIMBO_HORSE"] == "JACQUES")
 		)
