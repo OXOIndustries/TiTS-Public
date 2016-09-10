@@ -2830,7 +2830,11 @@
 				kGAMECLASS.mimbraneFeed("cock");
 				kGAMECLASS.mimbraneFeed("vagina");
 				StatTracking.track("sex/player/orgasms");
-				removeStatusEffect("Blue Balls");
+				if(hasStatusEffect("Blue Balls"))
+				{
+					msg += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + ".");
+					removeStatusEffect("Blue Balls");
+				}
 				//Slamazon shit
 				if(hasStatusEffect("Amazonian Endurance Report Needed")) 
 				{
