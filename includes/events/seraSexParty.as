@@ -1678,7 +1678,12 @@ public function seraGetSalary():void
 	output("\n\n<i>“Very good, Steele,”</i> she purrs. <i>“Could definitely do with more bits about you getting alien reproductive fluid samples all over your face, though. Think about that for next time.”</i> She taps her store screen carelessly, and your bank account is updated.");
 	
 	processTime(15 + rand(16));
-	pc.credits += 1500 + rand(501);
+	
+	var weeksPast:int = Math.floor((GetGameTimestamp() - flags["SERA_SALARY_DATE"]) / 60 / 24 / 7);
+	for(var i:int = 0; i < weeksPast; i++)
+	{
+		pc.credits += 1500 + rand(501);
+	}
 	flags["SERA_SALARY_DATE"] = GetGameTimestamp();
 	IncrementFlag("SERA_SALARY_PAID");
 	
