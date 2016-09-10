@@ -13897,6 +13897,20 @@
 		{
 			return (lowerUndergarment.hardLightEquipped);
 		}
+		public function hasHardLightStrapOn():Boolean
+		{
+			// Check equipment
+			if(hasHardLightEquipped()) return true;
+			// Check inventory
+			if(inventory.length > 0)
+			{
+				for(var i:int = 0; i < inventory.length; i++)
+				{
+					if(inventory[i].hardLightEquipped) return true;
+				}
+			}
+			return false;
+		}
 		public function hardLightVolume():Number
 		{
 			return 30;

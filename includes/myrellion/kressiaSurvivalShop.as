@@ -32,13 +32,15 @@ public function kressiaSurvivalShopMenu():void
 {
 	clearMenu();
 	
+	// Apply Discounts
+	if(pc.hasStatusEffect("Kressia Survival Shop Discount")) chars["ANARRIE"].sellMarkup = 0.75;
+	else chars["ANARRIE"].sellMarkup = 1.2;
 	shopkeep = anarrie;
 
 	addButton(0, "Shop", buyItem, undefined, "Buy", "Buy stuff.");
 	addButton(1, "Talk", kressiaSurvivalShopTalk, undefined, "Talk", "Ask the ant-girl owners some questions.");
 	//addButton(2, "Discount?", null);
-	if(flags["DISCOUNT_SEXED_SURVIVAL_SHOP"] == undefined) addButton(2,"Flirt",discountFlirtsFromPolyants);
-	else addButton(2,"Sex",discountFlirtsFromPolyants);
+	addButton(2,(flags["DISCOUNT_SEXED_SURVIVAL_SHOP"] == undefined ? "Flirt" : "Sex"), discountFlirtsFromPolyants);
 
 	addButton(14, "Back", mainGameMenu);
 }
@@ -255,7 +257,7 @@ public function discountFlirtsFromPolyants():void
 	{
 		output("You wait for the store to be emptied of customers before walking up to Shiare and asking if her and Anarrie have time for some off-duty fun. She answers your question with a devilish smile before directing her gaze to Ana. The crimson plated ant-girl flushes, nodding and heading to the bedroom in the back of the store.");
 		//Hardlight Voyeur intro - requires sum milkin sluuuuts
-		if(flags["HARDLIGHT_ANT_PROC"] == 1 && pc.hasHardLightEquipped())
+		if(flags["HARDLIGHT_ANT_PROC"] == 1 && pc.hasHardLightStrapOn())
 		{
 			hardlightVoyeurForAntSlooooots();
 			return;
@@ -279,9 +281,15 @@ public function survivalShopSexMenu():void
 	if(pc.hasGenitals()) addButton(1,"Ambush",anarrieAmbush,undefined,"Ambush","Maybe you and Shiare can help Anarrie get over some of her shyness?");
 	else addDisabledButton(1,"Ambush","Ambush","You need genitals in order to do this.");
 	//[hardlight voyeur](Let Shiare use your hardlight strapon)[never mind](actually you have other things to do right now)
-	if(flags["ANT_PANTIES_SHARED"] != undefined) addButton(2,"HL Voyeur",antPowerOverwhelming,undefined,"Hardlight Voyeur","Let Shiare use your hardlight strapon.");
-	addButton(4,"Back",kressiaSurvivalShopAntGirls);
+	if(flags["ANT_PANTIES_SHARED"] != undefined && pc.hasHardLightStrapOn()) addButton(2,"HL Voyeur",antPowerOverwhelming,undefined,"Hardlight Voyeur","Let Shiare use your hardlight strapon.");
 	
+	addButton(14,"Back",kressiaSurvivalShopAntGirls);
+}
+public function survivalShopSexDiscount():void
+{
+	if(!pc.hasStatusEffect("Kressia Survival Shop Discount")) pc.createStatusEffect("Kressia Survival Shop Discount", 0, 0, 0, 0, true, "", "", false, 1440);
+	else pc.setStatusMinutes("Kressia Survival Shop Discount", 1440);
+	mainGameMenu();
 }
 
 //Milking
@@ -293,6 +301,8 @@ public function milkingShiareCuckoldBullshit():void
 	if(silly) author("Gerbil Ford");
 	kressiaSurvivalShopHeader(true);
 
+	var x:int = pc.cockThatFits(chars["ANARRIE"].vaginalCapacity(0));
+	
 	output("<i>“I think I’d like to make your wife’s milking fantasies come true,”</i> you tell her, reaching down and squeezing one of her amber orbs through the thin cloth layer of her tank top. A look of fiery defiance crosses her features, softening only when she glances to the back room. When she replies, it’s with an exasperated tone.");
 	output("\n\n<i>“Fine. Might as well get it over with");
 	if(flags["MILKED_SHIARE"] != undefined) output("... though last time wasn’t so bad");
@@ -328,16 +338,15 @@ public function milkingShiareCuckoldBullshit():void
 	if(!pc.isCrotchExposed()) output("removing your [pc.lowerGarment]");
 	else output("brushing your hands over your lower body");
 	output(". ");
-	if(pc.hasCock()) output("Your [pc.cocks] spring to attention, ready to penetrate the ant-girl’s ample abdomen");
+	if(x >= 0) output("Your [pc.cocks] spring to attention, ready to penetrate the ant-girl’s ample abdomen");
 	else if(pc.hasHardLightEquipped()) output("You pull out your [pc.hardlightStrapon], feeling the jolting pleasure as it connects to your nerves");
 	else output("You pull a silvery strapon from the bondage gear. It’s no hardlight, but it’ll do for now");
 	output(". The candied ant’s breath quickens as you crawl steadily closer behind her, mounting in a gasp as you push her into a better position. Her bust hangs over the edge of the bed, giving Anarrie a perfect view of her wife’s helplessness.");
 
-	var x:int = pc.cockThatFits(chars["ANARRIE"].vaginalCapacity(0));
 	if(!pc.isTaur())
 	{
 		output("\n\nYou grip the begrudging sub’s twitching abdomen, lining yourself up with her glistening slit. Just as she begins to voice what you assume is a complaint, you let ");
-		if(pc.hasCock()) output("your [pc.cock " + x + "]");
+		if(x >= 0) output("your [pc.cock " + x + "]");
 		else if(pc.hasHardLightEquipped()) output("your [pc.hardlightStrapon]");
 		else output("the silvery metal strapon");
 		output(" penetrate her. Attempted objections die in her throat, replaced by a drawn out moan. You can’t see her face from behind, but all four of her hands clench into fists, straining in their restraints as you begin to slowly grind your hips.");
@@ -354,11 +363,11 @@ public function milkingShiareCuckoldBullshit():void
 	output(" The voyeuristic red myr stares on hungrily, trying to match your thrusts with the speed of her fingers.");
 
 	output("\n\nVice-like pressure compresses your ");
-	if(pc.hasCock()) output("[pc.cock " + x + "]");
+	if(x >= 0) output("[pc.cock " + x + "]");
 	else if(pc.hasHardLightEquipped()) output("[pc.hardlightStrapon]");
 	else output("strapon");
 	output(" in rhythmic intervals, and you struggle to increase the speed of your pistoning. ");
-	if(pc.hasCock() || pc.hasHardLightEquipped())
+	if(x >= 0 || pc.hasHardLightEquipped())
 	{
 		output("The primal heat of her inner walls ");
 		if(silly) output("cooks your hotdog,");
@@ -376,10 +385,10 @@ public function milkingShiareCuckoldBullshit():void
 		output("\n\n<i>“Or perhaps you wish it was you?”</i> you ask, pushing her nimble fingers aside to masturbate her yourself. The already edging red myr gasps as you push her over a waterfall of bliss, falling back into her chair as her muscles clench periodically. Tiny antennae are the only things left moving, twitching cutely at their surroundings. You turn back and kneel at the edge of the bed.");
 	}
 	//cock and hardlight
-	else if(pc.hasHardLightEquipped() || pc.hasCock())
+	else if(pc.hasHardLightEquipped() || x >= 0)
 	{
 		output("\n\nThe friction of Shiare’s inner walls kindles the lust building inside you, Igniting it in a rapturous blaze. You pull yourself as deeply into her alien cunt as you can before you cum, ");
-		if(!pc.hasCock()) output("quivering ecstatically");
+		if(x < 0) output("quivering ecstatically");
 		else if(pc.cumQ() < 100) output("spurting [pc.cumColor] into her depths");
 		else if(pc.cumQ() < 1000) output("filling her with [pc.cumGem] fluid");
 		else output("continuing to thrust till your [pc.cum] overflows");
@@ -411,10 +420,10 @@ public function milkingShiareCuckoldBullshit():void
 	processTime(120);
 	IncrementFlag("MILKED_SHIARE");
 	IncrementFlag("DISCOUNT_SEXED_SURVIVAL_SHOP");
-	if(!pc.hasCock() && pc.hasHardLightEquipped() && flags["HARDLIGHT_ANT_PROC"] == undefined) flags["HARDLIGHT_ANT_PROC"] = 1;
+	if(x < 0 && pc.hasHardLightEquipped() && flags["HARDLIGHT_ANT_PROC"] == undefined) flags["HARDLIGHT_ANT_PROC"] = 1;
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",survivalShopSexDiscount);
 }
 
 //Ambush must have genitals
@@ -424,7 +433,7 @@ public function anarrieAmbush():void
 	author("Gardeford");
 	if(silly) author("Gargledorks");
 	kressiaSurvivalShopHeader(true);
-	output("You ask Shiare how she feels about turning the tables on Anarrie, since she doesn’t seem like the type to enjoy submission. The gilded woman raises an eyebrow, looking you over as she thinks about your proposal");
+	output("You ask Shiare how she feels about turning the tables on Anarrie, since she doesn’t seem like the type to enjoy submission. The gilded woman raises an eyebrow, looking you over as she thinks about your proposal.");
 	output("\n\n<i>“Firstly, I can enjoy a lot of things if it means Ana is happy, but... I suppose she has been pretty stressed lately. I think she could use a little relaxation,”</i> she agrees, crossing both pairs of arms over her chest.");
 	output("\n\n<i>“She’ll be waiting for us back there, butt naked and naive, so it shouldn’t be too tough to get the jump on her.”</i> The lamplight reflects in her dark eyes as quite easily imaginable fantasies run through her head. Snapping out of her thoughts, she pulls you toward the back room. Shiare bounces on her heels, all but humming as you approach the bedroom. Anarrie looks up as you enter, body bared atop a comfy leather chair.");
 	output("\n\n");
@@ -490,7 +499,7 @@ public function anarrieAmbush():void
 	IncrementFlag("DISCOUNT_SEXED_SURVIVAL_SHOP");
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",survivalShopSexDiscount);
 }
 
 //Hardlight Voyeur
@@ -507,7 +516,7 @@ public function hardlightVoyeurForAntSlooooots():void
 
 	output("\n\n <i>“I mean, I’d totally understand if you didn’t want too, but I figured I’d ask. It felt like you were having a lot of fun with that, and ever since then I can’t stop imagining what it would feel like. I’d love to use it on Ana, with you there to supervise of course,”</i> she requests, adding a sultry wink at the end. <i>“What do you say?”</i>");
 
-	output("\n\nIt looks like you have a decision to make.");
+	output("\n\nIt looks like you have a decision to make...");
 
 	processTime(2);
 	clearMenu();
@@ -641,5 +650,5 @@ public function antPowerOverwhelming():void
 	IncrementFlag("ANT_PANTIES_SHARED");
 	IncrementFlag("DISCOUNT_SEXED_SURVIVAL_SHOP");
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",survivalShopSexDiscount);
 }
