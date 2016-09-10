@@ -2830,7 +2830,11 @@
 				kGAMECLASS.mimbraneFeed("cock");
 				kGAMECLASS.mimbraneFeed("vagina");
 				StatTracking.track("sex/player/orgasms");
-				removeStatusEffect("Blue Balls");
+				if(hasStatusEffect("Blue Balls"))
+				{
+					msg += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + ".");
+					removeStatusEffect("Blue Balls");
+				}
 				//Slamazon shit
 				if(hasStatusEffect("Amazonian Endurance Report Needed")) 
 				{
@@ -3866,11 +3870,19 @@
 			if (rangedWeapon.baseDamage.hasFlag(DamageFlag.ENERGY_WEAPON) || rangedWeapon.baseDamage.hasFlag(DamageFlag.LASER) || rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON)) return true;
 			return false;
 		}
-		public function hasCombatDrone():Boolean
+		public function hasCombatDrone(robotOnly:Boolean = false):Boolean
 		{
-			if (hasPerk("Attack Drone") || accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) || hasStatusEffect("Varmint Buddy") || (!hasStatusEffect("Varmint Buddy") && accessory.droneAttack != null))
+			if(!robotOnly)
 			{
-				if (hasStatusEffect("Combat Drone Disabled")) return false;
+				if(hasStatusEffect("Varmint Buddy")) return true;
+			}
+			return (hasPerk("Attack Drone") || accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE));
+		}
+		public function hasActiveCombatDrone(robotOnly:Boolean = false):Boolean
+		{
+			if(hasCombatDrone(robotOnly))
+			{
+				if(hasStatusEffect("Drone Disabled") || hasStatusEffect("Combat Drone Disabled")) return false;
 				return true;
 			}
 			return false;
@@ -8405,6 +8417,9 @@
 		//In case there's ever different types of cuntTails available, we'll need different methods.
 		public function hasCuntSnake(): Boolean {
 			return (hasParasiteTail() && hasTailCunt()); // I hope there would not be any other parasitic tailcunts...
+		}
+		public function hasParasiteTailCock(): Boolean {
+			return (hasParasiteTail() && hasTailCock());
 		}
 		public function tailVaginaCapacity(): Number {
 			return tailCuntCapacity();
@@ -13893,6 +13908,20 @@
 		public function hasHardLightEquipped():Boolean
 		{
 			return (lowerUndergarment.hardLightEquipped);
+		}
+		public function hasHardLightStrapOn():Boolean
+		{
+			// Check equipment
+			if(hasHardLightEquipped()) return true;
+			// Check inventory
+			if(inventory.length > 0)
+			{
+				for(var i:int = 0; i < inventory.length; i++)
+				{
+					if(inventory[i].hardLightEquipped) return true;
+				}
+			}
+			return false;
 		}
 		public function hardLightVolume():Number
 		{

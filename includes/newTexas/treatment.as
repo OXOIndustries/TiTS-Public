@@ -153,7 +153,7 @@ public function treatmentHourProcs():void
 		//9
 		else if(treatedHours == 18)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" In a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. It starts out as little more than a lead-up to your economic rewards, but the longer you dwell on the imaginary scenario, the less you care about the credits and the more you look forward to putting your cuz in his [rival.hisHer] place. The look on [rival.hisHer] face will be priceless.");
+			eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" In a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. It starts out as little more than a lead-up to your economic rewards, but the longer you dwell on the imaginary scenario, the less you care about the credits and the more you look forward to putting your cuz in [rival.hisHer] place. The look on [rival.hisHer] face will be priceless.");
 		}
 		//10
 		else if(treatedHours == 20)

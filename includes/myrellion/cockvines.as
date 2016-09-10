@@ -47,7 +47,7 @@ public function adultCockvineEncounter():void
 			{
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock to you – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel... you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 
-				//{Weak willed/otherwise srsly far gone:
+				// Weak willed/otherwise srsly far gone:
 				if (pc.WQ() < 15 || pc.isDependant(Creature.DEPENDANT_CUM))
 				{
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
