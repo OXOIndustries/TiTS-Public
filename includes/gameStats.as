@@ -1356,6 +1356,7 @@ public function displayQuestLog(showID:String = "All"):void
 						if(flags["KILLED_TAIVRA"] != undefined) output2(" Executed Taivra,");
 						else output2(" Spared Taivra,");
 					}
+					else output2(" Married Taivra,");
 					if(flags["KING_NYREA"] != undefined) output2(" Succeeded the throne as " + pc.mf("king","queen") + ",");
 					output2(" Completed");
 				}
@@ -4423,6 +4424,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FUCKED_TAIVRA"] != undefined) output2(", Sexed her");
 					if(flags["FUCKED_BY_TAIVRA"] != undefined) output2(", Fucked by her");
 					if(flags["TAIVRA_FOOTJOBBED"] != undefined) output2(", Footjob by her");
+					if(flags["TAIVRA_NEW_THRONE"] != undefined)
+					{
+						output2("\n<b>* Queen Taivra, New Throne:</b>");
+						switch(flags["TAIVRA_NEW_THRONE"])
+						{
+							case 0: output2(" Purchased, <i>Retrieve at hangar...</i>"); break;
+							case 1: output2(" Purchased, Retrieved, <i>Return to Taivra...</i>"); break;
+							case 2: output2(" Purchased, Retrieved, Installed in her throne room"); break;
+						}
+					}
 					if(flags["TAIVRA_FERTILE"] != undefined)
 					{
 						output2("\n<b>* Queen Taivra, Fertility:</b>");
@@ -4430,7 +4441,9 @@ public function displayEncounterLog(showID:String = "All"):void
 						else output2(" Normal");
 						if(flags["TAIVRA_FERTILE"] > 0) output2("\n<b>* Queen Taivra, Last Fertilized Her:</b> " + prettifyMinutes(GetGameTimestamp() - flags["TAIVRA_FERTILE"]) + " ago");
 					}
+					if(flags["TAIVRA_CHAMBER_SEX"] != undefined) output2("\n<b>* Queen Taivra, Times Had Sex in Her Chambers:</b> " + flags["TAIVRA_CHAMBER_SEX"]);
 					if(flags["TAIVRA_HAIRPULLED"] != undefined) output2("\n<b>* Queen Taivra, Times Pulled Her Hair During Hardlight Anal:</b> " + flags["TAIVRA_HAIRPULLED"]);
+					if(flags["TAIVRA_THRONE_SEX"] != undefined) output2("\n<b>* Queen Taivra, Times Had Sex on Her Throne:</b> " + flags["TAIVRA_THRONE_SEX"]);
 				}
 				// Queensguard
 				if(metTaivra())
