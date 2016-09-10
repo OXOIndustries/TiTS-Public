@@ -73,6 +73,8 @@
 			this.armType = GLOBAL.TYPE_HUMAN;
 			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = [];
+			this.wingType = GLOBAL.TYPE_SYLVAN;
+			this.wingCount = 4;
 			this.legType = GLOBAL.TYPE_HUMAN;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			
