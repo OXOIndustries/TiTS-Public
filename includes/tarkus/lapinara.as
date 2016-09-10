@@ -270,7 +270,7 @@ public function targetLapinaraSex(targetFunc:Function):void
 
 public function lapinaraButtfuckSelector(cockNum:int = 0):void
 {
-	if(pc.cocks[x].cLength() > 20) hotdoggingALapinara(cockNum);
+	if(pc.cocks[cockNum].cLength() > 20) hotdoggingALapinara(cockNum);
 	else buttFuckALapinara(cockNum);
 }
 
