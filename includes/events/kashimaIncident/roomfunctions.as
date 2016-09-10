@@ -1160,7 +1160,7 @@ public function kiMeetingVanderbilt():void
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(h);
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 3);
-	CombatManager.lossCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
+	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiMedbayFightEnds);
 	CombatManager.lossScene(kiRandomMutantLoss);
 	
@@ -1683,7 +1683,7 @@ public function kiEngineeringBossFight():void
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(new CommanderHenderson());
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
-	CombatManager.lossCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
+	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiHendersonVictory);
 	CombatManager.lossScene(kiHendersonLoss);
 	CombatManager.encounterTextGenerator(function():String {

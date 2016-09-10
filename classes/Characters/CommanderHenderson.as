@@ -491,7 +491,7 @@ package classes.Characters
 			else if (statusEffectv1("Parasite Cure") == 2)
 			{
 				kGAMECLASS.pc.removeKeyItem("Parasite Cure");
-				output("\n\nYou lunge for the control panel one more time, leaping over a sweep of Henderson's biggest tentacle before you and shoving a hand into your pack. You grab the cure-laden hypo and shove it into the replication chamber, replacing the fire-foam vial with the nanobots. Now the ship's systems will start spreading the cure for you, replicating it all over the vessel... as soon as you trigger the fire alarm.");
+				output("You lunge for the control panel one more time, leaping over a sweep of Henderson's biggest tentacle before you and shoving a hand into your pack. You grab the cure-laden hypo and shove it into the replication chamber, replacing the fire-foam vial with the nanobots. Now the ship's systems will start spreading the cure for you, replicating it all over the vessel... as soon as you trigger the fire alarm.");
 				setStatusValue("Parasite Cure", 1, 3);
 			}
 			
@@ -513,7 +513,8 @@ package classes.Characters
 		{
 			if (!wasAttack)
 			{
-				output("\n\nYou leap across the room to the emergency panel and smack the alarm button with all your");
+				clearOutput();
+				output("You leap across the room to the emergency panel and smack the alarm button with all your");
 				if (kGAMECLASS.pc.PQ() <= 20) output(" feeble, nerdy");
 				output(" might.");
 			}
@@ -545,7 +546,10 @@ package classes.Characters
 			setStatusValue("Parasite Cure", 1, 5);
 			HPRaw = 0;
 			
-			CombatManager.processCombat();
+			if (!wasAttack)
+			{
+				CombatManager.processCombat();
+			}
 		}
 		
 		public function healTick():void
