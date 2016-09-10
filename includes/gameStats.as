@@ -810,6 +810,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["ANZHELA_ANALED"] != undefined) totalVirginitiesTaken++;
 		if(flags["NAYNA_FUCKED"] != undefined) totalVirginitiesTaken++;
 		if(flags["ANALED_YAMMI"] != undefined) totalVirginitiesTaken++;
+		if(flags["INESSA_VIRGINITY"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
 		{
@@ -2652,7 +2653,8 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Happy Tails</u></b>");
 				output2("\n<b>* Inessa:</b> Met her");
-				if(flags["INESSA_BELTED"] != undefined) output2(", Trapped in chastity belt");
+				if(flags["INESSA_BELTED"] == 1) output2(", Trapped in chastity belt");
+				else if(flags["INESSA_BELTED"] == 2) output2(", Freed from chastity belt");
 				if(flags["INESSA_BEING_DOMMED"] != undefined) output2(", You’ve accepted her submission");
 				else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(", You’ve refused her submission");
 				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role:</b> " + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
@@ -2661,6 +2663,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
 					if(flags["INESSA_BJED"] != undefined) output2(", Gave you a blowjob");
 					if(flags["INESSA_TITTYSQUIRT"] != undefined) output2(", She squirted you");
+					if(flags["INESSA_VIRGINITY"] != undefined) output2(", You took her virginity");
 					if(flags["INESSA_HJ"] != undefined) output2("\n<b>* Inessa, Times She’s Given You a Handjob:</b> " + flags["INESSA_HJ"]);
 					if(flags["INESSA_FACE_STRAPPED"] != undefined) output2("\n<b>* Inessa, Times She’s Used Her Face Strap-On:</b> " + flags["INESSA_FACE_STRAPPED"]);
 				}
