@@ -27,7 +27,7 @@ public function kiInitRooms():void
 
 	rooms["KI-E25"] = new RoomClass(this);
 	rooms["KI-E25"].roomName = "ELEVATOR\nTERMINAL";
-	rooms["KI-E25"].description = "A bank of elevators sits on the east bulkhead, all of which have big, red EMERGENCY signs printed out on their displays instead of floor selectors. Somebody must have triggered a lockdown...\n\nThe north bulkhead has been cut away to reveal a heavy-duty cargo elevator, probably meant to ferry raw materials from the cargo hold at the ship's rear to the deck for transportation. The lights around it have been completely destroyed -- looks like they were torn out by hand. More of that viscous white crap is dripping down the walls of the elevator shaft, creating a horribly musky, masculine aroma that threatens to overwhelm you the closer you are to the cargo lift.";
+	rooms["KI-E25"].description = "";
 	rooms["KI-E25"].runOnEnter = kiElevatorTerminal;
 	rooms["KI-E25"].planet = planetName;
 	rooms["KI-E25"].system = systemName;

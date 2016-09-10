@@ -682,7 +682,7 @@ public function kiHendersonVictory():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY\nCMDR. HENDERSON");
-	showBust("SPOOPSTER", "CHIEFNEYKKAR_NUDE");
+	showBust("HENDERSON", "USHAMEE_NUDE_PREG");
 
 	// used the cure to end the fight
 	if (enemy.hasStatusEffect("Parasite Cure") && enemy.statusEffectv1("Parasite Cure") == 5)
@@ -762,13 +762,20 @@ public function kiHendersonVictory():void
 		if (enemy.lust() >= enemy.lustMax()) output(" sesual");
 		output(" assault, Henderson throws his head back with a bestial roar... and then collapses. You give a long, weary sigh and put away your [pc.weapon].");
 
-		output("\n\n<i>“[pc.name]!”</i> the leithan merc behind you yelps, struggling in bonds. The tentacle is still brutally fucking her horse-like twat, making her whole body shudder. She wiggles urgently in the tentacles’ grasp as you run over and pull them off her limbs, hurrying before more mutants show up. You slice away most of the tentacles, quickly getting the Chief free... save for the one huge, thick tentacle lodged in her cunt.");
+		if (!enemy.hasStatusEffect("Free Chief"))
+		{
+			output("\n\n<i>“[pc.name]!”</i> the leithan merc behind you yelps, struggling in bonds. The tentacle is still brutally fucking her horse-like twat, making her whole body shudder. She wiggles urgently in the tentacles’ grasp as you run over and pull them off her limbs, hurrying before more mutants show up. You slice away most of the tentacles, quickly getting the Chief free... save for the one huge, thick tentacle lodged in her cunt.");
 
-		output("\n\nIt’s lodged in tight, preventing the belly-bloated ‘taur from moving. While you still have time, you hop around behind her and grab the tentacle, hoping to yank it out of her. Instead, the tentacle pulsates, creampies the Chief with an explosion of pink juices that make her shriek, and then detatches from its host, breaking off and slithering out of your hands... and disappearing into Chief Neykkar’s belly. She grunts and gasps, flailing her arms at her belly as it bloats out even more. You can see her skin writhing under her chitin plates, squirming as the tentacle moves inside her. Oh, shit.");
+			output("\n\nIt’s lodged in tight, preventing the belly-bloated ‘taur from moving. While you still have time, you hop around behind her and grab the tentacle, hoping to yank it out of her. Instead, the tentacle pulsates, creampies the Chief with an explosion of pink juices that make her shriek, and then detatches from its host, breaking off and slithering out of your hands... and disappearing into Chief Neykkar’s belly. She grunts and gasps, flailing her arms at her belly as it bloats out even more. You can see her skin writhing under her chitin plates, squirming as the tentacle moves inside her. Oh, shit.");
 
-		output("\n\n<i>“Fuck. Ah-ah no God fuck it’s ins- fuck I’m cumming aahhh!”</i>");
-		
-		output("\n\nShe clenches, screaming and flopping bonelessly onto her side and spilling fuck-juices like a waterfall out of her horsecunt. Dammit. You look around in a panic, with no idea what to do about that... but you don’t have much time to decide. You can hear screeching and snarling from all around - more infected coming to play! And worse, with Henderson down on his face, the Nova and Steele crew plastered to the walls start moving, shivering and shuddering and opening glowing pink eyes.");
+			output("\n\n<i>“Fuck. Ah-ah no God fuck it’s ins- fuck I’m cumming aahhh!”</i>");
+			
+			output("\n\nShe clenches, screaming and flopping bonelessly onto her side and spilling fuck-juices like a waterfall out of her horsecunt. Dammit. You look around in a panic, with no idea what to do about that... but you don’t have much time to decide. You can hear screeching and snarling from all around - more infected coming to play! And worse, with Henderson down on his face, the Nova and Steele crew plastered to the walls start moving, shivering and shuddering and opening glowing pink eyes.");
+		}
+		else
+		{
+			output("\n\n<i>“[pc.name]!”</i> the leithan merc beside you yelps. The tentacle slithering around deep in her horse-like twat seems aware of its breatherens defeat, its squirming struggles redoubling the moment the ex-commander hit the deck. You look around in a panic, with no idea what to do about that... but you don’t have much time to decide. You can hear screeching and snarling from all around - more infected coming to play! And worse, with Henderson down on his face, the Nova and Steele crew plastered to the walls start moving, shivering and shuddering and opening glowing pink eyes.");
+		}
 		
 		output("\n\nOh, fuck. You look around in rising panic, grabbing your [pc.weapon]");
 		if (!enemy.hasStatusEffect("Free Chief")) output(" and shoving the Chief’s machinegun into her hands");
@@ -798,7 +805,7 @@ public function kiHendersonNoCure():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY:\nCMDR. HENDERSON");
-	showBust("ELENORA", "USHAMEE_PREG");
+	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
 	output("<i>“The whole crew’s infected. Of both ships,”</i> you say, casting a glance to the leithan beside you. She’s too busy staggering and rubbing her belly to acknowledge you. <i>“The ship’s crawling with them, now.”</i>");
 
@@ -849,7 +856,7 @@ public function kiHendersonNoCureII():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY\nCMDR. HENDERSON");
-	showBust("ELENORA", "USHAMEE_PREG");
+	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
 	output("<i>“Hey, what-”</i> the Chief starts to say.");
 	
@@ -926,7 +933,7 @@ public function kiEscapeShuttle():void
 	
 	output("\n\nBut there’s nothing more you can do for them now. Nothing but find a doctor and make sure you’re okay. First, though, a long rest...");
 
-	currentLocation = "SHIP_INTERIOR";
+	currentLocation = "SHIP INTERIOR";
 	generateMap();
 	flags["KASHIMA_STATE"] = 4;
 
@@ -939,7 +946,7 @@ public function kiHendersonMedbay():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY:\nCMDR.HENDERSON");
-	showBust("SPOOPSTER", "USHAMEE_PREG");
+	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
 	currentLocation = "KI-H16";
 	generateLocation(currentLocation);
@@ -1037,7 +1044,7 @@ public function kiHendersonMedbayII():void
 	clearOutput();
 	author("Savin");
 	showName("KASHIMA\nEPILOGUE");
-	showBust("USHAMEE_PREG");
+	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
 	output("A couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i>. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal the crew.");
 
@@ -1057,7 +1064,7 @@ public function kiHendersonSteeleTech():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY:\nCMDR.HENDERSON");
-	showBust("USHAMEE_PREG");
+	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
 	output("<i>“Alright, listen,”</i> you say, putting a reassuring hand on the Chief’s flank. She moans, curling her tail under herself to hide her visibly swollen, drooling pussy-lips. Even with both arms around her chest, her tits are so big, and her nipples so wide and stiff, that she can do little to hide them. You try and smile for her");
 	if (pc.isTreated() || pc.isBimbo() || pc.LQ() >= 85 || pc.lust() >= 66) output(", hiding your own arousal as much as you can");

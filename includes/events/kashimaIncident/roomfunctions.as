@@ -15,13 +15,25 @@ public function kiEnterShuttleLZ():void
 
 public function kiElevatorTerminal():void
 {
+	
+	
 	flags["NAV_DISABLED"] = 0;
 	
 	addButton(0, "Elevators", kiGoElevators, undefined, "Elevators", "Take a look at the personnel elevators.");
 	addButton(2, "WhiteSlime", kiElevatorWhiteStuff, undefined, "White Slime", "What's that slime on the walls... and the deck... and everywhere?");
 	
-	if (flags["KI_USED_ELEVATORS"] == undefined)
+	if (flags["KI_ESCAPE_UNCURED"] != undefined)
+	{
+		output("A bank of elevators sits on the east bulkhead, all of which have big, red EMERGENCY signs printed out on their displays instead of the floor selectors. Somebody must have triggered a lockdown...");
+		
+		output("\n\nThe north bulkhead has been cut away to reveal a now-empty lift shaft, fit for a huge cargo elevator. Peering through the hole in the bulkhead, all you can make out is an endless black void, and the not so subtle groans of the shambling, infected crew somewhere down in the darkness.");
+		
+		flags["NAV_DISABLED"] |= NAV_NORTH_DISABLE;
+	}
+	else if (flags["KI_USED_ELEVATORS"] == undefined)
 	{	
+		output("A bank of elevators sits on the east bulkhead, all of which have big, red EMERGENCY signs printed out on their displays instead of floor selectors. Somebody must have triggered a lockdown...\n\nThe north bulkhead has been cut away to reveal a heavy-duty cargo elevator, probably meant to ferry raw materials from the cargo hold at the ship's rear to the deck for transportation. The lights around it have been completely destroyed -- looks like they were torn out by hand. More of that viscous white crap is dripping down the walls of the elevator shaft, creating a horribly musky, masculine aroma that threatens to overwhelm you the closer you are to the cargo lift.");
+		
 		addButton(1, "CargoLift", kiGoCargolift, undefined, "Cargo Lift", "Let's see if the cargo lift is still working. Looks like the only way you're getting out of the hangar.");
 		flags["NAV_DISABLED"] |= NAV_NORTH_DISABLE;
 	}
@@ -75,14 +87,14 @@ public function kiCargoLiftRoomFunction():Boolean
 		output("\n\nChief Neykkar turns her attention to you, starry blue eyes narrowing. <i>“You’re the suit here, Steele. When you’re ready, we’ll take you up to the bridge. Should be able to reactivate power from there, maybe find out where the crew’s gone.”</i>");
 		
 		output("\n\n<i>“Place gives me the creeps, " + pc.mf("sir", "ma’am") +",”</i> the Nova grunt says to you, running his hands along the top of his laser carbine.");
+		addButton(0, "Use Lift", kiGoUseCargoLift);
 	}
-	// 9999 make sure this works when returning on the way off the ship!
 	else
 	{
 		output("\n\nThe Chief is still here, waiting for you before heading into the bowels of the ship.");
+		addButton(0, "Use Lift", kiGoUseCargoLift);
 	}
 
-	addButton(0, "Use Lift", kiGoUseCargoLift);
 	return false;
 }
 
