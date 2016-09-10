@@ -816,7 +816,7 @@ public function inessaSexMenu():void
 
 	//INESSA EXPANSION - Vaginal
 	//PC must have removed her belt
-	if(flags["INESSA_BELTED"] = 2) addButton(6,"Vaginal",fuckInessaPussy,"Fuck your saeri sub's pussy")
+	if(flags["INESSA_BELTED"] == 2) addButton(6,"Vaginal",fuckInessaPussy,"Fuck your saeri sub's pussy")
 	
 	addButton(14,"Back",noYoureASlut);
 }

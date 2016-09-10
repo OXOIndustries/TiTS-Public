@@ -604,7 +604,7 @@ public function xantheTalkMenu():void
 	//INESSA EXPANSION
 	if(flags["XANTHE_INESSA"] == 1 && flags["INESSA_EXP"] == undefined && flags["INESSA_BEING_DOMMED"] != undefined) addButton(9,"Key",xanTalkAboutKey,"Key","Talk to Xanthe about Inessa's belt key");
 	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(9,"Key","Key","You need to give Inessa the message from her sister.")
-	else if(flags["INESSA_BEING_DOMMED"] != undefined) addDisabledButton(9,"Key","Key","You have to be domming Inessa for this.")
+	else if(flags["INESSA_BEING_DOMMED"] == undefined) addDisabledButton(9,"Key","Key","You have to be domming Inessa for this.")
 	else addDisabledButton(9,"Key","Key","You don't know about the key yet.")
 	addButton(14,"Back",enterTheSilkenSerenityWhyDidWashHaveToDie);
 }
