@@ -27,7 +27,7 @@ public function kiInitRooms():void
 
 	rooms["KI-E25"] = new RoomClass(this);
 	rooms["KI-E25"].roomName = "ELEVATOR\nTERMINAL";
-	rooms["KI-E25"].description = "A bank of elevators sits on the east bulkhead, all of which have big, red EMERGENCY signs printed out on their displays instead of floor selectors. Somebody must have triggered a lockdown...\n\nThe north bulkhead has been cut away to reveal a heavy-duty cargo elevator, probably meant to ferry raw materials from the cargo hold at the ship's rear to the deck for transportation. The lights around it have been completely destroyed -- looks like they were torn out by hand. More of that viscous white crap is dripping down the walls of the elevator shaft, creating a horribly musky, masculine aroma that threatens to overwhelm you the closer you are to the cargo lift.";
+	rooms["KI-E25"].description = "";
 	rooms["KI-E25"].runOnEnter = kiElevatorTerminal;
 	rooms["KI-E25"].planet = planetName;
 	rooms["KI-E25"].system = systemName;
@@ -57,13 +57,14 @@ public function kiInitRooms():void
 	// Command Deck -> Medbay
 	rooms["KI-H16"] = new RoomClass(this);
 	rooms["KI-H16"].roomName = "\nMEDBAY";
-	rooms["KI-H16"].description = "The <i>Kashima</i>'s medical bay is about what you'd expect for a large-crew, long-mission ship: spacious, high-tech, and well-equipped. It's been ransacked by the creatures that now call the vessel home, with equipment toppled and chemicals spilled every which way. A single viewport gives you a marvelous overlook of the rocky ball the <i>Kashima</i>'s attached to: lifeless, gray and rocky. The med-bay reeks of sex, like you just missed an orgy in here.";
+	rooms["KI-H16"].description = "The <i>Kashima</i>'s medical bay is about what you'd expect for a large-crew, long-mission ship: spacious, high-tech, and well-equipped. It's been ransacked by the creatures that now call the vessel home, with equipment toppled and chemicals spilled every which way. A single viewport gives you a marvelous overlook of the rocky ball the <i>Kashima</i>'s attached to: lifeless, gray and rocky. The med-bay reeks of sex, like you just missed an orgy in here.\n\nThe place looks secure enough for you to take a load off and rest up.";
 	rooms["KI-H16"].runOnEnter = kiEnterMedbay;
 	rooms["KI-H16"].planet = planetName;
 	rooms["KI-H16"].system = systemName;
 	rooms["KI-H16"].southExit = "KI-H18";
 	rooms["KI-H16"].addFlag(GLOBAL.INDOOR);
 	rooms["KI-H16"].addFlag(GLOBAL.BED);
+	rooms["KI-H16"].addFlag(GLOBAL.MEDICAL);
 
 	rooms["KI-H18"] = new RoomClass(this);
 	rooms["KI-H18"].roomName = "COMMAND\nDECK";
@@ -90,7 +91,7 @@ public function kiInitRooms():void
 	rooms["KI-L18"] = new RoomClass(this);
 	rooms["KI-L18"].roomName = "COMMAND\nDECK";
 	rooms["KI-L18"].description = "A single long corridor runs from the <i>Kashima</i>'s bridge to the rear of the ship's body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nTo the south is a bank of elevators. One set for crew, another meant for handling heavy cargo. Both sets of elevators have been disabled... you don't think you could stand up to another ambush like that again.";
-	rooms["KI-L18"].runOnEnter = commandDeckRandomEncounter;
+	rooms["KI-L18"].runOnEnter = kiL18RoomFunction;
 	rooms["KI-L18"].planet = planetName;
 	rooms["KI-L18"].system = systemName;
 	rooms["KI-L18"].westExit = "KI-J18";
@@ -143,6 +144,7 @@ public function kiInitRooms():void
 	rooms["KI-R18"].system = systemName;
 	rooms["KI-R18"].westExit = "KI-P18";
 	rooms["KI-R18"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-R18"].addFlag(GLOBAL.HAZARD);
 
 	rooms["KI-P18"] = new RoomClass(this);
 	rooms["KI-P18"].roomName = "COMMAND\nDECK";
@@ -166,48 +168,56 @@ public function kiInitRooms():void
 	rooms["KI-P16"].addFlag(GLOBAL.INDOOR);
 
 	// Officers Quarters
-	rooms["KI-C9"] = new RoomClass(this);
-	rooms["KI-C9"].roomName = "VENT\nSHAFT";
-	rooms["KI-C9"].description = "";
-	rooms["KI-C9"].runOnEnter = null;
-	rooms["KI-C9"].planet = planetName;
-	rooms["KI-C9"].system = systemName;
-	rooms["KI-C9"].eastExit = "KI-E9";
-	rooms["KI-C9"].addFlag(GLOBAL.INDOOR);
-
+	
+	rooms["KI-OfficersAccessRoom"] = new RoomClass(this);
+	rooms["KI-OfficersAccessRoom"].roomName = "ACCESS\nROOM";
+	rooms["KI-OfficersAccessRoom"].description = "Due to the sheer size and scale of the ship, there are countless passageways and maintenance shafts criss-crossing the interior of the hull. Luckily for you, the ventilation system is one such important facet of the ship that routes through these access points, giving you a pretty quite and inconspicious place to gather yourself after a crushingly claustrophic trip.\n\nThe ventilation shaft access is here, hanging open for you.";
+	rooms["KI-OfficersAccessRoom"].runOnEnter = function():void {
+		addButton(0, "Vents", kiE9EnterVents, undefined, "Enter Vents", "Crawl into the vents and move around the ship.");
+	};
+	rooms["KI-OfficersAccessRoom"].planet = planetName;
+	rooms["KI-OfficersAccessRoom"].system = systemName;
+	rooms["KI-OfficersAccessRoom"].eastExit = "KI-E9";
+	rooms["KI-OfficersAccessRoom"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-OfficersAccessRoom"].addFlag(GLOBAL.OBJECTIVE);
+	
 	rooms["KI-E9"] = new RoomClass(this);
 	rooms["KI-E9"].roomName = "OFFICER’S\nQUARTERS";
-	rooms["KI-E9"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nThe ventilation shaft access is here, hanging open for you.";
-	rooms["KI-E9"].runOnEnter = kiE9EnterVents;
+	rooms["KI-E9"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nThe access room, and the vent that brought you to this deck, is just off to the east, offering at least some semblance of a place you could consider safe enough to catch a breather.";
+	rooms["KI-E9"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-E9"].planet = planetName;
 	rooms["KI-E9"].system = systemName;
-	rooms["KI-E9"].westExit = "KI-C9";
 	rooms["KI-E9"].eastExit = "KI-G9";
+	rooms["KI-E9"].westExit = "KI-OfficersAccessRoom";
 	rooms["KI-E9"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-E9"].addFlag(GLOBAL.HAZARD);
 
 	rooms["KI-G9"] = new RoomClass(this);
 	rooms["KI-G9"].roomName = "OFFICER’S\nQUARTERS";
 	rooms["KI-G9"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nThe corridor twists north to west here, with an access in the corner leading to a public restroom.";
-	rooms["KI-G9"].runOnEnter = null;
+	rooms["KI-G9"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-G9"].planet = planetName;
 	rooms["KI-G9"].system = systemName;
-	rooms["KI-G9"].eastExit = "KI-G7";
+	rooms["KI-G9"].westExit = "KI-E9";
+	rooms["KI-G9"].northExit = "KI-G7";
 	rooms["KI-G9"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-G9"].addFlag(GLOBAL.HAZARD);
 
 	rooms["KI-G7"] = new RoomClass(this);
 	rooms["KI-G7"].roomName = "OFFICER’S\nQUARTERS";
 	rooms["KI-G7"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nA matter replicator displaying Steele-brand synth-coffee sits in the wall. Not surprisingly at this point, it's been blasted with spooge. Cum drips out of the spigot, even. How'd that even happen?";
-	rooms["KI-G7"].runOnEnter = null;
+	rooms["KI-G7"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-G7"].planet = planetName;
 	rooms["KI-G7"].system = systemName;
 	rooms["KI-G7"].southExit = "KI-G9";
 	rooms["KI-G7"].northExit = "KI-G5";
 	rooms["KI-G7"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-G7"].addFlag(GLOBAL.HAZARD);
 
 	rooms["KI-G5"] = new RoomClass(this);
 	rooms["KI-G5"].roomName = "OFFICER’S\nQUARTERS";
 	rooms["KI-G5"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nTo the west is the Chief Engineer's quarters. North is the Executive Officer's quarters. Eastward are more rooms.";
-	rooms["KI-G5"].runOnEnter = null;
+	rooms["KI-G5"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-G5"].planet = planetName;
 	rooms["KI-G5"].system = systemName;
 	rooms["KI-G5"].northExit = "KI-G3";
@@ -215,6 +225,7 @@ public function kiInitRooms():void
 	rooms["KI-G5"].southExit = "KI-G7";
 	rooms["KI-G5"].westExit = "KI-E5";
 	rooms["KI-G5"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-G5"].addFlag(GLOBAL.HAZARD);
 
 	rooms["KI-E5"] = new RoomClass(this);
 	rooms["KI-E5"].roomName = "CHIEF ENG.\nQUARTERS";
@@ -222,7 +233,7 @@ public function kiInitRooms():void
 	rooms["KI-E5"].runOnEnter = kiE5EngineersQuarters;
 	rooms["KI-E5"].planet = planetName;
 	rooms["KI-E5"].system = systemName;
-	rooms["KI-E5"].westExit = "KI-G5";
+	rooms["KI-E5"].eastExit = "KI-G5";
 	rooms["KI-E5"].addFlag(GLOBAL.INDOOR);
 
 	rooms["KI-G3"] = new RoomClass(this);
@@ -236,13 +247,15 @@ public function kiInitRooms():void
 
 	rooms["KI-I5"] = new RoomClass(this);
 	rooms["KI-I5"].roomName = "OFFICER’S\nQUARTERS";
-	rooms["KI-I5"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nNorth is the Chief Science Officer's quarters. West is the doctor's quarters, marked with the name ’C.M.O. Elenora Vanderbilt, M.D.’\n\nA passage leading south to a communal kitchen has been crushed in by some sort of explosion, completely blocking your access. Several of the mutant crewmen can be seen beyond the wreckage, vigorously fucking.";
-	rooms["KI-I5"].runOnEnter = null;
+	rooms["KI-I5"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nNorth is the Chief Science Officer's quarters. East is the doctor's quarters, marked with the name ’C.M.O. Elenora Vanderbilt, M.D.’\n\nA passage leading south to a communal kitchen has been crushed in by some sort of explosion, completely blocking your access. Several of the mutant crewmen can be seen beyond the wreckage, vigorously fucking.";
+	rooms["KI-I5"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-I5"].planet = planetName;
 	rooms["KI-I5"].system = systemName;
 	rooms["KI-I5"].eastExit = "KI-K5";
-	rooms["KI-I5"].eastExit = "KI-G5";
+	rooms["KI-I5"].westExit = "KI-G5";
+	rooms["KI-I5"].northExit = "KI-I3";
 	rooms["KI-I5"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-I5"].addFlag(GLOBAL.HAZARD);
 
 	rooms["KI-K5"] = new RoomClass(this);
 	rooms["KI-K5"].roomName = "C.M.O’s\nQUARTERS";
@@ -265,8 +278,20 @@ public function kiInitRooms():void
 	rooms["KI-Engineering"] = new RoomClass(this);
 	rooms["KI-Engineering"].roomName = "\nENGINEERING";
 	rooms["KI-Engineering"].description = "";
-	rooms["KI-Engineering"].runOnEnter = null;
+	rooms["KI-Engineering"].runOnEnter = kiEngineeringFight;
+	rooms["KI-Engineering"].westExit = "KI-EngineeringVent";
 	rooms["KI-Engineering"].planet = planetName;
 	rooms["KI-Engineering"].system = systemName;
 	rooms["KI-Engineering"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-Engineering"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["KI-EngineeringVent"] = new RoomClass(this);
+	rooms["KI-EngineeringVent"].roomName = "ACCESS\nROOM";
+	rooms["KI-EngineeringVent"].description = "A near-claustrophbic room full of random odds and ends, obviously used as a makeshift place for storage rather than its clearly intended purpose as a means of accessing an array of maintenance shafts around the ship.";
+	rooms["KI-EngineeringVent"].eastExit = "KI-Engineering";
+	rooms["KI-EngineeringVent"].runOnEnter = kiEngineeringAccessRoom;
+	rooms["KI-EngineeringVent"].planet = planetName;
+	rooms["KI-EngineeringVent"].system = systemName;
+	rooms["KI-EngineeringVent"].addFlag(GLOBAL.INDOOR);
+	rooms["KI-EngineeringVent"].addFlag(GLOBAL.OBJECTIVE);
 }

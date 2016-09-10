@@ -170,12 +170,29 @@ package classes.GameData
 				combatContainer = null;
 			}
 			clearMenu();
+			addButton(0, "Next", postAbortCombat);
+		}
+		public static function abortCombatDeferred(nextScene:Function):void
+		{
+			if (combatContainer)
+			{
+				combatContainer.doCombatCleanup();
+				combatContainer = null;
+			}
+			clearMenu();
 			addButton(0, "Next", function():void {
 				userInterface().mainButtonsReset();
 				userInterface().hideNPCStats();
 				userInterface().leftBarDefaults();
-				kGAMECLASS.mainGameMenu();
+				nextScene();
 			});
+		}
+		public static function postAbortCombat():void
+		{
+			userInterface().mainButtonsReset();
+			userInterface().hideNPCStats();
+			userInterface().leftBarDefaults();
+			kGAMECLASS.mainGameMenu();
 		}
 		public static function showCombatMenu():void
 		{

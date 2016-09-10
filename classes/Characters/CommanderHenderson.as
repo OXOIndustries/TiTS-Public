@@ -21,6 +21,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.Engine.Interfaces.clearOutput;
 	import classes.StringUtil;
 	
 	
@@ -37,8 +38,8 @@ package classes.Characters
 			originalRace = "human";
 			a = "";
 			capitalA = "";
-			this.long = "[Placeholder]";
-			this.customBlock = "[Placeholder]";
+			this.long = "";
+			this.customBlock = "The commanders incredible bulk meets your attack with little effect.";
 			this.isPlural = false;
 			isLustImmune = false;
 			isUniqueInFight = true;
@@ -233,18 +234,6 @@ package classes.Characters
 				
 				weightedRand(atks)(target, hostiles);
 			}
-			
-			if (hasStatusEffect("Free Chief"))
-			{
-				if (statusEffectv1("Free Chief") == 0)
-				{
-					setStatusValue("Free Chief", 1, 1);
-				}
-				else
-				{
-					actuallyFreeChief();
-				}
-			}
 		}
 		
 		public function tentacleWhip(target:Creature, hostiles:Array):void
@@ -422,12 +411,14 @@ package classes.Characters
 			}
 			else
 			{
-				target.createStatusEffect("Crushing Worms", 3, 0, 0, 0, false, "Constricted", "Crushing worms are wrapped around " + (target is PlayerCharacter ? "your" : "their") +" limbs!", true, 0, 0xFF0000);
+				target.createStatusEffect("Crushing Worms", 3, 0, 0, 0, false, "Constrict", "Crushing worms are wrapped around " + (target is PlayerCharacter ? "your" : "their") +" limbs!", true, 0, 0xFF0000);
 			}
 		}
 		
 		public function freeChief():void
 		{
+			clearOutput();
+			
 			output("You turn to the Chief and pull out your [pc.meleeWeapon]. <i>“Hang on, I'm getting you out!”</i>");
 
 			output("\n\nShe wiggles urgently in the tentacles' grasp as you pull them off her limbs, hurrying before the Commander gets his bearings again. You slice away most of the tentacles, causing Henderson to shudder violently with pain, but you get the Chief free... save for the one huge, thick tentacle lodged in her cunt.");
@@ -456,6 +447,8 @@ package classes.Characters
 		
 		public function attemptCure():void
 		{
+			clearOutput();
+			
 			if (!hasStatusEffect("Parasite Cure"))
 			{
 				output("You wind your way around the mutated Commander Henderson, ducking and weaving out of the way of his many throbbing, goo-leaking tentacles. Through a mix of sheer luck");
@@ -498,7 +491,7 @@ package classes.Characters
 			else if (statusEffectv1("Parasite Cure") == 2)
 			{
 				kGAMECLASS.pc.removeKeyItem("Parasite Cure");
-				output("\n\nYou lunge for the control panel one more time, leaping over a sweep of Henderson's biggest tentacle before you and shoving a hand into your pack. You grab the cure-laden hypo and shove it into the replication chamber, replacing the fire-foam vial with the nanobots. Now the ship's systems will start spreading the cure for you, replicating it all over the vessel... as soon as you trigger the fire alarm.");
+				output("You lunge for the control panel one more time, leaping over a sweep of Henderson's biggest tentacle before you and shoving a hand into your pack. You grab the cure-laden hypo and shove it into the replication chamber, replacing the fire-foam vial with the nanobots. Now the ship's systems will start spreading the cure for you, replicating it all over the vessel... as soon as you trigger the fire alarm.");
 				setStatusValue("Parasite Cure", 1, 3);
 			}
 			
@@ -520,7 +513,8 @@ package classes.Characters
 		{
 			if (!wasAttack)
 			{
-				output("\n\nYou leap across the room to the emergency panel and smack the alarm button with all your");
+				clearOutput();
+				output("You leap across the room to the emergency panel and smack the alarm button with all your");
 				if (kGAMECLASS.pc.PQ() <= 20) output(" feeble, nerdy");
 				output(" might.");
 			}
@@ -552,7 +546,10 @@ package classes.Characters
 			setStatusValue("Parasite Cure", 1, 5);
 			HPRaw = 0;
 			
-			CombatManager.processCombat();
+			if (!wasAttack)
+			{
+				CombatManager.processCombat();
+			}
 		}
 		
 		public function healTick():void

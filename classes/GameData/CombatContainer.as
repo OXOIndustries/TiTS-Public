@@ -190,15 +190,9 @@ package classes.GameData
 		 * Hook function.
 		 * Any action that should be taken at the /end/ of a combat round, but before the
 		 * next begins, should be done in this function.
-		 */
+		 */ 
 		private function postHostileTurnActions():Boolean
 		{
-			// Regenerate encounter text once per round after everything has resolved
-			if (encounterTextGenerator != null)
-			{
-				encounterText = encounterTextGenerator();
-			}
-			
 			// seductionChance()
 			if (pc.hasStatusEffect("Attempt Seduction"))
 			{
@@ -273,13 +267,26 @@ package classes.GameData
 					h.setStatusValue("Parasite Cure", 1, 5);
 					h.triggerAlarm(true);
 				}
+				
+				if (h.hasStatusEffect("Free Chief"))
+				{
+					if (h.statusEffectv1("Free Chief") == 0)
+					{
+						h.setStatusValue("Free Chief", 1, 1);
+					}
+					else if (h.statusEffectv1("Free Chief") == 1)
+					{
+						h.actuallyFreeChief();
+					}
+				}
 			}
+			
 			if(!pc.hasShields() || pc.shields() <= 0)
 			{
 				if(pc.hasCombatDrone() && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
-					output("\n\n<b>Without your shields to sustain it, your drone collapses. It won’t be doing any more damage until you bring your shields back up!</b>");
-					pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
+				output("\n\n<b>Without your shields to sustain it, your drone collapses. It won’t be doing any more damage until you bring your shields back up!</b>");
+				pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
 				}
 			}
 			
@@ -342,7 +349,7 @@ package classes.GameData
 				
 				if (!h.hasStatusEffect("Free Chief"))
 				{
-					if (h.hasStatusEffect("Blinded") || h.hasStatusEffect("Stunned") || h.hasStatusEffect("Staggered"))
+					if (h.hasStatusEffect("Blinded") || h.hasStatusEffect("Stunned") || h.hasStatusEffect("Staggered") || h.hasStatusEffect("Paralyzed"))
 					{
 						addButton(10, "Free Chief", h.freeChief, undefined, "Free Chief", "Get Chief Neykkar out of there! She might be able to lend a helping hand!");
 					}
@@ -361,7 +368,7 @@ package classes.GameData
 				}
 				else if (h.statusEffectv1("Parasite Cure") == 3)
 				{
-					addButton(11, "FireAlarm", h.triggerAlarm, false, "Trigger Fire Alarm", "Hit the alarm to release the cure!");
+					addButton(11, "Fire Alarm", h.triggerAlarm, false, "Trigger Fire Alarm", "Hit the alarm to release the cure!");
 				}
 			}
 		}
@@ -4043,6 +4050,12 @@ package classes.GameData
 			if (!postHostileTurnActions())
 			{
 				endCombatRound();
+			}
+			
+			// Regenerate encounter text once per round after everything has resolved
+			if (encounterTextGenerator != null)
+			{
+				encounterText = encounterTextGenerator();
 			}
 		}
 		

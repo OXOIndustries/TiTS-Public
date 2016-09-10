@@ -1,5 +1,6 @@
 import classes.Characters.InfectedCrewmember;
 import classes.Items.Melee.VampBlade;
+import classes.Items.Miscellaneous.OSStimBoost;
 public function kiEnterShuttleLZ():void
 {
 	output("The Nova Securities shuttle that ferried you over is parked here, surrounded by pools of some unidentifiable white sludge splattered all over the ground.");
@@ -14,13 +15,25 @@ public function kiEnterShuttleLZ():void
 
 public function kiElevatorTerminal():void
 {
+	
+	
 	flags["NAV_DISABLED"] = 0;
 	
 	addButton(0, "Elevators", kiGoElevators, undefined, "Elevators", "Take a look at the personnel elevators.");
 	addButton(2, "WhiteSlime", kiElevatorWhiteStuff, undefined, "White Slime", "What's that slime on the walls... and the deck... and everywhere?");
 	
-	if (flags["KI_USED_ELEVATORS"] == undefined)
+	if (flags["KI_ESCAPE_UNCURED"] != undefined)
+	{
+		output("A bank of elevators sits on the east bulkhead, all of which have big, red EMERGENCY signs printed out on their displays instead of the floor selectors. Somebody must have triggered a lockdown...");
+		
+		output("\n\nThe north bulkhead has been cut away to reveal a now-empty lift shaft, fit for a huge cargo elevator. Peering through the hole in the bulkhead, all you can make out is an endless black void, and the not so subtle groans of the shambling, infected crew somewhere down in the darkness.");
+		
+		flags["NAV_DISABLED"] |= NAV_NORTH_DISABLE;
+	}
+	else if (flags["KI_USED_ELEVATORS"] == undefined)
 	{	
+		output("A bank of elevators sits on the east bulkhead, all of which have big, red EMERGENCY signs printed out on their displays instead of floor selectors. Somebody must have triggered a lockdown...\n\nThe north bulkhead has been cut away to reveal a heavy-duty cargo elevator, probably meant to ferry raw materials from the cargo hold at the ship's rear to the deck for transportation. The lights around it have been completely destroyed -- looks like they were torn out by hand. More of that viscous white crap is dripping down the walls of the elevator shaft, creating a horribly musky, masculine aroma that threatens to overwhelm you the closer you are to the cargo lift.");
+		
 		addButton(1, "CargoLift", kiGoCargolift, undefined, "Cargo Lift", "Let's see if the cargo lift is still working. Looks like the only way you're getting out of the hangar.");
 		flags["NAV_DISABLED"] |= NAV_NORTH_DISABLE;
 	}
@@ -74,14 +87,14 @@ public function kiCargoLiftRoomFunction():Boolean
 		output("\n\nChief Neykkar turns her attention to you, starry blue eyes narrowing. <i>“You’re the suit here, Steele. When you’re ready, we’ll take you up to the bridge. Should be able to reactivate power from there, maybe find out where the crew’s gone.”</i>");
 		
 		output("\n\n<i>“Place gives me the creeps, " + pc.mf("sir", "ma’am") +",”</i> the Nova grunt says to you, running his hands along the top of his laser carbine.");
+		addButton(0, "Use Lift", kiGoUseCargoLift);
 	}
-	// 9999 make sure this works when returning on the way off the ship!
 	else
 	{
 		output("\n\nThe Chief is still here, waiting for you before heading into the bowels of the ship.");
+		addButton(0, "Use Lift", kiGoUseCargoLift);
 	}
 
-	addButton(0, "Use Lift", kiGoUseCargoLift);
 	return false;
 }
 
@@ -143,7 +156,7 @@ public function kiGoUseCargoLift():void
 public function kiEnterMedbay():Boolean
 {
 	flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
-	addButton(1, "Vent", kiE9EnterVents);
+	addButton(0, "Vent", kiE9EnterVents);
 		
 	if (pc.hasKeyItem("Parasite Sample"))
 	{
@@ -153,16 +166,18 @@ public function kiEnterMedbay():Boolean
 	
 	if (flags["KI_VANDERBILT_WORKING"] == 1)
 	{
-		output("\n\nDoctor Vanderbilt is sitting at the only operational holo-terminal in the bay, busily working on her cure.");
+		if (flags["KI_VANDERBILT_WORKING_START"] + 240 < GetGameTimestamp())
+		{
+			kiApproachElenora();
+			return true;
+		}
 		
-		if (flags["KI_VANDERBILT_WORKING_START"] + 240 > GetGameTimestamp())
-		{
-			addButton(0, "Elenora", kiApproachElenora, undefined, "Elenora", "Talk with the doctor again and see if she's ready with the cure.");
-		}
-		else
-		{
-			addDisabledButton(0, "Elenora", "Approach Elenora", "The doctor looks totally engrossed in her work; probably best to give her a little more time.");
-		}
+		output("\n\nDoctor Vanderbilt is sitting at the only operational holo-terminal in the bay, busily working on her cure.");
+		addDisabledButton(1, "Elenora", "Approach Elenora", "The doctor looks totally engrossed in her work; probably best to give her a little more time.");
+	}
+	else
+	{
+		addDisabledButton(1, "Elenora", "Approach Elenora", "You've got places to be and things to do, no point wasting time.");
 	}
 	
 	return false;
@@ -189,6 +204,7 @@ public function kiP18CommandDeck():Boolean
 	if (flags["KASHIMA_HOLMES_DEFEATED"] != undefined)
 	{
 		flags["NAV_DISABLED"] |= NAV_EAST_DISABLE;
+		output(" Given the current state of the captain, it’s probably wise to give the bridge a wide berth....");
 	}
 	
 	if(flags["KI_P16_UNLOCKED"] != undefined)
@@ -334,12 +350,12 @@ public function kiVentMenu():void
 	clearMenu();
 	if (currentLocation != "KI-H16") addButton(0, "Medbay", kiMedbayVent);
 	else addDisabledButton(0, "Medbay", "Medical Bay", "You're already near the medical bay.");
-
-	if (currentLocation != "KI-Engineering") addButton(1, "Engineering", kiEngineeringVent);
-	else addDisabledButton(1, "Engineering", "Engineering Deck", "You're already on the Engineering deck.");
 	
-	if (currentLocation != "KI-E9") addButton(2, "Officers Q.", kiOfficersDeckVent);
-	else addDisabledButton(2, "Officers Q.", "Officers Quarters", "You're already on the Officers Quarters deck.");
+	if (currentLocation != "KI-OfficersAccessRoom") addButton(1, "Officers Q.", kiOfficersDeckVent);
+	else addDisabledButton(1, "Officers Q.", "Officers Quarters", "You're already on the Officers Quarters deck.");
+	
+	if (currentLocation != "KI-EngineeringVent") addButton(2, "Engineering", kiEngineeringGoAccessRoom);
+	else addDisabledButton(2, "Engineering", "Engineering Deck", "You're already on the Engineering deck.");
 
 	addButton(14, "Back", mainGameMenu);
 }
@@ -351,27 +367,48 @@ public function kiMedbayVent():void
 	mainGameMenu();
 }
 
-public function kiEngineeringVent():void
+public function kiEngineeringGoAccessRoom():void
+{
+	currentLocation = "KI-EngineeringVent";
+	generateLocation(currentLocation);
+	mainGameMenu();
+}
+
+public function kiEngineeringAccessRoom():void
+{
+	if (flags["KI_VANDERBILT_WORKING"] != 2)
+	{
+		output("\n\nYou don't yet have a means to combat the infection properly; venturing into the engineering deck whilst properly prepared may be your last chance to sieze back control of the ship from the infected.");
+	}
+	addButton(0, "Vents", kiE9EnterVents, undefined, "Enter Vents", "Crawl into the vents and move around the ship.");
+}
+
+public function kiEngineeringFight():Boolean
 {
 	clearOutput();
 
-	if (flags["KI_VANDERBILT_WORKING"] == 2)
-	{
-		kiEngineeringBossFight();
-		return;
-	}
+	kiEngineeringBossFight();
+	return true;
 }
 
 public function kiOfficersDeckVent():void
 {
-	currentLocation = "KI-E9";
+	currentLocation = "KI-OfficersAccessRoom";
 	generateLocation(currentLocation);
 	mainGameMenu();
 }
 
 public function kiK5CMOQuarters():void
 {
-	addButton(0, "MedSupplies", kiK5CMOQuartersMeds, undefined, "Medical Supplies", "You might be able to patch yourself up here.");
+	if (flags["KI_CMO_MEDSUPPLIES"] == undefined)
+	{
+		addButton(0, "MedSupplies", kiK5CMOQuartersMeds, undefined, "Medical Supplies", "You might be able to patch yourself up here.");
+	}
+	else
+	{
+		addDisabledButton(0, "MedSupplies", "Medical Supplies", "You've already taken everything of use in the supplies!");
+	}
+	
 	if (flags["KI_CMO_SEARCHED"] == undefined)
 	{
 		addButton(1, "Search", kiK5CMOSearch, undefined, "Search", "Toss the doc's room. Maybe you'll find something useful.")
@@ -381,12 +418,28 @@ public function kiK5CMOQuarters():void
 public function kiK5CMOQuartersMeds():void
 {
 	clearOutput();
-	output("Taking a look through the medical kit, you find a one-shot stimulant boost of microsurgeons - strong enough to give you a quick pick-me-up after the fights you’ve been in. You flip the hypospray in your hand and inject yourself.");
-
-	output("\n\nA few moments later, you’re feeling rejuvenated and a lot less sore.");
 	
-	pc.maxOutHP();
-	pc.maxOutEnergy();
+	output("Taking a look through the medical kit, you find a one-shot stimulant boost of microsurgeons - strong enough to give you a quick pick-me-up after the fights you’ve been in."); 
+	
+	lootScreen = kiK5CMOMedSuppliesCheck;
+	flags["KI_CMO_MEDSUPPLIES"] = 1;
+	itemCollect([new OSStimBoost()]);
+}
+
+public function kiK5CMOMedSuppliesCheck():void
+{
+	if (pc.hasItemByType(OSStimBoost) || flags["KI_CMO_MEDSUPPLIES"] == 2)
+	{
+		mainGameMenu();
+		return;
+	}
+	
+	clearOutput();
+	output("You stash the hypospray back where you found it.");
+	flags["KI_CMO_MEDSUPPLIES"] = undefined;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kiK5CMOSearch():void
@@ -395,6 +448,7 @@ public function kiK5CMOSearch():void
 	flags["KI_CMO_SEARCHED"] = 1;
 	output("You spend a few minutes rifling through Elenora’s room, hoping you’ll find something interesting. There’s not much on hand here, really: you quickly find yourself staring at some black, lacy negligee hidden away in her dresser, plus some family pictures on holo-cards showing her and a young boy - her son, maybe? Nothing helpful to your current situation, at any rate.");
 
+	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -545,6 +599,20 @@ public function commandDeckRandomEncounter():Boolean
 	return false;
 }
 
+public function officersDeckRandomEncounter():Boolean
+{
+	IncrementFlag("KI_OFFICERS_DECK_STEPS");
+	
+	if (flags["KI_OFFICERS_DECK_STEPS"] > 3 && rand(100) < (flags["KI_OFFICERS_DECK_STEPS"] * 20))
+	{
+		flags["KI_OFFICERS_DECK_STEPS"] = 0;
+		kiOfficersDeckTriggerEncounter();
+		return true;
+	}
+	
+	return false;
+}
+
 public function kiCommandDeckTriggerEncounter():void
 {
 	var numEnemies:int = 2;
@@ -583,12 +651,39 @@ public function kiCommandDeckTriggerEncounter():void
 	addButton(0, "Fight!", CombatManager.beginCombat);
 }
 
+public function kiOfficersDeckTriggerEncounter():void
+{
+	var numEnemies:int = rand(5) <= 1 ? 3 : 2;
+	
+	var h:Array = [];
+	for (var i:int = 0; i < numEnemies; i++)
+	{
+		h.push(new InfectedCrewmember());
+	}
+	
+	output("\n\nYou hear a horrible screech of metal buckling and tearing. You spin around in time to see a vent shaft above you explode outwards, and");
+	if (numEnemies == 2) output(" a pair of");
+	else output(" several");
+	output(" mutants crawl out of it, leaping down onto the deck just feet away from you. Oh, shit, here we go again!");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(h);
+	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
+	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
+	CombatManager.victoryScene(kiRandomMutantVictory);
+	CombatManager.lossScene(kiRandomMutantLoss);
+
+	clearMenu();
+	addButton(0, "Fight!", CombatManager.beginCombat);
+}
+
 public function kiRandomMutantLoss():void
 {
 	clearOutput();
 	author("Savin");
 
-	output("\n\nMutated, tentacle-laden bodies washes over you, throwing you to the ground and tearing at your");
+	output("Mutated, tentacle-laden bodies washes over you, throwing you to the ground and tearing at your");
 	if (!pc.isNude()) output(" [pc.armor]");
 	else output(" gear");
 	output(", lashing at your mouth and rump");
@@ -1007,7 +1102,7 @@ public function kiL18RoomFunction():Boolean
 	if (flags["KASHIMA_HOLMES_DEFEATED"] != undefined && flags["CHIEF_NEYKKAR_WITH_PC"] == 1)
 	{
 		kiRipChief();
-		return false;
+		return true;
 	}
 
 	return commandDeckRandomEncounter();
@@ -1077,7 +1172,7 @@ public function kiMeetingVanderbilt():void
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(h);
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 3);
-	CombatManager.lossCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
+	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiMedbayFightEnds);
 	CombatManager.lossScene(kiRandomMutantLoss);
 	
@@ -1100,8 +1195,6 @@ public function kiMedbayFightEnds():void
 	else output(" back");
 	output(" before the doors slam shut again and hiss as the emergency lock sets back in place, leaving you is eerie silence save for the rhythmic <i>thump-thump</i> against the door, sounding far away and distant. The reinforced windows don’t so much as waver under the assault, though outside the mutants slaver and silently shriek, thrusting wildly with their blood-red tentacles.");
 
-	CombatManager.abortCombat();
-
 	output("\n\n<i>“A-are you okay?”</i>");
 	
 	output("\n\nThe woman’s voice snaps your attention back, away from the slavering horde and to your savior. She landed just behind you, like she’d used all her bodyweight - what little of it there is on the slip of a woman - to pull you inside. She’s wearing what’s left of a lab coat hanging in tatters from her shoulders, revealing black scrubs underneath that have been torn up so much as to leave very little to the imagination: cleavage, belly, and legs are largely left bare to your gaze. A stethoscope dangles from around her neck, cementing that she must be the ship’s doctor.");
@@ -1115,8 +1208,7 @@ public function kiMedbayFightEnds():void
 	output("\n\nShe shivers, wrapping her arms around herself. Like you, she struggles to rip her gaze away from the poor souls outside, clamoring to get in. <i>“I’m Doctor Vanderbilt, by the way. Elenora. The </i>Kashima<i>’s chief medical officer. Welcome aboard, I guess.”</i>");
 
 	processTime(10);
-	clearMenu();
-	addButton(0, "Next", kiMedbayFightEndsII);
+	CombatManager.abortCombatDeferred(kiMedbayFightEndsII);
 }
 
 public function kiMedbayFightEndsII():void
@@ -1125,7 +1217,9 @@ public function kiMedbayFightEndsII():void
 	author("Savin");
 	showBust("ELENORA");
 	showName("DOCTOR\nVANDERBILT");
-
+	
+	generateLocation(currentLocation);
+	
 	pc.maxOutHP();
 	output("<b>A few uncomfortable, awkward minutes pass...</b>");
 
@@ -1198,11 +1292,11 @@ public function kiDoctorEscape():void
 
 	output("<i>“Escape? We can’t... some of the crew escaped already. They took the shuttle. But quarantine was in effect, and our security chief... she shot them down. That was before the entire crew had succumbed. Just most of them.”</i>");
 
-	output("Damn. Well, luckily you came aboard a shuttle of your own... though it’s sealed off, and you don’t have the keys.");
+	output("\n\nDamn. Well, luckily you came aboard a shuttle of your own... though it’s sealed off, and you don’t have the keys.");
 	if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" You might be able to override it, but that’ll take a lot of time.");
 	else output(" No way you’re going to be able to use the Nova shuttle without Chief Neykkar.");
 
-	kiDoctorMenu(kiDoctorCure);
+	kiDoctorMenu(kiDoctorEscape);
 }
 
 public function kiDoctorDestruct():void
@@ -1244,7 +1338,7 @@ public function kiDoctorLeave():void
 	
 	output("\n\n<i>“Where’s this lead?”</i> you ask, glancing inside. It’s pitch black, the tunnel fading off into shadows and silence.");
 	
-	output("\n\n<i>“Everywhere,”</i> she answers quietly. <i>“The vents connect the whole ship. I don’t... I don’t think the infected have found their way in there yet, either. <i>“You might be able to use them to get to the lower decks. Engineering, staff quarters, wherever. Just... if you’re going, close everything behind you. I don’t want infected following you back.”</i>");
+	output("\n\n<i>“Everywhere,”</i> she answers quietly. <i>“The vents connect the whole ship. I don’t... I don’t think the infected have found their way in there yet, either. You might be able to use them to get to the lower decks. Engineering, staff quarters, wherever. Just... if you’re going, close everything behind you. I don’t want infected following you back.”</i>");
 	
 	output("\n\nYou cock an eyebrow over your shoulder at her. <i>“You’re not coming?”</i>");
 	
@@ -1254,8 +1348,6 @@ public function kiDoctorLeave():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-	// [Next] //Back to map. PC can't leave MedBay through the door, but add [Vent] and [Sleep] options.
-	//If PC sleeps here more than once, go to "Elenora's Secret"
 }
 
 public function kiMedbaySleeps():Boolean
@@ -1516,6 +1608,7 @@ public function kiMedbayCure():void
 	output("\n\n<i>“This will take a while. If... if it works at all,”</i> she says over her shoulder. <i>“You should rest up. Spreading a cure around is going to be even harder than making it.”</i>");
 
 	pc.removeKeyItem("Parasite Sample");
+	
 	flags["KI_VANDERBILT_WORKING"] = 1;
 	flags["KI_VANDERBILT_WORKING_START"] = GetGameTimestamp();
 
@@ -1555,6 +1648,9 @@ public function kiApproachElenora():void
 	output("\n\nYou nod and pocket the can. Fire suppression would be down in Engineering, in the bowels of the ship’s rear. A long haul, and one you probably aren’t coming back from unless you can get the cure to work. Something tells you the big, open, warm maze of the engine deck is going to be absolutely swarming with infected.");
 
 	flags["KI_VANDERBILT_WORKING"] = 2;
+	
+	pc.createKeyItem("Parasite Cure", 0, 0, 0, 0, "A vial containing a potential cure for the parasite afflicting the crew of the Kashima.");
+	output("\n\n<b>Key Item Acquired: Parasite Cure - A vial containing a potential cure for the parasite afflicting the crew of the Kashima.</b>");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1599,9 +1695,28 @@ public function kiEngineeringBossFight():void
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(new CommanderHenderson());
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
-	CombatManager.lossCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
+	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiHendersonVictory);
 	CombatManager.lossScene(kiHendersonLoss);
+	CombatManager.encounterTextGenerator(function():String {
+		var m:String = "Before you stands a particularly massive mutant crewman, easily seven feet tall, with skin as red as cold blood. He was human once, you're sure, but now he looks like a tentacle abomination straight out of a Neo-Tokyo ultraporn, with legs and arms nothing more than dozens of wrapped tentacles, and dozens more drooping and squirming from his crotch, chest, and face. Two pink-hued eyes, glowing as bright as embers, stare down at you from sockets surrounded by dozens of scillia-like shafts.";
+		
+		var h:Array = CombatManager.getHostileCharacters();
+		if (CombatManager.hasFriendlyOfClass(ChiefNeykkar))
+		{
+			// noop
+		}
+		else if (!h[0].hasStatusEffect("Free Chief"))
+		{
+			m += "\n\nChief Neykkar is wrapped up tightly by a squirming mass of tentacles. If you can get her free then you might have the upper hand...";
+		}
+		else
+		{
+			m += "\n\nThe Chief is free of the crushing mass of tentacles, but she's still a little out of it. She needs a minute or two to get her legs back under herself...";
+		}
+		
+		return m;
+	});
 	
 	clearMenu();
 	addButton(0, "Fight!", CombatManager.beginCombat);
