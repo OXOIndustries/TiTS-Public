@@ -3866,11 +3866,19 @@
 			if (rangedWeapon.baseDamage.hasFlag(DamageFlag.ENERGY_WEAPON) || rangedWeapon.baseDamage.hasFlag(DamageFlag.LASER) || rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON)) return true;
 			return false;
 		}
-		public function hasCombatDrone():Boolean
+		public function hasCombatDrone(robotOnly:Boolean = false):Boolean
 		{
-			if (hasPerk("Attack Drone") || accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) || hasStatusEffect("Varmint Buddy") || (!hasStatusEffect("Varmint Buddy") && accessory.droneAttack != null))
+			if(!robotOnly)
 			{
-				if (hasStatusEffect("Combat Drone Disabled")) return false;
+				if(hasStatusEffect("Varmint Buddy")) return true;
+			}
+			return (hasPerk("Attack Drone") || accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE));
+		}
+		public function hasActiveCombatDrone(robotOnly:Boolean = false):Boolean
+		{
+			if(hasCombatDrone(robotOnly))
+			{
+				if(hasStatusEffect("Drone Disabled") || hasStatusEffect("Combat Drone Disabled")) return false;
 				return true;
 			}
 			return false;

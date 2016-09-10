@@ -196,10 +196,10 @@ package classes.Engine.Combat
 			// Any special resistance message overrides
 			if (special == "goovolver")
 			{
-				output("\n<b>[target.CombatName] ");
+				output("\n<b>[target.CombatName]");
 				if (target.isPlural) output(" don't");
 				else output(" doesn't");
-				output(" seem the least bit bothered by the miniature goo crawling over them.</b>\n");
+				output(" seem the least bit bothered by the miniature goo crawling over them.</b>");
 			}
 			else if (special == "slut ray")
 			{
@@ -207,21 +207,21 @@ package classes.Engine.Combat
 				if (target is PlayerCharacter) output("You don’t");
 				else
 				{
-					output("[target.CombatName] ");
+					output("[target.CombatName]");
 					if (target.isPlural) output(" don’t");
 					else output(" doesn’t");
 				}
-				output(" seem to be affected by the gun’s ray....</b>\n");
+				output(" seem to be affected by the gun’s ray....</b>");
 			}
 			else
 			{
 				// Only if the incoming damage is pure-lust
 				if (damageResult.shieldDamage == 0 && damageResult.hpDamage == 0)
 				{
-					output("\n<b>[target.CombatName] ");
+					output("\n<b>[target.CombatName]");
 					if (target.isPlural) output(" don't");
 					else output(" doesn't");
-					output(" seem at all interested in your teasing.</b>\n");
+					output(" seem at all interested in your teasing.</b>");
 				}
 			}
 		}

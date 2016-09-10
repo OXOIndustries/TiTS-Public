@@ -500,6 +500,11 @@ package classes.GameData
 		 */
 		public static function SingleRangedAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "ranged"):Boolean
 		{
+			if (attacker.hasCombatDrone())
+			{
+				attacker.droneTarget = target;
+			}
+			
 			if (rangedCombatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0)
@@ -549,6 +554,11 @@ package classes.GameData
 		
 		public static function SingleMeleeAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "melee"):Boolean
 		{
+			if (attacker.hasCombatDrone())
+			{
+				attacker.droneTarget = target;
+			}
+			
 			if (combatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0)

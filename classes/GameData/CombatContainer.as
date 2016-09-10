@@ -283,10 +283,10 @@ package classes.GameData
 			
 			if(!pc.hasShields() || pc.shields() <= 0)
 			{
-				if(pc.hasCombatDrone() && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
+				if(pc.hasCombatDrone(true) && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
-				output("\n\n<b>Without your shields to sustain it, your drone collapses. It won’t be doing any more damage until you bring your shields back up!</b>");
-				pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
+					output("\n\n<b>Without your shields to sustain it, your drone collapses. It won’t be doing any more damage until you bring your shields back up!</b>");
+					pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
 				}
 			}
 			
@@ -676,7 +676,7 @@ package classes.GameData
 				else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is filled with a sudden rush of energy!</b>");
 			}
 	
-			if (target.hasStatusEffect("Porno Hacked Drone") && target.hasCombatDrone())
+			if (target.hasStatusEffect("Porno Hacked Drone") && target.hasCombatDrone(true))
 			{
 				if(target.shields() > 0 || pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
@@ -3896,7 +3896,7 @@ package classes.GameData
 		private function doCombatDrone(droneUser:Creature):void
 		{
 			//TAMWULF DOESNT NEED POWAAAAAHHHHH
-			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null)
+			if (droneUser.hasCombatDrone(true))
 			{
 				if(((droneUser.hasShields() && droneUser.shields() > 0) || droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER)) && droneUser.hasStatusEffect("Drone Disabled"))
 				{
@@ -3908,21 +3908,21 @@ package classes.GameData
 					//This is done elsewhere for PCs, but we'll just do it late and silent for NPCs cause fuck if I can be bothered -Fen
 					if(droneUser != pc) droneUser.createStatusEffect("Drone Disabled",0,0,0,0,false,"Icon_Paralysis","Without shields, the drone cannot attack!",true,0,0xFF0000);
 				}
-				if(!droneUser.hasStatusEffect("Drone Disabled"))
+			}
+			if (droneUser.hasActiveCombatDrone() && droneUser.droneTarget != null)
+			{
+				var target:Creature = droneUser.droneTarget;
+				if (!target.isDefeated())
 				{
-					var target:Creature = droneUser.droneTarget;
-					if (!target.isDefeated())
+					output("\n\n");
+					// If the user has an accessory equipped that potentially overrides the drone attack to use, use that.
+					if (droneUser.accessory.droneAttack != null)
 					{
-						output("\n");
-						// If the user has an accessory equipped that potentially overrides the drone attack to use, use that.
-						if (droneUser.accessory.droneAttack != null)
-						{
-							droneUser.accessory.droneAttack(droneUser, target);
-						}
-						else
-						{
-							CombatAttacks.DroneAttack(droneUser, target);
-						}
+						droneUser.accessory.droneAttack(droneUser, target);
+					}
+					else
+					{
+						CombatAttacks.DroneAttack(droneUser, target);
 					}
 				}
 			}
