@@ -351,11 +351,11 @@ package classes.GameData
 				{
 					if (h.hasStatusEffect("Blinded") || h.hasStatusEffect("Stunned") || h.hasStatusEffect("Staggered") || h.hasStatusEffect("Paralyzed"))
 					{
-						addDisabledButton(10, "Free Chief", "Free Chief", "It’s way too dangerous to try this now! You’ve got to do something to buy yourself some time!");
+						addButton(10, "Free Chief", h.freeChief, undefined, "Free Chief", "Get Chief Neykkar out of there! She might be able to lend a helping hand!");
 					}
 					else
 					{
-						addButton(10, "Free Chief", h.freeChief, undefined, "Free Chief", "Get Chief Neykkar out of there! She might be able to lend a helping hand!");
+						addDisabledButton(10, "Free Chief", "Free Chief", "It’s way too dangerous to try this now! You’ve got to do something to buy yourself some time!");
 					}
 				}
 				
