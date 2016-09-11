@@ -295,7 +295,7 @@ package classes.Items.Transformatives
 					msg += ParseText("A spot on the side of your head has been getting steadily sorer. It feels like a big pimple; not exactly the sexiest of developments. You’re beginning to think about finding somewhere quiet to take a look at it when it suddenly and rather shockingly bursts, allowing something hand-sized to bloom out from your [pc.hair]. And, once you’ve cautiously examined it with the help of your codex, “bloom” is exactly the right word to use. A huge orchid is now flourishing its floppy " + flowerColor + " petals and stamen above your head!");
 					msg += ParseText("\n\nCertainly it looks better than a pimple; from a distance it will appear as if you’ve stuck a big flower behind your [pc.ear]. However, it... you inhale when your fingers trace its velvety, tube-like innards. It’s definitely connected to you, and slightly sensitive. It firmly reminds you of what a flower <i>is</i> in fact, at least where winged insects are concerned. You bite your lip at the thought.");
 						
-					target.createStatusEffect("Hair Flower", 0, 0, 0, 0, true, "", flowerColor, false);
+					target.createStatusEffect("Hair Flower", 1, 0, 0, 0, true, "", flowerColor, false);
 				}
 				//#8 Ivy arms: Plant skin, plant hair.
 				else if(select == 8)
@@ -502,7 +502,11 @@ package classes.Items.Transformatives
 					var pName:String = kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet;
 					var numFlowers:int = 0;
 					
-					if(target.hasStatusEffect("Hair Flower")) numFlowers++;
+					if(target.hasStatusEffect("Hair Flower"))
+					{
+						if(target.statusEffectv1("Hair Flower") > 1) numFlowers += target.statusEffectv1("Hair Flower");
+						else numFlowers++;
+					}
 					if(target.hasStatusEffect("Arm Flower")) numFlowers += 2;
 					if(target.hasVaginaType(GLOBAL.TYPE_FLOWER)) numFlowers += target.totalVaginas(GLOBAL.TYPE_FLOWER);
 					if(target.tailGenitalArg == GLOBAL.TYPE_FLOWER && target.tailType != GLOBAL.TYPE_HUMAN) numFlowers += target.tailCount;
@@ -601,9 +605,13 @@ package classes.Items.Transformatives
 		}
 		
 		// Bye bye flower (unknown condition but hey it’s here so it ain’t permanent)
-		public function loseHairFlower(target:Creature):String
+		public function loseHairFlower(target:Creature, numFlowers:Number = 0):String
 		{
-			return "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Your head orchid droops, loses its petals one by one, and then finally withers from your scalp entirely. Slightly annoying it might have been flopping around near your ear, but you can’t help feel rather sad at your bloom’s passing.";
+			var msg:String = "";
+			if(numFlowers > 1) msg = "Your head orchids droop, lose their petals one by one, and finally wither from your scalp entirely. Slightly annoying they might have been flopping around near your ears, but you can’t help feel rather sad about your blooms’ passing.";
+			else msg = "Your head orchid droops, loses its petals one by one, and then finally withers from your scalp entirely. Slightly annoying it might have been flopping around near your ear, but you can’t help feel rather sad at your bloom’s passing.";
+			
+			return "\n\n" + kGAMECLASS.logTimeStamp("passive") + " " + msg;
 		}
 		
 		//METHOD ACTING!

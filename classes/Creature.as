@@ -16106,7 +16106,7 @@
 								// Hair Flower wilts away!
 								case "Hair Flower":
 									var flowerPower:Cerespirin = new Cerespirin();
-									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this);
+									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this, (statusEffects[x] as StorageClass).value1);
 									break;
 								// Goo hair reverts back!
 								case "Hair Regoo":

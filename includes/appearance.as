@@ -691,8 +691,16 @@ public function appearance(forTarget:Creature):void
 		//Misc. Head Ornaments
 		if(target.hasStatusEffect("Hair Flower"))
 		{
-			if(rand(2) == 0) output2(" A huge " + target.getStatusTooltip("Hair Flower") + " orchid grows from the side of your head, its big long petals flopping gaily when you move.");
-			else output2(" Nestled above your ear, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
+			if(target.statusEffectv1("Hair Flower") > 1)
+			{
+				if(rand(2) == 0) output2(StringUtil.capitalize(num2Text(target.statusEffectv1("Hair Flower"))) + " huge " + target.getStatusTooltip("Hair Flower") + " orchids grow from the sides of your head, their big long petals flopping gaily when you move.");
+				else output2(" Nestled on your head, there are " + num2Text(target.statusEffectv1("Hair Flower")) + " " + target.getStatusTooltip("Hair Flower") + " orchids. It looks like you stuck them there but they’re very much a part of you, flourishing from your scalp merrily.");
+			}
+			else
+			{
+				if(rand(2) == 0) output2(" A huge " + target.getStatusTooltip("Hair Flower") + " orchid grows from the side of your head, its big long petals flopping gaily when you move.");
+				else output2(" Nestled above your ear, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
+			}
 		}
 		//BODY PG HERE
 		output2("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
