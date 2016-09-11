@@ -2307,7 +2307,7 @@ public function displayQuestLog(showID:String = "All"):void
 			}
 			if(flags["KII3_SAFECRACK_FAILS"] != undefined || flags["KII3_CRACKED"] != undefined)
 			{
-				output2("\n<b>* <i>Kashima</i>, Executive Quarters:</b>");
+				output2("\n<b>* <i>Kashima</i>, Science Quarters:</b>");
 				if(flags["KII3_SAFECRACK_FAILS"] != undefined)
 				{
 					output2(" Failed to open safe");
@@ -2320,6 +2320,12 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["KII3_CRACKED"] == -1) output2(" Safe locked permanently");
 					if(flags["KII3_CRACKED"] == 1) output2(" Safe unlocked and looted");
 				}
+			}
+			if(flags["KI_CMO_MEDSUPPLIES"] != undefined)
+			{
+				output2("\n<b>* <i>Kashima</i>, Chief Medical Officer’s Quarters:</b>");
+				if(flags["KI_CMO_MEDSUPPLIES"] != undefined) output2(" Looted medical supplies");
+				if(flags["KI_CMO_MEDSUPPLIES"] >= 2) output2(", Used stim booster");
 			}
 			// Master Chief
 			var sNeykkarName:String = ("Chief " + ((flags["KASHIMA_BRIDGE"] == 1 || flags["KASHIMA_BRIDGE"] == 2) ? "Ushamee" : "") + " Neykkar");
@@ -2339,11 +2345,12 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2("\n<b>* Doctor Elenora Vanderbilt:</b> Met her");
 				if(flags["KI_VANDERBILTS_SECRET"] != undefined) output2(", Know of her secret");
+				if(flags["KI_VANDERBILTS_SECRET"] >= 2) output2(", Sexed her");
 				if(flags["KI_VANDERBILT_WORKING_START"] != undefined)
 				{
 					output2("\n<b>* Doctor Elenora Vanderbilt, Cure, Status:</b>");
-					if(flags["KI_VANDERBILT_WORKING_START"] + 240 <= GetGameTimestamp()) output2(" <i>Working...</i> " + prettifyMinutes((flags["KI_VANDERBILT_WORKING_START"] + 240) - GetGameTimestamp()) + " until completion");
-					else output2(" Completed");
+					if(flags["KI_VANDERBILT_WORKING_START"] + 240 > GetGameTimestamp()) output2(" <i>Working...</i> " + prettifyMinutes((flags["KI_VANDERBILT_WORKING_START"] + 240) - GetGameTimestamp()) + " until completion");
+					else output2(" Created, Completed");
 				}
 			}
 			distressCount++;

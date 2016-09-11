@@ -65,6 +65,12 @@ public function abandonKashimaJob(destination:String):void
 	addButton(0, "Next", flyToWrapper, destination);
 }
 
+public function finishKashimaJobFlyAway():void
+{
+	showBust("");
+	flyToWrapper(flags["STORED SHIP DESTINATION"]);
+}
+
 public function startKashimaJobbo(destination:String):void
 {
 	clearOutput();
@@ -687,8 +693,8 @@ public function kiHendersonVictory():void
 	
 	clearOutput();
 	author("Savin");
-	showName("VICTORY\nCMDR. HENDERSON");
-	showBust("HENDERSON", "USHAMEE_NUDE_PREG");
+	showName("VICTORY:\nHENDERSON");
+	showBust("USHAMEE_NUDE_PREG");
 
 	// used the cure to end the fight
 	if (enemy.hasStatusEffect("Parasite Cure") && enemy.statusEffectv1("Parasite Cure") == 5)
@@ -816,7 +822,7 @@ public function kiHendersonNoCure():void
 {	
 	clearOutput();
 	author("Savin");
-	showName("VICTORY:\nCMDR. HENDERSON");
+	showName("VICTORY:\nHENDERSON");
 	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
 	output("<i>“The whole crew’s infected. Of both ships,”</i> you say, casting a glance to the leithan beside you. She’s too busy staggering and rubbing her belly to acknowledge you. <i>“The ship’s crawling with them, now.”</i>");
@@ -869,12 +875,12 @@ public function kiHendersonNoCureII():void
 {
 	clearOutput();
 	author("Savin");
-	showName("VICTORY\nCMDR. HENDERSON");
+	showName("VICTORY:\nHENDERSON");
 	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
 	output("<i>“Hey, what-”</i> the Chief starts to say.");
 	
-	output("\n\nAgain, Elenora cuts her off. <i>“We’re infected. Dangerous. [pc.name] isn’t. [pc.heShe] needs to leave, before we... before we hurt [pc.himHer]. Someone has to go for help. And you know it can’t be us. We can’t risk spreading the parasites.”</i>");
+	output("\n\nAgain, Elenora cuts her off. <i>“We’re infected. Dangerous. [pc.name] isn’t. [pc.HeShe] needs to leave, before we... before we hurt [pc.himHer]. Someone has to go for help. And you know it can’t be us. We can’t risk spreading the parasites.”</i>");
 	
 	output("\n\nShe’s not wrong, but still...");
 	
@@ -942,6 +948,7 @@ public function kiFinalFightVictory():void
 public function kiEscapeShuttle():void
 {
 	clearOutput();
+	showBust("");
 	author("Savin");
 	showName("ESCAPE\nKASHIMA");
 
@@ -959,11 +966,12 @@ public function kiEscapeShuttle():void
 	if(eventQueue.indexOf(kiEscapeShuttleFollowup) == -1) eventQueue.push(kiEscapeShuttleFollowup);
 
 	clearMenu();
-	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
+	addButton(0, "Next", finishKashimaJobFlyAway);
 }
 public function kiEscapeShuttleFollowup():void
 {
 	clearOutput();
+	showBust("");
 	showName("KASHIMA\nFOLLOWUP");
 	
 	output("Your codex beeps, alerting you of a message sent from Steele Tech communications. Apparantly, the incident you’ve witnessed on the <i>Kashima</i> was no laughing matter. While the note doesn’t go into detail on if and how the issue is being resolved, it acknowledges the harrowing trials you’ve gone through with a small payment for the inconvenience.");
@@ -980,7 +988,7 @@ public function kiHendersonMedbay():void
 {
 	clearOutput();
 	author("Savin");
-	showName("VICTORY:\nCMDR.HENDERSON");
+	showName("VICTORY:\nHENDERSON");
 	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
 	currentLocation = "KI-H16";
@@ -1083,7 +1091,7 @@ public function kiHendersonMedbayII():void
 	showName("KASHIMA\nEPILOGUE");
 	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
-	output("A couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i>. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal the crew.");
+	output("A couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i> herself. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal the crew.");
 
 	output("\n\nThe Nova marines and your Steele Tech employees are all secured on the rescue boat, including the Chief and Elenora. You ask the captain to update you on their statuses when they’ve recovered. If, in Elenora’s case. He nods, confirms your extranet addresses, and after getting a signature on a few forms, hands over the promised payment from Corporate HQ, plus a sizable danger bonus. <b>25,000 credits are transferred to your accounts</b>.");
 
@@ -1095,14 +1103,14 @@ public function kiHendersonMedbayII():void
 	flags["KASHIMA_STATE"] = 2;
 
 	clearMenu();
-	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
+	addButton(0, "Next", finishKashimaJobFlyAway);
 }
 
 public function kiHendersonSteeleTech():void
 {
 	clearOutput();
 	author("Savin");
-	showName("VICTORY:\nCMDR.HENDERSON");
+	showName("VICTORY:\nHENDERSON");
 	showBust("ELENORA", "USHAMEE_NUDE_PREG");
 
 	output("<i>“Alright, listen,”</i> you say, putting a reassuring hand on the Chief’s flank. She moans, curling her tail under herself to hide her visibly swollen, drooling pussy-lips. Even with both arms around her chest, her tits are so big, and her nipples so wide and stiff, that she can do little to hide them. You try and smile for her");
@@ -1114,7 +1122,7 @@ public function kiHendersonSteeleTech():void
 
 	output("\n\nShe groans. <i>“Why the fuck didn’t your cure kill it? What-”</i>");
 	
-	output("\n\nYou shake your head, saying the cure only paralyses the parasite. Puts it to sleep long enough for Steele Tech to come out and secure everyone. So they can remove the parasite without hurting the host.");
+	output("\n\nYou shake your head, saying the cure only paralyzes the parasite. Puts it to sleep long enough for Steele Tech to come out and secure everyone. So they can remove the parasite without hurting the host.");
 	
 	output("\n\n<i>“Ah, shit... how long before they get here, you think? I can’t-”</i> she moans, shivering from head to clawed toe. Heavy globs of leithan moisture drip from her twat, splattering in a musky pool behind her. You can still see the tentacle inside her, squirming inside. Orgasm shudders through her, making her whimper with alien pleasure. <i>“I can’t hold on much longer...”</i>");
 
@@ -1142,12 +1150,12 @@ public function kiHendersonSteeleTech():void
 		else output(" slipping a plated finger into your own [pc.cunt].");
 		
 
-		output("\n\nYou share a lustful smile with the horny ‘taur, and strip your gear all the way off. She hungrily grabs your hips and nestles down on her legs and belly, putting her mouth as close to crotch-level as she can get - neither of you want to risk spreading the infection through her sex, but the Chief herself doesn’t seem to be.Her mouth will have to do, and with the lustful, blissed-out look on her face, she seems more than content with the pleasure of her parasitic infestation.");
+		output("\n\nYou share a lustful smile with the horny ‘taur, and strip your gear all the way off. She hungrily grabs your hips and nestles down on her legs and belly, putting her mouth as close to crotch-level as she can get - neither of you want to risk spreading the infection through her sex, but the Chief herself doesn’t seem to be. Her mouth will have to do, and with the lustful, blissed-out look on her face, she seems more than content with the pleasure of her parasitic infestation.");
 
 		output("\n\nThe Chief’s reptilian tongue flicks past her lips, and");
 		if (pc.hasCock()) output(" around your cock");
 		else output(" into your pussy");
-		output(", eagerly exploring your sex. While she does, you run your hands through her dark hair, guiding her forward until her lips are planted on your crotch, vigorously licking all around. Slowly, you shift your grip up, through her lustrous hair and up to the bases of her black, chitin-clad bunny-ears. She gasps, murmuring in pleasure as your thumbs rub inside, massaging the tender gray flesh inside. Her ears twitch rapidly, and every caress you give her increases the tempo of her tongue around your");
+		output(", eagerly exploring your sex. While she does, you run your hands through her dark hair, guiding her forward until her lips are planted on your crotch, vigorously licking all around. Slowly, you shift your grip up, through her lustrous hair and up to the bases of her black, chitin-clad bunny-ears. She gasps, murmuring in pleasure as your thumbs rub them, massaging the tender gray flesh inside. Her ears twitch rapidly, and every caress you give her increases the tempo of her tongue around your");
 		if (pc.hasCock()) output(" [pc.cock]");
 		else output(" [pc.cunt]");
 		output(". For a warrior-woman, she’s damn good at showing her appreciation.");
@@ -1175,7 +1183,7 @@ public function kiHendersonSteeleTech():void
 	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined)) output(" when she gets off your crotch");
 	output(". Per your communique, they quickly surround Chief Neykkar and, as gently as they can, surround her in a quarantine forcefield and start to cart her off. She looks around confused, glancing at you for reassurance. You tell her everything’s going to be fine all the way until the security folks have her aboard their rescue boat.");
 	
-	output("\n\nA couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i>. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal them.");
+	output("\n\nA couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i> herself. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal them.");
 	
 	output("\n\nWhile they’re extracting the crew, you have to ask what happened to Elenora.");
 	if (flags["KI_VANDERBILTS_SECRET"] == undefined)
@@ -1188,12 +1196,12 @@ public function kiHendersonSteeleTech():void
 	}
 	else
 	{
-		output(" He informs you that she was found on the upper decks, knocked cold like everyone else.");
+		output(" He informs you that she was found on the upper decks, knocked-out cold like everyone else.");
 
 		output("\n\nYou sigh and");
 	}
 	
-	output(" ask him to update you on her status and Chief Neykkar’s when they’ve recovered. If. He nods, confirms your extranet addresse, and after getting a signature on a few forms, hands over the promised payment from Corporate HQ, plus a sizable danger bonus. <b>25,000 credits are transferred to your account</b>.");
+	output(" ask him to update you on her status and Chief Neykkar’s when they’ve recovered. If. He nods, confirms your extranet address, and after getting a signature on a few forms, hands over the promised payment from Corporate HQ, plus a sizable danger bonus. <b>25,000 credits are transferred to your account</b>.");
 	
 	output("\n\nThere’s not much more for you to do here, so once you’re sure the sample in Chief Neykkar is secure and that the HAZMAT crew is well on their way, you catch a shuttle ride back to your ship for a much-needed rest.");
 
@@ -1203,7 +1211,7 @@ public function kiHendersonSteeleTech():void
 	flags["KASHIMA_STATE"] = 3;
 
 	clearMenu();
-	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
+	addButton(0, "Next", finishKashimaJobFlyAway);
 }
 
 public function kiMutantBadEnd():void

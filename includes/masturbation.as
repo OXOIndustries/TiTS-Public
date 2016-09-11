@@ -3424,7 +3424,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 public function autofellatioForNormies():void
 {
 	clearOutput();
-	showName("\nAUTO-\nFELLATIO");
+	showName("AUTO-\nFELLATIO");
 	var x:int = pc.aCockToSuck();
 	if(x < 0) x = pc.biggestCockIndex();
 	

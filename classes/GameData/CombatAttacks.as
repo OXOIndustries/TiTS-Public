@@ -500,11 +500,6 @@ package classes.GameData
 		 */
 		public static function SingleRangedAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "ranged"):Boolean
 		{
-			if (attacker.hasCombatDrone())
-			{
-				attacker.droneTarget = target;
-			}
-			
 			if (rangedCombatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0)
@@ -554,11 +549,6 @@ package classes.GameData
 		
 		public static function SingleMeleeAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "melee"):Boolean
 		{
-			if (attacker.hasCombatDrone())
-			{
-				attacker.droneTarget = target;
-			}
-			
 			if (combatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0)
@@ -622,11 +612,6 @@ package classes.GameData
 		 */
 		public static function RangedAttack(attacker:Creature, target:Creature):void
 		{
-			if (attacker.hasCombatDrone())
-			{
-				attacker.droneTarget = target;
-			}
-			
 			// Tutorial hook
 			if (target is Celise)
 			{
@@ -684,11 +669,6 @@ package classes.GameData
 		
 		public static function MeleeAttack(attacker:Creature, target:Creature):void
 		{
-			if (attacker.hasCombatDrone())
-			{
-				attacker.droneTarget = target;
-			}
-			
 			if (target is Celise)
 			{
 				output(target.customBlock);
@@ -865,7 +845,7 @@ package classes.GameData
 		
 		public static function ACECannonAttack(attacker:Creature, target:Creature):void
 		{
-			output("The gun on " + (attacker is PlayerCharacter ? "your" : possessive(attacker.getCombatName())) +" shoulder tracks towards " + (target is PlayerCharacter ? "you" : target.getCombatName()) +", charging up with power. As " + (attacker is PlayerCharacter ? target.getCombatName() : attacker.getCombatName()) +" moves, it works on its own, targeting and firing at " + (target is PlayerCharacter ? "you" : "[target.combatName]") +".");
+			output("The gun on " + (attacker is PlayerCharacter ? "your" : possessive(attacker.getCombatName())) +" shoulder tracks towards " + (target is PlayerCharacter ? "you" : target.getCombatName()) +", charging up with power. As " + (attacker is PlayerCharacter ? target.getCombatName() : attacker.getCombatName()) +" moves, it works on its own, targeting and firing at " + (target is PlayerCharacter ? "you" : target.getCombatName()) +".");
 			
 			if (target.reflexes() / 2 + rand(20) + 1 >= 35)
 			{
@@ -882,10 +862,10 @@ package classes.GameData
 		
 		public static function TamedVarmintAttack(attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Your pet varmint hoots and hisses at [target.combatName],");
-			else output("[attacker.CombatName] pet varmint hoots and hisses at you,");
-			if (attacker.isGrappled()) output(" pacing about defensively near " + (attacker is PlayerCharacter ? "you" : "[attacker.combatHimHer]"));
-			else output(" standing protectively in front of " + (attacker is PlayerCharacter ? "you" : "[attacker.combatHimHer]"));
+			if (attacker is PlayerCharacter) output("Your pet varmint hoots and hisses at " + target.getCombatName() + ",");
+			else output(attacker.getCombatName() + "’s pet varmint hoots and hisses at you,");
+			if (attacker.isGrappled()) output(" pacing about defensively near " + (attacker is PlayerCharacter ? "you" : attacker.getCombatPronoun("o")));
+			else output(" standing protectively in front of " + (attacker is PlayerCharacter ? "you" : attacker.getCombatPronoun("o")));
 			output(" and raising its spiky hackles.");
 			if (rand(10) <= 2)
 			{
@@ -893,7 +873,7 @@ package classes.GameData
 			}
 			else
 			{
-				if (attacker is PlayerCharacter) output(" It lunges towards [target.combatName], shrieking like a banshee. Its fangs sink into your enemy, rending viciously at [target.combatHimHer]!");
+				if (attacker is PlayerCharacter) output(" It lunges towards " + target.getCombatName() + ", shrieking like a banshee. Its fangs sink into your enemy, rending viciously at " + target.getCombatPronoun("o") + "!");
 				else output(" Shrieking like a banshee, it lunges towards you and its fangs sink in, rending at you viciously!");
 				applyDamage(attacker.droneDamage(), attacker, target, "minimal");
 			}
@@ -904,7 +884,7 @@ package classes.GameData
 			if (attacker.hasStatusEffect("Disarmed"))
 			{
 				if (attacker is PlayerCharacter) output("You try to attack until you remember that you’ve been disarmed!");
-				else output("[attacker.CombatName] scrabbles about, trying to find [attacker.combatHisHer] missing weapon.");
+				else output(attacker.getCombatName() + " scrabbles about, trying to find " + attacker.getCombatPronoun("pa") + " missing weapon.");
 				return;
 			}
 			
@@ -916,7 +896,7 @@ package classes.GameData
 			if (attacker.hasStatusEffect("Disarmed"))
 			{
 				if (attacker is PlayerCharacter) output("You try to attack until you remember that you’ve been disarmed!");
-				else output("[attacker.CombatName] scrabbles about, trying to find [attacker.combatHisHer] missing weapon.");
+				else output(attacker.getCombatName() + " scrabbles about, trying to find " + attacker.getCombatPronoun("pa") + " missing weapon.");
 				return;
 			}
 			
@@ -997,11 +977,6 @@ package classes.GameData
 		public static var PowerStrike:SingleCombatAttack;
 		private static function PowerStrikeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker.hasCombatDrone())
-			{
-				attacker.droneTarget = target;
-			}
-			
 			if (combatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);

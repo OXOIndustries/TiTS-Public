@@ -205,6 +205,8 @@
 			credits = rand(200);	
 			sexualPreferences.setRandomPrefs(4 + rand(3),1);
 			
+			createStatusEffect("Force It Gender");
+			
 			_randomBustSelection = RandomInCollection("LUSTOMORPH_AUSAR", "LUSTOMORPH_GRYVAIN", "LUSTOMORPH_RASKVEL");
 			
 			this._isLoading = false;

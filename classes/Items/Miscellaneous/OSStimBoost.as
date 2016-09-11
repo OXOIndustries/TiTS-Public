@@ -29,7 +29,7 @@ package classes.Items.Miscellaneous
 			//Regular name
 			this.longName = "One Shot Stim Booster";
 			
-			//TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
 			this.description = "a one-shot stimbooster";
@@ -37,7 +37,7 @@ package classes.Items.Miscellaneous
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A hypospray containing a single dose of stimulant boost of microsurgeons.";
 			
-			//TooltipManager.addTooltip(this.shortName, this.tooltip);
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			
@@ -94,7 +94,7 @@ package classes.Items.Miscellaneous
 				else kGAMECLASS.clearOutput();
 				if (usingCreature == target)
 				{
-					kGAMECLASS.output(usingCreature.short + " pulls out a hp booster and jabs it into their own arm. Woosh noises etc. In mere seconds they look far perkier, the microsurgeons working quickly to dull the pains and weariness from their frame.");
+					kGAMECLASS.output(usingCreature.short + " pulls out a HP booster and jabs it into their own arm. Woosh noises etc. In mere seconds they look far perkier, the microsurgeons working quickly to dull the pains and weariness from their frame.");
 				}
 				else if (usingCreature == kGAMECLASS.pc)
 				{
@@ -102,7 +102,7 @@ package classes.Items.Miscellaneous
 				}
 				else
 				{
-					kGAMECLASS.output(usingCreature.short + " pulls out a hp booster and jabs it against " + target.short + "s arm. Woosh noises etc.");
+					kGAMECLASS.output(usingCreature.short + " pulls out a HP booster and jabs it against " + target.short + "’s arm. Woosh noises etc.");
 				}
 				
 				hpChange = gainHP(target);
