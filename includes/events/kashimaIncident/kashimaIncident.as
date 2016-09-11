@@ -913,10 +913,12 @@ public function kiApproachingEscapeShuttle():Boolean
 		}
 
 		h[0].inventory.push(new SteeleTechSuit());
+		h[0].createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyCharacters(pc);
 		CombatManager.setHostileCharacters(h);
+		CombatManager.displayLocation("INFECTED CREW");
 		CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 		CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 		CombatManager.victoryScene(kiFinalFightVictory);
@@ -1208,9 +1210,10 @@ public function kiMutantBadEnd():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
-	generateMap();
+	generateMapForLocation("GAME OVER");
 	
 	clearOutput();
+	showBust("");
 	author("Gardeford");
 	showName("ONE OF\nTHE INFECTED");
 	
@@ -1240,6 +1243,7 @@ public function kiMutantBadEnd():void
 	
 	output("\n\nWith a great deal of effort, you pull yourself away from her face, remembering vague whisps of something you were supposed to be doing; someone else who was coming to rescue you. Oh well, they can join in when they get here. You dismiss all thoughts, diving back down to taste more of your new friend.");
 
+	if(inCombat()) CombatManager.postCombat();
 	badEnd();
 }
 
