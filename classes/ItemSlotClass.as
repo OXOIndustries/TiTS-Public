@@ -357,7 +357,7 @@
 					}
 				}
 				
-				resultString += statDiff;
+				resultString += (Math.round(statDiff * 100)/100);
 				if (asPercentage) resultString += "%";
 				resultString += "</b></span>)";
 			}
