@@ -3768,10 +3768,20 @@ package classes.GameData
 				
 				if (!(target is QueenOfTheDeep) && !(target is Cockvine))
 				{
-					kGAMECLASS.setEnemy(target);
-					target.getCombatDescriptionExtension();
-					showMonsterArousalFlavor(target);
-					kGAMECLASS.setEnemy(null);
+					if (_hostiles.length == 1)
+					{
+						kGAMECLASS.setEnemy(target);
+						target.getCombatDescriptionExtension();
+						showMonsterArousalFlavor(target);
+						kGAMECLASS.setEnemy(null);
+					}
+					else
+					{
+						target.getCombatDescriptionExtension();
+						output("\n\n<b>" + StringUtil.toTitleCase(target.getCombatName()) + ":</b>");
+						if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
+						else showMonsterArousalFlavor(target);
+					}
 				}
 			}
 		}
@@ -3909,6 +3919,11 @@ package classes.GameData
 					if(droneUser != pc) droneUser.createStatusEffect("Drone Disabled",0,0,0,0,false,"Icon_Paralysis","Without shields, the drone cannot attack!",true,0,0xFF0000);
 				}
 			}
+			
+			if(_friendlies.indexOf(droneUser) != -1) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
+			else if(_hostiles.indexOf(droneUser) != -1) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_friendlies);
+			else droneUser.droneTarget = null;
+			
 			if (droneUser.hasActiveCombatDrone() && droneUser.droneTarget != null)
 			{
 				var target:Creature = droneUser.droneTarget;
