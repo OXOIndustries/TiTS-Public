@@ -247,7 +247,7 @@ public function kiInitRooms():void
 
 	rooms["KI-I5"] = new RoomClass(this);
 	rooms["KI-I5"].roomName = "OFFICER’S\nQUARTERS";
-	rooms["KI-I5"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nNorth is the Chief Science Officer's quarters. East is the doctor's quarters, marked with the name ’C.M.O. Elenora Vanderbilt, M.D.’\n\nA passage leading south to a communal kitchen has been crushed in by some sort of explosion, completely blocking your access. Several of the mutant crewmen can be seen beyond the wreckage, vigorously fucking.";
+	rooms["KI-I5"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nNorth is the Chief Science Officer's quarters. East is the doctor's quarters, marked with the name ‘C.M.O. Elenora Vanderbilt, M.D.’\n\nA passage leading south to a communal kitchen has been crushed in by some sort of explosion, completely blocking your access. Several of the mutant crewmen can be seen beyond the wreckage, vigorously fucking.";
 	rooms["KI-I5"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-I5"].planet = planetName;
 	rooms["KI-I5"].system = systemName;

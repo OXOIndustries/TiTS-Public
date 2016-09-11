@@ -321,7 +321,6 @@ package classes.Characters
 			else
 			{
 				output(" You recoil from the overwhelming, musky scent, trying to cover you nose as best you can.");
-				applyDamage(damageRand(new TypeCollection( { drug: 7 } ), 15), this, struct.pc, "minimal");
 				
 				if (!bHitNeykkar)
 				{
