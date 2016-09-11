@@ -523,6 +523,7 @@ public function kq2rfKaraOverride():void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters([pc]);
 	CombatManager.setHostileCharacters([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
+	CombatManager.displayLocation("VOID GRUNTS");
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 5);
 	CombatManager.victoryScene(kq2KaraHotwiresSumDoors);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);

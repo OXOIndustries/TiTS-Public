@@ -994,6 +994,7 @@ public function kq2FightEngineer(numDrones:int):void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(f);
 	CombatManager.setHostileCharacters(h);
+	CombatManager.displayLocation("ENGINEER");
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
 	CombatManager.victoryScene(kq2EngineerPCVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);

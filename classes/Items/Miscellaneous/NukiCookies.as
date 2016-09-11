@@ -355,7 +355,7 @@
 						//From skin
 						if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN)
 						{
-							kGAMECLASS.output("\n\nYou idly scratch at your arm, but find yourself catching on something. Looking closer, you see a single hair growing from a normally hairless part of your body. A second later, another pops out alongside it... then another, and another... and another. They’re everywhere! Tiny hairs are surfacing all across your body, thickening into layer of fur before your eyes. All over, there’s a seemingly endless sea of thick, fluffy brown. <b>You pet your silky fur as you try to get used to it.</b>");
+							kGAMECLASS.output("\n\nYou idly scratch at your arm, but find yourself catching on something. Looking closer, you see a single hair growing from a normally hairless part of your body. A second later, another pops out alongside it... then another, and another... and another. They’re everywhere! Tiny hairs are surfacing all across your body, thickening into layer of fur before your eyes. All over, there’s a seemingly endless sea of thick, fluffy brown fur. <b>You pet your silky fur as you try to get used to it.</b>");
 						}
 						//From scales
 						else

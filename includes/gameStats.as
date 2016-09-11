@@ -625,8 +625,10 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 			}
 		}
-		if(flags["PC_SELF_SUCKED_STANDARD"] > 1) output2("\n<b>* Masturbation, Times Autofellatio:</b> " + flags["PC_SELF_SUCKED_STANDARD"]);
-		if(pc.perkv1("Auto-Autofellatio") > 1) output2("\n<b>* Masturbation, Times Auto-Autofellatio:</b> " + pc.perkv1("Auto-Autofellatio"));
+		var selfSuck:int = 0;
+		if(flags["PC_SELF_SUCKED_STANDARD"] != undefined) selfSuck += flags["PC_SELF_SUCKED_STANDARD"];
+		if(pc.hasPerk("Auto-Autofellatio")) selfSuck += pc.perkv1("Auto-Autofellatio");
+		if(selfSuck > 0) output2("\n<b>* Masturbation, Times Autofellatio:</b> " + selfSuck);
 	}
 	
 	// Other
@@ -1355,6 +1357,7 @@ public function displayQuestLog(showID:String = "All"):void
 						if(flags["KILLED_TAIVRA"] != undefined) output2(" Executed Taivra,");
 						else output2(" Spared Taivra,");
 					}
+					else output2(" Married Taivra,");
 					if(flags["KING_NYREA"] != undefined) output2(" Succeeded the throne as " + pc.mf("king","queen") + ",");
 					output2(" Completed");
 				}
@@ -2613,6 +2616,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_EXHIBITION_BLOWJOB"] != undefined) output2("\n<b>* Sera, Times She Gave You a Public Blowjob:</b> " + flags["SERA_EXHIBITION_BLOWJOB"]);
 					if(flags["SERA_IN_JARDI_THREESOME"] != undefined) output2("\n<b>* Sera, Times Sexed in Threesome with Jardi:</b> " + flags["SERA_IN_JARDI_THREESOME"]);
 					if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) output2("\n<b>* Sera, Times She Rode Your Face:</b> " + flags["SERA_FACE_RIDE_TRAINING"]);
+					if(flags["SERA_TAILED"] != undefined) output2("\n<b>* Sera, Times She Fucked Your Parasitic Tail Cock:</b> " + flags["SERA_TAILED"]);
 					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length:</b> " + flags["SERA_INCH_STEALING_SEX"]);
 					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock:</b> " + flags["SERA_INCH_STEALING_HELP"]);
 				}
@@ -2658,7 +2662,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["INESSA_BEING_DOMMED"] != undefined) output2(", You’ve accepted her submission");
 				else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(", You’ve refused her submission");
 				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role:</b> " + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
-				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined || flags["INESSA_HJ"] != undefined || flags["INESSA_FACE_STRAPPED"] != undefined)
+				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined || flags["INESSA_HJ"] != undefined || flags["INESSA_FACE_STRAPPED"] != undefined || flags["INESSA_TAILED"] != undefined)
 				{
 					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
 					if(flags["INESSA_BJED"] != undefined) output2(", Gave you a blowjob");
@@ -2666,6 +2670,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["INESSA_VIRGINITY"] != undefined) output2(", You took her virginity");
 					if(flags["INESSA_HJ"] != undefined) output2("\n<b>* Inessa, Times She’s Given You a Handjob:</b> " + flags["INESSA_HJ"]);
 					if(flags["INESSA_FACE_STRAPPED"] != undefined) output2("\n<b>* Inessa, Times She’s Used Her Face Strap-On:</b> " + flags["INESSA_FACE_STRAPPED"]);
+					if(flags["INESSA_TAILED"] != undefined) output2("\n<b>* Inessa, Times You Fucked Her with a Parasitic Tail Cock:</b> " + flags["INESSA_TAILED"]);
 				}
 				variousCount++;
 			}
@@ -4422,6 +4427,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FUCKED_TAIVRA"] != undefined) output2(", Sexed her");
 					if(flags["FUCKED_BY_TAIVRA"] != undefined) output2(", Fucked by her");
 					if(flags["TAIVRA_FOOTJOBBED"] != undefined) output2(", Footjob by her");
+					if(flags["TAIVRA_NEW_THRONE"] != undefined)
+					{
+						output2("\n<b>* Queen Taivra, New Throne:</b>");
+						switch(flags["TAIVRA_NEW_THRONE"])
+						{
+							case 0: output2(" Purchased, <i>Retrieve at hangar...</i>"); break;
+							case 1: output2(" Purchased, Retrieved, <i>Return to Taivra...</i>"); break;
+							case 2: output2(" Purchased, Retrieved, Installed in her throne room"); break;
+						}
+					}
 					if(flags["TAIVRA_FERTILE"] != undefined)
 					{
 						output2("\n<b>* Queen Taivra, Fertility:</b>");
@@ -4429,7 +4444,9 @@ public function displayEncounterLog(showID:String = "All"):void
 						else output2(" Normal");
 						if(flags["TAIVRA_FERTILE"] > 0) output2("\n<b>* Queen Taivra, Last Fertilized Her:</b> " + prettifyMinutes(GetGameTimestamp() - flags["TAIVRA_FERTILE"]) + " ago");
 					}
+					if(flags["TAIVRA_CHAMBER_SEX"] != undefined) output2("\n<b>* Queen Taivra, Times Had Sex in Her Chambers:</b> " + flags["TAIVRA_CHAMBER_SEX"]);
 					if(flags["TAIVRA_HAIRPULLED"] != undefined) output2("\n<b>* Queen Taivra, Times Pulled Her Hair During Hardlight Anal:</b> " + flags["TAIVRA_HAIRPULLED"]);
+					if(flags["TAIVRA_THRONE_SEX"] != undefined) output2("\n<b>* Queen Taivra, Times Had Sex on Her Throne:</b> " + flags["TAIVRA_THRONE_SEX"]);
 				}
 				// Queensguard
 				if(metTaivra())
@@ -4490,7 +4507,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered:</b> " + flags["MET_RED_DESERTER"]);
 					if(flags["RED_DILDOED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times Used Dildo:</b> " + flags["RED_DILDOED"]);
-					if(flags["BRIHA_HARDLIGHT_STUFFED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times She Had Double Dildo Stuffing:</b> " + flags["BRIHA_HARDLIGHT_STUFFED"]);
+					if(flags["BRIHA_HARDLIGHT_STUFFED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times Fucked Her With Hardlight Strap-On:</b> " + flags["BRIHA_HARDLIGHT_STUFFED"]);
 				}
 				variousCount++;
 			}

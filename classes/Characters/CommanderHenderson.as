@@ -190,6 +190,8 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
+			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
 			btnTargetText = "Henderson";
 			
 			this._isLoading = false;

@@ -3340,7 +3340,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	if(!silly) output("more efficiently than a custom-designed sex-toy");
 	else output("more efficiently than some kind of cock-sucking machine");
 	output(". That leaves your mind free to gorge itself on the incredible sensory buffet. The ever present, subtle dickmusk swirls around inside your head, captured in happy pink bubbles so that you’ll never forget a mote of the delectable odor. They float on a lovely, cummy ocean distilled from the salty taste of cock, itself rocking in gentle waves, stirred by the all-consuming sight of prick bouncing in and out of [pc.lipColor] lips.");
-	output("\n\nPart of you wishes you could climb out of your body just to watch. It must look so fucking good, seeing some big-breasted cow-slut short-circuiting her brain-cells on the feelings from her own [pc.cock " + x + "]. You want to see your mouth straining to take the girth");
+	output("\n\nPart of you wishes you could climb out of your body just to watch. It must look so fucking good, seeing " + (pc.biggestTitSize() >= 6 ? "some big-breasted" : "a giddy") + " cow-slut short-circuiting her brain-cells on the feelings from her own [pc.cock " + x + "]. You want to see your mouth straining to take the girth");
 	if(pc.biggestTitSize() >= 6) output(", the way your tits deform and ripple around the unyielding pole");
 	output(", the glossy shine of drooling spit covering every inch, and the way your eyes must be rolling back, dilated as wide as dinner plates by pleasure and passion.");
 	output("\n\nIf someone found you like this, they could pick you up and fuck you. You wouldn’t mind. If anything, you’d thank you for helping drain the swirling, sensuous heat from ");

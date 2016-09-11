@@ -180,6 +180,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
+	if(debug) output("<b>\\\[ <span class='lust'>DEBUG MODE IS ON</span> \\\]</b>\n\n");
 	output(rooms[currentLocation].description);
 	showLocationName();
 	

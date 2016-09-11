@@ -219,9 +219,7 @@
 		"Force Amazon Treatment",
 		"Force next Treatment use to make the user an Amazon.",
 		function():void {
-			Cheats.OutputStuff();
-			kGAMECLASS.output("\n\nNext Treatment dose is a guaranteed Amazon!");
-			kGAMECLASS.flags["TREATMENT_HAX"] = 4;
+			Cheats.TryTreatmentHaxAmazon();
 		},
 		true);
 
@@ -229,9 +227,7 @@
 		"Force Cum-Cow Treatment",
 		"Force next Treatment use to make the user a Cum-Cow.",
 		function():void {
-			Cheats.OutputStuff();
-			kGAMECLASS.output("\n\nNext Treatment dose is a guaranteed Cum-Cow!");
-			kGAMECLASS.flags["TREATMENT_HAX"] = 2;
+			Cheats.TryTreatmentHaxCumCow();
 		},
 		true);
 
@@ -239,9 +235,7 @@
 		"Force Bull Treatment",
 		"Force next Treatment use to make the user a Bull.",
 		function():void {
-			Cheats.OutputStuff();
-			kGAMECLASS.output("\n\nNext Treatment dose is a guaranteed Bull!");
-			kGAMECLASS.flags["TREATMENT_HAX"] = 1;
+			Cheats.TryTreatmentHaxBull();
 		},
 		true);
 
@@ -249,9 +243,7 @@
 		"Force Cow-Girl Treatment",
 		"Force next Treatment use to make the user an Cow-Girl.",
 		function():void {
-			Cheats.OutputStuff();
-			kGAMECLASS.output("\n\nNext Treatment dose is a guaranteed Cow-Girl!");
-			kGAMECLASS.flags["TREATMENT_HAX"] = 0;
+			Cheats.TryTreatmentHaxCowGirl();
 		},
 		true);
 

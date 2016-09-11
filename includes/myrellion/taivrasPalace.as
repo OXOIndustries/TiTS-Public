@@ -44,7 +44,7 @@ public function reclaimedProbeMyrellion():Boolean
 	// After getting the lucky bucks
 	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) return true;
 	// For marrying Taivra
-	if(flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["KING_NYREA"] != undefined && 9999 == 0) return true;
+	if(flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["KING_NYREA"] != undefined && flags["TAIVRA_NEW_THRONE"] > 0) return true;
 	// For beating Taivra (Leave/Kill/Subjugate)
 	if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) return true;
 	// else
@@ -233,7 +233,7 @@ public function bribeTaivrasGateGuards():void
 		output("Oh, is that what they want...?");
 		clearMenu();
 		addButton(0,"Plat. 190",offerTaivraGuardsPlat190,undefined,"Plat. 190","Offer your chunk of Platinum 190. Surely these ladies can appreciate the rare beauty of precious metals!");
-		addButton(4,"Back",mainGameMenu);
+		addButton(14,"Back",mainGameMenu);
 	}
 	var gems:int = 0;
 	//Check if PC has any "GEM" type items.
@@ -259,7 +259,7 @@ public function giveDemAGem(gems:int):void
 	output("\n\n<i>“We can get those anywhere,”</i> the other nyrea says. <i>“Come on, if you want to buy your way in, cough up something really </i>unique<i>. Something special!”</i>");
 	output("\n\nSomething special, huh? Maybe some precious metals or gems from another world would suit them better...");
 	clearMenu();
-	addButton(4,"Back",bribeTaivrasGateGuards);
+	addButton(14,"Back",bribeTaivrasGateGuards);
 }
 
 //[Plat190]
@@ -628,6 +628,18 @@ public function taivrasThroneBonusFunc():Boolean
 			output("Your newly-minted mate is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at Dane’s hands.");
 			if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
 			output(" Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons.");
+		}
+		// (N.B. Change the code so that it triggers the salvage scene next time you hit the surface. Maybe disable the chambers and throne buttons on Taivra’s menu until you do just to enforce that she’s a little irked with you?)
+		else if(flags["TAIVRA_NEW_THRONE"] == 0)
+		{
+			output("The area where Queen Taivra’s “throne” once was has been blocked off, with the queen herself behind it, probably waiting until she attains the new one you’ve purchased for her. Perhaps you should return after retrieving it?");
+			addDisabledButton(0,"Taivra","Taivra","You’ve ordered Taivra a new throne. You can’t seem to interact with her until she gets it.");
+		}
+		// (N.B. This is just a one-off uveto-unlocked probe returned thing to tie the whole thing up.)
+		else if(flags["TAIVRA_NEW_THRONE"] == 1)
+		{
+			queenTaivrasNewThrone();
+			return true;
 		}
 		//Thereafter
 		else 
@@ -2310,19 +2322,34 @@ public function probeReclamationShit():void
 	clearOutput();
 	showName("STEELE\nTECH");
 	author("Savin");
-	output("With your victory over the nyrea - and your cousin - fresh on your mind, you start crossing the tarmac with a relative skip in your step, eager to see what the next leg of your voyage has in store for you.");
+	
+	// (N.B. This is an alteration to the probe reclamation shit scene, mostly just some ifs to reflect the doghouse you’re in and the fact that the probe needs to be returned.)
+	if(flags["TAIVRA_NEW_THRONE"] == 0) output("Rather eager to return to Taivra with the marvel of new technology you ordered, you start crossing the tarmac at a quick pace, eager to see her reaction to it.");
+	else output("With your victory over the nyrea - and your cousin - fresh on your mind, you start crossing the tarmac with a relative skip in your step, eager to see what the next leg of your voyage has in store for you.");
+	
 	output("\n\nYou pause, though, when you see a Steele Tech freighter parked on the airfield beside your own vessel. Its cargo doors are down, and a pair of crewmen in the familiar black and yellow company jumpsuit are inspecting a familiar glossy-black hunk of space junk: your Dad’s probe! The company made good time in retrieving it, no doubt about it. You walk over and give the two burly men a wave, and head over to check in with them.");
 	output("\n\n<i>“Ah, " + pc.mf("Mr.","Ms.") + " Steele,”</i> one of the pilots says with a grin, tipping his cap to you. <i>“Good work finding this old bird. The techs back at headquarters will have her shooting through the stars again in no time. Probably rewire her as an explorer or comm relay, I reckon.”</i>");
 	output("\n\nThat’s good to hear. If there’s one thing that makes Steele Tech great, its that the company never lets anything go to waste. The company pilots chuckle when you mention it, and one jokes that he’s fairly certain ");
 	if(9999 == 9999) output("that starship next to theirs must be old Tricky Vic’s original");
 	else output("that old Tricky Vic’s original is still flying out there, somewhere");
 	output(". You just grin.");
-
+	
 	output("\n\n<i>“Alright, " + pc.mf("Mr.","Ms.") + " Steele,”</i> one of them says, taking out Codex just like yours. <i>“There’s an outstanding bounty on these old probes, as you know. Let’s get you paid up, huh?”</i>");
-
 	output("\n\nA moment later and your own device beeps happily, alerting you to a new deposit of <b>20,000 credits</b> into your bank account. Score!");
 
-	output("\n\nYou thank the pair and turn to leave.");
+	// <insert tech scene here, picking up after the line ‘as you know’>
+	if(flags["TAIVRA_NEW_THRONE"] == 0)
+	{
+		output("\n\n<i>“No idea why you wanted this other one, but with the alterations to it and the value of the case still, looks like it’ll all wash out.”</i> He gestures to an identical probe being wheeled out of their vessel, one that has the expensive scanning tech removed and some expensive comfortability baked in.");
+		output("\n\nYou thank the pair for their work and turn to start hauling the remodeled piece of throne down to the deep caves.");
+		
+		flags["TAIVRA_NEW_THRONE"] = 1;
+	}
+	else
+	{
+		output("\n\nYou thank the pair and turn to leave.");
+	}
+	
 	pc.credits += 20000;
 	processTime(4);
 	flags["MYRELLION_PROBE_CASH_GOT"] = 1;
@@ -2330,7 +2357,18 @@ public function probeReclamationShit():void
 	clearMenu();
 	//{if Shade is still on-planet and not pissed/your enemy, continue. Else, [Next] to map}
 	if(shadeAtTheBar()) addButton(0,"Next",shadeHalfSisterShit);
-	else addButton(0,"Next",mainGameMenu);
+	else addButton(0,"Next",myrellionProbeEnd);
+}
+public function myrellionProbeEnd():void
+{
+	if(flags["TAIVRA_NEW_THRONE"] == 1)
+	{
+		// (N.B. I think that all that’s needed here afterward is an if-branch to relocate you back to Taivra’s palace no matter how the kara/non-kara scene plays out.)
+		if(flags["DEEP_CAVES_TAXI_UNLOCKED"] != undefined) processTime(120 + rand(31));
+		else processTime(330 + rand(31));
+		currentLocation = "2G17";
+	}
+	mainGameMenu();
 }
 
 //Unlock Uveto on GalMap, if it wasn’t already.
@@ -2469,7 +2507,7 @@ public function revealShadesDad():void
 	processTime(16);
 	pc.addNice(2);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",myrellionProbeEnd);
 }
 
 //Hide
@@ -2497,7 +2535,7 @@ public function hideShadesRelation():void
 	pc.addMischievous(2);
 	processTime(7);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",myrellionProbeEnd);
 }
 
 //Dungeon Followup: Kingshit Nyrea
@@ -2672,14 +2710,33 @@ public function taivraRepeatScenes():void
 	//Respect 41-70: [pc.name]! Come here,”</i> she says warmly, setting her spear aside and beckoning you closer. When you approach, she reaches up from her throne to brush a hand across your cheek. <i>“Is there something you desire, my mate?”</i> //Respect 71+: <i>“Welcome back, my love,”</i> she purrs, beckoning you closer. When you slip up beside her, Taivra reaches up from her throne to cup your cheek and pull you down into a passionate kiss. <i>“Care to sit with me a while, or was there something you desired?”</i>}");
 	
 	if(rand(10) == 0) taivraMidConvoEvents();
-	//[Talk] [Chambers] [Throne Sex] [Appearance]
 	processTime(2);
+	
+	taivraRepeatMenu();
+}
+public function taivraRepeatMenu():void
+{
+	//[Talk] [Chambers] [Throne Sex] [Appearance]
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Chambers",goToTaivrasChambersForSex,undefined,"Chambers","Ask Taivra if the two of you can retire to her chambers - a bit more intimate of a setting. (This means sex!)");
 	else addDisabledButton(0,"Chambers","Chambers","You're not really interested in a bedroom romp at the moment.");
 	if(pc.lust() >= 33) addButton(1,"Throne Sex",taivraThroneSex,undefined,"Throne Sex","Don’t bother with privacy or modesty: join Taivra’s group of betas on her throne and enjoy the pleasure the queen can offer.");
 	else addDisabledButton(1,"Throne Sex","Throne Sex","You're not turned on enough for this.");
 	addButton(2,"Appearance",queenTaivraAppearance,undefined,"Appearance","Take a gander at the queen.");
+	
+	// (N.B: Maybe this could take place after a certain amount of time or number of scenes with your new waifu? Makes sense that you’d notice any discomfort she might have after spending some time with her)
+	// [Ask About the Throne]
+	// Needs a few thousand credits -- maybe 5k?
+	if(!reclaimedProbeMyrellion() && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["KING_NYREA"] != undefined)
+	{
+		if(flags["TAIVRA_THRONE_SEX"] >= 3)
+		{
+			if(pc.credits >= 5000) addButton(6,"Throne?",queenTaivraAskThrone,undefined,"Ask About the Throne","Try to reclaim the queen’s throne--or your father’s data probe to be more accurate. This will cost you 5000 credits.");
+			else addDisabledButton(6,"Throne?","Ask About the Throne","Try to reclaim the queen’s throne--or your father’s data probe to be more accurate. You will need 5000 credits for this!");
+		}
+		else addDisabledButton(6,"Throne?","Ask About the Throne","Perhaps you should sex her on her throne a few times before trying to ask her about it.");
+	}
+	
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -2747,6 +2804,47 @@ public function queenTaivraAppearance():void
 	output("\n\nBetween her tentacle-tails and her throbbing ovipositor, Taivra has a well-practiced ass built for taking eggs, right where it belongs.");
 	clearMenu();
 	addButton(0,"Next",taivraRepeatScenes);
+}
+
+// Taivra Married Throne/Probe Reclaimation, by Pancor
+public function queenTaivraAskThrone():void
+{
+	clearOutput();
+	showTaivra();
+	author("Pancor");
+	
+	output("You lick your lips, hoping your wife won’t take this the wrong way before plunging forward like the intrepid star-explorer you are. Carefully, you ask about her throne, and more specifically how comfortable the hard surface is after a long day of breeding her harem.");
+	output("\n\nThankfully, instead of getting angry, she just raises an eyebrow at you, not seeing where this is leading. <i>“It is fine, [pc.name]. It serves its purpose of looking suitably imposing, and I <b>am</b> the queen.”</i> She trails off, frowning slightly as she filters the implications of your statement through her mind. <i>“Why exactly do you ask, my mate?”</i>");
+	output("\n\nSomething tells you that you should choose your next words with care. Even if you are married, you don’t doubt her ability to make your time down here very uncomfortable should you offend her martial pride.");
+	output("\n\nVoice pitched low so the rest of the nyrea in the chambers don’t hear, you explain that you’ve noticed how there are times when she gets off her throne to retire to her chambers with you that she tends to walk stiffly. How you find sensitive spots on her back and rear that don’t correspond to having a good time. Your concern is purely for her health and comfort, like any good spouse would have.");
+	output("\n\nShe seems to be mollified by your quick explanation, though you can tell that she’s not particularly fond of speaking of this here. <i>“You have a point, but what do you suggest we do about it? I am the strongest here, and showing that is important, even if most don’t realize it. The throne serves as a reminder of the bruises I left when I claimed them, to soften it is to soften my claim,”</i> she finishes, but the look of challenge in her eyes means that this might be a hard sell.");
+	output("\n\nYou start off by reminding her of your partnership. How your power <b>is</b> her power, how altering and upgrading her throne serves not to diminish her image, but enhance it. You continue on in this vein for a bit, seeing her ire start to waver, before pulling out your codex and showing her how they can create furniture with upgrades for invisible cushions, heat, and targeted ultrasonic massage without even the slightest hint that they’re there.");
+	output("\n\nShe rolls her eyes, fighting to conceal her interest in your technology. <i>“Well then. I suppose that it would only make sense for me to try and become familiar with the ‘marvelous’ advances you star-walkers have come up with, my mate. Don’t disappoint me, hmm?”</i>");
+	output("\n\nYou agree and lean in to claim your wife’s lips in a kiss before she moves forward in her throne, summoning some of her soldiers to start disassembling it as you place the call in to SteeleTech to have a far more comfortable version made.");
+	
+	processTime(69);
+	pc.lust(15);
+	pc.credits -= 5000;
+	
+	flags["TAIVRA_NEW_THRONE"] = 0;
+	
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function queenTaivrasNewThrone():void
+{
+	clearOutput();
+	showTaivra();
+	author("Pancor");
+	
+	output("Turning your attention back to the queen. you find her relaxed on her restored throne, smiling amicably at you with those dark purple lips of hers. <i>“Ah, [pc.name]! Come here,”</i> she says warmly, setting her spear aside and beckoning you closer. When you approach, she reaches up to pull you closer, where you can see she is currently enjoying the features of her new throne. <i>“I will admit, while I was reluctant at first, this proved to be a most excellent idea. Let me know if there is </i>anything<i> I can do to show my thanks.”</i>");
+	
+	processTime(4);
+	pc.lust(5);
+	
+	flags["TAIVRA_NEW_THRONE"] = 2;
+	
+	taivraRepeatMenu();
 }
 
 //[Chambers]
@@ -3015,6 +3113,9 @@ public function unifiedPostSexTaivraShits():void
 	output("\n\nShe certainly seems to. You smile and put a hand around her shoulders, pulling the queen close and sipping on your... wine? Whatever this is, it’s quite nice. You’re content to lay and rest awhile, enjoying the afterglow with your mate, but Taivra soon finishes her drink and swings her legs out of bed, reaching for her armored bra. She does have a palace to rule, after all... and doubtless a few dozen betas who need wombs full of parasitic spunk, knowing her.");
 	output("\n\nThe queen gives you a knowing wink and gets dressed, with what little clothes she feels she needs, before slipping out of the room and leaving you to relax.");
 	processTime(45);
+	
+	IncrementFlag("TAIVRA_CHAMBER_SEX");
+	
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3037,7 +3138,7 @@ public function taivraThroneSex():void
 	processTime(2);
 	clearMenu();
 	//[Footjob] [Lap Ride]
-	if(pc.hasCock()) addButton(0,"Footjob",cockFootsies,undefined,"Footjob","Have Taivra but her smooth, chitinous feet to use on your cock. Doubtless, her harem will get in on the action too.");
+	if(pc.hasCock()) addButton(0,"Footjob",cockFootsies,undefined,"Footjob","Have Taivra put her smooth, chitinous feet to use on your cock. Doubtless, her harem will get in on the action too.");
 	else addDisabledButton(0,"Footjob","Footjob","You need a penis to get a footjob.");
 	addButton(1,"Lap Ride",lapRideDatQueenAllPublicLike,undefined,"Lap Ride","No need to be fancy: crawl into your queen’s lap and let her ram that massive ovipositor into you.");
 }
@@ -3086,6 +3187,7 @@ public function cockFootsies():void
 	processTime(22);
 	pc.orgasm();
 	flags["TAIVRA_FOOTJOBBED"] = 1;
+	IncrementFlag("TAIVRA_THRONE_SEX");
 	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0,"Next",taivraRepeatScenes);
@@ -3267,6 +3369,9 @@ public function taivraHardlightFunzies():void
 	else pc.loadInAss(chars["COCKVINE"]);
 	processTime(20);
 	pc.orgasm();
+	
+	IncrementFlag("TAIVRA_CHAMBER_SEX");
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3381,8 +3486,9 @@ public function lapRideDatQueenAllPublicLike():void
 	
 	processTime(22);
 	pc.exhibitionism(2);
-	
 	pc.orgasm();
+	IncrementFlag("TAIVRA_THRONE_SEX");
+	
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",taivraRepeatScenes);

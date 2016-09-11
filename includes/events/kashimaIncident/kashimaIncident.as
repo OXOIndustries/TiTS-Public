@@ -44,6 +44,8 @@ public function sendKashimaMessage(destination:String):void
 	output("</i>");
 
 	output("\n\nWell, they weren’t kidding: that missing mining vessel is just a couple of hours away if you hurry. A quick sensor ping shows a Nova Securities ship heading into the asteroid field from the direction of the system’s Warp Gate. Looks like you’ve got to make a decision now.\n\n");
+	
+	processTime(2);
 
 	clearMenu();
 	addButton(0, "Help Nova", startKashimaJobbo, destination, "Help Nova", "Take Steele Tech up on their offer and investigate the <i>Kashima</i>. Even if it's just a technical glitch, it's still worth a fair bit from the contract price.");
@@ -135,6 +137,8 @@ public function actuallyStartKashimaJobII():void
 
 	output("\n\nShe casts a glance at you over her shoulder, somehow expecting you to know the answer. All you can do is shrug. Looks like you’ll have to look around...");
 
+	processTime(15);
+	
 	currentLocation = "KI-E29";
 	generateLocation(currentLocation);
 	flags["KASHIMA_STATE"] = 1;
@@ -228,6 +232,8 @@ public function kiCargoLiftVictoryII():void
 
 	CombatManager.genericVictory();
 
+	processTime(5);
+	
 	flags["KI_ELEVATOR_DEFEATED"] = 1;
 	currentLocation = "KI-L20";
 	generateMap();
@@ -248,14 +254,14 @@ public function lustyBugpony():void
 	else if (pc.hasVagina()) output(" though your [pc.cunts] "+ (pc.vaginas.length == 1 ? "has" : "have") +" something to say about that.");
 	else output(" though you can’t hide the flush in your cheeks.");
 
-	output("\n\nAs you walk, the Chief keeps glancing at you. She scowls at first, then softens as she sees just how red you’ve gotten, how hard you’re breathing. Your lusts have left you an open book, easily read by the amazonian centuaress.");
+	output("\n\nAs you walk, the Chief keeps glancing at you. She scowls at first, then softens as she sees just how red you’ve gotten, how hard you’re breathing. Your lusts have left you an open book, easily read by the amazonian centauress.");
 
 	output("\n\nFinally she stops, planting all six legs on the deck and turning to face you, hands on her hips.");
 	if (flags["FUCKED_CHIEF_NEYKKAR"] != undefined)
 	{
 		output("<i>“Again?”</i> she huffs, looking you up and down. Slowly, she starts unbuckling the breastplate of her armor, using her tail to lift the hind plates. Her grey skin darkens as she does so, and as her bodysuit comes aside, you’re assaulted with a familiar, overwhelming feminine musk. <i>“The first time was... fuck, whatever. As long as it gets your head back in the game.”</i>");
 
-	output("\n\n<i>“You enjoyed it,”</i> you smirk, glancing at her ample rear. The Chief huffs, coiling her tail around herself and fidgeting with her armor straps. No matter how she may try and deny it, though, the flush in her cheeks is clear for you to see. <i>“Don’t worry. I did too.”</i>");
+		output("\n\n<i>“You enjoyed it,”</i> you smirk, glancing at her ample rear. The Chief huffs, coiling her tail around herself and fidgeting with her armor straps. No matter how she may try and deny it, though, the flush in her cheeks is clear for you to see. <i>“Don’t worry. I did too.”</i>");
 	}
 	else
 	{
@@ -283,7 +289,7 @@ public function lustyBugpony():void
 		if (pc.isTaur()) output(" mount up. Gimme everything you’ve got!");
 		else output(" get going. Just take it easy, I’ve never fucked a [pc.race] like you before.");
 	}
-	else output(" This is... going to be kind of awkward. I guess we’ll have to take turns, unless you’re way stretcher than you look.");
+	else output(" This is... going to be kind of awkward. I guess we’ll have to take turns, unless you’re way stretchier than you look.");
 	output("”</i>");
 
 	processTime(10 + rand(5));
@@ -423,7 +429,7 @@ public function lustyBugponyCocked():void
 	{
 		output("You do just as the towering amazon directs, beating feet behind her. The Chief takes a clearly uncomfortable step forward, bracing her hands against one of the bulkheads and curling her tail up over her back. The tip prods at a small buckle on her flank, and with a metallic clatter, her heavy armor falls away to expose a vast expanse of black chitin and dark grey flesh, intermixed with glowing patches wherever the two meet. From where you’re standing, you’re suddenly assaulted by a musky cloud of pent-up feminine desire billowing into your face. You blink, and find yourself staring down the gulf between a pair of slick, thick black lips. Her sex is almost pear-shaped, narrowing around the hood of a broad, black clitoris, and drawing your eyes upwards to a sinfully dark, silky-soft looking donut ring above it.");
 		
-		output("\n\nDrawn forward by your mounting desires and the intoxicatingly alien appearance of the leithan’s sex, you grasp at her broad flanks and pull your face in close enough to run your tongue experimentally around one of her dark pussy-lips. The taste is otherworldly, rich and earthy and so that that your [pc.tongue] comes away bridged by a thick rope of slime. The Chief moans throatily, and her six legs buckle underneath her.");
+		output("\n\nDrawn forward by your mounting desires and the intoxicatingly alien appearance of the leithan’s sex, you grasp at her broad flanks and pull your face in close enough to run your tongue experimentally around one of her dark pussy-lips. The taste is otherworldly, rich and earthy and so wet that your [pc.tongue] comes away bridged by a thick rope of slime. The Chief moans throatily, and her six legs buckle underneath her.");
 		if (pc.tallness < 96) output(" She slinks down onto her knees to give you better access to her titanic rump, putting it right about on crotch level with you.");
 		else output(" Thanks to your immense height, the towering taur is just the perfect height for you to fuck.");
 		
@@ -520,7 +526,7 @@ public function lustyBugponyCocked():void
 
 			output("\n\n<i>“H-hey! What’re you-”</i> the Chief gasps as you trace a finger around her backside. <i>“That’s...”</i>");
 
-			output("\n\nYou cut her off by sliding a finger in, spreading out the clenching little hole. It’s nice and tight, feeling much more like a human pussy than the gaping slit beneath it.Her butt squeezes gently around your finger, massaging you like a hot, silky glove. The Chief grunts uncomfortably at first, but the way she bites her lip and scrapes her feet along the deck, you don’t doubt she enjoys a little anal play.");
+			output("\n\nYou cut her off by sliding a finger in, spreading out the clenching little hole. It’s nice and tight, feeling much more like a human pussy than the gaping slit beneath it. Her butt squeezes gently around your finger, massaging you like a hot, silky glove. The Chief grunts uncomfortably at first, but the way she bites her lip and scrapes her feet along the deck, you don’t doubt she enjoys a little anal play.");
 			
 			output("\n\nPulling your digit out, you squirm out of your [pc.gear] and toss your kit aside, grabbing your [pc.cock "+cIdx+"] and moving your [pc.hips] in line with the Chief’s own. Her tail lifts and curls around your waist, locking you tight against her and pulling you in until your [pc.cockHead "+cIdx+"] is pushing against the silken-soft donut of her ass.");
 			
@@ -650,7 +656,7 @@ public function lustyBugPonyCockedNotTaurII():void
 
 		output("\n\nSomehow, you don’t doubt it.");
 
-		output("\n\nWearily, you persuade your fingers to release the Chief’s ass and start fumbling for your gear. While you’re bent over searching for your [pc.weapon], your newly-christen lover canters around and grabs you by the shoulders. You look up just in time to get your face mashed between the biggest, softest pair of tits you’ve seen in what feels like an eternity.");
+		output("\n\nWearily, you persuade your fingers to release the Chief’s ass and start fumbling for your gear. While you’re bent over searching for your [pc.weapon], your newly-christened lover canters around and grabs you by the shoulders. You look up just in time to get your face mashed between the biggest, softest pair of tits you’ve seen in what feels like an eternity.");
 
 		output("\n\n<i>“Thanks,”</i> she whispers, barely audible over the ambient groans of the <i>Kashima</i>’s hull. <i>“I think that’ll keep my head in the game for a good, long while.”</i>");
 
@@ -697,7 +703,9 @@ public function kiHendersonVictory():void
 		// key item is removed during course of fight if we ended up here
 		
 		CombatManager.genericVictory();
-
+		
+		processTime(2);
+		
 		clearMenu();
 		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she'll probably kill it.");
 		addButton(1, "SteeleTech", kiHendersonSteeleTech, undefined, "Steele Tech", "Call for retrieval from Steele Tech and convince Chief Neykkar to let them take the parasite.");
@@ -706,7 +714,7 @@ public function kiHendersonVictory():void
 	else if (pc.hasKeyItem("Parasite Cure") && (!enemy.hasStatusEffect("Parasite Cure") || enemy.statusEffectv1("Parasite Cure") < 5))
 	{
 		output("Under your sustained");
-		if (enemy.lust() >= enemy.lustMax()) output(" sesual");
+		if (enemy.lust() >= enemy.lustMax()) output(" sensual");
 		output(" assault, Henderson throws his head back with a bestial roar... and then collapses. You give a long, weary sigh and put away your [pc.weapon].");
 			
 		if (!enemy.hasStatusEffect("Free Chief"))
@@ -750,7 +758,9 @@ public function kiHendersonVictory():void
 		
 		//[MedBay] [Steele Tech]
 		CombatManager.genericVictory();
-
+		
+		processTime(5);
+		
 		clearMenu();
 		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she'll probably kill it.");
 		addButton(1, "SteeleTech", kiHendersonSteeleTech, undefined, "Steele Tech", "Call for retrieval from Steele Tech and convince Chief Neykkar to let them take the parasite.");
@@ -759,7 +769,7 @@ public function kiHendersonVictory():void
 	else
 	{
 		output("Under your sustained");
-		if (enemy.lust() >= enemy.lustMax()) output(" sesual");
+		if (enemy.lust() >= enemy.lustMax()) output(" sensual");
 		output(" assault, Henderson throws his head back with a bestial roar... and then collapses. You give a long, weary sigh and put away your [pc.weapon].");
 
 		if (!enemy.hasStatusEffect("Free Chief"))
@@ -794,7 +804,9 @@ public function kiHendersonVictory():void
 		output("\n\n<i>“Get in, quick!”</i> the doc yelps, ushering you and the Chief in with wide eyes. She seals the door behind you, putting her back to it as the first mutants arrive and start banging away at it. <i>“W-what happened down there?”</i>\n\n");
 
 		CombatManager.genericVictory();
-
+		
+		processTime(3);
+		
 		clearMenu();
 		addButton(0, "Next", kiHendersonNoCure);
 	}
@@ -847,6 +859,8 @@ public function kiHendersonNoCure():void
 
 	output("\n\nA long moment passes between the three of you. Finally, Elenora speaks up. Her voice is low, quiet; barely audible. <i>“This ship is too dangerous for you, [pc.name]. You need to leave.”</i>");
 
+	processTime(2);
+	
 	clearMenu();
 	addButton(0, "Next", kiHendersonNoCureII);
 }
@@ -876,6 +890,8 @@ public function kiHendersonNoCureII():void
 	
 	output("\n\nA few minutes later, the Chief returns with the shuttle key. Wiped clean in the sink, at least. You stuff it in your pack and grab your [pc.weapon]. With a firm nod to the Chief and a parting farewell to Elenora, you scramble into the vents and start making your way down towards the hangar deck.");
 
+	processTime(3);
+	
 	currentLocation = "KI-E25";
 	generateLocation(currentLocation);
 	flags["KI_ESCAPE_UNCURED"] = 1;
@@ -897,10 +913,12 @@ public function kiApproachingEscapeShuttle():Boolean
 		}
 
 		h[0].inventory.push(new SteeleTechSuit());
+		h[0].createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyCharacters(pc);
 		CombatManager.setHostileCharacters(h);
+		CombatManager.displayLocation("INFECTED CREW");
 		CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 		CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 		CombatManager.victoryScene(kiFinalFightVictory);
@@ -936,9 +954,26 @@ public function kiEscapeShuttle():void
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
 	flags["KASHIMA_STATE"] = 4;
+	
+	processTime(25);
+	if(eventQueue.indexOf(kiEscapeShuttleFollowup) == -1) eventQueue.push(kiEscapeShuttleFollowup);
 
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
+}
+public function kiEscapeShuttleFollowup():void
+{
+	clearOutput();
+	showName("KASHIMA\nFOLLOWUP");
+	
+	output("Your codex beeps, alerting you of a message sent from Steele Tech communications. Apparantly, the incident you’ve witnessed on the <i>Kashima</i> was no laughing matter. While the note doesn’t go into detail on if and how the issue is being resolved, it acknowledges the harrowing trials you’ve gone through with a small payment for the inconvenience.");
+	output("\n\nWell, that’s better than nothing, you guess.");
+	
+	pc.credits += 8000;
+	processTime(2);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function kiHendersonMedbay():void
@@ -1035,6 +1070,8 @@ public function kiHendersonMedbay():void
 
 	output("\n\nShe’s barely finished speaking when you hear a thunderous <i>CLANG</i> from just outside. You spin around as the MedBay doors slide open, and several armed and armored men in Steele Tech suits storm in, covering you with laser sights. They’re all kit up in HAZMAT gear, vacuum-sealed and shielded. They shout to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm, even as she’s yelling about lights in her eyes and people staring at her crotch. Back to her old self, it seems!");
 
+	processTime(11);
+	
 	clearMenu();
 	addButton(0, "Next", kiHendersonMedbayII);
 }
@@ -1048,10 +1085,12 @@ public function kiHendersonMedbayII():void
 
 	output("A couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i>. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal the crew.");
 
-	output("\n\nThe Nova marines and your Steele Tech employees are all secured on the rescue boat, including the Chief and Elenora. You ask the captain to update you on their statuses when they’ve recovered. If, in Elenora’s case. He nods, confirms you extranet addresses, and after getting a signature on a few forms, hands over the promised payment from Corporate HQ, plus a sizable danger bonus. <b>25,000 credits are transferred to your accounts</b>.");
+	output("\n\nThe Nova marines and your Steele Tech employees are all secured on the rescue boat, including the Chief and Elenora. You ask the captain to update you on their statuses when they’ve recovered. If, in Elenora’s case. He nods, confirms your extranet addresses, and after getting a signature on a few forms, hands over the promised payment from Corporate HQ, plus a sizable danger bonus. <b>25,000 credits are transferred to your accounts</b>.");
 
 	output("\n\nThere’s not much more for you to do here, so once you’re sure that the HAZMAT crew is well on their way, you catch a shuttle ride back to your ship for a much-needed rest.");
 
+	processTime(142);
+	
 	pc.credits += 25000;
 	flags["KASHIMA_STATE"] = 2;
 
@@ -1075,17 +1114,17 @@ public function kiHendersonSteeleTech():void
 
 	output("\n\nShe groans. <i>“Why the fuck didn’t your cure kill it? What-”</i>");
 	
-	output("\n\nYou shake your head, saying the cure only paralyses the parasite. Puts it to sleep long enough for Steele Tech to come out and secure everyone. so they can remove the parasite without hurting the host.");
+	output("\n\nYou shake your head, saying the cure only paralyses the parasite. Puts it to sleep long enough for Steele Tech to come out and secure everyone. So they can remove the parasite without hurting the host.");
 	
 	output("\n\n<i>“Ah, shit... how long before they get here, you think? I can’t-”</i> she moans, shivering from head to clawed toe. Heavy globs of leithan moisture drip from her twat, splattering in a musky pool behind her. You can still see the tentacle inside her, squirming inside. Orgasm shudders through her, making her whimper with alien pleasure. <i>“I can’t hold on much longer...”</i>");
 
 	output("\n\n<i>“Everything’s going to be okay,”</i> you say, pulling out your Codex. The jamming is still in full effect, but down here in engineering, it’s a simple task the find the source: somebody had hotwired a comm panel, blasting every channel around with impenetrable white noise. Like they didn’t want rescue to come - they knew it was too dangerous. You yank a wire, and jamming’s gone. A quick email to Steele Tech ensures that a ship is on the way to collect you, the crew, and your living sample.");
 
-	output("\n\nIn the meantime, though, you’ve got to keep the Chief calm. Every few seconds, the smell and wet sounds of leithan orgasm assault your senses, and she’s constantly moaning and scuffling her feet on the floor, even while she tries to get the unconscious Nova troops somewhere comfortable. The best you can do is stick with her, saying comforting things and trying not to stare at her naked pussy and tits, through orgasm after orgasm.The crewmen don’t wake up, sedated by their infected parasites’ slumber. It’s just you and the Chief, who’s growing ever more desperate as the minutes turn to hours.");
+	output("\n\nIn the meantime, though, you’ve got to keep the Chief calm. Every few seconds, the smell and wet sounds of leithan orgasm assault your senses, and she’s constantly moaning and scuffling her feet on the floor, even while she tries to get the unconscious Nova troops somewhere comfortable. The best you can do is stick with her, saying comforting things and trying not to stare at her naked pussy and tits, through orgasm after orgasm. The crewmen don’t wake up, sedated by their infected parasites’ slumber. It’s just you and the Chief, who’s growing ever more desperate as the minutes turn to hours.");
 	if (flags["KI_VANDERBILTS_SECRET"] == undefined) output(" You wonder what happened to Elenora... she should have come down by now, right?");
 	output(" You sigh, putting a gentle hand on the leithan amazon’s bare flank.");
 
-	if (pc.hasCock() || pc.hasVagina())
+	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined))
 	{
 		output("\n\nThe gentle hand, though, turns lecherous as time passes. The intense, overwhelming smell and sounds of leithan orgasm become more and more overwhelming, making your [pc.skinFurScales] burn with unbidden desire. No matter how horrifying the parasite inside her is, the naked, climaxing woman hold an animalistic appeal that speaks to your body’s innermost desires. Before you know it, your hand is wandering down the leithan woman’s flank, fingers brushing the dark lips of her engorged sex. They come away matted with thick feminine slime. Your companion gasps, her gray skin flushing with a hint of crimson.");
 
@@ -1120,7 +1159,6 @@ public function kiHendersonSteeleTech():void
 		output("\n\nJust the smell is enough to drive you wild, let alone her rapidly more desperate");
 		if (pc.hasCock()) output(" blowjob");
 		else output(" rug-munching");
-		output(" rug-munching");
 		output(". Your [pc.hips] start moving of their own volition, grinding against the Chief’s orgasmic face and getting as much of her tongue on you as you can. She murmurs unintelligibly, eyes fluttering closed. She’s completely engrossed in pleasure, vigorously assailing her black nipples and thrusting into her cooch.");
 
 		output("\n\nThe oversexed leithan barely notices when you start to cum, not even reacting until");
@@ -1133,7 +1171,9 @@ public function kiHendersonSteeleTech():void
 		output("\n\nYou stay with her, keeping the ever-more-gravid leithan calm until eventually, you hear a smash from somewhere above you and a flare of light from on high.");
 	}
 
-	output("\n\nYou squint, shielding your eyes as the lights consolidate into several flashlights, carried by Steele Tech security personnel, all armed and armored. They look down at you from under HAZMAT visors, shouting for everyone to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm when she gets off your crotch. Per your communique, they quickly surround Chief Neykkar and, as gently as they can, surround her in a quarantine forcefield and start to cart her off. She looks around confused, glancing at you for reassurance. You tell her everything’s going to be fine all the way until the security folks have her aboard their rescue boat.");
+	output("\n\nYou squint, shielding your eyes as the lights consolidate into several flashlights, carried by Steele Tech security personnel, all armed and armored. They look down at you from under HAZMAT visors, shouting for everyone to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm");
+	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined)) output(" when she gets off your crotch");
+	output(". Per your communique, they quickly surround Chief Neykkar and, as gently as they can, surround her in a quarantine forcefield and start to cart her off. She looks around confused, glancing at you for reassurance. You tell her everything’s going to be fine all the way until the security folks have her aboard their rescue boat.");
 	
 	output("\n\nA couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i>. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal them.");
 	
@@ -1153,10 +1193,12 @@ public function kiHendersonSteeleTech():void
 		output("\n\nYou sigh and");
 	}
 	
-	output(" ask him to update you on her status and Chief Neykkar’s when they’ve recovered. If. He nods, confirms you extranet addresses, and after getting a signature on a few forms, hands over the promised payment from Corporate HQ, plus a sizable danger bonus. <b>25,000 credits are transferred to your accounts</b>.");
+	output(" ask him to update you on her status and Chief Neykkar’s when they’ve recovered. If. He nods, confirms your extranet addresse, and after getting a signature on a few forms, hands over the promised payment from Corporate HQ, plus a sizable danger bonus. <b>25,000 credits are transferred to your account</b>.");
 	
 	output("\n\nThere’s not much more for you to do here, so once you’re sure the sample in Chief Neykkar is secure and that the HAZMAT crew is well on their way, you catch a shuttle ride back to your ship for a much-needed rest.");
 
+	processTime(136);
+	
 	pc.credits += 25000;
 	flags["KASHIMA_STATE"] = 3;
 
@@ -1168,12 +1210,14 @@ public function kiMutantBadEnd():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
-	generateMap();
+	generateMapForLocation("GAME OVER");
 	
 	clearOutput();
+	showBust("");
 	author("Gardeford");
-	showName("INFECTED\nCREW");
-	showBust("LUSTOMORPH_AUSAR", "LUSTOMORPH_RASKVEL", "LUSTOMORPH_GRYVAIN");
+	showName("ONE OF\nTHE INFECTED");
+	
+	processTime(65);
 	
 	pc.removeAll();
 	
@@ -1183,22 +1227,23 @@ public function kiMutantBadEnd():void
 	
 	output("\n\nA flutter of warmth bubbles in your stomach as you open the hatch, but you pass it off as nervousness. Your nanomachines must be powerful enough to stop something like this, if nothing else you’ll just get some fancy transformation like always. What matters now is getting off this ship alive. No amount of nanomachines can stop you getting bred by tentacles for an eternity.");
 	
-	output("\n\nMiraculously, your codex appears to be fully functional again. As quickly as you can, you send out a general distress signal. You aren’t sure whether Steeltech’s assistance will make it in time, but you send a more detailed distress signal to them as well. Within minutes you get an <i>“On the way”</i> ping from the general beacon that places the responder within a short distance of the station.");
+	output("\n\nMiraculously, your codex appears to be fully functional again. As quickly as you can, you send out a general distress signal. You aren’t sure whether Steele Tech’s assistance will make it in time, but you send a more detailed distress signal to them as well. Within minutes you get an <i>“On the way”</i> ping from the general beacon that places the responder within a short distance of the station.");
 	
 	output("\n\nA rush of warmth floods to your nethers, along with a twisting pleasure in your gut. Nervousness might be too much to wish for now, but the responders will be able to help you. You think a mass of tentacles growing within you would be uncomfortable, but every part of it just feels a different kind of amazing, and you find yourself struggling to stay focused.");
 	
 	output("\n\nJust when you think you might not last, the unmistakeable form of a ship appears in the blackness outside the hangar. At least, you think it does; your vision has tinted a few shades of red. As the ship approaches it becomes more clear, a small and sleek personal cruiser. The thing doesn’t look like much, but it looks fast enough to get you where you need to be. You compose yourself as best you can, trying to ignore a growing feeling of hunger closing around your thoughts.");
 	
-	output("\n\nBy the time you focus enough to regain your bearings, the ship has landed, and a hatch opens from its side. A Middle-aged Kaithrit woman rushes down to meet you, an impressive bust bouncing as she does. You miss her first words as your eyes bounce along with it. Her entirety shines in an intoxicating shade of the pink that covers your vision, and you struggle to reply.");
+	output("\n\nBy the time you focus enough to regain your bearings, the ship has landed, and a hatch opens from its side. A middle-aged kaithrit woman rushes down to meet you, an impressive bust bouncing as she does. You miss her first words as your eyes bounce along with it. Her entirety shines in an intoxicating shade of the pink that covers your vision, and you struggle to reply.");
 	
 	output("\n\nSex, sex, sex is all you can think of when you try to form words. You hold up a hand, attempting to warn her about the infected crew and ask for an airlift to safety, but pitch forward into a full bodied hug and kiss. A hot-pink tendril surges up through your throat, burying itself in the unsuspecting woman’s open mouth. Her eyes go wide as a pulse of hot sex juice follows suit, bubbling out of her clenched lips and nose.");
 	
-	output("\n\nA second tentacle emerges from your sex, slipping under the Kaithrit’s shirt and slithering around her breasts. It emerges from her cleavage only to blast the both of you with pink aphrodisiac cum. You shudder and lose your footing as another wave of cum pushes through the tendril in your throat, taking the both of you to the ground.");
+	output("\n\nA second tentacle emerges from your " + (pc.hasGenitals() ? "sex" : "ass") + ", slipping under the kaithrit’s shirt and slithering around her breasts. It emerges from her cleavage only to blast the both of you with pink aphrodisiac cum. You shudder and lose your footing as another wave of cum pushes through the tendril in your throat, taking the both of you to the ground.");
 	
-	output("\n\nHeaving E cups press into your [pc.chest], and their hapless owner pulls you in closer as her tongue lolls around the invading member. Even more tentacles springing from your body search her for orifices, plugging each one with breeding fervor as you tear her clothing away. Her body feels pleasantly cool on your lust heated [pc.skinFurScales], and you explore every inch of it till it matches your boiling temperature.");
+	output("\n\nHeaving E-cups press into your [pc.chest] as their hapless owner pulls you in closer as her tongue lolls around the invading member. Even more tentacles springing from your body search her for orifices, plugging each one with breeding fervor as you tear her clothing away. Her body feels pleasantly cool on your lust heated [pc.skinNoun] as you explore every inch of it until it matches your boiling temperature.");
 	
 	output("\n\nWith a great deal of effort, you pull yourself away from her face, remembering vague whisps of something you were supposed to be doing; someone else who was coming to rescue you. Oh well, they can join in when they get here. You dismiss all thoughts, diving back down to taste more of your new friend.");
 
+	if(inCombat()) CombatManager.postCombat();
 	badEnd();
 }
 

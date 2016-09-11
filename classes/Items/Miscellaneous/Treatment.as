@@ -183,7 +183,7 @@ package classes.Items.Miscellaneous
 							//20% cumcow
 							if(rand(5) == 0) setTreatmentMode(pc,2);
 							//75% odds of Amazon if super butch
-							if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
+							else if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
 							//10% random Amazon chance
 							else if(rand(10) == 0) setTreatmentMode(pc,4);
 							//Normies!
