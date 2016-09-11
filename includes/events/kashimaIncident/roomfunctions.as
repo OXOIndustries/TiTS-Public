@@ -139,9 +139,12 @@ public function kiGoUseCargoLift():void
 		h.push(new InfectedCrewmember());
 	}
 	
+	h[0].createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(f);
 	CombatManager.setHostileCharacters(h);
+	CombatManager.displayLocation("INFECTED CREW");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiCargoLiftVictory);
@@ -656,6 +659,7 @@ public function kiCommandDeckTriggerEncounter():void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(f);
 	CombatManager.setHostileCharacters(h);
+	CombatManager.displayLocation("INFECTED CREW");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiRandomMutantVictory);
@@ -683,6 +687,7 @@ public function kiOfficersDeckTriggerEncounter():void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(h);
+	CombatManager.displayLocation("INFECTED CREW");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiRandomMutantVictory);
@@ -879,13 +884,15 @@ public function kiBridgeContinued():void
 	processTime(1);
 	
 	var f:Array = [pc];
-	if (flags["CHIEF_NEYKKAR_WITH_PC"] == 1) f.push(new ChiefNeykkar());
+	//if (flags["CHIEF_NEYKKAR_WITH_PC"] == 1) f.push(new ChiefNeykkar());
+	f.push(new ChiefNeykkar());
 
 	var h:Array = [new CaptainHolmes()];
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(f);
 	CombatManager.setHostileCharacters(h);
+	CombatManager.displayLocation("CAPT. HOLMES");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiHolmesVictory);
@@ -908,13 +915,13 @@ public function kiHolmesLoss(asHenderson:Boolean = false):void
 	author("Savin");
 	if (!asHenderson)
 	{
-		showBust("CAPTAINHOLMES", "USHAMEE_NUDE");
-		showName("DEFEAT:\nCAPTAIN HOLMES");
+		showBust("HOLMES", "USHAMEE_NUDE");
+		showName("DEFEAT:\nCAPT. HOLMES");
 	}
 	else
 	{
-		showBust("COMMANDERHENDERSON", "USHAMEE_NUDE");
-		showName("DEFEAT:\nCMDR. HENDERSON");
+		showBust("HENDERSON", "USHAMEE_NUDE");
+		showName("DEFEAT:\nHENDERSON");
 	}
 
 	if (!asHenderson || enemy.hasStatusEffect("Free Chief"))
@@ -933,6 +940,7 @@ public function kiHolmesLoss(asHenderson:Boolean = false):void
 
 	processTime(4);
 	
+	if(inCombat()) CombatManager.postCombat();
 	clearMenu();
 	addButton(0, "Next", kiHolmesLossII, asHenderson);
 }
@@ -944,13 +952,13 @@ public function kiHolmesLossII(asHenderson:Boolean):void
 
 	if (!asHenderson)
 	{
-		showBust("CAPTAINHOLMES", "USHAMEE_NUDE");
-		showName("DEFEAT:\nCAPTAIN HOLMES");
+		showBust("HOLMES", "USHAMEE_NUDE");
+		showName("DEFEAT:\nCAPT. HOLMES");
 	}
 	else
 	{
-		showBust("COMMANDERHENDERSON", "USHAMEE_NUDE");
-		showName("DEFEAT:\nCMDR. HENDERSON");
+		showBust("HENDERSON", "USHAMEE_NUDE");
+		showName("DEFEAT:\nHENDERSON");
 	}
 
 	output("<b>Several hours later...</b>");
@@ -981,10 +989,13 @@ public function kiHolmesLossII(asHenderson:Boolean):void
 
 public function kiHolmesLossIII(asHenderson:Boolean):void
 {
+	generateMapForLocation("GAME OVER");
+	
 	clearOutput();
+	showBust("");
 	author("Savin");
 	
-	showName("IT\nBEGINS...");
+	showName("\nIT BEGINS...");
 	
 	output("<b>A week passes...</b>");
 	
@@ -1024,7 +1035,7 @@ public function kiHolmesVictory():void
 	
 	clearOutput();
 	author("Savin");
-	showBust("CAPTAINHOLMES", "USHAMEE");
+	showBust("HOLMES", "USHAMEE");
 	showName("VICTORY:\nCAPT. HOLMES");
 
 	flags["KASHIMA_HOLMES_DEFEATED"] = 1;
@@ -1089,7 +1100,7 @@ public function kiHolmesVictoryII():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("CAPTAINHOLMES", "USHAMEE");
+	showBust("HOLMES", "USHAMEE");
 	showName("VICTORY:\nCAPT. HOLMES");
 
 	output("And just as you do, you feel something wet and slimy wrap around your [pc.leg]. You look down in alarm, yanking your [pc.foot] up. The captain’s tendrils grasp at you as the mutant man rises up again, drooling pink spittle onto the deck as he staggers to his feet.");
@@ -1191,9 +1202,12 @@ public function kiMeetingVanderbilt():void
 		h.push(new InfectedCrewmember());
 	}
 	
+	h[0].createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(h);
+	CombatManager.displayLocation("INFECTED CREW");
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 3);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiMedbayFightEnds);
@@ -1205,6 +1219,10 @@ public function kiMeetingVanderbilt():void
 
 public function kiMedbayFightEnds():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	clearOutput();
 	author("Savin");
 	showBust("ELENORA");
@@ -1246,7 +1264,7 @@ public function kiMedbayFightEndsII():void
 	pc.maxOutHP();
 	output("<b>A few uncomfortable, awkward minutes pass...</b>");
 
-	output("\n\n<i>“Good, no sign of infection,”</i> Elenora says, feigning a smile as she switches off the medical scanner. <i>“You’re lucky. The tentacles spread the... the infection, I think. Through intercourse, I suspect. I’m the people you came here with are likely in the process of transforming as we speak. From what I’ve been able to tell, the process is only accelerating with the more victims the infection takes.");
+	output("\n\n<i>“Good, no sign of infection,”</i> Elenora says, feigning a smile as she switches off the medical scanner. <i>“You’re lucky. The tentacles spread the... the infection, I think. Through intercourse, I suspect. I’m the people you came here with are likely in the process of transforming as we speak. From what I’ve been able to tell, the process is only accelerating with the more victims the infection takes.”</i>");
 	
 	output("\n\n<i>“Alright, what exactly is this infection?”</i> you ask, hopping up from the examination table. Again, the lights flicker, and the computers all shut off automatically.");
 	
@@ -1698,6 +1716,7 @@ public function kiEngineeringBossFight():void
 	clearOutput();
 	author("Savin");
 	showName("ENGINEERING\nDECK");
+	showBust("HENDERSON");
 
 	output("You clamber down the vent shaft into the bowels of the <i>Kashima</i>’s pipes. The trip’s long, cramped, and sweaty, taking you through increasingly warm, dark pipes until you’re feeling your way around on panels of steel that sizzle and burn your fingers. Eventually, just as you’re reaching the extend of your endurance, you find a grate going straight down over a deck that’s lit brilliant red and thrumming with the reverberations of LightDrive engines at rest.");
 	
@@ -1733,6 +1752,7 @@ public function kiEngineeringBossFight():void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(new CommanderHenderson());
+	CombatManager.displayLocation("HENDERSON");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(kiHendersonVictory);

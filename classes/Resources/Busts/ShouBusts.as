@@ -250,7 +250,7 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/henderson.png", mimeType = "image/png")]
 		public var Bust_HENDERSON:Class;
-		public var Bounds_HENDERSON:Rectangle = new Rectangle(51, 0, 63, 66);
+		public var Bounds_HENDERSON:Rectangle = new Rectangle(60, 0, 70, 70);
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/hepane.png", mimeType = "image/png")]
 		public var Bust_HEPANE:Class;
