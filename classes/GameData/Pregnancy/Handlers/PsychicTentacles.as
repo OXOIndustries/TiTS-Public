@@ -96,7 +96,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
 				
-				kGAMECLASS.eventBuffer += ParseText("\n\n" + kGAMECLASS.logTimeStamp() + " Walking around is hard with such a huge middle, but you manage. <i>You don't mind.</i> Really.");
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" Walking around is hard with such a huge middle, but you manage. <i>You don't mind.</i> Really.");
 			}, true);
 			
 			_onSuccessfulImpregnation = psychicTentacleSuccessfulImpregnantion;
