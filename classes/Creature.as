@@ -8587,6 +8587,7 @@
 				case GLOBAL.TYPE_FLOWER:
 					vaginas[slot].vaginaColor = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					break;
 				case GLOBAL.TYPE_DEER:
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "black";
