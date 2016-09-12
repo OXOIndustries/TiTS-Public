@@ -1928,7 +1928,7 @@ package classes.GameData
 			{
 				clearOutput();
 				output("You you can try to tease your foe" + (target.isPlural ? "s" : "") + " into submission...");
-				output("\nUnfortunately, you can’t see the enemy clearly enough to do that!");
+				output("\n<b>Unfortunately, you can’t see the enemy clearly enough to do that!</b>");
 				
 				clearMenu();
 				addButton(14, "Back", generateCombatMenu);
@@ -3191,7 +3191,7 @@ package classes.GameData
 			if(pc.hasStatusEffect("Blinded") || target.isInvisible())
 			{
 				output("You try to get a feel for " + possessive(target.getCombatName()) + " likes and dislikes...");
-				output("\nUnfortunately, you can’t see the enemy clearly enough to do that!");
+				output("\n<b>Unfortunately, you can’t see the enemy clearly enough for it to work!</b>");
 				processCombat();
 				return;
 			}
