@@ -3582,6 +3582,15 @@ public function dumb4CumReset():void
 		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" With the warm feeling of reproductive juices in your body, you find you're able to think clearly once more.");
 	}
 	pc.setPerkValue("Dumb4Cum",1,0);
+	
+	// Ditz Speech Removal
+	// Dr. Badger bimbofication and Dumbfuck sneezes are permanent though...
+	if(pc.hasPerk("Ditz Speech") && flags["DR_BADGER_BIMBOED_PC"] == undefined && (flags["DUMBFUCK_SNEEZES"] == undefined || flags["DUMBFUCK_SNEEZES"] < 20))
+	{
+		eBuffer += "\n\n(<b>Perk Lost: Ditz Speech</b>)";
+		pc.removePerk("Ditz Speech");
+	}
+	
 	eventBuffer += eBuffer;
 }
 
@@ -3611,6 +3620,14 @@ public function dumb4CumUpdate():void
 	{
 		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You can't seem to go more than a minute without thinking of getting fucked or sucking someone off. When you close your eyes, all you can think about is penises. When someone asks you a question, you have to pause for a few seconds, dragging your thoughts through a melange of pink-tinged fucking. <b>You need some cum.</b>");	
 	}
+	
+	// Ditz Speech Add-on
+	if(tics >= 40 && !pc.hasPerk("Ditz Speech"))
+	{
+		eBuffer += "\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)";
+		pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
+	}
+	
 	eventBuffer += eBuffer;
 }
 

@@ -3374,7 +3374,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//If auto-suck, always this. Otherwise 50/50.
 	if(special || rand(2) == 0)
 	{
-		output("\n\nYour chrono says " + num2Text(Math.floor(timeStuff/60)) + " hours have passed.");
+		output("\n\nYour chrono says " + (Math.floor(timeStuff/60) <= 1 ? ("about an hour has") : (num2Text(Math.floor(timeStuff/60)) + " hours have")) + " passed.");
 		if(pc.perkv1("Auto-Autofellatio") == 0) output(" Did you spend the whole time sucking your own dick?");
 		else output(" What a great way to spend your time!");
 	}

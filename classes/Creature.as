@@ -3129,7 +3129,7 @@
 		public function isBimbo():Boolean
 		{
 			if(hasStatusEffect("Temporary Treatment")) return true;
-			if (this is PlayerCharacter && flags["DR_BADGER_BIMBOED_PC"] != undefined) return true;
+			if(this is PlayerCharacter && flags["DR_BADGER_BIMBOED_PC"] != undefined) return true;
 			return hasPerk("Ditz Speech");
 		}
 		public function isBro():Boolean
