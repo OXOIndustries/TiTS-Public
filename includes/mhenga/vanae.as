@@ -282,20 +282,20 @@ public function vanaeHeader(preName:String):void
 {
 	if (enemy is MaidenVanae)
 	{
-		userInterface.showBust("VANAE_MAIDEN");
-		userInterface.showName(preName + "MAIDEN");
+		showBust("VANAE_MAIDEN");
+		showName(preName + "MAIDEN");
 	}
 	else
 	{
-		userInterface.showBust("VANAE_HUNTRESS");
-		userInterface.showName(preName + "HUNTRESS");
+		showBust("VANAE_HUNTRESS");
+		showName(preName + "HUNTRESS");
 	}
 	author("Jim T");
 }
 
 public function vanaePCVictory():void
 {
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 	
 	// HP WIN
 	if (enemy.HP() <= 1)
@@ -501,7 +501,7 @@ public function vanaePCVictory():void
 public function noThanksTentaSlutImOut():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 	
 	output("You shake your head to clear the cobwebs out after your brief spat with the");
 	if (enemy is MaidenVanae) output(" vanae maiden.");
@@ -519,7 +519,7 @@ public function vanaeVictorySexIntro(scene:String):void
 {
 	// Clicking on any Sex Option
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 	output("You can't help it, she is just too damn hot. There's no way you are going to just leave without");
 	if (!pc.isAss()) output(" seeing if she's up for a tumble");
 	else output(" hitting that");
@@ -738,7 +738,7 @@ public function vanaeMaidenTakeVirginity():void
 	if (enemy.lust() >= enemy.lustMax() || enemy.HP() <= 1)
 	{
 		clearOutput();
-		vanaeHeader("VICTORY:\nVANAE");
+		vanaeHeader("VICTORY:VANAE\n");
 		
 		pcWonFight = true;
 
@@ -770,7 +770,7 @@ public function vanaeMaidenTakeVirginity():void
 	}
 	else
 	{
-		vanaeHeader("DEFEAT:\nVANAE");
+		vanaeHeader("DEFEAT: VANAE\n");
 		output("\n\n");
 	}
 
@@ -865,7 +865,7 @@ public function vanaeMaidenCunnilingus():void
 	if (enemy.lust() >= enemy.lustMax() || enemy.HP() <= 1)
 	{
 		clearOutput();
-		vanaeHeader("VICTORY:\nVANAE");
+		vanaeHeader("VICTORY:VANAE\n");
 		
 		pcWonFight = true;
 		
@@ -879,7 +879,7 @@ public function vanaeMaidenCunnilingus():void
 	}
 	else
 	{
-		vanaeHeader("DEFEAT:\nVANAE");
+		vanaeHeader("DEFEAT: VANAE\n");
 		output("\n\n");
 	}
 
@@ -945,7 +945,7 @@ public function vanaeMaidenCunnilingus():void
 public function vanaeHuntressVaginalSex():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 
 	var selCock:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(selCock < 0) selCock = pc.smallestCockIndex();
@@ -1051,7 +1051,7 @@ public function vanaeHuntressVaginalSex():void
 public function vanaeHuntressTitfuck():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 
 	output("The exotic huntress gestures for you to seat yourself on a nearby rock. You sit down and spread your [pc.legOrLegs]. As she walks over her [enemy.breasts] sway and bounce, causing your [pc.cocks] to stiffen with delicious anticipation.");
 
@@ -1102,7 +1102,7 @@ public function vanaeHuntressEatsPCCunt():void
 {
 	// PC must have pussy and front/mid genitals.
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 
 	output("The exotic huntress gestures for you to seat yourself");
 	if (pc.isBiped()) output(" and spread your [pc.legs]");
@@ -1279,7 +1279,7 @@ public function vanaeHuntressTentaSex(selScene:String):void
 	isButt = !isCunt;
 
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 
 	// Two scene versions like 69 - Vag or Anal. Must have Vag to choose Vag version. Female/Herm can choose either version.
 	// NOT vag or ass, so females/herms can get assplay.
@@ -1412,7 +1412,7 @@ public function vanaeHuntressTentaSex(selScene:String):void
 public function vanaeHuntressSquirNJerk():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 	
 	// Requires one cock, any size.
 	// Must have Cock
@@ -1478,7 +1478,7 @@ public function vanaeHuntressSquirNJerk():void
 public function vanaeHuntressMilkBath():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 	// Any gender, no requirements.
 
 	output("The exotic huntress gestures for you to lie down and you obediently do so. She stands a foot away from you. <i>“So, you want a nice bath? I can definitely do that.”</i> She purrs, the [enemy.milk] dribbling from her [enemy.breasts] begins to turn a far richer hue. <i>“I'm sure you'll enjoy it");
@@ -1552,7 +1552,7 @@ public function vanaeHuntressMilkBath():void
 public function vanaeHuntressPostVictoryScene():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 
 	if (pc.isAss())
 	{
@@ -1592,7 +1592,7 @@ public function vanaeHuntressPostVictoryScene():void
 
 public function vanaeHuntressPCDefeat():void
 {
-	vanaeHeader("DEFEAT:\nVANAE");
+	vanaeHeader("DEFEAT: VANAE\n");
 
 	if (pc.HP() <= 1)
 	{
@@ -2321,7 +2321,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 
 public function vanaeMaidenPCDefeat():void
 {
-	vanaeHeader("DEFEAT:\nVANAE");
+	vanaeHeader("DEFEAT: VANAE\n");
 
 	// HP
 	if (pc.HP() <= 1)
@@ -2447,7 +2447,7 @@ public function cockvineTailPlusVanaeVictory():void
 	clearOutput();
 	pc.addHard(1);
 	author("Zeikfried");
-	vanaeHeader("VICTORY:\nVANAE");
+	vanaeHeader("VICTORY:VANAE\n");
 	//if (enemy is HuntressVanae)
 	output("You open your mouth to answer her, but something stops you. The ");
 	//(maid)
