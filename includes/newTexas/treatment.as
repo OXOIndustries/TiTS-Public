@@ -1799,7 +1799,7 @@ public function treatmentHourProcs():void
 					eBuffer += ", polishing every square inch of cock-skin that you can lay your tongue on. Maybe next time you can squeeze more than one into your mouth...";
 				}
 				//Realize how fucking awesome it is and that you feel totes my goats refreshed.
-				eBuffer += ParseText("\n\nFuck yes, that was awesome! All that cumming, and if anything you feel even less tired than before. Is the Treatment like, making you better at sucking your own cock so that you can do it all the time? Or maybe it did something to your [pc.cumNoun] to help it restore your energy. Who cares! If you get tired, you can just lean down and get a cock-snack, then go right back to adventuring... or fucking, you suppose. You pat your ");
+				eBuffer += ParseText("\n\nFuck yes, that was awesome! All that cumming, and if anything you feel even less tired than before. Is the Treatment, like, making you better at sucking your own cock so that you can do it all the time? Or maybe it did something to your [pc.cumNoun] to help it restore your energy. Who cares! If you get tired, you can just lean down and get a cock-snack, then go right back to adventuring... or fucking, you suppose. You pat your ");
 				if(dickBiggered) eBuffer += "bigger ";
 				eBuffer += "dick and giggle delightedly, convinced that your mouth is going to taste like sex for the rest of your life.";
 				//Gain Autofellatio Queen perk
@@ -1860,7 +1860,7 @@ public function treatmentHourProcs():void
 			//Plays the next time the PC is in a public place
 			if(treatedHours == 155 && pc.hasCock() && pc.exhibitionism() < 66)
 			{
-				pc.createStatusEffect("Treatment Exhibitionism Gain 4 DickGirls")
+				pc.createStatusEffect("Treatment Exhibitionism Gain 4 DickGirls");
 			}
 			//160 Hours:
 			//Possible Milk Fountain Perk

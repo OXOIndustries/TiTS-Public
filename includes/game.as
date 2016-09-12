@@ -686,11 +686,11 @@ public function rest(deltaT:int = -1):void {
 	}
 	restHeal();
 	processTime(minPass);
+	pc.lust(postRestLustBonus);
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
-
-	pc.lust(postRestLustBonus);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

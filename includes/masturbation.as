@@ -156,7 +156,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	}
 	if (pc.hasCock() && pc.canAutoFellate(-1))
 	{
-		if(pc.isCumCow())
+		if(pc.isCumCow() && pc.perkv1("Auto-Autofellatio") > 0)
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Autofellatio";
@@ -3407,9 +3407,9 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//First time post-script addendum
 	if(pc.perkv1("Auto-Autofellatio") == 0) autoautofellatioNotice(); 
 	//Voluntary Beej gives 1 week cooldown
-	if(!special) pc.addPerkValue("Auto-Autofellatio",2,7);
+	if(!special) pc.setPerkValue("Auto-Autofellatio",2,7);
 	//Involuntary give 3 day autocooldown
-	else pc.addPerkValue("Auto-Autofellatio",2,3);
+	else pc.setPerkValue("Auto-Autofellatio",2,3);
 	//Keep count, whynot.
 	pc.addPerkValue("Auto-Autofellatio",1,1);
 	pc.loadInMouth(pc);

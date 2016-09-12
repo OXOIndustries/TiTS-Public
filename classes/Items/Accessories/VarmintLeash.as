@@ -28,7 +28,7 @@ package classes.Items.Accessories
 			
 			description = "a pink varmint leash";
 			
-			tooltip = "This bright pink leash connects you to your varmint buddy through a wireless signal and some high-tech motors in the collar, allowing you to control how far your friend wanders from you, and hold it back if need be, without getting a pesky REAL leash in the way like some kind of neanderthal.";
+			tooltip = "[altTooltip VarmintLeash]";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
