@@ -1229,6 +1229,10 @@
 		{
 			return chars["JEROME"];
 		}
+		public function get inessa():Inessa
+		{
+			return chars["INESSA"];
+		}
 		
 		private var _dbgtestvar:int = 0;
 		public function dbgshieldparsertag():String

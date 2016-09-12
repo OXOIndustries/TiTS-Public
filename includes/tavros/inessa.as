@@ -89,7 +89,7 @@ public function inessaMenu():void
 	}
 	else addDisabledButton(3,"Sex","Sex","You don't know her well enough for that.");
 	//INESSA EXPANSION - Must have silk and Xanthe must be alive
-	if(flags["INESSA_EXP"] == 1 && flags["KQ2_MYRELLION_STATE"] == undefined ) addButton(4,"Silk",giveInessaSilk,"Silk","Give Inessa the sheet of silk from Xanthe.");
+	if(flags["INESSA_EXP"] == 1 && flags["KQ2_MYRELLION_STATE"] == undefined ) addButton(4,"Silk",giveInessaSilk,undefined,"Silk","Give Inessa the sheet of silk from Xanthe.");
 	else addDisabledButton(4,"Silk","Silk","You must have got the silk sheet from Xanthe and she must be alive");
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -816,7 +816,7 @@ public function inessaSexMenu():void
 
 	//INESSA EXPANSION - Vaginal
 	//PC must have removed her belt
-	if(flags["INESSA_BELTED"] == 2) addButton(6,"Vaginal",fuckInessaPussy,"Fuck your saeri sub's pussy")
+	if(flags["INESSA_BELTED"] == 2) addButton(6,"Vaginal",fuckInessaPussy,undefined,"Vagina","Fuck your saeri sub's pussy")
 	
 	addButton(14,"Back",noYoureASlut);
 }
@@ -2095,7 +2095,7 @@ public function giveInessaSilk():void
 	output("\n\nYou nod and smile at her, thanking her for the explanation and letting her finish closing up the shop. <i>“Alright, everything's all closed up here, let's get going!”</i> You chuckle softly and tell her to slow down, it will be a long ride. She covers her mouth slightly and blushes. <i>“O-Of course, I'm sorry, whenever you're ready.”</i>");
 	output("\n\nWith that you instruct the snowy haired sub to follow you out of the store and onto your ship.");
 
-	processTime(600 + rand(30));
+	processTime(5);
 	flags["INESSA_EXP"] = 2
 	clearMenu();
 	addButton(0,"Next",inessaProvingScene);	
@@ -2114,15 +2114,15 @@ public function inessaProvingScene():void
 
 	output("<b>... Some time later....</b>");
 	output("\n\nYou step into Xanthe's shop with Inessa and look around for the Siel woman and call out for her.");
-	output("\n\n<i>“Down here!” She calls from down the hall somewhere, you take Inessa's hand and guide her down the hallway to a large door, securely bolted shut. You gently rap your knuckles against the door and the bolts retract from the doorframe as Xanthe opens it from the other side. She stands completely naked in the doorway, giving you a sly grin before turning to Inessa. “Oh my little sister, how I have missed you.” She states, sweeping the comparatively small Saeri girl into a tight hug.");
-	output("\n\nInessa squeaks softly as she's engulfed by boobflesh and hugs, wriggling her way free once Xanthe lets go. “So, my dear sister.” Xanthe says, her smile turning up into a slight grin once more. “Has [pc.short] explained to you what is going to happen?” Inessa blinks and shakes her head, looking at you with more than a little confusion. Xanthe looks at you and smirks before turning back into the dark room. “Be a dear and explain it to her won't you? I've got to finish getting things set up.”</i>");
-	output("\n\n<i>“W-What is she talking about [pc.short]? What's going to happen?” The confused and slightly scared Saeri girl asks, her nerves getting the better of her. You explain to her that you talked with Xanthe about her, and came to find out that Xanthe held the key to her chastity belt. “Wait, she what?” Inessa blinks confused once more.");
-	output("\n\nYou chide her for interrupting, to which she blushes and lowers her head. “I-I'm sorry, continue.” You continue on to explain how you asked Xanthe how you could convince her to give you the key, and she replied that in order to be worthy of taking the key, you would have to prove yourself a capable Dominant and protector.");
-	output("\n\n<i>“Xanthe only did this to protect you.” You comfort her, placing a hand on her shoulder and smiling warmly.");
-	output("\n\nInessa takes a deep breath, taking in the details as she calms herself down, her [inessa.wings] fluttering softly. “So... I-If you prove yourself... you plan to become my "+ pc.mf("Master","Mistress") +"?” She asks nervously, to which you reply with only a nod.");
-	output("\n\n<i>“Many Dominants come in to Happy Tails, and I swoon for them all, but... you... you're different, you actually mean it.” Inessa closes her eyes and readies herself, her legs shaking as the prospect of what is about to happen sets in. “O-Okay... I think I'm ready...” Inessa takes another breath before placing her hand in yours, letting you guide her down into the dungeon of Silken Serenity.");
-	
-	processTime(5);
+	output("\n\n<i>“Down here!”</i> She calls from down the hall somewhere, you take Inessa's hand and guide her down the hallway to a large door, securely bolted shut. You gently rap your knuckles against the door and the bolts retract from the doorframe as Xanthe opens it from the other side. She stands completely naked in the doorway, giving you a sly grin before turning to Inessa. “Oh my little sister, how I have missed you.” She states, sweeping the comparatively small Saeri girl into a tight hug.");
+	output("\n\nInessa squeaks softly as she's engulfed by boobflesh and hugs, wriggling her way free once Xanthe lets go. “So, my dear sister.” Xanthe says, her smile turning up into a slight grin once more. “Has [pc.short] explained to you what is going to happen?”</i> Inessa blinks and shakes her head, looking at you with more than a little confusion. Xanthe looks at you and smirks before turning back into the dark room. “Be a dear and explain it to her won't you? I've got to finish getting things set up.”</i>");
+	output("\n\n<i>“W-What is she talking about [pc.short]? What's going to happen?”</i> The confused and slightly scared Saeri girl asks, her nerves getting the better of her. You explain to her that you talked with Xanthe about her, and came to find out that Xanthe held the key to her chastity belt. “Wait, she what?”</i> Inessa blinks confused once more.");
+	output("\n\nYou chide her for interrupting, to which she blushes and lowers her head. “I-I'm sorry, continue.”</i> You continue on to explain how you asked Xanthe how you could convince her to give you the key, and she replied that in order to be worthy of taking the key, you would have to prove yourself a capable Dominant and protector.");
+	output("\n\n<i>“Xanthe only did this to protect you.”</i> You comfort her, placing a hand on her shoulder and smiling warmly.");
+	output("\n\nInessa takes a deep breath, taking in the details as she calms herself down, her [inessa.wings] fluttering softly. “So... I-If you prove yourself... you plan to become my "+ pc.mf("Master","Mistress") +"?”</i> She asks nervously, to which you reply with only a nod.");
+	output("\n\n<i>“Many Dominants come in to Happy Tails, and I swoon for them all, but... you... you're different, you actually mean it.”</i> Inessa closes her eyes and readies herself, her legs shaking as the prospect of what is about to happen sets in. <i>“O-Okay... I think I'm ready...”</i> Inessa takes another breath before placing her hand in yours, letting you guide her down into the dungeon of Silken Serenity.");
+	pc.removeKeyItem("Xanthe's Silk");
+	processTime(600 + rand(30));
 	clearMenu();
 	addButton(0,"Next",inessaProvingSceneii)
 }
