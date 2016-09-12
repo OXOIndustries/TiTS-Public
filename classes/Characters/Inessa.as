@@ -1,6 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.VaginaClass;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
 	import classes.Items.Toys.HoverHole;
@@ -78,9 +79,9 @@
 			this.legType = GLOBAL.TYPE_HUMAN;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			
-			this.breastRows = [new BreastRowClass()];
-			(breastRows[0] as BreastRowClass).breastRatingRaw = 3;
-			(breastRows[0] as BreastRowClass).nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+			//GARBAGE this.breastRows = [new BreastRowClass()];
+			breastRows[0].breastRatingRaw = 3;
+			breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 			this.nipplesPerBreast = 1;
 			this.nippleColor = "indigo";
 			
