@@ -1074,7 +1074,7 @@ public function raygunStuff():void
 	//IF PC IS NOT A BIMBO
 	if(!pc.isBimbo())
 	{
-		output("<i>“So, uh</i>, you say hesitantly, aware that this will probably not be an enjoyable topic for him, <i>“you know that doctor who’s set up just across from you?”</i>");
+		output("<i>“So, uh”</i>, you say hesitantly, aware that this will probably not be an enjoyable topic for him, <i>“you know that doctor who’s set up just across from you?”</i>");
 		output("\n\n<i>“Doctor!”</i> he answers, and you get the impression he’d have spat that word with distaste if that didn’t seem like too much of a waste of perfectly functional saliva. <i>“Calling someone a ‘doctor’ implies they add something to the universe - that they use their intelligence to improve technology or at least people’s health. And </i>not<i>, as ‘Doctor’ Badger does, actively try to </i>reduce<i> the intelligence of the population, all the while </i>increasing<i> their damnable licentiousness!”</i>");
 		output("\n\nThat definitely answers for what he thinks of her, you think. Out loud, you say, <i>“Well, what if I told you I’ve got a way we can take care of her?”</i>");
 		output("\n\nDoctor Lash gives a short, sharp rasp of a laugh. <i>“Please. I’ve tried to... encourage her to move on myself in the past, but between her strength implants and the variety of mechanical traps she’s got set up in her... shack, all of our previous encounters have been little better than stalemates.”</i> He leans forwards, the light from his goggles dimming slightly as though he was narrowing his eyes at you. <i>“And what makes you think you could succeed where I failed?”</i>");
