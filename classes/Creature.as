@@ -5100,10 +5100,14 @@
 		}
 		public function hasPartScales(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED)
+			||	InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN)
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_SCALED);
+			if(part == "wing") return InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN);
 			return hasScales();
 		}
 		public function hasPartChitin(part:String = "any"):Boolean
@@ -5124,10 +5128,14 @@
 		}
 		public function hasPartFeathers(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED)
+			||	InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE)
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_FEATHERED);
+			if(part == "wing") return InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE);
 			return hasFeathers();
 		}
 		public function skinNoun(skin: Boolean = false,appearance:Boolean = false): String {
