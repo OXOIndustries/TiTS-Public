@@ -16613,6 +16613,10 @@
 		// top kek
 		public function myMiddleNameIsJensen():Boolean { return hasCybernetics(); }
 		
+		public function isInvisible():Boolean
+		{
+			return (hasStatusEffect("Stealth Field Generator") || hasStatusEffect("Camouflage"));
+		}
 		public function hasBlindImmunity():Boolean
 		{
 			return (accessory is FlashGoggles);

@@ -1356,7 +1356,7 @@ public function initMhengaRooms():void
 	rooms["MISTY VALLEY 2"].addFlag(GLOBAL.JUNGLE);
 
 	rooms["MISTY VALLEY 3"] = new RoomClass(this);
-	rooms["MISTY VALLEY 3"].roomName = "MISTY VALLEY";
+	rooms["MISTY VALLEY 3"].roomName = "MISTY\nVALLEY";
 	rooms["MISTY VALLEY 3"].description = "Towering, titan-sized trees surround you from every direction, each one pale as death and lined with luminous lichen. The omnipresent mist has almost completely deprived you of sight - you can barely see five feet in front of you. \n\nInstead of vision, you are left with sounds of dripping water, rustling leaves, and clicking insects. It only looks safe to walk west or south; elsewhere the ground looks treacherous.";
 	rooms["MISTY VALLEY 3"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["MISTY VALLEY 3"].planet = "PLANET: MHEN'GA";
