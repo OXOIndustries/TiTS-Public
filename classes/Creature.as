@@ -8548,6 +8548,7 @@
 					vaginas[slot].vaginaColor = "pink";
 					vaginas[slot].wetnessRaw = 3;
 					vaginas[slot].minLooseness = 3;
+					break;
 				case GLOBAL.TYPE_VULPINE:
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "black";
