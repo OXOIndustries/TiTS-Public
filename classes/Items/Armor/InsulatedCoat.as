@@ -49,6 +49,8 @@
 			this.fortification = 10;
 			
 			resistances.freezing.resistanceValue = 25.0;
+			resistances.kinetic.resistanceValue = 10.0;
+			resistances.electric.resistanceValue = 10.0;
 			resistances.burning.resistanceValue = -10.0;
 			//resistances.addFlag(DamageFlag.PLATED);
 			
