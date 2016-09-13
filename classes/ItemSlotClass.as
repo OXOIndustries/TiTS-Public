@@ -256,7 +256,7 @@
 				}
 				
 				//APRIL FOOLS! var valueString:String = "Price: " + price + " Dogecoins";
-				var valueString:String = "Price: " + price + " Credits";
+				var valueString:String = "Price: " + Math.round(price) + " Credits";
 				
 				compareString = mergeString(compareString, valueString);
 			}
