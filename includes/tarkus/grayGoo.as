@@ -585,7 +585,7 @@ public function cockVariantForGrayGooKirbutashis():void
 	output("\n\nThe yearn to climax has about knocked you out. Your overwrought senses fell off a cliff back when the goo girl turned your cock into a sculpting tool. But the silver computer made of slime really is the captain of this ship after all. And it just so happens that she’s now ready to turn hard to port. She rams your tool deep in the silver mound and the floodgates burst open. Your silver-coated body convulses over each orgasm. There’s no keeping count in either of the pleasure-pounded minds, just a seemingly unending series of releases. The silver toy turns a shade of [pc.cumColor] as it’s saturated by your relief.");
 	output("\n\nYou aren’t sure who’s in control for a moment. The two of you merely bask in an afterglow, paralyzed with your [pc.cockBiggest] still lodged inside what once appeared to be a sculpted onahole.");
 	output("\n\n<i>“Wow. What a meal,”</i> you’re finally forced to say. <i>“I... I didn’t expect this little experiment to give such a jolt.”</i>");
-	output("\n\nThe [pc.cumcolor]-colored blob sinks into your cock to rejoin its brethren. The rushing sensation is quite pleasurable.");
+	output("\n\nThe [pc.cumColor]-colored blob sinks into your cock to rejoin its brethren. The rushing sensation is quite pleasurable.");
 	output("\n\n<i>“Having a physical body... this is pretty great.”</i>");
 	output("\n\nYou’re started to get worried.");
 
