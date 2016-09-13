@@ -1747,9 +1747,83 @@ package classes.GameData
 				}
 				bOff++;
 			}
+			if (pc.hasCombatDrone())
+			{
+				if (pc.hasActiveCombatDrone())
+				{
+					if(pc.hasStatusEffect("Varmint Buddy")) addButton(bOff, "Varmint", selectDroneTarget, undefined, "Varmint, Go!", ("Have your varmint target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+					else addButton(bOff, "Drone Target", selectDroneTarget, undefined, "Drone Target", ("Have your drone target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+				}
+				else
+				{
+					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate to your varmint right now!");
+					else addDisabledButton(bOff, "Drone Target", "Drone Target", "You can’t access your combat drone right now!");
+				}
+				bOff++;
+			}
 			
 			// TODO sort pages and shit
 			addButton(14, "Back", generateCombatMenu);
+		}
+		
+		private function selectDroneTarget():void
+		{
+			clearMenu();
+			
+			if(pc.droneTarget == null && !pc.hasStatusEffect("Drone Targetting"))
+			{
+				pc.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
+				if(pc.droneTarget == null) pc.createStatusEffect("Drone Targetting", -1, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targetting..."), true, 0, 0xFFFFFF);
+			}
+			
+			var bOff:int = 0;
+			if(_hostiles.length > 1)
+			{
+				for (var i:int = 0; i < _hostiles.length; i++)
+				{
+					if (!_hostiles[i].isDefeated())
+					{
+						if(_hostiles[i] == pc.droneTarget && pc.hasStatusEffect("Drone Targetting")) addDisabledButton(bOff, (_hostiles[i] as Creature).buttonText, (_hostiles[i] as Creature).buttonText, ("Already targetting " + (_hostiles[i] as Creature).buttonText + "."));
+						else addButton(bOff, (_hostiles[i] as Creature).buttonText, selectDroneTargetSpecial, (_hostiles[i] as Creature), (_hostiles[i] as Creature).buttonText, ("Target " + (_hostiles[i] as Creature).buttonText + "."));
+						bOff++;
+					}
+					else if(pc.statusEffectv1("Drone Targetting") > 0 && _hostiles[i] == pc.droneTarget)
+					{
+						pc.droneTarget = null;
+						pc.setStatusValue("Drone Targetting", 1, -1);
+					}
+				}
+				if(!pc.hasStatusEffect("Drone Targetting")) addDisabledButton(12, "Auto", "Automatic", "Targetting is set to automatic.");
+				else addButton(12, "Auto", selectDroneTargetAuto, undefined, "Automatic", "Automatically select the best target.");
+				if(pc.statusEffectv1("Drone Targetting") < 0 || pc.droneTarget == null) addDisabledButton(13, "None", "No Target", "Currently not targetting anything.");
+				else addButton(13, "None", selectDroneTargetSpecial, undefined, "No Target", "Don't target anything.");
+			}
+			else
+			{
+				if(!pc.hasStatusEffect("Drone Targetting")) addDisabledButton(0, "Target", "Target", "Currently targetting enemy.");
+				else addButton(0, "Target", selectDroneTargetAuto, undefined, "Target", "Target the enemy.");
+				if(pc.statusEffectv1("Drone Targetting") < 0 || pc.droneTarget == null) addDisabledButton(1, "Withdraw", "No Target", "Currently not targetting enemy.");
+				else addButton(1, "Withdraw", selectDroneTargetSpecial, undefined, "No Target", "Don't target enemy.");
+			}
+			
+			addButton(14, "Back", generateSpecialsMenu);
+		}
+		private function selectDroneTargetSpecial(target:Creature = null):void
+		{
+			if(!pc.hasStatusEffect("Drone Targetting")) pc.createStatusEffect("Drone Targetting", 0, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targetting..."), true, 0, 0xFFFFFF);
+			else
+			{
+				if(target == null) pc.setStatusValue("Drone Targetting", 1, -1);
+				else pc.setStatusValue("Drone Targetting", 1, 1);
+			}
+			pc.droneTarget = target;
+			selectDroneTarget();
+		}
+		private function selectDroneTargetAuto():void
+		{
+			pc.removeStatusEffect("Drone Targetting");
+			pc.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
+			selectDroneTarget();
 		}
 		
 		private function selectAttack(atk:SingleCombatAttack):void
@@ -3952,7 +4026,7 @@ package classes.GameData
 				if(((droneUser.hasShields() && droneUser.shields() > 0) || droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER)) && droneUser.hasStatusEffect("Drone Disabled"))
 				{
 					droneUser.removeStatusEffect("Drone Disabled");
-					if(droneUser == pc) output("\nWith shield power restored, <b>your drone buzzes back to life</b>, ready to attack once more!");
+					if(droneUser == pc) output("\n\nWith shield power restored, <b>your drone buzzes back to life</b>, ready to attack once more!");
 				}
 				else if((!droneUser.hasShields() || droneUser.shields() <= 0) && !droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
@@ -3961,7 +4035,12 @@ package classes.GameData
 				}
 			}
 			
-			if(_friendlies.indexOf(droneUser) != -1) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
+			if(droneUser == pc)
+			{
+				// Auto-target unless targets are set.
+				if(!pc.hasStatusEffect("Drone Targetting")) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
+			}
+			else if(_friendlies.indexOf(droneUser) != -1) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
 			else if(_hostiles.indexOf(droneUser) != -1) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_friendlies);
 			else droneUser.droneTarget = null;
 			
