@@ -33,9 +33,9 @@ package classes.Items.Guns
 			this.description = "a spinarran SunFire rifle";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Plasma Bore. The mainstay of spinarran infantry, the is a heavy plasma weapon that is designed for short and medium ranged engagements. It fires a withering stream of plasma bolts from three rotary barrels, enough that some foes may be set on fire.";
+			this.tooltip = "The mainstay of spinarran infantry, the plasma bore, SunFire variant, is a heavy plasma weapon that is designed for short and medium ranged engagements. It fires a withering stream of plasma bolts from three rotary barrels, enough that some foes may be set on fire.";
 			this.attackVerb = "shoot";
-			attackNoun = "plasma blob";
+			attackNoun = "plasma bolt";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
