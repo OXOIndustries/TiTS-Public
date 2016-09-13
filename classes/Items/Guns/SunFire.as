@@ -40,11 +40,10 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 18500;
+			this.basePrice = 27500;
 			this.attack = 5;
 			
-			baseDamage.electric.damageValue = 4;
-			baseDamage.burning.damageValue = 17;
+			baseDamage.burning.damageValue = 21;
 
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);

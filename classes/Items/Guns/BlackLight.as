@@ -11,10 +11,10 @@ package classes.Items.Guns
 	 * ...
 	 * @author Fenoxo
 	 */
-	public class PlasmaBore extends ItemSlotClass
+	public class BlackLight extends ItemSlotClass
 	{
 		
-		public function PlasmaBore() 
+		public function BlackLight() 
 		{
 			this._latestVersion = 1;
 
@@ -23,38 +23,39 @@ package classes.Items.Guns
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "PlasmaBore";
+			this.shortName = "B.Light";
 			
 			//Regular name
-			this.longName = "plasma bore";
+			this.longName = "\"Black Light\" ultraviolet laser rifle";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a spinarran plasma bore";
+			this.description = "a \"Black Light\" ultraviolet laser rifle";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The mainstay of spinarran infantry, the plasma bore is a heavy plasma weapon that is designed for short and medium ranged engagements. It fires a fast, fat glob of boiling plasma that melts or vaporizes bodies and tunnels through rock with equal ease.";
+			this.tooltip = "A newer piece of spinarran thermal weapons technology. This military grade weapon packs an incendiary blast of ultraviolet light that will give someone a whole lot more than a sunburn.";
 			this.attackVerb = "shoot";
-			attackNoun = "plasma blob";
+			attackNoun = "purple-black laser beam";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 25000;
-			this.attack = -1;
+			this.basePrice = 27000;
+			this.attack = 5;
 			
-			//baseDamage.electric.damageValue = 5;
+			baseDamage.electric.damageValue = 0;
 			baseDamage.burning.damageValue = 25;
 
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			baseDamage.addFlag(DamageFlag.LASER);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 5;
+			this.critBonus = 3;
 			this.evasion = 0;
 			this.fortification = 0;
 

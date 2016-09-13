@@ -1,66 +1,63 @@
-package classes.Items.Guns 
-{	
+﻿package classes.Items.Melee
+{
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	
-	/**
-	 * ...
-	 * @author Fenoxo
-	 */
-	public class PlasmaBore extends ItemSlotClass
+	public class ThermalScalpel extends ItemSlotClass
 	{
-		
-		public function PlasmaBore() 
+		//constructor
+		public function ThermalScalpel()
 		{
 			this._latestVersion = 1;
 
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.RANGED_WEAPON;
+			this.type = GLOBAL.MELEE_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "PlasmaBore";
+			this.shortName = "T.Scalpel";
 			
 			//Regular name
-			this.longName = "plasma bore";
+			this.longName = "thermal scalpel";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a spinarran plasma bore";
+			this.description = "a thermal scalpel";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The mainstay of spinarran infantry, the plasma bore is a heavy plasma weapon that is designed for short and medium ranged engagements. It fires a fast, fat glob of boiling plasma that melts or vaporizes bodies and tunnels through rock with equal ease.";
-			this.attackVerb = "shoot";
-			attackNoun = "plasma blob";
+			this.tooltip = "A small plasma weapon designed to cut through metal armor, hard mineral ore, and limbs with equal ease.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
-			//Information
-			this.basePrice = 25000;
-			this.attack = -1;
+			attackVerb = "slash";
+			attackNoun = "burning slash";
 			
-			//baseDamage.electric.damageValue = 5;
-			baseDamage.burning.damageValue = 25;
-
+			//Information
+			this.basePrice = 20000;
+			this.attack = 0;
+			
+			baseDamage = new TypeCollection();
+			baseDamage.kinetic.damageValue = 2;
+			baseDamage.burning.damageValue = 21;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
-			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
+			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 5;
-			this.evasion = 0;
+			this.evasion = 3;
 			this.fortification = 0;
-
+			
 			this.version = _latestVersion;
 		}
-		
 	}
-
 }

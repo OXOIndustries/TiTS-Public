@@ -52,7 +52,10 @@ public function silkAndSteelMenu():void
 	addButton(0,"Talk",talkToKirila,undefined,"Talk","Talk to Kirila.");
 	addDisabledButton(1,"Shop","Shop","Not yet in!");
 	addButton(2,"Appearance",kirilaAppearance,undefined,"Appearance","Take a gander at Kirila's appearance.");
-	addButton(3,"Shop: Steel",kirilaShop,0,"Shop: Steel","Shop for weaponry!");
+	addButton(5,"Shop: Steel",kirilaShop,0,"Shop: Steel","Shop for weaponry!");
+	addButton(6,"Shop: Armor",kirilaShop,1,"Shop: Steel","Shop for armor!");
+	addButton(7,"Shop: Silk",kirilaShop,2,"Shop: Steel","Shop for clothing items!");
+	addButton(3,"Demos",itemDemos,undefined,"Demos","Ask Kirila for more information on the various weapons.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -272,58 +275,241 @@ public function kirilaRushTalk():void
 public function kirilaShop(choice:Number = 0):void
 {
 	clearOutput();
-	//weapons
 	//(menu button)
-	//If pc had just been looking at silk
+	shopkeep = chars["KIRILA"];
 	if(choice == 0)
 	{
-		shopkeep = chars["KIRILA"];
+		
 		shopkeep.keeperBuy = "<i>“Steel please,”</i> you say as you look at the racks of various weapons and armor on display.\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip; does she do this every time? Not that you’re complaining. The alien woman has a very nice body, looking fit with wide hips and a round butt. You really get to appreciate how polished her exoskeleton is. Every plate is like a copper mirror.\n\nAfter a moment, the copper spinarran appears again, this time wearing a coat made of synth-leather, ballistic padding, and tightly woven silvery mesh. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular. Much of it is registered military surplus.”</i>\n";
-		//9999 set inventory here
+		//set inventory here
 		shopkeep.inventory = new Array();
 		shopkeep.inventory.push(new PlasmaBore());
 		shopkeep.inventory.push(new SunFire());
+		shopkeep.inventory.push(new BlackLight());
+		shopkeep.inventory.push(new ThermalScalpel());
+		shopkeep.inventory.push(new MonofilamentSaber());
+		shopkeep.inventory.push(new PredatorTalons());
+	}
+	else if(choice == 1)
+	{
+		shopkeep.keeperBuy = "You gesture to the armor on display and ask about it. The spinarran behind the counter nods her head and fingers her outfit again.\n\n<i>“Ahh, alright. I hope you like what we have. All of it is of the highest quality I assure you. My clutchmate makes all the armor herself from her own weave. I guarantee that it will offer very good protection, though it won’t help against the cold outside.”</i>\n";
+		shopkeep.inventory = new Array();
+		shopkeep.inventory.push(new WeavemailShirt());
+		shopkeep.inventory.push(new WeavemailCoat());
+		shopkeep.inventory.push(new WeavemailDress());
+	}
+	else if(choice == 2)
+	{
+		shopkeep.keeperBuy = "<i>“Silk please,”</i> you say as you look at the racks of clothing on display.\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down, and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip. Does she do this every time? Not that you’re complaining, the alien woman has a very nice body, fit with wide hips and round butt. You really get to see how polished her exoskeleton is, every plate is like a copper mirror.\n\nAfter a moment  the copper spinarran appears again, this time wearing a frilly gothic dress. The girly outfit is covered in lace, frills, and looks to be made of silk or satin. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular.”</i>\n";
+		shopkeep.inventory = new Array();
+		shopkeep.inventory.push(new ClassySuit());
+		shopkeep.inventory.push(new SilkDress());
+		shopkeep.inventory.push(new MaidUniform());
+		shopkeep.inventory.push(new ThermalBodysuit());
+		shopkeep.inventory.push(new WinterGear());
 	}
 	buyItem();
 }
 
+public function itemDemos():void
+{
+	clearOutput();
+	showKirila();
+	output("Kirila would be happy to tell you more about her wares. Which items do you want to know more about?");
+	clearMenu();
+	addButton(0,"\"Steel\"",kirilaSteelItemDemos,undefined,"\"Steel\"","Ask Kirila to demo her weaponry.");
+	addButton(1,"Armor",kirilaArmorItemDemos,undefined,"Armor","Ask Kirila to demo her armors.");
+	addButton(2,"Silk",kirilaSilkItemDemos,undefined,"Silk","Ask Kirila to demo her clothing.");
+	addButton(14,"Back",approachKirila,true);
+}
 
-/*
+public function kirilaSteelItemDemos():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("<i>“Steel please,”</i> you say as you look at the racks of various weapons and armor on display.\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip; does she do this every time? Not that you’re complaining. The alien woman has a very nice body, looking fit with wide hips and a round butt. You really get to appreciate how polished her exoskeleton is. Every plate is like a copper mirror.\n\nAfter a moment, the copper spinarran appears again, this time wearing a coat made of synth-leather, ballistic padding, and tightly woven silvery mesh. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular. Much of it is registered military surplus.”</i>");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Plasma Bore",plasmaBoreDemo);
+	addButton(1,"SunFire",sunfireDemo);
+	addButton(2,"BlackLight",blacklightDemo);
+	addButton(3,"ThermalScalpel",thermalScalpelDemo);
+	addButton(4,"M.Saber",monofilamentDemo)
+	addButton(5,"PredatorTalons",predatorTalonsDemo);
+	addButton(14,"Back",itemDemos);
+}
 
-output("\n\nThermal Scalpel");
+public function kirilaArmorItemDemos():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("You gesture to the armor on display and ask about it. The spinarran behind the counter nods her head and fingers her outfit again.\n\n<i>“Ahh, alright. I hope you like what we have. All of it is of the highest quality I assure you. My clutchmate makes all the armor herself from her own weave. I guarantee that it will offer very good protection, though it won’t help against the cold outside.”</i>");
+	processTime(1);
+	clearMenu();
+	addButton(0,"WM Shirt",WMShirtDemo);
+	addButton(1,"WM Coat",WMCoatDemo);
+	addButton(2,"WM Dress",WMDressDemo);
+	addButton(14,"Back",itemDemos);
+}
 
-output("\n\nYou point at one the small arms under the front display counter: a straight, sleek looking gun almost as long as a human’s forearm with a long rectangular barrel on a rotating joint. On either side of the barrel are three targeting lasers. <i>“That is a respectable weapon right there. The V36 thermal scalpel is the sidearm of every spinarran soldier. It’s durable, reliable, and easy to reload. Its plasma blade can slice clean through an arm or leg as easy as it can shear through rock. A body shot can cook your insides, and it’s tough enough that you can club someone over the head or punch someone in the face with it. Everyone loves these, and they double as small mining tools as well, slicing rocks into pieces.");
-output("\n\nDamage: 21 Burning 2 electric");
-output("\n\nDamage type: Plasma");
-output("\n\nAccuracy: 2");
-output("\n\ncost:14000");
-output("\n\nYou purchase a Thermal Scalpel for 14000 credits");
+public function kirilaSilkItemDemos():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("<i>“Silk please,”</i> you say as you look at the racks of clothing on display.\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down, and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip. Does she do this every time? Not that you’re complaining, the alien woman has a very nice body, fit with wide hips and round butt. You really get to see how polished her exoskeleton is, every plate is like a copper mirror.\n\nAfter a moment  the copper spinarran appears again, this time wearing a frilly gothic dress. The girly outfit is covered in lace, frills, and looks to be made of silk or satin. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular.”</i>");
 
-output("\n\nTooltip: Thermal Scalpel: A small plasma weapon designed to cut through metal armor, hard mineral ore, and limbs with equal ease.");
+	clearMenu();
+	addButton(0,"C.Suit",classySuitDemo);
+	addButton(1,"S.Dress",silkDressDemo);
+	addButton(2,"Maid U.",maidUniformDemo);
+	addButton(3,"T.Bodysuit",thermalBodysuitDemo);
+	addButton(4,"Winter G.",winterGearDemo);
+	addButton(14,"Back",itemDemos);
+}
 
-DUNOXO: output("\n\nPlasma Bore");
 
-output("\n\nLooking at the heavier weapons on the walls, you point to one of several heavy, two handed weapons. A big, mean looking thing, it’s clearly made to be used with two hands. You bet it packs one hell of a punch. <i>“Mmmm... a beauty.”</i> The girl behind the counter sighs as she pulls one down from the case with ease and lays the heavy weapon down on the counter for you. <i>“This is a SS-M XIII plasma bore. It is a beautiful piece of spinarran weaponry. The plasma bore is the workhorse of spinarran weapons tech, packs a hell of a punch at short and medium ranges, melts rock and metal, vaporizes flesh and bone. Tough, reliable, not too heavy, well for spinarrans or lethians anyway. Might be a bit heavy for a human or an ausar. The power pack for it is good for about 80 shots, not as many as a modern laser rifle, but like I said, hell of a punch, just, you know, keep your hands away from the emitters.”</i>");
+//Weavemail Shirt
+public function WMShirtDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("You look through the racks of protective clothing and pull out one of the thick shirts that’s a little long in both the sleeves and overall length than your basic shirt, but the material is clearly what makes this thick garment special. The armor comes in a few different styles, and you pull one out before bringing it over to the counter to ask about it.");
+	output("\n\n<i>“Ahh, alright. This is our basic weavemail shirt: decent protection, light enough to wear under your clothes if you want to be discrete. Spinarran weavemail resists solid projectiles very well and distributes heat quite efficiently. While normal ballistic jackets or armor are good against bullets but not so good against being stabbed, weavemail will stop most blades as well. We make it in a few different styles here depending on how obvious you want to be about the armor.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaArmorItemDemos);
+}
 
-output("\n\nDamage: 30 Burning 5 electric");
-output("\n\nDamage type: Plasma");
-output("\n\nAccuracy: -1");
-output("\n\ncost:18500");
-output("\n\nYou purchase a Plasma Bore for 18500 credits");
+public function WMCoatDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("You look through the racks of protective clothing and pull out one of the long duster-like trench coats. Covered in supple synth-leather on the outside, you flip up the coat’s mantle to find a fine woven mesh of metal mail. You can feel the many layers of ballistic fiber and spinarran mail under the leather of the coat. The outfit is long, reaching down a little ways past your knees, it would provide a wide area of protection from your body. The armor comes in a few different styles, some showing off the protective spinarran mail more than the others, and you pull one out before bringing it over to the counter to ask about it.");
+	output("\n\nThe Spinarran smiles at the sight of the armor, her jagged pearlescent teeth showing. <i>“Oooo... a good choice, one of my favorites.”</i> She plucks a fingertip against her own outfit. <i>“Weavemail coats like these are as close to military grade protection as you can get. Made by a close personal friend of mine. It’ll stop bullets just as well as blades, heat based weapons such as lasers and plasma will be damped by the many layers and by the heat-spreading properties of the weave. We make it in a few different styles here depending on how obvious you want to be about the armor. And for an additional charge, we can install secondary shield emitters for extra protection.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaArmorItemDemos);
+}
 
-output("\n\nTooltip: Plasma Bore. The mainstay of spinarran infantry, the is a heavy plasma weapon that is designed for short and medium ranged engagements. It fires a fast, fat glob of boiling plasma that melts or vaporizes bodies and tunnels through rock with equal ease.");
+public function WMDressDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("You look through the racks of protective clothing and pull out one of the flowing velvet dresses with a high collar and a mantle of silk around the shoulders. It’s covered in soft velvet on the outside. When you inspect the dress, you can feel the many layers of ballistic fiber and spinarran mail under the fine outer material. The outfit is long, reaching down a little ways past your knees. It would provide a wide area of protection for your body. The armor comes in a few different styles, some with lace, some with satin, and others showing off the protective spinarran mail more than the others, and you pull one out before bringing it over to the counter to ask about it.");
+	output("\n\nThe spinarran smiles and claps her hands at the sight of the armor, her jagged pearlescent teeth showing. <i>“Oooo... A good choice. My sister absolutely loves making these. While they don’t show off a lot of skin, they are elegantly styled with satin, lace, and shiny mail. They will provide near military grade protection for you as well. It’s a bit more bulky than normal dresses, but if you’re looking to look good and be able to stop gunfire, you can’t really beat it.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaArmorItemDemos);
+}
 
-Sunfire
-Looking at the heavier weapons on the walls, you point to one of several heavy, two handed weapons. A big, mean looking thing, with two handles curved plates, what looks like a rotatory barrel. <i>“Mmmm... a beauty.”</i> The girl behind the counter sighs as she pulls one down from the case with ease and lays the heavy weapon down on the counter for you. <i>“This is a plasma bore sunfire variant. It is a beautiful piece of spinarran weaponry. While each shot doesn’t hit as hard as the standard version, the rotating barrel and expanded fuelcell means you don’t have to worry about overheating and can shower your enemies in solar fury. Tough, reliable, not too heavy, well for spinarrans or lethians anyway. Might be a bit heavy for a human or an ausar. Less damage but with the sheer number of shots you’re bound to hit more often, maybe even more than once with a single pull.
+//Silk Dress
+public function silkDressDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("You look over several of the silky garments, your eyes falling onto a long dress. It’s simple but elegant, the kind of dress you’d see on wealthy debutantes at a formal party. That said, it looks like it wouldn’t restrict your movement that much, so wearing it casually wouldn’t be problematic.");
+	output("\n\n<i>“Ah, good eye,”</i> the shopkeeper says. <i>“That dress is made from various alien silks. Well, alien to us.”</i> She gives a small laugh. <i>“I suppose to you it’s more conventional. I assume you’ve heard of chameleon silk? Our dresses weave that and traditional silks to create these beauties. Waterproof with completely customizable colors. It’s the whole package.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSilkItemDemos);
+}
 
-Damage: 21 Burning 5 electric (Chance to hit twice in one shot.)
-Damage type: Plasma
-Accuracy: -1
-cost:18500
-You purchase a Sunfire for 18500 credits
+//Classy Suit
+public function classySuitDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("Hanging on many of the racks along the walls are several classic suits popular among the rich and powerful of Earth. Each suit is crisp and clean, and consists of a jacket, button-up shirt, tie, and trousers. Despite fashion changing every other week or so, the classic suit never goes out of style it seems.");
+	output("\n\nThe shopkeeper’s eyes fall on you and she smiles, <i>“Oh yes, those are popular among the businessmen. Earth seems to have a way of creating timeless fashion. The tailor assures us that they are completely waterproof, stain proof, and will adjust to fit any wearer. Something about each being a <i>“bespoke”</i> suit.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSilkItemDemos);
+}
 
-output("\n\nTooltip: Plasma Bore. The mainstay of spinarran infantry, the is a heavy plasma weapon that is designed for short and medium ranged engagements. It fires a withering stream of plasma bolts from three rotary barrels.");
+//Maid Uniform
+public function maidUniformDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("Hanging from a rack in a tucked away corner of the store are several black and white maid outfits. Frills and lace adorn the various hems, and it feels silky smooth to the touch. The frilled dress would barely drop past the top of the thigh on its wearer. You’re certain it wouldn’t hide a thing if its owner bent over. Maybe that’s the point. Combined with the thigh-high stockings, the entire thing just oozes feminine sensuality.");
+	output("\n\n<i>“Oh,”</i> the shopkeeper sees your interest and drops her head slightly. If she could blush, you think she’d be a bright crimson. <i>“I thought I’d only ordered one for... personal reasons. Turns out we got a full shipment. So if you’d like to take one off our hands and save me the embarrassment, I would greatly appreciate it.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSilkItemDemos);
+}
 
+//Thermal Bodysuit
+public function thermalBodysuitDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("Sandwiched between the fluffy parkas and the more traditional clothing is an odd bodysuit. You hold it up, noting how relatively thin it is. It looks like it would cling to your body fairly tightly. You poke at the material. Seems like it’s fairly stretchy, so it wouldn’t restrict your movements very much. In fact, it’d probably feel more like a second skin to you than anything. Several vital areas, including the spinal area and knees have extra padding. It’s not quite armor, but tougher plated sections that are still fairly flexible in their own right.");
+	output("\n\n<i>“Ah yeah, the thermal bodysuit,”</i> says the spinarran shopkeeper. <i>“It’s quite comfortable, or so I’m told. Reinforced with an insulating layer of aerogel, you won’t find a better way to beat the frozen wastes. In fact, it’ll even protect you from extreme heat. The outer material is fire retardant, and the aerogel ensures that you’ll remain unaffected by the heat.”</i> she laughs jokingly. <i>“Oh, I do have to tell you that despite the insulating power of the bodysuit, you should still get a heat belt system, just to make sure you will be all right. Although, you might be alright as well if you combine the bodysuit with the winter gear we have in stock.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSilkItemDemos);
+}
+
+//Winter Gear
+public function winterGearDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("Your eyes wander over to several displays of wintery gear. The store seems to have a majority of its space dedicated to these outfits, and it’s no surprise why. Cold weather can be the death of most species. The outfit consists of a large parka jacket with hood, full length trousers, and large boots. Surprisingly, the inner lining of each consists of a fine, ultra-soft downy fur. It almost feels as though your hand is gliding over a cloud as you stroke the insides of the jacket. A warm, fuzzy cloud.");
+	output("\n\n<i>“Yes, yes,”</i> says the shopkeeper. <i>“Our standard winter gear. Can’t get by without it on Uveto. The jacket, pants, and boots are each fitted with insulating fibers, synthetic fur, and heating pads that react to your core body temperature. They’ll help you survive a jaunt into the frigid wastes, though I’m required by law to say that it’s no substitute for a complete survival package if you intend to remain outside for extended periods.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSilkItemDemos);
+}
+
+
+//Thermal Scalpel
+public function thermalScalpelDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("You point at one the small arms under the front display counter: a straight, sleek looking gun almost as long as a human’s forearm with a long rectangular barrel on a rotating joint. On either side of the barrel are three targeting lasers. <i>“That is a respectable weapon right there. The V36 thermal scalpel is the sidearm of every spinarran soldier. It’s durable, reliable, and easy to reload. Its plasma blade can slice clean through an arm or leg as easy as it can shear through rock. A body shot can cook your insides, and it’s tough enough that you can club someone over the head or punch someone in the face with it. Everyone loves these, and they double as small mining tools as well, slicing rocks into pieces.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSteelItemDemos);
+}
+
+public function plasmaBoreDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("Looking at the heavier weapons on the walls, you point to one of several heavy, two handed weapons. A big, mean looking thing, it’s clearly made to be used with two hands. You bet it packs one hell of a punch. <i>“Mmmm... a beauty.”</i> The girl behind the counter sighs as she pulls one down from the case with ease and lays the heavy weapon down on the counter for you. <i>“This is a SS-M XIII plasma bore. It is a beautiful piece of spinarran weaponry. The plasma bore is the workhorse of spinarran weapons tech, packs a hell of a punch at short and medium ranges, melts rock and metal, vaporizes flesh and bone. Tough, reliable, not too heavy, well for spinarrans or lethians anyway. Might be a bit heavy for a human or an ausar. The power pack for it is good for about 80 shots, not as many as a modern laser rifle, but like I said, hell of a punch, just, you know, keep your hands away from the emitters.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSteelItemDemos);
+}
+
+//Sunfire
+public function sunfireDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("Looking at the heavier weapons on the walls, you point to one of several heavy, two handed weapons. A big, mean looking thing, with two handles curved plates, what looks like a rotatory barrel. <i>“Mmmm... a beauty.”</i> The girl behind the counter sighs as she pulls one down from the case with ease and lays the heavy weapon down on the counter for you. <i>“This is a plasma bore sunfire variant. It is a beautiful piece of spinarran weaponry. While each shot doesn’t hit as hard as the standard version, the rotating barrel and expanded fuelcell means one of the shots is bound to land. What's more all that heat might set your foes ablaze! Tough, reliable, not too heavy, well for spinarrans or lethians anyway. Might be a bit heavy for a human or an ausar.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSteelItemDemos);
+}
+
+/*UNUSED. ALREADY GOT 3 RANGED ENERGY WEAPONS
 output("\n\nMagma Lance");
 
 output("\n\nOne of the long barreled weapons catches your eye, this one is more like a traditional rifle. Pointing it out to the shopkeeper, she pulls it down for you and lays it on the counter. <i>“This is probably more familiar to you, more like a marksman’s rifle. Spinarrans don’t use these kinds of weapons too often. Growing up in caves and winding tunnels doesn’t lend too well to long ranged combat, but on planetary surfaces, it’s a deadly weapon. Fires a dense, spinning lance of plasma that will sear a hole clean through an unprotected body. Got a good set of sights in the scope, X5, X10, and X15 levels of magnification. Laser range finder and environment sensors help to mitigate projectile drop and local interference. It’s a very accurate bit of equipment, if a bit unorthodox, well, for spinarrans anyway.”</i>");
@@ -335,8 +521,10 @@ output("\n\ncost: 15500");
 output("\n\nYou purchase a Magma Lance for 15500 credits");
 
 output("\n\nTooltip: Magma Lance. An unorthodox long-barreled rifle that fires a spear of plasma to burn clean through a target at long range. Only the surface spinarran snipers use one of these long ranged weapons.");
+*/
 
-output("\n\nRepurposed planet cracker");
+/* UNUSED. PARTICLE BEAMS ARENT REALLY KINETIC DAMAGE, AND ID LIKE TO SAVE FOR "PROTOTYPE" TIER WEAPS
+Repurposed planet cracker
 output("\n\nA piece of equipment that looks more like it belongs in an industrial mining ship then a weapons shop piques your interest. <i>“What about that thing?”</i> You ask as you point it out to the spinarran.");
 
 output("\n\nKirila smiles and pulls it down for you. <i>“Well this is a bit different, it’s not really a gun, but it can definitely be used as one. This is actually a piece of spinarran mining equipment. First you charge it up. Shapedmagnetic fields spin heavy particles in this chamber here, and spits this hyper-fast bolt of energized particles out when you release again. It’s garbage at long range, but if you’re up close this thing can tear someone up or shatter small boulders. It’s also as heavy as a Kui-tan’s ballsack, so you can really bludgeon someone with it.”</i>");
@@ -346,28 +534,32 @@ output("\n\nAccuracy: 0");
 output("\n\ncost: 15500");
 output("\n\nYou purchase a Repurposed planet cracker for 15500 credits");
 
-output("\n\nTooltip: Repurposed planet cracker. Not an actual gun but a piece of industrial mining equipment. It can be charged and fired to release a bolt of hyper kinetic particles that can blast large rocks apart.");
+output("\n\nTooltip: Repurposed planet cracker. Not an actual gun but a piece of industrial mining equipment. It can be charged and fired to release a bolt of hyper kinetic particles that can blast large rocks apart.");*/
 
-output("\n\n<i>“Black light”</i> ultraviolet laser rifle");
-output("\n\nAmong the heavy spinarran plasma weapons is a rifle of matte black and silver metal plates and highlights. You point out the sleek, glossy weapon and ask to see it. Kirila nods and brings it down for you. <i>“Like the plasma bore, this is another mainstay of spinarran weapons tech - one of the first weapons made from tech we got from the UGC. As a change from our plasma weapons, this is a laser rifle. It’s sleek, light, accurate, and its ultraviolet beams packs a punch civilian weapons won’t. Even comes with a high tech pop up scope for making sure those shots hit!”</i>");
-output("\n\nDamage: 23 Burning 3 electrical");
-output("\n\nDamage type: Laser, Energy weapon");
-output("\n\nAccuracy: +3");
-output("\n\ncost: 16500");
+public function blacklightDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("Among the heavy spinarran plasma weapons is a rifle of matte black and silver metal plates and highlights. You point out the sleek, glossy weapon and ask to see it. Kirila nods and brings it down for you. <i>“Like the plasma bore, this is another mainstay of spinarran weapons tech - one of the first weapons made once we hooked up the UGC. As a change from our plasma weapons, this is a laser rifle. It’s sleek, light, accurate, and its ultraviolet beams packs a punch civilian weapons won’t. Even comes with a high tech pop up scope for making sure those shots hit!”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSteelItemDemos);
+}
 
-output("\n\nTooltip: Blacklight laser rifle. A newer piece of spinarran thermal weapons tech. This military grade weapon packs an incendiary blast of ultraviolet light that will give someone a whole lot more than a sunburn.");
+//Mono Filament HF Saber
+public function monofilamentDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("You look down into the front display and admire the swords set out, every one of them looks pristine, gleaming silver in their case. <i>“Ahh, a fine eye you have there. Those are some nice sabers.”</i> She reaches under and pulls one out before laying it down. <i>“Now, no touching alright, these are pretty dangerous. These here are spinarran infantry sabers. My kind are used to and well adapted to close range combat, so every soldier get a weapon for use in melee. They are made of densely compressed and highly refined alloys of titanium, tungsten with a internal skeleton of spinarran filament silk, very durable and keeps its edge well. To help with cutting, the very edge is lined with a mono filament wire that lets the blade slide through resistance. Very dangerous. And if that wasn’t enough, it has a built in vibrational core to make the blade vibrate at ultra high frequencies.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSteelItemDemos);
+}
 
-output("\n\nMono Filament HF Saber");
-
-output("\n\nYou look down into the front display and admire the swords set out, every one of them looks pristine, gleaming silver in their case. <i>“Ahh, a fine eye you have there. Those are some nice sabers.”</i> She reaches under and pulls one out before laying it down. <i>“Now, no touching alright, these are pretty dangerous. These here are spinarran infantry sabers. My kind are used to and well adapted to close range combat, so every soldier get a weapon for use in melee. They are made of densely compressed and highly refined alloys of titanium, tungsten with a internal skeleton of spinarran filament silk, very durable and keeps its edge well. To help with cutting, the very edge is lined with a mono filament wire that lets the blade slide through resistance. Very dangerous. And if that wasn’t enough, it has a built in vibrational core to make the blade vibrate at ultra high frequencies.”</i>");
-
-output("\n\nTooltip: Mono filament saber. This blade is similar to in design to cavalry saber of ages old. Three feet long, made of densely compressed modern alloys and edged with a monofilament wire to give this sword cutting power beyond any civilian weapon.");
-output("\n\nDamage: 17 kinetic");
-output("\n\nDamage type: Penetrating");
-output("\n\nAccuracy: 2");
-output("\n\ncost:14000");
-output("\n\nYou have purchased a Mono Filament Saber for 14000 credits");
-
+/*Monofilament already fills kinetic weapon
 output("\n\nHigh mass maul");
 
 output("\n\nLooking at the wall behind the counter, you look at a huge imposing maul hanging on the wall. A hammer? Talk about a weapon from a bygone age. <i>“How about that?”</i> you ask pointing at it.");
@@ -383,115 +575,22 @@ output("\n\nDamage: 19 kinetic");
 output("\n\nDamage type: Crushing");
 output("\n\nAccuracy: 0");
 output("\n\ncost: 15000");
-output("\n\nYou have purchased a High mass maul for 15000 credits");
+output("\n\nYou have purchased a High mass maul for 15000 credits");*/
 
-output("\n\nPredator Talons");
-output("\n\nLooking at the displays you look at a pair of techno gauntlets. <i>“What are those”</i> You ask and point them out.");
+//Predator Talons
+public function predatorTalonsDemo():void
+{
+	clearOutput();
+	showKirila();
+	author("Kinathis");
+	output("Looking at the displays you look at a pair of techno gauntlets. <i>“What are those”</i> You ask and point them out.");
+	output("\n\nKirila pulls out out and shows it off. <i>“These are Predator Talons. You wear them on your arms like so.”</i> She slips on her her hand and shows you it. <i>“See here and here? When you turn them on, a pair or magnetic fields contain a plane of shaped plasma that is fed from the emitters there. Got to be careful, the blades are very thin, very sharp and burn at about 20,000 degrees centigrade. Don’t worry though a thermal containment field keeps the heat down to about a millimeter around the blades themselves, can’t have the user burning themselves to death! But seriously, be fuckin careful not to slice yourself in half or anything. We are not responsible for self injury.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",kirilaSteelItemDemos);
+}
 
-output("\n\nKirila pulls out out and shows it off. <i>“These are Predator Talons. You wear them on your arms like so.”</i> She slips on her her hand and shows you it. See here and here? When you turn them on, a pair or magnetic fields contain a plane of shaped plasma that is fed from the emitters there. Got to be careful, the blades are very thin, very sharp and burn at about 20,000 degrees centigrade. Don’t worry though a thermal containment field keeps the heat down to about a millimeter around the blades themselves, can’t have the user burning themselves to death! But seriously, be fuckin careful not to slice yourself in half or anything. We are not responsible for self injury.");
-output("\n\nTooltip: Predator gauntlets. These gauntlets are heavy and emitte blades of dense burning plasma to the front and sides to deliver the cutting power of an industrial plasma cutter right on your arm!.");
-output("\n\nDamage: 21 Burning 3 electical 5 kinetic");
-output("\n\nDamage type: Cutting, burning");
-output("\n\nAccuracy: 2");
-output("\n\ncost: 18000");
-output("\n\nYou have purchased a set of Predator gauntlets for 18000 credits");
-
-output("\n\nArmor");
-output("\n\nYou gesture to the armor on display and ask about it. The spinarran behind the counter nods her head and fingers her outfit again.");
-
-output("\n\n<i>“Ahh, alright. I hope you like what we have. All of it is of the highest quality I assure you. My clutchmate makes all the armor herself from her own weave. I guarantee that it will offer very good protection, though it won’t help against the cold outside.");
-
-output("\n\nWeavemail Shirt");
-
-output("\n\nYou look through the racks of protective clothing and pull out one of the thick shirts that’s a little long in both the sleeves and overall length than your basic shirt, but the material is clearly what makes this thick garment special. The armor comes in a few different styles, and you pull one out before bringing it over to the counter to ask about it.");
-
-output("\n\n<i>“Ahh, alright. This is our basic weavemail shirt: decent protection, light enough to wear under your clothes if you want to be discrete. Spinarran weavemail resists solid projectiles very well and distributes heat quite efficiently. While normal ballistic jackets or armor are good against bullets but not so good against being stabbed, weavemail will stop most blades as well. We make it in a few different styles here depending on how obvious you want to be about the armor.”</i>");
-
-output("\n\nTooltip: Weavemail Shirt. A surprisingly light shirt made of interwoven layers of woven spinarran filament mail and ballistic fiber. Almost completely bulletproof and resistant to heat. Mainly used as concealed armor or woven into clothing, it is the most basic of spinarran armor. Under the protective layers is a soft downy fur to help keep you warm. (moderate defence, moderate kinetic resistance, some thermal resistance)");
-output("\n\nDefence: 5");
-output("\n\nSexyness:1");
-output("\n\nFortification:1");
-output("\n\nResistance: 30% kinetic, 20% thermal");
-output("\n\ncost:3000");
-output("\n\nYou have purchased a weavemail shirt for 3000 credits");
-
-output("\n\nWeavemail Coat");
-
-output("\n\nYou look through the racks of protective clothing and pull out one of the long duster-like trench coats. Covered in supple synth-leather on the outside, you flip up the coat’s mantle to find a fine woven mesh of metal mail. You can feel the many layers of ballistic fiber and spinarran mail under the leather of the coat. The outfit is long, reaching down a little ways past your knees, it would provide a wide area of protection from your body. The armor comes in a few different styles, some showing off the protective spinarran mail more than the others, and you pull one out before bringing it over to the counter to ask about it.");
-
-output("\n\nThe Spinarran smiles at the sight of the armor, her jagged pearlescent teeth showing. <i>“Oooo... a good choice, one of my favorites.”</i> She plucks a fingertip against her own outfit. <i>“Weavemail coats like these are as close to military grade protection as you can get. Made by a close personal friend of mine. It’ll stop bullets just as well as blades, heat based weapons such as lasers and plasma will be damped by the many layers and by the heat-spreading properties of the weave. We make it in a few different styles here depending on how obvious you want to be about the armor. And for an additional charge, we can install secondary shield emitters for extra protection.”</i>");
-
-output("\n\nTooltip: Weavemail Coat. A stylish piece of armor resembling long coat. Much like its lesser sibling, it is made of interwoven layers of spinarran filament mail and ballistic fiber covered by leather, cloth or even made to show off the spinarran mail underneath. Weavemail coats can also include an attached hood. Under the multiple protective layers is a layer of soft downy fur to help keep heat inside while venturing into Uveto’s harsh wilds.(moderate defence, good kinetic resistance, some thermal resistance)");
-output("\n\nDefence:8");
-output("\n\nSexyness:1");
-output("\n\nFortification:3");
-output("\n\nResistance: 40% kinetic, 25% thermal");
-output("\n\ncost: 6400");
-output("\n\nupgraded model 7750 credits. Adds 10 shields");
-
-output("\n\nWeavemail Dress");
-
-output("\n\nYou look through the racks of protective clothing and pull out one of the flowing velvet dresses with a high collar and a mantle of silk around the shoulders. It’s covered in soft velvet on the outside. When you inspect the dress, you can feel the many layers of ballistic fiber and spinarran mail under the fine outer material. The outfit is long, reaching down a little ways past your knees. It would provide a wide area of protection for your body. The armor comes in a few different styles, some with lace, some with satin, and others showing off the protective spinarran mail more than the others, and you pull one out before bringing it over to the counter to ask about it.");
-
-output("\n\nThe spinarran smiles and claps her hands at the sight of the armor, her jagged pearlescent teeth showing. <i>“Oooo... A good choice. My sister absolutely loves making these. While they don’t show off a lot of skin, they are elegantly styled with satin, lace, and shiny mail. They will provide near military grade protection for you as well. It’s a bit more bulky than normal dresses, but if you’re looking to look good and be able to stop gunfire, you can’t really beat it.”</i>");
-
-output("\n\nTooltip: Weavemail Dress.  A stylish piece of armor resembling a long dress. Much like its lesser sibling, it is made of interwoven layers of spinarran filament mail and ballistic fiber covered by silk, cloth or even made to show off the spinarran mail underneath. Weavemail dresses can also include an attached hood. Under the multiple protective layers is a layer of soft downy fur to help keep heat in while traversing Uveto’s harsh wilds. (moderate defence, moderate kinetic resistance, some thermal resistance)");
-output("\n\nDefence:8");
-output("\n\nSexyness:1");
-output("\n\nFortification:3");
-output("\n\nResistance: 40% kinetic, 25% thermal");
-output("\n\ncost:6400");
-output("\n\nupgraded model 7750 credits. Adds 10 shields");
-
-output("\n\nClothing");
-output("\n\n(Clothing is all made of silk and satin, clothing is all outsourced. perhaps mentioning Allis’s patented chameleon silk?) ");
-output("\n\n(Looking for something like high fashion, like some silk dresses, a stylish suit. nice things, then some clothing for cold weather. skintight thermal bodysuit? big fluffy parka with fluffy boots?");
-
-output("\n\nIf PC was looking at weapons");
-output("\n\n<i>“Silk please,”</i> you say as you look at the racks of clothing on display.");
-
-output("\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down, and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip. Does she do this every time? Not that you’re complaining, the alien woman has a very nice body, fit with wide hips and round butt. You really get to see how polished her exoskeleton is, every plate is like a copper mirror.");
-
-output("\n\nAfter a moment  the copper spinarran appears again, this time wearing a frilly gothic dress. The girly outfit is covered in lace, frills, and looks to be made of silk or satin. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular.”</i>");
-output("\n\nSilk Dress");
-output("\n\nYou look over several of the silky garments, your eyes falling onto a long dress. It’s simple but elegant, the kind of dress you’d see on wealthy debutantes at a formal party. That said, it looks like it wouldn’t restrict your movement that much, so wearing it casually wouldn’t be problematic.");
-
-output("\n\n<i>“Ah, good eye,”</i> the shopkeeper says. <i>“That dress is made from various alien silks. Well, alien to us.”</i> She gives a small laugh. <i>“I suppose to you it’s more conventional. I assume you’ve heard of chameleon silk? Our dresses weave that and traditional silks to create these beauties. Waterproof with completely customizable colors. It’s the whole package.”</i>");
-
-output("\n\nTooltip: Silk Dress. The classic formal dress known the universe over. It’s long, sleek, and completely flattering to its wearer. Add in the fact that it’s waterproof and made of chameleon silk, meaning you can change its color at will, and you’ve got an entire wardrobe in one sexy outfit.");
-
-output("\n\nClassy Suit");
-output("\n\nHanging on many of the racks along the walls are several classic suits popular among the rich and powerful of Earth. Each suit is crisp and clean, and consists of a jacket, button-up shirt, tie, and trousers. Despite fashion changing every other week or so, the classic suit never goes out of style it seems.");
-
-output("\n\nThe shopkeeper’s eyes fall on you and she smiles, <i>“Oh yes, those are popular among the businessmen. Earth seems to have a way of creating timeless fashion. The tailor assures us that they are completely waterproof, stain proof, and will adjust to fit any wearer. Something about each being a <i>“bespoke”</i> suit.”</i> For an extra charge we can add in a weavemail lining in the layers of fabric.”</i>");
-output("\n\n(extra amount of credits for some defence)");
-
-output("\n\nTooltip: Classy Suit. This outfit is a timeless classic from Earth. Consisting of a jacket, button-up shirt, tie, and trousers, it lends an air of authority to businessmen, politicians and lawyers the universe over. Thanks to its ingenious design, its shape will change based on its wearer, always fitting as a bespoke suit should.");
-
-output("\n\nMaid Uniform");
-output("\n\nHanging from a rack in a tucked away corner of the store are several black and white maid outfits. Frills and lace adorn the various hems, and it feels silky smooth to the touch. The frilled dress would barely drop past the top of the thigh on its wearer. You’re certain it wouldn’t hide a thing if its owner bent over. Maybe that’s the point. Combined with the thigh-high stockings, the entire thing just oozes feminine sensuality.");
-
-output("\n\n<i>“Oh,”</i> the shopkeeper sees your interest and drops her head slightly. If she could blush, you think she’d be a bright crimson. <i>“I thought I’d only ordered one for... personal reasons. Turns out we got a full shipment. So if you’d like to take one off our hands and save me the embarrassment, I would greatly appreciate it.");
-
-output("\n\nTooltip: Maid Uniform. A classic outfit worn by servants and the sexually adventurous, everywhere. Consisting of a black and white frilly dress, an attached mock-apron, and thigh-high stockings, it’s made of a waterproof, stain proof material ensuring the maid spends more time cleaning everything else.");
-
-output("\n\nThermal Bodysuit");
-output("\n\nSandwiched between the fluffy parkas and the more traditional clothing is an odd bodysuit. You hold it up, noting how relatively thin it is. It looks like it would cling to your body fairly tightly. You poke at the material. Seems like it’s fairly stretchy, so it wouldn’t restrict your movements very much. In fact, it’d probably feel more like a second skin to you than anything. Several vital areas, including the spinal area and knees have extra padding. It’s not quite armor, but tougher plated sections that are still fairly flexible in their own right.");
-
-output("\n\n<i>“Ah yeah, the thermal bodysuit,”</i> says the spinarran shopkeeper. <i>“It’s quite comfortable, or so I’m told. Reinforced with an insulating layer of aerogel, you won’t find a better way to beat the frozen wastes. In fact, it’ll even protect you from extreme heat. The outer material is fire retardant, and the aerogel ensures that you’ll remain unaffected by the heat.”</i> she laughs jokingly. <i>“Oh, I do have to tell you that despite the insulating power of the bodysuit, you should still get a heat belt system, just to make sure you will be all right. Although, you might be alright as well if you combine the bodysuit with the winter gear we have in stock.”</i>");
-
-output("\n\nTooltip: Thermal Bodysuit. This bodysuit is tight and form-fitting, like a second skin. It contains an insulating layer of aerogel, which will protect you both from the crippling cold and extreme heat. It’s no substitute for armor, however, with only a few reinforcements along vital areas to keep you safe. Heat and cold it can deal with, not gunfire and knives. Counted as an accessory");
-
-output("\n\nWinter Gear");
-output("\n\nYour eyes wander over to several displays of wintery gear. The store seems to have a majority of its space dedicated to these outfits, and it’s no surprise why. Cold weather can be the death of most species. The outfit consists of a large parka jacket with hood, full length trousers, and large boots. Surprisingly, the inner lining of each consists of a fine, ultra-soft downy fur. It almost feels as though your hand is gliding over a cloud as you stroke the insides of the jacket. A warm, fuzzy cloud.");
-
-output("\n\n<i>“Yes, yes,”</i> says the shopkeeper. <i>“Our standard winter gear. Can’t get by without it on Uveto. The jacket, pants, and boots are each fitted with insulating fibers, synthetic fur, and heating pads that react to your core body temperature. They’ll help you survive a jaunt into the frigid wastes, though I’m required by law to say that it’s no substitute for a complete survival package if you intend to remain outside for extended periods.”</i>");
-
-output("\n\nTooltip: Winter Gear. A rather fashionable set of wintery clothing, consisting of a parka, trousers, and boots, all of which are lined with fur and heavily insulated. With the addition of the emergency heating pads, it’s a must have for exploring frozen planets.");
-output("\n\nSupplements");
-output("\n\nTF item needs looking over. https://docs.google.com/document/d/1iZNMyI46GGZFECzkAeHxeZkpl51CjRrraHMW-W2vUl0/edit?usp=sharing");
-
-
+/* NOT UNLOCKED YET
 output("\n\nYou gesture to the stand holding colorful bottles of pills and ask about them.");
 
 output("\n\n<i>“Oh these are premium mineral supplements for spinarrans. They are mainly for helping to maintain a healthy carapace and body health. But they are also full of microbots for manipulating a person’s DNA. This kind here was made by Xenogen as a genemod for alien species that are interested in being more like spinarrans. They are a little expensive, since we are a rather different species from most others, so it was pretty hard to make. It does make some pretty fundamental changes to your body, so use at your own risk. If you are interested in buying them, let me know!”</i> she finishes in a rather chipper tone.");
@@ -499,7 +598,9 @@ output("\n\n<i>“Oh these are premium mineral supplements for spinarrans. They 
 output("\n\nEverything above this is more or less ready, for basic use, needs lots of editing and to have proper balancing on the weapons and armor tho.");
 
 output("\n\nBelow this is extra stuff being worked on... very slowly :(");
-output("\n\nAddons");
+*/
+
+/*output("\n\nAddons");
 
 
 output("\n\nnew talk scenes");
