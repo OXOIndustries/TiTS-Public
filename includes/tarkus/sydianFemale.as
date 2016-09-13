@@ -69,7 +69,7 @@ public function sydianFemalePCLoss():void
 		output("\n\nThe woman watches you collapse");
 		if (pc.HP() <= 0) output(" into a beaten pile");
 		else output(" into a lusty stupor");
-		output(". She wavers for a moment, covering her ruined body art with her hands and perhaps considering retaliation. Suddenly she turns and bolts, leaving hissing tracks across the wastes. You lie there disabled for some time before realizing she isn’t coming back to take advantage.");
+		output(". She wavers for a moment, covering her ruined body art with her hands and perhaps considering retaliation. Suddenly she turns and bolts, leaving hissing tracks across the wastes. You lie there disabled for some time before realizing she isn’t coming back to take advantage.\n\n");
 		//penalties but no shield debuff
 
 		processTime(5);
@@ -186,6 +186,7 @@ public function sydianFemalePCLossHasVagina():void
 		output(" On top of being horny enough to fuck an icicle, you remember with grief that your shield isn’t going to work right until you get repairs.");
 		applyRustBroStatus();
 	}
+	output("\n\n");
 
 	processTime(30+rand(15));
 	pc.orgasm();
@@ -205,7 +206,7 @@ public function sydianFemalePCLossHasCock():void
 	else output("Little");
 	output(" boy");
 	output(", what are you doing in my hunting grounds?”</i> she asks sweetly, probing your face with her antennae.");
-	if (!pc.hasStatusEffect("Rusted Emitters") && !(pc.shield is EmptySlot)) output("<b>Her adroit fingers pick over your gear, and you hear a faint popping from your shield system. Fuck. </b>");
+	if (!pc.hasStatusEffect("Rusted Emitters") && !(pc.shield is EmptySlot)) output(" <b>Her adroit fingers pick over your gear, and you hear a faint popping from your shield system. Fuck. </b>");
 	output(" <i>“Did you come here to be hunted?”</i>");
 	
 	output("\n\nYou swallow hard as the kiss of sydian enzyme spreads through your [pc.skin].");
@@ -264,7 +265,7 @@ public function sydianFemalePCLossHasCock():void
 			else output(" penises squirt");
 			output(" impotently under your [pc.lowerGarment], filling your clothing with spunk.");
 		}
-		output(" The cruel sydian laughs as your tool twitches and throbs beneath her heel. and pins you there until your unsatisfying orgasm ends. While you stare into the sky");
+		output(" The cruel sydian laughs as your tool twitches and throbs beneath her heel and pins you there until your unsatisfying orgasm ends. While you stare into the sky");
 		if (!(pc.shield is EmptySlot)) output(", half-remembering a need to fix your shield");
 		output(", you lose consciousness and she escapes.");
 
@@ -340,6 +341,7 @@ public function sydianFemalePCLossHasCock():void
 		pc.orgasm();
 		enemy.orgasm();
 	}
+	output("\n\n");
 	
 	if (!(pc.shield is EmptySlot) && !pc.hasStatusEffect("Rusted Emitters"))
 	{
@@ -400,9 +402,9 @@ public function sydianFemalePCVictory():void
 
 		addButton(1, "Get Licked", femSydianEatsButtholes, undefined, "Get Licked", "Make her service your " + (pc.hasVagina() ? "vagina" : "asshole"));
 
-		if (!pc.hasItem(new Throbb())) addDisabledButton(2, "Give Throb", "Give Throb", "You’re not carrying any Throbb.");
-		else if (enemy.hasStatusEffect("Unarmored")) addDisabledButton(2, "Give Throb", "Give Throb", "The broken-armored sydian’s too nervous for you to get a clean stick with the needle.");
-		else addButton(2, "Give Throb", femSydianGiveThrob, undefined, "Give Throb", "Jab the cocky bitch with a dose of Throbb and watch her break down and beg.");
+		if (!pc.hasItem(new Throbb())) addDisabledButton(2, "Give Throbb", "Give Throbb", "You’re not carrying any Throbb.");
+		else if (enemy.hasStatusEffect("Unarmored")) addDisabledButton(2, "Give Throbb", "Give Throbb", "The broken-armored sydian’s too nervous for you to get a clean stick with the needle.");
+		else addButton(2, "Give Throbb", femSydianGiveThrob, undefined, "Give Throbb", "Jab the cocky bitch with a dose of Throbb and watch her break down and beg.");
 
 		if (!enemy.hasStatusEffect("Unarmored")) addDisabledButton(3, "CallOthers", "Call Others", "She’s too emotionally and physically intact for other sydians to consider her an easy target.");
 		else addButton(3, "CallOthers", femSydianCallOthers, undefined, "Call Others", "Get some help to humiliate the girl. Depending on who shows up, you might land a three-way or have to hide from a brutal male.");
@@ -466,7 +468,7 @@ public function femSydianGentleFuck():void
 		
 		output("\n\nYou stare for a moment before you realize she means her body paint.");
 		if (pc.isNice()) output(" <i>“Well, ah. Sorry. But you did attack me.”</i>");
-		else output("<i>“You should thank me - your insides are much sexier.”</i>");
+		else output(" <i>“You should thank me - your insides are much sexier.”</i>");
 		output(" You pause. <i>“You have a good body. Is showing off so bad?”</i>");
 		
 		output("\n\n<i>“I don’t </i>like it<i>!”</i> she snaps.");
@@ -513,7 +515,7 @@ public function femSydianGentleFuck():void
 		else output(" <i>“Pah. You’re making a mistake, but whatever.”</i>");
 		output(" You release her hand and she blinks stupidly when you bid her goodbye. <i>“We probably won’t meet again.”</i>");
 
-		output("\n\nShe watches you agree not to have sex with unabashed wonder, right up until you’re too far to make out her face anymore.");
+		output("\n\nShe watches you agree not to have sex with unabashed wonder, right up until you’re too far to make out her face anymore.\n\n");
 		//end, raise lust some, pass small time
 
 		processTime(7+rand(3));
@@ -522,6 +524,8 @@ public function femSydianGentleFuck():void
 
 		clearMenu();
 		addButton(0, "Next", CombatManager.genericVictory);
+		
+		return;
 	}
 	else
 	{
@@ -604,7 +608,7 @@ public function femSydianGentleFuck():void
 				if (!pc.isBro()) output(", honey");
 				output(".”</i>");
 			}
-			else output("<i>“Sure. Think about a journey sometime.”</i>");
+			else output(" <i>“Sure. Think about a journey sometime.”</i>");
 			output(" She looks pleased, watching and considering as you collect your things and leave.");
 
 			processTime(30+rand(15));
@@ -612,7 +616,8 @@ public function femSydianGentleFuck():void
 			pc.orgasm();
 		}
 	}
-
+	
+	output("\n\n");
 	CombatManager.genericVictory();
 }
 
@@ -624,7 +629,7 @@ public function femSydianCallOthers():void
 
 	if (pc.isBimbo() || pc.isBro())
 	{
-		if (pc.isBimbo()) output("\n\n<i>“Ooh, nice tits, honey,”</i>");
+		if (pc.isBimbo()) output("<i>“Ooh, nice tits, honey,”</i>");
 		else output("<i>“Killer tits,”</i>");
 		output(" you flirt, raising your outstretched fingers to your chest in a crude imitation. The woman covers her chest, revealing the tip of her orange pussy. You");
 		if (pc.isAss()) output(" point and laugh");
@@ -1204,7 +1209,9 @@ public function femSydianGiveThrob():void
 	
 	output("\n\nThe sydian thinks for a moment. <i>“Nevermind...”</i> she eventually says. You look into her eyes; she’s uneasy. <i>“It’s fine. I’ll figure something out.”</i> She leans forward and kisses you a final time, then bids you goodbye.");
 	
-	output("\n\nYou watch her satisfied hip-sway as she goes, thinking it might be a good idea to stock up on Throbb.");
+	output("\n\nYou watch her satisfied hip-sway as she goes, thinking it might be a good idea to stock up on Throbb.\n\n");
+	
+	pc.destroyItem(new Throbb(), 1);
 	
 	CombatManager.genericVictory();
 }
@@ -1242,8 +1249,8 @@ public function femSydianEatsButtholes():void
 		output(", sprinkling her with the obscene flecks of your ever-drooling lubrication.");
 		
 		output("\n\n<i>“Do you expect me to do something with that?”</i> she sputters, holding up a hand to fend off your spray.");
-		if (!enemy.hasStatusEffect("Unarmored")) output("<i>“You do understand the difference between men and women, right?”</i>");
-		else output("<i>“I can’t please you... I’m a female.”</i>");
+		if (!enemy.hasStatusEffect("Unarmored")) output(" <i>“You do understand the difference between men and women, right?”</i>");
+		else output(" <i>“I can’t please you... I’m a female.”</i>");
 	}
 	else
 	{
@@ -1256,7 +1263,7 @@ public function femSydianEatsButtholes():void
 		{
 			output("\n\n<i>“It looks like mine,”</i> she giggles, raising a finger. [pc.OneClitoris] trembles at her chemically-enhanced touch.");
 			if (pc.vaginas[0].type != GLOBAL.TYPE_HUMAN && pc.vaginas[0].type != GLOBAL.TYPE_SYDIAN) output(" <i>“Kind of...”</i>");
-			else if (pc.vaginas[0].vaginaColor != "orange") output("<i>“Wrong color...”</i>");
+			else if (pc.vaginas[0].vaginaColor != "orange") output(" <i>“Wrong color...”</i>");
 		}
 	}
 
@@ -1362,7 +1369,7 @@ public function femSydianEatsButtholes():void
 	if (pc.isTaur()) output(" and the poor woman just barely skitters out from under");
 	output(". The sydian looks over your satisfied shape. <i>“Must try that...”</i> she mumbles");
 	if (pc.hasVagina()) output(", licking your [pc.girlCumFlavor] fluids from her lips");
-	output(". She sits until you wave her away, then leaves you to re-equip with a wistful glance.");
+	output(". She sits until you wave her away, then leaves you to re-equip with a wistful glance.\n\n");
 
 	processTime(30+rand(15));
 	pc.orgasm();
@@ -1417,8 +1424,8 @@ public function femSydianFuck():void
 	if (!enemy.hasStatusEffect("Unarmored")) output("<i>“Well... hurry up!”</i> she barks.");
 	else output("<i>“Ah... dangerous,”</i> she whimpers, trembling at the touch of your breath.");
 	output(" Her thighs spread even further, encouraging your dominant, seemingly-uncaring demeanor.");
-	if (!enemy.hasStatusEffect("Unarmored")) output("<i>“Is this is your first time with a female or something?”</i>");
-	else output("<i>“What’s wrong? Are you nervous?”</i> she asks, cautiously.");
+	if (!enemy.hasStatusEffect("Unarmored")) output(" <i>“Is this is your first time with a female or something?”</i>");
+	else output(" <i>“What’s wrong? Are you nervous?”</i> she asks, cautiously.");
 	
 	output("\n\n");
 	if (pc.isNice()) output("<i>“No... well, that’s...”</i> you mumble, before trailing off.");
@@ -1485,7 +1492,7 @@ public function femSydianFuck():void
 	output("\n\n<i>“My powerful male,”</i> she mumbles again, intoxicated by your presence.");
 	if (pc.isNice()) output(" Taken slightly aback,");
 	else output(" Brimming with confidence,");
-	output(" you collect your stuff and leave her there, stroking her belly.");
+	output(" you collect your stuff and leave her there, stroking her belly.\n\n");
 	
 	//end; reduce lust, pass time
 	processTime(30+rand(15))
