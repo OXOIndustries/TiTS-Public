@@ -251,6 +251,8 @@
 				if (seller != null && buyer != null)
 				{
 					price = Math.round(price * seller.sellMarkup * buyer.buyMarkdown);
+					if(seller.hasPerk("Supply And Demand")) price *= 1.1;
+					if(buyer.hasPerk("Supply And Demand")) price *= 0.95;
 				}
 				
 				//APRIL FOOLS! var valueString:String = "Price: " + price + " Dogecoins";
