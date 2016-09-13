@@ -656,7 +656,12 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 		/* 9999 - Repeat events. Nothing planned yet? */
 		
 		//if(flags["SHADE_IS_YER_SIS"] != -1) flags["NAV_DISABLED"] = undefined;
-		return;
+		if(flags["SHADE_IS_YER_SIS"] == 0)
+			{
+				response = "lover sibling decision";
+				tooltip = "This is Shade's house. Time to make a decision about where you want the pair of you to go.";
+			}
+		else return;
 	}
 	// Lover Shade (Sibling Unrevealed)
 	else if(shadeIsLover() && !shadeIsSiblings())
@@ -830,6 +835,31 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			processTime(2);
 			
 			//Keep previous options. Replace [Don’t Know] with [Leave]
+			addButton(3, "Leave", approachShadeAtHouse, "lover sibling leave", "Leave", "You need some time to think.");
+			break;
+		case "lover sibling decision":
+			showBust(shadeBustDisplay());
+			showName("\nSHADE");
+			
+			currentLocation = "UVI P30";
+			generateMap();
+			removeUvetoCold();
+			
+			output("\n\nTaking a deep breath, you tap the buzzer beside the door. An electronic chime echoes from inside, just barely audible over the howl of the frozen winds over the high walls of Irestead. A moment passes in the cold before a small holoscreen next to the door shudders to life, showing you the familiar face of the kaithrit huntress. Her natural, cool confidence is gone, replaced by a weary, sad look. Still, Shade forces a smile when she sees you on the holo.");
+			output("\n\n<i>“Hey... little " + pc.mf("brother", "sister") + ",”</i> she says, angling the camera up to her face. <i>“I’m glad you decided to come back. Here, I’ll pop the door. Come on down.”</i>");
+			output("\n\nThe screen cuts off unceremoniously, following a click from the door. A motor whirs, sliding it out of the way and revealing a small landing inside, leading into a spiralling stairway down. Looks like the hovel topside is nothing more than an entrance to an underground domicile. You step inside, scooting aside several pairs of fur-lined and steel-girded boots underneath a rack of heavy winter coats" + ((!pc.isNude() && pc.hasFeet() && pc.legCount > 1) ? " and take the hint yourself, taking off your shoes before you track snow inside" : ". You quickly wipe your [pc.feet] off on a mat before you track snow inside") + ".");
+			output("\n\nWith one last self-steadying breath, you make your way down. The house itself must be a good ten feet underground, you guess, and the stairs dump you out into a small but cozy living room behind a colorful cloth curtain, dominated by a half-circle couch facing a glass table and a holoscreen that dominates the eastern wall. Shade’s sitting on the couch, one arm thrown over the back and her legs folded beneath her. Her dark blue duster is nowhere to be seen, nor her armor and guns -- she’s just wearing a simple tan sweater over her jeans, showing off much less alabaster cleavage than you remember, though her familiar -- and, you remind yourself, familial -- curves are no less apparent.");
+			output("\n\nSomehow, even knowing what you do now, you can’t deny the lingering attraction. She’s as beautiful as ever.");
+			output("\n\n<i>“Welcome back,”</i> she says, with just a hint of a smile. <i>“Come on in. Have a seat.”</i>");
+			output("\n\nShe pats the couch beside herself, beckoning you in. You do as she says, sinking into the leather at her side. A moment passes, with Shade eying you with sidelong glances, before she sighs and rests a hand on her temple.");
+			output("\n\n<i>“So... decided what you want to do yet?”</i>");
+			
+			processTime(5);
+			
+			clearMenu();
+			addButton(0, "Want Shade", approachShadeAtHouse, "lover sibling shade", "Want Shade", "No matter what revelations you two have had about each other, your desire for Shade remains unabated. You want her, now more than ever...");
+			addButton(1, "Want Sister", approachShadeAtHouse, "lover sibling sister", "Want Sister", "If Shade wants your take on things, well... you want your sister more than your lover. Cut this sexual nature of your relationship off, try and put it behind you, and grow a deeper bond as siblings.");
+			addButton(2, "Distance", approachShadeAtHouse, "lover sibling distance", "Keep Distance", "No, you and Shade need to keep your distance after what you’ve done. For both your sakes.");
 			addButton(3, "Leave", approachShadeAtHouse, "lover sibling leave", "Leave", "You need some time to think.");
 			break;
 		case "lover sibling leave":
