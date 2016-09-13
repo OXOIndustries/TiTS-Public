@@ -62,16 +62,10 @@ public function logTimeStamp(logColor:String = "words"):String
 }
 
 // Wrap some newline shit to make eventBuffer more consistent
-public function addToEventBuffer(msg:String):void
+// Takes in message (as a whole string of text for that event) and a color (if any).
+public function addToEventBuffer(msg:String, logColor:String):void
 {
-	if (eventBuffer.length == 0)
-	{
-		eventBuffer += "\n" + logTimeStamp() + " " + msg;
-	}
-	else
-	{
-		eventBuffer += "\n\n" + logTimeStamp() + " " + msg;
-	}
+	if(msg.length > 0) eventBuffer += "\n\n" + logTimeStamp(logColor) + " " + ParseText(msg);
 }
 
 public function processEventBuffer():Boolean
@@ -692,11 +686,11 @@ public function rest(deltaT:int = -1):void {
 	}
 	restHeal();
 	processTime(minPass);
+	pc.lust(postRestLustBonus);
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
-
-	pc.lust(postRestLustBonus);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -2283,7 +2277,7 @@ public function racialPerkUpdateCheck():void
 				//Nuts inflated:
 				if(pc.perkv1("'Nuki Nuts") > 0)
 				{
-					msg += ParseText("\n\n" + logTimeStamp("passive") + " The extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your");
+					msg += "\n\n" + logTimeStamp("passive") + ParseText(" The extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your");
 					if(pc.originalRace.indexOf("kui-tan") != -1) msg += " natural kui-tan genes";
 					else msg += " kui-tan body-mods";
 					msg += ParseText(", you won't be swelling up with excess [pc.cumNoun] any more.");
@@ -2291,7 +2285,7 @@ public function racialPerkUpdateCheck():void
 				//Nuts not inflated:
 				else
 				{
-					msg += ParseText("\n\n" + logTimeStamp("passive") + " A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you've replaced too much kui-tan DNA to reap the full benefits.");
+					msg += "\n\n" + logTimeStamp("passive") + ParseText(" A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you've replaced too much kui-tan DNA to reap the full benefits.");
 				}
 				msg += "\n\n(<b>Perk Lost: 'Nuki Nuts</b>)";
 				pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
@@ -2356,7 +2350,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(!pc.hasGenitals())
 		{
-			msg += ParseText("\n\n" + logTimeStamp("passive") + " A sudden burning sensation hits your lower back, right above your [pc.ass]. You quickly");
+			msg += "\n\n" + logTimeStamp("passive") + ParseText(" A sudden burning sensation hits your lower back, right above your [pc.ass]. You quickly");
 			if(pc.isCrotchGarbed()) msg += ParseText(" struggle through your [pc.lowerGarments],");
 			msg += " turn back and wince hard when the area is instantly struck by a refreshing coolness - as if being splashed on with cold water after being branded. When your hazed vision returns to normal, you see the slutty tattoo that resides there gradually dissolve and vanish before your eyes. It looks like your lack of genitalia makes it easier for you to cope with your libido now.";
 			
@@ -2433,7 +2427,11 @@ public function racialPerkUpdateCheck():void
 	if(pc.hasPerk("Flower Power"))
 	{
 		var numFlowers:int = 0;
-		if(pc.hasStatusEffect("Hair Flower")) numFlowers++;
+		if(pc.hasStatusEffect("Hair Flower"))
+		{
+			if(pc.statusEffectv1("Hair Flower") > 1) numFlowers += pc.statusEffectv1("Hair Flower");
+			else numFlowers++;
+		}
 		if(pc.hasStatusEffect("Arm Flower")) numFlowers += 2;
 		if(pc.hasVaginaType(GLOBAL.TYPE_FLOWER)) numFlowers += pc.totalVaginas(GLOBAL.TYPE_FLOWER);
 		if(pc.tailGenitalArg == GLOBAL.TYPE_FLOWER && pc.hasTailCunt()) numFlowers += pc.tailCount;

@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "a spinarran plasma bore";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The mainstay of spinarran infantry, the is a heavy plasma weapon that is designed for short and medium ranged engagements. It fires a fast, fat glob of boiling plasma that melts or vaporizes bodies and tunnels through rock with equal ease.";
+			this.tooltip = "The mainstay of spinarran infantry, the plasma bore is a heavy plasma weapon that is designed for short and medium ranged engagements. It fires a fast, fat glob of boiling plasma that melts or vaporizes bodies and tunnels through rock with equal ease.";
 			this.attackVerb = "shoot";
 			attackNoun = "plasma blob";
 			

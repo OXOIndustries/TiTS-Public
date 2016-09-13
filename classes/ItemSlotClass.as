@@ -246,8 +246,8 @@
 			{
 				if (compareString.length > 0 && !short) compareString += "\n";
 				
-				var price:Number = this.basePrice;
-								
+				var price:Number = this.basePrice;				
+				
 				if (seller != null && buyer != null)
 				{
 					price = Math.round(price * seller.sellMarkup * buyer.buyMarkdown);
@@ -357,7 +357,7 @@
 					}
 				}
 				
-				resultString += statDiff;
+				resultString += (Math.round(statDiff * 100)/100);
 				if (asPercentage) resultString += "%";
 				resultString += "</b></span>)";
 			}
@@ -465,7 +465,7 @@
 				
 				// Print the values
 				damageString += newItem.baseDamage.getType(damIndex).longName + ":\t ";
-				damageString += "<b>" + String(newItem.baseDamage.getType(damIndex).damageValue) + "</b> (";
+				damageString += "<b>" + String(Math.round(newItem.baseDamage.getType(damIndex).damageValue * 100)/100) + "</b> (";
 				
 				// Print the comparison value
 				var newDam:Number = newItem.baseDamage.getType(damIndex).damageValue;
@@ -616,7 +616,7 @@
 				
 				// Print the new items resistance value as a %
 				resistancesDiffString += newItem.resistances.getType(resistIndex).longName + "\t ";
-				resistancesDiffString += String(newItem.resistances.getType(resistIndex).damageValue) + "%\t (";
+				resistancesDiffString += String(Math.round(newItem.resistances.getType(resistIndex).damageValue * 100)/100) + "%\t (";
 				
 				// Display the comparison value
 				var newRes:Number = newItem.resistances.getType(resistIndex).damageValue;
@@ -626,13 +626,13 @@
 				{
 					// Good
 					resistancesDiffString += "<span class='good'><b>+";
-					resistancesDiffString += newRes - oldRes;
+					resistancesDiffString += String(Math.round((newRes - oldRes) * 100)/100);
 				}
 				else if (newRes < oldRes)
 				{
 					// Bad
 					resistancesDiffString += "<span class='bad'><b>-";
-					resistancesDiffString += oldRes - newRes;
+					resistancesDiffString += String(Math.round((oldRes - newRes) * 100)/100);
 				}
 				else
 				{

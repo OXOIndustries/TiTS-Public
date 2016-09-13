@@ -589,8 +589,8 @@ public function xantheTalkMenu():void
 	else addDisabledButton(3,"Zyi","Zyi","You don't know her well enough to ask about this.");
 	//INESSA EXPANSION
 	if(flags["INESSA_BELTED"] == 1 && flags["INESSA_FAMILYED"] == 1 && flags["INESSA_EXP"] == undefined) addButton(4,"Inessa",xanTalkAboutInessa,undefined,"Inessa","Talk to Xanthe about her sister.");
-	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(4,"Inessa","Inessa","You've already talked about Inessa.")
-	else addDisabledButton(4,"Inessa","Inessa","You need to talk to Inessa first.")
+	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(4,"Inessa","Inessa","You've already talked about Inessa.");
+	else addDisabledButton(4,"Inessa","Inessa","You need to talk to Inessa first.");
 	addButton(5,"The War",theWarTalkXanthe);
 	// Lock wieners until the Codex entry is read.
 	if(CodexManager.entryViewed("Siel")) addButton(6,"Her Sex",askXantheAboutHerDonger);
@@ -603,9 +603,9 @@ public function xantheTalkMenu():void
 	// ** Locked until ‘Her Sex’ topic is viewed.
 	//INESSA EXPANSION
 	if(flags["XANTHE_INESSA"] == 1 && flags["INESSA_EXP"] == undefined && flags["INESSA_BEING_DOMMED"] != undefined) addButton(9,"Key",xanTalkAboutKey,undefined,"Key","Talk to Xanthe about Inessa's belt key");
-	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(9,"Key","Key","You need to give Inessa the message from her sister.")
-	else if(flags["INESSA_BEING_DOMMED"] == undefined) addDisabledButton(9,"Key","Key","You have to be domming Inessa for this.")
-	else addDisabledButton(9,"Key","Key","You don't know about the key yet.")
+	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(9,"Key","Key","You need to give Inessa the message from her sister.");
+	else if(flags["INESSA_BEING_DOMMED"] == undefined) addDisabledButton(9,"Key","Key","You have to be domming Inessa for this.");
+	else addDisabledButton(9,"Key","Key","You don't know about the key yet.");
 	addButton(14,"Back",enterTheSilkenSerenityWhyDidWashHaveToDie);
 }
 
@@ -3122,7 +3122,7 @@ Siel
 public function xanTalkAboutInessa():void
 {
 	clearOutput();
-	author("Sen Kanashimi")
+	author("Sen Kanashimi");
 	showXanthe();
 	
 	output("You nod to Xanthe and rest yourself against the counter in front of the Siel woman, looking up into her electric blue eyes. <i>“I'd like to talk about Inessa.”</i>");
@@ -3130,10 +3130,7 @@ public function xanTalkAboutInessa():void
 	output("\n\nYou find yourself staring for a moment before shaking your head, quirking an eyebrow. You query about their relationship, curious to know why she enjoys her sisters submissive nature.");
 	output("\n\n<i>“Oh, Inessa and I are <b>just</b> sisters.”</i> She replies, giving you a coy smile that makes no attempt to hide her sarcasm. <i>“Perhaps from time to time I have... taken advantage of her submissive attitude, some binding, a bit of teasing here and there, but nothing more.”</i>");
 	
-	output("\n\nA soft chuckle escapes your [pc.lipsChaste] as your mind wanders off on the thought of Xanthe tying and teasing her sister. A prominent cough jogs you back to reality, Xanthe is staring down at you with an amused expression, her blue eyes sparkling in the light of the shopfront. <i>“So you've taken an interest in my sister,</i>"); 
-		if(xantheIsDommingPC()) output("my pet?")
-		else output(""+ pc.mf("Mister","Miss") +" Steele?")
-	output("the Siel woman asks.”");
+	output("\n\nA soft chuckle escapes your [pc.lipsChaste] as your mind wanders off on the thought of Xanthe tying and teasing her sister. A prominent cough jogs you back to reality, Xanthe is staring down at you with an amused expression, her blue eyes sparkling in the light of the shopfront. <i>“So you've taken an interest in my sister, " + (xantheIsDommingPC() ? "my pet?" : (pc.mf("Mister","Miss") +" Steele?")) + "”</i> the Siel woman asks.");
 	output("\n\nYou admit to be here for a reason and inform Xanthe about her sister's predicament, explaining what Inessa had explained to you in Happy Tails. <i>“She lost the key and hasn't been able to find it.”</i> You explain, Xanthe wears an amused expression with a near cheshire-grin. <i>“Good.”</i> She remarks.");
 	output("\n\nYour [pc.eyes] must give away your confusion as Xanthe lets out an amused sigh, leaning back from the counter as if contemplating something. <i>“Is is no surprise to me that Inessa is wearing a chastity belt.”</i> Xanthe says. <i>“Truth is the key is not lost, I have it right here.”</i> She reaches down below the counter to open up a drawer, retrieving a small golden key, the bow is shaped into a stylish curve reminiscent of a lock. <i>“I had it taken by a... Mutual friend, who also ensured the belt was locked.”</i>");
 	output("\n\nYou tilt your head slightly and ask why she has the key to her sister's belt all the way out here, eyeing the golden key with a tinge of want.");
@@ -3152,26 +3149,26 @@ public function xanTalkAboutInessa():void
 public function xanTalkAboutKey():void
 {
 	clearOutput();
-	author("Sen Kanashimi")
+	author("Sen Kanashimi");
 	showXanthe();
 
 	output("You stand there for a few moments with the previous conversation running rampant in your mind before shaking your head, setting it aside for now as you step up to the counter.");
 	output("\n\nXanthe must notice your difficulty focusing as the corners of her mouth turn up to a slight smile. <i>“Something on your mind "+ pc.mf("Mister","Miss") +" Steele?”</i> The mocking tone is almost palpable and you scrunch your nose up in response, she knows exactly what's on your mind.");
 
 	if(xantheIsDommingPC())
-		{
+	{
 		output("\n\n<i>“You said that you were keeping Inessa's belt key until you found someone worthy.”</i> You recount, thinking back again to the previous conversation. <i>“How would I go about proving myself worthy of taking that key?”</i> Xanthe's expression turns serious once more, her eyes looking you up and down, causing you to squirm beneath her domineering gaze.");
 		output("\n\n<i>“My pet, you wish to become my sisters "+ pc.mf("Master","Mistress") +"? And what makes you think I would allow you to?”</i> You shiver and look up at your Mistress, giving the most pleading eyes you can, channeling your inner terran puppy. It seems to work as Xanthes stare devolves into an amused snicker and she leans forwards, planting a hand upon your head and tousling your [pc.hair].");
 		output("\n\n<i>“Very well my dear, I will consider allowing it, on one condition.”</i> Your breath catches in your throat as she leans down closer, her face mere inches from your own. <i>“You must prove yourself capable of caring for my sister, as I do for you, then, and only then, will I give you the key, is that clear?”</i> You nod quickly and resume your breathing pattern, your [pc.skinColor] cheeks a bit more flushed from holding your breath.");
-		}
+	}
 	
 	else 
-		{
+	{
 		output("\n\n<i>“You said that you were keeping Inessa's belt key until you found someone worthy.”</i> You recount, thinking back again to the previous conversation. <i>“How would I go about proving myself worthy of taking that key?”</i> Xanthes expression turns serious once more, her eyes looking you up and down, examining your features.");
 		output("\n\n<i>“You wish to become my sisters "+ pc.mf("Master","Mistress") +"? Interesting...”</i> You nod your confirmation and Xanthe ponders for a moment, seemingly mulling over ideas in her head. <i>“Before I decide, tell me something... What do you intend to do with my sister once she is free of her belt?”</i>");
 		output("\n\n<i>“As you said before, she's naive and vulnerable, she needs someone to protect her, and as it seems you're far too busy out here to help her all of the time.”</i>");
 		output("\n\nXanthe seems to think over this even harder before raising her eyes to look into your own. <i>“I suppose you are right, although it will come with one catch, you must prove yourself a capable Dominant, and you must prove to me you know how to care for a submissive before I will allow it.”</i> Her tone remains serious, and you nod, prepared for the challenge to which Xanthe replies. <i>“Excellent.”</i>");
-		}
+	}
 	
 	output("\n\nXanthe produces a small glob of silk from her silk sac and begins working on it, you turn to leave but a sharp click of her tongue causes you to freeze in place, standing there as she works on the silk, forming it into a thin sheet with a number of indentations, not unlike old earth braille, before bargain cybernetic replacements made it unnecessary. <i>“Give this to Inessa.”</i> Xanthe chimes. <i>“She will understand what it means.”</i> She straightens herself up and smiles. <i>“Is there anything else I can help you with?”</i>");
 	output("\n\nYou shake your head and turn to actually leave this time, placing the silk panel in your pouch.");

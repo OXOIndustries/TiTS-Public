@@ -403,7 +403,7 @@ package classes.Characters
 			output("Henderson slowly extends one of his mutated, writhing limbs in");
 			if (target is PlayerCharacter) output(" your");
 			else output(" the Chief's");
-			output(" direction. With a gurgling roar, several of the blood-red tendrils detatch from his arm, flopping down onto the ground and squirming like fish out of water. They'd almost be comical looking, if they didn't quickly right themselves and start bee-lining for [target.combatHimHer]. Several of the things leap for [target.combatName], grasping and wrapping around [target.combatHisHer] arms and legs like a dozen tiny snakes. They start squeezing and hammering, doing everything they can to drag [target.combatHimHer] down with them !");
+			output(" direction. With a gurgling roar, several of the blood-red tendrils detatch from his arm, flopping down onto the ground and squirming like fish out of water. They'd almost be comical looking, if they didn't quickly right themselves and start bee-lining for [target.combatHimHer]. Several of the things leap for [target.combatName], grasping and wrapping around [target.combatHisHer] arms and legs like a dozen tiny snakes. They start squeezing and hammering, doing everything they can to drag [target.combatHimHer] down with them!");
 			
 			applyDamage(damageRand(new TypeCollection( { kinetic: 5 }, DamageFlag.BYPASS_SHIELD), 15), this, target, "minimal");
 			if (target.hasStatusEffect("Crushing Worms"))

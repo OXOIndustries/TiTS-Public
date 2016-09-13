@@ -39,6 +39,11 @@ public function altTooltip(itemName:String = "none"):String
 			if(!CodexManager.entryViewed("Suma Cream")) tooltip += "\n\n<i>(Be sure to check your codex for more information.)</i>";
 			break;
 		
+		// Accessories
+		case "VarmintLeash":
+			tooltip += "This bright pink leash connects you to " + (varmintIsTame() ? "your varmint buddy" : "a tamed varmint") + " through a wireless signal and some high-tech motors in the collar, allowing you to control how far " + (varmintIsTame() ? "your friend" : "it") + " wanders from you, and hold it back if need be, without getting a pesky REAL leash in the way like some kind of neanderthal.";
+			break;
+		
 		// Apparel
 		case "ButlerCostume":
 			tooltip += "This is a highly fetishized butler outfit. It consists of a waistcoat and a smart white shirt with the front cut out, white pasties for the wearer’s nipples, a black bow tie,";
