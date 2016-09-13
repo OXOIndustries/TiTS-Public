@@ -305,6 +305,7 @@
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/kaede.as";
+		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
@@ -1228,6 +1229,10 @@
 		public function get jerome():Jerome
 		{
 			return chars["JEROME"];
+		}
+		public function get inessa():Inessa
+		{
+			return chars["INESSA"];
 		}
 		
 		private var _dbgtestvar:int = 0;

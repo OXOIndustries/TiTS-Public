@@ -3129,7 +3129,7 @@
 		public function isBimbo():Boolean
 		{
 			if(hasStatusEffect("Temporary Treatment")) return true;
-			if (this is PlayerCharacter && flags["DR_BADGER_BIMBOED_PC"] != undefined) return true;
+			if(this is PlayerCharacter && flags["DR_BADGER_BIMBOED_PC"] != undefined) return true;
 			return hasPerk("Ditz Speech");
 		}
 		public function isBro():Boolean
@@ -5100,10 +5100,14 @@
 		}
 		public function hasPartScales(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED)
+			||	InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN)
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_SCALED);
+			if(part == "wing") return InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN);
 			return hasScales();
 		}
 		public function hasPartChitin(part:String = "any"):Boolean
@@ -5124,10 +5128,14 @@
 		}
 		public function hasPartFeathers(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED)
+			||	InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE)
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_FEATHERED);
+			if(part == "wing") return InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE);
 			return hasFeathers();
 		}
 		public function skinNoun(skin: Boolean = false,appearance:Boolean = false): String {
@@ -8548,6 +8556,7 @@
 					vaginas[slot].vaginaColor = "pink";
 					vaginas[slot].wetnessRaw = 3;
 					vaginas[slot].minLooseness = 3;
+					break;
 				case GLOBAL.TYPE_VULPINE:
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "black";
@@ -8587,6 +8596,7 @@
 				case GLOBAL.TYPE_FLOWER:
 					vaginas[slot].vaginaColor = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					break;
 				case GLOBAL.TYPE_DEER:
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "black";
@@ -16106,7 +16116,7 @@
 								// Hair Flower wilts away!
 								case "Hair Flower":
 									var flowerPower:Cerespirin = new Cerespirin();
-									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this);
+									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this, (statusEffects[x] as StorageClass).value1);
 									break;
 								// Goo hair reverts back!
 								case "Hair Regoo":
@@ -16603,6 +16613,10 @@
 		// top kek
 		public function myMiddleNameIsJensen():Boolean { return hasCybernetics(); }
 		
+		public function isInvisible():Boolean
+		{
+			return (hasStatusEffect("Stealth Field Generator") || hasStatusEffect("Camouflage"));
+		}
 		public function hasBlindImmunity():Boolean
 		{
 			return (accessory is FlashGoggles);

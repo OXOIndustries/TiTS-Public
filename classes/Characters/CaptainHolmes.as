@@ -291,7 +291,7 @@ package classes.Characters
 				
 				if (!target.hasBlindImmunity())
 				{
-					output("<b>" + (target is PlayerCharacter ? "You" : "The Chief is") + " blinded!</b>");
+					output(" <b>" + (target is PlayerCharacter ? "You" : "The Chief is") + " blinded!</b>");
 					target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
 				}
 				

@@ -424,7 +424,7 @@ public function kiK5CMOQuartersMeds():void
 {
 	clearOutput();
 	
-	output("Taking a look through the medical kit, you find a one-shot stimulant boost of microsurgeons - strong enough to give you a quick pick-me-up after the fights you’ve been in."); 
+	output("Taking a look through the medical kit, you find a one-shot stimulant boost of microsurgeons - strong enough to give you a quick pick-me-up after the fights you’ve been in.\n\n"); 
 	
 	lootScreen = kiK5CMOMedSuppliesCheck;
 	flags["KI_CMO_MEDSUPPLIES"] = 1;
@@ -1598,6 +1598,7 @@ public function kiVanderbiltFuckHer():void
 
 	processTime(10+rand(5));
 	pc.orgasm();
+	flags["KI_VANDERBILTS_SECRET"] = 2;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1716,7 +1717,7 @@ public function kiEngineeringBossFight():void
 	clearOutput();
 	author("Savin");
 	showName("ENGINEERING\nDECK");
-	showBust("HENDERSON");
+	showBust("USHAMEE_NUDE", "HENDERSON");
 
 	output("You clamber down the vent shaft into the bowels of the <i>Kashima</i>’s pipes. The trip’s long, cramped, and sweaty, taking you through increasingly warm, dark pipes until you’re feeling your way around on panels of steel that sizzle and burn your fingers. Eventually, just as you’re reaching the extend of your endurance, you find a grate going straight down over a deck that’s lit brilliant red and thrumming with the reverberations of LightDrive engines at rest.");
 	

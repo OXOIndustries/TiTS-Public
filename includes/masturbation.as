@@ -156,7 +156,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	}
 	if (pc.hasCock() && pc.canAutoFellate(-1))
 	{
-		if(pc.isCumCow())
+		if(pc.isCumCow() && pc.perkv1("Auto-Autofellatio") > 0)
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Autofellatio";
@@ -3374,7 +3374,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//If auto-suck, always this. Otherwise 50/50.
 	if(special || rand(2) == 0)
 	{
-		output("\n\nYour chrono says " + num2Text(Math.floor(timeStuff/60)) + " hours have passed.");
+		output("\n\nYour chrono says " + (Math.floor(timeStuff/60) <= 1 ? ("about an hour has") : (num2Text(Math.floor(timeStuff/60)) + " hours have")) + " passed.");
 		if(pc.perkv1("Auto-Autofellatio") == 0) output(" Did you spend the whole time sucking your own dick?");
 		else output(" What a great way to spend your time!");
 	}
@@ -3407,9 +3407,9 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//First time post-script addendum
 	if(pc.perkv1("Auto-Autofellatio") == 0) autoautofellatioNotice(); 
 	//Voluntary Beej gives 1 week cooldown
-	if(!special) pc.addPerkValue("Auto-Autofellatio",2,7);
+	if(!special) pc.setPerkValue("Auto-Autofellatio",2,7);
 	//Involuntary give 3 day autocooldown
-	else pc.addPerkValue("Auto-Autofellatio",2,3);
+	else pc.setPerkValue("Auto-Autofellatio",2,3);
 	//Keep count, whynot.
 	pc.addPerkValue("Auto-Autofellatio",1,1);
 	pc.loadInMouth(pc);
@@ -3424,7 +3424,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 public function autofellatioForNormies():void
 {
 	clearOutput();
-	showName("\nAUTO-\nFELLATIO");
+	showName("AUTO-\nFELLATIO");
 	var x:int = pc.aCockToSuck();
 	if(x < 0) x = pc.biggestCockIndex();
 	

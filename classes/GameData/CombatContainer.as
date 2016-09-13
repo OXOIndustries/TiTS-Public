@@ -1747,9 +1747,83 @@ package classes.GameData
 				}
 				bOff++;
 			}
+			if (pc.hasCombatDrone())
+			{
+				if (pc.hasActiveCombatDrone())
+				{
+					if(pc.hasStatusEffect("Varmint Buddy")) addButton(bOff, "Varmint", selectDroneTarget, undefined, "Varmint, Go!", ("Have your varmint target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+					else addButton(bOff, "Drone Target", selectDroneTarget, undefined, "Drone Target", ("Have your drone target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+				}
+				else
+				{
+					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate to your varmint right now!");
+					else addDisabledButton(bOff, "Drone Target", "Drone Target", "You can’t access your combat drone right now!");
+				}
+				bOff++;
+			}
 			
 			// TODO sort pages and shit
 			addButton(14, "Back", generateCombatMenu);
+		}
+		
+		private function selectDroneTarget():void
+		{
+			clearMenu();
+			
+			if(pc.droneTarget == null && !pc.hasStatusEffect("Drone Targeting"))
+			{
+				pc.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
+				if(pc.droneTarget == null) pc.createStatusEffect("Drone Targeting", -1, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
+			}
+			
+			var bOff:int = 0;
+			if(_hostiles.length > 1)
+			{
+				for (var i:int = 0; i < _hostiles.length; i++)
+				{
+					if (!_hostiles[i].isDefeated())
+					{
+						if(_hostiles[i] == pc.droneTarget && pc.hasStatusEffect("Drone Targeting")) addDisabledButton(bOff, (_hostiles[i] as Creature).buttonText, (_hostiles[i] as Creature).buttonText, ("Already targeting " + (_hostiles[i] as Creature).buttonText + "."));
+						else addButton(bOff, (_hostiles[i] as Creature).buttonText, selectDroneTargetSpecial, (_hostiles[i] as Creature), (_hostiles[i] as Creature).buttonText, ("Target " + (_hostiles[i] as Creature).buttonText + "."));
+						bOff++;
+					}
+					else if(pc.statusEffectv1("Drone Targeting") > 0 && _hostiles[i] == pc.droneTarget)
+					{
+						pc.droneTarget = null;
+						pc.setStatusValue("Drone Targeting", 1, -1);
+					}
+				}
+				if(!pc.hasStatusEffect("Drone Targeting")) addDisabledButton(12, "Auto", "Automatic", "Targeting is set to automatic.");
+				else addButton(12, "Auto", selectDroneTargetAuto, undefined, "Automatic", "Automatically select the best target.");
+				if(pc.statusEffectv1("Drone Targeting") < 0 || pc.droneTarget == null) addDisabledButton(13, "None", "No Target", "Currently not targeting anything.");
+				else addButton(13, "None", selectDroneTargetSpecial, undefined, "No Target", "Don't target anything.");
+			}
+			else
+			{
+				if(!pc.hasStatusEffect("Drone Targeting")) addDisabledButton(0, "Target", "Target", "Currently targeting enemy.");
+				else addButton(0, "Target", selectDroneTargetAuto, undefined, "Target", "Target the enemy.");
+				if(pc.statusEffectv1("Drone Targeting") < 0 || pc.droneTarget == null) addDisabledButton(1, "Withdraw", "No Target", "Currently not targeting enemy.");
+				else addButton(1, "Withdraw", selectDroneTargetSpecial, undefined, "No Target", "Don't target enemy.");
+			}
+			
+			addButton(14, "Back", generateSpecialsMenu);
+		}
+		private function selectDroneTargetSpecial(target:Creature = null):void
+		{
+			if(!pc.hasStatusEffect("Drone Targeting")) pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
+			else
+			{
+				if(target == null) pc.setStatusValue("Drone Targeting", 1, -1);
+				else pc.setStatusValue("Drone Targeting", 1, 1);
+			}
+			pc.droneTarget = target;
+			selectDroneTarget();
+		}
+		private function selectDroneTargetAuto():void
+		{
+			pc.removeStatusEffect("Drone Targeting");
+			pc.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
+			selectDroneTarget();
 		}
 		
 		private function selectAttack(atk:SingleCombatAttack):void
@@ -1924,6 +1998,16 @@ package classes.GameData
 				processCombat();
 				return;
 			}
+			if(pc.hasStatusEffect("Blinded") || target.isInvisible())
+			{
+				clearOutput();
+				output("You you can try to tease your foe" + (target.isPlural ? "s" : "") + " into submission...");
+				output("\n<b>Unfortunately, you can’t see the enemy clearly enough to do that!</b>");
+				
+				clearMenu();
+				addButton(14, "Back", generateCombatMenu);
+				return;
+			}
 	
 			clearOutput();
 			output("Which tease will you use?");
@@ -2085,7 +2169,7 @@ package classes.GameData
 			{
 				output("You quickly");
 				if(pc.hasArmor() && !pc.isCrotchExposed()) output(" strip out of your [pc.armor] and");
-				output(" turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+				output(" turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole]. With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus. You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give them a good show. You withdraw your hand and give your ass another sexy spank before readying for combat again.");
 			}
 			//Reqs: PC has at least one tail with the Fluffy tag
 			else if(select == 4)
@@ -2112,12 +2196,12 @@ package classes.GameData
 				{
 					output(" to reveal the slick entrance. A bit of fluid drips from the tip of your [pc.tailgina], wet and ready for mating.");
 				}
-				else output(" just enough to reveal a bit of the interior.  You take it slow on opening your tailcunt the rest of the way, until you can use two fingers to hold the dripping entrance open, leaving your other hand free to run its fingers over the exotic folds, pressing in just enough to show your foe how slippery soft your tailpussy really is.");
+				else output(" just enough to reveal a bit of the interior. You take it slow on opening your tailcunt the rest of the way, until you can use two fingers to hold the dripping entrance open, leaving your other hand free to run its fingers over the exotic folds, pressing in just enough to show your foe how slippery soft your tailpussy really is.");
 			}
 			//Reqs: PC has a cock-tail
 			else if(select == 7)
 			{
-				output("You curl your [pc.cockTail] around to flex it back and forth a bit in front of your foe, showing off the alien endowment you’ve picked up.  You arrange your tail into a spiral shape and then piston it sharply like a coiled spring, making a loud snapping sound from the force of it striking the air.");
+				output("You curl your [pc.cockTail] around to flex it back and forth a bit in front of your foe, showing off the alien endowment you’ve picked up. You arrange your tail into a spiral shape and then piston it sharply like a coiled spring, making a loud snapping sound from the force of it striking the air.");
 			}
 			//Reqs: PC is clothed, PC has a cock and either a trap-pouch, internal gonads or no balls, PC has no vagina, PC is feminine-looking
 			else if(select == 8)
@@ -2156,7 +2240,7 @@ package classes.GameData
 				output(" and bounce your [pc.butt] up and down hypnotically");
 				//Big butts = extra text + higher success
 				if(pc.buttRating() >= 10) {
-					output(", making it jiggle delightfully.  Your target even gets a few glimpses of the [pc.asshole] between your cheeks.");
+					output(", making it jiggle delightfully. Your target even gets a few glimpses of the [pc.asshole] between your cheeks.");
 				}
 				//Small butts = less damage, still high success
 				else {
@@ -2216,7 +2300,7 @@ package classes.GameData
 					//Clothed:
 					if(!pc.isChestExposed()) output("Shedding your [pc.upperGarments], you");
 					else output("You");
-					output(" flex your arms, showing off the bulging biceps.  After a bit of posing");
+					output(" flex your arms, showing off the bulging biceps. After a bit of posing");
 					output(" you slap your chest with one hand, producing a loud crack of muscle on muscle as your palm meets your iron-hard pectoral.");
 					output(" After a good few seconds of showing off,");
 					if(!pc.isChestExposed()) output(" you close your [pc.upperGarments] and");
@@ -2298,7 +2382,7 @@ package classes.GameData
 					//Clothed:
 					if(!pc.isChestExposed()) output("Shedding your [pc.upperGarments], you");
 					else output("You");
-					output(" flex your arms, showing off the bulging biceps.  After a bit of posing");
+					output(" flex your arms, showing off the bulging biceps. After a bit of posing");
 					if(pc.biggestTitSize() < 1) output(" you slap your chest with one hand, producing a loud crack of muscle on muscle as your palm meets your iron-hard pectoral.");
 					else if(pc.biggestTitSize() <= 3) output(" you stretch to show off your sleek chest, turning your upper body so they can see the way your breasts fit the form of your highly-toned physique.");
 					else output(" you give one of your breasts a grope, showing off how you’re every bit as curvy as a girl without your incredible musculature.");
@@ -2352,7 +2436,7 @@ package classes.GameData
 			if(pc.hipRating() < 4) choices.push(0);
 			else if(pc.hipRating() >= 10) choices.push(1);
 			else choices.push(2);
-			//Reqs:  PC has a naga tail
+			//Reqs: PC has a naga tail
 			if(pc.isNaga()) choices.push(3);
 			//Reqs: PC is in combat with a naleen, PC has a naga tail
 			if(target is Naleen && pc.isNaga()) choices.push(4);
@@ -2409,7 +2493,7 @@ package classes.GameData
 				}
 				//Nude:
 				else output("You take a moment to ready yourself");
-				output(" before drawing your hands up over your head.  You start in on rocking your [pc.hips], treating your foe to a dance");
+				output(" before drawing your hands up over your head. You start in on rocking your [pc.hips], treating your foe to a dance");
 				if(pc.tone < 30 && pc.thickness >= 60) output(" that gets your [pc.belly] jiggling");
 				else output(" that shows off your [pc.belly], the light glinting off your [pc.skinFurScales] as it moves");
 				output(". Your hands slowly descend and move outwards to your sides, remaining largely steady while the bulk of your motion remains in your hips and belly, though there’s just enough motion in your [pc.legOrLegs] to show those off as well");
@@ -2651,7 +2735,7 @@ package classes.GameData
 				else output("You only need to face your [pc.crotch] towards your enemy");
 				output(" and cock your hips to one side, letting the [pc.girlCum] gushing from between your thighs speak for itself. You casually drop a hand to between your [pc.thighs] and sample a bit of the river, popping your fingers into your mouth to savor the [pc.girlCumFlavor] treat.");
 				//Skill 50+:
-				if(flags["TIMES_CROTCH_TEASED"] > 50) output(" You dip your fingers into the [pc.girlCumNoun] again, this time holding out your fingers towards your foe invitingly before again licking yourself clean.  <i>“Imagine what it’s like when I’m actually cumming.”</i>");
+				if(flags["TIMES_CROTCH_TEASED"] > 50) output(" You dip your fingers into the [pc.girlCumNoun] again, this time holding out your fingers towards your foe invitingly before again licking yourself clean. <i>“Imagine what it’s like when I’m actually cumming.”</i>");
 				output(" You give your foe a heady grin as you ");
 				if(!pc.isCrotchExposed()) output("pull your [pc.lowerGarments] back up, producing a wet sound as your endless flow is plugged back up - for now.");
 				else output("return your attention to the fight, [pc.girlCumColor] still streaming freely down your [pc.legOrLegs].");
@@ -2744,7 +2828,7 @@ package classes.GameData
 				//Clothed:
 				if(!pc.isCrotchExposed()) output("You open your [pc.lowerGarments] and");
 				else output("You");
-				output(" draw attention to [pc.oneCock], your flare already getting nice and wide. Your finger traces around the edge and underside of the thick ring, before coming up and over to brush the [pc.cockHead " + temp + "] above it. A bit of [pc.cum] comes away with your fingertip, showing off just how ready your flare is to be plunged inside the nearest willing hole... if they can take it.  The thought of it makes you smirk as you ");
+				output(" draw attention to [pc.oneCock], your flare already getting nice and wide. Your finger traces around the edge and underside of the thick ring, before coming up and over to brush the [pc.cockHead " + temp + "] above it. A bit of [pc.cum] comes away with your fingertip, showing off just how ready your flare is to be plunged inside the nearest willing hole... if they can take it. The thought of it makes you smirk as you ");
 				if(!pc.isCrotchExposed()) output("cover up");
 				else output("return to attention");
 				output(", ready to continue.");
@@ -2765,7 +2849,7 @@ package classes.GameData
 				//Clothed:
 				if(!pc.isCrotchExposed()) output("As your [pc.lowerGarments] come away from");
 				else output("As you draw your foe’s attention to");
-				output(" your [pc.cocks], you opt to focus on a different part of your shaft from the usual.  Your hand goes up to your [pc.cockHead " + temp + "], but soon slides halfway down your shaft to the masculine ring wrapped around the center of your dick.  Your finger traces around its edge, pressing inward just enough to showcase the slightly spongy texture of your all-natural ribbing.  You pull your hand away");
+				output(" your [pc.cocks], you opt to focus on a different part of your shaft from the usual. Your hand goes up to your [pc.cockHead " + temp + "], but soon slides halfway down your shaft to the masculine ring wrapped around the center of your dick. Your finger traces around its edge, pressing inward just enough to showcase the slightly spongy texture of your all-natural ribbing. You pull your hand away");
 				if(!pc.isCrotchExposed()) output(" and cover up.");
 				else output(" and let your cock relax.");
 			}
@@ -3149,7 +3233,7 @@ package classes.GameData
 				else buffer = "The wispy amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed back, flushing wildly.";
 			}
 			else if (target.isPlural) {
-				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName(), false)  + " seem unimpressed.";
+				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName(), false) + " seem unimpressed.";
 				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName(), false) + " look intrigued by what they see.";
 				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName(), false) + " definitely seem to be enjoying the show.";
 				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName(), false) + " openly stroke themselves as they watch you.";
@@ -3177,7 +3261,15 @@ package classes.GameData
 		private function generateSenseMenu(attacker:Creature, target:Creature):void
 		{
 			clearOutput();
-	
+			
+			if(pc.hasStatusEffect("Blinded") || target.isInvisible())
+			{
+				output("You try to get a feel for " + possessive(target.getCombatName()) + " likes and dislikes...");
+				output("\n<b>Unfortunately, you can’t see the enemy clearly enough for it to work!</b>");
+				processCombat();
+				return;
+			}
+			
 			if (target is Cockvine)
 			{
 				kGAMECLASS.adultCockvineSenseOverride();
@@ -3692,7 +3784,9 @@ package classes.GameData
 		{
 			showPlayerStatus();
 			
-			for (var i:int = 0; i < _friendlies.length; i++)
+			var i:int = 0;
+			
+			for (i = 0; i < _friendlies.length; i++)
 			{
 				displayFriendlyStatus(_friendlies[i]);
 			}
@@ -3711,6 +3805,25 @@ package classes.GameData
 			}
 			
 			// TODO: I guess this would be the place to point out blindness or whatever.
+			var totalBlinded:int = 0;
+			for (i = 0; i < _friendlies.length; i++)
+			{
+				if(_friendlies[i].hasStatusEffect("Blinded")) totalBlinded++;
+			}
+			if(pc.hasStatusEffect("Blinded"))
+			{
+				output("\n\n<b>Unfortunately, you");
+				if(_friendlies.length == 2 && totalBlinded == 2) output(" and your partner are blind");
+				else if(totalBlinded > 2) output("r team and you have been blinded");
+				else output("r vision is obscured");
+				output(" and you can’t see the status of");
+				if(_hostiles.length == 1 && !_hostiles[0].isPlural) output(" the enemy");
+				else output(" your foes");
+				output(" properly!</b>");
+				
+				return;
+			}
+			
 			for (i = 0; i < _hostiles.length; i++)
 			{
 				displayHostileStatus(_hostiles[i]);
@@ -3753,7 +3866,8 @@ package classes.GameData
 					else
 					{
 						output("\n\n<b>" + StringUtil.toTitleCase(target.getCombatName()) + ":</b>");
-						if (target.long.length > 0) output("\n" + target.long);
+						if(target.isInvisible()) output("\n<i>The enemy is practically invisible to you!</i>");
+						else if (target.long.length > 0) output("\n" + target.long);
 						else if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
 					}
 				}
@@ -3768,10 +3882,21 @@ package classes.GameData
 				
 				if (!(target is QueenOfTheDeep) && !(target is Cockvine))
 				{
-					kGAMECLASS.setEnemy(target);
-					target.getCombatDescriptionExtension();
-					showMonsterArousalFlavor(target);
-					kGAMECLASS.setEnemy(null);
+					if (_hostiles.length == 1)
+					{
+						kGAMECLASS.setEnemy(target);
+						target.getCombatDescriptionExtension();
+						showMonsterArousalFlavor(target);
+						kGAMECLASS.setEnemy(null);
+					}
+					else
+					{
+						target.getCombatDescriptionExtension();
+						output("\n\n<b>" + StringUtil.toTitleCase(target.getCombatName()) + ":</b>");
+						if(target.isInvisible()) output("\n<i>The enemy is practically invisible to you!</i>");
+						if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
+						else showMonsterArousalFlavor(target);
+					}
 				}
 			}
 		}
@@ -3901,7 +4026,7 @@ package classes.GameData
 				if(((droneUser.hasShields() && droneUser.shields() > 0) || droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER)) && droneUser.hasStatusEffect("Drone Disabled"))
 				{
 					droneUser.removeStatusEffect("Drone Disabled");
-					if(droneUser == pc) output("\nWith shield power restored, <b>your drone buzzes back to life</b>, ready to attack once more!");
+					if(droneUser == pc) output("\n\nWith shield power restored, <b>your drone buzzes back to life</b>, ready to attack once more!");
 				}
 				else if((!droneUser.hasShields() || droneUser.shields() <= 0) && !droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
@@ -3909,6 +4034,16 @@ package classes.GameData
 					if(droneUser != pc) droneUser.createStatusEffect("Drone Disabled",0,0,0,0,false,"Icon_Paralysis","Without shields, the drone cannot attack!",true,0,0xFF0000);
 				}
 			}
+			
+			if(droneUser == pc)
+			{
+				// Auto-target unless targets are set.
+				if(!pc.hasStatusEffect("Drone Targeting")) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
+			}
+			else if(_friendlies.indexOf(droneUser) != -1) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
+			else if(_hostiles.indexOf(droneUser) != -1) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_friendlies);
+			else droneUser.droneTarget = null;
+			
 			if (droneUser.hasActiveCombatDrone() && droneUser.droneTarget != null)
 			{
 				var target:Creature = droneUser.droneTarget;

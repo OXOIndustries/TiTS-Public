@@ -410,13 +410,25 @@ public function initUvetoRooms():void
 
 	rooms["UVI N42"] = new RoomClass(this);
 	rooms["UVI N42"].roomName = "SOUTHERN\nCOMMERCE";
-	rooms["UVI N42"].description = "Several shops are set up around the southern end of the main street, advertising their wares. Most are simple things like grocery stores, a computer shop, and the like. To the west, though, you spot a shop that catches your eye: the Hunter's Dream. ";
+	rooms["UVI N42"].description = "Several shops are set up around the southern end of the main street, advertising their wares. Most are simple things like grocery stores, a computer shop, and the like. To the west, though, you spot a shop that catches your eye: the Hunter's Dream. Opposite is a holograpic sign above featuring a decal of a multi-legged, tauric alien and the words, <i>“Spinarran Silk&Steel”</i>. The display windows to the east show off samples: polished weapons, exotic body armor, and even mundane clothing.";
 	rooms["UVI N42"].planet = "PLANET: UVETO VII";
 	rooms["UVI N42"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N42"].northExit = "UVI N40";
 	rooms["UVI N42"].westExit = "UVI L42";
+	rooms["UVI N42"].eastExit = "S&S_KIRILA";
 	rooms["UVI N42"].moveMinutes = 3;
 	rooms["UVI N42"].addFlag(GLOBAL.OUTDOOR);
+
+	rooms["S&S_KIRILA"] = new RoomClass(this);
+	rooms["S&S_KIRILA"].roomName = "SPINARRAN\nSILK & STEEL";
+	rooms["S&S_KIRILA"].description = "";
+	rooms["S&S_KIRILA"].planet = "PLANET: UVETO VII";
+	rooms["S&S_KIRILA"].system = "SYSTEM: SIRETTA";
+	rooms["S&S_KIRILA"].westExit = "UVI N42";
+	rooms["S&S_KIRILA"].moveMinutes = 3;
+	rooms["S&S_KIRILA"].runOnEnter = spinarranSilkAndSteelBonusFunc;
+	rooms["S&S_KIRILA"].addFlag(GLOBAL.INDOOR);
+	rooms["S&S_KIRILA"].addFlag(GLOBAL.COMMERCE);
 
 	/* Another Store */
 	rooms["UVI L42"] = new RoomClass(this);
