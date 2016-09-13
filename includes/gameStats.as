@@ -1349,7 +1349,8 @@ public function displayQuestLog(showID:String = "All"):void
 			// Taivra's Palace (Quest)
 			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || metTaivra())
 			{
-				output2("\n<b>* Royal Nyrean Palace:</b>");
+				output2("\n<b><u>Royal Nyrean Palace</u></b>");
+				output2("\n<b>* Status:</b>");
 				if(nyreaDungeonFinished())
 				{
 					if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined)
@@ -1365,7 +1366,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["TAIVRA_DEAL_UNLOCKED"] != undefined || flags["OFFERED_TAIVRA_AN_ALLIANCE"] != undefined)
 				{
 					// Taivra
-					output2("\n<b>* Royal Nyrean Palace, Queen Taivra:</b>");
+					output2("\n<b>* Queen Taivra:</b>");
 					if(flags["TAIVRA_DEAL_UNLOCKED"] != undefined)
 					{
 						output2(" Made a deal with her");
@@ -1381,13 +1382,13 @@ public function displayQuestLog(showID:String = "All"):void
 				if(metTaivra())
 				{
 					// Rival
-					output2("\n<b>* Royal Nyrean Palace, [rival.name]:</b> Seen");
+					output2("\n<b>* [rival.name]:</b> Seen");
 					if(flags["TAIVRA_RIVAL_TALK"] != undefined) output2(", Spoke of [rival.himHer]");
 					if(flags["RIVAL_GOT_MYR_COORDS_FIRST"] != undefined) output2(", [rival.HeShe] got coordinates first");
 					if(flags["COUSIN_EGGSLUT"] != undefined || flags["COUSIN_BEDWARMER"] != undefined) output2(", Enslaved");
 					if(flags["COUSIN_EXECUTED"] != undefined) output2(", Executed");
 					// Dane
-					output2("\n<b>* Royal Nyrean Palace, Dane:</b> Seen");
+					output2("\n<b>* Dane:</b> Seen");
 					if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him from Taivra");
 					if(flags["QUEENSGUARD_STAB_TIME"] != undefined || flags["KILLED_TAIVRA"] != undefined) output2(", Escaped with [rival.name]");
 				}
