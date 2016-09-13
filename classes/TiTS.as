@@ -305,6 +305,7 @@
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/kaede.as";
+		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
