@@ -441,7 +441,7 @@ public function maidUniformDemo():void
 	showKirila();
 	author("Kinathis");
 	output("Hanging from a rack in a tucked away corner of the store are several black and white maid outfits. Frills and lace adorn the various hems, and it feels silky smooth to the touch. The frilled dress would barely drop past the top of the thigh on its wearer. You’re certain it wouldn’t hide a thing if its owner bent over. Maybe that’s the point. Combined with the thigh-high stockings, the entire thing just oozes feminine sensuality.");
-	output("\n\n<i>“Oh,”</i> the shopkeeper sees your interest and drops her head slightly. If she could blush, you think she’d be a bright crimson. <i>“I thought I’d only ordered one for... personal reasons. Turns out we got a full shipment. So if you’d like to take one off our hands and save me the embarrassment, I would greatly appreciate it.");
+	output("\n\n<i>“Oh,”</i> the shopkeeper sees your interest and drops her head slightly. If she could blush, you think she’d be a bright crimson. <i>“I thought I’d only ordered one for... personal reasons. Turns out we got a full shipment. So if you’d like to take one off our hands and save me the embarrassment, I would greatly appreciate it.”</i>");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",kirilaSilkItemDemos);
