@@ -16,7 +16,7 @@ public function showKirila(nude:Boolean = false):void
 public function spinarranSilkAndSteelBonusFunc():Boolean
 {
 	author("Kinathis");
-	output("The shop is large with oddly wide spaces between displays. The interior looks to be divided neatly in two. One side is devoted to clothing, silkwear, suits and dresses and the other to all manner of spinnaran weapons and armour.");
+	output("The shop is large with oddly wide spaces between displays. The interior looks to be divided neatly in two. One side is devoted to clothing, silkwear, suits and dresses and the other to all manner of spinnaran weapons and armor.");
 	output("\n\nYou walk over to the shop keeper: a tall, well built, feminine figure with long, finger-thick cords of copper carapace for hair and a silky dress. A name tag stands out against her dress, spelling <i>“Kirila”</i>. The humanoid alien looks over at you from under a set of dark, six-eyed goggles. One of her hands is playing with a small bowl of what looks like decorative blueish gravel, though even as you watch, she plucks one of the small rocks out of the pile and pops it into her mouth. You can hear a small pop, then several crunching sounds before she swallows.");
 	addButton(0,"Kilira",approachKirila);	
 	return false;
