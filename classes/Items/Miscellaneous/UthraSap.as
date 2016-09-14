@@ -156,13 +156,14 @@ package classes.Items.Miscellaneous
 					if (target.ballSizeRaw > 10) ballSizeReduction = 2;
 					if (target.ballSizeRaw > 20) ballSizeReduction += target.ballSizeRaw * 0.2;
 					
-					if (target.ballSizeUnlocked(target.ballSizeRaw - ballSizeReduction))
+					var newBallSize:Number = target.ballSizeRaw - ballSizeReduction;
+					
+					if (target.ballSizeUnlocked(newBallSize))
 					{
 						kGAMECLASS.output("\n\nInstead of immediate release, your [pc.cock] keeps relentlessly spurting your spunk like an out-of-control hose. You moan and arch your back - you're paralyzed with pleasure and unable to do anything about it. A tiny part of you panics at the thought it may <i>never</i> stop cumming, though the rest of you happily trembles at the thought.");
 						
 						kGAMECLASS.output("\n\nWith each and every spurt the size of your [pc.balls] diminish. As your balls tighten it feels as if you're utterly cumming them out of existence.");
 						
-						var newBallSize:Number = target.ballSizeRaw - ballSizeReduction;
 						changes++;
 						
 						if (newBallSize > 0)
@@ -185,6 +186,7 @@ package classes.Items.Miscellaneous
 							target.ballSizeRaw = 0;
 						}
 					}
+					else kGAMECLASS.output("\n\n" + target.ballSizeLockedMessage());
 				}
 				
 				kGAMECLASS.output("\n\nYou feel completely and utterly wiped when you stop orgasming at long last. You drag yourself to your [pc.feet] with considerable effort and examine your");
