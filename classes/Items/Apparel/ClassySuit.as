@@ -27,7 +27,7 @@ package classes.Items.Apparel
 			
 			this.description = "a classy suit";
 			
-			this.tooltip = "TThis outfit is a timeless classic from Earth. Consisting of a jacket, button-up shirt, tie, and trousers, it lends an air of authority to businessmen, politicians and lawyers the universe over. Thanks to its ingenious design, its shape will change based on its wearer, always fitting as a bespoke suit should.";
+			this.tooltip = "This outfit is a timeless classic from Earth. Consisting of a jacket, button-up shirt, tie, and trousers, it lends an air of authority to businessmen, politicians and lawyers the universe over. Thanks to its ingenious design, its shape will change based on its wearer, always fitting as a bespoke suit should.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
