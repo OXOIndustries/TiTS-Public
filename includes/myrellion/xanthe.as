@@ -588,7 +588,8 @@ public function xantheTalkMenu():void
 	if(flags["XANTHE_TALKED_ABOUT_HERSELF"] != undefined) addButton(3,"Zyi",talkToXantheAboutSpaceJesus);
 	else addDisabledButton(3,"Zyi","Zyi","You don't know her well enough to ask about this.");
 	//INESSA EXPANSION
-	if(flags["INESSA_BELTED"] == 1 && flags["INESSA_FAMILYED"] == 1 && flags["INESSA_EXP"] == undefined) addButton(4,"Inessa",xanTalkAboutInessa,undefined,"Inessa","Talk to Xanthe about her sister.");
+	if(flags["MET_INESSA"] == undefined) addDisabledButton(4,"Locked");
+	else if(flags["INESSA_BELTED"] == 1 && flags["INESSA_FAMILYED"] == 1 && flags["INESSA_EXP"] == undefined) addButton(4,"Inessa",xanTalkAboutInessa,undefined,"Inessa","Talk to Xanthe about her sister.");
 	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(4,"Inessa","Inessa","You've already talked about Inessa.");
 	else addDisabledButton(4,"Inessa","Inessa","You need to talk to Inessa first.");
 	addButton(5,"The War",theWarTalkXanthe);
@@ -602,7 +603,8 @@ public function xantheTalkMenu():void
 	// * Locked until ‘Xanthe’ topic is viewed
 	// ** Locked until ‘Her Sex’ topic is viewed.
 	//INESSA EXPANSION
-	if(flags["XANTHE_INESSA"] == 1 && flags["INESSA_EXP"] == undefined && flags["INESSA_BEING_DOMMED"] != undefined) addButton(9,"Key",xanTalkAboutKey,undefined,"Key","Talk to Xanthe about Inessa's belt key");
+	if(flags["MET_INESSA"] == undefined) addDisabledButton(9,"Locked");
+	else if(flags["XANTHE_INESSA"] == 1 && flags["INESSA_EXP"] == undefined && flags["INESSA_BEING_DOMMED"] != undefined) addButton(9,"Key",xanTalkAboutKey,undefined,"Key","Talk to Xanthe about Inessa's belt key.");
 	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(9,"Key","Key","You need to give Inessa the message from her sister.");
 	else if(flags["INESSA_BEING_DOMMED"] == undefined) addDisabledButton(9,"Key","Key","You have to be domming Inessa for this.");
 	else addDisabledButton(9,"Key","Key","You don't know about the key yet.");
