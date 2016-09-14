@@ -13,22 +13,8 @@ public function edanHeader():void
 	author("Wsan");
 }
 
-public function getEdanPregContainer():PregnancyPlaceholder
-{
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 40;
-	pp.createPerk("Fixed CumQ", 250000, 0, 0, 0);
-	
-	return pp;
-}
-
 public function edanRoomDesc():void
 {
-	clearOutput();
-	clearMenu();
-	showName("SEATING\nAREA");
 	author("Wsan");
 	
 	if (flags["EDAN_MET"] == undefined) 
@@ -59,7 +45,6 @@ public function edanRoomDesc():void
 		addButton(0, "Edan", talkToEdan, undefined, "Edan", "Go say hi.");
 		pc.lust(15);
 	}
-	addButton(10, "Back", mainGameMenu);
 }
 
 //Story selector
@@ -112,7 +97,7 @@ public function talkToEdan():void
 	
 	if (flags["EDAN_MET"] == undefined)
 	{
-		output("You sit down across from the leithan, realising that although he looked big from afar he’s positively huge from this close. He’s handsome in a rough manner, a man who’s seen a lot of life. You open to your mouth to greet him but you’re cut short by what feels like a minor earthquake ");
+		output("You sit down across from the leithan, realizing that although he looked big from afar he’s positively huge from this close. He’s handsome in a rough manner, a man who’s seen a lot of life. You open to your mouth to greet him but you’re cut short by what feels like a minor earthquake ");
 		if (pc.gooScore() > 3) output("jiggling your gooey body around.");
 		else output("in your bones.");
 		output("\n\n<i>“Hello, Steele.”</i>");
@@ -162,7 +147,7 @@ public function talkToEdan():void
 	if ((flags["EDAN_NODICKS"] == 1) && ((pc.hasCock()) || (!pc.hasVagina()))) addDisabledButton(2, "Sex", "Sex", "Edan explained his sexual preferences - you need a pussy and no dick to have sex with him.");
 	else addButton(2, "Sex", edanSex, undefined, "Sex", "Proposition the leithan for sex in the middle of the mess hall.");
 	
-	addButton(10, "Back", mainGameMenu);
+	addButton(14, "Back", mainGameMenu);
 }
 
 //Drinks scene lead-in.
@@ -207,7 +192,7 @@ public function edanDrinks():void
 		output("\n\n<i>“It’s just that you read my mind. I guess you know what’s best, Steele.”</i>");
 		output("\n\nHe gets up from the floor and beckons you towards the tavern.");
 		output("\n\n<i>“I can see how eager you are to get to it. Don’t worry, I’ve got something special planned with the owner.”</i>");
-		output("\n\nSomething special? You like the sound of that. You walk behind Edan as he strides into the tavern, your eyes lingering between his legs. His cock is sheathed right now, but you’re looking forward to when it isn’t. You tuck that thought away as you walk into the tavern, your [pc.pussy] already quivering a little at the thought of whatever Edan’s going to subject you to.");
+		output("\n\nSomething special? You like the sound of that. You walk behind Edan as he strides into the tavern, your eyes lingering between his legs. His cock is sheathed right now, but you’re looking forward to when it isn’t. You tuck that thought away as you walk into the tavern, your [pc.vaginas] already quivering a little at the thought of whatever Edan’s going to subject you to.");
 		
 		currentLocation = "302";
 		addButton(0, "Next", edanSexFourth, undefined, "Next", "Time to find out what that something special is.");
@@ -356,7 +341,7 @@ public function edanSex():void
 		output("\n\nFair enough.");
 		flags["EDAN_NODICKS"] = 1;
 		
-		addButton(0, "Back", talkToEdan);
+		addButton(0, "Next", talkToEdan);
 	}
 	else if (flags["EDAN_FUCKED"] == 1)
 	{
@@ -433,14 +418,14 @@ public function edanSexRefusal():void
 	{
 		output("<i>“Suit yourself,”</i> he shrugs, <i>“If even half of what I hear is true, you’ll be scrabbling under the table in no time.”</i> Edan returns to eating his food as though nothing has happened, your refusal of his terms apparently of no consequence to him."); 
 		
-		addButton(0, "Back", talkToEdan);
+		addButton(0, "Next", talkToEdan);
 	}
-	else if (flags["EDAN_FUCKED"] == 1)
+	else
 	{
 		output("You meekly shake your head and Edan shrugs.");
 		output("\n\n<i>“Suit yourself, Steele. Don't worry, I’ll still be here if you change your mind.”</i>");
 		
-		addButton(0, "Back", talkToEdan);
+		addButton(0, "Next", talkToEdan);
 	}
 }
 
@@ -462,14 +447,14 @@ public function edanSexFirst():void
 	output("\n\n<i>“Your open-mouthed adulation is appreciated, Steele, but I’m pretty sure I asked you for something specific,”</i> he grunts.");
 	output("\n\nHe’s right, of course. You were so caught up in admiring his beautiful cock, the individual contours and feedback from the swollen veins of his dick so pleasurable to caress - oops, you’re doing it again. You position yourself so you’re kneeling in front of his tip and allow yourself an experimental lick of the head with your [pc.tongue], eliciting a grunt from above you. Well, he likes that. The taste isn’t bad either, you note as you swish your tongue around your mouth to wet it with saliva.");
 	output("\n\nYou lean forward and start to work in earnest, alternating between gently suckling his tip and bobbing your lips up and down his head to entice drops of precum into your waiting mouth. A waitress passes by and rolls her eyes upon noticing you eagerly taking a leithan’s cock between your [pc.lips]. You guess out here on the frontier people must be pretty blasé about");
-	if (pc.race() == "leithan") output(" sexual encounters happening right in front of them.");
+	if (pc.race().toLowerCase().indexOf("leithan") != -1) output(" sexual encounters happening right in front of them.");
 	else output(" interspecies sexual encounters in their face.");
 	output("\n\nShe <i>is</i> still watching you though, and continues to do so on her way back to the kitchen, almost tripping over some raskvel scrabbling about underfoot.");
 	output("\n\nYou can’t tell if she’s just admiring your technique or the prodigious tool it’s being zealously applied to, but you make sure to make eye contact with her as you squeeze his shaft and swallow the spurt of precum that follows. She starts at the realization you’ve seen her staring and quickly hurries back into the safety of the kitchen as she casts another glance over her shoulder. With the distraction out of the way, you turn your full attention back to pleasuring the cock in your mouth, noting with some dismay that your jaw is beginning to ache with the effort of accommodating it.");
 	output("\n\nYou struggle to pop your lips around the tip and begin jacking him off into your mouth with both arms, jerking your head back and forth as the leithan starts to breathe heavily, his underside shaking as a result of your ministrations. His groans from above are louder now and it’s readily evident to anyone in the vicinity what’s going on under the table, as if they didn’t already know. Luckily, the raskvel don’t really seem to care much. You’ve kept your champion cocksucker performance up for less than a minute when you hear him gripping the table so hard it’s splintering slightly; accompanied by the sensation of his turgid cock thickening in your mouth and hands, you’re pretty sure he’s about to come. You redouble your efforts, his precum being coaxed into your throat and dribbling down the front of your [pc.upperGarmentOuter] on every frenetic upstroke as you strive to bring him to orgasm.");
 	output("\n\nYour actions are rewarded when you feel his gargantuan dick start to pulse and flex, followed a split-second later by a gush of much thicker cum into your mouth. Your pliant lips stay wrapped around his cock hungrily, and left with no alternative you start to gulp down his spunk. It’s nigh-impossible given the volume of his ejaculation, and a fair amount of it sprays from the sides of your mouth or drips down your chin onto the floor. You make some progress, and you can actually feel his warmth in your body as his loads coat your insides on their way to your [pc.belly].");
 	output("\n\n<i>“God </i>damn<i>, [pc.name]. It’s no wonder your family has the - the rep it does. You’ve got genuine tale</i>nnn<i>t.”</i>");
-	output("\n\nYou hear Edan’s praise as he struggles to maintain some sense of normalcy in his speech, but your ability to retort is somewhat hindered by your inability to swallow the ever-increasing amount of his cum in your mouth. It spills from between your [pc.lips], splattering between your legs as you draw back. The rest of his ejaculation spurts onto the ground near you, narrowly missing coating your [pc.legs] in spunk. You swallow the remainder, and crawl out from under the table to sit on the bench adjacent to him. You burp quietly and cover your mouth in shock, causing Edan to laugh.");
+	output("\n\nYou hear Edan’s praise as he struggles to maintain some sense of normalcy in his speech, but your ability to retort is somewhat hindered by your inability to swallow the ever-increasing amount of his cum in your mouth. It spills from between your [pc.lips], splattering between your legs as you draw back. The rest of his ejaculation spurts onto the ground near you, narrowly missing coating your [pc.legOrLegs] in spunk. You swallow the remainder, and crawl out from under the table to sit on the bench adjacent to him. You burp quietly and cover your mouth in shock, causing Edan to laugh.");
 	output("\n\n<i>“If you’re half as good at negotiation as you are at sucking cock I can see why you’re the " + pc.mf("heir", "heiress") + ", although I’m not convinced you don’t think they’re the same thing. I’m going to go get some more food, Steele. You’ll probably want to wash your face. Got a bit on your cheek there.”</i>");
 	output("\n\nEdan laughs again as he goes to get the attention of some kitchen staff, who have notedly been avoiding the area. You wash your face off and just sit for a while, thinking about how easily you followed his commands. It did stoke the flames of your lust if the state of your [pc.underGarment] is a reliable indicator, but maybe being overly willing to suck the dick of a mercenary you just met in public might give him the wrong idea. You glance up to see Edan has found a new seat, and he gives you a smile and a wave before getting back to eating. You guess being as big as he is has its drawbacks when it comes to food. With a sigh and a mix of emotions burning in the pit of your spunk-filled tummy, you stand to leave as a resigned kitchen worker arrives with a mop.");
 	
@@ -529,7 +514,7 @@ public function edanSexSecondEnd():void
 	}
 	if (pc.biggestTitSize() >= 12)
 	{
-		output("\n\nYou don’t even need to look down to see the swell of your breasts, lying down as you are. Your [pc.breasts] jut out well past what passes for normalcy for a [pc.race], easily containing Edan’s engorged cock. You wrap your arms around your tits to marshal them into a cavern of cleavage for him to fuck, and hear him from above you.");
+		output("\n\nYou don’t even need to look down to see the swell of your breasts, lying down as you are. Your [pc.breasts] jut out well past what passes for normalcy for " + indefiniteArticle(pc.race().toLowerCase()) + ", easily containing Edan’s engorged cock. You wrap your arms around your tits to marshal them into a cavern of cleavage for him to fuck, and hear him from above you.");
 		output("\n\n<i>“Attagirl, Steele. You know what to do with those, huh? Damn, your body is just the way I like it.”</i>");
 		output("\n\nYou flush with embarrassment at his brazen praise for your voluptuous body in front of an audience, but you’re inwardly pleased he’s happy with your body. He starts to slowly thrust his horsecock in between your gigantic tits with slow pumps of his powerful hips, making them jiggle up and down as you feel the veins and grooves of his cock rubbing across your [pc.skinFurScales].");
 		output("\n\nYou have a front row seat to the violation of your own tits as he plunges into their cushiony expanse, the slap of flesh on flesh resounding through the air as his animalistic thrusts almost drag you across the floor with their intensity. The passage of his cock is eased by the intermingling of his and your sweat, your face and body flushed with the exertion of keeping your giant breasts as tightly pressed together as you can for him.");
@@ -585,8 +570,7 @@ public function edanSexThird():void
 	output("\n\nGagging around his thick rod as he gets fully half of it into the recesses of your body is turning you on more than actually being fucked, almost like he’s reconfiguring your body for his own use. From the sounds he’s making above you, you can tell he’s enjoying it, and that just makes you even hornier about being used.");
 	if (pc.biggestTitSize() >= 12) output(" You already know how much he loves the size of your [pc.breasts] given his intermittent pawing of them as he pumps your gullet, and given how good the agony feels when he pinches or twists your [pc.nipple] it’s not hard to convince yourself that his pleasure is yours.");
 	output("\n\nHe pulls back and ruts your [pc.face] again, your gag reflex cowed into submission by the sheer bulk of his cock sliding down your gullet, a little more roughly than before, now that he can tell you’re enjoying being facefucked. It’s not hard, given the way you moan into his cock and your hips unconsciously lift off the bench when he rubs you deep. You have an audience but you don’t even notice them, more intent on the feeling of your perfectly aligned neck bulging and the sight of Edan’s taut ballsack slowly inching towards your face, albeit still over a foot away.");
-	//if (pc.race().toLower().indexOf("leithan") != -1)
-	if(pc.race() == "leithan" || pc.race() == "half-leithan") output("\n\nDespite being leithan yourself, your throat just isn’t up to the task of taking his entire length no matter how well-fucked it is. Your sweltering marepussy would have been a better bet, you think wistfully.");
+	if (pc.race().toLowerCase().indexOf("leithan") != -1) output("\n\nDespite being leithan yourself, your throat just isn’t up to the task of taking his entire length no matter how well-fucked it is. Your sweltering marepussy would have been a better bet, you think wistfully.");
 	else output("\n\nNot even if you were leithan could you take this entire thing in your throat. Still, being able to swallow half of his cock is a reward in itself. You probably wouldn’t have been better able to take him in your cunt or ass anyway, not that it makes you any less keen on the idea.");
 	if (pc.biggestTitSize() >= 12) output(" As Edan’s thrusting grows in intensity, your ginormous breasts jiggle up and down in time to the rhythm of your facefucking, your body getting shuffled down the bench a bit under the persuasive force of a 10-foot Leithan mating with your mouth.");
 	else output(" As Edan’s thrusting grows in intensity, your body is shuffled down the bench a bit under the persuasive force of a 10-foot Leithan mating with your mouth.");
@@ -601,7 +585,7 @@ public function edanSexThird():void
 	output("\n\nHe walks down alongside the bench until he’s");
 	if (pc.isTaur())
 	{
-		output(" standing next to your tauric hindquarters, and after placing one hand on your lower stomach pulls down your [pc.lowerGarments], exposing your [pc.pussy] to the air. He plunges two giant fingers into you with no warning, already soaked from your earlier exertions. You jolt upwards in surprise and need, your legs jerking in the air until Edan softly strokes your still-pudgy tummy.");
+		output(" standing next to your tauric hindquarters, and after placing one hand on your lower stomach pulls down your [pc.lowerGarments], exposing your [pc.vaginas] to the air. He plunges two giant fingers into you with no warning, already soaked from your earlier exertions. You jolt upwards in surprise and need, your legs jerking in the air until Edan softly strokes your still-pudgy tummy.");
 		output("\n\n<i>“Relax girl,”</i> He says while rubbing your [pc.skinFurScales], <i>“Just lie back and take it in.”</i>");
 		output("\n\nYou moan in subdued pleasure, equally happy that you’re finally being taken care of and surprised that he can be so gentle about it. He slips a third finger in and pumps you slowly, getting a feel for your pussy.");
 		output("\n\n<i>“Damn, Steele, you’re pretty pent up. If I didn’t know better, I’d say you were in heat what with all the pheromones you’re putting out. You need to come see me more often.”</i>");
@@ -612,12 +596,12 @@ public function edanSexThird():void
 	}
 	else
 	{
-		output(" standing beside you, and after placing one hand on your lower stomach pulls down your [pc.lowerGarments], exposing your [pc.pussy] to the air. He plunges a giant finger into you with no warning, already soaked from your earlier exertions. You jolt upwards in surprise and need, your hips jerking off the bench until Edan softly strokes your still-pudgy tummy and pushes you back down.");
+		output(" standing beside you, and after placing one hand on your lower stomach pulls down your [pc.lowerGarments], exposing your [pc.vaginas] to the air. He plunges a giant finger into you with no warning, already soaked from your earlier exertions. You jolt upwards in surprise and need, your hips jerking off the bench until Edan softly strokes your still-pudgy tummy and pushes you back down.");
 		output("\n\n<i>“Relax, Steele,”</i> He says while rubbing your [pc.skinFurScales], <i>“Just lie back and take it in.”</i>");
 		output("\n\nYou moan in subdued pleasure, equally happy that you’re finally being taken care of and surprised that he can be so gentle about it. He slips another finger in and pumps you slowly, getting a feel for your pussy.");
 		output("\n\n<i>“Damn, Steele, you’re as pent up as a leithan girl in heat. You should come see me more often.”</i>");
-		output("\n\nYou’re too insensate to consider replying, content instead to place your arms on the floor and use them to brace yourself as you lewdly moan, your mounting pleasure causing you to needily thrust your [pc.butt] upward into his fingers as best you can. Edan increases the pace in response, and it’s not long before he brings you to a couple of your own orgasms as you shudder in his grip, your lower half and [pc.legs] bucking under the firmness of his hand holding you down.");
-		output("\n\nWhen you beg Edan to stop as you can’t take any more, he brings you to a final crescendo and finally withdraws his hand from your still-spasming pussy. You lie there panting, awash in the endorphins and satisfaction as your tired legs splay to either side of the bench. Edan gets up and shifts his arm under you, easily lifting your body off the bench and depositing you back onto your shaky [pc.legs], supporting you with the other arm as you get used to standing again.");
+		output("\n\nYou’re too insensate to consider replying, content instead to place your arms on the floor and use them to brace yourself as you lewdly moan, your mounting pleasure causing you to needily thrust your [pc.butt] upward into his fingers as best you can. Edan increases the pace in response, and it’s not long before he brings you to a couple of your own orgasms as you shudder in his grip, your lower half and [pc.legOrLegs] bucking under the firmness of his hand holding you down.");
+		output("\n\nWhen you beg Edan to stop as you can’t take any more, he brings you to a final crescendo and finally withdraws his hand from your still-spasming pussy. You lie there panting, awash in the endorphins and satisfaction as your tired legs splay to either side of the bench. Edan gets up and shifts his arm under you, easily lifting your body off the bench and depositing you back onto your shaky [pc.legOrLegs], supporting you with the other arm as you get used to standing again.");
 		output("\n\n<i>“Good thing I didn’t fuck you for real or there’d be no chance of you walking, ha!”</i> He quips before turning to leave. <i>“See ya round, Steele. We’re gonna have some real fun next time.”</i>");
 		output("\n\nSeems like Edan <i>is</i> capable of being a nice guy, you think to yourself as you swallow the remainder of his cum down your abused throat, and gather yourself before heading out. You wonder what’s going to happen <i>“next time”</i> and have to stop yourself from fantasizing before you lose it and just start masturbating right here, although after your public facefucking you’re starting to think that’s not such a big deal.");
 	}
@@ -625,8 +609,7 @@ public function edanSexThird():void
 	pc.orgasm();
 	pc.exhibitionism(15);
 	processTime(20);
-	var pp:PregnancyPlaceholder = getEdanPregContainer();
-	pc.loadInMouth(pp);
+	pc.loadInMouth(chars["EDAN"]);
 	flags["EDAN_FUCKED"] = 3;
 	processTime(20);
 	addButton(0, "Next", mainGameMenu);
@@ -634,9 +617,14 @@ public function edanSexThird():void
 
 public function edanSexFourth():void
 {
+	generateMap();
+	
 	clearOutput();
 	clearMenu();
 	edanHeader();
+	
+	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
+	if(x < 0) x = pc.biggestVaginaIndex();
 	
 	output("You’re in the Mess’ attached bar, thankfully separated from the deafening din of the open hall by a sturdy wall and thick windows. Though still smoky, the bar has a much calmer, friendlier atmosphere, and you’re quickly able to find a seat thanks to a hostess at the door, wearing a strikingly skimpy version of the Carver uniform: a simple black vest, a thong, and fishnets to cover most of her body. The rest of the staff seems to be just as scantily clad, if not more so: a stage has been erected on one wall, where a topless ausar girl in nothing but her fishnets and a pair of pasties is currently singing to the accompaniment of an old-earth jazz band made up of raskvel in little tuxedos. The bar here is clearly catering to a higher-class clientele, and most of the people lounging around are fellow spacers and pioneers coming in for the planet rush, while others have the air of off-duty U.G.C. scouts and engineers. Almost everyone has a drink or a half-nude server in their lap, maybe both. This place is a weird mesh of retro earth and sensuality, that’s for sure.");
 	output("\n\nEdan points you to a table in one of the darker corners of the tavern and gives you a light swat on your [pc.butt] to put you on your way. You stick your tongue out at him while he gives you a smile and goes to talk to the owner, presumably about the <i>“something special”</i> he mentioned earlier. You sit down and relax for a bit, content to");
@@ -679,14 +667,17 @@ public function edanSexFourth():void
 		output("\n\n<i>“That uniform looks great on you. Pity it was such a pain to put on, though.”</i>");
 		output("\n\n<i>“Why’s that?”</i> You inquire, half-turning your torso to look at him.");
 		output("\n\n<i>“Well, I was going to ask you to dance in it,”</i> Edan says as he places a hand on the top of your [pc.butt], <i>“but now that I’m here and you’ve got me worked up, I’m one second away from ripping it off to fuck you.”</i>");
-		output("\n\n<i>“Right here? In,”</i> you lower your voice to a whisper. <i>“In the tavern?”</i> You ask Edan half in disbelief, half in pure undisguised horniness. <i>Finally</i>. Your [pc.pussy] is already wet at the possibility of being bred, something he’s sure to notice given he’s right behind you and you’re both taurs. You can smell his arousal mounting from below, your body reacting with its own pheromones and instantly making you lustier.");
+		output("\n\n<i>“Right here? In,”</i> you lower your voice to a whisper. <i>“In the tavern?”</i> You ask Edan half in disbelief, half in pure undisguised horniness. <i>Finally</i>. Your [pc.pussy " + x + "] is already wet at the possibility of being bred, something he’s sure to notice given he’s right behind you and you’re both taurs. You can smell his arousal mounting from below, your body reacting with its own pheromones and instantly making you lustier.");
 		output("\n\n<i>“Right here.”</i> He says as he idly nudges your thong aside and slips a finger into your boiling hot pussy, making you start with a breathy <i>“Oh!”</i> while you instinctively clench down on him in a futile attempt to draw him further in. He points at the seat he was sitting on.");
 		output("\n\n<i>“Put your front legs up on that.”</i>");
-		output("\n\nYou trot over to the seat, stomach aflutter and pussy aflame as he follows you with his hand still resting on your butt and his finger still inside you. Climbing up on the seat with your forelegs, you moan quietly as Edan pulls his finger out and puts both of his hands on your rump, testing how well you can take his weight. You hold steady, your [pc.legs] quaking more in arousal than any kind of stress, your pussy dripping on the floor below you as Edan spreads it open with his fingers and fills the air with your pheromones.");
+		output("\n\nYou trot over to the seat, stomach aflutter and pussy aflame as he follows you with his hand still resting on your butt and his finger still inside you. Climbing up on the seat with your forelegs, you moan quietly as Edan pulls his finger out and puts both of his hands on your rump, testing how well you can take his weight. You hold steady, your [pc.legOrLegs] quaking more in arousal than any kind of stress, your pussy dripping on the floor below you as Edan spreads it open with his fingers and fills the air with your pheromones.");
 		output("\n\n<i>“</i>Fuck<i>. I hope you’re ready, Steele, because I’m not gonna be gentle.”</i>");
 		output("\n\nHe rears up and mounts your midsection, his giant equine cock slapping the underside of your belly as he does. You scrabble a bit at the added weight but stay standing, strength inspired by your intense desire to be spread wide and roughly fucked by his maleness. And spread <i>wide</i> you’re going to be.");
 		output("\n\nYou know he’s huge, but size takes on a different dimension when you actually have a gigantic leithan male pracically enveloping you. You feel his massive dick slide back from your belly as he adjusts his footing above you, getting ready to plunge it between your eager lower lips. You push backwards against him, a quiet whine of frustration escaping your mouth. You <i>need</i> his cock sheathed in you, impaling you and throbbing.");
-		output("\n\nHe aligns himself against your dribbling pussy and doesn’t bother telling you to relax – as the blunted tip of his horse-like penis brushes your labia, your hindquarters unconsciously jolt and the next thing you know you’re moaning in ecstasy while his cockhead parts your folds, advancing slowly into a passage that was never meant to be stretched so wide. You pant and moan in mixed agony and pleasure, already on the verge of orgasm as Edan’s cock conquers the first few inches of the wet and warm walls of your [pc.pussy].");
+		output("\n\nHe aligns himself against your dribbling pussy and doesn’t bother telling you to relax – as the blunted tip of his horse-like penis brushes your labia, your hindquarters unconsciously jolt and the next thing you know you’re moaning in ecstasy while his cockhead parts your folds, advancing slowly into a passage that was never meant to be stretched so wide. You pant and moan in mixed agony and pleasure, already on the verge of orgasm as Edan’s cock conquers the first few inches of the wet and warm walls of your [pc.pussy " + x + "].");
+		
+		pc.cuntChange(x, chars["EDAN"].cockVolume(0));
+		
 		output("\n\nHe pulls out, leaving you painfully empty for less than a second before ramming back into your still-gaping hole and this time you <i>do</i> cum, teeth clenched painfully tight to avoid screaming and drawing attention to the two of you in the tavern. Your vagina ripples around the head of his cock, desperately trying to entice it into filling you with a hot load of leithan spunk. Edan gives your [pc.butt] a smack just to let you know that it’s not over yet, and pushes further in. You gasp as your bent forelegs unexpectedly buckle, causing you to fall to your shaky knees on the seat.");
 		output("\n\nEdan’s front half falls a few inches as well, following your descent and pushing your front half further into the seat as his weight lands on you. The rapid movement has the added effect of getting another few inches into your already overstuffed pussy, and at that you can’t help but let out a small scream of surprise and pleasure.");
 		output("\n\n<i>“You really love this, don’t you Steele?”</i> Edan says as he draws back for another steady insertion. <i>“I’m starting to understand you more now - you keep coming back to me, and I think you actually like this more than I do.”</i>");
@@ -698,7 +689,7 @@ public function edanSexFourth():void
 		output("\n\n<i>“I knew it. You really </i>are<i> the sexiest girl I’ve ever seen.”</i>");
 		output("\n\nYou’re too incoherent to reply, your entire canal wrapped around what feels like a rock-hard pillar of flesh, muscles too weak to flex but retaining your tightness by virtue of his size. You moan instead, the only thing you’re really capable of doing at the moment. You suddenly realize you can feel his cock actually getting slightly wider inside you followed by a sensation of intense warmth in your womb. You remember from your rough facefuckings that this is what happened immediately before he came, and thrust back at him with a desperate renewed vigor, panting in your eagerness to be filled and overflowing.");
 		output("\n\n<i>“Fuck, that’s the way, Steele. You’ll get it real soon.”</i>");
-		output("\n\nHe starts pumping you like a piston, each thrust accompanied by lewd splatters and fretful moans as your pussy acquiesces to Edan’s throbbing cock, wetness coursing down your hind legs and dripping onto the floor from your [pc.pussy]. He pulls back once more and slams into you, grabbing your [pc.breasts] and sealing your lips with a rough kiss as he starts to cum, your surprise immediately giving way to orgasmic delight as a continuous stream of leithan sperm jets into your waiting womb.");
+		output("\n\nHe starts pumping you like a piston, each thrust accompanied by lewd splatters and fretful moans as your pussy acquiesces to Edan’s throbbing cock, wetness coursing down your hind legs and dripping onto the floor from your [pc.pussy " + x + "]. He pulls back once more and slams into you, grabbing your [pc.breasts] and sealing your lips with a rough kiss as he starts to cum, your surprise immediately giving way to orgasmic delight as a continuous stream of leithan sperm jets into your waiting womb.");
 		output("\n\nYou moan into Edan’s mouth as his tongue wraps around yours, being dominated at both ends making you weak enough at the knees that you’d have collapsed were his stiff, pulsing cock not holding you upright. Your [pc.belly] rapidly swells outwards as your womb is forced to accept load after load as he pumps you with short hip motions, his spunk drowning your fallopian tubes and eventually venting back out of your abused cunt, spraying down your legs as his ejaculation continues.");
 		output("\n\nBy the time he finishes you’re a sodden wreck, your shaking humanoid half only upright because he’s supporting you with his hands. He lets you free and you collapse onto the seat with a moaning post-orgasm sigh, ultimately sated in the wake of being fucked so utterly. Edan slowly dismounts, taking care to avoid being caught in the rapidly increasing flow of jism issuing forth from your gaping cunt.");
 		output("\n\nYou groan at the sensation of him pulling out of you, his flared head scraping your tingling nerves on its way out and making you quiver, aftershocks running through your body. He slips free with a wet pop and a cascade of jizz follows, splattering into the drains running through the floor of the tavern as you collapse only to find yourself being held up by Edan.");
@@ -715,7 +706,7 @@ public function edanSexFourth():void
 	}
 	else
 	{
-		output("\n\n{<i>“You won’t be able to fit everything on because there’s some stuff in there for non-humanoids, but just put on what looks like it’ll fit.”</i>");
+		output("\n\n<i>“You won’t be able to fit everything on because there’s some stuff in there for non-humanoids, but just put on what looks like it’ll fit.”</i>");
 		output("\n\nYou sort through the pile of clothing and pick out the bits and bobs you’ll be able to put on before getting up and turning to face Edan, looking him in the eye while your [pc.breasts] reveal themselves as you slowly remove your [pc.upperGarments]. You rub yourself theatrically, running your fingers over your [pc.nipples] and moaning for him");
 		if (pc.biggestTitSize() >= 4) output(" as you playfully push your tits together before letting them fall, jiggling");
 		output(".")
@@ -745,14 +736,19 @@ public function edanSexFourth():void
 		if (pc.tallness < 108) output("up ");
 		output("at him.");
 		output("\n\n<i>“Well, I was going to ask you to dance in it,”</i> Edan says as he moves closer, putting a giant hand on your [pc.butt] and gently pulling you against his body, <i>“but now that I’m here and you’ve got me worked up, I’m one second away from ripping it off to fuck you.”</i>");
-		output("\n\n<i>“Right here? In..”</i> you lower your voice to a whisper. <i>“In the tavern?”</i> You ask Edan half in disbelief, half in pure undisguised horniness. <i>Finally</i>. Your [pc.pussy] is already wet at the possibility of being bred, a trickle of moisture slowly rolling down your inner thigh. You can smell his arousal mounting from below, the musk of leithan pheromones entering your nostrils and instantly making you lustier.");
+		output("\n\n<i>“Right here? In..”</i> you lower your voice to a whisper. <i>“In the tavern?”</i> You ask Edan half in disbelief, half in pure undisguised horniness. <i>Finally</i>. Your [pc.pussy " + x + "] is already wet at the possibility of being bred, a trickle of moisture slowly rolling down your inner thigh. You can smell his arousal mounting from below, the musk of leithan pheromones entering your nostrils and instantly making you lustier.");
 		output("\n\n<i>“Right here,”</i> he says as he idly nudges your thong aside and slips a finger into your boiling hot pussy, making you start with a breathy <i>“Oh!”</i> while you instinctively clench down on him in a futile attempt to draw him further in. He points at the wall.");
 		output("\n\n<i>“Stand up against that and spread your legs, babe.”</i>");
-		output("\n\nYou slowly walk over to the seat, your motion halting as he follows you with his finger still resting inside the opening to your pussy. Placing your hands against the wall, you moan quietly as Edan pulls his finger out, allowing you to spread your [pc.legs]. Your legs quake in arousal, your pussy dripping on the floor below you as Edan spreads it open with his fingers and fills the air with your aroused scent.");
+		output("\n\nYou slowly walk over to the seat, your motion halting as he follows you with his finger still resting inside the opening to your pussy. Placing your hands against the wall, you moan quietly as Edan pulls his finger out");
+		if(pc.hasLegs()) output(", allowing you to spread your [pc.legs]");
+		output(". Your legs quake in arousal, your pussy dripping on the floor below you as Edan spreads it open with his fingers and fills the air with your aroused scent.");
 		output("\n\n<i>“</i>Fuck<i>. I hope you’re ready, Steele, because I’m not gonna be gentle.”</i>");
 		output("\n\nHe rears up and places his forelegs against the wall, easily encompassing you with his bulk, his giant equine cock slapping against your pussy as he does. You shake and moan a bit at the impact but stay steady, strength inspired by your intense desire to be spread wide and roughly fucked by his maleness.");
 		output("\n\nAnd spread <i>wide</i> you’re going to be. You know he’s huge, but size takes on a different dimension when you actually have a gigantic Leithan male practically enveloping you. You feel his massive dick slide across your passion-inflamed lips as he adjusts his footing above you, getting ready to fill you up. You rub your needy pussy along his length, a quiet whine of frustration escaping your mouth. You <i>need</i> his cock sheathed in you, impaling you and throbbing.");
-		output("\n\nHe aligns himself against your dribbling cunt and doesn’t bother telling you to relax – as the blunted tip of his horse-like penis brushes your labia, you unconsciously jolt and the next thing you know you’re moaning in ecstasy while his cockhead parts your folds, advancing slowly into a passage that was never meant to be stretched so wide. You pant and moan in mixed agony and pleasure, already on the verge of orgasm as Edan’s cock conquers the first few inches of the wet and warm walls of your [pc.pussy].");
+		output("\n\nHe aligns himself against your dribbling cunt and doesn’t bother telling you to relax – as the blunted tip of his horse-like penis brushes your labia, you unconsciously jolt and the next thing you know you’re moaning in ecstasy while his cockhead parts your folds, advancing slowly into a passage that was never meant to be stretched so wide. You pant and moan in mixed agony and pleasure, already on the verge of orgasm as Edan’s cock conquers the first few inches of the wet and warm walls of your [pc.pussy " + x + "].");
+		
+		pc.cuntChange(x, chars["EDAN"].cockVolume(0));
+		
 		output("\n\nHe pulls out, leaving you painfully empty for less than a second before ramming back into your still-gaping hole and this time you <i>do</i> cum, teeth clenched painfully tight to avoid screaming and drawing attention to the two of you in the tavern. Your vagina ripples around the head of his cock, desperately trying to entice it into filling you with a hot load of Leithan spunk.");
 		output("\n\nEdan gives your [pc.butt] a smack just to let you know that it’s not over yet, and pushes further in. You gasp as your legs unexpectedly buckle, causing you to fall to a half-crouch before you tense your legs and catch yourself. The new angle and clenching of your pussy draws Edan another few inches into your already overstuffed pussy, and at that you can’t help but let out a small scream of surprise and pleasure.");
 		output("\n\n<i>“You really love this don’t you Steele?”</i> Edan says as he draws back for another steady insertion. <i>“I’m starting to understand you more now. You keep coming back to me, and I think you actually like this more than I do.”</i>");
@@ -764,7 +760,7 @@ public function edanSexFourth():void
 		output("\n\n<i>“I knew it. You really </i>are<i> the sexiest girl I’ve ever seen.”</i>");
 		output("\n\nYou’re too incoherent to reply, your entire canal wrapped around what feels like a rock-hard pillar of flesh, muscles too weak to flex but retaining your tightness by virtue of his size. You moan instead, the only thing you’re really capable of doing at the moment. You suddenly realize you can feel his cock actually getting slightly wider inside you followed by a sensation of intense warmth in your womb. You remember from your rough facefuckings that this is what happened immediately before he came, and thrust back at him with a desperate renewed vigor, panting in your eagerness to be filled and overflowing.");
 		output("\n\n<i>“Fuck, that’s the way, Steele. You’ll get it real soon.”</i>");
-		output("\n\nHe starts pumping you like a piston, each thrust accompanied by lewd splatters and fretful moans as your pussy acquiesces to Edan’s throbbing cock, wetness coursing down hind legs and dripping onto the floor from your [pc.pussy]. He pulls back once more and slams into you, lifting you completely off the ground and impaling you while you’re suspended in the air, sealing your lips with a rough kiss as he starts to cum, your surprise immediately giving way to orgasmic delight as a continuous stream of Leithan sperm jets into your waiting womb.");
+		output("\n\nHe starts pumping you like a piston, each thrust accompanied by lewd splatters and fretful moans as your pussy acquiesces to Edan’s throbbing cock, wetness coursing down hind legs and dripping onto the floor from your [pc.pussy " + x + "]. He pulls back once more and slams into you, lifting you completely off the ground and impaling you while you’re suspended in the air, sealing your lips with a rough kiss as he starts to cum, your surprise immediately giving way to orgasmic delight as a continuous stream of Leithan sperm jets into your waiting womb.");
 		output("\n\nYou moan into Edan’s mouth as his tongue wraps around yours, being dominated at both ends making you weak enough at the knees that you’d have collapsed were he not holding you on his stiff, pulsing cock as he sprays your womb. Your [pc.belly] rapidly swells outwards as your womb is forced to accept load after load as he pumps you with short hip motions, his spunk drowning your fallopian tubes and eventually venting back out of your abused cunt, spraying down your legs as his ejaculation continues.");
 		output("\n\nBy the time he finishes you’re a sodden wreck, completely incapable of supporting yourself were you on the ground. Edan slowly pulls you off his cock, taking care to avoid being caught in the rapidly increasing flow of jism issuing forth from your gaping cunt. You groan at the sensation, his flared head scraping your tingling nerves on its way out and making you quiver, aftershocks running through your body. He slips free with a wet pop and a cascade of jizz follows, splattering into the drains running through the floor of the tavern as he carries you back to a seat.");
 		output("\n\n<i>“Can’t collapse here, Steele,”</i> He says with a grin. <i>“We’ve got to get you out of that uniform, at the least.”</i>");
@@ -780,8 +776,7 @@ public function edanSexFourth():void
 	}
 	
 	processTime(60);
-	var pp:PregnancyPlaceholder = getEdanPregContainer();
-	pc.loadInCunt(pp);
+	pc.loadInCunt(chars["EDAN"],x);
 	pc.orgasm();
 	pc.exhibitionism(3);
 	flags["EDAN_FUCKED"] = 4;
@@ -790,15 +785,20 @@ public function edanSexFourth():void
 
 public function edanSexFifth():void
 {
+	generateMap();
+	
 	clearOutput();
 	clearMenu();
 	edanHeader();
+	
+	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
+	if(x < 0) x = pc.biggestVaginaIndex();
 	
 	output("You walk up the protruding ramp with him and note the entrance is massively tall -");
 	if (pc.tallness >= 108)
 	{	
 		output(" a relief to you, being as big as you are. Dealing with doorways on most planets is such a drag");
-		if (flags["LANDED_ON_TEXAS"] = 1) output(", New Texas being the last one you can remember fitting in everywhere");
+		if (flags["LANDED_ON_TEXAS"] != undefined) output(", New Texas being the last one you can remember fitting in everywhere");
 		output(". You turn your head as Edan activates the lights with a voice command.");
 	}
 	else if ((pc.tallness < 108) && (pc.tallness > 84))
@@ -820,25 +820,31 @@ public function edanSexFifth():void
 	output("\n\n<i>Mission accomplished.</i> You rise with a sly grin and sashay over to the couch, your hips swinging out tantalizingly with every step while you strip off your [pc.gear]. Edan is close behind, his hot breath on you more like a predatory animal than any civilized species. You’d be afraid of what he was going to do to you if you didn’t want it so fucking bad.");
 	if (pc.isTaur()) 
 	{
-		output("You put your forelegs on the couch and spread your hind legs as far as you can to allow easy access, your [pc.tail] flitting about in eager anticipation. Edan wastes no time in mounting you, his gigantic cock searching out your [pc.pussy]. He rams it in with a bestial roar, your slickened lips and canal instantly surrendering to his overwhelming size. Oh fuck, this is going to be <i>so</i> good.");
+		output("You put your forelegs on the couch and spread your hind legs as far as you can to allow easy access, your [pc.tail] flitting about in eager anticipation. Edan wastes no time in mounting you, his gigantic cock searching out your [pc.pussy " + x + "]. He rams it in with a bestial roar, your slickened lips and canal instantly surrendering to his overwhelming size. Oh fuck, this is going to be <i>so</i> good.");
+		
+		pc.cuntChange(x, chars["EDAN"].cockVolume(0));
+		
 		output("\n\nThe overactive pheromones you’ve elicited from him with your teasing fill your mind with images of being bred like a mare in heat, the reality only reinforcing the fantasy. You can see the bioluminescence erratically flickering and pulsing brightly across his chitin-covered legs, proof of his wild state of mind. He seizes your midsection in his massive hands to fuck you deeper, sliding more of his equine rod into you until his flared head is pressed up against your womb and pulsating.");
 		output("\n\nYou moan loudly at the sensation of his balls pressing into your [pc.butt], the knowledge you’ve taken his entire length every bit as hot as the actual feeling of having his cock filling you. It’s like an iron pole impaling you right through your insides, except it’s throbbing and spraying warm precum all throughout your thoroughly distended cunt. He sighs in luxurious satisfaction.");
 		output("\n\n<i>“Fuck! That’s more like it. You make this worth it every time.”</i>");
 		output("\n\nEdan takes you by your shoulders and tilts your torso back, kissing you roughly while he savagely pumps your hindquarters, forcing you to moan into his mouth. You feel yourself getting closer and closer to climax and pull him towards you, pushing yourself back into his massive body as he stiffens and flexes, rapidly approaching his own orgasm. He pulls back from the kiss and grabs your [pc.breasts], the pulse of his cock thrumming through your body explosively as the two of you cum.");
 		output("\n\nYou can’t help but throw your head back and scream in pleasure looking up at him, your face sweaty and red as you shudder and shake underneath his bulk. His jizz spouts straight into");
-		if(pc.isPregnant(x)) output(" your willing canal, not even a second passing before you’re too full to contain any more. The warmth of his ejaculation fills you for what feels like minutes, each shot sending a thrill of sympathetic pleasure down your spine while you quietly moan.");
+		if (pc.isPregnant(x)) output(" your willing canal, not even a second passing before you’re too full to contain any more. The warmth of his ejaculation fills you for what feels like minutes, each shot sending a thrill of sympathetic pleasure down your spine while you quietly moan.");
 		else output(" your waiting womb, thick ropes of Leithan spunk splattering inside you. Oh god, he’s filling you so quickly! It’s not long before his virility is making your underhanging stomach swell and sag with the thick warmth of his cum. You groan in both pleasure and mild annoyance, each shot sending a thrill of sympathetic pleasure down your spine but making it less likely you’ll be able to walk.");
 		output("He finally pulls out, both of you panting in exertion and after-lust. A thin sheen of shimmering sweat covers your bodies, Edan sliding off you slowly as he dismounts. His cum immediately begins rolling down your hindlegs, but you’re too spent to really care. Your legs shake and you collapse forward onto the giant couch, your [pc.butt] in the air and your pussy spilling cum. A wave of exhaustion rolls over you and you briefly entertain the idea of just staying in the couch forever.");
 	}
 	else
 	{
-		output("You get on the couch and sit doggystyle, arching your back and spreading your legs to allow easy access, waving your [pc.butt] in eager anticipation. Edan wastes no time in crashing down above you, his gigantic cock searching out your [pc.pussy]. He rams it in with a bestial roar, your slickened lips and canal instantly surrendering to his overwhelming size. Oh fuck, this is going to be <i>so</i> good.");
+		output("You get on the couch and sit doggystyle, arching your back and spreading your legs to allow easy access, waving your [pc.butt] in eager anticipation. Edan wastes no time in crashing down above you, his gigantic cock searching out your [pc.pussy " + x + "]. He rams it in with a bestial roar, your slickened lips and canal instantly surrendering to his overwhelming size. Oh fuck, this is going to be <i>so</i> good.");
+		
+		pc.cuntChange(x, chars["EDAN"].cockVolume(0));
+		
 		output("\n\nThe overactive pheromones you’ve elicited from him with your teasing fill your mind with images of being bred like a mare in heat, the reality only reinforcing the fantasy. You can see the bioluminescence erratically flickering and pulsing brightly across his chitin-covered legs, proof of his wild state of mind. He thrusts his powerful hips to fuck you deeper, sliding more of his equine rod into you until his flared head is pressed up against your womb and pulsating.");
 		output("\n\nYou moan loudly at the sensation of taking him as deep as you possibly can, the knowledge he’s filling you up every bit as hot as the actual feeling of his cock. It’s like an iron pole impaling you right through your insides, except it’s throbbing and spraying warm precum all throughout your thoroughly distended cunt. He sighs in luxurious satisfaction.");
 		output("\n\n<i>“Fuck! That’s more like it. You make this worth it every time.”</i>");
 		output("\n\nEdan bends at the knees, his underslung stomach pressing into your back. You’re borne into the couch under his immense weight, moaning all the while as he savagely pumps your pussy into submission. You feel yourself getting closer and closer to climax and thrust back into him desperately as he stiffens and flexes, rapidly approaching his own orgasm. He collapses on top of you, the pulse of his cock thrumming throughout your body explosively as the two of you cum.");
 		output("\n\nYou can’t help but scream into the couch as he lays atop you, your face sweaty and red as you shiver and shake underneath his weight. You lie under him unable to move, just taking his orgasm between your shuddering legs. His jizz spouts straight into");
-		if(pc.isPregnant(x)) output(" your willing canal, not even a second passing before you’re too full to contain any more. The warmth of his ejaculation fills you for what feels like minutes, each shot sending a thrill of sympathetic pleasure down your spine while you quietly moan.}");
+		if (pc.isPregnant(x)) output(" your willing canal, not even a second passing before you’re too full to contain any more. The warmth of his ejaculation fills you for what feels like minutes, each shot sending a thrill of sympathetic pleasure down your spine while you quietly moan.");
 		else output(" your waiting womb, thick ropes of Leithan spunk splattering inside you. Oh god, he’s filling you so quickly! It’s not long before his virility is making your stomach swell and sag into the couchwith the thick warmth of his cum. You groan in both pleasure and mild annoyance, each shot sending a thrill of sympathetic pleasure down your spine but making it less likely you’ll be able to walk.");
 		output(" He finally pulls out, both of you panting in exertion and after-lust. A thin sheen of shimmering sweat covers your bodies, Edan sliding off you slowly as he dismounts. His cum immediately begins rolling down your legs, but you’re too spent to really care. You remain stationary on the couch, your [pc.butt] in the air and your pussy spilling cum. A wave of exhaustion rolls over you and you briefly entertain the idea of just staying where you are forever.");
 	}
@@ -860,13 +866,16 @@ public function edanSexFifth():void
 	output("\n\nSmiling inwardly, you go back to doing what you do best: throating Edan’s cock like a pro. You effortlessly swallow feet of cock, your lips inching down his length, feeling his cum vein flex and stretch your mouth wider every few seconds. Gag reflex completely suppressed, your cock worship is a full body experience. You stroke it up and down with alternating paces, you slip it between your [pc.breasts] and rub your [pc.nipples] with it, your tongue rubs every ridge and bump along its length, you swallow his hot pre to massage it with weak undulations of your throat.");
 	output("\n\nIt’s not long before he’s teetering on the brink of orgasm, huffing in equal parts pleasure and torturous desire. You can actually feel the moment his sense of reason dissipates, signaled half by the increasingly angry throbbing of blood in his massive penis and half by the fact he groans and pushes you further down. He shifts around on the coach to lie on top of you, his cock embedded in your throat as far as it’ll go. With a couple of rough pumps that set your body jiggling, his grip on you tightens and you feel him begin to hose your insides down with spunk.");
 	output("\n\nAfter the bestial display earlier this orgasm is more muted, but no less bountiful. You obediently lie under him, your mouth at his service and your throat wrapped around his cock as he slowly swells you from the inside. You wrap your arms around his midsection and squeeze, urging him to give you as much as he wants, and he obliges in spades. Very soon");
-	if(!pc.isPregnant(x)) output(" your stomach has swollen to match your womb, and being held down and pumped soon exceeds it. There’s no convenient escape route for the cum this time and he’s so deep that it won’t just flow back out your throat, so you’re forced to lie on the couch and just quietly take everything he wants to give you. You suck and swallow and weakly rub his midriff, his bulk shivering in pleasure every time he deposits another load deep in your gurgling tummy.");
+	if (!pc.isPregnant(x)) output(" your stomach has swollen to match your womb, and being held down and pumped soon exceeds it. There’s no convenient escape route for the cum this time and he’s so deep that it won’t just flow back out your throat, so you’re forced to lie on the couch and just quietly take everything he wants to give you. You suck and swallow and weakly rub his midriff, his bulk shivering in pleasure every time he deposits another load deep in your gurgling tummy.");
 	else output(" your stomach has swollen to match your pregnancy, and being held down and pumped soon exceeds it. There’s no convenient escape route for the cum this time and he’s so deep that it won’t just flow back out your throat, so you’re forced to lie on the couch and just quietly take everything he wants to give you. You suck and swallow and weakly rub his midriff, his bulk shivering in pleasure every time he deposits another load deep in your gurgling tummy.");
 	output("\n\nBy the time he’s done and he pulls out, your well-fucked mouth hangs open dribbling cum between your [pc.lips] and your eyes are half rolled back in your head. You see Edan’s face swim into view above you and give him a moan to let him know you’re conscious, albeit tired.");
 	output("\n\n<i>“[pc.name]? Maybe I went overboard. Lets get you to the shower, huh?”</i>");
 	output("\n\nDespite some initial struggles with your cum-swelled form");
 	if (pc.isTaur()) output(" like the fact your [pc.feet] can hardly scrape the ground");
 	output(", he maneuvers you into a large room with a smooth floor. He puts you down and water begins to pour from overhead, warming you up and raising you from your sated torpor. You look up at him half in bewilderment and half in something approaching religious fanaticism.");
+	
+	pc.shower();
+	
 	output("\n\n<i>“That was <i>amazing</i>.”</i>");
 	output("\n\n<i>“Yeah, they do good delivery,”</i> comes the completely straight-faced reply, making you smile and laugh. Edan grabs some liquid soap and begins rubbing it into you, leaving you to lean back into him and relax with your eyes closed as he carefully washes you up with suds and warm water. Nothing like a bit of pampering, especially when you’re incapable of doing it yourself. It’s quite the switch-up, although you’re not complaining. You are curious, though. You mention the change in his demeanor to Edan and he shrugs noncommittally.");
 	output("\n\n<i>“Guess I just wanted to show some appreciation. Like I said, you’re the only one that’s ever been able to keep up with me. Be a shame if I didn’t show you some hospitality.”</i>");
@@ -874,8 +883,7 @@ public function edanSexFifth():void
 	output("\n\n<i>“No?”</i> He says, looking at you for a clue.");
 	output("\n\n<i>“No. It’s my turn.”</i>");
 	output("\n\nHe relaxes and drags a bucket and wet towel across to give to you. <i>“Use these. Makes the chitin much less of a pain to clean");
-	//if (pc.race().toLower().indexOf("leithan") != -1)
-	if(pc.race() == "leithan" || pc.race() == "half-leithan") output(" although I guess you already know");
+	if (pc.race().toLowerCase().indexOf("leithan") != -1) output(" although I guess you already know");
 	output(".”</i>");
 	output("\n\n<i>“It’s not like you have to make them shine as a merc, right? You’re not exactly hobnobbing with CEOs,”</i> You ask, idly wondering if you can learn anything about his life.");
 	output("\n\n<i>“Well, I have a CEO rubbing me down with a towel right now. Does that not count?”</i> You give him a light ineffectual punch and he laughs. <i>“Right, a prospective CEO. Guess you’ve still gotta find the other probes you talked about.”</i>");
@@ -915,6 +923,9 @@ public function edanSexFifth():void
 	output("\n\n<i>“Fuck me </i>hard<i>,”</i> you moan lustily.");
 	output("\n\n<i>“Always do.”</i>");
 	output("\n\nEdan slides down and grasps your [pc.butt], aligning himself with your [pc.asshole] and pushing forward with a grunt. You yelp a little as his flare slips inside your ring, but the rest is smooth and sensitive sailing. He pulls you down the bed until it’s fully in you, leaving you weakly writhing on the pillar impaling you from the bottom up. After letting you get used to it he slowly starts pumping you, increasing in intensity until you’re loudly grunting in a very un-ladylike manner every time he hilts himself in your guts.");
+	
+	pc.buttChange(chars["EDAN"].cockVolume(0));
+	
 	output("\n\n It’s impossible not to cry out in lust and pleasure when a few feet of cock is rearranging your internal organs to better turn you into a cumdump, and you don’t bother resisting the urge. He loves hearing you break down over his dick until you’re incapable of doing anything other than just taking it, and you do love to please. The full-body stimulation is just too much for your frame and before long you’re cumming with every other thrust, your [pc.pussy] spasming and still leaking spunk from your earlier fucking.");
 	output("\n\nYou practically seize in his grip, your muscles completely taut as the electric thrill of multiple orgasms crashes throughout your nervous system and leaves you gasping for breath. Taking that as his cue to finish up, Edan thrusts roughly into you once, twice, and then groans as he starts refilling you with warm seed. You moan and sigh erotically when you feel your insides being plastered with his jizz once more, the heat starting at your core and blossoming outwards as your bowels are filled over and over. He hugs you closer as your stomach swells out again, this time from the other end. Wriggling in his grip as you blow up, you can’t help but wonder how much more you can even take. You’re starting to taste his cum in your mouth, and it’s not just from sucking his cock earlier.");
 	output("\n\nFinally the spray of jizz into your innards recedes, and you’re left shivering on the end of his massive cock unable to move. He pulls a few pillows down from the top of the bed and props them under your head, pulling the blankets up and over. You almost instantly fall asleep being cradled in his arms, hoping that walking is a realistic proposition when you get up tomorrow.");
@@ -925,22 +936,28 @@ public function edanSexFifth():void
 	output("\n\n - Edan");
 	output("\n\nHang out indeed. Being blown up like a blimp by cum is fucking hot and the whole thing feels great, but there’s something to be said for being able to walk. Still, you’re keen to see him again. Eating a few bites of the leftovers you find his prediction was mostly true, and screw up your face at the prospect of having to finish it. You opt to close the container and put it back on the table, finding the rest of your gear strewn across the floor and putting it back on. Exiting Edan’s ship, you step down the ramp and into the Novahome hangar.");
 	
-	var pp:PregnancyPlaceholder = getEdanPregContainer();
-	pc.loadInCunt(pp,x);
-	pc.loadInAss(pp);
-	pc.loadInMouth(pp);
+	pc.loadInCunt(chars["EDAN"],x);
+	pc.loadInAss(chars["EDAN"]);
+	pc.loadInMouth(chars["EDAN"]);
 	processTime(800);
 	pc.orgasm();
 	pc.exhibitionism(3);
+	pc.shower();
+	sleepHeal();
 	flags["EDAN_FUCKED"] = 5;
 	addButton(0, "Next", mainGameMenu);
 }
 
 public function edanSexSixth():void
 {
+	generateMap();
+	
 	clearOutput();
 	clearMenu();
 	edanHeader();
+	
+	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
+	if(x < 0) x = pc.biggestVaginaIndex();
 	
 	output("Wrong. It’s every bit as boring, but even worse because it’s got next to nothing to do with you. Stifling a yawn, you eye the leithan lady on the other side of the desk you and Edan are standing in front of. Her business suit does an awfully poor job of concealing her buxom curves, and you find yourself idly wondering if she’s a mother. Her pretty face gives you no hints as to whether this might be true – nowadays, anybody can use mods to give themselves a youthful appearance. She excuses herself to fetch some documents for Edan to sign and you lean back, giving a restless sigh as you stretch a bit. Edan turns to you with the hint of a smile.");
 	output("\n\n<i>“I’m every bit as bored as you are, Steele. Offices and I don’t really get along too well, what with the furniture and overhead lights and all. Really, just being indoors kind of sucks in general. Kinda hard to convince a native species to put all their buildings together the same way they already do, but bigger, just to accommodate offworlders.”</i>");
@@ -969,7 +986,7 @@ public function edanSexSixth():void
 	output("\n\n<i>“We’re not done just yet, Anna. Put your hands against your desk, would you?”</i>");
 	output("\n\nShe pulls away from Edan and wordlessly nods, her breath a steady rhythm of lusty panting. Her movements are unsteady, but she grips the desk with purpose and looks back at Edan, who’s still grinning.");
 	output("\n\n<i>“I do so like a woman that knows what she wants,”</i> he says, giving you a wink as he settles into position.");
-	output("\n\nRearing up, his hands find purchase along her tauric hindquarters and he slides himself into her cunt with a wet squelch. You recognize the look on her face immediately despite never having actually seen it; it’s the same one you wear in the throes of passion when Edan’s inside you. Red cheeks, a firm bite down on the lower lip, gasps of pleasure and a heaving bosom as he fucks himself deeper into your stretched-out cunt. You’re out of your [pc.gear] in a flash, the heat of your own [pc.pussy] too much to bear in front of this orgiastic breeding frenzy.");
+	output("\n\nRearing up, his hands find purchase along her tauric hindquarters and he slides himself into her cunt with a wet squelch. You recognize the look on her face immediately despite never having actually seen it; it’s the same one you wear in the throes of passion when Edan’s inside you. Red cheeks, a firm bite down on the lower lip, gasps of pleasure and a heaving bosom as he fucks himself deeper into your stretched-out cunt. You’re out of your [pc.gear] in a flash, the heat of your own [pc.pussy " + x + "] is too much to bear in front of this orgiastic breeding frenzy.");
 	output("\n\nEdan leans back then slams his whole length into Anna, her entire body shaking with the effort of staying upright as her scream of pleasure rips through the thankfully-noiseproof office. Edan gets a grip on her hair to hold her upper half still while he pumps her, throbbing horsecock leaving her drippy wetness nowhere to go except spraying down her legs.");
 	output("\n\nAn idea comes to you then, and you slide neatly under the two of them until you’re positioned right where they’re joined. The next time Edan hilts himself, you lean up and give his sizeable balls a lusty lick.");
 	output("\n\n<i>“Oh shit,”</i> he groans, <i>“you always know what I want.”</i>");
@@ -988,7 +1005,10 @@ public function edanSexSixth():void
 	output("\n\n<i>“Calm down,”</i> Edan murmurs, <i>“you’ll get it soon.”</i>");
 	if (pc.isTaur()) output("\n\nHe places his hands on your shoulders, holding your upper half ");
 	else output("\n\nHe bends his knees slightly, bringing his weight down on you to hold your ");
-	output("still before you feel the blunted head of his dick pressing against your [pc.pussy], your labia spreading apart deliciously slowly. Then, all at once, he savagely spears you all the way to the hilt. Your scream of mixed mixed lust and discomfort dies in your throat as the head of his cock touches your cervix, setting off waves of pleasure and making you burn with need. You <i>need</i> him to fill your womb with cum - the pheromones in the air are making anything less an impossibility.");
+	output("still before you feel the blunted head of his dick pressing against your [pc.pussy " + x + "], your labia spreading apart deliciously slowly. Then, all at once, he savagely spears you all the way to the hilt. Your scream of mixed mixed lust and discomfort dies in your throat as the head of his cock touches your cervix, setting off waves of pleasure and making you burn with need. You <i>need</i> him to fill your womb with cum - the pheromones in the air are making anything less an impossibility.");
+	
+	pc.cuntChange(x, chars["EDAN"].cockVolume(0));
+	
 	output("\n\n<i>“You can smell them too, huh?”</i> Edan grunts, drawing back before slamming back home, his powerful legs driving him into you. <i>“I can - unh! Tell. Don’t worry, you’ll get what you’re looking for.”</i>");
 	if (pc.isTaur()) output("\n\nSo inflamed are your senses that you scarcely understand him, the actual words he’s saying secondary to his pleasing tone and low rumbles you feel in his chest. All you can really focus on right now is the fiery need between your hindlegs, the one he’s sating by filling you with cock. The sensation of each bump, nub and vein sliding through your slick entrance and into your deepest recesses is irresistible, and you find yourself fighting the unconscious act of your eyes rolling back in bliss.");
 	else output("\n\nEdan takes advantage of your complete submissiveness and pumps you as hard as you think possible, the rapid stimulation just too much for your body to bear. Your legs start to wobble and shake as pleasure radiates outward from your core and through your lower body, forcing Edan to clamp his grip down on you with his midlegs, holding you down and fucking you all the while.");
@@ -996,7 +1016,7 @@ public function edanSexSixth():void
 	if (pc.biggestTitSize() >= 4)
 	{
 		output(" shaking your [pc.breasts] up and down");
-		if(pc.isLactating()) output(" sending trickles of [pc.milk] down your front");
+		if (pc.isLactating()) output(" sending trickles of [pc.milk] down your front");
 	}
 	else output(" shaking you like a leaf in a storm");
 	output(". Whenever his swollen head kisses the entrance to your womb you can’t help but shiver in a miniature orgasm, his cockslit perfectly aligned with your opening and depositing splurts of hot, wet precum every time he hilts himself in you.");
@@ -1012,14 +1032,14 @@ public function edanSexSixth():void
 	if (pc.isTaur())
 	{
 		output("You red-facedly smile up at him, head tilted back");
-		if (pc.hasHair) output(", your hair an absolute mess,");
+		if (pc.hasHair()) output(", your hair an absolute mess,");
 		output(" and admiring his facial expression. You can see how much he loves to fuck you full of spunk; it’s written all over his face. The combined pleasure of feeling his seed pump into you and pride at seeing how much pleasure you’re bringing him bring you to another orgasm, your abused pussy weakly spasming and seizing along his cock. Your rippling walls slowly but inexorably milk Edan’s swollen prick for all it has, swelling you with his cum.");
 	}
 	else
 	{
 		output("\n\nYou smile red-facedly as you hear him groan and grunt, his throbbing dick holding you in place and rapidly filling you with jizz. The combined pleasure of feeling his seed pump into you and pride at hearing how much pleasure you're bringing him bring you to another orgasm, your abused pussy weakly spasming and seizing along his cock. Your rippling walls slowly but inexorably milk Edan's swollen prick for all it has, swelling you with his cum.");
 	}
-	output("\n\nWhen he finally pulls out, streams of jizz pour from your distended cunt and run down your [pc.legs] to pool on the floor of Anna’s office. You can’t help but moan loudly as the head pops free, a few ropes of leithan spunk painting themselves across your [pc.butt] as he dismounts. You turn around and obediently sink to your [pc.knees], sucking him off for the last few pumps of cum before it’s reduced to a drizzle across your tongue. He groans as you momentarily deepthroat him, tonguebathing his cock to clean it off.");
+	output("\n\nWhen he finally pulls out, streams of jizz pour from your distended cunt and run down your [pc.legOrLegs] to pool on the floor of Anna’s office. You can’t help but moan loudly as the head pops free, a few ropes of leithan spunk painting themselves across your [pc.butt] as he dismounts. You turn around and obediently sink to your [pc.knees], sucking him off for the last few pumps of cum before it’s reduced to a drizzle across your tongue. He groans as you momentarily deepthroat him, tonguebathing his cock to clean it off.");
 	output("\n\n<i>“Good girl,”</i> Edan grunts. <i>“Make sure to swallow.”</i>");
 	output("\n\nYou would have anyway, but at his instruction you make sure to pull back off his cock with a loud pop and look up at him. You swallow loudly and slowly, then lick your lips and smile sweetly up at him. He watches transfixed, then lifts his head to look at the ceiling with eyes closed and sighs.");
 	output("\n\n<i>“God damn it, [pc.name]. You keep that up and we’ll never get </i>out<i> of this office, and I don’t think Anna’d be happy about that, no matter how often she goes into heat.”</i>");
@@ -1039,9 +1059,8 @@ public function edanSexSixth():void
 	output("\n\n<i>“Alright, I’ll see you ‘round, Steele. Thanks for helping me negotiate, huh?”</i>");
 	output("\n\nEdan gives you a light slap on the [pc.butt] and gets in a good grope while he’s at it. You wait until he’s done feeling you up, but leave before you convince yourself to turn around and make him ride you again - or before his fingers roam too much. He leans against the doorframe and watches you go, giving you a wave before you disappear from sight, then heads back into his ship.");
 
-	var pp:PregnancyPlaceholder = getEdanPregContainer();
-	pc.loadInCunt(pp,x);
-	pc.loadInMouth(pp);
+	pc.loadInCunt(chars["EDAN"],x);
+	pc.loadInMouth(chars["EDAN"]);
 	processTime(180);
 	pc.orgasm();
 	pc.exhibitionism(1);
@@ -1052,6 +1071,11 @@ public function edanSexSixth():void
 //edan's repeatable sex scene for after all of his content is witnessed.
 public function edanSexRepeat():void
 {
+	generateMap();
+	
+	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
+	if(x < 0) x = pc.biggestVaginaIndex();
+	
 	output("\n\n<i>“Here we go. Like I said, it’s not fancy but it flies well and it was the roomiest one I could find.”</i>");
 	output("\n\nYou walk up the protruding ramp with him as Edan activates the lights with a voice command. The place is still pretty much the same as the last time you were here. It’s nice for a self-proclaimed traveling mercenary, with a couch and projector along with a dinner table in the living room. The scale of all the items actually in his ship are relatively huge, and there are no chairs. Roomy indeed.");
 	output("\n\n<i>“It’s not much, but it’s home.”</i> Edan shrugs. <i>“Take a seat, I’m gonna order some food.”</i>");
@@ -1064,32 +1088,38 @@ public function edanSexRepeat():void
 	output("\n\n<i>“Fuuuck! Okay, that’s it, get on the couch. Any longer down there and you’re going to be full before the food even gets here. Shit, you’re <i>really</i> going to get it.”</i>");
 	output("\n\nMission accomplished. You rise with a sly grin and sashay over to the couch, your hips swinging out tantalizingly with every step while you strip off your [pc.gear]. Edan is close behind, his hot breath on you more like a predatory animal than any civilized species. You’d be afraid of what he was going to do to you if you didn’t want it so fucking bad.");
 	if (pc.isTaur()) 
-		{
-			output("You put your forelegs on the couch and spread your hind legs as far as you can to allow easy access, your [pc.tail] flitting about in eager anticipation. Edan wastes no time in mounting you, his gigantic cock searching out your [pc.pussy]. He rams it in with a bestial roar, your slickened lips and canal instantly surrendering to his overwhelming size. Oh fuck, this is going to be <i>so</i> good.");
-			output("\n\nThe overactive pheromones you’ve elicited from him with your teasing fill your mind with images of being bred like a mare in heat, the reality only reinforcing the fantasy. You can see the bioluminescence erratically flickering and pulsing brightly across his chitin-covered legs, proof of his wild state of mind. He seizes your midsection in his massive hands to fuck you deeper, sliding more of his equine rod into you until his flared head is pressed up against your womb and pulsating.");
-			output("\n\nYou moan loudly at the sensation of his balls pressing into your [pc.butt], the knowledge you’ve taken his entire length every bit as hot as the actual feeling of having his cock filling you. It’s like an iron pole impaling you right through your insides, except it’s throbbing and spraying warm precum all throughout your thoroughly distended cunt. He sighs in luxurious satisfaction.");
-			output("\n\n<i>“Fuck! That’s more like it. You make this worth it every time.”</i>");
-			output("\n\nEdan takes you by your shoulders and tilts your torso back, kissing you roughly while he savagely pumps your hindquarters, forcing you to moan into his mouth. You feel yourself getting closer and closer to climax and pull him towards you, pushing yourself back into his massive body as he stiffens and flexes, rapidly approaching his own orgasm. He pulls back from the kiss and grabs your [pc.breasts], the pulse of his cock thrumming through your body explosively as the two of you cum.");
-			output("\n\nYou can’t help but throw your head back and scream in pleasure looking up at him, your face sweaty and red as you shudder and shake underneath his bulk. His jizz spouts straight into");
-			if(pc.isPregnant(x)) output(" your willing canal, not even a second passing before you’re too full to contain any more. The warmth of his ejaculation fills you for what feels like minutes, each shot sending a thrill of sympathetic pleasure down your spine while you quietly moan.");
-			else output(" your waiting womb, thick ropes of Leithan spunk splattering inside you. Oh god, he’s filling you so quickly! It’s not long before his virility is making your underhanging stomach swell and sag with the thick warmth of his cum. You groan in both pleasure and mild annoyance, each shot sending a thrill of sympathetic pleasure down your spine but making it less likely you’ll be able to walk.");
-			output("He finally pulls out, both of you panting in exertion and after-lust. A thin sheen of shimmering sweat covers your bodies, Edan sliding off you slowly as he dismounts. His cum immediately begins rolling down your hindlegs, but you’re too spent to really care. Your legs shake and you collapse forward onto the giant couch, your [pc.butt] in the air and your pussy spilling cum. A wave of exhaustion rolls over you and you briefly entertain the idea of just staying in the couch forever.");
-		}
-		else
-		{
-			output("You get on the couch and sit doggystyle, arching your back and spreading your legs to allow easy access, waving your [pc.butt] in eager anticipation. Edan wastes no time in crashing down above you, his gigantic cock searching out your [pc.pussy]. He rams it in with a bestial roar, your slickened lips and canal instantly surrendering to his overwhelming size. Oh fuck, this is going to be <i>so</i> good.");
-			output("\n\nThe overactive pheromones you’ve elicited from him with your teasing fill your mind with images of being bred like a mare in heat, the reality only reinforcing the fantasy. You can see the bioluminescence erratically flickering and pulsing brightly across his chitin-covered legs, proof of his wild state of mind. He thrusts his powerful hips to fuck you deeper, sliding more of his equine rod into you until his flared head is pressed up against your womb and pulsating.");
-			output("\n\nYou moan loudly at the sensation of taking him as deep as you possibly can, the knowledge he’s filling you up every bit as hot as the actual feeling of his cock. It’s like an iron pole impaling you right through your insides, except it’s throbbing and spraying warm precum all throughout your thoroughly distended cunt. He sighs in luxurious satisfaction.");
-			output("\n\n<i>“Fuck! That’s more like it. You make this worth it every time.”</i>");
-			output("\n\nEdan bends at the knees, his underslung stomach pressing into your back. You’re borne into the couch under his immense weight, moaning all the while as he savagely pumps your pussy into submission. You feel yourself getting closer and closer to climax and thrust back into him desperately as he stiffens and flexes, rapidly approaching his own orgasm. He collapses on top of you, the pulse of his cock thrumming throughout your body explosively as the two of you cum.");
-			output("\n\nYou can’t help but scream into the couch as he lays atop you, your face sweaty and red as you shiver and shake underneath his weight. You lie under him unable to move, just taking his orgasm between your shuddering legs. His jizz spouts straight into");
-			if(pc.isPregnant(x)) output(" your willing canal, not even a second passing before you’re too full to contain any more. The warmth of his ejaculation fills you for what feels like minutes, each shot sending a thrill of sympathetic pleasure down your spine while you quietly moan.}");
-			else output(" your waiting womb, thick ropes of Leithan spunk splattering inside you. Oh god, he’s filling you so quickly! It’s not long before his virility is making your stomach swell and sag into the couchwith the thick warmth of his cum. You groan in both pleasure and mild annoyance, each shot sending a thrill of sympathetic pleasure down your spine but making it less likely you’ll be able to walk.");
-			output(" He finally pulls out, both of you panting in exertion and after-lust. A thin sheen of shimmering sweat covers your bodies, Edan sliding off you slowly as he dismounts. His cum immediately begins rolling down your legs, but you’re too spent to really care. You remain stationary on the couch, your [pc.butt] in the air and your pussy spilling cum. A wave of exhaustion rolls over you and you briefly entertain the idea of just staying where you are forever.");
-		}
+	{
+		output("You put your forelegs on the couch and spread your hind legs as far as you can to allow easy access, your [pc.tail] flitting about in eager anticipation. Edan wastes no time in mounting you, his gigantic cock searching out your [pc.pussy " + x + "]. He rams it in with a bestial roar, your slickened lips and canal instantly surrendering to his overwhelming size. Oh fuck, this is going to be <i>so</i> good.");
+		
+		pc.cuntChange(x, chars["EDAN"].cockVolume(0));
+		
+		output("\n\nThe overactive pheromones you’ve elicited from him with your teasing fill your mind with images of being bred like a mare in heat, the reality only reinforcing the fantasy. You can see the bioluminescence erratically flickering and pulsing brightly across his chitin-covered legs, proof of his wild state of mind. He seizes your midsection in his massive hands to fuck you deeper, sliding more of his equine rod into you until his flared head is pressed up against your womb and pulsating.");
+		output("\n\nYou moan loudly at the sensation of his balls pressing into your [pc.butt], the knowledge you’ve taken his entire length every bit as hot as the actual feeling of having his cock filling you. It’s like an iron pole impaling you right through your insides, except it’s throbbing and spraying warm precum all throughout your thoroughly distended cunt. He sighs in luxurious satisfaction.");
+		output("\n\n<i>“Fuck! That’s more like it. You make this worth it every time.”</i>");
+		output("\n\nEdan takes you by your shoulders and tilts your torso back, kissing you roughly while he savagely pumps your hindquarters, forcing you to moan into his mouth. You feel yourself getting closer and closer to climax and pull him towards you, pushing yourself back into his massive body as he stiffens and flexes, rapidly approaching his own orgasm. He pulls back from the kiss and grabs your [pc.breasts], the pulse of his cock thrumming through your body explosively as the two of you cum.");
+		output("\n\nYou can’t help but throw your head back and scream in pleasure looking up at him, your face sweaty and red as you shudder and shake underneath his bulk. His jizz spouts straight into");
+		if (pc.isPregnant(x)) output(" your willing canal, not even a second passing before you’re too full to contain any more. The warmth of his ejaculation fills you for what feels like minutes, each shot sending a thrill of sympathetic pleasure down your spine while you quietly moan.");
+		else output(" your waiting womb, thick ropes of Leithan spunk splattering inside you. Oh god, he’s filling you so quickly! It’s not long before his virility is making your underhanging stomach swell and sag with the thick warmth of his cum. You groan in both pleasure and mild annoyance, each shot sending a thrill of sympathetic pleasure down your spine but making it less likely you’ll be able to walk.");
+		output("He finally pulls out, both of you panting in exertion and after-lust. A thin sheen of shimmering sweat covers your bodies, Edan sliding off you slowly as he dismounts. His cum immediately begins rolling down your hindlegs, but you’re too spent to really care. Your legs shake and you collapse forward onto the giant couch, your [pc.butt] in the air and your pussy spilling cum. A wave of exhaustion rolls over you and you briefly entertain the idea of just staying in the couch forever.");
+	}
+	else
+	{
+		output("You get on the couch and sit doggystyle, arching your back and spreading your legs to allow easy access, waving your [pc.butt] in eager anticipation. Edan wastes no time in crashing down above you, his gigantic cock searching out your [pc.pussy " + x + "]. He rams it in with a bestial roar, your slickened lips and canal instantly surrendering to his overwhelming size. Oh fuck, this is going to be <i>so</i> good.");
+		
+		pc.cuntChange(x, chars["EDAN"].cockVolume(0));
+		
+		output("\n\nThe overactive pheromones you’ve elicited from him with your teasing fill your mind with images of being bred like a mare in heat, the reality only reinforcing the fantasy. You can see the bioluminescence erratically flickering and pulsing brightly across his chitin-covered legs, proof of his wild state of mind. He thrusts his powerful hips to fuck you deeper, sliding more of his equine rod into you until his flared head is pressed up against your womb and pulsating.");
+		output("\n\nYou moan loudly at the sensation of taking him as deep as you possibly can, the knowledge he’s filling you up every bit as hot as the actual feeling of his cock. It’s like an iron pole impaling you right through your insides, except it’s throbbing and spraying warm precum all throughout your thoroughly distended cunt. He sighs in luxurious satisfaction.");
+		output("\n\n<i>“Fuck! That’s more like it. You make this worth it every time.”</i>");
+		output("\n\nEdan bends at the knees, his underslung stomach pressing into your back. You’re borne into the couch under his immense weight, moaning all the while as he savagely pumps your pussy into submission. You feel yourself getting closer and closer to climax and thrust back into him desperately as he stiffens and flexes, rapidly approaching his own orgasm. He collapses on top of you, the pulse of his cock thrumming throughout your body explosively as the two of you cum.");
+		output("\n\nYou can’t help but scream into the couch as he lays atop you, your face sweaty and red as you shiver and shake underneath his weight. You lie under him unable to move, just taking his orgasm between your shuddering legs. His jizz spouts straight into");
+		if (pc.isPregnant(x)) output(" your willing canal, not even a second passing before you’re too full to contain any more. The warmth of his ejaculation fills you for what feels like minutes, each shot sending a thrill of sympathetic pleasure down your spine while you quietly moan.");
+		else output(" your waiting womb, thick ropes of Leithan spunk splattering inside you. Oh god, he’s filling you so quickly! It’s not long before his virility is making your stomach swell and sag into the couchwith the thick warmth of his cum. You groan in both pleasure and mild annoyance, each shot sending a thrill of sympathetic pleasure down your spine but making it less likely you’ll be able to walk.");
+		output(" He finally pulls out, both of you panting in exertion and after-lust. A thin sheen of shimmering sweat covers your bodies, Edan sliding off you slowly as he dismounts. His cum immediately begins rolling down your legs, but you’re too spent to really care. You remain stationary on the couch, your [pc.butt] in the air and your pussy spilling cum. A wave of exhaustion rolls over you and you briefly entertain the idea of just staying where you are forever.");
+	}
 	output("\n\nEdan meanders into what you assume is the bathroom and returns to toss a ridiculously oversized towel under you. You can’t help but laugh exhaustedly.");
 	output("\n\n<i>“This again?”</i>");
-	output("\n\nEdan laughs good-naturedly and slaps your vulnerable butt. This time, you maneuver yourself back into a sitting position and wrap yourself in a towel before the delivery boy gets there. As open as you are to exhibitionism, there’s no need to scar a cute delivery boy. Edan hands him a tip and carries a giant stack of food back in as the door shuts, setting down a couple containers near you and putting the rest on the table. He easily lifts {if !pc.isTaur(): you//else: r back half} up and plops you on the couch with your comically-sized towel before snatching the remote up, mashing through the channels. Before long, he sighs and tosses it back on the couch.");
+	output("\n\nEdan laughs good-naturedly and slaps your vulnerable butt. This time, you maneuver yourself back into a sitting position and wrap yourself in a towel before the delivery boy gets there. As open as you are to exhibitionism, there’s no need to scar a cute delivery boy. Edan hands him a tip and carries a giant stack of food back in as the door shuts, setting down a couple containers near you and putting the rest on the table. He easily lifts you" + (pc.isTaur() ? "r back half" : "") + " up and plops you on the couch with your comically-sized towel before snatching the remote up, mashing through the channels. Before long, he sighs and tosses it back on the couch.");
 	output("\n\n<i>“I don’t know why I bother. Screw this, lets watch those movies.”</i>");
 	output("\n\nNot like you were going anywhere in your current state.");
 	output("\n\n<i>-- 45 minutes go by --</i>");
@@ -1101,7 +1131,7 @@ public function edanSexRepeat():void
 	output("\n\nSmiling inwardly, you go back to doing what you do best: throating Edan’s cock like a pro. You effortlessly swallow feet of cock, your lips inching down his length, feeling his cum vein flex and stretch your mouth wider every few seconds. Gag reflex completely suppressed, your cock worship is a full body experience. You stroke it up and down with alternating paces, you slip it between your [pc.breasts] and rub your [pc.nipples] with it, your tongue rubs every ridge and bump along its length, you swallow his hot pre to massage it with weak undulations of your throat.");
 	output("\n\nIt’s not long before he’s teetering on the brink of orgasm, huffing in equal parts pleasure and torturous desire. You can actually feel the moment his sense of reason dissipates, signaled half by the increasingly angry throbbing of blood in his massive penis and half by the fact he groans and pushes you further down. He shifts around on the coach to lie on top of you, his cock embedded in your throat as far as it’ll go. With a couple of rough pumps that set your body jiggling, his grip on you tightens and you feel him begin to hose your insides down with spunk.");
 	output("\n\nAfter the bestial display earlier this orgasm is more muted, but no less bountiful. You obediently lie under him, your mouth at his service and your throat wrapped around his cock as he slowly swells you from the inside. You wrap your arms around his midsection and squeeze, urging him to give you as much as he wants, and he obliges in spades. Very soon");
-	if(!pc.isPregnant(x)) output(" your stomach has swollen to match your womb, and being held down and pumped soon exceeds it. There’s no convenient escape route for the cum this time and he’s so deep that it won’t just flow back out your throat, so you’re forced to lie on the couch and just quietly take everything he wants to give you. You suck and swallow and weakly rub his midriff, his bulk shivering in pleasure every time he deposits another load deep in your gurgling tummy.");
+	if (!pc.isPregnant(x)) output(" your stomach has swollen to match your womb, and being held down and pumped soon exceeds it. There’s no convenient escape route for the cum this time and he’s so deep that it won’t just flow back out your throat, so you’re forced to lie on the couch and just quietly take everything he wants to give you. You suck and swallow and weakly rub his midriff, his bulk shivering in pleasure every time he deposits another load deep in your gurgling tummy.");
 	else output(" your stomach has swollen to match your pregnancy, and being held down and pumped soon exceeds it. There’s no convenient escape route for the cum this time and he’s so deep that it won’t just flow back out your throat, so you’re forced to lie on the couch and just quietly take everything he wants to give you. You suck and swallow and weakly rub his midriff, his bulk shivering in pleasure every time he deposits another load deep in your gurgling tummy.");
 	output("\n\nBy the time he’s done and he pulls out, your well-fucked mouth hangs open dribbling cum between your [pc.lips] and your eyes are half rolled back in your head. You see Edan’s face swim into view above you and give him a moan to let him know you’re conscious, albeit tired.");
 	output("\n\n<i>“[pc.name]? Maybe I went overboard. Lets get you to the shower, huh?”</i>");
@@ -1114,6 +1144,9 @@ public function edanSexRepeat():void
 	output("\n\n<i>“No?”</i> He says, looking at you for a clue.");
 	output("\n\n<i>“No. It’s my turn.”</i>");
 	output("\n\nHe relaxes and drags a bucket and wet towel across to give to you. You move around to his front and he sits up, uncrossing his arms so you can wash his chest. Soaping him up, you wash his muscular arms and chest, taking care to gently massage his upper body. You towel him down with warm water and shuffle closer, pressing your [pc.chest] against his front and getting your hands under him before he stops you.");
+	
+	pc.shower();
+	
 	output("\n\n<i>“How about we continue in the bedroom?”</i>");
 	output("\n\n<i>“So we cleaned up for nothing?”</i> You put on a pout, but you can’t hide that you’re eager for his dick to be inside you. <i>“Fine, but you’re still going to have to help me there.”</i>");
 	output("\n\nThe both of you wrestle your still-cumflated body into Edan’s bedroom and onto his bed, where you collapse on your side.");
@@ -1123,7 +1156,10 @@ public function edanSexRepeat():void
 	output("\n\n<i>“Fuck me </i>hard<i>,”</i> you moan lustily.");
 	output("\n\n<i>“Always do.”</i>");
 	output("\n\nEdan slides down and grasps your [pc.butt], aligning himself with your [pc.asshole] and pushing forward with a grunt. You yelp a little as his flare slips inside your ring, but the rest is smooth and sensitive sailing. He pulls you down the bed until it’s fully in you, leaving you weakly writhing on the pillar impaling you from the bottom up. After letting you get used to it he slowly starts pumping you, increasing in intensity until you’re loudly grunting in a very un-ladylike manner every time he hilts himself in your guts.");
-	output("\n\n It’s impossible not to cry out in lust and pleasure when a few feet of cock is rearranging your internal organs to better turn you into a cumdump, and you don’t bother resisting the urge. He loves hearing you break down over his dick until you’re incapable of doing anything other than just taking it, and you do love to please. The full-body stimulation is just too much for your frame and before long you’re cumming with every other thrust, your [pc.pussy] spasming and still leaking spunk from your earlier fucking.");
+	
+	pc.buttChange(chars["EDAN"].cockVolume(0));
+	
+	output("\n\n It’s impossible not to cry out in lust and pleasure when a few feet of cock is rearranging your internal organs to better turn you into a cumdump, and you don’t bother resisting the urge. He loves hearing you break down over his dick until you’re incapable of doing anything other than just taking it, and you do love to please. The full-body stimulation is just too much for your frame and before long you’re cumming with every other thrust, your [pc.pussy " + x + "] spasming and still leaking spunk from your earlier fucking.");
 	output("\n\nYou practically seize in his grip, your muscles completely taut as the electric thrill of multiple orgasms crashes throughout your nervous system and leaves you gasping for breath. Taking that as his cue to finish up, Edan thrusts roughly into you once, twice, and then groans as he starts refilling you with warm seed. You moan and sigh erotically when you feel your insides being plastered with his jizz once more, the heat starting at your core and blossoming outwards as your bowels are filled over and over. He hugs you closer as your stomach swells out again, this time from the other end. Wriggling in his grip as you blow up, you can’t help but wonder how much more you can even take. You’re starting to taste his cum in your mouth, and it’s not just from sucking his cock earlier.");
 	output("\n\nFinally the spray of jizz into your innards recedes, and you’re left shivering on the end of his massive cock unable to move. He pulls a few pillows down from the top of the bed and props them under your head, pulling the blankets up and over. You almost instantly fall asleep being cradled in his arms, hoping that walking is a realistic proposition when you get up tomorrow.");
 	output("\n\nWhen you do wake up, it’s caused by the sensation of water falling on you. You groggily open your eyes to find Edan has carried you into the shower for another scrub, and looking down you see your swelling has receded. You grumble a bit and Edan shooshes you.");
@@ -1133,12 +1169,16 @@ public function edanSexRepeat():void
 	output("\n\n- Edan”</i>");
 	output("\n\nHang out indeed. Being blown up like a blimp by cum is fucking hot and the whole thing feels great, but there’s something to be said for being able to walk. Still, you’re keen to see him again. Eating a few bites of the leftovers you find his prediction was mostly true, and screw up your face at the prospect of having to finish it. You opt to close the container and put it back on the table, finding the rest of your gear strewn across the floor and putting it back on. Exiting Edan’s ship, you step down the ramp and into the Novahome hangar.");
 
-	var pp:PregnancyPlaceholder = getEdanPregContainer();
-	pc.loadInCunt(pp,x);
-	pc.loadInAss(pp);
-	pc.loadInMouth(pp);
+	pc.loadInCunt(chars["EDAN"],x);
+	pc.loadInAss(chars["EDAN"]);
+	pc.loadInMouth(chars["EDAN"]);
 	processTime(800);
 	pc.orgasm();
+	pc.shower();
+	sleepHeal();
+	
+	IncrementFlag("EDAN_FUCKED");
+	
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -1148,6 +1188,8 @@ public function edanSexRepeat():void
 //START OF DRINKING SCENES
 public function edanDrinksIntro():void //broooooo
 {
+	generateMap();
+	
 	clearOutput();
 	clearMenu();
 	edanHeader();
@@ -1176,12 +1218,8 @@ public function edanDrinksIntro():void //broooooo
 		{
 			output("the muscles in your entire arm swelling with the effort, veins making themselves apparent across your forearm.");
 			output("\n\n<i>“Goddamn, Steele. You spend all of your spare time in the gym?");
-			if(pc.race() == "leithan" || pc.race() == "half-leithan") output("That’s impressive even for a leithan.”</i>");
-			else output(" That’s impressive as hell for");
-			{
-				if(pc.race() == "ausar" || pc.race() == "half-ausar") output(" an ausar.”</i>");
-				else output(" a [pc.race].”</i>");
-			}
+			if (pc.race().toLowerCase().indexOf("leithan") != -1) output(" That’s impressive even for a leithan.”</i>");
+			else output(" That’s impressive as hell for " + indefiniteArticle(pc.race().toLowerCase()) + ".”</i>");
 			output("\n\nThe gunshow over, you return to what matters - drinking.");
 		}
 		else 
@@ -1191,11 +1229,11 @@ public function edanDrinksIntro():void //broooooo
 			output("\n\nYou nod your agreement and get back to what matters - drinking.");
 		}
 		output("You pass the time drinking and talking, getting progressively louder and drunker until you both realize it’s time to go before things get out of hand. You both get up to leave and Edan turns to you to shake your hand and say goodbye for now.");
-
+		
 		addButton(0, "Leave", edanDrinksLeave);
 		addButton(1, "Sex", edanDrinksSexFirst, undefined, "Sex", "Proposition Edan for some drunken fun.");
 	}
-	else if (flags["EDAN_FUCKED"] == 1)
+	else
 	{
 		output("You’re in the Mess’ attached bar, thankfully separated from the deafening din of the open hall by a sturdy wall and thick windows. Though still smoky, the bar has a much calmer, friendlier atmosphere, and you’re quickly able to find a seat thanks to a hostess at the door, wearing a strikingly skimpy version of the Carver uniform: a simple black vest, a thong, and fishnets to cover most of her body. The rest of the staff seems to be just as scantily clad, if not more so: a stage has been erected on one wall, where a topless ausar girl in nothing but her fishnets and a pair of pasties is currently singing to the accompaniment of an old-earth jazz band made up of raskvel in little tuxedos. The bar here is clearly catering to a higher-class clientele, and most of the people lounging around are fellow spacers and pioneers coming in for the planet rush, while others have the air of off-duty U.G.C. scouts and engineers. Almost everyone has a drink or a half-nude server in their lap, maybe both. This place is a weird mesh of retro earth and sensuality, that’s for sure.");
 		output("\n\nYou order some drinks from the bartender, noting that Edan is palming your butt through your [pc.underGarments] as you do. You indulge his attentions, pushing your [pc.ass] back against him before turning away to find a table. Thankfully, the bar is more accommodating of leithans than the mess hall is. You find a table to fit the both of you tucked away in a corner and take a seat across from Edan.");
@@ -1210,6 +1248,25 @@ public function edanDrinksIntro():void //broooooo
 		addButton(0, "Leave", edanDrinksLeave);
 		addButton(1, "Sex", edanDrinksSexSecond, undefined, "Sex", "Always am!");
 	}
+	
+	// Quasar effects
+	processTime(10);
+	if(pc.hasStatusEffect("Quivering Quasar"))
+	{
+		if(pc.statusEffectv2("Quivering Quasar") < 10)
+		{
+			pc.addStatusValue("Quivering Quasar", 2, 5);
+			pc.physiqueMod += 5;
+			pc.lust(5);
+		}
+	}
+	else
+	{
+		pc.createStatusEffect("Quivering Quasar",0,5,0,0,false,"Icon_DizzyDrunk","This top-shelf alcohol makes you feel stronger - so much so that your maximum physique is temporarily increased.",false,180);
+		pc.physiqueMod += 5;
+		pc.lust(5);
+	}
+	pc.imbibeAlcohol(20);
 }
 
 public function edanDrinksLeave():void
@@ -1252,8 +1309,7 @@ public function edanDrinksSexFirst():void
 	output("\n\n<i>“Probably time to get out of here, Steele. Someone’s gonna have to clean this, and it’s not gonna be me.”</i>");
 	output("\n\nYou nod and say your goodbyes, cleaning yourself off a bit before making your own exit. A drunken patron at the urinals gives you a sarcastic clap as you walk past before pissing on his own pants. As you make your way out of the toilets to the sound of his cursing, you consider that you’ve probably never seen such swift karmic retribution.");
 	
-	var pp:PregnancyPlaceholder = getEdanPregContainer();
-	pc.loadInMouth(pp);
+	pc.loadInMouth(chars["EDAN"]);
 	processTime(10);
 	pc.lust(30)
 	addButton(0, "Next", mainGameMenu);
@@ -1261,6 +1317,8 @@ public function edanDrinksSexFirst():void
 
 public function edanDrinksSexSecond():void
 {
+	generateMap();
+	
 	clearOutput();
 	clearMenu();
 	edanHeader();
@@ -1281,33 +1339,36 @@ public function edanDrinksSexSecond():void
 	
 	pc.lust(40);
 	processTime(20);
-	var pp:PregnancyPlaceholder = getEdanPregContainer();
-	pc.loadInMouth(pp);
+	pc.loadInMouth(chars["EDAN"]);
 	addButton(0, "Next", mainGameMenu);
 }
 
 public function edanDrinksSexThird():void
 {
+	generateMap();
+	
+	var isLeithan:Boolean = pc.race().toLowerCase().indexOf("leithan") != -1;
+	
 	output("You’re in the Mess’ attached bar, thankfully separated from the deafening din of the open hall by a sturdy wall and thick windows. Though still smoky, the bar has a much calmer, friendlier atmosphere, and you’re quickly able to find a seat thanks to a hostess at the door, wearing a strikingly skimpy version of the Carver uniform: a simple black vest, a thong, and fishnets to cover most of her body. The rest of the staff seems to be just as scantily clad, if not more so: a stage has been erected on one wall, where a topless ausar girl in nothing but her fishnets and a pair of pasties is currently singing to the accompaniment of an old-earth jazz band made up of raskvel in little tuxedos. The bar here is clearly catering to a higher-class clientele, and most of the people lounging around are fellow spacers and pioneers coming in for the planet rush, while others have the air of off-duty U.G.C. scouts and engineers. Almost everyone has a drink or a half-nude server in their lap, maybe both. This place is a weird mesh of retro earth and sensuality, that’s for sure.");
 	output("\n\nEdan orders drinks for the two of you at the bar then pats you lightly on the butt to maneuver you over to a table in the corner of the tavern, out of sight of most of the other patrons. You think nothing of the table selection, suddenly distracted by the realization that in the darkness of the tavern, Edan’s skin is faintly glowing yellow.");
-	if (!CodexManager.entryUnlocked("Leithans") && !((pc.race() == "leithan") || (pc.race() == "half-leithan")))
+	if (!CodexManager.entryUnlocked("Leithans") && !isLeithan)
 	{
 		output("\n\n<i>“Why are you glowing?”</i> You bluntly inquire, before realizing maybe it’s something private; you know there are some species whose colorations are sexual indicators.");
 		output("\n\n<i>“Oh, the bioluminescence? That’s a leithan thing. They’re half a way to scare off predators and half a way to tell if we’re pissed off or just experiencing extreme emotion. Chances are you won’t see it at full blast unless we’re doing something <i>really</i> wild, ha. You’ve never asked your friendly neighborhood Leithan why they glow?”</i> Edan jokes.");
 		output("\n\nYou shrug.");
 	}
-	else if (CodexManager.entryUnlocked("Leithans") && !((pc.race() == "leithan") || (pc.race() == "half-leithan")))
+	else if (CodexManager.entryUnlocked("Leithans") && !isLeithan)
 	{
 		output("\n\n<i>“Oh, I can see your lights. They’re mostly to warn predators off, right?”</i> You remark offhandedly.");
-		output("\n\nEdan shrugs. <i>“Nowadays, they’re mostly indicators of extreme emotion since most of the leithans that grow up on our homeworld move off it. Aren’t too many predators out here like the ones back home. You probably won’t see me light up unless we’re doing something <i>really</i> wild, ha.”</i>}");
+		output("\n\nEdan shrugs. <i>“Nowadays, they’re mostly indicators of extreme emotion since most of the leithans that grow up on our homeworld move off it. Aren’t too many predators out here like the ones back home. You probably won’t see me light up unless we’re doing something <i>really</i> wild, ha.”</i>");
 	}
 	else
 	{
 		output("\n\nEdan catches you looking and looks puzzled before realizing.");
-		output("\n\n<i>“Right, you wouldn’t have grown up on the homeworld. I guess you haven’t seen many other Leithans glowing in the dark, ha. It’s really only useful back home to make predators wary, anyway. Nowadays it just glows when we’re experiencing extreme emotion... but you probably already know that, huh?”</i> he says with a knowing wink.}");
+		output("\n\n<i>“Right, you wouldn’t have grown up on the homeworld. I guess you haven’t seen many other Leithans glowing in the dark, ha. It’s really only useful back home to make predators wary, anyway. Nowadays it just glows when we’re experiencing extreme emotion... but you probably already know that, huh?”</i> he says with a knowing wink.");
 	}
 	output("\n\nHe placed some subtle emphasis on the ‘we’ there, prompting you to wonder if you could get fucked so well as to make him experience <i>“extreme emotion”</i>. You briefly wonder what a 10 foot Leithan possessed by breeding lust might look like,");
-	if ((pc.race() == "leithan") || (pc.race() == "half-leithan")) output(" not having any experience with males of your own species. Maybe it’s the same-race bias, but you can’t imagine there’d be a better way to be fucked than to be mounted by a huge leithan stud with a cock like Edan’s. You don’t think your desire to be roughly fucked into the ground like Edan’s needy slut is to do with your biology, though. That’s <i>probably</i> just you, although you can’t say for sure.");
+	if (isLeithan) output(" not having any experience with males of your own species. Maybe it’s the same-race bias, but you can’t imagine there’d be a better way to be fucked than to be mounted by a huge leithan stud with a cock like Edan’s. You don’t think your desire to be roughly fucked into the ground like Edan’s needy slut is to do with your biology, though. That’s <i>probably</i> just you, although you can’t say for sure.");
 	else output(" not having any experience with leithan males. Giving Edan a once-over with your eyes you don’t know if you’d even survive the experience, but you do know it’d be worth finding out just to see what it feels like to be fully speared on his cock. He’s so big he could probably hilt inside you and leave you there like a sock.");
 	output("You return to idle chitchat before you can get too distracted, although most of it is flirtatious innuendo from you to entice Edan into fucking you. You’re on the verge of just getting under the table yourself to force the issue when the drinks arrive.");
 	output("\n\nThe dusky-skinned waitress appears red-faced and sweaty, placing your drinks and two bottles on the table and giving you an eyeful and more of her well-rounded butt as she does so thanks to the contours of her dress.");
@@ -1325,35 +1386,41 @@ public function edanDrinksSexThird():void
 	output("\n\n<i>“Hey babe. You having fun down he- holy shit, that is </i>the<i> biggest cock I have ever seen. Hey, get down here!”</i>");
 	output("\n\nThe next thing you know you’re being crowded by a trio of half-naked Ausar girls eager to see what the deal is below-table, each jockeying for a position between Edan’s legs in between chatter and excitement. Whatever, between that drink and your natural inclination, all you’re interested in is Edan’s cock. They can get some too if they want it.");
 	output("\n\n<i>“Damn, she’s keen. Not that I blame her, </i>look<i> at this thing. Mmm.”</i>");
-	output("\n\nOne of the girls sits alongside you and runs her tongue up the base of Edan’s cock, clearly not shy at all about participating in a group blowjob. Another one slips under her to fondle and lick his taut ballsack, your combined actions eliciting a groan from above. Hey, this is kinky AND kind of fun. The third girl, though, catches you offguard by pulling down your [pc.lowerGarments], your [pc.pussy] suddenly bared to the air.");
+	output("\n\nOne of the girls sits alongside you and runs her tongue up the base of Edan’s cock, clearly not shy at all about participating in a group blowjob. Another one slips under her to fondle and lick his taut ballsack, your combined actions eliciting a groan from above. Hey, this is kinky AND kind of fun. The third girl, though, catches you offguard by pulling down your [pc.lowerGarments], your [pc.vaginas] suddenly bared to the air.");
 	output("\n\nYou start a bit, but you’re too busy slowly jacking Edan off and sucking to admonish her. Besides, this might be good. She runs her fingers across your hotly inflamed lips, the wetness of your arousal soaking her hand in your juices before she’s even entered you. You hear her voice from behind you.");
 	output("\n\n<i>“Damn, you’re really getting off on sucking this guy’s cock. Seems a little lopsided to me, let’s see if I can make this as good for you as you’re making it for him!”</i>");
 	output("\n\nYou feel her move her hand away and hear her shuffle around a bit behind you, most of your attention still focused on Edan’s bulging cum vein and panting exhalations above you. You must be making him feel <i>really</i> good, servile happiness taking root in your head. You flicker your tongue over one of the veins on his throbbing dick as the girl on your right places her entire mouth around his ballsack and gently sucks, causing another low moan.");
-	output("\n\nYou feel a slight burn of ugly jealousy in your stomach, but you don’t have time to dwell on it as the Ausar girl behind you {if pc.race != leithan: lifts your [pc.butt] and} all but shoves her snout into your {if pc.race() == leithan: rear-mounted} snatch, licking up and down to collect your moisture and making you shake in ecstasy, femcum dripping freely and keeping her in a cycle of slurping and licking.");
+	output("\n\nYou feel a slight burn of ugly jealousy in your stomach, but you don’t have time to dwell on it as the Ausar girl behind you");
+	if (!isLeithan) output(" lifts your [pc.butt] and");
+	output(" all but shoves her snout into your");
+	if (isLeithan) output(" rear-mounted");
+	output(" snatch, licking up and down to collect your moisture and making you shake in ecstasy, femcum dripping freely and keeping her in a cycle of slurping and licking.");
 	output("\n\nYour tongue jerks erratically across Edan’s shaft as you cum right into the Ausar bitch’s mouth, moaning loudly all the while. At the extra stimulation and at the sound of his drunken cumslut sexily writhing and gasping below him Edan jerks forward, unable to resist cumming. He groans in satisfaction as his cock slips right between your [pc.lips], ramming home as your pliant throat eagerly devours at least a quarter of his absurd length, the flare of his head swelling your throat to a degree that has your Ausar sidekicks looking on in a mix of awe, trepidation, and intense desire. You struggle to keep up as Edan’s loads begin gushing into you, your jaw stretched to capacity around his throbbing manhood as you desperately swallow his spunk.");
 	output("\n\n<i>“Is she swallowing - is she going to swallow <i>all of it?</i>”</i>");
 	output("\n\n<i>“This is the <i>hottest</i> thing I’ve ever fucking seen!”</i>");
 	output("\n\nThe Ausar girls have stopped what they’re doing to watch and listen to your throat swell and the loud, strained swallowing accompanying the passage of each load as it’s deposited into your stomach. You hardly notice their stares, enraptured entirely by the feeling of Edan’s spunk being pumped into you, warming you from the inside and satiating your alcohol-induced desire to suck cock.");
-	output("\n\nIt feels <i>so good</i> to fulfill your needs that you cum on the spot, unaided by stimulus beyond what you’re being subjected to by Edan. By now the girls around you are silent save for panting gasps of exertion and pleasure, the noises of lewd squishing as they masturbate fiercely going unheard by your [pc.ears], the pounding of Edan’s heartbeat, his satisfied groans, his whispered praise and the splatter of his cum inside you filling your world entirely. At the peak of his flow you cum yourself, unable to resist between the feeling of being filled and the sight of the debauchery around you. Your eyes roll back as femcum explosively sprays the floor {if pc.race == leithan: behind you,//else: below you,} dripping from your [pc.pussy].");
+	output("\n\nIt feels <i>so good</i> to fulfill your needs that you cum on the spot, unaided by stimulus beyond what you’re being subjected to by Edan. By now the girls around you are silent save for panting gasps of exertion and pleasure, the noises of lewd squishing as they masturbate fiercely going unheard by your [pc.ears], the pounding of Edan’s heartbeat, his satisfied groans, his whispered praise and the splatter of his cum inside you filling your world entirely. At the peak of his flow you cum yourself, unable to resist between the feeling of being filled and the sight of the debauchery around you. Your eyes roll back as femcum explosively sprays the floor " + (isLeithan ? "behind" : "below") + " you, dripping from your [pc.vaginas].");
 	output("\n\nWhat feels like minutes pass as you continue to suck and swallow, hollowing your cheeks as best you can as your mouth is rutted, your chin dripping with saliva and cum as little excesses spurt out onto your face. Finally he finishes and as he slips his prick from between your [pc.lips] having finished using you as a cumdump,");
-	if ((pc.race() == "leithan") || (pc.race() == "half-leithan")) output(" your humanoid half flags to the side, suddenly tired. You’re supported by the Ausar girl next to you, who takes the opportunity to ");
+	if (isLeithan) output(" your humanoid half flags to the side, suddenly tired. You’re supported by the Ausar girl next to you, who takes the opportunity to ");
 	else output(" you flop backwards into the arms of the Ausar girl behind you, who takes the opportunity to sneakily slip her hands past your [pc.upperGarments] and ");
 	if (pc.biggestTitSize() < 4) output("rub your [pc.breasts], tweaking your [pc.nipples] to draw a tired moan from you before leaning down to give you a gentle kiss on the mouth. You’re too tired to resist but you wouldn’t have anyway, the soft embrace of her tongue around yours soothing after fitting your mouth around Edan. After a while, she pulls away with a smile.");
 	else if ((pc.biggestTitSize() >= 4) && (pc.biggestTitSize() < 12)) output("cup your [pc.breasts], sliding her hands up your tits and letting them jiggle as they fall before gently seizing your [pc.nipples] and lightly pulling until you have no choice but to loudly moan, even as tired as you are. She leans down to give you a gentle kiss on the mouth, slipping you some tongue to get a taste for what you haven’t swallowed. After several moments of passionate kissing, she pulls away with a smile.");
 	else
 	{
 		output("sink her hands into the flesh of your [pc.breasts], gently massaging you as she leans down and seals your quietly moaning mouth shut with a soft kiss, her hands slowly seeking out your [pc.nipples] to tease you. She alternates between gentle rubbing and fierce pinching as she passionately intertwines her tongue with your own, pulling your nipples until you cry out into her mouth and she pulls away with a smile.");
-		output("\n\n<i>“Sorry babe, guess I got a bit carried away. Your performance was just so inspiring, and I can’t help but play with such beautiful tits.”</i>}");
+		output("\n\n<i>“Sorry babe, guess I got a bit carried away. Your performance was just so inspiring, and I can’t help but play with such beautiful tits.”</i>");
 	}
-	output("\n\nYou give her a peck on the cheek before looking up at Edan, your breasts sweaty and heaving as you pant, your [pc.nipples] stiffly erect and your face wet with a mixture of [pc.race] saliva, Ausar saliva, and Edan’s cum. He looks down with a barely restrained grin.");
+	output("\n\nYou give her a peck on the cheek before looking up at Edan, your breasts sweaty and heaving as you pant, your [pc.nipples] stiffly erect and your face wet with a mixture of [pc.race] saliva, ausar saliva, and Edan’s cum. He looks down with a barely restrained grin.");
 	output("\n\n<i>“Fucking hell, Steele. I’d keep you down there all day if the management wouldn’t throw a fit. I’m tempted to do it anyway.”</i>");
 	output("\n\nOne of the Ausar girls speaks up.");
 	output("\n\n<i>“I bet she’d love it. I hope you saw the faces she was making when you were filling her up.”</i>");
 	output("\n\nYou redden slightly but put up a somewhat stoic front, if looking like the codex entry for <i>“Post-coital disarray”</i> can be considered stoicism. Edan looks thoughtfully at you before the leader of the pack wraps her arms around the other two and drags them to their feet, a little sloppy but not so much in the literal sense, unlike yourself. How do they do it?!");
 	output("\n\n<i>“We’re gonna go get some drinks and keep partying. I </i>really<i> hope we see you two again... especially you, cutie.”</i>");
-	output("\n\nShe gives you a wink and the three of them head off to the bar, hips swaying hypnotically and drawing the attention of more than a few spacers. You turn to Edan and he looks down at your rosy face, inspecting your {pc.bodyThickness < 5: lithe } form as his gaze drops further. You subtly push your [pc.breasts] out, your top half still bared to the world, and ask him if he sees anything he likes.");
+	output("\n\nShe gives you a wink and the three of them head off to the bar, hips swaying hypnotically and drawing the attention of more than a few spacers. You turn to Edan and he looks down at your rosy face, inspecting your");
+	if (pc.thickness < 5)output(" lithe");
+	output(" form as his gaze drops further. You subtly push your [pc.breasts] out, your top half still bared to the world, and ask him if he sees anything he likes.");
 	output("\n\n<i>“Ha! Yeah, just getting reacquainted with the sights. There’s just something else about you, Steele. I don’t know what it is.");
-	if ((pc.race() == "leithan") || (pc.race() == "half-leithan")) output(" Maybe it’s the same-race thing but... I dunno. As much as I love breaking in a mare, you’re not the same. I have always preferred leithan girls, though.");
+	if (isLeithan) output(" Maybe it’s the same-race thing but... I dunno. As much as I love breaking in a mare, you’re not the same. I have always preferred leithan girls, though.");
 	else output(" You’re not even leithan, and I’ve always preferred them to other girls.");
 	output("Ah, whatever. You’re fun, and that’s what counts. I just had an idea, too - we should come back here next time. See ya round, Steele.”</i>");
 	output("\n\nYou see him walk over to the bar and begin talking to the owner before you look down");
@@ -1363,8 +1430,8 @@ public function edanDrinksSexThird():void
 	pc.exhibitionism(5);
 	processTime(45);
 	pc.orgasm();
-	var pp:PregnancyPlaceholder = getEdanPregContainer();
-	pc.loadInMouth(pp);
+	pc.loadInMouth(chars["EDAN"]);
+	
 	addButton(0, "Next", mainGameMenu);
 }
 

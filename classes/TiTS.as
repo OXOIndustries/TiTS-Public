@@ -1235,6 +1235,10 @@
 		{
 			return chars["INESSA"];
 		}
+		public function get edan():Edan
+		{
+			return chars["EDAN"];
+		}
 		
 		private var _dbgtestvar:int = 0;
 		public function dbgshieldparsertag():String

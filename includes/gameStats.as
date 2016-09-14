@@ -3545,7 +3545,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Mess!
-			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
+			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["EDAN_MET"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
 			{
 				output2("\n<b><u>The Mess</u></b>");
 				// Rumors
@@ -3561,6 +3561,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] > 0) output2("\n<b>* Delilah, Times Sexed:</b> " + flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"]);
 					if(flags["TIMES_ATE_DELILAH_OUT"] > 0) output2("\n<b>* Delilah, Times Sat on Her Face:</b> " + flags["TIMES_ATE_DELILAH_OUT"]);
 					if(flags["DEL_TAIL_TRAINED"] != undefined) output2("\n<b>* Delilah, Times She Fucked Your Tail Cunt:</b> " + flags["DEL_TAIL_TRAINED"]);
+				}
+				// Edan
+				if(flags["EDAN_MET"] != undefined)
+				{
+					output2("\n<b>* Edan:</b> Met him");
+					if(flags["EDAN_FUCKED"] != undefined) output2("\n<b>* Edan, Times Sexed:</b> " + flags["EDAN_FUCKED"]);
 				}
 				// Unknown waitress
 				if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");

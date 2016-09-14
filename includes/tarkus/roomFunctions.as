@@ -292,17 +292,8 @@ public function grabARubbahTube():void
 	quickLoot(SynthButte);
 }
 
-public function edanRoomBonus():Boolean
+public function messSeatingBonus():Boolean
 {
-	if (flags["EDAN_MET"] == undefined)
-	{
-		edanRoomDesc();
-		return true;
-	}
-	if (flags["EDAN_MET"] == 1)
-	{
-		edanRoomDesc();
-		return true;
-	}
+	edanRoomDesc();
 	return false;
 }
