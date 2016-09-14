@@ -544,13 +544,13 @@
 				{
 					// New flag
 					if (fNew.length > 0) fNew += ", ";
-					fNew += nFlags[i].short;
+					fNew += "<span class='good'>" + nFlags[i].short + "</span>";
 				}
 				else
 				{
 					// Dupe flag
 					if (fDupe.length > 0) fDupe += ", ";
-					fDupe += nFlags[i].short;
+					fDupe += "<span class='words'>" + nFlags[i].short + "</span>";
 				}
 			}
 			
@@ -560,21 +560,21 @@
 				{
 					// Lost flag
 					if (fLost.length > 0) fLost += ", ";
-					fLost += oFlags[i].short;
+					fLost += "<span class='bad'>" + oFlags[i].short + "</span>";
 				}
 			}
 			
 			// Merge shit together
-			if (fNew.length > 0) flags += "<span class='good'>" + fNew + "</span>";
+			if (fNew.length > 0) flags += fNew;
 			if (fDupe.length > 0)
 			{
 				if (fNew.length > 0) flags += ", ";
-				flags += "<span class='words'>" + fDupe + "</span>";
+				flags += fDupe;
 			}
 			if (fLost.length > 0)
 			{
 				if (fDupe.length > 0 || fNew.length > 0) flags += ", ";
-				flags += "<span class='bad'>" + fLost + "</span>";
+				flags += fLost;
 			}
 			
 			if (fNew.length > 0 || fDupe.length > 0 || fLost.length > 0)
@@ -695,8 +695,16 @@
 			
 			// Merge shit together
 			if (fNew.length > 0) flags += fNew;
-			if (fDupe.length > 0) flags += fDupe;
-			if (fLost.length > 0) flags += fLost;
+			if (fDupe.length > 0)
+			{
+				if (fNew.length > 0) flags += ", ";
+				flags += fDupe;
+			}
+			if (fLost.length > 0)
+			{
+				if (fDupe.length > 0 || fNew.length > 0) flags += ", ";
+				flags += fLost;
+			}
 			
 			if (fNew.length > 0 || fDupe.length > 0 || fLost.length > 0)
 			{
