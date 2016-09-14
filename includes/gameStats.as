@@ -1349,7 +1349,8 @@ public function displayQuestLog(showID:String = "All"):void
 			// Taivra's Palace (Quest)
 			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || metTaivra())
 			{
-				output2("\n<b>* Royal Nyrean Palace:</b>");
+				output2("\n<b><u>Royal Nyrean Palace</u></b>");
+				output2("\n<b>* Status:</b>");
 				if(nyreaDungeonFinished())
 				{
 					if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined)
@@ -1365,7 +1366,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["TAIVRA_DEAL_UNLOCKED"] != undefined || flags["OFFERED_TAIVRA_AN_ALLIANCE"] != undefined)
 				{
 					// Taivra
-					output2("\n<b>* Royal Nyrean Palace, Queen Taivra:</b>");
+					output2("\n<b>* Queen Taivra:</b>");
 					if(flags["TAIVRA_DEAL_UNLOCKED"] != undefined)
 					{
 						output2(" Made a deal with her");
@@ -1381,13 +1382,13 @@ public function displayQuestLog(showID:String = "All"):void
 				if(metTaivra())
 				{
 					// Rival
-					output2("\n<b>* Royal Nyrean Palace, [rival.name]:</b> Seen");
+					output2("\n<b>* [rival.name]:</b> Seen");
 					if(flags["TAIVRA_RIVAL_TALK"] != undefined) output2(", Spoke of [rival.himHer]");
 					if(flags["RIVAL_GOT_MYR_COORDS_FIRST"] != undefined) output2(", [rival.HeShe] got coordinates first");
 					if(flags["COUSIN_EGGSLUT"] != undefined || flags["COUSIN_BEDWARMER"] != undefined) output2(", Enslaved");
 					if(flags["COUSIN_EXECUTED"] != undefined) output2(", Executed");
 					// Dane
-					output2("\n<b>* Royal Nyrean Palace, Dane:</b> Seen");
+					output2("\n<b>* Dane:</b> Seen");
 					if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him from Taivra");
 					if(flags["QUEENSGUARD_STAB_TIME"] != undefined || flags["KILLED_TAIVRA"] != undefined) output2(", Escaped with [rival.name]");
 				}
@@ -3544,7 +3545,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Mess!
-			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
+			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["EDAN_MET"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
 			{
 				output2("\n<b><u>The Mess</u></b>");
 				// Rumors
@@ -3560,6 +3561,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] > 0) output2("\n<b>* Delilah, Times Sexed:</b> " + flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"]);
 					if(flags["TIMES_ATE_DELILAH_OUT"] > 0) output2("\n<b>* Delilah, Times Sat on Her Face:</b> " + flags["TIMES_ATE_DELILAH_OUT"]);
 					if(flags["DEL_TAIL_TRAINED"] != undefined) output2("\n<b>* Delilah, Times She Fucked Your Tail Cunt:</b> " + flags["DEL_TAIL_TRAINED"]);
+				}
+				// Edan
+				if(flags["EDAN_MET"] != undefined)
+				{
+					output2("\n<b>* Edan:</b> Met him");
+					if(flags["EDAN_FUCKED"] != undefined) output2("\n<b>* Edan, Times Sexed:</b> " + flags["EDAN_FUCKED"]);
 				}
 				// Unknown waitress
 				if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");

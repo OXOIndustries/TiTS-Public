@@ -97,7 +97,7 @@ public function taivrasPalaceSquareBonus():Boolean
 	else
 	{
 		//Gate sealed for defeating Taivra
-		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) <= GetGameTimestamp())
+		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) > GetGameTimestamp())
 		{
 			output("\n\nThe gates are sealed, and nobody is standing outside. There doesn’t seem to be any way you can get the gate open without a lot of help...");
 			if(flags["KING_NYREA"] == 1) output("\n\n<b>Perhaps you should wait a day or so for the new power structure to sort itself out before returning.</b>");

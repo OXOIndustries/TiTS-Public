@@ -412,9 +412,9 @@
 			else
 			{
 				output(" Her coy smile distracts you from the tail that caresses your [pc.leg] and then yanks it from under you!");
-				applyDamage(new TypeCollection( { kinetic: 9 + rand(2) } ), this, target, "minimal");
 				output(" <b>You're going to have a difficult time fighting from down here!</b>");
 				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				applyDamage(new TypeCollection( { kinetic: 9 + rand(2) } ), this, target, "minimal");
 			}
 		}
 		

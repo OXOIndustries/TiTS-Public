@@ -410,7 +410,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI N42"] = new RoomClass(this);
 	rooms["UVI N42"].roomName = "SOUTHERN\nCOMMERCE";
-	rooms["UVI N42"].description = "Several shops are set up around the southern end of the main street, advertising their wares. Most are simple things like grocery stores, a computer shop, and the like. To the west, though, you spot a shop that catches your eye: the Hunter's Dream. Opposite is a holograpic sign above featuring a decal of a multi-legged, tauric alien and the words, <i>“Spinarran Silk&Steel”</i>. The display windows to the east show off samples: polished weapons, exotic body armor, and even mundane clothing.";
+	rooms["UVI N42"].description = "Several shops are set up around the southern end of the main street, advertising their wares. Most are simple things like grocery stores, a computer shop, and the like. To the west, though, you spot a shop that catches your eye: the Hunter's Dream. Opposite is a holograpic sign above a storefront featuring a decal of a multi-legged, tauric alien and the words, <i>“Spinarran Silk&Steel”</i>. The display windows to the east show off samples: polished weapons, exotic body armor, and even mundane clothing.";
 	rooms["UVI N42"].planet = "PLANET: UVETO VII";
 	rooms["UVI N42"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N42"].northExit = "UVI N40";

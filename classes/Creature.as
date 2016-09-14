@@ -2940,9 +2940,9 @@
 			// Part-specific checks
 			if(part == "wings" && !hasJointedWings()) return false;
 			// Omnisuit
-			if(armor is Omnisuit) return true;
+			if(part != "wings" && armor is Omnisuit) return true;
 			// See if your body can cover itself
-			if(Foxfire.canUseTailsOrFurAsClothes(this)) return true;
+			if(part != "wings" && Foxfire.canUseTailsOrFurAsClothes(this)) return true;
 			// Normal genital location
 			if(!checkGenitals || genitalLocation() <= 1)
 			{

@@ -8,8 +8,6 @@ package classes.Characters
 
 	public class Edan extends Creature
 	{
-		
-		
 		//constructor
 		public function Edan()
 		{
@@ -41,7 +39,7 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 35;
-			this.xpRaw = 500;
+			this.XPRaw = 500;
 			this.level = 6;
 			this.credits = 1500;
 			
@@ -98,8 +96,9 @@ package classes.Characters
 			this.buttRatingRaw = 4;
 			this.cocks = new Array();
 			this.createCock();
+			shiftCock(0, GLOBAL.TYPE_EQUINE);
 			this.cocks[0].cLengthRaw = 36; //I dunno how to specify 'type: horse'
-			this.cocks[0].cThicknessRatioRaw = 1.6
+			this.cocks[0].cThicknessRatioRaw = 1.6;
 			this.balls = 2; 
 			this.cumMultiplierRaw = 50; 
 			this.cumQualityRaw = 4;
@@ -121,6 +120,8 @@ package classes.Characters
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
+			
+			createPerk("Fixed CumQ", 250000, 0, 0, 0);
 			
 			this._isLoading = false;
 		}

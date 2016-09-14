@@ -263,7 +263,7 @@ public function procDumbfuckStuff():void
 		pc.willpower(-6);
 		pc.createPerk("Weak Willed",0,0,0,0,"Willpower losses are doubled.");
 	}
-	if(!pc.hasPerk("Ditz Speech") && !pc.hasPerk("Brute Speech") && flags["DUMBFUCK_SNEEZES"] >= 20)
+	if(flags["DUMBFUCK_SNEEZES"] >= 20 && !pc.hasPerk("Ditz Speech") && !pc.hasPerk("Brute Speech"))
 	{
 		//Gain Ditz Speech
 		if(pc.mf("dude","chick") == "chick")

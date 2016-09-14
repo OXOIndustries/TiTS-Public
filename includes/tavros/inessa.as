@@ -89,8 +89,9 @@ public function inessaMenu():void
 	}
 	else addDisabledButton(3,"Sex","Sex","You don't know her well enough for that.");
 	//INESSA EXPANSION - Must have silk and Xanthe must be alive
-	if(flags["INESSA_EXP"] == 1 && flags["KQ2_MYRELLION_STATE"] == undefined) addButton(4,"Silk",giveInessaSilk,undefined,"Silk","Give Inessa the sheet of silk from Xanthe.");
-	else addDisabledButton(4,"Silk","Silk","You must have got the silk sheet from Xanthe and she must be alive");
+	if((flags["INESSA_EXP"] != 1 && flags["INESSA_EXP"] >= 2) || flags["KQ2_MYRELLION_STATE"] > 0) { /* Nada */ }
+	else if(flags["INESSA_EXP"] == 1) addButton(4,"Silk",giveInessaSilk,undefined,"Silk","Give Inessa the sheet of silk from Xanthe.");
+	else addDisabledButton(4,"Silk","Silk",("You must have got the silk sheet from " + (flags["MET_XANTHE"] != undefined ? "Xanthe on Myrellion" : "someone...") + "."));
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -137,7 +138,7 @@ public function approachIness():void
 	if (flags["INESSA_EXP"] == 2)
 	{
 		output("You stride up to Inessa and click your tongue to grab her attention");
-		output("\n\n<i>“Oh! {Master/Mistress}, welcome back!”</i> Your snowy haired sub exclaims excitedly, bowing to you with her hands behind her back obediently. <i>“Please let me know if you need anything!”</i>");
+		output("\n\n<i>“Oh! " + pc.mf("Master", "Mistress") + ", welcome back!”</i> Your snowy haired sub exclaims excitedly, bowing to you with her hands behind her back obediently. <i>“Please let me know if you need anything!”</i>");
 	}
 	else output("You stride up to Inessa and get her attention.\n\n<i>“If there’s anything you need, feel free to ask. I’d be happy to help!”</i>");
 
@@ -2321,7 +2322,9 @@ public function fuckInessaPussy():void
 		if(x >= 0) output("Your own [pc.vagina " + x + "] spasms around the other end, doing much the same as your [pc.girlCum] leaks freely from your sopping quim.");
 	}
 	
-	output("You flop onto the bed beside her, twitching slightly from your own orgasm. Inessa has already passed out so you quickly get to work untying her, setting the {strapon,} ball gag and blindfold aside. You stay there with her, gently petting her hair and making sure she's calm before going to get a cup of water for her, as you come back she's starting to wake up and you sit beside her, smiling when her [inessa.eyes] open and look at you, causing your little well-fuckedterfly to smile as well, nuzzling against your petting hand.");
+	output("You flop onto the bed beside her, twitching slightly from your own orgasm. Inessa has already passed out so you quickly get to work untying her, setting the");
+	if(!pc.hasCock()) output(" strapon,");
+	output(" ball gag and blindfold aside. You stay there with her, gently petting her hair and making sure she's calm before going to get a cup of water for her, as you come back she's starting to wake up and you sit beside her, smiling when her [inessa.eyes] open and look at you, causing your little well-fuckedterfly to smile as well, nuzzling against your petting hand.");
 	output("\n\nYou make sure she's alright and get her to drink some water before you stand. <i>“I'm sorry my dear but I must go, a fortune won't find itself.”</i> You chuckle softly to yourself and lean down, placing a kiss upon Inessa's forehead, causing her to blush and giggle.");
 	output("\n\n<i>“I know "+ pc.mf("Master","Mistress") +", please don't be too long though? I'll miss you too much...”</i>");
 	output("\n\nYou tousle the adorable saeri girls hair and nod, saying you'll be back as soon as you can before turning to leave, letting Inessa decide when she wants to open the shop again.");
