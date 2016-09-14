@@ -174,15 +174,16 @@ package classes.Items.Miscellaneous
 							else if (ballSizeReduction == 1) kGAMECLASS.output(" around an inch");
 							else kGAMECLASS.output(" a little bit");
 							kGAMECLASS.output(" of size, your [pc.sack] feeling quite a bit lighter and <i>entirely</i> emptied. <b>Your balls have shrunk to a more manageable size.</b>");
+							
+							target.ballSizeRaw = newBallSize;
 						}
 						else
 						{
 							kGAMECLASS.output(" In the end you actually do, your [pc.sack] shrinking away until you're left with a smooth patch of [pc.skinFurScales] in its place. <b>You no longer have balls!</b>");
+							
 							target.balls = 0;
 							target.ballSizeRaw = 0;
 						}
-						
-						target.ballSizeRaw -= ballSizeReduction;
 					}
 				}
 				
@@ -194,7 +195,7 @@ package classes.Items.Miscellaneous
 				if (changes == 0) kGAMECLASS.output(" In the end, you didn't change at all. But what a rush!");
 				else kGAMECLASS.output(" What a rush!");
 			}
-		
+			
 			return false;
 		}
 	}
