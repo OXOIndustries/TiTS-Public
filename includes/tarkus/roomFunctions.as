@@ -291,3 +291,18 @@ public function grabARubbahTube():void
 	
 	quickLoot(SynthButte);
 }
+
+public function edanRoomBonus():Boolean
+{
+	if (flags["EDAN_MET"] == undefined)
+	{
+		edanRoomDesc();
+		return true;
+	}
+	if (flags["EDAN_MET"] == 1)
+	{
+		edanRoomDesc();
+		return true;
+	}
+	return false;
+}

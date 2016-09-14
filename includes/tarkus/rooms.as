@@ -1638,6 +1638,18 @@ public function initTarkusRooms():void
 	rooms["364"].system = "SYSTEM: REDACTED";
 	rooms["364"].moveMinutes = 1;
 	rooms["364"].addFlag(GLOBAL.OUTDOOR);
+	
+	rooms["365"] = new RoomClass(this);
+	rooms["365"].roomName = "SEATING\nAREA";
+	rooms["365"].description = "test";
+	rooms["365"].runOnEnter = edanRoomBonus;
+	rooms["365"].southExit = "301";
+	rooms["365"].moveMinutes = 1;
+	rooms["365"].planet = "PLANET: TARKUS";
+	rooms["365"].system = "SYSTEM: REDACTED";
+	rooms["365"].addFlag(GLOBAL.INDOOR);
+	rooms["365"].addFlag(GLOBAL.PUBLIC);
+	rooms["365"].addFlag(GLOBAL.NPC);
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "WIDGET\nWAREHOUSE";
