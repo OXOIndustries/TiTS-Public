@@ -817,7 +817,7 @@ public function inessaSexMenu():void
 
 	//INESSA EXPANSION - Vaginal
 	//PC must have removed her belt
-	if(flags["INESSA_BELTED"] == 2) addButton(6,"Vaginal",fuckInessaPussy,undefined,"Vagina","Fuck your saeri sub's pussy")
+	if(flags["INESSA_BELTED"] == 2) addButton(6,"Vaginal",fuckInessaPussy,undefined,"Vagina","Fuck your saeri sub's pussy.")
 	
 	addButton(14,"Back",noYoureASlut);
 }
@@ -2311,8 +2311,8 @@ public function fuckInessaPussy():void
 		output("\n\nYou lay down between her splayed legs and take stock of her position, little pleasure buzzer slightly throbbing, her lips already slickened and aching for attention, you simply dive in and get to work. You trail your [pc.tongue] across her [inessa.vagina] lips, tasting her sweet juices. She tastes amazing and you find yourself gently lapping at her folds, cleaning her snatch of her liquid arousal.");
 		output("\n\nInessa lets out muffled moans from behind her gag as you work your mouth magic on her cunt, twitching every now and again as the tip of your tongue passes over her sensitive little pleasure buzzer, sending a jolt right up her spine. Deciding she's well enough prepared, you stand and retrieve a moderately large strapon with a double-sided dildo secured into the straps, bringing it back to the bed and laying down once more, you slip the head up to brush between her sopping wet lips, causing Inessa to reflexively shift her hips back, trying to feel more.");
 		output("\n\nYou smirk at her reaction and sit up, wasting no time in");
-		if(x >= 0) output("lining one tip of the dildo up with your [pc.vagina " + x + "] and shoving it inside rather unceremoniously, causing you to let out a squeal of pleasure, your walls gripping the toy firmly. You secure the straps around your waist to make sure the dildo doesn't shift around too much, giving the shaft a little tug and letting out a gasp when the end of the faux-cock inside of you shifts just a bit.");
-		else output("fastening the straps around your waist to make sure the dildo doesn't shift around too much, giving the shaft a little tug");
+		if(x >= 0) output(" lining one tip of the dildo up with your [pc.vagina " + x + "] and shoving it inside rather unceremoniously, causing you to let out a squeal of pleasure, your walls gripping the toy firmly. You secure the straps around your waist to make sure the dildo doesn't shift around too much, giving the shaft a little tug and letting out a gasp when the end of the faux-cock inside of you shifts just a bit.");
+		else output(" fastening the straps around your waist to make sure the dildo doesn't shift around too much, giving the shaft a little tug");
 		output("You line the tip of the strapon up with your little fuckterfly's [inessa.vagina], spreading her [inessa.vaginaColor] lips apart. It's difficult to make any progress beyond poking her outer lips, but you push just a bit harder, letting out a grunt when you slide in further than you expected, half of the dildo forced into her virginal passage so suddenly.");
 		output("\n\nInessa cries out in pleasure as you ram the dildo so deeply in with one stroke, you moan aloud in sync as the other end of the dildo batters up against your deepest recesses, setting nerve endings alight. The little fuckterfly moans delectably, her back arching as her [inessa.vagina] is stuffed so full.");
 		output("\n\nYou sit there still for a moment, shuddering in pleasure as the dildo shifts inside of your own snatch. You allow Inessa to adjust to the size before picking up a slow but steady rhythm, the unrelenting pseudo-phallus moulding her inner walls to its exact shape as they squeeze so tightly. Her [inessa.girlCum] leaks all over the bed covers as well as splattered over your thighs, coating them in a sheen of fluids. Inessa's [inessa.wings] flutter erratically every now and then underneath her as her nerves are assaulted with pleasure."); 
