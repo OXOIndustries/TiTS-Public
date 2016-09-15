@@ -1335,7 +1335,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) output2(", Reclaimed probe");
 			}
 			else output2(" <i>In progress...</i>");
-			if(!reclaimedProbeMyrellion() && flags["KQ2_MYRELLION_STATE"] != 1)
+			if(!reclaimedProbeMyrellion() && flags["KQ2_MYRELLION_STATE"] != 1 && flags["TAIVRA_NEW_THRONE"] == undefined)
 			{
 				output2("\n<b>* Probe Location:</b> <i>Probe" + (metTaivra() ? " located in Taivra’s" : " appears to be in some kind of royal") + " throne room.</i>");
 			}

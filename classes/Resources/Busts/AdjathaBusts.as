@@ -118,6 +118,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/godi_nude.png", mimeType = "image/png")]
 		public var Bust_GODI_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/gryvain.png", mimeType = "image/png")]
+		public var Bust_GRYVAIN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/gryvain_nude.png", mimeType = "image/png")]
+		public var Bust_GRYVAIN_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/hana.png", mimeType = "image/png")]
 		public var Bust_HANA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/hana_nude.png", mimeType = "image/png")]
@@ -440,6 +445,11 @@ package classes.Resources.Busts
 			public var Full_GODI:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/godi_nude.png", mimeType = "image/png")]
 			public var Full_GODI_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain.png", mimeType = "image/png")]
+			public var Full_GRYVAIN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain_nude.png", mimeType = "image/png")]
+			public var Full_GRYVAIN_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hana.png", mimeType = "image/png")]
 			public var Full_HANA:Class;

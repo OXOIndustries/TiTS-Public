@@ -2727,7 +2727,7 @@ public function taivraRepeatMenu():void
 	// (N.B: Maybe this could take place after a certain amount of time or number of scenes with your new waifu? Makes sense that you’d notice any discomfort she might have after spending some time with her)
 	// [Ask About the Throne]
 	// Needs a few thousand credits -- maybe 5k?
-	if(!reclaimedProbeMyrellion() && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["KING_NYREA"] != undefined)
+	if(flags["KQ2_MYRELLION_STATE"] != 1 && !reclaimedProbeMyrellion() && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["KING_NYREA"] != undefined)
 	{
 		if(flags["TAIVRA_THRONE_SEX"] >= 3)
 		{
