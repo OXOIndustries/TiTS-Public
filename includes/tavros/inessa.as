@@ -905,7 +905,7 @@ public function blowjobFromInessa():void
 		else output("dicks fire");
 		output(" wildly into the air, splattering the shop floor in your seed.");
 	}
-	output("\n\nYour [pc.cockNounSimple " + x + "] plops from her slickened lips and [pc.cumNoun] drools down her chin–there’s a deliciously spacey look in her starry eyes. Her breathing is hurried, and she’s flushing with arousal. As you pant for breath, you spot heavy moisture between her thighs, and dripping from the crotch of her chastity belt. It seems you weren’t the only one who enjoyed yourself! You order her to clean off your [pc.cocksLight] and the butterfly-winged girl dreamily licks your [pc.cumNoun]-covered rod");
+	output("\n\nYour [pc.cockNounSimple " + x + "] plops from her slickened lips and [pc.cumNoun] drools down her chin–there’s a deliciously spacey look in her starry eyes. Her breathing is hurried, and she’s flushing with arousal. As you pant for breath, you spot heavy " + (flags["INESSA_BELTED"] != 2 ? "moisture between her thighs, and dripping from the crotch of her chastity belt" : "streams of [inessa.girlCum] trail down between her thighs, dripping from her [inessa.vagina]") + ". It seems you weren’t the only one who enjoyed yourself! You order her to clean off your [pc.cocksLight] and the butterfly-winged girl dreamily licks your [pc.cumNoun]-covered rod");
 	if(pc.cockTotal() > 1) output("s");
 	output(" clean, her tongue curling around your length");
 	if(pc.cockTotal() > 1) output("s");
@@ -1009,7 +1009,7 @@ public function breastTeaseInessaShit():void
 	//else PC is nude:
 	else output("\n\n<i>“You should hop on top of me,”</i> you murmur in Inessa’s ear. She furiously blushes–peeking up to see if any customers are about first– then straddles your waist, looking down at you with a lusty, longing gaze. Your fingertips graze her slender belly and stroke her underbust, sliding upwards until you’re cupping her tiny handfuls. You give them a firm squeeze and she lets out a sweet little cry, her small butt quivering in your lap and against your naked firmness.");
 
-	output("\n\nYou pinch and tease her pert little nubs, caressing her into insensibility until she’s practically flailing about with pleasure. As small as they are, they’re incredibly sensitive! You grin and flick her nipples, watching as she lets out a sharp whimpering cry, her hips spasming and shaking in your lap. <i>“H-hah–not so hard-!”</i> The butterfly-girl whimpers, yet her breathing is labored. <i>Yeah right</i>, you think, there’s an incredibly obvious slickness leaking out from between her thighs! A few more flicks and she’s quaking on the spot, unable to control her body. There’s a loud <i>squiiiirt</i> and a slick rope of thin, sticky liquid jumps out through the gaps in her chastity belt. It splatters on your belly, followed by a few more jumping spurts, her hands desperately clenching at the silky sheets.");
+	output("\n\nYou pinch and tease her pert little nubs, caressing her into insensibility until she’s practically flailing about with pleasure. As small as they are, they’re incredibly sensitive! You grin and flick her nipples, watching as she lets out a sharp whimpering cry, her hips spasming and shaking in your lap. <i>“H-hah–not so hard-!”</i> The butterfly-girl whimpers, yet her breathing is labored. <i>Yeah right</i>, you think, there’s an incredibly obvious slickness leaking out from between her thighs! A few more flicks and she’s quaking on the spot, unable to control her body. " + (flags["INESSA_BELTED"] != 2 ? "There’s a loud <i>squiiiirt</i> and a slick rope of thin, sticky liquid jumps out through the gaps in her chastity belt" : "Several squirts of [inessa.girlCum] emit from her over-excited [inessa.vaginaNoun]") + ". It splatters on your belly, followed by a few more jumping spurts, her hands desperately clenching at the silky sheets.");
 
 	output("\n\n<i>“AHH-Ahhhh–hah!”</i> She breathily cries, before looking down and realizing in utter shock the mess she made. <i>“Oh, oh my Zyi–! ");
 	if(flags["INESSA_TITTYSQUIRT"] == undefined)
@@ -1980,7 +1980,9 @@ public function faceStrapOnShitForInessa():void
 
 	output("\n\nWhen you pull yourself up and off her strapped-on face-dick, Inessa nearly falls to the floor, totally wiped out by her orgasm");
 	if(pc.hasVagina()) output("s");
-	output(" and your merciless fucking of her face. You reach out and stroke her head, telling her she did a good job, and she lets out a satisfied, if spacy little purr, nuzzling into your hand. There is a rather obvious puddle between her twitching thighs, marking her delight despite her gleaming chastity belt. You then pull off the mask and toss it aside.");
+	output(" and your merciless fucking of her face. You reach out and stroke her head, telling her she did a good job, and she lets out a satisfied, if spacy little purr, nuzzling into your hand. There is a rather obvious " + (flags["INESSA_BELTED"] != 2 ? "puddle" : "stream of [inessa.girlCum]") + " between her twitching thighs, marking her delight");
+	if(flags["INESSA_BELTED"] != 2) output(" despite her gleaming chastity belt");
+	output(". You then pull off the mask and toss it aside.");
 	output("\n\n<i>“D-did you want anything else?”</i> Inessa asks, and you shake your head. As if she could do anything else right now! After a little while, she gets to her feet, and stumbles to grab a mop.");
 	IncrementFlag("INESSA_FACE_STRAPPED");
 	// Return to shop menu.
@@ -2054,7 +2056,9 @@ public function inessaWalksOnTheWildSide():void
 	output("\n\n<i>“You can do much worse than starting off with a pair of premium edition grav-cuffs,”</i> you reply breezily. <i>“We have a demonstration model set up here.”</i> Your control of the situation seems to be having the effect you’re looking for - Inessa’s jaw and tongue are working again, kneading wetly away at your ancillary alien penis. Her face has turned an adorable shade of purple, and her eyes flick up to both you and the customer when you " + pc.moveAction(false,true) + " over to her knelt, cuffed form - but she continues to hollow her cheeks around the shaft of your [pc.cockTail] determinedly. What a good girl.");
 	output("\n\n<i>“These cuffs automatically adjust for comfort, but are unbreakable by anything short of military spec cutting tools,”</i> you say. Intense pleasure throbs through your appendage and you up the pace with which you thrust its saliva-coated end into the saeri, but keep your voice level. <i>“Their most impressive feature, though, is that you can adjust both their weight and the weight of the individual cuffed. Cuffs - zero.”</i>");
 	output("\n\nThe grav-cuffs hum, and Inessa emits a muffled squeak. Calmly you reach down and pick her up by the shoulder, twisting her around so that the customer can see her face, then let go. She floats in mid-air, mouth stretched around the insistent girth of your tentacle dick.");
-	output("\n\n<i>“Woah,”</i> breathes the customer, watching your navy-skinned bitch slowly revolve in the air via the excited force of the cock-" + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "vine" : "tail") + ", displaying her chastity belt. Firmly and carefully you take hold of her again, place her back on the floor, and re-establish her weight.");
+	output("\n\n<i>“Woah,”</i> breathes the customer, watching your navy-skinned bitch slowly revolve in the air via the excited force of the cock-" + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "vine" : "tail"));
+	if(flags["INESSA_BELTED"] != 2) output(", displaying her chastity belt");
+	output(". Firmly and carefully you take hold of her again, place her back on the floor, and re-establish her weight.");
 	output("\n\n<i>“The links are, of course, voice-activated,”</i> you go on. <i>“Cuffs - release.”</i> With a tinkling clink, the two metal rings fall to the floor, and you pull your [pc.cockTail] out of Inessa’s delightful suck. She looks up at you in slight, fuzzy confusion, hands vaguely touching her slim hips.");
 	output("\n\n<i>“What do you say?”</i> you ask sternly. It’s taking almost all of your willpower to hold the bulging urge of your tentacle penis back, poised near her face.");
 	output("\n\n<i>“Please [pc.master]...”</i> says Inessa, after a pause. <i>“Could- could I have some more?”</i> Without a word you reach down, [pc.chest] pushing against her petite tits as you re-attach the cuffs, and unceremoniously plug her open and waiting mouth with eager, writhing " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "vine" : "tail") + " dick again.");
@@ -2075,7 +2079,8 @@ public function inessaWalksOnTheWildSide():void
 	output("\n\nYou un-cuff Inessa and draw her up in your arms, letting her know by your expression and squeeze how pleased her dom is by her obedient participation in her own humiliation (not too close though. You really did splatter her good.) Inessa responds with a tremulous, out-of-focus grin; an expression somewhere between shock and profound, submissive pleasure.");
 	output("\n\n<i>“Did I do alright, [pc.master]?”</i> she manages at last, wiping a trailer of cum off one of her star-burst eyes.");
 	output("\n\n<i>“Very,”</i> you reply. You let your gaze drift beyond her to the shelves and hoardings, a possessive hand running down Inessa’s warm, slim flank. <i>“There’s plenty of other gear to advertise in here, isn’t there? More... advanced goods, that customers need real inducement to buy. Have a long think about that before I next visit.”</i>");
-	output("\n\nYou step away and let an extremely flushed saeri hurry off to find a wash basin in the back. You think you hear her twitter curses about her chastity belt all the way.");
+	output("\n\nYou step away and let an extremely flushed saeri hurry off to find a wash basin in the back.");
+	if(flags["INESSA_BELTED"] == 2) output(" You think you hear her twitter curses about her chastity belt all the way.");
 	//Small Exhibitionism score bump
 	pc.exhibitionism(2);
 	processTime(35);
