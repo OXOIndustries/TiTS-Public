@@ -154,13 +154,16 @@ public function inessaAppearance():void
 	output("You look at Inessa and she flushes in obvious delight. Her dusky blue cheeks turn a darker shade, and she nervously toys with a lock of her lustrous white hair. There’s a lot of it to play with, after all - it’s braided all the way down to her impeccably round rump.");
 	output("\n\nHer excitement at being watched is obvious in the rapid rise and fall of her soft, slight breasts and the stiffness of her dimpled nipples. Her pert peaks, while not massive, still look like delicious little handfuls, easy to cup and tease.");
 	output("\n\nBrilliant butterfly-like wings protrude from her shoulderblades, fae-like and multifaceted. As the light hits them, they shimmer and dance with scintillating colors. Almost as brilliant as her wings, Inessa’s bright blue-green eyes sparkle at you. Like all saeri eyes, they’re like colored stars exploding within a black-rimmed iris.");
-	output("\n\nAlmost tragically, a silvery chastity belt guards her womanhood, fastened by a big lock. It’s the sort with tiny gaps, allowing for motion and breathing, and a T-shaped back that leaves her slender buttocks exposed.");
+	if(flags["INESSA_BELTED"] != 2) output("\n\nAlmost tragically, a silvery chastity belt guards her womanhood, fastened by a big lock. It’s the sort with tiny gaps, allowing for motion and breathing, and a T-shaped back that leaves her slender buttocks exposed.");
+	else output("\n\nHer womanhood is on full display finally free from the dreaded chastity belt, her lips beading with their ever present moisture, only growing slicker as you allow your eyes to linger.");
 	output("\n\nOn her upper right arm, there is a beautiful tree-branch tattoo wrapped around it with cherry-blossoms blooming.");
 	//Have viewed her talk topic about skin mods:
 	if(flags["INESSA_SKIN_MOD_TALKED"] == 1) output(" There’s also another skin-modded tattoo between her shoulderblades, just four words written in fancy, looped letters: <i>“Love Me, Lash Me”</i>.");
-	output("\n\nYou feel a little hornier for gazing at her. Given her burning cheeks, you’re not the only one.");
-	pc.lust(4);
+	if(flags["INESSA_BELTED"] == 2) output("\n\nAround her neck is the collar you presented her with, made of the same silvery metal as her old chastity belt and engraved with an elaborate floral design similar to her tattoo. Upon the front of the collar sits a reasonably-sized amethyst, carved into the shape of a heart with a padlock symbol set into it.");
+	output("\n\nYou feel a little hornier " + (flags["INESSA_BELTED"] != 2 ? "for gazing at her. Given her burning cheeks, you’re not the only one" : "gazing at your wonderful sub, and seeing her so happy fills you with pride. Given her burning cheeks, you’re not the only one feeling worked up") + ".");
+	
 	// Raise lust by 5 for looking at nekkid girl.
+	pc.lust(4);
 	// Head back to Inessa’s main menu.
 	inessaMenu();
 	addDisabledButton(0,"Appearance","Appearance","You're looking at her right now.");
