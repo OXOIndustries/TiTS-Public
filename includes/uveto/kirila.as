@@ -17,8 +17,11 @@ public function spinarranSilkAndSteelBonusFunc():Boolean
 {
 	author("Kinathis");
 	output("The shop is large with oddly wide spaces between displays. The interior looks to be divided neatly in two. One side is devoted to clothing, silkwear, suits and dresses and the other to all manner of spinnaran weapons and armor.");
-	output("\n\nYou walk over to the shop keeper: a tall, well built, feminine figure with long, finger-thick cords of copper carapace for hair and a silky dress. A name tag stands out against her dress, spelling <i>“Kirila”</i>. The humanoid alien looks over at you from under a set of dark, six-eyed goggles. One of her hands is playing with a small bowl of what looks like decorative blueish gravel, though even as you watch, she plucks one of the small rocks out of the pile and pops it into her mouth. You can hear a small pop, then several crunching sounds before she swallows.");
-	addButton(0,"Kilira",approachKirila);	
+	output("\n\nYou walk over to the shop keeper: a tall, well built, feminine figure with long, finger-thick cords of copper carapace for hair and a silky dress. A name tag stands out against her dress, spelling “Kirila”. The humanoid alien looks over at you from under a set of dark, six-eyed goggles. One of her hands is playing with a small bowl of what looks like decorative bluish gravel, though even as you watch, she plucks one of the small rocks out of the pile and pops it into her mouth. You can hear a small pop, then several crunching sounds before she swallows.");
+	
+	removeUvetoCold(true);
+	
+	addButton(0,"Kirila",approachKirila);	
 	return false;
 }
 
@@ -55,7 +58,7 @@ public function silkAndSteelMenu():void
 	addButton(5,"Shop: Steel",kirilaShop,0,"Shop: Steel","Shop for weaponry!");
 	addButton(6,"Shop: Armor",kirilaShop,1,"Shop: Steel","Shop for armor!");
 	addButton(7,"Shop: Silk",kirilaShop,2,"Shop: Steel","Shop for clothing items!");
-	addButton(3,"Demos",itemDemos,undefined,"Demos","Ask Kirila for more information on the various weapons.");
+	addButton(3,"Demos",itemDemos,undefined,"Demonstrations","Ask Kirila for more information on the various weapons.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -109,7 +112,7 @@ public function kirilasSight():void
 	showKirila();
 	author("Kinathis");
 	output("<i>“We like to live deep underground, you see. Many of our kin go their whole lives without seeing the sky or even the surface of a planet. Our eyes don’t see very well in bright light.”</i> The copper-plated alien says as she taps a clawed finger against the polarised surface of her goggles. <i>“Spinarrans need protective lenses to keep our eyes safe on the surface or in alien cities, we would be almost blinded by even the lights most beings need to see.”</i>");
-	output("\n\n<i>“On the plus side, we see in infrared and ultraviolet. We are very well adapted to living in near or total darkness,”</i> the drider says, adding to the topic at hand. <i>“With our sight, smell, and our antenna, we can even sense all the different types of rock and minerals in the walls and ground around us.”</i>");
+	output("\n\n<i>“On the plus side, we see in infrared and ultraviolet. We are very well adapted to living in near or total darkness,”</i> the drider says, adding to the topic at hand. <i>“With our sight, smell, and our antennae, we can even sense all the different types of rock and minerals in the walls and ground around us.”</i>");
 	output("\n\nYou look at their covered eyes before gazing around the store. It’s hard to imagine seeing things like that all at once. You have no idea what it would be like to just sense minerals like that. <i>“Hard to imagine seeing all those different things at once,”</i> you say, voicing your thoughts.");
 	output("\n\nHer antennae shudder with amusement and she smiles. <i>“To others, yes. To us, it’s beautiful. We see a world of patterns and twilight. People look like fire of all shades, cold lends notes of shadowy twilight. UV adds detail to your blazing form.”</i> Her antennae twitch several times, and you can hear her sniffing. <i>“If you had been down in the mines I would even be able to smell the minerals in the dust on your clothing.”</i>");
 	output("\n\n<i>“That’s pretty cool. It must be nice being able to see in complete darkness,”</i> you say as you get comfortable at the counter.");
@@ -128,7 +131,7 @@ public function kirilasDiet():void
 	clearOutput();
 	showKirila();
 	author("Kinathis");
-	output("You look down at the bowl filled with blueish rocks and pick one up. <i>“These looks like rocks, but I saw you eat one earlier. Are they really rocks?”</i> you ask, playing with the little blueish rock in your hand.");
+	output("You look down at the bowl filled with bluish rocks and pick one up. <i>“These looks like rocks, but I saw you eat one earlier. Are they really rocks?”</i> you ask, playing with the little bluish rock in your hand.");
 	output("\n\nShe nods. <i>“Of course what else would they be?”</i>");
 	output("\n\n<i>“You seriously do eat rocks?”</i> You question, eyes drifting down to the bowl of small rocks on the counter. You know you saw her eat one.");
 	output("\n\nKirila smiles, showing the many sharp and crushing teeth. The pearlescent rock breakers almost seem to sparkle like crystal. <i>“Indeed I do, and yes, they are real rocks. Rocks impregnated with copper ore to be exact. I snack on them often. Got to keep up my lovely exoskeleton!”</i> She says, running a hand back over her head and through her copper tresses.");
@@ -150,7 +153,7 @@ public function kirilasDiet():void
 	output("\n\nYou nod your head. <i>“Just a little bit.”</i>");
 	output("\n\n<i>“Anyway. So yeah, we eat rock and minerals. What we eat is reflected in our carapace.”</i> She points to herself. <i>“I like to eat copper, and thus im copper colored. My sister Koritha is a big silver drider; she eats a lot of different metals, most of them silvery. She maintains a very strict diet though due to her job.”</i>");
 	output("\n\n<i>“You must be quite strong to carry all that weight around with you. Just the exoskeleton alone must weigh... what 36 kilos?”</i>");
-	output("\n\nShe smiles and nods. <i>“Something like that. Spinarrans are quite physically strong, we must be to carry our carapace and smash and dig through rock. I’m fairly average now. In the past I was a soldier, and warriors are more formidable.”</i> Her voice is rich with pride. Her pride soon deflates, however. <i>“Despite that, rockworms are still a menace back home.”</i> Kirila explains before you can ask, <i>“Rockworms are a native species on spinarra. They start off as worms about as large as a car, and can grow to be as large as a small apartment tower. Like us, they eat rock, but also spinarrans. We take great pains to keep track of the giant ones, but from time to time, small communities can just... disappear, swallowed up by them. Thankfully they are slow, and they don’t need to eat as often as us. We are just as happy to chow down on them as well. Young rockworm meat is quite tasty. A hot, thick slab of rockworm meat, crusted in rock salt and sand, with a freshly kilned clay bun, baked just enough so it’s still soft inside but crunchy on the outside, yum”</i> Kirila finishes with a sigh. You’re pretty sure she’s drooling a little bit.");
+	output("\n\nShe smiles and nods. <i>“Something like that. Spinarrans are quite physically strong, we must be to carry our carapace and smash and dig through rock. I’m fairly average now. In the past I was a soldier, and warriors are more formidable.”</i> Her voice is rich with pride. Her pride soon deflates, however. <i>“Despite that, rockworms are still a menace back home.”</i> Kirila explains before you can ask, <i>“Rockworms are a native species on spinarra. They start off as worms about as large as a car, and can grow to be as large as a small apartment tower. Like us, they eat rock, but also spinarrans. We take great pains to keep track of the giant ones, but from time to time, small communities can just... disappear, swallowed up by them. Thankfully they are slow, and they don’t need to eat as often as us. We are just as happy to chow down on them as well. Young rockworm meat is quite tasty. A hot, thick slab of rockworm meat, crusted in rock salt and sand, with a freshly kilned clay bun, baked just enough so it’s still soft inside but crunchy on the outside, yum,”</i> Kirila finishes with a sigh. You’re pretty sure she’s drooling a little bit.");
 	output("\n\nWell the way she put it, it did sound tasty.... Well maybe not the bun made of searing hot clay, but a big steak sounds good. The idea is whimsical enough to earn a chuckle.<i>“Well I’m not sure about the bun, but I wonder what rockworm tastes like.”</i>");
 	output("\n\nKirila gives you a sidelong glance. <i>“Probably not at all like meat you’re used too. Your... uhh... what was it...cows? They don’t chow down on boulders and veins of metallic ore. Probably wouldn’t taste too good to you. It’d be too...”</i> She pauses, trying to decide how to describe rockworm meat to a non-spinarran. <i>“Mineraly?”</i> She shrugs. <i>“Not sure how else to describe it.”</i> The shopkeeper reaches down to her rocks and plucks one up before popping it into her mouth, then offers you one.");
 	output("\n\nYou give her a flat look.");
@@ -180,7 +183,7 @@ public function kirilasPastWork():void
 	output("\n\n<i>“Hmm?”</i> Kilrila perks up and twitches her antennae. <i>“How long? Oh, well, five or so years now. Used to be in the military before I started this business.”</i>");
 	output("\n\n<i>“The military huh? What was that like?”</i> you ask, settling in for what could be a long story.");
 	output("\n\nThe copper-skinned spinarran just shrugs. <i>“It’s probably just like any other military force out there, though spinarrans do make for some scary shock troops. Tall, strong, covered head to toe in hardened metal plates, and there are a lot of us. Then there is the military body armor and shields to boot. But we don’t like to fight on the surface, unless it’s night. Then it’s alright. So night strikes and digging tunnels behind enemy lines is what we excel at. I don’t think any spinarrans have ever fought in space before. Probably for the best. We don’t handle the sheer vast openness of space very well. You will never see a spinarran with claustrophobia, but plenty have agoraphobia. Some can’t even look out a window in space without getting totaly freaked out. We’re just not really made for it. I myself was a member of my legion’s 3rd sapper cohort. Now, in most militaries, sappers are engineers. They build stuff and break stuff. Spinarrans however, when we break stuff, we get in under you and fuck you up...”</i> Kilrila sighs <i>“I’ll tell you one thing, we are dedicated. Peace is as prevalent as it seems, but military and civil protection are constantly perform training exercises to stay in top condition and ready for action. Most soldiers come from families that have a long tradition of service, all of them career soldiers.”</i>");
-	output("\n\n<i>“For me, it was a lot of digging - <b>strategic</b> digging, using seismic scanners to map <i>“enemy”</i> encampments and then finding the best place to come on up. <b>Bam!</b>Flood in through the new beachhead in the enemy lines and attack from within, or <b>boom!</b> Collapse fortified positions or identified artillery. Well that’s against surface threats. If they got dug in hardpoints, it’s even better, we just smash or melt our way inside and flood in through the basements. And before you ask, we can dig really fast, what do you think these extra limbs are for?”</i>");
+	output("\n\n<i>“For me, it was a lot of digging - <b>strategic</b> digging, using seismic scanners to map “enemy” encampments and then finding the best place to come on up. <b>Bam!</b> Flood in through the new beachhead in the enemy lines and attack from within, or <b>boom!</b> Collapse fortified positions or identified artillery. Well that’s against surface threats. If they got dug in hardpoints, it’s even better, we just smash or melt our way inside and flood in through the basements. And before you ask, we can dig really fast, what do you think these extra limbs are for?”</i>");
 	output("\n\n<i>“Right, well, have you ever seen real combat?”</i> you ask, curious about her service");
 	output("\n\n<i>“Yeah, once or twice. Some groups don’t think the peaceful arrangement that the empress got with the other races is good. You know the usual species superiority types. They think spinarrans are better, higher forms of life. Sometimes they get a bit too rowdy... one time intelligence sniffed out that one of these groups had all gotten together and relocated to one our colonies.They were planning on breeding up an army. That was no good for sure. They were probably going to come back home and try to off the empress and take over then pull some ‘manifest destiny’ stuff. That was one of the times I got into a real fight. Now the other time was a lot more interesting. World called Rakshasis. Nice place. All twilight, sand and mountains. All in all, not bad for my kind, even on the surface. Not too bright. Get hungry, and all you have to do is lean down and scoop up and handful of sand. Not very nutritious, but it gets the job done. It’s one of our few colonies. We don’t spread out much since we can make use of vastly more of a planet’s mass than nonlithiophages can. Anyway, back to the story. This happened when it was a new place. Our settlements were still small. Tunnels were being dug around the clock to dig in as we do. The colony’s garrison was still on the way to the planet, so it had nothing but some local militia to stand up to the incoming attack”</i>");
 	output("\n\nYou grimace at that. Either pirates or slavers, a new and still undefended colony was a golden opportunity for loot, equipment, or slaves.");
@@ -300,7 +303,7 @@ public function kirilaShop(choice:Number = 0):void
 	}
 	else if(choice == 2)
 	{
-		shopkeep.keeperBuy = "<i>“Silk please,”</i> you say as you look at the racks of clothing on display.\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down, and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip. Does she do this every time? Not that you’re complaining, the alien woman has a very nice body, fit with wide hips and round butt. You really get to see how polished her exoskeleton is, every plate is like a copper mirror.\n\nAfter a moment  the copper spinarran appears again, this time wearing a frilly gothic dress. The girly outfit is covered in lace, frills, and looks to be made of silk or satin. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular.”</i>\n";
+		shopkeep.keeperBuy = "<i>“Silk please,”</i> you say as you look at the racks of clothing on display.\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down, and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip. Does she do this every time? Not that you’re complaining, the alien woman has a very nice body, fit with wide hips and round butt. You really get to see how polished her exoskeleton is, every plate is like a copper mirror.\n\nAfter a moment the copper spinarran appears again, this time wearing a frilly gothic dress. The girly outfit is covered in lace, frills, and looks to be made of silk or satin. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular.”</i>\n";
 		shopkeep.inventory = new Array();
 		shopkeep.inventory.push(new ClassySuit());
 		shopkeep.inventory.push(new SilkDress());
@@ -331,12 +334,12 @@ public function kirilaSteelItemDemos():void
 	output("<i>“Steel please,”</i> you say as you look at the racks of various weapons and armor on display.\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip; does she do this every time? Not that you’re complaining. The alien woman has a very nice body, looking fit with wide hips and a round butt. You really get to appreciate how polished her exoskeleton is. Every plate is like a copper mirror.\n\nAfter a moment, the copper spinarran appears again, this time wearing a coat made of synth-leather, ballistic padding, and tightly woven silvery mesh. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular. Much of it is registered military surplus.”</i>");
 	processTime(1);
 	clearMenu();
-	addButton(0,"Plasma Bore",plasmaBoreDemo);
-	addButton(1,"SunFire",sunfireDemo);
-	addButton(2,"BlackLight",blacklightDemo);
-	addButton(3,"ThermalScalpel",thermalScalpelDemo);
-	addButton(4,"M.Saber",monofilamentDemo)
-	addButton(5,"PredatorTalons",predatorTalonsDemo);
+	addButton(0,"PlasmaBore",plasmaBoreDemo,undefined,"Plasma Bore","Learn more about this item.");
+	addButton(1,"SunFire",sunfireDemo,undefined,"SunFire Rifle","Learn more about this item.");
+	addButton(2,"B.Light",blacklightDemo,undefined,"“Black Light” Ultraviolet Laser Rifle","Learn more about this item.");
+	addButton(3,"T.Scalpel",thermalScalpelDemo,undefined,"Thermal Scalpel","Learn more about this item.");
+	addButton(4,"M.Saber",monofilamentDemo,undefined,"Monofilament Saber","Learn more about this item.")
+	addButton(5,"P.Talons",predatorTalonsDemo,undefined,"Predator Talons","Learn more about this item.");
 	addButton(14,"Back",itemDemos);
 }
 
@@ -348,9 +351,9 @@ public function kirilaArmorItemDemos():void
 	output("You gesture to the armor on display and ask about it. The spinarran behind the counter nods her head and fingers her outfit again.\n\n<i>“Ahh, alright. I hope you like what we have. All of it is of the highest quality I assure you. My clutchmate makes all the armor herself from her own weave. I guarantee that it will offer very good protection, though it won’t help against the cold outside.”</i>");
 	processTime(1);
 	clearMenu();
-	addButton(0,"WM Shirt",WMShirtDemo);
-	addButton(1,"WM Coat",WMCoatDemo);
-	addButton(2,"WM Dress",WMDressDemo);
+	addButton(0,"WM Shirt",WMShirtDemo,undefined,"Weavemail Shirt","Learn more about this item.");
+	addButton(1,"WM Coat",WMCoatDemo,undefined,"Weavemail Coat","Learn more about this item.");
+	addButton(2,"WM Dress",WMDressDemo,undefined,"Weavemail Dress","Learn more about this item.");
 	addButton(14,"Back",itemDemos);
 }
 
@@ -359,14 +362,14 @@ public function kirilaSilkItemDemos():void
 	clearOutput();
 	showKirila();
 	author("Kinathis");
-	output("<i>“Silk please,”</i> you say as you look at the racks of clothing on display.\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down, and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip. Does she do this every time? Not that you’re complaining, the alien woman has a very nice body, fit with wide hips and round butt. You really get to see how polished her exoskeleton is, every plate is like a copper mirror.\n\nAfter a moment  the copper spinarran appears again, this time wearing a frilly gothic dress. The girly outfit is covered in lace, frills, and looks to be made of silk or satin. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular.”</i>");
+	output("<i>“Silk please,”</i> you say as you look at the racks of clothing on display.\n\n<i>“Alrighty, one minute!”</i> she says before ducking down under the counter. Out of curiosity, you lean over, look down, and catch sight of a pair of round, mirror-polished asscheeks as the shopkeep changes clothes. You cover your mouth at her sudden desire to strip. Does she do this every time? Not that you’re complaining, the alien woman has a very nice body, fit with wide hips and round butt. You really get to see how polished her exoskeleton is, every plate is like a copper mirror.\n\nAfter a moment the copper spinarran appears again, this time wearing a frilly gothic dress. The girly outfit is covered in lace, frills, and looks to be made of silk or satin. She takes a moment to smooth out her new outfit before grinning and showing off rows of sharp pearlescent teeth. <i>“Please, take a look around and let me know if you want to see something in particular.”</i>");
 
 	clearMenu();
-	addButton(0,"C.Suit",classySuitDemo);
-	addButton(1,"S.Dress",silkDressDemo);
-	addButton(2,"Maid U.",maidUniformDemo);
-	addButton(3,"T.Bodysuit",thermalBodysuitDemo);
-	addButton(4,"Winter G.",winterGearDemo);
+	addButton(0,"C.Suit",classySuitDemo,undefined,"Classy Suit","Learn more about this item.");
+	addButton(1,"S.Dress",silkDressDemo,undefined,"Silk Dress","Learn more about this item.");
+	addButton(2,"Maid U.",maidUniformDemo,undefined,"Maid Outfit","Learn more about this item.");
+	addButton(3,"T.Bodysuit",thermalBodysuitDemo,undefined,"Thermal Bodysuit","Learn more about this item.");
+	addButton(4,"Winter G.",winterGearDemo,undefined,"Winter Gear","Learn more about this item.");
 	addButton(14,"Back",itemDemos);
 }
 
@@ -428,7 +431,7 @@ public function classySuitDemo():void
 	showKirila();
 	author("Kinathis");
 	output("Hanging on many of the racks along the walls are several classic suits popular among the rich and powerful of Earth. Each suit is crisp and clean, and consists of a jacket, button-up shirt, tie, and trousers. Despite fashion changing every other week or so, the classic suit never goes out of style it seems.");
-	output("\n\nThe shopkeeper’s eyes fall on you and she smiles, <i>“Oh yes, those are popular among the businessmen. Earth seems to have a way of creating timeless fashion. The tailor assures us that they are completely waterproof, stain proof, and will adjust to fit any wearer. Something about each being a <i>“bespoke”</i> suit.”</i>");
+	output("\n\nThe shopkeeper’s eyes fall on you and she smiles, <i>“Oh yes, those are popular among the businessmen. Earth seems to have a way of creating timeless fashion. The tailor assures us that they are completely waterproof, stain proof, and will adjust to fit any wearer. Something about each being a “bespoke” suit.”</i>");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",kirilaSilkItemDemos);
@@ -503,7 +506,7 @@ public function sunfireDemo():void
 	clearOutput();
 	showKirila();
 	author("Kinathis");
-	output("Looking at the heavier weapons on the walls, you point to one of several heavy, two handed weapons. A big, mean looking thing, with two handles curved plates, what looks like a rotatory barrel. <i>“Mmmm... a beauty.”</i> The girl behind the counter sighs as she pulls one down from the case with ease and lays the heavy weapon down on the counter for you. <i>“This is a plasma bore sunfire variant. It is a beautiful piece of spinarran weaponry. While each shot doesn’t hit as hard as the standard version, the rotating barrel and expanded fuelcell means one of the shots is bound to land. What's more all that heat might set your foes ablaze! Tough, reliable, not too heavy, well for spinarrans or lethians anyway. Might be a bit heavy for a human or an ausar.”</i>");
+	output("Looking at the heavier weapons on the walls, you point to one of several heavy, two handed weapons. A big, mean looking thing, with two handles curved plates, what looks like a rotatory barrel. <i>“Mmmm... a beauty.”</i> The girl behind the counter sighs as she pulls one down from the case with ease and lays the heavy weapon down on the counter for you. <i>“This is a plasma bore sunfire variant. It is a beautiful piece of spinarran weaponry. While each shot doesn’t hit as hard as the standard version, the rotating barrel and expanded fuelcell means one of the shots is bound to land. What’s more all that heat might set your foes ablaze! Tough, reliable, not too heavy, well for spinarrans or lethians anyway. Might be a bit heavy for a human or an ausar.”</i>");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",kirilaSteelItemDemos);
