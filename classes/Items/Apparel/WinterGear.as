@@ -27,7 +27,7 @@ package classes.Items.Apparel
 			
 			this.description = "a set of winter clothing";
 			
-			this.tooltip = "A rather fashionable set of wintery clothing, consisting of a parka, trousers, and boots, all of which are lined with fur and heavily insulated. With the addition of the emergency heating pads, it’s a must have for exploring frozen planets.";
+			this.tooltip = "A rather fashionable set of wintery clothing, consisting of a parka, trousers, and boots, all of which are lined with fur and heavily insulated. With the addition of the emergency heating pads, it’s a must-have for exploring frozen planets.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

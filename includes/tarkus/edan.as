@@ -151,6 +151,7 @@ public function talkToEdan():void
 	else addDisabledButton(1, "Stories", "Stories", "Don't kid yourself.");
 	
 	if ((flags["EDAN_NODICKS"] == 1) && ((pc.hasCock()) || (!pc.hasVagina()))) addDisabledButton(2, "Sex", "Sex", "Edan explained his sexual preferences - you need a pussy and no dick to have sex with him.");
+	else if (pc.lust() < 33) addDisabledButton(2, "Sex", "Sex", "You are not aroused enough for this!");
 	else addButton(2, "Sex", edanSex, undefined, "Sex", "Proposition the leithan for sex in the middle of the mess hall.");
 	
 	addButton(14, "Back", mainGameMenu);

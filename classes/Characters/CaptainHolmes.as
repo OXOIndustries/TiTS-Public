@@ -284,7 +284,7 @@ package classes.Characters
 		
 		public function cumFacial(target:Creature, hostiles:Array):void
 		{
-			output("One of holmes tentacles snaps forward, flinging a huge gout of pink cum at [target.combatName] " + (target is PlayerCharacter ? "" : "’s") + " face! The mutant spunk splatters on [target.combatHimHer] face, tainting the air with its musk.");
+			output("One of Holmes’s tentacles snaps forward, flinging a huge gout of pink cum at [target.combatName] " + (target is PlayerCharacter ? "" : "’s") + " face! The mutant spunk splatters on [target.combatHimHer] face, tainting the air with its musk.");
 			if (!rangedCombatMiss(this, target))
 			{
 				output(" Worse, it lands right in [target.combatHisHer] eyes.");
@@ -306,7 +306,7 @@ package classes.Characters
 			output("Holmes lunges at you, flailing his crotch-tentacles at your [pc.legs]!");
 			if (!combatMiss(this, target))
 			{
-				output(" You don't react in time to dodge, and quickly find your lower body wrapped in throbbing, leaking tentacle cocks. More tentacles swing around grab your arms, thrusting towards your mouth");
+				output(" You don’t react in time to dodge, and quickly find your lower body wrapped in throbbing, leaking tentacle cocks. More tentacles swing around grab your arms, thrusting towards your mouth");
 				if (target.biggestTitSize() >= 2) output(" and tits");
 				output(". <b>You're grappled</b>!");
 				
@@ -324,7 +324,7 @@ package classes.Characters
 		{
 			if (target.statusEffectv1("Grappled") != 3)
 			{
-				output("Holmes’ tentacles wrap tightly around your limbs, squeezing the life out of you!");
+				output("Holmes’s tentacles wrap tightly around your limbs, squeezing the life out of you!");
 				applyDamage(damageRand(new TypeCollection( { kinetic: 4, drug: target.hasAirtightSuit() ? 0 : 4 } ), 15), this, target, "minimal");
 			}
 			else
@@ -344,7 +344,7 @@ package classes.Characters
 			if (HP() + healAmt > HPMax()) healAmt = HPMax() - HP();
 			HP(healAmt);
 			
-			output("The captains mutated form rapidly recovers from damage, knitting closed fresh wounds with newly-sprouted tentacles! (<b><span status='good'>+" + healAmt + "</span></b>)\n\n");
+			output("The captain’s mutated form rapidly recovers from damage, knitting closed fresh wounds with newly-sprouted tentacles! (<b><span status='good'>+" + healAmt + "</span></b>)\n\n");
 			
 			if (hasStatusEffect("Bleeding"))
 			{

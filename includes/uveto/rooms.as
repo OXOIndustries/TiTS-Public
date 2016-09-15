@@ -410,13 +410,14 @@ public function initUvetoRooms():void
 
 	rooms["UVI N42"] = new RoomClass(this);
 	rooms["UVI N42"].roomName = "SOUTHERN\nCOMMERCE";
-	rooms["UVI N42"].description = "Several shops are set up around the southern end of the main street, advertising their wares. Most are simple things like grocery stores, a computer shop, and the like. To the west, though, you spot a shop that catches your eye: the Hunter's Dream. Opposite is a holograpic sign above a storefront featuring a decal of a multi-legged, tauric alien and the words, <i>“Spinarran Silk&Steel”</i>. The display windows to the east show off samples: polished weapons, exotic body armor, and even mundane clothing.";
+	rooms["UVI N42"].description = "Several shops are set up around the southern end of the main street, advertising their wares. Most are simple things like grocery stores, a computer shop, and the like. To the west, though, you spot a shop that catches your eye: the Hunter's Dream. Opposite is a holograpic sign above a storefront featuring a decal of a multi-legged, tauric alien and the words, <i>“Spinarran Silk & Steel”</i>. The display windows to the east show off samples: polished weapons, exotic body armor, and even mundane clothing.";
 	rooms["UVI N42"].planet = "PLANET: UVETO VII";
 	rooms["UVI N42"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N42"].northExit = "UVI N40";
 	rooms["UVI N42"].westExit = "UVI L42";
 	rooms["UVI N42"].eastExit = "S&S_KIRILA";
 	rooms["UVI N42"].moveMinutes = 3;
+	rooms["UVI N42"].runOnEnter = addUvetoColdBonus;
 	rooms["UVI N42"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["S&S_KIRILA"] = new RoomClass(this);
@@ -449,6 +450,9 @@ public function initUvetoRooms():void
 		{
 			output("\n\nWHO THE FUCK KNOWS, WHY WOULD WE EVER HAVE ONE CONCISE LIST OF FUCKING ROOM DESCRIPTIONS?????");
 		}
+		
+		removeUvetoCold(true);
+		
 		return false;
 	}
 	
@@ -461,6 +465,7 @@ public function initUvetoRooms():void
 	rooms["UVI P38"].southExit = "UVI P40";
 	rooms["UVI P38"].westExit = "UVI N38";
 	rooms["UVI P38"].moveMinutes = 3;
+	rooms["UVI P38"].runOnEnter = addUvetoColdBonus;
 	rooms["UVI P38"].addFlag(GLOBAL.OUTDOOR);
 
 	/* Maglev Station */
@@ -471,6 +476,7 @@ public function initUvetoRooms():void
 	rooms["UVI P40"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P40"].northExit = "UVI P38";
 	rooms["UVI P40"].moveMinutes = 1;
+	rooms["UVI P40"].runOnEnter = removeUvetoColdBonus;
 	rooms["UVI P40"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI P40"].addFlag(GLOBAL.TAXI); // 9999 TRAIN?
 
@@ -483,7 +489,7 @@ public function initUvetoRooms():void
 	rooms["UVI N32"].southExit = "UVI N34";
 	rooms["UVI N32"].eastExit = "UVI P32";
 	rooms["UVI N32"].moveMinutes = 3;
-	rooms["UVI N32"].runOnEnter = meadStreetBonus;
+	rooms["UVI N32"].runOnEnter = addUvetoColdBonus;
 	rooms["UVI N32"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["UVI N30"] = new RoomClass(this);

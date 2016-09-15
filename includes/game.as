@@ -1928,10 +1928,8 @@ public function processTime(arg:int):void {
 				flags["ANNO_ASLEEP"]--;
 				if(flags["ANNO_ASLEEP"] <= 0) flags["ANNO_ASLEEP"] = undefined;
 			}
-			if(chars["ALISS"].lust() < 70)
-			{
-				chars["ALISS"].lust(5);
-			}
+			if(chars["ALISS"].lust() < 70) chars["ALISS"].lust(5);
+			if(chars["PENNY"].lust() < 100) chars["PENNY"].lust(10);
 			if(chars["SHEKKA"].lust() < 50) chars["SHEKKA"].lust(15);
 
 			if(pc.hasPerk("Dumb4Cum")) dumb4CumUpdate();
@@ -2100,10 +2098,8 @@ public function processTime(arg:int):void {
 				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
 				if(days >= 2 && (flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined || !MailManager.isEntryUnlocked("newtexas"))) newTexasEmail();
 				
-				if(chars["ALISS"].lust() >= 70)
-				{
-					chars["ALISS"].orgasm();
-				}
+				if(chars["ALISS"].lust() >= 70) chars["ALISS"].orgasm();
+				
 				//Cooldown timer
 				if(pc.perkv2("Auto-Autofellatio") >= 1) 
 				{
