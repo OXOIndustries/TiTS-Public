@@ -1242,7 +1242,7 @@
 		}
 		public function get ilaria():Ilaria
 		{
-			return chars["IRALIA"];
+			return chars["ILARIA"];
 		}
 		
 		private var _dbgtestvar:int = 0;

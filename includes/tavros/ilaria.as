@@ -15,9 +15,9 @@ public function showIlaria(nude:Boolean = false):void
 public function bunnyBunsCumfectionaryBonus():void
 {
 	showBust("ILARIA");
-	output("The inside of Bunny’s Buns & Confectionary is an almost overwhelming assault on the senses: bright pastel colors and flashing lights adorn every wall, drawing your eye to dozens of different menu options each flickering on a holodisplay; booming bass-heavy music fills the air, accompanied by crooning female vocals in an ausari accent. Across the from entrance and the big bay windows is an old-school Terran bar, complete with stools and polished until it shines, though behind it are several different flavors of ice-cream dispenser and a soda machine that runs all the way into the ceiling - like everything else, it pulses with electronic lights, showing off its wares in a garish holographic commercial that never ends.");
+	output("The inside of Bunny’s Buns & Confectionary is an almost overwhelming assault on the senses: bright pastel colors and flashing lights adorn every wall, drawing your eye to dozens of different menu options each flickering on a holodisplay; booming bass-heavy music fills the air, accompanied by crooning female vocals in an ausari accent. Across from the entrance and big bay windows is an old-school Terran bar, complete with stools and polished until it shines, though behind it are several different flavors of ice-cream dispenser and a soda machine that runs all the way into the ceiling - like everything else, it pulses with electronic lights, showing off its wares in a garish holographic commercial that never ends.");
 	output("\n\n");
-	if(flags["MET_ILARIA"] == undefined) 
+	if(flags["MET_ILARIA"] != undefined) 
 	{
 		output("Ilaria");
 		addButton(0,"Ilaria",approachIlaria);
@@ -42,16 +42,21 @@ public function approachIlaria():void
 		output("You’ve barely sauntered up to the counter before the one and only employee bounces over to you, springing on long, digitigrade legs behind the counter. Now that she’s a little closer, you’re not so sure it’s a bunny costume so much as some high-quality mod work she’s had done: a pair of fluffy white-and-pink rabbit’s ears swivel towards you atop her head, and a poof-ball of a tail wiggles like an jubilant ausar’s.");
 		output("\n\n<i>“Hey there, sweet stuff,”</i> the bunny-woman croons, leaning over the counter in a way that makes her ample chest wobble against the polished surface, barely constrained by her showy black corset. <i>“What can I getcha?”</i>");
 		output("\n\nYou notice a little name-tag is pinned to the stand-alone collar-and-bow-tie around her neck, reading on bubbly pink capitals: <i>“ILARIA.”</i>");
+		
+		flags["MET_ILARIA"] = 1;
 	}
 	//Repeat
-	else output("\n\nIlaria bounds over to you with a smile. <i>“Welcome back!");
-	if(flags["FUCKED_ILARIA"] != undefined) 
+	else
 	{
-		output("”</i> she murmurs huskily, leaning way over the counter to show you all of that delicious, milky cleavage of hers.");
-		if(chars["ILARIA"].isPregnant()) output(" One of her hands traces seductively over the growing swell of her belly.");
-		output(" <i>“Just stopping in for a snack, or...?”</i>");
+		output("Ilaria bounds over to you with a smile. <i>“Welcome back!");
+		if(flags["FUCKED_ILARIA"] != undefined) 
+		{
+			output("”</i> she murmurs huskily, leaning way over the counter to show you all of that delicious, milky cleavage of hers.");
+			if(chars["ILARIA"].isPregnant()) output(" One of her hands traces seductively over the growing swell of her belly.");
+			output(" <i>“Just stopping in for a snack, or...?”</i>");
+		}
+		else output(" What looks good to you, sweetheart?”</i>");
 	}
-	else output(" What looks good to you, sweetheart?”</i>");
 	ilariaMenu();
 }
 
@@ -65,7 +70,7 @@ public function ilariaMenu():void
 	else addDisabledButton(1,"Sex","Sex","She doesn't seem like she's ready for this just yet.");
 	if(flags["ILERIA_GLAZED"] != undefined) addButton(2,"Appearance",ilariaAppearance,undefined,"Appearance","Take a look at her.");
 	else addDisabledButton(2,"Appearance","Appearance","You haven't seen <i>all</i> of her yet.");
-	addButton(4,"Back",mainGameMenu);
+	addButton(14,"Back",mainGameMenu);
 }
 
 
@@ -91,19 +96,19 @@ public function orderFromIlaria():void
 	output("\n(" + getOrderPrice("Gryvain Jigglers") + "C) <b>Gryvain Jigglers</b> - A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
 
 	clearMenu();
-	if(getOrderPrice("Sin-a-Bunny") <= pc.credits) addButton(0,"Sin-a-Bunny",actuallyOrderFromIlaria,"Sin-a-Bunny","Ilaria’s famous cinnamon-sprinkle buns, served piping hot and sinfully soft straight from her oven. Best with a glaze of her special homemade cream!");
+	if(getOrderPrice("Sin-a-Bunny") <= pc.credits) addButton(0,"Sin-a-Bunny",actuallyOrderFromIlaria,"Sin-a-Bunny","Sin-a-Bunny","Ilaria’s famous cinnamon-sprinkle buns, served piping hot and sinfully soft straight from her oven. Best with a glaze of her special homemade cream!");
 	else addDisabledButton(0,"Sin-a-Bunny","Sin-a-Bunny","You can't afford this.");
-	if(getOrderPrice("Vanilla Iced Teats") <= pc.credits) addButton(1,"Vanilla Ice C.",actuallyOrderFromIlaria,"Vanilla Iced Teats","Ye olde ice cream, but with a milky twist! This designer brand is sourced from humanoid milk, but processed and flavored to be ten times tastier than a Terran bovine!");
+	if(getOrderPrice("Vanilla Iced Teats") <= pc.credits) addButton(1,"Vanilla Ice C.",actuallyOrderFromIlaria,"Vanilla Iced Teats","Vanilla Iced Teats","Ye olde ice cream, but with a milky twist! This designer brand is sourced from humanoid milk, but processed and flavored to be ten times tastier than a Terran bovine!");
 	else addDisabledButton(1,"Vanilla Iced Teats","Vanilla Iced Teats","You can't afford this.");
-	if(getOrderPrice("Kaithrit Kittycake") <= pc.credits) addButton(2,"Kaithrit Cake",actuallyOrderFromIlaria,"Kaithrit Kittycake","Cheesecake, sort of. Made with a rich, thick cream that kaithrit go wild for, but condensed into a milky cake. Way more sugary than the Terran equivalent, it’ll melt in your mouth in the blink of an eye!");
+	if(getOrderPrice("Kaithrit Kittycake") <= pc.credits) addButton(2,"Kaithrit Cake",actuallyOrderFromIlaria,"Kaithrit Kittycake","Kaithrit Kittycake","Cheesecake, sort of. Made with a rich, thick cream that kaithrit go wild for, but condensed into a milky cake. Way more sugary than the Terran equivalent, it’ll melt in your mouth in the blink of an eye!");
 	else addDisabledButton(2,"Kaithrit Kittycake","Kaithrit Kittycake","You can't afford this.");
-	if(getOrderPrice("Ausar Pup Pie") <= pc.credits) addButton(3,"Ausar Pup Pie",actuallyOrderFromIlaria,"Ausar Pup Pie","A sweet, earthy pie made from Ausaril fruits and crust. Served in bite-sized cubes with individual flavorings - always piping hot!");
+	if(getOrderPrice("Ausar Pup Pie") <= pc.credits) addButton(3,"Ausar Pup Pie",actuallyOrderFromIlaria,"Ausar Pup Pie","Ausar Pup Pie","A sweet, earthy pie made from Ausaril fruits and crust. Served in bite-sized cubes with individual flavorings - always piping hot!");
 	else addDisabledButton(3,"Ausar Pup Pie","Ausar Pup Pie","You can't afford this.");
-	if(getOrderPrice("Dzaan Cream Smoothie") <= pc.credits) addButton(4,"D. Smoothie",actuallyOrderFromIlaria,"Dzaan Cream Smoothie","Called as such because it’s as addictive as a dzaan alpha - well, maybe not really, but one taste will have you begging for more of this sweet, creamy smoothy, guaranteed!");
+	if(getOrderPrice("Dzaan Cream Smoothie") <= pc.credits) addButton(4,"D. Smoothie",actuallyOrderFromIlaria,"Dzaan Cream Smoothie","Dzaan Cream Smoothie","Called as such because it’s as addictive as a dzaan alpha - well, maybe not really, but one taste will have you begging for more of this sweet, creamy smoothy, guaranteed!");
 	else addDisabledButton(4,"Dzaan Cream Smoothie","Dzaan Cream Smoothie","You can't afford this.");
-	if(getOrderPrice("Raxxian Road") <= pc.credits) addButton(5,"Raxxian Road",actuallyOrderFromIlaria,"Raxxian Road","A chunky whipped cream dessert filled with chocolate chunks and loaded down with cookie crumble and sprinkles. The favorite of kids on the station!");
+	if(getOrderPrice("Raxxian Road") <= pc.credits) addButton(5,"Raxxian Road",actuallyOrderFromIlaria,"Raxxian Road","Raxxian Road","A chunky whipped cream dessert filled with chocolate chunks and loaded down with cookie crumble and sprinkles. The favorite of kids on the station!");
 	else addDisabledButton(5,"Raxxian Road","Raxxian Road","You can't afford this.");
-	if(getOrderPrice("Gryvain Jigglers") <= pc.credits) addButton(6,"GryvainJiggler",actuallyOrderFromIlaria,"Gryvain Jigglers","A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
+	if(getOrderPrice("Gryvain Jigglers") <= pc.credits) addButton(6,"GryvainJiggler",actuallyOrderFromIlaria,"Gryvain Jigglers","Gryvain Jigglers","A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
 	else addDisabledButton(6,"Gryvain Jigglers","Gryvain Jigglers","You can't afford this.");
 }
 
@@ -335,7 +340,7 @@ public function bunnyCreamCumBonanzaBullshitRemoteFuntimesExplosionIDunnoWhyThis
 	clearOutput();
 	showIlaria(true);
 	author("Savin");
-	output("The bunny-girl gives you a playful wink and swivels on a high heel, turning back to some of the other patrons crowding the bakery. You watch that half-covered heart-shaped ass sashay off, her poof-ball tail wiggling away, before turning your attention to the remote on the counter. It’s a little sliver of pink plastic, dominated by a circular control dial marked zero to ten. There’s nothing for it but to run a finger along the contour, slowly bringing the counter up to the big, bold <i>“<b>1</b>”</i> setting.");
+	output("The bunny-girl gives you a playful wink and swivels on a high heel, turning back to some of the other patrons crowding the bakery. You watch that half-covered heart-shaped ass sashay off, her poof-ball tail wiggling away, before turning your attention to the remote on the counter. It’s a little sliver of pink plastic, dominated by a circular control dial marked zero to ten. There’s nothing for it but to run a finger along the contour, slowly bringing the counter up to the big, bold “<b>1</b>” setting.");
 	output("\n\nFrom halfway across the restaurant, you hear Ilaria give a little gasp and miss a step in her sexy gait. The customer she’s serving, a ");
 	if(rand(5) == 0) output("burly thraggen man with a golden nose-ring");
 	else if(rand(4) == 0) output("red-haired spacer in a skin-tight bodysuit");
@@ -358,7 +363,7 @@ public function bunnyCreamCumBonanzaBullshitRemoteFuntimesExplosionIDunnoWhyThis
 	output("\n\nShe reappears a moment later with a spring in her step and a platter balanced over one shoulder. Her high heels clitter-clatter over the tile floor, an uneven staccato trying desperately not to tip their owner’s hand to the growing audience. More and more people are looking her way as Ilaria awkwardly delivers order after order, sliding plates down the bar with a trembling hand.");
 	output("\n\nWhen she gets to you, though Ilaria sashays back with a red-cheeked smile, carrying your dish personally. Rather than drop it off, though, the bunny-babe slips the plate under the counter, resting it on a hidden shelf before leaning over the counter with a flirtatious smile. <i>“Okay! Your sweet, creamy topping’s just... oh, it’s just about ready! Gimme a little more of the good stuff, sugar, and I’m ready to burst.”</i>");
 	output("\n\nIlaria gives you a wink, and one of her hands vanishes under the counter. The intimation is clear, and you eagerly ply the controller up to the halfway point. The bunny-girl sucks in a sharp breath, suppressing a whimpering little moan, and her hand starts moving quickly just out of sight. She tries to be subtle, but the pleasure’s too much to keep <i>completely</i> silent; those customers who seemed clued-in to her lusty undertakings grin and chuckle.");
-	output("\n\n<i>“Gonna... gonna...”</i> she murmurs, grabbing your [pc.arm] with her free hand. You grin and push the dial up, all the way this time. Ilaria’s eyes go wild, and her lips twist open in a silent cry of pleasure. Even over the ever-present smell of cinnamon and sugar that pervades the bakery, you catch a strong whiff of something musky and masculine wafting up to your nose. The cum-bunny’s breath catches, held for a long moment in her open throat before her eyes flutter, and she all but collapses over the bar. Her big breasts compress onto the cold metal, spreading out under her like pillows as she comes down off her orgasmic high. The vibrators milk out every sweet drop while you tune the controller down, slowly passing it back down through the settings until the notch finds the <i>“Zero”</i> once again.");
+	output("\n\n<i>“Gonna... gonna...”</i> she murmurs, grabbing your [pc.arm] with her free hand. You grin and push the dial up, all the way this time. Ilaria’s eyes go wild, and her lips twist open in a silent cry of pleasure. Even over the ever-present smell of cinnamon and sugar that pervades the bakery, you catch a strong whiff of something musky and masculine wafting up to your nose. The cum-bunny’s breath catches, held for a long moment in her open throat before her eyes flutter, and she all but collapses over the bar. Her big breasts compress onto the cold metal, spreading out under her like pillows as she comes down off her orgasmic high. The vibrators milk out every sweet drop while you tune the controller down, slowly passing it back down through the settings until the notch finds the “Zero” once again.");
 	output("\n\n<i>“Whew! That’s a double helping, I think,”</i> Ilaria giggles, slowly propping herself up on her elbows. <i>“Get it while it’s hot!”</i>");
 	output("\n\nShe retrieves the plate, showing off ");
 	if(order == "Gryvain Jigglers" || order == "Vanilla Iced Teats") output(order);
@@ -408,17 +413,19 @@ public function sexWithIlaria():void
 	clearMenu();
 	//[Munch Pussy] [Pound Her]
 	//Munch Pussy
-	addButton(0,"Munch Pussy",munchIraliasPussy,undefined,"Munch Pussy","Help yourself to a whole heaping helping of Ilaria’s pussy.");
+	addButton(0,"Munch Pussy",munchIlariasPussy,undefined,"Munch Pussy","Help yourself to a whole heaping helping of Ilaria’s pussy.");
 	//Pound Her
 	//Onecock Tooltip: Ilaria’s already hooked up and presenting - go ahead and slide into the lusty bunny’s welcoming hole while she cums buckets into her milker.
 	//2+Cock Tooltip: Ilaria’s presenting two fine-looking holes to you - go ahead and pound both of them in while she dumps a fat load of bunny cream into her milker.
 	if(pc.hasCock())
 	{
+		/*
 		output("\n\nILARIA: " + chars["ILARIA"].vaginalCapacity(0));
 		for(var i:int = 0; i < pc.cockTotal(); i++)
 		{
-			output("\nDICK: " + pc.cockVolume(i));
+			output("\nDICK No." + (i + 1) + ": " + pc.cockVolume(i));
 		}
+		*/
 		if(pc.cockThatFits(chars["ILARIA"].vaginalCapacity(0)) >= 0)
 		{
 			if(pc.cockThatFits2(chars["ILARIA"].vaginalCapacity(0)) >= 0 && pc.cockTotal() > 1) addButton(1,"Pound Her",poundIlariaLikeMad,undefined,"Pound Her","Ilaria’s already hooked up and presenting - go ahead and slide into the lusty bunny’s welcoming hole while she cums buckets into her milker.");
@@ -431,7 +438,7 @@ public function sexWithIlaria():void
 
 //Munch Pussy
 //Help yourself to a whole heaping helping of Ilaria’s pussy.
-public function munchIraliasPussy():void
+public function munchIlariasPussy():void
 {
 	clearOutput();
 	showIlaria(true);
