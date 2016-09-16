@@ -307,7 +307,7 @@ public function ramisLeave(response:String = "none"):void
 	{
 		case "fem":
 			output("<i>“Maybe some other time,”</i> you say. The mercs boo and jeer you with gusto.");
-			output("\n\n<i>“Aw, leave off her!”</i> Ramis is saying as you leave. <i>“How many girlees are gonna want to get blasted with you dickheads anyway...?”</i>");
+			output("\n\n<i>“Aw, leave off " + pc.mf("‘im", "her") + "!”</i> Ramis is saying as you leave. <i>“How many " + pc.mf("lads", "girlees") + " are gonna want to get blasted with you dickheads anyway...?”</i>");
 			break;
 		case "boy":
 			output("<i>“You cunt-tease!”</i> howls Ramis, rolling her head back in laughing exasperation. You suspect she’d be angrier if she wasn’t currently so uncoordinated. <i>“G’won, get out of my sight before I decide to start taking pot-shots at your lily arse. Barlad! Leave the bottle.”</i>");
@@ -446,7 +446,9 @@ public function ramisDrink(response:String = "drink"):void
 			output("\n\n<i>“We didn’t, uh...”</i> you trail off.");
 			if(pc.hasVagina())
 			{
-				output("\n\n<i>“Uh? Oh, no. Don’t think so anyway,”</i> Ramis replies, unsteadily pulling on her jeans. <i>“I’m not into other girlees.");
+				output("\n\n<i>“Uh? Oh, no. Don’t think so anyway,”</i> Ramis replies, unsteadily pulling on her jeans. <i>“I’m not into other");
+				if(pc.mf("m", "f") == "m") output("... eh,");
+				output(" girlees.");
 				if(pc.hasCock()) output(" Not even if they got a nice willy like yours.");
 				output("”</i> She grins at you. <i>“Much more fun to hit the town with, eh? You’re a rock star, [pc.name]! Whenever you’re back on Tavros, you must come‘n see if I’m in Anon’s. We gotta do it again!”</i> She wrenches on her tank top. <i>“Right, I’m gonna go find some breakfast. I’ll let myself out [pc.name], don’t you worry - you look like you could with a bit of a lie-in.”</i>");
 			}
