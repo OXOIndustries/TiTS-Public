@@ -155,6 +155,7 @@
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
 		include "../includes/tavros/fyn.as";
+		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
 		include "../includes/tavros/oviliumBonus.as";
@@ -422,7 +423,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.79";
+			version = "0.6.81";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1238,6 +1239,10 @@
 		public function get edan():Edan
 		{
 			return chars["EDAN"];
+		}
+		public function get ilaria():Ilaria
+		{
+			return chars["IRALIA"];
 		}
 		
 		private var _dbgtestvar:int = 0;
