@@ -2807,6 +2807,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Ilaria Bunnybutts
+			if(flags["MET_ILARIA"] != undefined)
+			{
+				output2("\n<b><u>Bunny’s Buns & Confectionary</u></b>");
+				output2("\n<b>* Ilaria:</b>Met her");
+				if(flags["ILERIA_GLAZED"] != undefined) output2("\n<b>* Ilaria, Times Glazed Order:</b> " + flags["ILERIA_GLAZED"]);
+				if(flags["FUCKED_ILARIA"] != undefined) output2("\n<b>* Ilaria, Times Sexed:</b> " + flags["FUCKED_ILARIA"]);
+				variousCount++;
+			}
 		}
 		
 		if(showID == "New Texas" || showID == "All")
@@ -4690,6 +4699,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["UVETO_LUNA_RESCUES"] != undefined) output2("\n<b>* Luna, Times Rescued By:</b> " + flags["UVETO_LUNA_RESCUES"]);
 				if(flags["UVETO_JEROME_RESCUES"] != undefined) output2("\n<b>* Jerome, Times Rescued By:</b> " + flags["UVETO_JEROME_RESCUES"]);
 				if(flags["UVETO_JERYNN_RESCUES"] != undefined) output2("\n<b>* Jerynn, Times Rescued By:</b> " + flags["UVETO_JERYNN_RESCUES"]);
+				variousCount++;
+			}
+			// Spinarran Silk & Steel
+			if(flags["MET_KIRILA"] != undefined)
+			{
+				output2("\n<b><u>Spinarran Silk & Steel</u></b>");
+				output2("\n<b>* Kirila:</b> Met her");
 				variousCount++;
 			}
 			// Ice Plains

@@ -41,8 +41,9 @@ public function approachKirila(back:Boolean = false):void
 	}
 	else
 	{
-		
 		output("Kirila gives you a little wave. <i>“Hey there, welcome to Spinarran Silk & Steel. Are you here for silk or for steel?”</i> she asks with a smile on her copper-skinned lips.");
+		
+		if(flags["MET_KIRILA"] == undefined) flags["MET_KIRILA"] = 1;
 	}
 	silkAndSteelMenu();
 }
@@ -210,18 +211,18 @@ public function kirilaRushTalk():void
 	var story:int = 0;
 	var choices:Array = new Array();
 	//If been to mhen’ga: 
-	if(flags["MET_FLAHNE"] != undefined) choices.push(1);
+	if(flags["KIRILA_RUSH_STORY"] != 1 && flags["MET_FLAHNE"] != undefined) choices.push(1);
 	//If PC has been to tarkus:
-	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined && flags["UNLOCKED_JUNKYARD_PLANET"] >= 2) choices.push(2);
+	if(flags["KIRILA_RUSH_STORY"] != 2 && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined && flags["UNLOCKED_JUNKYARD_PLANET"] >= 2) choices.push(2);
 	//Myrellion:
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
-		if(flags["KQ2_MYRELLION_STATE"] == 1 || flags["KQ2_MYRELLION_STATE"] == 2) choices.push(4);
-		else choices.push(3);
+		if(flags["KIRILA_RUSH_STORY"] != 4 && (flags["KQ2_MYRELLION_STATE"] == 1 || flags["KQ2_MYRELLION_STATE"] == 2)) choices.push(4);
+		else if(flags["KIRILA_RUSH_STORY"] != 3) choices.push(3);
 	}
 
 	//Failsafe Mhenga story. Fuck ya'll.
-	if(choices.length == 0) choices.push(0);
+	if(choices.length == 0) choices.push(1);
 	story = choices[rand(choices.length)];
 
 	//If been to mhen’ga: 
@@ -230,7 +231,6 @@ public function kirilaRushTalk():void
 		output("\n\n<i>“On one planet I encountered the zil, this whole primitive race of aliens that are a lot like Terran bees. They even buzz and make all this sweet tasting honey. There was also the vanae, this all female-looking hunter race with all these wiggling tentacles around their waists.”</i> You wiggle your fingers emphasis, and the spinarran smiles.");
 		output("\n\n<i>“My my, sounds exciting, it’s a shame they are so primitive though. It will be so long before they are ready to join everyone else, I may never get too see them. Oh, maybe I can try and get a ship to take me there someday, like a vacation. I would love to see those zil. Oh! I bet those vanae give great hugs.”</i>");
 		output("\n\nYou grin. Mhen’ga isn’t the best vacation spot, but maybe in a few years something would be possible. Then again, not many things could possibly bring down one of these spinarrans.");
-		flags["KIRILA_RUSH_STORY"]++;
 	}
 	//If PC has been to tarkus:
 	else if(story == 2)
@@ -242,7 +242,6 @@ public function kirilaRushTalk():void
 		output("\n\n<i>“But not everything there is like that, the raskvel that live there are pretty cute little guys, real short and excitable. They love to fix things; I’m pretty sure they get off on fixing machines. There are also all these silvery nano-goos around. They are very amorous but not actually threatening.”</i>");
 		output("\n\nStill reeling from the talk of sydians she nods. <i>“Well, it’s good to know not everything there is horrific. Those sydians are going to have some problems with spinarrans if they get out - probably would’nt be allowed on any spinarran settlement or world.”</i>");
 		output("\n\nYou can kind of understand that. You wouldn’t want an alien that would eat your skin around you either.");
-		flags["KIRILA_RUSH_STORY"]++;
 	}
 	//Myrellion:
 	//(If myrellion is not nuked)(after the third PC visit)
@@ -269,6 +268,7 @@ public function kirilaRushTalk():void
 		output("\n\nYou think about it for a moment, and you have to agree. It must be a bit lonely for spinarrans, being so adapted to an environment that would be uncomfortable to most others. Your eyes flick to the goggles she wears over their eyes. It would be hard to have to wear protective equipment everywhere you go just to keep yourself from going blind. <i>“Well here’s hoping that something can be made of this.”</i>");
 		output("\n\nKirila smiles. <i>“Thank you, I hope so too.”</i>");
 	}
+	flags["KIRILA_RUSH_STORY"] = story;
 	processTime(5);
 	clearMenu();
 	kirilaTalkMenu(kirilaRushTalk);

@@ -775,11 +775,12 @@ public function purchaseSomethingHardlightFromAliss(purchaseItem:*):void
 	output("You transfer the credits for a hardlight-equipped version of your chosen undergarment.\n\n");
 	//Credits
 	pc.credits -= (getAlissPrice(purchaseItem) + 3000);
-
-	var foundLootItems:Array = [];
 	
+	purchaseItem.basePrice += 3000;
 	purchaseItem.hasRandomProperties = true;
 	purchaseItem.hardLightEquipped = true;
+
+	var foundLootItems:Array = [];
 	foundLootItems.push(purchaseItem);
 
 	itemScreen = mainGameMenu;
