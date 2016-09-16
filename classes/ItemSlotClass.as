@@ -217,6 +217,9 @@
 			if (this.itemFlags.length > 0)
 			{
 				var fList:String = "";
+				
+				if(hardLightEquipped) fList += (fList.length > 0 ", " : "") + "Hardlight Strap-On";
+				
 				for (var i:uint = 0; i < itemFlags.length; i++)
 				{
 					// Ignore non-consumable flag
