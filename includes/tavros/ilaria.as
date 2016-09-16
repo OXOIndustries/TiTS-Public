@@ -66,7 +66,11 @@ public function ilariaMenu():void
 	clearMenu();
 	//[Order Up] [Leave]
 	addButton(0,"Order Up",orderFromIlaria,undefined,"Order Up","Check out the menu!");
-	if(flags["ILERIA_GLAZED"] != undefined) addButton(1,"Sex",sexWithIlaria,undefined,"Sex","Most of her scenes involve you <i>“helping”</i> her attached to her cock-milker, to save up some <i>“special sauce.”</i>");
+	if(flags["ILERIA_GLAZED"] != undefined)
+	{
+		if(pc.lust() >= 33) addButton(1,"Sex",sexWithIlaria,undefined,"Sex","Most of her scenes involve you “helping” her attached to her cock-milker, to save up some “special sauce.”");
+		else addDisabledButton(1,"Sex","Sex","You are not aroused enough for this!");
+	}
 	else addDisabledButton(1,"Sex","Sex","She doesn't seem like she's ready for this just yet.");
 	if(flags["ILERIA_GLAZED"] != undefined) addButton(2,"Appearance",ilariaAppearance,undefined,"Appearance","Take a look at her.");
 	else addDisabledButton(2,"Appearance","Appearance","You haven't seen <i>all</i> of her yet.");
@@ -87,13 +91,13 @@ public function orderFromIlaria():void
 	author("Savin");
 	output("What will you order?\n\n");
 
-	output("(" + getOrderPrice("Sin-a-Bunny") + "C) <b>Sin-a-Bunny</b> - Ilaria’s famous cinnamon-sprinkle buns, served piping hot and sinfully soft straight from her oven. Best with a glaze of her special homemade cream!");
-	output("\n(" + getOrderPrice("Vanilla Iced Teats") + "C) <b>Vanilla Iced Teats</b> - Ye olde ice cream, but with a milky twist! This designer brand is sourced from humanoid milk, but processed and flavored to be ten times tastier than a Terran bovine!");
-	output("\n(" + getOrderPrice("Kaithrit Kittycake") + "C) <b>Kaithrit Kittycake</b> - Cheesecake, sort of. Made with a rich, thick cream that kaithrit go wild for, but condensed into a milky cake. Way more sugary than the Terran equivalent, it’ll melt in your mouth in the blink of an eye!");
-	output("\n(" + getOrderPrice("Ausar Pup Pie") + "C) <b>Ausar Pup Pie</b> - A sweet, earthy pie made from Ausaril fruits and crust. Served in bite-sized cubes with individual flavorings - always piping hot!");
-	output("\n(" + getOrderPrice("Dzaan Cream Smoothie") + "C) <b>Dzaan Cream Smoothie</b> - Called as such because it’s as addictive as a dzaan alpha - well, maybe not really, but one taste will have you begging for more of this sweet, creamy smoothy, guaranteed!");
-	output("\n(" + getOrderPrice("Raxxian Road") + "C) <b>Raxxian Road</b> - A chunky whipped cream dessert filled with chocolate chunks and loaded down with cookie crumble and sprinkles. The favorite of kids on the station!");
-	output("\n(" + getOrderPrice("Gryvain Jigglers") + "C) <b>Gryvain Jigglers</b> - A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
+	output("(" + getOrderPrice("Sin-a-Bunny") + " C) <b>Sin-a-Bunny</b> - Ilaria’s famous cinnamon-sprinkle buns, served piping hot and sinfully soft straight from her oven. Best with a glaze of her special homemade cream!");
+	output("\n(" + getOrderPrice("Vanilla Iced Teats") + " C) <b>Vanilla Iced Teats</b> - Ye olde ice cream, but with a milky twist! This designer brand is sourced from humanoid milk, but processed and flavored to be ten times tastier than a Terran bovine!");
+	output("\n(" + getOrderPrice("Kaithrit Kittycake") + " C) <b>Kaithrit Kittycake</b> - Cheesecake, sort of. Made with a rich, thick cream that kaithrit go wild for, but condensed into a milky cake. Way more sugary than the Terran equivalent, it’ll melt in your mouth in the blink of an eye!");
+	output("\n(" + getOrderPrice("Ausar Pup Pie") + " C) <b>Ausar Pup Pie</b> - A sweet, earthy pie made from Ausaril fruits and crust. Served in bite-sized cubes with individual flavorings - always piping hot!");
+	output("\n(" + getOrderPrice("Dzaan Cream Smoothie") + " C) <b>Dzaan Cream Smoothie</b> - Called as such because it’s as addictive as a dzaan alpha - well, maybe not really, but one taste will have you begging for more of this sweet, creamy smoothy, guaranteed!");
+	output("\n(" + getOrderPrice("Raxxian Road") + " C) <b>Raxxian Road</b> - A chunky whipped cream dessert filled with chocolate chunks and loaded down with cookie crumble and sprinkles. The favorite of kids on the station!");
+	output("\n(" + getOrderPrice("Gryvain Jigglers") + " C) <b>Gryvain Jigglers</b> - A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
 
 	clearMenu();
 	if(getOrderPrice("Sin-a-Bunny") <= pc.credits) addButton(0,"Sin-a-Bunny",actuallyOrderFromIlaria,"Sin-a-Bunny","Sin-a-Bunny","Ilaria’s famous cinnamon-sprinkle buns, served piping hot and sinfully soft straight from her oven. Best with a glaze of her special homemade cream!");
@@ -164,7 +168,13 @@ public function setOrderTFAndDeets(order:String, glazed:Boolean = false):void
 			multi = 7;
 			break;
 	}
-	if(glazed) multi * 2;
+	if(glazed)
+	{
+		multi *= 2;
+		chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 500);
+		pc.loadInMouth(chars["ILARIA"]);
+		chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 50000);
+	}
 	if(!pc.hasStatusEffect("Home Cooking")) pc.createStatusEffect("Home Cooking", 50, 0, 0, 0, false, "Icon_Cooking", "While you are well fed, you recover more while resting.", false, (12*60+multi*2*60));
 	else if(pc.getStatusMinutes("Home Cooking") < (12*60+multi*2*60)) pc.setStatusMinutes("Home Cooking",(12*60+multi*2*60));
 }
@@ -258,7 +268,7 @@ public function getFoodTextShit(order:String):void
 {
 	output("\n\nShe bounces off, leaving you to wait for just a few moments while your hostess tends to a couple other customers, then disappears into a back room. While she’s gone, you’re left to ");
 	if(pc.isBimbo()) output("groove along with");
-	else output("<i>“enjoy”</i>");
+	else output("“enjoy”");
 	output(" the thumping, ausar-babe pop pounding over the speakers. You’re not sure anybody in here can hear anything said more than a couple feet from them - which doesn’t seem to bother anybody, as far as you can see. The younger patrons definitely are enjoying it.");
 
 	output("\n\nWhen Ilaria comes back, she’s got a tray of orders balanced on one shoulder, passing out dishes to customer after customer as she makes her way down the bar. With her arms so occupied, you see that her stiletto heels give her a swaying gait, making her very broad hips sashay with every step, and her pushed-up breasts jiggle like water under the corset that barely rises high enough to cover up her nipples. When she bends to deliver your order, the black cloth slides down just enough to hint at a puffy pink mound, and you catch several other patrons enjoying the show from behind her: her skirt must be riding awfully high back there!");
@@ -677,7 +687,7 @@ output("\n\n<i>Healthier living for tomorrow.</i>");
 output("\n\nIlaria - PC talks to for the first time during each pregnancy.");
 output("\n\n<i>“[pc.name]!”</i> the bunny-babe yips, bounding over and hopping into your arms. She gives you a kiss and grabs your hand, directing it down to her [ilaria.belly]. <i>“I’m glad you came by. Really glad... my virile stud.”</i>");
 
-output("\n\nShe giggles, and nuzzles herself under your arm. <i>“Sorry, I’m terrible about the whole ‘romance’ thing, but I’m definitely excited! Super duper extra excited! I’ve {never been pregnant before // been waiting for the next happy accident you left in my  pussy to take root - the last time was awesome}!”</i>");
+output("\n\nShe giggles, and nuzzles herself under your arm. <i>“Sorry, I’m terrible about the whole ‘romance’ thing, but I’m definitely excited! Super duper extra excited! I’ve {never been pregnant before // been waiting for the next happy accident you left in my pussy to take root - the last time was awesome}!”</i>");
 
 output("\n\nIlaria squeals excitedly, bouncing on her bunny-like heels. Her excitement is infectious, and soon you’re allowing her to guide you into a barstool and enticing whatever your favorite order from the menu is - her treat. Between her giddy ejaculations, you manage to {inform / remind} her of the nursery dedicated to you upstairs - she’s free to make use of its facilities during and after her pregnancy. That, she says, takes what little weight she’d been feeling off her shoulders: a place that’ll take care of her children while she works will make this all the sweeter for her.");
 
