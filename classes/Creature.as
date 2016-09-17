@@ -1624,6 +1624,9 @@
 				case "eyeColor":
 					buffer = eyeColor;
 					break;
+				case "nose":
+					buffer = noseDescript();
+					break;
 				case "hairsDescript":
 					buffer = hairsDescript();
 					break;
@@ -4452,6 +4455,19 @@
 		public function hasLongTongue():Boolean
 		{
 			return hasTongueFlag(GLOBAL.FLAG_LONG) || hasTongueFlag(GLOBAL.FLAG_PREHENSILE);
+		}
+		
+		public function noseDescript(): String
+		{
+			var adjectives:Array = [];
+			var nouns:Array = ["nose"];
+			var description:String = "";
+			
+			if(nosePierced > 0) adjectives.push("pierced");
+			
+			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			description += nouns[rand(nouns.length)];
+			return description;
 		}
 		
 		public function tongueDescript(): String {
