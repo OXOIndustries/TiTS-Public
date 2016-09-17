@@ -487,9 +487,7 @@ public function siegwulfeGenitals(genitals:int = 0, gType:int = -1, fType:int = 
 		chars["WULFE"].cumType = fType;
 	}
 }
-public function siegwulfeCreateCock():void
-{
-}
+
 public function doSiegwulfeSex(response:String = "none"):void
 {
 	clearOutput();
@@ -586,7 +584,7 @@ public function doSiegwulfeSex(response:String = "none"):void
 					if(pc.isHerm()) output(" and");
 					if(pc.hasCock()) output(" loosing a fat wad of [pc.cum] from your untouched [pc.cocks]. It geysers over her head, splattering all over the bot’s wiggling rear.");
 				}
-				else output(" clenching your [pc.asshole] as tight as you can as she tongue-fucks your lonely hole.}");
+				else output(" clenching your [pc.asshole] as tight as you can as she tongue-fucks your lonely hole.");
 				output("\n\nAs the final tendrils of orgasmic pleasure shudders through you, [wulfe.name] slowly withdraws her lengthy tongue, finishing with a dainty kiss right on your [pc.vagOrAss " + i + "]. Sated, she licks her dark lips and plants her hands on your thighs, smiling up at you");
 				if(pc.hasGenitals()) output(" even as your sexual fluids trickle down her cybernetic body");
 				output(".");
@@ -646,7 +644,7 @@ public function doSiegwulfeSex(response:String = "none"):void
 			else output(" for a final moment before you feel your [pc.balls] churning, pumping your load towards its destination.");
 			output("\n\nYou tighten your grip on [wulfe.name]’s hips and slam yourself in as far as she’ll take you before that first spurt of jizz comes raining out, pumping into the siegwulfe’s deepest depths. She gasps, then moans, then murmurs sweet, wordless nothings as you fill her with [pc.cum], violently emptying your [pc.balls] into her welcoming sex. When you’re finished,");
 			if(pc.hasKnot(i)) output(" your [pc.knot " + i + "] is firmly lodged into her black sex, trapping what feels like a sloshing mess of your spunk and her juices, intermingling against your meaty plug");
-			else output(" your [pc.cock " + i + "] slides free of her dark sex in a waterfall of mixed cum and feminine juices that splatters her thighs and the ground behind her, leaving a musky mess to mark the spot of your mating}");
+			else output(" your [pc.cock " + i + "] slides free of her dark sex in a waterfall of mixed cum and feminine juices that splatters her thighs and the ground behind her, leaving a musky mess to mark the spot of your mating");
 			output(".");
 			
 			processTime(10 + rand(6));

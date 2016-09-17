@@ -1758,8 +1758,8 @@ package classes.GameData
 				}
 				else
 				{
-					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate to your varmint right now!");
-					else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You can’t communicate to [wulfe.name] right now!");
+					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate with your varmint right now!");
+					else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You can’t communicate with [wulfe.name] right now!");
 					else addDisabledButton(bOff, "Drone Target", "Drone Target", "You can’t access your combat drone right now!");
 				}
 				bOff++;
