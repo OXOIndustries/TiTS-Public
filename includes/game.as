@@ -545,6 +545,7 @@ public function crewRecruited(allcrew:Boolean = false):Number
 	{
 		if (hasGooArmor() && !gooArmorIsCrew()) counter++;
 		if (varmintIsTame()) counter++;
+		if (siegwulfeIsCrew()) counter++;
 	}
 	
 	return counter;
@@ -619,6 +620,14 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += varmintOnShipBonus((count + other) - 1);
+		}
+	}
+	if (hasSiegwulfe() || siegwulfeIsCrew() || flags["WULFE_ON_SHIP"] == false)
+	{
+		other++;
+		if (!counter)
+		{
+			crewMessages += siegwulfeOnShipBonus((count + other) - 1);
 		}
 	}
 	if(!counter) {

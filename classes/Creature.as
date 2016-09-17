@@ -8,6 +8,7 @@
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.Allure;
 	import classes.Items.Accessories.FlashGoggles;
+	import classes.Items.Accessories.SiegwulfeItem;
 	import classes.Items.Accessories.TamWolf;
 	import classes.Items.Accessories.TamWolfDamaged;
 	import classes.Items.Accessories.TamWolfII;
@@ -2030,7 +2031,7 @@
 					buffer = oneClitPerVagina(arg2);
 					break;
 				case "clits":
-					buffer = clitsDescript();
+					buffer = clitsDescript(arg2);
 					break;
 				case "tailVagina":
 				case "tailCunt":
@@ -3870,6 +3871,15 @@
 			if (rangedWeapon.baseDamage.hasFlag(DamageFlag.ENERGY_WEAPON) || rangedWeapon.baseDamage.hasFlag(DamageFlag.LASER) || rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON)) return true;
 			return false;
 		}
+		public function hasShieldGenerator(active:Boolean = false):Boolean
+		{
+			if(active && shield.shields == 0) return false;
+			return !(shield is EmptySlot);
+		}
+		public function hasAccessory():Boolean
+		{
+			return !(accessory is EmptySlot);
+		}
 		public function hasCombatDrone(robotOnly:Boolean = false):Boolean
 		{
 			if(!robotOnly)
@@ -4025,6 +4035,12 @@
 			temp += meleeWeapon.sexiness;
 			temp += rangedWeapon.sexiness;
 			temp += armor.sexiness + upperUndergarment.sexiness + lowerUndergarment.sexiness + accessory.sexiness + shield.sexiness;
+			// she grants a bonus to Sexiness equal to the same
+			if (accessory is SiegwulfeItem)
+			{
+				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				else temp += Math.round(intelligence() * 0.1);
+			}
 			//Sweaty penalties!
 			if(hasStatusEffect("Sweaty"))
 			{
@@ -4061,19 +4077,20 @@
 			temp += meleeWeapon.evasion;
 			temp += rangedWeapon.evasion;
 			temp += armor.evasion + upperUndergarment.evasion + lowerUndergarment.evasion + accessory.evasion + shield.evasion;
+			// Evasion bonus equal to 10% of your Intelligence
+			if (accessory is SiegwulfeItem)
+			{
+				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				else temp += Math.round(intelligence() * 0.1);
+			}
 			if (hasPerk("Agility")) {
 				if ((temp *= .5) < 10) temp += 10;
 				else temp = Math.round(temp * 1.5);
 			}
-			if (hasPerk("Improved Agility")) {
-				temp += 10;
-			}
+			if (hasPerk("Improved Agility")) temp += 10;
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
-			if (hasStatusEffect("Riposting"))
-			{
-				temp += 15;
-			}
+			if (hasStatusEffect("Riposting")) temp += 15;
 			if (hasStatusEffect("Stealth Field Generator")) temp += 80;
 			if (hasStatusEffect("Evasion Reduction")) temp -= statusEffectv1("Evasion Reduction");
 			if (hasStatusEffect("Resolve")) temp += 50;
@@ -11257,7 +11274,12 @@
 			if (totalClits() > 1) return "one of your " + plural(clitDescript());
 			return "your " + clitDescript();
 		}
-		public function clitsDescript(): String {
+		public function clitsDescript(pussy: Number = -1): String {
+			if (pussy >= 0)
+			{
+				if (vaginas[pussy].clits == 1) clitDescript(pussy);
+				return plural(clitDescript(pussy));
+			}
 			if (totalClits() > 1) return plural(clitDescript());
 			return clitDescript();
 		}
