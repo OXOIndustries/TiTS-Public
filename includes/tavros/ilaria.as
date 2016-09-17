@@ -114,6 +114,8 @@ public function orderFromIlaria():void
 	else addDisabledButton(5,"Raxxian Road","Raxxian Road","You can't afford this.");
 	if(getOrderPrice("Gryvain Jigglers") <= pc.credits) addButton(6,"GryvainJiggler",actuallyOrderFromIlaria,"Gryvain Jigglers","Gryvain Jigglers","A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
 	else addDisabledButton(6,"Gryvain Jigglers","Gryvain Jigglers","You can't afford this.");
+	
+	addButton(14,"Back",ilariaMenu);
 }
 
 public function setOrderTFAndDeets(order:String, glazed:Boolean = false):void
