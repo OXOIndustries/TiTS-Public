@@ -63,7 +63,6 @@
 			faceFlags = [GLOBAL.FLAG_SMOOTH];
 			tongueType = GLOBAL.TYPE_HUMAN;
 			tongueFlags = [];
-			lipMod = 2;
 			earType = GLOBAL.TYPE_CANINE;
 			armType = GLOBAL.TYPE_HUMAN;
 			wingType = GLOBAL.TYPE_HUMAN;
@@ -79,9 +78,6 @@
 			
 			tailGenitalArg = 0;
 			tailGenital = 0;
-			
-			hipRatingRaw = 20;
-			buttRatingRaw = 15;
 			
 			elasticity = 2;
 			
@@ -101,7 +97,7 @@
 		{
 			hairColor = "black";
 			skinTone = "pale";
-			
+			lipMod = 0;
 			tone = 60;
 			thickness = 30;
 			hipRatingRaw = 6;
@@ -115,7 +111,7 @@
 		{
 			hairColor = "dark blonde";
 			skinTone = "tanned";
-			
+			lipMod = 5;
 			tone = 30;
 			thickness = 60;
 			hipRatingRaw = 12;
