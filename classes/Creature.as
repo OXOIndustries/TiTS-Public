@@ -3140,9 +3140,39 @@
 		{
 			return hasPerk("Brute Speech");
 		}
+		public function isSexless():Boolean
+		{
+			if(!hasCock() && !hasVagina()) return true;
+			return false;
+		}
+		public function isMan():Boolean
+		{
+			if(hasCock() && !hasVagina()) return true;
+			return false;
+		}
+		public function isWoman():Boolean
+		{
+			if(hasVagina() && !hasCock()) return true;
+			return false;
+		}
 		public function isFemboy():Boolean
 		{
-			if(hasCock() && !hasVagina() && mfn("m", "f", "n") != "m") return true;
+			if(isMan() && mfn("m", "f", "n") != "m") return true;
+			return false;
+		}
+		public function isCuntboy():Boolean
+		{
+			if(isWoman() && mfn("m", "f", "n") == "m") return true;
+			return false;
+		}
+		public function isFemHerm():Boolean
+		{
+			if(isHerm() && mfn("m", "f", "n") != "m") return true;
+			return false;
+		}
+		public function isMaleHerm():Boolean
+		{
+			if(isHerm() && mfn("m", "f", "n") == "m") return true;
 			return false;
 		}
 		/**
