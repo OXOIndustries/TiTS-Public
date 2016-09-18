@@ -3616,6 +3616,8 @@ public function dumb4CumUpdate():void
 	if(tics == 24)
 	{
 		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You lick your lips, vividly imagining what cum would taste like on your tongue. You shake your head, feeling a little absentminded, and go on your way.");
+		// Just in case:
+		pc.intelligence();
 	}
 	else if(tics == 30)
 	{
