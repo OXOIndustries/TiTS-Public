@@ -395,7 +395,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	if(arg is SiegwulfeItem)
 	{
 		purchasedItems = [];
-		output("\n\nThe display model of the droid is much too big and lofty to carry around, especially unpowered. Instead, an order has been placed for a brand-new model and is currently being delivered straight to your ship. <b>Be sure to check to your ship’s storage for it!</b>");
+		output("\n\nThe display model of the droid is much too big and lofty to carry around, especially unpowered. Instead, an order has been placed for a brand-new model and is currently being delivered straight to your ship. <b>Be sure to check your ship’s storage for it!</b>");
 		chars["WULFE"].accessory = new SiegwulfeItem();
 		shopkeep.destroyItem(new SiegwulfeItem());
 		flags["WULFE_ON_SHIP"] = false;
@@ -1407,15 +1407,9 @@ public function shipStorageMenuRoot():void
 	{
 		output("\n\nYour bright pink Egg Trainer is sitting in the corner, rumbling slightly as the heating and cleaning processes inside it percolate.");
 		//if PC has a belly full of eggs:
-		if(9999 == 0) output(" You run a hand across your swollen belly, vaguely wishing you could squat the current load out... only to get another mind-melting orgasm from the next batch going in!");
+		if(pc.hasPregnancyOfType("EggTrainerCarryTraining")) output(" You run a hand across your swollen belly, vaguely wishing you could squat the current load out... only to get another mind-melting orgasm from the next batch going in!");
 		//if PC has a faux-preg egg: 
-		else if(9999 == 0) output(" You run a hand across your [pc.belly]. You could get your Faux Preg Egg out at any time with the device, if you wanted to.");
-		addButton(btnSlot,"EggTrainer",repeatEggTrainerApproach,undefined,"Egg Trainer","Put your Egg Trainer to use.");
-		btnSlot++;
-	}
-	if(kGAMECLASS.flags["EGG_TRAINER_INSTALLED"] == 1) 
-	{
-		output("\n\nYour bright pink Egg Trainer is sitting in the corner, rumbling slightly as the heating and cleaning processes inside it percolate.");
+		else if(pc.hasPregnancyOfType("EggTrainerFauxPreg")) output(" You run a hand across your [pc.belly]. You could get your Faux Preg Egg out at any time with the device, if you wanted to.");
 		addButton(btnSlot,"EggTrainer",repeatEggTrainerApproach,undefined,"Egg Trainer","Put your Egg Trainer to use.");
 		btnSlot++;
 	}

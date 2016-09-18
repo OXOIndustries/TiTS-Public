@@ -228,7 +228,7 @@ public function disableSiegwulfe():void
 public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false):String
 {
 	// Bought, but not activated.
-	if(flags["WULFE_ON_SHIP"] == false) return "\n\nYou remember an order you placed for a Siegwulfe... <b>perhaps you should check to see if it arrived in your storage?</b>";
+	if(flags["WULFE_ON_SHIP"] == false) return "\n\nYou remember an order you placed for a Siegwulfe... <b>perhaps you should check to see if it arrived in your ship’s storage?</b>";
 	// No Siegwulfe!
 	if((!fromInv && !hasSiegwulfe()) || pc.hasItemInStorage(new SiegwulfeItem())) return "";
 	
