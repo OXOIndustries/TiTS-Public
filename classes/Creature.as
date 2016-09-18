@@ -3599,6 +3599,10 @@
 			if(hasPerk("Dumb4Cum"))
 			{
 				currInt += level*2;
+				
+				// Save max intelligence (if any)
+				if(perkv3("Dumb4Cum") < currInt) setPerkValue("Dumb4Cum",3,currInt);
+				
 				if(perkv1("Dumb4Cum") > 24) currInt -= (perkv1("Dumb4Cum") - 24);
 			}
 			// Slave collar multiplier.
