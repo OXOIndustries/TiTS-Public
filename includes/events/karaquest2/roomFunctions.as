@@ -942,7 +942,12 @@ public function kq2rfServerRoom():Boolean
 		return true;
 	}
 
-	if (!pc.isNice() && flags["KQ2_NUKE_STARTED"] == undefined) addButton(0, "S.Destruct", kq2WatsonSelfDestruct, undefined, "Self Destruct", "Might as well make a futile, childish gesture... and blow this place to kingdom come!");
+	if (flags["KQ2_NUKE_STARTED"] == undefined)
+	{
+		if(!pc.isNice()) addButton(0, "S.Destruct", kq2WatsonSelfDestruct, undefined, "Self Destruct", "Might as well make a futile, childish gesture... and blow this place to kingdom come!");
+		else addDisabledButton(0, "S.Destruct", "Self Destruct", "You couldn't possibly think about doing that!");
+	}
+	else addDisabledButton(0, "S.Destruct", "Self Destruct", ("This has been activated already. Get out of here before the place blows!\n\n<b>" + ((flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION > GetGameTimestamp()) ? ("T-minus: " + prettifyMinutes(flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION - GetGameTimestamp())) : "NUKE DETONATED") + "</b>"));
 
 	return false;
 }
