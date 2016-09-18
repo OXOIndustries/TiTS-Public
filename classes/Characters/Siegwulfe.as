@@ -27,8 +27,8 @@
 			meleeWeapon.attackNoun = "slash";
 			meleeWeapon.hasRandomProperties = true;
 			
-			armor.longName = "durable dermis";
-			armor.defense = 10;
+			armor.longName = "polysteel plates";
+			armor.defense = 15;
 			armor.hasRandomProperties = true;
 			
 			shield = new ReaperArmamentsMarkIShield();
@@ -65,10 +65,11 @@
 			tongueFlags = [];
 			earType = GLOBAL.TYPE_CANINE;
 			armType = GLOBAL.TYPE_HUMAN;
+			armFlags = [];
 			wingType = GLOBAL.TYPE_HUMAN;
 			legType = GLOBAL.TYPE_CANINE;
 			legCount = 4;
-			legFlags = [GLOBAL.FLAG_DIGITIGRADE];
+			legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_PAWS];
 			
 			genitalSpot = 2;
 			
@@ -89,6 +90,7 @@
 			ass.wetnessRaw = 0;
 			ass.bonusCapacity += 75;
 			ass.loosenessRaw = 2;
+			ass.vagooFlags = [GLOBAL.FLAG_LUBRICATED, GLOBAL.FLAG_RIBBED, GLOBAL.FLAG_PUMPED];
 			
 			_isLoading = false;
 		}
@@ -105,6 +107,7 @@
 			breastRows[0].breastRatingRaw = 3;
 			
 			removePerk("Ditz Speech");
+			removePerk("Mega Milk");
 		}
 		
 		public function configBimbo():void
@@ -119,6 +122,7 @@
 			breastRows[0].breastRatingRaw = 30;
 			
 			createPerk("Ditz Speech", 0, 0, 0 ,0 , "");
+			createPerk("Mega Milk", 0, 0, 0 ,0 , "");
 		}
 	}
 }

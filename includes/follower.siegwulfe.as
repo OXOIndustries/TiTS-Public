@@ -472,6 +472,7 @@ public function siegwulfeGenitals(genitals:int = 0, gType:int = -1, fType:int = 
 		chars["WULFE"].vaginas[0].wetnessRaw = 5;
 		chars["WULFE"].vaginas[0].addFlag(GLOBAL.FLAG_LUBRICATED);
 		chars["WULFE"].vaginas[0].addFlag(GLOBAL.FLAG_RIBBED);
+		chars["WULFE"].vaginas[0].addFlag(GLOBAL.FLAG_PUMPED);
 		chars["WULFE"].girlCumType = fType;
 	}
 	if(genitals == 1 || genitals == 2)
