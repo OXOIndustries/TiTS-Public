@@ -3155,9 +3155,24 @@
 			if(hasVagina() && !hasCock()) return true;
 			return false;
 		}
+		public function isMasculineMan():Boolean
+		{
+			if(isMan() && mfn("m", "f", "n") == "m") return true;
+			return false;
+		}
+		public function isFeminineWoman():Boolean
+		{
+			if(isWoman() && mfn("m", "f", "n") == "f") return true;
+			return false;
+		}
 		public function isFemboy():Boolean
 		{
-			if(isMan() && mfn("m", "f", "n") != "m") return true;
+			if(isMan() && mfn("m", "f", "n") != "m" && biggestTitSize() < 3) return true;
+			return false;
+		}
+		public function isShemale():Boolean
+		{
+			if(isMan() && mfn("m", "f", "n") != "m" && biggestTitSize() >= 3) return true;
 			return false;
 		}
 		public function isCuntboy():Boolean
