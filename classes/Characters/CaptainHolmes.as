@@ -37,8 +37,8 @@ package classes.Characters
 			originalRace = "human";
 			a = "";
 			capitalA = "";
-			this.long = "[Placeholder]";
-			this.customBlock = "[Placeholder]";
+			this.long = "";
+			this.customBlock = "";
 			this.isPlural = false;
 			isLustImmune = false;
 			isUniqueInFight = true;

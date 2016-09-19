@@ -38,7 +38,7 @@
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "infected crew memeber";
+			this.short = "infected crew member";
 			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";

@@ -82,7 +82,7 @@ public function talkToKirila():void
 	output("You lean on the counter and ask if you can just talk for a bit before buying anything.");
 	output("\n\n<i>“Talk? Sure, I suppose I can spare a few minutes.”</i> Kirila sits in the chair and pulls herself up to the counter. <i>“So, what’s up, customer?”</i>");
 	output("\n\n<i>“Well I’d like to know more about you? You don’t see many of your kind around.”</i>");
-	output("\n\n<i>“True enough. Spinarran’s are not a commonly seen species. If you wanted to know about us, you could look us up on the extranet. Our people have been a part of the UGC for a century now. Plenty of information on us is publicly available, but I suppose firsthand knowledge is always better. What would you like to talk about; about spinarrans, myself, or if not you tire of talking you could always peruse our wares.”</i>");
+	output("\n\n<i>“True enough. Spinarrans are not a commonly seen species. If you wanted to know about us, you could look us up on the extranet. Our people have been a part of the UGC for a century now. Plenty of information on us is publicly available, but I suppose firsthand knowledge is always better. What would you like to talk about; about spinarrans, myself, or if you’re tired of talking you could always peruse our wares.”</i>");
 	kirilaTalkMenu(kirilaTalkMenu);
 }
 

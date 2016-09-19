@@ -1252,7 +1252,7 @@ public function edanDrinksIntro():void //broooooo
 			output("\n\n<i>“God <i>damn</i>, Steele. Between the two of us we could probably take on an army.”</i>");
 			output("\n\nYou nod your agreement and get back to what matters - drinking.");
 		}
-		output("You pass the time drinking and talking, getting progressively louder and drunker until you both realize it’s time to go before things get out of hand. You both get up to leave and Edan turns to you to shake your hand and say goodbye for now.");
+		output(" You pass the time drinking and talking, getting progressively louder and drunker until you both realize it’s time to go before things get out of hand. You both get up to leave and Edan turns to you to shake your hand and say goodbye for now.");
 		
 		addButton(0, "Leave", edanDrinksLeave);
 		addButton(1, "Sex", edanDrinksSexFirst, undefined, "Sex", "Proposition Edan for some drunken fun.");
