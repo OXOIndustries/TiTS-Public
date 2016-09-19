@@ -16479,6 +16479,7 @@
 						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " There's no lack of " + fluidNoun(statusEffects[z].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
 					// apply cum-drenched flag as appropriate?
+					/*
 					if(notice != "")
 					{
 						if(amountVented >= 1000) kGAMECLASS.applyCumSoaked(this);
@@ -16487,6 +16488,7 @@
 						if(amountVented >= 25000) kGAMECLASS.applyCumSoaked(this);
 						if(amountVented >= 50000) kGAMECLASS.applyCumSoaked(this);
 					}
+					*/
 				}
 				if(statusEffects[z].value1 <= 0) removals.push("Vaginally-Filled");
 			}
@@ -16542,6 +16544,7 @@
 						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " There's no lack of " + fluidNoun(statusEffects[a].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
 					// apply cum-drenched flag as appropriate?
+					/*
 					if(notice != "")
 					{
 						if(amountVented >= 1000) kGAMECLASS.applyCumSoaked(this);
@@ -16550,6 +16553,7 @@
 						if(amountVented >= 25000) kGAMECLASS.applyCumSoaked(this);
 						if(amountVented >= 50000) kGAMECLASS.applyCumSoaked(this);
 					}
+					*/
 				}
 				if(statusEffects[a].value1 <= 0) removals.push("Anally-Filled");
 			}
