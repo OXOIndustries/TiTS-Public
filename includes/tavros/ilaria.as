@@ -419,7 +419,7 @@ public function sexWithIlaria():void
 	//first time:
 	if(flags["FUCKED_ILARIA"] == undefined) output("a huge machine against the back wall: a silver device with a pair of big tanks, a pair of stirrups and handholds, and a thick suction-cup hooked up to a hose. A cock-milker... and one that looks more made for a leithan stallion than a futa fuck-bunny.");
 	else output("the industrial cock-milker dominating the back half of the room.");
-	output("\n\nIlaria gives you a wink and picks up the milker, cupping it to her crotch and mounting it with one well-practiced thrush that leaves her lodged in all the way to the knot. She pushes a big red button on the side of the device, and gasps as the device immediately kicks in, sucking on her turgid rod. <i>“Ooh! A-alright, lover, I’m all yours. Dig in!”</i>");
+	output("\n\nIlaria gives you a wink and picks up the milker, cupping it to her crotch and mounting it with one well-practiced thrust that leaves her lodged in all the way to the knot. She pushes a big red button on the side of the device, and gasps as the device immediately kicks in, sucking on her turgid rod. <i>“Ooh! A-alright, lover, I’m all yours. Dig in!”</i>");
 	IncrementFlag("FUCKED_ILARIA");
 
 	processTime(5);
