@@ -3145,39 +3145,39 @@
 			if(!hasCock() && !hasVagina()) return true;
 			return false;
 		}
-		public function isMan():Boolean
+		public function isMale():Boolean
 		{
 			if(hasCock() && !hasVagina()) return true;
 			return false;
 		}
-		public function isWoman():Boolean
+		public function isFemale():Boolean
 		{
 			if(hasVagina() && !hasCock()) return true;
 			return false;
 		}
-		public function isMasculineMan():Boolean
+		public function isMan():Boolean
 		{
-			if(isMan() && mfn("m", "f", "n") == "m") return true;
+			if(isMale() && mfn("m", "f", "n") == "m") return true;
 			return false;
 		}
-		public function isFeminineWoman():Boolean
+		public function isWoman():Boolean
 		{
-			if(isWoman() && mfn("m", "f", "n") == "f") return true;
+			if(isFemale() && mfn("m", "f", "n") == "f") return true;
 			return false;
 		}
 		public function isFemboy():Boolean
 		{
-			if(isMan() && mfn("m", "f", "n") != "m" && biggestTitSize() < 3) return true;
+			if(isMale() && mfn("m", "f", "n") != "m" && biggestTitSize() < 3) return true;
 			return false;
 		}
 		public function isShemale():Boolean
 		{
-			if(isMan() && mfn("m", "f", "n") != "m" && biggestTitSize() >= 3) return true;
+			if(isMale() && mfn("m", "f", "n") != "m" && biggestTitSize() >= 3) return true;
 			return false;
 		}
 		public function isCuntboy():Boolean
 		{
-			if(isWoman() && mfn("m", "f", "n") == "m") return true;
+			if(isFemale() && mfn("m", "f", "n") == "m") return true;
 			return false;
 		}
 		public function isFemHerm():Boolean
@@ -3185,7 +3185,7 @@
 			if(isHerm() && mfn("m", "f", "n") != "m") return true;
 			return false;
 		}
-		public function isMaleHerm():Boolean
+		public function isManHerm():Boolean
 		{
 			if(isHerm() && mfn("m", "f", "n") == "m") return true;
 			return false;

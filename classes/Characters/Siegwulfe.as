@@ -114,7 +114,7 @@
 		{
 			hairColor = "dark blonde";
 			skinTone = "tanned";
-			lipMod = 5;
+			lipMod = 3;
 			tone = 30;
 			thickness = 60;
 			hipRatingRaw = 12;
