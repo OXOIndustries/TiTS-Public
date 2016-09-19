@@ -1760,7 +1760,7 @@ public function kiEngineeringBossFight():void
 	CombatManager.victoryScene(kiHendersonVictory);
 	CombatManager.lossScene(kiHendersonLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "Before you stands a particularly massive mutant crewman, easily seven feet tall, with skin as red as cold blood. He was human once, you're sure, but now he looks like a tentacle abomination straight out of a Neo-Tokyo ultraporn, with legs and arms nothing more than dozens of wrapped tentacles, and dozens more drooping and squirming from his crotch, chest, and face. Two pink-hued eyes, glowing as bright as embers, stare down at you from sockets surrounded by dozens of scillia-like shafts.";
+		var m:String = "Before you stands a particularly massive mutant crewman, easily seven feet tall, with skin as red as cold blood. He was human once, you're sure, but now he looks like a tentacle abomination straight out of a Neo-Tokyo ultraporn, with legs and arms nothing more than dozens of wrapped tentacles, and dozens more drooping and squirming from his crotch, chest, and face. Two pink-hued eyes, glowing as bright as embers, stare down at you from sockets surrounded by dozens of cilia-like shafts.";
 		
 		var h:Array = CombatManager.getHostileCharacters();
 		if (CombatManager.hasFriendlyOfClass(ChiefNeykkar))

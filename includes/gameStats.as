@@ -2353,6 +2353,7 @@ public function displayQuestLog(showID:String = "All"):void
 					output2("\n<b>* Doctor Elenora Vanderbilt, Cure, Status:</b>");
 					if(flags["KI_VANDERBILT_WORKING_START"] + 240 > GetGameTimestamp()) output2(" <i>Working...</i> " + prettifyMinutes((flags["KI_VANDERBILT_WORKING_START"] + 240) - GetGameTimestamp()) + " until completion");
 					else output2(" Created, Completed");
+					if(flags["KI_CURE_USED"] != undefined) output2(", Used");
 				}
 			}
 			distressCount++;
