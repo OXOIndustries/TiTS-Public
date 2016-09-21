@@ -24,29 +24,11 @@ package classes.Characters
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
-			//fluidSimulate = true;
+			this._neverSerialize = false;
+			fluidSimulate = true;
 			//statusSimulate = true;
 			this.short = "Ilaria";
-			/*
-			keeperBuy = "";
-			keeperSell = "";
 			
-			inventory.push(new SalamanderRifle());
-			inventory.push(new SalamanderPistol());
-			inventory.push(new SalamanderDuster());
-			inventory.push(new SalamanderShield());
-			inventory.push(new VampBlade());
-			inventory.push(new LavaSaber());
-			inventory.push(new Jolthammer());
-			inventory.push(new OzoneAegis());
-
-			
-			this.typesBought = [GLOBAL.MELEE_WEAPON,GLOBAL.RANGED_WEAPON,GLOBAL.SHIELD,GLOBAL.ACCESSORY];
-			
-			this.sellMarkup = 1.0;
-			this.buyMarkdown = .25;
-			*/
 			this.femininity = 85;
 
 			//No dicks here!
@@ -91,10 +73,11 @@ package classes.Characters
 			createPerk("Fixed CumQ",50000,0,0,0);
 			//createPerk("No Cum Leakage",0,0,0,0);
 		}
-		/*
-		override public function onLeaveBuyMenu():void
+		
+		override public function get bustDisplay():String
 		{
-			kGAMECLASS.backToEmmyMain();
-		}*/
+			if(bellyRating() >= 25) return "ILARIA_PREG";
+			return "ILARIA";
+		}
 	}
 }

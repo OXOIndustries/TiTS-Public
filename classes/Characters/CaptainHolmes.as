@@ -37,8 +37,8 @@ package classes.Characters
 			originalRace = "human";
 			a = "";
 			capitalA = "";
-			this.long = "[Placeholder]";
-			this.customBlock = "[Placeholder]";
+			this.long = "";
+			this.customBlock = "";
 			this.isPlural = false;
 			isLustImmune = false;
 			isUniqueInFight = true;
@@ -356,7 +356,7 @@ package classes.Characters
 		{
 			output("A panicked scream tears through the bridge, even over the sounds of battle. The woman Captain Holmes had been accosting pushes past you, bolting as fast as she can towards the doors. Shit -- there goes your best chance to figure out what's going on here. All you manage to catch before she escapes is a look at her: a short, skinny woman in a torn-up lab coat and scrubs. A doctor, maybe?");
 
-			output("\n\nYou'll have to find her after this!\n\n");
+			output("\n\n<b>You'll have to find her after this!</b>\n\n");
 		}
 	}
 }

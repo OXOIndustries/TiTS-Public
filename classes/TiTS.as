@@ -125,6 +125,7 @@
 		include "../includes/follower.anno.as";
 		include "../includes/follower.celise.as";
 		include "../includes/follower.celiseGiga.as";
+		include "../includes/follower.siegwulfe.as";
 		include "../includes/follower.yammi.as";
 		
 		//Sidequest shit
@@ -1242,7 +1243,11 @@
 		}
 		public function get ilaria():Ilaria
 		{
-			return chars["IRALIA"];
+			return chars["ILARIA"];
+		}
+		public function get wulfe():Siegwulfe
+		{
+			return chars["WULFE"];
 		}
 		
 		private var _dbgtestvar:int = 0;

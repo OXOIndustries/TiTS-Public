@@ -103,7 +103,7 @@ public function kiGoUseCargoLift():void
 	clearOutput();
 	output("You step onto the cargo elevator and take a look up. The car is open-air, letting you see into the shaft. Like everything else around here, it’s covered in what you’re fairly sure must be gallons of cum, drooling down the bulkheads around you from the darkness above. You can only see maybe twenty feet up before the emergency lights cut out completely, leaving darkness shrouding the upper decks. The only real illumination left are the red emergency lights wired onto the railing of the lift. Guess you won’t be seeing what’s causing the deluge until you get up there.");
 	
-	output("\n\nChief Neykkar follows you aboard, stepping aboard just in time for a huge glob of white to fall from on high and splatter across her chitinous horse-body’s backside, making her eyes go wide and her bunny ears flick up in alarm.");
+	output("\n\nChief Neykkar follows you, stepping aboard just in time for a huge glob of white to fall from on high and splatter across her chitinous horse-body’s backside, making her eyes go wide and her bunny ears flick up in alarm.");
 	
 	output("\n\n<i>“God dammit,”</i> she growls, flicking the sludge off with her tail-tip. It leaves a gross smear across her NovaSec armor, dripping wetly between her legs. <i>“What is with this shit?”</i>");
 	
@@ -294,17 +294,18 @@ public function kiFailedToUnlockReadyRoom():void
 
 public function kiP16CaptainsReadyRoom():void
 {
+	output("\n\n");
 	if (flags["KI_TAKEN_SWORD"] == undefined)
 	{
-		output("A slender, straight-edged sword hangs from a display behind the captain's desk, next to a pair of empty holsters.");
+		output("A slender, straight-edged sword hangs from a display behind the captain's desk, next to a pair of empty holsters. ");
 		addButton(0, "Sword", kiP16TakeSword, undefined, "Take Sword", "Take the sword. Even if it's owner didn't, or couldn't, use it, you might be able to!")
 	}
 	else
 	{
-		output("All the captain's weapons have been looted now.");
+		output("All the captain's weapons have been looted now. ");
 	}
 
-	output(" On closer look, you can see several shell casings on the floor underneath the desk, along with a significant cum-stain on the carpeting.");
+	output("On closer look, you can see several shell casings on the floor underneath the desk, along with a significant cum-stain on the carpeting.");
 }
 
 public function kiP16TakeSword():void
@@ -353,13 +354,13 @@ public function kiE9EnterVents():void
 public function kiVentMenu():void
 {
 	clearMenu();
-	if (currentLocation != "KI-H16") addButton(0, "Medbay", kiMedbayVent);
+	if (currentLocation != "KI-H16") addButton(0, "Medbay", kiMedbayVent, undefined, "Medical Bay", "Head to the medical bay.");
 	else addDisabledButton(0, "Medbay", "Medical Bay", "You're already near the medical bay.");
 	
-	if (currentLocation != "KI-OfficersAccessRoom") addButton(1, "Officers Q.", kiOfficersDeckVent);
+	if (currentLocation != "KI-OfficersAccessRoom") addButton(1, "Officers Q.", kiOfficersDeckVent, undefined, "Officers Quarters", "Head to the Officers Quarters deck.");
 	else addDisabledButton(1, "Officers Q.", "Officers Quarters", "You're already on the Officers Quarters deck.");
 	
-	if (currentLocation != "KI-EngineeringVent") addButton(2, "Engineering", kiEngineeringGoAccessRoom);
+	if (currentLocation != "KI-EngineeringVent") addButton(2, "Engineering", kiEngineeringGoAccessRoom, undefined, "Engineering Deck", "Head to the Engineering deck.");
 	else addDisabledButton(2, "Engineering", "Engineering Deck", "You're already on the Engineering deck.");
 
 	addButton(14, "Back", mainGameMenu);
@@ -1705,8 +1706,8 @@ public function kiApproachElenora():void
 	
 	flags["KI_VANDERBILT_WORKING"] = 2;
 	
-	pc.createKeyItem("Parasite Cure", 0, 0, 0, 0, "A vial containing a potential cure for the parasite afflicting the crew of the Kashima.");
-	output("\n\n<b>Key Item Acquired: Parasite Cure - A vial containing a potential cure for the parasite afflicting the crew of the Kashima.</b>");
+	pc.createKeyItem("Parasite Cure", 0, 0, 0, 0, "A vial containing a potential cure for the parasite afflicting the crew of the <i>Kashima</i>.");
+	output("\n\n<b>Key Item Acquired: Parasite Cure - A vial containing a potential cure for the parasite afflicting the crew of the <i>Kashima</i>.</b>");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1759,7 +1760,7 @@ public function kiEngineeringBossFight():void
 	CombatManager.victoryScene(kiHendersonVictory);
 	CombatManager.lossScene(kiHendersonLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "Before you stands a particularly massive mutant crewman, easily seven feet tall, with skin as red as cold blood. He was human once, you're sure, but now he looks like a tentacle abomination straight out of a Neo-Tokyo ultraporn, with legs and arms nothing more than dozens of wrapped tentacles, and dozens more drooping and squirming from his crotch, chest, and face. Two pink-hued eyes, glowing as bright as embers, stare down at you from sockets surrounded by dozens of scillia-like shafts.";
+		var m:String = "Before you stands a particularly massive mutant crewman, easily seven feet tall, with skin as red as cold blood. He was human once, you're sure, but now he looks like a tentacle abomination straight out of a Neo-Tokyo ultraporn, with legs and arms nothing more than dozens of wrapped tentacles, and dozens more drooping and squirming from his crotch, chest, and face. Two pink-hued eyes, glowing as bright as embers, stare down at you from sockets surrounded by dozens of cilia-like shafts.";
 		
 		var h:Array = CombatManager.getHostileCharacters();
 		if (CombatManager.hasFriendlyOfClass(ChiefNeykkar))

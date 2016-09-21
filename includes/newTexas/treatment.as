@@ -3582,6 +3582,13 @@ public function dumb4CumReset():void
 		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" With the warm feeling of reproductive juices in your body, you find you're able to think clearly once more.");
 	}
 	pc.setPerkValue("Dumb4Cum",1,0);
+	// Regain lost intellience
+	if(pc.perkv2("Dumb4Cum") > 0)
+	{
+		pc.intelligence(pc.perkv2("Dumb4Cum"));
+		pc.setPerkValue("Dumb4Cum",2,0);
+		pc.setPerkValue("Dumb4Cum",3,0);
+	}
 	
 	// Ditz Speech Removal
 	// Dr. Badger bimbofication and Dumbfuck sneezes are permanent though...
@@ -3597,12 +3604,20 @@ public function dumb4CumReset():void
 public function dumb4CumUpdate():void
 {
 	var eBuffer:String = "";
+	
+	// Pool intelligence into a reserve...
+	if(pc.perkv1("Dumb4Cum") >= 24)
+	{
+		if(pc.perkv2("Dumb4Cum") < pc.perkv3("Dumb4Cum")) pc.addPerkValue("Dumb4Cum",2,1);
+	}
 	pc.addPerkValue("Dumb4Cum",1,1);
 	var tics:Number = pc.perkv1("Dumb4Cum");
 	
 	if(tics == 24)
 	{
 		eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You lick your lips, vividly imagining what cum would taste like on your tongue. You shake your head, feeling a little absentminded, and go on your way.");
+		// Just in case:
+		pc.intelligence();
 	}
 	else if(tics == 30)
 	{

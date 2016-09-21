@@ -112,6 +112,8 @@ public function showLocationName():void
 
 public function disableExploreEvents():Boolean
 {
+	// Stellar Tether Duration
+	if (flags["FOUGHT_TAM"] != undefined && flags["STELLAR_TETHER_CLOSED"]  == undefined) return true;
 	// Stellar Tether (Bomb Timer)
 	if (flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) return true;
 	// Deck 13 Duration
@@ -545,6 +547,7 @@ public function crewRecruited(allcrew:Boolean = false):Number
 	{
 		if (hasGooArmor() && !gooArmorIsCrew()) counter++;
 		if (varmintIsTame()) counter++;
+		if (siegwulfeIsCrew()) counter++;
 	}
 	
 	return counter;
@@ -619,6 +622,14 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += varmintOnShipBonus((count + other) - 1);
+		}
+	}
+	if (hasSiegwulfe() || siegwulfeIsCrew() || flags["WULFE_ON_SHIP"] == false)
+	{
+		other++;
+		if (!counter)
+		{
+			crewMessages += siegwulfeOnShipBonus((count + other) - 1);
 		}
 	}
 	if(!counter) {

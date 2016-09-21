@@ -898,7 +898,7 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	else if(pc.hasStatusEffect("Goo Armor Healed")) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name] has already healed you in the past hour. She may need some time to recover before trying it again.");
 	else gooArmorAddButton(fromCrew, 5, "Heal", gooArmorCrewOption, ["heal", fromCrew], "Restore Health", "Ask [goo.name] to help mend your wounds.");
 	
-	if(fromCrew && flags["GOO_ARMOR_ON_SHIP"] == undefined)
+	if(flags["GOO_ARMOR_ON_SHIP"] == undefined)
 	{
 		if(InShipInterior()) gooArmorAddButton(fromCrew, 4, "Stay", gooArmorCrewOption, ["stay", fromCrew], "Stay Here, " + chars["GOO"].short + ".", "Ask [goo.name] to stay on your ship.");
 		else gooArmorAddDisabledButton(fromCrew, 4, "Stay", "Stay Here, " + chars["GOO"].short + ".", "This is probably not a good place to leave [goo.name] wandering around... Maybe you should head inside your ship first?");

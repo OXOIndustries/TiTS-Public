@@ -812,7 +812,7 @@ public function useDaMilkar():void
 		//[Okay] [No thanks]
 		addButton(0,"Okay",okayEllieYaCuntLetsMilkMeFirstTime);
 		addButton(1,"No Thanks",FirstManMilkUseNoThanks);
-		if(!pc.isTreated()) addDisabledButton(2,"Blowjob","Blowjob","Only Treated males can ask Carrie for a blowjob.");
+		if(!pc.hasPheromones()) addDisabledButton(2,"Blowjob","Blowjob","Only pheromone-emitting males can ask Carrie for a blowjob.");
 		else addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there's a perfectly developed cow-girl close at hand?");
 		addButton(14,"Leave",mainGameMenu);
 	}
@@ -825,7 +825,7 @@ public function useDaMilkar():void
 		addButton(0,"w/Carrie",okayEllieYaCuntLetsMilkMeFirstTime,undefined,"w/Carrie","Ask Carrie to help you out in the milking stall. A little companionship never hurt, either.");
 		//Use w/o Carrie
 		addButton(1,"w/o Carrie",useTheMilkerWithoutCarrieYaSkag,undefined,"w/o Carrie","Tell Carrie you can get yourself situated.");
-		 if(!pc.isTreated()) addDisabledButton(2,"Blowjob","Blowjob","Only Treated males can ask Carrie for a blowjob.");
+		if(!pc.hasPheromones()) addDisabledButton(2,"Blowjob","Blowjob","Only pheromone-emitting males can ask Carrie for a blowjob.");
 		else addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there's a perfectly developed cow-girl close at hand?");
 		addButton(14,"Leave",mainGameMenu);
 	}
@@ -1178,7 +1178,7 @@ public function getFoodAtBigTs():void
 	if(pc.credits >= 20) addButton(4,"BBQ To-Go",bbqToGo,undefined,"BBQ To-Go","Get some delicious BBQ for the road. Then you can grab a snack whenever you feel like it.\n\n20 Credits.")
 	else addDisabledButton(4,"BBQ To-Go","BBQ To-Go","You need 20 credits to afford BBQ To-Go.");
 	//If PC has Female Treatment/ is Bimbo/ has Fluid Addiction: 
-	if((pc.isBimbo() && pc.isTreated()) || pc.isBimbo()) addButton(5,"\"SpecialOrder\"",specialOrdersForTreatedGals,undefined,"\"Special Order\"","Get a meal with some of the Chef's special sauce. It's practically free food!");
+	if((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM)) addButton(5,"\"SpecialOrder\"",specialOrdersForTreatedGals,undefined,"\"Special Order\"","Get a meal with some of the Chef's special sauce. It's practically free food!");
 	//["Special Order”</i>]...
 	addButton(14,"Back",mainGameMenu);
 
@@ -1759,10 +1759,11 @@ public function carrieBlowjobIntro():void
 	//First
 	if(flags["CARRIE_BLOWJOBBED"] == undefined)
 	{
-		output("To you, the steel of the milking machine is a gray background detail next to the fleshy, milky curves of the machine’s operator, displayed brazenly in her skimpy, skin-tight cow outfit. They radiate summery, dreamy arousal to you, drowning everything else out, [pc.eachCock] hardening as you simply stand and drink her in. Carrie grins sheepishly, looking away; dimly you realize a good five seconds have crawled by in which you’ve simply stared at her.");
+		if(pc.isTreatedBull()) output("To you, the steel of the milking machine is a gray background detail next to the fleshy, milky curves of the machine’s operator, displayed brazenly in her skimpy, skin-tight cow outfit. They radiate summery, dreamy arousal to you, drowning everything else out, [pc.eachCock] hardening as you simply stand and drink her in. Carrie grins sheepishly, looking away; dimly you realize a good five seconds have crawled by in which you’ve simply stared at her.");
+		else output("It’s difficult to care much about the severe steel of the milking machine when it’s being operated by a cow-girl, particularly one in the kind of outfit Carrie is sporting. You can actually feel your [pc.skinFurScales] relaxing, pores opening and exuding your hot, masculine musk when you gaze at her fleshy, milky curves. She grins sheepishly under your attention, looking down demurely.");
 		output("\n\n<i>“You ok, " + pc.mf("guy","girl") + "?”</i> she says.");
 
-		output("\n\n<i>“Yeah,”</i> you grin. You can practically feel the pheromones pouring off of you, and your heady tunnel vision allows you to see the effect they are having on the auburn-headed cow - the way her lips slowly part, her pupils dilating, her smile growing softer.");
+		output("\n\n<i>“Yeah,”</i> you grin. You can practically feel the pheromones pouring off of you, and you" + (pc.isTreatedBull() ? "r heady tunnel vision allows you to" : " can actually") + " see the effect they are having on the auburn-headed cow - the way her lips slowly part, her pupils dilating, her smile growing softer.");
 		output("\n\n<i>“Your machine is kinda cool,”</i> you declare offhandedly, stepping towards her and casually sliding a hand around her waist. <i>“but it’s a pretty brutal way to get milked, don’t you think? I’m sure a nice girl like you knows more enjoyable ways.”</i>");
 		//Time is 09:00-17:00
 		if(hours >= 9 && hours < 17)
@@ -1783,7 +1784,9 @@ public function carrieBlowjobIntro():void
 	//Repeat
 	else
 	{
-		output("You simply stand and grin at Carrie, allowing the bonny, pink, red-headed vision in a leotard to get you aroused. This is one of the most wonderful things about the Treatment, you’ve found; you don’t have to say much to communicate with other Treated. And sometimes, you don’t have to say anything at all.");
+		output("You simply stand and grin at Carrie, allowing the bonny, pink, red-headed vision in a leotard to get you aroused.");
+		if(pc.isTreatedBull()) output(" This is one of the most wonderful things about the Treatment, you’ve found; you don’t have to say much to communicate with other Treated. And sometimes, you don’t have to say anything at all.");
+		else output(" You don’t really need words to communicate to the Treated girl; the cloud of pheromones you naturally produce in her presence does all the talking required.");
 		//Time is 09:00-17:00
 		if(hours >= 9 && hours < 17)
 		{
@@ -1836,7 +1839,8 @@ public function carrieBlowjobsGo():void
 		output("A minute later you’re in the grassy back lot of the milking barn, back against an oak tree, getting [pc.oneCock] enthusiastically sucked. The ");
 		if(hours > 6 || hours < 20) output("sun");
 		else output("moon");
-		output(" shines on your [pc.face] and the sweet, verdant air fills your nostrils as Carrie’s auburn head bobs gently. A warm hand gripped around the base, wet lips traveling further and further down your length, your [pc.cockHeadBiggest] lavished and squeezed by her mouth until it’s radiating pure, straining pleasure, beading pre that is continuously whisked away by a hungry, dexterous tongue. You hazily wonder why you’re spending so much time and energy searching the stars when everything you could ever want is right here: a rampant bull’s true home.");
+		output(" shines on your [pc.face] and the sweet, verdant air fills your nostrils as Carrie’s auburn head bobs gently. A warm hand gripped around the base, wet lips traveling further and further down your length, your [pc.cockHeadBiggest] lavished and squeezed by her mouth until it’s radiating pure, straining pleasure, beading pre that is continuously whisked away by a hungry, dexterous tongue.");
+		if(pc.isTreatedBull()) output(" You hazily wonder why you’re spending so much time and energy searching the stars when everything you could ever want is right here: a rampant bull’s true home.");
 		if(pc.biggestCockLength() < 12) output("\n\n<i>“Hmm,”</i> says Carrie, surfacing momentarily to look up at you with a teasing smile, sliding her thumb up your bulging underside. <i>“It’s nice to see one that’s not so big, y’know? It looks really cute on you. Kinda want to take it home, look after it...”</i> You politely but firmly grip the back of her head and sink her back onto your boy-cock before she can unleash any more faint praise.");
 		else if(doubleDickEnough)
 		{
@@ -1857,19 +1861,27 @@ public function carrieBlowjobsGo():void
 		if(pc.cumQ() < 25) 
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. A single droplet of your seed works its way down her chin when you’ve pulsed your last and she pulls away, parting from your cock with a smooch; the rest of it has disappeared entirely down her gullet.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips. <i>“All for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i> You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips. <i>“All for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
+			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
 		else if(pc.cumQ() < 1500) 
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. You go on and on, riding your intense pulses, intent on pumping every last drop of your thick, generous seed into her; the next moment she pulls out, and carefully directs your throbbing dick at the large glass jar between her knees. You shudder and huff, blowing the last half of your load into it, coaxed on by her wringing, rubbing hand. You exhale with pure contentment when she tugs out the last of it, oozing into the almost-full container.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your <i>“donation”</i>. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i> You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your <i>“donation”</i>. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
+			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
 		else
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cum] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue... you are forced into overdrive, heart pounding as you hose a massive amount of thick, gooey seed down her throat. Even an eager, well-trained moo-hole cannot cope with it; Carrie parts from your throbbing sex with a gasp, cum spurting out of her mouth and nose, and she gets the next blast right in the face.\n\nFeverishly, she grabs your [pc.cock " + x + "] and directs it at the large glass jar between her knees. You shudder and huff, and with three wonderful clenches you’ve filled it up to the top, coaxed on by her wringing, rubbing hand. The next pump simply splashes it everywhere, which feels to you like a waste; you take it in your own hand and direct it at Carrie. She laughs, half in disgusted exasperation and half in squealing delight, as with flexing grunts you paint her from top to bottom in musky slut-feed, paying particular attention to her plush boobs. She, and much of the nearby surroundings, look like they’ve been hit by a [pc.cum] bomb by the time you finally finish.\n\nYou stand over her, breathing heavily, semi-tumescent cock dangling, gently oozing the kind of cum an unmodded human would ejaculate in a single orgasm. A plump, eager set of lips wicks your throbbing head and slit quite clean.");
-			output("\n\n<i>“Wow. Ok,”</i> she says at last, scooching back and wiping [pc.cum] out of her eyes. <i>“Gonna have to schedule some shower time afterwards if I do this with you again, ain’t I?”</i> You grin down at her absurdly. Heavy need satiated, you feel nothing but shining fondness and warmth for the auburn cock-polisher.");
+			output("\n\n<i>“Wow. Ok,”</i> she says at last, scooching back and wiping [pc.cum] out of her eyes. <i>“Gonna have to schedule some shower time afterwards if I do this with you again, ain’t I?”</i>");
+			if(pc.isTreatedBull()) output(" You grin down at her absurdly. Heavy need satiated, you feel nothing but shining fondness and warmth for the auburn cock-polisher.");
+			else output(" Heavy need satiated, you grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
-		output("\n\n<i>“Sure you don’t want anything?”</i> the euphoria of cooperation compels you to ask. <i>“Return the favor?”</i>");
+		output("\n\n<i>“Sure you don’t want anything?”</i> the euphoria");
+		if(pc.isTreatedBull()) output(" of cooperation");
+		output(" compels you to ask. <i>“Return the favor?”</i>");
 		output("\n\n<i>“Oh, no!”</i> giggles Carrie, sounding honestly surprised by your question. <i>“Sucking dick is its own reward, silly. Well, maybe not for you,”</i> she goes on, brow crinkling as a gray cloud vaguely intrudes on an eternally sunlit mind. <i>“But for cows it’s... the taste, and... when it touches the back of your throat, and... how happy and sweet and relaxed it makes you bulls...”</i> her eyes have gone a bit vague.");
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
@@ -2081,18 +2093,24 @@ public function carrieBlowjobsGo():void
 		if(pc.cumQ() < 500) 
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. A single droplet of your seed works its way down her chin when you’re pulsed your last and she pulls away, parting from your cock with a smooch; the rest of it has disappeared entirely down her gullet.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips. <i>“All for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i> You grin down at her absurdly, feeling nothing but shining fondness and warmth for your auburn cock-polisher.");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips. <i>“All for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for your auburn cock-polisher.");
+			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
 		else if(pc.cumQ() < 1500)
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. You go on and on, riding your intense pulses, intent on pumping every last drop of your thick, generous seed into her; the next moment she pulls out, and carefully directs your throbbing dick at the large glass jar between her knees. You shudder and huff, blowing the last half of your load into it, coaxed on by her wringing, rubbing hand. You exhale with pure contentment when she tugs out the last of it, oozing into the almost-full container.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your <i>“donation”</i>. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i> You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your <i>“donation”</i>. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
+			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
 		else
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue... you are forced into overdrive, heart pounding as you hose a massive amount of thick, gooey seed down her throat. Even an eager, well-trained moo-hole cannot cope with it; Carrie parts from your throbbing sex with a gasp, cum spurting out of her mouth and nose, and she gets the next blast right in the face. Feverishly she grabs your [pc.cock " + x + "] and directs it at the large glass jar between her knees. You shudder and huff, and with three wonderful clenches you’ve filled it up to the top, coaxed on by her wringing, rubbing hand. The next pump simply splashes it everywhere, which feels to you like a waste; you take it in your own hand and direct it at Carrie.");
 			output("\n\nShe laughs, half in disgusted exasperation and half in squealing delight, as with flexing grunts you paint her from top to bottom in musky slut-feed, paying particular attention to her plush boobs. She, and much of the nearby surroundings, look like they’ve been hit by a [pc.cum] bomb by the time you finally finish. You stand over her, breathing heavily, semi-tumescent cock dangling, gently oozing the kind of cum an unmodded human would ejaculate in a single orgasm. A plump, eager set of lips wicks your throbbing head and slit quite clean.");
-			output("\n\n<i>“Wow. Ok,”</i> she says at last, scooching back and wiping [pc.cum] out of her eyes. <i>“Gonna have to schedule some shower time afterwards if I do this with you again, ain’t I?”</i> You grin down at her absurdly. Heavy need satiated, you feel nothing but shining fondness and warmth for the auburn cock-polisher.");
+			output("\n\n<i>“Wow. Ok,”</i> she says at last, scooching back and wiping [pc.cum] out of her eyes. <i>“Gonna have to schedule some shower time afterwards if I do this with you again, ain’t I?”</i>");
+			if(pc.isTreatedBull()) output(" You grin down at her absurdly. Heavy need satiated, you feel nothing but shining fondness and warmth for the auburn cock-polisher.");
+			else output(" Heavy need satiated, you grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
 		//{merge}
 		output("\n\n<i>“Swing back around anytime ");
@@ -2128,7 +2146,7 @@ public function carrieBlowjobsGo():void
 
 public function carrieSoothingShowerChance():Boolean
 {
-	if(!pc.hasStatusEffect("NT Male Milker Disabled") && pc.isTreated() && pc.hasCock() && flags["CARRIE_BLOWJOBBED"] != undefined && flags["CORA_SUCKED"] != undefined)
+	if(!pc.hasStatusEffect("NT Male Milker Disabled") && pc.hasPheromones() && pc.hasCock() && flags["CARRIE_BLOWJOBBED"] != undefined && flags["CORA_SUCKED"] != undefined)
 	{
 		if(pc.getStatusMinutes("Cora Showered") >= ((72 - 24) * 60)) return false;
 		if(pc.hasStatusEffect("Cora Showered") && rand(5) == 0) return true;
@@ -2158,7 +2176,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			if(!pc.hasArmor() && !pc.isCrotchExposed()) output(", hooking your thumbs into your [pc.lowerUndergarment] as you do so");
 			output(".");
 			output("\n\nThe two cow-girls look at each other and burst into laughter again.");
-			output("\n\n<i>“I think you’ve given us enough for now, big [pc.guy],”</i> Carrie sighs. <i>“Bull sperm, it’s... not exactly in short supply around here, y’know? I had to dr- throw away some of th’ last batch.”</i>");
+			output("\n\n<i>“I think you’ve given us enough for now, big [pc.guy],”</i> Carrie sighs. <i>“" + (pc.isTreatedBull() ? "Bull s" : "S") + "perm, it’s... not exactly in short supply around here, y’know? I had to dr- throw away some of th’ last batch.”</i>");
 			output("\n\n<i>“Dunno about you though, sis,”</i> murmurs Cora, not taking her eyes off you. <i>“Long");
 			if(hours > 23 || hours < 13) output(" morning");
 			else output(" afternoon");
@@ -2193,7 +2211,8 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			
 			if(flags["CARRIE_SHOWER_THREESOME"] == undefined)
 			{
-				output("You don’t have to say anything; all you have to do is go across, curl each arm around a warm, giggly cow-girl, breathe in their sweet, milky scent and give their plump butts a good, healthy squeeze. The Treatment makes everything so straightforward.");
+				if(pc.isTreatedBull()) output("You don’t have to say anything; all you have to do is go across, curl each arm around a warm, giggly cow-girl, breathe in their sweet, milky scent and give their plump butts a good, healthy squeeze. The Treatment makes everything so straightforward.");
+				else output("You’re getting the hang of how the Treated roll by now, so you don’t say anything at all; simply going across, curling an arm around a warm, giggly cow-girl, breathing in their sweet, milky scent and giving their plump butts a healthy squeeze is all that’s required. It’s all so happily straightforward.");
 				output("\n\nThey lead you to a quiet shower-block, detached from the main barn. It is monitored, rather cutely, by a cow-mazon and faux-cow couple; the former huge, black and short-haired, the latter blonde, winsome and with an impudent smirk begging for an ass-fuck. The amazon raises an eyebrow when you walk in with your arms full of Carrie and Cora, but says nothing when you sashay past into the warm, wet mist. Evidently this place is as communal and bonk-happy as anywhere else on New Texas.");
 				output("\n\n");
 			}
@@ -2353,7 +2372,8 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			showName("SHOWER\nROOM");
 			showBust("HORISHA_AND_PECK", "CARRIE_NUDE", "CORA_NUDE");
 			
-			output("Your bullish impulses seethe in the presence of so many plush, willing cows, and once within the enclosed, steamy space of the communal shower, their sweet, fruity smell heavy in your nostrils, they make demands of you that you cannot resist. The presence of another male - even such a male as Peck, half the size of his owner, girly shoulders, hairless on his body and lips every bit as glossy and perfect for cock-sucking as Carrie’s - demands you step up and make it clear who the alpha here is.");
+			if(pc.isTreatedBull()) output("Your bullish impulses seethe in the presence of so many plush, willing cows, and once within the enclosed, steamy space of the communal shower, their sweet, fruity smell heavy in your nostrils, they make demands of you that you cannot resist. The presence of another male - even such a male as Peck, half the size of his owner, girly shoulders, hairless on his body and lips every bit as glossy and perfect for cock-sucking as Carrie’s - demands you step up and make it clear who the alpha here is.");
+			else output("It’s here, in the presence of so many plush, willing cows in the enclosed, steamy space of the communal shower, that you appreciate the pheromonal thing is actually a two-way street. The sweet, fruity smell of them hangs heavy in your nostrils and your masculine impulses seethe, making demands of you that you cannot resist. The presence of another male - even such a male as Peck, half the size of his owner, girly shoulders, hairless on his body and lips every bit as glossy and perfect for cock-sucking as Carrie's - demands you step up and make it clear who the alpha here is.");
 			output("\n\nThe moment he takes his tight clothes off, displaying an ass as pert, cute and provoking as his features, you’re on top of him, sliding your [pc.cock] between his pale cheeks, letting one hand trail down his flat front and the other firmly clutch his thick, eight-inch horse dick. He whimpers but doesn’t pull away, simply shifts his soft buttocks up your water-slicked shaft and looks over his shoulder at you with a butter-wouldn’t-melt expression. Pulse thudding in your temple, you push him against the enamel wall of the shower and use it as stanchion to inexorably open his pink fuck-hole with your [pc.cockHead] and push your dripping cock into the tight, hot tunnel of his ass, intent on reshaping it in your own throbbing, dominant dick’s image. His breathy little gasps, little tenses of the muscles and his slim fingers grasping at your [pc.hips] spur you on.");
 			
 			pc.cockChange();
@@ -2367,7 +2387,9 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			if(pc.balls > 0 && !pc.hasStatusEffect("Uniball")) output(" [pc.balls] swinging ponderously,");
 			output(" each thrust claiming more and more of his lithe body for your own pleasure. Your hand whips down his outsized erection, each tough jerk of your wrist forcing a slutty bleat past his lips and making him shiver around your [pc.cock] beautifully.");
 			output("\n\nHorisha evidently feels the same way you do about her menagerie; she bites her lips as her wide eyes trail over you and Peck, and thrusts her thighs into Carrie’s face with increasing need, who holds onto her taut muscular legs, determinedly limpeted to the bigger woman’s crotch. The amazon’s fingers pinch Cora’s swollen nipples and presses her fingers deep into her softness, causing milk to spurt into the air and Cora to wail, seizing up in her arms and dribbling copious amounts of femcum all over her sister’s head. In response, you shove as much of your cock into Peck’s tight, buttery squeeze as you can; he arches his back with a shuddering gasp, his own dick spasms in your hand, and then next thing you know he’s sprayed lines of cum the length of his own body on the puddled floor.");
-			output("\n\n<i>“Cumming without instruction, boy?”</i> laughs Horisha, cruel, delighted brown eyes on Peck. <i>“I don’t care how good that thick bull dick in your lily ass feels - you know that’s another 10 whups.”</i>");
+			output("\n\n<i>“Cumming without instruction, boy?”</i> laughs Horisha, cruel, delighted brown eyes on Peck. <i>“I don’t care how good that thick");
+			if(pc.isTreatedBull()) output(" bull");
+			output(" dick in your lily ass feels - you know that’s another 10 whups.”</i>");
 			output("\n\n<i>“M-mistress...”</i> is all the faux-vine can stammer in response, and he watches, your [pc.hips] still clapping a steady rhythm against said cute, rosy bottom, as she reaches her own high, crying out in joy as Carrie tongues her to it relentlessly. Your eyes are on Horisha’s huge, bouncing boobs as you allow yourself to rush into delicious, juicy orgasm as well, your [pc.cock] tightening up gloriously, your cum-slit dilating and then fountaining cum deep into Peck’s colon. ");
 			// If low output:
 			if(pc.cumQ() < 500) output(" A nice, thick, hot reminder of your domination of his scrumptious candy ass. You try and hold yourself back a bit though, pull out before you go too far - no way is this party over.");
