@@ -131,6 +131,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/horisha_peck.png", mimeType = "image/png")]
 		public var Bust_HORISHA_AND_PECK:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/ilaria.png", mimeType = "image/png")]
+		public var Bust_ILARIA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ilaria_nude.png", mimeType = "image/png")]
+		public var Bust_ILARIA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ilaria_pregnant.png", mimeType = "image/png")]
+		public var Bust_ILARIA_PREG:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ilaria_pregnant_nude.png", mimeType = "image/png")]
+		public var Bust_ILARIA_PREG_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
 		public var Bust_JOYCO_VENDING_MACHINE:Class;
 		

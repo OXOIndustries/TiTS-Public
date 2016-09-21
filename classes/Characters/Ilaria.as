@@ -24,8 +24,8 @@ package classes.Characters
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
-			//fluidSimulate = true;
+			this._neverSerialize = false;
+			fluidSimulate = true;
 			//statusSimulate = true;
 			this.short = "Ilaria";
 			
@@ -72,6 +72,12 @@ package classes.Characters
 			this.analVirgin = false;
 			createPerk("Fixed CumQ",50000,0,0,0);
 			//createPerk("No Cum Leakage",0,0,0,0);
+		}
+		
+		override public function get bustDisplay():String
+		{
+			if(bellyRating() >= 25) return "ILARIA_PREG";
+			return "ILARIA";
 		}
 	}
 }

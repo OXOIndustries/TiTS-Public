@@ -6,15 +6,21 @@
 public function showIlaria(nude:Boolean = false):void
 {
 	showName("\nILARIA");
-	if(nude) showBust("ILARIA_NUDE");
-	else showBust("ILARIA");
+	showBust(ilariaBustDisplay(nude));
+}
+public function ilariaBustDisplay(nude:Boolean = false):String
+{
+	var sBust:String = chars["ILARIA"].bustDisplay;
+	if(nude) sBust += "_NUDE";
+	
+	return sBust;
 }
 
 //
 //Room Descripts
 public function bunnyBunsCumfectionaryBonus():void
 {
-	showBust("ILARIA");
+	showBust(ilariaBustDisplay());
 	output("The inside of Bunny’s Buns & Confectionary is an almost overwhelming assault on the senses: bright pastel colors and flashing lights adorn every wall, drawing your eye to dozens of different menu options each flickering on a holodisplay; booming bass-heavy music fills the air, accompanied by crooning female vocals in an ausari accent. Across from the entrance and big bay windows is an old-school Terran bar, complete with stools and polished until it shines, though behind it are several different flavors of ice-cream dispenser and a soda machine that runs all the way into the ceiling - like everything else, it pulses with electronic lights, showing off its wares in a garish holographic commercial that never ends.");
 	output("\n\n");
 	if(flags["MET_ILARIA"] != undefined) 
@@ -52,10 +58,16 @@ public function approachIlaria():void
 		if(flags["FUCKED_ILARIA"] != undefined) 
 		{
 			output("”</i> she murmurs huskily, leaning way over the counter to show you all of that delicious, milky cleavage of hers.");
-			if(chars["ILARIA"].isPregnant()) output(" One of her hands traces seductively over the growing swell of her belly.");
-			output(" <i>“Just stopping in for a snack, or...?”</i>");
+			if(chars["ILARIA"].bellyRating() >= 25)
+			{
+				output(" One of her hands traces seductively over the ");
+				if(chars["ILARIA"].isPregnant()) output("growing");
+				output(" swell of her belly.");
+			}
+			output(" <i>“Just stopping in for a snack, or...?");
 		}
-		else output(" What looks good to you, sweetheart?”</i>");
+		else output(" What looks good to you, sweetheart?");
+		output("”</i>");
 	}
 	ilariaMenu();
 }
@@ -516,7 +528,7 @@ public function collectACreampie():void
 	output("\n\n<i>“Oh... oh wow oh wow!”</i> Ilaria giggles, resting against your back. <i>“You’re the best cum-dump a girl could ask for! Not to mention you eat pussy like a champ!”</i>");
 
 	output("\n\nShe reaches down and ");
-	if(pc.bellyRating() >= 45 && pc.isPregnant()) output("pats your bloated belly. <i>“Sorry, kids. Hope you don’t mind a little extra stuffing in there!");
+	if(pc.bellyRating() >= 45 && pc.isPregnant()) output("pats your bloated belly. <i>“Sorry, kids. Hope you don’t mind a little extra stuffing in there!”</i>");
 	else output("squeezes your [pc.butt] - just hard enough to make a little trickle of white squirt around her knot.");
 	//if Ilaria preggers & showing:
 	if(chars["ILARIA"].bellyRating() >= 20) output(" She shifts slightly, resting the pregnant swell of her belly on your back a little more comfortably.");
@@ -591,7 +603,7 @@ public function poundIlariaLikeMad():void
 	output("\n\nWell, you’re back here for one reason, you remind yourself: to help Ilaria milk out every drop of that bunny-spunk. As nice as making out and grinding in her ");
 	if(y >= 0) output("ass and ");
 	output("pussy is, you’re not doing your job until you’ve got her bent over this machine and going crazy on your cock like a bitch in heat. You plant a hand between her shoulderblades and push her down, making her grip the milker’s hand-holds again");
-	if(chars["ILARIA"].isPregnant() && chars["ILARIA"].bellyRating() >= 25) output(" and wiggle her [ilaria.belly] around, trying to get comfortable wedged between you and the machine");
+	if(chars["ILARIA"].bellyRating() >= 25) output(" and wiggle her [ilaria.belly] around, trying to get comfortable wedged between you and the machine");
 	output(".");
 
 	output("\n\nHer heavy balls swing back and forth with the impacts of your crotch on her ass, slapping weightily against your [pc.thighs], and her poof-ball tail wiggles ninety miles an hour. Seeing the way it moves, buzzing ecstatically on her rump, gives you an idea. Between hilt-deep thrusts, you reach down to the top of one of Ilaria’s stockings and grab the pink controller clipped under the side-bow, rolling your thumb along the setting dial. Ilaria gasps, going as rigid as the cock");
@@ -626,6 +638,8 @@ public function poundIlariaLikeMad():void
 	output("\n\nYou pull out and give the bunny-babe a smack on the ass, just hard enough to make a spurt of [pc.cumColor] eject from her parted pink lips and drool down her thighs. Ilaria giggles and wipes it up, cleaning it off her fingers with a long lick before starting to detach herself from the machine. <i>“Go on out, babe. I’ve gotta get cleaned up.”</i>");
 
 	processTime(30);
+	chars["ILARIA"].loadInCunt(pc, 0);
+	if(y >= 0) chars["ILARIA"].loadInAss(pc);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -641,7 +655,11 @@ public function ilariaAppearance():void
 	output("\n\nThe only hint as to her original race is tucked away below the belt. Or under skirt, rather.");
 	output("\n\nIlaria’s wearing a show-bunny outfit like out of an old skin-tease magazine: thigh-high stockings with ribbon bows, a short skirt that leaves a wide gulf of bare flesh between them, and a black push-up corset that tightly hugs and emphasizes her already impressive rack. Without it, you’d guess the curvy bunny’s carrying around a pair of F-cups breasts, and the way they slosh and jiggle with every step leaves little doubt in your mind she’s made sure they’re nice and milky. It’s a safe bet that she bakes with her own milk!");
 
-	if(chars["ILARIA"].isPregnant() && chars["ILARIA"].bellyRating() >= 25) output(" Her corset’s been modified with a seam down the middle front, allowing her [ilaria.belly] to show through. She’s almost always got a hand on it, now, idly caressing herself whenever she has a free moment.");
+	if(chars["ILARIA"].bellyRating() >= 25)
+	{
+		output(" Her corset’s been modified with a seam down the middle front, allowing her [ilaria.belly] to show through.");
+		if(chars["ILARIA"].isPregnant()) output(" She’s almost always got a hand on it, now, idly caressing herself whenever she has a free moment.");
+	}
 	else output(" Her outfit is rounded out by arm-length black gloves and a stand-alone collar and bow tie around her neck, with a name tag subtly clipped just beneath the tie.");
 
 	output("\n\nUnder her clothes, Ilaria is packing a thick, tapered shaft of crimson canine meat, about six inches long when hard, but connected to a knot and pair of balls much, much larger than her otherwise average shaft would imply. When aroused, her knot is nearly fist-sized, and even when drained dry, her balls are easily the size of grapefruits. She’s clearly had a lot of mod work done down there, making her a one-woman cum-factory. In addition to her impressive masculinity, though, Ilaria also has a particularly stretchy, wet pussy tucked between her legs, with meaty lips and a rosy pink exterior, and of course, a tight, dark tail-hole between her jiggling butt-cheeks, right where it belongs.");

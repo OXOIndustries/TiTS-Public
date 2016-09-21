@@ -6069,7 +6069,7 @@
 			//Size: 50%
 			if(rand(2) == 0 || bForceSize)
 			{
-				sBuilder += sizeDescripts[rand(sizeDescripts.length)];
+				if(sizeDescripts.length > 0) sBuilder += sizeDescripts[rand(sizeDescripts.length)];
 				//Pregnant stuff & Size: 50% or 25% overall odds.
 				if(isPregnant() && pregDescripts.length > 0 && rand(2) == 0)
 				{
@@ -6082,6 +6082,17 @@
 			else if(isPregnant() && pregDescripts.length > 0 && (rand(2) == 0 || bForceSize))
 			{
 				sBuilder += pregDescripts[rand(pregDescripts.length)] + " ";
+			}
+			// Cumflation adjectives for non-flat bellies - 50%
+			else if(!bForceSize && !isPregnant() && belly >= 10 && rand(2) == 0)
+			{
+				var cumFluid:Number = (statusEffectv1("Anally-Filled") + statusEffectv1("Vaginally-Filled") + statusEffectv1("Orally-Filled"));
+				// At least 500 mLs
+				if(cumFluid >= 500)
+				{
+					var cumDescripts:Array = ["cum-filled", "cum-bloated", "cum-inflated", "cum-packed", "jizz-jammed", "semen-stuffed"];
+					if(cumDescripts.length > 0) sBuilder += cumDescripts[rand(cumDescripts.length)] + " ";
+				}
 			}
 			
 			//Noun selection:
