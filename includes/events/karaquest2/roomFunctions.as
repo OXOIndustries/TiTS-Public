@@ -87,7 +87,9 @@ public function kq2FightBlackVoidGruntsOutside():void
 	CombatManager.victoryScene(kq2MooksVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("VOID GRUNTS");
-
+	
+	showBust(h[0].bustDisplay, h[1].bustDisplay, (num >= 3 ? h[2].bustDisplay : ""), (num >= 4 ? h[3].bustDisplay : ""));
+	
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
 }
@@ -110,6 +112,8 @@ public function kq2FightBlackVoidGrunts():void
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("VOID GRUNTS");
 
+	showBust(h[0].bustDisplay, h[0].bustDisplay, (num >= 3 ? h[2].bustDisplay : ""), (num >= 4 ? h[3].bustDisplay : ""));
+	
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
 }
@@ -149,10 +153,8 @@ public function kq2FightSecDrones():void
 	CombatManager.displayLocation("SEC. DRONES");
 	CombatManager.encounterText("You’re fighting a flight of small scout drones. Each drone is about the size of your fist, just a ball of metal built around a hover-platform and a tiny zap-gun. They’re quick moving, though, and speed around you in a constant hail of electrical discharge.");
 	
-	if(silly) showBust("HOVER_DRONE_SILLY");
-	else showBust("HOVER_DRONE");
-	showName("ALERT:\nDANGER!");
-
+	showBust(h[0].bustDisplay);
+	
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
 }
@@ -531,6 +533,8 @@ public function kq2rfKaraOverride():void
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 5);
 	CombatManager.victoryScene(kq2KaraHotwiresSumDoors);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
+	
+	showBust("VOIDPIRATE", "VOIDPIRATE", "VOIDPIRATE", "VOIDPIRATE");
 	
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
