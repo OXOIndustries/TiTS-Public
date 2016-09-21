@@ -3216,6 +3216,14 @@
 			if (isTreated() && mf("m", "f") == "m") return true;
 			return false;
 		}
+		public function isTreatedCow():Boolean
+		{
+			return (isTreated() && hasPerk("Treated Milk"));
+		}
+		public function isTreatedBull():Boolean
+		{
+			return (isTreated() && hasPerk("Pheromone Cloud"));
+		}
 		public function isAmazon():Boolean
 		{
 			return (isTreated() && hasStatusEffect("Treated Amazon"));
