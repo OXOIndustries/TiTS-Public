@@ -3224,6 +3224,12 @@
 		{
 			return (isTreated() && hasStatusEffect("Cum-Cow"));	
 		}
+		public function hasPheromones():Boolean
+		{
+			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent")) return true;
+			if(accessory is Allure) return true;
+			return false;	
+		}
 		//Mild exhib scene: arg = +1;
 		//Full exhib scene: arg = +2
 		public function exhibitionism(arg:Number = 0):Number

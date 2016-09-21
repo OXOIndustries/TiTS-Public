@@ -1458,7 +1458,7 @@ public function newTexanGanguBangu():void
 	output("!");
 
 	//PCisACow:
-	if(pc.race() == "cow-girl" || pc.race() == "cow" || (pc.isTreated() && pc.isBimbo())) output("\n\n<i>“Please enjoy your slutty fuck cow,”</i> you huskily moan, mooing and rubbing yourself desperately against their delectable dicks. You’re a cow, and cows are meant to get fucked and mated by bulls!");
+	if(pc.race().toLowerCase().indexOf("cow") != -1 || (pc.isTreated() && pc.isBimbo())) output("\n\n<i>“Please enjoy your slutty fuck cow,”</i> you huskily moan, mooing and rubbing yourself desperately against their delectable dicks. You’re a cow, and cows are meant to get fucked and mated by bulls!");
 	else
 	{
 		output("\n\n<i>“I-I’m your slutty little [pc.race] whore - please use me as you wish!”</i> you huskily moan, rubbing yourself against their delectable dicks. It feels so <i>right</i>, like this is your purpose, to be the bull’s ");

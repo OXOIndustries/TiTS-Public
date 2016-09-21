@@ -3047,7 +3047,7 @@ package classes.GameData
 			
 			if (factor > 2) factor = 2;
 		
-			if (attacker.hasPerk("Pheromone Cloud")) bonus += 1;
+			if (attacker.hasPheromones()) bonus += 1;
 			if (teaseType == "SQUIRT") bonus += 2;
 			if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
 			
@@ -3127,7 +3127,7 @@ package classes.GameData
 			{
 				var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2;
 				if (teaseType == "SQUIRT") damage += 5;
-				if (attacker.hasPerk("Pheromone Cloud")) damage += 1 + rand(4);
+				if (attacker.hasPheromones()) damage += 1 + rand(4);
 				damage *= (rand(31) + 85) / 100;
 				
 				if (damage > 15 + attacker.level * 2) damage = 15 + attacker.level * 2;
