@@ -263,6 +263,8 @@ public function fluidValue(fluidType:Number = -1, basePrice:Number = 0):Number
 		case GLOBAL.FLUID_TYPE_HONEY:
 		case GLOBAL.FLUID_TYPE_MILKSAP:
 		case GLOBAL.FLUID_TYPE_CUMSAP:
+		case GLOBAL.FLUID_TYPE_FRUIT_CUM:
+		case GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM:
 			rarity = 2;
 			break;
 		case GLOBAL.FLUID_TYPE_NECTAR:
