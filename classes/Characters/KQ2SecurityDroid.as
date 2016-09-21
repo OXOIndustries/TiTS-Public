@@ -168,6 +168,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
+			if(kGAMECLASS.silly) return "HOVER_DRONE_SILLY";
 			return "HOVER_DRONE";
 		}
 		

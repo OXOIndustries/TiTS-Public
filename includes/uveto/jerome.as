@@ -24,7 +24,7 @@ public function jeromeAtBar(btnIdx:int):Boolean
 		else output(" his");
 		output(" eyes lingering over your form for longer than should be considered polite.");
 
-		addButton(btnIdx, metJerome ? "Jerome" : "Figure", approachJerome, undefined, "Seduce " + (metJerome ? "Jerome" : "the figure"), "Well if you're so captivating, it'd be rude not to introduce yourself....");
+		addButton(btnIdx, metJerome ? "Jerome" : "Figure", approachJerome, undefined, "Seduce " + (metJerome ? "Jerome" : "the Figure"), "Well if you're so captivating, it'd be rude not to introduce yourself....");
 
 		return true;
 	}
