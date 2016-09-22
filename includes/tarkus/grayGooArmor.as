@@ -2347,9 +2347,9 @@ public function gooArmorChangeStyle(arg:Array):void
 					if(pc.hasGenitals() || (pc.balls > 0 && pc.ballSize() > 3))
 					{
 						txt += ", leaving behind a visible ";
-						var buldges:int = pc.cockTotal();
-						if(pc.ballSize() > 3) buldges += pc.balls;
-						if(buldges > 0) txt += (buldges == 1 ? "buldge" : (buldges == 2 ? "pair" : "set") + " of buldges");
+						var bulges:int = pc.cockTotal();
+						if(pc.ballSize() > 3) bulges += pc.balls;
+						if(bulges > 0) txt += (bulges == 1 ? "bulge" : (bulges == 2 ? "pair" : "set") + " of bulges");
 						else txt += (pc.totalVaginas() == 1 ? "camel toe" : (pc.totalVaginas() == 2 ? "pair" : "set") + " of camel toes");
 					}
 					if(pc.libido() > 50) txt += "--and a zipper forms below, just for the added lewdness";
