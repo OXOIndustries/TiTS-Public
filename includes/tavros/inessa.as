@@ -1853,12 +1853,12 @@ public function getAHandjobFromInessy():void
 	output(". Her dainty hands wrap around ");
 	if(pc.cockTotal() > 1) output("one of them");
 	else output("your tender flesh");
-	output(", lightly squeezing, constricting the blood flow to your [pc.cockHead]. It slowly grows in fitful little jerks. Low, thrumming pleasure warms your loins, a mere prelude to the pleasure to come.");
+	output(", lightly squeezing, constricting the blood flow to your [pc.cockHead " + x + "]. It slowly grows in fitful little jerks. Low, thrumming pleasure warms your loins, a mere prelude to the pleasure to come.");
 
 	output("\n\nThe snowy-haired siel girl blows lightly on your sensitive tip, teasing it with tiny pointed breaths. At the same time, she slowly but firmly jerks your base, another hand reaching down to ");
 	if(pc.balls > 0) output("cup and fondle your [pc.sack]");
 	else output("stroke between it and your [pc.asshole]");
-	output(". You let out an appreciative groan as the subby storekeeper works over your [pc.cock].");
+	output(". You let out an appreciative groan as the subby storekeeper works over your [pc.cock " + x + "].");
 
 	output("\n\nA tiny bead of pre dribbles out of your cock hole and down your flexing shaft, rolling down until it brushes her girlish fingers. Leaning forward, she gives your drip-slickened underside a long upwards lick, looking up at you with a lusty, subservient look at the same time. Just the look in her eyes is enough for you to eagerly spill out more of your spunk, which she eagerly licks and suckles up. Her dusky blue lips are slowly painted [pc.cumColor], glistening with your [pc.cumVisc], [pc.cumFlavor] fluid.");
 
