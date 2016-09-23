@@ -711,10 +711,25 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 16"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 16"].northExit = "RESIDENTIAL DECK 2";
 	rooms["RESIDENTIAL DECK 16"].southExit = "RESIDENTIAL DECK 17";
+	rooms["RESIDENTIAL DECK 16"].eastExit = "BUNBAKERY";
 	rooms["RESIDENTIAL DECK 16"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 16"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 16"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 16"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+
+	//BAKERY
+	rooms["BUNBAKERY"] = new RoomClass(this);
+	rooms["BUNBAKERY"].roomName = "BUNNY\nBUNS";
+	rooms["BUNBAKERY"].description = "";
+	rooms["BUNBAKERY"].planet = "TAVROS STATION";
+	rooms["BUNBAKERY"].system = "SYSTEM: KALAS";
+	rooms["BUNBAKERY"].westExit = "RESIDENTIAL DECK 16";
+	rooms["BUNBAKERY"].moveMinutes = 1;
+	rooms["BUNBAKERY"].runOnEnter = bunnyBunsCumfectionaryBonus;
+	rooms["BUNBAKERY"].addFlag(GLOBAL.INDOOR);
+	rooms["BUNBAKERY"].addFlag(GLOBAL.PUBLIC);
+	rooms["BUNBAKERY"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["BUNBAKERY"].addFlag(GLOBAL.COMMERCE);
 	
 	//1017 South Walkway 2
 	rooms["RESIDENTIAL DECK 17"] = new RoomClass(this);

@@ -239,7 +239,7 @@
 			author("Savin");
 			//{Restores light HP, removes status effects}
 			clearCombatStatuses();
-			output("You see the goo-girl shudder, her eyes dimming for a moment. You hesitate, waiting to see what she's doing. After a moment, her eyes light up again, a dopey grin on her face. <i>\"All better now!\"</i> she chirps before slotting a hand up her gooey twat. (+15HP and all statuses cleared!)");
+			output("You see the goo-girl shudder, her eyes dimming for a moment. You hesitate, waiting to see what she's doing. After a moment, her eyes light up again, a dopey grin on her face. <i>\"All better now!\"</i> she chirps before slotting a hand up her gooey twat. (+15 HP and all statuses cleared!)");
 			lust(5);
 			HP(15);
 		}
@@ -278,7 +278,7 @@
 					output("The goo-girl wraps herself around you, pinning your");
 					if(target.legCount == 1) output(" [pc.leg] down");
 					else output(" [pc.legs] together");
-					output(" before slithering around and burying her face in your [pc.butt], motorboating your ass-cheeks as her gooey limbs try to peel off your [pc.gear]");
+					output(" before slithering around and burying her face in your [pc.butt], motorboating your ass-cheeks as her gooey limbs try to peel off your [pc.gear].");
 				}
 				applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), this, target, "minimal");
 			}
@@ -292,7 +292,7 @@
 			{
 				output("The gray goo cups her huge tits enticingly, squeezing the over-sized orbs together with her shoulders as one of her arms shapes itself into a big, drooling cockhead. She thrusts between her cleavage, pumping up and down until it blows a thick, gooey load right on her face ");
 				//if PC has a dick: 
-				if(target.hasCock()) output("clearly offering you the chance to do the same");
+				if(target.hasCock()) output("clearly offering you the chance to do the same.");
 				else output("clearly offering to do the same to you!");
 			}
 			applyDamage(new TypeCollection( { tease: 3 } ), this, this, "suppress");

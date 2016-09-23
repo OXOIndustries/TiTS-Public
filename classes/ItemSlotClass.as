@@ -217,6 +217,9 @@
 			if (this.itemFlags.length > 0)
 			{
 				var fList:String = "";
+				
+				if(hardLightEquipped) fList += (fList.length > 0 ? ", " : "") + "Hardlight Strap-On";
+				
 				for (var i:uint = 0; i < itemFlags.length; i++)
 				{
 					// Ignore non-consumable flag
@@ -246,17 +249,28 @@
 			{
 				if (compareString.length > 0 && !short) compareString += "\n";
 				
-				var price:Number = this.basePrice;				
+				var price:Number = this.basePrice;
+				var discount:Boolean = false;
 				
 				if (seller != null && buyer != null)
 				{
 					price = Math.round(price * seller.sellMarkup * buyer.buyMarkdown);
-					if(seller.hasPerk("Supply And Demand")) price *= 1.1;
-					if(buyer.hasPerk("Supply And Demand")) price *= 0.95;
+					if(seller.hasPerk("Supply And Demand")) discount = true;
+					if(buyer.hasPerk("Supply And Demand")) discount = true;
 				}
 				
-				//APRIL FOOLS! var valueString:String = "Price: " + price + " Dogecoins";
-				var valueString:String = "Price: " + Math.round(price) + " Credits";
+				//APRIL FOOLS!
+				var aprilFools:Boolean = false;
+				var valueString:String = "";
+				
+				if (discount)
+				{
+					valueString += "Basic Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
+					if(seller.hasPerk("Supply And Demand")) price *= 1.1;
+					if(buyer.hasPerk("Supply And Demand")) price *= 0.95;
+					valueString += "\nFinal Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
+				}
+				else valueString += "Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
 				
 				compareString = mergeString(compareString, valueString);
 			}

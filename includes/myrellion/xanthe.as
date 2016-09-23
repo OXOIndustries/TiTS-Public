@@ -3168,7 +3168,7 @@ public function xanTalkAboutKey():void
 	{
 		output("\n\n<i>“You said that you were keeping Inessa's belt key until you found someone worthy.”</i> You recount, thinking back again to the previous conversation. <i>“How would I go about proving myself worthy of taking that key?”</i> Xanthes expression turns serious once more, her eyes looking you up and down, examining your features.");
 		output("\n\n<i>“You wish to become my sisters "+ pc.mf("Master","Mistress") +"? Interesting...”</i> You nod your confirmation and Xanthe ponders for a moment, seemingly mulling over ideas in her head. <i>“Before I decide, tell me something... What do you intend to do with my sister once she is free of her belt?”</i>");
-		output("\n\n<i>“As you said before, she's naive and vulnerable, she needs someone to protect her, and as it seems you're far too busy out here to help her all of the time.”</i>");
+		output("\n\n<i>“As you said before, she's naive and vulnerable, she needs someone to protect her, and as it is you're far too busy out here to help her all of the time.”</i>");
 		output("\n\nXanthe seems to think over this even harder before raising her eyes to look into your own. <i>“I suppose you are right, although it will come with one catch, you must prove yourself a capable Dominant, and you must prove to me you know how to care for a submissive before I will allow it.”</i> Her tone remains serious, and you nod, prepared for the challenge to which Xanthe replies. <i>“Excellent.”</i>");
 	}
 	

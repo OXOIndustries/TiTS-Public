@@ -40,6 +40,11 @@ public function altTooltip(itemName:String = "none"):String
 			break;
 		
 		// Accessories
+		case "Siegwulfe":
+			if(chars["WULFE"].isBimbo()) tooltip += "A sleek chrome security droid standing on a powerfully-built tauric body and carrying the upper torso of a curvaceous, sexy gynoid with a coating of sun-kissed synth-skin starting at her inhumanly-wide hips, up past a pair of gigantic breasts, and to a whorish face half-hidden under a polysteel visor.";
+			else tooltip += "A sleek chrome security droid standing on a powerfully-built tauric body and carrying the upper torso of a slender, sexy gynoid with a coating of milk-pale synth-skin starting at her broad hips, up past a pair of palmable breasts, and to a chiseled face half-hidden under a polysteel visor.";
+			tooltip += " The Siegwulfe is a high-class personal security and assistant drone meant to accompany affluent individuals like you absolutely everywhere -- from the boardroom to the bedroom.";
+			break;
 		case "VarmintLeash":
 			tooltip += "This bright pink leash connects you to " + (varmintIsTame() ? "your varmint buddy" : "a tamed varmint") + " through a wireless signal and some high-tech motors in the collar, allowing you to control how far " + (varmintIsTame() ? "your friend" : "it") + " wanders from you, and hold it back if need be, without getting a pesky REAL leash in the way like some kind of neanderthal.";
 			break;

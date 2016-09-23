@@ -6,10 +6,11 @@
  * Handle situation if Tarkus is blown up???
  */
 
-public function edanHeader():void
+public function edanHeader(nude:Boolean = false):void
 {
 	showName("\nEDAN");
-	showBust("EDAN");
+	if(!nude) showBust("EDAN");
+	else showBust("EDAN_NUDE");
 	author("Wsan");
 }
 
@@ -151,6 +152,7 @@ public function talkToEdan():void
 	else addDisabledButton(1, "Stories", "Stories", "Don't kid yourself.");
 	
 	if ((flags["EDAN_NODICKS"] == 1) && ((pc.hasCock()) || (!pc.hasVagina()))) addDisabledButton(2, "Sex", "Sex", "Edan explained his sexual preferences - you need a pussy and no dick to have sex with him.");
+	else if (pc.lust() < 33) addDisabledButton(2, "Sex", "Sex", "You are not aroused enough for this!");
 	else addButton(2, "Sex", edanSex, undefined, "Sex", "Proposition the leithan for sex in the middle of the mess hall.");
 	
 	addButton(14, "Back", mainGameMenu);
@@ -441,7 +443,7 @@ public function edanSexFirst():void
 {
 	clearOutput();
 	clearMenu();
-	edanHeader();
+	edanHeader(true);
 	
 	output("You scuff along the floor on your [pc.knees] and palms, navigating through the dirt and mess inevitably left behind by busy patrons as you get closer to where the leithan is sitting. More than a few raskvel notice you, but you guess they’re pretty casual about this kind of thing given that after a few hoots and some hollering they go back to whatever they’re doing. The table Edan is sitting at today is conveniently located against one of the bulkheads; you notice he’s not actually sitting on a bench, so there’s nothing in the way obstructing him from putting his forelegs up on the table to allow you access to his dick.");
 	output("\n\nYou try not to think about how much attention a giant leithan standing on a table is going to draw and start shuffling under the front of his powerful body, his sizeable sheath already thickening in response to the ease with which you acquiesced to his command. You reach out and stroke it, and it’s not long before inches issue forth into your waiting hands. Six, twelve, eighteen... <i>wow</i>. There’s a few feet of thick, veiny horsecock hanging in front of your face. You reverentially caress it with your hands, marvelling at how hard it is between your fingers.");
@@ -497,7 +499,7 @@ public function edanSexSecondEnd():void
 {
 	clearOutput();
 	clearMenu();
-	edanHeader();
+	edanHeader(true);
 	
 	output("Fuck it, you might as well. You crawl under the table and emerge on the other side in front of Edan; kneeling in front of him eyeing his giant dick is starting to feel pretty familiar by now. You look around and see a bunch of raskvel and various denizens of the hall eyeing you; Edan was right, they know why you’re here. At least you’ll be performing for an attentive audience. You decide you might as well go all the way while you’re here,");
 	if (!pc.isNude()) output(" and sway your booty a bit as you strip off your [pc.upperGarments] to free your [pc.breasts] from their confines, giving everyone around you and especially Edan an eyeful of what [pc.fullname] has on offer.");
@@ -552,7 +554,7 @@ public function edanSexThird():void
 {
 	clearOutput();
 	clearMenu();
-	edanHeader();
+	edanHeader(true);
 	
 	if (pc.isTaur())
 	{
@@ -639,7 +641,7 @@ public function edanSexFourth():void
 	
 	clearOutput();
 	clearMenu();
-	edanHeader();
+	edanHeader(true);
 	
 	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
 	if(x < 0) x = pc.biggestVaginaIndex();
@@ -807,7 +809,7 @@ public function edanSexFifth():void
 	
 	clearOutput();
 	clearMenu();
-	edanHeader();
+	edanHeader(true);
 	
 	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
 	if(x < 0) x = pc.biggestVaginaIndex();
@@ -972,7 +974,7 @@ public function edanSexSixth():void
 	
 	clearOutput();
 	clearMenu();
-	edanHeader();
+	edanHeader(true);
 	
 	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
 	if(x < 0) x = pc.biggestVaginaIndex();
@@ -1090,6 +1092,10 @@ public function edanSexSixth():void
 public function edanSexRepeat():void
 {
 	generateMap();
+	
+	clearOutput();
+	clearMenu();
+	edanHeader(true);
 	
 	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
 	if(x < 0) x = pc.biggestVaginaIndex();
@@ -1246,7 +1252,7 @@ public function edanDrinksIntro():void //broooooo
 			output("\n\n<i>“God <i>damn</i>, Steele. Between the two of us we could probably take on an army.”</i>");
 			output("\n\nYou nod your agreement and get back to what matters - drinking.");
 		}
-		output("You pass the time drinking and talking, getting progressively louder and drunker until you both realize it’s time to go before things get out of hand. You both get up to leave and Edan turns to you to shake your hand and say goodbye for now.");
+		output(" You pass the time drinking and talking, getting progressively louder and drunker until you both realize it’s time to go before things get out of hand. You both get up to leave and Edan turns to you to shake your hand and say goodbye for now.");
 		
 		addButton(0, "Leave", edanDrinksLeave);
 		addButton(1, "Sex", edanDrinksSexFirst, undefined, "Sex", "Proposition Edan for some drunken fun.");
@@ -1313,7 +1319,7 @@ public function edanDrinksSexFirst():void
 {
 	clearOutput();
 	clearMenu();
-	edanHeader();
+	edanHeader(true);
 	
 	output("You don’t want the drunken fun to end. You say as much to Edan as you grasp his much larger hand and he cracks a grin.");
 	output("\n\n<i>“I thought you might say that. Guess the waitress mixed up the drinks and gave you a Sex on a Meteor instead, huh? There’s no real place nearby though... wait.”</i>");
@@ -1339,7 +1345,7 @@ public function edanDrinksSexSecond():void
 	
 	clearOutput();
 	clearMenu();
-	edanHeader();
+	edanHeader(true);
 	
 	output("You tell Edan you’re always up for some fun with him and he cracks a grin.");
 	output("\n\n<i>“Did I see you drinking Sex on a Meteor? Alright, let’s go.”</i> Edan looks over at the toilets on the far side of the tavern and you can see gears drunkenly turning in his head. <i>“Yeah, alright. Won’t be the first time.”</i>");
@@ -1364,6 +1370,10 @@ public function edanDrinksSexSecond():void
 public function edanDrinksSexThird():void
 {
 	generateMap();
+	
+	clearOutput();
+	clearMenu();
+	edanHeader(true);
 	
 	var isLeithan:Boolean = pc.race().toLowerCase().indexOf("leithan") != -1;
 	
