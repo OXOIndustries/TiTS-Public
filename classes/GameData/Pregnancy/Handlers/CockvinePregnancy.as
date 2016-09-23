@@ -7,6 +7,9 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.kGAMECLASS;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.GameData.StatTracking;
+	import classes.GLOBAL;
+	import classes.GameData.ChildManager;
+	import classes.GameData.Pregnancy.Child;
 	
 	/**
 	 * ...
@@ -31,6 +34,10 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyQuantityMinimum = 8;
 			_pregnancyQuantityMaximum = 20;
 			_definedAverageLoadSize = 100;
+			_pregnancyChildRace = GLOBAL.TYPE_COCKVINE;
+			_childMaturationMultiplier = 2.5;
+			_childGenderWeights.Male = 1;
+			_childGenderWeights.Female = 0;
 			
 			this.addStageProgression(6200, function(pregSlot:int):void {
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
@@ -106,6 +113,15 @@ package classes.GameData.Pregnancy.Handlers
 		public static function cleanupPregnancy(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			
+			ChildManager.addChild(
+				Child.NewChildWeights(
+					thisPtr.pregnancyChildRace,
+					thisPtr.childMaturationMultiplier,
+					pData.pregnancyQuantity,
+					thisPtr.childGenderWeights
+				)
+			);
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			

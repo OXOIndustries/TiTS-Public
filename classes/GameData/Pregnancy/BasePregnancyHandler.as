@@ -5,6 +5,8 @@ package classes.GameData.Pregnancy
 	import classes.GLOBAL;
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;
+	import classes.GameData.ChildManager;
+	import classes.GameData.Pregnancy.Containers.Genders;
 	
 	/**
 	 * ...
@@ -61,6 +63,15 @@ package classes.GameData.Pregnancy
 		protected var _pregnancyChildType:uint;
 		public function get pregnancyChildType():uint { return _pregnancyChildType; }
 		
+		protected var _pregnancyChildRace:uint;
+		public function get pregnancyChildRace():uint { return _pregnancyChildRace; }
+		
+		protected var _childMaturationMultiplier:Number;
+		public function get childMaturationMultiplier():Number { return _childMaturationMultiplier; }
+		
+		protected var _childGenderWeights:Genders;
+		public function get childGenderWeights():Genders { return new Genders(_childGenderWeights); }
+		
 		public function BasePregnancyHandler() 
 		{
 			_debugTrace = true;
@@ -80,6 +91,11 @@ package classes.GameData.Pregnancy
 			_pregnancyQuantityMaximum = 1;
 			_definedAverageLoadSize = 250;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
+			_pregnancyChildRace = GLOBAL.TYPE_HUMAN;
+			_childMaturationMultiplier = 1.0;
+			_childGenderWeights = new Genders();
+			_childGenderWeights.Male = 50;
+			_childGenderWeights.Female = 50;
 			
 			_stageProgressions = new Array();
 			
@@ -448,6 +464,15 @@ package classes.GameData.Pregnancy
 			if (thisPtr.debugTrace) trace("defaultOnDurationEnd handler called");
 			
 			var pData:PregnancyData = mother.pregnancyData[pregSlot];
+			
+			ChildManager.addChild(
+				Child.NewChildWeights(
+					thisPtr.pregnancyChildRace, 
+					thisPtr.childMaturationMultiplier, 
+					pData.pregnancyQuantity, 
+					thisPtr.childGenderWeights
+				)
+			);
 			
 			pData.reset();
 		}

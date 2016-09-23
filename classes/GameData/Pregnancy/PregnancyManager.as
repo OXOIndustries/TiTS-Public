@@ -2,6 +2,7 @@
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Handlers.PsychicTentacles;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerCarryTraining;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerFauxPreg;

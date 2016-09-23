@@ -28,6 +28,7 @@
 	import classes.GameData.MailManager;
 	import flash.events.IOErrorEvent;
 	import classes.GameData.CombatManager;
+	import classes.GameData.ChildManager;
 	
 	import classes.Engine.Interfaces.*;
 	
@@ -1133,6 +1134,9 @@
 			
 			// Mail system
 			dataFile.mailSystem = cloneObject(MailManager.getSaveObject());
+			
+			// Children
+			dataFile.children = cloneObject(ChildManager.getSaveObject());
 		}
 		
 		/**
@@ -1359,6 +1363,15 @@
 			else
 			{
 				MailManager.resetMails();
+			}
+			
+			if (obj.children != undefined)
+			{
+				ChildManager.loadSaveObject(cloneObject(obj.children));
+			}
+			else
+			{
+				ChildManager.resetChildren();
 			}
 			
 			//Update room placement:
