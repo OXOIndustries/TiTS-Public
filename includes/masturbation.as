@@ -1142,7 +1142,6 @@ public function multiCockFap():void {
 		else if(pc.cumQ() <= 750) output("stuffing your cheeks with so much that even with you hurriedly gulping there's still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
 		else output("flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you're likely unrecognizable.");
 		output(" ");
-		pc.loadInMouth(pc);
 	}
 	//Bits for nipplefucking
 	else if(nippleFucked) {
@@ -1152,7 +1151,6 @@ public function multiCockFap():void {
 		else if(pc.cumQ() <= 150) output("large");
 		else output("tunnel-flooding");
 		output(" deposit of your liquid love. ");
-		pc.loadInNipples(pc);
 	}
 	//Everybody gets dese
 	if(!titFucked) {
@@ -1187,6 +1185,9 @@ public function multiCockFap():void {
 	else output("\n\nYou get your gear back on without bothering to clean up. You're just going to find something to fuck anyway.");
 	processTime(45 + rand(5));
 	pc.orgasm();
+	if(tailPussied) pc.loadInCuntTail(pc);
+	if(sucked) pc.loadInMouth(pc);
+	if(nippleFucked) pc.loadInNipples(pc);
 	applyCumSoaked(pc);
 	if(pc.cumQ() > 5000) applyCumSoaked(pc);
 	if(pc.cumQ() > 10000) applyCumSoaked(pc);
@@ -3412,10 +3413,10 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	else pc.setPerkValue("Auto-Autofellatio",2,3);
 	//Keep count, whynot.
 	pc.addPerkValue("Auto-Autofellatio",1,1);
-	pc.loadInMouth(pc);
 	processTime(timeStuff);
 	restHeal();
 	pc.orgasm();
+	pc.loadInMouth(pc);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3550,8 +3551,8 @@ public function autofellatioForNormies():void
 		else if(celiseIsCrew()) output(" It's a good thing Celise will have a field day with this mess.");
 	}
 	processTime(20);
-	pc.loadInMouth(pc);
 	pc.orgasm();
+	pc.loadInMouth(pc);
 	IncrementFlag("PC_SELF_SUCKED_STANDARD");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

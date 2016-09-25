@@ -3678,7 +3678,7 @@ public function annoGonnaGitIt():void
 public function annoGonnaGitDragonBOOOTAYYYYY():void //Hi geddy
 {
 	clearOutput();
-	showAnno();
+	showBust(annoBustDisplay(), "GRYVAIN");
 	author("Savin");
 	output("You figure you might as well check in with Anno while you’re both here, and start heading over. You get to her at the same time as another woman does - a tall, sensuously curvy gryvain with dark green scales and wings, and horns growing from her brow decorated with jeweled silver chains.");
 	output("\n\n<i>“Oh, hey boss,”</i> Anno grins as you wander up. <i>“What’s up?”</i>");
@@ -3718,7 +3718,7 @@ public function annoGonnaGitDragonBOOOTAYYYYY():void //Hi geddy
 public function annoCanDoShitSolo():void
 {
 	clearOutput();
-	showAnno();
+	showBust(annoBustDisplay(), "GRYVAIN");
 	author("Savin");
 	output("You smile and nod, but mention that you’ve actually got places to be.");
 	output("\n\n<i>“Aw,”</i> Anno sighs, sipping on her drink. <i>“Well, see you around, boss. As for you...”</i> she adds, turning and slipping a hand around the gryvain’s shoulder. <i>“Where were we...”</i>");
@@ -3734,7 +3734,7 @@ public function annoCanDoShitSolo():void
 public function playAlongWithAnnoThreesome():void
 {
 	clearOutput();
-	showAnno(); //9999 needs lizard girl bust
+	showBust(annoBustDisplay(), "GRYVAIN");
 	author("Savin");
 	output("<i>“Yeah,”</i> you answer after a moment’s consideration, eyeing the two buxom beast-babes with growing lust. You signal to the bartender to get you a drink, all the while saying that you’re generally available for some fun.");
 	output("\n\nThe gryvain girl smiles and turns to you in a way that makes her ample curves stand out under her slinky black dress. <i>“Excellent. I’ve always wanted to chat with a brilliant scientist and a famous adventurer-magnate.”</i>");
@@ -3753,7 +3753,7 @@ public function dragonGurlAnnoThreesome():void
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
 	clearOutput();
-	showAnno(true); //9999 needs lizard girl nudebust
+	showBust(annoBustDisplay(true), "GRYVAIN_NUDE");
 	author("Savin");
 	output("A few minutes later and you’re ");
 	if(!pc.isNude() && !pc.isCrotchExposed()) output("spilling out of your [pc.clothes] and onto the bed");

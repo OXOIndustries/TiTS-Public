@@ -60,6 +60,11 @@ public function drBadgerBuyMenu():void
 		if(!chars["DRBADGER"].hasItemByType(Throbb)) chars["DRBADGER"].inventory.push(new Throbb());
 	}
 	else chars["DRBADGER"].destroyItem(new Throbb());
+	if(canBuySiegwulfe(true))
+	{
+		if(!chars["DRBADGER"].hasItemByType(SiegwulfeItem)) chars["DRBADGER"].inventory.push(new SiegwulfeItem());
+	}
+	else chars["DRBADGER"].destroyItem(new SiegwulfeItem());
 	
 	shopkeep = chars["DRBADGER"];
 	

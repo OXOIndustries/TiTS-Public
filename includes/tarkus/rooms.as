@@ -1353,6 +1353,7 @@ public function initTarkusRooms():void
 	rooms["301"].roomName = "THE\nMESS";
 	rooms["301"].description = "The Mess sure lives up to its name. Once the ship's mess hall, a vessel of this size would have had a large cafeteria, and this place doesn't disappoint. Easily large enough to seat several hundred raskvel (and it currently is), the Mess is dimly lit and smoky, thanks to a combination of tall, hookah-like devices set up on several tables as well as a pillar of woodsmoke coming from the kitchen, which is exposed to the mess hall thanks to a busted-in bulkhead. Several raskvel chefs in cute white aprons are running around trying to tend to dozens of orders at once. The wait-staff are hurrying about, trying to deliver their goods as fast as they can. Strangely, most of the waiters and waitresses are human, each bearing the emblem of the Carver Catering Company - three C's across the breast and back of their sheer black uniforms.\n\nOn the far side of the Mess, there's another room sealed off from the restaurant by a pair of heavy doors and glass windows. By its dark interior and the off-worlders coming and going, you reckon that's the way to the local tavern.";
 	rooms["301"].runOnEnter = messBonusFunction;
+	rooms["301"].northExit = "365";
 	rooms["301"].southExit = "212";
 	rooms["301"].westExit = "302";
 	rooms["301"].moveMinutes = 1;
@@ -1638,6 +1639,18 @@ public function initTarkusRooms():void
 	rooms["364"].system = "SYSTEM: REDACTED";
 	rooms["364"].moveMinutes = 1;
 	rooms["364"].addFlag(GLOBAL.OUTDOOR);
+	
+	rooms["365"] = new RoomClass(this);
+	rooms["365"].roomName = "SEATING\nAREA";
+	rooms["365"].description = "";
+	rooms["365"].runOnEnter = messSeatingBonus;
+	rooms["365"].southExit = "301";
+	rooms["365"].moveMinutes = 1;
+	rooms["365"].planet = "PLANET: TARKUS";
+	rooms["365"].system = "SYSTEM: REDACTED";
+	rooms["365"].addFlag(GLOBAL.INDOOR);
+	rooms["365"].addFlag(GLOBAL.PUBLIC);
+	rooms["365"].addFlag(GLOBAL.NPC);
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "WIDGET\nWAREHOUSE";

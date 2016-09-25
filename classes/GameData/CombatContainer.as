@@ -3,6 +3,7 @@ package classes.GameData
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.Items.Accessories.SiegwulfeItem; 
 	import classes.Items.Armor.GooArmor;
 	import classes.ItemSlotClass;
 	import classes.StorageClass;
@@ -1752,11 +1753,13 @@ package classes.GameData
 				if (pc.hasActiveCombatDrone())
 				{
 					if(pc.hasStatusEffect("Varmint Buddy")) addButton(bOff, "Varmint", selectDroneTarget, undefined, "Varmint, Go!", ("Have your varmint target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+					else if(pc.accessory is SiegwulfeItem) addButton(bOff, "Siegwulfe", selectDroneTarget, undefined, "Siegwulfe, Go!", ("Have [wulfe.name] target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else addButton(bOff, "Drone Target", selectDroneTarget, undefined, "Drone Target", ("Have your drone target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 				}
 				else
 				{
-					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate to your varmint right now!");
+					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate with your varmint right now!");
+					else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You can’t communicate with [wulfe.name] right now!");
 					else addDisabledButton(bOff, "Drone Target", "Drone Target", "You can’t access your combat drone right now!");
 				}
 				bOff++;
@@ -3044,7 +3047,7 @@ package classes.GameData
 			
 			if (factor > 2) factor = 2;
 		
-			if (attacker.hasPerk("Pheromone Cloud")) bonus += 1;
+			if (attacker.hasPheromones()) bonus += 1;
 			if (teaseType == "SQUIRT") bonus += 2;
 			if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
 			
@@ -3124,7 +3127,7 @@ package classes.GameData
 			{
 				var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2;
 				if (teaseType == "SQUIRT") damage += 5;
-				if (attacker.hasPerk("Pheromone Cloud")) damage += 1 + rand(4);
+				if (attacker.hasPheromones()) damage += 1 + rand(4);
 				damage *= (rand(31) + 85) / 100;
 				
 				if (damage > 15 + attacker.level * 2) damage = 15 + attacker.level * 2;

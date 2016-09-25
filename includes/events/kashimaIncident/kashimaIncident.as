@@ -952,7 +952,7 @@ public function kiEscapeShuttle():void
 	author("Savin");
 	showName("ESCAPE\nKASHIMA");
 
-	output("You use the key to access the shuttle, quick to seal it behind you again before you get any unexpected company. You quickly boot up the shuttle’s computer, spool the engines, and start to back out of the bay. Infected crewmen begin pouring out of the elevator shafts, drawn by the sound and vibration of takeoff. They’re smart enough, at least, not to try and push through the oxygen barrier while you zoom out into space. You have one last, parting look at the derelict <i>Kashima</i> before coming about and heading back towards you own ship.");
+	output("You use the key to access the shuttle, quick to seal it behind you again before you get any unexpected company. You quickly boot up the shuttle’s computer, spool the engines, and start to back out of the bay. Infected crewmen begin pouring out of the elevator shafts, drawn by the sound and vibration of takeoff. They’re smart enough, at least, not to try and push through the oxygen barrier while you zoom out into space. You have one last, parting look at the derelict <i>Kashima</i> before coming about and heading back towards your own ship.");
 	
 	output("\n\nWhen you reboard your vessel, you have to fly a long, long way away before the jamming signals <i>Kashima</i> is outputting fade enough for you to get a message out. You tell Steele Tech what happened, and the dangers the next team will face. You ask them to resolve it quickly, before Elenore and the Chief can come to too much harm.");
 	
@@ -1086,10 +1086,13 @@ public function kiHendersonMedbay():void
 
 public function kiHendersonMedbayII():void
 {
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	
 	clearOutput();
 	author("Savin");
 	showName("KASHIMA\nEPILOGUE");
-	showBust("ELENORA", "USHAMEE_NUDE_PREG");
+	showBust("");
 
 	output("A couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i> herself. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal the crew.");
 
@@ -1182,8 +1185,24 @@ public function kiHendersonSteeleTech():void
 	output("\n\nYou squint, shielding your eyes as the lights consolidate into several flashlights, carried by Steele Tech security personnel, all armed and armored. They look down at you from under HAZMAT visors, shouting for everyone to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm");
 	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined)) output(" when she gets off your crotch");
 	output(". Per your communique, they quickly surround Chief Neykkar and, as gently as they can, surround her in a quarantine forcefield and start to cart her off. She looks around confused, glancing at you for reassurance. You tell her everything’s going to be fine all the way until the security folks have her aboard their rescue boat.");
+
+	processTime(12);
+
+	clearMenu();
+	addButton(0, "Next", kiHendersonSteeleTechII);
+}
+
+public function kiHendersonSteeleTechII():void
+{
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
 	
-	output("\n\nA couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i> herself. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal them.");
+	clearOutput();
+	author("Savin");
+	showName("KASHIMA\nEPILOGUE");
+	showBust("");
+	
+	output("A couple of hours later, everyone aboard the <i>Kashima</i> has been secured in quarantine on the rescue ship, and a decontamination crew is sweeping through the decks, destroying the tentacles and securing the <i>Kashima</i> herself. It’ll be a while before she returns to duty, but according to the commander you talk to, she’ll be sailing the stars again someday. Perhaps even with her original captain, if your medical science department can in fact heal them.");
 	
 	output("\n\nWhile they’re extracting the crew, you have to ask what happened to Elenora.");
 	if (flags["KI_VANDERBILTS_SECRET"] == undefined)

@@ -41,11 +41,11 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 18500;
+			this.basePrice = 25000;
 			this.attack = -1;
 			
-			baseDamage.electric.damageValue = 5;
-			baseDamage.burning.damageValue = 20;
+			//baseDamage.electric.damageValue = 5;
+			baseDamage.burning.damageValue = 25;
 
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
@@ -54,7 +54,7 @@ package classes.Items.Guns
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 5;
 			this.evasion = 0;
 			this.fortification = 0;
 

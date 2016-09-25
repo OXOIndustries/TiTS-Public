@@ -1335,7 +1335,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) output2(", Reclaimed probe");
 			}
 			else output2(" <i>In progress...</i>");
-			if(!reclaimedProbeMyrellion() && flags["KQ2_MYRELLION_STATE"] != 1)
+			if(!reclaimedProbeMyrellion() && flags["KQ2_MYRELLION_STATE"] != 1 && flags["TAIVRA_NEW_THRONE"] == undefined)
 			{
 				output2("\n<b>* Probe Location:</b> <i>Probe" + (metTaivra() ? " located in Taivra’s" : " appears to be in some kind of royal") + " throne room.</i>");
 			}
@@ -1349,7 +1349,8 @@ public function displayQuestLog(showID:String = "All"):void
 			// Taivra's Palace (Quest)
 			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || metTaivra())
 			{
-				output2("\n<b>* Royal Nyrean Palace:</b>");
+				output2("\n<b><u>Royal Nyrean Palace</u></b>");
+				output2("\n<b>* Status:</b>");
 				if(nyreaDungeonFinished())
 				{
 					if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined)
@@ -1365,7 +1366,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["TAIVRA_DEAL_UNLOCKED"] != undefined || flags["OFFERED_TAIVRA_AN_ALLIANCE"] != undefined)
 				{
 					// Taivra
-					output2("\n<b>* Royal Nyrean Palace, Queen Taivra:</b>");
+					output2("\n<b>* Queen Taivra:</b>");
 					if(flags["TAIVRA_DEAL_UNLOCKED"] != undefined)
 					{
 						output2(" Made a deal with her");
@@ -1381,13 +1382,13 @@ public function displayQuestLog(showID:String = "All"):void
 				if(metTaivra())
 				{
 					// Rival
-					output2("\n<b>* Royal Nyrean Palace, [rival.name]:</b> Seen");
+					output2("\n<b>* [rival.name]:</b> Seen");
 					if(flags["TAIVRA_RIVAL_TALK"] != undefined) output2(", Spoke of [rival.himHer]");
 					if(flags["RIVAL_GOT_MYR_COORDS_FIRST"] != undefined) output2(", [rival.HeShe] got coordinates first");
 					if(flags["COUSIN_EGGSLUT"] != undefined || flags["COUSIN_BEDWARMER"] != undefined) output2(", Enslaved");
 					if(flags["COUSIN_EXECUTED"] != undefined) output2(", Executed");
 					// Dane
-					output2("\n<b>* Royal Nyrean Palace, Dane:</b> Seen");
+					output2("\n<b>* Dane:</b> Seen");
 					if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him from Taivra");
 					if(flags["QUEENSGUARD_STAB_TIME"] != undefined || flags["KILLED_TAIVRA"] != undefined) output2(", Escaped with [rival.name]");
 				}
@@ -2352,6 +2353,7 @@ public function displayQuestLog(showID:String = "All"):void
 					output2("\n<b>* Doctor Elenora Vanderbilt, Cure, Status:</b>");
 					if(flags["KI_VANDERBILT_WORKING_START"] + 240 > GetGameTimestamp()) output2(" <i>Working...</i> " + prettifyMinutes((flags["KI_VANDERBILT_WORKING_START"] + 240) - GetGameTimestamp()) + " until completion");
 					else output2(" Created, Completed");
+					if(flags["KI_CURE_USED"] != undefined) output2(", Used");
 				}
 			}
 			distressCount++;
@@ -2804,6 +2806,15 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Semith:</b> Met him");
 					if(flags["SEMITH_SEXED"] > 0) output2("\n<b>* Semith, Times Sexed:</b> " + flags["SEMITH_SEXED"]);
 				}
+				variousCount++;
+			}
+			// Ilaria Bunnybutts
+			if(flags["MET_ILARIA"] != undefined)
+			{
+				output2("\n<b><u>Bunny’s Buns & Confectionary</u></b>");
+				output2("\n<b>* Ilaria:</b>Met her");
+				if(flags["ILERIA_GLAZED"] != undefined) output2("\n<b>* Ilaria, Times Glazed Order:</b> " + flags["ILERIA_GLAZED"]);
+				if(flags["FUCKED_ILARIA"] != undefined) output2("\n<b>* Ilaria, Times Sexed:</b> " + flags["FUCKED_ILARIA"]);
 				variousCount++;
 			}
 		}
@@ -3544,7 +3555,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Mess!
-			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
+			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["EDAN_MET"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
 			{
 				output2("\n<b><u>The Mess</u></b>");
 				// Rumors
@@ -3560,6 +3571,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] > 0) output2("\n<b>* Delilah, Times Sexed:</b> " + flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"]);
 					if(flags["TIMES_ATE_DELILAH_OUT"] > 0) output2("\n<b>* Delilah, Times Sat on Her Face:</b> " + flags["TIMES_ATE_DELILAH_OUT"]);
 					if(flags["DEL_TAIL_TRAINED"] != undefined) output2("\n<b>* Delilah, Times She Fucked Your Tail Cunt:</b> " + flags["DEL_TAIL_TRAINED"]);
+				}
+				// Edan
+				if(flags["EDAN_MET"] != undefined)
+				{
+					output2("\n<b>* Edan:</b> Met him");
+					if(flags["EDAN_FUCKED"] != undefined) output2("\n<b>* Edan, Times Sexed:</b> " + flags["EDAN_FUCKED"]);
 				}
 				// Unknown waitress
 				if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
@@ -4685,6 +4702,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["UVETO_JERYNN_RESCUES"] != undefined) output2("\n<b>* Jerynn, Times Rescued By:</b> " + flags["UVETO_JERYNN_RESCUES"]);
 				variousCount++;
 			}
+			// Spinarran Silk & Steel
+			if(flags["MET_KIRILA"] != undefined)
+			{
+				output2("\n<b><u>Spinarran Silk & Steel</u></b>");
+				output2("\n<b>* Kirila:</b> Met her");
+				variousCount++;
+			}
 			// Ice Plains
 			if(flags["MET_FEMKORGONNE"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
 			{
@@ -5167,7 +5191,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["SUKMASTRED"] != undefined || flags["BUBBLE_BUDDIED"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["WULFE_PURCHASED"] != undefined || flags["SUKMASTRED"] != undefined || flags["BUBBLE_BUDDIED"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
@@ -5178,6 +5202,25 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["GRAVCUFFS_USES"] != undefined) output2("\n<b>* Grav-Cuffs, Times Used:</b> " + flags["GRAVCUFFS_USES"]);
 			// Hover Hole
 			if(flags["HOVERHOLE_USES"] != undefined) output2("\n<b>* Hovering Pocket-Pussy, Times Used:</b> " + flags["HOVERHOLE_USES"]);
+			// Siegwulfe
+			if(flags["WULFE_PURCHASED"] != undefined)
+			{
+				output2("\n<b>* Reaper Armaments, Siegwulfe:</b> Purchased");
+				if(flags["WULFE_PURCHASED"] <= 1) { /* once */ }
+				else if(flags["WULFE_PURCHASED"] == 2) output2(" twice");
+				else output2(" " + flags["WULFE_PURCHASED"] + " times");
+				if(hasSiegwulfe())
+				{
+					if(chars["WULFE"].isBimbo()) output2(", Tease drone");
+					else output2(", Combat drone");
+					output2(", Crew member");
+					if(hasSiegwulfeOnSelf()) output2(" (Following you)" + (pc.accessory is SiegwulfeItem ? ", Active" : ", Idle"));
+					else output2(" (Onboard Ship)");
+				}
+				if(flags["WULFE_SEXED_SUCK"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times She Sucked Your Dick:</b> " + flags["WULFE_SEXED_SUCK"]);
+				if(flags["WULFE_SEXED_ORAL"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times She Gave You Oral:</b> " + flags["WULFE_SEXED_ORAL"]);
+				if(flags["WULFE_SEXED_FUCK"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times Fucked Her Vagina:</b> " + flags["WULFE_SEXED_FUCK"]);
+			}
 			// SukMastr 2000
 			if(flags["SUKMASTRED"] != undefined) output2("\n<b>* SukMastr 2000, Times Used:</b> " + flags["SUKMASTRED"]);
 			// Bubble Buddy

@@ -125,6 +125,7 @@
 		include "../includes/follower.anno.as";
 		include "../includes/follower.celise.as";
 		include "../includes/follower.celiseGiga.as";
+		include "../includes/follower.siegwulfe.as";
 		include "../includes/follower.yammi.as";
 		
 		//Sidequest shit
@@ -155,6 +156,7 @@
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
 		include "../includes/tavros/fyn.as";
+		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
 		include "../includes/tavros/oviliumBonus.as";
@@ -209,6 +211,7 @@
 		include "../includes/tarkus/drBadger.as";
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
+		include "../includes/tarkus/edan.as";
 		include "../includes/tarkus/goblinPool.as";
 		include "../includes/tarkus/grayGoo.as";
 		include "../includes/tarkus/grayGooArmor.as";
@@ -421,7 +424,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.78";
+			version = "0.6.81";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1233,6 +1236,18 @@
 		public function get inessa():Inessa
 		{
 			return chars["INESSA"];
+		}
+		public function get edan():Edan
+		{
+			return chars["EDAN"];
+		}
+		public function get ilaria():Ilaria
+		{
+			return chars["ILARIA"];
+		}
+		public function get wulfe():Siegwulfe
+		{
+			return chars["WULFE"];
 		}
 		
 		private var _dbgtestvar:int = 0;

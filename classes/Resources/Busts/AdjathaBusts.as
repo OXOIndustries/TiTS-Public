@@ -118,6 +118,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/godi_nude.png", mimeType = "image/png")]
 		public var Bust_GODI_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/gryvain.png", mimeType = "image/png")]
+		public var Bust_GRYVAIN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/gryvain_nude.png", mimeType = "image/png")]
+		public var Bust_GRYVAIN_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/hana.png", mimeType = "image/png")]
 		public var Bust_HANA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/hana_nude.png", mimeType = "image/png")]
@@ -125,6 +130,15 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/horisha_peck.png", mimeType = "image/png")]
 		public var Bust_HORISHA_AND_PECK:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/ilaria.png", mimeType = "image/png")]
+		public var Bust_ILARIA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ilaria_nude.png", mimeType = "image/png")]
+		public var Bust_ILARIA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ilaria_pregnant.png", mimeType = "image/png")]
+		public var Bust_ILARIA_PREG:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ilaria_pregnant_nude.png", mimeType = "image/png")]
+		public var Bust_ILARIA_PREG_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
 		public var Bust_JOYCO_VENDING_MACHINE:Class;
@@ -440,6 +454,11 @@ package classes.Resources.Busts
 			public var Full_GODI:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/godi_nude.png", mimeType = "image/png")]
 			public var Full_GODI_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain.png", mimeType = "image/png")]
+			public var Full_GRYVAIN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain_nude.png", mimeType = "image/png")]
+			public var Full_GRYVAIN_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hana.png", mimeType = "image/png")]
 			public var Full_HANA:Class;
