@@ -107,7 +107,7 @@ package classes.Items.Transformatives
 			var i:int = arg[1];
 			var hasUnderwear:Boolean = (target.hasLowerGarment() && !target.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !target.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 			
-			output("You read the instructions and open the gangster-themed jar");
+			output("You read the instructions and open the spy-themed jar");
 			if(!target.isCrotchExposed())
 			{
 				output(", followed by");
