@@ -770,4 +770,231 @@ public function initTavrosRooms():void
 	rooms["RES DECK EAST ESTATE"].moveMinutes = 1;
 	rooms["RES DECK EAST ESTATE"].addFlag(GLOBAL.INDOOR);
 	rooms["RES DECK EAST ESTATE"].addFlag(GLOBAL.PUBLIC);
+
+	// Nursery
+	rooms[""] = new RoomClass(this);
+	rooms[""].roomName = "";
+	rooms[""].description = "";
+	rooms[""].runOnEnter = undefined;
+	rooms[""].planet = "TAVROS STATION";
+	rooms[""].system = "SYSTEM: KALAS";
+	rooms[""].moveMinutes = 1;
+	rooms[""].addFlag(GLOBAL.INDOOR);
+	rooms[""].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYELEVATOR"] = new RoomClass(this);
+	rooms["NURSERYELEVATOR"].roomName = "ELEVATOR:\nNURSERY";
+	rooms["NURSERYELEVATOR"].description = "";
+	rooms["NURSERYELEVATOR"].runOnEnter = undefined;
+	rooms["NURSERYELEVATOR"].northExit = "NURSERYE14";
+	rooms["NURSERYELEVATOR"].planet = "TAVROS STATION";
+	rooms["NURSERYELEVATOR"].system = "SYSTEM: KALAS";
+	rooms["NURSERYELEVATOR"].moveMinutes = 1;
+	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYSTAIRS1F"] = new RoomClass(this);
+	rooms["NURSERYSTAIRS1F"].roomName = "NURSERY:\n1F STAIRWELL";
+	rooms["NURSERYSTAIRS1F"].description = "";
+	rooms["NURSERYSTAIRS1F"].runOnEnter = nurseryStairs1F;
+	rooms["NURSERYSTAIRS1F"].eastExit = "NURSERYE14";
+	rooms["NURSERYSTAIRS1F"].inExit = "NURSERYSTAIRS2F";
+	rooms["NURSERYSTAIRS1F"].planet = "TAVROS STATION";
+	rooms["NURSERYSTAIRS1F"].system = "SYSTEM: KALAS";
+	rooms["NURSERYSTAIRS1F"].moveMinutes = 1;
+	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYE14"] = new RoomClass(this);
+	rooms["NURSERYE14"].roomName = "NURSERY\nFOYER";
+	rooms["NURSERYE14"].description = "You're standing in the vaulted entrance of your personal nursery, an entire sub-deck dedicated to taking in and caring for your children. ";
+	rooms["NURSERYE14"].runOnEnter = undefined;
+	rooms["NURSERYE14"].southExit = "NURSERYELEVATOR";
+	rooms["NURSERYE14"].westExit = "NURSERYSTAIRS1F";
+	rooms["NURSERYE14"].northExit = "NURSERYE12";
+	rooms["NURSERYE14"].eastExit = "NURSERYG14";
+	rooms["NURSERYE14"].planet = "TAVROS STATION";
+	rooms["NURSERYE14"].system = "SYSTEM: KALAS";
+	rooms["NURSERYE14"].moveMinutes = 1;
+	rooms["NURSERYE14"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYE14"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYE12"] = new RoomClass(this);
+	rooms["NURSERYE12"].roomName = "NURSERY:\nCOMMON AREA";
+	rooms["NURSERYE12"].description = "The nursery's common area is a large, open room painted a rainbow of bright colors and equipped with a myriad of entertainment: holoscreens, video game consoles, toys of all descriptions, and racks of Codex tablets loaded with every book and educational program known to Man -- and most other galactic species.";
+	rooms["NURSERYE12"].runOnEnter = undefined;
+	rooms["NURSERYE12"].southExit = "NURSERYE14";
+	rooms["NURSERYE12"].eastExit = "NURSERYG12";
+	rooms["NURSERYE12"].planet = "TAVROS STATION";
+	rooms["NURSERYE12"].system = "SYSTEM: KALAS";
+	rooms["NURSERYE12"].moveMinutes = 1;
+	rooms["NURSERYE12"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYE12"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYG12"] = new RoomClass(this);
+	rooms["NURSERYG12"].roomName = "NURSERY\nCAFETERIA";
+	rooms["NURSERYG12"].description = "You're standing in the nursery's cafeteria, a cozy structure modelled after a posh cafe on one side -- for the older children, no doubt -- and that of a play palace on the other, replete with benches and an animatronic servant that distributes the food. The two sides are separated by a small divide, just enough to keep the noise down.";
+	rooms["NURSERYG12"].runOnEnter = nurseryCafeteriaFunc;
+	rooms["NURSERYG12"].westExit = "NURSERYE12";
+	rooms["NURSERYG12"].planet = "TAVROS STATION";
+	rooms["NURSERYG12"].system = "SYSTEM: KALAS";
+	rooms["NURSERYG12"].moveMinutes = 1;
+	rooms["NURSERYG12"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYG12"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYG14"] = new RoomClass(this);
+	rooms["NURSERYG14"].roomName = "\nNURSERY";
+	rooms["NURSERYG14"].description = "";
+	rooms["NURSERYG14"].runOnEnter = nurseryG14Func;
+	rooms["NURSERYG14"].eastExit = "NURSERYI14";
+	rooms["NURSERYG14"].westExit = "NURSERYE14";
+	rooms["NURSERYG14"].planet = "TAVROS STATION";
+	rooms["NURSERYG14"].system = "SYSTEM: KALAS";
+	rooms["NURSERYG14"].moveMinutes = 1;
+	rooms["NURSERYG14"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYG14"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYI14"] = new RoomClass(this);
+	rooms["NURSERYI14"].roomName = "\nNURSERY";
+	rooms["NURSERYI14"].description = "You're standing at a T-bone intersection of corridors, connecting the foyer back west to a huge complex to the east marked ‘Education Center’, and another branch south that leads into dozens of other, smaller halls and the bedrooms.";
+	rooms["NURSERYI14"].runOnEnter = undefined;
+	rooms["NURSERYI14"].eastExit = "NURSERYK14";
+	rooms["NURSERYI14"].westExit = "NURSERYG14";
+	rooms["NURSERYI14"].southExit = "NURSERYI16";
+	rooms["NURSERYI14"].planet = "TAVROS STATION";
+	rooms["NURSERYI14"].system = "SYSTEM: KALAS";
+	rooms["NURSERYI14"].moveMinutes = 1;
+	rooms["NURSERYI14"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYI14"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYI16"] = new RoomClass(this);
+	rooms["NURSERYI16"].roomName = "NURSERY:\nCHILDREN";
+	rooms["NURSERYI16"].description = "";
+	rooms["NURSERYI16"].runOnEnter = nurseryKidsDormsFunc;
+	rooms["NURSERYI16"].northExit = "NURSERYI14";
+	rooms["NURSERYI16"].southExit = "NURSERYI18";
+	rooms["NURSERYI16"].planet = "TAVROS STATION";
+	rooms["NURSERYI16"].system = "SYSTEM: KALAS";
+	rooms["NURSERYI16"].moveMinutes = 1;
+	rooms["NURSERYI16"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYI16"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYI18"] = new RoomClass(this);
+	rooms["NURSERYI18"].roomName = "NURSERY:\nSPECIALIST";
+	rooms["NURSERYI18"].description = "";
+	rooms["NURSERYI18"].runOnEnter = nurserySpecialistRooms;
+	rooms["NURSERYI18"].northExit = "NURSERYI16";
+	rooms["NURSERYI18"].planet = "TAVROS STATION";
+	rooms["NURSERYI18"].system = "SYSTEM: KALAS";
+	rooms["NURSERYI18"].moveMinutes = 1;
+	rooms["NURSERYI18"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYI18"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYK14"] = new RoomClass(this);
+	rooms["NURSERYK14"].roomName = "NURSERY:\nEDUCATION CENT.";
+	rooms["NURSERYK14"].description = "The nursery's education center greets you with a sprawling, circular chamber dominated by a rounded desk and several holoscreens along the walls, displaying curriculums and after-school opportunities. Several doors branch off from the main chamber, into an individual sets of classrooms for each grade -- from preschool all the way to 12th grade, and even including a few technical and shop classes.";
+	rooms["NURSERYK14"].runOnEnter = nurseryEducationCenterFunc;
+	rooms["NURSERYK14"].westExit = "NURSERYI14";
+	rooms["NURSERYK14"].planet = "TAVROS STATION";
+	rooms["NURSERYK14"].system = "SYSTEM: KALAS";
+	rooms["NURSERYK14"].moveMinutes = 1;
+	rooms["NURSERYK14"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYK14"].addFlag(GLOBAL.PUBLIC);
+
+	// Second floor
+	rooms["NURSERYSTAIRS2F"] = new RoomClass(this);
+	rooms["NURSERYSTAIRS2F"].roomName = "NURSERY:\n2F STAIRWELL";
+	rooms["NURSERYSTAIRS2F"].description = "";
+	rooms["NURSERYSTAIRS2F"].runOnEnter = nurseryStairs2F;
+	rooms["NURSERYSTAIRS2F"].northExit = "NURSERYC6";
+	rooms["NURSERYSTAIRS2F"].outExit = "NURSERYSTAIRS1F";
+	rooms["NURSERYSTAIRS2F"].planet = "TAVROS STATION";
+	rooms["NURSERYSTAIRS2F"].system = "SYSTEM: KALAS";
+	rooms["NURSERYSTAIRS2F"].moveMinutes = 1;
+	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYC6"] = new RoomClass(this);
+	rooms["NURSERYC6"].roomName = "NURSERY:\nSTAFF ROOM";
+	rooms["NURSERYC6"].description = "Immediately off the stairs once you reach the second floor is a small, cozy break room. A few chairs, a JoyCo vending machine, and a full-suite kitchen make sure that the nursery's staff and permanent residents have everything they need to stay sane when off the clock.";
+	rooms["NURSERYC6"].runOnEnter = undefined;
+	rooms["NURSERYC6"].southExit = "NURSERYSTAIRS2F";
+	rooms["NURSERYC6"].eastExit = "NURSERYE6";
+	rooms["NURSERYC6"].planet = "TAVROS STATION";
+	rooms["NURSERYC6"].system = "SYSTEM: KALAS";
+	rooms["NURSERYC6"].moveMinutes = 1;
+	rooms["NURSERYC6"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYC6"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYE6"] = new RoomClass(this);
+	rooms["NURSERYE6"].roomName = "\nNURSERY";
+	rooms["NURSERYE6"].description = "A corridor stretches from east to west, connecting the upper floors of the nursery back to the break room and stairs. To the north is a room labeled simply ‘Milking Station’. To the south, ‘Bio-Science Center’.";
+	rooms["NURSERYE6"].runOnEnter = nurseryE6Func;
+	rooms["NURSERYE6"].northExit = "NURSERYE4";
+	rooms["NURSERYE6"].southExit = "NURSERYE8";
+	rooms["NURSERYE6"].eastExit = "NURSERYG6";
+	rooms["NURSERYE6"].westExit = "NURSERYC6";
+	rooms["NURSERYE6"].planet = "TAVROS STATION";
+	rooms["NURSERYE6"].system = "SYSTEM: KALAS";
+	rooms["NURSERYE6"].moveMinutes = 1;
+	rooms["NURSERYE6"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYE6"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYE4"] = new RoomClass(this);
+	rooms["NURSERYE4"].roomName = "NURSERY:\nMILKING STATION";
+	rooms["NURSERYE4"].description = "";
+	rooms["NURSERYE4"].runOnEnter = undefined;
+	rooms["NURSERYE4"].southExit = "NURSERYE6";
+	rooms["NURSERYE4"].planet = "TAVROS STATION";
+	rooms["NURSERYE4"].system = "SYSTEM: KALAS";
+	rooms["NURSERYE4"].moveMinutes = 1;
+	rooms["NURSERYE4"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYE4"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYE8"] = new RoomClass(this);
+	rooms["NURSERYE8"].roomName = "NURSERY:\nBIO-SCIENCES";
+	rooms["NURSERYE8"].description = "";
+	rooms["NURSERYE8"].runOnEnter = undefined;
+	rooms["NURSERYE8"].northExit = "NURSERYE6";
+	rooms["NURSERYE8"].planet = "TAVROS STATION";
+	rooms["NURSERYE8"].system = "SYSTEM: KALAS";
+	rooms["NURSERYE8"].moveMinutes = 1;
+	rooms["NURSERYE8"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYE8"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYG6"] = new RoomClass(this);
+	rooms["NURSERYG6"].roomName = "\nNURSERY";
+	rooms["NURSERYG6"].description = "A corridor stretches from east to west, connecting the upper floors of the nursery back to the break room and stairs. North is a room bearing your name on it, underscored with ‘Personal Apartment’. Your home away from home when on maternity leave, if need be. Opposite your door is another executive suite marked simply ‘Headmistress Briget’.";
+	rooms["NURSERYG6"].runOnEnter = undefined;
+	rooms["NURSERYG6"].northExit = "NURSERYG4";
+	rooms["NURSERYG6"].southExit = "NURSERYG8";
+	rooms["NURSERYG6"].westExit = "NURSERYE6";
+	rooms["NURSERYG6"].planet = "TAVROS STATION";
+	rooms["NURSERYG6"].system = "SYSTEM: KALAS";
+	rooms["NURSERYG6"].moveMinutes = 1;
+	rooms["NURSERYG6"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYG6"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["NURSERYG4"] = new RoomClass(this);
+	rooms["NURSERYG4"].roomName = "NURSERY:\nYOUR APPT.";
+	rooms["NURSERYG4"].description = "The private suite you've been assigned in the nursery is... well, it looks like your room growing up. So much so that you're half sure Dad just boxed your things up and mailed them out here. Familiar posters, devices, and even the bedspread all remind you of home.\n\nOn top of the bedroom suite, your apartment comes equipped with a kitchen, living room... everything you need to live here more than comfortably for extended periods of time, really.";
+	rooms["NURSERYG4"].runOnEnter = nurseryPlayerApptFunc;
+	rooms["NURSERYG4"].southExit = "NURSERYG6";
+	rooms["NURSERYG4"].planet = "TAVROS STATION";
+	rooms["NURSERYG4"].system = "SYSTEM: KALAS";
+	rooms["NURSERYG4"].moveMinutes = 1;
+	rooms["NURSERYG4"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYG4"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYG4"].addFlag(GLOBAL.BED);
+
+	rooms["NURSERYG8"] = new RoomClass(this);
+	rooms["NURSERYG8"].roomName = "NURSERY:\nBRIGETS APPT.";
+	rooms["NURSERYG8"].description = "The apartment granted to your nurse-maid gynoid is surprisingly spartan, given her age and humanism. Maybe she just doesn't spend much time here? There's a queen-sized bed, immaculately made, in one room, and a spotlessly clean kitchen that opens into a dining room with a pair of chairs around a mahogany table -- the most expensive-looking thing around.";
+	rooms["NURSERYG8"].runOnEnter = undefined;
+	rooms["NURSERYG8"].northExit = "NURSERYG6";
+	rooms["NURSERYG8"].planet = "TAVROS STATION";
+	rooms["NURSERYG8"].system = "SYSTEM: KALAS";
+	rooms["NURSERYG8"].moveMinutes = 1;
+	rooms["NURSERYG8"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYG8"].addFlag(GLOBAL.PUBLIC);
 }

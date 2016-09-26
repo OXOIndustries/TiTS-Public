@@ -24,6 +24,14 @@ package classes.GameData.Pregnancy.Containers
 			}
 		}
 		
+		public function add(o:Genders):void
+		{
+			Male += o.Male;
+			Female += o.Female;
+			Intersex += o.Intersex;
+			Neuter += o.Neuter;
+		}
+		
 		public var Male:int;
 		public var Female:int;
 		public var Intersex:int;

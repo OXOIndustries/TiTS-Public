@@ -326,12 +326,14 @@ package classes.GameData.Pregnancy
 		}
 		
 		public var typeInvalidated:Boolean = true;
+		private var _knownTypes:Array = null;
 		private var _typeBuckets:Object = null;
 		public function updateTypeBuckets():void
 		{
 			if (typeInvalidated)
 			{
-				_typeBuckets = {};
+				_typeBuckets = { };
+				_knownTypes = [];
 				
 				for (var i:int = 0; i < ChildManager.CHILDREN.length; i++)
 				{
@@ -341,13 +343,29 @@ package classes.GameData.Pregnancy
 					if (_typeBuckets.hasOwnProperty(typeString) == false)
 					{
 						_typeBuckets[typeString] = [];
+						_knownTypes.push({type: cc.RaceType, name: typeString});
 					}
 					
 					_typeBuckets[typeString].push(cc);
 				}
 				
 				typeInvalidated = false;
+				_knownTypes.sortOn("type", Array.NUMERIC);
 			}
+		}
+		
+		public function getKnownTypes():Array
+		{
+			updateTypeBuckets();
+			return _knownTypes;
+		}
+		
+		public function getKnownBucket(typeString:String):Array
+		{
+			// This should only ever be called after a getKnownTypes() call, so we're going
+			// to not update the buckets here and CROSS FINGERS
+			
+			return _typeBuckets[typeString];
 		}
 		
 		public function ofType(raceType:int):Boolean
