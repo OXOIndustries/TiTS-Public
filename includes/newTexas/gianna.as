@@ -3916,7 +3916,7 @@ public function savinTriesToWriteGiannaButtfux():void
 	//if NormalGigi:
 	else if(giannaPersonality() >= 30) output("<i>“That was great!”</i> Gianna purrs, squeezing her legs around you. <i>“Like, nothing’s better than a good, hot assfull of cum! Especially when it’s from you.”</i>");
 	else output("<i>“Was that all right, [pc.Master]?”</i> Gianna ventures, nervously biting her lip. <i>“I hope you came as hard as I did...”</i>");
-	output("\n\nYou pat her thigh, slowly pulling yourself back from her until, with a wet pop, you cock flops free. Spunk drools out of her well-fucked ass, pooling between her legs as they flop back down to the floor. She hops up after a quiet moment of afterglow, happily helping you clean and gear up.");
+	output("\n\nYou pat her thigh, slowly pulling yourself back from her until, with a wet pop, your cock flops free. Spunk drools out of her well-fucked ass, pooling between her legs as they flop back down to the floor. She hops up after a quiet moment of afterglow, happily helping you clean and gear up.");
 	if(pc.isMischievous()) output(" As you’re getting ready to depart, you reach back and give Gianna a swift swat on the ass. She squeals, and a goodly amount of your orgasm leaks out to stain her thighs. Her alabaster skin darkens at the mishap, causing you to laugh all the way out.");
 	processTime(30);
 	pc.orgasm();
