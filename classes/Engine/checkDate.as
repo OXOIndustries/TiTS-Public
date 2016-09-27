@@ -12,17 +12,17 @@ package classes.Engine
 		var curDate:Date = new Date();
 		
 		var tarDate:Date = new Date();
-		tarDate.setDate(day);
-		tarDate.setMonth(month - 1);
 		tarDate.setFullYear(curDate.getFullYear());
+		tarDate.setMonth(month - 1);
+		tarDate.setDate(day);
 		
 		var minBound:Number = tarDate.getTime();
-		minBound -= msd * dayRange;
+		minBound -= (msd * dayRange);
 		
 		var maxBound:Number = tarDate.getTime();
-		maxBound += msd * dayRange;
+		maxBound += (msd * dayRange);
 		
-		if (curDate.getTime() >= minBound && curDate.getTime() <= maxBound) return true;
+		if ((curDate.getTime() >= minBound) && (curDate.getTime() <= maxBound)) return true;
 		return false;
 	}
 
