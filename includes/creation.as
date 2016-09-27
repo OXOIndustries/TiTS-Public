@@ -1513,6 +1513,7 @@ public function tutorialSkipOption():void {
 public function tutorialIntro():void {
 	clearOutput();
 	creationHeader("PRESENT\nDAY");
+	showBust("");
 	
 	pc.removeStatusEffect("In Creation");
 	output("Your dad’s health had been declining throughout your years of education, but you never really worried too much about it. He was super rich, able to afford his own private doctors, so the thought that one day he could disappear never entered your mind. When you started your career, he was there to see you off, smiling gregariously, but your job made it difficult to stay in touch. Most communications were done via written messages, until even those became scarce. You had assumed it to be a consequence of your different schedules and busy work lives, then...");
@@ -1527,6 +1528,7 @@ public function tutorialIntro():void {
 public function tutorialIntro2():void {
 	clearOutput();
 	creationHeader("THE\nFUNERAL");
+	showBust("MAKI");
 	
 	output("The funeral is closed casket with no viewing, which is expected given the shape Dad was in the last time you saw him. His body was riddled with the lines of age and marked with liver spots and pre-cancerous lumps, and he didn’t want to be remembered that way. Thankfully, the ceremony is swift and fairly small. There are only family and friends here, though you wager a large amount of the ‘family’ is distant relations hoping to catch some of the inheritance.");
 	output("\n\nMuch of the wake passes in a daze, with you swarmed by distant relations and well wishers, forced to shake hands and share hugs with people you don’t know while they offer barely-felt, useless platitudes that do nothing to assuage your loss.");
@@ -1540,6 +1542,7 @@ public function tutorialIntro2():void {
 public function tutorialIntro3():void {
 	clearOutput();
 	creationHeader("THE\nWILL");
+	showBust("MAKI");
 	
 	output("You follow the lawyer’s brisk stride with a bit of difficulty. He’s a samarin; long-limbed, yellow-skinned, and not overly inclined to slow his walk for your comfort. He also talks the entire way.");
 	output("\n\n<i>“Your father’s will was a bit unconventional. He’s lucky my firm has had such wonderful dealings with him over the years, or I would not have been willing to undertake such a... complicated executorship.”</i>");
@@ -1571,6 +1574,7 @@ public function tutorialIntro3():void {
 public function tutorialIntro4():void {
 	clearOutput();
 	creationHeader("THE\nWILL");
+	showBust("");
 	
 	output("The next room is empty, save for a comfy looking, leather recliner. You actually recognize it as one of your father’s favorites. The arm rests are only a little more worn than you remember. A holo projector protrudes from the ceiling, aimed at the empty space in front of the chair. With nothing else to do, you seat yourself. The projector kicks on and your Dad’s face appears.");
 	output("\n\n<i>“Hey there, " + pc.mf("sport","princess") + ". If you’re seeing this, then my wrinkled old ass has finally kicked the bucket. I hope you aren’t too torn up over it; I’ve lived a long full life, longer than most people are lucky enough to live. Do me a favor and knock back a whiskey for me after this,”</i> the phantom image of your father says. A hand clips in front of his face as he rubs at his age-silvered goatee. <i>“Unfortunately, while I am seeing that your mother is taken care of, I’m not just handing the company over to you. Not yet, anyway.”</i>");
