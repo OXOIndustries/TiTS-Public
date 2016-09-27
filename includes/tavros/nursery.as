@@ -9,6 +9,11 @@ public function hasNurseryStaff():Boolean
 	return yammiAtNursery() || reahaAtNursery();
 }
 
+public function yammiIsFollower():Boolean
+{
+	return false;
+}
+
 public function yammiAtNursery():Boolean
 {
 	return false;
@@ -43,7 +48,7 @@ public function nurseryFoyerFunc():Boolean
 		addButton(0, "Briget", nurseryApproachBriget);
 	}
 
-	addButton(1, "Nursery Comp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" ? : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
+	addButton(1, "Nursery Comp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
 
 	return false;
 }
@@ -62,6 +67,8 @@ public function nurseryG14Func():Boolean
 	var numKids:int = ChildManager.numInAgeRangeYears(2, 8);
 	if (numKids >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
 	else if (numKids >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
+	
+	return false;
 }
 
 public function nurseryEducationCenterFunc():Boolean
@@ -84,7 +91,7 @@ public function nurseryEducationCenterFunc():Boolean
 public function nurseryKidsDormsFunc():Boolean
 {
 	output("\n\nMost of the nursery deck is devoted to living space for what Dad must have assumed");
-	if (ChildManager.numChildren >= 10) output(" - correctly -");
+	if (ChildManager.numChildren() >= 10) output(" - correctly -");
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
 
 	return false;
@@ -143,9 +150,9 @@ public function nurseryStairs2F():Boolean
 
 public function nurseryPlayerApptFunc():Boolean
 {
-	if (pc.isPregnant()) addButton(0, "Maternity", );
-	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
-	addButton(1, "Shower", );
+	//if (pc.isPregnant()) addButton(0, "Maternity", );
+	addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
+	//addButton(1, "Shower", );
 
 	return false;
 }
@@ -213,7 +220,12 @@ public function nurseryComputerMenu(lastUsed:Function = null):void
 	if (lastUsed == nurseryComputerFacilities) addDisabledButton(3, "Facilities");
 	else addButton(3, "Facilities", nurseryComputerFacilities);
 
-	addButton(14, "Back", mainGameMenu);
+	addButton(14, "Back", nurseryComputerLeaveMenu);
+}
+
+public function nurseryComputerLeaveMenu():void
+{
+	mainGameMenu();
 }
 
 public function nurseryComputerFacilities():void
@@ -275,6 +287,8 @@ public function nurseryComputerStaff():void
 	nurseryComputerMenu(nurseryComputerStaff);
 }
 
+import classes.GameData.Pregnancy.Containers.Genders;
+
 public function nurseryComputerChildren():void
 {
 	clearOutput();
@@ -298,47 +312,134 @@ public function nurseryComputerChildren():void
 	{
 		output("The computer displays a summarized status of all your offspring currently residing within the nursery:");
 	}
+
+	nurseryDisplayAllChildren();
+
+	nurseryComputerMenu(nurseryComputerChildren);
 }
+
+import classes.GameData.Pregnancy.Child;
+import classes.GameData.Pregnancy.UniqueChild;
 
 public function nurseryDisplayAllChildren():void
 {
-	var types:Array = ChildManager.getKnownTypes();
+	var allUniques:Array = null;
+	var sortedTypedBuckets:Object = null;
 
-	// It might be wise to smash the type + age buckets together as another tier in the underlying cache, but at least everything
-	// will be in some form of order atm
-
-	var ageBrackets:Array = [
-		6571, 	// 18+
-		6570, 	// 16-18
-		5840, 	// 12 - 16
-		4380, 	// 8 - 12
-		2920, 	// 4-8
-		1460, 	// 1-4
-		365,	// 1 year
-		273,	// 9 months
-		181,	// 6 months
-		90		// 3 months
-	];
-
-	for (var i:int = 0; i < types.length; i++)
+	if (ChildManager.nurseryCacheInvalid)
 	{
-		var bucket:Array = ChildManager.getBucketOfType(types[i].name);
-		var ageBuckets:Array = [];
+		var types:Array = ChildManager.getKnownTypes();
 
-		for (var b:int = 0; b < ageBrackets.length; b++)
-		{
-			ageBuckets.push(new Genders());
-		}
+		var uniques:Array = [];
+		var bucketedTypes:Object = {};
 
-		for (var c:int = 0; c < bucket.length; c++)
+		// It might be wise to smash the type + age buckets together as another tier in the underlying cache, but at least everything
+		// will be in some form of order atm
+
+		var ageBrackets:Array = [
+			6571, 	// 18+
+			6570, 	// 16-18
+			5840, 	// 12 - 16
+			4380, 	// 8 - 12
+			2920, 	// 4-8
+			1460, 	// 1-4
+			365,	// 1 year
+			273,	// 9 months
+			181,	// 6 months
+			90		// 3 months
+		];
+
+		for (var i:int = 0; i < types.length; i++)
 		{
-			var cc:Child = bucket[c] as Child;
-			
-			for (var bb:int = 0; bb < ageBrackets.length; bb++)
+			var bucket:Array = ChildManager.getBucketOfType(types[i].name);
+			var ageBuckets:Array = [];
+			bucketedTypes[types[i].name] = ageBuckets;
+
+			for (var b:int = 0; b < ageBrackets.length; b++)
 			{
-				if (cc.Days > ageBrackets[bb]) ageBuckets[bb].add(cc.NumGenders);
+				ageBuckets.push(new Genders());
+			}
+
+			for (var c:int = 0; c < bucket.length; c++)
+			{
+				var cc:Child = bucket[c] as Child;
+				
+				if (cc is UniqueChild)
+				{
+					uniques.push(cc);
+					continue;
+				}
+				
+				for (var bb:int = 0; bb < ageBrackets.length; bb++)
+				{
+					if (cc.Days > ageBrackets[bb]) ageBuckets[bb].add(cc.NumGenders);
+				}
 			}
 		}
 
+		ChildManager.nurseryCacheInvalid = false;
+		sortedTypedBuckets = ChildManager.nurseryComputerCache = bucketedTypes;
+		allUniques = ChildManager.nuseryComputerUniquesCache = uniques;
 	}
+	else
+	{
+		sortedTypedBuckets = ChildManager.nurseryComputerCache;
+		allUniques = ChildManager.nuseryComputerUniquesCache;
+	}
+
+	nurseryDisplayGenericChildren(sortedTypedBuckets);
+	nurseryDisplayUniqueChildren(allUniques);
+}
+
+public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
+{
+	var displayAges:Array = [
+		"18+",
+		"16-18",
+		"12-16",
+		"8-12",
+		"4-8",
+		"1-4",
+		"12 month",
+		"9 month",
+		"6 month",
+		"newborn"
+	];
+	for (var key:String in sortedTypedBuckets)
+	{
+		var thisBucket:Array = sortedTypedBuckets[key];
+
+		output("\n\n<b>" + GLOBAL.TYPE_NAMES[int(key)] + " Offspring:</b>");
+
+		for (var i:int = 0; i < thisBucket.length; i++)
+		{
+			if (thisBucket[i].any())
+			{
+				var b:Genders = thisBucket[i];
+
+				var str:String = "\n<b>" + displayAges[i] + ":</b>";
+				if (b.Male > 0) str += " " + b.Male + " sons";
+				if (b.Female > 0) str += " " + b.Female + " daughters";
+				if (b.Intersex > 0) str += " " + b.Intersex + " mixed-gender";
+				if (b.Neuter > 0) str += " " + b.Neuter + " ungendered";
+
+				output(str);
+			}
+		}
+	}
+}
+
+public function nurseryDisplayUniqueChildren(uniques:Array):void
+{
+	
+}
+
+public function nurseryMeetBriget():void
+{
+	
+}
+
+public function nurseryApproachBriget():void
+{
+	
 }

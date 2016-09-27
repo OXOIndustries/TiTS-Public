@@ -11,8 +11,22 @@ package classes.GameData.Pregnancy
 	 */
 	public class ChildCache 
 	{
+		public var nurseryCacheInvalid:Boolean = true;
+		public var nurseryComputerCache:Object;
+		public var nurseryComputerUniquesCache:Array;
+		
 		// General numerical caches for simple shit
-		public var numInvalidated:Boolean = true;
+		private var _numInvalidated:Boolean = true;
+		public function get numInvalidated():Boolean { return _numInvalidated; }
+		public function set numInvalidated(v:Boolean)
+		{ 
+			_numInvalidated = v; 
+			if (v)
+			{
+				nurseryCacheInvalid = v;
+			}
+		}
+		
 		private var _genderCache:Genders = null;
 		private var _numChildren:int = 0;
 		
@@ -105,7 +119,16 @@ package classes.GameData.Pregnancy
 			21 => 18+
 		*/
 		
-		public var ageInvalidated:Boolean = true;
+		private var _ageInvalidated:Boolean = true;
+		public function get ageInvalidated():Boolean { return _ageInvalidated; }
+		public function set ageInvalidated(v:Boolean):void
+		{
+			_ageInvalidated = v;
+			if (v)
+			{
+				nurseryCacheInvalid = v;
+			}
+		}
 		private var _dayLastUpdated:int = -1;
 		private var _ageBuckets:Array = [];
 		
@@ -325,7 +348,16 @@ package classes.GameData.Pregnancy
 			return t;
 		}
 		
-		public var typeInvalidated:Boolean = true;
+		private var _typeInvalidated:Boolean = true;
+		public function get typeInvalidated():Boolean { return _typeInvalidated; }
+		public function set typeInvalidated(v:Boolean):void
+		{
+			_typeInvalidated = v;
+			if (v)
+			{
+				nurseryCacheInvalid = v;
+			}
+		}
 		private var _knownTypes:Array = null;
 		private var _typeBuckets:Object = null;
 		public function updateTypeBuckets():void

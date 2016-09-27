@@ -316,6 +316,36 @@ package classes.GameData
 		{
 			return CACHE.numOfTypeAndGenderInRange(raceType, genderTypes, minAge, maxAge);
 		}
+		
+		static public function get nurseryCacheInvalid():Boolean
+		{
+			return CACHE.nurseryCacheInvalid;
+		}
+		
+		static public function set nurseryCacheInvalid(v:Boolean):void
+		{
+			CACHE.nurseryCacheInvalid = v;
+		}
+		
+		static public function get nurseryComputerCache():Object
+		{
+			return CACHE.nurseryComputerCache;
+		}
+		
+		static public function set nurseryComputerCache(v:Object):void
+		{
+			CACHE.nurseryComputerCache = v;
+		}
+		
+		static public function get nuseryComputerUniquesCache():Array
+		{
+			return CACHE.nurseryComputerUniquesCache;
+		}
+		
+		static public function set nuseryComputerUniquesCache(v:Array):void
+		{
+			CACHE.nurseryComputerUniquesCache = v;
+		}
 	}
 
 }
