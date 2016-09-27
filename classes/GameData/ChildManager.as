@@ -23,7 +23,6 @@ package classes.GameData
 		// Static initializer.
 		{
 			ChildManager.CHILDREN = new Array();
-			ChildManager.CACHE = new ChildCache();
 		}
 		
 		public static function getSaveObject():Object
@@ -67,12 +66,14 @@ package classes.GameData
 		// Generic interface
 		static public function updateTime(numMinutes:int):void
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			ChildManager.CACHE.updateTime(numMinutes);
 		}
 		
 		static public function addChild(newChild:Child):void
 		{
 			CHILDREN.push(newChild);
+			if (CACHE == null) CACHE = new ChildCache();
 			CACHE.numInvalidated = true;
 			CACHE.ageInvalidated = true;
 			CACHE.typeInvalidated = true;
@@ -103,6 +104,7 @@ package classes.GameData
 		 */
 		static public function numChildren():int
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numChildren;
 		}
 		
@@ -113,6 +115,7 @@ package classes.GameData
 		 */
 		static public function numChildrenAtNursery():int
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numChildren;
 		}
 		
@@ -128,6 +131,7 @@ package classes.GameData
 		 */
 		static public function ofGender(genderTypes:uint):Boolean
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.ofGender(genderTypes);
 		}
 		
@@ -138,6 +142,7 @@ package classes.GameData
 		 */
 		static public function numOfGender(genderType:uint):int
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numOfGender(genderType);
 		}
 		
@@ -147,6 +152,7 @@ package classes.GameData
 		 */
 		static public function numGenders():Genders
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numGenders();
 		}
 
@@ -158,6 +164,7 @@ package classes.GameData
 		 */
 		public static function inAgeRangeYears(minAge:int, maxAge:int = -1):Boolean
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.inAgeRangeYears(minAge, maxAge);
 		}
 		
@@ -169,6 +176,7 @@ package classes.GameData
 		 */
 		public static function inAgeRangeMonths(minAge:int, maxAge:int = -1):Boolean
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.inAgeRangeMonths(minAge, maxAge);
 		}
 		
@@ -186,6 +194,7 @@ package classes.GameData
 		 */
 		public static function numInAgeRangeYears(minAge:int, maxAge:int = -1):int
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numInAgeRangeYears(minAge, maxAge);
 		}
 		
@@ -197,6 +206,7 @@ package classes.GameData
 		 */
 		public static function numInAgeRangeMonths(minAge:int, maxAge:int = -1):int
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numInAgeRangeMonths(minAge, maxAge);
 		}
 		
@@ -207,6 +217,7 @@ package classes.GameData
 		 */
 		public static function getKnownTypes():Array
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.getKnownTypes();
 		}
 		
@@ -219,6 +230,7 @@ package classes.GameData
 		 */
 		public static function getBucketOfType(typeString:String):Array
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.getKnownBucket(typeString);
 		}
 		
@@ -229,6 +241,7 @@ package classes.GameData
 		 */
 		static public function ofType(raceType:int):Boolean
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.ofType(raceType);
 		}
 		
@@ -239,6 +252,7 @@ package classes.GameData
 		 */
 		static public function numOfType(raceType:int):int
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numOfType(raceType);
 		}
 		
@@ -254,6 +268,7 @@ package classes.GameData
 		 */
 		static public function ofGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1):Boolean
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.ofGendersInRange(genderTypes, minAge, maxAge);
 		}
 		
@@ -267,6 +282,7 @@ package classes.GameData
 		 */
 		static public function numofGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1):Genders
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numOfGendersInRange(genderTypes, minAge, maxAge);
 		}
 		
@@ -280,6 +296,7 @@ package classes.GameData
 		 */
 		static public function ofTypeInRange(raceType:uint, minAge:int, maxAge:int):Boolean
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.ofTypeInRange(raceType, minAge, maxAge);
 		}
 		
@@ -290,6 +307,7 @@ package classes.GameData
 		 */
 		static public function numOfTypeInRange(raceType:uint, minAge:int, maxAge:int = -1):int
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numOfTypeInRange(raceType, minAge, maxAge);
 		}
 		
@@ -304,6 +322,7 @@ package classes.GameData
 		 */
 		static public function ofTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int = -1):Boolean
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.ofTypeAndGenderInRange(raceType, genderTypes, minAge, maxAge);
 		}
 		
@@ -314,36 +333,43 @@ package classes.GameData
 		 */
 		static public function numOfTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int = -1):Genders
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numOfTypeAndGenderInRange(raceType, genderTypes, minAge, maxAge);
 		}
 		
 		static public function get nurseryCacheInvalid():Boolean
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.nurseryCacheInvalid;
 		}
 		
 		static public function set nurseryCacheInvalid(v:Boolean):void
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			CACHE.nurseryCacheInvalid = v;
 		}
 		
 		static public function get nurseryComputerCache():Object
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.nurseryComputerCache;
 		}
 		
 		static public function set nurseryComputerCache(v:Object):void
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			CACHE.nurseryComputerCache = v;
 		}
 		
 		static public function get nuseryComputerUniquesCache():Array
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.nurseryComputerUniquesCache;
 		}
 		
 		static public function set nuseryComputerUniquesCache(v:Array):void
 		{
+			if (CACHE == null) CACHE = new ChildCache();
 			CACHE.nurseryComputerUniquesCache = v;
 		}
 	}

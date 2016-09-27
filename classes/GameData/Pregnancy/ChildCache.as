@@ -11,12 +11,25 @@ package classes.GameData.Pregnancy
 	 */
 	public class ChildCache 
 	{
-		public var nurseryCacheInvalid:Boolean = true;
+		public function ChildCache()
+		{
+			nurseryCacheInvalid = true;
+			_numInvalidated = true;
+			_genderCache = null;
+			_numChildren = 0;
+			_ageInvalidated = true;
+			_dayLastUpdated = -1;
+			_ageBuckets = [];
+			_typeInvalidated = true;
+			_knownTypes = null;
+			_typeBuckets = null;
+		}
+		public var nurseryCacheInvalid:Boolean;
 		public var nurseryComputerCache:Object;
 		public var nurseryComputerUniquesCache:Array;
 		
 		// General numerical caches for simple shit
-		private var _numInvalidated:Boolean = true;
+		private var _numInvalidated:Boolean;
 		public function get numInvalidated():Boolean { return _numInvalidated; }
 		public function set numInvalidated(v:Boolean)
 		{ 
@@ -27,8 +40,8 @@ package classes.GameData.Pregnancy
 			}
 		}
 		
-		private var _genderCache:Genders = null;
-		private var _numChildren:int = 0;
+		private var _genderCache:Genders;
+		private var _numChildren:int;
 		
 		private function updateNumCache():void
 		{
@@ -119,7 +132,7 @@ package classes.GameData.Pregnancy
 			21 => 18+
 		*/
 		
-		private var _ageInvalidated:Boolean = true;
+		private var _ageInvalidated:Boolean;
 		public function get ageInvalidated():Boolean { return _ageInvalidated; }
 		public function set ageInvalidated(v:Boolean):void
 		{
@@ -129,8 +142,8 @@ package classes.GameData.Pregnancy
 				nurseryCacheInvalid = v;
 			}
 		}
-		private var _dayLastUpdated:int = -1;
-		private var _ageBuckets:Array = [];
+		private var _dayLastUpdated:int;
+		private var _ageBuckets:Array;
 		
 		// Determine if the age bucket cache potentially needs an update
 		public function updateTime(numMinutes:int):void
@@ -348,7 +361,7 @@ package classes.GameData.Pregnancy
 			return t;
 		}
 		
-		private var _typeInvalidated:Boolean = true;
+		private var _typeInvalidated:Boolean;
 		public function get typeInvalidated():Boolean { return _typeInvalidated; }
 		public function set typeInvalidated(v:Boolean):void
 		{
@@ -358,8 +371,8 @@ package classes.GameData.Pregnancy
 				nurseryCacheInvalid = v;
 			}
 		}
-		private var _knownTypes:Array = null;
-		private var _typeBuckets:Object = null;
+		private var _knownTypes:Array;
+		private var _typeBuckets:Object;
 		public function updateTypeBuckets():void
 		{
 			if (typeInvalidated)
