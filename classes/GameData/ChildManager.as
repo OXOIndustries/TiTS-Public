@@ -88,10 +88,30 @@ package classes.GameData
 		}
 		
 		/**
+		 * Mostly placeholder for now- forward support for the concept of the players children
+		 * ultimately leaving the nursery as they age-out and head off to lead their own lives.
+		 * @return
+		 */
+		static public function hasChildrenAtNursery():Boolean
+		{
+			return (CHILDREN.length > 0);
+		}
+		
+		/**
 		 * Determine the total number of children the player has.
 		 * @return
 		 */
 		static public function numChildren():int
+		{
+			return CACHE.numChildren;
+		}
+		
+		/**
+		 * Mostly placeholder for now- forward support for the concept of the players children
+		 * ultimately leaving the nursery as they age-out and head off to lead their own lives.
+		 * @return
+		 */
+		static public function numChildrenAtNursery():int
 		{
 			return CACHE.numChildren;
 		}
@@ -178,6 +198,28 @@ package classes.GameData
 		public static function numInAgeRangeMonths(minAge:int, maxAge:int = -1):int
 		{
 			return CACHE.numInAgeRangeMonths(minAge, maxAge);
+		}
+		
+		/**
+		 * Get a list of all known child racial types.
+		 * Array contains objects with type:uint and name:string props.
+		 * @return
+		 */
+		public static function getKnownTypes():Array
+		{
+			return CACHE.getKnownTypes();
+		}
+		
+		/**
+		 * Get a bucket from the cache of a single racial type of children. Note this 
+		 * uses the name property from getknownTypes() list, as the buckets are string-indexed
+		 * as a dictionary.
+		 * @param	type
+		 * @return
+		 */
+		public static function getBucketOfType(typeString:String):Array
+		{
+			return CACHE.getKnownBucket(typeString);
 		}
 		
 		/**
@@ -273,6 +315,36 @@ package classes.GameData
 		static public function numOfTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int = -1):Genders
 		{
 			return CACHE.numOfTypeAndGenderInRange(raceType, genderTypes, minAge, maxAge);
+		}
+		
+		static public function get nurseryCacheInvalid():Boolean
+		{
+			return CACHE.nurseryCacheInvalid;
+		}
+		
+		static public function set nurseryCacheInvalid(v:Boolean):void
+		{
+			CACHE.nurseryCacheInvalid = v;
+		}
+		
+		static public function get nurseryComputerCache():Object
+		{
+			return CACHE.nurseryComputerCache;
+		}
+		
+		static public function set nurseryComputerCache(v:Object):void
+		{
+			CACHE.nurseryComputerCache = v;
+		}
+		
+		static public function get nuseryComputerUniquesCache():Array
+		{
+			return CACHE.nurseryComputerUniquesCache;
+		}
+		
+		static public function set nuseryComputerUniquesCache(v:Array):void
+		{
+			CACHE.nurseryComputerUniquesCache = v;
 		}
 	}
 

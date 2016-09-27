@@ -89,10 +89,17 @@ package classes.GameData.Pregnancy
 		public var MaturationRate:Number;
 		
 		public function get Quantity():int { return NumNeuter + NumFemale + NumMale + NumIntersex; }
-		public var NumNeuter:int = 0;
-		public var NumFemale:uint = 0;
-		public var NumMale:uint = 0;
-		public var NumIntersex:uint = 0;
+		public var NumGenders:Genders = new Genders();
+		
+		public function get NumNeuter():int { return NumGenders.Neuter; }
+		public function get NumFemale():int { return NumGenders.Female; }
+		public function get NumMale():int { return NumGenders.Male; }
+		public function get NumIntersex():int { return NumGenders.Intersex; }
+		
+		public function set NumNeuter(v:int):void { NumGenders.Neuter = v; }
+		public function set NumFemale(v:int):void { NumGenders.Female = v; }
+		public function set NumMale(v:int):void { NumGenders.Male = v; }
+		public function set NumIntersex(v:int):void { NumGenders.Intersex = v; }
 		
 		public function get Years():int
 		{

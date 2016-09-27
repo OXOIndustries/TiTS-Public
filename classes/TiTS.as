@@ -40,6 +40,7 @@
 	import classes.GameData.CodexManager;
 	import classes.GameData.GameOptions;
 	import classes.GameData.Pregnancy.Handlers.*;
+	import classes.GameData.ChildManager;
 	
 	import fl.transitions.easing.None;
 
@@ -159,6 +160,7 @@
 		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
+		include "../includes/tavros/nursery.as";
 		include "../includes/tavros/oviliumBonus.as";
 		include "../includes/tavros/ramis.as";
 		include "../includes/tavros/reaha.as";
