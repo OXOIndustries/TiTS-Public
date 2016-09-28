@@ -165,6 +165,7 @@
 		include "../includes/tavros/ramis.as";
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
+		include "../includes/tavros/reaha.cured_expansion.as";
 		include "../includes/tavros/rooms.as";
 		include "../includes/tavros/roomFunctions.as";
 		include "../includes/tavros/saendraXPack1.as";
