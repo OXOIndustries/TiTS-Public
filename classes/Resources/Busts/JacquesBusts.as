@@ -207,17 +207,17 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/siegwulfe.png", mimeType = "image/png")]
 		public var Bust_SIEGWULFE:Class;
-		public var Bounds_SIEGWULFE:Rectangle = new Rectangle(20, 0, 70, 70);
+		public var Bounds_SIEGWULFE:Rectangle = new Rectangle(16, 0, 70, 65);
 		[Embed(source = "../../../assets/images/npcs/jacques00/siegwulfe_nude.png", mimeType = "image/png")]
 		public var Bust_SIEGWULFE_NUDE:Class;
-		public var Bounds_SIEGWULFE_NUDE:Rectangle = new Rectangle(20, 0, 70, 70);
+		public var Bounds_SIEGWULFE_NUDE:Rectangle = new Rectangle(16, 0, 70, 65);
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/siegwulfe_bimbo.png", mimeType = "image/png")]
 		public var Bust_SIEGWULFE_BIMBO:Class;
-		public var Bounds_SIEGWULFE_BIMBO:Rectangle = new Rectangle(20, 0, 70, 70);
+		public var Bounds_SIEGWULFE_BIMBO:Rectangle = new Rectangle(16, 0, 70, 65);
 		[Embed(source = "../../../assets/images/npcs/jacques00/siegwulfe_bimbo_nude.png", mimeType = "image/png")]
 		public var Bust_SIEGWULFE_BIMBO_NUDE:Class;
-		public var Bounds_SIEGWULFE_BIMBO_NUDE:Rectangle = new Rectangle(20, 0, 70, 70);
+		public var Bounds_SIEGWULFE_BIMBO_NUDE:Rectangle = new Rectangle(16, 0, 70, 65);
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/tamwolf_0.png", mimeType = "image/png")]
 		public var Bust_TAMWOLF_DAMAGED:Class;
