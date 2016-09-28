@@ -25,9 +25,8 @@ public function showSiegwulfe(nude:Boolean = false):void
 }
 public function wulfeBustDisplay(nude:Boolean = false):String
 {
-	var bustName:String = "SIEGWULFE";
+	var bustName:String = chars["WULFE"].bustDisplay;
 	
-	if(chars["WULFE"].isBimbo()) bustName += "_BIMBO";
 	if(nude) bustName += "_NUDE";
 	
 	return bustName;
