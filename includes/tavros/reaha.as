@@ -14,24 +14,29 @@
 
 public function reahaRecruited():Boolean
 {
+	if(flags["REAHA_BOOTED"] != undefined) return false;
 	return (flags["REAHA_IS_CREW"] != undefined);
+
 }
 
 //Is she onboard the ship?
 public function reahaIsCrew():Boolean
 {
+	if(flags["REAHA_BOOTED"] != undefined) return false;
 	if(flags["REAHA_IS_CREW"] == 1) return true;
 	return false;
 }
 
 public function reahaAtBeths():Boolean
 {
+	if(flags["REAHA_BOOTED"] != undefined) return false;
 	if (flags["REAHA_IS_CREW"] == 2) return true;
 	return false;
 }
 
 public function reahaAtNewTexas():Boolean
 {
+	if(flags["REAHA_BOOTED"] != undefined) return false;
 	if (flags["REAHA_IS_CREW"] == 3) return true;
 	return false;
 }
@@ -77,7 +82,13 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 		else addButton(1, "Talk", talkWithFollowerReaha);
 	}
 	else addDisabledButton(1, "Talk");
-	if (!reahaAddictionTherapyAvailable()) addDisabledButton(3, "Addiction");
+	if (!reahaAddictionTherapyAvailable()) 
+	{
+		if (flags["REAHA_DONE_NEWTEXAS_SPIEL"] == undefined) addDisabledButton(3, "Addiction","Addiction","You need to know Reaha a bit better for this.");
+		else if (flags["REAHA_ADDICTION_CURED"] != undefined) addDisabledButton(3, "Addiction","Addiction","You've already cured her!");
+		else if (flags["REAHA_ADDICTION_THERAPY_LAST_DAY"] == days) addDisabledButton(3, "Addiction","Addiction","You can only do this once a day.");
+		else addDisabledButton(3, "Addiction");
+	}
 	else
 	{
 		addButton(3, "Addiction", reahaAddictionTherapy, undefined, "Addiction Therapy", "Help wean Reaha off of her pleasure patches. Fucking her brains out will help lessen her withdrawal.");
