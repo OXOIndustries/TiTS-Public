@@ -88,7 +88,7 @@ public function kq2FightBlackVoidGruntsOutside():void
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("VOID GRUNTS");
 	
-	showBust(h[0].bustDisplay, h[1].bustDisplay, (num >= 3 ? h[2].bustDisplay : ""), (num >= 4 ? h[3].bustDisplay : ""));
+	showBust((num >= 1 ? h[0].bustDisplay : ""), (num >= 2 ? h[1].bustDisplay : ""), (num >= 3 ? h[2].bustDisplay : ""), (num >= 4 ? h[3].bustDisplay : ""));
 	
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
@@ -112,7 +112,7 @@ public function kq2FightBlackVoidGrunts():void
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("VOID GRUNTS");
 
-	showBust(h[0].bustDisplay, h[0].bustDisplay, (num >= 3 ? h[2].bustDisplay : ""), (num >= 4 ? h[3].bustDisplay : ""));
+	showBust((num >= 1 ? h[0].bustDisplay : ""), (num >= 2 ? h[1].bustDisplay : ""), (num >= 3 ? h[2].bustDisplay : ""), (num >= 4 ? h[3].bustDisplay : ""));
 	
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
