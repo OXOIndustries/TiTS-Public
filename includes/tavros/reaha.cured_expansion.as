@@ -213,23 +213,49 @@ public function reahaMilkStand():void
 {
 	clearOutput();
 	reahaHeader();
-	//Var 1.
-	if(rand(3) == 0)
+	if(flags["REAHA_WHORING_UNLOCKED"] != 2)
 	{
-		output("As you’re cycling the airlock, you bump into your busty bovine companion Reaha with a small crate full of milk bottles tucked under her arm.");
-		output("\n\n<i>“Hey, babe!”</i> she says, beaming at you. <i>“Just gonna see if I can offload some of this extra milk. I’ll be back before you can blink!”</i>");
+		//Var 1.
+		if(rand(3) == 0)
+		{
+			output("As you’re cycling the airlock, you bump into your busty bovine companion Reaha with a small crate full of milk bottles tucked under her arm.");
+			output("\n\n<i>“Hey, babe!”</i> she says, beaming at you. <i>“Just gonna see if I can offload some of this extra milk. I’ll be back before you can blink!”</i>");
+		}
+		//Var 2.
+		else if(rand(2) == 0)
+		{
+			output("As you’re heading through the airlock, you find Reaha just coming back aboard the ship. She’s got a spring to her step, and a pack of credit chits held tight in her hand. She gives you a wink as she walks by, hefting the sack to show off just how much her delicious bovine milk has managed to earn her.");
+		}
+		//Var 3.
+		else
+		{
+			output("You notice Reaha sitting next to the airlock");
+			if(!reaha.isChestExposed()) output(" with her top pulled off");
+			output(", rubbing her rose-colored nipples. You give her a look, and your companion makes a sheepish moan. <i>“I think I’ve been over-using my milker,”</i> she laughs, gently massaging her breasts. <i>“Maybe I could convince you to give me a nice, gentle hand-milking soon?”</i>");
+		}
 	}
-	//Var 2.
-	else if(rand(2) == 0)
-	{
-		output("As you’re heading through the airlock, you find Reaha just coming back aboard the ship. She’s got a spring to her step, and a pack of credit chits held tight in her hand. She gives you a wink as she walks by, hefting the sack to show off just how much her delicious bovine milk has managed to earn her.");
-	}
-	//Var 3.
 	else
 	{
-		output("You notice Reaha sitting next to the airlock");
-		if(!reaha.isChestExposed()) output(" with her top pulled off");
-		output(", rubbing her rose-colored nipples. You give her a look, and your companion makes a sheepish moan. <i>“I think I’ve been over-using my milker,”</i> she laughs, gently massaging her breasts. <i>“Maybe I could convince you to give me a nice, gentle hand-milking soon?”</i>");
+		//Var 1.
+		if(rand(3) == 0)
+		{
+			output("As you’re cycling through the airlock, you’re forced to step aside as a strapping young native man passes by, leaving Reaha’s quarters with an altogether satisfied look on his face. The cow-girl courtesan leans against her doorframe, naked with thighs stained and nipples diamond hard, waving as he leaves.");
+			output("\n\n<i>“See you next time,”</i> she calls after him. <i>“Oh hey, [pc.name]. Business is good today!”</i>");
+			output("\n\nYou can see that. Good job, Reaha, keep ‘em cumming.");
+		}
+		//Var 2.
+		else if(rand(2) == 0)
+		{
+			output("As you’re stepping back aboard, you’re greeting with a muffled series of moans and a rhythmic <i>thump-thump</i> of something hitting one of the bulkheads. You’d be alarmed, except you quickly realize that the noise is coming from Reaha’s quarters. Sounds like the cow-girl’s <i>“entertaining”</i> a customer right now.");
+		}
+		//Var 3.
+		else
+		{
+			output("As you step aboard, you bump into Reaha passing by the airlock. She gives you a hint of a smile, but is busily rubbing her shoulders as she walks.");
+			output("\n\n<i>“Sore?”</i> you ask, running a hand along a tense muscle.");
+			output("\n\n<i>“Haha, yeah,”</i> she sighs. <i>“Had to handle a group of, uh, real passionate customers. Oof.”</i>");
+			output("\n\nYou give her a pat and tell her to hang in there.");
+		}
 	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -238,6 +264,7 @@ public function reahaMilkStand():void
 public function reahaPaybackEvent():void
 {
 	var credits:Number = 250+rand(501);
+	if(flags["REAHA_WHORING_UNLOCKED"] == 2) credits = 400 + rand(601);
 	if(flags["REAHA_PC_PAY"] == undefined) flags["REAHA_PC_PAY"] = 0;
 	if(flags["REAHA_PC_PAY"] + credits < 5000) getCashFromTheCow(credits);
 	else reahaFinishesPayingPC(credits);
@@ -249,18 +276,30 @@ public function getCashFromTheCow(credits:Number):void
 {
 	clearOutput();
 	reahaHeader();
-	output("<i>“Hey, [pc.name],”</i> Reaha says, giving you a tug on the arm as you’re passing her quarters. You stop and turn your attention to your bovine companion. She gives you a smile and pulls a small credit chit out ");
-	if(!(reaha.armor is EmptySlot)) output("of her pocket");
-	else output("of her desk drawer");
-	output(", handing it off to you.");
+	if(flags["REAHA_WHORING_UNLOCKED"] != 2)
+	{
+		output("<i>“Hey, [pc.name],”</i> Reaha says, giving you a tug on the arm as you’re passing her quarters. You stop and turn your attention to your bovine companion. She gives you a smile and pulls a small credit chit out ");
+		if(!(reaha.armor is EmptySlot)) output("of her pocket");
+		else output("of her desk drawer");
+		output(", handing it off to you.");
 
-	output("\n\n<i>“Here you go: your cut of my milk sales! Spend it in good health and all that.”</i>");
-	output("\n\nYou nod and swipe the chit through your Codex. After a moment of digital beeping, the device chirps out that you’ve just had ");
-	output(credits + " credits transferred to your account. Not bad!");
-	pc.credits += credits;
-	
-	flags["REAHA_PC_PAY"] += credits;
-	if(flags["REAHA_PC_PAY"] < 5000) output("\n\nBy your reckoning, Reaha’s got " + (5000 - flags["REAHA_PC_PAY"]) + " credits left of debt to you. Not all that much, in the grand scheme of things. You suppose your cow-girl concubine will be a free woman before too long at this rate.");
+		output("\n\n<i>“Here you go: your cut of my milk sales! Spend it in good health and all that.”</i>");
+		output("\n\nYou nod and swipe the chit through your Codex. After a moment of digital beeping, the device chirps out that you’ve just had ");
+		output(credits + " credits transferred to your account. Not bad!");
+		pc.credits += credits;
+		
+		flags["REAHA_PC_PAY"] += credits;
+		if(flags["REAHA_PC_PAY"] < 5000) output("\n\nBy your reckoning, Reaha’s got " + (5000 - flags["REAHA_PC_PAY"]) + " credits left of debt to you. Not all that much, in the grand scheme of things. You suppose your cow-girl concubine will be a free woman before too long at this rate.");
+	}
+	else
+	{
+		output("<i>“Hey, [pc.name],”</i> Reaha says, giving you a tug on the arm as you’re passing her quarters. You stop and turn your attention to your bovine companion. She gives you a smile and pulls a small credit chit out of her desk drawer, handing it off to you.");
+		output("\n\n<i>“Here you go: your pound of flesh, from me selling mine. Keep on pimpin’, [pc.name]!”</i>");
+		output("\n\nYou nod and swipe the chit through your Codex. After a moment of digital beeping, the device chirps out that you’ve just had " + credits + " credits transferred to your account. Not bad!");
+		pc.credits += credits;
+		flags["REAHA_PC_PAY"] += credits;
+		if(flags["REAHA_PC_PAY"] < 5000) output("\n\nBy your reckoning, Reaha’s got " + (5000 - flags["REAHA_PC_PAY"]) + " credits left of debt to you. Not all that much, in the grand scheme of things. You suppose your cow-girl concubine will fuck her way to freedom before too long at this rate.");
+	}
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
