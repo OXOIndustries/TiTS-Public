@@ -2337,9 +2337,7 @@ package classes.GameData
 					if(!pc.isChestExposed()) output("You tear off your [pc.armor] and reveal");
 					else output("You throw your arms wide to present");
 					output(" your chest, the harness tight around your [pc.chest]. You flex and stretch in the harness, showing how it constrains you. You flaunt your");
-					if (pc.femininity < 50) output(" masculinity");
-					else output(" femininity.");
-					output(" a short while longer before covering up.");
+					output(pc.mf(" masculinity", " femininity") + " a short while longer before covering up.");
 				}
 				else if(!pc.isChestExposed()) output("You peel open your [pc.upperGarments] to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
 				else output("Naked as you are, there’s nothing you need to do to expose your [pc.chest] and [pc.nipples], and running a hand up your [pc.skinFurScales] only enhances the delicious exposure. You make sure that every bit of your musculature is open and on display before you adopt a less sensual pose.")
@@ -2433,9 +2431,7 @@ package classes.GameData
 					if(!pc.isChestExposed()) output("You tear off your [pc.armor] and reveal");
 					else output("You throw your arms wide to present");
 					output(" your chest, the harness tight around your [pc.chest]. You flex and stretch in the harness, showing how it constrains you. You flaunt your");
-					if (pc.femininity < 50) output(" masculinity");
-					else output(" femininity.");
-					output(" a short while longer before covering up.");
+					output(pc.mf(" masculinity", " femininity") + " a short while longer before covering up.");
 				}
 			}
 		}
@@ -3019,7 +3015,7 @@ package classes.GameData
 			{
 				if(pc.hasArmor()) output("You undo the lower half of your [pc.armor] to let [pc.eachCock] fall out and [pc.balls] hang loose.");
 				else output("You roll back your shoulders and angle up your hip to show off your [pc.eachCock] and swinging [pc.balls].");
-				output(" Coincidentally [pc.OneCock] is hung inside of your harness, it's [pc.cockHead] utterly covered in precum, showing how virile and ready to please you are. You stroke [pc.oneCock] until a glob of precum lands on your hand. Lifting it above your mouth you slowly let your [pc.cumVisc] precum slide into your mouth. After letting it rest on your tongue for a bit, you swallow. You open your mouth and show [enemy] that your mouth is now empty. You quickly cover back up.");
+				output(" Coincidentally [pc.oneCock] is hung inside of your harness, it's [pc.cockHead] utterly covered in precum, showing how virile and ready to please you are. You stroke [pc.oneCock] until a glob of precum lands on your hand. Lifting it above your mouth you slowly let your [pc.cumVisc] precum slide into your mouth. After letting it rest on your tongue for a bit, you swallow. You open your mouth and show " + target.getCombatName() + " that your mouth is now empty. You quickly cover back up.");
 			}
 		}
 		
