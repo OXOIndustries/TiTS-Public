@@ -40,6 +40,7 @@
 	import classes.GameData.CodexManager;
 	import classes.GameData.GameOptions;
 	import classes.GameData.Pregnancy.Handlers.*;
+	import classes.GameData.ChildManager;
 	
 	import fl.transitions.easing.None;
 
@@ -159,10 +160,12 @@
 		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
+		include "../includes/tavros/nursery.as";
 		include "../includes/tavros/oviliumBonus.as";
 		include "../includes/tavros/ramis.as";
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
+		include "../includes/tavros/reaha.cured_expansion.as";
 		include "../includes/tavros/rooms.as";
 		include "../includes/tavros/roomFunctions.as";
 		include "../includes/tavros/saendraXPack1.as";
