@@ -55,8 +55,8 @@ public function fleeFrostwyrm():void
 	frostWyrmHeader();
 	author("Neoptolemus")
 	
-	output("There's no way you can fight that thing. Instead you break into a desperate sprint away from the gigantic lizard behind you, adrenaline pumping. When you hazard a glance back over your shoulder the frostwyrm doesn't seem to have given chase at all, although those four draconic eyes are still fixed on you. You settle into a more sustainable pace, but continue to put distance between yourself and the wyrm.");
-	output("\n\n\What feels like an eternity passes, but there's no sign of the beast. Seems like once you left its territory the creature was content to let you go.");
+	output("You've gone toe to toe with some terrifying foes in your time. But there's no way you're going to fight <b>that</b>. Instead, adrenaline pumping, you break into a desperate sprint away from the gigantic lizard behind you. When you hazard a glance back over your shoulder the frostwyrm doesn't seem to have given chase at all, although those four draconic eyes are still fixed on you.");
+	output("\n\nWhat feels like an eternity latter, the wyrm beats its wings and takes off again, flying back the way it came. You take a few minutes to recover your breath, by then the beast is completely out of sight.");
 	
 	processTime(5);
 	clearMenu();

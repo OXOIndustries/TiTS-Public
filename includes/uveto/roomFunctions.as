@@ -33,6 +33,14 @@ public function TundraEncounterBonus():Boolean
 public function HereBeDragonBonus():Boolean
 {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined || flags["FROSTWYRMSLAIN"] == 1) return false;
+	
+	//Always encounter Frostwyrm first time
+	if(flags["MET_FROSTWYRM"] == undefined)
+	{
+		encounterFrostwyrm();
+		return true;
+	}
+	
 	IncrementFlag("UVETOCOAST_STEP");
 
 	var choices:Array = new Array();

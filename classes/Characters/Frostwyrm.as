@@ -38,28 +38,34 @@ package classes.Characters
 			
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.psionic.resistanceValue = 45.0;
+			baseHPResistances.kinetic.damageValue = 15.0;
+			baseHPResistances.electric.damageValue = 15.0;
+			baseHPResistances.burning.damageValue = 15.0;
 			
 			this.meleeWeapon = new Fists();
 			
 			shield = new JoyCoPremiumShield();
 			shield.shields = 300;
+			shield.resistances.kinetic.resistanceValue = 0;
+			shield.hasRandomProperties = true;
 			
 			this.armor.longName = "draconic scales";
 			this.armor.defense = 5;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 65;
-			this.reflexesRaw = 25;
-			this.aimRaw = 30;
+			this.reflexesRaw = 30;
+			this.aimRaw = 35;
 			this.intelligenceRaw = 35;
-			this.willpowerRaw = 40;
+			this.willpowerRaw = 50;
 			this.libidoRaw = 20;
 			this.shieldsRaw = shieldsMax();
 			this.energyRaw = 100;
-			this.lustRaw = 10;
+			this.lustRaw = 0;
 			
 			this.level = 10;
-			this.XPRaw = bossXP();
+			//Repeatable fight, so no boss xp?
+			this.XPRaw = normalXP();
 			this.credits = 0;
 			this.HPMod = 600;
 			this.HPRaw = this.HPMax();
@@ -163,11 +169,11 @@ package classes.Characters
 			}
 			if (!target.hasStatusEffect("Psychic Miasma"))
 			{
-				{enemyAttacks.push( { v: wyrmPsiMiasma, w: 20 } ); }
+				{enemyAttacks.push( { v: wyrmPsiMiasma, w: 10 } ); }
 			}
 			
 			enemyAttacks.push( { v: wyrmTailSlap, w: 10 } );
-			enemyAttacks.push( { v: wyrmPsiBolt, w: 10 } );
+			enemyAttacks.push( { v: wyrmPsiBolt, w: 20 } );
 			enemyAttacks.push( { v: wyrmRend, w: 20 } );
 			
 			weightedRand(enemyAttacks)(target);
@@ -195,7 +201,7 @@ package classes.Characters
 				if (damMulti > 2) damMulti = 2;
 				if (damMulti < 1) damMulti = 1;
 				
-				applyDamage(new TypeCollection( { psionic: 2 * damMulti } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { psionic: 5 * damMulti } ), this, target, "minimal");
 		}
 		
 		//My Wings, a hurricane!
@@ -228,7 +234,9 @@ package classes.Characters
 			if (target.willpower() + rand(20) + 1 < willpower())
 				{
 					output("\nPsychic energy assaults your mind, filling your brain with confused and swirling thoughts, and your vision becomes incredibly hazy. It's hard to focus on the fight, and <b>your reflexes and aim both seem lowered</b> by the psychic miasma.");
-					target.createStatusEffect("Psychic Miasma",0,0,0,0,false,"Icon_OffDown","You've been struck by a psychic miasma, reducing your effective aim and reflexes by 5",true,0,0xFF0000);
+					target.createStatusEffect("Psychic Miasma", 0, 0, 0, 0, false, "Icon_OffDown", "You've been struck by a psychic miasma, reducing your effective aim and reflexes by 5", true, 0, 0xFF0000);
+					target.aimMod -= 5
+					target.reflexesMod -= 5
 				}
 			//PC passes willpower save
 			else
@@ -246,7 +254,7 @@ package classes.Characters
 			else
 			{
 				output("\nYou take the blow right to the chest, sending you hurdling back through the air. When you land, you're left gasping for breath, feeling like your chest has been completely crushed by the impact.");
-				applyDamage(damageRand(new TypeCollection( { kinetic: 100 }, DamageFlag.CRUSHING ), 20), this, target, "minimal");
+				applyDamage(damageRand(new TypeCollection( { kinetic: 125 }, DamageFlag.CRUSHING ), 20), this, target);
 			}
 		}
 		
@@ -264,7 +272,7 @@ package classes.Characters
 				if (damMulti > 2) damMulti = 2;
 				if (damMulti < 1) damMulti = 1;
 				
-				applyDamage(new TypeCollection( { psionic: 5 * damMulti, freezing: 50 * damMulti } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { psionic: 5 * damMulti, freezing: 50 * damMulti } ), this, target);
 			}
 		}
 		
@@ -273,25 +281,25 @@ package classes.Characters
 		{
 			output("The wyrm lunges at you, claws bared and snarling like a ravenous beast.");
 			
-			if(combatMiss(this, target)) output("\nOne of the wyrm's claws slices you, hammering into your chest with monumental force.");
+			if(combatMiss(this, target)) output("\nYou duck one of the wyrm's claw-swipes.");
 			else
 			{
-				output("\nYou duck one of the wyrm's claw-swipes");
-				applyDamage(damageRand(new TypeCollection( { kinetic: 25 }, DamageFlag.PENETRATING ), 20), this, target, "minimal");
+				output("\nOne of the wyrm's claws slices you, hammering into your chest with monumental force.");
+				applyDamage(damageRand(new TypeCollection( { kinetic: 33 }, DamageFlag.PENETRATING ), 20), this, target, "minimal");
 			}
 			
-			if(combatMiss(this, target)) output("\nOne of the wyrm's claws slices you, hammering into your chest with monumental force.");
+			if(combatMiss(this, target)) output("\nYou duck one of the wyrm's claw-swipes.");
 			else
 			{
-				output("\nYou duck one of the wyrm's claw-swipes");
-				applyDamage(damageRand(new TypeCollection( { kinetic: 25 }, DamageFlag.PENETRATING ), 20), this, target, "minimal");
+				output("\nOne of the wyrm's claws slices you, hammering into your chest with monumental force.");
+				applyDamage(damageRand(new TypeCollection( { kinetic: 33 }, DamageFlag.PENETRATING ), 20), this, target, "minimal");
 			}
 			
-			if(combatMiss(this, target)) output("\nOne of the wyrm's claws slices you, hammering into your chest with monumental force.");
+			if(combatMiss(this, target)) output("\nYou duck one of the wyrm's claw-swipes.");
 			else
 			{
-				output("\nYou duck one of the wyrm's claw-swipes");
-				applyDamage(damageRand(new TypeCollection( { kinetic: 25 }, DamageFlag.PENETRATING ), 20), this, target, "minimal");
+				output("\nOne of the wyrm's claws slices you, hammering into your chest with monumental force.");
+				applyDamage(damageRand(new TypeCollection( { kinetic: 33 }, DamageFlag.PENETRATING ), 20), this, target, "minimal");
 			}
 		}
 		

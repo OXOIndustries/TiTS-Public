@@ -632,8 +632,7 @@ public function initUvetoRooms():void
 	rooms["UVIP D38"].eastExit = "UVIP F38";
 	rooms["UVIP D38"].westExit = "UVI P38";
 	rooms["UVIP D38"].moveMinutes = 6;
-	//rooms["UVIP D38"].runOnEnter = TundraEncounterBonus;
-	rooms["UVIP D38"].runOnEnter = HereBeDragonBonus;
+	rooms["UVIP D38"].runOnEnter = TundraEncounterBonus;
 	rooms["UVIP D38"].addFlag(GLOBAL.OUTDOOR);
 	rooms["UVIP D38"].addFlag(GLOBAL.HAZARD);
 
@@ -646,8 +645,7 @@ public function initUvetoRooms():void
 	rooms["UVIP F38"].southExit = "UVIP F40";
 	rooms["UVIP F38"].westExit = "UVIP D38";
 	rooms["UVIP F38"].moveMinutes = 6;
-	//rooms["UVIP F38"].runOnEnter = TundraEncounterBonus;
-	rooms["UVIP F38"].runOnEnter = HereBeDragonBonus;
+	rooms["UVIP F38"].runOnEnter = TundraEncounterBonus;
 	rooms["UVIP F38"].addFlag(GLOBAL.OUTDOOR);
 	rooms["UVIP F38"].addFlag(GLOBAL.HAZARD);
 
@@ -973,7 +971,7 @@ public function initUvetoRooms():void
 	rooms["UVIP Z34"].moveMinutes = 12;
 	rooms["UVIP Z34"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVIP Z34"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP Z34"].runOnEnter = TundraEncounterBonus;
+	rooms["UVIP Z34"].runOnEnter = HereBeDragonBonus; //Frostwyrm placeholder location
 
 	/* NORTH END */
 	rooms["UVIP F36"] = new RoomClass(this);
@@ -1536,6 +1534,8 @@ public function initUvetoRooms():void
 	rooms["UVIP Z6"].addFlag(GLOBAL.ICYTUNDRA);
 	rooms["UVIP Z6"].addFlag(GLOBAL.HAZARD);
 	rooms["UVIP Z6"].runOnEnter = TundraEncounterBonus;
+	rooms["UVIP Z6"].runOnEnter = HereBeDragonBonus; //Frostwyrm placeholder location
+	
 
 	/* CENTER BRANCH */
 	rooms["UVIP R12"] = new RoomClass(this);
@@ -1670,4 +1670,5 @@ public function initUvetoRooms():void
 	rooms["UVIP Z22"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVIP Z22"].addFlag(GLOBAL.HAZARD);
 	rooms["UVIP Z22"].runOnEnter = TundraEncounterBonus;
+	rooms["UVIP Z22"].runOnEnter = HereBeDragonBonus; //Frostwyrm placeholder location
 }

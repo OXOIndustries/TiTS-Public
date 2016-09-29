@@ -1010,6 +1010,21 @@ package classes.GameData
 				output("\n\nThe little tentacles keep hammering at " + target.getCombatName() +", smashing their blunt faces and squeezing as hard as they can!");
 				applyDamage(damageRand(new TypeCollection( { kinetic: 5 }, DamageFlag.BYPASS_SHIELD), 15), null, target, "minimal");
 			}
+			
+			if (target.hasStatusEffect("Psychic Miasma"))
+			{
+				
+				if (target.willpower() + 10 > rand(100))
+				{
+					target.removeStatusEffect("Psychic Miasma");
+					if (target is PlayerCharacter) output("\n\nYou push aside the effects of the psionic drone");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " resists the psionic drone</b>");
+					
+					target.aimMod += 5
+					target.reflexesMod += 5
+					
+				}
+			}
 		}
 		
 		public function updateStatusEffects(collection:Array):void
@@ -1339,6 +1354,11 @@ package classes.GameData
 				output("You escape on wings of debug!");
 				CombatManager.abortCombat();
 			}
+			else if (hasEnemyOfClass(Frostwyrm))
+			{
+				output("The frostwyrm doesn't give chase, letting you escape.");
+				CombatManager.abortCombat();
+			}			
 			else 
 			{
 				// TODO rework this somehow
