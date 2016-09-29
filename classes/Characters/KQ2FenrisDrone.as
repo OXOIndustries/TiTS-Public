@@ -169,7 +169,15 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "FENRISDRONEIV";
+			// 9999 - Special artist exceptions!
+			if(kGAMECLASS.gameOptions.configuredBustPreferences["FENRISDRONEIV"] == "GATS") return "FENRISDRONEIV";
+			
+			var bustName:String = "FENRISDRONEIV";
+			
+			if(skinTone == "black") bustName += "_NIGHT";
+			if(skinTone == "white") bustName += "_ARCTIC";
+			
+			return bustName;
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

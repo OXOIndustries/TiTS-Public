@@ -116,6 +116,25 @@ public function askAUGCTroopAboutStellarTetherMission():void {
 	addButton(0,"Next",move,"351");
 }
 
+public function tamWolfBustDisplay(mode:int = 1):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["TAMWOLF"] == "GATS") return "TAMWOLF";
+	
+	var bustName:String = "TAMWOLF";
+	
+	if(mode == 0) bustName += "_DAMAGED";
+	if(mode == 2) bustName += "_II";
+	
+	return bustName;
+}
+// Tamwolf Check function
+public function hasTamWolfOnSelf():Boolean
+{
+	if(pc.hasTamWolf() || pc.hasItemByName("TamWolf") || pc.hasItemByName("TamWolf2.0")) return true;
+	return false;
+}
+
 //The Lift Station: Forward
 public function liftStationBonus():Boolean
 {
@@ -162,7 +181,7 @@ public function liftStationBonus():Boolean
 public function tamtamGetsPunkedByPCs():void
 {
 	author("Savin");
-	showBust("TAMTAM", "TAMWOLF_DAMAGED");
+	showBust("TAMTAM", tamWolfBustDisplay(0));
 	output("<i>“Get " + pc.mf("him","her") + " Tam-wolf! I believe in you!”</i> the cat-girl, Tam, cheers as her cyberhound advances on you, growling. When it lunges, though, one of its legs snaps audibly, and the drone tumbles to the ground in a lump.");
 	output("\n\n<i>“NOOOO! TAM-WOLF!”</i> Tam shrieks, rushing forward and grabbing the malfunctioning drone, cradling his head. <i>“You... you monster! What did you do to my poor Tam-wolf?”</i>");
 	output("\n\nBefore you can say a word, the remaining turrets -- what few are left -- open up, forcing you to dive into cover as the cat-girl retreats into the back room, dragging her attack drone and cursing up a storm at you. A few well-placed swings take out the last of the turrets, leaving you standing in the room amid a decimated army of drones and gun-turrets and a sea of shell casings. Your ears are ringing, but at least you're alive....");
@@ -333,20 +352,13 @@ public function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 	addButton(0,"Next",takeTamWulf);
 }
 
-// Tamwolf Check function
-public function hasTamWolfOnSelf():Boolean
-{
-	if(pc.hasTamWolf() || pc.hasItemByName("TamWolf") || pc.hasItemByName("TamWolf2.0")) return true;
-	return false;
-}
-
 //[Take Tam-Wolf]
 //Once Tam-Tam is knocked out or incapacitated via smexing.
 public function takeTamWulf():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("TAMWOLF_DAMAGED");
+	showBust(tamWolfBustDisplay(0));
 	showName("\nTAM-WOLF");
 	output("With the psychotic cat-girl incapacitated, you take a gander at the damaged drone dog on the work table. Looking just like a sleek black doberman, the drone is certainly quite powerful -- and those teeth can take a bite right out of you. With a little re-working, you could probably turn him into your new best friend.");
 	if(silly) output(" Then again, stealing is wrong... even from pirates.");
@@ -366,7 +378,7 @@ public function dontTakeTamWulf():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("TAMWOLF_DAMAGED");
+	showBust(tamWolfBustDisplay(0));
 	showName("\nTAM-WOLF");
 	output("Nah. You'd hate to deprive the crazy cat-girl of her pet pooch, anyway. She'd be heartbroken!");
 	clearMenu();
@@ -384,7 +396,7 @@ public function yesTechSpecialistsTakeTamWulf():void
 	//Drone techs!
 	if(pc.hasPerk("Attack Drone"))
 	{
-		showBust("TAMWOLF");
+		showBust(tamWolfBustDisplay());
 		
 		output("You pull a cord from your codex to the datajack in the back of Tam-wolf canid head and upload a basic clear and reformat program. Then it's a simple matter of uploading your normal drone's command and control programs to Tam-wolf and fixing that borked leg of his: just a few minutes' work, really, now that you can concentrate. Pretty soon, he's good as new! You pick up the hefty cyber-doberman and set it on the ground before flicking the on button hidden under his hind leg. With a synthesized bark, the attack drone comes to life.");
 		output("\n\nThe wolf-drone shudders, then its tail starts wagging rhythmically as it turns to face you. Its booming, synthesized voice announces, <i>“Grrrreetings " + pc.mf("Master","Mistress") + ". This unit is programmed to be your faithful protector. What is your command?”</i>");
@@ -402,7 +414,7 @@ public function yesTechSpecialistsTakeTamWulf():void
 	//{PC is not a Drone Tech}
 	else
 	{
-		showBust("TAMWOLF_DAMAGED");
+		showBust(tamWolfBustDisplay(0));
 		
 		output("Well, you're not a drone expert, but... how hard could it be? You pull a cord from your codex to an exposed datajack on the back of Tam-wolf's canid cranium, and quickly find your screen flooded with seemingly random messages and diagnostics.");
 		//PC must make a Moderate INTELLIGENCE check. This is a great time to demonstrate that skill formula we spent forever developing out!:
@@ -456,7 +468,7 @@ public function yesTechSpecialistsTakeTamWulf():void
 public function tamtamBadEndPetPooch():void
 {
 	author("Savin");
-	showBust("TAMTAM","TAMWOLF");
+	showBust("TAMTAM",tamWolfBustDisplay());
 	showName("\nTAM-WOLF");
 	//If During phase 1:
 	if(!enemy.hasStatusEffect("Phase 2"))
@@ -513,7 +525,7 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	
 	clearOutput();
 	author("Savin");
-	showBust("TAMTAM","TAMWOLF");
+	showBust("TAMTAM",tamWolfBustDisplay());
 	showName("\nTAM-WOLF");
 	
 	output("<b>Months pass</b>");

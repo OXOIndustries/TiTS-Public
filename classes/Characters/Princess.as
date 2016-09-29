@@ -250,7 +250,6 @@
 			//Impact
 			else
 			{
-				var damage:DamageResult = applyDamage(new TypeCollection({ drug: 10+rand(4) } ), this, target, "suppress");
 				output("\nDespite your attempts to avoid it, it ");
 				if(target.shields() > 0) output("slips through your shield, too slow to be blocked, and ");
 				output("crashes into your upraised forearm. The thin glass shatters, you’re splattered in one of the more potent aphrodisiacs this side of the Milky Way.");
@@ -268,6 +267,9 @@
 				if(!target.hasFur() && !target.hasScales()) output("in");
 				else output("into the [pc.skin] beneath");
 				output(" with alarming speed. Attempts to wipe it away just smear the crimson narcotic across your fingers, giving it another vector to worm its way into your system.");
+				
+				var damage:DamageResult = applyDamage(new TypeCollection({ drug: 10+rand(4) } ), this, target, "suppress");
+				
 				//New PG. Lust reaction!
 				//0-10 Lust
 				if (target.lust() <= 10) output("\n\nYou can feel your cheeks heating against your will, and it’s suddenly more difficult to pull your eyes from the bouncing nyrean royalty so close at hand.");

@@ -613,7 +613,7 @@ public function kq2rfYardA1():Boolean
 		flags["TAMWOLF_FIXED_IN_KENNEL"] = 1;
 		processTime(2);
 		
-		showBust("TAMWOLF");
+		showBust(tamWolfBustDisplay());
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 		return true;
@@ -639,7 +639,7 @@ public function kq2rfYardA1():Boolean
 		}
 		processTime(2);
 		
-		showBust("TAMWOLF_II");
+		showBust(tamWolfBustDisplay(2));
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 		return true;

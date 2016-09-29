@@ -344,6 +344,9 @@
 		public var Bust_LUSTOMORPH_RASKVEL:Class;
 		public var Bounds_LUSTOMORPH_RASKVEL:Rectangle = new Rectangle(38, 14, 64, 64);
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/maki.png", mimeType = "image/png")]
+		public var Bust_MAKI:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/marina.png", mimeType = "image/png")]
 		public var Bust_MARINA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/marina_nude.png", mimeType = "image/png")]
@@ -828,6 +831,9 @@
 			public var Full_LUSTOMORPH_GRYVAIN:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lustomorph_raskvel.png", mimeType = "image/png")]
 			public var Full_LUSTOMORPH_RASKVEL:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/maki.png", mimeType = "image/png")]
+			public var Full_MAKI:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/marina.png", mimeType = "image/png")]
 			public var Full_MARINA:Class;
