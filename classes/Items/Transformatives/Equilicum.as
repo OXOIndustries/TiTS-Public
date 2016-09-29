@@ -96,6 +96,7 @@ package classes.Items.Transformatives
 			if(target.balls > 0) 
 			{
 				output("With much anticipation, you carefully inject the small needle straight into ");
+				if(target.balls > 0) output("one of ");
 				else output("your [pc.balls], knowing the needle is coated in an anesthetic that would prevent any pain. You watch the vial slowly empty, the cyan fluid flowing into your [pc.balls]. You almost chuckle at the thought of having \"blue balls\". Once the needle is empty, you toss the empty vial to the side and casually rub your [pc.sack], waiting for the drug to kick in.");
 			}
 			else output("You examine the vial of milky blue liquid as you consider how to inject it. Shrugging your shoulders, decide to inject it into your prostate. Going for the safest route, you aim the needle at your perineum. As soon as the needle is all the way in, the blue liquid drains from the vial, and you can feel your prostate swelling with the fluid. Once the vial is empty, you pull it out and toss it to the side. You quickly rub your perineum, trying the soothe the odd sensation in your body as you await the drug's full effects.");
@@ -104,6 +105,7 @@ package classes.Items.Transformatives
 			if(target.balls > 0) 
 			{
 				output("A short while after taking the dose of Equilibricum, your [pc.balls] churn");
+				if(target.balls == 1) output("s");
 				output(" as the microbots you injected start to take effect. ");
 			}
 			output("Feeling yourself overwhelmed with lust");
@@ -297,22 +299,28 @@ package classes.Items.Transformatives
 				//had balls all along
 				} else {
 					output("After your powerful orgasm, you idly await the new size of your nut");
+					if(target.balls > 1) output("s");
 					output(". Thankfully within a few minutes, you start to feel the changes happening.");
 					//ball size increased
 					if (ballDiameterModifier > 0) {
 						output(" Your [pc.balls] rapidly swell");
+						if(target.balls == 1) output("s");
 						output(" in size as your scrotum becomes much more elastic to be able to hold your new size.");
+						if(target.balls == 1) output(" They lightly bounce as they come");
 						else output(" It lightly bounces as it comes");
 						output(" to a rest.");
 					//efficency increased
 					} else {
 						output("Your [pc.balls] churn");
+						if(target.balls == 1) output("s");
 						output(" with power, shrinking as ");
+						if(target.balls == 1) output("it becomes");
 						else output("they become");
 						output(" more compact and dense. Although you lost a bit of size, you can't help but smile as you realize your [pc.balls] will release a much bigger payload than before.");
 					}
 					
 					output(" You idly fondle ");
+					if(target.balls == 1) output("it");
 					else output("them");
 					output(" as you imagine");
 					
@@ -322,6 +330,7 @@ package classes.Items.Transformatives
 						if (target.isTreated()) output(" cows");
 						else output(" whores");
 						output(" at your feet, worshipping and licking your ball");
+						if(target.balls > 1) output("s");
 						output(". You can barely wait until you're slapping your [pc.balls] against the ass of");
 						if (target.isTreated()) output(" the nearest cow");
 						else output(" your next partner");
@@ -332,6 +341,7 @@ package classes.Items.Transformatives
 						else output(" ass");
 					}
 					output(". ");
+					if(target.balls == 1) output("It churns");
 					else output("They churn");
 					output(" with anticipation.");
 				}
