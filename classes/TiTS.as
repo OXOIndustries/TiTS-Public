@@ -236,6 +236,7 @@
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
 		include "../includes/newTexas/brynn.as";
+		include "../includes/newTexas/busky.as";
 		include "../includes/newTexas/ellie.as";
 		include "../includes/newTexas/haley.as";
 		include "../includes/newTexas/gianna.as";
@@ -1251,6 +1252,10 @@
 		public function get wulfe():Siegwulfe
 		{
 			return chars["WULFE"];
+		}
+		public function get busky():Busky
+		{
+			return chars["BUSKY"];
 		}
 		
 		private var _dbgtestvar:int = 0;
