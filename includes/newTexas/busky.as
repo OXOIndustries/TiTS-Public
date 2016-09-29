@@ -92,7 +92,7 @@ public function buskyStrapsShopFunc():Boolean {
 	
 		//First visit
 		if(flags["MET_BUSKY"] == undefined) {
-			output("You enter the small shop, tightly snugged between the Barn and Ten Ton Gym. Taking in your first breath, you notice the aroma filling the air, a musk so powerful you're taken aback by the sheer palpable amount of virility. You stand there, paralyzed by the intoxicating fumes. The scent is familiar to you, having passed by unwashed New Texans coming back from their sessions at the milkers, however the simple description of a well fucked cow cannot depict the full scale of the musk emanating from the walls. It smells like you've walked in on the aftermath of a ranch-wide orgy.");
+			output("You enter the small shop, across the street from the Barn and Ten Ton Gym. Taking in your first breath, you notice the aroma filling the air, a musk so powerful you're taken aback by the sheer palpable amount of virility. You stand there, paralyzed by the intoxicating fumes. The scent is familiar to you, having passed by unwashed New Texans coming back from their sessions at the milkers, however the simple description of a well fucked cow cannot depict the full scale of the musk emanating from the walls. It smells like you've walked in on the aftermath of a ranch-wide orgy.");
 			if (pc.isTreated()) output("\n\nIn fact, you start to visualize it, daydreaming in the middle of the store. Worn out and used cows strewn about on the floor, some lying in a pile, resting their heads on each other's mammoth mammaries. The few voluptuous cows that aren't entirely worn out or incapacitated by the amount of cum lying in their wombs moaning in dissatisfaction of an empty hole, crawling along the cum soaked hay to a group of spent bulls, most of whom spoon with their curvy cows. The bulls that lack a resting partner quickly meet up with the cows, males lying down on their backs as the cows straddle their tools with cum soaked thighs.");
 			
 			output("\n\nYou snap out of your");
@@ -103,7 +103,7 @@ public function buskyStrapsShopFunc():Boolean {
 			if(pc.isSexless()) output(" face, flushed with arousal");
 			else  output(" [pc.crotch] dripping fluids, which are clearly visible");
 			
-			if (!pc.isNude()) output(" through your clothes");
+			if (!pc.isCrotchExposed()) output(" through your clothes");
 			output(", if anybody were to give you a good look over.");
 			
 			output("\n\nThe man at the counter is an Adonis, no muscle on his body undefined, with pectorals the size of throw pillows. The bull's light skin somewhat contrasts his brown hair, within which a pair of fully grown horns sprout, sticking up on either side of his head. Short, dark stubble is visible where a beard could be. Its' hard to miss the outline of his pectorals and abdominals showing through his strained undershirt.");
@@ -117,7 +117,7 @@ public function buskyStrapsShopFunc():Boolean {
 			
 		//Follow-up visits	
 		} else {
-			output("You enter the small shop tightly snugged between the Barn and Ten Ton Gym. After you readjust to the thick scent you look around. Aside from the occasional bull rummaging through the clothes, the shop is mostly filled with cows; possibly purchasing products for their bulls. You turn to look at the front of the store, greeted by the warm smile of the musclebound bull behind the counter.");
+			output("You enter the small shop across the street from the Barn and Ten Ton Gym. After you readjust to the thick scent you look around. Aside from the occasional bull rummaging through the clothes, the shop is mostly filled with cows; possibly purchasing products for their bulls. You turn to look at the front of the store, greeted by the warm smile of the musclebound bull behind the counter.");
 			output("\n\n<i>“Looking to buy somethin'? Other than me,”</i> the bull jokes. <i>“Can't buy what's already free.”</i>");
 			output("\n\nA monitor behind the counter Busky works at reads <i>“Despite Straps's recent debut, it is already a major distributor of the freshest male enhancing products and male clothing. We are fully stocked in male underwear and tops, and have received a shipment of newly released mods. While our stock may be small now, there are more mods to come, so check back while we restock and stock your jocks!”</i>");
 		}

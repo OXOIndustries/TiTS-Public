@@ -115,7 +115,7 @@ public function initNewTexasRooms():void
 	rooms["508"].runOnEnter = undefined;
 	rooms["508"].westExit = "507";
 	rooms["508"].eastExit = "509";
-	rooms["508"].northExit = "STRAPS";
+	rooms["508"].southExit = "STRAPS";
 	rooms["508"].moveMinutes = 2;
 	rooms["508"].planet = "PLANET: NEW TEXAS";
 	rooms["508"].system = "SYSTEM: NYE";
@@ -128,7 +128,7 @@ public function initNewTexasRooms():void
 	rooms["STRAPS"].roomName = "STRAPS";
 	rooms["STRAPS"].description = "";
 	rooms["STRAPS"].runOnEnter = buskyStrapsShopFunc;
-	rooms["STRAPS"].southExit = "508";
+	rooms["STRAPS"].northExit = "508";
 	rooms["STRAPS"].moveMinutes = 2;
 	rooms["STRAPS"].planet = "PLANET: NEW TEXAS";
 	rooms["STRAPS"].system = "SYSTEM: NYE";
