@@ -4719,6 +4719,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");
 				variousCount++;
 			}
+			//Frostwyrm
+			if(flags["MET_FROSTWYRM"] != undefined)
+			{
+				output2("\n<b><u>Frostwyrm</u></b>");
+				if(flags["FROSTWYRMSLAIN"] != undefined) output2("\n* You have slain the Frostwyrm!");
+				if(flags["FROSTWYRMWARNING"] != undefined) output2("\n* You were defeated by the Frostwyrm and warned never to return.");			
+				if(flags["MET_FROSTWYRM"] != undefined) output2("\n<b>* Frostwyrm, Times Encountered:</b> " + flags["MET_FROSTWYRM"]);
+				variousCount++;
+			}
+			
+			
 			// Resources
 			if(flags["9999"] != undefined)
 			{
