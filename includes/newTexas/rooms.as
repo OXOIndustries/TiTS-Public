@@ -115,12 +115,27 @@ public function initNewTexasRooms():void
 	rooms["508"].runOnEnter = undefined;
 	rooms["508"].westExit = "507";
 	rooms["508"].eastExit = "509";
+	rooms["508"].northExit = "STRAPS";
 	rooms["508"].moveMinutes = 2;
 	rooms["508"].planet = "PLANET: NEW TEXAS";
 	rooms["508"].system = "SYSTEM: NYE";
 	rooms["508"].addFlag(GLOBAL.OUTDOOR);
 	rooms["508"].addFlag(GLOBAL.PUBLIC);
 	//rooms["508"].addFlag(GLOBAL.NPC);
+	
+	//Between ten ton gym and the milking barn, access from room 508 (north entrance)
+	rooms["STRAPS"] = new RoomClass(this);
+	rooms["STRAPS"].roomName = "STRAPS";
+	rooms["STRAPS"].description = "";
+	rooms["STRAPS"].runOnEnter = buskyStrapsShopFunc;
+	rooms["STRAPS"].southExit = "508";
+	rooms["STRAPS"].moveMinutes = 2;
+	rooms["STRAPS"].planet = "PLANET: NEW TEXAS";
+	rooms["STRAPS"].system = "SYSTEM: NYE";
+	rooms["STRAPS"].addFlag(GLOBAL.INDOOR);
+	rooms["STRAPS"].addFlag(GLOBAL.PUBLIC);
+	rooms["STRAPS"].addFlag(GLOBAL.COMMERCE);
+	rooms["STRAPS"].addFlag(GLOBAL.NOFAP);
 	
 	//509
 	//Just south of SW barn corner
