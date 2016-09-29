@@ -2761,6 +2761,12 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	{
 		output2(" The head is also covered by stretchy foreskin, ensuring that it is kept protected and sensitive.");
 	}
+	
+	//Candy colored cocks
+	if(target.cocks[x].cockColor == "red and white") {
+		output2(" Like a candy cane, it's striped red and white.");
+	}
+	
 	//KNOT STUFF
 	if(target.hasKnot(x))
 	{

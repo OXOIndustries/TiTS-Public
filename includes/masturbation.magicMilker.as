@@ -258,6 +258,8 @@ public function fluidValue(fluidType:Number = -1, basePrice:Number = 0):Number
 		case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
 		case GLOBAL.FLUID_TYPE_NYREA_CUM:
 		case GLOBAL.FLUID_TYPE_NYREA_GIRLCUM:
+		case GLOBAL.FLUID_TYPE_EGGNOG:
+		case GLOBAL.FLUID_TYPE_PEPPERMINT:
 			rarity = 1.75;
 			break;
 		case GLOBAL.FLUID_TYPE_HONEY:

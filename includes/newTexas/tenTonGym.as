@@ -86,6 +86,8 @@ public function weightRoomBonusFunction():Boolean
 	if(passDetector()) return true;
 	output("The sounds of grunts and clanking metal greet you as you walk into the weight room. Half the room is taken up with machines for working every possible muscle, all of them with stacks of heavy plates over a meter high, to account for the brute strength the Treatment bestows upon some of its users. The room’s other half is filled with various types of weight benches and racks of free weights, for those who want to pump iron without mechanical assistance. The gym’s front windows make up most of one wall, and the opposite wall is all mirrors.");
 	output("\n\nMost of the room’s occupants are bulls, focusing largely on their chests and arms, with a few of them pressing hard on the leg machines. A few cows are scattered around the room, working on their arms and legs or doing ab exercises on mats. Bulls and cows both ogle and catcall each other as they work, often stopping in the middle of a set to do so. A dark-skinned cowgirl is lifting heavier weights on a machine, and offers a challenging smirk to anyone who approaches her.");
+	//if met Busky, and time is between 5pm and midnight
+	if(flags["MET_BUSKY"] == true && hours >= 17 && hours <= 24) output("\n\nYou see another familiar face, Busky, hidden under a bench press. Whenever he takes a break, he stares dreamily at the bulging crotches of other bulls. He seems to be in the middle of an extensive workout, lifting around 300 imperial pounds. It's a rather low amount compared to the other bulls lifting twice, some thrice that much weight. However his endurance is astonishing, doing longer reps than any other bull. Compensating for weight, he's doing a much harder workout, and his body is showing it. His heaving chest is sweating profusely, being soaked up by his sodden undershirt and gym shorts.");
 	//[Light Workout] Go to Light Workout {locked if PC has [Sore] debuff or doesn’t have 30 energy}
 	if(pc.energy() >= 30 && !pc.isWornOut()) addButton(0,"Light Workout",lightWorkout,undefined,"Light Workout","A light workout that’ll help you build a little bit of muscle.");
 	else addDisabledButton(0,"Light Workout","Light Workout","You’re too tired for that workout.");
@@ -94,7 +96,9 @@ public function weightRoomBonusFunction():Boolean
 	else addDisabledButton(1,"Hard Workout","Hard Workout","You’re too tired for that workout.");
 	//[Cowgirl] Go to Simone
 	if(flags["MET_SIMONE"] == undefined) addButton(3,"Cowgirl",simoneWorkoutApproach,undefined,"Cowgirl","A cowgirl can be seen lifting weights here.");
-	else addButton(3,"Simone",simoneWorkoutApproach,undefined,"Simone","Pump some iron with the competitive cowgirl.");
+	else addButton(3, "Simone", simoneWorkoutApproach, undefined, "Simone", "Pump some iron with the competitive cowgirl.");
+	//add Busky menu, buskyWorkoutMenu() found in Busky.as
+	if(flags["MET_BUSKY"] == true && hours >= 17 && hours <= 24) addButton(4, "Busky", buskyWorkoutMenu, undefined, "Busky", "Meet up with the bull.");
 	//[To Entrance]
 	return false;
 }
