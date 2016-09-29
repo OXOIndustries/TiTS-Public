@@ -303,6 +303,7 @@
 		
 		// Uveto
 		include "../includes/uveto/freezer.as";
+		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/kirila.as";

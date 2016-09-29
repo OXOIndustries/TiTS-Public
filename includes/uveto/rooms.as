@@ -626,7 +626,8 @@ public function initUvetoRooms():void
 	rooms["UVIP D38"].eastExit = "UVIP F38";
 	rooms["UVIP D38"].westExit = "UVI P38";
 	rooms["UVIP D38"].moveMinutes = 6;
-	rooms["UVIP D38"].runOnEnter = TundraEncounterBonus;
+	//rooms["UVIP D38"].runOnEnter = TundraEncounterBonus;
+	rooms["UVIP D38"].runOnEnter = HereBeDragonBonus;
 	rooms["UVIP D38"].addFlag(GLOBAL.OUTDOOR);
 	rooms["UVIP D38"].addFlag(GLOBAL.HAZARD);
 
@@ -639,7 +640,8 @@ public function initUvetoRooms():void
 	rooms["UVIP F38"].southExit = "UVIP F40";
 	rooms["UVIP F38"].westExit = "UVIP D38";
 	rooms["UVIP F38"].moveMinutes = 6;
-	rooms["UVIP F38"].runOnEnter = TundraEncounterBonus;
+	//rooms["UVIP F38"].runOnEnter = TundraEncounterBonus;
+	rooms["UVIP F38"].runOnEnter = HereBeDragonBonus;
 	rooms["UVIP F38"].addFlag(GLOBAL.OUTDOOR);
 	rooms["UVIP F38"].addFlag(GLOBAL.HAZARD);
 
