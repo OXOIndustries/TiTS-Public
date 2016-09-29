@@ -272,6 +272,18 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/horse_sheath.png", mimeType = "image/png")]
 		public var Bust_HORSECOCK:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/hover_drone.png", mimeType = "image/png")]
+		public var Bust_HOVER_DRONE:Class;
+		public var Bounds_HOVER_DRONE:Rectangle = new Rectangle(5, 18, 110, 110);
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/hover_drone_silly.png", mimeType = "image/png")]
+		public var Bust_HOVER_DRONE_SILLY:Class;
+		public var Bounds_HOVER_DRONE_SILLY:Rectangle = new Rectangle(0, 18, 100, 110);
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/jerome.png", mimeType = "image/png")]
+		public var Bust_JEROME:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/jerome_nude.png", mimeType = "image/png")]
+		public var Bust_JEROME_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_juggernaut.png", mimeType = "image/png")]
 		public var Bust_JUGGERNAUT:Class;
 		public var Bounds_JUGGERNAUT:Rectangle = new Rectangle(16, 0, 64, 64);
@@ -753,6 +765,16 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/horse_sheath.png", mimeType = "image/png")]
 			public var Full_HORSECOCK:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/hover_drone.png", mimeType = "image/png")]
+			public var Full_HOVER_DRONE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/hover_drone_silly.png", mimeType = "image/png")]
+			public var Full_HOVER_DRONE_SILLY:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/jerome.png", mimeType = "image/png")]
+			public var Full_JEROME:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/jerome_nude.png", mimeType = "image/png")]
+			public var Full_JEROME_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_juggernaut.png", mimeType = "image/png")]
 			public var Full_JUGGERNAUT:Class;

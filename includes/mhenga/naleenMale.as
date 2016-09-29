@@ -161,7 +161,7 @@ public function getButtfuckedByDudeleen():void
 		output("\n\nGiven your inexperience, the process is a little rougher than you’d like, and you almost begin to regret giving in to your adventurous side. But the naleen seems to pick up on your discomfort. You hear him chuckle as he slows down and ");
 		if(pc.hasHair()) output("runs his fingers through your [pc.hair].");
 		else output("traces a claw down your back.");
-		output("\n\n<i>“You’re pretty brave, aren’t you?”</i> he asks, to which you respond with a strained smile and a shrug. The dick buried halfway in your ass swells a bit before you feel it move forward, inching deeper inside you. The naleen starts to rock his hips gently, easing himself in and out of your untrained ass. The naleen carefully stretches you with his girthy reptilian dick and, slowly but surely, pleasure replaces pain.");
+		output("\n\n<i>“You’re pretty brave, aren’t you?”</i> he asks, to which you respond with a strained smile and a shrug. The dick buried halfway in your ass swells a bit before you feel it move forward, inching deeper inside you. The naleen starts to rock his hips gently, easing himself in and out of your untrained ass. He carefully stretches you with his girthy reptilian dick and, slowly but surely, pleasure replaces pain.");
 		output("\n\nThe naleen picks up his pace, but keeps his thrusts shallow, at least until your ass stops putting up so much of a fight. Just as your pleasure begins to outpace your breath, the alien lets out a predatory hiss and drives himself deeper. Your whole body tenses and you let out a cry of surprise as he starts pounding away at your [pc.ass], but he gave you enough of a warm up that you can take him decently well. You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambiance of the jungle.");
 	}
 	else
@@ -172,7 +172,7 @@ public function getButtfuckedByDudeleen():void
 		output(" The naleen pounds away, one shaft buried in your [pc.asshole] while the other slides between your asscheeks.");
 		if(pc.hasTail())
 		{
-			output("The upper shaft grinds against the base of your [pc.tails], hitting the deliciously sensitive spot right where ");
+			output(" The upper shaft grinds against the base of your [pc.tails], hitting the deliciously sensitive spot right where ");
 			if(pc.tailCount > 1) output("they meet");
 			else output("it meets");
 			output("your spine.");
@@ -199,7 +199,7 @@ public function getButtfuckedByDudeleen():void
 			output("Unable to resist, you ")
 			if(pc.hasLegs()) output("tuck a hand between your [pc.legs]");
 			else output("slide a hand towards you waist");
-			output("and set to work, giving [pc.eachClit] a little tweak. The eye-fluttering stimulation combined with naleen's thrusting is almost too much, and you groan in ecstasy.")
+			output(" and set to work, giving [pc.eachClit] a little tweak. The eye-fluttering stimulation combined with naleen's thrusting is almost too much, and you groan in ecstasy.")
 		}
 	}
 	if(pc.hasCuntTail()) output("\n\nWith lust and satisfaction occupying your mind, you don't pay much attention to your tail, but the [pc.tailVagina] at its tip is determined to get in on the action, too. You unconsciously curl the prehensile length around to engulf the naleen's upper dick, surprising him enough that he actually stops his pounding. As soon as your tail gives his cock the first of many rough squeezes, though, he jumps back into action, now with both dicks buried inside you.");
@@ -211,10 +211,10 @@ public function getButtfuckedByDudeleen():void
 		output("\n\n<i>“Fuck yes...”</i> you moan, biting your lip. You give a frantic nod as the naleen picks up where he left off, your ass filled with a huge amount of cock.");
 	}
 	
-	output("\n\nThe buttfuck gets more and more intense, and you lean heavily against the tree to keep yourself steady. Your [pc.chest] is mashed against it as the naleen continues to pound you, ");
+	output("\n\nThe buttfuck gets more and more intense, and you lean heavily against the tree to keep yourself steady. Your [pc.chest] " + (pc.hasBreasts() ? "are" : "is") + " mashed against it as the naleen continues to pound you, ");
 	if(pc.isLactating()) output("and the pressure squeezes streams of [pc.milk] from your [pc.nipples], sending trails of [pc.milkColor] racing down the tree to pool on the earth below. ");
 	else output("but the harsh pressure is really just one more bit of stimulation. ");
-	output("As the naleen begins to grunt with every increasingly powerful thrust, it almost feels like you’re holding on for dear life.")
+	output("As your alien lover begins to grunt with every increasingly powerful thrust, it almost feels like you’re holding on for dear life.")
 	if(analCap > 300) output("Your stomach swells in time with his movements, the combined girth of his dicks stretching you to an incredible extreme.")
 	output(" But the pleasure doesn’t lie, and the roughness only serves to highlight how good it all feels.");
 	
@@ -223,7 +223,7 @@ public function getButtfuckedByDudeleen():void
 	else if(analCap > 300) output("squeezes his dicks.");
 	else output("squeezes his dick.");
 	output(" Eventually a long groan overcomes him as he slams into you one final time, burying himself as deep as he can. Both of his cocks pulse as they blow their load, and the sensation of being ");
-	if(pc.hasCuntTail() || analCap > 300) output("simultaneously covered and ");
+	if(!pc.hasCuntTail() && analCap < 300) output("simultaneously covered and ");
 	output("filled with cum is your breaking point.");
 
 	if(pc.hasCock())

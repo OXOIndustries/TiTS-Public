@@ -63,6 +63,12 @@ public function uvetoNerrasaMenu():void
 
 public function uvetoNerrasaBuy():void
 {
+	if(canBuySiegwulfe())
+	{
+		if(!chars["NERRASA"].hasItemByType(SiegwulfeItem)) chars["NERRASA"].inventory.push(new SiegwulfeItem());
+	}
+	else chars["NERRASA"].destroyItem(new SiegwulfeItem());
+	
 	shopkeep = nerrasa;
 	buyItem();
 }

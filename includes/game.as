@@ -112,6 +112,8 @@ public function showLocationName():void
 
 public function disableExploreEvents():Boolean
 {
+	// Stellar Tether Duration
+	if (flags["FOUGHT_TAM"] != undefined && flags["STELLAR_TETHER_CLOSED"]  == undefined) return true;
 	// Stellar Tether (Bomb Timer)
 	if (flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) return true;
 	// Deck 13 Duration
@@ -545,6 +547,7 @@ public function crewRecruited(allcrew:Boolean = false):Number
 	{
 		if (hasGooArmor() && !gooArmorIsCrew()) counter++;
 		if (varmintIsTame()) counter++;
+		if (siegwulfeIsCrew()) counter++;
 	}
 	
 	return counter;
@@ -619,6 +622,14 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += varmintOnShipBonus((count + other) - 1);
+		}
+	}
+	if (hasSiegwulfe() || siegwulfeIsCrew() || flags["WULFE_ON_SHIP"] == false)
+	{
+		other++;
+		if (!counter)
+		{
+			crewMessages += siegwulfeOnShipBonus((count + other) - 1);
 		}
 	}
 	if(!counter) {
@@ -1928,10 +1939,8 @@ public function processTime(arg:int):void {
 				flags["ANNO_ASLEEP"]--;
 				if(flags["ANNO_ASLEEP"] <= 0) flags["ANNO_ASLEEP"] = undefined;
 			}
-			if(chars["ALISS"].lust() < 70)
-			{
-				chars["ALISS"].lust(5);
-			}
+			if(chars["ALISS"].lust() < 70) chars["ALISS"].lust(5);
+			if(chars["PENNY"].lust() < 100) chars["PENNY"].lust(10);
 			if(chars["SHEKKA"].lust() < 50) chars["SHEKKA"].lust(15);
 
 			if(pc.hasPerk("Dumb4Cum")) dumb4CumUpdate();
@@ -2100,10 +2109,8 @@ public function processTime(arg:int):void {
 				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
 				if(days >= 2 && (flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined || !MailManager.isEntryUnlocked("newtexas"))) newTexasEmail();
 				
-				if(chars["ALISS"].lust() >= 70)
-				{
-					chars["ALISS"].orgasm();
-				}
+				if(chars["ALISS"].lust() >= 70) chars["ALISS"].orgasm();
+				
 				//Cooldown timer
 				if(pc.perkv2("Auto-Autofellatio") >= 1) 
 				{

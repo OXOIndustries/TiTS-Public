@@ -588,7 +588,8 @@ public function xantheTalkMenu():void
 	if(flags["XANTHE_TALKED_ABOUT_HERSELF"] != undefined) addButton(3,"Zyi",talkToXantheAboutSpaceJesus);
 	else addDisabledButton(3,"Zyi","Zyi","You don't know her well enough to ask about this.");
 	//INESSA EXPANSION
-	if(flags["INESSA_BELTED"] == 1 && flags["INESSA_FAMILYED"] == 1 && flags["INESSA_EXP"] == undefined) addButton(4,"Inessa",xanTalkAboutInessa,undefined,"Inessa","Talk to Xanthe about her sister.");
+	if(flags["MET_INESSA"] == undefined) addDisabledButton(4,"Locked");
+	else if(flags["INESSA_BELTED"] == 1 && flags["INESSA_FAMILYED"] == 1 && flags["INESSA_EXP"] == undefined) addButton(4,"Inessa",xanTalkAboutInessa,undefined,"Inessa","Talk to Xanthe about her sister.");
 	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(4,"Inessa","Inessa","You've already talked about Inessa.");
 	else addDisabledButton(4,"Inessa","Inessa","You need to talk to Inessa first.");
 	addButton(5,"The War",theWarTalkXanthe);
@@ -602,7 +603,8 @@ public function xantheTalkMenu():void
 	// * Locked until ‘Xanthe’ topic is viewed
 	// ** Locked until ‘Her Sex’ topic is viewed.
 	//INESSA EXPANSION
-	if(flags["XANTHE_INESSA"] == 1 && flags["INESSA_EXP"] == undefined && flags["INESSA_BEING_DOMMED"] != undefined) addButton(9,"Key",xanTalkAboutKey,undefined,"Key","Talk to Xanthe about Inessa's belt key");
+	if(flags["MET_INESSA"] == undefined) addDisabledButton(9,"Locked");
+	else if(flags["XANTHE_INESSA"] == 1 && flags["INESSA_EXP"] == undefined && flags["INESSA_BEING_DOMMED"] != undefined) addButton(9,"Key",xanTalkAboutKey,undefined,"Key","Talk to Xanthe about Inessa's belt key.");
 	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(9,"Key","Key","You need to give Inessa the message from her sister.");
 	else if(flags["INESSA_BEING_DOMMED"] == undefined) addDisabledButton(9,"Key","Key","You have to be domming Inessa for this.");
 	else addDisabledButton(9,"Key","Key","You don't know about the key yet.");
@@ -3166,7 +3168,7 @@ public function xanTalkAboutKey():void
 	{
 		output("\n\n<i>“You said that you were keeping Inessa's belt key until you found someone worthy.”</i> You recount, thinking back again to the previous conversation. <i>“How would I go about proving myself worthy of taking that key?”</i> Xanthes expression turns serious once more, her eyes looking you up and down, examining your features.");
 		output("\n\n<i>“You wish to become my sisters "+ pc.mf("Master","Mistress") +"? Interesting...”</i> You nod your confirmation and Xanthe ponders for a moment, seemingly mulling over ideas in her head. <i>“Before I decide, tell me something... What do you intend to do with my sister once she is free of her belt?”</i>");
-		output("\n\n<i>“As you said before, she's naive and vulnerable, she needs someone to protect her, and as it seems you're far too busy out here to help her all of the time.”</i>");
+		output("\n\n<i>“As you said before, she's naive and vulnerable, she needs someone to protect her, and as it is you're far too busy out here to help her all of the time.”</i>");
 		output("\n\nXanthe seems to think over this even harder before raising her eyes to look into your own. <i>“I suppose you are right, although it will come with one catch, you must prove yourself a capable Dominant, and you must prove to me you know how to care for a submissive before I will allow it.”</i> Her tone remains serious, and you nod, prepared for the challenge to which Xanthe replies. <i>“Excellent.”</i>");
 	}
 	

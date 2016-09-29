@@ -202,6 +202,7 @@
 		public static const TYPE_GRYVAIN:int								= 65;
 		public static const TYPE_KORGONNE:int								= 66;
 		public static const TYPE_FLOWER:int									= 67;
+		public static const TYPE_WATERQUEEN:int								= 68;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -272,6 +273,7 @@
 			"Gryvain",
 			"Korgonne",
 			"Flower",
+			"Water Queen",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

@@ -843,6 +843,45 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output(" Good boy!");
 		}
 		
+		public static function SiegwulfeAttack(attacker:Creature, target:Creature):void
+		{
+			var ownerName:String = attacker.getCombatName();
+			if(attacker is PlayerCharacter) ownerName = attacker.short;
+			
+			var d:Number = attacker.untypedDroneDamage() + 1 + rand(2);
+			var dmg:TypeCollection;
+			var damageResult:DamageResult;
+			
+			if(attacker is PlayerCharacter)
+			{
+				if(kGAMECLASS.chars["WULFE"].isBimbo())
+				{
+					output("“Don’t you worry your pretty head, [pc.master]!” " + kGAMECLASS.chars["WULFE"].short + " giggles, prancing forward with her massive milk-tanks on display. “I’ll, like, distract ‘em and stuff!” She sure does, bouncing around with jiggling tits and a wiggling ass, putting herself between you and " + target.getCombatName() + ".");
+					
+					dmg = new TypeCollection( { tease: 20 } );
+					damageResult = applyDamage(dmg, kGAMECLASS.chars["WULFE"], target, "suppress");
+					output("\n");
+					output(CombatContainer.teaseReactions(damageResult.lustDamage, target));
+				}
+				else
+				{
+					output(kGAMECLASS.chars["WULFE"].short + " brandishes her hardlight claws, putting herself between you and " + target.getCombatName() + ". “Don’t worry, " + attacker.mf("master", "mistress") + ", I’ll protect you!” She lunges forward, sweeping her blades across her target.");
+					
+					dmg = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
+					damageResult = applyDamage(dmg, attacker, target, "suppress");
+				}
+			}
+			else
+			{
+				output(attacker.getCombatName() + "’s Siegwulfe brandishes its hardlight claws and lunges forward, sweeping its blades at " + ((target is PlayerCharacter) ? "you!" : (target.getCombatName() + ".")));
+				
+				dmg = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
+				damageResult = applyDamage(dmg, attacker, target, "suppress");
+			}
+
+			outputDamage(damageResult);
+		}
+		
 		public static function ACECannonAttack(attacker:Creature, target:Creature):void
 		{
 			output("The gun on " + (attacker is PlayerCharacter ? "your" : possessive(attacker.getCombatName())) +" shoulder tracks towards " + (target is PlayerCharacter ? "you" : target.getCombatName()) +", charging up with power. As " + (attacker is PlayerCharacter ? target.getCombatName() : attacker.getCombatName()) +" moves, it works on its own, targeting and firing at " + (target is PlayerCharacter ? "you" : target.getCombatName()) +".");

@@ -291,3 +291,9 @@ public function grabARubbahTube():void
 	
 	quickLoot(SynthButte);
 }
+
+public function messSeatingBonus():Boolean
+{
+	edanRoomDesc();
+	return false;
+}

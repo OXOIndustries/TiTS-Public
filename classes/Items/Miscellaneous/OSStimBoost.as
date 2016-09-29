@@ -19,7 +19,7 @@ package classes.Items.Miscellaneous
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.PILL;
+			this.type = GLOBAL.POTION;
 			this.combatUsable = true;
 			this.requiresTarget = false;
 			
@@ -27,7 +27,7 @@ package classes.Items.Miscellaneous
 			this.shortName = "OS StimBoost";
 			
 			//Regular name
-			this.longName = "One Shot Stim Booster";
+			this.longName = "one shot stim booster";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

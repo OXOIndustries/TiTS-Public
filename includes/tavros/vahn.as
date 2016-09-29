@@ -549,7 +549,7 @@ public function vahnRubsYourPussy():void
 	output("\n\nAfter you both clean up – or at least as much as you can – ");
 	if (pc.isNude()) output("Vahn slips his things back on and you both");
 	else output("you both slip your things back on and");
-	output(" head back to the main hanger. There’s an utterly satisfied smile on the ausar mechanic’s face and, given the soreness of your cheeks, yours as well!");
+	output(" head back to the main hangar. There’s an utterly satisfied smile on the ausar mechanic’s face and, given the soreness of your cheeks, yours as well!");
 
 	processTime(15+rand(10));
 	flags["SEXED_VAHN"] = 1;

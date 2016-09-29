@@ -39,7 +39,7 @@ package classes.Characters
 			a = "";
 			capitalA = "";
 			this.long = "";
-			this.customBlock = "The commanders incredible bulk meets your attack with little effect.";
+			this.customBlock = "The commander’s incredible bulk meets your attack with little effect.";
 			this.isPlural = false;
 			isLustImmune = false;
 			isUniqueInFight = true;
@@ -240,10 +240,10 @@ package classes.Characters
 		
 		public function tentacleWhip(target:Creature, hostiles:Array):void
 		{
-			output("The tentacle abomination sweeps his arm towards [target.combatName], extending the squirming mass of red vines far beyond a human's reach to smash its targets.");
+			output("The tentacle abomination sweeps his arm towards [target.combatName], extending the squirming mass of red vines far beyond a human’s reach to smash its targets.");
 			if (combatMiss(this, target))
 			{
-				output(" Luckily, it's attack is slow, and easily dodged!");
+				output(" Luckily, it’s attack is slow, and easily dodged!");
 			}
 			else
 			{
@@ -263,14 +263,14 @@ package classes.Characters
 		{
 			createStatusEffect("Grapple Cooldown", 4);
 			
-			output("Henderson lunges for {target}, tentacle-arms outstretched in a writhing mass of squirming sub-creatures.");
+			output("Henderson lunges for [target.combatName], tentacle-arms outstretched in a writhing mass of squirming sub-creatures.");
 			if (combatMiss(this, target))
 			{
 				output(" Luckily, you manage to dodge the grab!");
 			}
 			else
 			{
-				output(" The Commander grabs you, squeezing furiously and drawing you towards himself. Worse, the tentacles start spurting bubbling pink fluids all over you, biting at your " + (target.hasAirtightSuit() ? "suit" : "skin") +"! It's acid!");
+				output(" The Commander grabs you, squeezing furiously and drawing you towards himself. Worse, the tentacles start spurting bubbling pink fluids all over you, biting at your " + (target.hasAirtightSuit() ? "suit" : "skin") +"! It’s acid!");
 				
 				applyDamage(damageRand(new TypeCollection( { corrosive: 8 }, DamageFlag.BYPASS_SHIELD), 15), this, target, "minimal");
 				
@@ -280,7 +280,7 @@ package classes.Characters
 		
 		public function handleGrapple(target:Creature):void
 		{
-			output("Henderson's grapple persists, holding you tight and bathing you in pink acid from a dozen spurting tentacles.");
+			output("Henderson’s grapple persists, holding you tight and bathing you in pink acid from a dozen spurting tentacles.");
 			applyDamage(damageRand(new TypeCollection( { corrosive: 8 }, DamageFlag.BYPASS_SHIELD), 15), this, target, "minimal");
 		}
 
@@ -326,7 +326,7 @@ package classes.Characters
 				{
 					if (!rangedCombatMiss(this, struct.pc) && !struct.pc.hasStatusEffect("Blinded"))
 					{
-						output(" Even as you're struggling against the fumes, another roar and spray of liquid splatters across your face, forming a blinding mask of sticky aphrodesiacs!");
+						output(" Even as you’re struggling against the fumes, another roar and spray of liquid splatters across your face, forming a blinding mask of sticky aphrodesiacs!");
 						struct.pc.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
 					}
 					else
@@ -336,7 +336,7 @@ package classes.Characters
 				}
 				else
 				{
-					output(" Even as you're struggling against the fumes, another roar and spray of liquid splatters across the Chief’s face, forming a blinding mask of sticky aphrodesiacs!");
+					output(" Even as you’re struggling against the fumes, another roar and spray of liquid splatters across the Chief’s face, forming a blinding mask of sticky aphrodesiacs!");
 					applyDamage(damageRand(new TypeCollection( { drug: 7 } ), 15), this, struct.neykkar, "minimal");
 					struct.neykkar.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
 				}
@@ -402,8 +402,8 @@ package classes.Characters
 			energy( -55);
 			output("Henderson slowly extends one of his mutated, writhing limbs in");
 			if (target is PlayerCharacter) output(" your");
-			else output(" the Chief's");
-			output(" direction. With a gurgling roar, several of the blood-red tendrils detatch from his arm, flopping down onto the ground and squirming like fish out of water. They'd almost be comical looking, if they didn't quickly right themselves and start bee-lining for [target.combatHimHer]. Several of the things leap for [target.combatName], grasping and wrapping around [target.combatHisHer] arms and legs like a dozen tiny snakes. They start squeezing and hammering, doing everything they can to drag [target.combatHimHer] down with them!");
+			else output(" the Chief’s");
+			output(" direction. With a gurgling roar, several of the blood-red tendrils detatch from his arm, flopping down onto the ground and squirming like fish out of water. They’d almost be comical looking, if they didn’t quickly right themselves and start bee-lining for [target.combatHimHer]. Several of the things leap for [target.combatName], grasping and wrapping around [target.combatHisHer] arms and legs like a dozen tiny snakes. They start squeezing and hammering, doing everything they can to drag [target.combatHimHer] down with them!");
 			
 			applyDamage(damageRand(new TypeCollection( { kinetic: 5 }, DamageFlag.BYPASS_SHIELD), 15), this, target, "minimal");
 			if (target.hasStatusEffect("Crushing Worms"))
@@ -420,13 +420,13 @@ package classes.Characters
 		{
 			clearOutput();
 			
-			output("You turn to the Chief and pull out your [pc.meleeWeapon]. <i>“Hang on, I'm getting you out!”</i>");
+			output("You turn to the Chief and pull out your [pc.meleeWeapon]. <i>“Hang on, I’m getting you out!”</i>");
 
-			output("\n\nShe wiggles urgently in the tentacles' grasp as you pull them off her limbs, hurrying before the Commander gets his bearings again. You slice away most of the tentacles, causing Henderson to shudder violently with pain, but you get the Chief free... save for the one huge, thick tentacle lodged in her cunt.");
+			output("\n\nShe wiggles urgently in the tentacles’ grasp as you pull them off her limbs, hurrying before the Commander gets his bearings again. You slice away most of the tentacles, causing Henderson to shudder violently with pain, but you get the Chief free... save for the one huge, thick tentacle lodged in her cunt.");
 
-			output("\n\nIt's lodged in tight, preventing the belly-bloated ‘taur from moving. While you still have time, you hop around behind her and grab the tentacle, hoping to yank it out of her. Instead, the tentacle pulsates, creampies the Chief with an explosion of pink juices that make her shriek, and then detatches from its host, breaking off and slithering out of your hands... and disappearing into Chief Neykkar's belly. She grunts and gasps, flailing her arms at her belly as it bloats out even more. You can see her skin writhing under her chitin plates, squirming as the tentacle moves inside her. Oh, shit.");
+			output("\n\nIt’s lodged in tight, preventing the belly-bloated ‘taur from moving. While you still have time, you hop around behind her and grab the tentacle, hoping to yank it out of her. Instead, the tentacle pulsates, creampies the Chief with an explosion of pink juices that make her shriek, and then detatches from its host, breaking off and slithering out of your hands... and disappearing into Chief Neykkar’s belly. She grunts and gasps, flailing her arms at her belly as it bloats out even more. You can see her skin writhing under her chitin plates, squirming as the tentacle moves inside her. Oh, shit.");
 
-			output("\n\n<i>“Fuck. Ah-ah no God fuck it's ins-- fuck I'm cumming aahhh!”</i>");
+			output("\n\n<i>“Fuck. Ah-ah no God fuck it’s ins-- fuck I’m cumming aahhh!”</i>");
 
 			output("\n\nShe clenches, screaming and flopping bonelessly onto her side and spilling fuck-juices like a waterfall out of her horsecunt. Dammit.");
 			
@@ -436,7 +436,7 @@ package classes.Characters
 		
 		public function actuallyFreeChief():void
 		{
-			output("\n\nYou glance behind yourself, just in time to see the Chief struggling to her feet. She looks dizzy and horny and altogether disheveled, but she nevertheless staggers up and grabs her machinegun from where it had clattered aside some time before. Neykkar trots up to your side, racking the gun's bolt and shouldering it. She gives you a slight nod, even as her tentacle-bloated belly strains and deforms around the creature inside it.\n\n<b>Chief Neykkar has joined the fight!</b>");
+			output("\n\nYou glance behind yourself, just in time to see the Chief struggling to her feet. She looks dizzy and horny and altogether disheveled, but she nevertheless staggers up and grabs her machinegun from where it had clattered aside some time before. Neykkar trots up to your side, racking the gun’s bolt and shouldering it. She gives you a slight nod, even as her tentacle-bloated belly strains and deforms around the creature inside it.\n\n<b>Chief Neykkar has joined the fight!</b>");
 			
 			setStatusValue("Free Chief", 1, 2);
 			
@@ -468,7 +468,7 @@ package classes.Characters
 			else if (statusEffectv1("Parasite Cure") == 1)
 			{
 				output("Once again you duck and weave over to the fire control panel, sliding to a stop in front of it and grabbing at the tentacle inside.");
-				if (kGAMECLASS.pc.hasRangedWeapon()) output(" You can't shoot it for risk of damaging the controls underneath it or your whole plan is down the drain!"); 
+				if (kGAMECLASS.pc.hasRangedWeapon()) output(" You can’t shoot it for risk of damaging the controls underneath it or your whole plan is down the drain!"); 
 				output(" You pull out your [pc.meleeWeapon] and start");
 				if (kGAMECLASS.pc.meleeWeapon.baseDamage.hasFlag(DamageFlag.CRUSHING)) output(" bashing");
 				else output(" hacking");
@@ -479,20 +479,20 @@ package classes.Characters
 				
 				if (statusEffectv2("Parasite Cure") > 0)
 				{
-					output("\n\nYou hammer at the tentacle as hard as you can, and though it looks pretty hurt, you can't quite get it out of the way before Commander Henderson gets too close -- you've got no choice but to get out the way if you don't want to get grabbed!");
+					output("\n\nYou hammer at the tentacle as hard as you can, and though it looks pretty hurt, you can’t quite get it out of the way before Commander Henderson gets too close -- you’ve got no choice but to get out the way if you don’t want to get grabbed!");
 				}
 				else
 				{
-					output("\n\nYou slam the tentacle as hard as you can, wrenching it away from the bulkhead in a spurting mess. It squirms and lashes at you, but finally withdraws. The controls are slathered with tentacle-cum, but they're unguarded now!");
+					output("\n\nYou slam the tentacle as hard as you can, wrenching it away from the bulkhead in a spurting mess. It squirms and lashes at you, but finally withdraws. The controls are slathered with tentacle-cum, but they’re unguarded now!");
 
-					output("\n\nUnfortunately, Henderson's coming up fast behind you, roaring and slavering. You have to turn and dodge him again!");
+					output("\n\nUnfortunately, Henderson’s coming up fast behind you, roaring and slavering. You have to turn and dodge him again!");
 					setStatusValue("Parasite Cure", 1, 2);
 				}
 			}
 			else if (statusEffectv1("Parasite Cure") == 2)
 			{
 				kGAMECLASS.pc.removeKeyItem("Parasite Cure");
-				output("You lunge for the control panel one more time, leaping over a sweep of Henderson's biggest tentacle before you and shoving a hand into your pack. You grab the cure-laden hypo and shove it into the replication chamber, replacing the fire-foam vial with the nanobots. Now the ship's systems will start spreading the cure for you, replicating it all over the vessel... as soon as you trigger the fire alarm.");
+				output("You lunge for the control panel one more time, leaping over a sweep of Henderson’s biggest tentacle before you and shoving a hand into your pack. You grab the cure-laden hypo and shove it into the replication chamber, replacing the fire-foam vial with the nanobots. Now the ship’s systems will start spreading the cure for you, replicating it all over the vessel... as soon as you trigger the fire alarm.");
 				setStatusValue("Parasite Cure", 1, 3);
 			}
 			
@@ -528,16 +528,16 @@ package classes.Characters
 
 			if (!hasStatusEffect("Free Chief"))
 			{
-				output("\n\nEvery hole except the Chief's. She wiggles urgently in the tentacles' grasp as you run over to help pull them off her limbs. You slice away most of the reticent tentacles, causing Henderson to shudder violently with pain, but you get the Chief free... save for the one huge, thick tentacle lodged in her equine cunt.");
+				output("\n\nEvery hole except the Chief’s. She wiggles urgently in the tentacles’ grasp as you run over to help pull them off her limbs. You slice away most of the reticent tentacles, causing Henderson to shudder violently with pain, but you get the Chief free... save for the one huge, thick tentacle lodged in her equine cunt.");
 
-				output("\n\nIt's lodged in tight, preventing the belly-bloated 'taur from moving. You hop around behind her and grab the tentacle, hoping to yank it out of her. Instead, the tentacle pulsates, creampies the Chief with an explosion of pink juices that make her shriek, and then detatches from its host, breaking off and slithering out of your hands... and disappearing into Chief Neykkar's belly. She grunts and gasps, flailing her arms at her belly as it bloats out even more. You can see her skin writhing under her chitin plates, squirming as the tentacle moves inside her. Oh, shit.");
+				output("\n\nIt’s lodged in tight, preventing the belly-bloated ‘taur from moving. You hop around behind her and grab the tentacle, hoping to yank it out of her. Instead, the tentacle pulsates, creampies the Chief with an explosion of pink juices that make her shriek, and then detatches from its host, breaking off and slithering out of your hands... and disappearing into Chief Neykkar’s belly. She grunts and gasps, flailing her arms at her belly as it bloats out even more. You can see her skin writhing under her chitin plates, squirming as the tentacle moves inside her. Oh, shit.");
 
 				output("\n\n<i>“Fuck. Ah-ah no God fuck it’s ins-- fuck I’m cumming aahhh!”</i>");
 
 				output("\n\nShe clenches, screaming and flopping bonelessly onto her side and spilling fuck-juices like a waterfall out of her horsecunt. Dammit.");
 			}
 
-			output("\n\nCommander Henderson follows suit moments later, flopping to the deck like a limp dick. All the energy goes out of him, and he's soon completely still, just breathing heavily.");
+			output("\n\nCommander Henderson follows suit moments later, flopping to the deck like a limp dick. All the energy goes out of him, and he’s soon completely still, just breathing heavily.");
 
 			output("\n\n<i>“Holy shit!”</i> Chief Neykkar gasps,");
 			if (!hasStatusEffect("Free Chief")) output(" struggling to her feet several long moments later");
@@ -560,7 +560,7 @@ package classes.Characters
 			HP(healAmt);
 			energy(energyMax() * 0.15);
 			
-			output("The commanders mutated form rapidly recovers from damage, knitting closed fresh wounds with newly-sprouted tentacles! (<b><span status='good'>+" + healAmt + "</span></b>)\n\n");
+			output("The commander’s mutated form rapidly recovers from damage, knitting closed fresh wounds with newly-sprouted tentacles! (<b><span status='good'>+" + healAmt + "</span></b>)\n\n");
 			
 			if (hasStatusEffect("Bleeding"))
 			{

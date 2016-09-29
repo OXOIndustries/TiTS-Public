@@ -71,6 +71,7 @@ public function startCharacterCreation(e:Event = null):void
 	chars["PC"].shield = new classes.Items.Protection.BasicShield();
 	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
 	MailManager.resetMails();
+	ChildManager.resetChildren();
 	userInterface.mailsDisplayButton.Deactivate();
 	CombatManager.TerminateCombat();
 	userInterface.hideNPCStats();

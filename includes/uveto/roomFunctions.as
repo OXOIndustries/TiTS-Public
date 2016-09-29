@@ -669,9 +669,14 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function meadStreetBonus():Boolean
+public function addUvetoColdBonus():Boolean
 {
 	addUvetoCold(true);
+	return false;
+}
+public function removeUvetoColdBonus():Boolean
+{
+	removeUvetoCold(true);
 	return false;
 }
 public function templeStreetBonus():Boolean

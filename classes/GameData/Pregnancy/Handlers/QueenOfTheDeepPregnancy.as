@@ -9,6 +9,8 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GLOBAL;
 	import classes.StorageClass;
 	import classes.Engine.Utility.rand;
+	import classes.GameData.ChildManager;
+	import classes.GameData.Pregnancy.Child;
 	
 	/**
 	 * ...
@@ -34,6 +36,9 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyQuantityMaximum = 6;
 			_definedAverageLoadSize = 720;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
+			_pregnancyChildRace = GLOBAL.TYPE_WATERQUEEN;
+			_childMaturationMultiplier = 2.0;
+			_childGenderWeights.Male = 0;
 			
 			this.addStageProgression(_basePregnancyIncubationTime - (7 * 24 * 60), function(pregSlot:int):void {
 				var pSE:StorageClass = kGAMECLASS.pc.getStatusEffect("Queen Pregnancy State");
@@ -125,6 +130,8 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function queenCleanupData():void
 		{
+			var totalChildren:int = 0;
+			
 			for (var i:int = 0; i < kGAMECLASS.pc.pregnancyData.length; i++)
 			{
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[i];
@@ -132,11 +139,21 @@ package classes.GameData.Pregnancy.Handlers
 				{
 					StatTracking.track("pregnancy/queen of the deep eggs", pData.pregnancyQuantity);
 					StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+					totalChildren += pData.pregnancyQuantity;
 			
 					kGAMECLASS.pc.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 					pData.reset();
 				}
 			}
+			
+			ChildManager.addChild(
+				Child.NewChild(
+					GLOBAL.TYPE_WATERQUEEN,
+					2.0,
+					totalChildren,
+					0, 1, 0, 0
+				)
+			);
 			
 			kGAMECLASS.pc.removeStatusEffect("Queen Pregnancy End");
 			kGAMECLASS.pc.removeStatusEffect("Queen Pregnancy State");
