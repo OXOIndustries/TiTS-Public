@@ -47,12 +47,12 @@ package classes.Items.Transformatives {
 				output("You take the ointment and slather it all over your");
 				if (target.tone > 75) 
 				{
-					if(pc.thickness > 60) output(" musclebound");
+					if(target.thickness > 60) output(" musclebound");
 					else output(" well-defined");
 				}
 				output(" body, getting it in every nook and cranny, fantasizing about the musk you'll be emitting.");
 				//Anal sloots only
-				if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || pc.ass.looseness() >= 3 || pc.ass.wetness() >= 1)
+				if(target.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || target.ass.hasFlag(GLOBAL.FLAG_PUMPED) || target.ass.looseness() >= 3 || target.ass.wetness() >= 1)
 				{
 					output(" Your hands slide into your [pc.ass], spreading your cheeks apart as you slather some of the ointment onto your [pc.asshole] and slipping a finger inside, just to make sure you apply it where it's needed.");
 				}
