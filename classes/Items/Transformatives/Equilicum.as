@@ -51,7 +51,7 @@ package classes.Items.Transformatives
 			//Longass shit, not sure what used for yet.
 			this.description = "a needle full of Equilibricum";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A needle full of an almost milky blue fluid. The vial seems to hold almost 250 mL of the fluid. On the vial there is an illustration of a balance scale, with a jar of cum on one scale, and a bull resting his testicles on the other. On the back there is a warning that using the mod when there a significant difference in ball/cum size, it may result in users growing an extra pair of testicles.";
+			this.tooltip = "A needle full of an almost milky blue fluid. The reservoir seems to hold almost 250 mL it. On the side, there is an illustration of a scale with a jar of cum on one side and a bull's testicles on the other. The back features a warning that using this mod when there a significant difference in ball size and cum volume may result in the growth of extra testicles.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -93,21 +93,28 @@ package classes.Items.Transformatives
 			author("Altair Hayes");
 			
 			//inject the stuff
-			if(target.balls > 0) output("With much anticipation you carefully inject the small needle straight into one of your balls despite knowing the needle is coated in an anesthetic that would prevent any pain. You watch the vial slowly inject the cyan fluid into your [pc.balls], you almost chuckle at the thought of having blue balls. Once the needle is empty you toss the empty vial to the side and casually rub your balls, waiting for the drug to kick in.");
-			else output("You examine the vial of milky blue liquid as you consider how to inject it. Shrugging your shoulders, decide to inject it into your prostate. Going for the safest route, you aim the needle at your perineum. As soon as the needle is all the way in, the blue liquid drains from the vial, and you can feel your prostate swelling with the fluid, once the vial is empty you pull it out and toss it to the side. You quickly rub your perineum, trying the soothe the odd sensation in your prostate as you await the drug's full effects.");
+			if(target.balls > 0) 
+			{
+				output("With much anticipation, you carefully inject the small needle straight into ");
+				else output("your [pc.balls], knowing the needle is coated in an anesthetic that would prevent any pain. You watch the vial slowly empty, the cyan fluid flowing into your [pc.balls]. You almost chuckle at the thought of having \"blue balls\". Once the needle is empty, you toss the empty vial to the side and casually rub your [pc.sack], waiting for the drug to kick in.");
+			}
+			else output("You examine the vial of milky blue liquid as you consider how to inject it. Shrugging your shoulders, decide to inject it into your prostate. Going for the safest route, you aim the needle at your perineum. As soon as the needle is all the way in, the blue liquid drains from the vial, and you can feel your prostate swelling with the fluid. Once the vial is empty, you pull it out and toss it to the side. You quickly rub your perineum, trying the soothe the odd sensation in your body as you await the drug's full effects.");
 			output("\n\n");
 			
-			if(target.balls > 0) output("A short while after taking the dose of Equilibricum your [pc.balls] churn as the microbots you injected start to take effect. ");
+			if(target.balls > 0) 
+			{
+				output("A short while after taking the dose of Equilibricum, your [pc.balls] churn");
+				output(" as the microbots you injected start to take effect. ");
+			}
 			output("Feeling yourself overwhelmed with lust");
 			//in public
 			if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC)) output(" you head on over to a secluded spot and");
-			output(" you tear off your [pc.underGarments] and try go at it, but to your dismay you’re totally and utterly numb. You try to masturbate,");
-			
-			if(target.hasCock() && target.hasVagina()) output(" fingering your [pc.oneCunt] and thrusting into your hand as you try to cum, but your numb genitals can’t feel even the tightest cunts or the thickest of cocks. It’s torment. After an hour of thrusting into your hands you begin to regain feeling in your [pc.cocks] and [pc.cunts] and go at it.");
-			else if(target.hasCock()) output(" bucking and thrusting into your hand as you try to cum, but your numb [pc.cocks] can’t feel even the tightest cunts. It’s torment. After an hour of thrusting into your hands you begin to regain feeling in your [pc.cocks] and go at it.");
-			else if(target.hasVagina()) output(", grating your fingers against your [pc.clit] and diving your fingers into your cunt, but your numb [pc.vaginas] can’t feel even the thickest cocks. It’s torment. After an hour of grinding on your hands you begin to regain feeling in your [pc.cunts] go at it.");
+			else output(" you");
+			output(" tear off your [pc.underGarments], trying to go at it. Much to your dismay, you’re totally and utterly numb. You try to masturbate,");
+			if(target.hasCock() && target.hasVagina()) output(" fingering [pc.oneCunt] and thrusting into your hand as you try to cum, but your numb genitals can’t feel even the most passionate attempts at self-pleasure. It’s torment. After an hour of thrusting into your hands, you begin to regain feeling in your genitals and go at it.");
+			else if(target.hasCock()) output(" bucking and thrusting into your hand as you try to cum, but your numb [pc.cocks] can’t feel even the tightest strokes. It’s torment. After an hour of thrusting into your hands, you begin to regain feeling in your [pc.cocks] and go at it.");
+			else if(target.hasVagina()) output(" grating your fingers against your [pc.clits] and diving your fingers into your cunt, but your [pc.vaginas] can’t feel even the most eager finger-plunges. It’s torment. After an hour of grinding on your hands, you begin to regain feeling in your [pc.cunts] and go at it.");
 			else output(" fingering your ass as you try to cum, but your numb [pc.asshole] can’t feel even the thickest of cocks. It’s torment. After an hour of thrusting into your hands you begin to regain feeling in your [pc.ass] and go at it.");
-			
 			target.lust(75);
 			kGAMECLASS.processTime(50+rand(10));
 			
@@ -258,64 +265,75 @@ package classes.Items.Transformatives
 			//for pc with internal ballz
 			if (target.balls == 0) {
 				output("After your powerful orgasm you look down at your crotch, wondering when the effects of the mod will happen.");
-				output(" Your feel your internal testicles");
+				output(" Your feel your prostate");
 				//ball size increased
 				if(ballDiameterModifier > 0) output(" grow");
 				//ball size decreased, but ball efficancy increased
-				else  output(" shrunk");
-				output(" in your body, an odd feeling to say the least, and if you hadn't known the effects of the mod you would have just taken, you probably would be panicking right now. It isn't uncomfortable, it's just weird feeling your balls become");
+				else  output(" shrink");
+				output(" in your body, an odd feeling to say the least, and if you hadn't known the effects of the mod you would have just taken, you probably would be panicking right now. It isn't uncomfortable; it's just weird feeling an internal organ become");
 				if(ballDiameterModifier > 0) output(" bigger");
 				else  output(" denser");
 				output(". However, once the transformations comes to a close and you feel like you've stopped");
 				if(ballDiameterModifier > 0) output(" growing");
 				else  output(" shrinking");
-				output(", you start to imagine your next sexual encounter, and how it'll feel with your newfound ball");
-				if(ballDiameterModifier > 0) output(" strength");
+				output(", you start to imagine your next sexual encounter, and how it'll feel with your newfound ");
+				if(ballDiameterModifier > 0) output(" capability");
 				else  output(" efficiency");
-				output(". Your grin stretches from ear to ear as your nuts churn with anticipation.");
+				output(". Your grin stretches from ear to ear as your body churns up a load in anticipation.");
 			//for pc with external ballz
 			} else {
 				//if person was internal balled and now gains his first external balls
 				if (ballsGrown) {
-					output("After your powerful orgasm you look down at your crotch, wondering when the effects of the mod will happen.");
-					output("Thankfully you don't have to wait any longer, you look down and watch in a mixture of perversion and awe. At first a small patch of your skin seems to become shriveled, then for a short while, nothing. For a moment, you consider the mod to be a dud, but quickly you realize you are very wrong. Your new rapidly grow,as your new scrotum becomes much more elastic to be able to hold your cum orbs.");
-					output("The " + kGAMECLASS.num2Text(target.balls) + " of your balls lightly bounce as they come to a rest. if PC has external balls: You test out how they feel as you idly fondle them as you imagine willing");
+					output("After your powerful orgasm, you look down at your crotch, wondering when the effects of the mod will happen.");
+					output("Thankfully you don't have to wait any longer, you look down and watch in a mixture of perversion and awe. At first a small patch of your skin seems to become shriveled, then for a short while, nothing. You consider the mod to be a dud but quickly realize you are <i>very</i> wrong. <b>Your new nuts rapidly grow into your freshly developed scrotum</b>, stretching it to hold the lovely new orbs.");
+					output("They lightly bounce as they come to a rest. You test out how they feel by fondling them as you imagine willing");
 					if (target.isTreated()) output(" cows");
 					else output(" whores");
-					output(" at your feet, worshiping and licking your bulbous cum filled orbs of virility. You can barely wait until you're able to put those babies to use, having them slap against the ass of");
+					output(" at your feet, worshiping and licking your bulbous, cum-filled orbs. You can barely wait until you're able to put those babies to use, having them slap against the ass of");
 					if (target.isTreated()) output(" the nearest cow");
 					else output(" your next partner");
-					output(". Your grin stretches from ear to ear as your nuts churn with anticipation.");
-				
+					output(".");
+					output(" Your grin stretches from ear to ear as your nuts churn with anticipation.");
 				//had balls all along
 				} else {
-					output("After your powerful orgasm you idly await the new size of your nuts, thankfully, within a few minutes, you start to feel the changes happening.");
+					output("After your powerful orgasm, you idly await the new size of your nut");
+					output(". Thankfully within a few minutes, you start to feel the changes happening.");
 					//ball size increased
 					if (ballDiameterModifier > 0) {
-						output(" Your [pc.balls] rapidly swell in size as your scrotum becomes much more elastic to be able to hold your new size.");
-						output(" The " + kGAMECLASS.num2Text(target.balls) + " of your balls lightly bounce as they come to a rest.");
+						output(" Your [pc.balls] rapidly swell");
+						output(" in size as your scrotum becomes much more elastic to be able to hold your new size.");
+						else output(" It lightly bounces as it comes");
+						output(" to a rest.");
 					//efficency increased
 					} else {
-						output("Your balls churn with power, shrinking as they become more compact and dense. Although you lost a bit of size, you can't help but smile as you realize your [pc.balls] will release a much bigger payload than before.");
+						output("Your [pc.balls] churn");
+						output(" with power, shrinking as ");
+						else output("they become");
+						output(" more compact and dense. Although you lost a bit of size, you can't help but smile as you realize your [pc.balls] will release a much bigger payload than before.");
 					}
 					
-					output(" You idly fondle them as you imagine");
+					output(" You idly fondle ");
+					else output("them");
+					output(" as you imagine");
 					
 					//ball size increased
 					if(ballDiameterModifier > 0) {
 						output(" willing");
 						if (target.isTreated()) output(" cows");
 						else output(" whores");
-						output(" at your feet, worshipping and licking your balls. You can barely wait until you're slapping your balls against the ass of");
+						output(" at your feet, worshipping and licking your ball");
+						output(". You can barely wait until you're slapping your [pc.balls] against the ass of");
 						if (target.isTreated()) output(" the nearest cow");
 						else output(" your next partner");
 					//efficency increased
 					} else {
-						output(" Blowing your load inside the nearest");
+						output(" blowing your load inside the nearest");
 						if (target.isTreated()) output(" milker");
 						else output(" ass");
 					}
-					output(". Your balls churn with anticipation.");
+					output(". ");
+					else output("They churn");
+					output(" with anticipation.");
 				}
 			}
 			
