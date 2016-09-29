@@ -1609,7 +1609,7 @@ public function zDomCeliseGo():void
 		{
 			output("pinches your ");
 			if(pc.canMilkSquirt()) output("dribbling ");
-			output("nipples in her slippery, hot grip}, it becomes clear that the hungry alien isn’t going to offer you any control over the fuck unless you take it.");
+			output("nipples in her slippery, hot grip, it becomes clear that the hungry alien isn’t going to offer you any control over the fuck unless you take it.");
 		}
 		output("\n\nGrasping her wrists in your hands, you unbalance Celise with a mighty pelvic thrust and roll over until the galotian is pinned underneath you, eyes wide with surprise. Before she can speak, you lean in and press your lips together. Her shock fades as your tongue slides over hers, and her arms reflexively push against your grip, trying to drape around your neck. When you pull back from the kiss, Celise’s eyes open slowly.");
 		output("\n\nYou place a finger over her lips to shush her, and sit up atop your lover. Straddling a goopy thigh, you begin to slide back and forth along it, teasing your [pc.vaginas] with Celise’s slick skin. She even gets into it as the heat of your crotch begins to radiate through her. Small, soft nodules and ridges pop into existence along her thigh while her newly-freed hands play with her tits. It feels as though Celise’s leg is lapping at your");
