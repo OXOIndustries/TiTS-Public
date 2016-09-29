@@ -30,11 +30,11 @@ package classes.Items.Transformatives {
 			
 			description = "a jar of Sweet Sweat";
 			
-			tooltip = " A jar of ointment labeled ‘Sweet Sweat’ with an illustration of a muscular treated bull flexing as multiple less muscular bulls fawn and swoon at his feet. The back of the jar states that the ointment within will add additional pheromones to your sweat.\n\n<b>A warning on the back says that the effects are permanent.</b>";
+			tooltip = "This jar of ointment is clearly labeled as ‘Sweet Sweat,’ flanked with an illustration of a muscular bull flexing, much to the delight of less endowed bulls and doe-eyed cows. The back of the jar states that the ointment within will add additional pheromones to your sweat.\n\n<b>A warning on the back says that the effects are permanent.</b>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
-			basePrice = 3500;
+			basePrice = 10000;
 			
 			version = _latestVersion;
 		}
@@ -45,9 +45,20 @@ package classes.Items.Transformatives {
 			
 			if (target is PlayerCharacter) {
 				output("You take the ointment and slather it all over your");
-				if (target.tone > 75) output(" musclebound");
-				output(" body, getting it in every nook and cranny, fantasizing about the musk you'll be emitting. Your hands slide into your [pc.ass], spreading your cheeks apart as you slather some of the ointment onto your [pc.asshole] slipping a finger into it, just to make sure you apply it where it's needed. After finishing up down there, you scoop out another handful of the cream and give your [pc.fullChest] your full attention.");
-				output("\n\nAs you apply the thick creamy ointment on your chest you can't help but rub your nipples and feel up your [pc.chest] The more you slather yourself the more aroused you become, if this cream doesn't work at least it's a good excuse to masturbate. Your eyes roll back a bit and involuntarily bite your bottom lip as you apply the cream to your crotch, the cold thick cream almost melting onto your [pc.crotch], feeling as if you were");
+				if (target.tone > 75) 
+				{
+					if(pc.thickness > 60) output(" musclebound");
+					else output(" well-defined");
+				}
+				output(" body, getting it in every nook and cranny, fantasizing about the musk you'll be emitting.");
+				//Anal sloots only
+				if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || pc.ass.looseness() >= 3 || pc.ass.wetness() >= 1)
+				{
+					output(" Your hands slide into your [pc.ass], spreading your cheeks apart as you slather some of the ointment onto your [pc.asshole] and slipping a finger inside, just to make sure you apply it where it's needed.");
+				}
+				else output(" Your hands slide down to your [pc.ass], kneading globs of the ointment into your cheeks, making sure that those behind will enjoy your passing as much as those ahead.");
+				output(" After finishing up down there, you scoop out another handful of the cream and give your [pc.fullChest] your full attention.");
+				output("\n\nAs you apply the thick creamy ointment on your chest, you can't help but rub your [pc.nipples] and feel up your [pc.chest]. The more you slather onto yourself, the more aroused you become. If this cream doesn't work, at least it's a good excuse to masturbate. Your eyes roll back a bit, and you involuntarily bite your bottom lip as you apply the cream to your crotch, the thick coldness almost melting onto your [pc.crotch]. It feels almost as if you were");
 				if(target.hasCock()) output(" balls deep in a cunt");
 				if(!target.hasCock()) {
 					output(" given a massage by a very busty");
@@ -56,11 +67,10 @@ package classes.Items.Transformatives {
 				}
 				output(".");
 				
-				output("\n\nFor a moment you consider using the rest as lube, but that would have to wait for now. The now empty jar of cream says that the effects should occur next time you sweat, so you wrap up and head for the nearest shower, eager to indulge in your thicker musk.");
-				
+				output("\n\nThe now empty jar of cream says that the effects should occur next time you sweat, so you wrap up and head for the nearest shower, eager to indulge in your thicker musk.");
+				output("\n\n(<b>Perk Gained: Pheromone Sweat</b> - Pheromones boost tease attack and arousal.)");
 				target.lust(30);
-				target.createPerk("Pheromone Sweat", 0, 0, 0, 0, "Slightly boosts tease attack and arousal.");
-				
+				target.createPerk("Pheromone Sweat", 0, 0, 0, 0, "Slightly boosts tease attack and arousal.");				
 			//not the player	
 			} else {
 				kGAMECLASS.output(target.capitalA + target.short + " uses the ointment to no effect.");
