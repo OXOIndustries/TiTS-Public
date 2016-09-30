@@ -2673,8 +2673,13 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		else output2(" It’s a deep, iridescent " + target.cocks[x].cockColor + " in color. Unlike " + indefiniteArticle(target.originalRace) + " penis, the shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
 	}
 	//Anemone cock flavor
-	else if(target.cocks[x].cType == GLOBAL.TYPE_ANEMONE || target.cocks[x].cType == GLOBAL.TYPE_SIREN) {
-		output2(" The crown is surrounded by tiny tentacles with a venomous, aphrodisiac payload. At its base a number of similar, longer tentacles have formed, guaranteeing that pleasure will be forced upon your partners.");
+	else if (target.cocks[x].cType == GLOBAL.TYPE_ANEMONE || target.cocks[x].cType == GLOBAL.TYPE_SIREN) 
+	{
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) output2(" From the slit of your foreskin pokes out a bundle of");
+		else output2(" The crown is surrounded by");
+		output2(" tiny tentacles with a venomous, aphrodisiac payload. At its base a number of similar, longer tentacles have formed, ");
+		if(target.hasSheath(x)) output2("the sheath forcing them to coil around your shaft, ");
+		output2("guaranteeing that pleasure will be forced upon your partners.");
 	}
 	//Kangawang flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_KANGAROO) {
@@ -2716,7 +2721,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		output2(", soft and rounded enough to massage any passage into which it is inserted.");
 	}
 	//Sheaths
-	if(target.hasSheath(x) && target.cocks[x].cType != GLOBAL.TYPE_KANGAROO)
+	if(target.hasSheath(x) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SIREN))
 	{
 		if(target.cockTotal() == 1 || (target.cockTotal() > 1 && !target.hasFullSheaths())) output2(" The shaft of your manhood naturally retracts into an animalistic sheath when completely flaccid.");
 	}
@@ -2754,10 +2759,12 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		output2(" The ");
 		if(target.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output2("flared ");
 		else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)) output2("blunt ");
-		output2("crown is ringed with a circle of rubbery protrusions that grow larger as you get more aroused. The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic influences.");
+		output2("crown is ringed with a circle of rubbery protrusions that grow larger ");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) output2("and push the foreskin down ");
+		output2("as you get more aroused. The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic influences.");
 	}
 	//Foreskins
-	if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED) && target.cocks[x].cType != GLOBAL.TYPE_BEE)
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_BEE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_DEMONIC))
 	{
 		output2(" The head is also covered by stretchy foreskin, ensuring that it is kept protected and sensitive.");
 	}
