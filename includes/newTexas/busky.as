@@ -133,10 +133,11 @@ public function buskyStrapsShopFunc():Boolean {
 		
 		//put player back on previous tile
 		currentLocation = "508";
+		generateMapForLocation(currentLocation);
 		clearMenu();
 		addButton(0,"Next", mainGameMenu);
 		showName("THE\nROAD");
-		generateMapForLocation(currentLocation);
+		return true;
 	}
 	
 	return false;
