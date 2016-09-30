@@ -29,7 +29,7 @@ package classes.Items.Transformatives
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a jar of cream called ‘Circumscriber’";
-			tooltip = "The label of this Blue Crab product as an ancient, sepia style drawing of a scribe with a stylized scar after he just finished writing “Circumscriber” on a scroll. Inside there is a glittery orange cream filled with microsurgeons, outdated but still endorsed by several health agencies, that when applied to a penis can erase a sheath, a foreskin or result in negligible decreases in its length or thickness.";
+			tooltip = "The label of this Blue Crab product is an ancient, sepia style drawing of a scribe, penning the word “Circumscriber” on a scroll. Inside there is a glittery orange cream filled with microsurgeons, outdated but still endorsed by several health agencies, that when applied to a penis can erase a sheath, a foreskin or result in negligible decreases in its length or thickness.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -136,7 +136,7 @@ package classes.Items.Transformatives
 			if(target.cocks[i].hasFlag(GLOBAL.FLAG_FORESKINNED) && rand(2) == 0) foreskinTF([target, i]);
 			else if(target.cocks[i].hasFlag(GLOBAL.FLAG_SHEATHED)) sheathTF([target, i]);
 			else if(target.cocks[i].cLengthRaw > 5 && rand(2) == 0) cockLenghtTF([target, i]);
-			else if(target.cocks[i].cThicknessRatioRaw > 0.1) cockThickTF([target, i]);
+			else if(target.cocks[i].cThicknessRatioRaw > 0.8) cockThickTF([target, i]);
 			else dudTF([target, i]);
 		}
 		
@@ -158,27 +158,21 @@ package classes.Items.Transformatives
 			var i:int = arg[1];
 
 			//Target penis loses a foreskin flag if it has one. 
-			output("You feel pinching on your foreskin as the gray microsurgeons crawl all over your shaft, gathering around the ridged band, touching and triggering every sensitive nerve on one of your most innervated parts. Their delicate work stretches the elastic band apart, leaving a slackened sleeve of skin hanging around your [pc.cockHead " + i + "]. Some of the tiny machines crawl inside your prepuce, while the rest spread around your shaft. They position themselves in the form of rings around your [pc.skinColor] shaft, more abundant in where your foreskin is loose and less frequent the closer they are to its base and frantically move up and down across it. They never break formation and only turn back when they reach another ring, turning the skin tighter as it starts to disappear into your shaft.");
+			output("You feel pinching on your foreskin as the goo seems to crawl all over your shaft, gathering around the ridged band, touching and triggering every sensitive nerve on one of your most innervated parts. Its delicate work stretches the elastic band apart, leaving a slackened sleeve of skin hanging around your [pc.cockHead " + i + "]. Some of the cream crawls inside your prepuce while the rest spreads around your shaft. It positions itself in the form of rings around your [pc.skinColor] shaft, more abundant where your foreskin is loose and less frequent the closer they are to its base and frantically moving up and down across it. They never break formation and only turn back when they reach another ring, turning the skin tighter as it starts to disappear into your shaft.");
 			output("\n\nThankfully you seem to become less sensitive with time, the itchiness disappearing together with your extranous nerves. The foreskin turns into a bump as they get closer to finishing their job, some of the rings already gathering at what remains of your frenulum and erasing the last bits of the elastic tissue. Soon there is nothing left but a straight line that runs across your cumvein to the urethra.");
 			output("\n\nYou are left with a ");
 			{
 				if (InCollection(target.cocks[i].cType, [GLOBAL.TYPE_BEE, GLOBAL.TYPE_VANAE, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_TENTACLE, GLOBAL.TYPE_HUMAN]) || !target.cocks[i].cockColor == "mottled pink and black") output("two-toned dick, the vibrant [pc.cockColor " + i + "] head accentuated by your [pc.skinColor]-colored shaft");
 				else output("[pc.cockColor " + i + "] dick, completely uniform in color");
 			}
-			output(". But it seems like the work of the little machines is not over, as they spread around your cock-head and give it a thorough rubbing. It seems like your new-found insensitivity is helping, as you barely feel them turning your [pc.cockHead " + i + "] a little bit more rugged than it used to be."); 
-			output("\n\nAs the machines flake off and disappear into the ground below, you sigh in relief, realizing you can now rub one out. You wrap your hands around your [pc.cock " + i + "] and try to masturbate, but you discover that, with no gliding action and extra sensitivity to help, you are going to have to be rougher than you were before. It's a stiff,");
-			{
-				if(target.cocks[i].hasFlag(GLOBAL.FLAG_LUBRICATED)) output(" slick");
-				if(target.cocks[i].hasFlag(GLOBAL.FLAG_STICKY)) output(" sticky");
-				else output(" dry");
-			}
-			output(" rod of raw meat that you must force into orgasm. With a quick and rough pace, you grind across your shaft, trying to get as much sensation out of it as you can possibly get. ");
-			{
-				if(target.cocks[i].hasFlag(GLOBAL.FLAG_LUBRICATED)) output("Your slick, lubricated dick is really helping with bringing yourself to the edge");
-				if(target.cocks[i].hasFlag(GLOBAL.FLAG_STICKY)) output("Your sticky, oil-covered dick, is definitely not helping with this, forcing you to be even rougher than you thought you could tolerate");
-				else output("Delightedly, you start to ooze with pre-cum, the extra lubrication really helping with bringing yourself to the edge");
-			}
-			output(". It takes a while to reach your orgasm and, with little notice, it explodes in your mind sending waves of lust throughout your body. Your ejaculate shoots unimpeded straight into the floor, before tapering off into oozing [pc.cum] from your unsullied dick. <b>Your [pc.cock " + i + "] has lost its foreskin!</b>");
+			output(". But it seems like the work of the little machines is not over, as they spread around your cock-head and give it a thorough rubbing. It seems like your new-found insensitivity is helping, as you barely feel them transforming your [pc.cockHead " + i + "] to be a little bit more rugged than it used to be."); 
+			output("\n\nAs the machines flake off and disappear into the ground below, you sigh in relief, realizing you can now rub one out. You wrap your hands around your [pc.cock " + i + "] and try to masturbate, discovering the wonder of having a smooth, unblemished prick to play with, not having any extra skin to bunch up or require extra cleaning.");
+
+			output(" With gentle, gliding strokes, you caress your shaft, trying to get as much sensation out of it as you can possibly get. ");
+			if(target.cocks[i].hasFlag(GLOBAL.FLAG_LUBRICATED)) output("Your slick, lubricated dick is really helping with bringing yourself to the edge");
+			if(target.cocks[i].hasFlag(GLOBAL.FLAG_STICKY)) output("Your sticky, oil-covered dick, is definitely not helping with this, forcing you to be even rougher than you thought you could tolerate");
+			else output("Delightedly, you start to ooze with pre-cum, the extra lubrication really helping with bringing yourself to the edge");
+			output(". It takes a while to reach your orgasm and, with little notice, it explodes in your mind, sending waves of lust throughout your body. Your ejaculate shoots unimpeded straight into the floor before tapering off into oozing [pc.cum] from your unsullied dick. <b>Your [pc.cock " + i + "] has lost its foreskin!</b>");
 		
 			target.cocks[i].delFlag(GLOBAL.FLAG_FORESKINNED);
 			target.orgasm();
@@ -193,7 +187,7 @@ package classes.Items.Transformatives
 			var i:int = arg[1];
 
 			//Target penis loses a sheath flag if has one. 
-			output("You feel itchy as the little gray machines crawl all over your [pc.sheath " + i + "] and into it from all across your [pc.cock " + i + "], giving it a gray metallic tint");
+			output("You feel itchy as the cream crawls all over your [pc.sheath " + i + "] and into it from all across your [pc.cock " + i + "], giving it a gray metallic tint");
 			{
 				if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output(". One by one the hairs on your sheath fall off");
 				else if (target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output(". One by one the feathers on your sheath fall off");
@@ -202,8 +196,8 @@ package classes.Items.Transformatives
 				else if (target.skinType == GLOBAL.SKIN_TYPE_BARK) output(". You hear the arboreal covering of your sheath cracking off and turning into dust as it falls on the ground");
 				else if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(". Your amorphous sheath feels weird as it loses its translucence");
 			}
-			output(". Slowly, you can see your sheath recede into the skin of your crotch, until it evens out and all that remains is the outline of the slit tight around the base of your cock. Then the machines loosen that ring, uncurling it until it completely disappears into your body.");
-			output("\n\nWith their job done the machines fall off you and disappear into the air, leaving your cock ");
+			output(". Slowly, you can see your sheath recede into the skin of your crotch until it evens out, and all that remains is the outline of the slit tight around the base of your cock. Then the machines loosen that ring, uncurling it until it completely disappears into your body.");
+			output("\n\nWith their job done the spent machine-goo falls off you and fades into dust, blowing away in the air. Your cock is left ");
 			{
 				if(target.cocks[i].hasFlag(GLOBAL.FLAG_FORESKINNED)) output("with a comforting foreskin around it. With no distinct line dividing the [pc.skinColor] of your cock from the skin of your crotch");
 				else output("bare of any loose skin, with your [pc.cockHead " + i + "] fully exposed");
@@ -211,7 +205,7 @@ package classes.Items.Transformatives
 			output(". There must have been a weird anaphrodisiac somewhere in there because you're rapidly losing your erection, but unlike before it now hangs completely flaccid against your [pc.sack]. <b>Your [pc.cock " + i + "] has lost its sheath!</b>");
 			
 			target.cocks[i].delFlag(GLOBAL.FLAG_SHEATHED);
-			target.lust(30);
+			target.lust(-10);
 			
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
@@ -223,7 +217,7 @@ package classes.Items.Transformatives
 			var i:int = arg[1];
 
 			//Target penis gains 0.1 of length.
-			output("The gray specks are unable to complete their programming and promptly fall off your prick, yet you still feel <i>something</i> going on down there. The tell-tale sensation of nanomachines in action and your aphrodisiac-powered boner helps you figure out what's happening. To your chagrin, it seems <b>that your [pc.cock " + i + "] has lost a bit of its length.</b>");
+			output("The gray ooze is unable to complete its programming and promptly falls off your prick, yet you still feel <i>something</i> going on down there. The tell-tale sensation of nanomachines in action and your aphrodisiac-powered boner helps you figure out what's happening. To your chagrin, it seems <b>that your [pc.cock " + i + "] has lost a bit of its length.</b>");
 			
 			target.cocks[i].cLengthRaw -= 0.1;
 			target.lust(15);
@@ -238,7 +232,7 @@ package classes.Items.Transformatives
 			var i:int = arg[1];
 
 			//Target penis gains 0.1 of thickness ratio.
-			output("The tiny machines skitter around your [pc.cock " + i + "], falling off it one by one as their programming fails. Not wanting to let a good boner go to waste, you decide to play with yourself for a bit. You only stop when you notice <b>that your [pc.cock " + i + "] has become a little thinner within your grasp.</b>"); 
+			output("The goo slithers around your [pc.cock " + i + "], falling off it drop by drop as its programming fails. Not wanting to let a good boner go to waste, you decide to play with yourself for a bit. You only stop when you notice <b>that your [pc.cock " + i + "] has become a little thinner within your grasp.</b>"); 
 			
 			target.cocks[i].cThicknessRatioRaw -= 0.1;
 			target.lust(15);
