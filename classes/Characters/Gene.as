@@ -8,6 +8,8 @@
 	import classes.Items.Transformatives.Bovinium;
 	import classes.Items.Transformatives.BumpyRoad;
 	import classes.Items.Transformatives.MinoCharge;
+	import classes.Items.Transformatives.Circumscriber;
+	import classes.Items.Transformatives.Turtleneck;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -31,6 +33,8 @@
 			inventory.push(new EasyFit());
 			inventory.push(new Chocolac());
 			inventory.push(new BumpyRoad());
+			inventory.push(new Circumscriber());
+			inventory.push(new Turtleneck());
 			
 			this.typesBought = [];
 			
