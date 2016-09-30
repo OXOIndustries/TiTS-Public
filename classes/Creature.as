@@ -4150,7 +4150,7 @@
 				else temp += Math.round(intelligence() * 0.1);
 			}
 			if (hasPerk("Agility")) {
-				if ((temp *= .5) < 10) temp += 10;
+				if ((temp * .5) < 10) temp += 10;
 				else temp = Math.round(temp * 1.5);
 			}
 			if (hasPerk("Improved Agility")) temp += 10;
