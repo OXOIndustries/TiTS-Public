@@ -101,7 +101,7 @@ public function buskyStrapsShopFunc():Boolean {
 			output(" when a cow accidentally bumps into you. She apologizes while you shake your head, gathering your thoughts. However, before she moves on, she gives your crotch an extended glance. You follow her eyes and notice your");
 			
 			if(pc.isSexless()) output(" face, flushed with arousal");
-			else  output(" [pc.crotch] dripping fluids, which are clearly visible");
+			else output(" [pc.crotch] dripping fluids, which are clearly visible");
 			
 			if (!pc.isCrotchExposed()) output(" through your clothes");
 			output(", if anybody were to give you a good look over.");
@@ -909,7 +909,7 @@ public function buskyClothingItemOptions(item:*):void {
 	if (flags["BUSKY_TALKED_ABOUT_MODELING"]) output(" On the other hand, you have Busky to model it for you...");
 	else output(" If only you had someone to model it.");
 	
-	output("\n\nYou look the " + item.longName + " over and consider your options. The holographic price tag says  " + getBuskyPrice(item) + "  credits.");
+	output("\n\nYou look the " + item.longName + " over and consider your options. The holographic price tag says " + getBuskyPrice(item) + " credits.");
 	
 	clearMenu();
 	
@@ -954,7 +954,7 @@ public function buskyCornyTShirtOptions():void {
 	//put custom text for this item, as the default looks good only on the appearance/buy screen
 	output("\n‘Sorry ‘bout the mess, I just got back from the cockmilkers. Actually I'm feeling full again, wanna help out?’ (decorated with authentic cumsplat-print)");
 	
-	output("\n\nYou look the " + plainShirt.longName + "s over and consider your options. The holographic price tag says  " + getBuskyPrice(plainShirt) + "  credits.");
+	output("\n\nYou look the " + plainShirt.longName + "s over and consider your options. The holographic price tag says " + getBuskyPrice(plainShirt) + " credits.");
 	
 	clearMenu();
 	
@@ -1451,7 +1451,7 @@ public function buskySexHotTubFuck():void {
 	
 	output("\n\nThe bull brushes his brown hair back as he gets off the bench, walking beside you as you both head over to the aquatic section of the gym. His hand planted on your [pc.ass]");
 	if (pc.hasArmor()) output(" gripping it though your [pc.armor]");
-	else output("  gripping it, and occasionally giving it a nice slap");
+	else output(" gripping it, and occasionally giving it a nice slap");
 	output(".");
 	
 	output("\n\nEventually you reach the aquatic section, the air slowly getting more humid as you make your way over to the hot tubs. You choose to lead Busky into the most populated hot tub, which has tall, transparent walls to keep all the steam and heat in.");

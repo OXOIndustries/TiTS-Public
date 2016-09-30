@@ -1038,7 +1038,6 @@
 			"Reduces Accuracy",
 			"Combat Drone",
 			"Self-Powered",
-			"PrePocket Equipped",
 		];
 		
 		/**
