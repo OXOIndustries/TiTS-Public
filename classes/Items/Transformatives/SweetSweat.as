@@ -68,9 +68,15 @@ package classes.Items.Transformatives {
 				output(".");
 				
 				output("\n\nThe now empty jar of cream says that the effects should occur next time you sweat, so you wrap up and head for the nearest shower, eager to indulge in your thicker musk.");
-				output("\n\n(<b>Perk Gained: Pheromone Sweat</b> - Pheromones boost tease attack and arousal.)");
-				target.lust(30);
-				target.createPerk("Pheromone Sweat", 0, 0, 0, 0, "Slightly boosts tease attack and arousal.");				
+				
+				if(!target.hasPerk("Pheromone Sweat"))
+				{
+					output("\n\n(<b>Perk Gained: Pheromone Sweat</b> - Pheromones boost tease attack and arousal while sweating.)");
+					target.createPerk("Pheromone Sweat", 0, 0, 0, 0, "Slightly boosts tease attack and arousal while sweating.");
+				}
+				else output("\n\nBesides an arousal boost, not much happens afterwards--it seems you've got what this item has to offer already!");
+				
+				target.lust(30);				
 			//not the player	
 			} else {
 				kGAMECLASS.output(target.capitalA + target.short + " uses the ointment to no effect.");

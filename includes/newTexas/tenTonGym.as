@@ -1602,11 +1602,19 @@ public function soreChange(arg:int = 0):void
 
 public function sweatyDebuff(arg:int = 0):Number
 {
-	if(!pc.hasStatusEffect("Sweaty"))
+	if(arg != 0)
 	{
-		pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a workout, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
+		if(!pc.hasStatusEffect("Sweaty"))
+		{
+			pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a workout, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
+		}
+		if(pc.statusEffectv1("Sweaty") < 5) pc.addStatusValue("Sweaty", 1, arg);
 	}
-	if(pc.statusEffectv1("Sweaty") < 5) pc.addStatusValue("Sweaty",1,1);
+	if(pc.statusEffectv1("Sweaty") <= 0)
+	{
+		pc.removeStatusEffect("Sweaty");
+		return 0;
+	}
 	return pc.statusEffectv1("Sweaty");
 }
 

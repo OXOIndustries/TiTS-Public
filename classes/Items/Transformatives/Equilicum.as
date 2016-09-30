@@ -11,9 +11,9 @@
 //Let's say maximum ejaculation is 8L, and the balls are 10 inches across.
 //8L/2 = 4 inches
 //10 inches - 4 inches = |6| inches
-//⅗  of |6| inches is 3.6 inches
+//⅗ of |6| inches is 3.6 inches
 //3.6 inches*2 = 7.2L
-//⅖  of 6 inches is 2.4
+//⅖ of 6 inches is 2.4
 //You would gain 7.2L of maximum cum and loose 2.4 inches across.
 
 //[PERKS AFFECTING OUTCOME]
@@ -96,8 +96,8 @@ package classes.Items.Transformatives
 			if(target.balls > 0) 
 			{
 				output("With much anticipation, you carefully inject the small needle straight into ");
-				if(target.balls > 0) output("one of ");
-				else output("your [pc.balls], knowing the needle is coated in an anesthetic that would prevent any pain. You watch the vial slowly empty, the cyan fluid flowing into your [pc.balls]. You almost chuckle at the thought of having \"blue balls\". Once the needle is empty, you toss the empty vial to the side and casually rub your [pc.sack], waiting for the drug to kick in.");
+				if(target.balls > 1) output("one of ");
+				output("your [pc.balls], knowing the needle is coated in an anesthetic that would prevent any pain. You watch the vial slowly empty, the cyan fluid flowing into your [pc.balls]. You almost chuckle at the thought of having \"blue balls\". Once the needle is empty, you toss the empty vial to the side and casually rub your [pc.sack], waiting for the drug to kick in.");
 			}
 			else output("You examine the vial of milky blue liquid as you consider how to inject it. Shrugging your shoulders, decide to inject it into your prostate. Going for the safest route, you aim the needle at your perineum. As soon as the needle is all the way in, the blue liquid drains from the vial, and you can feel your prostate swelling with the fluid. Once the vial is empty, you pull it out and toss it to the side. You quickly rub your perineum, trying the soothe the odd sensation in your body as you await the drug's full effects.");
 			output("\n\n");
@@ -157,7 +157,7 @@ package classes.Items.Transformatives
 					if(target.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) options.push("Saendra");
 					if(target.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) options.push("Syri");
 					if(target.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) options.push("Embry");
-					if(target.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties."))  options.push("Xanthe");
+					if(target.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) options.push("Xanthe");
 					if(target.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) options.push("Aina");
 					if(target.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) options.push("Briha");
 					if(target.hasKeyItem("Panties - Lys's - Sheer black panties.")) options.push("Lys");
@@ -216,12 +216,12 @@ package classes.Items.Transformatives
 			if (ballDiameterModifier > 10) ballDiameterModifier = 10.0;
 			
 			//if a value is increased, increase it by an additional 50% when target has bulgy/potent perk
-			if (target.hasPerk("Potent") &&  maxCumModifierInLiters > 0) maxCumModifierInLiters *= 1.5;
-			if (target.hasPerk("Bulgy") &&  ballDiameterModifier > 0) ballDiameterModifier *= 1.5;
+			if (target.hasPerk("Potent") && maxCumModifierInLiters > 0) maxCumModifierInLiters *= 1.5;
+			if (target.hasPerk("Bulgy") && ballDiameterModifier > 0) ballDiameterModifier *= 1.5;
 			
 			//if a value is reduced, half the loose when target has bulgy/potent perk
-			if (target.hasPerk("Potent") &&  maxCumModifierInLiters > 0) maxCumModifierInLiters *= 0.5;
-			if (target.hasPerk("Bulgy") &&  ballDiameterModifier > 0) ballDiameterModifier *= 0.5;
+			if (target.hasPerk("Potent") && maxCumModifierInLiters > 0) maxCumModifierInLiters *= 0.5;
+			if (target.hasPerk("Bulgy") && ballDiameterModifier > 0) ballDiameterModifier *= 0.5;
 			
 			//calculate new ball size raw from diameter
 			var currentBallDiamter:Number = target.ballDiameter();
@@ -271,16 +271,16 @@ package classes.Items.Transformatives
 				//ball size increased
 				if(ballDiameterModifier > 0) output(" grow");
 				//ball size decreased, but ball efficancy increased
-				else  output(" shrink");
+				else output(" shrink");
 				output(" in your body, an odd feeling to say the least, and if you hadn't known the effects of the mod you would have just taken, you probably would be panicking right now. It isn't uncomfortable; it's just weird feeling an internal organ become");
 				if(ballDiameterModifier > 0) output(" bigger");
-				else  output(" denser");
+				else output(" denser");
 				output(". However, once the transformations comes to a close and you feel like you've stopped");
 				if(ballDiameterModifier > 0) output(" growing");
-				else  output(" shrinking");
+				else output(" shrinking");
 				output(", you start to imagine your next sexual encounter, and how it'll feel with your newfound ");
 				if(ballDiameterModifier > 0) output(" capability");
-				else  output(" efficiency");
+				else output(" efficiency");
 				output(". Your grin stretches from ear to ear as your body churns up a load in anticipation.");
 			//for pc with external ballz
 			} else {

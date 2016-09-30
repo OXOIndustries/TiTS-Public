@@ -125,7 +125,7 @@ public function initNewTexasRooms():void
 	
 	//Between ten ton gym and the milking barn, access from room 508 (north entrance)
 	rooms["STRAPS"] = new RoomClass(this);
-	rooms["STRAPS"].roomName = "STRAPS";
+	rooms["STRAPS"].roomName = "\nSTRAPS";
 	rooms["STRAPS"].description = "";
 	rooms["STRAPS"].runOnEnter = buskyStrapsShopFunc;
 	rooms["STRAPS"].northExit = "508";
