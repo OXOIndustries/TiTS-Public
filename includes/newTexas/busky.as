@@ -129,7 +129,7 @@ public function buskyStrapsShopFunc():Boolean {
 	
 	//if between 5pm and 6am - no one's home
 	} else {
-		output("Straps is currently closed.\n\nA sign beside the door announces the opening hours: <b>6am to 5pm.</b>");
+		output("Straps is currently closed.\n\nA sign beside the door announces the opening hours: <b>06:00 to 17:00</b>.");
 		
 		//put player back on previous tile
 		currentLocation = "508";
