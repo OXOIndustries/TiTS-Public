@@ -44,8 +44,8 @@ public function HereBeDragonBonus():Boolean
 	IncrementFlag("UVETOCOAST_STEP");
 
 	var choices:Array = new Array();
-	//If walked far enough w/o an encounter
-	if(flags["UVETOCOAST_STEP"] >= 5 && rand(4) == 0) {
+	//If walked far enough w/o an encounter (temporary values, should be replaced when moved to Glacial Rift)
+	if(flags["UVETOCOAST_STEP"] >= 1 && rand(2) == 0) {
 		//Reset step counter
 		flags["UVETOCOAST_STEP"] = 0;
 		//Build encounter

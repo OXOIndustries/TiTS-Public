@@ -1732,7 +1732,7 @@ public function frostwyrmCodexEntry():void
 
 	outputCodex("\n\nFighting a frostwyrm is considered suicidal by most native races, and foolhardy hunters that go to bring one down rarely if ever return. Luckily for the people of Uveto, frostwyrms are reclusive and few in number -- they have never attacked a settlement, and do not seem interested in aggressive action unless their territory is invaded.");
 
-	if (flags["LOST_TO_FROSTWYRM"] == undefined)
+	if (flags["FROSTWYRMWARNING"] == undefined)
 	{
 		outputCodex("\n\nWhile psionic power is generally associated with high mental acuity, it is unknown if frostwyrms are actually sapient -- no communication has ever been possible, and the wyrms appear to have no language beyond roars and grunts.");
 	}
