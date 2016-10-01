@@ -517,7 +517,7 @@ public function lustyBugponyCocked():void
 			pc.lust(15);
 			pc.orgasm();
 			processTime(10+rand(3));
-			sweatyDebuff();
+			sweatyDebuff(1);
 			IncrementFlag("FUCKED_CHIEF_NEYKKAR");
 
 			clearMenu();
@@ -576,7 +576,7 @@ public function lustyBugponyCocked():void
 			processTime(10+rand(3));
 			pc.energy(-5);
 			pc.lust(15);
-			sweatyDebuff();
+			sweatyDebuff(1);
 			clearMenu();
 			addButton(0, "Next", lustyBugPonyCockedNotTaurII);
 		}

@@ -341,16 +341,18 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		arbetzPetrBuyGo(arg);
 		return;
 	}
-	else if(shopkeep is Ellie && arg is SumaCream)
+	//Emmy magic!
+	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
+	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
+	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
+	
+	//Suma swap
+	if(arg is SumaCream)
 	{
 		// Buying Suma Cream has a 1 in 20 chance of getting a “Black Cream” pearl instead, due to J’ejune’s lax oversight
 		if(rand(20) == 0) arg = new SumaCreamBlack();
 		else arg = new SumaCreamWhite();
 	}
-	//Emmy magic!
-	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
-	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
-	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
 	
 	// Apply and destroy coupons!
 	var usedCoupon:Boolean = false;

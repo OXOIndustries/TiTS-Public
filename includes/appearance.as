@@ -875,6 +875,8 @@ public function appearance(forTarget:Creature):void
 			else output2(" looks soaked, completely drenched in thick layers");
 			output2(" of sweat, signaling the exertion of your previous physical activities.");
 		}
+		// Pheromones
+		if(target.hasPheromones()) output2(" " + ((target.hasPerk("Pheromone Sweat") && target.statusEffectv1("Sweaty") > 2) ? "Your entire body emits" : "Parts of your body emit") + " " + RandomInCollection(["aphrodisiac-laced", "lust-scented", "musky", "aromatic"]) + " pheromones, enticing potential mates.");
 		//Wing arms
 		if(target.armType == GLOBAL.TYPE_AVIAN)
 		{

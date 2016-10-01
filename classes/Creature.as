@@ -3235,6 +3235,7 @@
 		public function hasPheromones():Boolean
 		{
 			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent")) return true;
+			if(hasPerk("Pheromone Sweat") && statusEffectv1("Sweaty") > 0) return true;
 			if(accessory is Allure) return true;
 			return false;	
 		}

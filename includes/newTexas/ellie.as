@@ -175,12 +175,6 @@ public function ellieMenu(display:Boolean = true):void
 
 public function ellieBuyWrapper():void
 {
-	if(StatTracking.getStat("milkers/prostate milker uses") > 0)
-	{
-		if(!chars["ELLIE"].hasItemByType(SumaCream)) chars["ELLIE"].inventory.push(new SumaCream());
-		CodexManager.unlockEntry("Suma Cream");
-	}
-	else chars["ELLIE"].destroyItem(new SumaCream());
 	CodexManager.unlockEntry("ClearYu");
 	CodexManager.unlockEntry("Rubber-Made");
 	buyItem();

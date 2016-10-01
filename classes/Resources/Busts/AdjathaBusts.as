@@ -113,6 +113,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/gene_nude.png", mimeType = "image/png")]
 		public var Bust_GENE_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/vending_tarkus.png", mimeType = "image/png")]
+		public var Bust_GOBLINOLA_VENDING_MACHINE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/godi.png", mimeType = "image/png")]
 		public var Bust_GODI:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/godi_nude.png", mimeType = "image/png")]
@@ -455,6 +458,9 @@ package classes.Resources.Busts
 			public var Full_GENE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gene_nude.png", mimeType = "image/png")]
 			public var Full_GENE_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vending_tarkus.png", mimeType = "image/png")]
+			public var Full_GOBLINOLA_VENDING_MACHINE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/godi.png", mimeType = "image/png")]
 			public var Full_GODI:Class;

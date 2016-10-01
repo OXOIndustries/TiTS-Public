@@ -1444,7 +1444,7 @@ public function arbetzPoolBonus():Boolean
 			else addButton(0, "Swim", arbetzSwimOptions, 0, "Swim", "Go for a swim.");
 		}
 		else addButton(0, "Swim", arbetzSwimOptions, 0, "Swim", "Go for a swim.");
-		addButton(1, "Vending Machine", arbetzVendingMachine);
+		addButton(1, "V.Machine", arbetzVendingMachine, undefined, "Vending Machine", "Buy a snack to eat.");
 		gooArmorTalkButton(2);
 	}
 	else
@@ -1555,6 +1555,7 @@ public function arbetzVendingMachine():void
 	clearOutput();
 	author("Nonesuch");
 	showName("VENDING\nMACHINE");
+	showBust("GOBLINOLA_VENDING_MACHINE");
 	
 	output("The gently humming machine is selling some sort of health snack called “Goblinola”.");
 	
@@ -1566,6 +1567,7 @@ public function arbetzVendingMachine():void
 public function arbetzBuyGoblinola(vendedItem:ItemSlotClass):void
 {
 	clearOutput();
+	showBust("GOBLINOLA_VENDING_MACHINE");
 	
 	if (pc.credits >= vendedItem.basePrice)
 	{
