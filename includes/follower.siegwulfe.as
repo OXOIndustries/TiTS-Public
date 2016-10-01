@@ -410,7 +410,7 @@ public function doSiegwulfeAction(arg:Array):void
 		// Take
 		case "take":
 			output("You ask [wulfe.name] if she would be interested in joining you.");
-			output("\n\nHer circuits light up as she eagerly nods <i>“" + (chars["WULFE"].isBimbo() ? "Like, yes, [pc.master]! We are gonna have so much fun!" : "Of course, [pc.master], I am at your side.") + "”</i>");
+			output("\n\nHer circuits light up as she eagerly nods, <i>“" + (chars["WULFE"].isBimbo() ? "Like, yes, [pc.master]! We are gonna have so much fun!" : "Of course, [pc.master], I am at your side.") + "”</i>");
 			output("\n\n(<b>[wulfe.name] is no longer on your crew. She is now following you.</b>)");
 			output("\n\n");
 			

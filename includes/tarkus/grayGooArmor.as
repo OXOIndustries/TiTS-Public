@@ -1286,8 +1286,13 @@ public function gooArmorCrewOption(arg:Array):void
 			{
 				if(silly && pc.isBimbo() && pc.hasBreasts())
 				{
-					txt += "With a serious face, you look at your gooey friend and command, <i>“" + chars["GOO"].short.toUpperCase() + ", GRAB MY BOOBS.”</i>";
-					txt += "\n\nShe takes her hand and places it on your right-most breast, then squeezes. <i>HONK!</i>";
+					txt += "With a serious face, you look at your gooey friend and command, <i>“" + chars["GOO"].short.toUpperCase() + ", GRAB MY BOOB";
+					if(pc.totalBreasts() >= 2) txt += "S";
+					txt += ".”</i>";
+					txt += "\n\nShe takes her hand and places it on your";
+					if(pc.totalBreasts() >= 2) txt += " right";
+					if(pc.totalBreasts() > 2) txt += "-most";
+					txt += " breast, then squeezes. <i>HONK!</i>";
 					txt += "\n\nIn sync, you both chorus the word, <i>“ADVENTURE...!”</i>";
 					txt += "\n\nThe console monitors around you flicker different colors to simulate a discothèque-like rainbow for added emphasis. [goo.name] quickly engulfs herself around your body, changing into your fitted armor, then popping her top half out to meet you as the light show finally stops and everything returns to normal.";
 					txt += "\n\nThe two of you look at each other for a good few seconds, then burst into high-pitched giggles.";

@@ -49,7 +49,7 @@
 		
 		override public function get description():String
 		{
-			return "a Siegwulfe personal " + (kGAMECLASS.chars["WULFE"].isBimbo() ? "bimbobot" : "security") + " companion.";
+			return "a Siegwulfe personal " + (kGAMECLASS.chars["WULFE"].isBimbo() ? "bimbobot" : "security") + " companion";
 		}
 	}
 }
