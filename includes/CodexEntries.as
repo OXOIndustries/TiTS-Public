@@ -1723,7 +1723,7 @@ public function frostwyrmCodexEntry():void
 	outputCodex("\n<b>Scales:</b> Snow white, flecked with glistening blue and silver");
 	outputCodex("\n<b>Eyes:</b> Four flame-red eyes");
 	outputCodex("\n<b>Ears:</b> Reptilian");
-	outputCodex("\n<b>Tails:</b> Each Frostwyrm has a powerful reptilian tail that stretches out nearly the length of its body, covered in spikes.");
+	outputCodex("\n<b>Tails:</b> Each Frostwyrm has a powerful reptilian tail that stretches out nearly the length of its body, covered in spikes.\n\n");
 
 	outputCodex(blockHeader("Combat"));
 	outputCodex("The apex predator on the frozen world of Uveto VII, the Frostwyrms are mythological beasts spoken of in hushed, fearful whispers by the native races. Rarely encountered by colonists, these reclusive creatures are mighty behemoths able to rend armored vehicles asunder. Wyrms have eight spear-like claws on each of their six legs, and several spikes line the length of its tail, able to hit with the force of a thunderbolt. The creatures’ teeth are like arrays of swords, set three rows deep in a bestial maw, and its scales act as an interlocking pattern of shields like any other reptile’s. Even its wings can be weaponized, creating a hurricane-like gale that batters attackers down to the earth, or send them flying - not to mention sending snow flurrying about to obscure itself.");
@@ -1743,17 +1743,17 @@ public function frostwyrmCodexEntry():void
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Environs"));
-	outputCodex("\n\nNative to the snowy world of Uveto, frostwyrms are amphibious reptiles that tend to be found on the coastlines and glacial outcroppings that dot eastern Uveto. They are capable of breathing air and either possess secondary gills or else extreme lung capacity akin to whales, as they are able to submerge in the icy waters of the planet for an extreme duration - possibly hours at a time.");
+	outputCodex("Native to the snowy world of Uveto, frostwyrms are amphibious reptiles that tend to be found on the coastlines and glacial outcroppings that dot eastern Uveto. They are capable of breathing air and either possess secondary gills or else extreme lung capacity akin to whales, as they are able to submerge in the icy waters of the planet for an extreme duration - possibly hours at a time.");
 
 	outputCodex("\n\nIt is believed that frostwyrms live in large caves on the coast, possibly submerged under water. As yet, no wyrm lair has ever been discovered.");
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Reproduction"));
-	outputCodex("\n\nUnknown. It is believed that frostwyrms are traditionally reptilian and lay eggs, though none have ever been seen. Several enessae and milodan legends tell of sighting a wyrm heavy with eggs, though none have been seen since colonization.");
+	outputCodex("Unknown. It is believed that frostwyrms are traditionally reptilian and lay eggs, though none have ever been seen. Several enessae and milodan legends tell of sighting a wyrm heavy with eggs, though none have been seen since colonization.");
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Culture & Society"));
-	outputCodex("\n\nUnknown. Wyrms are believed to be solitary creatures with no culture to speak of.");
+	outputCodex("Unknown. Wyrms are believed to be solitary creatures with no culture to speak of.");
 	outputCodex("\n\n");
 
 	CodexManager.viewedEntry("Frostwyrm");

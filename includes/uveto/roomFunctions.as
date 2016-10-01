@@ -37,6 +37,7 @@ public function HereBeDragonBonus():Boolean
 	//Always encounter Frostwyrm first time
 	if(flags["MET_FROSTWYRM"] == undefined)
 	{
+		flags["UVETOCOAST_STEP"] = 0;
 		encounterFrostwyrm();
 		return true;
 	}
@@ -45,7 +46,7 @@ public function HereBeDragonBonus():Boolean
 
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter (temporary values, should be replaced when moved to Glacial Rift)
-	if(flags["UVETOCOAST_STEP"] >= 1 && rand(2) == 0) {
+	if(flags["UVETOCOAST_STEP"] >= 2 && rand(2) == 0) {
 		//Reset step counter
 		flags["UVETOCOAST_STEP"] = 0;
 		//Build encounter
