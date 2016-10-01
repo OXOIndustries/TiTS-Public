@@ -1763,16 +1763,16 @@ public function sleepWithCuredReaha():void
 
 public function displayReahaInventory():void
 {
-	output("<b>Reaha Is Wearing</b>:\n");
+	output("<b><u>Reaha Is Wearing</u></b>:\n");
 	output("<b>Armor:</b> [reaha.Armor]\n");
 	output("<b>Upper Undergarment:</b> [reaha.UpperUndergarment]\n");
 	output("<b>Lower Undergarment:</b> [reaha.LowerUndergarment]\n\n");
-	output("<b>Reaha's Available Clothing:</b>\n");
+	output("<b><u>Reaha's Available Clothing:</u></b>\n");
 	for(var x:int = 0; x < reaha.inventory.length; x++)
 	{
 		output(StringUtil.upperCase(reaha.inventory[x].description) + "\n");
 	}
-	if(reaha.inventory.length == 0) output("Nothing. Reaha has no clothes!\n")
+	if(reaha.inventory.length == 0) output("Nothing. <i>Reaha has no" + (reaha.isNude() ? "": " extra") + " clothes!</i>\n");
 }
 
 //Give Clothes
@@ -1789,19 +1789,33 @@ public function giveReahaClothes():void
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
 		//Lazy failsafe: only first 14 clothing items up for grabs.
-		if(buttons < 14)
+		//if(buttons < 14) {}
+		
+		if(InCollection(pc.inventory[x].type, [GLOBAL.CLOTHING, GLOBAL.ARMOR,GLOBAL.LOWER_UNDERGARMENT,GLOBAL.UPPER_UNDERGARMENT]))
 		{
-			if(InCollection(pc.inventory[x].type, GLOBAL.CLOTHING, GLOBAL.ARMOR,GLOBAL.LOWER_UNDERGARMENT,GLOBAL.UPPER_UNDERGARMENT))
+			if(buttons >= 14 && (buttons + 1) % 15 == 0)
 			{
-				//No gray goo giveaway!
-				if(pc.inventory[x] is GooArmor) {}
-				else
-				{
-					//Make sure Reaha doesn't already have it
-					if(reaha.hasItem(pc.inventory[x])) addDisabledButton(buttons,pc.inventory[x].short,pc.inventory[x].long,"Reaha already has one of these.");
-					else addItemButton(buttons,pc.inventory[x],reahaClothingGiftConfirm,x);
-					buttons++;
-				}
+				addButton(buttons, "Back", curedReahaApproach);
+				buttons++;
+			}
+			
+			//No gray goo giveaway!
+			if(pc.inventory[x] is GooArmor) {}
+			else
+			{
+				//Make sure Reaha doesn't already have it
+				if(
+					InCollection(pc.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
+				) addDisabledButton(buttons, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "Reaha is already wearing one of these!");
+				else if(reaha.hasItem(pc.inventory[x])) addDisabledButton(buttons, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "Reaha already has one of these.");
+				else addItemButton(buttons, pc.inventory[x], reahaClothingGiftConfirm, x);
+				buttons++;
+			}
+			
+			if(buttons > 14 && pc.inventory.length > 14 && (x + 1) == pc.inventory.length)
+			{
+				while((buttons + 1) % 15 != 0) { buttons++; }
+				addButton(buttons, "Back", curedReahaApproach);
 			}
 		}
 	}
@@ -1828,7 +1842,7 @@ public function giveReahaClothesProcess(x:int):void
 	output("<i>“I’ve got a present for you!”</i>");
 	var item:ItemSlotClass = pc.inventory[x];
 	//Move her old armor to inventory, if she had any.
-	if(InCollection(item.type, GLOBAL.CLOTHING, GLOBAL.ARMOR)) 
+	if(InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR])) 
 	{
 		if(!(reaha.armor is EmptySlot)) reaha.inventory.push(reaha.armor);
 		reaha.armor = item;
@@ -1909,8 +1923,24 @@ public function whatOutfitWillCuredReahaWear():void
 	for(var x:int = 0; x < reaha.inventory.length; x++)
 	{
 		//14 is for "Back"
-		if(buttons == 14) buttons++;
-		addItemButton(buttons,reaha.inventory[x],dressCuredReahaSelection,reaha.inventory[x]);
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", curedReahaApproach);
+			buttons++;
+		}
+		
+		//Make sure Reaha doesn't already have it (failsafe)
+		if(
+			InCollection(reaha.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
+		) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Reaha is already wearing one of these!");
+		else addItemButton(buttons,reaha.inventory[x],dressCuredReahaSelection,reaha.inventory[x]);
+		buttons++;
+		
+		if(reaha.inventory.length > 14 && (x + 1) == reaha.inventory.length)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", curedReahaApproach);
+		}
 	}
 
 }
@@ -1941,20 +1971,23 @@ public function dressCuredReahaSelection(item:ItemSlotClass):void
 		reaha.upperUndergarment = new EmptySlot();
 	}
 	//ELSE ARMOR
-	else if(InCollection(item.type, GLOBAL.CLOTHING, GLOBAL.ARMOR)) 
+	else if(InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]))
 	{
 		if(!(reaha.armor is EmptySlot)) reaha.inventory.push(reaha.armor);
 		reaha.armor = item;
+		reaha.destroyItem(item, -1);
 	}
 	else if(item.type == GLOBAL.LOWER_UNDERGARMENT)
 	{
 		if(!(reaha.lowerUndergarment is EmptySlot)) reaha.inventory.push(reaha.lowerUndergarment);
 		reaha.lowerUndergarment = item;
+		reaha.destroyItem(item, -1);
 	}
 	else if(item.type == GLOBAL.UPPER_UNDERGARMENT)
 	{
 		if(!(reaha.upperUndergarment is EmptySlot)) reaha.inventory.push(reaha.upperUndergarment);
 		reaha.upperUndergarment = item;
+		reaha.destroyItem(item, -1);
 	}
 	else
 	{
