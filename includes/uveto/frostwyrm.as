@@ -32,10 +32,11 @@ public function encounterFrostwyrm():void
 		output("You hear a familiar, bestial roar overhead. Looking up, you can clearly see the outline of a massive winged creature soaring through the sky, circling you. Oh, shit. You get your [pc.mainWeapon] ready as the draconic frostwyrm does a barrel roll and dives down, slamming into the snow just a short ways ahead of you. It lets out a fearsome battle roar and stalks towards you, a dark shape through the haze of billowing snow.");
 	}
 	IncrementFlag("MET_FROSTWYRM");
+	CodexManager.unlockEntry("Frostwyrm");
 	
 	clearMenu();
 	addButton(0,"Fight",fightFrostwyrm); //Yes, please turn me into a dragon's slave
-	addButton(1,"Flee",fleeFrostwyrm,undefined,"Run Away","Sometimes discretion is the better part of valour"); //No, I am sane
+	addButton(1,"Flee",fleeFrostwyrm,undefined,"Run Away","Sometimes discretion is the better part of valor"); //No, I am sane
 }
 
 public function fightFrostwyrm():void

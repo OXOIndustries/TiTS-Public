@@ -41,6 +41,8 @@ package classes.Characters
 			baseHPResistances.kinetic.damageValue = 15.0;
 			baseHPResistances.electric.damageValue = 15.0;
 			baseHPResistances.burning.damageValue = 15.0;
+			baseHPResistances.freezing.damageValue = 15.0;
+			baseHPResistances.corrosive.damageValue = 15.0;
 			
 			this.meleeWeapon = new Fists();
 			
