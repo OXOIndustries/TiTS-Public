@@ -31,7 +31,7 @@ package classes.GameData.Pregnancy
 		// General numerical caches for simple shit
 		private var _numInvalidated:Boolean;
 		public function get numInvalidated():Boolean { return _numInvalidated; }
-		public function set numInvalidated(v:Boolean)
+		public function set numInvalidated(v:Boolean):void
 		{ 
 			_numInvalidated = v; 
 			if (v)

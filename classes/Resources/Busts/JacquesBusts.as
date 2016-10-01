@@ -44,6 +44,16 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jacques00/deep_lake_queen.png", mimeType = "image/png")]
 		public var Bust_QUEENOFTHEDEEP:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/fenris_mkiv.png", mimeType = "image/png")]
+		public var Bust_FENRISDRONEIV:Class;
+		public var Bounds_FENRISDRONEIV:Rectangle = new Rectangle(35, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/jacques00/fenris_mkiv_night.png", mimeType = "image/png")]
+		public var Bust_FENRISDRONEIV_NIGHT:Class;
+		public var Bounds_FENRISDRONEIV_NIGHT:Rectangle = new Rectangle(35, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/jacques00/fenris_mkiv_arctic.png", mimeType = "image/png")]
+		public var Bust_FENRISDRONEIV_ARCTIC:Class;
+		public var Bounds_FENRISDRONEIV_ARCTIC:Rectangle = new Rectangle(35, 0, 80, 80);
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/firewall.png", mimeType = "image/png")]
 		public var Bust_FIREWALL:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/firewall_battle.png", mimeType = "image/png")]
@@ -137,6 +147,11 @@ package classes.Resources.Busts
 		public var Bust_MYR_RED_GUARD_MASK:Class;
 		public var Bounds_MYR_RED_GUARD_MASK:Rectangle = new Rectangle(34, 10, 75, 75);
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/natalie.png", mimeType = "image/png")]
+		public var Bust_NATALIE:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/natalie_nude.png", mimeType = "image/png")]
+		public var Bust_NATALIE_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara.png", mimeType = "image/png")]
 		public var Bust_NEHZARA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara_nude.png", mimeType = "image/png")]
@@ -190,6 +205,30 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jacques00/scalla.png", mimeType = "image/png")]
 		public var Bust_SCALLA:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/siegwulfe.png", mimeType = "image/png")]
+		public var Bust_SIEGWULFE:Class;
+		public var Bounds_SIEGWULFE:Rectangle = new Rectangle(16, 0, 70, 65);
+		[Embed(source = "../../../assets/images/npcs/jacques00/siegwulfe_nude.png", mimeType = "image/png")]
+		public var Bust_SIEGWULFE_NUDE:Class;
+		public var Bounds_SIEGWULFE_NUDE:Rectangle = new Rectangle(16, 0, 70, 65);
+		
+		[Embed(source = "../../../assets/images/npcs/jacques00/siegwulfe_bimbo.png", mimeType = "image/png")]
+		public var Bust_SIEGWULFE_BIMBO:Class;
+		public var Bounds_SIEGWULFE_BIMBO:Rectangle = new Rectangle(16, 0, 70, 65);
+		[Embed(source = "../../../assets/images/npcs/jacques00/siegwulfe_bimbo_nude.png", mimeType = "image/png")]
+		public var Bust_SIEGWULFE_BIMBO_NUDE:Class;
+		public var Bounds_SIEGWULFE_BIMBO_NUDE:Rectangle = new Rectangle(16, 0, 70, 65);
+		
+		[Embed(source = "../../../assets/images/npcs/jacques00/tamwolf_0.png", mimeType = "image/png")]
+		public var Bust_TAMWOLF_DAMAGED:Class;
+		public var Bounds_TAMWOLF_DAMAGED:Rectangle = new Rectangle(35, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/jacques00/tamwolf_1.png", mimeType = "image/png")]
+		public var Bust_TAMWOLF:Class;
+		public var Bounds_TAMWOLF:Rectangle = new Rectangle(35, 0, 80, 80);
+		[Embed(source = "../../../assets/images/npcs/jacques00/tamwolf_2.png", mimeType = "image/png")]
+		public var Bust_TAMWOLF_II:Class;
+		public var Bounds_TAMWOLF_II:Rectangle = new Rectangle(35, 0, 80, 80);
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;
 		
@@ -233,6 +272,13 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/deep_lake_queen.png", mimeType = "image/png", compression = true)]
 			public var Full_QUEENOFTHEDEEP:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/fenris_mkiv.png", mimeType = "image/png", compression = true)]
+			public var Full_FENRISDRONEIV:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/fenris_mkiv_night.png", mimeType = "image/png", compression = true)]
+			public var Full_FENRISDRONEIV_NIGHT:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/fenris_mkiv_arctic.png", mimeType = "image/png", compression = true)]
+			public var Full_FENRISDRONEIV_ARCTIC:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/firewall.png", mimeType = "image/png", compression = true)]
 			public var Full_FIREWALL:Class;
@@ -322,6 +368,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_red_guard_mask.png", mimeType = "image/png", compression = true)]
 			public var Full_MYR_RED_GUARD_MASK:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie.png", mimeType = "image/png", compression = true)]
+			public var Full_NATALIE:Class;		
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie_nude.png", mimeType = "image/png", compression = true)]
+			public var Full_NATALIE_NUDE:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara.png", mimeType = "image/png", compression = true)]
 			public var Full_NEHZARA:Class;		
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara_nude.png", mimeType = "image/png", compression = true)]
@@ -374,6 +425,23 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/scalla.png", mimeType = "image/png", compression = true)]
 			public var Full_SCALLA:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe.png", mimeType = "image/png", compression = true)]
+			public var Full_SIEGWULFE:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_nude.png", mimeType = "image/png", compression = true)]
+			public var Full_SIEGWULFE_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_bimbo.png", mimeType = "image/png", compression = true)]
+			public var Full_SIEGWULFE_BIMBO:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_bimbo_nude.png", mimeType = "image/png", compression = true)]
+			public var Full_SIEGWULFE_BIMBO_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/tamwolf_0.png", mimeType = "image/png", compression = true)]
+			public var Full_TAMWOLF_DAMAGED:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/tamwolf_1.png", mimeType = "image/png", compression = true)]
+			public var Full_TAMWOLF:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/tamwolf_2.png", mimeType = "image/png", compression = true)]
+			public var Full_TAMWOLF_II:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/varmint.png", mimeType = "image/png", compression = true)]
 			public var Full_VARMINT:Class;

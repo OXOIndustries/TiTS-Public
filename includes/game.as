@@ -566,7 +566,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter) {
 			addButton((count + other) - 1, "Celise", celiseFollowerInteractions);
-			crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
+			if(reahaIsCrew() && !curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nCelise looks strangely [reaha.milkColor] at the moment, a cloud of discolored liquid floating listlessly inside her. Looks like she’s been feeding off a certain bovine lately...";
+			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 		}
 	}
 	if(reahaIsCrew())
@@ -574,8 +575,33 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
-			addButton((count + other) - 1, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
-			crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
+
+			//Not Addicted (CURED XPACK: reaha.cured_expansion.as)
+			if(!reahaAddicted())
+			{
+				//Slave Reaha, random choice: 
+				if(curedReahaInDebt()) 
+				{
+					if(rand(3) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
+					else if(rand(2) == 0) crewMessages += "\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.";
+					else crewMessages += "\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...";
+				}
+				//Freed Reaha, random choice: 
+				else
+				{
+					if(rand(4) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
+					else if(rand(3) == 0) crewMessages += "\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.";
+					else if(rand(2) == 0) crewMessages += "\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.";
+					else crewMessages += "\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.";
+				}
+				addButton((count + other) - 1, "Reaha", curedReahaApproach);
+			}
+			//Normal Reaha
+			else 
+			{
+				crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
+				addButton((count + other) - 1, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+			}
 		}
 	}
 	if (annoIsCrew())
@@ -586,8 +612,10 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			addButton((count + other) - 1, "Anno", annoFollowerApproach);
 			if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
 			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno's busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+			else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
 			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she's splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
 		}
+		//output("\n\n{PC has Freed Reaha and Anno, add to Anno’s random selection: }");
 	}
 	if (bessIsCrew())
 	{
@@ -731,7 +759,7 @@ public function sleep(outputs:Boolean = true):void {
 	if(InShipInterior(pc))
 	{
 		if(outputs)
-		{			
+		{
 			// Anno interjection
 			if (flags["ANNO_SLEEPWITH_INTRODUCED"] == undefined && annoIsCrew() && annoSexed() > 0)
 			{
@@ -739,6 +767,9 @@ public function sleep(outputs:Boolean = true):void {
 				return;
 			}
 		}
+		//Queue up cured Reaha
+		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
+		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
 	}
 	if(outputs)
 	{
@@ -780,6 +811,11 @@ public function sleep(outputs:Boolean = true):void {
 			else if (bessIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
 			{
 				flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+			}
+			else if (reahaIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA")
+			{
+				sleepWithCuredReaha();
+				return;
 			}
 		}
 	}
@@ -1250,6 +1286,16 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	}
 	//Reset the thing that disabled encounters
 	flags["ENCOUNTERS_DISABLED"] = undefined;
+
+	//Procs on ship exit:
+	if(currentLocation == "SHIP INTERIOR")
+	{
+		//Procs in safe areas only, like Reaha's milk stand:
+		if(!rooms[arg].hasFlag(GLOBAL.HAZARD))
+		{
+			if(reahaIsCrew() && !reahaAddicted() && rand(5) == 0) eventQueue.push(reahaMilkStand);
+		}
+	}
 
 	var moveMinutes:int = rooms[currentLocation].moveMinutes;
 	//Moveable immobilization adds more minutes!
@@ -1942,7 +1988,13 @@ public function processTime(arg:int):void {
 			if(chars["ALISS"].lust() < 70) chars["ALISS"].lust(5);
 			if(chars["PENNY"].lust() < 100) chars["PENNY"].lust(10);
 			if(chars["SHEKKA"].lust() < 50) chars["SHEKKA"].lust(15);
-
+			//ReahaStuff
+			//If payment Queued and PC in ship, Queue the actual payout event
+			if(flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
+			{
+				flags["REAHA_PAY_Q"] = undefined;
+				eventQueue.push(reahaPaybackEvent);
+			}
 			if(pc.hasPerk("Dumb4Cum")) dumb4CumUpdate();
 			//Gobbles Cooldown
 			if(flags["GOBBLES_SEXYTIMES_STARTED"] == 1 && flags["GOBBLES_COOLDOWN"] != 24)
@@ -2151,6 +2203,9 @@ public function processTime(arg:int):void {
 				// Tick up all of the attached mimbranes days since last fed
 				mimbranesIncreaseDaysSinceFed();
 				
+				// Reaha Monies
+				if(reahaIsCrew() && curedReahaInDebt() && !reahaAddicted() && days % 7 == 0 && flags["REAHA_PAY_Q"] == undefined) flags["REAHA_PAY_Q"] = 1;
+
 				// Lane monies
 				laneHandleCredits();
 				//Venus pitcher

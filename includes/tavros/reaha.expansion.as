@@ -25,7 +25,7 @@ public function reahaAddiction(addict:int = 0):int
 	{
 		flags["REAHA_ADDICTION"] += addict;
 
-		if (flags["REAHA_ADDICTION"] < 1) flags["REAHA_ADDICTION"] = 1; // TODO: Require final addiction cure shit to be done before it can hit 0.
+		if (flags["REAHA_ADDICTION"] < 0) flags["REAHA_ADDICTION"] = 0;
 		else if (flags["REAHA_ADDICTION"] > REAHA_ADDICTION_MAX) flags["REAHA_ADDICTION"] = REAHA_ADDICTION_MAX;
 	}
 	return flags["REAHA_ADDICTION"];

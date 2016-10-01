@@ -683,6 +683,8 @@
 		public static const FLUID_TYPE_SPECIAL_CUMGOO:int						= 24;
 		public static const FLUID_TYPE_FRUIT_CUM:int							= 25;
 		public static const FLUID_TYPE_FRUIT_GIRLCUM:int						= 26;
+		public static const FLUID_TYPE_EGGNOG:int								= 27;
+		public static const FLUID_TYPE_PEPPERMINT:int							= 28;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -712,6 +714,8 @@
 			"Goo Cum",
 			"Fruit Cum",
 			"Fruit Girl Cum",
+			"Eggnog",
+			"Peppermint Cum",
 		];
 		
 		public static const FLUID_TYPE_SHORT:Array = [
@@ -742,6 +746,8 @@
 			"GooCum",
 			"F.Cum",
 			"F.GCum",
+			"Eggnog",
+			"Mint.C",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -761,6 +767,8 @@
 			FLUID_TYPE_VANAE_CUM,
 			FLUID_TYPE_SPECIAL_CUMGOO,
 			FLUID_TYPE_FRUIT_CUM,
+			FLUID_TYPE_EGGNOG,
+			FLUID_TYPE_PEPPERMINT,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [

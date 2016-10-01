@@ -30,6 +30,31 @@ public function TundraEncounterBonus():Boolean
 	return false;
 }
 
+public function HereBeDragonBonus():Boolean
+{
+	if(flags["ENCOUNTERS_DISABLED"] != undefined || flags["FROSTWYRMSLAIN"] == 1) return false;
+	
+	//Always encounter Frostwyrm first time
+	if(flags["MET_FROSTWYRM"] == undefined)
+	{
+		encounterFrostwyrm();
+		return true;
+	}
+	
+	IncrementFlag("UVETOCOAST_STEP");
+
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["UVETOCOAST_STEP"] >= 5 && rand(4) == 0) {
+		//Reset step counter
+		flags["UVETOCOAST_STEP"] = 0;
+		//Build encounter
+		encounterFrostwyrm();
+		return true;
+	}
+	return false;
+}
+
 public function uvetoShipDock():Boolean
 {
 	removeUvetoCold(true);

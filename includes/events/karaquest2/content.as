@@ -989,7 +989,11 @@ public function kq2FightEngineer(numDrones:int):void
 	if (flags["KQ2_KARA_WITH_PC"] == 1) f.push(kara);
 
 	var h:Array = [new KQ2Engineer()];
-	for (var i:int = 0; i < numDrones; i++) h.push(new KQ2FenrisDrone());
+	for (var i:int = 0; i < numDrones; i++)
+	{
+		h.push(new KQ2FenrisDrone());
+		h[i + 1].skinTone = "black";
+	}
 
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(f);

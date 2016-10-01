@@ -4,6 +4,7 @@ package classes.GameData
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Items.Accessories.SiegwulfeItem; 
+	import classes.Items.Apparel.Harness;
 	import classes.Items.Armor.GooArmor;
 	import classes.ItemSlotClass;
 	import classes.StorageClass;
@@ -1010,6 +1011,21 @@ package classes.GameData
 				output("\n\nThe little tentacles keep hammering at " + target.getCombatName() +", smashing their blunt faces and squeezing as hard as they can!");
 				applyDamage(damageRand(new TypeCollection( { kinetic: 5 }, DamageFlag.BYPASS_SHIELD), 15), null, target, "minimal");
 			}
+			
+			if (target.hasStatusEffect("Psychic Miasma"))
+			{
+				
+				if (target.willpower() + 10 > rand(100))
+				{
+					target.removeStatusEffect("Psychic Miasma");
+					if (target is PlayerCharacter) output("\n\nYou push aside the effects of the psionic drone");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " resists the psionic drone</b>");
+					
+					target.aimMod += 5
+					target.reflexesMod += 5
+					
+				}
+			}
 		}
 		
 		public function updateStatusEffects(collection:Array):void
@@ -1339,6 +1355,11 @@ package classes.GameData
 				output("You escape on wings of debug!");
 				CombatManager.abortCombat();
 			}
+			else if (hasEnemyOfClass(Frostwyrm))
+			{
+				output("The frostwyrm doesn't give chase, letting you escape.");
+				CombatManager.abortCombat();
+			}			
 			else 
 			{
 				// TODO rework this somehow
@@ -2310,6 +2331,14 @@ package classes.GameData
 					else output(" you cease your posing and");
 					output(" return your gaze to the fight.");
 				}
+				//if pc is wearing harness upper undergarment
+				else if(rand(1) == 0 && pc.upperUndergarment is Harness) 
+				{ 
+					if(!pc.isChestExposed()) output("You tear off your [pc.armor] and reveal");
+					else output("You throw your arms wide to present");
+					output(" your chest, the harness tight around your [pc.chest]. You flex and stretch in the harness, showing how it constrains you. You flaunt your");
+					output(pc.mf(" masculinity", " femininity") + " a short while longer before covering up.");
+				}
 				else if(!pc.isChestExposed()) output("You peel open your [pc.upperGarments] to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
 				else output("Naked as you are, there’s nothing you need to do to expose your [pc.chest] and [pc.nipples], and running a hand up your [pc.skinFurScales] only enhances the delicious exposure. You make sure that every bit of your musculature is open and on display before you adopt a less sensual pose.")
 			}
@@ -2330,6 +2359,8 @@ package classes.GameData
 				if(!pc.isChestExposed() && pc.tailCount >= pc.totalNipples()) choices.push(3);
 				//Reqs: PC has very high tone
 				if(pc.tone >= 70) choices.push(4);
+				//Reqs: PC is wearing Harness upper undergarment
+				if(pc.upperUndergarment is Harness) choices.push(5);
 
 				//pick our winner!
 				var select:int = choices[rand(choices.length)];
@@ -2393,6 +2424,14 @@ package classes.GameData
 					if(!pc.isChestExposed()) output(" you close your [pc.upperGarments] and");
 					else output(" you cease your posing and");
 					output(" return your gaze to the fight.");
+				}
+				//Reqs: PC is wearing Harness upper undergarment
+				else if (select == 5)
+				{
+					if(!pc.isChestExposed()) output("You tear off your [pc.armor] and reveal");
+					else output("You throw your arms wide to present");
+					output(" your chest, the harness tight around your [pc.chest]. You flex and stretch in the harness, showing how it constrains you. You flaunt your");
+					output(pc.mf(" masculinity", " femininity") + " a short while longer before covering up.");
 				}
 			}
 		}
@@ -2645,6 +2684,8 @@ package classes.GameData
 			if((target is ZilFemale || target is ZilMale || target is ZilPack) && pc.hasVagina(GLOBAL.TYPE_BEE)) choices.push(13);
 			//Reqs: PC has at least 3 vaginal wetness
 			if(pc.hasVagina() && pc.wettestVaginalWetness() >= 3) choices.push(14);
+			//Reqs: PC is wearing harness upper undergarment + has cock
+			if(pc.upperUndergarment is Harness && pc.hasCock()) choices.push(15);
 
 			var select:int = choices[rand(choices.length)];
 			//1 - dick!
@@ -2968,6 +3009,13 @@ package classes.GameData
 				if(!pc.isCrotchExposed()) output(" You close up your [pc.lowerGarments]");
 				else output(" You adjust your thighs back to their normal stance");
 				output(" as you say this, taking a moment to suck your fingers clean with a wink.");
+			}
+			//Reqs: PC is wearing harness upper undergarment + has cock
+			else if (select == 15)
+			{
+				if(pc.hasArmor()) output("You undo the lower half of your [pc.armor] to let [pc.eachCock] fall out and [pc.balls] hang loose.");
+				else output("You roll back your shoulders and angle up your hip to show off your [pc.eachCock] and swinging [pc.balls].");
+				output(" Coincidentally [pc.oneCock] is hung inside of your harness, it's [pc.cockHead] utterly covered in precum, showing how virile and ready to please you are. You stroke [pc.oneCock] until a glob of precum lands on your hand. Lifting it above your mouth you slowly let your [pc.cumVisc] precum slide into your mouth. After letting it rest on your tongue for a bit, you swallow. You open your mouth and show " + target.getCombatName() + " that your mouth is now empty. You quickly cover back up.");
 			}
 		}
 		

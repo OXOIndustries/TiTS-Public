@@ -3144,6 +3144,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Breeding Stocks, Times Used:</b> " + flags["MISCREANT_MANORED"]);
 				variousCount++;
 			}
+			// Straps
+			if(flags["MET_BUSKY"] != undefined)
+			{
+				output2("\n<b><u>Straps</u></b>");
+				output2("\n<b>* Busky:</b> Met him");
+				if(flags["BUSKY_AFFECTION"] != undefined) output2("\n<b>* Busky, Affection:</b> " + flags["BUSKY_AFFECTION"] + " %");
+				if(flags["BUSKY_SEXED_COUNT"] != undefined) output2("\n<b>* Busky, Times Sexed:</b> " + flags["BUSKY_SEXED_COUNT"]);
+				variousCount++;
+			}
 			// Ten Ton Gym
 			if(flags["MET_QUENTON"] != undefined)
 			{
@@ -4719,6 +4728,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");
 				variousCount++;
 			}
+			//Frostwyrm
+			if(flags["MET_FROSTWYRM"] != undefined)
+			{
+				output2("\n<b><u>Frostwyrm</u></b>");
+				if(flags["FROSTWYRMSLAIN"] != undefined) output2("\n* You have slain the Frostwyrm!");
+				if(flags["FROSTWYRMWARNING"] != undefined) output2("\n* You were defeated by the Frostwyrm and warned never to return.");			
+				if(flags["MET_FROSTWYRM"] != undefined) output2("\n<b>* Frostwyrm, Times Encountered:</b> " + flags["MET_FROSTWYRM"]);
+				variousCount++;
+			}
+			
+			
 			// Resources
 			if(flags["9999"] != undefined)
 			{

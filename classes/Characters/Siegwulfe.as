@@ -124,5 +124,14 @@
 			createPerk("Ditz Speech", 0, 0, 0 ,0 , "");
 			createPerk("Mega Milk", 0, 0, 0 ,0 , "");
 		}
+		
+		override public function get bustDisplay():String
+		{
+			var bustName:String = "SIEGWULFE";
+			
+			if(isBimbo()) bustName += "_BIMBO";
+			
+			return bustName;
+		}
 	}
 }

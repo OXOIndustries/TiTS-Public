@@ -252,6 +252,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/quenton_nude.png", mimeType = "image/png")]
 		public var Bust_QUENTON_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
+		public var Bust_REAHA_ANUSOFT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith.png", mimeType = "image/png")]
 		public var Bust_SEMITH:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith_nude.png", mimeType = "image/png")]
@@ -339,6 +342,9 @@ package classes.Resources.Busts
 		public var Bust_VI_LARGE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vi_large_nude.png", mimeType = "image/png")]
 		public var Bust_VI_LARGE_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/xotchi.png", mimeType = "image/png")]
+		public var Bust_XOTCHI:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl.png", mimeType = "image/png")]
 		public var Bust_ZIL_CALLGIRL:Class;
@@ -588,6 +594,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quenton_nude.png", mimeType = "image/png")]
 			public var Full_QUENTON_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/reaha_anusoft.png", mimeType = "image/png")]
+			public var Full_REAHA_ANUSOFT:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith.png", mimeType = "image/png")]
 			public var Full_SEMITH:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith_nude.png", mimeType = "image/png")]
@@ -671,6 +680,9 @@ package classes.Resources.Busts
 			public var Full_VI_LARGE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi_large_nude.png", mimeType = "image/png")]
 			public var Full_VI_LARGE_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/xotchi.png", mimeType = "image/png")]
+			public var Full_XOTCHI:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl.png", mimeType = "image/png")]
 			public var Full_ZIL_CALLGIRL:Class;
