@@ -171,6 +171,27 @@ package classes.GameData.Pregnancy.Handlers
 			pData.reset();
 		}
 		
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):void
+		{
+			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			
+			var c:Child = Child.NewChildWeights(pregnancyChildRace, childMaturationMultiplier, pData.pregnancyQuantity, childGenderWeights);
+			c.BornTimestamp = useBornTimestamp;
+			ChildManager.addChild(c);
+			
+			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+			
+			StatTracking.track("pregnancy/royal nyrea eggs", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			
+			if (mother.hasStatusEffect("Royal Eggs Messages Available"))
+			{
+				mother.removeStatusEffect("Royal Eggs Messages Available");
+			}
+			
+			pData.reset();
+		}
+		
 		override public function pregBellyFragment(target:Creature, slot:int):String
 		{
 			return "Your belly is bulging heavily. At first glance, people might be mistaken for thinking you're properly pregnant, but closer inspection reveals your belly to be lumpy and slightly misshapen, bulging with eggs as you are.";

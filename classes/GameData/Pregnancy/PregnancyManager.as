@@ -146,7 +146,54 @@
 			
 			return (_pregHandlers[tarCreature.pregnancyData[pregSlot].pregnancyType] as BasePregnancyHandler).pregnancyChildType;
 			
-			return false;
+			return -1;
+		}
+		
+		public static function getLongestRemainingDuration(tarCreature:Creature):int
+		{
+			if (!tarCreature.isPregnant()) return -1;
+			
+			var longestDuration:int = -1;
+			
+			for (var i:uint = 0; i < tarCreature.pregnancyData.length; i++)
+			{
+				if (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] != null)
+				{
+					var cd:int = (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] as BasePregnancyHandler).getRemainingDuration(tarCreature, i);
+					if (cd > longestDuration) longestDuration = cd;
+				}
+			}
+			
+			return longestDuration;
+		}
+		
+		// We can get the actual duration once we know the slot
+		public static function getNextEndingSlot(tarCreature:Creature):int
+		{
+			if (!tarCreature.isPregnant()) return -1;
+			
+			var shortestDuration:int = int.MAX_VALUE;
+			var shortestSlot:int = -1;
+			
+			for (var i:uint = 0; i < tarCreature.pregnancyData.length; i++)
+			{
+				if (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] != null)
+				{
+					var cd:int = (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] as BasePregnancyHandler).getRemainingDuration(tarCreature, i);
+					if (cd < shortestDuration)
+					{
+						shortestDuration = cd;
+						shortestSlot = i;
+					}
+				}
+			}
+			
+			return shortestSlot;
+		}
+		
+		public static function nurseryEndPregnancy(tarCreature:Creature, pregSlot:int, useTimestamp:uint):void
+		{
+			(_pregHandlers[tarCreature.pregnancyData[pregSlot].pregnancyType] as BasePregnancyHandler).nurseryEndPregnancy(tarCreature, pregSlot, useTimestamp);
 		}
 	}
 

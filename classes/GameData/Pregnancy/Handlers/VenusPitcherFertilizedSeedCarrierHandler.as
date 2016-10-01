@@ -130,6 +130,29 @@
 			}
 		}
 		
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):void
+		{
+			if (mother.hasStatusEffect("Venus Pitcher Seed Residue")) mother.removeStatusEffect("Venus Pitcher Seed Residue");
+			
+			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			
+			var c:Child = Child.NewChild(GLOBAL.TYPE_VENUSPITCHER, 1.0, pData.pregnancyQuantity, 0, 1, 0, 0);
+			c.BornTimestamp = useBornTimestamp;
+			ChildManager.addChild(c);
+			
+			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+			pData.reset();
+			
+		}
+		
+		override public function getRemainingDuration(target:Creature, slot:int):int
+		{
+			var pData:PregnancyData = target.pregnancyData[slot];
+			var remains:int = pData.pregnancyIncubation / pData.pregnancyIncubationMulti;
+			if (pData.pregnancyQuantity > 1) remains += ((240 + rand(30)) * (pData.pregnancyQuantity - 1));
+			return remains;
+		}
+		
 		/**
 		 * Fertilized seeds will make reference to the squirmly tentacle arm things, and the fact
 		 * the size is effectively inverted.
