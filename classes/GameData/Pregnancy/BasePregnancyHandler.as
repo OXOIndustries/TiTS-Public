@@ -557,5 +557,32 @@ package classes.GameData.Pregnancy
 				return "Your belly protrudes unnaturally far forward, the sheer size of it making movement difficult.";
 			}
 		}
+		
+		/**
+		 * Return the remaining duration for a given pregnancy slot. This is exposed as a method on each pregnancy handler to
+		 * ensure we can handle "odd" pregnancies such as the venus pitcher seeds effectively resetting the duration multiple times.
+		 * @param	target
+		 * @param	pregSlot
+		 * @return
+		 */
+		public function getRemainingDuration(target:Creature, pregSlot:int):int
+		{
+			var pData:PregnancyData = target.pregnancyData[pregSlot];
+			
+			return Math.round(pData.pregnancyIncubation / pData.pregnancyIncubationMulti) + 1; // Ensure we never end up in a fractional-less-than-one state to 0
+		}
+		
+		public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):void
+		{
+			var pData:PregnancyData = mother.pregnancyData[pregSlot];
+			
+			var c:Child = Child.NewChildWeights(pregnancyChildRace, childMaturationMultiplier, pData.pregnancyQuantity, childGenderWeights);
+			c.BornTimestamp = useBirthTimestamp;
+			ChildManager.addChild(c);
+			
+			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+			
+			pData.reset();
+		}
 	}
 }

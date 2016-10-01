@@ -167,6 +167,11 @@ package classes.GameData.Pregnancy.Handlers
 			pData.reset();
 		}
 		
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):void
+		{
+			OviliumEggPregnancy.cleanupPregnancy(mother, pregSlot, this);
+		}
+		
 		/*
 		override public function pregBellyFragment(target:Creature, slot:int):String
 		{
