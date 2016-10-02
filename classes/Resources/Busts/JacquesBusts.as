@@ -231,6 +231,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;
+		public var Bounds_VARMINT:Rectangle = new Rectangle(0, 33, 70, 64);
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/vedice.png", mimeType = "image/png")]
 		public var Bust_VEDICE:Class;

@@ -286,9 +286,11 @@ public function getCashFromTheCow(credits:Number):void
 		output("\n\n<i>“Here you go: your cut of my milk sales! Spend it in good health and all that.”</i>");
 		output("\n\nYou nod and swipe the chit through your Codex. After a moment of digital beeping, the device chirps out that you’ve just had ");
 		output(credits + " credits transferred to your account. Not bad!");
-		pc.credits += credits;
 		
+		pc.credits += credits;
 		flags["REAHA_PC_PAY"] += credits;
+		if(flags["REAHA_PC_PAY"] > 5000) flags["REAHA_PC_PAY"] = 5000;
+		
 		if(flags["REAHA_PC_PAY"] < 5000) output("\n\nBy your reckoning, Reaha’s got " + (5000 - flags["REAHA_PC_PAY"]) + " credits left of debt to you. Not all that much, in the grand scheme of things. You suppose your cow-girl concubine will be a free woman before too long at this rate.");
 	}
 	else
@@ -296,8 +298,11 @@ public function getCashFromTheCow(credits:Number):void
 		output("<i>“Hey, [pc.name],”</i> Reaha says, giving you a tug on the arm as you’re passing her quarters. You stop and turn your attention to your bovine companion. She gives you a smile and pulls a small credit chit out of her desk drawer, handing it off to you.");
 		output("\n\n<i>“Here you go: your pound of flesh, from me selling mine. Keep on pimpin’, [pc.name]!”</i>");
 		output("\n\nYou nod and swipe the chit through your Codex. After a moment of digital beeping, the device chirps out that you’ve just had " + credits + " credits transferred to your account. Not bad!");
+		
 		pc.credits += credits;
 		flags["REAHA_PC_PAY"] += credits;
+		if(flags["REAHA_PC_PAY"] > 5000) flags["REAHA_PC_PAY"] = 5000;
+		
 		if(flags["REAHA_PC_PAY"] < 5000) output("\n\nBy your reckoning, Reaha’s got " + (5000 - flags["REAHA_PC_PAY"]) + " credits left of debt to you. Not all that much, in the grand scheme of things. You suppose your cow-girl concubine will fuck her way to freedom before too long at this rate.");
 	}
 	processTime(2);
@@ -353,7 +358,7 @@ public function herTalentsReaha():void
 	clearMenu();
 	addButton(0,"Go Away",goAwayYouMilkyMilkSlut,undefined,"Go Away","It’ll be better for you and for Reaha if she takes her newfound freedom and leaves. Who knows if you’ll see her again...");
 	addButton(1,"Stay With Me",stayWithMeCureCow,undefined,"Stay With Me","Offer to let Reaha stick around the ship. As long as she can pay for room and board, you’re happy to have your bovine companion along for the ride.");
-	addButton(5,"Reaha's Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
+	addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
 	//addButton(6,"Her Talents",herTalentsReaha,undefined,"Her Talents","If you want to figure out what Reaha should do next, maybe she needs to think about what it is she’s capable of.");
 	addDisabledButton(6,"Her Talents","Her Talents","You just wrapped that discussion up.");
 }
@@ -376,11 +381,11 @@ public function reahasCuredWants():void
 	output("\n\nReaha blushes, rubbing at one of her arms. <i>“If you don’t want me to stay, I’d understand. But if you don’t mind me sticking around... I can pull my own weight. Or try, anyway. Keep selling milk to pay for my room and board, maybe? I know I can find some way to not be a burden, [pc.name]. I promise.”</i>");
 	processTime(3);
 	clearMenu();
-	addButton(0,"Guy Away",goAwayYouMilkyMilkSlut,undefined,"Go Away","It’ll be better for you and for Reaha if she takes her newfound freedom and leaves. Who knows if you’ll see her again...");
+	addButton(0,"Go Away",goAwayYouMilkyMilkSlut,undefined,"Go Away","It’ll be better for you and for Reaha if she takes her newfound freedom and leaves. Who knows if you’ll see her again...");
 	addButton(1,"Stay With Me",stayWithMeCureCow,undefined,"Stay With Me","Offer to let Reaha stick around the ship. As long as she can pay for room and board, you’re happy to have your bovine companion along for the ride.");
-	//addButton(5,"Reaha's Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
+	//addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
 	addButton(6,"Her Talents",herTalentsReaha,undefined,"Her Talents","If you want to figure out what Reaha should do next, maybe she needs to think about what it is she’s capable of.");
-	addDisabledButton(5,"Reaha's Wants?","Reaha's Wants?","You just wrapped that discussion up.");
+	addDisabledButton(5,"Her Wants?","Reaha's Wants?","You just wrapped that discussion up.");
 
 }
 
@@ -814,7 +819,7 @@ public function reahasNewTexasOpinion():void
 {
 	clearOutput();
 	reahaHeader();
-	output("<i>“You can guess,”</i> Reaha laughs when you pose the question. <i>“Aside from the Treatment and all the bullshit that goes along with it, I guess it’s not that bad. New Texas is pretty, at least, and peaceful. Way different than cramped, noisy Tavros... there’s fields everywhere, wide open for you to run and play in whenever you want, as far as the eye can see. It’s  an agrarian world, mostly farms and stuff except for a few bigger cities near the equator. I grew up around ");
+	output("<i>“You can guess,”</i> Reaha laughs when you pose the question. <i>“Aside from the Treatment and all the bullshit that goes along with it, I guess it’s not that bad. New Texas is pretty, at least, and peaceful. Way different than cramped, noisy Tavros... there’s fields everywhere, wide open for you to run and play in whenever you want, as far as the eye can see. It’s an agrarian world, mostly farms and stuff except for a few bigger cities near the equator. I grew up around ");
 	if(getPlanetName().toLowerCase() == "new texas") output("here");
 	else output("Tee’s ranch");
 	output(", so that’s mostly what I know. Mom never took us far from the ranch, seeing as she was one of the big dairy girls. Couldn’t go long without a session in the industrial milker, or her tits would swell up like this,”</i> Reaha says, giggling and making a ballooning motion with her arms over her already-impressive chest.");
@@ -1028,7 +1033,7 @@ public function askReahaAboutHerPast():void
 		output("When you ask her to tell you her story, Reaha gives you an odd look for a moment before grinning and sing-songing, <i>“Moo! My life is moo. I am moo and you are moo and we are moo together.”</i>");
 		output("\n\nYou give her a look, and Reaha rolls her eyes. She swings out of your lap and onto the bed beside you. <i>“Yes, [pc.master]. What do you want to know?”</i>");
 		output("\n\n<i>“Let’s start off easy. What did you do between leaving New Texas and");
-		//if Misch/Bimbo:  
+		//if Misch/Bimbo:
 		if(pc.isBimbo() || pc.isMischievous()) output(" turning into a cute little cow");
 		else if(pc.isNice()) output("... well, you know");
 		else output(" getting sold into slavery");
@@ -1448,7 +1453,7 @@ public function rideCuredReahasStrapon():void
 	output("\n\nReaha ");
 	if(reahaConfidence() >= 50) output("grins");
 	else output("nods obediently");
-	output(", slipping out of your arms to dig into her nightstand, bending over as she does so and giving you a long look at her huge, luscious ass; seeing that heart-shaped slab of cow-meat waving so invitingly in front of you is just too much to resist. You step up behind the bovine beauty, giving her a playful swat on the rear that leaves a hand-shaped red patch over her sailor’s tattoo. Reaha gives a little yelp of surprise, but your familiar touch is always welcome: she gives you a wink over her shoulder and wiggles her ass for you, grinding it back against your crotch and  teasing your nose with the fluffy poof at the end of her slender tail.");
+	output(", slipping out of your arms to dig into her nightstand, bending over as she does so and giving you a long look at her huge, luscious ass; seeing that heart-shaped slab of cow-meat waving so invitingly in front of you is just too much to resist. You step up behind the bovine beauty, giving her a playful swat on the rear that leaves a hand-shaped red patch over her sailor’s tattoo. Reaha gives a little yelp of surprise, but your familiar touch is always welcome: she gives you a wink over her shoulder and wiggles her ass for you, grinding it back against your crotch and teasing your nose with the fluffy poof at the end of her slender tail.");
 	output("\n\nGrinning, you give the lusty cow another spank, sending her flesh jiggling");
 	if(pc.hasCock()) 
 	{
@@ -1458,7 +1463,7 @@ public function rideCuredReahasStrapon():void
 	}
 	output(". She gives you a teasing look over her shoulder, moving her hips rhythmically as you slap her tattooed ass again, grinding her slick slit against your [pc.leg] until she’s trembling with pleasure.");
 	output("\n\nWith shaking hands, Reaha finally manages to find what she was looking for: a set of crotchless black leather underwear with a harness holding a two-foot long double-ended dildo in place. <i>“H-how about this?”</i> she asks, never missing a beat with those inhuman hips of hers, pressing even harder against your ");
-	if(x >= 0) output("[pc.cock]");
+	if(pc.hasCock()) output("[pc.cock]");
 	else output("[pc.leg]");
 	output(", leaving trails of fem-slime on your ");
 	if(pc.hasArmor()) output("[pc.armor]");
@@ -1763,16 +1768,16 @@ public function sleepWithCuredReaha():void
 
 public function displayReahaInventory():void
 {
-	output("<b>Reaha Is Wearing</b>:\n");
+	output("<b><u>Reaha Is Wearing</u></b>:\n");
 	output("<b>Armor:</b> [reaha.Armor]\n");
 	output("<b>Upper Undergarment:</b> [reaha.UpperUndergarment]\n");
-	output("<b>Lower Undergarment:</b> [reaha.LowerUndergarment]\n\n");
-	output("<b>Reaha's Available Clothing:</b>\n");
+	output("<b>Lower Undergarment:</b> [reaha.LowerUndergarment]" + (reaha.hasHardLightEquipped() ? " (with hardlight strap-on)" : "") + "\n\n");
+	output("<b><u>Reaha's Available Clothing:</u></b>\n");
 	for(var x:int = 0; x < reaha.inventory.length; x++)
 	{
 		output(StringUtil.upperCase(reaha.inventory[x].description) + "\n");
 	}
-	if(reaha.inventory.length == 0) output("Nothing. Reaha has no clothes!\n")
+	if(reaha.inventory.length == 0) output("Nothing. <i>Reaha has no" + (reaha.isNude() ? "": " extra") + " clothes!</i>\n");
 }
 
 //Give Clothes
@@ -1789,19 +1794,33 @@ public function giveReahaClothes():void
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
 		//Lazy failsafe: only first 14 clothing items up for grabs.
-		if(buttons < 14)
+		//if(buttons < 14) {}
+		
+		if(InCollection(pc.inventory[x].type, [GLOBAL.CLOTHING, GLOBAL.ARMOR,GLOBAL.LOWER_UNDERGARMENT,GLOBAL.UPPER_UNDERGARMENT]))
 		{
-			if(InCollection(pc.inventory[x].type, GLOBAL.CLOTHING, GLOBAL.ARMOR,GLOBAL.LOWER_UNDERGARMENT,GLOBAL.UPPER_UNDERGARMENT))
+			if(buttons >= 14 && (buttons + 1) % 15 == 0)
 			{
-				//No gray goo giveaway!
-				if(pc.inventory[x] is GooArmor) {}
-				else
-				{
-					//Make sure Reaha doesn't already have it
-					if(reaha.hasItem(pc.inventory[x])) addDisabledButton(buttons,pc.inventory[x].short,pc.inventory[x].long,"Reaha already has one of these.");
-					else addItemButton(buttons,pc.inventory[x],reahaClothingGiftConfirm,x);
-					buttons++;
-				}
+				addButton(buttons, "Back", curedReahaApproach);
+				buttons++;
+			}
+			
+			//No gray goo giveaway!
+			if(pc.inventory[x] is GooArmor) {}
+			else
+			{
+				//Make sure Reaha doesn't already have it
+				if(
+					InCollection(pc.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
+				) addDisabledButton(buttons, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "Reaha is already wearing one of these!");
+				else if(reaha.hasItem(pc.inventory[x])) addDisabledButton(buttons, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "Reaha already has one of these.");
+				else addItemButton(buttons, pc.inventory[x], reahaClothingGiftConfirm, x);
+				buttons++;
+			}
+			
+			if(buttons > 14 && pc.inventory.length > 14 && (x + 1) == pc.inventory.length)
+			{
+				while((buttons + 1) % 15 != 0) { buttons++; }
+				addButton(buttons, "Back", curedReahaApproach);
 			}
 		}
 	}
@@ -1828,7 +1847,7 @@ public function giveReahaClothesProcess(x:int):void
 	output("<i>“I’ve got a present for you!”</i>");
 	var item:ItemSlotClass = pc.inventory[x];
 	//Move her old armor to inventory, if she had any.
-	if(InCollection(item.type, GLOBAL.CLOTHING, GLOBAL.ARMOR)) 
+	if(InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR])) 
 	{
 		if(!(reaha.armor is EmptySlot)) reaha.inventory.push(reaha.armor);
 		reaha.armor = item;
@@ -1909,8 +1928,24 @@ public function whatOutfitWillCuredReahaWear():void
 	for(var x:int = 0; x < reaha.inventory.length; x++)
 	{
 		//14 is for "Back"
-		if(buttons == 14) buttons++;
-		addItemButton(buttons,reaha.inventory[x],dressCuredReahaSelection,reaha.inventory[x]);
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", curedReahaApproach);
+			buttons++;
+		}
+		
+		//Make sure Reaha doesn't already have it (failsafe)
+		if(
+			InCollection(reaha.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
+		) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Reaha is already wearing one of these!");
+		else addItemButton(buttons,reaha.inventory[x],dressCuredReahaSelection,reaha.inventory[x]);
+		buttons++;
+		
+		if(reaha.inventory.length > 14 && (x + 1) == reaha.inventory.length)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", curedReahaApproach);
+		}
 	}
 
 }
@@ -1941,20 +1976,23 @@ public function dressCuredReahaSelection(item:ItemSlotClass):void
 		reaha.upperUndergarment = new EmptySlot();
 	}
 	//ELSE ARMOR
-	else if(InCollection(item.type, GLOBAL.CLOTHING, GLOBAL.ARMOR)) 
+	else if(InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]))
 	{
 		if(!(reaha.armor is EmptySlot)) reaha.inventory.push(reaha.armor);
 		reaha.armor = item;
+		reaha.destroyItem(item, -1);
 	}
 	else if(item.type == GLOBAL.LOWER_UNDERGARMENT)
 	{
 		if(!(reaha.lowerUndergarment is EmptySlot)) reaha.inventory.push(reaha.lowerUndergarment);
 		reaha.lowerUndergarment = item;
+		reaha.destroyItem(item, -1);
 	}
 	else if(item.type == GLOBAL.UPPER_UNDERGARMENT)
 	{
 		if(!(reaha.upperUndergarment is EmptySlot)) reaha.inventory.push(reaha.upperUndergarment);
 		reaha.upperUndergarment = item;
+		reaha.destroyItem(item, -1);
 	}
 	else
 	{
@@ -1984,7 +2022,7 @@ public function giveReahaTFItemPresents():void
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
 		if(buttons == 14) buttons++;
-		if(pc.inventory[x] is MilkCaramelGushers || pc.inventory[x] is MilkmaidsAid || pc.inventory[x] is Chocolac || pc.inventory[x] is Honeydew || pc.inventory[x] is Lactaid || (pc.inventory[x] is Anusoft && pcCanButtfuckReaha()) || pc.inventory[x] is JunkTrunk)
+		if(pc.inventory[x] is MilkCaramelGushers || pc.inventory[x] is MilkmaidsAid || pc.inventory[x] is Chocolac || pc.inventory[x] is Honeydew || pc.inventory[x] is Lactaid || (pc.inventory[x] is Anusoft && pcCanButtfuckReaha()) || pc.inventory[x] is JunkTrunk || pc.inventory[x] is Bovinium)
 		{
 			addItemButton(buttons,pc.inventory[x],giveReahaTFItemPresentsGO,pc.inventory[x]);
 			buttons++;
@@ -2044,7 +2082,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		processTime(2);
 		clearMenu();
 		addButton(0,"Milk Reaha",milkCuredReaha);
-		addButton(4,"Leave",mainGameMenu);
+		addButton(14,"Leave",mainGameMenu);
 		pc.destroyItem(item);
 		return;
 	}
@@ -2127,7 +2165,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 	//Junk in the Trunk
 	if(item is JunkTrunk)
 	{
-		output("\n\nYou hand over the little white pill, appropriately labeled <i>“Junk in the Trunk.”</i>");
+		output("\n\nYou hand over the little white pill, appropriately labeled “Junk in the Trunk.”");
 		//Reaha’s ass is less than max:
 		if(reaha.buttRatingRaw < 18)
 		{
@@ -2175,9 +2213,11 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\n<i>“Gimme a sec to catch my breath and we can really test this out...”</i> Reaha murmurs, reaching a hand back to circle her plump butt. <i>“If a finger can do that... unf.”</i>");
 			processTime(10);
 			pc.lust(10);
+			pc.destroyItem(item);
 			reaha.ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			clearMenu();
 			addButton(0,"Buttfuck",buttFuckReahaSlooot);
+			return;
 		}
 		//Second Time Anusoft
 		//PC must have a cock or hardlight panties.
@@ -2195,6 +2235,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nIt takes a moment for Reaha to catch her breath after that. When she does, she rights herself and turns to you with a look of wanton, unabashed desire on her blushing face. <i>“I need you. Right now. Please, [pc.name].”</i>");
 			processTime(10);
 			pc.lust(10);
+			pc.destroyItem(item);
 			reaha.ass.addFlag(GLOBAL.FLAG_PUMPED);
 			reaha.ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			clearMenu();

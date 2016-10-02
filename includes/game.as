@@ -769,7 +769,10 @@ public function sleep(outputs:Boolean = true):void {
 		}
 		//Queue up cured Reaha
 		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
-		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
+		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined)
+		{
+			if(eventQueue.indexOf(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches) == -1) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
+		}
 	}
 	if(outputs)
 	{
@@ -1993,7 +1996,7 @@ public function processTime(arg:int):void {
 			if(flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
 			{
 				flags["REAHA_PAY_Q"] = undefined;
-				eventQueue.push(reahaPaybackEvent);
+				if(eventQueue.indexOf(reahaPaybackEvent) == -1) eventQueue.push(reahaPaybackEvent);
 			}
 			if(pc.hasPerk("Dumb4Cum")) dumb4CumUpdate();
 			//Gobbles Cooldown

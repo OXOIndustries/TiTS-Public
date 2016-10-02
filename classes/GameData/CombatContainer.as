@@ -1774,12 +1774,14 @@ package classes.GameData
 				if (pc.hasActiveCombatDrone())
 				{
 					if(pc.hasStatusEffect("Varmint Buddy")) addButton(bOff, "Varmint", selectDroneTarget, undefined, "Varmint, Go!", ("Have your varmint target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+					else if(pc.hasTamWolf()) addButton(bOff, "TamWolf", selectDroneTarget, undefined, "Tam-wolf, Go!", ("Have Tam-wolf target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory is SiegwulfeItem) addButton(bOff, "Siegwulfe", selectDroneTarget, undefined, "Siegwulfe, Go!", ("Have [wulfe.name] target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else addButton(bOff, "Drone Target", selectDroneTarget, undefined, "Drone Target", ("Have your drone target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 				}
 				else
 				{
 					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate with your varmint right now!");
+					else if(pc.hasTamWolf()) addDisabledButton(bOff, "TamWolf", "Tam-wolf, Go!", "You can’t communicate with Tam-wolf right now!");
 					else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You can’t communicate with [wulfe.name] right now!");
 					else addDisabledButton(bOff, "Drone Target", "Drone Target", "You can’t access your combat drone right now!");
 				}
@@ -1807,8 +1809,8 @@ package classes.GameData
 				{
 					if (!_hostiles[i].isDefeated())
 					{
-						if(_hostiles[i] == pc.droneTarget && pc.hasStatusEffect("Drone Targeting")) addDisabledButton(bOff, (_hostiles[i] as Creature).buttonText, (_hostiles[i] as Creature).buttonText, ("Already targeting " + (_hostiles[i] as Creature).buttonText + "."));
-						else addButton(bOff, (_hostiles[i] as Creature).buttonText, selectDroneTargetSpecial, (_hostiles[i] as Creature), (_hostiles[i] as Creature).buttonText, ("Target " + (_hostiles[i] as Creature).buttonText + "."));
+						if(_hostiles[i] == pc.droneTarget && pc.hasStatusEffect("Drone Targeting")) addDisabledButton(bOff, (_hostiles[i] as Creature).buttonText, StringUtil.toDisplayCase((_hostiles[i] as Creature).getCombatName()), ("Already targeting " + (_hostiles[i] as Creature).getCombatName() + "."));
+						else addButton(bOff, (_hostiles[i] as Creature).buttonText, selectDroneTargetSpecial, (_hostiles[i] as Creature), StringUtil.toDisplayCase((_hostiles[i] as Creature).getCombatName()), ("Target " + (_hostiles[i] as Creature).getCombatName() + "."));
 						bOff++;
 					}
 					else if(pc.statusEffectv1("Drone Targeting") > 0 && _hostiles[i] == pc.droneTarget)
@@ -3920,6 +3922,7 @@ package classes.GameData
 						if(target.isInvisible()) output("\n<i>The enemy is practically invisible to you!</i>");
 						else if (target.long.length > 0) output("\n" + target.long);
 						else if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
+						else showMonsterArousalFlavor(target);
 					}
 				}
 				
@@ -3931,7 +3934,7 @@ package classes.GameData
 					if (target.lust() >= 50) output("\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
 				}
 				
-				if (!(target is QueenOfTheDeep) && !(target is Cockvine))
+				if (encounterText != null && !(target is QueenOfTheDeep) && !(target is Cockvine))
 				{
 					if (_hostiles.length == 1)
 					{
@@ -4003,10 +4006,25 @@ package classes.GameData
 			else
 			{
 				// TODO Some decent player status output
-				output("You perch behind cover wherever you can find it, ready to return fire");
+				if(pc.isGrappled()) output("You’re trapped in the enemy’s grip to do much");
+				else if(pc.hasStatusEffect("Stunned")) output("You’ve been stunned by the enemy and can’t do much");
+				else if(pc.hasStatusEffect("Paralyzed")) output("You’ve been paralyzed by the enemy and can’t do much");
+				else
+				{
+					output("You perch behind cover wherever you can find it,");
+					if(pc.hasStatusEffect("Disarmed"))
+					{
+						if(hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso")) output(" ready to swing your lasso");
+						else output(" readying yourself");
+					}
+					else if(pc.hasWeapon() && rand(2) == 0) output(" [pc.readyingWeapon]");
+					else if(pc.hasRangedWeapon()) output(" ready to return fire");
+					else if(pc.hasMeleeWeapon()) output(" ready to strike back");
+					else output(" ready to throw down");
+				}
 				if (_friendlies.length > 1)
 				{
-					output(" side-by-side with your");
+					output(", side-by-side with your");
 					if (_friendlies.length > 2) output(" allies");
 					else output(" companion");
 				}

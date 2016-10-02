@@ -813,12 +813,12 @@ package classes.GameData
 		{
 			if (rand(10) <= 2)
 			{
-				output("Tam-wolf leaps forward at " + target.a + target.uniqueName + "... but his bum leg catches, and he goes tumbling into the ground. Dammit, Tam-wolf!");
+				output("Tam-wolf leaps forward at " + target.getCombatName() + "... but his bum leg catches, and he goes tumbling into the ground. Dammit, Tam-wolf!");
 			}
 			//Attack!
 			else
 			{
-				output("<i>“ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,”</i> Tam-wolf loudly announces as he lunges at " + target.a + target.uniqueName + ". He hits!");
+				output("<i>“ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,”</i> Tam-wolf loudly announces as he lunges at " + target.getCombatName() + ". He hits!");
 				var d:Number = attacker.untypedDroneDamage();
 				var dmg:TypeCollection = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
 
@@ -856,7 +856,7 @@ package classes.GameData
 			{
 				if(kGAMECLASS.chars["WULFE"].isBimbo())
 				{
-					output("“Don’t you worry your pretty head, [pc.master]!” " + kGAMECLASS.chars["WULFE"].short + " giggles, prancing forward with her massive milk-tanks on display. “I’ll, like, distract ‘em and stuff!” She sure does, bouncing around with jiggling tits and a wiggling ass, putting herself between you and " + target.getCombatName() + ".");
+					output("“Don’t you worry your pretty head, " + attacker.mf("master", "mistress") + "!” " + kGAMECLASS.chars["WULFE"].short + " giggles, prancing forward with her massive milk-tanks on display. “I’ll, like, distract ‘em and stuff!” She sure does, bouncing around with jiggling tits and a wiggling ass, putting herself between you and " + target.getCombatName() + ".");
 					
 					dmg = new TypeCollection( { tease: 20 } );
 					damageResult = applyDamage(dmg, kGAMECLASS.chars["WULFE"], target, "suppress");
@@ -873,7 +873,7 @@ package classes.GameData
 			}
 			else
 			{
-				output(attacker.getCombatName() + "’s Siegwulfe brandishes its hardlight claws and lunges forward, sweeping its blades at " + ((target is PlayerCharacter) ? "you!" : (target.getCombatName() + ".")));
+				output(ownerName + "’s Siegwulfe brandishes its hardlight claws and lunges forward, sweeping its blades at " + ((target is PlayerCharacter) ? "you!" : (target.getCombatName() + ".")));
 				
 				dmg = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
 				damageResult = applyDamage(dmg, attacker, target, "suppress");
@@ -1079,7 +1079,7 @@ package classes.GameData
 		{
 			if (attacker is PlayerCharacter) output("You toss a bundle of explosives in the direction of [target.combatName]!");
 			else if (target is PlayerCharacter) output("[attacker.CombatName] throws a bundle of explosives in your direction!");
-			else output("[attacker.CombatName] throws a bundle of explosives in " + target.a + possessive(target.uniqueName) + " direction!");
+			else output("[attacker.CombatName] throws a bundle of explosives in " + possessive(target.getCombatName()) + " direction!");
 			
 			var d:int = 15 + (attacker.level * 4) + attacker.intelligence();
 			var damage:TypeCollection = damageRand(new TypeCollection( { burning: d } ), 15);
