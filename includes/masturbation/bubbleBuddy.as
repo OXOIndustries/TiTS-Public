@@ -627,7 +627,8 @@ public function giveCeliseATreat(item:ItemSlotClass):void
 		pc.lust(5);
 		//[Pop Her] [Fuck Her]
 		clearMenu();
-		addButton(1,"Fuck Her",fuckCeliseAfterTooMuchStuff,undefined,"Fuck Her","If you had a dick, you could use the Bubble Buddy suit as a real condom.");
+		if(pc.hasCock()) addButton(1,"Fuck Her",fuckCeliseAfterTooMuchStuff,undefined,"Fuck Her","Use the bubble buddy suit as a condom.");
+		else addDisabledButton(1,"Fuck Her","Fuck Her","You need a penis for this.");
 		addButton(0,"Pop Her",popCeliseAfterTooStuff,undefined,"Pop Her","Enough of this. Pop her!");
 	}
 	IncrementFlag("BUBBLED_CELISE");
@@ -1193,7 +1194,7 @@ public function giveVaandeATreatSetup():void
 		else if(pc.inventory[x] is HugeCumBubble) choices.push(x);
 	}
 	var func:Function = giveVaandeTheGiftOfCum;
-	if(pc.hasItem(new BubbleBuddy())) func = giveVaandeBubbleBuddyFun;
+	if(pc.hasItem(new BubbleBuddy()) && pc.hasCock()) func = giveVaandeBubbleBuddyFun;
 
 
 	if(choices.length == 1) func(pc.inventory[choices[0]]);
