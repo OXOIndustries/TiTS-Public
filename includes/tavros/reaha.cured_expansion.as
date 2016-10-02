@@ -286,9 +286,11 @@ public function getCashFromTheCow(credits:Number):void
 		output("\n\n<i>“Here you go: your cut of my milk sales! Spend it in good health and all that.”</i>");
 		output("\n\nYou nod and swipe the chit through your Codex. After a moment of digital beeping, the device chirps out that you’ve just had ");
 		output(credits + " credits transferred to your account. Not bad!");
-		pc.credits += credits;
 		
+		pc.credits += credits;
 		flags["REAHA_PC_PAY"] += credits;
+		if(flags["REAHA_PC_PAY"] > 5000) flags["REAHA_PC_PAY"] = 5000;
+		
 		if(flags["REAHA_PC_PAY"] < 5000) output("\n\nBy your reckoning, Reaha’s got " + (5000 - flags["REAHA_PC_PAY"]) + " credits left of debt to you. Not all that much, in the grand scheme of things. You suppose your cow-girl concubine will be a free woman before too long at this rate.");
 	}
 	else
@@ -296,8 +298,11 @@ public function getCashFromTheCow(credits:Number):void
 		output("<i>“Hey, [pc.name],”</i> Reaha says, giving you a tug on the arm as you’re passing her quarters. You stop and turn your attention to your bovine companion. She gives you a smile and pulls a small credit chit out of her desk drawer, handing it off to you.");
 		output("\n\n<i>“Here you go: your pound of flesh, from me selling mine. Keep on pimpin’, [pc.name]!”</i>");
 		output("\n\nYou nod and swipe the chit through your Codex. After a moment of digital beeping, the device chirps out that you’ve just had " + credits + " credits transferred to your account. Not bad!");
+		
 		pc.credits += credits;
 		flags["REAHA_PC_PAY"] += credits;
+		if(flags["REAHA_PC_PAY"] > 5000) flags["REAHA_PC_PAY"] = 5000;
+		
 		if(flags["REAHA_PC_PAY"] < 5000) output("\n\nBy your reckoning, Reaha’s got " + (5000 - flags["REAHA_PC_PAY"]) + " credits left of debt to you. Not all that much, in the grand scheme of things. You suppose your cow-girl concubine will fuck her way to freedom before too long at this rate.");
 	}
 	processTime(2);
@@ -353,7 +358,7 @@ public function herTalentsReaha():void
 	clearMenu();
 	addButton(0,"Go Away",goAwayYouMilkyMilkSlut,undefined,"Go Away","It’ll be better for you and for Reaha if she takes her newfound freedom and leaves. Who knows if you’ll see her again...");
 	addButton(1,"Stay With Me",stayWithMeCureCow,undefined,"Stay With Me","Offer to let Reaha stick around the ship. As long as she can pay for room and board, you’re happy to have your bovine companion along for the ride.");
-	addButton(5,"Reaha's Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
+	addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
 	//addButton(6,"Her Talents",herTalentsReaha,undefined,"Her Talents","If you want to figure out what Reaha should do next, maybe she needs to think about what it is she’s capable of.");
 	addDisabledButton(6,"Her Talents","Her Talents","You just wrapped that discussion up.");
 }
@@ -376,11 +381,11 @@ public function reahasCuredWants():void
 	output("\n\nReaha blushes, rubbing at one of her arms. <i>“If you don’t want me to stay, I’d understand. But if you don’t mind me sticking around... I can pull my own weight. Or try, anyway. Keep selling milk to pay for my room and board, maybe? I know I can find some way to not be a burden, [pc.name]. I promise.”</i>");
 	processTime(3);
 	clearMenu();
-	addButton(0,"Guy Away",goAwayYouMilkyMilkSlut,undefined,"Go Away","It’ll be better for you and for Reaha if she takes her newfound freedom and leaves. Who knows if you’ll see her again...");
+	addButton(0,"Go Away",goAwayYouMilkyMilkSlut,undefined,"Go Away","It’ll be better for you and for Reaha if she takes her newfound freedom and leaves. Who knows if you’ll see her again...");
 	addButton(1,"Stay With Me",stayWithMeCureCow,undefined,"Stay With Me","Offer to let Reaha stick around the ship. As long as she can pay for room and board, you’re happy to have your bovine companion along for the ride.");
-	//addButton(5,"Reaha's Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
+	//addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
 	addButton(6,"Her Talents",herTalentsReaha,undefined,"Her Talents","If you want to figure out what Reaha should do next, maybe she needs to think about what it is she’s capable of.");
-	addDisabledButton(5,"Reaha's Wants?","Reaha's Wants?","You just wrapped that discussion up.");
+	addDisabledButton(5,"Her Wants?","Reaha's Wants?","You just wrapped that discussion up.");
 
 }
 
@@ -814,7 +819,7 @@ public function reahasNewTexasOpinion():void
 {
 	clearOutput();
 	reahaHeader();
-	output("<i>“You can guess,”</i> Reaha laughs when you pose the question. <i>“Aside from the Treatment and all the bullshit that goes along with it, I guess it’s not that bad. New Texas is pretty, at least, and peaceful. Way different than cramped, noisy Tavros... there’s fields everywhere, wide open for you to run and play in whenever you want, as far as the eye can see. It’s  an agrarian world, mostly farms and stuff except for a few bigger cities near the equator. I grew up around ");
+	output("<i>“You can guess,”</i> Reaha laughs when you pose the question. <i>“Aside from the Treatment and all the bullshit that goes along with it, I guess it’s not that bad. New Texas is pretty, at least, and peaceful. Way different than cramped, noisy Tavros... there’s fields everywhere, wide open for you to run and play in whenever you want, as far as the eye can see. It’s an agrarian world, mostly farms and stuff except for a few bigger cities near the equator. I grew up around ");
 	if(getPlanetName().toLowerCase() == "new texas") output("here");
 	else output("Tee’s ranch");
 	output(", so that’s mostly what I know. Mom never took us far from the ranch, seeing as she was one of the big dairy girls. Couldn’t go long without a session in the industrial milker, or her tits would swell up like this,”</i> Reaha says, giggling and making a ballooning motion with her arms over her already-impressive chest.");
@@ -1028,7 +1033,7 @@ public function askReahaAboutHerPast():void
 		output("When you ask her to tell you her story, Reaha gives you an odd look for a moment before grinning and sing-songing, <i>“Moo! My life is moo. I am moo and you are moo and we are moo together.”</i>");
 		output("\n\nYou give her a look, and Reaha rolls her eyes. She swings out of your lap and onto the bed beside you. <i>“Yes, [pc.master]. What do you want to know?”</i>");
 		output("\n\n<i>“Let’s start off easy. What did you do between leaving New Texas and");
-		//if Misch/Bimbo:  
+		//if Misch/Bimbo:
 		if(pc.isBimbo() || pc.isMischievous()) output(" turning into a cute little cow");
 		else if(pc.isNice()) output("... well, you know");
 		else output(" getting sold into slavery");
@@ -1448,7 +1453,7 @@ public function rideCuredReahasStrapon():void
 	output("\n\nReaha ");
 	if(reahaConfidence() >= 50) output("grins");
 	else output("nods obediently");
-	output(", slipping out of your arms to dig into her nightstand, bending over as she does so and giving you a long look at her huge, luscious ass; seeing that heart-shaped slab of cow-meat waving so invitingly in front of you is just too much to resist. You step up behind the bovine beauty, giving her a playful swat on the rear that leaves a hand-shaped red patch over her sailor’s tattoo. Reaha gives a little yelp of surprise, but your familiar touch is always welcome: she gives you a wink over her shoulder and wiggles her ass for you, grinding it back against your crotch and  teasing your nose with the fluffy poof at the end of her slender tail.");
+	output(", slipping out of your arms to dig into her nightstand, bending over as she does so and giving you a long look at her huge, luscious ass; seeing that heart-shaped slab of cow-meat waving so invitingly in front of you is just too much to resist. You step up behind the bovine beauty, giving her a playful swat on the rear that leaves a hand-shaped red patch over her sailor’s tattoo. Reaha gives a little yelp of surprise, but your familiar touch is always welcome: she gives you a wink over her shoulder and wiggles her ass for you, grinding it back against your crotch and teasing your nose with the fluffy poof at the end of her slender tail.");
 	output("\n\nGrinning, you give the lusty cow another spank, sending her flesh jiggling");
 	if(pc.hasCock()) 
 	{

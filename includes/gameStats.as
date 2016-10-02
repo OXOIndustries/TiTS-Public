@@ -2554,9 +2554,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["REAHA_FREE"] != undefined) output2(", Free to speak");
 					if(flags["REAHA_SLAVE"] != undefined) output2(", Sex slave");
 					if(!curedReahaInDebt()) output2(", Freed her debt");
+					else if(flags["REAHA_WHORING_UNLOCKED"] == 1) output2(", Selling her milk");
+					else if(flags["REAHA_WHORING_UNLOCKED"] == 2) output2(", Whoring herself");
 					if(reahaBooted())
 					{
-						output2(", Booted from crew, <i>Whereabouts unknown</i>");
+						output2(", Left crew, <i>Whereabouts unknown</i>");
 					}
 					else if(reahaRecruited())
 					{
