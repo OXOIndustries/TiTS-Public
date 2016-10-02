@@ -118,6 +118,8 @@ public function buyFromCeria():void
 	if(flags["CERIA_BOUGHT"] == undefined)
 	{
 		chars["CERIA"].keeperBuy += "\n\n<i>“What are those?”</i> you ask, pointing towards the medipens.\n\n<i>“Oh, those are our Sylvanol-brand transformatives. I’ve gotten pretty into them myself. If you’re jealous of these-”</i> She gives you a wink as she twitches her lengthy ears. <i>“-you should give them a try. They’re an adjustable medipen, you just twist that dial near the top and they cycle between a few different settings.”</i>";
+		
+		flags["CERIA_BOUGHT"] = 0;
 	}
 	else
 	{
@@ -822,7 +824,7 @@ public function ceriaTalk():void
 	author("Couch");
 	processTime(1);
 	//Hasn't used the store
-	if(flags["CERIA_BOUGHT"] == undefined)
+	if(flags["CERIA_BOUGHT"] == undefined || flags["CERIA_BOUGHT"] < 1)
 	{
 		output("<i>“I was thinking I’d rather just talk to a cute girl like you.”</i> you say, prompting a playful smirk from Ceria.");
 		output("\n\n<i>“Sorry, [pc.name], you’re cute, but I </i>do<i> have a business to run here. My boss would kill me if she found out I was chatting up customers who hadn’t bought anything yet. Buy something or get a treatment first, then we’ll talk.”</i>");
