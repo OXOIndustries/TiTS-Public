@@ -1463,7 +1463,7 @@ public function rideCuredReahasStrapon():void
 	}
 	output(". She gives you a teasing look over her shoulder, moving her hips rhythmically as you slap her tattooed ass again, grinding her slick slit against your [pc.leg] until she’s trembling with pleasure.");
 	output("\n\nWith shaking hands, Reaha finally manages to find what she was looking for: a set of crotchless black leather underwear with a harness holding a two-foot long double-ended dildo in place. <i>“H-how about this?”</i> she asks, never missing a beat with those inhuman hips of hers, pressing even harder against your ");
-	if(x >= 0) output("[pc.cock]");
+	if(pc.hasCock()) output("[pc.cock]");
 	else output("[pc.leg]");
 	output(", leaving trails of fem-slime on your ");
 	if(pc.hasArmor()) output("[pc.armor]");
@@ -1771,7 +1771,7 @@ public function displayReahaInventory():void
 	output("<b><u>Reaha Is Wearing</u></b>:\n");
 	output("<b>Armor:</b> [reaha.Armor]\n");
 	output("<b>Upper Undergarment:</b> [reaha.UpperUndergarment]\n");
-	output("<b>Lower Undergarment:</b> [reaha.LowerUndergarment]\n\n");
+	output("<b>Lower Undergarment:</b> [reaha.LowerUndergarment]" + (reaha.hasHardLightEquipped() ? " (with hardlight strap-on)" : "") + "\n\n");
 	output("<b><u>Reaha's Available Clothing:</u></b>\n");
 	for(var x:int = 0; x < reaha.inventory.length; x++)
 	{

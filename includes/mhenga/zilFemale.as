@@ -1564,7 +1564,7 @@ public function normalZilgirlCockfuck():void
 	//Cockvirgin Sub-Scene here
 	if(pc.cockVirgin)
 	{
-		output("\n\nYou stroke yourself a few times, [pc.eachCock] hardening. With only the slightest hesitation, you align your [pc.cockHead] with the zil’s honeypot, but your own excitement gets the better of you as you thrust </i>against<i> her as opposed to into her. There’s a flash of awkwardness, one that your waiting lover picks up on.");
+		output("\n\nYou stroke yourself a few times, [pc.eachCock] hardening. With only the slightest hesitation, you align your [pc.cockHead] with the zil’s honeypot, but your own excitement gets the better of you as you thrust <i>against</i> her as opposed to into her. There’s a flash of awkwardness, one that your waiting lover picks up on.");
 		
 		output("\n\nShe smiles and sets a hand on your cheek. <i>“Ooh, you’re adorable. So eager, but so uncertain. Come here.”</i>");
 		
