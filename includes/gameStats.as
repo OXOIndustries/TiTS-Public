@@ -793,7 +793,7 @@ public function statisticsScreen(showID:String = "All"):void
 		// Sleeping partner
 		var sleepingPartner:String = "";
 		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) sleepingPartner = "";
-		else if(flags["CREWMEMBER_SLEEP_WITH"] == "BESS") sleepingPartner = "[bess.name]";
+		else if(chars[flags["CREWMEMBER_SLEEP_WITH"]] != null) sleepingPartner = chars[flags["CREWMEMBER_SLEEP_WITH"]].nameDisplay();
 		else sleepingPartner = StringUtil.toTitleCase(flags["CREWMEMBER_SLEEP_WITH"].toLowerCase());
 		// Virgin booties claimed
 		var totalVirginitiesTaken:Number = 0;
@@ -2553,13 +2553,25 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(" Whoring");
 					if(flags["REAHA_FREE"] != undefined) output2(", Free to speak");
 					if(flags["REAHA_SLAVE"] != undefined) output2(", Sex slave");
-					if(reahaRecruited())
+					if(!curedReahaInDebt()) output2(", Freed her debt");
+					if(reahaBooted())
+					{
+						output2(", Booted from crew, <i>Whereabouts unknown</i>");
+					}
+					else if(reahaRecruited())
 					{
 						output2(", Crew member");
 						// Reaha Expansion
 						if(reahaIsCrew()) output2(" (Onboard Ship)");
 						else if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
 						else if(flags["REAHA_IS_CREW"] == 3) output2(" (At New Texas)");
+						if(flags["REAHA_FAMILY_RESULT"] != undefined) output2("\n<b>* Reaha, Talk, Family:</b>");
+						if(flags["REAHA_FAMILY_RESULT"] == 1) output2(" Encouraged to contact her little sister");
+						if(flags["REAHA_FAMILY_RESULT"] == -1) output2(" Discouraged from contacting little sister");
+						if(flags["CURED_REAHA_NT_TALK"] != undefined) output2("\n<b>* Reaha, Talk, New Texas:</b>");
+						if(flags["CURED_REAHA_NT_TALK"] == 1) output2(" Sympathized with her");
+						if(flags["CURED_REAHA_NT_TALK"] == 2) output2(" Reminded her that it’s only natural");
+						if(flags["CURED_REAHA_NT_TALK"] == 3) output2(" Told her to man up");
 						output2("\n<b>* Reaha, Confidence:</b> " + reahaConfidence() + " %");
 						if(flags["REAHA_MILKMODS_UNLOCKED"] != undefined)
 						{
@@ -2573,6 +2585,7 @@ public function displayEncounterLog(showID:String = "All"):void
 							if(flags["REAHA_ADDICTION_CURED"] != undefined) output2(", Cured");
 							else output2(", Ongoing");
 						}
+						if(flags["REAHA_BOVINIUMED"] != undefined) output2("\n<b>* Reaha, Times Given Bovinium:</b> " + flags["REAHA_BOVINIUMED"]);
 						if(reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt:</b> " + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
 					}
 				}

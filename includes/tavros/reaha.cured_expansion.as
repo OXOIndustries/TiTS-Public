@@ -2017,7 +2017,7 @@ public function giveReahaTFItemPresents():void
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
 		if(buttons == 14) buttons++;
-		if(pc.inventory[x] is MilkCaramelGushers || pc.inventory[x] is MilkmaidsAid || pc.inventory[x] is Chocolac || pc.inventory[x] is Honeydew || pc.inventory[x] is Lactaid || (pc.inventory[x] is Anusoft && pcCanButtfuckReaha()) || pc.inventory[x] is JunkTrunk)
+		if(pc.inventory[x] is MilkCaramelGushers || pc.inventory[x] is MilkmaidsAid || pc.inventory[x] is Chocolac || pc.inventory[x] is Honeydew || pc.inventory[x] is Lactaid || (pc.inventory[x] is Anusoft && pcCanButtfuckReaha()) || pc.inventory[x] is JunkTrunk || pc.inventory[x] is Bovinium)
 		{
 			addItemButton(buttons,pc.inventory[x],giveReahaTFItemPresentsGO,pc.inventory[x]);
 			buttons++;
@@ -2077,7 +2077,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		processTime(2);
 		clearMenu();
 		addButton(0,"Milk Reaha",milkCuredReaha);
-		addButton(4,"Leave",mainGameMenu);
+		addButton(14,"Leave",mainGameMenu);
 		pc.destroyItem(item);
 		return;
 	}
@@ -2160,7 +2160,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 	//Junk in the Trunk
 	if(item is JunkTrunk)
 	{
-		output("\n\nYou hand over the little white pill, appropriately labeled <i>“Junk in the Trunk.”</i>");
+		output("\n\nYou hand over the little white pill, appropriately labeled “Junk in the Trunk.”");
 		//Reaha’s ass is less than max:
 		if(reaha.buttRatingRaw < 18)
 		{
@@ -2208,9 +2208,11 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\n<i>“Gimme a sec to catch my breath and we can really test this out...”</i> Reaha murmurs, reaching a hand back to circle her plump butt. <i>“If a finger can do that... unf.”</i>");
 			processTime(10);
 			pc.lust(10);
+			pc.destroyItem(item);
 			reaha.ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			clearMenu();
 			addButton(0,"Buttfuck",buttFuckReahaSlooot);
+			return;
 		}
 		//Second Time Anusoft
 		//PC must have a cock or hardlight panties.
@@ -2228,6 +2230,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nIt takes a moment for Reaha to catch her breath after that. When she does, she rights herself and turns to you with a look of wanton, unabashed desire on her blushing face. <i>“I need you. Right now. Please, [pc.name].”</i>");
 			processTime(10);
 			pc.lust(10);
+			pc.destroyItem(item);
 			reaha.ass.addFlag(GLOBAL.FLAG_PUMPED);
 			reaha.ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			clearMenu();
