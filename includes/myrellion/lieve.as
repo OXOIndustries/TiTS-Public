@@ -71,6 +71,23 @@ public function lieveVenomUsed():Boolean
 	return false;
 }
 
+public function lieveVenomCounterInc():void
+{
+	if (flags["LIEVE_VENOM_COUNTER"] == undefined) flags["LIEVE_VENOM_COUNTER"] = 0;
+	if (flags["LIEVE_LAST_VENOM_TIME"] == undefined) flags["LIEVE_LAST_VENOM_TIME"] = GetGameTimestamp();
+	flags["LIEVE_VENOM_COUNTER"] -= ( GetGameTimestamp() - flags["LIEVE_LAST_VENOM_TIME"] ) / (1.5 * 24 * 60);
+	flags["LIEVE_LAST_VENOM_TIME"] = GetGameTimestamp();
+	if (flags["LIEVE_VENOM_COUNTER"] < 0) flags["LIEVE_VENOM_COUNTER"] = 0;
+	flags["LIEVE_VENOM_COUNTER"]++;
+	if (flags["LIEVE_VENOM_COUNTER"] >= 4) flags["LIEVE_VENOM_ENABLED"] = 1;
+}
+
+public function lieveVenomCounterReset():void
+{
+	flags["LIEVE_VENOM_COUNTER"] = 0;
+	flags["LIEVE_LAST_VENOM_TIME"] = GetGameTimestamp();
+}
+
 public function lieveBunkerFunc():Boolean
 {
 	if (flags["MET_LIEVE"] == undefined)
@@ -177,13 +194,19 @@ public function lieveRepeatEncounter():void
 		else output(" we could just hang out...");
 		output("”</i>");
 	}
-	else
+	else if (lieveVenomEnabled())
 	{
 		output("<i>“Hey, [pc.name],”</i> Lieve beams, grabbing you by your [pc.hips] as you approach and pulling you into a fierce kiss that leaves you tingling with a sudden rush of chemical arousal. One of her hands brushes your cheek as she whispers, <i>“Good to see you.”</i>");
 	
 		output("\n\nAround her, Sierva and Mayren unsubtly shift to make themselves look more appealing for you, sitting with chests out and legs spread. After spending a moment firmly held in Lieve’s arms, you’re released and your lover asks, <i>“Need anything in particular? Or,”</i> she adds, smiling, <i>“did you just come to spend some time together?”</i>");
 		
 		imbibeVenomEffects();
+	}
+	else
+	{
+		output("<i>“Hey, [pc.name],”</i> Lieve beams, grabbing you by your [pc.hips] as you approach and pulling you into a tight hug. After a moment, she lets go and brushes one of her hands against your cheek as she whispers, <i>“Good to see you.”</i>");
+
+		output("\n\nAround her, Sierva and Mayren unsubtly shift to make themselves look more appealing for you, sitting with chests out and legs spread. After spending a moment firmly held in Lieve’s arms, you’re released and your lover asks, <i>“Need anything in particular? Or,”</i> she adds, smiling, <i>“did you just come to spend some time together?”</i>");
 	}
 
 	processTime(10);
@@ -221,7 +244,32 @@ public function lieveMenu():void
 	if (hasFuckedLieve()) addButton(5, "Appearance", lieveAppearance);
 	else addDisabledButton(5, "Appearance");
 	
+	if (lieveVenomEnabled()) addButton(10, "StopVenom", lieveDisableVenom, undefined, "Stop Venom", "Lieve assumes you are ok with her using her venom on you. You can ask her to stop using it so freely.");
+
 	addButton(14, "Leave", mainGameMenu);
+}
+
+public function lieveDisableVenom():void
+{
+	clearOutput();
+	lieveHeader();
+
+	if (flags["VENOM_ADDICTION"]  != undefined && flags["VENOM_ADDICTION"] >= 2)
+	{
+	output("You ask Lieve to go easy on the venom - your consumption has been getting out of hand.");
+	}
+	else
+	{
+	output("You ask Lieve to stop using her venom on you - you'd rather stay away from the stuff.");
+	}
+
+	output("\n\nShe shrugs. <i>“Sure.”</i>");
+
+	lieveVenomCounterReset();
+	flags["LIEVE_VENOM_ENABLED"] = undefined;
+
+	processTime(2);
+	lieveMenu()
 }
 
 public function lieveAppearance():void
@@ -873,18 +921,10 @@ public function lieveVenomToggle():void
 
 	pc.lust(50);
 	flags["LIEVE_VENOM_USED"] = 1;
-
-	if (flags["LIEVE_VENOM_TALK_TIMES"] == undefined) flags["LIEVE_VENOM_TALK_TIMES"] = 0;
-	flags["LIEVE_VENOM_TALK_TIMES"]++;
-	
-	if (flags["LIEVE_VENOM_TALK_TIMES"] > 4)
-	{
-		// Could maybe do with some words here to indicate - 9999
-		flags["LIEVE_VENOM_ENABLED"] = 1;
-	}
 	
 	processTime(30 + rand(10));
 	imbibeVenomEffects();
+	lieveVenomCounterInc();
 	//Sex Menu here.
 	lieveSexMenu(true);
 }
@@ -910,6 +950,7 @@ public function lieveKissHer():void
 
 	flags["LIEVE_VENOM_USED"]++;
 	imbibeVenomEffects();
+	lieveVenomCounterInc();
 	//Sex menu here
 	lieveSexMenu(true);
 	processTime(3 + rand(2));
@@ -1066,7 +1107,7 @@ public function lieveFuckHarem(tempVenomEnabled:Boolean = false):void
 	{
 		output("You wanted my venom, Steele... I hope you’re ready for it. I’m going to enjoy watching you squirm and moan for hours.”</i>");
 		clearMenu();
-		addButton(0, "Next", lieveVenomFuck);
+		addButton(0, "Next", lieveVenomFuck, tempVenomEnabled);
 	}
 	
 	processTime(60 + rand(15));
@@ -1125,6 +1166,7 @@ public function lieveVenomFuck(tempVenomEnabled:Boolean = false):void
 
 	processTime(200 + rand(40));
 	clearMenu();
+	if (!lieveVenomEnabled() && !tempVenomEnabled) lieveVenomCounterInc();
 	addButton(0, "Next", lieveVenomFuckII);
 }
 
@@ -1228,6 +1270,8 @@ public function lieveNoVenomFuckII():void
 		pc.orgasm();
 	}
 
+	lieveVenomCounterReset();
+
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1304,7 +1348,7 @@ public function lieveFuckHaremDickVersion(tempVenomEnabled:Boolean = false):void
 		output("\n\nThough she’s teasing you, Lieve doesn’t make a move until you answer.");
 
 		clearMenu();
-		addButton(0, "Venom Fuck", lieveFuckHaremDickVersionVenom, undefined, "Venom Fuck", "Tell Lieve you want her to use every tool at her disposal.");
+		addButton(0, "Venom Fuck", lieveFuckHaremDickVersionVenom, tempVenomEnabled, "Venom Fuck", "Tell Lieve you want her to use every tool at her disposal.");
 		addButton(1, "No Venom", lieveFuckHaremDickVersionNoVenom, undefined, "No Venom", "You'd rather not have your body flooded with myr venom.");
 	}
 	else
@@ -1313,11 +1357,11 @@ public function lieveFuckHaremDickVersion(tempVenomEnabled:Boolean = false):void
 		//Go straight to venom scene
 
 		clearMenu();
-		addButton(0, "Next", lieveFuckHaremDickVersionVenom);
+		addButton(0, "Next", lieveFuckHaremDickVersionVenom, tempVenomEnabled);
 	}
 }
 
-public function lieveFuckHaremDickVersionVenom():void
+public function lieveFuckHaremDickVersionVenom(tempVenomEnabled:Boolean = false):void
 {
 	clearOutput();
 	lieveHeader(true);
@@ -1347,6 +1391,7 @@ public function lieveFuckHaremDickVersionVenom():void
 
 	processTime(200 + rand(40));
 	clearMenu();
+	if (!lieveVenomEnabled() && !tempVenomEnabled) lieveVenomCounterInc();
 	addButton(0, "Next", lieveFuckHaremDickVersionVenomII);
 }
 
@@ -1408,6 +1453,8 @@ public function lieveFuckHaremDickVersionNoVenom():void
 	{
 		pc.orgasm();
 	}
+
+	lieveVenomCounterReset();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
