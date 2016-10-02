@@ -2899,6 +2899,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SEXED_CAMERON"] != undefined) output2("\n<b>* Cameron, Times Sexed:</b> " + flags["SEXED_CAMERON"]);
 				}
 				if(flags["MET_VARMINT"] != undefined) output2("\n<b>* Varmint, Times Encountered:</b> " + flags["MET_VARMINT"]);
+				if(flags["MET_VARMINT_PACK"] != undefined) output2("\n<b>* Varmint Pack, Times Encountered:</b> " + flags["MET_VARMINT_PACK"]);
 				if(varmintIsCrew())
 				{
 					if(varmintIsTame())

@@ -361,15 +361,21 @@ public function talkNatalie(response:String = "none"):void
 			flags["NATALIE_TAMES_VARMINT"] = 1;
 			flags["VARMINT_IS_CREW"] = 2;
 			
-			pc.createStatusEffect("Varmint Leashed");
 			if(!hasVarmintLeash())
 			{
 				output("\n\n");
 				quickLoot(new VarmintLeash());
 			}
-			
-			// [Next]
-			addButton(0, "Next", mainGameMenu);
+			else
+			{
+				// [Next]
+				addButton(0, "Next", mainGameMenu);
+			}
+			if(hasVarmintLeash())
+			{
+				pc.createStatusEffect("Varmint Leashed");
+				pc.removeStatusEffect("Varmint Unleashed Cooldown");
+			}
 			break;
 		default:
 			output("Nothing happened!");

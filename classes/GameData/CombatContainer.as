@@ -4006,10 +4006,25 @@ package classes.GameData
 			else
 			{
 				// TODO Some decent player status output
-				output("You perch behind cover wherever you can find it, ready to return fire");
+				if(pc.isGrappled()) output("You’re trapped in the enemy’s grip to do much");
+				else if(pc.hasStatusEffect("Stunned")) output("You’ve been stunned by the enemy and can’t do much");
+				else if(pc.hasStatusEffect("Paralyzed")) output("You’ve been paralyzed by the enemy and can’t do much");
+				else
+				{
+					output("You perch behind cover wherever you can find it,");
+					if(pc.hasStatusEffect("Disarmed"))
+					{
+						if(hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso")) output(" ready to swing your lasso");
+						else output(" readying yourself");
+					}
+					else if(pc.hasWeapon() && rand(2) == 0) output(" [pc.readyingWeapon]");
+					else if(pc.hasRangedWeapon()) output(" ready to return fire");
+					else if(pc.hasMeleeWeapon()) output(" ready to strike back");
+					else output(" ready to throw down");
+				}
 				if (_friendlies.length > 1)
 				{
-					output(" side-by-side with your");
+					output(", side-by-side with your");
 					if (_friendlies.length > 2) output(" allies");
 					else output(" companion");
 				}
