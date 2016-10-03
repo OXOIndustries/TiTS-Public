@@ -660,13 +660,13 @@ public function gooArmorIsCrew():Boolean
 }
 public function hasGooArmor():Boolean
 {
-    if(InShipInterior() && (pc.hasItemInStorage(new GooArmor()) || gooArmorIsCrew())) return true;
-    return hasGooArmorOnSelf();
+	if(InShipInterior() && (pc.hasItemInStorage(new GooArmor()) || gooArmorIsCrew())) return true;
+	return hasGooArmorOnSelf();
 }
 public function hasGooArmorOnSelf():Boolean
 {
-    if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
-    return false;
+	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
+	return false;
 }
 public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true):Boolean
 {
@@ -691,7 +691,7 @@ public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true)
 			}
 		}
 	}
-    return hasUpgrade;
+	return hasUpgrade;
 }
 public function gooArmorDefense(def:Number = 0):Number
 {

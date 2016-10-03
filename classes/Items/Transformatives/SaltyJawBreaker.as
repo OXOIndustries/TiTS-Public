@@ -90,7 +90,7 @@ package classes.Items.Transformatives {
 					}
 				}
 				//fill up balls to 75% if below that amount.
-				if ((target.hasCock() ||  target.balls >= 1) && target.ballFullness < 75) target.ballFullness = 75;
+				if ((target.hasCock() || target.balls >= 1) && target.ballFullness < 75) target.ballFullness = 75;
 			//not the player	
 			} else {
 				kGAMECLASS.output(target.capitalA + target.short + " uses the candy to no effect.");
