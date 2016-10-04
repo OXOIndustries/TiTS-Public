@@ -280,7 +280,7 @@
 			if(shields() <= 0) choices[choices.length] = shieldRegeneration;
 			//Hack drone
 			//(Procs if PC has a drone)
-			if(target.hasPerk("Attack Drone") && target.shields() > 0 && !target.hasStatusEffect("Porno Hacked Drone") && !target.hasTamWolf()) choices[choices.length] = getDroneHacked;
+			if(target.hasPerk("Attack Drone") && target.shields() > 0 && !target.hasStatusEffect("Porno Hacked Drone") && !target.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE)) choices[choices.length] = getDroneHacked;
 			//Standard attack
 			choices[choices.length] = standardRobosexualAttack;
 			choices[choices.length] = standardRobosexualAttack;
