@@ -1315,7 +1315,7 @@ public function earFuckWithCeria():void
 {
 	clearOutput();
 	showCeria(true);
-	output("Looking at the elf-girl's quivering ears, an idea as perverted as it is brilliant strikes you. You reach out to gently stroke along the edge of Ceria's ear, smiling when she quivers in bliss. <i>\"You ever try sliding one of these inside of someone before?");
+	output("Looking at the elf-girl's quivering ears, an idea as perverted as it is brilliant strikes you. You reach out to gently stroke along the edge of Ceria's ear, smiling when she quivers in bliss. <i>\"You ever tried sliding one of these inside of someone before?");
 	if(pc.isBimbo()) 
 	{
 		output("\"</i> You giggle");
@@ -1349,7 +1349,7 @@ public function earFuckCeriaPart2():void
 {
 	clearOutput();
 	showCeria(true);
-	output("Ceria is like dough in your hands, heavy and pliant in your hands. If you weren't holding her up, she'd probably slump down into her own puddled juices. Holding her forehead, you guide the tip of her ear up to the lips of your [pc.vagina " + x + "], rubbing it gently against your lips. It's cooler than you expected, nowhere as hot and urgent as a penis might be, but the contact with your sordidly-soaked snatch soon has it warming. You ease it in and moan in delight, matched by Ceria's answering cry.");
+	output("Ceria is like dough in your hands, heavy and pliant. If you weren't holding her up, she'd probably slump down into her own puddled juices. Holding her forehead, you guide the tip of her ear up to the lips of your [pc.vagina " + x + "], rubbing it gently against your lips. It's cooler than you expected, nowhere as hot and urgent as a penis might be, but the contact with your sordidly-soaked snatch soon has it warming. You ease it in and moan in delight, matched by Ceria's answering cry.");
 	output("\n\n<i>\"Ahh!\"</i> The elf's hips buck, and you have to hold her tight to keep her from slipping away. In the process, her slender ear dips further into your [pc.vagina " + x + "], it's narrow tip seemingly designed to perfectly spread your canal. Now that the process has started, you see no point in slowing and push her ear in further, sliding inch after inch of quivering elven bliss into your deepest depths. You had no idea that she could make it quiver so pleasurably! Ceria's ear twitches with every thrust, rubbing on your most sensitive places, making you wet enough to mat her hair to the side of her head as you slide home.");
 	if(pc.clitLength >= 4)
 	{
@@ -1363,7 +1363,7 @@ public function earFuckCeriaPart2():void
 		if(pc.totalClits() == 1) output("es");
 		output(" against Ceria's silken locks, pressed between your body and hers. The human clitoris was never designed to be so big or so phallic, and you have to yank the elf back immediately lest you be overwhelmed by sensation. There's so much that you could get off in a moment if you stayed there, impaled on her ear and grinding against her head, yet you know all too well that rushing to the peak so early would be ultimately unsatisfying.");
 	}
-	output("\n\nThe trembling stylist appears to be handling herself a little better now that you're confining your attentions to a single point of contact. Her eyes are half open, and she's moaning words again, things like <i>\"yes,\"</i> <i>\"fuck,\"</i> and <i>\"faster!\"</i> Looking down at her, you smile when you see her hands on her breasts, roughly handling her well-formed breasts, making the pliant breastflesh wobble and bounce, her rigid nipples slightly crinkled as fingers slide around their areolae.");
+	output("\n\nThe trembling stylist appears to be handling herself a little better now that you're confining your attentions to a single point of contact. Her eyes are half open, and she's moaning words again, things like <i>\"yes,\"</i> <i>\"fuck,\"</i> and <i>\"faster!\"</i> Looking down at her, you smile when you see her hands on her breasts. She's handling herself roughly, making the pliant titflesh wobble and bounce, her rigid nipples slightly crinkled as fingers slide around their areolae.");
 	output("\n\nAny attempt at conversation is abandoned, replaced by the heavy bump and grind of one sweaty body against another. Your [pc.vagina " + x + "] squelches lewdly with each back-and-forth movement, splattering more [pc.girlCumNoun] into Ceria's hair with each passing second. The scent of your pussy fills the air, tinted with the strawberry flavor of the elf's fruity ejaculations. You moan with her, tangling your fingers in her sodden locks, curling them around your knuckles as you slap her cheek with your cunt.");
 	output("\n\nHot, liquid twinges roll through your belly and into your [pc.vaginas], making your passage");
 	if(pc.totalVaginas() > 1) output("s");

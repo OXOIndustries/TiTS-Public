@@ -1353,7 +1353,7 @@ public function lolaPoolSex(response:String = ""):void
 				output(".");
 				pc.cockChange();
 			}
-			output(" Your hands clench hard on Lola’s wide hips as the sensation rips through you, and you struggle to stay standing, your knees suddenly weak.");
+			output(" Your hands clench hard on Lola’s wide hips as the sensation rips through you, and you struggle to stay " + ((pc.hasLegs() && pc.hasKnees()) ? "standing, your knees suddenly weak" : "propped up") + ".");
 			output("\n\nYou’re not sure who slowed first, but you and Lola both find yourselves out of breath as you come down, and it takes a moment for you to pull yourselves apart. She eases herself off of your [pc.cockOrStrapon " + x + "] with a giggle, then turns to you and presses her boobs against your [pc.chest], and pulls you close for a quick kiss.");
 			output("\n\n<i>“That was amazing, [pc.name],”</i> Lola moans, drawing out the words. <i>“Come find me again sometime, okay?”</i>");
 			output("\n\nYou nod, and she gives you a smile and floats away.");
