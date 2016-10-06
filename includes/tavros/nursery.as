@@ -1,3 +1,4 @@
+import classes.Characters.PlayerCharacter;
 // General support shit
 public function hasNurseryUpgrades():Boolean
 {
@@ -197,7 +198,7 @@ public function nurseryStairs2F():Boolean
 public function nurseryPlayerApptFunc():Boolean
 {
 	if (flags["BRIGET_MET"] != undefined && pc.isPregnant()) addButton(0, "Maternity", nurseryMaternityWait, undefined, "Maternity Wait", "The nursery is set up to support you for the long term if need be. If adventuring across the galaxy while pregnant doesn't seem like the best idea, you can move into the nursery and allow the staff to take care of you until you're ready to pop.");
-	addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
+	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
 	addButton(1, "Shower", showerOptions, 0); // 9999 this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
 
 	return false;
@@ -567,7 +568,7 @@ public function nurseryMeetBrigetII(acceptedHug:Boolean):void
 			output("\n\nYou turned out better than average under her care, and that was in Dad’s estate, not that much different from your average kid. With a staff of experts and a top of the line facility under her direction, you can’t wait to see what Briget can do.");
 			break;
 	}
-
+	
 	flags["BRIGET_MET"] = 1;
 	processTime(10+rand(5));
 

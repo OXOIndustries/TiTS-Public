@@ -976,7 +976,6 @@ public function initTavrosRooms():void
 	rooms["NURSERYG4"].system = "SYSTEM: KALAS";
 	rooms["NURSERYG4"].moveMinutes = 1;
 	rooms["NURSERYG4"].addFlag(GLOBAL.INDOOR);
-	rooms["NURSERYG4"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYG4"].addFlag(GLOBAL.BED);
 
 	rooms["NURSERYG8"] = new RoomClass(this);
