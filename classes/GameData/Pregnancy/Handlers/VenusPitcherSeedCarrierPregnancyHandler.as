@@ -1,6 +1,7 @@
 package classes.GameData.Pregnancy.Handlers 
 {
 	import classes.Creature;
+	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
 	import classes.kGAMECLASS;
@@ -118,7 +119,7 @@ package classes.GameData.Pregnancy.Handlers
 			);
 		}
 		
-		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):void
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):Child
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
@@ -128,6 +129,8 @@ package classes.GameData.Pregnancy.Handlers
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
 			pData.reset();
+			
+			return null;
 		}
 		
 		override public function getRemainingDuration(target:Creature, slot:int):int

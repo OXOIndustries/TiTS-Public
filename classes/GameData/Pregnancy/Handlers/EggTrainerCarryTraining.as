@@ -1,6 +1,7 @@
 package classes.GameData.Pregnancy.Handlers 
 {
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
+	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.StatTracking;
 	import classes.Creature;
 	import classes.Characters.PlayerCharacter;
@@ -88,9 +89,10 @@ package classes.GameData.Pregnancy.Handlers
 			else return "Your belly is hugely swollen, full of what must be near to a hundred plastic eggs that rustle, shift, and jostle inside you with even the slightest motion. You’re in a constantly state of near-orgasmic high from the unending sensation, shivering every time you take a step or rub a hand against your belly.";
 		}
 		
-		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):void
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
 		{
 			EggTrainerCarryTraining.cleanupPregnancy(mother, pregSlot, this);
+			return null;
 		}
 	}
 }

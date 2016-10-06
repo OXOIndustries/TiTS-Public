@@ -124,7 +124,7 @@ package classes.GameData.Pregnancy.Handlers
 			pData.reset();
 		}
 		
-		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):void
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
@@ -143,6 +143,8 @@ package classes.GameData.Pregnancy.Handlers
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			pData.reset();
+			
+			return c;
 		}
 	}
 

@@ -191,9 +191,21 @@
 			return shortestSlot;
 		}
 		
-		public static function nurseryEndPregnancy(tarCreature:Creature, pregSlot:int, useTimestamp:uint):void
+		public static function getRemainingDurationForSlot(tarCreature:Creature, pregSlot:int):uint
 		{
-			(_pregHandlers[tarCreature.pregnancyData[pregSlot].pregnancyType] as BasePregnancyHandler).nurseryEndPregnancy(tarCreature, pregSlot, useTimestamp);
+			if (!tarCreature.isPregnant() || pregSlot == -1) return -1;
+			
+			if (_pregHandlers[tarCreature.pregnancyData[pregSlot].pregnancyType] != null)
+			{
+				return (_pregHandlers[tarCreature.pregnancyData[pregSlot].pregnancyType] as BasePregnancyHandler).getRemainingDuration(tarCreature, pregSlot);
+			}
+			
+			return -1;
+		}
+		
+		public static function nurseryEndPregnancy(tarCreature:Creature, pregSlot:int, useTimestamp:uint):Child
+		{
+			return (_pregHandlers[tarCreature.pregnancyData[pregSlot].pregnancyType] as BasePregnancyHandler).nurseryEndPregnancy(tarCreature, pregSlot, useTimestamp);
 		}
 	}
 

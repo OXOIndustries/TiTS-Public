@@ -4,9 +4,24 @@ public function hasNurseryUpgrades():Boolean
 	return false;
 }
 
+public function numNurseryUpgrades():int
+{
+	var numUpgrades:int = 0;
+	// ???
+	return numUpgrades;
+}
+
 public function hasNurseryStaff():Boolean
 {
 	return yammiAtNursery() || reahaAtNursery();
+}
+
+public function numNurseryStaff():int
+{
+	var numStaff:int = 0;
+	if (yammiAtNursery()) numStaff++;
+	if (reahaAtNursery()) numStaff++;
+	return numStaff;
 }
 
 public function yammiIsFollower():Boolean
@@ -106,16 +121,47 @@ public function nurserySpecialistRooms():Boolean
 	output(", so the nursery comes equipped with a sub-deck of modular living chambers, able to easily be adapted to specific needs: from water tanks to zero-G to alternative atmospheres. Several specialist nurse-droids stand ready to tend to your more unique offspring.");
 
 	var numSpecials:int = 0;
+	var numSpecialsButtons:int = 0;
 
 	if (ChildManager.ofType(GLOBAL.TYPE_VENUSPITCHER))
 	{
-		numSpecials++;
 		output("\n\nOne of the modular chambers has been opened up and filled with soil sourced directly from Mhen’ga, allowing for the absolute best growing conditions possible for your venus pitcher offspring. Somehow, Briget has managed to secure a naleen female onto the staff, who is currently slithering about the jungle-like environ making sure everything is picture-perfect - and guaranteeing that your planty offpsring will have someone native to play with as they develop.");
+		numSpecials++;
+	}
+
+	if (ChildManager.ofType(GLOBAL.TYPE_COCKVINE))
+	{
+		var numVines:int = ChildManager.numOfType(GLOBAL.TYPE_COCKVINE);
+
+		output("\n\n" + (numSpecials == 0 ? "One" : "Another one") +" of the rooms is kept air-tight, its locked door plastered with warnings. The viewing window next to it reveals nothing but blackness - but you can use controls next to it to change the whole screen to stark night vision, allowing you to see within. The room itself is narrower than most but considerably taller, filled with the vertically arranged porous Myrellion rock that Hydrus Constuprula loves undulating its way through. The wall-attached micro-cameras can be moved up and down, enabling you to pick out your cockvine offspring wherever "+ (numVines == 1 ? "it" : "they") +" may roam.");
+
+		if (numVines > 1)
+		{
+			output("\n\nThere is the little guy now - snaking its way through the depths of its current home, grasping the rock occasionally with acquisitive interest. As far as you can tell, it looks reasonably healthy and happy.");
+		}
+		else if (numVines < 4)
+		{
+			output("\n\nYour first has taken root, and is not so much of a little guy anymore. Its exercise ball-shaped bulb is rooted deep, and it has sprouted several long tentacles reaching through the crevices many feet above it. The rest of your cockvine spawn are still dinky and mobile, tunnelling happily through the darkness.");
+		}
+		else
+		{
+			output("The first of your plant spawn has grown into an absolute monster, with over a dozen tentacles each reaching pretty much the entire height of the room, up the central crevice, laid out hopefully across the surface. Another smaller one has taken root in the corner. Counting up the remaining cockvine you can see slithering through the gloom, you guess at least two or three have chosen to merge with the bigger beasts.");
+		}
+
+		output("\n\nThe staff tell you that the creature");
+		if (numVines > 1) output("s");
+		output(" make");
+		if (numVines == 1) output("s");
+		output(" for a great waste disposal device - any vegetable or animal matter left over by the Nursery’s kitchen disappears in moments when it’s thrown into the chamber.");
+		numSpecials++;
 	}
 
 	if (ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN))
 	{
 		output("\n\nConnected to the main entrance via a pressurized airlock is a water-filled chamber, simulating a deep saltwater lake with a sandy island in its center. Though the rooms inside are pitch black, a camera feed inside has been set to night vision, showing your Water Princesses scuttling about, half-submerged and completely hidden in the dark waters. Your head nurse has hired on a dusky female nyrea from their homeworld to help oversee their development - a brief word with her reveals the huntress is well acquainted with the Queen of the Deep, and that the princesses’ mother sends her regards.");
+		addButton(numSpecials, "WaterPrincess", nurserySpecialistWaterPricesses);
+		numSpecials++;
+		numSpecialsButtons++;
 	}
 
 	if (numSpecials == 0)
@@ -446,12 +492,240 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 
 public function nurseryMeetBriget():void
 {
+	clearOutput();
+	author("Savin");
+	showBust("BRIGET");
+
+	output("\n\nThe woman at the desk seems to be the person to talk to here, so you make your way over and clear your throat to get her attention. She glances up from her Codex, immediately adopting a welcoming, matronly smile on her plump pink lips. There certainly is a <i>lot</i> of woman there, too, now that you’re paying closer attention to her: her hips and thighs are thick and fertile-figured to an almost exaggerated degree, as is the shapely bust hefting up the front of her crisp suit-jacket. Combine those ample assets with the square hardlight glasses and the neat bun binding back thick locks of reddish-pink hair, and the woman cuts a figure you can only describe as");
+	if (pc.isBro() || pc.LQ() >= 75) output(" <i>absolute MILF</i>");
+	else output(" that of an ancient fertility goddess");
+	output(". No way those curves are anything but artificial - and when you’re finally able to drag your gaze back up to her eyes, solid yellow irises and all, you know you’re looking at a gynoid.");
+
+	output("\n\nA very familiar-looking gynoid, now that you think about it.");
+
+	output("\n\n<i>“[pc.name]! I know it’s been some time, but I do remember teaching you not to stare. At least not so blatantly,”</i> the robotic woman chuckles, tucking her Codex under an arm and leaning back against the desk. <i>“It’s so good to see you again, dear.”</i>");
+
+	output("\n\nWait. No way... <i>“Briget!?”</i> you all but blurt out, blinking away your surprise. <i>“What are you doing here?”</i>");
 	
+	output("\n\nA flood of childhood memories come rushing back, of the first decade of your life spent in the nurse-droid’s loving care. She was like a surrogate mother in your own’s absence, with you and Dad every step of the way until your tween years. You haven’t really seen her since.");
+	
+	output("\n\n<i>“In the synth-flesh,”</i> she answers, pushing up the hardlight spectacles on the bridge of her nose. <i>“As for what I’m doing here... when Victor commissioned the nursery for you, he decided someone with experience raising Steeles would be the natural choice to oversee things. With a hundred and thirty years of raising your father’s offspring under my belt, there’s hardly anyone more qualified.”</i>");
+	
+	output("\n\nLetting herself swell with pride for a moment, Briget adds, <i>“Besides, we both thought you could use a familiar face out here.”</i>");
+	
+	output("\n\nThe ancient gynoid stands with a smile, setting her Codex down and opening her arms to you. <i>“Now, if it’s not too much trouble, I think I’m about a decade overdue for a hug, "+ pc.mf("mister", "missy") +".”</i>");
+
+	processTime(7+rand(5));
+
+	//[Hug] [No hug]
+	clearMenu();
+	addButton(0, "Hug", nurseryMeetBrigetII, true, "Hug Her", "Nursedroids give the best hugs!");
+	addButton(1, "No Hug", nurseryMeetBrigetII, false, "Don't Hug", "You're a little old for hugs, huh?");
+}
+
+public function nurseryMeetBrigetII(acceptedHug:Boolean):void
+{
+	clearOutput();
+	author("Savin");
+	showBust("BRIGET");
+
+	if (acceptedHug == false)
+	{
+		output("You give Briget a look, eliciting a pouted sigh and a shrug from her. <i>“Tsk, tsk. Very well, [pc.name], I suppose we can skip the pleasantries. As your father should have explained, the nursery here is pre-paid and held in trust for you: any children you have can be sent here for care and education, in virtually any number, and we are equipped to provide for any species, core-world or rush-space, you end up breeding with. If you’re anything like Victor, I suspect that my staff and I will be quite busy before long.”</i>");
+	}
+	else
+	{
+		output("Now there’s something you’ve been missing! You step forward and allow yourself to be pulled into a tight embrace, squished against the nurse-droid’s oh-so-soft, fleshy body. You’re immediately subsumed in a sense of warmth and security that’s been too-long absent from your life; the smell of rich, sweet perfume washes over you. More like a child than you’d intended, you find yourself nuzzling your [pc.face] into the lapel of Briget’s jacket, just enjoying the softness of the silky fabric on your [pc.skinFurScales].");
+		
+		output("\n\nBriget laughs pleasantly, running a hand across your [pc.hair]. <i>“It really is good to see you again, dear. Retirement was so thoroughly unfulfilling without at least one of my precious Steeles to take care of... though now that the nursery is up and running, I trust you’ll be keeping me busy with a whole new generation of the family, hmm?”</i>");
+		
+		output("\n\nIf you’re anything like your father, the answer will no doubt be a resounding <i>“yes.”</i>");
+	}
+
+	output("\n\n<i>“So,”</i> Briget says, turning your attention towards the holoscreen dominating the nearby wall. <i>“The nursery’s controller V.I. has been set to give you up to the minute status of the facility and any children you send here. Of course, it’s merely a monitoring agent: the actual act of caregiving and education falls to me and the staff I’ve assembled. As I did for your father, so too will I do for you. You have my solemn promise that your heirs will be the best-cared-for and educated children in the galaxy.”</i>");
+
+	switch (flags["PC_UPBRINGING"])
+	{
+		case GLOBAL.UPBRINGING_PAMPERED:
+			output("\n\nConsidering the way Briget brought you up, completely in the lap of luxury with all the love and attention - and expensive things - you could ever want, you know she’s telling the truth.");
+			break;
+
+		case GLOBAL.UPBRINGING_AUSTERE:
+			output("\n\nMaybe without Dad around to force your kids to endure what you went through, she’ll actually be able to live up to that promise.");
+			break;
+
+		case GLOBAL.UPBRINGING_ATHLETIC:
+			output("\n\nYou’re more concerned about them growing up nice and strong like you - but despite her soft, curvy physique, you know Briget’s more than capable of ensuring that. She plays a mean game of gravball for a hundred and thirty year old.");
+			break;
+
+		case GLOBAL.UPBRINGING_BOOKWORM:
+			output("\n\nEducation, you know, Briget can handle in spades. She looks every bit the sexy teacher, and has the cyber-brain to match.");
+			break;
+
+		default:
+		case GLOBAL.UPBRINGING_BALANCED:
+			output("\n\nYou turned out better than average under her care, and that was in Dad’s estate, not that much different from your average kid. With a staff of experts and a top of the line facility under her direction, you can’t wait to see what Briget can do.");
+			break;
+	}
+
+	flags["BRIGET_MET"] = 1;
+	processTime(10+rand(5));
+
+	nurseryBrigetMenu();
 }
 
 public function nurseryApproachBriget():void
 {
+	clearOutput();
+	author("Savin");
+	showBust("BRIGET");
+
+	output("You");
+	if (flags["BRIGET_FUCKED"] != undefined) output(" wander up and grab a handful of Briget’s plump derriere. Your lovely nurse giggles in a girlish way reserved just for you, pressing herself back against your hand. <i>“Hello, sweet thing. What can momma do for you?”</i>");
+	else output(" gently clear your throat, commanding Briget’s attention. <i>“Ah, [pc.name]. What can I do for you?”</i>");
+
+	processTime(2+rand(3));
+	nurseryBrigetMenu();
+}
+
+public function nurseryBrigetMenu():void
+{
+	clearMenu();
+	//addButton(0, "Talk", nurseryBrigetTalkMenu, undefined, "Talk", "Sit and have a chat with Briget.");
+	addButton(1, "Nursery", nurseryBrigetNurseryTalk, undefined, "Nursery", "Discuss the nursery's status and functions with its head nurse.");
+	//if (hours >= 7 && hours <= 16) addButton(2, "PrivateRoom", nurseryBrigetPrivateRoom, undefined, "Private Room", "Suggest that you and Briget move somewhere more private");
+	//else addButton(2, "Sex", nurseryBrigetSex, undefined, "Sex", "See if you can make this motherly gynoid feel like a woman...");
+	//addButton(10, "Appearance", );
+	addButton(14, "Back", mainGameMenu);
+}
+
+public function nurseryBrigetNurseryTalk():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("BRIGET");
+
+	output("<i>“Let’s talk about the nursery,”</i> you prompt.");
 	
+	output("\n\nBriget immediately stands up a little straighter, suddenly looking very business-like. <i>“Of course, [pc.name]. That’s why I’m here, after all.”</i>");
+
+	nurseryBrigetNurseryTalkMenu();
+}
+
+public function nurseryBrigetNurseryTalkMenu(lastFunc:Function = null):void
+{
+	clearMenu();
+	
+	if (lastFunc != nurseryBrigetNurseryStatus) addButton(0, "Status", nurseryBrigetNurseryStatus, undefined, "Nursery Status", "Ask Briget about the nursery's current status.");
+	else addDisabledButton(0, "Status");
+
+	if (lastFunc != nurseryBrigetNurseryStaff) addButton(1, "Staff", nurseryBrigetNurseryStaff, undefined, "Nursery Staff", "Ask Briget about the nursery's special staff.");
+	else addDisabledButton(1, "Staff");
+
+	addButton(14, "Back", nurseryBrigetMenu);
+}
+
+public function nurseryBrigetNurseryStatus():void
+{
+	clearOutput();
+	showBust("BRIGET");
+	author("Savin");
+
+	output("<i>“How are things at the nursery?”</i> you ask. Bridget tuts at you, saying that you’re quite capable of looking at the holoscreen’s readouts yourself, but you simply say that you’d like to hear it from her. The head nurse doubtless can paint a more vivid picture than a few stale stat-displays.");
+	
+	output("\n\n<i>“Oh, very well,”</i> the gynoid teases, leaning back on her desk");
+	if (flags["BRIGET_FUCKED"] != undefined) output(" in a way that makes those lovely big breasts of hers thrust out against her blouse.");
+	else output(" in a way that makes her blouse look awfully tight.");
+	output(" <i>“At the moment, we’re caring for");
+
+	var numChildren:int = ChildManager.numChildren();
+	if (numChildren > 1)
+	{
+		output(" " + numChildren + " of your darling children.");
+		if (numChildren >= 10) output(" Quite the prolific breeder you’re becoming. Then again, what did I expect from a Steele?");
+	}
+	else if (numChildren == 1) output(" your one and only child. You must be so proud!");
+	else output(" all of no children. Do me a favor and get to breeding, dearest. Your father didn’t bring me out of retirement to sit here idle!");
+	output("”</i>");
+	
+	output("\n\n<i>“Our facilities are");
+	if (!hasNurseryUpgrades() && !hasNurseryStaff()) output(" as your father bought them. We’re operating at near-perfect efficiency, and at budget.");
+	else if (hasNurseryUpgrades() && hasNurseryStaff())
+	{
+		output(" greatly expanded thanks to your efforts. The nursery is bigger and better than anything old Victor could have hoped for");
+		if (numChildren >= 10) output(", just like your lovely brood, my dear. You’re well on your way to out-breeding your father already");
+	}
+	else output(" somewhat upgraded thanks to you. Please, continue finding more staff and equipment out there on your adventures - everything you bring back makes the nursery that much better of a place for your children to grow up.");
+	output("!”</i>");
+	
+	output("\n\n<i>“The staff is");
+	if (!hasNurseryStaff()) output(" largely robotic, with some specialists in education and infant-handling on retainer. The nurse-droid staff is quite capable, though, I assure you - and we both know I’m quite able to handle as many children as needed myself.");
+	else if (numNurseryStaff() < 10)
+	{
+		output(" still more robotic than organic, but is becoming more diverse by the day. Thanks to your efforts, I’m sure we’ll soon boast the most colorful staff in the galaxy - a fitting way to operate, given what your father");
+		if (numChildren >= 10) output(" correctly");
+		output(" expected of you and your brood.");
+	}
+	else output(" We’re flush with everything we could ever need, all thanks to you, oh captain my captain. The way things are going, you might want to start asking some of your many, many half-siblings if they’d like to make use of the facility: we have more than enough staff.");
+	output("”</i>");
+	
+	output("\n\nBridget flashes you a smile and taps on her Codex, glancing through the information at her display. <i>“I believe that covers everything of note at present. Anything else, [pc.name]?”</i>");
+
+	processTime(5+rand(5));
+
+	nurseryBrigetNurseryTalkMenu(nurseryBrigetNurseryStatus);
+}
+
+public function nurseryBrigetNurseryStaff():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("BRIGET");
+
+	//{Has no special staff:
+	if (!hasNurseryStaff())
+	{
+		output("Out of curiosity, you ask <i>“If I find someone out there in the galaxy that would fit in well here at the nursery, can I offer them a job?”</i>");
+
+		output("\n\nBriget purses her lips a moment, thinking. <i>“I suppose so. Technically speaking, I am in charge of all matters related to staff, but of course I trust your judgement, dear, especially in regards to your own children. If you find someone with skills or talents you think would make the nursery a better place for us to bring up your offspring, I would be happy to have them. There will need to be interviews and contracts, of course, but those should be a formality.”</i>");
+
+		output("\n\nThat answers that, you suppose. Does she have any suggestions for staff she needs? Any particular skillsets you should be on the lookout for?");
+
+		output("\n\n<i>“Oh, I take care of everything we </i>need<i> here, strictly speaking,”</i> Briget assures you. <i>“But that doesn’t mean I always have the contacts to find us truly unique skills on demand. Your father had the foresight to make accommodations for a laboratory and bio-science center on the second floor, which could begin to provide all manner of benefits to your reproductive health - and your fertility/virility - were it staffed and equipped. We also have a modular living bay designed to accommodate your differently-abled children, and those who need non-standard conditions to grow. Finding specialist caretakers for these environments is within my purview, but finding additional experts who can better educate and care for Rush-space species may be easier for you than it is for me.”</i>");
+
+		output("\n\nSo scientists and aliens, basically?");
+
+		output("\n\n<i>“Basically,”</i> Briget nods. <i>“Oh, and while we’re quite able to source milk and other foods from corporate sources, I’ve always found that children respond better to a mother’s touch... and nourishment. Of course I am equipped for such functions - I nursed you, after all - but I am still a synthetic, as is my milk.");
+		if (pc.isLactating()) output(" since you’re quite obviously lactating already");
+		else if (pc.isPregnant()) output(" now that you’re pregnant");
+		else output(" If you yourself should ever become pregnant");
+		output(", we have a milking station on the second floor which you can use to store some of your milk away for your children. Of course, should you find individuals willing to donate their own natural milk, we would be happy to compensate them for it.”</i>");
+
+		output("\n\nInteresting.");
+		if (reahaIsCrew()) output(" Maybe you should talk to Reaha about that...");
+	}
+	else
+	{
+		output("<i>“How’s the staff doing?”</i> you ask. Things certainly seem a little more lively around here.");
+
+		output("\n\nBriget smiles, directing your attention to the holoterminal on the wall. It flickers over to a status display, showing off current numbers of synthetic and organic employees working in the nursery, along with breakdowns of their roles and terms of employment.");
+
+		output("\n\n<i>“Everything is going quite well, dear.");
+		if (numNurseryStaff() < 10) output(" Though most of the nursery’s duties are still fulfilled by drones and nurse droids, having an organic touch has certainly made our little home away from home that much more vibrant and pleasant. Even I have to admit, children do seem to respond better to living caregivers... at least until they get to know me.”</i> She chuckles pleasantly, though her eyes turn downcast rather quickly.");
+		else if (numNurseryStaff() >= 10)
+		{
+			output(" You’ve certainly found more employees than I would have expected. Our budget is a bit strained at present, but I believe the effects more than justify a bit of credit-pinching here and there: I never expected the nursery to feel so vibrant and alive");
+			if (ChildManager.numChildren() >= 10) output(", even with all your precious darlings here with me");
+			output("! We’ve built a community here thanks to you, dear.} They say it takes a village, and I can certainly see the wisdom in that now. I simply </i>know<i> that your offspring will be the best and brightest the galaxy has to offer under our care");
+			if (ChildManager.numChildren() == 0 && !pc.isPregnant()) output("... when you have them, that is");
+			output(".");
+		}
+	}
+
+	processTime(5+rand(5));
+
+	clearMenu();
+	nurseryBrigetNurseryTalkMenu(nurseryBrigetNurseryStaff);
 }
 
 public function nurseryMaternityWait():void
@@ -498,8 +772,9 @@ public function nurseryMaternityWaitGo():void
 	}
 
 	output("\n\nYour first night in the nursery is more restful than you imagined it ever could be.");
-	var pregDuration:int = PregnancyManager.getLongestRemainingDuration(pc);
-	if (pregDuration >= 2880)
+	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc);
+	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
+	if (firstDuration >= 2880)
 	{
 		output(" By the end of the second day, you can feel all the tension bleeding away: all the aches and the cares of your adventuring life seem so far away as you’re pampered by Briget and her staff. The matronly gynoid simply refuses to let you lift a finger for yourself, insisting that she knows exactly how to treat a pregnant Steele after all these years. Considering her breadth of experience, and how relaxed and contented you soon find yourself, it’s hard to argue the point.");
 
@@ -522,36 +797,259 @@ public function nurseryMaternityWaitGo():void
 		}
 	}
 
-	if (pregDuration >= 1051200) output("\n\nThe years pass")
-	else if (pregDuration >= 481800) output("\n\nThe year passes");
-	else if (pregDuration >= 80640) output("\n\nThe months pass");
-	else if (pregDuration >= 20160) output("\n\nThe weeks pass");
-	else if (pregDuration >= 1440) output("\n\n The days pass");
+	if (firstDuration >= 1051200) output("\n\nThe years pass")
+	else if (firstDuration >= 481800) output("\n\nThe year passes");
+	else if (firstDuration >= 80640) output("\n\nThe months pass");
+	else if (firstDuration >= 20160) output("\n\nThe weeks pass");
+	else if (firstDuration >= 1440) output("\n\n The days pass");
 	else output("\n\nThe day passes");
 	output(" in a slow, peaceful haze. Your [pc.belly] grows, swelling with life until the inevitable end of your pregnancy comes. When it does, Briget is at your side in the blink of an eye, accompanied by several nurse-droids that haul you onto a stretcher, dazed and moaning, and cart you off to a maternity ward on the station. You barely notice an anesthetic hypospray hissing against your neck; only a sudden grogginess tips you off, and then the world goes black.");
 
 	// We don't want to process-time passed the actual birthing stuff, we need to intercept the usual system, execute the cleanups (for stat tracking)
 	// THEN pass the time, so we don't trigger any of the other stage progression outputs.
 
+	var baseTime:uint = kGAMECLASS.GetGameTimestamp();
+	var allBirths:Array = [];
+
+	// Rather than ending ALL, what should happen is we end the next available, and check if any other pregnancies are _close enough_ to ending, and also end those,
+	// and compress them all together. The PC is aware during the entire pregnancy, so we can't just clear _all_ of them with no regard to some that finish halfway through!
+
+	var ends:uint = baseTime + firstDuration;
+	var c:Child = PregnancyManager.nurseryEndPregnancy(pc, firstSlot, ends);
+	if (c != null) allBirths.push(c);
+
+	// The first pregnancy is now over, so now we can check again to see if there are any ending within say 24 hours and end those too
+	var bEndedSecondPreg:Boolean;
+	var finalDuration:int = firstDuration;
+
+	do
+	{
+		bEndedSecondPreg = false;
+		if (pc.isPregnant())
+		{
+			var nextSlot:int = PregnancyManager.getNextEndingSlot(pc);
+			var nextDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, nextSlot);
+
+			if (nextDuration - firstDuration <= 1440)
+			{
+				bEndedSecondPreg = true;
+				ends = baseTime + nextDuration;
+				c = PregnancyManager.nurseryEndPregnancy(pc, nextSlot, ends);
+				if (c != null) allBirths.push(c);
+				finalDuration = nextDuration;
+			}
+		}
+	} while (bEndedSecondPreg)
+
+	processTime(finalDuration);
+
 	clearMenu();
-	addButton(0, "Next", nurseryMaternityWaitPostBirths);
+	addButton(0, "Next", nurseryMaternityWaitPostBirths, { births: allBirths, dur: finalDuration });
 }
 
-public function nurseryMaternityWaitPostBirths():void
+public function nurseryMaternityWaitPostBirths(args:Object):void
+{
+	var allBirths:Array = args.births;
+	var finalDuration:uint = args.dur;
+
+	clearOutput();
+	author("Savin");
+
+	output("When you wake up you’re back in your bedroom, buck naked and tucked into the covers. You’ve definitely been given a bath while you were out, and your equipment is neatly stacked on the desk across the room from you. Briget is sitting in the chair, turned half aside from you and humming happily to herself.");
+
+	var lastBorn:Child = (allBirths.length > 0 ? allBirths[allBirths.length - 1] : null);
+	if (lastBorn != null)
+	{
+		output(" Her suit-jacket is unbuttoned, and she’s holding a newborn "+GLOBAL.TYPE_NAMES[lastBorn.RaceType]+" in her arms, letting "+ lastBorn.randomApplicableGender("him", "her", "her", "it") +" nurse from one of her full, milk-swollen breasts.");
+
+		output("\n\nBriget blinks when you stir, brought back from her motherly daydreaming. ");
+	}
+	else
+	{
+		output("\n\n");
+	}
+	
+	output("<i>“Oh, [pc.name]. I thought you would be asleep for some time still.... Do forgive an old gynoid for still taking some little pleasure in watching over you while you dream, hmm?”</i>");
+	
+	if (lastBorn != null) output("\n\nShe smiles and glances down to the little bundle in her arms. <i>“Everything went perfectly, of course. You’re now mother to "+lastBorn.Quantity+" newborn "+GLOBAL.TYPE_NAMES[lastBorn.RaceType]+". Congratulations, dear.”</i>");
+
+	var totalDays:int = Math.round(finalDuration / 1440);
+	var totalHours:int = Math.round((finalDuration % 1440) / 24);
+	output("\n\nYou spend a few moments stretching and collecting yourself");
+	if (lastBorn != null) output(" - and fussing over your newborn offspring -");
+	output(" before glancing at the clock sitting on the desk. <b>You’ve spent");
+	if (totalDays > 0) output(" " + totalDays + " day" + (totalDays > 1 ? "s" : ""));
+	if (totalHours > 0)
+	{
+		if (totalDays > 0) output(" and");
+		output(" " + totalHours + " hour" + (totalHours > 1 ? "s" : ""));
+	}
+	output(" here</b> in leisure. God only knows what your rival’s gotten up to in that time.");
+	
+	output("\n\nNow unburdened of your pregnancy, you figure it’s time to get back on the space-trail.");
+
+	processTime(15);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function nurserySpecialistWaterPricesses():void
 {
 	clearOutput();
 	author("Savin");
-	
-	/*
 
-When you wake up you're back in your bedroom, buck naked and tucked into the covers. You've definitely been given a bath while you were out, and your equipment is neatly stacked on the desk across the room from you. Briget is sitting in the chair, turned half aside from you and humming happily to herself. Her suit-jacket is unbuttoned, and she's holding a newborn {progenyrace} in her arms, letting {him/her/it} nurse from one of her full, milk-swollen breasts.
+	if (flags["NURSERY_WATER_PRINCESS_VISTS"] == undefined)
+	{
+		output("You step up to the glass door separating your watery children’s living space from the drier climate of the nursery, peering through into total darkness. You give a glance to the nyrean huntress standing nearby, wrapped up in the Steele Tech uniform that shows off plenty of toned muscle and a bulge that looks like she’s packing a coconut in her crotch. Kid friendly, for sure.");
+		
+		output("\n\n<i>“Greetings,");
+		if (flags["KING_NYREA"] == undefined) output(" captain");
+		else output(" my " + pc.mf("king", "queen"));
+		output("”</i> the huntress says, giving you a respectful incline of her head. <i>“A pleasure to make your acquaintance.”</i>");
+		
+		output("\n\nThere’s clearly no need to introduce yourself, so you just return her gesture and ask what she’s doing here, exactly. What qualifies her to watch over your young princesses?");
+		
+		output("\n\nThe huntress smiles demurely, folding her hands behind her back. <i>“I’m afraid there’s nobody truly experienced with raising Water Queen anymore. My only qualification is that our queen tried to breed me several times. None of her eggs took, though not for lack of trying, or desire on my part. When you were impregnated, the Queen asked me to come and find you; to serve you as I would have her. I am ever her loyal servant, and it is my honor to watch over the princesses while they mature.”</i>");
+		
+		output("\n\nThat’s about as good as you’re likely to get, you suppose. For now, you ask how the princesses are doing.");
+		
+		output("\n\n<i>“They’re well. Very well,”</i> the huntress answers, turning towards the monitors on the wall. <i>“They’re still sensitive to the light, and we’ve had to expand their living space - Queens of the Deep Water are solitary beings, and they like to keep their distance from each other. And from me, when they don’t wish to nurse or play-fight. You’ll be pleased to know they’re growing quickly, and growing strong, too. The Queen was worried her daughters would be anemic, if they survived at all; she’s quite happy to have been proven wrong.”</i>");
+		
+		output("\n\nAs are you. On that note, is it alright for you to go inside and visit?");
+		
+		output("\n\n<i>“Of course! The princesses have been asking after you almost non-stop since their arrival. They’ll be overjoyed to see their "+ pc.mf("father", "mother") +" again. Head inside whenever you like - just be very loud when you do. They can be a little jumpy when they’re nesting.”</i>");
 
-Briget blinks when you stir, brought back from her motherly daydreaming. "Oh, [pc.name]. I thought you would be asleep for some time still.... Do forgive an old gynoid for still taking some little pleasure in watching over you while you dream, hmm?"
+		processTime(30);
 
-She smiles and glances down to the little bundle in her arms. "Everything went perfectly, of course. You're now mother to {X} newborn {raceName}. Congratulations, dear."
+		flags["NURSERY_WATER_PRINCESS_VISTS"] = 1;
 
-You spend a few moments stretching and collecting yourself -- and fussing over your newborn offspring -- before glancing at the clock sitting on the desk. <b>You've spent {X} days and {Y} hours here</b> in leisure. God only knows what your rival's gotten up to in that time.
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	else
+	{
+		IncrementFlag("NURSERY_WATER_PRINCESS_VISTS");
+		var children:Array = ChildManager.getChildrenOfType(GLOBAL.TYPE_WATERQUEEN);
+		var totalNum:int = 0;
+		var child:Child;
+		if (children != null && children.length > 0)
+		{
+			child = children[0]; // The oldest should be first in the array!
+			for (var i:int = 0; i < children.length; i++)
+			{
+				var c:Child = children[i] as Child;
+				totalNum += c.Quantity;
+			}
+		}
 
-Now unburdened of your pregnancy, you figure it's time to get back on the space-trail.
-*/
+		output("You step up to the door and take a peek at the night-sight monitor next to it. The screen is divided into a number of different viewpoints, each keeping track of one of your "+ totalNum +" young princesses. Most of your royal brood is quietly nesting, tucked away in the various half-submerged corners of the modified chamber and soaking underneath beds of fungus and leaves.");
+
+		output("\n\nAs their caretaker suggested, you make sure that opening the door makes plenty of noise. The door itself is huge, befitting the size its occupants will grow to, and a long tunnel stretches out after it to help funnel out the nursery’s light so opening up doesn’t accidentally blind your subterranean spawn. You traverse the tunnel, stepping out onto a little sandy island at the water’s edge, not much more than three yards to a side.");
+		
+		output("\n\nIt’s pitch black inside, save for the dim light filtering through the tunnel at your back. A pair of red lanterns have been set up at the water’s edge, hooked up to power cables on the bulkheads. You flip them on and close the door, leaving yourself in dim crimson glow. Remembering that the princesses are already able to read and write, and so presumably speak, you call out a <i>“Hello?”</i> into the shadows.");
+		
+		output("\n\nA long moment passes.");
+		
+		output("\n\nThe water ripples in front of you, and a head of silky hair blossoms on the surface, followed by a pair of dark eyes. Unlike the Queen’s, your daughter’s are fundamentally human in shape and color, staring up at you with wild curiosity. She rises from the pool a moment later, revealing a humanoid upper half the same lustrous blue as her mother, wrapped up in a one-piece swimsuit from shoulders to her waist, where the sprawling, spidery crab-body begins in earnest.");
+
+		output("\n\n<i>“"+pc.mf("Daddy", "Mommy") +", is that you?”</i> the princess asks, suddenly smiling. <i>“It is! Everyone, come look who’s here, quick!”</i>");
+
+		output("\n\nShe scuttles up out of the water, and suddenly you’re made aware again of just how massive her species is. Once she’s on land, you’re left");
+
+		// 9999 really need to define what "young" means in this instance.
+		// Also, as this is written kinda skips out on a fair important portion of the kids getting older, because
+		// it's feasible that the player could literally have just given birth to them and then walked into the specialist room and suddenly they're all 8ft tall???
+
+		var bIsYoung = GetGameTimestamp() - child.BornTimestamp <= 1051200;
+		if (bIsYoung && pc.tallness >= 96) output(" staring more or less eye-to-eye with your young daughter. Her spindly legs put her on a much higher vantage than a human, and her more personable half is shapely and tall, built like a swimmer.");
+		else if (bIsYoung) output(" staring up at your towering daughter. She’s bigger than a leithan already, a bit awkward on her spindly land legs but riding so high that it’s hard to see her face in the gloom.");
+		else output(" leaning back and staring wide-eyed at the titan you gave birth to. She’s enormous, easily as big as the Queen herself now, riding high on slender legs each taller than a human, elevating her so high that it’s hard to see her face in the red gloom. You can, however, see that the more personable half sitting atop the crab-like lower body has developed into quite the woman, voluptuous and strong and just as gorgeous as her mother.");
+		output(" If only the Queen could see her now...");
+
+		clearMenu();
+		addButton(0, "Next", nurserySpecialistWaterPricessesII, child);
+	}
 }
+
+public function nurserySpecialistWaterPricessesII(child:Child):void
+{
+	clearOutput();
+	author("Savin");
+
+	output("Several more heads of tentacled hair peek up from the water’s edge a few moments later, and soon you’re overwhelmed with chattering voices - a chorus of <i>“Hi!”</i> <i>“Welcome home!”</i> <i>“We missed you so much!”</i> and more. Half a dozen pairs of hands grab at you, pulling you into hugs kisses every which way. Your not-so-little girls giggle and cry out with joy, pulling you in so many directions at once that you’re momentarily afraid they’ll forget their own strength... but no, they’re as gentle as angels once you start squirming, setting you back down on the sandbar and folding their legs under themselves, coming down to your level.");
+
+	output("\n\nBefore long your princesses have coaxed you into sharing your adventurous tales with them. Their curiosity is boundless, you soon discover: wanderlust and starry-eyed wonder fills them with every word, and they’re on the edge of their crabby seats as you recount some of your more dangerous exploits and less steamy encounters.");
+	
+	output("\n\nEventually between stories, you note that your princesses have really grown since you birthed them - much, much faster than a human child. You remember the Queen hinted at herself being quite young by Terran standards, so... just how mature are her spawn already? They were talking, reading, and writing just moments after they hatched, after all. And they’re already so big...");
+	
+	output("\n\n<i>“We don’t know!”</i> the first of the bunch answers apologetically. <i>“We’ve tried to find a, um... a codex? For our race! But we can’t find any information.”</i>");
+	
+	output("\n\n<i>“Briget’s been helping us!”</i> another princess offers. <i>“She says nobody’s ever seen a Water Queen before.”</i>");
+	
+	output("\n\n<i>“Or whatever we’re supposed to be called!”</i> a third chimes in. <i>“Mother knows more, but our ‘caretaker’ says she won’t leave Myrellion. Not even to come visit!”</i>");
+	
+	output("\n\nThey’ve been talking to the Queen? If so, you have to wonder: does she want her daughters back home, now that they’re born?");
+
+	output("\n\n<i>“No,”</i> the first of your daughters admits. <i>“I mean, I’m sure she’d like us to visit! But the whole point of, um, making you our "+ pc.mf("father", "mother") +" was to make sure we got off Myrellion, wasn’t it? There’s nothing for us there...”</i>");
+
+	output("\n\n<i>“We need to go colonize new planets!”</i> another of the bunch grins. <i>“Just like you! A Princess for every planet "+ pc.mf("daddy", "mommy") + " goes to on the rush.”</i>");
+
+	output("\n\nThe rest of them laugh and cheer; a few slap their sister on the back or rump, making her blush a dark blue.");
+
+	output("\n\nAfter a few moments, the first of them leans over and puts her head on your shoulder. A few of her head-tendrils wrap softly around your neck. <i>“Don’t worry, "+ pc.mf("daddy", "mommy") +", we’re not going anywhere for a while. There’s so much to learn before we go! Briget’s promised to teach us day and night while we’re here, and even says some of us might be able to go to a, um... a universe-city!”</i>");
+
+	switch (pc.affinity)
+	{
+		default:
+		case "physique":
+			output("\n\n<i>“But some of us are gonna be big, tough warriors instead!”</i> one of the tallest princesses boasts, flexing her impressive muscles. Several of her sisters ooh and ahh, scuttling over to grope at her biceps or poke at her chiseled abs. Definitely takes after you, that one.");
+			break;
+
+		case "reflexes":
+			output("\n\n<i>“Some of us!”</i> another of the princesses grins, a slender, willowy girl on a particularly long-legged lower body. <i>“I’ve been watching grav-ball, though, and I’m totally going to try out for it!”</i>");
+			output("\n\n<i>“They’ll never let you in!”</i> another huffs. The two start squabbling, and have to be pulled apart by their sisters.");
+			break;
+
+		case "aim":
+			output("\n\nOne of the other princesses scuttles forward and puts her hands on her hips, towering over the first. <i>“Maybe you, smarty-crab! <b>I</b>’m thinking about joining the Peacekeepers! See the galaxy before I settle down with a brood of my own.”</i>");
+			break;
+
+		case "intelligence":
+			output("\n\n<i>“Yeah!”</i> another of them beams. <i>“Mo- I mean, Miss Briget says if I keep acing all her math tests, I could probably get a scholarship to Terra Prima. She says I’ve got what it takes to be an, um... an astro-physicist! Whatever that is!”</i>");
+			output("\n\n<i>“Nerd!”</i> one of the princesses further back in the darkness shouts. The math-whiz blushes and sticks her tongue out over her shoulder.");
+			break;
+
+		case "willpower":
+			output("\n\nAnother princess stalks out of the shadowy waters, crossing her arms under her");
+			if (child != null && GetGameTimestamp() - child.BornTimestamp <= 1051200) output(" exceptionally ample");
+			output(" chest. <i>“Maybe <i>you’re<i> going to university, but Miss Briget says some of us should think about testing for Games and Theory. Says we have sharp minds.”</i>");
+			
+			output("\n\n<i>“Isn’t that, like, code for psychic powers?”</i> another princess chuckles. <i>“Can you read my mind, now?”</i>");
+			
+			output("\n\n<i>“Maybe someday!”</i> the other scoffs. <i>“Or maybe I’ll just </i>blow things up with my brain!</i>");
+			break;
+	}
+
+	output("\n\nYou find yourself laughing at the princess’s antics. Despite what their caretaker said, you’re quickly coming to see that they love each other very much - and you, too, the way they cuddle up around you with adoring eyes, content to bask in your presence.");
+	if (pc.hasKeyItem("Water Princess Note"))
+	{
+		output(" You find yourself reaching into your pack and pulling out the little note they left you all that time ago, scrawled on the back of the drone’s receipt. Seeing it, the first of your princesses gives a delighted squeal. <i>“Ah, you really kept it!”</i>");
+	
+		output("\n\nOf course you did. It was just about the most precious thing you’ve ever gotten.");
+		
+		output("\n\nShe grins ear to ear and throws her arms around your neck. <i>“I’m so glad!”</i>");
+		
+		output("\n\n<i>“We all are!”</i> another adds. Several of her sisters voice their agreement.");
+		
+		output("\n\n<i>“And we meant what it said. We’re super thankful to have you, "+ pc.mf("daddy", "mommy") +"! And then there’s the nursery and Miss Briget and everything else you’ve done for us since. So from all of us: thank you so much!”</i>}");
+	}
+	
+	output("\n\nYou smile and put your arms around a pair of the young princesses, holding your brood close for a while. Eventually, though, a few of them start yawning, or mumbling complaints about their carapaces getting dry. That seems like your cue to let them get back to their watery nests - an idea that earns you groans and pleas to stay, but you know you need to let them get some rest. Giving them farewell hugs, you see them back into the water before turning to the tunnel and switching the lights back out to darkness.");
+	
+	processTime(55+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+

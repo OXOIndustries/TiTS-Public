@@ -480,7 +480,7 @@ public function initTavrosRooms():void
 	rooms["INESSA"].addFlag(GLOBAL.COMMERCE);
 	rooms["INESSA"].runOnEnter = happyTailsBonus;
 	
-		rooms["LIFT: RESIDENTIAL DECK"] = new RoomClass(this);
+	rooms["LIFT: RESIDENTIAL DECK"] = new RoomClass(this);
 	rooms["LIFT: RESIDENTIAL DECK"].roomName = "LIFT:\nRESIDENTIAL";
 	rooms["LIFT: RESIDENTIAL DECK"].description = "";
 	rooms["LIFT: RESIDENTIAL DECK"].planet = "TAVROS STATION";
@@ -785,7 +785,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYELEVATOR"] = new RoomClass(this);
 	rooms["NURSERYELEVATOR"].roomName = "ELEVATOR:\nNURSERY";
 	rooms["NURSERYELEVATOR"].description = "";
-	rooms["NURSERYELEVATOR"].runOnEnter = undefined;
+	rooms["NURSERYELEVATOR"].runOnEnter = hangarBonus;
 	rooms["NURSERYELEVATOR"].northExit = "NURSERYE14";
 	rooms["NURSERYELEVATOR"].planet = "TAVROS STATION";
 	rooms["NURSERYELEVATOR"].system = "SYSTEM: KALAS";
@@ -799,6 +799,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYSTAIRS1F"].runOnEnter = nurseryStairs1F;
 	rooms["NURSERYSTAIRS1F"].eastExit = "NURSERYE14";
 	rooms["NURSERYSTAIRS1F"].inExit = "NURSERYSTAIRS2F";
+	rooms["NURSERYSTAIRS1F"].inText = "Up";
 	rooms["NURSERYSTAIRS1F"].planet = "TAVROS STATION";
 	rooms["NURSERYSTAIRS1F"].system = "SYSTEM: KALAS";
 	rooms["NURSERYSTAIRS1F"].moveMinutes = 1;
@@ -908,6 +909,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYSTAIRS2F"].runOnEnter = nurseryStairs2F;
 	rooms["NURSERYSTAIRS2F"].northExit = "NURSERYC6";
 	rooms["NURSERYSTAIRS2F"].outExit = "NURSERYSTAIRS1F";
+	rooms["NURSERYSTAIRS2F"].outText = "Down";
 	rooms["NURSERYSTAIRS2F"].planet = "TAVROS STATION";
 	rooms["NURSERYSTAIRS2F"].system = "SYSTEM: KALAS";
 	rooms["NURSERYSTAIRS2F"].moveMinutes = 1;

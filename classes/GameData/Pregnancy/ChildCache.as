@@ -682,5 +682,15 @@ package classes.GameData.Pregnancy
 			
 			return num;
 		}
+		
+		public function getChildrenOfType(raceType:uint):Array
+		{
+			updateTypeBuckets();
+			
+			var typeString:String = String(raceType);
+			if (_typeBuckets.hasOwnProperty(typeString) == false) return null;
+			
+			return _typeBuckets[typeString];
+		}
 	}
 }

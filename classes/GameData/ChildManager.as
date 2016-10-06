@@ -372,6 +372,12 @@ package classes.GameData
 			if (CACHE == null) CACHE = new ChildCache();
 			CACHE.nurseryComputerUniquesCache = v;
 		}
+		
+		static public function getChildrenOfType(ofType:uint):Array
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.getChildrenOfType(ofType);
+		}
 	}
 
 }

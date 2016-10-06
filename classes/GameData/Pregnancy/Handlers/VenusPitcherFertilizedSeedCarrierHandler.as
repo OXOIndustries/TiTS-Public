@@ -130,7 +130,7 @@
 			}
 		}
 		
-		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):void
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):Child
 		{
 			if (mother.hasStatusEffect("Venus Pitcher Seed Residue")) mother.removeStatusEffect("Venus Pitcher Seed Residue");
 			
@@ -143,6 +143,7 @@
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			pData.reset();
 			
+			return c;
 		}
 		
 		override public function getRemainingDuration(target:Creature, slot:int):int
