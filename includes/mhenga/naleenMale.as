@@ -240,7 +240,7 @@ public function getButtfuckedByDudeleen():void
 	
 	if(pc.hasCuntTail()) output(" Amid it all, your tail clenches and sucks, muscles pulsing to draw the naleen's seed deep inside. It squeezes every last drop out of the naleen, not relenting until its meal is totally exhausted. Hunger satisfied, it slips off the alien's shrinking dick and flops against your [pc.ass].");
 	
-	output("\n\nBoth you and the nallen are still for a few moments as your orgasms wind down, until he withdraws to ");
+	output("\n\nBoth you and the naleen are still for a few moments as your orgasms wind down, until he withdraws to ");
 	if(pc.isNaga()) output("uncoil himself from around your tail and ");
 	output("slither away. You eventually manage to pull yourself together, semen leaking from your ass. Several feet away, the naleen sighs and stretches, giving a tired wave as you begin to collect your things. You reciprocate before ");
 	if(pc.armor.shortName != "" || pc.upperUndergarment.shortName != "") output("getting dressed and ");

@@ -2421,7 +2421,7 @@ output("\n\nYour fancy-pants tablet informs you that you’ve gotten a pretty un
 			{
 				for(var cuntCount2:int = 0; cuntCount2 < pc.totalVaginas(); cuntCount2++)
 				{
-					if(pc.vaginas[cuntCount2].bonusCapacity < 150) pc.vaginas[cuntCount2].bonusCapacity  = 150;
+					if(pc.vaginas[cuntCount2].bonusCapacity < 150) pc.vaginas[cuntCount2].bonusCapacity = 150;
 				}
 			}
 			else 

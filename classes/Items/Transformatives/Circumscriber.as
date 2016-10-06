@@ -220,6 +220,7 @@ package classes.Items.Transformatives
 			output("The gray ooze is unable to complete its programming and promptly falls off your prick, yet you still feel <i>something</i> going on down there. The tell-tale sensation of nanomachines in action and your aphrodisiac-powered boner helps you figure out what's happening. To your chagrin, it seems <b>that your [pc.cock " + i + "] has lost a bit of its length.</b>");
 			
 			target.cocks[i].cLengthRaw -= 0.1;
+			if(target.hasPerk("Mini")) target.cocks[i].cLengthRaw -= 0.1;
 			target.lust(15);
 			
 			kGAMECLASS.clearMenu();

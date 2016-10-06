@@ -207,6 +207,7 @@ package classes.Items.Transformatives
 			output("You can see the gray microsurgeons forming circular lines around your cock, only to stop and fall off. For some reason they are unable to complete their program and do any of the more advanced transformations. Still, you feel <i>something</i> happening on your dick, like a strangely pleasurable itch, that soon wanes. It doesn't take long to realize <b>that your [pc.cock " + i + "] has grown a little bit longer.</b>");
 			
 			target.cocks[i].cLengthRaw += 0.1;
+			if(target.hasPerk("Hung")) target.cocks[i].cLengthRaw += 0.1;
 			target.lust(15);
 			
 			kGAMECLASS.clearMenu();
