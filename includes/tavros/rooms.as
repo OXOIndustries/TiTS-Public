@@ -772,16 +772,6 @@ public function initTavrosRooms():void
 	rooms["RES DECK EAST ESTATE"].addFlag(GLOBAL.PUBLIC);
 
 	// Nursery
-	rooms[""] = new RoomClass(this);
-	rooms[""].roomName = "";
-	rooms[""].description = "";
-	rooms[""].runOnEnter = undefined;
-	rooms[""].planet = "TAVROS STATION";
-	rooms[""].system = "SYSTEM: KALAS";
-	rooms[""].moveMinutes = 1;
-	rooms[""].addFlag(GLOBAL.INDOOR);
-	rooms[""].addFlag(GLOBAL.PUBLIC);
-
 	rooms["NURSERYELEVATOR"] = new RoomClass(this);
 	rooms["NURSERYELEVATOR"].roomName = "ELEVATOR:\nNURSERY";
 	rooms["NURSERYELEVATOR"].description = "";
@@ -809,7 +799,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYE14"] = new RoomClass(this);
 	rooms["NURSERYE14"].roomName = "NURSERY\nFOYER";
 	rooms["NURSERYE14"].description = "You're standing in the vaulted entrance of your personal nursery, an entire sub-deck dedicated to taking in and caring for your children. ";
-	rooms["NURSERYE14"].runOnEnter = undefined;
+	rooms["NURSERYE14"].runOnEnter = nurseryFoyerFunc;
 	rooms["NURSERYE14"].southExit = "NURSERYELEVATOR";
 	rooms["NURSERYE14"].westExit = "NURSERYSTAIRS1F";
 	rooms["NURSERYE14"].northExit = "NURSERYE12";

@@ -321,11 +321,11 @@ public function nurseryComputerStaff():void
 
 	if (!hasNurseryStaff())
 	{
-		output("\n\nThe nursery is maintained largely by nurse droids at present, though a staff of biological caregivers and teachers are on retainer as well. If you find specialists who can support the nursery’s functions, perhaps you could send them here...");
+		output("The nursery is maintained largely by nurse droids at present, though a staff of biological caregivers and teachers are on retainer as well. If you find specialists who can support the nursery’s functions, perhaps you could send them here...");
 	}
 	else
 	{
-		output("\n\nYou currently have the following specialist staff on hand:\n");
+		output("You currently have the following specialist staff on hand:\n");
 		if (yammiAtNursery()) output("\n<b>* Yammi, Head Chef");
 		if (reahaAtNursery()) output("\n<b>* Cured Reaha, Milk-giver");
 	}
@@ -496,7 +496,7 @@ public function nurseryMeetBriget():void
 	author("Savin");
 	showBust("BRIGET");
 
-	output("\n\nThe woman at the desk seems to be the person to talk to here, so you make your way over and clear your throat to get her attention. She glances up from her Codex, immediately adopting a welcoming, matronly smile on her plump pink lips. There certainly is a <i>lot</i> of woman there, too, now that you’re paying closer attention to her: her hips and thighs are thick and fertile-figured to an almost exaggerated degree, as is the shapely bust hefting up the front of her crisp suit-jacket. Combine those ample assets with the square hardlight glasses and the neat bun binding back thick locks of reddish-pink hair, and the woman cuts a figure you can only describe as");
+	output("The woman at the desk seems to be the person to talk to here, so you make your way over and clear your throat to get her attention. She glances up from her Codex, immediately adopting a welcoming, matronly smile on her plump pink lips. There certainly is a <i>lot</i> of woman there, too, now that you’re paying closer attention to her: her hips and thighs are thick and fertile-figured to an almost exaggerated degree, as is the shapely bust hefting up the front of her crisp suit-jacket. Combine those ample assets with the square hardlight glasses and the neat bun binding back thick locks of reddish-pink hair, and the woman cuts a figure you can only describe as");
 	if (pc.isBro() || pc.LQ() >= 75) output(" <i>absolute MILF</i>");
 	else output(" that of an ancient fertility goddess");
 	output(". No way those curves are anything but artificial - and when you’re finally able to drag your gaze back up to her eyes, solid yellow irises and all, you know you’re looking at a gynoid.");
