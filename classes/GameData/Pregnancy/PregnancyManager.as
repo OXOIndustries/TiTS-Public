@@ -191,7 +191,7 @@
 			return shortestSlot;
 		}
 		
-		public static function getRemainingDurationForSlot(tarCreature:Creature, pregSlot:int):uint
+		public static function getRemainingDurationForSlot(tarCreature:Creature, pregSlot:int):int
 		{
 			if (!tarCreature.isPregnant() || pregSlot == -1) return -1;
 			
