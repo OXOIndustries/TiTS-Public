@@ -368,7 +368,7 @@ public function dildoSnakes():void
 	outputCodex(header("Lost Tales of the Planet Rushes:"));
 	outputCodex("<i>The Mind-Melting Parasitic Dildo-Snakes of Planet Xenobia</i>");
 	author("Kotep");
-	outputCodex("\nBy Kotop (<u><a href='http://kotep.xyz/'>http://kotep.xyz/</a></u>)\n\n");
+	outputCodex("\nBy Kotep (<u><a href='http://kotep.xyz/'>http://kotep.xyz/</a></u>)\n\n");
 	outputCodex(blockHeader("1 - Welcome to Xenobia"));
 	outputCodex("<i>“Five minutes till we hit the atmosphere,”</i> squawked the radio on Evie’s hip. <i>“Buckle up. This one’s thick, over.”</i>");
 	outputCodex("\n\nThe fox-morph’s hands were full with the speckle-backed Algonian screechworm.  The three-foot-long mass of slime, tentacles and biting wasn’t happy about being captured, and it was less happy about getting shoved into a cryotank.  Grabbing its tentacles like a bouquet, she slammed it into the tank, then before it could thrash its way out, slammed the lid on top.");
