@@ -332,7 +332,7 @@ public function edanSex():void
 	clearMenu();
 	edanHeader();
 	
-	if ((flags["EDAN_FUCKED"] == undefined) && (!pc.hasCock()))
+	if ((flags["EDAN_FUCKED"] == undefined) && (pc.hasVagina())
 	{
 		output("You mention sating your sexual curiosity and he laughs.");
 		output("\n\n<i>“In the middle of the mess hall? I’d heard rumors, but I thought they were just fantasies. Sure, Steele. I doubt you could handle being fucked over a bench in the middle of the mess hall, but I give you permission to suck my dick under the table.”</i>");
