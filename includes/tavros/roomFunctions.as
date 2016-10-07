@@ -44,18 +44,27 @@ public function hangarBonus():Boolean
 		addButton(0, "Deck 92", saendraX1LiftGo); 
 	}
 	
-	if(currentLocation == "LIFT: MERCHANT DECK") {
+	if (currentLocation == "LIFT: MERCHANT DECK") 
+	{
 		output("\n\n<b>You are currently on the merchant deck.</b>");
 		addButton(7,"Down",liftMove, "TAVROS LIFT");
 		addButton(5,"Up",liftMove, "LIFT: RESIDENTIAL DECK");
 	}
-	else if(currentLocation == "TAVROS LIFT") {
+	else if (currentLocation == "TAVROS LIFT") 
+	{
 		output("\n\n<b>You are currently on the hangar deck.</b>");
 		addButton(5,"Up",liftMove, "LIFT: MERCHANT DECK");
 	} 
-	else if(currentLocation == "LIFT: RESIDENTIAL DECK") {
+	else if (currentLocation == "LIFT: RESIDENTIAL DECK") 
+	{
 		output("\n\n<b>You are currently on the residential deck.</b>");
+		addButton(5, "Up", liftMove, "NURSERYELEVATOR");
 		addButton(7,"Down",liftMove, "LIFT: MERCHANT DECK");
+	}
+	else if (currentLocation == "NURSERYELEVATOR") 
+	{
+		output("\n\n<b>You are currently on the nursery deck.</b>");
+		addButton(7, "Down", liftMove, "LIFT: RESIDENTIAL DECK");
 	}
 	return false;
 }

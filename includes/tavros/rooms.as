@@ -480,7 +480,7 @@ public function initTavrosRooms():void
 	rooms["INESSA"].addFlag(GLOBAL.COMMERCE);
 	rooms["INESSA"].runOnEnter = happyTailsBonus;
 	
-		rooms["LIFT: RESIDENTIAL DECK"] = new RoomClass(this);
+	rooms["LIFT: RESIDENTIAL DECK"] = new RoomClass(this);
 	rooms["LIFT: RESIDENTIAL DECK"].roomName = "LIFT:\nRESIDENTIAL";
 	rooms["LIFT: RESIDENTIAL DECK"].description = "";
 	rooms["LIFT: RESIDENTIAL DECK"].planet = "TAVROS STATION";
@@ -772,20 +772,10 @@ public function initTavrosRooms():void
 	rooms["RES DECK EAST ESTATE"].addFlag(GLOBAL.PUBLIC);
 
 	// Nursery
-	rooms[""] = new RoomClass(this);
-	rooms[""].roomName = "";
-	rooms[""].description = "";
-	rooms[""].runOnEnter = undefined;
-	rooms[""].planet = "TAVROS STATION";
-	rooms[""].system = "SYSTEM: KALAS";
-	rooms[""].moveMinutes = 1;
-	rooms[""].addFlag(GLOBAL.INDOOR);
-	rooms[""].addFlag(GLOBAL.PUBLIC);
-
 	rooms["NURSERYELEVATOR"] = new RoomClass(this);
 	rooms["NURSERYELEVATOR"].roomName = "ELEVATOR:\nNURSERY";
 	rooms["NURSERYELEVATOR"].description = "";
-	rooms["NURSERYELEVATOR"].runOnEnter = undefined;
+	rooms["NURSERYELEVATOR"].runOnEnter = hangarBonus;
 	rooms["NURSERYELEVATOR"].northExit = "NURSERYE14";
 	rooms["NURSERYELEVATOR"].planet = "TAVROS STATION";
 	rooms["NURSERYELEVATOR"].system = "SYSTEM: KALAS";
@@ -799,6 +789,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYSTAIRS1F"].runOnEnter = nurseryStairs1F;
 	rooms["NURSERYSTAIRS1F"].eastExit = "NURSERYE14";
 	rooms["NURSERYSTAIRS1F"].inExit = "NURSERYSTAIRS2F";
+	rooms["NURSERYSTAIRS1F"].inText = "Up";
 	rooms["NURSERYSTAIRS1F"].planet = "TAVROS STATION";
 	rooms["NURSERYSTAIRS1F"].system = "SYSTEM: KALAS";
 	rooms["NURSERYSTAIRS1F"].moveMinutes = 1;
@@ -808,7 +799,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYE14"] = new RoomClass(this);
 	rooms["NURSERYE14"].roomName = "NURSERY\nFOYER";
 	rooms["NURSERYE14"].description = "You're standing in the vaulted entrance of your personal nursery, an entire sub-deck dedicated to taking in and caring for your children. ";
-	rooms["NURSERYE14"].runOnEnter = undefined;
+	rooms["NURSERYE14"].runOnEnter = nurseryFoyerFunc;
 	rooms["NURSERYE14"].southExit = "NURSERYELEVATOR";
 	rooms["NURSERYE14"].westExit = "NURSERYSTAIRS1F";
 	rooms["NURSERYE14"].northExit = "NURSERYE12";
@@ -908,6 +899,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYSTAIRS2F"].runOnEnter = nurseryStairs2F;
 	rooms["NURSERYSTAIRS2F"].northExit = "NURSERYC6";
 	rooms["NURSERYSTAIRS2F"].outExit = "NURSERYSTAIRS1F";
+	rooms["NURSERYSTAIRS2F"].outText = "Down";
 	rooms["NURSERYSTAIRS2F"].planet = "TAVROS STATION";
 	rooms["NURSERYSTAIRS2F"].system = "SYSTEM: KALAS";
 	rooms["NURSERYSTAIRS2F"].moveMinutes = 1;
@@ -984,7 +976,6 @@ public function initTavrosRooms():void
 	rooms["NURSERYG4"].system = "SYSTEM: KALAS";
 	rooms["NURSERYG4"].moveMinutes = 1;
 	rooms["NURSERYG4"].addFlag(GLOBAL.INDOOR);
-	rooms["NURSERYG4"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYG4"].addFlag(GLOBAL.BED);
 
 	rooms["NURSERYG8"] = new RoomClass(this);

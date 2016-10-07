@@ -151,7 +151,7 @@ package classes.GameData.Pregnancy.Handlers
 			return "Your belly is bulging heavily. At first glance, people might be mistaken for thinking you're properly pregnant, but closer inspection reveals your belly to be lumpy and slightly misshapen, bulging with eggs as you are.";
 		}
 		
-		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):void
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
@@ -176,6 +176,8 @@ package classes.GameData.Pregnancy.Handlers
 			{
 				mother.removeStatusEffect("Nyrea Eggs Messages Available");
 			}
+			
+			return c;
 		}
 	}
 

@@ -123,7 +123,7 @@ package classes.GameData.Pregnancy.Handlers
 			}
 		}
 		
-		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):void
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):Child
 		{
 			var totalChildren:int = 0;
 			
@@ -148,6 +148,8 @@ package classes.GameData.Pregnancy.Handlers
 			kGAMECLASS.pc.removeStatusEffect("Queen Pregnancy State");
 			kGAMECLASS.flags["Queen Message Supression"] = undefined;
 			kGAMECLASS.flags["Queen Message Weight"] = undefined;
+			
+			return c;
 		}
 		
 		public static function queenCleanupData():void

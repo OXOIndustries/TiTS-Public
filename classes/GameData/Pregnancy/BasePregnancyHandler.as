@@ -572,7 +572,7 @@ package classes.GameData.Pregnancy
 			return Math.round(pData.pregnancyIncubation / pData.pregnancyIncubationMulti) + 1; // Ensure we never end up in a fractional-less-than-one state to 0
 		}
 		
-		public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):void
+		public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot];
 			
@@ -583,6 +583,8 @@ package classes.GameData.Pregnancy
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
 			pData.reset();
+			
+			return c;
 		}
 	}
 }
