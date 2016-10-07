@@ -1099,7 +1099,7 @@ public function gooArmorCrewOption(arg:Array):void
 				if(annoIsCrew() && InShipInterior()) chats.push(msg);
 				
 				msg = " a discussion about a particular product.";
-				msg += "\n\n<i>“... like, BIG-big! Hmmm... do you think [bess.name] would know if JoyCo sells something that?”</i> she asks.";
+				msg += "\n\n<i>“... like, BIG-big! Hmmm... do you think [bess.name] would know if JoyCo sells something like that?”</i> she asks.";
 				msg += "\n\n" + (pc.isBimbo() ? "Wow, that’s pretty big! You pout while pondering... You don’t think they have any <i>that</i> big. But maybe you could call in and make a request!" : "You are pretty sure those are a part of JoyCo’s line-up somewhere... just not anywhere near <i>that</i> big.");
 				if(flags["BESS_FULLY_CONFIGURED"] != undefined && bessIsCrew()) chats.push(msg);
 				
