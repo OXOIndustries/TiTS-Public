@@ -136,6 +136,7 @@ public function offerToHelpHaleyShedSomeWeight():void
 	output("\n\n<i>“You? What makes you think...”</i>");
 	output("\n\nHer voice trails off as her gaze roves over your body from top to bottom. You can tell she's thinking about burying her cock in you, filling you with spunk until you're choking it up like you're an overfull sex toy. The flow of spunk splattering across the floor increases until it looks like she's cumming, her pants coming faster as the floor underneath her just gets wetter and wetter.");
 	pc.lust(5);
+	processTime(3);
 	//PC non-taur Male:
 	if(!pc.isTaur() && pc.hasCock())
 	{
@@ -1129,6 +1130,8 @@ public function haleyEllieVoyeurEncounter():void
 	pc.lust(50);
 	output(" When you acclimate to the pink fuzz blanketing your brain, you take a proper look inside the stall. There’s two leithans in the room, one being dominantly mounted by the other. It’s Ellie and Haley!");
 	output("\n\nEllie groans loud and low, her lust echoing through the room as Haley slowly squeezes her tits. Little streams of milk leak out between Haley’s fingers, dripping down Ellie’s massive breasts and running down her tummy. Haley squeezes again, harder this time, her fingers cruelly sinking into Ellie’s flesh. Ellie throws her head back and cries out in orgasmic pleasure, rivers of her milk spattering the ground below her. Haley takes the opportunity to kiss her, slowly moving from face to neck as Ellie pants under her.");
+	
+	processTime(3);
 	
 	clearMenu();
 	addButton(0,"Leave",haleyBonusLeave);
