@@ -992,8 +992,8 @@ public function publicUseEnding():void
 	if (pc.hasHair()) output(" running a hand through your [pc.hair].");
 	else output(" stroking your head.");
 	pc.milkInMouth(chars["ELLIE"]);
-	output("\n\n<i>“You stay right there, sweetie. I’m sure you can find something to keep you busy until he’s here!”</i> She says with a wink, putting a tiny ‘Out on Break’ sign on the counter where you won’t knock it off. The first bull approaches you from behind, unzipping his jeans and slapping his giant shaft off your [pc.butt] before shoving it straight into your [pc.pussy].");
-	x = pc.smallestVaginaIndex();
+	var x:int = pc.smallestVaginaIndex();
+	output("\n\n<i>“You stay right there, sweetie. I’m sure you can find something to keep you busy until he’s here!”</i> She says with a wink, putting a tiny ‘Out on Break’ sign on the counter where you won’t knock it off. The first bull approaches you from behind, unzipping his jeans and slapping his giant shaft off your [pc.butt] before shoving it straight into your [pc.pussy " + x + "].");
 	pc.cuntChange(x, 100, false, true, false);
 	output("\n\nYou cum on the spot, your shrill cry of pleasure like the starting gun to signal the bull to start pistoning in and out of you, each penetration bringing him deeper inside until his balls are nudging your butt. The sensations rippling through your cunt are your reward for servicing the bull, driving you higher towards the peak of ecstasy until you’re cumming with every thrust, scarcely capable of voicing your pleasure in anything but moos.");
 	pc.orgasm();

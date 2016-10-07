@@ -799,6 +799,14 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 	//PC female Treated taur:
 	else if(pc.hasVagina() && pc.isTaur() && pc.isBimbo() && pc.isTreated() && pc.biggestTitSize() >= 1)
 	{
+		var x:int = pc.biggestVaginaIndex();
+		var vagList:Array = [];
+		for(var i:int = 0; i < pc.vaginas.length; i++)
+		{
+			if(!pc.isPregnant(i)) vagList.push(i);
+		}
+		if(vagList.length > 0) x = vagList[rand(vagList.length)];
+		
 		output("\n\nShe pushes your shoulders down, the hint pretty obvious to a Treated girl. You");
 		if(pc.hasLegs() && pc.hasKnees()) output(" fold your legs and");
 		output(" lie down, nuzzling the sensitive head of her penis while it hoses your clothed tits with spunk.");
@@ -820,7 +828,7 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 		if(pc.tailCount > 0) output("and lifting your tail ");
 		output("to present yourself. ");
 		if(!pc.isCrotchExposed() || !pc.isAssExposed()) output("Haley tugs down your [pc.lowerGarments] to expose your [pc.asshole] and [pc.vaginas] to the warm, pheromone-filled air of the stall. ");
-		output("Your [pc.biggestVagina] is already wet, winking at the futa femtaur while it fills with moisture. She casually sinks two fingers into it in response, sending thrills of pleasure up your spine when she starts to gently pump you. Her other hand seizes your buttcheek, pulling it to the side and watching it wobble back into place.");
+		output("Your [pc.vagina " + x + "] is already wet, winking at the futa femtaur while it fills with moisture. She casually sinks two fingers into it in response, sending thrills of pleasure up your spine when she starts to gently pump you. Her other hand seizes your buttcheek, pulling it to the side and watching it wobble back into place.");
 		output("\n\n<i>“Oh, I am gonna fucking <i>wreck</i> you. I've waited so long to meet another mare that can handle me,”</i> she groans in need, her grip on your [pc.butt] tightening as she prepares to mount you, <i>“I'll make sure you love this every bit as much as I'm going to.”</i>");
 		output("\n\nShe springs upward, catapulting herself onto your rear and grabbing your hindquarters with her front legs. You can already feel the head of her massive, bloated cock covering your ass and legs with hot jizz before she aligns it with your entrance. Rivulets of spunk run over the lips of your pussy to drip from your [pc.belly]. An immense pressure exerts itself on your ass when she begins to push herself in. You moan a little when you feel a spurt of sperm shoot straight into your asshole, a steady flow soon following. The staggering force of Haley's bloated cockhead compels you to brace yourself against the stall's wall if she wants a chance of getting into your ass. She snorts from above you, sounding every bit like the impatient stallion about to mount her breeding mare.");
 		output("\n\n<i>“Good girl – hold yourself riiiight there... You're gonna get it so fucking-!”</i> She fiercely bucks her powerful hips, the sensation of your asshole being stretched wide immediately accompanied by the feeling of being utterly full. It feels like all the air in your lungs has been sucked away, and you struggle to find the rhythm to take some shallow breaths and try to steady yourself. <i>Fuck</i>, she feels even bigger than she looks. Anything less than a full-sized Treated 'taur wouldn't be able to handle this at all. She scrabbles up your body in little jerks and thrusts, her massive cumvein intermittently bulging pleasantly against your walls.");
@@ -845,9 +853,8 @@ public function getFuckedByHaleyAsATreatedFemPCRepeatSlut():void
 		output("\n\n<i>“Thaaaat's right, babe. Just relax.”</i>");
 		output("\n\nWhen she finally pops free of the constraints of your slackened body, only a small trail of her spunk leaks from your gaping asshole, running down your hind legs. She was so deep inside you that nearly all of it is trapped in your body, her flared head acting like a plug to your stomach. You barely have time to get a proper breath before you feel the warmth of her ejaculate washing over your ");
 		if(pc.totalVaginas() == 1) output("glistening snatch");
-		else output("[pc.biggestVagina]");
+		else output("[pc.vagina " + x + "]");
 		output(", quickly followed by the sensation of her equine flare pushing into you. The progress is a lot less gradual than it was for your ass, the Treatment doing its part to aid her in shoving herself deep in your cunt.");
-		var x:int = pc.biggestVaginaIndex();
 		pc.cuntChange(x,1500);
 		output("\n\nYou utter a small scream of undisguised lust that lapses into a moo when she stretches your lips to capacity, gliding on through on the wetness of your walls. She slides right up to your cervix,");
 		
