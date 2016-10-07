@@ -262,7 +262,7 @@ public function nurseryComputerMenu(lastUsed:Function = null):void
 	else addButton(1, "Upgrades", nurseryComputerUpgrades);
 	
 	if (lastUsed == nurseryComputerStaff) addDisabledButton(2, "Staff");
-	addButton(2, "Staff", nurseryComputerStaff);
+	else addButton(2, "Staff", nurseryComputerStaff);
 
 	if (lastUsed == nurseryComputerFacilities) addDisabledButton(3, "Facilities");
 	else addButton(3, "Facilities", nurseryComputerFacilities);

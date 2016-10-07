@@ -107,7 +107,7 @@ public function talkToEdan():void
 		output("\n\n<i>“Steele...”</i> Edan muses. <i>“Is that with an E? Like the mining company?”</i>");
 		output("\n\n<i>“That's me. My old man wanted me to see what the galaxy has to offer, so here I am.”</i>");
 		output("\n\n<i>“Huh,”</i> he eyes you across the table. <i>“So you're the " + pc.mf("heir", "heiress") + ", eh?”</i>");
-		output("\n\n<i>“Do you know my family?” you ask, curious to see if he's going to make a big deal of it.");
+		output("\n\n<i>“Do you know my family?”</i> you ask, curious to see if he's going to make a big deal of it.");
 		output("\n\n<i>“Anyone with a vested interest in making money on a large scale knows the Steele family, kid,”</i> he chuckles. <i>“I guess I can’t be surprised if most people out here don’t, though,”</i> he continues with a shrug. <i>“After all, the majority of people just want to eke out a life on their ball of junk, no interest in anything beyond their own noses. No, fuck that.”</i>");
 		output("\n\nHe leans across the table, and with him this close you realize his scaled hide is covered in faded scars. They crisscross all across his face and body, signifying a lifetime spent in combat.");
 		output("\n\n<i>“Life is about taking. It’s about seizing opportunities when you see them. Don’t be content to wallow in mediocrity.”</i>");
@@ -332,7 +332,7 @@ public function edanSex():void
 	clearMenu();
 	edanHeader();
 	
-	if ((flags["EDAN_FUCKED"] == undefined) && (!pc.hasCock()))
+	if ((flags["EDAN_FUCKED"] == undefined) && pc.hasVagina())
 	{
 		output("You mention sating your sexual curiosity and he laughs.");
 		output("\n\n<i>“In the middle of the mess hall? I’d heard rumors, but I thought they were just fantasies. Sure, Steele. I doubt you could handle being fucked over a bench in the middle of the mess hall, but I give you permission to suck my dick under the table.”</i>");
@@ -1013,7 +1013,7 @@ public function edanSexSixth():void
 	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
 	if(x < 0) x = pc.biggestVaginaIndex();
 	
-	output("\n\nWrong. It’s every bit as boring, but even worse because it’s got next to nothing to do with you. Stifling a yawn, you eye the leithan lady on the other side of the desk you and Edan are standing in front of. Her business suit does an awfully poor job of concealing her buxom curves, and you find yourself idly wondering if she’s a mother. Her pretty face gives you no hints as to whether this might be true – nowadays, anybody can use mods to give themselves a youthful appearance. She excuses herself to fetch some documents for Edan to sign and you lean back, giving a restless sigh as you stretch a bit. Edan turns to you with the hint of a smile.");
+	output("Wrong. It’s every bit as boring, but even worse because it’s got next to nothing to do with you. Stifling a yawn, you eye the leithan lady on the other side of the desk you and Edan are standing in front of. Her business suit does an awfully poor job of concealing her buxom curves, and you find yourself idly wondering if she’s a mother. Her pretty face gives you no hints as to whether this might be true – nowadays, anybody can use mods to give themselves a youthful appearance. She excuses herself to fetch some documents for Edan to sign and you lean back, giving a restless sigh as you stretch a bit. Edan turns to you with the hint of a smile.");
 	output("\n\n<i>“I’m every bit as bored as you are, Steele. Offices and I don’t really get along too well, what with the furniture and overhead lights and all. Really, just being indoors kind of sucks in general. Kinda hard to convince a native species to put all their buildings together the same way they already do, but bigger, just to accommodate offworlders.”</i>");
 	output("\n\nHis eyes rove around the room, eventually settling on the nameplate sitting on the woman’s desk.");
 	output("\n\n<i>“Hmm. You know, I think this Leithan woman – think she said her name was Anna – might be in heat. No doubt she’s using suppressants for work, but I can still smell it when we’re in such a small room,”</i> He grins. <i>“Thinking what I’m thinking, Steele?”</i>");
@@ -1136,7 +1136,7 @@ public function edanSexRepeat():void
 	var x:int = pc.cuntThatFits(chars["EDAN"].cockVolume(0));
 	if(x < 0) x = pc.biggestVaginaIndex();
 	
-	output("\n\n<i>“Here we go. Like I said, it’s not fancy but it flies well and it was the roomiest one I could find.”</i>");
+	output("<i>“Here we go. Like I said, it’s not fancy but it flies well and it was the roomiest one I could find.”</i>");
 	output("\n\nYou walk up the protruding ramp with him as Edan activates the lights with a voice command. The place is still pretty much the same as the last time you were here. It’s nice for a self-proclaimed traveling mercenary, with a couch and projector along with a dinner table in the living room. The scale of all the items actually in his ship are relatively huge, and there are no chairs. Roomy indeed.");
 	output("\n\n<i>“It’s not much, but it’s home.”</i> Edan shrugs. <i>“Take a seat, I’m gonna order some food.”</i>");
 	output("\n\nYou flop on the couch and Edan tosses you the projector remote before picking up a data slate off the table, muttering something about spam before leafing through the delivery selections. You switch idly through the channels, but nothing really catches your eye. Amazing how you can have hundreds of channels available and still not find anything fun. Well, you know how to make your own fun. Edan looks up from the tablet as you get up, placing it back on the table.");
