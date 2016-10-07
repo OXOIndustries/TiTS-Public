@@ -782,6 +782,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYELEVATOR"].moveMinutes = 1;
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.LIFTDOWN);
 
 	rooms["NURSERYSTAIRS1F"] = new RoomClass(this);
 	rooms["NURSERYSTAIRS1F"].roomName = "NURSERY:\n1F STAIRWELL";
