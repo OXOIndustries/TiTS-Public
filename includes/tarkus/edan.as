@@ -107,7 +107,7 @@ public function talkToEdan():void
 		output("\n\n<i>“Steele...”</i> Edan muses. <i>“Is that with an E? Like the mining company?”</i>");
 		output("\n\n<i>“That's me. My old man wanted me to see what the galaxy has to offer, so here I am.”</i>");
 		output("\n\n<i>“Huh,”</i> he eyes you across the table. <i>“So you're the " + pc.mf("heir", "heiress") + ", eh?”</i>");
-		output("\n\n<i>“Do you know my family?” you ask, curious to see if he's going to make a big deal of it.");
+		output("\n\n<i>“Do you know my family?”</i> you ask, curious to see if he's going to make a big deal of it.");
 		output("\n\n<i>“Anyone with a vested interest in making money on a large scale knows the Steele family, kid,”</i> he chuckles. <i>“I guess I can’t be surprised if most people out here don’t, though,”</i> he continues with a shrug. <i>“After all, the majority of people just want to eke out a life on their ball of junk, no interest in anything beyond their own noses. No, fuck that.”</i>");
 		output("\n\nHe leans across the table, and with him this close you realize his scaled hide is covered in faded scars. They crisscross all across his face and body, signifying a lifetime spent in combat.");
 		output("\n\n<i>“Life is about taking. It’s about seizing opportunities when you see them. Don’t be content to wallow in mediocrity.”</i>");
