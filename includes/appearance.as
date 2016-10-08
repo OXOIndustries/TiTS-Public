@@ -38,6 +38,7 @@ public function appearance(forTarget:Creature):void
 	showName("\nAPPEARANCE");
 	author("");
 	clearGhostMenu();
+	if(debug) addGhostButton(13, ("Debug: " + (debug ? "ON" : "OFF")), Cheats.toggleDebug, undefined, "Toggle Debug", "Turn debug mode off.");
 	addGhostButton(14, "Back", pcAppearance);
 	
 	var rando:int = 0;
