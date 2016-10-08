@@ -962,7 +962,7 @@ public function nurserySpecialistWaterPricesses():void
 		// Also, as this is written kinda skips out on a fair important portion of the kids getting older, because
 		// it's feasible that the player could literally have just given birth to them and then walked into the specialist room and suddenly they're all 8ft tall???
 
-		var bIsYoung = GetGameTimestamp() - child.BornTimestamp <= 1051200;
+		var bIsYoung:Boolean = GetGameTimestamp() - child.BornTimestamp <= 1051200;
 		if (bIsYoung && pc.tallness >= 96) output(" staring more or less eye-to-eye with your young daughter. Her spindly legs put her on a much higher vantage than a human, and her more personable half is shapely and tall, built like a swimmer.");
 		else if (bIsYoung) output(" staring up at your towering daughter. She’s bigger than a leithan already, a bit awkward on her spindly land legs but riding so high that it’s hard to see her face in the gloom.");
 		else output(" leaning back and staring wide-eyed at the titan you gave birth to. She’s enormous, easily as big as the Queen herself now, riding high on slender legs each taller than a human, elevating her so high that it’s hard to see her face in the red gloom. You can, however, see that the more personable half sitting atop the crab-like lower body has developed into quite the woman, voluptuous and strong and just as gorgeous as her mother.");

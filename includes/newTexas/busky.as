@@ -30,11 +30,11 @@
 //BUSKY_MODELLED_COWPRINTEDSHORTS:	If Busky modeled the cow printed shorts for the pc (true or undefined)
 
 //added during shop initialization with date check for christmas
-import classes.Items.Apparel.Undershirt;
 import classes.Items.Transformatives.Nutnog;
 import classes.Items.Transformatives.Peckermint;
 
 //added for clothing shop with show off
+import classes.Items.Apparel.Undershirt;
 import classes.Items.Apparel.BullsJockstrap;
 import classes.Items.Apparel.CockPasty;
 import classes.Items.Apparel.CornyTShirt;
@@ -196,10 +196,10 @@ public function buskyTalkNavigation(activeTopic:Function = undefined):void {
 	addButton(1, "Straps", buskyTalksAboutStraps, undefined, "Straps", "Ask about Busky's shop.");
 	
 	if(activeTopic == buskyTalksAboutTreatment) addDisabledButton(2, "Treatment", "Treatment", "You just spoke about that.");
-	else if(flags["BUSKY_TALKED_ABOUT_STRAPS"]) addButton(2, "Treatment", buskyTalksAboutTreatment, undefined, "The Treatment", "Ask Busky what he thinks about the Treatmen.");
+	else if(flags["BUSKY_TALKED_ABOUT_STRAPS"]) addButton(2, "Treatment", buskyTalksAboutTreatment, undefined, "The Treatment", "Ask Busky what he thinks about the Treatment.");
 	else addDisabledButton(2, "Treatment", "The Treatment", "Maybe you should ask him about Straps first.");
 	
-	if(activeTopic == buskyTalksAboutTenTonGym) addDisabledButton(3, "TenTonGym", "TenTonGym", "You just spoke about that.");
+	if(activeTopic == buskyTalksAboutTenTonGym) addDisabledButton(3, "TenTonGym", "Ten Ton Gym", "You just spoke about that.");
 	if(flags["BUSKY_TALKED_ABOUT_TREATMENT"]) addButton(3, "TenTonGym", buskyTalksAboutTenTonGym, undefined, "Ten Ton Gym", "Ask about the gym next door.");
 	else addDisabledButton(3, "TenTonGym", "Ten Ton Gym", "Maybe you should ask him about the Gym first.");
 	
@@ -224,6 +224,8 @@ public function buskyTalksAboutHimself():void {
 	output("\n\nYou awkwardly explain Steele Co. and how you're the soon to be CEO while Busky nods in understanding.");
 	output("\n\n<i>“Cool. Never really payed attention to Steele Co. myself, not much of a big deal to me since I don't really have much need for tetratazmanian carbonoid alloys or whatever. Anyway, nice to meet you, [pc.name].”</i>");
 	
+	processTime(2);
+	
 	if (flags["BUSKY_TALKED_ABOUT_HIMSELF"] == undefined) buskyAdjustAffection(1);
 	flags["BUSKY_TALKED_ABOUT_HIMSELF"] = true;
 	
@@ -239,7 +241,9 @@ public function buskyTalksAboutStraps():void {
 	output("\n\n<i>“Ever see a bull with milky pecs?”</i> he chuckles.");
 	output("\n\nYou can't say that you have.");
 	output("\n\n<i>“Anyway, I was a real bookworm before I took The Treatment, studied a bit of everything, took a bunch of business classes and so here I am. Not doing too bad if I say so myself. Thankfully the Treatment didn't mess with me too much, can still focus on work, though, if there's a particularly large butt passing by...”</i> he trails off for a moment, before before snapping back to reality, <i>“'course, if it doesn't work out I could always become a breeding stud to pay T. back. Anyway I finalized the location, constructing right next to the gym, seein' how I spend most of my free time there anyway. Plus it's a good way to get people to notice the place.”</i>");
-
+	
+	processTime(2);
+	
 	if (flags["BUSKY_TALKED_ABOUT_STRAPS"] == undefined) buskyAdjustAffection(1);
 	flags["BUSKY_TALKED_ABOUT_STRAPS"] = true;
 	
@@ -270,6 +274,8 @@ public function buskyTalksAboutTreatment():void {
 	if(pc.femininity <= 40) output(", taking nostalgic showers if you know what I mean,");
 	output(" and maintaining this body. Not planning on going back to being a twig any time soon.”</i>");
 	
+	processTime(2);
+	
 	if (flags["BUSKY_TALKED_ABOUT_TREATMENT"] == undefined) buskyAdjustAffection(0.5);
 	flags["BUSKY_TALKED_ABOUT_TREATMENT"] = true;
 	
@@ -288,6 +294,8 @@ public function buskyTalksAboutTenTonGym():void {
 	if (pc.femininity <= 40) output(" and good lord those showers, almost forgot to tell you 'bout them. Honestly, they're really high quality, and they really bring me back to my football years. That place is full of willing Bulls and Faux-Cows, half of the time you can just walk on over, tell them what's up, and you'll be fucking faster than a Varmint chasing after a packet of silicone. I'd pretty much purchased a life pass just for the 'communal experience'.");
 	else output("the whole shebang.”</i>");
 	
+	processTime(1);
+	
 	flags["BUSKY_TALKED_ABOUT_GYM"] = true;
 	
 	buskyTalkNavigation(buskyTalksAboutTenTonGym);
@@ -303,7 +311,9 @@ public function buskyTalksAboutModeling():void {
 	output("\n\n<i>“Hardlight mannequin, dead center of the displays, can't miss it,”</i> he says nonchalantly.");
 	output("\n\n<i>“Can't compliment it either,”</i> you joke. <i>“So I was wondering. If you'd be willing to try on your clothes for me.”</i>");
 	output("\n\n<i>“You want me to model eh? Well why didn't you say so.”</i> Busky laughs a bit. <i>“Well, I can't say I'm opposed to the idea. Also can't say you're the first to ask. But if you want, I'll be glad to put myself on display.”</i>");
-
+	
+	processTime(1);
+	
 	flags["BUSKY_TALKED_ABOUT_MODELING"] = true;
 	
 	buskyTalkNavigation(buskyTalksAboutStraps);
@@ -344,10 +354,10 @@ public function buskySex(): void {
 public function buskySexNavigation(activeTopic:Function = undefined): void {
 	clearMenu();
 	
-	if(pc.isTaur() || !pc.hasCockOrStrapOrClit()) addDisabledButton(0, "Tease'n'Denial", "Tease&Denial", "Requires a cock, a large enough clit or a strapon. You can't be a Taur either.");
-	else addButton(0, "Tease&Denial", buskySexTeaseAndDenial, new Undershirt(), "Tease&Denial", "Go for a round of teasing, including anilingus, nipple play, and asshole prodding.");
+	if(pc.isTaur() || !pc.hasCockOrStrapOrClit()) addDisabledButton(0, "Tease&Denial", "Tease 'n' Denial", "Requires a cock, a large enough clit or a strapon. You can't be a Taur either.");
+	else addButton(0, "Tease&Denial", buskySexTeaseAndDenial, new Undershirt(), "Tease 'n' Denial", "Go for a round of teasing, including analingus, nipple play, and asshole prodding.");
 	
-	if(activeTopic == buskySexChestWorship) addDisabledButton(1, "Chest Worship", "Chest Worship", "You just did that.");
+	if(activeTopic == buskySexChestWorship) addDisabledButton(1, "ChestWorship", "Chest Worship", "You just did that.");
 	addButton(1, "ChestWorship", buskySexChestWorship, new Undershirt(), "Chest Worship", "Worship the chest of the muscular adonis.");
 		
 	if(!pc.hasCock() || buskyGetLargestBlowableCockIndex() == -1) addDisabledButton(2, "Get Blown", "Get Blown", "Requires a cock with girth under 10 inches and length under 36 inches.");
@@ -1127,8 +1137,8 @@ public function buskyModelsClothingItem(item:*):void {
 		if (flags["BUSKY_MODELLED_HORSESHOEBOXERS"] == undefined) buskyAdjustAffection(0.5);
 		flags["BUSKY_MODELLED_HORSESHOEBOXERS"] = true;
 		
-		if(pc.isTaur() || !pc.hasCockOrStrapOrClit()) addDisabledButton(1, "Tease'n'Denial", "Tease&Denial", "Requires a cock, a large enough clit or a strapon. You can't be a Taur either.");
-		else addButton(1, "Tease&Denial", buskySexTeaseAndDenial, item, "Tease&Denial", "Go for a round of teasing, including anilingus, nipple play, and asshole prodding.");
+		if(pc.isTaur() || !pc.hasCockOrStrapOrClit()) addDisabledButton(1, "Tease&Denial", "Tease 'n' Denial", "Requires a cock, a large enough clit or a strapon. You can't be a Taur either.");
+		else addButton(1, "Tease&Denial", buskySexTeaseAndDenial, item, "Tease 'n' Denial", "Go for a round of teasing, including anilingus, nipple play, and asshole prodding.");
 		
 		//show only when sexed Busky - uncomment when prePocket mechanic added
 		//if(flags["BUSKY_SEXED_COUNT"] > 0) addButton(1, "PrePocket", buskytalksAboutPrePocket, item, "PrePocket", "Ask Busky about adding a PrePocket.");
@@ -1213,6 +1223,8 @@ public function buskyModelsClothingItem(item:*):void {
 		//if(flags["BUSKY_SEXED_COUNT"] > 0) addButton(1, "PrePocket", buskytalksAboutPrePocket, item, "PrePocket", "Ask Busky about adding a PrePocket.");
 	}
 	
+	processTime(3);
+	
 	if (pc.credits >= getBuskyPrice(item)) addButton(0, "Buy", purchaseClothesFromBusky, item, item.shortName, item.tooltip);
 	
 	//overwrite button for CornyTShirt - go to TShirt selection instead
@@ -1235,18 +1247,18 @@ public function buskyWorkoutMenu():void {
 		output("\n\n<i>“Say, while you’re here. You feel like doing somethin’ a bit more erm... interestin'?”</i>");
 		
 		clearMenu();
-		if(pc.isTaur()) addDisabledButton(0, "S.Motivate", "S.Motivate", "You can't be a Taur when you want to do this.");
-		else addButton(0, "S.Motivate", buskySexMotivation, null, "Sexually motivate", "Give Busky the motivation to push his limits. You will be on the receiving end of all action.");
+		if(pc.isTaur()) addDisabledButton(0, "S.Motivate", "Sexually Motivate", "You can't be a Taur when you want to do this.");
+		else addButton(0, "S.Motivate", buskySexMotivation, null, "Sexually Motivate", "Give Busky the motivation to push his limits. You will be on the receiving end of all action.");
 		
-		if(pc.isTaur()) addDisabledButton(1, "BenchAnal", "BenchAnal", "As a taur it'd be out of the question to do this.");
-		else if(!pc.hasCock()) addDisabledButton(1, "BenchAnal", "BenchAnal", "You'll need a cock.");
-		if(pc.analCapacity() < chars["BUSKY"].cockVolume(0)) addDisabledButton(1, "BenchAnal", "BenchAnal", "You can't take a bull as well endowed as Busky.");
-		else addButton(1, "BenchAnal", buskySexBenchAnal, null, "BenchAnal", "Use the bench for some anal fun, pitching and catching.");
+		if(pc.isTaur()) addDisabledButton(1, "BenchAnal", "Bench Anal", "As a taur it'd be out of the question to do this.");
+		else if(!pc.hasCock()) addDisabledButton(1, "BenchAnal", "Bench Anal", "You'll need a cock.");
+		if(pc.analCapacity() < chars["BUSKY"].cockVolume(0)) addDisabledButton(1, "BenchAnal", "Bench Anal", "You can't take a bull as well endowed as Busky.");
+		else addButton(1, "BenchAnal", buskySexBenchAnal, null, "Bench Anal", "Use the bench for some anal fun, pitching and catching.");
 		
-		if (!pc.hasVagina() && pc.analCapacity() < chars["BUSKY"].cockVolume(0)) addDisabledButton(2, "HotTubFuck", "HotTubFuck", "You can't take a bull as well endowed as Busky.");
-		else if(pc.hasVagina() && pc.vaginalCapacity(0) < chars["BUSKY"].cockVolume(0)) addDisabledButton(2, "HotTubFuck", "HotTubFuck", "You can't take a bull as well endowed as Busky.");
-		else if (pc.isTaur()) addDisabledButton(2, "HotTubFuck", "HotTubFuck", "As a taur it'd be out of the question to do this.");
-		else addButton(2, "HotTubFuck", buskySexHotTubFuck, null, "Hot tub fuck", "Head to the hot tubs, relax, and ride Busky's cock.");
+		if (!pc.hasVagina() && pc.analCapacity() < chars["BUSKY"].cockVolume(0)) addDisabledButton(2, "HotTubFuck", "Hot-Tub Fuck", "You can't take a bull as well endowed as Busky.");
+		else if(pc.hasVagina() && pc.vaginalCapacity(0) < chars["BUSKY"].cockVolume(0)) addDisabledButton(2, "HotTubFuck", "Hot-Tub Fuck", "You can't take a bull as well endowed as Busky.");
+		else if (pc.isTaur()) addDisabledButton(2, "HotTubFuck", "Hot-Tub Fuck", "As a taur it'd be out of the question to do this.");
+		else addButton(2, "HotTubFuck", buskySexHotTubFuck, null, "Hot-Tub Fuck", "Head to the hot tubs, relax, and ride Busky's cock.");
 	} else {
 		clearMenu();
 	}
