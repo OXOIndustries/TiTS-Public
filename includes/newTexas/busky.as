@@ -87,7 +87,7 @@ public function buskyStrapsShopFunc():Boolean {
 	//The shop is only open from 6.00am to 5.00pm
 	if (hours >= 6 && hours < 17) {
 		
-		clearOutput();
+		//clearOutput();
 	
 		//First visit
 		if(flags["MET_BUSKY"] == undefined) {
@@ -125,7 +125,7 @@ public function buskyStrapsShopFunc():Boolean {
 			output("\n\nA monitor behind the counter Busky works at reads <i>“Despite Straps's recent debut, it is already a major distributor of the freshest male enhancing products and male clothing. We are fully stocked in male underwear and tops, and have received a shipment of newly released mods. While our stock may be small now, there are more mods to come, so check back while we restock and stock your jocks!”</i>");
 		}
 		
-		clearMenu();
+		//clearMenu();
 		addButton(0, "Busky", buskyMenu, undefined, "Busky", "Walk up to the muscular bull."); 
 		addButton(1, "Mods", buyModsFromBusky, undefined, "Mods", "Check the mod aisle of Busky's shop.");
 		addButton(2, "Clothes", buskyClothesMenu, undefined, "Clothes", "See what clothes are up for sale.");

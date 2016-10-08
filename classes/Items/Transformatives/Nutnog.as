@@ -21,7 +21,7 @@ package classes.Items.Transformatives {
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.POTION;
 			
 			shortName = "Nutnog";
 			longName = "pint of Nutnog";
@@ -45,6 +45,8 @@ package classes.Items.Transformatives {
 			if (target is PlayerCharacter) {
 				output("You pop off the cap and chug the dairy product, the cool, sweet liquid pouring past your tongue. As you chug the fluid, you fail to swallow all of it; a couple streams spill out of your mouth, down your chin, and over your [pc.chest]. Once the final drops of the mod spill down your throat, you start to feel a growing warmth grow in your body as the microsurgeons begin to do their work.");
 				
+				target.imbibeAlcohol(10);
+				
 				//check if target has cock and not yet eggnog cum
 				if (target.hasCock() && target.cumType != GLOBAL.FLUID_TYPE_EGGNOG) {
 					//try apply eggnog cum
@@ -58,8 +60,8 @@ package classes.Items.Transformatives {
 				//just a nice drink	
 				} else {
 					output("\n\nThe warmth lasts for a second before dissipating.");
-					if (target.cumType != GLOBAL.FLUID_TYPE_EGGNOG) output(" You already have eggnog flavored cum, so nothing else happens.");
 					if(!target.hasCock()) output(" You should probably have a penis if you're expecting anything else other than a tasty drink.");
+					else if(target.cumType == GLOBAL.FLUID_TYPE_EGGNOG) output(" You already have eggnog flavored cum, so nothing else happens.");
 				}
 			//not the player	
 			} else {

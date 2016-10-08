@@ -125,8 +125,8 @@ package classes.Items.Transformatives
 		}
 		
 		//picks a mastrurbation scene in the order Penises>PantySniff/Goo!>Penis>Tail Cock*>Vagina>Tail Vagina*>Buttfinger
-		//*If tail specific masturbation scenes are introduced in the future
-		//!If these (=panty/goo) are both present, each has a 50% chance
+		// If tail specific masturbation scenes are introduced in the future
+		// If these (=panty/goo) are both present, each has a 50% chance
 		private function _forceMasturbation(target:Creature):void {
 			//try multi cock fap
 			if (target.hasCocks()) kGAMECLASS.multiCockFap();
