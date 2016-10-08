@@ -14621,20 +14621,6 @@
 		}
 		public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
-			if(milkFrom != null)
-			{
-				if(milkFrom.milkType == GLOBAL.FLUID_TYPE_MILK) energy(20);
-				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) 
-				{
-					energy(25);
-					modThickness(1,false);
-				}
-				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_HONEY || milkFrom.milkType == GLOBAL.FLUID_TYPE_NECTAR) 
-				{
-					energy(30);
-				}
-				else energy(10);
-			}
 			return false;
 		}
 		public function girlCumInMouth(cumFrom:Creature = null):Boolean
