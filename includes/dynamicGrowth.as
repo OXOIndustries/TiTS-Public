@@ -405,54 +405,6 @@ public function maneHairGrow():void
 
 /* Boobs stuff! */
 
-public function boobswellStuff(time:Number = 0):void
-{
-	//Message text, boob size+. Every 6 hours or so.
-	//Every minute = .003 breastRating. = 5.5 hours per cup size.
-	var swelledRows:Array = new Array();
-	//Loop through statuses and find out which boobs are covered.
-	for(var x:Number = 0; x < pc.statusEffects.length; x++)
-	{
-		//Boobswell on!
-		if(pc.statusEffects[x].storageName == "Boobswell Pads")
-		{
-			//Add to the list of covered rows.
-			swelledRows.push(pc.statusEffects[x].value1);
-		}
-	}
-	//While rows remain that need processed.
-	while(swelledRows.length > 0)
-	{
-		//Bonus lust for each extra row:
-		pc.lust(time/10);
-		//Use x to hold the original value for later comparison.
-		
-		var bRow:BreastRowClass = pc.breastRows[swelledRows[swelledRows.length - 1]];
-		
-		if (bRow != null) // Catching potential errors in lieu of a "proper" fix.
-		{
-			x = bRow.breastRating();
-			trace("BOOBSWELL! Original titty: " + x);
-			trace("Time: " + time + " Amount grown from time: " + (time * 0.003));
-			//Actually change it
-			pc.breastRows[swelledRows[swelledRows.length-1]].breastRatingRaw += time * 0.003;
-			trace("BOOBSWELL! Post titty: " + pc.breastRows[swelledRows[swelledRows.length-1]].breastRating());
-		
-			if(Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) > Math.floor(x) 
-				&& (Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) % 2 == 0 || Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) < 6))
-			{
-				trace("BOOBSWELL OUTPUT TRIGGERED");
-				eventBuffer += "\n\n" + logTimeStamp("passive") + " Thanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that ";
-				if(pc.bRows() == 1) eventBuffer += "you ";
-				else eventBuffer += "your " + num2Text2(swelledRows[swelledRows.length-1]+1) + " row of breasts ";
-				eventBuffer += "could now fit into " + indefiniteArticle(pc.breastCup(swelledRows[swelledRows.length - 1])) + " bra!</b>";
-			}
-		}
-		
-		swelledRows.splice(swelledRows.length-1,1);
-	}
-}
-
 public function honeyPotBump(cumShot:Boolean = false):void
 {
 	var msg:String = "";

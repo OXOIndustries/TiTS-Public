@@ -5,6 +5,7 @@
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Containers.TimeOutputOptions;
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.Allure;
 	import classes.Items.Accessories.FlashGoggles;
@@ -6532,6 +6533,15 @@
 			return null;
 		}
 
+		public function getPerkEffect(perkName:String):StorageClass
+		{
+			for (var i:int = 0; i < perks.length; i++)
+			{
+				if (perks[i].storageName == perkName) return perks[i];
+			}
+			return null;
+		}
+		
 		//Grow
 		public function increaseCock(increase: Number, cockNum: Number): Number {
 			if (hasPerk("Big Cock") >= 0) increase *= perks[hasPerk("Big Cock")].value1;
@@ -15350,116 +15360,7 @@
 			if(statusEffectv1("Alcohol") >= 100) setStatusValue("Alcohol",1,100);
 			tolerance(1);
 		}
-		public function alcoholTic():void
-		{
-			var currentLevel:Number;
-			//Phase 1: Getting drunker - booze in da belly.
-			if(statusEffectv1("Alcohol") > 0)
-			{
-				//Absorb some into blood.
-				addStatusValue("Alcohol",1,-1);
-				setStatusValue("Alcohol",3,0);
-				//Nuki drunk takes twice as much to get drank!
-				if(hasPerk("'Nuki Drunk")) addStatusValue("Alcohol",2,.5);
-				//Normal folks don't!
-				else addStatusValue("Alcohol",2,1);
-				
-				//Updated current hammered level
-				currentLevel = statusEffectv2("Alcohol")
-				//Hammered
-				//+5 physique & -2 willpower/int/reflexes
-				if(currentLevel >= 75 && hasStatusEffect("Drunk"))
-				{
-					//Adjust drunk effect
-					removeStatusEffect("Drunk");
-					//Int/reflexes already adjusted from buzzed
-					physiqueMod += 1;
-					reflexesMod -= 1;
-					willpowerMod -= 1;
-					intelligenceMod -= 1;
-					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" [pc.Walking] is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>");
-				}
-				//Drunk
-				//+4 physique & -1 willpower/int/reflexes
-				else if(currentLevel >= 50 && hasStatusEffect("Buzzed"))
-				{
-					//Adjust buzzed effect
-					removeStatusEffect("Buzzed");
-					//Int/reflexes already adjusted from buzzed
-					physiqueMod += 2;
-					reflexesMod -= 1;
-					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>";
-				}
-				//Buzzed
-				//+2 physique & -1 willpower/Intelligence
-				else if(currentLevel >= 25 && !hasStatusEffect("Buzzed") && !hasStatusEffect("Drunk") && !hasStatusEffect("Smashed"))
-				{
-					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					physiqueMod += 2;
-					willpowerMod -= 1;
-					intelligenceMod -= 1;
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Damn, that stuff you were drinking was awesome. <b>You're feeling pretty good right now. You must be buzzed.</b>";
-				}
-			}
-			//Phase 2 - waiting for booze levels to drop.
-			//v3 counts to 60, then starts dropping
-			else if(statusEffectv3("Alcohol") < 60)
-			{
-				addStatusValue("Alcohol",3,1);
-			}
-			//Phase 3 - booze levels falling
-			else if(statusEffectv2("Alcohol") > 0)
-			{
-				//Pee some out
-				//Nuki drunk takes four times as long to sober up!
-				if(hasPerk("'Nuki Drunk")) addStatusValue("Alcohol",2,-.25);
-				else addStatusValue("Alcohol",2,-1);
-				
-				//Updated current hammered level
-				currentLevel = statusEffectv2("Alcohol")
-				//Hammered -> Drunk
-				//+5 physique & -2 willpower/int/reflexes
-				if(currentLevel < 75 && hasStatusEffect("Smashed"))
-				{
-					//Adjust smashed -> drunk
-					removeStatusEffect("Smashed");
-					//Int/reflexes already adjusted from buzzed
-					physiqueMod -= 1;
-					reflexesMod += 1;
-					willpowerMod += 1;
-					intelligenceMod += 1;
-					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your head is starting to clear a little, but <b>you're still pretty drunk.</b>";
-				}
-				//Drunk -> Buzzed
-				//+4 physique & -1 willpower/int/reflexes
-				else if(currentLevel < 50 && hasStatusEffect("Drunk"))
-				{
-					removeStatusEffect("Drunk");
-					//Int/reflexes already adjusted from buzzed
-					physiqueMod -= 2;
-					reflexesMod += 1;
-					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " The more time passes, the more nimble you feel. Your reflexes are sharpening as the alcohol fades from your system. <b>You're only buzzed.</b>";
-				}
-				//Buzzed -> Nothing
-				//+2 physique & -1 willpower/Intelligence
-				else if(currentLevel < 25 && hasStatusEffect("Buzzed"))
-				{
-					removeStatusEffect("Buzzed");
-					physiqueMod -= 2;
-					willpowerMod += 1;
-					intelligenceMod += 1;
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Blinking, you realize that the alcohol has faded from your system. <b>You're no longer buzzed.</b>";
-				}
-			}
-			else
-			{
-				removeStatusEffect("Alcohol");
-			}
-		}
+
 		public function tolerance(arg:Number = 0):Number
 		{
 			if(!hasStatusEffect("Tolerance")) createStatusEffect("Tolerance",0,0,0,0);
@@ -16197,263 +16098,8 @@
 		{
 			return false; // 9999
 		}
-		public function statusTick():void {
-			var expiredStatuses:Array = new Array();
-			//For storing things that remove statuses AFTER parsing the status list - fixes counter mismatches
-			var postRemovalEffects:Array = new Array();
-			var gogoVenomShit:Boolean = false;
-
-			for(var x:int = statusEffects.length-1; x >= 0; x--) 
-			{
-				if(this is PlayerCharacter)
-				{
-					//Some hardcoded removal stuff
-					//Cut condensol if all cocks are gone.
-					if(((statusEffects[x] as StorageClass).storageName == "Condensol-B" || (statusEffects[x] as StorageClass).storageName == "Condensol-A") && !hasCock())
-					{
-						expiredStatuses[expiredStatuses.length] = x;
-					}
-				}
-				//trace("Checking status effect: " + x + " of " + (statusEffects.length-1));
-				//If times, count dat shit down.
-				if((statusEffects[x] as StorageClass).minutesLeft > 0) 
-				{
-					(statusEffects[x] as StorageClass).minutesLeft--;
-					//Expired Statuses
-					if((statusEffects[x] as StorageClass).minutesLeft <= 0) 
-					{
-						//PC specific status shit
-						if (this is PlayerCharacter)
-						{
-							//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
-							switch((statusEffects[x] as StorageClass).storageName)
-							{
-								case "Lane's Hypnosis":
-								case "Lane's Hypnosis - Physique":
-								case "Lane's Hypnosis - Reflexes":
-								case "Lane's Hypnosis - Aim":
-								case "Lane's Hypnosis - Intelligence":
-								case "Lane's Hypnosis - Willpower":
-									kGAMECLASS.baseHypnosisWearsOff((statusEffects[x] as StorageClass).storageName);
-									break;
-								case "Horse Pill":
-									var pill:HorsePill = new HorsePill();
-									pill.lastPillTF();
-									break;
-								//Goblinola changes!
-								case "Goblinola Bar":
-									var gobbyTF:Goblinola = new Goblinola();
-									gobbyTF.itemEndGoblinTF();
-									break;
-								case "Gabilani Face Change":
-									var gobbyFaceTF:Goblinola = new Goblinola();
-									gobbyFaceTF.itemGoblinFaceTF();
-									break;
-								//Clippex changes!
-								case "Clippex Gel":
-									var clippexTF:Clippex = new Clippex();
-									if((statusEffects[x] as StorageClass).value2 > 1) clippexTF.itemClippexTFPlus();
-									else clippexTF.itemClippexTF();
-									break;
-								//Semen's Friend changes!
-								case "Semen's Candy":
-									var semensTF:SemensFriend = new SemensFriend();
-									if((statusEffects[x] as StorageClass).value2 > 1) semensTF.itemSemensFriendTFPlus();
-									else semensTF.itemSemensFriendTF();
-									break;
-								//Cerespirin changes!
-								case "Cerespirin":
-									var plantTF:Cerespirin = new Cerespirin();
-									plantTF.itemEndPlantTF();
-									break;
-								// Hair Flower wilts away!
-								case "Hair Flower":
-									var flowerPower:Cerespirin = new Cerespirin();
-									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this, (statusEffects[x] as StorageClass).value1);
-									break;
-								// Goo hair reverts back!
-								case "Hair Regoo":
-									if(hasHair() && hairType != GLOBAL.HAIR_TYPE_GOO)
-									{
-										kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + ParseText(" The tingling along your scalp becomes stronger as you realize something has been gradually changing. As the sensation fades, you run your hand across the top of your head and notice some excess slime stick to it... It looks like <b>your [pc.hair] has reverted back into gooey hair</b>.");
-										
-										if(hairType == GLOBAL.HAIR_TYPE_TENTACLES) hairStyle == "tentacle";
-										hairType = GLOBAL.HAIR_TYPE_GOO;
-									}
-									break;
-								// Black Latex grows back!
-								case "Latex Regrow":
-									if(skinType != GLOBAL.SKIN_TYPE_LATEX)
-									{
-										kGAMECLASS.eventBuffer +="\n\n" + kGAMECLASS.logTimeStamp("passive") +  ParseText(" You feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>");
-										kGAMECLASS.eventBuffer += "\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>.";
-										if(isBimbo()) kGAMECLASS.eventBuffer += " Nothing’s gonna to stop you from being, like, a totally hot sex doll!";
-										
-										skinType = GLOBAL.SKIN_TYPE_LATEX;
-									}
-									break;
-								case "Red Myr Venom":
-									//Bit of a hacky solution
-									gogoVenomShit = true;
-									break;
-								// Mhen'gan Mango finishes!
-								case "The Mango":
-									kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your attractive aura fades from you as your sexiness returns to normal levels.";
-									if (kGAMECLASS.silly && rand(3) != 0) kGAMECLASS.eventBuffer += " You could no longer handle the mango!";
-									else kGAMECLASS.eventBuffer += " The wild mango’s effect has worn off!";
-									break;
-								//Jaded wears off!
-								case "Jaded":
-									kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " No longer bored from your previous whoring session, you feel a bit more refreshed now.";
-									break;
-								//Condensol ends!
-								case "Condensol-A":
-									if(hasCock())
-									{
-										for(var y:int = 0; y < cockTotal(); y++)
-										{
-											cocks[y].cLengthRaw *= 2;
-										}
-										kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.");
-									}
-									break;
-								case "Condensol-B":
-									if(hasCock())
-									{
-										for(var z:int = 0; z < cockTotal(); z++)
-										{
-											cocks[z].cLengthRaw *= 4;
-										}
-										kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.");
-									}
-									break;
-								//Mighty Tight ends!
-								case "Mighty Tight":
-									kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Pausing for a moment, you feel your backdoor";
-									if(hasVagina()) kGAMECLASS.eventBuffer += ParseText(" and [pc.vaginas] relaxing");
-									else kGAMECLASS.eventBuffer += " relax";
-									kGAMECLASS.eventBuffer += " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
-									break;
-								//Boobswell ends!
-								case "Boobswell Pads":
-									//Message text, last boob size increase. 7 days later.
-									kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
-									if(bRows() > 1) kGAMECLASS.eventBuffer += "on your " + kGAMECLASS.num2Text2((statusEffects[x] as StorageClass).value1+1) + " row of breasts";
-									kGAMECLASS.eventBuffer += ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away.");
-									break;
-								//Treatment finishing.
-								case "The Treatment":
-									kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " <b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
-									kGAMECLASS.eventBuffer += "\n\nOnce you claim your fortune, you can retire on New Texas, maybe even get your own private milker.";
-									break;
-								//Sterilex/Infertile ends!
-								case "Infertile":
-									kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " A strange tingling sensation spreads through your loins as your microsurgeons are suddenly reinvigorated. Your codex then beeps to notify you that you have regained your";
-									if(hasGenitals())
-									{
-										if(hasVagina()) kGAMECLASS.eventBuffer += " fertility";
-										if(isHerm()) kGAMECLASS.eventBuffer += " and";
-										if(hasCock()) kGAMECLASS.eventBuffer += " virility";
-									}
-									else kGAMECLASS.eventBuffer += " fertility and virility should you ever have the genitals for them";
-									kGAMECLASS.eventBuffer += ". <b>Your ability to potentionally create life has been restored!</b>";
-									break;
-								case "Crabbst":
-									physiqueMod -= (statusEffects[x] as StorageClass).value2;
-									reflexesMod += (statusEffects[x] as StorageClass).value2;
-									aimMod += (statusEffects[x] as StorageClass).value2;
-									intelligenceMod += (statusEffects[x] as StorageClass).value2;
-									willpowerMod += (statusEffects[x] as StorageClass).value2;
-									break;
-								case "Mead":
-									physiqueMod -= (statusEffects[x] as StorageClass).value2;
-									reflexesMod += (statusEffects[x] as StorageClass).value2 * .5;
-									aimMod += (statusEffects[x] as StorageClass).value2 * .5;
-									intelligenceMod += (statusEffects[x] as StorageClass).value2 * .5;
-									willpowerMod += (statusEffects[x] as StorageClass).value2 * .5;
-									break;
-								case "X-Zil-rate":
-									physiqueMod -= (statusEffects[x] as StorageClass).value2;
-									break;
-								case "Quivering Quasar":
-									physiqueMod -= (statusEffects[x] as StorageClass).value2;
-									break;
-								case "Zil Sting":
-									reflexesMod += (statusEffects[x] as StorageClass).value1;
-									libidoMod -= (statusEffects[x] as StorageClass).value1;
-									break;
-								case "Naleen Venom":
-									physiqueMod += (statusEffects[x] as StorageClass).value1;
-									aimMod += (statusEffects[x] as StorageClass).value1;
-									willpowerMod += (statusEffects[x] as StorageClass).value1;
-									reflexesMod += (statusEffects[x] as StorageClass).value1;
-									break;
-								case "GaloMax":
-									kGAMECLASS.eventQueue.push(kGAMECLASS.galoMaxTFProc);
-									break;
-								case "Flahne_Extra_Pissed":
-									kGAMECLASS.flags["FLAHNE_MAKEUP"] = 1;
-									break;
-								case "Goo Armor Defense Drain":
-									if(armor is GooArmor) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" [goo.name] wriggles around you and tightens, testing her strength. <i>“Ahh, I feel better now!”</i> She seems to have fully recovered!");
-									if(hasItemByName("Goo Armor")) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" [goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!");
-									kGAMECLASS.gooArmorDefense((statusEffects[x] as StorageClass).value1);
-									break;
-							}
-						}
-						else if(this is Emmy)
-						{
-							//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
-							switch((statusEffects[x] as StorageClass).storageName)
-							{
-								case "Massaging":
-								case "Slow Fucking":
-									kGAMECLASS.emmyTeaseCum();
-									postRemovalEffects.push(kGAMECLASS.emmyTeaseCumEffects);
-									break;
-								case "Drain Cooldown":
-									kGAMECLASS.emmyCumClearance();
-									postRemovalEffects.push(kGAMECLASS.emmyCumStatusPurge);
-									break;
-							}
-						}
-						//Mark out the ones that need cut!
-						expiredStatuses[expiredStatuses.length] = x;
-						//trace("Marking slot: " + x + " to cut");
-					}
-				}
-				
-				if (statusEffects[x].storageName == "Foxfire")
-				{
-					statusEffects[x].value4++;
-					if (statusEffects[x].value4 > 0)
-					{
-						if (rand(statusEffects[x].value4) > 60)
-						{
-							statusEffects[x].value4 = -2 * 60 - rand(2 * 60);
-							Foxfire.attemptTF(this);
-						}
-					}
-				}
-			}
-			
-			//Cut the statuses that expired and need cut.
-			while(expiredStatuses.length > 0)
-			{
-				trace("REMOVING " + (statusEffects[expiredStatuses[0]] as StorageClass).storageName + " in slot " + expiredStatuses[0] + " due to status effect time out.");
-				statusEffects.splice(expiredStatuses[0],1);
-				expiredStatuses.splice(0,1);
-			}
-			//Alright, now do the venom shit - since adding more statuses could fuck shit otherwise
-			if(gogoVenomShit) kGAMECLASS.venomExpirationNotice();
-
-			//Any post-functions to run?
-			while(postRemovalEffects.length > 0)
-			{
-				postRemovalEffects[0]();
-				postRemovalEffects.splice(0,1);
-			}
-		}
+		
+		
 		//Cumflation
 		//v1 = current in belly
 		//v2 = most had in belly
@@ -16897,6 +16543,574 @@
 			if (type == "pp" || type == "hishers") return (this is PlayerCharacter ? "yours" : mfn("his", "hers", "its"));
 			
 			return "ERROR: <b>Unknown pronoun specifier.</b>";
+		}
+
+		// TODO: The log timestamp function needs to accept a timestamp override, so calculated positions along the total time passage can display a corrected timestamp
+		// of when the event actually takes place.
+		public function processTime(deltaT:uint, doOut:Boolean):void
+		{
+			updateBoobwellPads(deltaT, doOut);
+			updateStatusEffects(deltaT, doOut);
+			updateAlcoholState(deltaT, doOut);
+			
+			updateLustValues(deltaT, doOut);
+			updateCumValues(deltaT, doOut);
+			updateMilkValues(deltaT, doOut);
+			
+			shieldsRaw = shieldsMax();
+		}
+		
+		private function updateLustValues(deltaT:uint, doOut:Boolean):void
+		{
+			var lustCap:Number = Math.round(lustMax() * 0.75);
+			
+			if (hasStatusEffect("Egg Addled 2"))
+			{
+				lustCap = lustMax();
+			}
+			
+			var prodFactor:Number = 100 / (1920) * ((libido() * 3 + 100) / 100);
+			if (hasPerk("Extra Ardor")) prodFactor *= 2;
+			if (hasStatusEffect("Ludicrously Endowed")) prodFactor *= 1.5;
+			if (hasStatusEffect("Overwhelmingly Endowed")) prodFactor *= 2;
+			if (hasStatusEffect("Red Myr Venom")) prodFactor *= 1.5;
+			if (hasStatusEffect("Egg Addled 1")) prodFactor *= 1.25;
+			if (hasStatusEffect("Egg Addled 3")) prodFactor *= 1.75;
+			if (hasStatusEffect("X-Zil-Rate") || hasStatusEffect("Mead")) prodFactor *= 4;
+			if (hasPerk("Ice Cold")) prodFactor /= 2;
+			
+			var producedLust:Number = deltaT * prodFactor;
+			
+			if (lust() + producedLust < lustCap)
+			{
+				lust(producedLust);
+			}
+			else if (lust() > lustCap)
+			{
+				// Optimised slightly- mul/div is more expensive than add/sub, but
+				// we can treat chained mul/divs as adds/subs to the same factor, thus
+				// add up all the shit then operate once.
+				
+				var reducer:int = 4;
+				
+				if (hasPerk("Ice Cold")) reducer -= 4;
+				if (hasPerk("Extra Ardor")) reducer += 4;
+				
+				if (reducer >= 0) lust( -producedLust * reducer);
+			}
+			else
+			{
+				lustRaw = lustCap;
+			}
+		}
+		
+		private function updateCumValues(deltaT:uint, doOut:Boolean):void
+		{
+			// imo fluid simulate could be replaced wholesale with !neverSerialize-- any character
+			// we save we care about these potential values in a broad sense.
+			
+			if (fluidSimulate)
+			{
+				if (ballFullness < 100) cumProduced(deltaT, doOut);
+				cumFlationSimulate(deltaT, doOut);
+			}
+		}
+		
+		private function updateMilkValues(deltaT:uint, doOut:Boolean):void
+		{
+			if (fluidSimulate && canLactate() && !hasStatusEffect("Milk Paused"))
+			{
+				milkProduced(deltaT, doOut);
+			}
+		}
+		
+		private function updateBoobswellPads(deltaT:uint, doOut:Boolean):void
+		{
+			if (!hasStatusEffect("Boobswell Pads")) return;
+			
+			var targetRow:BreastRowClass = breastRows[statusEffectv1("Boobswell Pads")] as BreastRowClass;
+			var originalRating:Number = Math.floor(targetRow.breastRating());
+			
+			lust(deltaT / 10);
+			
+			// Properly account for the fact that the pads could time out during this update tick
+			targetRow.breastRatingRaw += (Math.min(getStatusMinutes("Boobswell Pads"), deltaT) * 0.003); 
+			
+			var newRating:Number = Math.floor(targetRow.breastRating());
+			
+			if (doOut && (this is PlayerCharacter) && (newRating > originalRating && (newRating % 2 == 0 || newRating < 6))
+			{
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Thanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that ";
+				if(bRows() == 1) kGAMECLASS.eventBuffer += "you ";
+				else kGAMECLASS.eventBuffer += "your " + kGAMECLASS.num2Text2(statusEffectv1("Boobswell Pads") + 1) + " row of breasts ";
+				kGAMECLASS.eventBuffer += "could now fit into " + kGAMECLASS.indefiniteArticle(breastCup(0, targetRow.breastRating())) + " bra!</b>";
+			}
+		}
+		
+		// TODO: Convert any item function used by stauts updates to static functions, so we don't have to construct the object to call it
+		// TODO: Refactor what gets passed around- pass the actual StorageClass where possible, thus allowing ALL removal to be done here.
+		private function updateStatusEffects(deltaT:uint, doOut:Boolean):void
+		{
+			if (!statusSimulate) return;
+			
+			var deferredEvents:Array = null;
+			
+			for (var i:int = 0; i < statusEffects.length; i++)
+			{
+				var thisStatus:StorageClass = statusEffects[i];
+				
+				// Effects created with a 0 or less duration aren't handled by this code ever.
+				if (thisStatus.minutesLeft <= 0) continue;
+				
+				var maxEffectLength:uint = Math.min(deltaT, thisStatus.minutesLeft);
+				thisStatus.minutesLeft -= maxEffectLength;
+				
+				var requiresRemoval:Boolean = thisStatus.minutesLeft <= 0;
+				
+				switch (thisStatus.storageName)
+				{
+					case "Condensol-A":
+						if (!hasCock())
+						{
+							requiresRemoval = true;
+						}
+						else if (requiresRemoval)
+						{
+							for(var y:int = 0; y < cockTotal(); y++)
+							{
+								cocks[y].cLengthRaw *= 2;
+							}
+							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.");
+						}
+						break;
+						
+					case "Condensol-B":
+						if (!hasCock())
+						{
+							requiresRemoval = true;
+						}
+						else if (requiresRemoval)
+						{
+							for(var z:int = 0; z < cockTotal(); z++)
+							{
+								cocks[z].cLengthRaw *= 4;
+							}
+							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.");
+						}
+						break;
+						
+					case "Lane's Hypnosis":
+					case "Lane's Hypnosis - Physique":
+					case "Lane's Hypnosis - Reflexes":
+					case "Lane's Hypnosis - Aim":
+					case "Lane's Hypnosis - Intelligence":
+					case "Lane's Hypnosis - Willpower":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.baseHypnosisWearsOff(thisStatus.storageName);
+						}
+						break;
+						
+					case "Horse Pill":
+						if (requiresRemoval)
+						{
+							var pill:HorsePill = new HorsePill();
+							pill.lastPillTF();
+						}
+						break;
+					
+					case "Goblinola Bar":
+						if (requiresRemoval)
+						{
+							var gobbyTF:Goblinola = new Goblinola();
+							gobbyTF.itemEndGoblinTF();
+						}
+						break;
+						
+					case "Gabilani Face Change":
+						if (requiresRemoval)
+						{
+							var gobbyFaceTF:Goblinola = new Goblinola();
+							gobbyFaceTF.itemGoblinFaceTF();
+						}
+						break;
+						
+					case "Clippex Gel":
+						if (requiresRemoval)
+						{
+							var clippexTF:Clippex = new Clippex();
+							if(thisStatus.value2 > 1) clippexTF.itemClippexTFPlus();
+							else clippexTF.itemClippexTF();
+						}
+						break;
+						
+					case "Semen's Candy":
+						if (requiresRemoval)
+						{
+							var semensTF:SemensFriend = new SemensFriend();
+							if(thisStatus.value2 > 1) semensTF.itemSemensFriendTFPlus();
+							else semensTF.itemSemensFriendTF();
+						}
+						break;
+						
+					case "Cerespirin":
+						if (requiresRemoval)
+						{
+							var plantTF:Cerespirin = new Cerespirin();
+							plantTF.itemEndPlantTF();
+						}
+						break;
+						
+					case "Hair Flower":
+						if (requiresRemoval)
+						{
+							var flowerPower:Cerespirin = new Cerespirin();
+							kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this, thisStatus.value1);
+						}
+						break;
+						
+					case "Hair Regoo":
+						if (requiresRemoval)
+						{
+							if(hasHair() && hairType != GLOBAL.HAIR_TYPE_GOO)
+							{
+								kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + ParseText(" The tingling along your scalp becomes stronger as you realize something has been gradually changing. As the sensation fades, you run your hand across the top of your head and notice some excess slime stick to it... It looks like <b>your [pc.hair] has reverted back into gooey hair</b>.");
+								
+								if(hairType == GLOBAL.HAIR_TYPE_TENTACLES) hairStyle == "tentacle";
+								hairType = GLOBAL.HAIR_TYPE_GOO;
+							}
+						}
+						break;
+								
+					case "Latex Regrow":
+						if (requiresRemoval)
+						{
+							if(skinType != GLOBAL.SKIN_TYPE_LATEX)
+							{
+								kGAMECLASS.eventBuffer +="\n\n" + kGAMECLASS.logTimeStamp("passive") +  ParseText(" You feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>");
+								kGAMECLASS.eventBuffer += "\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>.";
+								if(isBimbo()) kGAMECLASS.eventBuffer += " Nothing’s gonna to stop you from being, like, a totally hot sex doll!";
+								
+								skinType = GLOBAL.SKIN_TYPE_LATEX;
+							}
+						}
+						break;
+						
+					case "The Mango":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your attractive aura fades from you as your sexiness returns to normal levels.";
+							if (kGAMECLASS.silly && rand(3) != 0) kGAMECLASS.eventBuffer += " You could no longer handle the mango!";
+							else kGAMECLASS.eventBuffer += " The wild mango’s effect has worn off!";
+						}
+						break;
+						
+					case "Jaded":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " No longer bored from your previous whoring session, you feel a bit more refreshed now.";
+						}
+						break;
+			
+					case "Mighty Tight":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Pausing for a moment, you feel your backdoor";
+							if(hasVagina()) kGAMECLASS.eventBuffer += ParseText(" and [pc.vaginas] relaxing");
+							else kGAMECLASS.eventBuffer += " relax";
+							kGAMECLASS.eventBuffer += " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
+						}
+						break;
+						
+					case "Boobswell Pads":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
+							if(bRows() > 1) kGAMECLASS.eventBuffer += "on your " + kGAMECLASS.num2Text2((statusEffects[x] as StorageClass).value1+1) + " row of breasts";
+							kGAMECLASS.eventBuffer += ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away.");
+						}
+						break;
+						
+					case "The Treatment":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " <b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
+							kGAMECLASS.eventBuffer += "\n\nOnce you claim your fortune, you can retire on New Texas, maybe even get your own private milker.";
+						}
+						break;
+						
+					case "Infertile":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " A strange tingling sensation spreads through your loins as your microsurgeons are suddenly reinvigorated. Your codex then beeps to notify you that you have regained your";
+							if(hasGenitals())
+							{
+								if(hasVagina()) kGAMECLASS.eventBuffer += " fertility";
+								if(isHerm()) kGAMECLASS.eventBuffer += " and";
+								if(hasCock()) kGAMECLASS.eventBuffer += " virility";
+							}
+							else kGAMECLASS.eventBuffer += " fertility and virility should you ever have the genitals for them";
+							kGAMECLASS.eventBuffer += ". <b>Your ability to potentionally create life has been restored!</b>";
+						}
+						break;
+						
+					case "Crabbst":
+						if (requiresRemoval)
+						{
+							physiqueMod -= thisStatus.value2;
+							reflexesMod += thisStatus.value2;
+							aimMod += thisStatus.value2;
+							intelligenceMod += thisStatus.value2;
+							willpowerMod += thisStatus.value2;
+						}
+						break;
+							
+					case "Mead":
+						if (requiresRemoval)
+						{
+							physiqueMod -= thisStatus.value2;
+							reflexesMod += thisStatus.value2 * .5;
+							aimMod += thisStatus.value2 * .5;
+							intelligenceMod += thisStatus.value2 * .5;
+							willpowerMod += thisStatus.value2 * .5;
+						}
+						break;
+							
+					case "X-Zil-rate":
+						if (requiresRemoval)
+						{
+							physiqueMod -= thisStatus.value2;
+						}
+						break;
+							
+					case "Quivering Quasar":
+						if (requiresRemoval)
+						{
+							physiqueMod -= thisStatus.value2;
+						}
+						break;
+							
+					case "Zil Sting":
+						if (requiresRemoval)
+						{
+							reflexesMod += thisStatus.value1;
+							libidoMod -= thisStatus.value1;
+						}
+						break;
+							
+					case "Naleen Venom":
+						if (requiresRemoval)
+						{
+							physiqueMod += thisStatus.value1;
+							aimMod += thisStatus.value1;
+							willpowerMod += thisStatus.value1;
+							reflexesMod += thisStatus.value1;
+						}
+						break;
+						
+					case "GaloMax":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.eventQueue.push(kGAMECLASS.galoMaxTFProc);
+						}
+						break;
+						
+					case "Flahne_Extra_Pissed":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.flags["FLAHNE_MAKEUP"] = 1;
+						}
+						break;
+						
+					case "Goo Armor Defense Drain":
+						if (requiresRemoval)
+						{
+							if(armor is GooArmor) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" [goo.name] wriggles around you and tightens, testing her strength. <i>“Ahh, I feel better now!”</i> She seems to have fully recovered!");
+							if(hasItemByName("Goo Armor")) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" [goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!");
+							kGAMECLASS.gooArmorDefense(thisStatus.value1);
+						}
+						break;
+						
+					case "Massaging":
+					case "Slow Fucking":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.emmyTeaseCum();
+							
+							if (deferredEvents == null) deferredEvents = [kGAMECLASS.emmyTeaseCumEffects];
+							else deferredEvents.push(kGAMECLASS.emmyTeaseCumEffects);
+						}
+						break;
+						
+					case "Drain Cooldown":
+						if (requiresRemoval)
+						{
+							kGAMECLASS.emmyCumClearance();
+							
+							if (deferredEvents == null) deferredEvents = [kGAMECLASS.emmyCumStatusPurge];
+							else deferredEvents.push(kGAMECLASS.emmyCumStatusPurge);
+						}
+						break;
+						
+					case "Red Myr Venom":
+						if (requiresRemoval)
+						{
+							if (deferredEvents == null) deferredEvents = [kGAMECLASS.venomExpirationNotice];
+							else deferredEvents.push(kGAMECLASS.venomExpirationNotice);
+						}
+						break;
+						
+					case "Foxfire":
+						thisStatus.value4 += deltaT;
+						
+						if (thisStatus.value4 > 0 && rand(thisStatus.value4) > 60
+						{
+							thisStatus.value4 = -2 * 60 - rand(2 * 60);
+							Foxfire.attemptTF(this);
+						}
+				}
+				
+				if (requiresRemoval)
+				{
+					statusEffects.splice(i, 1);
+					i--;
+				}
+			}
+			
+			if (deferredEvents != null && deferredEvents.length > 0)
+			{
+				for (i = 0; i < deferredEvents.length; i++)
+				{
+					deferredEvents[i]();
+				}
+			}
+		}
+		
+		public function updateAlcoholState(deltaT:uint, doOut:Boolean):void
+		{		
+			var thisStatus:StorageClass = getStatusEffect("Alcohol");
+			
+			if (thisStatus == null) return;
+			
+			var timeConsuming:uint = 0;
+			
+			if (thisStatus.value1 > 0)
+			{
+				// Alcohol is consumed at a rate of 1 unit per minute
+				timeConsuming = Math.min(deltaT, thisStatus.value1);
+				thisStatus.value1 -= timeConsuming;
+				
+				if (hasPerk("'Nuki Drunk")) thisStatus.value2 += (timeConsuming * 0.5);
+				else thisStatus.value2 += timeConsuming;
+				
+				thisStatus.value3 = 0;
+				
+				if (this.statusValue >= 25 && !hasStatusEffect("Buzzed"))
+				{
+					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+					physiqueMod += 2;
+					willpowerMod -= 1;
+					intelligenceMod -= 1;
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Damn, that stuff you were drinking was awesome. <b>You're feeling pretty good right now. You must be buzzed.</b>";
+				}
+				
+				if (this.statusValue >= 50 && !hasStatusEffect("Drunk"))
+				{
+					if (hasStatusEffect("Buzzed"))
+					{
+						getStatusEffect("Buzzed").hidden = true;
+					}
+					
+					physiqueMod += 2;
+					reflexesMod -= 1;
+					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>";
+				}
+				
+				if (this.statusValue >= 75 && !hasStatusEffect("Smashed"))
+				{
+					if (hasStatusEffect("Drunk"))
+					{
+						getStatusEffect("Drunk").hidden = true;
+					}
+					
+					physiqueMod += 1;
+					reflexesMod -= 1;
+					willpowerMod -= 1;
+					intelligenceMod -= 1;
+					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" [pc.Walking] is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>");
+				}
+			}
+			
+			// Confer how long it has been since anything was last imbibed. This is essentially (total time passing - max time consuming latent volume)
+			var postConsumptionTime:uint = deltaT - timeConsuming;
+			thisStatus.value3 += postConsumptionTime;
+			
+			var soberingTime:uint = 0;
+			
+			if (thisStatus.value3 > 60 && thisStatus.value2 > 0)
+			{
+				soberingTime = Math.min(thisStatus.value2, hasPerk("'Nuki Drunk") ? postConsumptionTime * 0.25 : postConsumptionTime);
+				thisStatus.value2 -= soberingTime;
+				
+				if (thisStatus.value2 < 75 && hasStatusEffect("Smashed"))
+				{
+					if (hasStatusEffect("Drunk"))
+					{
+						getStatusEffect("Drunk").hidden = false;
+					}
+					else
+					{
+						createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+					}
+					
+					physiqueMod -= 1;
+					reflexesMod += 1;
+					willpowerMod += 1;
+					intelligenceMod += 1;
+					
+					removeStatusEffect("Smashed");
+					
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your head is starting to clear a little, but <b>you're still pretty drunk.</b>";
+				}
+				
+				if (thisStatus.value2 < 50 && hasStatusEffect("Drunk"))
+				{
+					if (hasStatusEffect("Buzzed"))
+					{
+						getStatusEffect("Buzzed").hidden = false;
+					}
+					else
+					{
+						createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+					}
+					
+					physiqueMod -= 2;
+					reflexesMod += 1;
+					
+					removeStatusEffect("Drunk");
+					
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " The more time passes, the more nimble you feel. Your reflexes are sharpening as the alcohol fades from your system. <b>You're only buzzed.</b>";
+				}
+				
+				if (thisStatus.value2 < 25 && hasStatusEffect("Buzzed"))
+				{
+					
+					physiqueMod -= 2;
+					willpowerMod += 1;
+					intelligenceMod += 1;
+					
+					removeStatusEffect("Buzzed");
+					
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Blinking, you realize that the alcohol has faded from your system. <b>You're no longer buzzed.</b>";
+				}
+			}
+
+			if (thisStatus.value2 <= 0)
+			{
+				removeStatusEffect("Alcohol");
+			}
 		}
 	}
 }

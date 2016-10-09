@@ -1690,180 +1690,103 @@ public function variableRoomUpdateCheck():void
 	}
 }
 
-public function processTime(arg:int):void {
-	var x:int = 0;
-	var msg:String = "";
-	
-	var tightnessChanged:Boolean = false;
-	
-	var productionFactor:Number = 100 / (1920) * ((pc.libido() * 3 + 100) / 100);
-	// Ideally most of this character updating shit needs to be shifted into the Creature class itself
-	// Then everything can just get stuffed in this loop as like chars[prop].processTime(arg) and hook everything like that.
+public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
+{
 	for (var prop:String in chars)
 	{
-		//Cum volume only simulated for those that simulate dat shit.
-		if(chars[prop].fluidSimulate)
-		{
-			if(chars[prop].ballFullness < 100 || chars[prop] is PlayerCharacter) chars[prop].cumProduced(arg);
-			chars[prop].cumFlationSimulate(arg);
-		}
-	}
-	pc.cumFlationSimulate(arg);
-	pc.cumProduced(arg);
-	
-	//Double time
-	if (pc.hasPerk("Extra Ardor")) productionFactor *= 2;
-	//Huge nuts double time!
-	if (pc.hasStatusEffect("Ludicrously Endowed")) productionFactor *= 1.5;
-	if (pc.hasStatusEffect("Overwhelmingly Endowed")) productionFactor *= 2;
-	
-	if (pc.hasStatusEffect("Red Myr Venom")) productionFactor *= 1.5;
-	if (pc.hasStatusEffect("Egg Addled 1")) productionFactor *= 1.25;
-	if (pc.hasStatusEffect("Egg Addled 3")) productionFactor *= 1.75;
-		
-	//BOOZE QUADRUPLES TIEM!
-	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
-	productionFactor *= 4;
-	
-	//Half time.
-	else if (pc.hasPerk("Ice Cold")) productionFactor /= 2;
-	
-	if (pc.hasStatusEffect("Leitha Charm"))
-	{
-		// Hardcoding checks because we might have issues with items being replaced without running through equipItem() and
-		// thus calling onEquip/onRemove.
-		if (!(pc.accessory is LeithaCharm))
-		{
-			throw new Error("Leitha Charm status effect present, but the item isn't presently equipped to the player!");
-		}
-		else
-		{
-			pc.addStatusValue("Leitha Charm", 1, arg * 20); // temp debug shit
-		}
-	}
-
-	//Used to establish a cap
-	var lustCap:Number = Math.round(pc.lustMax() * .75);
-	if(pc.hasStatusEffect("Egg Addled 2")) lustCap = pc.lustMax();
-	//Not going over lustcap? Proceed as normal.
-	if(pc.lust() + (arg * productionFactor) < lustCap)
-	{
-		//trace("Not going over lustcap. Lust: " + pc.lust() + " LustCap: " + lustCap + " Arg&Prod: " + arg*productionFactor);
-		//Actually apply lust.
-		pc.lust(arg * productionFactor);
-	}
-	//Already over the lustcap? Slowly reduce current lust.
-	else if(pc.lust() > lustCap)
-	{
-		var reduce:Number = arg * productionFactor / 4;
-		//Ice Cold - Ice cold becomes extra effective here., effectively multiplying loss by x4 (since it halved gains earlier)
-		if (pc.hasPerk("Ice Cold")) reduce *= 4;
-		//The reverse for Extra Ardor. Reduces much slower.
-		if (pc.hasPerk("Extra Ardor")) reduce /= 4;
-		pc.lust(-reduce);
-	}
-	//Gonna hit the cap? Change to cap.
-	else
-	{
-		pc.lustRaw = lustCap;
-	}
-		
-	//Top off shields
-	pc.shieldsRaw = pc.shieldsMax();
-	
-	PregnancyManager.updatePregnancyStages(chars, arg);
-	
-	//milk is chunked out all at once due to lazies
-	if(arg > 0 && pc.canLactate()) 
-	{
-		//Celise overnights halt milkstuff.
-		if(!pc.hasStatusEffect("Milk Paused"))
-		{
-			//trace("time rested: " + arg);
-			pc.milkProduced(arg);
-			milkGainNotes();
-		}
+		chars[prop].processTime(deltaT);
 	}
 	
-	if (flags["MIMBRANES BITCH TIMER"] == undefined)
-	{
-		flags["MIMBRANES BITCH TIMER"] = arg;
-	}
-	else
-	{
-		flags["MIMBRANES BITCH TIMER"] += arg;
-	}
+	PregnancyManager.updatePregnancyStages(chars, deltaT);
 	
-	if (flags["MIMBRANES BITCH TIMER"] >= 300)
-	{
-		flags["MIMBRANES BITCH TIMER"] = 0;
-		mimbranesComplainAndShit();
-	}
-
-	//Queue up procs for boobswell shit
-	if (pc.hasStatusEffect("Boobswell Pads")) boobswellStuff(arg);
-
-	//Laneshit
+	processRenvraMessageEvents(deltaT, doOut);
+	processQueenOfTheDeepMessageEvents(deltaT, doOut);
+	processTarkusBombTimerEvents(deltaT, doOut);
+	
+	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
+	
+	processMimbranesTime(deltaT, doOut);
+	processLeithaCharmTime(deltaT, doOut);
 	processLaneDetoxEvents(arg);
 	
-	// Extra special handler for Renvra's egg messages
+	// minutes++
+}
+
+public function processMimbranesTime(deltaT:uint, doOut:Boolean):void
+{
+	if (kGAMECLASS.attachedMimbranes() == 0) return;
+		
+	if (kGAMECLASS.flags["MIMBRANES BITCH TIMER"] == undefined) kGAMECLASS.flags["MIMBRANES BITCH TIMER"] = deltaT;
+	else kGAMECLASS.flags["MIMBRANES BITCH TIMER"] += deltaT;
+	
+	if (kGAMECLASS.flags["MIMBRANES BITCH TIMER"] >= 300)
+	{
+		kGAMECLASS.flags["MIMBRANES BITCH TIMER"] = 0;
+		if (doOut) kGAMECLASS.mimbranesComplainAndShit();
+	}
+}
+
+public function processLeithaCharmTime(deltaT:uint, doOut:Boolean):void
+{
+	if (pc.hasStatusEffect("Leitha Charm"))
+	{
+		pc.addStatusValue("Leitha Charm", 1, arg * 20);
+	}
+}
+
+public function processRevraMessageEvents(deltaT:uint, doOut:Boolean):void
+{
 	if (pc.hasStatusEffect("Renvra Eggs Messages Available") || pc.hasStatusEffect("Nyrea Eggs Messages Available") || pc.hasStatusEffect("Royal Eggs Messages Available"))
 	{
 		var cRoom:RoomClass = rooms[currentLocation];
 		var pSpace:Boolean = cRoom.hasFlag(GLOBAL.PUBLIC);
 		
-		// This should avoid doubling messages up if the player has both pregnancies at the same time.
-		if (pc.hasStatusEffect("Renvra Eggs Messages Available")) RenvraEggPregnancy.renvraEggsMessageHandler(pSpace, arg);
-		else if (pc.hasStatusEffect("Nyrea Eggs Messages Available")) NyreaHuntressPregnancy.nyreaEggsMessageHandler(pSpace, arg);
-		else if (pc.hasStatusEffect("Royal Eggs Messages Available")) RoyalEggPregnancy.royalEggsMessageHandler(pSpace, arg);
+		if (pc.hasStatusEffect("Renvra Eggs Messages Available")) RenvraEggPregnancy.renvraEggsMessageHandler(pSpace, deltaT);
+		else if (pc.hasStatusEffect("Nyrea Eggs Messages Available")) NyreaHuntressPregnancy.nyreaEggsMessageHandler(pSpace, deltaT);
+		else if (pc.hasStatusEffect("Royal Eggs Messages Available")) RoyalEggPregnancy.royalEggsMessageHandler(pSpace, deltaT);
 		
 	}
-	
-	// I named this badly, but this is the secondary pregnancy variant that Renvra has. It's much more complicated, so
-	// all the checking is done at the target callsite.
+
 	renvraMessageHandler();
-	
-	// Extra special handler for Queen of the Deeps pregnancy
+}
+
+public function processQueenOfTheDeepMessageEvents(deltaT:uint, doOut:Boolean):void
+{
 	if (flags["Queen Message Supression"] == undefined)
 	{
-		QueenOfTheDeepPregnancy.queenPregnancyMessages(arg);
+		QueenOfTheDeepPregnancy.queenPregnancyMessages(deltaT);
 	}
 	else
 	{
 		flags["Queen Message Supression"] = undefined;
 	}
+}
 
-	//========== Stuff that gets checked once every time that time passes ===========//
-	//Blue balls removed for not having cock and balls.
-	if(!pc.hasCock() && pc.balls == 0)
+public function processTarkusBombTimerEvents(deltaT:uint, doOut:Boolean):void
+{
+	if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0)
 	{
-		if(pc.hasStatusEffect("Blue Balls")) pc.removeStatusEffect("Blue Balls");
+		flags["TARKUS_BOMB_TIMER"] -= Math.min(deltaT, flags["TARKUS_BOMB_TIMER"]);
+		bombStatusUpdate();
+		
+		if(flags["TARKUS_BOMB_TIMER"] == 0)
+		{
+			if(eventQueue.indexOf(bombExplodes) == -1) eventQueue.push(bombExplodes);
+		}
 	}
-	//Remove Racial Perks No Longer Qualified For
-	racialPerkUpdateCheck();
+}
+
+public function processTime(arg:int):void {
+	var x:int = 0;
+	var msg:String = "";
+	
+	var tightnessChanged:Boolean = false;
 
 	//loop through every minute
 	while(arg > 0) {
 		//Check for shit that happens.
 		//Actually move time!
 		minutes++;
-
-		//Status Effect Updates
-		for (prop in chars) { if(chars[prop].statusSimulate) chars[prop].statusTick(); }
-		pc.statusTick();
-		//AlcoholTic
-		if(pc.hasStatusEffect("Alcohol")) pc.alcoholTic();
-		
-		//Tarkus'splosions
-		if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0)
-		{
-			flags["TARKUS_BOMB_TIMER"]--;
-			bombStatusUpdate();
-			if(flags["TARKUS_BOMB_TIMER"] == 0)
-			{
-				if(eventQueue.indexOf(bombExplodes) == -1) eventQueue.push(bombExplodes);
-			}
-		}
 		
 		// Taivra's Pregnancy - Lasts 1 day until she naturally does away with them.
 		if(flags["TAIVRA_FERTILE"] > 0 && (flags["TAIVRA_FERTILE"] + (24 * 60)) < GetGameTimestamp()) flags["TAIVRA_FERTILE"] = 0;

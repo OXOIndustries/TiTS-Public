@@ -2,6 +2,9 @@ package classes.Characters
 {
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Containers.TimeOutputOptions;
+	import classes.Items.Accessories.LeithaCharm;
+	import classes.RoomClass;
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
 	import classes.ItemSlotClass;
@@ -270,6 +273,16 @@ package classes.Characters
 		override public function getCombatName():String
 		{
 			return "you";
+		}
+		
+		override public function processTime(deltaT:uint, doOut:Boolean):void
+		{	
+			if (!hasCock() && balls == 0 && hasStatusEffect("Blue Balls"))
+			{
+				removeStatusEffect("Blue Balls");
+			}
+			
+			super.processTime(deltaT, doOut);
 		}
 	}
 }
