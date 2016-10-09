@@ -4192,6 +4192,13 @@
 		public function clearSkinFlags(): void {
 			skinFlags = new Array();
 		}
+		public function removeSkinFlag(arg:int):void
+		{
+			if (hasSkinFlag(arg))
+			{
+				skinFlags.splice(skinFlags.indexOf(arg), 1);
+			}
+		}
 		public function hasFaceFlag(arg:int): Boolean {
 			var temp: int = 0;
 			while (temp < faceFlags.length) {
