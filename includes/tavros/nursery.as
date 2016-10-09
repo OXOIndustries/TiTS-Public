@@ -45,9 +45,9 @@ public function reahaAtNursery():Boolean
 
 public function nurseryFoyerFunc():Boolean
 {
-	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals");
+	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals.");
 	if (silly) output(" There’s even a cute little cartoonish cow!");
-	output(". A holo-terminal dominates the western wall, slowly scrolling through reams of digital text - the status of");
+	output(" A holo-terminal dominates the western wall, slowly scrolling through reams of digital text - the status of");
 	var numChildren:int = ChildManager.numChildrenAtNursery();
 	if (ChildManager.numChildren() == 0) output(" the nursery. One glance says it’s waiting and ready for the first of your spawn.");
 	else if (numChildren == 1) output(" your child.");
@@ -697,8 +697,8 @@ public function nurseryBrigetNurseryStaff():void
 		output("\n\nSo scientists and aliens, basically?");
 
 		output("\n\n<i>“Basically,”</i> Briget nods. <i>“Oh, and while we’re quite able to source milk and other foods from corporate sources, I’ve always found that children respond better to a mother’s touch... and nourishment. Of course I am equipped for such functions - I nursed you, after all - but I am still a synthetic, as is my milk.");
-		if (pc.isLactating()) output(" since you’re quite obviously lactating already");
-		else if (pc.isPregnant()) output(" now that you’re pregnant");
+		if (pc.isLactating()) output(" Since you’re quite obviously lactating already");
+		else if (pc.isPregnant()) output(" Now that you’re pregnant");
 		else output(" If you yourself should ever become pregnant");
 		output(", we have a milking station on the second floor which you can use to store some of your milk away for your children. Of course, should you find individuals willing to donate their own natural milk, we would be happy to compensate them for it.”</i>");
 

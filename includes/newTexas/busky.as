@@ -107,7 +107,7 @@ public function buskyStrapsShopFunc():Boolean {
 			if (!pc.isCrotchExposed()) output(" through your clothes");
 			output(", if anybody were to give you a good look over.");
 			
-			output("\n\nThe man at the counter is an Adonis, no muscle on his body undefined, with pectorals the size of throw pillows. The bull's light skin somewhat contrasts his brown hair, within which a pair of fully grown horns sprout, sticking up on either side of his head. Short, dark stubble is visible where a beard could be. Its' hard to miss the outline of his pectorals and abdominals showing through his strained undershirt.");
+			output("\n\nThe man at the counter is an Adonis, no muscle on his body undefined, with pectorals the size of throw pillows. The bull's light skin somewhat contrasts his brown hair, within which a pair of fully grown horns sprout, sticking up on either side of his head. Short, dark stubble is visible where a beard could be. It’s hard to miss the outline of his pectorals and abdominals showing through his strained undershirt.");
 			output("\n\n<i>“So uh... you gonna buy something or just stare?”</i>");
 			output("\n\nThe bull's voice snaps you out of your trance. You stammer for a bit, trying to explain yourself but the bull just laughs it off. He comes out from behind the counter and gives you a friendly slap on the back.");
 			output("\n\n<i>“Name’s Busky. And don’t worry 'bout staring, ain’t no big deal. I'm no stranger to being gawked at, if you want a good view, go on ahead,”</i> the giant bull steps back, giving you a full view of his well defined body.");
@@ -167,7 +167,7 @@ public function buskyAppearance():void {
 	clearOutput();
 	showBusky();
 	
-	output("The hunk standing before you can be summarized with the simple title of <i>“The Beefcake Next Door”</i>, a mixture of playful happy-go-lucky cheer combined with slabs of muscle adorned on his body. His pair of horns is fully grown, possibly around eight inches long, the ivory tusks sticking up on either side of his short, messy brown hair. His hair brings out his sea blue eyes. A light stubble adorns his well defined jawline. He looks as if he hasn't a care in the world, always carrying a relaxed, happy-to-be-there smile.");
+	output("The hunk standing before you can be summarized with the simple title of <i>“The Beefcake Next Door”</i>, a mixture of playful happy-go-lucky cheer combined with slabs of muscle adorned on his body. His pair of horns are fully grown, possibly around eight inches long, the ivory tusks sticking up on either side of his short, messy brown hair. His hair brings out his sea blue eyes. A light stubble adorns his well defined jawline. He looks as if he hasn't a care in the world, always carrying a relaxed, happy-to-be-there smile.");
 	output("\n\nHis torso is hugged tight by the undershirt he’s wearing. The outline of his pectorals and abs are clearly visible through the white cloth, and you can see hints of chest hair peaking out from under his shirt. The male bull seems to work out constantly, as his body and arms are perfectly defined. There is a decent amount of hair on his arms as well. Not enough to pass for fur, but more akin to an unshaven lumberjack.");
 	output("\n\nOn Busky's lower body are two legs that are just as hairy and muscular, ending in regular old human feet. And between those legs, constrained in a brown leather jockstrap, are a quartet of grapefruit sized balls supporting a hefty 20 inch horsecock that is spotted brown at the base, and pink up towards the flare.");
 	output("\n\nBusky has one tight ass, placed exactly where it belongs. Resting above his ass is a standard bovine tail, with a tuft of brown fur at the end.");
@@ -292,7 +292,7 @@ public function buskyTalksAboutTenTonGym():void {
 
 	output("\n\n<i>“Anyway, they've got their credit's worth setting that place up, a whole track strip, competitive lap pools, and more weights than I could have imagined");
 	if (pc.femininity <= 40) output(" and good lord those showers, almost forgot to tell you 'bout them. Honestly, they're really high quality, and they really bring me back to my football years. That place is full of willing Bulls and Faux-Cows, half of the time you can just walk on over, tell them what's up, and you'll be fucking faster than a Varmint chasing after a packet of silicone. I'd pretty much purchased a life pass just for the 'communal experience'.");
-	else output("the whole shebang.”</i>");
+	else output(" the whole shebang.”</i>");
 	
 	processTime(1);
 	

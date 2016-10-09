@@ -1121,12 +1121,12 @@ public function haleyEllieVoyeurEncounter():void
 	output("The moment you open the stall’s door, the heady pheromones smack you in the face like a kick from a horse. Holy <i>shit</i>, you can barely think. Something is drastically different from the last time you were here.");
 	if (pc.hasCock() && !pc.hasVagina()) 
 	{
-		output(" Your [pc.oneCock] is instantly raging hard");
+		output(" [pc.OneCock] is instantly raging hard");
 		if (pc.isCrotchExposed()) output(", straining in the air while pre forms at your tip.");
 		else output(", straining against your [pc.underGarments] while pre forms at your tip.");
 	}
-	if (!pc.hasCock() && pc.hasVagina()) output(" Your [pc.onePussy] is instantly soaking wet, dribbling its eagerness down the insides of your [pc.legs].");
-	if (pc.hasCock() && pc.hasVagina()) output(" Your [pc.oneCock] is instantly raging hard, the pre forming at its tip complementing your [pc.onePussy] dribbling its eagerness down the insides of your [pc.legs].");
+	if (!pc.hasCock() && pc.hasVagina()) output(" [pc.OnePussy] is instantly soaking wet, dribbling its eagerness down the insides of your " + (pc.hasLegs() ? "[pc.legs]" : "[pc.thighs]") + ".");
+	if (pc.hasCock() && pc.hasVagina()) output(" [pc.OneCock] is instantly raging hard, the pre forming at its tip complementing [pc.onePussy] dribbling its eagerness down the insides of your " + (pc.hasLegs() ? "[pc.legs]" : "[pc.thighs]") + ".");
 	pc.lust(50);
 	output(" When you acclimate to the pink fuzz blanketing your brain, you take a proper look inside the stall. There’s two leithans in the room, one being dominantly mounted by the other. It’s Ellie and Haley!");
 	output("\n\nEllie groans loud and low, her lust echoing through the room as Haley slowly squeezes her tits. Little streams of milk leak out between Haley’s fingers, dripping down Ellie’s massive breasts and running down her tummy. Haley squeezes again, harder this time, her fingers cruelly sinking into Ellie’s flesh. Ellie throws her head back and cries out in orgasmic pleasure, rivers of her milk spattering the ground below her. Haley takes the opportunity to kiss her, slowly moving from face to neck as Ellie pants under her.");
