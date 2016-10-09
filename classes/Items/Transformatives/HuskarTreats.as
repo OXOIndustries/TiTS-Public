@@ -112,7 +112,7 @@
 				}
 				else
 				{
-					kGAMECLASS.output(target.cockTypeLockedMessage());
+					kGAMECLASS.output("\n\n" + target.cockTypeLockedMessage());
 				}
 			}
 			//Dick size+ (Max: 12 inches?)
@@ -232,7 +232,7 @@
 						kGAMECLASS.output("\n\nYou feel electric shocks of pleasure spread out from your core and into your [pc.chest], gathering into hot, powerful pulses on your [pc.nipples]. Taking hold of yourself, you feel your flesh pulsing to an unknown rhythm, swelling out and then shrinking in a little, each time getting a little bigger - a little jigglier and more expansive. <b>You have big, DD-cup breasts now; that's about as big as an ausar would get.");
 					}
 				}
-				else kGAMECLASS.output(pc.breastRatingLockedMessage());
+				else kGAMECLASS.output("\n\n" + pc.breastRatingLockedMessage());
 			}
 			//Breasts down to F-cup
 			//**Same as Zil TF, I guess?
@@ -281,7 +281,7 @@
 					pc.addArmFlag(GLOBAL.FLAG_FURRED);
 					changes++;
 				}
-				else kGAMECLASS.output(target.armTypeLockedMessage());
+				else kGAMECLASS.output("\n\n" + target.armTypeLockedMessage());
 			}
 			//Change leg-type to furred (Needs Bipedal legs)
 			if((pc.legType != GLOBAL.TYPE_CANINE || !target.hasLegFlag(GLOBAL.FLAG_FURRED)) && changes < changeLimit && pc.legCount >= 2 && rand(3) == 0 && pc.armType == GLOBAL.TYPE_CANINE)
@@ -296,7 +296,7 @@
 					pc.addLegFlag(GLOBAL.FLAG_PAWS);
 					changes++;
 				}
-				else kGAMECLASS.output(target.legTypeLockedMessage());
+				else kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
 			}
 			//Change leg type to bipedal?
 			if(pc.legCount != 2 && changes < changeLimit && rand(3) == 0 && pc.armType == GLOBAL.TYPE_CANINE)
@@ -321,7 +321,7 @@
 					pc.addLegFlag(GLOBAL.FLAG_PAWS);
 					changes++;
 				}
-				else kGAMECLASS.output(target.legTypeLockedMessage());
+				else kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
 			}
 			//Grow doggy tail -- you know what, fuck you, use the CoC Dogtail growth texts. 
 			if(pc.tailType != GLOBAL.TYPE_CANINE && changes < changeLimit && rand(4) == 0)
@@ -347,7 +347,7 @@
 					pc.addTailFlag(GLOBAL.FLAG_FURRED);
 					changes++;
 				}
-				else kGAMECLASS.output(target.tailTypeLockedMessage());
+				else kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
 			}
 			//Grow wolf ears
 			if(pc.earType != GLOBAL.TYPE_CANINE && changes < changeLimit && rand(4) == 0)
@@ -358,7 +358,7 @@
 					pc.earType = GLOBAL.TYPE_CANINE;
 					changes++;
 				}
-				else kGAMECLASS.output(target.earTypeLockedMessage());
+				else kGAMECLASS.output("\n\n" + target.earTypeLockedMessage());
 			}
 			
 			return changes;
@@ -383,7 +383,7 @@
 					if(target.earLength > 12) target.earLength = 12;
 					changes++;
 				}
-				else output(target.earTypeLockedMessage());
+				else output("\n\n" + target.earTypeLockedMessage());
 			}
 			
 			if (target.hasArmFlag(GLOBAL.FLAG_FURRED) && !target.hasArmFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
