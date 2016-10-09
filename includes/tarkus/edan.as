@@ -670,7 +670,7 @@ public function edanSexFourth():void
 			output("\n\nYou slip into the vest and it tightens around your modest bust, tightening a bit at the sides of your tits to push them inwards and create a crest of cleavage visible to anyone looking. It’s snug around your waist too, but not suffocatingly so.");
 			output("\n\n<i>“I was right. You <i>do</i> look good in it.”</i>");
 		}
-		if ((pc.biggestTitSize() >= 4) && (pc.biggestTitSize() < 12))
+		else if (pc.biggestTitSize() < 12)
 		{
 			output("\n\n<i>“It’ll look great on you. The material is pretty flexible, so it should fit your frame even with tits like yours.”</i>");
 			output("\n\nYou slip into the vest and it tightens around your sizeable bust, tightening a bit at the sides of your tits to push them inwards and create a crest of cleavage visible to anyone looking. It’s snug around your waist too, but not suffocatingly so.");
@@ -742,7 +742,7 @@ public function edanSexFourth():void
 			output("\n\nYou slip into the vest and it tightens around your modest bust, tightening a bit at the sides of your tits to push them inwards and create a crest of cleavage visible to anyone looking. It’s snug around your waist too, but not suffocatingly so.");
 			output("\n\n<i>“I was right. You <i>do</i> look good in it.”</i>");
 		}
-		if ((pc.biggestTitSize() >= 4) && (pc.biggestTitSize() < 12))
+		else if (pc.biggestTitSize() < 12)
 		{
 			output("\n\n<i>“It’ll look great on you. The material is pretty flexible, so it should fit your frame even with tits like yours.”</i>");
 			output("\n\nYou slip into the vest and it tightens around your sizeable bust, tightening a bit at the sides of your tits to push them inwards and create a crest of cleavage visible to anyone looking. It’s snug around your waist too, but not suffocatingly so.");
