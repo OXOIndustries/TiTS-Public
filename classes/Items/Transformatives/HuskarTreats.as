@@ -429,7 +429,7 @@
 			
 			if (target.thickness < 75 && target.thicknessUnlocked(target.thickness + 5) && changes < changeLimit && rand(2) == 0)
 			{
-				output("\n\nA certain heaviness sets into your limbs, a growing sense of slugishness slowing your movements. Your [pc.gear] suddenly feels a little tighter too, you realise. You give yourself a proper once-over and realise you're a little... thicker all around!");
+				output("\n\nA certain heaviness sets into your limbs, a growing sense of slugishness slowing your movements. Your [pc.gear] suddenly feels a little tighter too, you realize. You give yourself a proper once-over and realize you're a little... thicker all around!");
 				
 				target.thickness += 5;
 				if (target.thickness > 75) target.thickness = 75;

@@ -2212,7 +2212,7 @@ public function brihaPantyCollect():void
 	showName("\nPANTIES");
 	author("ASpoopyGhost");
 	flags["BRIHA_PANTY_OFFER"] = 1;
-	output("Hang on a second.... You look down on the ground and notice there’s a piece of fabric on the ground. Leaning down and picking it up, you realise they’re Briha’s panties. Did she leave them behind? They’re pretty standard issue for a military girl; camo t-backs, with a notably wet crotch.");
+	output("Hang on a second.... You look down on the ground and notice there’s a piece of fabric on the ground. Leaning down and picking it up, you realize they’re Briha’s panties. Did she leave them behind? They’re pretty standard issue for a military girl; camo t-backs, with a notably wet crotch.");
 
 	//[Take] [Leave]
 	clearMenu();
@@ -2254,7 +2254,7 @@ public function lysPantyCollect():void
 	author("ASpoopyGhost");
 	showName("\nPANTIES");
 	flags["LYS_PANTY_OFFER"] = 1;
-	output("Hang on a second. You look down on the ground and notice there’s a piece of fabric on the ground. Leaning down and picking it up, you realise they’re Lys’s panties. Did she leave them behind? The black sheer panties are rather alluring and definitely not military issue. You notice they’ve got a noticeably wet crotch.");
+	output("Hang on a second. You look down on the ground and notice there’s a piece of fabric on the ground. Leaning down and picking it up, you realize they’re Lys’s panties. Did she leave them behind? The black sheer panties are rather alluring and definitely not military issue. You notice they’ve got a noticeably wet crotch.");
 	//[Take] [Leave]
 	clearMenu();
 	addButton(0,"Take",takeLysPanties,undefined,"Take","Pick those panties up and keep 'em - they're spoils of war!");
