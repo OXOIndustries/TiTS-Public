@@ -16,6 +16,7 @@ package classes.GameData
 		 */
 		public static function TerminateCombat():void
 		{
+			if (combatContainer) combatContainer.doCombatCleanup();
 			combatContainer = null;
 		}
 		private static var combatContainer:CombatContainer = null;
