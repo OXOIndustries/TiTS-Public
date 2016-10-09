@@ -472,6 +472,14 @@
 					pc.removeStatusEffect("Latex Hair");
 				}
 				
+				//Lose "Regal Mane" Perk:
+				if(pc.hasPerk("Regal Mane") && changes < changeLimit && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nA tingling sensation suddenly rushes through the base of your mane. Like a pile of dying weeds, it quickly droops down and falls off your shoulders. When the feeling subsides, your shoulders seem a bit lighter around the collar. <b>You no longer have the royal-looking mane around your neck.</b>");
+					changes++;
+					pc.removePerk("Regal Mane");
+				}
+				
 				if(changes == 0)
 				{
 					kGAMECLASS.output("\n\nNothing changed. What a rip-off.");

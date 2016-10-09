@@ -460,6 +460,28 @@
 				changes++;
 			}
 			
+			if (
+			(	(target.hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !target.hasPerk("Regal Mane"))
+			||	(target.hasPerk("Regal Mane") && target.perkv1("Regal Mane") != GLOBAL.FLAG_FURRED)
+			) && changes < changeLimit && rand(3) == 0)
+			{
+				if(!target.hasPerk("Regal Mane"))
+				{
+					output("\n\nA tingling sensation spreads from just below your nape, atop your shoulders and across your collar bone. The fluffy ball of fur on your chest vibrates as if it knows what is going on... Suddenly, a wave of [pc.furColor] fur poofs around your neck like a royal mane, the exciting feeling now replaced by something snuggly and warm. <b>You have grown a fluffy collar of fur to accompany the ball on your chest!</b>");
+					
+					// Cosmetic Perk: "Regal Mane"
+					// v1: Mane appearance type (set by global type flag)
+					target.createPerk("Regal Mane", GLOBAL.FLAG_FURRED, 0, 0, 0, "You have an impressive mane bordering your neck.");
+				}
+				else
+				{
+					output("\n\nA tingling sensation suddenly rushes through the base of your mane. Like a pile of dying weeds, it quickly droops down and falls off your shoulders... rapidly being replaced by a newer, furrier and fluffier, [pc.furColor] mane. <b>You now have a fluffy collar of fur around your neck!</b>");
+					
+					target.setPerkValue("Regal Mane", 1, GLOBAL.FLAG_FURRED);
+				}
+				changes++;
+			}
+			
 			return changes;
 		}
 		
@@ -480,14 +502,14 @@
 					if(rand(2) == 0) changeLimit++;
 					if(rand(3) == 0) changeLimit++;
 					if(rand(4) == 0) changeLimit++;
-					if (rand(5) == 0) changeLimit++;
+					if(rand(5) == 0) changeLimit++;
 			
 					changes = ausarStageTFs(target, changeLimit);
 				}
-				else if (target.race().indexOf("ausar") != -1 || target.race() == "half-huskar")
+				else if (target.race().indexOf("ausar") != -1 || target.race().indexOf("huskar") != -1)
 				{
 					if(rand(3) == 0) changeLimit++;
-					if (rand(4) == 0) changeLimit++;
+					if(rand(4) == 0) changeLimit++;
 					
 					changes = huskarStageTFs(target, changeLimit);
 				}

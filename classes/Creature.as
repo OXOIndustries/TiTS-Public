@@ -5189,10 +5189,15 @@
 		}
 		public function hasPartFur(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_FURRED) || hasLegFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FURRED))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_FURRED) || hasLegFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FURRED)
+			||	hasSkinFlag(GLOBAL.FLAG_FLUFFY)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_FURRED
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FURRED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FURRED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_FURRED);
+			if(part == "chest") return hasSkinFlag(GLOBAL.FLAG_FLUFFY);
 			return hasFur();
 		}
 		public function hasPartScales(part:String = "any"):Boolean
@@ -5200,6 +5205,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED)
 			||	InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_SCALED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
@@ -5209,7 +5215,10 @@
 		}
 		public function hasPartChitin(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_CHITINOUS) || hasLegFlag(GLOBAL.FLAG_CHITINOUS) || hasTailFlag(GLOBAL.FLAG_CHITINOUS))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_CHITINOUS) || hasLegFlag(GLOBAL.FLAG_CHITINOUS) || hasTailFlag(GLOBAL.FLAG_CHITINOUS)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_CHITINOUS
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_CHITINOUS);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_CHITINOUS);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_CHITINOUS);
@@ -5217,7 +5226,10 @@
 		}
 		public function hasPartGoo(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_GOOEY) || hasLegFlag(GLOBAL.FLAG_GOOEY) || hasTailFlag(GLOBAL.FLAG_GOOEY))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_GOOEY) || hasLegFlag(GLOBAL.FLAG_GOOEY) || hasTailFlag(GLOBAL.FLAG_GOOEY)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_GOOEY
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_GOOEY);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_GOOEY);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_GOOEY);
@@ -5228,6 +5240,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED)
 			||	InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_FEATHERED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FEATHERED);
@@ -9444,6 +9457,7 @@
 			if (hasArmFlag(GLOBAL.FLAG_FLUFFY)) s++;
 			if (hasLegFlag(GLOBAL.FLAG_FLUFFY)) s++;
 			if (hasSkinFlag(GLOBAL.FLAG_FLUFFY)) s++; // This is what I'm using for the chestfluff
+			if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && perkv1("Regal Mane") == GLOBAL.FLAG_FURRED) s++;
 			if (thickness >= 75) s++;
 			return s;
 		}
