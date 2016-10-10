@@ -340,7 +340,7 @@
 			var value:uint = 0;
 			value += minutes;
 			value += hours * 60;
-			value += days * (24 * 60);
+			value += days * 1440;
 			return value;
 		}
 

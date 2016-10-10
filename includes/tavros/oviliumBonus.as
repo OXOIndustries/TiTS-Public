@@ -230,6 +230,7 @@ public function oviliumPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):
 }
 
 // Remove tracking if no more Ovilium.
+/*
 public function oviliumEffectCheck():void
 {
 	if (!pc.hasStatusEffect("Ovilium")) return;
@@ -241,6 +242,7 @@ public function oviliumEffectCheck():void
 	
 	pc.removeStatusEffect("Ovilium");
 }
+*/
 
 // Egg chooser...
 private function oviliumEggReward(bigEgg:Boolean = false):void

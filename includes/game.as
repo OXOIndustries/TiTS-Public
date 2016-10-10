@@ -41,7 +41,7 @@ public function infiniteItems():Boolean
 	return (debug || flags["INFINITE_ITEMS"] != undefined);
 }
 
-public function logTimeStamp(logColor:String = "words"):String
+public function logTimeStamp(logColor:String = "words", modTimestamp:uint = 0):String
 {
 	// logColor correlates to the CSS colors:
 	// 'words' = white (default - usually for normal stuff)
@@ -50,22 +50,43 @@ public function logTimeStamp(logColor:String = "words"):String
 	// 'caution' = yellow (active alert - usually for mission timers)
 	// 'passive' = purple (passive alert - usually for item changes)
 	
+	var d:int = days;
+	var h:int = hours;
+	var m:int = minutes;
+	
+	if (modTimestamp != 0)
+	{
+		m += modTimestamp;
+		
+		if (m >= 60)
+		{
+			h += m / 60;
+			m = m % 60
+		}
+		
+		if (h >= 24)
+		{
+			d += h / 24;
+			h = h % 24;
+		}
+	}
+	
 	var bufferButt:String = "";
-	bufferButt += "\\\[<span class='" + logColor + "'><b>D: " + days + " T: ";
-	if(hours < 10) bufferButt += String(0) + hours;
-	else bufferButt += String(hours);
+	bufferButt += "\\\[<span class='" + logColor + "'><b>D: " + d + " T: ";
+	if(h < 10) bufferButt += String(0) + h;
+	else bufferButt += String(h);
 	bufferButt += ":";
-	if(minutes < 10) bufferButt += String(0) + minutes;
-	else bufferButt += minutes;
+	if(m < 10) bufferButt += String(0) + m;
+	else bufferButt += m;
 	bufferButt += "</b></span>\\\]";
 	return bufferButt;
 }
 
 // Wrap some newline shit to make eventBuffer more consistent
 // Takes in message (as a whole string of text for that event) and a color (if any).
-public function addToEventBuffer(msg:String, logColor:String):void
+public function addToEventBuffer(msg:String, logColor:String, modTimestamp:uint = 0):void
 {
-	if(msg.length > 0) eventBuffer += "\n\n" + logTimeStamp(logColor) + " " + ParseText(msg);
+	if(msg.length > 0) eventBuffer += "\n\n" + logTimeStamp(logColor, modTimestamp) + " " + ParseText(msg);
 }
 
 public function processEventBuffer():Boolean
@@ -1702,6 +1723,11 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processRenvraMessageEvents(deltaT, doOut);
 	processQueenOfTheDeepMessageEvents(deltaT, doOut);
 	processTarkusBombTimerEvents(deltaT, doOut);
+	processKQ2NukeEvents(deltaT, doOut);
+	processDaneCoordEvents(deltaT, doOut);
+	processTaivrasPregnancyState(deltaT, doOut);
+	processShadePlanetMoves(deltaT, doOut);
+	processGiannaAwolEvents(deltaT, doOut);
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
 	
@@ -1776,6 +1802,61 @@ public function processTarkusBombTimerEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
+public function processTaivrasPregnancyState(deltaT:uint, doOut:Boolean):void
+{
+	if (flags["TAIVRA_FERTILE"] > 0 && (flags["TAIVRA_FERTILE"] + (24 * 60)) < (GetGameTimestamp() + deltaT)) flags["TAIVRA_FERTILE"] = 0;
+}
+
+public function processKQ2NukeEvents(deltaT:uint, doOut:Boolean):void
+{
+	if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined)
+	{
+		// Still there!
+		if (flags["KQ2_QUEST_FINISHED"] == undefined)
+		{
+			if (flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION < GetGameTimestamp() + deltaT)
+			{
+				if(eventQueue.indexOf(kq2NukeBadend) == -1) eventQueue.push(kq2NukeBadend);
+			}
+		}
+		// Left
+		else if (InShipInterior(pc))
+		{
+			flags["KQ2_NUKE_EXPLODED"] = 1;
+			if(eventQueue.indexOf(kq2NukeExplodesLater) == -1) eventQueue.push(kq2NukeExplodesLater);
+		}
+	}
+}
+
+public function processDaneCoordEvents(deltaT:uint, doOut:Boolean):void
+{
+	if (flags["KQ2_MYRELLION_STATE"] == 1)
+	{
+		if (flags["KQ2_DANE_COORDS_TIMER"] != undefined && flags["KQ2_DANE_COORDS_TIMER"] + 2880 < GetGameTimestamp() + deltaT)
+		{
+			if(eventQueue.indexOf(kq2DaneCoordEmail) == -1) eventQueue.push(kq2DaneCoordEmail);
+		}
+	}
+}
+
+public function processShadePlanetMoves(deltaT:uint, doOut:Boolean):void
+{
+	if(flags["KQ2_SHADE_AWAY_TIME"] != undefined)
+	{
+		if(GetGameTimestamp() + deltaT > (flags["KQ2_SHADE_AWAY_TIME"] + (24 * 60)))
+		{
+			if(flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 1) flags["SHADE_ON_UVETO"] = 1;
+			if(flags["SHADE_DISABLED"] == -1) flags["SHADE_DISABLED"] = undefined;
+			flags["KQ2_SHADE_AWAY_TIME"] = undefined;
+		}
+	}
+}
+
+public function processGiannaAwolEvents(deltaT:uint, doOut:Boolean):void
+{
+	if(flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL(-1);
+}
+
 public function processTime(arg:int):void {
 	var x:int = 0;
 	var msg:String = "";
@@ -1788,64 +1869,13 @@ public function processTime(arg:int):void {
 		//Actually move time!
 		minutes++;
 		
-		// Taivra's Pregnancy - Lasts 1 day until she naturally does away with them.
-		if(flags["TAIVRA_FERTILE"] > 0 && (flags["TAIVRA_FERTILE"] + (24 * 60)) < GetGameTimestamp()) flags["TAIVRA_FERTILE"] = 0;
-		
-		if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined)
-		{
-			// Still there!
-			if (flags["KQ2_QUEST_FINISHED"] == undefined)
-			{
-				if (flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION < GetGameTimestamp())
-				{
-					if(eventQueue.indexOf(kq2NukeBadend) == -1) eventQueue.push(kq2NukeBadend);
-				}
-			}
-			// Left
-			else if (InShipInterior(pc))
-			{
-				flags["KQ2_NUKE_EXPLODED"] = 1;
-				if(eventQueue.indexOf(kq2NukeExplodesLater) == -1) eventQueue.push(kq2NukeExplodesLater);
-			}
-		}
-		
-		// Followup for Dane to send coordinates to the player, should the need arise
-		if (flags["KQ2_MYRELLION_STATE"] == 1)
-		{
-			if (flags["KQ2_DANE_COORDS_TIMER"] != undefined && flags["KQ2_DANE_COORDS_TIMER"] + 2880 < GetGameTimestamp())
-			{
-				if(eventQueue.indexOf(kq2DaneCoordEmail) == -1) eventQueue.push(kq2DaneCoordEmail);
-			}
-		}
-		
-		// Moving Shade to Uveto
-		if(flags["KQ2_SHADE_AWAY_TIME"] != undefined)
-		{
-			if(GetGameTimestamp() > (flags["KQ2_SHADE_AWAY_TIME"] + (24 * 60)))
-			{
-				if(flags["SHADE_ON_UVETO"] == undefined || flags["SHADE_ON_UVETO"] < 1) flags["SHADE_ON_UVETO"] = 1;
-				if(flags["SHADE_DISABLED"] == -1) flags["SHADE_DISABLED"] = undefined;
-				flags["KQ2_SHADE_AWAY_TIME"] = undefined;
-			}
-		}
-		
-		// Gianna AWOL timer
-		if(flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL(-1);
-		
-		//Ovilium tracker removal
-		if(pc.hasStatusEffect("Ovilium")) oviliumEffectCheck();
-		//Clippex procs!
-		if(pc.hasStatusEffect("Clippex Gel"))
-		{
-			var clippexTF:Clippex = new Clippex();
-			clippexTF.itemClippexLustIncrease();
-		}
 		//Semen's Friend procs!
 		if(pc.hasStatusEffect("Semen's Candy"))
 		{
 			var semensTF:SemensFriend = new SemensFriend();
 			semensTF.itemSemensFriendLibidoIncrease();
 		}
+		
 		//Cerespirin procs!
 		if(pc.hasStatusEffect("Cerespirin"))
 		{

@@ -16736,12 +16736,13 @@
 						break;
 						
 					case "Clippex Gel":
+						Clippex.ClippexLustIncrease(deltaT, doOut, this, thisStatus);
+						
 						if (requiresRemoval)
 						{
-							var clippexTF:Clippex = new Clippex();
-							if(thisStatus.value2 > 1) clippexTF.itemClippexTFPlus();
-							else clippexTF.itemClippexTF();
+							Clippex.ClippexTF(deltaT, doOut, this, thisStatus); 
 						}
+						
 						break;
 						
 					case "Semen's Candy":
@@ -16967,7 +16968,15 @@
 						{
 							thisStatus.value4 = -2 * 60 - rand(2 * 60);
 							Foxfire.attemptTF(this);
+							break;
 						}
+						
+					case "Ovilium":
+						if (!hasPregnancyOfType("OviliumEggPregnancy"))
+						{
+							requiresRemoval = true;
+						}
+						break;
 				}
 				
 				if (requiresRemoval)
