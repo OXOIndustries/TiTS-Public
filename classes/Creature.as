@@ -16746,27 +16746,26 @@
 						break;
 						
 					case "Semen's Candy":
+						SemensFriend.LibidoIncrease(deltaT, doOut, this, thisStatus);
+						
 						if (requiresRemoval)
 						{
-							var semensTF:SemensFriend = new SemensFriend();
-							if(thisStatus.value2 > 1) semensTF.itemSemensFriendTFPlus();
-							else semensTF.itemSemensFriendTF();
+							SemensFriend.TFProcs(deltaT, doOut, this, thisStatus);
 						}
+						
 						break;
 						
 					case "Cerespirin":
-						if (requiresRemoval)
-						{
-							var plantTF:Cerespirin = new Cerespirin();
-							plantTF.itemEndPlantTF();
-						}
+						// This has been refactored to handle an extra proc round if the effect
+						// expires this update, and the item mechanics treat the end-effect
+						// as just another round of TF
+						Cerespirin.itemPlanetTF(deltaT, doOut, target, effect);
 						break;
 						
 					case "Hair Flower":
 						if (requiresRemoval)
 						{
-							var flowerPower:Cerespirin = new Cerespirin();
-							kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this, thisStatus.value1);
+							kGAMECLASS.eventBuffer += Cerespirin.loseHairFlower(this, thisStatus.value1, maxEffectLength);
 						}
 						break;
 						

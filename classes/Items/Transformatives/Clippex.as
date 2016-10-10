@@ -88,7 +88,7 @@
 		public static function ClippexLustIncrease(deltaT:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
 			// Number of potential lust increases that could occur this update
-			var numProcs:int = Math.floor((deltaT + effect.value4) / 30);
+			var numProcs:int = Math.floor((Math.min(deltaT, effect.minutesLeft) + effect.value4) / 30);
 			var firstProcOffset:int = kGAMECLASS.minutes + (30 - effect.value4);
 			
 			// Remainder of time to next potential proc stashed in v4

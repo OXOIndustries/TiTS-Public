@@ -1728,6 +1728,8 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processTaivrasPregnancyState(deltaT, doOut);
 	processShadePlanetMoves(deltaT, doOut);
 	processGiannaAwolEvents(deltaT, doOut);
+	processTreatmentEvents(deltaT, doOut);
+	varmintDisappearChance(deltaT, doOut);
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
 	
@@ -1857,6 +1859,17 @@ public function processGiannaAwolEvents(deltaT:uint, doOut:Boolean):void
 	if(flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL(-1);
 }
 
+public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
+{
+	if(pc.hasStatusEffect("Treatment Elasticity Report Q'ed"))
+	{
+		//Buttes
+		if(pc.statusEffectv1("Treatment Elasticity Report Q'ed") == 1) treatedVagNote(true);
+		//Cooters
+		else treatedVagNote(false);
+	}
+}
+
 public function processTime(arg:int):void {
 	var x:int = 0;
 	var msg:String = "";
@@ -1869,29 +1882,6 @@ public function processTime(arg:int):void {
 		//Actually move time!
 		minutes++;
 		
-		//Semen's Friend procs!
-		if(pc.hasStatusEffect("Semen's Candy"))
-		{
-			var semensTF:SemensFriend = new SemensFriend();
-			semensTF.itemSemensFriendLibidoIncrease();
-		}
-		
-		//Cerespirin procs!
-		if(pc.hasStatusEffect("Cerespirin"))
-		{
-			var plantTF:Cerespirin = new Cerespirin();
-			plantTF.itemPlantTF();
-		}
-		//Treatment display shit
-		if(pc.hasStatusEffect("Treatment Elasticity Report Q'ed"))
-		{
-			//Buttes
-			if(pc.statusEffectv1("Treatment Elasticity Report Q'ed") == 1) treatedVagNote(true);
-			//Cooters
-			else treatedVagNote(false);
-		}
-		// Wild varmint run away!
-		varmintDisappearChance();
 		//Kiro stuff
 		if(flags["KIRO_BAR_MET"] != undefined)
 		{
