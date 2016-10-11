@@ -31,17 +31,24 @@ package classes.GameData.Pregnancy
 			if(mRace != "" && cRace != "" && mRace != cRace) newRace = (mRace + "-" + mRace + " hybrid");
 			else newRace = cRace;
 			
+			// Insert special cases here!
+			if(newRace.indexOf("robot-") != -1 || newRace.indexOf("-robot") != -1) newRace = "cyborg";
+			if(newRace == "") newRace = "NOT SET";
+			
 			return newRace;
 		}
-		private function stripRace(race:String = ""):String
+		private function stripRace(sRace:String = ""):String
 		{
-			if(race.indexOf("half-") != -1) race = race.replace("half-", "");
-			if(race.indexOf("half ") != -1) race = race.replace("half ", "");
-			if(race.indexOf("-morph") != -1) race = race.replace("-morph", "");
-			if(race.indexOf(" morph") != -1) race = race.replace(" morph", "");
-			if(race.indexOf("-taur") != -1) race = race.replace("-taur", "");
+			if(sRace.indexOf("half-") != -1) sRace = sRace.replace("half-", "");
+			if(sRace.indexOf("half ") != -1) sRace = sRace.replace("half ", "");
+			if(sRace.indexOf("-morph") != -1) sRace = sRace.replace("-morph", "");
+			if(sRace.indexOf(" morph") != -1) sRace = sRace.replace(" morph", "");
+			if(sRace.indexOf("-hybrid") != -1) sRace = sRace.replace("-hybrid", "");
+			if(sRace.indexOf(" hybrid") != -1) sRace = sRace.replace(" hybrid", "");
+			if(sRace.indexOf("-taur") != -1) sRace = sRace.replace("-taur", "");
+			if(sRace.indexOf("NOT SET") != -1) sRace = "";
 			
-			return race;
+			return sRace;
 		}
 		
 		override public function GetSaveObject():Object
