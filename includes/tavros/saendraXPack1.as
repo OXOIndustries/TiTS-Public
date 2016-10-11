@@ -77,19 +77,19 @@ public function unlockSaendraXPackMail():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function updateSaendraXPackTimer(delta:Number = 0):void
+public function updateSaendraXPackTimer(deltaT:Number = 0):void
 {
 	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 5)
 	{
-		flags["SAENDRA_XPACK1_TIMER"] += delta;
+		flags["SAENDRA_XPACK1_TIMER"] += deltaT;
 
 		// Making it to the elevator on time
-		if (flags["SAENDRA_XPACK1_STATUS"] == 1 && GetGameTimestamp() >= flags["SAENDRA_XPACK1_TIMER"] + (6 * 60))
+		if (flags["SAENDRA_XPACK1_STATUS"] == 1 && (GetGameTimestamp() + deltaT) >= flags["SAENDRA_XPACK1_TIMER"] + (6 * 60))
 		{
 			flags["SAENDRA_XPACK1_STATUS"] = 2; // failed, rip you
 		}
 
-		if (flags["SAENDRA_XPACK1_STATUS"] == 5 && GetGameTimestamp() >= flags["SAENDRA_XPACK1_TIMER"] + (7 * 24 * 60))
+		if (flags["SAENDRA_XPACK1_STATUS"] == 5 && (GetGameTimestamp() + deltaT) >= flags["SAENDRA_XPACK1_TIMER"] + (7 * 24 * 60))
 		{
 			flags["SAENDRA_XPACK1_STATUS"] = 6;
 		}

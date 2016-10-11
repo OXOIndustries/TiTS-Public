@@ -1715,7 +1715,7 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 {
 	for (var prop:String in chars)
 	{
-		chars[prop].processTime(deltaT);
+		chars[prop].processTime(deltaT, doOut);
 	}
 	
 	PregnancyManager.updatePregnancyStages(chars, deltaT);
@@ -1729,6 +1729,8 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processShadePlanetMoves(deltaT, doOut);
 	processGiannaAwolEvents(deltaT, doOut);
 	processTreatmentEvents(deltaT, doOut);
+	processKiroBarEvents(deltaT, doOut);
+	processSaendraEvents(deltaT, doOut);
 	varmintDisappearChance(deltaT, doOut);
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
@@ -1870,6 +1872,46 @@ public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
+public function processKiroBarEvents(deltaT:uint, doOut:Boolean):void
+{
+	//Kiro stuff
+	if(flags["KIRO_BAR_MET"] != undefined)
+	{
+		var totalHours:int = ((minutes + deltaT) / 60);
+		
+		if (totalHours >= 1)
+		{
+			kiro.ballSizeRaw += totalHours;
+			
+			if (kiro.ballDiameter() > 20)
+			{
+				// original was rand(200) < ballSize per hour, ergo 10% per hour
+				// => (200 - ballSize) in 200 per hour
+				// => 1 - ((180 / 200) ^ 1) == 0.1 == 10%
+				// => 1 - ((200 - ballSize / 200) ^ hours)
+				
+				var orgProb:Number = Math.round((1 - Math.pow(((200 - kiro.ballDiameter()) / 200), totalHours)) * 1000);
+				if (rand(1000) < orgProb) kiro.orgasm();
+			}
+		}
+		
+		//Kiro's disabled timer!
+		if(flags["KIRO_DISABLED_MINUTES"] != undefined)
+		{
+			flags["KIRO_DISABLED_MINUTES"] -= deltaT;
+			if(flags["KIRO_DISABLED_MINUTES"] <= 0) flags["KIRO_DISABLED_MINUTES"] = undefined;
+		}
+	}
+}
+
+public function processSaendraEvents(deltaT:uint, doOut:Boolean):void
+{
+	if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 5)
+	{
+		updateSaendraXPackTimer(deltaT);
+	}
+}
+
 public function processTime(arg:int):void {
 	var x:int = 0;
 	var msg:String = "";
@@ -1882,30 +1924,9 @@ public function processTime(arg:int):void {
 		//Actually move time!
 		minutes++;
 		
-		//Kiro stuff
-		if(flags["KIRO_BAR_MET"] != undefined)
-		{
-			if (minutes >= 60) 
-			{
-				kiro.ballSizeRaw++;
-				//Ball despunkification!
-				if(kiro.ballDiameter() > 20)
-				{
-					if(rand(200) < kiro.ballDiameter()) kiro.orgasm();
-				}
-			}
-			//Kiro's disabled timer!
-			if(flags["KIRO_DISABLED_MINUTES"] != undefined)
-			{
-				flags["KIRO_DISABLED_MINUTES"]--;
-				if(flags["KIRO_DISABLED_MINUTES"] <= 0) flags["KIRO_DISABLED_MINUTES"] = undefined;
-			}
-		}
+
 		//Saendra's X-Pack Timer
-		if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 5)
-		{
-			updateSaendraXPackTimer();
-		}
+
 		//Tick hours!
 		if (minutes >= 60) {
 			
