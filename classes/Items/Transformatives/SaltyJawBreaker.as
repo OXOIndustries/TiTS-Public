@@ -20,14 +20,14 @@ package classes.Items.Transformatives {
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.PILL;
 			
 			shortName = "JawBreakr";
-			longName = "Salty Jaw-breakers";
+			longName = "Salty Jaw-Breaker";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a salty jaw-breaker";
+			description = "a salty Jaw-Breaker";
 			
 			tooltip = "This obnoxiously large jaw-breaker contains a hard mixture of sugar, hormones, and microsurgeons that will refill the consumer's masculine reproductive organs nigh-instantly.";
 			
@@ -50,6 +50,8 @@ package classes.Items.Transformatives {
 				if (!target.hasCock() && target.balls == 0) output(" Still, you")
 				else output(" You"); 
 				output(" suck on it for several minutes, savoring the flavor while it slowly melts into a small bit. When it's dissolved into a manageable size, you promptly swallow it, and it quickly settles in your stomach.");
+				
+				target.energy(5);
 				
 				//if player has external balls
 				if(target.balls > 0) {

@@ -24,6 +24,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "crystalline shopkeep";
+			originalRace = "ganrael";
 			
 			this.inventory.push(new CrystalShard());
 			this.inventory.push(new FungalExtract());

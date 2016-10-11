@@ -34,7 +34,7 @@ public function liftMove(destination:String):void
 
 public function hangarBonus():Boolean 
 {
-	output("You’re within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere’s a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant and residential levels.");
+	output("You’re within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere’s a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant, residential, and nursery levels.");
 	
 	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
 	{
@@ -107,14 +107,7 @@ public function merchantThoroughfareBonus():void
 {
 	if(currentLocation == "9018")
 	{
-		if(pc.hasStatusEffect("Dark Chrysalis Closed")) {
-			output("\n\nThe Dark Chrysalis is closed. Even its “Doing a Slut” sign is dark. You suspect its proprietor is sleeping off a heavy hangover. ");
-			flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
-		}
-		else {
-			output("\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east. ");
-			flags["NAV_DISABLED"] = undefined;
-		}
+		darkChrysalisStorefront();
 		output("\n\nTo the west, you see a brightly-lit shop labeled as “Fur Effect.”");
 	}
 	else flags["NAV_DISABLED"] = undefined;

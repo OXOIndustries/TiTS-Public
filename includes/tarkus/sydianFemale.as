@@ -49,11 +49,14 @@ public function encounterFemaleSydian():void
 
 		output("\n\n<i>“How rude,”</i> the woman says. She skitters toward you, and you prepare for the fight!");
 	}
+	
+	CodexManager.unlockEntry("Sydians");
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.victoryScene(sydianFemalePCVictory);
 	CombatManager.lossScene(sydianFemalePCLoss);
+	CombatManager.displayLocation("SYDIAN (F)");
 	
 	clearMenu();
 	addButton(0, "Fight!", CombatManager.beginCombat);
@@ -1512,9 +1515,10 @@ public function sydianPregnancyEnds():void
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
+	var babym:Boolean = (se.value4 == 1 ? false : true);
 	
 	output("Pain in your gut bends you over and fluid spills");
-	if (!pc.isNude()) output(" into your [pc.lowerUndergarment]");
+	if (!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
 	else if (InShipInterior()) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Oh god, the baby is coming...");
@@ -1541,23 +1545,12 @@ public function sydianPregnancyEnds():void
 		output("\n\nGroaning at the timing, you shed your [pc.gear] and seat yourself among the inhospitable and non-hospital-able terrain. The wish that you'd stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there's no help for it -- you'll have to deliver the baby on your own.");
 	}
 
-	output("\n\nSpasms wrack your pregnant body for the next hour as it works the baby free. During the frenzy you operate mostly on biological autopilot, but glimpse a few details of your new little miracle. The baby drops ");
-	if (rand(10) == 0) output(" head");
-	else output(" feet");
-	output("-first, noodling its way out");
+	output("\n\nSpasms wrack your pregnant body for the next hour as it works the baby free. During the frenzy you operate mostly on biological autopilot, but glimpse a few details of your new little miracle. The baby drops " + (rand(10) == 0 ? " head" : " feet") + "-first, noodling its way out");
 	if (pc.vaginas[pregSlot].looseness() >= 4) output(" easily");
 	else output(" in a protracted battle with your tight vagina");
 	output(", and the placenta follows.");
 
-	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It's a");
-	var babym:Boolean = false;
-	if (rand(2) == 0)
-	{
-		babym = true;
-		output(" boy");
-	}
-	else output(" girl");
-	output("! A fuzz of");
+	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It's a " + (babym  ? "boy" : "girl") + "! A fuzz of");
 	if (rand(10) == 0) output(" green");
 	else if (rand(10) == 0) output(" reddish-orange");
 	else output(" brown ");

@@ -6,14 +6,6 @@ package classes.Characters
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Guns.SalamanderRifle;
-	import classes.Items.Guns.SalamanderPistol;
-	import classes.Items.Melee.VampBlade;
-	import classes.Items.Melee.LavaSaber;
-	import classes.Items.Melee.Jolthammer;
-	import classes.Items.Protection.SalamanderShield;
-	import classes.Items.Protection.OzoneAegis;
-	import classes.Items.Accessories.SalamanderDuster;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -28,6 +20,7 @@ package classes.Characters
 			fluidSimulate = true;
 			//statusSimulate = true;
 			this.short = "Ilaria";
+			originalRace = "ausar";
 			
 			this.femininity = 85;
 

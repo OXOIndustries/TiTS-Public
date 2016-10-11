@@ -20,6 +20,7 @@ package classes.Characters
 			_neverSerialize = true;
 			
 			short = "Petr";
+			originalRace = "human";
 			
 			inventory.push(new BaggySwimShorts());
 			inventory.push(new MaleThong());

@@ -29,6 +29,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Inessa";
+			originalRace = "saeri";
 			
 			this.inventory.push(new SukMastr());
 			this.inventory.push(new HoverHole());

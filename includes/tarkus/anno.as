@@ -179,11 +179,12 @@ public function didAnnoyKnowYourDad():void
 	//If PC is male:
 	if(pc.hasCock())
 	{
-		output("\n\nAnno turns to you, chewing the tips of her stylus as she regards you again. <i>“You've got a big pair of shoes to fill, " + pc.mf("Mr.","Mrs.") + " Steele, but ");
+		output("\n\nAnno turns to you, chewing the tips of her stylus as she regards you again. <i>“You've got a big pair of shoes to fill, " + pc.mf("Mr.","Ms.") + " Steele, but ");
 		//if small dick:
-		if(pc.biggestCockVolume() < 150) output("I think, with a lot of work and skill, you might just be able to fill them.");
+		if(pc.biggestCockVolume() < 25) output("I think, with a lot of work and skill, you might just be able to fill them.");
 		//if PC has a big dick: 
-		else if(pc.biggestCockVolume() <= 1000) output("I think you'll make Victor proud.");
+		else if(pc.biggestCockVolume() <= 150) output("I think you'll make Victor proud.");
+		//if Megaschlong ACTIVATE:
 		else output("a guy like you might just surpass him. I've got a good feeling about you!");
 		output(" But that's just my two creds.”</i>");
 	}
@@ -193,8 +194,10 @@ public function didAnnoyKnowYourDad():void
 		output("\n\nAnno turns to you, chewing the tips of her stylus as she regards you again. <i>“For what it's worth, I think Steele Tech could use a woman's touch. ");
 		//if PC has small tits:
 		if(pc.biggestTitSize() < 4) output("Put a lot of elbow grease into it, and I think you're just the kind of gal we need to get back on track!");
+		//if decent tits:
 		else if(pc.biggestTitSize() < 10) output("You look like you have what it takes to fill your dad's shoes, if you don't mind me saying so.");
-		else output("You've definitely got what it takes to lead, though. I can see it a mile away, Ms. Steele.");
+		//if mega boobs:
+		else output("You've definitely got what it takes to lead, though. I can see it a mile away, " + pc.mf("Mr.","Ms.") + " Steele.");
 		output("”</i>");
 	}
 	processTime(5);
@@ -1017,7 +1020,7 @@ public function anyoneSpecial():void
 	output("”</i>");
 	clearMenu();
 	addButton(0,"Threeway",threeWayAnno,undefined,"Threeway","Ask her if she's up for threeways sometime.");
-	//[Leave] [Threeway?]  If NotSex'd & PC is girl: [Into Girls?] PC is shemale/futa: [Into Dickgirls?]
+	//[Leave] [Threeway?] If NotSex'd & PC is girl: [Into Girls?] PC is shemale/futa: [Into Dickgirls?]
 	//If NotSex'd & PC is girl: [Into Girls?]
 	if(pc.hasVagina() && !pc.hasCock() && annoSexed() == 0)
 	{

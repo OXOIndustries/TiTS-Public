@@ -30,7 +30,7 @@ package classes.Characters
 			this._neverSerialize = true;
 			
 			this.short = "Amara";
-			this.originalRace = "human";
+			this.originalRace = "ausar";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "Amara Faell, a Dread Lord of the Black Void. She's clad in sleek, heavy black power armor that protects her from the neck down. She's got a crash helmet on, leaving her face guarded only by floating holographic displays and shields. Curly red hair spills out from under her helm, a stark contrast to blue-painted lips and emerald green eyes. She's packing a massive chaingun in one hand, supported by her powered suit's superhuman strength. In the other, she wields a flamethrower strapped to the wrist, projecting a constant flicker of flame between bursts. ";

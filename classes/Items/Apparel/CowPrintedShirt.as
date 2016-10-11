@@ -21,12 +21,12 @@
 			this.shortName = "CowShirt";
 			
 			//Regular name
-			this.longName = "cow-printed shirt";
+			this.longName = "cow-print shirt";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a cow-printed shirt";
+			this.description = "a cow-print shirt";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This white shirt with a black spot pattern made for New Texans proudly pays homage to their heritage. Its tightness pronounces the exaggerated musculature and mammaries of the average New Texan, while looking loose on almost everybody else. Perfect to show off the full effects of the Treatment.";

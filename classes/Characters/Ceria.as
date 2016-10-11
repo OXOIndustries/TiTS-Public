@@ -16,6 +16,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Ceria";
+			originalRace = "human";
 			
 			this.inventory.push(new Sylvanol());
 			//this.inventory.push(new ());

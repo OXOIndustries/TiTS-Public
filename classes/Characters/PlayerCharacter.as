@@ -86,20 +86,8 @@ package classes.Characters
 		
 		override public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
-			if(milkFrom != null)
-			{
-				if(milkFrom.milkType == GLOBAL.FLUID_TYPE_MILK) energy(20);
-				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) 
-				{
-					energy(25);
-					modThickness(1,false);
-				}
-				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_HONEY || milkFrom.milkType == GLOBAL.FLUID_TYPE_NECTAR) 
-				{
-					energy(30);
-				}
-				else energy(10);
-			}
+			if(milkFrom != null) fluidInMouthEffects(milkFrom, milkFrom.milkType, milkFrom.lactationQ(), "milk");
+			
 			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
@@ -121,6 +109,8 @@ package classes.Characters
 		
 		override public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
+			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.girlCumType, cumFrom.girlCumQ(), "girl-cum");
+			
 			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
@@ -142,6 +132,8 @@ package classes.Characters
 		
 		override public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
+			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.cumType, cumFrom.cumQ(), "cum");
+			
 			kGAMECLASS.mimbraneFeed("face");
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
@@ -196,6 +188,68 @@ package classes.Characters
 			}
 			
 			return false;
+		}
+		
+		// For swallowing liquids!
+		private function fluidInMouthEffects(fluidFrom:Creature = null, fluidType:int = -1, fluidQ:Number = 0, fluidSource:String = "none"):void
+		{
+			if(fluidQ <= 0) return;
+			
+			var fxMult:int = 1;
+			// Increase effect magnitude by every liter consumed
+			if(fluidQ > 1000) fxMult += Math.round((fluidQ - 1000) / 1000);
+			
+			// Natural source bonuses
+			switch(fluidSource)
+			{
+				case "milk":
+					energy(10 * fxMult);
+					if(fluidFrom.hasPerk("Treated Milk")) energy(10 * fxMult);
+					if(fluidType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) modThickness((1 * fxMult), false);
+					break;
+				case "cum":
+					/* Nothing yet! */
+					break;
+				case "girl-cum":
+					/* Nothing yet! */
+					break;
+			}
+			
+			// Energy effects
+			switch(fluidType)
+			{
+				case GLOBAL.FLUID_TYPE_MILK:
+				case GLOBAL.FLUID_TYPE_EGGNOG:
+					energy(10 * fxMult);
+					break;
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+				case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
+				case GLOBAL.FLUID_TYPE_VANILLA:
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_CUM:
+				case GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT:
+				case GLOBAL.FLUID_TYPE_FRUIT_CUM:
+				case GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM:
+				case GLOBAL.FLUID_TYPE_PEPPERMINT:
+					energy(15 * fxMult);
+					break;
+				case GLOBAL.FLUID_TYPE_HONEY:
+				case GLOBAL.FLUID_TYPE_NECTAR:
+				case GLOBAL.FLUID_TYPE_MILKSAP:
+				case GLOBAL.FLUID_TYPE_CUMSAP:
+					energy(20 * fxMult);
+					break;
+			}
+			
+			// Alcoholic content
+			switch(fluidType)
+			{
+				case GLOBAL.FLUID_TYPE_LEITHAN_MILK:
+					imbibeAlcohol(10 * fxMult);
+					break;
+				case GLOBAL.FLUID_TYPE_EGGNOG:
+					imbibeAlcohol(5 * fxMult);
+					break;
+			}
 		}
 		
 		public var ShipStorageInventory:Array = [];

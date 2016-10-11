@@ -21,6 +21,7 @@
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.HorsePill;
+	import classes.Items.Miscellaneous.Priapin;
 	import classes.Items.Miscellaneous.Cargobot;
 	import classes.Items.Transformatives.Cerespirin;
 	import classes.Items.Transformatives.Clippex;
@@ -3534,7 +3535,10 @@
 				}
 			}
 
-			var currReflexes:int = reflexesRaw + reflexesMod;
+			var bonus:int = 0;
+			bonus += statusEffectv1("Sera Spawn Reflex Mod");
+
+			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
 
 			//Debuffs!
 			if (hasStatusEffect("Tripped")) currReflexes -= 4;
@@ -3724,6 +3728,7 @@
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
 			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
 			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
+			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			
 			if (currLib > libidoMax())
 			{
@@ -3760,6 +3765,7 @@
 			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
+			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
@@ -4192,6 +4198,13 @@
 		}
 		public function clearSkinFlags(): void {
 			skinFlags = new Array();
+		}
+		public function removeSkinFlag(arg:int):void
+		{
+			if (hasSkinFlag(arg))
+			{
+				skinFlags.splice(skinFlags.indexOf(arg), 1);
+			}
 		}
 		public function hasFaceFlag(arg:int): Boolean {
 			var temp: int = 0;
@@ -5190,10 +5203,15 @@
 		}
 		public function hasPartFur(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_FURRED) || hasLegFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FURRED))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_FURRED) || hasLegFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FURRED)
+			||	hasSkinFlag(GLOBAL.FLAG_FLUFFY)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_FURRED
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FURRED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FURRED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_FURRED);
+			if(part == "chest") return hasSkinFlag(GLOBAL.FLAG_FLUFFY);
 			return hasFur();
 		}
 		public function hasPartScales(part:String = "any"):Boolean
@@ -5201,6 +5219,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED)
 			||	InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_SCALED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
@@ -5210,7 +5229,10 @@
 		}
 		public function hasPartChitin(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_CHITINOUS) || hasLegFlag(GLOBAL.FLAG_CHITINOUS) || hasTailFlag(GLOBAL.FLAG_CHITINOUS))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_CHITINOUS) || hasLegFlag(GLOBAL.FLAG_CHITINOUS) || hasTailFlag(GLOBAL.FLAG_CHITINOUS)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_CHITINOUS
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_CHITINOUS);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_CHITINOUS);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_CHITINOUS);
@@ -5218,7 +5240,10 @@
 		}
 		public function hasPartGoo(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_GOOEY) || hasLegFlag(GLOBAL.FLAG_GOOEY) || hasTailFlag(GLOBAL.FLAG_GOOEY))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_GOOEY) || hasLegFlag(GLOBAL.FLAG_GOOEY) || hasTailFlag(GLOBAL.FLAG_GOOEY)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_GOOEY
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_GOOEY);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_GOOEY);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_GOOEY);
@@ -5229,6 +5254,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED)
 			||	InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_FEATHERED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FEATHERED);
@@ -7676,15 +7702,12 @@
 		// Nipple type checks
 		public function hasNipplesofType(arg:int = -1, rowNum:int = -1): Boolean
 		{
-			if (rowNum >= 0)
-			{
-				if (breastRows[rowNum].nippleType == arg) return true;
-				return false;
-			}
+			if (rowNum >= 0) return (breastRows[rowNum].nippleType == arg);
 			
 			var counter: Number = breastRows.length;
 			var index: Number = 0;
-			while (counter > 0) {
+			while (counter > 0)
+			{
 				counter--;
 				if (breastRows[counter].nippleType == arg) return true;
 			}
@@ -7752,6 +7775,19 @@
 				}
 			}
 			return true;
+		}
+		public function hasErectNipples(rowNum:int = -1, lustBased:Boolean = false):Boolean
+		{
+			// Can nips get hard?
+			var erectNips:Boolean = (hasNormalNipples(rowNum) || hasNippleCocks(rowNum) || hasInvertedNipples(rowNum) || hasTentacleNipples(rowNum));
+			
+			// Arousal check
+			if(lustBased)
+			{
+				if(lust() < 33) erectNips = false;
+			}
+			
+			return erectNips;
 		}
 		// Nipple hardening verbs
 		public function nipplesErect(rowNum:int = 0, present:Boolean = false):String
@@ -8185,6 +8221,7 @@
 		{
 			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
 			var bonus:Number = perkv1("Potent");
+			if (hasStatusEffect("Priapin")) bonus += statusEffectv2("Priapin");
 			multi += bonus;
 			if (multi < 0) return 0;
 			return multi;
@@ -9454,6 +9491,7 @@
 			if (hasArmFlag(GLOBAL.FLAG_FLUFFY)) s++;
 			if (hasLegFlag(GLOBAL.FLAG_FLUFFY)) s++;
 			if (hasSkinFlag(GLOBAL.FLAG_FLUFFY)) s++; // This is what I'm using for the chestfluff
+			if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && perkv1("Regal Mane") == GLOBAL.FLAG_FURRED) s++;
 			if (thickness >= 75) s++;
 			return s;
 		}
@@ -14631,20 +14669,6 @@
 		}
 		public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
-			if(milkFrom != null)
-			{
-				if(milkFrom.milkType == GLOBAL.FLUID_TYPE_MILK) energy(20);
-				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) 
-				{
-					energy(25);
-					modThickness(1,false);
-				}
-				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_HONEY || milkFrom.milkType == GLOBAL.FLUID_TYPE_NECTAR) 
-				{
-					energy(30);
-				}
-				else energy(10);
-			}
 			return false;
 		}
 		public function girlCumInMouth(cumFrom:Creature = null):Boolean
@@ -14752,6 +14776,7 @@
 		{
 			var bonus:Number = 0;
 			if(hasPerk("Virile")) bonus += perkv1("Virile");
+			if(hasStatusEffect("Priapin")) bonus += statusEffectv1("Priapin");
 			return (cumQualityRaw + cumQualityMod + bonus);
 		}
 		
@@ -14762,7 +14787,10 @@
 		 */
 		public function virility():Number
 		{
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks")) return 0;
+			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks"))
+			{
+				if (hasPerk("Infertile") || !hasStatusEffect("Priapin")) return 0;
+			}
 			
 			return cumQuality();
 		}

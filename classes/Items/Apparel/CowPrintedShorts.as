@@ -19,12 +19,12 @@
 			this.shortName = "CowShorts";
 			
 			//Regular name
-			this.longName = "cow-printed pair of shorts";
+			this.longName = "cow-print shorts";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a cow-printed pair of shorts";
+			this.description = "a pair of cow-print shorts";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "These cow print shorts are made from a firm fabric that tightly grips the rump. A large bulge pouch emphasizes the wearer's package for any would-be admirers.";
@@ -41,6 +41,8 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
+			
+			itemFlags = [GLOBAL.ITEM_FLAG_SWIMWEAR];
 			
 			this.version = _latestVersion;
 		}

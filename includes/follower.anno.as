@@ -3780,13 +3780,13 @@ public function dragonGurlAnnoThreesome():void
 		output("\n\nA minute later and you’re back-to-back with Anno, grinding your asses together around a throbbing shaft of drake-cock. The gryvain girl bucks her hips against you, sprawled out on her wings and groping at her breasts. She can’t take it for long; with a feral roar, she grabs you and Anno and shoves you both ass-up into the bed, and you feel a rock-hard cock slamming into your spit-lubed hole. She takes turns switching between you and your lover, grinding your groins together so she can easily switch from packing Anno’s pussy to stretching your [pc.vagOrAss] around her bulbous member.");
 		if(pc.hasVagina()) pc.cuntChange(0,100);
 		else pc.buttChange(100);
-		output("\n\nYour orgasm is as inevitable as it is intense, caught between bucking dragon-girl and the slutty, panting ausar clinging to you as she rides out her own climax - the latest of several, if the blissed-out look on Anno’s face is any indication. That, and the musky swamp of fem-cum spreading between her thighs, mixing with the gryvain-girl’s seed when she pulls out and blasts a creamy load across Anno’s up-turned asscheeks.");
-		if(pc.hasCock())
-		{
-			output(" You join her a moment later, pumping a thick wad of your own seed into the dragoness’s pussy");
-			if(pc.cumQ() > 25) output(" and a second straight upwards, popping out and letting your ausar-milked load splatter across the gryvain’s hefty rack, and rain back down over Anno’s back");
-			output(".");
-		}
+	}
+	output("\n\nYour orgasm is as inevitable as it is intense, caught between bucking dragon-girl and the slutty, panting ausar clinging to you as she rides out her own climax - the latest of several, if the blissed-out look on Anno’s face is any indication. That, and the musky swamp of fem-cum spreading between her thighs, mixing with the gryvain-girl’s seed when she pulls out and blasts a creamy load across Anno’s up-turned asscheeks.");
+	if(pc.hasCock())
+	{
+		output(" You join her a moment later, pumping a thick wad of your own seed into the dragoness’s pussy");
+		if(pc.cumQ() > 25) output(" and a second straight upwards, " + (x >= 0 ? "popping out and letting your ausar-milked" : "letting your") + " load splatter across the gryvain’s hefty rack, and rain back down over Anno’s back");
+		output(".");
 	}
 	output("\n\nWith a contented sigh, Anno flops down bonelessly on top of you, tracing kisses along your [pc.chest] until the gryvain girl snuggles up against you, drooling cum and breathing hard. You scoop her up in an arm and pull her close, enjoying the feeling of two busty, sultry ladies cuddling up. The smells of sex and sweat hang heavy in the air as you let exhaustion and contentment take you, drifting off to sleep in their arms...");
 
@@ -3812,6 +3812,7 @@ public function annoXGedanThreesomeEpilogue():void
 	else output("T");
 	output("otally.");
 	processTime(600+rand(400));
+	restHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

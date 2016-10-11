@@ -20,7 +20,7 @@
 			this._neverSerialize = false;
 			
 			this.short = "Renvra";
-			this.originalRace = "half-nyrea";
+			this.originalRace = "myr-nyrea hybrid";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "";

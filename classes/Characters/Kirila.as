@@ -23,6 +23,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Kirila";
+			originalRace = "spinarran";
 			this.keeperBuy = "";
 			this.keeperSell = "";
 			//this.inventory.push(new PlasmaBore());

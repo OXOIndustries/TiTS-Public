@@ -558,6 +558,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "EggTrainerFauxPreg": output2(" Egg Trainer"); break;
 						case "PsychicTentacles": output2(" Psychic Tentacle Beast"); break;
 						case "SydianPregnancy": output2(" Sydian"); break;
+						case "SeraSpawnPregnancy": output2(" Sera"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -861,6 +862,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Psychic Tentacle Beasts:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children:</b> " + StatTracking.getStat("pregnancy/renvra kids"));
+				if(StatTracking.getStat("pregnancy/sera kids") > 0)
+					output2("\n<b>* Births, Sera’s Children:</b> " + StatTracking.getStat("pregnancy/sera kids"));
 				if(StatTracking.getStat("pregnancy/sydian births") > 0)
 					output2("\n<b>* Births, Sydian Young:</b> " + StatTracking.getStat("pregnancy/sydian births"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
@@ -1106,38 +1109,70 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 }
 
 // Prettify Minutes!
-public function prettifyMinutes(minutes:Number):String
+public function prettifyMinutes(nMinutes:Number, toDate:Boolean = false):String
 {
-	var buffer:String = "";
-	var hours:Number = 0;
-	var days:Number = 0;
+	var retStr:String = "";
+	var nHours:Number = 0;
+	var nDays:Number = 0;
 	//Days
-	if(minutes > 1440) 
+	if(nMinutes > 1440) 
 	{
-		days = Math.floor(minutes/1440);
-		minutes -= 1440 * days;
+		nDays = Math.floor(nMinutes/1440);
+		nMinutes -= 1440 * nDays;
 	}
 	//Hourz
-	if(minutes > 60)
+	if(nMinutes > 60)
 	{
-		hours = Math.floor(minutes/60);
-		minutes -= 60 * hours;
+		nHours = Math.floor(nMinutes/60);
+		nMinutes -= 60 * nHours;
 	}
-	if(days > 0) 
+	
+	// Normal!
+	if(!toDate)
 	{
-		buffer += days + " day";
-		if(days > 1) buffer += "s";
+		if(nDays > 0) 
+		{
+			retStr += nDays + " day";
+			if(nDays > 1) retStr += "s";
+		}
+		if(nHours > 0 || nDays > 0) 
+		{
+			if(nDays > 0) retStr += " ";
+			retStr += nHours + " hour"
+			if(nHours != 1) retStr += "s";
+		}
+		if(retStr != "") retStr += " ";
+		retStr += nMinutes + " minute";
+		if(nMinutes != 1) retStr += "s";
 	}
-	if(hours > 0 || days > 0) 
+	// Date Formatting!
+	else
 	{
-		if(days > 0) buffer += " ";
-		buffer += hours + " hour"
-		if(hours != 1) buffer += "s";
+		retStr += "Day " + nDays + ", ";
+		if(nHours < 10) retStr += String(0) + nHours;
+		else retStr += String(nHours);
+		retStr += ":";
+		if(nMinutes < 10) retStr += String(0) + nMinutes;
+		else retStr += nMinutes;
 	}
-	if(buffer != "") buffer += " ";
-	buffer += minutes + " minute";
-	if(minutes != 1) buffer += "s";
-	return buffer;
+	
+	return retStr;
+}
+public function minutesToDate(nMinutes:Number):String
+{
+	return prettifyMinutes(nMinutes, true);
+}
+public function minutesToHours(nMinutes:Number):Number
+{
+	return Math.floor(nMinutes / 60);
+}
+public function minutesToDays(nMinutes:Number):Number
+{
+	return Math.floor(nMinutes / 60 / 24);
+}
+public function minutesToYears(nMinutes:Number):Number
+{
+	return Math.floor(nMinutes / 60 / 24 / 365);
 }
 
 // Captain's log button menu - now modular!

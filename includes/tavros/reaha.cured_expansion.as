@@ -46,6 +46,8 @@ I'd love to do more BDSM and Dom/Sub stuff with her, too. Maybe get Third to thr
 		3 - "Man Up"
 */
 
+public var REAHA_INV_SLOT_MAX:int = 55;
+
 public function reahaBooted():Boolean
 {
 	return (flags["REAHA_BOOTED"] == 1);
@@ -569,6 +571,10 @@ public function curedReahaMenu():void
 	addButton(8,"Give Item",giveReahaTFItemPresents,undefined,"Give Item","Give Reaha a little present.");
 	if (shipLocation == "500") addButton(9, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. Dropping her off on the homeworld might not be in her best interest, but hey. She's your property, anyway.");
 	else addButton(9, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. You can send her to hang out on Tavros Station");
+	
+	addButton(11, "Take Clothes", whatOutfitWillCuredReahaReturn, undefined, "Take Clothes", "Take back some clothes from Reaha.");
+	addButton(12,"DestroyOutfit", whatOutfitWillCuredReahaRemove, undefined, "Destroy Outfit", "Choose an outfit for Reaha to throw away.");
+	
 	addButton(14,"Back",crew);
 }
 
@@ -755,7 +761,7 @@ public function talkToReahaFamily():void
 	else
 	{
 		output("<i>“So Reaha,”</i> you start, brushing your hand along the cow-girl’s strawberry hair. <i>“Did you ever get in touch with your family?”</i>");
-		output("\n\n<i>“I did!”</i> she smiles, nuzzling against your hand. <i>“Well, I tried to send my mom an email, but I’m not sure she even knows the extranet exists. Took me a while, but I eventually got my youngest sister, Mia, on a holovid call. Wow, she’s grown! Last time I saw her, she was barely a teenager. Now... just wow! She’s came out <b>so</b> gorgeous!”</i>");
+		output("\n\n<i>“I did!”</i> she smiles, nuzzling against your hand. <i>“Well, I tried to send my mom an email, but I’m not sure she even knows the extranet exists. Took me a while, but I eventually got my youngest sister, Mia, on a holovid call. Wow, she’s grown! Last time I saw her, she was barely a teenager. Now... just wow! She’s come out <b>so</b> gorgeous!”</i>");
 		output("\n\nYou chuckle, saying if Reaha’s any indication, her whole family’s probably gorgeous. The little cow blushes. <i>“Charmer! You’re not wrong, though. Mia was really happy to hear from me, actually. I was honestly expecting her - all of my sisters - to be seriously pissed about me vanishing for years, but she just seemed relieved. Even said that she’d missed me.”</i>");
 		output("\n\nReaha sighs. <i>“I cried like a bitch, honestly. Wanted to just sweep her up and give her the biggest hug. She didn’t even say anything about, y’know...”</i> Reaha waves a hand around her little nub horns and more than ample bust. <i>“She totally noticed, though. Probably why she didn’t say anything about the Treatment. Figured I’d gotten it somehow, you know. She hasn’t yet - but it’s almost her eighteenth. So... soon.”</i>");
 		output("\n\n<i>“");
@@ -922,7 +928,7 @@ public function askReahaAboutHerMods():void
 		if(flags["REAHA_MILK_CHANGED"] != undefined) output("<i>“You mean aside from the stuff you’ve given me, right?”</i> she teases, hefting up her tits in both hands.\n\n");
 		output("<i>“First off, I was born with these,”</i> she says, running a couple fingers along her nubby white horns. <i>“Yeah, I’m a full-blood human, but after so many generations of the Treatment... I guess it’s started to change us New Texans on a genetic level. Or something, I dunno. I’m a cow, not a scientist!”</i> Reaha giggles.");
 		output("\n\nAnd aside from that?");
-		output("\n\n<i>“Aside from that, everything I had done was designer work. See, the cow transformatives on the market weren't quite what I was looking for, so... I ended up spending every credit I made in the army, and taking out a bunch of loans... all so I could convince a specialist to make me what I wanted. It’s dumb, I know, but I never felt </i>right<i> in my body until I started modding. Like I was this big, curvy cow trapped in a little beanstalk of a girl. I was actually really fit back then, too - more amazon than squishy lil’ cow. If amazons can be like, five foot nothing. Mini-zon? I dunno!”</i> She giggles, wrapping her arms around you a little tighter. She’s still fairly strong, about the squeeze you until you gasp. <i>“But I’m a lot happier being all soft and curvy. Way more than I ever was as soldier material.”</i>");
+		output("\n\n<i>“Aside from that, everything I had done was designer work. See, the cow transformatives on the market weren't quite what I was looking for, so... I ended up spending every credit I made in the army, and taking out a bunch of loans... all so I could convince a specialist to make me what I wanted. It’s dumb, I know, but I never felt </i>right<i> in my body until I started modding. Like I was this big, curvy cow trapped in a little beanstalk of a girl. I was actually really fit back then, too - more amazon than squishy lil’ cow. If amazons can be like, five foot nothing. Mini-zon? I dunno!”</i> She giggles, wrapping her arms around you a little tighter. She’s still fairly strong, about the squeezeing you until you gasp. <i>“But I’m a lot happier being all soft and curvy. Way more than I ever was as soldier material.”</i>");
 		output("\n\nCurious, you ask how Reaha got in touch with a gene-mod designer. That seems a little out of her social league.");
 		output("\n\nShe gives you a light-hearted shrug. <i>“I actually found her on an extranet forum. A support group for New Texan girls that go out early, un-Treated. She was this absolutely amazing blonde bombshell, looked more like a cow-girl than most New Texans with all those majestic curves and tits that make mine look small even now. All natural, all kaithrit. I didn’t even know kaithrit lived on New Texas! She said after she got out, she went to some big Terran school on a scholarship, specialized in gene therapy. You’d never know it, the way she purred and jiggled like she was constantly in heat.”</i>");
 		output("\n\n<i>“So I got in touch with her, asked her to do the mod work for me. She agreed, but didn’t really understand why I wanted to. Said she wished she had my physique - but then, I wanted hers! I think we would have traded in a heartbeat.”</i>");
@@ -1777,7 +1783,8 @@ public function displayReahaInventory():void
 	output("<b><u>Reaha's Available Clothing:</u></b>\n");
 	for(var x:int = 0; x < reaha.inventory.length; x++)
 	{
-		output(StringUtil.upperCase(reaha.inventory[x].description) + "\n");
+		if(x >= REAHA_INV_SLOT_MAX) output("<span class='bad'>" + StringUtil.upperCase(reaha.inventory[x].description) + "</span>\n");
+		else output(StringUtil.upperCase(reaha.inventory[x].description) + "\n");
 	}
 	if(reaha.inventory.length == 0) output("Nothing. <i>Reaha has no" + (reaha.isNude() ? "": " extra") + " clothes!</i>\n");
 }
@@ -1920,6 +1927,8 @@ public function whatOutfitWillCuredReahaWear():void
 	output("What will you have Reaha wear?\n\n");
 	displayReahaInventory();
 	var buttons:Number = 0;
+	var invLimit:int = reaha.inventory.length;
+	if(invLimit >= REAHA_INV_SLOT_MAX) invLimit = REAHA_INV_SLOT_MAX;
 	clearMenu();
 	if(!reaha.isNude())
 	{
@@ -1927,7 +1936,7 @@ public function whatOutfitWillCuredReahaWear():void
 		addButton(0,"Get Naked",dressCuredReahaSelection,new EmptySlot(),"Get Naked","Get Reaha naked so you can dress her all over again... or leave her nude.");
 	}
 	addButton(14,"Back",curedReahaApproach);
-	for(var x:int = 0; x < reaha.inventory.length; x++)
+	for(var x:int = 0; x < invLimit; x++)
 	{
 		//14 is for "Back"
 		if(buttons >= 14 && (buttons + 1) % 15 == 0)
@@ -1943,13 +1952,12 @@ public function whatOutfitWillCuredReahaWear():void
 		else addItemButton(buttons,reaha.inventory[x],dressCuredReahaSelection,reaha.inventory[x]);
 		buttons++;
 		
-		if(reaha.inventory.length > 14 && (x + 1) == reaha.inventory.length)
+		if(invLimit > 14 && (x + 1) == invLimit)
 		{
 			while((buttons + 1) % 15 != 0) { buttons++; }
 			addButton(buttons, "Back", curedReahaApproach);
 		}
 	}
-
 }
 
 public function dressCuredReahaSelection(item:ItemSlotClass):void
@@ -1961,11 +1969,6 @@ public function dressCuredReahaSelection(item:ItemSlotClass):void
 	if(!(item is EmptySlot)) output("wear this");
 	else output("go naked for a while");
 	output("?”</i> Reaha asks sweetly. <i>“For you, anything! I’ll go get changed!”</i>");
-	output("\n\nReaha collects her things and skips off to her quarters. A few moments later and she’s wandering the corridors");
-	if(item is EmptySlot) output(" butt naked, flaunting what she’s got for you.");
-	else output(" trussed up in her [reaha.gear].");
-	//Whoring Reaha, item has +Sexiness or Nudist:
-	if(flags["REAHA_WHORING_UNLOCKED"] == 2) output(" You bet her johns will get a kick out of that!");
 
 	//GIT NAKKID
 	if(item is EmptySlot)
@@ -2000,9 +2003,134 @@ public function dressCuredReahaSelection(item:ItemSlotClass):void
 	{
 		output("\n\nA SEVERE ERROR OCCURRED. UNKNOWN CLOTHING TYPE GIVEN TO REAHA. FENOXO DUN FUCKED UP! ITEM ERROR: " + item.description + "\n\n");
 	}
+	
+	output("\n\nReaha collects her things and skips off to her quarters. A few moments later and she’s wandering the corridors");
+	if(item is EmptySlot) output(" butt naked, flaunting what she’s got for you.");
+	else output(" trussed up in her [reaha.gear].");
+	//Whoring Reaha, item has +Sexiness or Nudist:
+	if(flags["REAHA_WHORING_UNLOCKED"] == 2) output(" You bet her johns will get a kick out of that!");
+	
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",whatOutfitWillCuredReahaWear);
+}
+
+// Remove abundance of clothes stuffs!
+public function whatOutfitWillCuredReahaReturn():void
+{
+	clearOutput();
+	reahaHeader();
+	author("Jacques00");
+	
+	output("What will you have Reaha return to you?\n\n");
+	displayReahaInventory();
+	
+	var pcInvFull:Boolean = (pc.inventory.length >= pc.inventorySlots());
+	var buttons:Number = 0;
+	var invLimit:int = reaha.inventory.length;
+	if(invLimit >= REAHA_INV_SLOT_MAX) invLimit = REAHA_INV_SLOT_MAX;
+	
+	clearMenu();
+	
+	for(var x:int = 0; x < invLimit; x++)
+	{
+		//14 is for "Back"
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", curedReahaApproach);
+			buttons++;
+		}
+		
+		//Make sure Reaha doesn't already have it (failsafe)
+		if(
+			InCollection(reaha.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
+		) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Reaha is already wearing one of these!");
+		//Make sure inventory isn't already full!
+		else if(pcInvFull) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Your inventory is too full for this!");
+		else addItemButton(buttons, reaha.inventory[x], takeCuredReahaSelection, reaha.inventory[x]);
+		buttons++;
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", curedReahaApproach);
+		}
+	}
+	
+	addButton(14, "Back", curedReahaApproach);
+}
+public function takeCuredReahaSelection(item:ItemSlotClass):void
+{
+	clearOutput();
+	reahaHeader();
+	author("Jacques00");
+	
+	output("<i>“You want this back?”</i> Reaha asks curiously, holding up the " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "outfit" : "article of clothing") + ". <i>“Hmm, I guess I can part with it...”</i>");
+	output("\n\nReaha neatly " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "hangs" : "folds") + " the item and hands it to you. <i>“Better make good use of it, okay!”</i>");
+	output("\n\n");
+	
+	itemCollect([item]);
+	reaha.destroyItem(item, -1);
+	
+	processTime(1);
+	clearMenu();
+	addButton(0, "Next", whatOutfitWillCuredReahaReturn);
+}
+public function whatOutfitWillCuredReahaRemove():void
+{
+	clearOutput();
+	reahaHeader();
+	author("Jacques00");
+	
+	output("What will you have Reaha toss out?\n\n");
+	displayReahaInventory();
+	
+	var buttons:Number = 0;
+	var invLimit:int = reaha.inventory.length;
+	if(invLimit >= REAHA_INV_SLOT_MAX) invLimit = REAHA_INV_SLOT_MAX;
+	
+	clearMenu();
+	
+	for(var x:int = 0; x < invLimit; x++)
+	{
+		//14 is for "Back"
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", curedReahaApproach);
+			buttons++;
+		}
+		
+		//Make sure Reaha doesn't already have it (failsafe)
+		if(
+			InCollection(reaha.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
+		) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Reaha is already wearing one of these!");
+		else addItemButton(buttons, reaha.inventory[x], destroyCuredReahaSelection, reaha.inventory[x]);
+		buttons++;
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", curedReahaApproach);
+		}
+	}
+	
+	addButton(14, "Back", curedReahaApproach);
+}
+public function destroyCuredReahaSelection(item:ItemSlotClass):void
+{
+	clearOutput();
+	reahaHeader();
+	author("Jacques00");
+	
+	output("<i>“You want me to throw this out?”</i> Reaha asks innocently, holding up the " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "outfit" : "article of clothing") + ". <i>“O-okay...”</i>");
+	output("\n\nReaha " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "flattens out the piece" : "softly balls up the material") + " and tosses it in the trash chute. <i>“Well, on the bright side, my wardrobe would be a little less stuffed now.”</i>");
+	
+	reaha.destroyItem(item, -1);
+	output("\n\n<b>Reaha removed " + item.description + " from her wardrobe.<\b>");
+	
+	processTime(1);
+	clearMenu();
+	addButton(0, "Next", whatOutfitWillCuredReahaRemove);
 }
 
 //Give Item
