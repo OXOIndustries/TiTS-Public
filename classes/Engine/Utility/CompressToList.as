@@ -25,6 +25,7 @@ package classes.Engine.Utility
 			{
 				ret += ", and " + entries[i];
 			}
+			i++;
 		}
 		
 		return ret;
