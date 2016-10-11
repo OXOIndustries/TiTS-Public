@@ -63,7 +63,7 @@ public function logTimeStamp(logColor:String = "words"):String
 
 // Wrap some newline shit to make eventBuffer more consistent
 // Takes in message (as a whole string of text for that event) and a color (if any).
-public function addToEventBuffer(msg:String, logColor:String):void
+public function addToEventBuffer(msg:String, logColor:String = "words"):void
 {
 	if(msg.length > 0) eventBuffer += "\n\n" + logTimeStamp(logColor) + " " + ParseText(msg);
 }
@@ -1326,6 +1326,10 @@ public function variableRoomUpdateCheck():void
 {
 	/* TAVROS STATION */
 	
+	//Merchant Deck
+	// Sera's Shop
+	if(darkChrysalisIsOpen()) rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
+	else rooms["DARK CHRYSALIS"].removeFlag(GLOBAL.COMMERCE);
 	//Residental Deck
 	//Notices
 	if(tavrosRDActiveNotice()) rooms["RESIDENTIAL DECK 2"].addFlag(GLOBAL.OBJECTIVE);
@@ -1352,6 +1356,19 @@ public function variableRoomUpdateCheck():void
 	//Place/remove Semith's NPC flag from his apartment based on time.
 	if (hours > 17) rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].addFlag(GLOBAL.NPC);
 	else rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].removeFlag(GLOBAL.NPC);
+	//Nursery
+	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16))
+	{
+		rooms["NURSERYE14"].addFlag(GLOBAL.NPC);
+		rooms["NURSERYG8"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["NURSERYE14"].removeFlag(GLOBAL.NPC);
+		rooms["NURSERYG8"].addFlag(GLOBAL.NPC);
+	}
+	if(seraAtNursery()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
+	else rooms["NURSERYG12"].removeFlag(GLOBAL.NPC);
 	
 	/* MHENGA */
 	
@@ -1536,6 +1553,9 @@ public function variableRoomUpdateCheck():void
 	// Gianna
 	if (giannaAWOL()) rooms["512"].removeFlag(GLOBAL.NPC);
 	else rooms["512"].addFlag(GLOBAL.NPC);
+	// Busky
+	if(hours >= 6 && hours < 17) rooms["STRAPS"].addFlag(GLOBAL.COMMERCE);
+	else rooms["STRAPS"].removeFlag(GLOBAL.COMMERCE);
 	
 	
 	/* MYRELLION */
@@ -1991,6 +2011,8 @@ public function processTime(arg:int):void {
 			if(chars["ALISS"].lust() < 70) chars["ALISS"].lust(5);
 			if(chars["PENNY"].lust() < 100) chars["PENNY"].lust(10);
 			if(chars["SHEKKA"].lust() < 50) chars["SHEKKA"].lust(15);
+			//Sera stuff
+			if(hours == 18) seraNurseryVisitCheck();
 			//ReahaStuff
 			//If payment Queued and PC in ship, Queue the actual payout event
 			if(flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")

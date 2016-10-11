@@ -2,7 +2,6 @@ package classes.GameData.Pregnancy
 {
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Containers.Genders;
-	import classes.Items.Guns.EmmysSalamanderPistol;
 	import classes.kGAMECLASS;
 	
 	/**

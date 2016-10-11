@@ -783,6 +783,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.LIFTDOWN);
+	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 
 	rooms["NURSERYSTAIRS1F"] = new RoomClass(this);
 	rooms["NURSERYSTAIRS1F"].roomName = "NURSERY:\n1F STAIRWELL";
@@ -796,6 +797,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYSTAIRS1F"].moveMinutes = 1;
 	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYE14"] = new RoomClass(this);
 	rooms["NURSERYE14"].roomName = "NURSERY\nFOYER";
@@ -810,11 +813,13 @@ public function initTavrosRooms():void
 	rooms["NURSERYE14"].moveMinutes = 1;
 	rooms["NURSERYE14"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYE14"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYE14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYE14"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYE12"] = new RoomClass(this);
 	rooms["NURSERYE12"].roomName = "NURSERY:\nCOMMON AREA";
 	rooms["NURSERYE12"].description = "The nursery's common area is a large, open room painted a rainbow of bright colors and equipped with a myriad of entertainment: holoscreens, video game consoles, toys of all descriptions, and racks of Codex tablets loaded with every book and educational program known to Man -- and most other galactic species.";
-	rooms["NURSERYE12"].runOnEnter = undefined;
+	rooms["NURSERYE12"].runOnEnter = nurseryCommonAreaFunc;
 	rooms["NURSERYE12"].southExit = "NURSERYE14";
 	rooms["NURSERYE12"].eastExit = "NURSERYG12";
 	rooms["NURSERYE12"].planet = "TAVROS STATION";
@@ -822,6 +827,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYE12"].moveMinutes = 1;
 	rooms["NURSERYE12"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYE12"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYE12"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYE12"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYG12"] = new RoomClass(this);
 	rooms["NURSERYG12"].roomName = "NURSERY\nCAFETERIA";
@@ -833,6 +840,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYG12"].moveMinutes = 1;
 	rooms["NURSERYG12"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYG12"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYG12"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYG12"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYG14"] = new RoomClass(this);
 	rooms["NURSERYG14"].roomName = "\nNURSERY";
@@ -845,6 +854,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYG14"].moveMinutes = 1;
 	rooms["NURSERYG14"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYG14"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYG14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYG14"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYI14"] = new RoomClass(this);
 	rooms["NURSERYI14"].roomName = "\nNURSERY";
@@ -858,6 +869,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYI14"].moveMinutes = 1;
 	rooms["NURSERYI14"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYI14"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYI14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYI14"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYI16"] = new RoomClass(this);
 	rooms["NURSERYI16"].roomName = "NURSERY:\nCHILDREN";
@@ -870,6 +883,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYI16"].moveMinutes = 1;
 	rooms["NURSERYI16"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYI16"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYI16"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYI16"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYI18"] = new RoomClass(this);
 	rooms["NURSERYI18"].roomName = "NURSERY:\nSPECIALIST";
@@ -881,6 +896,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYI18"].moveMinutes = 1;
 	rooms["NURSERYI18"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYI18"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYI18"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYI18"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYK14"] = new RoomClass(this);
 	rooms["NURSERYK14"].roomName = "NURSERY:\nEDU. CENTER";
@@ -892,6 +909,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYK14"].moveMinutes = 1;
 	rooms["NURSERYK14"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYK14"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYK14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYK14"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	// Second floor
 	rooms["NURSERYSTAIRS2F"] = new RoomClass(this);
@@ -906,6 +925,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYSTAIRS2F"].moveMinutes = 1;
 	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYC6"] = new RoomClass(this);
 	rooms["NURSERYC6"].roomName = "NURSERY:\nSTAFF ROOM";
@@ -918,6 +939,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYC6"].moveMinutes = 1;
 	rooms["NURSERYC6"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYC6"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYC6"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYC6"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYE6"] = new RoomClass(this);
 	rooms["NURSERYE6"].roomName = "\nNURSERY";
@@ -932,6 +955,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYE6"].moveMinutes = 1;
 	rooms["NURSERYE6"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYE6"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYE6"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYE6"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYE4"] = new RoomClass(this);
 	rooms["NURSERYE4"].roomName = "NURSERY:\nMILKING STATION";
@@ -943,6 +968,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYE4"].moveMinutes = 1;
 	rooms["NURSERYE4"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYE4"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYE4"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYE4"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYE8"] = new RoomClass(this);
 	rooms["NURSERYE8"].roomName = "NURSERY:\nBIO-SCIENCES";
@@ -954,6 +981,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYE8"].moveMinutes = 1;
 	rooms["NURSERYE8"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYE8"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYE8"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYE8"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYG6"] = new RoomClass(this);
 	rooms["NURSERYG6"].roomName = "\nNURSERY";
@@ -967,6 +996,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYG6"].moveMinutes = 1;
 	rooms["NURSERYG6"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYG6"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYG6"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYG6"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYG4"] = new RoomClass(this);
 	rooms["NURSERYG4"].roomName = "NURSERY:\nYOUR APPT.";
@@ -977,16 +1008,19 @@ public function initTavrosRooms():void
 	rooms["NURSERYG4"].system = "SYSTEM: KALAS";
 	rooms["NURSERYG4"].moveMinutes = 1;
 	rooms["NURSERYG4"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYG4"].addFlag(GLOBAL.PRIVATE);
 	rooms["NURSERYG4"].addFlag(GLOBAL.BED);
 
 	rooms["NURSERYG8"] = new RoomClass(this);
 	rooms["NURSERYG8"].roomName = "NURSERY:\nBRIGETS APPT.";
 	rooms["NURSERYG8"].description = "The apartment granted to your nurse-maid gynoid is surprisingly spartan, given her age and humanism. Maybe she just doesn't spend much time here? There's a queen-sized bed, immaculately made, in one room, and a spotlessly clean kitchen that opens into a dining room with a pair of chairs around a mahogany table -- the most expensive-looking thing around.";
-	rooms["NURSERYG8"].runOnEnter = undefined;
+	rooms["NURSERYG8"].runOnEnter = nurseryBrigetsApptFunc;
 	rooms["NURSERYG8"].northExit = "NURSERYG6";
 	rooms["NURSERYG8"].planet = "TAVROS STATION";
 	rooms["NURSERYG8"].system = "SYSTEM: KALAS";
 	rooms["NURSERYG8"].moveMinutes = 1;
 	rooms["NURSERYG8"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYG8"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYG8"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYG8"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 }

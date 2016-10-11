@@ -56,6 +56,9 @@ public function nurseryFoyerFunc():Boolean
 	if (flags["BRIGET_MET"] == undefined)
 	{
 		output("\n\nA pallid-skinned woman in a suit-jacket and skirt is standing behind a desk, consulting a Codex couched under her arm. She doesn’t appear to have noticed you yet.");
+		
+		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+		
 		addButton(0, "Woman", nurseryMeetBriget);
 	}
 	else if (hours >= 7 && hours <= 16)
@@ -64,8 +67,13 @@ public function nurseryFoyerFunc():Boolean
 		addButton(0, "Briget", nurseryApproachBriget);
 	}
 
-	addButton(1, "Nursery Comp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
+	addButton(1, "NurseryComp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
 
+	return false;
+}
+
+public function nurseryCommonAreaFunc():Boolean
+{
 	return false;
 }
 
@@ -73,7 +81,9 @@ public function nurseryCafeteriaFunc():Boolean
 {
 	output("\n\nA pair of server bots are sitting in the kitchen, making sure there’s plenty of food and drink to go around.");
 	if (yammiIsFollower() && !yammiIsCrew()) output(" Yammi’s hanging out in the kitchen, too, overseeing things while she’s not assigned to your ship’s crew.");
-
+	
+	seraNurseryCafeteriaBonus(1);
+	
 	return false;
 }
 
@@ -209,6 +219,9 @@ public function nurseryBrigetsApptFunc():Boolean
 	if (flags["BRIGET_MET"] != undefined && (hours < 7 || hours > 16))
 	{
 		output("\n\nBriget herself is sitting in the bedroom, working on a small holoterminal on the desk. She glances up at you and smiles faintly, clearly none-too-disturbed by your presence in her abode.");
+		
+		// 9999
+		addDisabledButton(0, "Briget");
 	}
 
 	return false;
@@ -741,6 +754,79 @@ public function nurseryMaternityWait():void
 	clearMenu();
 	addButton(0, "Yes", nurseryMaternityWaitGo);
 	addButton(1, "No", mainGameMenu);
+	
+	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc);
+	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
+	
+	if(debug)
+	{
+		if (firstDuration > 1440) addButton(5, "1 Day", nurseryMaternityWaitTime, (1440 - 5), "Wait: One Day", "Rest for one full day.");
+		else addDisabledButton(5, "1 Day", "Wait: One Day", "You have a pregnancy that will be due before this time!");
+		if (firstDuration > 10080) addButton(6, "1 Week", nurseryMaternityWaitTime, (10080 - 5), "Wait:One Week", "Rest for one full week.");
+		else addDisabledButton(6, "1 Week", "Wait: One Week", "You have a pregnancy that will be due before this time!");
+		if (firstDuration > 43200) addButton(7, "1 Month", nurseryMaternityWaitTime, (43200 - 5), "Wait: One Month", "Rest for one full month.");
+		else addDisabledButton(7, "1 Month", "Wait: One Month", "You have a pregnancy that will be due before this time!");
+		if (firstDuration > 525600) addButton(8, "1 Year", nurseryMaternityWaitTime, (525600 - 5), "Wait: One Year", "Rest for one full year.");
+		else addDisabledButton(8, "1 Year", "Wait: One Year", "You have a pregnancy that will be due before this time!");
+		if (firstDuration > 30) addButton(9, "Custom", nurseryMaternityWaitCustom, (firstDuration - 5), "Wait: Custom", "Rest for as long as you like until right before birth.");
+		else addDisabledButton(9, "Custom", "Wait: Custom", "You have a pregnancy that will be due very soon!");
+	}
+}
+public function nurseryMaternityWaitTime(duration:int = 0):void
+{
+	clearOutput();
+	author("");
+	
+	// 9999 - Maybe needs better text...
+	output("You wait for " + prettifyMinutes(duration) + "....");
+	
+	processTime(duration);
+	
+	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc);
+	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
+	output("\n\nYou get up and are on your way" + (firstDuration <= 30 ? " -- extremely close to delivering at any moment!" : "."));
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function nurseryMaternityWaitCustom(limit:int = 0):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	clearOutput();
+	
+	output("How long do you wish to wait for?\n<i>(Value should be in number of minutes. Maximum time until your next birth is " + limit + " minutes.)</i>");
+	output("\n");
+	displayInput();
+	output("\n\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", nurseryMaternityWaitCustomOK, limit);
+	addButton(14, "Back", nurseryMaternityWait);
+}
+public function nurseryMaternityWaitCustomOK(limit:int = 0):void
+{
+	if(isNaN(Number(userInterface.textInput.text))) {
+		nurseryMaternityWaitCustom(limit);
+		output("Choose a value that is a positive integer, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) < 1) {
+		nurseryMaternityWaitCustom(limit);
+		output("Choose a value that is 1 minute or more, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) > limit) {
+		nurseryMaternityWaitCustom(limit);
+		output("Choose a value that is " + limit + " minutes or below, please.");
+		return;
+	}
+	var duration:int = Math.floor(Number(userInterface.textInput.text));
+	nurseryMaternityWaitCustomGo(duration);
+}
+public function nurseryMaternityWaitCustomGo(duration:int = 0):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	nurseryMaternityWaitTime(duration);
 }
 
 public function nurseryMaternityWaitGo():void

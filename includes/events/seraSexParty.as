@@ -1209,6 +1209,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			rooms["RES DECK EAST ESTATE"].addFlag(GLOBAL.NPC);
 			generateMap();
 			showLocationName();
+			clearBust();
 			
 			// Time forward 1 hour
 			processTime(60);

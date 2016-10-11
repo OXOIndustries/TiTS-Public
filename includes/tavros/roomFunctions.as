@@ -107,14 +107,7 @@ public function merchantThoroughfareBonus():void
 {
 	if(currentLocation == "9018")
 	{
-		if(pc.hasStatusEffect("Dark Chrysalis Closed")) {
-			output("\n\nThe Dark Chrysalis is closed. Even its “Doing a Slut” sign is dark. You suspect its proprietor is sleeping off a heavy hangover. ");
-			flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
-		}
-		else {
-			output("\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east. ");
-			flags["NAV_DISABLED"] = undefined;
-		}
+		darkChrysalisStorefront();
 		output("\n\nTo the west, you see a brightly-lit shop labeled as “Fur Effect.”");
 	}
 	else flags["NAV_DISABLED"] = undefined;

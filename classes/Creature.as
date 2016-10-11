@@ -20,6 +20,7 @@
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.HorsePill;
+	import classes.Items.Miscellaneous.Priapin;
 	import classes.Items.Miscellaneous.Cargobot;
 	import classes.Items.Transformatives.Cerespirin;
 	import classes.Items.Transformatives.Clippex;
@@ -3533,7 +3534,10 @@
 				}
 			}
 
-			var currReflexes:int = reflexesRaw + reflexesMod;
+			var bonus:int = 0;
+			bonus += statusEffectv1("Sera Spawn Reflex Mod");
+			
+			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
 
 			//Debuffs!
 			if (hasStatusEffect("Tripped")) currReflexes -= 4;
@@ -3723,6 +3727,7 @@
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
 			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
 			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
+			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			
 			if (currLib > libidoMax())
 			{
@@ -3759,6 +3764,7 @@
 			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
+			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
@@ -7686,15 +7692,12 @@
 		// Nipple type checks
 		public function hasNipplesofType(arg:int = -1, rowNum:int = -1): Boolean
 		{
-			if (rowNum >= 0)
-			{
-				if (breastRows[rowNum].nippleType == arg) return true;
-				return false;
-			}
+			if (rowNum >= 0) return (breastRows[rowNum].nippleType == arg);
 			
 			var counter: Number = breastRows.length;
 			var index: Number = 0;
-			while (counter > 0) {
+			while (counter > 0)
+			{
 				counter--;
 				if (breastRows[counter].nippleType == arg) return true;
 			}
@@ -7762,6 +7765,19 @@
 				}
 			}
 			return true;
+		}
+		public function hasErectNipples(rowNum:int = -1, lustBased:Boolean = false):Boolean
+		{
+			// Can nips get hard?
+			var erectNips:Boolean = (hasNormalNipples(rowNum) || hasNippleCocks(rowNum) || hasInvertedNipples(rowNum) || hasTentacleNipples(rowNum));
+			
+			// Arousal check
+			if(lustBased)
+			{
+				if(lust() < 33) erectNips = false;
+			}
+			
+			return erectNips;
 		}
 		// Nipple hardening verbs
 		public function nipplesErect(rowNum:int = 0, present:Boolean = false):String
@@ -8195,6 +8211,7 @@
 		{
 			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
 			var bonus:Number = perkv1("Potent");
+			if (hasStatusEffect("Priapin")) bonus += statusEffectv2("Priapin");
 			multi += bonus;
 			if (multi < 0) return 0;
 			return multi;
@@ -14749,6 +14766,7 @@
 		{
 			var bonus:Number = 0;
 			if(hasPerk("Virile")) bonus += perkv1("Virile");
+			if(hasStatusEffect("Priapin")) bonus += statusEffectv1("Priapin");
 			return (cumQualityRaw + cumQualityMod + bonus);
 		}
 		
@@ -14759,7 +14777,10 @@
 		 */
 		public function virility():Number
 		{
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks")) return 0;
+			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks"))
+			{
+				if (hasPerk("Infertile") || !hasStatusEffect("Priapin")) return 0;
+			}
 			
 			return cumQuality();
 		}
@@ -16277,6 +16298,11 @@
 								case "Hair Flower":
 									var flowerPower:Cerespirin = new Cerespirin();
 									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this, (statusEffects[x] as StorageClass).value1);
+									break;
+								// Priapin wears off.
+								case "Priapin":
+									var priapin:Priapin = new Priapin();
+									priapin.effectDone(this);
 									break;
 								// Goo hair reverts back!
 								case "Hair Regoo":

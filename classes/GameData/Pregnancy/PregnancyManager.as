@@ -13,6 +13,7 @@
 	import classes.GameData.Pregnancy.Handlers.RenvraFullPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RoyalEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.SydianPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.SeraSpawnPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherSeedCarrierPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
@@ -38,6 +39,7 @@
 			PregnancyManager.insertNewHandler(new EggTrainerFauxPreg());
 			PregnancyManager.insertNewHandler(new PsychicTentacles());
 			PregnancyManager.insertNewHandler(new SydianPregnancyHandler());
+			PregnancyManager.insertNewHandler(new SeraSpawnPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.
