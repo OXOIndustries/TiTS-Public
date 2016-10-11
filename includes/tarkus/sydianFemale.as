@@ -49,11 +49,14 @@ public function encounterFemaleSydian():void
 
 		output("\n\n<i>“How rude,”</i> the woman says. She skitters toward you, and you prepare for the fight!");
 	}
+	
+	CodexManager.unlockEntry("Sydians");
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.victoryScene(sydianFemalePCVictory);
 	CombatManager.lossScene(sydianFemalePCLoss);
+	CombatManager.displayLocation("SYDIAN (F)");
 	
 	clearMenu();
 	addButton(0, "Fight!", CombatManager.beginCombat);
