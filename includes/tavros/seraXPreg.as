@@ -52,6 +52,22 @@ public function pcSeraPregDays():int
 	return minutesToDays(pregTime);
 }
 
+// Boost Sera's raunchiness.
+public function seraLustGain(minPassed:int = 60):void
+{
+	chars["SERA"].lust(2 * minPassed);
+	if(chars["SERA"].ballFullness < 100) chars["SERA"].ballFullness += (1.5 * minPassed);
+	if(chars["SERA"].ballFullness > 100) chars["SERA"].ballFullness = 100;
+	chars["SERA"].minutesSinceCum += minPassed;
+}
+public function serasBodyIsReady():void
+{
+	chars["SERA"].lust(9000);
+	if(chars["SERA"].ballFullness < 100) chars["SERA"].ballFullness = 100;
+	if(chars["SERA"].cumQualityRaw < 3) chars["SERA"].cumQualityRaw = 3;
+	if(chars["SERA"].minutesSinceCum < 9000) chars["SERA"].minutesSinceCum = 9000;
+}
+
 // Intro
 public function seraBreedingIntro():void
 {
@@ -83,7 +99,7 @@ public function seraBreedingIntro():void
 		{
 			output("\n\n<i>“But it’s not going to happen,”</i> she continues. She raises the talon to cut you off again. <i>“I think you’re cute and all [pc.name], but how long have we really known each other for? And I know you’re saying you’d take care of it, but things change real fucking fast out here on the frontier. I’m just barely getting by here - what happens if you get ripped off by some throbb-head pirates and have to liquidate what daddy left you? Up shit nebula without an FTL drive, that’s what. So no, I’m not going to knock you up.");
 			if(pc.hasCock()) output(" And don’t even dare asking if you can knock ME up.");
-			output("”</i> She lounges on the counter, lifting up her leg so she can place her high heel on the synth surface, her sobriety melting back into her usual playful maliciousness. <i>“Feel free to pointlessly beg for it, though. That will please me.”</i>");
+			output("”</i> She lounges back on her chair, lifting up her leg so she can place her high heel on the synth surface, her sobriety melting back into her usual playful maliciousness. <i>“Feel free to pointlessly beg for it, though. That will please me.”</i>");
 			
 			clearMenu();
 			addButton(0, "Next", seraTalkMenu);
@@ -191,8 +207,8 @@ public function seraBreedBegAction(response:String = ""):void
 	
 	processTime(5 + rand(2));
 	
-	// Ghost out [Breed] for 24 hours
-	pc.createStatusEffect("Sera Talk Breed", 0, 0, 0, 0, true, "", "", false, (24 * 60));
+	// Ghost out [Breed] for 24 hours; Reduce by six hours maybe.
+	pc.createStatusEffect("Sera Talk Breed", 0, 0, 0, 0, true, "", "", false, (6 * 60));
 	if(success) flags["SERA_BREED_TIMER"] = GetGameTimestamp();
 	
 	clearMenu();
@@ -358,6 +374,7 @@ public function seraBreedResponse(arg:Array):void
 			}
 			
 			// Give Sera pregnancy powers!
+			serasBodyIsReady();
 			chars["SERA"].impregnationType = "SeraSpawnPregnancy";
 			chars["SERA"].createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", "Your masculine virility has been piqued temporarily.", false, (24 * 60));
 			
@@ -426,7 +443,7 @@ public function seraBreedResponse(arg:Array):void
 			
 			output("A big, pink plug is insistently pressed into your [pc.anus], until at last, with an acute frisson of sensation, the bulb makes it past your ring, stretching you wide.");
 			
-			var dildoCap:Number = pc.analCapacity();
+			var dildoCap:Number = (pc.analCapacity() / 2);
 			if(dildoCap < 500) dildoCap = 500;
 			pc.buttChange(dildoCap);
 			
@@ -446,7 +463,7 @@ public function seraBreedResponse(arg:Array):void
 				{
 					for(i = 0; i < vagList.length; i++)
 					{
-						dildoCap = pc.vaginalCapacity(vagList[i]);
+						dildoCap = (pc.vaginalCapacity(vagList[i]) / 2);
 						if(dildoCap < 500) dildoCap = 500;
 						pc.cuntChange(vagList[i], dildoCap);
 					}
@@ -498,6 +515,8 @@ public function seraBreedResponse(arg:Array):void
 			showSera(true);
 			// Lust 0%
 			for(i = 0; i < 20; i++) { pc.orgasm(); }
+			chars["SERA"].orgasm();
+			serasBodyIsReady();
 			
 			output("Sera presses you between her breasts when the last gratuitous crack, moan and squelch has been had, engulfing you in the smell of her musk, spicy perfume and smokiness. You embrace her back, ear up against the thump of her black heart, your whole body throbbing and aching. You groan woozily as she slowly withdraws from you, bringing a small gush of slimy warmth with her. She hums her approval as she slides her hand down to your thoroughly bulged stomach.");
 			var pregBellyRating:Number = 0;
