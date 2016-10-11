@@ -7,6 +7,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
+	import classes.StorageClass;
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
@@ -53,15 +54,15 @@
 			// v4: Increase lust floor by 30 " " ( lustMin() )
 			target.createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", ((target is PlayerCharacter ? "Your m" : "M") + "asculine virility has been piqued temporarily."), false, 1440, 0xB793C4);
 		}
-		public function effectDone(target:Creature):void
+		
+		public static function effectEnds(maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
-			// Wears Off
-			if(target is PlayerCharacter)
+			if (target is PlayerCharacter)
 			{
-				kGAMECLASS.addToEventBuffer("The overwhelming, bulging urge you’ve been feeling over the last day or so is slowly ebbing away. Although it’s been fun, it’s something of a relief to stop wanting to bend over every single person you meet.", "passive");
+				kGAMECLASS.addToEventBuffer("The overwhelming, bulging urge you’ve been feeling over the last day or so is slowly ebbing away. Although it’s been fun, it’s something of a relief to stop wanting to bend over every single person you meet.", "passive", maxEffectLength);
 			}
-			target.removeStatusEffect("Priapin");
 		}
+
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();

@@ -16787,13 +16787,20 @@
 						// This has been refactored to handle an extra proc round if the effect
 						// expires this update, and the item mechanics treat the end-effect
 						// as just another round of TF
-						Cerespirin.itemPlanetTF(deltaT, doOut, target, effect);
+						Cerespirin.itemPlanetTF(maxEffectLength, doOut, target, effect);
 						break;
 						
 					case "Hair Flower":
 						if (requiresRemoval)
 						{
 							kGAMECLASS.eventBuffer += Cerespirin.loseHairFlower(this, thisStatus.value1, maxEffectLength);
+						}
+						break;
+						
+					case "Priapin":
+						if (requiresRemoval)
+						{
+							Priapin.effectEnds(this);
 						}
 						break;
 						
