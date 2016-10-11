@@ -4099,7 +4099,7 @@
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
-			if (hasPerk("Attack Drone") && !hasActiveCombatDrone(true, true)) temp += level;
+			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) temp += (3 * level);
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
@@ -16170,7 +16170,8 @@
 		{
 			var dmg:Number = 1 + level + rand(2 + level / 2);
 			var bonus:Number = 0;
-			if(hasPerk("Attack Drone")) bonus += 1 + rand(3);
+			
+			if(hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) bonus += level;
 			
 			return dmg + bonus;
 		}
