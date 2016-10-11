@@ -263,13 +263,13 @@ package classes.GameData.Pregnancy.Handlers
 				if(mother.originalRace != "" && c.originalRace != "") c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace);
 				
 				// Adopt mother's colors at random (if applicable):
-				if(rand(3) == 0) c.skinTone = traitChar.skinTone;
-				if(rand(3) != 0) c.lipColor = traitChar.lipColor;
-				if(rand(3) == 0) c.nippleColor = traitChar.nippleColor;
-				if(rand(3) == 0) c.eyeColor = traitChar.eyeColor;
-				//if(rand(3) == 0) c.hairColor = traitChar.hairColor;
-				//if(rand(3) == 0) c.scaleColor = traitChar.scaleColor;
-				//if(rand(3) == 0) c.furColor = traitChar.furColor;
+				if(rand(2) == 0) c.skinTone = traitChar.skinTone;
+				if(rand(2) == 0) c.lipColor = traitChar.lipColor;
+				if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
+				if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
+				//if(rand(2) == 0) c.hairColor = traitChar.hairColor;
+				//if(rand(2) == 0) c.scaleColor = traitChar.scaleColor;
+				//if(rand(2) == 0) c.furColor = traitChar.furColor;
 				
 				c.MaturationRate = childMaturationMultiplier;
 				c.BornTimestamp = kGAMECLASS.GetGameTimestamp();

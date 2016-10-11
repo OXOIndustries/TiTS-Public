@@ -742,35 +742,35 @@ public function displaySeraBabies():void
 	{
 		for(var i:int = 0; i < babies.length; i++)
 		{
-			output("\n<b>* Child No. " + (i + 1) + "</b>");
-			output("\n\t<b>- Name:</b> " + (babies[i].Name == "" ? "<i>Unnamed</i>" : babies[i].Name));
+			output("\n\n<b>Child No. " + (i + 1) + ":</b>");
+			output("\n<b>* Name:</b> " + (babies[i].Name == "" ? "<i>Unnamed</i>" : babies[i].Name));
 			if(babies[i].originalRace != "NOT SET")
-				output("\n\t<b>- Race:</b> " + StringUtil.toDisplayCase(babies[i].originalRace));
-			output("\n\t<b>- Age:</b> " + minutesToYears(GetGameTimestamp() - babies[i].BornTimestamp) + " yr old");
-			output("\n\t<b>- Birthdate:</b> " + minutesToDate(babies[i].BornTimestamp));
-			output("\n\t<b>- Maturation Rate:</b> " + formatFloat(babies[i].MaturationRate * 100) + " %");
+				output("\n<b>* Race:</b> " + StringUtil.toDisplayCase(babies[i].originalRace));
+			output("\n<b>* Age:</b> " + minutesToYears(GetGameTimestamp() - babies[i].BornTimestamp) + " yr old");
+			output("\n<b>* Birthdate:</b> " + minutesToDate(babies[i].BornTimestamp));
+			output("\n<b>* Maturation Rate:</b> " + formatFloat(babies[i].MaturationRate * 100) + " %");
 			if(babies[i].NumNeuter > 0 || babies[i].NumFemale > 0 || babies[i].NumMale > 0 || babies[i].NumIntersex > 0)
 			{
-				output("\n\t<b>- Sex:</b>");
-				if(babies[i].NumNeuter > 0) output(" Neuter");
+				output("\n<b>* Sex:</b>");
+				if(babies[i].NumNeuter > 0) output(" Sexless");
 				if(babies[i].NumFemale > 0) output(" Female");
 				if(babies[i].NumMale > 0) output(" Male");
-				if(babies[i].NumIntersex > 0) output(" Intersex");
+				if(babies[i].NumIntersex > 0) output(" Hermaphrodite");
 			}
 			if(babies[i].skinTone != "NOT SET")
-				output("\n\t<b>- Skin Tone:</b> " + StringUtil.toDisplayCase(babies[i].skinTone));
+				output("\n<b>* Skin Tone:</b> " + StringUtil.toDisplayCase(babies[i].skinTone));
 			//if(babies[i].lipColor != "NOT SET")
-			//	output("\n\t<b>- Lip Color:</b> " + StringUtil.toDisplayCase(babies[i].lipColor));
+			//	output("\n<b>* Lip Color:</b> " + StringUtil.toDisplayCase(babies[i].lipColor));
 			//if(babies[i].nippleColor != "NOT SET")
-			//	output("\n\t<b>- Nipple Color:</b> " + StringUtil.toDisplayCase(babies[i].nippleColor));
+			//	output("\n<b>* Nipple Color:</b> " + StringUtil.toDisplayCase(babies[i].nippleColor));
 			if(babies[i].eyeColor != "NOT SET")
-				output("\n\t<b>- Eye Color:</b> " + StringUtil.toDisplayCase(babies[i].eyeColor));
+				output("\n<b>* Eye Color:</b> " + StringUtil.toDisplayCase(babies[i].eyeColor));
 			if(babies[i].hairColor != "NOT SET")
-				output("\n\t<b>- Hair Color:</b> " + StringUtil.toDisplayCase(babies[i].hairColor));
+				output("\n<b>* Hair Color:</b> " + StringUtil.toDisplayCase(babies[i].hairColor));
 			if(babies[i].scaleColor != "NOT SET")
-				output("\n\t<b>- Scale Color:</b> " + StringUtil.toDisplayCase(babies[i].scaleColor));
+				output("\n<b>* Scale Color:</b> " + StringUtil.toDisplayCase(babies[i].scaleColor));
 			if(babies[i].furColor != "NOT SET")
-				output("\n\t<b>- Fur Color:</b> " + StringUtil.toDisplayCase(babies[i].furColor));
+				output("\n<b>* Fur Color:</b> " + StringUtil.toDisplayCase(babies[i].furColor));
 		}
 	}
 	else

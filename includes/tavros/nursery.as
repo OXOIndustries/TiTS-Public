@@ -170,7 +170,7 @@ public function nurserySpecialistRooms():Boolean
 	if (ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN))
 	{
 		output("\n\nConnected to the main entrance via a pressurized airlock is a water-filled chamber, simulating a deep saltwater lake with a sandy island in its center. Though the rooms inside are pitch black, a camera feed inside has been set to night vision, showing your Water Princesses scuttling about, half-submerged and completely hidden in the dark waters. Your head nurse has hired on a dusky female nyrea from their homeworld to help oversee their development - a brief word with her reveals the huntress is well acquainted with the Queen of the Deep, and that the princesses’ mother sends her regards.");
-		addButton(numSpecials, "WaterPrincess", nurserySpecialistWaterPricesses);
+		addButton(numSpecials, "W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses.");
 		numSpecials++;
 		numSpecialsButtons++;
 	}
@@ -471,6 +471,7 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 	for (var key:String in sortedTypedBuckets)
 	{
 		var thisBucket:Array = sortedTypedBuckets[key];
+		var displayCnt:int = 0;
 
 		output("\n\n<b>" + GLOBAL.TYPE_NAMES[int(key)] + " Offspring:</b>");
 
@@ -479,18 +480,21 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 			if (thisBucket[i].any())
 			{
 				var b:Genders = thisBucket[i];
-
-				var str:String = "\n<b>" + displayAges[i] + ":</b>";
-
 				var entries:Array = [];
 				if (b.Male > 0) entries.push(" " + b.Male + " sons");
 				if (b.Female > 0) entries.push(" " + b.Female + " daughters");
 				if (b.Intersex > 0) entries.push(" " + b.Intersex + " mixed-gender");
 				if (b.Neuter > 0) entries.push(" " + b.Neuter + " ungendered");
 
-				output("\n<b>" + displayAges[i] + ":</b> " + CompressToList(entries));
+				if(entries.length > 0)
+				{
+					output("\n<b>* " + StringUtil.toDisplayCase(displayAges[i]) + ":</b> " + CompressToList(entries));
+					displayCnt++;
+				}
 			}
 		}
+		
+		if(displayCnt <= 0) output("\n<i>* There is no relevant data to display for your " + (GLOBAL.TYPE_NAMES[int(key)]).toLowerCase() + " offspring.</i>");
 	}
 }
 
