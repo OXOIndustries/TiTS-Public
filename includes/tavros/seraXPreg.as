@@ -64,7 +64,6 @@ public function serasBodyIsReady():void
 {
 	chars["SERA"].lust(9000);
 	if(chars["SERA"].ballFullness < 100) chars["SERA"].ballFullness = 100;
-	if(chars["SERA"].cumQualityRaw < 3) chars["SERA"].cumQualityRaw = 3;
 	if(chars["SERA"].minutesSinceCum < 9000) chars["SERA"].minutesSinceCum = 9000;
 }
 
@@ -808,7 +807,7 @@ public function seraHasKidInNursery():Boolean
 }
 public function seraNurseryVisitCheck():void
 {
-	if(seraHasKidInNursery() && rand(2) == 0)
+	if(currentLocation != "DARK CHRYSALIS" && seraHasKidInNursery() && rand(2) == 0)
 	{
 		pc.createStatusEffect("Sera at Nursery");
 	}
@@ -827,7 +826,7 @@ public function seraNurseryCafeteriaBonus(btnSlot:int = 0):void
 	
 	output("\n\nSera is parked behind a table on the older kid’s side, in the process of demolishing an evening meal.");
 	if(flags["MET_SERA_IN_NURSERY"] == undefined) output(" It takes you a moment to recognize her - she’s dressed in a shockingly mild jeans and blouse combo. Even her heels look fairly conservative today.");
-	else output(" It never stops being a bit weird to see the demon-morph in a fully lighted environment with her business not all the way out there.");
+	else output(" It never stops being a bit weird to see the demon-morph in a fully lit environment with her business not all the way out there.");
 	
 	// [Sera]
 	addButton(btnSlot, "Sera", seraNurseryCafeteriaApproach);
@@ -845,6 +844,7 @@ public function seraNurseryCafeteriaApproach():void
 	var babyIdx:int = 0;
 	var babym:Boolean = (rand(2) == 0 ? false : true);
 	var babyName:String = "???";
+	var i:int = 0;
 	
 	// First
 	if(flags["MET_SERA_IN_NURSERY"] == undefined)
@@ -864,7 +864,7 @@ public function seraNurseryCafeteriaApproach():void
 		flags["MET_SERA_IN_NURSERY"] = 1;
 		
 		// [Enter Name]
-		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName]);
+		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, 0]);
 	}
 	// Repeat naming if PC has other kids by Sera, because one wasn’t fucking enough
 	else if(flags["SERA_NAMED_KID"] != undefined && seraNoNameBabies.length > 0)
@@ -878,7 +878,7 @@ public function seraNurseryCafeteriaApproach():void
 		output("<i>“I still can’t believe you put yourself through another nine months of morning sickness and looking like a tank,”</i> Sera says when you sit yourself down opposite her. <i>“Did your dad mod you so that you’d have the breeding bug bad? Would make sense of this place.”</i> She concentrates on swallowing her current mouthful of cauli-nubbs before going on in an overly casual tone. <i>“What are we calling this little " + (babym ? "bastard" : "moppet") + ", then?”</i>");
 		
 		// [Enter Name]
-		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName]);
+		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, 0]);
 	}
 	// Repeat
 	else
@@ -886,7 +886,7 @@ public function seraNurseryCafeteriaApproach():void
 		// Count children...
 		var numBabs:int = 0;
 		var numKids:int = 0;
-		for(var i:int = 0; i < seraBabies.length; i++)
+		for(i = 0; i < seraBabies.length; i++)
 		{
 			// Show this if there is a Seraspawn that is under 365 days old
 			if((GetGameTimestamp() - seraBabies[i].BornTimestamp) <= (365 * 24 * 60)) numBabs++;
@@ -914,39 +914,46 @@ public function nameSeraSpawn(arg:Array):void
 	var babyIdx:int = arg[0];
 	var babym:Boolean = arg[1];
 	var babyName:String = arg[2];
+	var namedBabies:int = arg[3];
 	
+	if(namedBabies > 0) output((babym ? "He’s a handsome baby boy" : "She’s a beautiful baby girl") + ". ");
 	output("What do you decide to name " + (babym ? "him" : "her") + "?");
 	displayInput();
 	this.userInterface.textInput.text = babyName;
+	output("\n\n\n");
 	
 	clearMenu();
-	addButton(0, "Next", nameSeraSpawnCheck, [babyIdx, babym, babyName]);
+	addButton(0, "Next", nameSeraSpawnCheck, [babyIdx, babym, babyName, namedBabies]);
 }
 public function nameSeraSpawnCheck(arg:Array):void
 {
 	var babyIdx:int = arg[0];
 	var babym:Boolean = arg[1];
 	var babyName:String = arg[2];
+	var namedBabies:int = arg[3];
 	
 	if(this.userInterface.textInput.text == "")
 	{
-		output("\n\n\n<b>You must input a name.</b>");
+		nameSeraSpawn(arg);
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if(hasIllegalInput(this.userInterface.textInput.text))
 	{
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		nameSeraSpawn(arg);
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if(this.userInterface.textInput.text.length > 14)
 	{
-		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
+		nameSeraSpawn(arg);
+		output("<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
 	babyName = this.userInterface.textInput.text;
 	if(stage.contains(this.userInterface.textInput)) this.removeInput();
-	nameSeraSpawnResult([babyIdx, babym, babyName]);
+	nameSeraSpawnResult([babyIdx, babym, babyName, namedBabies]);
 }
 public function nameSeraSpawnResult(arg:Array):void
 {
@@ -959,6 +966,7 @@ public function nameSeraSpawnResult(arg:Array):void
 	var babyIdx:int = arg[0];
 	var babym:Boolean = arg[1];
 	var babyName:String = arg[2];
+	var namedBabies:int = (arg[3] + 1);
 	
 	// Special Names:
 	var setName:String = (babyName.toLowerCase());
@@ -1003,10 +1011,32 @@ public function nameSeraSpawnResult(arg:Array):void
 	
 	IncrementFlag("SERA_NAMED_KID");
 	
-	// Bounce back to Cafeteria main menu
 	clearMenu();
-	addButton(0, "Next", seraNurseryCafeteriaApproach);
+	// More babies...
+	if((seraNoNameBabies.length - 1) > 0) addButton(0, "Next", nameSeraSpawnResultPlus, [babyIdx, babym, babyName, namedBabies]);
+	// Bounce back to Cafeteria main menu
+	else addButton(0, "Next", seraNurseryCafeteriaApproach);
 }
+public function nameSeraSpawnResultPlus(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	showSera();
+	clearMenu();
+	
+	var seraNoNameBabies:Array = listSeraNoNameBabies();
+	var babyIdx:int = 0;
+	var babym:Boolean = (seraNoNameBabies[babyIdx].NumMale > 0 ? true : false);
+	var babyName:String = seraNoNameBabies[babyIdx].Name;
+	var namedBabies:int = arg[3];
+	
+	if(namedBabies == 1) output("<i>“We overdid it on the whole fertility kick, didn’t we?”</i> Sera goes on with a smirk. <i>“Nearly ran when I looked through the incubator glass. What do you want to call the other one?”</i>");
+	else output("<i>“And the other one?”</i> continue Sera, with an air of tribulation.");
+	
+	// [Enter Name]
+	addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, namedBabies]);
+}
+
 public function seraNurseryActions(arg:Array):void
 {
 	clearOutput();

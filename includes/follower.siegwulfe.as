@@ -115,6 +115,7 @@ public function nameSiegwulfe(fromInv:Boolean = false):void
 	output("What do you decide to name her?");
 	displayInput();
 	this.userInterface.textInput.text = chars["WULFE"].short;
+	output("\n\n\n");
 	
 	clearMenu();
 	addButton(0, "Next", nameSiegwulfeCheck, fromInv);
@@ -123,18 +124,21 @@ public function nameSiegwulfeCheck(fromInv:Boolean = false):void
 {
 	if(this.userInterface.textInput.text == "")
 	{
-		output("\n\n\n<b>You must input a name.</b>");
+		nameSiegwulfe(fromInv);
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if(hasIllegalInput(this.userInterface.textInput.text))
 	{
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		nameSiegwulfe(fromInv);
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if(this.userInterface.textInput.text.length > 14)
 	{
-		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
+		nameSiegwulfe(fromInv);
+		output("<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
 	chars["WULFE"].short = this.userInterface.textInput.text;

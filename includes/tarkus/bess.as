@@ -955,15 +955,18 @@ public function nameBessForRealsies():void
 public function nameBessProcessing():void
 {
 	if (this.userInterface.textInput.text == "") {
+		nameBessForRealsies();
 		output("\n\n\n<b>You must input a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if (hasIllegalInput(this.userInterface.textInput.text)) {
+		nameBessForRealsies();
 		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if (this.userInterface.textInput.text.length > 14) {
+		nameBessForRealsies();
 		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}

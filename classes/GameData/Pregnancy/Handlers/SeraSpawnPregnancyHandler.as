@@ -31,7 +31,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canImpregnateVagina = true;
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
-			_pregnancyQuantityMaximum = 3;
+			_pregnancyQuantityMaximum = 6;
 			_definedAverageLoadSize = 800;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
 			_pregnancyChildRace = GLOBAL.TYPE_HUMAN;
@@ -260,7 +260,7 @@ package classes.GameData.Pregnancy.Handlers
 				else c.NumFemale = 1;
 				
 				// Race modifier (if different races)
-				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace);
+				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace, ((mother is PlayerCharacter) ? true : false));
 				
 				// Adopt mother's colors at random (if applicable):
 				if(rand(2) == 0) c.skinTone = traitChar.skinTone;

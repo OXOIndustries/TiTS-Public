@@ -26,9 +26,17 @@ public function darkChrysalisIsOpen():Boolean
 
 public function showSera(nude:Boolean = false):void
 {
-	if(!nude) showBust("SERA");
-	else showBust("SERA_NUDE");
+	showBust(seraBustDisplay(nude));
 	showName("\nSERA");
+}
+public function seraBustDisplay(nude:Boolean = false):String
+{
+	var sBust:String = "SERA";
+	
+	if(seraAtNursery() && 9999 == 0) sBust += "_MOM";
+	else if(nude) sBust += "_NUDE";
+	
+	return sBust;
 }
 
 public function seraBonusFunction():Boolean

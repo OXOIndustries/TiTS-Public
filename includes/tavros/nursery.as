@@ -951,7 +951,7 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	var lastBorn:Child = (allBirths.length > 0 ? allBirths[allBirths.length - 1] : null);
 	if (lastBorn != null)
 	{
-		output(" Her suit-jacket is unbuttoned, and she’s holding a newborn "+GLOBAL.TYPE_NAMES[lastBorn.RaceType]+" in her arms, letting "+ lastBorn.randomApplicableGender("him", "her", "her", "it") +" nurse from one of her full, milk-swollen breasts.");
+		output(" Her suit-jacket is unbuttoned, and she’s holding a newborn " + GLOBAL.TYPE_NAMES[lastBorn.RaceType].toLowerCase() + " in her arms, letting " + lastBorn.randomApplicableGender("him", "her", "her", "it") + " nurse from one of her full, milk-swollen breasts.");
 
 		output("\n\nBriget blinks when you stir, brought back from her motherly daydreaming. ");
 	}
@@ -962,18 +962,18 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	
 	output("<i>“Oh, [pc.name]. I thought you would be asleep for some time still.... Do forgive an old gynoid for still taking some little pleasure in watching over you while you dream, hmm?”</i>");
 	
-	if (lastBorn != null) output("\n\nShe smiles and glances down to the little bundle in her arms. <i>“Everything went perfectly, of course. You’re now mother to "+lastBorn.Quantity+" newborn "+GLOBAL.TYPE_NAMES[lastBorn.RaceType]+". Congratulations, dear.”</i>");
+	if (lastBorn != null) output("\n\nShe smiles and glances down to the little bundle in her arms. <i>“Everything went perfectly, of course. You’re now mother to " + (lastBorn.Quantity == 1 ? ("a newborn " + GLOBAL.TYPE_NAMES[lastBorn.RaceType].toLowerCase()) : (num2Text(lastBorn.Quantity) + " newborn babies")) + ". Congratulations, dear.”</i>");
 
-	var totalDays:int = Math.round(finalDuration / 1440);
+	var totalDays:int = Math.floor(finalDuration / 1440);
 	var totalHours:int = Math.round((finalDuration % 1440) / 24);
 	output("\n\nYou spend a few moments stretching and collecting yourself");
 	if (lastBorn != null) output(" - and fussing over your newborn offspring -");
 	output(" before glancing at the clock sitting on the desk. <b>You’ve spent");
-	if (totalDays > 0) output(" " + totalDays + " day" + (totalDays > 1 ? "s" : ""));
+	if (totalDays > 0) output(" " + num2Text(totalDays) + " day" + (totalDays > 1 ? "s" : ""));
 	if (totalHours > 0)
 	{
 		if (totalDays > 0) output(" and");
-		output(" " + totalHours + " hour" + (totalHours > 1 ? "s" : ""));
+		output(" " + num2Text(totalHours) + " hour" + (totalHours > 1 ? "s" : ""));
 	}
 	output(" here</b> in leisure. God only knows what your rival’s gotten up to in that time.");
 	

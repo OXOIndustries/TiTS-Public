@@ -22,14 +22,14 @@ package classes.GameData.Pregnancy
 		public var scaleColor:String = "NOT SET";
 		public var furColor:String = "NOT SET";
 		
-		public function hybridizeRace(mRace:String = "", cRace:String = ""):String
+		public function hybridizeRace(mRace:String = "", cRace:String = "", fromPC:Boolean = false):String
 		{
 			var newRace:String = cRace;
-			mRace = stripRace(mRace);
-			cRace = stripRace(cRace);
+			mRace = stripRace(mRace, fromPC);
+			cRace = stripRace(cRace, fromPC);
 			
 			// Hybridize races if they do not match.
-			if(mRace != "" && cRace != "" && mRace != cRace) newRace = (mRace + "-" + mRace + " hybrid");
+			if(mRace != "" && cRace != "" && mRace != cRace) newRace = (mRace + "-" + cRace + " hybrid");
 			else newRace = cRace;
 			
 			// Insert special cases here!
@@ -39,12 +39,20 @@ package classes.GameData.Pregnancy
 			
 			return newRace;
 		}
-		private function stripRace(sRace:String = ""):String
+		private function stripRace(sRace:String = "", fromPC:Boolean = false):String
 		{
 			sRace = sRace.toLowerCase();
 			
-			if(sRace.indexOf("half-") != -1) sRace = sRace.replace("half-", "");
-			if(sRace.indexOf("half ") != -1) sRace = sRace.replace("half ", "");
+			if(sRace.indexOf("half-") != -1)
+			{
+				if(fromPC) sRace = "human";
+				sRace = sRace.replace("half-", "");
+			}
+			if(sRace.indexOf("half ") != -1)
+			{
+				if(fromPC) sRace = "human";
+				sRace = sRace.replace("half-", "");
+			}
 			if(sRace.indexOf("-morph") != -1) sRace = sRace.replace("-morph", "");
 			if(sRace.indexOf(" morph") != -1) sRace = sRace.replace(" morph", "");
 			if(sRace.indexOf("-taur") != -1) sRace = sRace.replace("-taur", "");
@@ -53,6 +61,7 @@ package classes.GameData.Pregnancy
 			if(sRace.indexOf(" halfbreed") != -1) sRace = sRace.replace(" halfbreed", "");
 			if(sRace.indexOf("robot") != -1 || sRace.indexOf("machine") != -1 || sRace.indexOf("droid") != -1 || sRace.indexOf("automaton") != -1 || sRace.indexOf("conglomerate") != -1 || sRace.indexOf("junker") != -1) sRace = "robot";
 			if(sRace.indexOf("anthro") != -1) sRace = "anthro";
+			if(sRace.indexOf("'rahn") != -1) sRace = "rahn";
 			if(sRace.indexOf("NOT SET") != -1 || sRace.indexOf("?") != -1) sRace = "";
 			
 			return sRace;
