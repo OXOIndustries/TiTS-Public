@@ -1751,6 +1751,7 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processTreatmentEvents(deltaT, doOut);
 	processKiroBarEvents(deltaT, doOut);
 	processSaendraEvents(deltaT, doOut);
+	processLetsFapUpdates(deltaT, doOut);
 	varmintDisappearChance(deltaT, doOut);
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
@@ -1760,6 +1761,7 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processLaneDetoxEvents(arg);
 	
 	// minutes++
+	// hours++
 }
 
 public function processMimbranesTime(deltaT:uint, doOut:Boolean):void
@@ -1773,6 +1775,12 @@ public function processMimbranesTime(deltaT:uint, doOut:Boolean):void
 	{
 		kGAMECLASS.flags["MIMBRANES BITCH TIMER"] = 0;
 		if (doOut) kGAMECLASS.mimbranesComplainAndShit();
+	}
+	
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if (totalHours >= 1)
+	{
+		mimbraneSweatHandler(totalHours);
 	}
 }
 
@@ -1932,6 +1940,53 @@ public function processSaendraEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
+public function processLetsFapUpdates(deltaT:uint, doOut:Boolean):void
+{
+	// Bail early if we've already unlocked everything
+	if (letsFapTrack() >= LETS_FAP_EPISODES.length - 1) return;
+	
+	var numMinutes:int = deltaT / 60;
+	var numHours:int = deltaT - (deltaT % 60);
+	var numDays:int = numHours / 24;
+	
+	// If we cross 1pm
+	// => more than 24 hours pass this delta, or hours is less than 13 prior to processTime() and 13 after
+	if (numHours >= 24 || (hours < 13 && (hours + numHours + (minutes + numMinutes > 60 ? 1 : 0)) >= 13))
+	{
+		if (flags["LETS_FAP_RELEASE_TIMER"] != undefined)
+		{
+			var unlockLength:Number = (flags["EARLY_LETS_FAPS"] == undefined ? 10080 : 7200);
+			var numUnlocks:int = 0;
+			
+			if (GetGameTimestamp() + deltaT - flags["LETS_FAP_RELEASE_TIMER"] >= unlockLength)
+			{
+				numUnlocks++;
+				var remDelta:uint = deltaT - flags["LETS_FAP_RELEASE_TIMER"];
+				
+				numUnlocks += (remDelta / unlockLength);
+				
+				// Clamp the max unlocks to 7, accounting for presently unlocked potentials
+				numUnlocks = Math.min(7, numUnlocks - letsFapTrack());
+				
+				if (numUnlocks == 1)
+				{
+					eventBuffer += "\n\n" + logTimeStamp("good", unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + " Atha has posted a new Let's Fap video!";
+				}
+				else
+				{
+					eventBuffer += "\n\n" + logTimeStamp("good", (unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + ((numUnlocks - 1) * unlockLength) + " Atha has posted new Let's Fap videos!");
+				}
+				
+				// Unlock the latest episode possible based on time passage and existing unlock position
+				flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES[letsFapTrack() + (numUnlocks - 1)];
+				
+				flags["LETS_FAP_RELEASE_TIMER"] = undefined;
+			}
+		}
+		else if (letsFapUnlockFromName() != "" && rand(10) == 0 && (days + numDays > 35 || (days + numDays > 34 && hours + numHours >= 24))) letsFapEmailUnlock();
+	}
+}
+
 public function processTime(arg:int):void {
 	var x:int = 0;
 	var msg:String = "";
@@ -1940,21 +1995,9 @@ public function processTime(arg:int):void {
 
 	//loop through every minute
 	while(arg > 0) {
-		//Check for shit that happens.
-		//Actually move time!
-		minutes++;
-		
-
-		//Saendra's X-Pack Timer
 
 		//Tick hours!
 		if (minutes >= 60) {
-			
-			// Lust increase per hour
-			mimbraneSweatHandler();
-			
-			minutes = 0;
-			hours++;
 
 			//Hours checks here!
 			letsFapUpdateCheck();

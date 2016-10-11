@@ -4588,12 +4588,12 @@ public function toggleMimbraneSweat():void
 	addGhostButton(0, "Back", mimbraneMenu);
 }
 
-public function mimbraneSweatHandler():void
+public function mimbraneSweatHandler(numHours:int = 1):void
 {
 	if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined && flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1)
 	{
 		var numSweating:int = mimbranesAtTrustMinimum(3);
-		pc.lust(numSweating);
+		pc.lust(numSweating * numHours);
 	}
 }
 
