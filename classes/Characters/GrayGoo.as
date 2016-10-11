@@ -25,7 +25,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "gray goo";
-			this.originalRace = "Conglomerate";
+			this.originalRace = "conglomerate";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "This goo-like creature is made of a writhing mass of nano-bots, trillions of the little things coalesced into the form of an almost comically-busty woman, with wide hips and thick thighs over long legs that seem to have trouble maintaining their shape, as her feet are constantly turning to an amorphous liquid on the ground as she walks. Her arms, too, are constantly shifting, turning into masses of thin tentacles or else reforming into the shape of various sex toys and restraints, some parts of her intelligence clearly over-eager to milk all the \"natural lube\" she can out of you! ";

@@ -16,7 +16,7 @@
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "elder venus\npitcher";
+			this.short = "elder venus pitcher";
 			this.originalRace = "venus pitcher";
 			this.a = "the ";
 			this.capitalA = "The ";

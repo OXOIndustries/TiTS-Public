@@ -28,25 +28,32 @@ package classes.GameData.Pregnancy
 			mRace = stripRace(mRace);
 			cRace = stripRace(cRace);
 			
+			// Hybridize races if they do not match.
 			if(mRace != "" && cRace != "" && mRace != cRace) newRace = (mRace + "-" + mRace + " hybrid");
 			else newRace = cRace;
 			
 			// Insert special cases here!
 			if(newRace.indexOf("robot-") != -1 || newRace.indexOf("-robot") != -1) newRace = "cyborg";
-			if(newRace == "") newRace = "NOT SET";
+			if(newRace.indexOf("myrmedion-") != -1 || newRace.indexOf("-myrmedion") != -1) newRace = newRace.replace("myrmedion", "myr");
+			if(newRace == "" || newRace.indexOf("NOT SET") != -1 || newRace.indexOf("?") != -1) newRace = "NOT SET";
 			
 			return newRace;
 		}
 		private function stripRace(sRace:String = ""):String
 		{
+			sRace = sRace.toLowerCase();
+			
 			if(sRace.indexOf("half-") != -1) sRace = sRace.replace("half-", "");
 			if(sRace.indexOf("half ") != -1) sRace = sRace.replace("half ", "");
 			if(sRace.indexOf("-morph") != -1) sRace = sRace.replace("-morph", "");
 			if(sRace.indexOf(" morph") != -1) sRace = sRace.replace(" morph", "");
+			if(sRace.indexOf("-taur") != -1) sRace = sRace.replace("-taur", "");
 			if(sRace.indexOf("-hybrid") != -1) sRace = sRace.replace("-hybrid", "");
 			if(sRace.indexOf(" hybrid") != -1) sRace = sRace.replace(" hybrid", "");
-			if(sRace.indexOf("-taur") != -1) sRace = sRace.replace("-taur", "");
-			if(sRace.indexOf("NOT SET") != -1) sRace = "";
+			if(sRace.indexOf(" halfbreed") != -1) sRace = sRace.replace(" halfbreed", "");
+			if(sRace.indexOf("robot") != -1 || sRace.indexOf("machine") != -1 || sRace.indexOf("droid") != -1 || sRace.indexOf("automaton") != -1 || sRace.indexOf("conglomerate") != -1 || sRace.indexOf("junker") != -1) sRace = "robot";
+			if(sRace.indexOf("anthro") != -1) sRace = "anthro";
+			if(sRace.indexOf("NOT SET") != -1 || sRace.indexOf("?") != -1) sRace = "";
 			
 			return sRace;
 		}

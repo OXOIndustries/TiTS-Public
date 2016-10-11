@@ -39,7 +39,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "infected crew member";
-			this.originalRace = "human";
+			this.originalRace = RandomInCollection("ausar", "gryvain", "raskvel");
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.tallness = 62;
@@ -207,7 +207,7 @@
 			
 			createStatusEffect("Force It Gender");
 			
-			_randomBustSelection = RandomInCollection("LUSTOMORPH_AUSAR", "LUSTOMORPH_GRYVAIN", "LUSTOMORPH_RASKVEL");
+			_randomBustSelection = ("LUSTOMORPH_" + originalRace.toUpperCase());
 			
 			this._isLoading = false;
 		}

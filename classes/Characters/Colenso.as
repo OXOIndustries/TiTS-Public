@@ -34,7 +34,7 @@
 			this.keeperGreeting = "<i>“Sumthin’ else you want?”</i> Colenso leans back, eyeing you.";
 
 			this.short = "Colenso";
-			this.originalRace = "human";
+			this.originalRace = "gabilani";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "";

@@ -26,7 +26,7 @@
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
 			this.short = "wetraxxel brawler";
-			this.originalRace = "Wetraxxel";
+			this.originalRace = "wetraxxel";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "The wetraxxel is a towering, insectile man -- easily ten feet tall, and covered in chitinous plates. A pair of small insectile feelers adorn his head, over small black eyes and a pair of slits for nostrils. His mouth is a four-part set of sharply fanged mandibles, which click quietly as his grunts and growls. He's monstrously broad-shouldered, with lighter-colored and more flexible plates on his chest; his gut is an off-white against the midnight black of his other chitin. His plated fists are raised to you in a classic boxing stance, ready to punch and block in equal measure.\n\nThe wetraxxal male's naked save for a simple loincloth which barely conceals a hefty-looking package, certainly sizable even for its owner's great height. ";

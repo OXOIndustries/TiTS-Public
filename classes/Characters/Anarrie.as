@@ -40,7 +40,7 @@
 			this.buyMarkdown = .80;
 
 			this.short = "Anarrie";
-			this.originalRace = "myr";
+			this.originalRace = "myrmedion";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "Placeholder";

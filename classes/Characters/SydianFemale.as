@@ -30,7 +30,7 @@
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
 			this.short = "sydian female";
-			this.originalRace = "Sydian";
+			this.originalRace = "sydian";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "Placeholder";

@@ -28,7 +28,7 @@
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
 			this.short = "queen of the deep";
-			this.originalRace = "Deeps Queen";
+			this.originalRace = "water queen";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "The creature before you is a monstrous amalgam of bestial features: stalk-like legs with too many joints, writhing masses of envenomed tentacles, and a pair of huge claws all grow from a dark red body covered in carapace as thick as a tank's armor. Rising from atop the fifteen-foot-high body comes a woman's torso, with creamy cyan and white skin covered in patches of bioluminescent algae that strobe to the beat of their owner's heart. The mossy substance is arranged across her almost like clothing, though the moss leaves her pair of pendulous breasts bare, exposing eight nipples, each drooling with amber moisture. A long braid of tentacle-hair falls down the upper half's back, glowing softly in shades of blue and green.";

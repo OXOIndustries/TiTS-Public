@@ -34,7 +34,7 @@ package classes.Characters
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
 			this.short = "fenris drone";
-			this.originalRace = "Automaton";
+			this.originalRace = "automaton";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "A sleek, black canine robot, its chest emblazoned with various markings identifying it as a Fenris IV assault drone.";
