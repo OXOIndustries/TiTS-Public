@@ -16168,8 +16168,8 @@
 		
 		public function untypedDroneDamage():Number
 		{
-			dmg:Number = 1 + level + rand(2 + level / 2);
-			bonus:Number = 0;
+			var dmg:Number = 1 + level + rand(2 + level / 2);
+			var bonus:Number = 0;
 			if(hasPerk("Attack Drone")) bonus += 1 + rand(3);
 			
 			return dmg + bonus;

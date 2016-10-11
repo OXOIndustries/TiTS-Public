@@ -479,7 +479,7 @@ public function orgasmenderScene4():void
 		pc.orgasm();
 	}
 	//Use Nayna for cumshots for cheap, excessive, non-impregnating jizz
-	var pp:PregnancyPlaceholder = naynaPregnancyPlaceholder();
+	var pp:PregnancyPlaceholder = getNaynaPregContainer();
 	if(pc.hasVagina())
 	{
 		for(x = 0; x < pc.totalVaginas(); x++)
