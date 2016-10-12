@@ -799,15 +799,15 @@ public function displaySeraBabies():void
 
 // Sera Nursery Visits
 // Per day Sera has a 50% chance of appearing in the Cafeteria between 18:00 - 21:30 if Seraspawn has arrived. Dark Chrysalis should be closed at this time if it’s triggered.
-public function seraHasKidInNursery():Boolean
+public function seraHasKidInNursery(unnamed:Boolean = false):Boolean
 {
-	var babies:Array = listSeraBabies();
+	var babies:Array = listSeraBabies(unnamed);
 	if(babies.length > 0) return true;
 	return false;
 }
 public function seraNurseryVisitCheck():void
 {
-	if(currentLocation != "DARK CHRYSALIS" && seraHasKidInNursery() && rand(2) == 0)
+	if(currentLocation != "DARK CHRYSALIS" && (seraHasKidInNursery(true) || (seraHasKidInNursery() && rand(3) > 0)))
 	{
 		pc.createStatusEffect("Sera at Nursery");
 	}
