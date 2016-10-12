@@ -357,6 +357,21 @@ import classes.GameData.Pregnancy.Containers.Genders;
 
 public function nurseryComputerChildren():void
 {
+	if(nurseryOrphanedBabyDiff() > 0)
+	{
+		clearOutput();
+		clearBust();
+		author("Jacques00");
+		
+		output("<b>The computer makes some worrying blips.</b> It then displays a holo-pop-up that reads:");
+		output("\n\n<i>“Oops! An error has occured and data recovery is in process. Please wait while files are being retrived...”</i>");
+		output("\n\nIt seems your nursery records have not been set straight since the previous software update and some of the data on file may have been corrupted. To ensure consistency in recordkeeping, the computer is attempting to recover your past records and display them. You can’t do much beside wait for the automated system to do its thing...");
+		
+		clearMenu();
+		addButton(0, "Next", nurseryOrphanedBabyFix, nurseryOrphanedBabyDiff());
+		return;
+	}
+	
 	clearOutput();
 	author("Savin");
 
@@ -382,6 +397,151 @@ public function nurseryComputerChildren():void
 	nurseryDisplayAllChildren();
 
 	nurseryComputerMenu(nurseryComputerChildren);
+	
+}
+
+private var orphanList:Array = [
+	"pregnancy/cockvine seedlings captured",
+	"pregnancy/nyrea eggs", "pregnancy/royal nyrea eggs", "pregnancy/renvra eggs", "pregnancy/renvra kids",
+	"pregnancy/psychic tentacle beast birthed",
+	"pregnancy/sydian births",
+	"pregnancy/fertilized venus pitcher seeds/day care",
+	"pregnancy/queen of the deep eggs",
+];
+public function nurseryOrphanedBabyDiff():int
+{
+	// Count kids that were supposedly sent to the nursery pre-nursery update.
+	var numNurseryKids:int = 0;
+	for(var i:int = 0; i < orphanList.length; i++)
+	{
+		numNurseryKids += StatTracking.getStat(orphanList[i]);
+	}
+	
+	// Compare with actual number of kids in nursery.
+	return (numNurseryKids - ChildManager.numChildren());
+}
+public function nurseryOrphanedBabyFix(numOrphans:int = 0):void
+{
+	clearOutput();
+	clearBust();
+	author("Jacques00");
+	output("You wait as the computer fixes your records");
+	
+	var msg:String = "";
+	var numFixed:int = 0;
+	
+	for(var i:int = 0; i < orphanList.length; i++)
+	{
+		if(nurseryAddOrphanedChild(orphanList[i]))
+		{
+			numFixed++;
+			msg += "\n\n<i>" + StringUtil.toTitleCase(num2Ordinal(numFixed)) + " entry detected... correcting... corrected.</i>";
+		}
+	}
+	if(msg != "")
+	{
+		output(", reading its output as it appears on the screen:");
+		output(msg);
+		output("\n\nAfter a brief moment, the computer finishes its data recovery. You can now use the nursery’s computer to check up on any children you may have.");
+	}
+	else
+	{
+		output("... But nothing comes up. Was it just a glitch?");
+	}
+	
+	processTime(1 + numFixed);
+	
+	clearMenu();
+	addButton(0, "Next", nurseryComputerChildren);
+}
+public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
+{
+	if(StatTracking.getStat(statPath) <= 0) return false;
+	
+	var childType:int = -1;
+	var childMRate:Number = 1.0;
+	var childTotal:int = 0;
+	var childWgtM:int = 50;
+	var childWgtF:int = 50;
+	var childWgtI:int = 0;
+	var childWgtN:int = 0;
+	
+	switch(statPath)
+	{
+		case "pregnancy/cockvine seedlings captured":
+			childType = GLOBAL.TYPE_COCKVINE;
+			childMRate = 2.5;
+			childTotal = StatTracking.getStat(statPath);
+			childWgtM = 1; childWgtF = 0; childWgtI = 0; childWgtN = 0;
+			break;
+		case "pregnancy/nyrea eggs":
+		case "pregnancy/royal nyrea eggs":
+		case "pregnancy/renvra eggs":
+		case "pregnancy/renvra kids":
+			childType = GLOBAL.TYPE_NYREA;
+			childMRate = 1.0;
+			childTotal = (StatTracking.getStat("pregnancy/nyrea eggs") + StatTracking.getStat("pregnancy/renvra eggs") + StatTracking.getStat("pregnancy/royal nyrea eggs") + StatTracking.getStat("pregnancy/renvra kids"));
+			break;
+		case "pregnancy/psychic tentacle beast birthed":
+			childType = GLOBAL.TYPE_TENTACLE;
+			childMRate = 2.5;
+			childTotal = StatTracking.getStat(statPath);
+			childWgtM = 0; childWgtF = 0; childWgtI = 0; childWgtN = 1;
+			break;
+		case "pregnancy/sydian births":
+			childType = GLOBAL.TYPE_HUMAN;
+			childMRate = 1.0;
+			childTotal = StatTracking.getStat(statPath);
+			break;
+		case "pregnancy/fertilized venus pitcher seeds/day care":
+			childType = GLOBAL.TYPE_VENUSPITCHER;
+			childMRate = 1.0;
+			childTotal = StatTracking.getStat(statPath);
+			childWgtM = 0; childWgtF = 1; childWgtI = 0; childWgtN = 0;
+			break;
+		case "pregnancy/queen of the deep eggs":
+			childType = GLOBAL.TYPE_WATERQUEEN;
+			childMRate = 2.0;
+			childTotal = StatTracking.getStat(statPath);
+			childWgtM = 0; childWgtF = 1; childWgtI = 0; childWgtN = 0;
+			break;
+		default:
+			childType = -1;
+			childTotal = -1;
+			break;
+	}
+	
+	// Remove any children from the count if they already exist
+	var children:Array = ChildManager.getChildrenOfType(childType);
+	var totalNum:int = 0;
+	var child:Child;
+	if (children != null && children.length > 0)
+	{
+		child = children[0]; // The oldest should be first in the array!
+		for (var i:int = 0; i < children.length; i++)
+		{
+			var c:Child = children[i] as Child;
+			totalNum += c.Quantity;
+		}
+		
+		childTotal -= totalNum;
+	}
+	
+	// Add children
+	if(childType >= 0 && childTotal > 0)
+	{
+		ChildManager.addChild(
+			Child.NewChild(
+				childType,
+				childMRate,
+				childTotal,
+				childWgtM, childWgtF, childWgtI, childWgtN
+			)
+		);
+		return true;
+	}
+	
+	return false;
 }
 
 import classes.GameData.Pregnancy.Child;
