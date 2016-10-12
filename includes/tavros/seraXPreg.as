@@ -63,8 +63,9 @@ public function seraLustGain(minPassed:int = 60):void
 public function serasBodyIsReady():void
 {
 	chars["SERA"].lust(9000);
-	if(chars["SERA"].ballFullness < 100) chars["SERA"].ballFullness = 100;
-	if(chars["SERA"].minutesSinceCum < 9000) chars["SERA"].minutesSinceCum = 9000;
+	chars["SERA"].ballFullness = 100;
+	chars["SERA"].cumQuality = 1;
+	chars["SERA"].minutesSinceCum = 9000;
 }
 
 // Intro
