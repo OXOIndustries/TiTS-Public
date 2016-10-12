@@ -57,8 +57,6 @@ public function nurseryFoyerFunc():Boolean
 	{
 		output("\n\nA pallid-skinned woman in a suit-jacket and skirt is standing behind a desk, consulting a Codex couched under her arm. She doesn’t appear to have noticed you yet.");
 		
-		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
-		
 		addButton(0, "Woman", nurseryMeetBriget);
 	}
 	else if (hours >= 7 && hours <= 16)
@@ -116,7 +114,7 @@ public function nurseryEducationCenterFunc():Boolean
 
 public function nurseryKidsDormsFunc():Boolean
 {
-	output("\n\nMost of the nursery deck is devoted to living space for what Dad must have assumed");
+	output("Most of the nursery deck is devoted to living space for what Dad must have assumed");
 	if (ChildManager.numChildren() >= 10) output(" - correctly -");
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
 
@@ -125,7 +123,7 @@ public function nurseryKidsDormsFunc():Boolean
 
 public function nurserySpecialistRooms():Boolean
 {
-	output("\n\nOf course, Dad couldn’t have predicted the needs of every alien species likely to");
+	output("Of course, Dad couldn’t have predicted the needs of every alien species likely to");
 	if (pc.hasVagina()) output(" knock you up");
 	if (pc.hasVagina() && pc.hasCock()) output(" or");
 	if (pc.hasCock()) output(" bear you an heir");
@@ -208,6 +206,7 @@ public function nurseryStairs2F():Boolean
 public function nurseryPlayerApptFunc():Boolean
 {
 	if (flags["BRIGET_MET"] != undefined && pc.isPregnant()) addButton(0, "Maternity", nurseryMaternityWait, undefined, "Maternity Wait", "The nursery is set up to support you for the long term if need be. If adventuring across the galaxy while pregnant doesn't seem like the best idea, you can move into the nursery and allow the staff to take care of you until you're ready to pop.");
+	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
 	addButton(1, "Shower", showerOptions, 0); // 9999 this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
 
@@ -216,6 +215,7 @@ public function nurseryPlayerApptFunc():Boolean
 
 public function nurseryBrigetsApptFunc():Boolean
 {
+	if (flags["BRIGET_MET"] == undefined) showName("NURSERY:\nNURSE'S APPT.");
 	if (flags["BRIGET_MET"] != undefined && (hours < 7 || hours > 16))
 	{
 		output("\n\nBriget herself is sitting in the bedroom, working on a small holoterminal on the desk. She glances up at you and smiles faintly, clearly none-too-disturbed by your presence in her abode.");
@@ -224,6 +224,12 @@ public function nurseryBrigetsApptFunc():Boolean
 		addDisabledButton(0, "Briget");
 	}
 
+	return false;
+}
+
+public function nurseryC6Func():Boolean
+{
+	vendingMachineButton(2);
 	return false;
 }
 
@@ -649,7 +655,7 @@ public function nurseryBrigetNurseryStatus():void
 	showBust("BRIGET");
 	author("Savin");
 
-	output("<i>“How are things at the nursery?”</i> you ask. Bridget tuts at you, saying that you’re quite capable of looking at the holoscreen’s readouts yourself, but you simply say that you’d like to hear it from her. The head nurse doubtless can paint a more vivid picture than a few stale stat-displays.");
+	output("<i>“How are things at the nursery?”</i> you ask. Briget tuts at you, saying that you’re quite capable of looking at the holoscreen’s readouts yourself, but you simply say that you’d like to hear it from her. The head nurse doubtless can paint a more vivid picture than a few stale stat-displays.");
 	
 	output("\n\n<i>“Oh, very well,”</i> the gynoid teases, leaning back on her desk");
 	if (flags["BRIGET_FUCKED"] != undefined) output(" in a way that makes those lovely big breasts of hers thrust out against her blouse.");
@@ -687,7 +693,7 @@ public function nurseryBrigetNurseryStatus():void
 	else output(" We’re flush with everything we could ever need, all thanks to you, oh captain my captain. The way things are going, you might want to start asking some of your many, many half-siblings if they’d like to make use of the facility: we have more than enough staff.");
 	output("”</i>");
 	
-	output("\n\nBridget flashes you a smile and taps on her Codex, glancing through the information at her display. <i>“I believe that covers everything of note at present. Anything else, [pc.name]?”</i>");
+	output("\n\nBriget flashes you a smile and taps on her Codex, glancing through the information at her display. <i>“I believe that covers everything of note at present. Anything else, [pc.name]?”</i>");
 
 	processTime(5+rand(5));
 
