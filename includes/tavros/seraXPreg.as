@@ -64,7 +64,7 @@ public function serasBodyIsReady():void
 {
 	chars["SERA"].lust(9000);
 	chars["SERA"].ballFullness = 100;
-	chars["SERA"].cumQuality = 1;
+	chars["SERA"].cumQualityRaw = 1;
 	chars["SERA"].minutesSinceCum = 9000;
 }
 
