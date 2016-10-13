@@ -3477,6 +3477,10 @@
 				return currLust;
 			}
 		}
+		public function lustDef():Number
+		{
+			return level + willpower()/4;
+		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
 		public function PQ():Number
 		{
