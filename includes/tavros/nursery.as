@@ -572,7 +572,7 @@ public function nurseryDisplayAllChildren():void
 			365,	// 1 year
 			273,	// 9 months
 			181,	// 6 months
-			90		// 3 months
+			0		// newborn
 		];
 
 		for (var i:int = 0; i < types.length; i++)
@@ -593,12 +593,15 @@ public function nurseryDisplayAllChildren():void
 				if (cc is UniqueChild)
 				{
 					uniques.push(cc);
-					continue;
+					//continue; // 9999
 				}
 				
 				for (var bb:int = 0; bb < ageBrackets.length; bb++)
 				{
-					if (cc.Days > ageBrackets[bb]) ageBuckets[bb].add(cc.NumGenders);
+					if
+					(	(bb == 0 && cc.Days >= ageBrackets[bb])
+					||	(cc.Days < ageBrackets[bb - 1] && cc.Days >= ageBrackets[bb])
+					) ageBuckets[bb].add(cc.NumGenders);
 				}
 			}
 		}
