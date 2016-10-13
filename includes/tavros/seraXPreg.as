@@ -548,8 +548,7 @@ public function seraBreedResponse(arg:Array):void
 			pc.shower();
 			
 			// Sera is done using Priapin and no longer a breeding machine
-			var priapin:Priapin = new Priapin();
-			priapin.effectDone(chars["SERA"]);
+			chars["SERA"].removeStatusEffect("Priapin");
 			chars["SERA"].impregnationType = "";
 			
 			pc.removeStatusEffect("Sera Breed No Sex");
@@ -917,8 +916,7 @@ public function nameSeraSpawn(arg:Array):void
 	var babyName:String = arg[2];
 	var namedBabies:int = arg[3];
 	
-	if(namedBabies > 0) output((babym ? "He’s a handsome baby boy" : "She’s a beautiful baby girl") + ". ");
-	output("What do you decide to name " + (babym ? "him" : "her") + "?");
+	output("Sera is asking you to name your " + (babym ? "handsome baby boy" : "beautiful baby girl") + ". What do you decide to name " + (babym ? "him" : "her") + "?");
 	displayInput();
 	this.userInterface.textInput.text = babyName;
 	output("\n\n\n");

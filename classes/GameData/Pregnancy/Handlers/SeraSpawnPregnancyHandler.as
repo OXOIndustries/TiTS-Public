@@ -229,6 +229,7 @@ package classes.GameData.Pregnancy.Handlers
 			var babyList:Array = seraSpawnChildren(mother, pData.pregnancyQuantity);
 			for(var i:int = 0; i < babyList.length; i++)
 			{
+				babyList[i].BornTimestamp = useBornTimestamp;
 				ChildManager.addChild(babyList[i]);
 			}
 			

@@ -491,7 +491,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 		case "pregnancy/sydian births":
 			childType = GLOBAL.TYPE_HUMAN;
 			childMRate = 1.0;
-			childTotal = StatTracking.getStat(statPath);
+			childTotal = (StatTracking.getStat("pregnancy/sydian births") + StatTracking.getStat("pregnancy/sera kids"));
 			break;
 		case "pregnancy/fertilized venus pitcher seeds/day care":
 			childType = GLOBAL.TYPE_VENUSPITCHER;
@@ -563,15 +563,16 @@ public function nurseryDisplayAllChildren():void
 		// will be in some form of order atm
 
 		var ageBrackets:Array = [
-			6571, 	// 18+
-			6570, 	// 16-18
-			5840, 	// 12 - 16
-			4380, 	// 8 - 12
-			2920, 	// 4-8
-			1460, 	// 1-4
-			365,	// 1 year
+			6570, 	// 18+
+			5840, 	// 16-18
+			4380, 	// 12-16
+			2920, 	// 8-12
+			1460, 	// 4-8
+			365,	// 1-4
 			273,	// 9 months
 			181,	// 6 months
+			90,		// 3 months
+			30,		// 1 month
 			0		// newborn
 		];
 
@@ -593,7 +594,7 @@ public function nurseryDisplayAllChildren():void
 				if (cc is UniqueChild)
 				{
 					uniques.push(cc);
-					//continue; // 9999
+					continue;
 				}
 				
 				for (var bb:int = 0; bb < ageBrackets.length; bb++)
@@ -625,15 +626,16 @@ public function nurseryDisplayAllChildren():void
 public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 {
 	var displayAges:Array = [
-		"18+",
-		"16-18",
-		"12-16",
-		"8-12",
-		"4-8",
-		"1-4",
-		"12 month",
-		"9 month",
-		"6 month",
+		"18+ years",
+		"16-18 years",
+		"12-16 years",
+		"8-12 years",
+		"4-8 years",
+		"1-4 years",
+		"9 months",
+		"6 months",
+		"3 months",
+		"1 month",
 		"newborn"
 	];
 
@@ -1068,7 +1070,7 @@ public function nurseryMaternityWaitGo():void
 	// We don't want to process-time passed the actual birthing stuff, we need to intercept the usual system, execute the cleanups (for stat tracking)
 	// THEN pass the time, so we don't trigger any of the other stage progression outputs.
 
-	var baseTime:uint = kGAMECLASS.GetGameTimestamp();
+	var baseTime:uint = GetGameTimestamp();
 	var allBirths:Array = [];
 
 	// Rather than ending ALL, what should happen is we end the next available, and check if any other pregnancies are _close enough_ to ending, and also end those,

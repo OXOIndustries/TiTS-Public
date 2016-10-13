@@ -1004,7 +1004,7 @@ public function meetCassWithKaede():void
 	output(", bathing you in the overwhelming aura of lust and feminine desire permeating the air around her. You take a deep breath of her amorous odor, and instantly find yourself ");
 	if(pc.hasCock()) output("rock-hard");
 	else output("burning with arousal");
-	output(", staring intently at her huge, heaving chest. With you gaze transfixed, you can’t stop yourself from reaching out and grabbing a handful of milky tit, pulling the cow-girl right into your arms. She squeals happily, her feline tails rapping against the wall behind her as milk dribbles down around your fingers, and her soaked crotch presses against you through her skintight suit.");
+	output(", staring intently at her huge, heaving chest. With your gaze transfixed, you can’t stop yourself from reaching out and grabbing a handful of milky tit, pulling the cow-girl right into your arms. She squeals happily, her feline tails rapping against the wall behind her as milk dribbles down around your fingers, and her soaked crotch presses against you through her skintight suit.");
 	output("\n\n<i>“So let’s, like, get acquainted,”</i> she purrs, reaching down to grab your crotch. Her fingers ");
 	if(pc.hasCock()) output("grasp at your tumescent [pc.cockNoun]");
 	if(pc.isHerm()) output(" and ");
@@ -1046,7 +1046,7 @@ public function cockVersionOfCaedeCassFuck():void
 	output("\n\nYou’re more than happy to oblige, ramming your hips forward until the kitty-cow’s ");
 	if(pc.cocks[0].cLength() < 14) output("soaked up every inch of cockflesh");
 	else output("belly is bulging with the sheer volume of dick you’re giving her");
-	output(". The couch rocks underneath you, creaking and shuddering with the powerful impacts of your pistoning hips. You imagine Kaede’s getting quite aural treat by now - these walls can’t be that thick, after all, and Cass is moaning like a hyperporn starlet on her debut, rewarding each thrust with a shrill cry of pleasure.");
+	output(". The couch rocks underneath you, creaking and shuddering with the powerful impacts of your pistoning hips. You imagine Kaede’s getting quite the aural treat by now - these walls can’t be that thick, after all, and Cass is moaning like a hyperporn starlet on her debut, rewarding each thrust with a shrill cry of pleasure.");
 
 	output("\n\nBetween brutal pistons into the kitten’s soaked pussy, you feel her thick legs lock around your [pc.butt], drawing you deeper into her embrace. More pressing, though, are her hands ");
 	if(pc.hasHair()) output("running through your [pc.hair]");
