@@ -491,7 +491,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 		case "pregnancy/sydian births":
 			childType = GLOBAL.TYPE_HUMAN;
 			childMRate = 1.0;
-			childTotal = StatTracking.getStat(statPath);
+			childTotal = (StatTracking.getStat("pregnancy/sydian births") + StatTracking.getStat("pregnancy/sera kids"));
 			break;
 		case "pregnancy/fertilized venus pitcher seeds/day care":
 			childType = GLOBAL.TYPE_VENUSPITCHER;
@@ -563,15 +563,16 @@ public function nurseryDisplayAllChildren():void
 		// will be in some form of order atm
 
 		var ageBrackets:Array = [
-			6571, 	// 18+
-			6570, 	// 16-18
-			5840, 	// 12 - 16
-			4380, 	// 8 - 12
-			2920, 	// 4-8
-			1460, 	// 1-4
+			6570, 	// 18+
+			5840, 	// 16-18
+			4380, 	// 12 - 16
+			2920, 	// 8 - 12
+			1460, 	// 4-8
+			366,	// 1-4
 			365,	// 1 year
 			273,	// 9 months
 			181,	// 6 months
+			90,		// 3 months
 			0		// newborn
 		];
 
@@ -634,6 +635,7 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 		"12 month",
 		"9 month",
 		"6 month",
+		"3 month",
 		"newborn"
 	];
 
@@ -1068,7 +1070,7 @@ public function nurseryMaternityWaitGo():void
 	// We don't want to process-time passed the actual birthing stuff, we need to intercept the usual system, execute the cleanups (for stat tracking)
 	// THEN pass the time, so we don't trigger any of the other stage progression outputs.
 
-	var baseTime:uint = kGAMECLASS.GetGameTimestamp();
+	var baseTime:uint = GetGameTimestamp();
 	var allBirths:Array = [];
 
 	// Rather than ending ALL, what should happen is we end the next available, and check if any other pregnancies are _close enough_ to ending, and also end those,
@@ -1102,6 +1104,16 @@ public function nurseryMaternityWaitGo():void
 	} while (bEndedSecondPreg)
 
 	processTime(finalDuration);
+	
+	// Reverse-age children to be accurate with their actual birth date!
+	if(allBirths.length > 0)
+	{
+		for(var i:int = 0; i < allBirths.length; i++)
+		{
+			allBirths[i].BornTimestamp += finalDuration;
+			if(allBirths[i].BornTimestamp > GetGameTimestamp()) allBirths[i].BornTimestamp = GetGameTimestamp();
+		}
+	}
 
 	clearMenu();
 	addButton(0, "Next", nurseryMaternityWaitPostBirths, { births: allBirths, dur: finalDuration });
