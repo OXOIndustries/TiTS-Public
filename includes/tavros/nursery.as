@@ -572,6 +572,7 @@ public function nurseryDisplayAllChildren():void
 			273,	// 9 months
 			181,	// 6 months
 			90,		// 3 months
+			30,		// 1 month
 			0		// newborn
 		];
 
@@ -593,7 +594,7 @@ public function nurseryDisplayAllChildren():void
 				if (cc is UniqueChild)
 				{
 					uniques.push(cc);
-					//continue; // 9999
+					continue;
 				}
 				
 				for (var bb:int = 0; bb < ageBrackets.length; bb++)
@@ -634,6 +635,7 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 		"9 months",
 		"6 months",
 		"3 months",
+		"1 month",
 		"newborn"
 	];
 
