@@ -1104,16 +1104,6 @@ public function nurseryMaternityWaitGo():void
 	} while (bEndedSecondPreg)
 
 	processTime(finalDuration);
-	
-	// Reverse-age children to be accurate with their actual birth date!
-	if(allBirths.length > 0)
-	{
-		for(var i:int = 0; i < allBirths.length; i++)
-		{
-			allBirths[i].BornTimestamp += finalDuration;
-			if(allBirths[i].BornTimestamp > GetGameTimestamp()) allBirths[i].BornTimestamp = GetGameTimestamp();
-		}
-	}
 
 	clearMenu();
 	addButton(0, "Next", nurseryMaternityWaitPostBirths, { births: allBirths, dur: finalDuration });
