@@ -565,11 +565,10 @@ public function nurseryDisplayAllChildren():void
 		var ageBrackets:Array = [
 			6570, 	// 18+
 			5840, 	// 16-18
-			4380, 	// 12 - 16
-			2920, 	// 8 - 12
+			4380, 	// 12-16
+			2920, 	// 8-12
 			1460, 	// 4-8
-			366,	// 1-4
-			365,	// 1 year
+			365,	// 1-4
 			273,	// 9 months
 			181,	// 6 months
 			90,		// 3 months
@@ -626,16 +625,15 @@ public function nurseryDisplayAllChildren():void
 public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 {
 	var displayAges:Array = [
-		"18+",
-		"16-18",
-		"12-16",
-		"8-12",
-		"4-8",
-		"1-4",
-		"12 month",
-		"9 month",
-		"6 month",
-		"3 month",
+		"18+ years",
+		"16-18 years",
+		"12-16 years",
+		"8-12 years",
+		"4-8 years",
+		"1-4 years",
+		"9 months",
+		"6 months",
+		"3 months",
 		"newborn"
 	];
 
