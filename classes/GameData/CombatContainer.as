@@ -3183,8 +3183,27 @@ package classes.GameData
 				if (damage > 15 + attacker.level * 2) damage = 15 + attacker.level * 2;
 				damage *= factor;
 				
-				damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
-				if (damage > 25 + attacker.level * 2) damage = 25 + attacker.level * 2;
+				//Tease % resistance.
+				if (teaseType == "SQUIRT") damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
+				else damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
+				//Level % reduction
+				var levelDiff:Number = target.level - attacker.level;
+				//Reduce tease damage by 50% for every level down the PC is.
+				if(levelDiff > 0)
+				{
+					for(var z:int = levelDiff; z > 0; z--)
+					{
+						damage *= 70;
+					}
+				}
+
+				//Tease armor - only used vs weapon-type attacks at present.
+				//damage -= target.lustDef();
+
+				//Damage cap
+				if (damage > 30) damage = 30;
+				//Damage min
+				if (damage < 0) damage = 0;
 				
 				if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 				damage = Math.ceil(damage);

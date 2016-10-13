@@ -59,7 +59,7 @@ package classes.Engine.Combat
 		}
 		//25% dam multiplier
 		if (lustDamage.tease.damageValue > 0 && target != null && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25; 
-		
+
 		// Apply any defensive modifiers
 		var damMulti:Number = 1;
 		if (target.hasStatusEffect("Blue Balls")) damMulti += 0.25;
@@ -72,7 +72,12 @@ package classes.Engine.Combat
 		
 		// Apply resistances
 		lustDamage.applyResistances(tarResistances);
-		var damageAfterResistances:Number = Math.round(lustDamage.getTotal());
+		var damageAfterResistances:Number = lustDamage.getTotal();
+		
+		// Lust ARMOOOOOR
+		var lustDef:Number = target.lustDef();
+		damageAfterResistances -= target.lustDef();
+		damageAfterResistances = Math.round(damageAfterResistances);
 		
 		// Clamp damage done to 1 > Damage > DamageToCap
 		if (damageAfterResistances < 1) damageAfterResistances = 1;
