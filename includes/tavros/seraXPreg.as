@@ -548,8 +548,7 @@ public function seraBreedResponse(arg:Array):void
 			pc.shower();
 			
 			// Sera is done using Priapin and no longer a breeding machine
-			var priapin:Priapin = new Priapin();
-			priapin.effectDone(chars["SERA"]);
+			chars["SERA"].removeStatusEffect("Priapin");
 			chars["SERA"].impregnationType = "";
 			
 			pc.removeStatusEffect("Sera Breed No Sex");
