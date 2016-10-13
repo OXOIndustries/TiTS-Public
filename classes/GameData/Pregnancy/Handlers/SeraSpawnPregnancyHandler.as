@@ -256,11 +256,11 @@ package classes.GameData.Pregnancy.Handlers
 				
 				c.RaceType = pregnancyChildRace;
 				// 50% Male or Female
-				if(rand(2) == 0) c.NumMale = 1;
-				else c.NumFemale = 1;
+				if(rand(2) == 0) { c.NumMale = 1; c.NumFemale = 0; c.NumIntersex = 0; c.NumNeuter = 0; }
+				else { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
 				
 				// Race modifier (if different races)
-				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace);
+				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace, ((mother is PlayerCharacter) ? true : false));
 				
 				// Adopt mother's colors at random (if applicable):
 				if(rand(2) == 0) c.skinTone = traitChar.skinTone;

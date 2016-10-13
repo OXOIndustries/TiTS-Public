@@ -36,7 +36,7 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyQuantityMaximum = 2;
 			_definedAverageLoadSize = 720;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
-			_pregnancyChildType = GLOBAL.TYPE_NYREA;
+			_pregnancyChildRace = GLOBAL.TYPE_NYREA;
 			_childMaturationMultiplier = 1.0;
 			
 			this.addStageProgression(8000, function(pregSlot:int):void {

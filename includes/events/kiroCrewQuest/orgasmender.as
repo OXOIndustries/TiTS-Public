@@ -253,6 +253,9 @@ public function orgasmenderScene2():void
 {
 	clearOutput();
 	showOrgasmender();
+	
+	var i:int = 0;
+	
 	output("Suspended by your own buoyancy and the tentacles alike, your vision blocked by the purple mask, you find yourself nearly bereft of every sensation but touch and taste. The touch of the tank’s squirming tendrils is agony, only deigning to restrain you, not to quench the aching, bubbling need that courses through your body. Meanwhile, the taste on your tongue is even more intense than before, the bubblegum sweetness saturating your taste-buds in absolute saccharine satisfaction.");
 	output("\n\nIt barely registers to you that more comes out when your tongue moves, or when you give the oozing tube a little suck. Some part of you must be paying attention, because your tongue can’t seem to stop caressing the slickened underside of your oral intruder. Every swallow is punctuated by a hungry little suck that releases more gummy goodness onto your tongue until you can’t even smell the medicinal chemicals lacing your air supply over the aroma of candied sugar. Nevermind your swimming, dizzied head; your mouth is on autopilot. It can suck and swallow and breathe while the tentacles dispense their healing pleasure.");
 	output("\n\nAnd oh, what magnificent pleasure!");
@@ -334,12 +337,18 @@ public function orgasmenderScene2():void
 		if(pc.totalVaginas() > 1) output("They reverse");
 		else output("It reverses");
 		output(" direction, pulling out, coiling in the pink, healing goo, making new eddies and currents in the sludge before " + (pc.totalVaginas() == 1 ? "it thrusts" : "they thrust") + " back in hard enough to rock you in your restraints. Your body shakes and bounces with the force of your fucking, the excess tentacles continuing to slide over your lips and [pc.clits], drowning you in ecstasy inside and out. Internal muscles ripple and clench automatically, seeming to draw strength from the rest of your weakened form, aggressively milking the tentacles.");
+		
+		for(i = 0; i < pc.totalVaginas(); i++)
+		{
+			pc.cuntChange(i, (pc.vaginalCapacity(i)/2));
+		}
 	}
 	//No dick or vag, anal slooots
 	if(!pc.hasGenitals())
 	{
 		output("\n\nWarm flesh presses to your [pc.asshole], rubbing slowly but insistently against. It’s bigger than the others you noticed while you could still see, fatter and more clumsy. A few times, it tries to thrust inside but awkwardly deflects off your rim, the discomfort only increasing your anticipation. A bigger, thicker wad of bubble-yummy goodness explodes down your throat, and you relax even more, feeling your sphincter open up, guiding that questing tentacle into your crinkled entrance.");
 		output("\n\nYou nearly cum the moment it slides inside, just from the feeling of it passing through your [pc.asshole], but also from how full it makes you feel, how it wriggles in your strangely sensitized guts. The whole tentacle can’t fit in your [pc.asshole] of course, and the extra length coils up against your [pc.butt], writhing against itself. When the tentacle reverses course, you moan into your mask, aching only for it to fill you once more. The rest of your body may as well not even be there for how much attention you give it. Your ass is all the matters, the center of pleasure in your universe.");
+		
 		pc.buttChange(pc.analCapacity()/2);
 	}
 	//Dicknipples
@@ -463,19 +472,26 @@ public function orgasmenderScene4():void
 	if(flags["ORGASMENDER"] != undefined) output(" You’re not sure you’ll ever get tired of that. Maybe you can get one of these for your ship someday?");
 	else output(" Well... it may not have been what you expected, but the Orgasmender certainly delivered on its name.");
 	processTime(60);
-	for(var x:int = 0; x < 10; x++)
+	
+	var x:int = 0;
+	for(x = 0; x < 10; x++)
 	{
 		pc.orgasm();
 	}
 	//Use Nayna for cumshots for cheap, excessive, non-impregnating jizz
+	var pp:PregnancyPlaceholder = getNaynaPregContainer();
 	if(pc.hasVagina())
 	{
 		for(x = 0; x < pc.totalVaginas(); x++)
 		{
-			pc.loadInCunt(chars["NAYNA"],x);
+			pc.loadInCunt(pp, x);
 		}
 	}
-	pc.loadInAss(chars["NAYNA"]);
+	pc.loadInAss(pp);
+	if(pc.hasLipples() || pc.hasNippleCunts())
+	{
+		pc.loadInNipples(pp);
+	}
 	pc.HP(pc.HPMax());
 	pc.energy(40);
 	IncrementFlag("ORGASMENDER");

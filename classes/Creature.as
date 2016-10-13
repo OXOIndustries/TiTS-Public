@@ -3954,17 +3954,21 @@
 		{
 			return !(accessory is EmptySlot);
 		}
-		public function hasCombatDrone(robotOnly:Boolean = false):Boolean
+		public function hasCombatDrone(robotOnly:Boolean = false, accessoryOnly:Boolean = false):Boolean
 		{
 			if(!robotOnly)
 			{
 				if(hasStatusEffect("Varmint Buddy")) return true;
 			}
-			return (hasPerk("Attack Drone") || accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE));
+			if(!accessoryOnly)
+			{
+				if(hasPerk("Attack Drone")) return true;
+			}
+			return (accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE));
 		}
-		public function hasActiveCombatDrone(robotOnly:Boolean = false):Boolean
+		public function hasActiveCombatDrone(robotOnly:Boolean = false, accessoryOnly:Boolean = false):Boolean
 		{
-			if(hasCombatDrone(robotOnly))
+			if(hasCombatDrone(robotOnly, accessoryOnly))
 			{
 				if(hasStatusEffect("Drone Disabled") || hasStatusEffect("Combat Drone Disabled")) return false;
 				return true;
@@ -4096,7 +4100,7 @@
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
-			if (hasPerk("Attack Drone") && !hasTamWolf()) temp += level;
+			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) temp += (3 * level);
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
@@ -16065,7 +16069,12 @@
 		
 		public function untypedDroneDamage():Number
 		{
-			return 1 + level + rand(2 + level / 2);
+			var dmg:Number = 1 + level + rand(2 + level / 2);
+			var bonus:Number = 0;
+			
+			if(hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) bonus += level;
+			
+			return dmg + bonus;
 		}
 		
 		public function droneDamage():TypeCollection

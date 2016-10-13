@@ -2862,9 +2862,21 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_ILARIA"] != undefined)
 			{
 				output2("\n<b><u>Bunny’s Buns & Confectionary</u></b>");
-				output2("\n<b>* Ilaria:</b>Met her");
+				output2("\n<b>* Ilaria:</b> Met her");
 				if(flags["ILERIA_GLAZED"] != undefined) output2("\n<b>* Ilaria, Times Glazed Order:</b> " + flags["ILERIA_GLAZED"]);
 				if(flags["FUCKED_ILARIA"] != undefined) output2("\n<b>* Ilaria, Times Sexed:</b> " + flags["FUCKED_ILARIA"]);
+				variousCount++;
+			}
+			// Nursery!
+			if(flags["USED_NURSERY_COMPUTER"] != undefined || flags["BRIGET_MET"] != undefined)
+			{
+				output2("\n<b><u>Nursery</u></b>");
+				if(flags["USED_NURSERY_COMPUTER"] != undefined) output2("\n<b>* Computer:</b> Used");
+				if(flags["BRIGET_MET"] != undefined)
+				{
+					output2("\n<b>* Briget:</b> Met her");
+					if(flags["BRIGET_FUCKED"] != undefined) output2("\n<b>* Briget, Times Sexed:</b> " + flags["BRIGET_FUCKED"]);
+				}
 				variousCount++;
 			}
 		}

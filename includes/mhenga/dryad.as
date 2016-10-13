@@ -434,7 +434,8 @@ public function tailCuntDryadFun():void
 	processTime(25);
 	pc.orgasm();
 	//Use a suitably voluminous stand-in :D
-	pc.loadInCuntTail(chars["NAYNA"]);
+	var pp:PregnancyPlaceholder = getNaynaPregContainer();
+	pc.loadInCuntTail(pp);
 	clearMenu();
 	addButton(0,"Next",postCuntTailDryad);
 }
