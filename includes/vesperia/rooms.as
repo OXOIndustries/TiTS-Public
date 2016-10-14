@@ -77,7 +77,7 @@ public function initVesperiaRoom():void
 	rooms["CANADA5"].runOnEnter = kallyBonusRoomTexts;
 	rooms["CANADA5"].addFlag(GLOBAL.INDOOR);
 	rooms["CANADA5"].addFlag(GLOBAL.PUBLIC);
-	rooms["CANADA5"].addFlag(GLOBAL.COMMERCE);
+	rooms["CANADA5"].addFlag(GLOBAL.BAR);
 
 	rooms["CANADA6"] = new RoomClass(this);
 	rooms["CANADA6"].roomName = "\nRESTROOM";
@@ -137,4 +137,5 @@ public function initVesperiaRoom():void
 	rooms["CANADA9"].addFlag(GLOBAL.INDOOR);
 	rooms["CANADA9"].addFlag(GLOBAL.PRIVATE);
 	rooms["CANADA9"].addFlag(GLOBAL.BED);
+	rooms["CANADA9"].addFlag(GLOBAL.OBJECTIVE);
 }

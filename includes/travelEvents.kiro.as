@@ -2620,6 +2620,8 @@ public function kiroFuckNetBonus():void
 		eventBuffer += "\n\nThe message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl’s backside, stretching her sphincter like a rubber band. Kiro’s holding the camera and giving you a big, goofy grin and a thumb’s-up.\n\n<i>Kiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\nSuggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>";
 		eventBuffer += "\n\nYou shrug and click “Join”...\n\nAnd are instantly flooded with several THOUSAND pictures of the group’s members (mostly Kiro) engaged in lewd acts.\n\nWell, at least you won’t need to look for new porn for a while.";
 		pc.lust(20);
+		
+		MailManager.readEntry("kirofucknet", GetGameTimestamp());
 	}
 }
 
@@ -3027,3 +3029,4 @@ public function kiroFuckOrgyFuntimes7():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+

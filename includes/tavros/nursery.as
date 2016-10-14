@@ -905,8 +905,9 @@ public function nurseryBrigetNurseryStaff():void
 		else if (numNurseryStaff() >= 10)
 		{
 			output(" You’ve certainly found more employees than I would have expected. Our budget is a bit strained at present, but I believe the effects more than justify a bit of credit-pinching here and there: I never expected the nursery to feel so vibrant and alive");
-			if (ChildManager.numChildren() >= 10) output(", even with all your precious darlings here with me");
-			output("! We’ve built a community here thanks to you, dear.} They say it takes a village, and I can certainly see the wisdom in that now. I simply </i>know<i> that your offspring will be the best and brightest the galaxy has to offer under our care");
+			if (ChildManager.numChildren() >= 2) output(", even with all your precious darlings here with me");
+			if (ChildManager.numChildren() >= 10) output("! We’ve built a community here thanks to you, dear");
+			output(". They say it takes a village, and I can certainly see the wisdom in that now. I simply </i>know<i> that your offspring will be the best and brightest the galaxy has to offer under our care");
 			if (ChildManager.numChildren() == 0 && !pc.isPregnant()) output("... when you have them, that is");
 			output(".");
 		}
@@ -1185,10 +1186,10 @@ public function nurserySpecialistWaterPricesses():void
 
 		processTime(30);
 
-		flags["NURSERY_WATER_PRINCESS_VISTS"] = 1;
+		flags["NURSERY_WATER_PRINCESS_VISTS"] = 0;
 
 		clearMenu();
-		addButton(0, "Next", mainGameMenu);
+		addButton(0, "Next", nurserySpecialistWaterPricesses);
 	}
 	else
 	{
@@ -1242,7 +1243,7 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 
 	output("Several more heads of tentacled hair peek up from the water’s edge a few moments later, and soon you’re overwhelmed with chattering voices - a chorus of <i>“Hi!”</i> <i>“Welcome home!”</i> <i>“We missed you so much!”</i> and more. Half a dozen pairs of hands grab at you, pulling you into hugs kisses every which way. Your not-so-little girls giggle and cry out with joy, pulling you in so many directions at once that you’re momentarily afraid they’ll forget their own strength... but no, they’re as gentle as angels once you start squirming, setting you back down on the sandbar and folding their legs under themselves, coming down to your level.");
 
-	output("\n\nBefore long your princesses have coaxed you into sharing your adventurous tales with them. Their curiosity is boundless, you soon discover: wanderlust and starry-eyed wonder fills them with every word, and they’re on the edge of their crabby seats as you recount some of your more dangerous exploits and less steamy encounters.");
+	output("\n\nBefore long, your princesses have coaxed you into sharing your adventurous tales with them. Their curiosity is boundless, you soon discover: wanderlust and starry-eyed wonder fills them with every word, and they’re on the edge of their crabby seats as you recount some of your more dangerous exploits and less steamy encounters.");
 	
 	output("\n\nEventually between stories, you note that your princesses have really grown since you birthed them - much, much faster than a human child. You remember the Queen hinted at herself being quite young by Terran standards, so... just how mature are her spawn already? They were talking, reading, and writing just moments after they hatched, after all. And they’re already so big...");
 	
@@ -1287,9 +1288,7 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 			output("\n\nAnother princess stalks out of the shadowy waters, crossing her arms under her");
 			if (child != null && GetGameTimestamp() - child.BornTimestamp <= 1051200) output(" exceptionally ample");
 			output(" chest. <i>“Maybe <i>you’re<i> going to university, but Miss Briget says some of us should think about testing for Games and Theory. Says we have sharp minds.”</i>");
-			
 			output("\n\n<i>“Isn’t that, like, code for psychic powers?”</i> another princess chuckles. <i>“Can you read my mind, now?”</i>");
-			
 			output("\n\n<i>“Maybe someday!”</i> the other scoffs. <i>“Or maybe I’ll just </i>blow things up with my brain!</i>");
 			break;
 	}
@@ -1305,7 +1304,7 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 		
 		output("\n\n<i>“We all are!”</i> another adds. Several of her sisters voice their agreement.");
 		
-		output("\n\n<i>“And we meant what it said. We’re super thankful to have you, "+ pc.mf("daddy", "mommy") +"! And then there’s the nursery and Miss Briget and everything else you’ve done for us since. So from all of us: thank you so much!”</i>}");
+		output("\n\n<i>“And we meant what it said. We’re super thankful to have you, "+ pc.mf("daddy", "mommy") +"! And then there’s the nursery and Miss Briget and everything else you’ve done for us since. So from all of us: thank you so much!”</i>");
 	}
 	
 	output("\n\nYou smile and put your arms around a pair of the young princesses, holding your brood close for a while. Eventually, though, a few of them start yawning, or mumbling complaints about their carapaces getting dry. That seems like your cue to let them get back to their watery nests - an idea that earns you groans and pleas to stay, but you know you need to let them get some rest. Giving them farewell hugs, you see them back into the water before turning to the tunnel and switching the lights back out to darkness.");

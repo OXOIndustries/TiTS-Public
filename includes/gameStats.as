@@ -660,94 +660,95 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n\n" + blockHeader("Combat Statistics", false));
 		// Physical Combat
 		output2("\n<b><u>Physical Combat</u></b>");
-		output2("\n<b>* Accuracy Bonus, Melee:</b> " + pc.attack(true) + " %");
-		output2("\n<b>* Accuracy Bonus, Ranged:</b> " + pc.attack(false) + " %");
-		output2("\n<b>* Critical Chance, Melee:</b> " + pc.critBonus(true) + " %");
-		output2("\n<b>* Critical Chance, Ranged:</b> " + pc.critBonus(false) + " %");
-		output2("\n<b>* Defense, Armor:</b> " + pc.defense());
-		output2("\n<b>* Defense, Shields:</b> " + pc.shieldDefense());
-		output2("\n<b>* Evasion Bonus:</b> " + pc.evasion() + " %");
-		output2("\n<b>* Fortification:</b> " + pc.fortification());
+		output2("\n<b>* Accuracy Bonus, Melee:</b> " + formatFloat(pc.attack(true), 3) + " %");
+		output2("\n<b>* Accuracy Bonus, Ranged:</b> " + formatFloat(pc.attack(false), 3) + " %");
+		output2("\n<b>* Critical Chance, Melee:</b> " + formatFloat(pc.critBonus(true), 3) + " %");
+		output2("\n<b>* Critical Chance, Ranged:</b> " + formatFloat(pc.critBonus(false), 3) + " %");
+		output2("\n<b>* Defense, Armor:</b> " + formatFloat(pc.defense(), 3));
+		output2("\n<b>* Defense, Shields:</b> " + formatFloat(pc.shieldDefense(), 3));
+		output2("\n<b>* Defense, Lust:</b> " + formatFloat(pc.lustDef(), 3));
+		output2("\n<b>* Evasion Bonus:</b> " + formatFloat(pc.evasion(), 3) + " %");
+		output2("\n<b>* Fortification:</b> " + formatFloat(pc.fortification(), 3));
 		// Melee
 		if(pc.meleeDamage().unresistable_hp.damageValue != 0)
-			output2("\n<b>* Melee Damage, HP:</b> " + pc.meleeDamage().unresistable_hp.damageValue);
+			output2("\n<b>* Melee Damage, HP:</b> " + formatFloat(pc.meleeDamage().unresistable_hp.damageValue, 3));
 		if(pc.meleeDamage().kinetic.damageValue != 0)
-			output2("\n<b>* Melee Damage, Kinetic:</b> " + pc.meleeDamage().kinetic.damageValue);
+			output2("\n<b>* Melee Damage, Kinetic:</b> " + formatFloat(pc.meleeDamage().kinetic.damageValue, 3));
 		if(pc.meleeDamage().electric.damageValue != 0)
-			output2("\n<b>* Melee Damage, Electric:</b> " + pc.meleeDamage().electric.damageValue);
+			output2("\n<b>* Melee Damage, Electric:</b> " + formatFloat(pc.meleeDamage().electric.damageValue, 3));
 		if(pc.meleeDamage().burning.damageValue != 0)
-			output2("\n<b>* Melee Damage, Burning:</b> " + pc.meleeDamage().burning.damageValue);
+			output2("\n<b>* Melee Damage, Burning:</b> " + formatFloat(pc.meleeDamage().burning.damageValue, 3));
 		if(pc.meleeDamage().freezing.damageValue != 0)
-			output2("\n<b>* Melee Damage, Freezing:</b> " + pc.meleeDamage().freezing.damageValue);
+			output2("\n<b>* Melee Damage, Freezing:</b> " + formatFloat(pc.meleeDamage().freezing.damageValue, 3));
 		if(pc.meleeDamage().corrosive.damageValue != 0)
-			output2("\n<b>* Melee Damage, Corrosive:</b> " + pc.meleeDamage().corrosive.damageValue);
+			output2("\n<b>* Melee Damage, Corrosive:</b> " + formatFloat(pc.meleeDamage().corrosive.damageValue, 3));
 		if(pc.meleeDamage().poison.damageValue != 0)
-			output2("\n<b>* Melee Damage, Poison:</b> " + pc.meleeDamage().poison.damageValue);
+			output2("\n<b>* Melee Damage, Poison:</b> " + formatFloat(pc.meleeDamage().poison.damageValue, 3));
 		// Ranged
 		if(pc.rangedDamage().unresistable_hp.damageValue != 0)
-			output2("\n<b>* Ranged Damage, HP:</b> " + pc.rangedDamage().unresistable_hp.damageValue);
+			output2("\n<b>* Ranged Damage, HP:</b> " + formatFloat(pc.rangedDamage().unresistable_hp.damageValue, 3));
 		if(pc.rangedDamage().kinetic.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Kinetic:</b> " + pc.rangedDamage().kinetic.damageValue);
+			output2("\n<b>* Ranged Damage, Kinetic:</b> " + formatFloat(pc.rangedDamage().kinetic.damageValue, 3));
 		if(pc.rangedDamage().electric.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Electric:</b> " + pc.rangedDamage().electric.damageValue);
+			output2("\n<b>* Ranged Damage, Electric:</b> " + formatFloat(pc.rangedDamage().electric.damageValue, 3));
 		if(pc.rangedDamage().burning.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Burning:</b> " + pc.rangedDamage().burning.damageValue);
+			output2("\n<b>* Ranged Damage, Burning:</b> " + formatFloat(pc.rangedDamage().burning.damageValue, 3));
 		if(pc.rangedDamage().freezing.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Freezing:</b> " + pc.rangedDamage().freezing.damageValue);
+			output2("\n<b>* Ranged Damage, Freezing:</b> " + formatFloat(pc.rangedDamage().freezing.damageValue, 3));
 		if(pc.rangedDamage().corrosive.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Corrosive:</b> " + pc.rangedDamage().corrosive.damageValue);
+			output2("\n<b>* Ranged Damage, Corrosive:</b> " + formatFloat(pc.rangedDamage().corrosive.damageValue, 3));
 		if(pc.rangedDamage().poison.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Poison:</b> " + pc.rangedDamage().poison.damageValue);
+			output2("\n<b>* Ranged Damage, Poison:</b> " + formatFloat(pc.rangedDamage().poison.damageValue, 3));
 		// Resist
 		if((pc.getShieldResistances().unresistable_hp.resistanceValue + pc.getHPResistances().unresistable_hp.resistanceValue) != 0)
-			output2("\n<b>* Resistance, HP:</b> " + (pc.getShieldResistances().unresistable_hp.resistanceValue + pc.getHPResistances().unresistable_hp.resistanceValue) + " %");
+			output2("\n<b>* Resistance, HP:</b> " + formatFloat((pc.getShieldResistances().unresistable_hp.resistanceValue + pc.getHPResistances().unresistable_hp.resistanceValue), 3) + " %");
 		if((pc.getShieldResistances().kinetic.resistanceValue + pc.getHPResistances().kinetic.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Kinetic:</b> " + (pc.getShieldResistances().kinetic.resistanceValue + pc.getHPResistances().kinetic.resistanceValue) + " %");
+			output2("\n<b>* Resistance, Kinetic:</b> " + formatFloat((pc.getShieldResistances().kinetic.resistanceValue + pc.getHPResistances().kinetic.resistanceValue), 3) + " %");
 		if((pc.getShieldResistances().electric.resistanceValue + pc.getHPResistances().electric.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Electric:</b> " + (pc.getShieldResistances().electric.resistanceValue + pc.getHPResistances().electric.resistanceValue) + " %");
+			output2("\n<b>* Resistance, Electric:</b> " + formatFloat((pc.getShieldResistances().electric.resistanceValue + pc.getHPResistances().electric.resistanceValue), 3) + " %");
 		if((pc.getShieldResistances().burning.resistanceValue + pc.getHPResistances().burning.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Burning:</b> " + (pc.getShieldResistances().burning.resistanceValue + pc.getHPResistances().burning.resistanceValue) + " %");
+			output2("\n<b>* Resistance, Burning:</b> " + formatFloat((pc.getShieldResistances().burning.resistanceValue + pc.getHPResistances().burning.resistanceValue), 3) + " %");
 		if((pc.getShieldResistances().freezing.resistanceValue + pc.getHPResistances().freezing.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Freezing:</b> " + (pc.getShieldResistances().freezing.resistanceValue + pc.getHPResistances().freezing.resistanceValue) + " %");
+			output2("\n<b>* Resistance, Freezing:</b> " + formatFloat((pc.getShieldResistances().freezing.resistanceValue + pc.getHPResistances().freezing.resistanceValue), 3) + " %");
 		if((pc.getShieldResistances().corrosive.resistanceValue + pc.getHPResistances().corrosive.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Corrosive:</b> " + (pc.getShieldResistances().corrosive.resistanceValue + pc.getHPResistances().corrosive.resistanceValue) + " %");
+			output2("\n<b>* Resistance, Corrosive:</b> " + formatFloat((pc.getShieldResistances().corrosive.resistanceValue + pc.getHPResistances().corrosive.resistanceValue), 3) + " %");
 		if((pc.getShieldResistances().poison.resistanceValue + pc.getHPResistances().poison.resistanceValue) != 0)
-			output2("\n<b>* Resistance, Poison:</b> " + (pc.getShieldResistances().poison.resistanceValue + pc.getHPResistances().poison.resistanceValue) + " %");
+			output2("\n<b>* Resistance, Poison:</b> " + formatFloat((pc.getShieldResistances().poison.resistanceValue + pc.getHPResistances().poison.resistanceValue), 3) + " %");
 		// Sexual Combat
 		output2("\n<b><u>Sexual Combat</u></b>");
 		// Melee
 		if(pc.meleeDamage().unresistable_lust.damageValue != 0)
-			output2("\n<b>* Melee Damage, Lust:</b> " + pc.meleeDamage().unresistable_lust.damageValue);
+			output2("\n<b>* Melee Damage, Lust:</b> " + formatFloat(pc.meleeDamage().unresistable_lust.damageValue, 3));
 		if(pc.meleeDamage().psionic.damageValue != 0)
-			output2("\n<b>* Melee Damage, Psionic:</b> " + pc.meleeDamage().psionic.damageValue);
+			output2("\n<b>* Melee Damage, Psionic:</b> " + formatFloat(pc.meleeDamage().psionic.damageValue, 3));
 		if(pc.meleeDamage().drug.damageValue != 0)
-			output2("\n<b>* Melee Damage, Drug:</b> " + pc.meleeDamage().drug.damageValue);
+			output2("\n<b>* Melee Damage, Drug:</b> " + formatFloat(pc.meleeDamage().drug.damageValue, 3));
 		if(pc.meleeDamage().pheromone.damageValue != 0)
-			output2("\n<b>* Melee Damage, Pheromone:</b> " + pc.meleeDamage().pheromone.damageValue);
+			output2("\n<b>* Melee Damage, Pheromone:</b> " + formatFloat(pc.meleeDamage().pheromone.damageValue, 3));
 		if(pc.meleeDamage().tease.damageValue != 0)
-			output2("\n<b>* Melee Damage, Tease:</b> " + pc.meleeDamage().tease.damageValue);
+			output2("\n<b>* Melee Damage, Tease:</b> " + formatFloat(pc.meleeDamage().tease.damageValue, 3));
 		// Ranged
 		if(pc.rangedDamage().unresistable_lust.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Lust:</b> " + pc.rangedDamage().unresistable_lust.damageValue);
+			output2("\n<b>* Ranged Damage, Lust:</b> " + formatFloat(pc.rangedDamage().unresistable_lust.damageValue, 3));
 		if(pc.rangedDamage().psionic.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Psionic:</b> " + pc.rangedDamage().psionic.damageValue);
+			output2("\n<b>* Ranged Damage, Psionic:</b> " + formatFloat(pc.rangedDamage().psionic.damageValue, 3));
 		if(pc.rangedDamage().drug.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Drug:</b> " + pc.rangedDamage().drug.damageValue);
+			output2("\n<b>* Ranged Damage, Drug:</b> " + formatFloat(pc.rangedDamage().drug.damageValue, 3));
 		if(pc.rangedDamage().pheromone.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Pheromone:</b> " + pc.rangedDamage().pheromone.damageValue);
+			output2("\n<b>* Ranged Damage, Pheromone:</b> " + formatFloat(pc.rangedDamage().pheromone.damageValue, 3));
 		if(pc.rangedDamage().tease.damageValue != 0)
-			output2("\n<b>* Ranged Damage, Tease:</b> " + pc.rangedDamage().tease.damageValue);
+			output2("\n<b>* Ranged Damage, Tease:</b> " + formatFloat(pc.rangedDamage().tease.damageValue, 3));
 		// Resist
 		if(pc.getLustResistances().unresistable_lust.resistanceValue != 0)
-			output2("\n<b>* Resistance, Lust:</b> " + pc.getLustResistances().unresistable_lust.resistanceValue + " %");
+			output2("\n<b>* Resistance, Lust:</b> " + formatFloat(pc.getLustResistances().unresistable_lust.resistanceValue, 3) + " %");
 		if(pc.getLustResistances().psionic.resistanceValue != 0)
-			output2("\n<b>* Resistance, Psionic:</b> " + pc.getLustResistances().psionic.resistanceValue + " %");
+			output2("\n<b>* Resistance, Psionic:</b> " + formatFloat(pc.getLustResistances().psionic.resistanceValue, 3) + " %");
 		if(pc.getLustResistances().drug.resistanceValue != 0)
-			output2("\n<b>* Resistance, Drug:</b> " + pc.getLustResistances().drug.resistanceValue + " %");
+			output2("\n<b>* Resistance, Drug:</b> " + formatFloat(pc.getLustResistances().drug.resistanceValue, 3) + " %");
 		if(pc.getLustResistances().pheromone.resistanceValue != 0)
-			output2("\n<b>* Resistance, Pheromone:</b> " + pc.getLustResistances().pheromone.resistanceValue + " %");
+			output2("\n<b>* Resistance, Pheromone:</b> " + formatFloat(pc.getLustResistances().pheromone.resistanceValue, 3) + " %");
 		if(pc.getLustResistances().tease.resistanceValue != 0)
-			output2("\n<b>* Resistance, Tease:</b> " + pc.getLustResistances().tease.resistanceValue + " %");
+			output2("\n<b>* Resistance, Tease:</b> " + formatFloat(pc.getLustResistances().tease.resistanceValue, 3) + " %");
 		// Sexy Stuff
 		output2("\n<b>* Sexiness:</b> " + pc.sexiness());
 		var teases:Array = [-1, -1, -1, -1];
@@ -1219,6 +1220,12 @@ public function questLogMenu(currentFunc:Function):Boolean
 	{
 		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(7, "Uveto"); }
 		else addGhostButton(7, "Uveto", currentFunc, "Uveto");
+	}
+	// Canadia Station
+	if(canadiaUnlocked())
+	{
+		if(showID == "Canadia") { output2(header("<u>Canadia Station</u>", false)); addDisabledGhostButton(8, "Canadia"); }
+		else addGhostButton(8, "Canadia", currentFunc, "Canadia");
 	}
 	// Other Info
 	if(showID == "Other") addDisabledGhostButton(12, "Other");
@@ -4819,6 +4826,28 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Crashed Probe:</b> Found, Reactivated");
 				}
+				variousCount++;
+			}
+		}
+		
+		if(showID == "Canadia" || showID == "All")
+		{
+			// Canadia Station
+			if(9999 != 9999)
+			{
+				output2("\n<b><u>Canadia Station</u></b>");
+				
+				/* Nothing yet! */
+				
+				variousCount++;
+			}
+			// Kally
+			if(flags["MET_KALLY"] != undefined)
+			{
+				output2("\n<b><u>Kui Country Bar and Lodge</u></b>");
+				output2("\n<b>* Kally:</b> Met her");
+				if(flags["KIRO_MET_KALLY"] >= 4) output2(" with Kiro");
+				if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output2(", Know of her secret ingredient");
 				variousCount++;
 			}
 		}
