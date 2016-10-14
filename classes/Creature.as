@@ -15462,6 +15462,8 @@
 			else
 			{
 				removeStatusEffect("Alcohol");
+				//Remove the companion status from Kally's brews~!
+				removeStatusEffect("Adorahol");
 			}
 		}
 		public function tolerance(arg:Number = 0):Number

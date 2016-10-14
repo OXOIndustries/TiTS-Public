@@ -178,6 +178,10 @@
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
+
+		//Vesperia/Canadia Station
+		include "../includes/vesperia/rooms.as";
+		include "../includes/vesperia/kally.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
@@ -478,6 +482,7 @@
 			kquest2InitRooms();
 			initUvetoRooms();
 			kiInitRooms();
+			initVesperiaRoom();
 			
 			mapper = new Mapper(this.rooms)
 
