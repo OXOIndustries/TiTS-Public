@@ -1125,8 +1125,10 @@ public function kiroSexMenu():void
 		else addDisabledButton(4,"PussyPump","PussyPump","Kiro doesn't trust you nearly enough for that.");
 	}
 	else addDisabledButton(4,"PussyPump","PussyPump","You need a valid device for pumping up Kiro's pussy.");
+	if(kiroRoughButtfucks() > 0) addButton(5,"Get Buttfucked",roughButtfuckFromKiroGo,false,"Get Buttfucked","Ask Kiro for another rough, buttfuck with plenty of spanking.");
+	else addDisabledButton(5,"Get Buttfucked","Get Buttfucked","You haven't unlocked this scene yet. You'll probably have to get her kinda irritated at you for this...");
 	//THREESOMES~
-	addButton(5,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
+	addButton(6,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
 	addButton(14,"Back",kiroMenu);
 }
 

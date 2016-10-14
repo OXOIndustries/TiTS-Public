@@ -1447,6 +1447,11 @@ package classes.GameData
 					if(difficulty > 0) difficulty--;
 					if(difficulty > 0) difficulty--;
 				}
+				//Outlevel the enemy? Make easier
+				if(pc.level >= _hostiles[0].level + 2) difficulty--;
+				if(pc.level >= _hostiles[0].level + 3) difficulty--;
+				if(pc.level >= _hostiles[0].level + 4) difficulty--;
+				if(pc.level >= _hostiles[0].level + 5) difficulty--;
 
 				//Set threshold value and check!
 				if(difficulty < 0) difficulty = 100;

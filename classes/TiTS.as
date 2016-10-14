@@ -179,6 +179,10 @@
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
+
+		//Vesperia/Canadia Station
+		include "../includes/vesperia/rooms.as";
+		include "../includes/vesperia/kally.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
@@ -430,7 +434,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.86";
+			version = "0.6.87";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -479,6 +483,7 @@
 			kquest2InitRooms();
 			initUvetoRooms();
 			kiInitRooms();
+			initVesperiaRoom();
 			
 			mapper = new Mapper(this.rooms)
 
