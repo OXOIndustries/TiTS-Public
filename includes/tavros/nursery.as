@@ -843,9 +843,10 @@ public function nurseryBrigetNurseryStatus():void
 	{
 		output(" greatly expanded thanks to your efforts. The nursery is bigger and better than anything old Victor could have hoped for");
 		if (numChildren >= 10) output(", just like your lovely brood, my dear. You’re well on your way to out-breeding your father already");
+		output("!");
 	}
 	else output(" somewhat upgraded thanks to you. Please, continue finding more staff and equipment out there on your adventures - everything you bring back makes the nursery that much better of a place for your children to grow up.");
-	output("!”</i>");
+	output("”</i>");
 	
 	output("\n\n<i>“The staff is");
 	if (!hasNurseryStaff()) output(" largely robotic, with some specialists in education and infant-handling on retainer. The nurse-droid staff is quite capable, though, I assure you - and we both know I’m quite able to handle as many children as needed myself.");
