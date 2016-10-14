@@ -305,7 +305,7 @@ public function cumInTurkeyslutsCunt():void
 	clearOutput();
 	gobblesHeader(true);
 
-	output("You answer by grabbing her under the arms and hefting the buxom cow up onto your lap, spearing her on your cock. She gives a shrill, startled moo as you [pc.cock] is rammed inside her, spreading that maple lead of pubes wide around your member. <i>“That.. that works too,”</i> she moans, settling onto your lap and locking your member in a silken, spicy vice. That’s all you needed to cum, and you quickly find yourself busting your nut into the cow’s welcoming hole. She gives a little groan as your first shot spills into her womb, but after that she’s all doe eyes and eager shifts of her hips, milking you just as easily with her pussy as with her breasts.");
+	output("You answer by grabbing her under the arms and hefting the buxom cow up onto your lap, spearing her on your cock. She gives a shrill, startled moo as your [pc.cock] is rammed inside her, spreading that maple leaf of pubes wide around your member. <i>“That.. that works too,”</i> she moans, settling onto your lap and locking your member in a silken, spicy vice. That’s all you needed to cum, and you quickly find yourself busting your nut into the cow’s welcoming hole. She gives a little groan as your first shot spills into her womb, but after that she’s all doe eyes and eager shifts of her hips, milking you just as easily with her pussy as with her breasts.");
 
 	pc.orgasm();
 	
