@@ -1690,7 +1690,7 @@ public function noKiroLetsNotShower():void
 	clearOutput();
 	showKiro(true);
 	output("You slink out of the ship and back to your own, trailing Kiro’s cum behind you as you go. Everyone you pass can see and smell what she did to you. The ");
-	if(rooms[currentLocation].planet("PLANET: ") != -1) output("planet");
+	if(rooms[currentLocation].planet.indexOf("PLANET: ") != -1) output("planet");
 	else output("station");
 	output(" is sure to be abuzz with tales of just how cum-drenched you were - and who did it to you.");
 	if(pc.exhibitionism() >= 33) output(" Why does that make your stomach all fluttery?");
