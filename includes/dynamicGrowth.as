@@ -549,13 +549,15 @@ public function milkGainNotes():void
 	}
 }
 
-public function lactationUpdateHourTick():void
+public function lactationUpdateHourTick(totalHours:int):void
 {
 	//These are easy since they proc with time passage and can be added to event buffer.
 	//Milk Multiplier crosses a 10 point threshold while dropping
 	//Drops .5 an hour above 150 fullness. 1 above 200 fullness
 	//Milk Rate drops by .1 an hour above 200.
 	var originalMultiplier:Number = pc.milkMultiplier;
+	var totalChange:Number = 0;
+	var t:Number = 0;
 	//Bounty bra never loses milkMultiplier!
 	if(pc.upperUndergarment is BountyBra || pc.isPregnant() || pc.hasPerk("Honeypot") || pc.hasPerk("Mega Milk") || pc.hasPerk("Hypermilky"))
 	{
@@ -566,50 +568,119 @@ public function lactationUpdateHourTick():void
 		if(pc.milkFullness >= 200) 
 		{
 			if (pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) { }
-			else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .2;
-			else pc.milkMultiplier -= 1;
+			else if (pc.hasPerk("Milky") || pc.hasPerk("Treated Milk"))
+			{
+				t = 0.2 * totalHours;
+				totalChange -= t;
+				pc.milkMultiplier -= t;
+			}
+			else
+			{
+				t = 1 * totalHours;
+				totalChange -= t;
+				pc.milkMultiplier -= t;
+			}
 		}
 		else if(pc.milkFullness >= 150) 
 		{
-			if(!pc.hasPerk("Milky") && !pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .5;
+			if (!pc.hasPerk("Milky") && !pc.hasPerk("Treated Milk"))
+			{
+				t = 0.5 * totalHours;
+				totalChange -= 6;
+				pc.milkMultiplier -= t;
+			}
 		}
 	}
+	
 	//Drops a tiny amount if below 50.
-	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant() && !pc.hasPerk("Honeypot") && !pc.hasPerk("Mega Milk") && !pc.hasPerk("Hypermilky")) {
+	if (pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant() && !pc.hasPerk("Honeypot") && !pc.hasPerk("Mega Milk") && !pc.hasPerk("Hypermilky")) 
+	{
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) {}
-		else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .02;
-		else pc.milkMultiplier -= 0.1;
+		else if (pc.hasPerk("Milky") || pc.hasPerk("Treated Milk"))
+		{
+			t = 0.02 * totalHours;
+			totalChange -= t;
+			pc.milkMultiplier -= t;
+		}
+		else
+		{
+			t = 0.1 * totalHours;
+			totalChange -= t;
+			pc.milkMultiplier -= t;
+		}
 
-		if(!pc.hasPerk("Milky")) pc.milkMultiplier -= 0.1;
-		else pc.milkMultiplier -= 0.02;
+		if (!pc.hasPerk("Milky"))
+		{
+			t = 0.1 * totalHours;
+			totalChange -= t;
+			pc.milkMultiplier -= t;
+		}
+		else
+		{
+			t = 0.2 * totalHours;
+			totalChange -= t;
+			pc.milkMultiplier -= t;
+		}
+		
 		if(pc.milkFullness > 0) 
 		{
-			pc.milkFullness -= 1;
-			if(pc.milkFullness < 0) pc.milkFullness = 0;
+			t = totalHours;
+			totalChange -= t;
+			pc.milkFullness -= t
+			
+			if (pc.milkFullness < 0)
+			{
+				pc.milkFullness = 0;
+			}
 		}
 	}
-	if(pc.milkMultiplier < 0) pc.milkMultiplier = 0;
-	//90
-	if(pc.milkMultiplier < 90 && originalMultiplier >= 90) eventBuffer += "\n\n" + logTimeStamp("passive") + " You’re pretty sure that your lactation is starting to slow down a little bit. If you don’t start milking yourself, you’ll eventually stop producing.";
-	//80
-	if(pc.milkMultiplier < 80 && originalMultiplier >= 80) eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Low level tingles in your [pc.chest] remind you that producing [pc.milk] is something your body does, but if you keep ignoring yourself, you won’t for too much longer.");
-	//70
-	if(pc.milkMultiplier < 70 && originalMultiplier >= 70) eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You’re feeling pretty sore in your [pc.chest], but it’s not getting that much worse. <b>You’re pretty sure that you’re lactating less as a result of the inattention to your chest.</b>");
-	//60	
-	if(pc.milkMultiplier < 60 && originalMultiplier >= 60) eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your body’s ability to produce [pc.milk] is diminishing to the point where your [pc.fullChest] are barely making any more. It won’t take long before you stop production entirely.");
-	//50
-	if(pc.milkMultiplier < 50 && originalMultiplier >= 50) {
+	
+	if (pc.milkMultiplier < 0)
+	{
+		pc.milkMultiplier = 0;
+	}
+	
+	// Derp this should actually chain as it was
+	var numChanges:int = 1;
+	
+	if (pc.milkMultiplier < 90 && originalMultiplier >= 90)
+	{
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + " You’re pretty sure that your lactation is starting to slow down a little bit. If you don’t start milking yourself, you’ll eventually stop producing.";
+		numChanges++;
+	}
+	
+	if (pc.milkMultiplier < 80 && originalMultiplier >= 80)
+	{
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + ParseText(" Low level tingles in your [pc.chest] remind you that producing [pc.milk] is something your body does, but if you keep ignoring yourself, you won’t for too much longer.");
+		numChanges++;
+	}
+	
+	if (pc.milkMultiplier < 70 && originalMultiplier >= 70)
+	{
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + ParseText(" You’re feeling pretty sore in your [pc.chest], but it’s not getting that much worse. <b>You’re pretty sure that you’re lactating less as a result of the inattention to your chest.</b>");
+		numChanges++;
+	}
+	
+	if (pc.milkMultiplier < 60 && originalMultiplier >= 60)
+	{
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + ParseText(" Your body’s ability to produce [pc.milk] is diminishing to the point where your [pc.fullChest] are barely making any more. It won’t take long before you stop production entirely.");
+		numChanges++;
+	}
+	
+	if (pc.milkMultiplier < 50 && originalMultiplier >= 50)
+	{
 		for(var x:int = 0; x < pc.bRows(); x++)
 		{
 			pc.breastRows[x].breastRatingLactationMod = 0;
 		}
-		eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Like a switch has been flipped inside you, you feel your body’s [pc.milk]-factories power down. <b>You’ve stopped lactating entirely.</b>");
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + ParseText(" Like a switch has been flipped inside you, you feel your body’s [pc.milk]-factories power down. <b>You’ve stopped lactating entirely.</b>");
 		if(pc.milkFullness >= 75) 
 		{
 			eventBuffer += ParseText(" The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCupSize]s.");
 			pc.milkFullness = 75;
 		}
 	}
+	
 	//Clean up boob size stuff
 	pc.setBoobSwelling();
 }

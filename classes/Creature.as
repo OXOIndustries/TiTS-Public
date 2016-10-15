@@ -16695,6 +16695,8 @@
 				
 				var requiresRemoval:Boolean = thisStatus.minutesLeft <= 0;
 				
+				var wholeHoursPassed:uint = ((minutes + deltaT) / 60);
+				
 				switch (thisStatus.storageName)
 				{
 					case "Condensol-A":
@@ -16740,26 +16742,32 @@
 						break;
 						
 					case "Horse Pill":
-						if (requiresRemoval)
+						if (wholeHoursPassed >= 1)
 						{
-							var pill:HorsePill = new HorsePill();
-							pill.lastPillTF();
+							HorsePill.OnHourTF(deltaT, maxEffectLength, doOut, target, thisStatus);
 						}
+						else if (requiresRemoval)
+						{
+							HorsePill.OnHourTF(deltaT, maxEffectLength, doOut, target, thisStatus);
+						}
+						
 						break;
 					
 					case "Goblinola Bar":
-						if (requiresRemoval)
+						if (wholeHoursPassed >= 1)
 						{
-							var gobbyTF:Goblinola = new Goblinola();
-							gobbyTF.itemEndGoblinTF();
+							Goblinola.OnHourTF(deltaT, doOut, target, thisStatus);
+						}
+						else if (requiresRemoval)
+						{
+							Goblinola.OnHourTF(deltaT, doOut, target, thisStatus);
 						}
 						break;
 						
 					case "Gabilani Face Change":
 						if (requiresRemoval)
 						{
-							var gobbyFaceTF:Goblinola = new Goblinola();
-							gobbyFaceTF.itemGoblinFaceTF();
+							Goblinola.itemGoblinFaceTF(deltaT, maxEffectLength, doOut, target, thisStatus);
 						}
 						break;
 						

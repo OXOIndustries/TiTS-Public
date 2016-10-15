@@ -787,13 +787,7 @@ public function seraHasKidInNursery():Boolean
 	if(babies.length > 0) return true;
 	return false;
 }
-public function seraNurseryVisitCheck():void
-{
-	if(seraHasKidInNursery() && rand(2) == 0)
-	{
-		pc.createStatusEffect("Sera at Nursery");
-	}
-}
+
 public function seraAtNursery():Boolean
 {
 	if(pc.hasStatusEffect("Sera at Nursery") && (hours == 18 || (hours > 18 && hours < 21) || (hours == 21 && minutes <= 30))) return true;

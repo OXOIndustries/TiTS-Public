@@ -1740,6 +1740,12 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	
 	PregnancyManager.updatePregnancyStages(chars, deltaT);
 	
+	// There are some further optimizations that could be done here;
+	// Many events are split into "per minute", "per hour", or "per day" - deltas for each could be calculated once
+	// here, and then passed down. I would not suggest restructuring these into processMinuteEvents() or the like,
+	// because the order the events are processed may become important, so maintaining a relatively simplistic way
+	// to change the order of things happening across deltaT time may be useful.
+	
 	processRenvraMessageEvents(deltaT, doOut);
 	processQueenOfTheDeepMessageEvents(deltaT, doOut);
 	processTarkusBombTimerEvents(deltaT, doOut);
@@ -1747,14 +1753,25 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processDaneCoordEvents(deltaT, doOut);
 	processTaivrasPregnancyState(deltaT, doOut);
 	processShadePlanetMoves(deltaT, doOut);
-	processGiannaAwolEvents(deltaT, doOut);
+	processGiannaEvents(deltaT, doOut);
 	processTreatmentEvents(deltaT, doOut);
 	processKiroBarEvents(deltaT, doOut);
 	processSaendraEvents(deltaT, doOut);
 	processLetsFapUpdates(deltaT, doOut);
+	processShekkaEvents(deltaT, doOut);
+	processFlahneEvents(deltaT, doOut);
+	processAnnoEvents(deltaT, doOut);
+	processAlissEvents(deltaT, doOut);
+	processPennyEvents(deltaT, doOut);
+	processSeraEvents(deltaT, doOut);
+	processReahaEvents(deltaT, doOut);
+	processGobblesEvents(deltaT, doOut);
+	processIrelliaEvents(deltaT, doOut);
 	varmintDisappearChance(deltaT, doOut);
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
+	
+	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick();
 	
 	processMimbranesTime(deltaT, doOut);
 	processLeithaCharmTime(deltaT, doOut);
@@ -1884,9 +1901,15 @@ public function processShadePlanetMoves(deltaT:uint, doOut:Boolean):void
 	}
 }
 
-public function processGiannaAwolEvents(deltaT:uint, doOut:Boolean):void
+public function processGiannaEvents(deltaT:uint, doOut:Boolean):void
 {
-	if(flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL(-1);
+	if (flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL( -1);
+	
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if (totalHours >= 1)
+	{
+		if (flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"] += totalHours;
+	}
 }
 
 public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
@@ -1897,6 +1920,13 @@ public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 		if(pc.statusEffectv1("Treatment Elasticity Report Q'ed") == 1) treatedVagNote(true);
 		//Cooters
 		else treatedVagNote(false);
+	}
+	
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if (totalHours >= 1)
+	{
+		if (pc.hasPerk("Dumb4Cum")) dumb4CumUpdate(totalHours);
+		if (pc.hasStatusEffect("The Treatment")) treatmentHourProcs(totalHours);
 	}
 }
 
@@ -1987,6 +2017,179 @@ public function processLetsFapUpdates(deltaT:uint, doOut:Boolean):void
 	}
 }
 
+public function processShekkaEvents(deltaT:uint, doOut:Boolean):void
+{
+	var totalHours:int = ((minutes + deltaT) / 60);
+	
+	if (totalHours >= 1)
+	{
+		if (flags["SHEKKA_TALK_COOLDOWN"] != undefined)
+		{
+			if (flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"] -= totalHours;
+			if (flags["SHEKKA_TALK_COOLDOWN"] < 0) flags["SHEKKA_TALK_COOLDOWN"] = 0;
+		}
+		
+		if (chars["SHEKKA"].lust() < 50) chars["SHEKKA"].lust(15 * totalHours);
+	}
+}
+
+public function processFlahneEvents(deltaT:uint, doOut:Boolean):void
+{	
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if (flags["FLAHNE_PISSED"] > 0 && totalHours >= 1) 
+	{		
+		flags["FLAHNE_PISSED"] -= totalHours;
+		if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
+	}
+}
+
+public function processAnnoEvents(deltaT:uint, doOut:Boolean):void
+{	
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if(flags["ANNO_ASLEEP"] != undefined && totalHours >= 1)
+	{
+		flags["ANNO_ASLEEP"] -= totalHours;
+		if(flags["ANNO_ASLEEP"] <= 0) flags["ANNO_ASLEEP"] = undefined;
+	}
+}
+
+public function processAlissEvents(deltaT:uint, doOut:Boolean):void
+{
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if (totalHours >= 1)
+	{
+		if(chars["ALISS"].lust() < 70) chars["ALISS"].lust(5 * totalHours);
+	}
+}
+
+public function processPennyEvents(deltaT:uint, doOut:Boolean):void
+{
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if (totalHours >= 1)
+	{
+		if (chars["PENNY"].lust() < 100) chars["PENNY"].lust(10);
+	}
+}
+
+public function processSeraEvents(deltaT:uint, doOut:Boolean):void
+{
+	if (deltaT >= 1440 || (hours < 18 && hours + Math.floor(deltaT / 60) >= 18))
+	{
+		var totalAttempts:int = 1;
+		
+		if (deltaT >= 1440)
+		{
+			var d:int = days;
+			var h:int = hours;
+			var m:int = minutes;
+			
+			m += deltaT % 60;
+			if (m >= 60)
+			{
+				h++;
+				m = 0;
+			}
+			
+			h += Math.floor(deltaT / 60);
+			if (h >= 24)
+			{
+				d += Math.floor(h / 24);
+			}
+			
+			totalAttempts = d - days;
+			if (h >= 18) totalAttempts++;
+		}
+		
+		if (totalHours >= 1 && seraHasKidInNursery())
+		{
+			var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * 1000);
+			if (rand(1000) <= prob)
+			{
+				pc.createStatusEffect("Sera at Nursery");
+			}
+		}
+	}
+}
+
+public function processReahaEvents(deltaT:uint, doOut:Boolean):void
+{
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if (totalHours >= 1 && flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
+	{
+		flags["REAHA_PAY_Q"] = undefined;
+		if(eventQueue.indexOf(reahaPaybackEvent) == -1) eventQueue.push(reahaPaybackEvent);
+	}
+}
+
+public function processGobblesEvents(deltaT:uint, doOut:Boolean):void
+{
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if (totalHours >= 1 && flags["GOBBLES_SEXYTIMES_STARTED"] == 1 && flags["GOBBLES_COOLDOWN"] != 24)
+	{
+		if (flags["GOBBLES_COOLDOWN"] == undefined) flags["GOBBLES_COOLDOWN"] = 0;
+		flags["GOBBLES_COOLDOWN"] += totalHours;
+		if (flags["GOBBLES_COOLDOWN"] > 24) flags["GOBBLES_COOLDOWN"] = 24;
+	}
+}
+
+public function processIrelliaEvents(deltaT:uint, doOut:Boolean):void
+{
+	var totalHours:int = ((minute + deltaT) / 60);
+	
+	if (totalHours >= 1)
+	{
+		var d:int = days;
+		var h:int = hours;
+		var m:int = minutes;
+		
+		m += deltaT % 60;
+		if (m >= 60)
+		{
+			h++;
+			m = m % 60;
+		}
+		
+		h += Math.floor(deltaT / 60);
+		if (h >= 24)
+		{
+			d += Math.floor(h / 24);
+			h = h % 24;
+		}
+		
+		if (d != days)
+		{
+			if (flags["IRELLIA_QUEST_STATUS"] == 3 && currentLocation != "725")
+			{
+				missedRebelExplosion();
+			}
+			if(flags["IRELLIA_QUEST_STATUS"] == 4) 
+			{
+				eventBuffer += "\n\n" + logTimeStamp("good") + " You receive a missive from your codex informing you that Queen Irellia would like to speak to you. Sounds like someone's about to get paid!";
+				flags["IRELLIA_QUEST_STATUS"] = 5;
+			}
+		}
+		
+		//Mushroom park meeting.		
+		if ((d != days || hours < 18 && h >= 18) && currentLocation == "708" && flags["IRELLIA_QUEST_STATUS"] == 2)
+		{
+			if(eventQueue.indexOf(unificationRallyEvent) == -1) eventQueue.push(unificationRallyEvent);
+		}
+
+		//Bomb explosion bad-end meeting
+		if(d != days && flags["IRELLIA_QUEST_STATUS"] == 3 && currentLocation == "725")
+		{
+			if(eventQueue.indexOf(beADumbShitFallGuyForTheRebels) == -1) eventQueue.push(beADumbShitFallGuyForTheRebels);
+		}
+		
+		//Irellia's sex cooldown
+		if(flags["IRELLIA_SEX_COOLDOWN"] != undefined)
+		{
+			if(flags["IRELLIA_SEX_COOLDOWN"] <= 0) flags["IRELLIA_SEX_COOLDOWN"] = undefined;
+			else flags["IRELLIA_SEX_COOLDOWN"] -= totalHours;
+		}
+	}
+}
+
 public function processTime(arg:int):void {
 	var x:int = 0;
 	var msg:String = "";
@@ -1998,85 +2201,7 @@ public function processTime(arg:int):void {
 
 		//Tick hours!
 		if (minutes >= 60) {
-
-			//Hours checks here!
-			letsFapUpdateCheck();
-			if(flags["SHEKKA_TALK_COOLDOWN"] != undefined)
-			{
-				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;
-				if(flags["SHEKKA_TALK_COOLDOWN"] < 0) flags["SHEKKA_TALK_COOLDOWN"] = 0;
-			}
-			if(flags["FLAHNE_PISSED"] > 0) {
-				flags["FLAHNE_PISSED"]--;
-				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
-			}
-			if(flags["ANNO_ASLEEP"] != undefined)
-			{
-				flags["ANNO_ASLEEP"]--;
-				if(flags["ANNO_ASLEEP"] <= 0) flags["ANNO_ASLEEP"] = undefined;
-			}
-			if(chars["ALISS"].lust() < 70) chars["ALISS"].lust(5);
-			if(chars["PENNY"].lust() < 100) chars["PENNY"].lust(10);
-			if(chars["SHEKKA"].lust() < 50) chars["SHEKKA"].lust(15);
-			//Sera stuff
-			if(hours == 18) seraNurseryVisitCheck();
-			//ReahaStuff
-			//If payment Queued and PC in ship, Queue the actual payout event
-			if(flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
-			{
-				flags["REAHA_PAY_Q"] = undefined;
-				if(eventQueue.indexOf(reahaPaybackEvent) == -1) eventQueue.push(reahaPaybackEvent);
-			}
-			if(pc.hasPerk("Dumb4Cum")) dumb4CumUpdate();
-			//Gobbles Cooldown
-			if(flags["GOBBLES_SEXYTIMES_STARTED"] == 1 && flags["GOBBLES_COOLDOWN"] != 24)
-			{
-				if(flags["GOBBLES_COOLDOWN"] == undefined) flags["GOBBLES_COOLDOWN"] = 0;
-				flags["GOBBLES_COOLDOWN"]++;
-				if(flags["GOBBLES_COOLDOWN"] > 24) flags["GOBBLES_COOLDOWN"] = 24;
-			}
-			if(flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"]++;
-			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours == 24 && currentLocation != "725") missedRebelExplosion();
-			if(flags["IRELLIA_QUEST_STATUS"] == 4 && hours == 24) 
-			{
-				eventBuffer += "\n\n" + logTimeStamp("good") + " You receive a missive from your codex informing you that Queen Irellia would like to speak to you. Sounds like someone's about to get paid!";
-				flags["IRELLIA_QUEST_STATUS"] = 5;
-			}
-			//Mushroom park meeting.
-			if(flags["IRELLIA_QUEST_STATUS"] == 2 && hours == 18 && currentLocation == "708")
-			{
-				if(eventQueue.indexOf(unificationRallyEvent) == -1) eventQueue.push(unificationRallyEvent);
-			}
-			//Bomb explosion bad-end meeting
-			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 24 && currentLocation == "725")
-			{
-				if(eventQueue.indexOf(beADumbShitFallGuyForTheRebels) == -1) eventQueue.push(beADumbShitFallGuyForTheRebels);
-			}
-			//Irellia's sex cooldown
-			if(flags["IRELLIA_SEX_COOLDOWN"] != undefined)
-			{
-				if(flags["IRELLIA_SEX_COOLDOWN"] <= 0) flags["IRELLIA_SEX_COOLDOWN"] = undefined;
-				else flags["IRELLIA_SEX_COOLDOWN"]--;
-			}
-			//Lactation effect updates
-			if(!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick();
-			//Horse pill procs!
-			if(pc.hasStatusEffect("Horse Pill"))
-			{
-				var pill:HorsePill = new HorsePill();
-				pill.pillTF();
-			}
-			//Goblinola procs!
-			if(pc.hasStatusEffect("Goblinola Bar"))
-			{
-				var gobbyTF:Goblinola = new Goblinola();
-				gobbyTF.itemGoblinTF();
-			}
-			//Treatmentr procs
-			if(pc.hasStatusEffect("The Treatment"))
-			{
-				treatmentHourProcs();
-			}
+			
 			//Omnisuit!
 			if(pc.armor is Omnisuit) omnisuitChangeUpdate();
 			//Egg trainer stuff

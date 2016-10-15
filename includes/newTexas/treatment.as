@@ -1,4 +1,6 @@
-﻿//Main info found in items -> Misc -> Treatment
+﻿import classes.Characters.PlayerCharacter;
+import classes.StorageClass;
+//Main info found in items -> Misc -> Treatment
 
 //=========================================
 //           TABLE O CONTENTS
@@ -43,25 +45,33 @@ v3 hour counter
 
 //Special variants - girls with bigger horns (size 5)!
 */
+public static const TREATMENT_GAIN_TARGETS:Array = [50, 52, 56, 62, 71, 86, 100, 120, 147, 165];
 
-public function treatmentHourProcs():void
+public function treatmentHourProcs(totalHours:int):void
 {
 	var eBuffer:String = "";
-	pc.addStatusValue("The Treatment",3,1);
-	var treatedHours:int = pc.statusEffectv3("The Treatment");
+	
+	var effect:StorageClass = pc.getStatusEffect("The Treatment");
+
+	var startHours:int = effect.value3;
+	effect.value3 += totalHours;
+	
+	var treatedHours:int = startHours + totalHours;
+	
 	var x:int = 0;
 	//Genital fixin'
 	if(pc.statusEffectv1("The Treatment") == 2)
 	{
-		if(!pc.hasCock() && treatedHours > 49)
+		if(!pc.hasCock() && (startHours < 50 && treatedHours >= 50))
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " A new penis springs out of your crotch new and fully formed. The Treatment seems determined to give you a dick. At least this one is like, totally cute.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (50 - startHours) * 60) + " A new penis springs out of your crotch new and fully formed. The Treatment seems determined to give you a dick. At least this one is like, totally cute.";
 			pc.createCock();
 			pc.setNewCockValues(0);
 		}
-		if(!pc.hasCock() && treatedHours > 57)
+		
+		if ((pc.balls == 0 || pc.ballSizeRaw <= 0) && (startHours < 58 && treatedHours >= 58)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " A tremendous pressure builds in your loins, then releases into twin points of release - <b>your new testicles.</b> You suppose balls must be an important part of whatever you're going through.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (58 - startHours) * 60) + " A tremendous pressure builds in your loins, then releases into twin points of release - <b>your new testicles.</b> You suppose balls must be an important part of whatever you're going through.";
 			pc.balls = 2;
 			pc.ballSizeRaw = 4;
 		}
@@ -70,55 +80,62 @@ public function treatmentHourProcs():void
 	//     1. Amazon Treatment Section
 	if(pc.statusEffectv1("The Treatment") == 4)
 	{
-		if(treatedHours <= 48 && treatedHours % 2 == 0)
+		if(treatedHours <= 48)
 		{
-			pc.libido(1);
+			pc.libido(1 * Math.floor((treatedHours - startHours) / 2));
 		}
+		
 		//1
-		if(treatedHours == 2)
+		if(startHours < 2 && treatedHours >= 2)
 		{
 			if(pc.hasVagina())
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Well, you've taken the Treatment, and you don't feel different <i>at all</i>. No giant cow-boobs";
+				eBuffer += "\n\n" + logTimeStamp("passive", (2 - startHours) * 60 + " Well, you've taken the Treatment, and you don't feel different <i>at all</i>. No giant cow-boobs";
 				if(pc.biggestTitSize() >= 6) eBuffer += ", more than usual";
 				eBuffer += ", no inexplicable urge to start talking like a slutty hillbilly and sucking every dick in sight. You're almost disappointed that you haven't started gushing milk or climaxing hard enough to black out. Then again, maybe that's the Treatment talking? Nahhh.";
 			}
-			else eBuffer += "\n\n" + logTimeStamp("passive") + " You catch yourself daydreaming about sunbathing at one of the fancy resorts Dad sometimes let you accompany him to. You cast it aside with a wistful shake of your head. Those were better times.";
+			else eBuffer += "\n\n" + logTimeStamp("passive", (2 - startHours) * 60) + " You catch yourself daydreaming about sunbathing at one of the fancy resorts Dad sometimes let you accompany him to. You cast it aside with a wistful shake of your head. Those were better times.";
 		}
+		
 		//2
-		else if(treatedHours == 4)
+		if(startHours < 4 && treatedHours >= 4)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You finish eating a small snack, only to immediate start into another. You shouldn't be that hungry; you definitely shouldn't have a gut growling like a starving jaguar, but you do. You shovel down two more ration bars in rapid succession, finally achieving a measure of relief from your cravings. Was it the Treatment, driving your insatiable appetite? You haven't noticed any changes to your body yet, but would you?\n\nYou do a quick body-scan with the Codex to be sure. Everything comes back normal, except for a little over-eating induced bloating.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (4 - startHours) * 60) + " You finish eating a small snack, only to immediate start into another. You shouldn't be that hungry; you definitely shouldn't have a gut growling like a starving jaguar, but you do. You shovel down two more ration bars in rapid succession, finally achieving a measure of relief from your cravings. Was it the Treatment, driving your insatiable appetite? You haven't noticed any changes to your body yet, but would you?\n\nYou do a quick body-scan with the Codex to be sure. Everything comes back normal, except for a little over-eating induced bloating.";
 		}
+		
 		//3
-		else if(treatedHours == 6)
+		if(startHours < 6 && treatedHours >= 6)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You belch loudly, not remembering your manners until it’s too late to do anything about it. A sheepish look around you is all you manage before your shame melts away. It was just a burp. After eating that much, you're lucky there wasn't more coming up. You belch again, just to settle your stomach, enjoying the way it rumbles out of your chest. Not bad. Let's see a slutty cow or brazen bull do that!";
+			eBuffer += "\n\n" + logTimeStamp("passive", (6 - startHours) * 60) + " You belch loudly, not remembering your manners until it’s too late to do anything about it. A sheepish look around you is all you manage before your shame melts away. It was just a burp. After eating that much, you're lucky there wasn't more coming up. You belch again, just to settle your stomach, enjoying the way it rumbles out of your chest. Not bad. Let's see a slutty cow or brazen bull do that!";
 		}
+		
 		//4
-		else if(treatedHours == 8)
+		if(startHours < 8 && treatedHours >= 8)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Rubbing a sore spot in your shoulders, you consider the evidence stacking up around you. Empty wrappers from your seemingly endless snacking crinkle noisily in your pack. You don't feel different, just hungry. Sure, the Codex articles on the Treatment might mention an increased appetite in the early stages of the transformation, but this is nuts. And you don't even feel different mentally! You haven't caught yourself thinking like a cow-" + pc.mf("boy","girl") + " at all!\n\nBriefly, you consider lodging a complaint with the government of New Texas. The Treatment is supposed to make you happier and sluttier, not a glutton.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (8 - startHours) * 60) + " Rubbing a sore spot in your shoulders, you consider the evidence stacking up around you. Empty wrappers from your seemingly endless snacking crinkle noisily in your pack. You don't feel different, just hungry. Sure, the Codex articles on the Treatment might mention an increased appetite in the early stages of the transformation, but this is nuts. And you don't even feel different mentally! You haven't caught yourself thinking like a cow-" + pc.mf("boy","girl") + " at all!\n\nBriefly, you consider lodging a complaint with the government of New Texas. The Treatment is supposed to make you happier and sluttier, not a glutton.";
 		}
+		
 		//5
-		else if(treatedHours == 10)
+		if(startHours < 10 && treatedHours >= 10)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Maybe the sexual urges that the Treatment promises aren't as all-consuming as they appear from the outside. Maybe you have to work for them. Maybe you have to pin them down like a squirming faux-cow and force them to please you. Grinning, you dwell on the thought, imagining ";
+			eBuffer += "\n\n" + logTimeStamp("passive", (10 - startHours) * 60) + " Maybe the sexual urges that the Treatment promises aren't as all-consuming as they appear from the outside. Maybe you have to work for them. Maybe you have to pin them down like a squirming faux-cow and force them to please you. Grinning, you dwell on the thought, imagining ";
 			if(flags["MET_CAMERON"] != undefined) eBuffer += "Cameron";
 			else eBuffer += "some prissy little farm boy";
 			eBuffer += " squirming and squirting beneath you. Yeah... that seems right.";
 			pc.lust(4);
 		}
+		
 		//6
-		else if(treatedHours == 12)
+		if(startHours < 12 && treatedHours >= 12)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " All that eating must be paying off! You feel like you have enough energy to propel you all the way to the nearest warpgate. Maybe you should start working out. With all the calories floating around inside you, you could probably put on some muscle pretty easily. You could be the biggest, baddest cow on the ranch, pinning down dumb sluts and shoving your face between their thighs, milking them for the real honey.\n\nOooh, now there's an idea that leaves you shivering! You bet those whores would love every minute of it too.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (12 - startHours) * 60) + " All that eating must be paying off! You feel like you have enough energy to propel you all the way to the nearest warpgate. Maybe you should start working out. With all the calories floating around inside you, you could probably put on some muscle pretty easily. You could be the biggest, baddest cow on the ranch, pinning down dumb sluts and shoving your face between their thighs, milking them for the real honey.\n\nOooh, now there's an idea that leaves you shivering! You bet those whores would love every minute of it too.";
 			pc.lust(4);
 		}
+		
 		//7
-		else if(treatedHours == 14)
+		if(startHours < 14 && treatedHours >= 14)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You frown as a worrisome thought comes to your attention. What if you aren't getting the normal Treatment effects? What if this is something else? You haven't caught yourself ";
+			eBuffer += "\n\n" + logTimeStamp("passive", (14 - startHours) * 60) + " You frown as a worrisome thought comes to your attention. What if you aren't getting the normal Treatment effects? What if this is something else? You haven't caught yourself ";
 			if(pc.mf("","lady") == "lady") 
 			{
 				eBuffer += "giggling at all, for one, and for another, the idea of sucking cock only appeals if you're pinning the lucky bull to the bed, somehow outmuscling one of the Texan studs.";
@@ -133,10 +150,11 @@ public function treatmentHourProcs():void
 			eBuffer += "\n\nWhat were you worried about again? You idly rub your warmed loins and shrug, finding it difficult to care. It must not have been that important.";
 			pc.lust(5);
 		}
+		
 		//8
-		else if(treatedHours == 16)
+		if(startHours < 16 && treatedHours >= 16)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Your nostrils flare, delivering a symphony of scents to your mind. You can pick out your own natural odor with ease, and not in an unpleasant way. It's like breathing in an aromatic version of your name. You're fairly certain that you could identify flowers with a simple whiff and other people with only slightly more effort. Are the Treated cows and bulls of New Texas all like this? No wonder they can say so much with so little. They're communicating on a whole other level!";
+			eBuffer += "\n\n" + logTimeStamp("passive", (16 - startHours) * 60) + " Your nostrils flare, delivering a symphony of scents to your mind. You can pick out your own natural odor with ease, and not in an unpleasant way. It's like breathing in an aromatic version of your name. You're fairly certain that you could identify flowers with a simple whiff and other people with only slightly more effort. Are the Treated cows and bulls of New Texas all like this? No wonder they can say so much with so little. They're communicating on a whole other level!";
 			if(pc.hasCock())
 			{
 				eBuffer += "\n\nFor instance, you can smell your " + pc.cocksDescript() + ". You can tell just how aroused you are, whether ";
@@ -150,15 +168,17 @@ public function treatmentHourProcs():void
 			}
 			pc.lust(5);	
 		}
+		
 		//9
-		else if(treatedHours == 18)
+		if(startHours < 18 && treatedHours >= 18)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" In a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. It starts out as little more than a lead-up to your economic rewards, but the longer you dwell on the imaginary scenario, the less you care about the credits and the more you look forward to putting your cuz in [rival.hisHer] place. The look on [rival.hisHer] face will be priceless.");
+			eBuffer += "\n\n" + logTimeStamp("passive", (18 - startHours) * 60) + ParseText(" In a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. It starts out as little more than a lead-up to your economic rewards, but the longer you dwell on the imaginary scenario, the less you care about the credits and the more you look forward to putting your cuz in [rival.hisHer] place. The look on [rival.hisHer] face will be priceless.");
 		}
+		
 		//10
-		else if(treatedHours == 20)
+		if(startHours < 20 && treatedHours >= 20)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" The Treatment is doing a number on you. You're sure of it now. It shows itself in idle thoughts in fantasies and in your knee jerk reactions to the littlest inconveniences. You bumped your [pc.leg] earlier today and nearly flew into a rage. If it had been a table, you likely would've smashed it");
+			eBuffer += "\n\n" + logTimeStamp("passive", (20 - startHours) * 60) + ParseText(" The Treatment is doing a number on you. You're sure of it now. It shows itself in idle thoughts in fantasies and in your knee jerk reactions to the littlest inconveniences. You bumped your [pc.leg] earlier today and nearly flew into a rage. If it had been a table, you likely would've smashed it");
 			if(pc.AQ() > pc.PQ()) eBuffer += ", or at least shot it up or something";
 			eBuffer += ". If it was a person? You shudder,";
 			if(pc.hasCock() && pc.hasVagina()) eBuffer += " hardening and moistening";
@@ -167,33 +187,38 @@ public function treatmentHourProcs():void
 			eBuffer += " at the thought. The urges that well up in your brain are primal, powerful things. They demand satisfaction before you even have a chance to identify them, let alone control them.";
 			eBuffer += "\n\nThere's no way that you got the cow-girl version of the Treatment, but it doesn't quite seem like bull variant either. What's happening to you?";
 		}
+		
 		//11
-		else if(treatedHours == 22)
+		if(startHours < 22 && treatedHours >= 22)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Something occurs to you. You’re getting more confident. You’re sure of it. If you walked into a bar on the wrong planet, you’d look everyone you met in the eye without thinking twice about it. Best case scenario, you’d pick yourself up a punky lay. Worst case scenario, you get to shut up a few punks with excess ego.\n\n...You hope that the Treatment gives you the muscles to back up the newfound confidence. Otherwise you're going to have to be agile as hell.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (22 - startHours) * 60) + " Something occurs to you. You’re getting more confident. You’re sure of it. If you walked into a bar on the wrong planet, you’d look everyone you met in the eye without thinking twice about it. Best case scenario, you’d pick yourself up a punky lay. Worst case scenario, you get to shut up a few punks with excess ego.\n\n...You hope that the Treatment gives you the muscles to back up the newfound confidence. Otherwise you're going to have to be agile as hell.";
 		}
+		
 		//12
-		else if(treatedHours == 24)
+		if(startHours < 24 && treatedHours >= 24)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Day one of the Treatment may have started out slow, but there's no denying it now. Every woman you see, you imagine with bigger, milkier boobs. Every man you see, you find yourself scoping out. Just how long is his trouser snake? Just because he doesn't have a bulge doesn't mean he isn't a fantastic grower. And the ladies - what do they taste like? Tangy? Sweet? Your mouth waters at the mere thought.\n\nThe part of you that worries about this stuff is surfacing less and less, letting you actually enjoy the changes as they happen. Fuck, how did you get anything done when you were being so concerned all of the time?";
+			eBuffer += "\n\n" + logTimeStamp("passive", (24 - startHours) * 60) + " Day one of the Treatment may have started out slow, but there's no denying it now. Every woman you see, you imagine with bigger, milkier boobs. Every man you see, you find yourself scoping out. Just how long is his trouser snake? Just because he doesn't have a bulge doesn't mean he isn't a fantastic grower. And the ladies - what do they taste like? Tangy? Sweet? Your mouth waters at the mere thought.\n\nThe part of you that worries about this stuff is surfacing less and less, letting you actually enjoy the changes as they happen. Fuck, how did you get anything done when you were being so concerned all of the time?";
 			pc.lust(10);
 		}
+		
 		//13 - Pussies only
-		else if(treatedHours == 26)
+		if(startHours < 26 && treatedHours >= 26)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You stretch out and spend a minute checking over your equipment. Sure, there's a whole galaxy of challenges ahead of you, but you're the [pc.guyGirl] to get it done. Besides, that galaxy full of challenges is the same galaxy that's full of extremely fuckable aliens.");
+			eBuffer += "\n\n" + logTimeStamp("passive", (26 - startHours) * 60) + ParseText(" You stretch out and spend a minute checking over your equipment. Sure, there's a whole galaxy of challenges ahead of you, but you're the [pc.guyGirl] to get it done. Besides, that galaxy full of challenges is the same galaxy that's full of extremely fuckable aliens.");
 			pc.lust(2);
 		}
+		
 		//14
-		else if(treatedHours == 28 && !pc.hasPerk("Sexy Thinking"))
+		if(startHours < 28 && treatedHours >= 28 && !pc.hasPerk("Sexy Thinking"))
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You catch yourself glaring at your Codex, like the little tablet did something wrong. All it did was hitch for a second while loading up an extranet page, sometime entirely beyond its control. Still, someone should be held accountable. Perhaps the local relay technicians or the routing center upstream. You make a mental note to look into it down the line. Maybe you can give someone a tongue-lashing over it. And maybe if they take care of it well enough, you can give them an entirely different kind of tongue-lashing.\n\nThe thought doesn't even make you blush.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (28 - startHours) * 60) + " You catch yourself glaring at your Codex, like the little tablet did something wrong. All it did was hitch for a second while loading up an extranet page, sometime entirely beyond its control. Still, someone should be held accountable. Perhaps the local relay technicians or the routing center upstream. You make a mental note to look into it down the line. Maybe you can give someone a tongue-lashing over it. And maybe if they take care of it well enough, you can give them an entirely different kind of tongue-lashing.\n\nThe thought doesn't even make you blush.";
 			pc.lust(5);
 		}
+		
 		//15
-		else if(treatedHours == 30)
+		if(startHours < 30 && treatedHours >= 30)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Stars above, there is a serious ";
+			eBuffer += "\n\n" + logTimeStamp("passive", (30 - startHours) * 60) + " Stars above, there is a serious ";
 			if(pc.hasCock() && !pc.isCrotchExposed()) eBuffer += ParseText("tightness in your [pc.lowerGarment]. You take a look inside and find yourself more hard than you’ve been in a while, and just dribbling pre-cum all over the inside of your equipment. You let it snap closed and sigh. Either you’ve got to find a partner fast, or it’s time to vent some of the pressure building in your [pc.balls]. One way or the other, you’re due to blow a load.");
 			else if(pc.hasCock())
 			{
@@ -210,25 +235,28 @@ public function treatmentHourProcs():void
 				pc.lust(pc.lustMax());
 			}
 		}
+		
 		//16
-		else if(treatedHours == 32)
+		if(startHours < 32 && treatedHours >= 32)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You look yourself over and sigh, evaluating everything that has changed thus far. You're more aggressive for sure, a little less self-conscious, and getting more libidinous by the minute. Thankfully, the extra lust doesn't seem to be impacting your ability to focus - just <i>how</i> you focus. Little sensuous details pop out at you in every scenario, alerting you to erotic possibilities you may have never considered mere days ago. Yes, you're going to get your inheritance, but the real prize isn't the money so much as the opportunities it presents.\n\nJust like the aliens you encounter, this quest is ripe with lustful possibilities - never-ending line of hard dicks and wet pussies juicing themselves at the thought of a chance with you. A smirk curls the corners of your [pc.lipsChaste] as you consider what's ahead of you, a Treated [pc.boyGirl] on a mission.");
+			eBuffer += "\n\n" + logTimeStamp("passive", (32 - startHours) * 60) + ParseText(" You look yourself over and sigh, evaluating everything that has changed thus far. You're more aggressive for sure, a little less self-conscious, and getting more libidinous by the minute. Thankfully, the extra lust doesn't seem to be impacting your ability to focus - just <i>how</i> you focus. Little sensuous details pop out at you in every scenario, alerting you to erotic possibilities you may have never considered mere days ago. Yes, you're going to get your inheritance, but the real prize isn't the money so much as the opportunities it presents.\n\nJust like the aliens you encounter, this quest is ripe with lustful possibilities - never-ending line of hard dicks and wet pussies juicing themselves at the thought of a chance with you. A smirk curls the corners of your [pc.lipsChaste] as you consider what's ahead of you, a Treated [pc.boyGirl] on a mission.");
 		}
+		
 		//17
-		else if(treatedHours == 34)
+		if(startHours < 34 && treatedHours >= 34)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You idly wonder if you should try and squeeze some gym equipment onto your ship - or make a stop back at the New Texan gym. Working out sounds almost... fun, like something you'd do to blow off steam, only without the whining you'd expect from a horned-up faux cow.\n\nYeah. That'd be nice. Maybe you could even get a faux cow and a muzzle (to keep him quiet), then bench press the little bitch, dropping his dick into your mouth with each rep. A reward for both of you. You'd know when you've had enough when he's had enough.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (34 - startHours) * 60) + " You idly wonder if you should try and squeeze some gym equipment onto your ship - or make a stop back at the New Texan gym. Working out sounds almost... fun, like something you'd do to blow off steam, only without the whining you'd expect from a horned-up faux cow.\n\nYeah. That'd be nice. Maybe you could even get a faux cow and a muzzle (to keep him quiet), then bench press the little bitch, dropping his dick into your mouth with each rep. A reward for both of you. You'd know when you've had enough when he's had enough.";
 			if(pc.PQ() >= 70) eBuffer += " Mmm... if only you were that strong! You have so much work to do!";
 			eBuffer += ParseText(" Oooh, and you could do squats onto a cow-girl's face. You would know you'd dropped low enough when your [pc.vagOrAss] hit tongue.\n\nMaking up your mind, you decide to give the gym a try at your earliest convenience.");
 		}
+		
 		//18
-		else if(treatedHours == 36)
+		if(startHours < 36 && treatedHours >= 36)
 		{
 			//Herm
 			if(pc.isHerm())
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You growl in dissatisfaction. You can't seem to quell the rioting heat in your loins. Neither your rock-hard cock";
+				eBuffer += "\n\n" + logTimeStamp("passive", (36 - startHours) * 60) + " You growl in dissatisfaction. You can't seem to quell the rioting heat in your loins. Neither your rock-hard cock";
 				if(pc.cockTotal() > 1) eBuffer += "s";
 				eBuffer += " or leaky, eager cunt";
 				if(pc.totalVaginas() > 1) eBuffer += "s";
@@ -243,7 +271,7 @@ public function treatmentHourProcs():void
 			//Cock
 			else if(pc.hasCock()) 
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the way it keeps your [pc.cocks] so iron-hard with thoughts of near-constant sex. Even your [pc.nipples] are ");
+				eBuffer += "\n\n" + logTimeStamp("passive", (36 - startHours) * 60) + ParseText(" You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the way it keeps your [pc.cocks] so iron-hard with thoughts of near-constant sex. Even your [pc.nipples] are ");
 				if(pc.hasDickNipples()) eBuffer += "jutting out of their sheaths, ready to be thrust inside something";
 				else if(pc.hasLipples()) eBuffer += "drooling";
 				else if(pc.canMilkSquirt()) eBuffer += "leaking";
@@ -254,14 +282,14 @@ public function treatmentHourProcs():void
 			//Pussah
 			else if(pc.hasVagina())
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the constant dripping. [pc.EachClit] is achingly hard, like a bullet on a hair-trigger. The weirdest part is that you don’t really crave penetration - at least not your own. No, you want to push yourself against someone soft and yielding, really grind your weeping slit");
+				eBuffer += "\n\n" + logTimeStamp("passive", (36 - startHours) * 60) + ParseText(" You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the constant dripping. [pc.EachClit] is achingly hard, like a bullet on a hair-trigger. The weirdest part is that you don’t really crave penetration - at least not your own. No, you want to push yourself against someone soft and yielding, really grind your weeping slit");
 				if(pc.totalVaginas()) eBuffer += "s";
 				eBuffer += " against them until you’re both covered in sweat and sexual effluvia, panting breathily with you on top.";
 			}
 			//Nothing
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You growl in dissatisfaction. You can’t seem to quell the feeling of building eroticism or odd desires. Playing with your [pc.asshole] or [pc.nipples] just won’t be enough for you anymore. You want to be <i>fucked properly</i>, not just reamed. If only had a pussy, this would be so much easier... a nice, wet, welcoming hole to please your partners. You gently press at your [pc.asshole] and smile. It's no cunt, but you bet you can make some wannabe stud melt inside.");
+				eBuffer += "\n\n" + logTimeStamp("passive", (36 - startHours) * 60) + ParseText(" You growl in dissatisfaction. You can’t seem to quell the feeling of building eroticism or odd desires. Playing with your [pc.asshole] or [pc.nipples] just won’t be enough for you anymore. You want to be <i>fucked properly</i>, not just reamed. If only had a pussy, this would be so much easier... a nice, wet, welcoming hole to please your partners. You gently press at your [pc.asshole] and smile. It's no cunt, but you bet you can make some wannabe stud melt inside.");
 			}
 			//Merge
 			eBuffer += "\n\nBesides, the real takeaway is just how hot and horny you’re able to get without going off. You’re able to sit there fantasizing about a pair of petite cow-boys with enormous dicks, imagining their delectible tools hardening down the legs of their jeans until the robust fabric shreds from the force of their engorging lust. Just two days ago, dwelling on something like this for so long would have driven you to masturbation. Today? You're free to think of all the things you could do to them, all while continuing on your merry way. You suppose you’re getting better at it - being aroused that is. You could walk around ";
@@ -290,36 +318,40 @@ public function treatmentHourProcs():void
 			}
 			if(pc.lust() < 100) pc.lust(20);
 		}
+		
 		//19
-		else if(treatedHours == 38 && pc.horns == 0)
+		if(startHours < 38 && treatedHours >= 38 && pc.horns == 0)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You spend a few minutes checking your forehead for horns. You should have horns, right? It feels like you should have horns. A horny [pc.boyGirl] should have horns.");
+			eBuffer += "\n\n" + logTimeStamp("passive", (38 - startHours) * 60) + ParseText(" You spend a few minutes checking your forehead for horns. You should have horns, right? It feels like you should have horns. A horny [pc.boyGirl] should have horns.");
 		}
+		
 		//20
-		else if(treatedHours == 40)
+		if(startHours < 40 && treatedHours >= 40)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " The idea that a little medipen filled with a few milliliters of fluid could somehow change your sexual preferences (and entire outlook) might have frightened you a little when this all started, but those concerns seem so silly now. It isn't forcing you into anything. It's just getting rid of the little walls in your head, the ones that might of stopped you from enjoying a cute bull-boy with a tree-trunk between his legs, or that might have thrown up objections to a cow-girl with two milk-dripping pussies for nipples. You can see the beauty in all of it.\n\nYou pull out your Codex, just to check. Surely there are limits to your interests, right? Pulling up a few of the more... sexual sites on the extranet, you get to work. This isn't for masturbation. This isn't for fun. This is a test.\n\nThat's what you tell yourself, anyway.\n\nThe categories blow by one after another, each bringing a little more warmth to your loins: lubed up galotians wrestling in a vat of oil, burly leithan males leaning down to jack each other off, ausar girls in heat lapping at pussy like it's an oasis in the desert. You drift into the realms of hyper-sexual gene-modded parodies of real bodies, pornstars who have spared no expense in making themselves as sexualized as possible. And it just makes you hotter.\n\nBy the time you remember to put the tablet away, your tongue feels dry";
+			eBuffer += "\n\n" + logTimeStamp("passive", (40 - startHours) * 60) + " The idea that a little medipen filled with a few milliliters of fluid could somehow change your sexual preferences (and entire outlook) might have frightened you a little when this all started, but those concerns seem so silly now. It isn't forcing you into anything. It's just getting rid of the little walls in your head, the ones that might of stopped you from enjoying a cute bull-boy with a tree-trunk between his legs, or that might have thrown up objections to a cow-girl with two milk-dripping pussies for nipples. You can see the beauty in all of it.\n\nYou pull out your Codex, just to check. Surely there are limits to your interests, right? Pulling up a few of the more... sexual sites on the extranet, you get to work. This isn't for masturbation. This isn't for fun. This is a test.\n\nThat's what you tell yourself, anyway.\n\nThe categories blow by one after another, each bringing a little more warmth to your loins: lubed up galotians wrestling in a vat of oil, burly leithan males leaning down to jack each other off, ausar girls in heat lapping at pussy like it's an oasis in the desert. You drift into the realms of hyper-sexual gene-modded parodies of real bodies, pornstars who have spared no expense in making themselves as sexualized as possible. And it just makes you hotter.\n\nBy the time you remember to put the tablet away, your tongue feels dry";
 			if(pc.hasVagina()) eBuffer += " and your loins wet";
 			else if(pc.hasCock()) eBuffer += " and your loins warm";
 			else eBuffer += " and your anus puckered";
 			eBuffer += ".";
 			pc.lust(13);
 		}
+		
 		//21
-		else if(treatedHours == 42)
+		if(startHours < 42 && treatedHours >= 42)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You check the chronometer app on your Codex, then check it again. Forty-two hours have passed since that one little prick. The mental changes should be mostly done in a half-dozen more. What then? An udder? No, that doesn't feel right. ";
+			eBuffer += "\n\n" + logTimeStamp("passive", (42 - startHours) * 60) + " You check the chronometer app on your Codex, then check it again. Forty-two hours have passed since that one little prick. The mental changes should be mostly done in a half-dozen more. What then? An udder? No, that doesn't feel right. ";
 			if(pc.biggestTitSize() > 1) eBuffer += "Bigger tits are definitely a possibility, of course. You heft one and squeeze, wondering if they really need to be any bigger.";
 			else eBuffer += " Tits are a definite possibility. You gently knead your chest, wondering if it'll start filling out soon, and if it does, how much?";
 			eBuffer += " The waiting is the worst part!";
 		}
+		
 		//22
-		else if(treatedHours == 44)
+		if(startHours < 44 && treatedHours >= 44)
 		{
 			//Herms
 			if(pc.isHerm())
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You find yourself idly rubbing at [pc.oneCock], curling your index finger down to gently press against ");
+				eBuffer += "\n\n" + logTimeStamp("passive", (44 - startHours) * 60) + ParseText(" You find yourself idly rubbing at [pc.oneCock], curling your index finger down to gently press against ");
 				if(pc.totalVaginas() > 1) eBuffer += "a";
 				else eBuffer += "your";
 				eBuffer += ParseText(" [pc.vagina]. It just happens on its own. At first, you might of tried to stop yourself or control it, but the more it goes on, the less reason you see to quit. The extra friction feels really, really <i>good</i> - like sex good, only without the rampaging drive to seek completion. And if it keeps you nice and wet for your next lay, why bother to stop?");
@@ -329,7 +361,7 @@ public function treatmentHourProcs():void
 			//Cocks
 			else if(pc.hasCock())
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You find yourself just kind of idly rubbing at [pc.oneCock] whenever you have a spare moment. At first, you’d stop yourself whenever it happened, but more and more, you don’t see the logic in stopping. It feels really good to have a little friction on your length, and if it keeps your body churning up a fresh load faster, who are you to complain? Your ");
+				eBuffer += "\n\n" + logTimeStamp("passive", (44 - startHours) * 60) + ParseText(" You find yourself just kind of idly rubbing at [pc.oneCock] whenever you have a spare moment. At first, you’d stop yourself whenever it happened, but more and more, you don’t see the logic in stopping. It feels really good to have a little friction on your length, and if it keeps your body churning up a fresh load faster, who are you to complain? Your ");
 				if(pc.cockVirgin) eBuffer += "first";
 				else eBuffer += "next";
 				eBuffer += " lay is going to thank you for being so ready for her, you’re sure of it.";
@@ -339,7 +371,7 @@ public function treatmentHourProcs():void
 			//Cooches!
 			else if(pc.hasVagina())
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You find yourself just kind of idly rubbing at [pc.oneClit] whenever you have a spare moment. At first, you’d stop yourself and blush, but more and more, you don’t see the logic in stopping. Your clit is there. It’s hard and wants touched. So you touch it. What’s the big deal? You aren’t masturbating, just keeping yourself ready is all. Why, everyone should be pleased that you’re keeping yourself so sexually ready all the time. Your lucky ");
+				eBuffer += "\n\n" + logTimeStamp("passive", (44 - startHours) * 60) + ParseText(" You find yourself just kind of idly rubbing at [pc.oneClit] whenever you have a spare moment. At first, you’d stop yourself and blush, but more and more, you don’t see the logic in stopping. Your clit is there. It’s hard and wants touched. So you touch it. What’s the big deal? You aren’t masturbating, just keeping yourself ready is all. Why, everyone should be pleased that you’re keeping yourself so sexually ready all the time. Your lucky ");
 				if(pc.vaginalVirgin) eBuffer += "first";
 				else eBuffer += "next";
 				eBuffer += " partner will be the one to reap the rewards of slippery-sweet sex, after all.";
@@ -352,7 +384,7 @@ public function treatmentHourProcs():void
 			//No Cooch!
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You find yourself just kind of oddly clenching and unclenching your [pc.asshole]. Whenever you do, pleasant flashes of desire run through your body, slithering up your spine to wrap your brain in their sensuous warmth. Before taking the treatment, you’d be so turned on that you would probably be down on the ground, trying to stuff four fingers inside yourself. Now you can ride the arousal like your own personal steed, directing it but never denying it.");
+				eBuffer += "\n\n" + logTimeStamp("passive", (44 - startHours) * 60) + ParseText(" You find yourself just kind of oddly clenching and unclenching your [pc.asshole]. Whenever you do, pleasant flashes of desire run through your body, slithering up your spine to wrap your brain in their sensuous warmth. Before taking the treatment, you’d be so turned on that you would probably be down on the ground, trying to stuff four fingers inside yourself. Now you can ride the arousal like your own personal steed, directing it but never denying it.");
 				eBuffer += "\n\nYou can only theorize that your brain is getting better and better at dealing with pleasure. The Treatment is making you more capable than ever before, even without normal genitalia. Why would anyone ever refuse such a gift?";
 			}
 			//All:
@@ -370,79 +402,91 @@ public function treatmentHourProcs():void
 			}
 			pc.lust(13);
 		}
+		
 		//23
-		else if(treatedHours == 46)
+		if(startHours < 46 && treatedHours >= 46)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Momentarily bored, you try out a 'moo.' It doesn't do much for you, not on its own. You suppose you aren't going to be the type for submissive, idle moos. Maybe in the throes of passion you could slip one in edgewise, an unsubtle declaration that you've gone over the edge. At any other time? Fuck that. You're going to be the one to make other cow-girls moo. You'll be the one makes them beg to lick your boots, watching them submissively extend their tongues in between their plaintive lowing.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (46 - startHours) * 60) + " Momentarily bored, you try out a 'moo.' It doesn't do much for you, not on its own. You suppose you aren't going to be the type for submissive, idle moos. Maybe in the throes of passion you could slip one in edgewise, an unsubtle declaration that you've gone over the edge. At any other time? Fuck that. You're going to be the one to make other cow-girls moo. You'll be the one makes them beg to lick your boots, watching them submissively extend their tongues in between their plaintive lowing.";
 			pc.lust(4);
 		}
+		
 		//24
-		else if(treatedHours == 48)
+		if(startHours < 48 && treatedHours >= 48)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You check your Codex’s chrono. It’s been 48 hours since your Treatment injection. That wasn’t that bad. You had worried that it would change who you were on the inside, but it didn't change much, did it? Yeah, you're a little more brash and a lot more horny, but you expected the latter. The former was an unexpected bonus. Instead of sounding like a cock-hungry cow-slut all the time, you've blossomed into an authoritative " + pc.mf("cow-bull","queen bitch") + ". All in all, you'd say it's a net positive.\n\nThere's no doubt in your mind that you've contracted the so-called \"Amazon\" variant of the Treatment. The confidence, the domineering arousal... what else could it be?";
+			eBuffer += "\n\n" + logTimeStamp("passive", (48 - startHours) * 60) + " You check your Codex’s chrono. It’s been 48 hours since your Treatment injection. That wasn’t that bad. You had worried that it would change who you were on the inside, but it didn't change much, did it? Yeah, you're a little more brash and a lot more horny, but you expected the latter. The former was an unexpected bonus. Instead of sounding like a cock-hungry cow-slut all the time, you've blossomed into an authoritative " + pc.mf("cow-bull","queen bitch") + ". All in all, you'd say it's a net positive.\n\nThere's no doubt in your mind that you've contracted the so-called \"Amazon\" variant of the Treatment. The confidence, the domineering arousal... what else could it be?";
 		}
+		
 		//========================
 		// MIND STUFF IS DONZO
 		// FACIAL PRETTIES~
 		//========================
-		if(pc.femininity < pc.femininityMax() && treatedHours > 48 && (treatedHours + 1) % 3 == 0)
+		if(pc.femininity < pc.femininityMax() && startHours < 48 && treatedHours >= 48)
 		{
-			//1 - 3-5 points
-			if(rand(3) == 0)
+			// I'm not 100% sure this is exactly accurate as in the past, but it should be close as a start
+			// Excel experimenting seems to agree that its pretty close tho
+			var numRolls:int = Math.floor((treatedHours - 48 + 1) / 3);
+			if (startHours >= 48) numRolls -= Math.floor((startHours - 48 + 1) / 3);
+			
+			for (var i:int = 0; i < numRolls; i++)
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " A shiver of warmth tingles on your lips. It radiates out into your jawbones as you sit there licking them, undoubtedly feminizing you.";
-				x = 3+rand(3);
-				pc.modFem(x);
+				//1 - 3-5 points
+				if(rand(3) == 0)
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (startHours + (i * 3)) * 60) + " A shiver of warmth tingles on your lips. It radiates out into your jawbones as you sit there licking them, undoubtedly feminizing you.";
+					x = 3+rand(3);
+					pc.modFem(x);
+				}
+				//2 - 5-7 points
+				else if(rand(3) == 0)
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (startHours + (i * 3)) * 60) + ParseText(" A gradual, insidious heat slowly suffuses the whole of your mouth. You gasp, only to have it seem to roll out with every exhalation, spreading to your cheeks and [pc.lips] first, then to your jaw and nose after. Getting girl");
+					if(pc.femininity >= 50) eBuffer += "ier";
+					else eBuffer += "y";
+					eBuffer += " feels surprisingly... nice.";
+					x = 5+rand(3);
+					pc.modFem(x);
+				}
+				//3 - 8 - 11 points
+				else if(rand(3) == 0)
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (startHours + (i * 3)) * 60) + ParseText(" A whole body shudder works through you as you feel the transformative cocktail kick in. You can feel it in your cheeks and mouth, so warm you wonder if you're glowing, spreading slowly across your [pc.face] as it feminizes it.");
+					x = 8+rand(4);
+					pc.modFem(x);
+				}
+				//4 - 12-15 points
+				else if(rand(2) == 0)
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (startHours + (i * 3)) * 60) + ParseText(" The inside of your mouth is all tingly... but so are your lips! You purse them before pressing them together and sliding your [pc.tongue] between them. They feel like heated pads around the oral muscle. The sensation spreads outward through the whole of your [pc.face]. You can actually feel it changing!");
+					x = 12+rand(4);
+					pc.modFem(x);
+				}
+				//5 - 16-20 points
+				else
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (startHours + (i * 3)) * 60) + " You fail to stifle a gasp when a surge of white-hot pleasure spreads through your face. Your whole head feels like its practically glowing at this point, alight with electric buzzes of reforming flesh and remapped nerves. Your lips seem fuller and more sensitive, your jaw more svelte, and your nose cuter somehow.";
+					x = 16+rand(5);
+					pc.modFem(x);
+				}
+			
+				//Announce when passing a threshold:
+				//<= 90
+				if(y <= 90 && pc.femininity > 90) eBuffer += ParseText(" <b>You can't help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It's jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>");
+				//<= 80
+				else if(y <= 80 && pc.femininity > 80) eBuffer += " <b>Your eyelashes have gotten long and luxurious, your lips have gotten fuller, and even your nose looks cuter. You're gorgeous.</b>";
+				//<= 72
+				else if(y <= 72 && pc.femininity > 72) eBuffer += ParseText(" <b>There's no doubt about it. You're definitely getting hotter. Your [pc.face] looks feminine and shapely, sure to draw attention.</b>");
+				//<= 65
+				else if(y <= 65 && pc.femininity > 65) eBuffer += " <b>Checking yourself with your codex, you're delighted to find that your cheekbones look positively pretty. You're looking a lot cuter!</b>";
+				//<= 55
+				else if(y <= 55 && pc.femininity > 55) eBuffer += " <b>Your face is definitely starting to show touches of femininity at this point. Even your lips are a little fuller.</b>";
+				//< 45
+				else if(y < 45 && pc.femininity >= 45) eBuffer += ParseText(" <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn't going to tell anybody what gender you are, but if the Treatment keeps working....</b>");
+				//< 35
+				else if(y < 35 && pc.femininity >= 35) eBuffer += ParseText(" <b>After looking at your [pc.face] in your codex's holocam, you can only find a few hints of your masculinity left.</b>");
+				else if(y < 28 && pc.femininity >= 28) eBuffer += " <b>The profile of your face is getting less obviously masculine, but there's still the matter of your somewhat angular jawline to contend with.</b>";
+				else if(y < 20 && pc.femininity >= 20) eBuffer += " <b>You're definitely getting a little less handsome from this stuff, but you're still a long way from pretty.</b>";
+				else if (y < 10 && pc.femininity >= 10) eBuffer += " <b>A check with your codex confirms your jaw is getting noticeably less square.</b>";
 			}
-			//2 - 5-7 points
-			else if(rand(3) == 0)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" A gradual, insidious heat slowly suffuses the whole of your mouth. You gasp, only to have it seem to roll out with every exhalation, spreading to your cheeks and [pc.lips] first, then to your jaw and nose after. Getting girl");
-				if(pc.femininity >= 50) eBuffer += "ier";
-				else eBuffer += "y";
-				eBuffer += " feels surprisingly... nice.";
-				x = 5+rand(3);
-				pc.modFem(x);
-			}
-			//3 - 8 - 11 points
-			else if(rand(3) == 0)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" A whole body shudder works through you as you feel the transformative cocktail kick in. You can feel it in your cheeks and mouth, so warm you wonder if you're glowing, spreading slowly across your [pc.face] as it feminizes it.");
-				x = 8+rand(4);
-				pc.modFem(x);
-			}
-			//4 - 12-15 points
-			else if(rand(2) == 0)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" The inside of your mouth is all tingly... but so are your lips! You purse them before pressing them together and sliding your [pc.tongue] between them. They feel like heated pads around the oral muscle. The sensation spreads outward through the whole of your [pc.face]. You can actually feel it changing!");
-				x = 12+rand(4);
-				pc.modFem(x);
-			}
-			//5 - 16-20 points
-			else
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You fail to stifle a gasp when a surge of white-hot pleasure spreads through your face. Your whole head feels like its practically glowing at this point, alight with electric buzzes of reforming flesh and remapped nerves. Your lips seem fuller and more sensitive, your jaw more svelte, and your nose cuter somehow.";
-				x = 16+rand(5);
-				pc.modFem(x);
-			}
-			//Announce when passing a threshold:
-			//<= 90
-			if(y <= 90 && pc.femininity > 90) eBuffer += ParseText(" <b>You can't help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It's jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>");
-			//<= 80
-			else if(y <= 80 && pc.femininity > 80) eBuffer += " <b>Your eyelashes have gotten long and luxurious, your lips have gotten fuller, and even your nose looks cuter. You're gorgeous.</b>";
-			//<= 72
-			else if(y <= 72 && pc.femininity > 72) eBuffer += ParseText(" <b>There's no doubt about it. You're definitely getting hotter. Your [pc.face] looks feminine and shapely, sure to draw attention.</b>");
-			//<= 65
-			else if(y <= 65 && pc.femininity > 65) eBuffer += " <b>Checking yourself with your codex, you're delighted to find that your cheekbones look positively pretty. You're looking a lot cuter!</b>";
-			//<= 55
-			else if(y <= 55 && pc.femininity > 55) eBuffer += " <b>Your face is definitely starting to show touches of femininity at this point. Even your lips are a little fuller.</b>";
-			//< 45
-			else if(y < 45 && pc.femininity >= 45) eBuffer += ParseText(" <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn't going to tell anybody what gender you are, but if the Treatment keeps working....</b>");
-			//< 35
-			else if(y < 35 && pc.femininity >= 35) eBuffer += ParseText(" <b>After looking at your [pc.face] in your codex's holocam, you can only find a few hints of your masculinity left.</b>");
-			else if(y < 28 && pc.femininity >= 28) eBuffer += " <b>The profile of your face is getting less obviously masculine, but there's still the matter of your somewhat angular jawline to contend with.</b>";
-			else if(y < 20 && pc.femininity >= 20) eBuffer += " <b>You're definitely getting a little less handsome from this stuff, but you're still a long way from pretty.</b>";
-			else if(y < 10 && pc.femininity >= 10) eBuffer += " <b>A check with your codex confirms your jaw is getting noticeably less square.</b>";
 		}
 		//========================
 		//FACIAL PRETTIES OVER. ON
@@ -450,16 +494,17 @@ public function treatmentHourProcs():void
 		//========================
 		//Lactation
 		//Lactation should be a 50% of the time proc for Amazons. They aren't all milky.
-		if(treatedHours == 48 && rand(2) == 0) pc.createStatusEffect("Milkazon",0,0,0,0,true,"Icon_Cow","",false,10080,0xB793C4);
+		if (startHours < 48 && treatedHours >= 48 && rand(2) == 0) pc.createStatusEffect("Milkazon", 0, 0, 0, 0, true, "Icon_Cow", "", false, 10080, 0xB793C4);
+		
 		if(treatedHours > 48 && pc.hasStatusEffect("Milkazon"))
 		{
-			pc.boostLactation(1);
-			//boostLactation(1); every hour starting on day 2. until 100 is reached.
+			pc.boostLactation(1 * (treatedHours - startHours));
 		}
+		
 		//Once 100 is reached, unlock the Treated Milk perk.
 		if(pc.milkMultiplier >= 100 && !pc.hasPerk("Treated Milk") && pc.hasStatusEffect("Milkazon"))
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You grow increasingly aware of how productive your [pc.breasts] are. The Treatment has given you the ability to produce so much!");
+			eBuffer += "\n\n" + logTimeStamp("passive", treatedHours * 60) + ParseText(" You grow increasingly aware of how productive your [pc.breasts] are. The Treatment has given you the ability to produce so much!");
 			if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) eBuffer += " You squeeze a droplet onto a finger and try it, just to sample it. It tastes exactly like the freshest, most delicious milk you've ever tasted - way better than normal. No wonder New Texas is able to export so much milk; Texan cow-milk is amazing!";
 			else eBuffer += ParseText(" You squeeze a droplet onto your finger to try it, amazed at how much richer the [pc.milk] tastes.");
 			eBuffer += " Perhaps a mid-fuck snack will allow your lovers to keep up with you.";
@@ -467,247 +512,262 @@ public function treatmentHourProcs():void
 			eBuffer += "\n\n(<b>Perk Gained: Treated Milk</b> - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.)";
 	 		pc.createPerk("Treated Milk",0,0,0,0,"Any milk you lactate tastes better, and you are less likely to stop lactating.");
 	 	}
+		
 		//Tits 
 		//to predetermined max. Many small changes.
-		if(treatedHours > 48 && pc.breastRows[0].breastRating() < pc.statusEffectv1("Treated") && treatedHours % 3 == 0)
+		
+		// This maxes out at 23 rating-- no more gains are effectively processed past that, so we might as well skip if we're already there
+		if(treatedHours >= 49 && pc.breastRows[0].breastRating() < (Math.min(pc.statusEffectv1("Treated"), 23))
 		{
-			//Flat chest -> .5 cup
-			if(pc.breastRows[0].breastRatingRaw < .5)
+			var numGains:int = Math.floor((treatedHours - 49) / 3);
+			if (startHours >= 49) numGains -= Math.floor((startHours - 49) / 3);
+			
+			if (numGains > 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your chest feels strange. It's all puffy, and your [pc.nipples] are a little swollen. Oh snap, are you getting boobs?");
-				pc.breastRows[0].breastRatingRaw = .5;
-			}
-			//.5 cup to A cup
-			else if(pc.breastRows[0].breastRatingRaw < 1)
-			{
-				//clothed
-				if(!pc.isChestExposed())
+				for (var i:int = 0; i < numGains; i++)
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You're noticing more and more that there's a little something extra in your [pc.upperGarment]. It has moved your center of gravity just far enough forward to shift your posture, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You've grown breasts!</b> They're still A-cups, really - barely breasts at all, but there's no way they're going to stay that small. How big will they get? Will they be big, overly sexualized melons or a pair of impressive mounds, clearing space ahead of you wherever you go?");
-					if(pc.bRows() > 1)
+					//Flat chest -> .5 cup
+					if(pc.breastRows[0].breastRatingRaw < .5)
 					{
-						eBuffer += " The extra row";
-						if(pc.bRows() > 2) eBuffer += "s below remain";
-						else eBuffer += " below remains";
-						eBuffer += " unchanged. It looks like your top set are the only ones that are gonna get big and milky, but that'll be fine.";
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" Your chest feels strange. It's all puffy, and your [pc.nipples] are a little swollen. Oh snap, are you getting boobs?");
+						pc.breastRows[0].breastRatingRaw = .5;
+					}
+					//.5 cup to A cup
+					else if(pc.breastRows[0].breastRatingRaw < 1)
+					{
+						//clothed
+						if(!pc.isChestExposed())
+						{
+							eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" You're noticing more and more that there's a little something extra in your [pc.upperGarment]. It has moved your center of gravity just far enough forward to shift your posture, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You've grown breasts!</b> They're still A-cups, really - barely breasts at all, but there's no way they're going to stay that small. How big will they get? Will they be big, overly sexualized melons or a pair of impressive mounds, clearing space ahead of you wherever you go?");
+							if(pc.bRows() > 1)
+							{
+								eBuffer += " The extra row";
+								if(pc.bRows() > 2) eBuffer += "s below remain";
+								else eBuffer += " below remains";
+								eBuffer += " unchanged. It looks like your top set are the only ones that are gonna get big and milky, but that'll be fine.";
+							}
+						}
+						//Nakers
+						else
+						{
+							eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" You've been feeling clumsy all day, like something just isn't right with your body. It isn't until you glance down that the source of your awkwardness reveals itself - tits. <b>You've got pert little A-cups hanging off your chest!</b> They look cute - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them.\n\nOf course, they won't stay pert little melons for long. This is the first real step on your journey to having a room-dominating rack. One that'll make non-New Texans look on with a mixture of envy and lust, mostly the latter in the case of males. You give yourself a squeeze and smile, already anticipating all the ways you can show yourself off.");
+						}
+						pc.breastRows[0].breastRatingRaw = 1;
+					}
+					//A -> B
+					else if(pc.breastRows[0].breastRatingRaw < 2)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " You idly squeeze your chest; just to check, you assure yourself. It seems a wise thing to do after taking the Treatment. After all, how else are you supposed to chart your progress from teensy teats to mouthwatering melons? You cup and caress them like favored pets. Yup, they're definitely bigger. You squeeze again - definitely B-cups. They feel warm in your hands, alight with hormones and metabolic energies, pulsing bigger with every beat of your lusty heart.";
+						pc.breastRows[0].breastRatingRaw = 2;
+					}
+					//B-C
+					else if(pc.breastRows[0].breastRatingRaw < 3)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" Whenever you move, your [pc.chest] move along with you. That's no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop.");
+						if(!pc.isChestExposed()) eBuffer += " You pop open your top for a look.";
+						else eBuffer += " You look down.";
+						eBuffer += " Damn! When did you get tits like that? They're proper C-cups now - big enough to command the attention of passersby when shown off, not that you feel much need to. You flex and twist, admiring how you're filling out all over. And to think it's just getting started!";
+						pc.breastRows[0].breastRatingRaw = 3;
+					}
+					//C-D
+					else if(pc.breastRows[0].breastRatingRaw < 4)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There's nothing wrong with making sure your girls are sitting right, and if anyone has a complaint about it, that's their problem. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze them. There's not enough for your fingers to really sink into... yet. But you're on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining the goofy looks boys will get when they see them, assuming they earn the privilege, of course.");
+						//+5 lust
+						pc.lust(5);
+						pc.breastRows[0].breastRatingRaw = 4;
+					}
+					//D->DD
+					else if(pc.breastRows[0].breastRatingRaw < 5)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" Your [pc.chest] feel so nice and warm");
+						if(!pc.isChestExposed()) eBuffer += ParseText(" against your [pc.upperGarment]");
+						eBuffer += ParseText(" that you just have to give them a firm squeeze. Your index fingers settle on your [pc.nipples] while your palms massage the burgeoning titflesh. It just doesn't work as well as it should; your boobs are bigger and squishier than the last time you held them. You've gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD's.");
+						//+2 lust
+						pc.lust(2);
+						pc.breastRows[0].breastRatingRaw = 5;
+					}
+					//DD->big DD
+					else if(pc.breastRows[0].breastRatingRaw < 6)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " It's one thing to consider the idea of getting bigger breasts from a powerful transformative cocktail. It's quite another to feel them pulling on you as they get heavier and heavier. Blessedly, the added mass doesn't seem to bother your back; they're more bulky than anything. You hold your hands up underneath them, weighing them. They're so warm and squishy that you can't help but give them a few playful bounces. Why, you're big enough that you're going to have DD-sized bras straining to keep up. You pinch a nipple gleefully. Soon you might even be an E!";
+						//+5 lust.
+						pc.lust(5);
+						pc.breastRows[0].breastRatingRaw = 6;
+					}
+					//big DD -> E
+					else if(pc.breastRows[0].breastRatingRaw < 7)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " You give a squeal of surprise when you realize how big your tits are getting. They're way more bouncy and squishy than before. If you got measured for a cheap bra, you'd definitely be an E-cup, but you don't think you need one.";
+						if(!pc.isChestExposed()) eBuffer += ParseText(" Even with your [pc.upperGarments] peeled down,");
+						else eBuffer += " Even as naked as you are,";
+						eBuffer += " they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren't too firm or too soft. In short, they look damned near perfect on you, a beautiful compliment to match the rest of your developing body.";
+						//+2 lust
+						pc.lust(2);
+						pc.breastRows[0].breastRatingRaw = 7;
+					}
+					//E -> big E
+					else if(pc.breastRows[0].breastRatingRaw < 8)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" You let your hand play across your [pc.nipple] during an idle moment, just to check if your sensitivity is getting crazy or anything. The cow-girls seem to enjoy it, but while it gives you a fluttery thrill, it doesn't make you weak in the knees. It doesn't make you moo and moan in equal measure, though the thought of squeezing on some slutty cow till she does makes your nips perk quite nicely. Kneading your pillowy mammaries and smiling, you admire how big they're getting, reveling in how the pliant flesh bulges between your questing fingers. It's the only part of you that's getting softer, and you're completely okay with that.");
+						eBuffer += "\n\n<b>You're almost too big for an E-cup.</b>";
+						//+3 lust
+						pc.lust(3);
+						pc.breastRows[0].breastRatingRaw = 8;
+					}
+					//big E -> EE
+					else if(pc.breastRows[0].breastRatingRaw < 9)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " You look down, at first surprised and then pleased to see a little bit less of the ground than before. Yep, your chest is still growing.";
+						if(!pc.isChestExposed()) eBuffer += ParseText(" You yank down your [pc.upperGarments] in a rush to examine it.");
+						eBuffer += " Your breasts give so perfectly under your fingertips that you just <i>have</i> to squeeze them, groping them every bit as eagerly as any horny bull-boy. You knead them, watching yourself do so with a lazy smile. Hmmm, already an EE-cup from the Treatment, and you could still get even bigger. The idea of luring in a cute little faux cow or blushing alien hotty with your sexy melons and riding them to the ground springs onto you out of nowhere, and you've got to admit, it's a pretty good one.";
+						pc.breastRows[0].breastRatingRaw = 9;
+					}
+					//EE -> big EE
+					else if(pc.breastRows[0].breastRatingRaw < 10)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" Your [pc.chest] sway and bounce with every movement. There's no stopping that now, though. They've grown to the upper end of the EE-cup range, and you couldn't stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you'd feel them shifting and rubbing against the inside of the fabric, begging to be freed. Why the fuck should you have to wear a top, anyway? Most males don't have to. You flex, squeezing your boobs between your biceps. Maybe you can convince a few planetary governors to put forth some less sexist regulations.");
+						pc.breastRows[0].breastRatingRaw = 10;
+					}
+					//big EE -> F
+					else if(pc.breastRows[0].breastRatingRaw < 11)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" Looking down, you smile. Your [pc.feet] ");
+						if(pc.legCount > 1) eBuffer += "are";
+						else eBuffer += "is";
+						eBuffer += " totally gone from view.";
+						if(pc.hasCock())
+						{
+							eBuffer += ParseText(" Heck, if your [pc.cocks] ");
+							if(pc.cockTotal() == 1) eBuffer += "was";
+							else eBuffer += "were";
+							eBuffer += " smaller, you wouldn't see ";
+							if(pc.cockTotal() == 1) eBuffer += "it";
+							else eBuffer += "them";
+							eBuffer += " either.";
+						}
+						eBuffer += ParseText(" The swelling of your bustline is truly a sight to behold. Besides, you can still see below if you bend forward a little bit, and you don't need to watch your [pc.feet] or anything - not when you've got an ocean of pillowy flesh to flaunt. You've got big, sexy F-cups now.");
+						pc.breastRows[0].breastRatingRaw = 11;
+					}
+					//F -> big F
+					else if(pc.breastRows[0].breastRatingRaw < 12)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " You start to adjust the girls again. They're easy to pose just right for the maximum amount of eye-catching wobble, but much like cute bull-boys, sometimes you just gotta grab hold and play with them. You sigh, rubbing fingers around your enhanced areolae as you squeeze your breasts, imagining that it's a big, strong bull doing it - while you've got your hand wrapped around his neck and your hips pounding him into the ground.";
+						eBuffer += "\n\nWith F-cups like these, ones that are almost too big for such a bra, you'll be able to sleep with the cream of the crop. Men and women alike will line up just to buy you a drink, leaving you in total control of the rest of their evening. You could crush their hopes and dreams with an airy laugh or give them the night of their lives, leaving them with little more than a smile and a bruised pelvis in the morning.";
+						//+5 lust
+						pc.lust(5);
+						pc.breastRows[0].breastRatingRaw = 12;
+					}
+					//big F -> FF
+					else if(pc.breastRows[0].breastRatingRaw < 13)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" You stumble, setting off a small earthquake in your breasts. Grinning, you mentally categorize it as a class five boobquake and grab hold for stability, stilling your boobs with a supportive grope. There! You knead them a few times, weighing their mass. You've jumped up another cup size for sure, probably to a double 'F'. You must cut quite the impressive figure in the mirror - a big [pc.boyGirl] with big, sexy boobs to match. The meek little cows of the world don't stand a chance.");
+						if(pc.bRows() > 1)
+						{
+							eBuffer += ParseText("You run one hand across your neglected lower [pc.nipples 1]. Maybe someday you can convince someone to make a treatment for ") + pc.mf("boys","girls") + " with more than one meager row of tits."
+						}
+						//+3 lust
+						pc.lust(3);
+						pc.breastRows[0].breastRatingRaw = 13;
+					}
+					//FF -> big FF
+					else if(pc.breastRows[0].breastRatingRaw < 14)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They're bigger than the last time you checked. How much are they going to grow?");
+						if(pc.bRows() > 1)
+						{
+							eBuffer += ParseText("\n\nIt's a shame that only your top row is seems to benefit from the Treatment, but at least your other [pc.nipples 1] are perking up to match their sisters above.");
+						}
+						pc.breastRows[0].breastRatingRaw = 14;
+					}
+					//big FF -> G
+					else if(pc.breastRows[0].breastRatingRaw < 15)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You've gotten bigger again for sure. Now that you've swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming higher and to the fore. You've got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that's a piece of cake for a capable woman like yourself. Eye-candy like this is sure to put you on top of any social situation.");
+						pc.breastRows[0].breastRatingRaw = 15;
+					}
+					//G -> big G
+					else if(pc.breastRows[0].breastRatingRaw < 16)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " You look down, pleased to note that another inch of ground has disappeared from view, blocked by the sprawling spheres that adorn your chest like a ship's prow. They don't feel heavy at all in spite of their immense size. You rub one, shivering in delight at the thought of how distracting they'll be for both boys and girls, a dazzling cornucopia of lactic delight just waiting to be unleashed on an unsuspecting populace. Big G-cups like yours are meant to shown off, if only to provide you with an ample supply of mates.";
+						//+5 lust.
+						pc.lust(5);
+						pc.breastRows[0].breastRatingRaw = 16;
+					}
+					//big G -> GG
+					else if(pc.breastRows[0].breastRatingRaw < 17)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " A warm, tingly feeling spreads through your chest as your breasts expand";
+						if(!pc.isChestExposed()) eBuffer += ParseText(", straining against your [pc.upperGarment] as they go");
+						else eBuffer += ", shifting slightly as they go";
+						eBuffer += ". Your hands fly to them of their own accord, wrapping fingers around big, sensitive nipples and pressing palms into expanding undersides. This must be what it feels like to be a supermodel: constant improvement of a body that deserves more and more attention with every passing second. You look at yourself - and the GG-cup behemoths stacked on top of you - and chuckle. The Treatment isn't turning you into a slut. It's just making you hotter and sexier, giving you the equipment you need to distract a lover while you pound his hips into the dirt.";
+						if(pc.bRows() > 1) eBuffer += ParseText("\n\nYou idly caress a lower [pc.nippleNoun 1]. It's just as sensitive as the ones up top, but unlucky enough not to get the sexy swelling your prime rack is.");
+						//+7 lust
+						pc.lust(7);
+						pc.breastRows[0].breastRatingRaw = 17;
+					}
+					//GG -> big GG
+					else if(pc.breastRows[0].breastRatingRaw < 18)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " A sensation of sudden, sensitive firmness is the only warning you get before your boobs swell. Not that you needed the warning of course - the Codex gave you one of those a while back - but why would you care? Bigger tits are like better endowed lovers - why wouldn't you want them? You rub your expanded assets, trying to gauge their new size for yourself, though it might look like you're just feeling yourself up to a passerby. You've got big GG's for sure. If you're lucky, you'll hit H-cups before this is all over!";
+						//+3 lust
+						pc.lust(3);
+						pc.breastRows[0].breastRatingRaw = 18;
+					}
+					//big GG -> H
+					else if(pc.breastRows[0].breastRatingRaw < 19)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " You run your hands across your expanding chest in a slow, sensuous caress. It must look unquestionably erotic to the layperson, but the simple fact is that you're just getting a feel for how big they've gotten, nothing else. If anyone else tried to touch you like this, they'd be unconscious and on the floor in a nanosecond. That or pinned between your thighs, ";
+						if(pc.hasCock()) eBuffer += "forced to suck you off";
+						else if(pc.hasVagina()) eBuffer += "forced to lick you off";
+						else eBuffer += "forced to lick your blank crotch";
+						eBuffer += " or be squeezed into unconsciousness. It's the only punishment that makes sense in these trying times, really.";
+						eBuffer += "\n\nYou may not understand why New Texan cows are so keen to be manhandled, but you can certainly grow to be better endowed with them - with your brand new H-cups.";
+						//Lust+7
+						pc.lust(7);
+						pc.breastRows[0].breastRatingRaw = 19;
+					}
+					//H -> big H
+					else if(pc.breastRows[0].breastRatingRaw < 20)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" You keep checking your [pc.chest] for signs of growth. It's hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you're pretty sure that your fingers are sinking a little deeper into your assets. There's a little bit more weight in your palms. You're on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] bigger, better boobs than them?");
+						pc.breastRows[0].breastRatingRaw = 20;
+					}
+					//big H -> HH
+					else if(pc.breastRows[0].breastRatingRaw < 21)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + ParseText(" You glance down, pleased to note that your view of the ground is even more obstructed than before. You don't need to see your [pc.feet] anyway; balance comes completely naturally by this point, no matter how mammoth your feminine mounds. They're so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention.");
+						if(pc.bRows() > 1)
+						{
+							eBuffer += "\n\nMaybe you could get your other row";
+							if(pc.bRows() > 2) eBuffer += "s";
+							eBuffer += " dosed with something so they don't get forgotten. The more the merrier.";
+						}
+						//+3 lust
+						pc.lust(3);
+						pc.breastRows[0].breastRatingRaw = 21;
+					}
+					//HH -> big HH
+					else if(pc.breastRows[0].breastRatingRaw < 22)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " You lean back, feeling the weight of your feminine mounds flattening them slightly against your chest and rub your hands across them in slow circles, giving yourself a little massage. You've earned it after all, enduring the Treatment's endless adjustments and transformations, tolerating the lust that swells in your breast like a tsunami closing in on a beach. Pinching your HH-cup tits, you give yourself a masochistic thrill. Perhaps now you'll find a fuck-buddy every bit as capable as yourself, someone who can take a tumble in the hay and give just as good as they get.";
+						//+6 lust
+						pc.lust(6);
+						pc.breastRows[0].breastRatingRaw = 22;
+					}
+					//big HH -> HHH
+					else if(pc.breastRows[0].breastRatingRaw < 23)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", ((startHours + (i * 3)) * 60) + " Closing your eyes, you cop a feel at your bosom. It perfectly deforms around your questing fingertips, swallowing them almost wholly into itself. Each perfectly-shaped boob quivers against the other, pressed into a line of cleavage long enough to make a kui-tan cream her pants. You play with them";
+						if(pc.hasGenitals()) eBuffer += " until you feel more than a little sticky yourself";
+						else eBuffer += ParseText(", feeling a little unfilled yourself. If only you had someone to come fuck your [pc.ass] right now");
+						eBuffer += ParseText(". There's no doubt in your mind: you're a triple-H [pc.boyGirl] now.");
+						pc.breastRows[0].breastRatingRaw = 23;
+						
+						// End looping if we're already here
+						break;
 					}
 				}
-				//Nakers
-				else
-				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You've been feeling clumsy all day, like something just isn't right with your body. It isn't until you glance down that the source of your awkwardness reveals itself - tits. <b>You've got pert little A-cups hanging off your chest!</b> They look cute - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them.\n\nOf course, they won't stay pert little melons for long. This is the first real step on your journey to having a room-dominating rack. One that'll make non-New Texans look on with a mixture of envy and lust, mostly the latter in the case of males. You give yourself a squeeze and smile, already anticipating all the ways you can show yourself off.");
-				}
-				pc.breastRows[0].breastRatingRaw = 1;
-			}
-			//A -> B
-			else if(pc.breastRows[0].breastRatingRaw < 2)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You idly squeeze your chest; just to check, you assure yourself. It seems a wise thing to do after taking the Treatment. After all, how else are you supposed to chart your progress from teensy teats to mouthwatering melons? You cup and caress them like favored pets. Yup, they're definitely bigger. You squeeze again - definitely B-cups. They feel warm in your hands, alight with hormones and metabolic energies, pulsing bigger with every beat of your lusty heart.";
-				pc.breastRows[0].breastRatingRaw = 2;
-			}
-			//B-C
-			else if(pc.breastRows[0].breastRatingRaw < 3)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Whenever you move, your [pc.chest] move along with you. That's no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop.");
-				if(!pc.isChestExposed()) eBuffer += " You pop open your top for a look.";
-				else eBuffer += " You look down.";
-				eBuffer += " Damn! When did you get tits like that? They're proper C-cups now - big enough to command the attention of passersby when shown off, not that you feel much need to. You flex and twist, admiring how you're filling out all over. And to think it's just getting started!";
-				pc.breastRows[0].breastRatingRaw = 3;
-			}
-			//C-D
-			else if(pc.breastRows[0].breastRatingRaw < 4)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There's nothing wrong with making sure your girls are sitting right, and if anyone has a complaint about it, that's their problem. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze them. There's not enough for your fingers to really sink into... yet. But you're on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining the goofy looks boys will get when they see them, assuming they earn the privilege, of course.");
-				//+5 lust
-				pc.lust(5);
-				pc.breastRows[0].breastRatingRaw = 4;
-			}
-			//D->DD
-			else if(pc.breastRows[0].breastRatingRaw < 5)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your [pc.chest] feel so nice and warm");
-				if(!pc.isChestExposed()) eBuffer += ParseText(" against your [pc.upperGarment]");
-				eBuffer += ParseText(" that you just have to give them a firm squeeze. Your index fingers settle on your [pc.nipples] while your palms massage the burgeoning titflesh. It just doesn't work as well as it should; your boobs are bigger and squishier than the last time you held them. You've gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD's.");
-				//+2 lust
-				pc.lust(2);
-				pc.breastRows[0].breastRatingRaw = 5;
-			}
-			//DD->big DD
-			else if(pc.breastRows[0].breastRatingRaw < 6)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " It's one thing to consider the idea of getting bigger breasts from a powerful transformative cocktail. It's quite another to feel them pulling on you as they get heavier and heavier. Blessedly, the added mass doesn't seem to bother your back; they're more bulky than anything. You hold your hands up underneath them, weighing them. They're so warm and squishy that you can't help but give them a few playful bounces. Why, you're big enough that you're going to have DD-sized bras straining to keep up. You pinch a nipple gleefully. Soon you might even be an E!";
-				//+5 lust.
-				pc.lust(5);
-				pc.breastRows[0].breastRatingRaw = 6;
-			}
-			//big DD -> E
-			else if(pc.breastRows[0].breastRatingRaw < 7)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You give a squeal of surprise when you realize how big your tits are getting. They're way more bouncy and squishy than before. If you got measured for a cheap bra, you'd definitely be an E-cup, but you don't think you need one.";
-				if(!pc.isChestExposed()) eBuffer += ParseText(" Even with your [pc.upperGarments] peeled down,");
-				else eBuffer += " Even as naked as you are,";
-				eBuffer += " they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren't too firm or too soft. In short, they look damned near perfect on you, a beautiful compliment to match the rest of your developing body.";
-				//+2 lust
-				pc.lust(2);
-				pc.breastRows[0].breastRatingRaw = 7;
-			}
-			//E -> big E
-			else if(pc.breastRows[0].breastRatingRaw < 8)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You let your hand play across your [pc.nipple] during an idle moment, just to check if your sensitivity is getting crazy or anything. The cow-girls seem to enjoy it, but while it gives you a fluttery thrill, it doesn't make you weak in the knees. It doesn't make you moo and moan in equal measure, though the thought of squeezing on some slutty cow till she does makes your nips perk quite nicely. Kneading your pillowy mammaries and smiling, you admire how big they're getting, reveling in how the pliant flesh bulges between your questing fingers. It's the only part of you that's getting softer, and you're completely okay with that.");
-				eBuffer += "\n\n<b>You're almost too big for an E-cup.</b>";
-				//+3 lust
-				pc.lust(3);
-				pc.breastRows[0].breastRatingRaw = 8;
-			}
-			//big E -> EE
-			else if(pc.breastRows[0].breastRatingRaw < 9)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You look down, at first surprised and then pleased to see a little bit less of the ground than before. Yep, your chest is still growing.";
-				if(!pc.isChestExposed()) eBuffer += ParseText(" You yank down your [pc.upperGarments] in a rush to examine it.");
-				eBuffer += " Your breasts give so perfectly under your fingertips that you just <i>have</i> to squeeze them, groping them every bit as eagerly as any horny bull-boy. You knead them, watching yourself do so with a lazy smile. Hmmm, already an EE-cup from the Treatment, and you could still get even bigger. The idea of luring in a cute little faux cow or blushing alien hotty with your sexy melons and riding them to the ground springs onto you out of nowhere, and you've got to admit, it's a pretty good one.";
-				pc.breastRows[0].breastRatingRaw = 9;
-			}
-			//EE -> big EE
-			else if(pc.breastRows[0].breastRatingRaw < 10)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your [pc.chest] sway and bounce with every movement. There's no stopping that now, though. They've grown to the upper end of the EE-cup range, and you couldn't stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you'd feel them shifting and rubbing against the inside of the fabric, begging to be freed. Why the fuck should you have to wear a top, anyway? Most males don't have to. You flex, squeezing your boobs between your biceps. Maybe you can convince a few planetary governors to put forth some less sexist regulations.");
-				pc.breastRows[0].breastRatingRaw = 10;
-			}
-			//big EE -> F
-			else if(pc.breastRows[0].breastRatingRaw < 11)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Looking down, you smile. Your [pc.feet] ");
-				if(pc.legCount > 1) eBuffer += "are";
-				else eBuffer += "is";
-				eBuffer += " totally gone from view.";
-				if(pc.hasCock())
-				{
-					eBuffer += ParseText(" Heck, if your [pc.cocks] ");
-					if(pc.cockTotal() == 1) eBuffer += "was";
-					else eBuffer += "were";
-					eBuffer += " smaller, you wouldn't see ";
-					if(pc.cockTotal() == 1) eBuffer += "it";
-					else eBuffer += "them";
-					eBuffer += " either.";
-				}
-				eBuffer += ParseText(" The swelling of your bustline is truly a sight to behold. Besides, you can still see below if you bend forward a little bit, and you don't need to watch your [pc.feet] or anything - not when you've got an ocean of pillowy flesh to flaunt. You've got big, sexy F-cups now.");
-				pc.breastRows[0].breastRatingRaw = 11;
-			}
-			//F -> big F
-			else if(pc.breastRows[0].breastRatingRaw < 12)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You start to adjust the girls again. They're easy to pose just right for the maximum amount of eye-catching wobble, but much like cute bull-boys, sometimes you just gotta grab hold and play with them. You sigh, rubbing fingers around your enhanced areolae as you squeeze your breasts, imagining that it's a big, strong bull doing it - while you've got your hand wrapped around his neck and your hips pounding him into the ground.";
-				eBuffer += "\n\nWith F-cups like these, ones that are almost too big for such a bra, you'll be able to sleep with the cream of the crop. Men and women alike will line up just to buy you a drink, leaving you in total control of the rest of their evening. You could crush their hopes and dreams with an airy laugh or give them the night of their lives, leaving them with little more than a smile and a bruised pelvis in the morning.";
-				//+5 lust
-				pc.lust(5);
-				pc.breastRows[0].breastRatingRaw = 12;
-			}
-			//big F -> FF
-			else if(pc.breastRows[0].breastRatingRaw < 13)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You stumble, setting off a small earthquake in your breasts. Grinning, you mentally categorize it as a class five boobquake and grab hold for stability, stilling your boobs with a supportive grope. There! You knead them a few times, weighing their mass. You've jumped up another cup size for sure, probably to a double 'F'. You must cut quite the impressive figure in the mirror - a big [pc.boyGirl] with big, sexy boobs to match. The meek little cows of the world don't stand a chance.");
-				if(pc.bRows() > 1)
-				{
-					eBuffer += ParseText("You run one hand across your neglected lower [pc.nipples 1]. Maybe someday you can convince someone to make a treatment for ") + pc.mf("boys","girls") + " with more than one meager row of tits."
-				}
-				//+3 lust
-				pc.lust(3);
-				pc.breastRows[0].breastRatingRaw = 13;
-			}
-			//FF -> big FF
-			else if(pc.breastRows[0].breastRatingRaw < 14)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They're bigger than the last time you checked. How much are they going to grow?");
-				if(pc.bRows() > 1)
-				{
-					eBuffer += ParseText("\n\nIt's a shame that only your top row is seems to benefit from the Treatment, but at least your other [pc.nipples 1] are perking up to match their sisters above.");
-				}
-				pc.breastRows[0].breastRatingRaw = 14;
-			}
-			//big FF -> G
-			else if(pc.breastRows[0].breastRatingRaw < 15)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You've gotten bigger again for sure. Now that you've swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming higher and to the fore. You've got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that's a piece of cake for a capable woman like yourself. Eye-candy like this is sure to put you on top of any social situation.");
-				pc.breastRows[0].breastRatingRaw = 15;
-			}
-			//G -> big G
-			else if(pc.breastRows[0].breastRatingRaw < 16)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You look down, pleased to note that another inch of ground has disappeared from view, blocked by the sprawling spheres that adorn your chest like a ship's prow. They don't feel heavy at all in spite of their immense size. You rub one, shivering in delight at the thought of how distracting they'll be for both boys and girls, a dazzling cornucopia of lactic delight just waiting to be unleashed on an unsuspecting populace. Big G-cups like yours are meant to shown off, if only to provide you with an ample supply of mates.";
-				//+5 lust.
-				pc.lust(5);
-				pc.breastRows[0].breastRatingRaw = 16;
-			}
-			//big G -> GG
-			else if(pc.breastRows[0].breastRatingRaw < 17)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " A warm, tingly feeling spreads through your chest as your breasts expand";
-				if(!pc.isChestExposed()) eBuffer += ParseText(", straining against your [pc.upperGarment] as they go");
-				else eBuffer += ", shifting slightly as they go";
-				eBuffer += ". Your hands fly to them of their own accord, wrapping fingers around big, sensitive nipples and pressing palms into expanding undersides. This must be what it feels like to be a supermodel: constant improvement of a body that deserves more and more attention with every passing second. You look at yourself - and the GG-cup behemoths stacked on top of you - and chuckle. The Treatment isn't turning you into a slut. It's just making you hotter and sexier, giving you the equipment you need to distract a lover while you pound his hips into the dirt.";
-				if(pc.bRows() > 1) eBuffer += ParseText("\n\nYou idly caress a lower [pc.nippleNoun 1]. It's just as sensitive as the ones up top, but unlucky enough not to get the sexy swelling your prime rack is.");
-				//+7 lust
-				pc.lust(7);
-				pc.breastRows[0].breastRatingRaw = 17;
-			}
-			//GG -> big GG
-			else if(pc.breastRows[0].breastRatingRaw < 18)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " A sensation of sudden, sensitive firmness is the only warning you get before your boobs swell. Not that you needed the warning of course - the Codex gave you one of those a while back - but why would you care? Bigger tits are like better endowed lovers - why wouldn't you want them? You rub your expanded assets, trying to gauge their new size for yourself, though it might look like you're just feeling yourself up to a passerby. You've got big GG's for sure. If you're lucky, you'll hit H-cups before this is all over!";
-				//+3 lust
-				pc.lust(3);
-				pc.breastRows[0].breastRatingRaw = 18;
-			}
-			//big GG -> H
-			else if(pc.breastRows[0].breastRatingRaw < 19)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You run your hands across your expanding chest in a slow, sensuous caress. It must look unquestionably erotic to the layperson, but the simple fact is that you're just getting a feel for how big they've gotten, nothing else. If anyone else tried to touch you like this, they'd be unconscious and on the floor in a nanosecond. That or pinned between your thighs, ";
-				if(pc.hasCock()) eBuffer += "forced to suck you off";
-				else if(pc.hasVagina()) eBuffer += "forced to lick you off";
-				else eBuffer += "forced to lick your blank crotch";
-				eBuffer += " or be squeezed into unconsciousness. It's the only punishment that makes sense in these trying times, really.";
-				eBuffer += "\n\nYou may not understand why New Texan cows are so keen to be manhandled, but you can certainly grow to be better endowed with them - with your brand new H-cups.";
-				//Lust+7
-				pc.lust(7);
-				pc.breastRows[0].breastRatingRaw = 19;
-			}
-			//H -> big H
-			else if(pc.breastRows[0].breastRatingRaw < 20)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You keep checking your [pc.chest] for signs of growth. It's hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you're pretty sure that your fingers are sinking a little deeper into your assets. There's a little bit more weight in your palms. You're on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] bigger, better boobs than them?");
-				pc.breastRows[0].breastRatingRaw = 20;
-			}
-			//big H -> HH
-			else if(pc.breastRows[0].breastRatingRaw < 21)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You glance down, pleased to note that your view of the ground is even more obstructed than before. You don't need to see your [pc.feet] anyway; balance comes completely naturally by this point, no matter how mammoth your feminine mounds. They're so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention.");
-				if(pc.bRows() > 1)
-				{
-					eBuffer += "\n\nMaybe you could get your other row";
-					if(pc.bRows() > 2) eBuffer += "s";
-					eBuffer += " dosed with something so they don't get forgotten. The more the merrier.";
-				}
-				//+3 lust
-				pc.lust(3);
-				pc.breastRows[0].breastRatingRaw = 21;
-			}
-			//HH -> big HH
-			else if(pc.breastRows[0].breastRatingRaw < 22)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You lean back, feeling the weight of your feminine mounds flattening them slightly against your chest and rub your hands across them in slow circles, giving yourself a little massage. You've earned it after all, enduring the Treatment's endless adjustments and transformations, tolerating the lust that swells in your breast like a tsunami closing in on a beach. Pinching your HH-cup tits, you give yourself a masochistic thrill. Perhaps now you'll find a fuck-buddy every bit as capable as yourself, someone who can take a tumble in the hay and give just as good as they get.";
-				//+6 lust
-				pc.lust(6);
-				pc.breastRows[0].breastRatingRaw = 22;
-			}
-			//big HH -> HHH
-			else if(pc.breastRows[0].breastRatingRaw < 23)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Closing your eyes, you cop a feel at your bosom. It perfectly deforms around your questing fingertips, swallowing them almost wholly into itself. Each perfectly-shaped boob quivers against the other, pressed into a line of cleavage long enough to make a kui-tan cream her pants. You play with them";
-				if(pc.hasGenitals()) eBuffer += " until you feel more than a little sticky yourself";
-				else eBuffer += ParseText(", feeling a little unfilled yourself. If only you had someone to come fuck your [pc.ass] right now");
-				eBuffer += ParseText(". There's no doubt in your mind: you're a triple-H [pc.boyGirl] now.");
-				pc.breastRows[0].breastRatingRaw = 23;
 			}
 		}
 		//==========================
@@ -715,11 +775,12 @@ public function treatmentHourProcs():void
 		//TOOO 'GINAS
 		//========================
 		//Grow a 'gina if you're lacking one
-		if(treatedHours == 49 && !pc.hasVagina())
+		if(startHours < 49 && treatedHours >= 49 && !pc.hasVagina())
 		{
 			//If PC is ausar, vagina is canine. If PC has exclusively canine or equine maleness, match it. Otherwise human 'giny. @Jacques00 or other lovelies - if you want to hook more options in here, I suppose it would be okay.
 
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Oooh, you feel hot! A warm flush is running through your body, circulating between your head and toes before finally pooling in your loins. You whimper, pressing a finger to your crotch only to discover a nice, damp patch. You press on, whether due to fearlessness or desire, and discover a wanton cleft nestled firmly into your crotch. It's already slick with need, its clitoris jutting free from its hood. <b>You've grown an extra-wet ";
+			eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + " Oooh, you feel hot! A warm flush is running through your body, circulating between your head and toes before finally pooling in your loins. You whimper, pressing a finger to your crotch only to discover a nice, damp patch. You press on, whether due to fearlessness or desire, and discover a wanton cleft nestled firmly into your crotch. It's already slick with need, its clitoris jutting free from its hood. <b>You've grown an extra-wet ";
+			
 			pc.createVagina();
 			//cunt select!
 			if(pc.horseScore() >= 3 && pc.horseScore() > pc.canineScore())
@@ -743,12 +804,13 @@ public function treatmentHourProcs():void
 			eBuffer += "vagina!</b>";
 			pc.vaginas[0].wetnessRaw = 3;
 		}
+		
 		//Vaginal Elasticity 
 		//Elasticity + bonus capacity to make sure the girl can handle roughly 24" by 4.5" poles.
 		//Change it silently. Leave notification status effect that triggers off the next time cuntchange is called. Followup message:
-		if(pc.hasVagina())
+		if(pc.hasVagina() && startHours < 123 && treatedHours >= 123)
 		{
-			if(treatedHours == 123 && (pc.elasticity < 2.5 || pc.vaginas[0].bonusCapacity < 150))
+			if(pc.elasticity < 2.5 || pc.vaginas[0].bonusCapacity < 150)
 			{
 				if(pc.elasticity < 2.5) pc.elasticity = 2.5;
 				for(var cuntCount:int = 0; cuntCount < pc.totalVaginas(); cuntCount++)
@@ -756,88 +818,115 @@ public function treatmentHourProcs():void
 					if(pc.vaginas[cuntCount].bonusCapacity < 150) pc.vaginas[cuntCount].bonusCapacity = 150;
 				}
 			}
-			//pc.createStatusEffect("Treatment Elasticity Report Q'ed");
 			pc.createStatusEffect("Treatment Elasticity Report Needed");
 		}
+		
 		//Amazonian Endurance
 		//Req's PC be taller than 6', have 60 tone, and procs off an orgasm after day 4.
 		//Fen note: Nope, I cut the requirements down just in case of any weirdness with the TFs and timing or a PC nuking tone right before it woulda procced.
-		if(treatedHours == 96 && pc.hasVagina() && !pc.hasPerk("Amazonian Endurance"))
+		if(startHours < 96 && treatedHours >= 96 && pc.hasVagina() && !pc.hasPerk("Amazonian Endurance"))
 		{
 			pc.createStatusEffect("Amazonian Endurance Report Needed");
 	 		pc.createPerk("Amazonian Endurance",0,0,0,0,"Allows you to orgasm without fatiguing.");
 		}
+		
 		//==========================
 		//GINA STUFF OVER. ON
 		//TOOO SWEET GAINS, BRO
 		//========================
-		if((treatedHours == 50 || treatedHours == 52 || treatedHours == 56 || treatedHours == 62 || treatedHours == 71 || treatedHours == 86 || treatedHours == 100 || treatedHours == 120 || treatedHours == 147 || treatedHours == 165) && pc.tone < 100)
+		
+		if (pc.tone < 100)
 		{
-			//+slowStatGain physique
-			pc.slowStatGain("physique",1);
-			//0 to 10 tone
-			if(pc.tone < 10)
+			var numToneGains:int = 0;
+			var toneGainOffset:int = -1;
+			
+			for (var i:int = 0; i < TREATMENT_GAIN_TARGETS.length; i++)
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You flex one of your arms and smile when you see a little muscle there. It isn’t much, but it’s a start. In fact... you drop to the ground and do a few push-ups, just to get your blood flowing.";
-				pc.tone = 10;
+				if (startHours < TREATMENT_GAIN_TARGETS[i] && treatedHours >= TREATMENT_GAIN_TARGETS[i])
+				{
+					numToneGains++;
+					
+					if (toneGainOffset == -1)
+					{
+						toneGainOffset = i;
+					}
+				}
 			}
-			//10 to 20
-			else if(pc.tone < 20)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Your arms, chest... all of you, really.... You’re looking a little less squeezably soft. Of course, you’re still a long way from well-defined muscles, but you’re not quite the creampuff you used to be either.";
-				pc.tone = 20;
-			}
-			//20 - 30
-			else if(pc.tone < 30)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You feel... solid. On a whim, you do a couple push-ups and crunches, just to see how many you can do. They almost get easier the more you do them, but that can’t be right... can it? Whatever. You’re finally starting to fill out and pack on some muscle.";
-				pc.tone = 30;
-			}
-			//30 - 40
-			else if(pc.tone < 40)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You’re tightening up in some places and swelling up in others, even if your overall broadness remains unchanged. Still, you no longer look like a soft, easy target. You’re starting to show a little muscle in places without flexing, but not much yet. You comfort yourself with the knowledge that a few hours racking weights ought to finish the job.";
-				pc.tone = 40;
-			}
-			//40 - 50
-			else if(pc.tone < 50)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You go ahead and flex one more time, just for fun. There’s something delightful about watching your form swell with latent power. You could probably do a few pull-ups without breaking a sweat if you had a bar around.";
-				pc.tone = 50;
-			}
-			//50 - 60
-			else if(pc.tone < 60)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You admire yourself in your Codex’s screen. The body of the " + pc.mf("guy","girl") + " in the screen is starting to look pretty good. Muscles are making themselves known all over. If you keep it up, you might even get a pretty nice looking six pack.";
-				pc.tone = 60;
-			}
-			//60 - 70
-			else if(pc.tone < 70)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You pick up a rock and toss it around, anything to keep your hands busy and blow off some of this excess energy. No matter how active you are, you always seem to have more fuel in your tank, and despite the glistening sheen of sweat that you break out in, your expanding muscles don’t seem to mind in the slightest.";
-				pc.tone = 70;
-			}
-			//70 - 80
-			else if(pc.tone < 80)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Everyday tasks that once seemed exhausting or tiring are getting easier by the hour. Long walks? Piece of cake. Hefting some cargo? Not something a little elbow grease can’t take care of. Pinning some wannabe stud to the bed one-handed? Fuck yes. You’re breaking out in muscle all over, and it feels good.";
-				pc.tone = 80;
-			}
-			//80 - 90
-			else if(pc.tone < 90)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You do a few one-handed pushups, watching your muscles ripple under your [pc.skinFurScales] with a smile on your face. The physical exertion is calming. It helps you think and plan. When you stop, you’re covered in a light sheen of sweat that only makes your muscles stand out that much more clearly.");
-				pc.tone = 90;
-			}
-			//90-100
-			else
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You look at yourself in your Codex’s screen and marvel at the incredible amazon looking back at you. There isn’t a single part of your body that doesn’t display the unbridled physical power you have lurking just under the surface. You can’t imagine getting any more muscular than you already are, but that’s fine. Muscles are hot.";
-				pc.tone = 100;
+		
+			if (numToneGains > 0)
+			{	
+				for (i = 0; i < numToneGains; i++)
+				{
+					var toneTimestamp:uint = (TREATMENT_GAIN_TARGETS[toneGainOffset + i] - startHours) * 60;
+					
+					//+slowStatGain physique
+					pc.slowStatGain("physique", 1);
+					//0 to 10 tone
+					if(pc.tone < 10)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + " You flex one of your arms and smile when you see a little muscle there. It isn’t much, but it’s a start. In fact... you drop to the ground and do a few push-ups, just to get your blood flowing.";
+						pc.tone = 10;
+					}
+					//10 to 20
+					else if(pc.tone < 20)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + " Your arms, chest... all of you, really.... You’re looking a little less squeezably soft. Of course, you’re still a long way from well-defined muscles, but you’re not quite the creampuff you used to be either.";
+						pc.tone = 20;
+					}
+					//20 - 30
+					else if(pc.tone < 30)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + " You feel... solid. On a whim, you do a couple push-ups and crunches, just to see how many you can do. They almost get easier the more you do them, but that can’t be right... can it? Whatever. You’re finally starting to fill out and pack on some muscle.";
+						pc.tone = 30;
+					}
+					//30 - 40
+					else if(pc.tone < 40)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + " You’re tightening up in some places and swelling up in others, even if your overall broadness remains unchanged. Still, you no longer look like a soft, easy target. You’re starting to show a little muscle in places without flexing, but not much yet. You comfort yourself with the knowledge that a few hours racking weights ought to finish the job.";
+						pc.tone = 40;
+					}
+					//40 - 50
+					else if(pc.tone < 50)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + " You go ahead and flex one more time, just for fun. There’s something delightful about watching your form swell with latent power. You could probably do a few pull-ups without breaking a sweat if you had a bar around.";
+						pc.tone = 50;
+					}
+					//50 - 60
+					else if(pc.tone < 60)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + " You admire yourself in your Codex’s screen. The body of the " + pc.mf("guy","girl") + " in the screen is starting to look pretty good. Muscles are making themselves known all over. If you keep it up, you might even get a pretty nice looking six pack.";
+						pc.tone = 60;
+					}
+					//60 - 70
+					else if(pc.tone < 70)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + " You pick up a rock and toss it around, anything to keep your hands busy and blow off some of this excess energy. No matter how active you are, you always seem to have more fuel in your tank, and despite the glistening sheen of sweat that you break out in, your expanding muscles don’t seem to mind in the slightest.";
+						pc.tone = 70;
+					}
+					//70 - 80
+					else if(pc.tone < 80)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + " Everyday tasks that once seemed exhausting or tiring are getting easier by the hour. Long walks? Piece of cake. Hefting some cargo? Not something a little elbow grease can’t take care of. Pinning some wannabe stud to the bed one-handed? Fuck yes. You’re breaking out in muscle all over, and it feels good.";
+						pc.tone = 80;
+					}
+					//80 - 90
+					else if(pc.tone < 90)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + ParseText(" You do a few one-handed pushups, watching your muscles ripple under your [pc.skinFurScales] with a smile on your face. The physical exertion is calming. It helps you think and plan. When you stop, you’re covered in a light sheen of sweat that only makes your muscles stand out that much more clearly.");
+						pc.tone = 90;
+					}
+					//90-100
+					else
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", toneTimestamp) + " You look at yourself in your Codex’s screen and marvel at the incredible amazon looking back at you. There isn’t a single part of your body that doesn’t display the unbridled physical power you have lurking just under the surface. You can’t imagine getting any more muscular than you already are, but that’s fine. Muscles are hot.";
+						pc.tone = 100;
+					}
+				}
 			}
 		}
+		
 		//Some defatt too
-		if((treatedHours == 101 || treatedHours == 121) && pc.thickness > 60)
+		if (pc.thickness > 60 && ((startHours < 101 && treatedHours >= 101) || (startHours < 121 && treatedHours >= 121)))
 		{
 			//High thickness trims in.
 			//Ogre -> Curvy cowgal
@@ -853,57 +942,86 @@ public function treatmentHourProcs():void
 			}
 			pc.thickness = 60;
 		}
+		
 		//==========================
 		//SWEET GAINS OVER.
 		//ON TO TALLNESS GAINZZZ
 		//==========================
-		if(pc.tallness < 90 && (treatedHours == 73 || treatedHours == 97 || treatedHours == 121 || treatedHours == 144 || treatedHours == 168))
+		
+		// These are 24 hours apart, so we can math this - except 144 which was 23 hours apart so we're fixing that too
+		if (pc.tallness < 90 && treatedHours >= 73 && startHours < 169)
 		{
-			pc.tallness += 1 + rand(3);
-			//first time only
-			if(!pc.hasStatusEffect("Treatment Height Boosted"))
-			{
-				pc.createStatusEffect("Treatment Height Boosted",0,0,0,0,true,"","",false,10080);
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" A kind of all-over ache has been bothering you off and on all day. It’s a deep pain, below the skin and muscles; you figure it’s your very bones. You were expecting to get taller. This must be what they mean by ‘growing pains’. A quick measurement confirms it. You’re [pc.height] tall now.");
+			var numTallnessGains:int = 0;
+			if (startHours > 169)
+			{ 
+				// noop 
 			}
-			//Less than 6’
-			else if(pc.tallness < 72)
+			else
 			{
-				//Below 5’5”? Add +3”
-				if(pc.tallness < 65) pc.tallness += 3;
-				//1
-				if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp("passive") + " The ground seems a little further away than before. At first, you think it’s your head playing tricks on you, but when you whack your head on something that you should have passed harmlessly underneath, you have to admit it. You’re getting taller. Pretty soon, nobody is going to call you short!";
-				//2
-				else eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You stop to measure yourself with a cocky smile. There’s nothing like getting bigger and stronger to make you feel like a million creds. The Codex beeps, informing you that you’re [pc.height] tall. Now that’s more like it!");
-			}
-			//Less than 7’
-			else if(pc.tallness < 84)
-			{
-				//1
-				if(rand(3) == 0) eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your back abruptly pops. It doesn’t hurt or anything, but you twist and stretch to limber up, feeling it pop a few more times in different places. The ever-present dull ache of growing bones underlies it all, promising that you’re still getting bigger and taller. Right now, you’re [pc.height] tall.");
-				//2
-				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp("passive") + " Things that used to pass right on by your head are getting closer and closer these days. Sometimes you even have to duck to avoid them. The ground seems farther away with every passing minute, a constant reminder of your Treatment-enhanced physique.";
-				//3
-				else eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You snap out the Codex for a quick check on your amplified tallness. It beeps, displaying your new height on screen. You’re [pc.height] tall now. If this keeps up, you’re going to wind up taller than most normal terrans. And New Texans? Well... maybe you’ll catch up to the taller bulls.");
-			}
-			//Less than 7’6”
-			else if(pc.tallness < 90)
-			{
-				//1
-				if(rand(3) == 0) 
+				numTallnessGains = Math.floor((treatedHours - 49) / 24);
+				
+				if (startHours > 73)
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + " You’re definitely still growing in spite of being well past the seven foot threshold. You could pass for average on New Texas right now, if you wanted to stick around there. Elsewhere, you must look awful tall.";
-					if(CodexManager.entryUnlocked("Raskvel")) eBuffer += " Heck, the raskvel on Tarkus will probably think you a giant.";
+					numTallnessGains -= Math.floor((startHours - 49) / 24);
 				}
-				//2
-				else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You stretch your arms out high over your head and arch your back, working your sore joints. It’s one thing to revel in your added stature. It’s quite another to suffer from the constant aches and pains that come with your expanding physique. You do a quick measurement. You’re [pc.height] tall now.");
-				//3
-				else eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your smile broadens while you look around. Your viewpoint is still rising, slowly but surely. Though it isn’t fast enough to be truly perceptible, you still find yourself taking note of your increasing height every few hours. Right now, you’re up to [pc.height] tall.");
+				
+				numTallnessGains = Math.max(0, numTallnessGains);
 			}
-			//It’s over - hit dat cap or day 6.5
-			if(treatedHours == 168 || pc.tallness >= 90)
+			
+			if (numTallnessGains > 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" The familiar, dull ache to which you have grown accustomed diminishes moment by moment. You frown when it vanishes entirely; the Treatment won’t be making you any taller. You’ll have to settle for being [pc.height] tall.");
+				// baseGainOffset will give us the +hours required to hit the first trigger point this update cycle, then add i*24
+				var baseGainOffset:int = startHours - ((Math.floor((startHours - 1) / 24) * 24) - 1);
+				
+				for (i = 0; i < numTallnessGains; i++)
+				{
+					pc.tallness += 1 + rand(3);
+					//first time only
+					if(!pc.hasStatusEffect("Treatment Height Boosted"))
+					{
+						pc.createStatusEffect("Treatment Height Boosted",0,0,0,0,true,"","",false,10080);
+						eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + ParseText(" A kind of all-over ache has been bothering you off and on all day. It’s a deep pain, below the skin and muscles; you figure it’s your very bones. You were expecting to get taller. This must be what they mean by ‘growing pains’. A quick measurement confirms it. You’re [pc.height] tall now.");
+					}
+					//Less than 6’
+					else if(pc.tallness < 72)
+					{
+						//Below 5’5”? Add +3”
+						if(pc.tallness < 65) pc.tallness += 3;
+						//1
+						if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + " The ground seems a little further away than before. At first, you think it’s your head playing tricks on you, but when you whack your head on something that you should have passed harmlessly underneath, you have to admit it. You’re getting taller. Pretty soon, nobody is going to call you short!";
+						//2
+						else eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + ParseText(" You stop to measure yourself with a cocky smile. There’s nothing like getting bigger and stronger to make you feel like a million creds. The Codex beeps, informing you that you’re [pc.height] tall. Now that’s more like it!");
+					}
+					//Less than 7’
+					else if(pc.tallness < 84)
+					{
+						//1
+						if(rand(3) == 0) eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + ParseText(" Your back abruptly pops. It doesn’t hurt or anything, but you twist and stretch to limber up, feeling it pop a few more times in different places. The ever-present dull ache of growing bones underlies it all, promising that you’re still getting bigger and taller. Right now, you’re [pc.height] tall.");
+						//2
+						else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + " Things that used to pass right on by your head are getting closer and closer these days. Sometimes you even have to duck to avoid them. The ground seems farther away with every passing minute, a constant reminder of your Treatment-enhanced physique.";
+						//3
+						else eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + ParseText(" You snap out the Codex for a quick check on your amplified tallness. It beeps, displaying your new height on screen. You’re [pc.height] tall now. If this keeps up, you’re going to wind up taller than most normal terrans. And New Texans? Well... maybe you’ll catch up to the taller bulls.");
+					}
+					//Less than 7’6”
+					else if(pc.tallness < 90)
+					{
+						//1
+						if(rand(3) == 0) 
+						{
+							eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + " You’re definitely still growing in spite of being well past the seven foot threshold. You could pass for average on New Texas right now, if you wanted to stick around there. Elsewhere, you must look awful tall.";
+							if(CodexManager.entryUnlocked("Raskvel")) eBuffer += " Heck, the raskvel on Tarkus will probably think you a giant.";
+						}
+						//2
+						else if(rand(2) == 0) eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + ParseText(" You stretch your arms out high over your head and arch your back, working your sore joints. It’s one thing to revel in your added stature. It’s quite another to suffer from the constant aches and pains that come with your expanding physique. You do a quick measurement. You’re [pc.height] tall now.");
+						//3
+						else eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + ParseText(" Your smile broadens while you look around. Your viewpoint is still rising, slowly but surely. Though it isn’t fast enough to be truly perceptible, you still find yourself taking note of your increasing height every few hours. Right now, you’re up to [pc.height] tall.");
+					}
+					//It’s over - hit dat cap or day 6.5
+					if(treatedHours >= 169 || pc.tallness >= 90)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (baseGainOffset + (i * 24)) * 60) + ParseText(" The familiar, dull ache to which you have grown accustomed diminishes moment by moment. You frown when it vanishes entirely; the Treatment won’t be making you any taller. You’ll have to settle for being [pc.height] tall.");
+					}
+				}
 			}
 		}
 		//==========================
@@ -914,98 +1032,114 @@ public function treatmentHourProcs():void
 		//5 to 8” max
 		if((pc.horns == 0 || (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT) || pc.hornLength < pc.statusEffectv2("Treated")) && (treatedHours >= 82 && rand(6) == 0))
 		{
-			//Existing horns transform into lil bull nubs.
-			if(pc.horns > 0 && (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT))
+			var numHornAttempts:int = treatedHours - startHours;
+			var numHornGains:int = 0;
+			
+			for (var i:int = 0; i < numHornAttempts; i++)
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They're small and pointed, like little cow horns.";
-				pc.horns = 2;
-				pc.hornLength = .5;
-				pc.hornType = GLOBAL.TYPE_BOVINE;
+				if (rand(6) == 0) numHornGains++;
 			}
-			//Starting
-			else if(pc.horns == 0 && !pc.hasStatusEffect("Horn Bumps"))
+			
+			if (numHornGains > 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it's red and irritated, though you haven't seen a head form on the zit yet. You've never had such prominent acne before, and there's a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.";
-				pc.createStatusEffect("Horn Bumps");
-			}
-			//Breaking Skin
-			else if(pc.horns == 0)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?";
-				eBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".";
-				eBuffer += "\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.";
-				eBuffer += ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all's said and done, all the better to compliment your other growing rack.");
-				pc.hornType = GLOBAL.TYPE_BOVINE;
-				pc.removeStatusEffect("Horn Bumps");
-				pc.horns = 2;
-				pc.hornLength = .5;
-			}
-			//nubs -> 1" horns
-			else if(pc.hornLength < 1)
-			{
-				eBuffer +="\n\n" + logTimeStamp("passive") + " For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.";
-				eBuffer += ParseText("\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them yet. You’ll have to sharpen them up a little once they finish coming in, maybe even get them capped with ornamental steel.");
-				pc.hornLength = 1;
-			}
-			//1" horns to 2" horns
-			else if(pc.hornLength < 2)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " A wave of discomfort strikes just behind your forehead, growing worse by the second. There's really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to watch your own burgeoning majesty.";
-				eBuffer += "\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they're growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory.";
-				if(pc.hasHair() && pc.hairLength >= 2) eBuffer += " You brush your bangs to one side, hooking them around one of the horns in the cutest way.";
-				eBuffer += " The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.";
-				eBuffer += "\n\nNow this is more like it. A little bigger, and you’ll be able to stand up to some of the bulls.";
-				pc.hornLength = 2;
-			}
-			//2" horns to 3" horns
-			else if(pc.hornLength < 3)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There's a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There's blessedly little pain, but when it passes, you're very aware of additional weight tugging on your head. Your horns have grown: they're now three inches of gleaming white, bovine awesomeness. You resolve to polish them at the first opportunity, maybe even get some ornamental jewelry for them.";
-				pc.hornLength = 3;
-			}
-			//3" horns to 4" horns - prolly gonna reuse some of this for guys.
-			else if(pc.hornLength < 4)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn't hurt, but it is very disconcerting, making it next to impossible to think.";
-				eBuffer += "\n\nYou grunt and groan, feeling the sensation slide <i>outside</i> of your head as your horns expand, growing thicker and heavier.";
-				eBuffer += "You sigh in satisfaction once they stop growing. Now these are respectable horns!";
-				pc.hornLength = 4;
-			}
-			//4" horsn to 5" horns - MAX LADIES CAN GET.
-			else if(pc.hornLength < 5)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it's all over, you're left holding two big, strong five-inch horns. Nice.";
-				pc.hornLength = 5;
-			}
-			else if(pc.hornLength < 6)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Here it comes! You wince at the onset of tightness in your forehead, increasingly familiar as your horns continue their trek toward their full size. It doesn’t even hurt that bad this time; it just feels like a strange, tight tingling as your horns add another inch to their already impressive length. When the sensation fades, <b>you admire your six-inch long horns.</b> Not too shabby. Any longer and you’ll have to be careful with them when going through doorways.";
-				pc.hornLength = 6;
-			}
-			else if(pc.hornLength < 7)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You grunt as the familiar feeling of horn growth sets in. Grabbing hold of the curved, steer-like protrusions, you give them a tug, easing more gleaming ivory into the air. The more horn you grow, the wider their stance and the more threatening you become. You could probably just tip your head an inch forward, snort, and send half the galaxy running. The thought makes you smile almost as much as the idea of a faux cow squeezing them like handlebars while you suck his balls dry.";
-				pc.hornLength = 7;
-			}
-			else if(pc.hornLength < 8)
-			{
-				var supahHorn:Boolean = false;
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You wince at the headache as it returns. The familiar ache that’s right behind your forehead can only mean one thing: your horns are about to grow again. But they’re already so big! You watch in disbelief as an extra inch";
-				if(rand(4) == 0) 
-				{
-					eBuffer += "... no two extra inches pour";
-					supahHorn = true;
+				var hornTimestampStride:int = Math.floor(numHornGains / (treatedHours - startHours));
+				
+				for (i = 0; i < numHornGains; i++)
+				{		
+					//Existing horns transform into lil bull nubs.
+					if(pc.horns > 0 && (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT))
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They're small and pointed, like little cow horns.";
+						pc.horns = 2;
+						pc.hornLength = .5;
+						pc.hornType = GLOBAL.TYPE_BOVINE;
+					}
+					//Starting
+					else if(pc.horns == 0 && !pc.hasStatusEffect("Horn Bumps"))
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it's red and irritated, though you haven't seen a head form on the zit yet. You've never had such prominent acne before, and there's a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.";
+						pc.createStatusEffect("Horn Bumps");
+					}
+					//Breaking Skin
+					else if(pc.horns == 0)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?";
+						eBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".";
+						eBuffer += "\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.";
+						eBuffer += ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all's said and done, all the better to compliment your other growing rack.");
+						pc.hornType = GLOBAL.TYPE_BOVINE;
+						pc.removeStatusEffect("Horn Bumps");
+						pc.horns = 2;
+						pc.hornLength = .5;
+					}
+					//nubs -> 1" horns
+					else if(pc.hornLength < 1)
+					{
+						eBuffer +="\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.";
+						eBuffer += ParseText("\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them yet. You’ll have to sharpen them up a little once they finish coming in, maybe even get them capped with ornamental steel.");
+						pc.hornLength = 1;
+					}
+					//1" horns to 2" horns
+					else if(pc.hornLength < 2)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " A wave of discomfort strikes just behind your forehead, growing worse by the second. There's really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to watch your own burgeoning majesty.";
+						eBuffer += "\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they're growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory.";
+						if(pc.hasHair() && pc.hairLength >= 2) eBuffer += " You brush your bangs to one side, hooking them around one of the horns in the cutest way.";
+						eBuffer += " The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.";
+						eBuffer += "\n\nNow this is more like it. A little bigger, and you’ll be able to stand up to some of the bulls.";
+						pc.hornLength = 2;
+					}
+					//2" horns to 3" horns
+					else if(pc.hornLength < 3)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There's a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There's blessedly little pain, but when it passes, you're very aware of additional weight tugging on your head. Your horns have grown: they're now three inches of gleaming white, bovine awesomeness. You resolve to polish them at the first opportunity, maybe even get some ornamental jewelry for them.";
+						pc.hornLength = 3;
+					}
+					//3" horns to 4" horns - prolly gonna reuse some of this for guys.
+					else if(pc.hornLength < 4)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn't hurt, but it is very disconcerting, making it next to impossible to think.";
+						eBuffer += "\n\nYou grunt and groan, feeling the sensation slide <i>outside</i> of your head as your horns expand, growing thicker and heavier.";
+						eBuffer += "You sigh in satisfaction once they stop growing. Now these are respectable horns!";
+						pc.hornLength = 4;
+					}
+					//4" horsn to 5" horns - MAX LADIES CAN GET.
+					else if(pc.hornLength < 5)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it's all over, you're left holding two big, strong five-inch horns. Nice.";
+						pc.hornLength = 5;
+					}
+					else if(pc.hornLength < 6)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " Here it comes! You wince at the onset of tightness in your forehead, increasingly familiar as your horns continue their trek toward their full size. It doesn’t even hurt that bad this time; it just feels like a strange, tight tingling as your horns add another inch to their already impressive length. When the sensation fades, <b>you admire your six-inch long horns.</b> Not too shabby. Any longer and you’ll have to be careful with them when going through doorways.";
+						pc.hornLength = 6;
+					}
+					else if(pc.hornLength < 7)
+					{
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " You grunt as the familiar feeling of horn growth sets in. Grabbing hold of the curved, steer-like protrusions, you give them a tug, easing more gleaming ivory into the air. The more horn you grow, the wider their stance and the more threatening you become. You could probably just tip your head an inch forward, snort, and send half the galaxy running. The thought makes you smile almost as much as the idea of a faux cow squeezing them like handlebars while you suck his balls dry.";
+						pc.hornLength = 7;
+					}
+					else if(pc.hornLength < 8)
+					{
+						var supahHorn:Boolean = false;
+						eBuffer += "\n\n" + logTimeStamp("passive", (hornTimestampStride * i) * 60) + " You wince at the headache as it returns. The familiar ache that’s right behind your forehead can only mean one thing: your horns are about to grow again. But they’re already so big! You watch in disbelief as an extra inch";
+						if(rand(4) == 0) 
+						{
+							eBuffer += "... no two extra inches pour";
+							supahHorn = true;
+						}
+						else eBuffer += " pours";
+						eBuffer += " into your view. You must look so imposing. These are bigger than just about any bull’s on New Texas. <b>You have big, ";
+						if(supahHorn) eBuffer += "nine";
+						else eBuffer += "eight";
+						eBuffer += "-inch long horns.</b> How exciting that you, a ";
+						if(pc.hasCock()) eBuffer += "hermaphrodite";
+						else eBuffer += "female";
+						eBuffer += " get to dwarf all the supposed 'males.'";
+						if(supahHorn) pc.hornLength = 9;
+						else pc.hornLength = 8;
+					}
 				}
-				else eBuffer += " pours";
-				eBuffer += " into your view. You must look so imposing. These are bigger than just about any bull’s on New Texas. <b>You have big, ";
-				if(supahHorn) eBuffer += "nine";
-				else eBuffer += "eight";
-				eBuffer += "-inch long horns.</b> How exciting that you, a ";
-				if(pc.hasCock()) eBuffer += "hermaphrodite";
-				else eBuffer += "female";
-				eBuffer += " get to dwarf all the supposed 'males.'";
-				if(supahHorn) pc.hornLength = 9;
-				else pc.hornLength = 8;
 			}
 		}
 		//(Ram Horns!)
@@ -3601,17 +3735,22 @@ public function dumb4CumReset():void
 	eventBuffer += eBuffer;
 }
 
-public function dumb4CumUpdate():void
+public function dumb4CumUpdate(totalHours:int):void
 {
 	var eBuffer:String = "";
+	var effect:StorageClass = (pc as PlayerCharacter).getPerkEffect("Dumb4Cum");
 	
 	// Pool intelligence into a reserve...
-	if(pc.perkv1("Dumb4Cum") >= 24)
+	if(effect.value1 >= 24)
 	{
-		if(pc.perkv2("Dumb4Cum") < pc.perkv3("Dumb4Cum")) pc.addPerkValue("Dumb4Cum",2,1);
+		if (effect.value2 < effect.value3)
+		{
+			// Clamp to less than v3
+			effect.value2 = Math.min(effect.value2 + totalHours, effect.value3 - 1);
+		}
 	}
-	pc.addPerkValue("Dumb4Cum",1,1);
-	var tics:Number = pc.perkv1("Dumb4Cum");
+	effect.value1 += totalHours;
+	var tics:Number = effect.value1;
 	
 	if(tics == 24)
 	{
