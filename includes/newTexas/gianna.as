@@ -2476,7 +2476,7 @@ public function giannaNormalTitTitfuck():void
 		output("\n\n<i>“Easy, " + pc.mf("stud","princess") + ".”</i> Gianna slows the incessant pumping of her tits to a more reasonable, slow grinding. [pc.EachCock] jerks and pulsates as it drips, so close to release and being forced to wait.");
 		output("\n\nYou groan in disappointment.");
 		output("\n\nGianna smiles knowingly; there’s no hiding the near-crimson blush of her cheeks or the shining pinkness of her breasts. <i>“Do you want to cum now?”</i> She briefly jostles her chest, bouncing you between two slick love-pillows. <i>“I know the longer I can make this last, the better it will feel for you.”</i> She pauses. <i>“You’re on the cusp of a powerful orgasm. ");
-		if(giannaPersonality() >= 70) output("I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until he’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give [pc.himHer].");
+		if(giannaPersonality() >= 70) output("I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until [pc.he]’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give [pc.himHer].");
 		else if(giannaPersonality() >= 70) output("Do you want it now? Do you want to paint my tits and fill my mouth?");
 		else output("I’ll bring you off now, if that’s what you command, [pc.master] [pc.name].");
 		output("”</i>");
@@ -2536,7 +2536,7 @@ public function giannaNormalTitTitfuck():void
 		output(".");
 		output("\n\nYou groan in disappointment.");
 		output("\n\nGianna smiles knowingly; there’s no hiding the near-crimson blush of her cheeks or the shining pinkness of her breasts. <i>“Do you want to cum now?”</i> She licks the exposed portion of your length once. A second taste follows after a brief pause, faster than the first. <i>“I know the longer I can make this last, the better it will feel for you.”</i> She pauses, tongue half out of her mouth but talking perfectly clearly all the same. <i>“You do seem on the cusp of a powerful orgasm. ");
-		if(giannaPersonality() >= 70) output("I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until he’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give him.");
+		if(giannaPersonality() >= 70) output("I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until [pc.he]’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give him.");
 		else if(giannaPersonality() >= 30) output("Do you want it now? Do you want to paint my tits and fill my mouth?");
 		else output("I’ll bring you off now, if that’s what you command, [pc.master] [pc.name].");
 		output("”</i>");

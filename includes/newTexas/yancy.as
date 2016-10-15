@@ -229,7 +229,7 @@ public function getMilkedByYancyYaSloot():void
 
 		if(pc.isNude())
 		{
-			output(" Starting with gentle petting, he slowly massages your body. He doesn’t even make an effort to avoid your overheated [pc.nippleNouns]s");
+			output(" Starting with gentle petting, he slowly massages your body. He doesn’t even make an effort to avoid your overheated [pc.nipplesNoun]");
 			if(pc.hasVagina()) output(" or simmering slit");
 			if(pc.totalVaginas() > 1) output("s");
 			output(".");
@@ -239,7 +239,7 @@ public function getMilkedByYancyYaSloot():void
 			if(pc.armor.shortName != "") output(" Starting with your [pc.armor],");
 			else if(pc.isChestGarbed()) output(" Starting with your [pc.upperGarment],");
 			else output(" Smirking at your lack of anything but [pc.lowerGarment],");
-			output(" he begins to undress you, unwrapping you like a present, not very careful to avoid your overheated [pc.nippleNoun]s");
+			output(" he begins to undress you, unwrapping you like a present, not very careful to avoid your overheated [pc.nipplesNoun]");
 			if(pc.hasVagina()) output(" or simmering slit");
 			if(pc.totalVaginas() > 1) output("s");
 			output(".");

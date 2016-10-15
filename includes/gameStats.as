@@ -3517,7 +3517,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_VANAE_MAIDEN"] != undefined)
 				{
 					output2("\n<b>* Vanae Maiden, Times Encountered:</b> " + flags["MET_VANAE_MAIDEN"]);
-					if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) output2("\n<b>Vanae Maiden, Total Deflowered:</b> " + StatTracking.getStat("characters/maiden vanae/cherrys popped"));
+					if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) output2("\n<b>* Vanae Maiden, Total Deflowered:</b> " + StatTracking.getStat("characters/maiden vanae/cherrys popped"));
 				}
 				if(flags["MET_VANAE_HUNTRESS"] != undefined)
 				{
