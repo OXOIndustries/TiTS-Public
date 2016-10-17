@@ -1263,6 +1263,10 @@
 		{
 			return chars["BUSKY"];
 		}
+		public function get kally():Kally
+		{
+			return chars["KALLY"];
+		}
 		
 		private var _dbgtestvar:int = 0;
 		public function dbgshieldparsertag():String

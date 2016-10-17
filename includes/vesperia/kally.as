@@ -58,6 +58,7 @@ public function kallyBonusRoomTexts():Boolean
 		output("\n\nKally smiles at you from behind the bar, but makes no move to approach. The cushy kui-tan is wearing her typical barmaid outfit and busy mixing drinks for her thirsty patrons.");
 		addButton(0,"Kally",approachKally);
 	}
+	roamingBarEncounter(1);
 	return false;
 }
 
@@ -216,8 +217,11 @@ public function kallyBarMenu():void
 	if(!pc.isSmashed()) addButton(0,"Buy Drink",buyADrinkFromKally);
 	else addDisabledButton(0,"Buy Drink","Buy Drink","You're so drunk she won't serve you any more.");
 	addButton(1,"Appearance",kallyAppearance);
+	if(!pc.hasStatusEffect("Tapped Kally") && pc.isBimbo()) addButton(5,"Suck Kally",kallyNeedsTappedByBimbos,undefined,"Suck Kally","Kally looks... and smells... like she needs some relief. Who better to help than you?");
+	else if(pc.isBimbo()) addDisabledButton(5,"Suck Kally","Suck Kally","She's still cooling off from your last attempt!");
+	else addDisabledButton(5,"Suck Kally","Suck Kally","Trying to suck Kally off at work is the sort of thing only a cock-hungry bimbo would do.");
+
 	addButton(14,"Leave",mainGameMenu);
-	
 }
 
 //Appearance
@@ -808,6 +812,7 @@ public function askKallyAboutAusar():void
 //1- landing pad
 public function canadiaLandingPadBonus():void
 {
+	kiro.ballSizeRaw = 10;
 	if((flags["KIRO_MET_KALLY"] == undefined || flags["KIRO_MET_KALLY"] == 0) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
@@ -1707,136 +1712,282 @@ public function kiroRoughButtfucks():Number
 	else return flags["KIRO_ROUGH_BUTTFUCK"];
 }
 
+//Kally Needs Tapped Scene
+public function kallyNeedsTappedByBimbos():void
+{
+	clearOutput();
+	showKally();
+	output("Kally’s horny. Nevermind her lifting skirt, you can <i>smell</i> it on her. The scents of the dozens of other bar patrons are so easy to filter out, nothing at all like the kui-tan’s pheromonal bouquet. Her balls smell like a warm hearth and earthy peat tinged, mingled with a hint of her exotic, alien sweat, brewed up after a long day of work behind the bar, but they’re nothing next to the cloud of olfactory invitation rolling off her cock. You could smell a hint of it from the other side of the room. Here? There’s no doubt that the only thing keeping Kally from jacking herself off is an impressive amount of mental control mixed with supreme professionalism.");
+	output("\n\nIn short, just sniffing her cock is getting you <i>wet</i>.");
+	if(pc.wettestVaginalWetness() >= 4)
+	{
+		output(" Your over-enthusiastic puss");
+		if(pc.totalVaginas() > 1) output("ies are");
+		else output("y is");
+		output(" creating rivers of fuckability down your [pc.legOrLegs]");
+		if(pc.legCount > 1) output(", urging you to spread them as wide as possible and show off the glossy sheen");
+		output(".");
+	}
+	output(" That dick is like candy for your nose, an impressive appetizer that has your mouth watering and tongue moistening your [pc.lips]. Letting her go on working like that wouldn’t just be a shame - it’d be one of the worst disasters in the whole galaxy.");
+	output("\n\nYou lean closer, putting on your smokiest expression");
+	if(pc.biggestTitSize() >= 1) output(", showing off your [pc.chest] to best effect");
+	output(". <i>“Heyyyy, Kally.”</i> You ");
+	if(pc.hasHair() && pc.hairLength > 2) output("twirl your hair and chew on your lip");
+	else output("slide a finger down your jawline and toward your chest");
+	output(". A dreamy sigh escapes your lips, making room for another heavy inhalation of kui-tan dick-musk. <i>“You need any help, behind the bar?”</i> Your eyes flick down just in time to catch the sight of her skirt bouncing higher.");
 
+	//First Time
+	if(flags["KALLY_BIMBO_TAPPED"] == undefined)
+	{
+		output("\n\nKally stares at your mouth, which you’re all too happy to shape into a perfect ‘o’ and slowly lick your way around. <i>“Uhh...”</i> Her knees knock together, but even they can’t suppress the tide rising under her skirt. <i>“No. No, I’m good.”</i> She steps forward to hide it under the bar, bumping a few glasses in the process. Smacking cups around with her dick is about as unsubtle as it gets.");
+		output("\n\n<i>“Come on, Kally,”</i> you coo. <i>“Have a little fun.”</i> You draw little figure eights on the fur on the back of her hand with your finger. <i>“I can hide under the bar.”</i> You bat your eyelashes. <i>“And I’ll be super quiet.”</i>");
+		output("\n\nYou know you’ve won the moment you hear her dick slap into the underside of the bar’s polished hardwood. The impact sounds <i>juicy</i>.");
+		output("\n\n<i>“Uhhnghhhh... okay-okay. Quick, under here.”</i>");
+		output("\n\nThe buzz of a magnetic seal releasing sounds, and Kally lifts a previously seamless segment of the bar into the air. Her dick hangs heavily in the empty space, high enough that the only thing her skirt can hide is her useless (but mouth-watering) sheath.");
+	}
+	//Repeat
+	else
+	{
+		output("\n\nKally actually <i>whimpers</i> at that. It’s all she can do to keep her cock from jumping out from under the counter and slapping messily on top of it. Instead, her dick smacks heavily into the underside. The impact sounds wet enough to fill a shot glass, a thought that has your mouth already watering.");
+		output("\n\n<i>“Ug-ummm... okay.”</i> Kally clicks a button, disengaging a mag-seal that lifts a portion of the bar into the air.");
+		output("\n\nHer cock is right there. It bows upward far enough that skirt is near useless, just as bunched up around the base as her succulent sheath.");
+	}
+	//Merge
+	output("\n\nIt bobs the moment your eyes meet it. The veins, glistening and black, throb enticingly, begging you lavish them with your tongue until you can feel her heart beat against your tongue.");
+	output("\n\nYour hand thrusts out on its own to grab hold, seemingly of its own volition. That’s the great thing about your current state: you don’t have to think about how to be good at sex. It just happens. Your middle finger rubs just below the fattened prickhead, and the index strokes the veiny underside. Kally is butter in your hands. She stumbles back when you push your way behind the bar. Slapping the ‘close’ button an afterthought. Once the pneumatic hiss fades and the snap of the maglocks re-engaging reaches your ears, a cheshire grin envelops your features. Kally’s not getting away until those balls have been properly drained.");
+	output("\n\nYou kiss her full on the lips, all while effortlessly continuing to stroke her down below. <i>“I’m going to slip somewhere a little more comfortable,”</i> you whisper, breaking away, <i>“Just make sure you remember where your cock is buried when the time comes.”</i> You suck her tongue into your mouth, give it a lick, then slowly let it slide out as you pull away, cheeks hollowed.");
+	output("\n\nYou’re pleased to note that the bartender is breathing heavily on your way down. Her pudgy tummy is breathing in and out so rapidly that the shadows from her breasts appear in continual motion, fluttering back and forth you nearly as fast as your hand across her turgid member. You tug her forward as your own body slides back. The space you just entered through provides ");
+	if(pc.isNaga() || pc.isDrider() || pc.isTaur() || pc.isGoo()) output("barely enough room for your unusual body to squeeze into");
+	else output("more than enough room for you to squeeze into} now that it’s closed. The only thing you’d change to make it a better blowjob nook would be floor padding.");
+	output("\n\nNow, to get to work.");
+	processTime(6);
+	pc.lust(33);
+	clearMenu();
+	addButton(0,"Next",tapKallysKegAsBimboII);
+}
+public function tapKallysKegAsBimboII():void
+{
+	clearOutput();
+	showKally();
+	IncrementFlag("KALLY_BIMBO_TAPPED");
+	pc.createStatusEffect("Tapped Kally",0,0,0,0,true,"Icon_Wine","",false,1000);
+	output("It’s a good thing you enjoy your work.");
+	if(pc.felineScore() >= 3) output(" You audibly purr in excitement.");
+	else if(pc.canineScore() >= 3) output(" A low growl of desire wells up out of the back of your throat before you remember to muffle it.");
+	else output(" A quiet hum of contentment wells up out of the back of your throat before you remember to muffle it.");
+	output(" Before you start sucking, it’s important to breathe properly. That or it’s important to remind yourself just how goddamn good this dick smells. One of the two. Now that you’re in a confined space, you’re practically hotboxing yourself with its needy aroma. Every breath is tinged with the flavor of dick and every exhalation a reminder that you haven’t swallowed the real thing yet.");
+	output("\n\nKally steps a little closer. Between her thick dick and thicker thighs, the light is almost completely blocked. What little you can see here in the shadows is a faint reflection off the top of the kui-tan’s cock, revealing the smallest amounts of dribbling pre. You close your eyes and zero in on the smell of it. It’s no surprise when your [pc.lipsChaste] meet cock, nor is it when they slowly open, dragging their pillowy softness over the entirety of Kally’s crown. That little bit of pre, when mixed with your spit, allows them to glide with the same ease as the slickest cunt");
+	if(pc.wettestVaginalWetness() >= 4) output(", though you doubt anything could match your lubricious nethers");
+	output(".");
+	output("\n\nYou don’t make the mistake of opening too wide. You don’t remember why; you just do it. Your lips stay nice and tight around the cock, your mouth dilated just enough to keep your teeth from grazing the tender skin. Then you slide forward, accepting her inside. She is <i>thick</i>. Thick enough that it feels like she’s too wide for your meager tongue. Thick enough that her fat dick must have your [pc.lips] shaped into an absolutely obscene shape. Your average terran would never be able to accomplish such a feat, and for that matter, most kui-tan couldn’t either.");
+	//Random
+	//Kiro kiss +1 (one time threesome point)
+	if(flags["KIRO_MET_KALLY"] != undefined && rand(3) == 0)
+	{
+		output("\n\n<i>“You alright, Kally?”</i> a familiar voice asks from up above.");
+		output("\n\nYou dutifully continue to work her shaft");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(", uncoiling your tongue to slither out and lick around the inner edges of her sheath");
+		output(".");
+		output("\n\nKally groans and leans over the countertop, throwing you further into shade. <i>“Y-yeah. Just a little frazzled.”</i>");
+		output("\n\nGrabbing her balls in both hands, you gently squeeze them.");
+		output("\n\n<i>“Ung!”</i> Kally grunts, one hand clawing at the hardwood just inches above your head.");
+		output("\n\nThe other voice laughs. This time, when it talks, it’s almost too quiet for you to hear. <i>“[pc.name] is blowing you ");
+		if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == undefined) output("right now");
+		else output("again");
+		output(", isn’t [pc.heShe]?”</i>");
+		output("\n\nThat sounds like Kiro! A gush of fresh saliva releases itself into your mouth at the thought of her and her dick. You gently massage Kally’s balls, partially wanting to tell her that it’s okay to tell Kiro and partly just wanting her to start oozing into your maw.");
+		output("\n\n<i>“Uhh... uhh... yeah.”</i> Kally sighs heavily, though whether from resignation or arousal, you cannot tell.");
+		output("\n\nYou take her deep, intent on finding out.");
+		output("\n\nThis time she moans, low and lewd. She’s definitely enjoying herself.");
+		output("\n\nKiro leans on the bar next to her sister. You can tell from how it creaks the moment it starts supporting the weight of her and her impressive bust-line. <i>“");
+		if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == undefined) output("I wondered why [pc.heShe] wasn’t sucking me off yet. Must have wanted to try and melt the Ice Queen.”</i> You can <i>hear</i> Kiro’s smirk. <i>“[pc.HeShe] always was a sucker for a challenge. Did [pc.heShe] succeed?”</i>");
+		else output("Figures that it’d take [pc.name] to make the Ice Queen melt. Did you even make [pc.himHer] work for it?”</i> You can <i>hear</i> Kiro’s smirk. <i>“If I know [pc.himHer], [pc.heShe]’s got you by the dick. It doesn’t matter if you’re horny or not, that hot piece of Steele ass shows up, licking [pc.hisHer] lips, and all the blood in your body just pours right into your dick. Am I right?”</i>");
+		output("\n\n<i>“Yesss,”</i> Kally hisses, barely managing not to moan.");
+		output("\n\nYou bob faster and keep squeezing on Kally’s balls. Even if you hadn’t heard that kui-tan liked that, you’d be able to tell by the way her cock jerks and pulses in your mouth whenever you give her nuts firm squeezes. Pre is pouring out now. You delight in milking it out of her.");
+		output("\n\n<i>“Do you think,”</i> Kiro pauses, leaning further forward, <i>“that if I nibbled on your ear right now, you’d pump every drop of cum in your body into [pc.himHer]? Like some kind of bimbofied, two-credit slut?”</i>");
+		if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined) output(" A silent second passes. <i>“That trademark scowl doesn’t work when your eyes keep threatening to roll back. You know what’s going to happen, and you aren’t going to do anything about it. You’re just gonna sit there and cum, like a slut.”</i>");
+		output("\n\nKally’s balls are getting bigger in your hands. With each depraved suggestion, they’re swelling. The longer you knead them, the more they fill your hands, the more pre-cum she oozes on the tongue. You gulp down a load and suck her into your throat, rippling muscles around her dick without an ounce of conscious control. They just start squeezing, your throat transforming from useful orifice into cum-squeezing dick-holster.");
+		output("\n\nHere it comes. Her dick swells slightly. Where once it was hard, it’s now rock hard. You nose flares, drinking in the scent of her overwhelming passion. Then you hear it. You hear Kally moan. It’s quiet, maybe a little muted, but it is undoubtedly the moan of a girl falling into ecstasy over getting her ear nipped by her sister");
+		if(flags["KIRO_GF"]== undefined) output(" while a slutty acquaintance");
+		else output(" while her sister’s [pc.boyGirl]friend");
+		output(" goes to town on her below the bar. Her sack gets so tight that it lifts her weighty balls, now the size of grapefruits, up higher.");
 
+		output("\n\nThen they shrink, one rhythmic pulse at a time.");
+		output("\n\nThose same pulses arrive in the ‘nuki’s dick a split-second later, prying your [pc.lips] still wider. Her cum barrels through her urethra and into your throat. There, it’s free to squirt out like water from a firehose, splashing down into your belly with aplomb. You can faintly hear your stomach gurgling, just like you can faintly smell her nutty jism in the back of your nose, but most importantly, you can feel just how good of a job you’ve done.");
+		output("\n\nEvery single jet of kui-tan cream is an affirmation of your status as a premiere cock-sucker and blast of bubbly bimbo bliss in your brain. To a [pc.boyGirl] like you, cum is part declaration of a job well down and part hard-wired signal that you should be cumming right alongside your partner. Sparks of jizzy ecstasy travel down your spine to your groin, bubbling through your [pc.groin]. At first, it’s simple, lusty pleasure. But as you devour the last dregs of Kally’s seed, it gets harder and harder to control yourself.");
+		output("\n\nYour [pc.hips] jerk madly. Your [pc.vaginas] flutter");
+		if(pc.totalVaginas() == 1) output("s");
+		output(".");
+		if(pc.hasCock()) 
+		{
+			output(" Your [pc.cocks] spasm");
+			if(pc.cockTotal() == 1) output("s");
+			output(" sympathetically, drooling [pc.cum] that so thick it may as well be maple syrup.");
+		}
+		output(" Your throat seizes in one last effort to drain Kally, milking out one big, last squirt, and then you’re cumming too. You’re a good, cummy little cock-sucker, creaming yourself to the feeling of having your belly full of warm, alien seed.");
+		//Threesomed
+		if(9999 == 0)
+		{
+			output("\n\nThe sounds of wet, passionate kissing fade into exhausted panting. Did Kiro just make out with her sister? You slowly slide off the cock, lapping the spunky residue from your lips and floating on a little post blowjob euphoria.");
+			output("\n\n<i>“Did you give [pc.himHer] a good snack?”</i> Kiro asks from so far away she might as well be in the clouds.");
+			output("\n\nKally sighs, reaching down to ");
+			if(pc.hasHair()) output("ruffle your hair");
+			else output("pet your head");
+			output(". <i>“Yeah, I gave her a nice little snack.”</i>");
+			output("\n\nThe pirate seems pleased by that. <i>“Good girl. I wonder which one of you is the better cock-sucker, though?”</i> Her feet pad away, and Kally doesn’t bother trying to answer. While she recovers, you have plenty of time to clean her cock.");
+		}
+		//Not Threesomed
+		else
+		{
+			output("\n\nThe sound of raucous laughter echoes from above. <i>“");
+			if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == undefined) output("You’re such a quick shot! That’s what all those years of repression’ll get you, Sis - a cock that goes off before the fun even starts. What’s more - you just blew your load while thinking about me.”</i> Kiro chortles again. <i>“That’s incest, Sis. Maybe you are the pervier one.");
+			else output("You did it again! Do you just sit there squirming in [pc.name]’s mouth until I show up, waiting to blow your load until you can score a look at your sexy sister?”</i> Kiro chortles. <i>“Maybe I should stop calling you Ice Queen and start calling you Incest Queen... and see just how many holos of my adventures you have saved.");
+			output("”</i>");
+			output("\n\nKally’s retort is so quiet you almost miss it. <i>“I-I’m not into incest!");
+			if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined) output(" You just want me to be, you... you slattern!");
+			output("”</i>");
+			output("\n\nYou slowly slide off the cock, lapping the spunky residue from your lips and floating on a little post-blowjob euphoria.");
+			output("\n\n<i>“From over here, it looked you were pretty into the idea. Either way, no skin off my back. Just make sure [pc.name] can walk when you’re done. I want a shot at [pc.hisHer] ass later.”</i> Kiro pads away, leaving you all alone with Kally... and her slick dick.");
+			output("\n\nA few long strokes of your tongue clean every drop of residue from its surface.");
+		}
+		IncrementFlag("KIRO_INTERRUPT_KALLYBEEJ");
+		processTime(25);
+		pc.loadInMouth(kally);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",kallyBimboBeejedGenericEpilogue);
+	}
+	//shots  - balls enormous and massive cumshot
+	if(rand(2) == 0)
+	{
+		output("\n\n”</i>");
+		if(flags["KALLY_BIMBO_CUMCASCADE"] == undefined) output("Normally I could never drink one of these on a shift, but if you’re going to be down there...");
+		else output("Ooh, is this your way of telling me you want me to give you another cum-cascade?");
+		output("”</i> Kally grabs a shot glass and pours something thick and white inside. <i>“Bottoms up!”</i> She knocks it back, then giggles. <i>“");
+		if(flags["KALLY_BIMBO_CUMCASCADE"] == undefined) output("I guess you still have to wait for your drink. Don’t worry, it’s coming.");
+		else output("This feels so good... I wish I could get away with doing it more often.");
+		output("”</i> She refills her shot and knocks it back. This time she burps afterward. <i>“Fuck yes. I have the best mods.”</i> Her hand reaches down and grabs hold of your arm, lifting it up until your palm rests against the downy-soft fur on her nutsack. <i>“");
+		if(flags["KALLY_BIMBO_CUMCASCADE"] == undefined) output("That’s going to get very, very full soon. It’ll be your job to empty it. Got it?");
+		else output("Can you feel it, [pc.name]? I’m filling up, brewing up gallons of my own private reserve, all for you. Think you can handle it?");
+		output("”</i>");
+		output("\n\nYou nod as much as the dick in your mouth will allow.");
+		output("\n\n<i>“Good.”</i> Kally grabs a second shot glass and fills both. She inhales them before you can do anything to question or protest. <i>“");
+		if(flags["KALLY_BIMBO_CUMCASCADE"] == undefined) output("See, in addition to having tasty cum packed with an alcohol analogue... I’m a kui-tan.");
+		else output("See, it’s starting.");
+		output("”</i> She pats her belly. <i>“");
+		if(flags["KALLY_BIMBO_CUMCASCADE"] == undefined) output("When I drink spunk - just about any spunk - my body goes into-oh! Oh! ...Overdrive.");
+		else output("That sordid warmth, dripping down inside me, drooling into my balls. Oh! I can feel my sack stretching!");
+		output("”</i> Her balls already feel heavier in your hands. <i>“I’ll make so much cum!”</i> She giggles, then pours herself two more shots. <i>“Two more for the road!”</i> Her balls are already as big as softballs, and the hint of pre you’ve been tasting becomes a nutty-tinged dribble, like she’s making cum too fast for her balls to contain.");
+		output("\n\nThe want you smelled before? It transforms into pure, pheromonal need. You slide your lips down her cock... and back up, then down again. Already, her balls are as big as grapefruits. Big enough that it’s easier to let their own weight press them against your fingers than try to heft them upward yourself. Ballflesh burbles and grows, sloshing and just starting to wobble with newfound, liquid weight. You play with it, letting it wobble in your palms, squeezing and swallowing when she squirts pre into your throat.");
+		output("\n\n<i>“Aww, yeah,”</i> Kally purrs. <i>“I’m glad the bar’s slow. I can enjoy this.”</i> A hand gently ");
+		if(pc.hasHair()) output("drags its fingers through your [pc.hair].");
+		else output("slides over your head.");
+		output(" <i>“You’re so goddamned sweet, [pc.name].”</i> She hiccups, making her expanding balls wobble in your grip. <i>“So sweet. You just come in here to spread pleasure, don’t you?”</i> Her other hand joins the first, affectionately stroking you. <i>“And all you want... all you want is cum.”</i> She giggles, obviously feeling a little tipsy. <i>“I’ll give you lots of cum. Seed. Uh... what’s that other word? Oh yeah. Jizz.”</i> Kally’s dick spurts pre-cum deep into your throat. <i>“You’ll be full of jizz. Like a keg, but for jizz.”</i>");
+		output("\n\nYou flick your tongue out along the bottom of her dick. Kally’s balls plump and wobble like somebody poured a gallon of fluid into them, all at once. They’re easily as big as watermelons now - big enough that they’re almost resting in your lap - big enough that your hands seem small by comparison. You explore the fuzzy cum-tanks, rubbing and stroking, sometimes squeezing hard enough for your fingers to vanish into the plush fur.");
+		output("\n\n<i>“Ohhh, I love that.”</i> The kui-tan momentarily tightens her grip, then relaxes, digits fluttering with uncoordinated pleasure. <i>“You’re so good at this! You’re awesome, and I’m sorry this is gonna get you so cum-drunk, but it’ll be so much fun.”</i> Her balls are getting bigger with every word. It’s easier to press into them from the front than try to reach down to the bottom. <i>“You can... oooh, wiggle your tongue some more!”</i>");
+		output("\n\nYou do.");
+		output("\n\n<i>“You can sleep it off in my room.”</i> Kally whimpers in ecstasy. The pre-cum is pouring out of her like a faucet. You swallow her dick into your throat just so that you don’t have to gulp it down anymore, letting your new, bimbofied instincts cut in, transforming your throat into a tunnel of pleasure. It ripples around Kally’s quivering member just before her balls touch the floor. <i>“We can snuggle in my fucking bed and whisper things in each other’s ears.”</i> Her hips pump weakly once, then falter as her balls lift her feet into the air.");
+		output("\n\n<i>“H-how is your mouth so good?”</i> Kally whimpers, digging her heels into the sides of her balls. <i>“How do you suck better than the greediest glory hole slut?”</i> Her dick quivers, and you feel the texture of the fluids gushing into your middle change slightly, thickening. <i>“Ohh, you are so good. So good.”</i> Her hands stroke you passionately, lovingly, and she orgasms. Kally’s climax is almost calm. Yes, her dick is pumping - stars is it ever. Cum is splashing into your stomach so fast that you wonder if you stand a chance of taking it all. Your [pc.belly] is already ");
+		if(pc.bellyRating() >= 40) output("bulging more than normal.");
+		else output("starting to bulge.");
+		output("\n\nMore than the taste of it, more than the scent of Kally’s nutty cum in the back of your nostrils, you get off on knowing you’re bringing her off. Every squirt of jism into your throat seems to transform into a bubble, float up into your head, and pop ecstatically. Fizzy pink ecstasy swells right alongside your bulging middle.");
+		output("\n\nMeanwhile, Kally’s balls deflate. <i>“Ohhh, you are so good. So fucking good. I love this.”</i> Her urethra bulges obscenely, carrying a huge spurt. <i>“I love your throat.”</i> Her fingers clench ");
+		if(pc.hasHair()) output("in your [pc.hair]");
+		else output("against your [pc.skinFurScales]");
+		output(". <i>“I love you.”</i> She whimpers at the declaration, her balls sloshing. That big cumshot? It never seems to stop. <i>“I fucking love you, and I love what you’re doing to me.”</i>");
+		output("\n\nThere’s so much inside you by this point that you look fat with cum. You may as well be pregnant with it, for how your middle is bulging. It’s tight, and hard, and hot, and you can’t stop yourself from loving it. You can’t stop yourself from joining in and orgasming. It’s as inevitable of the bubbly shocks of bliss bursting in your brain. The pleasure mounts alongside the expanding curve of your middle, higher and fatter and electrifying and so fucking tight! Your eyes roll back at the same time that Kally’s cum backs up in up your throat and starts pouring out of your nose.");
+		output("\n\nSo much sensation! Everything is overloading - spunk and nerves both. It’s so hot that you start squirting all over the floor");
+		if(!pc.isSquirter()) output(", even though you’re far from a squirter yourself");
+		output(". Your body is little more than Kally’s used condom, and it loves it so much that you black out.");
+		processTime(20);
+		pc.orgasm();
+		for(var y:int = 0; y < 10; y++)
+		{
+			pc.loadInMouth(kally);
+		}
+		clearMenu();
+		addButton(0,"Next",kallyCumCascade4BimbosCompletion);
+	}
+	//Mix drinks and fail
+	else
+	{
+		output("\n\n<i>“Two Kui Creamers, please,”</i> a voice with a sharp, clipped accent orders.");
+		output("\n\nIf there wasn’t a cock in your mouth, you’d be smiling. The only thing better than one fuckable spunk raccoon in your mouth would be two. You salivate so hard that spit foams around your lips.");
+		output("\n\n<i>“Uh...”</i> Kally’s voice is syrupy thick with pleasure. <i>“Sure thing. I’d love to.”</i> The sentence is clipped short, like she wanted to add ‘sexy’ to the end. She pivots at the waist, inadvertently thrusting herself forward, forcing you to take a few inches ahead of schedule.");
+		output("\n\nStars, you love getting face-fucked.");
+		output("\n\nYou grab hold of her cushy, squeezable ass and throw yourself as far forward as you can. Your throat dilates perfectly, taking dick like it was meant for it. Then the muscles start squeeze and ripple, acting on impulses you can’t even consciously control. When there’s a cock in your throat, your body milks it. It’s as much a fact of life as the color of space or the air-fuel ratio for primitive thrusters. You yank your head back after a second, then slam back home, kissing her sheath and exploring the musky dick-pocket with your tongue. Kally is barraged by two separate, yet equally intense sensations, alternating every time she has the chance to get used to one.");
+		output("\n\nGlasses clink up above as Kally struggles to complete her work. <i>“Enjoying yourself?”</i>");
+		output("\n\n<i>“You know it!”</i> the other voice replies. <i>“Vesperians know how to live!”</i>");
+		output("\n\nYou hear a drink spill, then snort when a waterfall of creamy booze soaks Kally’s exposed sheath and splashes against your nose. It makes the base of her dick taste <i>delicious</i>.");
+		output("\n\n<i>“Are you okay?”</i> Concern is evident from the tone of the visitor’s voice.");
+		output("\n\nKally’s dick throbs in your mouth, and ribbons of pre-cum slide down the central channel of your cock-curved tongue into your throat. Yum.");
+		output("\n\n<i>“Wha-? Oh yeah. I’m fiiine.”</i> The bartender bucks her hips against you again, briefly choking you on dick.");
+		output("\n\n<i>“You sure?”</i> The voice sounds unconvinced. <i>“You seem like you’re having a hard time.”</i>");
+		output("\n\nKally shakes her head so vigorously that the motion ripples all the way down her pudgy from. A few splashes later, the drinks are obviously done. <i>“You’re super sweet for worrying. Here, enjoy the cream. It’s on the house.”</i>");
+		output("\n\nYou fondle Kally’s balls aggressively, just as anxious to get at her cream as her customer.");
+		output("\n\n<i>“Uh!”</i> She lurches and thickens in your mouth. Her balls swell slightly, but she doesn’t cum. Not quite yet. <i>“Fuck, you’re sexy.”</i>");
+		output("\n\n<i>“Huh?”</i> the strange voice says from a little farther away.");
+		output("\n\nNow Kally stiffens everywhere else. <i>“Uh... um... aw fuck it.”</i> She leans over the counter, pumping her hips backward, then slowly forward, driving into your mouth. Pre-cum dribbles over your chin in the brief moment it escapes your maw. <i>“You’re a hottie. I just wanted you to know.”</i>");
+		output("\n\nFootsteps approach the bar once more. <i>“And you’re adorable.”</i> She giggles. <i>“Here’s my contact. We could hang out when you’re off work, knock back a couple of these Creamers.”</i>");
+		output("\n\nYou swear the intensity Kally’s dickscent doubles by the end of that sentence. Her cock is putting off pheromones like smoke from a metal foundry. It takes every bit of willpower you have not to abandon her balls and stuff both hands into your sodden twat. You settle for burying your nose in her sheath and taking a big ol’ sniff. Lust lends your fingers the frenetic energy to knead her swelling balls faster than before, and her sack tightens. She’s on the edge!");
+		output("\n\n<i>“Yes!”</i> Kally enthuses. <i>“Fuck yes!”</i> Somehow, her dick doesn’t erupt just yet.");
+		output("\n\nHer compatriot giggles at that. <i>“I’ll look forward to it. See you later, cuteness.”</i> Those same steps fade away, and with it Kally’s restraint.");
+		output("\n\nThe climax-crazed bartender reaches under the bar to grab hold of your ");
+		if(pc.earType == GLOBAL.TYPE_VULPINE || pc.earType == GLOBAL.TYPE_CANINE || pc.earType == GLOBAL.TYPE_FELINE || pc.earType == GLOBAL.TYPE_LAPINE) output("ears");
+		else if(pc.hasHair()) output("[pc.hair]");
+		else output("head");
+		output(". Any trace of gentleness left with her customer. She yanks you down, burying your nose so deep in her sheath that you can’t even breathe. Then she finally, blessedly cums. Her spunk pumps directly into your belly, squirting out in enormous gushes that make your stomach audibly burble. You don’t care that you can taste it. With every bulge of her urethra against your tongue, you feel a sympathetic rush of bimbofied pleasure. Your body, so primed to be used, heats up with every spurt and every squirt. Struggling to breathe, you douse your sinuses in kui-tan cock aroma, and the pleasure peaks.");
+		output("\n\n[pc.GirlCum] splatters the floor below.");
+		if(pc.hasCock()) output(" [pc.Cum] joins it not longer after.");
+		output(" You’re making almost as much of a mess of the floor as Kally is making of your throat. Spunk coats every inch of your esophagus, and the only feeling it gives you is pleasure. Your eyes roll back while your mouth is used as cheap fucktoy, and just like a cheap fuck-toy, your muscles continue to stimulate the kui-tan the whole way through her orgasm. Even when she runs dry, you milk her for more, wringing out the last few drops of nutty delight.");
+		output("\n\nYou slump backward the second the horny kui-tan lets you go, breathing heavily. Her cock is slick with your spit and residual cum. Yummy, yummy cum. You find time between gasping for breath to lap up the creamy residue, polishing Kally until she’s completely spit-shined. Only then are you truly satisfied.");
+		output("\n\nNeither of you moves for a minute or two. It would seem you’ve both been drained, both literally and figuratively by the ordeal. At least everything tastes like cum and smells like cock.");
+		processTime(20);
+		pc.loadInMouth(kally);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",kallyBimboBeejedGenericEpilogue);
+	}
 
+}
 
+public function kallyCumCascade4BimbosCompletion():void
+{
+	clearOutput();
+	showKally();
+	output("You wake up in a strange bed with a strange, but very pleasant fullness in your belly. Kally’s there too, though she’s midway through slipping back into her waitress outfit.");
+	output("\n\n<i>“Oh, you’re awake!”</i> The kui-tan smiles warmly at you. <i>“I was a little worried after you blacked out in the bar, but my stars, you look so beautiful with your belly like that. How do you feel?”</i>");
+	output("\n\nThat’s like, a really good question. How do you feel? You look down at your belly, discovering the ultra-pregnant bulge before you. It’s surprisingly sexy... and Kally gave it to you. You stagger up on your [pc.feet] and stumble toward her, losing your balance halfway. She catches you, of course. She’s so wonderful.");
+	output("\n\n<i>“I feel great!”</i> You hiccup, then giggle madly. <i>“You can cum so much! It’sh awesome!”</i> The room wobbles, but Kally’s got you. You hug her back. <i>“I love you.”</i> It’s true. You love her so much. But how can you show her? <i>“Should shuck your cock again?”</i>");
+	output("\n\nKally smiles warmly - so warmly. <i>“I think you’ve had enough. You’re drunk, dear. On my cum. It’s sort of alcoholic. Well, not really alcohol. It’s like alcohol, only it makes you a little more... lovey dovey than normal.”</i> She pets you, walking you back to bed. <i>“You lie down in bed and rest up until you feel good to enough to move around on your own. It’s the least I can do to pay you back. I </i>never<i> get to cut loose like that.”</i>");
+	output("\n\nSlumping into the warm covers, you giggle and reach out, batting at her dick. It trembles and drips. Silly cock.");
+	processTime(55);
+	clearMenu();
+	addButton(0,"Next",kallyCumCascade4BimboEpilogue);
+}
 
+public function kallyCumCascade4BimboEpilogue():void
+{
+	clearOutput();
+	showName("MORNING\nAFTER");
+	output("When you next stir, you’re still drunk, but at least you can stand without falling over. What a ride!");
+	IncrementFlag("KALLY_BIMBO_CUMCASCADE");
+	processTime(135);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-
-
-
-
-
-
-
-
-/*
-
-
-output("\n\nKally Needs Tapped Scene");
-output("\n\nKally’s horny. Nevermind her lifting skirt, you can <i>smell</i> it on her. The scents of the dozens of other bar patrons are so easy to filter out, nothing at all like the kui-tan’s pheromonal bouquet. Her balls smell like a warm hearth and earthy peat tinged, mingled with a hint of her exotic, alien sweat, brewed up after a long day of work behind the bar, but they’re nothing next to the cloud of olfactory invitation rolling off her cock. You could smell a hint of it from the other side of the room. Here? There’s no doubt that the only thing keeping Kally from jacking herself off is an impressive amount of mental control mixed with supreme professionalism.");
-output("\n\nIn short, just sniffing her cock is getting you <i>wet</i>.{ Your over-enthusiastic puss{ies are/y is} creating rivers of fuckability down your [pc.legOrLegs], urging you to spread them as wide as possible and show off the glossy sheen}.} That dick is like candy for your nose, an impressive appetizer that has your mouth watering and tongue moistening your [pc.lips]. Letting her go on working like that wouldn’t just be a shame - it’d be one of the worst disasters in the whole galaxy.");
-output("\n\nYou lean closer, putting on your smokiest expression{, showing off your [pc.chest] to best effect}. <i>“Heyyyy, Kally.”</i> You {twirl your hair and chew on your lip/slide a finger down your jawline and toward your chest}. A dreamy sigh escapes your lips, making room for another heavy inhalation of kui-tan dick-musk. <i>“You need any help, behind the bar?”</i> Your eyes flick down just in time to catch the sight of her skirt bouncing higher.");
-output("\n\n//First Time");
-output("\n\nKally stares at your mouth, which you’re all too happy to shape into a perfect ‘o’ and slowly lick your way around. <i>“Uhh...”</i> Her knees knock together, but even they can’t suppress the tide rising under her skirt. <i>“No. No, I’m good.”</i> She steps forward to hide it under the bar, bumping a few glasses in the process. Smacking cups around with her dick is about as unsubtle as it gets.");
-output("\n\n<i>“Come on, Kally,”</i> you coo. <i>“Have a little fun.”</i> You draw little figure eights on the fur on the back of her hand with your finger. <i>“I can hide under the bar.”</i> You bat your eyelashes. <i>“And I’ll be super quiet.”</i>");
-output("\n\nYou know you’ve won the moment you hear her dick slap into the underside of the bar’s polished hardwood. The impact sounds <i>juicy</i>.");
-output("\n\n<i>“Uhhnghhhh... okay-okay. Quick, under here.”</i>");
-output("\n\nThe buzz of a magnetic seal releasing sounds, and Kally lifts a previously seamless segment of the bar into the air. Her dick hangs heavily in the empty space, high enough that the only thing her skirt can hide is her useless (but mouth-watering) sheath.");
-output("\n\n//Repeat");
-output("\n\nKally actually <i>whimpers</i> at that. It’s all she can do to keep her cock from jumping out from under the counter and slapping messily on top of it. Instead, her dick smacks heavily into the underside. The impact sounds wet enough to fill a shot glass, a thought that has your mouth already watering.");
-output("\n\n<i>“Ug-ummm... okay.”</i> Kally clicks a button, disengaging a mag-seal that lifts a portion of the bar into the air.");
-output("\n\nHer cock is right there. It bows upward far enough that skirt is near useless, just as bunched up around the base as her succulent sheath.");
-output("\n\n//Merge");
-output("\n\nIt bobs the moment your eyes meet it. The veins, glistening and black, throb enticingly, begging you lavish them with your tongue until you can feel her heart beat against your tongue.");
-output("\n\nYour hand thrusts out on its own to grab hold, seemingly of its own volition. That’s the great thing about your current state: you don’t have to think about how to be good at sex. It just happens. Your middle finger rubs just below the fattened prickhead, and the index strokes the veiny underside. Kally is butter in your hands. She stumbles back when you push your way behind the bar. Slapping the ‘close’ button an afterthought. Once the pneumatic hiss fades and the snap of the maglocks re-engaging reaches your ears, a cheshire grin envelops your features. Kally’s not getting away until those balls have been properly drained.");
-output("\n\nYou kiss her full on the lips, all while effortlessly continuing to stroke her down below. <i>“I’m going to slip somewhere a little more comfortable,”</i> you whisper, breaking away, <i>“Just make sure you remember where your cock buried when the time comes.”</i> You suck her tongue into your mouth, give it a lick, then slowly let it slide out as you pull away, cheeks hollowed.");
-output("\n\nYou’re pleased to note that the bartender is breathing heavily on your way down. Her pudgy tummy is breathing in and out so rapidly that the shadows from her breasts appear in continual motion, fluttering back and forth you nearly as fast as your hand across her turgid member. You tug her forward as your own body slides back. The space you just entered through provides {barely enough room for your unusual body to squeeze into/more than enough room for you to squeeze into} now that it’s closed. The only thing you’d change to make it a better blowjob nook would be floor padding.");
-output("\n\nNow, to get to work.");
-output("\n\nIt’s a good thing you enjoy your work.{ You audibly purr in excitement./ A low growl of desire wells up out of the back of your throat before you remember to muffle it./ A quiet hum of contentment wells up out of the back of your throat before you remember to muffle it.} Before you start sucking, it’s important to breathe properly. That or it’s important to remind yourself just how goddamn good this dick smells. One of the two. Now that you’re in a confined space, you’re practically hotboxing yourself with its needy aroma. Every breath is tinged with the flavor of dick and every exhalation a reminder that you haven’t swallowed the real thing yet.");
-output("\n\nKally steps a little closer. Between her thick dick and thicker thighs, the light is almost completely blocked. What little you can see here in the shadows is a faint reflection off the top of the kui-tan’s cock, revealing the smallest amounts of dribbling pre. You close your eyes and zero in on the smell of it. It’s no surprise when your [pc.lipsChaste] meet cock, nor is it when they slowly open, dragging their pillowy softness over the entirety of Kally’s crown. That little bit of pre, when mixed with your spit, allows them to glide with the same ease as the slickest cunt{, though you doubt anything could match your lubricious nethers}.");
-output("\n\nYou don’t make the mistake of opening too wide. You don’t remember why; you just do it. Your lips stay nice and tight around the cock, your mouth dilated just enough to keep your teeth from grazing the tender skin. Then you slide forward, accepting her inside. She is <i>thick</i>. Thick enough that it feels like she’s too wide for your meager tongue. Thick enough that her fat dick must have your [pc.lips] shaped into an absolutely obscene shape. Your average terran would never be able to accomplish such a feat, and for that matter, most kui-tan couldn’t either.");
-output("\n\n//Random");
-output("\n\n//shots  - balls enormous and massive cumshot");
-output("\n\n”</i>{Normally I could never drink one of these on a shift, but if you’re going to be down there.../Ooh, is this your way of telling me you want me to give you another cum-cascade?}”</i> Kally grabs a shot glass and pours something thick and white inside. <i>“Bottoms up!”</i> She knocks it back, then giggles. <i>“{I guess you still have to wait for your drink. Don’t worry, it’s coming./This feels so good... I wish I could get away with doing this more often.}”</i> She refills her shot and knocks back another. This time she burps afterward. <i>“Fuck yes. I have the best mods.”</i> Her hand reaches down and grabs hold of your arm, lifting it up until your palm rests against the downy-soft fur on her nutsack. <i>“{That’s going to get very, very full soon. It’ll be your job to empty it. Got it?/Can you feel it, [pc.name]? I’m filling up, brewing up gallons of my own private reserve, all for you. Think you can handle it?}”</i>");
-output("\n\nYou nod as much as the dick in your mouth will allow.");
-output("\n\n<i>“Good.”</i> Kally grabs a second shot glass and fills both. She inhales them before you can do anything to question or protest. <i>“{See, in addition to having tasty cum packed with an alcohol analogue... I’m a kui-tan./See, it’s starting.}”</i> She pats her belly. <i>“{When I drink spunk - just about any spunk - my body goes into-oh! Oh! ...Overdrive./That sordid warmth, dripping down inside me, drooling into my balls. Oh! I can feel my sack stretching!}”</i> Her balls already feel heavier in your hands. <i>“I’ll make so much cum!”</i> She giggles, then pours herself two more shots. <i>“Two more for the road!”</i> Her balls are already as big as softballs, and the hint of pre you’ve been tasting becomes a nutty-tinged dribble, like she’s making cum too fast for her balls to contain.");
-output("\n\nThe want you smelled before? It transforms into pure, pheromonal need. You slide your lips down her cock... and back up, then down again. Already, her balls are as big as grapefruits. Big enough that it’s easier to let their own weight press them against your fingers than try to heft them upward yourself. Ballflesh burbles and grows, sloshing and just starting to wobble with newfound, liquid weight. You play with it, letting it wobble in your palms, squeezing and swallowing when she squirts pre into your throat.");
-output("\n\n<i>“Aww, yeah,”</i> Kally purrs. <i>“I’m glad the bar’s slow. I can enjoy this.”</i> A hand gently {drags its fingers through your [pc.hair]./slides over your head.} <i>“You’re so goddamned sweet, [pc.name].”</i> She hiccups, making her expanding balls wobble in your grip. <i>“So sweet. You just come in here to spread pleasure, don’t you?”</i> Her other hand joins the first, affectionately stroking you. <i>“And all you want... all you want is cum.”</i> She giggles, obviously feeling a little tipsy. <i>“I’ll give you lots of cum. Seed. Uh... what’s that other word? Oh yeah. Jizz.”</i> Kally’s dick spurts pre-cum deep into your throat. <i>“You’ll be full of jizz. Like a keg, but for jizz.”</i>");
-output("\n\nYou flick your tongue out along the bottom of her dick. Kally’s balls plump and wobble like somebody poured a gallon of fluid into them, all at once. They’re easily as big as watermelons now - big enough that they’re almost resting in your lap - big enough that your hands seem small by comparison. You explore the fuzzy cum-tanks, rubbing and stroking, sometimes squeezing hard enough for your fingers to vanish into the plush fur.");
-output("\n\n<i>“Ohhh, I love that.”</i> The kui-tan momentarily tightens her grip, then relaxes, digits fluttering with uncoordinated pleasure. <i>“You’re so good at this! You’re awesome, and I’m sorry this is gonna get you so cum-drunk, but it’ll be so much fun.”</i> Her balls are getting bigger with every word. It’s easier to press into them from the front than try to reach down to the bottom. <i>“You can... oooh, wiggle your tongue some more!”</i>");
-output("\n\nYou do.");
-output("\n\n<i>“You can sleep it off in my room.”</i> Kally whimpers in ecstasy. The pre-cum is pouring out of her like a faucet. You swallow her dick into your throat just so that you don’t have to gulp it down anymore, letting your new, bimbofied instincts cut in, transforming your throat into a tunnel of pleasure. It ripples around Kally’s quivering member just before her balls touch the floor. <i>“We can snuggle in my fucking bed and whisper things in each other’s ears.”</i> Her hips pump weakly once, then falter as her balls lift her feet into the air.");
-output("\n\n<i>“H-how is your mouth so good?”</i> Kally whimpers, digging her heels into the sides of her balls. <i>“How do you suck better than the greediest glory hole slut?”</i> Her dick quivers, and you feel the texture of the fluids gushing into your middle change slightly, thickening. <i>“Ohh, you are so good. So good.”</i> Her hands stroke you passionately, lovingly, and she orgasms. Kally’s climax is almost calm. Yes, her dick is pumping - stars is it ever. Cum is splashing into your stomach so fast that you wonder if you stand a chance of taking it all. Your [pc.belly] is already {bulging more than normal/starting to bulge}.");
-output("\n\nMore than the taste of it, more than the scent of Kally’s nutty cum in the back of your nostrils, you get off on knowing you’re bringing her off. Every squirt of jism into your throat seems to transform into a bubble, float up into your head, and pop ecstatically. Fizzy pink ecstasy swells right alongside your bulging middle.");
-output("\n\nMeanwhile, Kally’s balls deflate. <i>“Ohhh, you are so good. So fucking good. I love this.”</i> Her urethra bulges obscenely, carrying a huge spurt. <i>“I love your throat.”</i> Her fingers clench {in your [pc.hair]/against your [pc.skinFurScales]}. <i>“I love you.”</i> She whimpers at the declaration, her balls sloshing. That big cumshot? It never seems to stop. <i>“I fucking love you, and I love what you’re doing to me.”</i>");
-output("\n\nThere’s so much inside you by this point that you look fat with cum. You may as well be pregnant with it, for how your middle is bulging. It’s tight, and hard, and hot, and you can’t stop yourself from loving it. You can’t stop yourself from joining in and orgasming. It’s as inevitable of the bubbly shocks of bliss bursting in your brain. The pleasure mounts alongside the expanding curve of your middle, higher and fatter and electrifying and so fucking tight! Your eyes roll back at the same time that Kally’s cum backs up in up your throat and starts pouring out of your nose.");
-output("\n\nSo much sensation! Everything is overloading - spunk and nerves both. It’s so hot that you start squirting all over the floor{, even though you’re far from a squirter yourself}. Your body is little more than Kally’s used condom, and it loves it so much that you black out.");
-output("\n\n[Next]");
-output("\n\nYou wake up in a strange bed with a strange, but very pleasant fullness in your belly. Kally’s there too, though she’s midway through slipping back into her waitress outfit.");
-output("\n\n<i>“Oh, you’re awake!”</i> The kui-tan smiles warmly at you. <i>“I was a little worried after you blacked out in the bar, but my stars, you look so beautiful with your belly like that. How do you feel?”</i>");
-output("\n\nThat’s like, a really good question. How do you feel? You look down at your belly, discovering the ultra-pregnant bulge before you. It’s surprisingly sexy... and Kally gave it to you. You stagger up on your [pc.feet] and stumble toward her, losing your balance halfway. She catches you, of course. She’s so wonderful.");
-output("\n\n<i>“I feel great!”</i> You hiccup, then giggle madly. <i>“You can cum so much! It’sh awesome!”</i> The room wobbles, but Kally’s got you. You hug her back. <i>“I love you.”</i> It’s true. You love her so much. But how can you show her? <i>“Should shuck your cock again?”</i>");
-output("\n\nKally smiles warmly - so warmly. <i>“I think you’ve had enough. You’re drunk, dear. On my cum. It’s sort of alcoholic. Well, not really alcohol. It’s like alcohol, only it makes you a little more... lovey dovey than normal.”</i> She pets you, walking you back to bed. <i>“You lie down in bed and rest up until you feel good to enough to move around on your own. It’s the least I can do to pay you back. I </i>never<i> get to cut loose like that.”</i>");
-output("\n\nSlumping into the warm covers, you giggle and reach out, batting at her dick. It trembles and drips. Silly cock.");
-output("\n\n[Next]");
-output("\n\nWhen you next stir, you’re still drunk, but at least you can stand without falling over. What a ride!");
-
-output("\n\n//Mix drinks and fail");
-output("\n\n<i>“Two Kui Creamers, please,”</i> a voice with a sharp, clipped accent orders.");
-output("\n\nIf there wasn’t a cock in your mouth, you’d be smiling. The only thing better than one fuckable spunk raccoon in your mouth would be two. You salivate so hard that spit foams around your lips.");
-output("\n\n<i>“Uh...”</i> Kally’s voice is syrupy thick with pleasure. <i>“Sure thing. I’d love to.”</i> The sentence is clipped short, like she wanted to add ‘sexy’ to the end. She pivots at the waist, inadvertently thrusting herself forward, forcing you to take a few inches ahead of schedule.");
-output("\n\nStars, you love getting face-fucked.");
-output("\n\nYou grab hold of her cushy, squeezable ass and throw yourself as far forward as you can. Your throat dilates perfectly, taking dick like it was meant for it. Then the muscles start squeeze and ripple, acting on impulses you can’t even consciously control. When there’s a cock in your throat, your body milks it. It’s as much a fact of life as the color of space or the air-fuel ratio for primitive thrusters. You yank your head back after a second, then slam back home, kissing her sheath and exploring the musky dick-pocket with your tongue. Kally is barraged by two separate, yet equally intense sensations, alternating every time she has the chance to get used to one.");
-output("\n\nGlasses clink up above as Kally struggles to complete her work. <i>“Enjoying yourself?”</i>");
-output("\n\n<i>“You know it!”</i> the other voice replies. <i>“Vesperians know how to live!”</i>");
-output("\n\nYou hear a drink spill, then snort when a waterfall of creamy booze soaks Kally’s exposed sheath and splashes against your nose. It makes the base of her dick taste <i>delicious</i>.");
-output("\n\n<i>“Are you okay?”</i> Concern is evident from the tone of the visitor’s voice.");
-output("\n\nKally’s dick throbs in your mouth, and ribbons of pre-cum slide down the central channel of your cock-curved tongue into your throat. Yum.");
-output("\n\n<i>“Wha-? Oh yeah. I’m fiiine.”</i> The bartender bucks her hips against you again, briefly choking you on dick.");
-output("\n\n<i>“You sure?”</i> The voice sounds unconvinced. <i>“You seem like you’re having a hard time.”</i>");
-output("\n\nKally shakes her head so vigorously that the motion ripples all the way down her pudgy from. A few splashes later, the drinks are obviously done. <i>“You’re super sweet for worrying. Here, enjoy the cream. It’s on the house.”</i>");
-output("\n\nYou fondle Kally’s balls aggressively, just as anxious to get at her cream as her customer.");
-output("\n\n<i>“Uh!”</i> She lurches and thickens in your mouth. Her balls swell slightly, but she doesn’t cum. Not quite yet. <i>“Fuck, you’re sexy.”</i>");
-output("\n\n<i>“Huh?”</i> the strange voice says from a little farther away.");
-output("\n\nNow Kally stiffens everywhere else. <i>“Uh... um... aw fuck it.”</i> She leans over the counter, pumping her hips backward, then slowly forward, driving into your mouth. Pre-cum dribbles over your chin in the brief moment it escapes your maw. <i>“You’re a hottie. I just wanted you to know.”</i>");
-output("\n\nFootsteps approach the bar once more. <i>“And you’re adorable.”</i> She giggles. <i>“Here’s my contact. We could hang out when you’re off work, knock back a couple of these Creamers.”</i>");
-output("\n\nYou swear the intensity Kally’s dickscent doubles by the end of that sentence. Her cock is putting off pheromones like smoke from a metal foundry. It takes every bit of willpower you have not to abandon her balls and stuff both hands into your sodden twat. You settle for burying your nose in her sheath and taking a big ol’ sniff. Lust lends your fingers the frenetic energy to knead her swelling balls faster than before, and her sack tightens. She’s on the edge!");
-output("\n\n<i>“Yes!”</i> Kally enthuses. <i>“Fuck yes!”</i> Somehow, her dick doesn’t erupt just yet.");
-output("\n\nHer compatriot giggles at that. <i>“I’ll look forward to it. See you later, cuteness.”</i> Those same steps fade away, and with it Kally’s restraint.");
-output("\n\nThe climax-crazed bartender reaches under the bar to grab hold of your {ears/[pc.hair]/head}. Any trace of gentleness left with her customer. She yanks you down, burying your nose so deep in her sheath that you can’t even breath. Then she finally, blessedly cums. Her spunk pumps directly into your belly, squirting out in enormous gushes that make your stomach audibly burble. You don’t care that you can taste it. With every bulge of her urethra against your tongue, you feel a sympathetic rush of bimbofied pleasure. Your body, so primed to be used, heats up with every spurt and every squirt. Struggling to breathe, you douse your sinuses in kui-tan cock aroma, and the pleasure peaks.");
-output("\n\n[pc.GirlCum] splatters the floor below.{ [pc.Cum] joins it not longer after.} You’re making almost as much of a mess of the floor as Kally is making of your throat. Spunk coats every inch of your esophagus, and the only feeling it gives you is pleasure. Your eyes roll back while your mouth is used as cheap fucktoy, and just like a cheap fuck-toy, your muscles continue to stimulate the kui-tan the whole way through her orgasm. Even when she runs dry, you milk her for more, wringing out the last few drops of nutty delight.");
-output("\n\nYou slump backward the second the horny kui-tan lets you go, breathing heavily. Her cock is slick with your spit and residual cum. Yummy, yummy cum. You find time between gasping for breath to lap up the creamy residue, polishing Kally until she’s completely spit-shined. Only then are you truly satisfied.");
-output("\n\nNeither of you moves for a minute or two. It would seem you’ve both been drained, both literally and figuratively by the ordeal. At least everything tastes like cum and smells like cock.");
-output("\n\n[Next]");
-
-output("\n\n//Kiro kiss +1 (one time threesome point)");
-output("\n\n<i>“You alright, Kally?”</i> a familiar voice asks from up above.");
-output("\n\nYou dutifully continue to work her shaft{, uncoiling your tongue to slither out and lick around the inner edges of her sheath}.");
-output("\n\nKally groans and leans over the countertop, throwing you further into shade. <i>“Y-yeah. Just a little frazzled.”</i>");
-output("\n\nGrabbing her balls in both hands, you gently squeeze them.");
-output("\n\n<i>“Ung!”</i> Kally grunts, one hand clawing at the hardwood just inches above your head.");
-output("\n\nThe other voice laughs. This time, when it talks, it’s almost too quiet for you to hear. <i>“[pc.name] is blowing you {right now/again}, isn’t [pc.heShe]?”</i>");
-output("\n\nThat sounds like Kiro! A gush of fresh saliva releases itself into your mouth at the thought of her and her dick. You gently massage Kally’s balls, partially wanting to tell her that it’s okay to tell Kiro and partly just wanting her to start oozing into your maw.");
-output("\n\n<i>“Uhh... uhh... yeah.”</i> Kally sighs heavily, though whether from resignation or arousal, you cannot tell.");
-output("\n\nYou take her deep, intent on finding out.");
-output("\n\nThis time she moans, low and lewd. She’s definitely enjoying herself.");
-output("\n\nKiro leans on the bar next to her sister. You can tell from how it creaks the moment it starts supporting the weight of her and her impressive bust-line. {"I wondered why [pc.heShe] wasn’t sucking me off yet. Must have wanted to try and melt the Ice Queen.”</i> You can <i>hear</i> Kiro’s smirk. <i>“[pc.HeShe] always was a sucker for a challenge. Did [pc.heShe] succeed?”</i>/"Figures that it’d take [pc.name] to make the Ice Queen melt. Did you even make [pc.himHer] work for it?”</i> You can <i>hear</i> Kiro’s smirk. <i>“If I know [pc.himHer], [pc.heShe]’s got you by the dick. It doesn’t matter if you’re horny or not, that hot piece of Steele ass shows up, licking [pc.hisHer] lips, and all the blood in your body just pours right into your dick. Am I right?”</i>");
-output("\n\n<i>“Yesss,”</i> Kally hisses, barely managing not to moan.");
-output("\n\nYou bob faster and keep squeezing on Kally’s balls. Even if you hadn’t heard that kui-tan liked that, you’d be able to tell by the way her cock jerks and pulses in your mouth whenever you give her nuts firm squeezes. Pre is pouring out now. You delight in milking it out of her.");
-output("\n\n<i>“Do you think,”</i> Kiro pauses, leaning further forward, <i>“that if I nibbled on your ear right now, you’d pump every drop of cum in your body into [pc.himHer]? Like some kind of bimbofied, two-credit slut?”</i>{ A silent second passes. <i>“That trademark scowl doesn’t work when your eyes keep threatening to roll back. You know what’s going to happen, and you aren’t going to do anything about. You’re just gonna sit there and cum, like a slut.”</i>}");
-output("\n\nKally’s balls are getting bigger in your hands. With each depraved suggestion, they’re swelling. The longer you knead them, the more they fill your hands, the more pre-cum she oozes on the tongue. You gulp down a load and suck her into your throat, rippling muscles around her dick without an ounce of conscious control. They just start squeezing, your throat transforming from useful orifice into cum-squeezing dick-holster.");
-output("\n\nHere it comes. Her dick swells slightly. Where once it was hard, it’s now rock hard. You nose flares, drinking in the scent of her overwhelming passion. Then you hear it. You hear Kally moan. It’s quiet, maybe a little muted, but it is undoubtedly the moan of a girl falling into ecstasy over getting her ear nipped by her sister{ while a slutty acquaintance/ while her sister’s [pc.boyGirl]friend} goes to town on her below the bar. Her sack gets so tight that it lifts her weighty balls, now the size of grapefruits, up higher.");
-output("\n\nThen they shrink, one rhythmic pulse at a time.");
-output("\n\nThose same pulses arrive in the ‘nuki’s dick a split-second later, prying your [pc.lips] still wider. Her cum barrels through her urethra and into your throat. There, it’s free to squirt out like water from a firehose, splashing down into your belly with aplomb. You can faintly hear your stomach gurgling, just like you can faintly smell her nutty jism in the back of your nose, but most importantly, you can feel just how good of a job you’ve done.");
-output("\n\nEvery single jet of kui-tan cream is an affirmation of your status as a premiere cock-sucker and blast of bubbly bimbo bliss in your brain. To a [pc.boyGirl] like you, cum is part declaration of a job well down and part hard-wired signal that you should be cumming right alongside your partner. Sparks of jizzy ecstasy travel down your spine to your groin, bubbling through your [pc.groin]. At first, it’s simple, lusty pleasure. But as you devour the last dregs of Kally’s seed, it gets harder and harder to control yourself.");
-output("\n\nYour [pc.hips] jerk madly. Your [pc.vaginas] flutter{s}.{ Your [pc.cocks] spasm sympathetically, drooling [pc.cum] that so thick it may as well be maple syrup.} Your throat seizes in one last effort to drain Kally, milking out one big, last squirt, and then you’re cumming too. You’re a good, cummy little cock-sucker, creaming yourself to the feeling of having your belly full of warm, alien seed.");
-output("\n\n//Threesomed");
-output("\n\nThe sounds of wet, passionate kissing fade into exhausted panting. Did Kiro just make out with her sister? You slowly slide off the cock, lapping the spunky residue from your lips and floating on a little post blowjob euphoria.");
-output("\n\n<i>“Did you give [pc.himHer] a good snack?”</i> Kiro asks from so far away she might as well be in the clouds.");
-output("\n\nKally sighs, reaching down to {ruffle your hair/pet your head}. <i>“Yeah, I gave her a nice little snack.”</i>");
-output("\n\nThe pirate seems pleased by that. <i>“Good girl. I wonder which one of you is the better cock-sucker, though?”</i> Her feet pad away, and Kally doesn’t bother trying to answer. While she recovers, you have plenty of time to clean her cock.");
-output("\n\n[Next]");
-output("\n\n//Not Threesomed");
-output("\n\nThe sound of raucous laughter echoes from above. <i>“{You’re such a quick shot! That’s what all those years of repression’ll get you, Sis - a cock that goes off before the fun even starts. What’s more - you just blew your load while thinking about me.”</i> Kiro chortles again. <i>“That’s incest, Sis. Maybe you are the pervier one./You did it again! Do you just sit there squirming in [pc.name]’s mouth until I show up, waiting to blow your load until you can score a look at your sexy sister?”</i> Kiro chortles. <i>“Maybe I should stop calling you Ice Queen and start calling you Incest Queen... and see just how many holos of my adventures you have saved.}”</i>");
-output("\n\nKally’s retort is so quiet you almost miss it. <i>“I-I’m not into incest!{ You just want me to be, you... you slattern!}”</i>");
-output("\n\nYou slowly slide off the cock, lapping the spunky residue from your lips and floating on a little post blowjob euphoria.");
-output("\n\n<i>“From over here, it looked you were pretty into the idea. Either way, no skin off my back. Just make sure [pc.name] can walk when you’re done. I want a shot at [pc.hisHer] ass later.”</i> Kiro pads away, leaving you all alone with Kally, and her slick dick.");
-output("\n\nA few long strokes of your tongue clean every drop of residue from its surface.");
-output("\n\n[Next]");
-output("\n\nKally has you wait until nobody is looking, then sends you out to stand on the other side of the bar. She looks so relieved, but the cloud of fuck-pheromones around her doesn’t diminish in the slightest. That or you’re just more receptive to her. Your [pc.skin] feels a little more flush than mere post-coital bliss would explain.{ Is her cum alcoholic?/ Right, her cum is alcoholic.} You stifle a burp and giggle, waving at Kally.");
-output("\n\nHer tail wiggles back and forth, and she gifts you a wink. What a woman!");
-output("\n\n<i>“);
-output("\n\n<i>“);
-*/
+//[Next]
+public function kallyBimboBeejedGenericEpilogue():void
+{
+	clearOutput();
+	showKally();
+	output("Kally has you wait until nobody is looking, then sends you out to stand on the other side of the bar. She looks so relieved, but the cloud of fuck-pheromones around her doesn’t diminish in the slightest. That or you’re just more receptive to her. Your [pc.skin] feels a little more flush than mere post-coital bliss would explain.");
+	if(flags["KALLYS_SECRET_INGREDIENT"] == undefined) output(" Is her cum alcoholic?");
+	else output(" Right, her cum is alcoholic.");
+	output(" You stifle a burp and giggle, waving at Kally.");
+	output("\n\nHer tail wiggles back and forth, and she gifts you a wink. What a woman!");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
