@@ -3479,7 +3479,7 @@
 		}
 		public function lustDef():Number
 		{
-			if(this is PC) return willpower()/5;
+			if(this is PlayerCharacter) return willpower()/5;
 			else return level + willpower()/4;
 		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
