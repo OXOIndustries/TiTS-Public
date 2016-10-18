@@ -3235,6 +3235,7 @@
 		public function hasPheromones():Boolean
 		{
 			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent")) return true;
+			if(hasPerk("Pheromone Sweat") && statusEffectv1("Sweaty") > 0) return true;
 			if(accessory is Allure) return true;
 			return false;	
 		}
@@ -3475,6 +3476,11 @@
 			{
 				return currLust;
 			}
+		}
+		public function lustDef():Number
+		{
+			if(this is PlayerCharacter) return willpower()/5;
+			else return level + willpower()/4;
 		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
 		public function PQ():Number
@@ -13730,6 +13736,10 @@
 				collection = ["sweet","tangy","citrusy"];
 			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
 				collection = ["fruity","sweet","tart","zesty","citrusy", "pear-flavored","apple-flavored"];
+			} else if (arg == GLOBAL.FLUID_TYPE_EGGNOG) {
+				collection = ["sweet","sweet","savory","rich","rich", "rich","delicious", "delicious","creamy","creamy"];
+			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
+				collection = ["minty","minty","minty","fresh","fresh", "sweet","minty-sweet", "minty-sweet"];
 			}
 			
 			else collection = ["bland"];
@@ -13775,6 +13785,10 @@
 				collection = ["semi-thick","syrupy"];
 			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
 				collection = ["juicy","liquid","drippy"];
+			} else if (arg == GLOBAL.FLUID_TYPE_EGGNOG) {
+				collection = ["thick","smooth","smooth", "creamy", "creamy", "viscous"];
+			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
+				collection = ["sticky","sticky","sticky", "gooey", "gooey", "molasses-like"];
 			}
 			
 			else collection = ["fluid"];
@@ -13829,6 +13843,10 @@
 				else collection = ["green","emerald"];
 			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
 				collection = ["pale yellow","apple-flesh yellow","creamy lemon"];
+			} else if (arg == GLOBAL.FLUID_TYPE_EGGNOG) {
+				collection = ["creamy yellow", "creamy yellow", "light yellow","muddy golden", "cream colored", "cream colored"];
+			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
+				collection = ["white", "opaque white", "ivory", "ivory", "alabaster", "alabaster"];
 			}
 			
 			else collection = ["ERROR, INVALID FLUID TYPE."];
@@ -13881,8 +13899,8 @@
 		}
 		public function fluidColorSimple(arg: int):String
 		{
-			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP)) return "white";
-			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM)) return "yellow";
+			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_PEPPERMINT)) return "white";
+			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM, GLOBAL.FLUID_TYPE_EGGNOG)) return "yellow";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_OIL, GLOBAL.FLUID_TYPE_GIRLCUM)) return "transparent";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) return "brown";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK)) return "pink";
@@ -13947,6 +13965,10 @@
 				collection = ["seed"];
 			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
 				collection = ["juice"];
+			} else if (arg == GLOBAL.FLUID_TYPE_EGGNOG) {
+				collection = ["eggnog"];
+			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
+				collection = ["peppermint", "minty cum"];
 			}
 			
 			else collection = ["ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun."];
@@ -14127,6 +14149,16 @@
 			// Error, return something though!
 			return "strapon";
 		}
+		
+		//Check if the pc has a cock, strapon, or massive clit to do some sexin'
+		public function hasCockOrStrapOrClit(countTailCock: Boolean = false):Boolean {
+			if (hasCock()) return true;
+			else if (hasHardLightEquipped()) return true;
+			else if (kGAMECLASS.silly && clitLength >= 12) return true;
+			else if (countTailCock == true && hasTailCock()) return true;
+			else return false;
+		}
+		
 		public function cockDescript(cockNum: Number = 0, dynamicLength:Boolean = false, multi:Boolean = false): String {
 			if (totalCocks() == 0) return "<b>ERROR: CockDescript Called But No Cock Present</b>";
 			if (cockTotal() <= cockNum && cockNum != 99) return "<b>ERROR: CockDescript called with index of " + cockNum + " - out of BOUNDS</b>";
@@ -15431,6 +15463,8 @@
 			else
 			{
 				removeStatusEffect("Alcohol");
+				//Remove the companion status from Kally's brews~!
+				removeStatusEffect("Adorahol");
 			}
 		}
 		public function tolerance(arg:Number = 0):Number

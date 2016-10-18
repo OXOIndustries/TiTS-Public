@@ -18,8 +18,12 @@
 		
 		//Regular name
 		public var longName:String;
+		
 		//Longass shit, not sure what used for yet.
-		public var description:String;
+		private var _description:String;
+		public function get description():String { return _description; }
+		public function set description(v:String):void { _description = v; }
+		
 		//Displayed on tooltips during mouseovers
 		public var tooltip:String;
 		public var attackVerb:String;

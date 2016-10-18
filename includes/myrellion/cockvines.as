@@ -742,6 +742,15 @@ public function cockvinePregnancyCatch():void
 	}
 
 	StatTracking.track("pregnancy/cockvine seedlings captured", 1);
+	
+	ChildManager.addChild(
+		Child.NewChild(
+			GLOBAL.TYPE_COCKVINE,
+			2.5,
+			1,
+			1, 0, 0, 0
+		)
+	);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

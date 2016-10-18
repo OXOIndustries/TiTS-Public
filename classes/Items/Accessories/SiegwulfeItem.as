@@ -23,8 +23,6 @@
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a Siegwulfe personal " + (kGAMECLASS.chars["WULFE"].isBimbo() ? "bimbobot" : "security") + " companion";
-			
 			tooltip = "[altTooltip Siegwulfe]";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
@@ -47,6 +45,11 @@
 			addFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER);
 			
 			version = _latestVersion;
+		}
+		
+		override public function get description():String
+		{
+			return "a Siegwulfe personal " + (kGAMECLASS.chars["WULFE"].isBimbo() ? "bimbobot" : "security") + " companion";
 		}
 	}
 }

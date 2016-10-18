@@ -1,6 +1,7 @@
 package classes.GameData.Pregnancy.Handlers 
 {
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
+	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.StatTracking;
 	import classes.Creature;
 	import classes.Characters.PlayerCharacter;
@@ -166,6 +167,12 @@ package classes.GameData.Pregnancy.Handlers
 			// doesn't count as offspring!
 			
 			pData.reset();
+		}
+		
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
+		{
+			EggTrainerFauxPreg.cleanupPregnancy(mother, pregSlot, this);
+			return null;
 		}
 		
 		override public function pregBellyFragment(target:Creature, slot:int):String

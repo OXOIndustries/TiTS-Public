@@ -1,6 +1,7 @@
 package classes.GameData.Pregnancy.Handlers 
 {
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
+	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.StatTracking;
 	import classes.Creature;
 	import classes.Characters.PlayerCharacter;
@@ -86,6 +87,12 @@ package classes.GameData.Pregnancy.Handlers
 			if (pData.pregnancyQuantity <= 25) return "The eggs inside you are noticeable through your baby bump. Though not distinguishable from a distance, close inspection reveals your slightly strained flesh to be somewhat lumpy and uneven, thanks to the many small eggs clumped inside you.";
 			else if (pData.pregnancyQuantity <= 75) return "Your skin is unevenly bulging and shifts constantly as the many, many eggs inside you. Every step makes your full gut jiggle, sending little shockwaves of pleasure through you.";
 			else return "Your belly is hugely swollen, full of what must be near to a hundred plastic eggs that rustle, shift, and jostle inside you with even the slightest motion. You’re in a constantly state of near-orgasmic high from the unending sensation, shivering every time you take a step or rub a hand against your belly.";
+		}
+		
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
+		{
+			EggTrainerCarryTraining.cleanupPregnancy(mother, pregSlot, this);
+			return null;
 		}
 	}
 }

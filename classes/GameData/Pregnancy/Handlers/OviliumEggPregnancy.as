@@ -1,6 +1,7 @@
 package classes.GameData.Pregnancy.Handlers 
 {
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
+	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.StatTracking;
 	import classes.Creature;
 	import classes.Characters.PlayerCharacter;
@@ -165,6 +166,12 @@ package classes.GameData.Pregnancy.Handlers
 			//StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			
 			pData.reset();
+		}
+		
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
+		{
+			OviliumEggPregnancy.cleanupPregnancy(mother, pregSlot, this);
+			return null;
 		}
 		
 		/*

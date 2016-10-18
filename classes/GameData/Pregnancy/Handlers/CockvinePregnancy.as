@@ -114,14 +114,7 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
-			ChildManager.addChild(
-				Child.NewChildWeights(
-					thisPtr.pregnancyChildRace,
-					thisPtr.childMaturationMultiplier,
-					pData.pregnancyQuantity,
-					thisPtr.childGenderWeights
-				)
-			);
+			// Creating the child during a capture is handled by the actual birthing scene
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
@@ -129,6 +122,29 @@ package classes.GameData.Pregnancy.Handlers
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			
 			pData.reset();
+		}
+		
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
+		{
+			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			
+			var c:Child = Child.NewChildWeights(
+					pregnancyChildRace,
+					childMaturationMultiplier,
+					pData.pregnancyQuantity,
+					childGenderWeights
+				);
+			c.BornTimestamp = useBirthTimestamp;			
+			ChildManager.addChild(c);
+			
+			kGAMECLASS.flags["COCKVINE_SEEDLING_CAPTURED"] = 1;
+			StatTracking.track("pregnancy/cockvine seedlings captured", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			
+			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+			pData.reset();
+			
+			return c;
 		}
 	}
 

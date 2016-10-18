@@ -769,7 +769,10 @@ public function sleep(outputs:Boolean = true):void {
 		}
 		//Queue up cured Reaha
 		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
-		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
+		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined)
+		{
+			if(eventQueue.indexOf(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches) == -1) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
+		}
 	}
 	if(outputs)
 	{
@@ -1011,10 +1014,16 @@ public function flyMenu():void {
 	if (uvetoUnlocked())
 	{
 		if (shipLocation != "UVS F15") addButton(7, "Uveto", flyTo, "Uveto");
-		else addDisabledButton(7, "Uveto", "Uvto", "You’re already here.");
+		else addDisabledButton(7, "Uveto", "Uveto", "You’re already here.");
 	}
 	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
-	
+	//Canadia Station
+	if(MailManager.isEntryViewed("kirodatemeet"))
+	{
+		if (shipLocation != "CANADA1") addButton(8, "Canadia", flyTo, "Canadia");
+		else addDisabledButton(8, "Canadia", "Canadia", "You’re already here.");
+	}
+	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");	
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
@@ -1113,6 +1122,14 @@ public function flyTo(arg:String):void {
 		currentLocation = "UVS F15";
 		flyToUveto();
 		interruptMenu = true;
+	}
+	else if (arg == "Canadia")
+	{
+		shipLocation = "CANADA1";
+		currentLocation = "CANADA1";
+		output("You fly to Vesperia, stopping at Canadia Station in orbit");
+		if(leaveShipOK()) output(" and step out of your ship");
+		output(".");
 	}
 	
 	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
@@ -1993,7 +2010,7 @@ public function processTime(arg:int):void {
 			if(flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
 			{
 				flags["REAHA_PAY_Q"] = undefined;
-				eventQueue.push(reahaPaybackEvent);
+				if(eventQueue.indexOf(reahaPaybackEvent) == -1) eventQueue.push(reahaPaybackEvent);
 			}
 			if(pc.hasPerk("Dumb4Cum")) dumb4CumUpdate();
 			//Gobbles Cooldown
@@ -2316,6 +2333,8 @@ public function processTime(arg:int):void {
 		if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
 		//KIRO FUCKMEET
 		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined) { goMailGet("kirofucknet"); kiroFuckNetBonus(); }
+		//KIRO DATEMEET
+		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && rand(10) == 0) { goMailGet("kirodatemeet") }
 		trySendStephMail();
 		
 		//Other Email Checks!

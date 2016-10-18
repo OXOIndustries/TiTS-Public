@@ -660,13 +660,13 @@ public function gooArmorIsCrew():Boolean
 }
 public function hasGooArmor():Boolean
 {
-    if(InShipInterior() && (pc.hasItemInStorage(new GooArmor()) || gooArmorIsCrew())) return true;
-    return hasGooArmorOnSelf();
+	if(InShipInterior() && (pc.hasItemInStorage(new GooArmor()) || gooArmorIsCrew())) return true;
+	return hasGooArmorOnSelf();
 }
 public function hasGooArmorOnSelf():Boolean
 {
-    if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
-    return false;
+	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
+	return false;
 }
 public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true):Boolean
 {
@@ -691,7 +691,7 @@ public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true)
 			}
 		}
 	}
-    return hasUpgrade;
+	return hasUpgrade;
 }
 public function gooArmorDefense(def:Number = 0):Number
 {
@@ -1099,7 +1099,7 @@ public function gooArmorCrewOption(arg:Array):void
 				if(annoIsCrew() && InShipInterior()) chats.push(msg);
 				
 				msg = " a discussion about a particular product.";
-				msg += "\n\n<i>“... like, BIG-big! Hmmm... do you think [bess.name] would know if JoyCo sells something that?”</i> she asks.";
+				msg += "\n\n<i>“... like, BIG-big! Hmmm... do you think [bess.name] would know if JoyCo sells something like that?”</i> she asks.";
 				msg += "\n\n" + (pc.isBimbo() ? "Wow, that’s pretty big! You pout while pondering... You don’t think they have any <i>that</i> big. But maybe you could call in and make a request!" : "You are pretty sure those are a part of JoyCo’s line-up somewhere... just not anywhere near <i>that</i> big.");
 				if(flags["BESS_FULLY_CONFIGURED"] != undefined && bessIsCrew()) chats.push(msg);
 				
@@ -1286,8 +1286,13 @@ public function gooArmorCrewOption(arg:Array):void
 			{
 				if(silly && pc.isBimbo() && pc.hasBreasts())
 				{
-					txt += "With a serious face, you look at your gooey friend and command, <i>“" + chars["GOO"].short.toUpperCase() + ", GRAB MY BOOBS.”</i>";
-					txt += "\n\nShe takes her hand and places it on your right-most breast, then squeezes. <i>HONK!</i>";
+					txt += "With a serious face, you look at your gooey friend and command, <i>“" + chars["GOO"].short.toUpperCase() + ", GRAB MY BOOB";
+					if(pc.totalBreasts() >= 2) txt += "S";
+					txt += ".”</i>";
+					txt += "\n\nShe takes her hand and places it on your";
+					if(pc.totalBreasts() >= 2) txt += " right";
+					if(pc.totalBreasts() > 2) txt += "-most";
+					txt += " breast, then squeezes. <i>HONK!</i>";
 					txt += "\n\nIn sync, you both chorus the word, <i>“ADVENTURE...!”</i>";
 					txt += "\n\nThe console monitors around you flicker different colors to simulate a discothèque-like rainbow for added emphasis. [goo.name] quickly engulfs herself around your body, changing into your fitted armor, then popping her top half out to meet you as the light show finally stops and everything returns to normal.";
 					txt += "\n\nThe two of you look at each other for a good few seconds, then burst into high-pitched giggles.";

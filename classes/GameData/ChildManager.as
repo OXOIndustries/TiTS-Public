@@ -45,7 +45,7 @@ package classes.GameData
 			
 			for (var i:int = 0; i < o.children.length; i++)
 			{
-				var oo:Array = o.children[i];
+				var oo:Object = o.children[i];
 				var classT:Class = getDefinitionByName(oo.classInstance) as Class;
 				var classInstance:Child = new classT();
 				classInstance.LoadSaveObject(oo);
@@ -371,6 +371,12 @@ package classes.GameData
 		{
 			if (CACHE == null) CACHE = new ChildCache();
 			CACHE.nurseryComputerUniquesCache = v;
+		}
+		
+		static public function getChildrenOfType(ofType:uint):Array
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.getChildrenOfType(ofType);
 		}
 	}
 

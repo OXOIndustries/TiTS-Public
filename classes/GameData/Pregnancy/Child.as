@@ -143,6 +143,18 @@ package classes.GameData.Pregnancy
 			NumMale = o.NumMale;
 			NumIntersex = o.NumIntersex;
 		}
+		
+		public function randomApplicableGender(m:String, f:String, i:String, n:String):String
+		{
+			var ws:Array = [];
+			
+			if (NumGenders.Male > 0) ws.push( { v: m, w: NumGenders.Male } );
+			if (NumGenders.Female > 0) ws.push( { v: f, w: NumGenders.Female } );
+			if (NumGenders.Intersex > 0) ws.push( { v: i, w: NumGenders.Intersex } );
+			if (NumGenders.Neuter > 0) ws.push( { v: n, w: NumGenders.Neuter } );
+			
+			return weightedRand(ws);
+		}
 	}
 
 }

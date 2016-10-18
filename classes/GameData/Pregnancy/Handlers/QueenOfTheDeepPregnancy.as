@@ -98,11 +98,6 @@ package classes.GameData.Pregnancy.Handlers
 			
 			if (!mother.hasStatusEffect("Queen Pregnancy State"))
 			{
-				// exists = enable bellyrubs
-				// v1 = enable dreams + bellymove messages
-				// v2 = enable sickness messages
-				// v3 = trigger lactation
-				// v4 = trigger almost time message
 				mother.createStatusEffect("Queen Pregnancy State", 0, 0, 0, 0, true, "", "", false, 0);
 			}
 		}
@@ -126,6 +121,35 @@ package classes.GameData.Pregnancy.Handlers
 			{
 				kGAMECLASS.eventQueue.push(kGAMECLASS.queenPregnancyEnds);
 			}
+		}
+		
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):Child
+		{
+			var totalChildren:int = 0;
+			
+			for (var i:int = 0; i < mother.pregnancyData.length; i++)
+			{
+				var pData:PregnancyData = mother.pregnancyData[i] as PregnancyData;
+				if (pData.pregnancyType == "DeepQueenPregnancy")
+				{
+					StatTracking.track("pregnancy/queen of the deep eggs", pData.pregnancyQuantity);
+					StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+					totalChildren += pData.pregnancyQuantity;
+					mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+					pData.reset();
+				}
+			}
+			
+			var c:Child = Child.NewChild(GLOBAL.TYPE_WATERQUEEN, 2.0, totalChildren, 0, 1, 0, 0);
+			c.BornTimestamp = useBornTimestamp;
+			ChildManager.addChild(c);
+			
+			kGAMECLASS.pc.removeStatusEffect("Queen Pregnancy End");
+			kGAMECLASS.pc.removeStatusEffect("Queen Pregnancy State");
+			kGAMECLASS.flags["Queen Message Supression"] = undefined;
+			kGAMECLASS.flags["Queen Message Weight"] = undefined;
+			
+			return c;
 		}
 		
 		public static function queenCleanupData():void

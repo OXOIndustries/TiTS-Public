@@ -1,6 +1,7 @@
 package classes.GameData.Pregnancy.Handlers 
 {
 	import classes.Creature;
+	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
 	import classes.kGAMECLASS;
@@ -116,6 +117,28 @@ package classes.GameData.Pregnancy.Handlers
 					}
 				}()
 			);
+		}
+		
+		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):Child
+		{
+			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			
+			if (mother.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) mother.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
+			if (mother.hasStatusEffect("Venus Pitcher Seed Residue")) mother.removeStatusEffect("Venus Pitcher Seed Residue");
+			
+			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+			
+			pData.reset();
+			
+			return null;
+		}
+		
+		override public function getRemainingDuration(target:Creature, slot:int):int
+		{
+			var pData:PregnancyData = target.pregnancyData[slot];
+			var remains:int = pData.pregnancyIncubation / pData.pregnancyIncubationMulti;
+			if (pData.pregnancyQuantity > 1) remains += ((240 + rand(30)) * (pData.pregnancyQuantity - 1));
+			return remains;
 		}
 		
 		public static function cleanupPregnancy(target:Creature):void

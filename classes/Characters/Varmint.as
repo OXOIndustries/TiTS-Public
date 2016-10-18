@@ -15,6 +15,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	//**************************************************
 	//Listed as chars["AUTOTURRETS"] in code elsewhere!
@@ -35,7 +36,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "This New Texan varmint is a big, blue creature near to the size of a burly Terran doberman, though its posture is more squat, and its frame is rippling with muscle. Its jaw is filled with razor-sharp teeth, slavering as it draws near to you, a hungry glint in its big green eyes. Several spikes coat the creature's flat head, including a pair that curl into horn-like protrusions around its head, almost ram-like.\n\nThe creature stalks towards you, clearly angered by your disturbing it. Those horns and teeth look like they could do some serious harm if you don't take it down quickly!";
-			this.customDodge = "Claws scrabbling, the varmint slips away from your attack.";
+			this.customDodge = "Claws scrabbling, " + getCombatName() + " slips away from your attack.";
 			this.customBlock = "The armor plates soak up your attack.";
 			this.isPlural = false;
 			isLustImmune = true;
@@ -178,7 +179,7 @@ package classes.Characters
 		
 		private function ramAttack(target:Creature):void
 		{
-			output("The varmint lunges at you with its horns, slamming them ");
+			output(StringUtil.capitalize(getCombatName(), false) + " lunges at you with its horns, slamming them ");
 			if(combatMiss(this, target) && !combatMiss(this, target)) output("just past you, digging them into the ground.");
 			else
 			{
@@ -206,7 +207,7 @@ package classes.Characters
 		
 		private function leap(target:Creature):void
 		{
-			output("The varmint leaps at you with its slavering jaws agape, teeth bared!");
+			output(StringUtil.capitalize(getCombatName(), false) + " leaps at you with its slavering jaws agape, teeth bared!");
 			if(!combatMiss(this, target))
 			{
 				output(" Its teeth sink into you, and the sheer weight of its impact against your ");

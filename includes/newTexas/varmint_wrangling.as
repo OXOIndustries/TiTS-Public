@@ -344,7 +344,7 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 	clearOutput();
 	//Set drone target
 	attacker.droneTarget = target;
-	output("You twirl your light lasso, trying to get a bead on the varmint. When you've got enough spin, you let the lasso go, hurling it toward the varmint!");
+	output("You twirl your light lasso, trying to get a bead on " + target.getCombatName() + ". When you've got enough spin, you let the lasso go, hurling it toward " + target.getCombatName() + "!");
 	//Miss
 	if(rangedCombatMiss(attacker, target)) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.");
 	else
@@ -355,7 +355,7 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 		//Will this down the fucker
 		if(damage.getTotal() - target.defense() >= target.HP())
 		{
-			output(" <b>You snag the varmint by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
+			output(" <b>You snag " + target.getCombatName() + " by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
 			target.createStatusEffect("Lassoed", 1);
 		}
 		//Naw, he's still up
@@ -365,7 +365,7 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 			if(rand(3) == 0) output("horn");
 			else if(rand(2) == 0) output("leg");
 			else output("spike");
-			output(" on the varmint, barreling the creature to the ground.");
+			output(" on " + target.getCombatName() + ", barreling the creature to the ground.");
 			target.createStatusEffect("Lassoed");
 		}
 		applyDamage(damage, attacker, target);
@@ -373,8 +373,9 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 }
 
 //PC Victory
-public function pcVictoryVsVarmints():void
+public function pcVictoryVsVarmints(clearText:Boolean = false):void
 {
+	if(clearText) clearOutput();
 	author("Savin");
 	showName("DEFEATED:\nVARMINT");
 	showBust("VARMINT");
@@ -403,9 +404,9 @@ public function pcVictoryVsVarmints():void
 }
 
 //PC Defeat
-public function pcLosesToVarmint():void
+public function pcLosesToVarmint(clearText:Boolean = false):void
 {
-	clearOutput();
+	if(clearText) clearOutput();
 	author("Savin");
 	showName("LOST VS:\nVARMINT");
 	showBust("VARMINT");
@@ -449,11 +450,97 @@ public function varmintRoomsBonus():Boolean
 
 	if(flags["FIELDS_STEP"] >= 4 && rand(3) == 0)
 	{
-		varmintProc();
+		if(!varmintPackBonus()) varmintProc();
 		flags["FIELDS_STEP"] = 0;
 		return true;
 	}
 	return false;
+}
+
+// Varmint Pack Enounter!
+public function varmintPackBonus():Boolean
+{
+	if(flags["MET_VARMINT"] >= 5 && pc.level >= 6 && rand(3) == 0)
+	{
+		showName("FIGHT:\nVARMINT PACK");
+		author("Jacques00");
+		
+		var numVarmints:int = 2 + rand(3);
+		
+		if(hasVarmintBuddy())
+		{
+			output("\n\nYour pet varmint perks up with uneasiness... It senses something...");
+			output("\n\n<i>“");
+			if(pc.isBimbo()) output("What is it, baby? Do ya hear something?");
+			else if(pc.isNice()) output("Hm, something the matter?");
+			else output("Damn, it’s trouble, isn’t it?");
+			output("”</i> you ask.");
+		}
+		output("\n\nSuddenly, out of nowhere, a loud rustle catches your attention. Rushing in front of you is a");
+		if(numVarmints == 2) output(" pair");
+		else if(numVarmints == 3) output(" trio");
+		else output(" group");
+		output(" of varmints! It looks to be a hunting party rather than the lone scavengers you are used to seeing--but each appears equally as dangerous, if not more so.");
+		output("\n\nThe creatures barely give you time to react before one of them lets out a sharp, vicious howl, signaling an obvious attack.");
+		if(pc.isBimbo()) output("\n\nLike, <i>ohmygosh</i>, get ready!");
+		else if(pc.isNice()) output("\n\nPrepare yourself!");
+		else if(pc.isMischievous()) output("\n\nShit, you hate " + (hasVarmintBuddy() ? "being right all the time" : "surprises") + "!");
+		else if(pc.isAss()) output("\n\nFucking, damnit!");
+		else output("\n\nOH MY GOD!");
+		
+		IncrementFlag("MET_VARMINT_PACK");
+		
+		varmintPackFight(numVarmints);
+		
+		return true;
+	}
+	return false;
+}
+public function varmintPackFight(numVarmints:int = 4):void
+{
+	var f:Array = [pc];
+	var h:Array = [];
+	
+	for (var i:int = 0; i < numVarmints; i++)
+	{
+		h.push(new Varmint());
+		h[i].isUniqueInFight = false;
+	}
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(f);
+	CombatManager.setHostileCharacters(h);
+	CombatManager.victoryScene(pcVictoryVsVarmintPack);
+	CombatManager.lossScene(pcLosesToVarmintPack);
+	CombatManager.displayLocation("VARMINT PACK");
+	CombatManager.encounterText("A pack of hungry, hostile-looking creatures, these varmints are not looking to be friends with you. Blue spikes extend and razor-sharp teeth gnash as they throw threatening hackles your way.");
+	
+	showBust((numVarmints >= 1 ? h[0].bustDisplay : ""), (numVarmints >= 2 ? h[1].bustDisplay : ""), (numVarmints >= 3 ? h[2].bustDisplay : ""), (numVarmints >= 4 ? h[3].bustDisplay : ""));
+	
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+public function pcVictoryVsVarmintPack():void
+{
+	showBust("VARMINT");
+	showName("DEFEATED:\nVARMINT PACK");
+	author("Jacques00");
+	
+	output("Realizing defeat, the varmints give into their survivalist instinct and break free from the lapse with a burst of renewed energy. They each scatter and sprint off--though one of them struggles and lags behind...");
+	
+	clearMenu();
+	addButton(0, "Next", pcVictoryVsVarmints, true);
+}
+public function pcLosesToVarmintPack():void
+{
+	showBust("VARMINT");
+	showName("LOST VS:\nVARMINT PACK");
+	author("Jacques00");
+	
+	output("Howling in victory, the varmints quickly surround you. They are pretty coordinated for a bunch of scavengers! Then, one - the <i>alpha</i> you take it - rears its head at you, looking you in the eyes...");
+	
+	clearMenu();
+	addButton(0, "Next", pcLosesToVarmint, true);
 }
 
 public function takeSilicone():void
@@ -801,7 +888,9 @@ public function doVarmintPlayTime(response:String = "none"):void
 	{
 		output("You go over to where the varmint’s sitting, thumping its massive tail on your deck. It hoots quietly as you approach, swishing its tail a little faster. It doesn’t stop you as you hook its collar and leash around its tree-trunk neck, though its spikes rise a bit as you lock it in place. The great big beasty takes a big, huffing breath as you activate its leash and stands up, sauntering over to stand at your side. Looks like it’s ready to go! ");
 		if(pc.isBimbo()) output("\n\nYou lean down and give it plenty of pets and kisses. What a good alien-puppy!");
-		output("\n\n<b>The varmint is now leashed and will be prevented from leaving your ship!</b>");
+		output("\n\n<b>The varmint is now leashed");
+		if(flags["NATALIE_TAMES_VARMINT"] == undefined) output(" and will be prevented from leaving your ship");
+		output("!</b>");
 		processTime(3);
 		pc.createStatusEffect("Varmint Leashed");
 		pc.removeStatusEffect("Varmint Unleashed Cooldown");
@@ -818,7 +907,10 @@ public function doVarmintPlayTime(response:String = "none"):void
 			else output(" Reaha’s");
 			output(" quarters.");
 		}
-		output("\n\n<b>The varmint is now unleashed. Even though it is tamed, there may be a chance that it will wander off by itself if left alone for too long!</b>");
+		output("\n\n<b>The varmint is now unleashed.");
+		if(flags["NATALIE_TAMES_VARMINT"] != undefined) output(" " + (rand(2) == 0 ? "Thanks to Natalie" : "Fortunately") + ", the bond between you two is so strong that you don’t need to worry about it wandering off any time soon.");
+		else output(" Even though it is tamed, there may be a chance that it will wander off by itself if left alone for too long!");
+		output("</b>");
 		processTime(5);
 		pc.removeStatusEffect("Varmint Leashed");
 		pc.createStatusEffect("Varmint Unleashed Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);

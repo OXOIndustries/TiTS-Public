@@ -38,6 +38,13 @@ package classes.Engine.Combat
 		
 		if (lustDamage.tease.damageValue > 0 && attacker != null) lustDamage.tease.damageValue += attacker.sexiness() / 2;
 		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPerk("Pheromone Cloud")) lustDamage.pheromone.damageValue += 1 + rand(4);
+		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPerk("Alpha Scent")) lustDamage.pheromone.damageValue += 1 + rand(4);
+		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPerk("Pheromone Sweat") && attacker.statusEffectv1("Sweaty") > 0)
+		{
+			var sweatBonus:Number = attacker.statusEffectv1("Sweaty");
+			if (sweatBonus > 5) sweatBonus = 5;
+			lustDamage.pheromone.damageValue += 1 + rand(sweatBonus);
+		}
 		if (lustDamage.tease.damageValue > 0 && target != null && target.hasCock() && attacker != null && attacker.hasStatusEffect("Cum Soaked")) 
 		{
 			var spunkBonus:Number = attacker.statusEffectv1("Cum Soaked");
@@ -52,7 +59,7 @@ package classes.Engine.Combat
 		}
 		//25% dam multiplier
 		if (lustDamage.tease.damageValue > 0 && target != null && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25; 
-		
+
 		// Apply any defensive modifiers
 		var damMulti:Number = 1;
 		if (target.hasStatusEffect("Blue Balls")) damMulti += 0.25;
@@ -65,7 +72,12 @@ package classes.Engine.Combat
 		
 		// Apply resistances
 		lustDamage.applyResistances(tarResistances);
-		var damageAfterResistances:Number = Math.round(lustDamage.getTotal());
+		var damageAfterResistances:Number = lustDamage.getTotal();
+		
+		// Lust ARMOOOOOR
+		var lustDef:Number = target.lustDef();
+		damageAfterResistances -= target.lustDef();
+		damageAfterResistances = Math.round(damageAfterResistances);
 		
 		// Clamp damage done to 1 > Damage > DamageToCap
 		if (damageAfterResistances < 1) damageAfterResistances = 1;

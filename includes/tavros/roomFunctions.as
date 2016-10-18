@@ -34,7 +34,7 @@ public function liftMove(destination:String):void
 
 public function hangarBonus():Boolean 
 {
-	output("You’re within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere’s a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant and residential levels.");
+	output("You’re within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere’s a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant, residential, and nursery levels.");
 	
 	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
 	{
@@ -44,18 +44,27 @@ public function hangarBonus():Boolean
 		addButton(0, "Deck 92", saendraX1LiftGo); 
 	}
 	
-	if(currentLocation == "LIFT: MERCHANT DECK") {
+	if (currentLocation == "LIFT: MERCHANT DECK") 
+	{
 		output("\n\n<b>You are currently on the merchant deck.</b>");
 		addButton(7,"Down",liftMove, "TAVROS LIFT");
 		addButton(5,"Up",liftMove, "LIFT: RESIDENTIAL DECK");
 	}
-	else if(currentLocation == "TAVROS LIFT") {
+	else if (currentLocation == "TAVROS LIFT") 
+	{
 		output("\n\n<b>You are currently on the hangar deck.</b>");
 		addButton(5,"Up",liftMove, "LIFT: MERCHANT DECK");
 	} 
-	else if(currentLocation == "LIFT: RESIDENTIAL DECK") {
+	else if (currentLocation == "LIFT: RESIDENTIAL DECK") 
+	{
 		output("\n\n<b>You are currently on the residential deck.</b>");
+		addButton(5, "Up", liftMove, "NURSERYELEVATOR");
 		addButton(7,"Down",liftMove, "LIFT: MERCHANT DECK");
+	}
+	else if (currentLocation == "NURSERYELEVATOR") 
+	{
+		output("\n\n<b>You are currently on the nursery deck.</b>");
+		addButton(7, "Down", liftMove, "LIFT: RESIDENTIAL DECK");
 	}
 	return false;
 }

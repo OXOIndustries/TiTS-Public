@@ -83,6 +83,20 @@ package classes.Characters
 		
 		override public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
+			if(milkFrom != null)
+			{
+				if(milkFrom.milkType == GLOBAL.FLUID_TYPE_MILK) energy(20);
+				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) 
+				{
+					energy(25);
+					modThickness(1,false);
+				}
+				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_HONEY || milkFrom.milkType == GLOBAL.FLUID_TYPE_NECTAR) 
+				{
+					energy(30);
+				}
+				else energy(10);
+			}
 			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
@@ -149,6 +163,7 @@ package classes.Characters
 			if(cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
 			if(cumFrom != null)
 			{
+				if(cumFrom is Kally) imbibeAlcohol(20);
 				if(hasPerk("Autofellatio Queen") && cumFrom is PlayerCharacter) this.energy(35);
 			}
 			return false;

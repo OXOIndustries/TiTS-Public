@@ -178,6 +178,10 @@
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
+
+		//Vesperia/Canadia Station
+		include "../includes/vesperia/rooms.as";
+		include "../includes/vesperia/kally.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
@@ -236,6 +240,7 @@
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
 		include "../includes/newTexas/brynn.as";
+		include "../includes/newTexas/busky.as";
 		include "../includes/newTexas/ellie.as";
 		include "../includes/newTexas/haley.as";
 		include "../includes/newTexas/gianna.as";
@@ -428,7 +433,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.81";
+			version = "0.6.88";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -477,6 +482,7 @@
 			kquest2InitRooms();
 			initUvetoRooms();
 			kiInitRooms();
+			initVesperiaRoom();
 			
 			mapper = new Mapper(this.rooms)
 
@@ -1252,6 +1258,14 @@
 		public function get wulfe():Siegwulfe
 		{
 			return chars["WULFE"];
+		}
+		public function get busky():Busky
+		{
+			return chars["BUSKY"];
+		}
+		public function get kally():Kally
+		{
+			return chars["KALLY"];
 		}
 		
 		private var _dbgtestvar:int = 0;
