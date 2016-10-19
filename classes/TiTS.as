@@ -435,7 +435,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.87";
+			version = "0.6.88";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1264,6 +1264,10 @@
 		public function get busky():Busky
 		{
 			return chars["BUSKY"];
+		}
+		public function get kally():Kally
+		{
+			return chars["KALLY"];
 		}
 		
 		private var _dbgtestvar:int = 0;
