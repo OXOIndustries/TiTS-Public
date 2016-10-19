@@ -155,6 +155,7 @@ package classes.Characters
 			if(cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
 			if(cumFrom != null)
 			{
+				if(cumFrom is Kally) imbibeAlcohol(20);
 				if(hasPerk("Autofellatio Queen") && cumFrom is PlayerCharacter) this.energy(35);
 			}
 			return false;
