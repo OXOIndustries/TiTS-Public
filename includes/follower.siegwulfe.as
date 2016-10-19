@@ -21,7 +21,7 @@ ________________________________________
 public function showSiegwulfe(nude:Boolean = false):void
 {
 	showBust(wulfeBustDisplay(nude));
-	showName("\nSIEGWULFE");
+	showName("\n" + chars["WULFE"].short.toUpperCase());
 }
 public function wulfeBustDisplay(nude:Boolean = false):String
 {
@@ -192,7 +192,7 @@ public function nameSiegwulfeResult(fromInv:Boolean = false):void
 	// Combine All
 	output("\n\nClearly pleased with her new name, [wulfe.name] sits down on her chrome haunches and watches you expectantly. When the moment drags on for an uncomfortable length, you figure that the routine your new companion was programmed to carry out the first time she came online has now been completed. She’s just waiting patiently for instructions like any other droid.");
 	if(pc.IQ() >= 66) output(" Amazing how quickly the siegwulfe can go from cheerful, sexy doggy-‘taur to idleness that borders on that of a statue. Someone spent a great deal of effort on her “companion” programming, that’s for sure.");
-	output(" Guess she is just a really fancy V.I. after all -- even if she can simulate a sexy hunter-killer babe when her programming dicates.");
+	output(" Guess she is just a really fancy V.I. after all -- even if she can simulate a sexy hunter-killer babe when her programming dictates.");
 	output("\n\nOr whenever <i>you</i> want her to. She sounded quite eager to put the softer side of her functionality to the test for you. Maybe you ought to make use of the companion houndess...");
 	
 	processTime(3);
@@ -437,7 +437,7 @@ public function doSiegwulfeAction(arg:Array):void
 			break;
 		// Leave
 		case "leave":
-			output("You give the leave [wulfe.name] to her own devices for a bit.");
+			output("You give [wulfe.name] a pat on the head and leave her to her own devices for a bit.");
 			
 			processTime(1);
 			
@@ -507,7 +507,7 @@ public function doSiegwulfeSex(response:String = "none"):void
 		case "get oral":
 			var useCock: Boolean = (pc.hasCock() && (!pc.hasVagina() || rand(2) == 0));
 			
-			output("Your hand traces up [wulfe.name]’s arm and neck until you can brush your thumb across her " + (chars["WULFE"].isBimbo() ? "whorishly plump" : "soft") + " lips. You tell her it’s high time she put those to use for her master.");
+			output("Your hand traces up [wulfe.name]’s arm and neck until you can brush your thumb across her " + (chars["WULFE"].isBimbo() ? "whorishly plump" : "soft") + " lips. You tell her it’s high time she put those to use for her [pc.master].");
 			if(chars["WULFE"].isBimbo()) output("\n\n<i>“Thought you’d never, like, ask and stuff!”</i> [wulfe.name] cheers, licking her lips hungrily. <i>“Lemme see what you’ve got, [pc.master]!”</i>");
 			else output("\n\n[wulfe.name] sucks on your thumb, moaning deep in her throat. <i>“It will be my pleasure, [pc.master]. Just relax and let me take care of everything.”</i>");
 			output("\n\nYou take a step back, just enough to give you room to pull off your [pc.gear]. [wulfe.name] watches with eager anticipation, chewing on her lower lip as your hands move across your");

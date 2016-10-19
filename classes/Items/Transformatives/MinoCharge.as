@@ -408,7 +408,7 @@ package classes.Items.Transformatives
 			
 			//Moderate chance for butt shrinkage
 			//To tight
-			if (target.buttRatingRaw > 2 && rand(3) == 0 && changes < tChanges)
+			if (target.thickness <= 90 && target.buttRatingRaw > 2 && rand(3) == 0 && changes < tChanges)
 			{
 				output("\n\nYour ass burns with the sensation of fat melting off, leaving you with a noticeably tighter behind than before.");
 				
@@ -422,21 +422,23 @@ package classes.Items.Transformatives
 			
 			//Moderate chance for hip shrinkage
 			//To average
-			if (target.hipRatingRaw > 4 && rand(3) == 0 && changes < tChanges)
+			if (target.thickness <= 90 && target.hipRatingRaw > 4 && rand(3) == 0 && changes < tChanges)
 			{
 				output("\n\nYour hips pull inward, bringing your thighs closer together as your stance becomes noticeably less girly.");
 				
 				target.hipRatingRaw -= 1;
+				if(target.hipRatingRaw < 4) target.hipRatingRaw = 4;
 				changes++;
 			}
 			
 			//Moderate chance for hip growth
 			//To average
-			if (target.hipRatingRaw < 4 && rand(3) == 0 && changes < tChanges)
+			if (target.thickness <= 90 && target.hipRatingRaw < 4 && rand(3) == 0 && changes < tChanges)
 			{
 				output("\n\nYour hips widen just a touch, giving you a stockier, wider stance.");
 				
 				target.hipRatingRaw += 1;
+				if(target.hipRatingRaw > 4) target.hipRatingRaw = 4;
 				changes++;
 			}
 			
@@ -461,7 +463,7 @@ package classes.Items.Transformatives
 			}
 			
 			// Mino Charge should now increase or decrease hips and butt towards 20 as part of the second-stage changes.
-			if (target.hipRatingRaw < 20 && rand(2) == 0 && changes < tChanges)
+			if (target.thickness > 90 && target.hipRatingRaw < 20 && rand(2) == 0 && changes < tChanges)
 			{
 				output("\n\nYou feel an urge to widen your stance, your hips spreading to give [pc.eachCock] more room to breathe.");
 				
@@ -469,7 +471,7 @@ package classes.Items.Transformatives
 				//if(target.hipRatingRaw > 20) target.hipRatingRaw = 20;
 				changes++;
 			}
-			if (target.buttRatingRaw < 20 && rand(2) == 0 && changes < tChanges)
+			if (target.thickness > 90 && target.buttRatingRaw < 20 && rand(2) == 0 && changes < tChanges)
 			{
 				output("\n\nYour ass feels deliciously warm, clenching and unclenching with every breath you take as new thick, heavy muscle piles on.");
 				

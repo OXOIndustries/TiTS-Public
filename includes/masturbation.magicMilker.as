@@ -218,8 +218,8 @@ public function joyCoMagicMilker7Sucks():void
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 		}
-		pc.milked(pc.milkFullness);
 		processTime(20+rand(5));
+		pc.milked(pc.milkFullness);
 	}
 }
 

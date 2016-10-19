@@ -305,7 +305,7 @@ public function cumInTurkeyslutsCunt():void
 	clearOutput();
 	gobblesHeader(true);
 
-	output("You answer by grabbing her under the arms and hefting the buxom cow up onto your lap, spearing her on your cock. She gives a shrill, startled moo as you [pc.cock] is rammed inside her, spreading that maple lead of pubes wide around your member. <i>“That.. that works too,”</i> she moans, settling onto your lap and locking your member in a silken, spicy vice. That’s all you needed to cum, and you quickly find yourself busting your nut into the cow’s welcoming hole. She gives a little groan as your first shot spills into her womb, but after that she’s all doe eyes and eager shifts of her hips, milking you just as easily with her pussy as with her breasts.");
+	output("You answer by grabbing her under the arms and hefting the buxom cow up onto your lap, spearing her on your cock. She gives a shrill, startled moo as your [pc.cock] is rammed inside her, spreading that maple leaf of pubes wide around your member. <i>“That.. that works too,”</i> she moans, settling onto your lap and locking your member in a silken, spicy vice. That’s all you needed to cum, and you quickly find yourself busting your nut into the cow’s welcoming hole. She gives a little groan as your first shot spills into her womb, but after that she’s all doe eyes and eager shifts of her hips, milking you just as easily with her pussy as with her breasts.");
 
 	pc.orgasm();
 	
@@ -631,7 +631,7 @@ public function buttBasteDatTurkey():void
 	output("Your bovine lover is adept at offers you can’t refuse, isn’t she? The feeling of her open, inviting asshole kissing your crown is just too much to resist. You shift your hips slightly, angling your pecker with the cow-girl’s eager hole, and give her the filling she wanted. Canada squeals as you slide into her, a high-pitched cry of pleasure that lasts until your hips are flush with her full cheeks, your cock completely sheathed in the broiling vice of her ass. You could swear her buttplug must have been a carbon copy of your dick, the way she feels around you.");
 	output("\n\nShe squeezes you tight, a vice-like grip that threatens to milk you to orgasm");
 	if (pc.hasStatusEffect("CreamedGobbleCunt")) output(" again");
-	output(" in record speed. You grunt, grabbing one of her buttcheeks and trying to pry her loose, but the amorous cow holds you firmly. Her only answer is too playfully moo and wiggle back against you, making the muscles of her ass wring you until you can barely hold back. Well, if she wants to play it that way....");
+	output(" in record speed. You grunt, grabbing one of her buttcheeks and trying to pry her loose, but the amorous cow holds you firmly. Her only answer is to playfully moo and wiggle back against you, making the muscles of her ass wring you until you can barely hold back. Well, if she wants to play it that way....");
 	output("\n\nYou reach around her broad thighs and delve inbetween her spread legs, finding her red-maned cunt and slipping a few fingers easily in. Her still-warm fem-cum is the perfect lube to slip your digits in, duck-billing them through her slit and them making a nice, thick fist inside her. Canada gasps, planting her hands on her belly as you ball up inside her and thrust in. If you thought her ass was tight before, god <i>damn</i> is it now! Your lover cries out and clenches hard enough to shatter your remaining willpower, and you feel yourself cumming");
 	if (pc.hasStatusEffect("CreamedGobbleCunt")) output(" again");
 	output(". Canada’s groans turn into a sudden, happy gasp as she feels the first shot of your seed baste her bowels, shooting deep into her vice-like hole.");
@@ -639,9 +639,9 @@ public function buttBasteDatTurkey():void
 	output("\n\nYou let her over-eager ass milk out the cum from you, draining you dry in the span of moments. You shiver at the sensation of being trapped between her hot walls and the cooling, sticky mess of your own cum... but your spunk also serves as a perfect lube to let you finally move, pulling yourself half-way from Canada’s backside. She moos loudly when you slam yourself back in, and again, finally rolling the cow onto her face and mounting her properly. She squeals and wiggles, clearly enjoying the pounding - and with your fist out of her cunt, you can see her excitement clear as day, squirting over your thighs and the hay-coated floor. Your hands grip her big old hips and bare down on her, turning the cuddling she’d been asking for into a rough buttfucking that has the whole loft rocking.");
 	output("\n\nYou could have sworn that her tits were as empty as they could be, but somehow Canada manages to squirt and drool from her puffy nipples again. She grabs them and squeezes, eliciting a little extra pleasure while you hold the rest of her body hostage. You speed up, hammering her wonderful ass until she’s screaming for more, joining the cacophonous voices from the milking barn below. Her spewing juices quickly turn into a tide of fem-cum, presaging an anal orgasm that has her milking you even harder than before. You race to join her in orgasm, filling her welcoming bum with another wave of [pc.cumNoun].");
 	output("\n\n<i>“I feel better already,”</i> Canada coos, rocking her hips back, drawing your cock in to the hilt before you can pull out of her, giving her one last full draw of pleasure.");
-	output("\n\n<i>“So, what now, [pc.name]?”</i> she adds, rolling onto her back and smiling up at you, spunk drooling ");
-	if(pc.hasStatusEffect("CreamedGobbleCunt")) output("from both holes");
-	else output("her ass");
+	output("\n\n<i>“So, what now, [pc.name]?”</i> she adds, rolling onto her back and smiling up at you, spunk drooling from");
+	if(pc.hasStatusEffect("CreamedGobbleCunt")) output(" both holes");
+	else output(" her ass");
 	output(". <i>“Do you... want to stay a while longer, eh?");
 	if(!pc.hasStatusEffect("CreamedGobbleCunt") && pc.hasVagina()) output(" I’d feel bad if I didn’t at least play with your pussy a little, too, after what you did to me.");
 	output("”</i>");

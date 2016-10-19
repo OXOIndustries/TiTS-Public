@@ -292,7 +292,8 @@ public function buskyTalksAboutTenTonGym():void {
 
 	output("\n\n<i>“Anyway, they've got their credit's worth setting that place up, a whole track strip, competitive lap pools, and more weights than I could have imagined");
 	if (pc.femininity <= 40) output(" and good lord those showers, almost forgot to tell you 'bout them. Honestly, they're really high quality, and they really bring me back to my football years. That place is full of willing Bulls and Faux-Cows, half of the time you can just walk on over, tell them what's up, and you'll be fucking faster than a Varmint chasing after a packet of silicone. I'd pretty much purchased a life pass just for the 'communal experience'.");
-	else output(" the whole shebang.”</i>");
+	else output(" -- the whole shebang.");
+	output("”</i>");
 	
 	processTime(1);
 	

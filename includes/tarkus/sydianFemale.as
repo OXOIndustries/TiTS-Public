@@ -1415,8 +1415,8 @@ public function femSydianFuck():void
 	else
 	{
 		output("You lower yourself and lift her ass with your hands");
-		//{(bare hands), savoring the tingle of pleasure on your palms}. 
-		output(" Lining your");
+		//{(bare hands), savoring the tingle of pleasure on your palms}
+		output(". Lining your");
 		if (!asTailcock) output(" [pc.cock "+cockIdx+"]");
 		else output(" [pc.tail]");
 		output(" up, you nudge the woman’s vulva.");

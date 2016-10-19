@@ -1447,6 +1447,11 @@ package classes.GameData
 					if(difficulty > 0) difficulty--;
 					if(difficulty > 0) difficulty--;
 				}
+				//Outlevel the enemy? Make easier
+				if(pc.level >= _hostiles[0].level + 2) difficulty--;
+				if(pc.level >= _hostiles[0].level + 3) difficulty--;
+				if(pc.level >= _hostiles[0].level + 4) difficulty--;
+				if(pc.level >= _hostiles[0].level + 5) difficulty--;
 
 				//Set threshold value and check!
 				if(difficulty < 0) difficulty = 100;
@@ -3183,8 +3188,27 @@ package classes.GameData
 				if (damage > 15 + attacker.level * 2) damage = 15 + attacker.level * 2;
 				damage *= factor;
 				
-				damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
-				if (damage > 25 + attacker.level * 2) damage = 25 + attacker.level * 2;
+				//Tease % resistance.
+				if (teaseType == "SQUIRT") damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
+				else damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
+				//Level % reduction
+				var levelDiff:Number = target.level - attacker.level;
+				//Reduce tease damage by 50% for every level down the PC is.
+				if(levelDiff > 0)
+				{
+					for(var z:int = levelDiff; z > 0; z--)
+					{
+						damage *= 70;
+					}
+				}
+
+				//Tease armor - only used vs weapon-type attacks at present.
+				//damage -= target.lustDef();
+
+				//Damage cap
+				if (damage > 30) damage = 30;
+				//Damage min
+				if (damage < 0) damage = 0;
 				
 				if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 				damage = Math.ceil(damage);
@@ -4473,6 +4497,7 @@ package classes.GameData
 			var sumCredits:int = 0;
 			
 			var enemyNames:Object = { };
+			var article:Array = [];
 			var numDistinct:int = 0;
 			
 			// Grab all the details from the collective hostiles
@@ -4495,6 +4520,7 @@ package classes.GameData
 				if (enemyNames[t.short] == undefined)
 				{
 					enemyNames[t.short] = 1;
+					article[t.short] = t.a;
 					numDistinct++;
 				}
 				else
@@ -4521,19 +4547,17 @@ package classes.GameData
 			
 			// Emit some shit to state what the player got/did
 			
-			var numOutput:int = 0;
-			
 			output("You defeated ");
 			for (var key:String in enemyNames)
 			{
 				// This needs reworking to handle the/a/etc pulled from the creatures base data in the correct instances.
 				if (enemyNames[key] > 1) output(String(enemyNames[key]) + "x " + plural(key));
-				else output(key);
+				else output(article[key] + key);
+				
+				numDistinct--;
 				
 				if (numDistinct > 1) output(", ");
-				if (numOutput > 1 && numDistinct == 1) output("and ");
-				numDistinct--;
-				numOutput++;
+				if (numDistinct == 1) output(" and ");
 			}
 			output("!");
 			
