@@ -1063,17 +1063,17 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 		if(amount >= 1 && printMeters != -2)
 		{
 			// Feet
-			if(amount >= 12) retStr += Math.floor(amount / 12) + "\'";
+			var feet:int = Math.floor(amount / 12);
 			// Inches
+			var inch:int = Math.floor(amount % 12);
+			var num:String = "";
+			var den:String = "";
 			if(amount % 12 > 0)
 			{
-				if(Math.floor(amount % 12) > 0) retStr += " " + Math.floor(amount % 12);
 				// Fractional stuff, proper maffs format! (to the nearest 1/16th inch)
 				var fraction:Number = formatFloat((amount - Math.floor(amount)), 4);
 				if(fraction >= 0.0125)
 				{
-					var num:String = "";
-					var den:String = "";
 					if(fraction <= 0.0625) { num = "1"; den = "16"; }
 					else if(fraction <= 0.125) { num = "1"; den = "8"; }
 					else if(fraction <= 0.1875) { num = "3"; den = "16"; }
@@ -1089,12 +1089,14 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 					else if(fraction <= 0.8125) { num = "13"; den = "16"; }
 					else if(fraction <= 0.875) { num = "7"; den = "8"; }
 					else if(fraction <= 0.9375) { num = "15"; den = "16"; }
-					// Build fractions
-					if(den != "") retStr += " <sup>" + num + "</sup>/<sub>" + den + "</sub>";
+					else { feet++; num = ""; den = ""; }
 				}
-				else if(fraction > 0.01) retStr += " 0";
-				retStr += "\"";
 			}
+			if(feet > 0) retStr += feet + "\'";
+			if(inch > 0) retStr += (retStr != "" ? " " : "") + inch;
+			// Build fractions
+			if(den != "") retStr += (retStr != "" ? " " : "") + "<sup>" + num + "</sup>/<sub>" + den + "</sub>";
+			if(inch > 0 || den != "") retStr += "\"";
 		}
 		// Less than an inch get decimal format
 		else retStr += formatFloat(amount, 3) + " in";
