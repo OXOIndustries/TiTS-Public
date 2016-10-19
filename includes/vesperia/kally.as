@@ -34,6 +34,14 @@ public function kiroKallyThreesomes():Number
 {
 	return 0;
 }
+public function drinkFromTapKally():Number
+{
+	var drinks:Number = 0;
+	
+	if(flags["KALLY_BIMBO_TAPPED"] != undefined) drinks += flags["KALLY_BIMBO_TAPPED"];
+	
+	return drinks;
+}
 
 //Kally Repeats
 public function kallyBonusRoomTexts():Boolean
@@ -435,6 +443,9 @@ public function backToKallyMain():void
 
 public function addLoveyDoveWithAlcohol():void
 {
+	// 9999 Temp insert until Geddy finishes time fixes!
+	pc.removeStatusEffect("Adorahol"); return;
+	
 	if(!pc.hasStatusEffect("Adorahol")) pc.createStatusEffect("Adorahol",1,0,0,0,false,"Icon_Wine","You're feeling more affectionate that you otherwise would, no doubt the result of Kally's 'special' drinks.",false,0,0xB793C4);
 	else pc.addStatusValue("Adorahol",1,1);
 }
@@ -513,7 +524,7 @@ public function kallyDrinkPurchase(drink:String):void
 		if(special) 
 		{
 			output("I told you it’d be good.");
-			if(9999 == 9999) output(" Sometime you should try some from the tap.");
+			if(drinkFromTapKally() <= 0) output(" Sometime you should try some from the tap.");
 			else output(" You should get another dose from the tap sometime.");
 		}
 		else output("Only the best for my customers.");
@@ -1827,7 +1838,7 @@ public function tapKallysKegAsBimboII():void
 		}
 		output(" Your throat seizes in one last effort to drain Kally, milking out one big, last squirt, and then you’re cumming too. You’re a good, cummy little cock-sucker, creaming yourself to the feeling of having your belly full of warm, alien seed.");
 		//Threesomed
-		if(9999 == 0)
+		if(kiroKallyThreesomes() > 0)
 		{
 			output("\n\nThe sounds of wet, passionate kissing fade into exhausted panting. Did Kiro just make out with her sister? You slowly slide off the cock, lapping the spunky residue from your lips and floating on a little post blowjob euphoria.");
 			output("\n\n<i>“Did you give [pc.himHer] a good snack?”</i> Kiro asks from so far away she might as well be in the clouds.");

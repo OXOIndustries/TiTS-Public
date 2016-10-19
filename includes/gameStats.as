@@ -4848,6 +4848,24 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Kally:</b> Met her");
 				if(flags["KIRO_MET_KALLY"] >= 4) output2(" with Kiro");
 				if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output2(", Know of her secret ingredient");
+				if(drinkFromTapKally() > 0)
+				{
+					output2("\n<b>* Kally, Times Sucked Her Cock:</b> " + drinkFromTapKally());
+					if(flags["KALLY_BIMBO_CUMCASCADE"] != undefined)
+					{
+						output2(", She gave you a cum cascade");
+						if(flags["KALLY_BIMBO_CUMCASCADE"] == 1 && drinkFromTapKally() > 1) output2(" once");
+						if(flags["KALLY_BIMBO_CUMCASCADE"] == 2) output2(" twice");
+						if(flags["KALLY_BIMBO_CUMCASCADE"] >= 3) output2(" " + flags["KALLY_BIMBO_CUMCASCADE"] + " times");
+					}
+					if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined)
+					{
+						output2(", Kiro interrupted");
+						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 1 && drinkFromTapKally() > 1) output2(" once");
+						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 2) output2(" twice");
+						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] >= 3) output2(" " + flags["KIRO_INTERRUPT_KALLYBEEJ"] + " times");
+					}
+				}
 				variousCount++;
 			}
 		}
