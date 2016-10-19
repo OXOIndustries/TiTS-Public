@@ -233,7 +233,7 @@ public function kallyAppearance():void
 	if(flags["KIRO_MET_KALLY"] != undefined) output(" and her sister");
 	output(", her facial fur an eggshell white that continues all the way down into her top, highlighting traditionally attractive features marred only by the slightest bit of extra fat in her cheeks. She has bright red eyes, tinged by the slightest pinkish hue, enough to make her gaze more a curiosity than frightening.");
 	output("\n\nHer figure is just broad enough that you know she’s eating well without any of her curves settling in the wrong places. Her hips are wide and her ass voluptuous. It’s big enough to make the back half of her skirt flip dangerously high when she walks. Were it not for the stabilizing influence of her tail, she’d likely moon anyone lucky enough to walk behind her.");
-	output("\n\nKally’s breasts are similarly expansive. They’re big, heavy mounds, barely bundled up in a diaphanous top, then propped up by a corset with the laces loose enough to show a hint of belly pudge. Even with the corset, it’s clear they’re not quite as perky as {her younger sister’s/they could be}. They’re far too soft to ride as high as New Texan’s rack but by far lovely enough to display an incredible line of cleavage given the chance, and their owner knows it. She carries herself with the confidence and poise of a woman who has been hit on innumerable times and knows it. And appreciates it.");
+	output("\n\nKally’s breasts are similarly expansive. They’re big, heavy mounds, barely bundled up in a diaphanous top, then propped up by a corset with the laces loose enough to show a hint of belly pudge. Even with the corset, it’s clear they’re not quite as perky as " + (flags["KIRO_MET_KALLY"] != undefined ? "her younger sister’s" : "they could be") + ". They’re far too soft to ride as high as New Texan’s rack but by far lovely enough to display an incredible line of cleavage given the chance, and their owner knows it. She carries herself with the confidence and poise of a woman who has been hit on innumerable times and knows it. And appreciates it.");
 	output("\n\nBetween her legs swings a long, blunted prick, not quite equine but not quite normal for a kui-tan either. She’s obviously done some modding - enough that it never seems to retract back into its sheath. Nor does she seem to mind that it’s always visible beneath the hem of her skirt, swaying in a clear advertisement of her hermaphroditic sexuality. At the same time, she never seems to go out of her way to advertise it, seemingly happy to be who she is, where she is.");
 	processTime(1);
 	kallyBarMenu();
@@ -263,7 +263,7 @@ public function askKallyAboutHearts():void
 	output("\n\n<i>“Oh, those drinks don’t have any alcohol in them.”</i> Kally grins happily. <i>“Instead, they have a 100% organic-produced alcohol substitute. It acts on the brain similarly, so you’ll still get a buzz if that’s what you’re after, but it’s a much more nuanced chemical. I’ve taken to calling in Adorahol, on account of the specific kind of drunk it gets people who over-imbibe.”</i>");
 	output("\n\nYou eye the drinks suspiciously, then look back at her. <i>“What kind of drunk?”</i>");
 	output("\n\nThe bartender’s tail wiggles behind her, as if it’s so full of exciting news that it’ll burst out of her fluffed-up fur at any second. <i>“Affectionate, empathetic drunk! You know how you’ll sometimes get those types who start telling everybody how they love them and buy the whole bar drinks? Usually that’s a fleeting thing, but with Adorahol, that’s the <i>whole</i> thing. People get lovey-dovey drunk. It’s why I’ve never had to break up a fight since I’ve opened up this place. The worst case of property damage I’ve ever had to deal with was a moosetaur trampling a half dozen chairs when he tried to stumble over to his wife for a surprise hug.”</i>");
-	output("\n\n”</i>");
+	output("\n\n<i>“");
 	if(pc.isBimbo()) output("That sounds awesome! I’m gonna drink like, ten of those! Where can I get this stuff?");
 	else output("Is it safe? Where do you even get it from?");
 	output("”</i>");
@@ -372,13 +372,13 @@ public function justKallyMakesEverything():void
 public function kallyDrinkDisplay():void
 {
 	output("\n\n<b><u>\\\[Price] Name</u></b>");
-	if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output("\n(Asterisks indicate items that contain the secret ingredient. Pretend they are hearts!)");
-	output("\n\\\[ 6] *Doe-Eyed Draught");
-	output("\n\\\[ 7] *Nutty Nookie");
-	output("\n\\\[10]  Vesperian Vapor");
-	output("\n\\\[12]  Royal Red");
-	output("\n\\\[20]  Pneumatic Pilsner");
-	output("\n\\\[22] *Kui Creamer");
+	if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output("\n<i>(Asterisks indicate items that contain the secret ingredient. Pretend they are hearts!)</i>");
+	output("\n\\\[ 6\\\] *Doe-Eyed Draught");
+	output("\n\\\[ 7\\\] *Nutty Nookie");
+	output("\n\\\[10\\\]  Vesperian Vapor");
+	output("\n\\\[12\\\]  Royal Red");
+	output("\n\\\[20\\\]  Pneumatic Pilsner");
+	output("\n\\\[22\\\] *Kui Creamer");
 }
 
 public function kallyDrinkMenu():void
@@ -386,37 +386,37 @@ public function kallyDrinkMenu():void
 	clearMenu();
 	if(pc.credits >= 6) 
 	{
-		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(0,"*Doe-Eyed D",kallyDrinkPurchase,"Doe-Eyed Draught","Doe-Eyed Draught is a local microbrew produced in-house and flavored our special additive. The warm amber beer bears a slight, hoppy flavor with a hint of almond. Sure to have you looking doe-eyed after a few drinks! 14% alcohol equivalency by volume.");
+		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(0,"*Doe-Eyed D",kallyDrinkPurchase,"Doe-Eyed Draught","Doe-Eyed Draught","Doe-Eyed Draught is a local microbrew produced in-house and flavored our special additive. The warm amber beer bears a slight, hoppy flavor with a hint of almond. Sure to have you looking doe-eyed after a few drinks! 14% alcohol equivalency by volume.\n\nPrice: 6 Credits");
 		else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","That marking is suspicious. You should ask about it.");
 	}
-	else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","You can't afford that.");
+	else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","You can't afford that.\n\nPrice: 6 Credits");
 	if(pc.credits >= 7) 
 	{
-		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(1,"*N. Nookie",kallyDrinkPurchase,"Nutty Nookie","A rich, nutty beer with a flavor that’s best described as chocolatey. Nutty Nookie’s aren’t for the faint of heart, as they contain 13% alcohol equivalency by volume and a generous helping of our secret ingredient to lend it a thicker, warmer afterglow.");
+		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(1,"*N. Nookie",kallyDrinkPurchase,"Nutty Nookie","Nutty Nookie","A rich, nutty beer with a flavor that’s best described as chocolatey. Nutty Nookie’s aren’t for the faint of heart, as they contain 13% alcohol equivalency by volume and a generous helping of our secret ingredient to lend it a thicker, warmer afterglow.\n\nPrice: 7 Credits");
 		else addDisabledButton(1,"*N. Nookie","Nutty Nookie","That marking is suspicious. You should ask about it.");
 	}
-	else addDisabledButton(1,"*N. Nookie","Nutty Nookie","You can't afford that.");
+	else addDisabledButton(1,"*N. Nookie","Nutty Nookie","You can't afford that.\n\nPrice: 7 Credits");
 	if(pc.credits >= 10) 
 	{
-		addButton(2,"V. Vapor",kallyDrinkPurchase,"V. Vapor","Like its namesake, a Vesperian Vapor is a light, crisp drink with a hint of citrous flavor hiding just beneath its bubbly effervescence. Contains 7% alcohol by volume.");
+		addButton(2,"V. Vapor",kallyDrinkPurchase,"V. Vapor","Vesperian Vapor","Like its namesake, a Vesperian Vapor is a light, crisp drink with a hint of citrous flavor hiding just beneath its bubbly effervescence. Contains 7% alcohol by volume.\n\nPrice: 10 Credits");
 	}
-	else addDisabledButton(2,"V. Vapor","Vesperian Vapor","You cannot afford that.");
+	else addDisabledButton(2,"V. Vapor","Vesperian Vapor","You cannot afford that.\n\nPrice: 10 Credits");
 	if(pc.credits >= 12) 
 	{
-		addButton(3,"Royal Red",kallyDrinkPurchase,"Royal Red","A foamy, crimson-colored beer with a bitter taste and the faintest hint of cherry. Royal Red is a common beer brewed locally on Vesperia. Contains 8% alcohol by volume.");
+		addButton(3,"Royal Red",kallyDrinkPurchase,"Royal Red","Royal Red","A foamy, crimson-colored beer with a bitter taste and the faintest hint of cherry. Royal Red is a common beer brewed locally on Vesperia. Contains 8% alcohol by volume.\n\nPrice: 12 Credits");
 	}
-	else addDisabledButton(3,"Royal Red","Royal Red","You cannot afford that.");
+	else addDisabledButton(3,"Royal Red","Royal Red","You cannot afford that.\n\nPrice: 12 Credits");
 	if(pc.credits >= 20) 
 	{
-		addButton(4,"P. Pilsner",kallyDrinkPurchase,"Pneumatic Pilsner","Has a kick like a launch catapult and an afterglow like an engine nozzle. Imported from breweries on Tallax. 16% alcohol by volume.");
+		addButton(4,"P. Pilsner",kallyDrinkPurchase,"Pneumatic Pilsner","Pneumatic Pilsner","Has a kick like a launch catapult and an afterglow like an engine nozzle. Imported from breweries on Tallax. 16% alcohol by volume.\n\nPrice: 20 Credits");
 	}
-	else addDisabledButton(4,"P. Pilsner","Pneumatic Pilsner","You cannot afford this.");
+	else addDisabledButton(4,"P. Pilsner","Pneumatic Pilsner","You cannot afford this.\n\nPrice: 20 Credits");
 	if(pc.credits >= 22) 
 	{
-		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(5,"*Kui Creamer",kallyDrinkPurchase,"Kui Creamer","Incredibly creamy with a mild sweetness that goes just right with a cold night by a warm fire. Kui Creamers are taken as a pair of shots. 21% alcohol equivalency by volume, with a concentration of our secret ingredient that’ll leave your heart fluttering.");
+		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(5,"*Kui Creamer",kallyDrinkPurchase,"Kui Creamer","Kui Creamer","Incredibly creamy with a mild sweetness that goes just right with a cold night by a warm fire. Kui Creamers are taken as a pair of shots. 21% alcohol equivalency by volume, with a concentration of our secret ingredient that’ll leave your heart fluttering.\n\nPrice: 22 Credits");
 		else addDisabledButton(5,"*Kui Creamer","Kui Creamer","That marking is suspicious. You should ask about it.");
 	}
-	else addDisabledButton(5,"*Kui Creamer","Kui Creamer","You cannot afford this.");
+	else addDisabledButton(5,"*Kui Creamer","Kui Creamer","You cannot afford this.\n\nPrice: 22 Credits");
 	if(flags["KALLYS_SECRET_INGREDIENT"] == undefined) 
 	{
 		addButton(6,"Hearts?",askKallyAboutHearts,undefined,"Hearts?","Ask Kally about the menu items marked with hearts (asterisks).");
@@ -548,7 +548,7 @@ public function kallyTalkMenu():void
 	//Ausar
 	addButton(7,"Ausar",askKallyAboutAusar,undefined,"Ausar","Ask her what she thinks about the ausar.");
 	//Kiro (Requires Unlock)
-	if(flags["KIRO_MET_KALLY"] != undefined) addButton(8,"Kiro",kallyTalksAboutKiro,undefined,"Kiro","");
+	if(flags["KIRO_MET_KALLY"] != undefined) addButton(8,"Kiro",kallyTalksAboutKiro,undefined,"Kiro","Ask her if she admires her sister.");
 	else addDisabledButton(8,"Locked","Locked","You have not unlocked this topic. Shhh. It's a sekrit.");
 	addButton(14,"Back",backToKallyMain);
 }
@@ -810,7 +810,7 @@ public function askKallyAboutAusar():void
 }
 
 //1- landing pad
-public function canadiaLandingPadBonus():void
+public function kiroKallyCanadiaLPBonus():void
 {
 	kiro.ballSizeRaw = 10;
 	if((flags["KIRO_MET_KALLY"] == undefined || flags["KIRO_MET_KALLY"] == 0) && MailManager.isEntryViewed("kirodatemeet"))
@@ -829,7 +829,7 @@ public function canadiaLandingPadBonus():void
 }
 
 //2 - airlock
-public function canadiaAirlockBonus():void
+public function kiroKallyCanadiaAirlockBonus():void
 {
 	if((flags["KIRO_MET_KALLY"] == 0 || flags["KIRO_MET_KALLY"] == 1) && MailManager.isEntryViewed("kirodatemeet"))
 	{
@@ -840,7 +840,7 @@ public function canadiaAirlockBonus():void
 }
 
 //3 - Hallway
-public function canadiaHallwayBonus():void
+public function kiroKallyCanadiaHallwayBonus():void
 {
 	if((flags["KIRO_MET_KALLY"] == 1 || flags["KIRO_MET_KALLY"] == 2) && MailManager.isEntryViewed("kirodatemeet"))
 	{
@@ -852,7 +852,7 @@ public function canadiaHallwayBonus():void
 }
 
 //4 - Outside the bar
-public function outsideCanadiaBarBonus():void
+public function kiroKallyCanadiaBarBonus():void
 {
 	if((flags["KIRO_MET_KALLY"] == 2) && MailManager.isEntryViewed("kirodatemeet"))
 	{
@@ -923,7 +923,7 @@ public function noDiceKiroNotHelping():void
 	clearOutput();
 	output("<i>“No.”</i>");
 	output("\n\nKiro rocks back in her chair, eyes wide with terror. <i>“W-what?!”</i>");
-	output("\n\n”</i>");
+	output("\n\n<i>“");
 	if(pc.isNice()) output("I’m not going to help you lie to your sister, if that’s what you intend. Just relax and be yourself. It’s the only way you’re going to have any kind of normal relationship with her.");
 	else if(pc.isMischievous()) output("Rebuilding a relationship on a bed of lies is only a good idea if you want it to crumple after a few months. Besides, I’m sure a sweet thing like you can charm her sister, no lying necessary.");
 	else output("You can tell your own damned lies. If she asks me anything, I’m feeding her the truth. And you should too, if you don’t want her fucking off after she sees through the bullshit.");
@@ -1007,7 +1007,7 @@ public function helpAKiroOut():void
 	else output("flirty. I got the impression from Kiro that you’d be the type to scold her for sluttery, not imagine us tonguing each other off.");
 	output("\n\nKiro looks like she wishes she could climb into the bottom of her drink and hide, but with no ability to shrink herself down, she settles for setting down her drink and leaning into your supportive touch.");
 	output("\n\nRaising an eyebrow, Kally wisely says nothing, relying on the silence to draw a statement from her sister’s own lips.");
-	output("\n\n”</i>[pc.Name] is right... mostly. The galotians didn’t have to do very much forcing with the state I was in, and neither did the rahn leading them. It wound up being about as consensual as sex can get when you start out tied to a support beam.”</i>");
+	output("\n\n<i>“[pc.name] is right... mostly. The galotians didn’t have to do very much forcing with the state I was in, and neither did the rahn leading them. It wound up being about as consensual as sex can get when you start out tied to a support beam.”</i>");
 	output("\n\nThe chubby bartender smiles leans in, chin propped on her palm as she listens with obvious interest.");
 	output("\n\nKiro, taking this for approval, gains in volume and gusto. She sits up proud and straight when she gets to the part about the nuns. <i>“The nun thing started out as a mistake. I didn’t have scanners good enough to know what kind of cargo that freighter was packing, and I didn’t know enough about terran-style religions to recognize the religious overtones of the name.”</i> She shakes her head, grinning sardonically. <i>“Needless to say, they didn’t have anything worth stealing unless I wanted to rob a bunch of idiot girls who only wanted to save the galaxy with lip service.”</i>");
 	output("\n\nKally cocks an eyebrow even higher. <i>“So you’re saying you didn’t force yourself on a bunch of foolish, young virgins? Really?”</i>");
@@ -1112,7 +1112,7 @@ public function kiroBFGFConvo():void
 	}
 	flags["KIRO_BF_TALK"] = 1;
 	processTime(5);
-	postKallyMeetingTalksMenu();
+	postKallyMeetingTalksMenu(false);
 }
 
 public function kallyKiroMeetingTalksOkay():Boolean
@@ -1124,11 +1124,11 @@ public function kallyKiroMeetingTalksOkay():Boolean
 	if(flags["KIRO_NUN_NUMBER"] == 1) talks++;
 	return (talks < 2);
 }
-public function postKallyMeetingTalksMenu():void
+public function postKallyMeetingTalksMenu(showText:Boolean = true):void
 {
 	if(kallyKiroMeetingTalksOkay())
 	{
-		output("\n\nShe drums her fingers on the table. <i>“Anything else before I go see my sis?”</i>");
+		if(showText) output("\n\nShe drums her fingers on the table. <i>“Anything else before I go see my sis?”</i>");
 		clearMenu();
 		if(flags["KIRO_BF_TALK"] == 1) 
 		{
@@ -1466,6 +1466,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 			else output(" Did you ever consider getting a vagina? ...Oh, what am I saying? Why would a filthy skank like you get a vagina when you have a far filthier hole modded into a perfect little cock-holster?");
 		}
 		else output("You must let all those rush the monsters fuck you back here! Let’s see how they stack up next to a real woman...");
+		output("”</i>");
 	}
 	//Else, gaping ass, no new PG.
 	else if(pc.ass.looseness() >= 4)
@@ -1694,7 +1695,7 @@ public function noKiroLetsNotShower():void
 	clearOutput();
 	showKiro(true);
 	output("You slink out of the ship and back to your own, trailing Kiro’s cum behind you as you go. Everyone you pass can see and smell what she did to you. The ");
-	if(rooms[currentLocation].planet("PLANET: ") != -1) output("planet");
+	if(rooms[currentLocation].planet.indexOf("PLANET: ") != -1) output("planet");
 	else output("station");
 	output(" is sure to be abuzz with tales of just how cum-drenched you were - and who did it to you.");
 	if(pc.exhibitionism() >= 33) output(" Why does that make your stomach all fluttery?");
@@ -1860,7 +1861,7 @@ public function tapKallysKegAsBimboII():void
 	//shots  - balls enormous and massive cumshot
 	if(rand(2) == 0)
 	{
-		output("\n\n”</i>");
+		output("\n\n<i>“");
 		if(flags["KALLY_BIMBO_CUMCASCADE"] == undefined) output("Normally I could never drink one of these on a shift, but if you’re going to be down there...");
 		else output("Ooh, is this your way of telling me you want me to give you another cum-cascade?");
 		output("”</i> Kally grabs a shot glass and pours something thick and white inside. <i>“Bottoms up!”</i> She knocks it back, then giggles. <i>“");
@@ -1991,3 +1992,4 @@ public function kallyBimboBeejedGenericEpilogue():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
