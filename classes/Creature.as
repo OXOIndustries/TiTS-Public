@@ -7973,10 +7973,10 @@
 			else milkFullness += fullnessDelta;
 
 			//Just check to make sure there's a cap for top end and bottom end
-			if(milkFullness > 200) milkFullness = 200;
-			else if(milkFullness < 0) {
+			if(milkFullness > milkFullnessMax()) milkFullness = milkFullnessMax();
+			else if(milkFullness < milkFullnessMin()) {
 				//trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
-				milkFullness = 0;
+				milkFullness = milkFullnessMin();
 			}
 			//trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity() + " Delta: " + fullnessDelta);
 			return mLsGained;
@@ -8016,7 +8016,6 @@
 			//So much easier now - just a quick lookup.
 			//Arg -1 = amount from biggest tits.
 			var fullness:Number = milkFullness;
-			if(fullness < 40 && hasPerk("Mega Milk")) fullness = 40;
 			if(arg == -1) return fullness/100 * milkCapacity();
 			//Arg 99 = amount from all tits
 			else if(arg == 99)
@@ -8112,11 +8111,12 @@
 			if(hasPerk("Milky")) amount *= 1.5;
 			//Boost lactation by a relevant amount
 			if(milkMultiplier < 125) boostLactation(1 + Math.round(amount/50));
+
 			//Actually reduce held milk
 			milkFullness -= amount;
 			//Set boob swelling to new appropriate tier
 			//trace("Milk fullness: " + milkFullness);
-			if(milkFullness < 0) milkFullness = 0;
+			if(milkFullness < milkFullnessMin()) milkFullness = milkFullnessMin();
 			//Honeypot reduction!
 			for(var bb:int = 0; bb < bRows(); bb++)
 			{
@@ -8125,6 +8125,17 @@
 			}
 			setBoobSwelling();
 			return milkFullness;
+		}
+		public function milkFullnessMin(): Number
+		{
+			var bonus:int = 0;
+			bonus += perkv1("Mega Milk");
+			return bonus;
+		}
+		public function milkFullnessMax(): Number
+		{
+			var bonus:int = 0;
+			return 200 + bonus;
 		}
 		public function setBoobSwelling():void
 		{
