@@ -1834,7 +1834,7 @@ public function tapKallysKegAsBimboII():void
 		{
 			output(" Your [pc.cocks] spasm");
 			if(pc.cockTotal() == 1) output("s");
-			output(" sympathetically, drooling [pc.cum] that so thick it may as well be maple syrup.");
+			output(" sympathetically, drooling [pc.cum] that’s so thick it may as well be maple syrup.");
 		}
 		output(" Your throat seizes in one last effort to drain Kally, milking out one big, last squirt, and then you’re cumming too. You’re a good, cummy little cock-sucker, creaming yourself to the feeling of having your belly full of warm, alien seed.");
 		//Threesomed

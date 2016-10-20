@@ -4855,7 +4855,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Kally, Times Sucked Her Cock:</b> " + drinkFromTapKally());
 					if(flags["KALLY_BIMBO_CUMCASCADE"] != undefined)
 					{
-						output2(", She gave you a cum cascade");
+						output2(", She gave you a cum-cascade");
 						if(flags["KALLY_BIMBO_CUMCASCADE"] == 1 && drinkFromTapKally() > 1) output2(" once");
 						if(flags["KALLY_BIMBO_CUMCASCADE"] == 2) output2(" twice");
 						if(flags["KALLY_BIMBO_CUMCASCADE"] >= 3) output2(" " + flags["KALLY_BIMBO_CUMCASCADE"] + " times");

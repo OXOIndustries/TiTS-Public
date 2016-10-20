@@ -12,16 +12,23 @@
 	{
 		public function Kally() 
 		{
-			this._latestVersion = 1;
-			this.version = this._latestVersion;
-			this._neverSerialize = true;
+			_latestVersion = 1;
+			version = _latestVersion;
+			_neverSerialize = true;
 			
-			this.short = "Kally";
-			this.originalRace = "kui-tan";
-			this.femininity = 85;
+			short = "Kally";
+			originalRace = "kui-tan";
+			
+			femininity = 85;
+			createCock();
+			cocks[0].cType = GLOBAL.TYPE_INHUMAN;
+			cocks[0].cLengthRaw = 13;
+			cocks[0].cockColor = "black";
+			cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
+			cocks[0].addFlag(GLOBAL.FLAG_SHEATHED);
+			cocks[0].flaccidMultiplier = (12/13);
+			
 			createPerk("Fixed CumQ",3000,0,0,0);
-			this.createCock();
-			this.cocks[0].cLengthRaw = 13;
 		}
 	}
 }
