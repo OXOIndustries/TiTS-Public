@@ -108,6 +108,7 @@ public function approachKiroAtTheBar():void
 			}
 		}
 		kiroMenu();
+		return;
 	}
 	//Orgy prompt!
 	else if(MailManager.isEntryUnlocked("kirofucknet") && (flags["KIRO_ORGY_DATE"] == undefined || flags["KIRO_ORGY_DATE"] + 2 < days) && pc.hasCock() && rand(4) == 0)
@@ -1081,6 +1082,9 @@ public function letsFuckKiro():void
 		else if(pc.hasVagina()) output(", circling [pc.oneVagina]");
 		else output(", rubbing down the bare, sensitive flesh");
 		output(" as you pull your kit off, tossing your [pc.gear] aside. When the airlock’s done processing you, the two of you tumble into the hallway, barely making it to Kiro’s cabin before her great big cock spills out of her undergarments as she tears them off, letting her massive horsemeat swing free. With a push, you’re thrown down onto her bed, surrounded by dirty mags and condom packs. Looming over you, Kiro idly strokes her cock, already fucking you with her eyes as you roll over, facing her and her huge endowment.");
+		
+		generateMapForLocation("KIROS SHIP QUARTERS");
+		
 		//[OPTIONS BITCH]
 		kiroSexMenu();
 	}
@@ -1176,8 +1180,8 @@ public function kiroSexMenu():void
 		else addDisabledButton(4,"PussyPump","PussyPump","Kiro doesn't trust you nearly enough for that.");
 	}
 	else addDisabledButton(4,"PussyPump","PussyPump","You need a valid device for pumping up Kiro's pussy.");
-	if(kiroRoughButtfucks() > 0) addButton(5,"Get Buttfucked",roughButtfuckFromKiroGo,false,"Get Buttfucked","Ask Kiro for another rough, buttfuck with plenty of spanking.");
-	else addDisabledButton(5,"Get Buttfucked","Get Buttfucked","You haven't unlocked this scene yet. You'll probably have to get her kinda irritated at you for this...");
+	if(kiroRoughButtfucks() > 0) addButton(5,"GetButtfuck",roughButtfuckFromKiroGo,false,"Get Buttfucked","Ask Kiro for another rough, buttfuck with plenty of spanking.");
+	else addDisabledButton(5,"GetButtfuck","Get Buttfucked","You haven't unlocked this scene yet. You'll probably have to get her kinda irritated at you for this...");
 	//THREESOMES~
 	addButton(6,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
 	addButton(14,"Back",kiroMenu);
@@ -1648,7 +1652,7 @@ public function kiroFucksYourCuntPartIII(x:int = 0):void
 	if(pc.isNice()) output("cracking jokes about the mess you’ve made. Of course, you help her clean it up. You helped make it, after all.");
 	else if(pc.isMischievous()) output("studiously avoiding the topic of who is going to have to clean up her bedroom after all this. Kiro caves first, sending you off so that she can deal with the mess. It is her place, after all.");
 	else output("trying not to get turned on enough for round two. You’ve got a busy day ahead of you, and she has a mess to clean up.");
-	output("\n\nThe trip back to the bar is blessedly short, at least.	");
+	output("\n\nThe trip back to the bar is blessedly short, at least.");
 	processTime(16);
 	pc.shower();
 	clearMenu();
@@ -1807,6 +1811,8 @@ public function repeatFillingKirosCuntEpilogue():void
 //Milker Doubletime, By Savin
 public function kiroMilkerDoubleTimeBySavin():void
 {
+	generateMapForLocation("KIROS SPUNK CHAMBER");
+	
 	clearOutput();
 	showKiro(true);
 	author("Savin");

@@ -74,7 +74,7 @@ public function phoenixRecRoom():void
 			phoenixRecRoomAtTavros();
 		}
 		
-		addButton(7, "Exit", move, "TAVROS HANGAR");
+		if (currentLocation != shipLocation) addButton(7, "Exit", move, shipLocation);
 	}
 	else
 	{

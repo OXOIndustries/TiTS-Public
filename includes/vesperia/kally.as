@@ -549,7 +549,7 @@ public function kallyTalkMenu():void
 	//Galotians
 	addButton(3,"Galotians",askKallyAboutGalotians,undefined,"Galotians","Ask her what she thinks about galotians.");
 	//New Texas
-	if(flags["LANDED_ON_TEXAS"] == undefined) addButton(4,"New Texas",talkToKallyAboutNewTexas,undefined,"New Texas","Ask her what she thinks about New Texas.");
+	if(flags["LANDED_ON_TEXAS"] != undefined) addButton(4,"New Texas",talkToKallyAboutNewTexas,undefined,"New Texas","Ask her what she thinks about New Texas.");
 	else addDisabledButton(4,"Locked","Locked","You need to know more about the universe to ask this.")
 	//Mhen’ga
 	addButton(5,"Mhen'ga",talkToKallyAboutMhenga,undefined,"Mhen'ga","Ask her what she thinks about Mhen'ga.");
@@ -1016,6 +1016,7 @@ public function helpAKiroOut():void
 	output("\n\n<i>“Let’s face it, galotians are notorious cum-dumps. It wouldn’t surprise me if they pinned poor Kiro down and had their way with her - only to get more of that legendary kui-tan volume than they bargained for,”</i> you supply as helpfully as you can. <i>“And Kiro doesn’t exactly seem like the type to force herself on a nun! Sure, her cock was probably hard and dripping at the sight of all those delicious, supposedly pious sisters, but I bet every one she took asked her for it.”</i> You put a reassuring hand on Kiro’s shoulder. <i>“I think Kiro is just surprised to see you so... ");
 	if(pc.isBimbo()) output("like, totally fuckable and stuff. For the record, I’m totes up for letting you watch us have a little tongue fun.");
 	else output("flirty. I got the impression from Kiro that you’d be the type to scold her for sluttery, not imagine us tonguing each other off.");
+	output("”</i>");
 	output("\n\nKiro looks like she wishes she could climb into the bottom of her drink and hide, but with no ability to shrink herself down, she settles for setting down her drink and leaning into your supportive touch.");
 	output("\n\nRaising an eyebrow, Kally wisely says nothing, relying on the silence to draw a statement from her sister’s own lips.");
 	output("\n\n<i>“[pc.name] is right... mostly. The galotians didn’t have to do very much forcing with the state I was in, and neither did the rahn leading them. It wound up being about as consensual as sex can get when you start out tied to a support beam.”</i>");
@@ -1397,19 +1398,19 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 	output("\n\n<i>“You think you’re so clever, don’t you slut?”</i> Kiro grabs you by the neck, tight enough for you to feel the points of her claws ");
 	if(pc.hasScales()) output("clicking against your [pc.skinFurScales]");
 	else output("pricking at your [pc.skin]");
-	output(". <i>“");
+	output(". ");
 
 	//Post-sistershist-intro:
 	if(threesomeTalkIntro) 
 	{
-		output("\n\nYou think you can just rub ol’ Kiro’s dick, and get her to do whatever you want. Play her like a fiddle, tease her until she’s as depraved as you.”</i> She climbs off you and swats your ass hard enough to leave a bright red imprint of her alien palm");
+		output("<i>“You think you can just rub ol’ Kiro’s dick, and get her to do whatever you want. Play her like a fiddle, tease her until she’s as depraved as you.”</i> She climbs off you and swats your ass hard enough to leave a bright red imprint of her alien palm");
 		if(pc.hasFur() || pc.hasScales() || pc.hasChitin()) output(" beneath your [pc.skinFurScalesNoun]");
 		output(". <i>“Well it’s time to pay the piper, bitch, and this piper is gonna lay some pipe.”</i>");
 	}
 	//Else
 	else
 	{
-		output("\n\nYou think you can come in here and get me to fuck you exactly how you want. Well, I have news for you...”</i> Kiro leans low enough for you to feel her teeth against your [pc.ear], <i>“you might be able to get me started, but there’s nothing you can do to stop me.”</i> She slaps your ass with her other hand, hard enough to leave a bright red imprint of her alien palm");
+		output("<i>“You think you can come in here and get me to fuck you exactly how you want. Well, I have news for you...”</i> Kiro leans low enough for you to feel her teeth against your [pc.ear], <i>“you might be able to get me started, but there’s nothing you can do to stop me.”</i> She slaps your ass with her other hand, hard enough to leave a bright red imprint of her alien palm");
 		if(pc.hasFur() || pc.hasScales() || pc.hasChitin()) output(" beneath your [pc.skinFurScalesNoun]");
 		output(". <i>“From here on out, you’re going to be my toy. You’ll do what I say, take my cock when and where I want you to, and love every second of it.”</i>");
 	}
