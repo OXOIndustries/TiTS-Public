@@ -1741,6 +1741,12 @@ public function variableRoomUpdateCheck():void
 		rooms["UVI P30"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["UVI P30"].removeFlag(GLOBAL.NPC);
 	}
+	
+	
+	/* MISC */
+	
+	// Kiro's Airlock
+	kirosShipAirlockUpdate();
 }
 
 public function newProcessTime(deltaT:uint, doOut:Boolean = true):void

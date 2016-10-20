@@ -2442,7 +2442,8 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 	if(annoDickType == 0) output("thick, footlong human cock");
 	else if(annoDickType == GLOBAL.TYPE_EQUINE) output("monolithic horsecock, as thick around as her arm and near as long as her leg, turning Anno into a veritable tripod. <i>“You like ‘em big, huh?”</i> she adds, licking her lips");
 	else if(annoDickType == GLOBAL.TYPE_CANINE) output("thick, pointed dog-pecker, complete with a bulbous bitch-breaker mounted on its hilt, just above Anno’s own crotch");
-	else output("long, thick kitten-cock, complete with ridges of bumpy bristles, perfect for stimulating every inch of your [pc.vagOrAss].");
+	else output("long, thick kitten-cock, complete with ridges of bumpy bristles, perfect for stimulating every inch of your [pc.vagOrAss]");
+	output(".");
 
 	output("\n\nAnno grins at you, stroking her big hardlight cock and leaning back onto her workbench. Eyeing you up and down, your lover spreads her legs around her glowing appendage and beckons you forward. <i>“Why don’t you go ahead and lube this bad boy up with your mouth, huh?”</i> ");
 
@@ -2527,7 +2528,7 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 	if(pc.hasVagina()) output("cunt");
 	else output("ass");
 	output("-stretching pleasure driving you straight over the edge. You scream your climax to the heavens, your hole writhing wildly around Anno’s tingling hardlight dick lodged deep up your [pc.vagOrAss].");
-	if(pc.hasCock()) output(" [pc.cumNoun] rushes through your [pc.cocks] and, just as Anno commanded, sprays out and across her waiting fingers. She lets out a sated sigh as your orgasm slathers her digits in [pc.cum], using your fluid as lube to continue jacking you until you’ve blown every drop of your load onto her desk.");
+	if(pc.hasCock()) output(" [pc.CumNoun] rushes through your [pc.cocks] and, just as Anno commanded, sprays out and across her waiting fingers. She lets out a sated sigh as your orgasm slathers her digits in [pc.cum], using your fluid as lube to continue jacking you until you’ve blown every drop of your load onto her desk.");
 
 	output("\n\nYou give a shuddered gasp, all your weight hard on the desk as you ride out your orgasm. Anno’s hips move ever so slightly, slight thrusts in and out of you as she milks herself through the sensory feedback running through her hardlight panties. She rests against you after a few long moments, her hips pressed into your [pc.butt] as she deactivates the strap. You feel a sudden emptiness as the cock inside you flashes out of existence, but that feeling is replaced by warmth and comfort as Anno’s hands slip around you, holding you close. She presses flush against your back, hands playing across your body, especially your [pc.chest], slipping between you and the table.");
 

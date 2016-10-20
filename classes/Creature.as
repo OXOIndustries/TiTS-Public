@@ -52,6 +52,7 @@
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Interfaces.ParseText;
+	import classes.GameData.CodexManager;
 
 
 	/**
@@ -3192,6 +3193,31 @@
 			if(isHerm() && mfn("m", "f", "n") == "m") return true;
 			return false;
 		}
+		// For special case alien sex/gender override text in combat!
+		public function genderTextOverride():String
+		{
+			var autoSex:String = "";
+			
+			// Goo races
+			if
+			(	originalRace == "galotian" || race().indexOf("galotian") != -1
+			||	originalRace.indexOf("rahn") != -1 || isRahn()
+			||	originalRace == "conglomerate"
+			||	originalRace == "ganrael" || race().indexOf("ganrael") != -1
+			)
+			{
+				autoSex = "Unisex";
+			}
+			// Nyrea
+			if(originalRace == "nyrea" || race().indexOf("nyrea") != -1)
+			{
+				if(isFemale()) autoSex = "Male";
+				if(isMale()) autoSex = "Female";
+				if(!CodexManager.entryViewed("Nyrea")) autoSex += "???";
+			}
+			
+			return autoSex;
+		}
 		/**
 		 * Brynn has a bunch of shit that leans on this that kinda needs to be expanded.
 		 * @Fen- if you decide how you're going to handle differentiating the type of treatment applied, remind me after to go through and clean it up to match.
@@ -3632,8 +3658,10 @@
 					intelligenceRaw = intelligenceMax();
 				}
 			}
-
-			var currInt:int = intelligenceRaw + intelligenceMod;
+			var bonus:Number = 0;
+			if(hasStatusEffect("Adorahol")) bonus -= statusEffectv1("Adorahol");
+			
+			var currInt:int = intelligenceRaw + intelligenceMod + bonus;
 			
 			if (hasStatusEffect("Focus Pill")) currInt += 5;
 			if(hasPerk("Dumb4Cum"))
@@ -3731,6 +3759,7 @@
 			if (accessory is Allure) currLib += 20;
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
+			if (hasStatusEffect("Adorahol")) currLib += (5 * statusEffectv1("Adorahol"));
 			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
 			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
@@ -3771,6 +3800,7 @@
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
 			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
+			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
@@ -4653,7 +4683,7 @@
 					types.push("goo-like", "amorphous", "gelatinous", "slimy", "gooey");
 					if(isRahn()) types.push("rahn");
 					if(race() == "galotian") types.push("galotian");
-					if(race() == "Conglomerate") types.push("nanomite");
+					if(race() == "conglomerate") types.push("nanomite");
 					break;
 				case GLOBAL.TYPE_BEE:
 					types.push("bright yellow", "insectile", "straw-like", "bee-like");
@@ -16579,6 +16609,13 @@
 				
 		public function getCombatPronoun(type:String):String
 		{
+			if(isPlural)
+			{
+				if (type == "s" || type == "heshe") return "they";
+				if (type == "o" || type == "himher") return "them";
+				if (type == "pa" || type == "hisher") return "their";
+				if (type == "pp" || type == "hishers") return "theirs";
+			}
 			if (type == "s" || type == "heshe") return (this is PlayerCharacter ? "you" : mfn("he", "she", "it"));
 			if (type == "o" || type == "himher") return (this is PlayerCharacter ? "you" : mfn("him", "her", "it"));
 			if (type == "pa" || type == "hisher") return (this is PlayerCharacter ? "your" : mfn("his", "her", "its"));

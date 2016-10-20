@@ -156,11 +156,6 @@ package classes.Characters
 				kGAMECLASS.dumb4CumReset();
 			}
 			if(cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
-			if(cumFrom != null)
-			{
-				if(cumFrom is Kally) imbibeAlcohol(20);
-				if(hasPerk("Autofellatio Queen") && cumFrom is PlayerCharacter) this.energy(35);
-			}
 			return false;
 		}
 		// *shrug*
@@ -206,10 +201,14 @@ package classes.Characters
 				case "milk":
 					energy(10 * fxMult);
 					if(fluidFrom.hasPerk("Treated Milk")) energy(10 * fxMult);
-					if(fluidType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) modThickness((1 * fxMult), false);
+					if(!(fluidFrom is PlayerCharacter))
+					{
+						if(fluidType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) modThickness((1 * fxMult), false);
+					}
 					break;
 				case "cum":
-					/* Nothing yet! */
+					if(fluidFrom is Kally) imbibeAlcohol(20);
+					if(hasPerk("Autofellatio Queen") && fluidFrom is PlayerCharacter) energy(35 * fxMult);
 					break;
 				case "girl-cum":
 					/* Nothing yet! */

@@ -93,12 +93,60 @@ public function boardKirosShipRescue(destination:String):void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function kirosShipLocationSetter():Boolean
+{
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] != undefined)
+	{
+		rooms[currentLocation].planet = rooms[shipLocation].planet;
+		rooms[currentLocation].system = rooms[shipLocation].system;
+	}
+	showLocationName();
+	return false;
+}
+
 public function kirosShipInterior():void
 {
 	addButton(0, "Wails", kirosShipWails);
 }
+public function kirosShipInterior1():Boolean
+{
+	output("The inside of the other ship is so richly appointed that it looks to belong to some noble or C.E.O. The halls are paneled with exotic woods, covered in vertical amber and brown striae. The panels are lavishly polished to an almost mirror shine, and the floor is padded with earth-toned carpets so plush that you sink an inch into them as you walk. Small flowering plants are positioned at different points along the short hallway. There are a number of open doorways leading to different sections of the ship");
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) output(", but the distressed wails are coming from further down the hall to the north");
+	output(".");
+	
+	return kirosShipLocationSetter();
+}
+public function kirosShipInterior2():Boolean
+{
+	output("The lavishly decorated hallway continues on its north-south journey through the center of this ship, lined by chambers on nearly all sides. The eastern door hangs askew. An elaborately carved plate declares it to be the Captain's quarters.");
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) output(" Sounds of distress come almost nonstop from the west. Whoever is in trouble on this ship, they must be in there. Oddly, that room has no designation.");
+	else output(" To the west, there is an unnamed room.");
+	
+	return kirosShipLocationSetter();
+}
 
-public function kirosShipQuarters():void
+public function kirosShipAirlockUpdate():void
+{
+	if(rooms[currentLocation].planet == "CANADIA STATION")
+	{
+		rooms["KIROS SHIP AIRLOCK"].removeFlag(GLOBAL.SHIPHANGAR);
+	}
+	else
+	{
+		rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.SHIPHANGAR);
+	}
+}
+public function kirosShipAirlock():Boolean
+{
+	if (currentLocation != shipLocation)
+	{
+		addButton(7, "Exit", move, shipLocation);
+	}
+	
+	return phoenixLocationSetter();
+}
+
+public function kirosShipQuarters():Boolean
 {
 	author("Savin");
 
@@ -115,6 +163,8 @@ public function kirosShipQuarters():void
 
 	if (flags["RESCUE KIRO TOOK PISTOL"] == undefined) addButton(0, "Take Pistol", kirosShipPistol);
 	if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined) addButton(1, "Take Cutlass", kirosShipCutlass);
+	
+	return kirosShipLocationSetter();
 }
 
 public function kirosShipPistol():void
@@ -165,6 +215,15 @@ public function kirosShipCutlassCheck():void
 
 public function kirosShipWails(doOutput:Boolean = true):Boolean
 {
+	kirosShipLocationSetter();
+	
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] != undefined)
+	{
+		output("The room looks to have once been a rec room in its early days, but the pool tables, holoprojectors and couches have all been shoved up into the corners in a pile. A massive mechanical device dominates the emptied space, hanging from the ceiling. Dozens of cables and pipes shroud its central workings from view. Perched atop it, a vidscreen and a pair of holoprojectors flicker on and off, sometimes displaying little more than fuzzes of static. Other times they display intensely erotic ultraporn, the kind of stuff you need sixteen licenses to produce.");
+		
+		return false;
+	}
+	
 	showKiroBust(true);
 
 	if (doOutput)

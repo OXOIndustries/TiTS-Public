@@ -55,7 +55,8 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Height:</b> " + prettifyLength(pc.tallness));
 		output2("\n<b>* Weight:</b> " + prettifyWeight(pc.fullBodyWeight()));
 		output2("\n<b>* Sex:</b> ");
-		if(pc.hasCock() && !pc.hasVagina()) output2("Male");
+		if(pc.genderTextOverride() != "") output2(pc.genderTextOverride());
+		else if(pc.hasCock() && !pc.hasVagina()) output2("Male");
 		else if(!pc.hasCock() && pc.hasVagina()) output2("Female");
 		else if(pc.hasCock() && pc.hasVagina()) output2("Hermaphrodite");
 		else output2("Sexless");
@@ -1063,17 +1064,17 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 		if(amount >= 1 && printMeters != -2)
 		{
 			// Feet
-			if(amount >= 12) retStr += Math.floor(amount / 12) + "\'";
+			var feet:int = Math.floor(amount / 12);
 			// Inches
+			var inch:int = Math.floor(amount % 12);
+			var num:String = "";
+			var den:String = "";
 			if(amount % 12 > 0)
 			{
-				if(Math.floor(amount % 12) > 0) retStr += " " + Math.floor(amount % 12);
 				// Fractional stuff, proper maffs format! (to the nearest 1/16th inch)
 				var fraction:Number = formatFloat((amount - Math.floor(amount)), 4);
 				if(fraction >= 0.0125)
 				{
-					var num:String = "";
-					var den:String = "";
 					if(fraction <= 0.0625) { num = "1"; den = "16"; }
 					else if(fraction <= 0.125) { num = "1"; den = "8"; }
 					else if(fraction <= 0.1875) { num = "3"; den = "16"; }
@@ -1089,12 +1090,14 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 					else if(fraction <= 0.8125) { num = "13"; den = "16"; }
 					else if(fraction <= 0.875) { num = "7"; den = "8"; }
 					else if(fraction <= 0.9375) { num = "15"; den = "16"; }
-					// Build fractions
-					if(den != "") retStr += " <sup>" + num + "</sup>/<sub>" + den + "</sub>";
+					else { feet++; num = ""; den = ""; }
 				}
-				else if(fraction > 0.01) retStr += " 0";
-				retStr += "\"";
 			}
+			if(feet > 0) retStr += feet + "\'";
+			if(inch > 0) retStr += (retStr != "" ? " " : "") + inch;
+			// Build fractions
+			if(den != "") retStr += (retStr != "" ? " " : "") + "<sup>" + num + "</sup>/<sub>" + den + "</sub>";
+			if(inch > 0 || den != "") retStr += "\"";
 		}
 		// Less than an inch get decimal format
 		else retStr += formatFloat(amount, 3) + " in";
@@ -4848,6 +4851,24 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Kally:</b> Met her");
 				if(flags["KIRO_MET_KALLY"] >= 4) output2(" with Kiro");
 				if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output2(", Know of her secret ingredient");
+				if(drinkFromTapKally() > 0)
+				{
+					output2("\n<b>* Kally, Times Sucked Her Cock:</b> " + drinkFromTapKally());
+					if(flags["KALLY_BIMBO_CUMCASCADE"] != undefined)
+					{
+						output2(", She gave you a cum-cascade");
+						if(flags["KALLY_BIMBO_CUMCASCADE"] == 1 && drinkFromTapKally() > 1) output2(" once");
+						if(flags["KALLY_BIMBO_CUMCASCADE"] == 2) output2(" twice");
+						if(flags["KALLY_BIMBO_CUMCASCADE"] >= 3) output2(" " + flags["KALLY_BIMBO_CUMCASCADE"] + " times");
+					}
+					if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined)
+					{
+						output2(", Kiro interrupted");
+						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 1 && drinkFromTapKally() > 1) output2(" once");
+						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 2) output2(" twice");
+						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] >= 3) output2(" " + flags["KIRO_INTERRUPT_KALLYBEEJ"] + " times");
+					}
+				}
 				variousCount++;
 			}
 		}
