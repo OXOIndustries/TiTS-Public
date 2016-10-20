@@ -31,7 +31,7 @@
 
 
 			this.short = "Dr. Badger";
-			this.originalRace = "Anthromorph";
+			this.originalRace = "anthromorph";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "Placeholder";

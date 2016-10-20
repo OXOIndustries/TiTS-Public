@@ -29,6 +29,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Vi";
+			originalRace = "automaton";
 			
 			//Old V-Ko Menu
 			this.inventory.push(new ShieldBoosterMkII());

@@ -34,6 +34,17 @@ public function showNayna(nude:Boolean = false):void
 	else showName("NAYNA\nTRIVERRE");
 }
 
+public function getNaynaPregContainer():PregnancyPlaceholder
+{
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	pp.cocks[0].cLengthRaw = 9;
+	pp.createPerk("Fixed CumQ",100000,0,0,0);
+	
+	return pp;
+}
+
 public function naynaShutterUpdate():void
 {
 	//Update? UPDATE!
@@ -1206,11 +1217,7 @@ public function blowNayna3():void
 	output(", all over your back, in the crack of your ass, and even covering the bottoms of your [pc.feetOrFoot].");
 	output("\n\n<i>“Fuck yes! Fuck yes! Fuck yesssss!”</i> Nayna chants as she does, completely lost to the pleasure, jacking her cock like a woman possessed until its seemingly endless virility goes dry, and even then, she slumps down beside you, fitfully grinding it into your sperm-slicked shape. <i>“It’s so good, [pc.name].”</i> She moans nestling her cheek into your side while her still-hard length twitches against your [pc.hip]. <i>“So good... mmm...”</i>");
 	// Create Nayna
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 9;
-	pp.createPerk("Fixed CumQ",100000,0,0,0);
+	var pp:PregnancyPlaceholder = getNaynaPregContainer();
 	pc.loadInMouth(pp);
 	processTime(11);
 	pc.lust(100);
@@ -1562,11 +1569,7 @@ public function naynaFucksYourButt():void
 		output(" your pussy juices down your thighs.");
 	}
 	// Create Nayna
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasCock()) pp.createCock();
-	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[0].cLengthRaw = 9;
-	pp.createPerk("Fixed CumQ",100000,0,0,0);
+	var pp:PregnancyPlaceholder = getNaynaPregContainer();
 	pc.loadInAss(pp);
 
 	output("\n\n<i>“Can’t stop!”</i> she groans, humping your ass. Her hips grind hard against yours as more and more of the laquine’s cum fills you. The pressure should be too much, but her massively-flared cockhead keeps her dick from budging, leaving her cum with only one way to go. Your belly swells, and you lose yourself in the debased delight of being her fucktank. By the time her humping turns into a steady grind against your hips, you feel your [pc.belly] brushing against the floor. You feel full to bursting, but Nayna’s stream seems to have finally stopped.");

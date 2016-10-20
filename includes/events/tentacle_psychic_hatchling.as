@@ -124,7 +124,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 	}
 	else output(" Best of all is the wickedly sensuous experience of having an anal orgasm. Your whole body shakes with the force of it, spellbound by the pulsing length inside it.");
 	output(" <i>It feels so good to cum for the tentacles,</i> so powerful and liberating.");
-	output("\n\nYou relax more and more each time your body is brought to the precipice, allowing ever greater numbers of the beast’s tentacles to plunge inside your eager form. They stretch you, but it doesn’t hurt. The squirt on you, but you aren’t disgusted. After all, <i>your body was made for this.</i> Every orgasm is an affirmation of your role, and every new tentacle you can take is a pat on the head for a job well done. The deck below is sloppy with cum and slime, <i>just the way you like it.</i>");
+	output("\n\nYou relax more and more each time your body is brought to the precipice, allowing ever greater numbers of the beast’s tentacles to plunge inside your eager form. They stretch you, but it doesn’t hurt. They squirt on you, but you aren’t disgusted. After all, <i>your body was made for this.</i> Every orgasm is an affirmation of your role, and every new tentacle you can take is a pat on the head for a job well done. The deck below is sloppy with cum and slime, <i>just the way you like it.</i>");
 	processTime(35);
 	pc.orgasm();
 	pc.orgasm();

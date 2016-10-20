@@ -145,18 +145,22 @@
 				TFList.push(4);
 			
 			// TF texts
-			msg += "\n\n<u>The Clippex drug has an effect....</u>";
+			msg += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Clippex drug has an effect....</u>";
+			var changed:Boolean = false;
 			
 			while(totalTFs > 0)
 			{
-				msg += "\n\n";
 				//Pick a TF	
 				x = rand(TFList.length);
 				select = TFList[x];
 				//Cull 'dat TF from the list.
 				TFList.splice(x,1);
+				
+				if(select == 0 && changed) { /* No new line */ }
+				else msg += "\n\n";
+				
 				//#0 Catch all
-				if(select == 0)
+				if(select == 0 && !changed)
 				{
 					msg += ParseText("Your [pc.nipples] tingle for a brief moment but nothing seems to happen...");
 					if((target.hasCuntNipples() || target.hasLipples()) && target.nippleLengthRatio >= 0.8 && target.smallestTitSize() >= 3)
@@ -193,6 +197,7 @@
 								}
 							}
 						}
+						changed = true;
 					}
 					else
 					{
@@ -206,7 +211,7 @@
 					// Increase size of nipples towards 3” by 0.8 per dose
 					if(isPresistentTF) newNipLengthRatio = target.nippleLengthRatio + 0.8;
 					
-					if(!isPresistentTF && target.nippleLengthRatioUnlocked(newNipLengthRatio))
+					if(target.nippleLengthRatioUnlocked(newNipLengthRatio))
 					{
 						if(!isPresistentTF)
 						{
@@ -228,6 +233,7 @@
 							target.lust(10);
 						}
 						target.nippleLengthRatio = newNipLengthRatio;
+						changed = true;
 					}
 					else
 					{
@@ -257,6 +263,7 @@
 						}
 						target.nippleLengthRatio = (Math.round(target.nippleLengthRatio * 0.25 * 100) / 100);
 						if(target.nippleLengthRatio < 0.25) target.nippleLengthRatio = 0.25;
+						changed = true;
 					}
 					else
 					{
@@ -285,6 +292,7 @@
 								target.slowStatGain("libido", 3);
 							}
 						}
+						changed = true;
 					}
 					else
 					{

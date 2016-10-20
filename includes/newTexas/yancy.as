@@ -229,7 +229,7 @@ public function getMilkedByYancyYaSloot():void
 
 		if(pc.isNude())
 		{
-			output(" Starting with gentle petting, he slowly massages your body. He doesn’t even make an effort to avoid your overheated [pc.nippleNouns]s");
+			output(" Starting with gentle petting, he slowly massages your body. He doesn’t even make an effort to avoid your overheated [pc.nipplesNoun]");
 			if(pc.hasVagina()) output(" or simmering slit");
 			if(pc.totalVaginas() > 1) output("s");
 			output(".");
@@ -239,7 +239,7 @@ public function getMilkedByYancyYaSloot():void
 			if(pc.armor.shortName != "") output(" Starting with your [pc.armor],");
 			else if(pc.isChestGarbed()) output(" Starting with your [pc.upperGarment],");
 			else output(" Smirking at your lack of anything but [pc.lowerGarment],");
-			output(" he begins to undress you, unwrapping you like a present, not very careful to avoid your overheated [pc.nippleNoun]s");
+			output(" he begins to undress you, unwrapping you like a present, not very careful to avoid your overheated [pc.nipplesNoun]");
 			if(pc.hasVagina()) output(" or simmering slit");
 			if(pc.totalVaginas() > 1) output("s");
 			output(".");
@@ -425,9 +425,12 @@ public function treatedPCsSuckYancysDickForMilkPartIV():void
 	output("\n\n<i>“Uh... thanks.”</i> The big guy blushes, rubbing his neck uncomfortably. <i>“Listen... I know you’re not mine or anything, but...”</i> He trails off, fishing for words while giving his cock a few idle strokes.");
 	output("\n\nYou twirl away and gather your things, feeling a good bit lighter thanks to the milking. <i>“How could I not come back after you treated me so nice?”</i>");
 	output("\n\nYancy smiles and blushes harder.");
-	milkResultDisplay();
+	
 	//End
 	processTime(2);
+	
+	milkResultDisplay();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -591,11 +594,15 @@ public function treatedPCsGetCuntFilledAndMilkedPtIII():void
 	output("\n\n");
 	if(pc.hasVagina()) output("Awww, that’s too bad. You get dressed and make ready to leave, but Yancy’s dick is still all wet with the mixed juices. You drop to your [pc.knees] and lick him clean, pleased to see him back at full mast by the time you finished. The next girl should appreciate your effort, and besides, his cum is like, totally tasty.");
 	else output("Yeah... maybe someday you can bear this bull a few kids of his own, but for now, you’ll settle for tonguing off his pole. There’s no sense in letting such a nice rod go uncleaned. The next girl will appreciate it, and if the next girl is you... all that time spent hard ought to help him refill with more yummy sauce!");
-	milkResultDisplay();
+	
 	processTime(3);
+	
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & fucked";
 	IncrementFlag("YANCY_MILKED_PC");
 	IncrementFlag("YANCY_SEXED");
+	
+	milkResultDisplay();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -784,11 +791,15 @@ public function untreatedMilkedAndFuckedII():void
 		else output("Not that we need it for this, but it’s just habit, you know?");
 		output("\"</i> There’s a slight flush to his cheeks, despite being naked and his magnificent tool covered in his and your love juice. <i>\"Come back anytime, y’hear?\"</i>");
 	}
-	milkResultDisplay();
+	
 	processTime(2);
+	
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & fucked";
 	IncrementFlag("YANCY_MILKED_PC");
 	IncrementFlag("YANCY_SEXED");
+	
+	milkResultDisplay();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -836,9 +847,8 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 
 	output("\n\n<i>\"Anytime you want to do that again - anytime at all - come see me.\"</i> Yancy winks and slips on his shorts. You feel a pang of regret seeing the fabric cover up his well-licked man meat. Perhaps next time he’ll fuck your [pc.vagOrAss] with it, you fantasize, feeling a little giddy at the thought...");
 
-	milkResultDisplay();
-
 	processTime(30);
+	
 	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
 	pc.loadInMouth(ppYancy);
 	pc.loadInMouth(ppYancy);
@@ -847,6 +857,9 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & sucked";
 	IncrementFlag("YANCY_MILKED_PC");
 	IncrementFlag("YANCY_SEXED");
+	
+	milkResultDisplay();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -903,10 +916,12 @@ public function tittyFuckingYancyUntreatedEpilogue():void
 	if(pc.legType == GLOBAL.TYPE_HUMAN) output(" toe");
 	else output(" [pc.foot]");
 	output(" with glorious bull spunk. It leaks from your [pc.vagOrAss] and down your [pc.thighs], and you shiver with pleasure, feeling well and truly satiated. Yancy himself is completely spent, lying short of breath on the table. It seems you wore the bull boy out.");
-	milkResultDisplay();
+	
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & titfucked";
 	flags["YANCY_SEXED"] = 1;
+	
 	processTime(10);
+	
 	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(pc.hasVagina())
 	{
@@ -929,6 +944,9 @@ public function tittyFuckingYancyUntreatedEpilogue():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	
+	milkResultDisplay();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1033,13 +1051,17 @@ public function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 	else output("lean over ");
 	output("and give him a peck on the cheek.");
 	output("\n\n<i>“You come back now, you hear,”</i> he chuckles as you scoot out of the stall, leaving the bull to recover.");
-	milkResultDisplay();
+	
 	processTime(30);
+	
 	pc.orgasm();
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & pitched";
 	IncrementFlag("YANCY_MILKED_PC");
 	IncrementFlag("YANCY_BUTTFUCKED_BY_PC");
 	IncrementFlag("YANCY_SEXED");
+	
+	milkResultDisplay();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

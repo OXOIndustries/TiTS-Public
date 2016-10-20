@@ -37,7 +37,7 @@ package classes.GameData.Pregnancy
 			}
 			else if (possGenders.length == 1)
 			{
-				var type:uint = possGenders[0].w;
+				var type:uint = possGenders[0].v;
 				
 				switch (type)
 				{

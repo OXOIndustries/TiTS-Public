@@ -173,6 +173,7 @@
 		include "../includes/tavros/semith.as";
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
+		include "../includes/tavros/seraXPreg.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/tamaniCorpShop.as";
@@ -180,8 +181,9 @@
 		include "../includes/tavros/vahn.as";
 
 		//Vesperia/Canadia Station
-		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/kally.as";
+		include "../includes/vesperia/rooms.as";
+		include "../includes/vesperia/roomFunctions.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";

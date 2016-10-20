@@ -106,8 +106,12 @@ public function useInstalledDickBox():void
 		if(pc.cocks[y].thickness() <= 4 && pc.cocks[y].cLength() <= 20) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}
-	if(!pc.hasCock()) addDisabledButton(0,"No Penis","No Penis","You don’t have any penis to insert into the machine.");
-	if(pc.cockTotal() == 1) addButton(0,"Yes",cockBoxUse,0,"Yes","Yes, you will stick your dick in that box.");
+	if(!pc.hasCock()) addDisabledButton(0,"No Penis","Use Dong Designer","You don’t have a penis to insert into the machine.");
+	if(pc.cockTotal() == 1)
+	{
+		if(pc.cocks[0].thickness() > 4 || pc.cocks[0].cLength() > 20) addDisabledButton(0,"Use","Use Dong Designer","Your [pc.cockNoun] is too big to fit in the hole.");
+		else addButton(0,"Yes",cockBoxUse,0,"Use Dong Designer","Yes, you will stick your dick in that box.");
+	}
 	if(InShipInterior()) addButton(14,"Back",shipStorageMenuRoot);
 	else addButton(14,"Leave",mainGameMenu);
 }

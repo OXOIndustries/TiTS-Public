@@ -20,6 +20,7 @@
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Miscellaneous.HorsePill;
+	import classes.Items.Miscellaneous.Priapin;
 	import classes.Items.Miscellaneous.Cargobot;
 	import classes.Items.Transformatives.Cerespirin;
 	import classes.Items.Transformatives.Clippex;
@@ -50,6 +51,7 @@
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Interfaces.ParseText;
+	import classes.GameData.CodexManager;
 
 
 	/**
@@ -3190,6 +3192,31 @@
 			if(isHerm() && mfn("m", "f", "n") == "m") return true;
 			return false;
 		}
+		// For special case alien sex/gender override text in combat!
+		public function genderTextOverride():String
+		{
+			var autoSex:String = "";
+			
+			// Goo races
+			if
+			(	originalRace == "galotian" || race().indexOf("galotian") != -1
+			||	originalRace.indexOf("rahn") != -1 || isRahn()
+			||	originalRace == "conglomerate"
+			||	originalRace == "ganrael" || race().indexOf("ganrael") != -1
+			)
+			{
+				autoSex = "Unisex";
+			}
+			// Nyrea
+			if(originalRace == "nyrea" || race().indexOf("nyrea") != -1)
+			{
+				if(isFemale()) autoSex = "Male";
+				if(isMale()) autoSex = "Female";
+				if(!CodexManager.entryViewed("Nyrea")) autoSex += "???";
+			}
+			
+			return autoSex;
+		}
 		/**
 		 * Brynn has a bunch of shit that leans on this that kinda needs to be expanded.
 		 * @Fen- if you decide how you're going to handle differentiating the type of treatment applied, remind me after to go through and clean it up to match.
@@ -3538,7 +3565,10 @@
 				}
 			}
 
-			var currReflexes:int = reflexesRaw + reflexesMod;
+			var bonus:int = 0;
+			bonus += statusEffectv1("Sera Spawn Reflex Mod");
+			
+			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
 
 			//Debuffs!
 			if (hasStatusEffect("Tripped")) currReflexes -= 4;
@@ -3627,8 +3657,10 @@
 					intelligenceRaw = intelligenceMax();
 				}
 			}
-
-			var currInt:int = intelligenceRaw + intelligenceMod;
+			var bonus:Number = 0;
+			if(hasStatusEffect("Adorahol")) bonus -= statusEffectv1("Adorahol");
+			
+			var currInt:int = intelligenceRaw + intelligenceMod + bonus;
 			
 			if (hasStatusEffect("Focus Pill")) currInt += 5;
 			if(hasPerk("Dumb4Cum"))
@@ -3726,8 +3758,10 @@
 			if (accessory is Allure) currLib += 20;
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
+			if (hasStatusEffect("Adorahol")) currLib += (5 * statusEffectv1("Adorahol"));
 			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
 			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
+			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			
 			if (currLib > libidoMax())
 			{
@@ -3764,6 +3798,8 @@
 			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
+			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
+			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
@@ -3952,17 +3988,21 @@
 		{
 			return !(accessory is EmptySlot);
 		}
-		public function hasCombatDrone(robotOnly:Boolean = false):Boolean
+		public function hasCombatDrone(robotOnly:Boolean = false, accessoryOnly:Boolean = false):Boolean
 		{
 			if(!robotOnly)
 			{
 				if(hasStatusEffect("Varmint Buddy")) return true;
 			}
-			return (hasPerk("Attack Drone") || accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE));
+			if(!accessoryOnly)
+			{
+				if(hasPerk("Attack Drone")) return true;
+			}
+			return (accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE));
 		}
-		public function hasActiveCombatDrone(robotOnly:Boolean = false):Boolean
+		public function hasActiveCombatDrone(robotOnly:Boolean = false, accessoryOnly:Boolean = false):Boolean
 		{
-			if(hasCombatDrone(robotOnly))
+			if(hasCombatDrone(robotOnly, accessoryOnly))
 			{
 				if(hasStatusEffect("Drone Disabled") || hasStatusEffect("Combat Drone Disabled")) return false;
 				return true;
@@ -4094,7 +4134,7 @@
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
-			if (hasPerk("Attack Drone") && !hasTamWolf()) temp += level;
+			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) temp += (3 * level);
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
@@ -4196,6 +4236,13 @@
 		}
 		public function clearSkinFlags(): void {
 			skinFlags = new Array();
+		}
+		public function removeSkinFlag(arg:int):void
+		{
+			if (hasSkinFlag(arg))
+			{
+				skinFlags.splice(skinFlags.indexOf(arg), 1);
+			}
 		}
 		public function hasFaceFlag(arg:int): Boolean {
 			var temp: int = 0;
@@ -4635,7 +4682,7 @@
 					types.push("goo-like", "amorphous", "gelatinous", "slimy", "gooey");
 					if(isRahn()) types.push("rahn");
 					if(race() == "galotian") types.push("galotian");
-					if(race() == "Conglomerate") types.push("nanomite");
+					if(race() == "conglomerate") types.push("nanomite");
 					break;
 				case GLOBAL.TYPE_BEE:
 					types.push("bright yellow", "insectile", "straw-like", "bee-like");
@@ -5194,10 +5241,15 @@
 		}
 		public function hasPartFur(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_FURRED) || hasLegFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FURRED))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_FURRED) || hasLegFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FURRED)
+			||	hasSkinFlag(GLOBAL.FLAG_FLUFFY)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_FURRED
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FURRED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FURRED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_FURRED);
+			if(part == "chest") return hasSkinFlag(GLOBAL.FLAG_FLUFFY);
 			return hasFur();
 		}
 		public function hasPartScales(part:String = "any"):Boolean
@@ -5205,6 +5257,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED)
 			||	InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_SCALED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
@@ -5214,7 +5267,10 @@
 		}
 		public function hasPartChitin(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_CHITINOUS) || hasLegFlag(GLOBAL.FLAG_CHITINOUS) || hasTailFlag(GLOBAL.FLAG_CHITINOUS))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_CHITINOUS) || hasLegFlag(GLOBAL.FLAG_CHITINOUS) || hasTailFlag(GLOBAL.FLAG_CHITINOUS)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_CHITINOUS
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_CHITINOUS);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_CHITINOUS);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_CHITINOUS);
@@ -5222,7 +5278,10 @@
 		}
 		public function hasPartGoo(part:String = "any"):Boolean
 		{
-			if(part == "any" && (hasArmFlag(GLOBAL.FLAG_GOOEY) || hasLegFlag(GLOBAL.FLAG_GOOEY) || hasTailFlag(GLOBAL.FLAG_GOOEY))) return true;
+			if(part == "any" &&
+			(	hasArmFlag(GLOBAL.FLAG_GOOEY) || hasLegFlag(GLOBAL.FLAG_GOOEY) || hasTailFlag(GLOBAL.FLAG_GOOEY)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_GOOEY
+			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_GOOEY);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_GOOEY);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_GOOEY);
@@ -5233,6 +5292,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED)
 			||	InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE)
+			||	perkv1("Regal Mane") == GLOBAL.FLAG_FEATHERED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FEATHERED);
@@ -7671,15 +7731,12 @@
 		// Nipple type checks
 		public function hasNipplesofType(arg:int = -1, rowNum:int = -1): Boolean
 		{
-			if (rowNum >= 0)
-			{
-				if (breastRows[rowNum].nippleType == arg) return true;
-				return false;
-			}
+			if (rowNum >= 0) return (breastRows[rowNum].nippleType == arg);
 			
 			var counter: Number = breastRows.length;
 			var index: Number = 0;
-			while (counter > 0) {
+			while (counter > 0)
+			{
 				counter--;
 				if (breastRows[counter].nippleType == arg) return true;
 			}
@@ -7747,6 +7804,19 @@
 				}
 			}
 			return true;
+		}
+		public function hasErectNipples(rowNum:int = -1, lustBased:Boolean = false):Boolean
+		{
+			// Can nips get hard?
+			var erectNips:Boolean = (hasNormalNipples(rowNum) || hasNippleCocks(rowNum) || hasInvertedNipples(rowNum) || hasTentacleNipples(rowNum));
+			
+			// Arousal check
+			if(lustBased)
+			{
+				if(lust() < 33) erectNips = false;
+			}
+			
+			return erectNips;
 		}
 		// Nipple hardening verbs
 		public function nipplesErect(rowNum:int = 0, present:Boolean = false):String
@@ -8180,6 +8250,7 @@
 		{
 			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
 			var bonus:Number = perkv1("Potent");
+			if (hasStatusEffect("Priapin")) bonus += statusEffectv2("Priapin");
 			multi += bonus;
 			if (multi < 0) return 0;
 			return multi;
@@ -9449,6 +9520,7 @@
 			if (hasArmFlag(GLOBAL.FLAG_FLUFFY)) s++;
 			if (hasLegFlag(GLOBAL.FLAG_FLUFFY)) s++;
 			if (hasSkinFlag(GLOBAL.FLAG_FLUFFY)) s++; // This is what I'm using for the chestfluff
+			if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && perkv1("Regal Mane") == GLOBAL.FLAG_FURRED) s++;
 			if (thickness >= 75) s++;
 			return s;
 		}
@@ -14626,20 +14698,6 @@
 		}
 		public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
-			if(milkFrom != null)
-			{
-				if(milkFrom.milkType == GLOBAL.FLUID_TYPE_MILK) energy(20);
-				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) 
-				{
-					energy(25);
-					modThickness(1,false);
-				}
-				else if(milkFrom.milkType == GLOBAL.FLUID_TYPE_HONEY || milkFrom.milkType == GLOBAL.FLUID_TYPE_NECTAR) 
-				{
-					energy(30);
-				}
-				else energy(10);
-			}
 			return false;
 		}
 		public function girlCumInMouth(cumFrom:Creature = null):Boolean
@@ -14747,6 +14805,7 @@
 		{
 			var bonus:Number = 0;
 			if(hasPerk("Virile")) bonus += perkv1("Virile");
+			if(hasStatusEffect("Priapin")) bonus += statusEffectv1("Priapin");
 			return (cumQualityRaw + cumQualityMod + bonus);
 		}
 		
@@ -14757,7 +14816,10 @@
 		 */
 		public function virility():Number
 		{
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks")) return 0;
+			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks"))
+			{
+				if (hasPerk("Infertile") || !hasStatusEffect("Priapin")) return 0;
+			}
 			
 			return cumQuality();
 		}
@@ -15463,8 +15525,6 @@
 			else
 			{
 				removeStatusEffect("Alcohol");
-				//Remove the companion status from Kally's brews~!
-				removeStatusEffect("Adorahol");
 			}
 		}
 		public function tolerance(arg:Number = 0):Number
@@ -16143,7 +16203,12 @@
 		
 		public function untypedDroneDamage():Number
 		{
-			return 1 + level + rand(2 + level / 2);
+			var dmg:Number = 1 + level + rand(2 + level / 2);
+			var bonus:Number = 0;
+			
+			if(hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) bonus += level;
+			
+			return dmg + bonus;
 		}
 		
 		public function droneDamage():TypeCollection
@@ -16277,6 +16342,11 @@
 								case "Hair Flower":
 									var flowerPower:Cerespirin = new Cerespirin();
 									kGAMECLASS.eventBuffer += flowerPower.loseHairFlower(this, (statusEffects[x] as StorageClass).value1);
+									break;
+								// Priapin wears off.
+								case "Priapin":
+									var priapin:Priapin = new Priapin();
+									priapin.effectDone(this);
 									break;
 								// Goo hair reverts back!
 								case "Hair Regoo":
@@ -16898,6 +16968,13 @@
 				
 		public function getCombatPronoun(type:String):String
 		{
+			if(isPlural)
+			{
+				if (type == "s" || type == "heshe") return "they";
+				if (type == "o" || type == "himher") return "them";
+				if (type == "pa" || type == "hisher") return "their";
+				if (type == "pp" || type == "hishers") return "theirs";
+			}
 			if (type == "s" || type == "heshe") return (this is PlayerCharacter ? "you" : mfn("he", "she", "it"));
 			if (type == "o" || type == "himher") return (this is PlayerCharacter ? "you" : mfn("him", "her", "it"));
 			if (type == "pa" || type == "hisher") return (this is PlayerCharacter ? "your" : mfn("his", "her", "its"));

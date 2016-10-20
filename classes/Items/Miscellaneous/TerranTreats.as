@@ -472,6 +472,23 @@
 					pc.removeStatusEffect("Latex Hair");
 				}
 				
+				//Lose Fluff
+				if (pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nThe fluff of fur " + (pc.biggestTitSize() > 2 ? "nestled between your breasts" : "poofing out your chest") + " loses its warmth and volume as it shrivels up and sheds off you, leaving behind bare [pc.skinFurScalesNoun]. <b>You have lost your fuzzy fur ball.</b>");
+					
+					pc.removeSkinFlag(GLOBAL.FLAG_FLUFFY);
+					changes++;
+				}
+				
+				//Lose "Regal Mane" Perk:
+				if(pc.hasPerk("Regal Mane") && changes < changeLimit && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nA tingling sensation suddenly rushes through the base of your mane. Like a pile of dying weeds, it quickly droops down and falls off your shoulders. When the feeling subsides, your shoulders seem a bit lighter around the collar. <b>You no longer have a royal-looking mane around your neck.</b>");
+					changes++;
+					pc.removePerk("Regal Mane");
+				}
+				
 				if(changes == 0)
 				{
 					kGAMECLASS.output("\n\nNothing changed. What a rip-off.");

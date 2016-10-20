@@ -188,6 +188,8 @@
 			(this.cocks[0] as CockClass).virgin = false;
 			this.cockVirgin = false;
 			
+			createStatusEffect("Force Fem Gender");
+			
 			isUniqueInFight = true;
 			btnTargetText = "Nyrea";
 			

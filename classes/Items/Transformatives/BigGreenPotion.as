@@ -299,13 +299,13 @@
 					{
 						var newBallSize:Number = pc.ballSizeRaw;
 						var ballShrink:Boolean = false;
-						if (newBallSize < 10)
+						if (newBallSize < 12)
 						{
 							newBallSize += 2;
 							if (pc.hasPerk("Bulgy")) newBallSize += 2;
 							if (newBallSize > 12) newBallSize = 12;
 						}
-						else if (newBallSize > 14)
+						else if (newBallSize > 12)
 						{
 							newBallSize -= 2;
 							if (newBallSize < 12) newBallSize = 12;

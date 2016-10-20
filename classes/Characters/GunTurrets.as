@@ -30,7 +30,7 @@
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
 			this.short = "auto-turrets";
-			this.originalRace = "Automaton";
+			this.originalRace = "automaton";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "A mass of turrets and floating drones have been set up like a firing squad in the foyer of the lift station, all barrels training on you. A rag-tag mix of makes and models, most of them look like they belong in antique tech shops - or scrap heaps. But that doesn’t mean they’re not dangerous: you’re surrounded by a hail of lead every time you try and move, made worse as the cat-girl controlling them takes pot-shots at you between the incoming volleys.";

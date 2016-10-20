@@ -45,9 +45,9 @@ public function reahaAtNursery():Boolean
 
 public function nurseryFoyerFunc():Boolean
 {
-	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals");
+	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals.");
 	if (silly) output(" There’s even a cute little cartoonish cow!");
-	output(". A holo-terminal dominates the western wall, slowly scrolling through reams of digital text - the status of");
+	output(" A holo-terminal dominates the western wall, slowly scrolling through reams of digital text - the status of");
 	var numChildren:int = ChildManager.numChildrenAtNursery();
 	if (ChildManager.numChildren() == 0) output(" the nursery. One glance says it’s waiting and ready for the first of your spawn.");
 	else if (numChildren == 1) output(" your child.");
@@ -56,6 +56,7 @@ public function nurseryFoyerFunc():Boolean
 	if (flags["BRIGET_MET"] == undefined)
 	{
 		output("\n\nA pallid-skinned woman in a suit-jacket and skirt is standing behind a desk, consulting a Codex couched under her arm. She doesn’t appear to have noticed you yet.");
+		
 		addButton(0, "Woman", nurseryMeetBriget);
 	}
 	else if (hours >= 7 && hours <= 16)
@@ -64,8 +65,13 @@ public function nurseryFoyerFunc():Boolean
 		addButton(0, "Briget", nurseryApproachBriget);
 	}
 
-	addButton(1, "Nursery Comp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
+	addButton(1, "NurseryComp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
 
+	return false;
+}
+
+public function nurseryCommonAreaFunc():Boolean
+{
 	return false;
 }
 
@@ -73,7 +79,9 @@ public function nurseryCafeteriaFunc():Boolean
 {
 	output("\n\nA pair of server bots are sitting in the kitchen, making sure there’s plenty of food and drink to go around.");
 	if (yammiIsFollower() && !yammiIsCrew()) output(" Yammi’s hanging out in the kitchen, too, overseeing things while she’s not assigned to your ship’s crew.");
-
+	
+	seraNurseryCafeteriaBonus(1);
+	
 	return false;
 }
 
@@ -106,7 +114,7 @@ public function nurseryEducationCenterFunc():Boolean
 
 public function nurseryKidsDormsFunc():Boolean
 {
-	output("\n\nMost of the nursery deck is devoted to living space for what Dad must have assumed");
+	output("Most of the nursery deck is devoted to living space for what Dad must have assumed");
 	if (ChildManager.numChildren() >= 10) output(" - correctly -");
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
 
@@ -115,7 +123,7 @@ public function nurseryKidsDormsFunc():Boolean
 
 public function nurserySpecialistRooms():Boolean
 {
-	output("\n\nOf course, Dad couldn’t have predicted the needs of every alien species likely to");
+	output("Of course, Dad couldn’t have predicted the needs of every alien species likely to");
 	if (pc.hasVagina()) output(" knock you up");
 	if (pc.hasVagina() && pc.hasCock()) output(" or");
 	if (pc.hasCock()) output(" bear you an heir");
@@ -160,7 +168,7 @@ public function nurserySpecialistRooms():Boolean
 	if (ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN))
 	{
 		output("\n\nConnected to the main entrance via a pressurized airlock is a water-filled chamber, simulating a deep saltwater lake with a sandy island in its center. Though the rooms inside are pitch black, a camera feed inside has been set to night vision, showing your Water Princesses scuttling about, half-submerged and completely hidden in the dark waters. Your head nurse has hired on a dusky female nyrea from their homeworld to help oversee their development - a brief word with her reveals the huntress is well acquainted with the Queen of the Deep, and that the princesses’ mother sends her regards.");
-		addButton(numSpecials, "WaterPrincess", nurserySpecialistWaterPricesses);
+		addButton(numSpecials, "W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses.");
 		numSpecials++;
 		numSpecialsButtons++;
 	}
@@ -198,6 +206,7 @@ public function nurseryStairs2F():Boolean
 public function nurseryPlayerApptFunc():Boolean
 {
 	if (flags["BRIGET_MET"] != undefined && pc.isPregnant()) addButton(0, "Maternity", nurseryMaternityWait, undefined, "Maternity Wait", "The nursery is set up to support you for the long term if need be. If adventuring across the galaxy while pregnant doesn't seem like the best idea, you can move into the nursery and allow the staff to take care of you until you're ready to pop.");
+	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
 	addButton(1, "Shower", showerOptions, 0); // 9999 this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
 
@@ -206,11 +215,21 @@ public function nurseryPlayerApptFunc():Boolean
 
 public function nurseryBrigetsApptFunc():Boolean
 {
+	if (flags["BRIGET_MET"] == undefined) showName("NURSERY:\nNURSE'S APPT.");
 	if (flags["BRIGET_MET"] != undefined && (hours < 7 || hours > 16))
 	{
 		output("\n\nBriget herself is sitting in the bedroom, working on a small holoterminal on the desk. She glances up at you and smiles faintly, clearly none-too-disturbed by your presence in her abode.");
+		
+		// 9999
+		addDisabledButton(0, "Briget");
 	}
 
+	return false;
+}
+
+public function nurseryC6Func():Boolean
+{
+	vendingMachineButton(2);
 	return false;
 }
 
@@ -338,6 +357,21 @@ import classes.GameData.Pregnancy.Containers.Genders;
 
 public function nurseryComputerChildren():void
 {
+	if(nurseryOrphanedBabyDiff() > 0)
+	{
+		clearOutput();
+		clearBust();
+		author("Jacques00");
+		
+		output("<b>The computer makes some worrying blips.</b> It then displays a holo-pop-up that reads:");
+		output("\n\n<i>“Oops! An error has occured and data recovery is in process. Please wait while files are being retrived...”</i>");
+		output("\n\nIt seems your nursery records have not been set straight since the previous software update and some of the data on file may have been corrupted. To ensure consistency in recordkeeping, the computer is attempting to recover your past records and display them. You can’t do much beside wait for the automated system to do its thing...");
+		
+		clearMenu();
+		addButton(0, "Next", nurseryOrphanedBabyFix, nurseryOrphanedBabyDiff());
+		return;
+	}
+	
 	clearOutput();
 	author("Savin");
 
@@ -363,6 +397,151 @@ public function nurseryComputerChildren():void
 	nurseryDisplayAllChildren();
 
 	nurseryComputerMenu(nurseryComputerChildren);
+	
+}
+
+private var orphanList:Array = [
+	"pregnancy/cockvine seedlings captured",
+	"pregnancy/nyrea eggs", "pregnancy/royal nyrea eggs", "pregnancy/renvra eggs", "pregnancy/renvra kids",
+	"pregnancy/psychic tentacle beast birthed",
+	"pregnancy/sydian births",
+	"pregnancy/fertilized venus pitcher seeds/day care",
+	"pregnancy/queen of the deep eggs",
+];
+public function nurseryOrphanedBabyDiff():int
+{
+	// Count kids that were supposedly sent to the nursery pre-nursery update.
+	var numNurseryKids:int = 0;
+	for(var i:int = 0; i < orphanList.length; i++)
+	{
+		numNurseryKids += StatTracking.getStat(orphanList[i]);
+	}
+	
+	// Compare with actual number of kids in nursery.
+	return (numNurseryKids - ChildManager.numChildren());
+}
+public function nurseryOrphanedBabyFix(numOrphans:int = 0):void
+{
+	clearOutput();
+	clearBust();
+	author("Jacques00");
+	output("You wait as the computer fixes your records");
+	
+	var msg:String = "";
+	var numFixed:int = 0;
+	
+	for(var i:int = 0; i < orphanList.length; i++)
+	{
+		if(nurseryAddOrphanedChild(orphanList[i]))
+		{
+			numFixed++;
+			msg += "\n\n<i>" + StringUtil.toTitleCase(num2Ordinal(numFixed)) + " entry detected... correcting... corrected.</i>";
+		}
+	}
+	if(msg != "")
+	{
+		output(", reading its output as it appears on the screen:");
+		output(msg);
+		output("\n\nAfter a brief moment, the computer finishes its data recovery. You can now use the nursery’s computer to check up on any children you may have.");
+	}
+	else
+	{
+		output("... But nothing comes up. Was it just a glitch?");
+	}
+	
+	processTime(1 + numFixed);
+	
+	clearMenu();
+	addButton(0, "Next", nurseryComputerChildren);
+}
+public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
+{
+	if(StatTracking.getStat(statPath) <= 0) return false;
+	
+	var childType:int = -1;
+	var childMRate:Number = 1.0;
+	var childTotal:int = 0;
+	var childWgtM:int = 50;
+	var childWgtF:int = 50;
+	var childWgtI:int = 0;
+	var childWgtN:int = 0;
+	
+	switch(statPath)
+	{
+		case "pregnancy/cockvine seedlings captured":
+			childType = GLOBAL.TYPE_COCKVINE;
+			childMRate = 2.5;
+			childTotal = StatTracking.getStat(statPath);
+			childWgtM = 1; childWgtF = 0; childWgtI = 0; childWgtN = 0;
+			break;
+		case "pregnancy/nyrea eggs":
+		case "pregnancy/royal nyrea eggs":
+		case "pregnancy/renvra eggs":
+		case "pregnancy/renvra kids":
+			childType = GLOBAL.TYPE_NYREA;
+			childMRate = 1.0;
+			childTotal = (StatTracking.getStat("pregnancy/nyrea eggs") + StatTracking.getStat("pregnancy/renvra eggs") + StatTracking.getStat("pregnancy/royal nyrea eggs") + StatTracking.getStat("pregnancy/renvra kids"));
+			break;
+		case "pregnancy/psychic tentacle beast birthed":
+			childType = GLOBAL.TYPE_TENTACLE;
+			childMRate = 2.5;
+			childTotal = StatTracking.getStat(statPath);
+			childWgtM = 0; childWgtF = 0; childWgtI = 0; childWgtN = 1;
+			break;
+		case "pregnancy/sydian births":
+			childType = GLOBAL.TYPE_HUMAN;
+			childMRate = 1.0;
+			childTotal = (StatTracking.getStat("pregnancy/sydian births") + StatTracking.getStat("pregnancy/sera kids"));
+			break;
+		case "pregnancy/fertilized venus pitcher seeds/day care":
+			childType = GLOBAL.TYPE_VENUSPITCHER;
+			childMRate = 1.0;
+			childTotal = StatTracking.getStat(statPath);
+			childWgtM = 0; childWgtF = 1; childWgtI = 0; childWgtN = 0;
+			break;
+		case "pregnancy/queen of the deep eggs":
+			childType = GLOBAL.TYPE_WATERQUEEN;
+			childMRate = 2.0;
+			childTotal = StatTracking.getStat(statPath);
+			childWgtM = 0; childWgtF = 1; childWgtI = 0; childWgtN = 0;
+			break;
+		default:
+			childType = -1;
+			childTotal = -1;
+			break;
+	}
+	
+	// Remove any children from the count if they already exist
+	var children:Array = ChildManager.getChildrenOfType(childType);
+	var totalNum:int = 0;
+	var child:Child;
+	if (children != null && children.length > 0)
+	{
+		child = children[0]; // The oldest should be first in the array!
+		for (var i:int = 0; i < children.length; i++)
+		{
+			var c:Child = children[i] as Child;
+			totalNum += c.Quantity;
+		}
+		
+		childTotal -= totalNum;
+	}
+	
+	// Add children
+	if(childType >= 0 && childTotal > 0)
+	{
+		ChildManager.addChild(
+			Child.NewChild(
+				childType,
+				childMRate,
+				childTotal,
+				childWgtM, childWgtF, childWgtI, childWgtN
+			)
+		);
+		return true;
+	}
+	
+	return false;
 }
 
 import classes.GameData.Pregnancy.Child;
@@ -384,16 +563,17 @@ public function nurseryDisplayAllChildren():void
 		// will be in some form of order atm
 
 		var ageBrackets:Array = [
-			6571, 	// 18+
-			6570, 	// 16-18
-			5840, 	// 12 - 16
-			4380, 	// 8 - 12
-			2920, 	// 4-8
-			1460, 	// 1-4
-			365,	// 1 year
+			6570, 	// 18+
+			5840, 	// 16-18
+			4380, 	// 12-16
+			2920, 	// 8-12
+			1460, 	// 4-8
+			365,	// 1-4
 			273,	// 9 months
 			181,	// 6 months
-			90		// 3 months
+			90,		// 3 months
+			30,		// 1 month
+			0		// newborn
 		];
 
 		for (var i:int = 0; i < types.length; i++)
@@ -419,7 +599,10 @@ public function nurseryDisplayAllChildren():void
 				
 				for (var bb:int = 0; bb < ageBrackets.length; bb++)
 				{
-					if (cc.Days > ageBrackets[bb]) ageBuckets[bb].add(cc.NumGenders);
+					if
+					(	(bb == 0 && cc.Days >= ageBrackets[bb])
+					||	(cc.Days < ageBrackets[bb - 1] && cc.Days >= ageBrackets[bb])
+					) ageBuckets[bb].add(cc.NumGenders);
 				}
 			}
 		}
@@ -443,21 +626,23 @@ public function nurseryDisplayAllChildren():void
 public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 {
 	var displayAges:Array = [
-		"18+",
-		"16-18",
-		"12-16",
-		"8-12",
-		"4-8",
-		"1-4",
-		"12 month",
-		"9 month",
-		"6 month",
+		"18+ years",
+		"16-18 years",
+		"12-16 years",
+		"8-12 years",
+		"4-8 years",
+		"1-4 years",
+		"9 months",
+		"6 months",
+		"3 months",
+		"1 month",
 		"newborn"
 	];
 
 	for (var key:String in sortedTypedBuckets)
 	{
 		var thisBucket:Array = sortedTypedBuckets[key];
+		var displayCnt:int = 0;
 
 		output("\n\n<b>" + GLOBAL.TYPE_NAMES[int(key)] + " Offspring:</b>");
 
@@ -466,18 +651,21 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 			if (thisBucket[i].any())
 			{
 				var b:Genders = thisBucket[i];
-
-				var str:String = "\n<b>" + displayAges[i] + ":</b>";
-
 				var entries:Array = [];
 				if (b.Male > 0) entries.push(" " + b.Male + " sons");
 				if (b.Female > 0) entries.push(" " + b.Female + " daughters");
 				if (b.Intersex > 0) entries.push(" " + b.Intersex + " mixed-gender");
 				if (b.Neuter > 0) entries.push(" " + b.Neuter + " ungendered");
 
-				output("\n<b>" + displayAges[i] + ":</b> " + CompressToList(entries));
+				if(entries.length > 0)
+				{
+					output("\n<b>* " + StringUtil.toDisplayCase(displayAges[i]) + ":</b> " + CompressToList(entries));
+					displayCnt++;
+				}
 			}
 		}
+		
+		if(displayCnt <= 0) output("\n<i>* There is no relevant data to display for your " + (GLOBAL.TYPE_NAMES[int(key)]).toLowerCase() + " offspring.</i>");
 	}
 }
 
@@ -632,7 +820,7 @@ public function nurseryBrigetNurseryStatus():void
 	showBust("BRIGET");
 	author("Savin");
 
-	output("<i>“How are things at the nursery?”</i> you ask. Bridget tuts at you, saying that you’re quite capable of looking at the holoscreen’s readouts yourself, but you simply say that you’d like to hear it from her. The head nurse doubtless can paint a more vivid picture than a few stale stat-displays.");
+	output("<i>“How are things at the nursery?”</i> you ask. Briget tuts at you, saying that you’re quite capable of looking at the holoscreen’s readouts yourself, but you simply say that you’d like to hear it from her. The head nurse doubtless can paint a more vivid picture than a few stale stat-displays.");
 	
 	output("\n\n<i>“Oh, very well,”</i> the gynoid teases, leaning back on her desk");
 	if (flags["BRIGET_FUCKED"] != undefined) output(" in a way that makes those lovely big breasts of hers thrust out against her blouse.");
@@ -655,9 +843,10 @@ public function nurseryBrigetNurseryStatus():void
 	{
 		output(" greatly expanded thanks to your efforts. The nursery is bigger and better than anything old Victor could have hoped for");
 		if (numChildren >= 10) output(", just like your lovely brood, my dear. You’re well on your way to out-breeding your father already");
+		output("!");
 	}
 	else output(" somewhat upgraded thanks to you. Please, continue finding more staff and equipment out there on your adventures - everything you bring back makes the nursery that much better of a place for your children to grow up.");
-	output("!”</i>");
+	output("”</i>");
 	
 	output("\n\n<i>“The staff is");
 	if (!hasNurseryStaff()) output(" largely robotic, with some specialists in education and infant-handling on retainer. The nurse-droid staff is quite capable, though, I assure you - and we both know I’m quite able to handle as many children as needed myself.");
@@ -670,7 +859,7 @@ public function nurseryBrigetNurseryStatus():void
 	else output(" We’re flush with everything we could ever need, all thanks to you, oh captain my captain. The way things are going, you might want to start asking some of your many, many half-siblings if they’d like to make use of the facility: we have more than enough staff.");
 	output("”</i>");
 	
-	output("\n\nBridget flashes you a smile and taps on her Codex, glancing through the information at her display. <i>“I believe that covers everything of note at present. Anything else, [pc.name]?”</i>");
+	output("\n\nBriget flashes you a smile and taps on her Codex, glancing through the information at her display. <i>“I believe that covers everything of note at present. Anything else, [pc.name]?”</i>");
 
 	processTime(5+rand(5));
 
@@ -697,8 +886,8 @@ public function nurseryBrigetNurseryStaff():void
 		output("\n\nSo scientists and aliens, basically?");
 
 		output("\n\n<i>“Basically,”</i> Briget nods. <i>“Oh, and while we’re quite able to source milk and other foods from corporate sources, I’ve always found that children respond better to a mother’s touch... and nourishment. Of course I am equipped for such functions - I nursed you, after all - but I am still a synthetic, as is my milk.");
-		if (pc.isLactating()) output(" since you’re quite obviously lactating already");
-		else if (pc.isPregnant()) output(" now that you’re pregnant");
+		if (pc.isLactating()) output(" Since you’re quite obviously lactating already");
+		else if (pc.isPregnant()) output(" Now that you’re pregnant");
 		else output(" If you yourself should ever become pregnant");
 		output(", we have a milking station on the second floor which you can use to store some of your milk away for your children. Of course, should you find individuals willing to donate their own natural milk, we would be happy to compensate them for it.”</i>");
 
@@ -716,8 +905,9 @@ public function nurseryBrigetNurseryStaff():void
 		else if (numNurseryStaff() >= 10)
 		{
 			output(" You’ve certainly found more employees than I would have expected. Our budget is a bit strained at present, but I believe the effects more than justify a bit of credit-pinching here and there: I never expected the nursery to feel so vibrant and alive");
-			if (ChildManager.numChildren() >= 10) output(", even with all your precious darlings here with me");
-			output("! We’ve built a community here thanks to you, dear.} They say it takes a village, and I can certainly see the wisdom in that now. I simply </i>know<i> that your offspring will be the best and brightest the galaxy has to offer under our care");
+			if (ChildManager.numChildren() >= 2) output(", even with all your precious darlings here with me");
+			if (ChildManager.numChildren() >= 10) output("! We’ve built a community here thanks to you, dear");
+			output(". They say it takes a village, and I can certainly see the wisdom in that now. I simply </i>know<i> that your offspring will be the best and brightest the galaxy has to offer under our care");
 			if (ChildManager.numChildren() == 0 && !pc.isPregnant()) output("... when you have them, that is");
 			output(".");
 		}
@@ -741,6 +931,79 @@ public function nurseryMaternityWait():void
 	clearMenu();
 	addButton(0, "Yes", nurseryMaternityWaitGo);
 	addButton(1, "No", mainGameMenu);
+	
+	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc);
+	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
+	
+	if(debug)
+	{
+		if (firstDuration > 1440) addButton(5, "1 Day", nurseryMaternityWaitTime, (1440 - 5), "Wait: One Day", "Rest for one full day.");
+		else addDisabledButton(5, "1 Day", "Wait: One Day", "You have a pregnancy that will be due before this time!");
+		if (firstDuration > 10080) addButton(6, "1 Week", nurseryMaternityWaitTime, (10080 - 5), "Wait:One Week", "Rest for one full week.");
+		else addDisabledButton(6, "1 Week", "Wait: One Week", "You have a pregnancy that will be due before this time!");
+		if (firstDuration > 43200) addButton(7, "1 Month", nurseryMaternityWaitTime, (43200 - 5), "Wait: One Month", "Rest for one full month.");
+		else addDisabledButton(7, "1 Month", "Wait: One Month", "You have a pregnancy that will be due before this time!");
+		if (firstDuration > 525600) addButton(8, "1 Year", nurseryMaternityWaitTime, (525600 - 5), "Wait: One Year", "Rest for one full year.");
+		else addDisabledButton(8, "1 Year", "Wait: One Year", "You have a pregnancy that will be due before this time!");
+		if (firstDuration > 30) addButton(9, "Custom", nurseryMaternityWaitCustom, (firstDuration - 5), "Wait: Custom", "Rest for as long as you like until right before birth.");
+		else addDisabledButton(9, "Custom", "Wait: Custom", "You have a pregnancy that will be due very soon!");
+	}
+}
+public function nurseryMaternityWaitTime(duration:int = 0):void
+{
+	clearOutput();
+	author("");
+	
+	// 9999 - Maybe needs better text...
+	output("You wait for " + prettifyMinutes(duration) + "....");
+	
+	processTime(duration);
+	
+	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc);
+	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
+	output("\n\nYou get up and are on your way" + (firstDuration <= 30 ? " -- extremely close to delivering at any moment!" : "."));
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function nurseryMaternityWaitCustom(limit:int = 0):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	clearOutput();
+	
+	output("How long do you wish to wait for?\n<i>(Value should be in number of minutes. Maximum time until your next birth is " + limit + " minutes.)</i>");
+	output("\n");
+	displayInput();
+	output("\n\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", nurseryMaternityWaitCustomOK, limit);
+	addButton(14, "Back", nurseryMaternityWait);
+}
+public function nurseryMaternityWaitCustomOK(limit:int = 0):void
+{
+	if(isNaN(Number(userInterface.textInput.text))) {
+		nurseryMaternityWaitCustom(limit);
+		output("Choose a value that is a positive integer, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) < 1) {
+		nurseryMaternityWaitCustom(limit);
+		output("Choose a value that is 1 minute or more, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) > limit) {
+		nurseryMaternityWaitCustom(limit);
+		output("Choose a value that is " + limit + " minutes or below, please.");
+		return;
+	}
+	var duration:int = Math.floor(Number(userInterface.textInput.text));
+	nurseryMaternityWaitCustomGo(duration);
+}
+public function nurseryMaternityWaitCustomGo(duration:int = 0):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	nurseryMaternityWaitTime(duration);
 }
 
 public function nurseryMaternityWaitGo():void
@@ -809,7 +1072,7 @@ public function nurseryMaternityWaitGo():void
 	// We don't want to process-time passed the actual birthing stuff, we need to intercept the usual system, execute the cleanups (for stat tracking)
 	// THEN pass the time, so we don't trigger any of the other stage progression outputs.
 
-	var baseTime:uint = kGAMECLASS.GetGameTimestamp();
+	var baseTime:uint = GetGameTimestamp();
 	var allBirths:Array = [];
 
 	// Rather than ending ALL, what should happen is we end the next available, and check if any other pregnancies are _close enough_ to ending, and also end those,
@@ -861,7 +1124,7 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	var lastBorn:Child = (allBirths.length > 0 ? allBirths[allBirths.length - 1] : null);
 	if (lastBorn != null)
 	{
-		output(" Her suit-jacket is unbuttoned, and she’s holding a newborn "+GLOBAL.TYPE_NAMES[lastBorn.RaceType]+" in her arms, letting "+ lastBorn.randomApplicableGender("him", "her", "her", "it") +" nurse from one of her full, milk-swollen breasts.");
+		output(" Her suit-jacket is unbuttoned, and she’s holding a newborn " + GLOBAL.TYPE_NAMES[lastBorn.RaceType].toLowerCase() + " in her arms, letting " + lastBorn.randomApplicableGender("him", "her", "her", "it") + " nurse from one of her full, milk-swollen breasts.");
 
 		output("\n\nBriget blinks when you stir, brought back from her motherly daydreaming. ");
 	}
@@ -872,18 +1135,18 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	
 	output("<i>“Oh, [pc.name]. I thought you would be asleep for some time still.... Do forgive an old gynoid for still taking some little pleasure in watching over you while you dream, hmm?”</i>");
 	
-	if (lastBorn != null) output("\n\nShe smiles and glances down to the little bundle in her arms. <i>“Everything went perfectly, of course. You’re now mother to "+lastBorn.Quantity+" newborn "+GLOBAL.TYPE_NAMES[lastBorn.RaceType]+". Congratulations, dear.”</i>");
+	if (lastBorn != null) output("\n\nShe smiles and glances down to the little bundle in her arms. <i>“Everything went perfectly, of course. You’re now mother to " + (lastBorn.Quantity == 1 ? ("a newborn " + GLOBAL.TYPE_NAMES[lastBorn.RaceType].toLowerCase()) : (num2Text(lastBorn.Quantity) + " newborn babies")) + ". Congratulations, dear.”</i>");
 
-	var totalDays:int = Math.round(finalDuration / 1440);
+	var totalDays:int = Math.floor(finalDuration / 1440);
 	var totalHours:int = Math.round((finalDuration % 1440) / 24);
 	output("\n\nYou spend a few moments stretching and collecting yourself");
 	if (lastBorn != null) output(" - and fussing over your newborn offspring -");
 	output(" before glancing at the clock sitting on the desk. <b>You’ve spent");
-	if (totalDays > 0) output(" " + totalDays + " day" + (totalDays > 1 ? "s" : ""));
+	if (totalDays > 0) output(" " + num2Text(totalDays) + " day" + (totalDays > 1 ? "s" : ""));
 	if (totalHours > 0)
 	{
 		if (totalDays > 0) output(" and");
-		output(" " + totalHours + " hour" + (totalHours > 1 ? "s" : ""));
+		output(" " + num2Text(totalHours) + " hour" + (totalHours > 1 ? "s" : ""));
 	}
 	output(" here</b> in leisure. God only knows what your rival’s gotten up to in that time.");
 	
@@ -923,10 +1186,10 @@ public function nurserySpecialistWaterPricesses():void
 
 		processTime(30);
 
-		flags["NURSERY_WATER_PRINCESS_VISTS"] = 1;
+		flags["NURSERY_WATER_PRINCESS_VISTS"] = 0;
 
 		clearMenu();
-		addButton(0, "Next", mainGameMenu);
+		addButton(0, "Next", nurserySpecialistWaterPricesses);
 	}
 	else
 	{
@@ -980,7 +1243,7 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 
 	output("Several more heads of tentacled hair peek up from the water’s edge a few moments later, and soon you’re overwhelmed with chattering voices - a chorus of <i>“Hi!”</i> <i>“Welcome home!”</i> <i>“We missed you so much!”</i> and more. Half a dozen pairs of hands grab at you, pulling you into hugs kisses every which way. Your not-so-little girls giggle and cry out with joy, pulling you in so many directions at once that you’re momentarily afraid they’ll forget their own strength... but no, they’re as gentle as angels once you start squirming, setting you back down on the sandbar and folding their legs under themselves, coming down to your level.");
 
-	output("\n\nBefore long your princesses have coaxed you into sharing your adventurous tales with them. Their curiosity is boundless, you soon discover: wanderlust and starry-eyed wonder fills them with every word, and they’re on the edge of their crabby seats as you recount some of your more dangerous exploits and less steamy encounters.");
+	output("\n\nBefore long, your princesses have coaxed you into sharing your adventurous tales with them. Their curiosity is boundless, you soon discover: wanderlust and starry-eyed wonder fills them with every word, and they’re on the edge of their crabby seats as you recount some of your more dangerous exploits and less steamy encounters.");
 	
 	output("\n\nEventually between stories, you note that your princesses have really grown since you birthed them - much, much faster than a human child. You remember the Queen hinted at herself being quite young by Terran standards, so... just how mature are her spawn already? They were talking, reading, and writing just moments after they hatched, after all. And they’re already so big...");
 	
@@ -1025,9 +1288,7 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 			output("\n\nAnother princess stalks out of the shadowy waters, crossing her arms under her");
 			if (child != null && GetGameTimestamp() - child.BornTimestamp <= 1051200) output(" exceptionally ample");
 			output(" chest. <i>“Maybe <i>you’re<i> going to university, but Miss Briget says some of us should think about testing for Games and Theory. Says we have sharp minds.”</i>");
-			
 			output("\n\n<i>“Isn’t that, like, code for psychic powers?”</i> another princess chuckles. <i>“Can you read my mind, now?”</i>");
-			
 			output("\n\n<i>“Maybe someday!”</i> the other scoffs. <i>“Or maybe I’ll just </i>blow things up with my brain!</i>");
 			break;
 	}
@@ -1043,7 +1304,7 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 		
 		output("\n\n<i>“We all are!”</i> another adds. Several of her sisters voice their agreement.");
 		
-		output("\n\n<i>“And we meant what it said. We’re super thankful to have you, "+ pc.mf("daddy", "mommy") +"! And then there’s the nursery and Miss Briget and everything else you’ve done for us since. So from all of us: thank you so much!”</i>}");
+		output("\n\n<i>“And we meant what it said. We’re super thankful to have you, "+ pc.mf("daddy", "mommy") +"! And then there’s the nursery and Miss Briget and everything else you’ve done for us since. So from all of us: thank you so much!”</i>");
 	}
 	
 	output("\n\nYou smile and put your arms around a pair of the young princesses, holding your brood close for a while. Eventually, though, a few of them start yawning, or mumbling complaints about their carapaces getting dry. That seems like your cue to let them get back to their watery nests - an idea that earns you groans and pleas to stay, but you know you need to let them get some rest. Giving them farewell hugs, you see them back into the water before turning to the tunnel and switching the lights back out to darkness.");

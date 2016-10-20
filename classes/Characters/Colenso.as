@@ -30,11 +30,11 @@
 			this.sellMarkup = 1.3;
 			this.buyMarkdown = .25;
 			this.keeperBuy = "<i>“There you go, sunshine.”</i> Colenso twists the nearest monitor around for you to peruse his inventory.\n";
-			this.keeperSell = "<i>“’Ole planet of junk, and I’m the only one thick enough to buy it,”</i> Colenso says with a grin, rolling his chair over to see what you’ve brought him. <i>“Course, most people never realise how important something is til they’ve gotten rid of it.”</i>\n";
-			this.keeperGreeting = "<i>“Sumthin' else you want?”</i> Colenso leans back, eyeing you.";
+			this.keeperSell = "<i>“‘Ole planet of junk, and I’m the only one thick enough to buy it,”</i> Colenso says with a grin, rolling his chair over to see what you’ve brought him. <i>“Course, most people never realise how important something is til they’ve gotten rid of it.”</i>\n";
+			this.keeperGreeting = "<i>“Sumthin’ else you want?”</i> Colenso leans back, eyeing you.";
 
 			this.short = "Colenso";
-			this.originalRace = "human";
+			this.originalRace = "gabilani";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "";

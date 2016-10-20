@@ -43,6 +43,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_ASS];
+			
 			this.version = _latestVersion;
 		}
 	}

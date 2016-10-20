@@ -113,16 +113,13 @@ package classes.UIComponents.SideBarComponents
 			_raceDisplay.updateBar(StringUtil.toTitleCase(char.originalRace), Number.NaN, asInit);
 			
 			var genderText:String;
-			if (char.hasStatusEffect("Force it Gender")) genderText = "???";
+			if (char.genderTextOverride() != "") genderText = char.genderTextOverride();
+			else if (char.hasStatusEffect("Force it Gender")) genderText = "???";
 			else if (char.hasStatusEffect("Force Fem Gender")) genderText = "Female";
 			else if (char.hasStatusEffect("Force Male Gender")) genderText = "Male";
 			else if (char.hasStatusEffect("Force Herm Gender")) genderText = "Herm";
-			else if (char is NyreaAlpha || char is NyreaBeta) genderText = "Female???";
-			else if (char.hasCock())
-			{
-				if (char.hasVagina()) genderText = "Herm";
-				else genderText = "Male";
-			}
+			else if (char.isHerm()) genderText = "Herm";
+			else if (char.hasCock()) genderText = "Male";
 			else if (char.hasVagina()) genderText = "Female";
 			else genderText = "???";
 			_sexDisplay.updateBar(genderText);

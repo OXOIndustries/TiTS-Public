@@ -24,6 +24,7 @@
 			fluidSimulate = true;
 			statusSimulate = true;
 			this.short = "Emmy";
+			originalRace = "ausar";
 			
 			keeperBuy = "";
 			keeperSell = "";

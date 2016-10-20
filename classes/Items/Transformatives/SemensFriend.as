@@ -143,18 +143,22 @@
 				TFList.push(7);
 			
 			// TF texts
-			msg += "\n\n<u>The Semen’s Friend candy has an effect....</u>";
+			msg += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Semen’s Friend candy has an effect....</u>";
+			var changed:Boolean = false;
 			
 			while(totalTFs > 0)
 			{
-				msg += "\n\n";
 				//Pick a TF	
 				x = rand(TFList.length);
 				select = TFList[x];
 				//Cull 'dat TF from the list.
 				TFList.splice(x,1);
+				
+				if(select == 0 && changed) { /* No new line */ }
+				else msg += "\n\n";
+				
 				//#0 Catch all
-				if(select == 0)
+				if(select == 0 && !changed)
 				{
 					msg += "Your crotch tingles but nothing seems to happen...";
 					if(target.cumType != GLOBAL.FLUID_TYPE_CHOCOLATE_CUM && target.balls >= 4 && target.ballDiameter() >= 11 && target.refractoryRate >= 80 && target.cumQualityRaw >= 1.5)
@@ -183,6 +187,7 @@
 						target.ballSizeRaw = 2;
 						if(target.hasPerk("Bulgy")) target.ballSizeRaw *= 2;
 						target.ballFullness = 100;
+						changed = true;
 					}
 					else
 					{
@@ -198,6 +203,7 @@
 					else msg += ", forming a more readily recognizable set of bollocks than";
 					msg += " the cutesy boy sphere you had before.";
 					target.removeStatusEffect("Uniball");
+					changed = true;
 				}
 				//#3 If balls increase towards 6” by 1”
 				else if(select == 3)
@@ -228,6 +234,7 @@
 								target.ballSizeRaw = newBallSize;
 							}
 						}
+						changed = true;
 					}
 					else
 					{
@@ -246,6 +253,7 @@
 					msg += "You feel... juicier.";
 					
 					target.refractoryRate++;
+					changed = true;
 				}
 				//#5 Increase male fertility
 				else if(select == 5)
@@ -256,6 +264,7 @@
 					msg += ParseText(" throbbing with a dense, heavy pulse. The intensity of it fades but a background throb in your [pc.balls] remains, your body purposefully stepping up its sperm production.");
 					
 					target.cumQualityRaw += 0.1;
+					changed = true;
 				}
 				//#6 If balls > 5” grow quad
 				else if(select == 6)
@@ -273,6 +282,7 @@
 						msg += ", giving you four altogether.</b>";
 						
 						target.balls = 4;
+						changed = true;
 					}
 					else
 					{
@@ -296,6 +306,7 @@
 						if(target.isAss()) msg += " Now if only you could work out how to piss money too, you’d have bitches all over you.";
 						
 						target.cumType = GLOBAL.FLUID_TYPE_CHOCOLATE_CUM;
+						changed = true;
 					}
 					else
 					{

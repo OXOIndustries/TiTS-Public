@@ -34,7 +34,7 @@ package classes.Characters
 			_neverSerialize = true;
 			
 			short = "Chief Neykkar";
-			originalRace = "human";
+			originalRace = "leithan";
 			a = "";
 			capitalA = "";
 			this.long = "Neykkar stands at the ready with her rifle poised tight against her shoulder.";

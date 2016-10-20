@@ -26,7 +26,7 @@
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
 			this.short = "sydian male";
-			this.originalRace = "Sydian";
+			this.originalRace = "sydian";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "Placeholder";
@@ -187,7 +187,7 @@
 			if(rand(3) == 0) hairColor = "pale green";
 			else if(rand(2) == 0) hairColor = "fiery orange";
 			else hairColor = "blood-hued crimson";
-			long = "The figure you're facing stands almost seven feet tall, looking every bit the hulking brute. He - there's no way you could mistake him for any other gender - stands with an easy balance that can only have come from spending years climbing around the heaps and spires of his home planet. There isn't a single stitch of clothing or equipment to protect his modesty, only carapace-like plates that cover most of him. Two feelers twitch atop his head, each about eight inches long, and another four sprout from the end of his long, tapered tail. That limb is still looks thick enough to smart if he were to club you with it. His eyes are inky onyx spheres, though his hair is " + hairColor + ". A cock as orange as a terran sunset dangles between his legs, about " + cocks[0].cLength() + " inches long and covered with a peculiar coat of tiny, brush-like cilia.";
+			long = "The figure you're facing stands almost seven feet tall, looking every bit the hulking brute. He - there's no way you could mistake him for any other gender - stands with an easy balance that can only have come from spending years climbing around the heaps and spires of his home planet. There isn't a single stitch of clothing or equipment to protect his modesty, only carapace-like plates that cover most of him. Two feelers twitch atop his head, each about eight inches long, and another four sprout from the end of his long, tapered tail. That limb still looks thick enough to smart if he were to club you with it. His eyes are inky onyx spheres, though his hair is " + hairColor + ". A cock as orange as a terran sunset dangles between his legs, about " + cocks[0].cLength() + " inches long and covered with a peculiar coat of tiny, brush-like cilia.";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

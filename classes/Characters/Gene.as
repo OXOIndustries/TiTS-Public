@@ -23,6 +23,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Gene";
+			originalRace = "fanfir";
 			
 			keeperBuy = "";
 			keeperSell = "";

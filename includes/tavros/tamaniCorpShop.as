@@ -106,11 +106,18 @@ public function lerrisProducts():void
 		if(!chars["LERRIS"].hasItem(new NukiNutbutter())) chars["LERRIS"].inventory.push(new NukiNutbutter());
 	}
 	else chars["LERRIS"].destroyItem(new NukiNutbutter());
-	if(flags["PLANET_3_UNLOCKED"] != undefined) // Lerris after clearing Tarkus makes sense.
+	// Lerris after clearing Tarkus makes sense.
+	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
 		if(!chars["LERRIS"].hasItem(new Anusoft())) chars["LERRIS"].inventory.push(new Anusoft());
 	}
 	else chars["LERRIS"].destroyItem(new Anusoft());
+	// Sera babies
+	if(flags["MET_SERA"] != undefined)
+	{
+		if(!chars["LERRIS"].hasItem(new Priapin())) chars["LERRIS"].inventory.push(new Priapin());
+	}
+	else chars["LERRIS"].destroyItem(new Priapin());
 	
 	CodexManager.unlockEntry("Bubble Buddy");
 	shopkeep = lerris;

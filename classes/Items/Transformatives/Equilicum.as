@@ -51,7 +51,7 @@ package classes.Items.Transformatives
 			//Longass shit, not sure what used for yet.
 			this.description = "a needle full of Equilibricum";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A needle full of an almost milky blue fluid. The reservoir seems to hold almost 250 mL it. On the side, there is an illustration of a scale with a jar of cum on one side and a bull's testicles on the other. The back features a warning that using this mod when there a significant difference in ball size and cum volume may result in the growth of extra testicles.";
+			this.tooltip = "A needle full of an almost milky blue fluid. The reservoir seems to hold almost 250 mL in it. On the side, there is an illustration of a scale with a jar of cum on one side and a bull's testicles on the other. The back features a warning that using this mod when there a significant difference in ball size and cum volume may result in the growth of extra testicles.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -125,8 +125,8 @@ package classes.Items.Transformatives
 		}
 		
 		//picks a mastrurbation scene in the order Penises>PantySniff/Goo!>Penis>Tail Cock*>Vagina>Tail Vagina*>Buttfinger
-		//*If tail specific masturbation scenes are introduced in the future
-		//!If these (=panty/goo) are both present, each has a 50% chance
+		// If tail specific masturbation scenes are introduced in the future
+		// If these (=panty/goo) are both present, each has a 50% chance
 		private function _forceMasturbation(target:Creature):void {
 			//try multi cock fap
 			if (target.hasCocks()) kGAMECLASS.multiCockFap();

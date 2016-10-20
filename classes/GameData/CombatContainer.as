@@ -4497,6 +4497,7 @@ package classes.GameData
 			var sumCredits:int = 0;
 			
 			var enemyNames:Object = { };
+			var article:Array = [];
 			var numDistinct:int = 0;
 			
 			// Grab all the details from the collective hostiles
@@ -4519,6 +4520,7 @@ package classes.GameData
 				if (enemyNames[t.short] == undefined)
 				{
 					enemyNames[t.short] = 1;
+					article[t.short] = t.a;
 					numDistinct++;
 				}
 				else
@@ -4545,19 +4547,17 @@ package classes.GameData
 			
 			// Emit some shit to state what the player got/did
 			
-			var numOutput:int = 0;
-			
 			output("You defeated ");
 			for (var key:String in enemyNames)
 			{
 				// This needs reworking to handle the/a/etc pulled from the creatures base data in the correct instances.
 				if (enemyNames[key] > 1) output(String(enemyNames[key]) + "x " + plural(key));
-				else output(key);
+				else output(article[key] + key);
+				
+				numDistinct--;
 				
 				if (numDistinct > 1) output(", ");
-				if (numOutput > 1 && numDistinct == 1) output("and ");
-				numDistinct--;
-				numOutput++;
+				if (numDistinct == 1) output(" and ");
 			}
 			output("!");
 			

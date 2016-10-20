@@ -2196,7 +2196,11 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		else output(" [pc.anus]");
 		output(" with a single action. You arch your back and open your mouth, globs of cum flying off you, every cell in your nether regions attempting to grow accustomed to the massive intrusion.");
 		
-		if(vagIndex >= 0) pc.cuntChange(vagIndex, chars["SERA"].cockVolume(0));
+		if(vagIndex >= 0)
+		{
+			pc.cuntChange(vagIndex, chars["SERA"].cockVolume(0));
+			IncrementFlag("SERA_COCK_STEELE_VAG");
+		}
 		else pc.buttChange(chars["SERA"].cockVolume(0));
 		
 		//Randomised

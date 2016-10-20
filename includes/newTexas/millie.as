@@ -511,9 +511,8 @@ public function millieMilkingFinale():void
 	if(milkAmount > 1000) output(milkAmount/1000 + " Ls</b>")
 	else output(milkAmount + " mLs</b>");
 
-	pc.milked(pc.milkFullness);
 	processTime(65);
-	pc.boostLactation(1);
+	
 	flags["MILLIE_LAST_ACTION"] = "Milker";
 	IncrementFlag("MILLIE_MILK_COUNT");
 
@@ -523,6 +522,10 @@ public function millieMilkingFinale():void
 		flags["MILLIE_LAST_ACTION"] = "Faux Treated";
 		pc.removeStatusEffect("Temporary Treatment");
 	}
+	
+	pc.milked(pc.milkFullness);
+	pc.boostLactation(1);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1036,8 +1039,6 @@ public function millieSucksTitsVol2():void
 		else output("your body could handle that right now.");
 	}
 
-	pc.milked(pc.milkFullness);
-	pc.boostLactation(1);
 	flags["MILLIE_LAST_ACTION"] = "Milker";
 
 	//Faux Treatment!
@@ -1047,6 +1048,10 @@ public function millieSucksTitsVol2():void
 		pc.removeStatusEffect("Temporary Treatment");
 	}
 	processTime(24);
+	
+	pc.milked(pc.milkFullness);
+	pc.boostLactation(1);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1117,10 +1122,14 @@ public function soloMilkingUpgrade():void
 		if(pc.isTreated() && pc.isBimbo()) output(" Maybe other cow-girls might like this sort of thing, but it’s rough even for them.");
 		else output(" You don’t understand why the cow-girls here would put up with something like this.");
 	}
-	pc.milked(100);
+	
 	//[Next]
 	pc.lust(5);
+	
 	processTime(10);
+	
+	pc.milked(100);
+	
 	clearMenu();
 	addButton(0,"Next",soloMilkerFunTimesRaep);
 }
@@ -1217,12 +1226,13 @@ public function soloMilkerFunTimesRaep():void
 	if(pc.nippleLengthRatio < 3) pc.nippleLengthRatio += 0.50;
 	pc.nippleWidthRatio += 0.25;
 	
-	pc.milked(100);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
 	processTime(100);
 	pc.orgasm();
+	
+	pc.milked(100);
 	
 	clearMenu();
 	addButton(0,"Next",millieSoloMilkerMishapEpilogue,lacBoosted);

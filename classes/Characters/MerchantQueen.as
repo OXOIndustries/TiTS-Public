@@ -21,6 +21,9 @@
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
+			short = "Merchant Queen";
+			originalRace = "myr";
+			
 			//None of this character's stats matter, soz we're leaving everything but inventory shit as default.
 			this.inventory.push(new Honeyizer());
 			this.inventory.push(new RudimentaryRevolver());

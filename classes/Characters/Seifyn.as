@@ -23,6 +23,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Seifyn";
+			originalRace = "nyrea";
 			
 			this.inventory.push(new NyreanSpear());
 			this.inventory.push(new ChitinArmor());

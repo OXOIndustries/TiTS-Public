@@ -182,6 +182,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro_xl_2_nude.png", mimeType = "image/png")]
 		public var Bust_KIRO_XL_2_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/lieve.png", mimeType = "image/png")]
+		public var Bust_LIEVE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lieve_nude.png", mimeType = "image/png")]
+		public var Bust_LIEVE_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_0.png", mimeType = "image/png")]
 		public var Bust_LERRIS_0:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/lerris_0_nude.png", mimeType = "image/png")]
@@ -527,6 +532,11 @@ package classes.Resources.Busts
 			public var Full_KIRO_XL_1_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_xl_2_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_XL_2_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lieve.png", mimeType = "image/png")]
+			public var Full_LIEVE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lieve_nude.png", mimeType = "image/png")]
+			public var Full_LIEVE_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_0.png", mimeType = "image/png")]
 			public var Full_LERRIS_0:Class;

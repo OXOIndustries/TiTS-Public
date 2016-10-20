@@ -32,7 +32,7 @@
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
 			this.short = "rocket pods";
-			this.originalRace = "Automaton";
+			this.originalRace = "automaton";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "Several sleek black turrets are arrayed before you across the walkway, the roof of the installation, and even some hover-plats floating around the walkway's side, tethered to the station. Any chance of stealth on this mission is long gone, now, as volleys of micro-rockets lock into barrels, ready to blast you to smithereens.";

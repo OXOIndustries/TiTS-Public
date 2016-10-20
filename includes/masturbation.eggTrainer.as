@@ -936,5 +936,6 @@ public function leaveEggMachine():void
 	author("Savin");
 	output("You decide against using the egg trainer, and put it on standby for the time being. The screen flickers off, and the burbling noises you occasionally hear inside it fade to a low murmur.");
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(InShipInterior()) addButton(0,"Next",shipStorageMenuRoot);
+	else addButton(0,"Next",mainGameMenu);
 }

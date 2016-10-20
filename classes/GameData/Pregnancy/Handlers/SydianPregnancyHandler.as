@@ -141,8 +141,26 @@ package classes.GameData.Pregnancy.Handlers
 						belly += mother.pregnancyData[i].pregnancyBellyRatingContribution;
 					}
 				}*/
+				
+				// Generate babies
+				var c:Child = Child.NewChildWeights(
+					thisPtr.pregnancyChildRace,
+					thisPtr.childMaturationMultiplier,
+					babies,
+					thisPtr.childGenderWeights
+				);
+				ChildManager.addChild(c);
+				
+				var genderList:Array = [];
+				var i:int = 0;
+				//for(i = 0; i < c.NumNeuter; i++) { genderList.push(-1); }
+				for(i = 0; i < c.NumFemale; i++) { genderList.push(0); }
+				for(i = 0; i < c.NumMale; i++) { genderList.push(1); }
+				//for(i = 0; i < c.NumIntersex; i++) { genderList.push(2); }
+				var babyGender:int = rand(2);
+				if(genderList.length > 0) babyGender = genderList[rand(genderList.length)];
 
-				mother.createStatusEffect("Sydian Pregnancy Ends", babies, belly, pregSlot, 0, true);
+				mother.createStatusEffect("Sydian Pregnancy Ends", babies, belly, pregSlot, babyGender, true);
 				SydianPregnancyHandler.sydianCleanupData(mother, pregSlot, thisPtr);
 				kGAMECLASS.eventQueue.push(kGAMECLASS.sydianPregnancyEnds);
 			}
@@ -152,15 +170,6 @@ package classes.GameData.Pregnancy.Handlers
 		public static function sydianCleanupData(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
-			
-			ChildManager.addChild(
-				Child.NewChildWeights(
-					thisPtr.pregnancyChildRace,
-					thisPtr.childMaturationMultiplier,
-					pData.pregnancyQuantity,
-					thisPtr.childGenderWeights
-				)
-			);
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			

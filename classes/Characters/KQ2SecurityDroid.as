@@ -34,7 +34,7 @@ package classes.Characters
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
 			this.short = "security drone";
-			this.originalRace = "Automaton";
+			this.originalRace = "automaton";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "";
