@@ -1143,9 +1143,9 @@ public function treatmentHourProcs(totalHours:int):void
 			}
 		}
 		//(Ram Horns!)
-		if(pc.horns == 2 && pc.hornType == GLOBAL.TYPE_BOVINE && (pc.hornLength < 10 && pc.hornLength > 4) && treatedHours == 137 && rand(3) == 0)
+		if(pc.horns == 2 && pc.hornType == GLOBAL.TYPE_BOVINE && (pc.hornLength < 10 && pc.hornLength > 4) && startHours < 137 && treatedHours >= 137 && rand(3) == 0)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You feel the familiar tightness of your horns growing once more, but this time it doesn’t stop at simple pain. It intensifies into a flaring, twisting agony, like two screws boring into your skull. You double over, grabbing at the bony protrusions in horror in time to feel them twisting through your hands, angling your bovine horns back toward your own ears as inch after inch of fresh growth pushes through your fingers, slick with some kind of fluid as if fresh-birthed.\n\nThis goes on for minutes, but to you, it feels like hours of torture. No amount of willpower or machismo helps you deal with it. All you can do is curl into a ball and feel your horns twisting and changing, losing their bovine nature as they become something... else.\n\nThe pain fades without warning, and the growth goes with it just as suddenly. Shocked, you rise up, unaware of just when you fell to the ground, awed by the magnitude of just what happened. You pull out your Codex with a shaking hand and flick it on, more anxious to see the result of your transformation than you care to admit.\n\n<b>Two curled ram horns twist back over your ears</b>, giving you an appearance that seems both regal and playful, like the fauns of old terran myths. You smile as you take it all in. It was almost worth the pain to get a pair like this.";
+			eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + " You feel the familiar tightness of your horns growing once more, but this time it doesn’t stop at simple pain. It intensifies into a flaring, twisting agony, like two screws boring into your skull. You double over, grabbing at the bony protrusions in horror in time to feel them twisting through your hands, angling your bovine horns back toward your own ears as inch after inch of fresh growth pushes through your fingers, slick with some kind of fluid as if fresh-birthed.\n\nThis goes on for minutes, but to you, it feels like hours of torture. No amount of willpower or machismo helps you deal with it. All you can do is curl into a ball and feel your horns twisting and changing, losing their bovine nature as they become something... else.\n\nThe pain fades without warning, and the growth goes with it just as suddenly. Shocked, you rise up, unaware of just when you fell to the ground, awed by the magnitude of just what happened. You pull out your Codex with a shaking hand and flick it on, more anxious to see the result of your transformation than you care to admit.\n\n<b>Two curled ram horns twist back over your ears</b>, giving you an appearance that seems both regal and playful, like the fauns of old terran myths. You smile as you take it all in. It was almost worth the pain to get a pair like this.";
 			pc.hornType = GLOBAL.TYPE_GOAT;
 			pc.hornLength = 11;
 			pc.horns = 2;
@@ -1157,12 +1157,12 @@ public function treatmentHourProcs(totalHours:int):void
 		//tail-converts existing to cowtail
 		//cunt/cocktails prevent this!
 		//10% chance of no tail change!
-		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && treatedHours == 112 && rand(10) != 0)
+		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && startHours < 112 && treatedHours >= 112 && rand(10) != 0)
 		{
 			//No tail
 			if(pc.tailCount == 0)
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a cute little poof on the end, just like a cow's.");
+				eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + ParseText(" You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a cute little poof on the end, just like a cow's.");
 				pc.tailCount = 1;
 			}
 			//Multitail
@@ -1171,14 +1171,14 @@ public function treatmentHourProcs(totalHours:int):void
 				//Multi - short
 				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips.");
+					eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + ParseText(" Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips.");
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ParseText(" A fine layer of [pc.furColor] fur covers each one.");
 					eBuffer += " You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
 				}
 				//Multi - long
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
+					eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + ParseText(" Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
 					eBuffer += "\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect";
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ", and a coat of fine fur is growing out over their lengths";
 					eBuffer += ". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
@@ -1187,14 +1187,14 @@ public function treatmentHourProcs(totalHours:int):void
 			//Single - short
 			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.");
+				eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + ParseText(" Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.");
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ParseText(" A fine layer of [pc.furColor] fur covers the whole thing.");
 				eBuffer += " You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
 			}
 			//Single - long
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
+				eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + ParseText(" Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.");
 				eBuffer += "\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect";
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eBuffer += ", and a coat of fine fur is growing out over its length";
 				eBuffer += ". In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
@@ -1204,22 +1204,24 @@ public function treatmentHourProcs(totalHours:int):void
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
 			pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 		}
+		
 		//Cow ears (maybe)
-		if(pc.earType != GLOBAL.TYPE_BOVINE && treatedHours == 160 && rand(2) == 0)
+		if(pc.earType != GLOBAL.TYPE_BOVINE && startHours < 160 && treatedHours >= 160 && rand(2) == 0)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; <b>you're just listening through a pair of floppy cow-ears now</b>. Briefly, you consider how good it would feel to have someone scratch them.");
+			eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + ParseText(" You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; <b>you're just listening through a pair of floppy cow-ears now</b>. Briefly, you consider how good it would feel to have someone scratch them.");
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
+		
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-		if(pc.legType != GLOBAL.TYPE_BOVINE && treatedHours == 141 && rand(10) <= 3)
+		if(pc.legType != GLOBAL.TYPE_BOVINE && startHours < 141 && treatedHours >= 141 && rand(10) <= 3)
 		{
 			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. It’s then that you spot way your " + pc.feet() + " are shifting and changing. They look like they’re staying as hooves, but they’re a little more of a brown-black color, with a split down the middle. They look like the kind of hooves a cow would have. Well, there are worse things than having a matched set of transformations. <b>You resolve to enjoy your new cow hooves.</b>";
+				eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + " You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. It’s then that you spot way your " + pc.feet() + " are shifting and changing. They look like they’re staying as hooves, but they’re a little more of a brown-black color, with a split down the middle. They look like the kind of hooves a cow would have. Well, there are worse things than having a matched set of transformations. <b>You resolve to enjoy your new cow hooves.</b>";
 			}
 			else
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
+				eBuffer += "\n\n" + logTimeStamp("passive", (treatedHours - startHours) * 60) + " You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
 				if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
 				{
 					eBuffer += ", and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet";
@@ -1233,36 +1235,47 @@ public function treatmentHourProcs(totalHours:int):void
 			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
 			pc.addLegFlag(GLOBAL.FLAG_FURRED);
 		}
+		
 		//==========================
 		//COSMETICS DESTROYED!
 		//ON TO HIPS AND BUTTS!
 		//==========================
-		if((treatedHours == 126 || treatedHours == 142 || treatedHours == 156) && pc.hipRatingRaw < 11)
+		var numHipGains:int = 0;
+		
+		if (startHours < 126 && treatedHours >= 126) numHipGains++;
+		if (startHours < 142 && treatedHours >= 142) numHipGains++;
+		if (startHours < 156 && treatedHours >= 156) numHipGains++;
+		
+		if(numHipGains > 0 && pc.hipRatingRaw < 11)
 		{
-			//Sub 3 to 3
-			if(pc.hipRatingRaw < 3)
+			for (i = 0; i < numHipGains; i++)
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You look yourself over, discovering that your hips have widened, giving you a more feminine look.";
-				pc.hipRatingRaw = 3;
-			}
-			//Not so smallish Sub 6 to 6
-			else if(pc.hipRatingRaw < 6)
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Whoah! Your hips have gotten wider. Nobody is going to mistake you for a boy when you can swivel these back and forth. You sashay them around a few times, just to try it out.";
-				pc.hipRatingRaw = 6;
-			}
-			//Biggish (Sub max to max)
-			else
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Moving around, you’re pleased to discover a little extra wiggle in you walk. Your [pc.butt] sways hypnotically as you go, automatically borne on a sinuous back and forth motion by your expanding [pc.hips]. You wonder if anyone will notice.");
-				pc.hipRatingRaw = 7 + rand(4);
+				//Sub 3 to 3
+				if(pc.hipRatingRaw < 3)
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", ((treatedHours - startHours) - (i * 14)) * 60) + " You look yourself over, discovering that your hips have widened, giving you a more feminine look.";
+					pc.hipRatingRaw = 3;
+				}
+				//Not so smallish Sub 6 to 6
+				else if(pc.hipRatingRaw < 6)
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", ((treatedHours - startHours) - (i * 14)) * 60) + " Whoah! Your hips have gotten wider. Nobody is going to mistake you for a boy when you can swivel these back and forth. You sashay them around a few times, just to try it out.";
+					pc.hipRatingRaw = 6;
+				}
+				//Biggish (Sub max to max)
+				else
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", ((treatedHours - startHours) - (i * 14)) * 60) + ParseText(" Moving around, you’re pleased to discover a little extra wiggle in you walk. Your [pc.butt] sways hypnotically as you go, automatically borne on a sinuous back and forth motion by your expanding [pc.hips]. You wonder if anyone will notice.");
+					pc.hipRatingRaw = 7 + rand(4);
+				}
 			}
 		}
+		
 		//Bigger Booty Towards 7-9.
-		if(treatedHours == 156 && pc.buttRatingRaw < 9)
+		if(startHours < 156 && treatedHours >= 156 && pc.buttRatingRaw < 9)
 		{
 
-			if(!pc.isAssExposed()) eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" An increase in the tightness of your [pc.lowerGarments] gradually comes to your attention, forcing you to shift and adjust them.");
+			if(!pc.isAssExposed()) eBuffer += "\n\n" + logTimeStamp("passive", (156 - startHours) * 60) + ParseText(" An increase in the tightness of your [pc.lowerGarments] gradually comes to your attention, forcing you to shift and adjust them.");
 			else eBuffer += "\n\nA slight shift in your balance gradually makes itself known to you, and you twist to regard your changing form, expecting to find a bigger butt.";
 			eBuffer += " Sure enough, your ass has swollen up with an influx of fresh new flesh, pushing it out into a quite squeezable, bubbly butt. The urge to shake it comes over you, but you fight it off, for now. There will be plenty of time for that sort of thing later. Not too much later, but later.";
 			pc.buttRatingRaw = 9;
@@ -1275,9 +1288,9 @@ public function treatmentHourProcs(totalHours:int):void
 		//Requires PC have a vagina.
 		//Dick should match race. No special mention of race because #lazy.
 		//33% odds!
-		if(treatedHours == 129 && !pc.hasCock() && pc.hasVagina() && pc.statusEffectv3("Treated") != 0)
+		if(startHours < 129 && treatedHours >= 129 && !pc.hasCock() && pc.hasVagina() && pc.statusEffectv3("Treated") != 0)
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Oh fuck! Something is happening, something that shatters your confident facade with aplomb. You can feel it, wriggling and squirming ";
+			eBuffer += "\n\n" + logTimeStamp("passive", (129 - startHours) * 60) + " Oh fuck! Something is happening, something that shatters your confident facade with aplomb. You can feel it, wriggling and squirming ";
 			if(pc.legCount == 1) eBuffer += ParseText("between your [pc.legs]");
 			else eBuffer += "in your loins";
 			eBuffer += ParseText(", just up and behind your [pc.vaginas]. It's a tight, wet heat that grabs hold of your thoughts and yanks them around until they're buried six-inches deep in an imaginary cow-pussy. It's equal parts painful and exciting, burning a blistering path of lurid fucking through your fantasies and body alike.");
@@ -1291,8 +1304,10 @@ public function treatmentHourProcs(totalHours:int):void
 			pc.createCock();
 			pc.setNewCockValues(0);
 		}
+		
 		//Normal dick growth and animal cock chances.
-		if(pc.hasCock()) standardTreatmentDickStuff(treatedHours);
+		if (pc.hasCock()) standardTreatmentDickStuff(treatedHours, startHours);
+		
 		//Dicked PCs only - AMAZONIAN VIRILITY!
 		//* Cum Volume & Minimum CumQ - Amazonian Virility
 		if(pc.hasCock() && treatedHours == 153 && !pc.hasPerk("Amazonian Virility"))
@@ -3810,243 +3825,277 @@ public function autoCocknosisDistraction():void
 	output(eBuffer);
 }
 
-public function standardTreatmentDickStuff(treatedHours:Number):void
+public function standardTreatmentDickStuff(treatedHours:Number, startHours:Number):void
 {
 	var eBuffer:String = "";
 	//Bigger Dick (+2 to 8 inches normally)
 	//At least one expansion regardless of max. EVERYBODY gets a bigger dick.
-	if(pc.hasCock() && pc.statusEffectv3("Treated") > 0 && (
-		(pc.isAmazon() && (treatedHours == 132 || treatedHours == 138 || treatedHours == 150 || treatedHours == 162)) ||
-		(!pc.isAmazon() && (treatedHours == 51 || treatedHours == 60 || treatedHours == 66 || treatedHours == 83 || treatedHours == 100 || treatedHours == 125))
-		))
+	
+	// Okay this is getting reworked somewhat. For the non-amazon changes, every change is entirely unique, so we'll just slam them in to the initial
+	// determination of what we're doing rather than double-nesting teh same effective check
+	
+	if (pc.hasCock() && pc.statusEffectv3("Treated") > 0)
 	{
-		//Cock Bonus 0-2
-		//pc.setStatusValue("Treated",3,2 + rand(7));
-		//First growth. Always 2”.
-		if(treatedHours == 51)
+		var numGains:int = 0;
+		var baseGainTime:int = 0;
+		if (pc.isAmazon())
 		{
-			//Pants on!
-			if(pc.isCrotchGarbed())
+			if (startHours < 132 && treatedHours >= 132)
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You feel a growing tightness in your [pc.lowerGarment] that’s anything but comfortable. It’s the kind of tightness that demands your attention - the kind that happens when you’re sporting a hard-on that could chop wood. You shift your ") + pc.cocksDescript() + " around a few times before giving up and pulling ";
-				if(pc.cockTotal() == 1) eBuffer += "it";
-				else eBuffer += "them";
-				eBuffer += " out.";
-				eBuffer += "\n\nAs expected, you’re as rigid as a titanium girder, but that doesn’t entirely explain your predicament. You’re longer too, by at least an inch, and proportionally thicker. In disbelief over your good fortune, you slowly stroke " + pc.oneCock() + ", feeling it firm and plump up even bigger in your palm. The " + pc.cockHead() + " slips past your fingers and abruptly ejaculates, growing all the while. You furiously beat your meat throughout, not stopping until you’re standing in a puddle of your own goo";
-				if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) eBuffer += " and trying to play it off nonchalantly. Hopefully noone will care";
-				eBuffer += ".";
+				numGains++;
+				if (baseGainTime == 0) baseGainTime = 1;
+			}
+			if (startHours < 138 && treatedHours >= 138)
+			{
+				numGains++;
+				if (baseGainTime == 0) baseGainTime = 2;
+			}
+			if (startHours < 150 && treatedHours >= 150)
+			{
+				numGains++;
+				if (baseGainTime == 0) baseGainTime = 3;
+			}
+			if (startHours < 162 && treatedHours >= 162)
+			{
+				numGains++;
+				if (baseGainTime == 0) baseGainTime = 4;
+			}
+			
+			if (numGains > 0)
+			{
+				var cockGainTimes:Array = [132, 138, 150, 162];
 				
-				eBuffer += "\n\nYour prong";
-				if(pc.cockTotal() > 1) eBuffer += "s are";
-				else eBuffer += " is";
-				eBuffer += " at least two inches longer than before you took the Treatment and likely to get even bigger before it’s all over. You’ll just have to be careful that your " + pc.cocksDescript() + ParseText(" don’t rip your [pc.lowerGarments] off the next time you get hard.");
+				for (var i:int = 0; i < numGains; i++)
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (cockGainTimes[baseGainTime - 1] - startHours) * 60) + " Your " + pc.cocksDescript() + " ";
+					if(pc.cockTotal() == 1) eBuffer += "is";
+					else eBuffer += "are";
+					eBuffer += " swinging wider and wider these days, a fact that warms your breast with no small amount of pride. Even now, without you bothering ";
+					if(pc.cockTotal() == 1) eBuffer += "it";
+					else eBuffer += "them";
+					eBuffer += ", you can feel the pleasant buzz of hormones marinating your dick";
+					if(pc.cockTotal() > 1) eBuffer += "s";
+					eBuffer += ", telling your cells to build inch after inch of new, cunt-filling dick. Speaking of gaining inches - you’ve probably added another. No matter how many times you discover your heightened ";
+					if(pc.isAmazon() && pc.hasVagina()) eBuffer += "herm";
+					else eBuffer += "man";
+					eBuffer += "hood, it never gets old.";
+					pc.lust(3);
+					for(x = 0; x < pc.totalCocks(); x++)
+					{
+						if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
+						else pc.cocks[x].cLengthRaw += 2;
+					}
+					pc.addStatusValue("Treated", 3, -1);
+					
+					if(pc.statusEffectv3("Treated") <= 0)
+					{
+						eBuffer += "The lingering tingle and buzz that has highlighted the constant expansion of your " + pc.cocksDescript() + " fades away. <b>Your manhood";
+						if(pc.cockTotal() > 1) eBuffer += "s";
+						eBuffer += " won’t be getting any bigger, at least not from the treatment.</b>";
+						break;
+					}
+				}
 			}
-			//Pants Off!
-			else
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " Your " + pc.cocksDescript() + " ";
-				if(pc.cockTotal() == 1) eBuffer += "is";
-				else eBuffer += "are";
-				eBuffer += " getting awfully uncomfortable all of a sudden. You grab " + pc.oneCock() + " and give it a little squeeze just to make sure everything is alright. It feels as hard as a titanium girder and somehow... tight. There’s not really any other word to describe it; it’s almost like your dick is getting too big for the " + pc.cocks[0].cockColor + " skin it’s wrapped in. You rub it a few times, just enjoying the friction while you’ve already got it in hand, feeling it thickening by the second.";
-				eBuffer += "\n\nWait, weren’t you already at full mast? You look down in awe, watching your " + pc.cockHead() + " slip through your fingers.";
-				if(pc.hasSheath(0)) eBuffer += " You swear you can even see the fresh length pouring out of your sheath, as if there’s just an infinite supply of dick down there to push out.";
-				eBuffer += " Bullets of pre roll across your knuckles as you squeeze them out, watching your dick";
-				if(pc.cockTotal() > 1) eBuffer += "s";
-				eBuffer += " lengthen the whole time.";
-
-				eBuffer += ParseText("\n\nYour heartbeat hammers at your eardrums faster and faster. Your breath comes quicker. You couldn’t stop yourself if you wanted to, and you don’t. You don’t ever want this moment to stop. You " + pc.cockHead() + " lurches, and you’re cumming, spraying a puddle of [pc.cum] all over the ground in front of you");
-				if (InPublicSpace()) eBuffer += " to the dismay of the onlookers";
-				eBuffer += ". Jacking for all you’re worth, you milk every drop from your growing dick. It isn’t until it’s all over that the magnitude of what just happened sinks in.";
-				eBuffer += "\n\nThe Treatment made your " + pc.cocksDescript() + " grow bigger - a full two inches bigger, by your measurements. It might not be done either. There’s still a pleasant, lingering tingle in your groin, and it’s not the normal post-orgasmic one.";
-				if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) eBuffer += " You should probably move on before someone takes issue with the lewd display.";
-			}
-			//orgasm, +2 dicklength for everybody across the board.
-			pc.orgasm();
-			for(x = 0; x < pc.totalCocks(); x++)
-			{
-				if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 2;
-				else pc.cocks[x].cLengthRaw += 3;
-			}
-			pc.addStatusValue("Treated",3,-2);
 		}
-		//Repeat 1
-		else if(treatedHours == 60)
-		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You grin when you realize how heavy the swaying length";
-			if(pc.cockTotal() > 1) eBuffer += "s";
-			if(pc.legCount > 1) eBuffer += ParseText(" between your [pc.legs]");
-			else eBuffer += " dangling from your crotch";
-			if(pc.cockTotal() == 1) eBuffer += " has";
-			else eBuffer += " have";
-			eBuffer += " become.";
-			if(pc.isCrotchGarbed()) eBuffer += ParseText(" You yank open your [pc.lowerGarment] check it out.");
-			else eBuffer += " You figure a little self-examination won’t hurt.";
-			eBuffer += " Grabbing hold of " + pc.oneCock() + ParseText(", you decide that you’ll be sure not to get as excited as last time. Better to save the [pc.cumNoun] for someone who really wants it. Easy does it.");
-
-			if(pc.lust() < 70) eBuffer += "\n\nYou stroke cautiously until you reach your full size, then try to eyeball a measurement.";
-			else eBuffer += "\n\nYou stroke a few times just to make sure you’ve reached your full size, but as horny as you are, you probably didn’t even have to touch the thing.";
-			eBuffer += " Damn, it’s at least an inch longer.";
-			if(pc.cockTotal() > 1) 
-			{
-				if(pc.cockTotal() == 2) eBuffer += " The other one is bigger too";
-				else eBuffer += "The other ones are bigger too";
-				eBuffer += ", though growing faster to catch up to the main event.";
-				eBuffer += " You pump a few more times, savoring the warmth and heat that it brings to your body, then release yourself with a sigh.";
-			}
-			for(x = 0; x < pc.totalCocks(); x++)
-			{
-				if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
-				else pc.cocks[x].cLengthRaw += 2;
-			}
-			pc.addStatusValue("Treated",3,-1);
-			pc.lust(5);
-		}
-		//Repeat 2
-		else if(treatedHours == 66)
-		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Fuck yes, your " + pc.cocksDescript() + " ";
-			if(pc.cockTotal() == 1) eBuffer += "is";
-			else eBuffer += "are";
-			eBuffer += " still growing. There’s no way you were this big a few hours ago.";
-			if(pc.isCrotchGarbed()) 
-			{
-				eBuffer += ParseText(" The bulge in your [pc.lowerGarments] is getting more and more noticeable, but that’s just fine, you figure. ");
-				if(pc.isAmazon()) eBuffer += "Maybe before long you can cock-shame a blushing faux cow.";
-				else eBuffer += "Maybe you’ll get to catch a girl giving it a look.";
-				eBuffer += " The image of a blushing, nervous smile makes your " + pc.cocksDescript() + " jump.";
-			}
-			else 
-			{
-				eBuffer += " The dangling length";
-				if(pc.cockTotal() > 1) eBuffer += "s";
-				eBuffer += " of meat sway";
-				if(pc.cockTotal() == 1) eBuffer += "s";
-				eBuffer += " heavily with every step. You wonder if you’ll catch anyone checking you out during your travels. The thought of a few giggling cow-girls sneaking glances at your crotch as you walk has you doing a lot less dangling and a lot more jutting straight forward. You’ll have to be careful turning corners.";	
-			}
-			//+20 lust
-			pc.lust(20);
-			for(x = 0; x < pc.totalCocks(); x++)
-			{
-				if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
-				else pc.cocks[x].cLengthRaw += 2;
-			}
-			pc.addStatusValue("Treated",3,-1);
-		}
-		//Repeat 3
-		else if(treatedHours == 83)
-		{
-			//Pants!
-			if(pc.isCrotchGarbed())
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your can barely fit in your [pc.lowerGarments] anymore. Even soft, your ") + pc.cocksDescript() + " ";
-				if(pc.cockTotal() == 1) eBuffer += "is";
-				else eBuffer += "are";
-				eBuffer += " straining against the equipped restraints, feeling trapped no matter how elastic ";
-				if(pc.cockTotal() == 1) eBuffer += "its";
-				else eBuffer += "their";
-				eBuffer += " confinement. It wouldn’t be so bad if you weren’t spending so much time turned on and ready to blow. You’ve gotta be at least an inch longer now";
-				if(pc.cockTotal() == 2) eBuffer += ", and your other wang is even longer, trying to catch up";
-				else if(pc.cockTotal() > 2) eBuffer += ", and your other wangs have grown even more, still trying to catch up";
-				eBuffer += ".";
-			}
-			//NoPantz
-			else
-			{
-				eBuffer += "\n\n" + logTimeStamp("passive") + " You can barely go ten minutes without having to stop and appreciate your expanding manhood";
-				if(pc.cockTotal() > 1) eBuffer += "s";
-				eBuffer += ". It’s one thing to read in clinical detail about how your penis might get bigger. It’s another to hold it in your hand, feeling it snake out to new lengths, surging on tides of artificially-created hormones and busy microsurgeons. A part of you wishes this could go on forever, even if it meant immobilizing yourself under the weight of your own phall";
-				if(pc.cockTotal() > 1) eBuffer += "i";
-				else eBuffer += "us";
-				eBuffer += ".";
-				eBuffer += "\n\nBy your estimate, you’re about an inch longer than you were at your last measurement";
-				if(pc.cockTotal() == 2) eBuffer += ", and your spare dick is catching up fast";
-				else if(pc.cockTotal() > 2) eBuffer += ", and your spare dicks are catching up fast";
-				eBuffer += ".";
-			}
-			//+10 lust
-			pc.lust(10);
-			for(x = 0; x < pc.totalCocks(); x++)
-			{
-				if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
-				else pc.cocks[x].cLengthRaw += 2;
-			}
-			pc.addStatusValue("Treated",3,-1);
-		}
-		//Repeat 4
-		else if(treatedHours == 100)
-		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Your " + pc.cocksDescript() + " surge";
-			if(pc.cockTotal() == 1) eBuffer += "s";
-			eBuffer += " forward out of the blue";
-			if(pc.armor.shortName != "") eBuffer += ParseText(", snaking down the inside of your [pc.armor]");
-			else eBuffer += ParseText(", threatening to tear your [pc.underGarment] from your frame");
-			eBuffer += ", gorging on ";
-			if(pc.cockTotal() == 1) eBuffer += "its";
-			else eBuffer += "their";
-			eBuffer += ParseText(" own tumescent potential until you feel more dick than [pc.man]. There’s no resisting it. All you can do is ride the waves of bliss as you shoot [pc.cumVisc] ropes of [pc.cumNoun]");
-			if(pc.isCrotchGarbed()) eBuffer += ParseText(" down the inside of your [pc.lowerGarment], moaning all the while.");
-			else eBuffer += " across the ground in front of you, moaning all the while.";
-			eBuffer += "\n\nWhen it’s all over, you realize that you’re at least an inch longer, maybe more.";
-			//Cum!
-			pc.orgasm();
-			for(x = 0; x < pc.totalCocks(); x++)
-			{
-				if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
-				else pc.cocks[x].cLengthRaw += 2;
-			}
-			pc.addStatusValue("Treated",3,-1);
-		}
-		//Repeat 5
-		else if(treatedHours == 125)
-		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " You’re sure you’ve been growing all day, but you want more. Grabbing hold of " + pc.oneCock() + ", you sit there, idly tugging at it, enjoying the play of your elastic flesh as it lengthens in response to your ministrations. All the pulling has you hard in the span of a few minutes, rendering the tugging pretty pointless. Of course, you’re even bigger than the last time you took stock of yourself.";
-			for(x = 0; x < pc.totalCocks(); x++)
-			{
-				if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
-				else pc.cocks[x].cLengthRaw += 2;
-			}
-			pc.addStatusValue("Treated",3,-1);
-			eBuffer += "\n\nYour " + pc.cockDescript(pc.biggestCockIndex()) + " is a proud " + num2Text(Math.round(pc.biggestCockLength())) + " inches now";
-			if(pc.cockTotal() == 2) eBuffer += ", and your other isn’t far behind";
-			else if(pc.cockTotal() > 2) eBuffer += ", and your others aren’t far behind";
-			eBuffer += ".";
-			pc.lust(10);
-		}
-		//Repeat 6
 		else
 		{
-			eBuffer += "\n\n" + logTimeStamp("passive") + " Your " + pc.cocksDescript() + " ";
-			if(pc.cockTotal() == 1) eBuffer += "is";
-			else eBuffer += "are";
-			eBuffer += " swinging wider and wider these days, a fact that warms your breast with no small amount of pride. Even now, without you bothering ";
-			if(pc.cockTotal() == 1) eBuffer += "it";
-			else eBuffer += "them";
-			eBuffer += ", you can feel the pleasant buzz of hormones marinating your dick";
-			if(pc.cockTotal() > 1) eBuffer += "s";
-			eBuffer += ", telling your cells to build inch after inch of new, cunt-filling dick. Speaking of gaining inches - you’ve probably added another. No matter how many times you discover your heightened ";
-			if(pc.isAmazon() && pc.hasVagina()) eBuffer += "herm";
-			else eBuffer += "man";
-			eBuffer += "hood, it never gets old.";
-			pc.lust(3);
-			for(x = 0; x < pc.totalCocks(); x++)
+			if (startHours < 51 && treatedHours >= 51)
 			{
-				if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
-				else pc.cocks[x].cLengthRaw += 2;
+				//Pants on!
+				if(pc.isCrotchGarbed())
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (51 - startHours) * 60) + ParseText(" You feel a growing tightness in your [pc.lowerGarment] that’s anything but comfortable. It’s the kind of tightness that demands your attention - the kind that happens when you’re sporting a hard-on that could chop wood. You shift your ") + pc.cocksDescript() + " around a few times before giving up and pulling ";
+					if(pc.cockTotal() == 1) eBuffer += "it";
+					else eBuffer += "them";
+					eBuffer += " out.";
+					eBuffer += "\n\nAs expected, you’re as rigid as a titanium girder, but that doesn’t entirely explain your predicament. You’re longer too, by at least an inch, and proportionally thicker. In disbelief over your good fortune, you slowly stroke " + pc.oneCock() + ", feeling it firm and plump up even bigger in your palm. The " + pc.cockHead() + " slips past your fingers and abruptly ejaculates, growing all the while. You furiously beat your meat throughout, not stopping until you’re standing in a puddle of your own goo";
+					if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) eBuffer += " and trying to play it off nonchalantly. Hopefully noone will care";
+					eBuffer += ".";
+					
+					eBuffer += "\n\nYour prong";
+					if(pc.cockTotal() > 1) eBuffer += "s are";
+					else eBuffer += " is";
+					eBuffer += " at least two inches longer than before you took the Treatment and likely to get even bigger before it’s all over. You’ll just have to be careful that your " + pc.cocksDescript() + ParseText(" don’t rip your [pc.lowerGarments] off the next time you get hard.");
+				}
+				//Pants Off!
+				else
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (51 - startHours) * 60) + " Your " + pc.cocksDescript() + " ";
+					if(pc.cockTotal() == 1) eBuffer += "is";
+					else eBuffer += "are";
+					eBuffer += " getting awfully uncomfortable all of a sudden. You grab " + pc.oneCock() + " and give it a little squeeze just to make sure everything is alright. It feels as hard as a titanium girder and somehow... tight. There’s not really any other word to describe it; it’s almost like your dick is getting too big for the " + pc.cocks[0].cockColor + " skin it’s wrapped in. You rub it a few times, just enjoying the friction while you’ve already got it in hand, feeling it thickening by the second.";
+					eBuffer += "\n\nWait, weren’t you already at full mast? You look down in awe, watching your " + pc.cockHead() + " slip through your fingers.";
+					if(pc.hasSheath(0)) eBuffer += " You swear you can even see the fresh length pouring out of your sheath, as if there’s just an infinite supply of dick down there to push out.";
+					eBuffer += " Bullets of pre roll across your knuckles as you squeeze them out, watching your dick";
+					if(pc.cockTotal() > 1) eBuffer += "s";
+					eBuffer += " lengthen the whole time.";
+
+					eBuffer += ParseText("\n\nYour heartbeat hammers at your eardrums faster and faster. Your breath comes quicker. You couldn’t stop yourself if you wanted to, and you don’t. You don’t ever want this moment to stop. You " + pc.cockHead() + " lurches, and you’re cumming, spraying a puddle of [pc.cum] all over the ground in front of you");
+					if (InPublicSpace()) eBuffer += " to the dismay of the onlookers";
+					eBuffer += ". Jacking for all you’re worth, you milk every drop from your growing dick. It isn’t until it’s all over that the magnitude of what just happened sinks in.";
+					eBuffer += "\n\nThe Treatment made your " + pc.cocksDescript() + " grow bigger - a full two inches bigger, by your measurements. It might not be done either. There’s still a pleasant, lingering tingle in your groin, and it’s not the normal post-orgasmic one.";
+					if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) eBuffer += " You should probably move on before someone takes issue with the lewd display.";
+				}
+				//orgasm, +2 dicklength for everybody across the board.
+				pc.orgasm();
+				for(x = 0; x < pc.totalCocks(); x++)
+				{
+					if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 2;
+					else pc.cocks[x].cLengthRaw += 3;
+				}
+				pc.addStatusValue("Treated",3,-2);
 			}
-			pc.addStatusValue("Treated",3,-1);
-		}
-		//It’s over!
-		if(pc.statusEffectv3("Treated") <= 0)
-		{
-			eBuffer += "The lingering tingle and buzz that has highlighted the constant expansion of your " + pc.cocksDescript() + " fades away. <b>Your manhood";
-			if(pc.cockTotal() > 1) eBuffer += "s";
-			eBuffer += " won’t be getting any bigger, at least not from the treatment.</b>";
+			if (startHours < 60 && treatedHours >= 60)
+			{
+				eBuffer += "\n\n" + logTimeStamp("passive", (60 - startHours) * 60) + " You grin when you realize how heavy the swaying length";
+				if(pc.cockTotal() > 1) eBuffer += "s";
+				if(pc.legCount > 1) eBuffer += ParseText(" between your [pc.legs]");
+				else eBuffer += " dangling from your crotch";
+				if(pc.cockTotal() == 1) eBuffer += " has";
+				else eBuffer += " have";
+				eBuffer += " become.";
+				if(pc.isCrotchGarbed()) eBuffer += ParseText(" You yank open your [pc.lowerGarment] check it out.");
+				else eBuffer += " You figure a little self-examination won’t hurt.";
+				eBuffer += " Grabbing hold of " + pc.oneCock() + ParseText(", you decide that you’ll be sure not to get as excited as last time. Better to save the [pc.cumNoun] for someone who really wants it. Easy does it.");
+
+				if(pc.lust() < 70) eBuffer += "\n\nYou stroke cautiously until you reach your full size, then try to eyeball a measurement.";
+				else eBuffer += "\n\nYou stroke a few times just to make sure you’ve reached your full size, but as horny as you are, you probably didn’t even have to touch the thing.";
+				eBuffer += " Damn, it’s at least an inch longer.";
+				if(pc.cockTotal() > 1) 
+				{
+					if(pc.cockTotal() == 2) eBuffer += " The other one is bigger too";
+					else eBuffer += "The other ones are bigger too";
+					eBuffer += ", though growing faster to catch up to the main event.";
+					eBuffer += " You pump a few more times, savoring the warmth and heat that it brings to your body, then release yourself with a sigh.";
+				}
+				for(x = 0; x < pc.totalCocks(); x++)
+				{
+					if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
+					else pc.cocks[x].cLengthRaw += 2;
+				}
+				pc.addStatusValue("Treated",3,-1);
+				pc.lust(5);
+			}
+			if (startHours < 66 && treatedHours >= 66)
+			{
+				eBuffer += "\n\n" + logTimeStamp("passive", (66 - startHours) * 60) + " Fuck yes, your " + pc.cocksDescript() + " ";
+				if(pc.cockTotal() == 1) eBuffer += "is";
+				else eBuffer += "are";
+				eBuffer += " still growing. There’s no way you were this big a few hours ago.";
+				if(pc.isCrotchGarbed()) 
+				{
+					eBuffer += ParseText(" The bulge in your [pc.lowerGarments] is getting more and more noticeable, but that’s just fine, you figure. ");
+					if(pc.isAmazon()) eBuffer += "Maybe before long you can cock-shame a blushing faux cow.";
+					else eBuffer += "Maybe you’ll get to catch a girl giving it a look.";
+					eBuffer += " The image of a blushing, nervous smile makes your " + pc.cocksDescript() + " jump.";
+				}
+				else 
+				{
+					eBuffer += " The dangling length";
+					if(pc.cockTotal() > 1) eBuffer += "s";
+					eBuffer += " of meat sway";
+					if(pc.cockTotal() == 1) eBuffer += "s";
+					eBuffer += " heavily with every step. You wonder if you’ll catch anyone checking you out during your travels. The thought of a few giggling cow-girls sneaking glances at your crotch as you walk has you doing a lot less dangling and a lot more jutting straight forward. You’ll have to be careful turning corners.";	
+				}
+				//+20 lust
+				pc.lust(20);
+				for(x = 0; x < pc.totalCocks(); x++)
+				{
+					if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
+					else pc.cocks[x].cLengthRaw += 2;
+				}
+				pc.addStatusValue("Treated",3,-1);
+			}
+			if (startHours < 83 && treatedHours >= 83)
+			{
+				//Pants!
+				if(pc.isCrotchGarbed())
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (83 - startHours) * 60) + ParseText(" Your can barely fit in your [pc.lowerGarments] anymore. Even soft, your ") + pc.cocksDescript() + " ";
+					if(pc.cockTotal() == 1) eBuffer += "is";
+					else eBuffer += "are";
+					eBuffer += " straining against the equipped restraints, feeling trapped no matter how elastic ";
+					if(pc.cockTotal() == 1) eBuffer += "its";
+					else eBuffer += "their";
+					eBuffer += " confinement. It wouldn’t be so bad if you weren’t spending so much time turned on and ready to blow. You’ve gotta be at least an inch longer now";
+					if(pc.cockTotal() == 2) eBuffer += ", and your other wang is even longer, trying to catch up";
+					else if(pc.cockTotal() > 2) eBuffer += ", and your other wangs have grown even more, still trying to catch up";
+					eBuffer += ".";
+				}
+				//NoPantz
+				else
+				{
+					eBuffer += "\n\n" + logTimeStamp("passive", (83 - startHours) * 60) + " You can barely go ten minutes without having to stop and appreciate your expanding manhood";
+					if(pc.cockTotal() > 1) eBuffer += "s";
+					eBuffer += ". It’s one thing to read in clinical detail about how your penis might get bigger. It’s another to hold it in your hand, feeling it snake out to new lengths, surging on tides of artificially-created hormones and busy microsurgeons. A part of you wishes this could go on forever, even if it meant immobilizing yourself under the weight of your own phall";
+					if(pc.cockTotal() > 1) eBuffer += "i";
+					else eBuffer += "us";
+					eBuffer += ".";
+					eBuffer += "\n\nBy your estimate, you’re about an inch longer than you were at your last measurement";
+					if(pc.cockTotal() == 2) eBuffer += ", and your spare dick is catching up fast";
+					else if(pc.cockTotal() > 2) eBuffer += ", and your spare dicks are catching up fast";
+					eBuffer += ".";
+				}
+				//+10 lust
+				pc.lust(10);
+				for(x = 0; x < pc.totalCocks(); x++)
+				{
+					if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
+					else pc.cocks[x].cLengthRaw += 2;
+				}
+				pc.addStatusValue("Treated",3,-1);
+			}
+			if (startHours < 100 && treatedHours >= 100)
+			{
+				eBuffer += "\n\n" + logTimeStamp("passive", (100 - startHours) * 60) + " Your " + pc.cocksDescript() + " surge";
+				if(pc.cockTotal() == 1) eBuffer += "s";
+				eBuffer += " forward out of the blue";
+				if(pc.armor.shortName != "") eBuffer += ParseText(", snaking down the inside of your [pc.armor]");
+				else eBuffer += ParseText(", threatening to tear your [pc.underGarment] from your frame");
+				eBuffer += ", gorging on ";
+				if(pc.cockTotal() == 1) eBuffer += "its";
+				else eBuffer += "their";
+				eBuffer += ParseText(" own tumescent potential until you feel more dick than [pc.man]. There’s no resisting it. All you can do is ride the waves of bliss as you shoot [pc.cumVisc] ropes of [pc.cumNoun]");
+				if(pc.isCrotchGarbed()) eBuffer += ParseText(" down the inside of your [pc.lowerGarment], moaning all the while.");
+				else eBuffer += " across the ground in front of you, moaning all the while.";
+				eBuffer += "\n\nWhen it’s all over, you realize that you’re at least an inch longer, maybe more.";
+				//Cum!
+				pc.orgasm();
+				for(x = 0; x < pc.totalCocks(); x++)
+				{
+					if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
+					else pc.cocks[x].cLengthRaw += 2;
+				}
+				pc.addStatusValue("Treated",3,-1);
+			}
+			if (startHours < 125 && treatedHours >= 125)
+			{
+				eBuffer += "\n\n" + logTimeStamp("passive", (125 - startHours) * 60) + " You’re sure you’ve been growing all day, but you want more. Grabbing hold of " + pc.oneCock() + ", you sit there, idly tugging at it, enjoying the play of your elastic flesh as it lengthens in response to your ministrations. All the pulling has you hard in the span of a few minutes, rendering the tugging pretty pointless. Of course, you’re even bigger than the last time you took stock of yourself.";
+				for(x = 0; x < pc.totalCocks(); x++)
+				{
+					if(x == pc.biggestCockIndex()) pc.cocks[x].cLengthRaw += 1;
+					else pc.cocks[x].cLengthRaw += 2;
+				}
+				pc.addStatusValue("Treated",3,-1);
+				eBuffer += "\n\nYour " + pc.cockDescript(pc.biggestCockIndex()) + " is a proud " + num2Text(Math.round(pc.biggestCockLength())) + " inches now";
+				if(pc.cockTotal() == 2) eBuffer += ", and your other isn’t far behind";
+				else if(pc.cockTotal() > 2) eBuffer += ", and your others aren’t far behind";
+				eBuffer += ".";
+				pc.lust(10);
+			}
+			if(pc.statusEffectv3("Treated") <= 0)
+			{
+				eBuffer += "The lingering tingle and buzz that has highlighted the constant expansion of your " + pc.cocksDescript() + " fades away. <b>Your manhood";
+				if(pc.cockTotal() > 1) eBuffer += "s";
+				eBuffer += " won’t be getting any bigger, at least not from the treatment.</b>";
+			}
 		}
 	}
+	
 	//Animal Dicks: Horse, Dog, Cat, maybe one with multiple type qualities
 	//80% chance of animal type conversion. Of that 80%, 50% of the time it’s forced on all members.
-	if((!pc.isAmazon() && pc.hasCock() && treatedHours == 105 && rand(10) <= 7) ||
-		(pc.isAmazon() && pc.hasCock() && treatedHours == 159 && rand(2) == 0))
+	if((!pc.isAmazon() && pc.hasCock() && startHours < 105 && treatedHours >= 105 && rand(10) <= 7) ||
+		(pc.isAmazon() && pc.hasCock() && startHours < 159 && treatedHours >= 159 && rand(2) == 0))
 	{
 		//Pick type to change to.
 		var chosenDickType:int = rand(5);
@@ -4099,7 +4148,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				//Single cock transform!
 				if(!changeAllDicks)
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + " Feeling a little light-headed, you find yourself a seat just in time to notice ";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " Feeling a little light-headed, you find yourself a seat just in time to notice ";
 					if(!pc.hasSheath(targetDick))
 					{
 						eBuffer += "an odd pinching feeling coming from your " + pc.cockDescript(targetDick) + ". Obviously concerned, you ";
@@ -4166,7 +4215,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				//Dubstep+ cawk transform!
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Feeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do");
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + ParseText(" Feeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do");
 					if(pc.legCount == 1) eBuffer += "es";
 					eBuffer += ". A strange pinching feeling is overwhelming your " + pc.cocksDescript() + ". You ";
 					if(pc.isCrotchGarbed()) eBuffer += ParseText("pull your [pc.lowerGarments] down for a look");
@@ -4241,7 +4290,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				//Single
 				if(!changeAllDicks)
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + " Your " + pc.cockDescript(targetDick) + " shifts, pulling up against your crotch. You wince at the abrupt change, wondering if something has gone wrong, fearing that you’ll wind up as ";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " Your " + pc.cockDescript(targetDick) + " shifts, pulling up against your crotch. You wince at the abrupt change, wondering if something has gone wrong, fearing that you’ll wind up as ";
 					if(!pc.isAmazon()) eBuffer += "one of the effeminate faux-cows";
 					else eBuffer += "some kind of tiny-dicked freak";
 					if(pc.isCrotchGarbed()) eBuffer += " even while you pull your equipment off for a better look";
@@ -4273,7 +4322,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				//Multi!
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + " You double over a feeling that can only be described as... diminishment traverses your crotch from one side to the other, centered over your " + pc.cocksDescript() + ". Terrified that something might have gone wrong - that you might be shrinking ";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " You double over a feeling that can only be described as... diminishment traverses your crotch from one side to the other, centered over your " + pc.cocksDescript() + ". Terrified that something might have gone wrong - that you might be shrinking ";
 					if(!pc.isAmazon()) eBuffer += "and turning into a faux-cow";
 					else eBuffer += "into some sort of tiny-dicked freak";
 					eBuffer += ", you stagger back";
@@ -4318,7 +4367,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				//Single Catcock TF
 				if(!changeAllDicks)
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + " Your " + pc.cockDescript(targetDick) + " becomes distressingly hard in an instant";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " Your " + pc.cockDescript(targetDick) + " becomes distressingly hard in an instant";
 					if(pc.isCrotchGarbed()) eBuffer += ParseText(", threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with an ill-fitting titanium bar in your pants. You pull the offending equipment out of the way, and the relief is so palpable you could swim in it");
 					else eBuffer += ", jutting out from your crotch like some kind of rigid, cybernetically attached lever. You aren’t sure you’d be able to stand having an erection this strong trapped within any kind of clothing";
 					eBuffer += ". It grows harder by the second. A small part of you wonders if you’re somehow going to explode.";
@@ -4342,7 +4391,7 @@ public function standardTreatmentDickStuff(treatedHours:Number):void
 				//Multicock!
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive") + " In an instant, your " + pc.cocksDescript() + " become distressingly hard, ";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " In an instant, your " + pc.cocksDescript() + " become distressingly hard, ";
 					if(pc.isCrotchGarbed()) eBuffer += ParseText("threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with ill-fitting titanium bars stuffed into your pants. You pull the offending equipment out of the way, and the relief is so palpable that you could fill a pool with it");
 					else eBuffer += "jutting out from your crotch like levers from a perverse control panel. You aren’t sure you’d be able to stand having erections like this trapped within any kind of clothing. For once, nudity pays off";
 					eBuffer += ". They’re getting harder by the second, still. A part of you wonders if they’re going to pump up till they burst, overwhelmed by some kind of incredible, internal pressure.";
