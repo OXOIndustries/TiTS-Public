@@ -3657,8 +3657,10 @@
 					intelligenceRaw = intelligenceMax();
 				}
 			}
-
-			var currInt:int = intelligenceRaw + intelligenceMod;
+			var bonus:Number = 0;
+			if(hasStatusEffect("Adorahol")) bonus -= statusEffectv1("Adorahol");
+			
+			var currInt:int = intelligenceRaw + intelligenceMod + bonus;
 			
 			if (hasStatusEffect("Focus Pill")) currInt += 5;
 			if(hasPerk("Dumb4Cum"))
@@ -3756,6 +3758,7 @@
 			if (accessory is Allure) currLib += 20;
 			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			if (hasStatusEffect("Mare Musk")) currLib += 10;
+			if (hasStatusEffect("Adorahol")) currLib += (5 * statusEffectv1("Adorahol"));
 			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
 			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
@@ -3796,6 +3799,7 @@
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
 			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
+			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
