@@ -176,6 +176,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/dryad.png", mimeType = "image/png")]
 		public var Bust_DRYAD:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/edan.png", mimeType = "image/png")]
+		public var Bust_EDAN:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/edan_nude.png", mimeType = "image/png")]
+		public var Bust_EDAN_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/elenora.png", mimeType = "image/png")]
 		public var Bust_ELENORA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/elenora_nude.png", mimeType = "image/png")]
@@ -416,9 +421,9 @@
 		public var Bust_SAENDRA:Class;
 		public var Bounds_SAENDRA:Rectangle = new Rectangle(12, 4, 55, 63);
 
-		//[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_old.png", mimeType = "image/png")]
-		//public var Bust_SHADE_OLD:Class;
-		//public var Bounds_SHADE_OLD:Rectangle = new Rectangle(26, 3, 64, 64);
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_old.png", mimeType = "image/png")]
+		public var Bust_SHADE_COMBAT:Class;
+		public var Bounds_SHADE_COMBAT:Rectangle = new Rectangle(26, 3, 64, 64);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade.png", mimeType = "image/png")]
 		public var Bust_SHADE:Class;
 		public var Bounds_SHADE:Rectangle = new Rectangle(6, 6, 64, 64);
@@ -674,6 +679,11 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/dryad.png", mimeType = "image/png")]
 			public var Full_DRYAD:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/edan.png", mimeType = "image/png")]
+			public var Full_EDAN:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/edan_nude.png", mimeType = "image/png")]
+			public var Full_EDAN_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/elenora.png", mimeType = "image/png")]
 			public var Full_ELENORA:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/elenora_nude.png", mimeType = "image/png")]
@@ -903,8 +913,8 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/saendra.png", mimeType = "image/png")]
 			public var Full_SAENDRA:Class;
 
-			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_old.png", mimeType = "image/png")]
-			//public var Full_SHADE_OLD:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_old.png", mimeType = "image/png")]
+			public var Full_SHADE_COMBAT:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade.png", mimeType = "image/png")]
 			public var Full_SHADE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_nude.png", mimeType = "image/png")]

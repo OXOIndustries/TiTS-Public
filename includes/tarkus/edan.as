@@ -479,10 +479,11 @@ public function edanSexFirst():void
 
 public function edanSexSecondStart():void
 {
-	edanHeader();
+	clearOutput();
 	clearMenu();
+	edanHeader();
 	
-	output("\n\n... But Edan’s voice stops you short.");
+	output("... But Edan’s voice stops you short.");
 	output("\n\n<i>“Actually, Steele, I don’t want you hiding under the table.”</i>");
 	output("\n\nHe shuffles backwards a bit to make room on the floor in front of him and points at the space.");
 	output("\n\n<i>“I’d rather you were sitting right here.”</i>");
