@@ -54,7 +54,8 @@
 			// Raw properties
 			for each (var prop:XML in _dl)
 			{
-				if (this[prop.@name] != null && this[prop.@name] != undefined)
+				var pName:String = prop.@name;
+				if (this[prop.@name] != null && this[prop.@name] != undefined && _ignoredFields.indexOf(pName) == -1)
 				{
 					if (this[prop.@name] is ISaveable)
 					{
