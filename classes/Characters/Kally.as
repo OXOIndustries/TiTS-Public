@@ -3,10 +3,6 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
-	import classes.StorageClass;
-	import classes.Items.Melee.ShockBlade;
-	import classes.Items.Guns.HammerCarbine;
-	import classes.Items.Protection.JoyCoPremiumShield;
 	
 	public class Kally extends Creature
 	{

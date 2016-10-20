@@ -55,7 +55,8 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Height:</b> " + prettifyLength(pc.tallness));
 		output2("\n<b>* Weight:</b> " + prettifyWeight(pc.fullBodyWeight()));
 		output2("\n<b>* Sex:</b> ");
-		if(pc.hasCock() && !pc.hasVagina()) output2("Male");
+		if(pc.genderTextOverride() != "") output2(pc.genderTextOverride());
+		else if(pc.hasCock() && !pc.hasVagina()) output2("Male");
 		else if(!pc.hasCock() && pc.hasVagina()) output2("Female");
 		else if(pc.hasCock() && pc.hasVagina()) output2("Hermaphrodite");
 		else output2("Sexless");

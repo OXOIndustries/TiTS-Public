@@ -51,6 +51,7 @@
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Interfaces.ParseText;
+	import classes.GameData.CodexManager;
 
 
 	/**
@@ -3191,6 +3192,31 @@
 			if(isHerm() && mfn("m", "f", "n") == "m") return true;
 			return false;
 		}
+		// For special case alien sex/gender override text in combat!
+		public function genderTextOverride():String
+		{
+			var autoSex:String = "";
+			
+			// Goo races
+			if
+			(	originalRace == "galotian" || race().indexOf("galotian") != -1
+			||	originalRace.indexOf("rahn") != -1 || isRahn()
+			||	originalRace == "conglomerate"
+			||	originalRace == "ganrael" || race().indexOf("ganrael") != -1
+			)
+			{
+				autoSex = "Unisex";
+			}
+			// Nyrea
+			if(originalRace == "nyrea" || race().indexOf("nyrea") != -1)
+			{
+				if(isFemale()) autoSex = "Male";
+				if(isMale()) autoSex = "Female";
+				if(!CodexManager.entryViewed("Nyrea")) autoSex += "???";
+			}
+			
+			return autoSex;
+		}
 		/**
 		 * Brynn has a bunch of shit that leans on this that kinda needs to be expanded.
 		 * @Fen- if you decide how you're going to handle differentiating the type of treatment applied, remind me after to go through and clean it up to match.
@@ -4652,7 +4678,7 @@
 					types.push("goo-like", "amorphous", "gelatinous", "slimy", "gooey");
 					if(isRahn()) types.push("rahn");
 					if(race() == "galotian") types.push("galotian");
-					if(race() == "Conglomerate") types.push("nanomite");
+					if(race() == "conglomerate") types.push("nanomite");
 					break;
 				case GLOBAL.TYPE_BEE:
 					types.push("bright yellow", "insectile", "straw-like", "bee-like");
@@ -16938,6 +16964,13 @@
 				
 		public function getCombatPronoun(type:String):String
 		{
+			if(isPlural)
+			{
+				if (type == "s" || type == "heshe") return "they";
+				if (type == "o" || type == "himher") return "them";
+				if (type == "pa" || type == "hisher") return "their";
+				if (type == "pp" || type == "hishers") return "theirs";
+			}
 			if (type == "s" || type == "heshe") return (this is PlayerCharacter ? "you" : mfn("he", "she", "it"));
 			if (type == "o" || type == "himher") return (this is PlayerCharacter ? "you" : mfn("him", "her", "it"));
 			if (type == "pa" || type == "hisher") return (this is PlayerCharacter ? "your" : mfn("his", "her", "its"));
