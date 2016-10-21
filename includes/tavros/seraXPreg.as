@@ -68,6 +68,13 @@ public function serasBodyIsReady():void
 	chars["SERA"].minutesSinceCum = 9000;
 }
 
+// Party Check
+public function seraPartySuccess():Boolean
+{
+	// If PC has completed party event successfully
+	return (flags["SERA_PARTY_INVITE"] >= 3 && flags["SERA_INFULENCE"] > 90);
+}
+
 // Intro
 public function seraBreedingIntro():void
 {
@@ -90,7 +97,7 @@ public function seraBreedingIntro():void
 		flags["SERA_TALKS_BREED"] = 1;
 		
 		// If PC has completed party event successfully
-		if(flags["SERA_PARTY_INVITE"] >= 4)
+		if(seraPartySuccess())
 		{
 			seraBreedBegMenu(true);
 		}
@@ -114,7 +121,7 @@ public function seraBreedingIntro():void
 		output("\n\n<i>“And why,”</i> replies Sera coolly, lounging back on her counter to cross her legs, <i>“might I have done that?”</i>");
 		
 		// If PC has completed party event successfully
-		if(flags["SERA_PARTY_INVITE"] >= 4)
+		if(seraPartySuccess())
 		{
 			output("\n\n<i>“Seeing as how you’re no longer in debt,”</i> you say. <i>“Thanks to your most devoted slave. Perhaps with that no longer weighing on you, you might be thinking about... getting fruitful?”</i> Sera leers, shaking her head slightly as she allows her reptilians gaze to move up and down you.");
 			
@@ -158,7 +165,7 @@ public function seraBreedBegAction(response:String = ""):void
 	author("Nonesuch");
 	showSera();
 	
-	var success:Boolean = (flags["SERA_PARTY_INVITE"] >= 4);
+	var success:Boolean = seraPartySuccess();
 	
 	switch(response)
 	{
@@ -376,7 +383,7 @@ public function seraBreedResponse(arg:Array):void
 			// Give Sera pregnancy powers!
 			serasBodyIsReady();
 			chars["SERA"].impregnationType = "SeraSpawnPregnancy";
-			chars["SERA"].createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", "Your masculine virility has been piqued temporarily.", false, (24 * 60));
+			chars["SERA"].createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", "Masculine virility has been piqued temporarily.", false, 1440);
 			
 			// {merge}
 			output("\n\nIt’s less of a kiss and more of a ravaging; she bends her wet muscle into you as far as she can, almost brushing your tonsils before thrusting it into a cheek wall, apparently intent on touching as much of you as possible.");

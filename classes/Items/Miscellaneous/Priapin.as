@@ -29,7 +29,7 @@
 			
 			description = "a blue-colored medipen loaded with Priapin";
 			
-			tooltip = "A refinement on the side effect-plagued Throbb and Semen’s Friend lines, Priapin offers users a short term boost to their male libido, fertility and erectile function. Particularly popular amongst hermaphrodites seeking to increase their chances of inseminating partners without necessarily increasing their female fertility.";
+			tooltip = "A refinement on the side effect-plagued Throbb and Semen’s Friend lines, Priapin offers users a short term boost to their male libido, fertility and erectile function. Particularly popular among hermaphrodites seeking to increase their chances of inseminating partners without necessarily increasing their female fertility.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
