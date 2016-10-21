@@ -737,19 +737,9 @@ public function seraSpawnPregnancyApproach(pregDays:Number = 0):Boolean
 // Sera Baby counting functions
 public function listSeraBabies(unnamed:Boolean = false):Array
 {
-	var babies:Array = [];
-	
-	for(var i:int = 0; i < ChildManager.CHILDREN.length; i++)
-	{
-		var baby:* = ChildManager.CHILDREN[i];
-		// Only check for unique Sera babies.
-		// Only babies that are 5 years and younger count.
-		if(baby is UniqueChild && baby.UniqueParent == "SERA" && (baby.Years <= 5))
-		{
-			if(unnamed && baby.Name != "") { /* Ignore baby. */ }
-			else babies.push(baby);
-		}
-	}
+	// Only check for unique Sera babies.
+	// Only babies that are 5 years and younger count.
+	var babies:Array = listBabiesOfParent("SERA", unnamed, 0, (5 * 365));
 	
 	return babies;
 }
@@ -769,18 +759,20 @@ public function displaySeraBabies():void
 		{
 			output("\n\n<b>Child No. " + (i + 1) + ":</b>");
 			output("\n<b>* Name:</b> " + (babies[i].Name == "" ? "<i>Unnamed</i>" : babies[i].Name));
-			if(babies[i].originalRace != "NOT SET")
-				output("\n<b>* Race:</b> " + StringUtil.toDisplayCase(babies[i].originalRace));
-			output("\n<b>* Age:</b> " + babies[i].Years + " yr old");
+			output("\n<b>* Race:</b> " + (babies[i].originalRace == "NOT SET" ? "<i>Unknown</i>" : StringUtil.toDisplayCase(babies[i].originalRace)));
+			output("\n<b>* Age:</b> ");
+			if(babies[i].Days >= 365) output(babies[i].Years + " year" + (babies[i].Years == 1 ? "" : "s"));
+			else if(babies[i].Days >= 30) output(babies[i].Months + " month" + (babies[i].Months == 1 ? "" : "s"));
+			else output("Newborn");
 			output("\n<b>* Birthdate:</b> " + minutesToDate(babies[i].BornTimestamp));
 			output("\n<b>* Maturation Rate:</b> " + formatFloat(babies[i].MaturationRate * 100) + " %");
 			if(babies[i].NumNeuter > 0 || babies[i].NumFemale > 0 || babies[i].NumMale > 0 || babies[i].NumIntersex > 0)
 			{
-				output("\n<b>* Sex:</b>");
-				if(babies[i].NumNeuter > 0) output(" Sexless");
-				if(babies[i].NumFemale > 0) output(" Female");
-				if(babies[i].NumMale > 0) output(" Male");
-				if(babies[i].NumIntersex > 0) output(" Hermaphrodite");
+				output("\n<b>* Sex:</b> ");
+				if(babies[i].NumNeuter > 0) output("Sexless");
+				if(babies[i].NumFemale > 0) output("Female");
+				if(babies[i].NumMale > 0) output("Male");
+				if(babies[i].NumIntersex > 0) output("Hermaphrodite");
 			}
 			if(babies[i].skinTone != "NOT SET")
 				output("\n<b>* Skin Tone:</b> " + StringUtil.toDisplayCase(babies[i].skinTone));
@@ -907,7 +899,7 @@ public function seraNurseryCafeteriaApproach():void
 		// [Visit / Play] [Leave]
 		if(numBabs > 0) addButton(0, "Visit", seraNurseryActions, ["visit"], "Visit", "Chivvy Sera into paying your child a visit together.");
 		if(numKids > 0) addButton(1, "Play", seraNurseryActions, ["play"], "Play", "Chivvy Sera into playing with your child together.");
-		addButton(4, "Stats", seraNurseryActions, ["stats"], "Offspring Stats", "Check the stats of Sera’s kids.");
+		//addButton(4, "Stats", seraNurseryActions, ["stats"], "Offspring Stats", "Check the stats of Sera’s kids.");
 		addButton(14, "Leave", mainGameMenu);
 	}
 }

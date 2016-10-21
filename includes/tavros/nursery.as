@@ -363,8 +363,8 @@ public function nurseryComputerChildren():void
 		clearBust();
 		author("Jacques00");
 		
-		output("<b>The computer makes some worrying blips.</b> It then displays a holo-pop-up that reads:");
-		output("\n\n<i>“Oops! An error has occured and data recovery is in process. Please wait while files are being retrived...”</i>");
+		output("<b>The computer makes some worrying blips.</b> It then displays a holo pop-up that reads:");
+		output("\n\n<i>“Oops! An error has occured and data recovery is in process. Please wait while files are being retrieved...”</i>");
 		output("\n\nIt seems your nursery records have not been set straight since the previous software update and some of the data on file may have been corrupted. To ensure consistency in recordkeeping, the computer is attempting to recover your past records and display them. You can’t do much beside wait for the automated system to do its thing...");
 		
 		clearMenu();
@@ -395,9 +395,9 @@ public function nurseryComputerChildren():void
 	}
 
 	nurseryDisplayAllChildren();
+	output("\n\n");
 
 	nurseryComputerMenu(nurseryComputerChildren);
-	
 }
 
 private var orphanList:Array = [
@@ -620,11 +620,13 @@ public function nurseryDisplayAllChildren():void
 	// It may be wise to expand this into some form of menu down the line. We have the backing data to support a lot of different
 	// ways to view this too, so we could show all in age range quite easily
 	nurseryDisplayGenericChildren(sortedTypedBuckets);
-	//nurseryDisplayUniqueChildren(allUniques);
+	nurseryDisplayUniqueChildren(allUniques);
 }
 
 public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 {
+	if(ChildManager.numChildren() <= 0) return;
+	
 	var displayAges:Array = [
 		"18+ years",
 		"16-18 years",
@@ -632,34 +634,36 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 		"8-12 years",
 		"4-8 years",
 		"1-4 years",
-		"9 months",
-		"6 months",
-		"3 months",
-		"1 month",
+		"9-12 months",
+		"6-9 months",
+		"3-6 months",
+		"1-3 months",
 		"newborn"
 	];
-
+	
+	output("\n\n" + blockHeader("Children Overview", false));
+	
 	for (var key:String in sortedTypedBuckets)
 	{
 		var thisBucket:Array = sortedTypedBuckets[key];
 		var displayCnt:int = 0;
-
-		output("\n\n<b>" + GLOBAL.TYPE_NAMES[int(key)] + " Offspring:</b>");
-
+		
+		output("\n<b><u>" + GLOBAL.TYPE_NAMES[int(key)] + " Offspring</u></b> - Total: " + ChildManager.numOfType(int(key)));
+		
 		for (var i:int = 0; i < thisBucket.length; i++)
 		{
 			if (thisBucket[i].any())
 			{
 				var b:Genders = thisBucket[i];
 				var entries:Array = [];
-				if (b.Male > 0) entries.push(" " + b.Male + " sons");
-				if (b.Female > 0) entries.push(" " + b.Female + " daughters");
+				if (b.Male > 0) entries.push(" " + b.Male + " son" + (b.Male == 1 ? "" : "s"));
+				if (b.Female > 0) entries.push(" " + b.Female + " daughter" + (b.Female == 1 ? "" : "s"));
 				if (b.Intersex > 0) entries.push(" " + b.Intersex + " mixed-gender");
 				if (b.Neuter > 0) entries.push(" " + b.Neuter + " ungendered");
 
 				if(entries.length > 0)
 				{
-					output("\n<b>* " + StringUtil.toDisplayCase(displayAges[i]) + ":</b> " + CompressToList(entries));
+					output("\n<b>* " + StringUtil.toDisplayCase(displayAges[i]) + ":</b>" + CompressToList(entries));
 					displayCnt++;
 				}
 			}
@@ -669,6 +673,24 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 	}
 }
 
+public function listBabiesOfParent(parentName:String = "", unnamed:Boolean = false, ageMin:int = -1, ageMax:int = -1):Array
+{
+	var babies:Array = [];
+	
+	for(var i:int = 0; i < ChildManager.CHILDREN.length; i++)
+	{
+		var baby:* = ChildManager.CHILDREN[i];
+		if(baby is UniqueChild && baby.UniqueParent == parentName)
+		{
+			if(unnamed && baby.Name != "") { /* Ignore baby. */ }
+			else if(ageMin >= 0 && baby.Days < ageMin) { /* Ignore baby. */ }
+			else if(ageMax >= 0 && baby.Days > ageMax) { /* Ignore baby. */ }
+			else babies.push(baby);
+		}
+	}
+	
+	return babies;
+}
 public function nurseryDisplayUniqueChildren(uniques:Array):void
 {
 	// Placeholder-esque until I come back through implementing the first actual unique children
@@ -677,6 +699,86 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 	Children by {Unique Parter}
 	// Agerange + gender of child, plus race name/hybridism. If name, show name.
 	*/
+	
+	if(ChildManager.numUniqueChildren() <= 0) return;
+	
+	output("\n\n" + blockHeader("Unique Children", false));
+	
+	var parentList:Array = [];
+	var parentName:String = ""; 
+	for(var b:int = 0; b < uniques.length; b++)
+	{
+		parentName = uniques[b].UniqueParent;
+		if(parentList.indexOf(parentName) == -1) parentList.push(parentName);
+	}
+	
+	for(var p:int = 0; p < parentList.length; p++)
+	{
+		parentName = parentList[p];
+		var babies:Array = listBabiesOfParent(parentName);
+		
+		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName)) + "</b></u>");
+		if(StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") > 0) output(" - Total: " + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids"));
+		if(babies.length > 0)
+		{
+			for(var i:int = 0; i < babies.length; i++)
+			{
+				var baby:UniqueChild = babies[i];
+				
+				// Check for null variables and reset them (just in case...)
+				if(baby.Name == null) baby.Name = "";
+				if(baby.originalRace == null) baby.originalRace = "NOT SET";
+				if(baby.skinTone == null) baby.skinTone = "NOT SET";
+				if(baby.lipColor == null) baby.lipColor = "NOT SET";
+				if(baby.nippleColor == null) baby.nippleColor = "NOT SET";
+				if(baby.eyeColor == null) baby.eyeColor = "NOT SET";
+				if(baby.hairColor == null) baby.hairColor = "NOT SET";
+				if(baby.furColor == null) baby.furColor = "NOT SET";
+				if(baby.scaleColor == null) baby.scaleColor = "NOT SET";
+				if(baby.chitinColor == null) baby.chitinColor = "NOT SET";
+				if(baby.featherColor == null) baby.featherColor = "NOT SET";
+				
+				// Print stats
+				output("\n<b>* " + (baby.Name == "" ? "<i>Unnamed</i>" : baby.Name) + ":</b> ");
+				if(baby.Days >= 6570) output("18+ years");
+				else if(baby.Days >= 365) output(baby.Years + " year" + (baby.Years == 1 ? "" : "s"));
+				else if(baby.Days >= 30) output(baby.Months + " month" + (baby.Months == 1 ? "" : "s"));
+				else output("Newborn");
+				//output(" (Born: " + minutesToDate(baby.BornTimestamp) + ")");
+				//output(", " + formatFloat(baby.MaturationRate * 100) + " % growth rate");
+				output(", ");
+				output((baby.originalRace == "NOT SET" ? "<i>Unknown Race</i>" : StringUtil.toDisplayCase(baby.originalRace)));
+				output(", ");
+				if(baby.NumNeuter > 0 || baby.NumFemale > 0 || baby.NumMale > 0 || baby.NumIntersex > 0)
+				{
+					if(baby.NumNeuter > 0) output("Sexless");
+					if(baby.NumFemale > 0) output("Female");
+					if(baby.NumMale > 0) output("Male");
+					if(baby.NumIntersex > 0) output("Hermaphrodite");
+				}
+				else output("<i>Unknown Sex</i>");
+				
+				var desc:Array = [];
+				if(baby.skinTone != "NOT SET") desc.push(" " + baby.skinTone + " skin");
+				//if(baby.lipColor != "NOT SET") desc.push(" " + baby.lipColor + " lips");
+				//if(baby.nippleColor != "NOT SET") desc.push(" " + baby.nippleColor + " nipples");
+				if(baby.eyeColor != "NOT SET") desc.push(" " + baby.eyeColor + " eyes");
+				if(baby.hairColor != "NOT SET") desc.push(" " + baby.hairColor + " hair");
+				if(baby.furColor != "NOT SET") desc.push(" " + baby.furColor + " fur");
+				if(baby.scaleColor != "NOT SET") desc.push(" " + baby.scaleColor + " scales");
+				if(baby.chitinColor != "NOT SET") desc.push(" " + baby.chitinColor + " chitin");
+				if(baby.featherColor != "NOT SET") desc.push(" " + baby.featherColor + " feathers");
+				if(desc.length > 0)
+				{
+					output("\n\t- Having" + CompressToList(desc) + ".");
+				}
+			}
+		}
+		else
+		{
+			output("\n<i>* There is no nursery data currently stored for your children from " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName)) + ".</i>");
+		}
+	}
 }
 
 public function nurseryMeetBriget():void
