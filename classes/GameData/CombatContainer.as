@@ -4531,20 +4531,6 @@ package classes.GameData
 			
 			pc.credits += sumCredits;
 			
-			//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
-			if(pc.hasStatusEffect("Roshan Blue")) sumXP += Math.floor(sumXP*0.25);
-			
-			/* DISABLED WITH NEW XP UPDATE
-			=======================================
-			// Add up XP, but don't permit the players current XP to overcap
-			if (sumXP + pc.XP() > pc.XPMax())
-			{
-				sumXP = pc.XPMax() - pc.XP();
-			}
-			=======================================*/
-			
-			pc.XP(sumXP);
-			
 			// Emit some shit to state what the player got/did
 			
 			output("You defeated ");
@@ -4561,12 +4547,7 @@ package classes.GameData
 			}
 			output("!");
 			
-			if (sumXP > 0) output(" " + sumXP + " XP gained!");
-			else
-			{
-				output("\n<b>Maximum XP attained! You need to level up to continue to progress.</b>");
-				if(pc.level == 1) output("\n<b>Find a bed to sleep on in order to level up (like on your ship).</b>");
-			}
+			kGAMECLASS.earnXP(sumXP, false);
 	
 			//Monies!
 			if (sumCredits > 0) 

@@ -353,7 +353,21 @@
 		}
 		
 		public var isLustImmune:Boolean = false;
-
+		
+		//Level Caps
+		public function levelMin():int
+		{
+			return 1;
+		}
+		public function levelMax():int
+		{
+			return levelEnd();
+		}
+		public function levelEnd():int
+		{
+			return 20;
+		}
+		
 		//Level Stats
 		public var XPRaw: Number = 0;
 		public var level: Number = 1;
@@ -3396,7 +3410,7 @@
 			arg *= bMulti;
 			
 			XPRaw += arg;
-			//if (XPRaw >= XPMax()) XPRaw = XPMax();
+			//if (XPRaw >= XPMax() && level >= levelEnd()) XPRaw = XPMax();
 			if (XPRaw <= 0) XPRaw = 0;
 			return XPRaw;
 		}

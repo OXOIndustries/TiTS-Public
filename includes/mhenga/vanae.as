@@ -157,6 +157,16 @@ public function configMaidenFight():void
 	CombatManager.displayLocation("MAIDEN");
 }
 
+public function configHuntressFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new HuntressVanae());
+	CombatManager.victoryScene(vanaePCVictory);
+	CombatManager.lossScene(vanaeHuntressPCDefeat);
+	CombatManager.displayLocation("HUNTRESS");
+}
+
 public function vanaeWaitWhilstGrappled():void
 {
 	// [Don't Struggle] 

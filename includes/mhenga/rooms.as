@@ -1496,7 +1496,7 @@ public function initMhengaRooms():void
 	rooms["BLADED FERNS 1"].addFlag(GLOBAL.JUNGLE);
 
 	rooms["BLADED FERNS 2"] = new RoomClass(this);
-	rooms["BLADED FERNS 2"].roomName = "";
+	rooms["BLADED FERNS 2"].roomName = "BLADED\nFERNS";
 	rooms["BLADED FERNS 2"].description = "Here the air is rife with mist and the ground littered with razor leaved shrubs and bushes. Only the glimmering of silver leaves warns you of impending danger; each step an exercise in extreme caution.\n\nIt seems like a natural defense against unprotected intruders. You spot the skeleton of a massive creature surrounded by the bladed ferns. You suspect they did not exercise the same level of prudence.\n\nThrough the maze-like foliage, you can see a path leading north and another west. Everywhere else is filled with painful looking thickets packed close together.";
 	rooms["BLADED FERNS 2"].runOnEnter = mhengaVanaeFernDamage;
 	rooms["BLADED FERNS 2"].planet = "PLANET: MHEN'GA";
@@ -1510,7 +1510,7 @@ public function initMhengaRooms():void
 	rooms["BLADED FERNS 2"].addFlag(GLOBAL.JUNGLE);
 
 	rooms["CLOUD FOREST 1"] = new RoomClass(this);
-	rooms["CLOUD FOREST 1"].roomName = "";
+	rooms["CLOUD FOREST 1"].roomName = "CLOUD\nFOREST";
 	rooms["CLOUD FOREST 1"].description = "You are surrounded by pale, majestic trees of impossible height that stretch skyward and out of view. The area is misty but in chunks, fog lining the ground like a blanket while other portions wrap intimately around the ancient monoliths.\n\nThis whole area seems peaceful and the air is crisp and cool. It feels oddly peaceful, unlike the rest of the Mhen'gan jungle. You're aware that appearances can be deceiving.\n\nA mess of tree roots to the north and south bar your path. Everywhere else seems fair game.";
 	rooms["CLOUD FOREST 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["CLOUD FOREST 1"].planet = "PLANET: MHEN'GA";
@@ -1524,7 +1524,7 @@ public function initMhengaRooms():void
 	rooms["CLOUD FOREST 1"].addFlag(GLOBAL.JUNGLE);
 
 	rooms["CLOUD FOREST 2"] = new RoomClass(this);
-	rooms["CLOUD FOREST 2"].roomName = "";
+	rooms["CLOUD FOREST 2"].roomName = "CLOUD\nFOREST";
 	rooms["CLOUD FOREST 2"].description = "Ancient Saole trees tower around you in every direction, each with countless branches weaving a tapestry of wood above you. Thick, ethereal fog slips through every gap the wooden spider web offers. A blanket of mist licks your [pc.feet] and steals them from view.\n\nThere is a jutting rock face here with water trickling down it. You can head either north or east.";
 	rooms["CLOUD FOREST 2"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["CLOUD FOREST 2"].planet = "PLANET: MHEN'GA";
@@ -1538,7 +1538,7 @@ public function initMhengaRooms():void
 	rooms["CLOUD FOREST 2"].addFlag(GLOBAL.JUNGLE);
 
 	rooms["CAMP EDGE"] = new RoomClass(this);
-	rooms["CAMP EDGE"].roomName = "";
+	rooms["CAMP EDGE"].roomName = "CAMP\nEDGE";
 	rooms["CAMP EDGE"].description = "The colossal Saole trees are further apart here, allowing for more light to stream down to the forest floor. Because of this, it is easy to spot the broken regional shield generator with a spear sticking out of it.\n\nGiven the trajectory of the spear, it seems to have been thrown from above into the device. There is a well worn path to the west of the device. On the other, it curves and fades off to the south.";
 	rooms["CAMP EDGE"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["CAMP EDGE"].planet = "PLANET: MHEN'GA";
@@ -1552,7 +1552,7 @@ public function initMhengaRooms():void
 	rooms["CAMP EDGE"].addFlag(GLOBAL.JUNGLE);
 
 	rooms["ABANDONED CAMP"] = new RoomClass(this);
-	rooms["ABANDONED CAMP"].roomName = "";
+	rooms["ABANDONED CAMP"].roomName = "XENOGEN\nCAMP";
 	rooms["ABANDONED CAMP"].description = "";
 	rooms["ABANDONED CAMP"].runOnEnter = mhengaVanaeAbandonedCamp;
 	rooms["ABANDONED CAMP"].planet = "PLANET: MHEN'GA";
