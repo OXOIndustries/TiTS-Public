@@ -744,7 +744,7 @@ public function listSeraBabies(unnamed:Boolean = false):Array
 		var baby:* = ChildManager.CHILDREN[i];
 		// Only check for unique Sera babies.
 		// Only babies that are 5 years and younger count.
-		if(baby is UniqueChild && baby.UniqueParent == "SERA" && ((GetGameTimestamp() - baby.BornTimestamp) <= (5 * 365 * 24 * 60)))
+		if(baby is UniqueChild && baby.UniqueParent == "SERA" && (baby.Years <= 5))
 		{
 			if(unnamed && baby.Name != "") { /* Ignore baby. */ }
 			else babies.push(baby);
@@ -771,7 +771,7 @@ public function displaySeraBabies():void
 			output("\n<b>* Name:</b> " + (babies[i].Name == "" ? "<i>Unnamed</i>" : babies[i].Name));
 			if(babies[i].originalRace != "NOT SET")
 				output("\n<b>* Race:</b> " + StringUtil.toDisplayCase(babies[i].originalRace));
-			output("\n<b>* Age:</b> " + minutesToYears(GetGameTimestamp() - babies[i].BornTimestamp) + " yr old");
+			output("\n<b>* Age:</b> " + babies[i].Years + " yr old");
 			output("\n<b>* Birthdate:</b> " + minutesToDate(babies[i].BornTimestamp));
 			output("\n<b>* Maturation Rate:</b> " + formatFloat(babies[i].MaturationRate * 100) + " %");
 			if(babies[i].NumNeuter > 0 || babies[i].NumFemale > 0 || babies[i].NumMale > 0 || babies[i].NumIntersex > 0)
@@ -896,9 +896,9 @@ public function seraNurseryCafeteriaApproach():void
 		for(i = 0; i < seraBabies.length; i++)
 		{
 			// Show this if there is a Seraspawn that is under 365 days old
-			if((GetGameTimestamp() - seraBabies[i].BornTimestamp) <= (365 * 24 * 60)) numBabs++;
+			if(seraBabies[i].Years <= 1) numBabs++;
 			// Show this if there is a Seraspawn that is over a year old. No they are never going to be over the age of five shut up
-			else if((GetGameTimestamp() - seraBabies[i].BornTimestamp) <= (5 * 365 * 24 * 60)) numKids++;
+			else if(seraBabies[i].Years <= 5) numKids++;
 		}
 		
 		if(pc.isPregnant() && pc.bellyRating() >= 10) output("<i>“Here to order some chocolate-coated celery or something?”</i> Sera sniggers as she glances at your [pc.belly]. <i>“Is that one mine? I kinda lose track.”</i>");
@@ -1069,7 +1069,7 @@ public function seraNurseryActions(arg:Array):void
 		case "visit":
 			for(i = 0; i < seraBabies.length; i++)
 			{
-				if((GetGameTimestamp() - seraBabies[i].BornTimestamp) > (365 * 24 * 60)) seraBabies.splice(i, 1);
+				if(seraBabies[i].Years > 1) seraBabies.splice(i, 1);
 			}
 			babyIdx = rand(seraBabies.length);
 			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
@@ -1162,7 +1162,7 @@ public function seraNurseryActions(arg:Array):void
 		case "play":
 			for(i = 0; i < seraBabies.length; i++)
 			{
-				if((GetGameTimestamp() - seraBabies[i].BornTimestamp) <= (365 * 24 * 60)) seraBabies.splice(i, 1);
+				if(seraBabies[i].Years <= 1) seraBabies.splice(i, 1);
 			}
 			babyIdx = rand(seraBabies.length);
 			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
@@ -1221,7 +1221,7 @@ public function seraNurseryActions(arg:Array):void
 				for(i = 0; i < ChildManager.CHILDREN.length; i++)
 				{
 					var tots:* = ChildManager.CHILDREN[i];
-					if(tots is UniqueChild && tots.UniqueParent != "SERA" && ((GetGameTimestamp() - tots.BornTimestamp) <= (5 * 365 * 24 * 60)))
+					if(tots is UniqueChild && tots.UniqueParent != "SERA" && tots.Years <= 5)
 					{
 						totsList.push(baby);
 					}
