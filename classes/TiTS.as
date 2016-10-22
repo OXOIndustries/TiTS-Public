@@ -313,6 +313,7 @@
 		include "../includes/events/kashimaIncident/roomfunctions.as";
 		
 		// Uveto
+		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
