@@ -1,4 +1,8 @@
 import classes.Characters.PlayerCharacter;
+import classes.GameData.Pregnancy.Child;
+import classes.GameData.Pregnancy.UniqueChild;
+import classes.GameData.Pregnancy.Containers.Genders;
+
 // General support shit
 public function hasNurseryUpgrades():Boolean
 {
@@ -353,14 +357,14 @@ public function nurseryComputerStaff():void
 	nurseryComputerMenu(nurseryComputerStaff);
 }
 
-import classes.GameData.Pregnancy.Containers.Genders;
 
 public function nurseryComputerChildren():void
 {
+	clearOutput();
+	clearBust();
+	
 	if(nurseryOrphanedBabyDiff() > 0 || (StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery()))
 	{
-		clearOutput();
-		clearBust();
 		author("Jacques00");
 		
 		output("<b>The computer makes some worrying blips.</b> It then displays a holo pop-up that reads:");
@@ -372,7 +376,6 @@ public function nurseryComputerChildren():void
 		return;
 	}
 	
-	clearOutput();
 	author("Savin");
 
 	var numChildren:int = ChildManager.numChildren();
@@ -419,6 +422,8 @@ public function nurseryOrphanedBabyDiff():int
 		numNurseryKids += StatTracking.getStat(orphanList[i]);
 	}
 	
+	if(debug) output("There are " + numNurseryKids + " kids, minus " + ChildManager.numChildren() + " in nursery, making " + (numNurseryKids - ChildManager.numChildren()) + " orphaned!\n\n");
+	
 	// Compare with actual number of kids in nursery.
 	return (numNurseryKids - ChildManager.numChildren());
 }
@@ -431,13 +436,23 @@ public function nurseryRecordsFix():void
 	
 	var msg:String = "";
 	var numFixed:Number = 0;
+	var orphanTypes:Array = [
+		"cockvine seedlings",
+		"nyrea eggs", "royal nyrea eggs", "Renvra, eggs", "Renvra, live",
+		"psychic tentacle beast",
+		"sydian",
+		"venus pitcher",
+		"Briha",
+		"water queen",
+		"raskvel",
+	];
 	
 	for(var i:int = 0; i < orphanList.length; i++)
 	{
 		if(nurseryAddOrphanedChild(orphanList[i]))
 		{
 			numFixed++;
-			msg += "\n\n<i>" + StringUtil.toTitleCase(num2Ordinal(numFixed)) + " entry detected... correcting... corrected.</i>";
+			msg += "\n\n<i>" + StringUtil.toTitleCase(num2Ordinal(numFixed)) + " entry detected (" + orphanTypes[i] + ")... correcting... corrected.</i>";
 		}
 	}
 	
@@ -488,6 +503,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 	var childWgtN:int = 0;
 	
 	var i:int = 0;
+	var corrected:Boolean = false;
 	
 	switch(statPath)
 	{
@@ -518,7 +534,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 		case "pregnancy/sydian births":
 			childType = GLOBAL.TYPE_HUMAN;
 			childMRate = 1.0;
-			childTotal = (StatTracking.getStat("pregnancy/sydian births") + StatTracking.getStat("pregnancy/sera kids"));
+			childTotal = StatTracking.getStat("pregnancy/sydian births");
 			break;
 		// Venus Pitcher
 		case "pregnancy/fertilized venus pitcher seeds/day care":
@@ -542,81 +558,8 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 			break;
 		// Briha Kids
 		case "pregnancy/briha kids":
-			// Get all the counters ready
-			var brihaKids:int = StatTracking.getStat(statPath);
-			var brihaBoys:int = StatTracking.getStat("pregnancy/briha sons");
-			var brihaGirls:int = StatTracking.getStat("pregnancy/briha daughters");
-			// Each birth is spaced one child per her incubation period (120 days)
-			var brihaDaySpan:int = (brihaFirstborn + brihaSecondborn + (brihaKids * 120));
-			// Unique ages
-			var brihaFirstborn:int = 0;
-			if(brihaKids >= 1)
-			{
-				brihaDaySpan -= 120;
-				brihaFirstborn += Math.abs(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_OLDEST_SPAWN_AGE"] : 120);
-			}
-			var brihaSecondborn:int = 0;
-			if(brihaKids >= 2)
-			{
-				brihaDaySpan -= 120;
-				brihaSecondborn += Math.abs(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] : 120);
-			}
-			
-			// Make babies
-			for(i = 0; i < brihaKids; i++)
-			{
-				// First Unique (oldest)
-				if(brihaKids == StatTracking.getStat(statPath))
-				{
-					addUniqueChildBriha(false, brihaDaySpan);
-					brihaGirls--;
-					brihaDaySpan -= brihaFirstborn;
-				}
-				// Second Unique (second oldest)
-				else if(brihaKids == (StatTracking.getStat(statPath) - 1))
-				{
-					addUniqueChildBriha(true, brihaDaySpan);
-					brihaBoys--;
-					brihaDaySpan -= brihaSecondborn;
-				}
-				// Generic kids
-				else if(brihaBoys > 0 || brihaGirls > 0)
-				{
-					if((brihaBoys > 0 && brihaGirls > 0 && rand(2) == 0) || brihaBoys == 0)
-					{
-						addChildBriha(1, false, brihaDaySpan);
-						brihaGirls--;
-					}
-					else
-					{
-						addChildBriha(1, true, brihaDaySpan);
-						brihaBoys--;
-					}
-					brihaDaySpan -= 120;
-				}
-				// Failsafe -- too many babies!
-				else
-				{
-					if(rand(2) == 0)
-					{
-						addChildBriha(1, false, brihaDaySpan);
-						StatTracking.track("pregnancy/briha daughters");
-					}
-					else
-					{
-						addChildBriha(1, true, brihaDaySpan);
-						StatTracking.track("pregnancy/briha sons");
-					}
-					StatTracking.track("pregnancy/total births");
-					brihaDaySpan -= 120;
-				}
-				if(brihaDaySpan < 0) brihaDaySpan = 0;
-				brihaKids--;
-			}
-			
-			// End with no new changes
-			childType = -1;
-			childTotal = -1;
+			childType = GLOBAL.TYPE_MYR;
+			childTotal = StatTracking.getStat(statPath);
 			break;
 		// Failsafe
 		default:
@@ -627,6 +570,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 	
 	// Remove any children from the count if they already exist
 	var children:Array = ChildManager.getChildrenOfType(childType);
+	var uniqueChildren:Array = [];
 	var totalNum:int = 0;
 	var child:Child;
 	if (children != null && children.length > 0)
@@ -635,32 +579,112 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 		for (i = 0; i < children.length; i++)
 		{
 			var c:Child = children[i] as Child;
-			if(c is UniqueChild) { /* Ignore baby! */ }
+			if(c is UniqueChild) { uniqueChildren.push(c) }
 			else totalNum += c.Quantity;
 		}
 		
 		childTotal -= totalNum;
 	}
 	
-	// Add (generic) children
+	// Add children
 	if(childType >= 0 && childTotal > 0)
 	{
-		ChildManager.addChild(
-			Child.NewChild(
-				childType,
-				childMRate,
-				childTotal,
-				childWgtM, childWgtF, childWgtI, childWgtN
-			)
-		);
-		return true;
+		switch(statPath)
+		{
+			case "pregnancy/briha kids":
+				// Get all the counters ready
+				var brihaTotal:int = StatTracking.getStat(statPath);
+				var brihaKids:int = brihaTotal;
+				var brihaBoys:int = StatTracking.getStat("pregnancy/briha sons");
+				var brihaGirls:int = StatTracking.getStat("pregnancy/briha daughters");
+				// Each birth is spaced one child per her incubation period (120 days)
+				var brihaDaySpan:int = (brihaKids * 120);
+				// Unique ages
+				var brihaFirstborn:int = 0;
+				if(brihaKids >= 1)
+				{
+					brihaDaySpan -= 120;
+					brihaFirstborn += Math.abs(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_OLDEST_SPAWN_AGE"] : 120);
+					brihaDaySpan += brihaFirstborn;
+				}
+				var brihaSecondborn:int = 0;
+				if(brihaKids >= 2)
+				{
+					brihaDaySpan -= 120;
+					brihaSecondborn += Math.abs(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] : 120);
+					brihaDaySpan += brihaSecondborn;
+				}
+				// Make babies
+				for(i = 0; i < brihaTotal; i++)
+				{
+					var brihaFirsts:Array = listBabiesOfParent("BRIHA");
+					// First Unique (oldest)
+					if(brihaKids == StatTracking.getStat(statPath) && brihaFirsts.length <= 0)
+					{
+						addUniqueChildBriha(false, brihaDaySpan);
+						brihaGirls--;
+						brihaDaySpan -= brihaFirstborn;
+					}
+					// Second Unique (second oldest)
+					else if(brihaKids == (StatTracking.getStat(statPath) - 1) && brihaFirsts.length <= 1)
+					{
+						addUniqueChildBriha(true, brihaDaySpan);
+						brihaBoys--;
+						brihaDaySpan -= brihaSecondborn;
+					}
+					// Generic kids
+					else if(brihaBoys > 0 || brihaGirls > 0)
+					{
+						if((brihaBoys > 0 && brihaGirls > 0 && rand(2) == 0) || brihaBoys == 0)
+						{
+							addChildBriha(1, false, brihaDaySpan);
+							brihaGirls--;
+						}
+						else
+						{
+							addChildBriha(1, true, brihaDaySpan);
+							brihaBoys--;
+						}
+						brihaDaySpan -= 120;
+					}
+					// Failsafe -- too many babies!
+					else
+					{
+						if(rand(2) == 0)
+						{
+							addChildBriha(1, false, brihaDaySpan);
+							StatTracking.track("pregnancy/briha daughters");
+						}
+						else
+						{
+							addChildBriha(1, true, brihaDaySpan);
+							StatTracking.track("pregnancy/briha sons");
+						}
+						StatTracking.track("pregnancy/total births");
+						brihaDaySpan -= 120;
+					}
+					if(brihaDaySpan < 0) brihaDaySpan = 0;
+					brihaKids--;
+					corrected = true;
+				}
+				break;
+			default:
+				ChildManager.addChild(
+					Child.NewChild(
+						childType,
+						childMRate,
+						childTotal,
+						childWgtM, childWgtF, childWgtI, childWgtN
+					)
+				);
+				corrected = true;
+				break;
+		}
 	}
 	
-	return false;
+	return corrected;
 }
 
-import classes.GameData.Pregnancy.Child;
-import classes.GameData.Pregnancy.UniqueChild;
 
 public function nurseryDisplayAllChildren():void
 {

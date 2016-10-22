@@ -35,13 +35,25 @@ package classes.GameData.Pregnancy
 			cRace = stripRace(cRace, fromPC);
 			
 			// Hybridize races if they do not match.
-			if(mRace != "" && cRace != "" && mRace != cRace) newRace = (mRace + "-" + cRace + " hybrid");
+			if(mRace != "" && cRace != "" && mRace != cRace)
+			{
+				if(fromPC)
+				{
+					var prefix:String = "half-";
+					var sRace:String = (mRace == "human" ? cRace : mRace);
+					
+					if(sRace.indexOf("-") != -1) prefix = "half ";
+					
+					newRace = (prefix + sRace);
+				}
+				else newRace = (mRace + "-" + cRace + " hybrid");
+			}
 			else if(cRace != "") newRace = cRace;
 			else newRace = mRace;
 			
 			// Insert special cases here!
 			if(newRace.indexOf("robot-") != -1 || newRace.indexOf("-robot") != -1) newRace = "cyborg";
-			if(newRace.indexOf("myrmedion-") != -1 || newRace.indexOf("-myrmedion") != -1) newRace = newRace.replace("myrmedion", "myr");
+			if(newRace.indexOf("myrmedion-") != -1 || newRace.indexOf("-myrmedion") != -1 || newRace.indexOf("myrmedion ") != -1 || newRace.indexOf(" myrmedion") != -1) newRace = newRace.replace("myrmedion", "myr");
 			if(newRace == "" || newRace.indexOf("NOT SET") != -1 || newRace.indexOf("?") != -1) newRace = "NOT SET";
 			
 			return newRace;
