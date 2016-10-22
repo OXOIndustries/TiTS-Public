@@ -4,8 +4,8 @@ package classes.Characters
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.TerranTreats;
-	//import classes.Items.Miscellaneous.DoveBalm;
-	//import classes.Items.Miscellaneous.Hornitol;
+	import classes.Items.Transformatives.DoveBalm;
+	import classes.Items.Transformatives.Hornitol;
 	import classes.kGAMECLASS;
 
 	public class DrLessau extends Creature

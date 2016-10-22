@@ -361,7 +361,7 @@ public function drLessauAfter():void
 		output("\n\n<i>“Are you alright, [pc.name]?”</i> he asks, to which you nod. He relaxes his hold at this, allowing you to look down. You're still pretty stuffed, and it seems like his seed is particularly thick and sticky, so it's only coming out in a slow trickle despite your inflated midsection.");
 		output("\n\n<i>“I must apologize. When I'm excited my instincts can sometimes get the best of me. I'm well-trained in keeping anger under control, but lust...not so much.”</i>");
 		
-		output("\n\n<i>“" + (pc.isAss() ? "Well Shit" : "Well") + ",”</i> you reply, <i>“can’t say you didn't warn me.”</i> Your hand descends to your belly, rubbing it tenderly. " + (pc.isAss() ? "Goddamn, man, think you jizz enough?" : "I didn't expect this much, though.") + "");
+		output("\n\n<i>“" + (pc.isAss() ? "Well shit" : "Well") + ",”</i> you reply, <i>“can’t say you didn't warn me.”</i> Your hand descends to your belly, rubbing it tenderly. " + (pc.isAss() ? "Goddamn, man, think you jizz enough?" : "I didn't expect this much, though.") + "");
 		if (pc.hasCock() && pc.cumQ() > 1000) output("Even I don't always cum this much. I mean, I do sometimes, but still.");
 		output("”</i>");
 		
