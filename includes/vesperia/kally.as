@@ -1158,7 +1158,7 @@ public function postKallyMeetingTalksMenu(showText:Boolean = true):void
 		else addButton(2,"Siblings?",askAbootOtherKiroSisters,undefined,"Siblings?","Ask Kiro if she has other siblings.");
 		if(flags["KIRO_NUN_NUMBER"] == 1) addDisabledButton(3,"Nun's #?","Nun's #?","You already talked about this.");
 		else addButton(3,"Nun's #?",getTheNunsNumberFromKiro,undefined,"Nun's #?","Ask Kiro if she still has that nun pornstar's contact information.");
-		addButton(4,"Done",kiroWrapUpFunction);
+		addButton(14,"Done",kiroWrapUpFunction);
 	}
 	else
 	{
