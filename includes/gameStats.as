@@ -4672,6 +4672,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			//SteeleTech Biomedical
+			if (flags["MET_DR_LESSAU"] != undefined)
+			{
+				output2("\n<b><u>Steele Tech Biomedical Division</u></b>");
+				if (flags["MET_DR_LESSAU"] != undefined)
+				{
+					output2("\n<b>* Doctor Lessau:</b> Met Him");
+					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times He Fucked You:</b> " + flags["DRLESSAU_SEXED"]);
+				}
+				
+			}
 			// The Freezer
 			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["NATALIE_MET"] != undefined)
 			{

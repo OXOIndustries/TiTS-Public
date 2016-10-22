@@ -213,8 +213,8 @@ public function drLessauSex():void
 	clearMenu();
 	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Get Oral", drLessauOral, undefined, "Get Oral", "He looks like he’s got a pretty impressive tongue. Put it to work.")
 	else addDisabledButton(0, "Get Oral", "Get Oral", "You need a cock or vagina for this.");
-	if (pc.hasVagina()) addButton(1, "Take Vaginal", drLessauVag, undefined, "Take Vaginal", "Have him fuck you. You get the feeling he might get a little riled up, though...")
-	else addDisabledButton(1, "Take Vaginal", "Take Vaginal", "You need a vagina for this.");
+	if (pc.hasVagina() && pc.biggestVaginalCapacity() > chars["DRLESSAU"].cockVolume(0)) addButton(1, "Take Vaginal", drLessauVag, undefined, "Take Vaginal", "Have him fuck you. You get the feeling he might get a little riled up, though...")
+	else addDisabledButton(1, "Take Vaginal", "Take Vaginal", "You need a vagina of sufficient size for this.");
 	addButton(2, "Back", drLessauMainMenu)
 }
 
@@ -285,6 +285,9 @@ public function drLessauOral():void
 
 public function drLessauVag():void
 {
+	var x:int = pc.cuntThatFits(chars["DRLESSAU"].cockVolume(0));
+	if(x < 0) x = rand(pc.totalVaginas());
+	
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
@@ -318,8 +321,10 @@ public function drLessauVag():void
 	}
 	
 	output("\n\nYou hardly notice the chimera preparing to mount you until he pushes inside. It’s monstrous: the head is blunt and flared like a horse’s, but the flare is formed of a ring of soft, rubbery barbs that grip and dig into each and every fold you have on the way in. Your pussy lips clamp tight around the shaft as they swallow the head, ");
-	if (pc.vaginas[0].looseness() >= 4)  output("even a gaped cunt like yours ");
+	if (pc.vaginas[x].looseness() >= 4)  output("even a gaped cunt like yours ");
 	output("stretched in a wonderful way by this beast’s big, fat, animalistic cock. Lessau for his part growls in pleasure, taking it slow for the first few inches before a good firm thrust crams his dick in down to the barbed medial ring. You gasp, the barbs catching your " +(pc.totalClits() > 1 ? "clits between them and them" : "clit between them and rubbing it") + " from both sides every time either of you move your hips even slightly. He pauses here for a bit just to enjoy the sounds you're making and let you settle down a little bit, before another thrust pops that ring of barbs into your soaking twat along with another few inches of chimera cock.");
+	
+	pc.cuntChange(x,chars["DRLESSAU"].cockVolume(0),true,true,false);
 	
 	output("\n\nSoon you feel his tip kiss your innermost lips, the concave head fitted perfectly to your cervix. But there's still an inch to go, and as it slides in that kiss turns into a glorious pressure upon your womb. You tilt your head back and let out an exultant " + (pc.femininity < 50 ? "groan" : "moan") + ". Lessau for his part seems to be having difficulty maintaining his usual cultured tone, descending into bestial growling");
 	if (pc.milkFullness >= 30) output(" that sends wonderful vibrations rolling along your tit");
@@ -342,7 +347,9 @@ public function drLessauVag():void
 	output("\n\nThere’s no words from either of you this time, merely the sounds of grunting and growling and " + (pc.femininity < 50 ? "groaning" : "moaning") + " as you find yourself well and truly rutted. Nor is there much warning that you’re going to be filled again, not until the beast fucking you snarls and slams his cock all the way to the hilt, pressing his cumslit against your inner lips. The second load builds on the first, each spurt making your stomach swell a little further until you’re looking positively gravid. You let out " + (flags["DRLESSAU_SEXED"] == undefined ? "an insensate groan, feeling limp. You only have just long enough to think to yourself that you might have bitten off more than you can chew before he starts on round three..." : "a lusty purr, reaching around his back to tease him onward, ready for round three...") + "");
 
 	processTime(15);
-	pc.loadInCunt();
+	pc.loadInCunt(chars["DRLESSAU"],x);
+	pc.loadInCunt(chars["DRLESSAU"],x);
+	pc.loadInCunt(chars["DRLESSAU"],x);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",drLessauAfter)
