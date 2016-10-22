@@ -568,14 +568,14 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 				// First Unique (oldest)
 				if(brihaKids == StatTracking.getStat(statPath))
 				{
-					addUniqueChildBriha(false, brihaFirstborn);
+					addUniqueChildBriha(false, brihaDaySpan);
 					brihaGirls--;
 					brihaDaySpan -= brihaFirstborn;
 				}
 				// Second Unique (second oldest)
 				else if(brihaKids == (StatTracking.getStat(statPath) - 1))
 				{
-					addUniqueChildBriha(true, brihaSecondborn);
+					addUniqueChildBriha(true, brihaDaySpan);
 					brihaBoys--;
 					brihaDaySpan -= brihaSecondborn;
 				}
