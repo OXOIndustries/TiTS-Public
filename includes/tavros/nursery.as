@@ -406,6 +406,7 @@ private var orphanList:Array = [
 	"pregnancy/psychic tentacle beast birthed",
 	"pregnancy/sydian births",
 	"pregnancy/fertilized venus pitcher seeds/day care",
+	"pregnancy/briha kids",
 	"pregnancy/queen of the deep eggs",
 	"pregnancy/raskvel sired/day care",
 ];
@@ -486,6 +487,8 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 	var childWgtI:int = 0;
 	var childWgtN:int = 0;
 	
+	var i:int = 0;
+	
 	switch(statPath)
 	{
 		// Cockvine
@@ -537,6 +540,84 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 			childMRate = 6.0;
 			childTotal = StatTracking.getStat(statPath);
 			break;
+		// Briha Kids
+		case "pregnancy/briha kids":
+			// Get all the counters ready
+			var brihaKids:int = StatTracking.getStat(statPath);
+			var brihaBoys:int = StatTracking.getStat("pregnancy/briha sons");
+			var brihaGirls:int = StatTracking.getStat("pregnancy/briha daughters");
+			// Each birth is spaced one child per her incubation period (120 days)
+			var brihaDaySpan:int = (brihaFirstborn + brihaSecondborn + (brihaKids * 120));
+			// Unique ages
+			var brihaFirstborn:int = 0;
+			if(brihaKids >= 1)
+			{
+				brihaDaySpan -= 120;
+				brihaFirstborn += Math.abs(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_OLDEST_SPAWN_AGE"] : 120);
+			}
+			var brihaSecondborn:int = 0;
+			if(brihaKids >= 2)
+			{
+				brihaDaySpan -= 120;
+				brihaSecondborn += Math.abs(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] : 120);
+			}
+			
+			// Make babies
+			for(i = 0; i < brihaKids; i++)
+			{
+				// First Unique (oldest)
+				if(brihaKids == StatTracking.getStat(statPath))
+				{
+					addUniqueChildBriha(false, brihaFirstborn);
+					brihaGirls--;
+					brihaDaySpan -= brihaFirstborn;
+				}
+				// Second Unique (second oldest)
+				else if(brihaKids == (StatTracking.getStat(statPath) - 1))
+				{
+					addUniqueChildBriha(true, brihaSecondborn);
+					brihaBoys--;
+					brihaDaySpan -= brihaSecondborn;
+				}
+				// Generic kids
+				else if(brihaBoys > 0 || brihaGirls > 0)
+				{
+					if((brihaBoys > 0 && brihaGirls > 0 && rand(2) == 0) || brihaBoys == 0)
+					{
+						addChildBriha(1, false, brihaDaySpan);
+						brihaGirls--;
+					}
+					else
+					{
+						addChildBriha(1, true, brihaDaySpan);
+						brihaBoys--;
+					}
+					brihaDaySpan -= 120;
+				}
+				// Failsafe -- too many babies!
+				else
+				{
+					if(rand(2) == 0)
+					{
+						addChildBriha(1, false, brihaDaySpan);
+						StatTracking.track("pregnancy/briha daughters");
+					}
+					else
+					{
+						addChildBriha(1, true, brihaDaySpan);
+						StatTracking.track("pregnancy/briha sons");
+					}
+					StatTracking.track("pregnancy/total births");
+					brihaDaySpan -= 120;
+				}
+				if(brihaDaySpan < 0) brihaDaySpan = 0;
+				brihaKids--;
+			}
+			
+			// End with no new changes
+			childType = -1;
+			childTotal = -1;
+			break;
 		// Failsafe
 		default:
 			childType = -1;
@@ -551,16 +632,17 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 	if (children != null && children.length > 0)
 	{
 		child = children[0]; // The oldest should be first in the array!
-		for (var i:int = 0; i < children.length; i++)
+		for (i = 0; i < children.length; i++)
 		{
 			var c:Child = children[i] as Child;
-			totalNum += c.Quantity;
+			if(c is UniqueChild) { /* Ignore baby! */ }
+			else totalNum += c.Quantity;
 		}
 		
 		childTotal -= totalNum;
 	}
 	
-	// Add children
+	// Add (generic) children
 	if(childType >= 0 && childTotal > 0)
 	{
 		ChildManager.addChild(
@@ -772,7 +854,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				if(baby.featherColor == null) baby.featherColor = "NOT SET";
 				
 				// Print stats
-				output("\n<b>* " + (baby.Name == "" ? "<i>Unnamed</i>" : baby.Name) + ":</b> ");
+				output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
 				if(baby.Days >= 6570) output("18+ years");
 				else if(baby.Days >= 365) output(baby.Years + " year" + (baby.Years == 1 ? "" : "s"));
 				else if(baby.Days >= 30) output(baby.Months + " month" + (baby.Months == 1 ? "" : "s"));
@@ -780,7 +862,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				//output(" (Born: " + minutesToDate(baby.BornTimestamp) + ")");
 				//output(", " + formatFloat(baby.MaturationRate * 100) + " % growth rate");
 				output(", ");
-				output((baby.originalRace == "NOT SET" ? "<i>Unknown Race</i>" : StringUtil.toDisplayCase(baby.originalRace)));
+				output((baby.originalRace == "NOT SET" ? GLOBAL.TYPE_NAMES[baby.RaceType] : StringUtil.toDisplayCase(baby.originalRace)));
 				output(", ");
 				if(baby.NumNeuter > 0 || baby.NumFemale > 0 || baby.NumMale > 0 || baby.NumIntersex > 0)
 				{

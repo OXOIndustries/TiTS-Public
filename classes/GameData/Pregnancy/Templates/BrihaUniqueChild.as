@@ -7,22 +7,22 @@ package classes.GameData.Pregnancy.Templates
 	import classes.Engine.Utility.rand;
 	import classes.Util.RandomInCollection;
 	
-	public class SeraUniqueChild extends UniqueChild
+	public class BrihaUniqueChild extends UniqueChild
 	{
-		public function SeraUniqueChild()
+		public function BrihaUniqueChild()
 		{
 			Name = "";
-			UniqueParent = "SERA";
+			UniqueParent = "BRIHA";
 			
-			originalRace = "human";
-			skinTone = "fair";
-			lipColor = "red";
-			nippleColor = "light pink";
-			eyeColor = "brown";
-			hairColor = "hazel";
+			originalRace = "myrmedion";
+			skinTone = "dusky red";
+			lipColor = "scarlet";
+			nippleColor = "dark red";
+			eyeColor = "black";
+			hairColor = "amber";
 			furColor = "NOT SET";
 			scaleColor = "NOT SET";
-			chitinColor = "NOT SET";
+			chitinColor = "red";
 			featherColor = "NOT SET";
 		}
 	}
