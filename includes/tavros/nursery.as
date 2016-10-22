@@ -598,22 +598,11 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 				var brihaBoys:int = StatTracking.getStat("pregnancy/briha sons");
 				var brihaGirls:int = StatTracking.getStat("pregnancy/briha daughters");
 				// Each birth is spaced one child per her incubation period (120 days)
-				var brihaDaySpan:int = (brihaKids * 120);
+				var brihaDaySpan:int = 0;
 				// Unique ages
-				var brihaFirstborn:int = 0;
-				if(brihaKids >= 1)
-				{
-					brihaDaySpan -= 120;
-					brihaFirstborn += Math.abs(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_OLDEST_SPAWN_AGE"] : 120);
-					brihaDaySpan += brihaFirstborn;
-				}
-				var brihaSecondborn:int = 0;
-				if(brihaKids >= 2)
-				{
-					brihaDaySpan -= 120;
-					brihaSecondborn += Math.abs(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] : 120);
-					brihaDaySpan += brihaSecondborn;
-				}
+				var brihaFirstborn:int = Math.abs(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_OLDEST_SPAWN_AGE"] : 120);
+				var brihaSecondborn:int = Math.abs(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] : 120);
+				var brihaLastborn:int = Math.abs(flags["BRIHA_LATEST_SPAWN_AGE"] != undefined ? flags["BRIHA_LATEST_SPAWN_AGE"] : 120);
 				// Make babies
 				for(i = 0; i < brihaTotal; i++)
 				{
@@ -621,20 +610,24 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 					// First Unique (oldest)
 					if(brihaKids == StatTracking.getStat(statPath) && brihaFirsts.length <= 0)
 					{
+						brihaDaySpan = brihaFirstborn;
 						addUniqueChildBriha(false, brihaDaySpan);
 						brihaGirls--;
-						brihaDaySpan -= brihaFirstborn;
 					}
 					// Second Unique (second oldest)
 					else if(brihaKids == (StatTracking.getStat(statPath) - 1) && brihaFirsts.length <= 1)
 					{
+						brihaDaySpan = brihaSecondborn;
 						addUniqueChildBriha(true, brihaDaySpan);
 						brihaBoys--;
-						brihaDaySpan -= brihaSecondborn;
 					}
 					// Generic kids
 					else if(brihaBoys > 0 || brihaGirls > 0)
 					{
+						if(i == (brihaTotal - 1)) brihaDaySpan = brihaLastborn;
+						else brihaDaySpan -= 120;
+						if(brihaDaySpan < 0) brihaDaySpan = 0;
+						
 						if((brihaBoys > 0 && brihaGirls > 0 && rand(2) == 0) || brihaBoys == 0)
 						{
 							addChildBriha(1, false, brihaDaySpan);
@@ -645,11 +638,13 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 							addChildBriha(1, true, brihaDaySpan);
 							brihaBoys--;
 						}
-						brihaDaySpan -= 120;
 					}
 					// Failsafe -- too many babies!
 					else
 					{
+						brihaDaySpan -= 120;
+						if(brihaDaySpan < 0) brihaDaySpan = 0;
+						
 						if(rand(2) == 0)
 						{
 							addChildBriha(1, false, brihaDaySpan);
@@ -661,9 +656,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 							StatTracking.track("pregnancy/briha sons");
 						}
 						StatTracking.track("pregnancy/total births");
-						brihaDaySpan -= 120;
 					}
-					if(brihaDaySpan < 0) brihaDaySpan = 0;
 					brihaKids--;
 					corrected = true;
 				}
@@ -733,7 +726,7 @@ public function nurseryDisplayAllChildren():void
 				if (cc is UniqueChild)
 				{
 					uniques.push(cc);
-					continue;
+					//continue;
 				}
 				
 				for (var bb:int = 0; bb < ageBrackets.length; bb++)
