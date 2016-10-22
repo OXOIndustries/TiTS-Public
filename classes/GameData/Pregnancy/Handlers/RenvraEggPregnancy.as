@@ -158,6 +158,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/renvra eggs", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			if (mother.hasStatusEffect("Renvra Eggs Messages Available"))
 			{
@@ -184,6 +185,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/renvra eggs", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			if (mother.hasStatusEffect("Renvra Eggs Messages Available"))
 			{

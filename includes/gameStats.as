@@ -909,8 +909,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Fathered, Raskvel Eggs:</b> " + StatTracking.getStat("pregnancy/raskvel sired/total"));
 				if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
 					output2("\n<b>* Fathered, Raskvel @ Daycare:</b> " + StatTracking.getStat("pregnancy/raskvel sired/day care"));
-				if(StatTracking.getStat("pregnancy/zil callgirl kids") > 0)
-					output2("\n<b>* Fathered, Zil Call Girl Children:</b> " + StatTracking.getStat("pregnancy/zil callgirl kids"));
+				if(StatTracking.getStat("pregnancy/zil call girl kids") > 0)
+					output2("\n<b>* Fathered, Zil Call Girl Children:</b> " + StatTracking.getStat("pregnancy/zil call girl kids"));
 			}
 			if(totalProduce)
 			{

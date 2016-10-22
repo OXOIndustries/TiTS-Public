@@ -357,7 +357,7 @@ import classes.GameData.Pregnancy.Containers.Genders;
 
 public function nurseryComputerChildren():void
 {
-	if(nurseryOrphanedBabyDiff() > 0)
+	if(nurseryOrphanedBabyDiff() > 0 || (StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery()))
 	{
 		clearOutput();
 		clearBust();
@@ -368,7 +368,7 @@ public function nurseryComputerChildren():void
 		output("\n\nIt seems your nursery records have not been set straight since the previous software update and some of the data on file may have been corrupted. To ensure consistency in recordkeeping, the computer is attempting to recover your past records and display them. You can’t do much beside wait for the automated system to do its thing...");
 		
 		clearMenu();
-		addButton(0, "Next", nurseryOrphanedBabyFix, nurseryOrphanedBabyDiff());
+		addButton(0, "Next", nurseryRecordsFix);
 		return;
 	}
 	
@@ -407,6 +407,7 @@ private var orphanList:Array = [
 	"pregnancy/sydian births",
 	"pregnancy/fertilized venus pitcher seeds/day care",
 	"pregnancy/queen of the deep eggs",
+	"pregnancy/raskvel sired/day care",
 ];
 public function nurseryOrphanedBabyDiff():int
 {
@@ -420,7 +421,7 @@ public function nurseryOrphanedBabyDiff():int
 	// Compare with actual number of kids in nursery.
 	return (numNurseryKids - ChildManager.numChildren());
 }
-public function nurseryOrphanedBabyFix(numOrphans:int = 0):void
+public function nurseryRecordsFix():void
 {
 	clearOutput();
 	clearBust();
@@ -428,7 +429,7 @@ public function nurseryOrphanedBabyFix(numOrphans:int = 0):void
 	output("You wait as the computer fixes your records");
 	
 	var msg:String = "";
-	var numFixed:int = 0;
+	var numFixed:Number = 0;
 	
 	for(var i:int = 0; i < orphanList.length; i++)
 	{
@@ -438,6 +439,25 @@ public function nurseryOrphanedBabyFix(numOrphans:int = 0):void
 			msg += "\n\n<i>" + StringUtil.toTitleCase(num2Ordinal(numFixed)) + " entry detected... correcting... corrected.</i>";
 		}
 	}
+	
+	// Nursery Stat Hotfix
+	if(StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery())
+	{
+		msg += "\n";
+		msg += "\n<i>Number of Entries Logged: " + StatTracking.getStat("pregnancy/total day care") + "</i>";
+		msg += "\n<i>Number of Actual Entries: " + ChildManager.numChildrenAtNursery() + "</i>";
+		msg += "\n<i>Updating";
+		while(StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery())
+		{
+			StatTracking.track("pregnancy/total day care");
+			msg += ".";
+			numFixed += 0.25;
+		}
+		msg += "</i>";
+		msg += "\n<i>Entry quantity matched.</i>";
+		msg += "\n<i>Entry update complete.</i>";
+	}
+	
 	if(msg != "")
 	{
 		output(", reading its output as it appears on the screen:");
@@ -449,7 +469,7 @@ public function nurseryOrphanedBabyFix(numOrphans:int = 0):void
 		output("... But nothing comes up. Was it just a glitch?");
 	}
 	
-	processTime(1 + numFixed);
+	processTime(1 + Math.round(numFixed));
 	
 	clearMenu();
 	addButton(0, "Next", nurseryComputerChildren);
@@ -468,12 +488,14 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 	
 	switch(statPath)
 	{
+		// Cockvine
 		case "pregnancy/cockvine seedlings captured":
 			childType = GLOBAL.TYPE_COCKVINE;
 			childMRate = 2.5;
 			childTotal = StatTracking.getStat(statPath);
 			childWgtM = 1; childWgtF = 0; childWgtI = 0; childWgtN = 0;
 			break;
+		// Nyrea
 		case "pregnancy/nyrea eggs":
 		case "pregnancy/royal nyrea eggs":
 		case "pregnancy/renvra eggs":
@@ -482,29 +504,40 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 			childMRate = 1.0;
 			childTotal = (StatTracking.getStat("pregnancy/nyrea eggs") + StatTracking.getStat("pregnancy/renvra eggs") + StatTracking.getStat("pregnancy/royal nyrea eggs") + StatTracking.getStat("pregnancy/renvra kids"));
 			break;
+		// Tentacle
 		case "pregnancy/psychic tentacle beast birthed":
 			childType = GLOBAL.TYPE_TENTACLE;
 			childMRate = 2.5;
 			childTotal = StatTracking.getStat(statPath);
 			childWgtM = 0; childWgtF = 0; childWgtI = 0; childWgtN = 1;
 			break;
+		// Human
 		case "pregnancy/sydian births":
 			childType = GLOBAL.TYPE_HUMAN;
 			childMRate = 1.0;
 			childTotal = (StatTracking.getStat("pregnancy/sydian births") + StatTracking.getStat("pregnancy/sera kids"));
 			break;
+		// Venus Pitcher
 		case "pregnancy/fertilized venus pitcher seeds/day care":
 			childType = GLOBAL.TYPE_VENUSPITCHER;
 			childMRate = 1.0;
 			childTotal = StatTracking.getStat(statPath);
 			childWgtM = 0; childWgtF = 1; childWgtI = 0; childWgtN = 0;
 			break;
+		// Water Queen
 		case "pregnancy/queen of the deep eggs":
 			childType = GLOBAL.TYPE_WATERQUEEN;
 			childMRate = 2.0;
 			childTotal = StatTracking.getStat(statPath);
 			childWgtM = 0; childWgtF = 1; childWgtI = 0; childWgtN = 0;
 			break;
+		// Raskvel
+		case "pregnancy/raskvel sired/day care":
+			childType = GLOBAL.TYPE_RASKVEL;
+			childMRate = 6.0;
+			childTotal = StatTracking.getStat(statPath);
+			break;
+		// Failsafe
 		default:
 			childType = -1;
 			childTotal = -1;
@@ -717,7 +750,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 		parentName = parentList[p];
 		var babies:Array = listBabiesOfParent(parentName);
 		
-		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName)) + "</b></u>");
+		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName.toLowerCase())) + "</b></u>");
 		if(StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") > 0) output(" - Total: " + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids"));
 		if(babies.length > 0)
 		{
@@ -776,9 +809,11 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 		}
 		else
 		{
-			output("\n<i>* There is no nursery data currently stored for your children from " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName)) + ".</i>");
+			output("\n<i>* There is no nursery data currently stored for your children from " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName.toLowerCase())) + ".</i>");
 		}
 	}
+	
+	if(parentList.length <= 0) output("\n<i>* There is no nursery data currently stored for any of your unique children.</i>");
 }
 
 public function nurseryMeetBriget():void

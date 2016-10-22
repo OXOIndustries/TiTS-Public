@@ -218,6 +218,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/sera kids", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			pData.reset();
 		}
@@ -237,6 +238,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/sera kids", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			pData.reset();
 			
