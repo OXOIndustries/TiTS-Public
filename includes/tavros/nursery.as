@@ -598,7 +598,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 				var brihaBoys:int = StatTracking.getStat("pregnancy/briha sons");
 				var brihaGirls:int = StatTracking.getStat("pregnancy/briha daughters");
 				// Each birth is spaced one child per her incubation period (120 days)
-				var brihaDaySpan:int = 0;
+				var brihaDaySpan:int = 120;
 				// Unique ages
 				var brihaFirstborn:int = Math.abs(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_OLDEST_SPAWN_AGE"] : 120);
 				var brihaSecondborn:int = Math.abs(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined ? flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] : 120);
