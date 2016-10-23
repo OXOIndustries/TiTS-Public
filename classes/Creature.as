@@ -4770,25 +4770,60 @@
 				faceo += " surely handsome";
 			}
 			//21-28
-			else if (femininity < 28) faceo = "a well-defined jawline, a pair of " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and a fairly masculine profile";
+			else if (femininity < 28)
+			{
+				faceo = "a well-defined jawline";
+				if (hasBeard()) faceo += " and " + beard();
+				faceo = ", a pair of " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and a fairly masculine profile";
+			}
 			//28+-35
-			else if (femininity < 35) faceo = "a somewhat masculine, angular jawline and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity < 35)
+			{
+				faceo = "a somewhat masculine, angular jawline";
+				if (hasBeard()) faceo += ", " + beard() + ",";
+				faceo = " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+			}
 			//35-45
-			else if (femininity < 45) faceo = "a pair of " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " and the barest hint of masculinity in its structure";
+			else if (femininity < 45)
+			{
+				faceo = "a pair of " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " and the barest hint of masculinity in its structure";
+				if (hasBeard()) faceo += "--that is, if it weren’t for your " + beard();
+			}
 			//45-55
-			else if (femininity <= 55) faceo = "an androgynous set of features that would work on either a male or a female and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity <= 55)
+			{
+				faceo = "an androgynous set of features";
+				if (hasBeard()) faceo += ", except for your " + beard() + ",";
+				faceo = " that would work on either a male or a female and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+			}
 			//55+-65
-			else if (femininity <= 65) faceo = "a tiny touch of femininity to it, with gentle curves and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity <= 65)
+			{
+				faceo = "a tiny touch of femininity to it";
+				if (hasBeard()) faceo += ", if not for your " + beard();
+				faceo = ", with gentle curves and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+			}
 			//65+-72
-			else if (femininity <= 72) faceo = "a nice set of cheekbones and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity <= 72)
+			{
+				faceo = "a nice set of cheekbones";
+				if (hasBeard()) faceo += ", accompanied by your " + beard() + ",";
+				faceo = " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+			}
 			//72+-80
-			else if (femininity <= 80) faceo = "a beautiful, feminine shapeliness that's sure to draw attention and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + "";
+			else if (femininity <= 80)
+			{
+				faceo = "a beautiful, feminine shapeliness that's sure to draw attention";
+				if (hasBeard()) faceo += ", despite your " + beard() + ",";
+				faceo = " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+			}
 			//81-90
 			else if (femininity <= 90)
 			{
 				faceo = "a gorgeous profile with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 				if (hasSmallNose) faceo += ", a button nose,";
 				faceo += " and noticeable eyelashes";
+				if (hasBeard()) faceo += "--though contrasted by your " + beard();
 			}
 			//91-100
 			else
@@ -4796,6 +4831,7 @@
 				faceo = "a jaw-droppingly feminine shape with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 				if (hasSmallNose) faceo += ", an adorable nose,";
 				faceo += " and long, beautiful eyelashes";
+				if (hasBeard()) faceo += "--in striking contrast to your " + beard();
 			}
 			return faceo;
 		}
