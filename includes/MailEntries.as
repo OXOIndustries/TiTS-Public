@@ -124,7 +124,7 @@ public function configureMails():void
 		var msg:String = "";
 		
 		msg += pc.short + "!";
-		msg += "\n\nYou think you could take a break from finding new aliens to fuck to help me break in a new bar? It turns out my sister has her own place near Vesperia and sent me an invite. Long story short: I could really use a wingman for the visit, and I can’t think of anyone more trustworthy (and did I mention fuckable?) than you. I threw the coordinates in an attachment in case you’ve been living under a rock or something. Shoot me a message when your on your way, and I’ll meet you at the landing pad. Perks of being a pirate! My schedule is more wide open than a rahn’s legs.";
+		msg += "\n\nYou think you could take a break from finding new aliens to fuck to help me break in a new bar? It turns out my sister has her own place near Vesperia and sent me an invite. Long story short: I could really use a wingman for the visit, and I can’t think of anyone more trustworthy (and did I mention fuckable?) than you. I threw the coordinates in an attachment in case you’ve been living under a rock or something. Shoot me a message when you’re on your way, and I’ll meet you at the landing pad. Perks of being a pirate! My schedule is more wide open than a rahn’s legs.";
 		msg += "\n\nTry not to have too much fun without me,";
 		msg += "\n\tKiro";
 		msg += "\n\n(<b>Canadia Station Coordinates unlocked!</b>)";
