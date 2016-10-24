@@ -648,7 +648,7 @@ package classes.Items.Transformatives
 				if (target.legCount != 2) output("... two shaky feet");
 				output(". You look down, perplexed. It seems that when you were unconscious, your lower body has reshaped,");
 				if (target.legCount != 2 || target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" taking on a bipedal, humanoid appearance!");
-				else output(" gaining a lusiously scaled covering!");
+				else output(" gaining a lusciously scaled covering!");
 
 				target.genitalSpot = 0;
 				target.legCount = 2;

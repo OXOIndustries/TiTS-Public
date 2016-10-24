@@ -31,7 +31,7 @@
 			this.description = "a damaged weather drone";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This disc-shaped, drone is covered in hundreds of different sensors. A small hoverdrive is positioned on the underside to keep it aloft but has either shut off or malfunctioned. Numerous dents mar the gleaming metal surface. Perhaps it ran afoul of an ice storm - or a hostile native.";
+			this.tooltip = "This disc-shaped drone is covered in hundreds of different sensors. A small hoverdrive is positioned on the underside to keep it aloft but has either shut off or malfunctioned. Numerous dents mar the gleaming metal surface. Perhaps it ran afoul of an ice storm - or a hostile native.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
