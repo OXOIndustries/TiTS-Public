@@ -3524,7 +3524,7 @@ public function mimbraneCombatInterference():Boolean
 	if (pc.hasStatusEffect("Mimbrane Hand Left"))
 	{
 		// > 4 days without feed
-		if (pc.statusEffectv3("Mimbrane Hand Left") >= 4)
+		if (pc.statusEffectv2("Mimbrane Hand Left") >= 4)
 		{
 			// <= 2 trust = 5% chance
 			if (pc.statusEffectv1("Mimbrane Hand Left") <= 2)
@@ -3541,7 +3541,7 @@ public function mimbraneCombatInterference():Boolean
 	if (pc.hasStatusEffect("Mimbrane Hand Right"))
 	{
 		// > 4 days without feed
-		if (pc.statusEffectv3("Mimbrane Hand Right") >= 4)
+		if (pc.statusEffectv2("Mimbrane Hand Right") >= 4)
 		{
 			// <= 2 trust = 5% chance
 			if (pc.statusEffectv1("Mimbrane Hand Right") <= 2)
@@ -3571,7 +3571,7 @@ public function mimbraneCombatInterference():Boolean
 	if (pc.hasStatusEffect("Mimbrane Foot Left"))
 	{
 		// > 4 days without feed
-		if (pc.statusEffectv3("Mimbrane Foot Left") >= 4)
+		if (pc.statusEffectv2("Mimbrane Foot Left") >= 4)
 		{
 			// <= 2 trust = 5% chance
 			if (pc.statusEffectv1("Mimbrane Foot Left") <= 2)
@@ -3588,7 +3588,7 @@ public function mimbraneCombatInterference():Boolean
 	if (pc.hasStatusEffect("Mimbrane Foot Right"))
 	{
 		// > 4 days without feed
-		if (pc.statusEffectv3("Mimbrane Foot Right") >= 4)
+		if (pc.statusEffectv2("Mimbrane Foot Right") >= 4)
 		{
 			// <= 2 trust = 5% chance
 			if (pc.statusEffectv1("Mimbrane Foot Right") <= 2)
@@ -3620,19 +3620,19 @@ public function mimbraneHandBonusAttack(target:Creature):void
 
 	if (pc.hasStatusEffect("Mimbrane Hand Left"))
 	{
-		// > 4 days without feed
-		if (pc.statusEffectv1("Mimbrane Hand Left") >= 3 && pc.statusEffectv3("Mimbrane Hand Left") < 7)
+		if (pc.statusEffectv1("Mimbrane Hand Left") >= 3 && pc.statusEffectv2("Mimbrane Hand Left") < 7)
 		{
 			bonusAttackChance += 15;
+			if(pc.hasPerk("Mimbrane Symbiosis")) bonusAttackChance += 5;
 		}
 	}
 
 	if (pc.hasStatusEffect("Mimbrane Hand Right"))
 	{
-		// > 4 days without feed
-		if (pc.statusEffectv1("Mimbrane Hand Right") >= 3 && pc.statusEffectv3("Mimbrane Hand Right") < 7)
+		if (pc.statusEffectv1("Mimbrane Hand Right") >= 3 && pc.statusEffectv2("Mimbrane Hand Right") < 7)
 		{
 			bonusAttackChance += 15;
+			if(pc.hasPerk("Mimbrane Symbiosis")) bonusAttackChance += 5;
 		}
 	}
 
@@ -3651,23 +3651,24 @@ public function mimbraneHandBonusAttack(target:Creature):void
 	}
 }
 
-public function mimbraneFeetBonusEvade(target:Creature):Boolean
+public function mimbraneFeetBonusEvade(target:Creature, attacker:Creature):Boolean
 {
 	var dodgeBonus:int = 0;
 
-	if (enemy is Mimbrane) return false;
+	if (attacker is Mimbrane) return false;
 	if (target != pc) return false;
 
 	if (target.hasStatusEffect("Mimbrane Foot Left") && target.statusEffectv2("Mimbrane Foot Left") <= 6)
 	{
-		if (pc.statusEffectv1("Mimbrane Foot Left") == 3)
+		if (target.statusEffectv1("Mimbrane Foot Left") == 3)
 		{
 			dodgeBonus += 5;
 		}
-		else if (pc.statusEffectv1("Mimbrane Foot Left") >= 4)
+		else if (target.statusEffectv1("Mimbrane Foot Left") >= 4)
 		{
 			dodgeBonus += 10;
 		}
+		if(target.hasPerk("Mimbrane Symbiosis")) dodgeBonus += 5;
 	}
 
 	if (target.hasStatusEffect("Mimbrane Foot Right") && target.statusEffectv2("Mimbrane Foot Right") <= 6)
@@ -3680,6 +3681,7 @@ public function mimbraneFeetBonusEvade(target:Creature):Boolean
 		{
 			dodgeBonus += 10;
 		}
+		if(target.hasPerk("Mimbrane Symbiosis")) dodgeBonus += 5;
 	}
 
 	// Rolls!
@@ -3689,6 +3691,10 @@ public function mimbraneFeetBonusEvade(target:Creature):Boolean
 	}
 	
 	return false;
+}
+public function mimbraneFeetBonusEvadeBonus():String
+{
+	return "You’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!";
 }
 
 /* Bonus tese shit that's not implemented atm due to lack of face/lip/etc teases
