@@ -2738,7 +2738,7 @@ public function gravCuffsCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Grav Cuffs"));
-	outputCodex("<b>Manufactured By:</b> Humphard Inc");
+	outputCodex("<b>Manufactured By:</b> Humphard Inc.");
 	outputCodex("\n\n");
 	outputCodex("Grav-cuffs are the latest in space age bondage gear designed by Humphard Inc. The cuffs are packed full of features; nearly as many as some mainstream androids.");
 	outputCodex("\n\nThe most notable quality of the cuffs is that they are mass adjustable. Once attached, one can make the cuffs (and the cuffed individual) weigh as much or as little as they want. They are also uni-directional, so they can be used to attach the cuffed person to a roof, wall, or other surface with little effort.");
@@ -2755,7 +2755,7 @@ public function holodomCodex():void
 	showBust("9999");
 	outputCodex(header("Holodom"));
 	outputCodex("<b>Description:</b> Hard light holographic condom, or “holodom.”");
-	outputCodex("\n<b>Manufactured By:</b> Humphard Inc");
+	outputCodex("\n<b>Manufactured By:</b> Humphard Inc.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("Holodoms were one of Humphard’s first adult products and largely considered their “first big break” in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.");
@@ -2973,7 +2973,7 @@ public function branFlazinganCodex():void
 	showBust("9999");
 	outputCodex(header("Bran Flazingan"));
 	outputCodex("<b>Full Name:</b> Bran Humpterhard Flazingan");
-	outputCodex("\n<b>Titles:</b> CEO of Humphard Inc, Humphard Flazingan, The Man with the Giant Wad, Anything-Goes Flazingan, Humpty Dumpty");
+	outputCodex("\n<b>Titles:</b> CEO of Humphard Inc., Humphard Flazingan, The Man with the Giant Wad, Anything-Goes Flazingan, Humpty Dumpty");
 	outputCodex("\n<b>Species:</b> Human (debatably)");
 	outputCodex("\n<b>Gender:</b> Male");
 	outputCodex("\n<b>Height:</b> 4\' 11\"");
@@ -3045,13 +3045,13 @@ public function humphardIncCodex():void
 {
 	clearOutputCodex();
 	showBust("9999");
-	outputCodex(header("Humphard Inc"));
+	outputCodex(header("Humphard Inc."));
 	outputCodex("<b>Company Name:</b> Humphard Incorporated");
 	outputCodex("\n<b>Industry:</b> Sex product manufacturer and distributor");
 	outputCodex("\n<b>Head Office:</b> Tantalus, Evira System");
 	outputCodex("\n<b>Company Head:</b> CEO Bran Flazingan");
 	outputCodex("\n\n");
-	outputCodex("Humphard Inc is a company founded by Bran Flazingan over two centuries ago with a single mission statement - “sexual pleasure is the only intrinsic good.” Since then Humphard has risen to become the galaxy’s number one adult product manufacturer and produces products for almost every conceivable species from the core worlds to the rim.");
+	outputCodex("Humphard Inc. is a company founded by Bran Flazingan over two centuries ago with a single mission statement - “sexual pleasure is the only intrinsic good.” Since then Humphard has risen to become the galaxy’s number one adult product manufacturer and produces products for almost every conceivable species from the core worlds to the rim.");
 	outputCodex("\n\nHumphard products are known for three things; quality, innovation, and pleasure. It takes great pride on always being on the cutting edge and hires countless ‘testers’ to trial company products.");
 	outputCodex("\n\nThe company always has a large number of employees and freelancers traveling about the galaxy to seek inspiration for their products. The most famous of these is none other than the CEO himself, Bran Flazingan, one of the universes’ foremost “sexplorers”.");
 	//outputCodex(" (See Codex Entry: Bran Flazingan)");
