@@ -182,7 +182,9 @@ package classes.Items.Transformatives
 					output("\n\nYour entire body tightens for a moment before your ");
 					if (skinDesc.charAt(skinDesc.length - 1) == "s") output(skinDesc + " go");
 					else output(skinDesc + " goes")
-					output(" cold. Quirking an eyebrow, you give it a few pokes and worriedly note that it's completely numb. After a moment you notice your dermis growing pale and... looser? You experimentally pull at your [pc.skinFurScales], and to your surprise it tears away easily, revealing shiny new " + tarColor + " reptilian-like skin beneath. It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
+					output(" cold. Quirking an eyebrow, you give it a few pokes and worriedly note that it's completely numb. After a moment you notice your dermis growing pale and... looser? You experimentally pull at your [pc.skinFurScales], and to your surprise it tears away easily, revealing shiny new " + tarColor + " reptilian-like skin beneath.")
+					if (target.armType != GLOBAL.TYPE_OVIR) output(" Your arms have even changed their shape in the process.");
+					output(" It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
 
 					target.skinType = GLOBAL.SKIN_TYPE_SCALES;
 					target.scaleColor = tarColor;
@@ -192,6 +194,8 @@ package classes.Items.Transformatives
 					
 					target.armType = GLOBAL.TYPE_OVIR;
 					target.clearArmFlags();
+					target.addArmFlag(GLOBAL.FLAG_SCALED);
+					target.addArmFlag(GLOBAL.FLAG_SMOOTH);
 
 					changes++;
 				}
@@ -494,7 +498,9 @@ package classes.Items.Transformatives
 					output("\n\nYour entire body tightens for a moment before your ");
 					if (skinDesc.charAt(skinDesc.length - 1) == "s") output(skinDesc + " go");
 					else output(skinDesc + " goes")
-					output(" cold. Quirking an eyebrow, you give it a few pokes and worriedly note that it's completely numb. After a moment you notice your dermis growing pale and... looser? You experimentally pull at your [pc.skinFurScales], and to your surprise it tears away easily, revealing shiny new " + tarColor + " reptilian-like skin beneath. It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
+					output(" cold. Quirking an eyebrow, you give it a few pokes and worriedly note that it's completely numb. After a moment you notice your dermis growing pale and... looser? You experimentally pull at your [pc.skinFurScales], and to your surprise it tears away easily, revealing shiny new " + tarColor + " reptilian-like skin beneath.")
+					if (target.armType != GLOBAL.TYPE_OVIR) output(" Your arms have even changed their shape in the process.");
+					output(" It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
 
 					target.skinType = GLOBAL.SKIN_TYPE_SCALES;
 					target.scaleColor = tarColor;
@@ -504,6 +510,8 @@ package classes.Items.Transformatives
 
 					target.armType = GLOBAL.TYPE_OVIR;
 					target.clearArmFlags();
+					target.addArmFlag(GLOBAL.FLAG_SCALED);
+					target.addArmFlag(GLOBAL.FLAG_SMOOTH);
 					
 					changes++;
 				}
