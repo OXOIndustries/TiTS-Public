@@ -11239,11 +11239,16 @@
 				}
 				else if (hairLength < 3) descript += "short";
 				else if (hairLength < 6) {
-					if (rand(2) == 0 || InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT)) descript += "medium-length";
+					if (rand(2) == 0 || InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT))
+					{
+						if(hairLength <= 4 && rand(2) == 0) descript += "ear-length";
+						else descript += "medium-length";
+					}
 					else descript += "shaggy";
 				}
 				else if (hairLength < 10) {
 					if (rand(2) == 0) descript += "moderately long";
+					else if(hairLength <= 6) descript += "neck-length";
 					else descript += "shoulder-length";
 				}
 				else if (hairLength < 16) descript += "long";
@@ -11254,14 +11259,21 @@
 					else if(rand(2) == 0) descript += "back-length";
 					else descript += "lengthy";
 				}
-				else if (hairLength < tallness / 1.7) descript += "ass-length";
+				else if (hairLength < tallness / 1.7) {
+					if(hairLength < tallness/1.6) descript += "ass-length";
+					else descript += "thigh-length";
+				}
 				else if (hairLength < tallness / 1.3) 
 				{
 					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
 					else descript += "delightfully long";
 				}
 				else if(hairLength < tallness) {
-					if(rand(2) == 0 && hasKnees()) descript += "ankle-length";
+					if(rand(2) == 0 && hasKnees())
+					{
+						if(hairLength < tallness - 1) descript += "calf-length";
+						else descript += "ankle-length";
+					}
 					else descript += "exquisitely long";
 				}
 				else {
@@ -11417,9 +11429,17 @@
 					if (rand(2) == 0) descript += "close-cropped";
 					else descript += "trim";
 				} else if (hairLength < 3) descript += "short";
-				else if (hairLength < 6) descript += "shaggy";
+				else if (hairLength < 6) {
+					if(rand(2) == 0 || InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT))
+					{
+						if(hairLength <= 4 && rand(2) == 0) descript += "ear-length";
+						else descript += "medium-length";
+					}
+					else descript += "shaggy";
+				}
 				else if (hairLength < 10) {
 					if (rand(2) == 0) descript += "moderately long";
+					else if(hairLength <= 6) descript += "neck-length";
 					else descript += "shoulder-length";
 				}
 				else if (hairLength < 16) descript += "long";
@@ -11430,14 +11450,21 @@
 					else if(rand(2) == 0) descript += "back-length";
 					else descript += "lengthy";
 				}
-				else if (hairLength < tallness / 1.7) descript += "ass-length";
+				else if (hairLength < tallness / 1.7) {
+					if(hairLength < tallness/1.6) descript += "ass-length";
+					else descript += "thigh-length";
+				}
 				else if (hairLength < tallness / 1.3) 
 				{
 					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
 					else descript += "delightfully long";
 				}
 				else if(hairLength < tallness) {
-					if(rand(2) == 0 && hasKnees()) descript += "ankle-length";
+					if(rand(2) == 0 && hasKnees())
+					{
+						if(hairLength < tallness - 1) descript += "calf-length";
+						else descript += "ankle-length";
+					}
 					else descript += "exquisitely long";
 				}
 				else {
