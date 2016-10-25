@@ -11248,7 +11248,7 @@
 				}
 				else if (hairLength < 10) {
 					if (rand(2) == 0) descript += "moderately long";
-					else if(hairLength <= 6) descript += "neck-length";
+					else if(hairLength < 8) descript += "neck-length";
 					else descript += "shoulder-length";
 				}
 				else if (hairLength < 16) descript += "long";
@@ -11439,7 +11439,7 @@
 				}
 				else if (hairLength < 10) {
 					if (rand(2) == 0) descript += "moderately long";
-					else if(hairLength <= 6) descript += "neck-length";
+					else if(hairLength < 8) descript += "neck-length";
 					else descript += "shoulder-length";
 				}
 				else if (hairLength < 16) descript += "long";
