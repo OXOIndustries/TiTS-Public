@@ -121,6 +121,10 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/godi_nude.png", mimeType = "image/png")]
 		public var Bust_GODI_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/gold_remnant_fighter.png", mimeType = "image/png")]
+		public var Bust_GOLD_REMNANT_FIGHTER:Class;
+		public var Bounds_GOLD_REMNANT_FIGHTER:Rectangle = new Rectangle(75, 0, 60, 60);
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/gryvain.png", mimeType = "image/png")]
 		public var Bust_GRYVAIN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/gryvain_nude.png", mimeType = "image/png")]
@@ -262,6 +266,20 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
 		public var Bust_REAHA_ANUSOFT:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/red_commando.png", mimeType = "image/png")]
+		public var Bust_RED_COMMANDO:Class;
+		public var Bounds_RED_COMMANDO:Rectangle = new Rectangle(17, 4, 60, 60);
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/red_heavy.png", mimeType = "image/png")]
+		public var Bust_RED_HEAVY:Class;
+		public var Bounds_RED_HEAVY:Rectangle = new Rectangle(38, 0, 60, 60);
+		[Embed(source = "../../../assets/images/npcs/adjatha/red_heavy_weapons.png", mimeType = "image/png")]
+		public var Bust_RED_HEAVY_WEAPONS:Class;
+		public var Bounds_RED_HEAVY_WEAPONS:Rectangle = new Rectangle(38, 0, 60, 60);
+		[Embed(source = "../../../assets/images/npcs/adjatha/red_heavy_nude.png", mimeType = "image/png")]
+		public var Bust_RED_HEAVY_NUDE:Class;
+		public var Bounds_RED_HEAVY_NUDE:Rectangle = new Rectangle(38, 0, 60, 60);
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith.png", mimeType = "image/png")]
 		public var Bust_SEMITH:Class;
@@ -472,6 +490,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/godi_nude.png", mimeType = "image/png")]
 			public var Full_GODI_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_fighter.png", mimeType = "image/png")]
+			public var Full_GOLD_REMNANT_FIGHTER:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain.png", mimeType = "image/png")]
 			public var Full_GRYVAIN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain_nude.png", mimeType = "image/png")]
@@ -612,6 +633,16 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/reaha_anusoft.png", mimeType = "image/png")]
 			public var Full_REAHA_ANUSOFT:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/red_commando.png", mimeType = "image/png")]
+			public var Full_RED_COMMANDO:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/red_heavy.png", mimeType = "image/png")]
+			public var Full_RED_HEAVY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/red_heavy_weapons.png", mimeType = "image/png")]
+			public var Full_RED_HEAVY_WEAPONS:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/red_heavy_nude.png", mimeType = "image/png")]
+			public var Full_RED_HEAVY_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith.png", mimeType = "image/png")]
 			public var Full_SEMITH:Class;

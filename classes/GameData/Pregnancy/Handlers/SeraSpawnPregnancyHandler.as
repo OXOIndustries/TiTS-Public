@@ -218,6 +218,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/sera kids", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			pData.reset();
 		}
@@ -237,6 +238,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/sera kids", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			pData.reset();
 			
@@ -269,8 +271,10 @@ package classes.GameData.Pregnancy.Handlers
 				if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
 				if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
 				//if(rand(2) == 0) c.hairColor = traitChar.hairColor;
-				//if(rand(2) == 0) c.scaleColor = traitChar.scaleColor;
 				//if(rand(2) == 0) c.furColor = traitChar.furColor;
+				//if(rand(2) == 0) c.scaleColor = traitChar.scaleColor;
+				//if(rand(2) == 0) c.chitinColor = traitChar.scaleColor;
+				//if(rand(2) == 0) c.featherColor = traitChar.furColor;
 				
 				c.MaturationRate = childMaturationMultiplier;
 				c.BornTimestamp = kGAMECLASS.GetGameTimestamp();

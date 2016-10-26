@@ -781,7 +781,7 @@ public function talkToKallyAboutTarkus():void
 	output("\n\n<i>“Really? Why?”</i>");
 	output("\n\n<i>“Really.”</i> The puzzled kui-tan looks like she can’t quite believe you. <i>“The place is literally a junkyard. What’s more, it’s obviously two different chunks of planet glued together by technology none of the indigenous races even seem to have a proper understanding of. And rumor is there’s defective sex-bots running around everywhere. Raskvel are cute, don’t get me wrong, but they should probably stop trying to fix fuck-machines and do something to improve their situation. Last I heard, the most civilized bunch of them were living in an old, terran colony ship like a bunch of squatters.”</i>");
 	output("\n\nThat’s... not far off from the truth. You nod.");
-	output("\n\n<i>“Yeah, I won’t be visiting that place any time soon. Maybe someday I’ll get to meet a raskvel or gabilani though. I’ve always wondered what it’s like for the shorter races. Most everyone in this place is on the other side of the spectrum.”</i> She tilts her head toward a group of enormous bull moosetaurs. <i>“Good thing we’re nice and snug here on New Canadia station, huh? Now so long as a pack of sydians don’t show up to chew their way through the hull, what can I get you?”</i>");
+	output("\n\n<i>“Yeah, I won’t be visiting that place any time soon. Maybe someday I’ll get to meet a raskvel or gabilani though. I’ve always wondered what it’s like for the shorter races. Most everyone in this place is on the other side of the spectrum.”</i> She tilts her head toward a group of enormous bull moosetaurs. <i>“Good thing we’re nice and snug here on Canadia Station, huh? Now so long as a pack of sydians don’t show up to chew their way through the hull, what can I get you?”</i>");
 	processTime(3);
 	kallyBarMenu();
 }
@@ -1158,7 +1158,7 @@ public function postKallyMeetingTalksMenu(showText:Boolean = true):void
 		else addButton(2,"Siblings?",askAbootOtherKiroSisters,undefined,"Siblings?","Ask Kiro if she has other siblings.");
 		if(flags["KIRO_NUN_NUMBER"] == 1) addDisabledButton(3,"Nun's #?","Nun's #?","You already talked about this.");
 		else addButton(3,"Nun's #?",getTheNunsNumberFromKiro,undefined,"Nun's #?","Ask Kiro if she still has that nun pornstar's contact information.");
-		addButton(4,"Done",kiroWrapUpFunction);
+		addButton(14,"Done",kiroWrapUpFunction);
 	}
 	else
 	{

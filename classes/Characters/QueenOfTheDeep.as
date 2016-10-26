@@ -21,20 +21,20 @@
 		//constructor
 		public function QueenOfTheDeep()
 		{
-			this._latestVersion = 1;
-			this.version = _latestVersion;
-			this._neverSerialize = true;
+			_latestVersion = 1;
+			version = _latestVersion;
+			_neverSerialize = true;
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "queen of the deep";
-			this.originalRace = "water queen";
-			this.a = "the ";
-			this.capitalA = "The ";
-			this.long = "The creature before you is a monstrous amalgam of bestial features: stalk-like legs with too many joints, writhing masses of envenomed tentacles, and a pair of huge claws all grow from a dark red body covered in carapace as thick as a tank's armor. Rising from atop the fifteen-foot-high body comes a woman's torso, with creamy cyan and white skin covered in patches of bioluminescent algae that strobe to the beat of their owner's heart. The mossy substance is arranged across her almost like clothing, though the moss leaves her pair of pendulous breasts bare, exposing eight nipples, each drooling with amber moisture. A long braid of tentacle-hair falls down the upper half's back, glowing softly in shades of blue and green.";
-			this.customDodge = "The creature's many tentacles dance and weave around, making it difficult to focus your attack toward her properly!";
-			this.customBlock = "The alien's chitin deflects the attack.";
-			this.isPlural = false;
+			short = "queen of the deep";
+			originalRace = "water queen";
+			a = "the ";
+			capitalA = "The ";
+			long = "The creature before you is a monstrous amalgam of bestial features: stalk-like legs with too many joints, writhing masses of envenomed tentacles, and a pair of huge claws all grow from a dark red body covered in carapace as thick as a tank's armor. Rising from atop the fifteen-foot-high body comes a woman's torso, with creamy cyan and white skin covered in patches of bioluminescent algae that strobe to the beat of their owner's heart. The mossy substance is arranged across her almost like clothing, though the moss leaves her pair of pendulous breasts bare, exposing eight nipples, each drooling with amber moisture. A long braid of tentacle-hair falls down the upper half's back, glowing softly in shades of blue and green.";
+			customDodge = "The creature's many tentacles dance and weave around, making it difficult to focus your attack toward her properly!";
+			customBlock = "The alien's chitin deflects the attack.";
+			isPlural = false;
 			
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.kinetic.resistanceValue = 45.0;
@@ -48,156 +48,129 @@
 			baseHPResistances.pheromone.resistanceValue = 25.0;
 			baseHPResistances.psionic.resistanceValue = 25.0;
 			
-			this.meleeWeapon = new Fists();
+			meleeWeapon = new Fists();
 			
-			this.armor.longName = "chitinous plating";
-			this.armor.defense = 8;
-			this.armor.hasRandomProperties = true;
+			armor.longName = "chitinous plating";
+			armor.defense = 8;
+			armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 45;
-			this.reflexesRaw = 35;
-			this.aimRaw = 30;
-			this.intelligenceRaw = 15;
-			this.willpowerRaw = 40;
-			this.libidoRaw = 50;
-			this.shieldsRaw = 0;
-			this.energyRaw = 100;
-			this.lustRaw = 10;
+			physiqueRaw = 45;
+			reflexesRaw = 35;
+			aimRaw = 30;
+			intelligenceRaw = 15;
+			willpowerRaw = 40;
+			libidoRaw = 50;
+			shieldsRaw = 0;
+			energyRaw = 100;
+			lustRaw = 10;
 			
-			this.level = 8;
-			this.XPRaw = bossXP();
-			this.credits = 0;
-			this.HPMod = 110;
-			this.HPRaw = this.HPMax();
+			level = 8;
+			XPRaw = bossXP();
+			credits = 0;
+			HPMod = 110;
+			HPRaw = HPMax();
 			
-			this.femininity = 100;
-			this.eyeType = GLOBAL.TYPE_SYDIAN;
-			this.eyeColor = "black";
-			this.tallness = 120;
-			this.thickness = 30;
-			this.tone = 90;
-			this.hairColor = "black";
-			this.scaleColor = "orange";
-			this.furColor = "orange";
-			this.hairLength = 6;
-			this.hairType = GLOBAL.TYPE_HUMAN;
-			this.beardLength = 0;
-			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_CHITIN;
-			this.skinTone = "orange";
-			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_HUMAN;
-			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.TYPE_SYDIAN;
-			this.lipMod = 0;
-			this.earType = 0;
-			this.antennae = 2;
-			this.antennaeType = GLOBAL.TYPE_SYDIAN;
-			this.horns = 0;
-			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_SYDIAN;
-			this.gills = false;
-			this.wingType = GLOBAL.TYPE_HUMAN;
-			this.legType = GLOBAL.TYPE_SYDIAN;
-			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
-			//0 - Waist
-			//1 - Middle of a long tail. Defaults to waist on bipeds.
-			//2 - Between last legs or at end of long tail.
-			//3 - On underside of a tail, used for driders and the like, maybe?
-			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_SYDIAN;
-			this.tailCount = 1;
-			this.tailFlags = new Array();
-			//Used to set cunt or dick type for cunt/dick tails!
-			this.tailGenitalArg = 0;
-			//tailGenital:
-			//0 - none.
-			//1 - cock
-			//2 - vagina
-			this.tailGenital = 0;
-			//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
-			this.tailVenom = 0;
-			//Tail recharge determines how fast venom/webs comes back per hour.
-			this.tailRecharge = 0;
-			//hipRating
-			//0 - boyish
-			//2 - slender
-			//4 - average
-			//6 - noticable/ample
-			//10 - curvy//flaring
-			//15 - child-bearing/fertile
-			//20 - inhumanly wide
-			this.hipRatingRaw = 11;
-			//buttRating
-			//0 - buttless
-			//2 - tight
-			//4 - average
-			//6 - noticable
-			//8 - large
-			//10 - jiggly
-			//13 - expansive
-			//16 - huge
-			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 11;
-			//No dicks here!
-			this.cocks = new Array();
-			this.createCock();
-			this.cocks[0].cLengthRaw = 12;
-			this.cocks[0].cThicknessRatioRaw = 1.5;
+			femininity = 100;
+			eyeType = GLOBAL.TYPE_MYR;
+			eyeColor = "black";
+			tallness = 180;
+			thickness = 30;
+			tone = 90;
+			hairColor = "iridescent";
+			scaleColor = "dark red";
+			furColor = "blue";
+			hairLength = 24;
+			hairType = GLOBAL.HAIR_TYPE_TENTACLES;
+			beardLength = 0;
+			beardStyle = 0;
+			skinType = GLOBAL.SKIN_TYPE_CHITIN;
+			skinTone = "cyan";
+			skinFlags = [GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_LUBRICATED, GLOBAL.FLAG_APHRODISIAC_LACED];
+			faceType = GLOBAL.TYPE_WATERQUEEN;
+			faceFlags = [GLOBAL.FLAG_SMOOTH];
+			tongueType = GLOBAL.TYPE_WATERQUEEN;
+			lipMod = 2;
+			earType = 0;
+			antennae = 2;
+			antennaeType = 0;
+			horns = 0;
+			hornType = 0;
+			armType = GLOBAL.TYPE_WATERQUEEN;
+			gills = false;
+			wingType = 0;
+			legType = GLOBAL.TYPE_WATERQUEEN;
+			legCount = 10;
+			legFlags = [GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_SMOOTH];
 			
-			this.vaginas = new Array();
+			genitalSpot = 0;
+			tailType = 0;
+			tailCount = 0;
+			tailFlags = new Array();
+			tailGenitalArg = 0;
+			tailGenital = 0;
+			tailVenom = 0;
+			tailRecharge = 0;
+			
+			hipRatingRaw = 15;
+			buttRatingRaw = 16;
+			
+			cocks = new Array();
+			createCock();
+			cocks[0].cLengthRaw = 12;
+			cocks[0].cThicknessRatioRaw = 1.5;
+			cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
+			cocks[0].addFlag(GLOBAL.FLAG_LUBRICATED);
+			cocks[0].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+			
+			vaginas = new Array();
 			var tarVag:VaginaClass = new VaginaClass();
 			tarVag.hymen = false;
 			tarVag.wetnessRaw = 4;
 			tarVag.loosenessRaw = 5;
 			tarVag.bonusCapacity = 500;
+			tarVag.addFlag(GLOBAL.FLAG_LUBRICATED);
 			vaginas.push(tarVag);			
 			
-			//balls
-			this.balls = 2;
-			this.cumMultiplierRaw = 10;
-			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 8;
-			this.ballFullness = 100;
-			//How many "normal" orgams worth of jizz your balls can hold.
-			this.ballEfficiency = 200;
-			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 20;
-			this.minutesSinceCum = 2110;
-			this.timesCum = 1722;
+			balls = 2;
+			cumMultiplierRaw = 10;
+			cumQualityRaw = 1;
+			cumType = GLOBAL.FLUID_TYPE_CUM;
+			ballSizeRaw = 8;
+			ballFullness = 100;
+			ballEfficiency = 200;
+			refractoryRate = 20;
+			minutesSinceCum = 2110;
+			timesCum = 1722;
 			
-			//Goo is hyper friendly!
-			this.elasticity = 1;
-			//Fertility is a % out of 100. 
-			this.fertilityRaw = 1.05;
-			this.clitLength = .5;
-			this.pregnancyMultiplierRaw = 1;
+			elasticity = 1;
+			fertilityRaw = 1.05;
+			clitLength = .5;
+			pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 15;
-			this.nippleColor = "black";
-			this.milkMultiplier = 100;
-			this.milkFullness = 200;
-			this.milkType = GLOBAL.FLUID_TYPE_MILK;
-			//The rate at which you produce milk. Scales from 0 to INFINITY.
-			this.milkRate = 0;
-			this.ass.wetnessRaw = 0;
-			this.ass.bonusCapacity += 500
-			this.ass.loosenessRaw = 5;
-			//this.inventory.push(new ZilRation());
+			breastRows[0].breastRatingRaw = 45;
+			nippleColor = "navy blue";
+			nipplesPerBreast = 4;
+			nippleLengthRatio = 2;
+			nippleWidthRatio = 2;
+			milkMultiplier = 100;
+			milkFullness = 200;
+			milkType = GLOBAL.FLUID_TYPE_NECTAR;
+			milkRate = 0;
 			
-			this.impregnationType = "DeepQueenPregnancy";
+			ass.wetnessRaw = 0;
+			ass.bonusCapacity += 500
+			ass.loosenessRaw = 5;
+			
+			impregnationType = "DeepQueenPregnancy";
 			createStatusEffect("Force Fem Gender");
-			this.createStatusEffect("Disarm Immune");
+			createStatusEffect("Disarm Immune");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Queen";
 			
 			sexualPreferences.setRandomPrefs(4 + rand(3), 2);
 			
-			this._isLoading = false;
+			_isLoading = false;
 		}
 		
 		override public function get bustDisplay():String

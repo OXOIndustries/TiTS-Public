@@ -117,7 +117,11 @@ public function approachKiroAtTheBar():void
 		return;
 	}
 	//Full balls? Kiro'll drain 'em
-	else if(pc.hasStatusEffect("Blue Balls") && pc.hasCock()) fluffilyWhorishPawjobs();
+	else if(pc.hasStatusEffect("Blue Balls") && pc.hasCock())
+	{
+		fluffilyWhorishPawjobs();
+		return;
+	}
 	//BF approach
 	if(flags["KIRO_GF"] != undefined)
 	{
@@ -1880,7 +1884,7 @@ public function manualMilkingFromSavin():void
 //PC has blue balls/swollen nuki nuts.
 public function fluffilyWhorishPawjobs():void
 {
-	clearOutput();
+	//clearOutput();
 	showKiro();
 	output("<i>“Welcome back,”</i> Kiro slowly drawls, obviously undressing you with her eyes as she does. They flick to your crotch and back to your face, and a knowing, toothy smile breaks out. <i>“Somebody needs to cum, huh?”</i>");
 	output("\n\nYou blanch. How could she possibly know?");
@@ -2689,7 +2693,7 @@ public function kiroFuckNetBonus():void
 //Kiro - offers invite to GalLink fuckmeet orgy in bar backroom.
 public function galLinkFuckMeetInvite():void
 {
-	clearOutput();
+	//clearOutput();
 	showKiro();
 	if(flags["KIRO_ORGIED"] == undefined)
 	{

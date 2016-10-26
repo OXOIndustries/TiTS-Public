@@ -287,7 +287,7 @@
 					if(pc.hornsUnlocked(2) && pc.hornTypeUnlocked(GLOBAL.TYPE_GRYVAIN))
 					{
 						output("\n\nPressure starts building in your head, like the late stage of a headache but so much more crushing -- more like your head is in a vice! Groaning, you put your hands on your temples, trying to alleviate the pressure... only to find something growing from your brow! You gasp, feeling around as a pair of thick bumps rise from your head, splitting from the skin and curling back, sweeping over your head as they grow and grow.");
-						output("\n\nWhen the growth spurt seems to finish off, you run your fingertips along the protrustions. No doubt about it, <b>you’ve got a pair of majestic, draconic horns now!</b>");
+						output("\n\nWhen the growth spurt seems to finish off, you run your fingertips along the protrusions. No doubt about it, <b>you’ve got a pair of majestic, draconic horns now!</b>");
 						
 						pc.horns = 2;
 						pc.hornType = GLOBAL.TYPE_GRYVAIN;

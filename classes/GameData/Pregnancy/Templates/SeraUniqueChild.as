@@ -20,8 +20,10 @@ package classes.GameData.Pregnancy.Templates
 			nippleColor = "light pink";
 			eyeColor = "brown";
 			hairColor = "hazel";
-			scaleColor = "NOT SET";
 			furColor = "NOT SET";
+			scaleColor = "NOT SET";
+			chitinColor = "NOT SET";
+			featherColor = "NOT SET";
 		}
 	}
 }

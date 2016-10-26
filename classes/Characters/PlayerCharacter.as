@@ -39,6 +39,12 @@ package classes.Characters
 			return false;
 		}
 		
+		// Level Cap
+		override public function levelMax():int
+		{
+			return 8;
+		}
+		
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("vagina");

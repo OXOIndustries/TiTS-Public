@@ -1182,7 +1182,8 @@ public function ellieSexScene():void
 	
 	//Pick a scene and add it to a button - really no random yet but more could be added.
 	//I just wanted to be as robust as Ellie's snatch.
-	addButton(0,"Next",scenes[rand(scenes.length)]);
+	if(scenes.length > 0) addButton(0,"Next",scenes[rand(scenes.length)]);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 //Vaginal (Big Dick)
@@ -1234,7 +1235,7 @@ public function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustT
 //Little Dick, First Time
 public function littleDicksGetToPlayForTheFirstTime():void
 {
-	clearMenu();
+	clearOutput();
 	author("Savin");
 	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
@@ -1279,10 +1280,10 @@ public function littleDicksGetToGoRoundTwo():void
 	output("\n\nYou grip Ellie’s haunches, letting your fingers dig into the supple skin between her armored plates. Thanks to those plates, it’s easy to find a good grip on the tauric slut. She gives a strange, throaty nickering sound as you grasp her wide, bestial hips and start to really fuck her. Your [pc.hips] hammer into her, pounding away at the tight, wringing ring of Ellie’s asshole, reveling in the tightness of her passage. Her muscular folds kiss and suckle on your cock with every powerful thrust, as if trying to pull you deeper and deeper into her. Grinning to yourself with mindless lust, you rear back and give Ellie’s butt a hard swat, feeling her scaly plates shudder under the impact and her bestial asshole contract around your thrusting [pc.cockBiggest] in the perfect way to drive you wild. Ellie gasps and moans as you spank her plated behind, leaning her humanoid half against the wall and groping at her breasts to draw even more pleasure from her lusty body.");
 	output("\n\nBetween your [pc.legs], Ellie’s tail starts to squirm and shiver, the muscles writhing around you. You try and ignore her wiggling tail, but its movements only become more and more urgent; you slowly realize it’s just the first sign of Ellie’s climax. The tauric beauty’s voice climbs a register higher over several low, lusty moans and cries of pleasure, her whole body shifting with your [pc.hip]’s impact against her, grinding and thrusting herself back against you. You can feel the lips of her gaping pussy contract hard, rubbing against your own crotch and smearing you with an ever-increasing veneer of sticky tauric girl-cum, painting your groin in a web of leithan spunk until you’re drenched in it. She’s not a squirter, but she’s a leaker, that’s for sure!");
 	output("\n\nHer ass joins in the fun a moment later, squeezing down on your shaft hard enough to trap you, completely halting your thrusts into her save for tiny, shallow jerks of your [pc.hips], barely able to clear an inch from your lover’s powerful grip. Still, Ellie doesn’t let you lag far behind her: her muscles wring and squirm all along the breadth of your [pc.cockBiggest], so tight and so hot, massaging every inch of your desperate prick. Her ass milks you, hard and long as Ellie rides out her own anal orgasm, her body working to make sure you come with her into bliss. As turned on as you are, it doesn’t take long.");
-	output("\n\n<i>“Come on, [pc.name], give it to me! I wanna feel your cum inside me!”</i> Ellie whinnies, her tail coiling around your waist and pulling you tight against her, hugging your close as your own climax  nears.");
+	output("\n\n<i>“Come on, [pc.name], give it to me! I wanna feel your cum inside me!”</i> Ellie whinnies, her tail coiling around your waist and pulling you tight against her, hugging you close as your own climax  nears.");
 	output("\n\nA few more restrained thrusts, and you begin to feel the familiar rush of orgasmic need rising in your [pc.balls]. Your [pc.hips] can’t move much, but they hammer what few inches your lover’s death-grip permits you, Ellie’s chemical cloud rending asunder any lingering ability to hold back. With a final grunt of pleasure, you slap your hips into hers, relishing the squelching feeling of her overly-wet crotch mashing against your own. Buried to the hilt inside your tauric lover, you find yourself cumming, unleashing a thick spray of [pc.cumNoun] into the vice-tight passage of Ellie’s well-fucked asshole. Ellie’s muscles go into overdrive, working hard to milk out every drop, to draw you deeper into her as you bust your nut into her welcoming backside.");
 	output("\n\nWhen you’re done, you give a sated sigh and lean against the leithan’s armored backside, trying to catch your breath. Ellie’s hips wiggle eagerly against your crotch, her cum-soaked anal muscles contentedly massaging your still-twitching [pc.cockBiggest].");
-	output("\n\n<i>“Oooh, that was nice, [pc.name],”</i> Ellie coos, her tail releasing you. You almost fall without her support, your [pc.legs] all but giving out after your desperate orgasm. With a little yelp, you flop back down onto the mass of pillows behind her, watching with a smile as the leithan’s tail twitches, and a trickle of your spooge drools out of her thoroughly-fucked ass. Smiling at you over her shoulder, the tuar adds, <i>“You sure know how to show a girl’s backdoor a good time, don’t ya? I might just have to let you do that again sometime...”</i>");
+	output("\n\n<i>“Oooh, that was nice, [pc.name],”</i> Ellie coos, her tail releasing you. You almost fall without her support, your [pc.legs] all but giving out after your desperate orgasm. With a little yelp, you flop back down onto the mass of pillows behind her, watching with a smile as the leithan’s tail twitches, and a trickle of your spooge drools out of her thoroughly-fucked ass. Smiling at you over her shoulder, the taur adds, <i>“You sure know how to show a girl’s backdoor a good time, don’t ya? I might just have to let you do that again sometime...”</i>");
 	output("\n\nYou weakly give the centaurin a thumbs up. She giggles and picks you up, easily slinging you onto her back");
 	if(pc.isTaur() || pc.isNaga()) output(", bestial body and all");
 	output(" - the impact of which has the delightful effect of making her spooge-packed hole squirt a little of your seed back onto the floor. <i>“C’mon, sweetheart, let’s get you back to the shop.”</i>");

@@ -134,6 +134,7 @@ package classes.GameData.Pregnancy.Handlers
 				{
 					StatTracking.track("pregnancy/queen of the deep eggs", pData.pregnancyQuantity);
 					StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+					StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 					totalChildren += pData.pregnancyQuantity;
 					mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 					pData.reset();
@@ -163,6 +164,7 @@ package classes.GameData.Pregnancy.Handlers
 				{
 					StatTracking.track("pregnancy/queen of the deep eggs", pData.pregnancyQuantity);
 					StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+					StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 					totalChildren += pData.pregnancyQuantity;
 			
 					kGAMECLASS.pc.bellyRatingMod -= pData.pregnancyBellyRatingContribution;

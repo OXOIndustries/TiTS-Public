@@ -4,6 +4,7 @@ package classes.GameData
 	import classes.GameData.Pregnancy.Containers.Genders;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.Pregnancy.ChildCache;
+	import classes.GameData.Pregnancy.UniqueChild;
 	
 	/**
 	 * ...
@@ -87,6 +88,10 @@ package classes.GameData
 		{
 			return (CHILDREN.length > 0);
 		}
+		static public function hasUniqueChildren():Boolean
+		{
+			return (numUniqueChildren() > 0);
+		}
 		
 		/**
 		 * Mostly placeholder for now- forward support for the concept of the players children
@@ -97,15 +102,33 @@ package classes.GameData
 		{
 			return (CHILDREN.length > 0);
 		}
+		static public function hasUniqueChildrenAtNursery():Boolean
+		{
+			return (numUniqueChildrenAtNursery() > 0);
+		}
 		
 		/**
 		 * Determine the total number of children the player has.
 		 * @return
 		 */
-		static public function numChildren():int
+		static public function numChildren(uniqueOnly:Boolean = false):int
 		{
+			if (uniqueOnly)
+			{
+				var numUnique:int = 0;
+				for(var i:int = 0; i < CHILDREN.length; i++)
+				{
+					if(CHILDREN[i] is UniqueChild) numUnique++;
+				}
+				return numUnique;
+			}
+			
 			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numChildren;
+		}
+		static public function numUniqueChildren():int
+		{
+			return numChildren(true);
 		}
 		
 		/**
@@ -113,10 +136,24 @@ package classes.GameData
 		 * ultimately leaving the nursery as they age-out and head off to lead their own lives.
 		 * @return
 		 */
-		static public function numChildrenAtNursery():int
+		static public function numChildrenAtNursery(uniqueOnly:Boolean = false):int
 		{
+			if (uniqueOnly)
+			{
+				var numUnique:int = 0;
+				for(var i:int = 0; i < CHILDREN.length; i++)
+				{
+					if(CHILDREN[i] is UniqueChild) numUnique++;
+				}
+				return numUnique;
+			}
+			
 			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numChildren;
+		}
+		static public function numUniqueChildrenAtNursery():int
+		{
+			return numChildrenAtNursery(true);
 		}
 		
 		static public const GENDER_NEUTER:uint 		= 1;
