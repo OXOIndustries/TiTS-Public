@@ -1036,20 +1036,18 @@ public function flyMenu():void {
 	output("Where do you want to go?");
 	clearMenu();
 	//TAVROS
-	if(shipLocation != "TAVROS HANGAR") 
-		addButton(0, "Tavros", flyTo, "Tavros");
-	else addDisabledButton(0, "Tavros");
+	if(shipLocation != "TAVROS HANGAR") addButton(0, "Tavros", flyTo, "Tavros");
+	else addDisabledButton(0, "Tavros", "Tavros Station", "You’re already here.");
 	//MHEN'GA
-	if(shipLocation != "SHIP HANGAR") 
-		addButton(1, "Mhen'ga", flyTo, "Mhen'ga");
-	else addDisabledButton(1, "Mhen'ga");
+	if(shipLocation != "SHIP HANGAR") addButton(1, "Mhen'ga", flyTo, "Mhen'ga");
+	else addDisabledButton(1, "Mhen'ga", "Mhen'ga", "You’re already here.");
 	//TARKUS
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 	{
 		if(shipLocation != "201") addButton(2, "Tarkus", flyTo, "Tarkus");
-		else addDisabledButton(2, "Tarkus", "You’re already here.");
+		else addDisabledButton(2, "Tarkus", "Tarkus", "You’re already here.");
 	}
-	else addDisabledButton(2, "Locked", "Locked", "You need to find your father’s probe on Mhen’ga to get this planet’s coordinates.");
+	else addDisabledButton(2, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	//MYRELLION
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
@@ -1065,10 +1063,10 @@ public function flyMenu():void {
 		else
 		{
 			if (shipLocation != "2I7") addButton(3, "Myrellion", flyTo, "MyrellionDeepCaves");
-			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
+			else addDisabledButton(3, "Myrellion", "Myrellion - Deep Caves", "You’re already here.");
 		}
 	}
-	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
+	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
@@ -1076,7 +1074,7 @@ public function flyMenu():void {
 		if(shipLocation != "500") addButton(5, "New Texas", flyTo, "New Texas");
 		else addDisabledButton(5, "New Texas", "New Texas", "You’re already here.");
 	}
-	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//POE A
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
@@ -1084,21 +1082,21 @@ public function flyMenu():void {
 		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyTo, "Poe A");
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
-	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//UVETO
 	if (uvetoUnlocked())
 	{
 		if (shipLocation != "UVS F15") addButton(7, "Uveto", flyTo, "Uveto");
-		else addDisabledButton(7, "Uveto", "Uveto", "You’re already here.");
+		else addDisabledButton(7, "Uveto", "Uveto Station", "You’re already here.");
 	}
-	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//Canadia Station
 	if(canadiaUnlocked())
 	{
 		if (shipLocation != "CANADA1") addButton(8, "Canadia", flyTo, "Canadia");
-		else addDisabledButton(8, "Canadia", "Canadia", "You’re already here.");
+		else addDisabledButton(8, "Canadia", "Canadia Station", "You’re already here.");
 	}
-	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");	
+	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");	
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
