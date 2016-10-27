@@ -125,6 +125,13 @@ package classes.Resources.Busts
 		public var Bust_GOLD_REMNANT_FIGHTER:Class;
 		public var Bounds_GOLD_REMNANT_FIGHTER:Rectangle = new Rectangle(75, 0, 60, 60);
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/gold_remnant_si_officer.png", mimeType = "image/png")]
+		public var Bust_GOLD_REMNANT_SI_OFFICER:Class;
+		public var Bounds_GOLD_REMNANT_SI_OFFICER:Rectangle = new Rectangle(50, 0, 60, 60);
+		[Embed(source = "../../../assets/images/npcs/adjatha/gold_remnant_si_officer_nude.png", mimeType = "image/png")]
+		public var Bust_GOLD_REMNANT_SI_OFFICER_NUDE:Class;
+		public var Bounds_GOLD_REMNANT_SI_OFFICER_NUDE:Rectangle = new Rectangle(50, 0, 60, 60);
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/gryvain.png", mimeType = "image/png")]
 		public var Bust_GRYVAIN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/gryvain_nude.png", mimeType = "image/png")]
@@ -492,6 +499,11 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_fighter.png", mimeType = "image/png")]
 			public var Full_GOLD_REMNANT_FIGHTER:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_si_officer.png", mimeType = "image/png")]
+			public var Full_GOLD_REMNANT_SI_OFFICER:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_si_officer_nude.png", mimeType = "image/png")]
+			public var Full_GOLD_REMNANT_SI_OFFICER_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain.png", mimeType = "image/png")]
 			public var Full_GRYVAIN:Class;
