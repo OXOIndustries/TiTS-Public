@@ -7,6 +7,7 @@ import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 import classes.GameData.Pregnancy.PregnancyManager;
 import classes.GUI;
 import classes.Items.Accessories.LeithaCharm;
+import classes.Items.Armor.Unique.Omnisuit;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
 import classes.Items.Transformatives.Cerespirin;
@@ -1767,7 +1768,8 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processReahaEvents(deltaT, doOut);
 	processGobblesEvents(deltaT, doOut);
 	processIrelliaEvents(deltaT, doOut);
-	varmintDisappearChance(deltaT, doOut);
+	processOmniSuitEvents(deltaT, doOut);
+	varmintDisappearChance(deltaT, doOut); // Dependant on Libido changes, might need to be refactored to support jumping between states directly
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
 	
@@ -2190,6 +2192,19 @@ public function processIrelliaEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
+public function processOmniSuitEvents(deltaT:uint, doOut:Boolean):void
+{
+	if (pc.armor is Omnisuit)
+	{
+		var totalHours:int = ((minute + deltaT) / 60);
+		
+		if (totalHours >= 1)
+		{
+			omnisuitChangeUpdate();
+		}
+	}
+}
+
 public function processTime(arg:int):void {
 	var x:int = 0;
 	var msg:String = "";
@@ -2202,8 +2217,6 @@ public function processTime(arg:int):void {
 		//Tick hours!
 		if (minutes >= 60) {
 			
-			//Omnisuit!
-			if(pc.armor is Omnisuit) omnisuitChangeUpdate();
 			//Egg trainer stuff
 			carryTrainingBonusBlurbCheck();
 			//Nessa cumflationshit
