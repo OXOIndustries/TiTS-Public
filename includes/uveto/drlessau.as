@@ -15,10 +15,10 @@ public function drLessauIPresume():void
 		output("\n\n<i>“Steele, [pc.name] Steele,”</i> you reply. Lessau’s slitted eyes light up at the name; not just figuratively, you notice.");
 		output("\n\n<i>“Ah, [pc.name]! It’s a pleasure to meet you at last.”</i> The chimera’s smile turns a mixture of warm and teasing.");
 		
-		if(pc.originalRace != pc.race()) output("<i>“Making good use of my masterwork, I see.”</i>");
-		else output("<i>“Not keen to follow in your father’s footsteps with regards to transformations, I see? Or perhaps you’re just looking for the right species to make proper use of that masterpiece of mine.”</i>");
+		if(pc.originalRace != pc.race()) output(" <i>“Making good use of my masterwork, I see.”</i>");
+		else output(" <i>“Not keen to follow in your father’s footsteps with regards to transformations, I see? Or perhaps you’re just looking for the right species to make proper use of that masterpiece of mine.”</i>");
 		
-		if (pc.isAss()) output("<i>“\n\n\The hell do you mean by that?”</i> you ask.");
+		if (pc.isAss()) output("\n\n<i>“The hell do you mean by that?”</i> you ask.");
 		else output("\n\n\Your surprise is visible enough that Lessau sees it and laughs.");
 		
 		output("\n\n<i>“You didn’t think those microsurgeons that protect you were conjured from thin air, did you? They were created specially for you, twenty years in the making. This may be the first time we’ve met, Captain Steele, but we have each done great things for the other. Without you, and without your father, I would not be here today.”</i>");
@@ -96,7 +96,7 @@ public function drLessauKnewDad():void
 	output("You ask Lessau if he knew your father, a query that prompts the chimera’s ears to flatten and his gaze to shift briefly downward.");
 	output("\n\n<i>“I knew him quite well, yes, though chiefly in the final decades. I first met him some two centuries ago, when I was a student. He came to see my professor, who like myself studied nanomedicine, to acquire his own microsurgeons. They were experimental, far less refined and far less safe than yours, but he made a convincing argument for testing them on the frontier. I remember feeling a sense of power about him that I’ve not seen since...”</i> Lessau trails off, looking you over. <i>“...Though perhaps I see it now.”</i>");
 	output("\n\n" + (pc.isAss() ? "You stand with arms folded, tapping your foot impatiently at his assessment." : "You fidget a bit, not quite sure exactly what he’s looking for.") + " Soon enough he finishes gazing and resumes his story.");
-	output("\n\n<i>“I didn't interact with him much at that time, of course, only incidentally. Still, he reached out to me twenty years ago, when it became clear his health was in decline. He wanted to set up a biotechnology division of Steele Tech, and wanted me to head it.”</i>");
+	output("\n\n<i>“I didn't interact with him much at that time, of course, only incidentally. Still, he reached out to me twenty years ago, when it became clear his health was in decline. He wanted a new head of the biotechnology division of Steele Tech, and wanted me to head it.”</i>");
 	output("\n\nYou ask why dad reached out to Lessau instead of his mentor, prompting a deep frown from the chimera. <i>“Yes, well, he would have, but she was already acquired by Xenogen. They would not be willing to let her go at any price.”</i>");
 	output("\n\n<i>“You make it sound like she's property,”</i> you reply.  Lessau fixes you with as serious a look as you’ve ever seen from anyone.");
 	output("\n\n<i>“You don't leave Xenogen, [pc.name]. Not if they find you useful, or if you grow too knowledgeable about what they do behind closed doors.");
@@ -104,7 +104,7 @@ public function drLessauKnewDad():void
 	if (flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1 || flags["NEVRIE_QUEST"] == 2) output(" I would caution you against doing any more for them than you already have, or you too may find yourself considered an asset too important to let roam free.");
 	output("”</i>");
 	output("\n\nLessau lets the statement hang, seemingly unwilling to go into more lurid detail. The moment eventually passes, and Lessau returns to his story after a moment to collect himself.");
-	output("\n\n<i>“At the time Steele Tech was purely a mining company, so we began from almost nothing. Between Victor’s generous funding and some fortunate breakthroughs, we’ve managed to develop at a brisk pace since then. We went through several avenues of development; a human transformative was a useful one for Victor to help stabilize his condition, and it proved the commercial viability of our department as well. Sales of Humana+ have been brisk...or Terran Treats, as I gather most people call them.”</i> Lessau grumbles a bit at the mention of the more popular name.");
+	output("\n\n<i>“At the time Steele Tech was mostly a mining company. The biotechnology division was woefully underdeveloped and underfunded, so we began from almost nothing. Between Victor’s generous funding and some fortunate breakthroughs, we’ve managed to develop at a brisk pace since then. We went through several avenues of development; a better human transformative. Sadly it did little to help Victor's condition, but it proved the commercial viability of our department as well. Sales of Humana+ have been brisk...or Terran Treats, as I gather most people call them.”</i> Lessau grumbles a bit at the mention of the more popular name.");
 	output("\n\n<i>“The real goal, however, was in a concept I had spent decades drafting and refining, but lacked the funding to develop until Victor’s intervention. With his aid I produced my masterwork: microsurgeons that do more than just protect against known diseases, they adapt, they innovate when faced with the unknown. More importantly, they house within them a full transcript of your original genome from birth. No matter how you alter yourself, no matter what mutations you undergo, you will always be able to return to what you once were.”</i>");
 	//Player has used something that irreversibly changes Steele
 	if (pc.isTreated())
