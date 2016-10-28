@@ -1753,7 +1753,7 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processKQ2NukeEvents(deltaT, doOut);
 	processDaneCoordEvents(deltaT, doOut);
 	processTaivrasPregnancyState(deltaT, doOut);
-	processShadePlanetMoves(deltaT, doOut);
+	processShadeEvents(deltaT, doOut);
 	processGiannaEvents(deltaT, doOut);
 	processTreatmentEvents(deltaT, doOut);
 	processKiroBarEvents(deltaT, doOut);
@@ -1768,8 +1768,12 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processReahaEvents(deltaT, doOut);
 	processGobblesEvents(deltaT, doOut);
 	processIrelliaEvents(deltaT, doOut);
-	processOmniSuitEvents(deltaT, doOut);
-	varmintDisappearChance(deltaT, doOut); // Dependant on Libido changes, might need to be refactored to support jumping between states directly
+	processOmniSuitEvents(deltaT, doOut); // Dependant on Libido changes, might need to be refactored to support jumping between states directly
+	processCarryTrainingEvents(deltaT, doOut);
+	processNessaEvents(deltaT, doOut);
+	processCuntTailEggs(deltaT, doOut);
+	processDrBadgerEvents(deltaT, doOut);
+	varmintDisappearChance(deltaT, doOut); 
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
 	
@@ -1890,7 +1894,7 @@ public function processDaneCoordEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
-public function processShadePlanetMoves(deltaT:uint, doOut:Boolean):void
+public function processShadeEvents(deltaT:uint, doOut:Boolean):void
 {
 	if(flags["KQ2_SHADE_AWAY_TIME"] != undefined)
 	{
@@ -1900,6 +1904,13 @@ public function processShadePlanetMoves(deltaT:uint, doOut:Boolean):void
 			if(flags["SHADE_DISABLED"] == -1) flags["SHADE_DISABLED"] = undefined;
 			flags["KQ2_SHADE_AWAY_TIME"] = undefined;
 		}
+	}
+	
+	var totalHours:int = ((minutes + deltaT) / 60);
+	if (totalHours >= 1 && flags["SHADE_INSEMINATION_COUNTER"] != undefined)
+	{
+		flags["SHADE_INSEMINATION_COUNTER"] += totalHours;
+		if(flags["SHADE_INSEMINATION_COUNTER"] > 167) flags["SHADE_INSEMINATION_COUNTER"] = undefined;
 	}
 }
 
@@ -2205,6 +2216,89 @@ public function processOmniSuitEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
+public function processCarryTrainingEvents(deltaT:uint, doOut:Boolean):void
+{
+	var totalHours:int = ((minutes + deltaT) / 60);
+	
+	if (pc.hasStatusEffect("Eggy Belly") && totalHours >= 1 && flags["CARRY_TRAINING_BONUS_PROC"] == undefined || flags["CARRY_TRAINING_BONUS_PROC"] + (60 * 24 < GetGameTimestamp() + deltaT))
+	{
+		var eventChance:Number = Math.round((1 - Math.pow(14 / 15, totalHours)) * 1000);
+		if (rand(1000) < eventChance)
+		{
+			var msg:String = "";
+			
+			//Event: Jiggle Jiggle!
+			//Play sometimes when PC is walking. Increase Lust by 10 per Training level.
+			msg += "\n\n" + logTimeStamp("passive", deltaT) + ParseText(" Your progress is interrupted by a sudden shift in your [pc.belly], making you nearly double over with intense, overwhelming pleasure. Just feeling the ");
+			if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 18) msg += "dozen";
+			else if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 75) msg += "dozens";
+			else msg += "close to a hundred";
+			msg += " eggs moving around inside you, jiggling with your movements, is almost enough to make you cum on the spot. You bite your lip and hold on, ";
+
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) msg += "ignoring the curious looks from passersby.";
+			else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) 
+			{
+				msg += "more than a little aroused by the way people are looking at you.";
+				pc.lust(5);
+			}
+			else msg += "thankful that you’re all alone.";
+			msg += "\n\nYour body’s betrayal lasts only for a moment before the eggs settle down again. You sigh, taking a deep breath to steady yourself before you get going again, a ";
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) msg += "good deal";
+			else msg += "little";
+			msg += " more flushed than before.";
+			
+			eventBuffer += msg;
+			
+			//Reset cooldown
+			flags["CARRY_TRAINING_BONUS_PROC"] = GetGameTimestamp() + deltaT;
+		}
+	}
+}
+
+public function processNessaEvents(deltaT:uint, doOut:Boolean):void
+{
+	var totalHours:int = ((minutes + deltaT) / 60);
+	
+	if (totalHours >= 1 && flags["NESSA_BELLY"] != undefined && flags["NESSA_BELLY"] > 0)
+	{
+		flags["NESSA_BELLY"] -= (100 * totalHours);
+		if (flags["NESSA_BELLY"] < 0) flags["NESSA_BELLY"] = 0;
+	}
+}
+
+public function processCuntTailEggs(deltaT:uint, doOut:Boolean):void
+{
+	if (flags["CUNT_TAIL_PREGNANT_TIMER"] == undefined) return;
+	
+	if (!pc.hasCuntSnake())
+	{
+		flags["DAYS_SINCE_FED_CUNT_TAIL"] = flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+	}
+	else
+	{
+		flags["CUNT_TAIL_PREGNANT_TIMER"] -= ((minutes + deltaT) / 60);
+		if (flags["CUNT_TAIL_PREGNANT_TIMER"] <= 1)
+		{
+			flags["CUNT_TAIL_PREGNANT_TIMER"] = 0;
+			if (eventQueue.indexOf(giveBirthThroughCuntTail) == -1) eventQueue.push(giveBirthThroughCuntTail);
+		}
+	}
+}
+
+public function processDrBadgerEvents(deltaT:uint, doOut:Boolean):void
+{
+	if (flags["BADGET_QUEST"] == -1)
+	{
+		if (flags["BADGET_QUEST_TIMER"] == undefined) flags["BADGER_QUEST_TIMER"] = (GetGameTimestamp() + (60 - minutes));
+		
+		if (flags["BADGET_QUEST_TIMER"] != -1 && GetGameTimestamp() + deltaT >= flags["BADGET_QUEST_TIMER"] + 1440)
+		{
+			pennyBadgetQuestAlert();
+			flags["BADGET_QUEST_TIMER"] = -1;
+		}
+	}
+}
+
 public function processTime(arg:int):void {
 	var x:int = 0;
 	var msg:String = "";
@@ -2216,88 +2310,6 @@ public function processTime(arg:int):void {
 
 		//Tick hours!
 		if (minutes >= 60) {
-			
-			//Egg trainer stuff
-			carryTrainingBonusBlurbCheck();
-			//Nessa cumflationshit
-			nessaBellyTic();
-			//Cunt stretching stuff
-			if(pc.hasVagina()) {
-				for(x = 0; x < pc.totalVaginas(); x++) {
-					//Count da stretch cooldown or reset if at minimum.
-					if(pc.vaginas[x].loosenessRaw > pc.vaginas[x].minLooseness) pc.vaginas[x].shrinkCounter++;
-					else pc.vaginas[x].shrinkCounter = 0;
-					//Reset for this cunt.
-					tightnessChanged = false;
-					if(pc.vaginas[x].loosenessRaw >= 5 && pc.vaginas[x].shrinkCounter >= 60) tightnessChanged = true;
-					else if(pc.vaginas[x].loosenessRaw >= 4 && pc.vaginas[x].shrinkCounter >= 96) tightnessChanged = true;
-					else if(pc.vaginas[x].loosenessRaw >= 3 && pc.vaginas[x].shrinkCounter >= 132) tightnessChanged = true;
-					else if(pc.vaginas[x].loosenessRaw >= 2 && pc.vaginas[x].shrinkCounter >= 168) tightnessChanged = true;
-					else if(pc.vaginas[x].loosenessRaw >= pc.vaginas[x].minLooseness && pc.vaginas[x].shrinkCounter >= 204) tightnessChanged = true;
-					if(tightnessChanged) {
-						pc.vaginas[x].loosenessRaw--;
-						if (pc.vaginas[x].loosenessRaw < pc.vaginas[x].minLooseness)
-							pc.vaginas[x].loosenessRaw = pc.vaginas[x].minLooseness;
-						msg += "\n\n" + logTimeStamp() + " <b>Your";
-						if(pc.totalVaginas() > 1) msg += " " + num2Text2(x+1);
-						msg += " " + pc.vaginaDescript(x) + " has recovered from its ordeals, tightening up a bit.</b>";
-						eventBuffer += msg;
-					}
-				}
-			}
-			//Butt stretching stuff
-			//Count da stretch cooldown or reset if at minimum.
-			if(pc.ass.loosenessRaw > pc.ass.minLooseness) pc.ass.shrinkCounter++;
-			else pc.ass.shrinkCounter = 0;
-			//Reset for this cunt.
-			tightnessChanged = false;
-			if(pc.ass.loosenessRaw >= 5 && pc.ass.shrinkCounter >= 12) tightnessChanged = true;
-			else if(pc.ass.loosenessRaw >= 4 && pc.ass.shrinkCounter >= 24) tightnessChanged = true;
-			else if(pc.ass.loosenessRaw >= 3 && pc.ass.shrinkCounter >= 48) tightnessChanged = true;
-			else if(pc.ass.loosenessRaw >= 2 && pc.ass.shrinkCounter >= 72) tightnessChanged = true;
-			else if(pc.ass.loosenessRaw >= pc.ass.minLooseness && pc.ass.shrinkCounter >= 96) tightnessChanged = true;
-			if(tightnessChanged) {
-				pc.ass.loosenessRaw--;
-				if (pc.ass.loosenessRaw < pc.ass.minLooseness)
-					pc.ass.loosenessRaw = pc.ass.minLooseness;
-				if(pc.ass.loosenessRaw <= 4) eventBuffer += "\n\n" + logTimeStamp() + " <b>Your " + pc.assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
-				else eventBuffer += "\n\n" + logTimeStamp() + " <b>Your " + pc.assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
-			}
-			//Cunt snake pregnancy stuff
-			if (flags["CUNT_TAIL_PREGNANT_TIMER"] > 0) {
-				if (!pc.hasCuntSnake()) {
-					flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-					flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
-				}
-				else {
-					flags["CUNT_TAIL_PREGNANT_TIMER"]--;
-					if(flags["CUNT_TAIL_PREGNANT_TIMER"] == 1) {
-						flags["CUNT_TAIL_PREGNANT_TIMER"] = 0;
-						if(eventQueue.indexOf(giveBirthThroughCuntTail) == -1) eventQueue.push(giveBirthThroughCuntTail);
-					}
-				}
-			}
-			//Shade cunt snakustuff
-			if(flags["SHADE_INSEMINATION_COUNTER"] != undefined)
-			{
-				flags["SHADE_INSEMINATION_COUNTER"]++;
-				//Birth that shit on her own time if she holds it too long
-				if(flags["SHADE_INSEMINATION_COUNTER"] > 167) flags["SHADE_INSEMINATION_COUNTER"] = undefined;
-			}
-			//Goo PC updates and fixers:
-			if(pc.hasStatusEffect("Goo Crotch")) gooCrotchUpdate();
-
-			if(flags["BADGER_QUEST"] == -1)
-			{
-				if(flags["BADGER_QUEST_TIMER"] == undefined) flags["BADGER_QUEST_TIMER"] = GetGameTimestamp();
-				if(GetGameTimestamp() >= flags["BADGER_QUEST_TIMER"] + 1440 && flags["BADGER_QUEST_TIMER"] != -1)
-				{
-					pennyBadgerQuestAlert();
-					flags["BADGER_QUEST_TIMER"] = -1;
-				}
-			}
-			// Hourly femininity check
-			//eventBuffer += pc.fixFemininity();
 			
 			//Days ticks here!
 			if(hours >= 24) {

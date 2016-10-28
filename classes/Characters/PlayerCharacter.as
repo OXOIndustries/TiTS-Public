@@ -336,6 +336,10 @@ package classes.Characters
 				removeStatusEffect("Blue Balls");
 			}
 			
+			updateVaginaStretch(deltaT, doOut);
+			updateButtStretch(deltaT, doOut);
+			updateGooState(deltaT, doOut);
+			
 			super.processTime(deltaT, doOut);
 		}
 	}

@@ -378,11 +378,3 @@ public function nessaBellyRating(arg:Number = 0):Number
 	if(arg > 0) flags["NESSA_BELLY"] += arg;
 	return flags["NESSA_BELLY"]/1000;
 }
-public function nessaBellyTic():void
-{
-	if(flags["NESSA_BELLY"] != undefined && flags["NESSA_BELLY"] > 0)
-	{
-		flags["NESSA_BELLY"] -= 100;
-		if(flags["NESSA_BELLY"] < 0) flags["NESSA_BELLY"] = 0;
-	}
-}

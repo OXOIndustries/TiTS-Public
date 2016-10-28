@@ -16588,6 +16588,196 @@
 			shieldsRaw = shieldsMax();
 		}
 		
+		private function updateGooState(deltaT:uint, doOut:Boolean):void
+		{
+			if (!hasStatusEffect("Goo Crotch")) return;
+			
+			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
+			
+			if (totalHours < 1) return;
+			
+			var unflaggedGenital:Array = [];
+			for (var i:int = 0; i < cocks.length; i++)
+			{
+				if (!hasCockFlag(GLOBAL.FLAG_GOOEY, i)) unflaggedGenital.push(i);
+			}
+			
+			if (unflaggedGenital.length > 0)
+			{
+				if (unflaggedGenital.length == cocks.length)
+				{
+					if(cockTotal() == 1) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " The " + cockColor() + " skin of your " + simpleCockNoun(0) + " is vanishing into a slowly creeping wave " + kGAMECLASS.gooColor() + " goo, losing cohesion in exchange for infinitely morphic possibilities. <b>Your penis is now gelatinous.</b>";
+					//Multischlongs
+					else kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " The skin of your " + cocksDescript() + " tingles like mad as waves of translucent goo slowly replaces their skin, transforming them from fleshy wieners into semi-solid, shape-shifting pricks. <b>Your penises are now gelatinous.</b>";
+				}
+				else
+				{
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " Your gooey, ever-slick crotch spreads down the length";
+					if(truantCocks.length > 1) kGAMECLASS.eventBuffer += "s of your rogue, solid dicks, transforming them into drippy, inexplicably jellied boners.";
+					else 
+					{
+						kGAMECLASS.eventBuffer += " of your rock, solidified dick, transforming it to be just as drippy and jelly-like as";
+						if(cockTotal() == 2) kGAMECLASS.eventBuffer += " its brother.";
+						else eventBuffer += " its brothers.";
+					}
+					eventBuffer += " <b>All of your penises are now gelatinous.</b>";
+				}
+				
+				for (i = 0; i < unflaggedGenital.length; i++)
+				{
+					cocks[unflaggedGenital[i]].addFlag(GLOBAL.FLAG_GOOEY);
+					cocks[unflaggedGenital[i]].cockColor = kGAMECLASS.gooColor();
+				}
+			}
+			
+			var unflaggedVagNum:int = 0;
+			for (i = 0; i < vaginas.length; i++)
+			{
+				if (!vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY))
+				{
+					unflaggedVagNum++;
+					vaginas[i].addFlag(GLOBAL.FLAG_GOOEY);
+					vaginas[i].vaginaColor = kGAMECLASS.gooColor();
+				}
+			}
+			
+			if (unflaggedVagNum > 0)
+			{
+				if (unflaggedVagNum == vaginas.length)
+				{
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " You're getting incredibly wet";
+					if(legCount > 1) kGAMECLASS.eventBuffer += " between the [pc.legs]";
+					else kGAMECLASS.eventBuffer += "... down there";
+					kGAMECLASS.eventBuffer += ". Moisture seems to be dripping everywhere, transforming your puss";
+					if(totalVaginas() == 1) kGAMECLASS.eventBuffer += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
+					else kGAMECLASS.eventBuffer += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
+				}
+				else
+				{
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " Unsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>";
+				}
+			}
+		}
+		
+		private function updateVaginaStretch(deltaT:uint, doOut:Boolean):void
+		{
+			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
+			if (vaginas.length > 0 && totalHours >= 1)
+			{
+				for (var i:int = 0; i < vaginas.length; i++)
+				{
+					var tv:VaginaClass = vaginas[i] as VaginaClass;
+					
+					if (tv.loosenessRaw > tv.minLooseness)
+					{
+						tv.shrinkCounter += totalHours;
+					}
+					else
+					{
+						tv.shrinkCounter = 0;
+						continue;
+					}
+					
+					var tightnessChange:Boolean = false;
+					// These are now chained to allow multiple potential shrinks to happen in a single update, depending on total time
+					if (tv.loosnessRaw >= 5 && tv.shrinkCounter >= 60)
+					{
+						tv.loosenessRaw--;
+						tv.shrinkCounter -= 60;
+						tightnessChange = true;
+					}
+					if (tv.loosenessRaw >= 4 && tv.shrinkCounter >= 96)
+					{
+						tv.loosenessRaw--;
+						tv.shrinkCounter -= 96;
+						tightnessChange = true;
+					}
+					if (tv.loosenessRaw >= 3 && tv.shrinkCounter >= 132)
+					{
+						tv.loosnessRaw--;
+						tv.shrinkCounter -= 132;
+						tightnessChange = true;
+					}
+					if (tv.loosenessRaw >= 2 && tv.shrinkCounter >= 168)
+					{
+						tv.loosnessRaw--;
+						tv.shrinkCounter -= 168;
+						tightnessChange = true;
+					}
+					if (tv.loosenesssRaw >= tv.minLooseness && tv.shrinkCounter >= 204)
+					{
+						tv.loosnessRaw--;
+						tv.shrinkCounter -= 204;
+						tightnessChange = true;
+					}
+					
+					if (tightnessChange)
+					{
+						if (tv.loosenessRaw < tv.minLooseness) tv.loosenessRaw = tv.minLooseness;
+						kGAMECLASS.eventBuffer += logTimeStamp("passive", deltaT) + " <b>Your" + (vaginas.length > 1 ? " " + num2Text2(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>"; 
+					}
+				}
+			}
+		}
+		
+		private function updateButtStretch(deltaT:uint, doOut:Boolean):void
+		{
+			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
+			if (totalHours >= 1)
+			{
+				if (ass.loosenessRaw > ass.minLooseness)
+				{
+					ass.shrinkCounter += totalHours;
+				}
+				else
+				{
+					ass.shrinkCounter = 0;
+					return;
+				}
+				
+				var origTightness:Number = ass.loosenessRaw;
+				if (ass.loosenessRaw >= 5 && ass.shrinkCounter >= 12)
+				{
+					ass.loosnessRaw--;
+					ass.shrinkCounter -= 12;
+				}
+				if (ass.loosenessRaw >= 4 && ass.shrinkCounter >= 24)
+				{
+					ass.loosnessRaw--;
+					ass.shrinkCounter -= 24;
+				}
+				if (ass.loosenessRaw >= 3 && ass.shrinkCounter >= 48)
+				{
+					ass.loosnessRaw--;
+					ass.shrinkCounter -= 48;
+				}
+				if (ass.loosenessRaw >= 2 && ass.shrinkCounter >= 72)
+				{
+					ass.loosnessRaw--;
+					ass.shrinkCounter -= 72;
+				}
+				if (ass.loosenessRaw >= ass.minLooseness && ass.shrinkCounter >= 96)
+				{
+					ass.loosnessRaw--;
+					ass.shrinkCounter -= 96;
+				}
+				
+				if (origTightness != ass.loosenessRaw)
+				{
+					if (ass.loosessRaw < ass.minLooseness) ass.loosenessRaw = ass.minLooseness;
+					
+					if (origTightness <= 4)
+					{
+						kGAMECLASS.eventBuffer += logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
+					}
+					else
+					{
+						kGAMECLASS.eventBuffer += logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " recovers from the brutal stretching it has recieved and tightens up.</b>";
+					}
+				}
+			}
+		}
+		
 		private function updateLustValues(deltaT:uint, doOut:Boolean):void
 		{
 			var lustCap:Number = Math.round(lustMax() * 0.75);

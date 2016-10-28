@@ -545,40 +545,6 @@ public function eggTrainingEggCount():Number
 	else return 9002;
 }
 
-public function carryTrainingBonusBlurbCheck():void
-{
-	var msg:String = "";
-	if(pc.hasStatusEffect("Eggy Belly") && rand(15) == 0)
-	{	
-		if((flags["CARRY_TRAINING_BONUS_PROC"] + 60*24 < GetGameTimestamp()) || flags["CARRY_TRAINING_BONUS_PROC"] == undefined)
-		{
-			//Event: Jiggle Jiggle!
-			//Play sometimes when PC is walking. Increase Lust by 10 per Training level.
-			msg += "\n\n" + logTimeStamp() + ParseText(" Your progress is interrupted by a sudden shift in your [pc.belly], making you nearly double over with intense, overwhelming pleasure. Just feeling the ");
-			if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 18) msg += "dozen";
-			else if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 75) msg += "dozens";
-			else msg += "close to a hundred";
-			msg += " eggs moving around inside you, jiggling with your movements, is almost enough to make you cum on the spot. You bite your lip and hold on, ";
-
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) msg += "ignoring the curious looks from passersby.";
-			else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) 
-			{
-				msg += "more than a little aroused by the way people are looking at you.";
-				pc.lust(5);
-			}
-			else msg += "thankful that you’re all alone.";
-			msg += "\n\nYour body’s betrayal lasts only for a moment before the eggs settle down again. You sigh, taking a deep breath to steady yourself before you get going again, a ";
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) msg += "good deal";
-			else msg += "little";
-			msg += " more flushed than before.";
-			
-			eventBuffer += msg;
-			//Reset cooldown
-			flags["CARRY_TRAINING_BONUS_PROC"] = GetGameTimestamp();
-		}
-	}
-}
-
 public function eggTrainerCarryTrainingEnds(pregSlot:int, pregEggs:int):void
 {
 	clearOutput();
