@@ -113,7 +113,7 @@ public function showLocationName():void
 public function disableExploreEvents():Boolean
 {
 	// Stellar Tether Duration
-	if (flags["FOUGHT_TAM"] != undefined && flags["STELLAR_TETHER_CLOSED"]  == undefined) return true;
+	if (flags["FOUGHT_TAM"] != undefined && flags["STELLAR_TETHER_CLOSED"] == undefined) return true;
 	// Stellar Tether (Bomb Timer)
 	if (flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) return true;
 	// Deck 13 Duration
@@ -776,25 +776,7 @@ public function sleep(outputs:Boolean = true):void {
 	}
 	if(outputs)
 	{
-		if ((pc.XPRaw >= pc.XPMax()) && pc.level < 8 && flags["LEVEL_UP_AVAILABLE"] == undefined)
-		{
-			(pc as PlayerCharacter).unspentStatPoints += 13;
-			(pc as PlayerCharacter).unclaimedClassPerks += 1;
-			(pc as PlayerCharacter).unclaimedGenericPerks += 1;
-			
-			pc.XPRaw -= pc.XPMax();
-			pc.level++;
-			pc.maxOutHP();
-			
-			// Enable the button
-			userInterface.levelUpButton.Activate();
-			
-			eventBuffer += "\n\n" + logTimeStamp("good") + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
-		}
-		else if (pc.level == 8)
-		{
-			eventBuffer += "\n\n" + logTimeStamp("good") + " <b>You've already reached the current maximum level. It will be raised in future builds.</b>";
-		}
+		eventBufferXP();
 	}
 	if(InShipInterior(pc))
 	{
@@ -833,9 +815,6 @@ public function sleep(outputs:Boolean = true):void {
 		mimbraneSleepEvents();
 		if(InShipInterior(pc)) grayGooSpessSkype();
 	}
-	
-	//remove status effects
-	pc.removeStatusEffect("Roshan Blue");
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
@@ -895,8 +874,104 @@ public function sleepHeal():void
 	}
 	if(pc.isSore()) soreChange(-3);
 	pc.removeStatusEffect("Jaded");
+	pc.removeStatusEffect("Roshan Blue");
 	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
+}
+
+public function genericSleep(baseTime:int = 480):void
+{
+	var totalTime:int = baseTime + (rand(baseTime / 3) - (baseTime / 6));
+	
+	eventBufferXP();
+	sleepHeal();
+	processTime(totalTime);
+}
+
+public function eventBufferXP():void
+{
+	if (pc.level >= pc.levelEnd()) return;
+	
+	if ((pc.XPRaw >= pc.XPMax()) && pc.level < pc.levelMax() && flags["LEVEL_UP_AVAILABLE"] == undefined)
+	{
+		(pc as PlayerCharacter).unspentStatPoints += 13;
+		(pc as PlayerCharacter).unclaimedClassPerks += 1;
+		(pc as PlayerCharacter).unclaimedGenericPerks += 1;
+		
+		pc.XPRaw -= pc.XPMax();
+		pc.level++;
+		pc.maxOutHP();
+		
+		// Enable the button
+		userInterface.levelUpButton.Activate();
+		
+		eventBuffer += "\n\n" + logTimeStamp("good") + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+	}
+	else if (pc.level >= pc.levelMax())
+	{
+		eventBuffer += "\n\n" + logTimeStamp("good") + " <b>You’ve already reached the current maximum level. It will be raised in future builds.</b>";
+	}
+}
+public function earnXP(XPGain:Number = 0, newline:Boolean = true):void
+{
+	//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
+	if (XPGain > 0 && pc.hasStatusEffect("Roshan Blue")) XPGain += Math.floor(XPGain * 0.25);
+	
+	/* DISABLED WITH NEW XP UPDATE
+	=======================================
+	// Add up XP, but don't permit the players current XP to overcap (unless at level end-cap)
+	if (XPGain > 0 && (XPGain + pc.XP()) > pc.XPMax() && pc.level >= pc.levelEnd())
+	{
+		XPGain = pc.XPMax() - pc.XP();
+	}
+	=======================================*/
+	
+	// No XP
+	if (XPGain == 0)
+	{
+		output((!newline ? " " : "\n\n") + "0 XP gained!");
+	}
+	// Earning XP
+	else if (XPGain > 0)
+	{
+		pc.XP(XPGain);
+		output((!newline ? " " : "\n\n") + XPGain + " XP gained!");
+	}
+	// Spending XP?
+	else if (XPGain < 0)
+	{
+		pc.XP(XPGain);
+		output((!newline ? " " : "\n\n") + Math.abs(XPGain) + " XP spent!");
+	}
+	
+	// Limit notification
+	if (pc.XP() >= pc.XPMax()) output("\n" + outputMaxXP());
+}
+public function rewardXP(XPBuffer:Number = 0):void
+{
+	// Scale XP to PC level.
+	var XPGain:Number = Math.round(XPBuffer * pc.level);
+	
+	earnXP(XPGain);
+}
+public function outputMaxXP():String
+{
+	var msg:String = "";
+	
+	msg += "<b>";
+	msg += "Maximum XP attained!";
+	if(pc.level < pc.levelMax())
+	{
+		msg += " You need to level up to continue to progress.";
+		if(pc.level <= pc.levelMin()) msg += "\nFind a bed to sleep on in order to level up (like on your ship).";
+	}
+	else if(pc.level < pc.levelEnd())
+	{
+		msg += " Your XP will continue to pool until the next level becomes available.";
+	}
+	msg += "</b>";
+	
+	return msg;
 }
 
 public function shipMenu():Boolean {
@@ -961,20 +1036,18 @@ public function flyMenu():void {
 	output("Where do you want to go?");
 	clearMenu();
 	//TAVROS
-	if(shipLocation != "TAVROS HANGAR") 
-		addButton(0, "Tavros", flyTo, "Tavros");
-	else addDisabledButton(0, "Tavros");
+	if(shipLocation != "TAVROS HANGAR") addButton(0, "Tavros", flyTo, "Tavros");
+	else addDisabledButton(0, "Tavros", "Tavros Station", "You’re already here.");
 	//MHEN'GA
-	if(shipLocation != "SHIP HANGAR") 
-		addButton(1, "Mhen'ga", flyTo, "Mhen'ga");
-	else addDisabledButton(1, "Mhen'ga");
+	if(shipLocation != "SHIP HANGAR") addButton(1, "Mhen'ga", flyTo, "Mhen'ga");
+	else addDisabledButton(1, "Mhen'ga", "Mhen'ga", "You’re already here.");
 	//TARKUS
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 	{
 		if(shipLocation != "201") addButton(2, "Tarkus", flyTo, "Tarkus");
-		else addDisabledButton(2, "Tarkus", "You’re already here.");
+		else addDisabledButton(2, "Tarkus", "Tarkus", "You’re already here.");
 	}
-	else addDisabledButton(2, "Locked", "Locked", "You need to find your father’s probe on Mhen’ga to get this planet’s coordinates.");
+	else addDisabledButton(2, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	//MYRELLION
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
@@ -990,10 +1063,10 @@ public function flyMenu():void {
 		else
 		{
 			if (shipLocation != "2I7") addButton(3, "Myrellion", flyTo, "MyrellionDeepCaves");
-			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
+			else addDisabledButton(3, "Myrellion", "Myrellion - Deep Caves", "You’re already here.");
 		}
 	}
-	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
+	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
@@ -1001,7 +1074,7 @@ public function flyMenu():void {
 		if(shipLocation != "500") addButton(5, "New Texas", flyTo, "New Texas");
 		else addDisabledButton(5, "New Texas", "New Texas", "You’re already here.");
 	}
-	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//POE A
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
@@ -1009,21 +1082,21 @@ public function flyMenu():void {
 		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyTo, "Poe A");
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
-	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//UVETO
 	if (uvetoUnlocked())
 	{
 		if (shipLocation != "UVS F15") addButton(7, "Uveto", flyTo, "Uveto");
-		else addDisabledButton(7, "Uveto", "Uveto", "You’re already here.");
+		else addDisabledButton(7, "Uveto", "Uveto Station", "You’re already here.");
 	}
-	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//Canadia Station
 	if(canadiaUnlocked())
 	{
 		if (shipLocation != "CANADA1") addButton(8, "Canadia", flyTo, "Canadia");
-		else addDisabledButton(8, "Canadia", "Canadia", "You’re already here.");
+		else addDisabledButton(8, "Canadia", "Canadia Station", "You’re already here.");
 	}
-	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");	
+	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");	
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{

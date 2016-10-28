@@ -2459,7 +2459,7 @@ public function mimbraneFaceReproductionGo(dream:Boolean = false):void
 	output("\n\nMore specifically Mimbrane reproduction. You’ve been feeling a little fat-headed lately, and it doesn’t have anything to do with your intelligence. Someone could rent your lips out as a bounce house, and your [pc.face] feels a little puffy even if it doesn’t look it. You know from your codex that the parasite prefers to wait until their host is in slumber’s embrace before attempting to multiply. Your head-mounted friend already seemed pretty cool with you from the get-go; it must not mind if you wake up to watch it make some children.");
 	output("\n\nYour instincts are to paw at your face, hands desperate to get a grip on the writhing flesh around your head. It takes a lot of willpower to merely keep still, controlling your breathing through your nose with your mouth acting as if it were in great pain. The Mimbrane’s little squeaks and chirps through your bimbo-esque lips are audible enough as it is. One feature you can’t see is the sudden dead-eye glare in the parasite’s miniscule eyes.");
 	output("\n\nIt’s only a sign for what’s to come. A numbness shrouds your head. You can’t decide if it feels like you’re wearing a mask or went through a really lousy trip to the dentist. All that’s certain is that it’s uncomfortable. But you maintain your calm. Freaking out or getting upset won’t get you anywhere, you remind yourself. It’ll only make things worse. And making things worse is stupidly easy when you can’t feel a thing.");
-	output("\n\nThe Mimbrane goes to work underneath the [pc.skin] of your head. Now it definitely feels like you just have excess weight overy your noggin. You can make out your [pc.face] wriggling free, peeling away from its outer shell. Individual strands of hair are imbued with life and push against their thin coating. Though you’re fully aware an organism is posing as the skin to your head, you’ve never really been reminded of the fact quite like you are right now. Down to every cell is some manner of self-locomotion that you could never hope to naturally achieve.");
+	output("\n\nThe Mimbrane goes to work underneath the [pc.skin] of your head. Now it definitely feels like you just have excess weight over your noggin. You can make out your [pc.face] wriggling free, peeling away from its outer shell. Individual strands of hair are imbued with life and push against their thin coating. Though you’re fully aware an organism is posing as the skin to your head, you’ve never really been reminded of the fact quite like you are right now. Down to every cell is some manner of self-locomotion that you could never hope to naturally achieve.");
 	output("\n\nEverything feels heavy. Even your eyelids feel like something’s sitting on them. Your mouth especially feels pinned down by the [pc.lips] atop it. Maintaining a relaxed composure is odd at the very least. You’re used to <i>one</i> sort of facial, but not this. There’s no rhyme or reason as to what parts of your new face smoothly separates from your old one. Your scalp pulls away, cheeks follow, ears bend and flex, nose twitches, lids constrict");
 	if (pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(", muzzle shifts");
 	output("... it’s a neverending stream of simply bizarre facial movements and sensations.");
@@ -3524,7 +3524,7 @@ public function mimbraneCombatInterference():Boolean
 	if (pc.hasStatusEffect("Mimbrane Hand Left"))
 	{
 		// > 4 days without feed
-		if (pc.statusEffectv3("Mimbrane Hand Left") >= 4)
+		if (pc.statusEffectv2("Mimbrane Hand Left") >= 4)
 		{
 			// <= 2 trust = 5% chance
 			if (pc.statusEffectv1("Mimbrane Hand Left") <= 2)
@@ -3541,7 +3541,7 @@ public function mimbraneCombatInterference():Boolean
 	if (pc.hasStatusEffect("Mimbrane Hand Right"))
 	{
 		// > 4 days without feed
-		if (pc.statusEffectv3("Mimbrane Hand Right") >= 4)
+		if (pc.statusEffectv2("Mimbrane Hand Right") >= 4)
 		{
 			// <= 2 trust = 5% chance
 			if (pc.statusEffectv1("Mimbrane Hand Right") <= 2)
@@ -3571,7 +3571,7 @@ public function mimbraneCombatInterference():Boolean
 	if (pc.hasStatusEffect("Mimbrane Foot Left"))
 	{
 		// > 4 days without feed
-		if (pc.statusEffectv3("Mimbrane Foot Left") >= 4)
+		if (pc.statusEffectv2("Mimbrane Foot Left") >= 4)
 		{
 			// <= 2 trust = 5% chance
 			if (pc.statusEffectv1("Mimbrane Foot Left") <= 2)
@@ -3588,7 +3588,7 @@ public function mimbraneCombatInterference():Boolean
 	if (pc.hasStatusEffect("Mimbrane Foot Right"))
 	{
 		// > 4 days without feed
-		if (pc.statusEffectv3("Mimbrane Foot Right") >= 4)
+		if (pc.statusEffectv2("Mimbrane Foot Right") >= 4)
 		{
 			// <= 2 trust = 5% chance
 			if (pc.statusEffectv1("Mimbrane Foot Right") <= 2)
@@ -3620,19 +3620,19 @@ public function mimbraneHandBonusAttack(target:Creature):void
 
 	if (pc.hasStatusEffect("Mimbrane Hand Left"))
 	{
-		// > 4 days without feed
-		if (pc.statusEffectv1("Mimbrane Hand Left") >= 3 && pc.statusEffectv3("Mimbrane Hand Left") < 7)
+		if (pc.statusEffectv1("Mimbrane Hand Left") >= 3 && pc.statusEffectv2("Mimbrane Hand Left") < 7)
 		{
 			bonusAttackChance += 15;
+			if(pc.hasPerk("Mimbrane Symbiosis")) bonusAttackChance += 5;
 		}
 	}
 
 	if (pc.hasStatusEffect("Mimbrane Hand Right"))
 	{
-		// > 4 days without feed
-		if (pc.statusEffectv1("Mimbrane Hand Right") >= 3 && pc.statusEffectv3("Mimbrane Hand Right") < 7)
+		if (pc.statusEffectv1("Mimbrane Hand Right") >= 3 && pc.statusEffectv2("Mimbrane Hand Right") < 7)
 		{
 			bonusAttackChance += 15;
+			if(pc.hasPerk("Mimbrane Symbiosis")) bonusAttackChance += 5;
 		}
 	}
 
@@ -3651,23 +3651,24 @@ public function mimbraneHandBonusAttack(target:Creature):void
 	}
 }
 
-public function mimbraneFeetBonusEvade(target:Creature):Boolean
+public function mimbraneFeetBonusEvade(target:Creature, attacker:Creature):Boolean
 {
 	var dodgeBonus:int = 0;
 
-	if (enemy is Mimbrane) return false;
+	if (attacker is Mimbrane) return false;
 	if (target != pc) return false;
 
 	if (target.hasStatusEffect("Mimbrane Foot Left") && target.statusEffectv2("Mimbrane Foot Left") <= 6)
 	{
-		if (pc.statusEffectv1("Mimbrane Foot Left") == 3)
+		if (target.statusEffectv1("Mimbrane Foot Left") == 3)
 		{
 			dodgeBonus += 5;
 		}
-		else if (pc.statusEffectv1("Mimbrane Foot Left") >= 4)
+		else if (target.statusEffectv1("Mimbrane Foot Left") >= 4)
 		{
 			dodgeBonus += 10;
 		}
+		if(target.hasPerk("Mimbrane Symbiosis")) dodgeBonus += 5;
 	}
 
 	if (target.hasStatusEffect("Mimbrane Foot Right") && target.statusEffectv2("Mimbrane Foot Right") <= 6)
@@ -3680,6 +3681,7 @@ public function mimbraneFeetBonusEvade(target:Creature):Boolean
 		{
 			dodgeBonus += 10;
 		}
+		if(target.hasPerk("Mimbrane Symbiosis")) dodgeBonus += 5;
 	}
 
 	// Rolls!
@@ -3689,6 +3691,10 @@ public function mimbraneFeetBonusEvade(target:Creature):Boolean
 	}
 	
 	return false;
+}
+public function mimbraneFeetBonusEvadeBonus():String
+{
+	return "You’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!";
 }
 
 /* Bonus tese shit that's not implemented atm due to lack of face/lip/etc teases

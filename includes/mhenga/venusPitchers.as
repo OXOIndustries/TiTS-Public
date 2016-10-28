@@ -1439,6 +1439,8 @@ public function layFertilizedVenusPitcherEgg():void
 		output("\n\nSince you're on your ship, you might as well send it off to your daycare.")
 		StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care");
 		StatTracking.track("pregnancy/total day care");
+		addChildVenusPitcher();
+		
 		addButton(0, "Next", mainGameMenu);
 	}
 	else
@@ -1460,12 +1462,24 @@ public function layFertilizedVenusPitcherEgg():void
 			userInterface.author("Fenoxo");
 			output("The best place for the pod would be back in the daycare on Tavros Station. You call in a transit pod and place it inside along with as much soil as you can gather in hopes of seeing her bloom into a beautiful pitcher back on the station.");
 			
-
 			StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care");
 			StatTracking.track("pregnancy/total day care");
+			addChildVenusPitcher();
 			
 			clearMenu();
 			addButton(0, "Next", mainGameMenu);
 		});
 	}
 }
+public function addChildVenusPitcher(numChild:int = 1):void
+{
+	ChildManager.addChild(
+		Child.NewChild(
+			GLOBAL.TYPE_VENUSPITCHER,
+			1.0,
+			numChild,
+			0, 1, 0, 0
+		)
+	);
+}
+

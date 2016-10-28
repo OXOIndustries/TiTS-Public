@@ -208,20 +208,32 @@ public function lengthenHairChoices():void
 	//[Back] Go to Hairwork
 	processTime(1);
 	clearMenu();
-	if(pc.hairLength < 2) addButton(0,"Short",lengthenHairConfirmation,2);
-	else addDisabledButton(0,"Short","Short","Your hair is already longer than that!");
-	if(pc.hairLength < 8) addButton(1,"Shoulders",lengthenHairConfirmation,8);
-	else addDisabledButton(1,"Shoulders","Shoulders","Your hair is already longer than that!");
-	if(pc.hairLength < 13) addButton(2,"Long",lengthenHairConfirmation,13);
-	else addDisabledButton(2,"Long","Long","Your hair is already longer than that!");
-	if(pc.hairLength < pc.tallness/2.6) addButton(3,"Back Length",lengthenHairConfirmation,pc.tallness/2.6);
-	else addDisabledButton(3,"Back Length","Back Length","Your hair is already longer than that!");
-	if(pc.hairLength < pc.tallness/2) addButton(4,"Ass Length",lengthenHairConfirmation,pc.tallness/2);
-	else addDisabledButton(4,"Ass Length","Ass Length","Your hair is already longer than that!");
-	if(pc.hairLength < pc.tallness/1.4) addButton(5,"Knee Length",lengthenHairConfirmation,pc.tallness/1.4);
-	else addDisabledButton(5,"Knee Length","Knee Length","Your hair is already longer than that!");
-	if(pc.hairLength < pc.tallness - 1) addButton(6,"Ankle Length",lengthenHairConfirmation,(pc.tallness - 1));
-	else addDisabledButton(6,"Ankle Length","Ankle Length","Your hair is already longer than that!");
+	var btn:int = 0;
+	if(pc.hairLength < 2) addButton(btn++,"Short",lengthenHairConfirmation,2);
+	else addDisabledButton(btn++,"Short","Short","Your hair is already longer than that!");
+	if(pc.hairLength < 4) addButton(btn++,"Ear Length",lengthenHairConfirmation,4);
+	else addDisabledButton(btn++,"Ear Length","Ear Length","Your hair is already longer than that!");
+	if(pc.hairLength < 6) addButton(btn++,"Neck Length",lengthenHairConfirmation,6);
+	else addDisabledButton(btn++,"Neck Length","Neck Length","Your hair is already longer than that!");
+	if(pc.hairLength < 8) addButton(btn++,"Shoulders",lengthenHairConfirmation,8);
+	else addDisabledButton(btn++,"Shoulders","Shoulders","Your hair is already longer than that!");
+	if(pc.hairLength < 13) addButton(btn++,"Long",lengthenHairConfirmation,13);
+	else addDisabledButton(btn++,"Long","Long","Your hair is already longer than that!");
+	if(pc.hairLength < (pc.tallness/2.6)) addButton(btn++,"Back Length",lengthenHairConfirmation,(pc.tallness/2.6));
+	else addDisabledButton(btn++,"Back Length","Back Length","Your hair is already longer than that!");
+	if(pc.hairLength < (pc.tallness/2)) addButton(btn++,"Ass Length",lengthenHairConfirmation,(pc.tallness/2));
+	else addDisabledButton(btn++,"Ass Length","Ass Length","Your hair is already longer than that!");
+	if(pc.hairLength < (pc.tallness/1.6)) addButton(btn++,"Thigh Length",lengthenHairConfirmation,(pc.tallness/1.6));
+	else addDisabledButton(btn++,"Thigh Length","Thigh Length","Your hair is already longer than that!");
+	if(pc.hairLength < (pc.tallness/1.4)) addButton(btn++,"Knee Length",lengthenHairConfirmation,(pc.tallness/1.4));
+	else addDisabledButton(btn++,"Knee Length","Knee Length","Your hair is already longer than that!");
+	if(pc.hairLength < (pc.tallness/1.2)) addButton(btn++,"Calf Length",lengthenHairConfirmation,(pc.tallness/1.2));
+	else addDisabledButton(btn++,"Calf Length","Calf Length","Your hair is already longer than that!");
+	if(pc.hairLength < (pc.tallness - 1)) addButton(btn++,"Ankle Length",lengthenHairConfirmation,(pc.tallness - 1));
+	else addDisabledButton(btn++,"Ankle Length","Ankle Length","Your hair is already longer than that!");
+	if(pc.hairLength < pc.tallness) addButton(btn++,"Floor Length",lengthenHairConfirmation,pc.tallness);
+	else addDisabledButton(btn++,"Floor Length","Floor Length","Your hair is already longer than that!");
+	addButton(13,"Extend",lengthenHairConfirmation,(pc.hairLength + 1));
 	addButton(14,"Back",hairworkFromCeria);
 }
 
@@ -231,25 +243,33 @@ public function lengthenHairConfirmation(hairInches:Number = 0):void
 	clearOutput();
 	showCeria();
 	author("Couch");
+	
+	hairInches = Math.round(hairInches);
+	
 	output("<i>“");
-	if(hairInches == 2) output("Short and simple, huh?");
-	else if(hairInches == 8) output("Shoulder-length, my kind of " + pc.mf("guy","girl") + ".");
-	else if(hairInches == 13) output("Alright, long it is.");
-	else if(hairInches == pc.tallness/2.6) output("Well, back length is certainly doable.");
-	else if(hairInches == pc.tallness/2) output("You really do love it long, don’t you?");
+	if(hairInches <= 1) output("Wanna go super short?");
+	else if(hairInches <= 2) output("Short and simple, huh?");
+	else if(hairInches <= 4) output("Okay, ear-length.");
+	else if(hairInches <= 6) output("Ah, neck-length it is.");
+	else if(hairInches <= 8) output("Shoulder-length, my kind of " + pc.mf("guy","girl") + ".");
+	else if(hairInches <= 13) output("Alright, long it is.");
+	else if(hairInches <= pc.tallness/2.6) output("Well, back length is certainly doable.");
+	else if(hairInches <= pc.tallness/2) output("You really do love it long, don’t you?");
 	else output("Shit, really, that long? Alright, you’re the customer.");
 	output("”</i> Ceria pulls out a piece of measuring tape, checking out your existing hair");
 	if(!pc.hasHair()) output(", or lack thereof");
 	output(". <i>“With how much you’ve already got, it’ll be ");
 	var cost:Number = Math.round((hairInches - pc.hairLength) * 150);
 	output(cost + " credits. That good with you?”</i>");
+	
 	processTime(2);
+	
 	clearMenu();
 	if(pc.credits >= cost) addButton(0,"Okay",payTheLadyForLongHair,hairInches);
 	else addDisabledButton(0,"Okay","Okay","You can't pay for that!");
 	//[OK] Go to Lengthen Treatment
 	//[Nevermind] Go to Ceria Main
-	addButton(1,"Nevermind",approachCeria);
+	addButton(1,"Nevermind",lengthenHairChoices);
 }
 
 //Lengthen Treatment
@@ -258,18 +278,25 @@ public function payTheLadyForLongHair(hairInches:Number):void
 	clearOutput();
 	showCeria();
 	author("Couch");
+	
 	var cost:Number = Math.round((hairInches - pc.hairLength) * 150);
-	if(!fuckedCeria()) output("Ceria double-checks the length on her tape and taps her tablet a few times before plugging it into a dispenser which soon spits out a small container of a dull gray hair gel. The elven girl sits you down in one of the salon chairs and sets to work rubbing the gel into your scalp, not stopping until she’s used up the entire container’s worth. As she does, you can feel inch after inch of new hair spilling forth, growing out with every motion of Ceria’s fingers until finally it winds down to a stop. The stylist steps aside to wash her gloved hands clean of any lingering gel, allowing you time to admire your new look in the mirror. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+	
+	if(!fuckedCeria())
+	{
+		output("Ceria double-checks the length on her tape and taps her tablet a few times before plugging it into a dispenser which soon spits out a small container of a dull gray hair gel. The elven girl sits you down in one of the salon chairs and sets to work rubbing the gel into your scalp, not stopping until she’s used up the entire container’s worth. As she does, you can feel inch after inch of new hair spilling forth, growing out with every motion of Ceria’s fingers until finally it winds down to a stop. The stylist steps aside to wash her gloved hands clean of any lingering gel, allowing you time to admire your new look in the mirror. <b>Your hair is now " + num2Text(hairInches) + " inches long!</b>");
+	}
 	else
 	{
 		output("Ceria double-checks the length on her tape and taps her tablet a few times before plugging it into a dispenser which soon spits out a small container of a dull gray hair gel. The elven girl sits you down in one of the salon chairs and sets to work rubbing the gel into your scalp. Her flawlessly smooth fingers are heavenly on your [pc.skinFurScalesNoun], and she teases them in slow circles as inch after inch of new hair spills forth around them.");
-		output("\n\n<i>“Look at all that, [pc.name]. You look so much hotter with your hair grown out, " + pc.mf("so wild and manly","so cute and girly") + " . Let it all spill out, let me tease out every - last - inch.”</i> The last three words are spoken as breaths blown across your ear from behind, feeling as if they’re accompanied by your new length jumping out in response. Finally the flowing feeling in your scalp draws to a close as your hair ceases its growth, and Ceria draws back, the salon mirror giving you a glimpse of her licking her lips at the view of your face framed by your new hair. The stylist steps aside to wash her gloved hands clean of any lingering gel, allowing you time to admire your new look in the mirror. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+		output("\n\n<i>“Look at all that, [pc.name]. You look so much hotter with your hair grown out, " + pc.mf("so wild and manly","so cute and girly") + " . Let it all spill out, let me tease out every - last - inch.”</i> The last three words are spoken as breaths blown across your ear from behind, feeling as if they’re accompanied by your new length jumping out in response. Finally the flowing feeling in your scalp draws to a close as your hair ceases its growth, and Ceria draws back, the salon mirror giving you a glimpse of her licking her lips at the view of your face framed by your new hair. The stylist steps aside to wash her gloved hands clean of any lingering gel, allowing you time to admire your new look in the mirror. <b>Your hair is now " + num2Text(hairInches) + " inches long!</b>");
 	}
 	//[Next] Set [pc.hairstyle] to null and go to Ceria Main
 	processTime(33);
+	
 	pc.hairLength = hairInches;
 	pc.hairStyle = "null";
 	pc.credits -= cost;
+	
 	clearMenu();
 	addButton(0,"Next",serviceFromCeriaFinish);
 }
@@ -281,7 +308,7 @@ public function getHairCut():void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“It’ll be 200 credits a trim, how short do you want it? Remember, I’ll have to restyle your hair after you cut it unless you just want it hanging loose.”</i>");
+	output("<i>“It’ll be 200 credits a haircut and 100 for a minor trim, how short do you want it? Remember, I’ll have to restyle your hair after you cut it unless you just want it hanging loose.”</i>");
 	processTime(1);
 	//[All below options go to Cut Treatment, gray out options PC is already shorter than or can’t afford]
 	//[Short]
@@ -297,6 +324,12 @@ public function getHairCut():void
 	if(pc.credits >= 200 && pc.hairLength > 2) addButton(btn++,"Short",cutHair,2);
 	else if(pc.hairLength > 2) addDisabledButton(btn++,"Short","Short","You can't afford that!");
 	else addDisabledButton(btn++,"Short","Short","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > 4) addButton(btn++,"Ear Length",cutHair,4);
+	else if(pc.hairLength > 4) addDisabledButton(btn++,"Ear Length","Ear Length","You can't afford that!");
+	else addDisabledButton(btn++,"Ear Length","Ear Length","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > 6) addButton(btn++,"Neck Length",cutHair,6);
+	else if(pc.hairLength > 6) addDisabledButton(btn++,"Neck Length","Neck Length","You can't afford that!");
+	else addDisabledButton(btn++,"Neck Length","Neck Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > 8) addButton(btn++,"Shoulders",cutHair,8);
 	else if(pc.hairLength > 8) addDisabledButton(btn++,"Shoulders","Shoulders","You can't afford that!");
 	else addDisabledButton(btn++,"Shoulders","Shoulders","Your hair is already shorter than that!");
@@ -309,12 +342,21 @@ public function getHairCut():void
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2) addButton(btn++,"Ass Length",cutHair,pc.tallness/2);
 	else if(pc.hairLength > pc.tallness/2) addDisabledButton(btn++,"Ass Length","Ass Length","You can't afford that!");
 	else addDisabledButton(btn++,"Ass Length","Ass Length","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.6) addButton(btn++,"Thigh Length",cutHair,pc.tallness/1.6);
+	else if(pc.hairLength > pc.tallness/1.6) addDisabledButton(btn++,"Thigh Length","Thigh Length","You can't afford that!");
+	else addDisabledButton(btn++,"Thigh Length","Thigh Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.4) addButton(btn++,"Knee Length",cutHair,pc.tallness/1.4);
 	else if(pc.hairLength > pc.tallness/1.4) addDisabledButton(btn++,"Knee Length","Knee Length","You can't afford that!");
 	else addDisabledButton(btn++,"Knee Length","Knee Length","Your hair is already shorter than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.2) addButton(btn++,"Calf Length",cutHair,pc.tallness/1.2);
+	else if(pc.hairLength > pc.tallness/1.2) addDisabledButton(btn++,"Calf Length","Calf Length","You can't afford that!");
+	else addDisabledButton(btn++,"Calf Length","Calf Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness - 1) addButton(btn++,"Ankle Length",cutHair,(pc.tallness - 1));
 	else if(pc.hairLength > pc.tallness - 1) addDisabledButton(btn++,"Ankle Length","Ankle Length","You can't afford that!");
 	else addDisabledButton(btn++,"Ankle Length","Ankle Length","Your hair is already shorter than that!");
+	if(pc.credits >= 100 && pc.hairLength > 1) addButton(13,"Trim",cutHair,(pc.hairLength - 1));
+	else if(pc.hairLength > 1) addDisabledButton(13,"Trim","Trim","You can't afford that!");
+	else addDisabledButton(13,"Trim","Trim","Your hair is already shorter than that!");
 	addButton(14,"Back",hairworkFromCeria);
 
 }
@@ -325,6 +367,9 @@ public function cutHair(hairInches:Number):void
 	clearOutput();
 	showCeria();
 	author("Couch");
+	
+	hairInches = Math.round(hairInches);
+	
 	if(!fuckedCeria())
 	{
 		if(pc.hasLivingHair())
@@ -338,7 +383,7 @@ public function cutHair(hairInches:Number):void
 			output("Ceria sits you down in one of the salon chairs, pulling out a simple razor and pair of scissors before setting to work cutting, shearing and trimming away at your hair. Her work is impeccable");
 		}
 		output(", and by the time she’s finished you’re left with a fresh, clean look.");
-		if (hairInches > 0) output(" <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+		if (hairInches > 0) output(" <b>Your hair is now " + num2Text(hairInches) + " inches long!</b>");
 		else if(pc.hasFur()) output(" <b>You have nothing but fur on your head!</b>");
 		else output(" <b>You are totally bald!</b>");
 	}
@@ -360,16 +405,24 @@ public function cutHair(hairInches:Number):void
 		}
 		output("\n\n<i>“There you go, [pc.name], nice and neat. You look " + pc.mf("a lot more rugged","pretty cute") + " with shorter hair if you ask me.”</i>");
 		output("\n\nCeria pulls away to deposit her tools, giving you some time to admire your new look.");
-		if (hairInches > 0) output(" <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+		if (hairInches > 0) output(" <b>Your hair is now " + num2Text(hairInches) + " inches long!</b>");
 		else if(pc.hasFur()) output(" <b>You have nothing but fur on your head!</b>");
 		else output(" <b>You are totally bald!</b>");
 		pc.lust(5);
 	}
 	//[Next] Set [pc.hairstyle] to null and go to Ceria Main
 	processTime(7);
+	
+	
+	var cost:Number = 0;
+	if(pc.hairLength - hairInches <= 0) { /* No cost! */ }
+	else if(pc.hairLength - hairInches <= 1) cost = 100;
+	else cost = 200;
+	
 	pc.hairLength = hairInches;
 	pc.hairStyle = "null";
-	pc.credits -= 200;
+	pc.credits -= cost;
+	
 	clearMenu();
 	addButton(0,"Next",serviceFromCeriaFinish);
 }

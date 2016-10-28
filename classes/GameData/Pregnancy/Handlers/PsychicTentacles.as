@@ -152,6 +152,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/psychic tentacle beast birthed", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			pData.reset();
 		}
@@ -175,6 +176,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/psychic tentacle beast birthed", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			pData.reset();
 			

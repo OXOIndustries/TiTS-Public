@@ -320,11 +320,7 @@ public function seraTalkMenu():void
 	
 	// [Breed?]
 	// Unlocks in talk options after PC has used sex option once, and has at least used the "early life" and "recent life", and has a vagina
-	if
-	(	(flags["SERA_COCK_STEELE_VAG"] != undefined || fuckedSeraBefore())
-	&&	flags["SERA_TALKS_PAST"] != undefined && flags["SERA_TALKS_PRESENT"] != undefined
-	&&	pc.hasVagina()
-	)
+	if((flags["SERA_COCK_STEELE_VAG"] != undefined || fuckedSeraBefore()) && flags["SERA_TALKS_PAST"] != undefined && flags["SERA_TALKS_PRESENT"] != undefined)
 	{
 		if(!pc.hasVagina()) addDisabledButton(5, "Breed?", "Breed?", "You’ll probably need a vagina before asking for this...");
 		// [Priapin]

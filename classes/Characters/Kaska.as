@@ -346,9 +346,9 @@
 					if (target.customDodge.length > 0) output(target.customDodge);
 					else output("You manage to avoid " + a + possessive(short) + " " + rangedWeapon.attackNoun + ".");
 				}
-				else if (kGAMECLASS.mimbraneFeetBonusEvade(target))
+				else if (kGAMECLASS.mimbraneFeetBonusEvade(target, this))
 				{
-					output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+					output(kGAMECLASS.mimbraneFeetBonusEvadeBonus());
 				}
 				else
 				{

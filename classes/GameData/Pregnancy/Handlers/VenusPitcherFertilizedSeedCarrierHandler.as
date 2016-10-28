@@ -10,6 +10,7 @@
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Child;
+	import classes.GameData.StatTracking;
 	
 	/**
 	 * ...
@@ -109,15 +110,6 @@
 			
 			var pData:PregnancyData	= target.getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
 			
-			ChildManager.addChild(
-				Child.NewChild(
-					GLOBAL.TYPE_VENUSPITCHER,
-					1.0,
-					1,
-					0, 1, 0, 0
-				)
-			);
-			
 			pData.pregnancyQuantity--;
 			pData.pregnancyIncubation = 240 + rand(30);
 			pData.pregnancyBellyRatingContribution -= 14;
@@ -139,6 +131,11 @@
 			var c:Child = Child.NewChild(GLOBAL.TYPE_VENUSPITCHER, 1.0, pData.pregnancyQuantity, 0, 1, 0, 0);
 			c.BornTimestamp = useBornTimestamp;
 			ChildManager.addChild(c);
+			
+			StatTracking.track("pregnancy/venus pitcher seeds", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			pData.reset();

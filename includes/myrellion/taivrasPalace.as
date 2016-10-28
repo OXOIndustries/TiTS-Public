@@ -1498,14 +1498,9 @@ public function partnershipWithTaivra(plat190:Boolean = false):void
 
 	processTime(8);
 	pc.lust(14);
-	var XPBuffer:Number = 1000;
-	if(XPBuffer + pc.XP() > pc.XPMax()) XPBuffer = pc.XPMax() - pc.XP();
-	pc.XP(XPBuffer);
-	if(XPBuffer > 0) output("\n\n" + XPBuffer + " XP gained.");
-	else {
-		output("\n\n<b>Maximum XP attained! You need to level up to continue to progress.</b>");
-		if(pc.level == 1) output("\n<b>Find a bed to sleep on in order to level up (like on your ship).</b>");
-	}
+	
+	rewardXP(1000);
+	
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",youMarriedAnEvilChick);

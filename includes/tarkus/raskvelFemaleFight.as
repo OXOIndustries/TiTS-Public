@@ -1052,12 +1052,29 @@ public function takeOneEggSloot():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+	
+	addChildRaskvel();
 	StatTracking.track("pregnancy/raskvel sired/day care");
 	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
 	StatTracking.track("pregnancy/total births");
 	StatTracking.track("pregnancy/total day care");
+	
 	flags["RASKVEL_EGG_COUNT"] = undefined;
 	flags["RASKVEL_PREG_TIMER"] = undefined;
+}
+public function addChildRaskvel(numChild:int = 1):void
+{
+	// The eggs will hatch within a month, each containing a young Raskvel if fertilized.
+	// The offspring are inquisitive, knowledge-hungry creatures that soak up information like sponges and mature enough to work and talk within a month or two.
+	// Full adulthood and sexual maturity do not come for at least two years.
+	ChildManager.addChild(
+		Child.NewChild(
+			GLOBAL.TYPE_RASKVEL,
+			6.0,
+			numChild,
+			50, 50, 0, 0
+		)
+	);
 }
 
 //Don’t Take An Egg

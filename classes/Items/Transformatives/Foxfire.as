@@ -456,7 +456,7 @@ package classes.Items.Transformatives
 				return false;
 			}
 			
-			if (target.hasTail(GLOBAL.TYPE_VULPINE) && target.hasTailFlag(GLOBAL.FLAG_FURRED)  && !target.hasTailFlag(GLOBAL.FLAG_FLUFFY) && target.tailFlagsUnlocked(GLOBAL.FLAG_FLUFFY)) // Checking tail fluffy flag.
+			if (target.hasTail(GLOBAL.TYPE_VULPINE) && target.hasTailFlag(GLOBAL.FLAG_FURRED) && !target.hasTailFlag(GLOBAL.FLAG_FLUFFY) && target.tailFlagsUnlocked(GLOBAL.FLAG_FLUFFY)) // Checking tail fluffy flag.
 			{
 				if (target.tailCount == 1)
 					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Your " + target.tailsDescript() + " quivers briefly as a strange pressure builds within; a moment later, a new batch of fur pushes its way outwards, doubling the thickness of the fur already there, and keeps growing longer and longer. Within seconds, the fur on your tail has grown out to nearly two feet from the center on all sides. <b>The fur on your foxtail has grown extra fluffy!</b>";
@@ -498,7 +498,7 @@ package classes.Items.Transformatives
 						else // other than canine
 							kGAMECLASS.eventBuffer += " Concerned with the fate of your tail genitalia, you reach into your tail fur, groping around blindly to figure out what's going on underneath. As you feel the tip of your tail, you discover that your tail-cock is still there, but having taken on the shape of a canine member, complete with a knot! <b>Your tail-cock is now vulpine in nature!</b>";
 						
-						target.tailGenitalColor =  !colorsMatching(target) ? "red" : target.lipColor;
+						target.tailGenitalColor = !colorsMatching(target) ? "red" : target.lipColor;
 						target.tailGenitalArg = GLOBAL.TYPE_VULPINE;
 						target.tailGenital = GLOBAL.TAIL_GENITAL_COCK;
 						target.addTailFlag(GLOBAL.FLAG_TAILCOCK);
@@ -637,7 +637,7 @@ package classes.Items.Transformatives
 					if (target.hasFur())
 						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Your head-fur begins to itch, and before long it starts to grow out wildly at a rapid pace, blossoming into long hair which reaches all the way down your neck. <b>You now have long hair!</b> You are going to need a brush...";
 					else
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Your " + target.hairDescript() + "  starts to tingle, and you feel an sudden urge to scratch it. Just as you reach for it your " + target.fingers() + " are met with a large burst of wild growth, not stopping until it reaches down all the way to your neck. <b>You now have long hair!</b> You're going to need a brush...";
+						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Your " + target.hairDescript() + " starts to tingle, and you feel an sudden urge to scratch it. Just as you reach for it your " + target.fingers() + " are met with a large burst of wild growth, not stopping until it reaches down all the way to your neck. <b>You now have long hair!</b> You're going to need a brush...";
 				}
 				else kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " You brush away a few strands of hair from your vision, and feel something brush against your neck. It seems <b>your " + target.hairNoun() + " has grown longer!</b>";
 				target.hairLength = 12;

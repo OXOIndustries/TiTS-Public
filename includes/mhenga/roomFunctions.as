@@ -560,7 +560,7 @@ public function mhengaVanaeAbandonedCamp():Boolean
 		if(pc.credits >= 40) addButton(0,"Call Taxi",fastTravelToEsbeth,undefined,"Call Taxi","Call a taxi from the transit authority. It'll cost you 40 credits to ride back to Mhen'ga.");
 		else addDisabledButton(0,"Call Taxi","Call Taxi","You can't afford the 40 credits for a taxi. Damn.");
 	}
-	addButton(4,"Sleep",sleepInRuinedCamp,undefined,"Sleep","The camp is a wreck, but if you cleaned it up, you might be able to bed down here.");
+	addButton(9,"Sleep",sleepInRuinedCamp,undefined,"Sleep", ((flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined ? "The camp is a wreck, but if you cleaned it up" : "With the camp mostly cleaned up") + ", you might be able to bed down here."));
 	return false;
 }
 
@@ -576,30 +576,6 @@ public function fastTravelToEsbeth():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function genericSleep(baseTime:int = 480):void
-{
-	var totalTime:int = baseTime + (rand(baseTime / 3) - (baseTime / 6));
-	
-	sleepHeal();
-	processTime(totalTime);
-	
-	if ((pc.XPRaw >= pc.XPMax()) && pc.level < 8 && flags["LEVEL_UP_AVAILABLE"] == undefined)
-	{
-		(pc as PlayerCharacter).unspentStatPoints += 13;
-		(pc as PlayerCharacter).unclaimedClassPerks += 1;
-		(pc as PlayerCharacter).unclaimedGenericPerks += 1;
-		
-		pc.level++;
-		pc.XPRaw = 0;
-		pc.maxOutHP();
-		
-		// Enable the button
-		userInterface.levelUpButton.Activate();
-		
-		eventBuffer += "\n\n" + logTimeStamp("good") + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
-	}
-}
-
 public function sleepInRuinedCamp():void
 {
 	clearOutput();
@@ -607,7 +583,7 @@ public function sleepInRuinedCamp():void
 	{
 		flags["CLEARED_XENOGEN_CAMP_BODIES"] = 1;
 		output("The bodies lying around make the prospect of sleeping here... unpleasant, but then again, you're far enough from town that you'd rather sleep here than trudge all the way back. You spend several minutes dragging the mutilated bodies out of the camp and dump them into a ditch not far away. Best you can do under the circumstances.");
-		output("\n\nYou clear out one of the tents and bunker down to sleep ");
+		output("\n\nYou clear out one of the tents and bunker down to sleep");
 
 		//Standard sleep messages, etc. 
 	}
@@ -616,21 +592,27 @@ public function sleepInRuinedCamp():void
 	{
 		output("The camp is still clear enough, and the smell's not so bad anymore. You crawl into one of the tents and bunker down to sleep");
 	}
+	
 	//Standard sleep messages, etc. 
-	var minPass:int = 420 + rand(80) + 1
+	var minPass:int = 420 + rand(80) + 1;
 	output(" for about " + num2Text(Math.round(minPass/60)) + " hours.");
+	
+	eventBufferXP();
 	sleepHeal();
 	processTime(minPass);
-	mimbraneSleepEvents();
+	
 	//Chance for a Vanae Attack! - can't be first time
 	if (CodexManager.entryUnlocked("Vanae") && rand(4) == 0)
 	{
 		//PC doesn't have TamWolf, has encountered a vanae before. Vanae gets the first turn!
-		if(!pc.hasTamWolf()) output("\n\nYou're awoken by a high, shrill warcry. Your eyes snap open, just as a throwing spear slams into the dirt beside your bedroll, tearing through the tent. You scramble to your [pc.feet], grabbing your equipment as your assailer leaps into view. <b>You've been ambushed by a vanae</b>!");
+		if(!pc.hasTamWolf())
+		{
+			output("\n\nYou're awoken by a high, shrill warcry. Your eyes snap open, just as a throwing spear slams into the dirt beside your bedroll, tearing through the tent. You scramble to your [pc.feet], grabbing your equipment as your assailer leaps into view. <b>You've been ambushed by a vanae!</b>");
+		}
 		//PC has Tam-wolf (broke or not)
 		else
 		{
-			output("\n\nYou're awoken by a low, deep mechanical barking outside your tent, full of enough bass to make your [pc.ears] rattle. You grab your [pc.gear] and stumble out of the tent, wiping the sleep from your eyes. Tam-wolf is standing outside in a low, threatening posture, his steel ears low against his head. A vanae is standing just a short way away, held at bay by your robotic guard dog. Still, it doesn't look like she's backing off... you'll have to fight her.");
+			output("\n\nYou're awoken by a low, deep mechanical barking outside your tent, full of enough bass to make your [pc.ears] rattle. You grab your [pc.gear] and stumble out of the tent, wiping the sleep from your eyes. Tam-wolf is standing outside in a low, threatening posture, his steel ears low against his head. A vanae is standing just a short way away, held at bay by your robotic guard dog. Still, it doesn't look like she's backing off... <b>you'll have to fight her!</b>");
 		}
 		showName("FIGHT: VANAE\nHUNTRESS");
 		showBust("VANAE_HUNTRESS");
@@ -639,33 +621,12 @@ public function sleepInRuinedCamp():void
 		addButton(0, "Next", CombatManager.beginCombat);
 		return;
 	}
-	if ((pc.XPRaw >= pc.XPMax()) && pc.level < 8 && flags["LEVEL_UP_AVAILABLE"] == undefined)
-	{
-		(pc as PlayerCharacter).unspentStatPoints += 13;
-		(pc as PlayerCharacter).unclaimedClassPerks += 1;
-		(pc as PlayerCharacter).unclaimedGenericPerks += 1;
-		
-		pc.level++;
-		pc.XPRaw = 0;
-		pc.maxOutHP();
-		
-		// Enable the button
-		userInterface.levelUpButton.Activate();
-		
-		eventBuffer += "\n\n" + logTimeStamp("good") + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
-	}
+	
+	dreamChances();
+	mimbraneSleepEvents();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-}
-
-public function configHuntressFight():void
-{
-	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new HuntressVanae());
-	CombatManager.victoryScene(vanaePCVictory);
-	CombatManager.lossScene(vanaeHuntressPCDefeat);
-	CombatManager.displayLocation("HUNTRESS");
 }
 
 public function mhengaSalvageFromCamp():void

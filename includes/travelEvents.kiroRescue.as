@@ -127,13 +127,15 @@ public function kirosShipInterior2():Boolean
 
 public function kirosShipAirlockUpdate():void
 {
-	if(rooms[currentLocation].planet == "CANADIA STATION")
+	if(rooms[shipLocation].planet == "CANADIA STATION")
 	{
 		rooms["KIROS SHIP AIRLOCK"].removeFlag(GLOBAL.SHIPHANGAR);
+		rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.LIFTDOWN);
 	}
 	else
 	{
 		rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.SHIPHANGAR);
+		rooms["KIROS SHIP AIRLOCK"].removeFlag(GLOBAL.LIFTDOWN);
 	}
 }
 public function kirosShipAirlock():Boolean

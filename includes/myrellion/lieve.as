@@ -2589,14 +2589,8 @@ public function tellSiervaTheBadNews():void
 	output("\n\nYou excuse yourself, letting Sierva take the time she needs to process what you’ve told her.");
 	processTime(2);
 	
-	var XPBuffer:Number = 500;
-	if(XPBuffer + pc.XP() > pc.XPMax()) XPBuffer = pc.XPMax() - pc.XP();
-	pc.XP(XPBuffer);
-	if(XPBuffer > 0) output("\n\n" + XPBuffer + " XP gained.");
-	else {
-		output("\n<b>Maximum XP attained! You need to level up to continue to progress.</b>");
-		if(pc.level == 1) output("\n<b>Find a bed to sleep on in order to level up (like on your ship).</b>");
-	}
+	rewardXP(500);
+	
 	flags["SIERVA_LATEGOODBYE_RESPONSE"] = LIEVE_LATEGOODBYE_COMPLETE;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

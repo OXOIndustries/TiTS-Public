@@ -441,7 +441,9 @@ public function pcLosesToSyriBettingHisAss():void {
 
 	output("\n\n<i>“Stop moving, dammit,”</i> she snaps, giving you a hard smack on the ass. You yelp, feeling your anxious pucker clenching");
 	if(pc.hasCock()) output(" and [pc.cocks] throbbing");
-	output(" as the alien dickgirl spits into her hand, slathering a little bit of much-needed lube onto her own cock. You feel a hand spreading your cheeks, and brace yourself for the coming reaming - only to feel a gentle caress. You look over your shoulder, seeing Syri on her knees behind you, cheek rubbing on your taut flesh. <i>“What?”</i> she snaps, giving you a sudden swat that sends shivers up your spine and quivers through your [pc.skin]. <i>“I'm an ass girl like you wouldn't believe. Humans have the best butts in the whole wide galaxy. So soft and squishy and gropable, I could fuck 'em for days and days. And you... have a magnificient ass. Oh, I'm going to enjoy this");
+	output(" as the alien dickgirl spits into her hand, slathering a little bit of much-needed lube onto her own cock. You feel a hand spreading your cheeks, and brace yourself for the coming reaming - only to feel a gentle caress. You look over your shoulder, seeing Syri on her knees behind you, cheek rubbing on your taut flesh. <i>“What?”</i> she snaps, giving you a sudden swat that sends shivers up your spine and quivers through your [pc.skin]. <i>“I'm an ass girl like you wouldn't believe.");
+	if(pc.isHuman()) output(" Humans have the best butts in the whole wide galaxy. So soft and squishy and gropable, I could fuck 'em for days and days.");
+	output(" And you... have a magnificient ass. Oh, I'm going to enjoy this");
 	if(pc.ass.looseness() >= 4) output(", though not as much as you, if you're half the buttslut this gaping maw of a hole makes you look like");
 	output(".”</i>");
 
