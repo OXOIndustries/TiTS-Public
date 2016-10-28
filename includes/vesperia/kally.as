@@ -1358,6 +1358,28 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 		if(flags["KIRO_MET_KALLY"] == 3) flags["KIRO_MET_KALLY"] = 4;
 		if(flags["MET_KALLY"] == undefined) flags["MET_KALLY"] = 1;	
 	}
+	//Lead off from talking. Didn't do the forcey version.
+	if(!threesomeTalkIntro && kiroRoughButtfucks() == 0)
+	{
+		output("Kiro ");
+		if(pc.tallness < kiro.tallness - 10) 
+		{
+			output("tosses you on the bed");
+			if(!pc.isAssExposed() && !pc.isCrotchExposed()) output(" before you can wiggle the whole way out of your clothes.");
+		}
+		else 
+		{
+			output("pulls on your hand and spins you about");
+			if(!pc.isAssExposed() && !pc.isCrotchExposed()) output(", interrupting your attempts to get out of your clothes,");
+			output(" pushing you at the last second so that you land face-down in her bedding.");
+		}
+		output(" She piles on right after. Fur, boobs, balls, and lust smother you from all sides.");
+		if(!pc.isAssExposed() && !pc.isCrotchExposed()) output(" The half-undone clothes come off with one rough pull.");
+		output(" Her breath is hot in your ear as she wrestles you into place, pressing your nose into sheets that smell ");
+		if(pc.isBimbo()) output("delightfully like cum. Mmm... you wish your sheets smelled half this wonderful.");
+		else if(kiroRoughButtfucks() >= 2) output("vaguely of sweat and stale cum. Exactly like you expect to smell by the time she’s done with you.");
+		else output("a little more like stale cum than you’d prefer, but you know from experience your opinion can change one Kiro starts to have her way with you.");
+	}
 	//Repeat Intro
 	if(kiroRoughButtfucks() > 0)
 	{
@@ -1367,7 +1389,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 			output("Your cheeks blush with shame and lust. Why do you keep coming back for this? Just thinking about what she’ll do to you makes it hard to do anything but simper. Your voice barely comes out above a whisper. <i>“Kiro... could you fuck my ass again, please?”</i> You turn around, presenting it to her. <i>“And maybe spank me? I’ve been a bad [pc.boyGirl], I think.”</i>");
 		}
 		//Bimbo
-		if(pc.isBimbo()) output("<i>“Could you like, fuck my ass super dooper hard again? And do the spanking thing again. It was...”</i> you squirm in desire, <i>“...totally amazing.”</i>");
+		else if(pc.isBimbo()) output("<i>“Could you like, fuck my ass super dooper hard again? And do the spanking thing again. It was...”</i> you squirm in desire, <i>“...totally amazing.”</i>");
 		//Bro
 		else if(pc.isBro()) output("<i>“Fuck my ass,”</i> you demand, <i>“and do it hard.”</i> You look at her over your shoulder. <i>“If you don’t, I’m doing it to you.”</i>");
 		//Nice
