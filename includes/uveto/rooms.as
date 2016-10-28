@@ -258,16 +258,39 @@ public function initUvetoRooms():void
 	rooms["UVI F34"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["UVI H34"] = new RoomClass(this);
-	rooms["UVI H34"].roomName = "SHERIFFS OFFICE\nEXTERIOR";
-	rooms["UVI H34"].description = "The back of the Uveto VII central hub is a large, metal structure with vaulted ceilings and glass windows covered with frost. A great deal of cargo is stacked up all over, mostly showing Camarilla, Steele Tech, and RhenWorld markings.\n\nThe space elevator's access is just to the west of you. To the north, you see markings indicating a Sheriff's station. ";
+	rooms["UVI H34"].roomName = "IRESTEAD\nCENTRAL HUB";
+	rooms["UVI H34"].description = "The back of the Uveto VII central hub is a large, metal structure with vaulted ceilings and glass windows covered with frost. A great deal of cargo is stacked up all over, mostly showing Camarilla, Steele Tech, and RhenWorld markings.\n\nThe space elevator's access is just to the west of you. To the north, you see markings indicating a Sheriff's station. To the south you see an office building marked with the Steele Tech logo and a heading that labels it as the main office of the company's biomedical division. ";
 	rooms["UVI H34"].planet = "PLANET: UVETO VII";
 	rooms["UVI H34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI H34"].northExit = "UVI H32";
 	rooms["UVI H34"].eastExit = "UVI J34";
+	rooms["UVI H34"].southExit = "UVI H36";	
 	rooms["UVI H34"].westExit = "UVI F34";
 	rooms["UVI H34"].moveMinutes = 1;
 	rooms["UVI H34"].addFlag(GLOBAL.INDOOR);
-
+	
+	/* Steele Biomed */
+	rooms["UVI H36"] = new RoomClass(this);
+	rooms["UVI H36"].roomName = "STEELE BIOMED\nOFFICES";
+	rooms["UVI H36"].description = "Steele Tech’s biomedical division has a cozy office feel to it, white walls and dark wood paneling complementing the dark blue carpeting. A large holoprojector table dominates the center of the room, the large central display showing a planetary map with highlighted points of interest, while smaller displays ringing the edges of the table serve as personal consoles for many of the researchers. Other researchers are off in cubicles along the walls that provide a bit more privacy. Bookcases dot the walls; most are filled with textbooks, but you see a few shelves dedicated to tabletop gamebooks. You also notice that almost all of the researchers are modded to at least some degree, many heavily so. Most are women, though there are a few men as well. \n\nAn office door along the south wall is currently open just a crack. Set to the right of the door is an embossed metal sign labeled with a small copy of the Steele Tech logo, below which is the inscription “Dr. Lessau, Head Researcher”. ";
+	rooms["UVI H36"].planet = "PLANET: UVETO VII";
+	rooms["UVI H36"].system = "SYSTEM: SIRETTA";
+	rooms["UVI H36"].northExit = "UVI H34";
+	rooms["UVI H36"].southExit = "UVI H38";	
+	rooms["UVI H36"].moveMinutes = 1;
+	rooms["UVI H36"].addFlag(GLOBAL.INDOOR);
+	
+	rooms["UVI H38"] = new RoomClass(this);
+	rooms["UVI H38"].roomName = "LESSAU'S\nOFFICE";
+	rooms["UVI H38"].description = "Dr. Lessau’s office consists of a clean white room decorated with dark blue carpeting, joined at the edges by dark wood baseboards that look freshly waxed. Paintings hung on the walls sport matching dark wood frames and depict various murals of creatures from human and ausar mythology. One depicts a dragon spiraling through the air, another a beautiful unicorn in a tranquil forest clearing, a third a chimera roaring in triumph as it stands over a horde of other beasts. The back of the room is taken up by a large wooden desk sporting a holoterminal which spans nearly its entire width, most of the displays alight with various genomes and reports. ";
+	rooms["UVI H38"].planet = "PLANET: UVETO VII";
+	rooms["UVI H38"].system = "SYSTEM: SIRETTA";
+	rooms["UVI H38"].northExit = "UVI H36";
+	rooms["UVI H38"].moveMinutes = 1;
+	rooms["UVI H38"].runOnEnter = drLessauBonus;
+	rooms["UVI H38"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI H38"].addFlag(GLOBAL.NPC);
+	
 	/* Sheriffs Office */
 	rooms["UVI H32"] = new RoomClass(this);
 	rooms["UVI H32"].roomName = "SHERIFFS\nOFFICE";
