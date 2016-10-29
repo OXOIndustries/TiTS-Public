@@ -1,4 +1,5 @@
-﻿/* Sera Impregnation */
+﻿import classes.Items.Miscellaneous.Priapin;
+/* Sera Impregnation */
 // All for you, Damien
 
 /*
@@ -737,8 +738,8 @@ public function seraSpawnPregnancyApproach(pregDays:Number = 0):Boolean
 // Sera Baby counting functions
 public function listSeraBabies(unnamed:Boolean = false):Array
 {
-	// Only check for unique Sera babies.
-	// Only babies that are 5 years and younger count.
+		// Only check for unique Sera babies.
+		// Only babies that are 5 years and younger count.
 	var babies:Array = listBabiesOfParent("SERA", unnamed, 0, (5 * 365));
 	
 	return babies;
@@ -768,11 +769,11 @@ public function displaySeraBabies():void
 			output("\n<b>* Maturation Rate:</b> " + formatFloat(babies[i].MaturationRate * 100) + " %");
 			if(babies[i].NumNeuter > 0 || babies[i].NumFemale > 0 || babies[i].NumMale > 0 || babies[i].NumIntersex > 0)
 			{
-				output("\n<b>* Sex:</b> ");
-				if(babies[i].NumNeuter > 0) output("Sexless");
-				if(babies[i].NumFemale > 0) output("Female");
-				if(babies[i].NumMale > 0) output("Male");
-				if(babies[i].NumIntersex > 0) output("Hermaphrodite");
+				output("\n<b>* Sex:</b>");
+				if(babies[i].NumNeuter > 0) output(" Sexless");
+				if(babies[i].NumFemale > 0) output(" Female");
+				if(babies[i].NumMale > 0) output(" Male");
+				if(babies[i].NumIntersex > 0) output(" Hermaphrodite");
 			}
 			if(babies[i].skinTone != "NOT SET")
 				output("\n<b>* Skin Tone:</b> " + StringUtil.toDisplayCase(babies[i].skinTone));

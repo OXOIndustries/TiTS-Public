@@ -2,6 +2,8 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Engine.Interfaces.GetGameTimestamp;
+	import classes.kGAMECLASS;
 	
 	public class Aliss extends Creature
 	{
@@ -175,6 +177,14 @@
 			delete dataObject.bonusResistances;
 			delete dataObject.bonusLustVuln;
 			delete dataObject.armor;
+		}
+		
+		override public function processTime(deltaT:uint, doOut:Boolean):void
+		{
+			var totalDays:int = ((GetGameTimestamp() + deltaT) / 1440) - kGAMECLASS.days;
+			if (totalDays > 1 && lust() >= 70) orgasm();
+			
+			super.processTime(deltaT, doOut);
 		}
 	}
 }

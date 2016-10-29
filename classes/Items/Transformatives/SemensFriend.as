@@ -5,6 +5,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
+	import classes.StorageClass;
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
@@ -76,37 +77,37 @@
 			}
 			return false;
 		}
+		
 		// Libido increase:
-		public function itemSemensFriendLibidoIncrease():void
+		public static function LibidoIncrease(deltaT:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
-			var target:Creature = kGAMECLASS.chars["PC"];
+			if (target.libido() >= 100) return;
 			
-			if(target.libido() >= 100 || target.getStatusMinutes("Semen's Candy") % 60 != 0) return;
+			var numProcs:int = Math.floor((Math.min(deltaT, effect.minutesLeft) + effect.value4) / 60);
+			var firstProcOffset:int = kGAMECLASS.minutes + (60 + effect.value4);
 			
-			var isPresistentTF:Boolean = (target.statusEffectv2("Semen's Candy") > 1);
-			var libGain:int = 1;
-			if(isPresistentTF) libGain = 2;
+			effect.value4 = (effect.value4 + deltaT) - (numProcs * 60);
 			
-			// Each hour, 0.4 chance to increase libido by 1.
-			if(rand(5) < 2)
+			if (numProcs == 0) return;
+			
+			var libGain:int = effect.value2 > 1 ? 2 : 1;
+			
+			for (var i:int = 0; i < numProcs; i++)
 			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Semen’s Friend candy has an effect....</u>";
+				if (rand(5) < 2)
+				{
+					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", firstProcOffset + (60 * i)) + " <u>The Semen’s Friend candy has an effect....</u>";
 				
-				kGAMECLASS.eventBuffer += "\n\nYou exhale, deep and low, as the cold burn in your loins increases, the impatient imperative to get out there and fuck and breed every fertile hole in sight growing stronger.";
-				
-				target.slowStatGain("libido", libGain);
-				
-				//kGAMECLASS.clearMenu();
-				//kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
+					kGAMECLASS.eventBuffer += "\n\nYou exhale, deep and low, as the cold burn in your loins increases, the impatient imperative to get out there and fuck and breed every fertile hole in sight growing stronger.";
+					
+					target.slowStatGain("libido", libGain);
+				}
 			}
 		}
-		public function itemSemensFriendTFPlus():void
+		
+		public static function TFProcs(deltaT:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
-			itemSemensFriendTF(true);
-		}
-		public function itemSemensFriendTF(isPresistentTF:Boolean = false):void
-		{
-			var target:Creature = kGAMECLASS.chars["PC"];
+			var isPlus:Boolean = effect.value2 > 1;
 			
 			var msg:String = "";
 			var totalTFs:Number = 1;
@@ -127,7 +128,7 @@
 			if(target.balls > 0 && target.hasStatusEffect("Uniball"))
 				TFList.push(2);
 			//#3 If balls increase towards 6” by 1”
-			if(target.balls > 0 && ((isPresistentTF && ballDiameter < 11) || ballDiameter < 6))
+			if(target.balls > 0 && ((isPlus && ballDiameter < 11) || ballDiameter < 6))
 				TFList.push(3);
 			//#4 Increase male potency
 			if(target.refractoryRate < 80)
@@ -136,10 +137,10 @@
 			if(target.balls > 0 && target.virility() > 0 && target.cumQualityRaw < 1.5)
 				TFList.push(5);
 			//#6 If balls > 5” grow quad
-			if(isPresistentTF && ballDiameter > 5 && target.balls > 0 && target.balls < 4)
+			if(isPlus && ballDiameter > 5 && target.balls > 0 && target.balls < 4)
 				TFList.push(6);
 			//#7 Change cum to chocolate colored and flavored (requires cock)
-			if(isPresistentTF && target.hasCock() && target.cumType != GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)
+			if(isPlus && target.hasCock() && target.cumType != GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)
 				TFList.push(7);
 			
 			// TF texts
@@ -221,7 +222,7 @@
 						target.ballSizeRaw = newBallSize;
 						
 						// Increase balls to 11” by 1”
-						if(isPresistentTF)
+						if(isPlus)
 						{
 							newBallSize = target.ballSizeRaw + 1;
 							if(target.hasPerk("Bulgy")) newBallSize++;

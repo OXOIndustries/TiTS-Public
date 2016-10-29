@@ -4,10 +4,12 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
+	import classes.StorageClass;
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Utility.rand;
 	
 	public class HorsePill extends ItemSlotClass
 	{
@@ -87,27 +89,36 @@
 			}
 			return false;
 		}
-		public function pillTF(done:Boolean = false):void
+		
+		public static function OnHourTF(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
 			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The horse pills have an effect....</u>";
-			var oddsOfBigTF:int = kGAMECLASS.chars["PC"].statusEffectv2("Horse Pill") * 20;
-			if(oddsOfBigTF >= rand(100) + 1)
+			
+			var totalHours:int = ((kGAMECLASS.minutes + Math.min(deltaT, maxEffectLength)) / 60);
+			if (effect.minutesLeft <= 0) totalHours++;
+
+			// The only way to really model this and get the values I want requires looping rand, rip
+			
+			var p:Number = effect.value2 * 20;
+			for (var i:int = 0; i < totalHours; i++)
 			{
-				bigHorsePillMutations(kGAMECLASS.chars["PC"]);
+				if (p >= rand(100) + 1)
+				{
+					bigHorsePillMutations(target, effect);
+				}
+				else
+				{
+					smallHorsePillMutations(target, effect);
+				}
 			}
-			else smallHorsePillMutations(kGAMECLASS.chars["PC"]);
-			if(done) kGAMECLASS.eventBuffer += "\n\n<b>Your body calms down. The pills must have worn off.</b>";
-			//kGAMECLASS.clearMenu();
-			//kGAMECLASS.addButton(0,"Next",kGAMECLASS.mainGameMenu);
+			
+			if (effect.minutesLeft <= 0) kGAMECLASS.eventBuffer += "\n\n<b>Your body calms down. The pills must have worn off.</b>";
 		}
-		public function lastPillTF():void {
-			pillTF(true);
-			//kGAMECLASS.mainGameMenu();
-		}
-		private function smallHorsePillMutations(target:Creature):void
+		
+		private static function smallHorsePillMutations(target:Creature, effect:StorageClass):void
 		{
 			var msg:String = "";
-			var totalTFs:Number = target.statusEffectv2("Horse Pill");
+			var totalTFs:Number = effect.value2;
 			if(totalTFs == 0) totalTFs = 1;
 			//Used to hold the TF we pull out of the array of effects
 			var select:int = 0;
@@ -579,11 +590,11 @@
 			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 		}
 		
-		private function bigHorsePillMutations(target:Creature):void
+		private static function bigHorsePillMutations(target:Creature, effect:StorageClass):void
 		{
 			var msg:String = "";
 			//How many TFs? Max of 2.
-			var totalTFs:Number = Math.floor(target.statusEffectv2("Horse Pill")/2);
+			var totalTFs:Number = Math.floor(effect.value2 / 2);
 			if(totalTFs < 1) totalTFs = 1;
 			//Used for holding temporary garbage
 			var x:int = 0;
@@ -1017,7 +1028,7 @@
 		{
 			return int(Math.random()*max);
 		}
-		private function hasLowerTitties(target:Creature):Boolean
+		private static function hasLowerTitties(target:Creature):Boolean
 		{
 			if(target.bRows() <= 1) return false;
 			for(var x:int = 1; x < target.bRows(); x++)
@@ -1026,7 +1037,7 @@
 			}
 			return false;
 		}
-		private function hasSheathedNonHorsecocks(target:Creature):Boolean
+		private static function hasSheathedNonHorsecocks(target:Creature):Boolean
 		{
 			if(target.cockTotal() == 0) return false;
 			for (var x:int = 0; x < target.cockTotal(); x++)
@@ -1035,7 +1046,7 @@
 			}
 			return false;
 		}
-		private function hasAHorseCuntNeedingRoom(target:Creature):Boolean
+		private static function hasAHorseCuntNeedingRoom(target:Creature):Boolean
 		{
 			if(target.vaginaTotal() == 0) return false;
 			for (var x:int = 0; x < target.vaginaTotal(); x++)

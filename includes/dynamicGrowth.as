@@ -353,171 +353,80 @@ public function bigBallBadEnd():void
 	}
 }
 
-
-/* Hair stuff! */
-
-public function maneHairGrow():void
-{
-	var lengthMin:Number = 3;
-	
-	if(pc.hairLength >= lengthMin) return;
-	
-	eventBuffer += "\n\n" + logTimeStamp("passive") + " Your scalp tingles and you";
-	if (pc.hairLength <= 0)
-	{
-		eventBuffer += ParseText(" reach up to scratch it. Instead of [pc.skinFurScalesNoun], your fingers run across");
-		if(pc.hairType == GLOBAL.HAIR_TYPE_REGULAR)
-		{
-			eventBuffer += " patches of growing hair.";
-			pc.hairLength = 0.125;
-		}
-		else
-		{
-			eventBuffer += ParseText(" a growing patch of tiny [pc.hairsNoun].");
-			pc.hairLength = 0.5;
-		}
-		eventBuffer += ParseText(" <b>You now have [pc.hair]!</b>");
-	}
-	else
-	{
-		var hairGain:Number = 1 + rand(2);
-		if (pc.hairLength <= 2)
-		{
-			eventBuffer += ParseText(" reach up to touch your short [pc.hairNoun]. <b>It seems longer than it did before, growing out about " + num2Text(hairGain) + " more inch");
-			if(hairGain != 1) eventBuffer += "es";
-			eventBuffer += ".</b>";
-		}
-		else
-		{
-			eventBuffer += ParseText(" see your [pc.hairNoun] grow out, right in front of your eyes. <b>Your hair has lengthened by " + num2Text(hairGain) + " inch");
-			if(hairGain != 1) eventBuffer += "es";
-			eventBuffer += "!</b>";
-		}
-		pc.hairLength = Math.round(pc.hairLength + hairGain);
-	}
-	if(!InCollection(pc.hairStyle, ["null", "tentacle"]))
-	{
-		eventBuffer += " It seems the growth has messed up your hairdo in the process... You might have to get it restyled later.";
-		pc.hairStyle = "null";
-	}
-}
-
-
 /* Boobs stuff! */
 
-public function boobswellStuff(time:Number = 0):void
-{
-	//Message text, boob size+. Every 6 hours or so.
-	//Every minute = .003 breastRating. = 5.5 hours per cup size.
-	var swelledRows:Array = new Array();
-	//Loop through statuses and find out which boobs are covered.
-	for(var x:Number = 0; x < pc.statusEffects.length; x++)
-	{
-		//Boobswell on!
-		if(pc.statusEffects[x].storageName == "Boobswell Pads")
-		{
-			//Add to the list of covered rows.
-			swelledRows.push(pc.statusEffects[x].value1);
-		}
-	}
-	//While rows remain that need processed.
-	while(swelledRows.length > 0)
-	{
-		//Bonus lust for each extra row:
-		pc.lust(time/10);
-		//Use x to hold the original value for later comparison.
-		
-		var bRow:BreastRowClass = pc.breastRows[swelledRows[swelledRows.length - 1]];
-		
-		if (bRow != null) // Catching potential errors in lieu of a "proper" fix.
-		{
-			x = bRow.breastRating();
-			trace("BOOBSWELL! Original titty: " + x);
-			trace("Time: " + time + " Amount grown from time: " + (time * 0.003));
-			//Actually change it
-			pc.breastRows[swelledRows[swelledRows.length-1]].breastRatingRaw += time * 0.003;
-			trace("BOOBSWELL! Post titty: " + pc.breastRows[swelledRows[swelledRows.length-1]].breastRating());
-		
-			if(Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) > Math.floor(x) 
-				&& (Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) % 2 == 0 || Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) < 6))
-			{
-				trace("BOOBSWELL OUTPUT TRIGGERED");
-				eventBuffer += "\n\n" + logTimeStamp("passive") + " Thanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that ";
-				if(pc.bRows() == 1) eventBuffer += "you ";
-				else eventBuffer += "your " + num2Text2(swelledRows[swelledRows.length-1]+1) + " row of breasts ";
-				eventBuffer += "could now fit into " + indefiniteArticle(pc.breastCup(swelledRows[swelledRows.length - 1])) + " bra!</b>";
-			}
-		}
-		
-		swelledRows.splice(swelledRows.length-1,1);
-	}
-}
-
-public function honeyPotBump(cumShot:Boolean = false):void
+public function honeyPotBump(cumShot:Boolean = false, totalDays:int = 0):void
 {
 	var msg:String = "";
 	
-	if(pc.thickness >= 30)
-	{
-		pc.thickness -= 10;
-		var boobDiff:Number = 10;
-		if(pc.thickness >= 60)
-		{
-			boobDiff += 10;
-			pc.thickness -= 10;
-		}
-		boobDiff /= 10;
-		
-		eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your body tightens as the honeypot gene goes to work, diverting your excess bodymass into your [pc.chest], building you bigger and fuller of [pc.milkNoun].");
-		
-		for(var bb:int = 0; bb < pc.bRows(); bb++)
-		{
-			pc.breastRows[bb].breastRatingHoneypotMod += boobDiff;
-		}
-		if(pc.milkFullness < 100) pc.milkFullness = 100;
-	}
-	else if(pc.breastRows[0].breastRatingHoneypotMod == 0)
-	{
-		msg += "\n\n" + logTimeStamp("passive") + ParseText(" Your [pc.chest] feel");
-		if(!pc.hasBreasts()) msg += "s";
-		msg += " bigger than normal, swollen ";
-		if(cumShot) msg += "from all the oral calories you’ve taken in.";
-		else msg += "with the spare calories your honeypot gene has siphoned off of your meals.";
-	}
-	else if(pc.breastRows[0].breastRatingHoneypotMod < 10 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 10)
-	{
-		msg += "\n\n" + logTimeStamp("passive") + ParseText(" Your [pc.chest] practically glow");
-		if(!pc.hasBreasts()) msg += "s";
-		msg += " with the ever-expanding fruit of your honeypot gene. You wonder just how big you’ll get.";
-	}
-	else if(pc.breastRows[0].breastRatingHoneypotMod < 20 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 20)
-	{
-		msg += "\n\n" + logTimeStamp("passive") + ParseText(" Sometimes when you move, your [pc.arm] sends your liquid-filled [pc.chest] bouncing. You can feel as much as hear the fluid churning inside, ready to be released into your hands, the ground, or a passersby’s open mouth.");
-	}
-	else if(pc.breastRows[0].breastRatingHoneypotMod < 30 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 30)
-	{
-		msg += "\n\n" + logTimeStamp("passive") + ParseText(" Every movement is accompanied by a weighty, sloshing jiggle from your [pc.chest]. The more you take in, the more like a gold myr honeypot you seem, growing until you seem more boob than ") + pc.mfn("man","woman","person") + ".";
-	}
-	else if(pc.breastRows[0].breastRatingHoneypotMod < 40 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 40)
-	{
-		msg += "\n\n" + logTimeStamp("passive") + ParseText(" Wherever you go, the eyes of every single passing sapient zero in on your [pc.chest].");
-		if(!pc.hasBreasts()) msg += " It juts";
-		else msg += " They jut";
-		msg += ParseText(" from your body like the proud prow of a deep space freighter, filled with a glorious [pc.milkFlavor] bounty. If only they knew - if only they could sense just how great it would be to take your [pc.nipple] in your mouth and suck. An all too pleasurable shudder wracks your spine at the thought.");
-	}
-	else if(pc.breastRows[0].breastRatingHoneypotMod < 50 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 50)
-	{
-		msg += "\n\n" + logTimeStamp("passive") + ParseText(" It’s tough not to toddle forward off your [pc.feet] and onto your [pc.milkNoun]-engorged chest. The pressure would probably release a tide of [pc.milkFlavor] juice and still barely put a dent in your super-sized knockers. The honeypot gene is so amazing, the way it makes your body so fruitful... You’ve got to share this beautiful bosom with the galaxy!");
-	}
-	//Bump up boob size for 3 days of eating or a cumshot!
-	for(var cc:int = 0; cc < pc.bRows(); cc++)
-	{
-		pc.breastRows[cc].breastRatingHoneypotMod += 1;
-		//Drinking cum refills milk most of the way
-		if(cumShot) if(pc.milkFullness < 81) pc.milkFullness = 81;
-	}
+	var baseDShift:uint = totalDays == 0 ? 0 : GetGameTimestamp() % 1440;
 	
-	if(msg.length > 0) eventBuffer += msg;
+	totalDays = 1;
+	
+	for (var i:int = 0; i < totalDays; i++)
+	{	
+		if(pc.thickness >= 30)
+		{
+			pc.thickness -= 10;
+			var boobDiff:Number = 10;
+			if(pc.thickness >= 60)
+			{
+				boobDiff += 10;
+				pc.thickness -= 10;
+			}
+			boobDiff /= 10;
+			
+			eventBuffer += "\n\n" + logTimeStamp("passive", baseDShift + (i * 4320)) + ParseText(" Your body tightens as the honeypot gene goes to work, diverting your excess bodymass into your [pc.chest], building you bigger and fuller of [pc.milkNoun].");
+			
+			for(var bb:int = 0; bb < pc.bRows(); bb++)
+			{
+				pc.breastRows[bb].breastRatingHoneypotMod += boobDiff;
+			}
+			if(pc.milkFullness < 100) pc.milkFullness = 100;
+		}
+		else if(pc.breastRows[0].breastRatingHoneypotMod == 0)
+		{
+			msg += "\n\n" + logTimeStamp("passive", baseDShift + (i * 4320)) + ParseText(" Your [pc.chest] feel");
+			if(!pc.hasBreasts()) msg += "s";
+			msg += " bigger than normal, swollen ";
+			if(cumShot) msg += "from all the oral calories you’ve taken in.";
+			else msg += "with the spare calories your honeypot gene has siphoned off of your meals.";
+		}
+		else if(pc.breastRows[0].breastRatingHoneypotMod < 10 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 10)
+		{
+			msg += "\n\n" + logTimeStamp("passive", baseDShift + (i * 4320)) + ParseText(" Your [pc.chest] practically glow");
+			if(!pc.hasBreasts()) msg += "s";
+			msg += " with the ever-expanding fruit of your honeypot gene. You wonder just how big you’ll get.";
+		}
+		else if(pc.breastRows[0].breastRatingHoneypotMod < 20 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 20)
+		{
+			msg += "\n\n" + logTimeStamp("passive", baseDShift + (i * 4320)) + ParseText(" Sometimes when you move, your [pc.arm] sends your liquid-filled [pc.chest] bouncing. You can feel as much as hear the fluid churning inside, ready to be released into your hands, the ground, or a passersby’s open mouth.");
+		}
+		else if(pc.breastRows[0].breastRatingHoneypotMod < 30 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 30)
+		{
+			msg += "\n\n" + logTimeStamp("passive", baseDShift + (i * 4320)) + ParseText(" Every movement is accompanied by a weighty, sloshing jiggle from your [pc.chest]. The more you take in, the more like a gold myr honeypot you seem, growing until you seem more boob than ") + pc.mfn("man","woman","person") + ".";
+		}
+		else if(pc.breastRows[0].breastRatingHoneypotMod < 40 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 40)
+		{
+			msg += "\n\n" + logTimeStamp("passive", baseDShift + (i * 4320)) + ParseText(" Wherever you go, the eyes of every single passing sapient zero in on your [pc.chest].");
+			if(!pc.hasBreasts()) msg += " It juts";
+			else msg += " They jut";
+			msg += ParseText(" from your body like the proud prow of a deep space freighter, filled with a glorious [pc.milkFlavor] bounty. If only they knew - if only they could sense just how great it would be to take your [pc.nipple] in your mouth and suck. An all too pleasurable shudder wracks your spine at the thought.");
+		}
+		else if(pc.breastRows[0].breastRatingHoneypotMod < 50 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 50)
+		{
+			msg += "\n\n" + logTimeStamp("passive", baseDShift + (i * 4320)) + ParseText(" It’s tough not to toddle forward off your [pc.feet] and onto your [pc.milkNoun]-engorged chest. The pressure would probably release a tide of [pc.milkFlavor] juice and still barely put a dent in your super-sized knockers. The honeypot gene is so amazing, the way it makes your body so fruitful... You’ve got to share this beautiful bosom with the galaxy!");
+		}
+		//Bump up boob size for 3 days of eating or a cumshot!
+		for(var cc:int = 0; cc < pc.bRows(); cc++)
+		{
+			pc.breastRows[cc].breastRatingHoneypotMod += 1;
+			//Drinking cum refills milk most of the way
+			if(cumShot) if(pc.milkFullness < 81) pc.milkFullness = 81;
+		}
+		
+		if (msg.length > 0) eventBuffer += msg;
+	}
 }
 
 //Notes about milk gain increases
@@ -597,13 +506,15 @@ public function milkGainNotes():void
 	}
 }
 
-public function lactationUpdateHourTick():void
+public function lactationUpdateHourTick(totalHours:int):void
 {
 	//These are easy since they proc with time passage and can be added to event buffer.
 	//Milk Multiplier crosses a 10 point threshold while dropping
 	//Drops .5 an hour above 150 fullness. 1 above 200 fullness
 	//Milk Rate drops by .1 an hour above 200.
 	var originalMultiplier:Number = pc.milkMultiplier;
+	var totalChange:Number = 0;
+	var t:Number = 0;
 	//Bounty bra never loses milkMultiplier!
 	if(pc.upperUndergarment is BountyBra || pc.isPregnant() || pc.hasPerk("Honeypot") || pc.hasPerk("Mega Milk") || pc.hasPerk("Hypermilky"))
 	{
@@ -614,50 +525,119 @@ public function lactationUpdateHourTick():void
 		if(pc.milkFullness >= 200) 
 		{
 			if (pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) { }
-			else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .2;
-			else pc.milkMultiplier -= 1;
+			else if (pc.hasPerk("Milky") || pc.hasPerk("Treated Milk"))
+			{
+				t = 0.2 * totalHours;
+				totalChange -= t;
+				pc.milkMultiplier -= t;
+			}
+			else
+			{
+				t = 1 * totalHours;
+				totalChange -= t;
+				pc.milkMultiplier -= t;
+			}
 		}
 		else if(pc.milkFullness >= 150) 
 		{
-			if(!pc.hasPerk("Milky") && !pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .5;
+			if (!pc.hasPerk("Milky") && !pc.hasPerk("Treated Milk"))
+			{
+				t = 0.5 * totalHours;
+				totalChange -= 6;
+				pc.milkMultiplier -= t;
+			}
 		}
 	}
+	
 	//Drops a tiny amount if below 50.
-	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant() && !pc.hasPerk("Honeypot") && !pc.hasPerk("Mega Milk") && !pc.hasPerk("Hypermilky")) {
+	if (pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant() && !pc.hasPerk("Honeypot") && !pc.hasPerk("Mega Milk") && !pc.hasPerk("Hypermilky")) 
+	{
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) {}
-		else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .02;
-		else pc.milkMultiplier -= 0.1;
+		else if (pc.hasPerk("Milky") || pc.hasPerk("Treated Milk"))
+		{
+			t = 0.02 * totalHours;
+			totalChange -= t;
+			pc.milkMultiplier -= t;
+		}
+		else
+		{
+			t = 0.1 * totalHours;
+			totalChange -= t;
+			pc.milkMultiplier -= t;
+		}
 
-		if(!pc.hasPerk("Milky")) pc.milkMultiplier -= 0.1;
-		else pc.milkMultiplier -= 0.02;
+		if (!pc.hasPerk("Milky"))
+		{
+			t = 0.1 * totalHours;
+			totalChange -= t;
+			pc.milkMultiplier -= t;
+		}
+		else
+		{
+			t = 0.2 * totalHours;
+			totalChange -= t;
+			pc.milkMultiplier -= t;
+		}
+		
 		if(pc.milkFullness > 0) 
 		{
-			pc.milkFullness -= 1;
-			if(pc.milkFullness < 0) pc.milkFullness = 0;
+			t = totalHours;
+			totalChange -= t;
+			pc.milkFullness -= t
+			
+			if (pc.milkFullness < 0)
+			{
+				pc.milkFullness = 0;
+			}
 		}
 	}
-	if(pc.milkMultiplier < 0) pc.milkMultiplier = 0;
-	//90
-	if(pc.milkMultiplier < 90 && originalMultiplier >= 90) eventBuffer += "\n\n" + logTimeStamp("passive") + " You’re pretty sure that your lactation is starting to slow down a little bit. If you don’t start milking yourself, you’ll eventually stop producing.";
-	//80
-	if(pc.milkMultiplier < 80 && originalMultiplier >= 80) eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Low level tingles in your [pc.chest] remind you that producing [pc.milk] is something your body does, but if you keep ignoring yourself, you won’t for too much longer.");
-	//70
-	if(pc.milkMultiplier < 70 && originalMultiplier >= 70) eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" You’re feeling pretty sore in your [pc.chest], but it’s not getting that much worse. <b>You’re pretty sure that you’re lactating less as a result of the inattention to your chest.</b>");
-	//60	
-	if(pc.milkMultiplier < 60 && originalMultiplier >= 60) eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Your body’s ability to produce [pc.milk] is diminishing to the point where your [pc.fullChest] are barely making any more. It won’t take long before you stop production entirely.");
-	//50
-	if(pc.milkMultiplier < 50 && originalMultiplier >= 50) {
+	
+	if (pc.milkMultiplier < 0)
+	{
+		pc.milkMultiplier = 0;
+	}
+	
+	// Derp this should actually chain as it was
+	var numChanges:int = 1;
+	
+	if (pc.milkMultiplier < 90 && originalMultiplier >= 90)
+	{
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + " You’re pretty sure that your lactation is starting to slow down a little bit. If you don’t start milking yourself, you’ll eventually stop producing.";
+		numChanges++;
+	}
+	
+	if (pc.milkMultiplier < 80 && originalMultiplier >= 80)
+	{
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + ParseText(" Low level tingles in your [pc.chest] remind you that producing [pc.milk] is something your body does, but if you keep ignoring yourself, you won’t for too much longer.");
+		numChanges++;
+	}
+	
+	if (pc.milkMultiplier < 70 && originalMultiplier >= 70)
+	{
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + ParseText(" You’re feeling pretty sore in your [pc.chest], but it’s not getting that much worse. <b>You’re pretty sure that you’re lactating less as a result of the inattention to your chest.</b>");
+		numChanges++;
+	}
+	
+	if (pc.milkMultiplier < 60 && originalMultiplier >= 60)
+	{
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + ParseText(" Your body’s ability to produce [pc.milk] is diminishing to the point where your [pc.fullChest] are barely making any more. It won’t take long before you stop production entirely.");
+		numChanges++;
+	}
+	
+	if (pc.milkMultiplier < 50 && originalMultiplier >= 50)
+	{
 		for(var x:int = 0; x < pc.bRows(); x++)
 		{
 			pc.breastRows[x].breastRatingLactationMod = 0;
 		}
-		eventBuffer += "\n\n" + logTimeStamp("passive") + ParseText(" Like a switch has been flipped inside you, you feel your body’s [pc.milk]-factories power down. <b>You’ve stopped lactating entirely.</b>");
+		eventBuffer += "\n\n" + logTimeStamp("passive", 60 * numChanges) + ParseText(" Like a switch has been flipped inside you, you feel your body’s [pc.milk]-factories power down. <b>You’ve stopped lactating entirely.</b>");
 		if(pc.milkFullness >= 75) 
 		{
 			eventBuffer += ParseText(" The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCupSize]s.");
 			pc.milkFullness = 75;
 		}
 	}
+	
 	//Clean up boob size stuff
 	pc.setBoobSwelling();
 }
@@ -724,41 +704,3 @@ public function milkMultiplierGainNotificationCheck():void
 	}
 	if(msg.length > 0) eventBuffer += msg;
 }
-
-
-/* Butt stuff! */
-
-public function buttslutBootyGrow():void
-{
-	var bootyMin:Number = 18;
-	
-	// If butt is max size or is currently filled, no need to grow.
-	if(pc.buttRatingRaw >= bootyMin || pc.statusEffectv1("Anally-Filled") > 0) return;
-	
-	var oldBooty:Number = pc.buttRatingRaw;
-	var addBooty:Number = 1 + rand(9);
-	if(pc.buttRatingRaw + addBooty > bootyMin) addBooty = bootyMin - pc.buttRatingRaw;
-	if(addBooty < 0) return;
-	
-	eventBuffer += "\n\n" + logTimeStamp("passive") + " You notice some extra weight and jiggle when you go to move or stand. Looking behind you, you find that your ass has gained";
-	if (addBooty > 5) eventBuffer += " an epic amount of cheek";
-	else if (addBooty > 4) eventBuffer += " a massive surge in size";
-	else if (addBooty > 3) eventBuffer += " a much larger circumference";
-	else if (addBooty > 2) eventBuffer += " a few sizes";
-	else if (addBooty > 1) eventBuffer += " a another size or two";
-	else eventBuffer += " some mass";
-	eventBuffer += ParseText("... It seems your bubbly booty refuses to be any smaller" + (pc.buttRatingRaw < 10 ? " than that." : "--not that you’d complain!") + " <b>Your [pc.butts] have grown bigger!</b>");
-	
-	pc.buttRatingRaw += addBooty;
-	
-	if(pc.hairType == GLOBAL.HAIR_TYPE_GOO && addBooty > 0)
-	{
-		var gooCost:Number = (20 * addBooty);
-		if(gooCost > 0 && gooBiomass() >= gooCost)
-		{
-			eventBuffer += " Although, the growth took up some of your gooey biomass in the process...";
-			gooBiomass(-1 * gooCost);
-		}
-	}
-}
-

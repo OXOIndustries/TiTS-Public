@@ -315,6 +315,7 @@
 		include "../includes/events/kashimaIncident/roomfunctions.as";
 		
 		// Uveto
+		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
@@ -346,7 +347,7 @@
 			var value:uint = 0;
 			value += minutes;
 			value += hours * 60;
-			value += days * (24 * 60);
+			value += days * 1440;
 			return value;
 		}
 
@@ -435,7 +436,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.89";
+			version = "0.6.90";
 
 			//temporary nonsense variables.
 			temp = 0;

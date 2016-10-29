@@ -2,6 +2,7 @@ package classes.Items.Transformatives
 {
 	import classes.Engine.Interfaces.*;
 	import classes.GLOBAL;
+	import classes.StorageClass;
 	import classes.kGAMECLASS;
 	import classes.ItemSlotClass;
 	import classes.GameData.TooltipManager;
@@ -44,11 +45,13 @@ package classes.Items.Transformatives
 		}
 		
 		// Physical Changes
-		private function plantMutations(target:Creature):void
+		public static function plantMutations(target:Creature, numProcs:int, deltaT:uint, effect:StorageClass):void
 		{
 			var msg:String = "";
-			var totalTFs:Number = target.statusEffectv2("Cerespirin");
-			if(totalTFs == 0) totalTFs = 1;
+			var totalTFs:Number = effect.value2;
+			if (totalTFs == 0) totalTFs = 1;
+			if (numProcs > 0) totalTFs *= numProcs;
+			
 			//Used to hold the TF we pull out of the array of effects
 			var select:int = 0;
 			var x:int = 0;
@@ -128,7 +131,7 @@ package classes.Items.Transformatives
 			if(!target.hasPerk("Flower Power") && target.skinType == GLOBAL.SKIN_TYPE_PLANT && hasPlantHair && target.mfn("m", "f", "n") == "f" && flowerScore >= 2)
 				TFList[TFList.length] = 17;
 			//#18 Flower tailcunt: Has tail-cunt, overdose.
-			if(target.hasTailCunt() && target.tailGenitalArg != GLOBAL.TYPE_FLOWER && target.statusEffectv3("Cerespirin") >= 1)
+			if (target.hasTailCunt() && target.tailGenitalArg != GLOBAL.TYPE_FLOWER && effect.value3 >= 1)
 				TFList[TFList.length] = 18;
 			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
@@ -149,7 +152,7 @@ package classes.Items.Transformatives
 				else if(select == 1)
 				{
 					
-					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_PLANT) || target.statusEffectv3("Cerespirin") >= 3)
+					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_PLANT) || effect.value3 >= 3)
 					{
 						var newSkinTone:String = RandomInCollection(plantSkinColor);
 						if(InCollection(target.skinTone, ["green", "verdant", "viridescent", "emerald", "olive"]) && rand(4) != 0) newSkinTone = target.skinTone;
@@ -169,7 +172,7 @@ package classes.Items.Transformatives
 				//#2 Leaf Hair: Not leaf hair, not tentacle hair.
 				else if(select == 2)
 				{
-					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_PLANT) || target.statusEffectv3("Cerespirin") >= 3)
+					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_PLANT) || effect.value3 >= 3)
 					{
 						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well.");
 						
@@ -187,7 +190,7 @@ package classes.Items.Transformatives
 				//#3 Tentacle Hair: Not leaf hair, not tentacle hair.
 				else if(select == 3)
 				{
-					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES) || target.statusEffectv3("Cerespirin") >= 3)
+					if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES) || effect.value3 >= 3)
 					{
 						if(target.hasHair()) msg += ParseText("Your [pc.hair] is falling out. Big, sad clumps of it, tumbling slowly to the ground. You stop and run a hand over your head, look in dozy confusion at the handful of [pc.hair] you painlessly come away with. Oh well.\n\n");
 						
@@ -455,7 +458,7 @@ package classes.Items.Transformatives
 				//#15 Bark Skin: Plant skin, masculine, any two of the following three = true: branch crown, moss beard, fruit cum.
 				else if(select == 15)
 				{
-					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_BARK) || target.statusEffectv3("Cerespirin") >= 5)
+					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_BARK) || effect.value3 >= 5)
 					{
 						var newBarkColor:String = RandomInCollection(plantBarkColor);
 						
@@ -553,7 +556,7 @@ package classes.Items.Transformatives
 					if(target.tailGenitalArgUnlocked(GLOBAL.TYPE_FLOWER))
 					{
 						var newTailGenitalColor:String = target.tailGenitalColor;
-						if(target.statusEffectv3("Cerespirin") >= 5 || target.tailGenitalColor == "") newTailGenitalColor = RandomInCollection(flowerColors);
+						if(effect.value3 >= 5 || target.tailGenitalColor == "") newTailGenitalColor = RandomInCollection(flowerColors);
 						
 						msg += ParseText("[pc.EachTail] twists and flexes widly, reacting to some sort of change. Quickly grabbing [pc.oneTail], you find the [pc.tailVagina] closes up on itself and balloons out until it looks very much like a plant bulb. Curious, you take a finger and gently rub along its lip. Like a reflex reaction, the tip swells and spreads out to reveal its new form. Beautiful " + newTailGenitalColor + " petals open and rearrange to become a lewdly-shaped flower. Finally, a dewy aroma escapes its opening, seemingly inviting a hungry cock to be milked... It seems <b>your cunt tail" + (target.tailCount == 1 ? " is capped with a pretty orchid" : "s are capped with pretty orchids") + " now!</b>");
 						
@@ -569,49 +572,43 @@ package classes.Items.Transformatives
 				}
 				totalTFs--;
 			}
+			
 			if(msg.length > 0) 
 			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Cerespirin drug has an effect....</u>";
+				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " <u>The Cerespirin drug has an effect....</u>";
 				kGAMECLASS.eventBuffer += msg;
 			}
+			
 			return;
 		}
 		
 		// Potentials for TFs
-		public function itemPlantTF(done:Boolean = false):void
+		public static function itemPlantTF(deltaT:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
-			var target:Creature = kGAMECLASS.chars["PC"];
+			var numProcs:int = 0;
+			numProcs = Math.floor((Math.min(deltaT, effect.minutesLeft) + effect.value4) / 40);
 			
-			// Every 20-40 mins, roll for a viable effect.
-			if((target.getStatusMinutes("Cerespirin") % 40) != 0) return;
+			effect.value4 = (effect.value4 + deltaT) - (numProcs * 40);
 			
-			//Cut from here and appended just before output at the bottom of plantMutations(target)
-			//kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Cerespirin drug has an effect....</u>";
+			if (effect.minutesLeft <= 0) numProcs++;
+			if (numProcs == 0) return;
 			
-			plantMutations(target);
+			plantMutations(target, numProcs, deltaT, effect);
 			
-			if(done)
+			if (effect.minutesLeft <= 0)
 			{
 				kGAMECLASS.eventBuffer += "\n\nThe Cerespirin drug is out of your system and has finally worn off.";
 			}
-			
-			//clearMenu();
-			//addButton(0, "Next", kGAMECLASS.mainGameMenu);
-		}
-		// Finish!
-		public function itemEndPlantTF():void
-		{
-			itemPlantTF(true);
 		}
 		
 		// Bye bye flower (unknown condition but hey it’s here so it ain’t permanent)
-		public function loseHairFlower(target:Creature, numFlowers:Number = 0):String
+		public static function loseHairFlower(target:Creature, numFlowers:Number = 0, effectLength:uint = 1):String
 		{
 			var msg:String = "";
 			if(numFlowers > 1) msg = "Your head orchids droop, lose their petals one by one, and finally wither from your scalp entirely. Slightly annoying they might have been flopping around near your ears, but you can’t help feel rather sad about your blooms’ passing.";
 			else msg = "Your head orchid droops, loses its petals one by one, and then finally withers from your scalp entirely. Slightly annoying it might have been flopping around near your ear, but you can’t help feel rather sad at your bloom’s passing.";
 			
-			return "\n\n" + kGAMECLASS.logTimeStamp("passive") + " " + msg;
+			return "\n\n" + kGAMECLASS.logTimeStamp("passive", effectLength) + " " + msg;
 		}
 		
 		//METHOD ACTING!

@@ -2,6 +2,7 @@ package classes.Items.Transformatives
 {
 	import classes.Engine.Interfaces.*;
 	import classes.GLOBAL;
+	import classes.StorageClass;
 	import classes.kGAMECLASS;
 	import classes.ItemSlotClass;
 	import classes.GameData.TooltipManager;
@@ -46,20 +47,16 @@ package classes.Items.Transformatives
 			version = _latestVersion;
 		}
 		
-		protected function rand(max: Number): Number
-		{
-			return int(Math.random() * max);
-		}
 		// Elven Ear check:
-		private function hasElvenEars(target:Creature):Boolean
+		private static function hasElvenEars(target:Creature):Boolean
 		{
 			return InCollection(target.earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_GABILANI);
 		}
 		// Physical Changes
-		private function minorGoblinMutations(target:Creature):void
+		private static function minorGoblinMutations(target:Creature, effect:StorageClass):void
 		{
 			var msg:String = "";
-			var totalTFs:Number = target.statusEffectv2("Goblinola Bar");
+			var totalTFs:Number = effect.value2;
 			if(totalTFs == 0) totalTFs = 1;
 			//Used to hold the TF we pull out of the array of effects
 			var select:int = 0;
@@ -357,26 +354,27 @@ package classes.Items.Transformatives
 			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 			return;
 		}
+		
 		//#5b Goblin face: Stage two happens 30 minutes after stage 1 ends, and the face type only changes when stage 2 triggers.
-		public function itemGoblinFaceTFGo(target:Creature):void
+		public static function itemGoblinFaceTF(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
-			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The goblinola bar has an effect....</u>";
+			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", maxEffectLength) + " <u>The goblinola bar has an effect....</u>";
 			// Transformation text (stage 2):
 			kGAMECLASS.eventBuffer += "\n\nFinally the pain in your face subsides, and you take a deep breath. You check to see what the damage is and find that your face has restructured itself. Your nose has grown longer and pointier, while your jaw has narrowed a fair bit giving your face a more angular appearance not unlike that of an upside down triangle. <b>You now have a gabilani face!</b>";
+			
 			// Actual face type change
 			target.faceType = GLOBAL.TYPE_GABILANI;
 			target.clearFaceFlags();
 			target.addFaceFlag(GLOBAL.FLAG_ANGULAR);
 			target.removeStatusEffect("Gabilani Face Change");
-			//clearMenu();
-			//(0,"Next",kGAMECLASS.mainGameMenu);
 		}
+		
 		// Sexual and Stat Changes and Perks
-		private function majorGoblinMutations(target:Creature):void
+		private static function majorGoblinMutations(target:Creature, effect:StorageClass):void
 		{
 			var msg:String = "";
 			//How many TFs? Max of 2.
-			var totalTFs:Number = Math.floor(target.statusEffectv2("Goblinola Bar")/2);
+			var totalTFs:Number = Math.floor(effect.value2 / 2);
 			if(totalTFs < 1) totalTFs = 1;
 			//Used for holding temporary garbage
 			var x:int = 0;
@@ -621,22 +619,27 @@ package classes.Items.Transformatives
 			return;
 		}
 		
-		// Potentials for TFs
-		public function itemGoblinTF(done:Boolean = false):void
+		public static function OnHourTF(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
 			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The goblinola bar has an effect....</u>";
 			
-			var target:Creature = kGAMECLASS.chars["PC"];
-			var oddsOfMajorTF:int = target.statusEffectv2("Goblinola Bar") * 20;
+			var totalHours:int = ((kGAMECLASS.minutes + Math.min(deltaT, maxEffectLength)) / 60);
+			if (effect.minutesLeft <= 0) totalHours++;
 			
-			if(oddsOfMajorTF >= rand(100) + 1)
+			var p:Number = effect.value2 * 20;
+			for (var i:int = 0; i < totalHours; i++)
 			{
-				majorGoblinMutations(target);
+				if (p >= rand(100) + 1)
+				{
+					majorGoblinMutations(target, effect);
+				}
+				else
+				{
+					minorGoblinMutations(target, effect);
+				}
 			}
-			else minorGoblinMutations(target);
 			
-			// Transformation effects end:
-			if(done)
+			if (effect.minutesLeft <= 0)
 			{
 				if(target.hasStatusEffect("Gabilani Face Change"))
 				{
@@ -645,19 +648,6 @@ package classes.Items.Transformatives
 				}
 				kGAMECLASS.eventBuffer += "\n\nYou notice that your stomach seems to have settled down now. <b>You’re unlikely to feel any more effects from the goblinola you ate earlier.</b>";
 			}
-			
-			//clearMenu();
-			//addButton(0, "Next", kGAMECLASS.mainGameMenu);
-		}
-		// Face Transformation:
-		public function itemGoblinFaceTF():void
-		{
-			itemGoblinFaceTFGo(kGAMECLASS.chars["PC"]);
-		}
-		// Finish!
-		public function itemEndGoblinTF():void
-		{
-			itemGoblinTF(true);
 		}
 		
 		//METHOD ACTING!
