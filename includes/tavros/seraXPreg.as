@@ -404,7 +404,7 @@ public function seraBreedResponse(arg:Array):void
 			output(" against the hot, twelve inch dick trapped between you. This draws a feral snarl out of her, humid, smoky vibrations sent down your throat; one hand deeply imprinted in your [pc.ass], she practically throws you into the back of the store, heels clacking, pausing only to grab some rattling metal out from underneath the counter.");
 			output("\n\nHer fingers find the lips of your [pc.vagina " + vag + "] in the corridor, and curling her fingers over your inner lips and around your [pc.clit " + vag + "] so that your [pc.femcum] is dripping freely and your breath is coming high and hard seems to make her raging lust unbearable. The succubus pushes you against the wall,");
 			if(pc.hasLowerGarment()) output(" rips down your [pc.lowerUndergarment],");
-			output(" hooks you up by your [pc.thighs] and takes you there and then, spearing her thick, urgently erect cock into your wet, unfurled pussy. Your [pc.ass] flattened against the cool, bland ceramisynth surface, Sera’s flat stomach batting against your " + (!pc.hasCock() ? "own" : "[pc.eachCock]") + " as she spreads your lips wide and drives her unyielding girth as deep into you as she can, hard thrusts of her curvy thighs that drives ecstasy mercilessly up your spine, making you grit your teeth and thrash back against her, clutching her tightly around the shoulders. She attacks you with her mouth wherever she can, pulling at your lip");
+			output(" hooks you up by your [pc.thighs] and takes you there and then, spearing her thick, urgently erect cock into your wet, unfurled pussy. Your [pc.ass] flattened against the cool, bland ceramisynth surface, Sera’s flat stomach batting against " + (!pc.hasCock() ? "your own" : "[pc.eachCock]") + " as she spreads your lips wide and drives her unyielding girth as deep into you as she can, hard thrusts of her curvy thighs that drives ecstasy mercilessly up your spine, making you grit your teeth and thrash back against her, clutching her tightly around the shoulders. She attacks you with her mouth wherever she can, pulling at your lip");
 			if(pc.hasErectNipples(0)) output(", then at your [pc.nipples] until they are pointed and tender");
 			else if(pc.hasFuckableNipples(0)) output(", slurping hungrily at your softened [pc.nipples], flicking at the tender insides with darts of her tongue");
 			else output(", then across your [pc.nipples] until they tingle with arousal");
@@ -738,8 +738,8 @@ public function seraSpawnPregnancyApproach(pregDays:Number = 0):Boolean
 // Sera Baby counting functions
 public function listSeraBabies(unnamed:Boolean = false):Array
 {
-		// Only check for unique Sera babies.
-		// Only babies that are 5 years and younger count.
+	// Only check for unique Sera babies.
+	// Only babies that are 5 years and younger count.
 	var babies:Array = listBabiesOfParent("SERA", unnamed, 0, (5 * 365));
 	
 	return babies;
@@ -816,13 +816,16 @@ public function seraAtNursery():Boolean
 {
 	if(pc.hasStatusEffect("Sera at Nursery") && (hours == 18 || (hours > 18 && hours < 21) || (hours == 21 && minutes <= 30))) return true;
 	
-	pc.removeStatusEffect("Sera at Nursery");
 	return false;
 }
 // Common room blurb
 public function seraNurseryCafeteriaBonus(btnSlot:int = 0):void
 {
-	if(!seraAtNursery()) return;
+	if(!seraAtNursery())
+	{
+		pc.removeStatusEffect("Sera at Nursery");
+		return;
+	}
 	
 	output("\n\nSera is parked behind a table on the older kid’s side, in the process of demolishing an evening meal.");
 	if(flags["MET_SERA_IN_NURSERY"] == undefined) output(" It takes you a moment to recognize her - she’s dressed in a shockingly mild jeans and blouse combo. Even her heels look fairly conservative today.");

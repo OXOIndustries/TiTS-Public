@@ -937,7 +937,7 @@ public function varmintDisappearChance(deltaT:uint, doOut:Boolean):void
 	// 1 - ((1199/1200)^minutes) to run
 	
 	// Calculate the probability and scale it to 1-1000 to play nice with our implementation of rand()
-	var runProbability = Math.round((1 - Math.pow(((runawayChance - 1) / runawayChance), deltaT)) * 1000);	
+	var runProbability:int = Math.round((1 - Math.pow(((runawayChance - 1) / runawayChance), deltaT)) * 1000);	
 	
 	if(rand(1000) < runProbability && eventQueue.indexOf(varmintDisappears) == -1)
 	{

@@ -136,6 +136,11 @@ public function nurserySpecialistRooms():Boolean
 	var numSpecials:int = 0;
 	var numSpecialsButtons:int = 0;
 
+	if(hasCuntsnakesInHatchery())
+	{
+		numSpecials += cuntsnakeHatceryBonus(numSpecialsButtons++, numSpecials);
+	}
+
 	if (ChildManager.ofType(GLOBAL.TYPE_VENUSPITCHER))
 	{
 		output("\n\nOne of the modular chambers has been opened up and filled with soil sourced directly from Mhen’ga, allowing for the absolute best growing conditions possible for your venus pitcher offspring. Somehow, Briget has managed to secure a naleen female onto the staff, who is currently slithering about the jungle-like environ making sure everything is picture-perfect - and guaranteeing that your planty offpsring will have someone native to play with as they develop.");
@@ -172,7 +177,7 @@ public function nurserySpecialistRooms():Boolean
 	if (ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN))
 	{
 		output("\n\nConnected to the main entrance via a pressurized airlock is a water-filled chamber, simulating a deep saltwater lake with a sandy island in its center. Though the rooms inside are pitch black, a camera feed inside has been set to night vision, showing your Water Princesses scuttling about, half-submerged and completely hidden in the dark waters. Your head nurse has hired on a dusky female nyrea from their homeworld to help oversee their development - a brief word with her reveals the huntress is well acquainted with the Queen of the Deep, and that the princesses’ mother sends her regards.");
-		addButton(numSpecials, "W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses.");
+		addButton(numSpecialsButtons, "W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses.");
 		numSpecials++;
 		numSpecialsButtons++;
 	}
@@ -304,16 +309,18 @@ public function nurseryComputerFacilities():void
 	author("Savin");
 
 	// Probably refactor this when we get more special types in
+	var hasCuntSnakes:Boolean = (hasCuntsnakesInHatchery());
 	var hasPitchers:Boolean = ChildManager.ofType(GLOBAL.TYPE_VENUSPITCHER);
 	var hasWaterQueen:Boolean = ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN);
 
-	if (!hasPitchers && !hasWaterQueen)
+	if (!hasCuntSnakes && !hasPitchers && !hasWaterQueen)
 	{
 		output("Your nursery is equipped with a special modular section, designed to be able to easily support unique alien biologies. If you ever have children that need non-standard living environments, the headmistress will requisition the funds and staff to support them.");
 	}
 	else
 	{
 		output("You currently have the following Specialist Rooms, designed to give your uniquely-needy offspring the conditions their alien biology requires to survive:\n");
+		if (hasCuntSnakes) output("\n<b>* Cunt Snake Hatchery and Terrarium</b>");
 		if (hasPitchers) output("\n<b>* Venus Pitcher Terrarium</b>");
 		if (hasWaterQueen) output("\n<b>* Water Strider Tank</b>")
 	}

@@ -2280,6 +2280,8 @@ public function processPennyEvents(deltaT:uint, doOut:Boolean):void
 
 public function processSeraEvents(deltaT:uint, doOut:Boolean):void
 {
+	seraLustGain(deltaT);
+	
 	if (deltaT >= 1440 || (hours < 18 && hours + Math.floor(deltaT / 60) >= 18))
 	{
 		var totalAttempts:int = 1;
@@ -2473,9 +2475,9 @@ public function processCuntTailEggs(deltaT:uint, doOut:Boolean):void
 	else
 	{
 		flags["CUNT_TAIL_PREGNANT_TIMER"] -= ((minutes + deltaT) / 60);
-		if (flags["CUNT_TAIL_PREGNANT_TIMER"] <= 1)
+		if (flags["CUNT_TAIL_PREGNANT_TIMER"] <= 0)
 		{
-			flags["CUNT_TAIL_PREGNANT_TIMER"] = 0;
+			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
 			if (eventQueue.indexOf(giveBirthThroughCuntTail) == -1) eventQueue.push(giveBirthThroughCuntTail);
 		}
 	}

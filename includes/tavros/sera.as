@@ -50,6 +50,8 @@ public function seraBonusFunction():Boolean
 	}
 	else
 	{
+		pc.removeStatusEffect("Sera at Nursery");
+		
 		if(flags["SERA_INCH_STEAL"] != undefined && ((flags["SERA_INCH_STEAL"] > 0 && flags["SERA_CREATE_VAG"] != undefined) || flags["SERA_INCH_STEAL"] >= 5) && !pc.hasStatusEffect("Sera's TailCock Cooldown") && rand(2) == 0)
 		{
 			showSera();
