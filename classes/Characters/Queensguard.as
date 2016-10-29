@@ -188,8 +188,8 @@
 			this.vaginas[0].hymen = false;
 			this.vaginalVirgin = false;
 			this.analVirgin = false;
-			createStatusEffect("Force Male Gender");
-			//this.createStatusEffect("Force Fem Gender");
+			//createStatusEffect("Force Male Gender");
+			createStatusEffect("Force Fem Gender");
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
 			isUniqueInFight = true;

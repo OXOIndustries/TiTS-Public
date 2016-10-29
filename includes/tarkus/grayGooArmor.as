@@ -77,6 +77,7 @@ public function deck13MakeGooII():void
 	
 	output("<b>Enter the Gray Goo’s name:</b>");
 	this.displayInput();
+	output("\n\n\n");
 
 	clearMenu();
 	addButton(0, "Next", nameThaGoo);
@@ -87,20 +88,20 @@ public function nameThaGoo():void
 	if (userInterface.textInput.text.length == 0)
 	{
 		deck13MakeGooII();
-		output("\n\n\n<b>You must enter a name.</b>");
+		output("<b>You must enter a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if (hasIllegalInput(userInterface.textInput.text))
 	{
 		deck13MakeGooII();
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if (userInterface.textInput.text.length > 14)
 	{
 		deck13MakeGooII();
-		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
+		output("<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
 

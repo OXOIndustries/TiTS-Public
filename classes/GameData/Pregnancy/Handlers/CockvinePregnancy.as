@@ -140,6 +140,7 @@ package classes.GameData.Pregnancy.Handlers
 			kGAMECLASS.flags["COCKVINE_SEEDLING_CAPTURED"] = 1;
 			StatTracking.track("pregnancy/cockvine seedlings captured", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			pData.reset();

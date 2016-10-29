@@ -109,6 +109,8 @@
 	prepChar(justUpdate, "ILARIA", Ilaria);
 	prepChar(justUpdate, "WULFE", Siegwulfe);
 	prepChar(justUpdate, "BUSKY", Busky);
+	prepChar(justUpdate, "KALLY", Kally);
+	prepChar(justUpdate, "DRLESSAU", DrLessau);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)

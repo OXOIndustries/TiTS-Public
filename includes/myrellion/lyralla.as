@@ -605,7 +605,7 @@ public function juroXLyrallPartII():void
 	output("\n\nHe swallows and smiles fondly at the four-armed woman. <i>“I’d have to make sure you had plenty to eat, because there is no way I’m giving up having this for lunch.”</i> Juro kisses one of the leaking teats, running a surprisingly long and dexterous tongue over the surrounding areola to gather up the rogue trickles. The surrounding breastflesh is left gleaming from the impromptu spit-shine, and her other nipple has sympathetically engorged, jutting almost a full inch forward. You can only assume that it’s matching the one in Juro’s maw.");
 	output("\n\nThe myr is busy leaning against the wall with her mouth open to reply, softly moaning as her furry mate begins to nurse. She pinches her spare nipple, squeezing the swollen thing shut before it begins to gush. Juro’s throat is bobbing as he swallows, the gentle sounds of his sucking barely loud enough to reach your [pc.ears].");
 	output("\n\nThe big-balled diplomat tilts his head to look at Lyralla sidelong, letting the amber ambrosia slow so that he can talk. <i>“Whatever happens, we have each other right now, and I wouldn’t give it up for the whole universe.”</i> He bucks his hips forward, thrusting through three hands made slick by fragrant pre-cum, and she lets him, guiding him to the slippery gash hanging between her thighs. She has her abdomen pointed down, curling forward so that the shorter male can push into the feminine entrance at the end of it. Paired gasps of pleasure fill the air, one muffled by a mouth-filling tit, as he slips inside her.");
-	output("\n\nYou can’t see the penetration too well, but it’s clear from the way his hips slowly grind forward that he didn’t ram it home all at once. He’s pushing forward a few inches at a time, then pausing and wiggling slightly to prepare for her for the next rounded bulge on his length. The distinctive tail that all kui-tan bear twitches from side to side, flailing faster the further inside he gets.");
+	output("\n\nYou can’t see the penetration too well, but it’s clear from the way his hips slowly grind forward that he didn’t ram it home all at once. He’s pushing forward a few inches at a time, then pausing and wiggling slightly to prepare her for the next rounded bulge on his length. The distinctive tail that all kui-tan bear twitches from side to side, flailing faster the further inside he gets.");
 	processTime(3);
 	pc.lust(5);
 	clearMenu();
@@ -777,7 +777,7 @@ public function askLyrallaForAPussyPass():void
 	//Nice + Mischiev
 	else if(pc.isNice() || pc.isMischievous())
 	{
-		output("\n\n<i>“Thank’s for the warning. It seems like everywhere I go, everyone’s a gone a little sex-crazy.");
+		output("\n\n<i>“Thanks for the warning. It seems like everywhere I go, everyone’s a gone a little sex-crazy.");
 		if(pc.isMischievous()) output(" There must be something in the air out here on the rim!");
 		output(" The last fringe world I explored had ");
 		//sexbots unlocked

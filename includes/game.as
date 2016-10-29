@@ -798,26 +798,8 @@ public function sleep(outputs:Boolean = true):void {
 	}
 	if(outputs)
 	{
-		if ((pc.XPRaw >= pc.XPMax()) && pc.level < 8 && flags["LEVEL_UP_AVAILABLE"] == undefined)
-		{
-			(pc as PlayerCharacter).unspentStatPoints += 13;
-			(pc as PlayerCharacter).unclaimedClassPerks += 1;
-			(pc as PlayerCharacter).unclaimedGenericPerks += 1;
-			
-			pc.XPRaw -= pc.XPMax();
-			pc.level++;
-			pc.maxOutHP();
-			
-			// Enable the button
-			userInterface.levelUpButton.Activate();
-			
-			eventBuffer += "\n\n" + logTimeStamp("good") + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+		eventBufferXP();
 		}
-		else if (pc.level == 8)
-		{
-			eventBuffer += "\n\n" + logTimeStamp("good") + " <b>You've already reached the current maximum level. It will be raised in future builds.</b>";
-		}
-	}
 	if(InShipInterior(pc))
 	{
 		if(outputs)
@@ -855,9 +837,6 @@ public function sleep(outputs:Boolean = true):void {
 		mimbraneSleepEvents();
 		if(InShipInterior(pc)) grayGooSpessSkype();
 	}
-	
-	//remove status effects
-	pc.removeStatusEffect("Roshan Blue");
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
@@ -917,8 +896,104 @@ public function sleepHeal():void
 	}
 	if(pc.isSore()) soreChange(-3);
 	pc.removeStatusEffect("Jaded");
+	pc.removeStatusEffect("Roshan Blue");
 	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
+}
+
+public function genericSleep(baseTime:int = 480):void
+{
+	var totalTime:int = baseTime + (rand(baseTime / 3) - (baseTime / 6));
+	
+	eventBufferXP();
+	sleepHeal();
+	processTime(totalTime);
+}
+
+public function eventBufferXP():void
+{
+	if (pc.level >= pc.levelEnd()) return;
+	
+	if ((pc.XPRaw >= pc.XPMax()) && pc.level < pc.levelMax() && flags["LEVEL_UP_AVAILABLE"] == undefined)
+	{
+		(pc as PlayerCharacter).unspentStatPoints += 13;
+		(pc as PlayerCharacter).unclaimedClassPerks += 1;
+		(pc as PlayerCharacter).unclaimedGenericPerks += 1;
+		
+		pc.XPRaw -= pc.XPMax();
+		pc.level++;
+		pc.maxOutHP();
+		
+		// Enable the button
+		userInterface.levelUpButton.Activate();
+		
+		eventBuffer += "\n\n" + logTimeStamp("good") + " A nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+	}
+	else if (pc.level >= pc.levelMax())
+	{
+		eventBuffer += "\n\n" + logTimeStamp("good") + " <b>You’ve already reached the current maximum level. It will be raised in future builds.</b>";
+	}
+}
+public function earnXP(XPGain:Number = 0, newline:Boolean = true):void
+{
+	//Roshan Blue gives 25% more xp and lowers willpower by 30% until next rest
+	if (XPGain > 0 && pc.hasStatusEffect("Roshan Blue")) XPGain += Math.floor(XPGain * 0.25);
+	
+	/* DISABLED WITH NEW XP UPDATE
+	=======================================
+	// Add up XP, but don't permit the players current XP to overcap (unless at level end-cap)
+	if (XPGain > 0 && (XPGain + pc.XP()) > pc.XPMax() && pc.level >= pc.levelEnd())
+	{
+		XPGain = pc.XPMax() - pc.XP();
+	}
+	=======================================*/
+	
+	// No XP
+	if (XPGain == 0)
+	{
+		output((!newline ? " " : "\n\n") + "0 XP gained!");
+	}
+	// Earning XP
+	else if (XPGain > 0)
+	{
+		pc.XP(XPGain);
+		output((!newline ? " " : "\n\n") + XPGain + " XP gained!");
+	}
+	// Spending XP?
+	else if (XPGain < 0)
+	{
+		pc.XP(XPGain);
+		output((!newline ? " " : "\n\n") + Math.abs(XPGain) + " XP spent!");
+	}
+	
+	// Limit notification
+	if (pc.XP() >= pc.XPMax()) output("\n" + outputMaxXP());
+}
+public function rewardXP(XPBuffer:Number = 0):void
+{
+	// Scale XP to PC level.
+	var XPGain:Number = Math.round(XPBuffer * pc.level);
+	
+	earnXP(XPGain);
+}
+public function outputMaxXP():String
+{
+	var msg:String = "";
+	
+	msg += "<b>";
+	msg += "Maximum XP attained!";
+	if(pc.level < pc.levelMax())
+	{
+		msg += " You need to level up to continue to progress.";
+		if(pc.level <= pc.levelMin()) msg += "\nFind a bed to sleep on in order to level up (like on your ship).";
+	}
+	else if(pc.level < pc.levelEnd())
+	{
+		msg += " Your XP will continue to pool until the next level becomes available.";
+	}
+	msg += "</b>";
+	
+	return msg;
 }
 
 public function shipMenu():Boolean {
@@ -983,20 +1058,18 @@ public function flyMenu():void {
 	output("Where do you want to go?");
 	clearMenu();
 	//TAVROS
-	if(shipLocation != "TAVROS HANGAR") 
-		addButton(0, "Tavros", flyTo, "Tavros");
-	else addDisabledButton(0, "Tavros");
+	if(shipLocation != "TAVROS HANGAR") addButton(0, "Tavros", flyTo, "Tavros");
+	else addDisabledButton(0, "Tavros", "Tavros Station", "You’re already here.");
 	//MHEN'GA
-	if(shipLocation != "SHIP HANGAR") 
-		addButton(1, "Mhen'ga", flyTo, "Mhen'ga");
-	else addDisabledButton(1, "Mhen'ga");
+	if(shipLocation != "SHIP HANGAR") addButton(1, "Mhen'ga", flyTo, "Mhen'ga");
+	else addDisabledButton(1, "Mhen'ga", "Mhen'ga", "You’re already here.");
 	//TARKUS
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 	{
 		if(shipLocation != "201") addButton(2, "Tarkus", flyTo, "Tarkus");
-		else addDisabledButton(2, "Tarkus", "You’re already here.");
+		else addDisabledButton(2, "Tarkus", "Tarkus", "You’re already here.");
 	}
-	else addDisabledButton(2, "Locked", "Locked", "You need to find your father’s probe on Mhen’ga to get this planet’s coordinates.");
+	else addDisabledButton(2, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	//MYRELLION
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
@@ -1012,10 +1085,10 @@ public function flyMenu():void {
 		else
 		{
 			if (shipLocation != "2I7") addButton(3, "Myrellion", flyTo, "MyrellionDeepCaves");
-			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
+			else addDisabledButton(3, "Myrellion", "Myrellion - Deep Caves", "You’re already here.");
 		}
 	}
-	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
+	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
@@ -1023,7 +1096,7 @@ public function flyMenu():void {
 		if(shipLocation != "500") addButton(5, "New Texas", flyTo, "New Texas");
 		else addDisabledButton(5, "New Texas", "New Texas", "You’re already here.");
 	}
-	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//POE A
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
@@ -1031,15 +1104,21 @@ public function flyMenu():void {
 		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyTo, "Poe A");
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
-	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
+	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//UVETO
 	if (uvetoUnlocked())
 	{
 		if (shipLocation != "UVS F15") addButton(7, "Uveto", flyTo, "Uveto");
-		else addDisabledButton(7, "Uveto", "Uvto", "You’re already here.");
+		else addDisabledButton(7, "Uveto", "Uveto Station", "You’re already here.");
 	}
-	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
-	
+	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+	//Canadia Station
+	if(canadiaUnlocked())
+	{
+		if (shipLocation != "CANADA1") addButton(8, "Canadia", flyTo, "Canadia");
+		else addDisabledButton(8, "Canadia", "Canadia Station", "You’re already here.");
+	}
+	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");	
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
@@ -1138,6 +1217,12 @@ public function flyTo(arg:String):void {
 		currentLocation = "UVS F15";
 		flyToUveto();
 		interruptMenu = true;
+	}
+	else if (arg == "Canadia")
+	{
+		shipLocation = "CANADA1";
+		currentLocation = "CANADA1";
+		flyToCanadia();
 	}
 	
 	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
@@ -1730,6 +1815,12 @@ public function variableRoomUpdateCheck():void
 		rooms["UVI P30"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["UVI P30"].removeFlag(GLOBAL.NPC);
 	}
+	
+	
+	/* MISC */
+	
+	// Kiro's Airlock
+	kirosShipAirlockUpdate();
 }
 
 public function processTime(deltaT:uint, doOut:Boolean = true):void
@@ -2491,6 +2582,63 @@ public function processEmmyEvents(deltaT:uint, doOut:Boolean, totalDays:uint):vo
 	}
 }
 
+	//Queue up dumbfuck procs
+	if(pc.hasStatusEffect("Dumbfuck"))
+	{
+		//Got some cums to pile oN?
+		if(pc.hasStatusEffect("Dumbfuck Orgasm Procced"))
+		{
+			//No sneezes set up yet. Start dis shit.
+			if(!pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
+			{
+				pc.createStatusEffect("Dumbfuck Orgasm Queued", pc.statusEffectv1("Dumbfuck Orgasm Procced"), 0, 0, 0, true, "", "", false, 0);
+			}
+			//Already got some. PILE ON!
+			else pc.addStatusValue("Dumbfuck Orgasm Queued",1,pc.statusEffectv1("Dumbfuck Orgasm Procced"));
+			//Clear out the holding status now that we're cued up for sneezin'
+			pc.removeStatusEffect("Dumbfuck Orgasm Procced");
+		}
+		//Add to event queue so long as it isn't on there already
+		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
+		{
+			if(eventQueue.indexOf(procDumbfuckStuff) == -1) eventQueue.push(procDumbfuckStuff);
+		}
+	}
+	
+	// Don't send mails to the player whilst aboard the kashima
+	if (flags["KASHIMA_STATE"] != 1)
+	{
+		//NEVRIE MAIL!
+		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
+		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
+		if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
+
+		//Emmy Mail
+		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+		//Emmy mail stage 2 START
+		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
+		//Emmy mail set up for sextoy go
+		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (GetGameTimestamp() - (100 * 60))) emmyMailGet3();
+		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
+
+		//Saendra Mail
+		if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
+		//Anno Mail
+		if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
+		//KIRO FUCKMEET
+		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined) { goMailGet("kirofucknet"); kiroFuckNetBonus(); }
+		//KIRO DATEMEET
+		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && rand(10) == 0) { goMailGet("kirodatemeet"); }
+		trySendStephMail();
+		
+		//Other Email Checks!
+		if (rand(100) == 0) emailRoulette();
+	}
+	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
+	variableRoomUpdateCheck();
+	updatePCStats();
+}
+
 public function racialPerkUpdateCheck():void
 {
 	var msg:String = "";
@@ -2760,6 +2908,7 @@ public function emailRoulette():void
 			eventBuffer += "\n\n<i>" + mailContent + "</i>";
 			eventBuffer += "\n\nMmm, that sounds yummy!";
 			pc.lust(20);
+			MailManager.readEntry("fatloss", GetGameTimestamp());
 		}
 		if(mailKey == "estrobloom" && !pc.hasKeyItem("Coupon - Estrobloom"))
 		{
@@ -2772,6 +2921,7 @@ public function emailRoulette():void
 			eventBuffer += "\n\n<i>" + mailContent + "</i>";
 			eventBuffer += "\n\nYou’re not quite sure you understood all that, but your dick did.";
 			pc.lust(20);
+			MailManager.readEntry("hugedicktoday", GetGameTimestamp());
 		}
 	}
 }

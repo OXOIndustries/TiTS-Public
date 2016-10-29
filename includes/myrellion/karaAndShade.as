@@ -181,7 +181,7 @@ public function goOverToKaraSloot():void
 	processTime(3);
 	//[Okay] [Not Interested] [Why?]
 	addButton(0,"Okay",helpDisKaraSlut,undefined,"Okay","Help Kara.");
-	addButton(1,"Not Interested",notInterestedSavinYourOCsCreepMeOut,undefined,"Not Interested","Refuse her request.");
+	addButton(1,"NotInterested",notInterestedSavinYourOCsCreepMeOut,undefined,"Not Interested","Refuse her request.");
 	addButton(2,"Why?",whyShouldIHelpDisFukkinSavinWithHisQuest,undefined,"Why?","Why does she need you to distract somebody? What’re you getting yourself into here?");
 }
 
@@ -200,7 +200,7 @@ public function whyShouldIHelpDisFukkinSavinWithHisQuest():void
 	//Same menu minus why?
 	clearMenu();
 	addButton(0,"Okay",helpDisKaraSlut,undefined,"Okay","Help Kara.");
-	addButton(1,"Not Interested",notInterestedSavinYourOCsCreepMeOut,undefined,"Not Interested","Refuse her request.");
+	addButton(1,"NotInterested",notInterestedSavinYourOCsCreepMeOut,undefined,"Not Interested","Refuse her request.");
 	addDisabledButton(2,"Why?","Why?","Are you serious? I just explained that to you.");
 }
 

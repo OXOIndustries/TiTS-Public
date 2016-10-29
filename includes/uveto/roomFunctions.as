@@ -929,3 +929,19 @@ public function uvetoStationLoungeFunc():Boolean
 
 	return false;
 }
+
+public function drLessauBonus():Boolean
+{
+	if (flags["MET_DR_LESSAU"] == undefined)
+	{
+		output("\n\nBehind the desk is a bizarre mishmash of cat, serpent, bull, and some sort of feathered beast. He doesn’t look like any alien species you recognize. Whatever he is, your entrance prompts him to look up.");
+		addButton(0,"Chimera", drLessauIPresume)
+	}
+	else
+	{
+		output("\n\nDr. Lessau is here as usual, the chimera tapping away at his terminal until he sees you come in");
+		addButton(0,"Lessau", drLessauIPresume)
+	}
+	
+	return false;
+}

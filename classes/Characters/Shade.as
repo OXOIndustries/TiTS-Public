@@ -218,7 +218,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "SHADE";
+			return "SHADE_COMBAT";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

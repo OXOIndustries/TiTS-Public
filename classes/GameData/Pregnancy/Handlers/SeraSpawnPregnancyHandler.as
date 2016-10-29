@@ -218,6 +218,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/sera kids", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			pData.reset();
 		}
@@ -229,6 +230,7 @@ package classes.GameData.Pregnancy.Handlers
 			var babyList:Array = seraSpawnChildren(mother, pData.pregnancyQuantity);
 			for(var i:int = 0; i < babyList.length; i++)
 			{
+				babyList[i].BornTimestamp = useBornTimestamp;
 				ChildManager.addChild(babyList[i]);
 			}
 			
@@ -236,6 +238,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			StatTracking.track("pregnancy/sera kids", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			
 			pData.reset();
 			
@@ -256,11 +259,11 @@ package classes.GameData.Pregnancy.Handlers
 				
 				c.RaceType = pregnancyChildRace;
 				// 50% Male or Female
-				if(rand(2) == 0) c.NumMale = 1;
-				else c.NumFemale = 1;
+				if(rand(2) == 0) { c.NumMale = 1; c.NumFemale = 0; c.NumIntersex = 0; c.NumNeuter = 0; }
+				else { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
 				
 				// Race modifier (if different races)
-				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace);
+				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace, ((mother is PlayerCharacter) ? true : false));
 				
 				// Adopt mother's colors at random (if applicable):
 				if(rand(2) == 0) c.skinTone = traitChar.skinTone;
@@ -268,8 +271,10 @@ package classes.GameData.Pregnancy.Handlers
 				if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
 				if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
 				//if(rand(2) == 0) c.hairColor = traitChar.hairColor;
-				//if(rand(2) == 0) c.scaleColor = traitChar.scaleColor;
 				//if(rand(2) == 0) c.furColor = traitChar.furColor;
+				//if(rand(2) == 0) c.scaleColor = traitChar.scaleColor;
+				//if(rand(2) == 0) c.chitinColor = traitChar.scaleColor;
+				//if(rand(2) == 0) c.featherColor = traitChar.furColor;
 				
 				c.MaturationRate = childMaturationMultiplier;
 				c.BornTimestamp = kGAMECLASS.GetGameTimestamp();

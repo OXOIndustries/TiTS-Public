@@ -18,14 +18,15 @@ public function initVesperiaRoom():void
 	
 	rooms["CANADA1"] = new RoomClass(this);
 	rooms["CANADA1"].roomName = "LANDING\nPAD";
-	rooms["CANADA1"].description = "One of Canadia Station's dozens of landing pads stretches out ahead of you, seemingly exposed to the cold, endless void of space. A shimmering haze holds in an immense dome of breathable air over the area, surrounding everything from your ship to the station doors in heated safety. Spacecraft of all makes and models are lined up along one side of the polished deck, flanked by hovering support vehicles and the station's mechanics. Shadows from the larger berths, where military vessels and commercial freighters dock, occasionally flit across your view.";
+	rooms["CANADA1"].description = "One of Canadia Station's dozens of landing pads stretches out ahead of you, seemingly exposed to the cold, endless void of space. A shimmering haze holds in an immense dome of breathable air over the area, surrounding everything from your ship to the station doors in heated safety. Spacecraft of all makes and models are lined up along one side of the polished deck, flanked by hovering support vehicles and the station's mechanics. Shadows from the larger berths, where military vessels and commercial freighters dock, occasionally flit across your view as the station spins.";
 	rooms["CANADA1"].planet = "CANADIA STATION";
 	rooms["CANADA1"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA1"].southExit = "CANADA2";
 	rooms["CANADA1"].moveMinutes = 1;
-	rooms["CANADA1"].runOnEnter = undefined;
+	rooms["CANADA1"].runOnEnter = canadiaLandingPadBonus;
 	rooms["CANADA1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["CANADA1"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["CANADA1"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["CANADA2"] = new RoomClass(this);
 	rooms["CANADA2"].roomName = "\nAIRLOCK";
@@ -35,8 +36,9 @@ public function initVesperiaRoom():void
 	rooms["CANADA2"].northExit = "CANADA1";
 	rooms["CANADA2"].southExit = "CANADA3";
 	rooms["CANADA2"].moveMinutes = 1;
-	rooms["CANADA2"].runOnEnter = undefined;
+	rooms["CANADA2"].runOnEnter = canadiaAirlockBonus;
 	rooms["CANADA2"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADA2"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["CANADA3"] = new RoomClass(this);
 	rooms["CANADA3"].roomName = "ACCESS\nCORRIDOR BETA";
@@ -46,8 +48,9 @@ public function initVesperiaRoom():void
 	rooms["CANADA3"].northExit = "CANADA2";
 	rooms["CANADA3"].westExit = "CANADA4";
 	rooms["CANADA3"].moveMinutes = 1;
-	rooms["CANADA3"].runOnEnter = undefined;
+	rooms["CANADA3"].runOnEnter = canadiaHallwayBonus;
 	rooms["CANADA3"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADA3"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["CANADA4"] = new RoomClass(this);
 	rooms["CANADA4"].roomName = "ACCESS\nCORRIDOR BETA";
@@ -57,8 +60,9 @@ public function initVesperiaRoom():void
 	rooms["CANADA4"].eastExit = "CANADA3";
 	rooms["CANADA4"].southExit = "CANADA5";
 	rooms["CANADA4"].moveMinutes = 1;
-	rooms["CANADA4"].runOnEnter = undefined;
+	rooms["CANADA4"].runOnEnter = outsideCanadiaBarBonus;
 	rooms["CANADA4"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADA4"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["CANADA5"] = new RoomClass(this);
 	rooms["CANADA5"].roomName = "BAR\nLOUNGE";
@@ -70,8 +74,10 @@ public function initVesperiaRoom():void
 	rooms["CANADA5"].southExit = "CANADA7";
 	//rooms["CANADA5"].westExit = "";
 	rooms["CANADA5"].moveMinutes = 1;
-	rooms["CANADA5"].runOnEnter = undefined;
+	rooms["CANADA5"].runOnEnter = kallyBonusRoomTexts;
 	rooms["CANADA5"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADA5"].addFlag(GLOBAL.PUBLIC);
+	rooms["CANADA5"].addFlag(GLOBAL.BAR);
 
 	rooms["CANADA6"] = new RoomClass(this);
 	rooms["CANADA6"].roomName = "\nRESTROOM";
@@ -85,6 +91,7 @@ public function initVesperiaRoom():void
 	rooms["CANADA6"].moveMinutes = 1;
 	rooms["CANADA6"].runOnEnter = undefined;
 	rooms["CANADA6"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADA6"].addFlag(GLOBAL.PRIVATE);
 
 	rooms["CANADA7"] = new RoomClass(this);
 	rooms["CANADA7"].roomName = "BATHING\nAREA";
@@ -92,12 +99,14 @@ public function initVesperiaRoom():void
 	rooms["CANADA7"].planet = "CANADIA STATION";
 	rooms["CANADA7"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA7"].northExit = "CANADA5";
-	//rooms["CANADA7"].eastExit = "";
+	rooms["CANADA7"].eastExit = "CANADA8";
 	//rooms["CANADA7"].southExit = "";
 	rooms["CANADA7"].westExit = "CANADA9";
 	rooms["CANADA7"].moveMinutes = 1;
 	rooms["CANADA7"].runOnEnter = undefined;
 	rooms["CANADA7"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADA7"].addFlag(GLOBAL.POOL);
+	rooms["CANADA7"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["CANADA8"] = new RoomClass(this);
 	rooms["CANADA8"].roomName = "KIRA'S\nROOM";
@@ -111,10 +120,12 @@ public function initVesperiaRoom():void
 	rooms["CANADA8"].moveMinutes = 1;
 	rooms["CANADA8"].runOnEnter = undefined;
 	rooms["CANADA8"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADA8"].addFlag(GLOBAL.PRIVATE);
+	rooms["CANADA8"].addFlag(GLOBAL.BED);
 
 	rooms["CANADA9"] = new RoomClass(this);
-	rooms["CANADA9"].roomName = "\n";
-	rooms["CANADA9"].description = "";
+	rooms["CANADA9"].roomName = "RENTED\nROOM";
+	rooms["CANADA9"].description = "A cushy-looking bed dominates the room, supported by a rough-hewn frame, varnished to preserve its rustic charm for all eternity. A dresser provides ample storage space as well as a home for numerous decorative knick-knacks. One that stands out is a plush beaver with a ridiculous pair of wood-carved antlers and a flat, fuzzy tail meant to serve as a coaster. You're pretty sure it's teeth would work as a bottle opener in a pinch as well. All the standard amenities one would expect are here with the added bonus of a bathroom so well equipped it would look more at home in a luxury hotel.";
 	rooms["CANADA9"].planet = "CANADIA STATION";
 	rooms["CANADA9"].system = "SYSTEM: LIBERTERIA";
 	//rooms["CANADA9"].northExit = "";
@@ -124,4 +135,7 @@ public function initVesperiaRoom():void
 	rooms["CANADA9"].moveMinutes = 1;
 	rooms["CANADA9"].runOnEnter = undefined;
 	rooms["CANADA9"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADA9"].addFlag(GLOBAL.PRIVATE);
+	rooms["CANADA9"].addFlag(GLOBAL.BED);
+	rooms["CANADA9"].addFlag(GLOBAL.OBJECTIVE);
 }

@@ -814,7 +814,7 @@ public function blowjobVictoryFromSexbot():void
 	if(pc.biggestCockLength() >= 16) output("Despite the size of your trunk-like cock, it");
 	else output("It");
 	output(" displays no problem swallowing every inch into the compressed, blissful gel its serene facade conceals and you begin to lose yourself in your own urgent rhythm");
-	if(pc.balls > 0) output(", your [pc.balls] slapping into its " + enemy.mf("strong","elegant chin") + ". As you speed up it makes the slightly higher noise again and you feel its internal systems shift around like ball bearings beneath the smooth gel-plastic, only intensifying the pleasure inundating your [pc.cockBiggest].");
+	if(pc.balls > 0) output(", your [pc.balls] slapping into its " + enemy.mf("strong","elegant") + " chin. As you speed up it makes the slightly higher noise again and you feel its internal systems shift around like ball bearings beneath the smooth gel-plastic, only intensifying the pleasure inundating your [pc.cockBiggest].");
 	//Nasty: 
 	if(pc.isAss()) 
 	{
@@ -835,7 +835,8 @@ public function blowjobVictoryFromSexbot():void
 	output(" You go on and on, gripping the sexbot in place as you surge line after line of your thick seed into it. You think you hear a warning beep after about a minute of orgasm but you can’t stop – there is only the throbbing imperative to completely empty your over-juiced ");
 	if(pc.balls == 1) output("ball");
 	else if(pc.balls > 1) output("balls");
-	else output("[pc.cockNounSimple " + pc.biggestCockIndex() + "] into the receptacle in front of you.");
+	else output("[pc.cockNounSimple " + pc.biggestCockIndex() + "]");
+	output(" into the receptacle in front of you.");
 
 	output("\n\nFinally, you come to a halt and withdraw your pleasantly aching cock from the sexbot’s mouth. As your [pc.cockHeadBiggest] pulls outwards it tightens its now still lips slightly, wiping away the last of your ooze, leaving you gleaming clean. It looks up at you from its kneeling position at you blandly.");
 	if(pc.biggestCockLength() >= 16) output(" Its latex abdomen bulges and makes stressed creaking noises.");

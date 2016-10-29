@@ -1,7 +1,8 @@
 ﻿//Bar Preview Blurb
 public function kiroSetup(button:int = 0):void
 {
-	if(kiro.ballDiameter() <= 7) output("\n\nThe tanuki-girl pirate you saved, Kiro, is here sipping on a drink and thumbing idly through a data slate.");
+	if(currentLocation == "CANADA5" && flags["KIRO_MET_KALLY"] != undefined) output("\n\nThe tanuki-girl pirate you saved is here, keeping an eye on her sister's patrons, ready to crack some heads at a moment's notice.");
+	else if(kiro.ballDiameter() <= 7) output("\n\nThe tanuki-girl pirate you saved, Kiro, is here sipping on a drink and thumbing idly through a data slate.");
 	else if(kiro.ballDiameter() <= 14) output("\n\nThe tanuki-girl pirate you saved, Kiro, is here, casting lecherous looks over everyone else in the bar. She spots you and waves you over, but the look in her eyes is more hungry than friendly.");
 	else output("\n\nThe tanuki-girl pirate you saved, Kiro, is here, looking lustily around the bar. Her swollen balls are obvious to anyone who looks. She very clearly needs some relief.");
 	addButton(button,"Kiro",approachKiroAtTheBar,undefined,"Kiro","That tanuki pirate with the giant balls you rescued is here.");
@@ -78,6 +79,37 @@ public function approachKiroAtTheBar():void
 		addButton(0,"Sure",kiroIntroductoryScene,true);
 		addButton(1,"No Thanks",kiroIntroductoryScene,false);
 	}
+	//Kally's Bar is speciul
+	if(currentLocation == "CANADA5" && flags["KIRO_MET_KALLY"] != undefined) 
+	{
+		//Kiro is always presentable for her sis!
+		kiro.ballSizeRaw = 10;
+		if(flags["KIRO_GF"] != undefined)
+		{
+			output("Kiro’s face lights up at your approach. <i>“There you are, [pc.boyGirl]friend. Where have you been? Lost in some ");
+			if(rand(5) == 0) output("galotian’s cunt");
+			else if(rand(4) == 0) output("myr’s plus-sized pussy");
+			else if(rand(3) == 0) output("daynar’s eyes");
+			else if(rand(2) == 0) output("leithan’s legs");
+			else output("more family drama");
+			output("?”</i> Pulling you into a hug, she gives you a peck on the cheek. <i>“Just make sure you toss me an invite when you get the chance, hero.”</i> Her grin is as contagious as it is mischievous.");
+		}
+		//Non-BF
+		else
+		{
+			output("<i>“Hey there, [pc.name],”</i> Kiro calls, lifting a drink in your direction. <i>“Always nice to see a friendly face in here.”</i> She sighs heavily. <i>“Now if I could just get the scum-sucking locals to stop looking at Kally like she’s a piece of meat.”</i> Possessive determination washes over her face. <i>“Nobody’s fucking the best goddamn sister in the galaxy without my okay.”</i>");
+			if(kiroKallyThreesomes() > 0 || flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined)
+			{
+				output("\n\nYou scratch the back of your neck nervously.");
+				output("\n\n<i>“");
+				if(flags["KIRO_GF"] != undefined) output("Or my [pc.boyGirl]friend’s okay.");
+				else output("[pc.name], if half her suitors were as great as you, I’d be able to relax.");
+				output("”</i> Kiro flashes her sharp fangs in your direction. <i>“If seeing my sister bouncing around has you all worked up, I know a big, comfy ship you could blow off some steam in...”</i>");
+			}
+		}
+		kiroMenu();
+		return;
+	}
 	//Orgy prompt!
 	else if(MailManager.isEntryUnlocked("kirofucknet") && (flags["KIRO_ORGY_DATE"] == undefined || flags["KIRO_ORGY_DATE"] + 2 < days) && pc.hasCock() && rand(4) == 0)
 	{
@@ -85,7 +117,23 @@ public function approachKiroAtTheBar():void
 		return;
 	}
 	//Full balls? Kiro'll drain 'em
-	else if(pc.hasStatusEffect("Blue Balls") && pc.hasCock()) fluffilyWhorishPawjobs();
+	else if(pc.hasStatusEffect("Blue Balls") && pc.hasCock())
+	{
+		fluffilyWhorishPawjobs();
+		return;
+	}
+	//BF approach
+	if(flags["KIRO_GF"] != undefined)
+	{
+		output("Kiro’s face lights up at your approach. <i>“There you are, [pc.boyGirl]friend. Where have you been? Lost in some ");
+		if(rand(5) == 0) output("galotian’s cunt");
+		else if(rand(4) == 0) output("myr’s plus-sized pussy");
+		else if(rand(3) == 0) output("daynar’s eyes");
+		else if(rand(2) == 0) output("leithan’s legs");
+		else output("more family drama");
+		output("?”</i> Pulling you into a hug, she gives you a peck on the cheek. <i>“Just make sure you toss me an invite when you get the chance, hero.”</i> Her grin is as contagious as it is mischievous.");
+		kiroMenu();
+	}
 	//Talk to Kiro, Repeat
 	//Savin
 	else
@@ -112,8 +160,16 @@ public function approachKiroAtTheBar():void
 public function kiroMenu():void
 {
 	clearMenu();
-	addButton(1,"Wingman",playWingmanWithKiro,undefined,"Play Wingman","Hang out with Kiro and help her get laid. With balls like that, she probably needs it.");
-	addButton(2,"DrinkOff",kiroDrankinConterst,undefined,"Drinking Contest","See who can hold their liquor better...");
+	if(currentLocation == "CANADA5" && flags["KIRO_MET_KALLY"] != undefined) 
+	{
+		addDisabledButton(1,"Wingman","Wingman","For whatever reason, Kiro doesn't seem interested in picking up a girl at her sister's bar.");
+		addDisabledButton(2,"DrinkOff","Drinking Contest","For whatever reason, Kiro doesn't seem to want to get blitzed out of her mind at her sister's bar.");
+	}
+	else 
+	{
+		addButton(1,"Wingman",playWingmanWithKiro,undefined,"Play Wingman","Hang out with Kiro and help her get laid. With balls like that, she probably needs it.");
+		addButton(2,"DrinkOff",kiroDrankinConterst,undefined,"Drinking Contest","See who can hold their liquor better...");
+	}
 	if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren't really interested in sex at the moment.");
 	else if(kiro.ballDiameter() > 14) addButton(3,"Sex",letsFuckKiro);
 	else addButton(3,"Sex",letsFuckKiro);
@@ -1030,6 +1086,9 @@ public function letsFuckKiro():void
 		else if(pc.hasVagina()) output(", circling [pc.oneVagina]");
 		else output(", rubbing down the bare, sensitive flesh");
 		output(" as you pull your kit off, tossing your [pc.gear] aside. When the airlock’s done processing you, the two of you tumble into the hallway, barely making it to Kiro’s cabin before her great big cock spills out of her undergarments as she tears them off, letting her massive horsemeat swing free. With a push, you’re thrown down onto her bed, surrounded by dirty mags and condom packs. Looming over you, Kiro idly strokes her cock, already fucking you with her eyes as you roll over, facing her and her huge endowment.");
+		
+		generateMapForLocation("KIROS SHIP QUARTERS");
+		
 		//[OPTIONS BITCH]
 		kiroSexMenu();
 	}
@@ -1125,8 +1184,10 @@ public function kiroSexMenu():void
 		else addDisabledButton(4,"PussyPump","PussyPump","Kiro doesn't trust you nearly enough for that.");
 	}
 	else addDisabledButton(4,"PussyPump","PussyPump","You need a valid device for pumping up Kiro's pussy.");
+	if(kiroRoughButtfucks() > 0) addButton(5,"GetButtfuck",roughButtfuckFromKiroGo,false,"Get Buttfucked","Ask Kiro for another rough, buttfuck with plenty of spanking.");
+	else addDisabledButton(5,"GetButtfuck","Get Buttfucked","You haven't unlocked this scene yet. You'll probably have to get her kinda irritated at you for this...");
 	//THREESOMES~
-	addButton(5,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
+	addButton(6,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
 	addButton(14,"Back",kiroMenu);
 }
 
@@ -1595,7 +1656,7 @@ public function kiroFucksYourCuntPartIII(x:int = 0):void
 	if(pc.isNice()) output("cracking jokes about the mess you’ve made. Of course, you help her clean it up. You helped make it, after all.");
 	else if(pc.isMischievous()) output("studiously avoiding the topic of who is going to have to clean up her bedroom after all this. Kiro caves first, sending you off so that she can deal with the mess. It is her place, after all.");
 	else output("trying not to get turned on enough for round two. You’ve got a busy day ahead of you, and she has a mess to clean up.");
-	output("\n\nThe trip back to the bar is blessedly short, at least.	");
+	output("\n\nThe trip back to the bar is blessedly short, at least.");
 	processTime(16);
 	pc.shower();
 	clearMenu();
@@ -1754,6 +1815,8 @@ public function repeatFillingKirosCuntEpilogue():void
 //Milker Doubletime, By Savin
 public function kiroMilkerDoubleTimeBySavin():void
 {
+	generateMapForLocation("KIROS SPUNK CHAMBER");
+	
 	clearOutput();
 	showKiro(true);
 	author("Savin");
@@ -1821,7 +1884,7 @@ public function manualMilkingFromSavin():void
 //PC has blue balls/swollen nuki nuts.
 public function fluffilyWhorishPawjobs():void
 {
-	clearOutput();
+	//clearOutput();
 	showKiro();
 	output("<i>“Welcome back,”</i> Kiro slowly drawls, obviously undressing you with her eyes as she does. They flick to your crotch and back to your face, and a knowing, toothy smile breaks out. <i>“Somebody needs to cum, huh?”</i>");
 	output("\n\nYou blanch. How could she possibly know?");
@@ -2618,6 +2681,8 @@ public function kiroFuckNetBonus():void
 		eventBuffer += "\n\nThe message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl’s backside, stretching her sphincter like a rubber band. Kiro’s holding the camera and giving you a big, goofy grin and a thumb’s-up.\n\n<i>Kiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\nSuggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>";
 		eventBuffer += "\n\nYou shrug and click “Join”...\n\nAnd are instantly flooded with several THOUSAND pictures of the group’s members (mostly Kiro) engaged in lewd acts.\n\nWell, at least you won’t need to look for new porn for a while.";
 		pc.lust(20);
+		
+		MailManager.readEntry("kirofucknet", GetGameTimestamp());
 	}
 }
 
@@ -2628,7 +2693,7 @@ public function kiroFuckNetBonus():void
 //Kiro - offers invite to GalLink fuckmeet orgy in bar backroom.
 public function galLinkFuckMeetInvite():void
 {
-	clearOutput();
+	//clearOutput();
 	showKiro();
 	if(flags["KIRO_ORGIED"] == undefined)
 	{
@@ -3025,3 +3090,4 @@ public function kiroFuckOrgyFuntimes7():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+

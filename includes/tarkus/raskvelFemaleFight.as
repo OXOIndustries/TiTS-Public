@@ -115,12 +115,17 @@ public function victoryVsRaskvel():void
 				addDisabledButton(1,"EarFap");
 				output(" If only you had a member that was too big for her pussy, then you could use her soft ears to rub one out.");
 			}
+			//Female Raskvel Anal
+			//[Punish] – Teach her a lesson about defeat.
+			if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(3,"AnalPunish",punishAFemRaskInTheButtWithFrankensteinApplesOrSomething,undefined,"Anal Punishment","Teach her a lesson about defeat.");
+			else addDisabledButton(3,"AnalPunish","Anal Punishment","You're just too big to anally punish her.")
 		}
 		else
 		{
 			output(" Without a dick, you can't really fuck her, but you've still got other options open to you.");
 			addDisabledButton(0,"DoggyStyle");
 			addDisabledButton(1,"EarFap");
+			addDisabledButton(3,"AnalPunish");
 		}
 		if(pc.hasVagina())
 		{
@@ -133,7 +138,7 @@ public function victoryVsRaskvel():void
 			addDisabledButton(2,"RideHerFace");
 		}
 		//Cuff&Fuck
-		cuffNFuckButton(3, enemy);
+		cuffNFuckButton(4, enemy);
 	}
 	else
 	{
@@ -141,6 +146,7 @@ public function victoryVsRaskvel():void
 		addDisabledButton(0,"DoggyStyle");
 		addDisabledButton(1,"EarFap");
 		addDisabledButton(2,"RideHerFace");
+		addDisabledButton(3,"AnalPunish");
 	}
 	output("\n\n");
 	addButton(14,"Leave",CombatManager.genericVictory);	
@@ -1046,12 +1052,29 @@ public function takeOneEggSloot():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+	
+	addChildRaskvel();
 	StatTracking.track("pregnancy/raskvel sired/day care");
 	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
 	StatTracking.track("pregnancy/total births");
 	StatTracking.track("pregnancy/total day care");
+	
 	flags["RASKVEL_EGG_COUNT"] = undefined;
 	flags["RASKVEL_PREG_TIMER"] = undefined;
+}
+public function addChildRaskvel(numChild:int = 1):void
+{
+	// The eggs will hatch within a month, each containing a young Raskvel if fertilized.
+	// The offspring are inquisitive, knowledge-hungry creatures that soak up information like sponges and mature enough to work and talk within a month or two.
+	// Full adulthood and sexual maturity do not come for at least two years.
+	ChildManager.addChild(
+		Child.NewChild(
+			GLOBAL.TYPE_RASKVEL,
+			6.0,
+			numChild,
+			50, 50, 0, 0
+		)
+	);
 }
 
 //Don’t Take An Egg
@@ -1121,6 +1144,62 @@ public function watchDatRaskvelEggLayyyy():void
 	flags["RASKVEL_PREG_TIMER"] = undefined;
 }
 
+//Female Raskvel Anal
+//FrankenApple
+ //Female raskvel victory scene. PC dominates the rask girls’ ass. Available only on a combat victory. Needs a dick. Not for taurs. Somewhat evil in nature, therefore should increase PC’s personality score. I couldn’t find any pointers towards female raskvel anal capacity so I don’t know the maximum allowed penis volume.
+ //[Punish] – Teach her a lesson about defeat.
+
+ public function punishAFemRaskInTheButtWithFrankensteinApplesOrSomething():void
+ {
+ 	clearOutput();
+ 	showBust(raskvelFemaleBustDisplay(true));
+ 	showName("FEMALE\nRASKVEL");
+ 	author("FrankenApple");
+ 	output("You quickly scan your surroundings, and sure as rust, you find a hunk of broken machinery lying in the shade. You haul your horny prize over your shoulder and move on to the spot you saw a moment ago. Unceremoniously, you plop the little raskvel onto the piece of junk. A puff of rusty dust rises around her and gets carried away by the wind.");
+ 	output("\n\n<i>“What’s going on?”</i> she asks with a clear hint of confusion in her voice. Without replying, you ");
+ 	if(!pc.isCrotchExposed()) output("take off your [pc.clothes], ");
+ 	output("place down your equipment and sit down next to her, letting your [pc.cocks] ");
+ 	if(pc.balls > 0) output("and [pc.balls] ");
+ 	output("dangle in front of the horny reptilian. It looks like curiosity and lust have taken the better of her as she locks eyes with your package, not even trying to run away at this point.");
+ 	var x:int = pc.cockThatFits(chars["RASKVEL_FEMALE"].analCapacity());
+
+ 	output("\n\n<i>“Are you just going to stare?”</i> You raise your voice. That’s all the encouragement she needs to jump at your [pc.cock " + x + "] and eagerly rub it with her tiny hands. Her strokes rapidly become longer along with your rising cock until you reach full hardness. <i>“Come on, prepare it.”</i>");
+
+	output("\n\nShe replies with a simple, submissive <i>“Yes.”</i> Lolling her lengthy tongue out, she first dribbles some saliva onto your [pc.cockHead " + x + "]. Swishing her oversized ears over her shoulders to get them out of the way, she starts lightly sucking on your [pc.cock " + x + "]. This feels kinda nice...");
+	output("\n\nToo bad ‘nice’ isn’t in your dictionary.");
+	output("\n\nYou take an authoritative hold of a handful of the raskvel’s plumage and begin steadily forcing her deeper upon your [pc.cockComplex]. She is somewhat aware of what you’re doing, and tries to put up a meek resistance, but she is powerless in this situation. It doesn’t take long until you have pushed past her gullet, enjoying the delicious convulsions of her abused throat. You decide to stop there, since you want to blow your load elsewhere.");
+	output("\n\nYou let go of her head and nudge her towards your lap. There, you seat the raskvel girl so your slobbery [pc.cockSimple " + x + "] is rubbing against the expansive crack of her behind.");
+	output("\n\n<i>“Please, I want your strong baby maker deep in my pussy, kissing my womb,”</i> she begs you. That’s a tempting proposition, however it would defeat the purpose of this little punishment session.");
+	output("\n\n<i>“You think you deserve it after embarrassing yourself by losing like that?”</i> you chide. She doesn’t reply, looking down in shame. <i>“I thought so. Up the pooper it is then.”</i> You sigh and lift her feeble body by her disproportionately large hips. Her eyes widen in shock as she realizes what that means for her. For a split second it looks like she wants to protest, but it’s too late for that.");
+	output("\n\nYou align her dark blue pucker with your [pc.cockHead " + x + "] and firmly press her down. Your [pc.cockSimple " + x + "] glides past the entrance with ease thanks to the earlier lubrication, her colon expanding to accommodate your encroaching girth. You look at your bite-size lover’s face only to be met with a sour-looking pout. She must be pretty pissed off about not getting it in her pussy. Regardless, you resume lowering her onto your girth until, eventually, you bottom out. <i>“How does it feel, taking the whole thing?”</i>");
+	output("\n\nShe doesn’t reply, instead trying to pull off a smug grimace in spite of any discomfort. You lightly gyrate her hips in circles on your girth to coax out a reply. It proves to be very effective as she starts moaning in a flash. She finally understands that there is no point in fighting it and rests her body against yours, mushing her face in your [pc.chest]. With that out of the way, you begin bouncing her up and down at a brisk pace, eliciting more of her frustrated, lustful moans. It doesn’t feel nearly as tight as you’d expect it to be... Good thing there is a way to fix that.");
+	output("\n\nWithout a warning, you grab the raskvel’s ears and tug them, causing her asshole to clamp down with amazing force – much better!");
+	output("\n\nHer protests have completely caved in by now – she bounces on your [pc.cock " + x + "] with newfound vigour, all by herself. You can feel an orgasm approaching rapidly. Now is a good time to go all out. Still holding onto her ears, you slide down their lengths, press them firmly together, and begin rubbing the undersides together like a couple of rags. The onslaught of pleasure coming from her ears is too much, and her humping kicks into overdrive, sending you over the edge in turn.");
+	if(pc.hasKnot(x)) 
+	{
+		output("\n\nYour knot mistakenly locks, leaving the little, thoroughly fucked buttslut stuck on top of your [pc.cock " + x + "] while you unload the content of your [pc.balls] inside her.");
+		//lotsa cummies:
+		if(pc.cumQ() >= 2000) output(" Her belly visibly swells under the gut straining pressure of your [pc.cum].");
+		output(" You might as well use the opportunity to lie back and have a short rest. The knot stays inflated for a good thirty minutes. That would have been a somewhat peaceful break for you if not for her constant incoherent babbling and blissful drooling.");
+	}
+	else
+	{
+		output("\n\nYour member spasms, pumping seed deep into her colon.");
+		if(pc.cumQ() >= 2000) output(" Her belly visibly swells under the gut straining pressure of your [pc.cum].");
+	}
+	output("\n\nFeeling positively spent, you pull the raskvel girl off and lie her down next to you. While recollecting your stuff ");
+	if(!pc.isCrotchExposed()) output("and re-dressing");
+	output(" you think you hear her squeak about you being the worst or something, but you can’t really make out anything. Giving her a last goodbye spank, you depart. Maybe she will think twice next time before attacking someone.\n\n");
+	//+1 Hard Personality Point
+	pc.addHard(1);
+	if(pc.hasKnot(x)) processTime(45);
+	else processTime(15);
+	pc.orgasm();
+	CombatManager.genericVictory();
+}
+
+
+
 public function knockUpRaskChance():void
 {
 	if(pc.virility() <= 0) return;
@@ -1147,3 +1226,4 @@ public function knockUpRaskChance():void
 		}
 	}
 }
+

@@ -153,7 +153,7 @@ public function procDumbfuckStuff():void
 	//Seventh
 	else if(flags["DUMBFUCK_SNEEZES"] <= 7)
 	{
-		output("\n\nMmmm, you could out of a brief daydream about going down on someone. It fades as you wipe the snot off your nose and try to remember what you were doing. You got off - you remember that, and then... then sneezed! That's right. This drug does stuff to you when you cum. It makes your head feel all funny and slow, but it makes your [pc.skin] feel so sensitive and warm. You give your [pc.butt] a smack and nearly jump at how damned good it feels.");
+		output("\n\nMmmm, you come out of a brief daydream about going down on someone. It fades as you wipe the snot off your nose and try to remember what you were doing. You got off - you remember that, and then... then sneezed! That's right. This drug does stuff to you when you cum. It makes your head feel all funny and slow, but it makes your [pc.skin] feel so sensitive and warm. You give your [pc.butt] a smack and nearly jump at how damned good it feels.");
 		output("\n\nThat's nice, but... but you're getting dumber! You're sure of it now. Eight times eight is sixty-four, not sixty-nine, you think. Sixty-nine is wayyy more fun though. You check the calculator on your codex just to be sure, then type in '8008' to spell boob before putting it away. Boobs are great.");
 	}
 	//Eight

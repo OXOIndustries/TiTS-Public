@@ -95,12 +95,14 @@
 				// {removes monoball, increases testicle circumference by 1”}
 				pc.lust(20);
 				//pc.removeStatusEffect("Uniball");
+				/*
 				if(pc.balls < 2) pc.balls = 2;
 				if(pc.ballSizeRaw < 30)
 				{
 					pc.ballSizeRaw++;
 					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw++;
 				}
+				*/
 				
 				clearMenu();
 				addButton(0, "Next", kGAMECLASS.useItemFunction);

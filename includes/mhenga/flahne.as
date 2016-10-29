@@ -76,11 +76,11 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 			else output("so you swat it aside and try to remain comfortable standing");
 			output(". The gel-woman extends her hand in greeting, and you take it, introducing yourself.");
 			output("\n\nShe smiles back, <i>“Call me Flahne. I’m the official U.G.C. contact here in Esbeth and on Mhen'ga as a whole. It’s a thankless job, but somebody has to keep all the paperwork straight until we can smooth over relations with the natives and get a real civilization going here.”</i>");
-			output("\n\nYou spend much of the time marvelling at the gelatinous woman’s appearance. Her hair is the same honeyed color as the rest of her, and it isn’t even real hair - just transparent, amber gel  done up in a stylish bun that perches atop shoulder-length tresses. Two long ears protrude from the sides of her head, each about as wide as her face and narrowing to points at the tips. Her eyes are a stunning, mischievous violet. One glaring absence is the lack of a nose under them; she has no olfactory organ whatsoever, unless it is hidden elsewhere on her person. The pouting lips help to draw your eye away, and you can’t help but glance lower into the barely-concealed cleavage her half-buttoned top is struggling to contain. The elastic white fabric just doesn’t seem up to containing what must be G-cups.");
-			output("\n\n<i>“Ahem.”</i>  Flahne clears her throat with a twinkle in her eyes. <i>“These are pretty standard forms.  You can fill them out on the workstation over there or your computing device of choice.”</i>");
+			output("\n\nYou spend much of the time marvelling at the gelatinous woman’s appearance. Her hair is the same honeyed color as the rest of her, and it isn’t even real hair - just transparent, amber gel done up in a stylish bun that perches atop shoulder-length tresses. Two long ears protrude from the sides of her head, each about as wide as her face and narrowing to points at the tips. Her eyes are a stunning, mischievous violet. One glaring absence is the lack of a nose under them; she has no olfactory organ whatsoever, unless it is hidden elsewhere on her person. The pouting lips help to draw your eye away, and you can’t help but glance lower into the barely-concealed cleavage her half-buttoned top is struggling to contain. The elastic white fabric just doesn’t seem up to containing what must be G-cups.");
+			output("\n\n<i>“Ahem.”</i> Flahne clears her throat with a twinkle in her eyes. <i>“These are pretty standard forms. You can fill them out on the workstation over there or your computing device of choice.”</i>");
 			output("\n\nYou nod and produce your codex, busily filling out forms as Flahne makes small talk. Seeing the odd looks you give her, she explains that she is a rahn, specifically a loo’rahn, as determined by her coloration. Numerous interruptions dot the conversation as she consumes stick after stick of candy, sucking long and hard on each and then resuming her instructions as if she had never paused at all. Flahne apparently has a monstrous sweet tooth.");
-			output("\n\n<i>“Once you’ve finished up, just go ahead and transfer the files over,”</i>  the gracious, soft-looking secretary bubbles. At that, you realize that you are finished and press the send button; the codex actually has tactile screen deformation to give the buttons an edge you can feel, not at all like those cheap touchscreens you find everywhere for a few credits. <i>“Oh, absolutely perfect! You’ve got a head for this stuff, sugar.”</i>  She chews on the candy as she looks over the forms, and a long prehensile tongue dangles out of her mouth, curling around the stick to hold it while she types away at an ancient-looking keyboard.");
-			output("\n\nFlahne’s computer chimes merrily, and she announces, <i>“All done! Now, since you’re such a cutie, I’d like to tell you to watch out if you go outside of town. A fair portion of the natives here are aggressive and more than a little sexually active... if you catch my meaning. I’d hate to see someone as " + pc.mfn("handsome","pretty","unique") + " as you go out and get accosted by those devilish zil!”</i>  she shudders. <i>“Besides, if you’re going to have a little fun with anyone, it ought to be someone nice and soft.”</i>");
+			output("\n\n<i>“Once you’ve finished up, just go ahead and transfer the files over,”</i> the gracious, soft-looking secretary bubbles. At that, you realize that you are finished and press the send button; the codex actually has tactile screen deformation to give the buttons an edge you can feel, not at all like those cheap touchscreens you find everywhere for a few credits. <i>“Oh, absolutely perfect! You’ve got a head for this stuff, sugar.”</i> She chews on the candy as she looks over the forms, and a long prehensile tongue dangles out of her mouth, curling around the stick to hold it while she types away at an ancient-looking keyboard.");
+			output("\n\nFlahne’s computer chimes merrily, and she announces, <i>“All done! Now, since you’re such a cutie, I’d like to tell you to watch out if you go outside of town. A fair portion of the natives here are aggressive and more than a little sexually active... if you catch my meaning. I’d hate to see someone as " + pc.mfn("handsome","pretty","unique") + " as you go out and get accosted by those devilish zil!”</i> she shudders. <i>“Besides, if you’re going to have a little fun with anyone, it ought to be someone nice and soft.”</i>");
 			output("\n\n<b>Your codex quietly displays a message that the available information on the rahn race has been aggregated.</b>");
 			//Pass 10 minutes.
 			//Room options without description.
@@ -138,26 +138,26 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 		//Haven’t fucked her
 		else if(flags["FLAHNE_SEXED"] == undefined) {
 			showBust(flahneBustDisplay(false));
-			output("\n\nFlahne looks up at you with a smile on her juicy, amber lips. <i>“Well, what can I do for you today, " + pc.mf("Mister","Miss") + " Steele?”</i>  Her big, bouncy breasts are straining her top as hard as ever, though the way she has almost half the buttons undone isn’t helping.");
+			output("\n\nFlahne looks up at you with a smile on her juicy, amber lips. <i>“Well, what can I do for you today, " + pc.mf("Mister","Miss") + " Steele?”</i> Her big, bouncy breasts are straining her top as hard as ever, though the way she has almost half the buttons undone isn’t helping.");
 			output("\n\nWhat do you do with the curvy rahn secretary?");
 		}
 		//Fucked her
 		else if(flags["FLAHNE_LIKE_OVIPOSITOR"] != 1) {
 			showBust(flahneBustDisplay(false));
-			output("\n\nFlahne’s honey-colored skin blushes orange at your approach, and she asks, <i>“Hey there cutie, come back for a little more sugar? I could use a snack.”</i>  Her tongue snakes out to lick her lips before curling around her sucker and slowly pumping it in and out of her mouth. She leans down over her desk, pressing her big, soft breasts against the table so that they strain at the side seams of her shirt. <i>“Or did you just want a peep?”</i>");
+			output("\n\nFlahne’s honey-colored skin blushes orange at your approach, and she asks, <i>“Hey there cutie, come back for a little more sugar? I could use a snack.”</i> Her tongue snakes out to lick her lips before curling around her sucker and slowly pumping it in and out of her mouth. She leans down over her desk, pressing her big, soft breasts against the table so that they strain at the side seams of her shirt. <i>“Or did you just want a peep?”</i>");
 			output("\n\nThe curvy rahn seems happy with either option, though you could probably just talk too. What did you want to do with Flahne?");
 		}
 		//Fucked her and like the ovipositor
 		else {
 			showBust(flahneBustDisplay(false));
-			output("\n\nFlahne’s honey-colored skin blushes orange at your approach, though a big smile spreads across her plump lips. She gives a little shiver and sighs with slow relief as an oblong distention lifts her skirt higher and higher. Flahne coos, <i>“Guess who’s happy to see you?”</i>  She unbuttons part of her top while licking a lollipop rather lewdly. <i>“So, wanna have some more fun?”</i>  Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
+			output("\n\nFlahne’s honey-colored skin blushes orange at your approach, though a big smile spreads across her plump lips. She gives a little shiver and sighs with slow relief as an oblong distention lifts her skirt higher and higher. Flahne coos, <i>“Guess who’s happy to see you?”</i> She unbuttons part of her top while licking a lollipop rather lewdly. <i>“So, wanna have some more fun?”</i> Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
 			output("\n\nWhat did you want with Flahne?");
 		}
 	}
 	this.addButton(0,"Talk",talkToFlahne);
 	if(pc.lust() >= 33) this.addButton(1,"Sex Options",flahneSexMenu);
 	else {
-		output("  You aren't aroused enough for sex with her right now.");
+		output(" You aren't aroused enough for sex with her right now.");
 		this.addDisabledButton(1,"Sex Options");
 	}
 	if(hasACumBubble()) addButton(2,"Cum Bubble",giveFlahneATreatSetup,undefined,"Cum Bubble","Give the rahn a gift of sealed cum.");
@@ -176,7 +176,7 @@ public function talkToFlahne():void {
 		output(" for you");
 	}
 	else output("seems genuinely excited to talk to you again");
-	output(". <i>“So, what did you want to talk about, " + pc.mf("Mister","Miss") + " Steele? God, I love that name. It sounds so... firm.”</i>  She blushes and continues, <i>“Sorry, maybe I ought to stick to calling you cutie, since you are... what did you want to talk about?”</i>");
+	output(". <i>“So, what did you want to talk about, " + pc.mf("Mister","Miss") + " Steele? God, I love that name. It sounds so... firm.”</i> She blushes and continues, <i>“Sorry, maybe I ought to stick to calling you cutie, since you are... what did you want to talk about?”</i>");
 	processTime(1);
 	this.clearMenu();
 	this.addButton(0,"Her Race",talkToFlahneAboutHerRace);
@@ -191,12 +191,12 @@ public function talkToFlahneAboutHerRace():void {
 	clearOutput();
 	showFlahne();
 	flags["TALKED_ABOUT_FLAHNES_RACE"] = 1;
-	output("Flahne perks up at that. She’s obviously pleased at the chance to talk about her people and launches straight into a little lecture. <i>“Well, it’s understandable that you’d be curious. As I said earlier, I’m a rahn. A lot of people call us gel-girls for, well... obvious reasons.”</i>  She pokes at her chest, sinking her finger a few inches into the fluffy boob without issue. When she pulls away, the divot slowly springs back into shape. <i>“Most of us don’t mind. I mean, I used to call humans ‘spinelings’ when I was young and sheltered. Boy, did that ever cause me trouble!”</i>  Flahne pops her sucker back in her mouth for a moment and takes a few long licks on it. <i>“Anyway, I know better now. As a matter of fact, I can recite the proper names of most galactic races from memory.”</i>  She beams at that.");
-	output("\n\nThe curvy secretary pulls the half-dissolved remains of her lollipop out and tosses it aside, unwrapping a fresh one as she gets back on track, <i>“We got discovered in the last planet rush. We were barely tribal back then I’m told, simple predators hunting the smaller beasts of our world.”</i>  Flahne makes a mock, scary face at you and growls, a sound that reminds you more of a bubbling brook than a fierce predator.");
-	output("\n\nYou " + pc.mf("chuckle while she starts to giggle at that","both break into giggles at that") + ". <i>“It seems so silly in hindsight. Somebody saw some potential in us and helped us adapt to technology instead of living like savages. I wish I knew who, I’d like to give them a big ol’ hug!”</i>  Flahne sighs dreamily until you prod her to finish. <i>“Oh, right... so we got full acceptance into the U.G.C. about thirty standard years back, and ever since, we’ve been trying to do right by the galaxy as a whole. Our intelligence is right around the galactic standard, we don’t need much to eat, and we’re pretty darn tough to kill. Not to mention that we’re sociable and less inclined to violence than most carbon-based lifeforms.”</i>");
-	output("\n\nFlahne seems very proud of that last statement, even puffing her chest out a bit and straightening her posture, which of course makes her breasts bounce. She even adds, <i>“We’re pretty good about breeding, too. It’s really easy for us to control whether we actually reproduce or not, so overpopulation is something we’ve never had a problem with. Of course, cum is way better-tasting than meat, so we tend to eat that in whatever hole we can get it in now.”</i>  Flahne licks her lips without meaning to as her expression saddens. <i>“Some people have started treating us like brainless sluts, just because we prefer our meals to come from our friends and get turned on easily, but unlike other species, getting horny doesn’t impact our cognitive abilities much. If I didn’t care to make my partners squirt out as much yummy jizz as possible, I could probably get a lot of work done at the same time.”</i>");
+	output("Flahne perks up at that. She’s obviously pleased at the chance to talk about her people and launches straight into a little lecture. <i>“Well, it’s understandable that you’d be curious. As I said earlier, I’m a rahn. A lot of people call us gel-girls for, well... obvious reasons.”</i> She pokes at her chest, sinking her finger a few inches into the fluffy boob without issue. When she pulls away, the divot slowly springs back into shape. <i>“Most of us don’t mind. I mean, I used to call humans ‘spinelings’ when I was young and sheltered. Boy, did that ever cause me trouble!”</i> Flahne pops her sucker back in her mouth for a moment and takes a few long licks on it. <i>“Anyway, I know better now. As a matter of fact, I can recite the proper names of most galactic races from memory.”</i> She beams at that.");
+	output("\n\nThe curvy secretary pulls the half-dissolved remains of her lollipop out and tosses it aside, unwrapping a fresh one as she gets back on track, <i>“We got discovered in the last planet rush. We were barely tribal back then I’m told, simple predators hunting the smaller beasts of our world.”</i> Flahne makes a mock, scary face at you and growls, a sound that reminds you more of a bubbling brook than a fierce predator.");
+	output("\n\nYou " + pc.mf("chuckle while she starts to giggle at that","both break into giggles at that") + ". <i>“It seems so silly in hindsight. Somebody saw some potential in us and helped us adapt to technology instead of living like savages. I wish I knew who, I’d like to give them a big ol’ hug!”</i> Flahne sighs dreamily until you prod her to finish. <i>“Oh, right... so we got full acceptance into the U.G.C. about thirty standard years back, and ever since, we’ve been trying to do right by the galaxy as a whole. Our intelligence is right around the galactic standard, we don’t need much to eat, and we’re pretty darn tough to kill. Not to mention that we’re sociable and less inclined to violence than most carbon-based lifeforms.”</i>");
+	output("\n\nFlahne seems very proud of that last statement, even puffing her chest out a bit and straightening her posture, which of course makes her breasts bounce. She even adds, <i>“We’re pretty good about breeding, too. It’s really easy for us to control whether we actually reproduce or not, so overpopulation is something we’ve never had a problem with. Of course, cum is way better-tasting than meat, so we tend to eat that in whatever hole we can get it in now.”</i> Flahne licks her lips without meaning to as her expression saddens. <i>“Some people have started treating us like brainless sluts, just because we prefer our meals to come from our friends and get turned on easily, but unlike other species, getting horny doesn’t impact our cognitive abilities much. If I didn’t care to make my partners squirt out as much yummy jizz as possible, I could probably get a lot of work done at the same time.”</i>");
 	//No fucks yet
-	if(flags["FLAHNE_SEXED"] == undefined) output("\n\nThe curvy gel-woman smiles a little lewdly at you. <i>“I hope that doesn’t bother you. We rahn aren’t very modest by nature, and sexuality is just another source of pleasure and food for us.”</i>  She sucks on her lolly and admits, <i>“I tend to be a rather hungry woman.”</i>");
+	if(flags["FLAHNE_SEXED"] == undefined) output("\n\nThe curvy gel-woman smiles a little lewdly at you. <i>“I hope that doesn’t bother you. We rahn aren’t very modest by nature, and sexuality is just another source of pleasure and food for us.”</i> She sucks on her lolly and admits, <i>“I tend to be a rather hungry woman.”</i>");
 	//Ovipositor Okay’ed + fucked
 	else if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("\n\nThe curvy gel-woman’s bulge stiffens a little at the thought, and she glances meaningfully down as her skirt begins to stain, radiating the same sweet scents as her lollipops. Flahne eyes you lecherously as she says, <i>“You know that all too well, cutie. Just let me know if you want to have some fun later.”</i>");
 	//Fucked her
@@ -212,9 +212,9 @@ public function talkToFlahneAboutHerRace():void {
 
 		//Ovipositor not yet talked about
 		if(flags["FLAHNE_LIKE_OVIPOSITOR"] == undefined) {
-			output("\n\nFlahne appears very nervous as she goes back into discussing her race’s sexuality, but she pushes ahead regardless, <i>“My favorite part about my race is our... well, ovipositors.”</i>  She looks meaningfully at you. <i>“Our dicks, to oversimplify it. Well, not really dicks, but they kind of look like human penises, only we lay eggs through them into our partners when we want to have kids.”</i>");
+			output("\n\nFlahne appears very nervous as she goes back into discussing her race’s sexuality, but she pushes ahead regardless, <i>“My favorite part about my race is our... well, ovipositors.”</i> She looks meaningfully at you. <i>“Our dicks, to oversimplify it. Well, not really dicks, but they kind of look like human penises, only we lay eggs through them into our partners when we want to have kids.”</i>");
 			output("\n\nYour thoughts are evidently written across your face; Flahne smirks mirthfully at you.");
-			output("\n\n<i>“It doesn’t hurt at all! Our outer membranes are very strong but very elastic, allowing us such delightfully stretchiness. We can even slowly reshape our bodies into the shape we wish to have.”</i>  The rahn smiles and rushes through the rest, <i>“Most of us only really have them come out when we’ve got fertilized eggs we want to lay in someone, but we can usually control it. Personally, I really like mine and learned how to make it come out even when I’m not ready to lay.”</i>  She looks at you meaningfully and follows up, <i>“I can also make it stay in all the time too.  It’s just that once it slips out, I can’t really get it to go away without...”</i>  She makes an up-and-down stroking motion with her hand.");
+			output("\n\n<i>“It doesn’t hurt at all! Our outer membranes are very strong but very elastic, allowing us such delightfully stretchiness. We can even slowly reshape our bodies into the shape we wish to have.”</i> The rahn smiles and rushes through the rest, <i>“Most of us only really have them come out when we’ve got fertilized eggs we want to lay in someone, but we can usually control it. Personally, I really like mine and learned how to make it come out even when I’m not ready to lay.”</i> She looks at you meaningfully and follows up, <i>“I can also make it stay in all the time too. It’s just that once it slips out, I can’t really get it to go away without...”</i> She makes an up-and-down stroking motion with her hand.");
 			output("\n\n<i>“Would me letting it out bother you?”</i>");
 			processTime(10);
 			this.clearMenu();
@@ -233,8 +233,8 @@ public function pushDatOvipositorOut():void {
 	clearOutput();
 	showFlahne();
 	flags["FLAHNE_LIKE_OVIPOSITOR"] = 1;
-	output("Flahne sighs rather comfortably after noticing that the room is empty and flips back her skirt to show you the big, chubby girl-boner she’s grown. <i>“Our ovipositors are my favorite part about us. I even grew mine to be extra big, so there’d be more to stroke. I guess all the sweets I eat have made it so that my cum and lubricants are as sweet as candy. That’s another good reason for making it big right there.”</i>  Flahne traces a finger across the top of it, sighing and shuddering from the pleasure with such enthusiasm that ripples run from her thick thighs all the way to her enormous tits. A dollop of whitish cream forms atop the wobbling prick’s peak, and she scoops it up on her finger, swallowing it before you can react. She smooths her skirt back into place a moment later, accompanied by a full-body orange blush.");
-	output("\n\n<i>“Not much more to tell, really. We grow up quick, so if I were to " + pc.rawmf("have you father some children","have you bear my children") + ", they’d be able to care for themselves in short order.”</i>  Flahne says with one last smile, <i>“I’m glad you take interest in me for more than just the sex. It's refreshing.”</i>");
+	output("Flahne sighs rather comfortably after noticing that the room is empty and flips back her skirt to show you the big, chubby girl-boner she’s grown. <i>“Our ovipositors are my favorite part about us. I even grew mine to be extra big, so there’d be more to stroke. I guess all the sweets I eat have made it so that my cum and lubricants are as sweet as candy. That’s another good reason for making it big right there.”</i> Flahne traces a finger across the top of it, sighing and shuddering from the pleasure with such enthusiasm that ripples run from her thick thighs all the way to her enormous tits. A dollop of whitish cream forms atop the wobbling prick’s peak, and she scoops it up on her finger, swallowing it before you can react. She smooths her skirt back into place a moment later, accompanied by a full-body orange blush.");
+	output("\n\n<i>“Not much more to tell, really. We grow up quick, so if I were to " + pc.rawmf("have you father some children","have you bear my children") + ", they’d be able to care for themselves in short order.”</i> Flahne says with one last smile, <i>“I’m glad you take interest in me for more than just the sex. It's refreshing.”</i>");
 	processTime(1);
 	this.clearMenu();
 	this.addButton(0,"Next",talkToFlahne);
@@ -246,7 +246,7 @@ public function ovipositorInFlahne():void {
 	showFlahne();
 	flags["FLAHNE_LIKE_OVIPOSITOR"] = 0;
 	output("Flahne nervously admits, <i>“Okay... I promise I won’t let it out around you. I wouldn’t want to make you uncomfortable about me, and most rahn can’t even bring them out unless they have eggs ready to lay. I’m still 100% girl!”</i>");
-	output("\n\nThe amber gel-woman jiggles her breasts to help change the topic. <i>“Let’s see, what else... oh, we grow up pretty quick, comparatively, so if you ever wanted kids, we aren’t much work to raise.”</i>  Flahne smiles happily. <i>“It’s nice to have someone get to know you instead of expecting you to immediately get naked, ya know?”</i>");
+	output("\n\nThe amber gel-woman jiggles her breasts to help change the topic. <i>“Let’s see, what else... oh, we grow up pretty quick, comparatively, so if you ever wanted kids, we aren’t much work to raise.”</i> Flahne smiles happily. <i>“It’s nice to have someone get to know you instead of expecting you to immediately get naked, ya know?”</i>");
 	//Unlocks ovipositor talk and subrace talk
 	processTime(1);
 	this.clearMenu();
@@ -258,12 +258,12 @@ public function flahnesSubRace():void {
 	clearOutput();
 	showFlahne();
 	output("You mention that you’d like to know more about her subspecies in particular.");
-	output("\n\nFlahne lights up with delight as you broach that topic. <i>“Well, you know about the rahn, so I guess I could explain a bit about what it means to be a loo’rahn.”</i>  She smiles up at you and peels back one of the sleeves on her button-down shirt, exposing the honeyed flesh beneath. <i>“As you can see, I’m semi-transparent, like all rahn, but I’m yellowish in color. Rahn almost always produce the same color offspring, unless it is a pairing of two different colored rahn. Our colorization forms in response to our characteristics, with each color having different advantages.”</i>");
-	output("\n\nRolling her sleeve back down, Flahne continues, <i>“Loo’rahn tend to be less durable than the other types, but we make up for it in other ways. Our tongues are longer and more nimble. We can be even softer than our sisters, who are already far more plush than a human girl could ever be.”</i>  She gingerly pushes her hand into the heaving curve of her breast, slowly depressing it until she’s swallowed up to the wrist in boobflesh. <i>“An upside of this is that we can reshape our bodies more easily than other rahn in order to assume new shapes or forms. It still takes a good while, but it can have its advantages.”</i>");
+	output("\n\nFlahne lights up with delight as you broach that topic. <i>“Well, you know about the rahn, so I guess I could explain a bit about what it means to be a loo’rahn.”</i> She smiles up at you and peels back one of the sleeves on her button-down shirt, exposing the honeyed flesh beneath. <i>“As you can see, I’m semi-transparent, like all rahn, but I’m yellowish in color. Rahn almost always produce the same color offspring, unless it is a pairing of two different colored rahn. Our colorization forms in response to our characteristics, with each color having different advantages.”</i>");
+	output("\n\nRolling her sleeve back down, Flahne continues, <i>“Loo’rahn tend to be less durable than the other types, but we make up for it in other ways. Our tongues are longer and more nimble. We can be even softer than our sisters, who are already far more plush than a human girl could ever be.”</i> She gingerly pushes her hand into the heaving curve of her breast, slowly depressing it until she’s swallowed up to the wrist in boobflesh. <i>“An upside of this is that we can reshape our bodies more easily than other rahn in order to assume new shapes or forms. It still takes a good while, but it can have its advantages.”</i>");
 	output("\n\nYou nod, easily seeing how the ability to alter one’s form could have immense uses, even if you couldn’t change the color of your body.");
-	output("\n\n<i>“It does have its downsides. It’s hard to keep all the excess nutrition I hold inside myself from settling into unattractive areas. I really should cut down on the sugar, but it’s just so good! It tastes even better in my cum, too, so I just keep drinking it and never really lose it.”</i>  Flahne stands up out of her seat and pivots around, showing just how thick and juicy her hips and bosom truly are. <i>“It’s good to have this much control over my body, huh?”</i>");
-	output("\n\nFlahne settles down, her soft bottom lewdly squishing and stretching at the hem of her skirt when her thick thighs compress. She looks up with a proud smile, and admits, <i>“Don’t get me wrong, some of the other rahn have some pretty great things that they can do. Red rahn can secrete all kinds of disabling chemicals on their surface. White ones are super efficient at absorbing nutrients, but that means they have more leftovers to let out. They leak like faucets when they masturbate or get too turned on. The green and blue ones are mega tough. I’ve seen one of those turn their skin hard enough to stop a bullet.”</i>  She seems a little out of breath after rattling all that off. Settling down for a moment to lick at her candy gives her a second to settle down.");
-	output("\n\n<i>“I guess that’s it,”</i>  she says at last, <i>“but I’d be happy to talk about my people as much as you like.”</i>");
+	output("\n\n<i>“It does have its downsides. It’s hard to keep all the excess nutrition I hold inside myself from settling into unattractive areas. I really should cut down on the sugar, but it’s just so good! It tastes even better in my cum, too, so I just keep drinking it and never really lose it.”</i> Flahne stands up out of her seat and pivots around, showing just how thick and juicy her hips and bosom truly are. <i>“It’s good to have this much control over my body, huh?”</i>");
+	output("\n\nFlahne settles down, her soft bottom lewdly squishing and stretching at the hem of her skirt when her thick thighs compress. She looks up with a proud smile, and admits, <i>“Don’t get me wrong, some of the other rahn have some pretty great things that they can do. Red rahn can secrete all kinds of disabling chemicals on their surface. White ones are super efficient at absorbing nutrients, but that means they have more leftovers to let out. They leak like faucets when they masturbate or get too turned on. The green and blue ones are mega tough. I’ve seen one of those turn their skin hard enough to stop a bullet.”</i> She seems a little out of breath after rattling all that off. Settling down for a moment to lick at her candy gives her a second to settle down.");
+	output("\n\n<i>“I guess that’s it,”</i> she says at last, <i>“but I’d be happy to talk about my people as much as you like.”</i>");
 	//Pass 10 minutes.
 	processTime(10);
 	this.clearMenu();
@@ -278,7 +278,7 @@ public function flahnesOvipositor():void {
 	if(!flahneDickOut()) output("<b>currently hidden.</b>");
 	else output("<b>currently dangling free whenever the mood strikes her.</b>");
 	
-	output("\n\n<i>“Well, what do you want to know about it?”</i>  Flahne asks ");
+	output("\n\n<i>“Well, what do you want to know about it?”</i> Flahne asks ");
 	if(!flahneDickOut()) output("curiously");
 	else output("coyly");
 	output(".");
@@ -296,7 +296,7 @@ public function keepDatOvipositorIn():void {
 	clearOutput();
 	showFlahne();
 	output("You ask Flahne if she’d mind keeping it in.");
-	output("\n\n<i>“Awww, what made you change your mind about it? It’s fun and tasty!”</i>  she protests.");
+	output("\n\n<i>“Awww, what made you change your mind about it? It’s fun and tasty!”</i> she protests.");
 	output("\n\nYou explain to her that if you fuck her, you’d like to do it without a sixteen inch tallywhacker prodding at your orifices, gesticulating none too subtly with your arms for emphasis.");
 	output("\n\nThe honey-hued gel-girl sighs and says, <i>“Okay, fine. Just let me get rid of it. Do you want to watch?”</i>");
 	flags["FLAHNE_LIKE_OVIPOSITOR"] = 0;
@@ -312,7 +312,7 @@ public function dontWatchOvipositorGoAway():void {
 	showFlahne();
 	output("You inform Flahne that you have no desire to watch and step out of the room before she tends to it.");
 	output("\n\nFlahne harrumphs, rising from her desk and flouncing around to lock the other doors. She closes one behind you and settles back in at her desk, the wheels on her chair creaking noisily as she slides back. Lurid slurps combine with muffled ‘mmmm’s with such eagerness that you can put together a decent mental picture of just what’s going on in there, even if you don’t want to. A full ten minutes pass like this until an ecstatic, muffled moan interrupts the tempo. That drags on for almost a full minute, and then... silence.");
-	output("\n\n<i>“Come iiiiiin,”</i>  a satisfied-sounding Flahne calls. You walk back in and find her back behind her desk, snappily dressed with a fresh skirt and a smile. <i>“Let me know if you ever change your mind, cutie, and I’ll share some of my candy with you. She pops a sucker into her mouth with a sassy smile.");
+	output("\n\n<i>“Come iiiiiin,”</i> a satisfied-sounding Flahne calls. You walk back in and find her back behind her desk, snappily dressed with a fresh skirt and a smile. <i>“Let me know if you ever change your mind, cutie, and I’ll share some of my candy with you. She pops a sucker into her mouth with a sassy smile.");
 	output("\n\n<i>“I guess you’d rather talk about something else then?”</i>");
 	//pass 10 minutes.
 	processTime(10);
@@ -325,14 +325,14 @@ public function watchFlahne():void {
 	clearOutput();
 	showFlahne();
 	output("You smile and let Flahne know that you wouldn’t mind watching her suck one last load out of her ovipositor.");
-	output("\n\nShe winks and coos, <i>“I thought so,”</i>  as she fishes the big floppy shaft out of her skirt, turning the rumpled fabric back up against her torso, her strings of milky-white pre connecting the leaky tip to stained cloth. Flahne looks up at you with a nervous smile and asks, <i>“Are you sure? I’m gonna miss being able to play with this.”</i>");
+	output("\n\nShe winks and coos, <i>“I thought so,”</i> as she fishes the big floppy shaft out of her skirt, turning the rumpled fabric back up against her torso, her strings of milky-white pre connecting the leaky tip to stained cloth. Flahne looks up at you with a nervous smile and asks, <i>“Are you sure? I’m gonna miss being able to play with this.”</i>");
 	output("\n\nSighing wistfully, you answer that you would prefer she keep it in around you for the foreseeable future.");
-	output("\n\n<i>“Spoilsport,”</i>  Flahne playfully growls as she takes the full, gelatinous tool in the palm of her hand and begins to stroke, the motions made exceedingly sloppy by the thick film of sweet-smelling pre she’s secreted all over her masculine genitalia. <i>“Ahhh, that’s the stuff.”</i>  Bending slightly, she brings her face down to the drooling rod, a few inches away from making contact with her lips. She inhales, obviously savoring an aroma she enjoys greatly before parting her lips and diving down, just the tip pressing into her maw while her tongue corkscrews around the first few inches, sliding up and down the floppy ovi-dick with great enthusiasm. A muffled ‘mmm’ escapes her lips in between lewd sucks.");
+	output("\n\n<i>“Spoilsport,”</i> Flahne playfully growls as she takes the full, gelatinous tool in the palm of her hand and begins to stroke, the motions made exceedingly sloppy by the thick film of sweet-smelling pre she’s secreted all over her masculine genitalia. <i>“Ahhh, that’s the stuff.”</i> Bending slightly, she brings her face down to the drooling rod, a few inches away from making contact with her lips. She inhales, obviously savoring an aroma she enjoys greatly before parting her lips and diving down, just the tip pressing into her maw while her tongue corkscrews around the first few inches, sliding up and down the floppy ovi-dick with great enthusiasm. A muffled ‘mmm’ escapes her lips in between lewd sucks.");
 	output("\n\nFlahne stops slobbering on her swollen ovipositor for a moment, regarding the swelling gel with unrepentant hunger as it thickens in her busily stroking hand. Flicking her tongue back out, she presses into the oozing slit, channeling sweet, whitish creme directly into her throat. Her neck bobs noticeably as she swallows down her pre-load, pushing more and more of her tongue directly down her lusty organ’s urethra. Trickles of clearer moisture are running out of her puffy, swollen pussy below, but Flahne does not leave it neglected for long. She strokes the base of her ovipositor with her thumb, and slides the first two fingers on her left hand into the sopping, slippery sex.");
 	output("\n\nCurvy gold boobs jiggle as a powerful shudder works through the voluptuous girl, accompanied by a high-pitched whine from Flahne. She pushes her other two fingers of her hand in to the knuckle, her eyes scrunching shut powerfully. The gel-girl’s mouth stretches into an wide-open ‘O,’ then she compulsively jams the bloating tool into her cum-hungry lips with her tongue still impaled inside it. Her eyelids part enough for you to see her purple eyes rolling back. Her cheeks bulge. Messy girl-cum soaks her hand, dripping onto her seat. Flahne swallows, but then her cheeks fill again. Luckily, she’s more than happy to gulp the thick load down again and again, fingering herself until her seat has soaked with her other secretions.");
-	output("\n\nTrickles of thick ivory cum have oozed out the corners of Flahne’s mouth, beading towards her chin by the time she finally pulls free. The glutinous girl tosses her head back and sighs happily, withdrawing her squelching fingers from her abused honeypot. <i>“Ahhhhh,”</i>  she breathes with a satisfied grin. Languidly dabbing at the corners of her mouth, she sucks down the few escaped runnels of her cum and says, <i>“It’s so sweet! I don’t know how anyone could let it go to waste.”</i>");
+	output("\n\nTrickles of thick ivory cum have oozed out the corners of Flahne’s mouth, beading towards her chin by the time she finally pulls free. The glutinous girl tosses her head back and sighs happily, withdrawing her squelching fingers from her abused honeypot. <i>“Ahhhhh,”</i> she breathes with a satisfied grin. Languidly dabbing at the corners of her mouth, she sucks down the few escaped runnels of her cum and says, <i>“It’s so sweet! I don’t know how anyone could let it go to waste.”</i>");
 	output("\n\nWhile she is talking, Flahne’s spent ovipositor slowly begins to shrink. Rather than wilting like most male organs do when unerect, the softening tool merely diminishes in size, becoming smaller, and smaller... and smaller. It is so tiny that you can’t even see the urethra anymore, and it reduces yet further, becoming no larger than a clit... well, it is a clit now, jutting just barely past Flahne’s luscious pussy-lips.");
-	output("\n\nGiggling, Flahne admits, <i>“I’ll be sure to hold it in around you from now on.”</i>  She grabs a new skirt from her desk. The old one goes in a different drawer while the new one is put on, and a moment later, she’s sitting back down on her soaked seat, releasing a puff of her fresh, sweet aroma into the air. Perhaps the lollipops aren’t the only things to be blamed for the sugariness that clings to her like a cloud.");
+	output("\n\nGiggling, Flahne admits, <i>“I’ll be sure to hold it in around you from now on.”</i> She grabs a new skirt from her desk. The old one goes in a different drawer while the new one is put on, and a moment later, she’s sitting back down on her soaked seat, releasing a puff of her fresh, sweet aroma into the air. Perhaps the lollipops aren’t the only things to be blamed for the sugariness that clings to her like a cloud.");
 	output("\n\nYou smile and thank her for being so accommodating, a bit turned on from the show.");
 	
 	//Boost lust
@@ -350,11 +350,11 @@ public function popOviOut():void {
 	flags["FLAHNE_LIKE_OVIPOSITOR"] = 1;
 	showFlahne();
 	output("You mention that you wouldn’t care if Flahne wanted to have her ovipositor out around you.");
-	output("\n\n<i>“Really?”</i>  the soft-as-sin secretary breathes, <i>“You mean it?”</i>");
+	output("\n\n<i>“Really?”</i> the soft-as-sin secretary breathes, <i>“You mean it?”</i>");
 	output("\n\nYou nod, a little amused at her eagerness.");
-	output("\n\nFlahne leans back in her chair and stretches, commenting, <i>“You have no idea how much I’ve been hoping to hear you say that, cutie!”</i>  She fans herself, causing her breasts to visibly quake with her exciting motions, and licks her lips, watching you expectantly. Her skirt makes a barely audible rustling noise, drawing your attention over the obstructing furniture and down to her loins. A fold of fabric is slowly rising from between her legs, lifting higher and higher. It passes four inches quickly. Six inches is up in the next heartbeat. The phallic distention reaches eight inches without pausing, throbbing larger with each second.");
+	output("\n\nFlahne leans back in her chair and stretches, commenting, <i>“You have no idea how much I’ve been hoping to hear you say that, cutie!”</i> She fans herself, causing her breasts to visibly quake with her exciting motions, and licks her lips, watching you expectantly. Her skirt makes a barely audible rustling noise, drawing your attention over the obstructing furniture and down to her loins. A fold of fabric is slowly rising from between her legs, lifting higher and higher. It passes four inches quickly. Six inches is up in the next heartbeat. The phallic distention reaches eight inches without pausing, throbbing larger with each second.");
 	output("\n\nFlahne is breathing a bit more heavily by now, and her eyes have fallen down to the swelling protrusion. Her ovipositor has stretched her skirt over a foot high, lifting the hem high enough that were it not for the desk, anyone across from her would see the phallic organ. She moans, her fingers scrabbling at the hardwood desktop in an attempt to keep them out of her crotch, that tall tower of pulsating gel slowly growing to its full, sixteen-inch length. Flahne sighs after that performance, sagging back as she gulps for air. After cooling down, she gives a happy wiggle and asks, <i>“What do you think? I like mine big, it lets me keep tasting the sugar over and over again!”</i>");
-	output("\n\nRealizing what she just said, she blushes orange and changes the subject, suggesting, <i>“I know! Since you’ve gotten me to let it out, why don’t you help me tend to it?</i>  Her foot appears under the desk to rub your [pc.leg]. She pouts knowingly at you, her arms pressing down on either side of her bosom such that it practically boils out of her top.");
+	output("\n\nRealizing what she just said, she blushes orange and changes the subject, suggesting, <i>“I know! Since you’ve gotten me to let it out, why don’t you help me tend to it?</i> Her foot appears under the desk to rub your [pc.leg]. She pouts knowingly at you, her arms pressing down on either side of her bosom such that it practically boils out of her top.");
 	//5 minutes pass
 	processTime(5);
 	//choose sex menu
@@ -367,18 +367,18 @@ public function aboutDatOvipositorOut():void {
 	clearOutput();
 	showFlahne();
 	output("You tell her that you actually wanted to hear about her ovipositor - how does it work?");
-	output("\n\nFlahne smiles cheekily and asks, <i>“A little curious, " + pc.mf("Mister","Miss") + " Steele?”</i>  She winks. ");
+	output("\n\nFlahne smiles cheekily and asks, <i>“A little curious, " + pc.mf("Mister","Miss") + " Steele?”</i> She winks. ");
 	if(!flahneDickOut()) output("<i>“I can pull it out for you sometime, if you ever want to inspect it.”</i>");
 	else output("<i>“You’ve already seen it, but I’d be happy to give you a closer look.”</i>");
 	output("\n\nYou stare blankly at her, waiting for her to get back on-topic.");
-	output("\n\nFlahne harrumphs at your lack of response. <i>“Okay, okay. I told you earlier that we lay eggs through them, but that’s not all they’re good for. When we orgasm or give birth, lots of whitish lubricants come out with it, like what you might call cum.”</i>  Flahne smiles again. <i>“I kind of like to call it cum, too, even though mine is as sweet as candy.”</i>");
-	output("\n\n<i>“Why is that?”</i>  you ask.");
-	output("\n\nPlopping her sucker back into her mouth, the gel-woman explains in between licks, <i>“Well, when we have too much mass, we secrete it as sexual fluids. It’s kind of useful - if one of us is eating really well, we can share the nutrition with our friends that way. I eat so much candy that I’m pretty much filled to the brim with sugary goodness, even though we don’t really use it for anything.”</i>  Flahne tilts her head to the side and whispers one last bit, <i>“Since it tastes so good and I like my ovipositor so much, I usually eat it right up, which is why I’m so much more voluptuous than most rahn.”</i>");
+	output("\n\nFlahne harrumphs at your lack of response. <i>“Okay, okay. I told you earlier that we lay eggs through them, but that’s not all they’re good for. When we orgasm or give birth, lots of whitish lubricants come out with it, like what you might call cum.”</i> Flahne smiles again. <i>“I kind of like to call it cum, too, even though mine is as sweet as candy.”</i>");
+	output("\n\n<i>“Why is that?”</i> you ask.");
+	output("\n\nPlopping her sucker back into her mouth, the gel-woman explains in between licks, <i>“Well, when we have too much mass, we secrete it as sexual fluids. It’s kind of useful - if one of us is eating really well, we can share the nutrition with our friends that way. I eat so much candy that I’m pretty much filled to the brim with sugary goodness, even though we don’t really use it for anything.”</i> Flahne tilts her head to the side and whispers one last bit, <i>“Since it tastes so good and I like my ovipositor so much, I usually eat it right up, which is why I’m so much more voluptuous than most rahn.”</i>");
 	output("\n\nYour sugared companion continues. <i>“ I’m all for accepting people for who they are, but I understand how it’s possible to like everything about a person except for one thing. That’s why I don’t mind keeping it tucked away for cute " + pc.mfn("boys","girls","people") + " like you, if you want. In a nutshell, most of us just use it for laying eggs, but it makes a pretty damned good stand-in for a cock. I’ve never had any complaints from any of the ladies brave enough to sit in my lap, anyway.”</i>");
-	output("\n\nShe must see the look on your face, because she colors orangish and quietly says, <i>“Well, a few walked kind of funny and were rather sore... still, they didn’t complain! Not seriously, anyway.”</i>  Flahne twirls her lollipop in her mouth as she racks her brain - or whatever rahn use to think - for more information. <i>“I nearly forgot! Some of us grow them above our clits, and some of us grow them from our clits. Mine grows out of my clit, so it’s extra sensitive!”</i>  she proudly declares.");
+	output("\n\nShe must see the look on your face, because she colors orangish and quietly says, <i>“Well, a few walked kind of funny and were rather sore... still, they didn’t complain! Not seriously, anyway.”</i> Flahne twirls her lollipop in her mouth as she racks her brain - or whatever rahn use to think - for more information. <i>“I nearly forgot! Some of us grow them above our clits, and some of us grow them from our clits. Mine grows out of my clit, so it’s extra sensitive!”</i> she proudly declares.");
 	
 	output("\n\nWell, that explains why she’s so enamored of it.");
-	output("\n\n<i>“Annnnnnd, that’s it! Nothing else to say about it unless you want to inspect it personally, which you already declined,”</i>  Flahne says. <i>“So, anything else you want me to do with it?”</i>");
+	output("\n\n<i>“Annnnnnd, that’s it! Nothing else to say about it unless you want to inspect it personally, which you already declined,”</i> Flahne says. <i>“So, anything else you want me to do with it?”</i>");
 	//Pass 5 minutes, go back to Flahne ovipositor menu
 	processTime(5);
 	this.clearMenu();
@@ -391,29 +391,29 @@ public function theLocals():void {
 	showFlahne();
 	output("You ask her if she could tell you a little bit more about the locals.");
 	output("\n\nFlahne brushes a strand of floppy, gelatinous hair to the side and says, <i>“First off, there are the zil. They’re pretty much the only form of intelligent life out there worth talking to in my opinion. Unfortunately, they’re pretty tribal and in their culture, when they meet someone from another tribe out in the jungle, it’s traditional for them to fight for dominance and fuck. Male or female, they don’t really care. To them it isn’t really that bad of a thing, just a way to decide who’s on top. From what I’ve heard they both usually walk away smiling. The loser almost always gives up before they get hurt too bad.”</i>");
-	output("\n\n<i>“Why is that?”</i>  you ask curiously.");
-	output("\n\nFlahne giggles, <i>“That’s the best part! They’ve got super potent pheromones they can release at will. I’m told that smelling them turns you on like crazy and makes you just want to fuck them in whatever way they prefer.”</i>  Her lips color orange with nervousness. <i>“I hope you won’t tell anybody about me cussing like that; I’m not supposed to on the job.”</i>");
+	output("\n\n<i>“Why is that?”</i> you ask curiously.");
+	output("\n\nFlahne giggles, <i>“That’s the best part! They’ve got super potent pheromones they can release at will. I’m told that smelling them turns you on like crazy and makes you just want to fuck them in whatever way they prefer.”</i> Her lips color orange with nervousness. <i>“I hope you won’t tell anybody about me cussing like that; I’m not supposed to on the job.”</i>");
 	output("\n\nYou idly wonder if she’s supposed to be flirting either, but dismiss it as she prattles on.");
 	output("\n\n<i>“So, they look kinda like wasps with all the chitin covering them, but they pull it back and they have the cutest cocks... at least the men do, anyways. The girls have these juicy-looking snatches and breasts that can drip honey. I’ve been hoping a pretty, civilized one would come through</i>");
 	if(pc.femininity >= 75) output("<i>, but then I met you! You’re so cute that those silly bugs don’t stand a chance</i>");
-	output("<i>. So far, a few of the males have come into town to try and drive us off. Penny disabled two of them pretty easily before the others ran off. I gotta admit, I started dripping when their combined smells wafted over here,”</i>  the curvy woman says while wiggling uncomfortably in her chair.");
+	output("<i>. So far, a few of the males have come into town to try and drive us off. Penny disabled two of them pretty easily before the others ran off. I gotta admit, I started dripping when their combined smells wafted over here,”</i> the curvy woman says while wiggling uncomfortably in her chair.");
 	
 	output("\n\nTossing a spent sucker into her waste bin, she grabs a new one and plops it between her plump lips, sucking noisily in between sentences. <i>“I think they’re in jail ‘til Penny figures out what to do with ‘em. She installed some remote auto-turrets afterward. All it’ll take is a call to her and they’ll light up any nasties she tags.”</i>");
 	
 	output("\n\nSentry turrets? Talk about overkill. Is there something worse out there?");
-	output("\n\nFlahne nonchalantly pops out her sucker and says, <i>“Oh no. All things considered, Mhen'ga is a pretty nice planet. The worst we have are cunt snakes, and some infested asshole brought those in from offworld. We still haven’t gotten a decent body scanner in yet, so now we’ve got parasitic snakes out there, adapting to the planet. They’ll probably have acclimated fully before we can get any decent gas treatments for them in.”</i>  Flahne sighs. <i>“They’re kind of gross, I think. I mean, they’ve got lust-inducing venom that they use to incapacitate their victims – usually males – and then they’ll use the vagina they’ve got on their other end to feed. Girls usually get left alone. Sometimes, if they take a liking to their victim, they’ll wait until she’s asleep and then bite into the base of the spine. They do some kind of crazy metamorphosis and meld into the victim’s body, so when they wake up, they’ve got a pussy tail with a powerful thirst for cum.”</i>");
+	output("\n\nFlahne nonchalantly pops out her sucker and says, <i>“Oh no. All things considered, Mhen'ga is a pretty nice planet. The worst we have are cunt snakes, and some infested asshole brought those in from offworld. We still haven’t gotten a decent body scanner in yet, so now we’ve got parasitic snakes out there, adapting to the planet. They’ll probably have acclimated fully before we can get any decent gas treatments for them in.”</i> Flahne sighs. <i>“They’re kind of gross, I think. I mean, they’ve got lust-inducing venom that they use to incapacitate their victims – usually males – and then they’ll use the vagina they’ve got on their other end to feed. Girls usually get left alone. Sometimes, if they take a liking to their victim, they’ll wait until she’s asleep and then bite into the base of the spine. They do some kind of crazy metamorphosis and meld into the victim’s body, so when they wake up, they’ve got a pussy tail with a powerful thirst for cum.”</i>");
 	
 	output("\n\nYou shiver");
 	if(pc.hasCuntTail()) output(" with lust, your thoughts returning to your tail at the mention of it. It’s a shame that it sounds like Flahne doesn’t want anyone to drain her with one.");
 	else output(" at the odd mental picture.");
-	output("\n\n<i>“Yeah, they only eat the cum. They actually have dozens of species worth of DNA stored inside them and use the biology of their host to determine the most appropriate mutations to impose upon their young. It’s really quite clever, even if they are little more than dumb snakes that eventually turn into unthinking, tail-based breeding machines. They aren’t even from here, so you can’t blame the jungle for them!”</i>  Flahne says, with a note of pride in her voice.");
+	output("\n\n<i>“Yeah, they only eat the cum. They actually have dozens of species worth of DNA stored inside them and use the biology of their host to determine the most appropriate mutations to impose upon their young. It’s really quite clever, even if they are little more than dumb snakes that eventually turn into unthinking, tail-based breeding machines. They aren’t even from here, so you can’t blame the jungle for them!”</i> Flahne says, with a note of pride in her voice.");
 	
 	output("\n\nYou ask if she’s attached to this planet.");
-	output("\n\nThe amber woman nods. <i>“You bet I am! I’ve been here since the planet was declared colonist-ready and the first buildings were raised. It’s a tough planet, but a sweet one.”</i>  She sucks on her candy. <i>“We just go together so well!”</i>");
+	output("\n\nThe amber woman nods. <i>“You bet I am! I’ve been here since the planet was declared colonist-ready and the first buildings were raised. It’s a tough planet, but a sweet one.”</i> She sucks on her candy. <i>“We just go together so well!”</i>");
 	output("\n\nYou ");
 	if(pc.isAss()) output("force a ");
 	output("laugh at Flahne’s weak joke, then ask if there’s anything else out there.");
-	output("\n\nHer expression darkens. <i>“Yeah, there are the venus pitchers, too. We don’t have to worry about them in town; they only grow in the darkest, most lightless parts of the jungle. They’re plants, but they’re as sentient as you or me. They just don’t have interest in anything that isn’t extracting fluids from their prey.”</i>  Flahne mouths a single word: ‘lazy’. It’s cute, but surprisingly difficult to make out coming from orange lips on a yellow face. <i>“So they just stand there with these hidden, subterranean pods below. That’s where all their tentacles are. And they look like these sexy, curvy women to lure in zil or whoever else wanders out there. When someone gets too close, they fall into the pod or get pulled in, and then they’re forced to cum for hours until they’re damn near dry. At that point, the pitchers toss them out and close up, sealing themselves off until they’re hungry again.”</i>");
+	output("\n\nHer expression darkens. <i>“Yeah, there are the venus pitchers, too. We don’t have to worry about them in town; they only grow in the darkest, most lightless parts of the jungle. They’re plants, but they’re as sentient as you or me. They just don’t have interest in anything that isn’t extracting fluids from their prey.”</i> Flahne mouths a single word: ‘lazy’. It’s cute, but surprisingly difficult to make out coming from orange lips on a yellow face. <i>“So they just stand there with these hidden, subterranean pods below. That’s where all their tentacles are. And they look like these sexy, curvy women to lure in zil or whoever else wanders out there. When someone gets too close, they fall into the pod or get pulled in, and then they’re forced to cum for hours until they’re damn near dry. At that point, the pitchers toss them out and close up, sealing themselves off until they’re hungry again.”</i>");
 	
 	output("\n\n<i>“Why don’t they just eat the person?”</i>");
 	output("\n\nFlahne taps her chin in thought. <i>“You know... I never really thought about that. Some people that have... ‘met’ them say that they dream of being inside the pods afterward. Most of the people that spoke up about that aren’t around anymore. I guess the jungle claimed them?”</i>");
@@ -433,8 +433,8 @@ public function flahneSexMenu(display:Boolean = true):void {
 		if(flags["FLAHNE_SEXED"] == undefined) {
 			output("Making love to a curvy, eager woman wouldn’t be so bad.");
 			if(pc.isMischievous()) output(" With a disarming smile, you ask her if she knows any. She frowns in thought for a moment before she catches on to the joke.\n\n<i>“Oh, you’re blind? You didn’t mark that on your paperwork.”</i>");
-			output("\n\nThe full-bodied secretary giggles, a high-pitched, bubbly sound. <i>“If that’s the case, we can have some fun.”</i>  The last word is said with such sultry delight that it’s practically purred. She opens a button, causing her mountainous melons to visibly quake and jostle against each other when she leans toward you.");
-			output("\n\n<i>“So... how do you want it?”</i>  Flahne asks as her top compresses against the desk, hinting at her intentions.");
+			output("\n\nThe full-bodied secretary giggles, a high-pitched, bubbly sound. <i>“If that’s the case, we can have some fun.”</i> The last word is said with such sultry delight that it’s practically purred. She opens a button, causing her mountainous melons to visibly quake and jostle against each other when she leans toward you.");
+			output("\n\n<i>“So... how do you want it?”</i> Flahne asks as her top compresses against the desk, hinting at her intentions.");
 		}
 		//Sexed
 		else if(!flahneDickOut()) {
@@ -444,8 +444,8 @@ public function flahneSexMenu(display:Boolean = true):void {
 		//Sexed and Ovipositor Out
 		else {
 			output("You tell Flahne that you’re up for a little bit of fun if she is.");
-			output("\n\nFlahne glances down at her tented skirt. <i>“I think you know the answer to that, [pc.name].”</i>  Backing her chair up with a seductive shimmy, the curvy secretary catches her ovipositor on the edge of the desk. She groans as she scrapes it free, then with a blush and a smile of concession, lifts the obscuring veil of the skirt high enough to proudly display both of her dripping tools.");
-			output("\n\n<i>“See something you like, cutie?”</i>  Flahne’s voice practically oozes over to you, liquid with desire to use her pent-up sex.");
+			output("\n\nFlahne glances down at her tented skirt. <i>“I think you know the answer to that, [pc.name].”</i> Backing her chair up with a seductive shimmy, the curvy secretary catches her ovipositor on the edge of the desk. She groans as she scrapes it free, then with a blush and a smile of concession, lifts the obscuring veil of the skirt high enough to proudly display both of her dripping tools.");
+			output("\n\n<i>“See something you like, cutie?”</i> Flahne’s voice practically oozes over to you, liquid with desire to use her pent-up sex.");
 		}
 	}
 	showFlahne(true);
@@ -511,14 +511,14 @@ public function bendFlahneOver():void {
 	output("You slip your arms around the bubbly, affectionate rahn, letting your hands play across her gel-like skin, squeezing and caressing her many curves. Flahne coos as your fingers worship at the temple of her curvaceous body, groping a big handful of her ass under her skirt, drifting under her clothes, across her tremendous ass and thick thighs.");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(" Her ovipositor leaps to attention, nearly striking you.");
 	output(" You sink into Flahne's yielding flesh, and she gives a little gasp as your hands disappear into her butt, pulling her so close to you that [pc.eachCock] is prodding her belly through her clothes.");
-	output("\n\n<i>“Feeling a little bottled up, sugar?”</i>  the rahn teases, stroking you");
+	output("\n\n<i>“Feeling a little bottled up, sugar?”</i> the rahn teases, stroking you");
 	if(pc.armor.shortName != "") output(" through your [pc.armor]");
 	output(". <i>“Let's get you taken care of, hmm?”</i>");
 	
 	output("\n\nThe squishy secretary gives you a lusty wink and leads you in a slow tango around the room; stopping at the nearest door and raising one hand to cover the panel, she guides yours into her skirt with the other, right ");
 	if(!flahneDickOut()) output("down to her small, pert clit");
 	else output("around her twitching ovipositor");
-	output(". <i>“We’ll need to lock these doors so nobody interrupts our fun - you should be able to feel a button - that’ll do it.”</i>  She winks at you");
+	output(". <i>“We’ll need to lock these doors so nobody interrupts our fun - you should be able to feel a button - that’ll do it.”</i> She winks at you");
 	if(pc.tallness >= 55) output(", then kisses you wetly on the cheek,");
 	output(" spurring you to play along.");
 	
@@ -527,11 +527,11 @@ public function bendFlahneOver():void {
 	else output("clit");
 	output(", she moans quietly and palms the door lock, securing this portal. Flahne steps backward to the next one, dragging you along by the hand tucked into her waistband. Each door is a destination in your dirty dance, shutting with a ‘snick’ as you stimulate your lover.");
 	
-	output("\n\n<i>“Mmm... you really know how to operate, [pc.name],”</i>  she puns. <i>“But we’re locked in now... I think we can be a bit naughtier.”</i>  She pulls you from her skirt and slips down, her descending form slipping between your hands until you've got a good grip in her soft shoulders, guiding her in as she ");
+	output("\n\n<i>“Mmm... you really know how to operate, [pc.name],”</i> she puns. <i>“But we’re locked in now... I think we can be a bit naughtier.”</i> She pulls you from her skirt and slips down, her descending form slipping between your hands until you've got a good grip in her soft shoulders, guiding her in as she ");
 	if(pc.armor.shortName != "") output("unfastens your [pc.armor], letting your stiff prick pop free into her waiting mouth.");
 	else if(pc.lowerUndergarment.shortName != "") output("unfastens your [pc.lowerUndergarment], letting your stiff prick pop free into her waiting mouth.");
 	else output("wraps her fingers around your stiff prick, guiding you into her gooey mouth like a fleshy sucker.");
-	output(" As her lips wrap around your head, Flahne hums a delighted, soft <i>“Mmmm,”</i>  rolling across your glans, wrapping your member in soft, wet tongue. You let out a heavy, contented sigh as Flahne goes to work, putting all her candy-sucking skills to use on her newest treat, fellating you with expert precision. Your grip tightens on her shoulder, guiding her head further and further down your " + pc.cockDescript(x) + " until her lips press against your ");
+	output(" As her lips wrap around your head, Flahne hums a delighted, soft <i>“Mmmm,”</i> rolling across your glans, wrapping your member in soft, wet tongue. You let out a heavy, contented sigh as Flahne goes to work, putting all her candy-sucking skills to use on her newest treat, fellating you with expert precision. Your grip tightens on her shoulder, guiding her head further and further down your " + pc.cockDescript(x) + " until her lips press against your ");
 	if(pc.hasSheath(x)) output("sheath");
 	else if(pc.hasKnot(x)) output("knot");
 	else if(pc.balls > 0) output("[pc.balls]");
@@ -547,19 +547,19 @@ public function bendFlahneOver():void {
 	if(pc.isTaur()) output("shuffle away and ");
 	output("grab the curvy rahn under her arms instead, pulling her off your " + pc.cockDescript(x) + " and pushing her back against her desk. She gives a surprised yelp as you turn her around, bending her over until her ass is on full display, two huge mounds of butt tilting up at you with her wide and ready cunt poking out between them, just begging for dick. But not yet...");
 	
-	output("\n\nYou thrust quickly, pushing your prick up between Flahne's awesome anal cleavage. <i>“Oooh, up for a little hot-dogging, captain?”</i>  she giggles, wiggling her hips for you. Her ass wobbles around your prick, flesh jiggling rhythmically against your unsuspecting prick; your breath catches and you nearly cum on the spot. You grab her butt, fingers sinking deep into the alien flesh of the cock-craving cutie, holding her steady as you recover - though that doesn't entirely stop her. She happily hums as she shifts, flesh quivering at every little move she makes. You groan and gasp, only moving your own [pc.hips] the slightest bit, allowing the rahn girl’s reversal, enjoying the incredible feeling of her alien body on your " + pc.cockDescript(x) + ".");
+	output("\n\nYou thrust quickly, pushing your prick up between Flahne's awesome anal cleavage. <i>“Oooh, up for a little hot-dogging, captain?”</i> she giggles, wiggling her hips for you. Her ass wobbles around your prick, flesh jiggling rhythmically against your unsuspecting prick; your breath catches and you nearly cum on the spot. You grab her butt, fingers sinking deep into the alien flesh of the cock-craving cutie, holding her steady as you recover - though that doesn't entirely stop her. She happily hums as she shifts, flesh quivering at every little move she makes. You groan and gasp, only moving your own [pc.hips] the slightest bit, allowing the rahn girl’s reversal, enjoying the incredible feeling of her alien body on your " + pc.cockDescript(x) + ".");
 	
 	output("\n\nAs a reward for her exceptional talents, you reach around ");
-	if(flahneDickOut()) output("and grab the dangling mass of girthy rahn-prong hanging between her thick thighs. Flahne gasps with surprise - and no little pleasure - as your fingers encircle her engorged member, gently stroking it. <i>“Oh, [pc.name]... mmm, don't stop,”</i>  she breathes huskily, shivering as you start to jerk her off.");
-	else output("and scoop her tits up off the desk, digging into the squishy mammary mounds, pinching and tugging at her big, soft teats. <i>“Oh, [pc.name]!”</i>  she groans, fingers digging into the faux-wood. <i>“D-don't stop... so good....”</i>");
+	if(flahneDickOut()) output("and grab the dangling mass of girthy rahn-prong hanging between her thick thighs. Flahne gasps with surprise - and no little pleasure - as your fingers encircle her engorged member, gently stroking it. <i>“Oh, [pc.name]... mmm, don't stop,”</i> she breathes huskily, shivering as you start to jerk her off.");
+	else output("and scoop her tits up off the desk, digging into the squishy mammary mounds, pinching and tugging at her big, soft teats. <i>“Oh, [pc.name]!”</i> she groans, fingers digging into the faux-wood. <i>“D-don't stop... so good....”</i>");
 	output(" With your fingers tightly locked into her sensitive, membranous skin, Flahne wiggles happily in your grasp, fucking you with her big, soft ass as you work to pleasure her with your dexterous hands.");
 	
-	output("\n\nYou barely notice when a shake of Flahne's ass drags your " + pc.cockDescript(x) + " into her warm, wet hole, but the same can’t be said of Flahne, who gasps as you slip into her. Her voice relaxes into a low, lusty moan when the next thrust of your hips pushes you deep into her amber depths. <i>“Don't hold back, sweet thing... give me a nice cuntful of your cum,”</i>  she moans, thrusting her hips back against you expectantly. A hard swat to her big bubble butt puts an end to that; you're not letting her get what she wants so easily. She's gonna have to work for this treat!");
+	output("\n\nYou barely notice when a shake of Flahne's ass drags your " + pc.cockDescript(x) + " into her warm, wet hole, but the same can’t be said of Flahne, who gasps as you slip into her. Her voice relaxes into a low, lusty moan when the next thrust of your hips pushes you deep into her amber depths. <i>“Don't hold back, sweet thing... give me a nice cuntful of your cum,”</i> she moans, thrusting her hips back against you expectantly. A hard swat to her big bubble butt puts an end to that; you're not letting her get what she wants so easily. She's gonna have to work for this treat!");
 	pc.cockChange();
 	
 	output("\n\nStill, seeing her ass jiggling and swaying after that smack and feeling the tight embrace of her creamy cunt clamping down on your cock gives you an idea. Another whack sets her whole ass to shaking and elicits a shrill yelp from the thick gel girl. Her slit’s like a wet vice around your " + pc.cockDescript(x) + ", almost sucking you in as you hammer her juicy cunt. Your hands grip her tits, squeezing and pulling the dark caps of her massive bust, enjoying the sway of her chest with every thrust of your hips into her big, plush bottom. Kneading her boobs pulls another cry from Flahne's lips, this time a shrill moan of unbridled pleasure. She pushes back against your " + pc.cockDescript(x) + ", jiggling all over as you twist and flick her teats.");
 	
-	output("\n\n<i>“Oh yeah, that's good!”</i>  Flahne cries, a hand vanishing between her legs to ");
+	output("\n\n<i>“Oh yeah, that's good!”</i> Flahne cries, a hand vanishing between her legs to ");
 	if(!flahneDickOut()) output("tease her clit");
 	else output("take over stroking her girthy ovipositor, stroking as you squeeze her breasts");
 	output(". You redouble the pace, grabbing her hips for added support as you jackhammer into her gooey box, slapping again and again into the big curves of her huge, luscious ass.");
@@ -577,7 +577,7 @@ public function bendFlahneOver():void {
 	if(pc.cumQ() >= 2000) output("swollen, near-[pc.cumColor] ");
 	output("tits.");
 	if(pc.cumQ() <= 10000) {
-		output("\n\n<i>“Mmm, what a tasty snack!”</i>  Flahne grins, bounding over to you, reeking of the cum already circulating in her");
+		output("\n\n<i>“Mmm, what a tasty snack!”</i> Flahne grins, bounding over to you, reeking of the cum already circulating in her");
 		if(flahneDickOut()) output(" as her ovipositor throws strings of her ejaculate onto the floor and her thighs");
 		output(". <i>“Your cum's sooo sweet, [pc.name]. Can I call you up for delivery sometime?”</i>");
 		
@@ -585,14 +585,14 @@ public function bendFlahneOver():void {
 	}
 	//(huge cum only)
 	else {
-		output("\n\n<i>“Oh my God, I’ve never been so full!”</i>  Flahne marvels. She looks like she wants to prance over and hug you, but she’s absorbed so much of your cum that her head bumps against the ceiling - she can’t even stand up straight! <i>“Ugh, ouch,”</i>  she says, smiling good-naturedly to show that her gooey head isn’t really hurt. <i>“I guess I’ll have to take an extra-long break and get rid of all this nutrition...”</i>");
+		output("\n\n<i>“Oh my God, I’ve never been so full!”</i> Flahne marvels. She looks like she wants to prance over and hug you, but she’s absorbed so much of your cum that her head bumps against the ceiling - she can’t even stand up straight! <i>“Ugh, ouch,”</i> she says, smiling good-naturedly to show that her gooey head isn’t really hurt. <i>“I guess I’ll have to take an extra-long break and get rid of all this nutrition...”</i>");
 		
-		output("\n\nWith a wink, Flahne reaches out an enormous, off-[pc.cumColor] arm, unlocking the door nearest to you. <i>“Heehee, I’d ask you to stay and watch, but it’s going to take a long time and get very messy in here,”</i>  she laughs, ");
+		output("\n\nWith a wink, Flahne reaches out an enormous, off-[pc.cumColor] arm, unlocking the door nearest to you. <i>“Heehee, I’d ask you to stay and watch, but it’s going to take a long time and get very messy in here,”</i> she laughs, ");
 		if(!flahneDickOut()) output("diddling her little clitoris until it begins to swell and elongate");
 		else output("stroking her half-limp ovipositor until it returns to full size");
-		output(". <i>“I hope I have the self-control to keep it out of my mouth the whole time...”</i>  Getting the idea, you take one last look at the room-filling gel woman, drinking in the sight of breasts and thighs as big as you are, and then turn to leave.");
+		output(". <i>“I hope I have the self-control to keep it out of my mouth the whole time...”</i> Getting the idea, you take one last look at the room-filling gel woman, drinking in the sight of breasts and thighs as big as you are, and then turn to leave.");
 		
-		output("\n\n<i>“Bye cutie!”</i>  Flahne calls after you. <i>“I hope you’ll come in here again!”</i>  You can almost hear the snicker in her voice at the double entendre.");
+		output("\n\n<i>“Bye cutie!”</i> Flahne calls after you. <i>“I hope you’ll come in here again!”</i> You can almost hear the snicker in her voice at the double entendre.");
 	}
 	pc.orgasm();
 	flahne.loadInCunt(pc, 0);
@@ -610,11 +610,11 @@ public function rahnSuppository():void {
 	author("Savin");
 	showFlahne(true);
 	
-	output("Pulling Flahne close, your hands dig in deep to her malleable amber flesh, cupping and kneading her big ass cheeks. As if on cue, the object of your desires peeks through your bodies: Flahne's huge, girthy ovipositor tents her skirt, pressing into your [pc.skin]. With a low, sensual growl, you grab the phallic member and giving it a languid stroke. <i>“Oooh, careful sweet thing,”</i>  the squishy secretary giggles, <i>“you don't wanna start something you can't finish with my big... sensitive... oh-so-stretchy ovi-cock.”</i>");
+	output("Pulling Flahne close, your hands dig in deep to her malleable amber flesh, cupping and kneading her big ass cheeks. As if on cue, the object of your desires peeks through your bodies: Flahne's huge, girthy ovipositor tents her skirt, pressing into your [pc.skin]. With a low, sensual growl, you grab the phallic member and giving it a languid stroke. <i>“Oooh, careful sweet thing,”</i> the squishy secretary giggles, <i>“you don't wanna start something you can't finish with my big... sensitive... oh-so-stretchy ovi-cock.”</i>");
 	
-	output("\n\nThat’s about as clear an invitation as you could hope for. Another stroke brings a shiver to the woman, and the shaft in your hand drools a thick stream of lubricant. <i>“My goodness, [pc.name], at least let me lock the doors,”</i>  your lover sighs. She takes a step away from you, and you let the ovipositor slip from your hand... but make sure to give the sensitive, oozing end a final stroke, setting it to bobbing and flicking strings of Flahne’s fluid all over the floor. She moans, open-mouthed, and looks at you as though deciding whether to keep her word or just jump you right now. Reason wins out by a hair, and she reluctantly makes a round of the room, closing each of the entrances and returning to stand eagerly in front of you again.");
+	output("\n\nThat’s about as clear an invitation as you could hope for. Another stroke brings a shiver to the woman, and the shaft in your hand drools a thick stream of lubricant. <i>“My goodness, [pc.name], at least let me lock the doors,”</i> your lover sighs. She takes a step away from you, and you let the ovipositor slip from your hand... but make sure to give the sensitive, oozing end a final stroke, setting it to bobbing and flicking strings of Flahne’s fluid all over the floor. She moans, open-mouthed, and looks at you as though deciding whether to keep her word or just jump you right now. Reason wins out by a hair, and she reluctantly makes a round of the room, closing each of the entrances and returning to stand eagerly in front of you again.");
 	
-	output("\n\n<i>“There, was that so much effort?”</i>  you tease. Given a little push, Flahne flops down in her chair with an <i>“Oomph,”</i>  pseudo-cock wobbling like a flagpole as her huge tits sway, barely contained by her straining shirt. You leap onto her with predatory grace, pulling off your [pc.gear]");
+	output("\n\n<i>“There, was that so much effort?”</i> you tease. Given a little push, Flahne flops down in her chair with an <i>“Oomph,”</i> pseudo-cock wobbling like a flagpole as her huge tits sway, barely contained by her straining shirt. You leap onto her with predatory grace, pulling off your [pc.gear]");
 	if(pc.biggestTitSize() >= 1) output(", letting your [pc.chest] free, pressing them hard against Flahne's own prodigious bosom, trapping her organ");
 	output(". The gel girl gasps as you straddle her, and as you lean in to plant a long, deep kiss on her full lips, her swivel chair tilts so far back that you nearly flip over. She moans into your mouth, tongue playing across yours as her hands drift down to your [pc.butt]. Her fingers are deft and swift, crossing your skin and spreading your ass cheeks, brushing across your puckered hole. Your breath catches when one gooey grope practically pours into your [pc.asshole], teasing your sphincter with a deep, swirling probe that leaves your mouth agape with pleasure.");
 	
@@ -622,12 +622,12 @@ public function rahnSuppository():void {
 	if(pc.legCount > 1) output(" [pc.legs] to rest between your");
 	output(" ass cheeks. You wiggle your hips, dragging her gooey prick through your crack.");
 	//If PC has a cock:
-	if(pc.hasCock()) output("\n\nYour own cock presses into Flahne's belly, and she's quick to free her mountainous tits, letting them flop free and envelop [pc.eachCock]. You rock your hips forward, hot-dogging Flahne as you fuck her tits. She kisses you harder as you move, wrapping her long, prehensile tongue around yours and squeezing rhythmically to the beat of your thrusting into her bust. <i>“Mmm... double the pleasure, double the fun,”</i>  Flahne giggles, pumping her finger in your ass, <i>“Now just keep going, and I'll get you nice and ready for your surprise inspection...”</i>");
+	if(pc.hasCock()) output("\n\nYour own cock presses into Flahne's belly, and she's quick to free her mountainous tits, letting them flop free and envelop [pc.eachCock]. You rock your hips forward, hot-dogging Flahne as you fuck her tits. She kisses you harder as you move, wrapping her long, prehensile tongue around yours and squeezing rhythmically to the beat of your thrusting into her bust. <i>“Mmm... double the pleasure, double the fun,”</i> Flahne giggles, pumping her finger in your ass, <i>“Now just keep going, and I'll get you nice and ready for your surprise inspection...”</i>");
 	else output("\n\nFlahne groans as your ass squeezes and wrings her prick, massaging a thick dollop of fluid from her engorged alien member, smearing it into your ass like lube. She licks her lips, hands gripping your [pc.hips] to steady you as you hump her. <i>“Mmm, you're good, [pc.name]. You must want my big gel-cock bad, huh? Having a little craving, are we?”</i>");
-	output("\n\nYou give her a harsh kiss, grinding your ass on her cock and pumping the finger she's got buried deep in your [pc.asshole]. With her getting you nice and ready, your hole starts to relax around the intruding finger as she swirls and pumps it around your [pc.asshole]. You groan as she inches it back out of you, leaving you with a deeply empty feeling in your bowels - a feeling that's soon to be filled as she grabs her throbbing gelcock and bends it down toward your pucker. <i>“Open wide for a tasty treat,”</i>  Flahne giggles and jiggles, as her tip pushes up against your ass.");
+	output("\n\nYou give her a harsh kiss, grinding your ass on her cock and pumping the finger she's got buried deep in your [pc.asshole]. With her getting you nice and ready, your hole starts to relax around the intruding finger as she swirls and pumps it around your [pc.asshole]. You groan as she inches it back out of you, leaving you with a deeply empty feeling in your bowels - a feeling that's soon to be filled as she grabs her throbbing gelcock and bends it down toward your pucker. <i>“Open wide for a tasty treat,”</i> Flahne giggles and jiggles, as her tip pushes up against your ass.");
 	pc.buttChange(flahne.cockVolume(0));
 	
-	output("\n\n<i>“Oooooh,”</i>  she groans, breath catching as her huge cock head pushes through your finger-widened ass. <i>“Honey, let me get used to you...”</i>");
+	output("\n\n<i>“Oooooh,”</i> she groans, breath catching as her huge cock head pushes through your finger-widened ass. <i>“Honey, let me get used to you...”</i>");
 	
 	output("\n\nAs the ovipositor spreads your ");
 	if(pc.ass.looseness() >= 3) output("loose ");
@@ -642,7 +642,7 @@ public function rahnSuppository():void {
 		if(pc.cumQ() < 2) output(" shudders and fails to express more than a single drop of [pc.cum].");
 		else output(" spurts, shooting a streak of [pc.cumColor] so powerful that it blasts onto Flahne's chin before dribbling down into her cleavage, pooling around your tip.");
 	}
-	output("\n\n<i>“Mmm, that's good,”</i>  Flahne grins, licking her lips. <i>“But I'm not done with you yet, my sweet.”</i>");
+	output("\n\n<i>“Mmm, that's good,”</i> Flahne grins, licking her lips. <i>“But I'm not done with you yet, my sweet.”</i>");
 	
 	output("\n\nShe grins and stands, and you find yourself on your back, lying sprawled out on her desk, bodily pushing aside stacks of forms and pens. Flahne lifts your [pc.hips], groping your upturned ass as your [pc.legOrLegs] hook");
 	if(pc.legCount == 1) output("s");
@@ -650,13 +650,13 @@ public function rahnSuppository():void {
 	if(pc.hasCock()) output(" until your spent prostate screams with pleasure and pain, plaintively spurting milky pre onto your belly");
 	output(".");
 	
-	output("\n\n<i>“Oh, fuck,”</i>  Flahne groans, biting her lower lip as she hilts you again, sixteen inches of thick, gelcock buried deep in your ass, <i>“S-so good. You're amazing, [pc.name]. Best ass I've had in ages! Oh, you've gotta let me go again. Pretty please?”</i>");
+	output("\n\n<i>“Oh, fuck,”</i> Flahne groans, biting her lower lip as she hilts you again, sixteen inches of thick, gelcock buried deep in your ass, <i>“S-so good. You're amazing, [pc.name]. Best ass I've had in ages! Oh, you've gotta let me go again. Pretty please?”</i>");
 	
 	output("\n\nYou groan in dread at the merest thought of taking her cock again, barely able to withstand the current anal assault. But you don't seem to have much longer: Flahne's chest is heaving, her breath ragged as she reams you, and her moans grow ever more shrill until she's crying her pleasure to the heavens, blasting a thick, creamy ooze deep in your bowels. You scream, arching your back as the rahn girl fills you with her eggs and goo, blasting so much into you that it feels as though it ought to be squirting out around her cock - if it weren’t much too thick to let that happen. Instead your belly grows, pumped full of spurt after massive spurt of alien gel-cock ejaculate until you look positively gravid, stomach churning from the unexpectedly massive load being shot into you.");
 	
 	output("\n\nWith a flourish, Flahne pulls out, grabbing her prong and aiming it dead at your face for the last load. You try to shield yourself, but too late; a nice, thick load of steaming rahn-spooge hits you right on the cheek and dribbles down your face in hot, sticky rivulets.");
 	
-	output("\n\n<i>“Mmm, now that </i>was<i> a treat!”</i>  Flahne cheers, planting a kiss on your cheek - and licking her own eggs right off. <i>“I want you again, [pc.name]... but you need to rest after that... and maybe let some of my cum back out. Don't want to get too full of me, do you?”</i>");
+	output("\n\n<i>“Mmm, now that </i>was<i> a treat!”</i> Flahne cheers, planting a kiss on your cheek - and licking her own eggs right off. <i>“I want you again, [pc.name]... but you need to rest after that... and maybe let some of my cum back out. Don't want to get too full of me, do you?”</i>");
 	
 	output("\n\nShe giggles, laughing so hard that her huge tits bounce on her chest");
 	if(pc.hasCock() && pc.cumQ() > 2) output(", flicking a bit of your seed off onto the floor");
@@ -675,8 +675,8 @@ public function rahnSuppository():void {
 public function flahneMunchesBoxesMetalBawkses():void {
 	clearOutput();
 	showFlahne(true);
-	output("Pulling Flahne close, you whisper your request into her ear. The woman blushes, but then smiles coyly. <i>“I don’t mind - I can get you nice and wet,”</i>  she returns, rubbing the membranous skin of her lips and drawing her hand away with a strand of moisture to prove her point. She rubs it into your cheek softly, trailing the sweet fluid to your lips, before speaking again. <i>“Just... let me lock these doors and then we’ll have our fun.”</i>  She pulls away, her hand lingering on your face until the last, and then walks to each door, proofing it against intrusion.");
-	output("\n\n<i>“Let’s get this started then, cutey,”</i>  Flahne says as she pops her buttons open one at a time, revealing inch after inch of jiggling boob. When the last fastener is slipped open, the top springs apart completely, falling open to her sides, exposing her nipples in their complete, honeyed glory. The smooth buds, like dark-colored caps, jut just so from the surrounding surface in a way that invites you to touch and squeeze them. Flahne drops her arms and lets the stretched-out shirt slide down to collect in a rumpled pile on the floor.");
+	output("Pulling Flahne close, you whisper your request into her ear. The woman blushes, but then smiles coyly. <i>“I don’t mind - I can get you nice and wet,”</i> she returns, rubbing the membranous skin of her lips and drawing her hand away with a strand of moisture to prove her point. She rubs it into your cheek softly, trailing the sweet fluid to your lips, before speaking again. <i>“Just... let me lock these doors and then we’ll have our fun.”</i> She pulls away, her hand lingering on your face until the last, and then walks to each door, proofing it against intrusion.");
+	output("\n\n<i>“Let’s get this started then, cutey,”</i> Flahne says as she pops her buttons open one at a time, revealing inch after inch of jiggling boob. When the last fastener is slipped open, the top springs apart completely, falling open to her sides, exposing her nipples in their complete, honeyed glory. The smooth buds, like dark-colored caps, jut just so from the surrounding surface in a way that invites you to touch and squeeze them. Flahne drops her arms and lets the stretched-out shirt slide down to collect in a rumpled pile on the floor.");
 	output("\n\nYou let your eyes play over her exposed skin");
 	if(!pc.isNude()) output(" while you join her in nudity");
 	output(", admiring the smooth expanse of gropable membrane. Flahne’s skirt digs slightly into her body above her expansive hips, giving her a squishy little muffin-top. She sighs as you press gently against her middle, sliding across her slightly-moist skin; brushing the swollen underside of her tits, you heft their weight in your palms while your fingertips disappear into the squishy surface.");
@@ -690,9 +690,9 @@ public function flahneMunchesBoxesMetalBawkses():void {
 	if(pc.wetness() <= 1) output("moisture");
 	else if(pc.wetness() <= 3) output("slipperiness");
 	else output("drip");
-	output(" from your hungry pussy. Flahne breathily whispers, <i>“Please... undo my skirt,”</i>  before planting slow kisses up to your jaw.");
+	output(" from your hungry pussy. Flahne breathily whispers, <i>“Please... undo my skirt,”</i> before planting slow kisses up to your jaw.");
 	
-	output("\n\nThanks to the clasps on the side, the task is more difficult than you would have thought. Then again, perhaps half the challenge is the result of focusing on manual dexterity when your steaming-hot twat is demanding most of your attention. <i>“Come on....”</i>  Flahne coos");
+	output("\n\nThanks to the clasps on the side, the task is more difficult than you would have thought. Then again, perhaps half the challenge is the result of focusing on manual dexterity when your steaming-hot twat is demanding most of your attention. <i>“Come on....”</i> Flahne coos");
 	if(pc.isTaur()) output(" as she circles beside you, forcing you to twist to stay with her");
 	output(", and one of her hands squeezes your [pc.butt] while the other dives down ");
 	if(pc.isTaur()) output("under ");
@@ -700,7 +700,7 @@ public function flahneMunchesBoxesMetalBawkses():void {
 	if(pc.hasCock()) output(", narrowly avoiding your [pc.cocks]");
 	output(", slipping and sliding all over [pc.eachClit] and outer lips without ever properly penetrating. The pleasure is just too great. You shudder and lose your grip, sagging into Flahne’s heavenly tits for support, their mass bouncing gently around you.");
 	
-	output("\n\n<i>“I take it you like this?”</i>  the overly-endowed creature titters as she guides you towards her recently-vacated chair. You whimper and let your head tip back, allowing her better access to your neck. Spasms press your aching-hot sex against Flahne’s ");
+	output("\n\n<i>“I take it you like this?”</i> the overly-endowed creature titters as she guides you towards her recently-vacated chair. You whimper and let your head tip back, allowing her better access to your neck. Spasms press your aching-hot sex against Flahne’s ");
 	if(!pc.isTaur()) {
 		output("silk-");
 		if(flahneDickOut()) output("girded bulge");
@@ -729,16 +729,16 @@ public function flahneMunchesBoxesMetalBawkses():void {
 		output("\n\n<i>“I hope </i>");
 		if(pc.cockTotal() == 1) output("<i>this</i>");
 		else output("<i>these</i>");
-		output(" will cum with the rest of you. I’m ravenous,”</i>  Flahne teases, licking encouragingly. Tilting down, her mouth leaves your poor boner wet and wanting, but you soon forget about that when her breathing turns on [pc.oneVagina]. [pc.EachCock] is draped across her hair, sinking partway into the soft gel as her movements inadvertently stroke the underside");
+		output(" will cum with the rest of you. I’m ravenous,”</i> Flahne teases, licking encouragingly. Tilting down, her mouth leaves your poor boner wet and wanting, but you soon forget about that when her breathing turns on [pc.oneVagina]. [pc.EachCock] is draped across her hair, sinking partway into the soft gel as her movements inadvertently stroke the underside");
 		if(pc.cockTotal() > 1) output("s");
 		output(".");
 	}
 	//No Dicks
 	else {
-		output("\n\n<i>“Too bad there’s no dick here, I could have used a proper snack with this drink,”</i>  Flahne teases, licking along the inside edge of your thigh encouragingly. <i>“That doesn’t mean I don’t like a pretty pussy like this one though!”</i>  She comes closer and closer until her lips are just inches away; her breath washes across your mons in tantalizing waves, causing your body to spasm and your hips to lurch against her, but she holds you still while she works you to a frenzy.");
+		output("\n\n<i>“Too bad there’s no dick here, I could have used a proper snack with this drink,”</i> Flahne teases, licking along the inside edge of your thigh encouragingly. <i>“That doesn’t mean I don’t like a pretty pussy like this one though!”</i> She comes closer and closer until her lips are just inches away; her breath washes across your mons in tantalizing waves, causing your body to spasm and your hips to lurch against her, but she holds you still while she works you to a frenzy.");
 	}
 	//Merge
-	output("\n\nYou paw at your [pc.fullChest], unable to keep your hands still yet unable to find a proper place for them, letting them trace along your [pc.nipples] in idle self-pleasure. <i>“Are you ready?”</i>  she breathes, blowing gently across your [pc.clit].");
+	output("\n\nYou paw at your [pc.fullChest], unable to keep your hands still yet unable to find a proper place for them, letting them trace along your [pc.nipples] in idle self-pleasure. <i>“Are you ready?”</i> she breathes, blowing gently across your [pc.clit].");
 	
 	output("\n\nYou moan, and Flahne doesn’t delay further. The pouty pussy-licker closes the intervening distance with swiftness born of hunger, clamping down around your mound with enthusiasm, lightly sucking while ");
 	if(pc.clitLength >= 5) output("[pc.oneClit] burrows down her throat");
@@ -750,11 +750,11 @@ public function flahneMunchesBoxesMetalBawkses():void {
 	output("\n\nYour body responds to the attentions in the only way possible: twitching your hips with ardent passion, fucking yourself on Flahne’s mouth and tongue. She holds as tightly to your [pc.butt] and [pc.hips] as possible, and her tongue pushes further and further in, coiling around the outer edges of your channel until it forms a tantalizing helix. Flahne pulls her tongue in and out with slow strokes, scraping her flexible organ over every sensitive nerve, methodically finding every single sensitive spot. Whenever she finds a good location and your body juices in her mouth, her eyes twinkle merrily and she moves on, looking for more.");
 	
 	//Nice
-	if(pc.isNice()) output("\n\n<i>“Oh fuck yes, thank you Flahne! Please, lick me harder! Faster!”</i>  you beg.");
+	if(pc.isNice()) output("\n\n<i>“Oh fuck yes, thank you Flahne! Please, lick me harder! Faster!”</i> you beg.");
 	//Mischievous
-	else if(pc.isMischievous()) output("\n\n<i>“Come on, lick me harder Flahne! Faster! Show me what that tongue can do!”</i>  you cajole.");
+	else if(pc.isMischievous()) output("\n\n<i>“Come on, lick me harder Flahne! Faster! Show me what that tongue can do!”</i> you cajole.");
 	//Mean
-	else output("\n\n<i>“Faster! Come on, facefuck my cunt! Lick it! Suck it! Make me cum!”</i>  you demand.");
+	else output("\n\n<i>“Faster! Come on, facefuck my cunt! Lick it! Suck it! Make me cum!”</i> you demand.");
 	//Merge, no new PG.
 	output(" Your hands drift away from your [pc.fullChest] towards her shoulders, and you squeeze them encouragingly. Flahne gives you a knowing look and circles one arm around you to hold you still. With the other, she reaches up to your [pc.nipple], ");
 	if(pc.hasFuckableNipples()) output("slipping it inside the moist entrance with a little trepidation. She soon acclimates to your anatomy, matching the motions of her fingerfuck to the rhythm of her tongue");
@@ -801,7 +801,7 @@ public function flahneMunchesBoxesMetalBawkses():void {
 	output("\n\nFlahne eventually flops back onto her butt, connected to [pc.oneVagina] by a few strings of your [pc.girlCum]. She breaks those with a finger, slurps them down, and then proceeds to lick her plump lips clean with lewd enthusiasm. Her palm slides out of her own stretched slit");
 	if(flahneDickOut()) output(" while her wilting ovipositor slowly receeds. The undersides of her tits have been liberally splattered with her sweet spooge");
 	output(".");
-	output("\n\n<i>“Ahh, nothing like a snack and a cum.”</i>  She sets to cleaning up");
+	output("\n\n<i>“Ahh, nothing like a snack and a cum.”</i> She sets to cleaning up");
 	if(pc.wetness() >= 3 || (pc.hasCock() && pc.cumQ() >= 25)) output(", crawling around to lap every drop of fluid up");
 	output(". ");
 	if((pc.hasCock() && pc.cumQ() >= 25) || pc.hasNippleCocks() || pc.canMilkSquirt()) output("The fluid covering her slowly vanishes, absorbed directly through her skin-like membrane. ");
@@ -826,7 +826,7 @@ public function flahneDeskMunchies():void {
 	showFlahne(true);
 	showImage("FlahneUnderDesk");
 	output("Saying nothing, you advance on the endowed woman. Before she can get out of her chair, you pull it away from the desk, leaning over and resting your own hands on her damp armrests to pin the secretary in her seat.");
-	output("\n\n<i>“Getting a good look?”</i>  she teases. The buxom gel pushes her chest even farther, ");
+	output("\n\n<i>“Getting a good look?”</i> she teases. The buxom gel pushes her chest even farther, ");
 	if(!pc.canMilkSquirt()) {
 		if(pc.biggestTitSize() >= 1) output("almost touching yours");
 		else output("almost touching your [pc.chest]");
@@ -834,17 +834,17 @@ public function flahneDeskMunchies():void {
 	else output("touching your [pc.chest] with her nipples as fluid begins to leak from them, turning her shirt translucent");
 	output(". Keeping your plan in mind, you slip a hand up to touch her areolae, distracting her as you slowly turn the chair around until you’re between your quivering lover and the desk. Your arms draw back, pulling the chair forward and its occupant into you, and you savor the closeness of your lover as it drives her bouncy melons into your [pc.skinFurScales].");
 	
-	output("\n\nCrouching, you slide under the desk, then pull the secretary’s legs in after you, concealing your presence. <i>“[pc.name], what in the hell are you doing?”</i>  she asks, clearly perplexed by your hide-and-seek. Instead of replying, you push her knees apart and slip two fingers into her wet snatch, leaning in to slide your tongue ");
+	output("\n\nCrouching, you slide under the desk, then pull the secretary’s legs in after you, concealing your presence. <i>“[pc.name], what in the hell are you doing?”</i> she asks, clearly perplexed by your hide-and-seek. Instead of replying, you push her knees apart and slip two fingers into her wet snatch, leaning in to slide your tongue ");
 	if(!flahneDickOut()) output("over her erect clit");
 	else output("halfway up her erect, dribbling ovipositor");
-	output(". <i>“Woah, hold up!”</i>  the woman gasps. <i>“Someone might come in! Let me go so I can lock the doors!”</i>");
-	output("\n\n<i>“Why?”</i>  you counter. <i>“It’s not like anyone can see me, and you did say you could get a lot of work done during sex if you didn’t have to focus on your partner.”</i>");
+	output(". <i>“Woah, hold up!”</i> the woman gasps. <i>“Someone might come in! Let me go so I can lock the doors!”</i>");
+	output("\n\n<i>“Why?”</i> you counter. <i>“It’s not like anyone can see me, and you did say you could get a lot of work done during sex if you didn’t have to focus on your partner.”</i>");
 	
-	output("\n\n<i>“Did I say anything like that? Oh dear...”</i>  Flahne moans, open-mouthed with arousal. <i>“Fine, have it your way.”</i>  She scoots forward vigorously, and her body is positioned so closely that you can see her belly being creased inward by the edge of the desk. Obviously, she does not want to get caught screwing around on the job. The smell of sugar hits you a second later, carried from the sodden slit that lies squarely ahead. Up close and personal, you can see that her glossy amber snatch is covered with beads of moisture");
+	output("\n\n<i>“Did I say anything like that? Oh dear...”</i> Flahne moans, open-mouthed with arousal. <i>“Fine, have it your way.”</i> She scoots forward vigorously, and her body is positioned so closely that you can see her belly being creased inward by the edge of the desk. Obviously, she does not want to get caught screwing around on the job. The smell of sugar hits you a second later, carried from the sodden slit that lies squarely ahead. Up close and personal, you can see that her glossy amber snatch is covered with beads of moisture");
 	if(!flahneDickOut()) output(", and the clit is peeping out, fully erect and ready to be stimulated again");
 	else output(", and the clit has transformed into a half-floppy prong that would make a whore blush. It’s about twelve inches long now and thick like an over-stuffed sausage. Whitish pre-cum oozes out of her opening already. Unlike a human’s penis, the urethra is perched on a secondary bump atop her glans");
 	output(". You’re just starting to run your fingertips up her thighs, tracing gentle touches across the increasingly sensitive flesh, when you hear one of the doors open. Even from down here, you can see Flahne’s skin turn orange with embarrassment, but much to her credit she shows no other reaction.");
-	output("\n\n<i>“How may I help you, ma’am?”</i>  Flahne asks with a fairly level voice.");
+	output("\n\n<i>“How may I help you, ma’am?”</i> Flahne asks with a fairly level voice.");
 	
 	output("\n\nDamn, she’s good. You accelerate your pace, pushing a finger back into her honeyed folds. Flahne starts to groan in response, but she turns it into a cough. Her companion does not seem to notice.");
 	if(flahneDickOut()) {
@@ -874,7 +874,7 @@ public function eatFlahneOutUnderDesk():void {
 	output("You pry apart Flahne’s dripping entrance while the newcomer drones on about her situation, completely oblivious to the libertine delights going on just below the desk. ");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("Her ovipositor stiffens at your touches, rising higher and higher, until it stops at a 45 degree angle, smearing her sticky efflux across the hardwood surface above. When she cums, she’s probably going to soak the whole thing, and you. ");
 	output("Slowly pulling your fingers free of her glossy entrance, you smear the soaked digits across her mound, squeezing her fat vulvae together so that they form a lusty crease. Your [pc.tongue] comes out almost of its own accord, and you lick across the cunt-cleavage, tasting the sugary sweetness of Flahne’s sticky juices. Somehow, she keeps it together.");
-	output("\n\n<i>“...yes, uhmm, just fill me- uh, I mean these forms out, and send them back to me for review...”</i>  The last word trickles away into nothing, and you get the idea that Flahne’s eyes must have drifted partway closed during that statement, relaxing as you taste her lewdest orifice. You’ve yet to even touch her ");
+	output("\n\n<i>“...yes, uhmm, just fill me- uh, I mean these forms out, and send them back to me for review...”</i> The last word trickles away into nothing, and you get the idea that Flahne’s eyes must have drifted partway closed during that statement, relaxing as you taste her lewdest orifice. You’ve yet to even touch her ");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("ovipositor");
 	else output("clit");
 	output(", instead watching the rivulets of lust soak into her sopping-wet seat, squeezed out of her horny pussy thanks to your grip. You release her sensitive pussy and begin to gently massage her mons, running your lubricated digits down to slip and slide across her labia. Your palm catches on ");
@@ -897,8 +897,8 @@ public function eatFlahneOutUnderDesk():void {
 	}
 	output(". Flahne’s whole body is blushing brighter and brighter orange with each touch.");
 		
-	output("\n\n<i>“Miss... Flahne. It is Flahne right? Are you okay?”</i>  a feminine voice asks.");
-	output("\n\nYour efforts must be having some kind of visible effect. Flahne gurgles out, <i>“I... ooohhuummm... I’ll be o-ooohhhhh-kay. D-don’t worry.”</i>  Since it sounds like she’s starting to lose it, you push a third finger into the juiced-up snatch to reward her. She grunts noisily, rocking in her chair at the sudden penetration.");
+	output("\n\n<i>“Miss... Flahne. It is Flahne right? Are you okay?”</i> a feminine voice asks.");
+	output("\n\nYour efforts must be having some kind of visible effect. Flahne gurgles out, <i>“I... ooohhuummm... I’ll be o-ooohhhhh-kay. D-don’t worry.”</i> Since it sounds like she’s starting to lose it, you push a third finger into the juiced-up snatch to reward her. She grunts noisily, rocking in her chair at the sudden penetration.");
 	
 	output("\n\nThe voice sighs and says, <i>“No, I don’t think you are. I’ve met other rahn before, and you’ve turned bright orange since I’ve been here. You’ve got to be coming down with something. Why don’t we go find a nurse droid, and I can finish the paperwork while she checks you over.”</i>");
 	
@@ -909,18 +909,18 @@ public function eatFlahneOutUnderDesk():void {
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(", and the sticky droplets of her pre-cum seem to be falling in a steady stream");
 	output(". She’s getting close... all you need to do is go a little bit faster and she’s going to be putty in your hands.");
 	
-	output("\n\nFlahne tries to protest, <i>“Please... please more... uhh,”</i>  She collects her thoughts. <i>“I mean, please, fill out all your forms. Ooooohhhh!”</i>  A sucker falls from her slack jaw onto the floor nearby.");
-	output("\n\n<i>“No. Come on,”</i>  comes the voice again, <i>“There’s something wrong with you.”</i>  Heels clatter closer to you, so you begin to thrust your fingers to the timing of each footstep. Flahne slouches down in her chair, scooching her cunt closer to you, eager for more. It seems she’s given up all sense of propriety by this point. She’s grunting and groaning low in her throat. Her thick thighs are trembling to either side of you, so you grow more aggressive in your busy tonguing of her syrupy slit.");
+	output("\n\nFlahne tries to protest, <i>“Please... please more... uhh,”</i> She collects her thoughts. <i>“I mean, please, fill out all your forms. Ooooohhhh!”</i> A sucker falls from her slack jaw onto the floor nearby.");
+	output("\n\n<i>“No. Come on,”</i> comes the voice again, <i>“There’s something wrong with you.”</i> Heels clatter closer to you, so you begin to thrust your fingers to the timing of each footstep. Flahne slouches down in her chair, scooching her cunt closer to you, eager for more. It seems she’s given up all sense of propriety by this point. She’s grunting and groaning low in her throat. Her thick thighs are trembling to either side of you, so you grow more aggressive in your busy tonguing of her syrupy slit.");
 	
 	output("\n\nThe footsteps are almost there. ");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("You grab Flahne’s dick and start jacking it, flicking your tongue back and forth where it emerges from her swollen twat.");
 	else output("You suck Flahne’s clit into your mouth and begin to flog it, lashing your tongue back and forth across it, battering it with oral attention.");
-	output("\n\n<i>“Whaaa...”</i>  the voice starts, trailing off almost immediately. Flahne cries out and lifts her hips clear of the seat, allowing you to see how soaked she’s made the cushion. Strings of her lubricant hang between her butt and the chair, breaking one after another from Flahne’s orgasmic convulsions. Puffing up, her pussy begins to gush lubricants over your hand and mouth, leaking a steady stream of her honeyed ladyspunk with abandon. Flahne’s arms flail, knocking over some of the things on her desk, and she babbles, <i>“Harder! Harder!”</i>");
+	output("\n\n<i>“Whaaa...”</i> the voice starts, trailing off almost immediately. Flahne cries out and lifts her hips clear of the seat, allowing you to see how soaked she’s made the cushion. Strings of her lubricant hang between her butt and the chair, breaking one after another from Flahne’s orgasmic convulsions. Puffing up, her pussy begins to gush lubricants over your hand and mouth, leaking a steady stream of her honeyed ladyspunk with abandon. Flahne’s arms flail, knocking over some of the things on her desk, and she babbles, <i>“Harder! Harder!”</i>");
 	
 	output("\n\nA shadow falls across your source of light, ");
 	if(!flahneDickOut()) output("and you briefly make eye contact with a purple-skinned alien. You manage to smile around the mouthful of quim.");
 	else output("but sixteen inches of quivering, ejaculating orange tool block your view of the figure, and vice versa.");
-	output(" She stammers, <i>“I-I... I... ummm... I’ll be back later! Sorry!”</i>  and darts away.");
+	output(" She stammers, <i>“I-I... I... ummm... I’ll be back later! Sorry!”</i> and darts away.");
 	
 	output("\n\nFlahne moans loudly, and gushes again, shaking from head to toe. It’s marvelous to watch, as her semi-fluid body undulates rather pleasantly through her orgasm.");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) 
@@ -931,7 +931,7 @@ public function eatFlahneOutUnderDesk():void {
 
 	output("\n\nHer thighs clamp down on either side of you, surrounding you in squishy, jiggling flesh, compressing your mouth even harder against her gooey mound. Closing your eyes, you drink her girlish ejaculate until her body relaxes and releases you.");
 	
-	output("\n\nPushing out from under the desk, you stretch out with a satisfied grin on your face. Flahne is panting, her eyes heavy and lidded. She whimpers softly as she turns to regard you. <i>“I might have been exaggerating about my focus... a little.”</i>  You smile up at her");
+	output("\n\nPushing out from under the desk, you stretch out with a satisfied grin on your face. Flahne is panting, her eyes heavy and lidded. She whimpers softly as she turns to regard you. <i>“I might have been exaggerating about my focus... a little.”</i> You smile up at her");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(" as she steps up after you, immediately licking her spattered ejaculate off your body. <i>“So yummy....”</i>");
 	
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("\n\nTen minutes of cleaning later...");
@@ -963,30 +963,30 @@ public function flahneGetsSuckedAndSwallowed():void {
 	output("You squeeze her shaft right around the base to remind it who’s boss before taking pity on it, relaxing your grip and arching it down to be properly tended to. It wouldn’t do to have her burst all over the bottom of her desk, creating a rain of white that would completely cover you. Well, that might not be too bad, but you’re not gonna let that happen today.");
 	output("\n\nFlahne’s flexible boner is easy to wrangle up to your mouth. It even drips a few strands of white onto your lips, growing a bit fatter in your hand as you hold it. Its owner shudders slightly, sending a ripple through her luxurious thighs all the way down to her feet, shifting position so that her wet gash hangs just over the edge of the seat, its golden lips still expanding with lust. You rub her twat with one hand while slowly beginning to pump her cock-like ovipositor with the other, testing the gel-woman’s self-control as well as you can.");
 	output("\n\nThroughout this, she’s still carrying on a conversation with an unnamed woman, though the first stroke along her dick causes her to pause for a deep breath of air.");
-	output("\n\n<i>“...yes, just fill out these uhm, forms and send them back to me for review...”</i>  The last word trickles away into nothing, and you get the idea that Flahne’s eyes must have drifted partway closed during that statement, relaxing as you masturbate her. You’ve yet to actually put her ovipositor into your mouth at all, instead watching her drip whilst manipulating her genitals, collecting it in the palm of your hand for lubrication. Jacking her off like that does make audible squishing noise that you hope isn’t too loud up above... but then again, who cares? You squeeze her tool a little more firmly and gently guide the tip up to your lips, puckering up as it presses against you for a wet, messy cock-kiss.");
+	output("\n\n<i>“...yes, just fill out these uhm, forms and send them back to me for review...”</i> The last word trickles away into nothing, and you get the idea that Flahne’s eyes must have drifted partway closed during that statement, relaxing as you masturbate her. You’ve yet to actually put her ovipositor into your mouth at all, instead watching her drip whilst manipulating her genitals, collecting it in the palm of your hand for lubrication. Jacking her off like that does make audible squishing noise that you hope isn’t too loud up above... but then again, who cares? You squeeze her tool a little more firmly and gently guide the tip up to your lips, puckering up as it presses against you for a wet, messy cock-kiss.");
 	output("\n\nFlahne’s latest customer can be heard walking over to another chair, seating herself and humming softly to herself as she clicks away. You let your mouth part into a tiny ‘o’ as you accept part of your gel-girl lover’s cock into your mouth.");
-	output("\n\n<i>“Oooohhhh,”</i>  Flahne groans.");
+	output("\n\n<i>“Oooohhhh,”</i> Flahne groans.");
 	output("\n\nYou can almost picture the woman across the room looking up as she asks, <i>“Flahne, was it? Are you okay? Do I need to find a nurse droid?”</i>");
-	output("\n\n<i>“I’ll be... I’ll be okay,”</i>  Flahne mutters, aiming a light kick at you. Her leg is so soft and squishy that it doesn’t really do much but cause the parts of her cock you’ve swallowed to halfway escape. You lunge back down far enough to suitably engulf it again, which predictably causes Flahne to quietly whimper once more.");
+	output("\n\n<i>“I’ll be... I’ll be okay,”</i> Flahne mutters, aiming a light kick at you. Her leg is so soft and squishy that it doesn’t really do much but cause the parts of her cock you’ve swallowed to halfway escape. You lunge back down far enough to suitably engulf it again, which predictably causes Flahne to quietly whimper once more.");
 	
-	output("\n\n<i>“Are you sure you’re okay?”</i>  the mystery person asks. Her chair creaks when she rises, obviously standing up");
-	output("\n\nYou slide two fingers into her slit and begin to rub your palm across her entrance, curling your digits to press against her walls. <i>“I-I’m tuh... totally... f-fine!”</i>  Flahne protests while rocking her hips closer, pushing another inch of cock into your mouth. <i>“Just... ohhh, uh... fine. Feeling a little faint is all.”</i>  You flatten your tongue, pushing it back and forth along the underside of six inches or so you’ve taken inside you. Your other hand continues to work the remaining ten inches of shaft, though with less area to work with, you’re forced to make shorter, faster motions. Pre-cum is running almost continually from her tip at this point, forcing you to swallow and gulp to avoid letting it flood down your throat.");
+	output("\n\n<i>“Are you sure you’re okay?”</i> the mystery person asks. Her chair creaks when she rises, obviously standing up");
+	output("\n\nYou slide two fingers into her slit and begin to rub your palm across her entrance, curling your digits to press against her walls. <i>“I-I’m tuh... totally... f-fine!”</i> Flahne protests while rocking her hips closer, pushing another inch of cock into your mouth. <i>“Just... ohhh, uh... fine. Feeling a little faint is all.”</i> You flatten your tongue, pushing it back and forth along the underside of six inches or so you’ve taken inside you. Your other hand continues to work the remaining ten inches of shaft, though with less area to work with, you’re forced to make shorter, faster motions. Pre-cum is running almost continually from her tip at this point, forcing you to swallow and gulp to avoid letting it flood down your throat.");
 	
 	output("\n\nThe female voice asserts, <i>“Look, I’ve met a couple rahn before, and what’s going on here isn’t normal. You’re a loo’rahn, right? You’re very flushed, and quite frankly, it sounds like you’re about to pass out. Come on, let’s get you to the doctor. I’ll finish the forms while I wait on you, okay?”</i>");
 	
-	output("\n\n<i>“N-n-noooo,”</i>  Flahne stutters as her thighs spread wider of their own accord. <i>“Just, fill out t-the formmmm... uh.”</i>  You slip a third finger inside her vagina while moving your other hand even faster. ");
+	output("\n\n<i>“N-n-noooo,”</i> Flahne stutters as her thighs spread wider of their own accord. <i>“Just, fill out t-the formmmm... uh.”</i> You slip a third finger inside her vagina while moving your other hand even faster. ");
 	if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output("Thanks to your muzzle, you don’t have much problems accepting a few more inches into your mouth. ");
 	output("Her member is getting thicker and bobbing every second or two, while her slit squeezes down around your fingers like a nicely-padded vise. She’s just about to pop.");
 	output("\n\nFootsteps begin coming closer. With each percussive step, Flahne’s body becomes more tense, and her phallic organ grows thicker, though it remains softer and pudgier than you would have thought. It’s now or never. You slip your pinky inside her and slide your tongue from side to side, starting to gently suck on it, trying to draw the cum out of her by using your mouth like some kind of spunky vacuum cleaner. Flahne groans.");
 	output("\n\nThe other woman isn’t far away. Maybe two or three steps. You hear her heels click alongside the desk.");
 	
-	output("\n\n<i>“You aren’t oka...”</i>  The words trail into nothingness. Flahne is looking right at her, but you see the rahn’s eyes suddenly flutter closed. She lurches her hips powerfully, ramming an extra two inches into you, pushing straight into your throat. At the same time, the base swells, and hot globules of jizz pass through it, coming out in one huge, throat-filling surge of spooge. You try not to gag while she pumps into you, swallowing as fast as you can, dimly aware of a cute alien peering around the edge of the desk to watch you suck cock. Somehow, you keep your movements going, stroking her off to keep the cum coming.");
+	output("\n\n<i>“You aren’t oka...”</i> The words trail into nothingness. Flahne is looking right at her, but you see the rahn’s eyes suddenly flutter closed. She lurches her hips powerfully, ramming an extra two inches into you, pushing straight into your throat. At the same time, the base swells, and hot globules of jizz pass through it, coming out in one huge, throat-filling surge of spooge. You try not to gag while she pumps into you, swallowing as fast as you can, dimly aware of a cute alien peering around the edge of the desk to watch you suck cock. Somehow, you keep your movements going, stroking her off to keep the cum coming.");
 	
-	output("\n\n<i>“I... I’ll come back later,”</i>  comes the embarrassed voice. Flahne loses it at that point and grabs your head, pulling you down to the base, her dick easily deforming to slide the whole way down your throat. She moans loudly, and you hear the sound of retreating footsteps. Cum pours into your belly in an unrelenting tide, sugary and sweet, practically making your head swim with the sheer amount of energy forced into your digestive system.");
+	output("\n\n<i>“I... I’ll come back later,”</i> comes the embarrassed voice. Flahne loses it at that point and grabs your head, pulling you down to the base, her dick easily deforming to slide the whole way down your throat. She moans loudly, and you hear the sound of retreating footsteps. Cum pours into your belly in an unrelenting tide, sugary and sweet, practically making your head swim with the sheer amount of energy forced into your digestive system.");
 	
-	output("\n\n<i>“Oh, OH FUCK YES! Swallow it! Drink that cum!”</i>  Flahne cries as she slowly throat-fucks you, spending nearly twenty seconds filling you with eggs. Immediately after, her ovipositor yanks out, stringing long syrupy strands behind it as it dwindles down to the size of a clit. You swallow the leftovers and gasp for your breath. Flahne is so orange that she’s nearly red and hyperventilating, slowly fingering her pussy as she moans incoherently to herself. Her eyes are half-rolled back, but when you climb out from under the desk, she shudders and glances your way with a pout.");
+	output("\n\n<i>“Oh, OH FUCK YES! Swallow it! Drink that cum!”</i> Flahne cries as she slowly throat-fucks you, spending nearly twenty seconds filling you with eggs. Immediately after, her ovipositor yanks out, stringing long syrupy strands behind it as it dwindles down to the size of a clit. You swallow the leftovers and gasp for your breath. Flahne is so orange that she’s nearly red and hyperventilating, slowly fingering her pussy as she moans incoherently to herself. Her eyes are half-rolled back, but when you climb out from under the desk, she shudders and glances your way with a pout.");
 	output("\n\n<i>“Okay, maybe I exaggerated my abilities a little.”</i>");
-	output("\n\n<i>“A little?”</i>  you ask.");
+	output("\n\n<i>“A little?”</i> you ask.");
 	output("\n\nFlahne rolls her skirt back down, barely caring that the bottom of it is as soaked as her seat. She shivers and answers, <i>“Well, maybe we just need to practice a little more?”</i>");
 	output("\n\nMaybe...");
 	//+lust, big MP gain
@@ -1006,26 +1006,26 @@ public function playAndSpray():void {
 	showFlahne(true);
 	output("A devilish idea takes shape as you hear the door behind you slide open and high-heeled footsteps click across the floor. Taking Flahne’s dangling organ in hand, you stroke it languidly, collecting moisture from the tip and smearing it along the length. You can see her seat shift uneasily as you work the shaft in time to the visitor’s footsteps.");
 	
-	output("\n\n<i>“Welcome to the Mhen'ga Port Authority, Esbeth Station,”</i>  the slightly-stricken secretary says. <i>“Have you filled out your visitor’s paperwork yet?”</i>");
-	output("\n\n<i>“Ah, no. I need to do that. Can you send the forms to my PDA?”</i>  the newcomer answers. Its on-edge feminine voice only heightens your anticipation.");
+	output("\n\n<i>“Welcome to the Mhen'ga Port Authority, Esbeth Station,”</i> the slightly-stricken secretary says. <i>“Have you filled out your visitor’s paperwork yet?”</i>");
+	output("\n\n<i>“Ah, no. I need to do that. Can you send the forms to my PDA?”</i> the newcomer answers. Its on-edge feminine voice only heightens your anticipation.");
 	
-	output("\n\n<i>“Very good, I’ll transmit them. You may fill them out here or return to your ship.”</i>   Flahne’s voice is still somewhat level, and you slide two fingers cruelly into her pussy to break her concentration; beads of sweat form on the rahn’s chubby thighs, demonstrating the effect you’re having despite her attempt to remain in control. The footsteps withdraw, but no door sound announces the departure of the guest. Apparently it’s decided to fill out the forms here in the office. Leaning low while working the gel’s hole, you peek under the edge of the desk; a slim pair of light blue legs is sitting in a chair, emerging from a gray skirt and tucking into a pair of low heels. Of the face you can see nothing, but judging by the posture of the presumably female alien, she’s completely immersed in the paperwork.");
+	output("\n\n<i>“Very good, I’ll transmit them. You may fill them out here or return to your ship.”</i> Flahne’s voice is still somewhat level, and you slide two fingers cruelly into her pussy to break her concentration; beads of sweat form on the rahn’s chubby thighs, demonstrating the effect you’re having despite her attempt to remain in control. The footsteps withdraw, but no door sound announces the departure of the guest. Apparently it’s decided to fill out the forms here in the office. Leaning low while working the gel’s hole, you peek under the edge of the desk; a slim pair of light blue legs is sitting in a chair, emerging from a gray skirt and tucking into a pair of low heels. Of the face you can see nothing, but judging by the posture of the presumably female alien, she’s completely immersed in the paperwork.");
 	
 	output("\n\nTaking that as your cue, you unbend and return to the rahn’s pseudo-cock, now firm and spanning its entire 16-inch length. You playfully bend it low and give the head several kisses under the pretense of pleasing your lover, all the while eyeballing its angle and testing its flexibility. Satisfied that your plan will work, you return to stroking the shaft as you roll the head on your tongue, intent on bringing the overconfident rahn off before her guest can leave.");
 	
 	output("\n\nA soft moan issues from above the desk, and you can hear the blue woman adjust herself in the chair. <i>“Excuse me... are you all right? Your color has shifted quite a bit since I’ve come in.”</i>");
 	
-	output("\n\n<i>“N-no,”</i>  your plaything answers, <i>“I’m fine. D-do you have any questions about the forms?”</i>");
+	output("\n\n<i>“N-no,”</i> your plaything answers, <i>“I’m fine. D-do you have any questions about the forms?”</i>");
 	
 	output("\n\nOh, clever bitch! She’s trying to distract herself from your ministrations with boring office minutiae. Escalating your efforts, you pop the crown of her ovipositor into your mouth, rolling it around and provoking a shudder from your tormented victim. The visitor unknowingly helps you, mumbling a negative reply to Flahne’s question, and you up the pace of your strokes. The slutty secretary drools a few more drops of her lubrication from her rod, and you rub your tongue into the slit, causing her to squeeze her knees together with a low hum. The yielding goo of her thighs presents little resistance, and you intensify the search of her pussy as well.");
 	
-	output("\n\n<i>“G-god,”</i>  Flahne whispers, a little too loudly. <i>“Too much...”</i>");
+	output("\n\n<i>“G-god,”</i> Flahne whispers, a little too loudly. <i>“Too much...”</i>");
 	
-	output("\n\n<i>“Pardon?”</i>  comes the voice of the newcomer.");
+	output("\n\n<i>“Pardon?”</i> comes the voice of the newcomer.");
 	
-	output("\n\n<i>“I s-said, I know it can seem like too muh-much at once, but having these forms on file is essential if something should happen to you on the planet - bad or goo-ood!”</i>  Your plaything’s voice peaks on the last word as she tries to cover her outburst, and you can hear the visitor shift uneasily in her chair.");
+	output("\n\n<i>“I s-said, I know it can seem like too muh-much at once, but having these forms on file is essential if something should happen to you on the planet - bad or goo-ood!”</i> Your plaything’s voice peaks on the last word as she tries to cover her outburst, and you can hear the visitor shift uneasily in her chair.");
 	
-	output("\n\n<i>“Yes, I know that; standard affair. But I do think you should let me call for some assistance... you’re almost red and shivering quite badly.”</i>  As well she should be; you’ve shifted gears and have slid ");
+	output("\n\n<i>“Yes, I know that; standard affair. But I do think you should let me call for some assistance... you’re almost red and shivering quite badly.”</i> As well she should be; you’ve shifted gears and have slid ");
 	if(pc.biggestTitSize() >= 1) output("her pseudo-prick between your [pc.chest]");
 	else output("a finger slowly into her stretchy urethra");
 	output(".");
@@ -1038,11 +1038,11 @@ public function playAndSpray():void {
 	else output("finger, rubbing it from the inside");
 	output(". <i>“Not... not necessary. I’m fine, really. I’ve never f-felt better. Ohh, I feel so good I could just die!”</i>");
 	
-	output("\n\n<i>“Yes, that’s what I’m worried about!”</i>  says the newcomer. Flahne’s poor word choice returns to vex her as the woman gets out of her chair and approaches the desk again. You can hear her setting her PDA down above you, and the desk jars slightly. <i>“You need to come with me so we can get you some medical attention!”</i>");
+	output("\n\n<i>“Yes, that’s what I’m worried about!”</i> says the newcomer. Flahne’s poor word choice returns to vex her as the woman gets out of her chair and approaches the desk again. You can hear her setting her PDA down above you, and the desk jars slightly. <i>“You need to come with me so we can get you some medical attention!”</i>");
 	
-	output("\n\n<i>“L-let me go!”</i>  Flahne cries, twisting at the waist. <i>“I won’t... I won’t come!”</i>  Her throbbing prick tells another story; you can feel it twitch in your hand as it gets ready to unload. Leaning down and aiming it through the crack at the woman’s legs, you stroke your hardest, forcing the rahn to climax. <i>“Stop! No, nononono-”</i>");
+	output("\n\n<i>“L-let me go!”</i> Flahne cries, twisting at the waist. <i>“I won’t... I won’t come!”</i> Her throbbing prick tells another story; you can feel it twitch in your hand as it gets ready to unload. Leaning down and aiming it through the crack at the woman’s legs, you stroke your hardest, forcing the rahn to climax. <i>“Stop! No, nononono-”</i>");
 	
-	output("\n\nHer voice trails off into a long ‘oh’ as her spasming ovipositor erupts with sticky white cum, spraying it out of the gap, and the visitor’s becomes a shriek as you cover both her calves in Flahne’s jizz. <i>“What the- woah!”</i>  she cries, trying to step back from the sudden warmth but slipping on the slimy goo. With a grunt, she lands on her butt, planting her hands on the floor and spreading her legs for stability.");
+	output("\n\nHer voice trails off into a long ‘oh’ as her spasming ovipositor erupts with sticky white cum, spraying it out of the gap, and the visitor’s becomes a shriek as you cover both her calves in Flahne’s jizz. <i>“What the- woah!”</i> she cries, trying to step back from the sudden warmth but slipping on the slimy goo. With a grunt, she lands on her butt, planting her hands on the floor and spreading her legs for stability.");
 	
 	output("\n\nIt’s doubtful she would have done so if she knew you were there, because the sight that greets you as her skirt rides up is pristine; the alien visitor is wearing no panties either, and a smooth blue pussy peeks out at you from between her thighs. It’s no wonder she was so uptight and nervous - she likely took them off for a cheap thrill!");
 	if(pc.hasCock()) output(" With [pc.EachCock] rock-hard at the sight, you lose yourself in the heat of the moment; y");
@@ -1050,17 +1050,17 @@ public function playAndSpray():void {
 	else output(" Y");
 	output("ou bend and stretch Flahne’s ductile rod as low and as far forward as it will go, nearly brushing the blue slit with her head, and her next squirt of cum is aimed right between the woman’s legs and into her cute little pussy, coating her labia. Three strokes fire into it before the woman reacts, knocking Flahne’s ovipositor away with her hand and covering herself.");
 	
-	output("\n\n<i>“What...”</i>  the blue visitor begins, pulling her hand back up to her face as Flahne’s extended prick squirts the last of her orgasm. <i>“... is this cum? Did you just cum on me? Oh my God, did you get it inside me? What the FUCK!?”</i>");
+	output("\n\n<i>“What...”</i> the blue visitor begins, pulling her hand back up to her face as Flahne’s extended prick squirts the last of her orgasm. <i>“... is this cum? Did you just cum on me? Oh my God, did you get it inside me? What the FUCK!?”</i>");
 	
-	output("\n\n<i>“N-no,”</i>  Flahne replies in a startled voice that suggests her eyes are as wide as plates.");
+	output("\n\n<i>“N-no,”</i> Flahne replies in a startled voice that suggests her eyes are as wide as plates.");
 	
-	output("\n\n<i>“Oh my God,”</i>  repeats the woman, not hearing a word as she slides her jizz-covered fingers thoughtlessly inside her pussy. <i>“You did! You fucking came inside me! What if I get pregnant from this, you stupid bitch?”</i>  The irate blue girl grabs the end of Flahne’s prick, which responds by squirting weakly on her wrist and then shrinking. <i>“Is this a dick? I thought you were a woman! What kind of freak are you that you rub one out and come inside some woman who walks into your office to do business?”</i>");
+	output("\n\n<i>“Oh my God,”</i> repeats the woman, not hearing a word as she slides her jizz-covered fingers thoughtlessly inside her pussy. <i>“You did! You fucking came inside me! What if I get pregnant from this, you stupid bitch?”</i> The irate blue girl grabs the end of Flahne’s prick, which responds by squirting weakly on her wrist and then shrinking. <i>“Is this a dick? I thought you were a woman! What kind of freak are you that you rub one out and come inside some woman who walks into your office to do business?”</i>");
 	
-	output("\n\n<i>“It’s not cum,”</i>  the secretary says nervously, <i>“so relax. It’s just lubrication and unfertilized eggs. You can’t get pregnant from it... sorry, but I’ve been feeling bothered since you came in. Er, maybe it’s an allergic reaction?”</i>");
+	output("\n\n<i>“It’s not cum,”</i> the secretary says nervously, <i>“so relax. It’s just lubrication and unfertilized eggs. You can’t get pregnant from it... sorry, but I’ve been feeling bothered since you came in. Er, maybe it’s an allergic reaction?”</i>");
 	
-	output("\n\nThe blue visitor seems to calm down at Flahne’s misdirection. <i>“Not cum? So it’s safe?”</i>  Visible only to you, her hand slips down to her pussy and begins rubbing the soaked labia. <i>“Well, I should say you’re lucky! If I had gotten knocked up, I’d be back here with your baby in one arm and a policeman on the other! You really ought to see a medic about that.”</i>  Her fingers plunge deep into her pussy, forcing the warm, false cum deeper inside herself even as she pretends to be upset. What a piece of work!");
+	output("\n\nThe blue visitor seems to calm down at Flahne’s misdirection. <i>“Not cum? So it’s safe?”</i> Visible only to you, her hand slips down to her pussy and begins rubbing the soaked labia. <i>“Well, I should say you’re lucky! If I had gotten knocked up, I’d be back here with your baby in one arm and a policeman on the other! You really ought to see a medic about that.”</i> Her fingers plunge deep into her pussy, forcing the warm, false cum deeper inside herself even as she pretends to be upset. What a piece of work!");
 
-	output("\n\n<i>“Yes, I’ll do that,”</i>  Flahne responds. The blue girl works her opening a bit more, but when it becomes apparent that the fake argument won’t last any longer, she pulls her hand away reluctantly. With a slippery scramble, she gets to her feet and pulls her skirt back down, then snatches her PDA off the desk and turns for the door.");
+	output("\n\n<i>“Yes, I’ll do that,”</i> Flahne responds. The blue girl works her opening a bit more, but when it becomes apparent that the fake argument won’t last any longer, she pulls her hand away reluctantly. With a slippery scramble, she gets to her feet and pulls her skirt back down, then snatches her PDA off the desk and turns for the door.");
 	
 	if(pc.personality <= 90) output("\n\nWell, that went in a strange direction. As Flahne scoots her chair out, you extricate yourself without a word. She responds with the same silence until you’re on your feet again.");
 	else output("\n\nAs Flahne scoots her chair out, you dutifully force yourself to ");
@@ -1074,7 +1074,7 @@ public function playAndSpray():void {
 	if(pc.hasCock() || pc.hasVagina()) output(",");
 	output(" and give her your best doe-eyed innocent face. She doesn’t even say a word until you extricate yourself from the desk and perch on the edge of it.");
 	
-	output("\n\n<i>“Dammit, [pc.name], you stupid...”</i>  Flahne swears, in an uncharacteristic breach of her cheerful character. <i>“Of all the things you could have done... don’t think I’ll be speaking to you any time soon! Get out of my office so I can clean up and try to salvage my professional pride.”</i>");
+	output("\n\n<i>“Dammit, [pc.name], you stupid...”</i> Flahne swears, in an uncharacteristic breach of her cheerful character. <i>“Of all the things you could have done... don’t think I’ll be speaking to you any time soon! Get out of my office so I can clean up and try to salvage my professional pride.”</i>");
 
 	output("\n\nWith nothing else to say, you dutifully exit the office and are not terribly surprised when you hear the click of the door right behind you.");
 	
@@ -1099,15 +1099,15 @@ public function fuckAndSuckWithFlahne():void {
 	clearOutput();
 	showFlahne(true);
 	author("Gardeford");
-	output("<i>“I know something fun,”</i>  you tease, sliding a finger down Flahne’s straining cleavage. <i>“But you should probably lock the doors unless you don’t mind more people joining in.”</i>");
+	output("<i>“I know something fun,”</i> you tease, sliding a finger down Flahne’s straining cleavage. <i>“But you should probably lock the doors unless you don’t mind more people joining in.”</i>");
 	
-	output("\n\nFlahne colors a bit as her hand slides between her breasts to cup yours. <i>“Oh nooo, that would be awful. I’m a one-" + pc.mf("man","woman") + " rahn, through and through,”</i>  she giggles, answering in a sing-song voice that drips with insincerity. She pulls your finger free and licks it salaciously, then releases you and steps over to the door. With a click, she locks each one via the panel, and then returns to you. <i>“I’m all yours, you greedy " + pc.mf("boy","girl") + ".”</i>");
+	output("\n\nFlahne colors a bit as her hand slides between her breasts to cup yours. <i>“Oh nooo, that would be awful. I’m a one-" + pc.mf("man","woman") + " rahn, through and through,”</i> she giggles, answering in a sing-song voice that drips with insincerity. She pulls your finger free and licks it salaciously, then releases you and steps over to the door. With a click, she locks each one via the panel, and then returns to you. <i>“I’m all yours, you greedy " + pc.mf("boy","girl") + ".”</i>");
 
 	output("\n\nYou reach around the wonderfully soft gel secretary rubbing against you and grasp her plushy butt with both hands. Her ovipositor pokes your stomach as you gently lift her to sit on her desk. The translucent amber shaft oozes slightly at the tip, letting you know that it’s ready and raring to go. You don’t really feel like making use of the magnificent member yourself, but an interesting idea stirs on your mind. You ");
 	if(!pc.isNude()) output("strip out of your [pc.gear], revealing [pc.oneCock] and grinning at the prone beauty.");
 	else output("slide your hands sensually down your body, rubbing [pc.oneCock] ‘til it hardens nicely.");
 	
-	output("\n\n<i>“Did you want me to put my ovipositor away?”</i>  Flahne asks you with a curious look. She rubs the pulsing ovi-cock, causing a dollop of pre to leak out and trickle down to her waiting fingers. With a sly smile, you brush a finger from its tip down to the base, then push it between her enormous tits. The gold-hued girl shivers and grins with delight, stroking it to free her first secretions as she unbuttons her shirt, then parting her legs to reveal her lust-inflamed pussy.");
+	output("\n\n<i>“Did you want me to put my ovipositor away?”</i> Flahne asks you with a curious look. She rubs the pulsing ovi-cock, causing a dollop of pre to leak out and trickle down to her waiting fingers. With a sly smile, you brush a finger from its tip down to the base, then push it between her enormous tits. The gold-hued girl shivers and grins with delight, stroking it to free her first secretions as she unbuttons her shirt, then parting her legs to reveal her lust-inflamed pussy.");
 	
 	output("\n\nYou move up to the desk and lean in close, helping to undo the last few buttons on the gel girl’s top. As soon as you finish the last straining one, the massive globes fall free. Your first hand catches one of the breasts as it falls, sinking into the heavenly soft mass, while the other slides down to her waiting slit. The soft flesh parts easily as you trace your fingers around the entrance to her vagina; her slick juices coat them and you can smell the sugars permeating the air around the two of you.");
 	
@@ -1147,7 +1147,7 @@ public function fuckAndSuckWithFlahne():void {
 		output(".");
 	}
 	else output("\n\nYou pull free of the gel secretary’s hole and she lets her legs fall; small globs of your cum escape from her hole, but her body rushes to absorb it and most disappear before leaving her skin.");
-	output(" She lifts her head as soon as the flow from her ovipositor stops, and it droops to one side. Insatiable, her lips wrap around [pc.eachCock] to suck out any remaining jism. <i>“Mmmm, your cum’s much better than a sucker, [pc.name]. You’d better be back soon,”</i>  she says. Flahne pulls a new skirt and a small towel out of a drawer in her desk; you take the towel and mop up as much of the fluid-stained desk ");
+	output(" She lifts her head as soon as the flow from her ovipositor stops, and it droops to one side. Insatiable, her lips wrap around [pc.eachCock] to suck out any remaining jism. <i>“Mmmm, your cum’s much better than a sucker, [pc.name]. You’d better be back soon,”</i> she says. Flahne pulls a new skirt and a small towel out of a drawer in her desk; you take the towel and mop up as much of the fluid-stained desk ");
 	if(pc.cumQ() >= 500) output("and floor ");
 	output("as you can while Flahne changes into her new skirt.");
 	flahneFuckCounter(1);
@@ -1183,7 +1183,7 @@ public function flahneExhibitionHugsGirls():void {
 	if(!pc.isNude()) output(", dropping your clothing as you go");
 	output(". When you reach the chair you swivel to face her and crook your finger to beckon her over. The luscious gel-girl glances nervously at the door for a moment before walking slowly to stand before you.");
 
-	output("\n\n<i>“Don’t worry about the door for now. Just sit here with me and I’ll make you forget it,”</i>  you say, giving Flahne your best bedroom eyes. The nervousness begins to fade as she hooks her legs through the chair’s arms to sit on your lap. Her goldenrod flesh is warm against your [pc.skinFurScales], and as you undo her top her breasts press against your [pc.chest] like soft pillows. You slip your hand between her parted legs and dip two fingers into her pliant gelpussy, ");
+	output("\n\n<i>“Don’t worry about the door for now. Just sit here with me and I’ll make you forget it,”</i> you say, giving Flahne your best bedroom eyes. The nervousness begins to fade as she hooks her legs through the chair’s arms to sit on your lap. Her goldenrod flesh is warm against your [pc.skinFurScales], and as you undo her top her breasts press against your [pc.chest] like soft pillows. You slip your hand between her parted legs and dip two fingers into her pliant gelpussy, ");
 	if(!flahneDickOut()) output("using your thumb to rub her budding clit.");
 	else output("rubbing your thumb against the base of her ovipositor.");
 	output(" Flahne moans loudly, but covers her mouth and looks over her shoulder at the door, her lack of nerve still apparent.");
@@ -1208,7 +1208,7 @@ public function flahneExhibitionHugsGirls():void {
 	output(" giggle. You move your face close to the gel-girl’s elongated ear, ");
 	if(!pc.isAss()) output("biting");
 	else output("nipping");
-	output(" the tip with your lips and licking down its length untill your mouth is close enough to whisper. <i>“There’s someone at the door,”</i>  you tell her just as the handle jiggles across the room. Flahne’s head swivels to look at the door, and a hundred different things seem to catch in her throat as her pussy tightens around your fingers. You slide them out momentarily, moving your hand round to her backside and pulling her soft body in tight against your [pc.skinFurScales]. You squeeze one of her plush asscheeks before slipping your fingers into her cunt from behind, picking up the pace from before as you kiss the side of her neck. The office door opens to reveal a short, thin woman of moderate attractiveness, and she drops a clipboard as a look of shock covers her features. Her face flushes beet red as she stoops to pick up the clipboard and leaves as quickly as she can, stuttering apologies as she shuts the door.");
+	output(" the tip with your lips and licking down its length untill your mouth is close enough to whisper. <i>“There’s someone at the door,”</i> you tell her just as the handle jiggles across the room. Flahne’s head swivels to look at the door, and a hundred different things seem to catch in her throat as her pussy tightens around your fingers. You slide them out momentarily, moving your hand round to her backside and pulling her soft body in tight against your [pc.skinFurScales]. You squeeze one of her plush asscheeks before slipping your fingers into her cunt from behind, picking up the pace from before as you kiss the side of her neck. The office door opens to reveal a short, thin woman of moderate attractiveness, and she drops a clipboard as a look of shock covers her features. Her face flushes beet red as she stoops to pick up the clipboard and leaves as quickly as she can, stuttering apologies as she shuts the door.");
 
 	output("\n\nAs soon as the door is closed Flahne lets out a long moan, and her pussy tightens like a vice around your fingers. Her body shudders as she cums, liquid dripping off the already soaked chair. Her fingers ");
 	//if low capacity:
@@ -1254,7 +1254,7 @@ public function flahneIfMalesFitTheySitExhibitionism():void {
 	if(!pc.isNude()) output(", dropping your clothing as you go");
 	output(". When you reach the chair you swivel to face her and beckon her with one hand. The luscious gel-secretary glances nervously at the door for a moment before walking slowly to stand before you.");
 
-	output("\n\nYou lean back in the chair and give Flahne a coy smile. <i>“You worry too much. Come, sit, and we’ll forget all about the door,”</i>  You say as you reach out and slowly pull down the gel-girl’s skirt, ");
+	output("\n\nYou lean back in the chair and give Flahne a coy smile. <i>“You worry too much. Come, sit, and we’ll forget all about the door,”</i> You say as you reach out and slowly pull down the gel-girl’s skirt, ");
 	if(!flahneDickOut()) output("planting a kiss on her pelvis");
 	else output("kissing the underside of her hardening ovipositor");
 	output(" as she steps out. Worries of being caught seem to be forgotten as you turn the flavescent beauty around. You cup her amber assflesh in both hands and squeeze lightly as you lower her into position above [pc.oneCock]. Flahne exhales softly as you rub your [pc.cockHead " + x + "] against her moist opening, biting her lower lip when you pull her slowly down until you can’t go any further.");
@@ -1274,7 +1274,7 @@ public function flahneIfMalesFitTheySitExhibitionism():void {
 	output("\n\nThe feeling of Flahne’s insides is beginning to get to you, but not so much so that you can’t hear the soft thudding of footsteps outside the door. The busty secretary appears to be too drunk with pleasure to notice the noise, and you grin ");
 	if(pc.isAss()) output("wickedly");
 	else output("playfully");
-	output(" behind her back. You move your face close to her elongated ear, making small mock bites and kisses down its length until you are mere inches from her face, breath caressing her cheek. <i>“There’s someone at the door,”</i>  you whisper quietly just as the handle jiggles on the other side of the room. Flahne gasps and focuses on the door; and a hundred different excuses seem to catch in her throat as her pussy tightens around your throbbing member, and her hand clutches harder to your arm. You heed none of her attempted warnings as you pick up speed ");
+	output(" behind her back. You move your face close to her elongated ear, making small mock bites and kisses down its length until you are mere inches from her face, breath caressing her cheek. <i>“There’s someone at the door,”</i> you whisper quietly just as the handle jiggles on the other side of the room. Flahne gasps and focuses on the door; and a hundred different excuses seem to catch in her throat as her pussy tightens around your throbbing member, and her hand clutches harder to your arm. You heed none of her attempted warnings as you pick up speed ");
 	if(!flahneDickOut()) output("rubbing her clit, twisting it lightly");
 	else output("sliding your hand up and down her golden ovi-cock, stopping at the tip and swirling your palm around it");
 	output(" while you kiss the side of her neck. The office door opens and a short stocky alien in a black business suit shuffles in. The man takes one look at the scene beyond and backs out of the room, spewing flustered apologies as he shuts the door behind him.");
@@ -1300,7 +1300,7 @@ public function flahneIfMalesFitTheySitExhibitionism():void {
 
 	if(flags["HUGGED_FLAHNE"] == undefined) output("\n\n<i>“M-maybe I do have just a little exhibition streak,”</i>");
 	else output("\n\n<i>“C-come back again soon,”</i>");
-	output("  she says with a small smile. You giggle and give her a quick kiss. Her smile widens and a blush blooms that turns her face butterscotch before she goes to get a few towels and a change of clothes. The towels clean up most of the assorted fluids, and she assures you as you leave that she can get the rest with a mop.");
+	output(" she says with a small smile. You giggle and give her a quick kiss. Her smile widens and a blush blooms that turns her face butterscotch before she goes to get a few towels and a change of clothes. The towels clean up most of the assorted fluids, and she assures you as you leave that she can get the rest with a mop.");
 	flags["HUGGED_FLAHNE"] = 1;
 	flahneFuckCounter(1);
 	pc.exhibitionism(2);
@@ -1373,7 +1373,7 @@ public function flahneTalksAboutCumslutPenny():void
 public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 {
 	clearOutput();
-	showFlahne();
+	showFlahne(true);
 	author("Savin");
 	//if Taur:
 	if(pc.isTaur())
@@ -1388,8 +1388,8 @@ public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 	{
 		output("With the gel-like secretary's truly impressive rack suddenly on almost-complete display, it takes you a moment to churn through your options. After seeing her long, writhing tongue play around the candies the secretary's always sucking on, you can't wait to see what it could do to your [pc.vaginas]. Then again, those huge tits of hers are swaying hypnotically in your face, making you think of all the things you could do to a rack like that...");
 	}
-	output("\n\n\"<i>Cat got your tongue, cutie?</i>\" Flahne teases. As she speaks, though, the amber-hued secretary hops up from her swivel chair and slips around to your side of her desk, working through the remaining buttons of her shirt until it slips off her shoulders completely.");
-	output("\n\nYou nod at her question, completely entranced by the hypnotic sway of her huge tits, and the suggestive sashay of her wide hips underneath her skirt. \"<i>Well, ask your kitty friend if I can borrow it for a while,</i>\" she coos, hefting herself up onto the edge of the desk and spreading her legs. You're not surprised to see she's not wearing any panties under that sinfully short bottom of hers, and your eyes are instantly drawn to the glistening, golden honeypot tucked between her thick thighs.");
+	output("\n\n<i>“Cat got your tongue, cutie?”</i> Flahne teases. As she speaks, though, the amber-hued secretary hops up from her swivel chair and slips around to your side of her desk, working through the remaining buttons of her shirt until it slips off her shoulders completely.");
+	output("\n\nYou nod at her question, completely entranced by the hypnotic sway of her huge tits, and the suggestive sashay of her wide hips underneath her skirt. <i>“Well, ask your kitty friend if I can borrow it for a while,”</i> she coos, hefting herself up onto the edge of the desk and spreading her legs. You're not surprised to see she's not wearing any panties under that sinfully short bottom of hers, and your eyes are instantly drawn to the glistening, golden honeypot tucked between her thick thighs.");
 	output("\n\nShe gives you a look with a mischievous glint in her amethyst eyes and pats her thighs invitingly, a silent offer for you to dig in. As her hands impact her alien flesh, her whole lower body seems to tremble with the shock, reacting just like gelatin and quaking in ways that send the most awe-inspiring shockwaves all the way to her pendulous breasts.");
 
 	output("\n\nYou don't have to be asked twice.");
@@ -1408,13 +1408,13 @@ public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output(" lift the meaty shaft out of the way and");
 	output(" flick your [pc.tongue] out along one of her outer lips, running it from the bottom of her twat to the hood of her clit. The taste is intoxicating, like the sweetest, sugariest candy you've ever eaten in the form of a molten liquid that's the perfect balance between sticky and creamy. You eat it up, letting the sweet stuff spur you on to licking deeper and faster into the giggling rahn's cunt.");
 
-	output("\n\n\"<i>Ooh, that's the spot!</i>\" she purrs, digging her soft digits into the lip of her desk and moaning with pleasure. Her hips wiggle happily, sending quaking sways through her huge tits - the sight of them going wild is too much to bear, and you find yourself reaching up to grab the massive mounds. Your fingers sink into them, all but vanishing into the soft gold gel that makes up Flahne's bust. Flahne giggles and shakes her shoulders, making you cling hard to her tits or be shaken off. The harder you squeeze, the more she moans - and the more of her sweet nectar you're able to lick out of her drooling cunt.");
+	output("\n\n<i>“Ooh, that's the spot!”</i> she purrs, digging her soft digits into the lip of her desk and moaning with pleasure. Her hips wiggle happily, sending quaking sways through her huge tits - the sight of them going wild is too much to bear, and you find yourself reaching up to grab the massive mounds. Your fingers sink into them, all but vanishing into the soft gold gel that makes up Flahne's bust. Flahne giggles and shakes her shoulders, making you cling hard to her tits or be shaken off. The harder you squeeze, the more she moans - and the more of her sweet nectar you're able to lick out of her drooling cunt.");
 
-	output("\n\nWith a bit of pressure, your tongue's able to peel her pussylips apart, gaining access to the perfectly-formed passage between them. \"<i>Oh, oh gosh,</i>\" Flahne murmurs as your tongue squirms its way ever so slowly into her, spreading her soft, sodden slit nice and wide. \"<i>Eat it up, sugar. Eat it </i>all<i> up!</i>\"");
+	output("\n\nWith a bit of pressure, your tongue's able to peel her pussylips apart, gaining access to the perfectly-formed passage between them. <i>“Oh, oh gosh,”</i> Flahne murmurs as your tongue squirms its way ever so slowly into her, spreading her soft, sodden slit nice and wide. <i>“Eat it up, sugar. Eat it </i>all<i> up!”</i>");
 
 	output("\n\nYou'd laugh at the corny pillow-talk if you weren't chin-deep in alien pussy. As it stands, you eagerly follow your giggly lover's instruction, licking your way around her cunny's walls and lapping up all her sweet juices. ");
 	//if Flahnepositor Out: 
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output("The rahn's big, tumescent ovipositor throbs over you, tenting her skirt and plopping firmly onto the top of your head. Your lover giggles, her amber cheeks turning a darker orange. \"<i>Sorry,</i>\" she purrs, hefting the great big egg-layer off of you... and right up between her hefty tits. You take the hint and squeeze her boobs together, tight around the shaft of her ovi-cock, and start to massage them up against each other. You're almost immediately rewarded with a geyser of creamy pre that squirts up from her cleavage to splatter across the tops of her breasts. Flahne makes a hell of a show licking up every drop of it.\n\n");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output("The rahn's big, tumescent ovipositor throbs over you, tenting her skirt and plopping firmly onto the top of your head. Your lover giggles, her amber cheeks turning a darker orange. <i>“Sorry,”</i> she purrs, hefting the great big egg-layer off of you... and right up between her hefty tits. You take the hint and squeeze her boobs together, tight around the shaft of her ovi-cock, and start to massage them up against each other. You're almost immediately rewarded with a geyser of creamy pre that squirts up from her cleavage to splatter across the tops of her breasts. Flahne makes a hell of a show licking up every drop of it.\n\n");
 	output("You can tell she's getting close now! You lick and squeeze more fiercely, driving Flahne's pleasure ever higher until she lets out a sharp gasp, and you feel her thighs clench around your [pc.face]. A thick squirt of her candy-like juices presages an orgasm that has you fighting to catch your breath between wet surges and Flahne trying to bury you between her thick, soft thighs - a demise you honestly can't say you'd be opposed to, if it feels anywhere near as nice as her skin does against yours, rubbing wetly but softly all over you.");
 
 	output("\n\nFinally, you manage to break away from Flahne's death-grip and catch your breath. Without anything to cling to, the amber rahn flops onto her back and lets out a huge sigh. She looks utterly sated, eyes fluttering closed and hands ");
@@ -1422,7 +1422,7 @@ public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 	else output("massaging her well-eaten pussy");
 	output(".");
 
-	output("\n\n\"<i>Oh, I needed that, sweetheart,</i>\" Flahne coos, slowly forcing herself to prop up on her arms. \"<i>Aww, you look so flustered you're about to burst! Why don't you just turn around and let me return the favor, sugar?</i>\"");
+	output("\n\n<i>“Oh, I needed that, sweetheart,”</i> Flahne coos, slowly forcing herself to prop up on her arms. <i>“Aww, you look so flustered you're about to burst! Why don't you just turn around and let me return the favor, sugar?”</i>");
 
 	output("\n\nNow that's an offer you can't refuse! ");
 	if(pc.isTaur()) output("You awkwardly turn your big, bestial body around, trying not to knock too much over in Flahne's cramped little office. She giggles, just ducking under one of your legs as you try and get yourself angled so she's got easy access to your [pc.vaginas]. When you're finished, you're treated to the feeling of Flahne's soft fingers on your [pc.butt], rubbing and massaging the inhuman arrangement of your backside.");
@@ -1471,8 +1471,8 @@ public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 	}
 	output(" You buck your [pc.hips] back against her smooth face, grinding and humping to trying to fuck Flahne's tongue deeper into your [pc.vagina " + x + "].");
 
-	output("\n\n\"<i>Gonna... gonna...</i>\" you moan, fingers scrabbling against the wall. Flahne answers with her fingers suddenly back around your clit, massaging your buzzer in time with her tongue's ministrations. That's just the push you need to slide over the edge, hurling you into the throes of pleasure. Your cunt squeezes hard around Flahne's tongue, squirting thick rivulets of [pc.girlCumNoun] across Flahne's cheeks. You can't help but cry out now, no matter how hard you try not to: a booming moan of pleasure that you're sure anyone outside Flahne's office can hear as clear as day. Nothing can stifle you once the dam's been broken, and you're moaning like a bitch in heat as Flahne licks and massages you through your climax.");
-	output("\n\nA moment passes, and you all but fall onto your [pc.knees] when Flahne's tongue slithers out of you. You spend a moment catching your breath, trembling with the aftershocks of your orgasm. Flahne giggles and licks her lips, murmuring \"<i>Now that was a treat!</i>\" and looking around for wherever her shirt fell.");
+	output("\n\n<i>“Gonna... gonna...”</i> you moan, fingers scrabbling against the wall. Flahne answers with her fingers suddenly back around your clit, massaging your buzzer in time with her tongue's ministrations. That's just the push you need to slide over the edge, hurling you into the throes of pleasure. Your cunt squeezes hard around Flahne's tongue, squirting thick rivulets of [pc.girlCumNoun] across Flahne's cheeks. You can't help but cry out now, no matter how hard you try not to: a booming moan of pleasure that you're sure anyone outside Flahne's office can hear as clear as day. Nothing can stifle you once the dam's been broken, and you're moaning like a bitch in heat as Flahne licks and massages you through your climax.");
+	output("\n\nA moment passes, and you all but fall onto your [pc.knees] when Flahne's tongue slithers out of you. You spend a moment catching your breath, trembling with the aftershocks of your orgasm. Flahne giggles and licks her lips, murmuring <i>“Now that was a treat!”</i> and looking around for wherever her shirt fell.");
 
 	output("\n\nAs soon as your [pc.legs] are steady again, you get up and grab your [pc.gear], grinning at the amber gel-girl. She blows you a kiss between licking your juices off her cheeks.");
 	processTime(33);

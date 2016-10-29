@@ -380,14 +380,15 @@ public function bessHeader():void
 {
 	if (bess.isFeminine())
 	{
-		showName("\nBESS-13");
+		//showName("\nBESS-13");
 		showBust("BESS");
 	}
 	else
 	{
-		showName("\nBEN-14");
+		//showName("\nBEN-14");
 		showBust("BEN");
 	}
+	showName("\n" + chars["BESS"].short.toUpperCase());
 	author("JimT");
 }
 
@@ -955,15 +956,18 @@ public function nameBessForRealsies():void
 public function nameBessProcessing():void
 {
 	if (this.userInterface.textInput.text == "") {
+		nameBessForRealsies();
 		output("\n\n\n<b>You must input a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if (hasIllegalInput(this.userInterface.textInput.text)) {
+		nameBessForRealsies();
 		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if (this.userInterface.textInput.text.length > 14) {
+		nameBessForRealsies();
 		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
@@ -1556,7 +1560,7 @@ public function talkToBessAboutTitles():void
 	output("<i>“Which one?”</i>");
 
 	clearMenu();
-	addButton(0, possessive(bess.short) + " Name", bessTitlesTheirName, undefined, possessive(bess.short) + " Name", "Change " + possessive(bess.short) + " name. At least, if [bess.heShe] agrees to it...");
+	addButton(0, bess.mf("His", "Her") + " Name", bessTitlesTheirName, undefined, possessive(bess.short) + " Name", "Change " + possessive(bess.short) + " name. At least, if [bess.heShe] agrees to it...");
 	addButton(1, "YourTitle", bessTitlesYourTitles, undefined, "Your Title", "The title that [bess.name] will call you in non-sexual encounters.");
 	addButton(2, bess.mf("His", "Her") + "Title", bessTitlesTheirTitle, undefined, bess.mf("His", "Her") + " Title", "The title that you will call [bess.name] in non-sexual encounters.");
 	addButton(3, "YourSexName", bessTitlesYourSexName, undefined, "Your Sex Name", "The name that [bess.name] will call you in sexual encounters.");

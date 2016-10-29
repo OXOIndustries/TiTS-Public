@@ -53,6 +53,29 @@ public function pcSeraPregDays():int
 	return minutesToDays(pregTime);
 }
 
+// Boost Sera's raunchiness.
+public function seraLustGain(minPassed:int = 60):void
+{
+	chars["SERA"].lust(2 * minPassed);
+	if(chars["SERA"].ballFullness < 100) chars["SERA"].ballFullness += (1.5 * minPassed);
+	if(chars["SERA"].ballFullness > 100) chars["SERA"].ballFullness = 100;
+	chars["SERA"].minutesSinceCum += minPassed;
+}
+public function serasBodyIsReady():void
+{
+	chars["SERA"].lust(9000);
+	chars["SERA"].ballFullness = 100;
+	chars["SERA"].cumQualityRaw = 1;
+	chars["SERA"].minutesSinceCum = 9000;
+}
+
+// Party Check
+public function seraPartySuccess():Boolean
+{
+	// If PC has completed party event successfully
+	return (flags["SERA_PARTY_INVITE"] >= 3 && flags["SERA_INFULENCE"] > 90);
+}
+
 // Intro
 public function seraBreedingIntro():void
 {
@@ -75,7 +98,7 @@ public function seraBreedingIntro():void
 		flags["SERA_TALKS_BREED"] = 1;
 		
 		// If PC has completed party event successfully
-		if(flags["SERA_PARTY_INVITE"] >= 4)
+		if(seraPartySuccess())
 		{
 			seraBreedBegMenu(true);
 		}
@@ -84,7 +107,7 @@ public function seraBreedingIntro():void
 		{
 			output("\n\n<i>“But it’s not going to happen,”</i> she continues. She raises the talon to cut you off again. <i>“I think you’re cute and all [pc.name], but how long have we really known each other for? And I know you’re saying you’d take care of it, but things change real fucking fast out here on the frontier. I’m just barely getting by here - what happens if you get ripped off by some throbb-head pirates and have to liquidate what daddy left you? Up shit nebula without an FTL drive, that’s what. So no, I’m not going to knock you up.");
 			if(pc.hasCock()) output(" And don’t even dare asking if you can knock ME up.");
-			output("”</i> She lounges on the counter, lifting up her leg so she can place her high heel on the synth surface, her sobriety melting back into her usual playful maliciousness. <i>“Feel free to pointlessly beg for it, though. That will please me.”</i>");
+			output("”</i> She lounges back on her chair, lifting up her leg so she can place her high heel on the synth surface, her sobriety melting back into her usual playful maliciousness. <i>“Feel free to pointlessly beg for it, though. That will please me.”</i>");
 			
 			clearMenu();
 			addButton(0, "Next", seraTalkMenu);
@@ -99,7 +122,7 @@ public function seraBreedingIntro():void
 		output("\n\n<i>“And why,”</i> replies Sera coolly, lounging back on her counter to cross her legs, <i>“might I have done that?”</i>");
 		
 		// If PC has completed party event successfully
-		if(flags["SERA_PARTY_INVITE"] >= 4)
+		if(seraPartySuccess())
 		{
 			output("\n\n<i>“Seeing as how you’re no longer in debt,”</i> you say. <i>“Thanks to your most devoted slave. Perhaps with that no longer weighing on you, you might be thinking about... getting fruitful?”</i> Sera leers, shaking her head slightly as she allows her reptilians gaze to move up and down you.");
 			
@@ -143,7 +166,7 @@ public function seraBreedBegAction(response:String = ""):void
 	author("Nonesuch");
 	showSera();
 	
-	var success:Boolean = (flags["SERA_PARTY_INVITE"] >= 4);
+	var success:Boolean = seraPartySuccess();
 	
 	switch(response)
 	{
@@ -192,8 +215,8 @@ public function seraBreedBegAction(response:String = ""):void
 	
 	processTime(5 + rand(2));
 	
-	// Ghost out [Breed] for 24 hours
-	pc.createStatusEffect("Sera Talk Breed", 0, 0, 0, 0, true, "", "", false, (24 * 60));
+	// Ghost out [Breed] for 24 hours; Reduce by six hours maybe.
+	pc.createStatusEffect("Sera Talk Breed", 0, 0, 0, 0, true, "", "", false, (6 * 60));
 	if(success) flags["SERA_BREED_TIMER"] = GetGameTimestamp();
 	
 	clearMenu();
@@ -359,8 +382,9 @@ public function seraBreedResponse(arg:Array):void
 			}
 			
 			// Give Sera pregnancy powers!
+			serasBodyIsReady();
 			chars["SERA"].impregnationType = "SeraSpawnPregnancy";
-			chars["SERA"].createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", "Your masculine virility has been piqued temporarily.", false, (24 * 60));
+			chars["SERA"].createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", "Masculine virility has been piqued temporarily.", false, 1440);
 			
 			// {merge}
 			output("\n\nIt’s less of a kiss and more of a ravaging; she bends her wet muscle into you as far as she can, almost brushing your tonsils before thrusting it into a cheek wall, apparently intent on touching as much of you as possible.");
@@ -427,7 +451,7 @@ public function seraBreedResponse(arg:Array):void
 			
 			output("A big, pink plug is insistently pressed into your [pc.anus], until at last, with an acute frisson of sensation, the bulb makes it past your ring, stretching you wide.");
 			
-			var dildoCap:Number = pc.analCapacity();
+			var dildoCap:Number = (pc.analCapacity() / 2);
 			if(dildoCap < 500) dildoCap = 500;
 			pc.buttChange(dildoCap);
 			
@@ -447,7 +471,7 @@ public function seraBreedResponse(arg:Array):void
 				{
 					for(i = 0; i < vagList.length; i++)
 					{
-						dildoCap = pc.vaginalCapacity(vagList[i]);
+						dildoCap = (pc.vaginalCapacity(vagList[i]) / 2);
 						if(dildoCap < 500) dildoCap = 500;
 						pc.cuntChange(vagList[i], dildoCap);
 					}
@@ -499,6 +523,8 @@ public function seraBreedResponse(arg:Array):void
 			showSera(true);
 			// Lust 0%
 			for(i = 0; i < 20; i++) { pc.orgasm(); }
+			chars["SERA"].orgasm();
+			serasBodyIsReady();
 			
 			output("Sera presses you between her breasts when the last gratuitous crack, moan and squelch has been had, engulfing you in the smell of her musk, spicy perfume and smokiness. You embrace her back, ear up against the thump of her black heart, your whole body throbbing and aching. You groan woozily as she slowly withdraws from you, bringing a small gush of slimy warmth with her. She hums her approval as she slides her hand down to your thoroughly bulged stomach.");
 			var pregBellyRating:Number = 0;
@@ -530,7 +556,7 @@ public function seraBreedResponse(arg:Array):void
 			pc.shower();
 			
 			// Sera is done using Priapin and no longer a breeding machine
-			//Priapin.effectEnds( -1, false, chars["SERA"], null);
+			chars["SERA"].removeStatusEffect("Priapin");
 			chars["SERA"].impregnationType = "";
 			
 			pc.removeStatusEffect("Sera Breed No Sex");
@@ -712,19 +738,9 @@ public function seraSpawnPregnancyApproach(pregDays:Number = 0):Boolean
 // Sera Baby counting functions
 public function listSeraBabies(unnamed:Boolean = false):Array
 {
-	var babies:Array = [];
-	
-	for(var i:int = 0; i < ChildManager.CHILDREN.length; i++)
-	{
-		var baby:* = ChildManager.CHILDREN[i];
 		// Only check for unique Sera babies.
 		// Only babies that are 5 years and younger count.
-		if(baby is UniqueChild && baby.UniqueParent == "SERA" && ((GetGameTimestamp() - baby.BornTimestamp) <= (5 * 365 * 24 * 60)))
-		{
-			if(unnamed && baby.Name != "") { /* Ignore baby. */ }
-			else babies.push(baby);
-		}
-	}
+	var babies:Array = listBabiesOfParent("SERA", unnamed, 0, (5 * 365));
 	
 	return babies;
 }
@@ -744,9 +760,11 @@ public function displaySeraBabies():void
 		{
 			output("\n\n<b>Child No. " + (i + 1) + ":</b>");
 			output("\n<b>* Name:</b> " + (babies[i].Name == "" ? "<i>Unnamed</i>" : babies[i].Name));
-			if(babies[i].originalRace != "NOT SET")
-				output("\n<b>* Race:</b> " + StringUtil.toDisplayCase(babies[i].originalRace));
-			output("\n<b>* Age:</b> " + minutesToYears(GetGameTimestamp() - babies[i].BornTimestamp) + " yr old");
+			output("\n<b>* Race:</b> " + (babies[i].originalRace == "NOT SET" ? "<i>Unknown</i>" : StringUtil.toDisplayCase(babies[i].originalRace)));
+			output("\n<b>* Age:</b> ");
+			if(babies[i].Days >= 365) output(babies[i].Years + " year" + (babies[i].Years == 1 ? "" : "s"));
+			else if(babies[i].Days >= 30) output(babies[i].Months + " month" + (babies[i].Months == 1 ? "" : "s"));
+			else output("Newborn");
 			output("\n<b>* Birthdate:</b> " + minutesToDate(babies[i].BornTimestamp));
 			output("\n<b>* Maturation Rate:</b> " + formatFloat(babies[i].MaturationRate * 100) + " %");
 			if(babies[i].NumNeuter > 0 || babies[i].NumFemale > 0 || babies[i].NumMale > 0 || babies[i].NumIntersex > 0)
@@ -781,13 +799,19 @@ public function displaySeraBabies():void
 
 // Sera Nursery Visits
 // Per day Sera has a 50% chance of appearing in the Cafeteria between 18:00 - 21:30 if Seraspawn has arrived. Dark Chrysalis should be closed at this time if it’s triggered.
-public function seraHasKidInNursery():Boolean
+public function seraHasKidInNursery(unnamed:Boolean = false):Boolean
 {
-	var babies:Array = listSeraBabies();
+	var babies:Array = listSeraBabies(unnamed);
 	if(babies.length > 0) return true;
 	return false;
 }
-
+public function seraNurseryVisitCheck():void
+{
+	if(currentLocation != "DARK CHRYSALIS" && (seraHasKidInNursery(true) || (seraHasKidInNursery() && rand(3) > 0)))
+	{
+		pc.createStatusEffect("Sera at Nursery");
+	}
+}
 public function seraAtNursery():Boolean
 {
 	if(pc.hasStatusEffect("Sera at Nursery") && (hours == 18 || (hours > 18 && hours < 21) || (hours == 21 && minutes <= 30))) return true;
@@ -802,7 +826,7 @@ public function seraNurseryCafeteriaBonus(btnSlot:int = 0):void
 	
 	output("\n\nSera is parked behind a table on the older kid’s side, in the process of demolishing an evening meal.");
 	if(flags["MET_SERA_IN_NURSERY"] == undefined) output(" It takes you a moment to recognize her - she’s dressed in a shockingly mild jeans and blouse combo. Even her heels look fairly conservative today.");
-	else output(" It never stops being a bit weird to see the demon-morph in a fully lighted environment with her business not all the way out there.");
+	else output(" It never stops being a bit weird to see the demon-morph in a fully lit environment with her business not all the way out there.");
 	
 	// [Sera]
 	addButton(btnSlot, "Sera", seraNurseryCafeteriaApproach);
@@ -820,6 +844,7 @@ public function seraNurseryCafeteriaApproach():void
 	var babyIdx:int = 0;
 	var babym:Boolean = (rand(2) == 0 ? false : true);
 	var babyName:String = "???";
+	var i:int = 0;
 	
 	// First
 	if(flags["MET_SERA_IN_NURSERY"] == undefined)
@@ -839,7 +864,7 @@ public function seraNurseryCafeteriaApproach():void
 		flags["MET_SERA_IN_NURSERY"] = 1;
 		
 		// [Enter Name]
-		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName]);
+		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, 0]);
 	}
 	// Repeat naming if PC has other kids by Sera, because one wasn’t fucking enough
 	else if(flags["SERA_NAMED_KID"] != undefined && seraNoNameBabies.length > 0)
@@ -853,7 +878,7 @@ public function seraNurseryCafeteriaApproach():void
 		output("<i>“I still can’t believe you put yourself through another nine months of morning sickness and looking like a tank,”</i> Sera says when you sit yourself down opposite her. <i>“Did your dad mod you so that you’d have the breeding bug bad? Would make sense of this place.”</i> She concentrates on swallowing her current mouthful of cauli-nubbs before going on in an overly casual tone. <i>“What are we calling this little " + (babym ? "bastard" : "moppet") + ", then?”</i>");
 		
 		// [Enter Name]
-		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName]);
+		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, 0]);
 	}
 	// Repeat
 	else
@@ -861,12 +886,12 @@ public function seraNurseryCafeteriaApproach():void
 		// Count children...
 		var numBabs:int = 0;
 		var numKids:int = 0;
-		for(var i:int = 0; i < seraBabies.length; i++)
+		for(i = 0; i < seraBabies.length; i++)
 		{
 			// Show this if there is a Seraspawn that is under 365 days old
-			if((GetGameTimestamp() - seraBabies[i].BornTimestamp) <= (365 * 24 * 60)) numBabs++;
+			if(seraBabies[i].Years <= 1) numBabs++;
 			// Show this if there is a Seraspawn that is over a year old. No they are never going to be over the age of five shut up
-			else if((GetGameTimestamp() - seraBabies[i].BornTimestamp) <= (5 * 365 * 24 * 60)) numKids++;
+			else if(seraBabies[i].Years <= 5) numKids++;
 		}
 		
 		if(pc.isPregnant() && pc.bellyRating() >= 10) output("<i>“Here to order some chocolate-coated celery or something?”</i> Sera sniggers as she glances at your [pc.belly]. <i>“Is that one mine? I kinda lose track.”</i>");
@@ -875,7 +900,7 @@ public function seraNurseryCafeteriaApproach():void
 		// [Visit / Play] [Leave]
 		if(numBabs > 0) addButton(0, "Visit", seraNurseryActions, ["visit"], "Visit", "Chivvy Sera into paying your child a visit together.");
 		if(numKids > 0) addButton(1, "Play", seraNurseryActions, ["play"], "Play", "Chivvy Sera into playing with your child together.");
-		addButton(4, "Stats", seraNurseryActions, ["stats"], "Offspring Stats", "Check the stats of Sera’s kids.");
+		//addButton(4, "Stats", seraNurseryActions, ["stats"], "Offspring Stats", "Check the stats of Sera’s kids.");
 		addButton(14, "Leave", mainGameMenu);
 	}
 }
@@ -889,39 +914,45 @@ public function nameSeraSpawn(arg:Array):void
 	var babyIdx:int = arg[0];
 	var babym:Boolean = arg[1];
 	var babyName:String = arg[2];
+	var namedBabies:int = arg[3];
 	
-	output("What do you decide to name " + (babym ? "him" : "her") + "?");
+	output("Sera is asking you to name your " + (babym ? "handsome baby boy" : "beautiful baby girl") + ". What do you decide to name " + (babym ? "him" : "her") + "?");
 	displayInput();
 	this.userInterface.textInput.text = babyName;
+	output("\n\n\n");
 	
 	clearMenu();
-	addButton(0, "Next", nameSeraSpawnCheck, [babyIdx, babym, babyName]);
+	addButton(0, "Next", nameSeraSpawnCheck, [babyIdx, babym, babyName, namedBabies]);
 }
 public function nameSeraSpawnCheck(arg:Array):void
 {
 	var babyIdx:int = arg[0];
 	var babym:Boolean = arg[1];
 	var babyName:String = arg[2];
+	var namedBabies:int = arg[3];
 	
 	if(this.userInterface.textInput.text == "")
 	{
-		output("\n\n\n<b>You must input a name.</b>");
+		nameSeraSpawn(arg);
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if(hasIllegalInput(this.userInterface.textInput.text))
 	{
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		nameSeraSpawn(arg);
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if(this.userInterface.textInput.text.length > 14)
 	{
-		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
+		nameSeraSpawn(arg);
+		output("<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
 	babyName = this.userInterface.textInput.text;
 	if(stage.contains(this.userInterface.textInput)) this.removeInput();
-	nameSeraSpawnResult([babyIdx, babym, babyName]);
+	nameSeraSpawnResult([babyIdx, babym, babyName, namedBabies]);
 }
 public function nameSeraSpawnResult(arg:Array):void
 {
@@ -934,6 +965,7 @@ public function nameSeraSpawnResult(arg:Array):void
 	var babyIdx:int = arg[0];
 	var babym:Boolean = arg[1];
 	var babyName:String = arg[2];
+	var namedBabies:int = (arg[3] + 1);
 	
 	// Special Names:
 	var setName:String = (babyName.toLowerCase());
@@ -978,10 +1010,32 @@ public function nameSeraSpawnResult(arg:Array):void
 	
 	IncrementFlag("SERA_NAMED_KID");
 	
-	// Bounce back to Cafeteria main menu
 	clearMenu();
-	addButton(0, "Next", seraNurseryCafeteriaApproach);
+	// More babies...
+	if((seraNoNameBabies.length - 1) > 0) addButton(0, "Next", nameSeraSpawnResultPlus, [babyIdx, babym, babyName, namedBabies]);
+	// Bounce back to Cafeteria main menu
+	else addButton(0, "Next", seraNurseryCafeteriaApproach);
 }
+public function nameSeraSpawnResultPlus(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	showSera();
+	clearMenu();
+	
+	var seraNoNameBabies:Array = listSeraNoNameBabies();
+	var babyIdx:int = 0;
+	var babym:Boolean = (seraNoNameBabies[babyIdx].NumMale > 0 ? true : false);
+	var babyName:String = seraNoNameBabies[babyIdx].Name;
+	var namedBabies:int = arg[3];
+	
+	if(namedBabies == 1) output("<i>“We overdid it on the whole fertility kick, didn’t we?”</i> Sera goes on with a smirk. <i>“Nearly ran when I looked through the incubator glass. What do you want to call the other one?”</i>");
+	else output("<i>“And the other one?”</i> continue Sera, with an air of tribulation.");
+	
+	// [Enter Name]
+	addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, namedBabies]);
+}
+
 public function seraNurseryActions(arg:Array):void
 {
 	clearOutput();
@@ -1008,7 +1062,7 @@ public function seraNurseryActions(arg:Array):void
 		case "visit":
 			for(i = 0; i < seraBabies.length; i++)
 			{
-				if((GetGameTimestamp() - seraBabies[i].BornTimestamp) > (365 * 24 * 60)) seraBabies.splice(i, 1);
+				if(seraBabies[i].Years > 1) seraBabies.splice(i, 1);
 			}
 			babyIdx = rand(seraBabies.length);
 			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
@@ -1101,7 +1155,7 @@ public function seraNurseryActions(arg:Array):void
 		case "play":
 			for(i = 0; i < seraBabies.length; i++)
 			{
-				if((GetGameTimestamp() - seraBabies[i].BornTimestamp) <= (365 * 24 * 60)) seraBabies.splice(i, 1);
+				if(seraBabies[i].Years <= 1) seraBabies.splice(i, 1);
 			}
 			babyIdx = rand(seraBabies.length);
 			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
@@ -1160,7 +1214,7 @@ public function seraNurseryActions(arg:Array):void
 				for(i = 0; i < ChildManager.CHILDREN.length; i++)
 				{
 					var tots:* = ChildManager.CHILDREN[i];
-					if(tots is UniqueChild && tots.UniqueParent != "SERA" && ((GetGameTimestamp() - tots.BornTimestamp) <= (5 * 365 * 24 * 60)))
+					if(tots is UniqueChild && tots.UniqueParent != "SERA" && tots.Years <= 5)
 					{
 						totsList.push(baby);
 					}

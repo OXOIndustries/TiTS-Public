@@ -659,6 +659,7 @@ public function liveCumstreamerEpisode():void
 	displayInput();
 	userInterface.textInput.text = "";
 	userInterface.textInput.maxChars = 12;
+	output("\n\n\n");
 	clearMenu();
 	addButton(0,"Next",cumStreamNameSelect);
 }
@@ -667,18 +668,18 @@ public function cumStreamNameSelect():void
 {
 	if(userInterface.textInput.text == "") {
 		liveCumstreamerEpisode();
-		output("\n\n\n<b>You must input a name.</b>");
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
 	if(hasIllegalInput(userInterface.textInput.text)) {
 		liveCumstreamerEpisode();
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if(userInterface.textInput.length > 14) {
 		liveCumstreamerEpisode();
-		output("\n\n\n<b>Please select a name no more than fourteen characters long.</b>");
+		output("<b>Please select a name no more than fourteen characters long.</b>");
 		return;
 	}
 	var cName:String = userInterface.textInput.text;

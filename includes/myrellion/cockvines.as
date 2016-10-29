@@ -742,16 +742,21 @@ public function cockvinePregnancyCatch():void
 	}
 
 	StatTracking.track("pregnancy/cockvine seedlings captured", 1);
+	StatTracking.track("pregnancy/total day care", 1);
 	
+	addChildCockvine(1);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function addChildCockvine(numChild:int = 1):void
+{
 	ChildManager.addChild(
 		Child.NewChild(
 			GLOBAL.TYPE_COCKVINE,
 			2.5,
-			1,
+			numChild,
 			1, 0, 0, 0
 		)
 	);
-
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
 }

@@ -931,7 +931,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYC6"] = new RoomClass(this);
 	rooms["NURSERYC6"].roomName = "NURSERY:\nSTAFF ROOM";
 	rooms["NURSERYC6"].description = "Immediately off the stairs once you reach the second floor is a small, cozy break room. A few chairs, a JoyCo vending machine, and a full-suite kitchen make sure that the nursery's staff and permanent residents have everything they need to stay sane when off the clock.";
-	rooms["NURSERYC6"].runOnEnter = undefined;
+	rooms["NURSERYC6"].runOnEnter = nurseryC6Func;
 	rooms["NURSERYC6"].southExit = "NURSERYSTAIRS2F";
 	rooms["NURSERYC6"].eastExit = "NURSERYE6";
 	rooms["NURSERYC6"].planet = "TAVROS STATION";
@@ -1012,7 +1012,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYG4"].addFlag(GLOBAL.BED);
 
 	rooms["NURSERYG8"] = new RoomClass(this);
-	rooms["NURSERYG8"].roomName = "NURSERY:\nBRIGETS APPT.";
+	rooms["NURSERYG8"].roomName = "NURSERY:\nBRIGET'S APPT.";
 	rooms["NURSERYG8"].description = "The apartment granted to your nurse-maid gynoid is surprisingly spartan, given her age and humanism. Maybe she just doesn't spend much time here? There's a queen-sized bed, immaculately made, in one room, and a spotlessly clean kitchen that opens into a dining room with a pair of chairs around a mahogany table -- the most expensive-looking thing around.";
 	rooms["NURSERYG8"].runOnEnter = nurseryBrigetsApptFunc;
 	rooms["NURSERYG8"].northExit = "NURSERYG6";

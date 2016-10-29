@@ -982,6 +982,17 @@ public function appearance(forTarget:Creature):void
 			if(!target.hasFur() || !target.hasFeathers()) output2(" Your arms are incredibly smooth with a tendency to glisten in the light.");
 			output2(" Your webbed hands are very amphibious in appearance. Each of your elongated fingers are capped with a round bulb, capable of sticking to flat surfaces like a suction cup.");
 		}
+		else if(target.armType == GLOBAL.TYPE_OVIR) 
+		{
+			output2(" Your arms and hands appear very human");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasArmFlag(GLOBAL.FLAG_SCALED) || target.hasArmFlag(GLOBAL.FLAG_GOOEY))
+			{
+				output2(", if not for them being covered in");
+				if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+				output2(" " + target.scaleColor + " scales, giving them a subtle reptilian feel");
+			}
+			output2(".");
+		}
 		else if(target.armType == GLOBAL.TYPE_FLOWER)
 		{
 			if(rand(2) == 0)

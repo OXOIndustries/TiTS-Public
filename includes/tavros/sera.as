@@ -26,9 +26,17 @@ public function darkChrysalisIsOpen():Boolean
 
 public function showSera(nude:Boolean = false):void
 {
-	if(!nude) showBust("SERA");
-	else showBust("SERA_NUDE");
+	showBust(seraBustDisplay(nude));
 	showName("\nSERA");
+}
+public function seraBustDisplay(nude:Boolean = false):String
+{
+	var sBust:String = "SERA";
+	
+	if(seraAtNursery() && 9999 == 0) sBust += "_MOM";
+	else if(nude) sBust += "_NUDE";
+	
+	return sBust;
 }
 
 public function seraBonusFunction():Boolean
@@ -312,11 +320,7 @@ public function seraTalkMenu():void
 	
 	// [Breed?]
 	// Unlocks in talk options after PC has used sex option once, and has at least used the "early life" and "recent life", and has a vagina
-	if
-	(	(flags["SERA_COCK_STEELE_VAG"] != undefined || fuckedSeraBefore())
-	&&	flags["SERA_TALKS_PAST"] != undefined && flags["SERA_TALKS_PRESENT"] != undefined
-	&&	pc.hasVagina()
-	)
+	if((flags["SERA_COCK_STEELE_VAG"] != undefined || fuckedSeraBefore()) && flags["SERA_TALKS_PAST"] != undefined && flags["SERA_TALKS_PRESENT"] != undefined)
 	{
 		if(!pc.hasVagina()) addDisabledButton(5, "Breed?", "Breed?", "You’ll probably need a vagina before asking for this...");
 		// [Priapin]

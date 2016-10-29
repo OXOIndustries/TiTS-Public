@@ -55,7 +55,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.skinTone = "purple and white";
 			pc.createStatusEffect("Perfect Simulant",0,0,0,0,false,"Icon_Gears_Three","You were created by the scientists at Steele Tech to be the perfect heir, and as such, your maximum capabilities exceed even those of the luckiest terrans. You walk, talk, breathe, and eat, just like any living creature, even simulating DNA to allow you to emulate the effects of transformative items on true organics.",false,0);
 			pc.createStatusEffect("Naoki Stripe");
-			bonusTexts = " Good thing Victor's scientists made you to be the perfect heir. So long as you aren't distracted by your ability to experience inhuman amounts of pleasure, you'll do just fine! ...Now, what to do with all this silicone?";
+			bonusTexts = "Good thing Victor's scientists made you to be the perfect heir. So long as you aren't distracted by your ability to experience inhuman amounts of pleasure, you'll do just fine! ...Now, what to do with all this silicone?";
 			var siliconeBoners:ItemSlotClass = new Silicone();
 			siliconeBoners.quantity = 10;
 			pc.inventory.push(siliconeBoners);
@@ -379,6 +379,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 
 		I hope this is not to much for a single character and also sorry for my bad english. It´s not my native language.*/
 		case "nivâ":
+		case "niva":
 			if(!TF) break;
 			pc.hairColor = "red";
 			pc.hairLength = 10;
