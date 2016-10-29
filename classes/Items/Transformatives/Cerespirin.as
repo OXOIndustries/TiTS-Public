@@ -602,7 +602,7 @@ package classes.Items.Transformatives
 		}
 		
 		// Bye bye flower (unknown condition but hey it’s here so it ain’t permanent)
-		public static function loseHairFlower(target:Creature, numFlowers:Number = 0, effectLength:uint):String
+		public static function loseHairFlower(target:Creature, numFlowers:Number = 0, effectLength:uint = 1):String
 		{
 			var msg:String = "";
 			if(numFlowers > 1) msg = "Your head orchids droop, lose their petals one by one, and finally wither from your scalp entirely. Slightly annoying they might have been flopping around near your ears, but you can’t help feel rather sad about your blooms’ passing.";

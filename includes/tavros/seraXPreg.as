@@ -1,4 +1,5 @@
-﻿/* Sera Impregnation */
+﻿import classes.Items.Miscellaneous.Priapin;
+/* Sera Impregnation */
 // All for you, Damien
 
 /*
@@ -529,8 +530,7 @@ public function seraBreedResponse(arg:Array):void
 			pc.shower();
 			
 			// Sera is done using Priapin and no longer a breeding machine
-			var priapin:Priapin = new Priapin();
-			priapin.effectDone(chars["SERA"]);
+			//Priapin.effectEnds( -1, false, chars["SERA"], null);
 			chars["SERA"].impregnationType = "";
 			
 			pc.removeStatusEffect("Sera Breed No Sex");

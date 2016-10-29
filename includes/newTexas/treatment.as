@@ -70,7 +70,7 @@ public function treatmentHourProcs(totalHours:int):void
 			pc.setNewCockValues(0);
 		}
 		
-		if ((pc.balls == 0 || pc.ballSizeRaw <= 0) && (startHours < 58 && treatedHours >= 58)
+		if ((pc.balls == 0 || pc.ballSizeRaw <= 0) && (startHours < 58 && treatedHours >= 58))
 		{
 			eBuffer += "\n\n" + logTimeStamp("passive", (58 - startHours) * 60) + " A tremendous pressure builds in your loins, then releases into twin points of release - <b>your new testicles.</b> You suppose balls must be an important part of whatever you're going through.";
 			pc.balls = 2;
@@ -91,7 +91,7 @@ public function treatmentHourProcs(totalHours:int):void
 		{
 			if(pc.hasVagina())
 			{
-				eBuffer += "\n\n" + logTimeStamp("passive", (2 - startHours) * 60 + " Well, you've taken the Treatment, and you don't feel different <i>at all</i>. No giant cow-boobs";
+				eBuffer += "\n\n" + logTimeStamp("passive", (2 - startHours) * 60) + " Well, you've taken the Treatment, and you don't feel different <i>at all</i>. No giant cow-boobs";
 				if(pc.biggestTitSize() >= 6) eBuffer += ", more than usual";
 				eBuffer += ", no inexplicable urge to start talking like a slutty hillbilly and sucking every dick in sight. You're almost disappointed that you haven't started gushing milk or climaxing hard enough to black out. Then again, maybe that's the Treatment talking? Nahhh.";
 			}
@@ -518,7 +518,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//to predetermined max. Many small changes.
 		
 		// This maxes out at 23 rating-- no more gains are effectively processed past that, so we might as well skip if we're already there
-		if(treatedHours >= 49 && pc.breastRows[0].breastRating() < (Math.min(pc.statusEffectv1("Treated"), 23))
+		if(treatedHours >= 49 && pc.breastRows[0].breastRating() < (Math.min(pc.statusEffectv1("Treated"), 23)))
 		{
 			var numGains:int = Math.floor((treatedHours - 49) / 3);
 			if (startHours >= 49) numGains -= Math.floor((startHours - 49) / 3);
@@ -3370,7 +3370,7 @@ public function treatmentHourProcs(totalHours:int):void
 				}
 			}
 		
-			if numTallnessGains > 0)
+			if (numTallnessGains > 0)
 			{
 				for (i = 0; i < numTallnessGains; i++)
 				{
@@ -3451,7 +3451,7 @@ public function treatmentHourProcs(totalHours:int):void
 			
 			if (numSwoleGains > 0)
 			{
-				for (i = 0; i < numSwoleGains; i++0
+				for (i = 0; i < numSwoleGains; i++)
 				{
 					pc.slowStatGain("physique",1);
 					//0 to 10 tone
@@ -3519,7 +3519,7 @@ public function treatmentHourProcs(totalHours:int):void
 		}
 		
 		//Normal dick growth and animal cock chances.
-		if(pc.hasCock()) standardTreatmentDickStuff(treatedHours);
+		if(pc.hasCock()) standardTreatmentDickStuff(treatedHours, startHours);
 		
 		//Cum Volume & Minimum CumQ
 		if(startHours < 63 && treatedHours >= 63 && pc.hasCock() && pc.maxCum() < 1000)
@@ -3635,7 +3635,7 @@ public function treatmentHourProcs(totalHours:int):void
 				}
 			}
 			
-			hornPerkTick = (treatedHours - startHours) / numHornGains;
+			var hornPerkTick:Number = (treatedHours - startHours) / numHornGains;
 			
 			if (numHornGains > 0)
 			{
@@ -3729,12 +3729,12 @@ public function treatmentHourProcs(totalHours:int):void
 						eBuffer += "-inch long horns.</b> Nobody will want to mess with you now.";
 						pc.hornLength++;
 					}
-				}
-				
-				// End gains once we reach max rng'd length
-				if (pc.hornLength >= pc.statusEffectv2("Treated"))
-				{
-					break;
+					
+					// End gains once we reach max rng'd length
+					if (pc.hornLength >= pc.statusEffectv2("Treated"))
+					{
+						break;
+					}
 				}
 			}
 		}
@@ -4379,7 +4379,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 				//Single cock transform!
 				if(!changeAllDicks)
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " Feeling a little light-headed, you find yourself a seat just in time to notice ";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60)) + " Feeling a little light-headed, you find yourself a seat just in time to notice ";
 					if(!pc.hasSheath(targetDick))
 					{
 						eBuffer += "an odd pinching feeling coming from your " + pc.cockDescript(targetDick) + ". Obviously concerned, you ";
@@ -4446,7 +4446,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 				//Dubstep+ cawk transform!
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + ParseText(" Feeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do");
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60)) + ParseText(" Feeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do");
 					if(pc.legCount == 1) eBuffer += "es";
 					eBuffer += ". A strange pinching feeling is overwhelming your " + pc.cocksDescript() + ". You ";
 					if(pc.isCrotchGarbed()) eBuffer += ParseText("pull your [pc.lowerGarments] down for a look");
@@ -4521,7 +4521,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 				//Single
 				if(!changeAllDicks)
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " Your " + pc.cockDescript(targetDick) + " shifts, pulling up against your crotch. You wince at the abrupt change, wondering if something has gone wrong, fearing that you’ll wind up as ";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60)) + " Your " + pc.cockDescript(targetDick) + " shifts, pulling up against your crotch. You wince at the abrupt change, wondering if something has gone wrong, fearing that you’ll wind up as ";
 					if(!pc.isAmazon()) eBuffer += "one of the effeminate faux-cows";
 					else eBuffer += "some kind of tiny-dicked freak";
 					if(pc.isCrotchGarbed()) eBuffer += " even while you pull your equipment off for a better look";
@@ -4553,7 +4553,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 				//Multi!
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " You double over a feeling that can only be described as... diminishment traverses your crotch from one side to the other, centered over your " + pc.cocksDescript() + ". Terrified that something might have gone wrong - that you might be shrinking ";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60)) + " You double over a feeling that can only be described as... diminishment traverses your crotch from one side to the other, centered over your " + pc.cocksDescript() + ". Terrified that something might have gone wrong - that you might be shrinking ";
 					if(!pc.isAmazon()) eBuffer += "and turning into a faux-cow";
 					else eBuffer += "into some sort of tiny-dicked freak";
 					eBuffer += ", you stagger back";
@@ -4598,7 +4598,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 				//Single Catcock TF
 				if(!changeAllDicks)
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " Your " + pc.cockDescript(targetDick) + " becomes distressingly hard in an instant";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60)) + " Your " + pc.cockDescript(targetDick) + " becomes distressingly hard in an instant";
 					if(pc.isCrotchGarbed()) eBuffer += ParseText(", threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with an ill-fitting titanium bar in your pants. You pull the offending equipment out of the way, and the relief is so palpable you could swim in it");
 					else eBuffer += ", jutting out from your crotch like some kind of rigid, cybernetically attached lever. You aren’t sure you’d be able to stand having an erection this strong trapped within any kind of clothing";
 					eBuffer += ". It grows harder by the second. A small part of you wonders if you’re somehow going to explode.";
@@ -4622,7 +4622,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 				//Multicock!
 				else
 				{
-					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60) + " In an instant, your " + pc.cocksDescript() + " become distressingly hard, ";
+					eBuffer += "\n\n" + logTimeStamp("passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60)) + " In an instant, your " + pc.cocksDescript() + " become distressingly hard, ";
 					if(pc.isCrotchGarbed()) eBuffer += ParseText("threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with ill-fitting titanium bars stuffed into your pants. You pull the offending equipment out of the way, and the relief is so palpable that you could fill a pool with it");
 					else eBuffer += "jutting out from your crotch like levers from a perverse control panel. You aren’t sure you’d be able to stand having erections like this trapped within any kind of clothing. For once, nudity pays off";
 					eBuffer += ". They’re getting harder by the second, still. A part of you wonders if they’re going to pump up till they burst, overwhelmed by some kind of incredible, internal pressure.";

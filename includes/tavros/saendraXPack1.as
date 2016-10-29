@@ -43,17 +43,6 @@ SAENDRA_XPACK1_CREDITOFFER:
 
 */
 
-public function tryProcSaendraXPackEmail():void
-{
-	if (flags["SAENDRA_XPACK1_STATUS"] != undefined) return;
-	if (shipLocation != "TAVROS HANGAR") return;
-	if (saendraAffection() < 60) return;
-	if (MailManager.isEntryUnlocked("saendraxpack1") && flags["SAENDRA_XPACK1_STATUS"] != undefined) return;
-	if (eventQueue.indexOf(unlockSaendraXPackMail) != -1) return;
-
-	eventQueue.push(unlockSaendraXPackMail);
-}
-
 public function unlockSaendraXPackMail():void
 {
 	clearOutput();

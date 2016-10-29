@@ -479,16 +479,16 @@ public function visitLaneWhilstDetoxing():void
 	addButton(0, "Next", laneGonnaFuckYourDetoxinAssUp);
 }
 
-public function laneHandleCredits():void
+public function laneHandleCredits(totalDays:uint):void
 {
 	if (flags["LANE_PAYS_PC_ERRY_DAY"] == 1)
 	{
-		pc.credits += 200;
-		eventBuffer += "\n\n" + logTimeStamp("good") + " A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it's a credit transfer message; Lane has paid you 200 credits, right on time.";
+		pc.credits += (200 * totalDays);
+		eventBuffer += "\n\n" + logTimeStamp("good") + " A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it's a credit transfer message; Lane has paid you a total of " + String(200 * totalDays) + " credits, right on time.";
 	}
 	if (flags["PC_PAYS_LANE_ERRY_DAY"] == 1)
 	{
-		pc.credits -= 500;
+		pc.credits -= (500 * totalDays);
 		eventBuffer += "\n\n" + logTimeStamp("bad") + ParseText(" A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, you recognize it as an automatic payment that you’ve setup to [lane.master] Lane.");
 	}
 }

@@ -9,6 +9,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Utility.rand;
 	
 	public class HorsePill extends ItemSlotClass
 	{
@@ -1027,7 +1028,7 @@
 		{
 			return int(Math.random()*max);
 		}
-		private function hasLowerTitties(target:Creature):Boolean
+		private static function hasLowerTitties(target:Creature):Boolean
 		{
 			if(target.bRows() <= 1) return false;
 			for(var x:int = 1; x < target.bRows(); x++)
@@ -1036,7 +1037,7 @@
 			}
 			return false;
 		}
-		private function hasSheathedNonHorsecocks(target:Creature):Boolean
+		private static function hasSheathedNonHorsecocks(target:Creature):Boolean
 		{
 			if(target.cockTotal() == 0) return false;
 			for (var x:int = 0; x < target.cockTotal(); x++)
@@ -1045,7 +1046,7 @@
 			}
 			return false;
 		}
-		private function hasAHorseCuntNeedingRoom(target:Creature):Boolean
+		private static function hasAHorseCuntNeedingRoom(target:Creature):Boolean
 		{
 			if(target.vaginaTotal() == 0) return false;
 			for (var x:int = 0; x < target.vaginaTotal(); x++)

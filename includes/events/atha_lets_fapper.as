@@ -184,7 +184,7 @@ public function athaChampeonConfirmationEmail():String
 	return ret;
 }
 
-public static const LETS_FAP_EPISODES:Array =
+public const LETS_FAP_EPISODES:Array =
 [
 	letsFapAusar,
 	letsFapLaquine,
@@ -200,13 +200,13 @@ public function letsFapSelectionMenu():void
 	clearMenu();
 	if(flags["LETS_FAP_LATEST"] == undefined) 
 	{
-		if(letsFapTrack() == 0) flags["LETS_FAP_LATEST"] = letsFapAusar;
-		else if(letsFapTrack() == 1) flags["LETS_FAP_LATEST"] = letsFapLaquine;
-		else if(letsFapTrack() == 2) flags["LETS_FAP_LATEST"] = letsFapKuiTan;
-		else if(letsFapTrack() == 3) flags["LETS_FAP_LATEST"] = letsFapUnboxing;
-		else if(letsFapTrack() == 4) flags["LETS_FAP_LATEST"] = letsFapOvir;
-		else if(letsFapTrack() == 5) flags["LETS_FAP_LATEST"] = letsFapRahnScene;
-		else if(letsFapTrack() == 6) flags["LETS_FAP_LATEST"] = letsFapCockTail;
+		if(letsFapTrack() == 0) flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES.indexOf(letsFapAusar);
+		else if(letsFapTrack() == 1) flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES.indexOf(letsFapLaquine);
+		else if(letsFapTrack() == 2) flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES.indexOf(letsFapKuiTan);
+		else if(letsFapTrack() == 3) flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES.indexOf(letsFapUnboxing);
+		else if(letsFapTrack() == 4) flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES.indexOf(letsFapOvir);
+		else if(letsFapTrack() == 5) flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES.indexOf(letsFapRahnScene);
+		else if(letsFapTrack() == 6) flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES.indexOf(letsFapCockTail);
 		//if letsFapTrack returns a garbage value, reset
 		else
 		{

@@ -53,10 +53,10 @@ package classes.Items.Transformatives
 			return InCollection(target.earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_GABILANI);
 		}
 		// Physical Changes
-		private static function minorGoblinMutations(target:Creature):void
+		private static function minorGoblinMutations(target:Creature, effect:StorageClass):void
 		{
 			var msg:String = "";
-			var totalTFs:Number = target.statusEffectv2("Goblinola Bar");
+			var totalTFs:Number = effect.value2;
 			if(totalTFs == 0) totalTFs = 1;
 			//Used to hold the TF we pull out of the array of effects
 			var select:int = 0;
@@ -356,7 +356,7 @@ package classes.Items.Transformatives
 		}
 		
 		//#5b Goblin face: Stage two happens 30 minutes after stage 1 ends, and the face type only changes when stage 2 triggers.
-		public static function itemGoblinFaceTFGo(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
+		public static function itemGoblinFaceTF(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
 			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", maxEffectLength) + " <u>The goblinola bar has an effect....</u>";
 			// Transformation text (stage 2):
@@ -648,12 +648,6 @@ package classes.Items.Transformatives
 				}
 				kGAMECLASS.eventBuffer += "\n\nYou notice that your stomach seems to have settled down now. <b>You’re unlikely to feel any more effects from the goblinola you ate earlier.</b>";
 			}
-		}
-
-		// Face Transformation:
-		public static function itemGoblinFaceTF(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
-		{
-			itemGoblinFaceTFGo(target);
 		}
 		
 		//METHOD ACTING!

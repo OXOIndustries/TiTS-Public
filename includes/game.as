@@ -1732,7 +1732,7 @@ public function variableRoomUpdateCheck():void
 	}
 }
 
-public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
+public function processTime(deltaT:uint, doOut:Boolean = true):void
 {
 	for (var prop:String in chars)
 	{
@@ -1747,6 +1747,8 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	// because the order the events are processed may become important, so maintaining a relatively simplistic way
 	// to change the order of things happening across deltaT time may be useful.
 	
+	var totalDays:uint = ((GetGameTimestamp() + deltaT) / 1440) - days;
+	
 	processRenvraMessageEvents(deltaT, doOut);
 	processQueenOfTheDeepMessageEvents(deltaT, doOut);
 	processTarkusBombTimerEvents(deltaT, doOut);
@@ -1757,7 +1759,7 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processGiannaEvents(deltaT, doOut);
 	processTreatmentEvents(deltaT, doOut);
 	processKiroBarEvents(deltaT, doOut);
-	processSaendraEvents(deltaT, doOut);
+	processSaendraEvents(deltaT, doOut, totalDays);
 	processLetsFapUpdates(deltaT, doOut);
 	processShekkaEvents(deltaT, doOut);
 	processFlahneEvents(deltaT, doOut);
@@ -1765,7 +1767,7 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processAlissEvents(deltaT, doOut);
 	processPennyEvents(deltaT, doOut);
 	processSeraEvents(deltaT, doOut);
-	processReahaEvents(deltaT, doOut);
+	processReahaEvents(deltaT, doOut, totalDays);
 	processGobblesEvents(deltaT, doOut);
 	processIrelliaEvents(deltaT, doOut);
 	processOmniSuitEvents(deltaT, doOut); // Dependant on Libido changes, might need to be refactored to support jumping between states directly
@@ -1773,21 +1775,110 @@ public function newProcessTime(deltaT:uint, doOut:Boolean = true):void
 	processNessaEvents(deltaT, doOut);
 	processCuntTailEggs(deltaT, doOut);
 	processDrBadgerEvents(deltaT, doOut);
-	varmintDisappearChance(deltaT, doOut); 
+	varmintDisappearChance(deltaT, doOut);
+	processEmmyEvents(deltaT, doOut, totalDays);
+	
+	// Per-day events
+	if (totalDays >= 1)
+	{
+		processHolidayoweenEvents(deltaT, doOut, totalDays);
+		processHoneyPotMods(deltaT, doOut, totalDays);
+		processExhibUpdates(deltaT, doOut, totalDays);
+		processNewTexasEvents(deltaT, doOut, totalDays);
+		processOryxxEvents(deltaT, doOut, totalDays);
+		processVenusPitcherEvents(deltaT, doOut, totalDays);
+		processRaskvelEvents(deltaT, doOut, totalDays);
+		processMyrPregEvents(deltaT, doOut, totalDays);
+		thollumYardMushroomGrow();
+		laneHandleCredits(totalDays);
+	}
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
 	
-	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick();
+	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick(Math.floor((minutes + deltaT) / 60));
 	
-	processMimbranesTime(deltaT, doOut);
+	processMimbranesTime(deltaT, doOut, totalDays);
 	processLeithaCharmTime(deltaT, doOut);
-	processLaneDetoxEvents(arg);
+	processLaneDetoxEvents(deltaT);
 	
-	// minutes++
-	// hours++
+	//Check to see if something changed in body part notices
+	milkMultiplierGainNotificationCheck();
+	nutSwellUpdates();
+	immobilizedUpdate();
+
+	//Queue up dumbfuck procs
+	if(pc.hasStatusEffect("Dumbfuck"))
+	{
+		//Got some cums to pile oN?
+		if(pc.hasStatusEffect("Dumbfuck Orgasm Procced"))
+		{
+			//No sneezes set up yet. Start dis shit.
+			if(!pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
+			{
+				pc.createStatusEffect("Dumbfuck Orgasm Queued", pc.statusEffectv1("Dumbfuck Orgasm Procced"), 0, 0, 0, true, "", "", false, 0);
+			}
+			//Already got some. PILE ON!
+			else pc.addStatusValue("Dumbfuck Orgasm Queued",1,pc.statusEffectv1("Dumbfuck Orgasm Procced"));
+			//Clear out the holding status now that we're cued up for sneezin'
+			pc.removeStatusEffect("Dumbfuck Orgasm Procced");
+		}
+		//Add to event queue so long as it isn't on there already
+		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
+		{
+			if(eventQueue.indexOf(procDumbfuckStuff) == -1) eventQueue.push(procDumbfuckStuff);
+		}
+	}
+	
+	// Don't send mails to the player whilst aboard the kashima
+	if (flags["KASHIMA_STATE"] != 1)
+	{
+		//NEVRIE MAIL!
+		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
+		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
+		if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
+
+		//Emmy Mail
+		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+		//Emmy mail stage 2 START
+		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
+		//Emmy mail set up for sextoy go
+		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (GetGameTimestamp() - (100 * 60))) emmyMailGet3();
+		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
+
+		//Saendra Mail
+		if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
+		//Anno Mail
+		if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
+		//KIRO FUCKMEET
+		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined) { goMailGet("kirofucknet"); kiroFuckNetBonus(); }
+		trySendStephMail();
+		
+		//Other Email Checks!
+		if (rand(100) == 0) emailRoulette();
+	}
+	
+	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
+	variableRoomUpdateCheck();
+	updatePCStats();
+	
+	minutes += deltaT;
+	
+	hours += Math.floor(minutes / 60);
+	minutes = minutes % 60;
+	
+	days += Math.floor(hours / 24);
+	hours = hours % 24;
 }
 
-public function processMimbranesTime(deltaT:uint, doOut:Boolean):void
+public function processHolidayoweenEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) <= totalDays - 1))
+	{
+		if(eventQueue.indexOf(hollidayOweenAlert) == -1) eventQueue.push(hollidayOweenAlert);
+	}
+}
+
+public function processMimbranesTime(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	if (kGAMECLASS.attachedMimbranes() == 0) return;
 		
@@ -1805,17 +1896,22 @@ public function processMimbranesTime(deltaT:uint, doOut:Boolean):void
 	{
 		mimbraneSweatHandler(totalHours);
 	}
+	
+	if (totalDays >= 1)
+	{
+		mimbranesIncreaseDaysSinceFed(totalDays);
+	}
 }
 
 public function processLeithaCharmTime(deltaT:uint, doOut:Boolean):void
 {
 	if (pc.hasStatusEffect("Leitha Charm"))
 	{
-		pc.addStatusValue("Leitha Charm", 1, arg * 20);
+		pc.addStatusValue("Leitha Charm", 1, deltaT * 20);
 	}
 }
 
-public function processRevraMessageEvents(deltaT:uint, doOut:Boolean):void
+public function processRenvraMessageEvents(deltaT:uint, doOut:Boolean):void
 {
 	if (pc.hasStatusEffect("Renvra Eggs Messages Available") || pc.hasStatusEffect("Nyrea Eggs Messages Available") || pc.hasStatusEffect("Royal Eggs Messages Available"))
 	{
@@ -1975,11 +2071,16 @@ public function processKiroBarEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
-public function processSaendraEvents(deltaT:uint, doOut:Boolean):void
+public function processSaendraEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 5)
 	{
 		updateSaendraXPackTimer(deltaT);
+	}
+	
+	if (totalDays >= 1 && flags["SAENDRA_XPACK1_STATUS"] == undefined && shipLocation == "TAVROS HANGAR" && saendraAffection() >= 60 && !MailManager.isEntryUnlocked("saendraxpack1") && eventQueue.indexOf(unlockSaendraXPackMail) == -1)
+	{
+		eventQueue.push(unlockSaendraXPackMail);
 	}
 }
 
@@ -2017,7 +2118,7 @@ public function processLetsFapUpdates(deltaT:uint, doOut:Boolean):void
 				}
 				else
 				{
-					eventBuffer += "\n\n" + logTimeStamp("good", (unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + ((numUnlocks - 1) * unlockLength) + " Atha has posted new Let's Fap videos!");
+					eventBuffer += "\n\n" + logTimeStamp("good", (unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + ((numUnlocks - 1) * unlockLength)) + " Atha has posted new Let's Fap videos!";
 				}
 				
 				// Unlock the latest episode possible based on time passage and existing unlock position
@@ -2113,7 +2214,7 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean):void
 			if (h >= 18) totalAttempts++;
 		}
 		
-		if (totalHours >= 1 && seraHasKidInNursery())
+		if (totalAttempts >= 1 && seraHasKidInNursery())
 		{
 			var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * 1000);
 			if (rand(1000) <= prob)
@@ -2124,7 +2225,7 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean):void
 	}
 }
 
-public function processReahaEvents(deltaT:uint, doOut:Boolean):void
+public function processReahaEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	var totalHours:int = ((minutes + deltaT) / 60);
 	if (totalHours >= 1 && flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
@@ -2132,6 +2233,8 @@ public function processReahaEvents(deltaT:uint, doOut:Boolean):void
 		flags["REAHA_PAY_Q"] = undefined;
 		if(eventQueue.indexOf(reahaPaybackEvent) == -1) eventQueue.push(reahaPaybackEvent);
 	}
+	
+	if (totalDays >= 1 && reahaIsCrew() && curedReahaInDebt() && !reahaAddicted() && ((days + totalDays) % 7 == 0 || totalDays >= 7) && flags["REAHA_PAY_Q"] == undefined) flags["REAHA_PAY_Q"] = 1;
 }
 
 public function processGobblesEvents(deltaT:uint, doOut:Boolean):void
@@ -2147,7 +2250,7 @@ public function processGobblesEvents(deltaT:uint, doOut:Boolean):void
 
 public function processIrelliaEvents(deltaT:uint, doOut:Boolean):void
 {
-	var totalHours:int = ((minute + deltaT) / 60);
+	var totalHours:int = ((minutes + deltaT) / 60);
 	
 	if (totalHours >= 1)
 	{
@@ -2207,7 +2310,7 @@ public function processOmniSuitEvents(deltaT:uint, doOut:Boolean):void
 {
 	if (pc.armor is Omnisuit)
 	{
-		var totalHours:int = ((minute + deltaT) / 60);
+		var totalHours:int = ((minutes + deltaT) / 60);
 		
 		if (totalHours >= 1)
 		{
@@ -2293,219 +2396,99 @@ public function processDrBadgerEvents(deltaT:uint, doOut:Boolean):void
 		
 		if (flags["BADGET_QUEST_TIMER"] != -1 && GetGameTimestamp() + deltaT >= flags["BADGET_QUEST_TIMER"] + 1440)
 		{
-			pennyBadgetQuestAlert();
+			pennyBadgerQuestAlert();
 			flags["BADGET_QUEST_TIMER"] = -1;
 		}
 	}
 }
 
-public function processTime(arg:int):void {
-	var x:int = 0;
-	var msg:String = "";
-	
-	var tightnessChanged:Boolean = false;
-
-	//loop through every minute
-	while(arg > 0) {
-
-		//Tick hours!
-		if (minutes >= 60) {
-			
-			//Days ticks here!
-			if(hours >= 24) {
-				hours = 0;
-				days++;
-				
-				//Unlock dat shiiit
-				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0))
-				{
-					if(eventQueue.indexOf(hollidayOweenAlert) == -1) eventQueue.push(hollidayOweenAlert);
-				}
-				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
-				//Exhibitionism reduction!
-				if
-				(	!(pc.armor is EmptySlot)
-				&&	!(pc.lowerUndergarment is EmptySlot || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
-				&&	!(pc.upperUndergarment is EmptySlot || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
-				)
-				{
-					if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed())
-						{ /* No reduction for a full set of exposed clothing! */ }
-					else pc.exhibitionism(-0.5);
-				}
-				// New Texas cockmilker repair cooldown.
-				if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
-				{
-					if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"]--;
-					else flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] = 0;
-				}
-				//Reset Orryx shipments!
-				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
-				if(days >= 2 && (flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined || !MailManager.isEntryUnlocked("newtexas"))) newTexasEmail();
-				
-				if(chars["ALISS"].lust() >= 70) chars["ALISS"].orgasm();
-				
-				//Cooldown timer
-				if(pc.perkv2("Auto-Autofellatio") >= 1) 
-				{
-					pc.addPerkValue("Auto-Autofellatio",2,-1);
-				}
-				//Cunt snake tomfoolery
-				if(pc.hasCuntTail()) {
-					if(flags["DAYS_SINCE_FED_CUNT_TAIL"] == undefined) flags["DAYS_SINCE_FED_CUNT_TAIL"] = 1;
-					else flags["DAYS_SINCE_FED_CUNT_TAIL"]++;
-				}
-				//Reset 'dem venus pitcher hoz
-				if(currentLocation != "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
-				if(currentLocation != "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
-				if(currentLocation != "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
-				//Reset milk barn events
-				if (flags["MILK_BARN_EVENT_TODAY"] != undefined) flags["MILK_BARN_EVENT_TODAY"] = undefined;
-				if (flags["BRYNN_MET_TODAY"] != undefined) flags["BRYNN_MET_TODAY"] = undefined;
-				//Raskvel pregger shit
-				if(flags["RASKVEL_PREG_TIMER"] != undefined)
-				{
-					flags["RASKVEL_PREG_TIMER"]--;
-					//She pops eggs without you seeing.
-					if(flags["RASKVEL_PREG_TIMER"] < -5) 
-					{
-						flags["RASKVEL_PREG_TIMER"] = undefined;
-						flags["RASKVEL_EGG_COUNT"] = undefined;
-					}
-				}
-				//Myr preggo shit
-				if(flags["BRIHA_INCUBATION_TIMER"] != undefined) flags["BRIHA_INCUBATION_TIMER"]++;
-				if(flags["BRIHA_LATEST_SPAWN_AGE"] != undefined) flags["BRIHA_LATEST_SPAWN_AGE"]++;
-				if(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined) flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"]++;
-				if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined) flags["BRIHA_OLDEST_SPAWN_AGE"]++;
-				
-				// Thollum mushroom grow
-				thollumYardMushroomGrow();
-				
-				// Tick up all of the attached mimbranes days since last fed
-				mimbranesIncreaseDaysSinceFed();
-				
-				// Reaha Monies
-				if(reahaIsCrew() && curedReahaInDebt() && !reahaAddicted() && days % 7 == 0 && flags["REAHA_PAY_Q"] == undefined) flags["REAHA_PAY_Q"] = 1;
-
-				// Lane monies
-				laneHandleCredits();
-				//Venus pitcher
-				venusSubmission( -1);
-				
-				tryProcSaendraXPackEmail();
-				
-				// Manes grow out!
-				if(pc.hasPerk("Mane")) maneHairGrow();
-				// Bodonkadonk-donks donkin'!
-				if(pc.hasPerk("Buttslut")) buttslutBootyGrow();
-				// Fecund Figure shape gain (Gains only while pregnant)
-				if(pc.hasPerk("Fecund Figure"))
-				{
-					var numPreg:int = pc.totalPregnancies();
-					// Wombs only--exclude anal pregnancy!
-					if(pc.isPregnant(3)) numPreg--;
-					// Longevity of growth based on number of current pregnant wombs.
-					if(numPreg > 0) pc.addPerkValue("Fecund Figure", 4, numPreg);
-					if(pc.perkv4("Fecund Figure") > 0)
-					{
-						// 20 days for 1 hips/butt size gain
-						pc.addPerkValue("Fecund Figure", 1, 0.05); // Hips
-						pc.addPerkValue("Fecund Figure", 2, 0.05); // Butt
-						//pc.addPerkValue("Fecund Figure", 3, 0.0125); // Belly
-						pc.addPerkValue("Fecund Figure", 4, -1); // Gains
-					}
-					if(pc.perkv4("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 4, 0);
-				}
-				// Daily nyrean egg fills
-				if(pc.hasStatusEffect("Nyrea Eggs"))
-				{
-					if(pc.fertility() > 0)
-					{
-						pc.addStatusValue("Nyrea Eggs", 1, Math.round(10 * pc.statusEffectv2("Nyrea Eggs") * pc.fertility()));
-						if(pc.hasPerk("Fertility")) pc.addStatusValue("Nyrea Eggs", 1, 10 + rand(11));
-						if(pc.statusEffectv1("Nyrea Eggs") > 1000 && rand(2) == 0) eventBuffer += "\n\n" + logTimeStamp("passive") + " You feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?";
-					}
-				}
-				//Reset Emmy Special Intro lockout:
-				flags["EMMY_SPECIAL"] = undefined;
-				//DAILY MYR VENOM CHECKS
-				//Addicts
-				if(flags["VENOM_ADDICTION"] != undefined)
-				{
-					//Not yet uber-addict:
-					if(!pc.hasPerk("Venom Slut"))
-					{
-						if(pc.hasStatusEffect("Myr Venom Withdrawal")) myrAddiction(-2);
-					}
-				}
-				//Non addicts not under the effects of venom lose progress to addiction
-				else if(flags["VENOM_ADDICTION"] == undefined && !pc.hasStatusEffect("Red Myr Venom"))
-				{
-					venomProgress(-2);
-				}
-			}
-		}
-		arg--;
-	}
-	//Check to see if something changed in body part notices
-	milkMultiplierGainNotificationCheck();
-	nutSwellUpdates();
-	immobilizedUpdate();
-
-	//Queue up dumbfuck procs
-	if(pc.hasStatusEffect("Dumbfuck"))
+public function processHoneyPotMods(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if (pc.hasPerk("Honeypot"))
 	{
-		//Got some cums to pile oN?
-		if(pc.hasStatusEffect("Dumbfuck Orgasm Procced"))
-		{
-			//No sneezes set up yet. Start dis shit.
-			if(!pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
-			{
-				pc.createStatusEffect("Dumbfuck Orgasm Queued", pc.statusEffectv1("Dumbfuck Orgasm Procced"), 0, 0, 0, true, "", "", false, 0);
-			}
-			//Already got some. PILE ON!
-			else pc.addStatusValue("Dumbfuck Orgasm Queued",1,pc.statusEffectv1("Dumbfuck Orgasm Procced"));
-			//Clear out the holding status now that we're cued up for sneezin'
-			pc.removeStatusEffect("Dumbfuck Orgasm Procced");
-		}
-		//Add to event queue so long as it isn't on there already
-		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
-		{
-			if(eventQueue.indexOf(procDumbfuckStuff) == -1) eventQueue.push(procDumbfuckStuff);
-		}
+		var numProcs:int = Math.floor(((days % 3) + totalDays) / 3);
+		if (numProcs > 0) honeyPotBump(false, numProcs);
+	}
+}
+
+public function processExhibUpdates(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if (   !(pc.armor is EmptySlot)
+		&& !(   pc.lowerUndergarment is EmptySlot
+		     || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) 
+			 || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) 
+			 || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+		&& !(   pc.upperUndergarment is EmptySlot
+		     || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+			 || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+	)
+	{
+		if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed()) { /*noop*/ }
+		else pc.exhibitionism(-0.5 * totalDays);
+	}
+}
+
+public function processNewTexasEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	// New Texas cockmilker repair cooldown.
+	if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
+	{
+		if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] -= totalDays;
+		else flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] = 0;
 	}
 	
-	// Don't send mails to the player whilst aboard the kashima
-	if (flags["KASHIMA_STATE"] != 1)
+	if (days + totalDays >= 2 && (flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined || !MailManager.isEntryUnlocked("newtexas")))
 	{
-		//NEVRIE MAIL!
-		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
-		if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
-		if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
+		newTexasEmail();
+	}
+	
+	if (flags["MILK_BARN_EVENT_TODAY"] != undefined) flags["MILK_BARN_EVENT_TODAY"] = undefined;
+	if (flags["BRYNN_MET_TODAY"] != undefined) flags["BRYNN_MET_TODAY"] = undefined;
+}
 
-		//Emmy Mail
-		if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
-		//Emmy mail stage 2 START
-		if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
-		//Emmy mail set up for sextoy go
-		if (!MailManager.isEntryUnlocked("emmy_implant_explain_email") && flags["EMMY_PRESEX_FUN_TIMER"] <= (GetGameTimestamp() - (100 * 60))) emmyMailGet3();
-		if (!MailManager.isEntryUnlocked("emmy_harness_here") && flags["EMMY_TOY_TIMER"] <= GetGameTimestamp()) emmyMailGet4();
+public function processOryxxEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
+}
 
-		//Saendra Mail
-		if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && !InShipInterior(pc)) saendraPhoenixMailGet();
-		//Anno Mail
-		if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
-		//KIRO FUCKMEET
-		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined) { goMailGet("kirofucknet"); kiroFuckNetBonus(); }
-		trySendStephMail();
+public function processVenusPitcherEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(currentLocation != "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
+	if(currentLocation != "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
+	if (currentLocation != "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
+	
+	venusSubmission( -(totalDays));
+}
+
+public function processRaskvelEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(flags["RASKVEL_PREG_TIMER"] != undefined)
+	{
+		flags["RASKVEL_PREG_TIMER"] -= totalDays;
 		
-		//Other Email Checks!
-		if (rand(100) == 0) emailRoulette();
+		//She pops eggs without you seeing.
+		if(flags["RASKVEL_PREG_TIMER"] < -5) 
+		{
+			flags["RASKVEL_PREG_TIMER"] = undefined;
+			flags["RASKVEL_EGG_COUNT"] = undefined;
+		}
 	}
-	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
-	variableRoomUpdateCheck();
-	updatePCStats();
+}
+
+public function processMyrPregEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(flags["BRIHA_INCUBATION_TIMER"] != undefined) flags["BRIHA_INCUBATION_TIMER"] += totalDays;
+	if(flags["BRIHA_LATEST_SPAWN_AGE"] != undefined) flags["BRIHA_LATEST_SPAWN_AGE"] += totalDays;
+	if(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined) flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] += totalDays;
+	if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined) flags["BRIHA_OLDEST_SPAWN_AGE"] += totalDays;
+}
+
+public function processEmmyEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if (totalDays >= 1)
+	{
+		flags["EMMY_SPECIAL"] = undefined;
+	}
 }
 
 public function racialPerkUpdateCheck():void

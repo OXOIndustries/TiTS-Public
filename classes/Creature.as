@@ -5,7 +5,6 @@
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
-	import classes.Engine.Containers.TimeOutputOptions;
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.Allure;
 	import classes.Items.Accessories.FlashGoggles;
@@ -52,7 +51,7 @@
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Interfaces.ParseText;
-
+	import classes.Engine.Utility.indefiniteArticle;
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -7903,7 +7902,7 @@
 			if(hasPerk("Milky") && hasPerk("Treated Milk")) return true;
 			return false;
 		}
-		public function milkProduced(minutes: Number): Number {
+		public function milkProduced(minutes: Number, doOut:Boolean = true): Number {
 			if(!canLactate()) return 0;
 			//How many mLs produced?
 			var mLsGained:Number = 1.73 * milkRate/10 * minutes;
@@ -8285,7 +8284,7 @@
 			}
 			return Math.round(maxCum() * ballFullness/100);
 		}
-		public function cumProduced(minutes: Number): void {
+		public function cumProduced(minutes: Number, doOut:Boolean = true):void {
 			var cumDelta:Number = 0;
 			var subDelta:Number = 0;
 			//trace("MINUTES OF CUM CHARGING: " + minutes + " FULLNESS: " + ballFullness);
@@ -16132,7 +16131,7 @@
 		//v1 = current in belly
 		//v2 = most had in belly
 		//v3 = most recent cum "type".
-		public function cumFlationSimulate(timePassed:Number):void
+		public function cumFlationSimulate(timePassed:Number, doOut:Boolean = true):void
 		{
 			//Vag filled
 			var z:int = -1;
@@ -16577,7 +16576,7 @@
 		// of when the event actually takes place.
 		public function processTime(deltaT:uint, doOut:Boolean):void
 		{
-			updateBoobwellPads(deltaT, doOut);
+			updateBoobswellPads(deltaT, doOut);
 			updateStatusEffects(deltaT, doOut);
 			updateAlcoholState(deltaT, doOut);
 			
@@ -16588,78 +16587,7 @@
 			shieldsRaw = shieldsMax();
 		}
 		
-		private function updateGooState(deltaT:uint, doOut:Boolean):void
-		{
-			if (!hasStatusEffect("Goo Crotch")) return;
-			
-			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
-			
-			if (totalHours < 1) return;
-			
-			var unflaggedGenital:Array = [];
-			for (var i:int = 0; i < cocks.length; i++)
-			{
-				if (!hasCockFlag(GLOBAL.FLAG_GOOEY, i)) unflaggedGenital.push(i);
-			}
-			
-			if (unflaggedGenital.length > 0)
-			{
-				if (unflaggedGenital.length == cocks.length)
-				{
-					if(cockTotal() == 1) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " The " + cockColor() + " skin of your " + simpleCockNoun(0) + " is vanishing into a slowly creeping wave " + kGAMECLASS.gooColor() + " goo, losing cohesion in exchange for infinitely morphic possibilities. <b>Your penis is now gelatinous.</b>";
-					//Multischlongs
-					else kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " The skin of your " + cocksDescript() + " tingles like mad as waves of translucent goo slowly replaces their skin, transforming them from fleshy wieners into semi-solid, shape-shifting pricks. <b>Your penises are now gelatinous.</b>";
-				}
-				else
-				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " Your gooey, ever-slick crotch spreads down the length";
-					if(truantCocks.length > 1) kGAMECLASS.eventBuffer += "s of your rogue, solid dicks, transforming them into drippy, inexplicably jellied boners.";
-					else 
-					{
-						kGAMECLASS.eventBuffer += " of your rock, solidified dick, transforming it to be just as drippy and jelly-like as";
-						if(cockTotal() == 2) kGAMECLASS.eventBuffer += " its brother.";
-						else eventBuffer += " its brothers.";
-					}
-					eventBuffer += " <b>All of your penises are now gelatinous.</b>";
-				}
-				
-				for (i = 0; i < unflaggedGenital.length; i++)
-				{
-					cocks[unflaggedGenital[i]].addFlag(GLOBAL.FLAG_GOOEY);
-					cocks[unflaggedGenital[i]].cockColor = kGAMECLASS.gooColor();
-				}
-			}
-			
-			var unflaggedVagNum:int = 0;
-			for (i = 0; i < vaginas.length; i++)
-			{
-				if (!vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY))
-				{
-					unflaggedVagNum++;
-					vaginas[i].addFlag(GLOBAL.FLAG_GOOEY);
-					vaginas[i].vaginaColor = kGAMECLASS.gooColor();
-				}
-			}
-			
-			if (unflaggedVagNum > 0)
-			{
-				if (unflaggedVagNum == vaginas.length)
-				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " You're getting incredibly wet";
-					if(legCount > 1) kGAMECLASS.eventBuffer += " between the [pc.legs]";
-					else kGAMECLASS.eventBuffer += "... down there";
-					kGAMECLASS.eventBuffer += ". Moisture seems to be dripping everywhere, transforming your puss";
-					if(totalVaginas() == 1) kGAMECLASS.eventBuffer += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
-					else kGAMECLASS.eventBuffer += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
-				}
-				else
-				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " Unsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>";
-				}
-			}
-		}
-		
-		private function updateVaginaStretch(deltaT:uint, doOut:Boolean):void
+		public function updateVaginaStretch(deltaT:uint, doOut:Boolean):void
 		{
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			if (vaginas.length > 0 && totalHours >= 1)
@@ -16680,7 +16608,7 @@
 					
 					var tightnessChange:Boolean = false;
 					// These are now chained to allow multiple potential shrinks to happen in a single update, depending on total time
-					if (tv.loosnessRaw >= 5 && tv.shrinkCounter >= 60)
+					if (tv.loosenessRaw >= 5 && tv.shrinkCounter >= 60)
 					{
 						tv.loosenessRaw--;
 						tv.shrinkCounter -= 60;
@@ -16694,19 +16622,19 @@
 					}
 					if (tv.loosenessRaw >= 3 && tv.shrinkCounter >= 132)
 					{
-						tv.loosnessRaw--;
+						tv.loosenessRaw--;
 						tv.shrinkCounter -= 132;
 						tightnessChange = true;
 					}
 					if (tv.loosenessRaw >= 2 && tv.shrinkCounter >= 168)
 					{
-						tv.loosnessRaw--;
+						tv.loosenessRaw--;
 						tv.shrinkCounter -= 168;
 						tightnessChange = true;
 					}
-					if (tv.loosenesssRaw >= tv.minLooseness && tv.shrinkCounter >= 204)
+					if (tv.loosenessRaw >= tv.minLooseness && tv.shrinkCounter >= 204)
 					{
-						tv.loosnessRaw--;
+						tv.loosenessRaw--;
 						tv.shrinkCounter -= 204;
 						tightnessChange = true;
 					}
@@ -16714,13 +16642,13 @@
 					if (tightnessChange)
 					{
 						if (tv.loosenessRaw < tv.minLooseness) tv.loosenessRaw = tv.minLooseness;
-						kGAMECLASS.eventBuffer += logTimeStamp("passive", deltaT) + " <b>Your" + (vaginas.length > 1 ? " " + num2Text2(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>"; 
+						kGAMECLASS.eventBuffer += kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your" + (vaginas.length > 1 ? " " + kGAMECLASS.num2Text2(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>"; 
 					}
 				}
 			}
 		}
 		
-		private function updateButtStretch(deltaT:uint, doOut:Boolean):void
+		public function updateButtStretch(deltaT:uint, doOut:Boolean):void
 		{
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			if (totalHours >= 1)
@@ -16738,41 +16666,41 @@
 				var origTightness:Number = ass.loosenessRaw;
 				if (ass.loosenessRaw >= 5 && ass.shrinkCounter >= 12)
 				{
-					ass.loosnessRaw--;
+					ass.loosenessRaw--;
 					ass.shrinkCounter -= 12;
 				}
 				if (ass.loosenessRaw >= 4 && ass.shrinkCounter >= 24)
 				{
-					ass.loosnessRaw--;
+					ass.loosenessRaw--;
 					ass.shrinkCounter -= 24;
 				}
 				if (ass.loosenessRaw >= 3 && ass.shrinkCounter >= 48)
 				{
-					ass.loosnessRaw--;
+					ass.loosenessRaw--;
 					ass.shrinkCounter -= 48;
 				}
 				if (ass.loosenessRaw >= 2 && ass.shrinkCounter >= 72)
 				{
-					ass.loosnessRaw--;
+					ass.loosenessRaw--;
 					ass.shrinkCounter -= 72;
 				}
 				if (ass.loosenessRaw >= ass.minLooseness && ass.shrinkCounter >= 96)
 				{
-					ass.loosnessRaw--;
+					ass.loosenessRaw--;
 					ass.shrinkCounter -= 96;
 				}
 				
 				if (origTightness != ass.loosenessRaw)
 				{
-					if (ass.loosessRaw < ass.minLooseness) ass.loosenessRaw = ass.minLooseness;
+					if (ass.loosenessRaw < ass.minLooseness) ass.loosenessRaw = ass.minLooseness;
 					
 					if (origTightness <= 4)
 					{
-						kGAMECLASS.eventBuffer += logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
+						kGAMECLASS.eventBuffer += kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " recovers from the brutal stretching it has recieved and tightens up.</b>";
+						kGAMECLASS.eventBuffer += kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " recovers from the brutal stretching it has recieved and tightens up.</b>";
 					}
 				}
 			}
@@ -16856,12 +16784,12 @@
 			
 			var newRating:Number = Math.floor(targetRow.breastRating());
 			
-			if (doOut && (this is PlayerCharacter) && (newRating > originalRating && (newRating % 2 == 0 || newRating < 6))
+			if (doOut && (this is PlayerCharacter) && (newRating > originalRating && (newRating % 2 == 0 || newRating < 6)))
 			{
 				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Thanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that ";
 				if(bRows() == 1) kGAMECLASS.eventBuffer += "you ";
 				else kGAMECLASS.eventBuffer += "your " + kGAMECLASS.num2Text2(statusEffectv1("Boobswell Pads") + 1) + " row of breasts ";
-				kGAMECLASS.eventBuffer += "could now fit into " + kGAMECLASS.indefiniteArticle(breastCup(0, targetRow.breastRating())) + " bra!</b>";
+				kGAMECLASS.eventBuffer += "could now fit into " + indefiniteArticle(breastCup(0, targetRow.breastRating())) + " bra!</b>";
 			}
 		}
 		
@@ -16885,7 +16813,7 @@
 				
 				var requiresRemoval:Boolean = thisStatus.minutesLeft <= 0;
 				
-				var wholeHoursPassed:uint = ((minutes + deltaT) / 60);
+				var wholeHoursPassed:uint = ((kGAMECLASS.minutes + deltaT) / 60);
 				
 				switch (thisStatus.storageName)
 				{
@@ -16932,32 +16860,24 @@
 						break;
 						
 					case "Horse Pill":
-						if (wholeHoursPassed >= 1)
+						if (wholeHoursPassed >= 1 || requiresRemoval)
 						{
-							HorsePill.OnHourTF(deltaT, maxEffectLength, doOut, target, thisStatus);
-						}
-						else if (requiresRemoval)
-						{
-							HorsePill.OnHourTF(deltaT, maxEffectLength, doOut, target, thisStatus);
+							HorsePill.OnHourTF(deltaT, maxEffectLength, doOut, this, thisStatus);
 						}
 						
 						break;
 					
 					case "Goblinola Bar":
-						if (wholeHoursPassed >= 1)
+						if (wholeHoursPassed >= 1 || requiresRemoval)
 						{
-							Goblinola.OnHourTF(deltaT, doOut, target, thisStatus);
-						}
-						else if (requiresRemoval)
-						{
-							Goblinola.OnHourTF(deltaT, doOut, target, thisStatus);
+							Goblinola.OnHourTF(deltaT, maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
 						
 					case "Gabilani Face Change":
 						if (requiresRemoval)
 						{
-							Goblinola.itemGoblinFaceTF(deltaT, maxEffectLength, doOut, target, thisStatus);
+							Goblinola.itemGoblinFaceTF(deltaT, maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
 						
@@ -16985,7 +16905,7 @@
 						// This has been refactored to handle an extra proc round if the effect
 						// expires this update, and the item mechanics treat the end-effect
 						// as just another round of TF
-						Cerespirin.itemPlanetTF(maxEffectLength, doOut, target, effect);
+						Cerespirin.itemPlantTF(maxEffectLength, doOut, this, thisStatus);
 						break;
 						
 					case "Hair Flower":
@@ -16998,7 +16918,7 @@
 					case "Priapin":
 						if (requiresRemoval)
 						{
-							Priapin.effectEnds(this);
+							Priapin.effectEnds(maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
 						
@@ -17059,7 +16979,7 @@
 						if (requiresRemoval)
 						{
 							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
-							if(bRows() > 1) kGAMECLASS.eventBuffer += "on your " + kGAMECLASS.num2Text2((statusEffects[x] as StorageClass).value1+1) + " row of breasts";
+							if(bRows() > 1) kGAMECLASS.eventBuffer += "on your " + kGAMECLASS.num2Text2(thisStatus.value1+1) + " row of breasts";
 							kGAMECLASS.eventBuffer += ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away.");
 						}
 						break;
@@ -17196,7 +17116,7 @@
 					case "Foxfire":
 						thisStatus.value4 += deltaT;
 						
-						if (thisStatus.value4 > 0 && rand(thisStatus.value4) > 60
+						if (thisStatus.value4 > 0 && rand(thisStatus.value4) > 60)
 						{
 							thisStatus.value4 = -2 * 60 - rand(2 * 60);
 							Foxfire.attemptTF(this);
@@ -17246,7 +17166,7 @@
 				
 				thisStatus.value3 = 0;
 				
-				if (this.statusValue >= 25 && !hasStatusEffect("Buzzed"))
+				if (thisStatus.value1 >= 25 && !hasStatusEffect("Buzzed"))
 				{
 					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					physiqueMod += 2;
@@ -17255,7 +17175,7 @@
 					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Damn, that stuff you were drinking was awesome. <b>You're feeling pretty good right now. You must be buzzed.</b>";
 				}
 				
-				if (this.statusValue >= 50 && !hasStatusEffect("Drunk"))
+				if (thisStatus.value1 >= 50 && !hasStatusEffect("Drunk"))
 				{
 					if (hasStatusEffect("Buzzed"))
 					{
@@ -17268,7 +17188,7 @@
 					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>";
 				}
 				
-				if (this.statusValue >= 75 && !hasStatusEffect("Smashed"))
+				if (thisStatus.value1 >= 75 && !hasStatusEffect("Smashed"))
 				{
 					if (hasStatusEffect("Drunk"))
 					{
