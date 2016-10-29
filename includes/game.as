@@ -2014,9 +2014,8 @@ public function processRenvraMessageEvents(deltaT:uint, doOut:Boolean):void
 		if (pc.hasStatusEffect("Renvra Eggs Messages Available")) RenvraEggPregnancy.renvraEggsMessageHandler(pSpace, deltaT);
 		else if (pc.hasStatusEffect("Nyrea Eggs Messages Available")) NyreaHuntressPregnancy.nyreaEggsMessageHandler(pSpace, deltaT);
 		else if (pc.hasStatusEffect("Royal Eggs Messages Available")) RoyalEggPregnancy.royalEggsMessageHandler(pSpace, deltaT);
-		
 	}
-
+	
 	renvraMessageHandler();
 }
 
@@ -2418,7 +2417,7 @@ public function processCarryTrainingEvents(deltaT:uint, doOut:Boolean):void
 {
 	var totalHours:int = ((minutes + deltaT) / 60);
 	
-	if (pc.hasStatusEffect("Eggy Belly") && totalHours >= 1 && flags["CARRY_TRAINING_BONUS_PROC"] == undefined || flags["CARRY_TRAINING_BONUS_PROC"] + (60 * 24 < GetGameTimestamp() + deltaT))
+	if (pc.hasStatusEffect("Eggy Belly") && totalHours >= 1 && (flags["CARRY_TRAINING_BONUS_PROC"] == undefined || flags["CARRY_TRAINING_BONUS_PROC"] + (60 * 24 < GetGameTimestamp() + deltaT)))
 	{
 		var eventChance:Number = Math.round((1 - Math.pow(14 / 15, totalHours)) * 1000);
 		if (rand(1000) < eventChance)
