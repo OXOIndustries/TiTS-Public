@@ -17410,6 +17410,8 @@
 			if (thisStatus.value2 <= 0)
 			{
 				removeStatusEffect("Alcohol");
+				//Remove the companion status from Kally's brews~!
+				removeStatusEffect("Adorahol");
 			}
 		}
 	}
