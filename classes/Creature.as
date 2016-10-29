@@ -6344,7 +6344,7 @@
 		}
 		//General function used by all
 		public function removeStorageSlot(array:Array, storageName:String): void {
-			trace("Removing storage slot...");
+			trace("Removing storage slot", storageName);
 			var counter: Number = array.length;
 			//Various Errors preventing action
 			if (array.length <= 0) {
@@ -16781,7 +16781,7 @@
 					if (tightnessChange)
 					{
 						if (tv.loosenessRaw < tv.minLooseness) tv.loosenessRaw = tv.minLooseness;
-						kGAMECLASS.eventBuffer += kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your" + (vaginas.length > 1 ? " " + kGAMECLASS.num2Text2(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>"; 
+						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your" + (vaginas.length > 1 ? " " + kGAMECLASS.num2Text2(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>"; 
 					}
 				}
 			}
@@ -16835,11 +16835,11 @@
 					
 					if (origTightness <= 4)
 					{
-						kGAMECLASS.eventBuffer += kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
+						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " recovers from the brutal stretching it has recieved and tightens up.</b>";
+						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " recovers from the brutal stretching it has recieved and tightens up.</b>";
 					}
 				}
 			}
@@ -16894,7 +16894,7 @@
 			// imo fluid simulate could be replaced wholesale with !neverSerialize-- any character
 			// we save we care about these potential values in a broad sense.
 			
-			if (fluidSimulate)
+			if (fluidSimulate || this is PlayerCharacter)
 			{
 				if (ballFullness < 100) cumProduced(deltaT, doOut);
 				cumFlationSimulate(deltaT, doOut);
@@ -16903,7 +16903,7 @@
 		
 		private function updateMilkValues(deltaT:uint, doOut:Boolean):void
 		{
-			if (fluidSimulate && canLactate() && !hasStatusEffect("Milk Paused"))
+			if ((fluidSimulate || this is PlayerCharacter) && canLactate() && !hasStatusEffect("Milk Paused"))
 			{
 				milkProduced(deltaT, doOut);
 			}
@@ -16936,7 +16936,7 @@
 		// TODO: Refactor what gets passed around- pass the actual StorageClass where possible, thus allowing ALL removal to be done here.
 		private function updateStatusEffects(deltaT:uint, doOut:Boolean):void
 		{
-			if (!statusSimulate) return;
+			if (!(this is PlayerCharacter) && !statusSimulate) return;
 			
 			var deferredEvents:Array = null;
 			
