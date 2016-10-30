@@ -2477,14 +2477,14 @@ public function processCuntTailEggs(deltaT:uint, doOut:Boolean):void
 
 public function processDrBadgerEvents(deltaT:uint, doOut:Boolean):void
 {
-	if (flags["BADGET_QUEST"] == -1)
+	if (flags["BADGER_QUEST"] == -1)
 	{
-		if (flags["BADGET_QUEST_TIMER"] == undefined) flags["BADGER_QUEST_TIMER"] = (GetGameTimestamp() + (60 - minutes));
+		if (flags["BADGER_QUEST_TIMER"] == undefined) flags["BADGER_QUEST_TIMER"] = (GetGameTimestamp() + (60 - minutes));
 		
-		if (flags["BADGET_QUEST_TIMER"] != -1 && GetGameTimestamp() + deltaT >= flags["BADGET_QUEST_TIMER"] + 1440)
+		if (flags["BADGER_QUEST_TIMER"] != -1 && GetGameTimestamp() + deltaT >= flags["BADGER_QUEST_TIMER"] + 1440)
 		{
 			pennyBadgerQuestAlert();
-			flags["BADGET_QUEST_TIMER"] = -1;
+			flags["BADGER_QUEST_TIMER"] = -1;
 		}
 	}
 }
