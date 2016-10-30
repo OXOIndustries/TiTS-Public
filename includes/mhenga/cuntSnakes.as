@@ -766,23 +766,15 @@ public function hasCuntsnakesInHatchery():Boolean
 {
 	return (flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined);
 }
-public function cuntsnakeHatceryBonus(btnSlot:int = 0, numSlot:int = 0):int
-{
-	output("\n\nA modular chamber simulating tropical rainforest weather is filled with various flora from Mhen'ga. There, it houses the hatchery and living environment, perfectly suited for any cunt snakes.");
-	
-	addButton(btnSlot, "C.Snake", cuntsnakeHatchery, undefined, "Cunt Snake Chamber", "Check on any cunt snakes or cunt snake eggs you may have.");
-	
-	return 1;
-}
-public function cuntsnakeHatchery():void
+public function cuntsnakeHatchery(numSnake:int = 0):void
 {
 	clearOutput();
 	showBust("");
-	showName("CUNT SNAKE\nCHAMBER");
+	showName("CUNT SNAKE\nHABITAT");
 	author("Jacques00");
 	
 	var numCuntSnakes:int = (flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined ? flags["CUNT_SNAKE_EGGS_FAXED_HOME"] : 0);
-	var numEggsHatched:int = StatTracking.getStat("pregnancy/cuntsnake hatched");
+	var numEggsHatched:int = numSnake;
 	var numEggsTotal:int = (numCuntSnakes - numEggsHatched);
 	if(numEggsTotal < 0) numEggsTotal = 0;
 	
@@ -826,7 +818,7 @@ public function hatchCuntsnakeEggs(numChild:int = 0):void
 			output(" all " + num2Text(numChild) + " of your eggs.");
 			output("\n\nYou intently watch as one of your");
 		}
-		output(" egg’s surface cracks. The little hatchling cutely hammers her head against the shell’s interior, energetically pushing herself to get out. The machine arms above aids the process by gripping onto the sides and pulling the semi-soft shell apart. With a subtle pop, the tiny cunt snake breaks free of her confines and wriggles out across the soil-covered floor. With contact to the air, her body rapidly increases in size as it adapts to her surroundings. After the initial growth spurt, the infant cunt snake lets out a tired yawn with her gummy, fang-less mouth and proceeds to slither underneath a bush " + ((hours > 6 && hours <= 18) ? "for some cool shade from the sun" : "to instinctually hide from any potential night-time predators") + ". She eventually finds a very phallic-looking plant to suck on.");
+		output(" egg’s surface cracks. The little hatchling cutely hammers her head against the shell’s interior, energetically pushing herself to get out. The machine arms above assists in the hatching by gripping onto the sides and pulling the semi-soft shell apart. With a subtle pop, the tiny cunt snake breaks free of her confines and wriggles out across the soil-covered floor. With contact to the air, her body rapidly increases in size as it adapts to her surroundings. After the initial growth spurt, the infant cunt snake lets out a tired yawn with her gummy, fang-less mouth and proceeds to slither underneath a bush " + ((hours > 6 && hours <= 18) ? "for some cool shade from the sun" : "to instinctually hide from any potential night-time predators") + ". She eventually finds a very phallic-looking plant to suck on.");
 		if(numChild == 1) output("\n\nThe hatching process completes itself, the machine cleaning up any stray eggshells, and the newborn snake has comfortably integrated herself to her new environment.");
 		else output("\n\nThe hatching process continues until all your cunt snake eggs have fully hatched, the machine cleaning up any stray eggshells, and the newborn snakes have comfortably integrated themselves to their new environment.");
 		output("\n\nFor a bunch of gential-biting parasites, the cunt snake is " + (pc.isBimbo() ? "such a cutie" : "pretty cute") + " when it is young and helpless.");
