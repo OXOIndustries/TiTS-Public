@@ -2308,14 +2308,7 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean):void
 			if (h >= 18) totalAttempts++;
 		}
 		
-		if (totalAttempts >= 1 && seraHasKidInNursery())
-		{
-			var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * 1000);
-			if (rand(1000) <= prob)
-			{
-				pc.createStatusEffect("Sera at Nursery");
-			}
-		}
+		seraNurseryVisitCheck(totalAttempts);
 	}
 }
 

@@ -6,8 +6,10 @@ public function darkChrysalisStorefront():void
 	{
 		output("\n\nNo lights are on in the Dark Chrysalis - not even its pornographic “Come Back Later” sign. Perhaps Sera is out somewhere.");
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
+		return;
 	}
-	else if(pc.hasStatusEffect("Dark Chrysalis Closed"))
+	
+	if(pc.hasStatusEffect("Dark Chrysalis Closed"))
 	{
 		output("\n\nThe Dark Chrysalis is closed. Even its “Doing a Slut” sign is dark. You suspect its proprietor is sleeping off a heavy hangover.");
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
@@ -17,6 +19,8 @@ public function darkChrysalisStorefront():void
 		output("\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east.");
 		flags["NAV_DISABLED"] = undefined;
 	}
+	
+	pc.removeStatusEffect("Sera at Nursery");
 }
 public function darkChrysalisIsOpen():Boolean
 {
@@ -50,8 +54,6 @@ public function seraBonusFunction():Boolean
 	}
 	else
 	{
-		pc.removeStatusEffect("Sera at Nursery");
-		
 		if(flags["SERA_INCH_STEAL"] != undefined && ((flags["SERA_INCH_STEAL"] > 0 && flags["SERA_CREATE_VAG"] != undefined) || flags["SERA_INCH_STEAL"] >= 5) && !pc.hasStatusEffect("Sera's TailCock Cooldown") && rand(2) == 0)
 		{
 			showSera();

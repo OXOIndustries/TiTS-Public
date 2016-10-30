@@ -805,9 +805,13 @@ public function seraHasKidInNursery(unnamed:Boolean = false):Boolean
 	if(babies.length > 0) return true;
 	return false;
 }
-public function seraNurseryVisitCheck():void
+public function seraNurseryVisitCheck(totalAttempts:int = 1):void
 {
-	if(currentLocation != "DARK CHRYSALIS" && (seraHasKidInNursery(true) || (seraHasKidInNursery() && rand(3) > 0)))
+	if(totalAttempts < 1 || currentLocation == "DARK CHRYSALIS") return;
+	
+	var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * 1000);
+	
+	if(seraHasKidInNursery(true) || (seraHasKidInNursery() && rand(1000) <= prob))
 	{
 		pc.createStatusEffect("Sera at Nursery");
 	}
@@ -1067,7 +1071,7 @@ public function seraNurseryActions(arg:Array):void
 			{
 				if(seraBabies[i].Years > 1) seraBabies.splice(i, 1);
 			}
-			babyIdx = rand(seraBabies.length);
+			babyIdx = (seraBabies.length > 1 ? rand(seraBabies.length) : 0);
 			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
 			babyName = seraBabies[babyIdx].Name;
 			
@@ -1160,7 +1164,7 @@ public function seraNurseryActions(arg:Array):void
 			{
 				if(seraBabies[i].Years <= 1) seraBabies.splice(i, 1);
 			}
-			babyIdx = rand(seraBabies.length);
+			babyIdx = (seraBabies.length > 1 ? rand(seraBabies.length) : 0);
 			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
 			babyName = seraBabies[babyIdx].Name;
 			
@@ -1219,7 +1223,7 @@ public function seraNurseryActions(arg:Array):void
 					var tots:* = ChildManager.CHILDREN[i];
 					if(tots is UniqueChild && tots.UniqueParent != "SERA" && tots.Years <= 5)
 					{
-						totsList.push(baby);
+						totsList.push(tots);
 					}
 				}
 				if(totsList.length > 0) totsName = totsList[rand(totsList.length)].Name;
