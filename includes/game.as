@@ -1973,15 +1973,15 @@ public function processHolidayoweenEvents(deltaT:uint, doOut:Boolean, totalDays:
 
 public function processMimbranesTime(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
-	if (kGAMECLASS.attachedMimbranes() == 0) return;
+	if (attachedMimbranes() == 0) return;
 		
-	if (kGAMECLASS.flags["MIMBRANES BITCH TIMER"] == undefined) kGAMECLASS.flags["MIMBRANES BITCH TIMER"] = deltaT;
-	else kGAMECLASS.flags["MIMBRANES BITCH TIMER"] += deltaT;
+	if (flags["MIMBRANES BITCH TIMER"] == undefined) flags["MIMBRANES BITCH TIMER"] = deltaT;
+	else flags["MIMBRANES BITCH TIMER"] += deltaT;
 	
-	if (kGAMECLASS.flags["MIMBRANES BITCH TIMER"] >= 300)
+	if (flags["MIMBRANES BITCH TIMER"] >= 300)
 	{
-		kGAMECLASS.flags["MIMBRANES BITCH TIMER"] = 0;
-		if (doOut) kGAMECLASS.mimbranesComplainAndShit();
+		flags["MIMBRANES BITCH TIMER"] = 0;
+		if (doOut) mimbranesComplainAndShit();
 	}
 	
 	var totalHours:int = ((minutes + deltaT) / 60);
