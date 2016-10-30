@@ -17257,10 +17257,10 @@
 						
 						if (thisStatus.value4 > 0 && rand(thisStatus.value4) > 60)
 						{
-							thisStatus.value4 = -2 * 60 - rand(2 * 60);
+							thisStatus.value4 = ((-2 * 60) - rand(2 * 60));
 							Foxfire.attemptTF(this);
-							break;
 						}
+						break;
 						
 					case "Ovilium":
 						if (!hasPregnancyOfType("OviliumEggPregnancy"))
