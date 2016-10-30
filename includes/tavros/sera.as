@@ -58,6 +58,7 @@ public function seraBonusFunction():Boolean
 			output("\n\nSomething is off...");
 			output("\n\nSera seems to be quite furious, her bosom heaving with labored breathing and sweat, almost certainly from having a shouting match like no other. She lays eyes on you, and makes a visible effort to calm herself. Through gritted teeth, she says <i>“Come. Here.”</i>");
 			addButton(0, "Sera", seraInchStealingAintEasy, true);
+			return false;
 		}
 		else if(flags["SERA_BREED_TIMER"] != undefined && (flags["SERA_BREED_TIMER"] + (24 * 60)) <= GetGameTimestamp())
 		{
