@@ -443,9 +443,6 @@ public function backToKallyMain():void
 
 public function addLoveyDoveWithAlcohol():void
 {
-	// 9999 Temp insert until Geddy finishes time fixes!
-	pc.removeStatusEffect("Adorahol"); return;
-	
 	if(!pc.hasStatusEffect("Adorahol")) pc.createStatusEffect("Adorahol",1,0,0,0,false,"Icon_Wine","You're feeling more affectionate that you otherwise would, no doubt the result of Kally's 'special' drinks.",false,0,0xB793C4);
 	else pc.addStatusValue("Adorahol",1,1);
 }

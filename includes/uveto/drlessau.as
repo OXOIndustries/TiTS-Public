@@ -294,8 +294,8 @@ public function drLessauVag():void
 	author("COUCH");
 	
 	output("You tell Lessau that you’re feeling a little itchy, letting a hand fall indicatively to your rapidly moistening nethers. You ");
-	if (pc.hasCock()) output("can feel [pc.cocks] stiffening, but right now you want to indulge your feminine lusts, and you "); 
-	output("" + (flags["DRLESSAU_SEXED"] == undefined ? "hope" : "know") + " the doctor can deliver the good, hard fucking [pc.vagina] needs.");
+	if (pc.hasCock()) output("can feel [pc.eachCock] stiffening, but right now you want to indulge your feminine lusts, and you "); 
+	output("" + (flags["DRLESSAU_SEXED"] == undefined ? "hope" : "know") + " the doctor can deliver the good, hard fucking [pc.eachVagina] needs.");
 	
 	output("\n\nWithin moments you find yourself wrapped in coils of thick ebony-scaled muscle as Lessau slips around his desk with astonishing alacrity. "); 
 	if (pc.legCount < 2) output("You grin at him and wrap your own tail around his in turn to remind him that you're also packing a sexy snake half. "); 

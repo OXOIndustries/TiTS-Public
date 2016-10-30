@@ -817,12 +817,31 @@ public function itemInteractMenu(counter:Boolean = false):Number
 	var itemMessages:String = "";
 	var count:int = 0;
 	
+	// Goo Armor Customization!
+	if (hasGooArmorOnSelf())
+	{
+		count++;
+		if (!counter)
+		{
+			itemMessages += gooArmorOnSelfBonus((count - 1), false);
+		}
+	}
+	// Siegwulfe stuff!
 	if (hasSiegwulfeOnSelf())
 	{
 		count++;
 		if (!counter)
 		{
 			itemMessages += siegwulfeOnShipBonus((count - 1), true);
+		}
+	}
+	// Latex reconfigure
+	if (pc.armor is Omnisuit && pc.hasStatusEffect("Rubber Wrapped"))
+	{
+		count++
+		if (!counter)
+		{
+			itemMessages += omnisuitMenuBonus(count - 1);
 		}
 	}
 	

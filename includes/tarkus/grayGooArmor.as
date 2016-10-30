@@ -759,28 +759,43 @@ public function gooArmorInStorageBlurb(store:Boolean = true):String
 // Menu Function Replacers
 public function gooArmorClearOutput(fromCrew:Boolean = true):void
 {
-	if(!fromCrew) clearOutput2();
-	else clearOutput();
+	//if(!fromCrew) clearOutput2();
+	//else clearOutput();
+	clearOutput();
 }
 public function gooArmorOutput(fromCrew:Boolean = true, msg:String = ""):void
 {
-	if(!fromCrew) output2(msg);
-	else output(msg);
+	//if(!fromCrew) output2(msg);
+	//else output(msg);
+	output(msg);
 }
 public function gooArmorClearMenu(fromCrew:Boolean = true):void
 {
-	if(!fromCrew) clearGhostMenu();
-	else clearMenu();
+	//if(!fromCrew) clearGhostMenu();
+	//else clearMenu();
+	clearMenu();
 }
 public function gooArmorAddButton(fromCrew:Boolean = true, slot:int = 0, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 {
-	if(!fromCrew) addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
-	else addButton(slot, cap, func, arg, ttHeader, ttBody);
+	//if(!fromCrew) addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
+	//else addButton(slot, cap, func, arg, ttHeader, ttBody);
+	addButton(slot, cap, func, arg, ttHeader, ttBody);
 }
 public function gooArmorAddDisabledButton(fromCrew:Boolean = true, slot:int = 0, cap:String = "", ttHeader:String = null, ttBody:String = null):void
 {
-	if(!fromCrew) addDisabledGhostButton(slot, cap, ttHeader, ttBody);
-	else addDisabledButton(slot, cap, ttHeader, ttBody);
+	//if(!fromCrew) addDisabledGhostButton(slot, cap, ttHeader, ttBody);
+	//else addDisabledButton(slot, cap, ttHeader, ttBody);
+	addDisabledButton(slot, cap, ttHeader, ttBody);
+}
+public function gooArmorGoBack(arg:Array):void
+{
+	var fromCrew:Boolean = arg[0];
+	var exitMain:Boolean = (arg.length > 1 ? arg[1] : false);
+	
+	if(exitMain)  mainGameMenu();
+	//else if(!fromCrew) backToAppearance(pc);
+	else if(!fromCrew) itemInteractMenu();
+	else crew();
 }
 
 // Crew Menu Text
@@ -804,7 +819,7 @@ public function gooArmorOnSelfBonus(btnSlot:int = 0, fromCrew:Boolean = true):St
 		else bonusText += "\n\nMuffled giggles can be heard near you. Glancing at your inventory, you find [goo.name] happily jiggling inside.";
 		
 		if(inCombat()) gooArmorAddDisabledButton(fromCrew, btnSlot, chars["GOO"].short, chars["GOO"].short, "You can’t right now--you’re in combat!");
-		else if(!fromCrew && !kGAMECLASS.canSaveAtCurrentLocation) gooArmorAddDisabledButton(fromCrew, btnSlot, chars["GOO"].short, chars["GOO"].short, "You can’t seem to do anything with her at the moment.");
+		//else if(!fromCrew && !kGAMECLASS.canSaveAtCurrentLocation) gooArmorAddDisabledButton(fromCrew, btnSlot, chars["GOO"].short, chars["GOO"].short, "You can’t seem to do anything with her at the moment.");
 		else gooArmorAddButton(fromCrew, btnSlot, chars["GOO"].short, approachGooArmorCrew, [true, fromCrew], chars["GOO"].short, "Interact with your silvery shape-shifting armor.");
 	}
 	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor()))
@@ -1340,13 +1355,10 @@ public function gooArmorCrewOption(arg:Array):void
 			
 			processTime(1);
 			
-			if(exitMain) gooArmorAddButton(fromCrew, 0, "Next", mainGameMenu);
-			else if(!fromCrew) gooArmorAddButton(fromCrew, 0, "Next", backToAppearance, pc);
-			else gooArmorAddButton(fromCrew, 0, "Next", crew);
+			gooArmorAddButton(fromCrew, 0, "Next", gooArmorGoBack, [fromCrew, exitMain]);
 			break;
 		default:
-			if(fromCrew) crew();
-			else backToAppearance(pc);
+			gooArmorAddButton(fromCrew, 0, "Next", gooArmorGoBack, [fromCrew, exitMain]);
 			break;
 	}
 	

@@ -58,8 +58,9 @@ public function treatmentHourProcs(totalHours:int):void
 	
 	var treatedHours:int = startHours + totalHours;
 	
-	
 	var x:int = 0;
+	var i:int = 0;
+	
 	//Genital fixin'
 	if(pc.statusEffectv1("The Treatment") == 2)
 	{
@@ -428,7 +429,7 @@ public function treatmentHourProcs(totalHours:int):void
 			var numRolls:int = Math.floor((treatedHours - 48 + 1) / 3);
 			if (startHours >= 48) numRolls -= Math.floor((startHours - 48 + 1) / 3);
 			
-			for (var i:int = 0; i < numRolls; i++)
+			for (i = 0; i < numRolls; i++)
 			{
 				//1 - 3-5 points
 				if(rand(3) == 0)
@@ -525,7 +526,7 @@ public function treatmentHourProcs(totalHours:int):void
 			
 			if (numGains > 0)
 			{
-				for (var i:int = 0; i < numGains; i++)
+				for (i = 0; i < numGains; i++)
 				{
 					//Flat chest -> .5 cup
 					if(pc.breastRows[0].breastRatingRaw < .5)
@@ -841,7 +842,7 @@ public function treatmentHourProcs(totalHours:int):void
 			var numToneGains:int = 0;
 			var toneGainOffset:int = -1;
 			
-			for (var i:int = 0; i < TREATMENT_GAIN_TARGETS.length; i++)
+			for (i = 0; i < TREATMENT_GAIN_TARGETS.length; i++)
 			{
 				if (startHours < TREATMENT_GAIN_TARGETS[i] && treatedHours >= TREATMENT_GAIN_TARGETS[i])
 				{
@@ -1036,7 +1037,7 @@ public function treatmentHourProcs(totalHours:int):void
 			var numHornAttempts:int = treatedHours - Math.max(startHours, 81);
 			var numHornGains:int = 0;
 			
-			for (var i:int = 0; i < numHornAttempts; i++)
+			for (i = 0; i < numHornAttempts; i++)
 			{
 				if (rand(6) == 0) numHornGains++;
 			}
@@ -2645,7 +2646,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//Horn Grow 2 Nubs
 		if((pc.horns == 0 || (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT) || pc.hornLength < pc.statusEffectv2("Treated")) && treatedHours >= 82)
 		{
-			var numHornGains:int = 0;
+			numHornGains = 0;
 			for (i = 0; i < treatedHours - startHours; i++)
 			{
 				if (rand(6) == 0) numHornGains++;
@@ -2862,7 +2863,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//Hip widening towards 7-11.
 		if(pc.hipRating() < 7 && treatedHours > 55)
 		{
-			var numHipGains:int = 0;
+			numHipGains = 0;
 			for (i = 0; i < treatedHours - Math.max(startHours, 55); i++)
 			{
 				if (rand(20) == 0) numHipGains++;
@@ -3215,7 +3216,7 @@ public function treatmentHourProcs(totalHours:int):void
 			{
 				if (startHours < ballSizeGains[i] && treatedHours >= ballSizeGains[i])
 				{
-					if (firstBallSizeGain = -1)
+					if (firstBallSizeGain <= -1)
 					{
 						firstBallSizeGain = i;
 					}

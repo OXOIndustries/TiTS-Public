@@ -4774,14 +4774,14 @@
 			{
 				faceo = "a well-defined jawline";
 				if (hasBeard()) faceo += " and " + beard();
-				faceo = ", a pair of " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and a fairly masculine profile";
+				faceo += ", a pair of " + plural(lipDescript(true)) + faceLipMimbraneDescript() + ", and a fairly masculine profile";
 			}
 			//28+-35
 			else if (femininity < 35)
 			{
 				faceo = "a somewhat masculine, angular jawline";
 				if (hasBeard()) faceo += ", " + beard() + ",";
-				faceo = " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				faceo += " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
 			//35-45
 			else if (femininity < 45)
@@ -4794,28 +4794,28 @@
 			{
 				faceo = "an androgynous set of features";
 				if (hasBeard()) faceo += ", except for your " + beard() + ",";
-				faceo = " that would work on either a male or a female and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				faceo += " that would work on either a male or a female and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
 			//55+-65
 			else if (femininity <= 65)
 			{
 				faceo = "a tiny touch of femininity to it";
 				if (hasBeard()) faceo += ", if not for your " + beard();
-				faceo = ", with gentle curves and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				faceo += ", with gentle curves and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
 			//65+-72
 			else if (femininity <= 72)
 			{
 				faceo = "a nice set of cheekbones";
 				if (hasBeard()) faceo += ", accompanied by your " + beard() + ",";
-				faceo = " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				faceo += " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
 			//72+-80
 			else if (femininity <= 80)
 			{
 				faceo = "a beautiful, feminine shapeliness that's sure to draw attention";
 				if (hasBeard()) faceo += ", despite your " + beard() + ",";
-				faceo = " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				faceo += " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
 			//81-90
 			else if (femininity <= 90)

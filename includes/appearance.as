@@ -1865,21 +1865,6 @@ public function appearance(forTarget:Creature):void
 			}
 			output2(" intelligent enough for some rudimentary communication....");
 		}
-		// Goo Armor Customization!
-		if (hasGooArmorOnSelf())
-		{
-			var gooArmorBonus:String = gooArmorOnSelfBonus(btnIndex, false);
-			if(gooArmorBonus.length > 0)
-			{
-				output2(gooArmorBonus);
-				btnIndex++;
-			}
-		}
-		// Latex shit reconfigure
-		if (target.armor is Omnisuit)
-		{
-			if(omnisuitMenuBonus(btnIndex)) btnIndex++;
-		}
 	}
 	
 	setTarget(null);

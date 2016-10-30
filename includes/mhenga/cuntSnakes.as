@@ -27,12 +27,12 @@ public function encounterCuntSnakeOnJungleLand():void {
 	if(flags["MET_CUNT_SNAKE"] == undefined)
 	{
 		flags["MET_CUNT_SNAKE"] = 1;
-		output("\n\nMotion in a patch of nearby bushes draws your attention just in time to witness the appearance of a rather strange-looking snake!  Its head lacks eyes, though a pair of rounded bumps do mark where eyes would be; they're obviously some similar kind of sensory organ. The body behind it does not taper as a terran snake's body would, but instead maintains a uniform thickness all the way to the end of its body. The creature's dark-green scales camouflage it well, but not well enough, and clear slime dribbles behind it in a trail, like a slug’s.");
+		output("\n\nMotion in a patch of nearby bushes draws your attention just in time to witness the appearance of a rather strange-looking snake! Its head lacks eyes, though a pair of rounded bumps do mark where eyes would be; they're obviously some similar kind of sensory organ. The body behind it does not taper as a terran snake's body would, but instead maintains a uniform thickness all the way to the end of its body. The creature's dark-green scales camouflage it well, but not well enough, and clear slime dribbles behind it in a trail, like a slug’s.");
 		output("\n\nYour codex makes a warning tone to get your attention and declares, <i>“A cunt snake has been detected. This species is noted for having potent paralyzing or aphrodisiac venom and parasitic tendencies. Avoid if possible, and seek treatment at the nearest medical establishment should one infest you.”</i>");
 		output("\n\nAs it moves, you note that it does have a feminine looking orifice on the end of its body. You're stuck fighting some");
 		if(!silly) output(" kind of vagina snake");
 		else output(" thing out of Nimin Fetish Fantasy");
-		output(".");
+		output("!");
 	}
 	//[Repeat]
 	else
@@ -199,7 +199,7 @@ public function loseToCuntSnakeAndDontGetSucked():void {
 		
 		var select:int = choices[rand(choices.length)];
 		
-		output("Your body is so hot... so very hot. You're burning up! You tear out of your gear as fast as possible, shedding the assembled equipment into a loose pile on the ground.  Your [pc.skin] is flush with lust, and your ");
+		output("Your body is so hot... so very hot. You're burning up! You tear out of your gear as fast as possible, shedding the assembled equipment into a loose pile on the ground. Your [pc.skin] is flush with lust, and your ");
 		if(select == 0) output("juices are dripping");
 		else if(select == 1 || select == 2) output("tail is practically thrumming with need");
 		else if(select == 3 || select == 4) output("[pc.nipples] are aching");
@@ -445,7 +445,7 @@ public function fuckACuntSnake():void {
 	
 	output("\n\nThe snake begins to move its " + enemy.tailVaginaDescript() + " back and forth, in addition to the concentric rings of sucking pleasure that are tugging so pleasantly on your vulnerable dickskin. The addition of a quick, constant back-and-forth motion on top of everything else is too much for you.");
 	if(pc.cockTotal() > 1) {
-		output("  Your other boner");
+		output(" Your other boner");
 		if(pc.cockTotal() == 2) output(" pulsates");
 		else output("s pulsate");
 		output(" dangerously along with ");
@@ -761,6 +761,98 @@ public function takeYoEggYo():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
+// Hatchery and children
+public function hasCuntsnakesInHatchery():Boolean
+{
+	return (flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined);
+}
+public function cuntsnakeHatceryBonus(btnSlot:int = 0, numSlot:int = 0):int
+{
+	output("\n\nA modular chamber simulating tropical rainforest weather is filled with various flora from Mhen'ga. There, it houses the hatchery and living environment, perfectly suited for any cunt snakes.");
+	
+	addButton(btnSlot, "C.Snake", cuntsnakeHatchery, undefined, "Cunt Snake Chamber", "Check on any cunt snakes or cunt snake eggs you may have.");
+	
+	return 1;
+}
+public function cuntsnakeHatchery():void
+{
+	clearOutput();
+	showBust("");
+	showName("CUNT SNAKE\nCHAMBER");
+	author("Jacques00");
+	
+	var numCuntSnakes:int = (flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined ? flags["CUNT_SNAKE_EGGS_FAXED_HOME"] : 0);
+	var numEggsHatched:int = StatTracking.getStat("pregnancy/cuntsnake hatched");
+	var numEggsTotal:int = (numCuntSnakes - numEggsHatched);
+	if(numEggsTotal < 0) numEggsTotal = 0;
+	
+	output("You approach the chamber housing your cunt snake");
+	if(numEggsTotal > 0 && numEggsHatched > 0) output((numEggsHatched == 1 ? "" : "s") + " and cunt snake egg" + (numEggsTotal == 1 ? "" : "s"));
+	else if(numEggsTotal > 0) output(" egg" + (numEggsTotal == 1 ? "" : "s"));
+	else output((numEggsHatched == 1 ? "" : "s"));
+	output(". Behind the glass, you see that the flora is thick, lush and healthy. The digital gauge reads that the temperature, humidity and precipitation levels are in the ideal range for raising such " + (numCuntSnakes == 1 ? "a creature" : "creatures") + ".");
+	if(numEggsHatched > 0) output("\n\nEbbing from at least one of the more phallic-looking plants is a stream of thick, white, protien-rich fluid - prepared especially for your cunt snake offspring whenever " + (numEggsHatched == 1 ? "it is" : "they are") + " hungry. " + (numEggsHatched == 1 ? ("The cunt snake is") : ("You have " + num2Text(numEggsHatched) + " of them, each one")) + " slithering around the environment and drooling very lewd fluids from its vagina-like orifice.");
+	if(numEggsTotal > 0) output("\n\nThe egg hatchery currently has " + (numEggsTotal == 1 ? "a single egg" : (num2Text(numEggsTotal) + " eggs"))+ ", incubating in stasis and ready to hatch at any moment.");
+	else output("\n\nThe egg hatchery is currently empty, void of any cunt snake eggs.");
+	
+	clearMenu();
+	if(numEggsTotal > 0) addButton(0, "Hatch", hatchCuntsnakeEggs, numEggsTotal, "Cunt Snake Hatchery", ("Prepare to hatch your cunt snake egg" + (numEggsTotal == 1 ? "" : "s") + "."));
+	else addDisabledButton(0, "Hatch", "Cunt Snake Hatchery", "You do not have any eggs to hatch!");
+	addButton(14, "Leave", mainGameMenu);
+}
+public function hatchCuntsnakeEggs(numChild:int = 0):void
+{
+	clearOutput();
+	showBust("");
+	showName("CUNT SNAKE\nHATCHERY");
+	author("Jacques00");
+	
+	output("You step up to the controls of the cunt snake hatchery and" + (pc.isBimbo() ? ", like, press some buttons and stuff" : " press a few buttons") + ".");
+	
+	if(numChild <= 0)
+	{
+		output("\n\nThe interface makes some negative beeps and the screen momentarily blinks yellow and red before returning to its neutral state. It looks like there was an error with your request...");
+	}
+	else
+	{
+		output("\n\nThe interface makes some positive beeps and the screen momentarily blinks blue and green. Releasing some compressed air from its vents, the hatchery activates and gets to work hatching");
+		if(numChild == 1)
+		{
+			output(" your egg.");
+			output("\n\nYou intently watch as the");
+		}
+		else
+		{
+			output(" all " + num2Text(numChild) + " of your eggs.");
+			output("\n\nYou intently watch as one of your");
+		}
+		output(" egg’s surface cracks. The little hatchling cutely hammers her head against the shell’s interior, energetically pushing herself to get out. The machine arms above aids the process by gripping onto the sides and pulling the semi-soft shell apart. With a subtle pop, the tiny cunt snake breaks free of her confines and wriggles out across the soil-covered floor. With contact to the air, her body rapidly increases in size as it adapts to her surroundings. After the initial growth spurt, the infant cunt snake lets out a tired yawn with her gummy, fang-less mouth and proceeds to slither underneath a bush " + ((hours > 6 && hours <= 18) ? "for some cool shade from the sun" : "to instinctually hide from any potential night-time predators") + ". She eventually finds a very phallic-looking plant to suck on.");
+		if(numChild == 1) output("\n\nThe hatching process completes itself, the machine cleaning up any stray eggshells, and the newborn snake has comfortably integrated herself to her new environment.");
+		else output("\n\nThe hatching process continues until all your cunt snake eggs have fully hatched, the machine cleaning up any stray eggshells, and the newborn snakes have comfortably integrated themselves to their new environment.");
+		output("\n\nFor a bunch of gential-biting parasites, the cunt snake is " + (pc.isBimbo() ? "such a cutie" : "pretty cute") + " when it is young and helpless.");
+		
+		// Commence hatching...
+		processTime(3 * numChild);
+		StatTracking.track("pregnancy/cuntsnake hatched", numChild);
+		StatTracking.track("pregnancy/total day care", numChild);
+		addChildCuntsnake(numChild);
+	}
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function addChildCuntsnake(numChild:int = 1):void
+{
+	ChildManager.addChild(
+		Child.NewChild(
+			GLOBAL.TYPE_CUNTSNAKE,
+			2.5,
+			numChild,
+			0, 1, 0, 0
+		)
+	);
+}
+
+// Feeding
 public function feedCuntSnake(preg:Boolean = true):void {
 	if(flags["TIMES_FED_CUNT_SNAKE"] == undefined) flags["TIMES_FED_CUNT_SNAKE"] = 1;
 	else flags["TIMES_FED_CUNT_SNAKE"]++;

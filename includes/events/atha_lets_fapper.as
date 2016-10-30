@@ -10,6 +10,7 @@ public function hasSmutOptions():Boolean
 public function smutFapMenu():void
 {
 	clearOutput();
+	clearBust();
 	showName("\nSMUT");
 	output("Firing up your console with a few keystrokes, you settle back and ");
 	if(pc.isCrotchExposed()) output("absently rest your hand on your groin");
@@ -214,7 +215,7 @@ public function letsFapSelectionMenu():void
 			trace("Invalid lets fap unlock value.");
 		}
 	}
-	addButton(0,"Latest Episode",flags["LETS_FAP_LATEST"],undefined,"Latest Episode","Watch the latest episode of Let's Fap!");
+	addButton(0,"Latest Episode",LETS_FAP_EPISODES[flags["LETS_FAP_LATEST"]],undefined,"Latest Episode","Watch the latest episode of Let's Fap!");
 	if(flags["LETS_FAP_ARCHIVES"] != undefined)
 	{
 		addButton(1,"Terran",letsFapTerran,undefined,"Terran","Watch the very first episode of Atha's show!");
