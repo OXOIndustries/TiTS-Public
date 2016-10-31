@@ -14841,15 +14841,18 @@
 				fluidVolume = cumFrom.cumQ();
 			}
 			
+			var effectDesc:String = ("You’ve got some fluids inside you" + ((cumFrom is PlayerCharacter) ? "" : ", leftovers from a recent lover") + ".");
+			
 			if(hole >= 0 && hole < 3)
 			{
 				// Pregnant vaginas can't get cumflated?
 				if(!hasVagina() || isPregnant(hole)) fluidVolume = 0;
 				if(fluidVolume <= 0) return;
 				
-				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Vagina","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				if(!hasStatusEffect("Vaginally-Filled")) createStatusEffect("Vaginally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Vagina",effectDesc,false,0,0xB793C4);
 				else
 				{
+					setStatusTooltip("Vaginally-Filled",effectDesc);
 					//Track the new type.
 					setStatusValue("Vaginally-Filled",3,fluidType);
 					//Add the liquid volume.
@@ -14862,9 +14865,10 @@
 			{
 				if(fluidVolume <= 0) return;
 				
-				if(!hasStatusEffect("Anally-Filled")) createStatusEffect("Anally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Donut","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				if(!hasStatusEffect("Anally-Filled")) createStatusEffect("Anally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Donut",effectDesc,false,0,0xB793C4);
 				else
 				{
+					setStatusTooltip("Anally-Filled",effectDesc);
 					//Track the hole it's in along with the new type.
 					setStatusValue("Anally-Filled",3,fluidType);
 					//Add the liquid volume.
@@ -14877,9 +14881,10 @@
 			{
 				if(fluidVolume <= 0) return;
 				
-				if(!hasStatusEffect("Orally-Filled")) createStatusEffect("Orally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Lips_Glossed","You've got some fluids inside you, leftovers from a recent lover.",false,0,0xB793C4);
+				if(!hasStatusEffect("Orally-Filled")) createStatusEffect("Orally-Filled",fluidVolume,fluidVolume,fluidType,0,false,"Icon_Lips_Glossed",effectDesc,false,0,0xB793C4);
 				else
 				{
+					setStatusTooltip("Orally-Filled",effectDesc);
 					//Track the hole it's in along with the new type.
 					setStatusValue("Orally-Filled",3,fluidType);
 					//Add the liquid volume.
