@@ -207,7 +207,7 @@ package classes.GameData.Pregnancy
 		
 			// Catch potential repeated calls to updatePregnancyStage that could trip another onDurationEnd without having a chance to cleanup post-pregnancy data
 			if (oldInc < 0) return;
-						
+			
 			if (_debugTrace) trace("New incubation value = " + newInc + "(" + kGAMECLASS.prettifyMinutes(newInc) + ")");
 			
 			var triggeredPSPs:Array = new Array();
@@ -224,8 +224,12 @@ package classes.GameData.Pregnancy
 				triggeredPSPs[i].execute(pregSlot);
 			}
 			
-			if (newInc <= 0 && oldInc > 0)
+			pData.pregnancyIncubation = newInc;
+			
+			if (newInc <= 0 && oldInc >= 0)
 			{
+				pData.pregnancyIncubation = 0;
+				
 				if (_debugTrace) trace("Incubation expired");
 				if (_onDurationEnd != null)
 				{
@@ -238,7 +242,8 @@ package classes.GameData.Pregnancy
 				}
 			}
 			
-			pData.pregnancyIncubation = newInc;
+			// Failsafe
+			if(pData.pregnancyIncubation < 0) pData.pregnancyIncubation = 0;
 		}
 		
 		// Baseline data/interaction

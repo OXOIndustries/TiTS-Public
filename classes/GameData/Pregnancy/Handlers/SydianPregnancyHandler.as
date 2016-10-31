@@ -161,8 +161,8 @@ package classes.GameData.Pregnancy.Handlers
 				if(genderList.length > 0) babyGender = genderList[rand(genderList.length)];
 
 				mother.createStatusEffect("Sydian Pregnancy Ends", babies, belly, pregSlot, babyGender, true);
-				SydianPregnancyHandler.sydianCleanupData(mother, pregSlot, thisPtr);
 				kGAMECLASS.eventQueue.push(kGAMECLASS.sydianPregnancyEnds);
+				SydianPregnancyHandler.sydianCleanupData(mother, pregSlot, thisPtr);
 			}
 			//Delay subsequent births till the first has had time to go off.
 			else mother.pregnancyData[pregSlot].pregnancyIncubation += 24;

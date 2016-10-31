@@ -640,9 +640,9 @@ public function seraSpawnPregnancyEnds():void
 	
 	if(pcSeraPregDays() <= 220) pc.removeStatusEffect("Sera Breed No Sex");
 	
-	pc.removeStatusEffect("Sera Spawn Pregnancy Ends");
-	
 	processTime(49 + (13 * numChildren));
+	
+	pc.removeStatusEffect("Sera Spawn Pregnancy Ends");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
