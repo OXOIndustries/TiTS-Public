@@ -16949,6 +16949,20 @@
 			{
 				var thisStatus:StorageClass = statusEffects[i];
 				
+				// Untimed status effect checks
+				switch (thisStatus.storageName)
+				{
+					case "Foxfire":
+						thisStatus.value4 += deltaT;
+						
+						if (thisStatus.value4 > 0 && rand(thisStatus.value4) > 60)
+						{
+							thisStatus.value4 -= ((2 * 60) + rand(2 * 60));
+							Foxfire.attemptTF(this);
+						}
+						break;
+				}
+				
 				// Effects created with a 0 or less duration aren't handled by this code ever.
 				if (thisStatus.minutesLeft <= 0) continue;
 				
@@ -17257,20 +17271,14 @@
 						}
 						break;
 						
-					case "Foxfire":
-						thisStatus.value4 += deltaT;
-						
-						if (thisStatus.value4 > 0 && rand(thisStatus.value4) > 60)
-						{
-							thisStatus.value4 = ((-2 * 60) - rand(2 * 60));
-							Foxfire.attemptTF(this);
-						}
-						break;
-						
 					case "Ovilium":
 						if (!hasPregnancyOfType("OviliumEggPregnancy"))
 						{
 							requiresRemoval = true;
+						}
+						else
+						{
+							if(thisStatus.minutesLeft < 1) thisStatus.minutesLeft = 1;
 						}
 						break;
 				}
