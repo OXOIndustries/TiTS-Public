@@ -16911,7 +16911,6 @@
 			if ((fluidSimulate || this is PlayerCharacter) && canLactate() && !hasStatusEffect("Milk Paused"))
 			{
 				milkProduced(deltaT, doOut);
-				if (this is PlayerCharacter) kGAMECLASS.milkGainNotes();
 			}
 		}
 		

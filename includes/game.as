@@ -1894,6 +1894,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	//Check to see if something changed in body part notices
 	milkMultiplierGainNotificationCheck();
+	milkGainNotes();
 	nutSwellUpdates();
 	immobilizedUpdate();
 
