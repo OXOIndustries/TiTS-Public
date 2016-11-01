@@ -3481,7 +3481,7 @@
 			var bonus:int = 0;
 			bonus += statusEffectv1("Royal Nectar");
 			if(hasPerk("Heroic Reserves")) bonus += 33;
-			return energyMod + 100 + bonus;
+			return (energyMod + 100 + bonus);
 		}
 		public function energyMin(): Number {
 			return 0;
@@ -3834,7 +3834,7 @@
 			var bonuses:int = 0;
 			if(hasStatusEffect("Quivering Quasar")) bonuses += 5;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
-			return level * 5 + bonuses;
+			return ((level * 5) + bonuses);
 		}
 		public function reflexesMax(): Number {
 			var bonuses:int = 0;
@@ -3843,12 +3843,12 @@
 			var scalar:int = 1;
 			if(hasPerk("Resin")) scalar = perkv1("Resin");
 			
-			return level * 5 * scalar + bonuses;
+			return ((level * 5 * scalar) + bonuses);
 		}
 		public function aimMax(): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
-			return level * 5 + bonuses;
+			return ((level * 5) + bonuses);
 		}
 		public function intelligenceMax(): Number {
 			var bonuses:int = 0;
@@ -3859,18 +3859,18 @@
 				bonuses += level;
 				if(perkv1("Dumb4Cum") > 24) bonuses -= (perkv1("Dumb4Cum") - 24);
 			}
-			return level * 5 + bonuses;
+			return ((level * 5) + bonuses);
 		}
 		public function willpowerMax(): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
-			return level * 5 + bonuses;
+			return ((level * 5) + bonuses);
 		}
 		public function libidoMax(): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
 			if(hasPerk("Slut Stamp")) bonuses += perkv3("Slut Stamp");
-			return 100 + bonuses;
+			return (100 + bonuses);
 		}
 		public function libidoMin(): Number {
 			var bonus:int = 0;
