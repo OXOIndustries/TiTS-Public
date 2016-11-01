@@ -4375,7 +4375,7 @@ package classes.GameData
 		
 		private function playerVictoryCondition(atEndOfRound:Boolean = false):Boolean
 		{
-			if (victoryCondition == CombatManager.ENTIRE_PARTY_DEFEATED)
+			if (victoryCondition == CombatManager.ENTIRE_PARTY_DEFEATED || (victoryCondition == CombatManager.SURVIVE_WAVES && !atEndOfRound))
 			{
 				for (var i:int = 0; i < _hostiles.length; i++)
 				{
@@ -4401,7 +4401,7 @@ package classes.GameData
 		
 		private function playerLossCondition(atEndOfRound:Boolean = false):Boolean
 		{
-			if (lossCondition == CombatManager.ENTIRE_PARTY_DEFEATED)
+			if (lossCondition == CombatManager.ENTIRE_PARTY_DEFEATED || (lossCondition == CombatManager.SURVIVE_WAVES && !atEndOfRound))
 			{
 				for (var i:int = 0; i < _friendlies.length; i++)
 				{
