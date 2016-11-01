@@ -2052,3 +2052,147 @@ public function kallyBimboBeejedGenericEpilogue():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Pussy Snack (Bro Scene)
+public function kallyGetsEatenOutByBroz():void
+{
+	clearOutput();
+	showKally();
+	output("Pshh. Kui-tan. The whole lot of them prance around with their dicks and balls hanging out, even the women. They’re too damned dick obsessed to remember why they have a vagina, and Kally’s no different. The silly herm has hers hanging low, swinging below the hem of her skirt like anyone would prefer her silly sausage over the glimmering treasure behind. She doesn’t realize how much pleasure that silken pocket could give, both to her and every member-toting male on this station.");
+	output("\n\nYou wrinkle your nose, and breathe deep. Half hidden beneath the pheromonal storm of horny, vesperian mares, drunken leithans, and every other sapient of breeding age is the spicy, unmistakably feminine scent of Kally’s vagina. It’s difficult to separate from her other, more masculine pheromones - the ones that make it seem like a good idea to have an arm-wrestling competition for every girl in the room, but then she bends over. The moment her balls cease to block the way, your nostrils flood with the potent scent of concentrated pussy - wet, long-denied pussy that has been so long ignored it’s practically virginal.");
+	output("\n\nBlood surges");
+	if(!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
+	else output(" into your crotch");
+	output(". The air is suddenly too warm and your skin too tight. You roll your shoulders, feeling the capable muscles flexing below your skin, ready to leap into action and take that which could be yours.");
+	output("\n\n<i>“You doing okay there, big [pc.guyGirl]?”</i> Kally leans over, concerned and simultaneously unconcerned what her magnificent cleavage is doing to your [pc.cocks].");
+	output("\n\nYou grunt noncommittally and reach down to adjust yourself, not even trying to hide the motion. You’re pleased to note that Kally’s eyes follow right along. Satisfied with the position of your burgeoning boner");
+	if(pc.cockTotal() > 1) output("s");
+	output(", you wave that same hand in front of her face. <i>“My eyes are up here.”</i>");
+	output("\n\nKally’s sniffs the air once, then twice. The second time, her eyelids flutter, and she mouths, <i>“Oh wow...”</i>");
+	output("\n\nRight, the pheromones: easy to forget until you’ve got a girl going gaga over how good your dick smells.");
+	output("\n\nPropping herself up on the bar, unconcerned with her tits threatening to spill out into your lap, Kally sighs dreamily. <i>“Sorry about that, " + pc.mf("big fella","sugar") + ". Guess I’m just easily distracted today.”</i>");
+	output("\n\nYou wave your hand dismissively in front of her. <i>“Don’t sweat it.”</i> Nevermind that your fingers shine with residual crotch-sweat.");
+	output("\n\n<i>“Mmmm.”</i> Kally’s nose twitches, trying to take as many samples of your masculine bouquet as possible. <i>“You sure I can’t look?”</i> she purrs sweetly, rubbing up against you (but still angling her nose at your cock-scented fingertips).");
+	output("\n\n<i>“Not unless I can get under that skirt,”</i> you grunt. After a moment, you think to add, <i>“And I don’t mean that dick you got dangling. I want to see what it is that skirt is hiding.”</i>");
+	output("\n\nKally’s brow wrinkles. <i>“...but the bar.”</i>");
+	output("\n\nYou shrug and adjust yourself once more, sure to slide your entire palm against [pc.oneCock]. Kally is all eyes when your hand re-emerges, nicely greased with dicksweat. You wiggle it in front of her. She grabs it with both hands and presses her nose into your palm, sniffing heavily. <i>“The bar will be fine for a few minutes.”</i>");
+	output("\n\nHer tongue shoots out, licking your hand. You let her lap up cockmusk and grin when she starts tonguing your fingers. She hasn’t even seen your dick yet, and she’s already got it on her breath. Kally doesn’t care. She sucks hard. One finger at a time, she cleans your entire hand until not a square inch remains unvarnished by the kui-tan’s saliva. Then she sucks some more. You have to pull your arm away to get her to stop, extricating your middle finger with a lewd ‘pop.’");
+	output("\n\n<i>“Kally.”</i> You point down. A very ");
+	if(!pc.isCrotchExposed()) output("powerful-looking bulge is making itself known.");
+	else output("powerful-looking erection is presenting itself.");
+	output(" <i>“Break time.”</i> Fuck, you are <i>sick</i> of talking.");
+	output("\n\nKally shudders. <i>“Okay.”</i> She bites her lower lip and pulls out a small ‘Break Time’ sign. She hops up onto the bar, rolling herself into your arms. <i>“Give me a break.”</i>");
+	output("\n\nYou growl powerfully. She coos, nuzzling into you, sniffing. You could probably break her in half over your dick right now. She’s basically a big, fuzzy pillow.");
+	if(flags["KALLY_BROED"] == undefined)
+	{
+		output("\n\nLooking around, you realize you have no idea where to take her.");
+		output("\n\n<i>“That way. Take me that way and give me that goddamn dick.”</i>");
+	}
+	else
+	{
+		output("\n\nLooking around, you swiftly remember where to take her.");
+		output("\n\n<i>“You’re bad.”</i> Kally giggles. <i>“So bad.”</i>");
+	}
+	output(" She wiggles so that her head is drooping toward your crotch. Eager hands delve below the belt and grab hold, feeling you up the same way a blind woman might explore your face with her fingertips. Meanwhile, her dick juts into the air like a totem pole, flipping her skirt up so that the entire bar can see. She doesn’t appear to mind.");
+	processTime(6);
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Next",kallyBroCunnilingus2);
+}
+public function kallyBroCunnilingus2():void
+{
+	clearOutput();
+	showKally();
+	output("The cock-thirsty kui-tan somehow manages to unlock her room for you. Then she realizes how rich her own hands have grown with dickmusk and sniffs them, lavishing them with licks when she needs to reluctantly exhale. She’s a ragdoll in your arms, which is all girls need to be, really. They can’t be expected to maintain things like muscle control when a big ol’ dick is splitting them out, driving every thought out of their silly little brains.");
+	output("\n\nYou flip her around so that her legs are up in the air, spread wide by gravity as much as their own libidinous desires. Her dick ");
+	if(pc.biggestTitSize() >= 2) output("threads its way through your cleavage");
+	else output("presses against your chest");
+	output(", her balls rolling over your collarbone. Just above and behind is the treasure you’ve been seeking: Kally’s pussy.");
+	output("\n\nIt’s drenched. You’d expect nothing less. The lips are dark chocolate-colored and nestled amidst an incredibly puffy mound, all smoother than silk and gleaming with needful moisture. To your eyes, it’s like an ambrosial fountain. Your heartbeat is suddenly thudding in your head. Your cock is so hard that it feels painfully tight, about to burst. One thought thunders to the forefront: <i>EAT PUSSY</i>.");
+	output("\n\nYou do. Wrapping an arm around her waist, you clap your free hand to her ass and push the oozing cunny closer. Your tongue ");
+	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("thrusts out to sample");
+	else output("snakes out and wiggles across her expansive mons");
+	output(". She tastes like sex. Not like human sex, not like food, just like the act of sex condensed into a flavor. It’s hot, maybe a tiny bit spicy, you suppose, but it is also deeply intriguing, demanding you roll your muscular appendage across the sodden slit to glean a deeper appreciation for it.");
+	output("\n\nYou do so.");
+	output("\n\nMuscles below your belt clench. The veins in your arms stand out from the effort of holding up the chubby bartender and from your own excitement. You lavish her pussy in pleasure, working up and down every inch of the outer gates before even considering the plunge inside. She’s juicy enough that by the time you swallow one mouthful, a fresh dribble of fluid is leaking out. That’s fine, you figure. Sex is better messy.");
+	//Pants
+	if(!pc.isCrotchExposed()) 
+	{
+		output("\n\nMeanwhile, Kally stops huffing your dick-scent off her fingers long enough to free your [pc.cocks] from ");
+		if(pc.cockTotal() > 1) output("their");
+		else output("its");
+		output(" irksome confinement. Your [pc.lowerGarments] fall away, fully exposing your proud endowment");
+		if(pc.cockTotal() > 1) output("s");
+		output(". The kui-tan gasps, then whimpers with excitement. More trickles of cunt-juice escape her drenched snatch, begging you to plug her with your tongue.");
+	}
+	//No pants
+	else
+	{
+		output("\n\nMeanwhile, Kally stops huffing your dick-scent off her fingers long enough to realize that your [pc.cocks] ");
+		if(pc.cockTotal() > 1) output("are");
+		else output("is");
+		output(" right there in front of her. She doesn’t need it secondhand. She can get the real thing. The kui-tan whimpers with excitement. More trickles of cunt-juice escape her drenched snatch, begging you to plug her with your tongue.");
+	}
+	output("\n\nA shudder of pleasure rolls through your hips when Kally starts nuzzling your [pc.cock], but you’re as stable as a rock from the waist up. You close your eyes and dive back in, luxuriating in her rich taste, slowly spreading the folds with you’re tongue. They’re so fattened with lust that it actually takes a fair amount of effort to spread them open. They squish between your organ and her thighs like lewd cushions, drawing a gasp of pleasure from the silly dick-girl.");
+	output("\n\nNo wonder you didn’t see her clit. You have to really go digging to find it, relying on touch more than sight. It’s buried deep in her slit, a chubby little bundle of nerves too short and too recessed to be found by a less skillful lover. The whimpers your dick-dazzled lover makes when you touch it are music to your ears. The fluids she squirts are a reward finer than any wine. You flick her clitty with the tip of your [pc.tongue] rapaciously, stopping to circle it from time to time.");
+	output("\n\nYou know that your skillful lovemaking is forcing her to experience stupifying levels of pleasure. If it wasn’t, she’d be sucking your dick, not rubbing her face against it and moaning, creaming both of them in a facial of her own making. To you, it’s just extra lube. If you rock your hips just right, you can catch a sensitive spot against her tongue. She’ll get a real facial in a little bit, once you’re done savoring her cunt.");
+	output("\n\nAnd what a cunt it is! It squeezes down on your tongue and fountains her musky desire against your [pc.lipsChaste]. If you withdraw, it seems to swell upward, making itself appear even lewder in hopes of rubbing against something. You kiss it, sweet thing that it is, then thrust inside, deep. Your tongue swirls in circles, gathering up her liquid sex. Pleasing her is automatic. On some level, you suppose you were made for this. Squirt after squirt, you milk her for every drop of feminine bliss she can provide. You milk her until her tongue is limp against your [pc.cock] and she’s barely managing to moan.");
+	output("\n\nYou milk Kally until your face is glossier than her cunt, and her bedroom reeks of pussy. Then you work her some more. She takes deep breaths of your crotch’s pheromonal soup, then cums again, the hardest time yet. You hear her jizz splash against her face and feel it drip down your own dick. More importantly, her slit squeezes tighter than a naleen’s coils. It threatens to choke your mouth’s muscle completely off. The pressure is agonizing. Then it relaxes completely, too spent to so much as quiver with an aftershock.");
+	processTime(25);
+	pc.lust(200);
+	clearMenu();
+	addButton(0,"Next",kallyBroCunnilingus3);
+}
+
+public function kallyBroCunnilingus3():void
+{
+	clearOutput();
+	showKally();
+	output("You toss Kally onto her bed. She’s a fucking mess. From her tits up, she’s painted nearly white. Her eyes are half-closed, and she’s giggling and blowing cum-bubbles. If anyone else found her like this, they’d think her little more than a brainless cum-slut. In short, she’s as beautiful as you’ve ever seen her.");
+	output("\n\nYou grin, grab hold of ");
+	if(pc.cockTotal() > 1) output("a");
+	else output("your");
+	output(" still-turgid mast");
+	if(pc.cockTotal() > 1) 
+	{
+		output(", taking ");
+		if(pc.cockTotal() == 2) output("your other");
+		else output("another");
+		output(" in your other hand");
+	}
+	output(", and smack it down onto her inky lips. Predictably, her nostrils flare, and her useless prick dribbles a puddle of white into her navel. She opens wide a second later, wet tongue an inviting carpet for you to slide across.");
+	output("\n\nIt doesn’t take you long to cum, not ever holding yourself back for so long, not with the inviting reek of her cunt clouding every breath you take. A few thrusts into the sloppy slut’s mouth, and you’re nutting. You pump your [pc.cum] straight into the back of her maw. She swallows, more out of instinct than desire");
+	if(pc.cumQ() >= 400) output(", but not even that keeps you from flooding her poor maw. [pc.CumColor] fuckbatter squirts out of the corners of her mouth, mixing with hers to create an erotic slurry");
+	output(".");
+	output("\n\nOnce finished, you wipe yourself off on her forehead, then present the still-slick shaft to her for inspection. She groans and trembles. Then, as if in a daze, she starts to lick you clean. Her tongue swirls lovingly over each vein until you’re perfectly spit-shined.");
+	output("\n\nFor someone so un-enhanced, she’s a damned good fuck. Do you kiss her before you go?");
+	processTime(10);
+	pc.orgasm();
+	if(!pc.hasStatusEffect("Kally Cummed Out")) pc.createStatusEffect("Kally Cummed Out",1,0,0,0,true,"Icon_Wine","",false,30,0xB793C4);
+	clearMenu();
+	addButton(0,"Yes",yesCumKissKally);
+	addButton(1,"No",noCumKissForKally);
+
+}
+
+//[No]
+public function noCumKissForKally():void
+{
+	clearOutput();
+	showKally();
+	output("You take one last look at your handiwork, then head back to the bar. From somewhere behind you, you hear the sounds of deep sniffing, following behind furious masturbation. Sounds like she’s going for round two.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Yes]
+public function yesCumKissKally():void
+{
+	clearOutput();
+	showKally();
+	output("You grab her by the hair and crane her head back. Once perfectly positioned, you kiss her on the lips. She’s a little slimy and more than a little fucked-silly, but she manages to kiss you back. You give her some tongue to fully express your affection to the complaint kui-tan, and she returns in kind. The girl can kiss!");
+	output("\n\nYou break away before you start to get too worked up and head on out. She’ll doubtless need time to recover... and clean herself up.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
