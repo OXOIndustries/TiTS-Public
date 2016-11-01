@@ -51,20 +51,28 @@ public function kallyBonusRoomTexts():Boolean
 		kiroKallyBarMeetOverride();
 		return true;
 	}
-	//Inroom Bonus Appearance
-	//Not Met
-	if(flags["MET_KALLY"] == undefined)
+	//Kally's isnt there!
+	if(pc.hasStatusEffect("Kally Cummed Out"))
 	{
-		showBust("KALLY");
-		output("\n\nA thick-bodied kui-tan is mixing drinks behind the bar, wearing a dress with more rustic charm than fashion sensibility. Her lips are graced by the kind of easy smile that only ever seems to appear on those who enjoy their work.");
-		addButton(0,"Bartender",approachKallyFirstTime);
+		output("\n\nA small sign sits on the empty bar: ‘Break Time’");
 	}
-	//Met
 	else
 	{
-		showBust("KALLY");
-		output("\n\nKally smiles at you from behind the bar, but makes no move to approach. The cushy kui-tan is wearing her typical barmaid outfit and busy mixing drinks for her thirsty patrons.");
-		addButton(0,"Kally",approachKally);
+		//Inroom Bonus Appearance
+		//Not Met
+		if(flags["MET_KALLY"] == undefined)
+		{
+			showBust("KALLY");
+			output("\n\nA thick-bodied kui-tan is mixing drinks behind the bar, wearing a dress with more rustic charm than fashion sensibility. Her lips are graced by the kind of easy smile that only ever seems to appear on those who enjoy their work.");
+			addButton(0,"Bartender",approachKallyFirstTime);
+		}
+		//Met
+		else
+		{
+			showBust("KALLY");
+			output("\n\nKally smiles at you from behind the bar, but makes no move to approach. The cushy kui-tan is wearing her typical barmaid outfit and busy mixing drinks for her thirsty patrons.");
+			addButton(0,"Kally",approachKally);
+		}
 	}
 	roamingBarEncounter(1);
 	return false;
@@ -226,9 +234,13 @@ public function kallyBarMenu():void
 	else addDisabledButton(0,"Buy Drink","Buy Drink","You're so drunk she won't serve you any more.");
 	addButton(1,"Appearance",kallyAppearance);
 	if(!pc.hasStatusEffect("Tapped Kally") && pc.isBimbo()) addButton(5,"Suck Kally",kallyNeedsTappedByBimbos,undefined,"Suck Kally","Kally looks... and smells... like she needs some relief. Who better to help than you?");
+	else if(pc.isBro() && pc.hasCock())
+	{
+		addButton(5,"Eat Pussy",kallyGetsEatenOutByBroz,undefined,"Eat Pussy","You know that deep down, all Kally wants to do is taste your dick and offer her pussy.");
+	}
+	else if(pc.isBro()) addDisabledButton(5,"Eat Pussy","Eat Pussy","Something tell you she isn't going to let you just pick her up and start eating her pussy unless you've got the biggest, nicest smelling cock in the bar.");
 	else if(pc.isBimbo()) addDisabledButton(5,"Suck Kally","Suck Kally","She's still cooling off from your last attempt!");
-	else addDisabledButton(5,"Suck Kally","Suck Kally","Trying to suck Kally off at work is the sort of thing only a cock-hungry bimbo would do.");
-
+	else addDisabledButton(5,"Seduce Kally","Seduce Kally","You'd need to be extremely oversexed to so brazenly seduce Kally - like a bimbo or brute.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -2102,6 +2114,8 @@ public function kallyBroCunnilingus2():void
 {
 	clearOutput();
 	showKally();
+	currentLocation = "CANADA8";
+	generateMap();
 	output("The cock-thirsty kui-tan somehow manages to unlock her room for you. Then she realizes how rich her own hands have grown with dickmusk and sniffs them, lavishing them with licks when she needs to reluctantly exhale. She’s a ragdoll in your arms, which is all girls need to be, really. They can’t be expected to maintain things like muscle control when a big ol’ dick is splitting them out, driving every thought out of their silly little brains.");
 	output("\n\nYou flip her around so that her legs are up in the air, spread wide by gravity as much as their own libidinous desires. Her dick ");
 	if(pc.biggestTitSize() >= 2) output("threads its way through your cleavage");
@@ -2179,6 +2193,7 @@ public function noCumKissForKally():void
 {
 	clearOutput();
 	showKally();
+	currentLocation = "CANADA5";
 	output("You take one last look at your handiwork, then head back to the bar. From somewhere behind you, you hear the sounds of deep sniffing, following behind furious masturbation. Sounds like she’s going for round two.");
 	processTime(1);
 	clearMenu();
@@ -2190,6 +2205,7 @@ public function yesCumKissKally():void
 {
 	clearOutput();
 	showKally();
+	currentLocation = "CANADA5";
 	output("You grab her by the hair and crane her head back. Once perfectly positioned, you kiss her on the lips. She’s a little slimy and more than a little fucked-silly, but she manages to kiss you back. You give her some tongue to fully express your affection to the complaint kui-tan, and she returns in kind. The girl can kiss!");
 	output("\n\nYou break away before you start to get too worked up and head on out. She’ll doubtless need time to recover... and clean herself up.");
 	processTime(2);
