@@ -214,28 +214,15 @@ package classes.Characters
 			//Pass physical check, blinded
 			if (target.physique() + rand(20) + 1 > physique())
 				{
-					output("\n\nYou dig your [pc.feet] in and hold on for dear life, refusing to be blown away by the beast... but even then, you quickly realize that the snow is blasting all around you. It's almost impossible to see --");
-					if(target.hasBlindImmunity())
-					{
-						output(" fortunately for you, you are not totally blinded by the snow...");
-					}
-					else
-					{
-						output(" <b>you're all but blinded!</b>");
-						target.createStatusEffect("Blinded",rand(2)+2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0xFF0000);
-					}
+					output("\n\nYou dig your [pc.feet] in and hold on for dear life, refusing to be blown away by the beast... but even then, you quickly realize that the snow is blasting all around you. It's almost impossible to see -- <b>you're all but blinded!</b>");
+					target.createStatusEffect("Blinded",rand(2)+2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0xFF0000);
 				}
 			//Fail physical check, blinded and tripped
 			else
 				{
-					output("\n\nThe gail-force of the wind sends you flying to the ground, sprawling out across the ice. Worse, you quickly realize that the snow is blasting all around you. It's almost impossible to see -- <b>you're knocked down");
-					if(target.hasBlindImmunity()) { /* You can see */ }
-					else
-					{
-						output(" and all but blinded");
-						target.createStatusEffect("Blinded", rand(2) + 2, 0, 0, 0, false, "Blind", "You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
-					}
+					output("\n\nThe gail-force of the wind sends you flying to the ground, sprawling out across the ice. Worse, you quickly realize that the snow is blasting all around you. It's almost impossible to see -- <b>you're knocked down and all but blinded");
 					output("!</b>");
+					target.createStatusEffect("Blinded", rand(2) + 2, 0, 0, 0, false, "Blind", "You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
 					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 				}
 			
