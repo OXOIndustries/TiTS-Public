@@ -284,7 +284,7 @@ package classes.Characters
 		
 		public function cumFacial(target:Creature, hostiles:Array):void
 		{
-			output("One of Holmes’s tentacles snaps forward, flinging a huge gout of pink cum at [target.combatName] " + (target is PlayerCharacter ? "" : "’s") + " face! The mutant spunk splatters on [target.combatHimHer] face, tainting the air with its musk.");
+			output("One of Holmes’s tentacles snaps forward, flinging a huge gout of pink cum at [target.combatName]" + (target is PlayerCharacter ? "" : "’s") + " face! The mutant spunk splatters on [target.combatHimHer] face, tainting the air with its musk.");
 			if (!rangedCombatMiss(this, target))
 			{
 				output(" Worse, it lands right in [target.combatHisHer] eyes.");

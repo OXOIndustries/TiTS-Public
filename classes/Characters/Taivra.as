@@ -425,6 +425,10 @@
 			{
 				output(", but your goggles protect your eyes.");
 			}
+			else if (target.hasBlindImmunity())
+			{
+				output(", but to little effect.");
+			}
 			else
 			{
 				output("! <b>You’re blinded!</b>");
