@@ -171,7 +171,7 @@ public function nurserySpecialistRooms():Boolean
 	{
 		var numTentacles:int = ChildManager.numOfType(GLOBAL.TYPE_TENTACLE);
 		
-		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + "tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It" : "They") + " look quite happy in there.");
+		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + "tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It looks" : "They look") + " quite happy in there.");
 		numSpecials++;
 	}
 
