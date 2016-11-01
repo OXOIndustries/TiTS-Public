@@ -109,8 +109,8 @@ public function initVesperiaRoom():void
 	rooms["CANADA7"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["CANADA8"] = new RoomClass(this);
-	rooms["CANADA8"].roomName = "KIRA'S\nROOM";
-	rooms["CANADA8"].description = "Kira's room is... neat. Astonishingly neat. The walls are clean white affairs housing embedded lights. The diffuse lighting bathes the place in a calm, clear ambiance. She's chosen purple sheets for her bed and a lacy pink pillow, but like everything else they're spotless and meticulously arranged. A filing cabinet and desk sit beside the door, armed with a beefy holographic computer that would look more at home in a college kid's dorm room than in a serious businesswoman's abode. An enormous bottle of lube is tucked into the corner, half-hidden behind a box of \"Spunk-Monster\" brand condoms.";
+	rooms["CANADA8"].roomName = "KALLY'S\nROOM";
+	rooms["CANADA8"].description = "Kally's room is... neat. Astonishingly neat. The walls are clean white affairs housing embedded lights. The diffuse lighting bathes the place in a calm, clear ambiance. She's chosen purple sheets for her bed and a lacy pink pillow, but like everything else they're spotless and meticulously arranged. A filing cabinet and desk sit beside the door, armed with a beefy holographic computer that would look more at home in a college kid's dorm room than in a serious businesswoman's abode. An enormous bottle of lube is tucked into the corner, half-hidden behind a box of \"Spunk-Monster\" brand condoms.";
 	rooms["CANADA8"].planet = "CANADIA STATION";
 	rooms["CANADA8"].system = "SYSTEM: LIBERTERIA";
 	//rooms["CANADA8"].northExit = "";
