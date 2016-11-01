@@ -92,7 +92,7 @@ public function nurseryCafeteriaFunc():Boolean
 public function nurseryG14Func():Boolean
 {
 	output("You’re standing in a long, pastel-blue corridor connecting the foyer to the children’s wing of the nursery.");
-	var numKids:int = ChildManager.numInAgeRangeYears(2, 8);
+	var numKids:int = ChildManager.numInAgeRangeYears(2, 8, true);
 	if (numKids >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
 	else if (numKids >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
 	
@@ -103,7 +103,7 @@ public function nurseryEducationCenterFunc():Boolean
 {
 	if (hours >= 7 && hours <= 16)
 	{
-		if (ChildManager.inAgeRangeYears(3, 16))
+		if (ChildManager.inAgeRangeYears(3, 16, true))
 		{
 			output("\n\nThe schoolrooms are up and operational now that you’ve started to deposit your offspring here. Steele Tech keeps several teachers on retainer here, and those who aren’t actively busy overseeing your children’s’ education are working away on future course material and lesson plans.");
 		}
@@ -164,6 +164,14 @@ public function nurserySpecialistRooms():Boolean
 	{
 		output("\n\nConnected to the main entrance via a pressurized airlock is a water-filled chamber, simulating a deep saltwater lake with a sandy island in its center. Though the rooms inside are pitch black, a camera feed inside has been set to night vision, showing your Water Princesses scuttling about, half-submerged and completely hidden in the dark waters. Your head nurse has hired on a dusky female nyrea from their homeworld to help oversee their development - a brief word with her reveals the huntress is well acquainted with the Queen of the Deep, and that the princesses’ mother sends her regards.");
 		addButton(numSpecialsButtons++, "W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses.");
+		numSpecials++;
+	}
+
+	if (ChildManager.ofType(GLOBAL.TYPE_TENTACLE))
+	{
+		var numTentacles:int = ChildManager.numOfType(GLOBAL.TYPE_TENTACLE);
+		
+		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + "tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is one-way mirrored to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any innocent passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It" : "They") + " look quite happy in there.");
 		numSpecials++;
 	}
 
@@ -299,6 +307,7 @@ public function nurseryComputerFacilities():void
 	if (ChildManager.ofType(GLOBAL.TYPE_VENUSPITCHER)) facilities.push("Venus Pitcher Terrarium");
 	if (ChildManager.ofType(GLOBAL.TYPE_COCKVINE)) facilities.push("Hydrus Constuprula Habitat");
 	if (ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN)) facilities.push("Water Strider Tank");
+	if (ChildManager.ofType(GLOBAL.TYPE_TENTACLE)) facilities.push("UHS-1045 Harmonics Habitat");
 
 	output("Your nursery is equipped with a special modular section, designed to be able to easily support unique alien biologies.");
 	if (facilities.length <= 0)
