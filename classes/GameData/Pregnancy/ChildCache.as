@@ -155,7 +155,7 @@ package classes.GameData.Pregnancy
 			}
 		}
 		
-		private function updateAgeBuckets():void
+		private function updateAgeBuckets(roamOnly:Boolean = false):void
 		{
 			if (ageInvalidated)
 			{
@@ -179,6 +179,8 @@ package classes.GameData.Pregnancy
 					var cc:Child = ChildManager.CHILDREN[i] as Child;
 					var y:int = cc.Years;
 					
+					if(roamOnly && !ChildManager.canRoam(cc.RaceType)) continue;
+					
 					if (y >= 18)
 					{
 						_ageBuckets[21].push(cc);
@@ -189,7 +191,7 @@ package classes.GameData.Pregnancy
 					}
 					else
 					{
-						var m:int = cc.Months / 3;
+						var m:int = Math.floor(cc.Months / 3);
 						_ageBuckets[m].push(cc);
 					}
 				}
@@ -199,9 +201,9 @@ package classes.GameData.Pregnancy
 			}
 		}
 		
-		public function inAgeRangeYears(minAge:int, maxAge:int = -1):Boolean
+		public function inAgeRangeYears(minAge:int, maxAge:int = -1, roamOnly:Boolean = false):Boolean
 		{
-			updateAgeBuckets();
+			updateAgeBuckets(roamOnly);
 			
 			if (maxAge != -1 && maxAge < minAge) maxAge = -1;
 			
@@ -224,9 +226,9 @@ package classes.GameData.Pregnancy
 			return false;
 		}
 		
-		public function inAgeRangeMonths(minAge:int, maxAge:int = -1):Boolean
+		public function inAgeRangeMonths(minAge:int, maxAge:int = -1, roamOnly:Boolean = false):Boolean
 		{
-			updateAgeBuckets();
+			updateAgeBuckets(roamOnly);
 			
 			if (maxAge != -1 && maxAge < minAge) maxAge = -1;
 			
@@ -264,9 +266,9 @@ package classes.GameData.Pregnancy
 			return false;
 		}
 		
-		public function numInAgeRangeYears(minAge:int, maxAge:int):int
+		public function numInAgeRangeYears(minAge:int, maxAge:int, roamOnly:Boolean = false):int
 		{
-			updateAgeBuckets();
+			updateAgeBuckets(roamOnly);
 			
 			var t:int = 0;
 			
@@ -303,9 +305,9 @@ package classes.GameData.Pregnancy
 			return t;
 		}
 		
-		public function numInAgeRangeMonths(minAge:int, maxAge:int):int
+		public function numInAgeRangeMonths(minAge:int, maxAge:int, roamOnly:Boolean = false):int
 		{
-			updateAgeBuckets();
+			updateAgeBuckets(roamOnly);
 			
 			var t:int = 0;
 			var cc:Child = null;
@@ -459,9 +461,9 @@ package classes.GameData.Pregnancy
 			if (genderTypes & ChildManager.GENDER_INTERSEX) container.Intersex += c.NumIntersex;
 		}
 		
-		public function ofGendersInRange(genderTypes:uint, minAge:int, maxAge:int):Boolean
+		public function ofGendersInRange(genderTypes:uint, minAge:int, maxAge:int, roamOnly:Boolean = false):Boolean
 		{
-			updateAgeBuckets();
+			updateAgeBuckets(roamOnly);
 			
 			var cc:Child = null;
 			
@@ -515,9 +517,9 @@ package classes.GameData.Pregnancy
 			return false;
 		}
 		
-		public function numOfGendersInRange(genderTypes:uint, minAge:int, maxAge:int):Genders 
+		public function numOfGendersInRange(genderTypes:uint, minAge:int, maxAge:int, roamOnly:Boolean = false):Genders 
 		{
-			updateAgeBuckets();
+			updateAgeBuckets(roamOnly);
 			
 			var t:Genders = new Genders();
 			var cc:Child = null;
@@ -572,7 +574,7 @@ package classes.GameData.Pregnancy
 			return t;
 		}
 		
-		public function ofTypeInRange(raceType:uint, minAge:int, maxAge:int):Boolean
+		public function ofTypeInRange(raceType:uint, minAge:int, maxAge:int, roamOnly:Boolean = false):Boolean
 		{
 			updateTypeBuckets();
 			
@@ -604,7 +606,7 @@ package classes.GameData.Pregnancy
 			return false;
 		}
 		
-		public function numOfTypeInRange(raceType:uint, minAge:int, maxAge:int):int
+		public function numOfTypeInRange(raceType:uint, minAge:int, maxAge:int, roamOnly:Boolean = false):int
 		{
 			updateTypeBuckets();
 			
@@ -631,7 +633,7 @@ package classes.GameData.Pregnancy
 			return num;
 		}
 		
-		public function ofTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int):Boolean
+		public function ofTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int, roamOnly:Boolean = false):Boolean
 		{
 			updateTypeBuckets();
 			
@@ -656,7 +658,7 @@ package classes.GameData.Pregnancy
 			return false;
 		}
 		
-		public function numOfTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int):Genders
+		public function numOfTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int, roamOnly:Boolean = false):Genders
 		{
 			updateTypeBuckets();
 			

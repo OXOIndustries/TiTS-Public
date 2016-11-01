@@ -954,7 +954,7 @@ public function reahaAddictionTherapy():void
 	output("\n\n");
 	if (reahaConfidence() <= REAHA_CONFIDENCE_LOW) output("Tentatively");
 	else output("Eagerly");
-	output(", Reaha nods. tapping the");
+	output(", Reaha nods, tapping the");
 	if (reahaAddiction() <= REAHA_ADDICTION_LOW) output(" lone patch");
 	else output(" the highest patch");
 	output(" on her inner thigh. You reach in, fingers teasing up her tender skin until she lets out a little gasp, body making one big, tit-jiggling quake that carries through from bubble butt to heaving bosom. Your fingers find the lip of the target pad, and you ply a single");

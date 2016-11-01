@@ -28,45 +28,101 @@ public function liftMove(destination:String):void
 	clearOutput();
 	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
 	move(destination,false);
+	showLocationName();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function hangarFloors(bonus:Boolean = false):Array 
+{
+	var floors:Array = [];
+	floors.push(["Hangar", liftMove, "TAVROS LIFT", "Hangar Deck", "the hangar deck"]);
+	floors.push(["Merchant", liftMove, "LIFT: MERCHANT DECK", "Merchant Deck", "the merchant deck"]);
+	floors.push(["Res. Deck", liftMove, "LIFT: RESIDENTIAL DECK", "Residential Deck", "the residential deck"]);
+	floors.push(["Nursery", liftMove, "NURSERYELEVATOR", "Nursery Deck", "the nursery deck"]);
+	if(bonus)
+	{
+		if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
+			floors.push(["Deck 92", saendraX1LiftGo, undefined, "Deck 92", "Deck 92"]);
+	}
+	
+	return floors;
+}
 public function hangarBonus():Boolean 
 {
 	output("You’re within a stuffy tube of metal and plastic. Steady, mechanical thrums suffuse the air around you. The inside of the cylinder-like lift is lined by a brass-hued railing, used to steady oneself during high speed travel through the kilometers-long station.\n\nThere’s a sturdy mechanical keypad with which to designate your target level. Right now, the only floors of interest are the hangar, merchant, residential, and nursery levels.");
 	
+	var btnSlot:int = 0;
+	
+	addButton(btnSlot++, "Floors", hangarButtonMenu, undefined, "Control Panel", "Ride the elevator to a specific floor.");
+	
+	// Special floors (add when needed)
 	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
 	{
 		output("\n\nYou also have the option to take the lift up to Deck 92 to meet up with Saendra");
 		if(flags["SAENDRA_XPACK1_STATUS"] == 2) output(". You are sure taking your time about it though");
 		output("--whatever she contacted you about, it sounded pretty urgent.");
-		addButton(0, "Deck 92", saendraX1LiftGo); 
+		addButton(btnSlot++, "Deck 92", saendraX1LiftGo, undefined, "Deck 92", "Go to Deck 92.");
 	}
 	
-	if (currentLocation == "LIFT: MERCHANT DECK") 
+	// Normal floors
+	var floors:Array = hangarFloors();
+	for(var i:int = 0; i < floors.length; i++)
 	{
-		output("\n\n<b>You are currently on the merchant deck.</b>");
-		addButton(7,"Down",liftMove, "TAVROS LIFT");
-		addButton(5,"Up",liftMove, "LIFT: RESIDENTIAL DECK");
+		if(floors[i][2] == currentLocation)
+		{
+			output("\n\n<b>You are currently on " + floors[i][4] + ".</b>");
+			if(floors[i - 1] != null)
+			{
+				addButton(7, "Down", floors[i - 1][1], floors[i - 1][2], floors[i - 1][3], ("Go to " + floors[i - 1][4] + "."));
+			}
+			if(floors[i + 1] != null)
+			{
+				addButton(5, "Up", floors[i + 1][1], floors[i + 1][2], floors[i + 1][3], ("Go to " + floors[i + 1][4] + "."));
+			}
+		}
 	}
-	else if (currentLocation == "TAVROS LIFT") 
-	{
-		output("\n\n<b>You are currently on the hangar deck.</b>");
-		addButton(5,"Up",liftMove, "LIFT: MERCHANT DECK");
-	} 
-	else if (currentLocation == "LIFT: RESIDENTIAL DECK") 
-	{
-		output("\n\n<b>You are currently on the residential deck.</b>");
-		addButton(5, "Up", liftMove, "NURSERYELEVATOR");
-		addButton(7,"Down",liftMove, "LIFT: MERCHANT DECK");
-	}
-	else if (currentLocation == "NURSERYELEVATOR") 
-	{
-		output("\n\n<b>You are currently on the nursery deck.</b>");
-		addButton(7, "Down", liftMove, "LIFT: RESIDENTIAL DECK");
-	}
+	
 	return false;
+}
+public function hangarButtonMenu():void 
+{
+	clearMenu();
+	
+	var floors:Array = hangarFloors(true);
+	var floorIndex:int = 0;
+	var btnSlot:int = 0;
+	var i:int = 0;
+	
+	for(i = 0; i < floors.length; i++)
+	{
+		if(floors[i][2] == currentLocation) floorIndex = i;
+	}
+	for(i = 0; i < floors.length; i++)
+	{
+		if(i == floorIndex)
+		{
+			addDisabledButton(btnSlot++, floors[i][0], floors[i][3], "You are already on this floor.");
+		}
+		else if(floors[i][1] != liftMove)
+		{
+			addButton(btnSlot++, floors[i][0], floors[i][1], floors[i][2], floors[i][3], ("Go to " + floors[i][4] + "."));
+		}
+		else
+		{
+			addButton(btnSlot++, floors[i][0], hangarMoveTo, [floors[i][2], (Math.abs(floorIndex - i) - 1)], floors[i][3], ("Go to " + floors[i][4] + "."));
+		}
+	}
+	addButton(14, "Back", mainGameMenu);
+}
+public function hangarMoveTo(arg:Array):void 
+{
+	var destination:String = arg[0];
+	var minExtra:int = arg[1];
+	
+	if(minExtra > 0) processTime(minExtra);
+	
+	liftMove(destination);
 }
 
 public function tavrosHangarStuff():Boolean

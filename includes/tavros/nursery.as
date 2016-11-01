@@ -92,7 +92,7 @@ public function nurseryCafeteriaFunc():Boolean
 public function nurseryG14Func():Boolean
 {
 	output("You’re standing in a long, pastel-blue corridor connecting the foyer to the children’s wing of the nursery.");
-	var numKids:int = ChildManager.numInAgeRangeYears(2, 8);
+	var numKids:int = ChildManager.numInAgeRangeYears(2, 8, true);
 	if (numKids >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
 	else if (numKids >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
 	
@@ -103,7 +103,7 @@ public function nurseryEducationCenterFunc():Boolean
 {
 	if (hours >= 7 && hours <= 16)
 	{
-		if (ChildManager.inAgeRangeYears(3, 16))
+		if (ChildManager.inAgeRangeYears(3, 16, true))
 		{
 			output("\n\nThe schoolrooms are up and operational now that you’ve started to deposit your offspring here. Steele Tech keeps several teachers on retainer here, and those who aren’t actively busy overseeing your children’s’ education are working away on future course material and lesson plans.");
 		}
@@ -136,14 +136,18 @@ public function nurserySpecialistRooms():Boolean
 	var numSpecials:int = 0;
 	var numSpecialsButtons:int = 0;
 
-	if(hasCuntsnakesInHatchery())
+	if(ChildManager.ofType(GLOBAL.TYPE_CUNTSNAKE) || hasCuntsnakesInHatchery())
 	{
-		numSpecials += cuntsnakeHatceryBonus(numSpecialsButtons++, numSpecials);
+		var numSnake:int = ChildManager.numOfType(GLOBAL.TYPE_CUNTSNAKE);
+		
+		output("\n\nA modular chamber simulating tropical rainforest weather is filled with various flora from Mhen'ga. There, it houses a hatchery and living environment perfectly suited for any cunt snakes you may have.");
+		addButton(numSpecialsButtons++, "C.Snake", cuntsnakeHatchery, numSnake, "Cunt Snake Chamber", "Check on any cunt snakes or cunt snake eggs you may have.");
+		numSpecials++;
 	}
 
 	if (ChildManager.ofType(GLOBAL.TYPE_VENUSPITCHER))
 	{
-		output("\n\nOne of the modular chambers has been opened up and filled with soil sourced directly from Mhen’ga, allowing for the absolute best growing conditions possible for your venus pitcher offspring. Somehow, Briget has managed to secure a naleen female onto the staff, who is currently slithering about the jungle-like environ making sure everything is picture-perfect - and guaranteeing that your planty offpsring will have someone native to play with as they develop.");
+		output("\n\nOne of the modular chambers has been opened up and filled with soil sourced directly from Mhen'ga, allowing for the absolute best growing conditions possible for your venus pitcher offspring. Somehow, Briget has managed to secure a naleen female onto the staff, who is currently slithering about the jungle-like environ making sure everything is picture-perfect - and guaranteeing that your planty offpsring will have someone native to play with as they develop.");
 		numSpecials++;
 	}
 
@@ -152,34 +156,23 @@ public function nurserySpecialistRooms():Boolean
 		var numVines:int = ChildManager.numOfType(GLOBAL.TYPE_COCKVINE);
 
 		output("\n\n" + (numSpecials == 0 ? "One" : "Another one") +" of the rooms is kept air-tight, its locked door plastered with warnings. The viewing window next to it reveals nothing but blackness - but you can use controls next to it to change the whole screen to stark night vision, allowing you to see within. The room itself is narrower than most but considerably taller, filled with the vertically arranged porous Myrellion rock that Hydrus Constuprula loves undulating its way through. The wall-attached micro-cameras can be moved up and down, enabling you to pick out your cockvine offspring wherever "+ (numVines == 1 ? "it" : "they") +" may roam.");
-
-		if (numVines > 1)
-		{
-			output("\n\nThere is the little guy now - snaking its way through the depths of its current home, grasping the rock occasionally with acquisitive interest. As far as you can tell, it looks reasonably healthy and happy.");
-		}
-		else if (numVines < 4)
-		{
-			output("\n\nYour first has taken root, and is not so much of a little guy anymore. Its exercise ball-shaped bulb is rooted deep, and it has sprouted several long tentacles reaching through the crevices many feet above it. The rest of your cockvine spawn are still dinky and mobile, tunnelling happily through the darkness.");
-		}
-		else
-		{
-			output("The first of your plant spawn has grown into an absolute monster, with over a dozen tentacles each reaching pretty much the entire height of the room, up the central crevice, laid out hopefully across the surface. Another smaller one has taken root in the corner. Counting up the remaining cockvine you can see slithering through the gloom, you guess at least two or three have chosen to merge with the bigger beasts.");
-		}
-
-		output("\n\nThe staff tell you that the creature");
-		if (numVines > 1) output("s");
-		output(" make");
-		if (numVines == 1) output("s");
-		output(" for a great waste disposal device - any vegetable or animal matter left over by the Nursery’s kitchen disappears in moments when it’s thrown into the chamber.");
+		addButton(numSpecialsButtons++, "Cockvine", nurserySpecialistCockvine, numVines, "Cockvine Habitat", "Take a peek at your cockvines.");
 		numSpecials++;
 	}
 
 	if (ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN))
 	{
 		output("\n\nConnected to the main entrance via a pressurized airlock is a water-filled chamber, simulating a deep saltwater lake with a sandy island in its center. Though the rooms inside are pitch black, a camera feed inside has been set to night vision, showing your Water Princesses scuttling about, half-submerged and completely hidden in the dark waters. Your head nurse has hired on a dusky female nyrea from their homeworld to help oversee their development - a brief word with her reveals the huntress is well acquainted with the Queen of the Deep, and that the princesses’ mother sends her regards.");
-		addButton(numSpecialsButtons, "W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses.");
+		addButton(numSpecialsButtons++, "W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses.");
 		numSpecials++;
-		numSpecialsButtons++;
+	}
+
+	if (ChildManager.ofType(GLOBAL.TYPE_TENTACLE))
+	{
+		var numTentacles:int = ChildManager.numOfType(GLOBAL.TYPE_TENTACLE);
+		
+		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + "tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It" : "They") + " look quite happy in there.");
+		numSpecials++;
 	}
 
 	if (numSpecials == 0)
@@ -309,20 +302,26 @@ public function nurseryComputerFacilities():void
 	author("Savin");
 
 	// Probably refactor this when we get more special types in
-	var hasCuntSnakes:Boolean = (hasCuntsnakesInHatchery());
-	var hasPitchers:Boolean = ChildManager.ofType(GLOBAL.TYPE_VENUSPITCHER);
-	var hasWaterQueen:Boolean = ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN);
+	var facilities:Array = [];
+	if (ChildManager.ofType(GLOBAL.TYPE_CUNTSNAKE) || hasCuntsnakesInHatchery()) facilities.push("Cunt Snake Hatchery and Habitat");
+	if (ChildManager.ofType(GLOBAL.TYPE_VENUSPITCHER)) facilities.push("Venus Pitcher Terrarium");
+	if (ChildManager.ofType(GLOBAL.TYPE_COCKVINE)) facilities.push("Hydrus Constuprula Habitat");
+	if (ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN)) facilities.push("Water Strider Tank");
+	if (ChildManager.ofType(GLOBAL.TYPE_TENTACLE)) facilities.push("UHS-1045 Harmonics Habitat");
 
-	if (!hasCuntSnakes && !hasPitchers && !hasWaterQueen)
+	output("Your nursery is equipped with a special modular section, designed to be able to easily support unique alien biologies.");
+	if (facilities.length <= 0)
 	{
-		output("Your nursery is equipped with a special modular section, designed to be able to easily support unique alien biologies. If you ever have children that need non-standard living environments, the headmistress will requisition the funds and staff to support them.");
+		output(" If you ever have children that need non-standard living environments, the headmistress will requisition the funds and staff to support them.");
 	}
 	else
 	{
-		output("You currently have the following Specialist Rooms, designed to give your uniquely-needy offspring the conditions their alien biology requires to survive:\n");
-		if (hasCuntSnakes) output("\n<b>* Cunt Snake Hatchery and Terrarium</b>");
-		if (hasPitchers) output("\n<b>* Venus Pitcher Terrarium</b>");
-		if (hasWaterQueen) output("\n<b>* Water Strider Tank</b>")
+		output(" You currently have the following Specialist Rooms, designed to give your uniquely-needy offspring the conditions their alien biology requires to survive:\n");
+		for(var i:int = 0; i < facilities.length; i ++)
+		{
+			output("\n<b>* " + facilities[i] + "</b>");
+		}
+		output("\n\n");
 	}
 
 	nurseryComputerMenu(nurseryComputerFacilities);
@@ -459,7 +458,7 @@ public function nurseryRecordsFix():void
 		if(nurseryAddOrphanedChild(orphanList[i]))
 		{
 			numFixed++;
-			msg += "\n\n<i>" + StringUtil.toTitleCase(num2Ordinal(numFixed)) + " entry detected (" + orphanTypes[i] + ")... correcting... corrected.</i>";
+			msg += "\n\n<i>" + StringUtil.toTitleCase(num2Ordinal(numFixed)) + " entry detected (" + StringUtil.toTitleCase(orphanTypes[i]) + ")... correcting... corrected.</i>";
 		}
 	}
 	
@@ -1182,7 +1181,7 @@ public function nurseryMaternityWait():void
 	{
 		if (firstDuration > 1440) addButton(5, "1 Day", nurseryMaternityWaitTime, (1440 - 5), "Wait: One Day", "Rest for one full day.");
 		else addDisabledButton(5, "1 Day", "Wait: One Day", "You have a pregnancy that will be due before this time!");
-		if (firstDuration > 10080) addButton(6, "1 Week", nurseryMaternityWaitTime, (10080 - 5), "Wait:One Week", "Rest for one full week.");
+		if (firstDuration > 10080) addButton(6, "1 Week", nurseryMaternityWaitTime, (10080 - 5), "Wait: One Week", "Rest for one full week.");
 		else addDisabledButton(6, "1 Week", "Wait: One Week", "You have a pregnancy that will be due before this time!");
 		if (firstDuration > 43200) addButton(7, "1 Month", nurseryMaternityWaitTime, (43200 - 5), "Wait: One Month", "Rest for one full month.");
 		else addDisabledButton(7, "1 Month", "Wait: One Month", "You have a pregnancy that will be due before this time!");
@@ -1401,6 +1400,55 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function nurserySpecialistCockvine(numVines:int = 1):void
+{
+	clearOutput();
+	showName("COCKVINE\nHABITAT");
+	author("Nonesuch");
+	
+	output("You head towards the Hydrus Constuprula habitat’s viewing window, adjust the dials to enable the night vision and move the camera about the tunnels in search of " + (numVines == 1 ? "your" : "a") + " cockvine...");
+	
+	var children:Array = ChildManager.getChildrenOfType(GLOBAL.TYPE_COCKVINE);
+	var child:Child;
+	var oldestVine:int = 0;
+	if (children != null && children.length > 0)
+	{
+		child = children[0];
+		for (var i:int = 0; i < children.length; i++)
+		{
+			var c:Child = children[i] as Child;
+			if(oldestVine < c.Years) oldestVine = c.Years;
+		}
+	}
+	
+	if (numVines <= 1 || (numVines <= 4 && oldestVine <= 1))
+	{
+		output("\n\nThere is " + (numVines == 1 ? "the" : "a") + " little guy now - snaking its way through the depths of its current home, grasping the rock occasionally with acquisitive interest. As far as you can tell, it looks reasonably healthy and happy.");
+		if(numVines > 1) output(" The " + (numVines == 2 ? "other cockvine spawn is" : "rest of your cockvine spawn are") + " tunneling happily through the darkness.");
+	}
+	else if (numVines <= 4 && oldestVine <= 4)
+	{
+		output("\n\n" + (numVines == 1 ? "The cockvine" : "Your first") + " has taken root, and is not so much of a little guy anymore. Its exercise ball-shaped bulb is rooted deep, and it has sprouted several long tentacles reaching through the crevices many feet above it.");
+		if(numVines > 1) output(" The " + (numVines == 2 ? "other cockvine spawn is" : "rest of your cockvine spawn are") + " still dinky and mobile, tunneling happily through the darkness.");
+	}
+	else
+	{
+		output("\n\n" + (numVines == 1 ? "Y" : "The first of y") + "our plant spawn has grown into an absolute monster, with over a dozen tentacles each reaching pretty much the entire height of the room, up the central crevice, laid out hopefully across the surface.");
+		if(numVines > 1) output(" Another smaller one has taken root in the corner.");
+		if(numVines > 4) output(" Counting up the remaining cockvine you can see slithering through the gloom, you guess at least two or three have chosen to merge with the bigger beasts.");
+	}
+
+	output("\n\nThe staff tell you that the creature");
+	if (numVines > 1) output("s");
+	output(" make");
+	if (numVines == 1) output("s");
+	output(" for a great waste disposal device - any vegetable or animal matter left over by the Nursery’s kitchen disappears in moments when it’s thrown into the chamber.");
+	
+	processTime(3);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 public function nurserySpecialistWaterPricesses():void
 {
 	clearOutput();
@@ -1408,6 +1456,8 @@ public function nurserySpecialistWaterPricesses():void
 
 	if (flags["NURSERY_WATER_PRINCESS_VISTS"] == undefined)
 	{
+		showName("NYREAN\nHUNTRESS");
+		
 		output("You step up to the glass door separating your watery children’s living space from the drier climate of the nursery, peering through into total darkness. You give a glance to the nyrean huntress standing nearby, wrapped up in the Steele Tech uniform that shows off plenty of toned muscle and a bulge that looks like she’s packing a coconut in her crotch. Kid friendly, for sure.");
 		
 		output("\n\n<i>“Greetings,");
@@ -1436,6 +1486,8 @@ public function nurserySpecialistWaterPricesses():void
 	}
 	else
 	{
+		showName("WATER\nPRINCESSES");
+		
 		IncrementFlag("NURSERY_WATER_PRINCESS_VISTS");
 		var children:Array = ChildManager.getChildrenOfType(GLOBAL.TYPE_WATERQUEEN);
 		var totalNum:int = 0;
@@ -1482,6 +1534,7 @@ public function nurserySpecialistWaterPricesses():void
 public function nurserySpecialistWaterPricessesII(child:Child):void
 {
 	clearOutput();
+	showName("WATER\nPRINCESSES");
 	author("Savin");
 
 	output("Several more heads of tentacled hair peek up from the water’s edge a few moments later, and soon you’re overwhelmed with chattering voices - a chorus of <i>“Hi!”</i> <i>“Welcome home!”</i> <i>“We missed you so much!”</i> and more. Half a dozen pairs of hands grab at you, pulling you into hugs kisses every which way. Your not-so-little girls giggle and cry out with joy, pulling you in so many directions at once that you’re momentarily afraid they’ll forget their own strength... but no, they’re as gentle as angels once you start squirming, setting you back down on the sandbar and folding their legs under themselves, coming down to your level.");

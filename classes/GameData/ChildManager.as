@@ -5,6 +5,7 @@ package classes.GameData
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.Pregnancy.ChildCache;
 	import classes.GameData.Pregnancy.UniqueChild;
+	import classes.GLOBAL;
 	
 	/**
 	 * ...
@@ -199,10 +200,10 @@ package classes.GameData
 		 * @param	maxAge
 		 * @return
 		 */
-		public static function inAgeRangeYears(minAge:int, maxAge:int = -1):Boolean
+		public static function inAgeRangeYears(minAge:int, maxAge:int = -1, roamOnly:Boolean = false):Boolean
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.inAgeRangeYears(minAge, maxAge);
+			return CACHE.inAgeRangeYears(minAge, maxAge, roamOnly);
 		}
 		
 		/**
@@ -211,10 +212,10 @@ package classes.GameData
 		 * @param	maxAge
 		 * @return
 		 */
-		public static function inAgeRangeMonths(minAge:int, maxAge:int = -1):Boolean
+		public static function inAgeRangeMonths(minAge:int, maxAge:int = -1, roamOnly:Boolean = false):Boolean
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.inAgeRangeMonths(minAge, maxAge);
+			return CACHE.inAgeRangeMonths(minAge, maxAge, roamOnly);
 		}
 		
 		// Ideally, only ever call any of the remaining methods once per scene
@@ -229,10 +230,10 @@ package classes.GameData
 		 * @param	maxAge
 		 * @return
 		 */
-		public static function numInAgeRangeYears(minAge:int, maxAge:int = -1):int
+		public static function numInAgeRangeYears(minAge:int, maxAge:int = -1, roamOnly:Boolean = false):int
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.numInAgeRangeYears(minAge, maxAge);
+			return CACHE.numInAgeRangeYears(minAge, maxAge, roamOnly);
 		}
 		
 		/**
@@ -241,10 +242,10 @@ package classes.GameData
 		 * @param	maxAge
 		 * @return
 		 */
-		public static function numInAgeRangeMonths(minAge:int, maxAge:int = -1):int
+		public static function numInAgeRangeMonths(minAge:int, maxAge:int = -1, roamOnly:Boolean = false):int
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.numInAgeRangeMonths(minAge, maxAge);
+			return CACHE.numInAgeRangeMonths(minAge, maxAge, roamOnly);
 		}
 		
 		/**
@@ -303,10 +304,10 @@ package classes.GameData
 		 * @param	maxAge
 		 * @return
 		 */
-		static public function ofGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1):Boolean
+		static public function ofGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1, roamOnly:Boolean = false):Boolean
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.ofGendersInRange(genderTypes, minAge, maxAge);
+			return CACHE.ofGendersInRange(genderTypes, minAge, maxAge, roamOnly);
 		}
 		
 		/**
@@ -317,10 +318,10 @@ package classes.GameData
 		 * @param	maxAge
 		 * @return
 		 */
-		static public function numofGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1):Genders
+		static public function numofGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1, roamOnly:Boolean = false):Genders
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.numOfGendersInRange(genderTypes, minAge, maxAge);
+			return CACHE.numOfGendersInRange(genderTypes, minAge, maxAge, roamOnly);
 		}
 		
 		/**
@@ -331,10 +332,10 @@ package classes.GameData
 		 * @param	maxAge
 		 * @return
 		 */
-		static public function ofTypeInRange(raceType:uint, minAge:int, maxAge:int):Boolean
+		static public function ofTypeInRange(raceType:uint, minAge:int, maxAge:int, roamOnly:Boolean = false):Boolean
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.ofTypeInRange(raceType, minAge, maxAge);
+			return CACHE.ofTypeInRange(raceType, minAge, maxAge, roamOnly);
 		}
 		
 		/**
@@ -342,10 +343,10 @@ package classes.GameData
 		 * between the desired age range in months.
 		 * @return
 		 */
-		static public function numOfTypeInRange(raceType:uint, minAge:int, maxAge:int = -1):int
+		static public function numOfTypeInRange(raceType:uint, minAge:int, maxAge:int = -1, roamOnly:Boolean = false):int
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.numOfTypeInRange(raceType, minAge, maxAge);
+			return CACHE.numOfTypeInRange(raceType, minAge, maxAge, roamOnly);
 		}
 		
 		/**
@@ -357,10 +358,10 @@ package classes.GameData
 		 * @param	maxAge
 		 * @return
 		 */
-		static public function ofTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int = -1):Boolean
+		static public function ofTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int = -1, roamOnly:Boolean = false):Boolean
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.ofTypeAndGenderInRange(raceType, genderTypes, minAge, maxAge);
+			return CACHE.ofTypeAndGenderInRange(raceType, genderTypes, minAge, maxAge, roamOnly);
 		}
 		
 		/**
@@ -368,10 +369,10 @@ package classes.GameData
 		 * that fall within a desired age range specified in months
 		 * @return
 		 */
-		static public function numOfTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int = -1):Genders
+		static public function numOfTypeAndGenderInRange(raceType:uint, genderTypes:uint, minAge:int, maxAge:int = -1, roamOnly:Boolean = false):Genders
 		{
 			if (CACHE == null) CACHE = new ChildCache();
-			return CACHE.numOfTypeAndGenderInRange(raceType, genderTypes, minAge, maxAge);
+			return CACHE.numOfTypeAndGenderInRange(raceType, genderTypes, minAge, maxAge, roamOnly);
 		}
 		
 		static public function get nurseryCacheInvalid():Boolean
@@ -414,6 +415,21 @@ package classes.GameData
 		{
 			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.getChildrenOfType(ofType);
+		}
+		
+		// Check to see if child can actually roam freely in the nursery!
+		static public function canRoam(RaceType:int):Boolean
+		{
+			var noRoamTypeList:Array = [
+				GLOBAL.TYPE_TENTACLE,
+				GLOBAL.TYPE_CUNTSNAKE,
+				GLOBAL.TYPE_VENUSPITCHER,
+				GLOBAL.TYPE_COCKVINE,
+				GLOBAL.TYPE_WATERQUEEN,
+			];
+			
+			if (noRoamTypeList.indexOf(RaceType) == -1) return true;
+			return false;
 		}
 	}
 

@@ -301,14 +301,27 @@ package classes.Characters
 				
 				if (!bHitNeykkar)
 				{
-					if (!rangedCombatMiss(this, struct.pc) && !struct.pc.hasStatusEffect("Blinded"))
+					if (!rangedCombatMiss(this, struct.pc))
 					{
-						output(" Another roar and spray of liquid splatters across your suits mask, forming a blinding morass of sticky goop.");
-						struct.pc.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You're blinded and cannot see! Accuracy is reduced, and ranged attacks are for more likely to miss.", true, 0xFF0000);
+						output(" Another roar and spray of liquid splatters across your suits mask,");
+						if(!struct.pc.hasBlindImmunity())
+						{
+							output(" fortunately to no effect.");
+						}
+						else if(!struct.pc.hasStatusEffect("Blinded"))
+						{
+							output(" forming a blinding morass of sticky goop.");
+							struct.pc.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You're blinded and cannot see! Accuracy is reduced, and ranged attacks are for more likely to miss.", true, 0xFF0000);
+						}
+						else
+						{
+							output(" forming an extra layer to your blinding mask!");
+							struct.pc.addStatusValue("Blinded", 1, 1);
+						}
 					}
 					else
 					{
-						output(" The commander rears back again, another roar signalling a second spray of liquid heading your way, but you barely manage to slide out of its way before it can hit you!");
+						output(" The commander rears back again, another roar signaling a second spray of liquid heading your way, but you barely manage to slide out of its way before it can hit you!");
 					}
 				}
 				else
@@ -324,14 +337,28 @@ package classes.Characters
 				
 				if (!bHitNeykkar)
 				{
-					if (!rangedCombatMiss(this, struct.pc) && !struct.pc.hasStatusEffect("Blinded"))
+					if (!rangedCombatMiss(this, struct.pc))
 					{
-						output(" Even as you’re struggling against the fumes, another roar and spray of liquid splatters across your face, forming a blinding mask of sticky aphrodesiacs!");
-						struct.pc.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
+						output(" Even as you’re struggling against the fumes, another roar and spray of liquid splatters across your face,");
+						if(!struct.pc.hasBlindImmunity())
+						{
+							output(" fortunately to no effect.");
+						}
+						else if(!struct.pc.hasStatusEffect("Blinded"))
+						{
+							output(" forming a blinding mask of sticky aphrodesiacs!");
+							struct.pc.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
+						}
+						else
+						{
+							output(" forming another layer to your blinding mask!");
+							struct.pc.addStatusValue("Blinded", 1, 1);
+						}
+						applyDamage(damageRand(new TypeCollection( { drug: 7 } ), 15), this, struct.pc, "minimal");
 					}
 					else
 					{
-						output(" The commander rears back again, another roar signalling a second spray of liquid heading your way, but you barely manage to slide out of its way before it can hit you!");
+						output(" The commander rears back again, another roar signaling a second spray of liquid heading your way, but you barely manage to slide out of its way before it can hit you!");
 					}
 				}
 				else

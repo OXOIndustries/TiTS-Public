@@ -288,9 +288,13 @@
 		public function korSnowBlind(target:Creature):void
 		{
 			output("Grabbing an armful of snow, the native throws an icy sheet of glittering dust at your face. You shield yourself from the childish attack and glance back just in time to see her fish a scavenged Giga Lantern from one of pockets. Her strange pupils narrow to horizontal slits as she squeezes the hand-held flash bulb!");
-			if(reflexes() + rand(20) + 1 < target.reflexes() + 10)
+			if(reflexes() + rand(20) + 1 < target.reflexes() + 10 || target.hasBlindImmunity())
 			{
-				output("\n\nYou turn away, hands clasped over your eyes as the overcharged light bursts in a blinding flare and sears white afterimages into your eyes. You blink the ghostly after image away and turn back to the barbarian, who drops the burnt-out device with a curse, shaking her singed paw.");
+				output("\n\nYou turn away");
+				if(!target.hasBlindImmunity()) output(", hands clasped over your eyes");
+				output(" as the overcharged light bursts in a blinding flare and sears white afterimages into your eyes");
+				if(target.hasBlindImmunity()) output(" -- though to little effect");
+				output(". You blink the ghostly after image away and turn back to the barbarian, who drops the burnt-out device with a curse, shaking her singed paw.");
 			}
 			else
 			{

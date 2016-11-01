@@ -380,8 +380,16 @@
 			}
 			else
 			{
-				output(" A shower of dirt hits your face, blinding you!");
-				target.createStatusEffect("Blinded", 2 + rand(2), 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+				output(" A shower of dirt hits your face,");
+				if(target.hasBlindImmunity())
+				{
+					output(" to little effect.");
+				}
+				else
+				{
+					output(" blinding you!");
+					target.createStatusEffect("Blinded", 2 + rand(2), 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+				}
 			}
 		}
 		

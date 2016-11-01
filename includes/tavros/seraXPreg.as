@@ -640,9 +640,9 @@ public function seraSpawnPregnancyEnds():void
 	
 	if(pcSeraPregDays() <= 220) pc.removeStatusEffect("Sera Breed No Sex");
 	
-	pc.removeStatusEffect("Sera Spawn Pregnancy Ends");
-	
 	processTime(49 + (13 * numChildren));
+	
+	pc.removeStatusEffect("Sera Spawn Pregnancy Ends");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -805,9 +805,13 @@ public function seraHasKidInNursery(unnamed:Boolean = false):Boolean
 	if(babies.length > 0) return true;
 	return false;
 }
-public function seraNurseryVisitCheck():void
+public function seraNurseryVisitCheck(totalAttempts:int = 1):void
 {
-	if(currentLocation != "DARK CHRYSALIS" && (seraHasKidInNursery(true) || (seraHasKidInNursery() && rand(3) > 0)))
+	if(totalAttempts < 1 || currentLocation == "DARK CHRYSALIS") return;
+	
+	var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * 1000);
+	
+	if(seraHasKidInNursery(true) || (seraHasKidInNursery() && rand(1000) <= prob))
 	{
 		pc.createStatusEffect("Sera at Nursery");
 	}
@@ -1067,7 +1071,7 @@ public function seraNurseryActions(arg:Array):void
 			{
 				if(seraBabies[i].Years > 1) seraBabies.splice(i, 1);
 			}
-			babyIdx = rand(seraBabies.length);
+			babyIdx = (seraBabies.length > 1 ? rand(seraBabies.length) : 0);
 			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
 			babyName = seraBabies[babyIdx].Name;
 			
@@ -1160,18 +1164,18 @@ public function seraNurseryActions(arg:Array):void
 			{
 				if(seraBabies[i].Years <= 1) seraBabies.splice(i, 1);
 			}
-			babyIdx = rand(seraBabies.length);
+			babyIdx = (seraBabies.length > 1 ? rand(seraBabies.length) : 0);
 			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
 			babyName = seraBabies[babyIdx].Name;
 			
-			numKids = ChildManager.numInAgeRangeYears(1, 5);
+			numKids = ChildManager.numInAgeRangeYears(1, 5, true);
 			
 			output("<i>“I think " + babyName + " would love to have a horse around with us before bedtime,”</i> you say. <i>“Don’t you?”</i>");
 			output("\n\n<i>“Nothing fun ever happens before bedtime,”</i> Sera sniffs. <i>“But if you insist.”</i>");
 			output("\n\nYou head through into the common room, where " + babyName + " is being brought in");
 			if(numKids == 2) output(" with your other kid");
-			if(numKids <= 4) output(" with your other kids");
-			if(numKids > 4) output(" with some of your other kids");
+			else if(numKids <= 4) output(" with your other kids");
+			else if(numKids > 4) output(" with some of your other kids");
 			output(" for evening playtime. " + babyName + "’s face lights up when " + (babym ? "he" : "she") + " catches sight of " + (babym ? "his" : "her") + " parents.");
 			output("\n\n<i>“Popo mommy!”</i> " + (babym ? "he" : "she") + " cries, toddling towards you. <i>“Biisht " + pc.mf("daddy", "mommy") + "!”</i>");
 			if(flags["SERA_NURSERY_PLAY"] == undefined) output("\n\nYou cover your eyes despairingly, Sera’s delighted laughter ringing in your ears.");
@@ -1191,7 +1195,7 @@ public function seraNurseryActions(arg:Array):void
 			var playList:Array = [];
 			var playOption:int = -1;
 			
-			numKids = ChildManager.numInAgeRangeYears(1, 5);
+			numKids = ChildManager.numInAgeRangeYears(1, 5, true);
 			
 			playList.push([
 				(	"The three of you spend some time constructing a makeshift castle out of magnetic building blocks. " + babyName + " and Sera tire of it at roughly the same time, and you have to take cover as they gleefully destroy it. The rest of the allotted playtime is spent seeing how hard they can dent the wall, Sera at great pains to demonstrate proper throwing technique to the little so-and-so."
@@ -1209,7 +1213,7 @@ public function seraNurseryActions(arg:Array):void
 				), "SERA_NURSERY_PLAY_3"
 			]);
 			// Only if kids > 2, at least one not Sera’s
-			if(numKids >= 2 && seraBabies.length <= ChildManager.numInAgeRangeYears(1, 5))
+			if(numKids >= 2 && seraBabies.length <= ChildManager.numInAgeRangeYears(1, 5, true))
 			{
 				// Choose a (non-Sera type) unique baby
 				var totsName:String = "";
@@ -1219,7 +1223,7 @@ public function seraNurseryActions(arg:Array):void
 					var tots:* = ChildManager.CHILDREN[i];
 					if(tots is UniqueChild && tots.UniqueParent != "SERA" && tots.Years <= 5)
 					{
-						totsList.push(baby);
+						totsList.push(tots);
 					}
 				}
 				if(totsList.length > 0) totsName = totsList[rand(totsList.length)].Name;

@@ -7274,7 +7274,7 @@ public function bessEvent9():void
 	
 	output("\n\n<i>“...From what I can tell, the story is an allegory for class division and the need for society’s constant progression, lest it become stagnant. What do you think, "+ bessPCName() +"?”</i> [bess.HeShe] looks at you");
 	if (bessGlasses()) output(" through [bess.hisHer] glasses");
-	else output("with wide [bess.eyeColor] eyes");
+	else output(" with wide [bess.eyeColor] eyes");
 	output(", expecting you to know the answer.");
 
 	if (pc.intelligence() >= 25 && pc.IQ() >= 75 || flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM)
