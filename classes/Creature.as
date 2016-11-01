@@ -16981,6 +16981,13 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "Kally Cummed Out":
+						if(requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
+						{
+							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" Kally stumbles back into the bar while you’re waiting. Her garb isn’t quite as meticulously arranged. Her hair is damp, and when she thinks nobody is looking, she sighs dreamily, licking her lips.");
+						}
+						break;
+						
 					case "Condensol-A":
 						if (!hasCock())
 						{
