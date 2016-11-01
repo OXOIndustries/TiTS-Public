@@ -1174,9 +1174,196 @@ public function minutesToDays(nMinutes:Number):Number
 {
 	return Math.floor(nMinutes / 60 / 24);
 }
+public function minutesToWeeks(nMinutes:Number):Number
+{
+	return Math.floor(nMinutes / 60 / 24 / 7);
+}
 public function minutesToYears(nMinutes:Number):Number
 {
 	return Math.floor(nMinutes / 60 / 24 / 365);
+}
+public function minutesToMonths(nMinutes:Number):Number
+{
+	var nMos:int = 0;
+	var monthMin:Array = getMonthArray();
+	var m:int = getCurrentMonth();
+	
+	for(var i:int = 0; i < 12; i++)
+	{
+		if(m > 12) m = 1;
+		
+		if(nMinutes >= monthMin[m])
+		{
+			nMinutes -= monthMin[m];
+			nMos++;
+		}
+		
+		m++;
+	}
+	
+	return nMos;
+}
+
+public function getMonthArray(asValue:String = ""):Array
+{
+	var monthList:Array = [0, 44640, 40320, 44640, 43200, 44640, 43200, 44640, 44640, 43200, 44640, 43200, 44640];
+	var i:int = 0;
+	
+	if(asValue != "")
+	{
+		switch(asValue)
+		{
+			case "days":
+				monthList = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+				break;
+			case "hours":
+				monthList = [0, 744, 672, 744, 720, 744, 720, 744, 744, 720, 744, 720, 744];
+				break;
+			case "name":
+				monthList = ["null", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+				break;
+			case "short":
+				monthList = ["null", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+				break;
+			case "digit":
+				monthList = ["--", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+				break;
+		}
+	}
+	
+	return monthList;
+}
+public function getCurrentMonth():int
+{
+	// Maybe started adventure in August?
+	var m:int = 8;
+	var monthMin:Array = getMonthArray();
+	var currMin:int = GetGameTimestamp();
+	
+	while(currMin >= 40320)
+	{
+		if(m > 12) m = 1;
+		if(currMin >= monthMin[m])
+		{
+			currMin -= monthMin[m];
+		}
+		if(currMin > 0) m++;
+	}
+	
+	return m;
+}
+
+public function minutesToDurationList(nMinutes:Number, approximate:Boolean = false):Array
+{
+	var timeList:Array = [];
+	var nMin:int = nMinutes;
+	var nHrs:int = 0;
+	var nDys:int = 0;
+	var nWks:int = 0;
+	var nMos:int = 0;
+	var nYrs:int = 0;
+	
+	if(nMin >= 525600)
+	{
+		nYrs = Math.floor(nMin / 525600);
+		nMin -= (nYrs * 525600);
+		if(approximate && (nMin <= 0 || nYrs >= 10))
+		{
+			if(nYrs == 1) timeList.push(" a year");
+			else if(nYrs <= 2) timeList.push(" a couple years");
+			else if(nYrs <= 3) timeList.push(" a few years");
+			else if(nYrs <= 4) timeList.push(" some years");
+			else if(nYrs <= 9) timeList.push(" several years");
+			else timeList.push(" many years");
+		}
+		else timeList.push(" " + num2Text(nYrs) + " year" + (nYrs == 1 ? "" : "s"));
+	}
+	if(nMin >= 43200)
+	{
+		var m:int = getCurrentMonth();
+		var monthMin:Array = getMonthArray();
+		var i:int = 0;
+		
+		for(i = 0; i < 12; i++)
+		{
+			if(m > 12) m = 1;
+			
+			if(nMin >= monthMin[m])
+			{
+				nMin -= monthMin[m];
+				nMos++;
+			}
+			
+			m++;
+		}
+		if(approximate && (nMin <= 0 || nMos >= 10))
+		{
+			if(nMos == 1) timeList.push(" a month");
+			else if(nMos <= 2) timeList.push(" a couple months");
+			else if(nMos <= 3) timeList.push(" a few months");
+			else if(nMos <= 4) timeList.push(" some months");
+			else if(nMos <= 9) timeList.push(" several months");
+			else timeList.push(" many months");
+		}
+		else timeList.push(" " + num2Text(nMos) + " month" + (nMos == 1 ? "" : "s"));
+	}
+	if(nMin >= 10080)
+	{
+		nWks = Math.floor(nMin / 10080);
+		nMin -= (nWks * 10080);
+		if(approximate && (nMin <= 0 || nWks >= 3))
+		{
+			if(nWks == 1) timeList.push(" a week");
+			else if(nWks <= 2) timeList.push(" a couple weeks");
+			else timeList.push(" a few weeks");
+		}
+		else timeList.push(" " + num2Text(nWks) + " week" + (nWks == 1 ? "" : "s"));
+	}
+	if(nMin >= 1440)
+	{
+		nDys = Math.floor(nMin / 1440);
+		nMin -= (nDys * 1440);
+		if(approximate && (nMin <= 0 || nDys >= 4))
+		{
+			if(nDys == 1) timeList.push(" a day");
+			else if(nDys <= 2) timeList.push(" a couple days");
+			else if(nDys <= 3) timeList.push(" a few days");
+			else if(nDys <= 4) timeList.push(" some days");
+			else timeList.push(" several days");
+		}
+		else timeList.push(" " + num2Text(nDys) + " day" + (nDys == 1 ? "" : "s"));
+	}
+	if(nMin >= 60)
+	{
+		nHrs = Math.floor(nMin / 60);
+		nMin -= (nHrs * 60);
+		if(approximate && (nMin <= 0 || nHrs >= 10))
+		{
+			if(nHrs == 1) timeList.push(" an hour");
+			else if(nHrs <= 2) timeList.push(" a couple hours");
+			else if(nHrs <= 3) timeList.push(" a few hours");
+			else if(nHrs <= 4) timeList.push(" some hours");
+			else if(nHrs <= 9) timeList.push(" several hours");
+			else timeList.push(" many hours");
+		}
+		else timeList.push(" " + num2Text(nHrs) + " hour" + (nHrs == 1 ? "" : "s"));
+	}
+	if(nMin > 0)
+	{
+		if(approximate)
+		{
+			if(nMin == 1) timeList.push(" a minute");
+			else if(nMin <= 2) timeList.push(" a couple minutes");
+			else if(nMin <= 3) timeList.push(" a few minutes");
+			else if(nMin <= 4) timeList.push(" some minutes");
+			else if(nMin <= 9) timeList.push(" several minutes");
+			else timeList.push(" many minutes");
+		}
+		else if(nMin == 1) timeList.push(" one minute");
+		else timeList.push(" " + num2Text(nMin) + " minutes");
+	}
+	
+	return timeList;
 }
 
 // Captain's log button menu - now modular!
