@@ -2820,6 +2820,12 @@
 				}
 				if(this is PlayerCharacter)
 				{
+					kGAMECLASS.mimbraneFeed("cock");
+					if(hasStatusEffect("Blue Balls") && balls >= 1)
+					{
+						msg += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + ".");
+						removeStatusEffect("Blue Balls");
+					}
 					//'Nuki Ball Reduction
 					if(perkv1("'Nuki Nuts") > 0 && balls >= 1)
 					{
@@ -2844,17 +2850,17 @@
 					}
 				}
 			}
+			if (hasVagina())
+			{
+				if(this is PlayerCharacter)
+				{
+					kGAMECLASS.mimbraneFeed("vagina");
+				}
+			}
 			
 			if (this is PlayerCharacter) 
 			{
-				kGAMECLASS.mimbraneFeed("cock");
-				kGAMECLASS.mimbraneFeed("vagina");
 				StatTracking.track("sex/player/orgasms");
-				if(hasStatusEffect("Blue Balls"))
-				{
-					msg += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + ".");
-					removeStatusEffect("Blue Balls");
-				}
 				//Slamazon shit
 				if(hasStatusEffect("Amazonian Endurance Report Needed")) 
 				{
@@ -16881,10 +16887,10 @@
 				// we can treat chained mul/divs as adds/subs to the same factor, thus
 				// add up all the shit then operate once.
 				
-				var reducer:int = 4;
+				var reducer:int = 0.25;
 				
-				if (hasPerk("Ice Cold")) reducer -= 4;
-				if (hasPerk("Extra Ardor")) reducer += 4;
+				if (hasPerk("Ice Cold")) reducer -= 0.25;
+				if (hasPerk("Extra Ardor")) reducer += 0.25;
 				
 				if (reducer >= 0) lust( -producedLust * reducer);
 			}
@@ -16901,7 +16907,7 @@
 			
 			if (fluidSimulate || this is PlayerCharacter)
 			{
-				if (ballFullness < 100) cumProduced(deltaT, doOut);
+				if (hasPerk("'Nuki Nuts") || ballFullness < 100) cumProduced(deltaT, doOut);
 				cumFlationSimulate(deltaT, doOut);
 			}
 		}

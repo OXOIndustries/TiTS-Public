@@ -799,7 +799,7 @@ public function sleep(outputs:Boolean = true):void {
 	if(outputs)
 	{
 		eventBufferXP();
-		}
+	}
 	if(InShipInterior(pc))
 	{
 		if(outputs)
