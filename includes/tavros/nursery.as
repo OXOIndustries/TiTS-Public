@@ -428,7 +428,12 @@ public function nurseryOrphanedBabyDiff():int
 		numNurseryKids += StatTracking.getStat(orphanList[i]);
 	}
 	
-	if(debug) output("There are " + numNurseryKids + " kids, minus " + ChildManager.numChildren() + " in nursery, making " + (numNurseryKids - ChildManager.numChildren()) + " orphaned!\n\n");
+	if(debug)
+	{
+		output("There are " + numNurseryKids + " kids, minus " + ChildManager.numChildren() + " in nursery, making " + (numNurseryKids - ChildManager.numChildren()) + " orphaned!");
+		output("\nChildren logged: " + StatTracking.getStat("pregnancy/total day care"));
+		output("\n\n");
+	}
 	
 	// Compare with actual number of kids in nursery.
 	return (numNurseryKids - ChildManager.numChildren());
@@ -452,6 +457,8 @@ public function nurseryRecordsFix():void
 		"water queen",
 		"raskvel",
 	];
+	var numInNursery:int = ChildManager.numChildrenAtNursery();
+	var numInStat:int = StatTracking.getStat("pregnancy/total day care");
 	
 	for(var i:int = 0; i < orphanList.length; i++)
 	{
@@ -463,17 +470,28 @@ public function nurseryRecordsFix():void
 	}
 	
 	// Nursery Stat Hotfix
-	if(StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery())
+	if(numInStat < numInNursery)
 	{
 		msg += "\n";
-		msg += "\n<i>Number of Entries Logged: " + StatTracking.getStat("pregnancy/total day care") + "</i>";
-		msg += "\n<i>Number of Actual Entries: " + ChildManager.numChildrenAtNursery() + "</i>";
+		msg += "\n<i>Number of Entries Logged: " + numInStat + "</i>";
+		msg += "\n<i>Number of Actual Entries: " + numInNursery + "</i>";
 		msg += "\n<i>Updating";
-		while(StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery())
+		if(numInNursery - numInStat > 20 || numInNursery - numInStat < 0)
 		{
-			StatTracking.track("pregnancy/total day care");
-			msg += ".";
-			numFixed += 0.25;
+			msg += ".........................";
+			StatTracking.setStat("pregnancy/total day care", numInNursery);
+			numFixed += 5;
+		}
+		else
+		{
+			var e:int = 0;
+			while(StatTracking.getStat("pregnancy/total day care") < numInNursery && e < 20)
+			{
+				StatTracking.track("pregnancy/total day care");
+				msg += ".";
+				numFixed += 0.25;
+				e++;
+			}
 		}
 		msg += "</i>";
 		msg += "\n<i>Entry quantity matched.</i>";

@@ -837,6 +837,8 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2("\n<b><u>Offspring</u></b>");
 				output2("\n<b>* Total:</b> " + totalOffspring);
+				if(StatTracking.getStat("pregnancy/total day care") > 0)
+					output2("\n<b>* Total @ Daycare:</b> " + StatTracking.getStat("pregnancy/total day care"));
 				// Mother
 				if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
 					output2("\n<b>* Births, Cockvines:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
