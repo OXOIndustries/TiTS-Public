@@ -1265,7 +1265,7 @@ public function kiMedbayFightEndsII():void
 	pc.maxOutHP();
 	output("<b>A few uncomfortable, awkward minutes pass...</b>");
 
-	output("\n\n<i>“Good, no sign of infection,”</i> Elenora says, feigning a smile as she switches off the medical scanner. <i>“You’re lucky. The tentacles spread the... the infection, I think. Through intercourse, I suspect. I’m the people you came here with are likely in the process of transforming as we speak. From what I’ve been able to tell, the process is only accelerating with the more victims the infection takes.”</i>");
+	output("\n\n<i>“Good, no sign of infection,”</i> Elenora says, feigning a smile as she switches off the medical scanner. <i>“You’re lucky. The tentacles spread the... the infection, I think. Through intercourse, I suspect. I’m sure the people you came here with are likely in the process of transforming as we speak. From what I’ve been able to tell, the process is only accelerating with the more victims the infection takes.”</i>");
 	
 	output("\n\n<i>“Alright, what exactly is this infection?”</i> you ask, hopping up from the examination table. Again, the lights flicker, and the computers all shut off automatically.");
 	
@@ -1738,7 +1738,7 @@ public function kiEngineeringBossFight():void
 	
 	output("\n\n<i>“Steele! Help!”</i> she shrieks, squirming helplessly in the tentacles’ grasp. You start running her way, beating aside more hap-hazard tentacles until you’re at the Chief’s side, pulling at the tentacles binding her arms. <i>“Get... ah! Get... out! Get-”</i> she cries, barely able to form words as the tentacle pumps her ruined pussy.");
 	
-	output("\n\nYou think she’s telling you to <i>“get it out.”</i> At least, you do until you feel something slimy and coal-hot wrap around your [pc.foot]. You roll forward, spinning to face your attacker with [pc.weapon] drawn.");
+	output("\n\nYou think she’s telling you to <i>“get it out.”</i> At least, you do until you feel something slimy and coal-hot wrap around your [pc.foot]. You roll forward, spinning to face your attacker with your [pc.weapon] drawn.");
 	
 	output("\n\nBehind you stands a particularly massive mutant crewman, easily seven feet tall, with skin as red as cold blood. He was human once, you’re sure, but now he looks like a tentacle abomination straight out of a Neo-Tokyo ultraporn, with legs and arms nothing more than dozens of wrapped tentacles, and dozens more drooping and squirming from his crotch, chest, and face. Two pink-hued eyes, glowing as bright as embers, stare down at you from sockets surrounded by dozens of scillia-like shafts.");
 	
