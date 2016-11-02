@@ -109,7 +109,7 @@ public function karaFirstTimeBarStuff():void
 	clearOutput();
 	showCandice();
 	flags["BEEN_TO_MYRELLION_BAR"] = 1;
-	output("You make your way into the big, smoky lounge labeled <i>“Tavern,”</i> pushing through bat-wing doors into a crowded room full in equal measures of myr and off-worlders. What might have once been a military barracks has been cleared out by the pioneers who’ve taken over this airfield, turning it into a surprisingly cozy tavern. A long wooden bar and stools have been set up along one wall, and several makeshift tables are scattered throughout the wide room.");
+	output("You make your way into the big, smoky lounge labeled “Tavern,” pushing through bat-wing doors into a crowded room full in equal measures of myr and off-worlders. What might have once been a military barracks has been cleared out by the pioneers who’ve taken over this airfield, turning it into a surprisingly cozy tavern. A long wooden bar and stools have been set up along one wall, and several makeshift tables are scattered throughout the wide room.");
 	output("\n\nYou saunter over to the bar and take a seat, heaving a sigh as you take a load off. Going through interstellar customs is trying at the best of times; customs on a planet on the brink of self-destruction is near maddening. You rub your temples and signal to the bartender, a perky half-ausar girl in a short-cropped halter top that shows off a delightful amount of taut belly.");
 	output("\n\n<i>“Hey, " + pc.mf("handsome","cutie") + ",”</i> she says with a wink, flicking a rag over her shoulder. <i>“What can I get you?”</i>\n\nYou look over the menu and order something light to start.");
 	processTime(2);
@@ -218,7 +218,7 @@ public function notInterestedSavinYourOCsCreepMeOut():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Alright",helpDisKaraSlut,true,"Alright","Accede to her request. The girl's obviously in trouble.");
-	addButton(1,"Still No",stillSayNoToKaraYouGiganticFuckingAsshole,undefined,"Still No","Leave");
+	addButton(1,"Still No",stillSayNoToKaraYouGiganticFuckingAsshole,undefined,"Still No","Leave.");
 }
 
 //[Still No]
@@ -226,6 +226,8 @@ public function notInterestedSavinYourOCsCreepMeOut():void
 public function stillSayNoToKaraYouGiganticFuckingAsshole():void
 {
 	clearOutput();
+	clearBust();
+	showName("\nLEAVE");
 	output("You shake your head and step away from the cat-girl, leaving her to her fate.");
 	flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] = 1;
 	clearMenu();
@@ -268,7 +270,9 @@ public function helpDisKaraSlut(finishedDrink:Boolean = false):void
 public function backOfAndScrewOverKaraYouAsshat():void
 {
 	clearOutput();
-	showShade();
+	author("Savin");
+	showName("BACK\nOFF...");
+	showBust("SHADE");
 	output("As smoothly as you can, you change course away from the armed kaithrit and back toward the bar - well away from where Kara was sitting. Nobody said anything about guns. Kara’s on her own.");
 	processTime(1);
 	flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] = 1;
