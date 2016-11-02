@@ -61,7 +61,7 @@
 				{
 					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!");
+					kGAMECLASS.output((inCombat() ? StringUtil.capitalize(targetCreature.getCombatName(), false) : (targetCreature.capitalA + targetCreature.short)) + " can't use a shield booster without a shield generator!");
 				}
 				return false;
 			}
@@ -77,7 +77,7 @@
 				{
 					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " pulls out a shield booster, but quickly puts it back.");
+					kGAMECLASS.output((inCombat() ? StringUtil.capitalize(targetCreature.getCombatName(), false) : (targetCreature.capitalA + targetCreature.short)) + " pulls out a shield booster, but quickly puts it back.");
 				}
 				return false;
 			}
@@ -93,7 +93,7 @@
 				{
 					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.");
+					kGAMECLASS.output((inCombat() ? StringUtil.capitalize(targetCreature.getCombatName(), false) : (targetCreature.capitalA + targetCreature.short)) + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.");
 				}
 				return false;
 			}
@@ -135,7 +135,7 @@
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " uses a shield booster!");
+			kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " uses a shield booster!");
 			var healing:int = 40;
 			if(targetCreature.shields() + healing > targetCreature.shieldsMax())
 			{

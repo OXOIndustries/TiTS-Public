@@ -96,15 +96,15 @@ package classes.Items.Miscellaneous
 			if(aTarget == null)
 			{
 				if (attacker is PlayerCharacter) output("It seems you have no target to use your flash grenade on.");
-				else output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade--but with no target to use it on, " + attacker.mfn("he", "she", "it") + " puts it away.");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " produces a flash grenade--but with no target to use it on, " + attacker.mfn("he", "she", "it") + " puts it away.");
 				
 				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You pull out a flash grenade and huck it in the direction of " + aTarget.a + aTarget.uniqueName + ".");
-			else if (aTarget is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in your direction!");
-			else output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in the direction of " + aTarget.a + aTarget.uniqueName + "!");
+			if (attacker is PlayerCharacter) output("You pull out a flash grenade and huck it in the direction of " + aTarget.getCombatName() + ".");
+			else if (aTarget is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " produces a flash grenade and hucks it in your direction!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " produces a flash grenade and hucks it in the direction of " + aTarget.getCombatName() + "!");
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{	
@@ -117,12 +117,12 @@ package classes.Items.Miscellaneous
 					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 					
 					if (cTarget is PlayerCharacter) output("\n<b>You're blinded by the luminous flashes.</b>");
-					else output("\n<b>" + cTarget.capitalA + cTarget.uniqueName + " is blinded by the luminous flashes.</b>");
+					else output("\n<b>" + StringUtil.capitalize(cTarget.getCombatName(), false) + " is blinded by the luminous flashes.</b>");
 				}
 				else
 				{
 					if (cTarget is PlayerCharacter) output("\nYou manage to avoid the blinding projectile.");
-					else output("\n" + cTarget.capitalA + cTarget.uniqueName + " manages to avoid the blinding projectile.");
+					else output("\n" + StringUtil.capitalize(cTarget.getCombatName(), false) + " manages to avoid the blinding projectile.");
 				}
 			}
 		}

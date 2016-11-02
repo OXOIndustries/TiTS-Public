@@ -1319,11 +1319,12 @@ package classes.GameData
 				{
 					if(target.canFly() && target.hasWings())
 					{
-						output("With " + target.mfn("his", "her", "its") + " " + target.wingsDescript(true) + " quickly flapping, ");
+						output("With " + target.mfn("his", "her", "its") + " " + target.wingsDescript(true) + " quickly flapping, " + target.getCombatName());
 					}
-					output(target.getCombatName() + " lifts");
+					else output(StringUtil.capitalize(target.getCombatName(), false));
+					output(" lifts");
 					if(target.isPlural) output(" themselves from the floor and gets their " + target.feet() + " back under themselves.");
-					else output(" " + target.mfn("him", "her", "it") + "self from the floor and gets " + target.mfn("him", "her", "its") + " " + target.feet() + " back under " + target.mfn("him", "her", "it") + "self.");
+					else output(" " + target.mfn("him", "her", "it") + "self from the floor and gets " + target.mfn("his", "her", "its") + " " + target.feet() + " back under " + target.mfn("him", "her", "it") + "self.");
 					target.removeStatusEffect("Tripped");
 				}
 			}
@@ -1552,10 +1553,17 @@ package classes.GameData
 			
 			if (target.hasStatusEffect("Paralyzed"))
 			{
-				if (target is PlayerCharacter) clearOutput();
-				
-				if (target.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can’t move yet!");
-				else output("You try to move, but just can’t manage it!");
+				if (target is PlayerCharacter)
+				{
+					clearOutput();
+					if (target.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can’t move yet!");
+					else output("You try to move, but just can’t manage it!");
+				}
+				else
+				{
+					if (target.statusEffectv1("Paralyzed") <= 1) output(StringUtil.capitalize(target.getCombatName(), false) + " show" + (!target.isPlural ? "s" : "") + " slight signs of movement, the venom seems to be weakening!");
+					else output(StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " still too paralyzed to move!");
+				}
 			}
 	
 			if (target is PlayerCharacter) processCombat();

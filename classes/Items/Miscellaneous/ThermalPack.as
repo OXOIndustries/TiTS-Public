@@ -70,7 +70,7 @@
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " activates the Thermal Pack.");
-				if(!target.hasStatusEffect("T.Pack")) target.createStatusEffect("T.Pack",0,0,0,0,false,"Icon_Smelly","You are protected from Uveto's harsh cold... for now!",false,1440);
+				if(!target.hasStatusEffect("T.Pack")) target.createStatusEffect("T.Pack",0,0,0,0,false,"Icon_Smelly","Currently being protected from Uveto's harsh cold... for now!",false,1440);
 			}
 			return false;
 		}

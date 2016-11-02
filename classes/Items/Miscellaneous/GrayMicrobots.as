@@ -109,7 +109,7 @@
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " pulls a vial of silvery-looking goo and downs it!");
+			kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls a vial of silvery-looking goo and downs it!");
 			//{Restores moderate HP}
 			var healing:int = 40;
 			if(targetCreature.HP() + healing > targetCreature.HPMax())

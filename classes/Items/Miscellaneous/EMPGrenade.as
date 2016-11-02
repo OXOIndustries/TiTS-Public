@@ -106,15 +106,15 @@ package classes.Items.Miscellaneous
 			if(aTarget == null)
 			{
 				if (attacker is PlayerCharacter) output("It seems you have no target to use your EMP grenade on.");
-				else output(attacker.capitalA + attacker.uniqueName + " produces an EMP grenade--but with no target to use it on, " + attacker.mfn("he", "she", "it") + " puts it away.");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " produces an EMP grenade--but with no target to use it on, " + attacker.mfn("he", "she", "it") + " puts it away.");
 				
 				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You pull out an EMP grenade and huck it in the direction of " + aTarget.a + aTarget.uniqueName + ".");
-			else if (aTarget is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " produces an EMP grenade and hucks it in your direction!");
-			else output(attacker.capitalA + attacker.uniqueName + " produces an EMP grenade and hucks it in the direction of " + aTarget.a + aTarget.uniqueName + "!");
+			if (attacker is PlayerCharacter) output("You pull out an EMP grenade and huck it in the direction of " + aTarget.getCombatName() + ".");
+			else if (aTarget is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " produces an EMP grenade and hucks it in your direction!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " produces an EMP grenade and hucks it in the direction of " + aTarget.getCombatName() + "!");
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{	

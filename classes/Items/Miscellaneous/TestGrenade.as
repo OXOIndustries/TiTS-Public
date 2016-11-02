@@ -103,7 +103,7 @@ package classes.Items.Miscellaneous
 		
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output("You throw the grenade at the " + targetCreature.short + "!");
+			kGAMECLASS.output("You throw the grenade at the " + targetCreature.getCombatName() + "!");
 			
 			// Ideally, should probably rebuild this function on a per-item basis to weave item-specific text
 			// into the combat, and lean on the shield/hp damage functions
@@ -114,9 +114,9 @@ package classes.Items.Miscellaneous
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output(usingCreature + " threw a grenade at");
+			kGAMECLASS.output(StringUtil.capitalize(usingCreature.getCombatName(), false) + " threw a grenade at");
 			if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output(" you!");
-			else kGAMECLASS.output(" " + targetCreature.short);
+			else kGAMECLASS.output(" " + targetCreature.getCombatName() + "!");
 			
 			//kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
 			applyDamage(baseDamage, usingCreature, targetCreature);
