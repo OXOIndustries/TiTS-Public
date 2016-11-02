@@ -181,6 +181,7 @@
 		include "../includes/tavros/vahn.as";
 
 		//Vesperia/Canadia Station
+		include "../includes/vesperia/gloryhole.as";
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
@@ -436,7 +437,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.92";
+			version = "0.6.93";
 
 			//temporary nonsense variables.
 			temp = 0;
