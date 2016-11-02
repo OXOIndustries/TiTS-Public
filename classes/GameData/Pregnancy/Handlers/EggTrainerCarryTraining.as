@@ -48,6 +48,7 @@ package classes.GameData.Pregnancy.Handlers
 			pData.pregnancyBellyRatingContribution += (1 * pEggs);
 			mother.bellyRatingMod += pData.pregnancyBellyRatingContribution;
 			if(!kGAMECLASS.pc.hasStatusEffect("Eggy Belly")) kGAMECLASS.pc.createStatusEffect("Eggy Belly", 0, 0, pEggs, 0, false, "Icon_DrugPill", "You've got a nice belly full of eggs to enjoy, courtesy of the bright pink Egg Trainer back on your ship.", false, 0);
+			else kGAMECLASS.pc.addStatusValue("Eggy Belly", 3, pEggs);
 		}
 		
 		public static function eggTrainerCarryTrainingEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
