@@ -693,7 +693,7 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	//Mission complete
 	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
 }
-public function friendPennyTalkMenu(func:* = null):void
+public function friendPennyTalkMenu(func:Function = null):void
 {
 	clearMenu();
 	if(func == talkToPennyAboutYourself) addDisabledButton(0, "Yourself");
