@@ -2705,8 +2705,9 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		output2(" undulates gently and tapers to a point when erect, somewhat like a taproot.");
 	}
 	//Draconic Cawk Flava flav
-	else if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC) {
-		output2(" With its tapered tip, there are few holes you wouldn’t be able to get into. It has a strange, knot-like bulb at its base, but doesn’t usually flare during arousal as a dog’s knot would.");
+	else if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC || target.cocks[x].cType == GLOBAL.TYPE_GRYVAIN) {
+		output2(" With its tapered tip, there are few holes you wouldn’t be able to get into.");
+		if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC) output2(" It has a strange, knot-like bulb at its base, but doesn’t usually flare during arousal as a dog’s knot would.");
 	}
 	//Beees
 	else if(target.cocks[x].cType == GLOBAL.TYPE_BEE) {
@@ -2795,14 +2796,20 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	if(target.hasKnot(x))
 	{
 		trace("KNOT FIRED!");
-		if(target.cocks[x].knotMultiplier > 1)
+		if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC)
+		{
+			if(target.cocks[x].knotMultiplier < 1.4) output2(" The small knot of thicker flesh near the base of your " + target.cockDescript(x) + " is ready to be lodged inside a female.");
+			else if(target.cocks[x].knotMultiplier <= 2) output2(" The large bulge of flesh nestles just above the bottom of your " + target.cockDescript(x) + ", to ensure it stays where it belongs during mating.");
+			else output2(" The obscenely swollen lump of flesh near the base of your " + target.cockDescript(x) + " looks almost too big for your cock.");
+		}
+		else if(target.cocks[x].knotMultiplier > 1)
 		{
 			if(target.cocks[x].knotMultiplier < 1.4) output2(" A small knot of thicker flesh is near the base of your " + target.cockDescript(x) + ", ready to expand to help you lodge it inside a female.");
 			else if(target.cocks[x].knotMultiplier <= 2) output2(" A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(x) + ", to ensure it stays where it belongs during mating.");
 			else output2(" The obscenely swollen lump of flesh near the base of your " + target.cockDescript(x) + " looks almost too big for your cock.");
 		}
 		//List thickness
-		output2(" The knot is " + Math.round(target.cocks[x].thickness() * target.cocks[x].knotMultiplier * 10)/10 + " inches wide when at full size.");
+		output2(" The knot is " + Math.round(target.cocks[x].thickness() * target.cocks[x].knotMultiplier * 10)/10 + " inches wide" + (target.cocks[x].cType != GLOBAL.TYPE_DRACONIC ? " when at full size" : ", even when you’re not aroused") + ".");
 		//Appended to knot texts!
 		if(target.cocks[x].cType == GLOBAL.TYPE_KUITAN)
 		{
