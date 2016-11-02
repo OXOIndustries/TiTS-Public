@@ -34,6 +34,17 @@ public function kiroKallyThreesomes():Number
 {
 	return 0;
 }
+
+public function kiroKallyThreesomeUnlockPoints():Number
+{
+	var counter:Number = 0;
+	if(flags["KIRO_HOT_SIS"] == 1) counter++;
+	if(flags["KALLY_KISSED_KIRO"] == 1) counter++;
+	if(flags["KIRO_INCEST_TEASED"] == 1) counter++;
+
+	return counter;
+}
+
 public function drinkFromTapKally():Number
 {
 	var drinks:Number = 0;
@@ -55,6 +66,15 @@ public function kallyBonusRoomTexts():Boolean
 	if(pc.hasStatusEffect("Kally Cummed Out"))
 	{
 		output("\n\nA small sign sits on the empty bar: ‘Break Time’");
+	}
+	//Picardine reveal scene!
+	else if(pc.hasStatusEffect("KallyKiro") && !pc.hasStatusEffect("Wait For Kally Break") && roamingKiroAvailable())
+	{
+		if(pc.statusEffectv1("KallyKiro") == 0) kallyHonestKiroEruption();
+		else kallyKiroKissEruption();
+		addButton(0,"Kally",approachKally);
+		addButton(1,"Kiro",approachKiroAtTheBar,undefined,"Kiro","That tanuki pirate with the giant balls you rescued is here.");
+		return false;
 	}
 	else
 	{
@@ -570,6 +590,11 @@ public function kallyTalkMenu():void
 	//Kiro (Requires Unlock)
 	if(flags["KIRO_MET_KALLY"] != undefined) addButton(8,"Kiro",kallyTalksAboutKiro,undefined,"Kiro","Ask her if she admires her sister.");
 	else addDisabledButton(8,"Locked","Locked","You have not unlocked this topic. Shhh. It's a sekrit.");
+
+	if(pc.hasStatusEffect("KallyKiro")) addDisabledButton(9,"Picardine","Picardine","You already told her about the picardine. You're just waiting to see the reaction.");
+	else if((flags["KIRO_KALLY_PICARDINE_QUEST"] == 1 || flags["KIRO_KALLY_PICARDINE_QUEST"] == 2)) addButton(9,"Picardine",tellKellyPicardine,undefined,"Picardine","Tell Kally that her sister sent her that Picardine!");
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 3) addDisabledButton(9,"Picardine","Picardine","You already told her about this. There's nothing more to add.");
+	else addDisabledButton(9,"Locked","Locked","You don't know enough to discuss this topic, but you're pretty sure it somehow relates to her relationship with Kiro.");
 	addButton(14,"Back",backToKallyMain);
 }
 
@@ -603,6 +628,7 @@ public function askKallyAboutOwningHerBar():void
 	else output("She gives you a wink.");
 	output("\n\nMakes sense.");
 	output("\n\n<i>“Oh, looks like you’ve run out. Can I get you anything else?”</i>");
+	if(flags["KIRO_KALLY_PICARDINE_QUEST"] == undefined) flags["KIRO_KALLY_PICARDINE_QUEST"] = 0;
 	processTime(7);
 	kallyBarMenu();
 }
@@ -1235,6 +1261,7 @@ public function pushKiroToWannaFuckHerSis():void
 	output("\n\n<i>“You... you’re going to... have some Kiro in you the minute we go somewhere private,”</i> the lusty kui-tan growls. <i>“I’m going to fuck you till you’re walking bow-legged, you cheeky fucking cock-tease.”</i>");
 	processTime(6);
 	pc.lust(15);
+	flags["KIRO_INCEST_TEASED"] = 1;
 	clearMenu();
 	addButton(0,"Let's Go",letsGoButtfuckMeKiro,undefined,"Let's Go","Let her get her revenge in right now.");
 	addButton(1,"No",nobuttfuxForMeThanks,undefined,"No","Get out of a rough reaming. Kiro might not be happy about it.");
@@ -1390,7 +1417,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 		else output("a little more like stale cum than you’d prefer, but you know from experience your opinion can change one Kiro starts to have her way with you.");
 	}
 	//Repeat Intro
-	if(kiroRoughButtfucks() > 0)
+	else if(kiroRoughButtfucks() > 0)
 	{
 		//Done this scene more than 4x
 		if(kiroRoughButtfucks() >= 4)
@@ -2182,6 +2209,7 @@ public function kallyBroCunnilingus3():void
 	processTime(10);
 	pc.orgasm();
 	if(!pc.hasStatusEffect("Kally Cummed Out")) pc.createStatusEffect("Kally Cummed Out",1,0,0,0,true,"Icon_Wine","",false,30,0xB793C4);
+	IncrementFlag("KALLY_BROED");
 	clearMenu();
 	addButton(0,"Yes",yesCumKissKally);
 	addButton(1,"No",noCumKissForKally);
@@ -2211,4 +2239,200 @@ public function yesCumKissKally():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//Tell Kally Picardine
+public function tellKellyPicardine():void
+{
+	clearOutput();
+	showKally();
+	//Bro
+	if(pc.isBro()) output("<i>“Hey, got news for you,”</i> you growl.");
+	//Bimbo
+	else if(pc.isBimbo()) output("<i>“Guess what I found out!”</i> you announce in sing-song.");
+	//Nice
+	else if(pc.isNice()) output("<i>“I found something out for you, if you want to hear about it,”</i> you offer.");
+	//Misch
+	else if(pc.isMischievous()) output("<i>“I charmed a little birdie into giving me some juicy information. You might like it,”</i> you suggest.");
+	//Hard
+	else output("\n\n<i>“I have some news for you.”</i> You put it out there, waiting to see if she’ll bite.");
+	//Merge
+	output("\n\nKally leans in. <i>“Don’t hold back, [pc.name]. If it’s worth bringing up, it’s worth talking about, eh?”</i>");
+	output("\n\nYou spill the beans. <i>“");
+	if(pc.isBro()) output("Kiro sent the Picardine.");
+	else if(pc.isBimbo()) output("Your sister mailed you that Picardine rock! She looooves you.");
+	else output("That Picardine chunk that bought you this place? Kiro sent it to you.");
+	output("”</i>");
+	output("\n\nKally gasps. It’s so high pitched and girlish that you have a hard time believing it came from the mature kui-tan. <i>“Really!? Kiro did that?”</i>");
+	output("\n\n");
+	if(pc.isBro()) output("You nod.");
+	else if(pc.isBimbo()) output("You beam right back at her. <i>“Ya-huh!”</i>");
+	else output("You nod and smile right back at her.");
+
+	output("\n\n<i>“Stars and starbursts! I had my suspicions, but when she didn’t bring it up before, I figured it must have been someone else. Nope!”</i> Kally laughs. <i>“Little sis can be taciturn when she wants to be. That sneaky vixen had me just as fooled as the wives she’s charmed into her bed.”</i> She grins at you. <i>“Present company excluded, of course.”</i>");
+	if(!pc.isBimbo()) output("\n\n<i>“Of course.”</i>");
+	else output("\n\n<i>“Totally.”</i>");
+
+	output("\n\nWiping a tear from her eye, Kally abruptly leans over the bar and scoops you up into her arms, hugging you so tightly that you feel completely enveloped in silky fur and soft bosom. <i>“Thank you so much. I know it couldn’t have been easy to drag out of her.”</i> The bartender laughs and lets you go, shaking her head. <i>“She can be a real twat when she wants to hold something back. Trust me, I know.”</i>");
+	output("\n\nYou laugh with her.");
+	output("\n\nKally’s good humor evaporates a moment later. She chews her lip as a thought suddenly occurs to her. <i>“What if I react the wrong way, and it drives her away? It took me years to get her to see me again. What if this makes things awkward, and she leaves forever?”</i> She turns to you, desperate. <i>“You’ve spent more time with her than I have, these past few years. What should I do?”</i> Her eyes are wide, a little scared. <i>“How can I show her much I appreciate this?”</i>");
+	processTime(3);
+	//[Blow Her] [Kiss Her] [Be Honest] [Don’t]
+	clearMenu();
+	addButton(0,"Blow Her",tellKallySheShouldBlowKiro);
+	addButton(1,"Kiss Her",tellKallyToKissHerSisterItsTotallyNotIncestAndOkay);
+	addButton(2,"Be Honest",tellKallyToBeSerious);
+	addButton(3,"Don't",dontTellKiroAboutPicardine);
+}
+
+//Don’t
+public function dontTellKiroAboutPicardine():void
+{
+	clearOutput();
+	showKally();
+	output("<i>“Don’t. Bringing it up would just make her uncomfortable.”</i> You add, <i>“I just thought you’d like to know.”</i>");
+	output("\n\nKally’s eyes fall. <i>“Oh.”</i> They brighten again. <i>“It is nice to know, even if I have to keep up the secret.”</i> A glint of mischievous wonder twinkles at the corner of her eye. <i>“I guess, in a way, we’re all sort of together on this. It’s a secret we all share, even if secretly. Thank you for telling me, [pc.name]. I know it couldn’t have been easy.”</i>");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Blow Her
+public function tellKallySheShouldBlowKiro():void
+{
+	clearOutput();
+	showKally();
+	output("You shrug. <i>“Give her a blowjob. She loves those.”</i>");
+	output("\n\nKally rocks back, mouth agape. <i>“I’m not fucking around here, [pc.name]. I have to let her know how great a sister she is without scaring her away.”</i>");
+	output("\n\nIt was worth a try...");
+	processTime(2);
+	clearMenu();
+	addDisabledButton(0,"Blow Her","Blow Her","Nope, this won't work.");
+	addButton(1,"Kiss Her",tellKallyToKissHerSisterItsTotallyNotIncestAndOkay);
+	addButton(2,"Be Honest",tellKallyToBeSerious);
+	addButton(3,"Don't",dontTellKiroAboutPicardine);
+}
+
+//Be Honest
+public function tellKallyToBeSerious():void
+{
+	clearOutput();
+	showKally();
+	output("<i>“");
+	if(pc.isBimbo()) output("Just tell her! She acts tough, but she, like, loooves it!");
+	else if(pc.isBro()) output("Be honest.");
+	else output("Just tell her the truth. You guys are more alike than you know. She was just as nervous.");
+	output("”</i>");
+	output("\n\nKally stares at you for a second. Her expression is a little distant, thoughtful. <i>“Damn... you might be right. I’m just going to have to do it and trust that Kiro’ll trust me back.”</i> She shakes her head. <i>“I shouldn’t have needed prompting for this. Sorry to rope you in.”</i>");
+	if(!pc.isAss()) output("\n\nYou assure her that it’s no problem.");
+	else output("\n\nYou accept her apology.");
+	output("\n\n<i>“Right,”</i> Kally sighs, straightening up. <i>“Give me a little time to get myself psyched up, and I’ll tell her.”</i>");
+	processTime(2);
+	//Triggers the delayed honesty variant below, similar to the kiss her scene.
+	pc.createStatusEffect("KallyKiro",0,0,0,0);
+	pc.createStatusEffect("Wait For Kally Break",1,0,0,0,true,"Icon_Wine","",false,60,0xB793C4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Kiss Her
+public function tellKallyToKissHerSisterItsTotallyNotIncestAndOkay():void
+{
+	clearOutput();
+	showKally();
+	output("<i>“Why not a kiss?”</i> It’s a bold strategy.");
+	if(silly) output(" Let’s see how it plays out.");
+	output("\n\nKally tilts her head, looking at you uncertainly. <i>“That’s certainly an... adventurous take on it.”</i> She shrugs. <i>“I guess it’s as good as an idea as any other. It might keep her from obsessing on the news itself overmuch.”</i> She shakes her head. <i>“You really think it’s a good idea?”</i>");
+	processTime(1);
+	//[Yes][No]
+	clearMenu();
+	addButton(0,"Yes",yesKissKiroKally);
+	addButton(1,"No",noKallyThatKissSuggestionWasJustAPrankBro);
+}
+
+//[Yes]
+public function yesKissKiroKally():void
+{
+	clearOutput();
+	showKally();
+	output("You nod.");
+	output("\n\n<i>“Okay,”</i> Kally lamely agrees. <i>“You’re the expert. I’ll guess I’ll give it a try on my next break.”</i> She gives you a wan smile.");
+	pc.createStatusEffect("KallyKiro",1,0,0,0);
+	pc.createStatusEffect("Wait For Kally Break",1,0,0,0,true,"Icon_Wine","",false,60,0xB793C4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[No]
+public function noKallyThatKissSuggestionWasJustAPrankBro():void
+{
+	clearOutput();
+	showKally();
+	output("<i>“Probably not...”</i>");
+	output("\n\nKally nods. <i>“Yeah... what to do...?”</i>");
+	clearMenu();
+	addDisabledButton(0,"Blow Her","Blow Her","If kissing won't work, blowing definitely won't.");
+	addDisabledButton(1,"Kiss Her","Kiss Her","You just ruled this idea out.");
+	addButton(2,"Be Honest",tellKallyToBeSerious);
+	addButton(3,"Don't",dontTellKiroAboutPicardine);
+}
+
+//Kissed Her
+//At bar after kiss suggestion
+public function kallyKiroKissEruption():void
+{
+	showKallyAndKiro();
+	output("\n\n<i>“Kiro, can we talk for a minute?”</i> Kally is leaning over the bar, beckoning her sister close.");
+	output("\n\n<i>“Sure,”</i> the lawless tanuki ambles over a little nervously. <i>“Usually when the Ice Queen came calling for me, it was to get mom and dad to nail my ass to the wall.”</i>");
+	output("\n\nKally smirks. <i>“No such luck this time, sis. I just wanna talk without having to shout over the rest of the bar.”</i>");
+	output("\n\n<i>“Then you’re lucky I’m in an obliging mood,”</i> Kiro replies, a little more self-assuredly. <i>“What’s up?”</i> Her tail wags slowly behind her.");
+	output("\n\nKally smiles warmly. <i>“[pc.name] told me, about the Picardine.”</i> She grabs Kiro before she call pull away. <i>“And [pc.heShe] also told me to do this.”</i> Darting forward, she plants a kiss, square on her sister’s lips. Kiro’s tail stiffens. Every hair is on end; it looks near twice its normal size. Kally tilts her head. Was that a flash of tongue from the corner of her tongue? Kiro tenses, further, then relaxes, kissing back. They stay like that for what must be the better part of a half minute until a cat-call startles them apart.");
+	output("\n\nBoth are blushing up to the tips of their ears.");
+	output("\n\n<i>“Wh-what was that about?”</i> Kiro asks, confused and visibly half-hard. Luckily, the edge of the bar is hiding her shameful erection from her sibling.");
+	output("\n\nKally seems pleased that Kiro hasn’t run off yet, though there is no concealing her own hardening teats through the fabric of her top. <i>“It was a thank you, Kiro.”</i> She pauses, then grins. <i>“And I guess one final declaration that the prudish, nagging big sister you grew up, put that behind her, and accomplished her dreams... with your help.”</i> She squeezes Kiro’s hands one last time. <i>“Thank you. And I think you’ve earned whatever free drinks you want... for life.”</i>");
+	output("\n\nKiro shakes her head. <i>“You don’t owe me anyth-”</i>");
+	output("\n\n<i>“No.”</i> Kally shakes her head. <i>“It isn’t for the Picardine. That was a gift. It’s for coming back into my life, and for being a good sister.”</i>");
+	output("\n\nKiro spends a moment looking dumbfounded, then she dives forward and wraps her older, squishier sister up in as much of a hug as the bar will allow. Both sisters are crying now.");
+	output("\n\n<i>“I love you.”</i>");
+	output("\n\n<i>“I love you too.”</i>");
+	output("\n\n<i>“Promise you won’t leave again?”</i> Kally sniffles.");
+	output("\n\nKiro smiles sweetly, then kisses her sister on the cheek. <i>“Not like before, but jobs still need doing.”</i>");
+	output("\n\nThe bartender pulls back, wiping her cheeks. <i>“Just so long as you don’t give up the ghost on any of them.”</i>");
+	output("\n\nKiro’s tail wiggles. <i>“Sure thing... now about those free drinks?”</i>");
+	output("\n\n<i>“Scoundrel.”</i> Kally smirks, then spins off to get a drink.");
+	output("\n\n<i>“You know it.”</i>");
+	output("\n\nAwww, how sweet!");
+	pc.removeStatusEffect("KallyKiro");
+	flags["KALLY_KISSED_KIRO"] = 1;
+	flags["KIRO_KALLY_PICARDINE_QUEST"] = 3;
+	processTime(3);
+}
+
+//Honest Told Her
+public function kallyHonestKiroEruption():void
+{
+	showKallyAndKiro();
+	output("\n\n<i>“Kiro, can we talk for a minute?”</i> Kally is leaning over the bar, beckoning her sister close.");
+	output("\n\n<i>“Sure,”</i> the lawless tanuki ambles over a little nervously. <i>“Usually when the Ice Queen came calling for me, it was to get mom and dad to nail my ass to the wall.”</i>");
+	output("\n\nKally smirks. <i>“No such luck this time, sis. I just wanna talk without having to shout over the rest of the bar.”</i>");
+	output("\n\n<i>“Then you’re lucky I’m in an obliging mood,”</i> Kiro replies, a little more self-assuredly. <i>“What’s up?”</i> Her tail wags slowly behind her.");
+	output("\n\nKally smiles warmly. <i>“I know about the Picardine. [pc.Name] told me, and I couldn’t be happier.”</i> She catches Kiro’s paws in her own before the nervous ‘nuki does anything rash. <i>“Relax, I don’t bite.”</i>");
+	output("\n\nThe younger sibling is still clearly nervous and uncomfortable at the situation if the jerky shifting of her tail is any indication. <i>“Yeah... right.”</i>");
+	output("\n\n<i>“Seriously, Kiro. Deep down, I think I always knew.”</i> Kally lets her sister’s hands go, and smiles. <i>“Sometimes you get one of those hunches in your gut, and you can’t believe it. Not without evidence, but you know. You know even when your sister’s so damn good at holding things back that you start doubting yourself.”</i> Kally smirks. <i>“You sneaky scamp.”</i>");
+	output("\n\nKiro shakes her head, chocolate curls bouncing. Her eyes are closed. <i>“No way.”</i> They open, fixing on Kally. <i>“There wasn’t anything short of a psychic that could tie me to that rock.”</i> She pulls away. <i>“You didn’t develop psychic powers, did you? Fuck, you aren’t reading my thoughts right now are you?”</i>");
+	output("\n\nThe curvaceous bartender slugs her little sister’s arm. <i>“Knock it off, will ya? I’m still your big sister. No mind powers necessary to figure out that pirates mail back a cut off their booty to help out their families. You’re a long way from the first.”</i>");
+	output("\n\nKiro rubs her arm, the pain distracting her from her nerves. <i>“Okay, okay. Just don’t start trying to give me a cut of your earnings. It was a gift, not a loan.”</i>");
+	output("\n\nKally sticks out her tongue. <i>“Sorry, but as you’re elder I’m going to have to demand that you get free drinks for life...”</i> For a second, she seems about to change her mind, then adds, <i>“...or until the tab gets close to that rock.”</i> The bar-owner smiles at that. <i>“You’d probably kill yourself before you managed that one.”</i>");
+	output("\n\nShaking her head, the lawless kui-tan casts a look your way. She’s trying to look angry, but you can see the corner of her mouth lifting as she answers, <i>“I can live with that.”</i>");
+	output("\n\nKally leans over, scooping Kiro up into a deliciously squishy-looking hug. <i>“I love you, Kiro.”</i>");
+	output("\n\n<i>“I love you too, you big oaf. Now lemme go!”</i> Kiro yells, struggling weakly. Moisture beads at the corners of both their eyes.");
+	output("\n\n<i>“Promise not to bolt?”</i> Kally squeezes tighter.");
+	output("\n\nKiro blows a raspberry against her familiar foe’s cheek. <i>“Only if you promise to get me one of those drinks! Leggo!”</i>");
+	output("\n\n<i>“Deal!”</i>");
+	output("\n\nThey split apart, all traces of tension gone. Those two are as close as they’re going to get");
+	if(kiroKallyThreesomeUnlockPoints() > 0) output(" short of a little incestual encouragement");
+	output(".");
+	pc.removeStatusEffect("KallyKiro");
+	flags["KIRO_KALLY_PICARDINE_QUEST"] = 3;
+	processTime(4);
 }

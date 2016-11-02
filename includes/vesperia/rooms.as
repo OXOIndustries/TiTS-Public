@@ -89,7 +89,7 @@ public function initVesperiaRoom():void
 	//rooms["CANADA6"].southExit = "";
 	rooms["CANADA6"].westExit = "CANADA5";
 	rooms["CANADA6"].moveMinutes = 1;
-	rooms["CANADA6"].runOnEnter = undefined;
+	rooms["CANADA6"].runOnEnter = canadiaGloryhole;
 	rooms["CANADA6"].addFlag(GLOBAL.INDOOR);
 	rooms["CANADA6"].addFlag(GLOBAL.PRIVATE);
 

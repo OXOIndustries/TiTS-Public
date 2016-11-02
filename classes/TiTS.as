@@ -181,6 +181,7 @@
 		include "../includes/tavros/vahn.as";
 
 		//Vesperia/Canadia Station
+		include "../includes/vesperia/gloryhole.as";
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
