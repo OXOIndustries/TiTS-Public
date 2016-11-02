@@ -397,7 +397,7 @@ public function stickDickThroughGloryhole(arg:int):void
 			//150mLs to 2L - body/face paint
 			else if(pc.cumQ() < 2000)
 			{
-				output("\n\nA good thing too, because you spray your voluminous load with enough force to gag an inexperienced cock-sucker like her.  Guiding you with both hands, she strokes you as you climax, burbling excitedly from underneath a thickening mask of [pc.cumNoun]. [pc.CumVisc] goo splashes audibly. Between it and the whimpers of your sperm-loving partner, you have more than enough auditory encouragement to squeeze out a few spurts thick enough to satisfy the lustiest cum-queen.");
+				output("\n\nA good thing too, because you spray your voluminous load with enough force to gag an inexperienced cock-sucker like her. Guiding you with both hands, she strokes you as you climax, burbling excitedly from underneath a thickening mask of [pc.cumNoun]. [pc.CumVisc] goo splashes audibly. Between it and the whimpers of your sperm-loving partner, you have more than enough auditory encouragement to squeeze out a few spurts thick enough to satisfy the lustiest cum-queen.");
 				output("\n\n<i>“S-so wet!”</i> the gloryhole occupant’s voice cheers. <i>“And you’ve still got more, don’t you?”</i> She milks you, palms sliding against iron-hard flesh, wringing you for a few last lurid dribbles. <i>“Mmmm, that’s nice.”</i> She giggles. <i>“You can’t see it, but you drenched me. My head is completely [pc.cumColor]!”</i> She kisses your [pc.cockHead " + arg + "], and you feel your own warm spoo dripping over your rod. <i>“Whoopsie!”</i>");
 				output("\n\nYou can’t help but smirk smugly at that");
 				if(!fatFlare(arg) && !fatKnot(arg)) output(" and pull your dick out, spent");

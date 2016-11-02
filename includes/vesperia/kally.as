@@ -54,6 +54,12 @@ public function drinkFromTapKally():Number
 	return drinks;
 }
 
+public function kallyIsAway():Boolean
+{
+	if(pc.hasStatusEffect("Kally Cummed Out")) return true;
+	return false;
+}
+
 //Kally Repeats
 public function kallyBonusRoomTexts():Boolean
 {
@@ -63,7 +69,7 @@ public function kallyBonusRoomTexts():Boolean
 		return true;
 	}
 	//Kally's isnt there!
-	if(pc.hasStatusEffect("Kally Cummed Out"))
+	if(kallyIsAway())
 	{
 		output("\n\nA small sign sits on the empty bar: ‘Break Time’");
 	}
@@ -592,9 +598,12 @@ public function kallyTalkMenu():void
 	else addDisabledButton(8,"Locked","Locked","You have not unlocked this topic. Shhh. It's a sekrit.");
 
 	if(pc.hasStatusEffect("KallyKiro")) addDisabledButton(9,"Picardine","Picardine","You already told her about the picardine. You're just waiting to see the reaction.");
-	else if((flags["KIRO_KALLY_PICARDINE_QUEST"] == 1 || flags["KIRO_KALLY_PICARDINE_QUEST"] == 2)) addButton(9,"Picardine",tellKellyPicardine,undefined,"Picardine","Tell Kally that her sister sent her that Picardine!");
-	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 3) addDisabledButton(9,"Picardine","Picardine","You already told her about this. There's nothing more to add.");
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 1 || flags["KIRO_KALLY_PICARDINE_QUEST"] == 2) addButton(9,"Picardine",tellKellyPicardine,undefined,"Picardine","Tell Kally that her sister sent her that Picardine!");
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 3 || flags["KIRO_KALLY_PICARDINE_QUEST"] == -2) addDisabledButton(9,"Picardine","Picardine","You already told her about this. There's nothing more to add.");
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == -1) addDisabledButton(9,"Picardine","Picardine","You already discussed this with Kiro and decided not to dwell on it.");
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == undefined) addDisabledButton(9,"Locked","Locked","You don't know enough to discuss this topic. Perhaps you should talk to her about other things first.");
 	else addDisabledButton(9,"Locked","Locked","You don't know enough to discuss this topic, but you're pretty sure it somehow relates to her relationship with Kiro.");
+	
 	addButton(14,"Back",backToKallyMain);
 }
 
@@ -2208,7 +2217,7 @@ public function kallyBroCunnilingus3():void
 	output("\n\nFor someone so un-enhanced, she’s a damned good fuck. Do you kiss her before you go?");
 	processTime(10);
 	pc.orgasm();
-	if(!pc.hasStatusEffect("Kally Cummed Out")) pc.createStatusEffect("Kally Cummed Out",1,0,0,0,true,"Icon_Wine","",false,30,0xB793C4);
+	if(!pc.hasStatusEffect("Kally Cummed Out")) pc.createStatusEffect("Kally Cummed Out",0,0,0,0,true,"Icon_Wine","",false,30,0xB793C4);
 	IncrementFlag("KALLY_BROED");
 	clearMenu();
 	addButton(0,"Yes",yesCumKissKally);
@@ -2293,6 +2302,9 @@ public function dontTellKiroAboutPicardine():void
 	output("<i>“Don’t. Bringing it up would just make her uncomfortable.”</i> You add, <i>“I just thought you’d like to know.”</i>");
 	output("\n\nKally’s eyes fall. <i>“Oh.”</i> They brighten again. <i>“It is nice to know, even if I have to keep up the secret.”</i> A glint of mischievous wonder twinkles at the corner of her eye. <i>“I guess, in a way, we’re all sort of together on this. It’s a secret we all share, even if secretly. Thank you for telling me, [pc.name]. I know it couldn’t have been easy.”</i>");
 	processTime(1);
+	
+	flags["KIRO_KALLY_PICARDINE_QUEST"] = -2;
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2330,7 +2342,7 @@ public function tellKallyToBeSerious():void
 	processTime(2);
 	//Triggers the delayed honesty variant below, similar to the kiss her scene.
 	pc.createStatusEffect("KallyKiro",0,0,0,0);
-	pc.createStatusEffect("Wait For Kally Break",1,0,0,0,true,"Icon_Wine","",false,60,0xB793C4);
+	pc.createStatusEffect("Wait For Kally Break",0,0,0,0,true,"Icon_Wine","",false,60,0xB793C4);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2358,7 +2370,7 @@ public function yesKissKiroKally():void
 	output("You nod.");
 	output("\n\n<i>“Okay,”</i> Kally lamely agrees. <i>“You’re the expert. I’ll guess I’ll give it a try on my next break.”</i> She gives you a wan smile.");
 	pc.createStatusEffect("KallyKiro",1,0,0,0);
-	pc.createStatusEffect("Wait For Kally Break",1,0,0,0,true,"Icon_Wine","",false,60,0xB793C4);
+	pc.createStatusEffect("Wait For Kally Break",0,0,0,0,true,"Icon_Wine","",false,60,0xB793C4);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
