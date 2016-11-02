@@ -784,20 +784,33 @@ public function thareSexResponse(response:String = "none"):void
 			else output(" dribbling");
 			output(" [pc.girlCum] freely whilst the sucking dart of his tongue is still tracing your outer lips. You feel a deep desire to grab the teasing little fuck boy by the hair-spikes and force his head between your legs... but no. That’s not becoming of a visiting aristocrat such as yourself. Not yet.");
 			output("\n\nInstead, you hum your approval when Able does finally move inwards, lapping delicately at the soft innards of your [pc.vagina " + x + "], circling around your hole first one way then the other with worshipful movements until it is lush and wide, before sliding his thin, dexterous muscle slowly inside. Your [pc.thighs] clench up and your pussy drizzles [pc.girlCum] in delighted response.");
-			// If PC girlcum = honey:
+			
+			var wetList:Array = [];
+			var wetSelect:int = 0;
+			
 			if(InCollection(pc.girlCumType, [GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR]))
+				wetList.push(1);
+			if(InCollection(pc.girlCumType, [GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_VANAE_CUM, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM]))
+				wetList.push(2);
+			if(pc.isSquirter(x) && pc.girlCumQ() >= 1000)
+				wetList.push(3);
+			
+			if(wetList.length > 0) wetSelect = wetList[rand(wetList.length)];
+			
+			// If PC girlcum = honey:
+			if(wetSelect == 1)
 			{
 				output("\n\n<i>“Honey!”</i> he says, head shooting up in surprise. His yellow tongue roams his lips, tasting the golden fluid daubed there in wonder. <i>“Just like our women. H-how is that possible?”</i>");
 				output("\n\n<i>“The wonder of our star knowledge,”</i> you reply dryly. <i>“Do get back to what you were doing, little boy. You can have as much as you like...”</i>");
 			}
 			// If PC girlcum = chocolate OR fruit:
-			else if(InCollection(pc.girlCumType, [GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_VANAE_CUM, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM]))
+			else if(wetSelect == 2)
 			{
 				output("\n\n<i>“Sweet,”</i> he decides a moment later, head rising up as he smacks his lips contemplatively. His lower face is daubed in [pc.girlCumColor] fluid. <i>“Not like our women, but... similar.”</i> He grins suddenly. <i>“Wonderful.”</i>");
 				output("\n\n<i>“Yes, wonderful,”</i> you laugh with a shake of the head. <i>“Do get back to what you were doing, little boy. You can have as much as you like...”</i>");
 			}
 			// If else, PC girlcum high:
-			else if(pc.isSquirter(x) && pc.girlCumQ() >= 1000)
+			else if(wetSelect == 3)
 			{
 				output("\n\n<i>“Whugh!”</i> he splutters, head jerking back a bit. He looks up to you solemnly, the bottom half of his face absolutely dripping with [pc.girlCumColor] fluid. <i>“S-sorry about that ma’am, but you are... you seem quite... voluble.”</i>");
 				output("\n\n<i>“I mark my territory,”</i> you reply breezily. <i>“And frisky little boys of mine often get thirsty. Get back to it.”</i>");

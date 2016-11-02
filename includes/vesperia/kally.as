@@ -892,7 +892,7 @@ public function kiroKallyCanadiaHallwayBonus():void
 	{
 		showKiro();
 		output("\n\nYou glance sidelong at Kiro as you round a bend in the hall. <i>“Surely you stayed in touch though. How else would you have gotten an invite to the bar?”</i>");
-		output("\n\nThe relatively conservatively dressed kui-tan chortles at that and shakes her head. <i>“Not at all. That’s the thing about crossing over into void-banditry. You have to be harden yourself up to do it. You can’t be sitting there wondering what someone is going to think of you. You can’t afford to care. You find your friends and your wrecking crews, and you flip the rest of the universe the bird.”</i> Tightening her hand into a fist, Kiro admits, <i>“I think it was easier to ‘forget’ to contact Kally than to take the chance that she’d hate me for what I do. To take the chance that I’d have to push her away forever.”</i>");
+		output("\n\nThe relatively conservatively dressed kui-tan chortles at that and shakes her head. <i>“Not at all. That’s the thing about crossing over into void-banditry. You have to harden yourself up to do it. You can’t be sitting there wondering what someone is going to think of you. You can’t afford to care. You find your friends and your wrecking crews, and you flip the rest of the universe the bird.”</i> Tightening her hand into a fist, Kiro admits, <i>“I think it was easier to ‘forget’ to contact Kally than to take the chance that she’d hate me for what I do. To take the chance that I’d have to push her away forever.”</i>");
 		flags["KIRO_MET_KALLY"] = 2;
 	}
 }
@@ -905,7 +905,7 @@ public function kiroKallyCanadiaBarBonus():void
 		showKiro();
 		output("\n\nYou ask, <i>“Then how’d you get the invite?”</i>");
 		output("\n\nKiro glances at you, then pulls you to a recessed area alongside the door, away from the station’s other residents. <i>“She found </i>me<i>, or at least one of my extranet accounts. Not that I put a lot of effort into hiding my presence there, but it still came as a shock. And if she found me online, then she’s doubtless found all the articles about my exploits. That means that she’s either accepting of my profession, or this is the most elaborate sting operation we’re likely to bumble into in our short lifetimes.”</i> Her inky lips split in a manic grin. <i>“Let’s just do this.”</i>");
-		output("\n\nKiro straightens up, squares her shoulders, and charges into the bar before you can possible talk her out of it, nearly slamming the door double on its hinge.");
+		output("\n\nKiro straightens up, squares her shoulders, and charges into the bar before you can possibly talk her out of it, nearly slamming the door double on its hinge.");
 		output("\n\nWell, you didn’t come all this way to sit this out. You follow after, hand on your [pc.weapon].");
 		flags["KIRO_MET_KALLY"] = 3;
 	}
@@ -987,10 +987,10 @@ public function noDiceKiroNotHelping():void
 public function kallyShowsUpAfterKiroChoiceMoment():void
 {
 	showKallyAndKiro();
-	output("\n\nThe sound of clinking glasses approaching interrupts any further attempts at communication. Kiro stiffens, then makes an effort to relax into more natural posture.");
+	output("\n\nThe sound of clinking glasses approaching interrupts any further attempts at communication. Kiro stiffens, then makes an effort to relax into a more natural posture.");
 	output("\n\n<i>“Sorry about the wait!”</i> Kally cheers, setting three bubbling concoctions down in front of you - two chocolate-colored ones for her and her sister, and a lighter, amber brew for you. <i>“I had to mix up the house special for your [pc.boyGirl]friend, Kiro.”</i>");
 	output("\n\nKiro seems about as confused as you feel. Why wouldn’t she get the best drink?");
-	output("\n\nThe chubbier tanuki explains, <i>“A lot of kui-tan are allergic to the secret ingredient. Causes lots of swelling.”</i> Kally nods sagely, smiling happily. <i>“Not a problem for the locals, but if Kiro or I started pounding it down, we’d probably need to hooked up to medical equipment for a few hours.”</i>");
+	output("\n\nThe chubbier tanuki explains, <i>“A lot of kui-tan are allergic to the secret ingredient. Causes lots of swelling.”</i> Kally nods sagely, smiling happily. <i>“Not a problem for the locals, but if Kiro or I started pounding it down, we’d probably need to be hooked up to medical equipment for a few hours.”</i>");
 	output("\n\n<i>“What if I kissed [pc.name] with the residue on [pc.hisHer] lips?”</i> Kiro shifts a few inches away from you and your apparently tainted glass.");
 	output("\n\nPatting the jumpy pirate’s paw, Kally giggles her way through an answer, <i>“It’ll be fine. You’d have to drink at least a mouthful for anything to go wrong. Just don’t douse [pc.himHer] in it and give [pc.himHer] a tongue bath.”</i>");
 	processTime(3);
@@ -1055,7 +1055,7 @@ public function helpAKiroOut():void
 	output("\n\nKiro looks like she wishes she could climb into the bottom of her drink and hide, but with no ability to shrink herself down, she settles for setting down her drink and leaning into your supportive touch.");
 	output("\n\nRaising an eyebrow, Kally wisely says nothing, relying on the silence to draw a statement from her sister’s own lips.");
 	output("\n\n<i>“[pc.name] is right... mostly. The galotians didn’t have to do very much forcing with the state I was in, and neither did the rahn leading them. It wound up being about as consensual as sex can get when you start out tied to a support beam.”</i>");
-	output("\n\nThe chubby bartender smiles leans in, chin propped on her palm as she listens with obvious interest.");
+	output("\n\nThe chubby bartender smiles and leans in, chin propped on her palm as she listens with obvious interest.");
 	output("\n\nKiro, taking this for approval, gains in volume and gusto. She sits up proud and straight when she gets to the part about the nuns. <i>“The nun thing started out as a mistake. I didn’t have scanners good enough to know what kind of cargo that freighter was packing, and I didn’t know enough about terran-style religions to recognize the religious overtones of the name.”</i> She shakes her head, grinning sardonically. <i>“Needless to say, they didn’t have anything worth stealing unless I wanted to rob a bunch of idiot girls who only wanted to save the galaxy with lip service.”</i>");
 	output("\n\nKally cocks an eyebrow even higher. <i>“So you’re saying you didn’t force yourself on a bunch of foolish, young virgins? Really?”</i>");
 	output("\n\nSnorting, the freebooting tanuki answers, <i>“No. Though, though I will admit that I did take them back, one at a time, and let them know that I’d fuck them if they wanted. Even let them pretend that I raped them, if it would keep them out of trouble with their church.”</i> Her tail twitches excitedly beside you. Kiro’s so lost in her story that she’s entirely forgotten her attempts to conceal her sexual escapades from her sibling. <i>“Those girls can </i>fuck<i>. Most of them went for anal - something about it not counting - and hot damn did they get loud. I’ve never made anyone shriek with pleasure so easily or so often. Well, aside from [pc.name], maybe.”</i>");

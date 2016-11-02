@@ -1417,7 +1417,7 @@ public function layFertilizedVenusPitcherEgg():void
 	pc.orgasm();
 
 	// Do the needful with the eggs etc
-	if (pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.")
+	if (pData != null && pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.");
 	//Count the number of times PC has laid full seed batches. Incremented after laying the last seed.
 	else 
 	{

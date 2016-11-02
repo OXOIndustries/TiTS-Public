@@ -8959,6 +8959,7 @@
 					cocks[slot].knotMultiplier = RandomInCollection([1.25, 1.3]);
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					break;
 				case GLOBAL.TYPE_SIMII:
 					cocks[slot].knotMultiplier = 1;
@@ -9019,9 +9020,9 @@
 				case GLOBAL.TYPE_GRYVAIN:
 					cocks[slot].knotMultiplier = 1;
 					cocks[slot].cockColor = scaleColor;
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					cocks[slot].addFlag(GLOBAL.FLAG_SCALED);
-					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					break;
 			}
 		}

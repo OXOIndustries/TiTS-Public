@@ -31,7 +31,7 @@
 			this.description = "a monofilament saber";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This blade is similar to in design to cavalry saber of ages old. Three feet long, made of densely compressed modern alloys and edged with a monofilament wire to give this sword the best possible edge in combat.";
+			this.tooltip = "This blade is similar in design to cavalry saber of ages old. Three feet long, made of densely compressed modern alloys and edged with a monofilament wire to give this sword the best possible edge in combat.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

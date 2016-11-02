@@ -171,7 +171,7 @@ public function nurserySpecialistRooms():Boolean
 	{
 		var numTentacles:int = ChildManager.numOfType(GLOBAL.TYPE_TENTACLE);
 		
-		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + "tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It" : "They") + " look quite happy in there.");
+		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + "tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It looks" : "They look") + " quite happy in there.");
 		numSpecials++;
 	}
 
@@ -428,7 +428,12 @@ public function nurseryOrphanedBabyDiff():int
 		numNurseryKids += StatTracking.getStat(orphanList[i]);
 	}
 	
-	if(debug) output("There are " + numNurseryKids + " kids, minus " + ChildManager.numChildren() + " in nursery, making " + (numNurseryKids - ChildManager.numChildren()) + " orphaned!\n\n");
+	if(debug)
+	{
+		output("There are " + numNurseryKids + " kids, minus " + ChildManager.numChildren() + " in nursery, making " + (numNurseryKids - ChildManager.numChildren()) + " orphaned!");
+		output("\nChildren logged: " + StatTracking.getStat("pregnancy/total day care"));
+		output("\n\n");
+	}
 	
 	// Compare with actual number of kids in nursery.
 	return (numNurseryKids - ChildManager.numChildren());
@@ -452,6 +457,8 @@ public function nurseryRecordsFix():void
 		"water queen",
 		"raskvel",
 	];
+	var numInNursery:int = ChildManager.numChildrenAtNursery();
+	var numInStat:int = StatTracking.getStat("pregnancy/total day care");
 	
 	for(var i:int = 0; i < orphanList.length; i++)
 	{
@@ -463,17 +470,28 @@ public function nurseryRecordsFix():void
 	}
 	
 	// Nursery Stat Hotfix
-	if(StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery())
+	if(numInStat < numInNursery)
 	{
 		msg += "\n";
-		msg += "\n<i>Number of Entries Logged: " + StatTracking.getStat("pregnancy/total day care") + "</i>";
-		msg += "\n<i>Number of Actual Entries: " + ChildManager.numChildrenAtNursery() + "</i>";
+		msg += "\n<i>Number of Entries Logged: " + numInStat + "</i>";
+		msg += "\n<i>Number of Actual Entries: " + numInNursery + "</i>";
 		msg += "\n<i>Updating";
-		while(StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery())
+		if(numInNursery - numInStat > 20 || numInNursery - numInStat < 0)
 		{
-			StatTracking.track("pregnancy/total day care");
-			msg += ".";
-			numFixed += 0.25;
+			msg += ".........................";
+			StatTracking.setStat("pregnancy/total day care", numInNursery);
+			numFixed += 5;
+		}
+		else
+		{
+			var e:int = 0;
+			while(StatTracking.getStat("pregnancy/total day care") < numInNursery && e < 20)
+			{
+				StatTracking.track("pregnancy/total day care");
+				msg += ".";
+				numFixed += 0.25;
+				e++;
+			}
 		}
 		msg += "</i>";
 		msg += "\n<i>Entry quantity matched.</i>";
@@ -1167,37 +1185,88 @@ public function nurseryMaternityWait():void
 	author("Savin");
 
 	output("You glance around the apartment, finding your hand drifting to your [pc.belly]. Maybe you shouldn’t be galavanting about the galaxy when you’ve got a young, vulnerable life growing inside you, you think to yourself. The nursery is equipped to support you and your spawn almost indefinitely: you can stay here in safety and comfort until you’re ready to give birth, whenever that may be. Hopefully your space-race quest can wait.");
-
-	output("\n\nWould you like to stay here until you give birth?");
-
-	clearMenu();
-	addButton(0, "Yes", nurseryMaternityWaitGo);
-	addButton(1, "No", mainGameMenu);
 	
+	nurseryMaternitySure(false);
+}
+public function nurseryMaternitySure(clearText:Boolean = true):void
+{
 	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc);
 	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
 	
-	if(debug)
+	if(clearText)
 	{
-		if (firstDuration > 1440) addButton(5, "1 Day", nurseryMaternityWaitTime, (1440 - 5), "Wait: One Day", "Rest for one full day.");
-		else addDisabledButton(5, "1 Day", "Wait: One Day", "You have a pregnancy that will be due before this time!");
-		if (firstDuration > 10080) addButton(6, "1 Week", nurseryMaternityWaitTime, (10080 - 5), "Wait: One Week", "Rest for one full week.");
-		else addDisabledButton(6, "1 Week", "Wait: One Week", "You have a pregnancy that will be due before this time!");
-		if (firstDuration > 43200) addButton(7, "1 Month", nurseryMaternityWaitTime, (43200 - 5), "Wait: One Month", "Rest for one full month.");
-		else addDisabledButton(7, "1 Month", "Wait: One Month", "You have a pregnancy that will be due before this time!");
-		if (firstDuration > 525600) addButton(8, "1 Year", nurseryMaternityWaitTime, (525600 - 5), "Wait: One Year", "Rest for one full year.");
-		else addDisabledButton(8, "1 Year", "Wait: One Year", "You have a pregnancy that will be due before this time!");
-		if (firstDuration > 30) addButton(9, "Custom", nurseryMaternityWaitCustom, (firstDuration - 5), "Wait: Custom", "Rest for as long as you like until right before birth.");
-		else addDisabledButton(9, "Custom", "Wait: Custom", "You have a pregnancy that will be due very soon!");
+		clearOutput();
 	}
+	else
+	{
+		output("\n\n");
+	}
+	
+	output("It looks like this may take");
+	if(firstDuration < 660) output(" less than a day");
+	else if(firstDuration < 1440) output(" about a day");
+	else if(firstDuration < 2100) output(" over a day");
+	else if(firstDuration < 2880) output(" a couple days");
+	else if(firstDuration < 4320) output(" several days");
+	else if(firstDuration < 10080) output(" about a week");
+	else if(firstDuration < 20160) output(" over a week");
+	else if(firstDuration < 40320) output(" a couple weeks");
+	else if(firstDuration < 43200) output(" about a month");
+	else if(firstDuration < 63360) output(" over a month");
+	else if(firstDuration < 80640) output(" a couple months");
+	else if(firstDuration < 475200) output(" several months");
+	else if(firstDuration < 481800) output(" almost a year");
+	else if(firstDuration < 525600) output(" about a year");
+	else if(firstDuration < 1007400) output(" over a year");
+	else if(firstDuration < 1051200) output(" a couple years");
+	else output(num2Text(minutesToYears(firstDuration)) + " years");
+	output(" before you’re due");
+	if(pc.totalPregnancies() > 1) output(" -- at least for the nearest pregnancy anyway");
+	output(".");
+	
+	output("\n\nWould you like to stay here until you give birth?");
+	
+	clearMenu();
+	addButton(0, "Yes", nurseryMaternityWaitGo);
+	addButton(1, "No", mainGameMenu);
+	addButton(4, "Maybe", nurseryMaternityMaybe, firstDuration);
+}
+public function nurseryMaternityMaybe(firstDuration:int = 0):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	
+	var totalPreg:int = pc.totalPregnancies();
+	
+	clearOutput();
+	
+	output("Do you want to rest the full time until you are due, or wait some time before then?");
+	
+	clearMenu();
+	
+	addButton(0, "Full Time", nurseryMaternityWaitGo, undefined, "Wait: Until Due", "Rest until your nearest pregnancy is due.");
+	
+	if ((firstDuration - 5) > 1440) addButton(5, "1 Day", nurseryMaternityWaitTime, 1440, "Wait: One Day", "Rest for one full day.");
+	else addDisabledButton(5, "1 Day", "Wait: One Day", ("You" + (totalPreg == 1 ? "r pregnancy" : " have a pregnancy that") + " will be due before this time!"));
+	if ((firstDuration - 5) > 10080) addButton(6, "1 Week", nurseryMaternityWaitTime, 10080, "Wait: One Week", "Rest for one full week.");
+	else addDisabledButton(6, "1 Week", "Wait: One Week", ("You" + (totalPreg == 1 ? "r pregnancy" : " have a pregnancy that") + " will be due before this time!"));
+	if ((firstDuration - 5) > 43200) addButton(7, "1 Month", nurseryMaternityWaitTime, 43200, "Wait: One Month", "Rest for one full month.");
+	else addDisabledButton(7, "1 Month", "Wait: One Month", ("You" + (totalPreg == 1 ? "r pregnancy" : " have a pregnancy that") + " will be due before this time!"));
+	if ((firstDuration - 5) > 525600) addButton(8, "1 Year", nurseryMaternityWaitTime, 525600, "Wait: One Year", "Rest for one full year.");
+	else addDisabledButton(8, "1 Year", "Wait: One Year", ("You" + (totalPreg == 1 ? "r pregnancy" : " have a pregnancy that") + " will be due before this time!"));
+	if ((firstDuration - 5) > 30) addButton(9, "Custom", nurseryMaternityWaitCustom, firstDuration, "Wait: Custom", "Rest for as long as you like until right before birth.");
+	else addDisabledButton(9, "Custom", "Wait: Custom", ("You" + (totalPreg == 1 ? "r pregnancy" : " have a pregnancy that") + " will be due very soon!"));
+	
+	addButton(14, "Back", nurseryMaternitySure);
 }
 public function nurseryMaternityWaitTime(duration:int = 0):void
 {
 	clearOutput();
 	author("");
 	
+	var timeList:Array = minutesToDurationList(duration, true);
+	
 	// 9999 - Maybe needs better text...
-	output("You wait for " + prettifyMinutes(duration) + "....");
+	output("You wait for" + (timeList.length > 0 ? (" approximately" + CompressToList(timeList)) : " some time") + " as Briget tends to you for the desired amount of time....");
 	
 	processTime(duration);
 	
@@ -1208,42 +1277,41 @@ public function nurseryMaternityWaitTime(duration:int = 0):void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-public function nurseryMaternityWaitCustom(limit:int = 0):void
+public function nurseryMaternityWaitCustom(firstDuration:int = 0):void
 {
+	var limit:int = (firstDuration - 5);
+	
 	if(stage.contains(userInterface.textInput)) removeInput();
 	clearOutput();
 	
 	output("How long do you wish to wait for?\n<i>(Value should be in number of minutes. Maximum time until your next birth is " + limit + " minutes.)</i>");
-	output("\n");
 	displayInput();
 	output("\n\n\n");
 	
 	clearMenu();
-	addButton(0, "Next", nurseryMaternityWaitCustomOK, limit);
-	addButton(14, "Back", nurseryMaternityWait);
+	addButton(0, "Next", nurseryMaternityWaitCustomOK, firstDuration);
+	addButton(14, "Back", nurseryMaternityMaybe, firstDuration);
 }
-public function nurseryMaternityWaitCustomOK(limit:int = 0):void
+public function nurseryMaternityWaitCustomOK(firstDuration:int = 0):void
 {
+	var limit:int = (firstDuration - 5);
+	
 	if(isNaN(Number(userInterface.textInput.text))) {
-		nurseryMaternityWaitCustom(limit);
+		nurseryMaternityWaitCustom(firstDuration);
 		output("Choose a value that is a positive integer, please.");
 		return;
 	}
 	else if(Number(userInterface.textInput.text) < 1) {
-		nurseryMaternityWaitCustom(limit);
+		nurseryMaternityWaitCustom(firstDuration);
 		output("Choose a value that is 1 minute or more, please.");
 		return;
 	}
 	else if(Number(userInterface.textInput.text) > limit) {
-		nurseryMaternityWaitCustom(limit);
+		nurseryMaternityWaitCustom(firstDuration);
 		output("Choose a value that is " + limit + " minutes or below, please.");
 		return;
 	}
 	var duration:int = Math.floor(Number(userInterface.textInput.text));
-	nurseryMaternityWaitCustomGo(duration);
-}
-public function nurseryMaternityWaitCustomGo(duration:int = 0):void
-{
 	if(stage.contains(userInterface.textInput)) removeInput();
 	nurseryMaternityWaitTime(duration);
 }
@@ -1377,7 +1445,7 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	
 	output("<i>“Oh, [pc.name]. I thought you would be asleep for some time still.... Do forgive an old gynoid for still taking some little pleasure in watching over you while you dream, hmm?”</i>");
 	
-	if (lastBorn != null) output("\n\nShe smiles and glances down to the little bundle in her arms. <i>“Everything went perfectly, of course. You’re now mother to " + (lastBorn.Quantity == 1 ? ("a newborn " + GLOBAL.TYPE_NAMES[lastBorn.RaceType].toLowerCase()) : (num2Text(lastBorn.Quantity) + " newborn babies")) + ". Congratulations, dear.”</i>");
+	if (lastBorn != null) output("\n\nShe smiles and glances down to the little bundle in her arms. <i>“Everything went perfectly, of course. You’re now mother to " + (lastBorn.Quantity == 1 ? ("a newborn " + GLOBAL.TYPE_NAMES[lastBorn.RaceType].toLowerCase()) : (num2Text(lastBorn.Quantity) + " newborn " + GLOBAL.TYPE_NAMES[lastBorn.RaceType].toLowerCase() + " babies")) + ". Congratulations, dear.”</i>");
 
 	var totalDays:int = Math.floor(finalDuration / 1440);
 	var totalHours:int = Math.round((finalDuration % 1440) / 24);
