@@ -195,6 +195,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	// Update the state of the players mails -- we don't want to do this all the time (ie in process time), and we're only going to care about it at the menu root soooooo...
 	updateMailStatus();
 	
+	variableRoomUpdateCheck();
+	
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
@@ -1821,6 +1823,17 @@ public function variableRoomUpdateCheck():void
 	
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
+	// Kashima
+	if(flags["KI_ESCAPE_UNCURED"] != undefined)
+	{
+		rooms["KI-E23"].removeFlag(GLOBAL.LIFTDOWN);
+		rooms["KI-E23"].addFlag(GLOBAL.HAZARD);
+	}
+	else
+	{
+		rooms["KI-E23"].addFlag(GLOBAL.LIFTDOWN);
+		rooms["KI-E23"].removeFlag(GLOBAL.HAZARD);
+	}
 }
 
 public function processTime(deltaT:uint, doOut:Boolean = true):void

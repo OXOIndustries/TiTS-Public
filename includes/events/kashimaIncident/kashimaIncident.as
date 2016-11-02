@@ -877,6 +877,8 @@ public function kiHendersonNoCureII():void
 	author("Savin");
 	showName("VICTORY:\nHENDERSON");
 	showBust("ELENORA", "USHAMEE_NUDE_PREG");
+	
+	flags["KI_ESCAPE_UNCURED"] = 1;
 
 	output("<i>“Hey, what-”</i> the Chief starts to say.");
 	
@@ -900,7 +902,6 @@ public function kiHendersonNoCureII():void
 	
 	currentLocation = "KI-E25";
 	generateLocation(currentLocation);
-	flags["KI_ESCAPE_UNCURED"] = 1;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
