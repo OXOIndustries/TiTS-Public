@@ -850,11 +850,11 @@ package classes.GameData
 				output("\n\n[goo.name] dances around, flashing plenty of tits and ass for " + target.getCombatName() + ".");
 				if (lFailed || (dResult && (dResult.lustDamage <= 0 || dResult.lustResisted)))
 				{
-					output(" " + target.getCombatPronoun("heshe") + " looks on, clearly unimpressed.");
+					output(" " + StringUtil.capitalize(target.getCombatPronoun("heshe")) + " looks on, clearly unimpressed.");
 				}
 				else
 				{
-					output(" " + target.getCombatPronoun("heshe") + " stares mesmerized at [goo.name]’s dance, flushing with lust.");
+					output(" " + StringUtil.capitalize(target.getCombatPronoun("heshe")) + " stares mesmerized at [goo.name]’s dance, flushing with lust.");
 				}
 				
 				if (!lFailed)
