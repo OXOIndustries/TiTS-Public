@@ -20,8 +20,8 @@ public function dreamChances():Boolean
 			dreamed = true;
 		}
 	}
-	//If you havent dreamed in 7 days, and didnt get a special dream
-	if(!dreamed && days >= flags["DREAM_CD"] + 7 && rand(4) == 0)
+	//If you havent dreamed in 20 days, and didnt get a special dream
+	if(!dreamed && days >= flags["DREAM_CD"] + 20 && rand(4) == 0)
 	{
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{
