@@ -237,8 +237,11 @@ public function kiroTalkMenuInCanadia(arg:Function):void
 	if(arg == kiroPicardineTalk) addDisabledButton(4,"Picardine","Picardine","You just discussed this.");
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == undefined) addDisabledButton(4,"Locked","Locked","You don't know enough to have this discussion. Maybe there's something you need to find out from Kally...");
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 1 || flags["KIRO_KALLY_PICARDINE_QUEST"] == 2) addDisabledButton(4,"Picardine","Picardine","Kiro has already made up her mind about this.");
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == -1) addDisabledButton(4,"Picardine","Picardine","Kiro has already made up her mind about this and you agree with her on the matter.");
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == -2) addDisabledButton(4,"Picardine","Picardine","Kiro has already told you and you’ve secretly told Kally. Kally intends to keep it a secret.");
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 3) addDisabledButton(4,"Picardine","Picardine","Kiro has already come clean about the Picardine to her sister. There is nothing more to talk about.");	
 	else addButton(4,"Picardine",kiroPicardineTalk,undefined,"Picardine","Find out if Kiro is behind her sister's mysterious gift.");
+	
 	addButton(14,"Back",approachKiroAtTheBar,true);
 }
 
@@ -513,11 +516,11 @@ public function tellKiroToTellKallyAboutLovyPicardine():void
 	clearOutput();
 	showKiro();
 	output("<i>“Loved,”</i> you counter. <i>“She’ll know that her little sister never stopped caring about her, not for a single, solitary instant.”</i>");
-	output("\n\nKiro hunches her shoulders. When she turns her head to answer, her eyes are watery. <i>“You sure?”</i> She wipes her face against the soft fur of her forearm, blinking rapidly. <i>“It’s true, but how do I know that see it?”</i>");
+	output("\n\nKiro hunches her shoulders. When she turns her head to answer, her eyes are watery. <i>“You sure?”</i> She wipes her face against the soft fur of her forearm, blinking rapidly. <i>“It’s true, but how do I know that she’ll see it?”</i>");
 	//Bro
 	if(pc.isBro()) output("\n\nYou wrap an arm around her, grunting companionably. You’ve said more than enough.");
 	//Bimbo
-	else if(pc.isBimbo()) output("\n\nYou lean into her and kiss her on the cheek. <i>“’Cause yer a sweetie!”</i>");
+	else if(pc.isBimbo()) output("\n\nYou lean into her and kiss her on the cheek. <i>“‘Cause yer a sweetie!”</i>");
 	//Nice/Misc
 	else if(!pc.isAss()) output("\n\n<i>“How couldn’t she?”</i> you slide your arm around her waist and pull her close. <i>“For a gruff pirate, you’re practically overflowing with it.”</i>");
 	//Hard
@@ -542,6 +545,7 @@ public function tellKiroTellingKallyAboutPicardineIsShitty():void
 	output("<i>“Shitty,”</i> you agree, feeling bad for pushing the matter. Who would want to know that their whole business was built on the a pirate’s stolen goods? It would undermine Kally’s confidence in herself at best at demolish it at worst.");
 	output("\n\nKiro nods, sipping her drink. <i>“I thought so.”</i>");
 	processTime(2);
+	flags["KIRO_KALLY_PICARDINE_QUEST"] = -1;
 	clearMenu();
 	addButton(0,"Next",approachKiroAtTheBar,true);
 }
@@ -1667,7 +1671,7 @@ public function yesImTakingKirosVcards():void
 	output("\n\nHer tits jiggle from the impact while her ass bounces in your hands, but all you can truly focus on is the wet sound her cunt makes the second time it devours your [pc.cock " + x + "]. Kiro doesn’t stop there. Repeatedly moaning, she rises up, arching her back to put her bounding boobs on full display. One of her hands roughly squeezes and teases a nipple, groping the tit more for its owner’s benefit than the show she’s inadvertently providing. She’s still jacking on her cock too, pumping it with earnest strokes, squeezing larger and larger dollops of pre onto your [pc.skinFurScales].");
 	output("\n\nThe cock-stuffed tanuki is truly riding you now, her body on autopilot, clutching on your dick as she gyrates around it. Mostly, she focuses on up and down strokes that make her curvy body quiver like jello in your hands, but from time to time she’ll swivel her hips, twisting her tunnel around your [pc.cock " + x + "] like some kind of girl-cum-precipitating fuck-tornado. Her eyes are filled with pure joy, two hooded, chocolate orbs that radiate the kind of happiness that chases hot on the heels of new romantic entanglements.");
 	output("\n\n<i>“You’re gorgeous,”</i> you say, the words slipping unbidden from your lips. It’s true, though. She looks radiant there, straddling you, beading sweat that drips from her nipples as she rides you. Her pussy clenches tightly around your [pc.cock " + x + "], massaging it gleefully, trying to coax a heavy load from it.");
-	output("\n\nKiro stops bouncing long enough to wipe a tear from her eyes, but her body sees to your needs regardless, making her hips hitch back and forth enough to keep the friction going. Her cheeks are blushing pink beneath her muzzle’s fur. <i>“Y-you’re just saying that cause you’re gonna cum, aren’t you?”</i> she stammers, trying to hold in a moan.");
+	output("\n\nKiro stops bouncing long enough to wipe a tear from her eyes, but her body sees to your needs regardless, making her hips hitch back and forth enough to keep the friction going. Her cheeks are blushing pink beneath her muzzle’s fur. <i>“Y-you’re just saying that ‘cause you’re gonna cum, aren’t you?”</i> she stammers, trying to hold in a moan.");
 	output("\n\nYou leave off squeezing her ass and start groping at one of her tits, palming the heavy orb. Kiro shivers in your grip. <i>“Please, you’re way closer than me. Listen to your voice.”</i> You gently pinch her nipple, not enough to truly hurt but just enough to squeeze a high-pitched whine of pleasure from her throat.");
 	output("\n\nKiro drops down onto her elbows, trading her cow-girl in for missionary, her face just above yours. She kisses you sharply, hard enough that you feel the pressure of your teeth against the back of your [pc.lips]. Her hips lurch into motion, rocking back and forth powerfully, rubbing her clit against your [pc.belly] on the downstroke. The muscles beneath her oh-so-squeezable ass ripple beneath your clutching fingertips, an echo of the clutching tightness of Kiro’s recently-claimed cunt.");
 	output("\n\nShe couldn’t maintain the kiss if she wanted to. Breaking it, she gasps for breath, moaning like a whore and writhing atop you. Her eyes are half-vacant and distracted, unimportant next to the sensations of blissful fullness that her stuffed, slobbery twat and firm clit provide. All the girl-cum slicking you from the navel down provides a handy slip n’ slide for her quivering balls to slide over, darkening her sack with the slippery moisture. It’s the kind of wet, body-drenching fuck that you know is going to leave you both smelling richly of sex, though most of the scent will undoubtedly be from her own frenetically-leaking fluids.");

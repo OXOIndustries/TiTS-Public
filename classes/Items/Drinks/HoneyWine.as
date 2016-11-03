@@ -75,7 +75,7 @@
 			{
 				if(inCombat()) output("\n\n");
 				else clearOutput();
-				output(target.capitalA + target.short + " chugs down the wine, and looks a lot peppier afterward!");
+				output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " chugs down the wine, and looks a lot peppier afterward!");
 				if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Energy</b>)");
 			}
 			target.imbibeAlcohol(35);

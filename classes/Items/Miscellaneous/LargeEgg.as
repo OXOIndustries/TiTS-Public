@@ -58,7 +58,7 @@
 			{
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " eats a brightly-colored egg");
+				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " eats a brightly-colored egg");
 				if(healing > 0) kGAMECLASS.output(" and instantly regains some health! (<b>+" + healing + " HP</b>)");
 				else kGAMECLASS.output(" to no effect.");
 				target.HP(healing);

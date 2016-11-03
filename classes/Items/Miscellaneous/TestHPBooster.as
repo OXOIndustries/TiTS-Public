@@ -58,52 +58,67 @@ package classes.Items.Miscellaneous
 		{
 			if (usingCreature == null) usingCreature = kGAMECLASS.pc;
 			
+			var hpChange:int = 0;
+			
 			if (usingCreature == kGAMECLASS.pc)
 			{
-				if (target.HP() >= target.HPMax())
+				if (target.isImmobilized() || target.isDefeated())
+				{
+					if(!kGAMECLASS.infiniteItems()) quantity++;
+					kGAMECLASS.clearOutput();
+					if(usingCreature == target) kGAMECLASS.output("You can’t seem to get a hold of the HP booster at the moment!");
+					else kGAMECLASS.output("You are about to pull out an HP booster, but " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + " wouldn’t be able to make use of it!");
+					return false;
+				}
+				
+				if (target.HP() >= target.HPMax() && target.energy() >= target.energyMax())
 				{
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("Using an instant HP booster whilst at full health would be pretty wasteful....");
 					return false;
 				}
+				
+				kGAMECLASS.clearOutput();
+				
+				if (usingCreature == target)
+				{
+					kGAMECLASS.output("You jab the HP booster against your arm. Woosh noises etc.");
+					
+				}
 				else
 				{
-					kGAMECLASS.clearOutput();
-					
-					if (usingCreature == target)
-					{
-						kGAMECLASS.output("You jab the booster against your arm. Woosh noises etc.");
-						
-						var hpChange:int = gainHP(target);
-				
-						if(hpChange > 0) kGAMECLASS.output(" <b>You have gained " + hpChange + " HP!</b>");
-						target.HP(hpChange);
-					}
+					if(target.isPlural) kGAMECLASS.output("You pull out an HP booster and jab it into " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + ". Woosh noises etc.");
+					else kGAMECLASS.output("You pull out an HP booster and jab it into " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + ". Woosh noises etc.");
 				}
+				
+				hpChange = gainHP(target);
+				if(hpChange > 0) kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + ((usingCreature == target || target.isPlural) ? "have" : "has") + " gained " + hpChange + " HP!</b>");
+				target.HP(hpChange);
 			}
 			else
 			{
-				
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				if (usingCreature == target)
 				{
-					kGAMECLASS.output(usingCreature.short + " pulls out a hp booster and jabs it into their own arm. Woosh noises etc.");
+					if(target.isPlural) kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls out an HP booster and jabs it into their own arm. Woosh noises etc.");
+					else kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls out an HP booster and jabs it into " + target.mfn("his", "her", "its") + " own arm. Woosh noises etc.");
 				}
 				else
 				{
-					kGAMECLASS.output(usingCreature.short + " pulls out a hp booster and jabs it against " + target.short + "s arm. Woosh noises etc.");
+					if(target.isPlural) kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls out an HP booster and jabs it against " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + ". Woosh noises etc.");
+					else kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls out an HP booster and jabs it against " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + "’s arm. Woosh noises etc.");
 				}
 				
 				hpChange = gainHP(target);
-				if(hpChange > 0) kGAMECLASS.output(" <b>" + target.short + " gained " + hpChange + " HP!</b>");
+				if(hpChange > 0) kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + (target.isPlural ? "have" : "has") + " gained " + hpChange + " HP!</b>");
 				target.HP(hpChange);
 			}
 
 			return false;
 		}
-
+		
 		private function gainHP(targetCreature:Creature):int
 		{
 			var currHP:int = targetCreature.HP();

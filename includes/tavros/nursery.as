@@ -457,8 +457,6 @@ public function nurseryRecordsFix():void
 		"water queen",
 		"raskvel",
 	];
-	var numInNursery:int = ChildManager.numChildrenAtNursery();
-	var numInStat:int = StatTracking.getStat("pregnancy/total day care");
 	
 	for(var i:int = 0; i < orphanList.length; i++)
 	{
@@ -468,6 +466,9 @@ public function nurseryRecordsFix():void
 			msg += "\n\n<i>" + StringUtil.toTitleCase(num2Ordinal(numFixed)) + " entry detected (" + StringUtil.toTitleCase(orphanTypes[i]) + ")... correcting... corrected.</i>";
 		}
 	}
+	
+	var numInNursery:int = ChildManager.numChildrenAtNursery();
+	var numInStat:int = StatTracking.getStat("pregnancy/total day care");
 	
 	// Nursery Stat Hotfix
 	if(numInStat < numInNursery)

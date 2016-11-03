@@ -1694,6 +1694,7 @@ public function displayQuestLog(showID:String = "All"):void
 						case 4: output2(" Cow-mazon"); break;
 						case 5: output2(" Double Stud"); break;
 						case 6: output2(" Undersized"); break;
+						default: output2(" <i>Unknown</i>"); break;
 					}
 					// Timer stuff
 					var treatedMinutes:Number = 10080 - pc.getStatusMinutes("The Treatment");
@@ -2016,6 +2017,7 @@ public function displayQuestLog(showID:String = "All"):void
 						break;
 					case FAZIAN_QUEST_RESCUE: output2(" Helped Hepane, <i>Locate the warehouse in Kressia and rescue Fazian!</i>"); break;
 					case FAZIAN_QUEST_BRIBED: output2(" Betrayed Hepane, Sold Fazian to tarratch slavers for 20000 credits, Completed"); break;
+					default: output2(" <i>Unknown</i>"); break;
 				}
 				if
 				(	(flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_REJECTED)
@@ -2316,6 +2318,44 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				else output2(" <i>Not yet accepted...</i>");
 				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("\n<b>* Weather Drones Turned In:</b> " + flags["NAYNA_DRONES_TURNED_IN"]);
+				sideCount++;
+			}
+		}
+		
+		if(showID == "Canadia" || showID == "All")
+		{
+			// Kiro Picardine Quest (Requires Kiro!)
+			if(flags["KIRO_KALLY_PICARDINE_QUEST"] != undefined && flags["RESCUE KIRO FROM BLUEBALLS"] == 1)
+			{
+				output2("\n<b><u>Kally’s Picardine</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["KIRO_KALLY_PICARDINE_QUEST"])
+				{
+					case 0:
+						output2(" Know about it");
+						if(roamingKiroAvailable()) output2(", <i>Maybe ask Kiro about it...?</i>");
+						break;
+					case 1:
+					case 2:
+						output2(" Know of it, Asked Kiro");
+						if(!pc.hasStatusEffect("KallyKiro")) output2(", <i>Perhaps " + (flags["KIRO_KALLY_PICARDINE_QUEST"] == 1 ? "tell Kally the truth...?" : "Kally will love to know...") + "</i>");
+						else 
+						{
+							output2(", Told Kally truth");
+							if(pc.hasStatusEffect("Wait For Kally Break")) output2(", <i>Wait for Kally’s response to Kiro...</i>");
+							else output2(", <i>Has Kally responded to Kiro yet...?</i>");
+						}
+						break;
+					case -1: output2(" Know of it, Asked Kiro, Agreed to not reveal it to Kally"); break;
+					case -2: output2(" Know of it, Asked Kiro, Told Kally truth, Kally keeps it a secret from Kiro"); break;
+					case 3:
+						output2(" Know of it, Asked Kiro, Told Kally truth");
+						if(flags["KALLY_KISSED_KIRO"] == undefined) output2(", Kally thanked Kiro");
+						else output2(", Kally thanked and kissed Kiro");
+						break;
+					default: output2(" <i>Unknown</i>"); break;
+				}
+				if(InCollection(flags["KIRO_KALLY_PICARDINE_QUEST"], [3, -1, -2])) output2(", Completed");
 				sideCount++;
 			}
 		}
@@ -3362,7 +3402,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["GIANNA_STALL_SEEN"] != undefined) output2(", Fucked in stall");
 						if(flags["GIANNA_TITFUCKS"] != undefined) output2(", Titfucked her");
 						if(flags["GIANNA_GIVEN_GIRLY_ORAL_YET"] != undefined) output2(", She ate your pussy");
-						if(flags["SIXTYNINED_GIANNA"] != undefined) output2(", 69'd with her");
+						if(flags["SIXTYNINED_GIANNA"] != undefined) output2(", 69’d with her");
 						if(flags["FUCKED_GIANNA_VAGINALLY"] != undefined) output2(", Fucked her vagina");
 						if(flags["GIANNA_CUMFLATION_DISABLED"] != undefined) output2(", Cumflation disabled");
 					}
@@ -4730,6 +4770,7 @@ public function displayEncounterLog(showID:String = "All"):void
 							case 0: output2(" Purchased, <i>Retrieve at hangar...</i>"); break;
 							case 1: output2(" Purchased, Retrieved, <i>Return to Taivra...</i>"); break;
 							case 2: output2(" Purchased, Retrieved, Installed in her throne room"); break;
+							default: output2(" <i>Unknown</i>"); break;
 						}
 					}
 					if(flags["TAIVRA_FERTILE"] != undefined)
@@ -5044,30 +5085,40 @@ public function displayEncounterLog(showID:String = "All"):void
 				
 				variousCount++;
 			}
-			// Kally
-			if(flags["MET_KALLY"] != undefined)
+			// Kui Country Bar and Lodge
+			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined)
 			{
 				output2("\n<b><u>Kui Country Bar and Lodge</u></b>");
-				output2("\n<b>* Kally:</b> Met her");
-				if(flags["KIRO_MET_KALLY"] >= 4) output2(" with Kiro");
-				if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output2(", Know of her secret ingredient");
-				if(drinkFromTapKally() > 0)
+				// Gloryholes
+				if(flags["GLORYHOLE_MOUNTER"] > 0) output2("\n<b>* Gloryholes, Times Used:</b> " + flags["GLORYHOLE_MOUNTER"]);
+				if(flags["GLORYHOLE_SERVER"] > 0) output2("\n<b>* Gloryholes, Times Worked:</b> " + flags["GLORYHOLE_SERVER"]);
+				// Kally
+				if(flags["MET_KALLY"] != undefined)
 				{
-					output2("\n<b>* Kally, Times Sucked Her Cock:</b> " + drinkFromTapKally());
-					if(flags["KALLY_BIMBO_CUMCASCADE"] != undefined)
+					output2("\n<b>* Kally:</b>");
+					if(kallyIsAway()) output2(" Away");
+					else output2(" Active");
+					if(flags["KIRO_MET_KALLY"] >= 4) output2(", Met her with Kiro");
+					if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output2(", Know of her secret ingredient");
+					if(drinkFromTapKally() > 0)
 					{
-						output2(", She gave you a cum-cascade");
-						if(flags["KALLY_BIMBO_CUMCASCADE"] == 1 && drinkFromTapKally() > 1) output2(" once");
-						if(flags["KALLY_BIMBO_CUMCASCADE"] == 2) output2(" twice");
-						if(flags["KALLY_BIMBO_CUMCASCADE"] >= 3) output2(" " + flags["KALLY_BIMBO_CUMCASCADE"] + " times");
+						output2("\n<b>* Kally, Times Sucked Her Cock:</b> " + drinkFromTapKally());
+						if(flags["KALLY_BIMBO_CUMCASCADE"] != undefined)
+						{
+							output2(", She gave you a cum-cascade");
+							if(flags["KALLY_BIMBO_CUMCASCADE"] == 1 && drinkFromTapKally() > 1) output2(" once");
+							if(flags["KALLY_BIMBO_CUMCASCADE"] == 2) output2(" twice");
+							if(flags["KALLY_BIMBO_CUMCASCADE"] >= 3) output2(" " + flags["KALLY_BIMBO_CUMCASCADE"] + " times");
+						}
+						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined)
+						{
+							output2(", Kiro interrupted");
+							if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 1 && drinkFromTapKally() > 1) output2(" once");
+							if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 2) output2(" twice");
+							if(flags["KIRO_INTERRUPT_KALLYBEEJ"] >= 3) output2(" " + flags["KIRO_INTERRUPT_KALLYBEEJ"] + " times");
+						}
 					}
-					if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined)
-					{
-						output2(", Kiro interrupted");
-						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 1 && drinkFromTapKally() > 1) output2(" once");
-						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 2) output2(" twice");
-						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] >= 3) output2(" " + flags["KIRO_INTERRUPT_KALLYBEEJ"] + " times");
-					}
+					if(flags["KALLY_BROED"] != undefined) output2("\n<b>* Kally, Times Licked Her Out:</b> " + flags["KALLY_BROED"]);
 				}
 				variousCount++;
 			}
@@ -5233,11 +5284,10 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Riley:</b> Met her");
 			if(flags["FUCKED_FREEDOM_BEEF"] == 1)
 			{
-				output2(", ");
-				if(flags["FUCKED_FREEDOM_BEEF_TAURIC"] != undefined) output2("You mounted her");
-				else if(flags["FUCKED_FREEDOM_BEEF_SNUSNU"] != undefined) output2("She gave you Snu Snu");
-				else if(flags["FUCKED_FREEDOM_BEEF_LESBOLICKS"] != undefined) output2("She ate you out");
-				else output2("Sexed her");
+				if(flags["FUCKED_FREEDOM_BEEF_TAURIC"] != undefined) output2(", You mounted her");
+				else if(flags["FUCKED_FREEDOM_BEEF_SNUSNU"] != undefined) output2(", She gave you Snu Snu");
+				else if(flags["FUCKED_FREEDOM_BEEF_LESBOLICKS"] != undefined) output2(", She ate you out");
+				else output2(", Sexed her");
 			}
 			else if(flags["FUCKED_FREEDOM_BEEF"] > 1)
 			{

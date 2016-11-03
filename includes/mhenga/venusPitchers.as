@@ -1307,7 +1307,7 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	output("\n\nOnce you catch your breath");
 	if (pc.isCrotchGarbed()) output(" and re-dress");
 	output(", you're left with the curious, oblong seed in front you. Using the codex, you determine that it wasn't fertilized. It also isn't considered edible by most species, but it's likely that you could consume it anyway if you didn't mind a major risk of bodily mutation to accommodate it.");
-	pc.orgasm()
+	pc.orgasm();
 	
 	if (pData && pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.");
 	
@@ -1430,22 +1430,22 @@ public function layFertilizedVenusPitcherEgg():void
 		pc.elasticity += 0.1;
 		if (pc.elasticity > 2.0) pc.elasticity = 2.0;
 
-		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.")
+		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.");
 	}
-
-	clearMenu();
+	
 	if (InShipInterior())
 	{
-		output("\n\nSince you're on your ship, you might as well send it off to your daycare.")
+		output("\n\nSince you're on your ship, you might as well send it off to your daycare.");
 		StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care");
 		StatTracking.track("pregnancy/total day care");
 		addChildVenusPitcher();
 		
+		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
 	else
 	{
-		output("\n\nAre you going to find a good spot for the fledgeling pitcher to root or call in a drone to have it delivered to your daycare?")
+		output("\n\nAre you going to find a good spot for the fledgeling pitcher to root or call in a drone to have it delivered to your daycare?");
 		addButton(0, "Plant It", function():void {
 			clearOutput();
 			userInterface.author("Fenoxo");

@@ -433,7 +433,7 @@ public function removeUvetoCold(notice:Boolean = false):void
 		
 		if(notice)
 		{
-			output("\n\nThe tempurature gradually changes around you.");
+			output("\n\nThe temperature gradually changes around you.");
 			if (pc.willTakeColdDamage()) output(" With relief, you can finally take some time to defrost and enjoy the warmth!");
 		}
 	}

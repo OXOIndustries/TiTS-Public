@@ -201,7 +201,7 @@
 			}
 			
 			// I think the only place that bonusResistances are used atm is on shields. Going to check shields + armor + accessory? as a catchall
-			if (this.type == GLOBAL.ARMOR || this.type == GLOBAL.SHIELD || this.type == GLOBAL.ACCESSORY || this.type == GLOBAL.LOWER_UNDERGARMENT || this.type == GLOBAL.UPPER_UNDERGARMENT)
+			if (this.type == GLOBAL.ARMOR || this.type == GLOBAL.CLOTHING || this.type == GLOBAL.SHIELD || this.type == GLOBAL.ACCESSORY || this.type == GLOBAL.LOWER_UNDERGARMENT || this.type == GLOBAL.UPPER_UNDERGARMENT)
 			{
 				var resistString:String = resistancesDiff(this, oldItem);
 				if (resistString.length > 0)
@@ -267,6 +267,8 @@
 				var aprilFools:Boolean = false;
 				var valueString:String = "";
 				
+				if(!short) valueString += ("Quantity: " + quantity + "\n");
+				
 				if (discount)
 				{
 					valueString += "Basic Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
@@ -274,7 +276,10 @@
 					if(buyer.hasPerk("Supply And Demand")) price *= 0.95;
 					valueString += "\nFinal Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
 				}
-				else valueString += "Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
+				else
+				{
+					valueString += "Price: " + Math.round(price) + " " + (!aprilFools ? "Credits" : "Dogecoins");
+				}
 				
 				compareString = mergeString(compareString, valueString);
 			}
@@ -517,7 +522,7 @@
 			// Total damage difference
 			if (newDamage != 0 || oldDamage != 0)
 			{
-				damAppend += "<b>" + String(newDamage) + "</b> (";
+				damAppend += "<b>" + String(Math.round(newDamage * 100)/100) + "</b> (";
 				
 				if (newDamage > oldDamage)
 				{

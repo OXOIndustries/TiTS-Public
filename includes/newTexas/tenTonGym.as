@@ -1006,7 +1006,7 @@ public function simoneWorkoutResults(response:String = ""):void
 				flags["SIMONE_TEASED"] = true;
 			}
 			// If PC has no penises (Vaginas only)
-			if(!pc.hasCock() || (pc.isHerm() && rand(3) == 0))
+			else if(!pc.hasCock() || (pc.isHerm() && rand(3) == 0))
 			{
 				x = rand(pc.vaginas.length);
 				

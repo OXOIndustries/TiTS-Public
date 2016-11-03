@@ -109,7 +109,7 @@ public function karaFirstTimeBarStuff():void
 	clearOutput();
 	showCandice();
 	flags["BEEN_TO_MYRELLION_BAR"] = 1;
-	output("You make your way into the big, smoky lounge labeled <i>“Tavern,”</i> pushing through bat-wing doors into a crowded room full in equal measures of myr and off-worlders. What might have once been a military barracks has been cleared out by the pioneers who’ve taken over this airfield, turning it into a surprisingly cozy tavern. A long wooden bar and stools have been set up along one wall, and several makeshift tables are scattered throughout the wide room.");
+	output("You make your way into the big, smoky lounge labeled “Tavern,” pushing through bat-wing doors into a crowded room full in equal measures of myr and off-worlders. What might have once been a military barracks has been cleared out by the pioneers who’ve taken over this airfield, turning it into a surprisingly cozy tavern. A long wooden bar and stools have been set up along one wall, and several makeshift tables are scattered throughout the wide room.");
 	output("\n\nYou saunter over to the bar and take a seat, heaving a sigh as you take a load off. Going through interstellar customs is trying at the best of times; customs on a planet on the brink of self-destruction is near maddening. You rub your temples and signal to the bartender, a perky half-ausar girl in a short-cropped halter top that shows off a delightful amount of taut belly.");
 	output("\n\n<i>“Hey, " + pc.mf("handsome","cutie") + ",”</i> she says with a wink, flicking a rag over her shoulder. <i>“What can I get you?”</i>\n\nYou look over the menu and order something light to start.");
 	processTime(2);
@@ -218,7 +218,7 @@ public function notInterestedSavinYourOCsCreepMeOut():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Alright",helpDisKaraSlut,true,"Alright","Accede to her request. The girl's obviously in trouble.");
-	addButton(1,"Still No",stillSayNoToKaraYouGiganticFuckingAsshole,undefined,"Still No","Leave");
+	addButton(1,"Still No",stillSayNoToKaraYouGiganticFuckingAsshole,undefined,"Still No","Leave.");
 }
 
 //[Still No]
@@ -226,6 +226,8 @@ public function notInterestedSavinYourOCsCreepMeOut():void
 public function stillSayNoToKaraYouGiganticFuckingAsshole():void
 {
 	clearOutput();
+	clearBust();
+	showName("\nLEAVE");
 	output("You shake your head and step away from the cat-girl, leaving her to her fate.");
 	flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] = 1;
 	clearMenu();
@@ -268,7 +270,9 @@ public function helpDisKaraSlut(finishedDrink:Boolean = false):void
 public function backOfAndScrewOverKaraYouAsshat():void
 {
 	clearOutput();
-	showShade();
+	author("Savin");
+	showName("BACK\nOFF...");
+	showBust("SHADE");
 	output("As smoothly as you can, you change course away from the armed kaithrit and back toward the bar - well away from where Kara was sitting. Nobody said anything about guns. Kara’s on her own.");
 	processTime(1);
 	flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] = 1;
@@ -316,7 +320,7 @@ public function turnDownAChanceToCaptureKara():void
 public function itsADealToBetrayKaraSloots():void
 {
 	clearOutput();
-	showBust("KARA","SHADE");
+	showBust("KARA","SHADE_COMBAT");
 	author("Savin");
 	showName("SHADE\n& KARA");
 	pc.addHard(10);
@@ -457,7 +461,7 @@ public function shadeSexMenu(intro:Boolean = false):void
 public function tripAndFallOnShade():void
 {
 	clearOutput();
-	showBust("KARA","SHADE");
+	showBust("KARA","SHADE_COMBAT");
 	showName("SHADE\n& KARA");
 	author("Savin");
 	pc.addMischievous(5);
@@ -481,7 +485,7 @@ public function karaAndPCVersusShadeFightIntroduction():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("KARA","SHADE");
+	showBust("KARA","SHADE_COMBAT");
 	showName("SHADE\n& KARA");
 	output("You steel yourself and stand, ready to stand beside Kara.");
 	output("\n\n<i>“You brought friends?”</i> Shade spits, taking a step back and leveling the lightning gun at you. <i>“Big mistake, friend.”</i>");
@@ -505,6 +509,7 @@ public function karaAndPCVersusShadeFightIntroduction():void
 public function fuckThisShiiitImNotGettingInACatNDogFight():void
 {
 	clearOutput();
+	clearBust();
 	showName("FUCK\nTHIS!");
 	author("Savin");
 	output("Fuck this. You hop into the crowd of people fleeing, ducking out of the bar to the sounds you hear gunfire behind you.");
@@ -536,7 +541,7 @@ public function lastChanceForHelpingKara():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("KARA","SHADE");
+	showBust("KARA","SHADE_COMBAT");
 	showName("SHADE\n& KARA");
 	output("You head out of the bar, trying to put the strange kaithrit’s request out of your mind. You make it all the way to the batwing doors, ready to head out into the street when you hear a scream behind you.");
 	output("\n\nYou cast a glance over your shoulder, just in time to brace yourself for a stream of people running for the doors, trying desperately to escape. Behind them, you can see a pair of kaithrit women standing in the middle of the bar leveling handguns at each other: Kara on one side, a woman dressed in a long duster that parts around a single reptilian tail behind her on the other.");
@@ -564,6 +569,7 @@ public function lastChanceForHelpingKara():void
 public function fuckDisBarShit():void
 {
 	clearOutput();
+	clearBust();
 	author("Savin");
 	output("You spend a few minutes in the crowd of people before myr security guards come rushing, weapons drawn, and charge into the bar. More gunfire ensues over another minute or so, until a guard steps outside and waves the people back in, saying that the issue has been resolved. Taking a peek through the doorway, you see a great number of bullet holes in the walls and the back door hanging open. Looks like Kara and Shade booked it. You doubt you’ll see them again.");
 	flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] = 1;
@@ -577,7 +583,7 @@ public function helpShadeOutLastChance():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("KARA","SHADE");
+	showBust("KARA","SHADE_COMBAT");
 	showName("SHADE\n& KARA");
 	output("Can’t argue with a little bounty work. You ");
 	if(!(pc.meleeWeapon is Rock)) output("draw your weapon");
@@ -605,7 +611,7 @@ public function helpKaraOutLastChance():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("KARA","SHADE");
+	showBust("KARA","SHADE_COMBAT");
 	showName("SHADE\n& KARA");
 	output("You can’t leave a damsel in distress, can you? You ");
 	if(!pc.meleeWeapon is Rock) output("draw your weapon");
@@ -677,7 +683,7 @@ public function pcAndKaraBeatShade():void
 //PC + Shade defeat Kara
 public function pcAndShadeBeatKara():void
 {
-	showBust("KARA","SHADE");
+	showBust("KARA","SHADE_COMBAT");
 	showName("KARA\n& SHADE");
 	author("Savin");
 	output("Kara collapses under the hail of fire, slumping to the ground with a groan of pain.");
@@ -694,7 +700,7 @@ public function pcAndShadeBeatKara():void
 //PC + Kara Defeated
 public function loseWithKaraYouSlut():void
 {
-	showBust("KARA","SHADE");
+	showBust("KARA","SHADE_COMBAT");
 	showName("KARA\n& SHADE");
 	author("Savin");
 	output("You’ve had enough. You throw down your [pc.rangedWeapon] and put your hands up - better a little indignity than death. Kara isn’t much better off, and slowly lowers her own weapon.");
