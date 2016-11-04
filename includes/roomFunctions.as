@@ -428,3 +428,109 @@ public function thisIsWhyWeCantHaveNiceThings():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+
+public function flagEditing():void
+{
+	clearOutput();
+	output("This room is for editing saves. If you use this room, you may break the game or your save. Seriously, if the game breaks after using this room, don't report it as a bug unless you can make another, non-edited character and reproduce the issue.");
+	clearMenu();
+	addButton(0,"Edit Flag",editFlagInput);
+	addButton(1,"List Flags",listFlags);
+}
+
+public function listFlags():void
+{
+	clearOutput();
+	output("<b><u>All currently stored flags:</u></b>\n");
+	var flagOutput:String = "";
+	var count:Number = 0;
+	for (var key:String in flags) {
+		flagOutput += "\nflags\\\[" + key + "\\\]: " + flags[key];
+		count++;
+	}
+	output(flagOutput + "\n\nTotal flags: " + count);
+	clearMenu();
+	addButton(4,"Back",flagEditing);
+}
+
+public function editFlagInput(backsies:Boolean = false):void
+{
+	clearOutput();
+	if(backsies) output("<b>That name is invalid, yo! </b>");
+	output("Please enter the name of the flag you would like to edit:")
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
+	this.displayInput();
+	clearMenu();
+	addButton(0,"Enter",searchFlagName);
+	addButton(14,"Back",backOutFlagEdits);
+}
+
+public function searchFlagName():void
+{
+	clearOutput();
+	if(this.userInterface.textInput.text == "")
+	{
+		editFlagInput(true);
+		return;
+	}
+	var flag:String = this.userInterface.textInput.text;
+	output("flags\\\[" + flag + "\\\]: ");
+	if(flags[flag] == undefined) output("undefined");
+	else 
+	{
+		output(flags[flag]);
+	}
+	output("\n\nWould you like to set a new value?");
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
+	this.displayInput();
+	clearMenu();
+	addButton(0,"As Number",setFlagAsNumber,flag);
+	addButton(1,"As String",setFlagAsString,flag);
+	addButton(2,"As Undefined",setFlagAsUndefined,flag);
+	addButton(4,"Back",editFlagInput);
+}
+
+public function setFlagAsString(flag:String):void
+{
+	var flagValue:String = this.userInterface.textInput.text;
+	flags[flag] = flagValue;
+	clearOutput();
+	output("flags\\\[" + flag + "\\\] set to: " + flagValue);
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
+	clearMenu();
+	addButton(0,"Next",editFlagInput);
+}
+
+public function setFlagAsNumber(flag:String):void
+{
+	var flagValue:Number = Number(this.userInterface.textInput.text);
+	flags[flag] = flagValue;
+	clearOutput();
+	output("flags\\\[" + flag + "\\\] set to: " + flagValue);
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
+	clearMenu();
+	addButton(0,"Next",editFlagInput);
+}
+
+public function setFlagAsUndefined(flag:String):void
+{
+	flags[flag] = undefined;
+	clearOutput();
+	output("flags\\\[" + flag + "\\\] set to: undefined");
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
+	clearMenu();
+	addButton(0,"Next",editFlagInput);
+}
+
+
+public function backOutFlagEdits():void
+{
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
+	mainGameMenu();
+}
