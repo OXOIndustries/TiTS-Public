@@ -431,15 +431,20 @@ public function thisIsWhyWeCantHaveNiceThings():void
 
 public function flagEditing():void
 {
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
 	clearOutput();
 	output("This room is for editing saves. If you use this room, you may break the game or your save. Seriously, if the game breaks after using this room, don't report it as a bug unless you can make another, non-edited character and reproduce the issue.");
 	clearMenu();
 	addButton(0,"Edit Flag",editFlagInput);
 	addButton(1,"List Flags",listFlags);
+	addButton(14,"Exit",backOutFlagEdits);
 }
 
 public function listFlags():void
 {
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
 	clearOutput();
 	output("<b><u>All currently stored flags:</u></b>\n");
 	var flagOutput:String = "";
@@ -450,7 +455,7 @@ public function listFlags():void
 	}
 	output(flagOutput + "\n\nTotal flags: " + count);
 	clearMenu();
-	addButton(4,"Back",flagEditing);
+	addButton(14,"Back",flagEditing);
 }
 
 public function editFlagInput(backsies:Boolean = false):void
@@ -463,7 +468,7 @@ public function editFlagInput(backsies:Boolean = false):void
 	this.displayInput();
 	clearMenu();
 	addButton(0,"Enter",searchFlagName);
-	addButton(14,"Back",backOutFlagEdits);
+	addButton(14,"Back",flagEditing);
 }
 
 public function searchFlagName():void
@@ -486,10 +491,11 @@ public function searchFlagName():void
 		this.removeInput();
 	this.displayInput();
 	clearMenu();
-	addButton(0,"As Number",setFlagAsNumber,flag);
-	addButton(1,"As String",setFlagAsString,flag);
-	addButton(2,"As Undefined",setFlagAsUndefined,flag);
-	addButton(4,"Back",editFlagInput);
+	addButton(0,"As Number",setFlagAsNumber,flag, "Set Flag Type: Number", "The input should be a numeric value.");
+	addButton(1,"As String",setFlagAsString,flag, "Set Flag Type: String", "The input should can be any string value.");
+	addButton(2,"As Boolean",setFlagAsBoolean,flag, "Set Flag Type: Boolean", "The input should be ‘false’ or ‘0’, or ‘true’ or ‘1’; otherwise the value will be undefined.");
+	addButton(3,"As Undefined",setFlagAsUndefined,flag, "Set Flag Type: Undefined", "This will set the value to undefined.");
+	addButton(14,"Back",editFlagInput);
 }
 
 public function setFlagAsString(flag:String):void
@@ -507,6 +513,21 @@ public function setFlagAsString(flag:String):void
 public function setFlagAsNumber(flag:String):void
 {
 	var flagValue:Number = Number(this.userInterface.textInput.text);
+	flags[flag] = flagValue;
+	clearOutput();
+	output("flags\\\[" + flag + "\\\] set to: " + flagValue);
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
+	clearMenu();
+	addButton(0,"Next",editFlagInput);
+}
+
+public function setFlagAsBoolean(flag:String):void
+{
+	var sBoolean:String = (this.userInterface.textInput.text).toLowerCase();
+	var flagValue:Boolean = undefined;
+	if(InCollection(sBoolean, ["false", "0"])) flagValue = false;
+	if(InCollection(sBoolean, ["true", "1"])) flagValue = true;
 	flags[flag] = flagValue;
 	clearOutput();
 	output("flags\\\[" + flag + "\\\] set to: " + flagValue);

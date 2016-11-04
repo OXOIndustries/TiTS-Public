@@ -110,6 +110,12 @@
 			
 			var pData:PregnancyData	= target.getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
 			
+			if(pData == null)
+			{
+				/* Error, no pregnancy! */
+				return;
+			}
+			
 			pData.pregnancyQuantity--;
 			pData.pregnancyIncubation = 240 + rand(30);
 			pData.pregnancyBellyRatingContribution -= 14;

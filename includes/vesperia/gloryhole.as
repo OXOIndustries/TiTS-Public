@@ -115,10 +115,10 @@ public function stickDickThroughGloryhole(arg:int):void
 		if(pc.statusEffectv1("Gloryhole Shift Activated") == 2)
 		{
 			output("\n\n<i>“Mmm... ");
-			if(pc.hasKnot(arg)) output("what a big, bad wolfy");
-			else if(pc.cocks[arg].cType == GLOBAL.TYPE_FELINE) output("hey there, tiger");
-			else if(pc.cocks[arg].hasFlag(GLOBAL.FLAG_FLARED)) output("such a stud");
-			else if(pc.cLength(arg) >= 12) output("hey there, big boy");
+			if(pc.cocks[arg].cType == GLOBAL.TYPE_FELINE) output("hey there, tiger.");
+			else if(pc.cocks[arg].hasFlag(GLOBAL.FLAG_FLARED)) output("such a stud.");
+			else if(pc.hasKnot(arg)) output("what a big, bad wolfy.");
+			else if(pc.cLength(arg) >= 12) output("hey there, big boy.");
 			else if(pc.cLength(arg) <= 5) output("what a cute little penis. The small ones twitch so adorably when they cum!");
 			else output("what a delicious treat!");
 			output("”</i> The voice is so sultry that it’s almost a purr. <i>“I can’t wait to play with it!”</i>");
@@ -267,7 +267,7 @@ public function stickDickThroughGloryhole(arg:int):void
 		else if(pc.statusEffectv1("Gloryhole Shift Activated") == 1)
 		{
 			output("\n\n<i>“Oh wow!”</i> The voice is almost breathless with excitement. <i>“It’s so... so...");
-			if(flags["DEERTAUR_GLORYHOLED"] != undefined) output(" familiar");
+			if(flags["DEERTAUR_GLORYHOLED"] != undefined) output(" familiar...");
 			output("”</i> A finger caresses the side of your phallus, accompanied by a deep inhalation of breath. <i>“...wow.");
 			if(flags["DEERTAUR_GLORYHOLED"] != undefined && flags["DEERTAUR_GLORYHOLED"] >= 3) output(" It’s you again, isn’t it? I knew you couldn’t stay away.");
 			else if(pc.cLength(arg) >= 14 && pc.cLength(arg) < 22 && pc.cocks[arg].hasFlag(GLOBAL.FLAG_FLARED)) output(" You didn’t peek, did you?”</i> She giggles. <i>“This is perfect for me.");
