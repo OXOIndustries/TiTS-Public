@@ -9158,6 +9158,26 @@
 		{
 			return "Your crotch warms, but nothing happens.";
 		}
+		public function copyCock(target:int, donor:int):void
+		{
+			if(target < 0 || donor < 0) return;
+			if(target >= cocks.length || donor >= cocks.length) return;
+			cocks[target].cType = cocks[donor].cType;
+			cocks[target].cLengthRaw = cocks[donor].cLengthRaw;
+			cocks[target].cLengthMod = cocks[donor].cLengthMod;
+			cocks[target].cThicknessRatioRaw = cocks[donor].cThicknessRatioRaw;
+			cocks[target].cThicknessRatioMod = cocks[donor].cThicknessRatioMod;
+			cocks[target].cockColor = cocks[donor].cockColor;
+			cocks[target].knotMultiplier = cocks[donor].knotMultiplier;
+			cocks[target].flaccidMultiplier = cocks[donor].flaccidMultiplier;
+			cocks[target].virgin = cocks[donor].virgin;	//to make it work in a similar fashion as copyVagina
+			for(var y:int = 0; y < cocks[donor].cockFlags.length; y++)
+			{
+				cocks[target].cockFlags[y] = cocks[donor].cockFlags[y];
+			}
+			trace("Copying " + simpleCockNoun(donor) + " to donor " + simpleCockNoun(target) + " donor index: " + donor + " target index: " + target + " donor type: " + cocks[donor].cType + " target type: " + cocks[target].cType);
+			return;
+		}
 		//General utility function for setting appropriate dick type with new-grown weiners.
 		public function setNewCockValues(arg:int = 0):void
 		{
