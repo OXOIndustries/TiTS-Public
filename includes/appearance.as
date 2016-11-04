@@ -111,7 +111,7 @@ public function appearance(forTarget:Creature):void
 			if(target.faceType == GLOBAL.TYPE_SHARK || target.faceType == GLOBAL.TYPE_SIREN) output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_LAPINE) output2(" The constant twitches of your nose and the length of your incisors gives your visage a hint of bunny-like cuteness.");
 			else if(target.faceType == GLOBAL.TYPE_NALEEN_FACE) output2(" A set of retractable, needle-like fangs sit in place of your canines, just like a naleen.");
-			else if(target.faceType == GLOBAL.TYPE_HUMAN && target.hasStatusEffect("Mimbrane Face"))
+			if(target.hasStatusEffect("Mimbrane Face"))
 			{
 				if (target.statusEffectv3("Mimbrane Face") >= 3 && target.statusEffectv3("Mimbrane Face") < 8) output2(" Your lips appear slightly puffy.");
 				else if (target.statusEffectv3("Mimbrane Face") >= 8 && target.statusEffectv3("Mimbrane Face") < 13) output2(" Your lips look deliciously pillowy.");
@@ -487,6 +487,12 @@ public function appearance(forTarget:Creature):void
 				if(target.earLength >= 3) output2(" " + num2Text(target.earLength) + " inches");
 				output2(" from your " + headNoun + ", each capable of being highly expressive.");
 			}
+			else if(target.earType == GLOBAL.TYPE_SIREN)
+			{
+				output2(" A pair of feather-tipped ears point outwards");
+				if (target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches");
+				output2(" from your " + headNoun + ".");
+			}
 			if(target.hasAntennae())
 			{
 				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
@@ -564,6 +570,12 @@ public function appearance(forTarget:Creature):void
 				else output2(" rounded");
 				if(target.earLength >= 3) output2(", " + num2Text(target.earLength) + "-inch long");
 				output2(" dog ears, each capable of being highly expressive.");
+			}
+			else if(target.earType == GLOBAL.TYPE_SIREN)
+			{
+				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of");
+				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long,");
+				output2(" feather-tipped ears.");
 			}
 			if(target.hasAntennae())
 			{
@@ -1007,7 +1019,21 @@ public function appearance(forTarget:Creature):void
 				output2(".");
 			}
 		}
-		else if (target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
+		else if(target.armType == GLOBAL.TYPE_SIREN) 
+		{
+			output2(" Your arms and hands appear very human");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasArmFlag(GLOBAL.FLAG_FEATHERED) || target.hasArmFlag(GLOBAL.FLAG_GOOEY))
+			{
+				output2(", if not for them being");
+				if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output2(" completely");
+				output2(" covered in");
+				if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+				output2(" " + target.furColor + " feathers");
+				if(target.skinType != GLOBAL.SKIN_TYPE_FEATHERS && target.hasArmFlag(GLOBAL.FLAG_FEATHERED)) output2(" from elbow to wrist -- looking very much like natural arm warmers");
+			}
+			output2(".");
+		}
+		if (target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
 		{
 			var bothHands:Boolean = false;
 			feedVal = 0;

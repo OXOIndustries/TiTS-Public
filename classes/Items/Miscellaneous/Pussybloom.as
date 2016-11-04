@@ -78,108 +78,74 @@
 					kGAMECLASS.output("\n\nFeeling much better, you gingerly remove your [pc.girlCum]-soaked digits from yourself and give the feminine addition a serious look. <b>");
 
 					pc.createVagina();
+					pc.setNewVaginaValues(0);
 					pc.clitLength = .25;
 					pc.vaginas[0].hymen = true;
-					var pcRace:String = pc.race();
-					if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "centaur", "horse-taur", target.mlpRace()))
+					
+					switch(pc.vaginas[0].type)
 					{
-						pc.shiftVagina(0, GLOBAL.TYPE_EQUINE);
-						kGAMECLASS.output("You’ve got ");
-						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
-						else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
-						kGAMECLASS.output(" horse-pussy.");
-					}
-					else if(InCollection(pcRace, "naleen", "naga"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_NAGA);
-						kGAMECLASS.output("You’ve got a slim, " + pc.vaginaColor(0) + "-hued snake-pussy.");
-					}
-					else if(pcRace == "zil")
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_BEE);
-						kGAMECLASS.output("You’ve got ");
-						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
-						else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
-						kGAMECLASS.output(" zil-pussy.");
-					}
-					else if (InCollection(pcRace, "leithan", "half-leithan"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_LEITHAN);
-						kGAMECLASS.output("You’ve got ");
-						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
-						else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
-						kGAMECLASS.output(" leithan pussy.");
-					}
-					else if (pcRace == "vanae-morph")
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_VANAE);
-						kGAMECLASS.output("You’ve got a virginal, " + pc.vaginaColor(0) + " vanae pussy.");
-					}
-					else if (InCollection(pcRace, "kui-tan", "half kui-tan"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_KUITAN);
-						kGAMECLASS.output("You’ve got ");
-						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
-						else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
-						kGAMECLASS.output(" ‘nuki-pussy.");
-					}
-					else if (InCollection(pcRace, "gryvain", "half-gryvain"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_GRYVAIN);
-						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + ", multi-clitted gryvain pussy.");
-					}
-					else if (pcRace == "lapinara")
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_LAPINARA);
-						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " lapinara pussy.");
-					}
-					else if (InCollection(pcRace, "canine-morph", "canine-taur"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_CANINE);
-						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " canine-pussy.");
-					}
-					else if (InCollection(pcRace, "vulpine-morph", "vulpine-taur") || InCollection(pcRace, "kitsune", "kitsune-morph", "kitsune-taur") && pc.hasFur()) // dogina is not exactly appropriate for kemonomimi type kitsune
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_VULPINE);
-						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " vulpine pussy.");
-					}
-					else if (InCollection(pcRace, "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_FELINE);
-						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " feline pussy.");
-					}
-					else if (InCollection(pcRace, "gabilani", "goblin"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_GABILANI);
-						kGAMECLASS.output("You’ve got a muscular, " + pc.vaginaColor(0) + " goblin pussy.");
-					}
-					else if (InCollection(pcRace, "plant-morph", "dryad"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_FLOWER);
-						kGAMECLASS.output("You’ve got a beautiful, " + pc.vaginaColor(0) + " orchid pussy.");
-					}
-					/*
-					else if (InCollection(pcRace, "siren", "anemone"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_SIREN);
-						kGAMECLASS.output("You’ve got a tentacled, " + pc.vaginaColor(0) + " alien pussy.");
-					}
-					else if (InCollection(pcRace, "synthetic", "robot", "companion droid"))
-					{
-						pc.shiftVagina(0, GLOBAL.TYPE_SYNTHETIC);
-						kGAMECLASS.output("You’ve got a robotic, " + pc.vaginaColor(0) + "-colored synthetic pussy.");
-					}
-					*/
-					else
-					{
-						if(pc.skinType == GLOBAL.SKIN_TYPE_GOO)
-						{
-							pc.vaginas[0].addFlag(GLOBAL.FLAG_GOOEY);
-							pc.vaginas[0].vaginaColor = pc.skinTone;
-						}
-						kGAMECLASS.output("You’ve got a pretty, " + pc.vaginaColor(0) + " pussy");
-						if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY)) kGAMECLASS.output(" made of goo");
-						kGAMECLASS.output(".");
+						case GLOBAL.TYPE_EQUINE:
+							kGAMECLASS.output("You’ve got ");
+							if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
+							else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
+							kGAMECLASS.output(" horse-pussy.");
+							break;
+						case GLOBAL.TYPE_NAGA:
+							kGAMECLASS.output("You’ve got a slim, " + pc.vaginaColor(0) + "-hued snake-pussy.");
+							break;
+						case GLOBAL.TYPE_BEE:
+							kGAMECLASS.output("You’ve got ");
+							if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
+							else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
+							kGAMECLASS.output(" zil-pussy.");
+							break;
+						case GLOBAL.TYPE_LEITHAN:
+							kGAMECLASS.output("You’ve got ");
+							if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
+							else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
+							kGAMECLASS.output(" leithan pussy.");
+							break;
+						case GLOBAL.TYPE_VANAE:
+							kGAMECLASS.output("You’ve got a virginal, " + pc.vaginaColor(0) + " vanae pussy.");
+							break;
+						case GLOBAL.TYPE_KUITAN:
+							kGAMECLASS.output("You’ve got ");
+							if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
+							else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
+							kGAMECLASS.output(" ‘nuki-pussy.");
+							break;
+						case GLOBAL.TYPE_GRYVAIN:
+							kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + ", multi-clitted gryvain pussy.");
+							break;
+						case GLOBAL.TYPE_LAPINARA:
+							kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " lapinara pussy.");
+							break;
+						case GLOBAL.TYPE_CANINE:
+							kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " canine-pussy.");
+							break;
+						case GLOBAL.TYPE_VULPINE:
+							kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " vulpine pussy.");
+							break;
+						case GLOBAL.TYPE_FELINE:
+							kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " feline pussy.");
+							break;
+						case GLOBAL.TYPE_GABILANI:
+							kGAMECLASS.output("You’ve got a muscular, " + pc.vaginaColor(0) + " goblin pussy.");
+							break;
+						case GLOBAL.TYPE_FLOWER:
+							kGAMECLASS.output("You’ve got a beautiful, " + pc.vaginaColor(0) + " orchid pussy.");
+							break;
+						case GLOBAL.TYPE_SIREN:
+							kGAMECLASS.output("You’ve got a tentacled, " + pc.vaginaColor(0) + " alien pussy.");
+							break;
+						case GLOBAL.TYPE_SYNTHETIC:
+							kGAMECLASS.output("You’ve got a robotic, " + pc.vaginaColor(0) + "-colored synthetic pussy.");
+							break;
+						default:
+							kGAMECLASS.output("You’ve got a pretty, " + pc.vaginaColor(0) + " pussy");
+							if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY)) kGAMECLASS.output(" made of goo");
+							kGAMECLASS.output(".");
+							break;
 					}
 					pc.orgasm();
 					kGAMECLASS.output("</b> You’ll have to spend some quality time with it soon.");

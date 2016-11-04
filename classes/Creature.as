@@ -52,6 +52,7 @@
 	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.indefiniteArticle;
+	import classes.Engine.Utility.stripRace;
 	import classes.GameData.CodexManager;
 
 	/**
@@ -1466,6 +1467,18 @@
 					break;
 				case "race":
 					buffer = race();
+					break;
+				case "raceType":
+				case "raceShort":
+				case "raceSimple":
+				case "simpleRace":
+				case "raceStrip":
+				case "stripRace":
+					buffer = raceShort();
+					break;
+				case "raceTypeStrict":
+				case "raceTypeHuman":
+					buffer = raceShort(true);
 					break;
 				case "armor":
 					buffer = armor.longName;
@@ -3216,19 +3229,20 @@
 		public function genderTextOverride():String
 		{
 			var autoSex:String = "";
+			var race:String = race();
 			
 			// Goo races
 			if
-			(	originalRace == "galotian" || race().indexOf("galotian") != -1
+			(	originalRace == "galotian" || race.indexOf("galotian") != -1
 			||	originalRace.indexOf("rahn") != -1 || isRahn()
 			||	originalRace == "conglomerate"
-			||	originalRace == "ganrael" || race().indexOf("ganrael") != -1
+			||	originalRace == "ganrael" || race.indexOf("ganrael") != -1
 			)
 			{
 				autoSex = "Unisex";
 			}
 			// Nyrea
-			if(originalRace == "nyrea" || race().indexOf("nyrea") != -1)
+			if(originalRace == "nyrea" || race.indexOf("nyrea") != -1)
 			{
 				if(isFemale()) autoSex = "Male";
 				if(isMale()) autoSex = "Female";
@@ -9184,53 +9198,101 @@
 			cocks[arg].cLengthRaw = 5.5;
 			if(hasPerk("Hung")) cocks[arg].cLengthRaw += 2+rand(4);
 			
-			var pcRace:String = race();
+			var race:String = race();
+			var raceSimple:String = stripRace(race);
 			
 			// Type changes
-			if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph", "canine-taur"))
+			if(InCollection(raceSimple, ["ausar", "canine"]))
 			{
 				shiftCock(arg,GLOBAL.TYPE_CANINE);
-				if(pcRace.indexOf("ausar") != -1) cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
+				if(raceSimple == "ausar") cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
 			}
-			else if (InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat"))
+			else if (race.indexOf("dragonne") == -1 && InCollection(raceSimple, ["kaithrit", "feline"]))
 			{
 				shiftCock(arg, GLOBAL.TYPE_FELINE);
-				if (pcRace.indexOf("kaithrit") != -1) // 'cause kaithrits are not cool enough to have real kitty peckers
+				if (raceSimple == "kaithrit") // 'cause kaithrits are not cool enough to have real kitty peckers
 				{
 					cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
 					cocks[arg].delFlag(GLOBAL.FLAG_TAPERED);
 				}
 			}
-			else if(InCollection(pcRace, "leithan", "half-leithan")) shiftCock(arg,GLOBAL.TYPE_SNAKE);
-			else if(InCollection(pcRace, "kui-tan", "half kui-tan")) shiftCock(arg, GLOBAL.TYPE_KUITAN);
-			else if(InCollection(pcRace, "gryvain", "half-gryvain")) shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
-			else if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", mlpRace())) shiftCock(arg, GLOBAL.TYPE_EQUINE);
-			else if(InCollection(pcRace, "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) shiftCock(arg,GLOBAL.TYPE_VULPINE);
-			else if(pcRace == "zil") shiftCock(arg,GLOBAL.TYPE_BEE);
-			else if(InCollection(pcRace, "naleen", "naga")) shiftCock(arg,GLOBAL.TYPE_NAGA);
-			else if(InCollection(pcRace, "raskvel", "raskvel-morph", "rask-morph")) shiftCock(arg, GLOBAL.TYPE_RASKVEL);
-			else if(InCollection(pcRace, "fanfir", "dragon-morph", "dragon-taur", "dragonne", "dragonne-taur")) shiftCock(arg, GLOBAL.TYPE_DRACONIC);
-			else if(pcRace == "demon-morph") shiftCock(arg, GLOBAL.TYPE_DEMONIC);
-			else if(pcRace == "kangaroo-morph") shiftCock(arg, GLOBAL.TYPE_KANGAROO);
-			else if(pcRace == "simii") shiftCock(arg, GLOBAL.TYPE_SIMII);
-			else if(pcRace == "saurian") shiftCock(arg, GLOBAL.TYPE_SAURIAN);
-			else if(pcRace == "venus pitcher") shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
-			else if(pcRace == "sydian") shiftCock(arg, GLOBAL.TYPE_SYDIAN);
-			else if(pcRace == "daynar") shiftCock(arg, GLOBAL.TYPE_DAYNAR);
-			else if(InCollection(pcRace, "gabilani", "goblin")) shiftCock(arg, GLOBAL.TYPE_GABILANI);
-			else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant")) shiftCock(arg, GLOBAL.TYPE_TENTACLE);
+			else if(raceSimple == "leithan") shiftCock(arg,GLOBAL.TYPE_SNAKE);
+			else if(raceSimple == "kui-tan") shiftCock(arg, GLOBAL.TYPE_KUITAN);
+			else if(raceSimple == "gryvain") shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
+			else if(InCollection(raceSimple, ["equine", "pony", "laquine", "ovir", "minotaur", "centaur"])) shiftCock(arg, GLOBAL.TYPE_EQUINE);
+			else if(InCollection(raceSimple, ["vulpine", "kitsune"])) shiftCock(arg,GLOBAL.TYPE_VULPINE);
+			else if(raceSimple == "zil") shiftCock(arg,GLOBAL.TYPE_BEE);
+			else if(InCollection(raceSimple, ["naleen", "naga"])) shiftCock(arg,GLOBAL.TYPE_NAGA);
+			else if(raceSimple == "raskvel") shiftCock(arg, GLOBAL.TYPE_RASKVEL);
+			else if(race.indexOf("dragonne") != -1 || InCollection(raceSimple, ["fanfir", "dragon"])) shiftCock(arg, GLOBAL.TYPE_DRACONIC);
+			else if(raceSimple == "demon") shiftCock(arg, GLOBAL.TYPE_DEMONIC);
+			else if(raceSimple == "kangaroo") shiftCock(arg, GLOBAL.TYPE_KANGAROO);
+			else if(raceSimple == "simii") shiftCock(arg, GLOBAL.TYPE_SIMII);
+			else if(raceSimple == "saurian") shiftCock(arg, GLOBAL.TYPE_SAURIAN);
+			else if(raceSimple == "venus pitcher") shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
+			else if(raceSimple == "sydian") shiftCock(arg, GLOBAL.TYPE_SYDIAN);
+			else if(raceSimple == "daynar") shiftCock(arg, GLOBAL.TYPE_DAYNAR);
+			else if(raceSimple == "gabilani") shiftCock(arg, GLOBAL.TYPE_GABILANI);
+			else if(race == "cockvine") shiftCock(arg, GLOBAL.TYPE_COCKVINE);
+			else if(InCollection(raceSimple, ["tentacle beast", "cockvine", "plant"])) shiftCock(arg, GLOBAL.TYPE_TENTACLE);
+			else if(raceSimple == "suula") shiftCock(arg, GLOBAL.TYPE_SIREN);
+			else if(raceSimple == "anemone") shiftCock(arg, GLOBAL.TYPE_ANEMONE);
+			else if(InCollection(raceSimple, ["sionach", "siel"]))
+			{
+				shiftCock(arg, GLOBAL.TYPE_INHUMAN);
+				switch(raceSimple)
+				{
+					case "sionach":
+						cocks[arg].knotMultiplier = 1.15;
+						cocks[arg].addFlag(GLOBAL.FLAG_KNOTTED);
+						cocks[arg].addFlag(GLOBAL.FLAG_SHEATHED);
+						cocks[arg].addFlag(GLOBAL.FLAG_TAPERED);
+						cocks[arg].addFlag(GLOBAL.FLAG_NUBBY);
+						break;
+					case "siel":
+						cocks[arg].cockColor = "pink";
+						break;
+				}
+			}
+			//else if(InCollection(race, ["synthetic", "robot", "companion droid"])) shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
 			else if(skinType == GLOBAL.SKIN_TYPE_GOO)
 			{
 				shiftCock(arg, GLOBAL.TYPE_HUMAN);
 				cocks[arg].addFlag(GLOBAL.FLAG_GOOEY);
 				cocks[arg].cockColor = skinTone;
 			}
-			/*
-			else if(pcRace == "anemone") shiftCock(arg, GLOBAL.TYPE_ANEMONE);
-			else if(pcRace == "siren") shiftCock(arg, GLOBAL.TYPE_SIREN);
-			else if(InCollection(pcRace, "synthetic", "robot", "companion droid")) shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
-			else if(pcRace == "cockvine") shiftCock(arg, GLOBAL.TYPE_COCKVINE);
-			*/
+		}
+		//General utility function for setting appropriate dick type with new-grown vaginas.
+		public function setNewVaginaValues(arg:int = 0):void
+		{
+			var race:String = race();
+			var raceSimple:String = stripRace(race);
+			
+			// Type changes
+			if(InCollection(raceSimple, ["equine", "pony", "laquine", "centaur"])) shiftVagina(arg, GLOBAL.TYPE_EQUINE);
+			else if(InCollection(raceSimple, ["naleen", "naga"])) shiftVagina(arg, GLOBAL.TYPE_NAGA);
+			else if(raceSimple == "zil") shiftVagina(arg, GLOBAL.TYPE_BEE);
+			else if(raceSimple == "leithan") shiftVagina(arg, GLOBAL.TYPE_LEITHAN);
+			else if(raceSimple == "vanae") shiftVagina(arg, GLOBAL.TYPE_VANAE);
+			else if(raceSimple == "kui-tan") shiftVagina(arg, GLOBAL.TYPE_KUITAN);
+			else if(raceSimple == "gryvain") shiftVagina(arg, GLOBAL.TYPE_GRYVAIN);
+			else if(raceSimple == "lapinara") shiftVagina(arg, GLOBAL.TYPE_LAPINARA);
+			else if(raceSimple == "canine") shiftVagina(arg, GLOBAL.TYPE_CANINE);
+			else if(raceSimple == "vulpine" || (raceSimple == "kitsune" && hasFur())) // dogina is not exactly appropriate for kemonomimi type kitsune
+			{
+				shiftVagina(arg, GLOBAL.TYPE_VULPINE);
+			}
+			else if(race.indexOf("dragonne") == -1 && InCollection(raceSimple, ["kaithrit", "feline"])) shiftVagina(arg, GLOBAL.TYPE_FELINE);
+			else if(raceSimple == "gabilani") shiftVagina(arg, GLOBAL.TYPE_GABILANI);
+			else if(raceSimple == "plant") shiftVagina(arg, GLOBAL.TYPE_FLOWER);
+			else if(InCollection(raceSimple, ["suula", "anemone"])) shiftVagina(arg, GLOBAL.TYPE_SIREN);
+			//else if(InCollection(race, ["synthetic", "robot", "companion droid"])) shiftVagina(arg, GLOBAL.TYPE_SYNTHETIC);
+			else if(skinType == GLOBAL.SKIN_TYPE_GOO)
+			{
+				shiftVagina(arg, GLOBAL.TYPE_HUMAN);
+				vaginas[arg].addFlag(GLOBAL.FLAG_GOOEY);
+				vaginas[arg].vaginaColor = skinTone;
+			}
 		}
 		
 		//create vagoo
@@ -9430,7 +9492,7 @@
 			 * In the event of a tie, pick the score with the highest NATURAL max.
 			 * Combine in other potentially interesting race combinations (or boring ones- if human score is high enough, always pre-pend 'half-' etc)
 			 * ie if your generic taur score is high enough, append "taur", so the game would do shit like ausartaur or w/e (taursaur?)
-			 * */		
+			 * */
 			
 			// Gryvin numbers might be too tight- you can walk away with like 7 to 9 score from creation. EVERYTHING just right will get you 12-ish.
 			 
@@ -9468,6 +9530,7 @@
 			if (vanaeScore() >= 6) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
 			if (zilScore() >= 6) race = "zil";
+			if (suulaScore() >= 6) race = "suula";
 			if (badgerScore() >= 4) race = "badger";
 			if (ovirScore() >= 5) race = "ovir";
 			if (myrScore() >= 4) race = "myr";
@@ -9499,6 +9562,11 @@
 			
 			return race;
 		}
+		public function raceShort(strict:Boolean = false): String
+		{
+			return stripRace(race(), (strict && this is PlayerCharacter));
+		}
+		
 		public function equineRace():String
 		{
 			if (horseScore() >= 5)
@@ -9570,8 +9638,8 @@
 		}
 		public function mlpRace():String
 		{
-			if (hasHorns() && hasWings()) return "alicorn";
-			if (hasHorns() && horns == 1) return "unicorn";
+			if (hasHorns() && hasWings()) return "alicorn pony";
+			if (hasHorns() && horns == 1) return "unicorn pony";
 			if (hasWings()) return "pegasus pony";
 			return "terran pony";
 		}
@@ -9753,7 +9821,7 @@
 			if (hasTail(GLOBAL.TYPE_DRACONIC) || hasTail(GLOBAL.TYPE_GRYVAIN)) counter++;
 			if (tongueType == GLOBAL.TYPE_DRACONIC) counter++;
 			if (cockTotal(GLOBAL.TYPE_DRACONIC) > 0 || cockTotal(GLOBAL.TYPE_GRYVAIN) > 0) counter++;
-			if (hasWings(GLOBAL.TYPE_DRACONIC) || hasWings(GLOBAL.TYPE_SMALLDRACONIC) || hasWings(GLOBAL.TYPE_GRYVAIN)) counter++;
+			if (hasWings() && InCollection(wingType, [GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_GRYVAIN])) counter++;
 			if (legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN) counter++;
 			if (hasHorns(GLOBAL.TYPE_DRACONIC) || hasHorns(GLOBAL.TYPE_LIZAN) || hasHorns(GLOBAL.TYPE_GRYVAIN)) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
@@ -10047,6 +10115,19 @@
 			if (counter > 1 && hasVagina() && totalClits()/totalVaginas() == 2) counter++;
 			if (counter > 2 && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
 			if (counter > 4 && hasTongueFlag(GLOBAL.FLAG_LONG) && hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) counter++;
+			return counter;
+		}
+		public function suulaScore(): int {
+			var counter: int = 0;
+			if (armType == GLOBAL.TYPE_SIREN) counter++;
+			if (legType == GLOBAL.TYPE_SIREN && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
+			if (faceType == GLOBAL.TYPE_SHARK || faceType == GLOBAL.TYPE_SIREN) counter++;
+			if (earType == GLOBAL.TYPE_SIREN) counter++;
+			if (hasTail(GLOBAL.TYPE_SIREN)) counter++;
+			if (hasWings() && InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) counter++;
+			if (counter > 4 && hasCock(GLOBAL.TYPE_SIREN)) counter++;
+			if (counter > 4 && hasVaginaType(GLOBAL.TYPE_SIREN)) counter++;
+			if (skinType != GLOBAL.SKIN_TYPE_SCALES) counter--;
 			return counter;
 		}
 		public function vanaeScore(): int
@@ -11785,7 +11866,7 @@
 				else if (type == GLOBAL.TYPE_CANINE) desc += "canine ";
 				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
 				else if (type == GLOBAL.TYPE_FELINE) desc += "feline ";
-				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE) desc += "siren ";
+				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE) desc += "suula ";
 				else if (type == GLOBAL.TYPE_GRYVAIN) desc += "draconic ";
 				else if (type == GLOBAL.TYPE_BEE) desc += "zil-styled ";
 				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
@@ -11856,9 +11937,9 @@
 				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE)
 				{
 					if (!simple)
-						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "siren-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
+						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "suula-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
 					else
-						desc += RandomInCollection(["siren-pussy", "venom-pussy", "siren-pussy", "siren-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","siren-twat","siren-snatch","cunt"]);
+						desc += RandomInCollection(["suula-pussy", "venom-pussy", "suula-pussy", "suula-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","suula-twat","suula-snatch","cunt"]);
 				}
 				else if (type == GLOBAL.TYPE_GRYVAIN)
 				{

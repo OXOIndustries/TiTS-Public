@@ -225,7 +225,7 @@
 			"Kangaroo",
 			"Gabilani",
 			"Shark",
-			"Siren",
+			"Suula",
 			"Deer",
 			"Anemone",
 			"Tentacle",
