@@ -1415,9 +1415,15 @@ public function layFertilizedVenusPitcherEgg():void
 	StatTracking.track("pregnancy/total births");
 
 	pc.orgasm();
+	
+	// Update data here
+	VenusPitcherFertilizedSeedCarrierHandler.cleanupPregnancy(pc, pSlot);
+	// Check after updates
+	pData = pc.getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
+	pSlot = pc.findPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
 
 	// Do the needful with the eggs etc
-	if (pData != null && pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.");
+	if (pData != null && pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you’re going to be going through this at least once more. You can’t stop your " + (pSlot >= 0 ? "[pc.vagina " + pSlot + "]" : "[pc.vaginas]") + " from tingling hotly at the thought.");
 	//Count the number of times PC has laid full seed batches. Incremented after laying the last seed.
 	else 
 	{
@@ -1445,7 +1451,7 @@ public function layFertilizedVenusPitcherEgg():void
 	}
 	else
 	{
-		output("\n\nAre you going to find a good spot for the fledgeling pitcher to root or call in a drone to have it delivered to your daycare?");
+		output("\n\nAre you going to find a good spot for the fledgling pitcher to root or call in a drone to have it delivered to your daycare?");
 		addButton(0, "Plant It", function():void {
 			clearOutput();
 			userInterface.author("Fenoxo");

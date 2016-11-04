@@ -59,7 +59,6 @@
 		
 		public static function doEggLay():void {
 			kGAMECLASS.layFertilizedVenusPitcherEgg();
-			VenusPitcherFertilizedSeedCarrierHandler.cleanupPregnancy(kGAMECLASS.pc);
 		}
 	
 		public static function convertPregnancy(father:Creature, mother:Creature, pregSlot:int):void
@@ -97,8 +96,14 @@
 			pData.pregnancyBellyRatingContribution += 4 * pData.pregnancyQuantity;
 		}
 		
-		public static function cleanupPregnancy(target:Creature):void
+		public static function cleanupPregnancy(target:Creature, pregSlot:int = -1):void
 		{
+			if(target == null || pregSlot < 0)
+			{
+				/* Error, no pregnancy! */
+				return;
+			}
+			
 			if (target.hasStatusEffect("Venus Pitcher Seed Residue"))
 			{
 				target.setStatusMinutes("Venus Pitcher Seed Residue", 20160);
@@ -108,9 +113,9 @@
 				target.createStatusEffect("Venus Pitcher Seed Residue", 0, 0, 0, 0, true, "", "", false, 20160);
 			}
 			
-			var pData:PregnancyData	= target.getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
+			var pData:PregnancyData	= target.pregnancyData[pregSlot];
 			
-			if(pData == null)
+			if(pData == null || pData.pregnancyType != "VenusPitcherFertilizedSeedCarrier")
 			{
 				/* Error, no pregnancy! */
 				return;
