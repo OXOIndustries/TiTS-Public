@@ -82,7 +82,6 @@ public function taivrasPalaceSquareBonus():Boolean
 {
 	author("Savin");
 	//Officially become King Nyrea!
-	//if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1) 
 	if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1 && flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) <= GetGameTimestamp())
 	{
 		nyreaKingReturnGreeting();
@@ -241,9 +240,9 @@ public function bribeTaivrasGateGuards():void
 	{
 		if(pc.inventory[x].type == GLOBAL.GEM) gems++;
 	}
-	if(gems == 0) addDisabledButton(1,"Gems","Gems","You don't have any gems.");
-	else if(gems == 1) addButton(1,"Gem",giveDemAGem,gems,"Gem","Offer the gem you're carrying.");
-	else addButton(2,"Gems",giveDemAGem,gems,"Gems","Maybe they'd be interested in one of the gems you're carrying...");
+	if(gems == 0) addDisabledButton(1,"Gems","Gems","You don’t have any gems.");
+	else if(gems == 1) addButton(1,"Gem",giveDemAGem,gems,"Gem","Offer the gem you’re carrying.");
+	else addButton(2,"Gems",giveDemAGem,gems,"Gems","Maybe they’d be interested in one of the gems you’re carrying...");
 }
 
 public function giveDemAGem(gems:int):void
@@ -458,9 +457,9 @@ public function queensChambersBonus():Boolean
 		if(pc.hasCock())
 		{
 			if(pc.lust() >= 33) addButton(1,"Gloryhole",useRepeatGloryhole,undefined,"Use Gloryhole","Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.");
-			else addDisabledButton(0,"Gloryhole","Use Gloryhole","You're not aroused enough to consider this.");
+			else addDisabledButton(0,"Gloryhole","Use Gloryhole","You’re not aroused enough to consider this.");
 		}
-		else addDisabledButton(0,"Gloryhole","Use Gloryhole","You don't have the equipment to do that.");
+		else addDisabledButton(0,"Gloryhole","Use Gloryhole","You don’t have the equipment to do that.");
 	}
 	//Play <i>“Incubator Goo”</i> encounter on first entry.
 	else if(flags["CRYSTAL_GOO_DEFEAT"] == undefined)
@@ -528,7 +527,7 @@ public function taivrasStairwellBonus():Boolean
 	author("Savin");
 	output("A curving path connects the rest of the palace grounds to a large set of stairs, leading up to a pair of heavy stone doors flanked by brilliantly glowing blue lanterns. Through the door, you can hear the sounds of pleasure echoing, moans and cries of sexual ecstasy. Several of them, in fact.");
 	//if Princess Defeated:
-	if (flags["PRINCESS_DEFEATED"] != undefined) output(" You're surprised the harem is still going, even after freeing them from the queen's daughter.");
+	if (flags["PRINCESS_DEFEATED"] != undefined) output(" You’re surprised the harem is still going, even after freeing them from the queen’s daughter.");
 	return false;
 }
 
@@ -536,17 +535,17 @@ public function taivrasStairwellBonus():Boolean
 public function haremChamberBonusFunc():Boolean
 {
 	author("Savin");
-	output("The harem chamber is a wide open stone room covered with pillows, cushions, and other comforts for the feminine males kept within it. An all but obscene amount of bondage gear - leather, cuffs, whips, and chains, plus no small number of dildos and plugs - sits in racks along the walls. Several dozen \"male\" nyrea - all with plump bosoms, girly figures, and drooling vaginal slits - make up their queen's harem.");
+	output("The harem chamber is a wide open stone room covered with pillows, cushions, and other comforts for the feminine males kept within it. An all but obscene amount of bondage gear - leather, cuffs, whips, and chains, plus no small number of dildos and plugs - sits in racks along the walls. Several dozen “male” nyrea - all with plump bosoms, girly figures, and drooling vaginal slits - make up their queen’s harem.");
 
 	//Post Princess battle:
 	if(flags["PRINCESS_DEFEATED"] != undefined)
 	{
 		output("\n\nThe nyrean princess is down in the middle of her swarming harem, pinned by some of that very same bondage gear to the wall. Her eyes are glassy and fogged, her lips flopping and confused, yet her unseemly prick is still rock hard and oozing a thick, purple paste as if recently used. The harem males aren’t giving her much rest, it seems.");
 		//output("\n\nThe harem is currently taking their lusts and aggression out on the nyrean princess. Moans and cries of pleasure echo through the chamber, and the floor is covered with writhing bodies and squirting cum.");
-		addButton(0,"Join Orgy",genericPostVictoryPrincessOrgyFuck,undefined,"Join Orgy","You've little doubt the harem slaves would welcome their liberator into the orgy.");
+		addButton(0,"Join Orgy",genericPostVictoryPrincessOrgyFuck,undefined,"Join Orgy","You’ve little doubt the harem slaves would welcome their liberator into the orgy.");
 	}
 	//PC is KingNyrea:
-	else if(flags["KING_NYREA"] == 1)
+	else if(pc.hasPerk("Nyrean Royal"))
 	{
 		output("\n\nYour nyrea harem is lounging around on the cushions and couches. They do nothing to conceal their nudity as you observe them - indeed, some actively flaunt it, running their hands over hefty tits or spreading their pussy-lips invitingly. Others are busy with each other, groping and kissing and grinding their unique sexes against each others’ chitinous bodies.");
 	}
@@ -567,12 +566,12 @@ public function gatewayBonusFunc():Boolean
 		if(!pc.hasKeyItem("Silver Key")) 
 		{
 			output("sealed, barring your path. You’ll need to find a key to get the big, meaty padlock off of it.");
-			addDisabledButton(0,"Use Key","Use Key","You don't have the key.");
+			addDisabledButton(0,"Use Key","Use Key","You don’t have the key.");
 		}
 		else 
 		{
 			output("sealed, barring your path. Luckily, you found a key!");
-			addButton(0,"Use Key",unlockedTaivrasGate,undefined,"Use Key","Put that big ol' silver key you found to use.");
+			addButton(0,"Use Key",unlockedTaivrasGate,undefined,"Use Key","Put that big ol’ silver key you found to use.");
 		}
 	}
 	else output("standing open, allowing you to enter the queen’s throne room.");
@@ -610,10 +609,10 @@ public function taivrasThroneBonusFunc():Boolean
 	//First 12 hours after fight:
 	else if(flags["KING_NYREA"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + (12 * 60) > GetGameTimestamp())
 	{
-		output("Your newly-minted mate is sitting on the edge of her throne's dias, tending to the wounds her bodyguard suffered at Dane's hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father's probe remains where it was, acting as your wife's throne. It flashes occasionally, reacting to your presence.\n\n<b>You should come back in a day or so if you'd like to interact her. Hopefully someone will remember to tell the gate guards about you. It'd suck to have to fight them again on the way out - but it might happen.</b>");
+		output("Your newly-minted mate is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at Dane’s hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father’s probe remains where it was, acting as your wife’s throne. It flashes occasionally, reacting to your presence.\n\n<b>You should come back in a day or so if you’d like to interact her. Hopefully someone will remember to tell the gate guards about you. It’d suck to have to fight them again on the way out - but it might happen.</b>");
 	}
 	//PC spared Taivra:
-	else if(flags["KING_NYREA"] == undefined)
+	else if(flags["KING_NYREA"] == undefined || !pc.hasPerk("Nyrean Royal"))
 	{
 		output("Queen Taivra is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at Dane’s hands.");
 		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
@@ -690,7 +689,7 @@ public function incubatorGooEncounter():void
 	}
 	else
 	{
-		addDisabledButton(0,"Use G.Hole","Use Gloryhole","You don't have the equipment to do that.");
+		addDisabledButton(0,"Use G.Hole","Use Gloryhole","You don’t have the equipment to do that.");
 		addButton(1,"Step Back",stepBackFromGloryHoles,undefined,"Step Back","You don’t exactly have the right equipment to slot in there...");
 	}
 }
@@ -910,15 +909,15 @@ public function pcBeatsGoo():void
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a cock to jam one inside of her.");
 		if(pc.hasGenitals()) 
 		{
-			if(pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) == -1) addDisabledButton(1,"Get Egged","Get Egged","You don't have any room for eggs.");
+			if(pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) == -1) addDisabledButton(1,"Get Egged","Get Egged","You don’t have any room for eggs.");
 			else addButton(1,"Get Egged",getEggedByCrystalGoo,undefined,"Get Egged","You can only imagine how amazing it would feel to have the bubbly bimbo goo-girl pump you full of her eggs.");
 		}
 		else addDisabledButton(1,"Get Egged","Get Egged","You need genitals for this act.");
 	}
 	else
 	{
-		addDisabledButton(0,"Fuck Her","Fuck Her","You aren't aroused enough to even consider this.");
-		addDisabledButton(1,"Get Egged","Get Egged","You aren't aroused enough to even consider this.");
+		addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough to even consider this.");
+		addDisabledButton(1,"Get Egged","Get Egged","You aren’t aroused enough to even consider this.");
 	}
 	if(hasGooArmorOnSelf() && !hasGooArmorUpgrade("ganrael")) addButton(14,"Leave",armorGooVictoryShits);
 	else addButton(14,"Leave",CombatManager.genericVictory);
@@ -1213,14 +1212,14 @@ public function taivraTalk(plat190:Boolean):void
 	clearMenu();
 	author("Savin");
 	addButton(0,"Fight",startFightingQueenButt,plat190,"Fight","No need to drag this out. Time to kick the queen’s ass.");
-	if(flags["TAIVRA_RIVAL_TALK"] == 1) addDisabledButton(1,"Rivals","Rivals","You've already mentioned this.");
+	if(flags["TAIVRA_RIVAL_TALK"] == 1) addDisabledButton(1,"Rivals","Rivals","You’ve already mentioned this.");
 	else addButton(1,"Rivals",explainRivalnessToTaivra,plat190,"Rivals","Try and explain that you and your cousin are rivals - you’re anything but in league with each other!");
 	if(flags["TAIVRA_DEAL_UNLOCKED"] == undefined) addButton(2,"Peace",talkOfPeace,plat190,"Peace","Tell the nyrean queen you come in peace. Now that you’re talking to someone in charge, maybe you can work out a deal.");
 	else addDisabledButton(2,"Peace","Peace","You’ve already discussed this!");
 	if(pc.isMischievous()) addButton(3,"Probe",probeTouch,plat190,"Probe","You’re here for the probe. Nothing more, nothing less. You’ll do whatever it takes to make the queen happy in order to get it.");
 	else addDisabledButton(3,"Probe","Probe","This option is for mischievous characters only.");
 	if(flags["TAIVRA_DEAL_UNLOCKED"] == 1) addButton(4,"Deal",dealWithTaivra,plat190,"Deal","You’ve convinced Queen Taivra to listen to your deal. Better make a damn good offer, or else you’ll probably be in for a fight to get that probe.");
-	else addDisabledButton(4,"Deal","Deal","You've got to convince her to make a deal before you can figure out what kind of deal to cut.");
+	else addDisabledButton(4,"Deal","Deal","You’ve got to convince her to make a deal before you can figure out what kind of deal to cut.");
 }
 
 //Fight
@@ -1252,7 +1251,7 @@ public function configureQueensguardFight():void
 	CombatManager.lossScene(loseToQueensTaivra);
 	CombatManager.displayLocation("QUEENSGUARD");
 	
-	pc.createStatusEffect("Cage Distance", 2, 0, 0, 0, false, "Icon_RadioSignal", "You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.", true, 0);
+	pc.createStatusEffect("Cage Distance", 2, 0, 0, 0, false, "Icon_RadioSignal", "You’re a good ways away from Dane and your cousin’s cage. It’ll take a lot of work to reposition yourself to break them out.", true, 0);
 }
 
 //Rivals
@@ -1353,7 +1352,7 @@ public function probeTouch(plat190:Boolean = false):void
 
 //Deal
 //You’ve convinced Queen Taivra to listen to your deal. Better make a damn good offer, or else you’ll probably be in for a fight to get that probe.
-//Open up list of sub-options. PC gets 2 tries before we get a <i>“Bad Deal”</i> intro to the fight, below.
+//Open up list of sub-options. PC gets 2 tries before we get a “Bad Deal” intro to the fight, below.
 public function dealWithTaivra(plat190:Boolean = false):void
 {
 	//[Sex] [Credits] [Alliance] [Princess] [Weapons] [Back]
@@ -1365,16 +1364,16 @@ public function dealWithTaivra(plat190:Boolean = false):void
 	}
 	addButton(0,"Sex",offerTaivraSexUSloot,undefined,"Sex","Maybe you could offer your body up as an incentive to the randy queen...");
 	if(pc.credits >= 20000) addButton(1,"Credits",offerTaivraCredits,plat190,"Credits","Offer to pay her for the probe. Give her what it’s worth to the company, and you’ll break out even. Everybody likes money, right?");
-	else addDisabledButton(1,"Credits","Credits","You don't have a decent amount of credits to offer.");
+	else addDisabledButton(1,"Credits","Credits","You don’t have a decent amount of credits to offer.");
 
 	if(flags["OFFERED_TAIVRA_AN_ALLIANCE"] == undefined) addButton(2,"Alliance",offerTaivraAnAlliance,plat190,"Alliance","Offer Queen Taivra an alliance. There’s not much you can do to cement it beyond your word at this point, but being the partner of an interstellar business mogul is a hell of an advantage when your world is on the brink, and you’re just a stone age tribe. Steele Tech could offer her help, protection...");
 	else addButton(2,"Partnership",partnershipWithTaivra,plat190,"Partnership","Your father was the biggest interstellar playboy in the galaxy. He left a trail of lovers in his wake. What are you, if not your father’s child? You offered the nyrea partnership, so make it official: take Queen Taivra as your wife, with all the responsibility and vulnerability that brings.");
 
 	if(flags["PRINCESS_DEFEATED"] != undefined) addButton(3,"Princess",princessChoice,plat190,"Princess","Offer to take the rambunctious princess under your care. Marry her, if you have to. Surely Taivra wouldn’t object to her daughter being at the side of a galactic super-star like you’ll soon be.");
-	else addDisabledButton(3,"Locked","Locked","You haven't met who you need to meet to unlock this option.");
+	else addDisabledButton(3,"Locked","Locked","You haven’t met who you need to meet to unlock this option.");
 	addButton(4,"Weapon",giveTaivraGunsForPeace,plat190,"Weapons","Offer the nyrean queen futuristic weapons from Steele Tech. Imagine going from the literal stone age to rocking modern ray guns. Goodbye, balance of power... Though you’ll be trading your reward for recovering the probe in exchange for the guns.");
 }
-public function dealTick():void
+public function taivraDealTick():void
 {
 	if(flags["TAIVRA_DEAL_ATTEMPTS"] == undefined) flags["TAIVRA_DEAL_ATTEMPTS"] = 0;
 	flags["TAIVRA_DEAL_ATTEMPTS"]++;
@@ -1389,7 +1388,7 @@ public function offerTaivraSexUSloot(plat190:Boolean = false):void
 	author("Savin");
 	output("<i>“Surely we can come to some kind of... mutually beneficial arrangement,”</i> you offer, taking a playful step forward and running a hand across your body, emphasizing your crotch and chest for the queen’s perusal.");
 	output("\n\nTaivra stares flatly at you, scowling. <i>“Is that the best you can offer, offworlder? Pleasures of the flesh?”</i> she asks, sweeping a hand across the throne-full of mewling betas around herself. <i>“Surely you realize I have more sex at hand than even a Gold Myr queen. I’m sure you have some very interesting skills, and perhaps unique... parts... meant for pleasure, but I’m not so easily swayed. Hmpf, if you star-walkers all negotiate like that, perhaps you belong on this planet after all.”</i>");
-
+	processTime(1);
 }
 
 
@@ -1407,7 +1406,7 @@ public function giveTaivraGunsForPeace(plat190:Boolean = false):void
 	output("\n\nAfter a long moment of deliberation, the queen chuckles and clicks the butt of her spear against the stone dais under her. <i>“You offer a compelling deal, but no. The moment this new government, the Scarlet Federation, hears about a group of nyrea with advanced weapons, we’ll have a battalion of soldiers knocking at our doors. They’ve pressganged thousands of nyrea from their home continent into service, as I understand. I can’t imagine they would make an exception for me, if they’ve already tamed more powerful nyrea warlords than me. I’d rather not draw attention to myself, at least not now.”</i>");
 	output("\n\nDamn, you were sure she’d go for that one...");
 	processTime(2);
-	dealTick();
+	taivraDealTick();
 	dealWithTaivra(plat190);
 }
 
@@ -1424,7 +1423,7 @@ public function princessChoice(plat190:Boolean = false):void
 	output("\n\n<i>“No,”</i> Taivra snaps, narrowing her eyes. <i>“Furthermore, I will have you flogged if you laid a hand on my daughter. Taivris may be the eldest of my brood, but as you may have noticed, [pc.name], I have a great many children. Several I will sire on you, in fact.”</i>");
 	output("\n\nYou blink.");
 	processTime(1);
-	//Add <i>“Bad Deal”</i> here
+	//Add “Bad Deal” here
 	clearMenu();
 	addButton(0,"Next",badDealWithTaivra);
 }
@@ -1441,7 +1440,7 @@ public function offerTaivraCredits(plat190:Boolean = false):void
 	output("<i>“I can pay you for the probe,”</i> you offer, drawing your Codex. <i>“It’s worth a small fortune to me, I assure you.”</i>");
 	output("\n\nQueen Taivra laughs at that - laughs right in your face. <i>“[pc.name], your money is less than worthless down here. I can’t buy arms and armor from my smith with anything less than gems and gold; I can’t trade with other tribes, other alphas. Your credits can’t be smelted down or made into beautiful things. No, I have no use for your money. Go talk to Seifyn outside - she’s the only one you’ll find in the deep caves interested in your imaginary credits.”</i>");
 	processTime(1);
-	dealTick();
+	taivraDealTick();
 	dealWithTaivra(plat190);
 }
 
@@ -1464,7 +1463,7 @@ public function offerTaivraAnAlliance(plat190:Boolean = false):void
 
 	output("\n\nShe makes a good point, but the way she’s looking at you... the way she hasn’t called her bodyguard to start dismembering you... Queen Taivra knows this could be a good deal. She wants something from you, and you’re so close... but what more could you offer her?");
 
-	//Replace option with [Partnership]. Doesn’t count towards <i>“Bad Deal”</i>
+	//Replace option with [Partnership]. Doesn’t count towards “Bad Deal”
 	flags["OFFERED_TAIVRA_AN_ALLIANCE"] = 1;
 	processTime(4);
 	dealWithTaivra(plat190);
@@ -1571,7 +1570,7 @@ public function moveToCage():void
 {
 	clearOutput();
 	if(pc.statusEffectv1("Cage Distance") >= 2) output("You try to work your way closer to the cage holding Dane and [rival.name] but only manage to close about half the distance.");
-	else if(pc.statusEffectv1("Cage Distance") == 1) output("Working across the room, you close the rest of the way with Dane's cage. <b>Maybe you can break him out?</b>");
+	else if(pc.statusEffectv1("Cage Distance") == 1) output("Working across the room, you close the rest of the way with Dane’s cage. <b>Maybe you can break him out?</b>");
 	pc.addStatusValue("Cage Distance",1,-1);
 	if (enemy is Queensguard) (enemy as Queensguard).queensguardLongUpdate(pc);
 	CombatManager.processCombat();
@@ -1623,7 +1622,7 @@ public function breakOutDane():void
 		output("You’ve got a clear shot at Dane’s cage now, and the ausar knows it. <i>“Get me out of here!”</i> he growls, eyeing Taivra dangerously. <i>“C’mon already!”</i>");
 		output("\n\nYou take aim at the lock and strike!");
 		output("\n\nAs soon as you destroy the cage’s primitive lock, Dane is surging into action. The big ausar combat rolls into the door, smashing it fully open with his muscular bulk. His hands wrap around the haft of his warden’s spear, and with a simple tug, the weapon is liberated from the gape-mouthed nyrea. As big as Dane is, the spear looks like a toothpick in his hammer-thick hands. He growls, deep in his throat and snaps it in two, simultaneously backhanding the surprised cave-dweller into the wall with one of his free hands.");
-		output("\n\nThe alabaster ausar is utterly naked, stripped of his gear and bruised from his capture, but he’s grinning like a mad dog all the same. The veins on his arms bulge as he flexes his corded muscles, flipping the pieces of primitive weaponry down to his lower arms to hold like daggers. <i>“You should’ve killed me when you had the chance. This time you won’t get a chance to have your pets jump me in the dark. Come on, [pc.name]. Let's take her.”</i>");
+		output("\n\nThe alabaster ausar is utterly naked, stripped of his gear and bruised from his capture, but he’s grinning like a mad dog all the same. The veins on his arms bulge as he flexes his corded muscles, flipping the pieces of primitive weaponry down to his lower arms to hold like daggers. <i>“You should’ve killed me when you had the chance. This time you won’t get a chance to have your pets jump me in the dark. Come on, [pc.name]. Let’s take her.”</i>");
 		output("\n\nQueensguard valiantly struggles to her feet to interpose herself between her mistress and the near-rabid ausar, but she earns little more than a stunning backhand for her effort.\n\n<b>Together you can bring down the Queen!</b>");
 		flags["FREED_DANE_FROM_TAIVRA"] = 1;
 		pc.removeStatusEffect("Cage Distance");
@@ -1660,7 +1659,7 @@ public function spankedQueensguardsAss(daneEndedIt:Boolean = false):void
 	else output("these star-walkers truly have no honor.");
 	output(" Very well, it’s been much too long since I’ve bloodied my spear.”</i>");
 
-	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output("\n\n<i>“You won't get the chance!”</i> the over-sized ausar grunts.");
+	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output("\n\n<i>“You won’t get the chance!”</i> the over-sized ausar grunts.");
 	processTime(2);
 	clearMenu();
 	
@@ -1729,7 +1728,7 @@ public function whupTaivrasAss():void
 		if(pc.hasGenitals()) addButton(0,"Fuck Taivra",fuckTaivra,undefined,"Fuck Taivra","Take your frustrations out on the nyrean queen. It’s the least you deserve for conquering her and her people.");
 		else addDisabledButton(0,"Fuck Taivra","Fuck Taivra","You need genitals to fuck the Queen.");
 	}
-	else addDisabledButton(0,"Fuck Taivra","Fuck Taivra","You're not aroused enough to consider this.");
+	else addDisabledButton(0,"Fuck Taivra","Fuck Taivra","You’re not aroused enough to consider this.");
 	addButton(1,"Kill Taivra",killTaivraYouMonster,undefined,"Kill Taivra","The nyrea have been a constant threat on this planet, and would have done far worse. Kill the queen to keep her and her people from bothering you - and any other offworlder - ever again.");
 	//Subjugate
 	//PC must have either read the nyrea codex or talked to Seifyn about Queen Taivra. Must have solo’d Queensguard and Taivra.
@@ -1738,7 +1737,7 @@ public function whupTaivrasAss():void
 		if(CodexManager.entryViewed("Nyrea") || flags["SEIFYN_TAIVRA_TALK"] == 1) addButton(2,"Subjugate",subjugateQueenTaivra,undefined,"Subjugate","You know how the nyrea operate - especially Queen Taivra, it seems. Were your positions reversed, she’d have added you to her harem; maybe you should add the queen to yours? To the victor go the spoils, and you just single-handedly beat down her and her bodyguard.");
 		else addDisabledButton(2,"Subjugate","Subjugate","You don’t know enough about the nyrea to try and seize control here.")
 	}
-	else addDisabledButton(2,"Subjugate","Subjugate","She'd never respect someone who needed help to defeat her.");
+	else addDisabledButton(2,"Subjugate","Subjugate","She’d never respect someone who needed help to defeat her.");
 	addButton(14,"Leave",leaveTaivraLikeABaws,undefined,"Leave","You don’t need anything else from the nyrea. Take your leave.");
 }
 
@@ -1894,10 +1893,10 @@ public function fuckTaivrasAss():void
 	output("\n\nTaivra makes no sign that she heard you, but something tells you that she’ll do what you want. You grab her spear, a sign of your conquest, and start heading for the curtain. You make your way out of the nyrean palace, ready for the next phase of your journey.");
 
 	output("\n\nWonder what’ll be guarding the next probe...\n\n");
-	processTime(30);
 	pc.orgasm();
 	flags["FUCKED_TAIVRA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
+	processTime(30);
 	CombatManager.genericVictory();
 }
 
@@ -1996,6 +1995,7 @@ public function subjugateQueenTaivra():void
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	//Should make queen nyreabuns ready to go immediately
 	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp() - (60 * 13);
+	processTime(12);
 	CombatManager.genericVictory();
 }
 
@@ -2292,17 +2292,10 @@ public function leaderShipDeadTaivraConvo():void
 	{
 		output("<i>“So, how’s the queen doing?”</i> you ask with a grin, shooting a glance to the sealed doors of the palace.");
 		output("\n\n<i>“You mean after you kicked her ass?”</i> Siefyn says, crossing her arms. <i>“She told us what happened. Gathered everyone up, said offworlders made a fool of her. Hurt her bodyguard. Something told me you might have been the one.”</i>");
-		output("\n\nYou ");
-		if(pc.isMischievous()) output("shrug noncommittally. Maybe it was, maybe it wasn’t.");
-		else output("admit that it was, yes.");
-		output(" Siefyn nods slowly. <i>“Well, she’s locked herself in her palace now. Says she doesn’t want anything else to do with off-worlders. I can see why, but... we need the trade. I don’t want to be the one with sticks and stones when the myr have magic guns from space.”</i>");
-
+		output("\n\nYou " + (pc.isMischievous() ? "shrug noncommittally. Maybe it was, maybe it wasn’t." : "admit that it was, yes.") + " Siefyn nods slowly. <i>“Well, she’s locked herself in her palace now. Says she doesn’t want anything else to do with off-worlders. I can see why, but... we need the trade. I don’t want to be the one with sticks and stones when the myr have magic guns from space.”</i>");
 		output("\n\n<i>“So Taivra doesn’t want you trading with us now?”</i>");
-
 		output("\n\n<i>“No, but...”</i> Siefyn chuckles, flicking back a stray lock of hair. <i>“You’re way too valuable to turn away.”</i>");
-
 		output("\n\nUh-huh. You’re sure that’s what she says to all the star-walkers...");
-
 		output("\n\nSiefyn sighs wistfully and rests her chin on her hands. <i>“Anyway... something else I can help you with, [pc.name]?”</i>");
 	}
 	//[Next]
@@ -2655,7 +2648,7 @@ public function useRepeatGloryhole():void
 		output(" There is a slight pause, and then an emerald blob peeks out from the hole, forming itself into a human-like head with big elfin ears and an expression of intense suspicion.");
 		output("\n\n<i>“Heyyy... you’re not the queen!”</i> she yelps, her purple eyes glaring at you. <i>“Nobody’s allowed to use the queen’s goo but Taivra!”</i>");
 		output("\n\nHer gooey mass attempts to make its way toward you as you try your best to explain. Suddenly she freezes before completely grabbing your [pc.foot]. Taivra is standing behind you in a commanding stance.");
-		output("\n\n<i>“My, my. It seems I have forgotten to introduce you to my pet,”</i> the queen says. Kneeling down, she gives the goo girl a pat. <i>“This is Beryl, my personal incubator - she tends to be a bit overprotective of my eggs, but I wouldn't want it any other way...”</i>");
+		output("\n\n<i>“My, my. It seems I have forgotten to introduce you to my pet,”</i> the queen says. Kneeling down, she gives the goo girl a pat. <i>“This is Beryl, my personal incubator - she tends to be a bit overprotective of my eggs, but I wouldn’t want it any other way...”</i>");
 		output("\n\nHer loyal “pet” responds with a bubbly smile.");
 		output("\n\n<i>“And this,”</i> Taivra directs the goo’s attention to you, <i>“is [pc.fullName], the new Nyrean Royal of the palace. [pc.HeShe] is allowed full access to my chambers, </i>including<i> my little pets.”</i> Looking at your slime-slicked cock, the queen smiles. <i>“Although it seems like you two were getting along just fine earlier.”</i>");
 		output("\n\n<i>“Ohhh, okay! I’m sorry if I, like, scared you and stuff, [pc.name]!”</i> Beryl apologizes.");
@@ -2714,9 +2707,9 @@ public function taivraRepeatMenu():void
 	//[Talk] [Chambers] [Throne Sex] [Appearance]
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Chambers",goToTaivrasChambersForSex,undefined,"Chambers","Ask Taivra if the two of you can retire to her chambers - a bit more intimate of a setting. (This means sex!)");
-	else addDisabledButton(0,"Chambers","Chambers","You're not really interested in a bedroom romp at the moment.");
+	else addDisabledButton(0,"Chambers","Chambers","You’re not really interested in a bedroom romp at the moment.");
 	if(pc.lust() >= 33) addButton(1,"Throne Sex",taivraThroneSex,undefined,"Throne Sex","Don’t bother with privacy or modesty: join Taivra’s group of betas on her throne and enjoy the pleasure the queen can offer.");
-	else addDisabledButton(1,"Throne Sex","Throne Sex","You're not turned on enough for this.");
+	else addDisabledButton(1,"Throne Sex","Throne Sex","You’re not turned on enough for this.");
 	addButton(2,"Appearance",queenTaivraAppearance,undefined,"Appearance","Take a gander at the queen.");
 	
 	// (N.B: Maybe this could take place after a certain amount of time or number of scenes with your new waifu? Makes sense that you’d notice any discomfort she might have after spending some time with her)
@@ -2850,7 +2843,7 @@ public function goToTaivrasChambersForSex():void
 	author("Savin");
 	currentLocation = "2C15";
 	generateMapForLocation(currentLocation);
-	showName("QUEEN'S\nCHAMBERS");
+	showLocationName();
 	showTaivra(true);
 	output("With an alluring smile, you ask the nyrean queen if she’d care to retire to her chambers with you.");
 	output("\n\nShe smiles and stands, taking a long-legged step towards you that pops her many tentacles out of her mewling betas. <i>“I’d like that very much,”</i> she purrs, wrapping a hand around your waist and pulling herself close. <i>“There’s not much requiring my attention at the moment, after all.”</i>");
@@ -2872,10 +2865,10 @@ public function goToTaivrasChambersForSex():void
 	if(pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(2,"Breed Her",dockingBonerIntensifies,undefined,"Breed Her","Slide your cock into the queen’s ovipositor and flood her womb with your seed. The position might be a little awkward, but it’s worth it to make sure you have some royal offspring.");
 	else addDisabledButton(2,"Breed Her","Breed Her","You need a dick that will fit inside her dick for this to work.");
 
-	if(pc.hasHardLightEquipped()) addButton(3,"HL Anal",taivraHardlightFunzies,undefined,"Hardlight Anal","Use your hardlight-enabled underwear to pound Taivra's asshole. Her cockvine 'tails' will be in striking range of <i>your</i> [pc.vagOrAss]!");
+	if(pc.hasHardLightEquipped()) addButton(3,"HL Anal",taivraHardlightFunzies,undefined,"Hardlight Anal","Use your hardlight-enabled underwear to pound Taivra’s asshole. Her cockvine ‘tails’ will be in striking range of <i>your</i> [pc.vagOrAss]!");
 	else addDisabledButton(3,"HL Anal","Hardlight Anal","You need hardlight-enabled underwear for this.");
 
-	addDisabledButton(14,"Back","Back","There's no way you're getting out of here without satisfying your domineering partner at least once!");
+	addDisabledButton(14,"Back","Back","There’s no way you’re getting out of here without satisfying your domineering partner at least once!");
 }
 
 //Cowgirl
@@ -3301,7 +3294,7 @@ public function taivraHardlightFunzies():void
 			output("\n\n<i>“Nngh,”</i> she grunts, stiffening her neck for another round of resistance and submission. <i>“Again!”</i>");
 			output("\n\nYou laugh");
 			if(!pc.isAss()) output(" inwardly");
-			output(" at her queer  ‘dominant submissive’ attitude, her barked orders on how best to debase and control her. But there’s no threat anymore - she’s totally in your power, even if she wants to dictate exactly how to punish her asshole. You could push her beautiful body into the ground, but she’s practically throwing it down already, tilting her ass into the air and trying to replicate the feeling you gave her last time. Well... maybe you can help her become a better sub, just a bit.");
+			output(" at her queer ‘dominant submissive’ attitude, her barked orders on how best to debase and control her. But there’s no threat anymore - she’s totally in your power, even if she wants to dictate exactly how to punish her asshole. You could push her beautiful body into the ground, but she’s practically throwing it down already, tilting her ass into the air and trying to replicate the feeling you gave her last time. Well... maybe you can help her become a better sub, just a bit.");
 			if(!pc.isAss()) output("\n\n<i>“Be quiet,”</i>");
 			else output("\n\n<i>“Shut your mouth,”</i>");
 			output(" you demand.");
@@ -3662,7 +3655,7 @@ public function princessBonus():Boolean
 	output("\n\nYou didn’t come here for that, but that wouldn’t be such a bad end to your adventures. Do you join her harem or resist?");
 	clearMenu();
 	addButton(0,"Join",loseToPrincessYeGit,true,"Join","Give up your quest and join her harem.");
-	addButton(1,"Resist",resistPrincessYouSloot,undefined,"Resist","Looks like you'll have to put this overblown princess in her place.");
+	addButton(1,"Resist",resistPrincessYouSloot,undefined,"Resist","Looks like you’ll have to put this overblown princess in her place.");
 	return true;
 }
 
@@ -3846,8 +3839,8 @@ public function beatUpPrincessYeSlut():void
 	if(pc.hasVagina()) addButton(0,"RideCowgirl",cowgirlDatBitch,undefined,"Ride Cowgirl","Ride her cow-girl style before letting the harem have their turn.");
 	else addDisabledButton(0,"RideCowgirl","Ride Cowgirl","You need a vagina in order to do this.");
 	if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(1,"Buttfuck",buttFuckPrincessWhileSheFucks,undefined,"Buttfuck","Violate the princess the same way she planned to violate you.");
-	else addDisabledButton(1,"Buttfuck","Buttfuck","You need a penis that'll fit in her butt in order to do this.");
-	if(pc.hasCock() && pc.biggestCockLength() >= 36) addButton(2,"PolishJob",haremPolishjob,undefined,"PolishJob","You're way too big to fuck the princess")
+	else addDisabledButton(1,"Buttfuck","Buttfuck","You need a penis that’ll fit in her butt in order to do this.");
+	if(pc.hasCock() && pc.biggestCockLength() >= 36) addButton(2,"PolishJob",haremPolishjob,undefined,"PolishJob","You’re way too big to fuck the princess")
 	addButton(14,"Leave",leavePrincess2Harem,undefined,"Leave","Leave her to the not-so-tender affections of her harem.");
 }
 
