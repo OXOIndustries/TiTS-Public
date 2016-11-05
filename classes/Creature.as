@@ -17421,7 +17421,7 @@
 			
 			if (thisStatus == null) return;
 			
-			var timeConsuming:uint = 0;
+			var timeConsuming:Number = 0;
 			
 			if (thisStatus.value1 > 0)
 			{
@@ -17434,7 +17434,7 @@
 				
 				thisStatus.value3 = 0;
 				
-				if (thisStatus.value1 >= 25 && !hasStatusEffect("Buzzed"))
+				if (thisStatus.value2 >= 25 && !hasStatusEffect("Buzzed"))
 				{
 					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					physiqueMod += 2;
@@ -17443,7 +17443,7 @@
 					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Damn, that stuff you were drinking was awesome. <b>You're feeling pretty good right now. You must be buzzed.</b>";
 				}
 				
-				if (thisStatus.value1 >= 50 && !hasStatusEffect("Drunk"))
+				if (thisStatus.value2 >= 50 && !hasStatusEffect("Drunk"))
 				{
 					if (hasStatusEffect("Buzzed"))
 					{
@@ -17456,7 +17456,7 @@
 					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>";
 				}
 				
-				if (thisStatus.value1 >= 75 && !hasStatusEffect("Smashed"))
+				if (thisStatus.value2 >= 75 && !hasStatusEffect("Smashed"))
 				{
 					if (hasStatusEffect("Drunk"))
 					{
@@ -17473,14 +17473,14 @@
 			}
 			
 			// Confer how long it has been since anything was last imbibed. This is essentially (total time passing - max time consuming latent volume)
-			var postConsumptionTime:uint = deltaT - timeConsuming;
+			var postConsumptionTime:Number = deltaT - timeConsuming;
 			thisStatus.value3 += postConsumptionTime;
 			
-			var soberingTime:uint = 0;
+			var soberingTime:Number = 0;
 			
 			if (thisStatus.value3 > 60 && thisStatus.value2 > 0)
 			{
-				soberingTime = Math.min(thisStatus.value2, hasPerk("'Nuki Drunk") ? postConsumptionTime * 0.25 : postConsumptionTime);
+				soberingTime = Math.min(thisStatus.value2, (hasPerk("'Nuki Drunk") ? (postConsumptionTime * 0.25) : postConsumptionTime));
 				thisStatus.value2 -= soberingTime;
 				
 				if (thisStatus.value2 < 75 && hasStatusEffect("Smashed"))
@@ -17535,7 +17535,7 @@
 					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Blinking, you realize that the alcohol has faded from your system. <b>You're no longer buzzed.</b>";
 				}
 			}
-
+			
 			if (thisStatus.value2 <= 0)
 			{
 				removeStatusEffect("Alcohol");
