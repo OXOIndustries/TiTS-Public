@@ -4966,7 +4966,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if (flags["MET_DR_LESSAU"] != undefined)
 				{
 					output2("\n<b>* Doctor Lessau:</b> Met Him");
-					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times He Fucked You:</b> " + flags["DRLESSAU_SEXED"]);
+					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times Sexed:</b> " + flags["DRLESSAU_SEXED"]);
 				}
 				
 			}
