@@ -159,7 +159,7 @@ public function drLessauWTFRU():void
 	showName("DOCTOR\nLESSAU");
 	author("COUCH");
 	
-	output("<i>“So, what " + (pc.isAss() ? "the hell are you supposed to be anyway" : "are you, exactly") + " you ask, looking over the massive blend of traits that go into Lessau’s chimeric form. You look like " + (pc.isAss() ? "a snake fucked an ox and then that fucked a spider or something" : "one of those old Terran legends") + ".”</i>");
+	output("<i>“So, what " + (pc.isAss() ? "the hell are you supposed to be anyway" : "are you, exactly") + "”</i> you ask, looking over the massive blend of traits that go into Lessau’s chimeric form. <i>“You look like " + (pc.isAss() ? "a snake fucked an ox and then that fucked a spider or something" : "one of those old Terran legends") + ".”</i>");
 	output("\n\n<i>“Oh? Oh, yes, all this.”</i> Lessau gestures to himself with one of his hands. <i>“I enjoy switching forms every few months, this has become one of my new favorites. It’s based off the Terran myths of the chimera, though with a few tweaks. The discovery of Mhen’ga and its naleen helped enormously with refining the synthesis, enough so to make this blend reproductively viable. But if you’re asking what I originally am, I was born as a human.”</i>");
 	output("\n\n<i>“And the four arms?”</i> you ask, folding your own. In response Lessau lifts his two left arms, letting you see how the paired shoulders function and move independently.");
 	output("\n\n<i>“These are a new addition. I’m testing if the Brundle Limitation can be overcome by forgoing legs. Results so far are promising...”</i> Lessau looks over at his raised arms, which have begun mimicking each other’s actions to his visible annoyance. <i>“... for the most part.”</i>");
@@ -181,7 +181,7 @@ public function drLessauDangers():void
 	
 	output("You point out that if he’s changing his form every few months, Lessau ought to be the same sort of genetic mess that Victor was.")
 	output("\n\n<i>“And I would be indeed, were I unprotected. Fortunately, any piece of technology as complex as yours requires a prototype. My microsurgeons are slightly less refined than yours, but they share the same general set of functions. At present I’m using them as a testbed for developing new features that I hope to be able to pass on to yours someday.”</i>");
-	if (flags["DECK13_COMPLETE"] == 1) output("\n\n<i>“In fact, I’ve just recently been working on that rather interesting data you acquired from Bell-Isle Grunmann. It may be ancient technology, but the emergent intelligence properties of those microbots is quite remarkable. Imagine having the Codex and all its data held within your very bloodstream, or having the ability to store your mind as an AI while regrowing your body from the ground up, and perhaps you begin to see the possibilities. All of this will take quite some time before it’s ready to test, but your discovery promises to be a monumental advancement");
+	if (flags["DECK13_COMPLETE"] == 1) output("\n\n<i>“In fact, I’ve just recently been working on that rather interesting data you acquired from Bell-Isle Grunmann. It may be ancient technology, but the emergent intelligence properties of those microbots is quite remarkable. Imagine having the Codex and all its data held within your very bloodstream, or having the ability to store your mind as an AI while regrowing your body from the ground up, and perhaps you begin to see the possibilities. All of this will take quite some time before it’s ready to test, but your discovery promises to be a monumental advancement.”</i>");
 	
 	processTime(1);
 	
@@ -235,11 +235,11 @@ public function drLessauOral():void
 	if (pc.hasCock())
 	{
 		output("\n\nThe chimera’s breath is hot against your [pc.cockHead] as he examines your cock up close. You feel the tip of his tongue flick over your cumslit, circling around it in a display of oral dexterity that has you hungry to feel what it’s like to be buried in his mouth. Lessau isn’t ready to let you have that yet, though. Instead he runs his tongue down your shaft all the way to the [pc.base], taking a few sweeping licks of the sensitive underside. ");
-		if (pc.hasStatusEffect("Genital Slit")) output("You gasp when his tongue suddenly delves into your cock’s normally untouched container, teasing it open to let a wave of your masculine musk billow forth from the depths of your slit");
-		else if (pc.hasSheath()) output("You gasp when his tongue suddenly delves into your cock’s normally untouched container, teasing it open to let a wave of your masculine musk billow forth from the depths of your sheath");
+		if (pc.hasStatusEffect("Genital Slit")) output("You gasp when his tongue suddenly delves into your cock’s normally untouched container, teasing it open to let a wave of your masculine musk billow forth from the depths of your slit.");
+		else if (pc.hasSheath()) output("You gasp when his tongue suddenly delves into your cock’s normally untouched container, teasing it open to let a wave of your masculine musk billow forth from the depths of your sheath.");
 		
 		if (pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_HUMAN) output("\n\n<i>“A touch vanilla for my tastes, [pc.name].”</i> Lessau says with a teasing smile as he draws back. <i>“Though I cannot deny that you work quite well with it, as I’m sure you would with anything else you chose to bear between your legs.”</i>");
-		else output("\n\n<i>“A fitting choice of shape, [pc.name].”</i> Lessau says as he draws back, licking his lips. <i>“You have excellent tastes, though I imagine you would be just as delicious with anything you chose to wield.");
+		else output("\n\n<i>“A fitting choice of shape, [pc.name].”</i> Lessau says as he draws back, licking his lips. <i>“You have excellent tastes, though I imagine you would be just as delicious with anything you chose to wield.”</i>");
 		
 		output("\n\nWith not a further word he opens his jaws and swallows your shaft. There’s a moment of fright at his fangs, but they prove safer than they appear - or perhaps the doctor is just that experienced at sucking dick. Any hesitation vanishes when that tongue wraps itself around you in a tight spiral, licking and sucking at every inch of [pc.oneCock] that disappears down the chimera’s gullet until his nose is pressed to your belly. You give a heady groan, letting yourself go limp and just enjoy the hot, wet sensations wreathing your dick.");
 		output("\n\nYour relaxation is interrupted by a gasp of surprise as Lessau’s tongue slips out from under your dick to get at ");
@@ -268,7 +268,7 @@ public function drLessauOral():void
 		output(" and try to relax while awaiting the inevitable orgasm.");
 		
 		output("\n\nYet it doesn’t come. You get tantalizingly close, so close you can taste it, before the clit-sucking stops and Lessau’s tongue withdraws. You’re left quivering and confused, dialing down just a bit before the chimera lifts a hand and spreads your lips wide, baring the freshly glistening [pc.vaginaColor] to the air.");
-		output("\n\n<i>“A beautiful womanhood, [pc.name].”</i> Lessau says as he looks up at you with a glint in his eye that indicates he knows full well how close you were to cumming. " + (pc.vaginas.type == GLOBAL.TYPE_HUMAN ? "A little vanilla in form, but the taste is delectable" : "You’ve acquired quite the delicious endowment for yourself") + ".");
+		output("\n\n<i>“A beautiful womanhood, [pc.name].”</i> Lessau says as he looks up at you with a glint in his eye that indicates he knows full well how close you were to cumming. <i>“" + (pc.vaginas.type == GLOBAL.TYPE_HUMAN ? "A little vanilla in form, but the taste is delectable" : "You’ve acquired quite the delicious endowment for yourself") + "”</i>.");
 		output("\n\n<i>“You tease,”</i> you reply, <i>“get back in there!”</i>");
 		output("\n\nHe does, almost. Certainly he delves back in, but rather than slipping into your pussy you feel his tongue run up the right side of your exposed snatch, then the left. Back and forth he licks, his tonguetip flicking your clit each time he switches sides. His fingertips stay in place, keeping you spread, keeping it easy for him to lick and suck at your petals while letting your [pc.girlCumNoun] flow freely. Gods, that tongue feels amazing");
 		//"Vanae or otherwise cilia-laden pussy"
@@ -384,10 +384,7 @@ public function drLessauAfter():void
 	{
 		output("You lose track of how many times you let Lessau fuck you. By the time you’re done you look positively pregnant, stopping only because you’re both exhausted. The reprieve causes Lessau to come back to his senses, the animal lust in his eyes fading.");
 		output("\n\n<i>“Are you alright, [pc.name]?”</i> he asks, reaching around you with his arms and wings to support you.");
-		output("\n\n<i>“Fuck <b>yes</b> I am,”</i> you purr, running a hand along your gravid belly. A particularly kinky part of your mind fantasizes about having a thrashing monstrous spawn in there.");
-		if (pc.hasCock() && pc.cumQ() > 1000) output("<i>“Not every day I get to fuck someone who cums like I do");
-		else output("<i>“Void, you cum so much");
-		output(", and honestly? Getting fucked by a monster is <b>awesome</b>.”</i>");
+		output("\n\n<i>“Fuck <b>yes</b> I am,”</i> you purr, running a hand along your gravid belly. A particularly kinky part of your mind fantasizes about having a thrashing monstrous spawn in there.<i>“" + (pc.hasCock() && pc.cumQ() > 1000 ? "Not every day I get to fuck someone who cums like I do" : "Void, you cum so much") + ", and honestly? Getting fucked by a monster is <b>awesome</b>.”</i>");
 		output("\n\nHe seems pleased at you being so satisfied, giving you a kiss that you eagerly return. Your lips part just as you’re about to try slipping him some tongue, to your disappointment.");
 		output("\n\n<i>“I think you’re at your limit, [pc.name].”</i> Lessau says with a mirthful smile. <i>“You should go clean up and clean yourself out first if you still hunger for more of this monster.”</i>");
 		output("\n\nYou concede, making your way to the shower. You can’t help but " + (pc.exhibitionism() >= 33 ? "grin at" : "be embarrassed by the looks of") + " the lab techs as you walk by, most of whom blush or give thumbs-up. The " + (pc.exhibitionism() >= 33 ? "returned" : "") + " grins on the faces of the latter group tell you that you’re definitely not the only one getting some chimera action around here");
