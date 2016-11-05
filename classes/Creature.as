@@ -1666,6 +1666,7 @@
 				case "hairNoun":
 					buffer = hairNoun();
 					break;
+				case "hairs":
 				case "hairsNoun":
 					buffer = hairsNoun();
 					break;
