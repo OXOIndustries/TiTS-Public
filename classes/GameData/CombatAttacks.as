@@ -836,7 +836,7 @@ package classes.GameData
 			if (target is PlayerCharacter) output(" you!");
 			else output(target.getCombatName() + ".");
 			
-			var d:Number = attacker.untypedDroneDamage();
+			var d:Number = attacker.untypedDroneDamage() + 1;
 			var dmg:TypeCollection = new TypeCollection( { kinetic: d * 0.8, electric: d * 0.3 }, DamageFlag.PENETRATING);
 			
 			applyDamage(dmg, attacker, target, "minimal");
@@ -914,7 +914,14 @@ package classes.GameData
 			{
 				if (attacker is PlayerCharacter) output(" It lunges towards " + target.getCombatName() + ", shrieking like a banshee. Its fangs sink into your enemy, rending viciously at " + target.getCombatPronoun("o") + "!");
 				else output(" Shrieking like a banshee, it lunges towards you and its fangs sink in, rending at you viciously!");
-				applyDamage(attacker.droneDamage(), attacker, target, "minimal");
+				
+				var d:Number = (attacker.untypedDroneDamage() - 1);
+				var dmg:TypeCollection = new TypeCollection();
+				dmg.kinetic.damageValue = Math.round(d * 0.75);
+				dmg.corrosive.damageValue = Math.round(d * 0.25);
+				dmg.addFlag(DamageFlag.PENETRATING);
+				
+				applyDamage(dmg, attacker, target, "minimal");
 			}
 		}
 		

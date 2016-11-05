@@ -16305,7 +16305,7 @@
 		
 		public function untypedDroneDamage():Number
 		{
-			var dmg:Number = 1 + level + rand(2 + level / 2);
+			var dmg:Number = 1 + level + rand(Math.round((2 + level) / 2));
 			var bonus:Number = 0;
 			
 			if(hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) bonus += level;
@@ -16316,20 +16316,6 @@
 		public function droneDamage():TypeCollection
 		{
 			var d:Number = untypedDroneDamage();
-			if (accessory is TamWolfDamaged)
-			{
-				d -= -1;
-				return new TypeCollection( { kinetic: d } );
-			}
-			if (hasStatusEffect("Varmint Buddy"))
-			{
-				d -= -1;
-				var varmintDamage:TypeCollection = new TypeCollection();
-				varmintDamage.kinetic.damageValue = Math.round(d * 0.75);
-				varmintDamage.corrosive.damageValue = Math.round(d * 0.25);
-				varmintDamage.addFlag(DamageFlag.PENETRATING);
-				return varmintDamage;
-			}
 			return new TypeCollection( { electric: d } );
 		}
 		public function hasTamWolf():Boolean
