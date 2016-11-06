@@ -48,8 +48,8 @@ public function sendKashimaMessage(destination:String):void
 	processTime(2);
 
 	clearMenu();
-	addButton(0, "Help Nova", startKashimaJobbo, destination, "Help Nova", "Take Steele Tech up on their offer and investigate the <i>Kashima</i>. Even if it's just a technical glitch, it's still worth a fair bit from the contract price.");
-	addButton(1, "Abandon", abandonKashimaJob, destination, "Abandon", "The Nova Securities crew has this covered. That's their job, after all. No point in you dealing with it.");
+	addButton(0, "Help Nova", startKashimaJobbo, destination, "Help Nova", "Take Steele Tech up on their offer and investigate the <i>Kashima</i>. Even if it’s just a technical glitch, it’s still worth a fair bit from the contract price.");
+	addButton(1, "Abandon", abandonKashimaJob, destination, "Abandon", "The Nova Securities crew has this covered. That’s their job, after all. No point in you dealing with it.");
 }
 
 public function abandonKashimaJob(destination:String):void
@@ -713,7 +713,7 @@ public function kiHendersonVictory():void
 		processTime(2);
 		
 		clearMenu();
-		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she'll probably kill it.");
+		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she’ll probably kill it.");
 		addButton(1, "SteeleTech", kiHendersonSteeleTech, undefined, "Steele Tech", "Call for retrieval from Steele Tech and convince Chief Neykkar to let them take the parasite.");
 	}
 	// has the cure, but either didn't attempt to, or didn't complete using it during the fight
@@ -768,7 +768,7 @@ public function kiHendersonVictory():void
 		processTime(5);
 		
 		clearMenu();
-		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she'll probably kill it.");
+		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she’ll probably kill it.");
 		addButton(1, "SteeleTech", kiHendersonSteeleTech, undefined, "Steele Tech", "Call for retrieval from Steele Tech and convince Chief Neykkar to let them take the parasite.");
 	}
 	// doesn't have the cure at all

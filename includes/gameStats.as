@@ -953,7 +953,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.hasCuntSnake()) output2("\n<b>* Feeding, Current:</b> " + flags["DAYS_SINCE_FED_CUNT_TAIL"] + " days since last fed");
 			if(flags["TIMES_FED_CUNT_SNAKE"] != undefined) output2("\n<b>* Feeding, Total:</b> " + flags["TIMES_FED_CUNT_SNAKE"] + " times");
 			
-			if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined && flags["CUNT_TAIL_PREGNANT_TIMER"] > 0) output2("\n<b>* Pregnancy, Gestation Time:</b> " + prettifyMinutes(flags["CUNT_TAIL_PREGNANT_TIMER"]) + " until birth");
+			if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined) output2("\n<b>* Pregnancy, Gestation Time:</b> " + prettifyMinutes(flags["CUNT_TAIL_PREGNANT_TIMER"]) + " until birth");
 			
 			if(flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined && flags["CUNT_SNAKE_EGGS_FAXED_HOME"] > 0) output2("\n<b>* Reproduction, Eggs in Hatchery:</b> " + flags["CUNT_SNAKE_EGGS_FAXED_HOME"]);
 			if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] != undefined || flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined)
@@ -1137,6 +1137,8 @@ public function prettifyMinutes(nMinutes:Number, toDate:Boolean = false):String
 		nHours = Math.floor(nMinutes/60);
 		nMinutes -= 60 * nHours;
 	}
+	//Minutes
+	nMinutes = Math.floor(nMinutes);
 	
 	// Normal!
 	if(!toDate)

@@ -247,7 +247,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	{
 		if (currentLocation == "KI-H16" && flags["KI_REFUSED_VANDERBILT"] != undefined && flags["KI_VANDERBILT_WORKING"] != undefined)
 		{
-			addDisabledButton(9, "Sleep", "Sleep", "You can't afford to risk sleeping with Elenora around. Who knows if she'll be able to hold it together... or if she'll try something while you rest.");
+			addDisabledButton(9, "Sleep", "Sleep", "You can’t afford to risk sleeping with Elenora around. Who knows if she’ll be able to hold it together... or if she’ll try something while you rest.");
 		}
 		else
 		{
@@ -2052,7 +2052,7 @@ public function processTarkusBombTimerEvents(deltaT:uint, doOut:Boolean):void
 		flags["TARKUS_BOMB_TIMER"] -= Math.min(deltaT, flags["TARKUS_BOMB_TIMER"]);
 		bombStatusUpdate();
 		
-		if(flags["TARKUS_BOMB_TIMER"] == 0)
+		if(flags["TARKUS_BOMB_TIMER"] <= 0)
 		{
 			if(eventQueue.indexOf(bombExplodes) == -1) eventQueue.push(bombExplodes);
 		}
@@ -2120,11 +2120,7 @@ public function processGiannaEvents(deltaT:uint, doOut:Boolean):void
 {
 	if (flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL( -1);
 	
-	var totalHours:int = ((minutes + deltaT) / 60);
-	if (totalHours >= 1)
-	{
-		if (flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"] += totalHours;
-	}
+	if (flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"] += deltaT;
 }
 
 public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
@@ -2220,11 +2216,11 @@ public function processLetsFapUpdates(deltaT:uint, doOut:Boolean):void
 				
 				if (numUnlocks == 1)
 				{
-					eventBuffer += "\n\n" + logTimeStamp("good", unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + " Atha has posted a new Let's Fap video!";
+					eventBuffer += "\n\n" + logTimeStamp("good", unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + " Atha has posted a new Let’s Fap video!";
 				}
 				else
 				{
-					eventBuffer += "\n\n" + logTimeStamp("good", (unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + ((numUnlocks - 1) * unlockLength)) + " Atha has posted new Let's Fap videos!";
+					eventBuffer += "\n\n" + logTimeStamp("good", (unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + ((numUnlocks - 1) * unlockLength)) + " Atha has posted new Let’s Fap videos!";
 				}
 				
 				// Unlock the latest episode possible based on time passage and existing unlock position
@@ -2381,7 +2377,7 @@ public function processIrelliaEvents(deltaT:uint, doOut:Boolean):void
 			}
 			if(flags["IRELLIA_QUEST_STATUS"] == 4) 
 			{
-				eventBuffer += "\n\n" + logTimeStamp("good") + " You receive a missive from your codex informing you that Queen Irellia would like to speak to you. Sounds like someone's about to get paid!";
+				eventBuffer += "\n\n" + logTimeStamp("good") + " You receive a missive from your codex informing you that Queen Irellia would like to speak to you. Sounds like someone’s about to get paid!";
 				flags["IRELLIA_QUEST_STATUS"] = 5;
 			}
 		}
@@ -2480,7 +2476,7 @@ public function processCuntTailEggs(deltaT:uint, doOut:Boolean):void
 	}
 	else
 	{
-		flags["CUNT_TAIL_PREGNANT_TIMER"] -= ((minutes + deltaT) / 60);
+		flags["CUNT_TAIL_PREGNANT_TIMER"] -= Math.min(deltaT, flags["CUNT_TAIL_PREGNANT_TIMER"]);
 		if (flags["CUNT_TAIL_PREGNANT_TIMER"] <= 0)
 		{
 			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
@@ -2608,12 +2604,12 @@ public function racialPerkUpdateCheck():void
 					msg += "\n\n" + logTimeStamp("passive") + ParseText(" The extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your");
 					if(pc.originalRace.indexOf("kui-tan") != -1) msg += " natural kui-tan genes";
 					else msg += " kui-tan body-mods";
-					msg += ParseText(", you won't be swelling up with excess [pc.cumNoun] any more.");
+					msg += ParseText(", you won’t be swelling up with excess [pc.cumNoun] any more.");
 				}
 				//Nuts not inflated:
 				else
 				{
-					msg += "\n\n" + logTimeStamp("passive") + ParseText(" A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you've replaced too much kui-tan DNA to reap the full benefits.");
+					msg += "\n\n" + logTimeStamp("passive") + ParseText(" A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you’ve replaced too much kui-tan DNA to reap the full benefits.");
 				}
 				msg += "\n\n(<b>Perk Lost: 'Nuki Nuts</b>)";
 				pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
@@ -2622,7 +2618,7 @@ public function racialPerkUpdateCheck():void
 			}
 			else
 			{
-				msg += "\n\n" + logTimeStamp("passive") + " (<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You've lost too many kui-tan transformations.)";
+				msg += "\n\n" + logTimeStamp("passive") + " (<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You’ve lost too many kui-tan transformations.)";
 				pc.removePerk("'Nuki Nuts");
 			}
 		}
