@@ -34,9 +34,9 @@ public function canadiaGloryhole():Boolean
 		//Centaur girl
 		if(9999 == 0) output(" The floor surrounding the stall is wet with... girlcum. A moist little fillie must be hard at work inside.");
 		//Futa/Male overcum?
-		if(pc.statusEffectv2("Gloryhole Shift Activated") == 1) 
+		if(pc.getStatusTooltip("Gloryhole Shift Activated") != "") 
 		{
-			output(" Streams of white flow from under the edge, following grooves in the floor toward the drain.");
+			output(" Streams of " + pc.getStatusTooltip("Gloryhole Shift Activated") + " flow from under the edge, following grooves in the floor toward the drain.");
 			if(pc.statusEffectv2("Gloryhole Shift Activated") != 1) output(" Either the person inside busted a backed-up nut or serviced a pair of blue-balled stallions.");
 			else output(" You made quite a mess.");
 		}
@@ -68,10 +68,10 @@ public function mountGloryhole():void
 	clearMenu();
 	for(var x:int = 0; x < pc.cockTotal(); x++)
 	{
-		output("\n" + (x+1) + ": " + pc.cockNounComplex(x) + " - ");
+		output("\n" + (x+1) + ": " + StringUtil.capitalize(pc.cockNounComplex(x)) + " - ");
 		if(pc.cThickness(x) > 4) output("Too thick.");
 		else output(Math.round(pc.cThickness(x) * 10)/10 + "\" thick.");
-		addButton(x,num2Text(x+1),stickDickThroughGloryhole,x);
+		addButton(x, StringUtil.toDisplayCase(num2Text(x+1)), stickDickThroughGloryhole, x);
 	}
 	addButton(14,"Back",mainGameMenu);
 }
@@ -90,13 +90,13 @@ public function stickDickThroughGloryhole(arg:int):void
 	clearOutput();
 	showName("\nGLORYHOLE");
 	//Too Big
-	if(pc.cThickness(arg) > 4) 
+	if(pc.cThickness(arg) > 4 && 9999 != 9999) 
 	{
 		output("No matter how you wriggle or thrust, it just won’t fit. You’re too big!");
 		if(pc.cockTotal() > 1) output(" Perhaps you’d like to try a different member?");
 		clearMenu();
 		if(pc.cockTotal() > 1) addButton(0,"Next",mountGloryhole);
-		else addButton(0,"Next",canadiaGloryhole);
+		else addButton(0,"Next",mainGameMenu);
 		return;
 	}
 	//Centaur/Kaithrit blowie.
@@ -184,6 +184,7 @@ public function stickDickThroughGloryhole(arg:int):void
 				output("\n\nSperm-slicked hands wring you dry, letting you waste your load as you will. A puddle of [pc.cumColor] appears at the edge of the stall, but grooves in the floor carry it away toward a drain. Then the cat-girl is under your [pc.cock " + arg + "], furiously tonguing it. You cum all over her. You’re sure of it. She must be getting absolutely showered in spooge, and judging by her continued purring, she loves it.");
 				output("\n\nIt isn’t until your firehose-like eruptions dwindle into a gentle leak that she sucks you in once more. She stops purring to spare your orgasm-tenderized nerves. She does not, however, stop licking you. Her tongue is a rogue instrument, gathering pockets of flavor from your still-stiff shaft to swallow. She doesn’t let you go until you’ve had a thorough tongue-bath. The air feels frigid against your moistened dick.");
 				pc.setStatusValue("Gloryhole Shift Activated",2,1);
+				pc.setStatusTooltip("Gloryhole Shift Activated", pc.fluidColorSimple(pc.cumType));
 			}
 			//No fatflare or fatknot but massive cumload
 			if(pc.cumQ() >= 1000 && !fatKnot(arg) && !fatFlare(arg))
@@ -274,7 +275,7 @@ public function stickDickThroughGloryhole(arg:int):void
 			else if(pc.cThickness(arg) > 3) output(" And so big! How’d you fit through the hole?");
 			else if(pc.cLength(arg) <= 5) output(" And so small. Poor bipedal women! Do they really fuck dicks like this? It’s snack-sized!");
 			else output(" And so hard.");
-			output("”</i> That finger becomes two, three, then a whole hand. It squeezes you gently, its owner marvelling. <i>“It’s so warm.”</i> The owner of the voice sniffs loudly. <i>“And smells so gooood.”</i>");
+			output("”</i> That finger becomes two, three, then a whole hand. It squeezes you gently, its owner marveling. <i>“It’s so warm.”</i> The owner of the voice sniffs loudly. <i>“And smells so gooood.”</i>");
 			if(pc.isBro()) output(" She pauses, then sniffs again. This time for twice as long. <i>“Sooooo good.”</i> Her voice is made unsteady by her pheromone-inspired desire. <i>“Awesome.”</i>");
 			output("\n\nYour dick jumps in the stall-bound seductress’s grip, smacking lightly into her nose.");
 			output("\n\nShe squeaks cutely and tightens her grip. <i>“");
@@ -434,6 +435,7 @@ public function stickDickThroughGloryhole(arg:int):void
 				output("ou pull and prepare to leave.");
 				if(flags["DEERTAUR_GLORYHOLED"] != undefined && !pc.isAss()) output(" <i>“You’ve got a talent for this. Thanks.”</i>");
 				pc.setStatusValue("Gloryhole Shift Activated",2,1);
+				pc.setStatusTooltip("Gloryhole Shift Activated", pc.fluidColorSimple(pc.cumType));
 			}
 			if(fatKnot(arg)) processTime(45);
 			else if(fatFlare(arg)) processTime(35);
@@ -460,7 +462,7 @@ public function workTheGloryhole():void
 		output("\n\nYou make yourself comfortable and wait for a ‘customer’.");
 		clearMenu();
 		addButton(0,"Wait",gloryholeWait);
-		addButton(4,"Leave",mainGameMenu);
+		addButton(14,"Leave",mainGameMenu);
 	}
 	//Repeat
 	else
@@ -469,7 +471,7 @@ public function workTheGloryhole():void
 		clearMenu();
 		addButton(0,"Wait",gloryholeWait);
 		addButton(1,"Examine",gloryHoleAppearance);
-		addButton(4,"Leave",mainGameMenu);
+		addButton(14,"Leave",mainGameMenu);
 	}
 }
 
@@ -481,7 +483,23 @@ public function gloryHoleAppearance():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Wait",gloryholeWait);
-	addButton(4,"Leave",mainGameMenu);
+	addButton(14,"Leave",mainGameMenu);
+}
+
+public function getGloryholePregContainer():PregnancyPlaceholder
+{
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.cumType = GLOBAL.FLUID_TYPE_CUM;
+	pp.balls = 2;
+	pp.cumMultiplierRaw = 3;
+	pp.cumQualityRaw = 1;
+	pp.ballSizeRaw = 2;
+	pp.ballFullness = 100;
+	pp.ballEfficiency = 15;
+	pp.refractoryRate = 9999;
+	pp.minutesSinceCum = 65;
+	return pp;
 }
 
 public function gloryholeWait():void
@@ -495,7 +513,7 @@ public function gloryholeWait():void
 		processTime(60);
 		clearMenu();
 		addButton(0,"Wait More",gloryholeWait);
-		addButton(4,"Leave",mainGameMenu);
+		addButton(14,"Leave",mainGameMenu);
 	}
 	//Space trucker
 	else if(rand(2) == 0)
@@ -538,7 +556,7 @@ public function dontSuckSpaceTrucker():void
 	//[Wait] (Reroll) [Leave]
 	clearMenu();
 	addButton(0,"Wait",gloryholeWait);
-	addButton(4,"Leave",mainGameMenu);
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //Yes
@@ -546,12 +564,15 @@ public function yesSuckSomeTruckerCawk():void
 {
 	clearOutput();
 	showName("\nGLORYHOLE");
+	
+	var pp:PregnancyPlaceholder = getGloryholePregContainer();
+	
 	output("It looks like a mouthful. More than a mouthful. It’s already six inches long, and judging by its downward droop, it’s got quite a bit more growing to do. You lean forward and gently blow on it. Predictably, the big ol’ dick surges forward, gaining an inch of length in an instant. It almost bumps into your lips. You pull back and " + pc.mf("chuckle","giggle") + ". <i>“Hmmm, eager boy.”</i> It surges upward once you start speaking. This time, there’s no stopping that fat fuckstick from touching you. It slaps up into your chin.");
 	output("\n\n<i>“Fuck yeah!”</i> calls your mysterious suitor. <i>“Suck it, slut.”</i>");
 	//Bimbo
 	if(pc.isBimbo()) output("\n\nLike, what else would you do? <i>“Yes sir!”</i> You grab it in both hands, your enthusiasm as plain as the smile on your parted lips. It feels just as good against your skin as you’d imagined: heavy, a little slick with its own sweat, and throbbing waves of delight through your palms. Whimpering softly, you brush back the course pubes around the base and give it a stroke, bunching the thick dickskin up around the tip. On the way back, the foreskin peels back, exposing growing, purplish glans. It smells strongly of unsatisfied dick - your favorite smell in the whole wide universe.");
 	//Bro
-	else if(pc.isBimbo()) output("\n\nHe talks too much. You make an agreeable-sounding grunt. Time to get suck some cock. You grab it in both hands, business-like. A few long hairs almost get caught between your knuckles, but you brush them back. This guy must be a real quick shot, because he gets most of the way hard in the time it takes you to get a proper heft of his equipment. His glans is shiny and purple, half hidden beneath his foreskin, so you do the sensible thing and tug his foreskin back. Void, he’s throbbing harder than an overloading engine. Just how long has it been since this dude busted a nut?");
+	else if(pc.isBro()) output("\n\nHe talks too much. You make an agreeable-sounding grunt. Time to get suck some cock. You grab it in both hands, business-like. A few long hairs almost get caught between your knuckles, but you brush them back. This guy must be a real quick shot, because he gets most of the way hard in the time it takes you to get a proper heft of his equipment. His glans is shiny and purple, half hidden beneath his foreskin, so you do the sensible thing and tug his foreskin back. Void, he’s throbbing harder than an overloading engine. Just how long has it been since this dude busted a nut?");
 	//High libido
 	else if(pc.libido() >= 66) output("\n\nElectricity thrills down your spine at being given such a lewd command. Your answer is as much lewd moan as acknowledgement. <i>“Yesss!”</i> You push his coarse pubic hairs out of the way and grab hold in both hands, making it jump like an eager dog, if that dog was a large-bred monster. Even the glans is enormous. You watch it fill up to its full size, stretching the copious foreskin tight around the purplish crown. Drool fills your mouth, but you take the time to give him a few pumps, peeling the foreskin back to expose the gleaming tip. It throbs none-too-gently. Hopefully it won’t go off too soon...");
 	//Med libido
@@ -625,19 +646,18 @@ public function yesSuckSomeTruckerCawk():void
 		output(" Cum pumps out in huge gouts, each big enough to fill a whiskey glass. It splashes over your hair and across your [pc.skinFurScales]. Sperm cascades down your shoulders");
 		if(pc.biggestTitSize() >= 1) output(" and over the swells of your [pc.biggestTitSize]");
 		output(". It’s every bit as warm and sticky as it is sexy.");
+		
 		processTime(16);
-		//Syri is apparently now my stand-in for blowjob loads.
-		pc.loadInMouth(syri);
+		pc.loadInMouth(pp);
 	}
 	else
 	{
 		output(" It pumps right on in. Instead of trying to catch it in your mouth, you let it burrow straight into your tummy. There’s so much that you still taste it on the back of your tongue, the tip of the salty deluge, and enough to satisfy you for the moment. Your hands keep right on milking, wringing the silly, cummy dick until your belly feels stuffed to capacity. Then you lean back, letting it fill your mouth with a cheek-bulging treat (just to savor the flavor) before popping your lips clean off. It thanks you by squirting all over your face, revealing just how much the backed-up spacer had saved for to wring out.");
 
 		processTime(16);
-		//Syri is apparently now my stand-in for blowjob loads.
-		syri.createPerk("Fixed CumQ",10000,0,0,0);
-		pc.loadInMouth(syri);
-		syri.removePerk("Fixed CumQ");
+		pp.createPerk("Fixed CumQ",10000,0,0,0);
+		pc.loadInMouth(pp);
+		pp.removePerk("Fixed CumQ");
 	}
 	//Silly
 	if(silly) output("\n\nYou feel like a spooky ghost. Booooo! Ectoplasm everywhere.");
@@ -668,7 +688,7 @@ public function randomThrobbUserBeej():void
 {
 	clearOutput();
 	showName("\nGLORYHOLE");
-	var user:Number = rand(4);
+	var user:int = rand(4);
 	output("Quiet footsteps enter the bathroom, and unlike the usual traffic, they nervously scuffle their way into the stall on your right. After latching the door, you hear heavy, nervous breathing. A ");
 	if(user == 0) output("quiet whisper");
 	else if(user == 1) output("trembling voice");
@@ -691,14 +711,39 @@ public function turnDownThrobbyBeej():void
 	output("You keep quiet, and they leave a short while later. Crisis averted.");
 	clearMenu();
 	addButton(0,"Wait",gloryholeWait);
-	addButton(4,"Leave",mainGameMenu);
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //Yes
-public function blowAThrobUser(user:Number):void
+public function blowAThrobUser(user:int):void
 {
 	clearOutput();
 	showName("\nGLORYHOLE");
+	
+	var pp:PregnancyPlaceholder = getGloryholePregContainer();
+	switch(user)
+	{
+		case 0:
+			pp.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
+			pp.cocks[0].cockColor = "bright crimson";
+			pp.makeBallsInternal();
+			break;
+		case 1:
+			pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+			pp.cocks[0].cockColor = "purple";
+			break;
+		case 2:
+			pp.shiftCock(0, GLOBAL.TYPE_BEE);
+			pp.cocks[0].cockColor = "ink black";
+			pp.cumType = GLOBAL.FLUID_TYPE_HONEY;
+			break;
+		case 3:
+			pp.shiftCock(0, GLOBAL.TYPE_TENTACLE);
+			pp.cocks[0].cockColor = "bright green";
+			pp.cumType = GLOBAL.FLUID_TYPE_CUMSAP;
+			break;
+	}
+	
 	output("<i>“Yeah.”</i> You ");
 	if(pc.libido() < 33) output("clear your throat.");
 	else if(pc.libido() < 66) output("bite your lower lip before adding,");
@@ -725,7 +770,10 @@ public function blowAThrobUser(user:Number):void
 		output("It’s five inches long when rock hard, as it is now, with no signs of getting any bigger. Interestingly, the shaft and foreskin are ink-black, nearly hiding a bright-yellow tip from your appraising eyes.");
 		if(CodexManager.entryUnlocked("Zil")) output(" Likely a zil. How’d she get off Mhen’ga... and get a dick?");
 	}
-	else output("It’s bright green and all of four inches long, the shaft lined with interwoven, petal-like folds. What a strange, small penis. You have no idea what sort of being produces such vegetative-looking equipment.");
+	else if(user == 3)
+	{
+		output("It’s bright green and all of four inches long, the shaft lined with interwoven, petal-like folds. What a strange, small penis. You have no idea what sort of being produces such vegetative-looking equipment.");
+	}
 	output(" The newcomer wiggles around");
 	if(user != 0) output(", then squeezes a small pair of balls into the hole");
 	output(". <i>“Is that good?”</i>");
@@ -795,7 +843,7 @@ public function blowAThrobUser(user:Number):void
 	output("\n\nYou accept the bizarre situation for what it is and start to swallow. It becomes a bit of a rhythm game for you, sliding back, collecting some in your mouth, then pushing forward until the embiggened dick is about to brush your tonsils and swallowing, forcing it to bathe in its own overeager juices.");
 	output("\n\n<i>“Oh, don’t stop!”</i> Not a single trace of nervousness remains in your blissed-out, rapacious patron. <i>“Just suck me forever.”</i> Her hips tremble, and an especially rich blend of foreign seed spills into your throat.");
 	output("\n\nEnough dick has grown for you to wrap a hand around while you blow. You do so, rubbing your thumb back and forth against the sensitive underside.");
-	output("\n\nA full-body quiver sluices through the prick-fixated futanari. <i>“It’s like... mmm...”</i> She’s struggling with her words, battling to the all-consuming pleasure to try to tell you something. <i>“L-like all my nerves are in my... myyah!”</i> Her hips jerk. <i>“...in my cock.”</i> She pulls and inch back from the wall and slams her hips into it hard enough to rattle the fasteners. <i>“Like you’re sucking all of me in your mouth, and it’s so wet and warm, and I love it so much, and I love you. I love you so much.”</i>");
+	output("\n\nA full-body quiver sluices through the prick-fixated futanari. <i>“It’s like... mmm...”</i> She’s struggling with her words, battling to the all-consuming pleasure to try to tell you something. <i>“L-like all my nerves are in my... myyah!”</i> Her hips jerk. <i>“...in my cock.”</i> She pulls an inch back from the wall and slams her hips into it hard enough to rattle the fasteners. <i>“Like you’re sucking all of me in your mouth, and it’s so wet and warm, and I love it so much, and I love you. I love you so much.”</i>");
 	output("\n\nAppraising the drugged woman’s dick, you figure it must be at least ten inches long by now, maybe even 11. The growth is slowing, but her sexual fluids aren’t. It takes both hands to tend to all of her rod. It still throbs like crazy, pulsing faster and faster, building to something.");
 	output("\n\n<i>“I’m gonna knock up your mouth!”</i> She isn’t even trying to make sense anymore. <i>“I’m gonna knock up your mouth, and marry it, and you’re gonna suck my dick every day!”</i>");
 	output("\n\nThat fantasy clearly overloads her, because her dick chooses that moment to release a torrent of hypersexual release directly into your throat mid-swallow. You pull back rather than choke on it, but not so far that it strokes your face. Instead, you wrangle the wildly spurting penis with your hands, trying to catch its exuberant release in your mouth. Lance after lance of thick, alien seed fills your maw, faster than you can swallow. You can practically feel her drug-augmented sperm swimming around your teeth. Trickles leak from the corners of your mouth, then in a waterfall over your lower lip. And she’s still cumming.");
@@ -818,9 +866,11 @@ public function blowAThrobUser(user:Number):void
 	processTime(25);
 	pc.lust(10+rand(10));
 	if(pc.isBimbo()) pc.lust(5+rand(5));
-	pc.loadInMouth(syri);
+	pc.loadInMouth(pp);
 	IncrementFlag("GLORYHOLE_SERVER");
 	IncrementFlag("GLORYHOLE_THROBBS");
+	pc.setStatusValue("Gloryhole Shift Activated",2,0);
+	pc.setStatusTooltip("Gloryhole Shift Activated", pp.fluidColorSimple(pp.cumType));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
