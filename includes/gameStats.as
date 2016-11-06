@@ -1211,6 +1211,30 @@ public function minutesToMonths(nMinutes:Number):Number
 	return nMos;
 }
 
+public function getDayArray(asValue:String = ""):Array
+{
+	var monthList:Array = [0, 1440, 1440, 1440, 1440, 1440, 1440, 1440];
+	var i:int = 0;
+	
+	if(asValue != "")
+	{
+		switch(asValue)
+		{
+			case "hours":
+				monthList = [0, 24, 24, 24, 24, 24, 24, 24];
+				break;
+			case "name":
+				monthList = ["null", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+				break;
+			case "short":
+			case "digit":
+				monthList = ["null", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+				break;
+		}
+	}
+	
+	return monthList;
+}
 public function getMonthArray(asValue:String = ""):Array
 {
 	var monthList:Array = [0, 44640, 40320, 44640, 43200, 44640, 43200, 44640, 44640, 43200, 44640, 43200, 44640];
@@ -1240,24 +1264,96 @@ public function getMonthArray(asValue:String = ""):Array
 	
 	return monthList;
 }
+
+public function getCurrentYear():int
+{
+	return getCurrentDate("year");
+}
 public function getCurrentMonth():int
 {
-	// Maybe started adventure in August?
+	return getCurrentDate("month");
+}
+public function getCurrentDate(dateType:String = ""):int
+{
+	// Maybe started adventure in August 30?
+	var y:int = 2828;
 	var m:int = 8;
-	var monthMin:Array = getMonthArray();
-	var currMin:int = GetGameTimestamp();
+	var d:int = 30;
+	var currYear:int = (y + minutesToYears(GetGameTimestamp()));
+	var monthDay:Array = getMonthArray("days");
+	var currDay:int = ((d - 1) + minutesToDays(GetGameTimestamp()));
 	
-	while(currMin >= 40320)
+	while(currDay > monthDay[m])
 	{
-		if(m > 12) m = 1;
-		if(currMin >= monthMin[m])
+		currDay -= monthDay[m];
+		m++;
+		if(m > 12)
 		{
-			currMin -= monthMin[m];
+			m = 1;
+			y++;
 		}
-		if(currMin > 0) m++;
+	}
+	if(currDay > monthDay[m])
+	{
+		currDay -= monthDay[m];
+		m++;
+		if(m > 12)
+		{
+			m = 1;
+			y++;
+		}
 	}
 	
-	return m;
+	if(dateType == "year") return y;
+	if(dateType == "month") return m;
+	return currDay;
+}
+public function getCurrentDayWeek():int
+{
+	// Maybe started adventure on a Wednesday?
+	var dw:int = 3;
+	var currDay:int = minutesToDays(GetGameTimestamp());
+	
+	while(currDay > 7)
+	{
+		currDay -= 7;
+	}
+	while(currDay > 0)
+	{
+		currDay--;
+		dw++;
+		if(dw > 7) dw = 1;
+	}
+	
+	return dw;
+}
+public function getCurrentDateArray():Array
+{
+	// [ Year, Month, Day, Day of Week ]
+	return [ getCurrentYear(), getCurrentMonth(), getCurrentDate(), getCurrentDayWeek() ];
+}
+
+public function prettifyDate(format:String = ""):String
+{
+	var retStr:String = "";
+	
+	var y:int = getCurrentYear();
+	var m:int = getCurrentMonth();
+	var d:int = getCurrentDate();
+	var dw:int = getCurrentDayWeek();
+	
+	var dayWkName:Array = getDayArray(format);
+	var monthName:Array = getMonthArray(format);
+	
+	switch(format)
+	{
+		case "name": retStr += ( dayWkName[dw] + ", " + monthName[m] + " " + d + ", " + y ); break;
+		case "short": retStr += ( dayWkName[dw] + ", " + (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
+		case "digit": retStr += ( (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
+		default: retStr += ( m + " / " + d + " / " + y ); break;
+	}
+	
+	return retStr;
 }
 
 public function minutesToDurationList(nMinutes:Number, approximate:Boolean = false):Array

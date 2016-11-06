@@ -100,7 +100,7 @@ public function debugMenus():void
 public function debugMenusTwo():void
 {
 	clearMenu();
-	output("The secondary room of debug. Because we can't have nice things.");
+	output("The secondary room of debug. Because we can’t have nice things.");
 	
 	addItemButton(0, new LightningDuster(), function():void {
 		output("\n\nLightning Duster.\n");
@@ -423,7 +423,7 @@ public function thisIsWhyWeCantHaveNiceThings():void
 {
 	clearOutput();
 	
-	output("This is why we can't have nice things.");
+	output("This is why we can’t have nice things.");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -434,13 +434,12 @@ public function flagEditing():void
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	clearOutput();
-	output("This room is for editing saves. If you use this room, you may break the game or your save. Seriously, if the game breaks after using this room, don't report it as a bug unless you can make another, non-edited character and reproduce the issue.");
+	output("This room is for editing saves. If you use this room, you may break the game or your save. Seriously, if the game breaks after using this room, don’t report it as a bug unless you can make another, non-edited character and reproduce the issue.");
 	clearMenu();
 	addButton(0,"Edit Flag",editFlagInput);
 	addButton(1,"List Flags",listFlags);
 	addButton(14,"Exit",backOutFlagEdits);
 }
-
 public function listFlags():void
 {
 	if(stage.contains(this.userInterface.textInput)) 
@@ -457,7 +456,6 @@ public function listFlags():void
 	clearMenu();
 	addButton(14,"Back",flagEditing);
 }
-
 public function editFlagInput(backsies:Boolean = false):void
 {
 	clearOutput();
@@ -470,7 +468,6 @@ public function editFlagInput(backsies:Boolean = false):void
 	addButton(0,"Enter",searchFlagName);
 	addButton(14,"Back",flagEditing);
 }
-
 public function searchFlagName():void
 {
 	clearOutput();
@@ -497,7 +494,6 @@ public function searchFlagName():void
 	addButton(3,"As Undefined",setFlagAsUndefined,flag, "Set Flag Type: Undefined", "This will set the value to undefined.");
 	addButton(14,"Back",editFlagInput);
 }
-
 public function setFlagAsString(flag:String):void
 {
 	var flagValue:String = this.userInterface.textInput.text;
@@ -509,7 +505,6 @@ public function setFlagAsString(flag:String):void
 	clearMenu();
 	addButton(0,"Next",editFlagInput);
 }
-
 public function setFlagAsNumber(flag:String):void
 {
 	var flagValue:Number = Number(this.userInterface.textInput.text);
@@ -521,7 +516,6 @@ public function setFlagAsNumber(flag:String):void
 	clearMenu();
 	addButton(0,"Next",editFlagInput);
 }
-
 public function setFlagAsBoolean(flag:String):void
 {
 	var sBoolean:String = (this.userInterface.textInput.text).toLowerCase();
@@ -536,7 +530,6 @@ public function setFlagAsBoolean(flag:String):void
 	clearMenu();
 	addButton(0,"Next",editFlagInput);
 }
-
 public function setFlagAsUndefined(flag:String):void
 {
 	flags[flag] = undefined;
@@ -547,11 +540,83 @@ public function setFlagAsUndefined(flag:String):void
 	clearMenu();
 	addButton(0,"Next",editFlagInput);
 }
-
-
 public function backOutFlagEdits():void
 {
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	mainGameMenu();
+}
+
+public function gottaGoFast():void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	
+	clearOutput();
+	output("This room is for advancing time. If you use this room, you may break the game or your save. Seriously, if the game breaks after using this room, don’t report it as a bug unless you can make another, non-edited character and reproduce the issue.");
+	output("\n\nHow long do you wish to wait for?");
+	
+	output("\n\nCurrent Date: " + prettifyDate("name"));
+	
+	clearMenu();
+	addButton(0, "1 Day", gottaGoFastWaitTime, 1440, "Wait: One Day", "Wait for one full day.");
+	addButton(1, "2 Days", gottaGoFastWaitTime, 2880, "Wait: Two Days", "Wait for two full days.");
+	addButton(2, "5 Days", gottaGoFastWaitTime, 7200, "Wait: Five Days", "Wait for five full days.");
+	addButton(3, "1 Week", gottaGoFastWaitTime, 10080, "Wait: One Week", "Wait for seven full days.");
+	addButton(4, "2 Weeks", gottaGoFastWaitTime, 20160, "Wait: Two Weeks", "Wait for 14 full days.");
+	
+	addButton(5, "1 Month", gottaGoFastWaitTime, 43200, "Wait: One Month", "Wait for 30 full days.");
+	addButton(6, "2 Months", gottaGoFastWaitTime, 86400, "Wait: Two Months", "Wait for 60 full days.");
+	addButton(7, "3 Months", gottaGoFastWaitTime, 129600, "Wait: Three Months", "Wait for 90 full days.");
+	addButton(8, "6 Months", gottaGoFastWaitTime, 259200, "Wait: Six Months", "Wait for 180 full days.");
+	addButton(9, "9 Months", gottaGoFastWaitTime, 388800, "Wait: Nine Months", "Wait for 270 full days.");
+	
+	addButton(10, "1 Year", gottaGoFastWaitTime, 525600, "Wait: One Year", "Wait for one full year.");
+	addButton(11, "2 Years", gottaGoFastWaitTime, 1051200, "Wait: Two Years", "Wait for two full years.");
+	addButton(12, "3 Years", gottaGoFastWaitTime, 1576800, "Wait: Three Years", "Wait for three full years.");
+	addButton(13, "Custom", gottaGoFastWaitCustom, undefined, "Wait: Custom", "Wait for as long as you like.");
+	addButton(14,"Exit",mainGameMenu);
+}
+public function gottaGoFastWaitTime(duration:int = 0):void
+{
+	clearOutput();
+	
+	var timeList:Array = minutesToDurationList(duration);
+	
+	output("You wait for" + (timeList.length > 0 ? (CompressToList(timeList)) : " some time") + "....");
+	
+	processTime(duration);
+	
+	output("\n\nCurrent Date: " + prettifyDate("name"));
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function gottaGoFastWaitCustom():void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	clearOutput();
+	
+	output("How long do you wish to wait for?\n<i>(Value should be in number of minutes.)</i>");
+	displayInput();
+	output("\n\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", gottaGoFastWaitCustomOK);
+	addButton(14, "Back", gottaGoFast);
+}
+public function gottaGoFastWaitCustomOK():void
+{
+	if(isNaN(Number(userInterface.textInput.text))) {
+		gottaGoFastWaitCustom();
+		output("Choose a value that is a positive integer, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) < 1) {
+		gottaGoFastWaitCustom();
+		output("Choose a value that is 1 minute or more, please.");
+		return;
+	}
+	var duration:int = Math.floor(Number(userInterface.textInput.text));
+	if(stage.contains(userInterface.textInput)) removeInput();
+	gottaGoFastWaitTime(duration);
 }
