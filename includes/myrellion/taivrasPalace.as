@@ -477,7 +477,8 @@ public function queensChambersBonus():Boolean
 		else output("cowering in the corner, arms and crystal plates wrapped protectively around her belly full of eggs");
 		output(".");
 	}
-	if(flags["LOOTED_TAIVRAS_BEDROOM"] == undefined) addButton(0,"Search",searchTheQueensChambers,undefined,"Search","Maybe you’ll find something useful in the queen’s chambers?");
+	if(flags["NYREAN_SPOILS"] != undefined) { /* No need! */ }
+	else if(flags["LOOTED_TAIVRAS_BEDROOM"] == undefined) addButton(0,"Search",searchTheQueensChambers,undefined,"Search","Maybe you’ll find something useful in the queen’s chambers?");
 	else if(flags["LOOTED_TAIVRAS_BEDROOM"] == 0) addButton(0,"Gem Sack",searchTheQueensChambers,undefined,"Gem Satchel","Take the sack of gems.");
 	else addDisabledButton(0,"Search","Search","You’ve already searched this room, discovering a silver key and sack of gems.");
 	return false;
@@ -609,10 +610,11 @@ public function taivrasThroneBonusFunc():Boolean
 	//First 12 hours after fight:
 	else if(flags["KING_NYREA"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + (12 * 60) > GetGameTimestamp())
 	{
-		output("Your newly-minted mate is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at Dane’s hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father’s probe remains where it was, acting as your wife’s throne. It flashes occasionally, reacting to your presence.\n\n<b>You should come back in a day or so if you’d like to interact her. Hopefully someone will remember to tell the gate guards about you. It’d suck to have to fight them again on the way out - but it might happen.</b>");
+		output("Your newly-minted mate is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at Dane’s hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father’s probe remains where it was, acting as your wife’s throne. It flashes occasionally, reacting to your presence.");
+		taivrasGuardsBonusBlurb();
 	}
 	//PC spared Taivra:
-	else if(flags["KING_NYREA"] == undefined || !pc.hasPerk("Nyrean Royal"))
+	else if(flags["KING_NYREA"] == undefined)
 	{
 		output("Queen Taivra is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at Dane’s hands.");
 		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
@@ -627,6 +629,7 @@ public function taivrasThroneBonusFunc():Boolean
 			output("Your newly-minted mate is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at Dane’s hands.");
 			if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
 			output(" Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons.");
+			taivrasGuardsBonusBlurb();
 		}
 		// (N.B. Change the code so that it triggers the salvage scene next time you hit the surface. Maybe disable the chambers and throne buttons on Taivra’s menu until you do just to enforce that she’s a little irked with you?)
 		else if(flags["TAIVRA_NEW_THRONE"] == 0)
@@ -656,6 +659,10 @@ public function taivrasThroneBonusFunc():Boolean
 		}
 	}
 	return false;
+}
+public function taivrasGuardsBonusBlurb():void
+{
+	output("\n\n<b>You should come back in a day or so if you’d like to interact her. Hopefully someone will remember to tell the gate guards about you. It’d suck to have to fight them again on the way out - but it might happen.</b>");
 }
 
 public function showIncuGoo():void
@@ -1992,9 +1999,9 @@ public function subjugateQueenTaivra():void
 	output("\n\n<i>“We’ll talk later, [pc.name],”</i> she says quietly. <i>“I can only imagine how eager you are to... claim your prizes.”</i>");
 	output("\n\nMore than one prize, too. After all, you’ve got the coordinates you need for the next leg of your quest!\n\n");
 	flags["KING_NYREA"] = 1;
-	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	//Should make queen nyreabuns ready to go immediately
-	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp() - (60 * 13);
+	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp() - (60 * 13);
+	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp();
 	processTime(12);
 	CombatManager.genericVictory();
 }
@@ -2561,10 +2568,21 @@ public function getRoyalSpoils():void
 	author("Savin");
 	output("\n\n<i>“Ah, my " + pc.mf("lord","lady") + ",”</i> a voice says as you enter the palace proper. You turn and see the captain of the gate guard jogging towards you. She gives you a respectful nod and produces a small pouch from her belt. <i>“Queen Taivra asked us to give you this when you arrived. Our mines and traders have been working tirelessly since your last visit. Prosperity reigns throughout the queenship, and we’re only expanding. Taivra has, of course, set aside some of our growing wealth for her mate.”</i>");
 	output("\n\nYou take the pouch, and find several small green crystals jostling around inside. This will certainly fetch a tidy profit somewhere - maybe even in your little village down the tunnel. Smiling at the guard-captain, you pocket your royal gains. It’s good to be the " + pc.mf("king","queen") + "!");
+	output("\n\n");
+	
+	processTime(5);
 	flags["NYREAN_SPOILS"] = GetGameTimestamp();
-	output("\n\n(+" + pc.level*100 + " credits)");
+	
 	//PC gets a satchel of gemstones worth whatever, same item descript as the one found in Taivra’s chambers. [Next] into palace map.
-	pc.credits += pc.level*100;
+	if(pc.inventory.length < pc.inventorySlots())
+	{
+		itemCollect([new GemSatchel()]);
+		return;
+	}
+	
+	var money:int = Math.min(10000, (pc.level * 100));
+	output("(+" + money + " credits)");
+	pc.credits += money;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
