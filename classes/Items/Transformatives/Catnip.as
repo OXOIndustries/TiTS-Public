@@ -1025,7 +1025,7 @@ package classes.Items.Transformatives
 				output("\n\nTerror overtakes you as you feel your backbone snap. It doesn’t stop, as you feel your spine lengthens, growing with new flesh from your backside as the bones of your legs flex and twist. Muscle groups shift and rearrange themselves as the change completes. <b>You now have tauric lower half!</b>");
 				
 				target.legCount = 4;
-				//if (!target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) target.addLegFlag(GLOBAL.FLAG_PREHENSILE); // I don't think this means what you think it means...
+				if (!target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) target.addLegFlag(GLOBAL.FLAG_PREHENSILE);
 				
 				if (target.genitalSpot != 2) {
 					if(target.hasGenitals()) output(" After taking a moment to get used to your new body, you notice that your genitals now reside between the hind legs of your [pc.lowerBody].");
