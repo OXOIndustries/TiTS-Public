@@ -171,7 +171,7 @@ public function kiInitRooms():void
 	
 	rooms["KI-OfficersAccessRoom"] = new RoomClass(this);
 	rooms["KI-OfficersAccessRoom"].roomName = "ACCESS\nROOM";
-	rooms["KI-OfficersAccessRoom"].description = "Due to the sheer size and scale of the ship, there are countless passageways and maintenance shafts criss-crossing the interior of the hull. Luckily for you, the ventilation system is one such important facet of the ship that routes through these access points, giving you a pretty quite and inconspicious place to gather yourself after a crushingly claustrophic trip.\n\nThe ventilation shaft access is here, hanging open for you.";
+	rooms["KI-OfficersAccessRoom"].description = "Due to the sheer size and scale of the ship, there are countless passageways and maintenance shafts criss-crossing the interior of the hull. Luckily for you, the ventilation system is one such important facet of the ship that routes through these access points, giving you a pretty quiet and inconspicious place to gather yourself after a crushingly claustrophic trip.\n\nThe ventilation shaft access is here, hanging open for you.";
 	rooms["KI-OfficersAccessRoom"].runOnEnter = function():void {
 		addButton(0, "Vents", kiE9EnterVents, undefined, "Enter Vents", "Crawl into the vents and move around the ship.");
 	};

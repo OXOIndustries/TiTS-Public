@@ -1066,7 +1066,7 @@ public function kiHolmesVictory():void
 	
 	output("\n\nThe recording pops open with a view of the bridge, brightly lit and sparkling white. Steele Tech logos flicker on several screens behind the captain as he takes a seat, crossing a leg and looking at a dataslate in his hands. Captain Holmes is a handsome man here, looking to be in his late fifties with a salt-and-pepper beard and short-cropped, curly hair.");
 	
-	output("\n\n<i>“Captain’s log, day seventy four of deployment. Update from medical bay: Doctor Vanderbilt informs me that Commander Henderson is recovering rapidly after the accident on the surface. ‘A remarkable recovery,”</i> with his burns almost completely healed already, and he’s up and about again, though doc’s ordered him to take it easy. Tensions are still high after the accident, however, and I’ve canceled all exploration of the asteroid’s surface for now. I’m afraid our Chief Science Officer will have to content himself with the samples mister Henderson recovered beforehand.”</i>");
+	output("\n\n<i>“Captain’s log, day seventy four of deployment. Update from medical bay: Doctor Vanderbilt informs me that Commander Henderson is recovering rapidly after the accident on the surface. ‘A remarkable recovery,’ with his burns almost completely healed already, and he’s up and about again, though doc’s ordered him to take it easy. Tensions are still high after the accident, however, and I’ve canceled all exploration of the asteroid’s surface for now. I’m afraid our Chief Science Officer will have to content himself with the samples mister Henderson recovered beforehand.”</i>");
 	
 	output("\n\nCaptain Holmes glances down at his datapad, looking to find his log’s next topic. Suddenly, your screen goes dark, flickering back in a dark red hue: emergency lights. The captain glances up in alarm. <i>“What’s going on? Status report!”</i> he snaps at crewmen running past.");
 	
@@ -1236,7 +1236,7 @@ public function kiMedbayFightEnds():void
 	output("Suddenly, you hear a pneumatic hiss just inches from your ear as the MedBay door slides open, flashing with brilliant red and white lights. A woman - the same one from the bridge - grabs you by the shoulders and yanks you inside, throwing you to the ground. Tentacles slap and grasp at your");
 	if (pc.hasFeet()) output(" heels");
 	else output(" back");
-	output(" before the doors slam shut again and hiss as the emergency lock sets back in place, leaving you is eerie silence save for the rhythmic <i>thump-thump</i> against the door, sounding far away and distant. The reinforced windows don’t so much as waver under the assault, though outside the mutants slaver and silently shriek, thrusting wildly with their blood-red tentacles.");
+	output(" before the doors slam shut again and hiss as the emergency lock sets back in place, leaving you in eerie silence save for the rhythmic <i>thump-thump</i> against the door, sounding far away and distant. The reinforced windows don’t so much as waver under the assault, though outside the mutants slaver and silently shriek, thrusting wildly with their blood-red tentacles.");
 
 	output("\n\n<i>“A-are you okay?”</i>");
 	
@@ -1495,7 +1495,7 @@ public function kiVanderbiltFuckHer():void
 
 	output("You can only imagine how dangerous this maneuver is, but you’ll have to risk infection if you want to keep the doc on her feet - and the hope of you getting out of this jam in one piece alive. So you give the doctor a smile, slinking her way and shrugging off your [pc.gear]. Elenora lets loose a low moan, releasing the clamp on her legs and massaging her tentacle-laden pussy. It’s going to be awkward making this work without risking one of those tentacles getting too close to something they could crawl into. But you’ll manage, you tell yourself, putting on your most confident swagger for the demure doctor.");
 	
-	output("\n\nLeaning over Elenora, your hands lock on the back of her chair and ush her back until she’s almost parallel with the deck. Her chest is heaving under her torn scrubs, eyes wide and full of awe. You wonder just how much experience a girl like her has, the way she’s so shy and uncertain. Elenora blinks up at you, slowly spreading her legs, an unsubtle invitation - but she takes no motion herself other than to caress her sex.");
+	output("\n\nLeaning over Elenora, your hands lock on the back of her chair and push her back until she’s almost parallel with the deck. Her chest is heaving under her torn scrubs, eyes wide and full of awe. You wonder just how much experience a girl like her has, the way she’s so shy and uncertain. Elenora blinks up at you, slowly spreading her legs, an unsubtle invitation - but she takes no motion herself other than to caress her sex.");
 	
 	output("\n\nYou smile down at her, tracing a few fingers down her petite chest, teasing one of her breasts through the shredded fabric hiding it from view. Your efforts are rewarded with a gasp, and Elenora’s cheeks flushing darkly as your touch trails down to her thighs and the sodden gasp between them. Despite your feign of confidence, you can’t stop yourself from shuddering as you feel one of the parasitic tentacles rub against your hand. It tries to draw you deeper, wrapping around a finger and gently guiding you into its host’s crotch. You slip a digit in, circling around the lips of Elenora’s twat before reaching into its tentacle-laden depths.");
 	
@@ -1521,7 +1521,7 @@ public function kiVanderbiltFuckHer():void
 		
 		output("\n\nYou run a hand through her disheveled hair, still using the other to tease and finger deep into her slit. Elenora’s muscles contract around your digits, and the tentacles squirm around your wrist, demanding more and more from you. They seem to <i>want</i> you to pleasure their host, like they crave it somehow. You’re happy to give it, so long as they leave Elenora’s mind alone for a little longer.");
 		
-		output("\n\nIt seems to work, as the doctor relaxes more and more in your embrace, lovingly tending to your [pc.cock "+cIdx+"]. She moans incoherently, faint words muffled by a mouthful of your manhood. You’re half afraid Elenora’s going to fall asleep, the way she goes languid in her chair, but the your delight, the doc holds out to the very end, moaning and gasping as your dexterous fingers eventually bring her to climax, tentacles and all.");
+		output("\n\nIt seems to work, as the doctor relaxes more and more in your embrace, lovingly tending to your [pc.cock "+cIdx+"]. She moans incoherently, faint words muffled by a mouthful of your manhood. You’re half afraid Elenora’s going to fall asleep, the way she goes languid in her chair, but to your delight, the doc holds out to the very end, moaning and gasping as your dexterous fingers eventually bring her to climax, tentacles and all.");
 
 		output("\n\nPink juices squirt from the tentacles’ heads, basting her thighs until Elenora’s a wet, murky mess below the belt. Her whimpers of pleasure, the way she utterly loses control, drives you over the edge in short order. You grunt, grabbing the back of her head and driving your [pc.hips] forward until you’re");
 		if (pc.cocks[cIdx].cLength() >= 12) output(" straining Elenora’s throat with the sheer size of your massive prick");
@@ -1658,7 +1658,7 @@ public function kiMedbayCure():void
 	
 	output("\n\n<i>“Y-you found one? Really?”</i> Elenora gasps, taking the box from you. <i>“You’re a saint, [pc.name]. If I’m right - if this is what’s causing the mutations - I might be able to synthesize a cure. Distributing it will be a whole different issue, but it’s a start. A good start!”</i>");
 	
-	output("\n\nYou clutches the box tight and scurries over to a biohazard-marked container - the kind with gloves on the outside poking in, letting her manipulate it safely. She shoves her hands into the gloves and goes to work, bringing over analyzer tools and containers of nanomachines that have somehow survived the otherwise devastating chaos that swept through the room.");
+	output("\n\nShe clutches the box tight and scurries over to a biohazard-marked container - the kind with gloves on the outside poking in, letting her manipulate it safely. She shoves her hands into the gloves and goes to work, bringing over analyzer tools and containers of nanomachines that have somehow survived the otherwise devastating chaos that swept through the room.");
 	
 	output("\n\n<i>“This will take a while. If... if it works at all,”</i> she says over her shoulder. <i>“You should rest up. Spreading a cure around is going to be even harder than making it.”</i>");
 
@@ -1722,7 +1722,7 @@ public function kiEngineeringBossFight():void
 	showName("ENGINEERING\nDECK");
 	showBust("USHAMEE_NUDE", "HENDERSON");
 
-	output("You clamber down the vent shaft into the bowels of the <i>Kashima</i>’s pipes. The trip’s long, cramped, and sweaty, taking you through increasingly warm, dark pipes until you’re feeling your way around on panels of steel that sizzle and burn your fingers. Eventually, just as you’re reaching the extend of your endurance, you find a grate going straight down over a deck that’s lit brilliant red and thrumming with the reverberations of LightDrive engines at rest.");
+	output("You clamber down the vent shaft into the bowels of the <i>Kashima</i>’s pipes. The trip’s long, cramped, and sweaty, taking you through increasingly warm, dark pipes until you’re feeling your way around on panels of steel that sizzle and burn your fingers. Eventually, just as you’re reaching the extent of your endurance, you find a grate going straight down over a deck that’s lit brilliant red and thrumming with the reverberations of LightDrive engines at rest.");
 	
 	output("\n\nThe grate comes off with a good shove, and you tumble down to the deck. Emergency lights flare above you, bathing your surroundings in crimson. Towering engine blocks and steaming pipes stand tall all around you, looming large against cum-slathered bulkheads. You can hear faint hisses and growls over the engine sounds now, and... and the sounds of sensual moans, cries of pleasure from the shadows. As you look around, eyes adjusting to the different light, you can see writhing tentacles clutching at the bulkheads, covering the machinery in biological masses of red and black, slime and sinew.");
 	
