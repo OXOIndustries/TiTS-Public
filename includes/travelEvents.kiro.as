@@ -461,7 +461,7 @@ public function askKiroAboutKallysBar():void
 	output("\n\nYou observe, <i>“That sounds like a glowing endorsement.”</i>");
 	output("\n\n<i>“It is. Did you check out any of the other rooms yet?”</i> Kiro carries right on after her hypothetical question. <i>“The bathroom is fucking roomy for being on a space station, and some pervert carved glory holes into the stalls.”</i> Smirking, the kui-tan sighs happily. <i>“If there’s one thing I can approve of, it’s having a place you can stop to get your balls efficiently drained by a local, anonymous cum-slut.”</i>");
 	output("\n\n");
-	if(9999) output("You know those gloryholes all too well - too well to hide your knowing smile.");
+	if(timesGloryholesUsed() + timesGloryholesWorked() > 0) output("You know those gloryholes all too well - too well to hide your knowing smile.");
 	else output("The cocky pirate’s good humor is infectious. You’re smiling right alongside her, even though you’ve yet to try the gloryholes.");
 	output("\n\n<i>“And out back,”</i> Kiro points over her shoulder, <i>“is an terran-style bath area, complete with meticulously groomed plants and pools of water to lounge in. I’m halfway tempted to go back there and see if I can find someone to show me what an underwater blowjob feels like. No time like the present for crossing things off the old bucket list, eh?”</i>");
 	output("\n\nYou widen your eyes at that one.");
@@ -530,7 +530,7 @@ public function tellKiroToTellKallyAboutLovyPicardine():void
 	output("\n\nThat sounds reasonable. <i>“Okay");
 	if(!pc.isBro()) output(", you got it");
 	output(".”</i>");
-	output("\n\nKiro grabs you and pulls you in close, wrapping her tail up around your back to hold you against her. planting a wet smooch on your [pc.lipsChaste]. <i>“Thanks.”</i>");
+	output("\n\nKiro grabs you and pulls you in close, wrapping her tail up around your back to hold you against her, planting a wet smooch on your [pc.lipsChaste]. <i>“Thanks.”</i>");
 	processTime(3);
 	flags["KIRO_KALLY_PICARDINE_QUEST"] = 2;
 	clearMenu();
