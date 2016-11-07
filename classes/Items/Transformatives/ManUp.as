@@ -265,6 +265,9 @@
 						case GLOBAL.TYPE_FELINE:
 							kGAMECLASS.output("Your [pc.cockColor] cock is very much like a spike and is covered in soft barbs");
 							break;
+						case GLOBAL.TYPE_AVIAN:
+							kGAMECLASS.output("Your [pc.cockColor] cock is slightly wavy shaped and tapered at the tip");
+							break;
 						case GLOBAL.TYPE_NAGA:
 							kGAMECLASS.output("Your [pc.cockColor] cock is glossy smooth and tapers towards the tip");
 							break;

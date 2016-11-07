@@ -226,10 +226,8 @@ package classes.GameData.Pregnancy
 			
 			pData.pregnancyIncubation = newInc;
 			
-			if (newInc <= 0 && oldInc >= 0)
+			if (newInc < 0 && oldInc >= 0)
 			{
-				pData.pregnancyIncubation = 0;
-				
 				if (_debugTrace) trace("Incubation expired");
 				if (_onDurationEnd != null)
 				{
@@ -240,10 +238,14 @@ package classes.GameData.Pregnancy
 				{
 					throw new Error("BasePregnancyHandler for type " + _handlesType + " doesn't have a defined onDurationEnd event handler.");
 				}
+				
+				pData.pregnancyIncubation = -1;
+				
+				return;
 			}
 			
 			// Failsafe
-			if(pData.pregnancyIncubation < 0) pData.pregnancyIncubation = 0;
+			if(pData.pregnancyIncubation < 0) pData.pregnancyIncubation = -1;
 		}
 		
 		// Baseline data/interaction

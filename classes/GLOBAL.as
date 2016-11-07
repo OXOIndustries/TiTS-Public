@@ -73,6 +73,7 @@
 		public static const FLAG_SLIGHTLY_PUMPED:int 						= 40;
 		public static const FLAG_PUMPED:int 								= 41;
 		public static const FLAG_TAILCUNT:int                               = 42;
+		public static const FLAG_BEAK:int									= 43;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -118,6 +119,7 @@
 			"Slightly Pumped",
 			"Fully Pumped",
 			"Tailcunt",
+			"Beak",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -306,6 +308,7 @@
 			FLAG_SMOOTH,
 			FLAG_MUZZLED,
 			FLAG_ANGULAR,
+			FLAG_BEAK,
 		];
 		
 		public static const VALID_EYE_TYPES:Array = [

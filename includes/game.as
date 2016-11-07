@@ -155,7 +155,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	{
 		if(eventQueue.indexOf(fixPcUpbringing) == -1) eventQueue.push(fixPcUpbringing);
 	}
-	if(baby.originalRace != pc.originalRace)
+	if(baby.originalRace == "NOT SET")
 	{
 		if(eventQueue.indexOf(setBabyValuesOptions) == -1) eventQueue.push(setBabyValuesOptions);
 	}
@@ -2641,6 +2641,14 @@ public function racialPerkUpdateCheck():void
 			pc.removePerk("Fecund Figure");
 		}
 	}
+	if(pc.hasStatusEffect("Special Scrotum"))
+	{
+		if(pc.balls <= 0)
+		{
+			msg += "\n\n" + logTimeStamp("passive") + " A tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that, due to the lack of testicles, the unique covering for your non-existent scrotum has finally dissolved from your system.";
+			pc.removeStatusEffect("Special Scrotum");
+		}
+	}
 	if(pc.statusEffectv4("Vanae Markings") > 0)
 	{
 		if(pc.balls <= 0)
@@ -2688,7 +2696,7 @@ public function racialPerkUpdateCheck():void
 		msg += "\n\n(<b>Perk Lost: Androgyny</b> - You’ve lost your muzzle.)";
 		pc.removePerk("Androgyny");
 	}
-	if (pc.hasPerk("Icy Veins") && pc.perkv1("Icy Veins") > 0 && (!pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) || pc.skinType != GLOBAL.SKIN_TYPE_FUR))
+	if (pc.hasPerk("Icy Veins") && pc.perkv1("Icy Veins") > 0 && (!pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) || !InCollection(pc.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)))
 	{ // racialPerkUpdateCheck: removal of Icy Veins perk with he loss of fluffy fur (fork on still having fur but not fluffy flag?).
 		msg += "\n\n" + logTimeStamp("passive") + " Without all that thick, fluffy coat of fur you suddenly feel rather cold...";
 		msg += "\n\n(<b>Perk Lost: Icy Veins</b> - You’ve lost your insulating coat of fur, and as a result you are now weaker against cold.)";

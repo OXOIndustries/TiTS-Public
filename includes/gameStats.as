@@ -180,6 +180,7 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 			}
 		}
+		if(pc.hasPerk("Regal Mane")) output2("\n<b>* Neck, Mane:</b> " + GLOBAL.FLAG_NAMES[pc.perkv1("Regal Mane")]);
 		// Body
 		output2("\n<b><u>Body</u></b>");
 		output2("\n<b>* Tone:</b> " + pc.tone + "/" + pc.toneMax());
@@ -362,6 +363,11 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.balls + " Testicle");
 				if(pc.balls != 1) output2("s");
 				if(pc.hasStatusEffect("Uniball")) output2(", Uniball");
+				if(pc.hasStatusEffect("Special Scrotum"))
+				{
+					output2(", " + GLOBAL.FLAG_NAMES[pc.statusEffectv1("Special Scrotum")]);
+					if(pc.getStatusTooltip("Special Scrotum") != "") output2(", " + StringUtil.toDisplayCase(pc.getStatusTooltip("Special Scrotum")));
+				}
 				if(pc.statusEffectv4("Vanae Markings") > 0) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
 				output2("\n<b>* Testicle, Size:</b> " + prettifyLength(pc.ballDiameter()) + " across, " + prettifyLength(pc.ballSize()) + " around");
 				if(pc.balls != 1) output2(", each");

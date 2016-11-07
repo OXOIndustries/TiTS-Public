@@ -2,12 +2,16 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Miscellaneous.*;
-	import classes.Items.Transformatives.Catnip;
-	import classes.Items.Transformatives.Foxfire;
+	import classes.Items.Miscellaneous.AusarTreats;
+	import classes.Items.Miscellaneous.HorsePill;
+	import classes.Items.Miscellaneous.KnotAProblem;
+	import classes.Items.Miscellaneous.NukiCookies;
+	import classes.Items.Miscellaneous.Pandaneen;
+	import classes.Items.Miscellaneous.PandaPro;
+	import classes.Items.Transformatives.DracoGuard;
+	import classes.Items.Transformatives.Furball;
 	import classes.Items.Transformatives.OvirAce;
 	import classes.Items.Transformatives.OvirPositive;
-	import classes.Items.Transformatives.DracoGuard;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -16,7 +20,7 @@
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 10;
+			this._latestVersion = 11;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -53,17 +57,17 @@
 			this.HPMod = 15;
 			this.HPRaw = this.HPMax();
 
-			this.inventory.push(new Pandaneen());
-			this.inventory.push(new PandaPro());
-			this.inventory.push(new NukiCookies());
-			this.inventory.push(new KnotAProblem());
-			this.inventory.push(new HorsePill());
-			this.inventory.push(new AusarTreats());
+			inventory.push(new Pandaneen());
+			inventory.push(new PandaPro());
+			inventory.push(new KnotAProblem());
+			inventory.push(new HorsePill());
+			inventory.push(new Furball());
+			inventory.push(new AusarTreats());
+			inventory.push(new NukiCookies());
+			inventory.push(new DracoGuard());
 			inventory.push(new OvirAce());
 			inventory.push(new OvirPositive());
-			this.inventory.push(new Catnip());
-			this.inventory.push(new Foxfire());
-			this.inventory.push(new DracoGuard());
+			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
@@ -218,7 +222,7 @@
 		}
 		public function UpgradeVersion7(d:Object):void
 		{
-			d.inventory.push(new Catnip().getSaveObject());
+			//d.inventory.push(new Catnip().getSaveObject());
 		}
 		public function UpgradeVersion8(dataObject:Object):void
 		{
@@ -226,7 +230,30 @@
 		}
 		public function UpgradeVersion9(d:Object):void
 		{
-			d.inventory.push(new Foxfire().getSaveObject());
+			//d.inventory.push(new Foxfire().getSaveObject());
+		}
+		public function UpgradeVersion10(dataObject:Object):void
+		{
+			dataObject.inventory = UpdateInventory();
+		}
+		
+		private function UpdateInventory():Array
+		{
+			// Renew/Reorganize inventory
+			var newInventory:Array = [];
+			
+			newInventory.push(new Pandaneen().getSaveObject());
+			newInventory.push(new PandaPro().getSaveObject());
+			newInventory.push(new KnotAProblem().getSaveObject());
+			newInventory.push(new HorsePill().getSaveObject());
+			newInventory.push(new Furball().getSaveObject());
+			newInventory.push(new AusarTreats().getSaveObject());
+			newInventory.push(new NukiCookies().getSaveObject());
+			newInventory.push(new DracoGuard().getSaveObject());
+			newInventory.push(new OvirAce().getSaveObject());
+			newInventory.push(new OvirPositive().getSaveObject());
+			
+			return newInventory;
 		}
 		
 		override public function onLeaveBuyMenu():void

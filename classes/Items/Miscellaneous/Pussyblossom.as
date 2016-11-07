@@ -129,6 +129,9 @@
 						case GLOBAL.TYPE_FELINE:
 							kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " feline pussy.");
 							break;
+						case GLOBAL.TYPE_AVIAN:
+							kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " avian pussy.");
+							break;
 						case GLOBAL.TYPE_GABILANI:
 							kGAMECLASS.output("You’ve got a muscular, " + pc.vaginaColor(0) + " goblin pussy.");
 							break;

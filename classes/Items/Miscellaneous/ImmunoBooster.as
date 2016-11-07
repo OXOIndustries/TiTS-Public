@@ -93,15 +93,15 @@ package classes.Items.Miscellaneous
 					var furNotification:Boolean = false;
 					var hairNotification:Boolean = false;
 					
-					if (target.hairColor == fireColor && target.hasHair()) hairNotification = true;
-					if (target.furColor == fireColor && target.hasFur()) furNotification = true;
+					if (target.hairColor == fireColor && target.hasHair() && target.hairType != GLOBAL.HAIR_TYPE_FEATHERS) hairNotification = true;
+					if (target.furColor == fireColor && target.hasFur() && target.skinType != GLOBAL.SKIN_TYPE_FEATHERS) furNotification = true;
 					
 					if (hairNotification && furNotification) output("\n\nThe glow on your fur begins to fade, with your " + target.hairNoun() + " following suit - settling for a plainer " + newColor + ". <b>Your fur and hair are now " + newColor + "!</b>");
 					else if (hairNotification) output("\n\nYour " + target.hairDescript(false, true) + " grows dim, losing its luminosity as it becomes regular  " + newColor + " hair. <b>Your hair is now " + newColor + "!</b>");
 					else if (furNotification) output("\n\nThe glow on your " + target.skinFurScales(true, true, false) + " begins to fade, settling for a plainer " + newColor + ". <b>Your fur is now " + newColor + "!</b>");
 					
-					if (target.hairColor == fireColor) target.hairColor = newColor;
-					if (target.furColor == fireColor) target.furColor = newColor;
+					if (target.hairColor == fireColor && target.hairType != GLOBAL.HAIR_TYPE_FEATHERS) target.hairColor = newColor;
+					if (target.furColor == fireColor && target.skinType != GLOBAL.SKIN_TYPE_FEATHERS) target.furColor = newColor;
 					
 					if (target.skinAccent == accentColor && target.hasStatusEffect("Vanae Markings"))
 					{

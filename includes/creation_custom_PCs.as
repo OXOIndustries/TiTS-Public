@@ -1072,6 +1072,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		showName("\n????");
 		output("Reality seems to warp, but then, things are as they always have been, aren't they? You look over your [pc.chest], [pc.crotch]. Yup, everything is fine.");
 		if(bonusTexts != "") output(" " + bonusTexts);
+		resetBabyValues();
 		clearMenu();
 		addButton(0,"Next",fatedPCOptionsFinisher);
 	}
