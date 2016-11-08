@@ -148,7 +148,7 @@
 			}
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " eats the candy but to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " eats the Furball candy, but to no effect.");
 			}
 			return false;
 		}

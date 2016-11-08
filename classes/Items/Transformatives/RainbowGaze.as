@@ -20,9 +20,7 @@
 			quantity = 1;
 			stackSize = 10;
 			type = GLOBAL.POTION;
-			//Used on inventory buttons
 			shortName = "RainbowG.";
-			//Regular name
 			longName = "Rainbow Gaze";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
@@ -41,34 +39,34 @@
 		
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			kGAMECLASS.clearOutput();
+			clearOutput();
 			author("Couch");
 			
 			if(target is PlayerCharacter)
 			{
-				kGAMECLASS.output("You pull the eyedropper out of its packaging and turn it over in your hands, trying to decide what color you’d like.\n\n");
+				output("You pull the eyedropper out of its packaging and turn it over in your hands, trying to decide what color you’d like.\n\n");
 				rbgMenu(target);
 				return true;
 			}
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " uses the Rainbow Gaze to no effect.");
+				output(target.capitalA + target.short + " uses the Rainbow Gaze to no effect.");
 			}
 			return false;
 		}
 		
-		public function rbgMenu(target:Creature):void
+		private function rbgMenu(target:Creature):void
 		{
 			kGAMECLASS.showName("RAINBOW\nGAZE");
 			
-			kGAMECLASS.clearMenu();
+			clearMenu();
 			addButton(0, "Standard", rbgSelColor, [target, "standard"]);
 			addButton(1, "Metallic", rbgSelColor, [target, "metallic"]);
 			addButton(2, "Glowing", rbgSelColor, [target, "glowing"]);
 			addButton(14, "Back", rbgCancel, target);
 		}
 		
-		public function rbgSelColor(arg:Array):void
+		private function rbgSelColor(arg:Array):void
 		{
 			var target:Creature = arg[0];
 			var colorType:String = arg[1];
@@ -102,7 +100,7 @@
 					break;
 			}
 			
-			kGAMECLASS.clearMenu();
+			clearMenu();
 			for(i = 0; i < colorList[0].length; i++)
 			{
 				if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
@@ -124,20 +122,17 @@
 			addButton(14, "Back", rbgMenu, target);
 		}
 		
-		public function rbgCancel(target:Creature):void
+		private function rbgCancel(target:Creature):void
 		{
 			clearOutput();
 			kGAMECLASS.showName("RAINBOW\nGAZE");
 			author("Couch");
 			
-			kGAMECLASS.output("You put the eyedropper back into your inventory.\n\n");
+			output("You put the eyedropper back into your inventory.\n\n");
 			kGAMECLASS.quickLoot(new RainbowGaze());
-			
-			kGAMECLASS.clearMenu();
-			kGAMECLASS.addButton(0, "Next", kGAMECLASS.useItemFunction);
 		}
 		
-		public function rbgUse(arg:Array):void
+		private function rbgUse(arg:Array):void
 		{
 			var target:Creature = arg[0];
 			var newColor:String = arg[1];
@@ -150,8 +145,8 @@
 			
 			target.eyeColor = newColor;
 			
-			kGAMECLASS.clearMenu();
-			kGAMECLASS.addButton(0, "Next", kGAMECLASS.useItemFunction);
+			clearMenu();
+			addButton(0, "Next", kGAMECLASS.useItemFunction);
 		}
 	}
 }

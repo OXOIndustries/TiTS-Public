@@ -136,6 +136,14 @@ public function buyFromCeria():void
 			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin balms.";
 		}
 		else chars["CERIA"].destroyItem(new DoveBalm());
+		
+		// 9999 - Temporary placement until Aislinn is implemented!
+		if(9999 == 9999)
+		{
+			if(!chars["CERIA"].hasItem(new LipTease())) chars["CERIA"].inventory.push(new LipTease());
+			chars["CERIA"].keeperBuy += " Next to a small holo-mirror is a display holding an array of lip balms.";
+		}
+		else chars["CERIA"].destroyItem(new LipTease());
 	}
 	chars["CERIA"].keeperBuy += "\n";
 	//List prices and whatnot. Back should go back to CERIA's main menu.
