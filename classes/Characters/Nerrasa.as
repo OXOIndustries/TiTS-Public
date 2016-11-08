@@ -2,7 +2,6 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Miscellaneous.AusarTreats;
 	import classes.Items.Protection.HeatBelt;
 	import classes.Items.Protection.ArcticWarfareBelt;
 	import classes.Items.Miscellaneous.ClimbingKit;
@@ -10,7 +9,6 @@
 	import classes.Items.Apparel.ThermalJacket;
 	import classes.Items.Accessories.LightJetpack;
 	import classes.Items.Accessories.FlashGoggles;
-	import classes.Items.Transformatives.Frostfire;
 	import classes.Items.Transformatives.HuskarTreats;
 	import classes.kGAMECLASS;
 	
@@ -30,7 +28,7 @@
 			inventory.push(new HeatBelt());
 			inventory.push(new ArcticWarfareBelt());
 			inventory.push(new HuskarTreats());
-			inventory.push(new Frostfire());
+			//inventory.push(new Frostfire());
 			//inventory.push(new AusarTreats());
 			inventory.push(new ClimbingKit());
 			inventory.push(new FishingRod());

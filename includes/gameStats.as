@@ -71,6 +71,11 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.isBimbo()) output2(", Ditz");
 		if(pc.isBro()) output2(", Brute");
 		output2("\n<b>* Alcohol Tolerance:</b> " + pc.tolerance() + "/100");
+		if(pc.hasStatusEffect("Alcohol"))
+		{
+			output2("\n<b>* Alcohol Imbibed:</b> " + pc.statusEffectv1("Alcohol") + " %");
+			output2("\n<b>* Blood Alcohol Content:</b> " + formatFloat((pc.statusEffectv2("Alcohol") * 0.002), 3) + " %");
+		}
 		output2("\n<b>* Exhibitionism:</b> " + formatFloat(pc.exhibitionism(), 1) + "/100");
 		output2("\n<b>* Carry Threshold:</b> " + prettifyWeight(pc.bodyStrength()));
 		//if(pc.weightQ("full") > 0) output2(" (" + pc.weightQ("full") + " %)");
@@ -175,6 +180,7 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 			}
 		}
+		if(pc.hasPerk("Regal Mane")) output2("\n<b>* Neck, Mane:</b> " + GLOBAL.FLAG_NAMES[pc.perkv1("Regal Mane")]);
 		// Body
 		output2("\n<b><u>Body</u></b>");
 		output2("\n<b>* Tone:</b> " + pc.tone + "/" + pc.toneMax());
@@ -357,6 +363,11 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.balls + " Testicle");
 				if(pc.balls != 1) output2("s");
 				if(pc.hasStatusEffect("Uniball")) output2(", Uniball");
+				if(pc.hasStatusEffect("Special Scrotum"))
+				{
+					output2(", " + GLOBAL.FLAG_NAMES[pc.statusEffectv1("Special Scrotum")]);
+					if(pc.getStatusTooltip("Special Scrotum") != "") output2(", " + StringUtil.toDisplayCase(pc.getStatusTooltip("Special Scrotum")));
+				}
 				if(pc.statusEffectv4("Vanae Markings") > 0) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
 				output2("\n<b>* Testicle, Size:</b> " + prettifyLength(pc.ballDiameter()) + " across, " + prettifyLength(pc.ballSize()) + " around");
 				if(pc.balls != 1) output2(", each");
@@ -948,7 +959,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.hasCuntSnake()) output2("\n<b>* Feeding, Current:</b> " + flags["DAYS_SINCE_FED_CUNT_TAIL"] + " days since last fed");
 			if(flags["TIMES_FED_CUNT_SNAKE"] != undefined) output2("\n<b>* Feeding, Total:</b> " + flags["TIMES_FED_CUNT_SNAKE"] + " times");
 			
-			if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined && flags["CUNT_TAIL_PREGNANT_TIMER"] > 0) output2("\n<b>* Pregnancy, Gestation Time:</b> " + prettifyMinutes(flags["CUNT_TAIL_PREGNANT_TIMER"]) + " until birth");
+			if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined) output2("\n<b>* Pregnancy, Gestation Time:</b> " + prettifyMinutes(flags["CUNT_TAIL_PREGNANT_TIMER"]) + " until birth");
 			
 			if(flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined && flags["CUNT_SNAKE_EGGS_FAXED_HOME"] > 0) output2("\n<b>* Reproduction, Eggs in Hatchery:</b> " + flags["CUNT_SNAKE_EGGS_FAXED_HOME"]);
 			if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] != undefined || flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined)
@@ -1132,6 +1143,8 @@ public function prettifyMinutes(nMinutes:Number, toDate:Boolean = false):String
 		nHours = Math.floor(nMinutes/60);
 		nMinutes -= 60 * nHours;
 	}
+	//Minutes
+	nMinutes = Math.floor(nMinutes);
 	
 	// Normal!
 	if(!toDate)
@@ -1206,6 +1219,30 @@ public function minutesToMonths(nMinutes:Number):Number
 	return nMos;
 }
 
+public function getDayArray(asValue:String = ""):Array
+{
+	var monthList:Array = [0, 1440, 1440, 1440, 1440, 1440, 1440, 1440];
+	var i:int = 0;
+	
+	if(asValue != "")
+	{
+		switch(asValue)
+		{
+			case "hours":
+				monthList = [0, 24, 24, 24, 24, 24, 24, 24];
+				break;
+			case "name":
+				monthList = ["null", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+				break;
+			case "short":
+			case "digit":
+				monthList = ["null", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+				break;
+		}
+	}
+	
+	return monthList;
+}
 public function getMonthArray(asValue:String = ""):Array
 {
 	var monthList:Array = [0, 44640, 40320, 44640, 43200, 44640, 43200, 44640, 44640, 43200, 44640, 43200, 44640];
@@ -1235,24 +1272,96 @@ public function getMonthArray(asValue:String = ""):Array
 	
 	return monthList;
 }
+
+public function getCurrentYear():int
+{
+	return getCurrentDate("year");
+}
 public function getCurrentMonth():int
 {
-	// Maybe started adventure in August?
+	return getCurrentDate("month");
+}
+public function getCurrentDate(dateType:String = ""):int
+{
+	// Maybe started adventure in August 30?
+	var y:int = 2828;
 	var m:int = 8;
-	var monthMin:Array = getMonthArray();
-	var currMin:int = GetGameTimestamp();
+	var d:int = 30;
+	var currYear:int = (y + minutesToYears(GetGameTimestamp()));
+	var monthDay:Array = getMonthArray("days");
+	var currDay:int = ((d - 1) + minutesToDays(GetGameTimestamp()));
 	
-	while(currMin >= 40320)
+	while(currDay > monthDay[m])
 	{
-		if(m > 12) m = 1;
-		if(currMin >= monthMin[m])
+		currDay -= monthDay[m];
+		m++;
+		if(m > 12)
 		{
-			currMin -= monthMin[m];
+			m = 1;
+			y++;
 		}
-		if(currMin > 0) m++;
+	}
+	if(currDay > monthDay[m])
+	{
+		currDay -= monthDay[m];
+		m++;
+		if(m > 12)
+		{
+			m = 1;
+			y++;
+		}
 	}
 	
-	return m;
+	if(dateType == "year") return y;
+	if(dateType == "month") return m;
+	return currDay;
+}
+public function getCurrentDayWeek():int
+{
+	// Maybe started adventure on a Wednesday?
+	var dw:int = 3;
+	var currDay:int = minutesToDays(GetGameTimestamp());
+	
+	while(currDay > 7)
+	{
+		currDay -= 7;
+	}
+	while(currDay > 0)
+	{
+		currDay--;
+		dw++;
+		if(dw > 7) dw = 1;
+	}
+	
+	return dw;
+}
+public function getCurrentDateArray():Array
+{
+	// [ Year, Month, Day, Day of Week ]
+	return [ getCurrentYear(), getCurrentMonth(), getCurrentDate(), getCurrentDayWeek() ];
+}
+
+public function prettifyDate(format:String = ""):String
+{
+	var retStr:String = "";
+	
+	var y:int = getCurrentYear();
+	var m:int = getCurrentMonth();
+	var d:int = getCurrentDate();
+	var dw:int = getCurrentDayWeek();
+	
+	var dayWkName:Array = getDayArray(format);
+	var monthName:Array = getMonthArray(format);
+	
+	switch(format)
+	{
+		case "name": retStr += ( dayWkName[dw] + ", " + monthName[m] + " " + d + ", " + y ); break;
+		case "short": retStr += ( dayWkName[dw] + ", " + (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
+		case "digit": retStr += ( (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
+		default: retStr += ( m + " / " + d + " / " + y ); break;
+	}
+	
+	return retStr;
 }
 
 public function minutesToDurationList(nMinutes:Number, approximate:Boolean = false):Array
@@ -4966,7 +5075,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if (flags["MET_DR_LESSAU"] != undefined)
 				{
 					output2("\n<b>* Doctor Lessau:</b> Met Him");
-					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times He Fucked You:</b> " + flags["DRLESSAU_SEXED"]);
+					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times Sexed:</b> " + flags["DRLESSAU_SEXED"]);
 				}
 				
 			}

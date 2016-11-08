@@ -1220,7 +1220,7 @@ public function nurseryMaternitySure(clearText:Boolean = true):void
 	else if(firstDuration < 525600) output(" about a year");
 	else if(firstDuration < 1007400) output(" over a year");
 	else if(firstDuration < 1051200) output(" a couple years");
-	else output(num2Text(minutesToYears(firstDuration)) + " years");
+	else output(" " + num2Text(minutesToYears(firstDuration)) + " years");
 	output(" before you’re due");
 	if(pc.totalPregnancies() > 1) output(" -- at least for the nearest pregnancy anyway");
 	output(".");

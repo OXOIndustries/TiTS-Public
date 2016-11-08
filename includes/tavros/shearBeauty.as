@@ -136,6 +136,14 @@ public function buyFromCeria():void
 			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin balms.";
 		}
 		else chars["CERIA"].destroyItem(new DoveBalm());
+		
+		// 9999 - Temporary placement until Aislinn is implemented!
+		if(9999 == 9999)
+		{
+			if(!chars["CERIA"].hasItem(new LipTease())) chars["CERIA"].inventory.push(new LipTease());
+			chars["CERIA"].keeperBuy += " Next to a small holo-mirror is a display holding an array of lip balms.";
+		}
+		else chars["CERIA"].destroyItem(new LipTease());
 	}
 	chars["CERIA"].keeperBuy += "\n";
 	//List prices and whatnot. Back should go back to CERIA's main menu.
@@ -819,6 +827,63 @@ public function glowFurGo():void
 
 //Fur Treatment
 public function furColorApplication(newColor:String):void
+{
+	if(pc.balls > 0 && InCollection(pc.statusEffectv1("Special Scrotum"), [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FEATHERED]))
+	{
+		ceriaFurColorBallZ(["choose", newColor]);
+		return;
+	}
+	furColorApplicationGo(newColor);
+}
+public function ceriaFurColorBallZ(arg:Array):void
+{
+	clearOutput();
+	clearBust();
+	showName("DYE\nSCROTUM")
+	clearMenu();
+	
+	var option:String = arg[0];
+	var newColor:String = arg[1];
+	var special:String = (arg.length > 2 ? arg[2] : "");
+	
+	if(option == "choose")
+	{
+		output("It looks like you have a special fluffy scrotum to take care of... do you wish for Ceria to color it too? If so, would you like to retain its fur color regardless of your body’s fur color changes in the future, or would you like it to match with the rest of your body’s fur color naturally?");
+		output("\n\nCurrently, your scrotum is " + (pc.getStatusTooltip("Special Scrotum") != "" ? (pc.getStatusTooltip("Special Scrotum") + " and retains its own color, separate from your body fur color") : (pc.furColor + " and matches your body’s fur color")) + ".");
+		output("\n\nBe warned, however, <b>if your scrotum is the only thing you have to dye, you might be wasting your credits if you choose not to dye it!</i>");
+		
+		addButton(0, "Match", ceriaFurColorBallZ, ["done", newColor, "match"], "Match Fur", "Dye it to always match the fur color.");
+		addButton(1, "Unique", ceriaFurColorBallZ, ["done", newColor, "unique"], "Unique Color", "Dye it, but retain its own fur color seperately.");
+		addButton(2, "No Dye", ceriaFurColorBallZ, ["done", newColor, "none"], "Don’t Dye", "Dye everything else, if applicable, and don’t apply dye to scrotum fur. (This will still cost credits!)");
+		addButton(3, "Current", ceriaFurColorBallZ, ["done", newColor, "current"], "Current Preference", "Dye it and keep the preferences how they already are.");
+		addButton(14, "Nevermind", furColorMenu);
+		return;
+	}
+	
+	switch(special)
+	{
+		case "match":
+			output("You decide to dye your scrotum " + newColor + " and let it naturally match your body’s fur color whenever it changes.");
+			pc.setStatusTooltip("Special Scrotum", "");
+			break;
+		case "unique":
+			output("You decide to dye your scrotum " + newColor + " and let it stay that way, especially if your body’s fur color ever changes.");
+			pc.setStatusTooltip("Special Scrotum", newColor);
+			break;
+		case "none":
+			var oldColor:String = (pc.getStatusTooltip("Special Scrotum") != "" ? pc.getStatusTooltip("Special Scrotum") : pc.furColor);
+			output("You decide to let your scrotum retain its " + oldColor + " fur while the rest of your fur (if any) gets dyed " + newColor + ".");
+			pc.setStatusTooltip("Special Scrotum", oldColor);
+			break;
+		default:
+			output("You decide to dye your scrotum " + newColor + " and let it do whatever it does when the rest of your body’s fur color changes.");
+			if(pc.getStatusTooltip("Special Scrotum") != "") pc.setStatusTooltip("Special Scrotum", newColor);
+			break;
+	}
+	
+	addButton(0, "Next", furColorApplicationGo, newColor);
+}
+public function furColorApplicationGo(newColor:String):void
 {
 	clearOutput();
 	showCeria();

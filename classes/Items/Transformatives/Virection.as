@@ -49,7 +49,7 @@ package classes.Items.Transformatives {
 			author("Lashcharge");
 			
 			if ((target is PlayerCharacter)) {
-				output("You enjoy the blueberry-flavoured pill, swirling it around with your [pc.tongue], before swallowing it down.");
+				output("You enjoy the blueberry-flavored pill, swirling it around with your [pc.tongue], before swallowing it down.");
 				
 				//can create another cock
 				if (target.createCockUnlocked(target.cocks.length+1)) {
@@ -145,91 +145,94 @@ package classes.Items.Transformatives {
 			
 			output("\n\nYou almost fall into a post-orgasmic slumber, but you keep yourself focused enough to stave the fatigue off. Cleaning your sweat and [pc.cumNoun]-coated hands proves to be a more difficult task than you thought it would be, and after you’re done, you carefully examine your new phallus.");
 			output("<b>");
+			
+			var pcRace:String = target.race();
+			
 			//if some kind of horse, rabbit, ovir, minotaur variant
-			if(InCollection(target.race(), "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", target.mlpRace())) {
+			if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", target.mlpRace())) {
 				output(" Your [pc.cockColor] cock has a medial ring and flares like a horse's");
 			
 			//if some kind of ausaur, canine, fox, kitsune variant
-			} else if(InCollection(target.race(), "ausar", "half-ausar", "canine-morph", "canine-taur", "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) {
+			} else if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph", "canine-taur", "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) {
 				output(" Your [pc.cockColor], veiny cock has a tapered head and a knot like");
-				if (InCollection(target.race(), "ausar", "half-ausar")) output(" an ausar's");
-				else if (InCollection(target.race(), "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) output(" a fox's");
+				if (InCollection(pcRace, "ausar", "half-ausar")) output(" an ausar's");
+				else if (InCollection(pcRace, "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) output(" a fox's");
 				else output(" canine's");
 			
 			//if some kind of keirith, feline, neko, chakat variant
-			} else if (InCollection(target.race(), "kaithrit", "half-kaithrit", "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat")) {
+			} else if (InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat")) {
 				output(" Your [pc.cockColor] cock is ringed in soft, nubby 'barbs,' like a kaithrit");
 			
 			//if some kind of leithan, naleen, naga, snake variant
-			} else if(InCollection(target.race(), "leithan", "half-leithan", "naleen", "naga", "snake-morph")) {
+			} else if(InCollection(pcRace, "leithan", "half-leithan", "naleen", "naga", "snake-morph")) {
 				output(" Your [pc.cockColor] cock is glossy smooth and tapers towards the tip");
 			
 			//if a zill
-			} else if (target.race() == "zil") {
+			} else if (pcRace == "zil") {
 				output(" Your glossy [pc.cockColor] dick is much like the one of a human, but with a longer, stretchier foreskin");
 			
 			//if some kinf of Kui-tan variant
-			} else if(InCollection(target.race(), "kui-tan", "half kui-tan")) {
+			} else if(InCollection(pcRace, "kui-tan", "half kui-tan")) {
 				output(" Your [pc.cockColor] dick has one large knot at the base followed by two smaller ones");
 			
 			//if some kind of raskvel variant
-			} else if(InCollection(target.race(), "raskvel", "raskvel-morph", "rask-morph")) {
+			} else if(InCollection(pcRace, "raskvel", "raskvel-morph", "rask-morph")) {
 				output(" Your [pc.cockColor] cock is pointed and hides inside a sheath most of the time");
 			
 			// some kind of dragon, fafnir variant
-			} if(InCollection(target.race(), "fanfir", "dragon-morph", "dragon-taur", "dragonne", "dragonne-taur")) {
+			} if(InCollection(pcRace, "fanfir", "dragon-morph", "dragon-taur", "dragonne", "dragonne-taur")) {
 				output(" Your [pc.cockColor] dick is tapered with a knot like bulb at its base");
 			
 			//if syndian
-			} else if(target.race() == "sydian") {
+			} else if(pcRace == "sydian") {
 				output(" Your [pc.cockColor] cock is covered in tiny brushes");
 			
 			//if demon
-			} else if(target.race() == "demon-morph") {
+			} else if(pcRace == "demon-morph") {
 				output(" Your [pc.cockColor] cock is shiny, covered in sensitive nodules and the head has rubbery protrusions, like the one of a demon");
 			
 			//if some kind of tentacke or cock-vine variant
-			} else if(InCollection(target.race(), "tentacle beast", "cockvine-morph", "plant-morph", "treant")) {
+			} else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant")) {
 				output(" Your [pc.cockColor] cock is constantly moist and moving with a slightly over-sized mushroom-like head");
 			
 			//future variant if some kind of anemone or siren cock is added to the game
-			} else if(InCollection(target.race(), "anemone", "siren")) {
+			} else if(InCollection(pcRace, "anemone", "siren")) {
 				output(" Your [pc.cockColor]-colored cock is covered in tentacles riddled with poisonous aphrodisiac");
 			
 			//if kangaroo
-			} else if(target.race() == "kangaroo-morph") {
+			} else if(pcRace == "kangaroo-morph") {
 				output(" Your [pc.cockColor] dick is much like a taproot that undulates gently and tapers to a point when erect");
 			
 			//if daynar
-			} else if(target.race() == "daynar") {
+			} else if(pcRace == "daynar") {
 				output(" Your [pc.cockColor] cock has thick enough skin to obscure the veins and a tapered tip");
 				
 			//if some kind of gabilani or goblin
-			} else if(InCollection(target.race(), "gabilani", "goblin")) {
+			} else if(InCollection(pcRace, "gabilani", "goblin")) {
 				output(" Your [pc.cockColor] cock is much like a human's with the exception of having an extra cockhead stacked on top of the other");
 			
 			//future variant for sionachs
-			} else if(InCollection(target.race(), "sionach", "sionach-morph")) {
+			} else if(InCollection(pcRace, "sionach", "sionach-morph")) {
 				output(" Your [pc.cockColor] cock has a pyramid-shaped head and the curved shaft is covered in reptilian bulbs");
 			
 			//future variant for siels
-			} else if(target.race() == "siel") {
+			} else if(pcRace == "siel") {
 				output(" Your cock looks like a lumpy caterpillar with a small [pc.cockColor] tip");
 			
 			//if race is simii
-			} else if(target.race() == "simii") {
+			} else if(pcRace == "simii") {
 				output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
 			
 			//if race is saurian
-			} else if(target.race() == "saurian") {
+			} else if(pcRace == "saurian") {
 				output("Your [pc.cockColor]-colored dick is gigantic and massively thick, like that of a prehistoric thunder lizard");
 			
 			//if race is venus pitcher
-			} else if(target.race() == "venus pitcher") {
+			} else if(pcRace == "venus pitcher") {
 				output("Your [pc.cockColor] cock appears very vine-like, moving to and fro like some kind of sentient plant");
 			
 			//if some form of gryvain variant
-			} else if(InCollection(target.race(), "gryvain", "half-gryvain")) {
+			} else if(InCollection(pcRace, "gryvain", "half-gryvain")) {
 				output("Your dick is knotted at the base, ribbed along the shaft, and covered in [pc.cockColor] scales");
 				
 			//for humans
@@ -274,11 +277,11 @@ package classes.Items.Transformatives {
 			if(target.hasKnees()) output("knees begin to weaken,");
 			else 
 			{
-				if(target.legCount == 1) output("[pc.leg begins to weaken,");
+				if(target.legCount == 1) output("[pc.leg] begins to weaken,");
 				else output("[pc.legs] begin to weaken,");
 			}
 			output(" but you steel yourself, pushing your [pc.hips] ever harder into your hands. You continue thrusting as the lowest of your dicks begins to swell within your grasp, a tiny gap forming in the base of your bottom [pc.cock " + (lastIndex + 1) + "]. It’s splitting in half! Your left hand leaves your other dicks to help the right with stroking your bloated organ. You even slip a finger into the gap, probing its sensitive insides. Cum flows through the dual cum-veins before joining together and shooting out from the single, conjoined cockhead, straining the slit with a shot twice as large as you are used to. Suddenly, your [pc.cockHead " + (lastIndex + 1) + "] snaps apart in two, slinging jizz at your [pc.hair] and [pc.feet].");
-			output("\n\n<b>You’ve got " + num2Text(target.cocks.length+1) + " cocks now.</b> You clean yourself, hoping to find a mate with enough holes that can take you in... or at least someone with a gaped enough one for all of them.");
+			output("\n\n<b>You’ve got " + num2Text(target.cocks.length) + " cocks now.</b> You clean yourself, hoping to find a mate with enough holes that can take you in... or at least someone with a gaped enough one for all of them.");
 			
 			target.orgasm();
 		}

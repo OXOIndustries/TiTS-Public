@@ -48,8 +48,8 @@ public function sendKashimaMessage(destination:String):void
 	processTime(2);
 
 	clearMenu();
-	addButton(0, "Help Nova", startKashimaJobbo, destination, "Help Nova", "Take Steele Tech up on their offer and investigate the <i>Kashima</i>. Even if it's just a technical glitch, it's still worth a fair bit from the contract price.");
-	addButton(1, "Abandon", abandonKashimaJob, destination, "Abandon", "The Nova Securities crew has this covered. That's their job, after all. No point in you dealing with it.");
+	addButton(0, "Help Nova", startKashimaJobbo, destination, "Help Nova", "Take Steele Tech up on their offer and investigate the <i>Kashima</i>. Even if it’s just a technical glitch, it’s still worth a fair bit from the contract price.");
+	addButton(1, "Abandon", abandonKashimaJob, destination, "Abandon", "The Nova Securities crew has this covered. That’s their job, after all. No point in you dealing with it.");
 }
 
 public function abandonKashimaJob(destination:String):void
@@ -318,11 +318,12 @@ public function lustyBugponyNoDongle():void
 	clearOutput();
 	chiefNeykkarHeader(true);
 
-	output("Awkward is right, you realize, glancing between the leithan’s mighty rack and those thunderous thighs of hers... almost six feet behind them. You’re pretty sure there’s nothing in the Kama Sutra about sixty-nining a centaur, but even so, you figure you can give it a shot.");
+	if (pc.hasCock()) output("You figure setting your masculine urges aside to give her some oral attention. You undress her with your eyes, glancing between the leithan’s mighty rack and those thunderous thighs of hers...");
+	else output("Awkward is right, you realize, glancing between the leithan’s mighty rack and those thunderous thighs of hers... almost six feet behind them. You’re pretty sure there’s nothing in the Kama Sutra about sixty-nining a centaur, but even so, you figure you can give it a shot.");
 
 	output("\n\nSlipping out of the Chief’s arms, you ditch your [pc.gear] and start to walk around her lengthy frame, brushing your hands along her scales and armored plates as you go. She follows you with her eyes for a while, craning her neck until you’re right behind her. <i>“Hey, why don’t you let me-”</i> she starts to say, right up until your eyes settle on the puffy black lips of her pussy, and just can’t resist the urge to slip a finger right in. She gasps, scratching her clawed feet on the deck and instinctively bucking back against your hand.");
 
-	output("\n\nYou smirk, positioning yourself directly behind the towering titan of a woman and slinking down on your [pc.knees], putting your [pc.face] so close to the teardrop-shaped slit that your nose brushes against the swollen black clit sitting proudly at its top. The Chief’s whole sex winks at you when you do, giving you a first-hand show of her dusky lips and the lush pink flesh inside them. It’s hard not to just dive into the perfect, equine sex on offer, but you restrain yourself - a pussy this luscious, this wet and ready for you, needs to be handled with a gentle touch. At least, at first - you’ve got every intention of making the Chief scream while you go fist deep in her before too long!");
+	output("\n\nYou smirk, positioning yourself directly behind the towering titan of a woman and slinking down on your [pc.knees], putting your [pc.face] so close to the teardrop-shaped slit that your nose brushes against the swollen black clit sitting proudly at its base. The Chief’s whole sex winks at you when you do, giving you a first-hand show of her dusky lips and the lush pink flesh inside them. It’s hard not to just dive into the perfect, equine sex on offer, but you restrain yourself - a pussy this luscious, this wet and ready for you, needs to be handled with a gentle touch. At least, at first - you’ve got every intention of making the Chief scream while you go fist deep in her before too long!");
 
 	output("\n\n<i>“What, did you fall in back there?”</i> the Chief grunts, putting her hands on her hips. <i>“Don’t be a tease. Get going already.”</i>");
 
@@ -354,7 +355,7 @@ public function lustyBugponyNoDongle():void
 	if (!pc.isMasculine() && !pc.hasCock()) output(" a boy");
 	else if (!pc.hasCock()) output(" properly equipped");
 	else output(" sheathed properly inside her pulsing pussy")
-	output(", you’ve got now doubt you’d be blowing your load right about now, pumping the needy amazon full of your [pc.cumNoun]. And you’re equally sure she’d love every second of it, if her greedy snatch is any indication.");
+	output(", you’ve got no doubt you’d be blowing your load right about now, pumping the needy amazon full of your " + (pc.hasCock() ? "[pc.cumNoun]" : "spunk") + ". And you’re equally sure she’d love every second of it, if her greedy snatch is any indication.");
 
 	output("\n\nA few more minutes of your vigorous fist-fucking has the Chief barely hanging on, knees wobbling and chest heaving against the cold bulkhead. She’s desperate for purchase, something to throw her weight against so that she can just lift her ass for you and cum again and again. Eventually, she gives up with a cute little whine, collapsing onto her front two knees and leaning against the wall, letting you do with her what you pleasure. Though most of your vision is blocked by the leithan’s titanic ass, you make sure to glance around her flanks to take in the way her breasts spill like putty against the bulkhead, huge and soft and easily shaped by the way her chest presses against it. Mmm, you’re suddenly tempted to give up this assault to go play with those beauties... with nipples as big and hard as the Chief’s, you don’t doubt they’re so sensitive you could have her cumming again just from playing with her teats.");
 
@@ -587,7 +588,7 @@ public function lustyBugponyCocked():void
 		else output("You’ve long since changed yourself into the perform form for just this occasion, ready and eager to thrust yourself deep inside this leithan beauty to spear her womb, flood it with your potent seed.");
 		output(" You canter around the Chief’s tauric body, finding the clasps of her armor and tearing them open as you go. By the time you’re behind her, the Nova Securities plates clatter to the deck, leaving her black and yellow leithan chitin exposed.");
 
-		output("\n\nThat, and the lush black lips of her sex, and the dark donut above it. The Chief’s pussy is nice and wide, perfectly tear-drop shaped and smeared with slimy, sweet-smelling leithan arousal. You drink the smell in, letting it burn into your mind and set your heart ablaze. Blushing her shoulder, the Chief curls her tail up and over her back, completely exposing herself to you, making way for your manhood. Before the fun starts, though, you can’t help but reach down and give her rump an appreciative grope, brushing your fingers along the thick black lips of her sex.");
+		output("\n\nThat, and the lush black lips of her sex, and the dark donut above it. The Chief’s pussy is nice and wide, perfectly tear-drop shaped and smeared with slimy, sweet-smelling leithan arousal. You drink the smell in, letting it burn into your mind and set your heart ablaze. Blushing over her shoulder, the Chief curls her tail up and over her back, completely exposing herself to you, making way for your manhood. Before the fun starts, though, you can’t help but reach down and give her rump an appreciative grope, brushing your fingers along the thick black lips of her sex.");
 
 		output("\n\nShe gasps, and your fingers come away smeared with slime that bridges their tips to the Chief’s pussy. You lick your fingers clean, getting a taste for the thick, rich lubricant the amazonian warrior is swamped with. <i>“Stop perving out!”</i> the Chief snaps, whacking your hand with her tail. <i>“Just get on with it already - I feel like my whole body’s on fire!”</i>");
 		
@@ -599,7 +600,7 @@ public function lustyBugponyCocked():void
 		if (pc.balls > 0) output(" and your [pc.balls] are bouncing on her rump");
 		output(". Her tail curls around one of your [pc.legs], pulling you as close against herself as she can as juices pour like a waterfall around your shaft. Damn, but she was ready for this!");
 
-		output("\n\nYou grab a handful of tit and squeeze, making her clench down all the harder on your [pc.cock "+cIdx+"]. Her back arches against your [pc.chest], hands desperately grabbing at your human half’s hips and and your own hands, trying to find something to hold on to while you hammer your [pc.hips] against her plated ass, pounding in that amazonian cunny. The sheer force of your fucking sends the pair of you staggering forward, pushed the Chief’s chest against one of the bulkheads and spreading her malleable tits out in a lake of quaking grey flesh.");
+		output("\n\nYou grab a handful of tit and squeeze, making her clench down all the harder on your [pc.cock "+cIdx+"]. Her back arches against your [pc.chest], hands desperately grabbing at your human half’s hips and and your own hands, trying to find something to hold on to while you hammer your [pc.hips] against her plated ass, pounding in that amazonian cunny. The sheer force of your fucking sends the pair of you staggering forward, pushing the Chief’s chest against one of the bulkheads and spreading her malleable tits out in a lake of quaking grey flesh.");
 
 		output("\n\nThe sight of her body bouncing against the wall, feeling her breasts flow like dough through your fingers and her velvety pussy squeeze you so tightly... it all combines to drive you absolutely wild with lust. It isn’t long before you feel the rush of need building in your loins, the insatiable desire for release - the absolute biological imperative to spill your seed into the Chief’s eager womb.");
 
@@ -646,7 +647,7 @@ public function lustyBugPonyCockedNotTaurII():void
 	clearOutput();
 	chiefNeykkarHeader(true);
 
-	output("nThe next few seconds stretch out like an eternity, a lifetime spent indulging in unspeakable pleasures of the flesh that have your whole body on edge, tingling with the pent-up need to spill your seed into the welcoming embrace of the leithan’s bowels. Finally, though, the Chief lets out a shrill scream, and her pussy clenches hard around your fist, drawing your [pc.arm] deeper and deeper in with the sudden, violent contractions. At the same time, her dark asshole gives you a firm but surprisingly gentle squeeze, a mere echo of the tumultuous chaos that’s going on between her legs. But it’s enough - more than enough by a Jovian mile - to pull you over the edge with her.");
+	output("The next few seconds stretch out like an eternity, a lifetime spent indulging in unspeakable pleasures of the flesh that have your whole body on edge, tingling with the pent-up need to spill your seed into the welcoming embrace of the leithan’s bowels. Finally, though, the Chief lets out a shrill scream, and her pussy clenches hard around your fist, drawing your [pc.arm] deeper and deeper in with the sudden, violent contractions. At the same time, her dark asshole gives you a firm but surprisingly gentle squeeze, a mere echo of the tumultuous chaos that’s going on between her legs. But it’s enough - more than enough by a Jovian mile - to pull you over the edge with her.");
 
 	output("\n\nYou cum. Not a gentle, loving climax, but a violent eruption of pent-up [pc.cum] that seems to tear its way out of your fatigued body. You can’t even manage a scream, not even a grunt of effort, just a silent gasp of pleasure as you’re drawn as deep into the cock-hungry leithan as you’ve ever been and forced to plaster her silken insides with every last drop of [pc.cum] you have to your name.");
 
@@ -713,7 +714,7 @@ public function kiHendersonVictory():void
 		processTime(2);
 		
 		clearMenu();
-		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she'll probably kill it.");
+		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she’ll probably kill it.");
 		addButton(1, "SteeleTech", kiHendersonSteeleTech, undefined, "Steele Tech", "Call for retrieval from Steele Tech and convince Chief Neykkar to let them take the parasite.");
 	}
 	// has the cure, but either didn't attempt to, or didn't complete using it during the fight
@@ -768,7 +769,7 @@ public function kiHendersonVictory():void
 		processTime(5);
 		
 		clearMenu();
-		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she'll probably kill it.");
+		addButton(0, "MedBay", kiHendersonMedbay, undefined, "Medical Bay", "Take Chief Neykkar to the MedBay and see about removing the parasite. Given half a chance, she’ll probably kill it.");
 		addButton(1, "SteeleTech", kiHendersonSteeleTech, undefined, "Steele Tech", "Call for retrieval from Steele Tech and convince Chief Neykkar to let them take the parasite.");
 	}
 	// doesn't have the cure at all
@@ -1041,11 +1042,11 @@ public function kiHendersonMedbay():void
 	if (pc.isTreated() || pc.LQ() >= 85 || pc.lust() >= 75) output(" Damn, that’s a tempting offer....");
 	output(" No way you can do that, though: the parasite’s lodged too deep inside her, and it’s big and squirmy besides. You’d never pull it out by hand.");
 
-	output("\n\n<i>“Fuck,”</i> the Chief growls, fidgeting on the floor. After a long moment of thought, sigh moans weakly and shuffles around so that her hindquarters are pointed at you. Her reptilian tail lifts, revealing a dark, cherry-sized clit and a pair of coal-black lips that are gaped open around an onyx passage. Her pussy is a veritable swamp, bridged by thick ropes of feminine slime and drooling arousal onto the deck even between frequent, body-clenching orgasms. You can’t see the tentacle inside her, even when you hook your thumbs in her labia and spread her wide open. The Chief yelps, squirming as you peer inside her cavernous hole. You could easily fit your arm in there wholesale, barely able to brush the entrance to her womb with your fingers.");
+	output("\n\n<i>“Fuck,”</i> the Chief growls, fidgeting on the floor. After a long moment of thought, she moans weakly and shuffles around so that her hindquarters are pointed at you. Her reptilian tail lifts, revealing a dark, cherry-sized clit and a pair of coal-black lips that are gaped open around an onyx passage. Her pussy is a veritable swamp, bridged by thick ropes of feminine slime and drooling arousal onto the deck even between frequent, body-clenching orgasms. You can’t see the tentacle inside her, even when you hook your thumbs in her labia and spread her wide open. The Chief yelps, squirming as you peer inside her cavernous hole. You could easily fit your arm in there wholesale, barely able to brush the entrance to her womb with your fingers.");
 
 	output("\n\nShaking the thought off, you slather a little extra lube from your hands around her pussy’s channel. The rest goes all over the rubbery hand of the robotic arm, covering everything but the gripping surface in so much lube that it’s positively dripping. Once you’re satisfied with it, you step around the leithan’s prone form and pick up the scanner in one hand and the robot controller in the other.");
 
-	output("\n\n<i>“Hold onto something,”</i> you suggest, powering up the robo-arm. Chief Neykkar bites her lip, grabs your wrist, and squeezes her eyes shut. You pat her hand and guide the robot arm forward, eyeing the scanner display to make sure you’re going right through the middle. Seeing her pussy spread open around the claw, wider and wider until you sweat you could fit your head in its wake. Neykkar cums, again and again, screaming and bucking back against the machine; inside her the tentacles squirm and thrash around, only adding to her pleasure. And it’s still growing!");
+	output("\n\n<i>“Hold onto something,”</i> you suggest, powering up the robo-arm. Chief Neykkar bites her lip, grabs your wrist, and squeezes her eyes shut. You pat her hand and guide the robot arm forward, eyeing the scanner display to make sure you’re going right through the middle. Seeing her pussy spread open around the claw, wider and wider until you swear you could fit your head in its wake. Neykkar cums, again and again, screaming and bucking back against the machine; inside her the monster’s tentacles squirm and thrash around, only adding to her pleasure. And it’s still growing!");
 
 	output("\n\n<i>“Take it easy. Relax,”</i> you murmur as the robo-arm brushes the Chief’s cervix.");
 
@@ -1054,13 +1055,13 @@ public function kiHendersonMedbay():void
 	output("\n\nYou watch a veritable flood of girl-cum spill out around the thick robotic appendage. Neykkar’s body shudders, tail whipping wildly behind her. No way you’re getting the arm through until she relaxes. And if you have to work the tension out for her, so be it.");
 	if (silly) output(" Shut up, it’s porn logic.");
 
-	output("\n\nRather than pushing forward, you start to back the claw out, dragged the lubed-up rubber hand through her arm-deep passage. She moans, loudly and lewdly, groping her own tits and wiggling her hips. Her body’s on auto-pilot now: your efforts seem to be mixing its signals between taking a huge leithan cock and giving birth. Nothing you can do but keep with it, jack-hammering the robotic arm into her gaping pussy until she’s a moaning, cumming mess of a woman. The whole med bay reeks of sex now, hot and humid.");
+	output("\n\nRather than pushing forward, you start to back the claw out, dragging the lubed-up rubber hand through her arm-deep passage. She moans, loudly and lewdly, groping her own tits and wiggling her hips. Her body’s on auto-pilot now: your efforts seem to be mixing its signals between taking a huge leithan cock and giving birth. Nothing you can do but keep with it, jack-hammering the robotic arm into her gaping pussy until she’s a moaning, cumming mess of a woman. The whole med bay reeks of sex now, hot and humid.");
 
 	output("\n\nYou can’t deny the effect on yourself.");
 	if (pc.hasCock())
 	{
 		output(" Your [pc.cock] throbs with need");
-		if (pc.isCrotchGarbed()) output(", straining against your [pc.lowerUnderGarment]");
+		if (pc.isCrotchGarbed()) output(", straining against your [pc.lowerGarment]");
 		output(" until you can’t stop yourself from grabbing it.");
 	}
 	else if (pc.hasVagina())
@@ -1138,7 +1139,7 @@ public function kiHendersonSteeleTech():void
 
 	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined))
 	{
-		output("\n\nThe gentle hand, though, turns lecherous as time passes. The intense, overwhelming smell and sounds of leithan orgasm become more and more overwhelming, making your [pc.skinFurScales] burn with unbidden desire. No matter how horrifying the parasite inside her is, the naked, climaxing woman hold an animalistic appeal that speaks to your body’s innermost desires. Before you know it, your hand is wandering down the leithan woman’s flank, fingers brushing the dark lips of her engorged sex. They come away matted with thick feminine slime. Your companion gasps, her gray skin flushing with a hint of crimson.");
+		output("\n\nThe gentle hand, though, turns lecherous as time passes. The intense, overwhelming smell and sounds of leithan orgasm become more and more overwhelming, making your [pc.skinFurScales] burn with unbidden desire. No matter how horrifying the parasite inside her is, the naked, climaxing woman holds an animalistic appeal that speaks to your body’s innermost desires. Before you know it, your hand is wandering down the leithan woman’s flank, fingers brushing the dark lips of her engorged sex. They come away matted with thick feminine slime. Your companion gasps, her gray skin flushing with a hint of crimson.");
 
 		output("\n\n<i>“S-Steele,”</i> she groans, fidgeting her front legs and staring at you with wide eyes.");
 		

@@ -248,147 +248,90 @@
 					
 					// Morph the wieners to proper type based on race
 					var pcRace:String = target.race();
+					var prevLength:Number = target.cocks[0].cLengthRaw;
+					var prevThickness:Number = target.cocks[0].cThicknessRatioRaw;
+					target.setNewCockValues(0);
 					kGAMECLASS.output(" <b>");
-					if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", target.mlpRace()))
+					switch(target.cocks[0].cType)
 					{
-						target.shiftCock(0, GLOBAL.TYPE_EQUINE);
-						kGAMECLASS.output("Your [pc.cockColor] cock has a medial ring and flares like a horse");
-					}
-					else if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph", "vulpine-morph"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_CANINE);
-						kGAMECLASS.output("Your [pc.cockColor], veiny cock has a tapered head and a knot");
-						if(pcRace.indexOf("ausar") != -1) kGAMECLASS.output(" like an ausar");
-						else kGAMECLASS.output(" like a canine");
-					}
-					else if(InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "nekomata", "chakat"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_FELINE);
-						kGAMECLASS.output("Your [pc.cockColor] cock is very much like a spike and is covered in soft barbs");
-					}
-					else if(InCollection(pcRace, "leithan", "half-leithan", "naleen", "naga"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_NAGA);
-						kGAMECLASS.output("Your [pc.cockColor] cock is glossy smooth and tapers towards the tip");
-					}
-					else if(pcRace == "zil")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_BEE);
-						kGAMECLASS.output("Your glossy [pc.cockColor] dick is much like the one of a human, but with a longer, stretchier foreskin");
-					}
-					else if(InCollection(pcRace, "kui-tan", "half kui-tan"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_KUITAN);
-						kGAMECLASS.output("Your [pc.cockColor] dick has one large knot at the base followed by two smaller ones");
-					}
-					else if(InCollection(pcRace, "gryvain", "half-gryvain"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
-						kGAMECLASS.output("Your dick is knoted at the base, ribbed along the shaft, and covered in [pc.cockColor] scales");
-					}
-					else if(pcRace == "vulpine-morph") 
-					{
-						target.shiftCock(0, GLOBAL.TYPE_VULPINE);
-						kGAMECLASS.output("Your [pc.cockColor], veiny cock has a tapered head and a knot like a fox");
-					}
-					else if(InCollection(pcRace, "raskvel", "raskvel-morph", "rask-morph"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_RASKVEL);
-						kGAMECLASS.output("Your [pc.cockColor] cock is pointed and hides inside a sheath most of the time");
-					}
-					else if(InCollection(pcRace, "fanfir", "dragon-morph"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_DRACONIC);
-						kGAMECLASS.output("Your [pc.cockColor] dick is tapered with a knot like bulb at its base");
-					}
-					else if(pcRace == "demon-morph")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_DEMONIC);
-						kGAMECLASS.output("Your [pc.cockColor] cock is shiny, covered in sensitive nodules and the head has rubbery protrusions, like the one of a demon");
-					}
-					else if(pcRace == "kangaroo-morph")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_KANGAROO);
-						kGAMECLASS.output("Your [pc.cockColor] dick is much like a taproot that undulates gently and tapers to a point when erect");
-					}
-					else if(pcRace == "simii")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_SIMII);
-						kGAMECLASS.output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
-					}
-					else if(pcRace == "saurian")
-					{
-						if(target.cocks[0].cLengthRaw < 20 || target.cocks[0].cThicknessRatioRaw < 3) kGAMECLASS.output("The throbbing sensation hits you again and your new phallus continues to grow bigger... ");
-						target.shiftCock(0, GLOBAL.TYPE_SAURIAN);
-						kGAMECLASS.output("Your [pc.cockColor]-colored dick is gigantic and massively thick, like that of a prehistoric thunder lizard");
-					}
-					else if(pcRace == "venus pitcher")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_VENUSPITCHER);
-						kGAMECLASS.output("Your [pc.cockColor] cock appears very vine-like, moving to and fro like some kind of sentient plant");
-					}
-					else if(pcRace == "sydian")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_SYDIAN);
-						kGAMECLASS.output("Your [pc.cockColor] cock is covered in tiny brushes");
-					}
-					else if(pcRace == "daynar")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_DAYNAR);
-						kGAMECLASS.output("Your [pc.cockColor] cock has thick enough skin to obscure the veins and a tapered tip");
-					}
-					else if(InCollection(pcRace, "gabilani", "goblin"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_GABILANI);
-						kGAMECLASS.output("Your [pc.cockColor] cock is much like a human with the exception of having an extra cockhead adjacent to the other");
-					}
-					/* I dunno about these... */
-					else if(pcRace == "sionach")
-					{
-						target.cocks[0].cType = GLOBAL.TYPE_INHUMAN;
-						target.cocks[0].knotMultiplier = 1.15;
-						target.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
-						target.cocks[0].addFlag(GLOBAL.FLAG_SHEATHED);
-						target.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
-						target.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
-						kGAMECLASS.output("Your [pc.cockColor] cock has a pyramid-shaped head and the curved shaft is covered in reptilian bulbs");
-					}
-					else if(pcRace == "siel")
-					{
-						target.cocks[0].cType = GLOBAL.TYPE_INHUMAN;
-						target.cocks[0].cockColor = "pink";
-						kGAMECLASS.output("Your cock looks like a lumpy caterpillar with a small [pc.cockColor] tip");
-					}
-					else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_TENTACLE);
-						kGAMECLASS.output("Your [pc.cockColor] cock is constantly moist and moving with a slightly oversized mushroom-like head");
-					}
-					/* ... since they are non-standard or not yet defined, especially with the current races. */
-					
-					/*
-					else if(InCollection(pcRace, "siren", "anemone"))
-					{
-						if(pcRace == "siren") target.shiftCock(0, GLOBAL.TYPE_ANEMONE);
-						else target.shiftCock(0, GLOBAL.TYPE_SIREN);
-						kGAMECLASS.output("Your [pc.cockColor]-colored cock is covered in tentacles riddled with poisonous aphrodisiac");
-					}
-					else if(InCollection(pcRace, "synthetic", "robot", "companion droid"))
-					{
-						target.shiftCock(0, GLOBAL.TYPE_SYNTHETIC);
-						kGAMECLASS.output("Your new appendage changes into a more [pc.cockColor] color at its tip, making it appear very synthetic");
-					}
-					*/
-					
-					else
-					{
-						target.shiftCock(0, GLOBAL.TYPE_HUMAN);
-						if(target.skinType == GLOBAL.SKIN_TYPE_GOO)
-						{
-							target.cocks[0].addFlag(GLOBAL.FLAG_GOOEY);
-							target.cocks[0].cockColor = target.skinTone;
-						}
-						kGAMECLASS.output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
+						case GLOBAL.TYPE_EQUINE:
+							kGAMECLASS.output("Your [pc.cockColor] cock has a medial ring and flares like a horse");
+							break;
+						case GLOBAL.TYPE_CANINE:
+							kGAMECLASS.output("Your [pc.cockColor], veiny cock has a tapered head and a knot");
+							if(pcRace.indexOf("ausar") != -1) kGAMECLASS.output(" like an ausar");
+							else kGAMECLASS.output(" like a canine");
+							break;
+						case GLOBAL.TYPE_FELINE:
+							kGAMECLASS.output("Your [pc.cockColor] cock is very much like a spike and is covered in soft barbs");
+							break;
+						case GLOBAL.TYPE_AVIAN:
+							kGAMECLASS.output("Your [pc.cockColor] cock is slightly wavy shaped and tapered at the tip");
+							break;
+						case GLOBAL.TYPE_NAGA:
+							kGAMECLASS.output("Your [pc.cockColor] cock is glossy smooth and tapers towards the tip");
+							break;
+						case GLOBAL.TYPE_BEE:
+							kGAMECLASS.output("Your glossy [pc.cockColor] dick is much like the one of a human, but with a longer, stretchier foreskin");
+							break;
+						case GLOBAL.TYPE_KUITAN:
+							kGAMECLASS.output("Your [pc.cockColor] dick has one large knot at the base followed by two smaller ones");
+							break;
+						case GLOBAL.TYPE_GRYVAIN:
+							kGAMECLASS.output("Your dick is knoted at the base, ribbed along the shaft, and covered in [pc.cockColor] scales");
+							break;
+						case GLOBAL.TYPE_VULPINE:
+							kGAMECLASS.output("Your [pc.cockColor], veiny cock has a tapered head and a knot like a fox");
+							break;
+						case GLOBAL.TYPE_RASKVEL:
+							kGAMECLASS.output("Your [pc.cockColor] cock is pointed and hides inside a sheath most of the time");
+							break;
+						case GLOBAL.TYPE_DRACONIC:
+							kGAMECLASS.output("Your [pc.cockColor] dick is tapered with a knot like bulb at its base");
+							break;
+						case GLOBAL.TYPE_DEMONIC:
+							kGAMECLASS.output("Your [pc.cockColor] cock is shiny, covered in sensitive nodules and the head has rubbery protrusions, like the one of a demon");
+							break;
+						case GLOBAL.TYPE_KANGAROO:
+							kGAMECLASS.output("Your [pc.cockColor] dick is much like a taproot that undulates gently and tapers to a point when erect");
+							break;
+						case GLOBAL.TYPE_SIMII:
+							kGAMECLASS.output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
+							break;
+						case GLOBAL.TYPE_SAURIAN:
+							if(prevLength < 20 || prevThickness < 3) kGAMECLASS.output("The throbbing sensation hits you again and your new phallus continues to grow bigger... ");
+							kGAMECLASS.output("Your [pc.cockColor]-colored dick is gigantic and massively thick, like that of a prehistoric thunder lizard");
+							break;
+						case GLOBAL.TYPE_VENUSPITCHER:
+							kGAMECLASS.output("Your [pc.cockColor] cock appears very vine-like, moving to and fro like some kind of sentient plant");
+							break;
+						case GLOBAL.TYPE_SYDIAN:
+							kGAMECLASS.output("Your [pc.cockColor] cock is covered in tiny brushes");
+							break;
+						case GLOBAL.TYPE_DAYNAR:
+							kGAMECLASS.output("Your [pc.cockColor] cock has thick enough skin to obscure the veins and a tapered tip");
+							break;
+						case GLOBAL.TYPE_GABILANI:
+							kGAMECLASS.output("Your [pc.cockColor] cock is much like a human with the exception of having an extra cockhead adjacent to the other");
+							break;
+						case GLOBAL.TYPE_TENTACLE:
+							kGAMECLASS.output("Your [pc.cockColor] cock is constantly moist and moving with a slightly oversized mushroom-like head");
+							break;
+						case GLOBAL.TYPE_ANEMONE:
+						case GLOBAL.TYPE_SIREN:
+							kGAMECLASS.output("Your [pc.cockColor]-colored cock is covered in tentacles riddled with poisonous aphrodisiac");
+							break;
+						case GLOBAL.TYPE_SYNTHETIC:
+							kGAMECLASS.output("Your new appendage changes into a more [pc.cockColor] color at its tip, making it appear very synthetic");
+							break;
+						case GLOBAL.TYPE_INHUMAN:
+							if(pcRace.indexOf("sionach") != -1) kGAMECLASS.output("Your [pc.cockColor] cock has a pyramid-shaped head and the curved shaft is covered in reptilian bulbs");
+							if(pcRace.indexOf("siel") != -1) kGAMECLASS.output("Your cock looks like a lumpy caterpillar with a small [pc.cockColor] tip");
+							else kGAMECLASS.output("Your [pc.cockColor] cock appears very inhuman in shape");
+							break;
+						default:
+							kGAMECLASS.output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
+							break;
 					}
 					kGAMECLASS.output("!</b>");
 					

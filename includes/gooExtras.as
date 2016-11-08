@@ -1219,6 +1219,10 @@ public function gooMismatchedGenitals(sColor:String = "green"):int
 			if(pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY) && pc.vaginas[i].vaginaColor != sColor) mismatchedGenitals++;
 		}
 	}
+	if(pc.balls > 0)
+	{
+		if(pc.statusEffectv1("Special Scrotum") == GLOBAL.FLAG_GOOEY && (pc.getStatusTooltip("Special Scrotum") != "" || pc.getStatusTooltip("Special Scrotum") != sColor)) mismatchedGenitals++;
+	}
 	return mismatchedGenitals;
 }
 public function revertGooBodyColor(part:String = "menu"):void
@@ -1356,6 +1360,10 @@ public function revertGooGenitalColor(sColor:String = "null"):void
 				if(pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY)) pc.vaginas[i].vaginaColor = sColor;
 				mismatchedGenitals++;
 			}
+		}
+		if(pc.balls > 0)
+		{
+			if(pc.statusEffectv1("Special Scrotum") == GLOBAL.FLAG_GOOEY) pc.setStatusTooltip("Special Scrotum", sColor);
 		}
 		output2("Urging your biomass to move, you will yourself to shift the colors into your groin until");
 		if(mismatchedGenitals == 1) output2(" its");
@@ -1981,6 +1989,9 @@ public function gooBallsMenu():void
 		if(pc.hasStatusEffect("Uniball")) addGhostButton(5,"Loosen Sack",tautSackToggle,undefined,"Loosen Sack","Let your nutsack hang a little lower and freer.");
 		else if(gooBiomass() >= 100) addGhostButton(5,"Tighten Sack",tautSackToggle,undefined,"Tighten Sack","Tighten up your nutsack into a nice, smooth bulge.\n\n<b>100 mLs Biomass</b>");
 		else addDisabledGhostButton(5,"Tighten Sack","Tighten Sack","You don't have enough biomass to tighten your sack into a nice, smooth bulge.");
+		
+		if(pc.statusEffectv1("Special Scrotum") != GLOBAL.FLAG_GOOEY) addGhostButton(6,"Convert Sack",gooSpecialSack,"convert","Convert Sack","Convert your nutsack into goo.");
+		else if(pc.hasStatusEffect("Special Scrotum")) addGhostButton(6,"Revert Sack",gooSpecialSack,"revert","Revert Sack","Remove your nutsack’s special properties.");
 	}
 	else 
 	{
@@ -1989,6 +2000,33 @@ public function gooBallsMenu():void
 		addDisabledGhostButton(5,"Sack Options","Sack Options","If you had balls, you could use this button to make your nutsack pull up high and tight or swing low and free.");
 	}
 	addGhostButton(14,"Back",gooCrotchCustomizer);
+}
+
+public function gooSpecialSack(response:String = "none"):void
+{
+	clearOutput2();
+	
+	switch(response)
+	{
+		case "convert":
+			output2("You take a look at your [pc.sack]. Figuring, it looks a little wierd being " + (pc.statusEffectv1("Special Scrotum") == 0 ? "skin-covered, bald" : (GLOBAL.FLAG_NAMES[pc.statusEffectv1("Special Scrotum")]).toLowerCase()) + " and overal not-gooey, you decide to change that.");
+			output2("\n\nBeads of goo congregate across the surface of your nutsack until it is covered completely. Then with a little jiggle, your scrotum is fully converted back to goo... however it retains some of its unique properties. You’ll have to try this again if you want to completely get rid of it.");
+			
+			pc.setStatusValue("Special Scrotum", 1, GLOBAL.FLAG_GOOEY);
+			pc.setStatusTooltip("Special Scrotum", "");
+			break;
+		case "revert":
+			output2("While it was good while it lasted, you decide not to keep the abilities of a special scrotum. With some concentration, the insides of your nutsack fizzes like a shaken soda bottle. Then, after all the little bubbles subside, your [pc.balls] feel");
+			if(pc.balls == 1) output2("s");
+			output2(" a little more normal. Still gooey, but normal.");
+			
+			pc.removeStatusEffect("Special Scrotum");
+			break;
+	}
+	output2(" Luckily, this change has come at no cost to you!");
+	
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooBallsMenu);
 }
 
 //Shrink Down Nuts
@@ -2228,6 +2266,8 @@ public function reshapeAGooCawkMenu(arg:Array):void
 		cTypes.push(GLOBAL.TYPE_NYREA);
 	if(flags["LIRIEL_MET"] != undefined)
 		cTypes.push(GLOBAL.TYPE_HRAD);
+	if(flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_COCK) == AmberSeed.FLAG_GOO_COCK)
+		cTypes.push(GLOBAL.TYPE_AVIAN);
 	
 	var newType:Number = 0;
 	var btnName:String = "";
@@ -2241,6 +2281,7 @@ public function reshapeAGooCawkMenu(arg:Array):void
 		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
 		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
 		else if(newType == GLOBAL.TYPE_BEE) btnName = "Zil";
+		else if(newType == GLOBAL.TYPE_AVIAN && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_COCK_GRIFFIN) == AmberSeed.FLAG_COCK_GRIFFIN) btnName = "Griffin"; 
 		else btnName = GLOBAL.TYPE_NAMES[newType];
 		if(pc.cocks[iCock].cType != newType) addGhostButton(btnSlot,btnName,seriouslyThoReshapeDatGooCock,[iCock,newType]);
 		else addDisabledGhostButton(btnSlot,btnName,btnName,"The penis is already this shape.");
@@ -2308,9 +2349,21 @@ public function seriouslyThoReshapeDatGooCock(arg:Array):void
 	{
 		output2(". Few things are as rewarding as watching your own flesh dance to your every whim. The goo reshapes wildly, discarding old features and trading them in for new. Through it all is the pleasant tingle and undeniable sexual thrill of contact with your crotch. Your misfiring nerves can't help but feed you pleasure until your cock is formed perfectly to your mental specification.")
 	}
+	
 	pc.shiftCock(x,type);
+	
+	// Exceptional forms
+	if(type == GLOBAL.TYPE_AVIAN && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_COCK_GRIFFIN) == AmberSeed.FLAG_COCK_GRIFFIN) {
+		pc.cocks[x].cThicknessRatioRaw = 1.3;
+		pc.cocks[x].knotMultiplier = 1.5;
+		pc.cocks[x].addFlag(GLOBAL.FLAG_KNOTTED);
+		pc.cocks[x].addFlag(GLOBAL.FLAG_NUBBY);
+		pc.cocks[x].addFlag(GLOBAL.FLAG_SHEATHED);
+	}
+	
 	pc.cocks[x].cockColor = colorStore;
 	pc.cocks[x].addFlag(GLOBAL.FLAG_GOOEY);
+	
 	addGhostButton(0,"Next",gooCockRootMenu);
 }
 
@@ -2839,6 +2892,8 @@ public function pickNewGooCuntMenu(arg:Array):void
 		vTypes.push(GLOBAL.TYPE_GABILANI);
 	if(CodexManager.entryViewed("Nyrea"))
 		vTypes.push(GLOBAL.TYPE_NYREA);
+	if (flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_CUNT) == AmberSeed.FLAG_GOO_CUNT)
+		vTypes.push(GLOBAL.TYPE_AVIAN);
 	
 	var newType:Number = 0;
 	var btnName:String = "";
@@ -2958,3 +3013,174 @@ public function fixAllVags(nVagsToFix:Number = 0):void
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
 }
+
+
+/* Goo Ball Functions */
+public function gooballUsed(gooBall:Class):void
+{
+	pc.destroyItemByType(gooBall);
+	
+	clearMenu();
+	addButton(0, "Next", useItemFunction);
+}
+public function gooballOption(arg:Array):void
+{
+	var gooBall:Class = arg[0];
+	var response:String = (arg.length > 1 ? arg[1] : "intro");
+	
+	var gooColor:String = "";
+	switch(gooBall)
+	{
+		case GooBallRed: gooColor = "red"; break;
+		case GooBallOrange: gooColor = "orange"; break;
+		case GooBallYellow: gooColor = "yellow"; break;
+		case GooBallGreen: gooColor = "grean"; break;
+		case GooBallBlue: gooColor = "blue"; break;
+		case GooBallPurple: gooColor = "purple"; break;
+		case GooBallPink: gooColor = "pink"; break;
+	}
+	
+	showName(gooColor.toUpperCase() + "\nGOO BALL");
+	
+	if(response == "intro")
+	{
+		output("You consider the blob of ganrael goo, which has formed a slight crust on its surface. If you wanted, you could probably smear it on something to stiffen it... your hair, for example.");
+		if (pc.hairType == GLOBAL.HAIR_TYPE_GOO)
+		{
+			output(" It’d probably change your color if you did, since your hair is also goo.");
+			if (pc.skinType == GLOBAL.SKIN_TYPE_GOO || pc.hasSkinFlag(GLOBAL.FLAG_GOOEY)) output(" For that matter, it’d work on your body, too.");
+		}
+		else if (pc.skinType == GLOBAL.SKIN_TYPE_GOO || pc.hasSkinFlag(GLOBAL.FLAG_GOOEY)) output(" It’d probably change the color of your body too, since your skin is gooey.");
+		
+		clearMenu();
+		if (pc.hairStyle != "spikehawk")
+		{
+			if (pc.hairStyle == "mohawk") addButton(0, "Spikehawk", gooballOption, [gooBall, "spikehawk"], "Spikey Mohawk", "Shape your mohawk into a spikehawk.");
+			else addDisabledButton(0, "Spikehawk", "Spikey Mohawk", "You don’t have a mohawk to spike.");
+		}
+		else addDisabledButton(0, "Spikehawk", "Spikey Mohawk", "Your hair is currently styled like this!");
+		
+		if (pc.hairStyle != "quiff")
+		{
+			if (pc.hairLength >= 5) addButton(1, "Quiff", gooballOption, [gooBall, "quiff"], "Quiff", "Shape your hair into a single sleek, tapered point.");
+			else addDisabledButton(1, "Quiff", "Quiff", "Your hair’s too short for this style.");
+		}
+		else addDisabledButton(1, "Quiff", "Quiff", "Your hair is currently styled like this!");
+		
+		if (pc.hairStyle != "ringlets")
+		{
+			if (pc.hairLength >= 10) addButton(2, "Ringlets", gooballOption, [gooBall, "ringlets"], "Ringlets", "Shape your hair into helical loops.");
+			else addDisabledButton(2, "Ringlets", "Ringlets", "Your hair’s too short for this style.");
+		}
+		else addDisabledButton(2, "Ringlets", "Ringlets", "Your hair is currently styled like this!");
+		
+		if (pc.hairStyle != "curtains")
+		{
+			if (pc.hairLength >= 10 && pc.hasAntennae()) addButton(3, "Curtains", gooballOption, [gooBall, "curtains"], "Curtains", "Glue your bangs to your antennae and make curtains you can wave around.");
+			else if (pc.hairLength < 10) addDisabledButton(3, "Curtains", "Curtains", "You don’t have long enough hair.");
+			else addDisabledButton(3, "Curtains", "Curtains", "You don’t have antennae.");
+		}
+		else addDisabledButton(3, "Curtains", "Curtains", "Your hair is currently styled like this!");
+		
+		if (pc.hairStyle != "fingerwave")
+		{
+			addButton(4, "Fingerwave", gooballOption, [gooBall, "fingerwave"], "Fingerwave", "Shape your hair into a wavy, close bob.");
+		}
+		else addDisabledButton(4, "Fingerwave", "Fingerwave", "Your hair is currently styled like this!");
+		
+		if (pc.hairStyle != "topknot")
+		{
+			if (pc.hairLength <= 6) addButton(5, "Topknot", gooballOption, [gooBall, "topknot"], "Topknot", "Put your hair up in an ironclad topknot.");
+			else addDisabledButton(5, "Topknot", "Topknot", "You have too much hair for this style.");
+		}
+		else addDisabledButton(5, "Topknot", "Topknot", "Your hair is currently styled like this!");
+		
+		if (pc.hairType == GLOBAL.HAIR_TYPE_GOO && pc.hairColor != gooColor) addButton(6, "Dye Hair", gooballOption, [gooBall, "dye hair"], "Dye Hair", "Use the goo to dye your hair.");
+		else if (pc.hairType != GLOBAL.HAIR_TYPE_GOO) addDisabledButton(6, "Dye Hair", "Dye Hair", "The gooball can only dye gooey hair types!");
+		else addDisabledButton(6, "Dye Hair", "Dye Hair", "Your hair’s already the color of this ball of goo!");
+		
+		if ((pc.skinType == GLOBAL.SKIN_TYPE_GOO || pc.hasSkinFlag(GLOBAL.TYPE_GOOEY)) && pc.skinTone != gooColor) addButton(7, "Dye Body", gooballOption, [gooBall, "dye body"], "Dye Body", "Use the goo to dye your gooey body.");
+		else if (pc.skinTone == gooColor) addDisabledButton(7, "Dye Body", "Dye Body", "Your body is already the same color as this ball of goo!");
+		else addDisabledButton(7, "Dye Body", "Dye Body", "Eating this without a gooey body would result in one hell of a blockage.");
+		
+		addButton(14, "Back", useItemFunction);
+		
+		return;
+	}
+	
+	clearOutput();
+	author("Gardeford/Zeikfried");
+	
+	switch(response)
+	{
+		case "spikehawk":
+			output("You apply the gel to your mohawk and pinch it into four vicious, punk spikes. The devil on your shoulder is going to get a poke in the eye next time you turn your head.");
+			pc.hairStyle = "spikehawk";
+			if (pc.hairType == GLOBAL.HAIR_TYPE_GOO && pc.hairColor != gooColor)
+			{
+				output(" The gel’s color also bleeds through, turning the points " + gooColor + ".");
+				pc.hairColor = gooColor;
+			}
+			break;
+		case "quiff":
+			output("You slather gel into your " + pc.hairDescript(true, true) + " and, when it begins to harden, put it up into a big, tapered point! Your fans will adore it.");
+			pc.hairStyle = "quiff";
+			if (pc.hairType == GLOBAL.HAIR_TYPE_GOO && pc.hairColor != gooColor)
+			{
+				output(" The color also swamps your gooey locks, turning them " + gooColor + ".");
+				pc.hairColor = gooColor;
+			}
+			break;
+		case "ringlets":
+			output("You slather your " + pc.hairDescript(true, true) +" one lock at a time and twist it around your fingers. The gel");
+			pc.hairStyle = "ringlets";
+			if (pc.hairType == GLOBAL.HAIR_TYPE_GOO && pc.hairColor != gooColor)
+			{
+				output(" bleeds color through your goopy drape and");
+				pc.hairColor = gooColor;
+			}
+			output(" hardens your ‘do into " + pc.hairColor + ", bouncy ringlets. Cute!");
+			break;
+		case "curtains":
+			output("You smear gel onto your antennae and then stick your bangs to them. The gel hardens, and you can move them to open your hair like drapes. Now you can flash people with your face!");
+			pc.hairStyle = "curtains";
+			if (pc.hairType == GLOBAL.HAIR_TYPE_GOO) pc.hairColor = gooColor;
+			else if (pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES) output(" Well, you could before, but now it looks theatrical.");
+			break;
+		case "fingerwave":
+			output("You rub the gel into your " + pc.hairDescript(true, true) + " and crimp it into waves for a classy, classic look.");
+			pc.hairStyle = "fingerwave";
+			if (pc.hairType == GLOBAL.HAIR_TYPE_GOO && pc.hairColor != gooColor)
+			{
+				output(" The gel’s color also spreads, turning your gooey locks " + gooColor + ".");
+				pc.hairColor = gooColor;
+			}
+			output(" <i>Très chic</i>.");
+			break;
+		case "topknot":
+			output("You apply the gel to your " + pc.hairDescript(true, true) + " and then pin it up in a tight topknot. It’s solid enough to anchor a helmet");
+			pc.hairStyle = "topknot";
+			if (pc.hairType == GLOBAL.HAIR_TYPE_FEATHERS)
+			{
+				output(", and you even fan the tips of your feathers into a gingko leaf shape");
+			}
+			output("!");
+			if (pc.hairType == GLOBAL.HAIR_TYPE_GOO && pc.hairColor != gooColor)
+			{
+				output(" The ball’s color also swamps your own, changing your hair to " + gooColor + ".");
+				pc.hairColor = gooColor;
+			}
+			break;
+		case "dye hair":
+			output("You carefully work the gel into your " + pc.hairDescript(true, false) + ", doing your utmost not to disturb your hairstyle in the process. In a matter of seconds your locks begin to soak up the shade of the gel, changing your hair to " + gooColor + ".");
+			pc.hairColor = gooColor;
+			break;
+		case "dye body":
+			output("You stare down the glob like a horse pill and then throw it in your hatch. It feels like swallowing cotton. By the time it reaches your chest, it’s already begun to leak a cloud of color which radiates all over, making you stiff and slightly numb. <b>When full sensation comes back, your skin is " + gooColor + "!</b>");
+			pc.skinTone = gooColor;
+			break;
+	}
+	
+	gooballUsed(gooBall);
+}
+

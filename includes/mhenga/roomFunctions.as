@@ -12,7 +12,7 @@ Naleen, Venus Pitchers, Elder Venus Pitchers, Zil
 
 public function flyToMhenga():void
 {
-	output("You fly to Mhen'ga");
+	output("You fly to Mhen’ga");
 	if(leaveShipOK()) output(" and step out of your ship.");
 }
 
@@ -31,7 +31,7 @@ public function xenogenOutsideBlurb():Boolean
 	variableRoomUpdateCheck();
 	if(hours < 6 || hours >= 17)
 	{
-		output("\n\n<b>The doorway to the north is currently marked \"Closed.\"</b> A notice declares that it will be open again at 6:00 standard terran time.");		
+		output("\n\n<b>The doorway to the north is currently marked “Closed.”</b> A notice declares that it will be open again at 6:00 standard terran time.");		
 	}
 	else
 	{
@@ -65,7 +65,7 @@ public function bountyBoardExtra():Boolean
 public function checkOutBountyBoard():void
 {
 	clearOutput();
-	output("The bounty board is covered in simple leaflets, papers, and all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
+	output("The bounty board is covered in simple leaflets, papers, and all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there’s at least one that stands out.");
 	
 	// Zil Capture
 	output("\n\n");
@@ -78,8 +78,8 @@ public function checkOutBountyBoard():void
 		else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == 1) output("<b>Accepted:</b>");
 		else output("<b>Seen Before:</b>");
 	}
-	output(" Dr. Julian of the Xenogen Biotech labs on the south end of town is looking for 'a strapping, adventurous type' to brave the jungles in search of something he can use for his research.");
-	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output(" You know from experience that it's quite lucrative.");
+	output(" Dr. Julian of the Xenogen Biotech labs on the south end of town is looking for ‘a strapping, adventurous type’ to brave the jungles in search of something he can use for his research.");
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output(" You know from experience that it’s quite lucrative.");
 	else output(" It seems like it could be quite lucrative.");
 	// SynthSap
 	if(synthSapNoticeUnlock())
@@ -118,7 +118,7 @@ public function esbethFastTravelOfficeBonus():Boolean
 	//Codex locked:
 	if(!CodexManager.entryUnlocked("Leithans")) 
 	{
-		output(", and your codex beeps to inform you it's identified the leithan race");
+		output(", and your codex beeps to inform you it’s identified the leithan race");
 		CodexManager.unlockEntry("Leithans");
 	}
 	output(".");
@@ -142,8 +142,8 @@ public function mhengaScoutAuthority():void
 	
 	if(flags["SALVAGED VANAE CAMP"] != 2) 
 	{
-		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you an apologetic grin. <i>\"Sorry, friend, we're just getting set up here on Mhen'ga. Jungle's a little too dense for the scout drones to map and plan landing zones, so there's no transports going out yet.\"</i>");
-		output("\n\n<i>\"Ah. Sorry to bother you,”</i> you say, turning to leave.");
+		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you an apologetic grin. <i>“Sorry, friend, we’re just getting set up here on Mhen’ga. Jungle’s a little too dense for the scout drones to map and plan landing zones, so there’s no transports going out yet.”</i>");
+		output("\n\n<i>“Ah. Sorry to bother you,”</i> you say, turning to leave.");
 		output("\n\n<i>“No worries. <b>If you come across any inactive ones out there, get them going, and we’ll be able to get you anywhere they cover.</b>”</i>");
 		processTime(1);
 		clearMenu();
@@ -156,11 +156,11 @@ public function mhengaScoutAuthority():void
 	//[Scout] (PC has fixed a comm array)
 	else
 	{
-		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you a big grin. <i>\"Hey there! Welcome to the Scout Authority base. We're running light transports out into the jungle now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma'am") + "?\"</i>");
+		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you a big grin. <i>“Hey there! Welcome to the Scout Authority base. We’re running light transports out into the jungle now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma’am") + "?”</i>");
 		processTime(1);
 		clearMenu();
 		if(pc.credits >= 40) addButton(0,"XenogenCamp",mhengaTaxiToXenogen,undefined,"Xenogen Camp","This taxi will take you to the abandoned camp you found in the jungle. It costs 40 credits.");
-		else addDisabledButton(0,"XenogenCamp","Xenogen Camp","You don't have enough credits to ride there.");
+		else addDisabledButton(0,"XenogenCamp","Xenogen Camp","You don’t have enough credits to ride there.");
 
 		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(1, "Bow Training", tanisBowTraining);
 
@@ -364,7 +364,7 @@ public function jungleDeepEncounters():Boolean {
 		choices[rand(choices.length)]();
 		return true;
 	}
-	if(pc.level < 2) output("\n\n<b>You can't help but feel that this part of the jungle would chew you up and spit you out. Maybe you should come back after leveling up a little bit.</b>");
+	if(pc.level < 2) output("\n\n<b>You can’t help but feel that this part of the jungle would chew you up and spit you out. Maybe you should come back after leveling up a little bit.</b>");
 	
 	if (tryEncounterMango()) return true;
 	
@@ -373,10 +373,10 @@ public function jungleDeepEncounters():Boolean {
 
 public function findOxoniumOnMhenga():Boolean {
 	if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] == undefined) {
-		output("\n\nThere is a vertical band of a different mineral running up through the rock wall, a streak of something pitch black that seems to draw in the light. You could probably scan it with your codex and radio it in to your Dad's company for a quick prospector's fee.");
+		output("\n\nThere is a vertical band of a different mineral running up through the rock wall, a streak of something pitch black that seems to draw in the light. You could probably scan it with your codex and radio it in to your Dad’s company for a quick prospector’s fee.");
 	}
 	else {
-		output("\n\nThere's a deposit of Oxonium here, but you've already called in the claim to your Dad's company. They'll probably be out to mine it once the frontier settles down a little bit.");
+		output("\n\nThere’s a deposit of Oxonium here, but you’ve already called in the claim to your Dad’s company. They’ll probably be out to mine it once the frontier settles down a little bit.");
 	}
 	//Overridden by Jungle deep encounters
 	if(jungleDeepEncounters()) return true;
@@ -389,7 +389,7 @@ public function findOxoniumOnMhenga():Boolean {
 
 public function claimMhengaOxonium():void {
 	clearOutput();
-	output("Utilizing your codex's sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. The amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you've had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 credit deposit.</b> Either you're not a great geologist, or Dad's company has orders to give you top dollar. Regardless, the profit is yours.");
+	output("Utilizing your codex’s sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. The amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you’ve had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 credit deposit.</b> Either you’re not a great geologist, or Dad’s company has orders to give you top dollar. Regardless, the profit is yours.");
 	
 	flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] = 1;
 	if(flags["OXONIUM_FOUND"] == undefined) flags["OXONIUM_FOUND"] = 0;
@@ -467,12 +467,12 @@ public function mhengaThickMist2RoomFunc():Boolean
 {
 	clearOutput();
 	
-	output("The mist here is so thick you're having trouble seeing where you're going. If it wasn't for the blinking, multi-colored lichen lining the forest trees, you'd probably be lost. Moisture clings to your");
+	output("The mist here is so thick you’re having trouble seeing where you’re going. If it wasn’t for the blinking, multi-colored lichen lining the forest trees, you’d probably be lost. Moisture clings to your");
 	if (!pc.isNude()) output (" [pc.armor]");
 	else output(" [pc.skinFurScales]");
 	output(" as you trudge forth, utterly surrounded by a blanket of white.");
 
-	output("\n\nYou can feel something blocking your way east and it feels too tall to climb. Every other direction seems okay. Maybe. It's hard to tell.");
+	output("\n\nYou can feel something blocking your way east and it feels too tall to climb. Every other direction seems okay. Maybe. It’s hard to tell.");
 	
 	return mhengaVanaeCombatZone();
 }
@@ -487,7 +487,7 @@ public function mhengaUthraBirch():Boolean
 	}
 	else
 	{
-		output("\n\nYou have harvested the obsidian colored sap from the ugly tree and no more flows from its surface. You'll have to give it time to produce some more.");
+		output("\n\nYou have harvested the obsidian colored sap from the ugly tree and no more flows from its surface. You’ll have to give it time to produce some more.");
 		
 		addDisabledButton(0, "Harvest", "You have recently harvested sap from the Uthra Tree and must allow it to regenerate.");
 	}
@@ -502,9 +502,9 @@ public function mhengaHarvestUthra():void
 	clearOutput();
 	flags["UTHRA HARVEST DAY"] = days;
 	
-	output("You gather what little of the sap leaking from the tree you can find into a small collection tube - a standard part of any rushers exploration kit - ensuring that you don't accidently get any on yourself in the process.");
+	output("You gather what little of the sap leaking from the tree you can find into a small collection tube - a standard part of any rushers exploration kit - ensuring that you don’t accidently get any on yourself in the process.");
 	if (flags["CONSUMED_UTHRA_SAP"] == undefined) output(" No telling what this stuff could do to you without some kind of analysis.");
-	else output(" Even safe in the knowledge that the substance isn't particularly dangerous, it'd be best not to accidently spread any around without intending to.");
+	else output(" Even safe in the knowledge that the substance isn’t particularly dangerous, it’d be best not to accidently spread any around without intending to.");
 	output("\n\n");
 	
 	quickLoot(new UthraSap());
@@ -515,50 +515,67 @@ public function mhengaHarvestUthra():void
 
 public function mhengaVanaeFernDamage():Boolean
 {
-    if (rand(3) == 0 || pc.armor is EmptySlot)
-    {
-        var damage:int = rand(8);
-        if (pc.armor is EmptySlot) damage = 8;
-        else damage -= pc.armor.defense;
-        if (damage < 0)
-        {
-        output("\n\nThe spiked ferns look pretty damn painful, but your thick armor is doing a fantastic job of keeping the jagged spikes from doing any damage.");
-        }
-        else if (damage < 2)
-        {
-            output("\n\nThe spiked ferns look pretty damn painful, but thankfully your armor is managing to deflect the worst of it and only allows the odd prick or slash to your [pc.legOrLegs] as you hike through the area. <b>(" + damage + ")</b>");
-            pc.HP( -damage);
-        }
-        else if (damage < 4)
-        {
-            output("\n\nThe spiked ferns look pretty damn painful, your armor not exactly achieving much when it comes to providing protection to your lower extremeties. The sharp points of the ferns are doing a real number on your [pc.legOrLegs]. <b>(" + damage + ")</b>");
-            pc.HP( -damage);
-        }
-        else if (damage < 8)
-        {
-            output("\n\nThe spiked ferns look pretty damn painful, and your armor is nigh-useless when it comes to providing any semblance of protection from the spiked menace infesting the undergrowth in these parts of the lowlands. <b>(" + damage + ")</b>");
-            pc.HP( -damage);
-        }
-        else
-        {
-            output("\n\nYou're starting to wish you were wearing armor - hell, even some flimsy dress pants would go a long way to providing some measure of protection against the spiked menance infesting the undergrowth in these parts of the lowlands. With nothing to protect your [pc.legOrLegs] from repeated jabs and slashes, moving through the area is quickly taking a toll on your stamina, and your health. <b>(" + damage + ")</b>");
-            pc.HP( -damage);
-            pc.energy( -damage);
-        }
-    }
-    return mhengaVanaeCombatZone();
+	var noArmor:Boolean = pc.armor is EmptySlot;
+	var naturalArmor:Number = 0; // Fur, feathers, scales and chitin can offer some environmental protection.
+	
+	if (pc.hasFur() || pc.hasFeathers() || pc.hasScales() || pc.hasChitin()) {
+		naturalArmor = 4 + rand(2);
+		if (pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) || pc.hasSkinFlag(GLOBAL.FLAG_THICK)) naturalArmor *= 1.5;
+	}
+	else if (pc.hasPartFur("leg") || pc.hasPartScales("leg") || pc.hasPartChitin("leg") || pc.hasPartFeathers("leg")) {
+		naturalArmor = 2 + rand(2);
+		if (pc.hasLegFlag(GLOBAL.FLAG_FLUFFY)) naturalArmor *= 1.5;
+	}
+	
+	if (rand(3) == 0 || (noArmor && naturalArmor == 0))
+	{
+		var damage:int = rand(8);
+		if (noArmor && naturalArmor == 0) damage = 8;
+		damage -= pc.armor.defense;
+		damage -= naturalArmor;
+		if (damage <= 0)
+		{
+			output("\n\nThe spiked ferns look pretty damn painful, but your " + (noArmor ? "natural" : "thick") + " armor is doing a fantastic job of keeping the jagged spikes from doing any damage.");
+		}
+		else if (pc.canFly())
+		{
+			output("\n\nThe spiked ferns look pretty damn painful, so you’ve decided to keep clear and fly over them.");
+		}
+		else if (damage < 2)
+		{
+			output("\n\nThe spiked ferns look pretty damn painful, but thankfully your" + (noArmor ? " natural" : "") + " armor is managing to deflect the worst of it and only allows the odd prick or slash to your [pc.legOrLegs] as you hike through the area. <b>(" + damage + ")</b>");
+			pc.HP( -damage);
+		}
+		else if (damage < 4)
+		{
+			output("\n\nThe spiked ferns look pretty damn painful, your" + (noArmor ? " natural" : "") + " armor not exactly achieving much when it comes to providing protection to your lower extremeties. The sharp points of the ferns are doing a real number on your [pc.legOrLegs]. <b>(" + damage + ")</b>");
+			pc.HP( -damage);
+		}
+		else if (damage < 8)
+		{
+			output("\n\nThe spiked ferns look pretty damn painful, and your" + (noArmor ? " natural" : "") + " armor is nigh-useless when it comes to providing any semblance of protection from the spiked menace infesting the undergrowth in these parts of the lowlands. <b>(" + damage + ")</b>");
+			pc.HP( -damage);
+		}
+		else
+		{
+			output("\n\nYou’re starting to wish you were wearing armor - hell, even some flimsy dress pants would go a long way to providing some measure of protection against the spiked menance infesting the undergrowth in these parts of the lowlands. With nothing to protect your [pc.legOrLegs] from repeated jabs and slashes, moving through the area is quickly taking a toll on your stamina, and your health. <b>(" + damage + ")</b>");
+			pc.HP( -damage);
+			pc.energy( -damage);
+		}
+	}
+	return mhengaVanaeCombatZone();
 }
 
 public function mhengaVanaeAbandonedCamp():Boolean
 {
 	output("You walk into the remains of what was clearly a Xenogen research camp. The protective shield is down and the temporary habitation they were using has been wrecked. There are empty crates");
 	if(flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined) output(" and bodies");
-	output(" lying everywhere. Spears are jutting out of nearly everything.\n\nYou spot some empty cages that look as if they were designed for humanoid captives. Everything around here is utterly wrecked and you're not sure you'll find anything of value.");
+	output(" lying everywhere. Spears are jutting out of nearly everything.\n\nYou spot some empty cages that look as if they were designed for humanoid captives. Everything around here is utterly wrecked and you’re not sure you’ll find anything of value.");
 	if(flags["SALVAGED VANAE CAMP"] != 2) addButton(0, "Salvage", mhengaSalvageFromCamp);
 	else 
 	{
-		if(pc.credits >= 40) addButton(0,"Call Taxi",fastTravelToEsbeth,undefined,"Call Taxi","Call a taxi from the transit authority. It'll cost you 40 credits to ride back to Mhen'ga.");
-		else addDisabledButton(0,"Call Taxi","Call Taxi","You can't afford the 40 credits for a taxi. Damn.");
+		if(pc.credits >= 40) addButton(0,"Call Taxi",fastTravelToEsbeth,undefined,"Call Taxi","Call a taxi from the transit authority. It’ll cost you 40 credits to ride back to Mhen’ga.");
+		else addDisabledButton(0,"Call Taxi","Call Taxi","You can’t afford the 40 credits for a taxi. Damn.");
 	}
 	addButton(9,"Sleep",sleepInRuinedCamp,undefined,"Sleep", ((flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined ? "The camp is a wreck, but if you cleaned it up" : "With the camp mostly cleaned up") + ", you might be able to bed down here."));
 	return false;
@@ -567,7 +584,7 @@ public function mhengaVanaeAbandonedCamp():Boolean
 public function fastTravelToEsbeth():void
 {
 	clearOutput();
-	output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick credit transfer later, and you've got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down into the clearing in the middle of camp with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
+	output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick credit transfer later, and you’ve got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down into the clearing in the middle of camp with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
 	pc.credits -= 40;
 	currentLocation = "ESBETH TRAVEL AUTHORITY";
 	generateMapForLocation(currentLocation);
@@ -582,7 +599,7 @@ public function sleepInRuinedCamp():void
 	if(flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined)
 	{
 		flags["CLEARED_XENOGEN_CAMP_BODIES"] = 1;
-		output("The bodies lying around make the prospect of sleeping here... unpleasant, but then again, you're far enough from town that you'd rather sleep here than trudge all the way back. You spend several minutes dragging the mutilated bodies out of the camp and dump them into a ditch not far away. Best you can do under the circumstances.");
+		output("The bodies lying around make the prospect of sleeping here... unpleasant, but then again, you’re far enough from town that you’d rather sleep here than trudge all the way back. You spend several minutes dragging the mutilated bodies out of the camp and dump them into a ditch not far away. Best you can do under the circumstances.");
 		output("\n\nYou clear out one of the tents and bunker down to sleep");
 
 		//Standard sleep messages, etc. 
@@ -590,7 +607,7 @@ public function sleepInRuinedCamp():void
 	//Repeat [Sleep]
 	else
 	{
-		output("The camp is still clear enough, and the smell's not so bad anymore. You crawl into one of the tents and bunker down to sleep");
+		output("The camp is still clear enough, and the smell’s not so bad anymore. You crawl into one of the tents and bunker down to sleep");
 	}
 	
 	//Standard sleep messages, etc. 
@@ -607,12 +624,12 @@ public function sleepInRuinedCamp():void
 		//PC doesn't have TamWolf, has encountered a vanae before. Vanae gets the first turn!
 		if(!pc.hasTamWolf())
 		{
-			output("\n\nYou're awoken by a high, shrill warcry. Your eyes snap open, just as a throwing spear slams into the dirt beside your bedroll, tearing through the tent. You scramble to your [pc.feet], grabbing your equipment as your assailer leaps into view. <b>You've been ambushed by a vanae!</b>");
+			output("\n\nYou’re awoken by a high, shrill warcry. Your eyes snap open, just as a throwing spear slams into the dirt beside your bedroll, tearing through the tent. You scramble to your [pc.feet], grabbing your equipment as your assailer leaps into view. <b>You’ve been ambushed by a vanae!</b>");
 		}
 		//PC has Tam-wolf (broke or not)
 		else
 		{
-			output("\n\nYou're awoken by a low, deep mechanical barking outside your tent, full of enough bass to make your [pc.ears] rattle. You grab your [pc.gear] and stumble out of the tent, wiping the sleep from your eyes. Tam-wolf is standing outside in a low, threatening posture, his steel ears low against his head. A vanae is standing just a short way away, held at bay by your robotic guard dog. Still, it doesn't look like she's backing off... <b>you'll have to fight her!</b>");
+			output("\n\nYou’re awoken by a low, deep mechanical barking outside your tent, full of enough bass to make your [pc.ears] rattle. You grab your [pc.gear] and stumble out of the tent, wiping the sleep from your eyes. Tam-wolf is standing outside in a low, threatening posture, his steel ears low against his head. A vanae is standing just a short way away, held at bay by your robotic guard dog. Still, it doesn’t look like she’s backing off... <b>you’ll have to fight her!</b>");
 		}
 		showName("FIGHT: VANAE\nHUNTRESS");
 		showBust("VANAE_HUNTRESS");
@@ -650,7 +667,7 @@ public function mhengaSalvageFromCamp():void
 		//Add to Salvage results, 2nd time
 		//Remove "Salvage" option, replace with [Use Comms].
 		flags["SALVAGED VANAE CAMP"] = 2;
-		output("As you pick through the abandoned research camp, you spot something useful among the wreckage of what looks to be a burned-out hoverloader: a mid-range communications array, new in box. While not particularly valuable, and much too heavy to carry around with you, this array could easily cut through the jungle and send a signal back to Esbeth. You break it out of the box and boot it up. The array makes a happy chirping sound, announcing more loudly than you'd like that it is a top of the line Xenogen product brought to you courtesy of some dead, highly advanced race Xenogen looted whose name you're not sure you could replicate.\n\nWith the comms array set up, <b>you could probably call for retrieval from Esbeth now.</b>");
+		output("As you pick through the abandoned research camp, you spot something useful among the wreckage of what looks to be a burned-out hoverloader: a mid-range communications array, new in box. While not particularly valuable, and much too heavy to carry around with you, this array could easily cut through the jungle and send a signal back to Esbeth. You break it out of the box and boot it up. The array makes a happy chirping sound, announcing more loudly than you’d like that it is a top of the line Xenogen product brought to you courtesy of some dead, highly advanced race Xenogen looted whose name you’re not sure you could replicate.\n\nWith the comms array set up, <b>you could probably call for retrieval from Esbeth now.</b>");
 		processTime(3);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu); 
@@ -681,7 +698,7 @@ public function mhengaThickMistRoom1():Boolean
 		if(pc.hasScales() || pc.hasFeathers()) output(" are");
 		else output(" is");
 	}
-	output(" damp from all the moisture in the air. Things are getting quite chilly.\n\nYou can hear a river to the west, which means you probably can't proceed that way. Everywhere else seems fine, you think...");
+	output(" damp from all the moisture in the air. Things are getting quite chilly.\n\nYou can hear a river to the west, which means you probably can’t proceed that way. Everywhere else seems fine, you think...");
 	
 	return mhengaVanaeCombatZone();
 }

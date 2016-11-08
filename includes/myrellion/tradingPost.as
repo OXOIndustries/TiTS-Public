@@ -121,7 +121,7 @@ public function seifynTalkMenu(arg:Function = undefined):void
 	//PC has done the Nyrea talk. Hasn’t done the Nyrea Palace dungeon.
 	if(arg == leaderShipDeadTaivraConvo) addDisabledButton(2,"Leadership","Leadership","You just had this discussion.");
 	else if(pc.hasPerk("Nyrean Royal")) addDisabledButton(2,"Leadership","Leadership","You are the leadership now!");
-	else if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) addButton(2,"Leadership",leaderShipDeadTaivraConvo,undefined,"Leadership","Ask Seifyn what's become of the village since you defeated Queen Taivra.");
+	else if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) addButton(2,"Leadership",leaderShipDeadTaivraConvo,undefined,"Leadership","Ask Seifyn what’s become of the village since you defeated Queen Taivra.");
 	else if(arg == seifynTaivraTalk) addDisabledButton(2,"Taivra","Taivra","You just had this discussion.");
 	else if(flags["SEIFYN_NYREA_TALK"] == 1) addButton(2,"Taivra",seifynTaivraTalk,undefined,"Taivra","Ask about the nyrean queen she mentioned.");
 	else addDisabledButton(2,"Taivra","Taivra","Maybe you should ask about the Nyrea first.");
