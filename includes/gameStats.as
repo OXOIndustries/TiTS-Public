@@ -143,6 +143,7 @@ public function statisticsScreen(showID:String = "All"):void
 		else if(lipsize <= 7) output2(" Bloated");
 		else if(lipsize <= 8) output2(" Whorish");
 		else output2(" Universe-distorting");
+		if(lipsize > 9) output2(" (" + formatFloat(lipsize, 3) + ")");
 		if(pc.lipColor != "") output2(", " + StringUtil.toDisplayCase(pc.lipColor));
 		if(pc.lipPierced != 0 || flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2)
 		{

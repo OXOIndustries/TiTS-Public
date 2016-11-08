@@ -244,18 +244,19 @@
 			var sizeDiff:Number = 1;
 			if(rand(2) == 0) sizeDiff += 1;
 			if(rand(3) == 0) sizeDiff += 1;
-			if(sizeType == "decrease") sizeDiff *= -1;
 			
 			var sizeChanged:Boolean = false;
 			switch(colorType)
 			{
 				default:
 					sizeDiff = Math.max(1, Math.round(sizeDiff / 2));
+					if(sizeType == "decrease") sizeDiff *= -1;
 					if(target.lipMod + sizeDiff < 0) sizeDiff = 0;
 					else if(target.lipModUnlocked(target.lipMod + sizeDiff)) sizeChanged = true;
 					break;
 				case "lipple":
 					sizeDiff = ((sizeDiff / 100) * 10);
+					if(sizeType == "decrease") sizeDiff *= -1;
 					if(target.nippleWidthRatio + sizeDiff < 0.1) sizeDiff = 0;
 					else if(target.nippleWidthRatioUnlocked(target.nippleWidthRatio + sizeDiff)) sizeChanged = true;
 					break;
