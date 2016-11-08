@@ -32,14 +32,14 @@
 			this.description = "a medipen full of Rainbotox";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This small injector houses the extranet's favorite pranking tool: Rainbotox. Based on the same powerful microsurgeon technology as permanent hair colorations sold by other companies, Rainbotox is comprised of serums rejected for improper color quality mixed together at random. You can find hundreds of holos of upperclass teenagers pranking their friends by swapping it in place of other treatments.";
+			this.tooltip = "This small injector houses the extranet’s favorite pranking tool: Rainbotox. Based on the same powerful microsurgeon technology as permanent hair colorations sold by other companies, Rainbotox is comprised of serums rejected for improper color quality mixed together at random. You can find hundreds of holos of upperclass teenagers pranking their friends by swapping it in place of other treatments.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 1000;
+			this.basePrice = 800;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -57,7 +57,7 @@
 		{
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
-				kGAMECLASS.output("You press the medipen against your [pc.skin] and activate its trigger stud. There's a quick, almost imperceptible 'snick' followed by the pen flashing red. Now you've done it! You wonder what color you're about to turn... and where.");
+				kGAMECLASS.output("You press the medipen against your [pc.skin] and activate its trigger stud. There’s a quick, almost imperceptible ‘snick’ followed by the pen flashing red. Now you’ve done it! You wonder what color you’re about to turn... and where.");
 				var targets:Array = new Array();
 				var choices:Array = new Array();
 				var newColor:String = "";
@@ -89,7 +89,7 @@
 					//hair color
 					if(targets[targets.length-1] == 1)
 					{
-						if(target.hairColor == newColor) kGAMECLASS.output("\n\nYour scalp itches, but your [pc.hair] doesn't change at all. Maybe it selected the same color you already had.");
+						if(target.hairColor == newColor) kGAMECLASS.output("\n\nYour scalp itches, but your [pc.hair] doesn’t change at all. Maybe it selected the same color you already had.");
 						else
 						{
 							kGAMECLASS.output("\n\nYour [pc.hair] rapidly shifts, turning " + newColor + " starting at the roots and rapidly spreading outward to the tips. <b>You have " + newColor + " hair.</b>");
@@ -103,17 +103,17 @@
 						else
 						{
 							newColor = randomString("albino","fair","tanned","olive","brown","pink","onyx","ebony","dark","pale green","emerald","sapphire","azure","purple","amethyst","copper","silver","gold","cherry","ruby","scarlet","yellow","amber","orange");
-							kGAMECLASS.output("\n\nYour [pc.skin] briefly itches. You look down to watch it changing to a " + newColor + " pigmentation. At first, there's just a spot here and there, but they expand until they're joining together into one seemless coat of new color. <b>You now have " + newColor + " skin.</b>");
+							kGAMECLASS.output("\n\nYour [pc.skin] briefly itches. You look down to watch it changing to a " + newColor + " pigmentation. At first, there’s just a spot here and there, but they expand until they’re joining together into one seemless coat of new color. <b>You now have " + newColor + " skin.</b>");
 							target.skinTone = newColor;
 						}
 					}
 					//eye color
 					else if(targets[targets.length-1] == 3)
 					{
-						if(target.eyeColor == newColor) kGAMECLASS.output("\n\nA flash of " + target.eyeColor + " momentarily obscures your vision. When it passes, you check your appearance with your codex's camera only to find that nothing has changed. It likely tried to change your eyes to their existing color.");
+						if(target.eyeColor == newColor) kGAMECLASS.output("\n\nA flash of " + target.eyeColor + " momentarily obscures your vision. When it passes, you check your appearance with your codex’s camera only to find that nothing has changed. It likely tried to change your eyes to their existing color.");
 						else
 						{
-							kGAMECLASS.output("\n\nA flash of " + target.eyeColor + " momentarily obscures your vision. You excitedly pull up your codex's holocam to check yourself once it clears and discover that your eyes have changed color. <b>They're now " + newColor + ".</b>");
+							kGAMECLASS.output("\n\nA flash of " + target.eyeColor + " momentarily obscures your vision. You excitedly pull up your codex’s holocam to check yourself once it clears and discover that your eyes have changed color. <b>They’re now " + newColor + ".</b>");
 							target.eyeColor = newColor;
 						}
 					}
@@ -136,26 +136,26 @@
 							kGAMECLASS.output("\n\nA barely-discernable tingling runs through your [pc.skin], but its most intense around the roots of your [pc.skinFurScales]. Before your eyes, new coloration spreads out towards the tips, <b>turning your fur " + newColor + ".</b>");
 							target.furColor = newColor;
 						}
-						else kGAMECLASS.output("\n\nThere's some itching around your [pc.skinFurScales], but nothing seems to change. Odd. Maybe you got ripped off?");
+						else kGAMECLASS.output("\n\nThere’s some itching around your [pc.skinFurScales], but nothing seems to change. Odd. Maybe you got ripped off?");
 					}
 					//scale color
 					else if(targets[targets.length-1] == 6)
 					{
-						if(target.scaleColor == newColor) kGAMECLASS.output("\n\nYour scales click as if something irritated them, yet you can't spot reason why. There could be a slim chance that the Rainbotox tried changing their color to your existing complexion.")
+						if(target.scaleColor == newColor) kGAMECLASS.output("\n\nYour scales click as if something irritated them, yet you can’t spot reason why. There could be a slim chance that the Rainbotox tried changing their color to your existing complexion.")
 						else
 						{
-							kGAMECLASS.output("\n\nYour scales click, feeling almost like they're standing up on end. Then, they all begin to change color in perfect synchronization, shifting hue from one side to the other until <b>your scales are a glittering " + newColor + ".</b>")
+							kGAMECLASS.output("\n\nYour scales click, feeling almost like they’re standing up on end. Then, they all begin to change color in perfect synchronization, shifting hue from one side to the other until <b>your scales are a glittering " + newColor + ".</b>")
 							target.scaleColor = newColor;
 						}
 					}
 					//lip color
 					else if(targets[targets.length-1] == 7)
 					{
-						if(target.lipColor == newColor) kGAMECLASS.output("\n\nYour [pc.lips] tingle, but they remain unchanged by Rainbotox's random effects.");
+						if(target.lipColor == newColor) kGAMECLASS.output("\n\nYour [pc.lips] tingle, but they remain unchanged by Rainbotox’s random effects.");
 						else
 						{
 							newColor = randomString("cerulean","glossy blue","emerald","teal","crimson","slut red","bubblegum-pink","glittering purple","violet","yellow","silver","copper","gold","amber","orange","rose","sable","peach");
-							kGAMECLASS.output("\n\nYour [pc.lips] itch. You immediately bring up your codex to check on your reflection. It's just in time to show you blotches of " + newColor + " spreading across them, forever changing their natural pigmentation.");
+							kGAMECLASS.output("\n\nYour [pc.lips] itch. You immediately bring up your codex to check on your reflection. It’s just in time to show you blotches of " + newColor + " spreading across them, forever changing their natural pigmentation.");
 							target.lipColor = newColor;
 						}
 					}

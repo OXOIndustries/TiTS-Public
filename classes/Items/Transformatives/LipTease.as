@@ -32,7 +32,7 @@
 			
 			attackVerb = "";
 			
-			basePrice = 1200;
+			basePrice = 400;
 			
 			version = _latestVersion;
 		}
