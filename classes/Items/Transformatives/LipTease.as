@@ -97,6 +97,7 @@
 			clearMenu();
 			addButton(0, "Yes", rbgSelColor, [target, colorType], "Choose Color", String("Choose a color for your " + lipTypeString(colorType) + "."));
 			addButton(1, "No", sizeMenu, [target, colorType, "null"], "No Color", String("Don’t change the color of your " + lipTypeString(colorType) + "."));
+			if(target.isBimbo()) addButton(5, "Like, Ya!", rbgSelColor, [target, colorType, true], "*Choose Glitter*", String("Like, totally choose a better color for your " + lipTypeString(colorType) + "."));
 			
 			if(colorType != "lip") addButton(14, "Back", lipMenu, target);
 			else addButton(14, "Back", rbgCancel, target);
@@ -109,7 +110,7 @@
 			author("IVIysteriousPerson");
 			
 			output("You put the lip balm back into your inventory.\n\n");
-			kGAMECLASS.quickLoot(new LipTease());
+			kGAMECLASS.itemCollect([new LipTease()]);
 		}
 		
 		private function rbgSelColor(arg:Array):void
@@ -126,53 +127,64 @@
 			
 			output("What color do you choose?\n\n");
 			
-			colorList.push(
-				["red", "Red"],
-				["red-orange", "R.Orange"],
-				["orange", "Orange"],
-				["yellow-orange", "Y.Orange"],
-				["yellow", "Yellow"],
-				["yellow-green", "Y.Green"],
-				["green", "Green"],
-				["teal", "Teal"],
-				["cerulean", "Cerulean"],
-				["blue", "Blue"],
-				["indigo", "Indigo"],
-				["purple", "Purple"],
-				["lavender", "Lavender"],
-				["pink", "Pink"],
-				["rose", "Rose"],
-				["peach", "Peach"],
-				["brown", "Brown"],
-				["hazel", "Hazel"],
-				["white", "White"],
-				["black", "Black"]
-			);
-			colorList.push(
-				["crimson", "Crimson"],
-				["garnet", "Garnet"],
-				["ruby", "Ruby"],
-				["citrine", "Citrine"],
-				["topaz", "Topaz"],
-				["amber", "Amber"],
-				["peridot", "Peridot"],
-				["emerald", "Emerald"],
-				["jade", "Jade"],
-				["turquoise", "Turquoise"],
-				["aquamarine", "Aquamarine"],
-				["lapis", "Lapis"],
-				["sapphire", "Sapphire"],
-				["violet", "Violet"],
-				["amethyst", "Amethyst"],
-				["opal", "Opal"],
-				["pearl", "Pearl"]
-			);
-			colorList.push(["copper", "Copper"],
-				["silver", "Silver"],
-				["gold", "Gold"],
-				["platinum", "Platinum"],
-				["sable", "Sable"]
-			);
+			// Standard
+			colorList.push(["red", "Red"]);
+			colorList.push(["red-orange", "R.Orange"]);
+			colorList.push(["orange", "Orange"]);
+			colorList.push(["yellow-orange", "Y.Orange"]);
+			colorList.push(["yellow", "Yellow"]);
+			colorList.push(["yellow-green", "Y.Green"]);
+			colorList.push(["green", "Green"]);
+			colorList.push(["teal", "Teal"]);
+			colorList.push(["cerulean", "Cerulean"]);
+			colorList.push(["blue", "Blue"]);
+			colorList.push(["indigo", "Indigo"]);
+			colorList.push(["purple", "Purple"]);
+			colorList.push(["lavender", "Lavender"]);
+			colorList.push(["pink", "Pink"]);
+			colorList.push(["rose", "Rose"]);
+			colorList.push(["peach", "Peach"]);
+			colorList.push(["brown", "Brown"]);
+			colorList.push(["hazel", "Hazel"]);
+			colorList.push(["white", "White"]);
+			colorList.push(["black", "Black"]);
+			
+			// Gemstone
+			colorList.push(["crimson", "Crimson"]);
+			colorList.push(["garnet", "Garnet"]);
+			colorList.push(["ruby", "Ruby"]);
+			colorList.push(["citrine", "Citrine"]);
+			colorList.push(["topaz", "Topaz"]);
+			colorList.push(["amber", "Amber"]);
+			colorList.push(["peridot", "Peridot"]);
+			colorList.push(["emerald", "Emerald"]);
+			colorList.push(["jade", "Jade"]);
+			colorList.push(["turquoise", "Turquoise"]);
+			colorList.push(["aquamarine", "Aquamarine"]);
+			colorList.push(["lapis", "Lapis"]);
+			colorList.push(["sapphire", "Sapphire"]);
+			colorList.push(["violet", "Violet"]);
+			colorList.push(["amethyst", "Amethyst"]);
+			colorList.push(["opal", "Opal"]);
+			colorList.push(["pearl", "Pearl"]);
+			
+			// Metallic
+			colorList.push(["copper", "Copper"]);
+			colorList.push(["silver", "Silver"]);
+			colorList.push(["gold", "Gold"]);
+			colorList.push(["platinum", "Platinum"]);
+			colorList.push(["sable", "Sable"]);
+			
+			// Bimbo variants
+			if(arg.length > 2)
+			{
+				var bimboColors:Array = [];
+				for(i = 0; i < colorList.length; i++)
+				{
+					bimboColors.push([String("glittering " + colorList[i][0]), String("*" + colorList[i][1] + "*")]);
+				}
+				colorList = bimboColors;
+			}
 			
 			// All of these just go to the same Second Consumption Text because I made it nondescript.
 			kGAMECLASS.clearMenu();

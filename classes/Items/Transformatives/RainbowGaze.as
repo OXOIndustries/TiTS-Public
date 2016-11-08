@@ -129,7 +129,7 @@
 			author("Couch");
 			
 			output("You put the eyedropper back into your inventory.\n\n");
-			kGAMECLASS.quickLoot(new RainbowGaze());
+			kGAMECLASS.itemCollect([new RainbowGaze()]);
 		}
 		
 		private function rbgUse(arg:Array):void
