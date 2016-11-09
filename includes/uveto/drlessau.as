@@ -397,3 +397,165 @@ public function drLessauAfter():void
 	IncrementFlag("DRLESSAU_SEXED");
 	addButton(0, "Next", drLessauMainMenu)
 }
+
+public function steeleBiomedBonus():Boolean
+{
+	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Gangbang", steeleBiomedGangbang, undefined, undefined, "Get to know your employees more intimately. You will end up with at least one cock inside you.");
+	else addDisabledButton(0, "Gangbang", undefined, "You need a cock or vagina for this.");
+	
+	return false;
+}
+
+public function steeleBiomedGangbang():void
+{
+	clearOutput();
+	showBust("CYNTHIASOLO", "WALTSOLO")
+	showName("STEELE\nBIOMED");
+	author("COUCH");
+	clearMenu();
+	
+	output("You glance around the room, licking your lips at all the exotic beauties on display. Why not let them get to know their future boss? Besides, you’re feeling ");
+	if (pc.hasVagina() && pc.hasCock()) output("hard and wet");
+	else if (pc.hasVagina()) output("wet and eager to fuck");
+	else output("a little stiff");
+	output(", and you think these brave scientists have what it takes to satisfy the craving in your loins.");
+	
+	if (flags["BIOMED_GANGBANGED"] == undefined) 
+	{
+		output("\n\nYou start by reaching for a cute-looking wolf boy - originally an ausar, you’re guessing - giving him a round of ear-scratching. The attention quickly causes him to look up after the initial shiver, right into a perfect view of your " + pc.mf("undercleavage", "chest and teasing smirk") + ".");
+		output("\n\n<i>“Up for some fun?”</i> you ask as you keep your hand in place, continuing to scratch his ears. Your other hand reaches up to ");
+		if (!pc.isChestExposed)
+		{ 
+			if (pc.hasArmor()) output("pull your [pc.armor] "); 
+			if (pc.isChestGarbed()) output("and [pc.undertop] "); 
+			output("away to bare your [pc.chest]");
+		}
+		else output("run along your naked [pc.chest] invitingly");
+		output(", making it clear exactly what kind of fun you’re interested in. You cast your gaze around the room in an open invitation, hoping someone else will be bold enough to come forward. To your delight, you soon feel a pair of large, fur-covered hands slip under your arms to lay over your chest, and a pair of gigantic breasts squish against your back.");
+		if (pc.hasWings) output(" Ooh, <i>damn</i> that feels good against your wingpoints.");
+		
+		output("\n\n<i>“");
+		if(pc.tone >= 60 && pc.biggestTitSize() < 1) output("Mmm, </i>nice<i> tone, boss.");
+		else if (pc.tone < 60 && pc.biggestTitSize() < 1) output("Well now, this isn’t a build we see too often around here.");
+		else if (pc.biggestTitSize() < 10) output("Now aren’t you a cutie?");
+		else if (pc.biggestTitSize() < 20) output("Ooh, we got ourselves some big girls here.");
+		else output("Hot damn, boss, you’re as big as they come, ain’tcha?");
+		output("”</i> The voice of the girl pressed against your back comes with a midwestern accent that makes you think of a New Texan, a thought given further support by the wet sensation against your back. You turn your head, seeing thick, muscular arms covered in dark brown fur and a fully bovine face grinning at you. <i>“Want a closer look?”</i>")
+		
+		output("\n\nYou nod, reluctantly letting go of the wolf’s ears to turn and properly face the giant of a minotauress. She’s huge in every way: eight feet tall, biceps almost as thick as your head, and extravagant curves when it comes to bust and hips alike that manage not to look exaggerated thanks to how thick and buff she is. The thick black nubs sitting proudly upon her furry breasts are leaking trickles of creamy milk, prompting you to go in for a drink. The primal moo it elicits from the minotauress is every bit as delicious as the milk itself, one of those meaty arms slipping around your back to hold you in place.");
+		output("\n\n<i>“New Texan?”</i> you ask between gulps, prompting the minotauress to smirk.");
+		output("\n\n<i>“Not even close, boss. What, you think those bimbos are the only cowgirls out there? Naw, I just like being big and beefy. And-”</i> She’s briefly cut off by giving a long, exultant moo as you give her teat a particularly firm suck. <i>“Oh yeah...having udders is just the </i>best<i>.”</i>");
+	}
+	
+	else
+	{
+		output("\n\nYou slip under the table at an unoccupied spot, making your way around to where Walt is sitting. The wolf is distracted by his work until he feels your hands unzipping his pants, prompting him to look down.");
+		
+		output("\n\n<i>“Shush,”</i> you whisper, putting a finger to your lips. He complies for the moment, allowing you to open his fly and get a taste of his sheath. He’s deliciously musky compared to an ausar, so much so that you can practically taste it when you slip your tongue inside his sheath, earning a lupine growl from Walt. Soon his shaft begins to emerge, all eight inches of red meat brimming with that wonderful masculine scent. You bring your tongue up in a long sweep from his knot to his tip");
+		if (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(", followed by briefly spiraling it around his dick, quietly laughing at the way he shudders");
+		output(".");
+		
+		output("\n\nSoon you set to blowing him properly, enjoying the rich, primal taste of canine cock, not to mention the way Walt has to increasingly struggle to keep his composure. One of his hands slip under the table to run his fingers through your hair, gently scratching just like you would to him. You continue unabated, driving him to further growls and whines that more and more risk blowing your cover. You look forward to it, of course, not relenting until you get a proper cumming howl out of Walt. All thoughts of being caught disappear under the flood of canine cum that fills your mouth, making you focus entirely on swallowing gulp after hot, sticky gulp.");
+		output("\n\nWhen you’re finished you open your eyes to see Walt looking up, Cynthia looking down at the two of you with a teasing smirk.");
+		output("\n\n<i>“Told you you could just ask if you wanted to fuck us again, [pc.name]. No need to sneak around.”</i>");
+		
+		if (pc.isNice()) output("\n\nYou give a sheepish grin")
+		else if (pc.isMischievous()) output("\n\n<i>“Aw, but sneaking’s fun sometimes,”</i> you reply");
+		else output("\n\n<i>“I do what I want,”</i> you reply");
+		output(" as you emerge from under the desk, swallowing to get most of the dregs of wolf cum out of your mouth. This prompts a laugh from the minotauress, who promptly wraps one of those massive arms around your back and pulls you in against her chest.");
+		
+		output("\n\n<i>“Alright, then, why don’t you wash that jizz down?”</i>");
+		output("\n\nYou quickly accept the invitation, wrapping your lips around one of those fat black teats and setting to gulping down that delicious cowgirl milk. Cynthia lets out a lusty moo, her hands roaming along your body to start stripping you of your gear.");
+		output("\n\n<i>“Thaaaat’s it, [pc.name]...oh yeah, suck my udders just like that.”</i>");
+	}
+
+	processTime(10);
+	addButton(0, "Next", steeleBiomedGangbangII);
+}
+
+public function steeleBiomedGangbangII():void
+{
+	clearOutput();
+	showBust("CYNTHIASOLO", "WALTSOLO")
+	showName("STEELE\nBIOMED");
+	author("COUCH");
+	
+	output("Distracted by your indulgence, you give a muffled grunt of surprise as " + (flags["BIOMED_GANGBANGED"] == undefined ? "the wolf" : "Walt") + " slips your remaining gear off to get at your [pc.hips]. A sweep of his tongue along your [pc.vagOrAss] makes you shiver, prompting him to keep going, each lick digging a little deeper in.");
+	output("\n\nMore of their coworkers join in now, assisting " + (flags["BIOMED_GANGBANGED"] == undefined ? "the minotauress" : "Cynthia") + " with going for a feel of your [pc.chest], your ass, " + (pc.hasTail() ? "your tail, " : "") + "" + (pc.hasWings() ? "your wings, " : "") + "any and every part of your body. There’s scales, fur, even downy feathers stroking your body, surrounding you on all sides with colors and forms of all varieties. Stars, everyone here is just so exotic!");
+	output("\n\n<i>“Alright, alright, let's not crowd " + pc.mf("him", "her") + ",”</i> the minotauress says after a bit of this. <i>“You’ll all get a turn, let's do this all nice and orderly-like.”</i> She looks down at you with a grin as the rest of her coworkers draw back a bit."); 
+	if (flags["BIOMED_GANGBANGED"] == undefined) output("<i>“Name’s Cynthia, by the way. Pleasure to meet you, boss.”</i>");
+	
+	output("\n\nAt her command, one of the scientists switches off the central display to leave the table bare. Cynthia pulls you down onto the table, your head resting comfortably on those pillowy cowtits. Her hands slide down to spread both your legs and hers.");
+	output("\n\n<i>“Alright, boys and girls,”</i> you say with a broad grin of your own, <i>“come and get it!”</i>");
+	output("\n\n" + (flags["BIOMED_GANGBANGED"] == undefined ? "The wolf boy from before" : "Even though he just came, Walt") + " is the first to mount you, cramming his cock deep into your waiting [pc.vagOrAss] with an open howl. You gasp in delight, clenching reflexively around him as he starts fucking you with firm, steady strokes. Each thrust plunges to exactly the right depth that you feel that knot stretch you even wider every time he bottoms out, teasing at popping inside but never quite taking that last step that would lock you up for anyone else to enjoy.");
+	output("\n\n<i>“Ooh, good boy,”</i> you purr, <i>“fuck me just like that. Give me that dirty dog dick!”</i>");
+	output("\n\n<i>“Yes " + pc.mf("sir", "ma'am") + ",”</i> he replies" + (flags["BIOMED_GANGBANGED"] == undefined ? ", the first words you’ve yet heard from him" : "") + ". <i>“I’ll do my best.”</i>");
+	output("\n\n<i>“" + (flags["BIOMED_GANGBANGED"] == undefined ? "That's Walt, by the way." : "That boy’s got some awesome stamina.") + "”</i> Cynthia whispers as her hands slide back up to your chest, " + (pc.biggestTitSize() < 1 ? "caressing your muscles" : "kneading your tits") + " while you lie back and enjoy the fucking. You can see more lining up behind him, both the remaining boys and quite a few dick-wielding girls.");
+	output("\n\nIt's not much longer before Walt cums, filling you with that deliciously hot lupine spunk. You join him in howling, feeling his knot heat up and swell " + (pc.hasVagina() ? "just outside your pussy lips" : "right at the edge of your backdoor") + ". He certainly doesn't lack for volume nor duration, jet after jet of creamy canine cum spurting into your waiting depths. It leaks freely from your [pc.vagOrAss] as he pulls out" + (pc.hasVagina() ? ", even flowing down to run over your tailhole as well" : "") + ". The next one quickly steps up, this one a lizard girl packing a pair of matching reptilian pricks. This time Cynthia gets to moo as one of the cocks goes into her waiting cunt, the other pressing into your freshly cum - lubed ass.");
+	
+	if (pc.hasCock())
+	{
+		output("\n\nAt the same time another girl, this one showing some scorpion traits, mounts you and starts rubbing [pc.oneCock] between her thighs. The anal plowing you’re getting from her coworker has a trickle of [pc.cumColor] drooling from your tip every time you feel that reptilian dick grind against your prostate, and she delights in scooping it up with a finger, rubbing your [pc.cum] all over your [pc.cockHead] until it’s thoroughly glazed.");
+		output("\n\n<i>“Nice to meet you, boss,”</i> the scorpion-girl says with a wink as she lifts her hips to guide your cock into her waiting alien cunt, letting out a lusty groan as she slides down inch by inch. <i>“" + (pc.cocks.clength <= 12 ? "Mmmyeah, fill me up" : "Oh fuuuuuck, so big") + "...”</i> She’s laden with soft little barbs all along her tunnel, almost like a kaithirit’s cock in reverse.");
+		if(pc.hasCockFlag(GLOBAL.FLAG_NUBBY)) output(" You can’t help but lick your lips at the sensation of her nubs flicking and grinding against yours every time she moves her hips.");
+		if (pc.hasVagina()) 
+		{
+			output(" You notice her stinger is looking less and less like a weapon by the moment, revealing a sleek indigo cock concealed within.");
+			output("\n\n<i>“Want me to use this on you while I’m riding?”</i> she asks as she notices your gaze on her tail. You give her a beckoning smirk, reaching past her and spreading your pussy lips. She’s quick to obey, curling her tail around and slipping it inside you with practiced ease. You give a groan of delight, relishing the rare opportunity to fuck and be fucked by the same person at the same time. Other herms are great, but they can’t give you this kind of experience.")
+		}
+	}
+	
+	else
+	{
+		output("\n\nAt the same time another girl, this one showing some scorpion traits, kneels over you and curls her tail around to in front of her. She licks and sucks on her own stinger, showing off how it conceals a sleek indigo-colored cock as big as the one plundering your ass right now.");
+		output("\n\n<i>“Ready for some double penetration action, boss?”</i> the scorpion-girl asks with a wink as she curls her tail back around behind her. You just spread [pc.oneCunt] and give a beckoning smile, followed by a croon of delight as that tailcock plunges into your freshly-fucked cunt. The scorpion-girl looks proud at your reaction, her hands coming up to draw her hair back as her tail starts to fuck you in a steady rhythm.");
+	}
+	
+	output("\n\nShe sets to working herself in time with the anal pounding you’re getting, while Cynthia has long since stopped trying to make introductions in favor of mooing away under you. You look up to see that two more of the scientists have come around to start sucking on her tits")
+	if (pc.milkFullness >= 30) output(" , just before two more start doing the same for you. You let out an exultant moo of your own, your new attendees gulping down every last drop of [pc.milkNoun] you have to give");
+	output(".");
+	
+	output("\n\n<i>“Oh yeah,”</i> Cynthia moans, <i>“drink it </i>all<i>! You know how I like it, moo-ooooh yeah!”</i>");
+	output("\n\n<i>“She really is a total milk slut,”</i> Walt says as he slips up beside you, running a hand along your side as he admires the two of you.");
+	if (pc.milkFullness >= 30) output("<i>“Looks like you are too, hm?”</i> \n\n<i>“Maaaybe,”</i> you reply with a wink, followed by a coo of delight at a particularly good suck.");
+	else output("\n\n");
+	output("You reach over with an arm to pull Walt in for a kiss, setting to making out as you’re fucked" + (pc.milkFullness >= 30 ? ", sucked, and everything in-between" : "") + ". He quickly shows his experience working a muzzle, that strong canine tongue slipping dominantly into your mouth while his lips stay firmly pressed to yours, coaxing them open enough so that those on the sides of you are given a real show of your wet, sloppy, wonderfully savage kiss.");
+	output("\n\nYou hardly even notice when the lizard-girl hisses, packing your ass with a fresh load of thick, sticky cum. It’s only when she pulls out that you glance past the pile already on top of you to see that there’s still quite a number waiting their turn. The less patient ones have started in on each other, filling the room with the sounds of sex. It’s music to your ears as you lounge back and get ready for the real reaming yet to come.");
+	
+	processTime(30);
+	addButton(0, "Next", steeleBiomedGangbangIII);
+}
+
+public function steeleBiomedGangbangIII():void
+{
+	clearOutput();
+	showBust("CYNTHIASOLO", "WALTSOLO")
+	showName("STEELE\nBIOMED");
+	author("COUCH");
+	
+	output("Hours pass before you rouse from your sexual stupor. You’ve fucked practically everyone in the room, most of them at least twice and some far more than that. " + (pc.hasVagina ? "Both of your holes feel" : "Your ass feels") + " thoroughly used and your belly looks thick and pregnant, your stomach having long since given up on complaining about all the cum you’ve taken in your greedy lust. The desk under you is soaked and there’s still a multicolored river of a dozen different types of semen bubbling forth from between your legs.");
+	output("\n\n<i>“Oof…”</i> you hear Cynthia groan from underneath you, her own belly somewhat less bloated than yours but still noticeably swollen with cum. <i>“Nothing like a good gangbang, huh boss?”</i>");
+	output("\n\n<i>“" + (flags["BIOMED_GANGBANGED"] == undefined ? "You all can call me [pc.name]" : "I told you, call me [pc.name]") + ",”</i> you reply a little dreamily, still basking in the afterglow. Cynthia chuckles at this, managing to find the strength after a bit to ease the both of you to your feet.");
+	output("\n\n<i>“Well then, [pc.name], let’s get you cleaned up before Lessau comes out here. He doesn’t mind if we fuck, but he’ll get pissed if we leave the place dirty afterwards.”</i> She takes a brief look around the room; most of her coworkers are cuddling with one another or have returned to their consoles as if they hadn’t just partaken in a massive orgy. <i>“The rest of you, this place had better be as neat as it was when [pc.name] came in here by the time I get back.”</i>");
+	output("\n\n<i>“Yes ma’am,”</i> Walt replies, setting the rest of the team to work as you’re escorted to take a shower with the beefy minotauress. Cynthia lets out one last moo when she squeezes the overflowing cum out of her womb, a high-pressure torrent of spunk spraying from her cunt and into the shower drain while she leans heavily against the wall. You opt to take it slower, having plenty of time to let yourself drain while you clean up all the cum, milk, and feminine juices that you’ve been doused with all over. It takes long enough that by the time you’re done you almost feel like going for another grab of those cowtits, but Cynthia folds an arm over her chest just when you’re about to try.");
+	output("\n\n<i>“Sorry, [pc.name], I’m tuckered out. Even these milk tanks need to refill every now and then. Tell you what, though: you want to have a party like this again, all you gotta do is ask. Pretty sure there won’t be a girl or guy in the house who’s not up for it.”</i>");
+	output("\n\nIt’s an offer you’ll definitely have to consider, even as you reclaim your gear from an office that looks just as pristine as when you first came in. It’s enough to leave you wondering just how often they get it on if they’re that good at cleaning up from it. It’s definitely a bit of corporate culture you’ll have to see about spreading, leaving you with renewed vigor to continue your journey and earn that title.");
+	
+	if (pc.hasVagina()) 
+	{
+		for (var x:int = 0; x < pc.totalVaginas(); x++) 
+		{	
+			pc.cuntChange(x, 300)
+			pc.loadInCunt(undefined, x)
+		}
+	}
+	pc.buttChange(300);
+	pc.loadInAss();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.exhibitionism(2);
+	IncrementFlag("BIOMED_GANGBANGED");
+	processTime(140);
+	addButton(0, "Next", mainGameMenu)
+}
