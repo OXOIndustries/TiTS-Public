@@ -376,15 +376,9 @@
 			}
 			
 			//Find biggest Tit row!
-			x = 0;
+			x = target.biggestTitRow();
 			y = 0;
 			choices = new Array();
-			while (x < target.bRows()) {
-				if(target.breastRows[x].breastRatingRaw > target.breastRows[y].breastRatingRaw) {
-					y = x;
-				}
-				x++;
-			}
 			//Breast shrink to large EE's
 			if(target.bRatingRaw(x) >= 11 && target.breastRatingUnlocked(x, 11) && changes < changeLimit && rand(2) == 0) {
 				kGAMECLASS.output("\n\nA ripple runs through ");

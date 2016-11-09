@@ -1328,7 +1328,7 @@
 		public function breastRatingUnlocked(bRowIndex:int, newBreastRating:Number):Boolean
 		{
 			if (hasStatusEffect("Gel Body")) return false;
-			if(hasStatusEffect("The Treatment") && (statusEffectv1("The Treatment") == 2 || statusEffectv1("The Treatment") == 0) && breastRows[bRowIndex].breastRatingRaw < newBreastRating) return false;
+			if(hasStatusEffect("The Treatment") && InCollection(statusEffectv1("The Treatment"), [0, 2]) && breastRows[bRowIndex].breastRatingRaw < newBreastRating) return false;
 			return true;
 		}
 		public function breastRatingLockedMessage():String
