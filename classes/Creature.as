@@ -8243,7 +8243,7 @@
 		public function milkFullnessMin(): Number
 		{
 			var bonus:int = 0;
-			bonus += Math.max(perkv1("Mega Milk"), 40);
+			if(hasPerk("Mega Milk")) bonus += Math.max(perkv1("Mega Milk"), 40);
 			return bonus;
 		}
 		public function milkFullnessMax(): Number
