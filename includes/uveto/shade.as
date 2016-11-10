@@ -67,8 +67,7 @@ public function astraIsHome():Boolean
 // Enemy / Not Friend / Friend / Lover. If Shade was never interacted with in a positive way (ie, you fought her in KaraQuest 1), she's an Enemy. If the player betrayed Shade in KQ2 and didn't make a good case to her afterwards, she's Not Friend. If you've been buddy-buddy with her so far (Helped her out in KQ1 or didn't do KQ2), she'll be your Friend. And of course, if you've fucked before and would otherwise be Friends, she's a Lover.
 public function shadeIsFriend():Boolean
 {
-	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined || flags["LOST_TO_SHADE_WITH_KARA"] != undefined) return false;
-	if(flags["SHADE_IS_HOSTILE"] != undefined) return false;
+	if(shadeIsEnemy()) return false;
 	if(flags["SHADE_DISABLED"] == 1) return false;
 	return true;
 }
@@ -80,7 +79,7 @@ public function shadeIsLover():Boolean
 // Enemy / Not Friend Shade don't want anything to do with you, and won't appear much here. She might show up in Astra's content, though.
 public function shadeIsEnemy():Boolean
 {
-	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined || flags["LOST_TO_SHADE_WITH_KARA"] != undefined) return true;
+	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined || flags["LOST_TO_SHADE_WITH_KARA"] != undefined || flags["SHADE_IS_HOSTILE"] != undefined) return true;
 	return false;
 }
 public function shadeIsNotFriend():Boolean
@@ -105,6 +104,8 @@ public function shadeIsNotSiblings():Boolean
 // Get when moving around on Uveto Station, post Shade leaving Myrellion.
 public function getLetterFromShade():void
 {
+	if(shadeIsEnemy()) return;
+	
 	if(flags["SHADE_ON_UVETO"] == undefined)
 	{
 		// Limbo failsafe (Nuked Myrellion, Shade is friendly, Shade still in bar, Shade mysteriously survives and arrives on Uveto a day later...)

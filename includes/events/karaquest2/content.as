@@ -1913,6 +1913,12 @@ public function kq2ShadePCVictoryKaraNotHard():void
 	output("\n\n<i>“Stay down,”</i> Kara warns, racking the charger on her pistol. The huntress doesn’t challenge her threat, and Kara turns to you. <i>“C’mon, [pc.name], let’s go! We’re almost home free!”</i>\n\n");
 	
 	flags["KQ2_SHADE_UNCONSCIOUS"] = GetGameTimestamp();
+	// Non-relatable/Friend Shade will turn hostile after this reveal and just go back home to Uveto.
+	if(!shadeIsSiblings() && !shadeIsLover())
+	{
+		flags["SHADE_IS_HOSTILE"] = 1;
+		flags["SHADE_ON_UVETO"] = 1;
+	}
 
 	CombatManager.genericVictory();
 }
