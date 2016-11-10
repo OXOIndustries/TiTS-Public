@@ -200,9 +200,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	}
 	
 	if(inCombat()) 
-		output("\n\n<b>You’re still in combat, you ninny!</b>");
+		output("<b>You’re still in combat, you ninny!</b>\n\n");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
-		output("\n\n<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>");
+		output("<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>\n\n");
 	//Standard buttons:
 	clearMenu(false);
 	clearBust();
