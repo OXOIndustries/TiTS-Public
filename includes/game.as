@@ -2626,7 +2626,7 @@ public function racialPerkUpdateCheck():void
 	{
 		if(pc.balls <= 0)
 		{
-			msg += "\n\n" + logTimeStamp("passive") + " A tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that, due to the lack of testicles, the unique covering for your non-existent scrotum has finally dissolved from your system.";
+			AddLogEvent("A tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that, due to the lack of testicles, the unique covering for your non-existent scrotum has finally dissolved from your system.", "passive");
 			pc.removeStatusEffect("Special Scrotum");
 		}
 	}

@@ -851,7 +851,7 @@ package classes.Items.Transformatives
 					
 					//output("\n\nDebug2: " + target.perkv4("Oviposition") + " / " + kGAMECLASS.GetGameTimestamp() + " / " + (30 * 24 * 60 / target.fertility()));
 					if (target.hasPregnancyOfType("OviliumEggPregnancy") && target == kGAMECLASS.pc) {
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", tMinutes) + " <b>You get the feeling that eggs have begun to form inside you. You wonder how long it will be before they start to show?</b>";
+						AddLogEvent("<b>You get the feeling that eggs have begun to form inside you. You wonder how long it will be before they start to show?</b>", "passive");
 						target.addPerkValue("Oviposition", 1, 1); //Count times eggpregged this way in perk.
 						target.setPerkValue("Oviposition", 4, time); // remember last preg time here
 					}
