@@ -424,6 +424,7 @@ package classes.Characters
 			if (!hasStatusEffect("Goo Crotch")) return;
 			
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
+			var m:String = "";
 			
 			if (totalHours < 1) return;
 			
@@ -443,7 +444,7 @@ package classes.Characters
 				}
 				else
 				{
-					var m:String = "Your gooey, ever-slick crotch spreads down the length";
+					m = "Your gooey, ever-slick crotch spreads down the length";
 					if(unflaggedGenital.length > 1) m += "s of your rogue, solid dicks, transforming them into drippy, inexplicably jellied boners.";
 					else 
 					{
@@ -478,7 +479,7 @@ package classes.Characters
 			{
 				if (unflaggedVagNum == vaginas.length)
 				{
-					var m:String = "You're getting incredibly wet";
+					m = "You're getting incredibly wet";
 					if(legCount > 1) m += " between the [pc.legs]";
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";
