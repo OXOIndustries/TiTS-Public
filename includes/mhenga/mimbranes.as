@@ -722,11 +722,11 @@ public function addMimbraneEvent(msg:String):void
 {
 	if (mimbraneEventHeaderDone == false)
 	{
-		if (attachedMimbranes() == 1) eventBuffer += "\n\n" + logTimeStamp("passive") + " <u>Your mimbrane makes its presence known....</u>";
-		else if (attachedMimbranes() > 1) eventBuffer += "\n\n" + logTimeStamp("passive") + " <u>Your mimbranes make their presence known....</u>";
+		if (attachedMimbranes() == 1) AddLogEvent("<u>Your mimbrane makes its presence known....</u>", "passive");
+		else if (attachedMimbranes() > 1) AddLogEvent("<u>Your mimbranes make their presence known....</u>", "passive");
 		mimbraneEventHeaderDone = true;
 	}
-	eventBuffer += "\n\n" + msg;
+	ExtendLogEvent("\n\n" + msg);
 }
 
 // Reproduction/stat mod tasks

@@ -50,6 +50,7 @@ public function drBadgerMenu():void
 		else addDisabledButton(6,"Job","Job","You've already accepted her “job offer”");
 	}
 	addButton(2,"Clinic",drBadgerCuntTailGo,undefined,"Clinic","Ask the doctor for medical treatment.");
+	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga's situation.");
 	addButton(14,"Leave",mainGameMenu);
 }
 public function drBadgerBuyMenu():void
@@ -106,8 +107,15 @@ public function drBadgerBonusShit():Boolean
 		}
 		//Room desc
 		output("The inside of the <i>“good”</i> doctor's shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don't even want to hazard. She's every bit the mad scientist you'd expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.\n\n");
+		//If the player visits Dr. Badger’s after starting the quest but leaving before getting their pexiga, the bimbotorium is empty:
+		if(flags["PEXIGA_TREATMENT"] == 0)
+		{
+			output("Dr. Badger is nowhere to be seen. Maybe she’s working on that pexiga treatment? Should you see what she’s come up with or leave it be?\n\n");
+			//[Get Pexiga][Just Leave]
+			addButton(0,"Bring Pexiga",bringBadgerPexibork);
+		}
+		else addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
 	}
-	addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
 	return false;
 }
 

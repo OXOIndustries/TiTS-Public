@@ -87,7 +87,7 @@ public function myrellionLabAddition():Boolean
 
 	if (flags["MET_MCALLISTER"] == undefined) addButton(0, "Bearded Man", mcallisterMeeting, undefined, "Bearded Man", "The barrel-chested, bearded fellow must be Doctor McAllister. Time to go meet him.");
 	else addButton(0, "McAllister", approachMcallister, undefined);
-	
+
 	return false;
 }
 
@@ -446,19 +446,19 @@ public function myrellionNevrieBloodVial():void
 
 public function nevriMailGet():void
 {
-	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
+	AddLogEvent("<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>", "passive");
 
 	MailManager.unlockEntry("myrpills", GetGameTimestamp());
 }
 public function nevriOrangeMailGet():void
 {
-	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
+	AddLogEvent("<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>", "passive");
 
 	MailManager.unlockEntry("orangepills", GetGameTimestamp());
 }
 public function nevriBJMailGet():void
 {
-	eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
+	AddLogEvent("<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>", "passive");
 
 	MailManager.unlockEntry("bjreminder", GetGameTimestamp());
 }
@@ -577,6 +577,8 @@ public function mcallisterMenu(cFunc:Function = null):void
 
 	if (cFunc != mcallisterXenogen) addButton(4, "Xenogen", mcallisterXenogen, undefined, "Xenogen Biotech", "Ask Dr. McAllister about the mega-corporation he works for.");
 	else addDisabledButton(4, "Xenogen");
+
+	if(pexigaQuestDocChatsAvailable()) addButton(5,"Pexiga Help",drByronMcallisterProfessionalPexigaAnus,undefined,"Pexiga Help","Ask for help with the Pexiga's unique situation.");
 
 	addButton(14, "Back", mainGameMenu);
 }

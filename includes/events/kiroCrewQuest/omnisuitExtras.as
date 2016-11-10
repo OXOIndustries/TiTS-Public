@@ -410,17 +410,17 @@ public function omnisuitChangeUpdate():void
 	//Low libido -> med
 	if(pc.armor.defense == 3 && pc.libido() >= 33)
 	{
-		eventBuffer += "\n\n" + logTimeStamp("passive") + " Your Omnisuit begins to thin out, showing more of your body with each passing second. You soon realize that it's changing to put your body on display, brazenly showing your sexual attributes while still keeping you legally clothed. You suppose it could be worse - it does seem to mask some of the finer details. Perhaps the suit is responding to your enhanced libido?";
+		AddLogEvent("Your Omnisuit begins to thin out, showing more of your body with each passing second. You soon realize that it's changing to put your body on display, brazenly showing your sexual attributes while still keeping you legally clothed. You suppose it could be worse - it does seem to mask some of the finer details. Perhaps the suit is responding to your enhanced libido?", "passive");
 		statOutOmniCollar();
 	}
 	//Medium libido to high
 	else if(pc.armor.defense == 2 && pc.libido() >= 66)
 	{
-		eventBuffer += "\n\n" + logTimeStamp("passive") + " You feel the pleasant tingle of your Omnisuit tightening down, tugging more tightly against your [pc.nipples], your hips, and even your butt. The strange, latex-like material shifts on your ";
-		if(pc.hasCock()) eventBuffer += "[pc.cocks], fattening around the veins, highlighting every feature in stark, black perfection.";
-		else if(pc.hasVagina()) eventBuffer += "[pc.vaginas], fattening around the lips, highlighting your femininity in stark, black perfection.";
-		else eventBuffer += "[pc.asshole], fatting around the ring, thickening your pucker into a shining, fuckable doughnut.";
-		eventBuffer += " And that isn't the only place that changes. All over, the suit becomes subtly more lewd, shifting to better display your body. You've become a walking advertisement for sex, perhaps as a response to your ever-heightening libido.";
+		AddLogEvent("You feel the pleasant tingle of your Omnisuit tightening down, tugging more tightly against your [pc.nipples], your hips, and even your butt. The strange, latex-like material shifts on your ", "passive");
+		if(pc.hasCock()) ExtendLogEvent(ParseText("[pc.cocks], fattening around the veins, highlighting every feature in stark, black perfection."));
+		else if(pc.hasVagina()) ExtendLogEvent(ParseText("[pc.vaginas], fattening around the lips, highlighting your femininity in stark, black perfection."));
+		else ExtendLogEvent(ParseText("[pc.asshole], fatting around the ring, thickening your pucker into a shining, fuckable doughnut."));
+		ExtendLogEvent(" And that isn't the only place that changes. All over, the suit becomes subtly more lewd, shifting to better display your body. You've become a walking advertisement for sex, perhaps as a response to your ever-heightening libido.");
 		statOutOmniCollar();
 	}
 }

@@ -980,7 +980,7 @@ public function flahneCumPhotoshoot(arg:int):void
 		if(!MailManager.isEntryUnlocked("extranetFlahnePics"))
 		{
 			MailManager.unlockEntry("extranetFlahnePics", GetGameTimestamp());
-			eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email from TamaniCorp (Marketing@TamaniCorp.corp)!</b>";
+			AddLogEvent("<b>New Email from TamaniCorp (Marketing@TamaniCorp.corp)!</b>", "passive");
 			pc.createKeyItem("Coupon - TamaniCorp", 0.9, 0, 0, 0, "Save 10% on your next purchase from your local TamaniCorp retailer!");
 		}
 	}
@@ -990,7 +990,7 @@ public function flahneCumPhotoshoot(arg:int):void
 		if(!MailManager.isEntryUnlocked("galLinkFlahnePics"))
 		{
 			MailManager.unlockEntry("galLinkFlahnePics", GetGameTimestamp());
-			eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email from GalLink Fuckmeet (support@GalLink.org)!</b>";
+			AddLogEvent("<b>New Email from GalLink Fuckmeet (support@GalLink.org)!</b>", "passive");
 		}
 	}
 	if(arg == 0) 
@@ -998,7 +998,7 @@ public function flahneCumPhotoshoot(arg:int):void
 		if(!MailManager.isEntryUnlocked("privateFlahnePics"))
 		{
 			MailManager.unlockEntry("privateFlahnePics", GetGameTimestamp());
-			eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email from Flahne (Flahne_Rahn@UGC.gov)!</b>";
+			AddLogEvent("<b>New Email from Flahne (Flahne_Rahn@UGC.gov)!</b>", "passive");
 		}
 	}
 	clearMenu();

@@ -2411,12 +2411,12 @@ public function planetAsplodeWhileInNovaPartIII():void
 
 public function bombStatusUpdate():void
 {
-	if(flags["TARKUS_BOMB_TIMER"] == 120) eventBuffer += "\n\n" + logTimeStamp("caution") + " <b>There's only two hours left to disarm the bomb!</b>";
-	if(flags["TARKUS_BOMB_TIMER"] == 90) eventBuffer += "\n\n" + logTimeStamp("caution") + " <b>There's only an hour and a half left to disarm the bomb!</b>";
-	if(flags["TARKUS_BOMB_TIMER"] == 60) eventBuffer += "\n\n" + logTimeStamp("caution") + " <b>There's only one hour left to disarm the bomb!</b>";
-	if(flags["TARKUS_BOMB_TIMER"] == 45) eventBuffer += "\n\n" + logTimeStamp("caution") + " <b>There's only 45 minutes left to disarm the bomb!</b>";
-	if(flags["TARKUS_BOMB_TIMER"] == 30) eventBuffer += "\n\n" + logTimeStamp("caution") + " <b>There's only 30 minutes left to disarm the bomb!</b>";
-	if(flags["TARKUS_BOMB_TIMER"] == 15) eventBuffer += "\n\n" + logTimeStamp("caution") + " <b>There's only 15 minutes left to disarm the bomb!</b>";
+	if(flags["TARKUS_BOMB_TIMER"] == 120) AddLogEvent("<b>There's only two hours left to disarm the bomb!</b>", "caution");
+	if(flags["TARKUS_BOMB_TIMER"] == 90) AddLogEvent("<b>There's only an hour and a half left to disarm the bomb!</b>", "caution");
+	if(flags["TARKUS_BOMB_TIMER"] == 60) AddLogEvent("<b>There's only one hour left to disarm the bomb!</b>", "caution");
+	if(flags["TARKUS_BOMB_TIMER"] == 45) AddLogEvent("<b>There's only 45 minutes left to disarm the bomb!</b>", "caution");
+	if(flags["TARKUS_BOMB_TIMER"] == 30) AddLogEvent("<b>There's only 30 minutes left to disarm the bomb!</b>", "caution");
+	if(flags["TARKUS_BOMB_TIMER"] == 15) AddLogEvent("<b>There's only 15 minutes left to disarm the bomb!</b>", "caution");
 }
 
 //Dungeon Done, Bosses Molestered, Bomb Disarmed

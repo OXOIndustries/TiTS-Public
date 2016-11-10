@@ -14,6 +14,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GameData.Pregnancy.UniqueChild;
 	import classes.GameData.Pregnancy.Templates.SeraUniqueChild;
 	import classes.Characters.PlayerCharacter;
+	import classes.Engine.Interfaces.AddLogEvent;
 	
 	public class SeraSpawnPregnancyHandler extends BasePregnancyHandler
 	{
@@ -44,13 +45,12 @@ package classes.GameData.Pregnancy.Handlers
 				// Preg Texts
 				// Some lines cribbed from Z’s sydian pregnancy
 				// Each line activates once during range
-				var msg:String = "";
 				
 				// 40-50 days
 				if(i == 45)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						kGAMECLASS.addToEventBuffer("Your stomach lurches, and you stop what you’re doing. It feels like you’re going to puke. Urk... bleah- nope. You take long breaths, waiting for the nausea to recede, before carrying on.");
+						AddLogEvent("Your stomach lurches, and you stop what you’re doing. It feels like you’re going to puke. Urk... bleah- nope. You take long breaths, waiting for the nausea to recede, before carrying on.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 					}, true);
 				}
@@ -58,11 +58,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 55)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						msg = "You feel unaccountably prickly, ready to snap and get angry at the most innocuous of";
-						if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC)) msg += " comments";
-						else msg += " changes in the environment around you";
-						msg += ". You blame your gut, which remains unsettled and bloated.";
-						kGAMECLASS.addToEventBuffer(msg);
+						AddLogEvent("You feel unaccountably prickly, ready to snap and get angry at the most innocuous of" + (kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) ? " comments" : " changes in the environment around you") + ". You blame your gut, which remains unsettled and bloated.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 					}, true);
 				}
@@ -70,7 +66,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 85)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						kGAMECLASS.addToEventBuffer("You could absolutely murder some junk food. Forget what you’re doing, just take off and find the nearest grease pit, garnish yourself with some serious deep-fried calories. Despite your hunger, your belly is beginning to look quite round.");
+						AddLogEvent("You could absolutely murder some junk food. Forget what you’re doing, just take off and find the nearest grease pit, garnish yourself with some serious deep-fried calories. Despite your hunger, your belly is beginning to look quite round.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 					}, true);
 				}
@@ -78,7 +74,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 120)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						kGAMECLASS.addToEventBuffer("Well, there’s no more rationalizing away your current state. Your tummy is now noticeably rotund, your womb swollen and snug with new life. Given the length of time it’s taken to get to this stage, it is surely a human pregnancy. Which mostly-human might you have been knocking unprotected boots with, three or so months ago? You grin, stroking the curve of your stomach.");
+						AddLogEvent("Well, there’s no more rationalizing away your current state. Your tummy is now noticeably rotund, your womb swollen and snug with new life. Given the length of time it’s taken to get to this stage, it is surely a human pregnancy. Which mostly-human might you have been knocking unprotected boots with, three or so months ago? You grin, stroking the curve of your stomach.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 					}, true);
 				}
@@ -86,7 +82,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 145)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						kGAMECLASS.addToEventBuffer("Your stomach continues to swell inexorably outwards, damping your body in a swelter of soft warmth and low-level horniness. The areola of your [pc.nipples] have spread a bit, and your [pc.chest] in general feels sensitive and pleasant to touch. More difficult to quantify is a certain self-satisfied rightness; a deep, ancient knowledge of contentment. You certainly feel a lot more sold on this interminable pregnancy than you did a couple of months ago.");
+						AddLogEvent("Your stomach continues to swell inexorably outwards, damping your body in a swelter of soft warmth and low-level horniness. The areola of your [pc.nipples] have spread a bit, and your [pc.chest] in general feels sensitive and pleasant to touch. More difficult to quantify is a certain self-satisfied rightness; a deep, ancient knowledge of contentment. You certainly feel a lot more sold on this interminable pregnancy than you did a couple of months ago.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 						kGAMECLASS.pc.milkFullness += 15;
 					}, true);
@@ -95,11 +91,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 175)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						msg = "You now walk with a rounded gait in order to support the soccer ball you’re toting out in front of you, and you feel very nervy about attempting to run.";
-						// Boobs > A cup
-						if(kGAMECLASS.pc.biggestTitSize() > 1) msg += " " + (kGAMECLASS.pc.isLactating() ? "Your [pc.breasts] are also starting to leak [pc.milk] at the most inopportune of moments" : "Your [pc.breasts] are also starting to swell with even more [pc.milk] than usual") + ", your body stepping up its anticipation of providing for your growing child.";
-						msg += " You start slightly as something boops against the taut skin of your stomach from within.";
-						kGAMECLASS.addToEventBuffer(msg);
+						AddLogEvent("You now walk with a rounded gait in order to support the soccer ball you’re toting out in front of you, and you feel very nervy about attempting to run." + (kGAMECLASS.pc.biggestTitSize() > 1 ? " " + (kGAMECLASS.pc.isLactating() ? "Your [pc.breasts] are also starting to leak [pc.milk] at the most inopportune of moments" : "Your [pc.breasts] are also starting to swell with even more [pc.milk] than usual") : "") + ", your body stepping up its anticipation of providing for your growing child. You start slightly as something boops against the taut skin of your stomach from within.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1.5, true);
 						kGAMECLASS.pc.milkFullness += 15;
 						// Insert Reflex reduction modifier
@@ -111,10 +103,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 205)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						msg = "Oof. You have to stop for a moment to catch your breath and give your back a break. Your belly is now medicine ball shaped, dominating your shape and your movements";
-						if(kGAMECLASS.pc.biggestTitSize() > 1 && kGAMECLASS.pc.isLactating()) msg += ", your milk-swollen breasts rested on top of it";
-						msg += ". Your offspring is obviously intent on being a drummer, or possibly a tennis player, going off how much they’re enjoying thumping against the inside of your womb.";
-						kGAMECLASS.addToEventBuffer(msg);
+						AddLogEvent("Oof. You have to stop for a moment to catch your breath and give your back a break. Your belly is now medicine ball shaped, dominating your shape and your movements" + (kGAMECLASS.pc.biggestTitSize() > 1 && kGAMECLASS.pc.isLactating() ? ", your milk-swollen breasts rested on top of it" : "") + ". Your offspring is obviously intent on being a drummer, or possibly a tennis player, going off how much they’re enjoying thumping against the inside of your womb.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1.5, true);
 						if (kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 15;
 						// Increase Reflex modifier
@@ -126,7 +115,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 245)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						kGAMECLASS.addToEventBuffer("Judging from the size of your swollen belly, you guess that your baby will arrive within the next month. Or perhaps it would be accurate to say you <i>hope</i>. It’s hard to stay active with the unwieldy weight -- you continually fight back urges to lie in bed and do nothing.");
+						AddLogEvent("Judging from the size of your swollen belly, you guess that your baby will arrive within the next month. Or perhaps it would be accurate to say you <i>hope</i>. It’s hard to stay active with the unwieldy weight -- you continually fight back urges to lie in bed and do nothing.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1.5, true);
 						if (kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 25;
 						if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;
@@ -137,9 +126,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 260)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						msg = "You really can’t be far off giving birth now - a week, at most. Your [pc.vagina] is permanently soft and slightly dilated now, and the kicks inside your distended stomach grow more prominent by the day.";
-						if(!kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC)) msg += " The instinct to find somewhere safe to have your child is growing very difficult to ignore.";
-						kGAMECLASS.addToEventBuffer(msg);
+						AddLogEvent("You really can’t be far off giving birth now - a week, at most. Your [pc.vagina] is permanently soft and slightly dilated now, and the kicks inside your distended stomach grow more prominent by the day." + (!kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) ? " The instinct to find somewhere safe to have your child is growing very difficult to ignore." : ""), "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 2, true);
 						if (kGAMECLASS.pc.milkFullness < 20) kGAMECLASS.pc.milkFullness += 25;
 						if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;

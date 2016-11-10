@@ -11,6 +11,7 @@
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.StatTracking;
+	import classes.Engine.Interfaces.AddLogEvent;
 	
 	/**
 	 * ...
@@ -80,16 +81,7 @@
 			}
 			
 			// Do some outpootis.
-			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" Your womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells.");
-			
-			if (kGAMECLASS.flags["LAID VENUS PITCHER SEEDS"] != undefined) kGAMECLASS.eventBuffer += " Mmmm, another batch of pods are growing inside you, fertilized by your latest tryst.";
-			else kGAMECLASS.eventBuffer += " The stuff the venus pitcher put inside you... it's growing! The latest pitcher must have done something to it... fertilized it, perhaps.";
-			
-			kGAMECLASS.eventBuffer += " A few droplets of pale-green slime leak from your lips";
-			
-			if (mother.isCrotchGarbed()) kGAMECLASS.eventBuffer += " into your " + mother.lowerUndergarment.longName;
-			
-			kGAMECLASS.eventBuffer += ".";
+			AddLogEvent(ParseText("Your womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells." + (kGAMECLASS.flags["LAID VENUS PITCHER SEEDS"] != undefined ? " Mmmm, another batch of pods are growing inside you, fertilized by your latest tryst." : " The stuff the venus pitcher put inside you... it's growing! The latest pitcher must have done something to it... fertilized it, perhaps.") + " A few droplets of pale-green slime leak from your lips" + (mother.isCrotchGarbed() ? " into your " + mother.lowerUndergarment.longName + ".": ".")), "passive");
 
 			// Change bellyMod
 			mother.bellyRatingMod += 4 * pData.pregnancyQuantity;

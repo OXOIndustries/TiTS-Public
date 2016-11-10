@@ -39,7 +39,7 @@ package classes.Items.Transformatives {
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 10;
+			this.basePrice = 6000;
 			
 			this.version = this._latestVersion;
 		}

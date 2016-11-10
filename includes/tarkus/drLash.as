@@ -506,6 +506,7 @@ public function talkToDocLash():void
 	addButton(0,"The UGC",askDocLashAboutTheUGC,undefined,"The UGC","Ask him about the UGC. Surely he's got some thoughts about them.");
 	addButton(1,"Why?",whyDrLashDoesShit,undefined,"Why?","Why is he out here doing this weird stuff?");
 	addButton(2,"Flirt",flirtWithDrLash,undefined,"Flirt","Maybe he's cooled off a bit. He's gotta have a butthole he can still have fun with, right?");
+	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drLashTalkAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga's situation.");
 	addButton(14,"Back",walkUpToDocLashAgain);
 }
 

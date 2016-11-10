@@ -85,7 +85,7 @@ public function startCharacterCreation(e:Event = null):void
 	
 	// Purge event buffer
 	eventQueue = new Array();
-	eventBuffer = "";
+	timestampedEventBuffer = [];
 	gameOverEvent = false;
 
 	// Codex entries

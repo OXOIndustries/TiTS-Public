@@ -112,14 +112,14 @@ public function oviliumEggBump(cumFrom:Creature = null, vagIndex:int = -1):void
 	}
 	if (changes > 0)
 	{
-		eventBuffer += "\n\n" + logTimeStamp("passive") + " You hear a slick pop and feel your womb expand slightly as one";
-		if (changes != 1) eventBuffer += " or two";
-		eventBuffer += " of the eggs inside multipl";
-		if (changes == 1) eventBuffer += "ies";
-		else eventBuffer += "y";
-		eventBuffer += ". You feel a little more full, and rub your egg pregnant stomach contentedly.";
+		AddLogEvent("You hear a slick pop and feel your womb expand slightly as one", "passive");
+		if (changes != 1) ExtendLogEvent(" or two");
+		ExtendLogEvent(" of the eggs inside multipl");
+		if (changes == 1) ExtendLogEvent("ies");
+		else ExtendLogEvent("y");
+		ExtendLogEvent(". You feel a little more full, and rub your egg pregnant stomach contentedly.");
 		// if first sex after preg:
-		if (pc.statusEffectv2("Ovilium") == 0) eventBuffer += " In addition to the popping noise you hear an odd sucking sound inside you. You figure it’s something to do with the eggs and don’t think too much about it, apart from noticing your womb feeling a bit heavier.";
+		if (pc.statusEffectv2("Ovilium") == 0) ExtendLogEvent(" In addition to the popping noise you hear an odd sucking sound inside you. You figure it’s something to do with the eggs and don’t think too much about it, apart from noticing your womb feeling a bit heavier.");
 		
 		pc.addStatusValue("Ovilium", 2, 1);
 	}

@@ -12,6 +12,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.AddLogEvent;
 	
 	public class Priapin extends ItemSlotClass
 	{
@@ -59,7 +60,7 @@
 		{
 			if (target is PlayerCharacter)
 			{
-				kGAMECLASS.addToEventBuffer("The overwhelming, bulging urge you’ve been feeling over the last day or so is slowly ebbing away. Although it’s been fun, it’s something of a relief to stop wanting to bend over every single person you meet.", "passive", maxEffectLength);
+				AddLogEvent("The overwhelming, bulging urge you’ve been feeling over the last day or so is slowly ebbing away. Although it’s been fun, it’s something of a relief to stop wanting to bend over every single person you meet.", "passive", maxEffectLength);
 			}
 		}
 

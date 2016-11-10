@@ -351,16 +351,16 @@ package classes.Items.Transformatives
 				}
 				totalTFs--;
 			}
-			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
+			if (msg.length > 0) ExtendLogEvent(msg);
 			return;
 		}
 		
 		//#5b Goblin face: Stage two happens 30 minutes after stage 1 ends, and the face type only changes when stage 2 triggers.
 		public static function itemGoblinFaceTF(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
-			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", maxEffectLength) + " <u>The goblinola bar has an effect....</u>";
+			AddLogEvent("<u>The goblinola bar has an effect....</u>", "passive", maxEffectLength);
 			// Transformation text (stage 2):
-			kGAMECLASS.eventBuffer += "\n\nFinally the pain in your face subsides, and you take a deep breath. You check to see what the damage is and find that your face has restructured itself. Your nose has grown longer and pointier, while your jaw has narrowed a fair bit giving your face a more angular appearance not unlike that of an upside down triangle. <b>You now have a gabilani face!</b>";
+			ExtendLogEvent("\n\nFinally the pain in your face subsides, and you take a deep breath. You check to see what the damage is and find that your face has restructured itself. Your nose has grown longer and pointier, while your jaw has narrowed a fair bit giving your face a more angular appearance not unlike that of an upside down triangle. <b>You now have a gabilani face!</b>");
 			
 			// Actual face type change
 			target.faceType = GLOBAL.TYPE_GABILANI;
@@ -615,13 +615,13 @@ package classes.Items.Transformatives
 				}
 				totalTFs--;
 			}
-			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
+			if (msg.length > 0) ExtendLogEvent(msg);
 			return;
 		}
 		
 		public static function OnHourTF(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
-			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The goblinola bar has an effect....</u>";
+			AddLogEvent("<u>The goblinola bar has an effect....</u>", "passive");
 			
 			var totalHours:int = ((kGAMECLASS.minutes + Math.min(deltaT, maxEffectLength)) / 60);
 			if (effect.minutesLeft <= 0) totalHours++;
@@ -643,10 +643,10 @@ package classes.Items.Transformatives
 			{
 				if(target.hasStatusEffect("Gabilani Face Change"))
 				{
-					kGAMECLASS.eventBuffer += "\n\nThe pain in your finally face subsides. You check yourself to find that it has been left unchanged.";
+					ExtendLogEvent("\n\nThe pain in your finally face subsides. You check yourself to find that it has been left unchanged.");
 					target.removeStatusEffect("Gabilani Face Change");
 				}
-				kGAMECLASS.eventBuffer += "\n\nYou notice that your stomach seems to have settled down now. <b>You’re unlikely to feel any more effects from the goblinola you ate earlier.</b>";
+				ExtendLogEvent("\n\nYou notice that your stomach seems to have settled down now. <b>You’re unlikely to feel any more effects from the goblinola you ate earlier.</b>");
 			}
 		}
 		

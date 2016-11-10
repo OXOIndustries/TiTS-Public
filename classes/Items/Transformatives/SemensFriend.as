@@ -96,10 +96,8 @@
 			{
 				if (rand(5) < 2)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", firstProcOffset + (60 * i)) + " <u>The Semen’s Friend candy has an effect....</u>";
+					AddLogEvent("<u>The Semen’s Friend candy has an effect....</u>\n\nYou exhale, deep and low, as the cold burn in your loins increases, the impatient imperative to get out there and fuck and breed every fertile hole in sight growing stronger.", "passive", firstProcOffset + (60 * i));
 				
-					kGAMECLASS.eventBuffer += "\n\nYou exhale, deep and low, as the cold burn in your loins increases, the impatient imperative to get out there and fuck and breed every fertile hole in sight growing stronger.";
-					
 					target.slowStatGain("libido", libGain);
 				}
 			}
@@ -144,7 +142,7 @@
 				TFList.push(7);
 			
 			// TF texts
-			msg += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The Semen’s Friend candy has an effect....</u>";
+			AddLogEvent("<u>The Semen’s Friend candy has an effect....</u>", "passive");
 			var changed:Boolean = false;
 			
 			while(totalTFs > 0)
@@ -323,7 +321,7 @@
 			else msg += "T";
 			msg += "he sensation in your groin from the candy has finally been lifted.";
 			
-			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
+			if(msg.length > 0) ExtendLogEvent(msg);
 			return;
 		}
 	}

@@ -17,6 +17,8 @@ package classes.UIComponents.ContentModules
 	import classes.kGAMECLASS;
 	import classes.GameData.Perks;
 	import classes.GameData.PerkData;
+	import classes.Engine.Interfaces.ExtendLogEvent;
+	import classes.Engine.Interfaces.AddLogEvent;
 	
 	/**
 	 * ...
@@ -121,7 +123,7 @@ package classes.UIComponents.ContentModules
 		
 		public function confirmSelection():void
 		{
-			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("good") + " You have gained a level. Your stats have increased and you have gained new abilities!";
+			AddLogEvent("You have gained a level. Your stats have increased and you have gained new abilities!", "good");
 			
 			// Figure out autoperks that need to be applied
 			var _autoPerks:Vector.<PerkData> = kGAMECLASS.perkDB.getAutoPerksForCreature(_targetCreature);
@@ -131,7 +133,7 @@ package classes.UIComponents.ContentModules
 				if (!_targetCreature.hasPerk(_autoPerks[i].perkName))
 				{
 					_autoPerks[i].applyTo(_targetCreature);
-					kGAMECLASS.eventBuffer += "\n\nLevel " + _autoPerks[i].levelLimit + " Auto Perk: <b>" + _autoPerks[i].perkName + "</b> - " + _autoPerks[i].perkDescription;
+					ExtendLogEvent("\n\nLevel " + _autoPerks[i].levelLimit + " Auto Perk: <b>" + _autoPerks[i].perkName + "</b> - " + _autoPerks[i].perkDescription);
 				}
 			}
 			
@@ -142,7 +144,7 @@ package classes.UIComponents.ContentModules
 			{
 				_selectedPerks[ii].applyTo(_targetCreature);
 				(_targetCreature as PlayerCharacter).unclaimedClassPerks--;
-				kGAMECLASS.eventBuffer += "\n\nLevel " + _selectedPerks[ii].levelLimit + " Selected Perk: <b>" + _selectedPerks[ii].perkName + "</b> - " + _selectedPerks[ii].perkDescription;
+				ExtendLogEvent("\n\nLevel " + _selectedPerks[ii].levelLimit + " Selected Perk: <b>" + _selectedPerks[ii].perkName + "</b> - " + _selectedPerks[ii].perkDescription);
 			}
 			
 			kGAMECLASS.mainGameMenu();

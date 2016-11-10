@@ -264,23 +264,23 @@ package classes.Items.Transformatives
 							// Here are fixing of somehow missing flags on already doggie one. Like ones on that ausars.
 							if (!target.cocks[i].hasFlag(GLOBAL.FLAG_SHEATHED) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_SHEATHED))
 							{
-								kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You feel a light tug at the base of your " + target.cockDescript(i) + ", followed by something sliding up and over your shaft. A quick look tells you that an animalistic sheath has formed, bringing your cock to a standard canine form. <b>Your cock now has a canine-sheath!</b>";
+								AddLogEvent("You feel a light tug at the base of your " + target.cockDescript(i) + ", followed by something sliding up and over your shaft. A quick look tells you that an animalistic sheath has formed, bringing your cock to a standard canine form. <b>Your cock now has a canine-sheath!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 								target.cocks[i].addFlag(GLOBAL.FLAG_SHEATHED);
 							}
 							else if (!target.cocks[i].hasFlag(GLOBAL.FLAG_KNOTTED) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_KNOTTED) || target.cocks[i].knotMultiplier <= 1 && target.knotMultiplierUnlocked(i, 1.25))
 							{
-								kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You feel a bulging pressure near the base of your " + target.cockDescript(i) + ", as a vulpine knot begins to form. <b>Your cock is now knotted!</b>";
+								AddLogEvent("You feel a bulging pressure near the base of your " + target.cockDescript(i) + ", as a vulpine knot begins to form. <b>Your cock is now knotted!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 								target.cocks[i].addFlag(GLOBAL.FLAG_KNOTTED);
 								target.cocks[i].knotMultiplier = 1.25;
 							}
 							else if (target.cocks[i].knotMultiplier < 1.25 && target.knotMultiplierUnlocked(i, 1.25))
 							{
-								kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Another feeling of pressure at the base of your " + target.cockDescript(i) + " tells you that the bulk of your knot is growing to a respectible bulge. <b>Your cock-knot has grown!</b>";
+								AddLogEvent("Another feeling of pressure at the base of your " + target.cockDescript(i) + " tells you that the bulk of your knot is growing to a respectible bulge. <b>Your cock-knot has grown!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 								target.cocks[i].knotMultiplier = 1.25;
 							}
 							else if (!target.cocks[i].hasFlag(GLOBAL.FLAG_TAPERED) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_TAPERED))
 							{
-								kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.cockDescript(i) + " grows sensitive all of a sudden. As you look down to determine the cause, you catch sight of your cock thinning slightly near the tip, and quickly begins tapering towards the end, like that of a typical fox's member. <b>Your cock is now tapered!</b>";
+								AddLogEvent("Your " + target.cockDescript(i) + " grows sensitive all of a sudden. As you look down to determine the cause, you catch sight of your cock thinning slightly near the tip, and quickly begins tapering towards the end, like that of a typical fox's member. <b>Your cock is now tapered!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 								target.cocks[i].delFlag(GLOBAL.FLAG_FLARED);
 								target.cocks[i].delFlag(GLOBAL.FLAG_BLUNT);
 								target.cocks[i].delFlag(GLOBAL.FLAG_DOUBLE_HEADED);
@@ -294,26 +294,26 @@ package classes.Items.Transformatives
 						options.push(function():*{
 							var newColor:String = colorsMatching(target) ? target.lipColor : "red";
 							
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.cockDescript(i) + " throbs suddenly ";
+							AddLogEvent("Your " + target.cockDescript(i) + " throbs suddenly ", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 							
-							if (target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i)) kGAMECLASS.eventBuffer += "in it's sheath";
-							else if (target.hasStatusEffect("Genital Slit")) kGAMECLASS.eventBuffer += "in it's slit";
-							else if (!target.isCrotchExposed()) kGAMECLASS.eventBuffer += "beneath your " + target.lowerGarmentDescript();
-							else if(target.legCount == 1) kGAMECLASS.eventBuffer += "on your " + target.legs();
-							else kGAMECLASS.eventBuffer += "between your " + target.legs();
+							if (target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i)) ExtendLogEvent("in it's sheath");
+							else if (target.hasStatusEffect("Genital Slit")) ExtendLogEvent("in it's slit");
+							else if (!target.isCrotchExposed()) ExtendLogEvent("beneath your " + target.lowerGarmentDescript());
+							else if(target.legCount == 1) ExtendLogEvent("on your " + target.legs());
+							else ExtendLogEvent("between your " + target.legs());
 							
-							kGAMECLASS.eventBuffer += " and begins to transform, drooling a river of pre from its engorged slit. You double over in a sick twist of pain and pleasure";
+							ExtendLogEvent(" and begins to transform, drooling a river of pre from its engorged slit. You double over in a sick twist of pain and pleasure");
 							
 							if(target.cocks[i].cockColor.indexOf(newColor) == -1)
-								kGAMECLASS.eventBuffer += " as the flesh of your cock shifts color to become " + newColor;
+								ExtendLogEvent(" as the flesh of your cock shifts color to become " + newColor);
 							if(!target.hasCockFlag(GLOBAL.FLAG_TAPERED, i))
-								kGAMECLASS.eventBuffer += ". The skin melding strangely into a long, pointed shape";
+								ExtendLogEvent(". The skin melding strangely into a long, pointed shape");
 							if(!target.hasCockFlag(GLOBAL.FLAG_KNOTTED, i))
-								kGAMECLASS.eventBuffer += ". You feel a bulging pressure near the base of your cock as a vulpine knot begins to form";
+								ExtendLogEvent(". You feel a bulging pressure near the base of your cock as a vulpine knot begins to form");
 							if (!target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i) && !target.hasStatusEffect("Genital Slit"))
-								kGAMECLASS.eventBuffer += ". Finally, an animalistic sheath begins forming around the base of you member, tightening and pulling your cock inside its depths";
+								ExtendLogEvent(". Finally, an animalistic sheath begins forming around the base of you member, tightening and pulling your cock inside its depths");
 							
-							kGAMECLASS.eventBuffer += ". You spend a few moments collecting yourself, cleaning the spunk off <b>your new fox pecker!</b>";
+							ExtendLogEvent(". You spend a few moments collecting yourself, cleaning the spunk off <b>your new fox pecker!</b>");
 							
 							target.shiftCock(i, GLOBAL.TYPE_VULPINE);
 							target.cocks[i].cockColor = newColor;
@@ -329,7 +329,7 @@ package classes.Items.Transformatives
 			if (target.balls > 0 && target.ballSizeRaw > maxSizeBalls && target.ballSizeUnlocked(newSizeBalls))
 			{ // Ballz down, this is not a tanuki morphs! Though not too radically - just prevent them from dragging the floor.
 				options.push(function():*{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A sudden inward pressure erupts inside your " + target.sackDescript() + ", drawing a gasp from you. It is painless, but certainly discomforting. A quick check reveals that <b>your " + target.ballsDescript(false, true, false, false) + " " + (target.balls == 1 ? "has" : "have") + " shrunk!</b>";
+					AddLogEvent("A sudden inward pressure erupts inside your " + target.sackDescript() + ", drawing a gasp from you. It is painless, but certainly discomforting. A quick check reveals that <b>your " + target.ballsDescript(false, true, false, false) + " " + (target.balls == 1 ? "has" : "have") + " shrunk!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.ballSizeRaw = newSizeBalls;
 				});
 			}
@@ -346,7 +346,7 @@ package classes.Items.Transformatives
 					if (target.vaginas[v].type != GLOBAL.TYPE_VULPINE && target.hasFur() && target.vaginaTypeUnlocked(v, GLOBAL.TYPE_VULPINE))
 					{
 						options.push(function():*{
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You start panting as an intense sensation of warmth washes over your crotch. Your " + target.vaginaDescript(v) + " begins to swell and puff up rapidly, leaving you little time to ponder the situation as your cunt morphs to take on a spade-like shape, much like a vixen's. <b>You now have a fox-cunt!</b>";
+							AddLogEvent("You start panting as an intense sensation of warmth washes over your crotch. Your " + target.vaginaDescript(v) + " begins to swell and puff up rapidly, leaving you little time to ponder the situation as your cunt morphs to take on a spade-like shape, much like a vixen's. <b>You now have a fox-cunt!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 							target.shiftVagina(v, GLOBAL.TYPE_VULPINE);
 							target.vaginas[v].vaginaColor = !colorsMatching(target) ? "black" : target.lipColor;
 						});
@@ -364,9 +364,9 @@ package classes.Items.Transformatives
 					if (target.breastRows[b].breastRatingRaw > maxSizeBreasts && target.breastRatingUnlocked(b, maxSizeBreasts))
 					{
 						options.push(function():*{
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You feel as if like a weight has been lifted off your chest. Literally! You discover that <b>your " + target.allBreastsDescript() + " have shrunk";
+							AddLogEvent("You feel as if like a weight has been lifted off your chest. Literally! You discover that <b>your " + target.allBreastsDescript() + " have shrunk", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 							target.breastRows[b].breastRatingRaw = Math.max(int(target.breastRows[b].breastRatingRaw / 2), maxSizeBreasts);
-							kGAMECLASS.eventBuffer += ", dropping you down to " + target.breastCup(target.biggestTitRow()) + "</b>.";
+							ExtendLogEvent(", dropping you down to " + target.breastCup(target.biggestTitRow()) + "</b>.");
 							
 							for (var j:int = b + 1; j < target.breastRows.length; j++) // go through other rows and align in stairs pattern
 							{
@@ -387,23 +387,21 @@ package classes.Items.Transformatives
 				options.push(function():*{
 					if (minSizeBreasts == 0)
 					{ // normal case - flats
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A sudden sensation erupts on your chest, as if your nipples had just been flicked during an intense bout of lovemaking. As you reflexively raise your hands to them, you notice that the feeling in fact came from below your nipples. Taking a quick peek";
-						if (target.hasArmor() && !(target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))) kGAMECLASS.eventBuffer += " under your clothes";
-						kGAMECLASS.eventBuffer += " to assess the situation, you discover a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of nipples standing beneath the ones you previously had!";
+						AddLogEvent("A sudden sensation erupts on your chest, as if your nipples had just been flicked during an intense bout of lovemaking. As you reflexively raise your hands to them, you notice that the feeling in fact came from below your nipples. Taking a quick peek", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						if (target.hasArmor() && !(target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))) ExtendLogEvent(" under your clothes");
+						ExtendLogEvent("to assess the situation, you discover a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of nipples standing beneath the ones you previously had!");
 					}
 					else
 					{ // lactating - A-cups to avoid parser weirdshit
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Suddenly, you feel as if the area on your " + (target.bRows() < 2 ? "chest" : "belly") + " below your breasts is growing softer and more sensitive, which is followed by a feeling of being filled with something. As you suspected, " + num2Text(target.breastRows[target.breastRows.length - 1].breasts) + " soft orbs of flesh soon begin pushing their way out from your " + (target.bRows() < 2 ? "chest" : "belly") + ", forming a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of A-cup breasts below the original ones!";
+						AddLogEvent("Suddenly, you feel as if the area on your " + (target.bRows() < 2 ? "chest" : "belly") + " below your breasts is growing softer and more sensitive, which is followed by a feeling of being filled with something. As you suspected, " + num2Text(target.breastRows[target.breastRows.length - 1].breasts) + " soft orbs of flesh soon begin pushing their way out from your " + (target.bRows() < 2 ? "chest" : "belly") + ", forming a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of A-cup breasts below the original ones!", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					}
 					
-					if (target.bRows() == 1) kGAMECLASS.eventBuffer += " With a second row of breasts, you now sport a more animalistic look.";
-					else if (target.bRows() == 2) kGAMECLASS.eventBuffer += " With a third row of breasts, your front is now starting to feel somewhat tightly-packed.";
-					else kGAMECLASS.eventBuffer += " With a forth row of breasts you are now able to feed a whole litter of kits! You're not quite sure if this is strange, or just plain hot.";
+					if (target.bRows() == 1) ExtendLogEvent(" With a second row of breasts, you now sport a more animalistic look.");
+					else if (target.bRows() == 2) ExtendLogEvent(" With a third row of breasts, your front is now starting to feel somewhat tightly-packed.");
+					else ExtendLogEvent(" With a forth row of breasts you are now able to feed a whole litter of kits! You're not quite sure if this is strange, or just plain hot.");
 					
-					if (minSizeBreasts == 0)
-					kGAMECLASS.eventBuffer += " <b>You now have extra set of nipples!</b>";
-					else
-					kGAMECLASS.eventBuffer += " <b>You now have extra set of breasts!</b>";
+					if (minSizeBreasts == 0) ExtendLogEvent(" <b>You now have extra set of nipples!</b>");
+					else ExtendLogEvent(" <b>You now have extra set of breasts!</b>");
 					
 					var newBreastRow:BreastRowClass = new BreastRowClass();
 					newBreastRow.nippleType = target.breastRows[target.breastRows.length - 1].nippleType; // same type as previous row
@@ -416,7 +414,7 @@ package classes.Items.Transformatives
 			if (!InCollection(target.nippleColor, "onyx", "black") && target.nippleColorUnlocked("black") && !colorsMatching(target))
 			{
 				options.push(function():*{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You feel a strange tingling around your chest area. After some examination you notice the color of your " + target.nipplesDescript() + " has changed. <b>You now have black nipples!</b>";
+					AddLogEvent(" You feel a strange tingling around your chest area. After some examination you notice the color of your " + target.nipplesDescript() + " has changed. <b>You now have black nipples!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.nippleColor = "black";
 				});
 			}
@@ -442,7 +440,7 @@ package classes.Items.Transformatives
 			
 			if (target.hasTail(GLOBAL.TYPE_VULPINE) && !target.hasTailFlag(GLOBAL.FLAG_FURRED) && target.tailFlagsUnlocked(GLOBAL.FLAG_FURRED))
 			{ // Fixing tail furry flag, if it somehow missing.
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " The fur on your foxtail" + (target.tailCount > 1 ? "s" : "") + " has regrown!";
+				AddLogEvent("The fur on your foxtail" + (target.tailCount > 1 ? "s" : "") + " has regrown!", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				target.addTailFlag(GLOBAL.FLAG_FURRED);
 				
 				return false;
@@ -450,10 +448,8 @@ package classes.Items.Transformatives
 			
 			if (target.hasTail(GLOBAL.TYPE_VULPINE) && !target.hasTailFlag(GLOBAL.FLAG_LONG) && target.tailFlagsUnlocked(GLOBAL.FLAG_LONG))
 			{ // Fixing tail long flag, if it somehow missing.
-				if (target.tailCount == 1)
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your stubby fox tail suddenly pulls at the base of your spine, growing longer until it reaches the length of a regular fox's tail.";
-				else
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your stubby fox tails suddenly pull at the base of your spine, growing longer until they all reach the length of a regular fox's tail.";
+				if (target.tailCount == 1) AddLogEvent("Your stubby fox tail suddenly pulls at the base of your spine, growing longer until it reaches the length of a regular fox's tail.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+				else AddLogEvent("Your stubby fox tails suddenly pull at the base of your spine, growing longer until they all reach the length of a regular fox's tail.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				target.addTailFlag(GLOBAL.FLAG_LONG);
 				
 				return false;
@@ -462,9 +458,13 @@ package classes.Items.Transformatives
 			if (target.hasTail(GLOBAL.TYPE_VULPINE) && target.hasTailFlag(GLOBAL.FLAG_FURRED) && !target.hasTailFlag(GLOBAL.FLAG_FLUFFY) && target.tailFlagsUnlocked(GLOBAL.FLAG_FLUFFY)) // Checking tail fluffy flag.
 			{
 				if (target.tailCount == 1)
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.tailsDescript() + " quivers briefly as a strange pressure builds within; a moment later, a new batch of fur pushes its way outwards, doubling the thickness of the fur already there, and keeps growing longer and longer. Within seconds, the fur on your tail has grown out to nearly two feet from the center on all sides. <b>The fur on your foxtail has grown extra fluffy!</b>";
+				{
+					AddLogEvent("Your " + target.tailsDescript() + " quivers briefly as a strange pressure builds within; a moment later, a new batch of fur pushes its way outwards, doubling the thickness of the fur already there, and keeps growing longer and longer. Within seconds, the fur on your tail has grown out to nearly two feet from the center on all sides. <b>The fur on your foxtail has grown extra fluffy!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+				}
 				else
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.tailsDescript() + " quiver briefly as a strange pressure builds within; a moment later, a new batch of fur pushes its way outwards, doubling the thickness of the fur already there, and keeps growing longer and longer. Within seconds, the fur on your tails has grown out to nearly two feet from the center on all sides. <b>The fur on your foxtails has grown extra fluffy!</b>";
+				{
+					AddLogEvent("Your " + target.tailsDescript() + " quiver briefly as a strange pressure builds within; a moment later, a new batch of fur pushes its way outwards, doubling the thickness of the fur already there, and keeps growing longer and longer. Within seconds, the fur on your tails has grown out to nearly two feet from the center on all sides. <b>The fur on your foxtails has grown extra fluffy!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+				}
 				target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 				
 				return false;
@@ -482,24 +482,32 @@ package classes.Items.Transformatives
 						target.tailCount = Math.min(Math.max(1, target.tailCount), 9); // check bounds to be between 1 and 9 tails
 						
 						if (target.tailCount == 1)
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.tailsDescript() + " feels strange somehow. Before you can figure out exactly why, it suddenly twitches and begins to morph in front of your eyes, puffing up into a fluffy vulpine tail. <b>You are now the proud owner of a fox tail!</b>";
+						{
+							AddLogEvent("Your " + target.tailsDescript() + " feels strange somehow. Before you can figure out exactly why, it suddenly twitches and begins to morph in front of your eyes, puffing up into a fluffy vulpine tail. <b>You are now the proud owner of a fox tail!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						}
 						else
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.tailsDescript() + " feels strange somehow. Before you can figure out exactly why, your multiple tails suddenly start to twitch and morph in front of your eyes, puffing up into fluffy vulpine tails. <b>Your now have " + num2Text(target.tailCount) + " vulpine tails!</b>";
+						{
+							AddLogEvent("Your " + target.tailsDescript() + " feels strange somehow. Before you can figure out exactly why, your multiple tails suddenly start to twitch and morph in front of your eyes, puffing up into fluffy vulpine tails. <b>Your now have " + num2Text(target.tailCount) + " vulpine tails!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						}
 					}
 					else
 					{
 						target.tailCount = 1; // grow one tail
 						
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A feeling of pressure builds at the end of your tailbone beneath the skin, followed by a tugging sensation. It continues, as your tailbone elongates and thickens on its journey outwards, and then begins to sprout a coat of poofy " + target.furColor + " fur, with a pointy tip. Within moments, the nerves and muscles within activate, and you can suddenly feel your new appendage as it reflexively sways behind you. <b>You are the proud owner of a healthy new foxtail!</b>";
+						AddLogEvent("A feeling of pressure builds at the end of your tailbone beneath the skin, followed by a tugging sensation. It continues, as your tailbone elongates and thickens on its journey outwards, and then begins to sprout a coat of poofy " + target.furColor + " fur, with a pointy tip. Within moments, the nerves and muscles within activate, and you can suddenly feel your new appendage as it reflexively sways behind you. <b>You are the proud owner of a healthy new foxtail!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					}
 					
 					target.clearTailFlags();
 					if (hasTailCock) // In Soviet TiTS fluffy tails touch YOU!
 					{
-						if (InCollection(target.tailGenitalArg, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE)) // already canine
-							kGAMECLASS.eventBuffer += " Concerned with the fate of your tail genitalia, you reach into your tail fur, groping around blindly to figure out what's going on underneath. As you feel the tip of your tail, you discover that your canine tail-cock is still there, now hidden behind a tuft of fur. <b>Your tail-cock is now vulpine in nature!</b>";
+						if (InCollection(target.tailGenitalArg, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE))
+						{
+							ExtendLogEvent(" Concerned with the fate of your tail genitalia, you reach into your tail fur, groping around blindly to figure out what's going on underneath. As you feel the tip of your tail, you discover that your canine tail-cock is still there, now hidden behind a tuft of fur. <b>Your tail-cock is now vulpine in nature!</b>");
+						}
 						else // other than canine
-							kGAMECLASS.eventBuffer += " Concerned with the fate of your tail genitalia, you reach into your tail fur, groping around blindly to figure out what's going on underneath. As you feel the tip of your tail, you discover that your tail-cock is still there, but having taken on the shape of a canine member, complete with a knot! <b>Your tail-cock is now vulpine in nature!</b>";
+						{
+							ExtendLogEvent(" Concerned with the fate of your tail genitalia, you reach into your tail fur, groping around blindly to figure out what's going on underneath. As you feel the tip of your tail, you discover that your tail-cock is still there, but having taken on the shape of a canine member, complete with a knot! <b>Your tail-cock is now vulpine in nature!</b>");
+						}
 						
 						target.tailGenitalColor = !colorsMatching(target) ? "red" : target.lipColor;
 						target.tailGenitalArg = GLOBAL.TYPE_VULPINE;
@@ -514,9 +522,9 @@ package classes.Items.Transformatives
 					else if (hasTailCunt)
 					{
 						if (InCollection(target.tailGenitalArg, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE)) // already canine
-							kGAMECLASS.eventBuffer += " Concerned with the fate of your tail genitalia, you reach into your tail fur, groping around blindly to figure out what's going on underneath. As you feel the tip of your tail, you discover that your tail-pussy is still there, hidden behind a tuft of fur and virtually unaffected by the changes wrought upon rest your tail. <b>Your tail-cunt is now vulpine in nature!</b>";
+							ExtendLogEvent(" Concerned with the fate of your tail genitalia, you reach into your tail fur, groping around blindly to figure out what's going on underneath. As you feel the tip of your tail, you discover that your tail-pussy is still there, hidden behind a tuft of fur and virtually unaffected by the changes wrought upon rest your tail. <b>Your tail-cunt is now vulpine in nature!</b>");
 						else // other than canine
-							kGAMECLASS.eventBuffer += " Concerned with the fate of your tail genitalia, you reach into your tail fur, groping around blindly to figure out what's going on underneath. As you feel the tip of your tail, you discover that your tail-pussy is still there – but now having taken on a canine-shape, much like that of a bitch’s! <b>Your tail-cunt is now vulpine in nature!</b>";
+							ExtendLogEvent(" Concerned with the fate of your tail genitalia, you reach into your tail fur, groping around blindly to figure out what's going on underneath. As you feel the tip of your tail, you discover that your tail-pussy is still there – but now having taken on a canine-shape, much like that of a bitch’s! <b>Your tail-cunt is now vulpine in nature!</b>");
 						
 						target.tailGenitalColor = !colorsMatching(target) ? "black" : target.lipColor;
 						target.tailGenitalArg = GLOBAL.TYPE_VULPINE;
@@ -542,9 +550,14 @@ package classes.Items.Transformatives
 			if (kGAMECLASS.attachedMimbranes() > 0) // get rid of all non-tail parasites, since foxfire is technically a parasite itself and won't get along with contenders!
 			{
 				if (kGAMECLASS.attachedMimbranes() == 1)
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your mimbrane parasite turns a sickly pale as it suddenly releases your " + target.skin() + ", slumping to the ground lifelessly. You almost feel sorry for the poor creature as it shrivels up and crumbles to dust before your eyes. <b>Your mimbrane is gone!</b>";
+				{
+					AddLogEvent("Your mimbrane parasite turns a sickly pale as it suddenly releases your " + target.skin() + ", slumping to the ground lifelessly. You almost feel sorry for the poor creature as it shrivels up and crumbles to dust before your eyes. <b>Your mimbrane is gone!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+				}
 				else
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your mimbrane parasites turn a sickly pale as they suddenly let go of your " + target.skin() + ", slumping to the ground lifelessly. You almost feel sorry for the poor creatures as they shrivel up and crumble to dust before your eyes. <b>Your mimbranes are gone!</b>";
+				{
+					AddLogEvent("Your mimbrane parasites turn a sickly pale as they suddenly let go of your " + target.skin() + ", slumping to the ground lifelessly. You almost feel sorry for the poor creatures as they shrivel up and crumble to dust before your eyes. <b>Your mimbranes are gone!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+				}
+				
 				kGAMECLASS.removeMimbranes();
 				
 				return false;
@@ -554,27 +567,27 @@ package classes.Items.Transformatives
 			{
 				if (target.skinType == GLOBAL.SKIN_TYPE_SCALES)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A light prickling sensation erupts under your scales, followed by an odd sort of numbness. A light sheen spreads across the scales on your body, resembling a snake about to shed a layer of skin. As you try picking at a tear in the pattern, your entire layer of scales lifts up painlessly, and you feel the breeze caress the soft, human skin underneath. A few minutes of de-scaling yourself, and <b>you sport a healthy set of human-like skin!</b>";
+					AddLogEvent("A light prickling sensation erupts under your scales, followed by an odd sort of numbness. A light sheen spreads across the scales on your body, resembling a snake about to shed a layer of skin. As you try picking at a tear in the pattern, your entire layer of scales lifts up painlessly, and you feel the breeze caress the soft, human skin underneath. A few minutes of de-scaling yourself, and <b>you sport a healthy set of human-like skin!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				else if (target.skinType == GLOBAL.SKIN_TYPE_GOO)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " As you move about, you notice your exterior layer of goo seems to be hardening somewhat, and you're certain that you were more transparent before. This is confirmed as your exterior layer continues growing taut and opaque, like mammalian skin. Within seconds, <b>you find yourself bearing a healthy new layer of human-like skin!</b>";
+					AddLogEvent("As you move about, you notice your exterior layer of goo seems to be hardening somewhat, and you're certain that you were more transparent before. This is confirmed as your exterior layer continues growing taut and opaque, like mammalian skin. Within seconds, <b>you find yourself bearing a healthy new layer of human-like skin!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				else if (target.skinType == GLOBAL.SKIN_TYPE_CHITIN)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " As you move, your chitin plates become stiff and numb. You feel as if you're \"wearing\" them, rather than that they're a part of you. The cause immediately becomes clear as several small sections of your chitin plates fall to the ground, revealing a soft patch of mammalian skin. You realize what is happening, and begin plucking the rest of your plates off yourself, soon finding yourself covered in a <b>healthy layer of human-like skin!</b>";
+					AddLogEvent("As you move, your chitin plates become stiff and numb. You feel as if you're \"wearing\" them, rather than that they're a part of you. The cause immediately becomes clear as several small sections of your chitin plates fall to the ground, revealing a soft patch of mammalian skin. You realize what is happening, and begin plucking the rest of your plates off yourself, soon finding yourself covered in a <b>healthy layer of human-like skin!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				else if (target.skinType == GLOBAL.SKIN_TYPE_FEATHERS)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A sudden itchiness spurts out from the bast of your feather quills. As you brush the area, most of your feathers fall away, as though you are entering a severe molting cycle. Rather than new feathers growing in their place, the skin underneath softens, and the holes that your feathers grew from shrink out of sight. Soon, your coat of feathers falls away, leaving <b>you with a set of healthy human-like skin!</b>.";
+					AddLogEvent("A sudden itchiness spurts out from the bast of your feather quills. As you brush the area, most of your feathers fall away, as though you are entering a severe molting cycle. Rather than new feathers growing in their place, the skin underneath softens, and the holes that your feathers grew from shrink out of sight. Soon, your coat of feathers falls away, leaving <b>you with a set of healthy human-like skin!</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				else if (target.skinType == GLOBAL.SKIN_TYPE_LATEX)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You suddenly notice that though you've been in movement for a few minutes, you haven't heard any of the light tensing and squeaking sounds from your latex skin. You pull experimentally at a section of your skin, and rather than a thick, stretchy tug, it feels softer than before, and seems determined to stay in place. The shine on your outer layer dulls as the process continues, and soon <b>you are sporting a set of healthy, human-like skin!</b>";
+					AddLogEvent("You suddenly notice that though you've been in movement for a few minutes, you haven't heard any of the light tensing and squeaking sounds from your latex skin. You pull experimentally at a section of your skin, and rather than a thick, stretchy tug, it feels softer than before, and seems determined to stay in place. The shine on your outer layer dulls as the process continues, and soon <b>you are sporting a set of healthy, human-like skin!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				else
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.skin() + " starts to itch intensely, as a feeling of warmth quickly spreads across your inhuman skin. You barely have time to realize what is happening as <b>your " + target.skinFurScales() + " morphs to be replaced by regular human-like skin</b>.";
+					AddLogEvent("Your " + target.skin() + " starts to itch intensely, as a feeling of warmth quickly spreads across your inhuman skin. You barely have time to realize what is happening as <b>your " + target.skinFurScales() + " morphs to be replaced by regular human-like skin</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				target.skinType = GLOBAL.SKIN_TYPE_SKIN;
 				
@@ -585,36 +598,36 @@ package classes.Items.Transformatives
 			{
 				if (target.hairType == GLOBAL.HAIR_TYPE_FEATHERS)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A feather falls down in front of you, followed by several more as you feel something pushing underneath your scalp. Your head-feathers cascade down you as they leave their resting places, and are quickly replaced with tufts of normal hair. <b>You now have normal hair!</b>";
+					AddLogEvent("A feather falls down in front of you, followed by several more as you feel something pushing underneath your scalp. Your head-feathers cascade down you as they leave their resting places, and are quickly replaced with tufts of normal hair. <b>You now have normal hair!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.hairLength = 1;
 					target.hairStyle = "null";
 				}
 				else if (target.hairType == GLOBAL.HAIR_TYPE_TRANSPARENT)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A few stray strands of hair become visible before your eyes, followed by a few more, and a few more. Within moments, <b>your hair loses its transparency</b> and settling into a normal opaque state. <b>You now have normal hair!</b>";
+					AddLogEvent("A few stray strands of hair become visible before your eyes, followed by a few more, and a few more. Within moments, <b>your hair loses its transparency</b> and settling into a normal opaque state. <b>You now have normal hair!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					// keep both length and style here
 				}
 				else if (target.hairType == GLOBAL.HAIR_TYPE_GOO)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You notice that you haven't seen any drips falling from your head-goo for a few minutes. Running a hair over your head, you feel distinct strands of something stringy, rather than the gelatinous mass you're used to feeling. The strands thicken and take form as tufts of normal hair, replacing your goo-hair. The new hair stays in place nicely instead of poofing everywhere, as your natural goo seems to be acting as a sort of hair styling gel. <b>You now have normal hair!</b>";
+					AddLogEvent("You notice that you haven't seen any drips falling from your head-goo for a few minutes. Running a hair over your head, you feel distinct strands of something stringy, rather than the gelatinous mass you're used to feeling. The strands thicken and take form as tufts of normal hair, replacing your goo-hair. The new hair stays in place nicely instead of poofing everywhere, as your natural goo seems to be acting as a sort of hair styling gel. <b>You now have normal hair!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.hairLength = 1;
 					target.hairStyle = "null";
 				}
 				else if (target.hairType == GLOBAL.HAIR_TYPE_TENTACLES)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " An alien, sucking sensation erupts at the top of your head, and you feel your head-tentacles pulling down into your scalp. The patches between the tentacles begin sprouting bristles of hair, and soon enough, <b>your head-tentacles are fully replaced by normal hair!</b>";
+					AddLogEvent("An alien, sucking sensation erupts at the top of your head, and you feel your head-tentacles pulling down into your scalp. The patches between the tentacles begin sprouting bristles of hair, and soon enough, <b>your head-tentacles are fully replaced by normal hair!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.hairLength = 1;
 					target.hairStyle = "null";
 				}
 				else if (target.hairType == GLOBAL.HAIR_TYPE_QUILLS)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You feel a strange tingling on your scalp as the skin around your quills loosen and grow slack. Within moments, the your head-quills begin falling down your back and shoulders, and soft tufts of normal hair grow to take their place. <b>You now have normal hair!</b>";
+					AddLogEvent("You feel a strange tingling on your scalp as the skin around your quills loosen and grow slack. Within moments, the your head-quills begin falling down your back and shoulders, and soft tufts of normal hair grow to take their place. <b>You now have normal hair!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.hairLength = 1;
 					target.hairStyle = "null";
 				}
 				else
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.hairNoun() + " melts into a gooey-mass on top of your head. You wipe it off only to discover regular human-like hair beneath. <b>You now have normal hair!</b>";
+					AddLogEvent("Your " + target.hairNoun() + " melts into a gooey-mass on top of your head. You wipe it off only to discover regular human-like hair beneath. <b>You now have normal hair!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.hairLength = 1;
 					target.hairStyle = "null";
 				}
@@ -629,7 +642,7 @@ package classes.Items.Transformatives
 				target.hairColor = fireColor;
 				if (!target.hasFur()) target.furColor = fireColor;
 				if (target.hasHair()) // suppress output if bald
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Wait, is it merely your imagination or is your hair on fire?! You reach up to feel it, but find it to be cool to the touch. Strange... <b>You now have " + fireColor + " hair!</b>";
+				AddLogEvent("Wait, is it merely your imagination or is your hair on fire?! You reach up to feel it, but find it to be cool to the touch. Strange... <b>You now have " + fireColor + " hair!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				return false;
 			}
 			
@@ -638,15 +651,22 @@ package classes.Items.Transformatives
 				if (!target.hasHair())
 				{
 					if (target.hasFur())
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your head-fur begins to itch, and before long it starts to grow out wildly at a rapid pace, blossoming into long hair which reaches all the way down your neck. <b>You now have long hair!</b> You are going to need a brush...";
+					{
+						AddLogEvent("Your head-fur begins to itch, and before long it starts to grow out wildly at a rapid pace, blossoming into long hair which reaches all the way down your neck. <b>You now have long hair!</b> You are going to need a brush...", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					}
 					else
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.hairDescript() + " starts to tingle, and you feel an sudden urge to scratch it. Just as you reach for it your " + target.fingers() + " are met with a large burst of wild growth, not stopping until it reaches down all the way to your neck. <b>You now have long hair!</b> You're going to need a brush...";
+					{
+						AddLogEvent("Your " + target.hairDescript() + " starts to tingle, and you feel an sudden urge to scratch it. Just as you reach for it your " + target.fingers() + " are met with a large burst of wild growth, not stopping until it reaches down all the way to your neck. <b>You now have long hair!</b> You're going to need a brush...", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					}
 				}
-				else kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You brush away a few strands of hair from your vision, and feel something brush against your neck. It seems <b>your " + target.hairNoun() + " has grown longer!</b>";
+				else
+				{
+					AddLogEvent("You brush away a few strands of hair from your vision, and feel something brush against your neck. It seems <b>your " + target.hairNoun() + " has grown longer!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+				}
 				target.hairLength = 12;
 				if (!InCollection(target.hairStyle, "null", "curls", "pigtails", "ponytail", "straight")) // complex styles are messed up with growth
 				{
-					kGAMECLASS.eventBuffer += " It is a bit wild and messy at the moment, though.";
+					ExtendLogEvent(" It is a bit wild and messy at the moment, though.");
 					target.hairStyle = "null";
 				}
 				return false;
@@ -656,14 +676,14 @@ package classes.Items.Transformatives
 			if (target.skinAccent != accentColor && target.hasStatusEffect("Vanae Markings"))
 			{ // setting vanae markings ablaze!
 				target.skinAccent = accentColor;
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You experience a burning sensation around your skin-markings, as they change tone to match your new form, becoming fiery like that of living-embers. Your markings are now " + accentColor + "!";
+				AddLogEvent("You experience a burning sensation around your skin-markings, as they change tone to match your new form, becoming fiery like that of living-embers. Your markings are now " + accentColor + "!", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				
 				return false;
 			}
 			
 			if (target.earType != GLOBAL.TYPE_VULPINE && target.earTypeUnlocked(GLOBAL.TYPE_VULPINE)) // ears!
 			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.earsDescript() + " shift to become large and pointy like that of a fox’s, allowing you to pick up even the faintest of sound as they twitch atop your head. <b>You now have pointy fox ears!</b>";
+				AddLogEvent("Your " + target.earsDescript() + " shift to become large and pointy like that of a fox’s, allowing you to pick up even the faintest of sound as they twitch atop your head. <b>You now have pointy fox ears!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				
 				target.earType = GLOBAL.TYPE_VULPINE;
 				
@@ -691,7 +711,7 @@ package classes.Items.Transformatives
 				}
 				
 				target.eyeType = GLOBAL.TYPE_VULPINE;
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your eyes water and strain for a moment. As you blink, you notice a greater depth of contrast in the nearby lights and shadows. <b>You have slitted, " + target.eyeColor + " fox-like eyes now!</b>";
+				AddLogEvent("Your eyes water and strain for a moment. As you blink, you notice a greater depth of contrast in the nearby lights and shadows. <b>You have slitted, " + target.eyeColor + " fox-like eyes now!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				return false;
 			}
 			
@@ -710,7 +730,7 @@ package classes.Items.Transformatives
 			
 			if (target.hasTail(GLOBAL.TYPE_VULPINE) && target.hasTailFlag(GLOBAL.FLAG_LONG) && !target.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && target.tailFlagsUnlocked(GLOBAL.FLAG_PREHENSILE)) // checking tail prehensile flag
 			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your foxtail" + (target.tailCount > 1 ? "s" : "") + " has now grown especially long, and appear" + (target.tailCount > 1 ? "" : "s") + " to be... prehensile as well? What the hell.";
+				AddLogEvent("Your foxtail" + (target.tailCount > 1 ? "s" : "") + " has now grown especially long, and appear" + (target.tailCount > 1 ? "" : "s") + " to be... prehensile as well? What the hell.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 				
 				return false;
@@ -722,43 +742,43 @@ package classes.Items.Transformatives
 				switch (target.tailCount)
 				{
 					case 2:
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " <b>You sprout a second foxtail!</b>";
-						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) kGAMECLASS.eventBuffer += " This wasn't mentioned in the instructions...";
+						AddLogEvent("<b>You sprout a second foxtail!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) ExtendLogEvent(" This wasn't mentioned in the instructions...");
 						break;
 					case 3:
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " <b>A third foxtail pushes its way out.</b>";
-						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) kGAMECLASS.eventBuffer += " Something has clearly gone awry.";
+						AddLogEvent("<b>A third foxtail pushes its way out.</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) ExtendLogEvent(" Something has clearly gone awry.");
 						break
 					case 4:
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " <b>A fourth foxtail makes its appearance behind you!</b>";
-						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) kGAMECLASS.eventBuffer += " You may have a problem.";
+						AddLogEvent("<b>A fourth foxtail makes its appearance behind you!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) ExtendLogEvent(" You may have a problem.");
 						break;
 					case 5:
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " <b>A fifth foxtail now joins the others on your backside!</b>";
-						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) kGAMECLASS.eventBuffer += " Looks like it was bad idea to disobey the instructions; who knows what else might result?";
+						AddLogEvent("<b>A fifth foxtail now joins the others on your backside!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) ExtendLogEvent(" Looks like it was bad idea to disobey the instructions; who knows what else might result?");
 						break;
 					case 6:
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Here we go, <b>a sixth foxtail now joins the rest.</b>";
+						AddLogEvent("Here we go, <b>a sixth foxtail now joins the rest.</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 						break;
 					case 7:
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " <b>A seventh foxtail pops out behind you.</b>";
-						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) kGAMECLASS.eventBuffer += " Not even surprising, at this point.";
+						AddLogEvent("<b>A seventh foxtail pops out behind you.</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) ExtendLogEvent(" Not even surprising, at this point.");
 						break;
 					case 8:
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " <b>An eighth foxtail joins the party.</b>";
-						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) kGAMECLASS.eventBuffer += " Will this ever stop?";
+						AddLogEvent("<b>An eighth foxtail joins the party.</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount) ExtendLogEvent(" Will this ever stop?");
 						break;
 					case 9:
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " <b>A ninth foxtail sprouts next to the rest.</b>";
+						AddLogEvent("<b>A ninth foxtail sprouts next to the rest.</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 						if (kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] < target.tailCount)
 						{
-							kGAMECLASS.eventBuffer += " You feel somehow... enlightened. In this moment of enlightenment, a great, universal truth becomes clear to you: product instructions are written for a reason.";
-							if (target.hasTailCock()) kGAMECLASS.eventBuffer += " Screw it, you just want to find someone for tentacle monster roleplay - you definitely have enough appendages for it!";
+							ExtendLogEvent(" You feel somehow... enlightened. In this moment of enlightenment, a great, universal truth becomes clear to you: product instructions are written for a reason.");
+							if (target.hasTailCock()) ExtendLogEvent(" Screw it, you just want to find someone for tentacle monster roleplay - you definitely have enough appendages for it!");
 						}
 						
 						break;
 					default:
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " +1 foxtail!, NOW something gone really wrong!"; // failsafe here, not supposed to actually happen
+						AddLogEvent("+1 foxtail!, NOW something gone really wrong!", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()); // failsafe here, not supposed to actually happen
 				}
 				
 				kGAMECLASS.flags["FOXFIRE_MAX_TAILS"] = Math.max(kGAMECLASS.flags["FOXFIRE_MAX_TAILS"], target.tailCount);
@@ -782,12 +802,12 @@ package classes.Items.Transformatives
 			{
 				if (frost)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A light tingling flows over you from top to bottom, followed by a strange prickly sensation. You instinctively scratch yourself, and your hand is unexpectedly met with thick tufts of fur springing wildly from your " + target.skin() + ". The " + fireColor + " fur quickly sprouts and fills every un-furred area on your body, leaving you with a long, thick coat of insulating fur. <b>Your body is now covered in thick fur!</b>";
+					AddLogEvent("A light tingling flows over you from top to bottom, followed by a strange prickly sensation. You instinctively scratch yourself, and your hand is unexpectedly met with thick tufts of fur springing wildly from your " + target.skin() + ". The " + fireColor + " fur quickly sprouts and fills every un-furred area on your body, leaving you with a long, thick coat of insulating fur. <b>Your body is now covered in thick fur!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.skinFlags = [GLOBAL.FLAG_FLUFFY];
 				}
 				else
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A light tingling flows over you from top to bottom, followed by a strange prickly sensation. You instinctively scratch yourself, and find that a thin layer of soft fur has begun growing over your " + target.skin() + ". The " + fireColor + " fur quickly sprouts and fills every un-furred area on your body, leaving you with a soft, healthy coat of fur. <b>Your body is now covered in fur!</b>";
+					AddLogEvent("A light tingling flows over you from top to bottom, followed by a strange prickly sensation. You instinctively scratch yourself, and find that a thin layer of soft fur has begun growing over your " + target.skin() + ". The " + fireColor + " fur quickly sprouts and fills every un-furred area on your body, leaving you with a soft, healthy coat of fur. <b>Your body is now covered in fur!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.skinFlags = [];
 				}
 				
@@ -800,7 +820,7 @@ package classes.Items.Transformatives
 			if (target.furColor != fireColor && target.furColorUnlocked(fireColor)) // checking fur color
 			{
 				target.furColor = fireColor;
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your fur begins to glow in an eerie-green - before it slowly shifts and settles into a " + fireColor + " tone, retaining its luminosity. <b>You now have " + fireColor + " fur!</b>";
+				AddLogEvent("Your fur begins to glow in an eerie-green - before it slowly shifts and settles into a " + fireColor + " tone, retaining its luminosity. <b>You now have " + fireColor + " fur!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				
 				return false;
 			}
@@ -808,7 +828,7 @@ package classes.Items.Transformatives
 			if (frost && target.hasFur() && !target.hasSkinFlag(GLOBAL.FLAG_FLUFFY) && target.skinFlagsUnlocked(GLOBAL.FLAG_FLUFFY)) // Checking skin fluff for Frostfire.
 			{
 				target.addSkinFlag(GLOBAL.FLAG_FLUFFY);
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You feel a sudden tingling at the base of your coat of fur, and you begin to feel slightly warmer. The reason quickly becomes obvious: your fur is growing slightly longer, and more strands are pushing their way out in between the existing ones, growing thicker and denser with each passing second. Your fur is now thick!";
+				AddLogEvent("You feel a sudden tingling at the base of your coat of fur, and you begin to feel slightly warmer. The reason quickly becomes obvious: your fur is growing slightly longer, and more strands are pushing their way out in between the existing ones, growing thicker and denser with each passing second. Your fur is now thick!", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				
 				return false;
 			}
@@ -819,32 +839,32 @@ package classes.Items.Transformatives
 				{
 					if (target.isNaga())
 					{
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your serpentine lower half shivers for a moment, growing tense and less flexible. Your lower length shortens, and painlessly splits at the tail, then runs the length of your mass until it reaches your hips. The two short tails quickly become rigid and firm, and can now only bend one way at the middle section. Within moments, <b>you have knees again, as well as feet and legs resembling that of a fox's</b>.";
+						AddLogEvent("Your serpentine lower half shivers for a moment, growing tense and less flexible. Your lower length shortens, and painlessly splits at the tail, then runs the length of your mass until it reaches your hips. The two short tails quickly become rigid and firm, and can now only bend one way at the middle section. Within moments, <b>you have knees again, as well as feet and legs resembling that of a fox's</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 						target.legCount = 2;
 						target.genitalSpot = 0;
 					}
 					else if (target.isGoo())
 					{
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Suddenly, the lower part of your gooey mass presses inwards and becomes much more solid. You feel bones and muscles reforming underneath you, and im a moment the mass of goo you were previously using to move yourself about is now a <b>pair of sturdy fox-like legs</b>.";
+						AddLogEvent("Suddenly, the lower part of your gooey mass presses inwards and becomes much more solid. You feel bones and muscles reforming underneath you, and im a moment the mass of goo you were previously using to move yourself about is now a <b>pair of sturdy fox-like legs</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 						target.legCount = 2;
 						target.genitalSpot = 0;
 					}
 					else if (target.isTaur() || target.isDrider())
 					{
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.legs() + " quiver in a moment of sudden weakness; the muscles within quickly press inwards and tighten, growing taut and high-strung. Your legs' overall thickness follows, becoming slightly leaner within a few seconds, now resembling that of a wild fox. <b>You now have fox-legs!</b>";
+						AddLogEvent("Your " + target.legs() + " quiver in a moment of sudden weakness; the muscles within quickly press inwards and tighten, growing taut and high-strung. Your legs' overall thickness follows, becoming slightly leaner within a few seconds, now resembling that of a wild fox. <b>You now have fox-legs!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 						if (target.legCount > 4)
 						{
 							if (target.legCount == 6)
-								kGAMECLASS.eventBuffer += " A sudden inward pressure erupts near the shoulders of your central pair of legs on your lower half. The weight on your front and back taur legs increases as your central pair begins to lift off the ground, and immediately begin disappearing into you. You stumble forward as you have less points of balance holding you up, but you find yourself adjusting almost immediately. Before you can fully process what's happeneing, <b>you now find yourself standing atop a set of four legs!</b>";
+								ExtendLogEvent(" A sudden inward pressure erupts near the shoulders of your central pair of legs on your lower half. The weight on your front and back taur legs increases as your central pair begins to lift off the ground, and immediately begin disappearing into you. You stumble forward as you have less points of balance holding you up, but you find yourself adjusting almost immediately. Before you can fully process what's happeneing, <b>you now find yourself standing atop a set of four legs!</b>");
 							else
-								kGAMECLASS.eventBuffer += " A sudden inward pressure erupts throughout your lower half. The weight on your front and back taur legs increases as some of your other legs begin to lift off the ground, and immediately begin disappearing into you. You stumble forward as you have less points of balance holding you up, but you find yourself adjusting almost immediately. Before you can fully process what's happening, <b>you now find yourself standing atop a set of four legs</b>.";
+								ExtendLogEvent(" A sudden inward pressure erupts throughout your lower half. The weight on your front and back taur legs increases as some of your other legs begin to lift off the ground, and immediately begin disappearing into you. You stumble forward as you have less points of balance holding you up, but you find yourself adjusting almost immediately. Before you can fully process what's happening, <b>you now find yourself standing atop a set of four legs</b>.");
 						}
 						target.legCount = 4;
 						target.genitalSpot = 2;
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You watch helplessly as your " + target.lowerBody() + " suddenly dissolves underneath you into a pile of goo! Thankfully your worries are short-lived as the goo begin to morph and take shape, reforming into a <b>pair of fully functional fox-legs!</b>";
+						AddLogEvent("You watch helplessly as your " + target.lowerBody() + " suddenly dissolves underneath you into a pile of goo! Thankfully your worries are short-lived as the goo begin to morph and take shape, reforming into a <b>pair of fully functional fox-legs!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 						target.legCount = 2;
 						target.genitalSpot = 0;
 					}
@@ -862,19 +882,40 @@ package classes.Items.Transformatives
 					var wasPaddedLegs:Boolean = target.hasPaddedLegs();
 					var wasFluffyLegs:Boolean = target.hasLegFlag(GLOBAL.FLAG_FLUFFY) && (target.hasLegFlag(GLOBAL.FLAG_FURRED) || target.hasFur());
 					
+					var someChange:Boolean = false;
+					
 					if (!wasFurryLegs)
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A tiny, painless pinprick of a sensation sparks on your upper legs as a single strand of fur pushes itself out from your skin. It is quickly followed by a wave of the same, flowing from your hips down to your feet in a cascade of sudden fur growth. When it finishes, you find <b>your legs fully enclosed by a sheen of healthy fur</b>.";
+					{
+						AddLogEvent("A tiny, painless pinprick of a sensation sparks on your upper legs as a single strand of fur pushes itself out from your skin. It is quickly followed by a wave of the same, flowing from your hips down to your feet in a cascade of sudden fur growth. When it finishes, you find <b>your legs fully enclosed by a sheen of healthy fur</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						someChange = true;
+					}
 					
 					if (!wasDigitigradeLegs)
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You suddenly tip forward, your center of balance unexpectedly moving underneath you. A quick look downwards tells you why: your heels have begun pulling themselves up your leg, forcing you to balance yourself on the front half of your feet. As it does, the length between your toes and heels pulls apart and lengthens, while your shins shorten and thicken. Within moments, the tips of your feet flatten and widen, making it far easier to balance atop them. Shortly after, your heels settle into place halfway between your toes and knees, becoming closer to a second knee than a place to set your weight upon. <b>Your legs have become fully digitigrade</b>.";
+					{
+						AddLogEvent("You suddenly tip forward, your center of balance unexpectedly moving underneath you. A quick look downwards tells you why: your heels have begun pulling themselves up your leg, forcing you to balance yourself on the front half of your feet. As it does, the length between your toes and heels pulls apart and lengthens, while your shins shorten and thicken. Within moments, the tips of your feet flatten and widen, making it far easier to balance atop them. Shortly after, your heels settle into place halfway between your toes and knees, becoming closer to a second knee than a place to set your weight upon. <b>Your legs have become fully digitigrade</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						someChange = true;
+					}
 					
 					if (!wasPaddedLegs)
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " As you walk, you begin to feel a few soft bumps across the bottom of your feet, which push outwards from the rest, and quickly grow in mass. They feel sensitive, like the tips of your fingers, rather than the relative nervelessness of the bottom of your feet, despite their growing toughness. They continue to form at the base of your feet, and on the bottom points of your toes. It is obvious what they are: pawpads. As the change finishes, <b>you now stand atop sturdy canine-like pads</b>, which help you grip the ground better.";
+					{
+						AddLogEvent("As you walk, you begin to feel a few soft bumps across the bottom of your feet, which push outwards from the rest, and quickly grow in mass. They feel sensitive, like the tips of your fingers, rather than the relative nervelessness of the bottom of your feet, despite their growing toughness. They continue to form at the base of your feet, and on the bottom points of your toes. It is obvious what they are: pawpads. As the change finishes, <b>you now stand atop sturdy canine-like pads</b>, which help you grip the ground better.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						someChange = true;
+					}
 					
 					if (frost && !wasFluffyLegs)
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Another wave of prickling sensations crawl across your legs. Your fur pushes itself outwards by a few inches, flowing this way and that as you move your legs; the fur itself seems to be growing in much thicker as well. By the time the sensation stops, <b>your legs are thickly-furred</b>, like that of an arctic-dwelling creature.";
+					{
+						AddLogEvent("Another wave of prickling sensations crawl across your legs. Your fur pushes itself outwards by a few inches, flowing this way and that as you move your legs; the fur itself seems to be growing in much thicker as well. By the time the sensation stops, <b>your legs are thickly-furred</b>, like that of an arctic-dwelling creature.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						someChange = true;
+					}
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your legs quiver in a moment of sudden weakness; the muscles within quickly press inwards and tighten, growing taut and high-strung. Your legs' overall thickness follows, becoming slightly leaner within a few seconds. <b>You now have fox-legs!</b>";
+					if (!someChange)
+					{
+						AddLogEvent("Your legs quiver in a moment of sudden weakness; the muscles within quickly press inwards and tighten, growing taut and high-strung. Your legs' overall thickness follows, becoming slightly leaner within a few seconds. <b>You now have fox-legs!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					}
+					else
+					{
+						ExtendLogEvent(" Your legs quiver in a moment of sudden weakness; the muscles within quickly press inwards and tighten, growing taut and high-strung. Your legs' overall thickness follows, becoming slightly leaner within a few seconds. <b>You now have fox-legs!</b>");
+					}
 					
 					target.legType = GLOBAL.TYPE_VULPINE;
 					target.genitalSpot = target.legCount == 2 ? 0 : 2;
@@ -891,7 +932,7 @@ package classes.Items.Transformatives
 					target.addLegFlag(GLOBAL.FLAG_FURRED);
 					
 					if (!target.hasFur()) // Only show output if have no skin type fur - it would just force keeping fur on legs should you change skin type.
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A tiny, painless pinprick of a sensation sparks on your upper legs as a single strand of fur pushes itself out from your skin. It is quickly followed by a wave of the same, flowing from your hips down to your feet in a cascade of sudden fur growth. When it finishes, you find <b>your legs fully enclosed by a sheen of healthy fur</b>.";
+						AddLogEvent("A tiny, painless pinprick of a sensation sparks on your upper legs as a single strand of fur pushes itself out from your skin. It is quickly followed by a wave of the same, flowing from your hips down to your feet in a cascade of sudden fur growth. When it finishes, you find <b>your legs fully enclosed by a sheen of healthy fur</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					
 					return false;
 				}
@@ -900,7 +941,7 @@ package classes.Items.Transformatives
 				{
 					target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You suddenly tip forward, your center of balance unexpectedly moving underneath you. A quick look downwards tells you why: your heels have begun pulling themselves up your leg, forcing you to balance yourself on the front half of your feet. As it does, the length between your toes and heels pulls apart and lengthens, while your shins shorten and thicken. Within moments, the tips of your feet flatten and widen, making it far easier to balance atop them. Shortly after, your heels settle into place halfway between your toes and knees, becoming closer to a second knee than a place to set your weight upon. <b>Your legs have become fully digitigrade</b>.";
+					AddLogEvent("You suddenly tip forward, your center of balance unexpectedly moving underneath you. A quick look downwards tells you why: your heels have begun pulling themselves up your leg, forcing you to balance yourself on the front half of your feet. As it does, the length between your toes and heels pulls apart and lengthens, while your shins shorten and thicken. Within moments, the tips of your feet flatten and widen, making it far easier to balance atop them. Shortly after, your heels settle into place halfway between your toes and knees, becoming closer to a second knee than a place to set your weight upon. <b>Your legs have become fully digitigrade</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					
 					return false;
 				}
@@ -909,7 +950,7 @@ package classes.Items.Transformatives
 				{
 					target.addLegFlag(GLOBAL.FLAG_PAWS);
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " As you walk, you begin to feel a few soft bumps across the bottom of your feet, which push outwards from the rest, and quickly grow in mass. They feel sensitive, like the tips of your fingers, rather than the relative nervelessness of the bottom of your feet, despite their growing toughness. They continue to form at the base of your feet, and on the bottom points of your toes. It is obvious what they are: pawpads. As the change finishes, <b>you now stand atop sturdy canine-like pads</b>, which help you grip the ground better.";
+					AddLogEvent("As you walk, you begin to feel a few soft bumps across the bottom of your feet, which push outwards from the rest, and quickly grow in mass. They feel sensitive, like the tips of your fingers, rather than the relative nervelessness of the bottom of your feet, despite their growing toughness. They continue to form at the base of your feet, and on the bottom points of your toes. It is obvious what they are: pawpads. As the change finishes, <b>you now stand atop sturdy canine-like pads</b>, which help you grip the ground better.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					
 					return false;
 				}
@@ -918,7 +959,7 @@ package classes.Items.Transformatives
 				{
 					target.addLegFlag(GLOBAL.FLAG_FLUFFY);
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Another wave of prickling sensations crawls across your legs. Your fur pushes itself outwards by a few inches, flowing this way and that as you move your legs; the fur itself seems to be growing in much thicker as well. By the time the sensation stops, <b>your legs are thickly-furred</b>, like that of an arctic-dwelling creature.";
+					AddLogEvent("Another wave of prickling sensations crawls across your legs. Your fur pushes itself outwards by a few inches, flowing this way and that as you move your legs; the fur itself seems to be growing in much thicker as well. By the time the sensation stops, <b>your legs are thickly-furred</b>, like that of an arctic-dwelling creature.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					
 					return false;
 				}
@@ -936,16 +977,34 @@ package classes.Items.Transformatives
 				target.addArmFlag(GLOBAL.FLAG_PAWS);
 				if (frost) target.addArmFlag(GLOBAL.FLAG_FLUFFY);
 				
-				if (!wasFurryArms) // Only show output if have no skin type fur - it would just force keeping fur on hands should you change skin type.
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A slight tickle crawls across your arms as thin, short strands of fur begin poking out from your skin. Within seconds, a full <b>coat of vulpine fur covers the entirety of the skin on your arms</b> down from the shoulders.";
+				someChange = false;
+				
+				if (!wasFurryArms)
+				{
+					AddLogEvent("A slight tickle crawls across your arms as thin, short strands of fur begin poking out from your skin. Within seconds, a full <b>coat of vulpine fur covers the entirety of the skin on your arms</b> down from the shoulders.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					someChange = true;
+				}
 				
 				if (!wasPaddedArms)
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A feeling of sudden pressure begins to build on the upper inner span of your hands, and on the bottom of your fingertips. Tough, yet sensitive <b>pads like that of a canine push their way out from your hands</b>, designed to allow grip and traction despite a coat of fur.";
+				{
+					AddLogEvent("A feeling of sudden pressure begins to build on the upper inner span of your hands, and on the bottom of your fingertips. Tough, yet sensitive <b>pads like that of a canine push their way out from your hands</b>, designed to allow grip and traction despite a coat of fur.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					someChange = true;
+				}
 				
 				if (frost && !wasFluffyArms)
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Another wave of pinpricks crawl across your arms, and the cause is immediately obvious. The <b>fur on your arms begins growing longer and thicker</b>, and within moments is flowing in the wind slightly as you move your arms, as opposed to the thin layer that until recently clung to your skin like a tight jacket.";
+				{
+					AddLogEvent("Another wave of pinpricks crawl across your arms, and the cause is immediately obvious. The <b>fur on your arms begins growing longer and thicker</b>, and within moments is flowing in the wind slightly as you move your arms, as opposed to the thin layer that until recently clung to your skin like a tight jacket.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					someChange = true;
+				}
 				
-				kGAMECLASS.eventBuffer += "\n\nA feeling of numbness creeps from your shoulders, down your arms and to your fingertips. As you watch, the muscles underneath seem to flex and grow tighter, leaner, and vulpine. <b>You now have fox-like arms!</b>";
+				if (!someChange)
+				{
+					AddLogEvent("A feeling of numbness creeps from your shoulders, down your arms and to your fingertips. As you watch, the muscles underneath seem to flex and grow tighter, leaner, and vulpine. <b>You now have fox-like arms!</b>", "passive");
+				}
+				else
+				{
+					ExtendLogEvent(" A feeling of numbness creeps from your shoulders, down your arms and to your fingertips. As you watch, the muscles underneath seem to flex and grow tighter, leaner, and vulpine. <b>You now have fox-like arms!</b>");
+				}
 				
 				return false;
 			}
@@ -956,7 +1015,7 @@ package classes.Items.Transformatives
 					target.addArmFlag(GLOBAL.FLAG_FURRED);
 					
 					if (!target.hasFur()) // Only show output if have no skin type fur - it would just force keeping fur on hands should you change skin type.
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A slight tickle crawls across your arms as short, thin strands of fur begin poking out from your skin. Within seconds, a <b>full coat of vulpine fur covers the entirety of the skin on your arms</b> down from the shoulders.";
+						AddLogEvent("A slight tickle crawls across your arms as short, thin strands of fur begin poking out from your skin. Within seconds, a <b>full coat of vulpine fur covers the entirety of the skin on your arms</b> down from the shoulders.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					
 					return false;
 				}
@@ -965,7 +1024,7 @@ package classes.Items.Transformatives
 				{
 					target.addArmFlag(GLOBAL.FLAG_PAWS);
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " A feeling of sudden pressure begins to build on the upper inner span of your hands, and on the bottom of your fingertips. Tough, yet sensitive <b>pads like that of a canine push their way out from your hands</b>, designed to allow grip and traction despite a coat of fur.";
+					AddLogEvent("A feeling of sudden pressure begins to build on the upper inner span of your hands, and on the bottom of your fingertips. Tough, yet sensitive <b>pads like that of a canine push their way out from your hands</b>, designed to allow grip and traction despite a coat of fur.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					
 					return false;
 				}
@@ -974,7 +1033,7 @@ package classes.Items.Transformatives
 				{
 					target.addArmFlag(GLOBAL.FLAG_FLUFFY);
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Another wave of pinpricks crawl across your arms, and the cause is immediately obvious. The <b>fur on your arms begins growing longer and thicker</b>, and within moments is flowing in the wind slightly as you move your arms, as opposed to the thin layer that until recently clung to your skin like a tight jacket.";
+					AddLogEvent("Another wave of pinpricks crawl across your arms, and the cause is immediately obvious. The <b>fur on your arms begins growing longer and thicker</b>, and within moments is flowing in the wind slightly as you move your arms, as opposed to the thin layer that until recently clung to your skin like a tight jacket.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					
 					return false;
 				}
@@ -982,8 +1041,7 @@ package classes.Items.Transformatives
 			
 			if (frost && target.hasFur() && target.hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !target.hasPerk("Icy Veins")) // Environmental cold immunity perk for arctic fox. Comfortably sleeping naked on ice while exposed to Uvetan blizzard? No problem!
 			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You've become thickly-furred and fluffy everywhere! You'd have no problem surviving the arctic cold now, with such a thick layer of protective insulation.";
-				kGAMECLASS.eventBuffer += "\n\n(<b>Perk Gained: Icy Veins</b> - Your body has adapted to the extreme winter cold.)";
+				AddLogEvent("You've become thickly-furred and fluffy everywhere! You'd have no problem surviving the arctic cold now, with such a thick layer of protective insulation.\n\n(<b>Perk Gained: Icy Veins</b> - Your body has adapted to the extreme winter cold.)", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				target.createPerk("Icy Veins", 1, 0, 0, 0, "Your body has adapted to the extreme winter cold.");
 				
 				return false;
@@ -996,14 +1054,20 @@ package classes.Items.Transformatives
 					target.lipMod--;
 				}
 				
-				if (!target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) // no muzzle before
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your vision blurs as a sudden pulling sensation erupts between your eyes. Your nose pushes outwards into your view, and widens to accommodate the building mass within, pushing your eyes slightly out to the sides, rather than the traditional forward-facing human design. As your nose forms into a vulpine muzzle, the end of your nose visibly softens and darkens, growing slightly wet and filling your sinuses with a cornucopia of new scents. Finally, a set of sensitive whiskers spread out on either side of the end of your snout, letting you feel slight shifts in the wind in front of you. When the changes finish, a fully-formed <b>fox's muzzle sits in front of your face</b>.";
+				if (!target.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+				{
+					AddLogEvent("Your vision blurs as a sudden pulling sensation erupts between your eyes. Your nose pushes outwards into your view, and widens to accommodate the building mass within, pushing your eyes slightly out to the sides, rather than the traditional forward-facing human design. As your nose forms into a vulpine muzzle, the end of your nose visibly softens and darkens, growing slightly wet and filling your sinuses with a cornucopia of new scents. Finally, a set of sensitive whiskers spread out on either side of the end of your snout, letting you feel slight shifts in the wind in front of you. When the changes finish, a fully-formed <b>fox's muzzle sits in front of your face</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+				}
 				else
 				{
 					if (target.faceType == GLOBAL.TYPE_CANINE)
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your canine muzzle becomes leaner and more tapered, much like that of a fox's. <b>Your muzzle is now vulpine!</b>";
+					{
+						AddLogEvent("Your canine muzzle becomes leaner and more tapered, much like that of a fox's. <b>Your muzzle is now vulpine!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					}
 					else
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your facebones shifts as your muzzle take on an lean vulpine shape with a wet nose, much like that of a fox's. <b>Your muzzle is now vulpine!</b>";
+					{
+						AddLogEvent("Your facebones shifts as your muzzle take on an lean vulpine shape with a wet nose, much like that of a fox's. <b>Your muzzle is now vulpine!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					}
 				}
 				
 				target.faceType = GLOBAL.TYPE_VULPINE;
@@ -1011,14 +1075,13 @@ package classes.Items.Transformatives
 				
 				if (!InCollection(target.lipColor, "onyx", "black") && !colorsMatching(target))
 				{
-					kGAMECLASS.eventBuffer += "You catch the sight of <b>your lips darkening, as they fade to a shiny black</b>, completing the appearance of a typical fox's snout.";
+					ExtendLogEvent(" You catch the sight of <b>your lips darkening, as they fade to a shiny black</b>, completing the appearance of a typical fox's snout.");
 					target.lipColor = "black";
 				}
 				
 				if (!target.hasPerk("Androgyny"))
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your fox's muzzle has grown so distinctly vulpine that few, if any human features remain on your face. The slender vulpine muzzle gives you a rather androgynous appearance.";
-					kGAMECLASS.eventBuffer += "\n\n(<b>Perk Gained: Androgyny</b> - Your animalistic visage maintain an androgynous appearance that would befit either gender.)";
+					AddLogEvent("Your fox's muzzle has grown so distinctly vulpine that few, if any human features remain on your face. The slender vulpine muzzle gives you a rather androgynous appearance.\n\n(<b>Perk Gained: Androgyny</b> - Your animalistic visage maintain an androgynous appearance that would befit either gender.)", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.createPerk("Androgyny", 1, 0, 0, 0, "Your animalistic visage maintain an androgynous appearance that would befit either gender.");
 				}
 				
@@ -1030,7 +1093,7 @@ package classes.Items.Transformatives
 				{
 					target.addFaceFlag(GLOBAL.FLAG_MUZZLED);
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your face begins to tingle, and is followed by a tugging sensation between your eyes. Your nose pushes outwards, widening slightly as it grows, until it rests upon your face as the signature thin <b>muzzle of a fox</b>.";
+					AddLogEvent("Your face begins to tingle, and is followed by a tugging sensation between your eyes. Your nose pushes outwards, widening slightly as it grows, until it rests upon your face as the signature thin <b>muzzle of a fox</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					
 					return false;
 				}
@@ -1041,13 +1104,13 @@ package classes.Items.Transformatives
 				// short facial hair blends into fur
 				if (target.beardLength < 1 && target.beardLengthUnlocked(0))
 				{
-					kGAMECLASS.output("\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You scratch at your " + target.beard() + ", only to discover it has merged into your fur... Your beard is gone!");
+					AddLogEvent("You scratch at your " + target.beard() + ", only to discover it has merged into your fur... Your beard is gone!", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.removeBeard();
 				}
 				// or, if you have enough beard, something more original?
 				else if (target.beardLength >= 1 && target.beardStyleUnlocked(11))
 				{
-					kGAMECLASS.output("\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your " + target.beard() + " starts to suddenly grow out wildly as it merges with your fur, only to pull up to the sides of your " + target.face() + " in thick tufts, which flare back and outwards at the back of your jaw. You now have animalistic side-burns!");
+					AddLogEvent("Your " + target.beard() + " starts to suddenly grow out wildly as it merges with your fur, only to pull up to the sides of your " + target.face() + " in thick tufts, which flare back and outwards at the back of your jaw. You now have animalistic side-burns!", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					target.beardStyle = 11;
 					if (target.beardLength < 2) target.beardLength = 2;
 					if (target.beardLength > target.tallness / 12) target.beardLength = target.tallness / 12;
@@ -1056,9 +1119,9 @@ package classes.Items.Transformatives
 			
 			if (!InCollection(target.lipColor, "onyx", "black") && !colorsMatching(target))
 			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " You catch the sight of your lips darkening, as they fade to a shiny black";
-				if (target.faceType == GLOBAL.TYPE_VULPINE && target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) kGAMECLASS.eventBuffer += ", completing the appearance of a typical fox's snout"
-				kGAMECLASS.eventBuffer += ". <b>You now have black lips!</b>";
+				AddLogEvent("You catch the sight of your lips darkening, as they fade to a shiny black", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+				if (target.faceType == GLOBAL.TYPE_VULPINE && target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) ExtendLogEvent(", completing the appearance of a typical fox's snout");
+				ExtendLogEvent(". <b>You now have black lips!</b>");
 				target.lipColor = "black";
 				
 				return false;
@@ -1069,9 +1132,13 @@ package classes.Items.Transformatives
 				if (target.tongueType != GLOBAL.TYPE_CANINE)
 				{
 					if (target.hasTongueFlag(GLOBAL.FLAG_LONG))
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your mouth waters suddenly, and you feel a gentle tug on your tongue as it sits within your mouth. It shrinks shorter than it was before and flattens slightly, growing much more suited to running the length of a long fox's snout, resting lazily within your mouth. <b>You now have a lolling vulpine tongue!</b>";
+					{
+						AddLogEvent("Your mouth waters suddenly, and you feel a gentle tug on your tongue as it sits within your mouth. It shrinks shorter than it was before and flattens slightly, growing much more suited to running the length of a long fox's snout, resting lazily within your mouth. <b>You now have a lolling vulpine tongue!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					}
 					else
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp()) + " Your mouth waters suddenly, and you feel a gentle tug on your tongue as it sits within your mouth. It grows a tiny bit longer than it was before and flattens slightly, growing much more suited to running the length of a long fox's snout, resting lazily within your mouth. <b>You now have a lolling vulpine tongue!</b>";
+					{
+						AddLogEvent("Your mouth waters suddenly, and you feel a gentle tug on your tongue as it sits within your mouth. It grows a tiny bit longer than it was before and flattens slightly, growing much more suited to running the length of a long fox's snout, resting lazily within your mouth. <b>You now have a lolling vulpine tongue!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					}
 					target.tongueFlags = [];
 				}
 				

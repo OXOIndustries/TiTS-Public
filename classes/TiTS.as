@@ -131,6 +131,7 @@
 		
 		//Sidequest shit
 		include "../includes/events/seraSexParty.as";
+		include "../includes/events/pexigaQuest/pexigaQuest.as";
 
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";
@@ -353,7 +354,7 @@
 		}
 
 		// Queued event system
-		public var eventBuffer:String;
+		public var timestampedEventBuffer:Array;
 		public var eventQueue:Array;
 
 		// Version string/value
@@ -461,8 +462,8 @@
 			this.inSceneBlockSaving = false;
 			gameOverEvent = false;
 			
-			eventQueue = new Array();
-			eventBuffer = "";
+			eventQueue = [];
+			timestampedEventBuffer = [];
 			
 			//Toggles
 			silly = false;
@@ -1270,6 +1271,10 @@
 		public function get kally():Kally
 		{
 			return chars["KALLY"];
+		}
+		public function get pexiga():Pexiga
+		{
+			return chars["PEXIGA"];
 		}
 		
 		private var _dbgtestvar:int = 0;

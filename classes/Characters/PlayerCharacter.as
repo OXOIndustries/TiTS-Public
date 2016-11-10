@@ -10,10 +10,11 @@ package classes.Characters
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
 	import classes.ItemSlotClass;
-	import classes.Engine.Interfaces.logTimeStamp;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.InCollection;
+	import classes.Engine.Interfaces.AddLogEvent;
+	import classes.Engine.Interfaces.ExtendLogEvent;
 	
 	/**
 	 * Yeah this is kinda bullshit, but it also means we can version the PC data structure like NPCs.
@@ -436,21 +437,23 @@ package classes.Characters
 			{
 				if (unflaggedGenital.length == cocks.length)
 				{
-					if(cockTotal() == 1) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " The " + cockColor() + " skin of your " + simpleCockNoun(0) + " is vanishing into a slowly creeping wave " + kGAMECLASS.gooColor() + " goo, losing cohesion in exchange for infinitely morphic possibilities. <b>Your penis is now gelatinous.</b>";
+					if (cocks.length == 1) AddLogEvent("The " + cockColor() + " skin of your " + simpleCockNoun(0) + " is vanishing into a slowly creeping wave " + kGAMECLASS.gooColor() + " goo, losing cohesion in exchange for infinitely morphic possibilities. <b>Your penis is now gelatinous.</b>", "passive", deltaT);
 					//Multischlongs
-					else kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " The skin of your " + cocksDescript() + " tingles like mad as waves of translucent goo slowly replaces their skin, transforming them from fleshy wieners into semi-solid, shape-shifting pricks. <b>Your penises are now gelatinous.</b>";
+					else AddLogEvent("The skin of your " + cocksDescript() + " tingles like mad as waves of translucent goo slowly replaces their skin, transforming them from fleshy wieners into semi-solid, shape-shifting pricks. <b>Your penises are now gelatinous.</b>", "passive", deltaT);
 				}
 				else
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " Your gooey, ever-slick crotch spreads down the length";
-					if(unflaggedGenital.length > 1) kGAMECLASS.eventBuffer += "s of your rogue, solid dicks, transforming them into drippy, inexplicably jellied boners.";
+					var m:String = "Your gooey, ever-slick crotch spreads down the length";
+					if(unflaggedGenital.length > 1) m += "s of your rogue, solid dicks, transforming them into drippy, inexplicably jellied boners.";
 					else 
 					{
-						kGAMECLASS.eventBuffer += " of your rock, solidified dick, transforming it to be just as drippy and jelly-like as";
-						if(cockTotal() == 2) kGAMECLASS.eventBuffer += " its brother.";
-						else kGAMECLASS.eventBuffer += " its brothers.";
+						m += " of your rock, solidified dick, transforming it to be just as drippy and jelly-like as";
+						if(cockTotal() == 2) m += " its brother.";
+						else m += " its brothers.";
 					}
-					kGAMECLASS.eventBuffer += " <b>All of your penises are now gelatinous.</b>";
+					m += " <b>All of your penises are now gelatinous.</b>";
+					
+					AddLogEvent(m, "passive", deltaT);
 				}
 				
 				for (i = 0; i < unflaggedGenital.length; i++)
@@ -475,16 +478,18 @@ package classes.Characters
 			{
 				if (unflaggedVagNum == vaginas.length)
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " You're getting incredibly wet";
-					if(legCount > 1) kGAMECLASS.eventBuffer += " between the [pc.legs]";
-					else kGAMECLASS.eventBuffer += "... down there";
-					kGAMECLASS.eventBuffer += ". Moisture seems to be dripping everywhere, transforming your puss";
-					if(totalVaginas() == 1) kGAMECLASS.eventBuffer += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
-					else kGAMECLASS.eventBuffer += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
+					var m:String = "You're getting incredibly wet";
+					if(legCount > 1) m += " between the [pc.legs]";
+					else m += "... down there";
+					m += ". Moisture seems to be dripping everywhere, transforming your puss";
+					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
+					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
+					
+					AddLogEvent(m, "passive", deltaT);
 				}
 				else
 				{
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " Unsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>";
+					AddLogEvent("Unsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>", "passive", deltaT);
 				}
 			}
 		}
@@ -504,7 +509,7 @@ package classes.Characters
 			
 			if (effect.value1 > 1000 && rand(2) == 0)
 			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", 1440 - (GetGameTimestamp() % 1440)) + " You feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?";
+				AddLogEvent("You feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?", "passive", 1440 - (GetGameTimestamp() % 1440));
 			}
 		}
 		
@@ -546,14 +551,15 @@ package classes.Characters
 				if (buttRatingRaw + addBooty > bootyMin) addBooty = bootyMin - buttRatingRaw;
 				if (addBooty < 0) return;
 				
-				kGAMECLASS.eventBuffer += "\n\n" + logTimeStamp("passive", baseDShift + (i * 1440)) + " You notice some extra weight and jiggle when you go to move or stand. Looking behind you, you find that your ass has gained";
-				if (addBooty > 5) kGAMECLASS.eventBuffer += " an epic amount of cheek";
-				else if (addBooty > 4) kGAMECLASS.eventBuffer += " a massive surge in size";
-				else if (addBooty > 3) kGAMECLASS.eventBuffer += " a much larger circumference";
-				else if (addBooty > 2) kGAMECLASS.eventBuffer += " a few sizes";
-				else if (addBooty > 1) kGAMECLASS.eventBuffer += " a another size or two";
-				else kGAMECLASS.eventBuffer += " some mass";
-				kGAMECLASS.eventBuffer += ParseText("... It seems your bubbly booty refuses to be any smaller" + (buttRatingRaw < 10 ? " than that." : "--not that you’d complain!") + " <b>Your [pc.butts] have grown bigger!</b>");
+				var m:String = "You notice some extra weight and jiggle when you go to move or stand. Looking behind you, you find that your ass has gained"
+				
+				if (addBooty > 5) m += " an epic amount of cheek";
+				else if (addBooty > 4) m += " a massive surge in size";
+				else if (addBooty > 3) m += " a much larger circumference";
+				else if (addBooty > 2) m += " a few sizes";
+				else if (addBooty > 1) m += " a another size or two";
+				else m += " some mass";
+				m += ParseText("... It seems your bubbly booty refuses to be any smaller" + (buttRatingRaw < 10 ? " than that." : "--not that you’d complain!") + " <b>Your [pc.butts] have grown bigger!</b>");
 				
 				buttRatingRaw += addBooty;
 				
@@ -562,10 +568,12 @@ package classes.Characters
 					var gooCost:Number = (20 * addBooty);
 					if(gooCost > 0 && kGAMECLASS.gooBiomass() >= gooCost)
 					{
-						kGAMECLASS.eventBuffer += " Although, the growth took up some of your gooey biomass in the process...";
+						m += " Although, the growth took up some of your gooey biomass in the process...";
 						kGAMECLASS.gooBiomass(-1 * gooCost);
 					}
 				}
+				
+				AddLogEvent(m, "passive", baseDShift + (i * 1440));
 			}
 		}
 		
@@ -578,45 +586,47 @@ package classes.Characters
 			var deltaShift:uint = 1440 - (GetGameTimestamp() % 1440);
 	
 			for (var i:int = 0; i < totalDays; i++)
-			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaShift + (i * 1440)) + " Your scalp tingles and you";
+			{ 
+				var m:String = "Your scalp tingles and you";
 				if (hairLength <= 0)
 				{
-					kGAMECLASS.eventBuffer += ParseText(" reach up to scratch it. Instead of [pc.skinFurScalesNoun], your fingers run across");
+					m += ParseText(" reach up to scratch it. Instead of [pc.skinFurScalesNoun], your fingers run across");
 					if(hairType == GLOBAL.HAIR_TYPE_REGULAR)
 					{
-						kGAMECLASS.eventBuffer += " patches of growing hair.";
+						m += " patches of growing hair.";
 						hairLength = 0.125;
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += ParseText(" a growing patch of tiny [pc.hairsNoun].");
+						m += ParseText(" a growing patch of tiny [pc.hairsNoun].");
 						hairLength = 0.5;
 					}
-					kGAMECLASS.eventBuffer += ParseText(" <b>You now have [pc.hair]!</b>");
+					m += ParseText(" <b>You now have [pc.hair]!</b>");
 				}
 				else
 				{
 					var hairGain:Number = 1 + rand(2);
 					if (hairLength <= 2)
 					{
-						kGAMECLASS.eventBuffer += ParseText(" reach up to touch your short [pc.hairNoun]. <b>It seems longer than it did before, growing out about " + num2Text(hairGain) + " more inch");
-						if(hairGain != 1) kGAMECLASS.eventBuffer += "es";
-						kGAMECLASS.eventBuffer += ".</b>";
+						m += ParseText(" reach up to touch your short [pc.hairNoun]. <b>It seems longer than it did before, growing out about " + num2Text(hairGain) + " more inch");
+						if(hairGain != 1) m += "es";
+						m += ".</b>";
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += ParseText(" see your [pc.hairNoun] grow out, right in front of your eyes. <b>Your hair has lengthened by " + num2Text(hairGain) + " inch");
-						if(hairGain != 1) kGAMECLASS.eventBuffer += "es";
-						kGAMECLASS.eventBuffer += "!</b>";
+						m += ParseText(" see your [pc.hairNoun] grow out, right in front of your eyes. <b>Your hair has lengthened by " + num2Text(hairGain) + " inch");
+						if(hairGain != 1) m += "es";
+						m += "!</b>";
 					}
 					hairLength = Math.round(hairLength + hairGain);
 				}
 				if(!InCollection(hairStyle, ["null", "tentacle"]))
 				{
-					kGAMECLASS.eventBuffer += " It seems the growth has messed up your hairdo in the process... You might have to get it restyled later.";
+					m += " It seems the growth has messed up your hairdo in the process... You might have to get it restyled later.";
 					hairStyle = "null";
 				}
+				
+				AddLogEvent(m, "passive", deltaShift + (i * 1440));
 			}
 		}
 	}

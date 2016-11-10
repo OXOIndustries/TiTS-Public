@@ -1470,7 +1470,7 @@ public function femSydianFuck():void
 	if (pc.cumQ() <= 1500)
 	{
 		output(" She wrings you, clings to you, until you shoot every last string.");
-		if (pc.cumQ() <= 150) output(" With how little your [pc.balls] produce, you doubt very much that she’ll get her wish.");
+		if (pc.cumQ() <= 7) output(" With how little your [pc.balls] produce, you doubt very much that she’ll get her wish.");
 	}
 	else
 	{
