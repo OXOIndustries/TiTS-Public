@@ -267,7 +267,7 @@
 			//Fail: 
 			if(!target.isImmobilized() && physique()/2 + 10 <= target.reflexes()/2 + rand(20) + 1)
 			{
-				output("\n\nYou sense one of them crouching down behind you and react just in time, barrelling into the other two before they can push you over.");
+				output("\n\nYou sense one of them crouching down behind you and react just in time, barreling into the other two before they can push you over.");
 				output("\n\n<i>“Spoilsport,”</i> grouses one as they scramble back out again.");
 				target.createStatusEffect("Attempt Seduction", 0, 0, 0, 0, true, "", "", true, 0);
 			}

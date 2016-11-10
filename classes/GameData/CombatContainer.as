@@ -365,7 +365,7 @@ package classes.GameData
 				{
 					if (!h.hasStatusEffect("Parasite Cure") || h.statusEffectv1("Parasite Cure") < 3)
 					{
-						addButton(11, "Use Cure", h.attemptCure, undefined, "Use the Cure", "Use the cure you and Doc Vanderbilt made. You'll have to get to the Fire Suppression system, access its internal supply, and then insert the cure spray. With any luck, that will start spreading the cure, and neutralize the infected.");
+						addButton(11, "Use Cure", h.attemptCure, undefined, "Use the Cure", "Use the cure you and Doc Vanderbilt made. You’ll have to get to the Fire Suppression system, access its internal supply, and then insert the cure spray. With any luck, that will start spreading the cure, and neutralize the infected.");
 					}
 				}
 				else if (h.statusEffectv1("Parasite Cure") == 3)
@@ -457,7 +457,7 @@ package classes.GameData
 				else
 				{
 					if (target is PlayerCharacter) output("\n\n<b>The aphrodisiac in your bloodstream continues to excite your body!</b>");
-					else output("\n\n<b>The aphrodisiac in " + possessive(target.getCombatName()) + " bloodstream continues to excite " + target.mfn("him", "her", "it") + "!</b>");
+					else output("\n\n<b>The aphrodisiac in " + possessive(target.getCombatName()) + " bloodstream continues to excite " + target.getCombatPronoun("himher") + "!</b>");
 					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro") } ), null, target);
 				}
 			}
@@ -610,7 +610,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Paralyzed");
 					if (target is PlayerCharacter) output("\n\n<b>The paralytic venom wears off, and you are able to move once more.</b>");
-					else output("\n\n<b>The paralysis affecting " + StringUtil.capitalize(target.getCombatName(), false) + " seems to wear off, motion returning to " + target.mfn("his", "her", "its") + " limbs!</b>");
+					else output("\n\n<b>The paralysis affecting " + StringUtil.capitalize(target.getCombatName(), false) + " seems to wear off, motion returning to " + target.getCombatPronoun("hisher") + " limbs!</b>");
 				}
 				else
 				{
@@ -693,7 +693,7 @@ package classes.GameData
 					{
 						//Combat blurb:
 						if (target is PlayerCharacter) output("\n\n<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.</b>");
-						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " hacked drone continues to fly around them, projecting a series of ever lewder smutty visuals directly at " + target.mfn("him", "her", "it") + "!</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " hacked drone continues to fly around them, projecting a series of ever lewder smutty visuals directly at " + target.getCombatPronoun("himher") + "!</b>");
 						target.lust(4);
 					}
 				}
@@ -805,7 +805,7 @@ package classes.GameData
 				}
 				else
 				{
-					output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " has a resolved, steely look in " + target.mfn("his","her","its") + " eyes!</b>");
+					output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " has a resolved, steely look in " + target.getCombatPronoun("hisher") + " eyes!</b>");
 				}
 			}
 		
@@ -825,7 +825,7 @@ package classes.GameData
 			/*
 			if (target.hasStatusEffect("Stunned"))
 			{
-				if (target.hasStatusEffect("Lust Stunned")) output("<b>Your teasing has the poor " + target.mfn("boy", "girl", "thing") + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target,mfn("his", "her", "its") + " lust addled nerves.</b>\n");
+				if (target.hasStatusEffect("Lust Stunned")) output("<b>Your teasing has the poor " + target.mfn("boy", "girl", "thing") + " in a shuddering mess as " + target.getCombatPronoun("heshe") +" tries to regain control of " + target,mfn("his", "her", "its") + " lust addled nerves.</b>\n");
 				else if (target.plural) output("<b>" + target.capitalA + target.short + " are stunned and unable to act!</b>\n");
 				else output("<b>" + target.capitalA + target.short + " is stunned and unable to act!</b>\n");
 			}
@@ -898,9 +898,8 @@ package classes.GameData
 					output("\n\nThe sweet, warm pine smell of your resin is heavy in the air.");
 					if(!resinFailed)
 					{
-						output(" " + ((target is PlayerCharacter) ? "You look" : (target.getCombatName() + " looks")) + " rather flushed, unable to stop eyeing " + ((target is PlayerCharacter) ? (possessive(target.getCombatName())) : "your") + " strong, unshakable body");
-						if(target.lust() > 66) output(". Increasingly, " + ((target is PlayerCharacter) ? "you" : (target.isPlural ? "they" : target.mfn("he","she","it"))) + " can’t seem to tear " + ((target is PlayerCharacter) ? "your" : (target.isPlural ? "their" : target.mfn("his","her","its"))) + " eyes away from " + ((target is PlayerCharacter) ? (target.isPlural ? "they" : target.mfn("he","she","it")) : "you") + "..");
-						output(".");
+						output(" " + ((target is PlayerCharacter) ? "You look" : (StringUtil.capitalize(target.getCombatName(), false) + " look" + (target.isPlural ? "" : "s"))) + " rather flushed, unable to stop eyeing " + ((target is PlayerCharacter) ? "your enemy’s" : "your") + " strong, unshakable body.");
+						if(target.lust() > 66) output(" Increasingly, " + target.getCombatPronoun("heshe") + " can’t seem to tear " + target.getCombatPronoun("hisher") + " eyes away from " + ((target is PlayerCharacter) ? "your opponent" : "you") + "...");
 						outputDamage(resinResult);
 					}
 					else
@@ -952,9 +951,8 @@ package classes.GameData
 					output("\n\nCurrents of bright yellow pollen drift through the air around you.");
 					if(!pollenFailed)
 					{
-						output(" " + ((target is PlayerCharacter) ? "You look" : "Your opponent looks") + " flushed and short of breath");
-						if(target.lust() > 66) output(". Increasingly, " + ((target is PlayerCharacter) ? "you" : (target.isPlural ? "they" : target.mfn("he","she","it"))) + " can’t seem to tear " + ((target is PlayerCharacter) ? "your" : (target.isPlural ? "their" : target.mfn("his","her","its"))) + " eyes away from " + ((target is PlayerCharacter) ? (target.isPlural ? "they" : target.mfn("he","she","it")) : "you") + "..");
-						output(".");
+						output(" " + ((target is PlayerCharacter) ? "You look" : "Your opponent looks") + " flushed and short of breath.");
+						if(target.lust() > 66) output(" Increasingly, " + target.getCombatPronoun("heshe") + " can’t seem to tear " + target.getCombatPronoun("hisher") + " eyes away from " + ((target is PlayerCharacter) ? "your foe" : "you") + "...");
 						outputDamage(pollenResult);
 					}
 					else
@@ -1248,7 +1246,7 @@ package classes.GameData
 		{
 			clearOutput();
 
-			output("You decide you'd rather fantasize than fight back at this point. Why bother when your enem");
+			output("You decide you’d rather fantasize than fight back at this point. Why bother when your enem");
 			if(enemiesAlive() > 1) output("ies are");
 			else output("y is");
 			output(" so alluring?");
@@ -1319,7 +1317,7 @@ package classes.GameData
 				{
 					if(target.canFly() && target.hasWings())
 					{
-						output("With " + target.mfn("his", "her", "its") + " " + target.wingsDescript(true) + " quickly flapping, " + target.getCombatName());
+						output("With " + target.getCombatPronoun("hisher") + " " + target.wingsDescript(true) + " quickly flapping, " + target.getCombatName());
 					}
 					else output(StringUtil.capitalize(target.getCombatName(), false));
 					output(" lifts");
@@ -1358,7 +1356,7 @@ package classes.GameData
 			}
 			else if (hasEnemyOfClass(Frostwyrm))
 			{
-				output("The frostwyrm doesn't give chase, letting you escape.");
+				output("The frostwyrm doesn’t give chase, letting you escape.");
 				CombatManager.abortCombat();
 			}			
 			else 
@@ -1545,7 +1543,8 @@ package classes.GameData
 						}
 						else
 						{
-							output("<b>Your teasing has the poor " + target.mfn("boy", "girl", "thing") + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target.mfn("his", "her", "its") + " lust addled nerves.</b>");
+							if (!target.isPlural) output("<b>Your teasing has " + (_hostiles.length == 1 ? ("the poor " + target.mfn("boy", "girl", "thing")) : target.getCombatName()) + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target.mfn("his", "her", "its") + " lust addled nerves.</b>");
+							else output("<b>Your teasing has " + target.getCombatName() + " in a shuddering mess as they try to regain control of their lust addled nerves.</b>");
 						}
 					}
 				}
@@ -1835,14 +1834,14 @@ package classes.GameData
 				if(!pc.hasStatusEffect("Drone Targeting")) addDisabledButton(12, "Auto", "Automatic", "Targeting is set to automatic.");
 				else addButton(12, "Auto", selectDroneTargetAuto, undefined, "Automatic", "Automatically select the best target.");
 				if(pc.statusEffectv1("Drone Targeting") < 0 || pc.droneTarget == null) addDisabledButton(13, "None", "No Target", "Currently not targeting anything.");
-				else addButton(13, "None", selectDroneTargetSpecial, undefined, "No Target", "Don't target anything.");
+				else addButton(13, "None", selectDroneTargetSpecial, undefined, "No Target", "Don’t target anything.");
 			}
 			else
 			{
 				if(!pc.hasStatusEffect("Drone Targeting")) addDisabledButton(0, "Target", "Target", "Currently targeting enemy.");
 				else addButton(0, "Target", selectDroneTargetAuto, undefined, "Target", "Target the enemy.");
 				if(pc.statusEffectv1("Drone Targeting") < 0 || pc.droneTarget == null) addDisabledButton(1, "Withdraw", "No Target", "Currently not targeting enemy.");
-				else addButton(1, "Withdraw", selectDroneTargetSpecial, undefined, "No Target", "Don't target enemy.");
+				else addButton(1, "Withdraw", selectDroneTargetSpecial, undefined, "No Target", "Don’t target enemy.");
 			}
 			
 			addButton(14, "Back", generateSpecialsMenu);
@@ -2411,7 +2410,7 @@ package classes.GameData
 					//Petite ones!
 					else {
 						if(!pc.isChestExposed()) output("You remove your [pc.upperGarments] with ease to free the perfectly rounded, perky breasts. You run your hands across the [pc.skinFurScales] to thumb at your nipples and grace your target with a lascivious look before putting the girls away a little regretfully.");
-						else output("With your [pc.fullChest] on complete display, you arch your back to present yourself as pleasingly as possible. Your hands wind their way up to your [pc.nipples] and give them a little tweak, sliding down the supple curve of your underbust. You give your target a smile before you stop, but even now, your bared [pc.skinFurScales] will taunt " + target.mfn("him","her","it") + ".");
+						else output("With your [pc.fullChest] on complete display, you arch your back to present yourself as pleasingly as possible. Your hands wind their way up to your [pc.nipples] and give them a little tweak, sliding down the supple curve of your underbust. You give your target a smile before you stop, but even now, your bared [pc.skinFurScales] will taunt " + target.getCombatPronoun("himher") + ".");
 					}
 				}
 				//Reqs: PC is wearing clothes but no bra, PC’s biggest breast row is at least a D-cup
@@ -2640,8 +2639,7 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE);
 			
 			clearOutput();
-			if(target.isPlural) output("Smiling coyly, you run up to your opponents and knock " + target.mfn("him","her","it") + " down. Before they can react, you");
-			else output("Smiling coyly, you run up to your opponent and knock " + target.mfn("him","her","it") + " down. Before " + target.mfn("he","she","it") + " can react, you");
+			output("Smiling coyly, you run up to " + ((_hostiles.length == 1 && !target.isPlural) ? "your opponent" : target.getCombatName()) + " and knock " + target.getCombatPronoun("himher") + " down. Before " + target.getCombatPronoun("heshe") + " can react, you");
 			if(!pc.isCrotchExposed())
 			{
 				output(" wrestle your cock out of your");
@@ -2649,7 +2647,7 @@ package classes.GameData
 				else output(" clothes");
 			}
 			else output(" grab your dick");
-			if(target.isPlural) output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on their face before jumping back to a safe distance.");
+			if(target.isPlural) output(" and use it to slap them across their faces a few times. You make sure that some of your aphrodisiac dick oil is smeared on them before jumping back to a safe distance.");
 			else output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on " + target.mfn("his","her","its") + " face before jumping back to a safe distance.");
 			
 			applyTeaseDamage(pc, target, teaseCount, "DICK SLAP", likeAdjustments);
@@ -3030,7 +3028,7 @@ package classes.GameData
 			{
 				if(pc.hasArmor()) output("You undo the lower half of your [pc.armor] to let [pc.eachCock] fall out and [pc.balls] hang loose.");
 				else output("You roll back your shoulders and angle up your hip to show off your [pc.eachCock] and swinging [pc.balls].");
-				output(" Coincidentally [pc.oneCock] is hung inside of your harness, it's [pc.cockHead] utterly covered in precum, showing how virile and ready to please you are. You stroke [pc.oneCock] until a glob of precum lands on your hand. Lifting it above your mouth you slowly let your [pc.cumVisc] precum slide into your mouth. After letting it rest on your tongue for a bit, you swallow. You open your mouth and show " + target.getCombatName() + " that your mouth is now empty. You quickly cover back up.");
+				output(" Coincidentally [pc.oneCock] is hung inside of your harness, it’s [pc.cockHead] utterly covered in precum, showing how virile and ready to please you are. You stroke [pc.oneCock] until a glob of precum lands on your hand. Lifting it above your mouth you slowly let your [pc.cumVisc] precum slide into your mouth. After letting it rest on your tongue for a bit, you swallow. You open your mouth and show " + target.getCombatName() + " that your mouth is now empty. You quickly cover back up.");
 			}
 		}
 		
@@ -3327,11 +3325,11 @@ package classes.GameData
 			}
 			else {
 				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName(), false) + " seems unimpressed.";
-				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName(), false) + " looks a little intrigued by what " + target.mf("he","she") + " sees.";
+				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName(), false) + " looks a little intrigued by what " + target.getCombatPronoun("heshe") + " sees.";
 				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName(), false) + " definitely seems to be enjoying the show.";
-				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName(), false) + " openly touches " + target.mfn("him","her","it") + "self as " + target.mfn("he","she","it") + " watches you.";
-				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName(), false) + " flushes hotly with desire, " + target.mfn("his","her","its") + " eyes filled with longing.";
-				else buffer = StringUtil.capitalize(target.getCombatName(), false) + " licks " + target.mfn("his","her","its") + " lips in anticipation, " + target.mfn("his","her","its") + " hands idly stroking " + target.mfn("his","her","its") + " own body.";
+				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName(), false) + " openly touches " + target.getCombatPronoun("himher") + "self as " + target.getCombatPronoun("heshe") + " watches you.";
+				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName(), false) + " flushes hotly with desire, " + target.getCombatPronoun("hisher") + " eyes filled with longing.";
+				else buffer = StringUtil.capitalize(target.getCombatName(), false) + " licks " + target.getCombatPronoun("hisher") + " lips in anticipation, " + target.getCombatPronoun("hisher") + " hands idly stroking " + target.getCombatPronoun("hisher") + " own body.";
 			}
 			return buffer;
 		}
@@ -4091,16 +4089,16 @@ package classes.GameData
 			else
 			{
 				if(target.lust() < 60) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " " + target.skin() + " remains flushed with the beginnings of arousal.");
-				else if(target.lust() < 70) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " eyes constantly dart over your most sexual parts, betraying " + target.mfn("his","her","its") + " lust.");
+				else if(target.lust() < 70) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " eyes constantly dart over your most sexual parts, betraying " + target.getCombatPronoun("hisher") + " lust.");
 				else if (target.lust() < 85)
 				{
-					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " is having trouble moving due to the rigid protrusion in " + target.mfn("his","her","its") + " groin.");
-					if(target.hasVagina()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " is obviously turned on, you can smell " + target.mfn("his","her","its") + " arousal in the air.");
+					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " is having trouble moving due to the rigid protrusion in " + target.getCombatPronoun("hisher") + " groin.");
+					if(target.hasVagina()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " is obviously turned on, you can smell " + target.getCombatPronoun("hisher") + " arousal in the air.");
 				}
 				else
 				{
-					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " is panting and softly whining, each movement seeming to make " + target.mfn("his","her","its") + " bulge more pronounced. You don’t think " + target.mfn("he","she","it") + " can hold out much longer.");
-					if(target.hasVagina()) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " " + target.vaginaDescript() + " is practically soaked with " + target.mfn("his","her","its") + " lustful secretions.");
+					if(target.hasCock()) output("\n" + StringUtil.capitalize(target.getCombatName(), false) + " is panting and softly whining, each movement seeming to make " + target.getCombatPronoun("hisher") + " bulge more pronounced. You don’t think " + target.getCombatPronoun("heshe") + " can hold out much longer.");
+					if(target.hasVagina()) output("\n" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " " + target.vaginaDescript() + " is practically soaked with " + target.getCombatPronoun("hisher") + " lustful secretions.");
 				}
 			}
 		}
@@ -4275,7 +4273,7 @@ package classes.GameData
 				{
 					_friendlies[i].alreadyDefeated = true;
 					if (_friendlies[i] is PlayerCharacter) output("\n\nYou fall to the ground,");
-					else output("\n\n" +StringUtil.capitalize(_friendlies[i].getCombatName(), false) + " falls to the ground,");
+					else output("\n\n" + StringUtil.capitalize(_friendlies[i].getCombatName(), false) + " falls to the ground,");
 					if (_friendlies[i].HP() <= 0) output(" defeated.");
 					else output(" stricken with lust.");
 				}
@@ -4562,7 +4560,7 @@ package classes.GameData
 			{
 				output("\n");
 				if(CombatManager.multipleEnemies()) output("They had ");
-				else output(_hostiles[0].mfn("He","She", "It") + " had ");
+				else output(StringUtil.capitalize(_hostiles[0].getCombatPronoun("heshe")) + " had ");
 				output(String(sumCredits) + " credit");
 				if(sumCredits > 1) output("s");
 				output(" loaded on " + (CombatManager.multipleEnemies() ? "anonymous credit chits" : "an anonymous credit chit") + " that you appropriate.");
