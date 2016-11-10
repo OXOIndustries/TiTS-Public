@@ -21,7 +21,7 @@ package classes.Items.Miscellaneous
 			this.stackSize = 10;
 			this.type = GLOBAL.POTION;
 			this.combatUsable = true;
-			this.requiresTarget = false;
+			this.requiresTarget = true;
 			
 			//Used on inventory buttons
 			this.shortName = "OS StimBoost";
@@ -62,8 +62,19 @@ package classes.Items.Miscellaneous
 			
 			if (usingCreature == null) usingCreature = kGAMECLASS.pc;
 			
+			var hpChange:int = 0;
+			
 			if (usingCreature == kGAMECLASS.pc)
 			{
+				if (target.isImmobilized() || target.isDefeated())
+				{
+					if(!kGAMECLASS.infiniteItems()) quantity++;
+					kGAMECLASS.clearOutput();
+					if(usingCreature == target) kGAMECLASS.output("You can’t seem to get a hold of the stimbooster at the moment!");
+					else kGAMECLASS.output("You are about to pull out an stimbooster, but " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + " wouldn’t be able to make use of it!");
+					return false;
+				}
+				
 				if (target.HP() >= target.HPMax() && target.energy() >= target.energyMax())
 				{
 					if(!kGAMECLASS.infiniteItems()) quantity++;
@@ -71,49 +82,49 @@ package classes.Items.Miscellaneous
 					kGAMECLASS.output("Using the stimbooster without need would be pretty wasteful....");
 					return false;
 				}
+				
+				kGAMECLASS.clearOutput();
+				
+				if (usingCreature == target)
+				{
+					kGAMECLASS.output("You flip the protective cap off the end of the hypospray and settle it quickly against your arm. A quick thumb of the button and the microsurgeons surge into your bloodstream near instantaneously, a distinct feeling of <i>power</i> coursing through your veins as they spread throughout your body.");
+					
+				}
 				else
 				{
-					kGAMECLASS.clearOutput();
-					
-					if (usingCreature == target)
-					{
-						kGAMECLASS.output("You flip the protective cap off the end of the hypospray and settle it quickly against your arm. A quick thumb of the button and the microsurgeons surge into your bloodstream near instantaneously, a distinct feeling of <i>power</i> coursing through your veins as they spread throughout your body.");
-						
-						var hpChange:int = gainHP(target);
-				
-						if(hpChange > 0) kGAMECLASS.output(" <b>You have gained " + hpChange + " HP!</b>");
-						target.HP(hpChange);
-						target.energyRaw = target.energyMax();
-					}
+					if(target.isPlural) kGAMECLASS.output("You pull out a stimbooster and toss it to " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + ". They quickly pop off the cap and press the business end to their body. In mere seconds " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + " look far perkier, the microsurgeons working quickly to dull the pain and weariness from their frame.");
+					else kGAMECLASS.output("You pull out a stimbooster and toss it to " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + ". " + target.mfn("He", "She", "It") + " quickly pops off the cap and presses the business end to " + target.mfn("his", "her", "its") + " body. In mere seconds " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + " looks far perkier, the microsurgeons working quickly to dull the pain and weariness from " + target.mfn("his", "her", "its") + " frame.");
 				}
+				
+				hpChange = gainHP(target);
+				if(hpChange > 0) kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + ((usingCreature == target || target.isPlural) ? "have" : "has") + " gained " + hpChange + " HP!</b>");
+				target.HP(hpChange);
+				target.energyRaw = target.energyMax();
 			}
 			else
 			{
-				
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				if (usingCreature == target)
 				{
-					kGAMECLASS.output(usingCreature.short + " pulls out a HP booster and jabs it into their own arm. Woosh noises etc. In mere seconds they look far perkier, the microsurgeons working quickly to dull the pains and weariness from their frame.");
-				}
-				else if (usingCreature == kGAMECLASS.pc)
-				{
-					kGAMECLASS.output("You pull out a stimbooster and toss it to " + target.getCombatName() + ". " + target.mfn("He", "She", "It") + " quickly pops off the cap and presses the business end to their body. In mere seconds "+ target.getCombatName() +" looks far perkier, the microsurgeons working quickly to dull the pains and weariness from "+target.mfn("his", "her", "its") +" frame.");
+					if(target.isPlural) kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls out a stimbooster and jabs it into their own body. In mere seconds they look far perkier, the microsurgeons working quickly to dull the pain and weariness from their frame.");
+					else kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls out a stimbooster and jabs it into " + target.mfn("his", "her", "its") + " own arm. In mere seconds " + target.mfn("he", "she", "it") + " looks far perkier, the microsurgeons working quickly to dull the pain and weariness from " + target.mfn("his", "her", "its") + " frame.");
 				}
 				else
 				{
-					kGAMECLASS.output(usingCreature.short + " pulls out a HP booster and jabs it against " + target.short + "’s arm. Woosh noises etc.");
+					if(target.isPlural) kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls out a stimbooster and jabs it against " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + ". In mere seconds they look far perkier, the microsurgeons working quickly to dull the pain and weariness from their frame.");
+					else kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls out a stimbooster and jabs it against " + (inCombat() ? target.getCombatName() : (target.a + target.short)) + "’s arm. In mere seconds " + target.mfn("he", "she", "it") + " looks far perkier, the microsurgeons working quickly to dull the pain and weariness from " + target.mfn("his", "her", "its") + " frame.");
 				}
 				
 				hpChange = gainHP(target);
-				if(hpChange > 0) kGAMECLASS.output(" <b>" + target.short + " gained " + hpChange + " HP!</b>");
+				if(hpChange > 0) kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + (target.isPlural ? "have" : "has") + " gained " + hpChange + " HP!</b>");
 				target.HP(hpChange);
 				target.energyRaw = target.energyMax();
 			}
 
 			return false;
 		}
-
+		
 		private function gainHP(targetCreature:Creature):int
 		{
 			var currHP:int = targetCreature.HP();

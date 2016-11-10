@@ -175,7 +175,7 @@ public function phoenixBridge():void
 		if (flags["FALL OF THE PHOENIX BRIDGE ENTERED"] == undefined || flags["FALL OF THE PHOENIX BRIDGE ENTERED"] == 0)
 		{
 			flags["FALL OF THE PHOENIX BRIDGE ENTERED"] = 1;
-			output("At the A.I.'s behest, you float up to the western door and grab the hatch, bracing yourself for another decompression. Locking your mag-boots onto the deck, your twist the handle and take cover - sure enough, a huge gust of air sucks out of the cockpit, blasting some of the floating furniture in the rec room against the far wall. It only takes a moment to pass, and then you're able to swing yourself onto the bridge.");
+			output("At the A.I.'s behest, you float up to the western door and grab the hatch, bracing yourself for another decompression. Locking your mag-boots onto the deck, you twist the handle and take cover - sure enough, a huge gust of air sucks out of the cockpit, blasting some of the floating furniture in the rec room against the far wall. It only takes a moment to pass, and then you're able to swing yourself onto the bridge.");
 			output("\n\n");
 		}
 

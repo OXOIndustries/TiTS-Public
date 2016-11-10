@@ -323,6 +323,7 @@ public function queenOfTheDeepPCLoss():void
 public function queenOfTheDeepSurrenderCombat():void
 {
 	clearOutput();
+	queenOfTheDeepHeader();
 
 	output("<i>“Alright, alright! I surrender!”</i> you say, setting your [pc.weapon] down on the rocks nearby.");
 	
@@ -334,6 +335,7 @@ public function queenOfTheDeepSurrenderCombat():void
 public function queenOfTheDeepInitialSurrender():void
 {
 	clearOutput();
+	queenOfTheDeepHeader();
 
 	output("<i>“Alright, alright,”</i> you say, gently setting your [pc.weapon] down on the rocks nearby. <i>“Let’s go with pleasure.”</i>");
 	
@@ -590,6 +592,7 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 public function queenOfTheDeepSurrenderIII(fromCombat:Boolean):void
 {
 	clearOutput();
+	queenOfTheDeepHeader();
 
 	output("You awaken on the lakeshore, groggily opening your eyes. For a moment, you wonder if your encounter with the queen of the deep lake was a dream, a delusion born of darkness and isolation. That dream (or was it a nightmare?) ends when you feel something churning inside you, and your hand is drawn instinctively to your [pc.belly]. You’re gravid, and your [pc.skinFurScales] bulges with new life... the queen’s offspring squirm just under the surface, slight bulges in your flesh you can both see and feel as they adjust themselves inside you.");
 
@@ -1041,6 +1044,7 @@ public function queenOfTheDeepLeave():void
 public function queenLactationEvent():void
 {
 	clearOutput();
+	author("Savin");
 	
 	output("You feel a tightness in your [pc.chest], strong enough to make you stop dead in your tracks and clutch at your chest, trying to figure out the source of the uncomfortable sensation.");
 	if (pc.biggestTitSize() <= 0)
@@ -1063,6 +1067,7 @@ public function queenLactationEvent():void
 public function queenLactationIncreaseEvent():void
 {
 	clearOutput();
+	author("Savin");
 	
 	output("Lately you've been feeling your lactating tits get fuller and fuller, like they're swollen with more and more [pc.milkNoun] every hour. <b>You're definitely lactating more now</b>.");
 	
@@ -1075,6 +1080,7 @@ public function queenLactationIncreaseEvent():void
 public function queenBellyMovementEvent():void
 {
 	clearOutput();
+	author("Savin");
 	
 	output("You find your hands idly drifting down to your [pc.belly], caressing the taut bulge of pregnant flesh. As if responding to your touch, you feel the queen's spawn inside you moving, squirming around just beneath the surface. One seems to find its way directly to your hand, brushing against your palm through the thin barrier of your [pc.skinFurScales].");
 
@@ -1087,6 +1093,7 @@ public function queenBellyMovementEvent():void
 public function queenBellyrubEvent():void
 {
 	clearOutput();
+	author("Savin");
 	
 	output("As you're walking along, you find that a few people stop you on the street to ask you about your pregnancy: how far along are you, when are they due, can they feel your belly? You can't find the heart to tell them that your belly was filled with the spawn of a deep-dwelling monster, and squirm out of their questions as best you can.");
 
@@ -1099,6 +1106,7 @@ public function queenBellyrubEvent():void
 public function queenMorningSickness():void
 {
 	clearOutput();
+	author("Savin");
 	
 	output("A wave of nausea hits you out of nowhere, all but toppling you over. You stumble");
 	if (InShipInterior(pc)) output(" over to your vessel's restroom");
@@ -1117,6 +1125,9 @@ public function queenMorningSickness():void
 public function queenDreamEvent():void
 {
 	clearOutput();
+	author("Savin");
+	showName("WATER\nQUEEN...");
+	showBust("");
 	
 	output("<b>Your sleep is disturbed by strange dreams...</b>");
 
@@ -1139,6 +1150,7 @@ public function queenDreamEvent():void
 public function queenAlmostDueMessage():void
 {
 	clearOutput();
+	author("Savin");
 	
 	output("You note that your swollen belly is shifting awkwardly. The many water-spawn inside you are shifting more and more lately, and your body has been feeling even more wet and hot the last little while. You doubt you'll be carrying these creatures around with you much longer.");
 	
@@ -1149,6 +1161,7 @@ public function queenAlmostDueMessage():void
 public function queenPregnancyEnds():void
 {
 	clearOutput();
+	author("Savin");
 	
 	var se:StorageClass = pc.getStatusEffect("Queen Pregnancy End");
 
@@ -1203,6 +1216,7 @@ public function queenPregnancyEnds():void
 public function queenPregnancyEndsII():void
 {
 	clearOutput();
+	author("Savin");
 
 	output("You quickly lose track of time, your world fading into the abstract pleasure of birth, bringing each successive offspring to a nipple to nurse, and trying to keep others from wandering off as they adjust to their spindly legs. By the time your body seems finally empty, you count a total of " + pc.statusEffectv1("Queen Pregnancy End") + " offspring having clawed their way out of you, leaving you panting and gasping on the ground.");
 
@@ -1217,6 +1231,7 @@ public function queenPregnancyEndsII():void
 public function queenPregnancyEndsIII():void
 {
 	clearOutput();
+	author("Savin");
 
 	output("You wake up what seems like hours later, with a blanket you don’t recognize draped over you and a receipt crunched up in your hand. A note’s been written on it in messy, scratchy handwriting: <i>“Thank you for taking care of us!”</i> the first line reads. In what looks like different handwriting, a second line adds <i>“We’ll miss you! Come see us soon!”</i>");
 

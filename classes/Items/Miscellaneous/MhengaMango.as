@@ -184,7 +184,7 @@
 				// Yes, NPCs can use this in combat!
 				if (inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " pulls out a Mhen’gan mango and bites into it");
+				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " pulls out a Mhen’gan mango and bites into it");
 				if (healing > 0)
 				{
 					kGAMECLASS.output(", replinishing some of [target.hisHer] energy! (<b>+" + healing + " Energy</b>)");

@@ -699,7 +699,7 @@ package classes.Items.Transformatives
 			{
 				if(inCombat()) output("\n\n");
 				else clearOutput();
-				output(target.capitalA + target.short + " unwraps and eats a Goblinola bar");
+				output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " unwraps and eats a Goblinola bar");
 				if (healing > 0) output(", revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
 				else output(" but to no effect.");
 				target.HP(healing);

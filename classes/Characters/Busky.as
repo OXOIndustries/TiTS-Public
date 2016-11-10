@@ -7,6 +7,7 @@ package classes.Characters
 	import classes.Items.Transformatives.Equilicum;
 	import classes.Items.Transformatives.SaltyJawBreaker;
 	import classes.Items.Transformatives.SweetSweat;
+	import classes.Items.Transformatives.Virection;
 	import classes.Items.Melee.Fists;
 	import classes.kGAMECLASS;
 	
@@ -35,6 +36,7 @@ package classes.Characters
 			this.inventory.push(new Equilicum());
 			this.inventory.push(new SweetSweat());
 			this.inventory.push(new SaltyJawBreaker());
+			this.inventory.push(new Virection());
 			
 			this.armor.defense = 50;
 			this.physiqueRaw = 3;

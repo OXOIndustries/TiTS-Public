@@ -112,7 +112,7 @@ public function letsFapUnlockFromName():String
 //Subject: You’re in to stuff like this, right?
 public function futaLetsPlayerIntroEmail():String
 {
-	var ret:String = "Hey " + pc.short + ". I saw this show that you might get a kick out of. Basically, some girl does reviews of different dicks. She uses some machine to give herself a different cock every week and ends up soaked in her own cum more often than not.\n\nIf you’re gonna watch, you probably want to do so from the privacy of your own ship, ha ha.\n\nA site address has been included below.\n\n<b>The Smut menu has been added to your ship’s Masturbate option!</b>";
+	var ret:String = "Hey " + pc.short + ". I saw this show that you might get a kick out of. Basically, some girl does reviews of different dicks. She uses some machine to give herself a different cock every week and ends up soaked in her own cum more often than not.\n\nIf you’re gonna watch, you probably want to do so from the privacy of your own ship, ha ha.\n\nA site address has been included below.\n\n(<b>The Smut menu has been added to your ship’s Masturbate option!</b>)";
 	//{Adds new option to Ship’s <i>“Masturbate”</i> menu: <i>“Smut”</i>.}
 	return ret;
 }
@@ -211,11 +211,11 @@ public function letsFapSelectionMenu():void
 		//if letsFapTrack returns a garbage value, reset
 		else
 		{
-			flags["LETS_FAP_LATEST"] = letsFapAusar;
+			flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES.indexOf(letsFapAusar);
 			trace("Invalid lets fap unlock value.");
 		}
 	}
-	addButton(0,"Latest Episode",LETS_FAP_EPISODES[flags["LETS_FAP_LATEST"]],undefined,"Latest Episode","Watch the latest episode of Let's Fap!");
+	addButton(0,"LatestEpisode",LETS_FAP_EPISODES[flags["LETS_FAP_LATEST"]],undefined,"Latest Episode","Watch the latest episode of Let's Fap!");
 	if(flags["LETS_FAP_ARCHIVES"] != undefined)
 	{
 		addButton(1,"Terran",letsFapTerran,undefined,"Terran","Watch the very first episode of Atha's show!");
@@ -225,7 +225,6 @@ public function letsFapSelectionMenu():void
 		if(letsFapTrack() >= 1 && flags["LETS_FAP_LATEST"] != letsFapAusar) addButton(5,"Ausar",letsFapAusar,undefined,"Ausar","Watch Atha try out an ausar member.");
 		if(letsFapTrack() >= 2 && flags["LETS_FAP_LATEST"] != letsFapLaquine) addButton(6,"Laquine",letsFapLaquine,undefined,"Laquine","Watch Atha try out a laquine member.");
 		if(letsFapTrack() >= 3 && flags["LETS_FAP_LATEST"] != letsFapKuiTan) addButton(7,"Kui-Tan",letsFapKuiTan,undefined,"Kui-Tan","Watch Atha try out a kui-tan member.");
-		
 		if(letsFapTrack() >= 4 && flags["LETS_FAP_LATEST"] != letsFapUnboxing) addButton(8,"Unboxing",letsFapUnboxing,undefined,"Unboxing","Watch Atha try out unboxing a toy.");
 		if(letsFapTrack() >= 5 && flags["LETS_FAP_LATEST"] != letsFapOvir) addButton(9,"Ovir",letsFapOvir,undefined,"Ovir","Watch Atha try out an ovir member.");
 		if(letsFapTrack() >= 6 && flags["LETS_FAP_LATEST"] != letsFapRahnScene) addButton(10,"Rahn",letsFapRahnScene,undefined,"Rahn","Watch Atha try out a rahn member.");

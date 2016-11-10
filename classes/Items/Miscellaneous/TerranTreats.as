@@ -489,6 +489,31 @@
 					pc.removePerk("Regal Mane");
 				}
 				
+				if (pc.hasPerk("Hollow Bones") && changes < changeLimit && rand(3) == 0)
+				{ // racialPerkUpdateCheck: removal of Icy Veins perk with the loss of fluffy fur (fork on still having fur but not fluffy flag?).
+					kGAMECLASS.output("\n\nYou feel somewhat heavy and clumsy as your bones turn solid again, losing their hollow avian structure.");
+					changes++;
+					pc.removePerk("Hollow Bones");
+				}
+				
+				//Lose "Special Scrotum" Effect:
+				if(pc.balls > 0 && pc.hasStatusEffect("Special Scrotum") && changes < changeLimit && rand(3) == 0)
+				{
+					if(pc.statusEffectv1("Special Scrotum") != 0)
+					{
+						kGAMECLASS.output("\n\nYour [pc.ballsack] tingles as you feel it... changing? Taking a peek, you find that <b>it is no longer " + (GLOBAL.FLAG_NAMES[pc.statusEffectv1("Special Scrotum")]).toLowerCase() + " but now bald, its surface replaced with smooth skin!</b> Well, that was to be expected... but you wonder if this look is permanent or if you’ve gotten rid of the splice entirely....");
+						changes++;
+						pc.setStatusValue("Special Scrotum", 1, 0);
+						pc.setStatusTooltip("Special Scrotum", "");
+					}
+					else
+					{
+						kGAMECLASS.output("\n\nYour [pc.ballsack] vibrates between your [pc.thighs], signaling a major change... It " + ((pc.getStatusTooltip("Special Scrotum") != "" && pc.getStatusTooltip("Special Scrotum") != pc.skinTone) ? "looks like the colors have changed and your nutsack appears to be" : "seems like not much has changed, but your nutsack does appear") + " a bit more... normal? You check your codex and it confirms: <b>you have lost the unique properties of your special scrotum!</b>");
+						changes++;
+						pc.removeStatusEffect("Special Scrotum");
+					}
+				}
+				
 				if(changes == 0)
 				{
 					kGAMECLASS.output("\n\nNothing changed. What a rip-off.");

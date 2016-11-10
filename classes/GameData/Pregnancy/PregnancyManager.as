@@ -17,6 +17,7 @@
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherSeedCarrierPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
+	import classes.Items.Transformatives.AmberSeed;
 	/**
 	 * ...
 	 * @author Gedan
@@ -69,6 +70,8 @@
 		
 		private static function updateStageForCreature(tarCreature:Creature, tMinutes:int):void
 		{
+			AmberSeed.ovipositionUpdate(tarCreature, tMinutes);
+			
 			if (tarCreature.isPregnant())
 			{
 				if (_debugTrace) trace("Updating pregnancy stages for " + tarCreature.short);

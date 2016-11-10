@@ -582,24 +582,32 @@ public function eggTrainerCarryTrainingEnds(pregSlot:int, pregEggs:int):void
 	
 	//Yay
 	clearMenu();
-	addButton(0,"Next",finalEggTCleanup);
+	addButton(0,"Next",finalEggTCleanup, pregEggs);
 }
 
 //Cleans up status effects and boots back to mainGameMenu
-public function finalEggTCleanup():void
+public function finalEggTCleanup(pregEggs:int):void
 {
-	if (!pc.hasStatusEffect("Eggy Belly")) return;
+	if (!pc.hasStatusEffect("Eggy Belly"))
+	{
+		mainGameMenu();
+		return;
+	}
 	
+	// Egg check
+	var numEggs:int = 0;
 	for (var i:int = 0; i < pc.pregnancyData.length; i++)
 	{
 		var pData:PregnancyData = pc.pregnancyData[i];
 		if (pData.pregnancyType == "EggTrainerCarryTraining") 
 		{
-			mainGameMenu();
-			return;
+			pData.pregnancyQuantity += numEggs;
 		}
 	}
-	pc.removeStatusEffect("Eggy Belly");
+	pc.addStatusValue("Eggy Belly", 3, (-1 * pregEggs));
+	if(pc.statusEffectv3("Eggy Belly") != numEggs) pc.setStatusValue("Eggy Belly", 3, numEggs);
+	if(pc.statusEffectv3("Eggy Belly") <= 0) pc.removeStatusEffect("Eggy Belly");
+	
 	mainGameMenu();
 }
 

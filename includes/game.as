@@ -141,7 +141,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	{
 		if(eventQueue.indexOf(fixPcUpbringing) == -1) eventQueue.push(fixPcUpbringing);
 	}
-	if(baby.originalRace != pc.originalRace)
+	if(baby.originalRace == "NOT SET")
 	{
 		if(eventQueue.indexOf(setBabyValuesOptions) == -1) eventQueue.push(setBabyValuesOptions);
 	}
@@ -180,6 +180,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	
 	// Update the state of the players mails -- we don't want to do this all the time (ie in process time), and we're only going to care about it at the menu root soooooo...
 	updateMailStatus();
+	
+	variableRoomUpdateCheck();
 	
 	//Set up all appropriate flags
 	//Display the room description
@@ -231,7 +233,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	{
 		if (currentLocation == "KI-H16" && flags["KI_REFUSED_VANDERBILT"] != undefined && flags["KI_VANDERBILT_WORKING"] != undefined)
 		{
-			addDisabledButton(9, "Sleep", "Sleep", "You can't afford to risk sleeping with Elenora around. Who knows if she'll be able to hold it together... or if she'll try something while you rest.");
+			addDisabledButton(9, "Sleep", "Sleep", "You can’t afford to risk sleeping with Elenora around. Who knows if she’ll be able to hold it together... or if she’ll try something while you rest.");
 		}
 		else
 		{
@@ -1809,6 +1811,17 @@ public function variableRoomUpdateCheck():void
 	
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
+	// Kashima
+	if(flags["KI_ESCAPE_UNCURED"] != undefined)
+	{
+		rooms["KI-E23"].removeFlag(GLOBAL.LIFTDOWN);
+		rooms["KI-E23"].addFlag(GLOBAL.HAZARD);
+}
+	else
+	{
+		rooms["KI-E23"].addFlag(GLOBAL.LIFTDOWN);
+		rooms["KI-E23"].removeFlag(GLOBAL.HAZARD);
+	}
 }
 
 public function processTime(deltaT:uint, doOut:Boolean = true):void
@@ -2027,7 +2040,7 @@ public function processTarkusBombTimerEvents(deltaT:uint, doOut:Boolean):void
 		flags["TARKUS_BOMB_TIMER"] -= Math.min(deltaT, flags["TARKUS_BOMB_TIMER"]);
 		bombStatusUpdate();
 		
-		if(flags["TARKUS_BOMB_TIMER"] == 0)
+		if(flags["TARKUS_BOMB_TIMER"] <= 0)
 		{
 			if(eventQueue.indexOf(bombExplodes) == -1) eventQueue.push(bombExplodes);
 		}
@@ -2095,12 +2108,8 @@ public function processGiannaEvents(deltaT:uint, doOut:Boolean):void
 {
 	if (flags["GIANNA_AWAY_TIMER"] != undefined && flags["GIANNA_AWAY_TIMER"] > 0) giannaAWOL( -1);
 	
-	var totalHours:int = ((minutes + deltaT) / 60);
-	if (totalHours >= 1)
-	{
-		if (flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"] += totalHours;
+	if (flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"] += deltaT;
 	}
-}
 
 public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 {
@@ -2453,7 +2462,7 @@ public function processCuntTailEggs(deltaT:uint, doOut:Boolean):void
 	}
 	else
 	{
-		flags["CUNT_TAIL_PREGNANT_TIMER"] -= ((minutes + deltaT) / 60);
+		flags["CUNT_TAIL_PREGNANT_TIMER"] -= Math.min(deltaT, flags["CUNT_TAIL_PREGNANT_TIMER"]);
 		if (flags["CUNT_TAIL_PREGNANT_TIMER"] <= 0)
 		{
 			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
@@ -2613,6 +2622,14 @@ public function racialPerkUpdateCheck():void
 			pc.removePerk("Fecund Figure");
 		}
 	}
+	if(pc.hasStatusEffect("Special Scrotum"))
+	{
+		if(pc.balls <= 0)
+		{
+			msg += "\n\n" + logTimeStamp("passive") + " A tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that, due to the lack of testicles, the unique covering for your non-existent scrotum has finally dissolved from your system.";
+			pc.removeStatusEffect("Special Scrotum");
+		}
+	}
 	if(pc.statusEffectv4("Vanae Markings") > 0)
 	{
 		if(pc.balls <= 0)
@@ -2657,7 +2674,7 @@ public function racialPerkUpdateCheck():void
 		AddLogEvent("With your face becoming more human, your appearance is now no longer androgynous.\n\n(<b>Perk Lost: Androgyny</b> - You’ve lost your muzzle.)", "passive");
 		pc.removePerk("Androgyny");
 	}
-	if (pc.hasPerk("Icy Veins") && pc.perkv1("Icy Veins") > 0 && (!pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) || pc.skinType != GLOBAL.SKIN_TYPE_FUR))
+	if (pc.hasPerk("Icy Veins") && pc.perkv1("Icy Veins") > 0 && (!pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) || !InCollection(pc.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)))
 	{ // racialPerkUpdateCheck: removal of Icy Veins perk with he loss of fluffy fur (fork on still having fur but not fluffy flag?).
 		AddLogEvent("Without all that thick, fluffy coat of fur you suddenly feel rather cold...\n\n(<b>Perk Lost: Icy Veins</b> - You’ve lost your insulating coat of fur, and as a result you are now weaker against cold.)", "passive");
 		pc.removePerk("Icy Veins");

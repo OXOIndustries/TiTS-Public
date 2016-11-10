@@ -63,6 +63,12 @@ public function uvetoNerrasaMenu():void
 
 public function uvetoNerrasaBuy():void
 {
+	if(pc.level >= 4)
+	{
+		if(!chars["NERRASA"].hasItemByType(Frostfire)) chars["NERRASA"].inventory.push(new Frostfire());
+	}
+	else chars["NERRASA"].destroyItem(new Frostfire());
+	
 	if(canBuySiegwulfe())
 	{
 		if(!chars["NERRASA"].hasItemByType(SiegwulfeItem)) chars["NERRASA"].inventory.push(new SiegwulfeItem());

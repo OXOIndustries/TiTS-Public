@@ -22,6 +22,7 @@
 	import classes.Items.Miscellaneous.HorsePill;
 	import classes.Items.Miscellaneous.Priapin;
 	import classes.Items.Miscellaneous.Cargobot;
+	import classes.Items.Transformatives.AmberSeed;
 	import classes.Items.Transformatives.Cerespirin;
 	import classes.Items.Transformatives.Clippex;
 	import classes.Items.Transformatives.Foxfire;
@@ -52,6 +53,7 @@
 	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.indefiniteArticle;
+	import classes.Engine.Utility.stripRace;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Interfaces.AddLogEvent;
 	import classes.Engine.Interfaces.ExtendLogEvent;
@@ -446,7 +448,11 @@
 		}
 		public function toneMax():Number
 		{
-			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY)) return 30;
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY))
+			{
+				if (this is PlayerCharacter && flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_TONE) == AmberSeed.FLAG_GOO_TONE) return 70;
+				return 30;
+			}
 			return 100;
 		}
 		public function toneUnlocked(newTone:Number):Boolean
@@ -637,6 +643,7 @@
 		public var lipMod:Number = 0;
 		public function lipModUnlocked(newLipMod:Number):Boolean
 		{
+			if(hasFaceFlag(GLOBAL.FLAG_BEAK)) return false;
 			return true;
 		}
 		public function lipModLockedMessage():String
@@ -1469,6 +1476,18 @@
 				case "race":
 					buffer = race();
 					break;
+				case "raceType":
+				case "raceShort":
+				case "raceSimple":
+				case "simpleRace":
+				case "raceStrip":
+				case "stripRace":
+					buffer = raceShort();
+					break;
+				case "raceTypeStrict":
+				case "raceTypeHuman":
+					buffer = raceShort(true);
+					break;
 				case "armor":
 					buffer = armor.longName;
 					break;
@@ -1655,6 +1674,7 @@
 				case "hairNoun":
 					buffer = hairNoun();
 					break;
+				case "hairs":
 				case "hairsNoun":
 					buffer = hairsNoun();
 					break;
@@ -1928,6 +1948,9 @@
 					break;
 				case "prostate":
 				case "sack":
+				case "ballsack":
+				case "nutsack":
+				case "scrotum":
 					buffer = sackDescript();
 					break;
 				case "chestDesc":
@@ -3214,19 +3237,20 @@
 		public function genderTextOverride():String
 		{
 			var autoSex:String = "";
+			var race:String = race();
 			
 			// Goo races
 			if
-			(	originalRace == "galotian" || race().indexOf("galotian") != -1
+			(	originalRace == "galotian" || race.indexOf("galotian") != -1
 			||	originalRace.indexOf("rahn") != -1 || isRahn()
 			||	originalRace == "conglomerate"
-			||	originalRace == "ganrael" || race().indexOf("ganrael") != -1
+			||	originalRace == "ganrael" || race.indexOf("ganrael") != -1
 			)
 			{
 				autoSex = "Unisex";
 			}
 			// Nyrea
-			if(originalRace == "nyrea" || race().indexOf("nyrea") != -1)
+			if(originalRace == "nyrea" || race.indexOf("nyrea") != -1)
 			{
 				if(isFemale()) autoSex = "Male";
 				if(isMale()) autoSex = "Female";
@@ -4690,6 +4714,9 @@
 					types.push("cat-like", "feline", "cute");
 					if(race().indexOf("kaithrit") != -1) types.push("kaithrit");
 					break;
+				case GLOBAL.TYPE_AVIAN:
+					types.push("bird-like", "avian");
+					break;
 				case GLOBAL.TYPE_BOVINE:
 					types.push("cow-like", "taurine", "wide-set", "broad", "bovine");
 					break;
@@ -4751,11 +4778,12 @@
 		public function faceDesc(): String {
 			var faceo: String = "";
 			var hasSmallNose: Boolean = InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
-			if (hasPerk("Androgyny")) {
+			var hasInhumanStructure:Boolean = (InCollection(faceType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE) && (hasFaceFlag(GLOBAL.FLAG_MUZZLED) || hasFaceFlag(GLOBAL.FLAG_BEAK)));
+			if (hasPerk("Androgyny") || hasInhumanStructure) {
 				faceo = "an androgynous " + face();
 				if (mfn("m", "f", "n") == "n") faceo += " that would work on either a male or a female"
 				else faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
-				if (lipRating() > 1) faceo += " with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				if (lipRating() > 1 && !hasInhumanStructure && !hasFaceFlag(GLOBAL.FLAG_BEAK)) faceo += " with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 				if (hasBeard()) faceo += " in addition to your " + beard();
 			}
 			//0-10
@@ -4967,7 +4995,7 @@
 				{
 					description += beardStyles(true);
 				}
-				else description += "beard";
+				else description += beardNoun();
 				return description;
 			}
 			return "ERROR: NO BEARD! <b>YOU ARE NOT A VIKING AND SHOULD TELL FEN IMMEDIATELY.</b>";
@@ -5028,20 +5056,7 @@
 			// Special types:
 			if(wNoun && rand(3) == 0)
 			{
-				var beardNoun:String = "beard";
-				switch (beardStyle)
-				{
-					case 8:
-					case 9:
-						beardNoun = "mustache";
-						break;
-					case 10:
-						beardNoun = RandomInCollection("goatee", "beard");
-						break;
-					case 11:
-						beardNoun = "sideburns";
-						break;
-				}
+				var beardNoun:String = beardNoun();
 				switch (beardType)
 				{
 					default: bStyle = beardNoun; break;
@@ -5053,6 +5068,24 @@
 				}
 			}
 			return bStyle;
+		}
+		public function beardNoun():String
+		{
+			var beardNoun:String = "beard";
+			switch (beardStyle)
+			{
+				case 8:
+				case 9:
+					beardNoun = "mustache";
+					break;
+				case 10:
+					beardNoun = RandomInCollection("goatee", "beard");
+					break;
+				case 11:
+					beardNoun = "sideburns";
+					break;
+			}
+			return beardNoun;
 		}
 		public function removeBeard():void
 		{
@@ -5299,6 +5332,7 @@
 			(	hasArmFlag(GLOBAL.FLAG_FURRED) || hasLegFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FURRED)
 			||	hasSkinFlag(GLOBAL.FLAG_FLUFFY)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_FURRED
+			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_FURRED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FURRED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FURRED);
@@ -5312,6 +5346,7 @@
 			(	hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED)
 			||	InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_SCALED
+			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_SCALED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
@@ -5324,6 +5359,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_CHITINOUS) || hasLegFlag(GLOBAL.FLAG_CHITINOUS) || hasTailFlag(GLOBAL.FLAG_CHITINOUS)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_CHITINOUS
+			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_CHITINOUS
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_CHITINOUS);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_CHITINOUS);
@@ -5335,6 +5371,7 @@
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_GOOEY) || hasLegFlag(GLOBAL.FLAG_GOOEY) || hasTailFlag(GLOBAL.FLAG_GOOEY)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_GOOEY
+			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_GOOEY
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_GOOEY);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_GOOEY);
@@ -5347,6 +5384,7 @@
 			(	hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED)
 			||	InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE)
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_FEATHERED
+			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_FEATHERED
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FEATHERED);
@@ -5425,6 +5463,7 @@
 					case GLOBAL.TYPE_BADGER: adjectives.push("badger", "mustelid"); break;
 					case GLOBAL.TYPE_KANGAROO: adjectives.push("kangaroo", "‘roo-like"); break;
 					case GLOBAL.TYPE_FROG: adjectives.push("flat", "frog-like"); break;
+					case GLOBAL.TYPE_AVIAN: adjectives.push("avian", "bird-like"); break;
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -5433,7 +5472,9 @@
 			if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
 			
 			//Add Noun
-			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0)
+			if (hasFaceFlag(GLOBAL.FLAG_BEAK) && rand(2) == 0)
+				output += "beak";
+			else if (!hasFaceFlag(GLOBAL.FLAG_BEAK) && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0)
 				output += "muzzle";
 			else if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0 && InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_NAGA))
 				output += "snout";
@@ -5599,8 +5640,15 @@
 				adjectives.push("fluffy", "soft");
 			if (hasTailFlag(GLOBAL.FLAG_SMOOTH))
 				adjectives.push("smooth", "sleek");
-			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK))
+			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && hasTailFlag(GLOBAL.FLAG_TAILCUNT))
+			{
+				adjectives.push("versatile");
+				nouns.push("genitail");
+			}
+			else if (hasTailFlag(GLOBAL.FLAG_TAILCOCK))
 				nouns.push("tail-cock", "genitail");
+			else if (hasTailFlag(GLOBAL.FLAG_TAILCUNT))
+				nouns.push("tail-cunt", "genitail");
 			if (hasTailFlag(GLOBAL.FLAG_FURRED))
 				adjectives.push("furry", "furred");
 			if (hasTailFlag(GLOBAL.FLAG_SCALED))
@@ -5795,6 +5843,7 @@
 			return output;
 		}
 		public function hasClawedHands(): Boolean {
+			if(armType == GLOBAL.TYPE_AVIAN && hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
 			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN);
 		}
 		public function hasPaddedHands(): Boolean {
@@ -5803,7 +5852,7 @@
 		}
 		public function hasPaddedLegs(): Boolean {
 			//if (hasLegFlag(GLOBAL.FLAG_PAWS)) return true; // reptiles... not sure 'bout them
-			return InCollection(legType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE);
+			return InCollection(legType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_AVIAN);
 		}
 		public function lowerBody():String {
 			var output: String = "";
@@ -6034,7 +6083,7 @@
 		}
 		public function hasToeClaws():Boolean
 		{
-			if(hasToes() && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_LIZAN || legType == GLOBAL.TYPE_RASKVEL || legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN || legType == GLOBAL.TYPE_PANDA)) return true;
+			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_AVIAN)) return true;
 			return false;
 		}
 		public function kneesDescript(): String 
@@ -8192,7 +8241,7 @@
 		public function milkFullnessMin(): Number
 		{
 			var bonus:int = 0;
-			bonus += perkv1("Mega Milk");
+			if(hasPerk("Mega Milk")) bonus += Math.max(perkv1("Mega Milk"), 40);
 			return bonus;
 		}
 		public function milkFullnessMax(): Number
@@ -8858,6 +8907,12 @@
 					vaginas[slot].vaginaColor = "black";
 					vaginas[slot].minLooseness = 1;
 					break;
+				case GLOBAL.TYPE_AVIAN:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "pink";
+					vaginas[slot].wetnessRaw = 1;
+					vaginas[slot].minLooseness = 1;
+					break;
 			}
 		}
 		//Change cock type
@@ -8955,6 +9010,7 @@
 					cocks[slot].knotMultiplier = RandomInCollection([1.25, 1.3]);
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					break;
 				case GLOBAL.TYPE_SIMII:
 					cocks[slot].knotMultiplier = 1;
@@ -9015,9 +9071,16 @@
 				case GLOBAL.TYPE_GRYVAIN:
 					cocks[slot].knotMultiplier = 1;
 					cocks[slot].cockColor = scaleColor;
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					cocks[slot].addFlag(GLOBAL.FLAG_SCALED);
-					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					break;
+				case GLOBAL.TYPE_AVIAN:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cThicknessRatioRaw = 0.5;
+					cocks[slot].cockColor = "red";
+					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					break;
 			}
 		}
@@ -9153,59 +9216,142 @@
 		{
 			return "Your crotch warms, but nothing happens.";
 		}
+		public function copyCock(target:int, donor:int):void
+		{
+			if(target < 0 || donor < 0) return;
+			if(target >= cocks.length || donor >= cocks.length) return;
+			cocks[target].cType = cocks[donor].cType;
+			cocks[target].cLengthRaw = cocks[donor].cLengthRaw;
+			cocks[target].cLengthMod = cocks[donor].cLengthMod;
+			cocks[target].cThicknessRatioRaw = cocks[donor].cThicknessRatioRaw;
+			cocks[target].cThicknessRatioMod = cocks[donor].cThicknessRatioMod;
+			cocks[target].cockColor = cocks[donor].cockColor;
+			cocks[target].knotMultiplier = cocks[donor].knotMultiplier;
+			cocks[target].flaccidMultiplier = cocks[donor].flaccidMultiplier;
+			cocks[target].virgin = cocks[donor].virgin;	//to make it work in a similar fashion as copyVagina
+			for(var y:int = 0; y < cocks[donor].cockFlags.length; y++)
+			{
+				cocks[target].cockFlags[y] = cocks[donor].cockFlags[y];
+			}
+			trace("Copying " + simpleCockNoun(donor) + " to donor " + simpleCockNoun(target) + " donor index: " + donor + " target index: " + target + " donor type: " + cocks[donor].cType + " target type: " + cocks[target].cType);
+			return;
+		}
 		//General utility function for setting appropriate dick type with new-grown weiners.
 		public function setNewCockValues(arg:int = 0):void
 		{
 			cocks[arg].cLengthRaw = 5.5;
 			if(hasPerk("Hung")) cocks[arg].cLengthRaw += 2+rand(4);
 			
-			var pcRace:String = race();
+			var race:String = race();
+			var raceSimple:String = stripRace(race);
 			
 			// Type changes
-			if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph", "canine-taur"))
+			if(InCollection(raceSimple, ["ausar", "canine"]))
 			{
 				shiftCock(arg,GLOBAL.TYPE_CANINE);
-				if(pcRace.indexOf("ausar") != -1) cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
+				if(raceSimple == "ausar") cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
 			}
-			else if (InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat"))
+			else if (race.indexOf("dragonne") == -1 && InCollection(raceSimple, ["kaithrit", "feline"]))
 			{
 				shiftCock(arg, GLOBAL.TYPE_FELINE);
-				if (pcRace.indexOf("kaithrit") != -1) // 'cause kaithrits are not cool enough to have real kitty peckers
+				if (raceSimple == "kaithrit") // 'cause kaithrits are not cool enough to have real kitty peckers
 				{
 					cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
 					cocks[arg].delFlag(GLOBAL.FLAG_TAPERED);
 				}
 			}
-			else if(InCollection(pcRace, "leithan", "half-leithan")) shiftCock(arg,GLOBAL.TYPE_SNAKE);
-			else if(InCollection(pcRace, "kui-tan", "half kui-tan")) shiftCock(arg, GLOBAL.TYPE_KUITAN);
-			else if(InCollection(pcRace, "gryvain", "half-gryvain")) shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
-			else if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", mlpRace())) shiftCock(arg, GLOBAL.TYPE_EQUINE);
-			else if(InCollection(pcRace, "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) shiftCock(arg,GLOBAL.TYPE_VULPINE);
-			else if(pcRace == "zil") shiftCock(arg,GLOBAL.TYPE_BEE);
-			else if(InCollection(pcRace, "naleen", "naga")) shiftCock(arg,GLOBAL.TYPE_NAGA);
-			else if(InCollection(pcRace, "raskvel", "raskvel-morph", "rask-morph")) shiftCock(arg, GLOBAL.TYPE_RASKVEL);
-			else if(InCollection(pcRace, "fanfir", "dragon-morph", "dragon-taur", "dragonne", "dragonne-taur")) shiftCock(arg, GLOBAL.TYPE_DRACONIC);
-			else if(pcRace == "demon-morph") shiftCock(arg, GLOBAL.TYPE_DEMONIC);
-			else if(pcRace == "kangaroo-morph") shiftCock(arg, GLOBAL.TYPE_KANGAROO);
-			else if(pcRace == "simii") shiftCock(arg, GLOBAL.TYPE_SIMII);
-			else if(pcRace == "saurian") shiftCock(arg, GLOBAL.TYPE_SAURIAN);
-			else if(pcRace == "venus pitcher") shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
-			else if(pcRace == "sydian") shiftCock(arg, GLOBAL.TYPE_SYDIAN);
-			else if(pcRace == "daynar") shiftCock(arg, GLOBAL.TYPE_DAYNAR);
-			else if(InCollection(pcRace, "gabilani", "goblin")) shiftCock(arg, GLOBAL.TYPE_GABILANI);
-			else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant")) shiftCock(arg, GLOBAL.TYPE_TENTACLE);
+			else if(raceSimple == "leithan") shiftCock(arg,GLOBAL.TYPE_SNAKE);
+			else if(raceSimple == "kui-tan") shiftCock(arg, GLOBAL.TYPE_KUITAN);
+			else if(raceSimple == "gryvain") shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
+			else if(InCollection(raceSimple, ["equine", "pony", "laquine", "ovir", "minotaur", "centaur", "hippogriff"])) shiftCock(arg, GLOBAL.TYPE_EQUINE);
+			else if(InCollection(raceSimple, ["vulpine", "kitsune", "vulpogryph"])) shiftCock(arg,GLOBAL.TYPE_VULPINE);
+			else if (InCollection(raceSimple, ["griffin", "phoenix", "sirin", "harpy", "avian"]))
+			{
+				shiftCock(arg, GLOBAL.TYPE_AVIAN);
+				switch(raceSimple)
+				{
+					case "griffin":
+						cocks[arg].cThicknessRatioRaw = 1.3;
+						cocks[arg].knotMultiplier = 1.5;
+						cocks[arg].addFlag(GLOBAL.FLAG_KNOTTED);
+						cocks[arg].addFlag(GLOBAL.FLAG_NUBBY);
+						cocks[arg].addFlag(GLOBAL.FLAG_SHEATHED);
+						cocks[arg].cockColor = "black";
+						break;
+				}
+			}
+			else if(raceSimple == "zil") shiftCock(arg,GLOBAL.TYPE_BEE);
+			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl"])) shiftCock(arg,GLOBAL.TYPE_NAGA);
+			else if(raceSimple == "raskvel") shiftCock(arg, GLOBAL.TYPE_RASKVEL);
+			else if(race.indexOf("dragonne") != -1 || InCollection(raceSimple, ["fanfir", "dragon"])) shiftCock(arg, GLOBAL.TYPE_DRACONIC);
+			else if(raceSimple == "demon") shiftCock(arg, GLOBAL.TYPE_DEMONIC);
+			else if(raceSimple == "kangaroo") shiftCock(arg, GLOBAL.TYPE_KANGAROO);
+			else if(raceSimple == "simii") shiftCock(arg, GLOBAL.TYPE_SIMII);
+			else if(raceSimple == "saurian") shiftCock(arg, GLOBAL.TYPE_SAURIAN);
+			else if(raceSimple == "venus pitcher") shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
+			else if(raceSimple == "sydian") shiftCock(arg, GLOBAL.TYPE_SYDIAN);
+			else if(raceSimple == "daynar") shiftCock(arg, GLOBAL.TYPE_DAYNAR);
+			else if(raceSimple == "gabilani") shiftCock(arg, GLOBAL.TYPE_GABILANI);
+			else if(race == "cockvine") shiftCock(arg, GLOBAL.TYPE_COCKVINE);
+			else if(InCollection(raceSimple, ["tentacle beast", "cockvine", "plant"])) shiftCock(arg, GLOBAL.TYPE_TENTACLE);
+			else if(raceSimple == "suula") shiftCock(arg, GLOBAL.TYPE_SIREN);
+			else if(raceSimple == "anemone") shiftCock(arg, GLOBAL.TYPE_ANEMONE);
+			else if(InCollection(raceSimple, ["sionach", "siel"]))
+			{
+				shiftCock(arg, GLOBAL.TYPE_INHUMAN);
+				switch(raceSimple)
+				{
+					case "sionach":
+						cocks[arg].knotMultiplier = 1.15;
+						cocks[arg].addFlag(GLOBAL.FLAG_KNOTTED);
+						cocks[arg].addFlag(GLOBAL.FLAG_SHEATHED);
+						cocks[arg].addFlag(GLOBAL.FLAG_TAPERED);
+						cocks[arg].addFlag(GLOBAL.FLAG_NUBBY);
+						break;
+					case "siel":
+						cocks[arg].cockColor = "pink";
+						break;
+				}
+			}
+			//else if(InCollection(race, ["synthetic", "robot", "companion droid"])) shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
 			else if(skinType == GLOBAL.SKIN_TYPE_GOO)
 			{
 				shiftCock(arg, GLOBAL.TYPE_HUMAN);
 				cocks[arg].addFlag(GLOBAL.FLAG_GOOEY);
 				cocks[arg].cockColor = skinTone;
 			}
-			/*
-			else if(pcRace == "anemone") shiftCock(arg, GLOBAL.TYPE_ANEMONE);
-			else if(pcRace == "siren") shiftCock(arg, GLOBAL.TYPE_SIREN);
-			else if(InCollection(pcRace, "synthetic", "robot", "companion droid")) shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
-			else if(pcRace == "cockvine") shiftCock(arg, GLOBAL.TYPE_COCKVINE);
-			*/
+		}
+		//General utility function for setting appropriate dick type with new-grown vaginas.
+		public function setNewVaginaValues(arg:int = 0):void
+		{
+			var race:String = race();
+			var raceSimple:String = stripRace(race);
+			
+			// Type changes
+			if(InCollection(raceSimple, ["equine", "pony", "laquine", "centaur"])) shiftVagina(arg, GLOBAL.TYPE_EQUINE);
+			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl"])) shiftVagina(arg, GLOBAL.TYPE_NAGA);
+			else if(raceSimple == "zil") shiftVagina(arg, GLOBAL.TYPE_BEE);
+			else if(raceSimple == "leithan") shiftVagina(arg, GLOBAL.TYPE_LEITHAN);
+			else if(raceSimple == "vanae") shiftVagina(arg, GLOBAL.TYPE_VANAE);
+			else if(raceSimple == "kui-tan") shiftVagina(arg, GLOBAL.TYPE_KUITAN);
+			else if(raceSimple == "gryvain") shiftVagina(arg, GLOBAL.TYPE_GRYVAIN);
+			else if(raceSimple == "lapinara") shiftVagina(arg, GLOBAL.TYPE_LAPINARA);
+			else if(raceSimple == "canine") shiftVagina(arg, GLOBAL.TYPE_CANINE);
+			else if(InCollection(raceSimple, ["vulpine", "vulpogryph"]) || (raceSimple == "kitsune" && hasFur()))
+			{
+				shiftVagina(arg, GLOBAL.TYPE_VULPINE);
+			}
+			else if(race.indexOf("dragonne") == -1 && InCollection(raceSimple, ["kaithrit", "feline"])) shiftVagina(arg, GLOBAL.TYPE_FELINE);
+			else if(raceSimple == "gabilani") shiftVagina(arg, GLOBAL.TYPE_GABILANI);
+			else if(raceSimple == "plant") shiftVagina(arg, GLOBAL.TYPE_FLOWER);
+			else if(InCollection(raceSimple, ["suula", "anemone"])) shiftVagina(arg, GLOBAL.TYPE_SIREN);
+			//else if(InCollection(race, ["synthetic", "robot", "companion droid"])) shiftVagina(arg, GLOBAL.TYPE_SYNTHETIC);
+			else if(skinType == GLOBAL.SKIN_TYPE_GOO)
+			{
+				shiftVagina(arg, GLOBAL.TYPE_HUMAN);
+				vaginas[arg].addFlag(GLOBAL.FLAG_GOOEY);
+				vaginas[arg].vaginaColor = skinTone;
+			}
 		}
 		
 		//create vagoo
@@ -9403,13 +9549,14 @@
 			 * In the event of a tie, pick the score with the highest NATURAL max.
 			 * Combine in other potentially interesting race combinations (or boring ones- if human score is high enough, always pre-pend 'half-' etc)
 			 * ie if your generic taur score is high enough, append "taur", so the game would do shit like ausartaur or w/e (taursaur?)
-			 * */		
+			 * */
 			
 			// Gryvin numbers might be too tight- you can walk away with like 7 to 9 score from creation. EVERYTHING just right will get you 12-ish.
 			 
 			if (horseScore() >= 3) race = equineRace(); // Horse-morphs
 			if (vulpineScore() >= 4) race = "vulpine-morph";
 			if (kitsuneScore() >= 4 && (race.indexOf("vulpine") == -1 || tailCount > 1)) race = kitsuneRace();
+			if (avianScore() >= 4) race = avianRace();
 			if (ovirScore() >= 3 && race == "human") race = "half-ovir";
 			if (ausarScore() >= 2 && race == "human")
 			{
@@ -9441,6 +9588,7 @@
 			if (vanaeScore() >= 6) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
 			if (zilScore() >= 6) race = "zil";
+			if (suulaScore() >= 6) race = "suula";
 			if (badgerScore() >= 4) race = "badger";
 			if (ovirScore() >= 5) race = "ovir";
 			if (myrScore() >= 4) race = "myr";
@@ -9457,7 +9605,6 @@
 			if (horseScore() >= 3 && isCentaur()) race = taurRace(equineRace());
 			else if (bovineScore() >= 3 && isTaur()) race = rawmfn("bull", "cow", "bovine") + "-taur";
 			else if (race == "human" && isCentaur()) race = "centaur";
-			else if (InCollection(race, "feline-morph", "nekomata") && isTaur() && isHerm()) race = "chakat";
 			else if (isTaur()) race = taurRace(race); // Other taurs
 			// Naga-morphs
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
@@ -9472,6 +9619,11 @@
 			
 			return race;
 		}
+		public function raceShort(strict:Boolean = false): String
+		{
+			return stripRace(race(), (strict && this is PlayerCharacter));
+		}
+		
 		public function equineRace():String
 		{
 			if (horseScore() >= 5)
@@ -9519,14 +9671,29 @@
 		}
 		public function felineRace():String
 		{
-			if (hasTail(GLOBAL.TYPE_FELINE) && tailCount > 1) return "nekomata";
-			else if (dragonScore() >= 4 && hasScales())  return "dragonne";
+			if (dragonScore() >= 4 && hasScales())  return "dragonne";
+			else if (isTaur() && isHerm()) return "chakat";
+			else if (hasTail(GLOBAL.TYPE_FELINE) && tailCount > 1) return "nekomata";
 			return "feline-morph";
 		}
 		public function kitsuneRace():String
 		{
 			if (hasPerk("Enlightened Nine-tails") || hasPerk("Nine-tails") || hasPerk("Corrupted Nine-tails")) return "kitsune";
 			return "kitsune-morph";
+		}
+		public function avianRace():String
+		{
+			if (legType == GLOBAL.TYPE_FELINE && hasFaceFlag(GLOBAL.FLAG_BEAK)) return "griffin";
+			if (legType == GLOBAL.TYPE_EQUINE && hasFaceFlag(GLOBAL.FLAG_BEAK)) return "hippogriff";
+			if (isNaga() && hasFeathers()) return "quetzalcoatl";
+			if (hasFeathers() && (furColor == Foxfire.fireColorNormal || furColor == Foxfire.fireColorArctic)) return "phoenix-morph";
+			if (legType == GLOBAL.TYPE_VULPINE && hasFaceFlag(GLOBAL.FLAG_BEAK)) return "vulpogryph";
+			if (InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE))
+			{
+				if (hasFeathers() && armType == GLOBAL.TYPE_AVIAN && legType == GLOBAL.TYPE_AVIAN && hasWings() && InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) return "sirin";
+				return "harpy";
+			}
+			return "avian-morph";
 		}
 		public function plantRace():String
 		{
@@ -9537,14 +9704,14 @@
 		}
 		public function taurRace(race:String = ""):String
 		{
-			if (race.indexOf("leithan") != -1 || race.indexOf("taur") != -1) return race;
+			if (race.indexOf("leithan") != -1 || race.indexOf("chakat") != -1 || race.indexOf("taur") != -1) return race;
 			if (race.indexOf("-morph") != -1) race = race.replace("-morph", "");
 			return race + "-taur";
 		}
 		public function mlpRace():String
 		{
-			if (hasHorns() && hasWings()) return "alicorn";
-			if (hasHorns() && horns == 1) return "unicorn";
+			if (hasHorns() && hasWings()) return "alicorn pony";
+			if (hasHorns() && horns == 1) return "unicorn pony";
 			if (hasWings()) return "pegasus pony";
 			return "terran pony";
 		}
@@ -9675,6 +9842,38 @@
 			if (hasScales()) counter--;
 			return counter;
 		}
+		public function avianScore():int
+		{
+			var counter: int = 0;
+			if (earType == GLOBAL.TYPE_AVIAN) counter++;
+			if (faceType == GLOBAL.TYPE_AVIAN)
+			{
+				counter++;
+				if (hasFaceFlag(GLOBAL.FLAG_BEAK)) counter++;
+			}
+			if (armType == GLOBAL.TYPE_AVIAN) counter++;
+			if (legType == GLOBAL.TYPE_AVIAN) counter++;
+			if (hasWings(GLOBAL.TYPE_AVIAN) || hasWings(GLOBAL.TYPE_DOVE)) counter++;
+			if (hasTail(GLOBAL.TYPE_AVIAN)) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) counter++;
+			if (counter > 0 && eyeType == GLOBAL.TYPE_AVIAN) counter++;
+			if (counter > 0 && hasHair() && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
+			if (counter > 2 && legType == GLOBAL.TYPE_FELINE) // griffin
+			{
+				counter++;
+				if (hasTail(GLOBAL.TYPE_FELINE)) counter++;
+				if (eyeType == GLOBAL.TYPE_FELINE) counter++;
+				if (earType == GLOBAL.TYPE_FELINE) counter++;
+			}
+			if (counter > 2 && legType == GLOBAL.TYPE_EQUINE) // hippogriff
+			{
+				counter++;
+				if (hasTail(GLOBAL.TYPE_EQUINE)) counter++;
+				if (earType == GLOBAL.TYPE_EQUINE) counter++;
+			}
+			if (counter > 2 && isNaga()) counter++; // quetzalcoatl
+			return counter;
+		}
 		public function badgerScore():int
 		{
 			var counter:int = 0;
@@ -9718,15 +9917,15 @@
 			if (counter > 3 && hasCock(GLOBAL.TYPE_DEMONIC)) counter++;
 			return counter;
 		}
-		public function dragonScore():Number
+		public function dragonScore():int
 		{
-			var counter:Number = 0;
+			var counter:int = 0;
 			if (faceType == GLOBAL.TYPE_DRACONIC) counter++;
 			if (earType == GLOBAL.TYPE_DRACONIC || earType == GLOBAL.TYPE_GRYVAIN) counter++;
 			if (hasTail(GLOBAL.TYPE_DRACONIC) || hasTail(GLOBAL.TYPE_GRYVAIN)) counter++;
 			if (tongueType == GLOBAL.TYPE_DRACONIC) counter++;
 			if (cockTotal(GLOBAL.TYPE_DRACONIC) > 0 || cockTotal(GLOBAL.TYPE_GRYVAIN) > 0) counter++;
-			if (hasWings(GLOBAL.TYPE_DRACONIC) || hasWings(GLOBAL.TYPE_SMALLDRACONIC) || hasWings(GLOBAL.TYPE_GRYVAIN)) counter++;
+			if (hasWings() && InCollection(wingType, [GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_GRYVAIN])) counter++;
 			if (legType == GLOBAL.TYPE_DRACONIC || legType == GLOBAL.TYPE_GRYVAIN) counter++;
 			if (hasHorns(GLOBAL.TYPE_DRACONIC) || hasHorns(GLOBAL.TYPE_LIZAN) || hasHorns(GLOBAL.TYPE_GRYVAIN)) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
@@ -9869,7 +10068,7 @@
 			if (!isBiped() || !hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter--;
 			return counter;
 		}
-		public function kitsuneScore():Number
+		public function kitsuneScore():int
 		{
 			var counter:int = 0;
 			if (earType == GLOBAL.TYPE_VULPINE) counter++;
@@ -10022,6 +10221,20 @@
 			if (counter > 4 && hasTongueFlag(GLOBAL.FLAG_LONG) && hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) counter++;
 			return counter;
 		}
+		public function suulaScore(): int
+		{
+			var counter: int = 0;
+			if (armType == GLOBAL.TYPE_SIREN) counter++;
+			if (legType == GLOBAL.TYPE_SIREN && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
+			if (faceType == GLOBAL.TYPE_SHARK || faceType == GLOBAL.TYPE_SIREN) counter++;
+			if (earType == GLOBAL.TYPE_SIREN) counter++;
+			if (hasTail(GLOBAL.TYPE_SIREN)) counter++;
+			if (hasWings() && InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) counter++;
+			if (counter > 4 && hasCock(GLOBAL.TYPE_SIREN)) counter++;
+			if (counter > 4 && hasVaginaType(GLOBAL.TYPE_SIREN)) counter++;
+			if (skinType != GLOBAL.SKIN_TYPE_SCALES) counter--;
+			return counter;
+		}
 		public function vanaeScore(): int
 		{
 			var counter:int = 0;
@@ -10037,7 +10250,7 @@
 			if (counter > 0 && hairType == GLOBAL.HAIR_TYPE_TENTACLES) counter++;
 			return counter;
 		}
-		public function vulpineScore():Number
+		public function vulpineScore():int
 		{
 			var counter: int = 0;
 			if (earType == GLOBAL.TYPE_VULPINE) counter++;
@@ -11231,6 +11444,13 @@
 						return descript + "head-fur";
 					}
 				}
+				else if (hasFeathers()) {
+					if (rand(2) == 0) descript += "feathery ";
+					else {
+						if (forceColor || rand(2) == 0) descript += furColor;
+						return descript + "head-feathers";
+					}
+				}
 				else if (hasScales()) {
 					if (rand(2) == 0) descript += "scaly ";
 				}
@@ -11422,6 +11642,13 @@
 					else {
 						if (forceColor || rand(2) == 0) descript += furColor;
 						return descript + "head-fur";
+					}
+				}
+				else if (hasFeathers()) {
+					if (rand(2) == 0) descript += "feathery ";
+					else {
+						if (forceColor || rand(2) == 0) descript += furColor;
+						return descript + "head-feathers";
 					}
 				}
 				else if (hasScales()) {
@@ -11758,7 +11985,8 @@
 				else if (type == GLOBAL.TYPE_CANINE) desc += "canine ";
 				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
 				else if (type == GLOBAL.TYPE_FELINE) desc += "feline ";
-				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE) desc += "siren ";
+				else if (type == GLOBAL.TYPE_AVIAN) desc += "avian ";
+				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE) desc += "suula ";
 				else if (type == GLOBAL.TYPE_GRYVAIN) desc += "draconic ";
 				else if (type == GLOBAL.TYPE_BEE) desc += "zil-styled ";
 				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
@@ -11826,12 +12054,19 @@
 					else
 						desc += RandomInCollection(["cat-pussy", "cat-pussy", "animal-pussy", "cat-cunt", "cat-quim", "animal-twat", "cat-gina", "cat-vagina", "pussycat-pussy", "box"]);
 				}
+				else if (type == GLOBAL.TYPE_AVIAN)
+				{
+					if (!simple)
+					desc += RandomInCollection(["avian pussy", "bird pussy", "bird vagina", "avian vagina", "avian honeypot", "birdy cunny", "avian cunt", "bird slit", "avian slit", "bird cunt", "birdy quim"]);
+					else
+					desc += RandomInCollection(["bird-pussy", "bird-pussy", "avian-pussy", "bird-cunt", "bird-quim", "avian-twat", "bird-gina", "bird-vagina", "box"]);
+				}
 				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE)
 				{
 					if (!simple)
-						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "siren-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
+						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "suula-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
 					else
-						desc += RandomInCollection(["siren-pussy", "venom-pussy", "siren-pussy", "siren-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","siren-twat","siren-snatch","cunt"]);
+						desc += RandomInCollection(["suula-pussy", "venom-pussy", "suula-pussy", "suula-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","suula-twat","suula-snatch","cunt"]);
 				}
 				else if (type == GLOBAL.TYPE_GRYVAIN)
 				{
@@ -12798,6 +13033,9 @@
 							//adjectives.push("feline","spine-covered","spined","kitty","animalistic","soft-barbed","nubby","feline");
 							desc += RandomInCollection(["cat-cock","kitty-cock",(!cock.hasFlag(GLOBAL.FLAG_TAPERED) ? "kaithrit-cock" : "cat-cock"),"animal-prick","cat-prick","cat-dick","kitty-dick","cat-phallus","cat-cock","cat-penis"]);
 							break;
+						case GLOBAL.TYPE_AVIAN:
+							desc += RandomInCollection(["bird-cock", "avian-cock", "bird-shaft", "avian-dick", "bird-dick", "bird-phallus", "avian-phallus", "bird-prick", "avian-tool", "bird-cock", "bird-cock"]);
+							break;
 						case GLOBAL.TYPE_NAGA:
 							//adjectives.push("reptilian","ophidian","inhuman","reptilian",/*"herpetological",*/"serpentine","bulbous","bulging");
 							desc += RandomInCollection(["snake-cock","reptile-cock","snake-shaft","reptile-dick","snake-dick","snake-phallus","reptile-phallus","snake-prick","reptile-tool","snake-cock","snake-cock"]);
@@ -12910,6 +13148,9 @@
 						case GLOBAL.TYPE_FELINE:
 							//adjectives.push("feline","spine-covered","spined","kitty","animalistic","soft-barbed","nubby","feline");
 							desc += RandomInCollection(["feline cock","spine-covered cock","animalistic cat-cock","soft-barbed cock","nubby cock","spined kitty-dick","soft-barbed cat-dick","animalistic dick","feline dick","kitty dick","feline tool","feline prick","animalistic shaft","barbed animal-prick"]);
+							break;
+						case GLOBAL.TYPE_AVIAN:
+							desc += RandomInCollection(["avian cock", "bestial cock", "birdy cock", "glossy bird-cock", "avian dick", "bird-like dick", "exotic cock", "pointed cock", "curved avian-dick", "undulating prick", "tapered tool", "pointed prick", "undulating member", "avian shaft", "bird-like shaft"]);
 							break;
 						case GLOBAL.TYPE_NAGA:
 							//adjectives.push("reptilian","ophidian","inhuman","reptilian",/*"herpetological",*/"serpentine","bulbous","bulging");
@@ -13142,7 +13383,7 @@
 					if(!cocks[x].hasFlag(GLOBAL.FLAG_KNOTTED)) multiOkay = false;
 				}
 			}
-			if(adjectives < adjectiveLimit && rand(5) == 0 && cock.hasFlag(GLOBAL.FLAG_KNOTTED) && cock.cType != GLOBAL.TYPE_CANINE && cock.cType != GLOBAL.TYPE_SNAKE && cock.cType != GLOBAL.TYPE_NAGA && cock.cType != GLOBAL.TYPE_KUITAN && (!multi || multiOkay))
+			if(adjectives < adjectiveLimit && rand(5) == 0 && cock.hasFlag(GLOBAL.FLAG_KNOTTED) && !InCollection(cock.cType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_SNAKE, GLOBAL.TYPE_NAGA, GLOBAL.TYPE_KUITAN) && (!multi || multiOkay))
 			{
 				if(adjectives > 0) descript += ", ";
 				descript += RandomInCollection(["knotted","bulbous","knotty"]);
@@ -13198,7 +13439,7 @@
 				}
 			}
 			if (adjectives < adjectiveLimit && !multi && rand(5) == 0 && cock.sock != "" && (!multi || multiOkay)) {
-				if(adjectives > 0) descript += ", ";descript += "pierced";
+				if(adjectives > 0) descript += ", ";
 				descript += RandomInCollection(["sock-sheathed","garment-wrapped","wrapped","smartly dressed","cloth-shrouded","sock-shrouded","fabric swaddled","covered"]);
 				adjectives++;
 			}
@@ -14352,6 +14593,7 @@
 				//These all get 70% complex, 10% ultraSimple, 20% simple
 				case GLOBAL.TYPE_EQUINE:
 				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_VULPINE:
 				case GLOBAL.TYPE_FELINE:
 				case GLOBAL.TYPE_NAGA:
 				case GLOBAL.TYPE_LEITHAN:
@@ -15804,6 +16046,8 @@
 		{
 			// Simple BMI: 20 is underweight, 25 is average, 30 is overweight
 			var nBMI:Number = (25 + ((thickness - 50) / 10));
+			if (hasPerk("Hollow Bones")) nBMI -= perkv1("Hollow Bones"); // usually 10
+			if (nBMI < 5) nBMI = 5; // to avoid total weirdshit
 			// Raw body weight, assume without extra parts
 			var nWeight: Number = ((tallness / 12) * nBMI * (tallness / 75));
 			
@@ -16196,7 +16440,7 @@
 		
 		public function untypedDroneDamage():Number
 		{
-			var dmg:Number = 1 + level + rand(2 + level / 2);
+			var dmg:Number = 1 + level + rand(Math.round((2 + level) / 2));
 			var bonus:Number = 0;
 			
 			if(hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) bonus += level;
@@ -16207,20 +16451,6 @@
 		public function droneDamage():TypeCollection
 		{
 			var d:Number = untypedDroneDamage();
-			if (accessory is TamWolfDamaged)
-			{
-				d -= -1;
-				return new TypeCollection( { kinetic: d } );
-			}
-			if (hasStatusEffect("Varmint Buddy"))
-			{
-				d -= -1;
-				var varmintDamage:TypeCollection = new TypeCollection();
-				varmintDamage.kinetic.damageValue = Math.round(d * 0.75);
-				varmintDamage.corrosive.damageValue = Math.round(d * 0.25);
-				varmintDamage.addFlag(DamageFlag.PENETRATING);
-				return varmintDamage;
-			}
 			return new TypeCollection( { electric: d } );
 		}
 		public function hasTamWolf():Boolean
@@ -16936,13 +17166,14 @@
 				switch (thisStatus.storageName)
 				{
 					case "Foxfire":
-						thisStatus.value4 += deltaT;
+						if (thisStatus.value4 < kGAMECLASS.GetGameTimestamp() || thisStatus.value4 <= 60) thisStatus.value4 = kGAMECLASS.GetGameTimestamp(); // failsafe and update for the old system
+						var endTime:uint = kGAMECLASS.GetGameTimestamp() + deltaT;
 						
-						if (thisStatus.value4 > 0 && rand(thisStatus.value4) > 60)
-						{
-							thisStatus.value4 -= ((2 * 60) + rand(2 * 60));
+						while (thisStatus.value4 <= endTime)
+ 						{
 							Foxfire.attemptTF(this);
-						}
+							thisStatus.value4 += ((3 * 60) + rand(2 * 60));
+ 						}
 						break;
 				}
 				
@@ -17286,7 +17517,7 @@
 			
 			if (thisStatus == null) return;
 			
-			var timeConsuming:uint = 0;
+			var timeConsuming:Number = 0;
 			
 			if (thisStatus.value1 > 0)
 			{
@@ -17299,7 +17530,7 @@
 				
 				thisStatus.value3 = 0;
 				
-				if (thisStatus.value1 >= 25 && !hasStatusEffect("Buzzed"))
+				if (thisStatus.value2 >= 25 && !hasStatusEffect("Buzzed"))
 				{
 					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					physiqueMod += 2;
@@ -17308,7 +17539,7 @@
 					AddLogEvent("Damn, that stuff you were drinking was awesome. <b>You're feeling pretty good right now. You must be buzzed.</b>", "passive", deltaT);
 				}
 				
-				if (thisStatus.value1 >= 50 && !hasStatusEffect("Drunk"))
+				if (thisStatus.value2 >= 50 && !hasStatusEffect("Drunk"))
 				{
 					if (hasStatusEffect("Buzzed"))
 					{
@@ -17321,7 +17552,7 @@
 					AddLogEvent("Your sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>", "passive", deltaT);
 				}
 				
-				if (thisStatus.value1 >= 75 && !hasStatusEffect("Smashed"))
+				if (thisStatus.value2 >= 75 && !hasStatusEffect("Smashed"))
 				{
 					if (hasStatusEffect("Drunk"))
 					{
@@ -17338,14 +17569,14 @@
 			}
 			
 			// Confer how long it has been since anything was last imbibed. This is essentially (total time passing - max time consuming latent volume)
-			var postConsumptionTime:uint = deltaT - timeConsuming;
+			var postConsumptionTime:Number = deltaT - timeConsuming;
 			thisStatus.value3 += postConsumptionTime;
 			
-			var soberingTime:uint = 0;
+			var soberingTime:Number = 0;
 			
 			if (thisStatus.value3 > 60 && thisStatus.value2 > 0)
 			{
-				soberingTime = Math.min(thisStatus.value2, hasPerk("'Nuki Drunk") ? postConsumptionTime * 0.25 : postConsumptionTime);
+				soberingTime = Math.min(thisStatus.value2, (hasPerk("'Nuki Drunk") ? (postConsumptionTime * 0.25) : postConsumptionTime));
 				thisStatus.value2 -= soberingTime;
 				
 				if (thisStatus.value2 < 75 && hasStatusEffect("Smashed"))
@@ -17400,7 +17631,7 @@
 					AddLogEvent("Blinking, you realize that the alcohol has faded from your system. <b>You're no longer buzzed.</b>", "passive", deltaT);
 				}
 			}
-
+			
 			if (thisStatus.value2 <= 0)
 			{
 				removeStatusEffect("Alcohol");

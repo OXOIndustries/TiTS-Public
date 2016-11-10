@@ -6,11 +6,11 @@
 	import classes.Items.Combat.CrystalShard;
 	import classes.Items.Transformatives.GooBallRed;
 	import classes.Items.Transformatives.GooBallOrange;
+	import classes.Items.Transformatives.GooBallYellow;
 	import classes.Items.Transformatives.GooBallGreen;
 	import classes.Items.Transformatives.GooBallBlue;
 	import classes.Items.Transformatives.GooBallPurple;
 	import classes.Items.Transformatives.GooBallPink;
-	import classes.Items.Transformatives.GooBallYellow;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -30,11 +30,11 @@
 			this.inventory.push(new FungalExtract());
 			this.inventory.push(new GooBallRed());
 			this.inventory.push(new GooBallOrange());
+			this.inventory.push(new GooBallYellow());
 			this.inventory.push(new GooBallGreen());
 			this.inventory.push(new GooBallBlue());
 			this.inventory.push(new GooBallPurple());
 			this.inventory.push(new GooBallPink());
-			this.inventory.push(new GooBallYellow());
 			//this.inventory.push(new ());
 			this.sellMarkup = 1;
 			this.buyMarkdown = .5;

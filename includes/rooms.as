@@ -272,4 +272,13 @@ public function initializeRooms():void
 	rooms["DEBUG3"].northExit = "DEBUG2";
 	rooms["DEBUG3"].addFlag(GLOBAL.INDOOR);
 	rooms["DEBUG3"].runOnEnter = debugMenusThree;
+
+	rooms["FLAG EDIT"] = new RoomClass(this);
+	rooms["FLAG EDIT"].roomName = "FLAG\nEDITOR";
+	rooms["FLAG EDIT"].description = "";
+	rooms["FLAG EDIT"].planet = "PLANET: TAMANI";
+	rooms["FLAG EDIT"].system = "SYSTEM: CORRUPTION";
+	rooms["FLAG EDIT"].northExit = "DEBUG3";
+	rooms["FLAG EDIT"].addFlag(GLOBAL.INDOOR);
+	rooms["FLAG EDIT"].runOnEnter = flagEditing;
 }

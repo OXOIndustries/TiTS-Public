@@ -18,7 +18,7 @@ public function initVesperiaRoom():void
 	
 	rooms["CANADA1"] = new RoomClass(this);
 	rooms["CANADA1"].roomName = "LANDING\nPAD";
-	rooms["CANADA1"].description = "One of Canadia Station's dozens of landing pads stretches out ahead of you, seemingly exposed to the cold, endless void of space. A shimmering haze holds in an immense dome of breathable air over the area, surrounding everything from your ship to the station doors in heated safety. Spacecraft of all makes and models are lined up along one side of the polished deck, flanked by hovering support vehicles and the station's mechanics. Shadows from the larger berths, where military vessels and commercial freighters dock, occasionally flit across your view as the station spins.";
+	rooms["CANADA1"].description = "One of Canadia Station’s dozens of landing pads stretches out ahead of you, seemingly exposed to the cold, endless void of space. A shimmering haze holds in an immense dome of breathable air over the area, surrounding everything from your ship to the station doors in heated safety. Spacecraft of all makes and models are lined up along one side of the polished deck, flanked by hovering support vehicles and the station’s mechanics. Shadows from the larger berths, where military vessels and commercial freighters dock, occasionally flit across your view as the station spins.";
 	rooms["CANADA1"].planet = "CANADIA STATION";
 	rooms["CANADA1"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA1"].southExit = "CANADA2";
@@ -30,7 +30,7 @@ public function initVesperiaRoom():void
 
 	rooms["CANADA2"] = new RoomClass(this);
 	rooms["CANADA2"].roomName = "\nAIRLOCK";
-	rooms["CANADA2"].description = "Canadia Station's airlocks are standard affairs with heavy interior and exterior doors, designed to maintain the integrity of the internal atmosphere at all costs. Presently, both are wide open, allowable only because of a hardlight-encapsulated bubble of air around the landing pad, but they'd snap closed in the space of a second in the event of a serious fault. The faded controls are completely dim and unlit, disabled until the air-bubble is powered down.";
+	rooms["CANADA2"].description = "Canadia Station’s airlocks are standard affairs with heavy interior and exterior doors, designed to maintain the integrity of the internal atmosphere at all costs. Presently, both are wide open, allowable only because of a hardlight-encapsulated bubble of air around the landing pad, but they’d snap closed in the space of a second in the event of a serious fault. The faded controls are completely dim and unlit, disabled until the air-bubble is powered down.";
 	rooms["CANADA2"].planet = "CANADIA STATION";
 	rooms["CANADA2"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA2"].northExit = "CANADA1";
@@ -54,7 +54,7 @@ public function initVesperiaRoom():void
 
 	rooms["CANADA4"] = new RoomClass(this);
 	rooms["CANADA4"].roomName = "ACCESS\nCORRIDOR BETA";
-	rooms["CANADA4"].description = "Hanging across the access corridor is a wooden sign, laser carved to lend it a charred, rustic air. It's shaped to resemble a raccoon's tail - or a kui-tan's, the lettering striped with bands of alternating lighter and darker brown. It proudly proclaims the establishment to be the \"Kui Country Bar and Lodge.\" A thick door of reddish wood, probably a Vesperian variety replaces the station's standard portals, illuminated by a recessed indicator that glows, \"OPEN.\"";
+	rooms["CANADA4"].description = "Hanging across the access corridor is a wooden sign, laser carved to lend it a charred, rustic air. It’s shaped to resemble a raccoon’s tail - or a kui-tan’s, the lettering striped with bands of alternating lighter and darker brown. It proudly proclaims the establishment to be the “Kui Country Bar and Lodge.” A thick door of reddish wood, probably a Vesperian variety replaces the station’s standard portals, illuminated by a recessed indicator that glows, “OPEN.”";
 	rooms["CANADA4"].planet = "CANADIA STATION";
 	rooms["CANADA4"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA4"].eastExit = "CANADA3";
@@ -81,7 +81,7 @@ public function initVesperiaRoom():void
 
 	rooms["CANADA6"] = new RoomClass(this);
 	rooms["CANADA6"].roomName = "\nRESTROOM";
-	rooms["CANADA6"].description = "The Kui Country Bar and Lodge has one enormous bathroom for all sexes, genders, and races, presumably part of a Vesperian equality initiative. The north wall has urinals positioned at a variety of heights to accommodate the various physical proportions of local males and herms. Stalls line the south side of the room, large enough for a centaur but equipped to handle the galaxy's women with equal ease. Any impression of class is ruined by graffiti labels that designate certain stalls as \"Beej Throne\" and \"Cum Palace!\" A quick peek inside reveals the presence of gloryholes - lots of them.\n\nSanitation stalls along the east wall provide plenty of opportunity to clean up after whatever biological functions you attend to within.";
+	rooms["CANADA6"].description = "The Kui Country Bar and Lodge has one enormous bathroom for all sexes, genders, and races, presumably part of a Vesperian equality initiative. The north wall has urinals positioned at a variety of heights to accommodate the various physical proportions of local males and herms. Stalls line the south side of the room, large enough for a centaur but equipped to handle the galaxy’s women with equal ease. Any impression of class is ruined by graffiti labels that designate certain stalls as “Beej Throne” and “Cum Palace!” A quick peek inside reveals the presence of gloryholes - lots of them.\n\nSanitation stalls along the east wall provide plenty of opportunity to clean up after whatever biological functions you attend to within.";
 	rooms["CANADA6"].planet = "CANADIA STATION";
 	rooms["CANADA6"].system = "SYSTEM: LIBERTERIA";
 	//rooms["CANADA6"].northExit = "";
@@ -89,7 +89,7 @@ public function initVesperiaRoom():void
 	//rooms["CANADA6"].southExit = "";
 	rooms["CANADA6"].westExit = "CANADA5";
 	rooms["CANADA6"].moveMinutes = 1;
-	rooms["CANADA6"].runOnEnter = undefined;
+	rooms["CANADA6"].runOnEnter = canadiaGloryhole;
 	rooms["CANADA6"].addFlag(GLOBAL.INDOOR);
 	rooms["CANADA6"].addFlag(GLOBAL.PRIVATE);
 
@@ -109,8 +109,8 @@ public function initVesperiaRoom():void
 	rooms["CANADA7"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["CANADA8"] = new RoomClass(this);
-	rooms["CANADA8"].roomName = "KALLY'S\nROOM";
-	rooms["CANADA8"].description = "Kally's room is... neat. Astonishingly neat. The walls are clean white affairs housing embedded lights. The diffuse lighting bathes the place in a calm, clear ambiance. She's chosen purple sheets for her bed and a lacy pink pillow, but like everything else they're spotless and meticulously arranged. A filing cabinet and desk sit beside the door, armed with a beefy holographic computer that would look more at home in a college kid's dorm room than in a serious businesswoman's abode. An enormous bottle of lube is tucked into the corner, half-hidden behind a box of \"Spunk-Monster\" brand condoms.";
+	rooms["CANADA8"].roomName = "KALLY’S\nROOM";
+	rooms["CANADA8"].description = "Kally’s room is... neat. Astonishingly neat. The walls are clean white affairs housing embedded lights. The diffuse lighting bathes the place in a calm, clear ambiance. She’s chosen purple sheets for her bed and a lacy pink pillow, but like everything else they’re spotless and meticulously arranged. A filing cabinet and desk sit beside the door, armed with a beefy holographic computer that would look more at home in a college kid’s dorm room than in a serious businesswoman’s abode. An enormous bottle of lube is tucked into the corner, half-hidden behind a box of “Spunk-Monster” brand condoms.";
 	rooms["CANADA8"].planet = "CANADIA STATION";
 	rooms["CANADA8"].system = "SYSTEM: LIBERTERIA";
 	//rooms["CANADA8"].northExit = "";
@@ -125,7 +125,7 @@ public function initVesperiaRoom():void
 
 	rooms["CANADA9"] = new RoomClass(this);
 	rooms["CANADA9"].roomName = "RENTED\nROOM";
-	rooms["CANADA9"].description = "A cushy-looking bed dominates the room, supported by a rough-hewn frame, varnished to preserve its rustic charm for all eternity. A dresser provides ample storage space as well as a home for numerous decorative knick-knacks. One that stands out is a plush beaver with a ridiculous pair of wood-carved antlers and a flat, fuzzy tail meant to serve as a coaster. You're pretty sure it's teeth would work as a bottle opener in a pinch as well. All the standard amenities one would expect are here with the added bonus of a bathroom so well equipped it would look more at home in a luxury hotel.";
+	rooms["CANADA9"].description = "A cushy-looking bed dominates the room, supported by a rough-hewn frame, varnished to preserve its rustic charm for all eternity. A dresser provides ample storage space as well as a home for numerous decorative knick-knacks. One that stands out is a plush beaver with a ridiculous pair of wood-carved antlers and a flat, fuzzy tail meant to serve as a coaster. You’re pretty sure it’s teeth would work as a bottle opener in a pinch as well. All the standard amenities one would expect are here with the added bonus of a bathroom so well equipped it would look more at home in a luxury hotel.";
 	rooms["CANADA9"].planet = "CANADIA STATION";
 	rooms["CANADA9"].system = "SYSTEM: LIBERTERIA";
 	//rooms["CANADA9"].northExit = "";

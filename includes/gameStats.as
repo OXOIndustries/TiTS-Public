@@ -71,6 +71,11 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.isBimbo()) output2(", Ditz");
 		if(pc.isBro()) output2(", Brute");
 		output2("\n<b>* Alcohol Tolerance:</b> " + pc.tolerance() + "/100");
+		if(pc.hasStatusEffect("Alcohol"))
+		{
+			output2("\n<b>* Alcohol Imbibed:</b> " + pc.statusEffectv1("Alcohol") + " %");
+			output2("\n<b>* Blood Alcohol Content:</b> " + formatFloat((pc.statusEffectv2("Alcohol") * 0.002), 3) + " %");
+		}
 		output2("\n<b>* Exhibitionism:</b> " + formatFloat(pc.exhibitionism(), 1) + "/100");
 		output2("\n<b>* Carry Threshold:</b> " + prettifyWeight(pc.bodyStrength()));
 		//if(pc.weightQ("full") > 0) output2(" (" + pc.weightQ("full") + " %)");
@@ -138,6 +143,7 @@ public function statisticsScreen(showID:String = "All"):void
 		else if(lipsize <= 7) output2(" Bloated");
 		else if(lipsize <= 8) output2(" Whorish");
 		else output2(" Universe-distorting");
+		if(lipsize > 9) output2(" (" + formatFloat(lipsize, 3) + ")");
 		if(pc.lipColor != "") output2(", " + StringUtil.toDisplayCase(pc.lipColor));
 		if(pc.lipPierced != 0 || flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2)
 		{
@@ -175,6 +181,7 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 			}
 		}
+		if(pc.hasPerk("Regal Mane")) output2("\n<b>* Neck, Mane:</b> " + GLOBAL.FLAG_NAMES[pc.perkv1("Regal Mane")]);
 		// Body
 		output2("\n<b><u>Body</u></b>");
 		output2("\n<b>* Tone:</b> " + pc.tone + "/" + pc.toneMax());
@@ -357,6 +364,11 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + pc.balls + " Testicle");
 				if(pc.balls != 1) output2("s");
 				if(pc.hasStatusEffect("Uniball")) output2(", Uniball");
+				if(pc.hasStatusEffect("Special Scrotum"))
+				{
+					output2(", " + GLOBAL.FLAG_NAMES[pc.statusEffectv1("Special Scrotum")]);
+					if(pc.getStatusTooltip("Special Scrotum") != "") output2(", " + StringUtil.toDisplayCase(pc.getStatusTooltip("Special Scrotum")));
+				}
 				if(pc.statusEffectv4("Vanae Markings") > 0) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
 				output2("\n<b>* Testicle, Size:</b> " + prettifyLength(pc.ballDiameter()) + " across, " + prettifyLength(pc.ballSize()) + " around");
 				if(pc.balls != 1) output2(", each");
@@ -837,6 +849,8 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2("\n<b><u>Offspring</u></b>");
 				output2("\n<b>* Total:</b> " + totalOffspring);
+				if(StatTracking.getStat("pregnancy/total day care") > 0)
+					output2("\n<b>* Total @ Daycare:</b> " + StatTracking.getStat("pregnancy/total day care"));
 				// Mother
 				if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
 					output2("\n<b>* Births, Cockvines:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
@@ -946,7 +960,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.hasCuntSnake()) output2("\n<b>* Feeding, Current:</b> " + flags["DAYS_SINCE_FED_CUNT_TAIL"] + " days since last fed");
 			if(flags["TIMES_FED_CUNT_SNAKE"] != undefined) output2("\n<b>* Feeding, Total:</b> " + flags["TIMES_FED_CUNT_SNAKE"] + " times");
 			
-			if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined && flags["CUNT_TAIL_PREGNANT_TIMER"] > 0) output2("\n<b>* Pregnancy, Gestation Time:</b> " + prettifyMinutes(flags["CUNT_TAIL_PREGNANT_TIMER"]) + " until birth");
+			if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined) output2("\n<b>* Pregnancy, Gestation Time:</b> " + prettifyMinutes(flags["CUNT_TAIL_PREGNANT_TIMER"]) + " until birth");
 			
 			if(flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined && flags["CUNT_SNAKE_EGGS_FAXED_HOME"] > 0) output2("\n<b>* Reproduction, Eggs in Hatchery:</b> " + flags["CUNT_SNAKE_EGGS_FAXED_HOME"]);
 			if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] != undefined || flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined)
@@ -1130,6 +1144,8 @@ public function prettifyMinutes(nMinutes:Number, toDate:Boolean = false):String
 		nHours = Math.floor(nMinutes/60);
 		nMinutes -= 60 * nHours;
 	}
+	//Minutes
+	nMinutes = Math.floor(nMinutes);
 	
 	// Normal!
 	if(!toDate)
@@ -1174,9 +1190,292 @@ public function minutesToDays(nMinutes:Number):Number
 {
 	return Math.floor(nMinutes / 60 / 24);
 }
+public function minutesToWeeks(nMinutes:Number):Number
+{
+	return Math.floor(nMinutes / 60 / 24 / 7);
+}
 public function minutesToYears(nMinutes:Number):Number
 {
 	return Math.floor(nMinutes / 60 / 24 / 365);
+}
+public function minutesToMonths(nMinutes:Number):Number
+{
+	var nMos:int = 0;
+	var monthMin:Array = getMonthArray();
+	var m:int = getCurrentMonth();
+	
+	for(var i:int = 0; i < 12; i++)
+	{
+		if(m > 12) m = 1;
+		
+		if(nMinutes >= monthMin[m])
+		{
+			nMinutes -= monthMin[m];
+			nMos++;
+		}
+		
+		m++;
+	}
+	
+	return nMos;
+}
+
+public function getDayArray(asValue:String = ""):Array
+{
+	var monthList:Array = [0, 1440, 1440, 1440, 1440, 1440, 1440, 1440];
+	var i:int = 0;
+	
+	if(asValue != "")
+	{
+		switch(asValue)
+		{
+			case "hours":
+				monthList = [0, 24, 24, 24, 24, 24, 24, 24];
+				break;
+			case "name":
+				monthList = ["null", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+				break;
+			case "short":
+			case "digit":
+				monthList = ["null", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+				break;
+		}
+	}
+	
+	return monthList;
+}
+public function getMonthArray(asValue:String = ""):Array
+{
+	var monthList:Array = [0, 44640, 40320, 44640, 43200, 44640, 43200, 44640, 44640, 43200, 44640, 43200, 44640];
+	var i:int = 0;
+	
+	if(asValue != "")
+	{
+		switch(asValue)
+		{
+			case "days":
+				monthList = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+				break;
+			case "hours":
+				monthList = [0, 744, 672, 744, 720, 744, 720, 744, 744, 720, 744, 720, 744];
+				break;
+			case "name":
+				monthList = ["null", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+				break;
+			case "short":
+				monthList = ["null", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+				break;
+			case "digit":
+				monthList = ["--", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+				break;
+		}
+	}
+	
+	return monthList;
+}
+
+public function getCurrentYear():int
+{
+	return getCurrentDate("year");
+}
+public function getCurrentMonth():int
+{
+	return getCurrentDate("month");
+}
+public function getCurrentDate(dateType:String = ""):int
+{
+	// Maybe started adventure in August 30?
+	var y:int = 2828;
+	var m:int = 8;
+	var d:int = 30;
+	var currYear:int = (y + minutesToYears(GetGameTimestamp()));
+	var monthDay:Array = getMonthArray("days");
+	var currDay:int = ((d - 1) + minutesToDays(GetGameTimestamp()));
+	
+	while(currDay > monthDay[m])
+	{
+		currDay -= monthDay[m];
+		m++;
+		if(m > 12)
+		{
+			m = 1;
+			y++;
+		}
+	}
+	if(currDay > monthDay[m])
+	{
+		currDay -= monthDay[m];
+		m++;
+		if(m > 12)
+		{
+			m = 1;
+			y++;
+		}
+	}
+	
+	if(dateType == "year") return y;
+	if(dateType == "month") return m;
+	return currDay;
+}
+public function getCurrentDayWeek():int
+{
+	// Maybe started adventure on a Wednesday?
+	var dw:int = 3;
+	var currDay:int = minutesToDays(GetGameTimestamp());
+	
+	while(currDay > 7)
+	{
+		currDay -= 7;
+	}
+	while(currDay > 0)
+	{
+		currDay--;
+		dw++;
+		if(dw > 7) dw = 1;
+	}
+	
+	return dw;
+}
+public function getCurrentDateArray():Array
+{
+	// [ Year, Month, Day, Day of Week ]
+	return [ getCurrentYear(), getCurrentMonth(), getCurrentDate(), getCurrentDayWeek() ];
+}
+
+public function prettifyDate(format:String = ""):String
+{
+	var retStr:String = "";
+	
+	var y:int = getCurrentYear();
+	var m:int = getCurrentMonth();
+	var d:int = getCurrentDate();
+	var dw:int = getCurrentDayWeek();
+	
+	var dayWkName:Array = getDayArray(format);
+	var monthName:Array = getMonthArray(format);
+	
+	switch(format)
+	{
+		case "name": retStr += ( dayWkName[dw] + ", " + monthName[m] + " " + d + ", " + y ); break;
+		case "short": retStr += ( dayWkName[dw] + ", " + (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
+		case "digit": retStr += ( (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
+		default: retStr += ( m + " / " + d + " / " + y ); break;
+	}
+	
+	return retStr;
+}
+
+public function minutesToDurationList(nMinutes:Number, approximate:Boolean = false):Array
+{
+	var timeList:Array = [];
+	var nMin:int = nMinutes;
+	var nHrs:int = 0;
+	var nDys:int = 0;
+	var nWks:int = 0;
+	var nMos:int = 0;
+	var nYrs:int = 0;
+	
+	if(nMin >= 525600)
+	{
+		nYrs = Math.floor(nMin / 525600);
+		nMin -= (nYrs * 525600);
+		if(approximate && (nMin <= 0 || nYrs >= 10))
+		{
+			if(nYrs == 1) timeList.push(" a year");
+			else if(nYrs <= 2) timeList.push(" a couple years");
+			else if(nYrs <= 3) timeList.push(" a few years");
+			else if(nYrs <= 4) timeList.push(" some years");
+			else if(nYrs <= 9) timeList.push(" several years");
+			else timeList.push(" many years");
+		}
+		else timeList.push(" " + num2Text(nYrs) + " year" + (nYrs == 1 ? "" : "s"));
+	}
+	if(nMin >= 43200)
+	{
+		var m:int = getCurrentMonth();
+		var monthMin:Array = getMonthArray();
+		var i:int = 0;
+		
+		for(i = 0; i < 12; i++)
+		{
+			if(m > 12) m = 1;
+			
+			if(nMin >= monthMin[m])
+			{
+				nMin -= monthMin[m];
+				nMos++;
+			}
+			
+			m++;
+		}
+		if(approximate && (nMin <= 0 || nMos >= 10))
+		{
+			if(nMos == 1) timeList.push(" a month");
+			else if(nMos <= 2) timeList.push(" a couple months");
+			else if(nMos <= 3) timeList.push(" a few months");
+			else if(nMos <= 4) timeList.push(" some months");
+			else if(nMos <= 9) timeList.push(" several months");
+			else timeList.push(" many months");
+		}
+		else timeList.push(" " + num2Text(nMos) + " month" + (nMos == 1 ? "" : "s"));
+	}
+	if(nMin >= 10080)
+	{
+		nWks = Math.floor(nMin / 10080);
+		nMin -= (nWks * 10080);
+		if(approximate && (nMin <= 0 || nWks >= 3))
+		{
+			if(nWks == 1) timeList.push(" a week");
+			else if(nWks <= 2) timeList.push(" a couple weeks");
+			else timeList.push(" a few weeks");
+		}
+		else timeList.push(" " + num2Text(nWks) + " week" + (nWks == 1 ? "" : "s"));
+	}
+	if(nMin >= 1440)
+	{
+		nDys = Math.floor(nMin / 1440);
+		nMin -= (nDys * 1440);
+		if(approximate && (nMin <= 0 || nDys >= 4))
+		{
+			if(nDys == 1) timeList.push(" a day");
+			else if(nDys <= 2) timeList.push(" a couple days");
+			else if(nDys <= 3) timeList.push(" a few days");
+			else if(nDys <= 4) timeList.push(" some days");
+			else timeList.push(" several days");
+		}
+		else timeList.push(" " + num2Text(nDys) + " day" + (nDys == 1 ? "" : "s"));
+	}
+	if(nMin >= 60)
+	{
+		nHrs = Math.floor(nMin / 60);
+		nMin -= (nHrs * 60);
+		if(approximate && (nMin <= 0 || nHrs >= 10))
+		{
+			if(nHrs == 1) timeList.push(" an hour");
+			else if(nHrs <= 2) timeList.push(" a couple hours");
+			else if(nHrs <= 3) timeList.push(" a few hours");
+			else if(nHrs <= 4) timeList.push(" some hours");
+			else if(nHrs <= 9) timeList.push(" several hours");
+			else timeList.push(" many hours");
+		}
+		else timeList.push(" " + num2Text(nHrs) + " hour" + (nHrs == 1 ? "" : "s"));
+	}
+	if(nMin > 0)
+	{
+		if(approximate)
+		{
+			if(nMin == 1) timeList.push(" a minute");
+			else if(nMin <= 2) timeList.push(" a couple minutes");
+			else if(nMin <= 3) timeList.push(" a few minutes");
+			else if(nMin <= 4) timeList.push(" some minutes");
+			else if(nMin <= 9) timeList.push(" several minutes");
+			else timeList.push(" many minutes");
+		}
+		else if(nMin == 1) timeList.push(" one minute");
+		else timeList.push(" " + num2Text(nMin) + " minutes");
+	}
+	
+	return timeList;
 }
 
 // Captain's log button menu - now modular!
@@ -1505,6 +1804,7 @@ public function displayQuestLog(showID:String = "All"):void
 						case 4: output2(" Cow-mazon"); break;
 						case 5: output2(" Double Stud"); break;
 						case 6: output2(" Undersized"); break;
+						default: output2(" <i>Unknown</i>"); break;
 					}
 					// Timer stuff
 					var treatedMinutes:Number = 10080 - pc.getStatusMinutes("The Treatment");
@@ -1827,6 +2127,7 @@ public function displayQuestLog(showID:String = "All"):void
 						break;
 					case FAZIAN_QUEST_RESCUE: output2(" Helped Hepane, <i>Locate the warehouse in Kressia and rescue Fazian!</i>"); break;
 					case FAZIAN_QUEST_BRIBED: output2(" Betrayed Hepane, Sold Fazian to tarratch slavers for 20000 credits, Completed"); break;
+					default: output2(" <i>Unknown</i>"); break;
 				}
 				if
 				(	(flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_REJECTED)
@@ -2127,6 +2428,44 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				else output2(" <i>Not yet accepted...</i>");
 				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("\n<b>* Weather Drones Turned In:</b> " + flags["NAYNA_DRONES_TURNED_IN"]);
+				sideCount++;
+			}
+		}
+		
+		if(showID == "Canadia" || showID == "All")
+		{
+			// Kiro Picardine Quest (Requires Kiro!)
+			if(flags["KIRO_KALLY_PICARDINE_QUEST"] != undefined && flags["RESCUE KIRO FROM BLUEBALLS"] == 1)
+			{
+				output2("\n<b><u>Kally’s Picardine</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["KIRO_KALLY_PICARDINE_QUEST"])
+				{
+					case 0:
+						output2(" Know about it");
+						if(roamingKiroAvailable()) output2(", <i>Maybe ask Kiro about it...?</i>");
+						break;
+					case 1:
+					case 2:
+						output2(" Know of it, Asked Kiro");
+						if(!pc.hasStatusEffect("KallyKiro")) output2(", <i>Perhaps " + (flags["KIRO_KALLY_PICARDINE_QUEST"] == 1 ? "tell Kally the truth...?" : "Kally will love to know...") + "</i>");
+						else 
+						{
+							output2(", Told Kally truth");
+							if(pc.hasStatusEffect("Wait For Kally Break")) output2(", <i>Wait for Kally’s response to Kiro...</i>");
+							else output2(", <i>Has Kally responded to Kiro yet...?</i>");
+						}
+						break;
+					case -1: output2(" Know of it, Asked Kiro, Agreed to not reveal it to Kally"); break;
+					case -2: output2(" Know of it, Asked Kiro, Told Kally truth, Kally keeps it a secret from Kiro"); break;
+					case 3:
+						output2(" Know of it, Asked Kiro, Told Kally truth");
+						if(flags["KALLY_KISSED_KIRO"] == undefined) output2(", Kally thanked Kiro");
+						else output2(", Kally thanked and kissed Kiro");
+						break;
+					default: output2(" <i>Unknown</i>"); break;
+				}
+				if(InCollection(flags["KIRO_KALLY_PICARDINE_QUEST"], [3, -1, -2])) output2(", Completed");
 				sideCount++;
 			}
 		}
@@ -3173,7 +3512,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["GIANNA_STALL_SEEN"] != undefined) output2(", Fucked in stall");
 						if(flags["GIANNA_TITFUCKS"] != undefined) output2(", Titfucked her");
 						if(flags["GIANNA_GIVEN_GIRLY_ORAL_YET"] != undefined) output2(", She ate your pussy");
-						if(flags["SIXTYNINED_GIANNA"] != undefined) output2(", 69'd with her");
+						if(flags["SIXTYNINED_GIANNA"] != undefined) output2(", 69’d with her");
 						if(flags["FUCKED_GIANNA_VAGINALLY"] != undefined) output2(", Fucked her vagina");
 						if(flags["GIANNA_CUMFLATION_DISABLED"] != undefined) output2(", Cumflation disabled");
 					}
@@ -4541,6 +4880,7 @@ public function displayEncounterLog(showID:String = "All"):void
 							case 0: output2(" Purchased, <i>Retrieve at hangar...</i>"); break;
 							case 1: output2(" Purchased, Retrieved, <i>Return to Taivra...</i>"); break;
 							case 2: output2(" Purchased, Retrieved, Installed in her throne room"); break;
+							default: output2(" <i>Unknown</i>"); break;
 						}
 					}
 					if(flags["TAIVRA_FERTILE"] != undefined)
@@ -4736,7 +5076,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if (flags["MET_DR_LESSAU"] != undefined)
 				{
 					output2("\n<b>* Doctor Lessau:</b> Met Him");
-					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times He Fucked You:</b> " + flags["DRLESSAU_SEXED"]);
+					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times Sexed:</b> " + flags["DRLESSAU_SEXED"]);
 				}
 				
 			}
@@ -4855,30 +5195,40 @@ public function displayEncounterLog(showID:String = "All"):void
 				
 				variousCount++;
 			}
-			// Kally
-			if(flags["MET_KALLY"] != undefined)
+			// Kui Country Bar and Lodge
+			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined)
 			{
 				output2("\n<b><u>Kui Country Bar and Lodge</u></b>");
-				output2("\n<b>* Kally:</b> Met her");
-				if(flags["KIRO_MET_KALLY"] >= 4) output2(" with Kiro");
-				if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output2(", Know of her secret ingredient");
-				if(drinkFromTapKally() > 0)
+				// Gloryholes
+				if(flags["GLORYHOLE_MOUNTER"] > 0) output2("\n<b>* Gloryholes, Times Used:</b> " + flags["GLORYHOLE_MOUNTER"]);
+				if(flags["GLORYHOLE_SERVER"] > 0) output2("\n<b>* Gloryholes, Times Worked:</b> " + flags["GLORYHOLE_SERVER"]);
+				// Kally
+				if(flags["MET_KALLY"] != undefined)
 				{
-					output2("\n<b>* Kally, Times Sucked Her Cock:</b> " + drinkFromTapKally());
-					if(flags["KALLY_BIMBO_CUMCASCADE"] != undefined)
+					output2("\n<b>* Kally:</b>");
+					if(kallyIsAway()) output2(" Away");
+					else output2(" Active");
+					if(flags["KIRO_MET_KALLY"] >= 4) output2(", Met her with Kiro");
+					if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output2(", Know of her secret ingredient");
+					if(drinkFromTapKally() > 0)
 					{
-						output2(", She gave you a cum-cascade");
-						if(flags["KALLY_BIMBO_CUMCASCADE"] == 1 && drinkFromTapKally() > 1) output2(" once");
-						if(flags["KALLY_BIMBO_CUMCASCADE"] == 2) output2(" twice");
-						if(flags["KALLY_BIMBO_CUMCASCADE"] >= 3) output2(" " + flags["KALLY_BIMBO_CUMCASCADE"] + " times");
+						output2("\n<b>* Kally, Times Sucked Her Cock:</b> " + drinkFromTapKally());
+						if(flags["KALLY_BIMBO_CUMCASCADE"] != undefined)
+						{
+							output2(", She gave you a cum-cascade");
+							if(flags["KALLY_BIMBO_CUMCASCADE"] == 1 && drinkFromTapKally() > 1) output2(" once");
+							if(flags["KALLY_BIMBO_CUMCASCADE"] == 2) output2(" twice");
+							if(flags["KALLY_BIMBO_CUMCASCADE"] >= 3) output2(" " + flags["KALLY_BIMBO_CUMCASCADE"] + " times");
+						}
+						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined)
+						{
+							output2(", Kiro interrupted");
+							if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 1 && drinkFromTapKally() > 1) output2(" once");
+							if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 2) output2(" twice");
+							if(flags["KIRO_INTERRUPT_KALLYBEEJ"] >= 3) output2(" " + flags["KIRO_INTERRUPT_KALLYBEEJ"] + " times");
+						}
 					}
-					if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined)
-					{
-						output2(", Kiro interrupted");
-						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 1 && drinkFromTapKally() > 1) output2(" once");
-						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] == 2) output2(" twice");
-						if(flags["KIRO_INTERRUPT_KALLYBEEJ"] >= 3) output2(" " + flags["KIRO_INTERRUPT_KALLYBEEJ"] + " times");
-					}
+					if(flags["KALLY_BROED"] != undefined) output2("\n<b>* Kally, Times Licked Her Out:</b> " + flags["KALLY_BROED"]);
 				}
 				variousCount++;
 			}
@@ -5044,11 +5394,10 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Riley:</b> Met her");
 			if(flags["FUCKED_FREEDOM_BEEF"] == 1)
 			{
-				output2(", ");
-				if(flags["FUCKED_FREEDOM_BEEF_TAURIC"] != undefined) output2("You mounted her");
-				else if(flags["FUCKED_FREEDOM_BEEF_SNUSNU"] != undefined) output2("She gave you Snu Snu");
-				else if(flags["FUCKED_FREEDOM_BEEF_LESBOLICKS"] != undefined) output2("She ate you out");
-				else output2("Sexed her");
+				if(flags["FUCKED_FREEDOM_BEEF_TAURIC"] != undefined) output2(", You mounted her");
+				else if(flags["FUCKED_FREEDOM_BEEF_SNUSNU"] != undefined) output2(", She gave you Snu Snu");
+				else if(flags["FUCKED_FREEDOM_BEEF_LESBOLICKS"] != undefined) output2(", She ate you out");
+				else output2(", Sexed her");
 			}
 			else if(flags["FUCKED_FREEDOM_BEEF"] > 1)
 			{

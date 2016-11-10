@@ -84,7 +84,7 @@
 				}
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " opens a BBQ To-Go box and wolfs down the contents, getting a");
+				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " opens a BBQ To-Go box and wolfs down the contents, getting a");
 				if(healing > 0) kGAMECLASS.output(" quick energy boost. (<b>+" + healing + " Energy</b>)");
 				else kGAMECLASS.output(" full stomach in the process.");
 				target.energy(healing);

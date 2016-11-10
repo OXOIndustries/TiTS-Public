@@ -24,6 +24,8 @@ public function isEquippableItem(item:ItemSlotClass):Boolean
 
 public function itemConsume(item:ItemSlotClass):void
 {
+	if(infiniteItems()) return;
+	
 	item.quantity--;
 	//Remove from inventory array!
 	if (item.quantity <= 0 && pc.inventory.indexOf(item) != -1)
@@ -112,7 +114,7 @@ public function useItem(item:ItemSlotClass):Boolean
 // A call with just an item will 
 public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {
-	showName("");
+	//showName("");
 	
 	// If we're looking at an equippable item, equip it
 	if (isEquippableItem(item))
@@ -133,7 +135,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		
 		if (targetCreature == null)
 		{
-			if (item.targetsSelf == true)
+			if (item.targetsSelf == true && item.requiresTarget == false)
 			{
 				targetCreature = pc;
 			}
@@ -145,14 +147,16 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 			{
 				// TODO: Show target selection interface
 				// Invoke menu, early return, call back to self
-				var targets:Array = CombatManager.getHostileCharacters();
+				var targets:Array = [];
+				if(item.targetsSelf == true) targets = CombatManager.getFriendlyCharacters();
+				else targets = CombatManager.getHostileCharacters();
 				
 				if (targets.length == 1) targetCreature = targets[0];
 				else if (CombatManager.enemiesAlive() == 1)
 				{
 					for (var i:int = 0; i < targets.length; i++)
 					{
-						if (!targets[i].isDefeated())
+						if (!targets[i].isDefeated() || item.targetsSelf == true)
 						{
 							targetCreature = targets[i];
 							break;
@@ -162,14 +166,17 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 				
 				if (targetCreature == null)
 				{
+					clearOutput();
+					output("Who do you wish to use the item on?");
+					
 					clearMenu();
 					
 					var bOff:int = 0;
 					for (i = 0; i < targets.length; i++)
 					{
-						if (!targets[i].isDefeated())
+						if (!targets[i].isDefeated() || item.targetsSelf == true)
 						{
-							addButton(bOff, targets[i].buttonText, function(t_item:ItemSlotClass, t_target:Creature, t_user:Creature):Function {
+							addButton(bOff++, (targets[i] == pc ? "Yourself" : (targets[i].buttonText != null ? targets[i].buttonText : "???")), function(t_item:ItemSlotClass, t_target:Creature, t_user:Creature):Function {
 								return function():void
 								{
 									combatUseItem(t_item, t_target, t_user);
@@ -178,6 +185,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 						}
 					}
 					
+					addButton(14, "Back", combatInventoryMenu);
 					return;
 				}
 			}

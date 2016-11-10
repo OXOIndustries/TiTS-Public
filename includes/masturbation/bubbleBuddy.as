@@ -19,7 +19,7 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 	
 	author("Adjatha");
 	
-	var healed:Boolean = (targetCreature.HP() < targetCreature.HPMax() || targetCreature.energy() < targetCreature.energyMax());
+	var healed:Boolean = ((targetCreature.HP() < targetCreature.HPMax()) || (targetCreature.energy() < targetCreature.energyMax()));
 	
 	//{throw it like a water balloon while in combat}
 	//[Small cum Bubble]
@@ -172,10 +172,10 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 				//{Uses accuracy to hit, deals moderate lust damage, and may cause knock-down}
 				applyDamage(item.baseDamage, usingCreature, targetCreature);
 			}
-			if(!targetCreature.isGoo() && !targetCreature.hasStatusEffect("Tripped") && usingCreature.aim()/2 + rand(20) + 1 > targetCreature.reflexes()/4 + targetCreature.physique()/4 + 10)
+			if(!targetCreature.isGoo() && !targetCreature.hasStatusEffect("Tripped") && (((usingCreature.aim()/2) + rand(20) + 1) > ((targetCreature.reflexes()/4) + (targetCreature.physique()/4) + 10)))
 			{
 				targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "Cannot act for a turn.", true, 0,0xFF0000);
-				output("\n\n<b>There’s so much that " + targetCreature.a + targetCreature.uniqueName + " is tripped!</b>");
+				output("\n\n<b>There’s so much [pc.cumNoun] that " + targetCreature.getCombatName() + " is tripped!</b>");
 			}
 		}
 	}

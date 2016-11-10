@@ -79,7 +79,7 @@
 			{
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " opens the Kalocrunch and downs it.");
+				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " opens the Kalocrunch and downs it.");
 				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost. (<b>+" + healing + " Energy</b>)");
 				else kGAMECLASS.output(" to no effect.");
 				target.energy(healing);

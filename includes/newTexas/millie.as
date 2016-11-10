@@ -117,17 +117,17 @@ public function millieMenu():void
 		addDisabledButton(2,"Milk Self","Milk Self","You need breasts that are lactating in order to milk yourself.");
 	}
 	if(!pc.isTreated()) addButton(3,"Faux Treat.",treatmentTryouts,undefined,"Faux Treatment","Experience a simulated, temporary version of the female Treatment that will induce lactation. Warning: may cause growth of breast tissue in males and unsexed individuals.");
-	else addDisabledButton(3,"Faux Treat.","Faux Treatment","You've already taken the <i>actual</i> Treatment. No need to play with a pale imitation when you're living the dream.")
+	else addDisabledButton(3,"Faux Treat.","Faux Treatment","You’ve already taken the <i>actual</i> Treatment. No need to play with a pale imitation when you’re living the dream.")
 	if(pc.lust() >= 33)
 	{
 		if(pc.hasCock())
 		{
 			if(pc.cockThatFits(1000) >= 0) addButton(4,"Fuck Millie",fuckMillie,undefined,"Fuck Millie","Get some phallic relief the old fashioned way.");
-			else addDisabledButton(4,"Fuck Millie","Fuck Millie","You're too big to safely penetrate the cow-girl.");
+			else addDisabledButton(4,"Fuck Millie","Fuck Millie","You’re too big to safely penetrate the cow-girl.");
 		}
 		else addDisabledButton(4,"Fuck Millie","Fuck Millie","You need a penis in order to fuck Millie.");
 	}
-	else addDisabledButton(4,"Fuck Millie","Fuck Millie","You aren't aroused enough to fuck Millie.");
+	else addDisabledButton(4,"Fuck Millie","Fuck Millie","You aren’t aroused enough to fuck Millie.");
 	addButton(14,"Back",leaveMillieFirstTime);
 }
 
@@ -184,7 +184,11 @@ public function soloMilkingFromMillieAttempt():void
 	}
 	else
 	{	
-		output("\n\nMillie laughs at that. <i>“No way. If I let you in there, you'll push a bunch of random buttons again. Besides, my ass is still sore from the reaming Mr. Tee gave me.”</i> She rubs at her sore behind. <i>“Sure would've been nice if the Treatment had given my asshole the same tune-up as my vagina.”</i>");
+		output("\n\nMillie laughs at that. <i>“No way. If I let you in there, you’ll push a bunch of random buttons again. Besides, my ass is still sore from the reaming Mr. Tee gave me.”</i> She rubs at her sore behind. <i>“Sure would’ve been nice if the Treatment had given my asshole the same tune-up as my vagina.”</i>");
+		
+		// Mega Milk hotfix
+		if(pc.hasPerk("Mega Milk") && pc.perkv1("Mega Milk") < 40) pc.setStatusValue("Mega Milk", 1, 40);
+		
 		processTime(1);
 		clearMenu();
 		addButton(14,"Back",millieMenu);
@@ -408,7 +412,7 @@ public function millieMilkersPartDues():void
 		//Neither. Tiny baby PC.
 		else
 		{
-			output("\n\nMillie's hands are all over you, seasoning for the feast of pleasure your [pc.fullChest] are producing. They knead your pliant flesh like a skilled masseuse, eliminating tension wherever they find it, insulating you from the real world with a padded realm of pure pleasure. The feeling of her cushy form over your own barely registers, and the taste of her cherry flavor on your lips has your tongue lolling out, probing her silky depths in between grunting moos.");
+			output("\n\nMillie’s hands are all over you, seasoning for the feast of pleasure your [pc.fullChest] are producing. They knead your pliant flesh like a skilled masseuse, eliminating tension wherever they find it, insulating you from the real world with a padded realm of pure pleasure. The feeling of her cushy form over your own barely registers, and the taste of her cherry flavor on your lips has your tongue lolling out, probing her silky depths in between grunting moos.");
 			output("\n\nThere is nothing but her fingers, her taste, and the ever-present sensation of giving milk like a good little cow.");
 		}
 		pc.libido(1);
@@ -488,10 +492,10 @@ public function millieMilkingFinale():void
 			if(pc.breastRows[0].breastRating() < 3)
 			{
 				output(" And your breasts... wow.");
-				if(pc.breastRows[0].breastRatingRaw < 1) output(" You still have them, and they're plenty big.")
-				else output(" They're still bigger.");
+				if(pc.breastRows[0].breastRatingRaw < 1) output(" You still have them, and they’re plenty big.")
+				else output(" They’re still bigger.");
 				pc.breastRows[0].breastRatingRaw = 3;
-				output(" You guess that part wasn't as temporary as advertised.");
+				output(" You guess that part wasn’t as temporary as advertised.");
 			}
 			if(!pc.isLactating()) pc.boostLactation(4);
 		}
@@ -500,7 +504,7 @@ public function millieMilkingFinale():void
 	output("\n\n<i>“Not bad, huh?”</i> Millie");
 	if(pc.isChestGarbed()) output(" hands you back your top");
 	else output(" gives your ass a confident swat");
-	output(". <i>“Come back when you want some more.”</i>\n\nA holodisplay on the wall proudly broadcasts this session's productivity: <b> ");
+	output(". <i>“Come back when you want some more.”</i>\n\nA holodisplay on the wall proudly broadcasts this session’s productivity: <b> ");
 	var milkAmount:Number = pc.lactationQ(99);
 	if(milkAmount < 1000 && pc.hasStatusEffect("Temporary Treatment")) milkAmount += 1500 + rand(500);
 
@@ -1021,10 +1025,10 @@ public function millieSucksTitsVol2():void
 			if(pc.breastRows[0].breastRating() < 3)
 			{
 				output(" And your breasts... wow.");
-				if(pc.breastRows[0].breastRatingRaw < 1) output(" You still have them, and they're plenty big.")
-				else output(" They're still bigger.");
+				if(pc.breastRows[0].breastRatingRaw < 1) output(" You still have them, and they’re plenty big.")
+				else output(" They’re still bigger.");
 				pc.breastRows[0].breastRatingRaw = 3;
-				output(" You guess that part wasn't as temporary as advertised.");
+				output(" You guess that part wasn’t as temporary as advertised.");
 			}
 			if(!pc.isLactating()) pc.boostLactation(4);	
 		}
@@ -1260,8 +1264,8 @@ public function millieSoloMilkerMishapEpilogue(lacBoosted:Boolean):void
 	//Merge
 	//Perk notification <i>“Mega Milk”</i> - always produce milk as if you were 40% full.
 	output("\n\n(<b>Perk Gained: Mega Milk</b> - You will always be able to produce milk as if you were at least 40% full, even if your breasts are empty.)");
-	pc.createPerk("Mega Milk",0,0,0,0,"Allows you to instantly produce a good amount of milk, even when empty.");
-	if(lacBoosted) output(" <b>And if you weren't lactating very hard before, you are now.</b>");
+	pc.createPerk("Mega Milk",40,0,0,0,"Allows you to instantly produce a good amount of milk, even when empty.");
+	if(lacBoosted) output(" <b>And if you weren’t lactating very hard before, you are now.</b>");
 	flags["MEGA_MILKED"] = 1;
 	processTime(5);
 	clearMenu();

@@ -128,13 +128,14 @@ package classes.GameData.Pregnancy.Handlers
 			{
 				// v1 = number of successive doses (in case needed)
 				// v2 = cream pie counts (fertilized for big egg)
-				// v3 = N/A
+				// v3 = Temporary egg count (in case needed)
 				// v4 = N/A
 				mother.createStatusEffect("Ovilium", 1, 0, pEggs, 0, true, "Icon_DrugPill", "You are under the effects of Ovilium.", false, 0);
 			}
 			else
 			{
 				mother.addStatusValue("Ovilium", 1, 1);
+				mother.addStatusValue("Ovilium", 3, pEggs);
 			}
 		}
 		
@@ -159,6 +160,7 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+			if(mother.hasStatusEffect("Ovilium")) mother.addStatusValue("Ovilium", 3, (-1 * pData.pregnancyQuantity));
 			
 			StatTracking.track("pregnancy/ovilium eggs laid", pData.pregnancyQuantity);
 			// doesn't count as offspring!

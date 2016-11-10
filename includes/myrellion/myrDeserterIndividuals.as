@@ -2047,7 +2047,10 @@ public function sitAndScrewGoldMyr():void
 	//Else PC Win/Consent:
 	else
 	{
-		if(pc.hasCock())
+		var useStrapon:Boolean = true;
+		if((pc.isHerm() && rand(2) == 0) || pc.isMale()) useStrapon = false;
+		
+		if(!useStrapon)
 		{
 			output("You ask the buxom beauty if she'll hop on your cock and take it for a ride.");
 		}
@@ -2076,7 +2079,7 @@ public function sitAndScrewGoldMyr():void
 		output("\n\nShe blinks her big black eyes, clearly surprised by your request. At the same time, she gulps, and a delighted flush travels across her cheeks.");
 
 		output("\n\n<i>“O-of course!");
-		if(flags["DILDO_SCREW_SCENE_SEEN"] == undefined && !pc.hasCock()) output("I mean, I haven’t had anyone to use it with for a while,");
+		if(flags["DILDO_SCREW_SCENE_SEEN"] == undefined && useStrapon) output("I mean, I haven’t had anyone to use it with for a while,");
 		output("”</i> she breathily answers. <i>“Take off your things and lie down - I promise you won’t regret it.”</i>");
 
 		output("\n\nYou do as she asks, stripping off your [pc.gear] and lying back. As you watch on, the buxom beauty begins to slowly strip of her torn battle garb. It’s not long before you’re staring longingly at her honey-hued skin and ring-pierced nipples. Despite yourself, your ");
@@ -2091,7 +2094,7 @@ public function sitAndScrewGoldMyr():void
 		if(!pc.hasGenitals()) output(" Meanwhile, she quickly unfastens the inner dildo and tosses it aside.");
 	}
 	//PC Has No Cock:
-	if(!pc.hasCock())
+	if(useStrapon)
 	{
 		output("\n\nYou lustily gaze at her pendulous breasts and ring-pierced nipples as she slides the strap-on into place.");
 		if(pc.hasVagina()) output(" A moan escapes your lips as your end slides gently into [pc.onePussy].");
@@ -2099,7 +2102,7 @@ public function sitAndScrewGoldMyr():void
 	}
 	output("\n\n<i>“Head against the ground,”</i> the buxom beauty requests. As you do so, she stands above your head. Lowering herself down to her knees, she squats over your face. Her bare loins are thrust against your face and she squeezes her ample thighs against your cheeks. You’re pinned down!");
 	output("\n\nDown below, you feel ");
-	if(pc.hasCock()) output("[pc.oneCock]");
+	if(!useStrapon) output("[pc.oneCock]");
 	else output("your strap-on cock");
 	output(" being rubbed against with her ovipositor pussy. Since her abdomen stretches so far, it’s nothing for the ant-girl to face-sit on you while riding you with the pussy on her alien hindquarters.");
 
@@ -2110,28 +2113,28 @@ public function sitAndScrewGoldMyr():void
 	output("\n\nThe feeling is mutual - looking up from between her thighs, your world is filled with her massive mammaries and the golden hoops piercing her puckered nips. It’s a truly exquisite sight!");
 
 	var x:int = 0;
-	if(pc.hasCock()) 
+	if(!useStrapon) 
 	{
 		x = pc.cockThatFits(enemy.vaginalCapacity(0));
 		if(x < 0) x = pc.smallestCockIndex();
 	}
-	if(pc.hasGenitals()) 
+	if(pc.hasGenitals())
 	{
 		output("\n\nAt the same time, her dripping lower lips are gently teasing your ");
-		if(pc.hasCock()) output("[pc.cockHead " + x + "].");
+		if(!useStrapon) output("[pc.cockHead " + x + "].");
 		else output("fake cock-head and stirring up your own pussy in the process.");
 		output(" You moan as she lowers herself onto your shaft, swallowing it whole inside her sopping wet honeypot.");
 
 		output("\n\n<i>“Ooohh queens!”</i> The nipple-pierced deserter moans. Your ");
-		if(pc.hasCock()) output("[pc.cockHead " + x + "] penetrates her until it’s lightly brushing against her cervix.");
+		if(!useStrapon) output("[pc.cockHead " + x + "] penetrates her until it’s lightly brushing against her cervix.");
 		else output("gilded cock is soon fully sheathed inside of her and her waist is pressed against your own.");
 		output(" Slowly, she begins to gyrate on top of you, all the while squeezing and wringing your ");
-		if(pc.hasCock()) output("sensitive");
+		if(!useStrapon) output("sensitive");
 		else output("synthetic");
 		output(" shaft. At the same time, her hands rest on your [pc.hair] and her jiggling thighs needily clutch your cheeks.");
 	}
 	//PC GotCock:
-	if(pc.hasCock())
+	if(!useStrapon)
 	{
 		pc.cockChange();
 		output("\n\nYou groan in delight as you watch her grind against you. Her bountiful breasts and nipple-rings bounce and sway before your eyes. Deep inside of her, your [pc.cockHead " + x + "] swells and twitches, and pearls of pre-cum dribble inside of her hot, narrow tunnel. The whole thing is insanely erotic, and you’re not sure how long you can hold out before you’ll be blasting and filling her honey hole with your [pc.cum].");
@@ -2152,7 +2155,7 @@ public function sitAndScrewGoldMyr():void
 	output("[enemy.name]’s deepest depths. Quivering and shaking, you wrap your arms around her thick thighs. You can’t hold out any longer - you’re going to cum!");
 
 	//GotCock:
-	if(pc.hasCock())
+	if(!useStrapon)
 	{
 		output("\n\nIn a gooey gush, you spurt your [pc.cum] deep inside of the female deserter, letting your sperm ");
 		if(pc.cumQ() < 10) output("trickle");
@@ -2193,13 +2196,13 @@ public function sitAndScrewGoldMyr():void
 		output("\n\nAfter you’re both finished, ");
 		//if(DontKnowName) output("the ");
 		output("[enemy.name] pulls herself off you and rests against your chest. The pressing of her large, warm breasts, mixed with the cold contrast of her nipple rings, is incredibly pleasant. At the same time, ");
-		if(pc.hasCock()) output("your [pc.cum] runs down her thighs and drips onto your [pc.legOrLegs].");
+		if(!useStrapon) output("your [pc.cum] runs down her thighs and drips onto your [pc.legOrLegs].");
 		else output("her girl cum dribbles down her legs and onto your [pc.skinFurScales].");
 
 		output("\n\n<i>“Mmm... that was wonderful,”</i> she dreamily murmurs. Some of her arms wrap around your waist, while the others stroke your cheeks. <i>“It can get lonely out here in the middle of nowhere. Hopefully I’ll see you around...”</i>");
 		output("\n\nOnce she’s done cuddling, she pulls herself off you, and you both get dressed. With one last kiss, she slips away into the night. As enjoyable a victory as that was, it’s probably time to move on.");
 	}
-	if(!pc.hasCock()) flags["DILDO_SCREW_SCENE_SEEN"] = 1;
+	if(useStrapon) flags["DILDO_SCREW_SCENE_SEEN"] = 1;
 	output("\n\n");
 	myrDeserterEpilogueShitTracker();
 	processTime(33);

@@ -279,7 +279,7 @@ public function fuckTheZilForPennyBecauseYouAreADumbStupidSlut():void {
 	this.clearMenu();
 	this.addButton(0,"Explain",explainWhyYoureAHugeSlut);
 	this.addButton(1,"FlirtItOff",flirtySlutPCsTellPennyFlirts);
-	this.addButton(4,"Nevermind",askPennyIfSheNeedsHelp);
+	this.addButton(14,"Nevermind",askPennyIfSheNeedsHelp);
 }
 
 //[Explain]
@@ -658,43 +658,53 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 		clearOutput();
 		output("Penny turns back up at you, greeting, <i>“’Sup, crazy? Need a hand for anything? I still owe you, you know.”</i> Her voice carries a playful undertone, like she’d rather not be working. Perhaps you could offer her a welcome distraction.");
 	}
-	this.clearMenu();
-	this.addButton(14,"Back",mainGameMenu);
-	this.addButton(0,"Talk:Yourself",talkToPennyAboutYourself);
-	this.addButton(1,"Talk:Youth",pennysYouth);
-	this.addButton(2,"Talk:Fun",whatDoesPennyDoForFun);
-	this.addButton(3,"Talk:Species",talkToPennyAboutSpecies);
-	if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) this.addButton(4,"Sex",pennySexFirstTime);
-	else this.addDisabledButton(4,"Sex","You need a penis or vagina and lust at or above 33 to attempt intercourse with Penny.");
+	clearMenu();
+	addButton(14,"Back",mainGameMenu);
+	addButton(0,"Talk",friendPennyTalkMenu);
+	if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",pennySexFirstTime);
+	else addDisabledButton(1,"Sex","You need a penis or vagina and lust at or above 33 to attempt intercourse with Penny.");
 	//Go Whine to Penny that a Mustelide was Mean to You
 	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
 	//Add [Badger Help] to Penny’s talk menu
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
 	if(flags["DR_BADGER_TURNED_IN"] == undefined)
 	{
-		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(5,"ReportBadger","Report Dr. Badger","You've decided not to turn in Doctor Badger.");
-		else if(flags["MET_DR_BADGER"] != undefined) addButton(5,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
-		else addDisabledButton(5,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You've decided not to turn in Doctor Badger.");
+		else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+		else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
 		
 		if(flags["BADGER_QUEST"] == 1)
 		{
-			addButton(6,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger's plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
+			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger's plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 			if(flags["NO_ZAP_PENNY"] == undefined) 
 			{
-				if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(5,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
-				else addButton(5,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
+				if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
+				else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
 			}
-			else addDisabledButton(5,"Zap Penny","Zap Penny","Now that you've tipped her off, it'll be impossible to catch her with her guard down.");
+			else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you've tipped her off, it'll be impossible to catch her with her guard down.");
 		}
 	}
-	else addDisabledButton(5,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
+	else addDisabledButton(2,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
 	//Penny has the doc's raygun
 	if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
 	{
-		addDisabledButton(5,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
+		addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
 	}
 	//Mission complete
-	if(flags["BADGER_QUEST"] == -3) addDisabledButton(5,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
+	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
+}
+public function friendPennyTalkMenu(func:Function = null):void
+{
+	clearMenu();
+	if(func == talkToPennyAboutYourself) addDisabledButton(0, "Yourself");
+	else addButton(0, "Yourself", talkToPennyAboutYourself);
+	if(func == pennysYouth) addDisabledButton(1, "Youth");
+	else addButton(1, "Youth", pennysYouth);
+	if(func == whatDoesPennyDoForFun) addDisabledButton(2, "Fun");
+	else addButton(2, "Fun", whatDoesPennyDoForFun);
+	if(func == talkToPennyAboutSpecies) addDisabledButton(3, "Species");
+	else addButton(3, "Species", talkToPennyAboutSpecies);
+	addButton(14, "Back", approachFriendPenny, false);
 }
 
 //[Sex]
@@ -1184,8 +1194,7 @@ public function talkToPennyAboutSpecies():void {
 	
 	//Pass 30m
 	processTime(30);
-	this.clearMenu();
-	this.addButton(0,"Next",approachFriendPenny);
+	friendPennyTalkMenu(talkToPennyAboutSpecies);
 }
 
 //[Do For Fun?]
@@ -1200,8 +1209,7 @@ public function whatDoesPennyDoForFun():void {
 	output("\n\n<i>“It couldn’t hurt,”</i> you offer.");
 	output("\n\n<i>“I know, but who would we play against? The zil? I need to wait for this planet to get more than a dozen permanent, civilized residents before I try anything like that,”</i> Penny declares. <i>“Other than that, fitness is my real hobby. Being a girl, I’ve got to keep in good shape to take down some of the more burly customers I get. I can run laps around just about everyone I’ve met. The extra animal vitality I’m packing might be helping a little bit with that.”</i> She winks. <i>“That isn’t all, but if you want the whole scoop, you’ll just have to keep coming around and getting me talking until I’m comfortable telling you about my... racier hobbies.”</i>");
 	processTime(25);
-	this.clearMenu();
-	this.addButton(0,"Next",approachFriendPenny);
+	friendPennyTalkMenu(whatDoesPennyDoForFun);
 }
 
 //Her Youth
@@ -1215,8 +1223,7 @@ public function pennysYouth():void {
 	output("\n\nYou ask her if she ran off to join up after that.");
 	output("\n\n<i>“Don’t be crazy, Crazy. I finished school first before I enrolled. I wanted to protect people, even though I’m not the biggest or the strongest, and the U.G.C. gave me a chance to do that.”</i> Penny beams. <i>“The academy wasn’t easy, particularly not for a small Penny Inoue. I toughed it out all the same. You don’t get to serve law and order if you can’t take a few hits.”</i>");
 	processTime(20);
-	this.clearMenu();
-	this.addButton(0,"Next",approachFriendPenny);
+	friendPennyTalkMenu(pennysYouth);
 }
 
 //[PC Name]
@@ -1243,8 +1250,7 @@ public function talkToPennyAboutYourself():void {
 	
 	output("\n\nEars standing straight up, Penny bristles, <i>“No, I think I’ve said it all. Now, unless you have something else to discuss, I do have work to do, you know.”</i> You shrug, letting the conversation end, but before you can go anywhere, Penny looks back up at you again. <i>“Come back soon, okay crazy?”</i>");
 	processTime(20);
-	this.clearMenu();
-	this.addButton(0,"Next",approachFriendPenny);
+	friendPennyTalkMenu(talkToPennyAboutYourself);
 }
 	
 //Girlfriend Greetings
