@@ -3225,30 +3225,31 @@ package classes.GameData
 					case "SQUIRT":
 						if(target.isPlural)
 						{
-							output(StringUtil.capitalize(target.getCombatName(), false) + " are splattered with your [pc.milk], unable to get it off. ");
-							if(damage > 0) output("All of a sudden, their faces begin to flush, and they look quite aroused. ");
+							output(StringUtil.capitalize(target.getCombatName(), false) + " are splattered with your [pc.milk], unable to get it off.");
+							if(damage > 0) output(" All of a sudden, their faces begin to flush, and they look quite aroused.");
+							else output(" They seem unimpressed.");
 						}
 						else
 						{
-							output(StringUtil.capitalize(target.getCombatName(), false) + " is splattered with your [pc.milk], unable to get it off. ");
-							if(damage > 0) output("All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused. ");
+							output(StringUtil.capitalize(target.getCombatName(), false) + " is splattered with your [pc.milk], unable to get it off.");
+							if(damage > 0) output(" All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
+							else output(" " + target.mfn("He","She","It") + " seems unimpressed.");
 						}
-						if(damage <= 0) output(teaseReactions(0, target));
 						break;
 					case "DICK SLAP":
 						if(target.isPlural)
 						{
 							output(StringUtil.capitalize(possessive(target.getCombatName()), false));
 							if(damage > 0) output(" faces look rather flush as they");
-							output(" quickly wipe your [pc.cum] off. ");
+							output(" quickly wipe your [pc.cum] off.");
 						}
 						else
 						{
 							output(StringUtil.capitalize(possessive(target.getCombatName()), false));
 							if(damage > 0) output(" face looks rather flush as " + target.mfn("he","she","it"));
-							output(" quickly wipes your [pc.cum] off. ");
+							output(" quickly wipes your [pc.cum] off.");
 						}
-						if(kGAMECLASS.silly) output("Ha! GOT ‘EM! ");
+						if(kGAMECLASS.silly) output(" Ha! GOT ‘EM!");
 						break;
 					default:
 						output(teaseReactions(damage,target));
