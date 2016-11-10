@@ -16,7 +16,7 @@
 		//constructor
 		public function ZilPack()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -26,7 +26,7 @@
 			this.capitalA = "The ";
 			this.long = "There are two zil here, one on either side of you. Both are males, as determined by their exposed, dangling genitalia. Their wings flutter incessantly behind them; they can’t fly in the enclosed space, yet the wingbeats keep their genitals at just the right height to waft their sweet musk in your direction. Their penises are about six inches long with tight, hairless sacks underneath. As prisoners, they are without weapons, not even stingers that you would expect on such a wasp-like foe. They do have almost head-to-toe chitin to protect them, some black, some yellow.";
 			this.customDodge = "The two zil zip out of the way with a swift contortion of their agile frames.";
-			this.customBlock = "The two zil's chitinous armor deflects your attack.";
+			this.customBlock = "The two zil’s chitinous armor deflects your attack.";
 			this.isPlural = true;
 			
 			this.meleeWeapon = new Fists();
@@ -168,15 +168,6 @@
 			this._isLoading = false;
 		}
 		
-		// This should be irrelevent, because the ZilPack shouldn't be getting saved...
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			if (dataObject.legFlags.length == 0)
-			{
-				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
-			}
-		}
-		
 		override public function get bustDisplay():String
 		{
 			return "ZILPACK";
@@ -233,7 +224,7 @@
 		
 		private function pluralZilHarden():void
 		{
-			output("Closing their onyx eyes, the zil flex, and you hear quiet, barely audible cracks filling the air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
+			output("Closing their onyx eyes, the zil flex, and you hear quiet, barely audible cracks filling the air. You peer closer and realize that the zil’s carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
 	
 			baseHPResistances.kinetic.damageValue += 20.0;
 			baseHPResistances.addFlag(DamageFlag.PLATED);
@@ -241,7 +232,7 @@
 		
 		private function zilFlyingSpinKick(target:Creature):void
 		{
-			output("An irritated snarl crosses the aliens' smooth lips, and they launch themselves towards you. Their bodies pivot in mid-air, accelerated by their wings, and they snap their heels out toward your face at the last second.");
+			output("An irritated snarl crosses the aliens’ smooth lips, and they launch themselves towards you. Their bodies pivot in mid-air, accelerated by their wings, and they snap their heels out toward your face at the last second.");
 			if (combatMiss(this, target)) 
 			{
 				output("\nYou duck aside of their flying heels!");
@@ -269,7 +260,7 @@
 						
 					if (!target.hasStatusEffect("Stunned"))
 					{
-						output("<b> It's concussive enough to leave you stunned.</b>");
+						output("<b> It’s concussive enough to leave you stunned.</b>");
 						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
 					}
 				}
@@ -289,28 +280,28 @@
 			output(" dicks right into your [pc.face]. The soft shroud of their foreskins rubs hotly against you, peeling back to barely expose the ebony and yellow glans that are prodding your forehead. You gasp and stumble away, not realizing your mistake until the chemical deluge hits your senses.");
 			if(target.lust() <= 33) output(" Uh, wow... you could probably go for another sniff of that.");
 			else if(target.lust() <= 66) output(" Mmmm, they smell so good that you could just drop down to your knees and let them drag it all over.");
-			else if(target.lust() <= 75) output(" Yum! You inhale another deep drag of their diminishing aroma and wonder if it wouldn't be too bad to give in to them.");
-			else output(" Ungh, why aren't you letting them fuck your mouth so that you can breathe in more?");
-			if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 1) output(" You've done it before and nothing bad came of it, what's wrong with one more submission?");
-			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 2) output(" You've given into these aliens twice already. Surely the third time is the charm...");
-			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 3) output(" You've let them use you a handful of times. What's once more?");
-			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You've given in countless times already, why not live it up?");
+			else if(target.lust() <= 75) output(" Yum! You inhale another deep drag of their diminishing aroma and wonder if it wouldn’t be too bad to give in to them.");
+			else output(" Ungh, why aren’t you letting them fuck your mouth so that you can breathe in more?");
+			if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 1) output(" You’ve done it before and nothing bad came of it, what’s wrong with one more submission?");
+			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 2) output(" You’ve given into these aliens twice already. Surely the third time is the charm...");
+			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 3) output(" You’ve let them use you a handful of times. What’s once more?");
+			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You’ve given in countless times already, why not live it up?");
 			target.lust(10+target.libido()/10);
 		}
 		
 		private function zilPheromoneFanPlural(target:Creature):void 
 		{
-			output("The two zil abruptly begin to fondle their rigid members, stimulating the organs as they alter their wingbeats to gust musk-laced air your direction. There's nothing to do but try and hold your breath!");
+			output("The two zil abruptly begin to fondle their rigid members, stimulating the organs as they alter their wingbeats to gust musk-laced air your direction. There’s nothing to do but try and hold your breath!");
 			//{Moderate toughness check pass}
 			if (target.physique() + rand(20) + 1 > 20) 
 			{
-				output("\nThey get tired long before you do and give up, but it still leaves a cloud of their delicious aroma floating around you. It's strong enough to make your pulse quicken.");
+				output("\nThey get tired long before you do and give up, but it still leaves a cloud of their delicious aroma floating around you. It’s strong enough to make your pulse quicken.");
 				target.lust(5+target.libido()/20);
 			}
 			else 
 			{
-				output("\nEventually, you can hold your breath no longer, and you're forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
-				if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foes' sensuous attack.");
+				output("\nEventually, you can hold your breath no longer, and you’re forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
+				if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foes’ sensuous attack.");
 				else if(target.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breath you take.");
 				else
 				{
@@ -324,7 +315,7 @@
 		
 		private function zilHoneyDripPlural(target:Creature):void 
 		{
-			output("Flying up into the air, the two zil begin to jack themselves off, stroking their thick, scented dongs while amber droplets drip from their thick dickskin. Their pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral like honey, and though it doesn't seem laced with his pheromones, the lewdness of it all quickens your pulse.");
+			output("Flying up into the air, the two zil begin to jack themselves off, stroking their thick, scented dongs while amber droplets drip from their thick dickskin. Their pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral like honey, and though it doesn’t seem laced with his pheromones, the lewdness of it all quickens your pulse.");
 			target.lust(5+target.libido()/20);
 		}
 		
