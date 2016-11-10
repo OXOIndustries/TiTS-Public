@@ -772,6 +772,7 @@ public function renvraAlmostDue():void
 
 public function renvraBellyrubs():void
 {
+	var m:String = "";
 	if (flags["Renvra Full Pregnancy Bellyrub Supression"] == undefined) flags["Renvra Full Pregnancy Bellyrub Supression"] = 0;
 	
 	if (flags["Renvra Full Pregnancy Bellyrub Supression"] < days && rand(100) < 2)
@@ -780,7 +781,7 @@ public function renvraBellyrubs():void
 		
 		if (InPublicSpace() && (kGAMECLASS.hours > 4 && kGAMECLASS.hours < 22))
 		{
-			var m:String = "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs."
+			m = "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs."
 			if (pc.isBimbo() || pc.isTreated() || pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1)
 			{
 				m += " Besides, people rubbing all over you feels super good!";
@@ -789,7 +790,7 @@ public function renvraBellyrubs():void
 		}
 		else
 		{
-			var m:String = "You stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. Your children inside you shift slightly, making your";
+			m = "You stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. Your children inside you shift slightly, making your";
 			if (pc.statusEffectv1("Renvra Full Pregnancy Bellyrubs") == 3) m += " stomach rumble";
 			else m += " belly tremble";
 			m += ". It's surprisingly nice to just rub your belly, enjoying the fullness of it."
