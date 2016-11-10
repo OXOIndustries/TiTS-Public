@@ -2385,13 +2385,13 @@ package classes.GameData
 					//If Breasts Tease >=75 Lactating.
 					if(pc.milkFullness >= 75)
 					{
-						output("Drawing your hands sensuously up your [pc.belly], you cup your milky tits, giving one a firm squeeze as you let out a low, lusty moan. With " + target.getCombatName() + "’s gaze firmly captured, you pull away your [pc.upperGarments], releasing your [pc.fullChest] to the world, the fresh air blowing across your [pc.nipples]. You aren’t done teasing yet; a delicious idea slips into your devious mind.");
+						output("Drawing your hands sensuously up your [pc.belly], you cup your milky tits, giving one a firm squeeze as you let out a low, lusty moan. With " + possessive(target.getCombatName()) + " gaze firmly captured, you pull away your [pc.upperGarments], releasing your [pc.fullChest] to the world, the fresh air blowing across your [pc.nipples]. You aren’t done teasing yet; a delicious idea slips into your devious mind.");
 						output("\n\nGrabbing both of your exposed melons, you jiggle them, causing a hypnotizing earthquake of mammary delight while taking care to pinch your nipples. The stimulation is just enough to get you started. Your [pc.milk] flows out as you begin to rub it into your [pc.skinFurScales], the [pc.milkColor] liquid soaking into your [pc.chest]. It takes you a tremendous effort to stop yourself and cover your jugs up again. Licking your fingers clean with an <i>“Mmmmm...”</i> for show, you ready yourself, noting that you’ll have to clean up a little later.");
 					}
 					//If Breast tease <75 Lactating.
 					else
 					{
-						output("Fumbling with your [pc.upperGarments] you release your [pc.chest], letting your bounty free with an enticing jiggle. You can feel " + target.getCombatName() + "s eyes on you, running over your [pc.chest], and you take advantage of that, swaying your shoulders to set off all kinds of pleasant jiggles. It’s not until you feel your [pc.milk] start to dribble out of your [pc.nipples] that you realize just what you’ve done. Reaching up, you grab the swells of your [pc.chest] to put them away, but you only succeed in coating yourself in your [pc.milk]. You can’t help but feel a little embarrassed and maybe a little aroused as you tuck your [pc.fullChest] away.");
+						output("Fumbling with your [pc.upperGarments] you release your [pc.chest], letting your bounty free with an enticing jiggle. You can feel " + possessive(target.getCombatName()) + " eyes on you, running over your [pc.chest], and you take advantage of that, swaying your shoulders to set off all kinds of pleasant jiggles. It’s not until you feel your [pc.milk] start to dribble out of your [pc.nipples] that you realize just what you’ve done. Reaching up, you grab the swells of your [pc.chest] to put them away, but you only succeed in coating yourself in your [pc.milk]. You can’t help but feel a little embarrassed and maybe a little aroused as you tuck your [pc.fullChest] away.");
 					}
 				}
 				else if(select == 1)
@@ -2731,7 +2731,7 @@ package classes.GameData
 					output(msg);
 				}
 				if(target.isPlural) output(possessive(target.getCombatName()) + " gazes are riveted on your groin as you run your fingers up and down your folds seductively.");
-				else output(possessive(target.getCombatName()) + "’s gaze is riveted on your groin as you run your fingers up and down your folds seductively.");
+				else output(possessive(target.getCombatName()) + " gaze is riveted on your groin as you run your fingers up and down your folds seductively.");
 				if(pc.hasClit())
 				{
 					if(pc.clitLength > 3) output(" You smile as [pc.eachClit] swells out from the folds and stands proudly, begging to be touched.");
@@ -3220,18 +3220,40 @@ package classes.GameData
 				damage = Math.ceil(damage);
 			
 				output("\n\n");
-				if(teaseType == "SQUIRT")
+				switch(teaseType)
 				{
-					if(target.isPlural) output(StringUtil.capitalize(target.getCombatName(), false) + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused. ");
-					else output(StringUtil.capitalize(target.getCombatName(), false) + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused. ");
+					case "SQUIRT":
+						if(target.isPlural)
+						{
+							output(StringUtil.capitalize(target.getCombatName(), false) + " are splattered with your [pc.milk], unable to get it off. ");
+							if(damage > 0) output("All of a sudden, their faces begin to flush, and they look quite aroused. ");
+						}
+						else
+						{
+							output(StringUtil.capitalize(target.getCombatName(), false) + " is splattered with your [pc.milk], unable to get it off. ");
+							if(damage > 0) output("All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused. ");
+						}
+						if(damage <= 0) output(teaseReactions(0, target));
+						break;
+					case "DICK SLAP":
+						if(target.isPlural)
+						{
+							output(StringUtil.capitalize(possessive(target.getCombatName()), false));
+							if(damage > 0) output(" faces look rather flush as they");
+							output(" quickly wipe your [pc.cum] off. ");
+						}
+						else
+						{
+							output(StringUtil.capitalize(possessive(target.getCombatName()), false));
+							if(damage > 0) output(" face looks rather flush as " + target.mfn("he","she","it"));
+							output(" quickly wipes your [pc.cum] off. ");
+						}
+						if(kGAMECLASS.silly) output("Ha! GOT ‘EM! ");
+						break;
+					default:
+						output(teaseReactions(damage,target));
+						break;
 				}
-				if(teaseType == "DICK SLAP")
-				{
-					if(target.isPlural) output(StringUtil.capitalize(possessive(target.getCombatName()), false) + " faces look rather flush as they quickly wipe your [pc.cum] off. ");
-					else output(StringUtil.capitalize(possessive(target.getCombatName()), false) + " face looks rather flush as " + target.mfn("he","she","it") + " quickly wipes your [pc.cum] off. ");
-					if(kGAMECLASS.silly) output(" Ha! GOT ‘EM! ");
-				}
-				else output(teaseReactions(damage,target));
 				target.lust(damage);
 				
 				var damageResult:DamageResult = new DamageResult();
@@ -3248,6 +3270,7 @@ package classes.GameData
 				outputDamage(damageResult);
 				
 				teaseSkillUp(teaseType);
+				
 				if(target is MyrInfectedFemale && damage >= 10)
 				{
 					//output("\n\n<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>");
