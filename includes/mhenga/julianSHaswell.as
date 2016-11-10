@@ -20,7 +20,8 @@ public function juliansOffice():void {
 	{
 		output("\n\nDr. Julian S. Haswell is busy behind his desk as always. His piercing blue eyes flick up, taking notice of you, but he doesn't bother to greet you just yet, figuring that you'll speak up if it’s important.");
 		addButton(0,"Dr. Haswell",approachJulianRouter);
-	}	
+		if(pexigaQuestDocChatsAvailable()) addButton(1,"Pexiga Help",drHaswellPexigaTalk,undefined,"Pexiga Help","Ask for help with the Pexiga's unique situation.");
+	}
 }
 
 public function approachJulianRouter():void {

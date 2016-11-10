@@ -221,8 +221,9 @@ public function yammiInTheKitchen():void
 
 public function yammiFollowerMenu():void
 {
+	yammiFollowerDisplay();
 	clearMenu();
-	addButton(0,"Talk",yammiTalkScene,undefined,"Talk","Sit down and talk with your chef for a bit.");
+	addButton(0,"Talk",yammiTalkRouter,undefined,"Talk","Sit down and talk with your chef for a bit.");
 	//Help Yammi
 	addButton(1,"Help Out",offerToHelpYammi,undefined,"Help Out","Offer to help Yammi out around in the kitchen.");
 	//Pexiga
@@ -238,6 +239,20 @@ public function yammiFollowerMenu():void
 	//Repeat entrance to sex scenes. Replaces previous <i>“Flirt”</i> scenes.
 	if(flags["SEXED_YAMMI"] != undefined) addButton(3,"Flirt",flirtWithYammiBruh,undefined,"Flirt","See if your favorite chef is up for a little fun...");
 	addButton(14, "Back", crew);
+}
+
+public function yammiTalkRouter():void
+{
+	if(flags["YAMMI_HELPED"] == 2 && flags["PEXIGA_TALKED"] == undefined)
+	{
+		clearOutput();
+		showYammi();
+		output("Did you want to have a normal chat, or talk about the Pexiga?");
+		clearMenu();
+		addButton(0,"Normal Talk",yammiTalkScene);
+		addButton(1,"Pet Talk",talkingWithYammiAbootPexiga,undefined,"Pet Talk","Talk with Yammi about the Pexiga. Is there anything you can do to improve its lot in life?");
+	}
+	else yammiTalkScene();
 }
 
 //Yammi Talk Scenes

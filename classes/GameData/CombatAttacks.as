@@ -8,6 +8,7 @@ package classes.GameData
 	import classes.Characters.RaskvelFemale;
 	import classes.Characters.RaskvelMale;
 	import classes.Characters.ZilFemale;
+	import classes.Characters.NymFoe;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
@@ -533,7 +534,11 @@ package classes.GameData
 				else output("[target.CombatName] manages to avoid " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.attackNoun + ".");
 				return false;
 			}
-			
+			if (target.hasStatusEffect("Bouncy!") && target is NymFoe)
+			{
+				(target as NymFoe).bouncyProc(true);
+				return false;
+			}
 			// We made it here, the attack landed
 			
 			if (attacker is PlayerCharacter) output("You land a hit on [target.combatName] with your " + attacker.rangedWeapon.longName + "!");
@@ -588,6 +593,11 @@ package classes.GameData
 				return false;
 			}
 			
+			if (target.hasStatusEffect("Bouncy!") && target is NymFoe)
+			{
+				(target as NymFoe).bouncyProc(false);
+				return false;
+			}
 			if (target is ZilFemale) kGAMECLASS.flags["HIT_A_ZILGIRL"] = 1;
 			
 			if (attacker is PlayerCharacter) output("You land a hit on [target.combatName] with your " + attacker.meleeWeapon.longName + "!");

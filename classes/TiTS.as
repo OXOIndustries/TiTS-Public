@@ -131,6 +131,7 @@
 		
 		//Sidequest shit
 		include "../includes/events/seraSexParty.as";
+		include "../includes/events/pexigaQuest/pexigaQuest.as";
 
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";
@@ -1270,6 +1271,10 @@
 		public function get kally():Kally
 		{
 			return chars["KALLY"];
+		}
+		public function get pexiga():Pexiga
+		{
+			return chars["PEXIGA"];
 		}
 		
 		private var _dbgtestvar:int = 0;
