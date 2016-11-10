@@ -53,6 +53,8 @@
 	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.indefiniteArticle;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Interfaces.AddLogEvent;
+	import classes.Engine.Interfaces.ExtendLogEvent;
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -2794,9 +2796,7 @@
 			return true;
 		}
 		public function orgasm(): void
-		{
-			var msg: String = "";
-			
+		{			
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
 			// anything / 0 = NaN
@@ -2823,16 +2823,16 @@
 					kGAMECLASS.mimbraneFeed("cock");
 					if(hasStatusEffect("Blue Balls") && balls >= 1)
 					{
-						msg += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + ".");
+						AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive");
 						removeStatusEffect("Blue Balls");
 					}
 					//'Nuki Ball Reduction
 					if(perkv1("'Nuki Nuts") > 0 && balls >= 1)
 					{
-						msg += "\n\n" + kGAMECLASS.logTimeStamp() + " Your";
-						if(balls == 1) msg += " testicle is back to its";
-						else msg += " balls are back to their";
-						msg += " normal size once more. What an incredible relief!";
+						AddLogEvent("Your", "passive");
+						if(balls == 1) ExtendLogEvent(" testicle is back to its");
+						else ExtendLogEvent(" balls are back to their");
+						ExtendLogEvent(" normal size once more. What an incredible relief!");
 						ballSizeMod -= perkv1("'Nuki Nuts");
 						setPerkValue("'Nuki Nuts",1,0);
 						kGAMECLASS.nutStatusCleanup();
@@ -2840,11 +2840,11 @@
 					if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
 					{
 						var nyreaEggs:Number = (6 + rand(5));
-						if((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
-						msg += "\n\n" + kGAMECLASS.logTimeStamp() + " You’ve manage to expel";
-						if(nyreaEggs == 1) msg += " one faux nyrea egg";
-						else msg += " " + num2Text(nyreaEggs) + " faux nyrea eggs";
-						msg += " from your orgasm!";
+						if ((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
+						AddLogEvent("You’ve manage to expel", "passive");
+						if(nyreaEggs == 1) ExtendLogEvent(" one faux nyrea egg");
+						else ExtendLogEvent(" " + num2Text(nyreaEggs) + " faux nyrea eggs");
+						ExtendLogEvent(" from your orgasm!");
 						addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
 						if(statusEffectv1("Nyrea Eggs") < 0) setPerkValue("Nyrea Eggs",1,0);
 					}
@@ -2882,8 +2882,6 @@
 				addStatusValue("Dumbfuck Orgasm Procced",1,1);
 				trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
 			}
-			
-			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
 			
 			lustRaw = 0;
 			if(!hasPerk("Amazonian Endurance")) energy(-5);
@@ -3322,12 +3320,12 @@
 						else exhibitionismRaw += arg;
 					}
 				}
-				if(originalExhibtionism < 10 && exhibitionismRaw >= 10) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Maybe having sex in front of an audience wouldn't be that bad.";
-				else if(originalExhibtionism < 20 && exhibitionismRaw >= 20) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " You're still feeling a little bit of residual thrill. Who knew audiences could be so... intriguing.";
-				else if(originalExhibtionism < 33 && exhibitionismRaw >= 33) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " You've got to admit to yourself that you're developing a bit of an <b>exhibitionism fetish</b>. Sure, you get nervous as hell about the idea of showing yourself off, but you get horny as hell too. At least it's a pretty common, socially accepted fetish... in most places.";
-				else if(originalExhibtionism < 50 && exhibitionismRaw >= 50) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + ParseText(" Your mind keeps supplying you with excuses to bare a little [pc.skinFurScales] around others, or ways to risk getting caught mid-coitus. <b>If you don't stop caving into those thoughts you're going to wind up being a hard-core exhibitionist!</b>");
-				else if(originalExhibtionism < 66 && exhibitionismRaw >= 66) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Maybe you could buy a stand for your Codex and rig up a live holostream for when you're getting naughty. It'd probably be too bulky to carry around all the time, but once you win your inheritance, you could probably turn a pretty penny banging ultraporn stars in front of a broadcasting prism. It's telling that <b>you've almost completely obliterated your inhibitions about exhibitionism.";
-				else if(originalExhibtionism < 100 && exhibitionismRaw >= 100) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Fuck, you love getting naked, particularly in front of an audience - the bigger the better. If you could, you'd bone in front of a full house at the TerraDome (brought to you by JoyCo). Maybe you'll be able to rent it out someday? <b>You're as much of an exhibitionist as anyone can be.</b>";
+				if(originalExhibtionism < 10 && exhibitionismRaw >= 10) AddLogEvent("Maybe having sex in front of an audience wouldn't be that bad.", "passive");
+				else if(originalExhibtionism < 20 && exhibitionismRaw >= 20) AddLogEvent("You're still feeling a little bit of residual thrill. Who knew audiences could be so... intriguing.", "passive");
+				else if(originalExhibtionism < 33 && exhibitionismRaw >= 33) AddLogEvent("You've got to admit to yourself that you're developing a bit of an <b>exhibitionism fetish</b>. Sure, you get nervous as hell about the idea of showing yourself off, but you get horny as hell too. At least it's a pretty common, socially accepted fetish... in most places.", "passive");
+				else if(originalExhibtionism < 50 && exhibitionismRaw >= 50) AddLogEvent(ParseText("Your mind keeps supplying you with excuses to bare a little [pc.skinFurScales] around others, or ways to risk getting caught mid-coitus. <b>If you don't stop caving into those thoughts you're going to wind up being a hard-core exhibitionist!</b>"), "passive");
+				else if(originalExhibtionism < 66 && exhibitionismRaw >= 66) AddLogEvent("Maybe you could buy a stand for your Codex and rig up a live holostream for when you're getting naughty. It'd probably be too bulky to carry around all the time, but once you win your inheritance, you could probably turn a pretty penny banging ultraporn stars in front of a broadcasting prism. It's telling that <b>you've almost completely obliterated your inhibitions about exhibitionism.", "passive");
+				else if(originalExhibtionism < 100 && exhibitionismRaw >= 100) AddLogEvent("Fuck, you love getting naked, particularly in front of an audience - the bigger the better. If you could, you'd bone in front of a full house at the TerraDome (brought to you by JoyCo). Maybe you'll be able to rent it out someday? <b>You're as much of an exhibitionist as anyone can be.</b>", "passive");
 			}
 			//Negative points
 			else if(arg < 0) 
@@ -4927,7 +4925,7 @@
 			var output: String = "";
 			//BELOW MINIMUM! GET MORE GIRLY!
 			if (femininity < femininityMin()) {
-				output += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <b>Your incredibly masculine, chiseled features become a little bit softer from your body's changing hormones.";
+				output += "<b>Your incredibly masculine, chiseled features become a little bit softer from your body's changing hormones.";
 				if (hasBeard()) {
 					output += " As if that wasn't bad enough, your " + beard() + " falls out too!";
 					removeBeard();
@@ -8425,15 +8423,13 @@
 			{
 				trace("BLUE BALLS FOR: " + short);
 				//Hit max cum - standard message
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ");
-				if(balls == 1) kGAMECLASS.eventBuffer += "is";
-				else kGAMECLASS.eventBuffer += "are";
-				kGAMECLASS.eventBuffer += " this full.";
+				var m:String = ParseText("You’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] " + (balls == 1? "is" : "are") + " this full.");
 				if(hasPerk("'Nuki Nuts") && balls >= 1)
 				{
-					if(balls == 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your sack swell with additional seed. It’s already started to swell. Just make sure to empty it before it gets too big!";
-					else kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
+					if(balls == 1) m += " Of course, your kui-tan physiology will let your sack swell with additional seed. It’s already started to swell. Just make sure to empty it before it gets too big!";
+					else m += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
 				}
+				AddLogEvent(m, "words", minutes);
 				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
 			}
 			
@@ -9375,9 +9371,7 @@
 		public function removeBreastRow(arraySpot:int, totalRemoved:int): void {
 			if (hasStatusEffect("Boobswell Pads") && statusEffectv1("Boobswell Pads") == arraySpot)
 			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " The Boobswell pads you had been wearing on your " + num2Ordinal(arraySpot + 1) + " row of breast";
-				if (breastRows[arraySpot].breasts != 1) kGAMECLASS.eventBuffer += "s";
-				kGAMECLASS.eventBuffer += " disintegrate as the row was removed. <b>You're no longer under the effects of the Boobswell Pads!</b>";
+				AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(arraySpot + 1) + " row of breast" + (breastRows[arraySpot].breasts != 1 ? "s" : "") + " disintegrate as the row was removed. <b>You're no longer under the effects of the Boobswell Pads!</b>");
 				removeStatusEffect("Boobswell Pads");
 			}
 			removeJunk(breastRows, arraySpot, totalRemoved);
@@ -16329,7 +16323,7 @@
 				{
 					if(amountVented >= 25000) 
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " " + upperCase(fluidViscosity(statusEffects[z].value3)) + " " + fluidNoun(statusEffects[z].value3) + " hoses out ";
+						notice = upperCase(fluidViscosity(statusEffects[z].value3)) + " " + fluidNoun(statusEffects[z].value3) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
 						else notice += "of you ";
 						notice += "in a seemingly endless tide. You can't even move without wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
@@ -16337,40 +16331,35 @@
 					}
 					else if(amountVented >= 10000)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " Trailing " + fluidNoun(statusEffects[z].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There's nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
+						notice = "Trailing " + fluidNoun(statusEffects[z].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There's nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
 					}
 					else if(amountVented >= 5000)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " There's so much " + fluidNoun(statusEffects[z].value3) + " sliding out of you. You can't ";
+						notice = "There's so much " + fluidNoun(statusEffects[z].value3) + " sliding out of you. You can't ";
 						if(isNaga() || isGoo()) notice += "slither a few feet";
 						else notice += "take a step";
 						notice += ParseText(" without thick blobs of goo rolling down your [pc.leg] to the floor, advertising your sexual adventures to anyone close to enough to see, or smell, you.");
 					}
 					else if(amountVented >= 2500)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " " + upperCase(fluidNoun(statusEffects[z].value3)) + " is everywhere. It just won't stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[z].value3) + " goop leaks out, the tighter your belly becomes, but it's just so damn messy! You're pretty sure you could've filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
+						notice = upperCase(fluidNoun(statusEffects[z].value3)) + " is everywhere. It just won't stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[z].value3) + " goop leaks out, the tighter your belly becomes, but it's just so damn messy! You're pretty sure you could've filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
 					}
 					else if(amountVented >= 1000)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " " + upperCase(fluidNoun(statusEffects[z].value3)) + ParseText(" gets all over the place. It keeps drooling down your [pc.legOrLegs]");
+						notice = upperCase(fluidNoun(statusEffects[z].value3)) + ParseText(" gets all over the place. It keeps drooling down your [pc.legOrLegs]");
 						if(!isCrotchExposed()) notice += ParseText(" and getting all over your [pc.lowerGarments]");
 						notice += ", squishing and sliding and making you absolutely reek of sex.";
 					}
 					else if(amountVented >= 500)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " There's no lack of " + fluidNoun(statusEffects[z].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
+						notice = "There's no lack of " + fluidNoun(statusEffects[z].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
-					// apply cum-drenched flag as appropriate?
-					/*
-					if(notice != "")
+					
+					if (notice.length > 0)
 					{
-						if(amountVented >= 1000) kGAMECLASS.applyCumSoaked(this);
-						if(amountVented >= 5000) kGAMECLASS.applyCumSoaked(this);
-						if(amountVented >= 10000) kGAMECLASS.applyCumSoaked(this);
-						if(amountVented >= 25000) kGAMECLASS.applyCumSoaked(this);
-						if(amountVented >= 50000) kGAMECLASS.applyCumSoaked(this);
+						AddLogEvent(notice, "words", timePassed);
+						notice = "";
 					}
-					*/
 				}
 				if(statusEffects[z].value1 <= 0) removals.push("Vaginally-Filled");
 			}
@@ -16394,48 +16383,43 @@
 				{
 					if(amountVented >= 25000) 
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " " + upperCase(fluidViscosity(statusEffects[a].value3)) + " " + fluidNoun(statusEffects[a].value3) + " hoses out ";
+						notice = upperCase(fluidViscosity(statusEffects[a].value3)) + " " + fluidNoun(statusEffects[a].value3) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
 						else notice += "of you ";
 						notice += "in a seemingly endless tide. You can't even move with wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
-						if(!isCrotchExposed()) notice += ParseText(" It wouldn't be so bad if most of it didn't wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.");
+						if (!isCrotchExposed()) notice += ParseText(" It wouldn't be so bad if most of it didn't wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.");
 					}
 					else if(amountVented >= 10000)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " Trailing " + fluidNoun(statusEffects[a].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There's nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
+						notice = "Trailing " + fluidNoun(statusEffects[a].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There's nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
 					}
 					else if(amountVented >= 5000)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " There's so much " + fluidNoun(statusEffects[a].value3) + " sliding out of you. You can't ";
+						notice = "There's so much " + fluidNoun(statusEffects[a].value3) + " sliding out of you. You can't ";
 						if(isNaga() || isGoo()) notice += "slither a few feet";
 						else notice += "take a step";
 						notice += ParseText(" without thick blobs of goo rolling down your [pc.leg] to the floor, advertising your sexual adventures to anyone close to enough to see, or smell, you.");
 					}
 					else if(amountVented >= 2500)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " " + upperCase(fluidNoun(statusEffects[a].value3)) + " is everywhere. It just won't stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[a].value3) + " goop leaks out, the tighter your belly becomes, but it's just so damn messy! You're pretty sure you could've filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
+						notice = upperCase(fluidNoun(statusEffects[a].value3)) + " is everywhere. It just won't stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[a].value3) + " goop leaks out, the tighter your belly becomes, but it's just so damn messy! You're pretty sure you could've filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
 					}
 					else if(amountVented >= 1000)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " " + upperCase(fluidNoun(statusEffects[a].value3)) + ParseText(" gets all over the place. It keeps drooling down your [pc.legOrLegs]");
+						notice = upperCase(fluidNoun(statusEffects[a].value3)) + ParseText(" gets all over the place. It keeps drooling down your [pc.legOrLegs]");
 						if(!isCrotchExposed()) notice += ParseText(" and getting all over your [pc.lowerGarments]");
 						notice += ", squishing and sliding and making you absolutely reek of sex.";
 					}
 					else if(amountVented >= 500)
 					{
-						notice += "\n\n" + kGAMECLASS.logTimeStamp() + " There's no lack of " + fluidNoun(statusEffects[a].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
+						notice = "There's no lack of " + fluidNoun(statusEffects[a].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
-					// apply cum-drenched flag as appropriate?
-					/*
-					if(notice != "")
+					
+					if (notice.length > 0)
 					{
-						if(amountVented >= 1000) kGAMECLASS.applyCumSoaked(this);
-						if(amountVented >= 5000) kGAMECLASS.applyCumSoaked(this);
-						if(amountVented >= 10000) kGAMECLASS.applyCumSoaked(this);
-						if(amountVented >= 25000) kGAMECLASS.applyCumSoaked(this);
-						if(amountVented >= 50000) kGAMECLASS.applyCumSoaked(this);
+						AddLogEvent(notice, "words", timePassed);
+						notice = ""
 					}
-					*/
 				}
 				if(statusEffects[a].value1 <= 0) removals.push("Anally-Filled");
 			}
@@ -16495,8 +16479,6 @@
 			{
 				if(hasStatusEffect("Omit Cumflation Messages")) return;
 				
-				kGAMECLASS.eventBuffer += notice;
-				
 				if(amountStored >= (25000 / 4 / 2))
 				{
 					var delayTime:int = 30 * Math.floor(amountStored / 25000);
@@ -16519,13 +16501,13 @@
 			trace("Percent Increase: " + percent + " %");
 			if (percent > 10) {
 				if (this is PlayerCharacter) {
-					var ccnotice:String = "\n\n" + kGAMECLASS.logTimeStamp("passive") + ParseText(" You hear a faint gurgling from your stomach and [pc.balls] as you feel ");
+					var ccnotice:String = ParseText(" You hear a faint gurgling from your stomach and [pc.balls] as you feel ");
 					if (balls == 1) ccnotice += "it";
 					else ccnotice += "them";
 					if (ballFullness + percent > 100) ccnotice += ParseText(" swelling with more and more [pc.cumNoun]");
 					else ccnotice += ParseText(" getting fuller and fuller with [pc.cumNoun]");
 					ccnotice += " each passing second. With your kui-tan physiology, all that " + fluidNoun(fluid) + ParseText(" you ingested must have spiked your own [pc.cumNoun] production!");
-					kGAMECLASS.eventBuffer += ccnotice;
+					AddLogEvent(ccnotice, "passive");
 				}
 				lust(20); //increase Lust
 			}
@@ -16536,8 +16518,8 @@
 					delta = Math.round((100 - ballFullness) * maxCum() / 100);
 					
 					if (this is PlayerCharacter) { //blue ball notices
-						if (balls == 1) bbnotice += "\n\n" + kGAMECLASS.logTimeStamp("passive") + ParseText(" Your [pc.ballsNoun] has filled so much from your cum cascade that it's started to swell. It won't take much to excite you so long as your [pc.balls] is this full.");
-						else bbnotice += "\n\n" + kGAMECLASS.logTimeStamp("passive") + ParseText(" Your [pc.ballsNoun] have filled so much from your cum cascade that they've started to swell. It won't take much to excite you so long as your [pc.balls] are this full.");
+						if (balls == 1) AddLogEvent(ParseText(" Your [pc.ballsNoun] has filled so much from your cum cascade that it's started to swell. It won't take much to excite you so long as your [pc.balls] is this full."), "passive");
+						else AddLogEvent(ParseText(" Your [pc.ballsNoun] have filled so much from your cum cascade that they've started to swell. It won't take much to excite you so long as your [pc.balls] are this full."), "passive");
 					}
 					
 					createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4); //add blue balls status effect
@@ -16548,8 +16530,6 @@
 				ballSizeMod += deltaBallSize;
 				addPerkValue("'Nuki Nuts", 1, deltaBallSize);
 				trace("Ball size change: " + deltaBallSize);
-				
-				if(bbnotice.length > 0) kGAMECLASS.eventBuffer += bbnotice;
 			}
 			else ballFullness += percent;
 		}
@@ -16792,7 +16772,7 @@
 					if (tightnessChange)
 					{
 						if (tv.loosenessRaw < tv.minLooseness) tv.loosenessRaw = tv.minLooseness;
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your" + (vaginas.length > 1 ? " " + kGAMECLASS.num2Text2(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>"; 
+						AddLogEvent("<b>Your" + (vaginas.length > 1 ? " " + kGAMECLASS.num2Text2(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>", "passive", deltaT);
 					}
 				}
 			}
@@ -16846,11 +16826,11 @@
 					
 					if (origTightness <= 4)
 					{
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
+						AddLogEvent("<b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>", "passive", deltaT);
 					}
 					else
 					{
-						kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive", deltaT) + " <b>Your " + assholeDescript() + " recovers from the brutal stretching it has recieved and tightens up.</b>";
+						AddLogEvent("<b>Your " + assholeDescript() + " recovers from the brutal stretching it has recieved and tightens up.</b>", "passive", deltaT);
 					}
 				}
 			}
@@ -16936,10 +16916,7 @@
 			
 			if (doOut && (this is PlayerCharacter) && (newRating > originalRating && (newRating % 2 == 0 || newRating < 6)))
 			{
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " Thanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that ";
-				if(bRows() == 1) kGAMECLASS.eventBuffer += "you ";
-				else kGAMECLASS.eventBuffer += "your " + kGAMECLASS.num2Text2(statusEffectv1("Boobswell Pads") + 1) + " row of breasts ";
-				kGAMECLASS.eventBuffer += "could now fit into " + indefiniteArticle(breastCup(0, targetRow.breastRating())) + " bra!</b>";
+				AddLogEvent("Thanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that " + (bRows() == 1 ? "you " : "your "+ kGAMECLASS.num2Text2(statusEffectv1("Boobswell Pads") + 1) + " row of breasts ") + " could now fit into " + indefiniteArticle(breastCup(0, targetRow.breastRating())) + " bra!</b>", "passive", deltaT);
 			}
 		}
 		
@@ -16984,7 +16961,7 @@
 					case "Kally Cummed Out":
 						if(requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
 						{
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" Kally stumbles back into the bar while you’re waiting. Her garb isn’t quite as meticulously arranged. Her hair is damp, and when she thinks nobody is looking, she sighs dreamily, licking her lips.");
+							AddLogEvent(ParseText("Kally stumbles back into the bar while you’re waiting. Her garb isn’t quite as meticulously arranged. Her hair is damp, and when she thinks nobody is looking, she sighs dreamily, licking her lips."), "passive", maxEffectLength);
 						}
 						break;
 						
@@ -16999,7 +16976,7 @@
 							{
 								cocks[y].cLengthRaw *= 2;
 							}
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.");
+							AddLogEvent(ParseText("You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off."), "passive", maxEffectLength);
 						}
 						break;
 						
@@ -17014,7 +16991,7 @@
 							{
 								cocks[z].cLengthRaw *= 4;
 							}
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.");
+							AddLogEvent(ParseText(" You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off."), "passive", maxEffectLength);
 						}
 						break;
 						
@@ -17082,7 +17059,7 @@
 					case "Hair Flower":
 						if (requiresRemoval)
 						{
-							kGAMECLASS.eventBuffer += Cerespirin.loseHairFlower(this, thisStatus.value1, maxEffectLength);
+							Cerespirin.loseHairFlower(this, thisStatus.value1, maxEffectLength);
 						}
 						break;
 						
@@ -17098,7 +17075,7 @@
 						{
 							if(hasHair() && hairType != GLOBAL.HAIR_TYPE_GOO)
 							{
-								kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + ParseText(" The tingling along your scalp becomes stronger as you realize something has been gradually changing. As the sensation fades, you run your hand across the top of your head and notice some excess slime stick to it... It looks like <b>your [pc.hair] has reverted back into gooey hair</b>.");
+								AddLogEvent(ParseText("The tingling along your scalp becomes stronger as you realize something has been gradually changing. As the sensation fades, you run your hand across the top of your head and notice some excess slime stick to it... It looks like <b>your [pc.hair] has reverted back into gooey hair</b>."), "passive", maxEffectLength);
 								
 								if(hairType == GLOBAL.HAIR_TYPE_TENTACLES) hairStyle == "tentacle";
 								hairType = GLOBAL.HAIR_TYPE_GOO;
@@ -17111,9 +17088,7 @@
 						{
 							if(skinType != GLOBAL.SKIN_TYPE_LATEX)
 							{
-								kGAMECLASS.eventBuffer +="\n\n" + kGAMECLASS.logTimeStamp("passive") +  ParseText(" You feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>");
-								kGAMECLASS.eventBuffer += "\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>.";
-								if(isBimbo()) kGAMECLASS.eventBuffer += " Nothing’s gonna to stop you from being, like, a totally hot sex doll!";
+								AddLogEvent(ParseText("You feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>." + (isBimbo() ? " Nothing’s gonna to stop you from being, like, a totally hot sex doll!" : "")), "passive", maxEffectLength);
 								
 								skinType = GLOBAL.SKIN_TYPE_LATEX;
 							}
@@ -17123,58 +17098,51 @@
 					case "The Mango":
 						if (requiresRemoval)
 						{
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your attractive aura fades from you as your sexiness returns to normal levels.";
-							if (kGAMECLASS.silly && rand(3) != 0) kGAMECLASS.eventBuffer += " You could no longer handle the mango!";
-							else kGAMECLASS.eventBuffer += " The wild mango’s effect has worn off!";
+							AddLogEvent("Your attractive aura fades from you as your sexiness returns to normal levels." + (kGAMECLASS.silly && rand(3) != 0 ? "You could no longer handle the mango!" : "The wild mango’s effect has worn off!"), "passive", maxEffectLength);
 						}
 						break;
 						
 					case "Jaded":
 						if (requiresRemoval)
 						{
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " No longer bored from your previous whoring session, you feel a bit more refreshed now.";
+							AddLogEvent("No longer bored from your previous whoring session, you feel a bit more refreshed now.", "passive", maxEffectLength);
 						}
 						break;
 			
 					case "Mighty Tight":
 						if (requiresRemoval)
 						{
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Pausing for a moment, you feel your backdoor";
-							if(hasVagina()) kGAMECLASS.eventBuffer += ParseText(" and [pc.vaginas] relaxing");
-							else kGAMECLASS.eventBuffer += " relax";
-							kGAMECLASS.eventBuffer += " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.";
+							AddLogEvent("Pausing for a moment, you feel your backdoor" + (hasVagina() ? ParseText(" and [pc.vaginas] relaxing") : " relax") + " a bit. It is probably safe to say that you are no longer under the effects of Mighty Tight.", "passive", maxEffectLength);
 						}
 						break;
 						
 					case "Boobswell Pads":
 						if (requiresRemoval)
 						{
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
-							if(bRows() > 1) kGAMECLASS.eventBuffer += "on your " + kGAMECLASS.num2Text2(thisStatus.value1+1) + " row of breasts";
-							kGAMECLASS.eventBuffer += ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away.");
+							AddLogEvent("Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads" + (bRows() > 1 ? " on your " + kGAMECLASS.num2Text2(thisStatus.value1+1) + " row of breasts" : "") + ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away."), "passive", maxEffectLength);
 						}
 						break;
 						
 					case "The Treatment":
 						if (requiresRemoval)
 						{
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " <b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
-							kGAMECLASS.eventBuffer += "\n\nOnce you claim your fortune, you can retire on New Texas, maybe even get your own private milker.";
+							AddLogEvent("<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.\n\nOnce you claim your fortune, you can retire on New Texas, maybe even get your own private milker.", "passive", maxEffectLength);
 						}
 						break;
 						
 					case "Infertile":
 						if (requiresRemoval)
 						{
-							kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " A strange tingling sensation spreads through your loins as your microsurgeons are suddenly reinvigorated. Your codex then beeps to notify you that you have regained your";
+							var m:String = "A strange tingling sensation spreads through your loins as your microsurgeons are suddenly reinvigorated. Your codex then beeps to notify you that you have regained your";
 							if(hasGenitals())
 							{
-								if(hasVagina()) kGAMECLASS.eventBuffer += " fertility";
-								if(isHerm()) kGAMECLASS.eventBuffer += " and";
-								if(hasCock()) kGAMECLASS.eventBuffer += " virility";
+								if(hasVagina()) m += " fertility";
+								if(isHerm()) m += " and";
+								if(hasCock()) m += " virility";
 							}
-							else kGAMECLASS.eventBuffer += " fertility and virility should you ever have the genitals for them";
-							kGAMECLASS.eventBuffer += ". <b>Your ability to potentionally create life has been restored!</b>";
+							else m += " fertility and virility should you ever have the genitals for them";
+							m += ". <b>Your ability to potentionally create life has been restored!</b>";
+							AddLogEvent(m, "passive", maxEffectLength);
 						}
 						break;
 						
@@ -17249,8 +17217,8 @@
 					case "Goo Armor Defense Drain":
 						if (requiresRemoval)
 						{
-							if(armor is GooArmor) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" [goo.name] wriggles around you and tightens, testing her strength. <i>“Ahh, I feel better now!”</i> She seems to have fully recovered!");
-							if(hasItemByName("Goo Armor")) kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" [goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!");
+							if(armor is GooArmor) AddLogEvent(ParseText("[goo.name] wriggles around you and tightens, testing her strength. <i>“Ahh, I feel better now!”</i> She seems to have fully recovered!"), "passive", maxEffectLength);
+							if(hasItemByName("Goo Armor")) AddLogEvent(ParseText("[goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!"), "passive", maxEffectLength);
 							kGAMECLASS.gooArmorDefense(thisStatus.value1);
 						}
 						break;
@@ -17337,7 +17305,7 @@
 					physiqueMod += 2;
 					willpowerMod -= 1;
 					intelligenceMod -= 1;
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Damn, that stuff you were drinking was awesome. <b>You're feeling pretty good right now. You must be buzzed.</b>";
+					AddLogEvent("Damn, that stuff you were drinking was awesome. <b>You're feeling pretty good right now. You must be buzzed.</b>", "passive", deltaT);
 				}
 				
 				if (thisStatus.value1 >= 50 && !hasStatusEffect("Drunk"))
@@ -17350,7 +17318,7 @@
 					physiqueMod += 2;
 					reflexesMod -= 1;
 					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>";
+					AddLogEvent("Your sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>", "passive", deltaT);
 				}
 				
 				if (thisStatus.value1 >= 75 && !hasStatusEffect("Smashed"))
@@ -17365,7 +17333,7 @@
 					willpowerMod -= 1;
 					intelligenceMod -= 1;
 					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" [pc.Walking] is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>");
+					AddLogEvent(ParseText("[pc.Walking] is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>"), "passive", deltaT);
 				}
 			}
 			
@@ -17398,7 +17366,7 @@
 					
 					removeStatusEffect("Smashed");
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Your head is starting to clear a little, but <b>you're still pretty drunk.</b>";
+					AddLogEvent("Your head is starting to clear a little, but <b>you're still pretty drunk.</b>", "passive", deltaT);
 				}
 				
 				if (thisStatus.value2 < 50 && hasStatusEffect("Drunk"))
@@ -17417,7 +17385,7 @@
 					
 					removeStatusEffect("Drunk");
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " The more time passes, the more nimble you feel. Your reflexes are sharpening as the alcohol fades from your system. <b>You're only buzzed.</b>";
+					AddLogEvent("The more time passes, the more nimble you feel. Your reflexes are sharpening as the alcohol fades from your system. <b>You're only buzzed.</b>", "passive", deltaT);
 				}
 				
 				if (thisStatus.value2 < 25 && hasStatusEffect("Buzzed"))
@@ -17429,7 +17397,7 @@
 					
 					removeStatusEffect("Buzzed");
 					
-					kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Blinking, you realize that the alcohol has faded from your system. <b>You're no longer buzzed.</b>";
+					AddLogEvent("Blinking, you realize that the alcohol has faded from your system. <b>You're no longer buzzed.</b>", "passive", deltaT);
 				}
 			}
 

@@ -92,30 +92,36 @@
 		
 		public static function OnHourTF(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
-			kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp("passive") + " <u>The horse pills have an effect....</u>";
-			
 			var totalHours:int = ((kGAMECLASS.minutes + Math.min(deltaT, maxEffectLength)) / 60);
 			if (effect.minutesLeft <= 0) totalHours++;
 
 			// The only way to really model this and get the values I want requires looping rand, rip
-			
+			var msg:String;
 			var p:Number = effect.value2 * 20;
 			for (var i:int = 0; i < totalHours; i++)
 			{
 				if (p >= rand(100) + 1)
 				{
-					bigHorsePillMutations(target, effect);
+					msg = bigHorsePillMutations(target, effect);
 				}
 				else
 				{
-					smallHorsePillMutations(target, effect);
+					msg = smallHorsePillMutations(target, effect);
 				}
 			}
 			
-			if (effect.minutesLeft <= 0) kGAMECLASS.eventBuffer += "\n\n<b>Your body calms down. The pills must have worn off.</b>";
+			if (msg.length > 0)
+			{
+				AddLogEvent("<u>The horse pills have an effect...</u>" + msg, "passive");
+			}
+			
+			if (effect.minutesLeft <= 0)
+			{
+				AddLogEvent("<b>Your body calms down. The pills must have worn off.</b>", "passive", maxEffectLength);
+			}
 		}
 		
-		private static function smallHorsePillMutations(target:Creature, effect:StorageClass):void
+		private static function smallHorsePillMutations(target:Creature, effect:StorageClass):String
 		{
 			var msg:String = "";
 			var totalTFs:Number = effect.value2;
@@ -587,10 +593,10 @@
 				//New lines!
 				totalTFs--;
 			}
-			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
+			return msg;
 		}
 		
-		private static function bigHorsePillMutations(target:Creature, effect:StorageClass):void
+		private static function bigHorsePillMutations(target:Creature, effect:StorageClass):String
 		{
 			var msg:String = "";
 			//How many TFs? Max of 2.
@@ -1022,7 +1028,7 @@
 				}
 				totalTFs--;
 			}
-			if(msg.length > 0) kGAMECLASS.eventBuffer += msg;
+			return msg;
 		}
 		protected function rand(max:Number):Number
 		{

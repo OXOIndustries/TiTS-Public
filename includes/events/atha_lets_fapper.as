@@ -66,7 +66,7 @@ public function letsFapEmailUnlock():void
 	{
 		flags["LETS_FAP_INVITE_FROM"] = letsFapUnlockFromName();
 		MailManager.unlockEntry("lets_fap_unlock", GetGameTimestamp());
-		eventBuffer += "\n\n" + logTimeStamp() + " <b>New Email from " + flags["LETS_FAP_INVITE_FROM"] + " ("+ letsFapUnlockFromEmail() +")!</b>";
+		AddLogEvent("<b>New Email from " + flags["LETS_FAP_INVITE_FROM"] + " ("+ letsFapUnlockFromEmail() +")!</b>", "passive");
 	}
 }
 

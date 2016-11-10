@@ -352,7 +352,7 @@
 		}
 
 		// Queued event system
-		public var eventBuffer:String;
+		public var timestampedEventBuffer:Array;
 		public var eventQueue:Array;
 
 		// Version string/value
@@ -460,8 +460,8 @@
 			this.inSceneBlockSaving = false;
 			gameOverEvent = false;
 			
-			eventQueue = new Array();
-			eventBuffer = "";
+			eventQueue = [];
+			timestampedEventBuffer = [];
 			
 			//Toggles
 			silly = false;

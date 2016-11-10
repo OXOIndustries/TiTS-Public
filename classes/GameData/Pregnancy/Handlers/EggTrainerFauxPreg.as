@@ -10,6 +10,8 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GLOBAL;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Interfaces.AddLogEvent;
+	import classes.Engine.Interfaces.ExtendLogEvent;
 	
 	public class EggTrainerFauxPreg extends BasePregnancyHandler
 	{
@@ -31,7 +33,6 @@ package classes.GameData.Pregnancy.Handlers
 			_definedAverageLoadSize = 240;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			
-			var msg:String = "";		
 			// One day in.
 			this.addStageProgression((172800000 - (60*24)), function(pregSlot:int):void
 			{
@@ -68,8 +69,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 5;
 				
 				//Slight passive lust gain
-				msg += "\n\n" + kGAMECLASS.logTimeStamp() + " The faux egg inside of you is getting fairly large now, thanks to the ever-growing TamaniCorp egg inside you. It moves ever so slightly with every step, making you shiver with pleasure almost constantly. <b>Mundane tasks, and even the passage of time, are arousing you.</b>";
-				kGAMECLASS.eventBuffer += msg;
+				AddLogEvent("The faux egg inside of you is getting fairly large now, thanks to the ever-growing TamaniCorp egg inside you. It moves ever so slightly with every step, making you shiver with pleasure almost constantly. <b>Mundane tasks, and even the passage of time, are arousing you.</b>", "passive");
 				kGAMECLASS.pc.createStatusEffect("Egg Addled 1",0,0,0,0,false,"Icon_DrugPill","Your lust increases slightly faster over time as a result of the shifting egg inside you.",false,0);
 			}, true);
 			// Five months in
@@ -106,10 +106,8 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
 				kGAMECLASS.pc.bellyRatingMod += 5;
-				
-				msg = "\n\n" + kGAMECLASS.logTimeStamp() + " The egg inside you has swollen to massive proportions, stretching your body out as if you're carrying a pair of twins inside you. Every slight motion you make causes the tremendous weight inside you to shift and churn, sending shockwaves of ecstatic pleasure through you. <b>It's more arousing than ever, and if you aren't careful, you'll become dangerously distracted.</b>";
-				
-				kGAMECLASS.eventBuffer += msg;
+								
+				AddLogEvent("The egg inside you has swollen to massive proportions, stretching your body out as if you're carrying a pair of twins inside you. Every slight motion you make causes the tremendous weight inside you to shift and churn, sending shockwaves of ecstatic pleasure through you. <b>It's more arousing than ever, and if you aren't careful, you'll become dangerously distracted.</b>", "passive");
 				//Modest lust gain
 				kGAMECLASS.pc.createStatusEffect("Egg Addled 2",0,0,0,0,false,"Icon_DrugPill","Your lust will increase over time to the maximum - leading to instant combat loss, should you blunder into a fight while distracted by your egg.",false,0);
 			}, true);
@@ -120,9 +118,8 @@ package classes.GameData.Pregnancy.Handlers
 				pData.pregnancyBellyRatingContribution += 15;
 				kGAMECLASS.pc.bellyRatingMod += 15;
 				
-				msg = "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" Your egg has grown truly, unnaturally, enormously massive inside you. Your belly is swollen beyond anything you'd have thought possible, stretching out ahead of you in swollen majesty. Every step, every slight motion you make, is nearly orgasmic now. You can't help but play with yourself constantly: not sexually, but simply rubbing your hands on your [pc.belly]. Sometimes, you find yourself spending minutes just enjoying the feeling of fullness, of your fingers brushing across your taut flesh.");
 				//MASSIVE LUST GAIN
-				kGAMECLASS.eventBuffer += msg;
+				AddLogEvent(ParseText("Your egg has grown truly, unnaturally, enormously massive inside you. Your belly is swollen beyond anything you'd have thought possible, stretching out ahead of you in swollen majesty. Every step, every slight motion you make, is nearly orgasmic now. You can't help but play with yourself constantly: not sexually, but simply rubbing your hands on your [pc.belly]. Sometimes, you find yourself spending minutes just enjoying the feeling of fullness, of your fingers brushing across your taut flesh."), "passive");
 				kGAMECLASS.pc.createStatusEffect("Egg Addled 3",0,0,0,0,false,"Icon_DrugPill","The endless stimulation of your internal faux egg is driving you mad with lust. Even the simple act of walking has become hellishly distracting.",false,0);
 			}, true);
 

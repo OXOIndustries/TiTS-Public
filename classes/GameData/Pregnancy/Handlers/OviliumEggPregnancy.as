@@ -10,6 +10,8 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GLOBAL;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Interfaces.AddLogEvent;
+	import classes.Engine.Interfaces.ExtendLogEvent;
 	
 	public class OviliumEggPregnancy extends BasePregnancyHandler
 	{
@@ -31,7 +33,6 @@ package classes.GameData.Pregnancy.Handlers
 			_definedAverageLoadSize = 240;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			
-			var msg:String = "";
 			var x:int = 0;
 			var eggSizeRating:Number = 0.125; // just in case this value needs tweaking
 			
@@ -46,12 +47,11 @@ package classes.GameData.Pregnancy.Handlers
 						var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
 						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
-						
-						msg = "\n\n" + kGAMECLASS.logTimeStamp() + " A ticklish throbbing ignites in your loins, signaling the start of the birthing process. It’s only a matter of time now before the eggs push their way out of you";
+						var msg:String = "A ticklish throbbing ignites in your loins, signaling the start of the birthing process. It’s only a matter of time now before the eggs push their way out of you";
 						if (StatTracking.getStat("pregnancy/ovilium eggs laid") > 0) msg += ", leaving you empty once more";
 						msg += ". Some part of you yearns for that release, while another is content with rubbing your pregnant-looking stomach.";
 						
-						kGAMECLASS.eventBuffer += msg;
+						AddLogEvent(msg, "passive");
 						kGAMECLASS.pc.energy(-5);
 						kGAMECLASS.pc.lust(10);
 					}, true);
@@ -65,9 +65,8 @@ package classes.GameData.Pregnancy.Handlers
 						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
 						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
 						
-						msg = "\n\n" + kGAMECLASS.logTimeStamp() + " Your stomach lets out a contraction that nearly causes you to lose your balance. The eggs inside you must be nearly ready to lay. You’d say you still have some time to get things done.";
+						AddLogEvent("Your stomach lets out a contraction that nearly causes you to lose your balance. The eggs inside you must be nearly ready to lay. You’d say you still have some time to get things done.", "passive");
 						
-						kGAMECLASS.eventBuffer += msg;
 						kGAMECLASS.pc.energy(-10);
 					}, true);
 				}
@@ -80,12 +79,12 @@ package classes.GameData.Pregnancy.Handlers
 						kGAMECLASS.pc.bellyRatingMod += eggSizeRating * pData.pregnancyQuantity;
 						pData.pregnancyBellyRatingContribution += eggSizeRating * pData.pregnancyQuantity;
 						
-						msg = "\n\n" + kGAMECLASS.logTimeStamp() + " You";
+						var msg:String = "You";
 						if (kGAMECLASS.pc.hasKnees()) msg += "r knees buckle";
 						else msg += " almost trip over yourself";
 						msg += " as a contraction hits you. These eggs are coming soon, so unless you’re planning on showing everyone around, you had better get to somewhere personal. The eggs won’t wait once it’s time.";
 						
-						kGAMECLASS.eventBuffer += msg;
+						AddLogEvent(msg, "passive");
 						kGAMECLASS.pc.energy(-20);
 					}, true);
 				}
@@ -103,13 +102,13 @@ package classes.GameData.Pregnancy.Handlers
 			// (random before laying, +lust if repeat)
 			this.addStageProgression(((2.5 * 60) + (rand(_basePregnancyIncubationTime - (3 * 60)))), function(pregSlot:int):void
 			{
-				msg = "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You find yourself idly tapping your belly, running a hand over the smooth [pc.skinFurScalesNoun]. The relatively quick pregnancy induced by the drug means you’ll be laying within the day.");
+				var msg:String = ParseText("You find yourself idly tapping your belly, running a hand over the smooth [pc.skinFurScalesNoun]. The relatively quick pregnancy induced by the drug means you’ll be laying within the day.");
 				if (StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 				{
 					msg += " You can’t wait.";
 					kGAMECLASS.pc.lust(10);
 				}
-				kGAMECLASS.eventBuffer += msg;
+				AddLogEvent(msg, "passive");
 			}, true);
 			
 			_onSuccessfulImpregnation = oviliumOnSuccessfulImpregnation;

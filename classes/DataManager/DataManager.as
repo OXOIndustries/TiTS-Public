@@ -1501,7 +1501,7 @@
 			
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();
-			kGAMECLASS.eventBuffer = "";
+			kGAMECLASS.timestampedEventBuffer = [];
 			kGAMECLASS.gameOverEvent = false;
 			
 			// If the text input was being displayed, hide it

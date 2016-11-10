@@ -452,6 +452,6 @@ public function beADumbShitFallGuyForTheRebels():void
 //Append to evenBuffer.
 public function missedRebelExplosion():void
 {
-	eventBuffer += "\n\n" + logTimeStamp("bad") + " <b>Newsflash:</b> Reports of a bombing in central Gildenmere are hitting the extranet alongside pictures of dismembered gold limbs and a cloud of smoke floating inside the gigantic cavern. A group calling themselves the <i>“Peace Federation”</i> has claimed responsibility.";
+	AddLogEvent("<b>Newsflash:</b> Reports of a bombing in central Gildenmere are hitting the extranet alongside pictures of dismembered gold limbs and a cloud of smoke floating inside the gigantic cavern. A group calling themselves the <i>“Peace Federation”</i> has claimed responsibility.", "bad");
 	flags["IRELLIA_QUEST_STATUS"] = -1;
 }

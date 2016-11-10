@@ -10,6 +10,8 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GameData.StatTracking;
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Child;
+	import classes.Engine.Interfaces.AddLogEvent;
+	import classes.Engine.Interfaces.ExtendLogEvent;
 	
 	/**
 	 * ...
@@ -45,7 +47,7 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " The creature inside of you keeps squirming around in the most <i>erotic</i> way. You find yourself rubbing your belly, and feeling like you <i>should masturbate as soon as possible.</i>";
+				AddLogEvent("The creature inside of you keeps squirming around in the most <i>erotic</i> way. You find yourself rubbing your belly, and feeling like you <i>should masturbate as soon as possible.</i>", "passive");
 				kGAMECLASS.pc.lust(100);
 			}, true);
 			
@@ -54,14 +56,14 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
 				
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " The exotic alien in your belly is definitely getting bigger, growing day by day. When a tentacle pushes, you can clear see its size, visible in your distended flesh.<i> You are such a good mommy.</i>";
+				AddLogEvent("The exotic alien in your belly is definitely getting bigger, growing day by day. When a tentacle pushes, you can clear see its size, visible in your distended flesh.<i> You are such a good mommy.</i>", "passive");
 			}, true);
 
 			this.addStageProgression(16000, function(pregSlot:int):void {
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += 5;
 				pData.pregnancyBellyRatingContribution += 5;
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " You realize that you've been rubbing your belly whenever you nervous, or excited... or bored. Anytime, really. It's a very soothing feeling, nurturing a creature within yourself, <i>letting it hijack your body for its own ends.</i> Fuck, now you're getting turned on again. Maybe this thing feeds off of sexual pleasure?";
+				AddLogEvent("You realize that you've been rubbing your belly whenever you nervous, or excited... or bored. Anytime, really. It's a very soothing feeling, nurturing a creature within yourself, <i>letting it hijack your body for its own ends.</i> Fuck, now you're getting turned on again. Maybe this thing feeds off of sexual pleasure?", "passive");
 				kGAMECLASS.pc.lust(25);
 			}, true);
 
@@ -69,7 +71,7 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += 5;
 				pData.pregnancyBellyRatingContribution += 5;
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" You rub your [pc.belly] and wonder - is it weird for that to send erotic tingles through your whole body?");
+				AddLogEvent(ParseText("You rub your [pc.belly] and wonder - is it weird for that to send erotic tingles through your whole body?"), "passive");
 				kGAMECLASS.pc.lust(25);
 			}, true);
 
@@ -77,7 +79,7 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " Sometimes, you wonder if you'll be pregnant with this creature forever. Then, <i>you realize how great that would be.</i> You rub your belly and smile.";
+				AddLogEvent("Sometimes, you wonder if you'll be pregnant with this creature forever. Then, <i>you realize how great that would be.</i> You rub your belly and smile.", "passive");
 				kGAMECLASS.pc.lust(25);
 			}, true);
 			
@@ -86,7 +88,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
 				
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + " You're so swollen, so big... so perfectly gravid. <i>It's perfectly normal to be so incredibly distended.</i> Sometimes, other people will look like they're about to comment on your pregnant belly, but then they'll shake their head and smile at you.";
+				AddLogEvent("You're so swollen, so big... so perfectly gravid. <i>It's perfectly normal to be so incredibly distended.</i> Sometimes, other people will look like they're about to comment on your pregnant belly, but then they'll shake their head and smile at you.", "passive");
 			}, true);
 			
 			this.addStageProgression(5000, function(pregSlot:int):void {
@@ -94,7 +96,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 5;
 				pData.pregnancyBellyRatingContribution += 5;
 				
-				var msg:String = "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" A tentacle slips out of you and wiggles, making you gasp and pant as it slimes your [pc.legOrLegs]. It withdraws, then slips out, stroking your most sensitive places, driving you to distraction. By the time it stops, you're nearly inensate with lust.");
+				AddLogEvent(ParseText("A tentacle slips out of you and wiggles, making you gasp and pant as it slimes your [pc.legOrLegs]. It withdraws, then slips out, stroking your most sensitive places, driving you to distraction. By the time it stops, you're nearly inensate with lust."), "passive");
 				kGAMECLASS.pc.lust(3000);
 			}, true);
 			
@@ -103,7 +105,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
 				
-				kGAMECLASS.eventBuffer += "\n\n" + kGAMECLASS.logTimeStamp() + ParseText(" Walking around is hard with such a huge middle, but you manage. <i>You don't mind.</i> Really.");
+				AddLogEvent(ParseText("Walking around is hard with such a huge middle, but you manage. <i>You don't mind.</i> Really."), "passive");
 			}, true);
 			
 			_onSuccessfulImpregnation = psychicTentacleSuccessfulImpregnantion;
