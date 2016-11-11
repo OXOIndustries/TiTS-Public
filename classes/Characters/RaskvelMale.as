@@ -246,7 +246,7 @@
 			{
 				output("<i>“Aw look, the offworlder’s decided to have a lie down,”</i> guffaws one of the raskvel.");
 				output("\n\n<i>“Sounds like they’ve got the right idea to me,”</i> says another huskily. You attempt to get up but are immediately forced back down as they pile on top of you, weighing you down with their warm, dense weight and engulfing you in their leathery, masculine scent.");
-				target.createStatusEffect("Raskvel Pile", 0, 0, 0, 0, false, "DefenseDown", "The mob of raskvel has climbed on top of you, rendering it much harder to get back up. They're distracting as hell too!", true, 0);
+				target.createStatusEffect("Raskvel Pile", 0, 0, 0, 0, false, "DefenseDown", "The mob of raskvel has climbed on top of you, rendering it much harder to get back up. They’re distracting as hell too!", true, 0);
 			}
 			//Repeat: 
 			else
@@ -267,7 +267,7 @@
 			//Fail: 
 			if(!target.isImmobilized() && physique()/2 + 10 <= target.reflexes()/2 + rand(20) + 1)
 			{
-				output("\n\nYou sense one of them crouching down behind you and react just in time, barrelling into the other two before they can push you over.");
+				output("\n\nYou sense one of them crouching down behind you and react just in time, barreling into the other two before they can push you over.");
 				output("\n\n<i>“Spoilsport,”</i> grouses one as they scramble back out again.");
 				target.createStatusEffect("Attempt Seduction", 0, 0, 0, 0, true, "", "", true, 0);
 			}
@@ -282,7 +282,7 @@
 				else output("You");
 				output(" cannot prevent yourself losing balance and falling onto your back, winding yourself. The clamor of male laughter is in your ears.");
 
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
 			}
 		}
 		

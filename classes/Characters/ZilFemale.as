@@ -30,7 +30,7 @@
 			this.capitalA = "The ";
 			this.long = "";
 			this.customDodge = "The zil girl tumbles out of the way with a swift contortion.";
-			this.customBlock = "The zil's chitinous armor deflects your attack.";
+			this.customBlock = "The zil’s chitinous armor deflects your attack.";
 			this.isPlural = false;
 			this.meleeWeapon = new Fists();
 			
@@ -195,7 +195,7 @@
 		{
 			if(rand(3) == 0) hairColor = "blonde";
 			
-			long = "The female zil stands just shy of 5'6, and is covered from head to toes in shiny black chitin. A downy fuzz falls from her head down to her shoulders, resembling curly " + hairColor + " hair. She's got dozens of sharp darts on her belt, noticeably discolored with chemicals, and a number of glass vials at hand full of who-knows what. Worse, she's got a full bee-like abdomen behind her with a deadly-looking stinger. She moves with a liquid, feline grace, assuming a combat stance that leaves her crotch pointed at you to fill the air with lusty pheromones as her perky tits jut out at you, bobbing from side to side enticingly.";
+			long = "The female zil stands just shy of 5\'6\", and is covered from head to toes in shiny black chitin. A downy fuzz falls from her head down to her shoulders, resembling curly " + hairColor + " hair. She’s got dozens of sharp darts on her belt, noticeably discolored with chemicals, and a number of glass vials at hand full of who-knows what. Worse, she’s got a full bee-like abdomen behind her with a deadly-looking stinger. She moves with a liquid, feline grace, assuming a combat stance that leaves her crotch pointed at you to fill the air with lusty pheromones as her perky tits jut out at you, bobbing from side to side enticingly.";
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -245,7 +245,7 @@
 		{
 			author("Savin");
 			//Buffs kinetic defenses?
-			output("Closing her onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
+			output("Closing her onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil’s carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
 			
 			var newRes:Number = (100 - baseHPResistances.kinetic.resistanceValue) / 5;
 			baseHPResistances.kinetic.resistanceValue += newRes;
@@ -265,11 +265,11 @@
 			}
 			else 
 			{
-				if(target.shieldsRaw > 0) output(" She isn't moving fast enough to trigger your shield, slipping right on through.");
+				if(target.shieldsRaw > 0) output(" She isn’t moving fast enough to trigger your shield, slipping right on through.");
 				output(" The stinger punches through your ");
 				if(target.armor.shortName != "") output(target.armor.longName + " and [pc.skin]");
 				else output("[pc.skin]");
-				output(", pumping a thick load of some kind of chemical into you.  You feel hot and flustered in seconds, blushing hard as your loins burn. Your whole body feels like it's in a haze....");
+				output(", pumping a thick load of some kind of chemical into you. You feel hot and flustered in seconds, blushing hard as your loins burn. Your whole body feels like it’s in a haze....");
 				target.lust(15);
 				if (target.hasStatusEffect("Zil Sting")) 
 				{
@@ -321,8 +321,8 @@
 					//PC must pass an willpower check, else:
 					target.lust(5);
 					if(target.willpower() + rand(20) + 1 < 20 && !target.hasStatusEffect("Blinded") && !target.hasBlindImmunity()) {
-						output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision's collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, you're <b>blinded</b>!");
-						target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+						output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision’s collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, you’re <b>blinded</b>!");
+						target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
 					}
 				}
 			}
@@ -372,21 +372,21 @@
 			output("Suddenly, the zil girl drops her combat stance, and dips her fingers right into her honeypot, masturbating furiously.");
 			if(target.hasAirtightSuit())
 			{
-				output(" You wonder what the hell she's doing, but judging by the look on her face, she is being assaulted by a potent cloud of her own sex pheromones!");
-				output("\n\nLuckily your [pc.armor] is airtight, so you don't have to worry about being affected by it - but you can see <i>she</i> definitely is!");
+				output(" You wonder what the hell she’s doing, but judging by the look on her face, she is being assaulted by a potent cloud of her own sex pheromones!");
+				output("\n\nLuckily your [pc.armor] is airtight, so you don’t have to worry about being affected by it - but you can see <i>she</i> definitely is!");
 				lust(8);
 			}
 			//{Moderate toughness check pass}
 			else if(target.physique() + rand(20) + 1 > 20) {
-				output(" You wonder what the hell she's doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
-				output("\nYou hold your breath as long as you can, waving the lusty cloud away from you. Before long, the zil girl tires out, nearly cumming before she stumbles back with chest heaving. There's a thick scent of sex in the air by the time you breathe again...");
+				output(" You wonder what the hell she’s doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
+				output("\nYou hold your breath as long as you can, waving the lusty cloud away from you. Before long, the zil girl tires out, nearly cumming before she stumbles back with chest heaving. There’s a thick scent of sex in the air by the time you breathe again...");
 				lust(5);
 				target.lust(5);
 			}
 			else {
-				output(" You wonder what the hell she's doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
-				output("\nEventually, you can hold your breath no longer, and you're forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
-				if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe's 'attack'.");
+				output(" You wonder what the hell she’s doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
+				output("\nEventually, you can hold your breath no longer, and you’re forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
+				if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe’s ‘attack’.");
 				else if(target.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breathe you take.");
 				else
 				{

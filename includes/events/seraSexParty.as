@@ -49,7 +49,7 @@ public function seraSexPartyWearOutfit(outfit:ItemSlotClass):void
 		var oldOutfit:ItemSlotClass = pc.armor;
 		oldOutfit.onRemove(pc);
 		outfit.onEquip(pc);
-		quickLoot(oldOutfit);
+		itemCollect([oldOutfit]);
 		pc.armor = outfit;
 	}
 	else

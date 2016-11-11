@@ -1913,6 +1913,12 @@ public function kq2ShadePCVictoryKaraNotHard():void
 	output("\n\n<i>“Stay down,”</i> Kara warns, racking the charger on her pistol. The huntress doesn’t challenge her threat, and Kara turns to you. <i>“C’mon, [pc.name], let’s go! We’re almost home free!”</i>\n\n");
 	
 	flags["KQ2_SHADE_UNCONSCIOUS"] = GetGameTimestamp();
+	// Non-relatable/Friend Shade will turn hostile after this reveal and just go back home to Uveto.
+	if(!shadeIsSiblings() && !shadeIsLover())
+	{
+		flags["SHADE_IS_HOSTILE"] = 1;
+		flags["SHADE_ON_UVETO"] = 1;
+	}
 
 	CombatManager.genericVictory();
 }
@@ -3116,7 +3122,7 @@ public function kq2ShadeFollowUpAmends():void
 	output("\n\nYou nod, sadly. It’s understandable, you guess, though it hurts all the same. You can only hope that maybe some day - someday soon - she’ll be ready to talk again.");
 	
 	// if Probe Dungeon Not Done:
-	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined)
+	if(flags["MYRELLION_PROBE_CASH_GOT"] == undefined)
 	{
 		output("\n\nShade gives you a faint smile, motioning towards the door -- a dismissal, though not entirely unkind. You give her hand a squeeze in kind before standing, giving the huntress a pause to decide on the future of your relationship. If there <i>is</i> a future.");
 		

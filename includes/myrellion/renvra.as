@@ -778,6 +778,7 @@ public function renvraBellyrubs():void
 	if (flags["Renvra Full Pregnancy Bellyrub Supression"] < days && rand(100) < 2)
 	{	
 		flags["Renvra Full Pregnancy Bellyrub Supression"] = days;
+		var m:String = "";
 		
 		if (InPublicSpace() && (kGAMECLASS.hours > 4 && kGAMECLASS.hours < 22))
 		{

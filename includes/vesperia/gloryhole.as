@@ -90,7 +90,7 @@ public function stickDickThroughGloryhole(arg:int):void
 	clearOutput();
 	showName("\nGLORYHOLE");
 	//Too Big
-	if(pc.cThickness(arg) > 4 && 9999 != 9999) 
+	if(pc.cThickness(arg) > 4) 
 	{
 		output("No matter how you wriggle or thrust, it just won’t fit. You’re too big!");
 		if(pc.cockTotal() > 1) output(" Perhaps you’d like to try a different member?");
@@ -572,7 +572,7 @@ public function yesSuckSomeTruckerCawk():void
 	//Bimbo
 	if(pc.isBimbo()) output("\n\nLike, what else would you do? <i>“Yes sir!”</i> You grab it in both hands, your enthusiasm as plain as the smile on your parted lips. It feels just as good against your skin as you’d imagined: heavy, a little slick with its own sweat, and throbbing waves of delight through your palms. Whimpering softly, you brush back the course pubes around the base and give it a stroke, bunching the thick dickskin up around the tip. On the way back, the foreskin peels back, exposing growing, purplish glans. It smells strongly of unsatisfied dick - your favorite smell in the whole wide universe.");
 	//Bro
-	else if(pc.isBro()) output("\n\nHe talks too much. You make an agreeable-sounding grunt. Time to get suck some cock. You grab it in both hands, business-like. A few long hairs almost get caught between your knuckles, but you brush them back. This guy must be a real quick shot, because he gets most of the way hard in the time it takes you to get a proper heft of his equipment. His glans is shiny and purple, half hidden beneath his foreskin, so you do the sensible thing and tug his foreskin back. Void, he’s throbbing harder than an overloading engine. Just how long has it been since this dude busted a nut?");
+	else if(pc.isBro()) output("\n\nHe talks too much. You make an agreeable-sounding grunt. Time to get suckin’ on some cock. You grab it in both hands, business-like. A few long hairs almost get caught between your knuckles, but you brush them back. This guy must be a real quick shot, because he gets most of the way hard in the time it takes you to get a proper heft of his equipment. His glans is shiny and purple, half hidden beneath his foreskin, so you do the sensible thing and tug his foreskin back. Void, he’s throbbing harder than an overloading engine. Just how long has it been since this dude busted a nut?");
 	//High libido
 	else if(pc.libido() >= 66) output("\n\nElectricity thrills down your spine at being given such a lewd command. Your answer is as much lewd moan as acknowledgement. <i>“Yesss!”</i> You push his coarse pubic hairs out of the way and grab hold in both hands, making it jump like an eager dog, if that dog was a large-bred monster. Even the glans is enormous. You watch it fill up to its full size, stretching the copious foreskin tight around the purplish crown. Drool fills your mouth, but you take the time to give him a few pumps, peeling the foreskin back to expose the gleaming tip. It throbs none-too-gently. Hopefully it won’t go off too soon...");
 	//Med libido
@@ -593,7 +593,7 @@ public function yesSuckSomeTruckerCawk():void
 	}
 	//Merge
 	output("\n\nExtending your tongue, you lick it from just underneath the urethral slit to just above. It ");
-	if(!pc.isBimbo()) output("tastes like skin, especially salty skin, but still just skin. Satisfied with the flavor, you lick again, this time wiggling your tongue against the frenulum before arcing up the side. Your patron moans in apparently approval. Smiling to yourself, you open wide and engulf his mushroom-like tip, straining your jaw to take the whole thing.");
+	if(!pc.isBimbo()) output("tastes like skin, especially salty skin, but still just skin. Satisfied with the flavor, you lick again, this time wiggling your tongue against the frenulum before arcing up the side. Your patron moans in apparent approval. Smiling to yourself, you open wide and engulf his mushroom-like tip, straining your jaw to take the whole thing.");
 	else 
 	{
 		output("tastes heavenly, sort of like most cocks, but somehow better - thicker and more intense than you would expect. Your lips chase after your tongue before it can pull away, wrapping up the delicious dick in your bubbly, penis-loving lips. This time, you taste the underside, around the frenulum, and you do your best to wiggle it back and forth against the sensitive bundles of nerves there. Your patron moans in approval, and you nearly cream yourself in delight, the vibrations of his voice almost as good as strokes against your ");
@@ -800,7 +800,7 @@ public function blowAThrobUser(user:int):void
 	output("\n\nOpening wide, you lean down and engulf it in your lips, wrapping it up in your hot little pillows. It trembles, a motion you imagine travels the whole way up its owner’s spine. She squeaks cutely when you start to suck, then lets out a low groan when you wiggle your tongue. It’s easy to milk encouraging audio from the excited futanari. Slowly bobbing back and forth leads to blissed-out sighs. Flicking your tongue out to lap ");
 	if(user != 0) output("at her balls");
 	else output("at her crotch through the hole");
-	output(" earns you the sound of ragged inhalations. A twist slight twist of your neck is all it takes to make her whimper. She’s putty in your mouth.");
+	output(" earns you the sound of ragged inhalations. A slight twist of your neck is all it takes to make her whimper. She’s putty in your mouth.");
 	output("\n\nYou’re so focused on playing with the phallus in your mouth, that it takes you a few back-and-forth sucks to realize that your ecstatic blowee is trying to ask you something.");
 	output("\n\n”</i>");
 	if(user == 0) output("Mmm... hey... you like big dicks too?");
