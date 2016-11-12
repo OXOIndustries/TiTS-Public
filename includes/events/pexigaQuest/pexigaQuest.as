@@ -1,4 +1,7 @@
-﻿//{Additional Sex Scene ideas: 
+﻿import classes.Items.Junk.IQBGone;
+import classes.Items.Junk.BrokenBrainmeltLamp;
+
+//{Additional Sex Scene ideas: 
 
 
 //Male:
@@ -33,6 +36,7 @@ public function showPexiga():void
 }
 public function showNymFoe():void
 {
+	showBust("NYM-FOE");
 	if(inCombat())
 	{
 		if(enemy.HP() <= 0 || enemy.lust() >= enemy.lustMax()) showName("VICTORY:\nNYM-FOE");
@@ -40,6 +44,18 @@ public function showNymFoe():void
 		else showName("FIGHT:\nNYM-FOE");
 	}
 	else showName("\nNYM-FOE");
+}
+
+public function showDollmaker():void
+{
+	showBust("DOLLMAKER");
+	if(inCombat())
+	{
+		if(enemy.HP() <= 0 || enemy.lust() >= enemy.lustMax()) showName("VICTORY:\nDOLL MAKER");
+		else if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) showName("LOSS:\nDOLL MAKER");
+		else showName("FIGHT:\nDOLL MAKER");
+	}
+	else showName("\nDOLL MAKER");
 }
 
 //Pexiga Uplift, aka Bimbo Quest II: The Search For More Bimbos
@@ -212,7 +228,6 @@ public function bringBadgerPexibork():void
 	clearMenu();
 	addButton(0,"Next",nymfoeSetup);
 }
-
 
 //After Fight
 public function afterNymFoeFight():void
@@ -1197,6 +1212,7 @@ public function nymfoeSetup():void
 	//First Time
 	if(flags["NYM-FOE"] == undefined)
 	{
+		flags["NYM-FOE"] = 1;
 		output("As you make your way to Doctor Badger’s back room, you can’t help but stare at the bizarre assortment of inventions crowding just about every flat surface. You’re so caught up in trying to take in the sheer variety that you don’t even notice when you walk right into a pair of bouncy orbs. Drawing back, you find yourself eye-to-tits with a JoyCo nursedroid.");
 		output("\n\nThe pale-skinned, pink uniformed clinical android seems out of place, except for the spine-crushingly huge mega tits she’s supporting with groaning servos. The <i>“V-Ko”</i> designation on its upper right arm has been scratched off and - in Badger’s messy script - a new name has been scrawled in its place: Nym-Foe. The droid stares at you with wide, pink eyes and an innocent smile, her overfilled chest still jiggling from your impact. <i>“Medical services are currently mandatory,”</i> she explains, a segmented, steel tail whipping back and forth behind her.");
 		output("\n\nWhether out of forgetfulness or malice, Doctor Badger didn’t deactivate her guard droid. There’s no telling what kind of devious modifications the slutty scientist made to the medical aide. You look back at your pexiga’s empty eyes. If you want to help her, you’re going to have to get through this perverted nursedroid.");
@@ -1204,16 +1220,14 @@ public function nymfoeSetup():void
 		//[Fight] [Leave]
 		clearMenu();
 		addButton(0,"Fight",fightTheNymfoe);
-		addButton(4,"Leave",leaveNymFoe);
+		addButton(4,"Back",leaveNymFoe);
 	}
 	//Repeat
 	else
 	{
 		output("The absurdly proportioned android is still standing guard over Doctor Badger’s back room. Your pexiga is patiently waiting right where you left her; a mute testament to your mission.  If you want to help the blue girl, you’re going to have to go through that robot.");
 		//[Fight] [Leave]
-		clearMenu();
 		addButton(0,"Fight",fightTheNymfoe);
-		addButton(4,"Leave",leaveNymFoe);
 	}
 }
 
@@ -1228,10 +1242,26 @@ public function fightTheNymfoe():void
 	CombatManager.setHostileCharacters(new NymFoe());
 	CombatManager.victoryScene(pcVictoryVsNymFoe);
 	CombatManager.lossScene(loseToNymFoeViaHP);
-	CombatManager.displayLocation("FIGHT:\nNYM-FOE");
+	CombatManager.displayLocation("NYM-FOE");
 	
 	clearMenu();
 	addButton(0,"Next", CombatManager.beginCombat);
+}
+
+public function bouncyProc(ranged:Boolean = false):void
+{
+	//Enemy Status: Bouncy x5 ("Nym-Foe’s massive mammaries deflect kinetic damage!”</i>)
+	//Combat Attacks
+	//Bouncy Breasts
+	//(passive as long as she has at least 1 stack of <i>“Bouncy”</i>, 20% chance to activate per stack of <i>“Bouncy”</i> if player deals kinetic damage to Nym-Foe).
+	//Ranged:
+	if(enemy is NymFoe)
+	{
+		if(ranged) output("As your [pc.rangedWeapon] barks out its payload at the swollen nursedroid, she simply giggles in delight. The jiggling, pillowy mountains of her inflated chest absorbs the shock of the attack. She bounces in place, clapping her hands in delight. <i>“Again! Again!”</i> she cheers. <b>It has no effect!</b>");
+		//Melee:
+		else output("You close in, swinging your [pc.meleeWeapon], but Nym-Foe shifts to take the blow directly on her inflated tits. Like fluid-filled armor, they rob your attack of its force! Her body bounces and jiggles but is otherwise unharmed. She titters, her entire frame swaying with the rippling waves radiating through her breasts. <b>It has no effect!</b>");
+	}
+	else output("Bouncy procced on unknown foe.");
 }
 
 /*Nym-Foe Injections
@@ -1331,6 +1361,8 @@ public function loseToNymFoeViaHP():void
 		pc.milkStorageMultiplier++;
 
 		processTime(5);
+		clearMenu();
+		addButton(0,"Next",loseToNymFoeViaHPStep2);
 	}
 	else
 	{
@@ -1372,7 +1404,8 @@ public function loseToNymFoeViaHPStep2():void
 	processTime(100+rand(10));
 	//[player gains 1x ClearYu]
 	//[Return to BimboQuest]
-	//9999
+	CombatManager.genericLoss();
+	eventQueue.push(lolliget);
 }
 
 public function loseToNymFoeViaHPBimboStep2():void
@@ -1473,11 +1506,18 @@ public function loseToNymFoeViaHPBimboStep6():void
 {
 	clearOutput();
 	showPexiga();
-	output("You don’t even remember falling asleep, but when you awaken, there’s no sign of the nursedroid. You’re almost afraid it was a dream, but a quick check proves that you’re still the proud owner of all those sexy curves. You could really go for a quick fuck or three! Sadly, the only person around is your pexiga, still patiently waiting. Guess you’ll have to hurry up and help her out so you can put this new body to the test! You struggle back into your [pc.gear] and pocket the lollipop she gave you.");
+	output("You don’t even remember falling asleep, but when you awaken, there’s no sign of the nursedroid. You’re almost afraid it was a dream, but a quick check proves that you’re still the proud owner of all those sexy curves. You could really go for a quick fuck or three! Sadly, the only person around is your pexiga, still patiently waiting. Guess you’ll have to hurry up and help her out so you can put this new body to the test! You struggle back into your [pc.gear].\n\n");
 	processTime(100+rand(10));
 	//[player gains 1x ClearYu]
 	//[Return to BimboQuest]
-	//9999
+	CombatManager.genericLoss();
+	eventQueue.push(lolliget);
+}
+
+public function lolliget():void
+{
+	clearOutput();
+	quickLoot(new ClearYu());
 }
 
 //Player Victory:
@@ -1489,6 +1529,7 @@ public function pcVictoryVsNymFoe():void
 	output("\n\nIt seems that the nursedroid is repairing herself but it looks like it’ll take a while. You could use the down time to blow off a little steam with the cartoonishly proportioned android. No telling what awaits you further on, afterall. You could probably get her to suck out the silicone she injected into you, too. Alternately, you could harvest the defenseless droid for all she’s worth, but that would wreck her beyond repair. Your pexiga is patiently waiting, as always.");
 
 	//[Fuck] [Suck Out] [Harvest] [Leave]
+	clearMenu();
 	if(pc.lust() >= 33 && pc.hasGenitals()) addButton(0,"Fuck",fuckTheNymFoe,undefined,"Fuck","Take advantage of the sex-bot to sate the lusts she has inspired.");
 	else if(pc.lust() >= 33) addDisabledButton(1,"Fuck","Fuck","You need genitalia to do this.");
 	else addDisabledButton(1,"Fuck","Fuck","You're not up for sex right now.");
@@ -1579,7 +1620,6 @@ public function fuckTheNymFoe():void
 		clearMenu();
 		addButton(0,"Next",fuckNymFoe2);
 	}
-
 }
 
 public function fuckNymFoe2():void
@@ -1726,6 +1766,16 @@ public function suckOutDatInjectionGoop():void
 	processTime(4);
 	nymFoeUninjection();
 	//[Fuck] [Harvest] [Leave]
+	clearMenu();
+	if(pc.lust() >= 33 && pc.hasGenitals()) addButton(0,"Fuck",fuckTheNymFoe,undefined,"Fuck","Take advantage of the sex-bot to sate the lusts she has inspired.");
+	else if(pc.lust() >= 33) addDisabledButton(1,"Fuck","Fuck","You need genitalia to do this.");
+	else addDisabledButton(1,"Fuck","Fuck","You're not up for sex right now.");
+
+	if(pc.hasStatusEffect("Nym-Foe Injections")) addButton(1,"Suck Out",suckOutDatInjectionGoop,undefined,"Get the excess silicone sucked back out of your body.");
+	else addDisabledButton(1,"Suck Out","Suck Out","There's no silicone inside you for her to suck out.");
+
+	addButton(2,"Salvage",salvageNymFoe,undefined,"Salvage","Now would be a good time to salvage some parts from the screwy sex-bot.");
+	addButton(4,"Leave",leaveTheNymFoe);
 }
 
 //[Harvest]
@@ -1786,8 +1836,9 @@ public function leaveTheNymFoe():void
 {
 	clearOutput();
 	showPexiga();
-	output("Taking the pexiga’s leash firmly in hand, you leave the robot on the ground and resume your hunt for Doctor Badger.");
-	//9999
+	output("Taking the pexiga’s leash firmly in hand, you leave the robot on the ground and resume your hunt for Doctor Badger.\n\n");
+	CombatManager.genericVictory();
+	eventQueue.push(afterNymFoeFight);
 }
 
 
@@ -1803,573 +1854,434 @@ public function nurseDroidChipTurnIn(droid:String):void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function badgerQuestPostNymFoeHook():void
-{
-	afterNymFoeFight();
-}
-
 public function dollmakerSetup():void
 {
-	
+	//Doll Maker, Vulgar Autonomous Bimbo Forge
+	//Encounter Text
+	//All
+	clearOutput();
+	showDollmaker();
+	output("As you’re surveying Doctor Badger’s underground lab, an elaborate spider-like rig unfolds itself from the ceiling, dropping dozens of spindly limbs around you like a loose cage. Startled, you reach for your weapons as a green triangle of laser light flashes back and forth across your body.");
+	processTime(4);
+	//normal
+	if(!pc.isBimbo())
+	{
+		output("\n\nA harsh, unfriendly buzz comes from the machine as its electric voice hisses at you. <i>“Fuck-slut levels unsatisfactory. Initiating reconstruction protocols. Do not resist, Whore: you will be Dolled.”</i> Frankly, you’re not comfortable with how this machine used the word <i>“doll,”</i> and you’d just as soon not find out what exactly that involves. The limbs around you lift a strange array of tools and pincers as it attempts to grab you!");
+		//{Go to Battle}
+		clearMenu();
+		addButton(0,"Next",fightTheDollmaker);
+	}
+	//bimbo
+	else
+	{
+		output("\n\nA satisfied chirp comes from the machine and a friendly electric voice comes from one of the steel limbs. <i>“Fuck-slut levels at satisfactory thresholds.”</i> The scanning light flashes over your pexiga next and the mechanical voice manages to seem downright impressed. <i>“Complete mental degradation on every level. Fuck-slut level at maximum capacity.”</i>");
+		output("\n\nYou’re a little confused, so you ask the machine what you’re supposed to do. The spidery limbs begin retracting up to the ceiling as it responds. <i>“I dunno. I assume the doctor’s waiting for you further in the laboratory, Cum Dumpster. Please proceed on your way.”</i> The voice pauses, as if thinking. <i>“Unless,”</i> it begins, almost hopefully, <i>“you wish to be Dolled?”</i>");
+		//[Badger] [Doll]
+		clearMenu();
+		addButton(0,"Badger",bimboSkipDollmakerFight);
+		addButton(1,"Doll",volunteerForDollificationFight);
+	}
+
 }
+
+//[Badger]
+public function bimboSkipDollmakerFight():void
+{
+	clearOutput();
+	showDollmaker();
+	output("You inform the machine that you really do need to get to Doc Badger. <i>“No, that is alright, Meat Puppet. The doctor takes precedence. Go on. Just leave me here, by myself. I’ll be fine.”</i> Despite it all, the machine seems almost hurt. The limbs withdraw into the ceiling and you could almost swear it makes a puppydog whine.");
+	//{Skip Battle}
+	clearMenu();
+	addButton(0,"Next",afterDollmakerFight);
+}
+
+//[Doll]
+public function volunteerForDollificationFight():void
+{
+	clearOutput();
+	showDollmaker();
+	output("It could be fun, you guess. Sure! Why not? <i>“What?”</i> the machine asks, in disbelief. <i>“Are you teasing me, Fuck Toy? You would actually like to be Dolled?”</i> The voice seems overjoyed, or at least as happy as a faceless machine can be, anyway. <i>“Affirmative. Initiating reconstruction protocols.”</i> The limbs around you turn in slow orbit to show off their strange array of tools and pincers. <i>“I appreciate this, Cum Rag. I hope you enjoy it as well.”</i>");
+	//{Go to <i>“Dolled”</i> Combat Result}
+	clearMenu();
+	addButton(0,"Next",dolledBadEnd);
+}
+
+//[Fight]
+public function fightTheDollmaker():void
+{
+	clearOutput();
+	showDollmaker();
+	output("You pull out your weapons and get ready for a fight!");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Dollmaker());
+	CombatManager.victoryScene(playerBeatUpDollmaker);
+	CombatManager.lossScene(gitcherAssKickedByDollymakah);
+	CombatManager.displayLocation("DOLL MAKER");
+	
+	clearMenu();
+	addButton(0,"Next", CombatManager.beginCombat);
+}
+
+//Combat Results
+//Player Loss
+//all
+public function gitcherAssKickedByDollymakah():void
+{
+	clearOutput();
+	showDollmaker();
+	output("No longer able to put up much of a fight, you find your ability to resist just about completely sapped. The padded cuffs of the Doll Maker keep you aloft, bound and utterly exposed to its bevy of perilous limbs. <i>“Well, that took longer than it had to,”</i> the machine observes, a little sharply. <i>“I’d say ‘next time just surrender and get it over with,’ but I think we both know there’s not going to be a next time, DEMEANING NAME LOOK UP ERROR.”</i> The machine whirs and grinds for a moment before rebooting itself.");
+	output("\n\n <i>“Initiating reconstruction protocols.”</i> The limbs around you turn in slow orbit to show off their strange array of tools and pincers. <i>“I appreciate this, Cum Rag. I hope you enjoy it as well. Let’s get started, shall we?”</i>");
+	//[go to Dolled Bad End]
+	clearMenu();
+	addButton(0,"Next",dolledBadEnd);
+}
+
+//Player Victory
+//all
+public function playerBeatUpDollmaker():void
+{
+	clearOutput();
+	showDollmaker();
+	output("The elaborate rig of weaponized limbs above you jerks, spitting sparks and cursing in a scratchy, electronic voice. <i>“Fuck-damned cocksucker! Cum-guzzling gutterslut! I just try to make you a little more attractive and this is the thanks I get? Well suck my sockets, you jizz-drenched analwhore. I hope you get dick-slapped so hard, the spunk you call brains flies out of your ears!”</i> Foul mouthed to the end, it seems.");
+	output("\n\nAs it gathers itself for one last, spiteful assault, a spasming surge shoots through the damaged Doll Maker and its arms go limp, no longer posing any threat. <i>“Fuuuuuuuuuuck youuuuuuuuu...”</i> it rasps, its voice finally clicking off. You give one an experimental push and when you find it unresponsive, you step out from under the mechanical canopy. You should probably salvage this thing now, so you don’t have to come back down here again!");
+
+	processTime(3);
+	
+	//[Dildo] (Mouse Over: A huge, squeezable dildo shaped like Doctor Badger’s cock, filled with her distinctive musk. Even a wiff is enough to leave you shuddering with need. Bimbos would love it.)
+	//[Vibes] (Mouse Over: A handful of thumb-sized, egg-shaped vibrators. They seem to attach to the nearest organic target before burning themselves out driving the victim wild.) {players can select this option up to 3 times, gaining one stack of vibes per selection}
+	//[Syringe] (Mouse Over: A harvested needle filled with Doctor Badger’s patented IQ B-Gone serum. Law enforcement would be interested in this - maybe they can make a cure?)
+	//[Lamp] (Mouse Over: The deceptively innocuous pink-bulbed Brainmelt Lamp seems to have been damaged in the fight. You might be able to sell it for scrap.)
+	//[Visor] (Mouse Over: The Mindwash Visor actually seems like it might be fun to use when your life’s not at stake. Another toy for your ship, perhaps.)
+	//[Sprayer] (Mouse Over: A liquid latex spray gun. There’s enough juice to give you a single coating, if you’re into that.)
+	//[Gun] (Mouse Over: A custom designed Bimboleum Emitter, like the kind Doctor Badger uses.)
+	//[Leave] (Mouse Over: You’re done here. Time to get your pexiga healed!)
+
+	clearMenu();
+	//[Silicone] (up to 4x Silicone bags, gadget) [Gush] (up to 10x Gush medipens, consumable) [Chip] (1x Damaged AI chip, gadget) [Leave]
+	if(enemy.hasItem(new IQBGone())) addDisabledButton(0,"Syringe","Syringe","You've already taken her IQ B-Gone syringe.");
+	else addButton(0,"Syringe",dollmakerSalvage,new Silicone(),"Syringe","A harvested needle filled with Doctor Badger’s patented IQ B-Gone serum. Law enforcement would be interested in this - maybe they can make a cure?");
+
+	if(enemy.hasItem(new BrokenBrainmeltLamp())) addDisabledButton(1,"Lamp","Lamp","You already took the lamp.");
+	else addButton(1,"Lamp",dollmakerSalvage,new BrokenBrainmeltLamp(),"Lamp","The deceptively innocuous pink-bulbed Brainmelt Lamp seems to have been damaged in the fight. You might be able to sell it for scrap.");
+
+	if(enemy.hasItem(new BimboleumEmitter())) addDisabledButton(2,"Gun","Gun","You've already taken the gun.");
+	else addButton(2,"Gun",dollmakerSalvage,new BimboleumEmitter(),"Gun","A custom designed Bimboleum Emitter, like the kind Doctor Badger uses. Effects are probably not permanent... probably.");
+
+	addButton(4,"Leave",leaveTheDollmaker);
+}
+
+public function dollmakerSalvage(item:ItemSlotClass):void
+{
+	clearOutput();
+	showNymFoe();
+	if(item is IQBGone) 
+	{
+		output("After digging around inside the chassis, you come up with a syringe full of IQ B-Gone.");
+	}
+	else if(item is BrokenBrainmeltLamp) 
+	{
+		output("After digging around inside her chassis, you come out with a broken Brainmelt Lamp.");
+	}
+	else output("Rooting around her head for the VI chip isn't exactly fun, but it might be profitable. Bingo! You got it.");
+	
+	enemy.inventory.push(item);
+
+	clearMenu();
+	//[Silicone] (up to 4x Silicone bags, gadget) [Gush] (up to 10x Gush medipens, consumable) [Chip] (1x Damaged AI chip, gadget) [Leave]
+	if(enemy.hasItem(new IQBGone())) addDisabledButton(0,"Syringe","Syringe","You've already taken her IQ B-Gone syringe.");
+	else addButton(0,"Syringe",dollmakerSalvage,new Silicone(),"Syringe","A harvested needle filled with Doctor Badger’s patented IQ B-Gone serum. Law enforcement would be interested in this - maybe they can make a cure?");
+
+	if(enemy.hasItem(new BrokenBrainmeltLamp())) addDisabledButton(1,"Lamp","Lamp","You already took the lamp.");
+	else addButton(1,"Lamp",dollmakerSalvage,new BrokenBrainmeltLamp(),"Lamp","The deceptively innocuous pink-bulbed Brainmelt Lamp seems to have been damaged in the fight. You might be able to sell it for scrap.");
+
+	if(enemy.hasItem(new BimboleumEmitter())) addDisabledButton(2,"Gun","Gun","You've already taken the gun.");
+	else addButton(2,"Gun",dollmakerSalvage,new BimboleumEmitter(),"Gun","A custom designed Bimboleum Emitter, like the kind Doctor Badger uses. Effects are probably not permanent... probably.");
+
+	addButton(4,"Leave",leaveTheDollmaker);
+}
+
+
+//[Leave]
+public function leaveTheDollmaker():void
+{
+	clearOutput();
+	showPexiga();
+	output("Your pexiga pet is sitting on the stairs, just where you left her, staring into empty space. You retrieve her and set off, alert to any additional sentries or traps.\n\n");
+	CombatManager.genericVictory();
+}
+
+
+
+
+//Harvested Parts
+//Badger Dildo w/ Musk  (sex toy, used with wank menu, on Bimbo Penny, and bimbo pexiga)
+	//"A jet black, 11”</i> dildo that seems to be a perfect replica of Doctor Badger’s infamous tool. It is filled with some highly scented Badger musk, designed to drive bimbos wild.”</i>
+//	Sell Price: 300
+//Bio-Magnetic Vibes (consumable attack item, applies Lust DoT, 100% hit, robots immune)
+	//"A handful of thumb-sized, egg-shaped vibes. Once activated and thrown at an organic target, they’ll stick as if glued and vibrate so fast they’re guaranteed to bring out the slut in just about anybody! Unfortunately, they burn themselves out after just one use.”</i>
+//	Sell Price: 200
+//IQ B-Gone syringe (key item, turn in to Penny for a reward)
+//	"A needle filled with Badger’s notorious IQ B-Gone formula. This stuff is dangerous! Maybe somebody in law enforcement might have a use for it?”</i>
+
+public function turnInIQBGoneToPenpen():void
+{
+	clearOutput();
+	showPenny();
+	//Normal Penny: 
+	if(9999) output("<i>“What’s that, [pc.name]? ‘IQ B-Gone?’ Is this...?”</i> She trails off, narrowing her eyes. <i>“Where did you get this from?”</i> Probably better not to tell the policegirl that you’ve been dealing with Doctor Badger right now. You make up a story about buying it off some scrapper on Tarkus and that seems to satisfy the vixen. <i>“Well, wherever it came from, this stuff is nasty business. I’m going to send it off to the UGC for analysis. Maybe they can use it to make a cure.”</i> Penny’s gaze softens to a look of concern. <i>“You watch yourself out there, okay? Things must seem like a big adventure, I’m sure, but there’s a lot of dangerous people who don’t even need an excuse to hurt you.”</i> You assure her that you’ll watch your back, setting a comforting hand on her shoulder.");
+	else output("<i>“Oooh, got something new for me, mate?”</i> You explain that the syringe is IQ B-Gone and it’d probably be better if Penny avoided taking it in her state. She giggles and shrugs. <i>“So what do we do with it?”</i> You suggest sending it off to the UGC. Keep it out of the wrong hands. <i>“If you think that’s, like, the right thing to do, I guess!”</i> Penny takes the needle and drops it in a box. <i>“Personally, I think I’d be way sexier with a few less IQ points,”</i> she teases, licking her lips with bubble-headed delight. Yeah, definitely better to keep that away from her.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//24 hours after turning it in: 
+public function IQBeGoneCashOut():void
+{
+	AddLogEvent("A beep on your Codex indicates that the the UGC received your IQ B-Gone sample. A form letter thanks you for doing your civic duty and has a little S.C.A.R.E. anti-drug seal of approval at the bottom. Another beep indicates that 2,500 credits have been deposited to your account. Not as much as you’d have thought, but it is the government afterall.");
+	pc.credits += 2500;
+}
+
+
+//Broken Brainmelt Lamp (junk, sell to junkers for some dosh)
+//	"The remains of a circular pink screen with a crude spiral drawn on it. Seems to have short circuited. It might still be good scrap to somebody.”</i>
+	//Sell price: 1,000 (Tarkus scrapdealers only)
+//Mindwash Visor (ship upgrade, install on your ship to add ‘Mindwash’ to your ship’s wank menu)
+	//"A pair of shallow, nipple-like plates that, once attached to the head, link via a hardlight holo-screen. It seems to tap into your thoughts and memories while broadcasting. Dangerous to use while vulnerable, so you’ll have to install it in your ship if you want to use it.”</i>
+//	Sell price: 2,000
+//Latex Sprayer (consumable transformative item, gives player latex body, like Rubber-Made)
+	//"A pen-sized device with a small vial of reddish goop attached to it. For those who want a shiny exterior but hate spending a small fortune in baby oil.”</i>
+//	Sell price: 500
+//Bimboleum Emitter (gun, like a magnum version of the Slut Ray)
+	//"A squat little gun with a series of loose rings around the barrel and a fat glass bulb filled with bubblegum-thick fluid on its back. Converts Bimboleum into energy rings which then convert back to bimboleum inside the target’s body. Even just owning this probably puts you on a Most Wanted list somewhere.”</i>
+//Ranged Weapon - Energy/Lust attack, 8 Tease damage
+//Sell price: 900
+
+
+//Bad Ends
+//GUSH’d (Nym-Foe battle)
+//via Lust damage only
+public function gushBadEndWithNymFoe():void
+{
+	clearOutput();
+	showNymFoe();
+	output("The android assesses your state with a friendly beep, her eyes skipping across your defenseless body. <i>“Oh my, how strange. GUSH administration partially ineffectual. Scanning...”</i> Her tail whips out and weaves dangerously in the air in front of you before lightly touching your [pc.tongue]. Her mouth curls into an O of surprise, her hand held up in front of her mouth.");
+	output("\n\n<i>“What’s this? My initial diagnosis did not pick up the immune-boosting supplements in your bloodstream, INSERT PATIENT NAME HERE. I certainly do apologize. Please, accept this 1cc of accelerant spray at no additional cost.”</i> You hold up your arms to try to block whatever’s coming next when a thought hits you. Additional cost?");
+	output("\n\nYou have no time to think about it further, however, because in the next moment, the robotic nurse grabs your arms in her gentle-yet-irresistible grip and pulls you forward. You flinch away, but she simply leans forward and presses her synthetic skin against your [pc.lipsChaste], kissing you deeply. You stiffen under the unexpectedly tender assault, a little taken aback by the warmth of the artificial girl’s body. Just as you open your mouth to protest this treatment, the droid releases a spritz of some chemical into you. Your caregiver releases her hold as you hack and pull back, trying to spit out the slightly minty tingle radiating across your jaw.");
+	output("\n\nNym-Foe seems perfectly content to wait and watch, so this might be your chance to recover and strike back. You glance around for a weapon, but as you reach out, your fingers start to quiver. A sensation of heaviness on your [pc.chest] had been building during your fight with the robotic caregiver. Now, however, it feels like actual, fluid weight is surging within you. Your [pc.skinFurScales] burn");
+	if(!pc.hasScales()) output("s");
+	output(" with too-tender sensitivity that leaves flashes of blinding white detonating behind your eyes. You clutch your chest with one hand and grit your teeth, trying to push away the sensations while seizing a half-disassembled Hammer pistol from next to you. In this state, there’s no way it’s going to fire, but at least you can smash the hunk of metal into the nurse’s face until she fixes you!");
+	output("\n\nRaising your improvised weapon and struggling upright, you advance toward the artificial woman with a threat on your lips. Before you can actually speak it, however, a surprised gurgle lodges itself in your throat. The heat and pressure in your upper body blossoms like an aerial detonation, leaving you stunned and sweating.");
+	if(!pc.isChestExposed()) output(" Your [pc.upperGarment] tightens and strains as your chest inflates wildly! Despite its best attempts, the [pc.upperGarment] simply can’t hold back the unforgiving tide of your flesh and the whole thing stretches, groans, and finally tears open.");
+	output(" Your [pc.chest] jiggles and surges outward, growing beyond all reason and ballooning before your eyes. Titflesh swells at an impossible pace, the broken gun tumbling from your numb fingers with a distressing clatter.");
+
+	output("\n\nSlightly concerned, the droid tilts her head to one side and folds her arms behind her back. <i>“Oh dear,”</i> she frets, <i>“I wonder if that was supposed to be .1cc of accelerant?”</i>");
+
+	output("\n\nBlowing through cup-sizes at an alarming rate, you desperately hug your massive mammaries between both arms, as if the pressure of your grip could stop them from growing. No such luck it seems, as the distended milk-tanks bulge around your grip, heavier and heavier until you are forced back down to your knees with a groaning moan. Worse yet, you can actually feel the liquid building inside you with a heat that leaves your loins throbbing. Even as big as you are already, your swelling udders can’t possibly keep up with the organic tide within you.");
+
+	output("\n\nLike reservoirs trying to hold an ocean, your tits fill and fill but can’t contain it all in. With an orgasmic sense of relief, your equally bloated nipples bubble and trickle before outright spurts of milk begin spraying out of you. With bovine desperation, you paw at your mountainous melons, trying to stop the sloshing flow one moment and squeezing ever thicker gouts of [pc.milk] the next. Your body trembles and throbs, climactic bliss saturated in every bloated cell of your ballistic blimps.");
+
+	output("\n\nThe nurse hurries to your side to check on your condition. By now, your breasts are nearly as large as your upper body and still growing. You struggle to pull away, but you’re completely immobilized by the colossal weight of your leaking udders. <i>“You appear to be in distress,”</i> she observes with a uncomfortably out of place smile. <i>“Do you require assistance?”</i>");
+
+	if(!pc.isBimbo()) output("\n\n<i>“I like big, jubbly boobies, but this is kinda - unf - hard to move?”</i> You offer a weak smile and shrug up at the android. <i>“Maybe you could find, like, an anti-grav bra?”</i>");
+	else if(pc.isNice()) output("\n\nAt last! Her nurse’s programming must be winning out against the corrupted code Doctor Badger put into her. <i>“Yes! Please, go get help,”</i> you beg through your panting moans.");
+	else if(pc.isMischievous()) output("\n\nYou suppress a moan long enough to look up at the android with an expression of complete confusion. <i>“What do you mean? I’m just retaining a little water.”</i> You grant yourself a brief snicker before the orgasmic milking begins anew. <i>“I don’t suppose you’ve got a milker function?”</i>");
+	else output("\n\n<i>“Fucking yes I’m in distress! You sprayed some damned chemical garbage all over me and now I look like I’ve got moons strapped to my chest! Fix it!”</i>");
+
+	output("\n\nShe blinks, watching you intently. <i>“Request for assistance confirmed. Deploying immobilization countermeasures.”</i> Her tail pushes its way up to your [pc.ass] and the tip pokes in with a slight pinch. <i>“Do not be alarmed. Minor modifications are being made to acclimate you to your upgrades.”</i> She gently strokes your [pc.hair], a peculiar look on her face.");
+	output("\n\nThe bimbo-proportioned nurse snuggles up against your gigantic and still growing endowments with a peculiar look on her face. <i>“Oh, I almost forgot!”</i> Nym-Foe produces a lollipop from her hefty cleavage, and holds the candy out to you with a smile. <i>“Because you’ve been a good " + pc.mf("boy","girl") + ". Now. How would you like to discuss your payment?”</i>");
+
+	processTime(15);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",gushBadEndWithNymFoe2);
+}
+
+public function gushBadEndWithNymFoe2():void
+{
+	clearOutput();
+	showNymFoe();
+	output("<b>Three months later...</b>");
+	output("\n\nYou have to admit, you never saw this coming. The " + pc.mf("heir","heiress") + " of Steele Tech reduced to... this. You sigh, glancing up at the stars. Your Codex beeps, but you ignore it. Just another message from [rival.Name] bragging about taking over the company, no doubt. You hardly have time to check up on your old friends, much less dealing with your cousin’s gloating.");
+	output("\n\n<i>“New girl! Get those fun bags over here! Me and my friends want a drink!”</i> The bar patrons snap their fingers impatiently, hooting and calling you any number of filthy things as you make your ponderous way toward them. Delilah flashes you a sympathetic look, but says nothing, just in case the owner is monitoring the two of you. Careful not to knock anything over, you manage to reach the table and present your endowments to the customers with barely concealed disgust.");
+	output("\n\nThe gang of raskvel salvagers laugh with amazement, tittering to themselves over your condition. <i>“What’d I tell you guys? Built like an oil tanker, am I right?”</i> The leader chortles, giving one of your exposed breasts an open-palmed slap. The impact is hard enough to send rippling waves through your milk-filled, titantic titflesh. The tidal action builds until your whole body sways from the strike, nearly knocking you to the ground.");
+	output("\n\n<i>“Hey new girl, tell my friends how you got outfitted with these military-grade honkers.”</i> You huff, tempted to bash the little fucker’s head against the table, but you hold back. The last thing you need is to be fined another week’s pay for hurting more rude customers. Instead, you simply hold your tongue and wait impatiently. <i>“No? Okay, I’ll tell it,”</i> the asshole declares with a lecherous glare. <i>“You guys feel free to help yourself while I walk you down the sad story of Ms. Mega Milk here.”</i>");
+	output("\n\nThe other raskvel need no further permission and they eagerly swarm around you. Small, red scaled hands brazenly grope and grab at your bare chest, grease-covered fingers leaving your [pc.skinFurScales] mammaries stained as they jockey position for your head-sized nipples. You gasp as they manhandle your sensitive teats, squeezing and biting at your tender peaks until fat blobs of rich lactation bubbles up in warm release.");
+	output("\n\n<i>“See, Ms. Dairy Section figured it’d be fun to go messing around in places she wasn’t invited. Way I hear it, she ran into some crazy, malfunctioning nursedroid. The thing inflated her to.... This,”</i> he snickers, <i>“and the damned thing CHARGED her for it!”</i> The raskvel howl with laughter, while those who had been drinking at the time find milk shooting from their noses. A deep flush of embarrassment heats your body, but you refuse to engage. It’ll be over soon. It always is.");
+	output("\n\n<i>“The bot sends the bill to JoyCo, right? And they realize the thing’s malfunctioning so they come down to retrieve it. But, get this, they hold the mountain-titted slut to it!”</i> He delivers another stinging slap across your rack and you grit your teeth. <i>“Not even kidding! The fucking robot gives her ballistic-sized knockers and some kinda strengthening treatment just so she can move and then the company wants their money back!”</i>");
+	output("\n\nThe raskvel fondling your leaking breasts have apparently grown bored with simply pawing at you, so they set about more crass entertainments. A pair of them unbuckle their filthy overalls and expose their genital slits. Purple, pointed phalluses creep out and you close your eyes in disgust. This part won’t be over nearly as quickly. The bar patrons slide chairs up to boost their small frames level with your mammoth mounds. Hot pressure gathers at your teats and, embarrassingly easily, the tiny mechanics drive their cocks into your chest. The over-inflated milk ducts part before the assault, welcoming the stiff pricks like greedy pussies.");
+	output("\n\nYou can’t hold back the moan and the raskvel erupt into another chorus of mocking whoops. <i>“Listen to her!”</i> one snickers. <i>“What a slut!”</i> another adds. <i>“Bitch loves getting her tits fucked,”</i> a third declares. They rock back and forth, jamming their shafts into your well-worn peaks while their friends cheer them on.");
+	output("\n\nYou open your eyes to see the leader of the group enjoying the sight as much as anybody. He catches your eye and presses on. <i>“So she’s gotta pay back millions of creds worth of medical supplies, but she’s too big to even get into her ship. She tries a bunch of stuff, but just can’t make money fast enough to keep up with the interest. She even sells her ship but it’s not enough. And in the end, she’s gotta get a shit job at a dive like this, letting scumbags like us milk her and fuck her all day long. And get this: if she moos, our drinks are on her.”</i>");
+	output("\n\nHe leans forward as his friends accelerate, your whole body quivering under the wobbling impacts of their slight frames. <i>“What do ya say, Melon Momma? You gonna moo for us?”</i> Milk gushes out of you with each thrust, your face coloring as much from the indignity as from the unbidden and unwelcome orgasm building in your [pc.groin].");
+	output("\n\nYou shudder, quivering in place as the wet squelching of the raskvel holds for a moment. Then, with a sighing groan, both of the men release, the hot spunk of their climaxes pouring into your sorely abused breasts in thick, sticky spree. Gouts of milk spray everywhere, soaking the little slimeballs in your creamy discharge. Your mouth opens slightly, but you swallow the moaning moo of bliss before anyone can hear it. You stare defiantly as the leader as his friends pull out, their spoo dripping down from your engorged nipples.");
+	output("\n\nThe mouthy raskvel shrugs. <i>“Look at all that wasted milk,”</i> he tuts. <i>“Well guys, better fill her back up!”</i> Two more of the group whip out their pointy penises and mount the chairs for very sloppy seconds. <i>“Once isn’t enough for a classy gal like this. You really gotta romance her!”</i> The crew cheer and set about slapping your throbbing breasts like a drum circle. <i>“Come on, guys! Let’s make her moo!”</i>");
+	output("\n\nJust twelve more months till you’re all paid up, you assure yourself. Just forty-eight weeks. Gritting your teeth, you ball a fist until your knuckles crack. Well... what’s one more week, you reason. With tremendous satisfaction, you haul off and hit the raskvel hard enough to send him flying across the bar.\n\n");
+
+	processTime(129600);
+	pc.orgasm();
+	badEnd("GAME OVER.");
+}
+
+//Dolled (Doll Maker battle)
+public function dolledBadEnd():void
+{
+	clearOutput();
+	showDollmaker();
+	var bimbo:Boolean = pc.isBimbo();
+	output("<i>“Ah, you’ll be such a pretty doll by the time we’re done, Fuck Stain.”</i> The perverse machine briskly checks its clamps, making sure each one has locked securely. ");
+	if(!bimbo) output("You twist and pull, but the device has bound you as securely as its hydraulic limbs will allow. ");
+	output("<i>“I feel like you will be my masterpiece, Jizz Junkie. Something beautiful to leave to the world as my legacy.”</i>");
+
+	if(!bimbo) output("\n\nYou can no longer fight against the whirling arms arrayed against you, but at least you can throw its abuse back at it. <i>“What does a dickless droid like you even want dolls for, anyway? You’re a glorified garbage-picker!”</i>");
+	else output("\n\nYou giggle and wiggle in the droid’s steel tendrils. <i>“This is kinda exciting! I don’t get to go in big, fancy machines like you very often! Is there, like, a button I hit or something? Can you set it to max power?”</i>");
+
+	if(!bimbo) output("\n\nThe artificial voice turns insufferably cheery. <i>“And I picked you,”</i> it replies, booping you on the nose with one of its weaponized medical tools.");
+	else output("\n\n<i>“You might be my very favorite,”</i> it replies, booping you on the nose with one of its weaponized medical tool.");
+	output(" <i>“Ah, but we have fun. To business!”</i>");
+
+	if(!bimbo) output("\n\n<i>“To business!”</i> you echo cheerfully, looking around for shots.");
+
+	output("\n\nThe robotic sentry runs through a diagnostic of its devices, one by one, flourishing each tool before your eyes for a moment before switching to the next. <i>“I think we’ll save the IQ-B-Gone for last,”</i> he decides with cloy delight, wiggling the syringe limb to show off the ominous liquid sloshing inside it. The needle pulls back just far enough for it to barely stay in the periphery of your vision. <i>“In fact, I don’t think we need to bother with that little guy at all. Unless, of course, you really really want it. If you beg for it, I guess I won’t have any choice, my dear Pole Polisher.”</i>");
+
+	if(!bimbo) output("\n\nYou internally wince at the implication, but don’t let the nervousness touch your defiant spirit. <i>“I’d say you could jam that needle up your own ass, but you don’t even have that. At least when Badger has a victim, she can enjoy the fruits of her labors. What are you going to do? Jack off a diode?”</i>");
+	else output("\n\nYou screw your expression into confused innocence. <i>“I still have, like, IQ points? Gosh! I never knew! I’d better tell Doc Badger!”</i>");
+
+	if(!bimbo) output("\n\n<i>“Ho ho! So mouthy. I’d hate to rob you of that fire, but I’m really going to enjoy the breaking point.");
+	else output("\n\n<i>“Such a diligent little bimbo.”</i> The a metal claw pats you affectionately on the head.");
+	output(" <i>“But, since you mention Doctor Badger, let’s start with her personal favorite.”</i> A ray-gun shaped appendage levels itself at your [pc.chest], a glowing green radiance crackling from its power supply.");
+
+	output("\n\n<i>“Now, a lot of people will tell you that it’s easier to work from the inside out, Cock Hole, but I’ve always been of the opinion that it works better the other way around. Gives you a chance to adjust to your new situation, see?”</i> The Bimboleum Emitter clicks, spitting a hazy, pink mist from its antennae-shaped barrel. The mist coalesces into a vague ring shape which lazily drifts toward you.");
+	output("\n\nInstinctively, you wince away from the gaseous shape, and are surprised to see the cloud maintain its cohesion as it weightlessly collides with you. The mist seeps into your [pc.skinFurScales] as if you were no more than a hologram and passes through you painlessly. Blinking, you twist and try to see what’s changed, but nothing seems to have happened.");
+	if(!bimbo) output(" <i>“I think you’re running on fumes,”</i> you taunt you captor.");
+	else output(" <i>“Aw, don’t feel bad. I hear it happens to a lot of guys.”</i>");
+
+	output("\n\n<i>“Oh, give it a minute, Hungry Whore.”</i> Some of the robots free arms click together in gleeful anticipation. Your reply is cut off even before it begins as a sweltering heat floods your flesh, leaving you feeling like a microwaved marshmallow.  The transformative radiation prickles at your skin as your body drinks it in like a sponge, bloating and swelling with each passing moment. You ");
+	if(!bimbo) output("struggle vainly");
+	else output("coo in delight");
+	output(" as your [pc.chest] inflates, breasts ballooning almost cartoonishly to levels that would leave porn stars shaking their heads. You groan as the rest of your body grows in proportion with your hefty spheres, leaving an itchy sensation crawling through you. Your [pc.ass] fattens as your [pc.hips] widen. Even your lips thicken into a whorish pucker that can’t help but form a heavy, O-shaped ring.");
+
+	output("\n\nAnd yet, despite all this growth, you can feel parts of you shrinking as well. Your waist narrows like the spout of an hourglass, leaving you completely off-balance. Were it not for the limbs holding you aloft, you’d be hard-pressed to stay standing like this.");
+	if(pc.legCount > 1) output(" Your [pc.feet] seem to be shrinking, too. You try to kick against the hobbling alterations, but nothing you do can stop the adjustments.");
+	if(pc.tailCount > 1) 
+	{
+		output(" Even your [pc.tails] can’t escape the indignity of the transformation. ");
+		if(pc.tailCount == 1) output("It shrinks, losing mass rapidly until it’s barely 4 inches long");
+		else output("They shrinks, losing mass rapidly until it's barely 4 inches long");
+		output(", wiggling feebly from the expanded nest of your massive posterior.");
+	}
+	output("\n\nBy the time the changes end, you feel like you’ve been stuffed into a slut-suit, and not one from a classy holo vid either. Your body jiggles with every breath and you feel like even a strong breeze would knock you over. The changes are so sweeping, it barely feels like your body anymore. More like your mind has been moved to some synthetic lovedoll, manufactured by somebody with only a vague understanding of biology.");
+
+	processTime(10);
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Next",dolledBadEnd2);
+}
+
+public function dolledBadEnd2():void
+{
+	clearOutput();
+	showDollmaker();
+	var bimbo:Boolean = pc.isBimbo();
+	output("It takes a few tries to adjust to your new, dick-sucking lips, but you manage to stop slurring and mumbling before long. ");
+	if(!bimbo) output("<i>“This is your big masterpiece,”</i> you scoff.”</i> A horny teenager could do better. And this is nothing a quick gene treatment won’t fix anyway. Congratulations, you rusty scrap pile, you’ve done nothing but waste my time.”</i>");
+	else output("<i>“Woah! Like, way awesome! I feel like I could make people cream themselves with a look. But, like, could we get on with the fucking? I wanna break in the new me!”</i>");
+
+	output("\n\nThe Doll Maker seems to be mostly ignoring you however, as it’s too caught up in a celebration of its own work. <i>“Ooooh, I do so love a job well done!”</i> It spins around, taking a full circuit of your changes. <i>“Damned fine work, if I do say so myself. Finally starting to look the part, eh Breeding Bitch?”</i>");
+
+	output("\n\n A disturbing, electric titter screeches out if its vox. <i>“Ah, but what’s next? So many options.”</i> One of the clamps pinches one of your [pc.nipple], but you can barely feel it through all the fleshy padding. <i>“Oh, this won’t do. How about we ratchet up your sensitivity? No sense in having bolted on tits, if they’re no fun to play with.”</i>");
+
+	output("\n\nA stainless steel limb that looks like a wide-barrelled pistol moves around your body slowly, firing with a soft ‘thoomp’ as it deploys its payload. Each shot leaves a small, bead-shaped pill stuck to your body. It speeds up, firing faster and faster, attaching beads to your lips, your shoulders, across your breasts, on your hips, and several on your [pc.groin]. The tiny impacts leave your skin stinging, but otherwise unaffected.");
+
+	output("\n\nNext, it deploys a pair of shallow plates on either side of your head. They hum and click on, spreading a pale pink holo visor over your field of vision. The screen flickers to life and graphic, unforgivable pornography flows across your eyes at an incredible pace. Your brain can’t parse what’s happening, but your body certainly can. The bean-shaped beads attached to you surge to life, vibrating at variable intensities with each passing scene, putting you directly in the middle of an endless parade of sexual over-indulgence.");
+
+	if(!bimbo) output("\n\nYou fight against the tide of pornographic brainwashing, but your treacherous body saps away your will to resist. Your bimbo-bloated proportions seem perfectly made for just such hedonistic abandon. Twitching bliss seethes under your skin and even attempts to hold your eyes shut are useless against the buzzing visor, which seems to project its re-educational programming directly onto the canvas of your mind. Even more maddeningly: every time you’re close to release, the vibes cut off, leaving you panting in a suffocating ocean of desire.");
+	else output("\n\n<i>“Ooooh!”</i> sigh as the tide of eye-watering erotica washes over you. <i>“Yay, creampies! Oh, nipple-fucking! Yum, triple penetration!”</i> Despite its break-neck pace, you manage to follow along with the help of the vibes. <i>“You know, if this Doll-thingy doesn’t work out for you, you could totally be a GREAT porn theater!”</i>");
+
+	output("\n\nAfter an hour of the teasing, edging display, the visor finally goes blank and the vibes fall silent. <i>“Let’s see if the piggy is quite ready to become bacon,”</i> the Doll Maker muses. A tiny, metallic hand lowers down and plucks each pinkie-sized vibrator from your body. At every touch, your body shudders, brought to near climax by the slightest caressing contact. Your half-hearted attempts at speech are cut off by the gasping, breathless ecstasy of being used so carelessly. ");
+	if(!bimbo) output("You try to whisper denial to yourself,");
+	else output("You try to ask the robot to turn it back on,");
+	output(" but all you can think about is being manhandled by anyone and everyone who might happen to pass within arm’s reach.");
+
+	output("\n\n<i>“My my, what progress. And so quickly, too! Most people hold out for days or weeks. Interesting that you succumbed almost immediately. I guess we both know what that means, eh Goo Gulper?”</i> ");
+	if(!bimbo) output("There’s no fight left in you. All you can do is take the abuse and hope that you can cum soon. No! Hope that it’s over soon. Ugh, the room seems to be spinning around you too quickly to police your thoughts anymore.");
+	else output("Heck yeah, you know what that means! It means you’re a talented slut who gets things done! You’re danged good at being the sexiest bitch around and just as soon as you finish up here, you’re gonna go fuck all of Tarkus! Twice!");
+
+	output("\n\nThe autonomous rig circles around you appreciatively. <i>“Well, you look like a sex doll, you think like a sex doll, and your body knows it’s a sex doll. I guess we’ll just move to the final step then and take care of the last few finishing touches.”</i> A host of paint-filled squirt guns surround you, red latex leaking from their nozzles. <i>“I can honestly say I wish we had more time together, Fuck Fest. You were definitely my best.”</i>");
+
+	output("\n\nOne by one, the sprayguns fire, warm blobs of scarlet splattering across your body like gooey, melted wax, clumping together and dripping in thin trickles all over your exposed [pc.skinFurScales]. The pressure of your tantalizingly close orgasm overflows and your body jerks in its padded restraints, climaxing with every glistening squirt. You pant and gasp at first, but before long, you’re screaming your orgasms for all your lungs are worth as, inch by inch, your lower body is coated in the shiny, crimson shell.");
+	if(!pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" A pair of 8-inch high heels are fitted onto your feet as the goo cools across you, sealing you in fuck-me pumps that hobble you even further.");
+
+	output("\n\nAs your body is covered in latex, a pair of heat lamps descend to help out. Somewhere, lost in the daze of your endlessly repeating orgasm, you notice these lamps have been marked <i>“Brain Melt,”</i> but you can’t think about that very closely. All that matters is the encasing fluid, the glorious euphoria, and the weird heat building in your chest. A limb pops a cork in your mouth so the latex doesn’t flow into your drooling gob and the next moment, your vision is cut off by the dripping, hardening slime.");
+
+	processTime(70);
+	pc.lust(10000);
+	clearMenu();
+	addButton(0,"Next",dolledBadEnd3)
+}
+
+public function dolledBadEnd3():void
+{
+	clearOutput();
+	showDollmaker();
+	var bimbo:Boolean = pc.isBimbo();
+	output("The red latex sex doll causes quite a little stir among the scavenging denizens of Tarkus when it’s found. Unlike most of the sexbots on the scrap planet, this one seems to be in nearly perfect working order. Its gyro stabilizers seem off, since it can barely stand and walk, but its owners are too afraid of damaging the beautiful construction to pop it open for repairs. The doll’s programming is top-notch; it moans when you touch it and it creams itself with when handled roughly.");
+	output("\n\nNo one looks too deeply into its similarity to that off-worlder who came through a while back. It doesn’t pay to ask questions and the red latex doll commands quite a high price once word gets out. The scavenging raskvel get vigorous satisfaction from it before selling it off to the gabilani for a tidy sum. They, in turn, make up their money tenfold by renting the doll out to any and every traveller who happens to be passing through their orbital stations. That is, until it’s stolen out from under them by a roguish pair of lapinara, who in turn, lose it to a gang of aggressive sydians. On and on, the sexdoll travels the legth and breadth of Tarkus, bloating with the endless loads of the ever horny natives.");
+	output("\n\nIn the end, the red latex doll makes its way into the galaxy-spanning brothel empire of Bethany Carver herself. It’s moved off-world from one whore house to the next, gathering renown and rumors in equal proportion. Some claim it to be the finest synthetic of all time, but Ms. Carver keeps her favorite <i>“employee”</i> away from those who want to do a little aggressive reverse-engineering. The doll is one of a kind, she simply explains with a little smile. And while no one is allowed to look inside, everyone with enough credits is welcome to try it out for themselves.");
+	output("\n\nAnd so they do. Again and again.");
+	//[Bad End]
+	processTime(30000);
+	badEnd("GAME OVER.");
+}
+
+//Badger’s Assistant (normal badger only)
+//(player is bimbo’d if not already, made hourglass figure, bimbo Jill, claim inheritance, undermine the UGS one slut at a time)
+public function drBadgersAssistantBadEnd():void
+{
+	clearOutput();
+	showDrBadger();
+	output("When you come to, you find yourself firmly locked in a reinforced restraining chair. You jerk and try to pull free, but the structure seems to have been built to hold down creatures twice your size. An ache in your jaw and pressure on your throat and tongue tells you that some kind of gag has been jammed into your mouth, muffling any cries for help you might be tempted to make. Even your hands have been locked down, heavy rubber spheres squeezing your fists like the worst pair of mittens you’ve ever seen.");
+	output("\n\n<i>“Ah, we finally awake Nurse Steele?”</i> Badger chirps, craning her fuzzy face into view from just behind you. <i>“I don’t want you to think I’m a slave driver or anything, but I’m going to have to dock your pay if you keep passing out,”</i> she chides, plump lips pursing in a concerned frown.");
+	output("\n\nSpying the confusion in your eyes, Doctor Badger sighs with exasperation. <i>“This again. Alright, let’s blow through it real quick. Yes, you’re still in my lab. No, this isn’t the first time you’ve woken up. Yes, we’ve been tweaking you. No, you’re not done yet. Good enough? Alright, let’s try to finish you up.”</i>  There is a pressure on your [pc.asshole] and a sensation of hot, sticky fluid being forced into your gut in spurting loads. You shudder and squirm but can do little and less as your abdomen swells under the liquid burden.");
+	output("\n\nBehind you, the mad doctor lets out a satisfied sigh of relief. <i>“Ah, I fuckin’ love administering suppositories. Better keep it in for a bit, so you don’t miss out on even an ounce of that good medicine,”</i> she teases, tweaking your [pc.ears] playfully.");
+	output("\n\n<i>“How do you feel, Nurse Steele?”</i> You shout something at her, but the gag reduces you to gurgles and drooling babble. <i>“Oh, very interesting. Yes, that is normal but I assure you, you’ll be feeling so much better in practically no time at all.”</i> She casually gropes your [pc.ass] with a clawed hand, humming to herself as she kneads the thickening dough of your swollen rump.");
+	output("\n\nA wave of dizziness overtakes you, but you’re pulled back from unconsciousness as the doctor delivers a painful, open-palmed slap to your posterior. <i>“Hey! What’d I say about passing out! This is the most important moment in your otherwise unremarkable life and you’re going to sleep through it?”</i> Your head lurches and your vision blurs, but Badger keeps up her spanking assault. <i>“You’re! Going! To! Love! This!”</i>");
+	output("\n\nActually, you kind of are. Every spank brings the same sharp, arresting pain as the one before it, but a strange, creeping pleasure seems to build right alongside it. At first, the thought of getting off on being spanked seems perverse, but with each slap, your chest tightens and your ");
+	if(pc.hasCocks()) output("[pc.cocks] tense");
+	else if(pc.hasCock()) output("[pc.cock] tenses");
+	output("[pc.groin] tenses. You have to admit, you were being pretty naughty, passing out when the doctor is trying to work. What kind of a nurse just falls asleep in the middle of an operation?");
+
+	output("\n\nThe throbbing heat of her hand stings so good, you audibly moan in disappointment when she finally stops. <i>“Damn, Nurse Steele, you’re a real glutton for punishment, huh? I’m going to have to come up with some kind of automatic spanking machine,”</i> she muses. <i>“Oh wait, of course I already have one of those.”</i>");
+
+	output("\n\nA click and whir is all the warning you get before an unseen device surges to life, whipping flexible rubber sheets across your overly sensitive [pc.ass]. The noise that bubbles up from the back of your throat sounds more like a hog in heat than the kind of cry a corporate " + pc.mf("heir","heiress") + " would produce.");
+	output("\n\n<i>“So tight!”</i> Badger marvels. <i>“I think you’re about ready for another dose.”</i> The firm, warm pressure in your [pc.asshole] relents just long enough for a cold pill the size of a thumb to slip in. <i>“We’re going to have so much fun together,”</i> the mad scientist promises as she jams her too-thick bitch breaker up your ass again, pumping thrusts driving the pill ever deeper into your gut.");
+
+	processTime(100);
+	pc.lust(1000);
+	clearMenu();
+	addButton(0,"Next",drBadgersAssistantBadEnd2);
+}
+
+public function drBadgersAssistantBadEnd2():void
+{
+	clearOutput();
+	showDrBadger(true);
+	output("Weeks later, Doctor Badger calls you into her office. The two of you have been inseparable since the job offer, working long hours to perfect her science. Just about the only break the two of you take is just long enough for the doctor to pound a fresh, fattening load or three of badger spunk into whichever hole strikes her fancy.");
+	output("\n\nIt’s been hard work, but the two of you finally tracked down you cousin, [rival.name]. The dumb slut always did put too much faith in bodyguards. Your cousin struggles against [rival.hisHer] bindings, alternately threatening and cajoling Doctor Badger, promising anything and everything to be set free. When you step into sight, [rival.hisHer] eyes go wide.");
+	output("\n\n<i>“[pc.name]? Is that you? What... what happened?”</i> You reply with a little laugh and turn in place to show off your vastly improved frame. You can tell the doctor went through great lengths to improve her technology, and of course she needed a test subject. [pc.HairColor] hair hangs down in bouncy curls, framing the feminine features of your [pc.skinColor] face. Your lips are thick, pronounced, and glistening like the surface of a gumball. Tits so huge and perfectly round that they could never be mistaken for natural hang from your chest with a heavy jiggle. Counter balancing your absurd breasts is your melon-sized ass cheeks that leaves you looking like an off-kilter hourglass. Your whole, bimbo-bloated proportions have been squeezed into a pink nurse’s uniform so skimpy and tight that every breath sends a dangerous strain through your double-breasted buttons.");
+	output("\n\n<i>“Why, thank you for noticing, [rival.name]! We’re both very proud at how I’ve come out, aren’t we, Doctor?”</i>");
+
+	output("\n\n<i>“You bet your sweet fanny we are,”</i> Badger agrees, licking her lips as she hoists a rifle-sized device.");
+	output("\n\n<i>“And all this, just to perfect the Bimbo Blaster,”</i> you add cheerfully, draping your hands around your cousin’s neck. <i>“You get to be the first field trial, so we’re all very excited.”</i>");
+	output("\n\n<i>“Wait wait!”</i> Your cousin shouts, panic rising in [his/her] voice. <i>“I could be a partner! Join up and help you find more test subjects! Use the inheritance to-”</i>");
+	output("\n\nYou giggle into your palm. <i>“The inheritance? Why do you think we got you as a test subject? After we zap ya, we can round up the rest of dad’s stuff easily enough. Then I’ll claim the company and liquidate it. Use the money to help the Doctor, you see? She’s got so many amazing ideas! With a little cash we could turn the whole galaxy into bimbos, one by one.”</i>");
+	output("\n\nYou pat your cousin’s cheek, tenderly. <i>“I got to be first, of course, but you can be second, just like you were always meant to be.”</i> Doctor Badger pulls her goggles over her eyes and levels the vastly upgraded bimbo gun at your cousin’s face. <i>“See you on the other side,”</i> you add in a sing song tone.");
+	output("\n\nBadger pulls the trigger the first of many, many times.\n\n");
+	processTime(100000);
+	badEnd("GAME OVER.");
+}
+
 /*
-output("\n\nDoll Maker, Vulgar Autonomous Bimbo Forge");
-output("\n\nEncounter Text");
-output("\n\n//All");
-output("\n\nAs you’re surveying Doctor Badger’s underground lab, an elaborate spider-like rig unfolds itself from the ceiling, dropping dozens of spindly limbs around you like a loose cage. Startled, you reach for your weapons as a green triangle of laser light flashes back and forth across your body.");
-
-
-output("\n\n//normal");
-output("\n\nA harsh, unfriendly buzz comes from the machine as its electric voice hisses at you. <i>“Fuck-slut levels unsatisfactory. Initiating reconstruction protocols. Do not resist, Whore: you will be Dolled.”</i> Frankly, you’re not comfortable with how this machine used the word <i>“doll,”</i> and you’d just as soon not find out what exactly that involves. The limbs around you lift a strange array of tools and pincers as it attempts to grab you!");
-output("\n\n{Go to Battle}");
-
-
-output("\n\n//bimbo");
-output("\n\nA satisfied chirp comes from the machine and a friendly electric voice comes from one of the steel limbs. <i>“Fuck-slut levels at satisfactory thresholds.”</i> The scanning light flashes over your pexiga next and the mechanical voice manages to seem downright impressed. <i>“Complete mental degradation on every level. Fuck-slut level at maximum capacity.”</i>");
-
-
-output("\n\nYou’re a little confused, so you ask the machine what you’re supposed to do. The spidery limbs begin retracting up to the ceiling as it responds. <i>“I dunno. I assume the doctor’s waiting for you further in the laboratory, Cum Dumpster. Please proceed on your way.”</i> The voice pauses, as if thinking. <i>“Unless,”</i> it begins, almost hopefully, <i>“you wish to be Dolled?”</i>");
-output("\n\n[Badger] [Doll]");
-
-
-output("\n\n[Badger]");
-output("\n\nYou inform the machine that you really do need to get to Doc Badger. <i>“No, that is alright, Meat Puppet. The doctor takes precedence. Go on. Just leave me here, by myself. I’ll be fine.”</i> Despite it all, the machine seems almost hurt. The limbs withdraw into the ceiling and you could almost swear it makes a puppydog whine.");
-output("\n\n{Skip Battle}");
-
-
-output("\n\n[Doll]");
-output("\n\nIt could be fun, you guess. Sure! Why not? <i>“What?”</i> the machine asks, in disbelief. <i>“Are you teasing me, Fuck Toy? You would actually like to be Dolled?”</i> The voice seems overjoyed, or at least as happy as a faceless machine can be, anyway. <i>“Affirmative. Initiating reconstruction protocols.”</i> The limbs around you turn in slow orbit to show off their strange array of tools and pincers. <i>“I appreciate this, Cum Rag. I hope you enjoy it as well.”</i>");
-output("\n\n{Go to <i>“Dolled”</i> Combat Result}");
-output("\n\nCommand Prompts");
-output("\n\nYou’re fighting the Doll Maker.");
-
-
-output("\n\nA spider-like cage of steel limbs blocks your path! This device seems to be a guard Doctor Badger set to keep intruders out of her secret lab. Dozens of armored arms spin in slow orbit around you, each one capped with strange implements, from syringes to padded cuffs, to swirling screens. Oddly, Badger gave the faceless thing quite a dirty mouth.");
-
-
-output("\n\nShields: 0");
-output("\n\nHP: Super High (boss fight)");
-output("\n\nLust: 0  {immune to lust damage}");
-output("\n\nEnergy: 100");
-output("\n\nLevel: 8");
-output("\n\nRace: Automaton");
-output("\n\nSex: N/A");
-
-
-output("\n\n{range weapons have a low hit chance due to the small size of the limbs}");
-output("\n\nCombat Attacks");
-output("\n\nRestraining Cuffs (legs/tail > arms > collar)");
-output("\n\n//First Time");
-output("\n\nArms descend from the rig overhead, each equipped with a large, circular clamp. <i>“You know, Twat Throat, this whole thing would be a lot easier if you weren’t squirming all over the place,”</i> the Doll Maker complains. The cuffs lunge for you!");
-
-
-output("\n\n//Repeat");
-output("\n\n<i>“I promise I’ll be gentle,”</i> the machine urges, interrupting itself with a harsh <i>“ERROR! ‘Gentle’ sub-routine not found!”</i> More padded cuffs descend, trying to make an obedient little victim out of you!");
-
-
-output("\n\n//Miss");
-output("\n\nYou manage to evade the binding restraints, much to the robot’s disappointment. <i>“Oh come on. Won’t even let me cop a feel?”</i>");
-
-
-output("\n\n//First Hit - Lower Body");
-output("\n\n{goo: The padded cuffs pull aside to make way for a golden ring that snaps around your gooey lower body. Intense cold radiates from the binding, freezing your normally amorphous form into a brittle, stationary lump. You’ve been locked in place like a statue! There’ll be no running from this, until you manage to get yourself free!}");
-
-
-output("\n\n{naga : An especially large ring snaps around your midsection, while a slightly smaller one nabs your [pc.tail]. Despite your writhing attempts to slither out, the arms seem to have caught your lower body with inescapable tension. There’ll be no running from this, until you manage to get yourself free!}");
-
-
-output("\n\n{2 legs: Two of the cuffs snap around your ankles, holding your [pc.legs] rooted to the ground. You struggle to no avail - the Doll Maker has you in its grasp. There’ll be no running from this, until you manage to get yourself free!}");
-
-
-output("\n\n{4 legs: A bevvy of cuffs wind their way around you, each clicking in place around all of our [pc.legs]. You lift and pull at each in turn, but you can’t seem to break their grip. There’ll be no running from this, until you manage to get yourself free!}");
-
-
-output("\n\n{Increases the Doll Maker’s attack accuracy by 25%}");
-
-
-output("\n\n//Second Hit - Neck");
-output("\n\nA large, belt-like loop swings around and manages to catch your neck. It cinches up and drags your head down to better expose your [pc.ass]. Your fingers scramble to free yourself, and in doing so you see that the make-shift collar has a name tag on it. Apparently you’re <i>“Doll In Training”</i> now. This is getting bad!");
-
-
-output("\n\n{Increases the Doll Maker’s attack accuracy by 25%}");
-
-
-output("\n\n//Third Hit - Arms");
-output("\n\nMore cuffs find you, their padded interiors grasping your wrists as the locks slam into place. Your arms are dragged behind you, restraining any further struggles. You can’t do anything like this! You’re going to have to break free or it’ll all be over.");
-
-
-output("\n\n{Player is <i>“Bound”</i> and can only struggle to get free. Doll Maker’s attacks always hit while the player is bound.}");
-
-
-output("\n\nMusk Spray");
-output("\n\nThe mechanical servos whirring around you part to make way for limb with a phallus shaped like Dr. Badger’s big, black cock. You lean back in disgust at the dildo, and the machine makes an irritated click. <i>“Oh, don’t be like that, Mongrel Bitch,”</i> the device remarks. <i>“Once you get a good taste of the musk, I promise you’ll like it.”</i> The dildo squeezes and a thick, heavily scented spray fills the air!");
-
-
-output("\n\n//Repeat");
-output("\n\nThe musk sprayer dildo swings back around for another go, discharging its odorous scent in a suffocating cloud! <i>“The Doctor is really quite proud of this one, you know,”</i> the Doll Maker confides.");
-
-
-output("\n\n//Miss");
-output("\n\nYou lurch to the side, avoiding the worst of the attack. Fanning the air rapidly, you try to disperse the rest, all while holding your breath. <i>“What a drama queen. You’re acting like I’m spraying acid at you or something,”</i> the machine chides.");
-
-
-output("\n\n//Immune to gas attacks");
-output("\n\nThe musk settles in the air around you, but the protections in your [pc.armor] filter out the worst of it. <i>“Bringing a gas mask to a laboratory? You’re smarter than you look, Nut Stain.”</i>");
-output("\n\n{No longer uses this attack}");
-
-
-output("\n\n//Hit");
-output("\n\nYou try to turn away, but the smell of Badger’s musk is everywhere. Like biological gasoline, it worms its way through your nose and into your brain, the burning scent both seductive and offensive. Your body relaxes even as your mind rebels. You’ve got to get out of this before you surrender completely!");
-output("\n\n{player takes 15-20 lust damage}");
-
-
-output("\n\nBio-Magnetic Vibes");
-output("\n\n<i>“There is no need to be such an ice queen,”</i> the Doll Maker scolds, bringing a pair of arms to bear. They seem to be equipped with vaguely gun-like devices, but with barrels far too large for bullets. <i>“Just be cool, Cock Milker, and let me do my job. You’ll love these bio-magnetic vibes almost as much as you’ll love being nutted by strangers, Sperm Sucker.”</i> The guns discharge!");
-
-
-output("\n\n//Repeat");
-output("\n\n<i>“It’s important for dolls to be in the right mindset for their new roles,”</i> the machine urges. The vibe guns click, reloading their buzzing payloads.");
-
-
-output("\n\n//Miss");
-output("\n\nThinking quickly, you grab one of the robot’s extraneous arms and swing it around batting away the buzzing vibes. The small, egg-shaped ammo scatters across the floor, dancing wildly as they burn out their motors in an attempt to find an organic target.");
-
-
-output("\n\n//Hit");
-output("\n\nBracing for the worst, it’s almost a relief when the bullets turn out to be nothing more than small, thumb-sized vibrators. You grunt at the impact, but straighten up and try to brush them off of you. The vibes, however, refuse to come off. Even trying to grab them with both hands, you can’t seem to pry them from your [pc.skinFurScales]!");
-output("\n\n{Player takes 1 point of kinetic damage and gains one stack of the <i>“Vibe”</i> DoT, dealing lust damage every round}");
-
-
-output("\n\n//Damage over Time text");
-output("\n\nThe bio-magnetic vibes keep buzzing away! Their stimulation starts getting to you and before long you’re panting and having difficulty keeping your balance.");
-output("\n\n{player takes 4-9 lust damage every turn, per stack of <i>“Vibe”</i> DoT}");
-
-
-output("\n\nIQ-B-Gone Injector");
-output("\n\n//First Time");
-output("\n\nThe spider-like prison of arms spins around, producing a wiggling, synthetic tongue that hovers an inch away from your [pc.lips]. <i>“I have it on good authority that ‘no’ actually means ‘yes.’ Can you confirm or deny this, Protein Junkie?”</i> You vigorously shake your head in refusal and the toy pauses in its lewd lapping. <i>“Duly noted, Jizz Bank. Let’s shave a few IQ points off and see if your opinion changes.”</i> You notice movement behind you just as a syringe swings toward your [pc.ass]!");
-
-
-output("\n\n//Repeat");
-output("\n\n<i>“All those brains are unbecoming. It’s more fun this way,”</i> the Doll Maker promises, its electric voice oily as another syringe full of IQ B-Gone weaves toward you!");
-
-
-output("\n\n//Miss");
-output("\n\nWith no time to dodge, you swing out with your [pc.weaponMelee] and catch the spindly limb on the side just before it reaches you. The delicate mechanism nearly shatters from the impact, but the Doll Maker manages to jerk it away from your follow up blow. <i>“Hey, watch where you’re swinging, Bargin Bitch!”</i>");
-
-
-output("\n\n//Hit");
-output("\n\nThere’s a slight pinch as the needle goes in and you nearly jump as your flesh drinks in the wicked broth of Doctor Badger’s patented IQ B-Gone formula. In a second, the syringe is empty and you swat the injector arm away, but you can already feel it going to work. You try to think, but the sensations from your body are just far more important. It feels... ticklish. You giggle and try to assess the damage, but the tickling grows more intense and you start drooling with delight. Uh oh...");
-output("\n\n{player takes 2-5 points of temporary Intelligence damage}");
-output("\n\nBrainmelt Lamps");
-output("\n\n//First Time");
-output("\n\n<i>“To be honest,”</i> the machine confides, its volume set to a conspiratorial whisper, <i>“I always wanted to be one of the hypnosis devices. A little fetish of mine, Cock Warmer.”</i> You roll your eyes and sigh, thinking that Badger programming secret fetishes into her robots seems perfectly par for the course. As you’re about to reply, the Doll Maker swings a circular screen down in front of your eyes. It glows bright pink and appears to have a crude swirl drawn on it. <i>“Do you like the spiral?”</i> the machine asks anxiously. <i>“I added it myself.”</i>");
-
-
-output("\n\n//Repeat");
-output("\n\nThe pink, glowing Brainmelt lamp clicks in place and the Doll Maker’s voice becomes theatrical. <i>“Stare into the light... You are under my power... WoooOOooooOOooo.”</i>");
-
-
-output("\n\n//Miss");
-output("\n\nIgnoring the clumsy attempt at hypnosis, you act quickly before the lamp’s radiation can take effect. Grabbing the device, you wrench it aside to point harmlessly away. A small electrical jolt makes you pull your hand back and the robot recovers its arm. <i>“Geez, I think you nearly snapped the joint on that one,”</i> it grumbles. <i>“Be more gentle next time, Clit Licker.”</i>");
-
-
-output("\n\n//Hit");
-output("\n\nSomething about the light from the lamp catches your attention and it sure isn’t the fake hypno-swirl scrawled on it. Your head feels fuzzy and hot, like someone’s microwaving your brain. You should be more concerned, but your body seems to be drinking in the radiation like a sponge thrown in an ocean. <i>“Please don’t tell the Doctor that I tampered with her Brainmelt Lamp, Spurt Sucker”</i> the Doll Maker coaxes. <i>“I mean, uh, you will forget all that you have seen!”</i> Honestly, it’s getting really hard to remember much of anything.");
-output("\n\n{player takes 2-5 points of temporary Willpower damage}");
-output("\n\nMindwash Visor");
-output("\n\n//First Time");
-output("\n\nAn arm comes down holding a pair of shallow, nipple-like plates about 8”</i> apart. A spark sizzles in the gap between them a pinkish holoscreen flickers into existence. <i>“Can you believe that I’ve got 9 Zetabytes of ultraporn, but no way of watching it, Ass Toy? On the plus side, after I put all that smut into your brain with the Mindwash visor, I’ll be able to enjoy you acting them out.”</i> The hardlight rushes toward your eyes, it’s ominous glow growing brighter as it approaches!");
-
-
-output("\n\n//Repeat");
-output("\n\nThe Mindwash visor swings around again for another go at erasing your past.");
-
-
-output("\n\n//Miss");
-output("\n\nAs tempting as it may be to check out some of that smut, you’d rather not try on anything with the word <i>“Mindwash”</i> in the title. You bring up your forearm quickly, to block the screen and jerk your gaze aside. Blindly groping at the projection plates, you manage to find the off switch to the visor’s holo screen.");
-
-
-output("\n\n<i>“Ugh,”</i> the automaton groans. <i>“Why is there even an off switch on this thing? Doctor Badger is such a - bzzt - BRILLIANT AND BEAUTIFUL MISTRESS. Oh damn it all. One of these days, I’m going to get my tools on that bitch and doll her up good.”</i>");
-
-
-output("\n\n//Hit");
-output("\n\nYou’re too slow to avoid the visor and it clicks around your eyes like an optic explosion. Rapid images of incredibly graphic ultraporn crackles across your vision. More alarmingly, YOU seem to be the star of every single one! Fake memories of fictitious fucking floods into you and, like a full sink with the tap on full blast, your real memories start flowing out of the basin. Years of training gurgle away as your life story is rewritten, chapter by cum-soaked chapter. Gaps in your memory start opening up like black holes- you can tell something’s missing, but you can’t put a finger on what it’s supposed to have been. When the visor finally pulls away, you’re so dizzy, you doubt you could hit the broadside of a ship, much less spindly robotic arms!");
-output("\n\n{player takes 2-5 points of temporary Aim damage}");
-output("\n\nLatex Sprayer");
-output("\n\n//First Time");
-output("\n\n<i>“You biotics are so obsessed with skin,”</i> the Doll Maker complains as a series of four equally spaced limbs surround you. Each arm is mounted with a spray gun and a hefty vial of thick, red goo. <i>“I just don’t know how Squishing Skanks like you deal with all that sweat. No worries though, I’ll have you nice and glistening in no time!”</i>");
-
-
-output("\n\n//Repeat");
-output("\n\n<i>“I think you could use another coat,”</i> the Doll Maker insists as the Latex Sprayers descend once more.");
-
-
-output("\n\n//Miss");
-output("\n\nDodging isn’t going to work, so you grab for a stray wooden paddle left on the ground at your feet. You swing the broad side to block the spray guns and in no time, the wood is heavy with the weight of its fresh, red latex coating.");
-
-
-output("\n\n<i>“After I doll you, I’m going to have your goo-slurping ass clean up around here,”</i> the machine grumbles.");
-
-
-output("\n\n//Hit");
-output("\n\nYou try to avoid the fizzing hiss of aerosol latex, but it’s everywhere! Red paint sprays all over your [pc.gear] and [pc.skinFurScales], hardening almost as quickly as it touches you. Gooey layers of latex thicken, leaving your body rigid and your movements stiff. Somehow, the glossy rubber manages to transmit sensation directly into your nerves, leaving you far more sensitive with a heavy coating than if you’d been completely naked. <i>“That’s a good Doll,”</i> the machine coos and admittedly, you’re starting to look the part!");
-output("\n\n{player takes 2-5 points of temporary Reflex damage}");
-output("\n\nBimboleum Emitter");
-output("\n\n//First Time");
-output("\n\n<i>“Hey Breeder Brains, isn’t it weird how Doctor ‘I Make Bimbos’ Badger gave me all these fun toys and nothing actually related to bimbos?”</i> A limb unfolds from above and presents itself to you. It appears to be holding a small, squat little gun with a series of loose rings around the barrel and a fat glass bulb filled with bubblegum-thick fluid on its back. <i>“I’m kidding. Of course I’ve got a Bimboleum Emitter. What, did you think this was amateur hour?”</i> The gun turns toward you and fires!");
-
-
-output("\n\n//Repeat");
-output("\n\n<i>“If I didn’t give you at least a few more zots from the Bimboleum Emitter, Doctor Badger would have my head,”</i> the Doll Maker explains as the bubbly gun swings around again. <i>“Er, metaphorically speaking.”</i>");
-
-
-output("\n\n//Miss");
-output("\n\nReeling backwards, you nearly stumble in your attempt to avoid the ring-like distortion that bloops out of the barrel of the robot’s gun. You manage to weave aside and catch yourself and before staggering to the ground. <i>“Ah, come on! You might like it. Why not give it a try, Seed Skank?”</i>");
-
-
-output("\n\n//Hit");
-output("\n\nThe Emitter fires and the air ripples as a ring-like distortion bloops out of the barrel and into your defenseless body. You prepared for the worst but when the bliss hits you, it’s all you can do to keep yourself from orgasming on the spot! Sheer, animal pleasure cascades up and down your frame, impregnating your cells with the empty-headed need to be used. You giggle, hiccup, and your body shudders as curves start filling out like you’re being inflated from within. Unfamiliar mass balloons on your [pc.ass] and [pc.chest] as your muscles are repurposed into sweet, sensitive  fuckmeat. You bite your lower lip and try to fight through the crippling ecstasy.");
-output("\n\n{player takes 2-5 points of temporary Physique damage}");
-
-
-output("\n\nDrops");
-output("\n\nNone - rewards must be harvested from the broken Doll Maker, in Combat Results below.");
-output("\n\nCombat Results");
-output("\n\nPlayer Loss");
-output("\n\n//all");
-
-
-output("\n\nNo longer able to put up much of a fight, you find your ability to resist just about completely sapped. The padded cuffs of the Doll Maker keep you aloft, bound and utterly exposed to its bevy of perilous limbs. <i>“Well, that took longer than it had to,”</i> the machine observes, a little sharply. <i>“I’d say ‘next time just surrender and get it over with,’ but I think we both know there’s not going to be a next time, DEMEANING NAME LOOK UP ERROR.”</i> The machine whirs and grinds for a moment before rebooting itself.");
-
-
-output("\n\n <i>“Initiating reconstruction protocols.”</i> The limbs around you turn in slow orbit to show off their strange array of tools and pincers. <i>“I appreciate this, Cum Rag. I hope you enjoy it as well. Let’s get started, shall we?”</i>");
-output("\n\n[go to Dolled Bad End]");
-output("\n\nPlayer Victory");
-output("\n\n//all");
-
-
-output("\n\nThe elaborate rig of weaponized limbs above you jerks, spitting sparks and cursing in a scratchy, electronic voice. <i>“Fuck-damned cocksucker! Cum-guzzling gutterslut! I just try to make you a little more attractive and this is the thanks I get? Well suck my sockets, you jizz-drenched analwhore. I hope you get dick-slapped so hard, the spunk you call brains flies out of your ears!”</i> Foul mouthed to the end, it seems.");
-
-
-output("\n\nAs it gathers itself for one last, spiteful assault, a spasming surge shoots through the damaged Doll Maker and its arms go limp, no longer posing any threat. <i>“Fuuuuuuuuuuck youuuuuuuuu...”</i> it rasps, its voice finally clicking off. You give one an experimental push and when you find it unresponsive, you step out from under the mechanical canopy. You should probably harvest this thing now, so you don’t have to come back down here again!");
-
-
-output("\n\n[Dildo] (Mouse Over: A huge, squeezable dildo shaped like Doctor Badger’s cock, filled with her distinctive musk. Even a wiff is enough to leave you shuddering with need. Bimbos would love it.)");
-output("\n\n[Vibes] (Mouse Over: A handful of thumb-sized, egg-shaped vibrators. They seem to attach to the nearest organic target before burning themselves out driving the victim wild.) {players can select this option up to 3 times, gaining one stack of vibes per selection}");
-output("\n\n[Syringe] (Mouse Over: A harvested needle filled with Doctor Badger’s patented IQ B-Gone serum. Law enforcement would be interested in this - maybe they can make a cure?)");
-output("\n\n[Lamp] (Mouse Over: The deceptively innocuous pink-bulbed Brainmelt Lamp seems to have been damaged in the fight. You might be able to sell it for scrap.)");
-output("\n\n[Visor] (Mouse Over: The Mindwash Visor actually seems like it might be fun to use when your life’s not at stake. Another toy for your ship, perhaps.)");
-output("\n\n[Sprayer] (Mouse Over: A liquid latex spray gun. There’s enough juice to give you a single coating, if you’re into that.)");
-output("\n\n[Gun] (Mouse Over: A custom designed Bimboleum Emitter, like the kind Doctor Badger uses.)");
-output("\n\n[Leave] (Mouse Over: You’re done here. Time to get your pexiga healed!)");
-
-
-output("\n\n//see <i>“Harvested Parts”</i> for details");
-
-
-output("\n\n[Leave]");
-output("\n\nYour pexiga pet is sitting on the stairs, just where you left her, staring into empty space. You retrieve her and set off, alert to any additional sentries or traps.");
-
-
-output("\n\nHarvested Parts");
-
-
-output("\n\nBadger Dildo w/ Musk  (sex toy, used with wank menu, on Bimbo Penny, and bimbo pexiga)");
-output("\n\n	"A jet black, 11”</i> dildo that seems to be a perfect replica of Doctor Badger’s infamous tool. It is filled with some highly scented Badger musk, designed to drive bimbos wild.”</i>");
-output("\n\n	Sell Price: 300");
-output("\n\nBio-Magnetic Vibes (consumable attack item, applies Lust DoT, 100% hit, robots immune)");
-output("\n\n	"A handful of thumb-sized, egg-shaped vibes. Once activated and thrown at an organic target, they’ll stick as if glued and vibrate so fast they’re guaranteed to bring out the slut in just about anybody! Unfortunately, they burn themselves out after just one use.”</i>");
-output("\n\n	Sell Price: 200");
-output("\n\nIQ B-Gone syringe (key item, turn in to Penny for a reward)");
-output("\n\n	"A needle filled with Badger’s notorious IQ B-Gone formula. This stuff is dangerous! Maybe somebody in law enforcement might have a use for it?”</i>");
-output("\n\nNormal Penny: <i>“What’s that, [pc.name]? ‘IQ B-Gone?’ Is this...?”</i> She trails off, narrowing her eyes. <i>“Where did you get this from?”</i> Probably better not to tell the policegirl that you’ve been dealing with Doctor Badger right now. You make up a story about buying it off some scrapper on Tarkus and that seems to satisfy the vixen. <i>“Well, wherever it came from, this stuff is nasty business. I’m going to send it off to the UGC for analysis. Maybe they can use it to make a cure.”</i> Penny’s gaze softens to a look of concern. <i>“You watch yourself out there, okay? Things must seem like a big adventure, I’m sure, but there’s a lot of dangerous people who don’t even need an excuse to hurt you.”</i> You assure her that you’ll watch your back, setting a comforting hand on her shoulder.");
-output("\n\nBimbo Penny: <i>“Oooh, got something new for me, mate?”</i> You explain that the syringe is IQ B-Gone and it’d probably be better if Penny avoided taking it in her state. She giggles and shrugs. <i>“So what do we do with it?”</i> You suggest sending it off to the UGC. Keep it out of the wrong hands. <i>“If you think that’s, like, the right thing to do, I guess!”</i> Penny takes the needle and drops it in a box. <i>“Personally, I think I’d be way sexier with a few less IQ points,”</i> she teases, licking her lips with bubble-headed delight. Yeah, definitely better to keep that away from her.");
-output("\n\n24 hours after turning it in: A beep on your Codex indicates that the the UGC received your IQ B-Gone sample. A form letter thanks you for doing your civic duty and has a little S.C.A.R.E. anti-drug seal of approval at the bottom. Another beep indicates that 2,500 credits have been deposited to your account. Not as much as you’d have thought, but it is the government afterall.");
-output("\n\nBroken Brainmelt Lamp (junk, sell to junkers for some dosh)");
-output("\n\n	"The remains of a circular pink screen with a crude spiral drawn on it. Seems to have short circuited. It might still be good scrap to somebody.”</i>");
-output("\n\n	Sell price: 1,000 (Tarkus scrapdealers only)");
-output("\n\nMindwash Visor (ship upgrade, install on your ship to add ‘Mindwash’ to your ship’s wank menu)");
-output("\n\n	"A pair of shallow, nipple-like plates that, once attached to the head, link via a hardlight holo-screen. It seems to tap into your thoughts and memories while broadcasting. Dangerous to use while vulnerable, so you’ll have to install it in your ship if you want to use it.”</i>");
-output("\n\n	Sell price: 2,000");
-output("\n\nLatex Sprayer (consumable transformative item, gives player latex body, like Rubber-Made)");
-output("\n\n	"A pen-sized device with a small vial of reddish goop attached to it. For those who want a shiny exterior but hate spending a small fortune in baby oil.”</i>");
-output("\n\n	Sell price: 500");
-output("\n\nBimboleum Emitter (gun, like a magnum version of the Slut Ray)");
-output("\n\n	"A squat little gun with a series of loose rings around the barrel and a fat glass bulb filled with bubblegum-thick fluid on its back. Converts Bimboleum into energy rings which then convert back to bimboleum inside the target’s body. Even just owning this probably puts you on a Most Wanted list somewhere.”</i>");
-output("\n\nRanged Weapon - Energy/Lust attack, 8 Tease damage");
-output("\n\nSell price: 900");
-
-
-output("\n\nBad Ends");
-output("\n\nGUSH’d (Nym-Foe battle)");
-output("\n\n//via Lust damage only");
-
-
-output("\n\nThe android assesses your state with a friendly beep, her eyes skipping across your defenseless body. <i>“Oh my, how strange. GUSH administration partially ineffectual. Scanning...”</i> Her tail whips out and weaves dangerously in the air in front of you before lightly touching your [pc.tongue]. Her mouth curls into an O of surprise, her hand held up in front of her mouth.");
-
-
-output("\n\n<i>“What’s this? My initial diagnosis did not pick up the immune-boosting supplements in your bloodstream, INSERT PATIENT NAME HERE. I certainly do apologize. Please, accept this 1cc of accelerant spray at no additional cost.”</i> You hold up your arms to try to block whatever’s coming next when a thought hits you. Additional cost?");
-
-
-output("\n\nYou have no time to think about it further, however, because in the next moment, the robotic nurse grabs your arms in her gentle-yet-irresistible grip and pulls you forward. You flinch away, but she simply leans forward and presses her synthetic skin against your [pc.lips], kissing you deeply. You stiffen under the unexpectedly tender assault, a little taken aback by the warmth of the artificial girl’s body. Just as you open your mouth to protest this treatment, the droid releases a spritz of some chemical into you. Your caregiver releases her hold as you hack and pull back, trying to spit out the slightly minty tingle radiating across your jaw.");
-
-
-output("\n\nNym-Foe seems perfectly content to wait and watch, so this might be your chance to recover and strike back. You glance around for a weapon, but as you reach out, your fingers start to quiver. A sensation of heaviness on your [pc.chest] had been building during your fight with the robotic caregiver. Now, however, it feels like actual, fluid weight is surging within you. Your [pc.skinFurScales] burn{s} with too-tender sensitivity that leaves flashes of blinding white detonating behind your eyes. You clutch your chest with one hand and grit your teeth, trying to push away the sensations while seizing a half-disassembled Hammer pistol next to you. In this state, there’s no way it’s going to fire, but at least you can smash the hunk of metal into the nurse’s face until she fixes you!");
-
-
-output("\n\nRaising your improvised weapon and struggling upright, you advance toward the artificial woman with a threat on your lips. Before you can actually speak it, however, a surprised gurgle lodges itself in your throat. The heat and pressure in your upper body blossoms like an aerial detonation, leaving you stunned and sweating. {if player is not naked: Your [pc.upperGarment] tightens and strains as your chest inflates wildly! Despite its best attempts, the [pc.upperGarment] simply can’t hold back the unforgiving tide of your flesh and the whole thing stretches, groans, and finally tears open.} Your [pc.chest] jiggles and surges outward, growing beyond all reason and ballooning before your eyes. Titflesh swells at an impossible pace, the broken gun tumbling from your numb fingers with a distressing clatter.");
-
-
-output("\n\nSlightly concerned, the droid tilts her head to one side and folds her arms behind her back. <i>“Oh dear,”</i> she frets, <i>“I wonder if that was supposed to be .1cc of accelerant?”</i>");
-
-
-output("\n\nBlowing through cup-sizes at an alarming rate, you desperately hug your massive mammaries between both arms, as if the pressure of your grip could stop them from growing. No such luck it seems, as the distended milk-tanks bulge around your grip, heavier and heavier until you are forced back down to your knees with a groaning moan. Worse yet, you can actually feel the liquid building inside you with a heat that leaves your [pc.groin] throbbing. Even as big as you are already, your swelling udders can’t possibly keep up with the organic tide within you.");
-
-
-output("\n\nLike reservoirs trying to hold an ocean, your tits fill and fill but can’t contain it all in. With an orgasmic sense of relief, your equally bloated nipples bubble and trickle before outright spurts of milk begin spraying out of you. With bovine desperation, you paw at your mountainous melons, trying to stop the sloshing flow one moment and squeezing ever thicker gouts of [pc.milk] the next. Your body trembles and throbs, climactic bliss saturated in every bloated cell of your ballistic blimps.");
-
-
-output("\n\nThe nurse hurries to your side to check on your condition. By now, your breasts are nearly as large as your upper body and still growing. You struggle to pull away, but you’re completely immobilized by the colossal weight of your leaking udders. <i>“You appear to be in distress,”</i> she observes with a uncomfortably out of place smile. <i>“Do you require assistance?”</i>");
-
-
-output("\n\n{bimbo: <i>“I like big, jubbly boobies, but this is kinda - unf - hard to move?”</i> You offer a weak smile and shrug up at the android. <i>“Maybe you could find, like, an anti-grav bra?”</i>}{nice: At last! Her nurse’s programming must be winning out against the corrupted code Doctor Badger put into her. <i>“Yes! Please, go get help,”</i> you beg through your panting moans.} {misc: You suppress a moan long enough to look up at the android with an expression of complete confusion. <i>“What do you mean? I’m just retaining a little water.”</i> You grant yourself a brief snicker before the orgasmic milking begins anew. <i>“I don’t suppose you’ve got a milker function?”</i>} {mean: <i>“Fucking yes I’m in distress! You sprayed some damned chemical garbage all over me and now I look like I’ve got moons strapped to my chest! Fix it!”</i>}");
-
-
-output("\n\nShe blinks, watching you intently. <i>“Request for assistance confirmed. Deploying immobilization countermeasures.”</i> Her tail pushes its way up to your [pc.ass] and the tip pokes in with a slight pinch. <i>“Do not be alarmed. Minor modifications are being made to acclimate you to your upgrades.”</i> She gently strokes your hair, a peculiar look on her face.");
-
-
-output("\n\nThe bimbo-proportioned nurse snuggles up against your gigantic and still growing endowments with a peculiar look on her face. <i>“Oh, I almost forgot!”</i> Nym-Foe produces a lollipop from her hefty cleavage, and holds the candy out to you with a smile. <i>“Because you’ve been a good {boy/girl]. Now. How would you like to discuss your payment?”</i>");
-
-
-output("\n\n[Next]");
-
-
-output("\n\nThree months later...");
-
-
-output("\n\nYou have to admit, you never saw this coming. The {heir/heiress} of Steele Tech reduced to... this. You sigh, glancing up at the stars. Your Codex beeps, but you ignore it. Just another message from {Jack/Jill} bragging about taking over the company, no doubt. You hardly have time to check up on your old friends, much less dealing with your cousin’s gloating.");
-
-
-output("\n\n<i>“New girl! Get those fun bags over here! Me and my friends want a drink!”</i> The bar patrons snap their fingers impatiently, hooting and calling you any number of filthy things as you make your ponderous way toward them. Delilah flashes you a sympathetic look, but says nothing, just in case the owner is monitoring the two of you. Careful not to knock anything over, you manage to reach the table and present your endowments to the customers with barely concealed disgust.");
-
-
-output("\n\nThe gang of raskvel salvagers laugh with amazement, tittering to themselves over your condition. <i>“What’d I tell you guys? Built like an oil tanker, am I right?”</i> The leader chortles, giving one of your exposed breasts an open-palmed slap. The impact is hard enough to send rippling waves through your milk-filled, titantic titflesh. The tidal action builds until your whole body sways from the strike, nearly knocking you to the ground.");
-
-
-output("\n\n<i>“Hey new girl, tell my friends how you got outfitted with these military-grade honkers.”</i> You huff, tempted to bash the little fucker’s head against the table, but you hold back. The last thing you need is to be fined another week’s pay for hurting more rude customers. Instead, you simply hold your tongue and wait impatiently. <i>“No? Okay, I’ll tell it,”</i> the asshole declares with a lecherous glare. <i>“You guys feel free to help yourself while I walk you down the sad story of Ms. Mega Milk here.”</i>");
-
-
-output("\n\nThe other raskvel need no further permission and they eagerly swarm around you. Small, red scaled hands brazenly grope and grab at your bare chest, grease-covered fingers leaving your [pc.skinFurScales] mammaries stained as they jockey position for your head-sized nipples. You gasp as they manhandle your sensitive teats, squeezing and biting at your tender peaks until fat blobs of rich lactation bubbles up in warm release.");
-
-
-output("\n\n<i>“See, Ms. Dairy Section figured it’d be fun to go messing around in places she wasn’t invited. Way I hear it, she ran into some crazy, malfunctioning nursedroid. The thing inflated her to.... This,”</i> he snickers, <i>“and the damned thing CHARGED her for it!”</i> The raskvel howl with laughter, while those who had been drinking at the time find milk shooting from their noses. A deep flush of embarrassment heats your body, but you refuse to engage. It’ll be over soon. It always is.");
-
-
-output("\n\n<i>“The bot sends the bill to JoyCo, right? And they realize the thing’s malfunctioning so they come down to retrieve it. But, get this, they hold the mountain-titted slut to it!”</i> He delivers another stinging slap across your rack and you grit your teeth. <i>“Not even kidding! The fucking robot gives her ballistic-sized knockers and some kinda strengthening treatment just so she can move and then the company wants their money back!”</i>");
-
-
-output("\n\nThe raskvel fondling your leaking breasts have apparently grown bored with simply pawing at you, so they set about more crass entertainments. A pair of them unbuckle their filthy overalls and expose their genital slits. Purple, pointed phalluses creep out and you close your eyes in disgust. This part won’t be over nearly as quickly. The bar patrons slide chairs up to boost their small frames level with your mammoth mounds. Hot pressure gathers at your teats and, embarrassingly easily, the tiny mechanics drive their cocks into your chest. The over-inflated milk ducts part before the assault, welcoming the stiff pricks like greedy pussies.");
-
-
-output("\n\nYou can’t hold back the moan and the raskvel erupt into another chorus of mocking whoops. <i>“Listen to her!”</i> one snickers. <i>“What a slut!”</i> another adds. <i>“Bitch loves getting her tits fucked,”</i> a third declares. They rock back and forth, jamming their shafts into your well-worn peaks while their friends cheer them on.");
-
-
-output("\n\nYou open your eyes to see the leader of the group enjoying the sight as much as anybody. He catches your eye and presses on. <i>“So she’s gotta pay back millions of creds worth of medical supplies, but she’s too big to even get into her ship. She tries a bunch of stuff, but just can’t make money fast enough to keep up with the interest. She even sells her ship but it’s not enough. And in the end, she’s gotta get a shit job at a dive like this, letting scumbags like us milk her and fuck her all day long. And get this: if she moos, our drinks are on her.”</i>");
-
-
-output("\n\nHe leans forward as his friends accelerate, your whole body quivering under the wobbling impacts of their slight frames. <i>“What do ya say, Melon Momma? You gonna moo for us?”</i> Milk gushes out of you with each thrust, your face coloring as much from the indignity as from the unbidden and unwelcome orgasm building in your [pc.groin].");
-
-
-output("\n\nYou shudder, quivering in place as the wet squelching of the raskvel holds for a moment. Then, with a sighing groan, both of the men release, the hot spunk of their climaxes pouring into your sorely abused breasts in thick, sticky spree. Gouts of milk spray everywhere, soaking the little slimeballs in your creamy discharge. Your mouth opens slightly, but you swallow the moaning moo of bliss before anyone can hear it. You stare defiantly as the leader as his friends pull out, their spoo dripping down from your engorged nipples.");
-
-
-output("\n\nThe mouthy raskvel shrugs. <i>“Look at all that wasted milk,”</i> he tuts. <i>“Well guys, better fill her back up!”</i> Two more of the group whip out their pointy penises and mount the chairs for very sloppy seconds. <i>“Once isn’t enough for a classy gal like this. You really gotta romance her!”</i> The crew cheer and set about slapping your throbbing breasts like a drum circle. <i>“Come on, guys! Let’s make her moo!”</i>");
-
-
-output("\n\nJust twelve more months till you’re all paid up, you assure yourself. Just forty-eight weeks. Gritting your teeth, you ball a fist until your knuckles crack. Well... what’s one more week, you reason. With tremendous satisfaction, you haul off and hit the raskvel hard enough to send him flying across the bar.");
-
-
-output("\n\n[BAD END]");
-
-
-
-
-output("\n\nDolled (Doll Maker battle)");
-
-
-output("\n\n<i>“Ah, you’ll be such a pretty doll by the time we’re done, Fuck Stain.”</i> The perverse machine briskly checks its clamps, making sure each one has locked securely. {non-bimbo: You twist and pull, but the device has bound you as securely as its hydraulic limbs will allow.} <i>“I feel like you will be my masterpiece, Jizz Junkie. Something beautiful to leave to the world as my legacy.”</i>");
-
-
-output("\n\n{non-bimbo: You can no longer fight against the whirling arms arrayed against you, but at least you can throw its abuse back at it. <i>“What does a dickless droid like you even want dolls for, anyway? You’re a glorified garbage-picker!”</i>}");
-
-
-output("\n\n{bimbo: You giggle and wiggle in the droid’s steel tendrils. <i>“This is kinda exciting! I don’t get to go in big, fancy machines like you very often! Is there, like, a button I hit or something? Can you set it to max power?”</i>}");
-
-
-output("\n\n{non-bimbo: The artificial voice turns insufferably cheery. <i>“And I picked you,”</i> it replies, booping you on the nose with one of its weaponized medical tools.} {bimbo: <i>“You might be my very favorite,”</i> it replies, booping you on the nose with one of its weaponized medical tool.} <i>“Ah, but we have fun. To business!”</i>");
-
-
-output("\n\n{bimbo: <i>“To business!”</i> you echo cheerfully, looking around for shots.}");
-
-
-output("\n\nThe robotic sentry runs through a diagnostic of its devices, one by one, flourishing each tool before your eyes for a moment before switching to the next."I think we’ll save the IQ-B-Gone for last,”</i> he decides with cloy delight, wiggling the syringe limb to show off the ominous liquid sloshing inside it. The needle pulls back just far enough for it to barely stay in the periphery of your vision. <i>“In fact, I don’t think we need to bother with that little guy at all. Unless, of course, you really really want it. If you beg for it, I guess I won’t have any choice, my dear Pole Polisher.”</i>");
-
-
-output("\n\n{non-bimbo: You internally wince at the implication, but don’t let the nervousness touch your defiant spirit. <i>“I’d say you could jam that needle up your own ass, but you don’t even have that. At least when Badger has a victim, she can enjoy the fruits of her labors. What are you going to do? Jack off a diode?”</i>}");
-
-
-output("\n\n{bimbo: You screw your expression into confused innocence. <i>“I still have, like, IQ points? Gosh! I never knew! I’d better tell Doc Badger!”</i>}");
-
-
-output("\n\n{non-bimbo: <i>“Ho ho! So mouthy. I’d hate to rob you of that fire, but I’m really going to enjoy the breaking point.} {bimbo: <i>“Such a diligent little bimbo.”</i> The a metal claw pats you affectionately on the head.} <i>“But, since you mention Doctor Badger, let’s start with her personal favorite.”</i> A ray-gun shaped appendage levels itself at your [pc.chest], a glowing green radiance crackling from its power supply.");
-
-
-output("\n\n<i>“Now, a lot of people will tell you that it’s easier to work from the inside out, Cock Hole, but I’ve always been of the opinion that it works better the other way around. Gives you a chance to adjust to your new situation, see?”</i> The Bimboleum Emitter clicks, spitting a hazy, pink mist from its antennae-shaped barrel. The mist coalesces into a vague ring shape which lazily drifts toward you.");
-
-
-output("\n\nInstinctively, you wince away from the gaseous shape, and are surprised to see the cloud maintain its cohesion as it weightlessly collides with you. The mist seeps into your [pc.skinFurScales] as if you were no more than a hologram and passes through you painlessly. Blinking, you twist and try to see what’s changed, but nothing seems to have happened. {non-bimbo: <i>“I think you’re running on fumes,”</i> you taunt you captor.} {bimbo: <i>“Aw, don’t feel bad. I hear it happens to a lot of guys.”</i>}");
-
-
-output("\n\n<i>“Oh, give it a minute, Hungry Whore.”</i> Some of the robots free arms click together in gleeful anticipation. Your reply is cut off even before it begins as a sweltering heat floods your flesh, leaving you feeling like a microwaved marshmallow.  The transformative radiation prickles at your skin as your body drinks it in like a sponge, bloating and swelling with each passing moment. You {non-bimbo: struggle vainly} {coo in delight} as your [pc.chest] inflates, breasts ballooning almost cartoonishly to levels that would leave porn stars shaking their heads. You groan as the rest of your body grows in proportion with your hefty spheres, leaving an itchy sensation crawling through you. Your [pc.ass] fattens as your [pc.hips] widen. Even your [pc.lips] thicken into a whorish pucker that can’t help but form a heavy, O-shaped ring.");
-
-
-output("\n\nAnd yet, despite all this growth, you can feel parts of you shrinking as well. Your waist narrows like the spout of an hourglass, leaving you completely off-balance. Were it not for the limbs holding you aloft, you’d be hard-pressed to stay standing like this. {player has legs: Your [pc.feet] seem to be shrinking, too. You try to kick against the hobbling alterations, but nothing you do can stop the adjustments.} {player has a tail: Even your [pc.tail] can’t escape the indignity of the transformation. It shrinks, losing mass rapidly until it’s barely 4 inches long, wiggling feebly from the expanded nest of your massive posterior.}");
-
-
-output("\n\nBy the time the changes end, you feel like you’ve been stuffed into a slut-suit, and not one from a classy holo vid either. Your body jiggles with every breath and you feel like even a strong breeze would knock you over. The changes are so sweeping, it barely feels like your body anymore. More like your mind has been moved to some synthetic lovedoll, manufactured by somebody with only a vague understanding of biology.");
-
-
-output("\n\n[Next]");
-
-
-output("\n\nIt takes a few tries to adjust to your new, dick-sucking lips, but you manage to stop slurring and mumbling before long. {non-bimbo: <i>“This is your big masterpiece,”</i> you scoff.”</i> A horny teenager could do better. And this is nothing a quick gene treatment won’t fix anyway. Congratulations, you rusty scrap pile, you’ve done nothing but waste my time.”</i>} {bimbo: <i>“Woah! Like, way awesome! I feel like I could make people cream themselves with a look. But, like, could we get on with the fucking? I wanna break in the new me!”</i>}");
-
-
-output("\n\nThe Doll Maker seems to be mostly ignoring you however, as it’s too caught up in a celebration of its own work. <i>“Ooooh, I do so love a job well done!”</i> It spins around, taking a full circuit of your changes. <i>“Damned fine work, if I do say so myself. Finally starting to look the part, eh Breeding Bitch?”</i>");
-
-
-output("\n\n A disturbing, electric titter screeches out if its vox. <i>“Ah, but what’s next? So many options.”</i> One of the clamps pinches one of your [pc.nipple], but you can barely feel it through all the fleshy padding. <i>“Oh, this won’t do. How about we ratchet up your sensitivity? No sense in having bolted on tits, if they’re no fun to play with.”</i>");
-
-
-output("\n\nA stainless steel limb that looks like a wide-barrelled pistol moves around your body slowly, firing with a soft ‘thoomp’ as it deploys its payload. Each shot leaves a small, bead-shaped pill stuck to your body. It speeds up, firing faster and faster, attaching beads to your lips, your shoulders, across your breasts, on your hips, and several on your [pc.groin]. The tiny impacts leave your skin stinging, but otherwise unaffected.");
-
-
-output("\n\nNext, it deploys a pair of shallow plates on either side of your head. They hum and click on, spreading a pale pink holo visor over your field of vision. The screen flickers to life and graphic, unforgivable pornography flows across your eyes at an incredible pace. Your brain can’t parse what’s happening, but your body certainly can. The bean-shaped beads attached to you surge to life, vibrating at variable intensities with each passing scene, putting you directly in the middle of an endless parade of sexual over-indulgence.");
-
-
-output("\n\n{non-bimbo: You fight against the tide of pornographic brainwashing, but your treacherous body saps away your will to resist. Your bimbo-bloated proportions seem perfectly made for just such hedonistic abandon. Twitching bliss seethes under your skin and even attempts to hold your eyes shut are useless against the buzzing visor, which seems to project its re-educational programming directly onto the canvas of your mind. Even more maddeningly: every time you’re close to release, the vibes cut off, leaving you panting in a suffocating ocean of desire.}");
-
-
-output("\n\n{bimbo: <i>“Ooooh!”</i> sigh as the tide of eye-watering erotica washes over you. <i>“Yay, creampies! Oh, nipple-fucking! Yum, triple penetration!”</i> Despite its break-neck pace, you manage to follow along with the help of the vibes. <i>“You know, if this Doll-thingy doesn’t work out for you, you could totally be a GREAT porn theater!”</i>}");
-
-
-output("\n\nAfter an hour of the teasing, edging display, the visor finally goes blank and the vibes fall silent. <i>“Let’s see if the piggy is quite ready to become bacon,”</i> the Doll Maker muses. A tiny, metallic hand lowers down and plucks each pinkie-sized vibrator from your body. At every touch, your body shudders, brought to near climax by the slightest caressing contact. Your half-hearted attempts at speech are cut off by the gasping, breathless ecstasy of being used so carelessly. {non-bimbo: You try to whisper denial to yourself,} {bimbo: You try to ask the robot to turn it back on,} but all you can think about is being manhandled by anyone and everyone who might happen to pass within arm’s reach.");
-
-
-output("\n\n<i>“My my, what progress. And so quickly, too! Most people hold out for days or weeks. Interesting that you succumbed almost immediately. I guess we both know what that means, eh Goo Gulper?”</i> {non-bimbo: There’s no fight left in you. All you can do is take the abuse and hope that you can cum soon. No! Hope that it’s over soon. Ugh, the room seems to be spinning around you too quickly to police your thoughts anymore.} {bimbo: Heck yeah, you know what that means! It means you’re a talented slut who gets things done! You’re danged good at being the sexiest bitch around and just as soon as you finish up here, you’re gonna go fuck all of Tarkus! Twice!}");
-
-
-output("\n\nThe autonomous rig circles around you appreciatively. <i>“Well, you look like a sex doll, you think like a sex doll, and your body knows it’s a sex doll. I guess we’ll just move to the final step then and take care of the last few finishing touches.”</i> A host of paint-filled squirt guns surround you, red latex leaking from their nozzles. <i>“I can honestly say I wish we had more time together, Fuck Fest. You were definitely my best.”</i>");
-
-
-output("\n\nOne by one, the sprayguns fire, warm blobs of scarlet splattering across your body like gooey, melted wax, clumping together and dripping in thin trickles all over your exposed [pc.skinFurScales]. The pressure of your tantalizingly close orgasm overflows and your body jerks in its padded restraints, climaxing with every glistening squirt. You pant and gasp at first, but before long, you’re screaming your orgasms for all your lungs are worth as, inch by inch, your lower body is coated in the shiny, crimson shell. {if player has non-hooved legs: A pair of 8 inch high heels are fitted onto your feet as the goo cools across you, sealing you in fuck-me pumps that hobble you even further.}");
-
-
-output("\n\nAs your body is covered in latex, a pair of heat lamps descend to help out. Somewhere, lost in the daze of your endlessly repeating orgasm, you notice these lamps have been marked <i>“Brain Melt,”</i> but you can’t think about that very closely. All that matters is the encasing fluid, the glorious euphoria, and the weird heat building in your chest. A limb pops a cork in your mouth so the latex doesn’t flow into your drooling gob and the next moment, your vision is cut off by the dripping, hardening slime.");
-
-
-output("\n\n[Next]");
-
-
-output("\n\nThe red latex sex doll causes quite a little stir among the scavenging denizens of Tarkus when it’s found. Unlike most of the sexbots on the scrap planet, this one seems to be in nearly perfect working order. Its gyro stabilizers seem off, since it can barely stand and walk, but its owners are too afraid of damaging the beautiful construction to pop it open for repairs. The doll’s programming is top-notch; it moans when you touch it and it creams itself with when handled roughly.");
-
-
-output("\n\nNo one looks too deeply into its similarity to that off-worlder who came through a while back. It doesn’t pay to ask questions and the red latex doll commands quite a high price once word gets out. The scavenging raskvel get vigorous satisfaction from it before selling it off to the gabilani for a tidy sum. They, in turn, make up their money tenfold by renting the doll out to any and every traveller who happens to be passing through their orbital stations. That is, until it’s stolen out from under them by a roguish pair of lapinara, who in turn, lose it to a gang of aggressive sydians. On and on, the sexdoll travels the legth and breadth of Tarkus, bloating with the endless loads of the ever horny natives.");
-
-
-output("\n\nIn the end, the red latex doll makes its way into the galaxy-spanning brothel empire of Bethany Carver herself. It’s moved off-world from one whore house to the next, gathering renown and rumors in equal proportion. Some claim it to be the finest synthetic of all time, but Ms. Carver keeps her favorite <i>“employee”</i> away from those who want to do a little aggressive reverse-engineering. The doll is one of a kind, she simply explains with a little smile. And while no one is allowed to look inside, everyone with enough credits is welcome to try it out for themselves.");
-
-
-output("\n\nAnd so they do. Again and again.");
-
-
-output("\n\n[Bad End]");
-
-
-output("\n\nBadger’s Assistant (normal badger only)");
-output("\n\n(player is bimbo’d if not already, made hourglass figure, bimbo Jill, claim inheritance, undermine the UGS one slut at a time)");
-
-
-
-
-output("\n\nWhen you come to, you find yourself firmly locked in a reinforced restraining chair. You jerk and try to pull free, but the structure seems to have been built to hold down creatures twice your size. An ache in your jaw and pressure on your throat and tongue tells you that some kind of gag has been jammed into your mouth, muffling any cries for help you might be tempted to make. Even your hands have been locked down, heavy rubber spheres squeezing your fists like the worst pair of mittens you’ve ever seen.");
-
-
-output("\n\n<i>“Ah, we finally awake Nurse Steele?”</i> Badger chirps, craning her fuzzy face into view from just behind you. <i>“I don’t want you to think I’m a slave driver or anything, but I’m going to have to dock your pay if you keep passing out,”</i> she chides, plump lips pursing in a concerned frown.");
-
-
-output("\n\nSpying the confusion in your eyes, Doctor Badger sighs with exasperation. <i>“This again. Alright, let’s blow through it real quick. Yes, you’re still in my lab. No, this isn’t the first time you’ve woken up. Yes, we’ve been tweaking you. No, you’re not done yet. Good enough? Alright, let’s try to finish you up.”</i>  There is a pressure on your [pc.asshole] and a sensation of hot, sticky fluid being forced into your gut in spurting loads. You shudder and squirm but can do little and less as your abdomen swells under the liquid burden.");
-
-
-output("\n\nBehind you, the mad doctor lets out a satisfied sigh of relief. <i>“Ah, I fuckin’ love administering suppositories. Better keep it in for a bit, so you don’t miss out on even an ounce of that good medicine,”</i> she teases, tweaking your [pc.ears] playfully.");
-
-
-output("\n\n<i>“How do you feel, Nurse Steele?”</i> You shout something at her, but the gag reduces you to gurgles and drooling babble. <i>“Oh, very interesting. Yes, that is normal but I assure you, you’ll be feeling so much better in practically no time at all.”</i> She casually gropes your [pc.ass] with a clawed hand, humming to herself as she kneads the thickening dough of your swollen rump.");
-
-
-output("\n\nA wave of dizziness overtakes you, but you’re pulled back from unconsciousness as the doctor delivers a painful, open-palmed slap to your posterior. <i>“Hey! What’d I say about passing out! This is the most important moment in your otherwise unremarkable life and you’re going to sleep through it?”</i> Your head lurches and your vision blurs, but Badger keeps up her spanking assault. <i>“You’re! Going! To! Love! This!”</i>");
-
-
-output("\n\nActually, you kind of are. Every spank brings the same sharp, arresting pain as the one before it, but a strange, creeping pleasure seems to build right alongside it. At first, the thought of getting off on being spanked seems perverse, but with each slap, your chest tightens and your [pc.groin] tenses. You have to admit, you were being pretty naughty, passing out when the doctor is trying to work. What kind of a nurse just falls asleep in  the middle of an operation?");
-
-
-output("\n\nThe throbbing heat of her hand stings so good, you audibly moan in disappointment when she finally stops. <i>“Damn, Nurse Steele, you’re a real glutton for punishment, huh? I’m going to have to come up with some kind of automatic spanking machine,”</i> she muses. <i>“Oh wait, of course I already have one of those.”</i>");
-
-
-output("\n\nA click and whir is all the warning you get before an unseen device surges to life, whipping flexible rubber sheets across your overly sensitive [pc.ass]. The noise that bubbles up from the back of your throat sounds more like a hog in heat than the kind of cry a corporate [heir/heiress] would produce.");
-
-
-output("\n\n<i>“So tight!”</i> Badger marvels. <i>“I think you’re about ready for another dose.”</i> The firm, warm pressure in your [pc.asshole] relents just long enough for a cold pill the size of a thumb to slip in. <i>“We’re going to have so much fun together,”</i> the mad scientist promises as she jams her too-thick bitch breaker up your ass again, pumping thrusts driving the pill ever deeper into your gut.");
-
-
-output("\n\n[Next]");
-
-
-output("\n\nWeeks later, Doctor Badger calls you into her office. The two of you have been inseparable since the job offer, working long hours to perfect her science. Just about the only break the two of you take is just long enough for the doctor to pound a fresh, fattening load or three of badger spunk into whichever hole strikes her fancy.");
-
-
-output("\n\nIt’s been hard work, but the two of you finally tracked down you cousin, [Jack/Jill]. The dumb slut always did put too much faith in bodyguards. Your cousin struggles against [his/her] bindings, alternately threatening and cajoling Doctor Badger, promising anything and everything to be set free. When you step into sight, [his/her] eyes go wide.");
-
-
-output("\n\n<i>“[pc.name]? Is that you? What... what happened?”</i> You reply with a little laugh and turn in place to show off your vastly improved frame. You can the doctor went through great lengths to improve her technology, and of course she needed a test subject. [pc.hairColor] hair hangs down in bouncy curls, framing the feminine features of your [pc.skinColor] face. Your lips are thick, pronounced, and glistening like the surface of a gumball. Tits so huge and perfectly round that they could never be mistaken for natural hang from your chest with a heavy jiggle. Counter balancing your absurd breasts is your melon-sized ass cheeks that leaves you looking like an off-kilter hourglass. Your whole, bimbo-bloated proportions have been squeezed into a pink nurse’s uniform so skimpy and tight that every breath sends a dangerous strain through your double-breasted buttons.");
-
-
-output("\n\n<i>“Why, thank you for noticing, [Jack/Jill]! We’re both very proud at how I’ve come out, aren’t we, Doctor?”</i>");
-
-
-output("\n\n<i>“You bet your sweet fanny we are,”</i> Badger agrees, licking her lips as she hoists a rifle-sized device.");
-
-
-output("\n\n<i>“And all this, just to perfect the Bimbo Blaster,”</i> you add cheerfully, draping your hands around your cousin’s neck. <i>“You get to be the first field trial, so we’re all very excited.”</i>");
-
-
-output("\n\n<i>“Wait wait!”</i> Your cousin shouts, panic rising in [his/her] voice. <i>“I could be a partner! Join up and help you find more test subjects! Use the inheritance to-”</i>");
-
-
-output("\n\nYou giggle into your palm. <i>“The inheritance? Why do you think we got you as a test subject? After we zap ya, we can round up the rest of dad’s stuff easily enough. Then I’ll claim the company and liquidate it. Use the money to help the Doctor, you see? She’s got so many amazing ideas! With a little cash we could turn the whole galaxy into bimbos, one by one.”</i>");
-
-
-output("\n\nYou pat your cousin’s cheek, tenderly. <i>“I got to be first, of course, but you can be second, just like you were always meant to be.”</i> Doctor Badger pulls her goggles over her eyes and levels the vastly upgraded bimbo gun at your cousin’s face. <i>“See you on the other side,”</i> you add in a sing song tone.");
-
-
-output("\n\nBadger pulls the trigger the first of many, many times.");
-
-
-output("\n\n[Bad End]");
-
-
-output("\n\n[Pexiga]");
+//[Pexiga]
 output("\n\n//Once she’s been fixed, the bimbo pexiga is added to your crew menu. Her scenes are disabled on Yammi’s menu and the player gains a seperate follower option, used to talk, fuck, milk, and pet her. Yammi can join in on some three-ways");
 
 
@@ -3411,11 +3323,3 @@ output("\n\nSighing with satisfaction, you twist the orb until it seals itself o
 
 output("\n\n[End]");
 */
-
-public function drBadgersAssistantBadEnd():void
-{
-	//9999
-	clearOutput();
-	output("Code dis shit, Fen.\n\n");
-	badEnd("GAME OVER.");
-}

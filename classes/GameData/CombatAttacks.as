@@ -536,8 +536,15 @@ package classes.GameData
 			}
 			if (target.hasStatusEffect("Bouncy!") && target is NymFoe)
 			{
-				(target as NymFoe).bouncyProc(true);
-				return false;
+				var k:TypeCollection = attacker.rangedDamage();
+				if(k.kinetic.damageValue > 0)
+				{
+					if(rand(100)+1 <= target.statusEffectv1("Bouncy!") * 20)
+					{
+						kGAMECLASS.bouncyProc(true);
+						return false;
+					}
+				}
 			}
 			// We made it here, the attack landed
 			
@@ -595,8 +602,15 @@ package classes.GameData
 			
 			if (target.hasStatusEffect("Bouncy!") && target is NymFoe)
 			{
-				(target as NymFoe).bouncyProc(false);
-				return false;
+				var k:TypeCollection = attacker.meleeDamage();
+				if(k.kinetic.damageValue > 0)
+				{
+					if(rand(100)+1 <= target.statusEffectv1("Bouncy!") * 20)
+					{
+						kGAMECLASS.bouncyProc(false);
+						return false;
+					}
+				}
 			}
 			if (target is ZilFemale) kGAMECLASS.flags["HIT_A_ZILGIRL"] = 1;
 			
