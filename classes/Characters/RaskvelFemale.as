@@ -29,7 +29,7 @@
 			this.originalRace = "raskvel";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "Dressed in a [INSERT SHIT HERE], the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
+			this.long = "";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
 			this.isPlural = false;
 			this.meleeWeapon = new RaskvelWrench();
@@ -200,12 +200,12 @@
 			//Determine armor sizes
 			if (rand(2) == 0) 
 			{
-				long = "Dressed in a tattered shirt and fluttering skirt, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
+				long = "Dressed in a tattered shirt and fluttering skirt, the raskvel girl doesn’t seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there’s a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
 				armor.longName = "tattered shirt and fluttering skirt";
 			}
 			else 
 			{
-				long = "Dressed in a crotch-less jumpsuit, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
+				long = "Dressed in a crotch-less jumpsuit, the raskvel girl doesn’t seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there’s a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
 				armor.longName = "crotch-less jumpsuit";
 			}
 			ass.loosenessRaw = rand(4) + 1;
@@ -280,7 +280,7 @@
 				//Hit
 				else
 				{
-					output(" Her trajectory carries her square into your face. The lizard-girl's hot cunt squishes up against your [pc.face] as her legs circle behind your neck, and she languidly grinds herself on your face while running her hands ");
+					output(" Her trajectory carries her square into your face. The lizard-girl’s hot cunt squishes up against your [pc.face] as her legs circle behind your neck, and she languidly grinds herself on your face while running her hands ");
 					if(target.hasHair()) output("through your [pc.hair]");
 					else output("over your head");
 					output(". She detaches before you can think to get her off of you, leaving you with the taste of her femininity on your lips and the thought of sex on your mind.");

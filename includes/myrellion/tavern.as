@@ -32,7 +32,7 @@ public function goldenPeakBonusFunction():Boolean
 		else
 		{
 			output("\n\nShade, the kaithrit bounty hunter, is sitting with her boots propped up on a corner table, silently watching the rest of the bar. A couple of empty beers are stacked up on her table, surrounding a portable holoterminal dominating half the table. At a glance, it looks like Shade’s researching local bounties.");
-			if(flags["KQ2_SHADE_ENCOUNTERED"] == 1) addButton(1,"Shade",kq2ShadeFollowUp,undefined,"Shade","Meet Shade so she can have a word with you...");
+			if(flags["KQ2_SHADE_ENCOUNTERED"] == 1 && shadeIsLover()) addButton(1,"Shade",kq2ShadeFollowUp,undefined,"Shade","Meet Shade so she can have a word with you...");
 			else if(shadeQuestNeedsTurnIn()) addButton(1,"Shade",getPaidByShade4Kara,undefined,"Shade","Collect your portion of the pay from Shade.");
 			else addButton(1,"Shade",shadeApproach,undefined,"Shade","Go talk to Shade, the bounty hunter you met previously.");
 		}

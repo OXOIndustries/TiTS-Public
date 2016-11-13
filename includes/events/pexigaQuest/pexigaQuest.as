@@ -1276,7 +1276,13 @@ public function nymFoeInjection(target:Number = 0,amount:Number = 0):void
 	{
 		if(target == 1) pc.hipRatingMod += amount;
 		else if(target == 2) pc.buttRatingMod += amount;
-		else if(target == 3) pc.breastRows[0].breastRatingMod += amount;
+		else if(target == 3)
+		{
+			for(var i:int = 0; i < pc.breastRows.length; i++)
+			{
+				pc.breastRows[i].breastRatingMod += amount;
+			}
+		}
 		else 
 		{
 			//Softcap dat shit at 5.
@@ -1297,7 +1303,10 @@ public function nymFoeUninjection():void
 	{
 		pc.hipRatingMod -= pc.statusEffectv1("Nym-Foe Injections");
 		pc.buttRatingMod -= pc.statusEffectv2("Nym-Foe Injections");
-		pc.breastRows[0].breastRatingMod -= pc.statusEffectv3("Nym-Foe Injections");
+		for(var i:int = 0; i < pc.breastRows.length; i++)
+		{
+			pc.breastRows[i].breastRatingMod -= pc.statusEffectv3("Nym-Foe Injections");
+		}
 		pc.lipMod -= pc.statusEffectv4("Nym-Foe Injections");
 	}
 	pc.removeStatusEffect("Nym-Foe Injections");

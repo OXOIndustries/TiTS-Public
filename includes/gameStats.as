@@ -145,6 +145,7 @@ public function statisticsScreen(showID:String = "All"):void
 		else output2(" Universe-distorting");
 		if(lipsize > 9) output2(" (" + formatFloat(lipsize, 3) + ")");
 		if(pc.lipColor != "") output2(", " + StringUtil.toDisplayCase(pc.lipColor));
+		if(pc.lipMod != 0 && pc.statusEffectv4("Nym-Foe Injections") != 0) output2("\n<b>* Lips, Silicone Size Rating:</b> " + formatFloat(pc.statusEffectv4("Nym-Foe Injections"), 3));
 		if(pc.lipPierced != 0 || flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2)
 		{
 			output2("\n<b>* Lip Accent:</b>");
@@ -317,6 +318,7 @@ public function statisticsScreen(showID:String = "All"):void
 						output2("\n<b>* Breast, Size:</b> " + StringUtil.toTitleCase(pc.breastCup(x)));
 						if(pc.breastRows[x].breasts != 1) output2("s");
 						if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
+						if(pc.breastRows[x].breastRatingMod != 0 && pc.statusEffectv3("Nym-Foe Injections") != 0) output2("\n<b>* Breast, Silicone Size Rating:</b> " + formatFloat(pc.statusEffectv3("Nym-Foe Injections"), 3));
 						if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating:</b> " + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
 						if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating:</b> " + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
 						output2("\n<b>* Breast Row, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("breast", x)));
@@ -597,7 +599,9 @@ public function statisticsScreen(showID:String = "All"):void
 		// Ass
 		output2("\n<b><u>Ass</u></b>");
 		output2("\n<b>* Hip, Size Rating:</b> " + formatFloat(pc.hipRating(), 3));
+		if(pc.hipRatingMod != 0 && pc.statusEffectv1("Nym-Foe Injections") != 0) output2("\n<b>* Hip, Silicone Size Rating:</b> " + formatFloat(pc.statusEffectv1("Nym-Foe Injections"), 3));
 		output2("\n<b>* Butt, Size Rating:</b> " + formatFloat(pc.buttRating(), 3));
+		if(pc.buttRatingMod != 0 && pc.statusEffectv2("Nym-Foe Injections") != 0) output2("\n<b>* Butt, Silicone Size Rating:</b> " + formatFloat(pc.statusEffectv2("Nym-Foe Injections"), 3));
 		output2("\n<b>* Butt, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("butt")));
 		if(pc.weightQ("butt") > 0) output2(" (" + pc.weightQ("butt") + " %)");
 		output2("\n<b>* Anus:</b> 1,");
@@ -1881,7 +1885,8 @@ public function displayQuestLog(showID:String = "All"):void
 			// Dr. Badger's Job
 			if(flags["BADGER_QUEST"] != undefined)
 			{
-				if(flags["BADGER_QUEST"] >= 0 && flags["DR_BADGER_TURNED_IN"] == undefined) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
+				if(flags["PEXIGA_TREATMENT"] != undefined) output2("\n<b><u>Bimbo Quest</u></b>");
+				else if(flags["BADGER_QUEST"] >= 0 && flags["DR_BADGER_TURNED_IN"] == undefined) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
 				else output2("\n<b><u>Doctor Badger’s Big Mistake</u></b>");
 				// Bimbo Raygun
 				output2("\n<b>* Status:</b>");
@@ -1904,6 +1909,27 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				if(flags["BADGER_QUEST"] == 2) output2(" Zapped Penny, <i>Mission accomplished! Report to Dr. Badger!</i>");
 				else if(flags["BADGER_QUEST"] >= 3) output2(" Zapped Penny, Rewarded, Completed");
+				sideCount++;
+			}
+			// Pexiga Uplift, aka Bimbo Quest II: The Search For More Bimbos
+			if(flags["PEXIGA_TALKED"] != undefined)
+			{
+				if(flags["BADGER_QUEST"] != undefined && flags["PEXIGA_TREATMENT"] != undefined) output2("\n<b><u>Bimbo Quest II: The Search For More Bimbos</u></b>");
+				else output2("\n<b><u>Pexiga Uplift</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["PEXIGA_TREATMENT"] == undefined) output2(" Talked to Yammi about her pexiga");
+				else
+				{
+					switch(flags["PEXIGA_TREATMENT"])
+					{
+						case 0:
+							output2(" Talked to Yammi, Talked to Dr. Badger, <i>Do you bimbofy Yammi’s pexiga?</i>");
+							break;
+						default: output2(" <i>Unknown</i>"); break;
+					}
+				}
+				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
+				
 				sideCount++;
 			}
 			// Deck 13
@@ -2470,7 +2496,7 @@ public function displayQuestLog(showID:String = "All"):void
 			}
 		}
 		
-		if(showID == "Ausaril" || showID == "All")
+		if(showID == "Ausaril" || showID == "Other" || showID == "All")
 		{
 			// Puppyslutmas
 			if(flags["PUPPYSLUTMAS_2014"] != undefined)
@@ -2492,7 +2518,7 @@ public function displayQuestLog(showID:String = "All"):void
 			}
 		}
 		
-		if(showID == "Poe A" || showID == "All")
+		if(showID == "Poe A" || showID == "Other" || showID == "All")
 		{
 			// The Masque
 			if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)

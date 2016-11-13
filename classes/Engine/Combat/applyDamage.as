@@ -171,8 +171,8 @@ package classes.Engine.Combat
 		{
 			if(attacker is PlayerCharacter)
 			{
-				if(target.isPlural) output(" You gain vitality as your opponent's vigor is stolen.");
-				else output(" You gain vitality as your opponents' vigor is stolen.");
+				if(target.isPlural) output(" You gain vitality as your opponent’s vigor is stolen.");
+				else output(" You gain vitality as your opponents’ vigor is stolen.");
 			}
 			else output(" You feel weaker as your vitality is leeched away.");
 			attacker.HP(Math.round(damageResult.hpDamage * .5))
@@ -181,8 +181,8 @@ package classes.Engine.Combat
 		{
 			if(attacker is PlayerCharacter)
 			{
-				if(target.isPlural) output(" You gain vitality as your opponent's vigor is stolen.");
-				else output(" You gain vitality as your opponents' vigor is stolen.");
+				if(target.isPlural) output(" You gain vitality as your opponent’s vigor is stolen.");
+				else output(" You gain vitality as your opponents’ vigor is stolen.");
 			}
 			else output(" You feel weaker as your vitality is leeched away.");
 			attacker.HP(Math.round(damageResult.hpDamage * .9))
@@ -194,59 +194,56 @@ package classes.Engine.Combat
 		if (damageResult.shieldDamage <= 0 && damageResult.hpDamage <= 0 && damageResult.lustResisted == true)
 		{
 			// Any special resistance message overrides
-			if (special == "goovolver")
+			switch(special)
 			{
-				output("\n<b>[target.CombatName]");
-				if (target.isPlural) output(" don't");
-				else output(" doesn't");
-				output(" seem the least bit bothered by the miniature goo crawling over them.</b>");
-			}
-			else if (special == "slut ray")
-			{
-				output("\n<b>");
-				if (target is PlayerCharacter) output("You don’t");
-				else
-				{
-					output("[target.CombatName]");
-					if (target.isPlural) output(" don’t");
-					else output(" doesn’t");
-				}
-				output(" seem to be affected by the gun’s ray....</b>");
-			}
-			else
-			{
-				// Only if the incoming damage is pure-lust
-				if (damageResult.shieldDamage == 0 && damageResult.hpDamage == 0)
-				{
-					output("\n<b>[target.CombatName]");
-					if (target.isPlural) output(" don't");
-					else output(" doesn't");
-					output(" seem at all interested in your teasing.</b>");
-				}
+				case "goovolver":
+					output("\n<b>");
+					if (target is PlayerCharacter) output("You don’t");
+					else output("[target.CombatName]" + (target.isPlural ? " don’t" : " doesn’t"));
+					output(" seem the least bit bothered by the miniature goo crawling over them.</b>");
+					break;
+				case "slut ray":
+					output("\n<b>");
+					if (target is PlayerCharacter) output("You don’t");
+					else
+					{
+						output("[target.CombatName]" + (target.isPlural ? " don’t" : " doesn’t"));
+					}
+					output(" seem to be affected by the gun’s ray....</b>");
+					break;
+				default:
+					// Only if the incoming damage is pure-lust
+					if (damageResult.shieldDamage == 0 && damageResult.hpDamage == 0)
+					{
+						output("\n<b>");
+						if (target is PlayerCharacter) output("You don’t");
+						else output("[target.CombatName]" + (target.isPlural ? " don’t" : " doesn’t"));
+						output(" seem at all interested in " + (attacker is PlayerCharacter ? "your" : "[target.CombatName]’s") + " teasing.</b>");
+					}
+					break;
 			}
 		}
 		// Lust damage happened
 		else if (damageResult.shieldDamage <= 0 && damageResult.hpDamage <= 0 && damageResult.lustDamage > 0)
 		{
-			if (special == "goovolver")
+			switch(special)
 			{
-				output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over [target.combatHimHer], teasing [target.combatHisHer] most sensitive parts!");
-			}
-			else if (special == "slut ray")
-			{
-				var lewdAdjective:String = "";
-				if(damageResult.wasCrit == true || damageResult.lustDamage > 25) lewdAdjective += RandomInCollection("awfully", "excessively", "extremely", "highly", "immensely", "intensely", "overly", "unusually", "very") + " ";
-				lewdAdjective += RandomInCollection("alluring", "amorous", "carnal", "lewd", "obscene", "seductive", "sensual", "steamy", "suggestive");
-				
-				output("\n");
-				if(target is PlayerCharacter) output("Suddenly, your mind is filled with sexual fantasies, briefly obscuring your vision with " + lewdAdjective + " images!");
-				else if(target.isPlural) output("[target.CombatName] are mentally filled with sexual fantasies, briefly obscuring their vision with " + lewdAdjective + " images!");
-				else output("[target.CombatName] is mentally filled with sexual fantasies, briefly obscuring [target.combatHisHer] vision with " + lewdAdjective + " images!");
-				output(" " + CombatContainer.teaseReactions(damageResult.lustDamage, target));
-			}
-			else
-			{
-				// TODO: Maybe move tease reaction shit here???
+				case "goovolver":
+					output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over [target.combatHimHer], teasing [target.combatHisHer] most sensitive parts!");
+					break;
+				case "slut ray":
+					var lewdAdjective:String = "";
+					if(damageResult.wasCrit == true || damageResult.lustDamage > 25) lewdAdjective += RandomInCollection("awfully", "excessively", "extremely", "highly", "immensely", "intensely", "overly", "unusually", "very") + " ";
+					lewdAdjective += RandomInCollection("alluring", "amorous", "carnal", "lewd", "obscene", "seductive", "sensual", "steamy", "suggestive");
+					
+					output("\n");
+					if(target is PlayerCharacter) output("Suddenly, your mind is filled with sexual fantasies, briefly obscuring your vision with " + lewdAdjective + " images!");
+					else output("[target.CombatName] " + (target.isPlural ? "are" : "is") + " mentally filled with sexual fantasies, briefly obscuring [target.combatHisHer] vision with " + lewdAdjective + " images!");
+					output(" " + CombatContainer.teaseReactions(damageResult.lustDamage, target));
+					break;
+				default:
+					// TODO: Maybe move tease reaction shit here???
+					break;
 			}
 		}
 		

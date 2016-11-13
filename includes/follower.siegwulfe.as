@@ -428,7 +428,7 @@ public function doSiegwulfeAction(arg:Array):void
 			
 			// Reclaim Siegwulfe item.
 			if(!pc.hasAccessory()) pc.accessory = newAccessory;
-			else quickLoot(newAccessory);
+			else itemCollect([newAccessory]);
 			
 			flags["WULFE_ON_SHIP"] = undefined;
 			

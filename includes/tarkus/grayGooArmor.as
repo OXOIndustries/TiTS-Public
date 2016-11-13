@@ -278,7 +278,7 @@ public function grayGooArrivesAtShip():void
 			clearMenu();
 			var oldArmor:ItemSlotClass = pc.armor;
 			oldArmor.onRemove(pc);
-			quickLoot(oldArmor);
+			itemCollect([oldArmor]);
 			pc.armor = new GooArmor();
 		});
 	}
@@ -1406,7 +1406,7 @@ public function gooArmorCrewOption(arg:Array):void
 			
 			// Reclaim goo armor.
 			if(!pc.hasArmor()) pc.armor = newArmor;
-			else quickLoot(newArmor);
+			else itemCollect([newArmor]);
 			
 			flags["GOO_ARMOR_ON_SHIP"] = undefined;
 			
