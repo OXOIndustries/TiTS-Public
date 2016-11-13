@@ -226,6 +226,10 @@ public function thareManorMenu(done:Boolean = false):void
 	}
 	else
 	{
+		// Remove any temporary effects.
+		pc.removeStatusEffect("Thare Manor Bath");
+		pc.removeStatusEffect("Thare Manor Temp Value");
+		
 		addButton(0, "Next", move, "THARE FIELDS");
 	}
 }
