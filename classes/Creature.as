@@ -14864,8 +14864,8 @@
 				if (!isLactating()) noun += "jug";
 				else noun += "udder";
 			} else if (temp <= 8) {
-				if (breastRows[rowNum].breastRating() > 6) noun += "love-pillow";
-				else noun += "boob";
+				//Disabled due to "pillowy love-pillows" if (breastRows[rowNum].breastRating() > 6) noun += "love-pillow";
+				noun += "boob";
 			} else if (temp <= 9) {
 				if (breastRows[rowNum].breastRating() > 6) noun += "tit";
 				else noun += "breast";
@@ -14893,8 +14893,8 @@
 				if (!isLactating()) noun += "jugs";
 				else noun += "udders";
 			} else if (temp <= 8) {
-				if (breastRows[rowNum].breastRating() > 6) noun += "love-pillows";
-				else noun += "boobs";
+				//Disabled due to "pillowy love-pillows" if (breastRows[rowNum].breastRating() > 6) noun += "love-pillows";
+				noun += "boobs";
 			} else if (temp <= 9) {
 				if (breastRows[rowNum].breastRating() > 6) noun += "tits";
 				else noun += "breasts";
