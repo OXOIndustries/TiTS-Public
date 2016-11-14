@@ -97,6 +97,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/dryad.png", mimeType = "image/png")]
 		public var Bust_DRYAD:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/estallia.png", mimeType = "image/png")]
+		public var Bust_ESTALLIA:Class;
+		public var Bounds_ESTALLIA:Rectangle = new Rectangle(45, 3, 60, 60);
+		[Embed(source = "../../../assets/images/npcs/adjatha/estallia_nude.png", mimeType = "image/png")]
+		public var Bust_ESTALLIA_NUDE:Class;
+		public var Bounds_ESTALLIA_NUDE:Rectangle = new Rectangle(45, 3, 60, 60);
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/flahne_nude.png", mimeType = "image/png")]
@@ -120,6 +127,10 @@ package classes.Resources.Busts
 		public var Bust_GODI:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/godi_nude.png", mimeType = "image/png")]
 		public var Bust_GODI_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/gold_remnant_brute.png", mimeType = "image/png")]
+		public var Bust_GOLD_REMNANT_BRUTE:Class;
+		public var Bounds_GOLD_REMNANT_BRUTE:Rectangle = new Rectangle(35, 0, 75, 75);
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/gold_remnant_fighter.png", mimeType = "image/png")]
 		public var Bust_GOLD_REMNANT_FIGHTER:Class;
@@ -474,6 +485,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad.png", mimeType = "image/png")]
 			public var Full_DRYAD:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/estallia.png", mimeType = "image/png")]
+			public var Full_ESTALLIA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/estallia_nude.png", mimeType = "image/png")]
+			public var Full_ESTALLIA_NUDE:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/flahne.png", mimeType = "image/png")]
 			public var Full_FLAHNE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/flahne_nude.png", mimeType = "image/png")]
@@ -496,6 +512,9 @@ package classes.Resources.Busts
 			public var Full_GODI:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/godi_nude.png", mimeType = "image/png")]
 			public var Full_GODI_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_brute.png", mimeType = "image/png")]
+			public var Full_GOLD_REMNANT_BRUTE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_fighter.png", mimeType = "image/png")]
 			public var Full_GOLD_REMNANT_FIGHTER:Class;
