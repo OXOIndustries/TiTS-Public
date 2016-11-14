@@ -1439,6 +1439,7 @@ public function layFertilizedVenusPitcherEgg():void
 		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.");
 	}
 	
+	clearMenu();
 	if (InShipInterior())
 	{
 		output("\n\nSince you're on your ship, you might as well send it off to your daycare.");
@@ -1446,7 +1447,6 @@ public function layFertilizedVenusPitcherEgg():void
 		StatTracking.track("pregnancy/total day care");
 		addChildVenusPitcher();
 		
-		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
 	else
