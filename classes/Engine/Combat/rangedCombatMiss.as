@@ -1,6 +1,7 @@
 package classes.Engine.Combat 
 {
 	import classes.Creature;
+	import classes.Characters.Dollmaker;
 	import classes.Engine.Utility.rand;
 	import classes.GLOBAL;
 	/**
@@ -23,6 +24,11 @@ package classes.Engine.Combat
 		if(target.evasion() >= rand(100) + 1) 
 		{
 			trace("RANGED EVASION SUCCESS: " + target.evasion() + "%");
+			return true;
+		}
+		//Extra 50% miss chance for dollmakuh
+		if(target is Dollmaker && rand(4) <= 1)
+		{
 			return true;
 		}
 		//Take cover chance

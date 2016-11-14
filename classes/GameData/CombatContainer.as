@@ -461,7 +461,20 @@ package classes.GameData
 					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro") } ), null, target);
 				}
 			}
-			
+	
+			//{player takes 4-9 lust damage every turn, per stack of <i>“Vibe”</i> DoT}			
+			if (target.hasStatusEffect("Vibed"))
+			{
+				output("\n\n<b>The bio-magnetic vibes keep buzzing away! Their stimulation starts getting to you and before long you’re panting and having difficulty keeping your balance.</b>");
+				var amount:Number = 0;
+				//Add damage per stack.
+				for(var xx:int = 0; xx < target.statusEffectv1("Vibed"); xx++)
+				{
+					amount += 4 + rand(6);
+				}
+				applyDamage(new TypeCollection( { tease: amount } ), target, target);
+			}
+
 			//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
 			if(target.hasStatusEffect("Aphro Gas"))
 			{
@@ -3204,7 +3217,7 @@ package classes.GameData
 				{
 					for(var z:int = levelDiff; z > 0; z--)
 					{
-						damage *= 70;
+						damage *= 0.70;
 					}
 				}
 

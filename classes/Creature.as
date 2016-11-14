@@ -3609,6 +3609,7 @@
 
 			var bonus:int = 0;
 			bonus += statusEffectv1("Sera Spawn Reflex Mod");
+			bonus -= statusEffectv1("Latex Sprayed");
 
 			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
 
@@ -3647,7 +3648,10 @@
 				}
 			}
 			
-			var currAim:int = aimRaw + aimMod;
+			var bonus:Number = 0;
+			bonus -= statusEffectv1("Mindwashed");
+
+			var currAim:int = aimRaw + aimMod + bonus;
 			
 			if (hasStatusEffect("Staggered")) currAim *= 0.8;
 			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
@@ -3701,6 +3705,7 @@
 			}
 			var bonus:Number = 0;
 			if(hasStatusEffect("Adorahol")) bonus -= statusEffectv1("Adorahol");
+			bonus -= statusEffectv1("IQ B-Gone");			
 
 			var currInt:int = intelligenceRaw + intelligenceMod + bonus;
 			
@@ -3751,7 +3756,11 @@
 					willpowerRaw = willpowerMax();
 				}
 			}
-			var currWill:int = willpowerRaw + willpowerMod;
+
+			var bonus:Number = 0;
+			bonus -= statusEffectv1("Brainmelt Lamps");
+
+			var currWill:int = willpowerRaw + willpowerMod + bonus;
 
 			//Level 7 Merc Perk
 			if(hasPerk("Iron Will")) currWill += Math.floor(physique()/5);
@@ -4252,6 +4261,8 @@
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			//Nonspecific evasion boost status effect enemies can use.
 			temp += statusEffectv1("Evasion Boost");
+			//Now reduced by restraints - 25% per point
+			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);
 			
 			if (temp > 90) temp = 90;
 			if (temp < 1) temp = 1;
