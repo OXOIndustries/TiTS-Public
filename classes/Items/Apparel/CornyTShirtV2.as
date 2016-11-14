@@ -5,11 +5,11 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	
-	public class CornyTShirt extends ItemSlotClass
+	public class CornyTShirtV2 extends ItemSlotClass
 	{
-		private var variant:int = 0;
+		private var variant:int = 2;
 		
-		public function CornyTShirt()
+		public function CornyTShirtV2()
 		{
 			this._latestVersion = 1;
 
