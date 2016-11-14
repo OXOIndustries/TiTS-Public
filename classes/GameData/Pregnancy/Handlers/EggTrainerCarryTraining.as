@@ -6,6 +6,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.Creature;
 	import classes.Characters.PlayerCharacter;
 	import classes.PregnancyData;
+	import classes.StorageClass;
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
 	import classes.Engine.Interfaces.ParseText;
@@ -91,8 +92,21 @@ package classes.GameData.Pregnancy.Handlers
 		}
 		
 		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
-		{
+		{	
+			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			
+			// Call for stretch effects
+			kGAMECLASS.bonusEggTrainingLayEffects(pregSlot, pData.pregnancyQuantity, false);
+			
+			// Remove this pregnancy
 			EggTrainerCarryTraining.cleanupPregnancy(mother, pregSlot, this);
+			
+			// If this is the last pregnancy of this type, remove the lingering effect
+			if (!mother.hasPregnancyOfType("EggTrainerCarryTraining"))
+			{
+				mother.removeStatusEffect("Eggy Belly");
+			}
+			
 			return null;
 		}
 	}

@@ -15301,6 +15301,16 @@
 			return false;
 		}
 		
+		public function hasPregnancyOfTypeOtherThan(type:String):Boolean
+		{
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType != "" && (pregnancyData[i] as PregnancyData).pregnancyType != type) return true;
+			}
+			
+			return false;
+		}
+		
 		public function getPregnancyOfType(type:String):PregnancyData
 		{
 			for (var i:int = 0; i < pregnancyData.length; i++)

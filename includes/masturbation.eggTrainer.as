@@ -1,4 +1,5 @@
-﻿import classes.Items.Toys.EggTrainer;
+﻿import classes.Characters.PlayerCharacter;
+import classes.Items.Toys.EggTrainer;
 
 //TamaniCorp Egg Trainer
 //By Savin
@@ -611,13 +612,13 @@ public function finalEggTCleanup(pregEggs:int):void
 	mainGameMenu();
 }
 
-public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int):void
+public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int, doOut:Boolean = true):void
 {
 	var effect:Boolean = false;
 	//0: Random 6-12 eggs. Can't use Carry Training or Faux Preg Egg options.
 	//1: Random 10-25 eggs. Carry Training unlocked. 
-	if(pregSlot != 3) pc.cuntChange(pregSlot, 200);
-	else pc.buttChange(200);
+	if(pregSlot != 3) pc.cuntChange(pregSlot, 200, doOut);
+	else pc.buttChange(200, doOut);
 	//2: Random 20-40 eggs. Huge, permanent looseness and wetness bonus. 
 	//Raise minimum gape one step to 3.
 	if(flags["EGG_TRAINING"] >= 2 && pregEggs > 30)
@@ -627,7 +628,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int):void
 			if(pc.vaginas[pregSlot].bonusCapacity < 50)
 			{
 				pc.vaginas[pregSlot].bonusCapacity += 10;
-				output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -636,7 +637,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int):void
 			if(pc.ass.bonusCapacity < 50)
 			{
 				pc.ass.bonusCapacity += 10;
-				output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -650,7 +651,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int):void
 			if(pc.vaginas[pregSlot].bonusCapacity < 200)
 			{
 				pc.vaginas[pregSlot].bonusCapacity += 25;
-				output("\n\n<b>You're pretty sure you've gotten a good bit stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You're pretty sure you've gotten a good bit stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -659,7 +660,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int):void
 			if(pc.ass.bonusCapacity < 200)
 			{
 				pc.ass.bonusCapacity += 25;
-				output("\n\n<b>You're pretty sure you've gotten a good bit stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You're pretty sure you've gotten a good bit stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -672,7 +673,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int):void
 			if(pc.vaginas[pregSlot].bonusCapacity < 300)
 			{
 				pc.vaginas[pregSlot].bonusCapacity += 50;
-				output("\n\n<b>You're pretty sure you've gotten a lot stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You're pretty sure you've gotten a lot stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -681,7 +682,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int):void
 			if(pc.ass.bonusCapacity < 300)
 			{
 				pc.ass.bonusCapacity += 50;
-				output("\n\n<b>You're pretty sure you've gotten a lot stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You're pretty sure you've gotten a lot stretchier down there from the experience.");
 				effect = true;
 			}
 		}
