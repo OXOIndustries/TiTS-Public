@@ -772,7 +772,6 @@ public function renvraAlmostDue():void
 
 public function renvraBellyrubs():void
 {
-	var m:String = "";
 	if (flags["Renvra Full Pregnancy Bellyrub Supression"] == undefined) flags["Renvra Full Pregnancy Bellyrub Supression"] = 0;
 	
 	if (flags["Renvra Full Pregnancy Bellyrub Supression"] < days && rand(100) < 2)
