@@ -16,7 +16,7 @@ public function bimbotoriumHallBonus():Boolean
 		output("There’s a run-down shack in a quiet corner with a sign reading <i>“Doctor Badger’s Free Clinic”</i>, though the shack has been all but mummified in flickering holographic police tape.");
 		drBadgerShackPexigaQuestGo();
 	}
-	else output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There's still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
+	else output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There’s still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
 	outsideDrLashBonusBonus();
 	return false;
 }
@@ -33,8 +33,8 @@ public function drBadgerMenu():void
 	clearMenu();
 	addButton(0,"Buy",drBadgerBuyMenu,undefined,"Buy","Buy something from Doctor Badger.");
 	addButton(1,"Sell",sellItem,undefined,"Sell","Sell something to Doctor Badger.");
-	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you're a hero. After your first encounter with the Doctor, you're fairly sure this is going to result in some heavy brain-drain.");
-	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don't really like, remember what this was all about.");
+	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you’re a hero. After your first encounter with the Doctor, you’re fairly sure this is going to result in some heavy brain-drain.");
+	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don’t really like, remember what this was all about.");
 
 	if(flags["MET_DR_BADGER"] != undefined)
 	{
@@ -44,13 +44,13 @@ public function drBadgerMenu():void
 			//[mouse-over text for button is: [See just what this "job offer" is that the doctor has for you]
 			addButton(6,"Job",drBadgerJobOffer,undefined,"Job","See just what this “job offer” is that the doctor has for you.")
 		}
-		else if(flags["BADGER_QUEST"] == 1) addDisabledButton(6,"Job","Job","You've already accepted her “job offer.” Go find Penny!");
+		else if(flags["BADGER_QUEST"] == 1) addDisabledButton(6,"Job","Job","You’ve already accepted her “job offer.” Go find Penny!");
 		else if(flags["BADGER_QUEST"] == 2) addButton(6,"Reward",rewardFromDoctorBadger,undefined,"Reward","You did what you were asked, time to get rewarded!");
 		else if(flags["BADGER_QUEST"] == 3) addDisabledButton(6,"Job","Job","You already did her job.");
-		else addDisabledButton(6,"Job","Job","You've already accepted her “job offer”");
+		else addDisabledButton(6,"Job","Job","You’ve already accepted her “job offer”");
 	}
 	addButton(2,"Clinic",drBadgerCuntTailGo,undefined,"Clinic","Ask the doctor for medical treatment.");
-	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga's situation.");
+	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
 	addButton(14,"Leave",mainGameMenu);
 }
 public function drBadgerBuyMenu():void
@@ -94,8 +94,8 @@ public function drBadgerBonusShit():Boolean
 		output("\n\nShe shifts, and suddenly she’s got one hand around your throat, squeezing just hard enough to let you know that she could squeeze a <i>lot</i> harder if she wanted to. <i>“See, I operate... a little outside the law, and I wouldn’t want to run the risk of someone running off and telling the authorities. You’re not one of those... hero types, are you?”</i> she asks, staring you down intensely.");
 		//[Yes] [No]
 		clearMenu();
-		addButton(0,"Yes",yesImAHeroHurhurDurhurGurhurhurhurShit,undefined,"Yes","Tell the Doctor that you're a hero. This might be a bad idea.");
-		addButton(1,"No",noImNotAHeroYouFuckingBimboDoctor,undefined,"No","You're pretty sure telling her no would be the best way to keep your cerebellum intact.");
+		addButton(0,"Yes",yesImAHeroHurhurDurhurGurhurhurhurShit,undefined,"Yes","Tell the Doctor that you’re a hero. This might be a bad idea.");
+		addButton(1,"No",noImNotAHeroYouFuckingBimboDoctor,undefined,"No","You’re pretty sure telling her no would be the best way to keep your cerebellum intact.");
 		return true;
 	}
 	else
@@ -106,7 +106,7 @@ public function drBadgerBonusShit():Boolean
 			return false;
 		}
 		//Room desc
-		output("The inside of the <i>“good”</i> doctor's shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don't even want to hazard. She's every bit the mad scientist you'd expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.\n\n");
+		output("The inside of the “good” doctor’s shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don’t even want to hazard. She’s every bit the mad scientist you’d expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.\n\n");
 		//If the player visits Dr. Badger’s after starting the quest but leaving before getting their pexiga, the bimbotorium is empty:
 		if(flags["PEXIGA_TREATMENT"] == 0)
 		{
@@ -141,7 +141,7 @@ public function repeatBadgerApproach():void
 	//REPEAT GREETING NON-BIMBOIFIED BUT DITZ
 	else if(flags["DR_BADGER_BIMBOED_PC"] == undefined && pc.hasPerk("Ditz Speech"))
 	{
-		output("The Doctor looks up as you enter, her expression changes into a faint smile at your presence. <i>“Well well, if it isn’t my special customer!”</i> She pauses for a moment as you let out a bubbly giggle and a pink fog of lust clouds your mind. <i>“It seems you've gone to the right place - then again, all bimbos tend to end up here, don't they?”</i> She licks her lips and continues. <i>“So, did you come here to do some shopping? I’ve still got those little happy pills in stock if you want them, but I'm not sure if they will do much for your, ehm, condition...”</i>");
+		output("The Doctor looks up as you enter, her expression changes into a faint smile at your presence. <i>“Well well, if it isn’t my special customer!”</i> She pauses for a moment as you let out a bubbly giggle and a pink fog of lust clouds your mind. <i>“It seems you’ve gone to the right place - then again, all bimbos tend to end up here, don’t they?”</i> She licks her lips and continues. <i>“So, did you come here to do some shopping? I’ve still got those little happy pills in stock if you want them, but I’m not sure if they will do much for your, ehm, condition...”</i>");
 		applyDamage(new TypeCollection( { tease: 5 } ), null, pc, "minimal");
 	}
 	//REPEAT GREETING BIMBOIFIED
@@ -179,7 +179,7 @@ public function yesImAHeroHurhurDurhurGurhurhurhurShit():void
 	//[I’m a hero] [I’m just here to shop]
 	clearMenu();
 	addButton(0,"Hero",heyDocImAHero,undefined,"Hero","Yeah... this is probably going to result in a fight or rapid bimbofication; that much seems clear.");
-	addButton(1,"Shopper",heyDocImJustHereToShop,undefined,"Shopper","Telling her that you're just shopping around might be the best plan.");
+	addButton(1,"Shopper",heyDocImJustHereToShop,undefined,"Shopper","Telling her that you’re just shopping around might be the best plan.");
 }
 
 //NO
@@ -323,7 +323,7 @@ public function heyDocImAHero():void
 	if(pc.maxCum() < 500 && pc.balls > 0)
 	{
 		if(pc.balls > 1) output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your balls. Here it simply builds unstoppably, dragging a groan from you as you feel them swell in response. The fluid focuses on them mercilessly, pumping them so achingly full that they grow dramatically. They feel like they’re overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your balls are now very productive</b>!");
-		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it's overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
+		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it’s overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
 
 		if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
 		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
@@ -534,7 +534,7 @@ public function omgBreakFreeFromDat():void
 	else output("\n\nYou grit your teeth and push away from the door behind you, which fortunately manages to hold together despite the impressive force you put on it. Your sudden surge manages to catch Dr. Badger off-guard, and the two of you tumble forwards onto the floor, her hand losing its grip around your throat as you fall. You manage to roll to your feet faster than she does, and before she can ready herself again you’ve managed to get a hold of some comfortingly solid piece of machinery, holding it up like a club and fully ready to defend yourself.");
 	// Merged
 	output("\n\nYou’re expecting a fight, but instead Dr. Badger just laughs.");
-	if(pc.isNice()) output(" You don't understand why she would mock you in such a way, but seeing the serious look on");
+	if(pc.isNice()) output(" You don’t understand why she would mock you in such a way, but seeing the serious look on");
 	else if(pc.isMischievous()) output(" Alright, if she wants to dance, you’ll make her fucking dance... Though seeing the wry smirk on");
 	else output(" The contempt of it almost makes you want to attack her more, but seeing the anger in");
 	output(" your face she raises her hands in apology. <i>“No, no, don’t get me wrong. I’m just surprised. It’s been so long since anyone actually </i>challenged<i> me. The locals are fun to play with and all, but they have so little </i>fight<i> in them. It’s nice to meet someone I can have a little... back and forth with</i>.”");
@@ -542,7 +542,7 @@ public function omgBreakFreeFromDat():void
 	if(pc.isNice()) output(" carefully");
 	else output(" begrudgingly");
 	output(" lower your weapon a little too, although you still keep your eyes on her warily.");
-	output("\n\n<i>“If it’s all the same to you though”</i>, she continues, <i>“I would prefer if we don't get into an actual fight. I feel like we can respect each other, and I have so little equipment with me here, I’d hate for any of it to get broken.”</i>");
+	output("\n\n<i>“If it’s all the same to you though”</i>, she continues, <i>“I would prefer if we don’t get into an actual fight. I feel like we can respect each other, and I have so little equipment with me here, I’d hate for any of it to get broken.”</i>");
 	output("\n\nSomehow that last part seems almost like a threat, as though, as far as she’s concerned, the worst outcome of a fight between the two of you would be a few broken items.");
 	if(pc.isNice()) output(" With that said,");
 	else if(pc.isMischievous()) output(" You’re inclined to disagree, but that said,");
@@ -591,7 +591,7 @@ public function drBadgerCuntTailGo():void
 		processTime(4);
 		clearMenu();
 		addButton(0,"Remove It",removeDatCuntTail,undefined,"Remove It","Agree to be restrained for an ‘experimental treatment’ from Dr. Badger.");
-		addButton(1,"Don't",repeatBadgerApproach);
+		addButton(1,"Don’t",repeatBadgerApproach);
 	}
 	else
 	{
@@ -820,7 +820,7 @@ public function removeDatCuntTail():void
 	if(pc.ballSizeUnlocked(4) && pc.maxCum() < 500 && pc.balls > 0 && changes < 3 && rand(3) == 0)
 	{
 		if(pc.balls > 1) output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your balls. Here it simply builds unstoppably, dragging a groan from you as you feel them swell in response. The fluid focuses on them mercilessly, pumping them so achingly full that they grow dramatically. They feel like they’re overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your balls are now very productive</b>!");
-		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it's overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
+		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it’s overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
 
 		if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
 		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
