@@ -60,7 +60,7 @@
 			clearOutput();
 			if (target is PlayerCharacter) 
 			{
-				kGAMECLASS.useRedMyrVenom();
+				kGAMECLASS.useRedMyrVenom(this);
 				return true;
 			}
 			//Not player!

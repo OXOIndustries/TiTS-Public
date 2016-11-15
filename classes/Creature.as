@@ -2460,6 +2460,19 @@
 			}
 			return;
 		}
+		
+		public function destroyItemByReference(arg:ItemSlotClass):void
+		{
+			if (inventory.length == 0) return;
+			
+			arg.quantity--;
+			
+			if (arg.quantity <= 0)
+			{
+				inventory.splice(inventory.indexOf(arg), 1);
+			}
+		}
+		
 		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
 		{
 			if (inventory.length == 0 || amount == 0) return;

@@ -16,6 +16,7 @@ import classes.Items.Apparel.Smartclothes;
 import classes.Items.Apparel.TSTArmorMkII;
 import classes.Items.Apparel.UGCUniform;
 import classes.Items.Armor.GooArmor;
+import classes.Items.Drinks.RedMyrVenom;
 import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Guns.HoldOutPistol;
@@ -115,10 +116,10 @@ public function debugMenusTwo():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new LactaidMilkTank(), function():void {
-		output("\n\10x Milk Tank.\n");
-		var ieLMT:LactaidMilkTank = new LactaidMilkTank();
-		ieLMT.quantity = 10;
+	addItemButton(1, new RedMyrVenom(), function():void {
+		output("\n\10x Myr Venom.\n");
+		var ieLMT:RedMyrVenom = new RedMyrVenom();
+		ieLMT.quantity = 5;
 		quickLoot(ieLMT);
 	});
 	

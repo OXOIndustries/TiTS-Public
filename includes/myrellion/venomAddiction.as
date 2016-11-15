@@ -133,7 +133,7 @@ public function sexedMyrVenom():Boolean
 
 
 //Use Text (First Time, non addict):
-public function useRedMyrVenom():void
+public function useRedMyrVenom(targetItem:RedMyrVenom):void
 {
 	author("Savin");
 	if(flags["DRANK_MYR_VENOM"] == undefined)
@@ -148,12 +148,12 @@ public function useRedMyrVenom():void
 		output(" You could drink it, if you were feeling adventurous or need a quick sexual high.");
 		//[Drink It] [Put Away]
 		clearMenu();
-		addButton(0,"Drink It",drinkDatRedVenoShitYooooooo);
+		addButton(0,"Drink It",drinkDatRedVenoShitYooooooo, targetItem);
 		addButton(1,"Put Away",putRedMyrVenomAway);
 	}
 	else 
 	{
-		drinkDatRedVenoShitYooooooo();
+		drinkDatRedVenoShitYooooooo(targetItem);
 	}
 
 }
@@ -170,12 +170,15 @@ public function putRedMyrVenomAway():void
 }
 
 //[Drink It]
-public function drinkDatRedVenoShitYooooooo():void
+public function drinkDatRedVenoShitYooooooo(targetItem:RedMyrVenom):void
 {
 	clearOutput();
 	author("Savin");
 	showName("DOWN\nTHE HATCH");
-	if(!infiniteItems()) pc.destroyItem(new RedMyrVenom(),1);
+	if (!infiniteItems())
+	{
+		pc.destroyItemByReference(targetItem);
+	}
 	if(flags["DRANK_MYR_VENOM"] == undefined)
 	{
 		output("Curious about the effects of red myr venom");
