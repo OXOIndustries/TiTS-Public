@@ -14460,7 +14460,7 @@
 		}
 		public function nippleCuntDescript(appearance: Boolean = false): String {
 			var descript: String = "";
-			if (rand(10) <= 6 && !appearance) description += RandomInCollection(["penetrable", "fuckable", "pliable", "stretchy"]) + " ";
+			if (rand(10) <= 6 && !appearance) descript += RandomInCollection(["penetrable", "fuckable", "pliable", "stretchy"]) + " ";
 			descript += RandomInCollection(["cunt", "cunt"]) + "-nipple";
 			return descript;
 		}
