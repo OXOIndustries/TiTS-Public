@@ -45,7 +45,7 @@
 			this.capitalA = "The ";
 			this.scaleColor = "";
 			
-			this.long = "A spider-like cage of steel limbs blocks your path! This device seems to be a guard Doctor Badger set to keep intruders out of her secret lab. Dozens of armored arms spin in slow orbit around you, each one capped with strange implements, from syringes to padded cuffs, to swirling screens. Oddly, Badger gave the faceless thing quite a dirty mouth.";
+			this.long = "A spider-like cage of steel limbs blocks your path! This device seems to be a guard Doctor Badger set to keep intruders out of her secret lab. Dozens of armored arms spin in slow orbit around you, each one capped with strange implements, from syringes to padded cuffs, to swirling screens. Oddly, Badger gave the faceless thing quite a dirty mouth.\n\nIts nimble, spindly nature will make it difficult to hit with ranged weapons.";
 			
 			this.isPlural = false;
 			
@@ -72,7 +72,7 @@
 			this.level = 8;
 			this.XPRaw = bossXP();
 			this.credits = 0;
-			this.HPMod = 950;
+			this.HPMod = 550;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 100;
@@ -190,9 +190,10 @@
 			this.cockVirgin = false;*/
 			
 			createStatusEffect("Force Fem Gender");
+			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
-			btnTargetText = "Nym-Foe";
+			btnTargetText = "DollMkr";
 			
 			//rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
 			
@@ -211,9 +212,9 @@
 			//Up to 4x Silicone bags (harvested)
 			//Up to 10x Gush spraypens (harvested)
 			//1x Damaged AI Chip (harvested)
-			var lollipops:ItemSlotClass = new ClearYu();
-			lollipops.quantity = 5;
-			inventory.push(lollipops);
+			//var lollipops:ItemSlotClass = new ClearYu();
+			//lollipops.quantity = 5;
+			//inventory.push(lollipops);
 
 			/*
 			if (rand(40) == 0) inventory.push(new Kirkite());
@@ -352,7 +353,7 @@
 				//{Player takes 1 point of kinetic damage and gains one stack of the <i>“Vibe”</i> DoT, dealing lust damage every round}
 				var damage:TypeCollection = new TypeCollection( { kinetic: 1 } );
 				applyDamage(damage, this, target);
-				if(!target.hasStatusEffect("Vibed")) target.createStatusEffect("Vibed", 1, 0, 0, 0, false, "Icon_DizzyDrunk", "Tiny vibrators are stuck to you!\n\n<b>1 stack.</b>", true, 0);
+				if(!target.hasStatusEffect("Vibed")) target.createStatusEffect("Vibed", 1, 0, 0, 0, false, "Icon_RadioSignal", "Tiny vibrators are stuck to you!\n\n<b>1 stack.</b>", true, 0);
 				else 
 				{
 					target.addStatusValue("Vibed",1,1);
@@ -372,18 +373,19 @@
 			//Repeat
 			else output("<i>“All those brains are unbecoming. It’s more fun this way,”</i> the Doll Maker promises, its electric voice oily as another syringe full of IQ B-Gone weaves toward you!");
 			//Miss
-			if (combatMiss(this, target)) output("\n\nWith no time to dodge, you swing out with your [pc.weaponMelee] and catch the spindly limb on the side just before it reaches you. The delicate mechanism nearly shatters from the impact, but the Doll Maker manages to jerk it away from your follow up blow. <i>“Hey, watch where you’re swinging, Bargin Bitch!”</i>");
+			if (combatMiss(this, target)) output("\n\nWith no time to dodge, you swing out with your [pc.weaponMain] and catch the spindly limb on the side just before it reaches you. The delicate mechanism nearly shatters from the impact, but the Doll Maker manages to jerk it away from your follow up blow. <i>“Hey, watch where you’re swinging, Bargin Bitch!”</i>");
 			//Hit
 			else
 			{
 				output("\n\nThere’s a slight pinch as the needle goes in and you nearly jump as your flesh drinks in the wicked broth of Doctor Badger’s patented IQ B-Gone formula. In a second, the syringe is empty and you swat the injector arm away, but you can already feel it going to work. You try to think, but the sensations from your body are just far more important. It feels... ticklish. You giggle and try to assess the damage, but the tickling grows more intense and you start drooling with delight. Uh oh...");
 				//{player takes 2-5 points of temporary Intelligence damage}
-				if(!target.hasStatusEffect("IQ B-Gone")) target.createStatusEffect("IQ B-Gone", 5, 0, 0, 0, false, "Icon_DizzyDrunk", "It's like, harder to think and stuff! Hopefully it'll be tempor... temp... short!\n\n<b>-5 Intelligence.</b>", true, 0);
+				if(!target.hasStatusEffect("IQ B-Gone")) target.createStatusEffect("IQ B-Gone", 5, 0, 0, 0, false, "Icon_Lips_Lick", "It's like, harder to think and stuff! Hopefully it'll be tempor... temp... short!\n\n<b>-5 Intelligence.</b>", true, 0);
 				else 
 				{
 					target.addStatusValue("IQ B-Gone",1,5);
 					target.setStatusTooltip("IQ B-Gone","It's like, harder to think and stuff! Hopefully it'll be tempor... temp... short!\n\n<b>-" + target.statusEffectv1("IQ B-Gone") + " Intelligence.</b>");
 				}
+				target.intelligenceMod -= 5;
 			}
 		}
 		//Brainmelt Lamps
@@ -413,6 +415,7 @@
 					target.addStatusValue("Brainmelt Lamps",1,5);
 					target.setStatusTooltip("Brainmelt Lamps","It's hard to focus.\n\n<b>-" + target.statusEffectv1("Brainmelt Lamps") + " Willpower.</b>");
 				}
+				target.willpowerMod -= 5;
 			}
 		}
 		//Mindwash Visor
@@ -425,7 +428,7 @@
 				output("An arm comes down holding a pair of shallow, nipple-like plates about 8”</i> apart. A spark sizzles in the gap between them a pinkish holoscreen flickers into existence. <i>“Can you believe that I’ve got 9 Zetabytes of ultraporn, but no way of watching it, Ass Toy? On the plus side, after I put all that smut into your brain with the Mindwash visor, I’ll be able to enjoy you acting them out.”</i> The hardlight rushes toward your eyes, it’s ominous glow growing brighter as it approaches!");
 			}
 			//Repeat
-			else output("\n\nThe Mindwash visor swings around again for another go at erasing your past.");
+			else output("The Mindwash visor swings around again for another go at erasing your past.");
 
 			//Miss
 			if (combatMiss(this, target)) 
@@ -444,6 +447,7 @@
 					target.addStatusValue("Mindwashed",1,5);
 					target.setStatusTooltip("Mindwashed","You're dizzy from having so much smut stuffed into your brain!\n\n<b>-" + target.statusEffectv1("Mindwashed") + " Aim.</b>");
 				}
+				target.aimMod -= 5;
 				var damage:TypeCollection = new TypeCollection( { tease: 10 } );
 				applyDamage(damageRand(damage, 15), this, target);
 			}
@@ -471,12 +475,14 @@
 			{
 				output("\n\nYou try to avoid the fizzing hiss of aerosol latex, but it’s everywhere! Red paint sprays all over your [pc.gear] and [pc.skinFurScales], hardening almost as quickly as it touches you. Gooey layers of latex thicken, leaving your body rigid and your movements stiff. Somehow, the glossy rubber manages to transmit sensation directly into your nerves, leaving you far more sensitive with a heavy coating than if you’d been completely naked. <i>“That’s a good Doll,”</i> the machine coos and admittedly, you’re starting to look the part!");
 				//{player takes 2-5 points of temporary Reflex damage}
-				if(!target.hasStatusEffect("Latex Sprayed")) target.createStatusEffect("Latex Sprayed", 5, 0, 0, 0, false, "Icon_Perfume","You're dizzy from having so much smut stuffed into your brain!\n\n<b>-5 Reflexes.</b>", true, 0);
+				if(!target.hasStatusEffect("Latex Sprayed")) target.createStatusEffect("Latex Sprayed", 5, 0, 0, 0, false, "Icon_Perfume","You feel slower with all this latex on you!\n\n<b>-5 Reflexes.</b>", true, 0);
 				else 
 				{
 					target.addStatusValue("Latex Sprayed",1,5);
-					target.setStatusTooltip("Latex Sprayed","You're dizzy from having so much smut stuffed into your brain!\n\n<b>-" + target.statusEffectv1("Latex Sprayed") + " Reflexes.</b>");
+					target.setStatusTooltip("Latex Sprayed","You feel slower with all this latex on you!\n\n<b>-" + target.statusEffectv1("Latex Sprayed") + " Reflexes.</b>");
 				}
+				target.reflexesMod -= 5;
+
 				var damage:TypeCollection = new TypeCollection( { tease: 3 } );
 				applyDamage(damageRand(damage, 15), this, target);
 			}
@@ -506,6 +512,8 @@
 					target.addStatusValue("Bimboleum",1,5);
 					target.setStatusTooltip("Bimboleum","Your body is weird and squishy, the muscles too plush with pleasure to flex properly.\n\n<b>-" + target.statusEffectv1("Bimboleum") + " Physique.</b>");
 				}
+				target.physiqueMod -= 5;
+
 				var damage:TypeCollection = new TypeCollection( { tease: 4 } );
 				applyDamage(damageRand(damage, 15), this, target);
 			}

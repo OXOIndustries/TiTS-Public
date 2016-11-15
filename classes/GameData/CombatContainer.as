@@ -465,7 +465,7 @@ package classes.GameData
 			//{player takes 4-9 lust damage every turn, per stack of <i>“Vibe”</i> DoT}			
 			if (target.hasStatusEffect("Vibed"))
 			{
-				output("\n\n<b>The bio-magnetic vibes keep buzzing away! Their stimulation starts getting to you and before long you’re panting and having difficulty keeping your balance.</b>");
+				output("\n\n<b>The bio-magnetic vibes keep buzzing away! Their stimulation starts getting to you, and before long, you’re panting and having difficulty keeping your balance.</b>");
 				var amount:Number = 0;
 				//Add damage per stack.
 				for(var xx:int = 0; xx < target.statusEffectv1("Vibed"); xx++)
@@ -488,7 +488,7 @@ package classes.GameData
 				{
 					if (target is PlayerCharacter) output("\n\n<b>The cloud of aphrodisiac continues to excite your body!</b>");
 					else output("\n\n<b>The cloud of aphrodisiac continues to linger around " + target.getCombatName() + "!</b>");
-					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro Gas") } ), null, target);
+					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro Gas") } ), target, target);
 				}
 			}
 			
@@ -518,7 +518,7 @@ package classes.GameData
 						target.removeStatusEffect("Burn");
 					}
 				}
-				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, target);
+				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), target, target);
 			}
 				
 			if (target.hasStatusEffect("Bleeding"))

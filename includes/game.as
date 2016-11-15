@@ -551,6 +551,7 @@ public function crewRecruited(allcrew:Boolean = false):Number
 	if (bessIsFollower()) counter++;
 	if (yammiIsCrew()) counter++;
 	if (gooArmorIsCrew()) counter++;
+	if (pexigaIsCrew()) counter++;
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -643,6 +644,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += "\n\n" + yammiShipBonusText();
 			addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
+		}
+	}
+	if( pexigaIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += "\n\nThe bimbo pexiga girl seems perfectly content in her admittedly small quarters. Either from habit or her awkwardly over-endowed body, [pexiga.name] seems to prefer staying on all fours. When not tasting everything around her, she tends to follow Yammi around like a little lost puppy, helping out any way she can. Despite her innocent demeanor, you catch her giving you an occasional glance full of a hunger Yammi can’t satisfy.";
+			addButton((count + other) - 1, pexiga.short, approachPexigaCrew);
 		}
 	}
 	if (hasGooArmor() || gooArmorIsCrew())
@@ -1005,7 +1015,12 @@ public function shipMenu():Boolean {
 	{
 		return true;
 	}
-	
+	//Pexiga hook
+	if (yammiIsCrew() && pexigaIsCrew() && flags["PEX&YAM_MEETING"] == undefined)
+	{
+		approachPexigaCrewFirstTime();
+		return true;
+	}
 	// Goo Armor hook
 	if (flags["ANNO_NOVA_UPDATE"] == 2)
 	{
