@@ -27,6 +27,16 @@ public function landOnTarkus():void
 	}
 }
 
+public function westNovahomeBonus():Boolean
+{
+	if(flags["LASH_BOMB"] != undefined)
+	{
+		clearOutput();
+		output("The fore of Novahome is still smouldering from Dr. Lash’s explosion. The rusted walls and narrow passages are scorched and the lighting here flickers irregularly. It doesn’t seem like anyone was hurt in the blast, but the bomb almost certainly set the raskvel back on their plans to one day get this junker working again.");
+	}
+	return false;
+}
+
 public function firstTimeOnTarkusBonus():Boolean
 {
 	if(flags["BEEN_ON_TARKUS"] == undefined)
