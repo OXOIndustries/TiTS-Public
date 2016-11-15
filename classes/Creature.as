@@ -4333,6 +4333,13 @@
 		public function addTailFlag(arg:int): void {
 			if (!hasTailFlag(arg)) tailFlags[tailFlags.length] = arg;
 		}
+		public function removeTailFlag(arg:int):void
+		{
+			if (hasTailFlag(arg))
+			{
+				tailFlags.splice(tailFlags.indexOf(arg), 1);
+			}
+		}
 		public function clearTailFlags(): void {
 			tailFlags = new Array();
 		}
@@ -4345,6 +4352,13 @@
 		public function addArmFlag(arg:int): void {
 			if (!hasArmFlag(arg)) armFlags[armFlags.length] = arg;
 		}
+		public function removeArmFlag(arg:int):void
+		{
+			if (hasArmFlag(arg))
+			{
+				armFlags.splice(armFlags.indexOf(arg), 1);
+			}
+		}
 		public function clearArmFlags(): void {
 			armFlags = new Array();
 		}
@@ -4353,6 +4367,13 @@
 				if (legFlags[temp] == arg) return true;
 			}
 			return false;
+		}
+		public function removeLegFlag(arg:int):void
+		{
+			if (hasLegFlag(arg))
+			{
+				legFlags.splice(legFlags.indexOf(arg), 1);
+			}
 		}
 		public function addLegFlag(arg:int): void {
 			if (!hasLegFlag(arg)) legFlags[legFlags.length] = arg;
@@ -4374,6 +4395,13 @@
 				temp++;
 			}
 			return false;
+		}
+		public function removeTongueFlag(arg:int):void
+		{
+			if (hasTongueFlag(arg))
+			{
+				tongueFlags.splice(tongueFlags.indexOf(arg), 1);
+			}
 		}
 		public function clearTongueFlags():void
 		{
@@ -4448,7 +4476,7 @@
 				}
 				else if(lips <= 8)
 				{
-					if(rand(3) == 0) result += "'o' shaped";
+					if(rand(3) == 0) result += "‘o’ shaped";
 					else if(rand(2) == 0) result += "whorish";
 					else result += "permanently puckered";
 				}

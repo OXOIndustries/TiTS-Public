@@ -1925,10 +1925,44 @@ public function displayQuestLog(showID:String = "All"):void
 						case 0:
 							output2(" Talked to Yammi, Talked to Dr. Badger, <i>Do you bimbofy Yammi’s pexiga?</i>");
 							break;
+						case 1:
+							output2(" Talked to Yammi, Talked to Dr. Badger, Bimbofied Yammi’s pexiga, Completed");
+							break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 				}
 				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
+				if(flags["NYM-FOE"] >= 2) output2(", Defeated Her");
+				if(flags["NYM-FOE_FUCKED"] != undefined) output2("\n<b>* Nym-Foe, Times Sexed Her:</b> " + flags["NYM-FOE_FUCKED"]);
+				if(flags["NYM-FOE_LOSSES"] != undefined) output2("\n<b>* Nym-Foe, Times Lost to Her:</b> " + flags["NYM-FOE_LOSSES"]);
+				if(flags["NYM-FOE_CHIP_RETURN"] != undefined || pc.hasItem(new DamagedVIChip()))
+				{
+					output2("\n<b>* Damaged V.I. Chip:</b> Looted");
+					if(flags["NYM-FOE_CHIP_RETURN"] == undefined) output2(", In possession");
+					else output2(", Given to JoyCo, Rewarded");
+				}
+				if(flags["DOLLMAKER_STATUS"] != undefined)
+				{
+					output2("\n<b>* Doll Maker:</b>");
+					switch(flags["DOLLMAKER_STATUS"])
+					{
+						case -1: output2(" Fought it, Defeated it"); break;
+						case 1: output2(" Fought it, Lost to it, You’ve gotten dolled up"); break;
+						case 2: output2(" Met it, Non-hostile"); break;
+						case 3: output2(" Met it, You’ve volunteered to get dolled up"); break;
+						default: output2(" Seen it"); break;
+					}
+				}
+				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItem(new IQBGone()))
+				{
+					output2("\n<b>* IQ B-Gone:</b> Looted");
+					if(flags["IQBGONE_POLICED"] == undefined) output2(", In possession");
+					else
+					{
+						output2(", Given to U.G.C.");
+						if(flags["IQBGONE_POLICED"] >= 2) output2(", Rewarded");
+					}
+				}
 				
 				sideCount++;
 			}
