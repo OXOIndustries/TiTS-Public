@@ -92,6 +92,7 @@ public function approachDCLTrap():void
 		clearMenu();
 		addButton(0,"Freebies?",approachDCLBooty,undefined,"Free?","Ask Del a little bit more about the situation.");
 		addButton(2,"Get Drink",getADrinkFromDCLsButt,undefined,"Get Drink","Ask about purchasing a drink.");
+		if(peacekeeperTalkAvailable()) addButton(3,"Peacekeepers",dclPeacekeeperTalk);
 		addButton(14,"Leave",mainGameMenu);
 		return;
 	}
@@ -126,7 +127,7 @@ public function approachDCLTrap():void
 	else if(!pc.hasCuntTail()) addDisabledButton(4,"TailScrew","Tail Screw","You need a tail-pussy and either a cock that fits or a hardlight sextoy to enact this plan.");
 	else if(!(pc.hasCock() || pc.hasHardLightEquipped())) addDisabledButton(4,"TailScrew","Tail Screw","You need a tail-pussy and either a cock that fits or a hardlight sextoy to enact this plan.");
 	else addDisabledButton(4,"TailScrew","Tail Screw","You're not horny enough to fuck Del, and neither is your tail-pussy.");
-
+	if(peacekeeperTalkAvailable()) addButton(5,"Peacekeepers",dclPeacekeeperTalk);
 	addButton(14,"Leave",mainGameMenu);
 }
 
