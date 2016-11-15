@@ -238,7 +238,7 @@ package classes.Items.Transformatives
 					output(" — long, prehensile padded toes and short, but rather sharp avian claws.");
 					if (GelBody != null) output(" Feather-shaped shingles of goo");
 					else output(" A feathery fringe");
-					output(" covers them down to your");
+					output(" covers them down to your ");
 					if (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY)) output("ankles");
 					else output("knees");
 					output(", leaving your clawed feet bare. <b>You now have bird-like legs!</b>");
@@ -356,7 +356,7 @@ package classes.Items.Transformatives
 						return;
 					}
 					
-					output("\n\nYour vision grows dark for a moment, but before you can reach up to rub your eyes sight returns to normal. After some closer inspection you discover that your eyes have changed!");
+					output("\n\nYour vision grows dark for a moment, but before you can reach up to rub your eyes, your sight returns to normal. After some closer inspection you discover that your eyes have changed!");
 					target.eyeType = GLOBAL.TYPE_AVIAN;
 					if (!(InCollection(target.furColor, Foxfire.fireColorNormal, Foxfire.fireColorArctic) && InCollection(target.eyeColor, "blue", "luminous cerulean", "luminous azure", "luminous celeste")))
 						target.eyeColor = RandomInCollection("yellow", "yellow", "yellow", "yellow", "hazel", "hazel", "brown", "brown", "brown", "dark yellow", "pale yellow", "amber", "red", "black");
