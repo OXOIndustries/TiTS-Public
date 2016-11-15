@@ -1881,6 +1881,16 @@
 				case "milkyNipples":
 					buffer = nipplesDescript(arg2, true);
 					break;
+				case "nippleCuntDescript":
+				case "nippleCunt":
+				case "cuntNipple":
+					buffer = nippleCuntDescript();
+					break;
+				case "nippleCuntsDescript":
+				case "nippleCunts":
+				case "cuntNipples":
+					buffer = nippleCuntsDescript();
+					break;
 				case "nippleCockDescript":
 				case "nippleCock":
 				case "dickNipple":
@@ -1889,7 +1899,7 @@
 				case "nippleCocksDescript":
 				case "nippleCocks":
 				case "dickNipples":
-					buffer = plural(nippleCockDescript());
+					buffer = nippleCocksDescript();
 					break;
 				case "nippleColor":
 					buffer = nippleColor;
@@ -13029,7 +13039,7 @@
 				//Tail-cock specials
 				else if(special == "tail" && rand(2) == 0) desc += "tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
 				//Nipple-dick specials
-				else if(special == "dick" && rand(2) == 0) desc += RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else if(special == "nipple" && rand(2) == 0) desc += RandomInCollection(["dick","cock","prick"] + "-nipple");
 				else
 				{
 					switch(type)
@@ -13145,7 +13155,7 @@
 				}
 				//TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
 				else if(special == "tail" && rand(2) == 0) desc += cockShape2(cock,type) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
-				else if(special == "dick" && rand(2) == 0) desc += cockShape2(cock,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else if(special == "nipple" && rand(2) == 0) desc += cockShape2(cock,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
 				else
 				{
 					switch(type)
@@ -14447,6 +14457,15 @@
 			if (described) desc += " ";
 			desc += fluidNoun(girlCumType);
 			return desc;
+		}
+		public function nippleCuntDescript(appearance: Boolean = false): String {
+			var descript: String = "";
+			if (rand(10) <= 6 && !appearance) description += RandomInCollection(["penetrable", "fuckable", "pliable", "stretchy"]) + " ";
+			descript += RandomInCollection(["cunt", "cunt"]) + "-nipple";
+			return descript;
+		}
+		public function nippleCuntsDescript(appearance: Boolean = false): String {
+			return plural(nippleCuntDescript(appearance));
 		}
 		public function nippleCockDescript(appearance: Boolean = false): String {
 			var descript: String = "";
