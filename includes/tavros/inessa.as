@@ -1530,8 +1530,9 @@ public function newTexanGanguBangu():void
 	if(frontPussy)
 	{
 		output(" You gloriously gush [pc.girlCum] around the pulsing prick buried in your [pc.vagina " + x + "]");
-		if(pc.totalVaginas() > 2) output(", while your others emptily dribble, sharing in the excitement.");
-		if(pc.totalVaginas() == 2) output(", while your other emptily dribbles, sharing in the excitement.");
+		if(pc.totalVaginas() > 2) output(", while your others emptily dribble, sharing in the excitement");
+		if(pc.totalVaginas() == 2) output(", while your other emptily dribbles, sharing in the excitement");
+		output(".");
 	}
 	//pc.hasCock:
 	if(frontCock)
