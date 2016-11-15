@@ -692,6 +692,8 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	}
 	//Mission complete
 	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
+
+	if(pc.hasItem(new IQBGone())) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger's lab.");
 }
 public function friendPennyTalkMenu(func:Function = null):void
 {
@@ -1421,6 +1423,8 @@ public function pennyGirlfriendMenu():void
 	}
 	//Mission complete
 	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you've turned her into your big-breasted, bimbo badger fucktoy?");
+
+	if(pc.hasItem(new IQBGone())) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger's lab.");
 	this.addButton(14,"Back",mainGameMenu);
 }
 

@@ -3609,7 +3609,6 @@
 
 			var bonus:int = 0;
 			bonus += statusEffectv1("Sera Spawn Reflex Mod");
-			bonus -= statusEffectv1("Latex Sprayed");
 
 			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
 
@@ -3649,7 +3648,6 @@
 			}
 			
 			var bonus:Number = 0;
-			bonus -= statusEffectv1("Mindwashed");
 
 			var currAim:int = aimRaw + aimMod + bonus;
 			
@@ -3705,7 +3703,6 @@
 			}
 			var bonus:Number = 0;
 			if(hasStatusEffect("Adorahol")) bonus -= statusEffectv1("Adorahol");
-			bonus -= statusEffectv1("IQ B-Gone");			
 
 			var currInt:int = intelligenceRaw + intelligenceMod + bonus;
 			
@@ -3758,7 +3755,6 @@
 			}
 
 			var bonus:Number = 0;
-			bonus -= statusEffectv1("Brainmelt Lamps");
 
 			var currWill:int = willpowerRaw + willpowerMod + bonus;
 
@@ -6369,6 +6365,26 @@
 			{
 				armor.defense += statusEffectv1("Reduced Goo");
 				removeStatusEffect("Reduced Goo");
+			}
+			if (hasStatusEffect("IQ B-Gone"))
+			{
+				intelligenceMod += statusEffectv1("IQ B-Gone");
+			}
+			if (hasStatusEffect("Brainmelt Lamps"))
+			{
+				willpowerMod += statusEffectv1("Brainmelt Lamps");
+			}
+			if (hasStatusEffect("Mindwashed"))
+			{
+				aimMod += statusEffectv1("Mindwashed");
+			}
+			if (hasStatusEffect("Latex Sprayed"))
+			{
+				reflexesMod += statusEffectv1("Latex Sprayed");
+			}
+			if (hasStatusEffect("Bimboleum"))
+			{
+				physiqueMod += statusEffectv1("Bimboleum");
 			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
@@ -17210,6 +17226,13 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "IQBGoneTimer":
+						if(requiresRemoval)
+						{
+							kGAMECLASS.IQBeGoneCashOut();
+						}
+						break;
+
 					case "Kally Cummed Out":
 						if(requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
 						{

@@ -24,6 +24,11 @@ public function yammiIsCrew():Boolean
 {
 	return (flags["YAMMI_IS_CREW"] == 1);
 }
+
+public function yammiPlaceholderCapacity():Number
+{
+	return 500;
+}
 /* * BUST DISPLAY FUNCTION ACTUALLY IN yammi.as. ADDED FOR REFERENCE:
 public function yammiShopDisplay(nude:Boolean = false):void
 {
@@ -772,7 +777,7 @@ public function analWithYammiChoiceWrapper():void
 	var x:int = -1;
 	if(cock)
 	{
-		x = pc.cockThatFits(500);
+		x = pc.cockThatFits(yammiPlaceholderCapacity());
 		if(x < 0) x = pc.smallestCockIndex();
 	}
 	if(cock && strapon)
@@ -819,7 +824,7 @@ public function analWithYammibalLector(x:int = 0):void
 	else output("tender");
 	output(" hole. It’s easy to tell she’s gritting her teeth, trying not to cry out as you slowly sink yourself deeper and deeper inside her. You give her plenty of time to get used to your steady invasion, feeding her your dick nice and slow until you’ve ");
 	if(x < 0) output("bottomed out in Yammi, pressing your hips to her ass.");
-	else if(pc.cockVolume(x) <= 500) 
+	else if(pc.cockVolume(x) <= yammiPlaceholderCapacity()) 
 	{
 		output("bottomed out in Yammi, pressing your hips to her ass");
 		if(pc.balls > 1) output(" and your balls are slapping wetly against her soaked twat");
@@ -931,7 +936,7 @@ public function vaginalWithYammiChoiceWrapper():void
 	var x:int = -1;
 	if(cock)
 	{
-		x = pc.cockThatFits(500);
+		x = pc.cockThatFits(yammiPlaceholderCapacity());
 		if(x < 0) x = pc.smallestCockIndex();
 	}
 	if(cock && strapon)
