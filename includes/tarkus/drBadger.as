@@ -110,9 +110,16 @@ public function drBadgerBonusShit():Boolean
 		//If the player visits Dr. Badger’s after starting the quest but leaving before getting their pexiga, the bimbotorium is empty:
 		if(flags["PEXIGA_TREATMENT"] == 0)
 		{
-			output("Dr. Badger is nowhere to be seen. Maybe she’s working on that pexiga treatment? Should you see what she’s come up with or leave it be?\n\n");
-			//[Get Pexiga][Just Leave]
-			addButton(0,"Bring Pexiga",bringBadgerPexibork);
+			if(flags["NYM-FOE"] == undefined)
+			{
+				output("Dr. Badger is nowhere to be seen. Maybe she’s working on that pexiga treatment? Should you see what she’s come up with or leave it be?\n\n");
+				//[Get Pexiga][Just Leave]
+				addButton(0,"Bring Pexiga",bringBadgerPexibork);
+			}
+			else
+			{
+				nymfoeSetup();
+			}
 		}
 		else addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
 	}

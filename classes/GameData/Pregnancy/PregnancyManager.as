@@ -173,7 +173,7 @@
 		}
 		
 		// We can get the actual duration once we know the slot
-		public static function getNextEndingSlot(tarCreature:Creature):int
+		public static function getNextEndingSlot(tarCreature:Creature, ignoreType:String = null):int
 		{
 			if (!tarCreature.isPregnant()) return -1;
 			
@@ -182,7 +182,7 @@
 			
 			for (var i:uint = 0; i < tarCreature.pregnancyData.length; i++)
 			{
-				if (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] != null)
+				if (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] != null && (ignoreType == null || tarCreature.pregnancyData[i].pregnancyType != ignoreType))
 				{
 					var cd:int = (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] as BasePregnancyHandler).getRemainingDuration(tarCreature, i);
 					if (cd < shortestDuration)

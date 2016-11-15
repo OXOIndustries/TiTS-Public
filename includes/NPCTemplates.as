@@ -112,6 +112,7 @@
 	prepChar(justUpdate, "KALLY", Kally);
 	prepChar(justUpdate, "DRLESSAU", DrLessau);
 	prepChar(justUpdate, "NYMFOE", NymFoe);
+	prepChar(justUpdate, "DOLLMAKER", Dollmaker);
 	prepChar(justUpdate, "PEXIGA", Pexiga);
 	
 	// Check all characters have version information set

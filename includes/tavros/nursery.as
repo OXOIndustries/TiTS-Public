@@ -207,7 +207,7 @@ public function nurseryStairs2F():Boolean
 
 public function nurseryPlayerApptFunc():Boolean
 {
-	if (flags["BRIGET_MET"] != undefined && pc.isPregnant()) addButton(0, "Maternity", nurseryMaternityWait, undefined, "Maternity Wait", "The nursery is set up to support you for the long term if need be. If adventuring across the galaxy while pregnant doesn't seem like the best idea, you can move into the nursery and allow the staff to take care of you until you're ready to pop.");
+	if (flags["BRIGET_MET"] != undefined && (pc as PlayerCharacter).hasPregnancyOfTypeOtherThan("EggTrainerFauxPreg")) addButton(0, "Maternity", nurseryMaternityWait, undefined, "Maternity Wait", "The nursery is set up to support you for the long term if need be. If adventuring across the galaxy while pregnant doesn't seem like the best idea, you can move into the nursery and allow the staff to take care of you until you're ready to pop.");
 	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
 	addButton(1, "Shower", showerOptions, 0); // 9999 this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
@@ -1191,7 +1191,7 @@ public function nurseryMaternityWait():void
 }
 public function nurseryMaternitySure(clearText:Boolean = true):void
 {
-	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc);
+	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc, "EggTrainerFauxPreg");
 	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
 	
 	if(clearText)
@@ -1271,7 +1271,7 @@ public function nurseryMaternityWaitTime(duration:int = 0):void
 	
 	processTime(duration);
 	
-	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc);
+	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc, "EggTrainerFauxPreg");
 	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
 	output("\n\nYou get up and are on your way" + (firstDuration <= 30 ? " -- extremely close to delivering at any moment!" : "."));
 	
@@ -1293,6 +1293,7 @@ public function nurseryMaternityWaitCustom(firstDuration:int = 0):void
 	addButton(0, "Next", nurseryMaternityWaitCustomOK, firstDuration);
 	addButton(14, "Back", nurseryMaternityMaybe, firstDuration);
 }
+
 public function nurseryMaternityWaitCustomOK(firstDuration:int = 0):void
 {
 	var limit:int = (firstDuration - 5);
@@ -1347,7 +1348,7 @@ public function nurseryMaternityWaitGo():void
 	}
 
 	output("\n\nYour first night in the nursery is more restful than you imagined it ever could be.");
-	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc);
+	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc, "EggTrainerFauxPreg");
 	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
 	if (firstDuration >= 2880)
 	{
@@ -1400,9 +1401,9 @@ public function nurseryMaternityWaitGo():void
 	do
 	{
 		bEndedSecondPreg = false;
-		if (pc.isPregnant())
+		if ((pc as PlayerCharacter).hasPregnancyOfTypeOtherThan("EggTrainerFauxPreg"))
 		{
-			var nextSlot:int = PregnancyManager.getNextEndingSlot(pc);
+			var nextSlot:int = PregnancyManager.getNextEndingSlot(pc, "EggTrainerFauxPreg");
 			var nextDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, nextSlot);
 
 			if (nextDuration - firstDuration <= 1440)
@@ -1449,7 +1450,7 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	if (lastBorn != null) output("\n\nShe smiles and glances down to the little bundle in her arms. <i>“Everything went perfectly, of course. You’re now mother to " + (lastBorn.Quantity == 1 ? ("a newborn " + GLOBAL.TYPE_NAMES[lastBorn.RaceType].toLowerCase()) : (num2Text(lastBorn.Quantity) + " newborn " + GLOBAL.TYPE_NAMES[lastBorn.RaceType].toLowerCase() + " babies")) + ". Congratulations, dear.”</i>");
 
 	var totalDays:int = Math.floor(finalDuration / 1440);
-	var totalHours:int = Math.round((finalDuration % 1440) / 24);
+	var totalHours:int = Math.round((finalDuration % 1440) / 60);
 	output("\n\nYou spend a few moments stretching and collecting yourself");
 	if (lastBorn != null) output(" - and fussing over your newborn offspring -");
 	output(" before glancing at the clock sitting on the desk. <b>You’ve spent");

@@ -71,7 +71,7 @@
 			this.level = 8;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 500;
+			this.HPMod = 400;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 100;
@@ -244,24 +244,13 @@
 			//GUSHing Teats
 			//{ignores shields, high accuracy, cannot be used unless Nym-Foe has at least 1 stack of <i>“Bouncy”</i>}
 			//v2 of Bouncy! disables if 1 (for sealed suits)
-			if(statusEffectv2("Bouncy!") == 0) attacks.push(gushingTreats);
+			if(statusEffectv2("Bouncy!") == 0 && statusEffectv1("Bouncy!") > 0) attacks.push(gushingTreats);
 			if(!hasStatusEffect("Sampled")) attacks.push(sampleTailAttack);
 			else attacks.push(injectionTail);
 			if(statusEffectv1("Gloved") == 0) attacks.push(anaestheticGloveAttack);
 			attacks.push(highspeedLollipops);
 
 			attacks[rand(attacks.length)](target);
-		}
-		public function bouncyProc(ranged:Boolean = false):void
-		{
-			//Enemy Status: Bouncy x5 ("Nym-Foe’s massive mammaries deflect kinetic damage!”</i>)
-			//Combat Attacks
-			//Bouncy Breasts
-			//(passive as long as she has at least 1 stack of <i>“Bouncy”</i>, 20% chance to activate per stack of <i>“Bouncy”</i> if player deals kinetic damage to Nym-Foe).
-			//Ranged:
-			if(ranged) output("As your [pc.rangedWeapon] barks out its payload at the swollen nursedroid, she simply giggles in delight. The jiggling, pillowy mountains of her inflated chest absorbs the shock of the attack. She bounces in place, clapping her hands in delight. <i>“Again! Again!”</i> she cheers. <b>It has no effect!</b>");
-			//Melee:
-			else output("\n\nYou close in, swinging your [pc.meleeWeapon], but Nym-Foe shifts to take the blow directly on her inflated tits. Like fluid-filled armor, they rob your attack of its force! Her body bounces and jiggles but is otherwise unharmed. She titters, her entire frame swaying with the rippling waves radiating through her breasts. <b>It has no effect!</b>");
 		}
 		//Sample Tail
 		public function sampleTailAttack(target:Creature):void
@@ -274,11 +263,11 @@
 				createStatusEffect("Tailed");
 			}
 			//Repeat
-			else output("\n\n<i>“I can draw a sample from anywhere, but if you would like, please present your posterior for optimal analysis.”</i> Her tail shoots forward, trying to nip you!");
+			else output("<i>“I can draw a sample from anywhere, but if you would like, please present your posterior for optimal analysis.”</i> Her tail shoots forward, trying to nip you!");
 			//Miss
 			if (combatMiss(this, target))
 			{
-				output("\n\nYou twist to avoid the probing tendril, knocking it away with your [pc.weaponMelee]. The droid reels her tail back in, blinking. <i>“If I don’t take a sample, I cannot prepare your customized treatment,”</i> she explains, a bit flustered.");
+				output("\n\nYou twist to avoid the probing tendril, knocking it away with your [pc.mainWeapon]. The droid reels her tail back in, blinking. <i>“If I don’t take a sample, I cannot prepare your customized treatment,”</i> she explains, a bit flustered.");
 			}
 			//Hit
 			else
@@ -352,14 +341,14 @@
 			//First Time
 			if(!hasStatusEffect("Gloved")) 
 			{
-				output("\n\n<i>“You seem anxious. Don’t worry, a lot of people are afraid of going to the doctor.”</i> The bimbo bot steeples her hands and nods encouragingly to you. <i>“Let me assure you, this will be completely - bzt! - mostly - bzt! - partially painless!.”</i> She produces a bottle filled with a clear liquid and upends it into one of her gloved hands, the soft, cottony fabric drinking it in eagerly.");
+				output("<i>“You seem anxious. Don’t worry, a lot of people are afraid of going to the doctor.”</i> The bimbo bot steeples her hands and nods encouragingly to you. <i>“Let me assure you, this will be completely - bzt! - mostly - bzt! - partially painless!.”</i> She produces a bottle filled with a clear liquid and upends it into one of her gloved hands, the soft, cottony fabric drinking it in eagerly.");
 				output("\n\n<i>“This should help relax you relax,”</i> she adds, advancing with her palm towards your face.");
 				createStatusEffect("Gloved");
 			}
 			//Repeat
 			else
 			{
-				output("\n\nNym-Foe splashes more scented chemicals onto her gloves with a slightly glitchy smile on her face. <i>“It’s your old friend, Ms. Anesthetic! Give her a kiss, won’t you?”</i> She lunges!");
+				output("Nym-Foe splashes more scented chemicals onto her gloves with a slightly glitchy smile on her face. <i>“It’s your old friend, Ms. Anesthetic! Give her a kiss, won’t you?”</i> She lunges!");
 			}
 			//Player is immune to gas attacks
 			if(target.hasAirtightSuit())
@@ -387,7 +376,7 @@
 				}
 				else 
 				{
-					output(" (-34 Energy)");
+					output(" (<b>-34 Energy</b>)");
 					target.energy(-34);
 				}
 			}
@@ -451,7 +440,10 @@
 				addStatusValue("Bouncy",2,1);
 			}
 			//Miss
-			else if (rangedCombatMiss(this, target)) output("\n\nThe nurse’s gushing bounty sprays toward you, but a quick dodge puts you behind a suitable barrier. The chemical lactation splashes against a piece of scrap metal, dribbling down the rusted iron harmlessly. Nym-Foe looks slightly flustered, though you’re not sure if it’s because you dodged her attack or because she’s less busty than she was before.");
+			else if (rangedCombatMiss(this, target)) 
+			{
+				output("\n\nThe nurse’s gushing bounty sprays toward you, but a quick dodge puts you behind a suitable barrier. The chemical lactation splashes against a piece of scrap metal, dribbling down the rusted iron harmlessly. Nym-Foe looks slightly flustered, though you’re not sure if it’s because you dodged her attack or because she’s less busty than she was before.");
+			}
 			else
 			{
 				if(!target.hasStatusEffect("GUSHed")) target.createStatusEffect("GUSHed", 0, 0, 0, 0, false, "Icon_Poison", "You're splattered in arousing drugs. Better not get hit by too many gushers, or you'll be this robot's simpering plaything.", true, 0);
@@ -460,6 +452,7 @@
 				if(target.statusEffectv1("GUSHed") == 0)
 				{
 					output("\n\nYou dodge, but the multitude of sex toys and half-broken garbage all over Doctor Badger’s floor trips you up. Nym-Foe’s spray catches you and you sputter as the fluid seeps into your [pc.skinFurScales], leaving your body feeling swollen and slightly numb. Pinpricks of sensation radiate through your [pc.chest], and you shudder as your body throbs under the building pressure.");
+					output("\n\n<b>At least she's less bouncy!</b>");
 					//{24 lust damage}
 					target.lust(24);
 				}
@@ -467,6 +460,7 @@
 				else if(target.statusEffectv1("GUSHed") == 1)
 				{
 					output("\n\nYour body is woozy and doesn’t seem to be responding to your brain very well anymore. Another spray of clear fluid drenches you and the numbness floods you once more. When it recedes, the sensation in your chest is as suffocating as if you were being pinned under a starship. You gasp and moan, trying your best to ignore the furnace of your [pc.chest].");
+					output("\n\n<b>At least she's less bouncy!</b>");
 					//{24 lust damage}
 					target.lust(24);
 				}
@@ -474,6 +468,7 @@
 				else if(target.statusEffectv1("GUSHed") == 2)
 				{
 					output("\n\nIt’s like you’re not even trying to get out of the way anymore. The android’s glistening bounty spurts from her pink nipples and hoses you down yet again. Your gut tells you something terrible is happening, but your brain can’t be bothered to investigate. You exult in the cold numbness and rejoice at the tingling warmth. It feels so good, tears start brimming in your eyes and it’s hard to keep your mouth closed, your [pc.tongue] hanging out as you pant like a bitch in heat.");
+					output("\n\n<b>At least she's less bouncy!</b>");
 					//{24 lust damage}
 					target.lust(24);
 				}
@@ -481,6 +476,7 @@
 				else if(target.statusEffectv1("GUSHed") == 3)
 				{
 					output("\n\nYou raise an arm weakly, as if your palm will hold back the gushing tide of the nursedroid’s twin geysers. A fresh coating of the translucent lactation leaves you barely standing. The temptation to drop to your knees is so strong that you’re fighting yourself nearly as much as the reprogramed android. Your body feels wound up tighter than a spring-loaded trap, every muscle and nerve twitching with pent-up need.");
+					output("\n\n<b>At least she's less bouncy!</b>");
 					//{24 lust damage}
 					target.lust(24);
 				}

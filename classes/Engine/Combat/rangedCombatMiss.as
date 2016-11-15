@@ -1,6 +1,7 @@
 package classes.Engine.Combat 
 {
 	import classes.Creature;
+	import classes.Characters.Dollmaker;
 	import classes.Engine.Utility.rand;
 	import classes.GLOBAL;
 	/**
@@ -14,6 +15,12 @@ package classes.Engine.Combat
 		//Immune!
 		if (target.hasPerk("Ranged Immune")) return true;
 		
+		//Extra 50% miss chance for dollmakuh
+		if(target is Dollmaker)
+		{
+			overrideAttack -= 50;
+		}
+
 		//Standard miss chance
 		if(rand(100) + attacker.aim()/5 + overrideAttack - target.reflexes()/3 < 10 * missModifier && !target.isImmobilized()) 
 		{
@@ -25,6 +32,7 @@ package classes.Engine.Combat
 			trace("RANGED EVASION SUCCESS: " + target.evasion() + "%");
 			return true;
 		}
+		
 		//Take cover chance
 		if(target.hasStatusEffect("Taking Cover") && rand(100) + 1 < 90) return true;
 		//10% miss chance for lucky breaks!

@@ -349,7 +349,7 @@ public function jeromePeggingIIIBiped():void
 
 	output("\n\nA needy throb in your hand, in combination with an excitedly little wiggle of his hips betrays his intentions before he manages to utter the words. You give your hips a restrainted thrust, just barely threatening to squeeze your");
 	if (cIdx == -1) output(" holodong");
-	output(" [pc.cockHead "+cIdx+"]");
+	else output(" [pc.cockHead "+cIdx+"]");
 	if (silly) output(" right where it belongs.");
 	else output(" into the bear’s pliant hole.");
 

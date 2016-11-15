@@ -132,6 +132,7 @@
 		//Sidequest shit
 		include "../includes/events/seraSexParty.as";
 		include "../includes/events/pexigaQuest/pexigaQuest.as";
+		include "../includes/events/pexigaQuest/follower.pexiga.as";
 
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";
@@ -438,7 +439,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.94";
+			version = "0.6.95";
 
 			//temporary nonsense variables.
 			temp = 0;

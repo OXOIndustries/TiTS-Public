@@ -3647,7 +3647,9 @@
 				}
 			}
 			
-			var currAim:int = aimRaw + aimMod;
+			var bonus:Number = 0;
+
+			var currAim:int = aimRaw + aimMod + bonus;
 			
 			if (hasStatusEffect("Staggered")) currAim *= 0.8;
 			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
@@ -3751,7 +3753,10 @@
 					willpowerRaw = willpowerMax();
 				}
 			}
-			var currWill:int = willpowerRaw + willpowerMod;
+
+			var bonus:Number = 0;
+
+			var currWill:int = willpowerRaw + willpowerMod + bonus;
 
 			//Level 7 Merc Perk
 			if(hasPerk("Iron Will")) currWill += Math.floor(physique()/5);
@@ -4252,6 +4257,8 @@
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			//Nonspecific evasion boost status effect enemies can use.
 			temp += statusEffectv1("Evasion Boost");
+			//Now reduced by restraints - 25% per point
+			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);
 			
 			if (temp > 90) temp = 90;
 			if (temp < 1) temp = 1;
@@ -6358,6 +6365,26 @@
 			{
 				armor.defense += statusEffectv1("Reduced Goo");
 				removeStatusEffect("Reduced Goo");
+			}
+			if (hasStatusEffect("IQ B-Gone"))
+			{
+				intelligenceMod += statusEffectv1("IQ B-Gone");
+			}
+			if (hasStatusEffect("Brainmelt Lamps"))
+			{
+				willpowerMod += statusEffectv1("Brainmelt Lamps");
+			}
+			if (hasStatusEffect("Mindwashed"))
+			{
+				aimMod += statusEffectv1("Mindwashed");
+			}
+			if (hasStatusEffect("Latex Sprayed"))
+			{
+				reflexesMod += statusEffectv1("Latex Sprayed");
+			}
+			if (hasStatusEffect("Bimboleum"))
+			{
+				physiqueMod += statusEffectv1("Bimboleum");
 			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
@@ -15290,6 +15317,16 @@
 			return false;
 		}
 		
+		public function hasPregnancyOfTypeOtherThan(type:String):Boolean
+		{
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType != "" && (pregnancyData[i] as PregnancyData).pregnancyType != type) return true;
+			}
+			
+			return false;
+		}
+		
 		public function getPregnancyOfType(type:String):PregnancyData
 		{
 			for (var i:int = 0; i < pregnancyData.length; i++)
@@ -17189,6 +17226,13 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "IQBGoneTimer":
+						if(requiresRemoval)
+						{
+							kGAMECLASS.IQBeGoneCashOut();
+						}
+						break;
+
 					case "Kally Cummed Out":
 						if(requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
 						{
