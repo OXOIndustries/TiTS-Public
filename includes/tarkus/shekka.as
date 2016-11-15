@@ -130,6 +130,7 @@ public function shekkaMainMenu():void
 	else addDisabledButton(7,"Fix Emit.","Fix Emit.","Your shield emitters are totally undamaged. Don't worry about it.");
 	if(pcHasJunkPrize() && flags["SHEKKA_SCRAP_DISABLED"] == undefined) addButton(8,"Sell Prize",shekkaGetsSoldRaskShitz,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
 	else addDisabledButton(8,"Sell Prize","Sell Prize","You haven't found any special salvage to sell.");
+	if(peacekeeperTalkAvailable()) addButton(9,"Peacekeepers",shekkaPeacekeeperTalk);
 	addButton(14,"Back",mainGameMenu);
 }
 

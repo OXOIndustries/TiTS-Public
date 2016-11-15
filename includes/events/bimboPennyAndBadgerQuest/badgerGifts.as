@@ -1424,10 +1424,28 @@ public function postBadgerBimboSexSceneShit(orgasmDenialed:Boolean = false):void
 //[replace the Dr. Badger shack space description with the below]
 public function bimboBadgerShopStuff():void
 {
-	output("The inside of the <i>“good”</i> doctor’s shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don’t even want to hazard. Dr. Badger herself is still here, busy tinkering with the random piles of junk, although she’s now doing so with a much more confused and bubbly expression than she had before you treated her to a dose of her own medicine.");
-	output("\n\nDoctor Badger is still wearing the same ripped top she had on earlier, apparently not ever bothering to replace it, so her very large breasts are still just hanging out freely.");
-	
-	addButton(0,"Dr.Badger",approachDoctorBimboBadger,undefined,"Dr.Badger","Check in with the totally bimbofied badger.");
+	output("The inside of the <i>“good”</i> doctor’s shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don’t even want to hazard.");
+	//Special Pexigaquest shitz.
+	if(flags["PEXIGA_TREATMENT"] == 0)
+	{
+		if(flags["NYM-FOE"] == undefined)
+		{
+			output("\n\nDr. Badger is nowhere to be seen. Maybe she’s working on that pexiga treatment? Should you see what she’s come up with or leave it be?");
+			//[Get Pexiga][Just Leave]
+			addButton(0,"Bring Pexiga",getPexiga);
+		}
+		else
+		{
+			nymfoeSetup();
+		}
+	}
+	else
+	{
+		output(" Dr. Badger herself is still here, busy tinkering with the random piles of junk, although she’s now doing so with a much more confused and bubbly expression than she had before you treated her to a dose of her own medicine.");
+		output("\n\nDoctor Badger is still wearing the same ripped top she had on earlier, apparently not ever bothering to replace it, so her very large breasts are still just hanging out freely.");
+		
+		addButton(0,"Dr.Badger",approachDoctorBimboBadger,undefined,"Dr.Badger","Check in with the totally bimbofied badger.");
+	}
 }
 
 public function approachDoctorBimboBadger():void
@@ -1481,6 +1499,7 @@ public function approachDoctorBimboBadger():void
 	addButton(0,"Talk",talkToDoctorBadger,undefined,"Talk","Try to have a conversation with your newly minted bimbo.");
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
 	else addDisabledButton(1,"Sex","Sex","You aren't turned on enough to have sex right now.");
+	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga's situation.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

@@ -518,7 +518,7 @@ package classes.GameData
 						target.removeStatusEffect("Burn");
 					}
 				}
-				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), target, target);
+				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, target);
 			}
 				
 			if (target.hasStatusEffect("Bleeding"))

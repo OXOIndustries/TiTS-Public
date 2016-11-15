@@ -233,7 +233,7 @@ public function initTarkusRooms():void
 	rooms["214"] = new RoomClass(this);
 	rooms["214"].roomName = "WEST\nNOVAHOME";
 	rooms["214"].description = "West Novahome is located near the fore of the ship, where the power is weak and the lighting dim. You can see that the tunnel is narrower here than to the east as well. Even the western wall is in disrepair; it's covered in years of rust despite recent attempts to repair it. Even now, raskvel mechanics are toiling away alongside a nonfunctional hatch. Maybe someday they'll actually get this junker working again. The rest of Novahome stretches away to the east.";
-	rooms["214"].runOnEnter = undefined;
+	rooms["214"].runOnEnter = westNovahomeBonus;
 	rooms["214"].eastExit = "213";
 	rooms["214"].moveMinutes = 2;
 	rooms["214"].planet = "PLANET: TARKUS";
