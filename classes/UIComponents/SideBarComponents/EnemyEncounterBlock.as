@@ -114,7 +114,7 @@ package classes.UIComponents.SideBarComponents
 			
 			var genderText:String;
 			if (char.genderTextOverride() != "") genderText = char.genderTextOverride();
-			else if (char.hasStatusEffect("Force it Gender")) genderText = "???";
+			else if (char.hasStatusEffect("Force It Gender")) genderText = "???";
 			else if (char.hasStatusEffect("Force Fem Gender")) genderText = "Female";
 			else if (char.hasStatusEffect("Force Male Gender")) genderText = "Male";
 			else if (char.hasStatusEffect("Force Herm Gender")) genderText = "Herm";

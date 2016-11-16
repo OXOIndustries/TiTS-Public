@@ -13,8 +13,7 @@
 		//constructor
 		public function BrokenBrainmeltLamp()
 		{
-			this._latestVersion = 2;
-			//this.hasRandomProperties = true;
+			this._latestVersion = 1;
 			
 			this.quantity = 1;
 			this.stackSize = 10;
@@ -65,13 +64,6 @@
 				kGAMECLASS.output(target.capitalA + target.short + " cannot use this.");
 			}
 			return true;
-		}
-		public function UpgradeVersion1(d:Object):void
-		{
-			delete d.bonusResistances;
-			delete d.bonusLustVuln;
-			delete d.damage;
-			delete d.damageType;
 		}
 	}
 }

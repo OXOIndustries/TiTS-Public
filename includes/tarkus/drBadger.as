@@ -58,9 +58,14 @@ public function drBadgerBuyMenu():void
 	// Shop unlocks
 	if(flags["BADGER_QUEST"] >= 3)
 	{
+		if(!chars["DRBADGER"].hasItemByType(SlutRayAdvanced)) chars["DRBADGER"].inventory.push(new SlutRayAdvanced());
 		if(!chars["DRBADGER"].hasItemByType(Throbb)) chars["DRBADGER"].inventory.push(new Throbb());
 	}
-	else chars["DRBADGER"].destroyItem(new Throbb());
+	else
+	{
+		chars["DRBADGER"].destroyItem(new SlutRayAdvanced());
+		chars["DRBADGER"].destroyItem(new Throbb());
+	}
 	if(canBuySiegwulfe(true))
 	{
 		if(!chars["DRBADGER"].hasItemByType(SiegwulfeItem)) chars["DRBADGER"].inventory.push(new SiegwulfeItem());
