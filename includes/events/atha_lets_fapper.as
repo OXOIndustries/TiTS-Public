@@ -256,7 +256,7 @@ public function letsFapSelectionMenu():void
 		if(letsFapTrack() >= 1 && flags["LETS_FAP_LATEST"] != letsFapAusar) addButton(5,"Ausar",letsFapAusar,undefined,"Ausar","Watch Atha try out an ausar member.");
 		if(letsFapTrack() >= 2 && flags["LETS_FAP_LATEST"] != letsFapLaquine) addButton(6,"Laquine",letsFapLaquine,undefined,"Laquine","Watch Atha try out a laquine member.");
 		if(letsFapTrack() >= 3 && flags["LETS_FAP_LATEST"] != letsFapKuiTan) addButton(7,"Kui-Tan",letsFapKuiTan,undefined,"Kui-Tan","Watch Atha try out a kui-tan member.");
-		if(letsFapTrack() >= 4 && flags["LETS_FAP_LATEST"] != letsFapUnboxing) addButton(8,"Unboxing",letsFapUnboxing,undefined,"Unboxing","Watch Atha unboxing a toy.");
+		if(letsFapTrack() >= 4 && flags["LETS_FAP_LATEST"] != letsFapUnboxing) addButton(8,"Unboxing",letsFapUnboxing,undefined,"Unboxing","Watch Atha try out unboxing a toy.");
 		if(letsFapTrack() >= 5 && flags["LETS_FAP_LATEST"] != letsFapOvir) addButton(9,"Ovir",letsFapOvir,undefined,"Ovir","Watch Atha try out an ovir member.");
 		if(letsFapTrack() >= 6 && flags["LETS_FAP_LATEST"] != letsFapRahnScene) addButton(10,"Rahn",letsFapRahnScene,undefined,"Rahn","Watch Atha try out a rahn member.");
 		if(letsFapTrack() >= 7 && flags["LETS_FAP_LATEST"] != letsFapCockTail) addButton(11,"Cockvine",letsFapRahnScene,undefined,"Cockvine","Watch Atha try out a cockvine tail.");
