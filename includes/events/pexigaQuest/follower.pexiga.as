@@ -624,8 +624,8 @@ public function getYammiHelpMilkingPexiga():void
 		processTime(20);
 		pc.lust(10);
 	}
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	
+	milkedPexigaCollect(true);
 }
 
 //[Solo]
@@ -645,8 +645,27 @@ public function milkPexigaHandSolo():void
 	output("\n\nAnother job well done. Though, if [pexiga.name] likes your taste so much, you’ll have to be sure to keep away from feral pexigas.");
 	processTime(22);
 	pc.lust(5);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	
+	milkedPexigaCollect(false);
+}
+
+public function milkedPexigaCollect(withYammi:Boolean = false):void
+{
+	if(pc.hasItem(new PexigaSaliva()) || pc.hasItemInStorage(new PexigaSaliva()))
+	{
+		output("\n\nNot letting the sweets go to waste, you bottle up some of the excess saliva and stick it in your pack.\n\n");
+		quickLoot(new PexigaSaliva());
+		if(!withYammi) eventQueue.push(pexigaMenu);
+	}
+	else if(!withYammi)
+	{
+		pexigaMenu();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 //[Pet]

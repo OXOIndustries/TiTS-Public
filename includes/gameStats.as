@@ -3410,17 +3410,22 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["SEXED_YAMMI"] != undefined) output2("\n<b>* Yammi, Times Sexed:</b> " + flags["SEXED_YAMMI"]);
 				if(flags["ANALED_YAMMI"] != undefined) output2("\n<b>* Yammi, Times Fucked Her Ass:</b> " + flags["ANALED_YAMMI"]);
 				// Pexiga
-				if(flags["PEX&YAM_MEETING"] != undefined)
+				if(flags["YAMMI_HELPED"] >= 2)
 				{
-					output2("\n<b>* [pexiga.name]:</b> Met her");
+					var pexigaName:String = (pexigaRecruited() ? "[pexiga.name]" : "Yammi’s Pexiga");
+					output2("\n<b>* " + pexigaName + ":</b> Met her");
 					if(pexigaRecruited())
 					{
 						output2(", Crew member");
-						if(pexigaIsCrew()) output2(" (Onboard Ship)");
+						if(flags["PEX&YAM_MEETING"] == undefined) output2(" (Following you)");
+						else if(pexigaIsCrew()) output2(" (Onboard Ship)");
 					}
-					if(flags["YAMMI_PEX_MILK"] != undefined) output2("\n<b>* [pexiga.name], Times Milked Her with Yammi:</b> " + flags["YAMMI_PEX_MILK"]);
-					if(flags["PEX_SOLOMILK"] != undefined) output2("\n<b>* [pexiga.name], Times Milked Her Solo:</b> " + flags["PEX_SOLOMILK"]);
-					if(flags["PEXIGA_BUBBLE"] != undefined) output2("\n<b>* [pexiga.name], Time Made Cum-Bubbles for Her:</b> " + flags["PEXIGA_BUBBLE"]);
+					if(flags["YAMMI_PEX_MILK"] != undefined) output2("\n<b>* " + pexigaName + ", Times Milked Her with Yammi:</b> " + flags["YAMMI_PEX_MILK"]);
+					var pexigaMilked:int = 0;
+					if(flags["PEX_MILKED"] != undefined) pexigaMilked += flags["PEX_MILKED"];
+					if(flags["PEX_SOLOMILK"] != undefined) pexigaMilked += flags["PEX_SOLOMILK"];
+					if(pexigaMilked > 0) output2("\n<b>* " + pexigaName + ", Times Milked Her Solo:</b> " + pexigaMilked);
+					if(flags["PEXIGA_BUBBLE"] != undefined) output2("\n<b>* " + pexigaName + ", Time Made Cum-Bubbles for Her:</b> " + flags["PEXIGA_BUBBLE"]);
 				}
 				// Reaha special
 				if(flags["REAHA_ICE_CREAM_DAYS"] != undefined) output2("\n<b>* Reaha, Days Since Last Had Ice Cream With:</b> " + (days - flags["REAHA_ICE_CREAM_DAYS"]));

@@ -232,7 +232,11 @@ public function yammiFollowerMenu():void
 	//Help Yammi
 	addButton(1,"Help Out",offerToHelpYammi,undefined,"Help Out","Offer to help Yammi out around in the kitchen.");
 	//Pexiga
-	if(flags["YAMMI_HELPED"] == 2) addButton(1,"Pexiga",pexigaVisit,undefined,"Pexiga","Visit Yammi’s pet pexiga.");
+	if(pexigaRecruited())
+	{
+		if(pexigaIsCrew()) addButton(1, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
+	}
+	else if(flags["YAMMI_HELPED"] >= 2) addButton(1,"Pexiga",pexigaVisit,undefined,"Pexiga","Visit Yammi’s pet pexiga.");
 	//[Food] (ie, Yammi’s Menu)
 	addButton(2,"Food",yammisMenu,undefined,"Food","Get something to eat.");
 	//FLIRTZ
@@ -248,7 +252,7 @@ public function yammiFollowerMenu():void
 
 public function yammiTalkRouter():void
 {
-	if(flags["YAMMI_HELPED"] == 2 && flags["PEXIGA_TALKED"] == undefined)
+	if(flags["YAMMI_HELPED"] >= 2 && flags["PEXIGA_TALKED"] == undefined)
 	{
 		clearOutput();
 		showYammi();
@@ -333,7 +337,7 @@ public function flirtWithYummiYammiYummiButts():void
 	clearOutput();
 	yammiFollowerDisplay();
 	output("Putting on your best Steele smile, you lean against the counter and tell your lovely cook that she’s just as sweet as ");
-	if(flags["YAMMI_HELPED"] == 2) output("her pexiga’s saliva");
+	if(flags["YAMMI_HELPED"] >= 2) output("her pexiga’s saliva");
 	else output("any of the treats she makes");
 	output(". Yammi giggles and rolls her eyes. <i>“Uh, thanks? I bet you tell that to all the sparadat chefs.”</i>");
 
@@ -420,6 +424,7 @@ public function pexigaVisit():void
 
 	output("You tell Yammi to keep on cooking; you’re just going to wander around the kitchen. She flashes you a bright smile and goes back to the dish she’s working on at the moment, and once she’s nice and distracted, you make your way into the pantry she keeps the pexiga in.");
 	output("\n\nThe reptilian alien is still sitting on her knees in the pantry, leaning over her doggy dish with her mouth around a ring gag. Her spaded tail swishes gently behind her raised, meaty rump; spiny hair falls down around her shoulders in messy lockes. The creature glances up at you with disinterest, slowly returning her attention to the deck.");
+	
 	//if fucked before:
 	if(9999 == 0) output(" Still, you notice her big ol’ tail raise up a little over her back, leaving her blue-green sex completely exposed.");
 	processTime(2);
@@ -439,6 +444,8 @@ public function milkSalivaFromPexiga():void
 	showName("\nA PEXIGA");
 	showBust("PEXIGA");
 	author("Lady Jenn");
+	
+	IncrementFlag("PEX_MILKED");
 	
 	output("Remembering Yammi’s lesson, you decide to get some of the pexiga’s sweet saliva for yourself. You slip down to the reptile-girl’s level, brushing some of her spine-hair out of her eyes. She blinks at you and murmurs, wiggling her pierced tongue slightly. Like she knows what’s coming.");
 	output("\n\nYou press on her tongue and massage your way up. It’s very warm despite the low temperature in the room, and soft as silk. The pexiga’s eyes roll upwards and she lets out faint gulping sounds as her reflexes tell her to swallow. Soon, a thick, clear gel starts to trickle down her tongue.");
