@@ -7,16 +7,24 @@ public function hasSmutOptions():Boolean
 }
 
 //Enter Ship > Masturbate > Smut
-public function smutFapMenu():void
+public function smutFapMenu(fromPrevious:Boolean = false):void
 {
 	clearOutput();
 	clearBust();
 	showName("\nSMUT");
-	output("Firing up your console with a few keystrokes, you settle back and ");
-	if(pc.isCrotchExposed()) output("absently rest your hand on your groin");
-	else output("free your crotch");
-	output(" for ease of access while tuning in. What will you watch?");
-
+	
+	if(!fromPrevious)
+	{
+		output("Firing up your console with a few keystrokes, you settle back and ");
+		if(pc.isCrotchExposed()) output("absently rest your hand on your groin");
+		else output("free your crotch");
+		output(" for ease of access while tuning in. What will you watch?");
+	}
+	else
+	{
+		output("Your console is still active. Do you want to watch anything in particular?");
+	}
+	
 	//{First time: Cock Review}
 	//{Repeat: New Let’s Fap}
 	//{If the player becomes a Champeon: Let’s Fap}
@@ -25,8 +33,8 @@ public function smutFapMenu():void
 	//{New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week}
 	//{Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?}
 	var possibleFuncs:Array = [];
-	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let's Fap", tb: "Atha's Let's Fap episodes", f: letsFapSelectionMenu, ar: undefined } );
-	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "On demand episodes of Steph Irson: Galactic Huntress", f: stephOnDemandMenu, ar: undefined } );
+	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let's Fap", tb: "Atha's Let's Fap episodes", f: letsFapSelectionMain, ar: undefined } );
+	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "On demand episodes of Steph Irson: Galactic Huntress", f: stephOnDemandVODs, ar: undefined } );
 	
 	clearMenu();
 	
@@ -38,6 +46,11 @@ public function smutFapMenu():void
 	
 	if(pc.lust() < 33) addButton(14, "Back", arousalMenu);
 	else addButton(14, "Back", masturbateMenu);
+}
+public function backToSmutMenu(toMainMenu:Boolean = false):void
+{
+	if(!toMainMenu) smutFapMenu(true);
+	else mainGameMenu();
 }
 
 
@@ -149,7 +162,7 @@ public function athasChampeonPage():void
 	else addDisabledButton(1,"Hydrant","Hydrant","You can't afford to donate at the hydrant level!");
 	if(pc.credits >= 2500) addButton(2,"Geyser",champeonAthaDonate,2500,"Geyser","Donate at the geyser level, allowing you to view old episodes, get early access to new ones, and view a live CumStreamer episode!");
 	else addDisabledButton(2,"Geyser","Geyser","You can't afford that donation tier!");
-	addButton(14,"Back",smutFapMenu);
+	addButton(14,"Back",backToSmutMenu);
 }
 
 //{if the player donates}
@@ -171,7 +184,7 @@ public function champeonAthaDonate(amount:int):void
 	pc.credits -= amount;
 	//[End]
 	clearMenu();
-	addButton(0,"Next",smutFapMenu);
+	addButton(0,"Next",backToSmutMenu);
 }
 
 //Confirmation Email//
@@ -196,6 +209,24 @@ public const LETS_FAP_EPISODES:Array =
 	letsFapCockTail
 ];
 
+public function letsFapSelectionMain():void
+{
+	clearOutput();
+	showBust("9999");
+	showName("");
+	
+	letsFapSelectionMenu();
+	
+	output("You bring up the Champeon site and log in. Above the main display, you access the rollout, find Atha’s channel tab and open it.");
+	output("\n\nAccording to her page, you are currently");
+	if(flags["CUMSTREAM_UNLOCKED"] != undefined) output(" a Geyser Tier");
+	else if(flags["EARLY_LETS_FAPS"] != undefined) output(" a Hydrant Tier");
+	else if(flags["LETS_FAP_ARCHIVES"] != undefined) output(" a Faucet Tier");
+	else output(" not a");
+	output(" donor.");
+	
+	output("\n\nMaybe there is something here that will catch your fancy...");
+}
 public function letsFapSelectionMenu():void
 {
 	clearMenu();
@@ -225,12 +256,13 @@ public function letsFapSelectionMenu():void
 		if(letsFapTrack() >= 1 && flags["LETS_FAP_LATEST"] != letsFapAusar) addButton(5,"Ausar",letsFapAusar,undefined,"Ausar","Watch Atha try out an ausar member.");
 		if(letsFapTrack() >= 2 && flags["LETS_FAP_LATEST"] != letsFapLaquine) addButton(6,"Laquine",letsFapLaquine,undefined,"Laquine","Watch Atha try out a laquine member.");
 		if(letsFapTrack() >= 3 && flags["LETS_FAP_LATEST"] != letsFapKuiTan) addButton(7,"Kui-Tan",letsFapKuiTan,undefined,"Kui-Tan","Watch Atha try out a kui-tan member.");
-		if(letsFapTrack() >= 4 && flags["LETS_FAP_LATEST"] != letsFapUnboxing) addButton(8,"Unboxing",letsFapUnboxing,undefined,"Unboxing","Watch Atha try out unboxing a toy.");
+		if(letsFapTrack() >= 4 && flags["LETS_FAP_LATEST"] != letsFapUnboxing) addButton(8,"Unboxing",letsFapUnboxing,undefined,"Unboxing","Watch Atha unboxing a toy.");
 		if(letsFapTrack() >= 5 && flags["LETS_FAP_LATEST"] != letsFapOvir) addButton(9,"Ovir",letsFapOvir,undefined,"Ovir","Watch Atha try out an ovir member.");
 		if(letsFapTrack() >= 6 && flags["LETS_FAP_LATEST"] != letsFapRahnScene) addButton(10,"Rahn",letsFapRahnScene,undefined,"Rahn","Watch Atha try out a rahn member.");
+		if(letsFapTrack() >= 7 && flags["LETS_FAP_LATEST"] != letsFapCockTail) addButton(11,"Cockvine",letsFapRahnScene,undefined,"Cockvine","Watch Atha try out a cockvine tail.");
 	}
-	if(flags["CUMSTREAM_UNLOCKED"] != undefined) addButton(11,"Live Stream",liveCumstreamerEpisode,undefined,"Live CumStream","Catch her live CumStream!");
-	addButton(14,"Back",smutFapMenu);
+	if(flags["CUMSTREAM_UNLOCKED"] != undefined) addButton(13,"Live Stream",liveCumstreamerEpisode,undefined,"Live CumStream","Catch her live CumStream!");
+	addButton(14,"Back",backToSmutMenu);
 }
 
 public function letsFapTrack(arg:int = 0):Number 
@@ -303,7 +335,7 @@ public function ausarLetsFap2():void
 public function champeonOrOffMenu():void
 {
 	clearMenu();
-	addButton(14,"Back",smutFapMenu);
+	addButton(14,"Back",backToSmutMenu);
 	if(flags["CUMSTREAM_UNLOCKED"] == undefined) addButton(0,"Champeon",athasChampeonPage);
 	else addDisabledButton(0,"Champeon","Champeon","You've already backed her at the maximum level!");
 }
@@ -1008,7 +1040,7 @@ public function pickAKaithritCock():void
 	processTime(20);
 	pc.lust(40);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",backToSmutMenu);
 }
 
 //[Zil]
@@ -1090,7 +1122,7 @@ public function cumStreamingZilCock():void
 	processTime(20);
 	pc.lust(40);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",backToSmutMenu);
 }
 
 //[Ausar]
@@ -1175,7 +1207,7 @@ public function ausarCumStreaming():void
 	processTime(20);
 	pc.lust(40);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",backToSmutMenu);
 }
 
 /*Let’s Fap Archives
