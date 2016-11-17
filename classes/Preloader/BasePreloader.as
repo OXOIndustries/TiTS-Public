@@ -65,7 +65,7 @@ package classes.Preloader
 			return _gPreloaderStatePercentFormatter;
 		}
 		
-		[Embed(source = "../../assets/images/logos/steele_tech_logo_a.png")]
+		[Embed(source = "../../assets/images/logos/jacques00/HR/steele_tech_a.png")]
 		public var STEELE_LOGO:Class;
 		
 		private var _steeleLogo:Bitmap;
