@@ -1758,7 +1758,7 @@ public function variableRoomUpdateCheck():void
 		else rooms["2G11"].removeFlag(GLOBAL.QUEST);
 	}
 	//Other nyrea gate:
-	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined) rooms["2G15"].southExit = "";
+	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined && flags["KING_NYREA"] == undefined) rooms["2G15"].southExit = "";
 	else rooms["2G15"].southExit = "2G17";
 	//Queensguard shit
 	if(queensguardAtFountain()) 

@@ -562,7 +562,7 @@ public function gatewayBonusFunc():Boolean
 {
 	author("Savin");
 	output("You’re standing before a huge, imposing steel gate bearing the symbol of the queen: a shield with a spear pierced through it, and what looks like several tentacles wrapped around them both. The gate is currently ");
-	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined) 
+	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined && flags["KING_NYREA"] == undefined)
 	{
 		if(!pc.hasKeyItem("Silver Key")) 
 		{
