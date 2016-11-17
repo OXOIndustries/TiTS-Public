@@ -50,7 +50,7 @@ public function approachPexigaCrewFirstTime():void
 	clearMenu();
 	//[Sure] [Nah]
 	if(pc.hasCock() && pc.cockThatFits(yammiPlaceholderCapacity()) >= 0) addButton(0,"Sure (Male)",sureHelpPlugTheLeakingPexigaWithYammiFirstTime);
-	else if(pc.hasCock()) addDisabledButton(0,"Sure (Male)","Sure (Male)","You need to be able to fit inside Yammi to do this scene. You're too well... endowed.");
+	else if(pc.hasCock()) addDisabledButton(0,"Sure (Male)","Sure (Male)","You need to be able to fit inside Yammi to do this scene. You’re too well... endowed.");
 	else addDisabledButton(0,"Sure (Male)","Sure (Male)","You need a penis for this.");
 
 	if(pc.hasVagina()) addButton(1,"Sure (Female)",firstTimePexibuttMilkingForLadyTypes);
@@ -285,7 +285,7 @@ public function pexigaBimboAppearance():void
 	output("\n\nAfter her exposure to Doctor Badger’s machines, however, [pexiga.name] has a few features  quite different from others of her kind. Her blue scales have been bleached into a silver so bright that they appear white. Her once vestigial breasts have been inflated to massive, F-cup monsters. Plump, breeder’s curves give the alien girl a seductive allure that she hardly seems aware of.");
 	output("\n\nA long tail with a spaded tip swings idly in the air, providing her both with a counterbalance and a flexible, arm-like appendage. Her wide, blue eyes flutter as she regards the world with enthusiastic curiosity and barely restrained hunger. Despite no longer needing it, she continues to wear the ring-gag Yammi originally fitted her with. A more recent aquisition, her excessively long, drooling tongue has been outfitted with a sizable, golden barbell piercing that serves as both translator and voice box for the otherwise mute girl.");
 	pexigaMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're looking at her appearance right now.");
+	addDisabledButton(0,"Appearance","Appearance","You’re looking at her appearance right now.");
 }
 
 //[Talk]
@@ -624,8 +624,8 @@ public function getYammiHelpMilkingPexiga():void
 		processTime(20);
 		pc.lust(10);
 	}
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	
+	milkedPexigaCollect(true);
 }
 
 //[Solo]
@@ -645,8 +645,27 @@ public function milkPexigaHandSolo():void
 	output("\n\nAnother job well done. Though, if [pexiga.name] likes your taste so much, you’ll have to be sure to keep away from feral pexigas.");
 	processTime(22);
 	pc.lust(5);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	
+	milkedPexigaCollect(false);
+}
+
+public function milkedPexigaCollect(withYammi:Boolean = false):void
+{
+	if(pc.hasItem(new PexigaSaliva()) || pc.hasItemInStorage(new PexigaSaliva()))
+	{
+		output("\n\nNot letting the sweets go to waste, you bottle up some of the excess saliva and stick it in your pack.\n\n");
+		quickLoot(new PexigaSaliva());
+		if(!withYammi) eventQueue.push(pexigaMenu);
+	}
+	else if(!withYammi)
+	{
+		pexigaMenu();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 //[Pet]
@@ -687,7 +706,7 @@ public function pexigaSexMenu():void
 {
 	clearMenu();
 	if(pc.hasCock() && !pc.isTaur()) addButton(0,"Facefuck",faceFuckDatPexigaFaceRingGagThingMaybe,undefined,"Facefuck","Feed your pexiga a little extra protein.");
-	else if(pc.isTaur()) addDisabledButton(0,"Facefuck","Facefuck","There's not an easy way to do this and keep control of the situation with your body type.");
+	else if(pc.isTaur()) addDisabledButton(0,"Facefuck","Facefuck","There’s not an easy way to do this and keep control of the situation with your body type.");
 	else addDisabledButton(0,"Facefuck","Facefuck","You need a penis for this.");
 	if(pc.cockThatFits(yammiPlaceholderCapacity()) >= 0 || pc.hasHardLightStrapOn()) addButton(1,"Sandwich",sandwichSceneGogogogogogogogogogog,undefined,"Sandwich","Get Yammi and [pexiga.name] to make a girl sandwich of your cock or strapon.");
 	else addDisabledButton(1,"Sandwich","Sandwich","You need a dick that will fit inside Yammi and/or the Pexiga OR a hardlight strapon for this.");
@@ -696,7 +715,7 @@ public function pexigaSexMenu():void
 	addButton(2,"Eat Out",eatOutPexigoo,undefined,"Eat Out","Taste test [pexiga.name] with Yammi.");
 	//Bubble
 	if(pc.hasCock() && pc.hasItem(new BubbleBuddy())) addButton(3,"Bubble",blowBubblesWithpexiga,undefined,"Bubble","Use your Bubble Buddy to make [pexiga.name] a ball to play with.");
-	else addDisabledButton(3,"Bubble","Bubble","You need a penis and a \"Bubble Buddy\" sex-toy in order to do this. Such toys are available from the TamaniCorp Vendor on Tavros Station.");
+	else addDisabledButton(3,"Bubble","Bubble","You need a penis and a “Bubble Buddy” sex-toy in order to do this. Such toys are available from the TamaniCorp Vendor on Tavros Station.");
 
 	addButton(4,"Back",pexigaMainScreen);
 }
@@ -727,7 +746,7 @@ public function faceFuckDatPexigaFaceRingGagThingMaybe():void
 
 	output("\n\nStiffening inside her softness, you pull back to rest your [pc.cockHeadBiggest] against the curve of her salivating gob, almost completely stiff from a few thrusts into her ever-open fuckhole. ");
 	if(pc.cockTotal() > 1) output("You give each shaft a turn, giving her more than a few pumps, letting her taste the fruit of your turgid loins, one by one. ");
-	output("She leaves her hands pressed against the floor and relies on her tendril-like tongue, tilting her head back and forth to lap at your hardness as her sugary drool polishes your meat and drips across her heavy chest. Resting a hand atop the soft spines of her shoulder-length <i>“hair,”</i> you lightly guide her motions as she zealously services you.");
+	output("She leaves her hands pressed against the floor and relies on her tendril-like tongue, tilting her head back and forth to lap at your hardness as her sugary drool polishes your meat and drips across her heavy chest. Resting a hand atop the soft spines of her shoulder-length “hair,” you lightly guide her motions as she zealously services you.");
 	output("\n\nThe over-developed taste buds on [pexiga.name]’s tongue are bumpy and slightly rough, even with a thick coating of oozing slaver. The muscled organ curls and whorls around your [pc.cockBiggest], spiralling and squeezing with each contraction.");
 	if(length < 12) output(" Fully engulfed");
 	else output(" With much of your cock engulfed");

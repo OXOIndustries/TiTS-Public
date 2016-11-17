@@ -2181,7 +2181,7 @@ public function boobStuff(forTarget:Creature = null):void
 					if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
 					else output2("each.");
 				}
-				if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) {
+				if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_DICK) {
 					output2(" You can make " + num2Text(Math.round(target.nippleLength(temp) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind the normal-looking areolae.");
 				}		
 			}
@@ -2208,10 +2208,10 @@ public function boobStuff(forTarget:Creature = null):void
 				else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
 					output2(" There isn’t any actual nub to the nipples - just flat areolae.");
 				}
-				else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) {
+				else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) {
 					output2(" When you’re aroused enough, the nubs pop out, ready to play.");
 				}
-				else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) {
+				else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) {
 					output2(" They hide several long, prehensile tentacles, eager for an orifice to pleasure.");
 				}
 			}

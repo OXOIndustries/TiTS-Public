@@ -3007,7 +3007,7 @@ public function branFlazinganCodex():void
 public function aegisShipyardsCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_AEGIS");
 	outputCodex(header("Aegis Shipyards"));
 	outputCodex("<b>Company Name:</b> Aegis Shipyards LLC");
 	outputCodex("\n<b>Industry:</b> Technology manufacturer");
@@ -3019,7 +3019,7 @@ public function aegisShipyardsCodex():void
 public function bellIsleGrunmannCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_BELL_ISLE_GRUNMANN");
 	outputCodex(header("Bell-Isle/Grunmann"));
 	outputCodex("<b>Company Name:</b> Bell-Isle/Grunmann");
 	outputCodex("\n<b>Industry:</b> Colonial technology mega-corporation");
@@ -3073,7 +3073,7 @@ public function humphardIncCodex():void
 public function jejuneCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_JEJUNE");
 	outputCodex(header("J’ejune"));
 	outputCodex("<b>Company Name:</b> J’ejune Corporation and J’ejune Pharmaceutical");
 	outputCodex("\n<b>Industry:</b> Commercial products, Food, Drugs, Cosmetics");
@@ -3085,7 +3085,7 @@ public function jejuneCodex():void
 public function joyCoCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_JOYCO");
 	outputCodex(header("JoyCo"));
 	outputCodex("<b>Company Name:</b> JoyCo");
 	outputCodex("\n<b>Industry:</b> Medical, Commercial, Retail");
@@ -3097,7 +3097,7 @@ public function joyCoCodex():void
 public function kihaCorpCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_KIHACORP");
 	outputCodex(header("KihaCorp"));
 	outputCodex("<b>Company Name:</b> KihaCorp");
 	outputCodex("\n<b>Industry:</b> Artificial intelligence and technology manufacturer and distributor");
@@ -3122,7 +3122,7 @@ public function novaSecuritiesCodex():void
 public function pyriteCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_PYRITE");
 	outputCodex(header("Pyrite Industries"));
 	outputCodex("<b>Company Name:</b> Pyrite Heavy Industries");
 	outputCodex("\n<b>Industry:</b> Industrial and manufacturing");
@@ -3135,7 +3135,7 @@ public function pyriteCodex():void
 public function reaperCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_REAPER");
 	outputCodex(header("Reaper Armaments"));
 	outputCodex("<b>Company Name:</b> Reaper Armaments <i>(also known as Reaper Industries)</i>");
 	outputCodex("\n<b>Industry:</b> Weapons manufacturing");
@@ -3160,7 +3160,7 @@ public function rhenWorldCodex():void
 public function snuggleCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_SNUGGLE");
 	outputCodex(header("Snugglé"));
 	outputCodex("<b>Company Name:</b> Snugglé");
 	outputCodex("\n<b>Industry:</b> Agriculture and foods product manufacturer and distributor");
@@ -3173,7 +3173,7 @@ public function snuggleCodex():void
 public function steeleTechCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_STEELE_TECH");
 	outputCodex(header("Steele Tech"));
 	outputCodex("<b>Company Name:</b> Steele Industrial Technology and Production");
 	outputCodex("\n<b>Industry:</b> Mining");
@@ -3186,7 +3186,7 @@ public function steeleTechCodex():void
 public function xenogenCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_XENOGEN");
 	outputCodex(header("Xenogen Biotech"));
 	outputCodex("<b>Company Name:</b> Xenogen Biotech");
 	outputCodex("\n<b>Industry:</b> Gene therapy and modification");
@@ -3258,7 +3258,7 @@ public function terranSpaceCoalitionCodex():void
 public function unitedGalacticConfederacyCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_UGC");
 	outputCodex(header("The United Galactic Confederacy"));
 	outputCodex("The centralized governing body of the universe.");
 	outputCodex("\n\n");

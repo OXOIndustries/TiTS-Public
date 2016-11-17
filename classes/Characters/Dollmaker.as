@@ -189,7 +189,7 @@
 			(this.cocks[0] as CockClass).virgin = false;
 			this.cockVirgin = false;*/
 			
-			createStatusEffect("Force Fem Gender");
+			createStatusEffect("Force It Gender");
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;

@@ -646,13 +646,13 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
 		}
 	}
-	if( pexigaIsCrew())
+	if (pexigaIsCrew())
 	{
 		count++;
 		if (!counter)
 		{
-			crewMessages += "\n\nThe bimbo pexiga girl seems perfectly content in her admittedly small quarters. Either from habit or her awkwardly over-endowed body, [pexiga.name] seems to prefer staying on all fours. When not tasting everything around her, she tends to follow Yammi around like a little lost puppy, helping out any way she can. Despite her innocent demeanor, you catch her giving you an occasional glance full of a hunger Yammi can’t satisfy.";
-			addButton((count + other) - 1, pexiga.short, approachPexigaCrew);
+			crewMessages += "\n\n" + pexigaShipBonusText();
+			addButton((count + other) - 1, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
 		}
 	}
 	if (hasGooArmor() || gooArmorIsCrew())
@@ -1758,7 +1758,7 @@ public function variableRoomUpdateCheck():void
 		else rooms["2G11"].removeFlag(GLOBAL.QUEST);
 	}
 	//Other nyrea gate:
-	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined) rooms["2G15"].southExit = "";
+	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined && flags["KING_NYREA"] == undefined) rooms["2G15"].southExit = "";
 	else rooms["2G15"].southExit = "2G17";
 	//Queensguard shit
 	if(queensguardAtFountain()) 

@@ -382,7 +382,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		output("\n\n <i>“Thanks!”</i> you answer chirpily. <i>“It feels super good too! Do you like my big tits?”</i> You lean forwards, cupping your breasts and pushing them out towards her");
 		if (!pc.isChestGarbed()) 
 		{
-			output(", letting your bare [pc.nipples] perk before Penny's eyes.");
+			output(", letting your bare [pc.nipples] perk before Penny’s eyes.");
 			if (pc.isLactating()) output(" Beads of [pc.milkNoun] wet your [pc.breasts] as the vixen stares.")
 		}
 		else output(", forcing your [pc.upperGarment] to strain as your sizeable chest swells outwards.");
@@ -456,7 +456,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 	clearMenu();
 	//Add Text/Buttons
 	//[Report Dr. Badger][Turn the tables on Dr. Badger][Zap Penny after talking to her]
-	if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(0,"TurnInBadger","Turn In Doctor Badger","You've decided not to turn in Doctor Badger.");
+	if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(0,"TurnInBadger","Turn In Doctor Badger","You’ve decided not to turn in Doctor Badger.");
 	else addButton(0,"TurnInBadger",turnDoctorBadgerIntoSpacePolice2,undefined,"Turn In Doctor Badger","It’s probably better to play it safe, given how dangerous Dr. Badger seems to be. Get Penny to report her, and have the professionals sort it out.");
 
 	addButton(1,"Turn Tables",turnTheTablesOnBadgertwat,undefined,"Turn the Tables on Dr. Badger","That DOES sound like it could be a fun plan. Show Dr. Badger just how much of a hero you can be...");
@@ -1243,7 +1243,7 @@ public function watchBadgerChange():void
 	clearMenu();
 	//[Let Her Cum][Don’t Let Her Cum]
 	addButton(0,"LetHerCum",letBimboBadgerCum);
-	addButton(1,"Don't",dontLetDoctorBadgerCum);
+	addButton(1,"Don’t",dontLetDoctorBadgerCum);
 }
 
 //Let Her Cum
@@ -1424,7 +1424,7 @@ public function postBadgerBimboSexSceneShit(orgasmDenialed:Boolean = false):void
 //[replace the Dr. Badger shack space description with the below]
 public function bimboBadgerShopStuff():void
 {
-	output("The inside of the <i>“good”</i> doctor’s shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don’t even want to hazard.");
+	output("The inside of the “good” doctor’s shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don’t even want to hazard.");
 	//Special Pexigaquest shitz.
 	if(flags["PEXIGA_TREATMENT"] == 0)
 	{
@@ -1498,8 +1498,8 @@ public function approachDoctorBimboBadger():void
 	clearMenu();
 	addButton(0,"Talk",talkToDoctorBadger,undefined,"Talk","Try to have a conversation with your newly minted bimbo.");
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
-	else addDisabledButton(1,"Sex","Sex","You aren't turned on enough to have sex right now.");
-	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga's situation.");
+	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
+	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -1539,9 +1539,9 @@ public function talkToDoctorBadger():void
 		processTime(1);
 	}
 	clearMenu();
-	addDisabledButton(0,"Talk","Talk","You won't be getting much discussion out of this bimbo.");
+	addDisabledButton(0,"Talk","Talk","You won’t be getting much discussion out of this bimbo.");
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
-	else addDisabledButton(1,"Sex","Sex","You aren't turned on enough to have sex right now.");
+	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

@@ -18,8 +18,8 @@ public function initStephEps():void
 		f: stephODEp1, 
 		t: "Naleen", 
 		ar: undefined, 
-		th: "Galactic Huntress - Mhen'ga", 
-		tb: "Synopsis: A newly-colonized Mhen'ga, a world of lush jungles and deadly predators.", 
+		th: "Galactic Huntress - Mhen’ga", 
+		tb: "Synopsis: A newly-colonized Mhen’ga, a world of lush jungles and deadly predators.", 
 		cost: 10 
 	},
 	{
@@ -171,7 +171,7 @@ public function trySendStephMail():void
 
 public function stephOnDemandMail():String
 {
-	var ret:String = "Greetings, sapient!\n\nDo you enjoy your weekly dose of <i>Steph Irson: Galactic Huntress</i>, the galaxy's most exciting nature show? Now you can own it! GalacNet is proud to announce that we have acquired the license for on-demand home releases of each episode of <i>Galactic Huntress</i> following its live broadcast. Never miss another exciting adventure!\n\n<i>Underneath the message's text are several promotional images of Steph Irson posing around large alien creatures on a variety of distant worlds. A tiny caption underneath warns that the Confederate Ratings Board is not responsible for the content of live broadcasts, and the on-demand video is presented unedited and unrated.\n\nFurther, even smaller fine print adds:</i>\nAccording to extensive market and behavioral analysis, GalacNet has determined that you would like to receive these notifications! If this message was received in error, please contact our customer service at Marketing@GalacNet.corp to request a re-evaluation of your purchasing and viewing habits!";
+	var ret:String = "Greetings, sapient!\n\nDo you enjoy your weekly dose of <i>Steph Irson: Galactic Huntress</i>, the galaxy’s most exciting nature show? Now you can own it! GalacNet is proud to announce that we have acquired the license for on-demand home releases of each episode of <i>Galactic Huntress</i> following its live broadcast. Never miss another exciting adventure!\n\n<i>Underneath the message’s text are several promotional images of Steph Irson posing around large alien creatures on a variety of distant worlds. A tiny caption underneath warns that the Confederate Ratings Board is not responsible for the content of live broadcasts, and the on-demand video is presented unedited and unrated.\n\nFurther, even smaller fine print adds:</i>\nAccording to extensive market and behavioral analysis, GalacNet has determined that you would like to receive these notifications! If this message was received in error, please contact our customer service at Marketing@GalacNet.corp to request a re-evaluation of your purchasing and viewing habits!";
 	
 	return ret;
 }
@@ -179,13 +179,17 @@ public function stephOnDemandMail():String
 public function stephOnDemandVODs():void
 {
 	clearOutput();
+	showBust("LOGO_GALACTIC_HUNTRESS");
+	showName("");
+	author("Savin");
 	
 	output("You bring up the GalacNet On Demand page and log in. You’re quickly bombarded with holographic advertisements, trying to entice you into a dozen different crime dramas, sci-fi adventures, and fantasy classics. You tab through them, over to a tab displaying in bold letters <b>STEPH IRSON: GALACTIC HUNTRESS</b>, superimposed over a picture of the titular hostess giving the peace sign in front of a pair of soft, tan moons that look kind of like a butt when you stare at them. You’re sure that’s not intentional, right?");
 
-	output("\n\nYou have "+ numUnlockedEpisodes() +" episodes of Steph Irson's show in your library.");
+	var numUnlocked:int = numUnlockedEpisodes();
+	output("\n\nYou have " + numUnlocked + " episode"+ (numUnlocked == 1 ? "" : "s") + " of Steph Irson’s show in your library.");
 	var numLocked:int = numLockedStephEpisodes();
-	if (numLocked != 0) output(" There are "+ numLocked +" available for purchase.");
-	else output(" A handy message icon tells you that your collection is all caught up with Steph's adventures. Check back later for new episodes to release!");
+	if (numLocked != 0) output(" There "+ (numLocked == 1 ? "is" : "are") + " " + numLocked + " available for purchase.");
+	else output(" A handy message icon tells you that your collection is all caught up with Steph’s adventures. Check back later for new episodes to release!");
 	
 	stephOnDemandMenu();
 }
@@ -205,7 +209,7 @@ public function stephOnDemandMenu():void
 		else if (flags[STEPH_EPISODE_UIDS[i].uid] != undefined)
 		{
 			if (pc.credits >= STEPH_EPISODE_UIDS[i].cost) addButton(i, "Buy Ep. " + (i + 1), stephBuyEpisode, STEPH_EPISODE_UIDS[i].uid, STEPH_EPISODE_UIDS[i].th, STEPH_EPISODE_UIDS[i].tb + "\n\nCost: " + STEPH_EPISODE_UIDS[i].cost);
-			else addDisabledButton(i, "Buy Ep. " + (i + 1), STEPH_EPISODE_UIDS[i].th, STEPH_EPISODE_UIDS[i].tb + "\n\nUnfortunately you can't afford the episode.\nCost: " + STEPH_EPISODE_UIDS[i].cost);
+			else addDisabledButton(i, "Buy Ep. " + (i + 1), STEPH_EPISODE_UIDS[i].th, STEPH_EPISODE_UIDS[i].tb + "\n\nUnfortunately you can’t afford the episode.\nCost: " + STEPH_EPISODE_UIDS[i].cost);
 		}
 		else
 		{
@@ -213,12 +217,16 @@ public function stephOnDemandMenu():void
 		}
 	}
 
-	addButton(14, "Back", smutFapMenu);
+	addButton(14, "Back", backToSmutMenu);
 }
 
 public function stephBuyEpisode(episode:String):void
 {
 	clearOutput();
+	showBust("LOGO_GALACTIC_HUNTRESS_1");
+	showName("");
+	author("Savin");
+	
 	output("You add the episode in question to your cart and check out with a click, wiring over the handful of credits and letting your console pull the episode from the extranet onto your local storage. You can now view it at your leisure!");
 
 	flags[episode + "_PURCHASED"] = 1;
@@ -232,13 +240,14 @@ public function stephBuyEpisode(episode:String):void
 	addButton(14, "Back", stephOnDemandMenu);
 }
 
-public function stephODEp1():void {
+public function stephODEp1():void
+{
 	clearOutput();
 	stephHeader(1);
 	
 	output("You sprawl out and kick on the first episode of the season. A brief commercial plays, telling you to buy Naughty Wyvern brand fibrecondoms before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, the popular nature show. The camera pans down from a hazy afternoon sky to an athletic young woman in an almost comically skimpy ranger outfit, with khaki hotpants and low-cut shirt rolled up to expose her midriff and ample cleavage both. Her blonde ponytail bounces excitedly as she jogs along through a jungle underbrush, the camera-drone struggling to keep pace with her.");
 	
-	output("\n\n<i>“We're here on newly-colonized Mhen'ga, a world of lush jungles and deadly predators,”</i> the host begins in a thick New Brisbane accent, <i>“and we're on the hunt for the naleen, the apex predator on this planet. Now, imagine a great big lion right out of Africa, a strong, lightning-fast beauty of a huntress, and combine that with the stealth and venom of a deadly adder, and you've got the naleen in a nutshell. I'll have to be so, so careful dealing with these predators, or I'm dead for sure.”</i>");
+	output("\n\n<i>“We’re here on newly-colonized Mhen’ga, a world of lush jungles and deadly predators,”</i> the host begins in a thick New Brisbane accent, <i>“and we’re on the hunt for the naleen, the apex predator on this planet. Now, imagine a great big lion right out of Africa, a strong, lightning-fast beauty of a huntress, and combine that with the stealth and venom of a deadly adder, and you’ve got the naleen in a nutshell. I’ll have to be so, so careful dealing with these predators, or I’m dead for sure.”</i>");
 	
 	output("\n\nFor someone supposedly tracking down a lethal hunter, she seems oddly cheerful about it. She crests a hill, tumbles through a thick bush, and eventually comes to a clearing in the jungle, one of the few places where the sun actually gets through to the ground. Resting atop a large boulder in the center is ");
 	//if PC's met the naleen:
@@ -246,41 +255,41 @@ public function stephODEp1():void {
 	else output("what looks like a giant snake coiled around the rocks at first, but as the camera draws in, is clearly half-serpent and half-catgirl, a woman with deliciously large breasts on a feline torso, long orange hair draped around her half-furred body");
 	output(".");
 	
-	output("\n\n<i>“Holy smokes!”</i> Steph whispers to the camera, angling it at the slumbering predator. Brazenly, the host approaches, creeping along the ground almost at a crawl. Lazily, the kitty-naga opens a single emerald eye, watching her approach. <i>“Lookit this, a NALEEN! They're the deadliest predators on this planet, with tails so strong they'd crush me dead in a heartbeat. Lemme see if I can stick mah hand up 'er cloaca!”</i>");
+	output("\n\n<i>“Holy smokes!”</i> Steph whispers to the camera, angling it at the slumbering predator. Brazenly, the host approaches, creeping along the ground almost at a crawl. Lazily, the kitty-naga opens a single emerald eye, watching her approach. <i>“Lookit this, a NALEEN! They’re the deadliest predators on this planet, with tails so strong they’d crush me dead in a heartbeat. Lemme see if I can stick mah hand up ‘er cloaca!”</i>");
 
 	output("\n\nIs she insane?");
 	
-	output("\n\n<i>“W-what are you doing, strange little girl?”</i> the naleen hisses as Steph creeps up. The snake-girl rises off the rock, her feline half looming over the show's hostess menacingly.");
+	output("\n\n<i>“W-what are you doing, strange little girl?”</i> the naleen hisses as Steph creeps up. The snake-girl rises off the rock, her feline half looming over the show’s hostess menacingly.");
 	
-	output("\n\n<i>“Uh-oh, she's noticed me! If I try to run, she'll hunt me down in an instant! All I can do is lie perfectly still and hope she backs off! As a predator, the naleen shouldn't bother me if I'm dead still.”</i>");
+	output("\n\n<i>“Uh-oh, she’s noticed me! If I try to run, she’ll hunt me down in an instant! All I can do is lie perfectly still and hope she backs off! As a predator, the naleen shouldn’t bother me if I’m dead still.”</i>");
 	
 	output("\n\n<i>“... I can hear you,”</i> the busty monster sighs, cocking an eyebrow at Steph as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
 	
-	output("\n\n<i>“Crikey! Looks like she's coming in for the kill! All I can do now is try to overpower her!”</i> Steph shouts, leaping to her feet and tackling the naleen, throwing the two of them over the boulder and into the brush. The camera drone speedily follows the brawl as Steph and the naleen tumble around in the dirt, eventually rolling into a wet mud-pit at the edge of the clearing.");
+	output("\n\n<i>“Crikey! Looks like she’s coming in for the kill! All I can do now is try to overpower her!”</i> Steph shouts, leaping to her feet and tackling the naleen, throwing the two of them over the boulder and into the brush. The camera drone speedily follows the brawl as Steph and the naleen tumble around in the dirt, eventually rolling into a wet mud-pit at the edge of the clearing.");
 	
-	output("\n\n<i>“W-WHAT ARE YOU DOING!? GET OFF ME!”</i> the naleen howls as Stepth straddles her wide hips victoriously, pinning the huntress down and grabbing her massive tail's slender tip.");
+	output("\n\n<i>“W-WHAT ARE YOU DOING!? GET OFF ME!”</i> the naleen howls as Stepth straddles her wide hips victoriously, pinning the huntress down and grabbing her massive tail’s slender tip.");
 	
-	output("\n\n<i>“There we go, got 'er by the tail! Now let's take a look at this beauty! Oh, she's the real deal: lookit these scales. She's seen some battles, too, see the dents and scars here?”</i> she says, pointing out the various cuts and old wounds on the naleen's scales, a history of battle engraved in her body. <i>“Ah, 'ere we go, see the cloaca engorging? When you hold 'em, naleen can't decide if you're trying to kill 'em or mate with 'em! Let's get a closer look!”</i>");
+	output("\n\n<i>“There we go, got ‘er by the tail! Now let’s take a look at this beauty! Oh, she’s the real deal: lookit these scales. She’s seen some battles, too, see the dents and scars here?”</i> she says, pointing out the various cuts and old wounds on the naleen’s scales, a history of battle engraved in her body. <i>“Ah, ‘ere we go, see the cloaca engorging? When you hold ‘em, naleen can’t decide if you’re trying to kill ‘em or mate with ‘em! Let’s get a closer look!”</i>");
 	
-	output("\n\nThe camera zooms in on the naleen's pussy as it visibly engorges, drooling a clear lubricant as Steph pokes a pair of fingers in, stretching the hole several inches wide.");
+	output("\n\nThe camera zooms in on the naleen’s pussy as it visibly engorges, drooling a clear lubricant as Steph pokes a pair of fingers in, stretching the hole several inches wide.");
 	
-	output("\n\n<i>“D-don't touch meeeee”</i> the naleen cries, writhing violently under Steph as the show's host practically shoves her arm into the alien's sodden box. <i>“...Ooh! Ooohhhh... mmm, yessss, stick your arm riiiiight in, little girl.”</i>");
+	output("\n\n<i>“D-don’t touch meeeee”</i> the naleen cries, writhing violently under Steph as the show’s host practically shoves her arm into the alien’s sodden box. <i>“...Ooh! Ooohhhh... mmm, yessss, stick your arm riiiiight in, little girl.”</i>");
 	
-	output("\n\n<i>“There we go!”</i> Steph announces victoriously to the camera, <i>“Elbow-deep in 'er cloaca. Oh, this is a dream come true! Lookit the way she moves, writhing so gracefully. She's a real beauty, innit she?”</i>");
+	output("\n\n<i>“There we go!”</i> Steph announces victoriously to the camera, <i>“Elbow-deep in ‘er cloaca. Oh, this is a dream come true! Lookit the way she moves, writhing so gracefully. She’s a real beauty, innit she?”</i>");
 	
-	output("\n\n<i>“Mmm, you are not so bad yourself,”</i> the naleen coos as Steph's arm vanishes up to the elbow inside her.");
+	output("\n\n<i>“Mmm, you are not so bad yourself,”</i> the naleen coos as Steph’s arm vanishes up to the elbow inside her.");
 	
-	output("\n\n<i>“One of the most amazing things about these predators is the way they mate. Like some snakes from ol' Earth, they congregate in huge 'mating balls,' just like a great big animal orgy that can last for hours, or even days. I'd give anything to see one of those up close and personal!”</i>");
+	output("\n\n<i>“One of the most amazing things about these predators is the way they mate. Like some snakes from ol’ Earth, they congregate in huge ‘mating balls,’ just like a great big animal orgy that can last for hours, or even days. I’d give anything to see one of those up close and personal!”</i>");
 	
 	output("\n\n<i>“Is that so?”</i> the naleen grins, and suddenly her long tail is wrapped around Steph, encircling the hostess from shoulder to toes, leaving nothing but her head visible.");
 	
-	output("\n\n<i>“Holy smokes! Looks like I forgot the most deadly attack the naleen have: a crushing vice-like grip of the tail. I'll be dead in seconds if I don't think of a way out of this; she'll crush the air right from my lungs.”</i>");
+	output("\n\n<i>“Holy smokes! Looks like I forgot the most deadly attack the naleen have: a crushing vice-like grip of the tail. I’ll be dead in seconds if I don’t think of a way out of this; she’ll crush the air right from my lungs.”</i>");
 	
-	output("\n\n<i>“You are very strange,”</i> the naleen sighs, her feline half rising up to grab Steph's cheeks, turning her head aside to expose her neck.");
+	output("\n\n<i>“You are very strange,”</i> the naleen sighs, her feline half rising up to grab Steph’s cheeks, turning her head aside to expose her neck.");
 	
-	output("\n\n<i>“Uh-oh, looks like I'm a goner! This paralytic venom could spell the end if she bites me!”</i> For someone convinced she's about to die, Steph's awfully calm about this.");
+	output("\n\n<i>“Uh-oh, looks like I’m a goner! This paralytic venom could spell the end if she bites me!”</i> For someone convinced she’s about to die, Steph’s awfully calm about this.");
 	
-	output("\n\nThe naleen sighs and bites down, injecting a dose of paralytic venom into the show's host. With an exaggerated gasp, Steph limply falls into the huntress's waiting arms. Giggling, the naleen tosses Steph over her shoulder and carries her off, slithering into the forest - and the camera drone dutifully follows, tracking the pair of them for several minutes in the brush until they come to a cave mouth. The naleen slithers in, and the camera switches to nightvision as it follows her through a network of caves and into a large, natural pit in the ground.");
+	output("\n\nThe naleen sighs and bites down, injecting a dose of paralytic venom into the show’s host. With an exaggerated gasp, Steph limply falls into the huntress’s waiting arms. Giggling, the naleen tosses Steph over her shoulder and carries her off, slithering into the forest - and the camera drone dutifully follows, tracking the pair of them for several minutes in the brush until they come to a cave mouth. The naleen slithers in, and the camera switches to nightvision as it follows her through a network of caves and into a large, natural pit in the ground.");
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",stephODEp1II);
@@ -290,11 +299,11 @@ public function stephODEp1II():void
 	clearOutput();
 	stephHeader(1, true);
 	
-	output("<i>“Ugh, mah head!”</i> Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she's dragged me back to her nest! Oh, but look here! Before she eats me, I'm getting to witness the ultimate alien curiosity: the naleen mating ball!”</i> The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
+	output("<i>“Ugh, mah head!”</i> Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she’s dragged me back to her nest! Oh, but look here! Before she eats me, I’m getting to witness the ultimate alien curiosity: the naleen mating ball!”</i> The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
 
-	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she's bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn't waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
+	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she’s bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn’t waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
 	
-	output("\n\nSteph writhes and cries out as she's double-penetrated by the twin-cocked naleen, just in time to have her open mouth filled with a juicy pussy. The camera pans up to reveal the busty huntress from before, fingers mashing Steph's head into her groin as another male slithers behind <i>her</i>, a pair of cocks vanishing into the naleen's ass. She coos with delight, vocalizations almost masking Steph's screams as she's violated. You can't hide an unmistakable warmth spreading through your body as you watch the hostess getting fucked");
+	output("\n\nSteph writhes and cries out as she’s double-penetrated by the twin-cocked naleen, just in time to have her open mouth filled with a juicy pussy. The camera pans up to reveal the busty huntress from before, fingers mashing Steph’s head into her groin as another male slithers behind <i>her</i>, a pair of cocks vanishing into the naleen’s ass. She coos with delight, vocalizations almost masking Steph’s screams as she’s violated. You can’t hide an unmistakable warmth spreading through your body as you watch the hostess getting fucked");
 	if(pc.hasCock()) {
 		output(", and you try");
 		if(pc.legCount == 1) output(" displacing your [pc.leg]");
@@ -305,18 +314,18 @@ public function stephODEp1II():void
 		else output("ies");
 	}
 	output(". With a grunt, the male naleen finishes inside Steph, pulling out just in time for the camera to zoom in on her backside, the NV-mode making the spooge drooling out of her two stretched holes practically glow.");
-	output("\n\nA giddy female, less busty that the first but with an almost inhumanly wide set of hips and a jiggling ass, slithers in under Steph's ass, slender reptilian tongue lapping up the alien spunk dripping from her cunt as another male lines up his shot, sliding in with the last's cum as lube. Powerful thrusts send Steph's bubble butt jiggling as the kitty-naga hammers her holes, squirting the last's cum out with each mighty blow, right onto the waiting face of the female. The bustier huntress gives an orgasmic cry as the male finishes in her ass, pushing Steph's face as hard into her groin as she can before tumbling aside, pushed down by another horny male who immediately crams his dual cocks into Steph's fem-cum slathered gob.");
+	output("\n\nA giddy female, less busty that the first but with an almost inhumanly wide set of hips and a jiggling ass, slithers in under Steph’s ass, slender reptilian tongue lapping up the alien spunk dripping from her cunt as another male lines up his shot, sliding in with the last’s cum as lube. Powerful thrusts send Steph’s bubble butt jiggling as the kitty-naga hammers her holes, squirting the last’s cum out with each mighty blow, right onto the waiting face of the female. The bustier huntress gives an orgasmic cry as the male finishes in her ass, pushing Steph’s face as hard into her groin as she can before tumbling aside, pushed down by another horny male who immediately crams his dual cocks into Steph’s fem-cum slathered gob.");
 	
-	output("\n\nMales and females both takes turns force-fucking the half-conscious hostess, smearing her with gallons of alien spunk until her gaping holes are a constant waterfall of creamy spooge, glowing in the camera's eye. The show's runtime is almost up by the time the huge naleen orgy is winding down; a final male has pulled Steph into his lap, both cocks shoved up her ass as the busty naleen that brought her idly fingers the human girl's pussy, cooing, <i>“Was it everything you hoped it would be, dear?”</i>");
+	output("\n\nMales and females both takes turns force-fucking the half-conscious hostess, smearing her with gallons of alien spunk until her gaping holes are a constant waterfall of creamy spooge, glowing in the camera’s eye. The show’s runtime is almost up by the time the huge naleen orgy is winding down; a final male has pulled Steph into his lap, both cocks shoved up her ass as the busty naleen that brought her idly fingers the human girl’s pussy, cooing, <i>“Was it everything you hoped it would be, dear?”</i>");
 	
-	output("\n\nSteph's head lolls haplessly, her voice breaking as she orgasms for the... hell, you lost count twenty males ago. Blowing his wad, the male pushes her off his rods, letting Steph flop down atop the coils of slumbering naleen. The camera flies down for a final closeup, showing her spunk-slathered body in its full high-definition beauty; where she should be delivering a final monologue about her exploits, Steph only manages to gurgle weakly, cum drooling down her cheeks.");
+	output("\n\nSteph’s head lolls haplessly, her voice breaking as she orgasms for the... hell, you lost count twenty males ago. Blowing his wad, the male pushes her off his rods, letting Steph flop down atop the coils of slumbering naleen. The camera flies down for a final closeup, showing her spunk-slathered body in its full high-definition beauty; where she should be delivering a final monologue about her exploits, Steph only manages to gurgle weakly, cum drooling down her cheeks.");
 	
 	output("\n\n<i>“This show brought to you by the Xenogen Biotech firm. Xenogen reminds you that galactic exploration is dangerous, and that natural wildlife is not to be approached without assistance from your friendly local rangers. Xenogen is not responsible for any graphic content witnessed on live galactic broadcasts or the safety of its personnel.”</i>");
 	
 	processTime(30);
 	pc.lust(33);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",backToSmutMenu);
 }
 
 public function stephODEp2():void
@@ -327,29 +336,28 @@ public function stephODEp2():void
 
 	clearOutput();
 	stephHeader(2);
-
 	
 	output("You sprawl out and kick on the second episode of the season. A brief commercial plays, telling you to buy JoyCo brand healing services before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. The camera pans down from a bright sunrise to an athletic young woman in an almost comically skimpy ranger outfit, with khaki hotpants and low-cut shirt rolled up to expose her midriff and ample cleavage both. Her blonde ponytail bounces excitedly as she jogs along through a jungle underbrush, the camera-drone struggling to keep pace with her. Despite her obvious humanity, the hostess is sporting a pair of perky kitty-ears atop her sandy hair, which twitch cutely as the camera focuses in on them.");
 	output("\n\nA U.G.C. mandated warning appears on the screen in tiny letters:");
-	output("\n\n<b>\"The U.G.C. Scout Authority apologizes for content in previous episodes of <i>Steph Irson: Galactic Huntress</i>, and warns that interacting with unidentified xeno-biotics can result in erratic and unexpected mutations or grievous injury. Do not attempt anything seen in this series at home, or without professional guidance.\"</b>");
+	output("\n\n<b>“The U.G.C. Scout Authority apologizes for content in previous episodes of <i>Steph Irson: Galactic Huntress</i>, and warns that interacting with unidentified xeno-biotics can result in erratic and unexpected mutations or grievous injury. Do not attempt anything seen in this series at home, or without professional guidance.”</b>");
 	output("\n\nMeanwhile, on screen, the now cat-eared Steph grabs the camera, showing off the rusty wastelands behind her as she narrates: ");
-	output("\n\n<i>\"We're here on ancient Tarkus, a world of rough and tumble inhabitants dealing with wild and untamed life and technology,\"</i> the host begins in a thick New Brisbane accent, <i>\"and we're on the hunt for the Gray Goo. Now I know I usually go huntin' for my creatures alive and kickin', but these goo're something special: made up of trillions of discarded micromachines, Gray Goo have a kind of network intelligence: the more of 'em, the smarter they are. They're very aggressive, though, so I'll have to be very careful to stay out of their reach if I wanna make it out alive. One touch and I could end up enveloped in goo! Nasty!\"</i>");
+	output("\n\n<i>“We’re here on ancient Tarkus, a world of rough and tumble inhabitants dealing with wild and untamed life and technology,”</i> the host begins in a thick New Brisbane accent, <i>“and we’re on the hunt for the Gray Goo. Now I know I usually go huntin’ for my creatures alive and kickin’, but these goo’re something special: made up of trillions of discarded micromachines, Gray Goo have a kind of network intelligence: the more of ‘em, the smarter they are. They’re very aggressive, though, so I’ll have to be very careful to stay out of their reach if I wanna make it out alive. One touch and I could end up enveloped in goo! Nasty!”</i>");
 	output("\n\nHaving spoken her piece, Steph takes off jogging into the mechanical dunes of the Tarkus wastes, deftly maneuvering between piles of discarded trash and ruined tech from ages past, stopping occasionally to lament about the sad state of the planet or to scratch at her twitching cat ears (once even stopping to jump at an errant laser pointer coming from an old mining rig). Eventually, though, with a gasp of surprise and awe, the huntress meets her prey:");
-	output("\n\n<i>\"Crikey! Look at this!\"</i> Steph says, tumbling behind a steel outcropping for cover. <i>\"Come on, take a look at this: isn't she a beaut?\"</i>");
-	output("\n\nThe camera hovers down behind her shoulder, focusing in as she points to a clearing ahead, in which sits what looks like a voluptuous gray woman, shining brightly in the sunlight, her proportions comically over-exaggerated - were she a <i>\"real\"</i> girl, you doubt she could stand up under the weight of those tits. Slowly, Steph creeps forward, whispering, <i>\"Oh yeah, there's one now. See how she morphs herself into a humanoid form? It's just like a bird showing its plumage to attract a mate, but this babe's got a devious twist to her: give her half a chance and she'll drain you dry! Gray Goo live off of our bodily fluids, see, and they'll do anything to get 'em. I'd better be careful not to alert her to my presence!\"</i>");
-	output("\n\nSlowly, Steph creeps out of cover, hugging the ground almost like a cartoon character as she sneaks up on the Gray Goo sunbathing in the clearing. The camera putters behind her, giving an excellent view of the host's ass in her sheer short pants, ever so slightly raised in the air as she creeps toward her prey.");
-	output("\n\nNearing the slumbering goo-girl, Steph holds still a hair's breadth away, camera zooming in for a close-up of the gray's cute little face as she snores quietly. <i>\"Must be in standby mode,\"</i> Steph says, relief palpable in her voice. <i>\"Look at how she mimics a human. Kinda cute, innit she?\"</i>");
-	output("\n\nAs she speaks, Steph pulls on a blue rubber glove, giving it a quiet snap before reaching up to the goo. <i>\"Let me show just how gooey this creature is. She's like gelatin to the touch, see-\"</i>");
-	output("\n\nAs soon as Steph prods the gey goo's tit, of course, its eyes snap open. The goo sits up, looking around in total confusion before her gaze alights on the galactic huntress, whose hand quickly retracts, owner stumbling away as the goo wakes up.");
-	output("\n\n<i>\"Oh my gosh! A-are you Steph Irson!?\"</i> the goo says suddenly, surging toward Steph, stopping just a few inches away, faces practically pressed together. <i>\"Ohmygoshohmygosh! I love your show! Are we on right now? HI MOM! I mean, I don't really have a mom, but if I did I'd totally say 'hi' to her right now!\"</i>");
-	output("\n\nSteph stares at the goo-girl for a long moment. <i>\"W-what?\"</i>");
-	output("\n\nThe goo circles the galactic bounty hunter, in half-disbelief. <i>\"A-and this is what you look like up up close? Oh gosh I'm so happy to meet you! A real person, a star! Eep, I'm nervous! I have all your shirts, Miss Irson, oh and I used to have a Galactic Huntress action figure but a rust monster stole it and used it like a dildo and fucked me with it! That was super fun, though. OH! W-would you sign, uh... I KNOW! Sign my tits!\"</i>");
+	output("\n\n<i>“Crikey! Look at this!”</i> Steph says, tumbling behind a steel outcropping for cover. <i>“Come on, take a look at this: isn’t she a beaut?”</i>");
+	output("\n\nThe camera hovers down behind her shoulder, focusing in as she points to a clearing ahead, in which sits what looks like a voluptuous gray woman, shining brightly in the sunlight, her proportions comically over-exaggerated - were she a <i>“real”</i> girl, you doubt she could stand up under the weight of those tits. Slowly, Steph creeps forward, whispering, <i>“Oh yeah, there’s one now. See how she morphs herself into a humanoid form? It’s just like a bird showing its plumage to attract a mate, but this babe’s got a devious twist to her: give her half a chance and she’ll drain you dry! Gray Goo live off of our bodily fluids, see, and they’ll do anything to get ‘em. I’d better be careful not to alert her to my presence!”</i>");
+	output("\n\nSlowly, Steph creeps out of cover, hugging the ground almost like a cartoon character as she sneaks up on the Gray Goo sunbathing in the clearing. The camera putters behind her, giving an excellent view of the host’s ass in her sheer short pants, ever so slightly raised in the air as she creeps toward her prey.");
+	output("\n\nNearing the slumbering goo-girl, Steph holds still a hair’s breadth away, camera zooming in for a close-up of the gray’s cute little face as she snores quietly. <i>“Must be in standby mode,”</i> Steph says, relief palpable in her voice. <i>“Look at how she mimics a human. Kinda cute, innit she?”</i>");
+	output("\n\nAs she speaks, Steph pulls on a blue rubber glove, giving it a quiet snap before reaching up to the goo. <i>“Let me show just how gooey this creature is. She’s like gelatin to the touch, see-”</i>");
+	output("\n\nAs soon as Steph prods the gey goo’s tit, of course, its eyes snap open. The goo sits up, looking around in total confusion before her gaze alights on the galactic huntress, whose hand quickly retracts, owner stumbling away as the goo wakes up.");
+	output("\n\n<i>“Oh my gosh! A-are you Steph Irson!?”</i> the goo says suddenly, surging toward Steph, stopping just a few inches away, faces practically pressed together. <i>“Ohmygoshohmygosh! I love your show! Are we on right now? HI MOM! I mean, I don’t really have a mom, but if I did I’d totally say ‘hi’ to her right now!”</i>");
+	output("\n\nSteph stares at the goo-girl for a long moment. <i>“W-what?”</i>");
+	output("\n\nThe goo circles the galactic bounty hunter, in half-disbelief. <i>“A-and this is what you look like up up close? Oh gosh I’m so happy to meet you! A real person, a star! Eep, I’m nervous! I have all your shirts, Miss Irson, oh and I used to have a Galactic Huntress action figure but a rust monster stole it and used it like a dildo and fucked me with it! That was super fun, though. OH! W-would you sign, uh... I KNOW! Sign my tits!”</i>");
 	output("\n\nThe goo makes an exaggerated motion, as if pulling her non-existent shirt up, presenting her gigantic bosom to Steph. Finally recovering from her surprise, the huntress runs a hand through her sandy hair, pulling out a marker from her pocket.");
-	output("\n\n<i>\"Sure! Anything for an adoring fan!\"</i> she beams, as if she's completely forgotten the mortal peril she's supposedly in. Steph twirls the pen and pops the cap, asking, <i>\"So, who do I sign this to, pretty lady?\"</i>");
-	output("\n\n<i>\"Uh... I don't know...\"</i> the goo says apologetically, rubbing the back of her head in mock consternation, <i>\"I don't really have a name.\"</i>");
-	output("\n\n<i>\"Aw, that's alright, babe. I'll call you Carrie! Like my mum!\"</i> Steph says with a grin, starting to write on the goo's tit... only to have her pen... and her hand... sink into her gooey skin.");
-	output("\n\nThe goo and Steph both stare at the huntress's wrist as it vanishes into the goo-girl's tit. <i>\"Oops. I guess I'm hungry! Oh well! This is gonna be super duper fun, Miss Irson, I promise.\"</i>");
-	output("\n\nSteph manages only to let out a panicked scream as a surge of gray goo rushes up her arm, crashing across her body like a tidalwave, pulling her into the main mass of silvery machines. Her voice is silenced as a million micromachines surround her, dragging the show's host into the googirl's body until there's no trace of her left except her ponytail wiggling around behind the goo's head, dripping with moist micromachines. Giggling to herself, the goo spins around and strikes a pose, now almost perfectly mirroring Steph's shapely, athletic form (except for a much larger bust and ass), even pouring herself in to fill out the huntress's clothes.");
+	output("\n\n<i>“Sure! Anything for an adoring fan!”</i> she beams, as if she’s completely forgotten the mortal peril she’s supposedly in. Steph twirls the pen and pops the cap, asking, <i>“So, who do I sign this to, pretty lady?”</i>");
+	output("\n\n<i>“Uh... I don’t know...”</i> the goo says apologetically, rubbing the back of her head in mock consternation, <i>“I don’t really have a name.”</i>");
+	output("\n\n<i>“Aw, that’s alright, babe. I’ll call you Carrie! Like my mum!”</i> Steph says with a grin, starting to write on the goo’s tit... only to have her pen... and her hand... sink into her gooey skin.");
+	output("\n\nThe goo and Steph both stare at the huntress’s wrist as it vanishes into the goo-girl’s tit. <i>“Oops. I guess I’m hungry! Oh well! This is gonna be super duper fun, Miss Irson, I promise.”</i>");
+	output("\n\nSteph manages only to let out a panicked scream as a surge of gray goo rushes up her arm, crashing across her body like a tidalwave, pulling her into the main mass of silvery machines. Her voice is silenced as a million micromachines surround her, dragging the show’s host into the googirl’s body until there’s no trace of her left except her ponytail wiggling around behind the goo’s head, dripping with moist micromachines. Giggling to herself, the goo spins around and strikes a pose, now almost perfectly mirroring Steph’s shapely, athletic form (except for a much larger bust and ass), even pouring herself in to fill out the huntress’s clothes.");
 	processTime(4);
 	pc.lust(5);
 	clearMenu();
@@ -363,24 +371,24 @@ public function stephODEp2II():void
 	var x:int = 0;
 	if(pc.hasCock()) x = pc.smallestCockIndex();
 	else if(pc.hasVagina()) x = rand(pc.totalVaginas());
-	output("<i>\"Say hi to the camera!\"</i> The goo titters, bending over and wiggling her ass at the camera drone hovering around her. Winking at the camera over her shoulder, she reaches back and spreads her cheeks, quick and hard enough to rip her short pants and revealing a glistening wet ass and pussy - a human pair - beneath the torn bits of short pants still clinging to the hidden Steph's hips. The drone zooms in on her slit, catching a bit of lens flare as the dim sun reflects off of Steph's soaked-wet pussy, showing a thick trail of vaginal secretion trickling down from her spread hole.");
-	output("\n\n<i>\"Won't need THESE anymore,\"</i> the goo giggles, fingers slipping into her hips and pulling off the ruins of Steph's shorts, and then her lacy black panties, which the goo pauses to get a nice whiff of. <i>\"Oh, she smells just like I thought she would! M-maybe I should keep these...\"</i> she says, looking around in mock-guilt before stuffing them into her gooey cleavage.");
-	output("\n\nPants gone, the goo shimmies down to the ground, planting her ass on the dusty plain and lifting her long, toned legs up, slowly pulling off her boots one by one, leaving Steph's long stockings bare to the camera. <i>\"Oooh, sexy! Maybe I'll just leave these on!\"</i> the goo giggles, rolling onto her knees and showing off her backside and legs for the camera.");
-	output("\n\nThe goo's absolutely putting on a show of her own, now, crawling toward the camera on all fours, slowly letting her machines tear apart Steph's shirt to reveal her impressive bust, barely held back by a tight black bra. She exaggerates her movements, making sure her heavy chest is nice and bouncy for the camera as she approaches.");
-	output("\n\n<i>\"Do you like my tits, galaxy?\"</i> the googirl grins, groping her Steph-shaped bosom. <i>\"Maybe you want a closer look?\"</i>");
-	output("\n\nWith a saucy smile, the goo covers her lace-clad breasts with her arms, imitating a show of modesty... only for the bra covering them to tear a moment later from the sheer amount of goo straining beneath it, letting her tits bounce free. Steph's stiff, small nipples quickly draw the camera drone's auto-focus.");
-	output("\n\n<i>\"Oh, no, my big, bouncy tits are exposed! The whole galaxy can see my boobs... how embarrassing...\"</i> the goo says with mock shyness, barely able to contain her laughter. <i>\"Does that mean I'm a slut now? Oh, I bet so many people are masturbating to me now...\"</i>");
-	output("\n\nShe giggles to herself, but you're starting to flush with arousal yourself... and you can only imagine what the rest of the galaxy-wide audience is making of this display!");
-	output("\n\nBack on screen, the gray goo encasing Steph Irson has rolled onto her back, spreading her legs for the camera, fingers delving into poor Steph's gaping cunt, thumb teasing the bud of her clitty. The goo herself is giving the audience a playful grin, clearly enjoying the galactic attention - or at least that of the drone as it buzzes around her, always searching for the best angle. Giving a little gasp of pleasure, her slimy fingers slip into Steph's folds, spreading her cunt out for its closeup. The drone dutifully flies in, giving you a perfect High-Def view of Steph Irson's pussy gaped around the googirl's hand as she starts to jill off.");
-	output("\n\n<i>\"Are you getting close, galaxy?\"</i> the goo grins, fingers moving faster and faster through Steph's exposed groin. Mimicking Steph's own accent, she continues, <i>\"Well, I sure am! Let's finish together, everyone!\"</i>");
+	output("<i>“Say hi to the camera!”</i> The goo titters, bending over and wiggling her ass at the camera drone hovering around her. Winking at the camera over her shoulder, she reaches back and spreads her cheeks, quick and hard enough to rip her short pants and revealing a glistening wet ass and pussy - a human pair - beneath the torn bits of short pants still clinging to the hidden Steph’s hips. The drone zooms in on her slit, catching a bit of lens flare as the dim sun reflects off of Steph’s soaked-wet pussy, showing a thick trail of vaginal secretion trickling down from her spread hole.");
+	output("\n\n<i>“Won’t need THESE anymore,”</i> the goo giggles, fingers slipping into her hips and pulling off the ruins of Steph’s shorts, and then her lacy black panties, which the goo pauses to get a nice whiff of. <i>“Oh, she smells just like I thought she would! M-maybe I should keep these...”</i> she says, looking around in mock-guilt before stuffing them into her gooey cleavage.");
+	output("\n\nPants gone, the goo shimmies down to the ground, planting her ass on the dusty plain and lifting her long, toned legs up, slowly pulling off her boots one by one, leaving Steph’s long stockings bare to the camera. <i>“Oooh, sexy! Maybe I’ll just leave these on!”</i> the goo giggles, rolling onto her knees and showing off her backside and legs for the camera.");
+	output("\n\nThe goo’s absolutely putting on a show of her own, now, crawling toward the camera on all fours, slowly letting her machines tear apart Steph’s shirt to reveal her impressive bust, barely held back by a tight black bra. She exaggerates her movements, making sure her heavy chest is nice and bouncy for the camera as she approaches.");
+	output("\n\n<i>“Do you like my tits, galaxy?”</i> the googirl grins, groping her Steph-shaped bosom. <i>“Maybe you want a closer look?”</i>");
+	output("\n\nWith a saucy smile, the goo covers her lace-clad breasts with her arms, imitating a show of modesty... only for the bra covering them to tear a moment later from the sheer amount of goo straining beneath it, letting her tits bounce free. Steph’s stiff, small nipples quickly draw the camera drone’s auto-focus.");
+	output("\n\n<i>“Oh, no, my big, bouncy tits are exposed! The whole galaxy can see my boobs... how embarrassing...”</i> the goo says with mock shyness, barely able to contain her laughter. <i>“Does that mean I’m a slut now? Oh, I bet so many people are masturbating to me now...”</i>");
+	output("\n\nShe giggles to herself, but you’re starting to flush with arousal yourself... and you can only imagine what the rest of the galaxy-wide audience is making of this display!");
+	output("\n\nBack on screen, the gray goo encasing Steph Irson has rolled onto her back, spreading her legs for the camera, fingers delving into poor Steph’s gaping cunt, thumb teasing the bud of her clitty. The goo herself is giving the audience a playful grin, clearly enjoying the galactic attention - or at least that of the drone as it buzzes around her, always searching for the best angle. Giving a little gasp of pleasure, her slimy fingers slip into Steph’s folds, spreading her cunt out for its closeup. The drone dutifully flies in, giving you a perfect High-Def view of Steph Irson’s pussy gaped around the googirl’s hand as she starts to jill off.");
+	output("\n\n<i>“Are you getting close, galaxy?”</i> the goo grins, fingers moving faster and faster through Steph’s exposed groin. Mimicking Steph’s own accent, she continues, <i>“Well, I sure am! Let’s finish together, everyone!”</i>");
 	
 	pc.lust(33);
-	output("\n\nWith a giddy cry of pleasure, the goo-girl lets out a powerful squirt of girl-cum right into the camera drone's eye, sending it tumbling back as its owner and her gooey captor cum and cum, screaming and bucking their hips on the ground. A few moments later, the screen goes black, followed by an <i>\"Experiencing Technical Difficulties\"</i> warning superimposed over the <i>Galactic Huntress</i> logo. In the background, though, you can still hear Steph moaning as the goo finishes with her.");
-	output("\n\n<i>\"So, you're gonna edit all that out in post, right?\"</i> the goo giggles, just as a commercial comes on.");
+	output("\n\nWith a giddy cry of pleasure, the goo-girl lets out a powerful squirt of girl-cum right into the camera drone’s eye, sending it tumbling back as its owner and her gooey captor cum and cum, screaming and bucking their hips on the ground. A few moments later, the screen goes black, followed by an <i>“Experiencing Technical Difficulties”</i> warning superimposed over the <i>Galactic Huntress</i> logo. In the background, though, you can still hear Steph moaning as the goo finishes with her.");
+	output("\n\n<i>“So, you’re gonna edit all that out in post, right?”</i> the goo giggles, just as a commercial comes on.");
 	
 	processTime(19);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",backToSmutMenu);
 }
 
 public function stephODEp3():void
@@ -426,8 +434,8 @@ public function stephODEp3II():void
 	output("\n\n<i>“Working,”</i> he grunts, slapping the cow-girl on the ass. She shrieks, a large red-mark left on her behind.");
 	output("\n\nSteph pouts. <i>“C’mon, you’re the first stud I’ve seen all day.”</i>");
 	output("\n\nThe bull finally looks away from the jiggling cow-butt between his legs and glowers at the huntress. <i>“Lady, I’m balls-deep in a bitch right now. Can you wait like, five minutes?”</i>");
-	output("\n\n<i>“That doesn’t make for exciting television, now does it?”</i> Steph says, arms crossed. As she does so, her camera drone shudders and re-focuses on the gap between the stud and his brood-cow, zooming in on his huge cock pounding her spread pussy and giving you a gloriously high-def view of the fem-cum spurting out around his rod. Now <i>that</i>'s some good television.");
-	output("\n\n“You sure I can't borrow you for a minute?” Steph purrs, her feline ears perking up atop her head as one of her arms reaches out to caress the thick, tense muscles on the Treated man's arm.");
+	output("\n\n<i>“That doesn’t make for exciting television, now does it?”</i> Steph says, arms crossed. As she does so, her camera drone shudders and re-focuses on the gap between the stud and his brood-cow, zooming in on his huge cock pounding her spread pussy and giving you a gloriously high-def view of the fem-cum spurting out around his rod. Now <i>that</i>’s some good television.");
+	output("\n\n“You sure I can’t borrow you for a minute?” Steph purrs, her feline ears perking up atop her head as one of her arms reaches out to caress the thick, tense muscles on the Treated man’s arm.");
 	output("\n\nThe stud hilts himself in the cow and grunts with bestial enthusiasm, his breath hot and heavy as the camera drone focuses in on him, and then on thoroughly-bred cow beneath him. With another feral grunt, the bull takes a step back from the well-fucked cow-slut and letts a torrent of spooge pour out of her packed pussy, a waterfall of white that very nearly splatters on the camera drone. When it recovers, you’re treated to a full-frontal view of the stud’s cock: a huge equine phallus almost as long as his arm dangling between his muscular legs.");
 	output("\n\nHe turns to Steph with a toothy grin and grabs the Huntress’s ass in both hands, pulling the khaki-clad hostess up against himself. Steph makes a pathetic little yelp as she’s all but hauled off of her feet, her bare legs rubbing up against the bull’s half-hard prick - which immediately smears her tanned flesh with thick, white cream.");
 	output("\n\nThe bull grabs the camera drone as it passes by, making it chirp and buzz at him as he pulls its camera around to look him right in the face. <i>“Want some exciting television, viewers? I hear this slut tapes live, don’tcha?”</i>");
@@ -445,7 +453,7 @@ public function stephODEp3III():void
 	output("<i>“Hey, I’m not a-”</i> Steph starts to say, getting cut off when the bull bucks her onto the milker. His free hand all but rips her shirt off by the back, leaving tattered fragments of cloth hanging limply from Steph’s shoulders.");
 	output("\n\n<i>“Why don’t you interview this?”</i> he chuckles, aiming the camera drone down to watch as he cranes Steph’s head into the thighs of the cow-girl he was just fucking, rubbing the huntress’s nose into the cream-packed slit between them. The cow immediately starts to moan, arching her back and clutching at her over-sized jugs - you can’t see the action up close, but something tells you Steph isn’t exactly resisting the bull’s direction.");
 	output("\n\nThe stud chuckles and steps back, keeping one hand firmly planted on Steph’s back as he circles around, giving you - and the hundreds of thousands of other viewers across the galaxy - an ultra-HD panoramic of Steph Irson lapping up his cum from the cow’s twat. <i>“Always wanted to do a porno,”</i> he laughs, almost boomingly loud so close to the drone’s microphone.");
-	output("\n\nHe lets go of Steph’s back, and grunts approvingly when she stays right where he put her, making his bovine bottom moan and squirm between the attentions of the milker and Steph's apparently very talented tongue. The bull makes quick work of the rest of Steph’s clothing, yanking away her tattered top and pulling her khaki booty shorts down around her ankles, revealed a pussy with silver-grey lips.");
+	output("\n\nHe lets go of Steph’s back, and grunts approvingly when she stays right where he put her, making his bovine bottom moan and squirm between the attentions of the milker and Steph’s apparently very talented tongue. The bull makes quick work of the rest of Steph’s clothing, yanking away her tattered top and pulling her khaki booty shorts down around her ankles, revealed a pussy with silver-grey lips.");
 	output("\n\n<i>“Woah, what do we have here?”</i> the bull says, crouching down behind the bent-over huntress and focusing the drone in on her drooling sex. <i>“Nice and smooth and painted up...”</i> he reaches forward to tease a finger along her lips, tracing a thick digit around her sex before plunging a pair of them inside her... and then the rest in quick succession, burying himself to the wrist.");
 	output("\n\n<i>“Damn, babe, that’s some fine work you’ve got done down her. Fuckin’ stretchy as hell... it’s like you were just </i>made<i> for takin’ big dicks, huh?”</i>");
 	output("\n\nSteph yelps something, trying to sit up but finding herself trapped in the iron grasp of the cow-girl’s thighs. The bovine babe’s legs are wrapped around Steph’s shoulders, the camera reveals, pulling the huntress deeper and deeper into the cow’s cunny... and the growing lake of moisture pooling under her ass, drool and cum and feminine excitement mixing into what you can only imagine to be an heady aroma. Steph must be going insane down there...");
@@ -473,7 +481,7 @@ public function stephODEp3III():void
 	pc.lust(10);
 	processTime(29);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",backToSmutMenu);
 }
 
 public function stephODEp4():void
@@ -488,7 +496,7 @@ public function stephODEp4():void
 	output("\n\nSteph chuckles and turns away from the camera, start to walk through the narrow, winding caverns. The camera drone follows, keeping her thick, booty-short-straining behind in view for the audience. <i>“Nyrean females vie for dominance among their own kind like old-earth predators, with submissive losers being forced to carry alphas’ eggs after the fight. Eggs they get through reverse sex with a male: inserting their pseudo-penis in his genital slit and extracting semen from little sacs inside him. Pretty nifty, huh? So today, I’m on the hunt for the biggest, baddest alpha nyrea I can find and see if we can get this strange, unique twist on mating on camera for you viewers at home! I’ve done a little scouting, and I think I’ve found a pretty likely place to find one: a deep cavern just up the tunnel here, covered in glowing moss and cave drawings.”</i>");
 	output("\n\nA few moments later and the Huntress has arrived at the cave in question: a big crack in the wall surrounded by softly glowing blue moss that’s been artificially arranged into a swirling pattern around the cavern entrance, several concentric circles that make the passage seem much bigger and more intimidating than it actually is. A few small bushes grow from the ground nearby, forming a sweeping approach to the cave, almost like a manor house’s cultivated garden. Steph wasn’t kidding when she said nyrean queen!");
 	output("\n\n<i>“Right, ‘ere we are, then. I’m gonna have to be incredibly careful from here on out, unless I want to end up with a belly full of eggs. Nyrea are aggressive breeders, and alphas love to make other people carry their eggs for them - I’m just a walking incubator to these ovipositing beauties. I’m just shivering thinking about it,”</i> Steph adds, hugging her arms around herself. In the ultra-HD color on screen, you can’t help but notice a dark splotch suddenly form on her shorts between her legs. The camera drone immediately focuses in on it, until Steph reaches out and gives it a swat.");
-	output("\n\n<i>“Alright, it's about time to go get a look at a big, bad nyrean queen. Follow me!”</i> Steph whispers, adjusting her goggles and starting to creep towards the darkened tunnel entrance.");
+	output("\n\n<i>“Alright, it’s about time to go get a look at a big, bad nyrean queen. Follow me!”</i> Steph whispers, adjusting her goggles and starting to creep towards the darkened tunnel entrance.");
 	output("\n\nJust as she’s about to step through the cavern entrance, a woman steps out, smacking right into Steph and sending both of them tumbling to the ground. The camera zooms in on the alien woman, an insectile girl with a pair of big, bare breasts over a natural corset of chitin and long, elfin ears growing from her head. She lands on her ass with an <i>“oomph,”</i> rubbing her head where Steph bonked into her.");
 	processTime(6);
 	clearMenu();
@@ -513,7 +521,7 @@ public function stephODEp4II():void
 	output("\n\nThe nyrea blinks, but accepts Steph’s hand and pulls herself to her feet. <i>“I guess it’s the same everywhere. Even where you offworlders are from, huh?”</i>");
 	output("\n\nSteph giggles. <i>“I don’t mind anymore, really. You sorta get used to everybody wanting to use you like a fucktoy eventually.”</i>");
 	output("\n\n<i>“Tell me about it!”</i> the nyrea smiles, folding her arms behind her back in a way that compels the camera to zoom in on her thrust-out chest, giving you a view of cream-pale flesh and black nipples that are still nice and stiff. <i>“Ugh, I’m so sick of...”</i>");
-	output("\n\nA moment later, the camera zooms up over her shoulder as another nyrea steps out, voice echoing off the stone: <i>“And what a marvelous fucktoy it is.”</i> The second nyrea is clutching a long spear and wearing padded chainmail that just barely conceals her bust... and the massive, half-hard cock bulging between her legs. The camera zooms in, ducking under Steph’s ass to get an angle on the beast that's only just restrained by the nyrea’s chainmail bikini bottom. <i>“If you two had kept wrestling much longer, I might have had to start jacking off. But now that I have your attention, I guess you can take care of my big, thick problem here with your... cute little fucktoy of a breeder body, can’t you?”</i>");
+	output("\n\nA moment later, the camera zooms up over her shoulder as another nyrea steps out, voice echoing off the stone: <i>“And what a marvelous fucktoy it is.”</i> The second nyrea is clutching a long spear and wearing padded chainmail that just barely conceals her bust... and the massive, half-hard cock bulging between her legs. The camera zooms in, ducking under Steph’s ass to get an angle on the beast that’s only just restrained by the nyrea’s chainmail bikini bottom. <i>“If you two had kept wrestling much longer, I might have had to start jacking off. But now that I have your attention, I guess you can take care of my big, thick problem here with your... cute little fucktoy of a breeder body, can’t you?”</i>");
 	processTime(6);
 	pc.lust(3);
 	clearMenu();
@@ -557,7 +565,7 @@ public function stephODEp4IV():void
 	pc.lust(5);
 	clearMenu();
 	addButton(0,"Next",stephODEp4V);
-	addButton(1,"StopWatching",mainGameMenu);
+	addButton(1,"StopWatching",backToSmutMenu);
 }
 
 public function stephODEp4V():void
@@ -567,7 +575,7 @@ public function stephODEp4V():void
 	
 	output("The tentacles are relentless, single-minded in their motions to pump Steph full of creamy, viscous seed. Her belly swells with the sheer volume of plant-spunk flooding into her womb and both ends of her gut, distending even more as the tentacles visibly squirm inside her, straining her body to its limits. Minutes fly by in vigorous fucking, the tentacles drilling deeper and deeper into Steph’s abused body, joined by even more small vines that worm their way into her holes beside their larger cousins. Every root and vine in the bush seems to be trying to wriggle its way into her, to give the Huntress its load of thick, creamy plant spunk.");
 	output("\n\nBy the time they’re done with her, Steph’s as white as a sheet, slathered with plant spooge from head to toe and still trickling milk as the vines latched onto her breasts release her. She sputters and coughs as the vine in her mouth withdraws, giving her a final money-shot across her cheeks in glorious close-up high definition. Her eyes flutter as the last squirts of cum plaster her gray lips, and her tongue laps it up with lazy hunger. She gives a full body shiver, drawing the camera’s eye towards her crotch as the tentacles buried in her twat slowly slither out, drawing out another screaming orgasm from the show’s host as they pop out, splattering her thighs with thier cum and hers.");
-	output("\n\nSteph slumps against the restraints still around her limbs, breathing hard and shivering with the aftershocks of repeated orgasm, completely at the plant’s mercy. However, it seems done with her now that she’s utterly filled with the vines' seed. The camera follows her as the tentacles draw her limp body back up through the bush over the pit and deposit her back on the surface, plopping her back on the stone cavern floor in a pool of white, creamy spunk. You can see one tentacle, however, still outside the pit, attached firmly to the Galactic Huntress’s backside.");
+	output("\n\nSteph slumps against the restraints still around her limbs, breathing hard and shivering with the aftershocks of repeated orgasm, completely at the plant’s mercy. However, it seems done with her now that she’s utterly filled with the vines’ seed. The camera follows her as the tentacles draw her limp body back up through the bush over the pit and deposit her back on the surface, plopping her back on the stone cavern floor in a pool of white, creamy spunk. You can see one tentacle, however, still outside the pit, attached firmly to the Galactic Huntress’s backside.");
 	output("\n\n<i>“Oof,”</i> Steph groans, rolling onto her hand and knees, ass in the air and face to the camera. <i>“Well, that’s it for another episode of </i>Steph Irson<i>... ugh, what’s that on my... uh, </i>Steph Irson’s Galactic Huntress<i>. Join us next week for... agh, what the-”</i> she gasps as the tentacle behind her flicks up, its bulbous purple cockhead peeking up to look at the camera, drooling from its cumslit. The camera flies over to take a look, showing where the tendril’s cockhead shifts into plant-like vine... and then travels down to join with Steph’s backside, just over her ass, foliage merging with flesh. She moans, and the tail squirms around, batting at the camera until it flies back.");
 	output("\n\n<i>“We’ll, um, next week we’ll be... uh,”</i> Steph slurs, her new cock-tail vanishing between her legs. <i>“We’ll be- gaaaaahhhhhh!”</i>");
 	output("\n\nThe tail plunges into her, pumping vigorously into her backside. She gives a startled squeal, slumping forward onto her big, milky jugs as her new appendage gets used to her. The camera feed fades to black, telling you to tune in next week for another exciting episode of <i>Steph Irson, Galactic Huntress</i>.");
@@ -577,7 +585,7 @@ public function stephODEp4V():void
 	processTime(6);
 	pc.lust(7);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",backToSmutMenu);
 }
 
 //STEPH IRSON!
@@ -588,7 +596,7 @@ public function stephODEp5():void
 	clearOutput();
 	stephHeader(5);
 	
-	output("You sprawl out and kick on the fifth episode of the season. A brief commercial plays before the episode starts, telling you this program is brought to you by TamaniCorp, the galaxy's leading manufacturer of personal pleasure products and fertility enhancements. An image of a bubbly pink woman in barely-modest skankware flashes you a thumbs up and jiggles her tits at the camera before it fades out, and the new title card of the program comes in: a large pair of fleshtone twin planets with the words <b>Steph Irson: Galactic Huntress</b> superimposed over them. Beneath the title script, a warning appears in large red letters: “<i>This Show Rated X, Adults Only, by the Galactic Entertainment Ratings Board for Graphic, Sexual, and Disturbing Imagery. You Have Been Warned.</i>”");
+	output("You sprawl out and kick on the fifth episode of the season. A brief commercial plays before the episode starts, telling you this program is brought to you by TamaniCorp, the galaxy’s leading manufacturer of personal pleasure products and fertility enhancements. An image of a bubbly pink woman in barely-modest skankware flashes you a thumbs up and jiggles her tits at the camera before it fades out, and the new title card of the program comes in: a large pair of fleshtone twin planets with the words <b>Steph Irson: Galactic Huntress</b> superimposed over them. Beneath the title script, a warning appears in large red letters: “<i>This Show Rated X, Adults Only, by the Galactic Entertainment Ratings Board for Graphic, Sexual, and Disturbing Imagery. You Have Been Warned.</i>”");
 	output("\n\nA smaller notice underneath announces <i>“This show brought to you by the Council for Interspecies Understanding on Myrellion,”</i> printed over the image of both a red and a gold-colored ant-person holding hands.");
 	output("\n\nAfter a moment, the introduction fades out, replaced by a crackling white of static. You briefly think that something’s gone futzy with the quantum connection, but before someone can go up and give the screen a good bonking, the fuzzy white resolves into a more recognizable shape: a torrent of snow, blasting past a shaky camera at breakneck speeds. After a few seconds of staring at vague shapes obscured by a thick glaze of ice and snow, something off-screen grabs the camera drone and wipes away at the caked-on ice, clearing it off enough for you to see what’s going on.");
 	output("\n\nA woman is crouching on the top of a snowbank when the camera refocuses, bundled up in a heavy fur-lined coat with the show’s logo on one huge, jutting boob and that of the Confederate Scout Authority on the other. Though the figure is so heavily clothed that you can’t see an inch of flesh, the outrageously curvaceous figure, swivelling cat-ears, and wriggling vine-like tail poking out the back of her pants leave little room for doubt that you’re looking at Steph Irson, the much-mutated host of the show.");
@@ -686,5 +694,5 @@ public function stephODEp5III():void
 	pc.lust(10);
 	processTime(10);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",backToSmutMenu);
 }

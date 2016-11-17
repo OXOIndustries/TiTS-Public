@@ -24,14 +24,14 @@ package classes.Items.Guns
 			
 			description = "a bimboleum emitter";
 			
-			tooltip = "A custom designed Bimboleum Emitter, like the kind Doctor Badger uses. May cause fantasies, enflamed genitalia, inflated genitalia, orgasm, mild euphoria, severe euphoria, temporary loss of intelligence, permanent loss of intelligence, spontaneous silicone synthesis, drooling, undue vaginal secretions, sudden onset of fetishes, attention deficit disorder, high blood pressure, or cardiac arrest. Effects are generally temporary unless exposure is long term.";
+			tooltip = "A custom designed Bimboleum Emitter, like the kind Doctor Badger uses.\n\nMay cause fantasies, enflamed genitalia, inflated genitalia, orgasm, mild euphoria, severe euphoria, temporary loss of intelligence, permanent loss of intelligence, spontaneous silicone synthesis, drooling, undue vaginal secretions, sudden onset of fetishes, attention deficit disorder, high blood pressure, or cardiac arrest. Effects are generally temporary unless exposure is long term.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
 			attackVerb = "shoot";
 			attackNoun = "bimbofication";
 			
-			basePrice = 4500;
+			basePrice = 5500;
 			attack = 0;
 			baseDamage.tease.damageValue = 16;
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

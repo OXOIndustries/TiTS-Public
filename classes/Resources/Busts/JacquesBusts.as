@@ -450,5 +450,77 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/vedice.png", mimeType = "image/png", compression = true)]
 			public var Full_VEDICE:Class;
 		}
+		
+		
+		/* Logo Images */
+		
+		[Embed(source = "../../../assets/images/logos/jacques00/aegis.png", mimeType = "image/png")]
+		public var Bust_LOGO_AEGIS:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/akkadi.png", mimeType = "image/png")]
+		public var Bust_LOGO_AKKADI:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/bell-isle_grunmann.png", mimeType = "image/png")]
+		public var Bust_LOGO_BELL_ISLE_GRUNMANN:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/carver.png", mimeType = "image/png")]
+		public var Bust_LOGO_CARVER:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/galactic_huntress.png", mimeType = "image/png")]
+		public var Bust_LOGO_GALACTIC_HUNTRESS:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/galactic_huntress_1.png", mimeType = "image/png")]
+		public var Bust_LOGO_GALACTIC_HUNTRESS_1:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/jejune.png", mimeType = "image/png")]
+		public var Bust_LOGO_JEJUNE:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/joyco.png", mimeType = "image/png")]
+		public var Bust_LOGO_JOYCO:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/kihacorp.png", mimeType = "image/png")]
+		public var Bust_LOGO_KIHACORP:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/pyrite.png", mimeType = "image/png")]
+		public var Bust_LOGO_PYRITE:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/reaper.png", mimeType = "image/png")]
+		public var Bust_LOGO_REAPER:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/snuggle.png", mimeType = "image/png")]
+		public var Bust_LOGO_SNUGGLE:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/steele_tech.png", mimeType = "image/png")]
+		public var Bust_LOGO_STEELE_TECH:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/tamanicorp.png", mimeType = "image/png")]
+		public var Bust_LOGO_TAMANICORP:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/ugc.png", mimeType = "image/png")]
+		public var Bust_LOGO_UGC:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/xenogen.png", mimeType = "image/png")]
+		public var Bust_LOGO_XENOGEN:Class;
+		
+		CONFIG::IMAGEPACK
+		{
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/aegis.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_AEGIS:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/akkadi.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_AKKADI:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/bell-isle_grunmann.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_BELL_ISLE_GRUNMANN:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/carver.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_CARVER:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/galactic_huntress.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_GALACTIC_HUNTRESS:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/galactic_huntress_1.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_GALACTIC_HUNTRESS_1:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/jejune.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_JEJUNE:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/joyco.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_JOYCO:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/kihacorp.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_KIHACORP:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/pyrite.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_PYRITE:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/reaper.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_REAPER:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/snuggle.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_SNUGGLE:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/steele_tech.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_STEELETECH:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/tamanicorp.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_TAMANICORP:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/ugc.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_UGC:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/xenogen.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_XENOGEN:Class;
+		}
 	}
 }

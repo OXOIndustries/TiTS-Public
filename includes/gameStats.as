@@ -1920,15 +1920,54 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["PEXIGA_TREATMENT"] == undefined) output2(" Talked to Yammi about her pexiga");
 				else
 				{
-					switch(flags["PEXIGA_TREATMENT"])
+					if(flags["DR_BADGER_TURNED_IN"] != undefined)
 					{
-						case 0:
-							output2(" Talked to Yammi, Talked to Dr. Badger, <i>Do you bimbofy Yammi’s pexiga?</i>");
-							break;
-						default: output2(" <i>Unknown</i>"); break;
+						output2(" Talked to Yammi");
+						if(flags["LASH_BOMB"] == undefined && flags["DEL_DISTRACT"] == undefined) output2(", <i>U.G.C. authorities are patrolling Dr. Badger’s Bimbotorium...</i>");
+						else if(flags["LASH_BOMB"] != undefined) output2(", U.G.C. distracted by Dr. Lash");
+						else if(flags["DEL_DISTRACT"] != undefined) output2(", U.G.C. distracted by Delilah");
+						if(flags["PEXIGA_TREATMENT"] >= 1) output2(", Bimbofied Yammi’s pexiga, Completed");
+						else output2(", <i>Do you bimbofy Yammi’s pexiga?</i>");
+					}
+					else
+					{
+						output2(" Talked to Yammi, Talked to Dr. Badger");
+						if(flags["PEXIGA_TREATMENT"] >= 1) output2(", Bimbofied Yammi’s pexiga, Completed");
+						else output2(", <i>Do you bimbofy Yammi’s pexiga?</i>");
 					}
 				}
 				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
+				if(flags["NYM-FOE"] >= 2) output2(", Defeated Her");
+				if(flags["NYM-FOE_FUCKED"] != undefined) output2("\n<b>* Nym-Foe, Times Sexed Her:</b> " + flags["NYM-FOE_FUCKED"]);
+				if(flags["NYM-FOE_LOSSES"] != undefined) output2("\n<b>* Nym-Foe, Times Lost to Her:</b> " + flags["NYM-FOE_LOSSES"]);
+				if(flags["NYM-FOE_CHIP_RETURN"] != undefined || pc.hasItem(new DamagedVIChip()))
+				{
+					output2("\n<b>* Damaged V.I. Chip:</b> Looted");
+					if(flags["NYM-FOE_CHIP_RETURN"] == undefined) output2(", In possession");
+					else output2(", Given to JoyCo, Rewarded");
+				}
+				if(flags["DOLLMAKER_STATUS"] != undefined)
+				{
+					output2("\n<b>* Doll Maker:</b>");
+					switch(flags["DOLLMAKER_STATUS"])
+					{
+						case -1: output2(" Fought it, Defeated it"); break;
+						case 1: output2(" Fought it, Lost to it, You’ve gotten dolled up"); break;
+						case 2: output2(" Met it, Non-hostile"); break;
+						case 3: output2(" Met it, You’ve volunteered to get dolled up"); break;
+						default: output2(" Seen it"); break;
+					}
+				}
+				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItem(new IQBGone()))
+				{
+					output2("\n<b>* IQ B-Gone:</b> Looted");
+					if(flags["IQBGONE_POLICED"] == undefined) output2(", In possession");
+					else
+					{
+						output2(", Given to U.G.C.");
+						if(flags["IQBGONE_POLICED"] >= 2) output2(", Rewarded");
+					}
+				}
 				
 				sideCount++;
 			}
@@ -3370,6 +3409,24 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["SEXED_YAMMI"] != undefined) output2("\n<b>* Yammi, Times Sexed:</b> " + flags["SEXED_YAMMI"]);
 				if(flags["ANALED_YAMMI"] != undefined) output2("\n<b>* Yammi, Times Fucked Her Ass:</b> " + flags["ANALED_YAMMI"]);
+				// Pexiga
+				if(flags["YAMMI_HELPED"] >= 2)
+				{
+					var pexigaName:String = (pexigaRecruited() ? "[pexiga.name]" : "Yammi’s Pexiga");
+					output2("\n<b>* " + pexigaName + ":</b> Met her");
+					if(pexigaRecruited())
+					{
+						output2(", Crew member");
+						if(flags["PEX&YAM_MEETING"] == undefined) output2(" (Following you)");
+						else if(pexigaIsCrew()) output2(" (Onboard Ship)");
+					}
+					if(flags["YAMMI_PEX_MILK"] != undefined) output2("\n<b>* " + pexigaName + ", Times Milked Her with Yammi:</b> " + flags["YAMMI_PEX_MILK"]);
+					var pexigaMilked:int = 0;
+					if(flags["PEX_MILKED"] != undefined) pexigaMilked += flags["PEX_MILKED"];
+					if(flags["PEX_SOLOMILK"] != undefined) pexigaMilked += flags["PEX_SOLOMILK"];
+					if(pexigaMilked > 0) output2("\n<b>* " + pexigaName + ", Times Milked Her Solo:</b> " + pexigaMilked);
+					if(flags["PEXIGA_BUBBLE"] != undefined) output2("\n<b>* " + pexigaName + ", Time Made Cum-Bubbles for Her:</b> " + flags["PEXIGA_BUBBLE"]);
+				}
 				// Reaha special
 				if(flags["REAHA_ICE_CREAM_DAYS"] != undefined) output2("\n<b>* Reaha, Days Since Last Had Ice Cream With:</b> " + (days - flags["REAHA_ICE_CREAM_DAYS"]));
 				if(flags["REAHA_ICE_CREAM_TIMES"] != undefined) output2("\n<b>* Reaha, Times Had Ice Cream With:</b> " + flags["REAHA_ICE_CREAM_TIMES"]);

@@ -1881,6 +1881,16 @@
 				case "milkyNipples":
 					buffer = nipplesDescript(arg2, true);
 					break;
+				case "nippleCuntDescript":
+				case "nippleCunt":
+				case "cuntNipple":
+					buffer = nippleCuntDescript();
+					break;
+				case "nippleCuntsDescript":
+				case "nippleCunts":
+				case "cuntNipples":
+					buffer = nippleCuntsDescript();
+					break;
 				case "nippleCockDescript":
 				case "nippleCock":
 				case "dickNipple":
@@ -1889,7 +1899,7 @@
 				case "nippleCocksDescript":
 				case "nippleCocks":
 				case "dickNipples":
-					buffer = plural(nippleCockDescript());
+					buffer = nippleCocksDescript();
 					break;
 				case "nippleColor":
 					buffer = nippleColor;
@@ -4336,6 +4346,13 @@
 		public function addTailFlag(arg:int): void {
 			if (!hasTailFlag(arg)) tailFlags[tailFlags.length] = arg;
 		}
+		public function removeTailFlag(arg:int):void
+		{
+			if (hasTailFlag(arg))
+			{
+				tailFlags.splice(tailFlags.indexOf(arg), 1);
+			}
+		}
 		public function clearTailFlags(): void {
 			tailFlags = new Array();
 		}
@@ -4348,6 +4365,13 @@
 		public function addArmFlag(arg:int): void {
 			if (!hasArmFlag(arg)) armFlags[armFlags.length] = arg;
 		}
+		public function removeArmFlag(arg:int):void
+		{
+			if (hasArmFlag(arg))
+			{
+				armFlags.splice(armFlags.indexOf(arg), 1);
+			}
+		}
 		public function clearArmFlags(): void {
 			armFlags = new Array();
 		}
@@ -4356,6 +4380,13 @@
 				if (legFlags[temp] == arg) return true;
 			}
 			return false;
+		}
+		public function removeLegFlag(arg:int):void
+		{
+			if (hasLegFlag(arg))
+			{
+				legFlags.splice(legFlags.indexOf(arg), 1);
+			}
 		}
 		public function addLegFlag(arg:int): void {
 			if (!hasLegFlag(arg)) legFlags[legFlags.length] = arg;
@@ -4377,6 +4408,13 @@
 				temp++;
 			}
 			return false;
+		}
+		public function removeTongueFlag(arg:int):void
+		{
+			if (hasTongueFlag(arg))
+			{
+				tongueFlags.splice(tongueFlags.indexOf(arg), 1);
+			}
 		}
 		public function clearTongueFlags():void
 		{
@@ -4451,7 +4489,7 @@
 				}
 				else if(lips <= 8)
 				{
-					if(rand(3) == 0) result += "'o' shaped";
+					if(rand(3) == 0) result += "‘o’ shaped";
 					else if(rand(2) == 0) result += "whorish";
 					else result += "permanently puckered";
 				}
@@ -13042,7 +13080,7 @@
 				//Tail-cock specials
 				else if(special == "tail" && rand(2) == 0) desc += "tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
 				//Nipple-dick specials
-				else if(special == "dick" && rand(2) == 0) desc += RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else if(special == "nipple" && rand(2) == 0) desc += RandomInCollection(["dick","cock","prick"] + "-nipple");
 				else
 				{
 					switch(type)
@@ -13158,7 +13196,7 @@
 				}
 				//TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
 				else if(special == "tail" && rand(2) == 0) desc += cockShape2(cock,type) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
-				else if(special == "dick" && rand(2) == 0) desc += cockShape2(cock,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else if(special == "nipple" && rand(2) == 0) desc += cockShape2(cock,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
 				else
 				{
 					switch(type)
@@ -14460,6 +14498,15 @@
 			if (described) desc += " ";
 			desc += fluidNoun(girlCumType);
 			return desc;
+		}
+		public function nippleCuntDescript(appearance: Boolean = false): String {
+			var descript: String = "";
+			if (rand(10) <= 6 && !appearance) descript += RandomInCollection(["penetrable", "fuckable", "pliable", "stretchy"]) + " ";
+			descript += RandomInCollection(["cunt", "cunt"]) + "-nipple";
+			return descript;
+		}
+		public function nippleCuntsDescript(appearance: Boolean = false): String {
+			return plural(nippleCuntDescript(appearance));
 		}
 		public function nippleCockDescript(appearance: Boolean = false): String {
 			var descript: String = "";
