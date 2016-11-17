@@ -18,11 +18,9 @@ public function TundraEncounterBonus():Boolean
 	if(flags["TUNDRA_STEP"] >= 5 && rand(4) == 0) {
 		//Reset step counter
 		flags["TUNDRA_STEP"] = 0;
-		if(rand(2) == 0)
-		{
-			encounterAMilodan();
-			return true;
-		}
+		//POSSIBLE ENCOUNTERS! SABERFLOOF!
+		choices[choices.length] = encounterAMilodan;
+		choices[choices.length] = encounterAMilodan;
 		//POSSIBLE ENCOUNTERS! KORGI!
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
