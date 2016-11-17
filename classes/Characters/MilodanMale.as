@@ -74,7 +74,7 @@
 			this.level = 8;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 200;
+			this.HPMod = 350;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
@@ -202,7 +202,9 @@
 		{
 			return "MILODANMALE";
 		}
-		
+		override public function physiqueMax(): Number {
+			return 75;
+		}
 		private function randomise():void 
 		{
 			sexualPreferences.setRandomPrefs(3 + rand(3));
@@ -325,7 +327,7 @@
 					damageRand(d, 15);
 					applyDamage(d, this, target, "melee");
 					//{bleed chance}
-					if(this.physique()/2 + rand(20) + 1 >= target.reflexes()/2 + 10)
+					if(this.physique()/2 + rand(20) + 1 >= target.reflexes()/2 + 14 && target.shields() <= 0)
 					{
 						if (!target.hasStatusEffect("Bleeding"))
 						{
@@ -390,7 +392,7 @@
 				this.HP(100);
 			}
 			else output(" He appears stronger than ever!");
-			this.physiqueMod += 20;
+			this.physiqueMod += 35;
 			this.createStatusEffect("Berserk",1,0,0,0,false,"Icon_Bull","Physique is greatly enhanced. (+20)",true,0);
 		}
 		public function scentOfThePrey(target:Creature):void
