@@ -4,6 +4,7 @@
 public function oviliumEffects():void
 {
 	clearOutput();
+	showBust("");
 	showName("\nOVILIUM");
 	author("Gardeford");
 	
@@ -187,6 +188,7 @@ public function preggcelleration(plusMinutes:int = 0):int
 public function oviliumPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):void
 {
 	clearOutput();
+	showBust("");
 	showName("\nEGGS!");
 	author("Gardeford");
 	
@@ -227,6 +229,16 @@ public function oviliumPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):
 	
 	// Loot egg!
 	output("\n\n");
+	oviliumEggReward(bigEgg);
+}
+public function oviliumNurseryEnds():void
+{
+	clearOutput();
+	showBust("");
+	showName("\nEGG!");
+	
+	// Loot egg!
+	var bigEgg:Boolean = (pc.statusEffectv2("Ovilium") > 0);
 	oviliumEggReward(bigEgg);
 }
 
@@ -326,14 +338,16 @@ public function eatOviliumEgg(eggSize:String = "none", eggColor:String = "none")
 {
 	clearOutput();
 	author("Gardeford");
-		
+	
 	var effectTF:String = "none"
 	var nVal:Number = 0;
 	
 	output("You take one bite of the " + eggColor + " egg in your hands and before you know it the whole thing is gone.");
 	if (!inCombat())
 	{
+		showBust("");
 		if (silly) showName("\nYUM!");
+		else showName("SNACK\nBREAK");
 		
 		output(" Its taste is hard to place. It was good, but you can’t for the life of you think of anything to compare it to.");
 		
@@ -389,7 +403,7 @@ public function npcEatOviliumEgg(target:Creature = null, eggSize:String = "none"
 	{
 		if (inCombat()) output("\n\n");
 		else clearOutput();
-		output(target.capitalA + target.short + " eats " + indefiniteArticle(eggSize) + " " + eggColor + " egg");
+		output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : target.capitalA + target.short) + " eats " + indefiniteArticle(eggSize) + " " + eggColor + " egg");
 		if (healing > 0) output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
 		else output(" but to no effect.");
 	}

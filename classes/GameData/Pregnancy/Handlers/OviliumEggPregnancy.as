@@ -171,6 +171,9 @@ package classes.GameData.Pregnancy.Handlers
 		
 		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
 		{
+			// Loot egg!
+			kGAMECLASS.eventQueue.push(kGAMECLASS.oviliumNurseryEnds);
+			
 			OviliumEggPregnancy.cleanupPregnancy(mother, pregSlot, this);
 			return null;
 		}
