@@ -33,6 +33,7 @@ public function oviliumEffects():void
 		
 		// Create Ovilium Impregnator
 		var ppOvilium:PregnancyPlaceholder = new PregnancyPlaceholder();
+		ppOvilium.createPerk("Fixed CumQ", 500, 0, 0, 0);
 		ppOvilium.impregnationType = "OviliumEggPregnancy";
 		ppOvilium.createStatusEffect("Ovilium Effect");
 		

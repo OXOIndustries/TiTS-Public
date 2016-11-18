@@ -266,6 +266,16 @@ public function seraPriapinAction(response:String = ""):void
 				// Return to talk menu
 				addButton(0, "Next", seraTalkMenu);
 			}
+			// Other pregnancies, failsafe.
+			else
+			{
+				output("\n\nSera bites her lip as she looks you up and down...");
+				output("\n\n<i>“Hm, maybe next time, okay?”</i> she says at a glance.");
+				if(pc.totalWombPregnancies() > 1) output(" It looks like all your wombs are already occupied in one form or another.");
+				output(" Perhaps you should finish your current pregnancy before trying to tempt her!");
+				
+				addButton(0, "Next", seraTalkMenu);
+			}
 			break;
 		case "don't":
 			output("<i>“Shame,”</i> Sera sighs. <i>“Been a while since I really went to town on someone.”</i> She lounge back on her counter. <i>“So you gonna beg for it or what?”</i>");
@@ -384,7 +394,7 @@ public function seraBreedResponse(arg:Array):void
 			// Give Sera pregnancy powers!
 			serasBodyIsReady();
 			chars["SERA"].impregnationType = "SeraSpawnPregnancy";
-			//chars["SERA"].createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", "Masculine virility has been piqued temporarily.", false, 1440);
+			chars["SERA"].createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", "Masculine virility has been piqued temporarily.", false, 1440);
 			
 			// {merge}
 			output("\n\nIt’s less of a kiss and more of a ravaging; she bends her wet muscle into you as far as she can, almost brushing your tonsils before thrusting it into a cheek wall, apparently intent on touching as much of you as possible.");
@@ -556,7 +566,7 @@ public function seraBreedResponse(arg:Array):void
 			pc.shower();
 			
 			// Sera is done using Priapin and no longer a breeding machine
-			//chars["SERA"].removeStatusEffect("Priapin");
+			chars["SERA"].removeStatusEffect("Priapin");
 			chars["SERA"].impregnationType = "";
 			
 			pc.removeStatusEffect("Sera Breed No Sex");

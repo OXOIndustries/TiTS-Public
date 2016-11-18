@@ -120,7 +120,7 @@ public function adultCockvineEncounter():void
 			output("\n\nYou’ve got to fight free!");
 		}
 
-		(pc as PlayerCharacter).createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You're in the grip of a Cockvine!", true, 0);
+		(pc as PlayerCharacter).createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You’re in the grip of a Cockvine!", true, 0);
 		clearMenu();
 		
 		CombatManager.newGroundCombat();
@@ -725,7 +725,7 @@ public function cockvinePregnancyCatch():void
 
 		output("\n\n<i>“It is forbidden for that species of flora to be transported off Myrellion,”</i> the drone trills in response.");
 		
-		if (shipLocation != "600")
+		if (shipLocation != "600" && shipLocation != "2I7")
 		{
 			output("\n\n<i>“Bit late for that, don’t you think?”</i> you snap. <i>“Put it in a secret compartment or something. It’s going to a controlled space; it’ll be fine.”</i>");
 		}

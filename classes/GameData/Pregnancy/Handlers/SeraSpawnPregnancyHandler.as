@@ -23,7 +23,7 @@ package classes.GameData.Pregnancy.Handlers
 			_handlesType = "SeraSpawnPregnancy";
 			_basePregnancyIncubationTime = (60 * 24 * 272); // 9 Months
 			_basePregnancyChance = 0.1;
-			_alwaysImpregnate = false;
+			_alwaysImpregnate = true;
 			_ignoreInfertility = false;
 			_ignoreFatherInfertility = false;
 			_ignoreMotherInfertility = false;
@@ -33,11 +33,12 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 3;
-			_definedAverageLoadSize = 800;
+			_definedAverageLoadSize = 6400;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
 			_pregnancyChildRace = GLOBAL.TYPE_HUMAN;
 			_childMaturationMultiplier = 1.0;
 			
+			_onSuccessfulImpregnation = seraSpawnSuccessfulImpregnation;
 			_onDurationEnd = seraSpawnOnDurationEnd;
 			
 			for(var i:int = 40; i <= 270; i += 5)
@@ -161,6 +162,34 @@ package classes.GameData.Pregnancy.Handlers
 			}
 		}
 		
+		public static function seraSpawnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
+		{
+			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
+			
+			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			
+			// Always start with the minimum amount of children.
+			var quantity:int = thisPtr.pregnancyQuantityMinimum;
+			
+			// Unnaturally fertile mothers may get multiple children.
+			for(var i = mother.fertility(); i >= 2.0; i -= 1.0)
+			{
+				quantity += rand(thisPtr.pregnancyQuantityMaximum + 1);
+			}
+			if (quantity > thisPtr.pregnancyQuantityMaximum) quantity = thisPtr.pregnancyQuantityMaximum;
+			
+			// Add extra bonuses.
+			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);
+			var motherBonus:int = Math.round((quantity * mother.pregnancyMultiplier()) - quantity);
+			quantity += fatherBonus + motherBonus;
+			
+			// Cap at 3x the maximum!
+			var quantityMax:int = Math.round(thisPtr.pregnancyQuantityMaximum * 3.0);
+			if (quantity > quantityMax) quantity = quantityMax;
+			
+			pData.pregnancyQuantity = quantity;
+		}
+		
 		public static function seraSpawnOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot];
@@ -215,7 +244,8 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
 			var babyList:Array = seraSpawnChildren(mother, pData.pregnancyQuantity);
-			for(var i:int = 0; i < babyList.length; i++)
+			var i:int = 0;
+			for(i = 0; i < babyList.length; i++)
 			{
 				babyList[i].BornTimestamp = useBornTimestamp;
 				ChildManager.addChild(babyList[i]);
@@ -229,7 +259,21 @@ package classes.GameData.Pregnancy.Handlers
 			
 			pData.reset();
 			
-			if(babyList.length > 0) return babyList[0];
+			if(babyList.length > 0)
+			{
+				var cTemp:Child = new Child();
+				cTemp.RaceType = babyList[0].RaceType;
+				cTemp.MaturationRate = babyList[0].MaturationRate;
+				cTemp.BornTimestamp = babyList[0].BornTimestamp;
+				cTemp.NumMale = 0;
+				cTemp.NumFemale = 0;
+				for(i = 0; i < babyList.length; i++)
+				{
+					cTemp.NumMale += babyList[i].NumMale;
+					cTemp.NumFemale += babyList[i].NumFemale;
+				}
+				return cTemp;
+			}
 			return null;
 		}
 		
