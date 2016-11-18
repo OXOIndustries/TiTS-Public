@@ -1288,10 +1288,10 @@ public function getCurrentMonth():int
 }
 public function getCurrentDate(dateType:String = ""):int
 {
-	// Maybe started adventure in August 30?
-	var y:int = 2828;
+	// Maybe started adventure in August 29?
+	var y:int = 3027;
 	var m:int = 8;
-	var d:int = 30;
+	var d:int = 29;
 	var currYear:int = (y + minutesToYears(GetGameTimestamp()));
 	var monthDay:Array = getMonthArray("days");
 	var currDay:int = ((d - 1) + minutesToDays(GetGameTimestamp()));
@@ -1360,7 +1360,7 @@ public function prettifyDate(format:String = ""):String
 	
 	switch(format)
 	{
-		case "name": retStr += ( dayWkName[dw] + ", " + monthName[m] + " " + d + ", " + y ); break;
+		case "name": retStr += ( dayWkName[dw] + ", " + monthName[m] + " " + d + ", " + y + " A.C."); break;
 		case "short": retStr += ( dayWkName[dw] + ", " + (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
 		case "digit": retStr += ( (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
 		default: retStr += ( m + " / " + d + " / " + y ); break;
