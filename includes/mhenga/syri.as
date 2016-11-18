@@ -246,7 +246,7 @@ public function victoryFuckSyrisBunghole():void {
 	output("\n\nSyri gasps as the warm saliva drools across her ass, but you don’t leave it there for long. Your finger goes to work with expert precision, circling around her ring with slow, thorough ease, gently swirling your lubricant in as you apply more and more pressure, right up until your finger pops into her pucker with a soft squelching sound.");
 
 	output("\n\nThe ausar slut grits her teeth and groans as your finger probes into her, gliding in to the first knuckle with surprising ease. Her tail twitches as you delve into her ass, the pooch’s cock spasming thin little trickles of cum down the table edge and onto the floor. <i>“F-fuuuck,”</i> she groans, voice little more than a hoarse whisper as you try to move deeper, spreading your spit along her anal walls. She gets tighter and tighter as you move in");
-	if(flags["TIMES_BUTTFUCKED_BY_SYRI"] == undefined) {
+	if(flags["FUCKED_SYRI_COUNT"] == undefined) {
 		output(", making you wonder if she’s ever had anything more than a few fingers back here");
 	}
 	output(". Her sphincter clenches powerfully around your second knuckle as it passes through, sliding deeper and deeper until you’re able to feel a big, thick ball just through her muscles. Is that...?");
