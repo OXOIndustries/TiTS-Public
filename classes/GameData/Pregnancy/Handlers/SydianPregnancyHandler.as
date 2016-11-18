@@ -136,7 +136,7 @@ package classes.GameData.Pregnancy.Handlers
 			var quantity:int = thisPtr.pregnancyQuantityMinimum;
 			
 			// Unnaturally fertile mothers may get multiple children.
-			for(var i = mother.fertility(); i >= 1.5; i -= 0.5)
+			for(var i:Number = mother.fertility(); i >= 1.5; i -= 0.5)
 			{
 				quantity += rand(thisPtr.pregnancyQuantityMaximum + 1);
 			}
