@@ -226,7 +226,6 @@ public function yammiInTheKitchen():void
 
 public function yammiFollowerMenu():void
 {
-	yammiFollowerDisplay();
 	clearMenu();
 	addButton(0,"Talk",yammiTalkRouter,undefined,"Talk","Sit down and talk with your chef for a bit.");
 	//Help Yammi
