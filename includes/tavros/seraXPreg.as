@@ -1178,7 +1178,8 @@ public function seraNurseryActions(arg:Array):void
 			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
 			babyName = seraBabies[babyIdx].Name;
 			
-			numKids = ChildManager.numInAgeRangeYears(1, 5, true);
+			// 9999 - pending roaming-only check
+			numKids = ChildManager.numInAgeRangeYears(1, 5);
 			
 			output("<i>“I think " + babyName + " would love to have a horse around with us before bedtime,”</i> you say. <i>“Don’t you?”</i>");
 			output("\n\n<i>“Nothing fun ever happens before bedtime,”</i> Sera sniffs. <i>“But if you insist.”</i>");
@@ -1205,7 +1206,8 @@ public function seraNurseryActions(arg:Array):void
 			var playList:Array = [];
 			var playOption:int = -1;
 			
-			numKids = ChildManager.numInAgeRangeYears(1, 5, true);
+			// 9999 - pending roaming-only check
+			numKids = ChildManager.numInAgeRangeYears(1, 5);
 			
 			playList.push([
 				(	"The three of you spend some time constructing a makeshift castle out of magnetic building blocks. " + babyName + " and Sera tire of it at roughly the same time, and you have to take cover as they gleefully destroy it. The rest of the allotted playtime is spent seeing how hard they can dent the wall, Sera at great pains to demonstrate proper throwing technique to the little so-and-so."
@@ -1223,7 +1225,8 @@ public function seraNurseryActions(arg:Array):void
 				), "SERA_NURSERY_PLAY_3"
 			]);
 			// Only if kids > 2, at least one not Sera’s
-			if(numKids >= 2 && seraBabies.length <= ChildManager.numInAgeRangeYears(1, 5, true))
+			// 9999 - pending roaming-only check
+			if(numKids >= 2 && seraBabies.length <= ChildManager.numInAgeRangeYears(1, 5))
 			{
 				// Choose a (non-Sera type) unique baby
 				var totsName:String = "";
