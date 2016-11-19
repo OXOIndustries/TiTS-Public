@@ -680,7 +680,7 @@ public function unequipMenu():void
 	
 	//Set user and target.
 	itemUser = pc;
-	addButton(14,"Back",generalInventoryMenu);
+	addButton(14,"Back",inventory);
 }
 
 public function keyItemDisplay():void
@@ -859,7 +859,7 @@ public function itemInteractMenu(counter:Boolean = false):Number
 			showName("\nINTERACT");
 			output("What do you wish to interact with?" + itemMessages);
 		}
-		addButton(14, "Back", mainGameMenu);
+		addButton(14, "Back", inventory);
 	}
 	
 	return count;
