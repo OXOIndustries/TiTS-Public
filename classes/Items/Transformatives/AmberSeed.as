@@ -845,6 +845,7 @@ package classes.Items.Transformatives
 					if(selWomb.length <= 0) return;
 					
 					var ppOvilium:PregnancyPlaceholder = new PregnancyPlaceholder();
+					ppOvilium.createPerk("Fixed CumQ", 500, 0, 0, 0);
 					ppOvilium.impregnationType = "OviliumEggPregnancy";
 					ppOvilium.createStatusEffect("Ovilium Effect");
 					target.loadInCunt(ppOvilium, selWomb[rand(selWomb.length)]);

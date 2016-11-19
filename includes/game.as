@@ -2712,8 +2712,10 @@ public function racialPerkUpdateCheck():void
 	}
 	if(pc.armType == GLOBAL.TYPE_FLOWER && pc.hasVagina())
 	{
-		if(!pc.hasWombPregnancy() && !pc.hasStatusEffect("Arm Flower"))
+		if(pc.totalWombPregnancies() < pc.vaginas.length)
 		{
+			if(pc.hasStatusEffect("Arm Flower")) return;
+			
 			// Choose Flower Color
 			var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 			
@@ -2724,7 +2726,7 @@ public function racialPerkUpdateCheck():void
 			pc.slowStatGain("libido", 5);
 			pc.lust(50);
 		}
-		else if(pc.hasWombPregnancy() && pc.hasStatusEffect("Arm Flower"))
+		else if(pc.hasStatusEffect("Arm Flower"))
 		{
 			AddLogEvent("Your " + pc.getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].", "passive");
 			
