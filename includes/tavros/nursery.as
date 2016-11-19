@@ -18,7 +18,7 @@ public function numNurseryUpgrades():int
 
 public function hasNurseryStaff():Boolean
 {
-	return yammiAtNursery() || reahaAtNursery();
+	return yammiAtNursery() || reahaAtNursery() || zilCallgirlAtNursery();
 }
 
 public function numNurseryStaff():int
@@ -26,6 +26,7 @@ public function numNurseryStaff():int
 	var numStaff:int = 0;
 	if (yammiAtNursery()) numStaff++;
 	if (reahaAtNursery()) numStaff++;
+	if (zilCallgirlAtNursery()) numStaff++;
 	return numStaff;
 }
 
@@ -41,6 +42,19 @@ public function yammiAtNursery():Boolean
 
 public function reahaAtNursery():Boolean
 {
+	return false;
+}
+
+public function zilCallgirlAtNursery():Boolean
+{
+	if (flags["ZIL_CALLGIRL_AT_NURSERY"] == 1) return true;
+
+	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 3 && flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + (24 * 60) <= GetGameTimestamp())
+	{
+		flags["ZIL_CALLGIRL_AT_NURSERY"] = 1;
+		return true;
+	}
+
 	return false;
 }
 
@@ -74,8 +88,63 @@ public function nurseryFoyerFunc():Boolean
 	return false;
 }
 
+public function nurseryZilCallgirlRandomEvents():Boolean
+{
+	if (!zilCallgirlAtNursery() || hours < 8 || hours > 16) return false;
+	if ((flags["NURSERY_ZIL_CALLGIRL_EVENT_DAY"] == undefined || flags["NURSERY_ZIL_CALLGIRL_EVENT_DAY"] < days) && rand(10) == 0)
+	{
+		var options:Array = [];
+
+		var numZilCInfants:Genders = ChildManager.gendersOfUniqueTypeInRange(ZilCallgirlUniqueChild, 0, 12);
+
+		options.push("You catch a glimpse of Zheniya, wearing a slinkier version of the Steele Tech uniform top paired with a frilled skirt that leaves her waspy abdomen and long legs bare. She's quietly working away at scrubbing down the walls"+ (flags["ANNO_MISSION_OFFER"] == 3 ? " with a small, silvery-grey goo that covers her arm like a glove": "") + ". Seeing you watching, she gives her rump a little wiggle for you, working with a sultry spring in her step.");
+
+		// At least one infant
+		if (numZilCInfants.total >= 1)
+		{
+			options.push("You spy Zheniya sitting quietly in the corner, cradling" + (numZilCInfants.total > 1 ? " one of" : "") + " her child"+ (numZilCInfants.total > 1 ? "ren" : "") +" in her arms with her dress slipped down off one shoulder. Your half-zil child is nuzzled into "+numZilCInfants.mf("his", "her")+" mother's breast, hands wrapped tightly around the hefty mound and lips locked onto the black teat. Zheniya is leaning back, eyes half-lidded, stroking her child's wispy dark hair. She sees you and smiles, blowing a kiss your way.");
+		}
+
+		if (numZilCInfants.total >= 3)
+		{
+			options.push("Zheniya is sitting on the floor nearby, giggling and smiling as several adorable half-zil crawl all over her. She hugs them each in turn, kissing their brows or throwing them up in the air, "+ (numZilCInfants.Female >= 1 ? "letting their little wings float them back into her arms":"catching them with a gleeful spin") +". She seems perfectly at home, surrounded by her children." + (ChildManager.numChildren() > numZilCInfants.total ? " And even some that aren't hers, you see." : ""));
+		}
+
+		var numTeens:Genders = ChildManager.numOfGendersInRange(ChildManager.ALL_GENDERS, 14, -1, true);
+		if (numTeens.total > 0 && !zilCallGirlPregnant())
+		{
+			options.push("You hear Zheniya before you see her, buzzing and breathing hard. You turn around just in time to see her back-peddling around a corner, a boffer spear clutched in one hand, one of your children following close on her heels, aggressively lunging and thrusting. The former warrior blocks every strike, turning away blow after blow until her young opponent is covered with a sheen of sweat and starting to fumble. One precise counter-strike disarms "+ numTeens.mf("him", "her") +", and your zil lover catches the extra spear in her off-hand, spinning both under her arms.\n\n<i>“You fight well!”</i> she smiles. Turning to you, she adds, <i>“It seems martial prowess runs in the family, [pc.name]. It feels good to get a little wholesome exercise.”</i>\n\n<i>“Yeah, that was fun!”</i> her sparring partner grins, trying not to look too winded while you're still looking.");
+		}
+
+		if (zilCallGirlPregnant())
+		{
+			options.push("Zheniya is sitting nearby, both hands on her "+zilCallGirlBellyFragment()+". Briget is standing over her, fussing over the pregnant zil: insisting she improve her diet, exercise but not over-strain herself... the usual spiel from the robotic matron. Zheniya nods agreeably with every point, though she's clearly more interested in Briget's massive bosom, which quivers under her jacket with every over-acted motion.");
+		}
+
+		if (zilCallGirlPregnant() || numZilCInfants.total > 0)
+		{
+			options.push("Zheniya walks past you with a spring in her step. You catch her with a brief hug, and note that she's looking quite... slim today. At least, her normally bodacious bosom looks a little smaller. She chuckles and indicates the small box she's carrying under an arm: full of honey vials, fresh from the milker station upstairs.\n\n<i>“I could get used to that kind of treatment,”</i> she smiles. <i>“The machine may not be gentle... but it is </i>wonderfully<i> vigorous.”</i>");
+		}
+
+		output("\n\n" + RandomInCollection(options));
+		flags["NURSERY_ZIL_CALLGIRL_EVENT_DAY"] = days;
+
+		return true;
+	}
+	return false;
+}
+
+public function nurseryI14Func():Boolean
+{
+	nurseryZilCallgirlRandomEvents();
+
+	return false;
+}
+
 public function nurseryCommonAreaFunc():Boolean
 {
+	nurseryZilCallgirlRandomEvents();
+
 	return false;
 }
 
@@ -85,6 +154,8 @@ public function nurseryCafeteriaFunc():Boolean
 	if (yammiIsFollower() && !yammiIsCrew()) output(" Yammi’s hanging out in the kitchen, too, overseeing things while she’s not assigned to your ship’s crew.");
 	
 	seraNurseryCafeteriaBonus(1);
+
+	nurseryZilCallgirlRandomEvents();
 	
 	return false;
 }
@@ -95,6 +166,8 @@ public function nurseryG14Func():Boolean
 	var numKids:int = ChildManager.numInAgeRangeYears(2, 8, true);
 	if (numKids >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
 	else if (numKids >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
+
+	nurseryZilCallgirlRandomEvents();
 	
 	return false;
 }
@@ -111,6 +184,8 @@ public function nurseryEducationCenterFunc():Boolean
 		{
 			output("\n\nWithout any children to attend to, the staff of teachers and experts on retainer are milling around the desk. They’re currently in the middle of a game of cards.");
 		}
+
+		nurseryZilCallgirlRandomEvents();
 	}
 
 	return false;
@@ -121,6 +196,8 @@ public function nurseryKidsDormsFunc():Boolean
 	output("Most of the nursery deck is devoted to living space for what Dad must have assumed");
 	if (ChildManager.numChildren() >= 10) output(" - correctly -");
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
+
+	nurseryZilCallgirlRandomEvents();
 
 	return false;
 }

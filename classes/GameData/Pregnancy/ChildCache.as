@@ -3,6 +3,7 @@ package classes.GameData.Pregnancy
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Containers.Genders;
 	import classes.kGAMECLASS;
+	import flash.utils.getQualifiedClassName;
 	
 	/**
 	 * ...
@@ -22,7 +23,9 @@ package classes.GameData.Pregnancy
 			_typeInvalidated = true;
 			_knownTypes = null;
 			_typeBuckets = null;
+			_uniqueTypes = null;
 		}
+		
 		public var nurseryCacheInvalid:Boolean;
 		public var nurseryComputerCache:Object;
 		public var nurseryComputerUniquesCache:Array;
@@ -70,17 +73,13 @@ package classes.GameData.Pregnancy
 			return _numChildren;
 		}
 		
-		private static const ALL_GENDERS:uint
-			= ChildManager.GENDER_NEUTER 
-			| ChildManager.GENDER_FEMALE
-			| ChildManager.GENDER_MALE 
-			| ChildManager.GENDER_INTERSEX;
+
 			
 		public function ofGender(genderTypes:uint):Boolean
 		{
 			updateNumCache();
 			
-			if (genderTypes == ALL_GENDERS)
+			if (genderTypes == ChildManager.ALL_GENDERS)
 			{
 				return _numChildren > 0;
 			}
@@ -455,6 +454,11 @@ package classes.GameData.Pregnancy
 		
 		private function NumRequiredGenders(c:Child, genderTypes:uint, container:Genders):void
 		{
+			if (genderTypes == ChildManager.ALL_GENDERS)
+			{
+				container.add(c.NumGenders);
+				return;
+			}
 			if (genderTypes & ChildManager.GENDER_NEUTER) container.Neuter += c.NumNeuter;
 			if (genderTypes & ChildManager.GENDER_FEMALE) container.Female += c.NumFemale;
 			if (genderTypes & ChildManager.GENDER_MALE) container.Male += c.NumMale;
@@ -692,6 +696,99 @@ package classes.GameData.Pregnancy
 			if (_typeBuckets.hasOwnProperty(typeString) == false) return null;
 			
 			return _typeBuckets[typeString];
+		}
+		
+		// Store unique types in a two-tier dict:
+		// _root[type_path][children]
+		// type_path is the return from getQualifiedClassName() on a unique child ie a string
+		private var _uniqueTypes:Object;
+		private var _uniqueTypesInvalid:Boolean = true;
+		public function get uniqueTypesInvalid():Boolean { return _uniqueTypesInvalid; }
+		public function set uniqueTypesInvalid(v:Boolean):void { _uniqueTypesInvalid = v; }
+		
+		private function updateUniqueTypes():void
+		{
+			if (_uniqueTypesInvalid)
+			{
+				_uniqueTypes = [];
+				
+				var c:Array = ChildManager.CHILDREN;
+				
+				for (var i:int = 0; i < c.length; i++)
+				{
+					if (c[i] is UniqueChild)
+					{
+						var cFQN:String = getQualifiedClassName(c[i]);
+						if (_uniqueTypes.hasOwnProperty(cFQN))
+						{
+							_uniqueTypes[cFQN].push(c);
+						}
+						else
+						{
+							_uniqueTypes[cFQN] = [c];
+						}
+					}
+				}
+				
+				_uniqueTypesInvalid = false;
+			}
+		}
+		
+		public function ofUniqueType(childClassT:Class):Boolean
+		{
+			updateUniqueTypes();
+			
+			if (_uniqueTypes.hasOwnProperty(getQualifiedClassName(childClassT)))
+			{
+				return true;
+			}
+			
+			return false;
+		}
+		
+		public function numOfUniqueType(childClassT:Class):int
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			var num:int = 0;
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				var typeArray:Array = _uniqueTypes[cFQN] as Array;
+				for (var i:int = 0; i < typeArray.length; i++)
+				{
+					var c:UniqueChild = typeArray[i] as UniqueChild;
+					num += c.Quantity;
+				}
+			}
+			
+			return num;
+		}
+		
+		public function gendersOfUniqueTypeInRange(childClassT:Class, minAge:int, maxAge:int = -1):Genders
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			var genderTotals:Genders = new Genders();
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				
+				var typeArray:Array = _uniqueTypes[cFQN] as Array;
+				
+				for (var i:int = 0; i < typeArray.length; i++)
+				{
+					var c:UniqueChild = typeArray[i] as UniqueChild;
+					if (c.Months >= minAge && (maxAge == -1 || c.Months <= maxAge))
+					{
+						genderTotals.add(c.NumGenders);
+					}
+				}
+			}
+			
+			return genderTotals;
 		}
 	}
 }

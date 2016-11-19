@@ -712,10 +712,22 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 16"].northExit = "RESIDENTIAL DECK 2";
 	rooms["RESIDENTIAL DECK 16"].southExit = "RESIDENTIAL DECK 17";
 	rooms["RESIDENTIAL DECK 16"].eastExit = "BUNBAKERY";
+	rooms["RESIDENTIAL DECK 16"].westExit = "RESIDENTIAL DECK ZHENIYA";
 	rooms["RESIDENTIAL DECK 16"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 16"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 16"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 16"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 16"].runOnEnter = resDeck16Func;
+	
+	rooms["RESIDENTIAL DECK ZHENIYA"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK ZHENIYA"].roomName = "ZHENIYA’S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK ZHENIYA"].description = "The inside of Zheniya's apartment is cozy and warm. Silk and bead curtains hang from the walls and doorways, and the lights have been tuned down to a low, sensual red glow throughout. The heat is above station standard, mimicking the musky humidity of her native planet's jungles. A few incense candles are burning on shelves and tables, though the scent is nowhere near as overwhelming as you remember from Zheniya's last abode.\n\nZheniya sits nearby, nude as the day you met her. In her own home, she still prefers the openness of bare flesh, allowed her ever-present honied smell to suffuse the air around her.";
+	rooms["RESIDENTIAL DECK ZHENIYA"].eastExit = "RESIDENTIAL DECK 16";
+	rooms["RESIDENTIAL DECK ZHENIYA"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK ZHENIYA"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK ZHENIYA"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK ZHENIYA"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK ZHENIYA"].runOnEnter = zheniyasApartmentFunc;
 
 	//BAKERY
 	rooms["BUNBAKERY"] = new RoomClass(this);
@@ -860,7 +872,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYI14"] = new RoomClass(this);
 	rooms["NURSERYI14"].roomName = "\nNURSERY";
 	rooms["NURSERYI14"].description = "You're standing at a T-bone intersection of corridors, connecting the foyer back west to a huge complex to the east marked ‘Education Center’, and another branch south that leads into dozens of other, smaller halls and the bedrooms.";
-	rooms["NURSERYI14"].runOnEnter = undefined;
+	rooms["NURSERYI14"].runOnEnter = nurseryI14Func;
 	rooms["NURSERYI14"].eastExit = "NURSERYK14";
 	rooms["NURSERYI14"].westExit = "NURSERYG14";
 	rooms["NURSERYI14"].southExit = "NURSERYI16";
