@@ -629,7 +629,7 @@ public function getBuyPrice(keeper:Creature,basePrice:Number):Number {
 	return buyPrice;
 }
 
-public function unequipMenu():void
+public function unequipMenu(inCombat:Boolean = false):void
 {
 	clearOutput();
 	var x:int = 0;
@@ -641,51 +641,54 @@ public function unequipMenu():void
 	equipmentDisplay();
 
 	clearMenu();
-	if (pc.upperUndergarment.shortName != "") 
+	if (pc.upperUndergarment.shortName != "")
 	{
-		addOverrideItemButton(0, pc.upperUndergarment, "U.Top Off", unequip, "bra");
+		if(inCombat) addDisabledButton(0, "U.Top Off", StringUtil.toDisplayCase(pc.upperUndergarment.longName), "Cannot be unequipped in combat.");
+		else addOverrideItemButton(0, pc.upperUndergarment, "U.Top Off", unequip, "bra");
 	}
-	else addDisabledButton(0,"Undertop");
+	else addDisabledButton(0, "Undertop", "Undertop", "You are not wearing anything in this slot.");
 
-	if (pc.shield.shortName != "") 
+	if (pc.shield.shortName != "")
 	{
 		addOverrideItemButton(1, pc.shield, "Shield Off", unequip, "shield");
 	}
-	else addDisabledButton(1,"Shield");
+	else addDisabledButton(1, "Shield", "Shield Generator", "You do not have a shield generator equipped.");
 	
 	if (pc.lowerUndergarment.shortName != "")
 	{
-		addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, "underwear");
+		if(inCombat) addDisabledButton(5, "U.Wear Off", StringUtil.toDisplayCase(pc.lowerUndergarment.longName), "Cannot be unequipped in combat.");
+		else addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, "underwear");
 	}
-	else addDisabledButton(5,"Underwear");
+	else addDisabledButton(5, "Underwear", "Underwear", "You are not wearing anything in this slot.");
 	
-	if (pc.meleeWeapon.shortName != "Rock") 
+	if (pc.meleeWeapon.shortName != "Rock")
 	{
 		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, "mWeapon");
 	}
-	else addDisabledButton(2,"Melee");
+	else addDisabledButton(2, "Melee", "Melee Weapon", "You do not have a melee weapon equipped.");
 	
-	if (pc.armor.shortName != "") 
+	if (pc.armor.shortName != "")
 	{
-		addOverrideItemButton(6, pc.armor, "Armor Off", unequip, "armor");
+		if(inCombat) addDisabledButton(6, "Armor Off", StringUtil.toDisplayCase(pc.armor.longName), "Cannot be unequipped in combat.");
+		else addOverrideItemButton(6, pc.armor, "Armor Off", unequip, "armor");
 	}
-	else addDisabledButton(6,"Armor");
+	else addDisabledButton(6, "Armor", "Armor", "You are not wearing anything in this slot.");
 	
 	if (pc.rangedWeapon.shortName != "Rock")
 	{
 		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, "rWeapon");
 	}
-	else addDisabledButton(7,"Ranged");
+	else addDisabledButton(7, "Ranged", "Ranged Weapon", "You do not have a ranged weapon equipped.");
 	
-	if (pc.accessory.shortName != "") 
+	if (pc.accessory.shortName != "")
 	{
 		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, "accessory");
 	}
-	else addDisabledButton(3,"Accessory");
+	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
 	
 	//Set user and target.
 	itemUser = pc;
-	addButton(14,"Back",inventory);
+	addButton(14, "Back", inventory);
 }
 
 public function keyItemDisplay():void
@@ -781,43 +784,65 @@ public function generalInventoryMenu():void
 	output("\n\n");
 	inventoryDisplay();
 	clearMenu();
-	var adjustment:int = 0;
-	for(x = 0; x < pc.inventory.length || x < 14; x++) {
+	var btnSlot:int = 0;
+	for (var i:int = 0; i < pc.inventory.length; i++)
+	{
 		//special slot 1
-		if(x+adjustment == 10) {
+		if(btnSlot >= 10 && (btnSlot + 5) % 15 == 0)
+		{
 			/* Nothing yet! */
-			adjustment++;
+			btnSlot++;
 		}
 		//interaction menu
-		if(x+adjustment == 11) {
-			if(itemInteractMenu(true) > 0) addButton(x+adjustment,"Interact",itemInteractMenu,undefined,"Interact","Interact with some of your items.");
-			adjustment++;
+		if(btnSlot >= 11 && (btnSlot + 4) % 15 == 0)
+		{
+			addButton(btnSlot, "Interact", itemInteractMenu, undefined, "Interact", "Interact with some of your items.");
+			btnSlot++;
 		}
 		//key item menu
-		if(x+adjustment == 12) {
-			addButton(x+adjustment,"Key Item",keyItemDisplay,undefined,"Key Items","View your list of key items.");
-			adjustment++;
+		if(btnSlot >= 12 && (btnSlot + 3) % 15 == 0)
+		{
+			addButton(btnSlot, "Key Item", keyItemDisplay, undefined, "Key Items", "View your list of key items.");
+			btnSlot++;
 		}
 		//unequip menu
-		if(x+adjustment == 13) {
-			addButton(x+adjustment,"Unequip",unequipMenu,undefined,"Unequip","Unequip an item.");
-			adjustment++;
+		if(btnSlot >= 13 && (btnSlot + 2) % 15 == 0)
+		{
+			addButton(btnSlot, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
+			btnSlot++;
 		}
+		//back
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
+		}
+		
 		//normal inventory
-		if(x < pc.inventory.length) {
-			if (pc.inventory[x].quantity > 0) {
-				
-				var tarSlot:int = x + adjustment;
-				if (tarSlot >= 14) tarSlot++;
-
-				(this as TiTS).addItemButton(tarSlot, pc.inventory[x], useItem, pc.inventory[x]);
-				
-			}
+		if (pc.inventory[i].quantity > 0)
+		{
+			addItemButton(btnSlot, pc.inventory[i], useItem, pc.inventory[i]);
+		}
+		btnSlot++;
+		
+		if(pc.inventory.length > 10 && (i + 1) == pc.inventory.length)
+		{
+			while((btnSlot + 5) % 15 != 0) { btnSlot++; }
+			//addButton(btnSlot + 0, "", null, undefined, "", "");
+			addButton(btnSlot + 1, "Interact", itemInteractMenu, undefined, "Interact", "Interact with some of your items.");
+			addButton(btnSlot + 2, "Key Item", keyItemDisplay, undefined, "Key Items", "View your list of key items.");
+			addButton(btnSlot + 3, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
+			addButton(btnSlot + 4, "Back", mainGameMenu);
 		}
 	}
+	
 	//Set user and target.
 	itemUser = pc;
-	addButton(14,"Back",mainGameMenu);
+	//addButton(10, "", null, undefined, "", "");
+	addButton(11, "Interact", itemInteractMenu, undefined, "Interact", "Interact with some of your items.");
+	addButton(12, "Key Item", keyItemDisplay, undefined, "Key Items", "View your list of key items.");
+	addButton(13, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
+	addButton(14, "Back", mainGameMenu);
 }
 
 public function itemInteractMenu(counter:Boolean = false):Number
@@ -884,6 +909,23 @@ public function combatInventoryMenu():void
 	var btnSlot:int = 0;
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
+		if(btnSlot >= 10 && (btnSlot + 5) % 15 == 0)
+		{
+			btnSlot++;
+		}
+		if(btnSlot >= 11 && (btnSlot + 4) % 15 == 0)
+		{
+			btnSlot++;
+		}
+		if(btnSlot >= 12 && (btnSlot + 3) % 15 == 0)
+		{
+			btnSlot++;
+		}
+		if(btnSlot >= 13 && (btnSlot + 2) % 15 == 0)
+		{
+			addButton(btnSlot, "Unequip", unequipMenu, true, "Unequip", "Unequip an item.");
+			btnSlot++;
+		}
 		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 		{
 			addButton(btnSlot, "Back", CombatManager.showCombatMenu);
@@ -901,13 +943,21 @@ public function combatInventoryMenu():void
 		}
 		btnSlot++;
 		
-		if(pc.inventory.length > 14 && (x + 1) == pc.inventory.length)
+		if(pc.inventory.length > 10 && (i + 1) == pc.inventory.length)
 		{
-			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
-			addButton(btnSlot, "Back", CombatManager.showCombatMenu);
+			while((btnSlot + 5) % 15 != 0) { btnSlot++; }
+			//addButton(btnSlot + 0, "", null, undefined, "", "");
+			//addButton(btnSlot + 1, "", null, undefined, "", "");
+			//addButton(btnSlot + 2, "", null, undefined, "", "");
+			addButton(btnSlot + 3, "Unequip", unequipMenu, true, "Unequip", "Unequip an item.");
+			addButton(btnSlot + 4, "Back", CombatManager.showCombatMenu);
 		}
 	}
 	
+	//addButton(10, "", null, undefined, "", "");
+	//addButton(11, "", null, undefined, "", "");
+	//addButton(12, "", null, undefined, "", "");
+	addButton(13, "Unequip", unequipMenu, true, "Unequip", "Unequip an item.");
 	addButton(14, "Back", CombatManager.showCombatMenu);
 }
 
@@ -969,9 +1019,24 @@ public function itemDisabledMessage(slot:Number, clearScreen:Boolean = true):voi
 public function unequip(arg:String, next:Boolean = true):void 
 {
 	clearOutput();
+	
+	if(inCombat())
+	{
+		if(!InCollection(arg, ["mWeapon", "rWeapon"]))
+		{
+			output("You’re in combat--you can’t possibly unequip this item right now!");
+			return;
+		}
+		else if(pc.inventory.length >= pc.inventorySlots())
+		{
+			output("You’re in combat and your inventory is too full to unequip an item now!");
+			return;
+		}
+	}
+	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var unequippedItems:Array = new Array();
-
+	
 	if(arg == "bra") {
 		if(!pc.itemSlotUnlocked(GLOBAL.UPPER_UNDERGARMENT))
 		{
@@ -1047,8 +1112,9 @@ public function unequip(arg:String, next:Boolean = true):void
 	}
 	
 	unequippedItems[unequippedItems.length - 1].onRemove(pc);
-
+	
 	itemCollect(unequippedItems);
+	if(inCombat()) backToCombatInventory(unequippedItems[unequippedItems.length - 1]);
 }
 
 // atm, no equippable items have a stacksize > 1, so there is never a possibility that we'd have to split an item stack to equip an item the player holds in their inventory.
@@ -1399,8 +1465,8 @@ public function shipStorageMenuRoot():void
 	
 	if (flags["SHIP_STORAGE_WARDROBE"] != undefined) 
 	{
-		 output(" A wardrobe closet lines a section of the wall, reminding you where you keep all your clothes, outfits and armors.");
-		 addButton(0, "Wardrobe", shipStorageMenuType, "WARDROBE");
+		output(" A wardrobe closet lines a section of the wall, reminding you where you keep all your clothes, outfits and armors.");
+		addButton(0, "Wardrobe", shipStorageMenuType, "WARDROBE");
 	}
 	else addDisabledButton(0, "Wardrobe");
 	
