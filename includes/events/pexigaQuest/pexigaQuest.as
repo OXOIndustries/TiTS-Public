@@ -2141,7 +2141,7 @@ public function dollmakerSalvageMenu():void
 	//[Leave] (Mouse Over: You’re done here. Time to get your pexiga healed!)
 	
 	if(enemy.hasItem(new IQBGone())) addDisabledButton(0,"Syringe","Syringe","You’ve already taken her IQ B-Gone syringe.");
-	else addButton(0,"Syringe",dollmakerSalvage,new Silicone(),"Syringe","A harvested needle filled with Doctor Badger’s patented IQ B-Gone serum. Law enforcement would be interested in this - maybe they can make a cure?");
+	else addButton(0,"Syringe",dollmakerSalvage,new IQBGone(),"Syringe","A harvested needle filled with Doctor Badger’s patented IQ B-Gone serum. Law enforcement would be interested in this - maybe they can make a cure?");
 
 	if(enemy.hasItem(new BrokenBrainmeltLamp())) addDisabledButton(1,"Lamp","Lamp","You already took the lamp.");
 	else addButton(1,"Lamp",dollmakerSalvage,new BrokenBrainmeltLamp(),"Lamp","The deceptively innocuous pink-bulbed Brainmelt Lamp seems to have been damaged in the fight. You might be able to sell it for scrap.");
