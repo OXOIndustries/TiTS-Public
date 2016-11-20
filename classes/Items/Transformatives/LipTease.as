@@ -280,12 +280,18 @@
 				output("\n\nAt first, there’s no sensation beyond a nondescript warmth, until your " + lipTypeString(colorType) + " purse and tighten involuntarily. You feel them begin to stretch and grow larger, and you pull out your Codex to get a better look at what’s happening.");
 				output("\n\nThe process is over fairly quickly, but there’s no denying that your " + (colorType == "lip" ? "lips are fuller and more shapely" : (lipType + " are larger")) + " than they were before");
 				if(newColor != "null" && target.lipColor != newColor) output(", not to mention the fact that they’ve become a stunning new shade of " + newColor);
-				output(". You smack them a few times and go through various expressions, pleased at how sexy and enticing they look. <b>Your " + lipTypeString(colorType) + " are now larger!</b>");
+				output(". You");
+				if(colorType == "lipple") output(" stroke them a few times with your fingers");
+				else output(" smack them a few times and go through various expressions");
+				output(", pleased at how sexy and enticing they look. <b>Your " + lipTypeString(colorType) + " are now larger!</b>");
 			}
 			// Lip Shrink Text:
 			else if(sizeType == "decrease" && sizeChanged)
 			{
-				output("\n\nAt first, there’s no sensation beyond a cool dampness, until your " + lipTypeString(colorType) + " suddenly go numb. An uncomfortable tingling passes over the entire lower half of your face, and then your feeling returns. You pull out your Codex and take a look at your reflection, nodding in approval as you see that your " + (colorType == "lip" ? "lips have shrunk and thinned out" : (lipType + " have gotten smaller in size")) + ".");
+				output("\n\nAt first, there’s no sensation beyond a cool dampness, until your " + lipTypeString(colorType) + " suddenly go numb. An uncomfortable tingling passes over");
+				if(colorType == "lipple") output(" your chest");
+				else output(" the entire lower half of your face");
+				output(", and then your feeling returns. You pull out your Codex and take a look at your reflection, nodding in approval as you see that your " + (colorType == "lip" ? "lips have shrunk and thinned out" : (lipType + " have gotten smaller in size")) + ".");
 				if(newColor != "null" && target.lipColor != newColor) output(" They’ve also changed color, becoming a smooth and even shade of " + newColor + ".");
 				output(" <b>Your " + lipTypeString(colorType) + " are now smaller!</b>");
 			}
