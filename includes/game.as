@@ -2200,7 +2200,7 @@ public function processSaendraEvents(deltaT:uint, doOut:Boolean, totalDays:uint)
 public function processLetsFapUpdates(deltaT:uint, doOut:Boolean):void
 {
 	// Bail early if we've already unlocked everything
-	if (letsFapTrack() >= LETS_FAP_EPISODES.length - 1) return;
+	if (letsFapTrack() >= LETS_FAP_EPISODES.length) return;
 	
 	var numMinutes:int = deltaT / 60;
 	var numHours:int = deltaT - (deltaT % 60);
@@ -2212,30 +2212,29 @@ public function processLetsFapUpdates(deltaT:uint, doOut:Boolean):void
 	{
 		if (flags["LETS_FAP_RELEASE_TIMER"] != undefined)
 		{
+			var passedLength:Number = (GetGameTimestamp() + deltaT - flags["LETS_FAP_RELEASE_TIMER"]);
 			var unlockLength:Number = (flags["EARLY_LETS_FAPS"] == undefined ? 10080 : 7200);
 			var numUnlocks:int = 0;
 			
-			if (GetGameTimestamp() + deltaT - flags["LETS_FAP_RELEASE_TIMER"] >= unlockLength)
+			if (passedLength >= unlockLength)
 			{
-				numUnlocks++;
-				var remDelta:uint = deltaT - flags["LETS_FAP_RELEASE_TIMER"];
-				
-				numUnlocks += (remDelta / unlockLength);
+				numUnlocks += Math.floor(passedLength / unlockLength);
 				
 				// Clamp the max unlocks to 7, accounting for presently unlocked potentials
-				numUnlocks = Math.min(7, numUnlocks - letsFapTrack());
+				if(letsFapTrack() + numUnlocks > LETS_FAP_EPISODES.length) numUnlocks = Math.min(LETS_FAP_EPISODES.length - letsFapTrack());
 				
 				if (numUnlocks == 1)
 				{
-					AddLogEvent("Atha has posted a new Let’s Fap video!", "good", unlockLength - flags["LETS_FAP_RELEASE_TIMER"]);
+					AddLogEvent("Atha has posted a new Let’s Fap video!", "good", (passedLength - unlockLength));
 				}
 				else
 				{
-					AddLogEvent("Atha has posted new Let’s Fap videos!", "good", (unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + ((numUnlocks - 1) * unlockLength));
+					AddLogEvent("Atha has posted " + num2Text(numUnlocks) + " new Let’s Fap videos!", "good", (passedLength - (numUnlocks * unlockLength)));
 				}
 				
 				// Unlock the latest episode possible based on time passage and existing unlock position
-				flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES[letsFapTrack() + (numUnlocks - 1)];
+				flags["LETS_FAP_LATEST"] = (letsFapTrack() + (numUnlocks - 1));
+				if(flags["LATEST_LETS_FAP"] < flags["LETS_FAP_LATEST"]) flags["LATEST_LETS_FAP"] = flags["LETS_FAP_LATEST"];
 				
 				flags["LETS_FAP_RELEASE_TIMER"] = undefined;
 			}
