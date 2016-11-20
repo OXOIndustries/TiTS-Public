@@ -40,9 +40,9 @@ public function useItem(item:ItemSlotClass):Boolean
 	
 	if (item.isUsable == false)
 	{
-		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
+		//trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
 		clearOutput();
-		output("Unable to use " + item.description + ".");
+		output("Unable to use " + item.description + " at present.");
 		//clearMenu();
 		//addButton(14,"Back",useItemFunction);
 		return false;
@@ -51,8 +51,8 @@ public function useItem(item:ItemSlotClass):Boolean
 	{
 		clearOutput();
 		output("Attempted to use " + item.description + " which had zero quantity.");
-		this.clearMenu();
-		this.addButton(14,"Back",useItemFunction);
+		clearMenu();
+		addButton(14,"Back",useItemFunction);
 		return false;
 	}
 	else 
@@ -92,8 +92,8 @@ public function useItem(item:ItemSlotClass):Boolean
 			{
 				clearOutput();
 				output("Error: Attempted to use item but item had no associated function. Tell Fenoxo he is a dirty hobo.");
-				this.clearMenu();
-				this.addButton(0,"Next",useItemFunction);
+				clearMenu();
+				addButton(0,"Next",useItemFunction);
 			}
 			
 			// Consume an item from the stack
@@ -235,11 +235,11 @@ public function shop(keeper:Creature):void {
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
 	//Menuuuu!
-	this.clearMenu();
-	this.addButton(0,"Buy Item",buyItem);
+	clearMenu();
+	addButton(0,"Buy Item",buyItem);
 	if(keeper.typesBought.length > 0) 
-		this.addButton(1,"Sell Item",sellItem);
-	this.addButton(14,"Back",mainGameMenu);
+		addButton(1,"Sell Item",sellItem);
+	addButton(14,"Back",mainGameMenu);
 }
 
 public function buyItem():void {
@@ -1256,13 +1256,14 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 	if (tItem)
 	{
 		output(". There is no room in your inventory for your new acquisition. Do you discard the item or replace a filled item slot?");
-		this.clearMenu();
-		this.addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
-		this.addButton(1,"Discard", discardItem, newLootList);
+		clearMenu();
+		addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
+		addButton(1,"Discard", discardItem, newLootList);
 		//Hacky fix. If you hit useLoot with stuff that has its own submenus, it'll overwrite the submenu with the loot info for the next item. For instance, if you loot a hand cannon and a spear, then equip the hand cannon, your old ZK rifle will vanish into the ether while the game jumps over it to the spear.
 		if ((newLootList.length >= 2)) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
 		else if ((newLootList[0] as ItemSlotClass).hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT)) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
-		else if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use", useLoot, newLootList);
+		else if ((newLootList[0] as ItemSlotClass).isUsable != true) addDisabledButton(2,"Use","Use","This item is not usable.");
+		else addButton(2,"Use", useLoot, newLootList);
 	}
 	else
 	{			
@@ -1272,9 +1273,9 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		output(" away quite easily.\n");
 		//Clear the item off the newLootList.
 		newLootList.splice(0,1);
-		this.clearMenu();
-		if(newLootList.length > 0) this.addButton(0,"Next",itemCollect,newLootList);
-		else this.addButton(0,"Next",lootScreen);
+		clearMenu();
+		if(newLootList.length > 0) addButton(0,"Next",itemCollect,newLootList);
+		else addButton(0,"Next",lootScreen);
 	}
 }
 
@@ -1282,25 +1283,25 @@ public function discardItem(lootList:Array):void {
 	clearOutput();
 	output("You discard " + lootList[0].description + " (x" + lootList[0].quantity + ").\n\n");
 	lootList.splice(0,1);
-	this.clearMenu();
-	if(lootList.length > 0) this.addButton(0,"Next",itemCollect, lootList);
-	else this.addButton(0,"Next",lootScreen);
+	clearMenu();
+	if(lootList.length > 0) addButton(0,"Next",itemCollect, lootList);
+	else addButton(0,"Next",lootScreen);
 }
 
 public function replaceItemPicker(lootList:Array):void {
 	clearOutput();
 	output("You have " + lootList[0].description + " (x" + lootList[0].quantity + ") but there is no room left in your inventory.\n\n");
 	output("What will you replace?");
-	this.clearMenu();
+	clearMenu();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
 		{
 			var butDesc:String = pc.inventory[x].shortName + " x" + pc.inventory[x].quantity
-			this.addButton(x,butDesc,replaceItemGo,[x, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
+			addButton(x,butDesc,replaceItemGo,[x, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
 		}
 	}
 	
-	this.addButton(14, "Back",
+	addButton(14, "Back",
 		(function(c_lootList:Array):Function
 		{
 			return function():void
@@ -1332,8 +1333,8 @@ public function useLoot(lootList:Array):void {
 public function abandonLoot(lootList:Array):void {
 	output("You toss out " + lootList[0].description + ".");
 	lootList.splice(0,1);
-	this.clearMenu();
-	this.addButton(0,"Next",lootScreen);
+	clearMenu();
+	addButton(0,"Next",lootScreen);
 }
 
 public function replaceItemGo(args:Array):void 
@@ -1344,14 +1345,14 @@ public function replaceItemGo(args:Array):void
 	output("You toss out " + pc.inventory[indice].description + " (x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].description + " (x" + lootList[0].quantity + ").");
 	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);
-	this.clearMenu();
+	clearMenu();
 	if(lootList.length > 0) 
 	{
 		output("\n\n");
-		this.addButton(0,"Next",itemCollect, lootList);
+		addButton(0,"Next",itemCollect, lootList);
 	}
 	else 
-		this.addButton(0,"Next",lootScreen);
+		addButton(0,"Next",lootScreen);
 }
 
 public function quickLoot(... args):void

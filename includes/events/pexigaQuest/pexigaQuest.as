@@ -1677,8 +1677,8 @@ public function pcVictoryVsNymFoeMenu():void
 	//[Fuck] [Suck Out] [Harvest] [Leave]
 	
 	if(pc.lust() >= 33 && pc.hasGenitals()) addButton(0,"Fuck",fuckTheNymFoe,undefined,"Fuck","Take advantage of the sex-bot to sate the lusts she has inspired.");
-	else if(pc.lust() >= 33) addDisabledButton(1,"Fuck","Fuck","You need genitalia to do this.");
-	else addDisabledButton(1,"Fuck","Fuck","You’re not up for sex right now.");
+	else if(pc.lust() >= 33) addDisabledButton(0,"Fuck","Fuck","You need genitalia to do this.");
+	else addDisabledButton(0,"Fuck","Fuck","You’re not up for sex right now.");
 
 	if(pc.hasStatusEffect("Nym-Foe Injections")) addButton(1,"Suck Out",suckOutDatInjectionGoop,undefined,"Get the excess silicone sucked back out of your body.");
 	else addDisabledButton(1,"Suck Out","Suck Out","There’s no silicone inside you for her to suck out.");
