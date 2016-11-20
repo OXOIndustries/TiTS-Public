@@ -33,7 +33,7 @@ public function encounterKaedeOnUveto():void
 
 	//[Sure!] [Rain Check]
 	clearMenu();
-	addButton(0, "Sure!", uvetoKaedeSure, undefined, "Sure!", "You'd be happy to spend some time with Kaede.");
+	addButton(0, "Sure!", uvetoKaedeSure, undefined, "Sure!", "You’d be happy to spend some time with Kaede.");
 	addButton(1, "RainCheck", uvetoKaedeRainCheck, undefined, "Rain Check", "Maybe some other time, Kaede.");
 }
 
@@ -62,6 +62,9 @@ public function uvetoKaedeRainCheck():void
 
 public function uvetoKaedeSure():void
 {
+	currentLocation = "UVS B7";
+	generateMap();
+	
 	clearOutput();
 	kaedeHeader();
 	
@@ -119,14 +122,14 @@ public function uvetoKaedeRootMenu():void
 	if (flags["KAEDE_UVETO_TEASED"] == undefined) addButton(1, "Tease", uvetoKaedeTease, undefined, "Tease", "Kaede seemed so delightfully shy about a mere public grope... you could probably get the little half-ausar really worked up.");
 	else addDisabledButton(1, "Tease");
 
-	addButton(2, "Done", uvetoKaedeDone, undefined, "Done", "That's enough beating around the bush. Hang around until your food arrives, and then see where you and the ginger pup go from there.");
+	addButton(2, "Done", uvetoKaedeDone, undefined, "Done", "That’s enough beating around the bush. Hang around until your food arrives, and then see where you and the ginger pup go from there.");
 }
 
 public function uvetoKaedeTalkMenu(ff:Function = null):void
 {
 	kaedeHeader();
 	clearMenu();
-	if (ff != uvetoKaedeHerBody) addButton(0, "Her Body", uvetoKaedeHerBody, undefined, "Her Body", "After getting a handful of Kaede's crotch, you're reminded of a burning question: how come she doesn't have anything else between her legs?");
+	if (ff != uvetoKaedeHerBody) addButton(0, "Her Body", uvetoKaedeHerBody, undefined, "Her Body", "After getting a handful of Kaede’s crotch, you’re reminded of a burning question: how come she doesn’t have anything else between her legs?");
 	else addDisabledButton(0, "Her Body");
 
 	if (ff != uvetoKaedeAnno) addButton(1, "Anno", uvetoKaedeAnno, undefined, "Anno", "How are Kaede and Anno doing? Everything okay between them?");
@@ -135,10 +138,10 @@ public function uvetoKaedeTalkMenu(ff:Function = null):void
 	if (ff != uvetoKaedeCass && flags["KAEDE_NT_ENCOUNTER"] != undefined) addButton(2, "Cass", uvetoKaedeCass, undefined, "Cass", "Ask about how Cass and Kayla are doing.");
 	else addDisabledButton(2, "Cass");
 
-	if (ff != uvetoKaedeRhenworld) addButton(3, "RhenWorld", uvetoKaedeRhenworld, undefined, "RhenWorld", "Ask Kaede for some more juicy details about the RhenWorld contract she's been working. How'd she get a sweet setup like that?");
+	if (ff != uvetoKaedeRhenworld) addButton(3, "RhenWorld", uvetoKaedeRhenworld, undefined, "RhenWorld", "Ask Kaede for some more juicy details about the RhenWorld contract she’s been working. How’d she get a sweet setup like that?");
 	else addDisabledButton(3, "RhenWorld");
 
-	if (ff != uvetoKaedeUveto) addButton(4, "Uveto", uvetoKaedeUveto, undefined, "Uveto", "Kaede seems to have a real fondness for this backwater snowball. What's up with that?");
+	if (ff != uvetoKaedeUveto) addButton(4, "Uveto", uvetoKaedeUveto, undefined, "Uveto", "Kaede seems to have a real fondness for this backwater snowball. What’s up with that?");
 	else addDisabledButton(4, "Uveto");
 
 	addButton(14, "Back", uvetoKaedeRootMenu);
@@ -259,7 +262,7 @@ public function uvetoKaedeCass():void
 
 	output("\n\nKaede smiles. <i>“That’s good. You");
 	if (numChildren == 0) output("’ll have some eventually, I’m sure. It’s... it’s a trip.");
-	else output("‘re probably an awesome parent. It’s a trip, isn’t it?");
+	else output("’re probably an awesome parent. It’s a trip, isn’t it?");
 	output("”</i>");
 
 	output("\n\nYou nod and, after a moment of silence passes, ask what Cass does exactly. She said something about working in the core?");
@@ -404,7 +407,7 @@ public function uvetoKaedeDone():void
 	//[Go With Her] [Not Today]
 	clearMenu();
 	addButton(0, "Go With", uvetoKaedeSEXYTIMESENSUE, undefined, "Go With Her", "Take Kaede up on her offer and head back to <i>Talon Rogue</i> for a little more intimate time with the pretty puppy.");
-	addButton(1, "Not Today", uvetoKaedeNotToday, undefined, "Not Today", "You've got some pressing business to take care of elsewhere.");
+	addButton(1, "Not Today", uvetoKaedeNotToday, undefined, "Not Today", "You’ve got some pressing business to take care of elsewhere.");
 }
 
 public function uvetoKaedeNotToday():void
@@ -440,6 +443,9 @@ public function uvetoKaedeNotToday():void
 
 public function uvetoKaedeSEXYTIMESENSUE():void
 {
+	currentLocation = "UVS F15";
+	generateMap();
+	
 	clearOutput();
 	kaedeHeader();
 
@@ -521,10 +527,10 @@ public function uvetoKaedeShowerWith(fuckedHer:Boolean = false):void
 
 	//[Take Her Ass] [Dildo Play]
 	clearMenu();
-	if (pc.hasCock()) addButton(0, "FuckHerAss", uvetoKaedeFuckHerAss, [cIdx, fuckedHer], "Fuck Her Ass", "Shove Kaede against the stall's wall and pound that sweet ass of hers until she's begging for more!");
+	if (pc.hasCock()) addButton(0, "FuckHerAss", uvetoKaedeFuckHerAss, [cIdx, fuckedHer], "Fuck Her Ass", "Shove Kaede against the stall’s wall and pound that sweet ass of hers until she’s begging for more!");
 	else addDisabledButton(0, "FuckHerAss");
 
-	addButton(1, "Dildo Play", uvetoKaedeDildoPlay, fuckedHer, "Dildo Play", "You notice that Kaede's got a couple of sex toys unabashedly lying on her shower's shelf. The two of you could put those to use, on top of Kaede's rock-hard red rocket.");
+	addButton(1, "Dildo Play", uvetoKaedeDildoPlay, fuckedHer, "Dildo Play", "You notice that Kaede’s got a couple of sex toys unabashedly lying on her shower’s shelf. The two of you could put those to use, on top of Kaede’s rock-hard red rocket.");
 }
 
 public function uvetoKaedeDildoPlay(fuckedHer:Boolean = false):void
