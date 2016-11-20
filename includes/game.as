@@ -1623,8 +1623,16 @@ public function variableRoomUpdateCheck():void
 		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
 	}
 	//Handle badger closure
-	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
-	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
+	if(flags["DR_BADGER_TURNED_IN"] != undefined)
+	{
+		rooms["304"].removeFlag(GLOBAL.NPC);
+		rooms["209"].northExit = "";
+	}
+	else
+	{
+		rooms["304"].addFlag(GLOBAL.NPC);
+		rooms["209"].northExit = "304";
+	}
 	// Arbetz Open:
 	if (arbetzActiveHours())
 	{

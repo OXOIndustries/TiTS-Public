@@ -1145,7 +1145,7 @@ public function dclPeacekeeperTalk():void
 //player has distracted the Peacekeepers and selects this option from the East Novahome square
 public function exploreDrBadgersAbandonedBadgerBase():void
 {
-	currentLocation = rooms[currentLocation].northExit;
+	currentLocation = "304";
 	generateLocation(currentLocation);
 	
 	clearOutput();
