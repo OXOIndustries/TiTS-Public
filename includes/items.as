@@ -203,12 +203,17 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		}
 	}
 	
-	if(usingCreature is PlayerCharacter && pc.hasPerk("Quickdraw") && (item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON))
+	if (usingCreature is PlayerCharacter) backToCombatInventory(item);
+}
+
+public function backToCombatInventory(item:ItemSlotClass):void
+{
+	if(pc.hasPerk("Quickdraw") && InCollection(item.type, [GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON]))
 	{
 		clearMenu();
 		addButton(0,"Next",combatInventoryMenu);
 	}
-	else if (usingCreature is PlayerCharacter)
+	else
 	{
 		CombatManager.processCombat();
 	}
@@ -1110,7 +1115,7 @@ public function equipItem(arg:ItemSlotClass):void {
 	//A quick check to skip equipping if we've bailed out
 	if(removedItem == arg)
 	{
-
+		
 	}
 	else
 	{
@@ -1187,12 +1192,15 @@ public function equipItem(arg:ItemSlotClass):void {
 		// Renamed from lootList so I can distinguish old vs new uses
 		var unequippedItems:Array = new Array();
 		unequippedItems[unequippedItems.length] = removedItem;
+		
 		itemCollect(unequippedItems);
+		if(inCombat()) backToCombatInventory(arg);
 	}
 	else 
 	{
 		clearMenu();
-		addButton(0,"Next",itemScreen);
+		if(inCombat()) backToCombatInventory(arg);
+		else addButton(0, "Next", itemScreen);
 	}
 }
 
@@ -1270,7 +1278,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		output(". The new acquisition");
 		if(newLootList[0].quantity > 1) output("s stow");
 		else output(" stows");
-		output(" away quite easily.\n");
+		output(" away quite easily.");
 		//Clear the item off the newLootList.
 		newLootList.splice(0,1);
 		clearMenu();
