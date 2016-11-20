@@ -645,7 +645,7 @@ public function argueWithBadger():void
 
 	output("\n\nThe sides of Badger’s mouth quirk up, slightly. <i>“Oh, is that all you’re worried about? Geez, you kind of had me scared there for a second. I almost thought you were about to do something silly.”</i> She waves a hand dismissively. <i>“You don’t want me to dick your friend there, that’s fine. I can be very respectful when the situation calls for it.”</i>");
 
-	if(!pc.isBimbo()) output("\n\nIf anything, the doctor’s assurances set you more on edge. You mentally check the condition of your [pc.weaponRanged], ready to reach for it at a moment’s notice.");
+	if(!pc.isBimbo()) output("\n\nIf anything, the doctor’s assurances set you more on edge. You mentally check the condition of your [pc.mainWeapon], ready to reach for it at a moment’s notice.");
 	else output("\n\nYou relax immediately. <i>“Oh thank goodness! I was worried you wouldn’t take it very well and do something mean to me! But if you’re, like, totally cool with it, then everything worked out just great!”</i>");
 	output(" You calmly ask Badger to unhook the pexiga from her machine.");
 
@@ -1362,13 +1362,13 @@ public function fightTheNymfoe():void
 
 public function bouncyProc(ranged:Boolean = false):void
 {
-	//Enemy Status: Bouncy x5 ("Nym-Foe’s massive mammaries deflect kinetic damage!”</i>)
+	//Enemy Status: Bouncy x5 ("Nym-Foe’s massive mammaries deflect kinetic damage!")
 	//Combat Attacks
 	//Bouncy Breasts
-	//(passive as long as she has at least 1 stack of <i>“Bouncy”</i>, 20% chance to activate per stack of <i>“Bouncy”</i> if player deals kinetic damage to Nym-Foe).
-	//Ranged:
+	//(passive as long as she has at least 1 stack of "Bouncy", 20% chance to activate per stack of "Bouncy" if player deals kinetic damage to Nym-Foe).
 	if(enemy is NymFoe)
 	{
+		//Ranged:
 		if(ranged) output("As your [pc.rangedWeapon] barks out its payload at the swollen nursedroid, she simply giggles in delight. The jiggling, pillowy mountains of her inflated chest absorbs the shock of the attack. She bounces in place, clapping her hands in delight. <i>“Again! Again!”</i> she cheers. <b>It has no effect!</b>");
 		//Melee:
 		else output("You close in, swinging your [pc.meleeWeapon], but Nym-Foe shifts to take the blow directly on her inflated tits. Like fluid-filled armor, they rob your attack of its force! Her body bounces and jiggles but is otherwise unharmed. She titters, her entire frame swaying with the rippling waves radiating through her breasts. <b>It has no effect!</b>");

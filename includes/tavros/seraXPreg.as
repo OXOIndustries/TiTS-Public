@@ -628,7 +628,7 @@ public function seraSpawnPregnancyEnds():void
 	}
 	
 	// merge
-	output("\n\nSpasms wrack your pregnant body for the next hour as it works the baby free. During the painful frenzy you operate mostly on biological autopilot, but glimpse a few details of your new little miracle. The baby drops " + (rand(10) == 0 ? " head" : " feet") + "-first, noodling its way out " + (pc.vaginas[pregSlot].looseness() >= 5 ? "easily" : "in a protracted battle with your tight vagina") + ", and the placenta follows.");
+	output("\n\nSpasms wrack your pregnant body for the next hour as it works the baby free. During the painful frenzy you operate mostly on biological autopilot, but glimpse a few details of your new little miracle. The baby drops " + (rand(10) == 0 ? "head" : "feet") + "-first, noodling its way out " + (pc.vaginas[pregSlot].looseness() >= 5 ? "easily" : "in a protracted battle with your tight vagina") + ", and the placenta follows.");
 	
 	// {vag hymen/stretch check here}
 	pc.cuntChange(pregSlot, 3000);
@@ -1124,7 +1124,7 @@ public function seraNurseryActions(arg:Array):void
 				), "SERA_NURSERY_VISIT_3"
 			]);
 			visitList.push([
-				(	babyName + " is being gotten ready for bed. The nurse dutifully hands " + (babym ? "him" : "her") + " over so you can weigh " + (babym ? "him" : "her") + " growing self in your arms, and you can playfully bounce " + (babym ? "him" : "her") + " up and down. " + (babym ? "His" : "Her") + " attention is elsewhere, though. " + (babym ? "He" : "She") + " silently puts " + (babym ? "his" : "her") + " tiny hands out until, with an exasperated sigh, Sera comes across and points her thumb."
+				(	babyName + " is being gotten ready for bed. The nurse dutifully hands " + (babym ? "him" : "her") + " over so you can weigh " + (babym ? "his" : "her") + " growing self in your arms, and you can playfully bounce " + (babym ? "him" : "her") + " up and down. " + (babym ? "His" : "Her") + " attention is elsewhere, though. " + (babym ? "He" : "She") + " silently puts " + (babym ? "his" : "her") + " tiny hands out until, with an exasperated sigh, Sera comes across and points her thumb."
 				+	"\n\n<i>“Yeah, thumb,”</i> she mutters, as it’s grasped and examined carefully, the pointed talon delicately touched. <i>“Amazing, isn’t it. Two of your own and all you want is somebody else’s.”</i>"
 				), "SERA_NURSERY_VISIT_4"
 			]);
@@ -1214,7 +1214,7 @@ public function seraNurseryActions(arg:Array):void
 				), "SERA_NURSERY_PLAY_1"
 			]);
 			playList.push([
-				(	"You settle down with a book heavy on the rockets and space heroes theme, and tell the story to a rapt " + (numKids == 1 ? babyName : "small audience of your children") + ". Sera keeps on ruining it by inserting obscenities wherever she can, until at last you throw the book at her in disgust. She takes it and continues to tell a heavily Sera-lized version of it to " + (numKids == 1 ? ("a delighted, giggling" + babyName) : "the delighted, giggling gaggle of children") + " until Briget rips it out of her hands."
+				(	"You settle down with a book heavy on the rockets and space heroes theme, and tell the story to a rapt " + (numKids == 1 ? babyName : "small audience of your children") + ". Sera keeps on ruining it by inserting obscenities wherever she can, until at last you throw the book at her in disgust. She takes it and continues to tell a heavily Sera-lized version of it to " + (numKids == 1 ? ("a delighted, giggling " + babyName) : "the delighted, giggling gaggle of children") + " until Briget rips it out of her hands."
 				), "SERA_NURSERY_PLAY_2"
 			]);
 			playList.push([

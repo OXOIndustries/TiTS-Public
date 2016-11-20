@@ -1495,9 +1495,11 @@
 					buffer = getWeaponName();
 					break;
 				case "meleeWeapon":
+				case "weaponMelee":
 					buffer = meleeWeapon.longName;
 					break;
 				case "rangedWeapon":
+				case "weaponRanged":
 					buffer = rangedWeapon.longName;
 					break;
 				case "mainWeapon":
