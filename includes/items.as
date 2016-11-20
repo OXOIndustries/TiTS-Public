@@ -1348,7 +1348,11 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		//Clear the item off the newLootList.
 		newLootList.splice(0,1);
 		clearMenu();
-		if(newLootList.length > 0) addButton(0,"Next",itemCollect,newLootList);
+		if(newLootList.length > 0)
+		{
+			output("\n");
+			addButton(0,"Next",itemCollect,newLootList);
+		}
 		else addButton(0,"Next",lootScreen);
 	}
 }
