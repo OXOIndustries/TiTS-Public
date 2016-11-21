@@ -16,8 +16,21 @@ public function yammiShopDisplay(nude:Boolean = false):void
 public function showYammi(nude:Boolean = false):void
 {
 	showName("\nYAMMI");
-	if(!nude) showBust("YAMMI");
-	else showBust("YAMMI_NUDE");
+	showBust(yammiBustDisplay(nude));
+}
+public function yammiBustDisplay(nude:Boolean = false):String
+{
+	var hasFollower:Boolean = false;
+	
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["YAMMI"] == "ADJATHA" && kGAMECLASS.gameOptions.configuredBustPreferences["YAMMI_NUDE"] == "ADJATHA") hasFollower = true;
+	
+	var str:String = "YAMMI";
+	
+	if(nude) str += "_NUDE";
+	else if(yammiIsCrew() && hasFollower) str += "_APRON";
+	
+	return str;
 }
 
 public function icedTeatIsClosed():Boolean

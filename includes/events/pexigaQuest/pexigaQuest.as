@@ -47,7 +47,7 @@ public function showPexiga():void
 }
 public function showNymFoe():void
 {
-	showBust("NYM-FOE");
+	showBust("NYMFOE");
 	if(inCombat())
 	{
 		if(enemy.HP() <= 0 || enemy.lust() >= enemy.lustMax()) showName("VICTORY:\nNYM-FOE");
@@ -1116,8 +1116,8 @@ public function peacekeeperTalkAvailable():Boolean
 public function dclPeacekeeperTalk():void
 {
 	clearOutput();
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
+	showName("\nDELILAH");
+	showBust("DELILAH");
 	author("Adjatha");
 	output("You mention the UGC Peacekeepers to Del, as you take a seat at the bar. <i>“Oh, uh, those guys on the east end of town? Y-yeah, I think I’ve seen them.”</i>");
 	if(!pc.isBimbo()) output("\n\nYou mention that maybe they could help her out a bit. A favor here and there wouldn’t go amiss. While they’re not likely to free Delilah from her contract any time soon, it wouldn’t hurt to get them on her side. Maybe a free drink? Maybe a little something extra?}");
@@ -1918,10 +1918,18 @@ public function salvageNymFoe():void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
-	output("Waste not, want not, right? You bend over the repurposed robot and release her safety clamps, opening her warm, squishy exterior. Unsurprisingly, the nurse’s interior is a dizzying mess of rewired circuitry and oily servos. Badger really did a number on this one.");
-	output("\n\nIt seems her chest has been stuffed with military-grade silicone. Luckily, the pouches seem to be intact, so carrying them away shouldn’t be too much trouble. Who could possibly need this much silicone?");
-	output("\n\nRight near where her heart would be, an elaborate hydraulic pump has been added, connected to a massive tank of Gush. You could probably load up some nearby spray pens from this central tank, if you wanted. You’ll just have to be careful not to let on that you’re carrying enough of the illegal drug to start a cartel.");
-	output("\n\nThe nursedroid’s Artificial Intelligence chip should be somewhere around her head. You could probably get a few credits for that, despite Badger’s reprogramming.");
+	
+	if(enemy.hasItem(new Silicone(),4) && enemy.hasItem(new Gush(),5) && enemy.hasItem(new DamagedVIChip()))
+	{
+		output("It seems you have looted all the robot’s detachable belongings.");
+	}
+	else
+	{
+		output("Waste not, want not, right? You bend over the repurposed robot and release her safety clamps, opening her warm, squishy exterior. Unsurprisingly, the nurse’s interior is a dizzying mess of rewired circuitry and oily servos. Badger really did a number on this one.");
+		if(!enemy.hasItem(new Silicone(),4)) output("\n\nIt seems her chest has been stuffed with military-grade silicone. Luckily, the pouches seem to be intact, so carrying them away shouldn’t be too much trouble. Who could possibly need this much silicone?");
+		if(!enemy.hasItem(new Gush(),5)) output("\n\nRight near where her heart would be, an elaborate hydraulic pump has been added, connected to a massive tank of Gush. You could probably load up some nearby spray pens from this central tank, if you wanted. You’ll just have to be careful not to let on that you’re carrying enough of the illegal drug to start a cartel.");
+		if(!enemy.hasItem(new DamagedVIChip())) output("\n\nThe nursedroid’s Artificial Intelligence chip should be somewhere around her head. You could probably get a few credits for that, despite Badger’s reprogramming.");
+	}
 	processTime(4);
 	
 	salvageNymFoeMenu();
@@ -1932,17 +1940,24 @@ public function lootTheNymFoe(item:ItemSlotClass):void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
-	if(item is Silicone) 
+	
+	switch(item)
 	{
-		item.quantity = 4;
-		output("After digging around inside her chassis, you come up with four bags of silicone.");
+		case Silicone:
+			item.quantity = 4;
+			output("After digging around inside her chassis, you come up with four bags of silicone.");
+			break;
+		case Gush:
+			item.quantity = 5;
+			output("After digging around inside her chassis, you come out with five fully loaded medipens, all full of Gush.");
+			break;
+		case DamagedVIChip:
+			output("Rooting around her head for the VI chip isn’t exactly fun, but it might be profitable. Bingo! You got it.");
+			break;
+		default:
+			output("BEEP BOOP. INPUT ERROR.");
+			break;
 	}
-	else if(item is Gush) 
-	{
-		item.quantity = 5;
-		output("After digging around inside her chassis, you come out with five fully loaded medipens, all full of Gush.");
-	}
-	else output("Rooting around her head for the VI chip isn’t exactly fun, but it might be profitable. Bingo! You got it.");
 	enemy.inventory.push(item);
 	
 	salvageNymFoeMenu();
@@ -2113,16 +2128,22 @@ public function dollmakerSalvage(item:ItemSlotClass):void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
-	if(item is IQBGone) 
-	{
-		output("After digging around inside the chassis, you come up with a syringe full of IQ B-Gone.");
-	}
-	else if(item is BrokenBrainmeltLamp) 
-	{
-		output("After digging around inside her chassis, you come out with a broken Brainmelt Lamp.");
-	}
-	else output("Getting the gun off the robot in a way that’ll let you use it isn’t fun, but the results could be.... Bingo! You got it.");
 	
+	switch(item)
+	{
+		case IQBGone:
+			output("After digging around inside the chassis, you come up with a syringe full of IQ B-Gone.");
+			break;
+		case BrokenBrainmeltLamp:
+			output("After digging around inside the chassis, you come out with a broken Brainmelt Lamp.");
+			break;
+		case BimboleumEmitter:
+			output("Getting the gun off the robot in a way that’ll let you use it isn’t fun, but the results could be.... Bingo! You got it.");
+			break;
+		default:
+			output("BEEP BOOP. INPUT ERROR.");
+			break;
+	}
 	enemy.inventory.push(item);
 	
 	dollmakerSalvageMenu();

@@ -256,6 +256,10 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/nova_nude_1.png", mimeType = "image/png")]
 		public var Bust_NOVA_NUDE_1:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/nymfoe.png", mimeType = "image/png")]
+		public var Bust_NYMFOE:Class;
+		public var Bounds_NYMFOE:Rectangle = new Rectangle(35, 0, 70, 70);
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer.png", mimeType = "image/png")]
 		public var Bust_OVIR_DANCER:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer_nude.png", mimeType = "image/png")]
@@ -389,6 +393,13 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/xotchi.png", mimeType = "image/png")]
 		public var Bust_XOTCHI:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/yammi.png", mimeType = "image/png")]
+		public var Bust_YAMMI:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/yammi_follower.png", mimeType = "image/png")]
+		public var Bust_YAMMI_APRON:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/yammi_nude.png", mimeType = "image/png")]
+		public var Bust_YAMMI_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl.png", mimeType = "image/png")]
 		public var Bust_ZIL_CALLGIRL:Class;
@@ -636,6 +647,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova_nude_1.png", mimeType = "image/png")]
 			public var Full_NOVA_NUDE_1:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nymfoe.png", mimeType = "image/png")]
+			public var Full_NYMFOE:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer.png", mimeType = "image/png")]
 			public var Full_OVIR_DANCER:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer_nude.png", mimeType = "image/png")]
@@ -761,6 +775,13 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/xotchi.png", mimeType = "image/png")]
 			public var Full_XOTCHI:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/yammi.png", mimeType = "image/png")]
+			public var Full_YAMMI:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/yammi_follower.png", mimeType = "image/png")]
+			public var Full_YAMMI_APRON:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/yammi_nude.png", mimeType = "image/png")]
+			public var Full_YAMMI_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl.png", mimeType = "image/png")]
 			public var Full_ZIL_CALLGIRL:Class;
