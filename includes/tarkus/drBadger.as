@@ -576,7 +576,7 @@ public function drBadgerCuntTailGo():void
 	clearOutput();
 	showDrBadger();
 	author("Zeikfried");
-	if(pc.hasCuntTail())
+	if(pc.hasCuntSnake())
 	{
 		output("Dr. Badger grunts petulantly and looks like she’s about to refuse your request until something catches her eye.");
 		output("\n\n<i>“");

@@ -278,7 +278,9 @@ public function initUvetoRooms():void
 	rooms["UVI H36"].northExit = "UVI H34";
 	rooms["UVI H36"].southExit = "UVI H38";	
 	rooms["UVI H36"].moveMinutes = 1;
+	rooms["UVI H36"].runOnEnter = steeleBiomedBonus;
 	rooms["UVI H36"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI H36"].addFlag(GLOBAL.NPC);
 	
 	rooms["UVI H38"] = new RoomClass(this);
 	rooms["UVI H38"].roomName = "LESSAU'S\nOFFICE";
