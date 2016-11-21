@@ -14504,7 +14504,8 @@
 		public function nippleCuntDescript(appearance: Boolean = false): String {
 			var descript: String = "";
 			if (rand(10) <= 6 && !appearance) descript += RandomInCollection(["penetrable", "fuckable", "pliable", "stretchy"]) + " ";
-			descript += RandomInCollection(["cunt", "cunt"]) + "-nipple";
+			descript += RandomInCollection(["cunt", "cunt"]);
+			if (!appearance) descript += "-nipple";
 			return descript;
 		}
 		public function nippleCuntsDescript(appearance: Boolean = false): String {
@@ -14527,7 +14528,7 @@
 			//These guys get a bonus adjective 70% of the time.
 			else {
 				if (rand(10) <= 6 && !appearance) descript += cockNoun2(cock, false, "nipple");
-				else descript += cockNoun2(cock, true, "nipple");
+				else descript += cockNoun2(cock, true);
 			}
 			return descript;
 		}
