@@ -13082,7 +13082,7 @@
 				//Tail-cock specials
 				else if(special == "tail" && rand(2) == 0) desc += "tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
 				//Nipple-dick specials
-				else if(special == "nipple" && rand(2) == 0) desc += RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else if(special == "nipple" && rand(2) == 0) desc += RandomInCollection(["dick","cock","prick"]) + "-nipple";
 				else
 				{
 					switch(type)
@@ -13198,7 +13198,7 @@
 				}
 				//TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
 				else if(special == "tail" && rand(2) == 0) desc += cockShape2(cock,type) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
-				else if(special == "nipple" && rand(2) == 0) desc += cockShape2(cock,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else if(special == "nipple" && rand(2) == 0) desc += cockShape2(cock,type) + " " + RandomInCollection(["dick","cock","prick"]) + "-nipple";
 				else
 				{
 					switch(type)
