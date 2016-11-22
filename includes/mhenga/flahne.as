@@ -202,7 +202,7 @@ public function talkToFlahneAboutHerRace():void {
 	//Fucked her
 	else output("\n\nThe curvy gel-woman smiles at you. <i>“You know I’ve always given you my full attention. Let me know if you want to have any fun, by the way.”</i>");
 	//If fucked
-	if(flags["FLAHNE_SEXED"] > 0) {
+	if(flags["FLAHNE_SEXED"] > 0 || flags["KIRO_ORGIED"] != undefined) {
 		output("\n\nYou ");
 		if(pc.isNice()) output("politely ");
 		else if(pc.isMischievous()) output("playfully ");

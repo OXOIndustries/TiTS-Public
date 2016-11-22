@@ -2167,8 +2167,8 @@ public function getABlowie():void
 
 	output("\n\nYour ");
 	if(x >= 0) output("[pc.cockNounSimple " + x + "]");
-	else if(x == -1) output("[pc.tailCockSimple]");
-	else output("[pc.nippleCockSimple]");
+	else if(x == -1) output("[pc.tailCock]");
+	else output("[pc.nippleCockDescript]");
 	output(" slides past her wisdom teeth, smearing [pc.cumFlavor] slime on the back of her tongue that makes her hum with happiness.");
 	if(!pc.isTaur()) output(" She raises her eyebrows and looks over her glasses at you, and though it’s probably unintentional, the perspective makes her look condescending enough that you begin to fuck her mouth, instinctively trying to punish her just a bit for her bitch face.");
 	else output(" Frustrated at being without even a hint of what comes next, your hips automatically begin to thrust lightly, fucking the myr’s mouth.");

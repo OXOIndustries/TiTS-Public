@@ -4433,7 +4433,7 @@ public function bessSpendTime4():void
 	output("You decide to spend some time with your " + bessLoverStatus() + ". You notice [bess.name] has done something naughty by the way [bess.heShe]’s acting. You force [bess.himHer] to cough it out and [bess.heShe] spills the beans.");
 	
 	output("\n\nFor punishment you get [bess.himHer] to turn on [bess.hisHer] pain sensors and present to you [bess.hisHer] bare bottom. [bess.HeShe] does so immediately, trembling a little, as you spank [bess.himHer] until [bess.hisHer] silver cheeks are sore and flushed. [bess.HisHer] ");
-	if (bess.hasCock()) output("[bess.cockSimple] is erect");
+	if (bess.hasCock()) output("[bess.cockNounSimple] is erect");
 	else if (bess.hasVagina()) output("girl juice leaks down [bess.hisHer] thighs");
 	else output("face is flushed with arousal")
 	output(" despite [bess.hisHer] cries of protest, wiggling [bess.hisHer] stinging [bess.ass] and whining the entire time.");

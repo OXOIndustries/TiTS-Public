@@ -4836,12 +4836,11 @@
 		public function faceDesc(): String {
 			var faceo: String = "";
 			var hasSmallNose: Boolean = InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
-			var hasInhumanStructure:Boolean = (InCollection(faceType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE) && (hasFaceFlag(GLOBAL.FLAG_MUZZLED) || hasFaceFlag(GLOBAL.FLAG_BEAK)));
-			if (hasPerk("Androgyny") || hasInhumanStructure) {
+			if (hasPerk("Androgyny")) {
 				faceo = "an androgynous " + face();
 				if (mfn("m", "f", "n") == "n") faceo += " that would work on either a male or a female"
 				else faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
-				if (lipRating() > 1 && !hasInhumanStructure && !hasFaceFlag(GLOBAL.FLAG_BEAK)) faceo += " with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
+				if (lipRating() > 1 && !hasFaceFlag(GLOBAL.FLAG_BEAK)) faceo += " with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 				if (hasBeard()) faceo += " in addition to your " + beard();
 			}
 			//0-10
