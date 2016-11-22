@@ -4443,6 +4443,7 @@
 			//Size Adjectives
 			if(rand(3) == 0 || forcedAdjectives)
 			{
+				//Butts
 				if(lips <= 1)
 				{
 					if(rand(3) == 0) result += "pencil-thin";
