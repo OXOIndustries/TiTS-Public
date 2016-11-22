@@ -33,7 +33,7 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	//{New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week}
 	//{Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?}
 	var possibleFuncs:Array = [];
-	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let's Fap", tb: "Atha's Let's Fap episodes", f: letsFapSelectionMain, ar: undefined } );
+	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Atha’s Let’s Fap episodes", f: letsFapSelectionMain, ar: undefined } );
 	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "On demand episodes of Steph Irson: Galactic Huntress", f: stephOnDemandVODs, ar: undefined } );
 	
 	clearMenu();
@@ -159,9 +159,9 @@ public function athasChampeonPage():void
 	if(pc.credits >= 25) addButton(0,"Faucet",champeonAthaDonate,25,"Faucet","Donate at the faucet level, allowing you to view old episodes.");
 	else addDisabledButton(0,"Faucet","Faucet","You cannot afford even this lowly donation tier!");
 	if(pc.credits >= 250) addButton(1,"Hydrant",champeonAthaDonate,250,"Hydrant","Donate at the hydrant level, allowing you to view old episodes and get early access to new ones!");
-	else addDisabledButton(1,"Hydrant","Hydrant","You can't afford to donate at the hydrant level!");
+	else addDisabledButton(1,"Hydrant","Hydrant","You can’t afford to donate at the hydrant level!");
 	if(pc.credits >= 2500) addButton(2,"Geyser",champeonAthaDonate,2500,"Geyser","Donate at the geyser level, allowing you to view old episodes, get early access to new ones, and view a live CumStreamer episode!");
-	else addDisabledButton(2,"Geyser","Geyser","You can't afford that donation tier!");
+	else addDisabledButton(2,"Geyser","Geyser","You can’t afford that donation tier!");
 	addButton(14,"Back",backToSmutMenu);
 }
 
@@ -246,20 +246,20 @@ public function letsFapSelectionMenu():void
 			trace("Invalid lets fap unlock value.");
 		}
 	}
-	addButton(0,"LatestEpisode",LETS_FAP_EPISODES[flags["LETS_FAP_LATEST"]],undefined,"Latest Episode","Watch the latest episode of Let's Fap!");
+	addButton(0,"LatestEpisode",LETS_FAP_EPISODES[Math.min((LETS_FAP_EPISODES.length - 1),flags["LETS_FAP_LATEST"])],undefined,"Latest Episode","Watch the latest episode of Let’s Fap!");
 	if(flags["LETS_FAP_ARCHIVES"] != undefined)
 	{
-		addButton(1,"Terran",letsFapTerran,undefined,"Terran","Watch the very first episode of Atha's show!");
+		addButton(1,"Terran",letsFapTerran,undefined,"Terran","Watch the very first episode of Atha’s show!");
 		addButton(2,"Equine",letsFapEquine,undefined,"Equine","Watch Atha try out an equine toy.");
 		addButton(3,"Kaithrit",letsFapKaithrit,undefined,"Kaithrit","Watch Atha try out a kaithrit penis.");
 		addButton(4,"Zil",letsFapZil,undefined,"Zil","Watch her try out a zil member.");
-		if(letsFapTrack() >= 1 && flags["LETS_FAP_LATEST"] != letsFapAusar) addButton(5,"Ausar",letsFapAusar,undefined,"Ausar","Watch Atha try out an ausar member.");
-		if(letsFapTrack() >= 2 && flags["LETS_FAP_LATEST"] != letsFapLaquine) addButton(6,"Laquine",letsFapLaquine,undefined,"Laquine","Watch Atha try out a laquine member.");
-		if(letsFapTrack() >= 3 && flags["LETS_FAP_LATEST"] != letsFapKuiTan) addButton(7,"Kui-Tan",letsFapKuiTan,undefined,"Kui-Tan","Watch Atha try out a kui-tan member.");
-		if(letsFapTrack() >= 4 && flags["LETS_FAP_LATEST"] != letsFapUnboxing) addButton(8,"Unboxing",letsFapUnboxing,undefined,"Unboxing","Watch Atha try out unboxing a toy.");
-		if(letsFapTrack() >= 5 && flags["LETS_FAP_LATEST"] != letsFapOvir) addButton(9,"Ovir",letsFapOvir,undefined,"Ovir","Watch Atha try out an ovir member.");
-		if(letsFapTrack() >= 6 && flags["LETS_FAP_LATEST"] != letsFapRahnScene) addButton(10,"Rahn",letsFapRahnScene,undefined,"Rahn","Watch Atha try out a rahn member.");
-		if(letsFapTrack() >= 7 && flags["LETS_FAP_LATEST"] != letsFapCockTail) addButton(11,"Cockvine",letsFapRahnScene,undefined,"Cockvine","Watch Atha try out a cockvine tail.");
+		if(letsFapTrack() >= 1 && flags["LETS_FAP_LATEST"] != LETS_FAP_EPISODES.indexOf(letsFapAusar)) addButton(5,"Ausar",letsFapAusar,undefined,"Ausar","Watch Atha try out an ausar member.");
+		if(letsFapTrack() >= 2 && flags["LETS_FAP_LATEST"] != LETS_FAP_EPISODES.indexOf(letsFapLaquine)) addButton(6,"Laquine",letsFapLaquine,undefined,"Laquine","Watch Atha try out a laquine member.");
+		if(letsFapTrack() >= 3 && flags["LETS_FAP_LATEST"] != LETS_FAP_EPISODES.indexOf(letsFapKuiTan)) addButton(7,"Kui-Tan",letsFapKuiTan,undefined,"Kui-Tan","Watch Atha try out a kui-tan member.");
+		if(letsFapTrack() >= 4 && flags["LETS_FAP_LATEST"] != LETS_FAP_EPISODES.indexOf(letsFapUnboxing)) addButton(8,"Unboxing",letsFapUnboxing,undefined,"Unboxing","Watch Atha try out unboxing a toy.");
+		if(letsFapTrack() >= 5 && flags["LETS_FAP_LATEST"] != LETS_FAP_EPISODES.indexOf(letsFapOvir)) addButton(9,"Ovir",letsFapOvir,undefined,"Ovir","Watch Atha try out an ovir member.");
+		if(letsFapTrack() >= 6 && flags["LETS_FAP_LATEST"] != LETS_FAP_EPISODES.indexOf(letsFapRahnScene)) addButton(10,"Rahn",letsFapRahnScene,undefined,"Rahn","Watch Atha try out a rahn member.");
+		if(letsFapTrack() >= 7 && flags["LETS_FAP_LATEST"] != LETS_FAP_EPISODES.indexOf(letsFapCockTail)) addButton(11,"Cockvine",letsFapRahnScene,undefined,"Cockvine","Watch Atha try out a cockvine tail.");
 	}
 	if(flags["CUMSTREAM_UNLOCKED"] != undefined) addButton(13,"Live Stream",liveCumstreamerEpisode,undefined,"Live CumStream","Catch her live CumStream!");
 	addButton(14,"Back",backToSmutMenu);
@@ -269,10 +269,10 @@ public function letsFapTrack(arg:int = 0):Number
 {
 	if(arg != 0)
 	{
-		if(arg > flags["LATEST_LETS_FAP"] || flags["LATEST_LETS_FAP"] == undefined)
+		if(flags["LATEST_LETS_FAP"] == undefined || arg > flags["LATEST_LETS_FAP"])
 		{
 			flags["LATEST_LETS_FAP"] = arg;
-			if(flags["LETS_FAP_RELEASE_TIMER"] == undefined) flags["LETS_FAP_RELEASE_TIMER"] = GetGameTimestamp();
+			if(flags["LETS_FAP_RELEASE_TIMER"] == undefined && flags["LATEST_LETS_FAP"] < LETS_FAP_EPISODES.length) flags["LETS_FAP_RELEASE_TIMER"] = GetGameTimestamp();
 		}
 	}
 	return flags["LATEST_LETS_FAP"];
@@ -337,7 +337,7 @@ public function champeonOrOffMenu():void
 	clearMenu();
 	addButton(14,"Back",backToSmutMenu);
 	if(flags["CUMSTREAM_UNLOCKED"] == undefined) addButton(0,"Champeon",athasChampeonPage);
-	else addDisabledButton(0,"Champeon","Champeon","You've already backed her at the maximum level!");
+	else addDisabledButton(0,"Champeon","Champeon","You’ve already backed her at the maximum level!");
 }
 //Let’s Fap - Laquine #2
 public function letsFapLaquine():void
@@ -569,7 +569,7 @@ public function rahnFapPart2():void
 	output("\n\nTossing the viberator to one side, she goes to worth with both hands on the towering length, pumping up and down as quickly as she can. <i>“I think I’m fucked,”</i> she gasps, weakly, her pace an unsustainable frenzy of motion. <i>“I don’t know the trick to makin’ these things come out,”</i> she moans. Her abdomen seems to be getting leaner with each addition, as if her body’s borrowing mass to make up for the swelling pillar in her lap. <i>“At this rate, I’ll be nothing but a cock with glasses,”</i> she whines.");
 	output("\n\nTrying a new route, she flops the gelatinous mass across her chest and leans down to suck at the featureless tip. Despite the girth, the huge, rounded peak easily slides into and out of her mouth, its shape conforming to the taut oval of her lips. She gulps down inch after inch, nearly a foot of copper gel sliding into her throat as easily as slurping down a gooey dessert.");
 	output("\n\nThe gel seems to react to the pressure of her mouth, its bloated contents shifting heavily within. There is a tremble that passes over her floppy phallus and the eggs move up slightly, Atha’s eyes going wide as an egg pops out of the cock and slides into her belly. She hacks and pulls her head off the length, but not before another two follow down her throat and into her stomach. As the crest slides free from her lips, the wobbly pillar seems to explode with action, egg after egg launching from the dilated tip of the jelly prick, a shower of pale white slime following after.");
-	output("\n\nCum and eggs launching with wild abandon, the camgirl’s face becomes one of blissful rapture, both hands milking the pent up release for all its worth. The rubbery eggs arc up and land randomly around the room, some even bouncing off Atha’s head like rubbery fruit falling from a tree. The last egg pops free and the built up fluid is released in one, continual stream, a geyser of sticky cum shooting up with all the subtlety of an out of control fuel rig. Glistening showers of gooey spunk splatter down on the girl in a slushy shower. Far thicker than normal cum, her rahn spunk pools in slimey globules that gradually becomes nearly a full body coating like runny marshmallow icing.");
+	output("\n\nCum and eggs launching with wild abandon, the camgirl’s face becomes one of blissful rapture, both hands milking the pent up release for all its worth. The rubbery eggs arc up and land randomly around the room, some even bouncing off Atha’s head like rubbery fruit falling from a tree. The last egg pops free and the built up fluid is released in one, continual stream, a geyser of sticky cum shooting up with all the subtlety of an out of control fuel rig. Glistening showers of gooey spunk splatter down on the girl in a slushy shower. Far thicker than normal cum, her rahn spunk pools in slimy globules that gradually becomes nearly a full body coating like runny marshmallow icing.");
 	output("\n\nThe gel cock eventually reaches the end of its orgasm, gradually shrinking and vanishing back into Atha’s pelvis. The camgirl appears as if she’s been transformed into a white, opaque galotian, her gooey chest heaving from the afterglow of her slimy climax. <i>“So, that’s probably why they said it’s experimental,”</i> she pants from under her oozing glaze. <i>“I dunno what I’m gonna do with all these eggs,”</i> she ponders idly. <i>“Leave a comment if you want me to send you an egg,”</i> she laughs. <i>“I’ve got a feeling I’ll be making ‘em all week, so there should be plenty to go around,”</i> she sighs, a playful tone coming through the obvious exhaustion.");
 	output("\n\n<i>“Oh, yeah. The review. Rahn dicks are great. Awesome if you want to feel like you’re growing a brand new cock with every boner or if you just want something that will grow all by itself. Maybe wait till they get the kinks worked out, unless you’ve got a cleaning crew on staff,”</i> she mutters, her hands leisurely scooping up the cummy cream coating her and letting it drip between her fingers in thick blobs.");
 	output("\n\n<i>“As always, don’t forget to Love, Comment, and Support! Next week’s the season finale, so I hope you’ll join me again. Bye ‘Net!”</i> And with that, the cum-coated camgirl’s feed goes dead.");
@@ -668,7 +668,7 @@ public function cockVinePart5():void
 	output("\n\nHer wild, whipping tail sprays jizz all around the room and over the camgirl, her belly visibly growing before your eyes as the inseminated seeds, perhaps overcharged by the Throbb, start filling her with a host of fresh cockvine seedlings. Eyes rolling in the back of her head, unable to keep pace with her seemingly endless orgasm, Atha slackens. A knock at an offscreen door comes just as the wild spurting spray seems to hit a critical broadcasting component, knocking out the feed. The screen goes black, the audio cuts out, and the show - it seems - is over.");
 	processTime(25);
 	pc.lust(50);
-	//letsFapTrack(7);
+	letsFapTrack(7);
 	champeonOrOffMenu();
 }
 

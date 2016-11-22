@@ -32,7 +32,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 4;
-			_definedAverageLoadSize = 720;
+			_definedAverageLoadSize = 4800;
 			_pregnancyChildRace = GLOBAL.TYPE_NYREA;
 			_childMaturationMultiplier = 1.0;
 			

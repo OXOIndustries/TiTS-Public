@@ -25,9 +25,9 @@
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
 			this.sellMarkup = 1.5;
 			this.buyMarkdown = .5;
-			keeperBuy = "The \"good\" doctor points you towards a nearby display with a bored look on her face. It's clear she'd rather have you doing something other than shopping.\n";
+			keeperBuy = "The “good” doctor points you towards a nearby display with a bored look on her face. It’s clear she’d rather have you doing something other than shopping.\n";
 			keeperSell = "Doctor Badger rolls her eyes but begrudgingly looks over your possessions.\n";
-			keeperGreeting = "<i>\"So what do you want then?\"</i> Doctor Badger grumps.\n";
+			keeperGreeting = "<i>“So what do you want then?”</i> Doctor Badger grumps.\n";
 
 
 			this.short = "Dr. Badger";
@@ -35,7 +35,7 @@
 			this.a = "";
 			this.capitalA = "";
 			this.long = "Placeholder";
-			this.customDodge = "Dr. Badger Don't Dodge Foo";
+			this.customDodge = "Dr. Badger Don’t Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.isPlural = false;
 			

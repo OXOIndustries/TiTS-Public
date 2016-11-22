@@ -1653,7 +1653,7 @@ public function dominantlyTakeItInThebUttFromReahaLel():void
 	if(!pc.hasVagina()) output("behind the gaping wall of your sphincter");
 	else output("deep in the depths of your well-fucked cunt");
 	output(". ");
-	if(pc.hasCock()) output("[pc.EachCock] drools threateningly, dripping slimey wads of [pc.cum] onto Reaha’s belly with every movement. ");
+	if(pc.hasCock()) output("[pc.EachCock] drools threateningly, dripping slimy wads of [pc.cum] onto Reaha’s belly with every movement. ");
 	output(" You move faster, pounding down on the rigid rod until your ");
 	if(!pc.hasVagina()) output("ass");
 	else output("twat");

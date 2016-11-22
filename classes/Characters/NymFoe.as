@@ -231,7 +231,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "NYM_FOE";
+			return "NYMFOE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

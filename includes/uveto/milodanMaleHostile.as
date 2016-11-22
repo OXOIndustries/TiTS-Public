@@ -28,12 +28,12 @@ public function milodanCombatPrep():Creature
 	if(pc.tallness < 85) milodan.long += "towering above you.";
 	//{Pc tallness > 85:
 	else milodan.long += "looking you fiercely in the eye.";
-	milodan.long += " His thick " + milodan.furColor + " fur serves to keep him warm in the blistering cold of the rift, a particularly shaggy tuft of it sticking out from his chest. He's built like a goddamn house, his fur unable to conceal the thick muscle lurking beneath it. His feline ears are laid back and his fangs and claws are prominently displayed, ";
+	milodan.long += " His thick " + milodan.furColor + " fur serves to keep him warm in the blistering cold of the rift, a particularly shaggy tuft of it sticking out from his chest. He’s built like a goddamn house, his fur unable to conceal the thick muscle lurking beneath it. His feline ears are laid back and his fangs and claws are prominently displayed, ";
 	//milodan_weapon = club: 
-	if(milodan.meleeWeapon.longName == "heavy club") milodan.long += "but just to make matters worse he's wielding a giant obsidian-looking club.";
-	else if(milodan.meleeWeapon.longName == "axe") milodan.long += "but just to make matters worse he's wielding a nasty obsidian-looking axe.";
+	if(milodan.meleeWeapon.longName == "heavy club") milodan.long += "but just to make matters worse he’s wielding a giant obsidian-looking club.";
+	else if(milodan.meleeWeapon.longName == "axe") milodan.long += "but just to make matters worse he’s wielding a nasty obsidian-looking axe.";
 	else milodan.long += "a sombre reminder that his entire body is a weapon.";
-	milodan.long += " He's naked save for a meagre loincloth";
+	milodan.long += " He’s naked save for a meagre loincloth";
 	if(flags["SEXED_MILODAN_MALE9999"] == undefined) milodan.long += " which you know to be concealing a bulbous, feline dick somewhere around a foot long";
 	milodan.long += ".";
 
@@ -46,26 +46,26 @@ public function encounterAMilodan():void
 	var milodan_color:String = milodan.furColor;
 	showMilodanMale();
 	author("Wsan");
-	output("\n\nA hulking, shaggy-furred shape appears out of Uveto's unforgiving landscapes. ");
+	output("\n\nA hulking, shaggy-furred shape appears out of Uveto’s unforgiving landscapes. ");
 	//PC tallness < 85: 
-	if(pc.tallness < 85) output("He's markedly taller than you are, and his musculature is intense.");
+	if(pc.tallness < 85) output("He’s markedly taller than you are, and his musculature is intense.");
 	//Pc tallness >= 85 to 89:
-	else if(pc.tallness <= 89) output("He's about the same height as you are, and his musculature is intense.");
+	else if(pc.tallness <= 89) output("He’s about the same height as you are, and his musculature is intense.");
 	//Pc tallness > 89:
-	else output("Though he's shorter than you are, his musculature is intense.");
-	output(" You can sense the power lurking under his " + milodan_color + " fur; this guy might be primitive, but it doesn't take a neuroscientist to ");
+	else output("Though he’s shorter than you are, his musculature is intense.");
+	output(" You can sense the power lurking under his " + milodan_color + " fur; this guy might be primitive, but it doesn’t take a neuroscientist to ");
 	//milodan_weapon = club:
-	if(milodan.meleeWeapon.longName == "heavy club") output("hit someone upside the head with a club when you're five hundred pounds.");
+	if(milodan.meleeWeapon.longName == "heavy club") output("hit someone upside the head with a club when you’re five hundred pounds.");
 	//milodan_weapon = axe:
-	else if(milodan.meleeWeapon.longName == "axe") output("be effective with an axe when you're five hundred pounds.");
+	else if(milodan.meleeWeapon.longName == "axe") output("be effective with an axe when you’re five hundred pounds.");
 	//milodan_weapon = claws:
 	else output("open someone up with claws like <i>that</i>.");
 
-	output("\n\nHis mouth turns downwards in a menacing scowl, baring his saber-like fangs at you in a show of dominance. You brandish your [pc.weapon] at him and for a moment he looks uncertain, shrinking back a step. You realize just in time that he's coiling for a leap! Sidestepping, you barely dodge the hulking barbarian barreling towards you. He stops himself in an impressive display of agility, flipping around to face you.");
+	output("\n\nHis mouth turns downwards in a menacing scowl, baring his saber-like fangs at you in a show of dominance. You brandish your [pc.weapon] at him and for a moment he looks uncertain, shrinking back a step. You realize just in time that he’s coiling for a leap! Sidestepping, you barely dodge the hulking barbarian barreling towards you. He stops himself in an impressive display of agility, flipping around to face you.");
 	output("\n\n<i>“Crush you,”</i> he growls.");
 	if(!CodexManager.entryUnlocked("Milodan")) 
 	{
-		output("\n\nYour Codex beeps a warning: <i>“New species detected. Milodan. Conflict aversion measures are recommended.”</i>\n\nYeah. Right. At least you'll have a new Codex entry to read if you live...");
+		output("\n\nYour Codex beeps a warning: <i>“New species detected. Milodan. Conflict aversion measures are recommended.”</i>\n\nYeah. Right. At least you’ll have a new Codex entry to read if you live...");
 		CodexManager.unlockEntry("Milodan");
 	}
 	output("\n\n<b>It’s a fight!</i>");	
@@ -118,11 +118,11 @@ public function winVsMilodanMale():void
 			if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(0,"Doggystyle",doggieStyleDatSaberDoggie,undefined,"Doggystyle","Make this pussy-puppy take it like the bitch he is.");
 			else addDisabledButton(0,"Doggystyle","Doggystyle","Your dick is too big to fit in his butt.");
 		}
-		else addDisabledButton(0,"Doggystyle","Doggystyle","You don't have a penis to stuff in his poor boy-pussy.");
+		else addDisabledButton(0,"Doggystyle","Doggystyle","You don’t have a penis to stuff in his poor boy-pussy.");
 
 		if(pc.hasVagina())
 		{
-			if(!pc.isTaur()) addButton(1,"Vaginal Ride",rideVaginalMilodanMaleBecauseTHEYIFFENING,undefined,"Vaginal Ride","Take care of your lusts by riding him into the snow, though you aren't sure if you'll let him nut inside just yet...");
+			if(!pc.isTaur()) addButton(1,"Vaginal Ride",rideVaginalMilodanMaleBecauseTHEYIFFENING,undefined,"Vaginal Ride","Take care of your lusts by riding him into the snow, though you aren’t sure if you’ll let him nut inside just yet...");
 			else addDisabledButton(1,"Vaginal Ride","Vaginal Ride","Your tauric anatomy is ill-suited for this act.");
 		}
 		else addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You need a vagina to take him in your vagina.");
@@ -131,20 +131,20 @@ public function winVsMilodanMale():void
 
 		if(pc.isTaur())
 		{
-			if(pc.hasGenitals()) addButton(3,"Taurssionary",taurssionaryWithFloofyBoyslut,undefined,"Taurssionary","Sometimes when you're a centaur, you have to be creative in how you get fucked.");
-			else addDisabledButton(3,"Taurssionary","Taurssionary","If you're going to get fucked missionary (or as close as your anatomy will allow), you should probably have some genitals. It seems like a good idea. Give it a try sometime, whynot. You're missing out on so much otherwise.\n\nPlease!");
+			if(pc.hasGenitals()) addButton(3,"Taurssionary",taurssionaryWithFloofyBoyslut,undefined,"Taurssionary","Sometimes when you’re a centaur, you have to be creative in how you get fucked.");
+			else addDisabledButton(3,"Taurssionary","Taurssionary","If you’re going to get fucked missionary (or as close as your anatomy will allow), you should probably have some genitals. It seems like a good idea. Give it a try sometime, whynot. You’re missing out on so much otherwise.\n\nPlease!");
 		}
 		else addDisabledButton(3,"Taurssionary","Taurssionary","As the name would imply, you need to be a centaur or something similar for this particular act.");
 
-		addButton(4,"Rimjob",giveMilodanMalesStinkyButtholeALick,undefined,"Rimjob","Tongue his ass until he's squirting so much hot release into the snow that it steams.");
+		addButton(4,"Rimjob",giveMilodanMalesStinkyButtholeALick,undefined,"Rimjob","Tongue his ass until he’s squirting so much hot release into the snow that it steams.");
 	}
 	else
 	{
-		addDisabledButton(0,"Doggystyle","Doggystyle","You aren't aroused enough for that.");
-		addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You aren't aroused enough for that.");
-		addDisabledButton(2,"Ride Anal","Ride Anal","You aren't aroused enough for that.");
-		addDisabledButton(3,"Taurssionary","Taurssionary","You aren't aroused enough for that.");
-		addDisabledButton(4,"Rimjob","Rimjob","You aren't aroused enough for that.");
+		addDisabledButton(0,"Doggystyle","Doggystyle","You aren’t aroused enough for that.");
+		addDisabledButton(1,"Vaginal Ride","Vaginal Ride","You aren’t aroused enough for that.");
+		addDisabledButton(2,"Ride Anal","Ride Anal","You aren’t aroused enough for that.");
+		addDisabledButton(3,"Taurssionary","Taurssionary","You aren’t aroused enough for that.");
+		addDisabledButton(4,"Rimjob","Rimjob","You aren’t aroused enough for that.");
 	}
 	addButton(14,"Leave",leaveDatMilodanHesASlutAnywayItsNotLiekYouLikedHimOrAnythingBaka);
 }
@@ -710,7 +710,7 @@ public function lossSceneToMaleMilodan():void
 		//[Wrestle] [Don’t]
 		clearMenu();
 		addButton(0,"Wrestle",pussyWrasslin);
-		addButton(1,"Don't",dontWrassleBecauseWrasslinIsDumbAndYourPussyNeedsFucked);
+		addButton(1,"Don’t",dontWrassleBecauseWrasslinIsDumbAndYourPussyNeedsFucked);
 	}
 	//PC has no pussy
 	else
@@ -733,7 +733,7 @@ public function lossSceneToMaleMilodan():void
 		//[Wrestle] [Don’t]
 		clearMenu();
 		addButton(0,"Wrestle",cockwrassleTheMilodanMale);
-		addButton(1,"Don't",dontWrestleTheMilodanBecauseHisCockIsBetterThanYours);
+		addButton(1,"Don’t",dontWrestleTheMilodanBecauseHisCockIsBetterThanYours);
 	}
 }
 
@@ -939,7 +939,7 @@ public function cockwrassleTheMilodanMale():void
 	for(var x:int = 0; x < 15; x++)
 	{
 		pc.orgasm();
-		pc.loadInCunt(enemy,0);
+		pc.loadInAss(enemy);
 	}
 	output("\n\n");
 	CombatManager.genericLoss();
@@ -976,7 +976,7 @@ public function dontWrestleTheMilodanBecauseHisCockIsBetterThanYours():void
 	for(var x:int = 0; x < 15; x++)
 	{
 		pc.orgasm();
-		pc.loadInCunt(enemy,0);
+		pc.loadInAss(enemy);
 	}
 	output("\n\n");
 	CombatManager.genericLoss();

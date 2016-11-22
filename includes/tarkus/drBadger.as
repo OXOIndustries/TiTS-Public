@@ -463,7 +463,7 @@ public function heyDocImAHero():void
 	pc.orgasm();
 	pc.orgasm();
 	output("\n\nIt’s several minutes before your eyes uncross from the delirious bliss of your repeated climaxes. When you can finally see clearly you look up to find Dr. Badger again looking down at you with a smile, idly re-applying the half-sleeve to her cock. While you do still find her scent powerfully alluring, it seems like now that you’ve been serviced the lustful haze that clouded your mind seems to have let up a little. It’s still a little hard to think, and you’re sure you’ve dropped some IQ points, but you <i>are</i> able to think of something other than sex, at least. Her cock catches your eye, and you swallow nervously as you mentally add “for now” to that last statement.");
-	output("\n\n<i>“Now”</i>, Dr. Badger says nonchalantly, as though nothing unusual had happened, <i>“with that... consultation out of the way, do you care to buy any of my take home products? I’ve got some lovely pills that will give you a nice little bimbo kick, although nowhere near as much as my personal attention.”");
+	output("\n\n<i>“Now”</i>, Dr. Badger says nonchalantly, as though nothing unusual had happened, <i>“with that... consultation out of the way, do you care to buy any of my take home products? I’ve got some lovely pills that will give you a nice little bimbo kick, although nowhere near as much as my personal attention.”</i>");
 	//Give PC “Dumbfuck” perk, set at unlock level 9 (Breed-Hungry: +5 fertility rating and balls fill to halfway much faster than normal)
 	//Easy Perk
 	if(!pc.hasPerk("Easy"))
@@ -510,9 +510,9 @@ public function heyDocImJustHereToShop():void
 	clearOutput();
 	showDrBadger();
 	author("Abe E. Seedy");
-	output("The Doctor glares at you intently for a few seconds, and then turns away with an exaggerated sigh. <i>“Fiiine</i>!” She releases you, walking back over to a cluttered workbench in the corner, more or less entirely uninterested in you now that you’ve turned out not to be the type of fun she was hoping for.");
-	output("\n\n<i>“What can I interest you in then? I’m a little low on stock at the moment, but I’ve got a shipment of pills that will get your engine revving.”</i> She rolls her eyes for a moment, mumbling to herself, <i>“not as much as I could have in person, but </i>oh well.”");
-	output("\n\n<i>“Anyway”</i>, she continues to you directly, <i>“what do you want</i>?”");
+	output("The Doctor glares at you intently for a few seconds, and then turns away with an exaggerated sigh. <i>“Fiiine!”</i> She releases you, walking back over to a cluttered workbench in the corner, more or less entirely uninterested in you now that you’ve turned out not to be the type of fun she was hoping for.");
+	output("\n\n<i>“What can I interest you in then? I’m a little low on stock at the moment, but I’ve got a shipment of pills that will get your engine revving.”</i> She rolls her eyes for a moment, mumbling to herself, <i>“not as much as I could have in person, but </i>oh well<i>.”</i>");
+	output("\n\n<i>“Anyway”</i>, she continues to you directly, <i>“what do you want?”</i>");
 	output("\n\n(You could probably report this troublemaker to a U.G.C. peacekeeper and get her arrested. Nothing about this seems legal.)");
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
@@ -542,7 +542,7 @@ public function omgBreakFreeFromDat():void
 	if(pc.isNice()) output(" You don’t understand why she would mock you in such a way, but seeing the serious look on");
 	else if(pc.isMischievous()) output(" Alright, if she wants to dance, you’ll make her fucking dance... Though seeing the wry smirk on");
 	else output(" The contempt of it almost makes you want to attack her more, but seeing the anger in");
-	output(" your face she raises her hands in apology. <i>“No, no, don’t get me wrong. I’m just surprised. It’s been so long since anyone actually </i>challenged<i> me. The locals are fun to play with and all, but they have so little </i>fight<i> in them. It’s nice to meet someone I can have a little... back and forth with</i>.”");
+	output(" your face she raises her hands in apology. <i>“No, no, don’t get me wrong. I’m just surprised. It’s been so long since anyone actually </i>challenged<i> me. The locals are fun to play with and all, but they have so little </i>fight<i> in them. It’s nice to meet someone I can have a little... back and forth with.”</i>");
 	output("\n\nShe raises herself to her feet, her hands lowered and non-threatening, and in response you");
 	if(pc.isNice()) output(" carefully");
 	else output(" begrudgingly");
@@ -625,8 +625,9 @@ public function drBadgerCuntTailGo():void
 		}
 		else
 		{
-			if(pc.isBimbo()) output("\n\n<i>“Like, you can’t");
-			else output("\n\n<i>“Not sure you can");
+			output("\n\n<i>“")
+			if(pc.isBimbo()) output("Like, you can’t");
+			else output("Not sure you can");
 			output(" call it a clinic, then... what happens if the cops find out?”</i> you hector. <i>“Like, say a disgruntled patient phoned them on the vid.”</i>");
 		}
 		processTime(4);
@@ -713,7 +714,7 @@ public function removeDatCuntTail():void
 	//always exclude tail changes until tail array is expanded to support multiple cunt-tails or cunts among other types, then it can affect other tails if desired (will require rewrite of the badger TF text)
 	//preferably exclude or rarify any multi-to-one effects (e.g. merging multiple cocks or breast rows)
 	//if PC has goo skin/legs, also exclude skin/leg changes until the goo TF is unrestricted (plz Fen)
-	//any changes with a magnitude are reduced to 10-33% of usual effect (e.g. cock creation/growth adds 3-4”</i> instead of 11”</i> and breast growth adds only a single cup size)
+	//any changes with a magnitude are reduced to 10-33% of usual effect (e.g. cock creation/growth adds 3-4" instead of 11" and breast growth adds only a single cup size)
 
 	var changes:Number = 0
 	//IF PC BODYTYPE IS THIN/NOT PLUMP

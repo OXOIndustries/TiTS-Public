@@ -1539,7 +1539,7 @@ public function gooArmorCrewTalk(arg:Array):void
 			txt += "\n\nLooking up at you, she scans your bloodless face and happily gasps. <i>“You’re okay!”</i> She lauches herself into you with a big gooey hug.";
 			txt += "\n\nYou tell her of what she drank and how it possibly granted her microbots a new ability. Seeing this as good news, and knowing that you are fine, makes her hug even tighter.";
 			txt += "\n\n<i>“S-so I’m not in trouble, am I?”</i> she asks, concerned, while loosening her squeeze.";
-			txt += "\n\nYou ruffle her slimey silver hair.";
+			txt += "\n\nYou ruffle her slimy silver hair.";
 			txt += "\n\n<b>[goo.name] has learned how to heal minor injuries!</b>";
 			
 			processTime(15);

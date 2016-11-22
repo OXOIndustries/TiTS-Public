@@ -92,7 +92,8 @@ public function nurseryCafeteriaFunc():Boolean
 public function nurseryG14Func():Boolean
 {
 	output("You’re standing in a long, pastel-blue corridor connecting the foyer to the children’s wing of the nursery.");
-	var numKids:int = ChildManager.numInAgeRangeYears(2, 8, true);
+	// 9999 - pending roaming-only check
+	var numKids:int = ChildManager.numInAgeRangeYears(2, 8);
 	if (numKids >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
 	else if (numKids >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
 	
@@ -103,7 +104,8 @@ public function nurseryEducationCenterFunc():Boolean
 {
 	if (hours >= 7 && hours <= 16)
 	{
-		if (ChildManager.inAgeRangeYears(3, 16, true))
+		// 9999 - pending roaming-only check
+		if (ChildManager.inAgeRangeYears(3, 16))
 		{
 			output("\n\nThe schoolrooms are up and operational now that you’ve started to deposit your offspring here. Steele Tech keeps several teachers on retainer here, and those who aren’t actively busy overseeing your children’s’ education are working away on future course material and lesson plans.");
 		}

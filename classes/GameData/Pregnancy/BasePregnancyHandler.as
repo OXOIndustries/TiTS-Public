@@ -393,7 +393,7 @@ package classes.GameData.Pregnancy
 			if (thisPtr.debugTrace) trace("Total incubation time as " + pData.pregnancyIncubation);
 			
 			// Calculate the *number* of "children", if applicable
-			var quantity:Number = rand(thisPtr.pregnancyQuantityMaximum + 1);
+			var quantity:int = rand(thisPtr.pregnancyQuantityMaximum + 1);
 			if (quantity < thisPtr.pregnancyQuantityMinimum) quantity = thisPtr.pregnancyQuantityMinimum;
 			
 			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);

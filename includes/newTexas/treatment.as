@@ -71,7 +71,7 @@ public function treatmentHourProcs(totalHours:int):void
 		
 		if ((pc.balls == 0 || pc.ballSizeRaw <= 0) && (startHours < 58 && treatedHours >= 58))
 		{
-			AddLogEvent("A tremendous pressure builds in your loins, then releases into twin points of release - <b>your new testicles.</b> You suppose balls must be an important part of whatever you're going through.", "passive", (58 - startHours) * 60);
+			AddLogEvent("A tremendous pressure builds in your loins, then releases into twin points of release - <b>your new testicles.</b> You suppose balls must be an important part of whatever you’re going through.", "passive", (58 - startHours) * 60);
 			pc.balls = 2;
 			pc.ballSizeRaw = 4;
 		}
@@ -90,9 +90,9 @@ public function treatmentHourProcs(totalHours:int):void
 		{
 			if(pc.hasVagina())
 			{
-				AddLogEvent("Well, you've taken the Treatment, and you don't feel different <i>at all</i>. No giant cow-boobs", "passive", (2 - startHours) * 60);
+				AddLogEvent("Well, you’ve taken the Treatment, and you don’t feel different <i>at all</i>. No giant cow-boobs", "passive", (2 - startHours) * 60);
 				if(pc.biggestTitSize() >= 6) ExtendLogEvent(", more than usual");
-				ExtendLogEvent(", no inexplicable urge to start talking like a slutty hillbilly and sucking every dick in sight. You're almost disappointed that you haven't started gushing milk or climaxing hard enough to black out. Then again, maybe that's the Treatment talking? Nahhh.");
+				ExtendLogEvent(", no inexplicable urge to start talking like a slutty hillbilly and sucking every dick in sight. You’re almost disappointed that you haven’t started gushing milk or climaxing hard enough to black out. Then again, maybe that’s the Treatment talking? Nahhh.");
 			}
 			else
 			{
@@ -103,25 +103,25 @@ public function treatmentHourProcs(totalHours:int):void
 		//2
 		if(startHours < 4 && treatedHours >= 4)
 		{
-			AddLogEvent("You finish eating a small snack, only to immediate start into another. You shouldn't be that hungry; you definitely shouldn't have a gut growling like a starving jaguar, but you do. You shovel down two more ration bars in rapid succession, finally achieving a measure of relief from your cravings. Was it the Treatment, driving your insatiable appetite? You haven't noticed any changes to your body yet, but would you?\n\nYou do a quick body-scan with the Codex to be sure. Everything comes back normal, except for a little over-eating induced bloating.", "passive", (4 - startHours) * 60);
+			AddLogEvent("You finish eating a small snack, only to immediate start into another. You shouldn’t be that hungry; you definitely shouldn’t have a gut growling like a starving jaguar, but you do. You shovel down two more ration bars in rapid succession, finally achieving a measure of relief from your cravings. Was it the Treatment, driving your insatiable appetite? You haven’t noticed any changes to your body yet, but would you?\n\nYou do a quick body-scan with the Codex to be sure. Everything comes back normal, except for a little over-eating induced bloating.", "passive", (4 - startHours) * 60);
 		}
 		
 		//3
 		if(startHours < 6 && treatedHours >= 6)
 		{
-			AddLogEvent("You belch loudly, not remembering your manners until it’s too late to do anything about it. A sheepish look around you is all you manage before your shame melts away. It was just a burp. After eating that much, you're lucky there wasn't more coming up. You belch again, just to settle your stomach, enjoying the way it rumbles out of your chest. Not bad. Let's see a slutty cow or brazen bull do that!", "passive", (6 - startHours) * 60);
+			AddLogEvent("You belch loudly, not remembering your manners until it’s too late to do anything about it. A sheepish look around you is all you manage before your shame melts away. It was just a burp. After eating that much, you’re lucky there wasn’t more coming up. You belch again, just to settle your stomach, enjoying the way it rumbles out of your chest. Not bad. Let’s see a slutty cow or brazen bull do that!", "passive", (6 - startHours) * 60);
 		}
 		
 		//4
 		if(startHours < 8 && treatedHours >= 8)
 		{
-			AddLogEvent("Rubbing a sore spot in your shoulders, you consider the evidence stacking up around you. Empty wrappers from your seemingly endless snacking crinkle noisily in your pack. You don't feel different, just hungry. Sure, the Codex articles on the Treatment might mention an increased appetite in the early stages of the transformation, but this is nuts. And you don't even feel different mentally! You haven't caught yourself thinking like a cow-" + pc.mf("boy", "girl") + " at all!\n\nBriefly, you consider lodging a complaint with the government of New Texas. The Treatment is supposed to make you happier and sluttier, not a glutton.", "passive", (8 - startHours) * 60);
+			AddLogEvent("Rubbing a sore spot in your shoulders, you consider the evidence stacking up around you. Empty wrappers from your seemingly endless snacking crinkle noisily in your pack. You don’t feel different, just hungry. Sure, the Codex articles on the Treatment might mention an increased appetite in the early stages of the transformation, but this is nuts. And you don’t even feel different mentally! You haven’t caught yourself thinking like a cow-" + pc.mf("boy", "girl") + " at all!\n\nBriefly, you consider lodging a complaint with the government of New Texas. The Treatment is supposed to make you happier and sluttier, not a glutton.", "passive", (8 - startHours) * 60);
 		}
 		
 		//5
 		if(startHours < 10 && treatedHours >= 10)
 		{
-			AddLogEvent("Maybe the sexual urges that the Treatment promises aren't as all-consuming as they appear from the outside. Maybe you have to work for them. Maybe you have to pin them down like a squirming faux-cow and force them to please you. Grinning, you dwell on the thought, imagining ", "passive", (10 - startHours) * 60);
+			AddLogEvent("Maybe the sexual urges that the Treatment promises aren’t as all-consuming as they appear from the outside. Maybe you have to work for them. Maybe you have to pin them down like a squirming faux-cow and force them to please you. Grinning, you dwell on the thought, imagining ", "passive", (10 - startHours) * 60);
 			if(flags["MET_CAMERON"] != undefined) ExtendLogEvent("Cameron");
 			else ExtendLogEvent("some prissy little farm boy");
 			ExtendLogEvent(" squirming and squirting beneath you. Yeah... that seems right.");
@@ -131,19 +131,19 @@ public function treatmentHourProcs(totalHours:int):void
 		//6
 		if(startHours < 12 && treatedHours >= 12)
 		{
-			AddLogEvent("All that eating must be paying off! You feel like you have enough energy to propel you all the way to the nearest warpgate. Maybe you should start working out. With all the calories floating around inside you, you could probably put on some muscle pretty easily. You could be the biggest, baddest cow on the ranch, pinning down dumb sluts and shoving your face between their thighs, milking them for the real honey.\n\nOooh, now there's an idea that leaves you shivering! You bet those whores would love every minute of it too.", "passive", (12 - startHours) * 60);
+			AddLogEvent("All that eating must be paying off! You feel like you have enough energy to propel you all the way to the nearest warpgate. Maybe you should start working out. With all the calories floating around inside you, you could probably put on some muscle pretty easily. You could be the biggest, baddest cow on the ranch, pinning down dumb sluts and shoving your face between their thighs, milking them for the real honey.\n\nOooh, now there’s an idea that leaves you shivering! You bet those whores would love every minute of it too.", "passive", (12 - startHours) * 60);
 			pc.lust(4);
 		}
 		
 		//7
 		if(startHours < 14 && treatedHours >= 14)
 		{
-			AddLogEvent("You frown as a worrisome thought comes to your attention. What if you aren't getting the normal Treatment effects? What if this is something else? You haven't caught yourself ", "passive", (14 - startHours) * 60);
+			AddLogEvent("You frown as a worrisome thought comes to your attention. What if you aren’t getting the normal Treatment effects? What if this is something else? You haven’t caught yourself ", "passive", (14 - startHours) * 60);
 			if(pc.mf("","lady") == "lady") 
 			{
-				ExtendLogEvent("giggling at all, for one, and for another, the idea of sucking cock only appeals if you're pinning the lucky bull to the bed, somehow outmuscling one of the Texan studs.");
-				if(pc.hasCock()) ExtendLogEvent(" Imagine if you had the flexibility to ream his ass <i>and</i> still suck his dick. You'd be milking <i>him</i>!");
-				else ExtendLogEvent(" Imagine if you got a hardlight strap-on to ream his ass with. You'd get to milk him for every drop he's worth!");
+				ExtendLogEvent("giggling at all, for one, and for another, the idea of sucking cock only appeals if you’re pinning the lucky bull to the bed, somehow outmuscling one of the Texan studs.");
+				if(pc.hasCock()) ExtendLogEvent(" Imagine if you had the flexibility to ream his ass <i>and</i> still suck his dick. You’d be milking <i>him</i>!");
+				else ExtendLogEvent(" Imagine if you got a hardlight strap-on to ream his ass with. You’d get to milk him for every drop he’s worth!");
 			}
 			else 
 			{
@@ -157,17 +157,17 @@ public function treatmentHourProcs(totalHours:int):void
 		//8
 		if(startHours < 16 && treatedHours >= 16)
 		{
-			AddLogEvent("Your nostrils flare, delivering a symphony of scents to your mind. You can pick out your own natural odor with ease, and not in an unpleasant way. It's like breathing in an aromatic version of your name. You're fairly certain that you could identify flowers with a simple whiff and other people with only slightly more effort. Are the Treated cows and bulls of New Texas all like this? No wonder they can say so much with so little. They're communicating on a whole other level!", "passive", (16 - startHours) * 60);
+			AddLogEvent("Your nostrils flare, delivering a symphony of scents to your mind. You can pick out your own natural odor with ease, and not in an unpleasant way. It’s like breathing in an aromatic version of your name. You’re fairly certain that you could identify flowers with a simple whiff and other people with only slightly more effort. Are the Treated cows and bulls of New Texas all like this? No wonder they can say so much with so little. They’re communicating on a whole other level!", "passive", (16 - startHours) * 60);
 			if(pc.hasCock())
 			{
 				ExtendLogEvent("\n\nFor instance, you can smell your " + pc.cocksDescript() + ". You can tell just how aroused you are, whether ");
 				if(pc.balls > 1) ExtendLogEvent("your balls are in need of relief");
-				else ExtendLogEvent("you're in need of relief");
+				else ExtendLogEvent("you’re in need of relief");
 				ExtendLogEvent(" or freshly sated. You could probably pick out the most virile man in the room just by walking past him.");
 			}
 			else if(pc.hasVagina())
 			{
-				ExtendLogEvent(ParseText("\n\nFor instance, you can smell your [pc.vaginas]. You can tell just how aroused you are, whether you're wet with need or oozing a mate's genetic material. You could probably pick out the friendliest, sluttiest girl in the room, just by walking past her."));
+				ExtendLogEvent(ParseText("\n\nFor instance, you can smell your [pc.vaginas]. You can tell just how aroused you are, whether you’re wet with need or oozing a mate’s genetic material. You could probably pick out the friendliest, sluttiest girl in the room, just by walking past her."));
 			}
 			pc.lust(5);	
 		}
@@ -181,39 +181,39 @@ public function treatmentHourProcs(totalHours:int):void
 		//10
 		if(startHours < 20 && treatedHours >= 20)
 		{
-			AddLogEvent(ParseText("The Treatment is doing a number on you. You're sure of it now. It shows itself in idle thoughts in fantasies and in your knee jerk reactions to the littlest inconveniences. You bumped your [pc.leg] earlier today and nearly flew into a rage. If it had been a table, you likely would've smashed it"), "passive", (20 - startHours) * 60);
+			AddLogEvent(ParseText("The Treatment is doing a number on you. You’re sure of it now. It shows itself in idle thoughts in fantasies and in your knee jerk reactions to the littlest inconveniences. You bumped your [pc.leg] earlier today and nearly flew into a rage. If it had been a table, you likely would’ve smashed it"), "passive", (20 - startHours) * 60);
 			if(pc.AQ() > pc.PQ()) ExtendLogEvent(", or at least shot it up or something");
 			ExtendLogEvent(". If it was a person? You shudder,");
 			if(pc.hasCock() && pc.hasVagina()) ExtendLogEvent(" hardening and moistening");
 			else if(pc.hasCock()) ExtendLogEvent(" hardening");
 			else ExtendLogEvent(" moistening");
-			ExtendLogEvent(" at the thought. The urges that well up in your brain are primal, powerful things. They demand satisfaction before you even have a chance to identify them, let alone control them.\n\nThere's no way that you got the cow-girl version of the Treatment, but it doesn't quite seem like bull variant either. What's happening to you?");
+			ExtendLogEvent(" at the thought. The urges that well up in your brain are primal, powerful things. They demand satisfaction before you even have a chance to identify them, let alone control them.\n\nThere’s no way that you got the cow-girl version of the Treatment, but it doesn’t quite seem like bull variant either. What’s happening to you?");
 		}
 		
 		//11
 		if(startHours < 22 && treatedHours >= 22)
 		{
-			AddLogEvent("Something occurs to you. You’re getting more confident. You’re sure of it. If you walked into a bar on the wrong planet, you’d look everyone you met in the eye without thinking twice about it. Best case scenario, you’d pick yourself up a punky lay. Worst case scenario, you get to shut up a few punks with excess ego.\n\n...You hope that the Treatment gives you the muscles to back up the newfound confidence. Otherwise you're going to have to be agile as hell.", "passive", (22 - startHours) * 60);
+			AddLogEvent("Something occurs to you. You’re getting more confident. You’re sure of it. If you walked into a bar on the wrong planet, you’d look everyone you met in the eye without thinking twice about it. Best case scenario, you’d pick yourself up a punky lay. Worst case scenario, you get to shut up a few punks with excess ego.\n\n...You hope that the Treatment gives you the muscles to back up the newfound confidence. Otherwise you’re going to have to be agile as hell.", "passive", (22 - startHours) * 60);
 		}
 		
 		//12
 		if(startHours < 24 && treatedHours >= 24)
 		{
-			AddLogEvent("Day one of the Treatment may have started out slow, but there's no denying it now. Every woman you see, you imagine with bigger, milkier boobs. Every man you see, you find yourself scoping out. Just how long is his trouser snake? Just because he doesn't have a bulge doesn't mean he isn't a fantastic grower. And the ladies - what do they taste like? Tangy? Sweet? Your mouth waters at the mere thought.\n\nThe part of you that worries about this stuff is surfacing less and less, letting you actually enjoy the changes as they happen. Fuck, how did you get anything done when you were being so concerned all of the time?", "passive", (24 - startHours) * 60);
+			AddLogEvent("Day one of the Treatment may have started out slow, but there’s no denying it now. Every woman you see, you imagine with bigger, milkier boobs. Every man you see, you find yourself scoping out. Just how long is his trouser snake? Just because he doesn’t have a bulge doesn’t mean he isn’t a fantastic grower. And the ladies - what do they taste like? Tangy? Sweet? Your mouth waters at the mere thought.\n\nThe part of you that worries about this stuff is surfacing less and less, letting you actually enjoy the changes as they happen. Fuck, how did you get anything done when you were being so concerned all of the time?", "passive", (24 - startHours) * 60);
 			pc.lust(10);
 		}
 		
 		//13 - Pussies only
 		if(startHours < 26 && treatedHours >= 26)
 		{
-			AddLogEvent(ParseText("You stretch out and spend a minute checking over your equipment. Sure, there's a whole galaxy of challenges ahead of you, but you're the [pc.guyGirl] to get it done. Besides, that galaxy full of challenges is the same galaxy that's full of extremely fuckable aliens."), "passive", (26 - startHours) * 60);
+			AddLogEvent(ParseText("You stretch out and spend a minute checking over your equipment. Sure, there’s a whole galaxy of challenges ahead of you, but you’re the [pc.guyGirl] to get it done. Besides, that galaxy full of challenges is the same galaxy that’s full of extremely fuckable aliens."), "passive", (26 - startHours) * 60);
 			pc.lust(2);
 		}
 		
 		//14
 		if(startHours < 28 && treatedHours >= 28 && !pc.hasPerk("Sexy Thinking"))
 		{
-			AddLogEvent("You catch yourself glaring at your Codex, like the little tablet did something wrong. All it did was hitch for a second while loading up an extranet page, sometime entirely beyond its control. Still, someone should be held accountable. Perhaps the local relay technicians or the routing center upstream. You make a mental note to look into it down the line. Maybe you can give someone a tongue-lashing over it. And maybe if they take care of it well enough, you can give them an entirely different kind of tongue-lashing.\n\nThe thought doesn't even make you blush.", "passive", (28 - startHours) * 60);
+			AddLogEvent("You catch yourself glaring at your Codex, like the little tablet did something wrong. All it did was hitch for a second while loading up an extranet page, sometime entirely beyond its control. Still, someone should be held accountable. Perhaps the local relay technicians or the routing center upstream. You make a mental note to look into it down the line. Maybe you can give someone a tongue-lashing over it. And maybe if they take care of it well enough, you can give them an entirely different kind of tongue-lashing.\n\nThe thought doesn’t even make you blush.", "passive", (28 - startHours) * 60);
 			pc.lust(5);
 		}
 		
@@ -230,10 +230,10 @@ public function treatmentHourProcs(totalHours:int):void
 			}
 			else
 			{
-				ExtendLogEvent("ache of desire welling up within you. Fuck, you're seriously ");
+				ExtendLogEvent("ache of desire welling up within you. Fuck, you’re seriously ");
 				if(pc.hasVagina()) ExtendLogEvent("wet");
 				else ExtendLogEvent("horned up");
-				ExtendLogEvent(". When did that happen? Screw it; it doesn't matter. If you only had a dildo... or an eager little cowboy handy, you could just reach down and force him inside for a quick, messy orgasm. And then another. And another.");
+				ExtendLogEvent(". When did that happen? Screw it; it doesn’t matter. If you only had a dildo... or an eager little cowboy handy, you could just reach down and force him inside for a quick, messy orgasm. And then another. And another.");
 				pc.lust(pc.lustMax());
 			}
 		}
@@ -241,15 +241,15 @@ public function treatmentHourProcs(totalHours:int):void
 		//16
 		if(startHours < 32 && treatedHours >= 32)
 		{
-			AddLogEvent(ParseText("You look yourself over and sigh, evaluating everything that has changed thus far. You're more aggressive for sure, a little less self-conscious, and getting more libidinous by the minute. Thankfully, the extra lust doesn't seem to be impacting your ability to focus - just <i>how</i> you focus. Little sensuous details pop out at you in every scenario, alerting you to erotic possibilities you may have never considered mere days ago. Yes, you're going to get your inheritance, but the real prize isn't the money so much as the opportunities it presents.\n\nJust like the aliens you encounter, this quest is ripe with lustful possibilities - never-ending line of hard dicks and wet pussies juicing themselves at the thought of a chance with you. A smirk curls the corners of your [pc.lipsChaste] as you consider what's ahead of you, a Treated [pc.boyGirl] on a mission."), "passive", (32 - startHours) * 60);
+			AddLogEvent(ParseText("You look yourself over and sigh, evaluating everything that has changed thus far. You’re more aggressive for sure, a little less self-conscious, and getting more libidinous by the minute. Thankfully, the extra lust doesn’t seem to be impacting your ability to focus - just <i>how</i> you focus. Little sensuous details pop out at you in every scenario, alerting you to erotic possibilities you may have never considered mere days ago. Yes, you’re going to get your inheritance, but the real prize isn’t the money so much as the opportunities it presents.\n\nJust like the aliens you encounter, this quest is ripe with lustful possibilities - never-ending line of hard dicks and wet pussies juicing themselves at the thought of a chance with you. A smirk curls the corners of your [pc.lipsChaste] as you consider what’s ahead of you, a Treated [pc.boyGirl] on a mission."), "passive", (32 - startHours) * 60);
 		}
 		
 		//17
 		if(startHours < 34 && treatedHours >= 34)
 		{
-			AddLogEvent("You idly wonder if you should try and squeeze some gym equipment onto your ship - or make a stop back at the New Texan gym. Working out sounds almost... fun, like something you'd do to blow off steam, only without the whining you'd expect from a horned-up faux cow.\n\nYeah. That'd be nice. Maybe you could even get a faux cow and a muzzle (to keep him quiet), then bench press the little bitch, dropping his dick into your mouth with each rep. A reward for both of you. You'd know when you've had enough when he's had enough.", "passive", (34 - startHours) * 60);
+			AddLogEvent("You idly wonder if you should try and squeeze some gym equipment onto your ship - or make a stop back at the New Texan gym. Working out sounds almost... fun, like something you’d do to blow off steam, only without the whining you’d expect from a horned-up faux cow.\n\nYeah. That’d be nice. Maybe you could even get a faux cow and a muzzle (to keep him quiet), then bench press the little bitch, dropping his dick into your mouth with each rep. A reward for both of you. You’d know when you’ve had enough when he’s had enough.", "passive", (34 - startHours) * 60);
 			if(pc.PQ() >= 70) ExtendLogEvent(" Mmm... if only you were that strong! You have so much work to do!");
-			ExtendLogEvent(ParseText(" Oooh, and you could do squats onto a cow-girl's face. You would know you'd dropped low enough when your [pc.vagOrAss] hit tongue.\n\nMaking up your mind, you decide to give the gym a try at your earliest convenience."));
+			ExtendLogEvent(ParseText(" Oooh, and you could do squats onto a cow-girl’s face. You would know you’d dropped low enough when your [pc.vagOrAss] hit tongue.\n\nMaking up your mind, you decide to give the gym a try at your earliest convenience."));
 		}
 		
 		//18
@@ -258,7 +258,7 @@ public function treatmentHourProcs(totalHours:int):void
 			//Herm
 			if(pc.isHerm())
 			{
-				AddLogEvent("You growl in dissatisfaction. You can't seem to quell the rioting heat in your loins. Neither your rock-hard cock", "passive", (36 - startHours) * 60);
+				AddLogEvent("You growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins. Neither your rock-hard cock", "passive", (36 - startHours) * 60);
 				if(pc.cockTotal() > 1) ExtendLogEvent("s");
 				ExtendLogEvent(" or leaky, eager cunt");
 				if(pc.totalVaginas() > 1) ExtendLogEvent("s");
@@ -268,7 +268,7 @@ public function treatmentHourProcs(totalHours:int):void
 				else if(pc.canMilkSquirt()) ExtendLogEvent("leaking");
 				else if(pc.hasInvertedNipples()) ExtendLogEvent("pebbly and sensitive");
 				else ExtendLogEvent("hard");
-				ExtendLogEvent(". The worst part is that you can't seem to make up your mind as to what you want. One moment you want a soft body to thrust inside of, to mount and hump until the poor thing is reduced to a quivering puddle of delirious moans. The next, you want a big fat dick to climb onto - something virile enough to keep up with you yet weak enough to give into your every whim.");
+				ExtendLogEvent(". The worst part is that you can’t seem to make up your mind as to what you want. One moment you want a soft body to thrust inside of, to mount and hump until the poor thing is reduced to a quivering puddle of delirious moans. The next, you want a big fat dick to climb onto - something virile enough to keep up with you yet weak enough to give into your every whim.");
 			}
 			//Cock
 			else if(pc.hasCock()) 
@@ -291,14 +291,14 @@ public function treatmentHourProcs(totalHours:int):void
 			//Nothing
 			else
 			{
-				AddLogEvent(ParseText("You growl in dissatisfaction. You can’t seem to quell the feeling of building eroticism or odd desires. Playing with your [pc.asshole] or [pc.nipples] just won’t be enough for you anymore. You want to be <i>fucked properly</i>, not just reamed. If only had a pussy, this would be so much easier... a nice, wet, welcoming hole to please your partners. You gently press at your [pc.asshole] and smile. It's no cunt, but you bet you can make some wannabe stud melt inside."), "passive", (36 - startHours) * 60);
+				AddLogEvent(ParseText("You growl in dissatisfaction. You can’t seem to quell the feeling of building eroticism or odd desires. Playing with your [pc.asshole] or [pc.nipples] just won’t be enough for you anymore. You want to be <i>fucked properly</i>, not just reamed. If only had a pussy, this would be so much easier... a nice, wet, welcoming hole to please your partners. You gently press at your [pc.asshole] and smile. It’s no cunt, but you bet you can make some wannabe stud melt inside."), "passive", (36 - startHours) * 60);
 			}
 			//Merge
-			ExtendLogEvent("\n\nBesides, the real takeaway is just how hot and horny you’re able to get without going off. You’re able to sit there fantasizing about a pair of petite cow-boys with enormous dicks, imagining their delectible tools hardening down the legs of their jeans until the robust fabric shreds from the force of their engorging lust. Just two days ago, dwelling on something like this for so long would have driven you to masturbation. Today? You're free to think of all the things you could do to them, all while continuing on your merry way. You suppose you’re getting better at it - being aroused that is. You could walk around ");
+			ExtendLogEvent("\n\nBesides, the real takeaway is just how hot and horny you’re able to get without going off. You’re able to sit there fantasizing about a pair of petite cow-boys with enormous dicks, imagining their delectible tools hardening down the legs of their jeans until the robust fabric shreds from the force of their engorging lust. Just two days ago, dwelling on something like this for so long would have driven you to masturbation. Today? You’re free to think of all the things you could do to them, all while continuing on your merry way. You suppose you’re getting better at it - being aroused that is. You could walk around ");
 			if(pc.hasCock()) ExtendLogEvent("with a pant-straining stiffy for hours");
 			else if(pc.hasVagina()) ExtendLogEvent("with soaked panties");
 			else ExtendLogEvent("with overwhelming desire");
-			ExtendLogEvent(" and still wait a few hours to find just the right playmate. It must be an effect of the treatment, turning you into some kind of sexual dynamo.\n\nYou aren't even sure if you can be completely turned off any longer. Then again, do you want to be?");
+			ExtendLogEvent(" and still wait a few hours to find just the right playmate. It must be an effect of the treatment, turning you into some kind of sexual dynamo.\n\nYou aren’t even sure if you can be completely turned off any longer. Then again, do you want to be?");
 			//Inhuman Desire +20!
 			//Amazonian Needs +20 Min lust
 			//Inhuman Desire +20 max lust.
@@ -330,7 +330,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//20
 		if(startHours < 40 && treatedHours >= 40)
 		{
-			AddLogEvent("The idea that a little medipen filled with a few milliliters of fluid could somehow change your sexual preferences (and entire outlook) might have frightened you a little when this all started, but those concerns seem so silly now. It isn't forcing you into anything. It's just getting rid of the little walls in your head, the ones that might of stopped you from enjoying a cute bull-boy with a tree-trunk between his legs, or that might have thrown up objections to a cow-girl with two milk-dripping pussies for nipples. You can see the beauty in all of it.\n\nYou pull out your Codex, just to check. Surely there are limits to your interests, right? Pulling up a few of the more... sexual sites on the extranet, you get to work. This isn't for masturbation. This isn't for fun. This is a test.\n\nThat's what you tell yourself, anyway.\n\nThe categories blow by one after another, each bringing a little more warmth to your loins: lubed up galotians wrestling in a vat of oil, burly leithan males leaning down to jack each other off, ausar girls in heat lapping at pussy like it's an oasis in the desert. You drift into the realms of hyper-sexual gene-modded parodies of real bodies, pornstars who have spared no expense in making themselves as sexualized as possible. And it just makes you hotter.\n\nBy the time you remember to put the tablet away, your tongue feels dry", "passive", (40 - startHours) * 60);
+			AddLogEvent("The idea that a little medipen filled with a few milliliters of fluid could somehow change your sexual preferences (and entire outlook) might have frightened you a little when this all started, but those concerns seem so silly now. It isn’t forcing you into anything. It’s just getting rid of the little walls in your head, the ones that might of stopped you from enjoying a cute bull-boy with a tree-trunk between his legs, or that might have thrown up objections to a cow-girl with two milk-dripping pussies for nipples. You can see the beauty in all of it.\n\nYou pull out your Codex, just to check. Surely there are limits to your interests, right? Pulling up a few of the more... sexual sites on the extranet, you get to work. This isn’t for masturbation. This isn’t for fun. This is a test.\n\nThat’s what you tell yourself, anyway.\n\nThe categories blow by one after another, each bringing a little more warmth to your loins: lubed up galotians wrestling in a vat of oil, burly leithan males leaning down to jack each other off, ausar girls in heat lapping at pussy like it’s an oasis in the desert. You drift into the realms of hyper-sexual gene-modded parodies of real bodies, pornstars who have spared no expense in making themselves as sexualized as possible. And it just makes you hotter.\n\nBy the time you remember to put the tablet away, your tongue feels dry", "passive", (40 - startHours) * 60);
 			if(pc.hasVagina()) ExtendLogEvent(" and your loins wet.");
 			else if(pc.hasCock()) ExtendLogEvent(" and your loins warm.");
 			else ExtendLogEvent(" and your anus puckered.");
@@ -340,9 +340,9 @@ public function treatmentHourProcs(totalHours:int):void
 		//21
 		if(startHours < 42 && treatedHours >= 42)
 		{
-			AddLogEvent("You check the chronometer app on your Codex, then check it again. Forty-two hours have passed since that one little prick. The mental changes should be mostly done in a half-dozen more. What then? An udder? No, that doesn't feel right. ", "passive", (42 - startHours) * 60);
+			AddLogEvent("You check the chronometer app on your Codex, then check it again. Forty-two hours have passed since that one little prick. The mental changes should be mostly done in a half-dozen more. What then? An udder? No, that doesn’t feel right. ", "passive", (42 - startHours) * 60);
 			if(pc.biggestTitSize() > 1) ExtendLogEvent("Bigger tits are definitely a possibility, of course. You heft one and squeeze, wondering if they really need to be any bigger.");
-			else ExtendLogEvent(" Tits are a definite possibility. You gently knead your chest, wondering if it'll start filling out soon, and if it does, how much?");
+			else ExtendLogEvent(" Tits are a definite possibility. You gently knead your chest, wondering if it’ll start filling out soon, and if it does, how much?");
 			ExtendLogEvent(" The waiting is the worst part!");
 		}
 		
@@ -355,7 +355,7 @@ public function treatmentHourProcs(totalHours:int):void
 				AddLogEvent(ParseText("You find yourself idly rubbing at [pc.oneCock], curling your index finger down to gently press against "), "passive", (44 - startHours) * 60);
 				if(pc.totalVaginas() > 1) ExtendLogEvent("a");
 				else ExtendLogEvent("your");
-				ExtendLogEvent(ParseText(" [pc.vagina]. It just happens on its own. At first, you might of tried to stop yourself or control it, but the more it goes on, the less reason you see to quit. The extra friction feels really, really <i>good</i> - like sex good, only without the rampaging drive to seek completion. And if it keeps you nice and wet for your next lay, why bother to stop?\n\nYou can handle it. Dealing with constant arousal is getting to be mostly automatic. Undergarments <i>should</i> be wet with pre and pussy juice. It's practically their natural state. They slip and side so nicely when you're adjusting them, and the scent functions a broadcast to anyone with a nose that you're down for a good time. Assuming they can handle a firecracker like yourself.\n\nJust because you can endure arousal that would reduce lesser " + pc.mf("men","women") + " to a shuddering wreck doesn't mean you're an easy lay, however. If anything, it makes you a harder one. You're pretty sure you can take more teasing than most people in the galaxy by now. You could probably stand in a cloud of aphrodisiacs for a few minutes and strut out with nothing more than a bit of extra wetness and extra hardness to show for it. Then you could toss the bastard responsible for the cloud inside... and fuck them into insensibility."));
+				ExtendLogEvent(ParseText(" [pc.vagina]. It just happens on its own. At first, you might of tried to stop yourself or control it, but the more it goes on, the less reason you see to quit. The extra friction feels really, really <i>good</i> - like sex good, only without the rampaging drive to seek completion. And if it keeps you nice and wet for your next lay, why bother to stop?\n\nYou can handle it. Dealing with constant arousal is getting to be mostly automatic. Undergarments <i>should</i> be wet with pre and pussy juice. It’s practically their natural state. They slip and side so nicely when you’re adjusting them, and the scent functions a broadcast to anyone with a nose that you’re down for a good time. Assuming they can handle a firecracker like yourself.\n\nJust because you can endure arousal that would reduce lesser " + pc.mf("men","women") + " to a shuddering wreck doesn’t mean you’re an easy lay, however. If anything, it makes you a harder one. You’re pretty sure you can take more teasing than most people in the galaxy by now. You could probably stand in a cloud of aphrodisiacs for a few minutes and strut out with nothing more than a bit of extra wetness and extra hardness to show for it. Then you could toss the bastard responsible for the cloud inside... and fuck them into insensibility."));
 			}
 			//Cocks
 			else if(pc.hasCock())
@@ -402,14 +402,14 @@ public function treatmentHourProcs(totalHours:int):void
 		//23
 		if(startHours < 46 && treatedHours >= 46)
 		{
-			AddLogEvent("Momentarily bored, you try out a 'moo.' It doesn't do much for you, not on its own. You suppose you aren't going to be the type for submissive, idle moos. Maybe in the throes of passion you could slip one in edgewise, an unsubtle declaration that you've gone over the edge. At any other time? Fuck that. You're going to be the one to make other cow-girls moo. You'll be the one makes them beg to lick your boots, watching them submissively extend their tongues in between their plaintive lowing.", "passive", (46 - startHours) * 60);
+			AddLogEvent("Momentarily bored, you try out a ‘moo.’ It doesn’t do much for you, not on its own. You suppose you aren’t going to be the type for submissive, idle moos. Maybe in the throes of passion you could slip one in edgewise, an unsubtle declaration that you’ve gone over the edge. At any other time? Fuck that. You’re going to be the one to make other cow-girls moo. You’ll be the one makes them beg to lick your boots, watching them submissively extend their tongues in between their plaintive lowing.", "passive", (46 - startHours) * 60);
 			pc.lust(4);
 		}
 		
 		//24
 		if(startHours < 48 && treatedHours >= 48)
 		{
-			AddLogEvent("You check your Codex’s chrono. It’s been 48 hours since your Treatment injection. That wasn’t that bad. You had worried that it would change who you were on the inside, but it didn't change much, did it? Yeah, you're a little more brash and a lot more horny, but you expected the latter. The former was an unexpected bonus. Instead of sounding like a cock-hungry cow-slut all the time, you've blossomed into an authoritative " + pc.mf("cow-bull", "queen bitch") + ". All in all, you'd say it's a net positive.\n\nThere's no doubt in your mind that you've contracted the so-called \"Amazon\" variant of the Treatment. The confidence, the domineering arousal... what else could it be?", "passive", (48 - startHours) * 60);
+			AddLogEvent("You check your Codex’s chrono. It’s been 48 hours since your Treatment injection. That wasn’t that bad. You had worried that it would change who you were on the inside, but it didn’t change much, did it? Yeah, you’re a little more brash and a lot more horny, but you expected the latter. The former was an unexpected bonus. Instead of sounding like a cock-hungry cow-slut all the time, you’ve blossomed into an authoritative " + pc.mf("cow-bull", "queen bitch") + ". All in all, you’d say it’s a net positive.\n\nThere’s no doubt in your mind that you’ve contracted the so-called “Amazon” variant of the Treatment. The confidence, the domineering arousal... what else could it be?", "passive", (48 - startHours) * 60);
 		}
 		
 		//========================
@@ -445,7 +445,7 @@ public function treatmentHourProcs(totalHours:int):void
 				//3 - 8 - 11 points
 				else if(rand(3) == 0)
 				{
-					AddLogEvent(ParseText("A whole body shudder works through you as you feel the transformative cocktail kick in. You can feel it in your cheeks and mouth, so warm you wonder if you're glowing, spreading slowly across your [pc.face] as it feminizes it."), "passive", (startHours + (i * 3)) * 60);
+					AddLogEvent(ParseText("A whole body shudder works through you as you feel the transformative cocktail kick in. You can feel it in your cheeks and mouth, so warm you wonder if you’re glowing, spreading slowly across your [pc.face] as it feminizes it."), "passive", (startHours + (i * 3)) * 60);
 					x = 8+rand(4);
 					pc.modFem(x);
 				}
@@ -466,21 +466,21 @@ public function treatmentHourProcs(totalHours:int):void
 			
 				//Announce when passing a threshold:
 				//<= 90
-				if(y <= 90 && pc.femininity > 90) ExtendLogEvent(ParseText(" <b>You can't help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It's jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>"));
+				if(y <= 90 && pc.femininity > 90) ExtendLogEvent(ParseText(" <b>You can’t help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It’s jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>"));
 				//<= 80
-				else if(y <= 80 && pc.femininity > 80) ExtendLogEvent(" <b>Your eyelashes have gotten long and luxurious, your lips have gotten fuller, and even your nose looks cuter. You're gorgeous.</b>");
+				else if(y <= 80 && pc.femininity > 80) ExtendLogEvent(" <b>Your eyelashes have gotten long and luxurious, your lips have gotten fuller, and even your nose looks cuter. You’re gorgeous.</b>");
 				//<= 72
-				else if(y <= 72 && pc.femininity > 72) ExtendLogEvent(ParseText(" <b>There's no doubt about it. You're definitely getting hotter. Your [pc.face] looks feminine and shapely, sure to draw attention.</b>"));
+				else if(y <= 72 && pc.femininity > 72) ExtendLogEvent(ParseText(" <b>There’s no doubt about it. You’re definitely getting hotter. Your [pc.face] looks feminine and shapely, sure to draw attention.</b>"));
 				//<= 65
-				else if(y <= 65 && pc.femininity > 65) ExtendLogEvent(" <b>Checking yourself with your codex, you're delighted to find that your cheekbones look positively pretty. You're looking a lot cuter!</b>");
+				else if(y <= 65 && pc.femininity > 65) ExtendLogEvent(" <b>Checking yourself with your codex, you’re delighted to find that your cheekbones look positively pretty. You’re looking a lot cuter!</b>");
 				//<= 55
 				else if(y <= 55 && pc.femininity > 55) ExtendLogEvent(" <b>Your face is definitely starting to show touches of femininity at this point. Even your lips are a little fuller.</b>");
 				//< 45
-				else if(y < 45 && pc.femininity >= 45) ExtendLogEvent(ParseText(" <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn't going to tell anybody what gender you are, but if the Treatment keeps working....</b>"));
+				else if(y < 45 && pc.femininity >= 45) ExtendLogEvent(ParseText(" <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn’t going to tell anybody what gender you are, but if the Treatment keeps working....</b>"));
 				//< 35
-				else if(y < 35 && pc.femininity >= 35) ExtendLogEvent(ParseText(" <b>After looking at your [pc.face] in your codex's holocam, you can only find a few hints of your masculinity left.</b>"));
-				else if(y < 28 && pc.femininity >= 28) ExtendLogEvent(" <b>The profile of your face is getting less obviously masculine, but there's still the matter of your somewhat angular jawline to contend with.</b>");
-				else if(y < 20 && pc.femininity >= 20) ExtendLogEvent(" <b>You're definitely getting a little less handsome from this stuff, but you're still a long way from pretty.</b>");
+				else if(y < 35 && pc.femininity >= 35) ExtendLogEvent(ParseText(" <b>After looking at your [pc.face] in your codex’s holocam, you can only find a few hints of your masculinity left.</b>"));
+				else if(y < 28 && pc.femininity >= 28) ExtendLogEvent(" <b>The profile of your face is getting less obviously masculine, but there’s still the matter of your somewhat angular jawline to contend with.</b>");
+				else if(y < 20 && pc.femininity >= 20) ExtendLogEvent(" <b>You’re definitely getting a little less handsome from this stuff, but you’re still a long way from pretty.</b>");
 				else if (y < 10 && pc.femininity >= 10) ExtendLogEvent(" <b>A check with your codex confirms your jaw is getting noticeably less square.</b>");
 			}
 		}
@@ -501,10 +501,10 @@ public function treatmentHourProcs(totalHours:int):void
 		if(pc.milkMultiplier >= 100 && !pc.hasPerk("Treated Milk") && pc.hasStatusEffect("Milkazon"))
 		{
 			AddLogEvent(ParseText("You grow increasingly aware of how productive your [pc.breasts] are. The Treatment has given you the ability to produce so much!"), "passive", treatedHours * 60);
-			if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) ExtendLogEvent(" You squeeze a droplet onto a finger and try it, just to sample it. It tastes exactly like the freshest, most delicious milk you've ever tasted - way better than normal. No wonder New Texas is able to export so much milk; Texan cow-milk is amazing!");
+			if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) ExtendLogEvent(" You squeeze a droplet onto a finger and try it, just to sample it. It tastes exactly like the freshest, most delicious milk you’ve ever tasted - way better than normal. No wonder New Texas is able to export so much milk; Texan cow-milk is amazing!");
 			else ExtendLogEvent(ParseText(" You squeeze a droplet onto your finger to try it, amazed at how much richer the [pc.milk] tastes."));
 			ExtendLogEvent(" Perhaps a mid-fuck snack will allow your lovers to keep up with you.");
-			ExtendLogEvent("\n\n(<b>Perk Gained: Treated Milk</b> - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.)");
+			ExtendLogEvent("\n\n(<b>Perk Gained: Treated Milk</b> - Your milk tastes delicious, and milk production takes much longer to slow. The only way you’d stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.)");
 	 		pc.createPerk("Treated Milk",0,0,0,0,"Any milk you lactate tastes better, and you are less likely to stop lactating.");
 	 	}
 		
@@ -524,7 +524,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//Flat chest -> .5 cup
 					if(pc.breastRows[0].breastRatingRaw < .5)
 					{
-						AddLogEvent(ParseText("Your chest feels strange. It's all puffy, and your [pc.nipples] are a little swollen. Oh snap, are you getting boobs?"), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Your chest feels strange. It’s all puffy, and your [pc.nipples] are a little swollen. Oh snap, are you getting boobs?"), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw = .5;
 					}
 					//.5 cup to A cup
@@ -533,41 +533,41 @@ public function treatmentHourProcs(totalHours:int):void
 						//clothed
 						if(!pc.isChestExposed())
 						{
-							AddLogEvent(ParseText("You're noticing more and more that there's a little something extra in your [pc.upperGarment]. It has moved your center of gravity just far enough forward to shift your posture, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You've grown breasts!</b> They're still A-cups, really - barely breasts at all, but there's no way they're going to stay that small. How big will they get? Will they be big, overly sexualized melons or a pair of impressive mounds, clearing space ahead of you wherever you go?"), "passive", (i * 3) * 60);
+							AddLogEvent(ParseText("You’re noticing more and more that there’s a little something extra in your [pc.upperGarment]. It has moved your center of gravity just far enough forward to shift your posture, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You’ve grown breasts!</b> They’re still A-cups, really - barely breasts at all, but there’s no way they’re going to stay that small. How big will they get? Will they be big, overly sexualized melons or a pair of impressive mounds, clearing space ahead of you wherever you go?"), "passive", (i * 3) * 60);
 							if(pc.bRows() > 1)
 							{
 								ExtendLogEvent(" The extra row");
 								if(pc.bRows() > 2) ExtendLogEvent("s below remain");
 								else ExtendLogEvent(" below remains");
-								ExtendLogEvent(" unchanged. It looks like your top set are the only ones that are gonna get big and milky, but that'll be fine.");
+								ExtendLogEvent(" unchanged. It looks like your top set are the only ones that are gonna get big and milky, but that’ll be fine.");
 							}
 						}
 						//Nakers
 						else
 						{
-							AddLogEvent(ParseText("You've been feeling clumsy all day, like something just isn't right with your body. It isn't until you glance down that the source of your awkwardness reveals itself - tits. <b>You've got pert little A-cups hanging off your chest!</b> They look cute - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them.\n\nOf course, they won't stay pert little melons for long. This is the first real step on your journey to having a room-dominating rack. One that'll make non-New Texans look on with a mixture of envy and lust, mostly the latter in the case of males. You give yourself a squeeze and smile, already anticipating all the ways you can show yourself off."), "passive", (i * 3) * 60)
+							AddLogEvent(ParseText("You’ve been feeling clumsy all day, like something just isn’t right with your body. It isn’t until you glance down that the source of your awkwardness reveals itself - tits. <b>You’ve got pert little A-cups hanging off your chest!</b> They look cute - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them.\n\nOf course, they won’t stay pert little melons for long. This is the first real step on your journey to having a room-dominating rack. One that’ll make non-New Texans look on with a mixture of envy and lust, mostly the latter in the case of males. You give yourself a squeeze and smile, already anticipating all the ways you can show yourself off."), "passive", (i * 3) * 60)
 						}
 						pc.breastRows[0].breastRatingRaw = 1;
 					}
 					//A -> B
 					else if(pc.breastRows[0].breastRatingRaw < 2)
 					{
-						AddLogEvent("You idly squeeze your chest; just to check, you assure yourself. It seems a wise thing to do after taking the Treatment. After all, how else are you supposed to chart your progress from teensy teats to mouthwatering melons? You cup and caress them like favored pets. Yup, they're definitely bigger. You squeeze again - definitely B-cups. They feel warm in your hands, alight with hormones and metabolic energies, pulsing bigger with every beat of your lusty heart.", "passive", (i * 3) * 60);
+						AddLogEvent("You idly squeeze your chest; just to check, you assure yourself. It seems a wise thing to do after taking the Treatment. After all, how else are you supposed to chart your progress from teensy teats to mouthwatering melons? You cup and caress them like favored pets. Yup, they’re definitely bigger. You squeeze again - definitely B-cups. They feel warm in your hands, alight with hormones and metabolic energies, pulsing bigger with every beat of your lusty heart.", "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw = 2;
 					}
 					//B-C
 					else if(pc.breastRows[0].breastRatingRaw < 3)
 					{
-						AddLogEvent(ParseText("Whenever you move, your [pc.chest] move along with you. That's no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Whenever you move, your [pc.chest] move along with you. That’s no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop."), "passive", (i * 3) * 60);
 						if(!pc.isChestExposed()) ExtendLogEvent(" You pop open your top for a look.");
 						else ExtendLogEvent(" You look down.");
-						ExtendLogEvent(" Damn! When did you get tits like that? They're proper C-cups now - big enough to command the attention of passersby when shown off, not that you feel much need to. You flex and twist, admiring how you're filling out all over. And to think it's just getting started!");
+						ExtendLogEvent(" Damn! When did you get tits like that? They’re proper C-cups now - big enough to command the attention of passersby when shown off, not that you feel much need to. You flex and twist, admiring how you’re filling out all over. And to think it’s just getting started!");
 						pc.breastRows[0].breastRatingRaw = 3;
 					}
 					//C-D
 					else if(pc.breastRows[0].breastRatingRaw < 4)
 					{
-						AddLogEvent(ParseText("You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There's nothing wrong with making sure your girls are sitting right, and if anyone has a complaint about it, that's their problem. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze them. There's not enough for your fingers to really sink into... yet. But you're on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining the goofy looks boys will get when they see them, assuming they earn the privilege, of course."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There’s nothing wrong with making sure your girls are sitting right, and if anyone has a complaint about it, that’s their problem. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze them. There’s not enough for your fingers to really sink into... yet. But you’re on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining the goofy looks boys will get when they see them, assuming they earn the privilege, of course."), "passive", (i * 3) * 60);
 						//+5 lust
 						pc.lust(5);
 						pc.breastRows[0].breastRatingRaw = 4;
@@ -577,7 +577,7 @@ public function treatmentHourProcs(totalHours:int):void
 					{
 						AddLogEvent(ParseText(" Your [pc.chest] feel so nice and warm"), "passive", (i * 3) * 60);
 						if(!pc.isChestExposed()) ExtendLogEvent(ParseText(" against your [pc.upperGarment]"));
-						ExtendLogEvent(ParseText(" that you just have to give them a firm squeeze. Your index fingers settle on your [pc.nipples] while your palms massage the burgeoning titflesh. It just doesn't work as well as it should; your boobs are bigger and squishier than the last time you held them. You've gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD's."));
+						ExtendLogEvent(ParseText(" that you just have to give them a firm squeeze. Your index fingers settle on your [pc.nipples] while your palms massage the burgeoning titflesh. It just doesn’t work as well as it should; your boobs are bigger and squishier than the last time you held them. You’ve gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD’s."));
 						//+2 lust
 						pc.lust(2);
 						pc.breastRows[0].breastRatingRaw = 5;
@@ -585,7 +585,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//DD->big DD
 					else if(pc.breastRows[0].breastRatingRaw < 6)
 					{
-						AddLogEvent("It's one thing to consider the idea of getting bigger breasts from a powerful transformative cocktail. It's quite another to feel them pulling on you as they get heavier and heavier. Blessedly, the added mass doesn't seem to bother your back; they're more bulky than anything. You hold your hands up underneath them, weighing them. They're so warm and squishy that you can't help but give them a few playful bounces. Why, you're big enough that you're going to have DD-sized bras straining to keep up. You pinch a nipple gleefully. Soon you might even be an E!", "passive", (i * 3) * 60);
+						AddLogEvent("It’s one thing to consider the idea of getting bigger breasts from a powerful transformative cocktail. It’s quite another to feel them pulling on you as they get heavier and heavier. Blessedly, the added mass doesn’t seem to bother your back; they’re more bulky than anything. You hold your hands up underneath them, weighing them. They’re so warm and squishy that you can’t help but give them a few playful bounces. Why, you’re big enough that you’re going to have DD-sized bras straining to keep up. You pinch a nipple gleefully. Soon you might even be an E!", "passive", (i * 3) * 60);
 						//+5 lust.
 						pc.lust(5);
 						pc.breastRows[0].breastRatingRaw = 6;
@@ -593,10 +593,10 @@ public function treatmentHourProcs(totalHours:int):void
 					//big DD -> E
 					else if(pc.breastRows[0].breastRatingRaw < 7)
 					{
-						AddLogEvent("You give a squeal of surprise when you realize how big your tits are getting. They're way more bouncy and squishy than before. If you got measured for a cheap bra, you'd definitely be an E-cup, but you don't think you need one.", "passive", (i * 3) * 60);
+						AddLogEvent("You give a squeal of surprise when you realize how big your tits are getting. They’re way more bouncy and squishy than before. If you got measured for a cheap bra, you’d definitely be an E-cup, but you don’t think you need one.", "passive", (i * 3) * 60);
 						if(!pc.isChestExposed()) ExtendLogEvent(ParseText(" Even with your [pc.upperGarments] peeled down,"));
 						else ExtendLogEvent(" Even as naked as you are,");
-						ExtendLogEvent(" they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren't too firm or too soft. In short, they look damned near perfect on you, a beautiful compliment to match the rest of your developing body.");
+						ExtendLogEvent(" they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren’t too firm or too soft. In short, they look damned near perfect on you, a beautiful compliment to match the rest of your developing body.");
 						//+2 lust
 						pc.lust(2);
 						pc.breastRows[0].breastRatingRaw = 7;
@@ -604,8 +604,8 @@ public function treatmentHourProcs(totalHours:int):void
 					//E -> big E
 					else if(pc.breastRows[0].breastRatingRaw < 8)
 					{
-						AddLogEvent(ParseText("You let your hand play across your [pc.nipple] during an idle moment, just to check if your sensitivity is getting crazy or anything. The cow-girls seem to enjoy it, but while it gives you a fluttery thrill, it doesn't make you weak in the knees. It doesn't make you moo and moan in equal measure, though the thought of squeezing on some slutty cow till she does makes your nips perk quite nicely. Kneading your pillowy mammaries and smiling, you admire how big they're getting, reveling in how the pliant flesh bulges between your questing fingers. It's the only part of you that's getting softer, and you're completely okay with that."), "passive", (i * 3) * 60);
-						ExtendLogEvent("\n\n<b>You're almost too big for an E-cup.</b>");
+						AddLogEvent(ParseText("You let your hand play across your [pc.nipple] during an idle moment, just to check if your sensitivity is getting crazy or anything. The cow-girls seem to enjoy it, but while it gives you a fluttery thrill, it doesn’t make you weak in the knees. It doesn’t make you moo and moan in equal measure, though the thought of squeezing on some slutty cow till she does makes your nips perk quite nicely. Kneading your pillowy mammaries and smiling, you admire how big they’re getting, reveling in how the pliant flesh bulges between your questing fingers. It’s the only part of you that’s getting softer, and you’re completely okay with that."), "passive", (i * 3) * 60);
+						ExtendLogEvent("\n\n<b>You’re almost too big for an E-cup.</b>");
 						//+3 lust
 						pc.lust(3);
 						pc.breastRows[0].breastRatingRaw = 8;
@@ -615,13 +615,13 @@ public function treatmentHourProcs(totalHours:int):void
 					{
 						AddLogEvent("You look down, at first surprised and then pleased to see a little bit less of the ground than before. Yep, your chest is still growing.", "passive", (i * 3) * 60);
 						if(!pc.isChestExposed()) ExtendLogEvent(ParseText(" You yank down your [pc.upperGarments] in a rush to examine it."));
-						ExtendLogEvent(" Your breasts give so perfectly under your fingertips that you just <i>have</i> to squeeze them, groping them every bit as eagerly as any horny bull-boy. You knead them, watching yourself do so with a lazy smile. Hmmm, already an EE-cup from the Treatment, and you could still get even bigger. The idea of luring in a cute little faux cow or blushing alien hotty with your sexy melons and riding them to the ground springs onto you out of nowhere, and you've got to admit, it's a pretty good one.");
+						ExtendLogEvent(" Your breasts give so perfectly under your fingertips that you just <i>have</i> to squeeze them, groping them every bit as eagerly as any horny bull-boy. You knead them, watching yourself do so with a lazy smile. Hmmm, already an EE-cup from the Treatment, and you could still get even bigger. The idea of luring in a cute little faux cow or blushing alien hotty with your sexy melons and riding them to the ground springs onto you out of nowhere, and you’ve got to admit, it’s a pretty good one.");
 						pc.breastRows[0].breastRatingRaw = 9;
 					}
 					//EE -> big EE
 					else if(pc.breastRows[0].breastRatingRaw < 10)
 					{
-						AddLogEvent(ParseText("Your [pc.chest] sway and bounce with every movement. There's no stopping that now, though. They've grown to the upper end of the EE-cup range, and you couldn't stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you'd feel them shifting and rubbing against the inside of the fabric, begging to be freed. Why the fuck should you have to wear a top, anyway? Most males don't have to. You flex, squeezing your boobs between your biceps. Maybe you can convince a few planetary governors to put forth some less sexist regulations."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Your [pc.chest] sway and bounce with every movement. There’s no stopping that now, though. They’ve grown to the upper end of the EE-cup range, and you couldn’t stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you’d feel them shifting and rubbing against the inside of the fabric, begging to be freed. Why the fuck should you have to wear a top, anyway? Most males don’t have to. You flex, squeezing your boobs between your biceps. Maybe you can convince a few planetary governors to put forth some less sexist regulations."), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw = 10;
 					}
 					//big EE -> F
@@ -636,19 +636,19 @@ public function treatmentHourProcs(totalHours:int):void
 							ExtendLogEvent(ParseText(" Heck, if your [pc.cocks] "));
 							if(pc.cockTotal() == 1) ExtendLogEvent("was");
 							else ExtendLogEvent("were");
-							ExtendLogEvent(" smaller, you wouldn't see ");
+							ExtendLogEvent(" smaller, you wouldn’t see ");
 							if(pc.cockTotal() == 1) ExtendLogEvent("it");
 							else ExtendLogEvent("them");
 							ExtendLogEvent(" either.");
 						}
-						ExtendLogEvent(ParseText(" The swelling of your bustline is truly a sight to behold. Besides, you can still see below if you bend forward a little bit, and you don't need to watch your [pc.feet] or anything - not when you've got an ocean of pillowy flesh to flaunt. You've got big, sexy F-cups now."));
+						ExtendLogEvent(ParseText(" The swelling of your bustline is truly a sight to behold. Besides, you can still see below if you bend forward a little bit, and you don’t need to watch your [pc.feet] or anything - not when you’ve got an ocean of pillowy flesh to flaunt. You’ve got big, sexy F-cups now."));
 						pc.breastRows[0].breastRatingRaw = 11;
 					}
 					//F -> big F
 					else if(pc.breastRows[0].breastRatingRaw < 12)
 					{
-						AddLogEvent("You start to adjust the girls again. They're easy to pose just right for the maximum amount of eye-catching wobble, but much like cute bull-boys, sometimes you just gotta grab hold and play with them. You sigh, rubbing fingers around your enhanced areolae as you squeeze your breasts, imagining that it's a big, strong bull doing it - while you've got your hand wrapped around his neck and your hips pounding him into the ground.", "passive", (i * 3) * 60);
-						ExtendLogEvent("\n\nWith F-cups like these, ones that are almost too big for such a bra, you'll be able to sleep with the cream of the crop. Men and women alike will line up just to buy you a drink, leaving you in total control of the rest of their evening. You could crush their hopes and dreams with an airy laugh or give them the night of their lives, leaving them with little more than a smile and a bruised pelvis in the morning.");
+						AddLogEvent("You start to adjust the girls again. They’re easy to pose just right for the maximum amount of eye-catching wobble, but much like cute bull-boys, sometimes you just gotta grab hold and play with them. You sigh, rubbing fingers around your enhanced areolae as you squeeze your breasts, imagining that it’s a big, strong bull doing it - while you’ve got your hand wrapped around his neck and your hips pounding him into the ground.", "passive", (i * 3) * 60);
+						ExtendLogEvent("\n\nWith F-cups like these, ones that are almost too big for such a bra, you’ll be able to sleep with the cream of the crop. Men and women alike will line up just to buy you a drink, leaving you in total control of the rest of their evening. You could crush their hopes and dreams with an airy laugh or give them the night of their lives, leaving them with little more than a smile and a bruised pelvis in the morning.");
 						//+5 lust
 						pc.lust(5);
 						pc.breastRows[0].breastRatingRaw = 12;
@@ -656,7 +656,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//big F -> FF
 					else if(pc.breastRows[0].breastRatingRaw < 13)
 					{
-						AddLogEvent(ParseText("You stumble, setting off a small earthquake in your breasts. Grinning, you mentally categorize it as a class five boobquake and grab hold for stability, stilling your boobs with a supportive grope. There! You knead them a few times, weighing their mass. You've jumped up another cup size for sure, probably to a double 'F'. You must cut quite the impressive figure in the mirror - a big [pc.boyGirl] with big, sexy boobs to match. The meek little cows of the world don't stand a chance."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You stumble, setting off a small earthquake in your breasts. Grinning, you mentally categorize it as a class five boobquake and grab hold for stability, stilling your boobs with a supportive grope. There! You knead them a few times, weighing their mass. You’ve jumped up another cup size for sure, probably to a double ‘F’. You must cut quite the impressive figure in the mirror - a big [pc.boyGirl] with big, sexy boobs to match. The meek little cows of the world don’t stand a chance."), "passive", (i * 3) * 60);
 						if(pc.bRows() > 1)
 						{
 							ExtendLogEvent(ParseText("You run one hand across your neglected lower [pc.nipples 1]. Maybe someday you can convince someone to make a treatment for ") + pc.mf("boys", "girls") + " with more than one meager row of tits.");
@@ -668,23 +668,23 @@ public function treatmentHourProcs(totalHours:int):void
 					//FF -> big FF
 					else if(pc.breastRows[0].breastRatingRaw < 14)
 					{
-						AddLogEvent(ParseText("Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They're bigger than the last time you checked. How much are they going to grow?"), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They’re bigger than the last time you checked. How much are they going to grow?"), "passive", (i * 3) * 60);
 						if(pc.bRows() > 1)
 						{
-							ExtendLogEvent(ParseText("\n\nIt's a shame that only your top row is seems to benefit from the Treatment, but at least your other [pc.nipples 1] are perking up to match their sisters above."));
+							ExtendLogEvent(ParseText("\n\nIt’s a shame that only your top row is seems to benefit from the Treatment, but at least your other [pc.nipples 1] are perking up to match their sisters above."));
 						}
 						pc.breastRows[0].breastRatingRaw = 14;
 					}
 					//big FF -> G
 					else if(pc.breastRows[0].breastRatingRaw < 15)
 					{
-						AddLogEvent(ParseText("You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You've gotten bigger again for sure. Now that you've swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming higher and to the fore. You've got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that's a piece of cake for a capable woman like yourself. Eye-candy like this is sure to put you on top of any social situation."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You’ve gotten bigger again for sure. Now that you’ve swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming higher and to the fore. You’ve got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that’s a piece of cake for a capable woman like yourself. Eye-candy like this is sure to put you on top of any social situation."), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw = 15;
 					}
 					//G -> big G
 					else if(pc.breastRows[0].breastRatingRaw < 16)
 					{
-						AddLogEvent("You look down, pleased to note that another inch of ground has disappeared from view, blocked by the sprawling spheres that adorn your chest like a ship's prow. They don't feel heavy at all in spite of their immense size. You rub one, shivering in delight at the thought of how distracting they'll be for both boys and girls, a dazzling cornucopia of lactic delight just waiting to be unleashed on an unsuspecting populace. Big G-cups like yours are meant to shown off, if only to provide you with an ample supply of mates.", "passive", (i * 3) * 60);
+						AddLogEvent("You look down, pleased to note that another inch of ground has disappeared from view, blocked by the sprawling spheres that adorn your chest like a ship’s prow. They don’t feel heavy at all in spite of their immense size. You rub one, shivering in delight at the thought of how distracting they’ll be for both boys and girls, a dazzling cornucopia of lactic delight just waiting to be unleashed on an unsuspecting populace. Big G-cups like yours are meant to shown off, if only to provide you with an ample supply of mates.", "passive", (i * 3) * 60);
 						//+5 lust.
 						pc.lust(5);
 						pc.breastRows[0].breastRatingRaw = 16;
@@ -695,8 +695,8 @@ public function treatmentHourProcs(totalHours:int):void
 						AddLogEvent("A warm, tingly feeling spreads through your chest as your breasts expand", "passive", (i * 3) * 60);
 						if(!pc.isChestExposed()) ExtendLogEvent(ParseText(", straining against your [pc.upperGarment] as they go"));
 						else ExtendLogEvent(", shifting slightly as they go");
-						ExtendLogEvent(". Your hands fly to them of their own accord, wrapping fingers around big, sensitive nipples and pressing palms into expanding undersides. This must be what it feels like to be a supermodel: constant improvement of a body that deserves more and more attention with every passing second. You look at yourself - and the GG-cup behemoths stacked on top of you - and chuckle. The Treatment isn't turning you into a slut. It's just making you hotter and sexier, giving you the equipment you need to distract a lover while you pound his hips into the dirt.");
-						if(pc.bRows() > 1) ExtendLogEvent(ParseText("\n\nYou idly caress a lower [pc.nippleNoun 1]. It's just as sensitive as the ones up top, but unlucky enough not to get the sexy swelling your prime rack is."));
+						ExtendLogEvent(". Your hands fly to them of their own accord, wrapping fingers around big, sensitive nipples and pressing palms into expanding undersides. This must be what it feels like to be a supermodel: constant improvement of a body that deserves more and more attention with every passing second. You look at yourself - and the GG-cup behemoths stacked on top of you - and chuckle. The Treatment isn’t turning you into a slut. It’s just making you hotter and sexier, giving you the equipment you need to distract a lover while you pound his hips into the dirt.");
+						if(pc.bRows() > 1) ExtendLogEvent(ParseText("\n\nYou idly caress a lower [pc.nippleNoun 1]. It’s just as sensitive as the ones up top, but unlucky enough not to get the sexy swelling your prime rack is."));
 						//+7 lust
 						pc.lust(7);
 						pc.breastRows[0].breastRatingRaw = 17;
@@ -704,7 +704,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//GG -> big GG
 					else if(pc.breastRows[0].breastRatingRaw < 18)
 					{
-						AddLogEvent("A sensation of sudden, sensitive firmness is the only warning you get before your boobs swell. Not that you needed the warning of course - the Codex gave you one of those a while back - but why would you care? Bigger tits are like better endowed lovers - why wouldn't you want them? You rub your expanded assets, trying to gauge their new size for yourself, though it might look like you're just feeling yourself up to a passerby. You've got big GG's for sure. If you're lucky, you'll hit H-cups before this is all over!", "passive", (i * 3) * 60);
+						AddLogEvent("A sensation of sudden, sensitive firmness is the only warning you get before your boobs swell. Not that you needed the warning of course - the Codex gave you one of those a while back - but why would you care? Bigger tits are like better endowed lovers - why wouldn’t you want them? You rub your expanded assets, trying to gauge their new size for yourself, though it might look like you’re just feeling yourself up to a passerby. You’ve got big GG’s for sure. If you’re lucky, you’ll hit H-cups before this is all over!", "passive", (i * 3) * 60);
 						//+3 lust
 						pc.lust(3);
 						pc.breastRows[0].breastRatingRaw = 18;
@@ -712,11 +712,11 @@ public function treatmentHourProcs(totalHours:int):void
 					//big GG -> H
 					else if(pc.breastRows[0].breastRatingRaw < 19)
 					{
-						AddLogEvent("You run your hands across your expanding chest in a slow, sensuous caress. It must look unquestionably erotic to the layperson, but the simple fact is that you're just getting a feel for how big they've gotten, nothing else. If anyone else tried to touch you like this, they'd be unconscious and on the floor in a nanosecond. That or pinned between your thighs, ", "passive", (i * 3) * 60);
+						AddLogEvent("You run your hands across your expanding chest in a slow, sensuous caress. It must look unquestionably erotic to the layperson, but the simple fact is that you’re just getting a feel for how big they’ve gotten, nothing else. If anyone else tried to touch you like this, they’d be unconscious and on the floor in a nanosecond. That or pinned between your thighs, ", "passive", (i * 3) * 60);
 						if(pc.hasCock()) ExtendLogEvent("forced to suck you off");
 						else if(pc.hasVagina()) ExtendLogEvent("forced to lick you off");
 						else ExtendLogEvent("forced to lick your blank crotch");
-						ExtendLogEvent(" or be squeezed into unconsciousness. It's the only punishment that makes sense in these trying times, really.");
+						ExtendLogEvent(" or be squeezed into unconsciousness. It’s the only punishment that makes sense in these trying times, really.");
 						ExtendLogEvent("\n\nYou may not understand why New Texan cows are so keen to be manhandled, but you can certainly grow to be better endowed with them - with your brand new H-cups.");
 						//Lust+7
 						pc.lust(7);
@@ -725,18 +725,18 @@ public function treatmentHourProcs(totalHours:int):void
 					//H -> big H
 					else if(pc.breastRows[0].breastRatingRaw < 20)
 					{
-						AddLogEvent(ParseText("You keep checking your [pc.chest] for signs of growth. It's hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you're pretty sure that your fingers are sinking a little deeper into your assets. There's a little bit more weight in your palms. You're on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] bigger, better boobs than them?"), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You keep checking your [pc.chest] for signs of growth. It’s hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you’re pretty sure that your fingers are sinking a little deeper into your assets. There’s a little bit more weight in your palms. You’re on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] bigger, better boobs than them?"), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw = 20;
 					}
 					//big H -> HH
 					else if(pc.breastRows[0].breastRatingRaw < 21)
 					{
-						AddLogEvent(ParseText("You glance down, pleased to note that your view of the ground is even more obstructed than before. You don't need to see your [pc.feet] anyway; balance comes completely naturally by this point, no matter how mammoth your feminine mounds. They're so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You glance down, pleased to note that your view of the ground is even more obstructed than before. You don’t need to see your [pc.feet] anyway; balance comes completely naturally by this point, no matter how mammoth your feminine mounds. They’re so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention."), "passive", (i * 3) * 60);
 						if(pc.bRows() > 1)
 						{
 							ExtendLogEvent("\n\nMaybe you could get your other row");
 							if(pc.bRows() > 2) ExtendLogEvent("s");
-							ExtendLogEvent(" dosed with something so they don't get forgotten. The more the merrier.");
+							ExtendLogEvent(" dosed with something so they don’t get forgotten. The more the merrier.");
 						}
 						//+3 lust
 						pc.lust(3);
@@ -745,7 +745,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//HH -> big HH
 					else if(pc.breastRows[0].breastRatingRaw < 22)
 					{
-						AddLogEvent("You lean back, feeling the weight of your feminine mounds flattening them slightly against your chest and rub your hands across them in slow circles, giving yourself a little massage. You've earned it after all, enduring the Treatment's endless adjustments and transformations, tolerating the lust that swells in your breast like a tsunami closing in on a beach. Pinching your HH-cup tits, you give yourself a masochistic thrill. Perhaps now you'll find a fuck-buddy every bit as capable as yourself, someone who can take a tumble in the hay and give just as good as they get.", "passive", (i * 3) * 60);
+						AddLogEvent("You lean back, feeling the weight of your feminine mounds flattening them slightly against your chest and rub your hands across them in slow circles, giving yourself a little massage. You’ve earned it after all, enduring the Treatment’s endless adjustments and transformations, tolerating the lust that swells in your breast like a tsunami closing in on a beach. Pinching your HH-cup tits, you give yourself a masochistic thrill. Perhaps now you’ll find a fuck-buddy every bit as capable as yourself, someone who can take a tumble in the hay and give just as good as they get.", "passive", (i * 3) * 60);
 						//+6 lust
 						pc.lust(6);
 						pc.breastRows[0].breastRatingRaw = 22;
@@ -756,7 +756,7 @@ public function treatmentHourProcs(totalHours:int):void
 						AddLogEvent("Closing your eyes, you cop a feel at your bosom. It perfectly deforms around your questing fingertips, swallowing them almost wholly into itself. Each perfectly-shaped boob quivers against the other, pressed into a line of cleavage long enough to make a kui-tan cream her pants. You play with them", "passive", (i * 3) * 60);
 						if(pc.hasGenitals()) ExtendLogEvent(" until you feel more than a little sticky yourself");
 						else ExtendLogEvent(ParseText(", feeling a little unfilled yourself. If only you had someone to come fuck your [pc.ass] right now"));
-						ExtendLogEvent(ParseText(". There's no doubt in your mind: you're a triple-H [pc.boyGirl] now."));
+						ExtendLogEvent(ParseText(". There’s no doubt in your mind: you’re a triple-H [pc.boyGirl] now."));
 						pc.breastRows[0].breastRatingRaw = 23;
 						
 						// End looping if we're already here
@@ -774,7 +774,7 @@ public function treatmentHourProcs(totalHours:int):void
 		{
 			//If PC is ausar, vagina is canine. If PC has exclusively canine or equine maleness, match it. Otherwise human 'giny. @Jacques00 or other lovelies - if you want to hook more options in here, I suppose it would be okay.
 
-			AddLogEvent("Oooh, you feel hot! A warm flush is running through your body, circulating between your head and toes before finally pooling in your loins. You whimper, pressing a finger to your crotch only to discover a nice, damp patch. You press on, whether due to fearlessness or desire, and discover a wanton cleft nestled firmly into your crotch. It's already slick with need, its clitoris jutting free from its hood. <b>You've grown an extra-wet ", "passive", (treatedHours - startHours) * 60);
+			AddLogEvent("Oooh, you feel hot! A warm flush is running through your body, circulating between your head and toes before finally pooling in your loins. You whimper, pressing a finger to your crotch only to discover a nice, damp patch. You press on, whether due to fearlessness or desire, and discover a wanton cleft nestled firmly into your crotch. It’s already slick with need, its clitoris jutting free from its hood. <b>You’ve grown an extra-wet ", "passive", (treatedHours - startHours) * 60);
 			
 			pc.createVagina();
 			//cunt select!
@@ -933,7 +933,7 @@ public function treatmentHourProcs(totalHours:int):void
 			//Fatty -> Curvy Cowgal
 			else
 			{
-				AddLogEvent("All the excess weight you’ve carried around has been melting off hour by hour. You aren’t exactly a little stick of a girl - not by a longshot. You've still got a broad enough stance to give your lover's pause - if only because they'll be wondering how you're going to manhandle them in the sack. Nobody with half a brain will call you fat any longer.", "passive");
+				AddLogEvent("All the excess weight you’ve carried around has been melting off hour by hour. You aren’t exactly a little stick of a girl - not by a longshot. You’ve still got a broad enough stance to give your lover’s pause - if only because they’ll be wondering how you’re going to manhandle them in the sack. Nobody with half a brain will call you fat any longer.", "passive");
 			}
 			pc.thickness = 60;
 		}
@@ -1065,7 +1065,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//Existing horns transform into lil bull nubs.
 					if(pc.horns > 0 && (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT))
 					{
-						AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They're small and pointed, like little cow horns.", "passive", (hornTimestampStride * i) * 60);
+						AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They’re small and pointed, like little cow horns.", "passive", (hornTimestampStride * i) * 60);
 						pc.horns = 2;
 						pc.hornLength = .5;
 						pc.hornType = GLOBAL.TYPE_BOVINE;
@@ -1073,7 +1073,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//Starting
 					else if(pc.horns == 0 && !pc.hasStatusEffect("Horn Bumps"))
 					{
-						AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it's red and irritated, though you haven't seen a head form on the zit yet. You've never had such prominent acne before, and there's a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", (hornTimestampStride * i) * 60);
+						AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it’s red and irritated, though you haven’t seen a head form on the zit yet. You’ve never had such prominent acne before, and there’s a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", (hornTimestampStride * i) * 60);
 						pc.createStatusEffect("Horn Bumps");
 					}
 					//Breaking Skin
@@ -1082,7 +1082,7 @@ public function treatmentHourProcs(totalHours:int):void
 						AddLogEvent("The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?", "passive", (hornTimestampStride * i) * 60);
 						ExtendLogEvent("\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".");
 						ExtendLogEvent("\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.");
-						ExtendLogEvent(ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all's said and done, all the better to compliment your other growing rack."));
+						ExtendLogEvent(ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you’re... <b>you’ve got the cutest pair of horns growing out of your forehead!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all’s said and done, all the better to compliment your other growing rack."));
 						pc.hornType = GLOBAL.TYPE_BOVINE;
 						pc.removeStatusEffect("Horn Bumps");
 						pc.horns = 2;
@@ -1098,8 +1098,8 @@ public function treatmentHourProcs(totalHours:int):void
 					//1" horns to 2" horns
 					else if(pc.hornLength < 2)
 					{
-						AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There's really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to watch your own burgeoning majesty.", "passive", (hornTimestampStride * i) * 60);
-						ExtendLogEvent("\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they're growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory.");
+						AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There’s really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to watch your own burgeoning majesty.", "passive", (hornTimestampStride * i) * 60);
+						ExtendLogEvent("\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they’re growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory.");
 						if(pc.hasHair() && pc.hairLength >= 2) ExtendLogEvent(" You brush your bangs to one side, hooking them around one of the horns in the cutest way.");
 						ExtendLogEvent(" The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.");
 						ExtendLogEvent("\n\nNow this is more like it. A little bigger, and you’ll be able to stand up to some of the bulls.");
@@ -1108,20 +1108,20 @@ public function treatmentHourProcs(totalHours:int):void
 					//2" horns to 3" horns
 					else if(pc.hornLength < 3)
 					{
-						AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There's a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There's blessedly little pain, but when it passes, you're very aware of additional weight tugging on your head. Your horns have grown: they're now three inches of gleaming white, bovine awesomeness. You resolve to polish them at the first opportunity, maybe even get some ornamental jewelry for them.", "passive", (hornTimestampStride * i) * 60);
+						AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There’s a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There’s blessedly little pain, but when it passes, you’re very aware of additional weight tugging on your head. Your horns have grown: they’re now three inches of gleaming white, bovine awesomeness. You resolve to polish them at the first opportunity, maybe even get some ornamental jewelry for them.", "passive", (hornTimestampStride * i) * 60);
 						pc.hornLength = 3;
 					}
 					//3" horns to 4" horns - prolly gonna reuse some of this for guys.
 					else if(pc.hornLength < 4)
 					{
-						AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn't hurt, but it is very disconcerting, making it next to impossible to think.", "passive", (hornTimestampStride * i) * 60);
+						AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn’t hurt, but it is very disconcerting, making it next to impossible to think.", "passive", (hornTimestampStride * i) * 60);
 						ExtendLogEvent("\n\nYou grunt and groan, feeling the sensation slide <i>outside</i> of your head as your horns expand, growing thicker and heavier. You sigh in satisfaction once they stop growing. Now these are respectable horns!");
 						pc.hornLength = 4;
 					}
 					//4" horsn to 5" horns - MAX LADIES CAN GET.
 					else if(pc.hornLength < 5)
 					{
-						AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it's all over, you're left holding two big, strong five-inch horns. Nice.", "passive", (hornTimestampStride * i) * 60);
+						AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it’s all over, you’re left holding two big, strong five-inch horns. Nice.", "passive", (hornTimestampStride * i) * 60);
 						pc.hornLength = 5;
 					}
 					else if(pc.hornLength < 6)
@@ -1150,7 +1150,7 @@ public function treatmentHourProcs(totalHours:int):void
 						ExtendLogEvent("-inch long horns.</b> How exciting that you, a ");
 						if(pc.hasCock()) ExtendLogEvent("hermaphrodite");
 						else ExtendLogEvent("female");
-						ExtendLogEvent(" get to dwarf all the supposed 'males.'");
+						ExtendLogEvent(" get to dwarf all the supposed ‘males.’");
 						if(supahHorn) pc.hornLength = 9;
 						else pc.hornLength = 8;
 					}
@@ -1177,7 +1177,7 @@ public function treatmentHourProcs(totalHours:int):void
 			//No tail
 			if(pc.tailCount == 0)
 			{
-				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a cute little poof on the end, just like a cow's."), "passive", (treatedHours - startHours) * 60);
+				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a cute little poof on the end, just like a cow’s."), "passive", (treatedHours - startHours) * 60);
 				pc.tailCount = 1;
 			}
 			//Multitail
@@ -1186,7 +1186,7 @@ public function treatmentHourProcs(totalHours:int):void
 				//Multi - short
 				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
-					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
+					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
 					ExtendLogEvent(" You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.");
 				}
@@ -1194,7 +1194,7 @@ public function treatmentHourProcs(totalHours:int):void
 				else
 				{
 					AddLogEvent(ParseText("Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find."), "passive", (treatedHours - startHours) * 60);
-					ExtendLogEvent("\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect");
+					ExtendLogEvent("\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you’d expect");
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(", and a coat of fine fur is growing out over their lengths");
 					ExtendLogEvent(". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.");
 				}
@@ -1202,7 +1202,7 @@ public function treatmentHourProcs(totalHours:int):void
 			//Single - short
 			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
-				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
+				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
 				ExtendLogEvent(" You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.");
 			}
@@ -1210,7 +1210,7 @@ public function treatmentHourProcs(totalHours:int):void
 			else
 			{
 				AddLogEvent(ParseText("Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find."), "passive", (treatedHours - startHours) * 60);
-				ExtendLogEvent("\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect");
+				ExtendLogEvent("\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you’d expect");
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(", and a coat of fine fur is growing out over its length");
 				ExtendLogEvent(". In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.");
 			}
@@ -1223,7 +1223,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//Cow ears (maybe)
 		if(pc.earType != GLOBAL.TYPE_BOVINE && startHours < 160 && treatedHours >= 160 && rand(2) == 0)
 		{
-			AddLogEvent(ParseText("You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; <b>you're just listening through a pair of floppy cow-ears now</b>. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (treatedHours - startHours) * 60);
+			AddLogEvent(ParseText("You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; <b>you’re just listening through a pair of floppy cow-ears now</b>. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (treatedHours - startHours) * 60);
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		
@@ -1236,13 +1236,13 @@ public function treatmentHourProcs(totalHours:int):void
 			}
 			else
 			{
-				AddLogEvent("You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape", "passive", (treatedHours - startHours) * 60);
+				AddLogEvent("You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They’re malformed, twisting and narrowing before your eyes. They’re pulling their disparate parts together into one unified mass, almost cylindrical in shape", "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
 				{
 					ExtendLogEvent(", and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet");
 				}
 				else ExtendLogEvent(", and they begin to blacken, moment by moment");
-				ExtendLogEvent(".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a cow, you've got hooves to clop around on while you walk. Most people don't get hooves from the Treatment. It looks like you were one of the lucky ones. You're going to be turning heads for sure!");
+				ExtendLogEvent(".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a cow, you’ve got hooves to clop around on while you walk. Most people don’t get hooves from the Treatment. It looks like you were one of the lucky ones. You’re going to be turning heads for sure!");
 			}
 			pc.clearLegFlags();
 			pc.legType = GLOBAL.TYPE_BOVINE;
@@ -1314,11 +1314,11 @@ public function treatmentHourProcs(totalHours:int):void
 			AddLogEvent("Oh fuck! Something is happening, something that shatters your confident facade with aplomb. You can feel it, wriggling and squirming ", "passive", (129 - startHours) * 60);
 			if(pc.legCount == 1) ExtendLogEvent(ParseText("between your [pc.legs]"));
 			else ExtendLogEvent("in your loins");
-			ExtendLogEvent(ParseText(", just up and behind your [pc.vaginas]. It's a tight, wet heat that grabs hold of your thoughts and yanks them around until they're buried six-inches deep in an imaginary cow-pussy. It's equal parts painful and exciting, burning a blistering path of lurid fucking through your fantasies and body alike."));
-			ExtendLogEvent("With an audible pop, you suddenly feel immense relief from the pain - but not from the lust. You're hornier than ever, and a barrage of foreign sensations emanate from your crotch. You reach down, expecting to find a sloppily drooling pussy, and instead bump into the rigid firmness of your new maleness. <b>You have a cock.</b>");
-			ExtendLogEvent("\n\nThe discovery isn't as unnerving as you feel it should be, though maybe that's the scintillating pleasure that it grants with every touch. In no time flat, you're wrapping a palm around and furiously stroking, humping your fist in a lewd declaration of pleasure, dribbling pre-cum over your knuckles and drool down your chin. Having a dick feels good! You whimper once, thrusting especially powerfully, then hump again, twice as hard.");
-			ExtendLogEvent(ParseText("\n\nInternal muscles clench powerfully, triggering a cascade of endorphins and blissful relief in the moment of your climax. [pc.Cum] spills out onto the ground from your whorish masturbation, but you can't bring yourself to stop, not until you squeezed every droplet of pleasure from this wondrous new appendage."));
-			ExtendLogEvent("\n\nAfter a minute or so of tugging on your new dick, you moo softly to yourself and finally stop, staring in awe at the instrument of your desire while imagining the possibilities it opens up. You can fuck cow-girls now! You can fuck boys in the ass, ream them till they're giggly, spunk-oozing messes. Hell, you can even rub dicks with a big bull until one of you glazes the other. Awesome!");
+			ExtendLogEvent(ParseText(", just up and behind your [pc.vaginas]. It’s a tight, wet heat that grabs hold of your thoughts and yanks them around until they’re buried six-inches deep in an imaginary cow-pussy. It’s equal parts painful and exciting, burning a blistering path of lurid fucking through your fantasies and body alike."));
+			ExtendLogEvent("With an audible pop, you suddenly feel immense relief from the pain - but not from the lust. You’re hornier than ever, and a barrage of foreign sensations emanate from your crotch. You reach down, expecting to find a sloppily drooling pussy, and instead bump into the rigid firmness of your new maleness. <b>You have a cock.</b>");
+			ExtendLogEvent("\n\nThe discovery isn’t as unnerving as you feel it should be, though maybe that’s the scintillating pleasure that it grants with every touch. In no time flat, you’re wrapping a palm around and furiously stroking, humping your fist in a lewd declaration of pleasure, dribbling pre-cum over your knuckles and drool down your chin. Having a dick feels good! You whimper once, thrusting especially powerfully, then hump again, twice as hard.");
+			ExtendLogEvent(ParseText("\n\nInternal muscles clench powerfully, triggering a cascade of endorphins and blissful relief in the moment of your climax. [pc.Cum] spills out onto the ground from your whorish masturbation, but you can’t bring yourself to stop, not until you squeezed every droplet of pleasure from this wondrous new appendage."));
+			ExtendLogEvent("\n\nAfter a minute or so of tugging on your new dick, you moo softly to yourself and finally stop, staring in awe at the instrument of your desire while imagining the possibilities it opens up. You can fuck cow-girls now! You can fuck boys in the ass, ream them till they’re giggly, spunk-oozing messes. Hell, you can even rub dicks with a big bull until one of you glazes the other. Awesome!");
 			pc.orgasm();
 			pc.lust(4);
 			pc.createCock();
@@ -1339,24 +1339,24 @@ public function treatmentHourProcs(totalHours:int):void
 			else ExtendLogEvent("their");
 			ExtendLogEvent(ParseText(" [pc.cockHeads] throb."));
 			if(!pc.isCrotchExposed()) ExtendLogEvent(ParseText(" You barely manage to yank your [pc.lowerGarment] out of the way before collapsing flat onto your back, pumping your [pc.hips] into the air."));
-			else ExtendLogEvent(ParseText(" You reach down, unsure if you're going to stroke or simply take stock of the situation, but the ecstasy knocks you flat on your back a millisecond later, your [pc.hips] pumping lewdly into the air."));
-			ExtendLogEvent(ParseText("\n\nGobs of [pc.cumNoun] spill down the sides of your [pc.cocks], venting slowly. The individual ejaculations aren't powerful to push the sperm-laden goo more than an inch above your cum-slit, yet the pleasure isn't ebbing. Your penis"));
+			else ExtendLogEvent(ParseText(" You reach down, unsure if you’re going to stroke or simply take stock of the situation, but the ecstasy knocks you flat on your back a millisecond later, your [pc.hips] pumping lewdly into the air."));
+			ExtendLogEvent(ParseText("\n\nGobs of [pc.cumNoun] spill down the sides of your [pc.cocks], venting slowly. The individual ejaculations aren’t powerful to push the sperm-laden goo more than an inch above your cum-slit, yet the pleasure isn’t ebbing. Your penis"));
 			if(pc.totalCocks() > 1) ExtendLogEvent("es are like leaky faucets");
 			else ExtendLogEvent(" is like a leaky faucet");
 			ExtendLogEvent(". Jizz drools overwhere. You wrap your hands around your slickened dick");
 			if(pc.cockTotal() > 1) ExtendLogEvent("s");
 			ExtendLogEvent(ParseText(" and squeeze, reveling in the lubricated strokes, mooing softly when a particularly thick jet of [pc.cumColor] dribbles down your knuckles."));
-			ExtendLogEvent(ParseText("\n\nEventually, you give yourself over entirely to the ecstatic pulses, gathering up handfuls of slick jism to smear into your [pc.thighs] and [pc.chest]. You moo, then whimper, embarrassed to sound so submissive but too blissed-out to care. Your crotch is completely on autopilot, determined to release a bathtub's worth of orgasms, and your hands have climbed along for the ride, encouraging the endless eruptions to come out thicker and more voluminous by the minute."));
+			ExtendLogEvent(ParseText("\n\nEventually, you give yourself over entirely to the ecstatic pulses, gathering up handfuls of slick jism to smear into your [pc.thighs] and [pc.chest]. You moo, then whimper, embarrassed to sound so submissive but too blissed-out to care. Your crotch is completely on autopilot, determined to release a bathtub’s worth of orgasms, and your hands have climbed along for the ride, encouraging the endless eruptions to come out thicker and more voluminous by the minute."));
 			ExtendLogEvent(ParseText("\n\nBy the time the orgasmic quivers die down, everything from your [pc.chest] to your [pc.feet] is soaked in [pc.cumColor] spooge, and the ground below is even worse off. You look like an unwilling participant in a kui-tan bukkake session, that or a victim of a ghost orgy.\n\nSomething inside you"));
 			if(pc.balls > 0) ExtendLogEvent(ParseText(" or you [pc.balls]"));
-			ExtendLogEvent(ParseText(" has changed - something that's letting your body churn out [pc.cumNoun] as fast as you could possibly need it. You doubt you'll ever have an orgasm less than \"amazing\" ever again. Amazing!"));
+			ExtendLogEvent(ParseText(" has changed - something that’s letting your body churn out [pc.cumNoun] as fast as you could possibly need it. You doubt you’ll ever have an orgasm less than “amazing” ever again. Amazing!"));
 			for(var ii:int = 0; ii < 15; ii++)
 			{
 				pc.orgasm();
 			}
 			applyCumSoaked(pc);
 			pc.boostCum(80);
-			ExtendLogEvent("\n\n(<b>Perk Gained: Amazonian Virility</b> - Guarantees you'll never run out of cum.)");
+			ExtendLogEvent("\n\n(<b>Perk Gained: Amazonian Virility</b> - Guarantees you’ll never run out of cum.)");
 	 		pc.createPerk("Amazonian Virility",0,0,0,0,"Ensures you never ejaculate less than 300 mLs.");
 	 	}
 	}
@@ -1393,26 +1393,26 @@ public function treatmentHourProcs(totalHours:int):void
 		//2
 		if(startHours < 4 && treatedHours >= 4)
 		{
-			AddLogEvent("You feel pretty good actually - nothing exceptional, just a general wellness. You stretch and smile. It's turning out to be a pretty good day!", "passive", (4 - startHours) * 60);
+			AddLogEvent("You feel pretty good actually - nothing exceptional, just a general wellness. You stretch and smile. It’s turning out to be a pretty good day!", "passive", (4 - startHours) * 60);
 		}
 		
 		//3
 		if(startHours < 6 && treatedHours >= 6)
 		{
-			AddLogEvent("Feeling a little hungry, you reach into your equipment and grab one of the cheap ration bars that came with your first ship. You're staring at an empty wrapper and burping before you know it. Where did the time go?", "passive", (6 - startHours) * 60);
+			AddLogEvent("Feeling a little hungry, you reach into your equipment and grab one of the cheap ration bars that came with your first ship. You’re staring at an empty wrapper and burping before you know it. Where did the time go?", "passive", (6 - startHours) * 60);
 		}
 		
 		//4
 		if(startHours < 8 && treatedHours >= 8)
 		{
-			AddLogEvent("It's been over eight hours since you took the treatment. Shouldn't it have done something by now?", "passive", (8 - startHours) * 60);
+			AddLogEvent("It’s been over eight hours since you took the treatment. Shouldn’t it have done something by now?", "passive", (8 - startHours) * 60);
 			if(pc.hasVagina())
 			{
 				if(!pc.isCrotchGarbed()) ExtendLogEvent(ParseText(" Glancing down, you look over your [pc.vaginas]."));
 				else ExtendLogEvent(ParseText(" Peeling open your [pc.underGarment], you take a look at your [pc.vaginas]."));
-				if(pc.totalVaginas() == 1) ExtendLogEvent(" It doesn't");
-				else ExtendLogEvent(" They don't");
-				ExtendLogEvent(" look any different. Would touching yourself feel any better than before? Surely, it wouldn't hurt to test. For science.");
+				if(pc.totalVaginas() == 1) ExtendLogEvent(" It doesn’t");
+				else ExtendLogEvent(" They don’t");
+				ExtendLogEvent(" look any different. Would touching yourself feel any better than before? Surely, it wouldn’t hurt to test. For science.");
 			}
 			//Nopuss:
 			else
@@ -1428,7 +1428,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//5
 		if (startHours < 10 && treatedHours >= 10)
 		{
-			AddLogEvent("You wonder... what would Oggy's cock look like if it were straining his pants at the sight of you? Would it flush dark with blood and stretch the fabric taut? Would a dark smear appear at the tip, staining the fabric? You shake away the unusually strong fantasy and resolve to sneak glances below the waists of the males you meet. You might as well look at something, right?", "passive", (10 - startHours) * 60);
+			AddLogEvent("You wonder... what would Oggy’s cock look like if it were straining his pants at the sight of you? Would it flush dark with blood and stretch the fabric taut? Would a dark smear appear at the tip, staining the fabric? You shake away the unusually strong fantasy and resolve to sneak glances below the waists of the males you meet. You might as well look at something, right?", "passive", (10 - startHours) * 60);
 			//+7 lust
 			pc.lust(7);
 		}
@@ -1436,7 +1436,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//6
 		if (startHours < 12 && treatedHours >= 12)
 		{
-			AddLogEvent("While you have a moment to be introspective, you take stock of yourself (and munch on another ration bar). You don't feel any dumber yet, but focusing does seem to be a little trickier. There's so many things and people that you could be looking at. It's just such a nice day that focusing on boring stuff would be such a waste. Besides, the itch between your thighs is getting seriously intense.", "passive", (12 - startHours) * 60);
+			AddLogEvent("While you have a moment to be introspective, you take stock of yourself (and munch on another ration bar). You don’t feel any dumber yet, but focusing does seem to be a little trickier. There’s so many things and people that you could be looking at. It’s just such a nice day that focusing on boring stuff would be such a waste. Besides, the itch between your thighs is getting seriously intense.", "passive", (12 - startHours) * 60);
 			if(!pc.hasVagina()) ExtendLogEvent(" If only you had a proper pussy there.");
 			//+5 lust
 			pc.lust(5);
@@ -1452,9 +1452,9 @@ public function treatmentHourProcs(totalHours:int):void
 				ExtendLogEvent(" You run your hands through ");
 				if(pc.hairLength >= 10) ExtendLogEvent("it");
 				else ExtendLogEvent("your hair");
-				ExtendLogEvent(" and moan in rapture. It's like a minute of massaging compressed into a moment.");
+				ExtendLogEvent(" and moan in rapture. It’s like a minute of massaging compressed into a moment.");
 			}
-			else ExtendLogEvent(" You run your hands over your head and moan in rapture. It's like a minute of petting compressed into a moment.");
+			else ExtendLogEvent(" You run your hands over your head and moan in rapture. It’s like a minute of petting compressed into a moment.");
 			ExtendLogEvent(" You could get used to this.");
 			//+5 lust
 			pc.lust(5);
@@ -1465,10 +1465,10 @@ public function treatmentHourProcs(totalHours:int):void
 		//8
 		if(startHours < 16 && treatedHours >= 16)
 		{
-			AddLogEvent("This is turning out pretty nice. You run your hands across your chest, wondering how big you'll get before it has its way with you.", "passive", (16 - startHours) * 60);
+			AddLogEvent("This is turning out pretty nice. You run your hands across your chest, wondering how big you’ll get before it has its way with you.", "passive", (16 - startHours) * 60);
 			if(pc.biggestTitSize() >= 20) 
 			{
-				ExtendLogEvent(" Can it really make you any bigger? A set like yours is already massive. Maybe it'll just make you ");
+				ExtendLogEvent(" Can it really make you any bigger? A set like yours is already massive. Maybe it’ll just make you ");
 				if(pc.canLactate()) ExtendLogEvent("extra ");
 				ExtendLogEvent("milky.");
 			}
@@ -1497,12 +1497,12 @@ public function treatmentHourProcs(totalHours:int):void
 		{
 			if(pc.hasHair())
 			{
-				AddLogEvent(ParseText("Ugh! Your [pc.hair] is all wrong! Using the codex as a mirror, you spend a few minutes arranging it for maximum effect. It frames your face just so, and you purse your [pc.lips] invitingly. Yeah, that's better."), "passive", (22 - startHours) * 60);
+				AddLogEvent(ParseText("Ugh! Your [pc.hair] is all wrong! Using the codex as a mirror, you spend a few minutes arranging it for maximum effect. It frames your face just so, and you purse your [pc.lips] invitingly. Yeah, that’s better."), "passive", (22 - startHours) * 60);
 			}
 			//No Hair
 			else
 			{
-				AddLogEvent("Ugh! You don't have any hair to accessorize with. Still, you could do something. You pull out your codex to use as a mirror and look over yourself. Maybe some cute earrings and some lip gloss would look on you. Pursed, inviting lips would complete the look.", "passive", (22 - startHours) * 60);
+				AddLogEvent("Ugh! You don’t have any hair to accessorize with. Still, you could do something. You pull out your codex to use as a mirror and look over yourself. Maybe some cute earrings and some lip gloss would look on you. Pursed, inviting lips would complete the look.", "passive", (22 - startHours) * 60);
 			}
 			//Libido +1
 			pc.libido(1);
@@ -1511,7 +1511,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//12
 		if(startHours < 24 && treatedHours >= 24)
 		{
-			AddLogEvent(ParseText("You catch one of your hands rubbing your [pc.chest] out of the blue. You probably shouldn't be walking around idly groping yourself, but it feels really good, you know? Using your other hand, you squeeze from both sides at once. A ragged moan slips from your lips, and you release yourself, contented for now. You'll need to spend some time with the girls later."), "passive", (24 - startHours) * 60);
+			AddLogEvent(ParseText("You catch one of your hands rubbing your [pc.chest] out of the blue. You probably shouldn’t be walking around idly groping yourself, but it feels really good, you know? Using your other hand, you squeeze from both sides at once. A ragged moan slips from your lips, and you release yourself, contented for now. You’ll need to spend some time with the girls later."), "passive", (24 - startHours) * 60);
 			//+7 lust.
 			pc.lust(7);
 			//Libido +2
@@ -1524,10 +1524,10 @@ public function treatmentHourProcs(totalHours:int):void
 			AddLogEvent("You", "passive", (26 - startHours) * 60);
 			if(pc.legCount != 1) ExtendLogEvent("rub your thighs together");
 			else ExtendLogEvent("wiggle uncomfortably");
-			ExtendLogEvent(". There's this growing feeling of emptiness ");
+			ExtendLogEvent(". There’s this growing feeling of emptiness ");
 			if(pc.legCount != 1) ExtendLogEvent("between them");
 			else ExtendLogEvent("inside you");
-			ExtendLogEvent(", like you're as hollow as one of those chocolate bunnies they eat on Terra in spring. Only... a nice, hard dick would really hit the spot - a really veiny, thick one. It would complete you.");
+			ExtendLogEvent(", like you’re as hollow as one of those chocolate bunnies they eat on Terra in spring. Only... a nice, hard dick would really hit the spot - a really veiny, thick one. It would complete you.");
 			if(pc.hasVagina()) ExtendLogEvent(ParseText(" Dribbles of arousal leak down your [pc.legOrLegs] as you mull it over."));
 			ExtendLogEvent(" Yeah... maybe a fuck break is in order.");
 			//+8 lust or lust to 33, whichever is higher.
@@ -1540,8 +1540,8 @@ public function treatmentHourProcs(totalHours:int):void
 		//14
 		if(startHours < 28 && treatedHours >= 28 && !pc.hasPerk("Sexy Thinking"))
 		{
-			AddLogEvent("You're definitely being changed by the Treatment - you're sure of it. Your surroundings are no longer simple objects and materials. They're a whole new set of sexual backdrops and tools. A chair could be used for oral, or a creative place to mount a hung stud. A spanner could be used as part of a slutty mechanic's costume, matched by crotchless coveralls. You put your hands on your waist and smile, arching your back and cocking your hip out to the side at the same time. The motion is automatic. What some might view as getting dumber, you're discovering is getting sexier.", "passive", (28 - startHours) * 60);
-			ExtendLogEvent("\n\nWhy didn't you take the Treatment before? This is awesome!");
+			AddLogEvent("You’re definitely being changed by the Treatment - you’re sure of it. Your surroundings are no longer simple objects and materials. They’re a whole new set of sexual backdrops and tools. A chair could be used for oral, or a creative place to mount a hung stud. A spanner could be used as part of a slutty mechanic’s costume, matched by crotchless coveralls. You put your hands on your waist and smile, arching your back and cocking your hip out to the side at the same time. The motion is automatic. What some might view as getting dumber, you’re discovering is getting sexier.", "passive", (28 - startHours) * 60);
+			ExtendLogEvent("\n\nWhy didn’t you take the Treatment before? This is awesome!");
 			//+9 lust
 			pc.lust(9);
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
@@ -1555,7 +1555,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//15
 		if(startHours < 30 && treatedHours >= 30)
 		{
-			AddLogEvent(ParseText("This time, when you find your hands on your [pc.chest], you let them play. You aren't masturbating, per-se, just letting your fingers play a little. Hot jolts of ecstasy emanate from your [pc.nipples], and that's just fine. By the time something else distracts you, your face is as flush as your teats are hard."), "passive", (30 - startHours) * 60);
+			AddLogEvent(ParseText("This time, when you find your hands on your [pc.chest], you let them play. You aren’t masturbating, per-se, just letting your fingers play a little. Hot jolts of ecstasy emanate from your [pc.nipples], and that’s just fine. By the time something else distracts you, your face is as flush as your teats are hard."), "passive", (30 - startHours) * 60);
 			//lust +7
 			pc.lust(7);
 			//Libido to 35 or +5
@@ -1566,13 +1566,13 @@ public function treatmentHourProcs(totalHours:int):void
 		//16
 		if(startHours < 32 && treatedHours >= 32)
 		{
-			AddLogEvent(" You're definitely not getting dumber. You're sure of it now. It's just that there's so many things to pay attention to, and focusing on one thing for longer than a few moments is sooo boring. You can still do things like math. Eleven times eleven is still 121, but what's the point? You could probably get a boy to do it for you, if you rubbed him the right way.", "passive", (32 - startHours) * 60);
+			AddLogEvent(" You’re definitely not getting dumber. You’re sure of it now. It’s just that there’s so many things to pay attention to, and focusing on one thing for longer than a few moments is sooo boring. You can still do things like math. Eleven times eleven is still 121, but what’s the point? You could probably get a boy to do it for you, if you rubbed him the right way.", "passive", (32 - startHours) * 60);
 		}
 		
 		//17
 		if(startHours < 34 && treatedHours >= 34 && !pc.hasPerk("Fuck Sense"))
 		{
-			AddLogEvent("Aside from feeling like a million bucks, you're sure that the Treatment is feeding you information. Not boring stuff like formulae, but sexy, useful stuff - like your head is filling up with technical specifications for every kind of reproductive organ and how best to make it pulse with pleasure. You're pretty confident that you could figure out the right way to wiggle to tease anyone or anything. There's this way you can wiggle your butt... well, ausar are cute, right?", "passive", (34 - startHours) * 60);
+			AddLogEvent("Aside from feeling like a million bucks, you’re sure that the Treatment is feeding you information. Not boring stuff like formulae, but sexy, useful stuff - like your head is filling up with technical specifications for every kind of reproductive organ and how best to make it pulse with pleasure. You’re pretty confident that you could figure out the right way to wiggle to tease anyone or anything. There’s this way you can wiggle your butt... well, ausar are cute, right?", "passive", (34 - startHours) * 60);
 			//Gain Fuck Sense - libido for tease eval
 			ExtendLogEvent("\n\n(<b>Perk Gained: Fuck Sense</b> - The Sense ability now relies on your libido rather than intelligence.)");
 			pc.createPerk("Fuck Sense",15,0,0,0,"Allows your sense ability to base success off your libido instead of intelligence.");
@@ -1589,7 +1589,7 @@ public function treatmentHourProcs(totalHours:int):void
 			else if(pc.hasCock()) ExtendLogEvent(ParseText("[pc.cum]"));
 			else if(pc.isLactating()) ExtendLogEvent(ParseText("[pc.milk]"));
 			else ExtendLogEvent("drool");
-			ExtendLogEvent(", but... but you're not. You could probably take yourself to whole new heights of pleasure. Suddenly, regular orgasms seem like chopped liver, and you should be dining on caviar.");
+			ExtendLogEvent(", but... but you’re not. You could probably take yourself to whole new heights of pleasure. Suddenly, regular orgasms seem like chopped liver, and you should be dining on caviar.");
 			//Inhuman Desire +20 max lust.
 			if(!pc.hasPerk("Inhuman Desire"))
 			{
@@ -1615,8 +1615,8 @@ public function treatmentHourProcs(totalHours:int):void
 			else
 			{
 				ExtendLogEvent(" and reach to twirl your hair before remembering you ");
-				if(pc.hasHair()) ExtendLogEvent("don't have enough");
-				else ExtendLogEvent("don't have any");
+				if(pc.hasHair()) ExtendLogEvent("don’t have enough");
+				else ExtendLogEvent("don’t have any");
 			}
 			ExtendLogEvent(". Every laugh is accompanied by little bubbles of happiness in your head. You smile broadly. The good feelings are so contagious; you just have to share them!");
 		}
@@ -1624,13 +1624,13 @@ public function treatmentHourProcs(totalHours:int):void
 		//20
 		if(startHours < 40 && treatedHours >= 40)
 		{
-			AddLogEvent("You look down at the Codex to check the time but stop yourself with a frown. Why did you set such an ugly background on it? It's all boring - not even something fun, like pink. You spend a few minutes browsing the extranet for a better one, eventually settling on something bright to match how cheery you're feeling.", "passive", (40 - startHours) * 60);
+			AddLogEvent("You look down at the Codex to check the time but stop yourself with a frown. Why did you set such an ugly background on it? It’s all boring - not even something fun, like pink. You spend a few minutes browsing the extranet for a better one, eventually settling on something bright to match how cheery you’re feeling.", "passive", (40 - startHours) * 60);
 		}
 		
 		//21
 		if(startHours < 42 && treatedHours >= 42)
 		{
-			AddLogEvent("You're taken by a sudden fantasy - sitting at your SteeleTech office, panties around your ankles. Your latest acquisition is kneeling between your thighs, getting his reward for selling his company at such a low price. One of your guards is sprawled out on your desk, filling your mouth with his length while you jack off his cohorts; it pays to keep one's security happy after all.", "passive", (42 - startHours) * 60);
+			AddLogEvent("You’re taken by a sudden fantasy - sitting at your SteeleTech office, panties around your ankles. Your latest acquisition is kneeling between your thighs, getting his reward for selling his company at such a low price. One of your guards is sprawled out on your desk, filling your mouth with his length while you jack off his cohorts; it pays to keep one’s security happy after all.", "passive", (42 - startHours) * 60);
 			//+11 lust
 			pc.lust(11);
 			//Libido to 60 or +5
@@ -1640,7 +1640,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//22
 		if(startHours < 44 && treatedHours >= 44 && !pc.hasPerk("Ditz Speech") && !pc.hasPerk("Brute Speech"))
 		{
-			AddLogEvent("Talking isn't quite as easy as it used to be. There's so many different words and concepts and ways to arrange them that by the time you get halfway through a sentence you've forgotten what you were trying to talk about. It's way easier to just start talking with whatever words come to mind. Yeah, that'll work!", "passive", (44 - startHours) * 60);
+			AddLogEvent("Talking isn’t quite as easy as it used to be. There’s so many different words and concepts and ways to arrange them that by the time you get halfway through a sentence you’ve forgotten what you were trying to talk about. It’s way easier to just start talking with whatever words come to mind. Yeah, that’ll work!", "passive", (44 - startHours) * 60);
 			//Ditz Speech
 			ExtendLogEvent("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
 			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
@@ -1649,7 +1649,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//23
 		if(startHours < 46 && treatedHours >= 46 && pc.hasPerk("Inhuman Desire"))
 		{
-			AddLogEvent(ParseText("A welcome flush rolls across your [pc.skin] as you consider your body. Your nerve endings seem alight with potential pleasure, just waiting to be touched and set off. Every part of your body begs for your attention and hands to tend to it. You idly rub your arms, [pc.hips], and [pc.legOrLegs] before letting go, tingling hotly. It's all you can do to keep from touching yourself, but at the same time, you feel so good! Your overheated body can handle so much pleasure; it's amazing! You've got to take your enhanced form for a spin and try some sex, just to see how incredible your orgasms will be. Maybe a few times in a row..."), "passive", (46 - startHours) * 60);
+			AddLogEvent(ParseText("A welcome flush rolls across your [pc.skin] as you consider your body. Your nerve endings seem alight with potential pleasure, just waiting to be touched and set off. Every part of your body begs for your attention and hands to tend to it. You idly rub your arms, [pc.hips], and [pc.legOrLegs] before letting go, tingling hotly. It’s all you can do to keep from touching yourself, but at the same time, you feel so good! Your overheated body can handle so much pleasure; it’s amazing! You’ve got to take your enhanced form for a spin and try some sex, just to see how incredible your orgasms will be. Maybe a few times in a row..."), "passive", (46 - startHours) * 60);
 			//+5 lust
 			pc.lust(5);
 			//Inhuman Desire upgrade to +40.
@@ -1663,7 +1663,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//24
 		if(startHours < 48 && treatedHours >= 48 && !pc.hasPerk("Weak Mind"))
 		{
-			AddLogEvent("Is the Treatment done messing with your head yet? It's gotta be, you figure. You're having way more fun and thinking about cocks and stuff. Willpower is way down though. And book smarts? They're kinda gross. All the stuff you read is still there, but it's way easier not to think about. Besides, if you ever need to learn something you can just get a guy to explain it to you while you suck his cock!", "passive", (48 - startHours) * 60);
+			AddLogEvent("Is the Treatment done messing with your head yet? It’s gotta be, you figure. You’re having way more fun and thinking about cocks and stuff. Willpower is way down though. And book smarts? They’re kinda gross. All the stuff you read is still there, but it’s way easier not to think about. Besides, if you ever need to learn something you can just get a guy to explain it to you while you suck his cock!", "passive", (48 - startHours) * 60);
 			//Weak Mind - Intelligence and Will losses doubled.
 			ExtendLogEvent("\n\n(<b>Gained Perk: Weak Mind</b> - All intelligence and willpower losses are doubled.)");
 			pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
@@ -1848,8 +1848,8 @@ public function treatmentHourProcs(totalHours:int):void
 				//MIN LUST BOOOOST
 				if(!pc.hasPerk("Treated Readiness"))
 				{
-					ExtendLogEvent("\n\n(<b>Gained Perk: Treated Readiness</b> - Increases minimum lust to 33, ensuring you're always ready to go.)");
-					pc.createPerk("Treated Readiness",0,0,0,0,"Increases minimum lust to 33, ensuring you're always ready to go.");
+					ExtendLogEvent("\n\n(<b>Gained Perk: Treated Readiness</b> - Increases minimum lust to 33, ensuring you’re always ready to go.)");
+					pc.createPerk("Treated Readiness",0,0,0,0,"Increases minimum lust to 33, ensuring you’re always ready to go.");
 				}
 				pc.orgasm();
 				for(x = 0; x < pc.cockTotal(); x++)
@@ -2092,7 +2092,7 @@ public function treatmentHourProcs(totalHours:int):void
 				//Autococknosis - Sometimes automatically autofellate when resting or gain extra lust while resting.
 				if(!pc.hasPerk("Auto-Autofellatio") && rand(3) <= 1)
 				{
-					pc.createPerk("Auto-Autofellatio",0,0,0,0,"Makes you so enamored of yourself that you can't resist some auto-fellatio.");
+					pc.createPerk("Auto-Autofellatio",0,0,0,0,"Makes you so enamored of yourself that you can’t resist some auto-fellatio.");
 				}
 				//Dumb4Cum - Intelligence is reduced after 24 hours without swallowing cum.
 				if(!pc.hasPerk("Dumb4Cum") && rand(2) == 0)
@@ -2123,7 +2123,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//Flat chest -> .5 cup
 					if(pc.breastRows[0].breastRatingRaw < 0.5)
 					{
-						AddLogEvent(ParseText("Your chest feels strange. It's all puffy, and your [pc.nipples] are a little swollen. Weird."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Your chest feels strange. It’s all puffy, and your [pc.nipples] are a little swollen. Weird."), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw += .5;
 					}
 					//.5 cup to A cup
@@ -2132,34 +2132,34 @@ public function treatmentHourProcs(totalHours:int):void
 						//clothed
 						if(pc.isChestGarbed())
 						{
-							AddLogEvent(ParseText("You're noticing more and more that there's a little something extra in your [pc.upperGarment]. It's moved your center of gravity just far enough forward to make you feel a little awkward, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You've grown boobs.</b> They're still [pc.breastCupSize]s, really - barely tits at all. Of course they won't stay that way for long. How big are your new boobs gonna get?"), "passive", (i * 3) * 60);
+							AddLogEvent(ParseText("You’re noticing more and more that there’s a little something extra in your [pc.upperGarment]. It’s moved your center of gravity just far enough forward to make you feel a little awkward, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You’ve grown boobs.</b> They’re still [pc.breastCupSize]s, really - barely tits at all. Of course they won’t stay that way for long. How big are your new boobs gonna get?"), "passive", (i * 3) * 60);
 						}
 						//Nakers
 						else
 						{
-							AddLogEvent(ParseText("You've been feeling clumsy all day, like something just isn't right with your body. It isn't until you glance down that the source of your awkwardness reveals itself - tits. <b>You've got pert little A-cups hanging off your chest!</b> They look adorable - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them."), "passive", (i * 3) * 60);
+							AddLogEvent(ParseText("You’ve been feeling clumsy all day, like something just isn’t right with your body. It isn’t until you glance down that the source of your awkwardness reveals itself - tits. <b>You’ve got pert little A-cups hanging off your chest!</b> They look adorable - just enough to give tiny jiggles when you jump. Best of all, your [pc.nipples] seem to have grown in both size and sensitivity along with them."), "passive", (i * 3) * 60);
 						}
 						if(pc.bRows() > 1)
 						{
 							ExtendLogEvent(" The extra row");
 							if(pc.bRows() > 2) ExtendLogEvent("s below remain");
-							ExtendLogEvent(" below remains unchanged. It looks like your top set are the only ones that are gonna get big and milky, but that'll be fine.");
+							ExtendLogEvent(" below remains unchanged. It looks like your top set are the only ones that are gonna get big and milky, but that’ll be fine.");
 						}
 						pc.breastRows[0].breastRatingRaw = 1;
 					}
 					//A -> B
 					else if(pc.breastRows[0].breastRatingRaw < 2)
 					{
-						AddLogEvent("You idly squeeze your chest; just to check, you assure yourself. It seems a wise thing to do after taking the treatment. After all, how else are you supposed to chart your progress from teensy teats to titanic, milk-seeping tits? You cup and caress them like favored pets. Yup, they're definitely bigger. You squeeze again - definitely B-cups. They feel nice and warm in your hands.", "passive", (i * 3) * 60);
+						AddLogEvent("You idly squeeze your chest; just to check, you assure yourself. It seems a wise thing to do after taking the treatment. After all, how else are you supposed to chart your progress from teensy teats to titanic, milk-seeping tits? You cup and caress them like favored pets. Yup, they’re definitely bigger. You squeeze again - definitely B-cups. They feel nice and warm in your hands.", "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw++;
 					}
 					//B-C
 					else if(pc.breastRows[0].breastRatingRaw < 3)
 					{
-						AddLogEvent(ParseText("Whenever you move, your [pc.chest] move along with you. That's no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Whenever you move, your [pc.chest] move along with you. That’s no surprise. What does come as a shock is just how much they move - jiggling and shaking about whenever you twist or hop."), "passive", (i * 3) * 60);
 						if(pc.isChestGarbed()) ExtendLogEvent(" You pop open your top for a look.");
 						else ExtendLogEvent(" You look down.");
-						ExtendLogEvent(" Damn! When did you get tits like that? They're proper C-cups now - big enough to give your hands something perfectly cushy to squeeze on, which they're doing right now. It feels great, really. You sigh and let your bigger boobs go, looking at them one last time. Yeah, you're getting pretty sexy.");
+						ExtendLogEvent(" Damn! When did you get tits like that? They’re proper C-cups now - big enough to give your hands something perfectly cushy to squeeze on, which they’re doing right now. It feels great, really. You sigh and let your bigger boobs go, looking at them one last time. Yeah, you’re getting pretty sexy.");
 						//+1 lust
 						pc.lust(1);
 						pc.breastRows[0].breastRatingRaw++
@@ -2167,7 +2167,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//C-D
 					else if(pc.breastRows[0].breastRatingRaw < 4)
 					{
-						AddLogEvent(ParseText("You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There's nothing wrong with making sure your girls are sitting right. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze and fondle them. There's not enough for your fingers to really sink into... yet. But you're on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining how you're going to end up, before letting go, a distant smile on your face."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You reach up to adjust your [pc.chest], a motion you find yourself doing more and more lately. There’s nothing wrong with making sure your girls are sitting right. To your delight, your pleasing handfuls are... well, a little more hand-filling than before. You playfully squeeze and fondle them. There’s not enough for your fingers to really sink into... yet. But you’re on the Treatment now. Big, shuddering udders come with the package. You bounce yourself once more for good measure, imagining how you’re going to end up, before letting go, a distant smile on your face."), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw++
 						//+5 lust
 						pc.lust(5);
@@ -2177,7 +2177,7 @@ public function treatmentHourProcs(totalHours:int):void
 					{
 						AddLogEvent(ParseText("Your [pc.chest] feel so nice and warm"), "passive", (i * 3) * 60);
 						if(pc.isChestGarbed()) ExtendLogEvent(ParseText(" against your [pc.upperGarment]"));
-						ExtendLogEvent(ParseText(" that you just have to give it a friendly squeeze. Your index fingers settle on your [pc.nipples] while your palms attempt to cradle the burgeoning titflesh. It just doesn't work as well as it should; your boobs are bigger and squishier than the last time you held them. You've gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD's."));
+						ExtendLogEvent(ParseText(" that you just have to give it a friendly squeeze. Your index fingers settle on your [pc.nipples] while your palms attempt to cradle the burgeoning titflesh. It just doesn’t work as well as it should; your boobs are bigger and squishier than the last time you held them. You’ve gotta be at least a DD-cup now. You bounce them in your palms, watching with a goofy smile. Definitely DD’s."));
 						pc.breastRows[0].breastRatingRaw++;
 						//+2 lust
 						pc.lust(2);
@@ -2185,7 +2185,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//DD->big DD
 					else if(pc.breastRows[0].breastRatingRaw < 6)
 					{
-						AddLogEvent("It's one thing to consider the idea of getting bigger breasts from a powerful transformative cocktail. It's quite another to feel them pulling on you as they get heavier and heavier. You hold your hands up underneath them, weighing them. They're so warm and squishy that you can't help but give them a few playful bounces. Why, you're big enough that you're going to have DD-sized bras straining to keep up. You pinch a nipple gleefully. Soon you might even be an E!", "passive", (i * 3) * 60);
+						AddLogEvent("It’s one thing to consider the idea of getting bigger breasts from a powerful transformative cocktail. It’s quite another to feel them pulling on you as they get heavier and heavier. You hold your hands up underneath them, weighing them. They’re so warm and squishy that you can’t help but give them a few playful bounces. Why, you’re big enough that you’re going to have DD-sized bras straining to keep up. You pinch a nipple gleefully. Soon you might even be an E!", "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw++;
 						//+5 lust.
 						pc.lust(5);
@@ -2193,10 +2193,10 @@ public function treatmentHourProcs(totalHours:int):void
 					//big DD -> E
 					else if(pc.breastRows[0].breastRatingRaw < 7)
 					{
-						AddLogEvent("You give a squeal of surprise when you realize how big your boobies are getting. They're way more bouncy and squishy than before. If you got measured for a cheap bra, you'd definitely be an E-cup, but you don't think you need one.", "passive", (i * 3) * 60);
+						AddLogEvent("You give a squeal of surprise when you realize how big your boobies are getting. They’re way more bouncy and squishy than before. If you got measured for a cheap bra, you’d definitely be an E-cup, but you don’t think you need one.", "passive", (i * 3) * 60);
 						if(pc.isChestGarbed()) ExtendLogEvent(ParseText(" Even with your [pc.upperGarments] peeled down,"));
 						else ExtendLogEvent(" Even as naked as you are,");
-						ExtendLogEvent(" they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren't too firm or too soft. In short, they're perfect for a grope.");
+						ExtendLogEvent(" they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren’t too firm or too soft. In short, they’re perfect for a grope.");
 						pc.breastRows[0].breastRatingRaw++;
 						//+2 lust
 						pc.lust(2);
@@ -2204,7 +2204,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//E -> big E
 					else if(pc.breastRows[0].breastRatingRaw < 8)
 					{
-						AddLogEvent(ParseText("You let your hand play across your [pc.nipple] during an idle moment, just to check if like, your sensitivity is getting crazy or anything. It feels so good, but more startling is how there seems to be a little extra behind the pleasantly pulsing pleasure-bud. Your tits were already nice and big.... You squeeze them for good measure... so nice and big. They're bigger now! The thought is slow coming while you grope yourself, but it comes all the same. You're on the upper end of an E-cup now. If they keep growing, you're going to have a very hard time finding your ") + pc.feet() + ", but that'll be fine.\n\nYou fondle your expanded chest. Everything's gonna be fine.", "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You let your hand play across your [pc.nipple] during an idle moment, just to check if like, your sensitivity is getting crazy or anything. It feels so good, but more startling is how there seems to be a little extra behind the pleasantly pulsing pleasure-bud. Your tits were already nice and big.... You squeeze them for good measure... so nice and big. They’re bigger now! The thought is slow coming while you grope yourself, but it comes all the same. You’re on the upper end of an E-cup now. If they keep growing, you’re going to have a very hard time finding your ") + pc.feet() + ", but that’ll be fine.\n\nYou fondle your expanded chest. Everything’s gonna be fine.", "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw++;
 						pc.lust(2);
 					}
@@ -2213,14 +2213,14 @@ public function treatmentHourProcs(totalHours:int):void
 					{
 						AddLogEvent("You look down, at first surprised and then pleased to see a little bit less of the ground than before. Your titties are still growing!", "passive", (i * 3) * 60);
 						if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(" You yank down your [pc.upperGarments] in a rush to examine them."));
-						ExtendLogEvent(" They give so perfectly under your fingertips that you just <i>have</i> to really squeeze them, groping them like just like an overeager guy. You knead them, watching yourself do so with a lazy smile. Mmm, already an EE-cup from the Treatment, and you could still get even bigger. The idea of finding someone to give you a chest massage while you finish growing comes upon you out of nowhere, and you've gotta admit - it isn't a bad one.");
+						ExtendLogEvent(" They give so perfectly under your fingertips that you just <i>have</i> to really squeeze them, groping them like just like an overeager guy. You knead them, watching yourself do so with a lazy smile. Mmm, already an EE-cup from the Treatment, and you could still get even bigger. The idea of finding someone to give you a chest massage while you finish growing comes upon you out of nowhere, and you’ve gotta admit - it isn’t a bad one.");
 						pc.breastRows[0].breastRatingRaw++;
 						pc.lust(3);
 					}
 					//EE -> big EE
 					else if(pc.breastRows[0].breastRatingRaw < 10)
 					{
-						AddLogEvent(ParseText("Your [pc.chest] sway and bounce with every movement. There's no stopping that now, though. They've grown to the upper end of the EE-cup range, and you couldn't stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you'd feel them shifting and rubbing against the inside of the fabric, dragging enlarged and sensitized nipples back and forth. You rub one and wonder if you should go jogging...."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Your [pc.chest] sway and bounce with every movement. There’s no stopping that now, though. They’ve grown to the upper end of the EE-cup range, and you couldn’t stop the weighty orbs from banging together in such an eye-catching way if you wanted to. Even if you wrapped them, you’d feel them shifting and rubbing against the inside of the fabric, dragging enlarged and sensitized nipples back and forth. You rub one and wonder if you should go jogging...."), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw++;
 						pc.lust(4);
 					}
@@ -2233,19 +2233,19 @@ public function treatmentHourProcs(totalHours:int):void
 							ExtendLogEvent(" Heck, if your " + pc.cocksDescript() + " ");
 							if(pc.cockTotal() == 1) ExtendLogEvent("was");
 							else ExtendLogEvent("were");
-							ExtendLogEvent(" smaller, you wouldn't see ");
+							ExtendLogEvent(" smaller, you wouldn’t see ");
 							if(pc.cockTotal() == 1) ExtendLogEvent("it");
 							else ExtendLogEvent("them");
 							ExtendLogEvent(" either.");
 						}
-						ExtendLogEvent(" The swelling of your bustline is truly a sight to behold. Besides, you can still see them if you bend forward a little bit, and you don't need to watch your " + pc.feet() + " or anything - not when you've got an ocean of pillowy flesh to look at. You've got big, sexy F-cups now.");
+						ExtendLogEvent(" The swelling of your bustline is truly a sight to behold. Besides, you can still see them if you bend forward a little bit, and you don’t need to watch your " + pc.feet() + " or anything - not when you’ve got an ocean of pillowy flesh to look at. You’ve got big, sexy F-cups now.");
 						pc.breastRows[0].breastRatingRaw++;
 						pc.lust(2);
 					}
 					//F -> big F
 					else if(pc.breastRows[0].breastRatingRaw < 12)
 					{
-						AddLogEvent("You start to adjust the girls again. They're easy to pose just right for the maximum amount of eye-catching wobble, but sometimes you've just gotta have an excuse to heft and weigh them. There's nothing wrong with being comfortable with your own body or how soft and squishy and warm and wet your jugs are getting. You sigh, rubbing fingers around your enhanced areolae as you squeeze your breasts. They didn't quit growing yet. You're sure of it. Tits like these barely fit into an F-cup. You briefly consider kissing them.", "passive", (i * 3) * 60);
+						AddLogEvent("You start to adjust the girls again. They’re easy to pose just right for the maximum amount of eye-catching wobble, but sometimes you’ve just gotta have an excuse to heft and weigh them. There’s nothing wrong with being comfortable with your own body or how soft and squishy and warm and wet your jugs are getting. You sigh, rubbing fingers around your enhanced areolae as you squeeze your breasts. They didn’t quit growing yet. You’re sure of it. Tits like these barely fit into an F-cup. You briefly consider kissing them.", "passive", (i * 3) * 60);
 						//+5 lust
 						pc.lust(5);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2253,7 +2253,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//big F -> FF
 					else if(pc.breastRows[0].breastRatingRaw < 13)
 					{
-						AddLogEvent("You stumble, setting off a small earthquake in your breasts. Giggling, you mentally categorize it as a class five boobquake and grab hold for stability, stilling your boobs with a supportive grope. There! You knead them a few times, weighing their mass. It feels plenty good, and, you figure, you've got a pretty head-turning rack now. An F-cup bra wouldn't fit you any more. Boobs like yours are a job for a double F... or a big, thick cock. These would be great for a titfuck, especially with how big and sensitive your nipples have gotten. They're like built-in handholds!", "passive", (i * 3) * 60);
+						AddLogEvent("You stumble, setting off a small earthquake in your breasts. Giggling, you mentally categorize it as a class five boobquake and grab hold for stability, stilling your boobs with a supportive grope. There! You knead them a few times, weighing their mass. It feels plenty good, and, you figure, you’ve got a pretty head-turning rack now. An F-cup bra wouldn’t fit you any more. Boobs like yours are a job for a double F... or a big, thick cock. These would be great for a titfuck, especially with how big and sensitive your nipples have gotten. They’re like built-in handholds!", "passive", (i * 3) * 60);
 						if(pc.bRows() > 1) ExtendLogEvent("\n\nYou run one hand across your neglected lower nipples. Maybe someday you can convince someone to make a treatment for " + pc.mf("boys","girls") + " with more than one meager row of tits.");
 						//+3 lust
 						pc.lust(3);
@@ -2262,12 +2262,12 @@ public function treatmentHourProcs(totalHours:int):void
 					//FF -> big FF
 					else if(pc.breastRows[0].breastRatingRaw < 14)
 					{
-						AddLogEvent(ParseText("Every movement you make is accompanied by a matching bounce and jiggle. Your breasts are the kind that stay in almost constant motion when you move, drawing the eye of every sapient creature in sight. The thought of all those eyes on your [pc.chest] has them feeling fuzzy with heat and your [pc.nipples] growing hard. They're bigger too, which is great, you figure. They'll be even more eye-catching, and they can hold more [pc.milkNoun]"), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Every movement you make is accompanied by a matching bounce and jiggle. Your breasts are the kind that stay in almost constant motion when you move, drawing the eye of every sapient creature in sight. The thought of all those eyes on your [pc.chest] has them feeling fuzzy with heat and your [pc.nipples] growing hard. They’re bigger too, which is great, you figure. They’ll be even more eye-catching, and they can hold more [pc.milkNoun]"), "passive", (i * 3) * 60);
 						if(pc.canLactate()) ExtendLogEvent(", once you start lactating");
 						ExtendLogEvent("!");
 						if(pc.bRows() > 1)
 						{
-							ExtendLogEvent(ParseText("\n\nIt's a shame that only your top row is getting so big and sexy, but at least your other [pc.nipples] are getting sensitive to match their big sisters up top."));
+							ExtendLogEvent(ParseText("\n\nIt’s a shame that only your top row is getting so big and sexy, but at least your other [pc.nipples] are getting sensitive to match their big sisters up top."));
 						}
 						pc.lust(6);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2275,7 +2275,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//big FF -> G
 					else if(pc.breastRows[0].breastRatingRaw < 15)
 					{
-						AddLogEvent(ParseText("You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You've gotten bigger again for sure. Now that you've swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming high and forward. You've got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that's fine, you figure. Doing so displays them that much more effectively."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You run your hands across the curves of your swelling chest, admiring the feel of your [pc.skinFurScales] under your fingertips. You’ve gotten bigger again for sure. Now that you’ve swollen so large, each increase is packing more and more sensitive flesh onto your body, dragging your center of gravity kicking and screaming high and forward. You’ve got to shift your posture to handle G-cups like these, arching your back to keep them from toppling you forward, but that’s fine, you figure. Doing so displays them that much more effectively."), "passive", (i * 3) * 60);
 						//+2 lust
 						pc.lust(2);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2283,7 +2283,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//G -> big G
 					else if(pc.breastRows[0].breastRatingRaw < 16)
 					{
-						AddLogEvent("You look down, pleased to note that another inch of ground has disappeared from view, blocked by the sprawling spheres that adorn your chest like a ship's prow. Your boobs are even bigger than before, and so much more noticeable for the boys and girls (at least the ones that are into that sort of thing). You rub one, shivering in delight at the fizzing sparks of tactile pleasure. It'd feel so good to have a pair of lips sealed around a leaking nipple... and a big fat cock in between them. Big G-cups like yours deserve all the attention they can get.", "passive", (i * 3) * 60);
+						AddLogEvent("You look down, pleased to note that another inch of ground has disappeared from view, blocked by the sprawling spheres that adorn your chest like a ship’s prow. Your boobs are even bigger than before, and so much more noticeable for the boys and girls (at least the ones that are into that sort of thing). You rub one, shivering in delight at the fizzing sparks of tactile pleasure. It’d feel so good to have a pair of lips sealed around a leaking nipple... and a big fat cock in between them. Big G-cups like yours deserve all the attention they can get.", "passive", (i * 3) * 60);
 						//+5 lust.
 						pc.lust(5);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2294,8 +2294,8 @@ public function treatmentHourProcs(totalHours:int):void
 						AddLogEvent("A warm, tingly feeling spreads through your chest as your breasts expand", "passive", (i * 3) * 60);
 						if(pc.isChestGarbed()) ExtendLogEvent(ParseText(", straining against your [pc.upperGarment] as they go"));
 						else ExtendLogEvent(", shifting slightly as they go");
-						ExtendLogEvent(". Your hands fly to them of their own accord, wrapping fingers around big, sensitive nipples and pressing palms into expanding undersides. This must be what it feels like to be in heaven: constant, sensitive pleasure, as your body becomes more and more perfect in every way. You look at them - the GG-cup behemoths stacked on top of you - and giggle. The Treatment isn't turning you into a slut, just making you hotter, sexier. You don't have to wrap these pillows around a dick, no matter how amazing it would feel.");
-						if(pc.bRows() > 1) ExtendLogEvent("\n\nYou idly caress a lower nipple. It's just as sensitive as the ones up top, but unlucky enough not to get the sexy swelling your top rack is.");
+						ExtendLogEvent(". Your hands fly to them of their own accord, wrapping fingers around big, sensitive nipples and pressing palms into expanding undersides. This must be what it feels like to be in heaven: constant, sensitive pleasure, as your body becomes more and more perfect in every way. You look at them - the GG-cup behemoths stacked on top of you - and giggle. The Treatment isn’t turning you into a slut, just making you hotter, sexier. You don’t have to wrap these pillows around a dick, no matter how amazing it would feel.");
+						if(pc.bRows() > 1) ExtendLogEvent("\n\nYou idly caress a lower nipple. It’s just as sensitive as the ones up top, but unlucky enough not to get the sexy swelling your top rack is.");
 						//+7 lust
 						pc.lust(7);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2303,7 +2303,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//GG -> big GG
 					else if(pc.breastRows[0].breastRatingRaw < 18)
 					{
-						AddLogEvent("A sensation of sudden, sensitive firmness is the only warning you get before your boobs swell. Not that you needed the warning of course - the Codex gave you one of those a while back - but why would you care? Bigger tits are like better orgasms. Why wouldn't you want them? You rub your expanded assets, trying to gauge their new size for yourself, though it might look like you're just feeling yourself up to a passerby. You've got big GG's for sure. If you're lucky, you'll hit H-cups before this is over!", "passive", (i * 3) * 60);
+						AddLogEvent("A sensation of sudden, sensitive firmness is the only warning you get before your boobs swell. Not that you needed the warning of course - the Codex gave you one of those a while back - but why would you care? Bigger tits are like better orgasms. Why wouldn’t you want them? You rub your expanded assets, trying to gauge their new size for yourself, though it might look like you’re just feeling yourself up to a passerby. You’ve got big GG’s for sure. If you’re lucky, you’ll hit H-cups before this is over!", "passive", (i * 3) * 60);
 						//+3 lust
 						pc.lust(3);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2311,10 +2311,10 @@ public function treatmentHourProcs(totalHours:int):void
 					//big GG -> H
 					else if(pc.breastRows[0].breastRatingRaw < 19)
 					{
-						AddLogEvent(ParseText("Your hands are running slowly across your expanding chest in a kind of slow dance, sending little whispers of pink-hued pleasure into your brain. It's enough to keep a happy, ditzy smile on your face and your mind placid and calm. A simple tweak of a [pc.nipple] is enough to make your [pc.legOrLegs] wobble, and the idea of someone else doing the tweaking "), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Your hands are running slowly across your expanding chest in a kind of slow dance, sending little whispers of pink-hued pleasure into your brain. It’s enough to keep a happy, ditzy smile on your face and your mind placid and calm. A simple tweak of a [pc.nipple] is enough to make your [pc.legOrLegs] wobble, and the idea of someone else doing the tweaking "), "passive", (i * 3) * 60);
 						if(pc.hasVagina()) ExtendLogEvent("makes you positively drippy");
 						else ExtendLogEvent("has you whimpering");
-						ExtendLogEvent(". Best of all, you're slowly coming to realize that you've grown again. You finally have H-cups!");
+						ExtendLogEvent(". Best of all, you’re slowly coming to realize that you’ve grown again. You finally have H-cups!");
 						if(pc.bRows() > 1) ExtendLogEvent("\n\nIf only your other boobs got to grow too. Maybe you could put some boobswell pads on them?");
 						//Lust+7
 						pc.lust(7);
@@ -2323,18 +2323,18 @@ public function treatmentHourProcs(totalHours:int):void
 					//H -> big H
 					else if(pc.breastRows[0].breastRatingRaw < 20)
 					{
-						AddLogEvent(ParseText("You keep checking your [pc.chest] for signs of growth. It's hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobies. This time, you're pretty sure that your fingers are sinking a little deeper into your assets. There's a little bit more weight in your palms. You're on the upper edge of an H-cup bra, and you wonder if the heifers on New Texas wear H-cups. It would be terrifically appropriate, you decide. There's nothing wrong with being called a cow when you're mostly boob."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You keep checking your [pc.chest] for signs of growth. It’s hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobies. This time, you’re pretty sure that your fingers are sinking a little deeper into your assets. There’s a little bit more weight in your palms. You’re on the upper edge of an H-cup bra, and you wonder if the heifers on New Texas wear H-cups. It would be terrifically appropriate, you decide. There’s nothing wrong with being called a cow when you’re mostly boob."), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw++;
 					}
 					//big H -> HH
 					else if(pc.breastRows[0].breastRatingRaw < 21)
 					{
-						AddLogEvent("You glance down, pleased to note that your view of the ground is even more obstructed than before. You don't need to see your " + pc.feet() + " anyway, and you can always pull your boobs out to the side if you need to see past them. As a bonus, that would give you a chance to squeeze and rub at the well-rounded melons. They're so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention.", "passive", (i * 3) * 60);
+						AddLogEvent("You glance down, pleased to note that your view of the ground is even more obstructed than before. You don’t need to see your " + pc.feet() + " anyway, and you can always pull your boobs out to the side if you need to see past them. As a bonus, that would give you a chance to squeeze and rub at the well-rounded melons. They’re so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention.", "passive", (i * 3) * 60);
 						if(pc.bRows() > 1)
 						{
 							ExtendLogEvent("\n\nMaybe you could get your other row");
 							if(pc.bRows() > 2) ExtendLogEvent("s");
-							ExtendLogEvent(" dosed with something so they don't get forgotten. You could probably titfuck like, three guys at once then.");
+							ExtendLogEvent(" dosed with something so they don’t get forgotten. You could probably titfuck like, three guys at once then.");
 						}
 						//+3 lust
 						pc.lust(3);
@@ -2343,7 +2343,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//HH -> big HH
 					else if(pc.breastRows[0].breastRatingRaw < 22)
 					{
-						AddLogEvent(ParseText("You lean back, feeling the weight of your feminine mounds flattening them slightly against your chest, and rub your hands across them in slow circles, giving them a little massage. They've earned it after all, working so hard to swell up all big and sexy, being so sensitive and pleasant to feel. Your [pc.nipples] are like little dispensers that release pink clouds of happiness on contact. Giggling, you admire them, realizing they've gotten even bigger. You'll barely fit in an HH-cup bra anymore."), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You lean back, feeling the weight of your feminine mounds flattening them slightly against your chest, and rub your hands across them in slow circles, giving them a little massage. They’ve earned it after all, working so hard to swell up all big and sexy, being so sensitive and pleasant to feel. Your [pc.nipples] are like little dispensers that release pink clouds of happiness on contact. Giggling, you admire them, realizing they’ve gotten even bigger. You’ll barely fit in an HH-cup bra anymore."), "passive", (i * 3) * 60);
 						//+6 lust
 						pc.lust(6);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2354,14 +2354,14 @@ public function treatmentHourProcs(totalHours:int):void
 						AddLogEvent("Closing your eyes, you cop a feel at your bosom. It perfectly deforms around your questing fingertips, swallowing them almost wholly into itself. Each perfectly-shaped boob quivers against the other, pressed into a line of cleavage long enough to make a kui-tan cream her pants. You play with them", "passive", (i * 3) * 60);
 						if(pc.hasVagina()) ExtendLogEvent(" until you feel more than a little sticky yourself");
 						else ExtendLogEvent(ParseText(", feeling a little unfilled yourself. If only you had someone to come fuck your [pc.ass] right now"));
-						ExtendLogEvent(". There's no doubt in your mind: you're a triple-H girl now.\n\nYou don't even try to stop a contented 'moo' from escaping your mouth. It feels right.");
+						ExtendLogEvent(". There’s no doubt in your mind: you’re a triple-H girl now.\n\nYou don’t even try to stop a contented ‘moo’ from escaping your mouth. It feels right.");
 						pc.lust(3);
 						pc.breastRows[0].breastRatingRaw++;
 					}
 					//big HHH -> I
 					else if(pc.breastRows[0].breastRatingRaw < 24)
 					{
-						AddLogEvent("Warmth burns through the nerves of your chest, heating your jiggling mounds to an incredibly pleasant simmer as they begin to swell. You grab them, mooing and moaning in equal parts, feeling them bulge out between your fingertips, marvelling at the weight of your expanding feminine flesh. Your tits are definitely I-cups now. The tingling heat fades, replaced by a desire for physical contact. You give them that and more. Your hands fly across your chest, mauling your boobs for what feels like hours. It isn't until you cum from the incessant stimulation that your hands fall away", "passive", (i * 3) * 60);
+						AddLogEvent("Warmth burns through the nerves of your chest, heating your jiggling mounds to an incredibly pleasant simmer as they begin to swell. You grab them, mooing and moaning in equal parts, feeling them bulge out between your fingertips, marvelling at the weight of your expanding feminine flesh. Your tits are definitely I-cups now. The tingling heat fades, replaced by a desire for physical contact. You give them that and more. Your hands fly across your chest, mauling your boobs for what feels like hours. It isn’t until you cum from the incessant stimulation that your hands fall away", "passive", (i * 3) * 60);
 						if((pc.hasCock() && pc.cumQ() >= 100) || (pc.hasVagina() && pc.wettestVaginalWetness() >= 3) || (pc.isLactating() && pc.lactationQ() >= 200)) ExtendLogEvent(", leaving you sitting in a puddle of your own fluids and panting");
 						ExtendLogEvent(".");
 						//orgasm!
@@ -2371,13 +2371,13 @@ public function treatmentHourProcs(totalHours:int):void
 					//I -> big I
 					else if(pc.breastRows[0].breastRatingRaw < 25)
 					{
-						AddLogEvent("A little extra wobble in your chest is all the notification you need to give yourself a quick grab n' squeeze. As expected, your tits are a little bigger than before. An I-cup bra would barely contain them! You sit there, petting them, hoping that it'll encourage further growth. There's no point in stopping when you're this close to moving up a whole bra size, is there?", "passive", (i * 3) * 60);
+						AddLogEvent("A little extra wobble in your chest is all the notification you need to give yourself a quick grab ‘n’ squeeze. As expected, your tits are a little bigger than before. An I-cup bra would barely contain them! You sit there, petting them, hoping that it’ll encourage further growth. There’s no point in stopping when you’re this close to moving up a whole bra size, is there?", "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw++;
 					}
 					//big I -> II
 					else if(pc.breastRows[0].breastRatingRaw < 26)
 					{
-						AddLogEvent("Teetering forward and nearly losing your balance is all the reminder you need to give your rack some much needed attention. Unashamedly whipping them out, you take hold of your growing tits and weigh them. It isn't a very precise method of measuring growth, but it feels wonderful. You spend a few moments playing with them, squishing them together, and even bouncing them in place before you come to a decision. You have II-cup boobs for sure.", "passive", (i * 3) * 60);
+						AddLogEvent("Teetering forward and nearly losing your balance is all the reminder you need to give your rack some much needed attention. Unashamedly whipping them out, you take hold of your growing tits and weigh them. It isn’t a very precise method of measuring growth, but it feels wonderful. You spend a few moments playing with them, squishing them together, and even bouncing them in place before you come to a decision. You have II-cup boobs for sure.", "passive", (i * 3) * 60);
 						//+2
 						pc.lust(2);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2385,7 +2385,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//II -> big II
 					else if(pc.breastRows[0].breastRatingRaw < 27)
 					{
-						AddLogEvent("Your chest has been supremely weighty for a while, but it seems a little heavier than before. You'd better check, just in case it got bigger... and more fuckable. Imagining it's a dick sliding between your expanding knockers, you snake a hand through your cleavage, wrapping the crook of your arm around the bottom of it. It feels good, of course. Handling your breasts is an exercise in excitement for sure, but you do your best to keep your wits about you. It's important to know how big your boobs are, after all. How else will you be able to brag about being almost too big for an II-cup bra?", "passive", (i * 3) * 60);
+						AddLogEvent("Your chest has been supremely weighty for a while, but it seems a little heavier than before. You’d better check, just in case it got bigger... and more fuckable. Imagining it’s a dick sliding between your expanding knockers, you snake a hand through your cleavage, wrapping the crook of your arm around the bottom of it. It feels good, of course. Handling your breasts is an exercise in excitement for sure, but you do your best to keep your wits about you. It’s important to know how big your boobs are, after all. How else will you be able to brag about being almost too big for an II-cup bra?", "passive", (i * 3) * 60);
 						//+7 lust
 						pc.lust(7);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2393,7 +2393,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//big II -> J
 					else if(pc.breastRows[0].breastRatingRaw < 28)
 					{
-						AddLogEvent("Every movement sends quakes of happy feelings through your mountainous melons, the feminine orbs entirely too delighted to bounce and jiggle for the whole world to see. And you can't blame them either. They're big, delicious tits. They deserve to be grabbed and squeezed and pulled until you're whimpering and drooling all over them... just like now. You moo quietly under your breath and pull your hands away, trying not to cum. You're pretty sure they're at least J-cups by now, but it's a far less pressing concern than the needy itch between your ", "passive", (i * 3) * 60);
+						AddLogEvent("Every movement sends quakes of happy feelings through your mountainous melons, the feminine orbs entirely too delighted to bounce and jiggle for the whole world to see. And you can’t blame them either. They’re big, delicious tits. They deserve to be grabbed and squeezed and pulled until you’re whimpering and drooling all over them... just like now. You moo quietly under your breath and pull your hands away, trying not to cum. You’re pretty sure they’re at least J-cups by now, but it’s a far less pressing concern than the needy itch between your ", "passive", (i * 3) * 60);
 						if(pc.hasVagina()) ExtendLogEvent(ParseText("[pc.thighs]"));
 						else ExtendLogEvent("cheeks");
 						ExtendLogEvent(".");
@@ -2405,7 +2405,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//J -> big J
 					else if(pc.breastRows[0].breastRatingRaw < 29)
 					{
-						AddLogEvent("Looking down, you barely suppress a giggle. Your titties are just so gosh darned big! They're all wobbly and completely obscure your " + pc.feet() + "; why, you're pretty sure that without some serious effort you won't be able to make out your own groin. It's a good thing your fingers already know just where to go, but you're pretty sure they'd be manhandling these delicious knockers. You start squeezing them together, letting your eyes drift closed, imagining that strong, calloused fingers are doing the work. Having such big J-cups is nice.", "passive", (i * 3) * 60);
+						AddLogEvent("Looking down, you barely suppress a giggle. Your titties are just so gosh darned big! They’re all wobbly and completely obscure your " + pc.feet() + "; why, you’re pretty sure that without some serious effort you won’t be able to make out your own groin. It’s a good thing your fingers already know just where to go, but you’re pretty sure they’d be manhandling these delicious knockers. You start squeezing them together, letting your eyes drift closed, imagining that strong, calloused fingers are doing the work. Having such big J-cups is nice.", "passive", (i * 3) * 60);
 						//+10 lust
 						pc.lust(10);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2420,8 +2420,8 @@ public function treatmentHourProcs(totalHours:int):void
 						ExtendLogEvent(", and the flesh around them is flushed and expanding. You hold on for dear life, rubbing your chest enthusiastically and occasionally interrupting your moans with fervent, eager moos. You wish you had someone to milk you and fuck you all at the same time!");
 						ExtendLogEvent("\n\nStill tugging your nipples, you writhe on the ground");
 						if(pc.isLactating()) ExtendLogEvent(", leaking fluids everywhere");
-						ExtendLogEvent(" as you climax again and again, cumming to the feeling of your breasts expanding to JJ-cups. You never want it to stop. If your life became nothing more than breast-obsessed orgasmed chained on the heels of the last, you could die happy. You're sure of it.");
-						ExtendLogEvent("\n\nComing down from that high takes more than a few minutes and brings with regret in no small measure. There's a sense of finality in your expanded breasts. The Treatment has done all that it can to them; you aren't going to get any bigger. You guess that you'll be fine with these. They're bigger than most unaugmented New Texans, and you could always go get some boobswell pads from the store if you really wanted to stand out.");
+						ExtendLogEvent(" as you climax again and again, cumming to the feeling of your breasts expanding to JJ-cups. You never want it to stop. If your life became nothing more than breast-obsessed orgasmed chained on the heels of the last, you could die happy. You’re sure of it.");
+						ExtendLogEvent("\n\nComing down from that high takes more than a few minutes and brings with regret in no small measure. There’s a sense of finality in your expanded breasts. The Treatment has done all that it can to them; you aren’t going to get any bigger. You guess that you’ll be fine with these. They’re bigger than most unaugmented New Texans, and you could always go get some boobswell pads from the store if you really wanted to stand out.");
 						ExtendLogEvent("\n\nIt would be... nice to have bigger breasts than anyone else. Your teats glow with approval.");
 						//3 cums! Ah ah ah! /thecount.
 						pc.orgasm();
@@ -2435,7 +2435,7 @@ public function treatmentHourProcs(totalHours:int):void
 			//Done before max:
 			if(pc.breastRows[0].breastRating() >= pc.statusEffectv1("Treated") && !pc.hasStatusEffect("Boobgrow Done Notice"))
 			{
-				AddLogEvent(ParseText(" There's a kind of quivering finality about the movements of your breasts as you walk. They don't seem as constantly warm or well... active as before. The Treatment must be done working its magic on them, but at least they're still big, sexy, and oh so fun to touch. Just the idea of fondling yourself has your [pc.skin] flushing hotly."), "passive");
+				AddLogEvent(ParseText(" There’s a kind of quivering finality about the movements of your breasts as you walk. They don’t seem as constantly warm or well... active as before. The Treatment must be done working its magic on them, but at least they’re still big, sexy, and oh so fun to touch. Just the idea of fondling yourself has your [pc.skin] flushing hotly."), "passive");
 				pc.createStatusEffect("Boobgrow Done Notice",0,0,0,0,true,"","",false,10080);
 			}
 		}
@@ -2462,19 +2462,19 @@ public function treatmentHourProcs(totalHours:int):void
 					//sub 50 to 51 Femininity
 					else if(pc.femininity < 50)
 					{
-						AddLogEvent(ParseText("Your [pc.lips] feel a little dry, and when you lick them, you discover that they feel a little fuller than before. You pull out your Codex's camera function for another look. It confirms your worry. Your lips are bigger, and your face looks far more feminine than before. The Treatment has given you a fairly androgynous face. You could probably pass as either gender, if you wanted."), "passive", (femGainStarts[i] - startHours) * 60);
+						AddLogEvent(ParseText("Your [pc.lips] feel a little dry, and when you lick them, you discover that they feel a little fuller than before. You pull out your Codex’s camera function for another look. It confirms your worry. Your lips are bigger, and your face looks far more feminine than before. The Treatment has given you a fairly androgynous face. You could probably pass as either gender, if you wanted."), "passive", (femGainStarts[i] - startHours) * 60);
 						pc.femininity = 51;
 					}
 					//sub 75 to 76 femininity
 					else if(pc.femininity < 75)
 					{
-						AddLogEvent(ParseText("You wipe a bead of sweat from your brow, then jerk in surprise at how smooth your [pc.skin] felt. It didn't use to feel that way! Hastily pulling out your Codex, you use it to examine your face. What you see shocks you. There's a pretty face with lips that are noticeably fuller than before. <b>You're actually... pretty.</b> More than that, you might even be beautiful. The confused-looking girl in the Codex purses her lips thoughtfully; you're not sure you'll ever get used to this."), "passive", (femGainStarts[i] - startHours) * 60);
+						AddLogEvent(ParseText("You wipe a bead of sweat from your brow, then jerk in surprise at how smooth your [pc.skin] felt. It didn’t use to feel that way! Hastily pulling out your Codex, you use it to examine your face. What you see shocks you. There’s a pretty face with lips that are noticeably fuller than before. <b>You’re actually... pretty.</b> More than that, you might even be beautiful. The confused-looking girl in the Codex purses her lips thoughtfully; you’re not sure you’ll ever get used to this."), "passive", (femGainStarts[i] - startHours) * 60);
 						pc.femininity = 76;
 					}
 					//sub 100 to 100 femininity
 					else if(pc.femininity < 100)
 					{
-						AddLogEvent("You chew on a wonderfully full lip while thinking, then stop, surprised by the fullness of it. Is the Treatment making your lips bigger? You pull out the Codex to check, looking at your reflection. It is, but that's not all. Your whole face has been refined. Your cheekbones are perfectly placed. Your eyebrows arch perfectly. Even your nose is cute. Your visage is the epitome of feminine beauty. Wow. You'll have lovers lining up for a chance with you!", "passive", (femGainStarts[i] - startHours) * 60);
+						AddLogEvent("You chew on a wonderfully full lip while thinking, then stop, surprised by the fullness of it. Is the Treatment making your lips bigger? You pull out the Codex to check, looking at your reflection. It is, but that’s not all. Your whole face has been refined. Your cheekbones are perfectly placed. Your eyebrows arch perfectly. Even your nose is cute. Your visage is the epitome of feminine beauty. Wow. You’ll have lovers lining up for a chance with you!", "passive", (femGainStarts[i] - startHours) * 60);
 						pc.femininity = 100;
 					}
 					//0 to 1 mod.
@@ -2487,7 +2487,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//1 to 2 mod.
 					else
 					{
-						AddLogEvent(ParseText("You purse your [pc.lips] in front of your Codex, just to look at them. To your surprise, they're even bigger than before. You lick them, making them shine. They're almost... hypnotic. You purse your dazzling kissers, then smile. These lips are gorgeous. You could probably make guys rip holes in their pants, just by talking to them."), "passive", (femGainStarts[i] - startHours) * 60);
+						AddLogEvent(ParseText("You purse your [pc.lips] in front of your Codex, just to look at them. To your surprise, they’re even bigger than before. You lick them, making them shine. They’re almost... hypnotic. You purse your dazzling kissers, then smile. These lips are gorgeous. You could probably make guys rip holes in their pants, just by talking to them."), "passive", (femGainStarts[i] - startHours) * 60);
 						pc.lipMod = 2;
 					}
 				}
@@ -2513,23 +2513,23 @@ public function treatmentHourProcs(totalHours:int):void
 							AddLogEvent("You suddenly feel... wet, ", "passive", (lubeGainStarts[i] - startHours) * 60);
 							if(pc.legCount > 1) ExtendLogEvent(ParseText("between the [pc.legs]"));
 							else ExtendLogEvent("in your crotch");
-							ExtendLogEvent(". You didn't pee yourself - you're sure of it. Gingerly dipping a fingertip inside your feminine crevice, you discover a pleasing slipperiness. You're lubricating! This will make sex soooo much more pleasant.");
+							ExtendLogEvent(". You didn’t pee yourself - you’re sure of it. Gingerly dipping a fingertip inside your feminine crevice, you discover a pleasing slipperiness. You’re lubricating! This will make sex soooo much more pleasant.");
 						}
 						//Multipuss but only 1 changed
 						else if(cuntsBelowWetnessThreshold(1) == 1)
 						{
-							AddLogEvent("Your dry pussy - the one that didn't self-lubricate - suddenly feels decidedly... <i>moist.</i> You thrill at the discovery. Now all your vaginas are just as fuckable!", "passive", (lubeGainStarts[i] - startHours) * 60);
+							AddLogEvent("Your dry pussy - the one that didn’t self-lubricate - suddenly feels decidedly... <i>moist.</i> You thrill at the discovery. Now all your vaginas are just as fuckable!", "passive", (lubeGainStarts[i] - startHours) * 60);
 						}
 						//Multipuss multiple changed
 						else
 						{
-							AddLogEvent("All at once, you feel moist all over your crotch. The strange sensation won't go away, leaving you with nothing to do but press a pair of fingertips inside yourself, just to check. It's slippery and wet - ", "passive", (lubeGainStarts[i] - startHours) * 60);
+							AddLogEvent("All at once, you feel moist all over your crotch. The strange sensation won’t go away, leaving you with nothing to do but press a pair of fingertips inside yourself, just to check. It’s slippery and wet - ", "passive", (lubeGainStarts[i] - startHours) * 60);
 							if(pc.totalVaginas() == 2) ExtendLogEvent("both");
 							else ExtendLogEvent("all of");
 							ExtendLogEvent(" your holes. You whimper. How are you supposed to keep your");
 							if(pc.legCount > 1) ExtendLogEvent(ParseText(" [pc.legs] closed"));
 							else ExtendLogEvent(" sex away");
-							ExtendLogEvent(" when you're getting so fuckable?");
+							ExtendLogEvent(" when you’re getting so fuckable?");
 						}
 						//+5 lust for all
 						pc.lust(5);
@@ -2541,21 +2541,21 @@ public function treatmentHourProcs(totalHours:int):void
 						//Singlepuss
 						if (pc.totalVaginas())
 						{
-							AddLogEvent("Whenever you get thinking too hard about what the Treatment is doing to your body, you find yourself getting wet, and not just wet, but slick enough that trickles of it can run down your thighs when you get all hot and bothered. It'll be way easier to handle insertions from dildos... or big dicks... or anything really.", "passive", (lubeGainStarts[i] - startHours) * 60);
+							AddLogEvent("Whenever you get thinking too hard about what the Treatment is doing to your body, you find yourself getting wet, and not just wet, but slick enough that trickles of it can run down your thighs when you get all hot and bothered. It’ll be way easier to handle insertions from dildos... or big dicks... or anything really.", "passive", (lubeGainStarts[i] - startHours) * 60);
 						}
 						//Multipuss but only 1 changed
 						else if(cuntsBelowWetnessThreshold(2) == 1)
 						{
-							AddLogEvent(ParseText("Oooh, you feel a long overdue change in [pc.oneVagina]. It's palpably wetter, just like its sister"), "passive", (lubeGainStarts[i] - startHours) * 60);
+							AddLogEvent(ParseText("Oooh, you feel a long overdue change in [pc.oneVagina]. It’s palpably wetter, just like its sister"), "passive", (lubeGainStarts[i] - startHours) * 60);
 							if(pc.totalVaginas() > 2) ExtendLogEvent("s");
 							ExtendLogEvent(". You ");
 							if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText("reach into your [pc.lowerGarment] and "));
-							ExtendLogEvent("ease a finger inside, delighting in the hot slipperiness that you find. You're practically as wet as an ausar now. Your body is practically begging for something to try out the improved entrance. You resolve to properly finger yourself as soon as humanly possible.");
+							ExtendLogEvent("ease a finger inside, delighting in the hot slipperiness that you find. You’re practically as wet as an ausar now. Your body is practically begging for something to try out the improved entrance. You resolve to properly finger yourself as soon as humanly possible.");
 						}
 						//Multipuss multiple changed
 						else
 						{
-							AddLogEvent(ParseText("A sudden pang of warmth and wetness assaults your crotch, dropping you to your hands and [pc.knees]. You're getting so gloriously wet! You can practically smell the lubricant your body is making from your multiple honeypots, like you've got ") + num2Text(pc.totalVaginas()) + " horny ausar living in your crotch.", "passive", (lubeGainStarts[i] - startHours) * 60);
+							AddLogEvent(ParseText("A sudden pang of warmth and wetness assaults your crotch, dropping you to your hands and [pc.knees]. You’re getting so gloriously wet! You can practically smell the lubricant your body is making from your multiple honeypots, like you’ve got ") + num2Text(pc.totalVaginas()) + " horny ausar living in your crotch.", "passive", (lubeGainStarts[i] - startHours) * 60);
 						}
 						//+10 lust
 						pc.lust(10);
@@ -2567,17 +2567,17 @@ public function treatmentHourProcs(totalHours:int):void
 						//Singlepuss
 						if(pc.totalVaginas() == 1)
 						{
-							AddLogEvent(ParseText("Out of nowhere, your [pc.vagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] run unopposed down your [pc.legOrLegs]. You stare in fascination at the sensuous sight, feeling like you're half-girl, half-river. If you had a boyfriend handy, he could slip right in with no trouble at all!"), "passive", (lubeGainStarts[i] - startHours) * 60);
+							AddLogEvent(ParseText("Out of nowhere, your [pc.vagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] run unopposed down your [pc.legOrLegs]. You stare in fascination at the sensuous sight, feeling like you’re half-girl, half-river. If you had a boyfriend handy, he could slip right in with no trouble at all!"), "passive", (lubeGainStarts[i] - startHours) * 60);
 						}
 						//Multipuss but only 1 changed
 						else if(cuntsBelowWetnessThreshold(3) == 1)
 						{
-							AddLogEvent(ParseText("Out of nowhere, [pc.oneVagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] are running unopposed down your [pc.legOrLegs]. Finally, you're slippery all over. You feel like a brain attached to a multitude of slippery, wet holes, each signalling their readiness with fragrant arousal."), "passive", (lubeGainStarts[i] - startHours) * 60);
+							AddLogEvent(ParseText("Out of nowhere, [pc.oneVagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] are running unopposed down your [pc.legOrLegs]. Finally, you’re slippery all over. You feel like a brain attached to a multitude of slippery, wet holes, each signalling their readiness with fragrant arousal."), "passive", (lubeGainStarts[i] - startHours) * 60);
 						}
 						//Multipuss multiple changed
 						else
 						{
-							AddLogEvent(ParseText("Out of nowhere, your [pc.vaginas] alight with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] cascade down your [pc.legOrLegs]. You stare in fascination at the unquestionably sexual sight, feeling like you're little more than a woman attached to a wellspring of lust. A boy with nice, thick cocks could just slide them all right into you!"), "passive", (lubeGainStarts[i] - startHours) * 60);
+							AddLogEvent(ParseText("Out of nowhere, your [pc.vaginas] alight with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] cascade down your [pc.legOrLegs]. You stare in fascination at the unquestionably sexual sight, feeling like you’re little more than a woman attached to a wellspring of lust. A boy with nice, thick cocks could just slide them all right into you!"), "passive", (lubeGainStarts[i] - startHours) * 60);
 						}
 						//+15 lust
 						pc.lust(15);
@@ -2610,9 +2610,9 @@ public function treatmentHourProcs(totalHours:int):void
 		if(pc.milkMultiplier >= 100 && startHours < 78 && treatedHours >= 78 && !pc.hasPerk("Treated Milk"))
 		{
 			AddLogEvent(ParseText("You grow increasingly aware of how productive and wonderful your [pc.breasts] are. The Treatment has given you the ability to produce so much!"), "passive", (78 - startHours) * 60);
-			if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) ExtendLogEvent(" You squeeze a droplet onto a finger and try it, just to sample it. It tastes exactly like the freshest, most delicious milk you've ever tasted - way better than normal. No wonder New Texas is able to export so much milk; Texan cow-milk is amazing!");
-			//Perk Unlocked: Treated Milk - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.
-			ExtendLogEvent("\n\n(<b>Perk Gained: Treated Milk</b> - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.)");
+			if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) ExtendLogEvent(" You squeeze a droplet onto a finger and try it, just to sample it. It tastes exactly like the freshest, most delicious milk you’ve ever tasted - way better than normal. No wonder New Texas is able to export so much milk; Texan cow-milk is amazing!");
+			//Perk Unlocked: Treated Milk - Your milk tastes delicious, and milk production takes much longer to slow. The only way you’d stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.
+			ExtendLogEvent("\n\n(<b>Perk Gained: Treated Milk</b> - Your milk tastes delicious, and milk production takes much longer to slow. The only way you’d stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.)");
 	 		pc.createPerk("Treated Milk",0,0,0,0,"Any milk you lactate tastes better, and you are less likely to stop lactating.");
 	 	}
 		
@@ -2626,19 +2626,19 @@ public function treatmentHourProcs(totalHours:int):void
 					//1->1.5
 					if(pc.milkStorageMultiplier <= 1)
 					{
-						AddLogEvent("By now you've gotten used to having a chest that feels like it's full of sloshing, delicious cream, but, out of the blue, that feeling diminishes. You weren't even milking yourself; you just feel like you can hold <i>more</i>. You rub your breasts curiously. Could the Treatment be making your body even better at storing up fluid? Rubbing your moistened teats, you wonder if your next milking will be that much more voluminous.", "passive", (treatedHours - startHours) * 60);
+						AddLogEvent("By now you’ve gotten used to having a chest that feels like it’s full of sloshing, delicious cream, but, out of the blue, that feeling diminishes. You weren’t even milking yourself; you just feel like you can hold <i>more</i>. You rub your breasts curiously. Could the Treatment be making your body even better at storing up fluid? Rubbing your moistened teats, you wonder if your next milking will be that much more voluminous.", "passive", (treatedHours - startHours) * 60);
 						pc.milkStorageMultiplier = 1.5;
 					}
 					//1.5->2
 					else if(pc.milkStorageMultiplier <= 1.5)
 					{
-						AddLogEvent(ParseText("A wave of warmth washes over your [pc.chest], and in its wake you're left feeling oddly... emptied. How odd. Hefting a tit in one hand, you squeeze it, delighted to see that [pc.milk] still comes out. The only conclusion you can come to is that the Treatment has somehow made your breasts... better - able to hold and give more [pc.milkNoun]. A sensation of rightness accompanies that thought. Of course! It only makes sense that your body would change itself in order to experience even longer, more exciting milkings."), "passive", (treatedHours - startHours) * 60);
+						AddLogEvent(ParseText("A wave of warmth washes over your [pc.chest], and in its wake you’re left feeling oddly... emptied. How odd. Hefting a tit in one hand, you squeeze it, delighted to see that [pc.milk] still comes out. The only conclusion you can come to is that the Treatment has somehow made your breasts... better - able to hold and give more [pc.milkNoun]. A sensation of rightness accompanies that thought. Of course! It only makes sense that your body would change itself in order to experience even longer, more exciting milkings."), "passive", (treatedHours - startHours) * 60);
 						pc.milkStorageMultiplier = 2;
 					}
 					//2->2.5
 					else if(pc.milkStorageMultiplier <= 2)
 					{
-						AddLogEvent(ParseText("Your attention is drawn to your chest out of the blue - not that unusual given your current state. You giggle, smooshing your boobs against one another, enjoying the feel of your lactating jugs bouncing and sloshing together like two energetic best friends. You're getting better at it too - the whole milk giving thing. Just when you think you're starting to get too full, it's like your boobs find even more room for [pc.milkNoun]. You briefly imagine your tits rearranging their furniture to add another fridge, giggling all the while."), "passive", (treatedHours - startHours) * 60);
+						AddLogEvent(ParseText("Your attention is drawn to your chest out of the blue - not that unusual given your current state. You giggle, smooshing your boobs against one another, enjoying the feel of your lactating jugs bouncing and sloshing together like two energetic best friends. You’re getting better at it too - the whole milk giving thing. Just when you think you’re starting to get too full, it’s like your boobs find even more room for [pc.milkNoun]. You briefly imagine your tits rearranging their furniture to add another fridge, giggling all the while."), "passive", (treatedHours - startHours) * 60);
 						pc.milkStorageMultiplier = 2.5;
 					}
 					//2.5->3
@@ -2687,7 +2687,7 @@ public function treatmentHourProcs(totalHours:int):void
 				//Existing horns transform into lil bull nubs.
 				if(pc.horns > 0 && (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT))
 				{
-					AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They're small and pointed, like little cow horns.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They’re small and pointed, like little cow horns.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
 					pc.horns = 2;
 					pc.hornLength = .5;
 					pc.hornType = GLOBAL.TYPE_BOVINE;
@@ -2695,7 +2695,7 @@ public function treatmentHourProcs(totalHours:int):void
 				//Starting
 				else if(pc.horns == 0 && !pc.hasStatusEffect("Horn Bumps"))
 				{
-					AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it's red and irritated, though you haven't seen a head form on the zit yet. You've never had such prominent acne before, and there's a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it’s red and irritated, though you haven’t seen a head form on the zit yet. You’ve never had such prominent acne before, and there’s a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
 					pc.createStatusEffect("Horn Bumps");
 				}
 				//Breaking Skin
@@ -2704,7 +2704,7 @@ public function treatmentHourProcs(totalHours:int):void
 					AddLogEvent("The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
 					ExtendLogEvent("\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".");
 					ExtendLogEvent("\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.");
-					ExtendLogEvent(ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They're small little nubs at the moment - adorable really, but they do a great job telling everyone about your bovine proclivities."));
+					ExtendLogEvent(ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you’re... <b>you’ve got the cutest pair of horns growing out of your forehead!</b> They’re small little nubs at the moment - adorable really, but they do a great job telling everyone about your bovine proclivities."));
 					pc.hornType = GLOBAL.TYPE_BOVINE;
 					pc.removeStatusEffect("Horn Bumps");
 					pc.horns = 2;
@@ -2714,40 +2714,40 @@ public function treatmentHourProcs(totalHours:int):void
 				else if(pc.hornLength < 1)
 				{
 					AddLogEvent("For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
-					ExtendLogEvent(ParseText("\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them. They're mostly there for ornamentation, you figure, like a pair of earrings for your forehead."));
+					ExtendLogEvent(ParseText("\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them. They’re mostly there for ornamentation, you figure, like a pair of earrings for your forehead."));
 					pc.hornLength = 1;
 				}
 				//1" horns to 2" horns
 				else if(pc.hornLength < 2)
 				{
-					AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There's really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to your own horny transformation show. You giggle to yourself and watch.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
-					ExtendLogEvent("\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they're growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory.");
+					AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There’s really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to your own horny transformation show. You giggle to yourself and watch.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					ExtendLogEvent("\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they’re growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory.");
 					if(pc.hasHair() && pc.hairLength >= 2) ExtendLogEvent(" You brush your bangs to one side, hooking them around one of the horns in the cutest way.");
 					ExtendLogEvent(" The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.");
-					ExtendLogEvent("\n\nEveryone will know you're a New Texas " + pc.mf("boy","girl") + " now");
-					if(pc.biggestTitSize() >= 15) ExtendLogEvent(", as if the tits weren't an obvious enough sign");
+					ExtendLogEvent("\n\nEveryone will know you’re a New Texas " + pc.mf("boy","girl") + " now");
+					if(pc.biggestTitSize() >= 15) ExtendLogEvent(", as if the tits weren’t an obvious enough sign");
 					ExtendLogEvent(".");
 					pc.hornLength = 2;
 				}
 				//2" horns to 3" horns
 				else if(pc.hornLength < 3)
 				{
-					AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There's a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There's blessedly little pain, but when it passes, you're very aware of additional weight tugging on your head. Your horns have grown: they're now three inches of gleaming white bovine beauty. You resolve to polish them at the first opportunity, maybe even buy some jewelry for them once you're sure they're done growing.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There’s a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There’s blessedly little pain, but when it passes, you’re very aware of additional weight tugging on your head. Your horns have grown: they’re now three inches of gleaming white bovine beauty. You resolve to polish them at the first opportunity, maybe even buy some jewelry for them once you’re sure they’re done growing.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
 					pc.hornLength = 3;
 				}
 				//3" horns to 4" horns - prolly gonna reuse some of this for guys.
 				else if(pc.hornLength < 4)
 				{
-					AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn't hurt, but it is very disconcerting, making it next to impossible to think.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn’t hurt, but it is very disconcerting, making it next to impossible to think.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
 					ExtendLogEvent("\n\nYou grunt and groan, feeling the sensation slide <i>outside</i> of your head as your horns expand, growing thicker and heavier.");
-					if(pc.statusEffectv1("The Treatment") == 0) ExtendLogEvent(" The Treatment isn't supposed to give you such large horns. You frown as they finish growing; the Texans will probably call you a milk-bull or something equally degrading.");
+					if(pc.statusEffectv1("The Treatment") == 0) ExtendLogEvent(" The Treatment isn’t supposed to give you such large horns. You frown as they finish growing; the Texans will probably call you a milk-bull or something equally degrading.");
 					else ExtendLogEvent("You sigh in satisfaction once they stop growing. Now these are respectable horns!");
 					pc.hornLength = 4;
 				}
 				//4" horsn to 5" horns - MAX LADIES CAN GET.
 				else if(pc.hornLength < 5)
 				{
-					AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it's all over, you're left holding two big, strong five-inch horns.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it’s all over, you’re left holding two big, strong five-inch horns.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
 					pc.hornLength = 5;
 					break;
 				}
@@ -2761,7 +2761,7 @@ public function treatmentHourProcs(totalHours:int):void
 			//No tail
 			if(pc.tailCount == 0)
 			{
-				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours, and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a cute little poof on the end, just like a cow's."), "passive", (treatedHours - startHours) * 60);
+				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours, and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a cute little poof on the end, just like a cow’s."), "passive", (treatedHours - startHours) * 60);
 				pc.tailCount = 1;
 			}
 			//Multitail
@@ -2770,7 +2770,7 @@ public function treatmentHourProcs(totalHours:int):void
 				//Multi - short
 				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
-					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
+					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
 					ExtendLogEvent(" You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.");
 				}
@@ -2778,7 +2778,7 @@ public function treatmentHourProcs(totalHours:int):void
 				else
 				{
 					AddLogEvent(ParseText("Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find."), "passive", (treatedHours - startHours) * 60);
-					ExtendLogEvent("\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect");
+					ExtendLogEvent("\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you’d expect");
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(", and a coat of fine fur is growing out over their lengths");
 					ExtendLogEvent(". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.");
 				}
@@ -2786,7 +2786,7 @@ public function treatmentHourProcs(totalHours:int):void
 			//Single - short
 			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
-				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
+				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
 				ExtendLogEvent(" You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.");
 			}
@@ -2794,7 +2794,7 @@ public function treatmentHourProcs(totalHours:int):void
 			else
 			{
 				AddLogEvent(ParseText("Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find."), "passive", (treatedHours - startHours) * 60);
-				ExtendLogEvent("\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect");
+				ExtendLogEvent("\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you’d expect");
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(", and a coat of fine fur is growing out over its length");
 				ExtendLogEvent(". In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.");
 			}
@@ -2806,7 +2806,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//Cow ears (maybe)
 		if(pc.earType != GLOBAL.TYPE_BOVINE && startHours < 137 && treatedHours >= 137 && rand(10) == 0)
 		{
-			AddLogEvent("You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (treatedHours - startHours) * 60);
+			AddLogEvent("You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you’re just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (treatedHours - startHours) * 60);
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
@@ -2818,13 +2818,13 @@ public function treatmentHourProcs(totalHours:int):void
 			}
 			else
 			{
-				AddLogEvent("You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape", "passive", (treatedHours - startHours) * 60);
+				AddLogEvent("You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They’re malformed, twisting and narrowing before your eyes. They’re pulling their disparate parts together into one unified mass, almost cylindrical in shape", "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
 				{
 					ExtendLogEvent(", and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet");
 				}
 				else ExtendLogEvent(", and they begin to blacken, moment by moment");
-				ExtendLogEvent(".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a cow, you've got hooves to clop around on while you walk. Most people don't get hooves from the Treatment. It looks like you were one of the lucky ones. " + pc.mf("The cow-girls are gonna be all over you!","The bull-boys are going to love the look!"));
+				ExtendLogEvent(".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a cow, you’ve got hooves to clop around on while you walk. Most people don’t get hooves from the Treatment. It looks like you were one of the lucky ones. " + pc.mf("The cow-girls are gonna be all over you!","The bull-boys are going to love the look!"));
 			}
 			pc.clearLegFlags();
 			pc.legType = GLOBAL.TYPE_BOVINE;
@@ -3230,7 +3230,7 @@ public function treatmentHourProcs(totalHours:int):void
 			if(pc.hasCock())
 			{
 				ExtendLogEvent(" You could probably break a board in half with your dick");
-				if(pc.cockTotal() > 1) ExtendLogEvent("s; they're that hard.");
+				if(pc.cockTotal() > 1) ExtendLogEvent("s; they’re that hard.");
 				else ExtendLogEvent("; it’s that hard.");
 			}
 			ExtendLogEvent(ParseText(" Underneath your more terse exterior and desire to fuck a big-boobed submissive, you’re still the same [pc.name] Steele."));
@@ -3711,7 +3711,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//Existing horns transform into lil bull nubs.
 					if(pc.horns > 0 && pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT)
 					{
-						AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They're small and pointed, like little cow horns.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They’re small and pointed, like little cow horns.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
 						pc.horns = 2;
 						pc.hornLength = .5;
 						pc.hornType = GLOBAL.TYPE_BOVINE;
@@ -3719,7 +3719,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//Starting
 					else if(pc.horns == 0 && !pc.hasStatusEffect("Horn Bumps"))
 					{
-						AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it's red and irritated, though you haven't seen a head form on the zit yet. You've never had such prominent acne before, and there's a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it’s red and irritated, though you haven’t seen a head form on the zit yet. You’ve never had such prominent acne before, and there’s a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
 						pc.createStatusEffect("Horn Bumps");
 					}
 					//Breaking Skin
@@ -3744,28 +3744,28 @@ public function treatmentHourProcs(totalHours:int):void
 					//1" horns to 2" horns
 					else if(pc.hornLength < 2)
 					{
-						AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There's really only one thing it can be - your horns are getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to watch your own burgeoning masculinity.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
-						ExtendLogEvent("\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they're growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory. The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.");
+						AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There’s really only one thing it can be - your horns are getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to watch your own burgeoning masculinity.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						ExtendLogEvent("\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they’re growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory. The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.");
 						ExtendLogEvent("\n\nNow this is more like it. A little bigger, and you’ll almost look like a respectable " + pc.mf("bull","breeder") + ".");
 						pc.hornLength = 2;
 					}
 					//2" horns to 3" horns
 					else if(pc.hornLength < 3)
 					{
-						AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There's a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There's blessedly little pain, but when it passes, you're very aware of additional weight tugging on your head. Your horns have grown: they're now three inches of gleaming white, bovine awesomeness. You resolve to polish them at the first opportunity, maybe even get some ornamental studs for them.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There’s a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There’s blessedly little pain, but when it passes, you’re very aware of additional weight tugging on your head. Your horns have grown: they’re now three inches of gleaming white, bovine awesomeness. You resolve to polish them at the first opportunity, maybe even get some ornamental studs for them.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
 						pc.hornLength = 3;
 					}
 					//3" horns to 4" horns - prolly gonna reuse some of this for guys.
 					else if(pc.hornLength < 4)
 					{
-						AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn't hurt, but it is very disconcerting, making it next to impossible to think.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn’t hurt, but it is very disconcerting, making it next to impossible to think.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
 						ExtendLogEvent("\n\nYou grunt and groan, feeling the sensation slide <i>outside</i> of your head as your horns expand, growing thicker and heavier. You sigh in satisfaction once they stop growing. Now these are respectable horns! If they stop here, you won’t mind too badly.");
 						pc.hornLength = 4;
 					}
 					//4" horsn to 5" horns - MAX LADIES CAN GET.
 					else if(pc.hornLength < 5)
 					{
-						AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it's all over, you're left holding two big, strong five-inch horns. Nice.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it’s all over, you’re left holding two big, strong five-inch horns. Nice.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
 						pc.hornLength = 5;
 					}
 					//5” to six” horns
@@ -3839,7 +3839,7 @@ public function treatmentHourProcs(totalHours:int):void
 			//No tail
 			if(pc.tailCount == 0)
 			{
-				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours, and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a gnarly little poof on the end, just like a cow's."), "passive", (98 - startHours) * 60);
+				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours, and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a gnarly little poof on the end, just like a cow’s."), "passive", (98 - startHours) * 60);
 				pc.tailCount = 1;
 			}
 			//Multitail
@@ -3848,7 +3848,7 @@ public function treatmentHourProcs(totalHours:int):void
 				//Multi - short
 				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
-					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (98 - startHours) * 60);
+					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (98 - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
 					ExtendLogEvent(" You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.");
 				}
@@ -3856,7 +3856,7 @@ public function treatmentHourProcs(totalHours:int):void
 				else
 				{
 					AddLogEvent(ParseText("Your [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find."), "passive", (98 - startHours) * 60);
-					ExtendLogEvent("\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect");
+					ExtendLogEvent("\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you’d expect");
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(", and a coat of fine fur is growing out over their lengths");
 					ExtendLogEvent(". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.");
 				}
@@ -3864,7 +3864,7 @@ public function treatmentHourProcs(totalHours:int):void
 			//Single - short
 			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
-				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (98 - startHours) * 60);
+				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (98 - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
 				ExtendLogEvent(" You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.");
 			}
@@ -3872,7 +3872,7 @@ public function treatmentHourProcs(totalHours:int):void
 			else
 			{
 				AddLogEvent(ParseText("Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find."), "passive", (98 - startHours) * 60);
-				ExtendLogEvent("\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect");
+				ExtendLogEvent("\n\nA gently swinging, bovine tail hangs behind you. The tip is poofing up, just as you’d expect");
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(", and a coat of fine fur is growing out over its length");
 				ExtendLogEvent(". In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.");
 			}
@@ -3885,7 +3885,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//Cow ears (maybe)
 		if(pc.earType != GLOBAL.TYPE_BOVINE && startHours < 141 && treatedHours >= 141 && rand(10) == 0)
 		{
-			AddLogEvent("You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (141 - startHours) * 60);
+			AddLogEvent("You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you’re just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (141 - startHours) * 60);
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		
@@ -3898,13 +3898,13 @@ public function treatmentHourProcs(totalHours:int):void
 			}
 			else
 			{
-				AddLogEvent("You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape", "passive", (165 - startHours) * 60);
+				AddLogEvent("You stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They’re malformed, twisting and narrowing before your eyes. They’re pulling their disparate parts together into one unified mass, almost cylindrical in shape", "passive", (165 - startHours) * 60);
 				if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
 				{
 					ExtendLogEvent(", and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet");
 				}
 				else ExtendLogEvent(", and they begin to blacken, moment by moment");
-				ExtendLogEvent(".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a bull, you've got hooves to clop around on while you walk. Most people don't get hooves from the Treatment. It looks like you were one of the lucky ones. " + pc.mf("The cow-girls are gonna be all over you!","The bull-boys are going to love the look!"));
+				ExtendLogEvent(".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a bull, you’ve got hooves to clop around on while you walk. Most people don’t get hooves from the Treatment. It looks like you were one of the lucky ones. " + pc.mf("The cow-girls are gonna be all over you!","The bull-boys are going to love the look!"));
 			}
 			pc.clearLegFlags();
 			pc.legType = GLOBAL.TYPE_BOVINE;
@@ -3942,23 +3942,23 @@ public function treatedVagNote(butt:Boolean = false):void
 	//Amazons got a special version of this.
 	if(pc.isAmazon() && !butt && pc.hasVagina())
 	{
-		AddLogEvent(ParseText("Taking a something in your [pc.oneVagina] has never felt so effortless, so automatic, like your vagina has been gifted with ability to expand beyond all previous limits. You shrug and slip a finger inside, uncaring if anyone sees you, shuddering with the ease with which it vanishes into your nethers. Then you add another. And another. Four digits disappear into your greedy twat before you have to pull yourself away, barely stopping yourself from devolving into full-on fisting.\n\n[pc.EachVagina] has apparently been retooled into a greedy, capacious slot, able accept the biggest, fattest cocks without an ounce of discomfort. You suppose that such a change works in your favor - as big as you are, it only makes sense that you'd be able to fuck monster pricks with ease."), "passive");
+		AddLogEvent(ParseText("Taking a something in your [pc.oneVagina] has never felt so effortless, so automatic, like your vagina has been gifted with ability to expand beyond all previous limits. You shrug and slip a finger inside, uncaring if anyone sees you, shuddering with the ease with which it vanishes into your nethers. Then you add another. And another. Four digits disappear into your greedy twat before you have to pull yourself away, barely stopping yourself from devolving into full-on fisting.\n\n[pc.EachVagina] has apparently been retooled into a greedy, capacious slot, able accept the biggest, fattest cocks without an ounce of discomfort. You suppose that such a change works in your favor - as big as you are, it only makes sense that you’d be able to fuck monster pricks with ease."), "passive");
 		pc.lust(3);
 	}
 	if(!butt && pc.hasVagina())
 	{
-		AddLogEvent(ParseText("Weird. It felt really, really easy to slip something inside [pc.oneVagina]. Concerned, you decide a little vaginal exploration is in order. You press one finger at first, then another into your [pc.vagina], discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don't impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere's no getting around it, the Treatment has retooled [pc.eachVagina] into an elastic, powerfully coordinated pleasure palace. You doubt you'll even run into someone \"too big\" for you again."), "passive");
+		AddLogEvent(ParseText("Weird. It felt really, really easy to slip something inside [pc.oneVagina]. Concerned, you decide a little vaginal exploration is in order. You press one finger at first, then another into your [pc.vagina], discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don’t impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere’s no getting around it, the Treatment has retooled [pc.eachVagina] into an elastic, powerfully coordinated pleasure palace. You doubt you’ll even run into someone “too big” for you again."), "passive");
 	}
 	else
 	{
-		AddLogEvent(ParseText("Weird. It felt really, really easy to slip something inside your [pc.asshole]. Concerned, you decide a little rectal exploration is in order. You press one finger at first, then another into your ring, discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don't impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere's no getting around it, the Treatment has retooled your butt into an elastic, powerfully coordinated pleasure palace. You doubt you'll even run into someone \"too big\" for you again."), "passive");
+		AddLogEvent(ParseText("Weird. It felt really, really easy to slip something inside your [pc.asshole]. Concerned, you decide a little rectal exploration is in order. You press one finger at first, then another into your ring, discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don’t impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere’s no getting around it, the Treatment has retooled your butt into an elastic, powerfully coordinated pleasure palace. You doubt you’ll even run into someone “too big” for you again."), "passive");
 	}
 	pc.removeStatusEffect("Treatment Elasticity Report Needed");
 	pc.removeStatusEffect("Treatment Elasticity Report Q'ed");
 }
 public function amazonEnduranceNotice():void
 {
-	AddLogEvent("Usually, sexual release would leave you feeling a little drained, but you're still full of energy. It's like cumming isn't slowing you down at all, like your body is designed to get off with a minimum of effort so that you can keep banging until your partner's body gives out or begins to bore you.\n\n(<b>Perk Gained: Amazonian Endurance</b> - Allows you to orgasm without fatiguing.)", "passive");
+	AddLogEvent("Usually, sexual release would leave you feeling a little drained, but you’re still full of energy. It’s like cumming isn’t slowing you down at all, like your body is designed to get off with a minimum of effort so that you can keep banging until your partner’s body gives out or begins to bore you.\n\n(<b>Perk Gained: Amazonian Endurance</b> - Allows you to orgasm without fatiguing.)", "passive");
 }
 
 //if(pc.hasStatusEffect("Treatment Exhibitionism Gain 4 DickGirls") && pc.hasCock())
@@ -4003,7 +4003,7 @@ public function autoautofellatioNotice():void
 	if(pc.perkv1("Auto-Autofellatio") == 0)
 	{
 		ExtendLogEvent(ParseText("\n\n(<b>Gained Perk: Auto-Autofellatio</b> - Makes it difficult to avoid fellating yourself.)"));
-		if(!pc.hasPerk("Auto-Autofellatio")) pc.createPerk("Auto-Autofellatio",0,0,0,0,"You're so enamored with yourself that you can't resist a little self-love.");
+		if(!pc.hasPerk("Auto-Autofellatio")) pc.createPerk("Auto-Autofellatio",0,0,0,0,"You’re so enamored with yourself that you can’t resist a little self-love.");
 	}
 }
 
@@ -4012,12 +4012,12 @@ public function dumb4CumReset():void
 	if(pc.hasStatusEffect("Dumb4CumNotice"))
 	{
 		AddLogEvent(ParseText("Now that you’ve swallowed all that goo, you feel positively quick-witted and exceptionally lucid, like the spunky flavor somehow greased the workings of your brain to let you think clearly once more. Not that you couldn’t go for a hot dicking at the drop of a hat, but for some reason you’re able to think completely clearly and rationally about how perfectly arousing it could be. And you bet you could calculate the coordinates for a light drive jump mid-coitus, so there’s that."), "passive");
-		ExtendLogEvent(ParseText("\n\nYou estimate that you’ve gotten the <i>“Dumb4Cum”</i> Treatment modification, a variant that allows you periods of extreme clearheadedness and boosted intellect in the 24 hours after drinking cum at the expense of reduced intelligence during periods of withdrawl."));
+		ExtendLogEvent(ParseText("\n\nYou estimate that you’ve gotten the “<b>Dumb4Cum</b>” Treatment modification, a variant that allows you periods of extreme clearheadedness and boosted intellect in the 24 hours after drinking cum at the expense of reduced intelligence during periods of withdrawl."));
 		pc.removeStatusEffect("Dumb4CumNotice");
 	}
 	else
 	{
-		AddLogEvent(ParseText("With the warm feeling of reproductive juices in your body, you find you're able to think clearly once more."), "passive")
+		AddLogEvent(ParseText("With the warm feeling of reproductive juices in your body, you find you’re able to think clearly once more."), "passive")
 	}
 	pc.setPerkValue("Dumb4Cum",1,0);
 	// Regain lost intellience
@@ -4046,8 +4046,8 @@ public function dumb4CumUpdate(totalHours:int):void
 	{
 		if (effect.value2 < effect.value3)
 		{
-			// Clamp to less than v3
-			effect.value2 = Math.min(effect.value2 + totalHours, effect.value3 - 1);
+			// Clamp up to v3
+			effect.value2 = Math.min(effect.value2 + totalHours, effect.value3);
 		}
 	}
 	effect.value1 += totalHours;
@@ -4065,15 +4065,15 @@ public function dumb4CumUpdate(totalHours:int):void
 	}	
 	else if(tics == 40)
 	{
-		AddLogEvent(ParseText("Uh, it's like, getting super hard <i>not</i> to think about cum. Like one minute you're all focusing on something, and the next you can't stop fantasizing about shoveling gobs of the stuff into your lips. You'd probably fuck or suck just about anything right now."), "passive");
+		AddLogEvent(ParseText("Uh, it’s like, getting super hard <i>not</i> to think about cum. Like one minute you’re all focusing on something, and the next you can’t stop fantasizing about shoveling gobs of the stuff into your lips. You’d probably fuck or suck just about anything right now."), "passive");
 	}
 	else if(tics == 48)
 	{
-		AddLogEvent(ParseText("You can't seem to go more than a minute without thinking of getting fucked or sucking someone off. When you close your eyes, all you can think about is penises. When someone asks you a question, you have to pause for a few seconds, dragging your thoughts through a melange of pink-tinged fucking. <b>You need some cum.</b>"), "passive");
+		AddLogEvent(ParseText("You can’t seem to go more than a minute without thinking of getting fucked or sucking someone off. When you close your eyes, all you can think about is penises. When someone asks you a question, you have to pause for a few seconds, dragging your thoughts through a melange of pink-tinged fucking. <b>You need some cum.</b>"), "passive");
 	}
 	else if(tics > 60 && tics % 12 == 0)
 	{
-		AddLogEvent(ParseText("You can't seem to go more than a minute without thinking of getting fucked or sucking someone off. When you close your eyes, all you can think about is penises. When someone asks you a question, you have to pause for a few seconds, dragging your thoughts through a melange of pink-tinged fucking. <b>You need some cum.</b>"), "passive");
+		AddLogEvent(ParseText("You can’t seem to go more than a minute without thinking of getting fucked or sucking someone off. When you close your eyes, all you can think about is penises. When someone asks you a question, you have to pause for a few seconds, dragging your thoughts through a melange of pink-tinged fucking. <b>You need some cum.</b>"), "passive");
 	}
 	
 	// Ditz Speech Add-on
@@ -4467,7 +4467,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 					if(knotted) 
 					{
 						ExtendLogEvent(" The knot doesn’t shrink down for at least five minutes after. Had you been balls-deep in a ");
-						if(pc.isAmazon()) ExtendLogEvent("faux-cow, he would've had to sit there and let you fill him.");
+						if(pc.isAmazon()) ExtendLogEvent("faux-cow, he would’ve had to sit there and let you fill him.");
 						else ExtendLogEvent("bitch, she would’ve had to sit there and let you fill her.");
 					}
 					ExtendLogEvent(" <b>You’ll need to get used to having a ");

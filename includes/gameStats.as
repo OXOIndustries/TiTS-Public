@@ -1288,10 +1288,10 @@ public function getCurrentMonth():int
 }
 public function getCurrentDate(dateType:String = ""):int
 {
-	// Maybe started adventure in August 30?
-	var y:int = 2828;
+	// Maybe started adventure in August 29?
+	var y:int = 3027;
 	var m:int = 8;
-	var d:int = 30;
+	var d:int = 29;
 	var currYear:int = (y + minutesToYears(GetGameTimestamp()));
 	var monthDay:Array = getMonthArray("days");
 	var currDay:int = ((d - 1) + minutesToDays(GetGameTimestamp()));
@@ -1360,7 +1360,7 @@ public function prettifyDate(format:String = ""):String
 	
 	switch(format)
 	{
-		case "name": retStr += ( dayWkName[dw] + ", " + monthName[m] + " " + d + ", " + y ); break;
+		case "name": retStr += ( dayWkName[dw] + ", " + monthName[m] + " " + d + ", " + y + " A.C."); break;
 		case "short": retStr += ( dayWkName[dw] + ", " + (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
 		case "digit": retStr += ( (d < 10 ? ("0" + d) : d) + " - " + monthName[m] + " - " + y ); break;
 		default: retStr += ( m + " / " + d + " / " + y ); break;
@@ -5373,22 +5373,10 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Kaede:</b> Met her");
 			if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output2(", Seen with Anno");
 			var kaedePlanets:Array = [];
-			if(flags["PUPPYSLUTMAS_2014"] != undefined) kaedePlanets.push("Ausaril");
-			if(flags["KAEDE_MYRELLION_ENCOUNTER"] != undefined) kaedePlanets.push("Myrellion");
-			if(flags["KAEDE_MET_ON_UVETO"] != undefined) kaedePlanets.push("Uveto");
-			if(kaedePlanets.length > 0)
-			{
-				output2(", Seen on");
-				for(var kp:int = 0; kp < kaedePlanets.length; kp++)
-				{
-					if(kaedePlanets.length > 1 && kp > 0)
-					{
-						if(kp == kaedePlanets.length - 1) output2(" and");
-						else output2(",");
-					}
-					output2(" " + kaedePlanets[kp]);
-				}
-			}
+			if(flags["PUPPYSLUTMAS_2014"] != undefined) kaedePlanets.push(" Ausaril");
+			if(flags["KAEDE_MYRELLION_ENCOUNTER"] != undefined) kaedePlanets.push(" Myrellion");
+			if(flags["KAEDE_MET_ON_UVETO"] != undefined) kaedePlanets.push(" Uveto");
+			if(kaedePlanets.length > 0) output2(", Seen on" + CompressToList(kaedePlanets));
 			if(flags["KAEDE_NT_ENCOUNTER"] != undefined)
 			{
 				output2("\n<b>* Kaede, New Texas Encounter:</b>");
@@ -5735,8 +5723,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2(", Faucet Tier");
 				if(flags["LETS_FAP_RELEASE_TIMER"] != undefined)
 				{
-					var unlockLength:Number = 10080;
-					if(flags["EARLY_LETS_FAPS"] != undefined) unlockLength = 7200;
+					var unlockLength:Number = (flags["EARLY_LETS_FAPS"] == undefined ? 10080 : 7200);
 					output2(", Next video release");
 					if(GetGameTimestamp() - flags["LETS_FAP_RELEASE_TIMER"] < unlockLength) output2(" ready after " + prettifyMinutes(unlockLength - (GetGameTimestamp() - flags["LETS_FAP_RELEASE_TIMER"])));
 					else output2(" at 13:00");
@@ -5747,22 +5734,12 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b>* Steph Irson, Galactic Huntress:</b> Watched");
 				var stephEps:Array = [];
-				if(flags["STEPH_NYAN"] != undefined) stephEps.push("Naleen");
-				if(flags["STEPH_GOOED"] != undefined) stephEps.push("Gray Goo");
-				if(flags["STEPH_COWGIRL"] != undefined) stephEps.push("New Texas");
-				if(flags["STEPH_COCKED"] != undefined) stephEps.push("Nyrea");
-				if(flags["STEPH_DARGONED"] != undefined) stephEps.push("Korgonne");
-				
-				if(stephEps.length > 0)
-				{
-					output2("\n<b>* Steph Irson, Episodes:</b>");
-					for(i = 0; i < stephEps.length; i++)
-					{
-						if(i == 0) output2(" ");
-						else output2(", ");
-						output2(stephEps[i]);
-					}
-				}
+				if(flags["STEPH_NYAN"] != undefined) stephEps.push(" Naleen");
+				if(flags["STEPH_GOOED"] != undefined) stephEps.push(" Gray Goo");
+				if(flags["STEPH_COWGIRL"] != undefined) stephEps.push(" New Texas");
+				if(flags["STEPH_COCKED"] != undefined) stephEps.push(" Nyrea");
+				if(flags["STEPH_DARGONED"] != undefined) stephEps.push(" Korgonne");
+				if(stephEps.length > 0) output2("\n<b>* Steph Irson, Episodes:</b>" + CompressToList(stephEps));
 			}
 			miscCount++;
 		}

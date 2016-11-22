@@ -33,7 +33,7 @@ package classes.Characters
 			this.inventory.push(new Hornitol());
 			this.inventory.push(new RainbowGaze());
 			
-			this.keeperBuy = "<i>“Ah, interested in improving yourself?”</i> Lessau opens up a holoterminal for you displaying a menu of various transformative agents. <i>“Go right ahead, mix and match to your heart’s desire. I’ll have the treatments prepared for you immediately. I will, unfortunately, have to charge for the service, but you'll benefit from the employee discount.”</i>\n\n";
+			this.keeperBuy = "<i>“Ah, interested in improving yourself?”</i> Lessau opens up a holoterminal for you displaying a menu of various transformative agents. <i>“Go right ahead, mix and match to your heart’s desire. I’ll have the treatments prepared for you immediately. I will, unfortunately, have to charge for the service, but you'll benefit from the employee discount.”</i>\n";
 			
 			this.typesBought = [];
 			this.sellMarkup = 1.1;

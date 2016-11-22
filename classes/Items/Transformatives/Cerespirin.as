@@ -58,9 +58,9 @@ package classes.Items.Transformatives
 			//Build a list of all potential TFs
 			var TFList:Array = new Array();
 			
-			var plantSkinColor:Array = ["leaf green", "lime green", "turquoise", "hazel", "mahogany", "fir green"];
+			var plantSkinColor:Array = ["leaf green", "lime green", "turquoise", "hazel", "mahogany", "fir green", "dark green"];
 			var plantBarkColor:Array = ["grayish brown", "chestnut", "umber"];
-			var plantHairColor:Array = ["green", "green", "verdant", "forest green", "jungle green", "yellow-green"];
+			var plantHairColor:Array = ["green", "green", "verdant", "forest green", "jungle green", "yellow-green", "dark green"];
 			var plantEyeColor:Array = ["leaf green", "lime green", "turquoise", "hazel", "mahogany", "fir green"];
 			var flowerColors:Array = ["red", "yellow", "blue", "purple", "pink", "white"];
 			var hasPlantSkin:Boolean = InCollection(target.skinType, [GLOBAL.SKIN_TYPE_PLANT, GLOBAL.SKIN_TYPE_BARK]);

@@ -35,8 +35,9 @@ public function hollidayOweenAlert():void
 	
 	if (!MailManager.isEntryUnlocked("the_masque"))
 	{
-		AddLogEvent("<b>New Email From Wet & Waiting (Wet.N.Waiting@GalLink.org)!</b>", "passive");
+		//AddLogEvent("<b>New Email From Wet & Waiting (Wet.N.Waiting@GalLink.org)!</b>", "passive");
 		MailManager.unlockEntry("the_masque", GetGameTimestamp());
+		MailManager.readEntry("the_masque", GetGameTimestamp());
 	}
 	
 	//// Adds <i>“Poe A”</i> to navigation list

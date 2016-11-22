@@ -48,22 +48,9 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			this.isUsable = false;
+			
 			this.version = _latestVersion;
-		}	
-		//METHOD ACTING!
-		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
-		{
-			if(!kGAMECLASS.infiniteItems()) quantity++;
-			if(target is PlayerCharacter) {
-				//Consume:
-				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("You have no use for this item at present.");
-			}
-			else {
-				kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " cannot use this.");
-			}
-			return true;
 		}
 	}
 }
