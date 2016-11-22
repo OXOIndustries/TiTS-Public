@@ -730,6 +730,13 @@ package classes.GameData.Pregnancy
 					}
 				}
 				
+				// This might be a performance hotspot, we'll see
+				for (var key:String in _uniqueTypes)
+				{
+					var tA:Array = _uniqueTypes[key];
+					tA.sortOn("Days", Array.DESCENDING | Array.NUMERIC);
+				}
+				
 				_uniqueTypesInvalid = false;
 			}
 		}
@@ -789,6 +796,21 @@ package classes.GameData.Pregnancy
 			}
 			
 			return genderTotals;
+		}
+		
+		public function youngestOfUniqueType(childClassT:Class):UniqueChild
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				// This subarrays should already be sorted in ascending order of days-old
+				return _uniqueTypes[cFQN][0];
+			}
+			
+			return null;
 		}
 	}
 }

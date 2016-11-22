@@ -201,6 +201,8 @@ public function configureMails():void
 	MailManager.addMailEntry("champeon_comfirmation", athaChampeonConfirmationEmail, "Thank You For Your Support!", "Atha Peters", "CockAddict001@CumStreamer.com", quickPCTo, quickPCToAddress);
 	
 	MailManager.addMailEntry("steph_on_demand", stephOnDemandMail, "Galactic Huntress: Now on Demand!", "GalacNet VOD", "noreply@galacnet.corp", quickPCTo, quickPCToAddress);
+	
+	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 }
 
 public function cuzName():String

@@ -466,6 +466,12 @@ package classes.GameData
 			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.gendersOfUniqueTypeInRange(childClassT, minAge, maxAge);
 		}
+		
+		static public function youngestOfUniqueType(childClassT:Class):UniqueChild
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.youngestOfUniqueType(childClassT);
+		}
 	}
 
 }

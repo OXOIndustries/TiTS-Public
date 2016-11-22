@@ -1884,6 +1884,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processDrBadgerEvents(deltaT, doOut);
 	varmintDisappearChance(deltaT, doOut);
 	processEmmyEvents(deltaT, doOut, totalDays);
+	processZheniyaEvents(deltaT, doOut, totalDays);
 	
 	// Per-day events
 	if (totalDays >= 1)

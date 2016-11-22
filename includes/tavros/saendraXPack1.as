@@ -1198,6 +1198,7 @@ public function zilCallgirlAvailable():Boolean
 	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 1 && GetGameTimestamp() - flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] > 1440) return true;
 	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 2) return false;
 	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 3) return false;
+	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 4) return false;
 
 	trace("Unhandled disabled type for ZilCallgirl");
 	return false;
@@ -1219,9 +1220,13 @@ public function zilCallGirlAddendum(slot:int = 0):void
 		// [Call Girl] (Repeat Meeting)
 		else
 		{
-			if (zilCallGirlPregnant() && flags["ZIL_CALLGIRL_PREGNANT_TOLD"] == undefined)
+			if (zilCallGirlPregnant(true) >= 5 && flags["ZIL_CALLGIRL_PREGNANT_TOLD"] == undefined)
 			{
 				zilCallgirlPregnancyNotice();
+			}
+			else if (zilCallGirlPregnant(true) >= 5 && flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == 1 && flags["ZIL_CALLGIRL_PREGNANT_TOLD"] == 1)
+			{
+				zilCallgirlPregnantAgain();
 			}
 			else
 			{
@@ -1240,35 +1245,26 @@ public function zilCallgirlPregnancyNotice():void
 
 	output("You walk right up to the call girl’s door and give it a quick knock, but you’re surprised when, rather than the usual throaty, seductive voice calling you in, you’re met with only silence. You knock once more just to be sure, but after waiting several long moments for a response, you decide that you should just return later.");
 	
-	
 	output("\n\nIt’s then that you hear a series of sharp, tight </i>clicks<i> approaching behind you. You turn to spot the sultry golden-skinned woman you were hoping to see, though you don’t recall ever having seen her wearing this many clothes before. Her strappy, red platform heels make one last pair of hard taps on the walkway as she comes to a stop, just barely out of arm’s reach. Your eyes slide slowly from her red-painted toes, up her long, shapely legs and pink stockings, past her fuckable, womanly hips, and beyond her [zilCallgirl.chest], finally meeting her own rich, deep eyes.");
-	
 	
 	output("\n\nShe interrupts your silent admiration with a quiet laugh. <i>“Hey there, sweet thing. You’re just the [pc.manWoman] I was hoping to see,”</i> she purrs, her eyes narrowing seductively.");
 	
-	
 	output("\n\nShe steps toward you, slipping her hand into yours and laying your [pc.arm] around her shoulder. <i>“Come on in, sugar, I need to talk to you about something.”</i>");
-	
 	
 	output("\n\nYour eyes wander curiously as she flips on the lights and leads you inside. It’s strange to see the room so clean and well-lit for once, and refreshing that it doesn’t have the usual lustful, choking smell of incense, sweat, and jizz that it usually does. She slips out from under your arm, grabbing a chair and spinning it to face her bed, sitting herself down on it.");
 	
-	
 	output("\n\nSomehow, seeing her this way seems even more sexy than usual: her light, natural makeup unmarred by tears, sweat, and cum, and her desirable body clothed in a tight, playful dress. You’re offered a tantalizing glimpse of her inner thighs as her legs cross; her long, slender fingers directing you to sit yourself on her bed.");
 	
-	
 	output("\n\n<i>“So, </i>lover<i>,”</i> she begins tentatively, leaning forward to rest her warm hand on your [pc.thigh]. <i>“It’s about us.”</i> She pauses, lightly brushing your [pc.leg] with her long, red, manicured nails.");
-	
 	
 	output("\n\n<i>“Or, it </i>might<i> be about us,”</i> she continues softly, her usual sultry confidence mired by uncertainty.");
 	if (pc.isNice()) output(" You place your hand comfortingly over her own, lightly squeezing as you meet her gaze and nod for her to continue.");
 	else if (pc.isAss()) output(" You cross your arms with a huff and tell her to spit it out already.");
 	else output(" You meet her gaze with your [pc.eyes] and urge her onward.");
 	
-	
 	output("\n\n<i>“Well, sugar, I’ve enjoyed our time together. I </i>really<i> have...”</i> she trails off slightly as her free hand reaches up to sensually trace her chest. <i>“And I’m not just saying that!”</i> she adds, reassuringly.");
 	
 	output("\n\n<i>“See, sweetie, in my line of work I have to try and keep my... relationships with my customers from becoming too... burdensome. Ever since I came here, I’ve used a natural Mhen’gan contraceptive, which really works! Or, at least it did...”</i> she casts her eyes downward, simply staring at the ground for several moments as your own [pc.eyes] widen in realization at what she must mean. She grips your [pc.thigh] tighter as she seems to steel herself, her usual strong, gentle resolve returning as she commits to addressing this.");
-	
 	
 	output("\n\n<i>“Lover, I’ve had morning sickness for days, now. I just returned from the clinic. I’m pregnant. It’s yours,”</i> she hits you directly, clearly done with dancing around the subject.");
 
@@ -1286,9 +1282,7 @@ public function zilCallgirlPregnancyNoticeSo():void
 
 	output("She turns away, dejected. <i>“I-I see... I suppose you have a point,”</i> she mutters softly to herself as she gets up, slowly walking to the door with her head downturned.");
 	
-	
 	output("\n\n<i>“I just thought you should know, sugar.”</i> She dons a false grin and raises her head as she opens the door. <i>“That’s all I needed to talk to you about, "+ pc.mf("sir", "miss") +",”</i> she says, ushering you out the door.");
-	
 	
 	output("\n\nYou shrug and rise to your [pc.feet], walking out the door.");
 	if (pc.isNice() || pc.isMisc()) output(" You’re about to turn back to say goodbye when you hear the door click closed behind you, followed by the lock engaging.");
@@ -1296,6 +1290,7 @@ public function zilCallgirlPregnancyNoticeSo():void
 
 	flags["ZIL_CALLGIRL_DISABLED_TYPE"] = 1;
 	flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] = GetGameTimestamp();
+	flags["ZIL_CALLGIRL_PREGNANCY_SO"] = 1;
 
 	processTime(5);
 	clearMenu();
@@ -1393,6 +1388,7 @@ public function zilCallgirlPregnancyMineMerge():void
 	
 	output("\n\n<i>“Free of charge, of course,”</i> she follows, planting a quick kiss on your [pc.lips].");
 
+	flags["ZIL_CALLGIRL_PREGNANT_TOLD"] = 1;
 	flags["ZIL_CALLGIRL_NAME_KNOWN"] = 1;
 
 	processTime(5);
@@ -1404,11 +1400,19 @@ public function zilCallgirlPregnancyMineMerge():void
 public function showZilCallGirl(cum:Boolean = false):void
 {
 	if (CodexManager.entryViewed("Zil")) showName("ZIL\nCALL GIRL");
-	else showName("ALIEN\nCALL GIRL");
+	else if (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined) showName("ALIEN\nCALL GIRL");
+	else showName("\nZHENIYA");
 	
 	var sBust:String = "ZIL_CALLGIRL";
+
+	if (zilCallgirlAtNursery())
+	{
+		sBust += "_UNIFORM";
+	}
+
 	if (zilCallGirlPregnant()) sBust += "_PREG";
 	if (cum) sBust += "_CUM";
+	
 	showBust(sBust);
 }
 
@@ -1426,28 +1430,11 @@ public function zilCallGirlSexed(count:Boolean = false):int
 
 public function zilCallGirlKnockUp(nVirility:Number = 0):void
 {
-	// 9999 : Disabled until preg stuff is written!
-	return;
-	
-	// Set up variables for when she get's knocked up!
-	// Codex: "Gestation takes between six and seven months, with the resulting progeny born as fraternal twins or triplets."
-	
-	// Already visibly pregnant? Don't add more children!
-	if (zilCallGirlPregnant()) return;
-	// Already got buns in the oven? Chance to stack some more buns if virile enough! (rare!)
-	else if (flags["ZIL_CALLGIRL_EGG_COUNT"] != undefined && rand(10) == 0)
-	{
-		if (nVirility >= 1.00) flags["ZIL_CALLGIRL_EGG_COUNT"] += rand(2);
-		if (nVirility >= 1.50) flags["ZIL_CALLGIRL_EGG_COUNT"] += rand(2);
-		if (nVirility >= 2.00) flags["ZIL_CALLGIRL_EGG_COUNT"] += rand(2);
-		// No more than octuplets for this mommy...
-		if (flags["ZIL_CALLGIRL_EGG_COUNT"] > 8) flags["ZIL_CALLGIRL_EGG_COUNT"] = 8;
-		return;
-	}
-	// Already gestating? Don't reset the values!
-	else if (flags["ZIL_CALLGIRL_GESTATION"] != undefined) return;
-	
-	// 9999 : Insert any baby tracking stats here (like body part types/colors or anything else that is necessary) Left blank for now to keep it simple!
+	// Already visibly pregnant? Early return
+	if (flags["ZIL_CALLGIRL_EGG_COUNT"] != undefined) return;
+
+	// If birthed == 2, then she's now sterile (result of 'I'm preg' > 'So?')
+	if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 2) return;
 	
 	// Pregnancy chance based on virility!
 	if
@@ -1460,23 +1447,21 @@ public function zilCallGirlKnockUp(nVirility:Number = 0):void
 		flags["ZIL_CALLGIRL_EGG_COUNT"] = 2;
 		if (nVirility >= 1.75 || (nVirility >= 1.5 && rand(2) == 0)) flags["ZIL_CALLGIRL_EGG_COUNT"]++;
 		if (nVirility >= 2 && rand(10) == 0) flags["ZIL_CALLGIRL_EGG_COUNT"] += rand(4);
-		// ZIL_CALLGIRL_GESTATION : Total gestation time.
 		flags["ZIL_CALLGIRL_GESTATION"] = ((180 + rand(31)) * 24 * 60);
-		// ZIL_CALLGIRL_PREG : Impregnated timestamp.
 		flags["ZIL_CALLGIRL_PREG"] = GetGameTimestamp();
 	}
 	return;
 }
 
-public function zilCallGirlPregTime(percentage:Boolean = false):Number
+public function zilCallGirlPregTime(percentage:Boolean = false, deltaT:uint = 0):Number
 {
 	if (flags["ZIL_CALLGIRL_PREG"] != undefined && flags["ZIL_CALLGIRL_GESTATION"] != undefined)
 	{
-		var pregTime:Number = (GetGameTimestamp() - flags["ZIL_CALLGIRL_PREG"]);
+		var pregTime:Number = ((GetGameTimestamp() + deltaT) - flags["ZIL_CALLGIRL_PREG"]);
 		// Returns a percentage 0% to 100% of completion, for simplicity!
 		if (percentage) return formatFloat(((pregTime / flags["ZIL_CALLGIRL_GESTATION"]) * 100), 2);
 		// Otherwise, returns the time pregnant (in minutes)
-		else return pregTime;
+		return pregTime;
 	}
 	return -1;
 }
@@ -1525,40 +1510,22 @@ public function zilCallGirlGo(hasSeen:Boolean = false):void
 		
 		processTime(2);
 	}
-	// Repeat (preggers)
-	else if (zilCallGirlPregTime(true) >= 100)
+	else if(flags["ZIL_CALLGIRL_PREGNANCY_SO"] == 1 && flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 1)
 	{
-		output("You head to the call girl's door and give it a quick knock.");
-		
-		processTime(1);
-		
-		// Birthing!
-		if (zilCallGirlPregTime(true) < 105)
-		{
-			output(".. and the door automatically slides ajar. Odd, but you");
-			if (pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" clop");
-			else if (pc.isNaga()) output(" slither");
-			else if (pc.isGoo()) output(" slide");
-			else if (pc.isDrider()) output(" skitter");
-			else output(" step");
-			output(" inside anyway. It seems the door was left unlocked like she was expecting you...");
-			
-			addButton(0, "Next", zilCallGirlPregScene, true);
-			return;
-		}
-		// Already birthed!
-		else
-		{
-			output(" A familiar, seductive voice answers, <i>“Come on in, my baby daddy!”</i>");
-			output("\n\n");
-			if (StatTracking.getStat("pregnancy/zil call girl kids") > 0) output("You know what that means... more children! You slide the door open and slip inside.");
-			else output("Baby daddy? Does that mean... Before completing the thought, you quickly slide the door open and jump inside.");
-			
-			addButton(0, "Next", zilCallGirlPregScene, false);
-			return;
-		}
+		zhenSoResponsePregReturn();
 	}
-	// Repeat (normal)
+	else if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 1 && flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] == 1)
+	{
+		flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = undefined;
+		output("<i>“[pc.name]!”</i> a jubilant, if tired, voice calls from inside as you enter Zheniya’s home. You peek your head into the bedroom, and are greeted by the familiar sight of your zil lover sitting naked on her bed, now dramatically less gravid... though, you note happily, her breasts, hips, and ass all look delightfully thicker than when you first met her.");
+
+		var ZC:ZilCallgirlUniqueChild = ChildManager.youngestOfUniqueType(ZillCallgirlUniqueChild);
+
+		output("\n\nZheniya rests back on her arms, smiling at you with those plush black lips of hers. <i>“Thank you again, for everything, love. I’ve left our new "+ZC.describeCollection("son", "daughter", "children") +" at your nursery, as you asked.");
+		if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == 1) output(" The woman working there, Briget, was quite lovely.");
+		else output(" Briget was delighted to see me again. She’s quite enamored of you, [pc.name], and your growing brood.");
+		output(" The clinic told me to take it easy for the next few days, but... I think I’m more than ready to welcome my baby’s father into my bed, if that’s what you’ve come for. Ooh, it’s been too long since I felt svelte and agile! Let’s take advantage, sweet thing, what do you say?”</i>");
+	}
 	else
 	{
 		output("You walk right up to the call girl's door and give it a quick knock. A throaty, seductive voice answers your summons from within: <i>“Come on in, sugar!”</i>");
@@ -1590,16 +1557,41 @@ public function zilCallGirlGo(hasSeen:Boolean = false):void
 	return;
 }
 
-public function zilCallgirlSexMenu():void
+public function zhenSoResponsePregReturn():void
+{
+	clearOutput();
+	showZilCallGirl();
+
+	flags["ZIL_CALLGIRL_HAS_BIRTHED"] = 2;
+
+	output("<i>“Hello, [pc.name],”</i> the zil callgirl says as you step into her apartment. Something immediately strikes you as different upon entrance: the normally ever-present scent of sex and incense is muted, and the lights are turned up to the station’s norm rather than the dusky, sensual dim red as before. You take a look around, eventually finding the waspy whore sitting on the side of her bed, cradling a pink bundle in her arms. A pair of tiny yellow hands reach up from inside it, latched onto one of her breasts. A child, nursing.");
+
+	output("\n\n<i>“I’m sorry, I’m a bit busy at the moment,”</i> she says, favoring you with an apologetic smile. <i>“Your daughter here is as obsessed with my honey as you are. Come back in a bit when I’ve put her to bed... and had a chance to try some of this wonderful Sterillex the clinic staff gave me. Then it’s back to business... though I’m afraid I’ll be raising my prices a bit to make up for this extra mouth I need to feed. You understand, hmm?”</i>");
+
+	output("\n\nYou nod and step out.");
+	//Zill Callgirl becomes sterile permanently. Increase her price to 620 a pop.
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function zilCallgirlPrice():int
+{
+	if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 2) return 620;
+	if (flags["ZIL_CALLGIRL_PREGNANCY_MONEY"] == 1) return 650;
+	return 500;
+}
+
+public function zilCallgirlSexMenu(isFreebie:Boolean = false):void
 {
 	clearMenu();
 
 	if (flags["ZIL_CALLGIRL_PREGNANCY_MONEY"] != 2)
 	{
 		if (pc.lust() < 33) addDisabledButton(0, "Rent Her", "Rent Her", "You are not turned on enough for this.");
-		else if (pc.credits < (flags["ZIL_CALLGIRL_PREGNANCY_MONEY"] == 1 ? 650 : 500)) addDisabledButton(0, "Rent Her", "Rent Her", "You don’t have enough credits!");
+		else if (!isFreebie && pc.credits < zilCallgirlPrice()) addDisabledButton(0, "Rent Her", "Rent Her", "You don’t have enough credits!");
 		else if (!pc.hasGenitals()) addDisabledButton(0, "Rent Her", "Rent Her", "You’d need some genitals to fully enjoy the experience...");
-		else addButton(0, "Rent Her", zilCallGirlCall, true, "Rent Her", "Pay the lovely call girl’s fee and have a little fun.");
+		else addButton(0, "Rent Her", zilCallGirlCall, [true, isFreebie], "Rent Her", "Pay the lovely call girl’s fee and have a little fun.");
 	}
 	else
 	{
@@ -1610,7 +1602,7 @@ public function zilCallgirlSexMenu():void
 		else addDisabledButton(2, "Stop Whoring");
 	}
 
-	addButton(1, "Nevermind", zilCallGirlCall, false, "Nevermind", "Maybe this was a bad idea.");
+	addButton(1, "Nevermind", zilCallGirlCall, [false, isFreebie], "Nevermind", "Maybe this was a bad idea.");
 }
 
 public function zilCallgirlStopWhoringTooltip():String
@@ -1669,7 +1661,7 @@ public function zilCallgirlStopWhoring(fromPregnancyTalk:Boolean = true):void
 		else if (flags["ZIL_CALLGIRL_PREGNANCY_MONEY"] == 2)
 		{
 			output("\n\n<i>“Is that how you feel, [pc.name]?”</i> Zheniya muses, pursing her lips as if in thought. <i>“You know I appreciate all the help you’ve offered me in this - I </i>really<i> do. Hearing you wanted to play father for me meant the world. But a girl’s still got to make a living, sugar. Your nursery is");
-			if (flags["ZIL_CALLGIRL_BIRTHED"] == undefined) output(" going to be");
+			if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == undefined) output(" going to be");
 			output(" a big help and all, but that doesn’t take care of </i>me<i>.”</i>");
 			
 			output("\n\nShe gives you an apologetic smile. <i>“Besides, income aside, I just love - my - job,”</i> she punctuates each word with a kiss on your neck and a grind on your hips...");
@@ -1692,7 +1684,7 @@ public function zilCallgirlStopWhoring(fromPregnancyTalk:Boolean = true):void
 
 
 		output("\n\n<i>“And before you ask,”</i> she says, putting a black-plated finger on your [pc.lips], <i>“I don’t want you to completely support me. A little help with");
-		if (flags["ZIL_CALLGIRL_BIRTHED"] == undefined || flags["ZIL_CALLGIRL_BIRTHED"] == 1) output(" the baby");
+		if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == undefined || flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 1) output(" the baby");
 		else output(" our kids");
 		output(" is one thing, but I hate the idea of being dependent on anybody. I... well, I have my reasons. But I’ve got to do </i>something<i> for myself. Understand?”</i>");
 
@@ -1792,8 +1784,11 @@ public function zilCallgirlFatherFreebies():void
 	addButton(2, "Get Honey", zilCallGirlSuckleHoney, undefined, "Suckle Honey", "Your hands on the waspy girl’s breast gives you an idea...");
 }
 
-public function zilCallGirlCall(rentHer:Boolean = false):void
+public function zilCallGirlCall(opts:Array):void
 {
+	var rentHer:Boolean = opts[0];
+	var freebie:Boolean = opts[1];
+
 	clearOutput();
 	generateMapForLocation("CALLGIRL ROOM");
 	showZilCallGirl();
@@ -1811,11 +1806,11 @@ public function zilCallGirlCall(rentHer:Boolean = false):void
 	else
 	{
 		output("<i>“Alright. Let’s have some fun,”</i> you smile, stepping into the whore’s room and sliding the door closed behind you. It seals with a pneumatic hiss, leaving the two of you alone and basking in the heady mix of incense, sweat, and sex that clings to the air of her room.");
-		if (flags["ZIL_CALLGIRL_PREGNANCY_MONEY"] != 2)
+		if (flags["ZIL_CALLGIRL_PREGNANCY_MONEY"] != 2 && !freebie)
 		{
 			output(" She nods her head towards a small cred-chit reader tucked onto a dresser near her bed, and you make quick work of paying your fee.");
 			output("\n\nYour heart flutters as the call girl smiles and spreads her legs invitingly, patting a thigh. <i>“Perrrrfect. I’m all yours then, lover. Come and get it!”</i>");
-			pc.credits -= (500 + (flags["ZIL_CALLGIRL_PREGNANCY_MONEY"] == 1 ? 150 : 0));
+			pc.credits -= zilCallgirlPrice();
 		}
 		else
 		{
@@ -2143,7 +2138,7 @@ public function zilCallGirlPregScene(isBirthing:Boolean = false):void
 	}
 	
 	// Tracking number of kids:
-	StatTracking.track("pregnancy/zil call girl kids", flags["ZIL_CALLGIRL_EGG_COUNT"]);
+	
 	// Clear preg tracking.
 	flags["ZIL_CALLGIRL_EGG_COUNT"] = undefined;
 	flags["ZIL_CALLGIRL_GESTATION"] = undefined;
@@ -2197,9 +2192,38 @@ public function zheniyaInAppt():void
 	clearOutput();
 	showZilCallGirl();
 
-	output("You walk over to Zheniya and slip an arm around her supple waist, pulling your lover into warm embrace. She purrs a wordless murmur of affection, tracing kisses up your neck. Her "+zilCallGirlBellyFragment()+" presses against you, and her heavy, honey-filled breasts quake with her every husky breath.");
+	if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 1 && flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] == 1)
+	{
+		flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = undefined;
+		output("<i>“[pc.name]!”</i> a jubilant, if tired, voice calls from inside as you enter Zheniya’s home. You peek your head into the bedroom, and are greeted by the familiar sight of your zil lover sitting naked on her bed, now dramatically less gravid... though, you note happily, her breasts, hips, and ass all look delightfully thicker than when you first met her.");
 
-	output("\n\n<i>“Hello, sweet thing,”</i> she breathes into your [pc.ear], running her chitinous digits down your back. So close to your zil lover, now, your senses are assailed by her sensual scent: honey and perfume and bare female sex: an alluring vapor that has you {half-hard // wet} in the blink of an eye. <i>“Come to {still 1st preg: play with this mother-to-be? //has had kid: see your mate, have you? //has had 2+ kids: visit your beloved brood-mother again?}”</i>");
+		var ZC:ZilCallgirlUniqueChild = ChildManager.youngestOfUniqueType(ZillCallgirlUniqueChild);
+
+		output("\n\nZheniya rests back on her arms, smiling at you with those plush black lips of hers. <i>“Thank you again, for everything, love. I’ve left our new "+ZC.describeCollection("son", "daughter", "children") +" at your nursery, as you asked.");
+		if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == 1) output(" The woman working there, Briget, was quite lovely.");
+		else output(" Briget was delighted to see me again. She’s quite enamored of you, [pc.name], and your growing brood.");
+		output(" The clinic told me to take it easy for the next few days, but... I think I’m more than ready to welcome my baby’s father into my bed, if that’s what you’ve come for. Ooh, it’s been too long since I felt svelte and agile! Let’s take advantage, sweet thing, what do you say?”</i>");
+	}
+	else if (zilCallgirlPregnant(true) && flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 1 && flags["ZIL_CALLGIRL_PREGNANT_TOLD"] == 1)
+	{
+		zilCallgirlPregnantAgain();
+		return;
+	}
+	else
+	{
+
+		output("You walk over to Zheniya and slip an arm around her supple waist, pulling your lover into warm embrace. She purrs a wordless murmur of affection, tracing kisses up your neck. Her "+zilCallGirlBellyFragment()+" presses against you, and her heavy, honey-filled breasts quake with her every husky breath.");
+
+		output("\n\n<i>“Hello, sweet thing,”</i> she breathes into your [pc.ear], running her chitinous digits down your back. So close to your zil lover, now, your senses are assailed by her sensual scent: honey and perfume and bare female sex: an alluring vapor that has you");
+		if (pc.hasCock()) output(" half-hard");
+		else if (pc.hasVagina()) output(" wet");
+		else output(" worked up");
+		output(" in the blink of an eye. <i>“Come to");
+		if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == undefined && zilCallGirlPregnant(true) >= 5) output(" play with this mother-to-be?");
+		else if (StatTracking.getStat("pregnancy/zil call girl kids") < 5) output(" see your mate, have you?");
+		else output(" visit your beloved brood-mother again?");
+		output("”</i>");
+	}
 
 	clearMenu();
 	addButton(0, "Sex", zheniyaApptSex, undefined, "Sex", "Fuck your zil lover.");
@@ -2281,5 +2305,118 @@ public function zheniyaApptGetHoney():void
 
 		output("\n\n");
 		zilCallGirlSuckleHoney(false);
+	}
+}
+
+public function processZheniyaEvents(deltaT:uint, doOut:Boolean, totalDays:int):void
+{
+	var pPerc:Number = zilCallgirlPregnant(true, deltaT);
+
+	if (pPerc >= 100 && flags["ZIL_CALLGIRL_DISABLED_TYPE"] != 4)
+	{
+		flags["ZIL_CALLGIRL_DISABLED_TYPE"] = 4;
+		flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] = GetGameTimestamp() + deltaT;
+	}
+	else if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 4)
+	{
+		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 60) < (GetGameTimestamp() + deltaT) && flags["ZIL_CALLGIRL_PREGMAIL"] == undefined)
+		{
+			zilCallGirlPregnancyEnds(deltaT);
+		}
+
+		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 360) < GetGameTimestamp() + deltaT)
+		{
+			flags["ZIL_CALLGIRL_DISABLED_TYPE"] = undefined;
+			flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] = undefined;
+		}
+	}
+}
+
+private var _tempZilGirlChildRef:ZilCallgirlUniqueChild;
+
+public function zilCallGirlBirthMessage():String
+{
+	var cs:String;
+
+	if (_tempZilGirlChildRef == null || (_tempZilGirlChildRef.Male == 1 && _tempZilGirlChildRef.Female == 0)) cs = "Our staff has taken her in and delivered a health son. She and your child";
+	else if (_tempZilGirlChildRef.Female == 1 && _tempZilGirlChildRef.Male == 0) cs = "Our staff has taken her in and delivered a health daughter. She and your child";
+	else if (_tempZilGirlChildRef.Female == 1 && _tempZilGirlChildRef.Male == 1) cs = "Our staff has taken her in and delivered a health son and daughter. She and your children";
+	else cs = "Our staff has taken her in and delivered "+num2Text(_tempZilGirlChildRef.Quantity + " children. She and your offspring";
+
+	var m:String = "Hello, "+pc.mf("Mr", "Miss") +". Steele, I'm writing on behalf of Zheniya to inform you that your partner arrived at the Tavros Residential Clinic a few moments ago, having gone into labor. "+cs+" should be free to return home within the next few hours.\n\nCongratulations!\n\nNurse Carter\nTavros Residential Clinic, Deck 45\n<i>Healthier living for tomorrow.</i>";
+
+	return m;
+
+	_tempZilGirlChildRef = null;
+}
+
+public function zilCallGirlPregnancyEnds(deltaT:uint):void
+{
+	_tempZilGirlChildRef = new ZilCallgirlUniqueChild();
+	c.RaceType = GLOBAL.TYPE_ZIL;
+	c.BornTimestamp = GetGameTimestamp() + deltaT;
+	c.MaturationRate = 1.0;
+
+	for (var i:int = 0; i < flags["ZIL_CALLGIRL_EGG_COUNT"]; i++)
+	{
+		if (rand(2) == 0) c.Male++;
+		else c.Female++;
+	}
+
+	StatTracking.track("pregnancy/zil call girl kids", flags["ZIL_CALLGIRL_EGG_COUNT"]);
+
+	flags["ZIL_CALLGIRL_PREGMAIL"] = undefined;
+	flags["ZIL_CALLGIRL_EGG_COUNT"] = undefined;
+	flags["ZIL_CALLGIRL_GESTATION"] = undefined;
+	flags["ZIL_CALLGIRL_PREG"] = undefined;
+	if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == undefined) flags["ZIL_CALLGIRL_HAS_BIRTHED"] = 1;
+	flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = 1;
+	if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == undefined) flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] = 1;
+	else flags"ZIL_CALLGIRL_TOTAL_BIRTHS"]++;
+
+	MailManager.clearEntry("zil_callgirl_birth"); // Removes cached text but also sets timestamps to default
+	MailManager.unlockEntry("zil_callgirl_birth"); // Regenerates cache and sets new appropriate timestamp
+}
+
+public function zilCallgirlPregnantAgain():void
+{
+	clearOutput();
+	showZilCallGirl();
+
+	flags["ZIL_CALLGIRL_PREGNANT_TOLD"] = 2;
+
+	output("<i>“Oh, [pc.name],”</i> you hear a sing-song voice call from inside before you’re halfway through the door. Zheniya is in your arms a moment later, hopping up into a hug that all but spins you around and into her waiting bed. You gasp, reeling as zil girl settles on her knees overtop you, both hands planted on her [zilCallgirl.belly].");
+
+	output("\n\n");
+	if (zilCallgirlPregnant(true) <= 33) output("I’ve just come back from the clinic, sweetie. It seems like no matter how carefully I prepare, your seed is simply too virile for my poor herbs and teas to contend with. I’m pregnant again!");
+	else output("See what you’ve done, [pc.name]?”</i> she coos, running her dark fingers along the stretched-taut flesh of her belly. <i>“Nothing I do seems able to stop you, you awful... sexy... wonderful beast! We’re going to be parents once more, as you can see.”</i>");
+
+	output("\n\nYou blink in surprise, but soon find your hands playing across hers, and onto her [zilCallgirl.belly]. She moans huskily, leaning down and planting kisses along your neck and jaw, finally working her way up to one long, tongue-filled, lip-sucking; she lets you pull her flush against yourself");
+	if (zilCallGirlPregnant(true) >= 50) output(" - or at least as much as her gravid belly will allow - ");
+	else output(",");
+	output(" and guides your hands around to her bare, wiggling behind. You give it a smack, and see coos into your [pc.ear], chest heaving against yours. It’s an easy thing to roll her over onto her back, letting those chitinous legs of hers curl around your [pc.hips], her bare sex rubbing invitingly against your");
+	if (!pc.hasCock()) output(" crotch.");
+	else output(" stiffening cock.");
+
+	if (flags["ZIL_CALLGIRL_PREGNANCY_MONEY"] != 2)
+	{
+		output("\n\n<i>“How about a night on me to celebrate, [pc.name]?”</i> Zheniya offers,");
+	}
+	else
+	{
+		output("\n\n<i>“Come on, lover. Let’s celebrate...”</i> the waspy beauty whispers,");
+	}
+	output(" pulling at your [pc.gear].");
+
+	if (currentLocation == "RESIDENTIAL DECK ZHENIYA")
+	{
+		clearMenu();
+		addButton(0, "Sex", zheniyaApptSex, undefined, "Sex", "Fuck your zil lover.");
+		addButton(1, "Get Honey", zheniyaApptGetHoney, undefined, "Get Honey", "Ask Zheniya for a little of her sweet, sweet honey to go.");
+		addButton(14, "Back", zheniyaApptBack);
+	}
+	else
+	{
+		zilCallgirlSexMenu(true);
 	}
 }
