@@ -772,7 +772,7 @@ package classes.Items.Transformatives
 			
 			if (!(target is PlayerCharacter))
 			{
-				output(target.capitalA + target.short + " swollows the pill but to no effect.");
+				output(target.capitalA + target.short + " swallows the pill but to no effect.");
 				return false;
 			}
 			

@@ -188,6 +188,7 @@
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
+		include "../includes/vesperia/vendingMachine.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
@@ -441,7 +442,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.97";
+			version = "0.6.98";
 
 			//temporary nonsense variables.
 			temp = 0;

@@ -423,7 +423,7 @@ public function steeleBiomedGangbang():void
 	{
 		output("\n\nYou start by reaching for a cute-looking wolf boy - originally an ausar, you’re guessing - giving him a round of ear-scratching. The attention quickly causes him to look up after the initial shiver, right into a perfect view of your " + pc.mf("undercleavage", "chest and teasing smirk") + ".");
 		output("\n\n<i>“Up for some fun?”</i> you ask as you keep your hand in place, continuing to scratch his ears. Your other hand reaches up to ");
-		if (!pc.isChestExposed)
+		if (!pc.isChestExposed())
 		{ 
 			if (pc.hasArmor()) output("pull your [pc.armor] "); 
 			if (pc.isChestGarbed()) output("and [pc.undertop] "); 
@@ -431,7 +431,7 @@ public function steeleBiomedGangbang():void
 		}
 		else output("run along your naked [pc.chest] invitingly");
 		output(", making it clear exactly what kind of fun you’re interested in. You cast your gaze around the room in an open invitation, hoping someone else will be bold enough to come forward. To your delight, you soon feel a pair of large, fur-covered hands slip under your arms to lay over your chest, and a pair of gigantic breasts squish against your back.");
-		if (pc.hasWings) output(" Ooh, <i>damn</i> that feels good against your wingpoints.");
+		if (pc.hasWings()) output(" Ooh, <i>damn</i> that feels good against your wingpoints.");
 		
 		output("\n\n<i>“");
 		if(pc.tone >= 60 && pc.biggestTitSize() < 1) output("Mmm, </i>nice<i> tone, boss.");
@@ -532,7 +532,7 @@ public function steeleBiomedGangbangIII():void
 	showName("STEELE\nBIOMED");
 	author("COUCH");
 	
-	output("Hours pass before you rouse from your sexual stupor. You’ve fucked practically everyone in the room, most of them at least twice and some far more than that. " + (pc.hasVagina ? "Both of your holes feel" : "Your ass feels") + " thoroughly used and your belly looks thick and pregnant, your stomach having long since given up on complaining about all the cum you’ve taken in your greedy lust. The desk under you is soaked and there’s still a multicolored river of a dozen different types of semen bubbling forth from between your legs.");
+	output("Hours pass before you rouse from your sexual stupor. You’ve fucked practically everyone in the room, most of them at least twice and some far more than that. " + (pc.hasVagina() ? "Both of your holes feel" : "Your ass feels") + " thoroughly used and your belly looks thick and pregnant, your stomach having long since given up on complaining about all the cum you’ve taken in your greedy lust. The desk under you is soaked and there’s still a multicolored river of a dozen different types of semen bubbling forth from between your legs.");
 	output("\n\n<i>“Oof…”</i> you hear Cynthia groan from underneath you, her own belly somewhat less bloated than yours but still noticeably swollen with cum. <i>“Nothing like a good gangbang, huh boss?”</i>");
 	output("\n\n<i>“" + (flags["BIOMED_GANGBANGED"] == undefined ? "You all can call me [pc.name]" : "I told you, call me [pc.name]") + ",”</i> you reply a little dreamily, still basking in the afterglow. Cynthia chuckles at this, managing to find the strength after a bit to ease the both of you to your feet.");
 	output("\n\n<i>“Well then, [pc.name], let’s get you cleaned up before Lessau comes out here. He doesn’t mind if we fuck, but he’ll get pissed if we leave the place dirty afterwards.”</i> She takes a brief look around the room; most of her coworkers are cuddling with one another or have returned to their consoles as if they hadn’t just partaken in a massive orgy. <i>“The rest of you, this place had better be as neat as it was when [pc.name] came in here by the time I get back.”</i>");
