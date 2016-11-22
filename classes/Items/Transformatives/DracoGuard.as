@@ -759,7 +759,7 @@
 			}
 			else
 			{
-				output(target.capitalA + target.short + " swollows the DracoGuard pill to no effect.");
+				output(target.capitalA + target.short + " swallows the DracoGuard pill to no effect.");
 			}
 			return false;
 		}
