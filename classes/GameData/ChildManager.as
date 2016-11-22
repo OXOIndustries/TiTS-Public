@@ -2,6 +2,7 @@ package classes.GameData
 {
 	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.Pregnancy.Containers.Genders;
+	import classes.Items.Guns.EmmysSalamanderPistol;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.Pregnancy.ChildCache;
 	import classes.GameData.Pregnancy.UniqueChild;
@@ -214,6 +215,12 @@ package classes.GameData
 			return CACHE.inAgeRangeYears(minAge, maxAge);
 		}
 		
+		public static function mobileInAgeRangeYears(minAge:int, maxAge:int = -1):Boolean
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.filteredInAgeRangeYears(minAge, maxAge, CACHE.isMobileFilter);
+		}
+		
 		/**
 		 * Determine if the player has any children in the specified age range in months.
 		 * @param	minAge
@@ -332,6 +339,13 @@ package classes.GameData
 			return CACHE.numOfGendersInRange(genderTypes, minAge, maxAge);
 		}
 		
+		static public function numOfMobileGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1):Genders
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.filteredNumOfGendersInRange(genderTypes, minAge, maxAge, CACHE.isMobileFilter);
+		}
+		
+		
 		/**
 		 * Determine if the player has any children of a specific racial type
 		 * between the desired age range in months.
@@ -425,21 +439,6 @@ package classes.GameData
 			return CACHE.getChildrenOfType(ofType);
 		}
 		
-		// Check to see if child can actually roam freely in the nursery!
-		static public function canRoam(RaceType:int):Boolean
-		{
-			var noRoamTypeList:Array = [
-				GLOBAL.TYPE_TENTACLE,
-				GLOBAL.TYPE_CUNTSNAKE,
-				GLOBAL.TYPE_VENUSPITCHER,
-				GLOBAL.TYPE_COCKVINE,
-				GLOBAL.TYPE_WATERQUEEN,
-			];
-			
-			if (noRoamTypeList.indexOf(RaceType) == -1) return true;
-			return false;
-		}
-		
 		/* Proto-unique-children handling */
 		static public function ofUniqueType(childClassT:Class):Boolean
 		{
@@ -467,7 +466,7 @@ package classes.GameData
 			return CACHE.gendersOfUniqueTypeInRange(childClassT, minAge, maxAge);
 		}
 		
-		static public function youngestOfUniqueType(childClassT:Class):UniqueChild
+		static public function youngestOfUniqueType(childClassT:Class):*
 		{
 			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.youngestOfUniqueType(childClassT);

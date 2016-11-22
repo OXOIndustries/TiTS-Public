@@ -110,7 +110,8 @@ public function nurseryZilCallgirlRandomEvents():Boolean
 			options.push("Zheniya is sitting on the floor nearby, giggling and smiling as several adorable half-zil crawl all over her. She hugs them each in turn, kissing their brows or throwing them up in the air, "+ (numZilCInfants.Female >= 1 ? "letting their little wings float them back into her arms":"catching them with a gleeful spin") +". She seems perfectly at home, surrounded by her children." + (ChildManager.numChildren() > numZilCInfants.total ? " And even some that aren't hers, you see." : ""));
 		}
 
-		var numTeens:Genders = ChildManager.numOfGendersInRange(ChildManager.ALL_GENDERS, 14, -1, true);
+		var numTeens:Genders = ChildManager.numOfMobileGendersInRange(ChildManager.ALL_GENDERS, 14);
+
 		if (numTeens.total > 0 && !zilCallGirlPregnant())
 		{
 			options.push("You hear Zheniya before you see her, buzzing and breathing hard. You turn around just in time to see her back-peddling around a corner, a boffer spear clutched in one hand, one of your children following close on her heels, aggressively lunging and thrusting. The former warrior blocks every strike, turning away blow after blow until her young opponent is covered with a sheen of sweat and starting to fumble. One precise counter-strike disarms "+ numTeens.mf("him", "her") +", and your zil lover catches the extra spear in her off-hand, spinning both under her arms.\n\n<i>“You fight well!”</i> she smiles. Turning to you, she adds, <i>“It seems martial prowess runs in the family, [pc.name]. It feels good to get a little wholesome exercise.”</i>\n\n<i>“Yeah, that was fun!”</i> her sparring partner grins, trying not to look too winded while you're still looking.");
