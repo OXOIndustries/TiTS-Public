@@ -1681,10 +1681,14 @@ public function seraGetSalary():void
 	processTime(15 + rand(16));
 	
 	var weeksPast:int = Math.floor((GetGameTimestamp() - flags["SERA_SALARY_DATE"]) / 60 / 24 / 7);
+	var totalCredits:int = 0;
 	for(var i:int = 0; i < weeksPast; i++)
 	{
-		pc.credits += 1500 + rand(501);
+		totalCredits += 1500 + rand(501);
 	}
+	output("\n\nYou’ve earned " + totalCredits + " credits!");
+	
+	pc.credits += totalCredits;
 	flags["SERA_SALARY_DATE"] = GetGameTimestamp();
 	IncrementFlag("SERA_SALARY_PAID");
 	

@@ -624,7 +624,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		addButton(btnSlot, faps[i].text, faps[i].execute, undefined, faps[i].ttHeader, faps[i].ttBody);
 		btnSlot++;
 		
-		if(faps.length > 14 && (i + 1) == faps.length)
+		if(faps.length > 12 && (i + 1) == faps.length)
 		{
 			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
 			addButton(btnSlot, "Back", mainGameMenu);

@@ -255,27 +255,27 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	{
 		if (rooms[currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
 		{
-			addDisabledButton(6, "North", "North", "You can't move - you're immobilized!");
+			addDisabledButton(6, "North", "North", "You can’t move - you’re immobilized!");
 		}
 		if (rooms[currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE)) 
 		{
-			addDisabledButton(12, "East", "East", "You can't move - you're immobilized!");
+			addDisabledButton(12, "East", "East", "You can’t move - you’re immobilized!");
 		}
 		if (rooms[currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE)) 
 		{
-			addDisabledButton(11,"South","South","You can't move - you're immobilized!");
+			addDisabledButton(11,"South","South","You can’t move - you’re immobilized!");
 		}
 		if (rooms[currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE)) 
 		{
-			addDisabledButton(10,"West","West","You can't move - you're immobilized!");
+			addDisabledButton(10,"West","West","You can’t move - you’re immobilized!");
 		}
 		if (rooms[currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE))
 		{
-			addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can't move - you're immobilized!");
+			addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can’t move - you’re immobilized!");
 		}
 		if (rooms[currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE)) 
 		{
-			addDisabledButton(7,rooms[currentLocation].outText,rooms[currentLocation].outText,"You can't move - you're immobilized!");
+			addDisabledButton(7,rooms[currentLocation].outText,rooms[currentLocation].outText,"You can’t move - you’re immobilized!");
 		}
 	}
 	else
@@ -379,7 +379,7 @@ public function showCodex():void
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) 
 	{
-		if(flags["KQ2_MYRELLION_STATE"] == 1) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad's resources to track down her whereabouts - assuming she made it out in one piece.");
+		if(flags["KQ2_MYRELLION_STATE"] == 1) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad’s resources to track down her whereabouts - assuming she made it out in one piece.");
 		else addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
 	}
 	addGhostButton(4, "Back", backToPrimaryOutput);
@@ -422,7 +422,7 @@ public function showMailsHandler(e:Event = null):void
 		{
 			userInterface.showSecondaryOutput();
 			clearOutput2();
-			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something's messed up with it's quantuum comms. device... or it’s getting some serious interference. You'll not be able to use the function until you get back to your ship and tinker with it.");
+			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something’s messed up with it’s quantuum comms. device... or it’s getting some serious interference. You’ll not be able to use the function until you get back to your ship and tinker with it.");
 			return;
 		}
 		else
@@ -622,9 +622,9 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			addButton((count + other) - 1, "Anno", annoFollowerApproach);
 			if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
-			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno's busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
 			else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
-			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she's splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
+			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
 		}
 		//output("\n\n{PC has Freed Reaha and Anno, add to Anno’s random selection: }");
 	}
@@ -633,7 +633,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn't be that hard to find [bess.himHer].";
+			crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn’t be that hard to find [bess.himHer].";
 			addButton((count + other) - 1, bess.short, approachFollowerBess);
 		}
 	}
@@ -1002,7 +1002,7 @@ public function shipMenu():Boolean {
 	
 	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
 
-	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You're parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
+	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You’re parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
 	
 	// Lane follower hook
 	if (tryFollowerLaneIntervention())
@@ -1066,8 +1066,8 @@ public function flyMenu():void {
 	if(shipLocation != "TAVROS HANGAR") addButton(0, "Tavros", flyTo, "Tavros");
 	else addDisabledButton(0, "Tavros", "Tavros Station", "You’re already here.");
 	//MHEN'GA
-	if(shipLocation != "SHIP HANGAR") addButton(1, "Mhen'ga", flyTo, "Mhen'ga");
-	else addDisabledButton(1, "Mhen'ga", "Mhen'ga", "You’re already here.");
+	if(shipLocation != "SHIP HANGAR") addButton(1, "Mhen’ga", flyTo, "Mhen'ga");
+	else addDisabledButton(1, "Mhen’ga", "Mhen’ga", "You’re already here.");
 	//TARKUS
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 	{
@@ -1392,9 +1392,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 		if(nudistPrevention)
 		{
 			clearOutput();
-			output("Nudity is illegal in that location! You'll have to cover up if you want to go there.");
+			output("Nudity is illegal in that location! You’ll have to cover up if you want to go there.");
 			clearMenu();
-			addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin' prudes. It might take you a couple hours to get back safely.");
+			addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
@@ -1623,8 +1623,16 @@ public function variableRoomUpdateCheck():void
 		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
 	}
 	//Handle badger closure
-	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
-	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
+	if(flags["DR_BADGER_TURNED_IN"] != undefined)
+	{
+		rooms["304"].removeFlag(GLOBAL.NPC);
+		rooms["209"].northExit = "";
+	}
+	else
+	{
+		rooms["304"].addFlag(GLOBAL.NPC);
+		rooms["209"].northExit = "304";
+	}
 	// Arbetz Open:
 	if (arbetzActiveHours())
 	{
@@ -2193,7 +2201,7 @@ public function processSaendraEvents(deltaT:uint, doOut:Boolean, totalDays:uint)
 public function processLetsFapUpdates(deltaT:uint, doOut:Boolean):void
 {
 	// Bail early if we've already unlocked everything
-	if (letsFapTrack() >= LETS_FAP_EPISODES.length - 1) return;
+	if (letsFapTrack() >= LETS_FAP_EPISODES.length) return;
 	
 	var numMinutes:int = deltaT / 60;
 	var numHours:int = deltaT - (deltaT % 60);
@@ -2205,30 +2213,29 @@ public function processLetsFapUpdates(deltaT:uint, doOut:Boolean):void
 	{
 		if (flags["LETS_FAP_RELEASE_TIMER"] != undefined)
 		{
+			var passedLength:Number = (GetGameTimestamp() + deltaT - flags["LETS_FAP_RELEASE_TIMER"]);
 			var unlockLength:Number = (flags["EARLY_LETS_FAPS"] == undefined ? 10080 : 7200);
 			var numUnlocks:int = 0;
 			
-			if (GetGameTimestamp() + deltaT - flags["LETS_FAP_RELEASE_TIMER"] >= unlockLength)
+			if (passedLength >= unlockLength)
 			{
-				numUnlocks++;
-				var remDelta:uint = deltaT - flags["LETS_FAP_RELEASE_TIMER"];
-				
-				numUnlocks += (remDelta / unlockLength);
+				numUnlocks += Math.floor(passedLength / unlockLength);
 				
 				// Clamp the max unlocks to 7, accounting for presently unlocked potentials
-				numUnlocks = Math.min(7, numUnlocks - letsFapTrack());
+				if(letsFapTrack() + numUnlocks > LETS_FAP_EPISODES.length) numUnlocks = Math.min(LETS_FAP_EPISODES.length - letsFapTrack());
 				
 				if (numUnlocks == 1)
 				{
-					AddLogEvent("Atha has posted a new Let's Fap video!", "good", unlockLength - flags["LETS_FAP_RELEASE_TIMER"]);
+					AddLogEvent("Atha has posted a new Let’s Fap video!", "good", (passedLength - unlockLength));
 				}
 				else
 				{
-					AddLogEvent("Atha has posted new Let's Fap videos!", "good", (unlockLength - flags["LETS_FAP_RELEASE_TIMER"]) + ((numUnlocks - 1) * unlockLength));
+					AddLogEvent("Atha has posted " + num2Text(numUnlocks) + " new Let’s Fap videos!", "good", (passedLength - (numUnlocks * unlockLength)));
 				}
 				
 				// Unlock the latest episode possible based on time passage and existing unlock position
-				flags["LETS_FAP_LATEST"] = LETS_FAP_EPISODES[letsFapTrack() + (numUnlocks - 1)];
+				flags["LETS_FAP_LATEST"] = (letsFapTrack() + (numUnlocks - 1));
+				if(flags["LATEST_LETS_FAP"] < flags["LETS_FAP_LATEST"]) flags["LATEST_LETS_FAP"] = flags["LETS_FAP_LATEST"];
 				
 				flags["LETS_FAP_RELEASE_TIMER"] = undefined;
 			}
@@ -2381,7 +2388,7 @@ public function processIrelliaEvents(deltaT:uint, doOut:Boolean):void
 			}
 			if(flags["IRELLIA_QUEST_STATUS"] == 4) 
 			{
-				AddLogEvent("You receive a missive from your codex informing you that Queen Irellia would like to speak to you. Sounds like someone's about to get paid!", "good", deltaT);
+				AddLogEvent("You receive a missive from your codex informing you that Queen Irellia would like to speak to you. Sounds like someone’s about to get paid!", "good", deltaT);
 				flags["IRELLIA_QUEST_STATUS"] = 5;
 			}
 		}
@@ -2594,9 +2601,15 @@ public function racialPerkUpdateCheck():void
 {
 	if(pc.hasPerk("'Nuki Nuts"))
 	{
-		if(pc.nukiScore() < 3 && pc.perkv2("'Nuki Nuts") != 1)
+		if(pc.balls <= 0 && pc.perkv1("'Nuki Nuts") != 0)
 		{
-			if(pc.balls >= 1)
+			// Empty reserves!
+			pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
+			pc.setPerkValue("'Nuki Nuts", 1, 0);
+		}
+		if(pc.perkv2("'Nuki Nuts") != 1 && pc.nukiScore() < 3)
+		{
+			if(pc.balls > 0)
 			{
 				//Nuts inflated:
 				if(pc.perkv1("'Nuki Nuts") > 0)
@@ -2604,12 +2617,12 @@ public function racialPerkUpdateCheck():void
 					AddLogEvent(ParseText("The extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your"), "passive");
 					if(pc.originalRace.indexOf("kui-tan") != -1) ExtendLogEvent(" natural kui-tan genes");
 					else ExtendLogEvent(" kui-tan body-mods");
-					ExtendLogEvent(ParseText(", you won't be swelling up with excess [pc.cumNoun] any more."));
+					ExtendLogEvent(ParseText(", you won’t be swelling up with excess [pc.cumNoun] any more."));
 				}
 				//Nuts not inflated:
 				else
 				{
-					AddLogEvent(ParseText("A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you've replaced too much kui-tan DNA to reap the full benefits."), "passive");
+					AddLogEvent(ParseText("A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you’ve replaced too much kui-tan DNA to reap the full benefits."), "passive");
 				}
 				ExtendLogEvent("\n\n(<b>Perk Lost: 'Nuki Nuts</b>)");
 				pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
@@ -2618,11 +2631,11 @@ public function racialPerkUpdateCheck():void
 			}
 			else
 			{
-				AddLogEvent("(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You've lost too many kui-tan transformations.)", "passive");
+				AddLogEvent("(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You’ve lost too many kui-tan transformations.)", "passive");
 				pc.removePerk("'Nuki Nuts");
 			}
 		}
-		else if(pc.balls <= 0 && pc.perkv2("'Nuki Nuts") == 1)
+		else if(pc.perkv2("'Nuki Nuts") == 1 && pc.balls <= 0)
 		{
 			AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You have no nuts to expand!)", "passive");
 			pc.removePerk("'Nuki Nuts");
@@ -2713,8 +2726,10 @@ public function racialPerkUpdateCheck():void
 	}
 	if(pc.armType == GLOBAL.TYPE_FLOWER && pc.hasVagina())
 	{
-		if(!pc.hasWombPregnancy() && !pc.hasStatusEffect("Arm Flower"))
+		if(pc.totalWombPregnancies() < pc.vaginas.length)
 		{
+			if(pc.hasStatusEffect("Arm Flower")) return;
+			
 			// Choose Flower Color
 			var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 			
@@ -2725,7 +2740,7 @@ public function racialPerkUpdateCheck():void
 			pc.slowStatGain("libido", 5);
 			pc.lust(50);
 		}
-		else if(pc.hasWombPregnancy() && pc.hasStatusEffect("Arm Flower"))
+		else if(pc.hasStatusEffect("Arm Flower"))
 		{
 			AddLogEvent("Your " + pc.getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].", "passive");
 			

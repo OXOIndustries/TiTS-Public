@@ -1495,9 +1495,11 @@
 					buffer = getWeaponName();
 					break;
 				case "meleeWeapon":
+				case "weaponMelee":
 					buffer = meleeWeapon.longName;
 					break;
 				case "rangedWeapon":
+				case "weaponRanged":
 					buffer = rangedWeapon.longName;
 					break;
 				case "mainWeapon":
@@ -13080,7 +13082,7 @@
 				//Tail-cock specials
 				else if(special == "tail" && rand(2) == 0) desc += "tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
 				//Nipple-dick specials
-				else if(special == "nipple" && rand(2) == 0) desc += RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else if(special == "nipple" && rand(2) == 0) desc += RandomInCollection(["dick","cock","prick"]) + "-nipple";
 				else
 				{
 					switch(type)
@@ -13196,7 +13198,7 @@
 				}
 				//TO BE COMPLETED LATER - TAIL AND NIPPLE STUFF
 				else if(special == "tail" && rand(2) == 0) desc += cockShape2(cock,type) + " tail-" + RandomInCollection(["cock","cock","dick","prick","cock","dick"]);
-				else if(special == "nipple" && rand(2) == 0) desc += cockShape2(cock,type) + " " + RandomInCollection(["dick","cock","prick"] + "-nipple");
+				else if(special == "nipple" && rand(2) == 0) desc += cockShape2(cock,type) + " " + RandomInCollection(["dick","cock","prick"]) + "-nipple";
 				else
 				{
 					switch(type)
@@ -14502,7 +14504,8 @@
 		public function nippleCuntDescript(appearance: Boolean = false): String {
 			var descript: String = "";
 			if (rand(10) <= 6 && !appearance) descript += RandomInCollection(["penetrable", "fuckable", "pliable", "stretchy"]) + " ";
-			descript += RandomInCollection(["cunt", "cunt"]) + "-nipple";
+			descript += RandomInCollection(["cunt", "cunt"]);
+			if (!appearance) descript += "-nipple";
 			return descript;
 		}
 		public function nippleCuntsDescript(appearance: Boolean = false): String {
@@ -14525,7 +14528,7 @@
 			//These guys get a bonus adjective 70% of the time.
 			else {
 				if (rand(10) <= 6 && !appearance) descript += cockNoun2(cock, false, "nipple");
-				else descript += cockNoun2(cock, true, "nipple");
+				else descript += cockNoun2(cock, true);
 			}
 			return descript;
 		}

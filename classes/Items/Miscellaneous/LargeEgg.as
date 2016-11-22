@@ -48,6 +48,12 @@
 			if(target is PlayerCharacter)
 			{
 				kGAMECLASS.clearOutput();
+				if(!inCombat())
+				{
+					kGAMECLASS.showBust("");
+					if (kGAMECLASS.silly) kGAMECLASS.showName("\nYUM!");
+					else kGAMECLASS.showName("SNACK\nBREAK");
+				}
 				kGAMECLASS.output("You chomp down on the delicious, almost sugary egg.");
 				if(healing > 0) kGAMECLASS.output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
 				else kGAMECLASS.output(" Nothing changes except for the taste in your mouth.");

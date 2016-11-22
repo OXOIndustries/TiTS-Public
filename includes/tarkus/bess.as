@@ -431,7 +431,7 @@ public function bessTopStripScene():void
 			{
 				output("\n\n[bess.name] reaches up and slips off the top of [bess.hisHer] [bess.armor].");
 			}
-			output(" Underneath [bess.heShe]'s");
+			output(" Underneath, [bess.heShe]’s");
 			if (bess.upperUndergarment is EmptySlot) output(" completely naked and");
 			else output(" wearing " + indefiniteArticle(bess.upperUndergarment.longName) + ". [bess.HeShe] removes it and soon");
 			output(" [bess.hisHer] [bess.chest]");
@@ -580,7 +580,7 @@ public function findASilverObject():void
 	if(flags["MET_SEXBOTS_ON_TARKUS"] != undefined) output(" It looks far too sleek looking to be one of the Pleasure Bots that aimlessly roam the Tarkus wastes.");
 	output(" From what you can see it doesn’t look rusted, or even slightly scratched, adding even more to the air of mystery surrounding it.");
 	//SydiansMet:
-	if(flags["MET_SYDIAN_MALE"] != undefined) output(" You can't believe the Sydians haven't melted this thing down yet.");
+	if(flags["MET_SYDIAN_MALE"] != undefined) output(" You can’t believe the Sydians haven’t melted this thing down yet.");
 	output("\n\nWhat kind of foot is it...?");
 
 	clearMenu();
@@ -644,7 +644,7 @@ public function digUpAFukkinSexbat():void
 	
 	output("Curiosity gets the better of you as you decide to dig it up. Getting rid of all the junk on top of it is a quick and easy process.");
 	output("\n\nSoon a silvery humanoid body, distinctly " + bess.mf("masculine","feminine") + " and covered in segmented lines, is revealed amongst the rubble. An incredibly shapely rear is glinting back up at you, connected to " + bess.mf("manly","womanly") + " thighs and hips of glistening chrome.");
-	output("\n\nWhat a butt! You can't help but reach out and poke it, just to see if it is real. For <i>exploratory</i> purposes, of course.");
+	output("\n\nWhat a butt! You can’t help but reach out and poke it, just to see if it is real. For <i>exploratory</i> purposes, of course.");
 	output("\n\nAs you touch [bess.his] silvery rump, you find it is ");
 	if(bess.hasCock()) output("delightfully taught with a tiny bit of give,");
 	else output("surprisingly soft");
@@ -659,7 +659,7 @@ public function digUpAFukkinSexbat():void
 
 	output("\n\n<i>“" + bess.mf("Ben Fourteen","Bess Thirteen") + ".”</i> The rest of the registration number is scratched out. Is that [bess.hisHer] model number, [bess.hisHer] actual name, or is [bess.heShe] literally the " + bess.mf("fourteenth","thirteenth") + " of a line of "+ bess.mf("Bens","Besses") + "?");
 
-	output("\n\nSince you're not going to get any answers from staring at [bess.hisHer] ass - no matter how perfect it is - you decide to turn [bess.himHer] over and get a good look at [bess.hisHer] other side. Maybe there are some more details there.");
+	output("\n\nSince you’re not going to get any answers from staring at [bess.hisHer] ass - no matter how perfect it is - you decide to turn [bess.himHer] over and get a good look at [bess.hisHer] other side. Maybe there are some more details there.");
 
 	if (bess.hasVagina())
 	{
@@ -701,14 +701,14 @@ public function fuckinLeaveTheBessBot():void
 	
 	flags["BESS_IN_RUBBLE"] = 0;
 	
-	output("You're about to turn away and leave when something remarkably... odd happens.");
-	output("\n\nIt takes a second to realize what the odd humming noise that's been sufusing the air actually is; a figure is approaching from the north, screaming at the top of his voice from the looks of things. He's closing distance quickly, but he's still far enough away for the sound to be mostly unintelligible.");
-	output("\n\nYou prepare for some kind of face off as he gets closer and closer- but he's not looking at you. He's focused entirely on the foot sticking out of the ground.");
-	output("\n\n<i><b>“I FUCK, I CUM, I FUCK AGAIN,”</b></i> is all he screams, over and over. It's only now that he's close enough to understand that you notice what <i>else</i> he's doing. His cock is flopping all over the place, hanging freely through the zipper of his leather pants. And he has a can in his hand- he's spraypainting his cock silver.");
-	output("\n\nYou're just standing there, flabbergasted, as he runs up to the foot sticking up out of the ground. He turns to you, and you flinch back instinctively, expecting a fight. Instead, all he does is scream <i><b>“WITNESS MEEEE,”</b></i> right at you. You don't respond. You don't even react. The crazed lunatic just turns back to the foot and yanks it from the ground, an entire robot chassis coming with it.");
+	output("You’re about to turn away and leave when something remarkably... odd happens.");
+	output("\n\nIt takes a second to realize what the odd humming noise that’s been sufusing the air actually is; a figure is approaching from the north, screaming at the top of his voice from the looks of things. He’s closing distance quickly, but he’s still far enough away for the sound to be mostly unintelligible.");
+	output("\n\nYou prepare for some kind of face off as he gets closer and closer- but he’s not looking at you. He’s focused entirely on the foot sticking out of the ground.");
+	output("\n\n<i><b>“I FUCK, I CUM, I FUCK AGAIN,”</b></i> is all he screams, over and over. It’s only now that he’s close enough to understand that you notice what <i>else</i> he’s doing. His cock is flopping all over the place, hanging freely through the zipper of his leather pants. And he has a can in his hand- he’s spraypainting his cock silver.");
+	output("\n\nYou’re just standing there, flabbergasted, as he runs up to the foot sticking up out of the ground. He turns to you, and you flinch back instinctively, expecting a fight. Instead, all he does is scream <i><b>“WITNESS MEEEE,”</b></i> right at you. You don’t respond. You don’t even react. The crazed lunatic just turns back to the foot and yanks it from the ground, an entire robot chassis coming with it.");
 	output("\n\nHe hefts the thing over his shoulder and takes off running back in the direction he came from- his chant resuming in short order. <i><b>“I FUCK, I CUM, I FUCK AGAIN! I FUCK, I CUM, I FUCK AGAIN!”</b></i>");
 	output("\n\nA little shellshocked, it takes you a while to actually get back moving. Weird as fuck.");
-	output("\n\nA minute or so later there's an impressive explosion painting the sky a very odd shade of neon blue- coming from the direction the lunatic took off running....");
+	output("\n\nA minute or so later there’s an impressive explosion painting the sky a very odd shade of neon blue- coming from the direction the lunatic took off running....");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -732,7 +732,7 @@ public function takeBessToZeShip():void
 	}
 	else // male
 	{
-		output("Carrying the male unit back to the ship takes quite a lot of effort. Having him pressed against your chest causes you to flush a little. His skin is so smooth, and his assets so detailed, it's hard to believe that he's really a machine and not an organic man.");
+		output("Carrying the male unit back to the ship takes quite a lot of effort. Having him pressed against your chest causes you to flush a little. His skin is so smooth, and his assets so detailed, it’s hard to believe that he’s really a machine and not an organic man.");
 	}
 	output("\n\nLuckily, you’re not attacked by any natives on the way back to Novahome. You’re pretty sure you wouldn’t have been able to put up a proper fight carrying the synthetic.");
 	output("\n\nOnce you return to the ship, it is simply a matter of locating [bess.hisHer] power slot. Placing [bess.himHer] down in the cargo bay, you check over [bess.hisHer] body for anything that stands out. Right above [bess.hisHer] rump is a barely perceivable line that looks somewhat suspicious.");
@@ -802,7 +802,7 @@ public function decisionTimeForBessMenu():void
 	addButton(2,"Authorities",handBessOverToAuthorities);
 	addButton(3,"Dump Them",dumpTheBessBot);
 	if(flags["TRIED_TO_GIVE_BESS_FREEDOM"] == undefined) addButton(4,"Release",releaseBessBenWhatever);
-	else addDisabledButton(4,"Release","Release","Your new robotic friend doesn't seem to understand the idea of freedom.");
+	else addDisabledButton(4,"Release","Release","Your new robotic friend doesn’t seem to understand the idea of freedom.");
 	addButton(5,"KeepAtTavros",waitAtTavrosBess);
 }
 
@@ -858,7 +858,7 @@ public function releaseBessBenWhatever():void
 	output("You tell the " + bess.mf("male", "female") + " synthetic that [bess.heShe] is free to do as [bess.heShe] pleases, and that you are not [bess.hisHer] [pc.Master]. It seems like the right thing to do.");
 	output("\n\nHowever, [bess.heShe] seems to have difficulty processing what you are saying, almost as if you were speaking a foreign language.");
 	output("\n\n<i>“What do you mean, [pc.Master]? I am a " + bess.mf("Ben-14", "Bess-13") + " unit, and I belong to you! I am your personal unit. I am not designed to belong to myself.”</i> " + bess.mf("He furrows his brow, looking perplexed by your statement", "Her voice seems to quiver a little") + ". The concept of not belonging to someone seems to be outside of [bess.hisHer] programming.");
-	output("\n\nWhat exactly are you going to do? [bess.HeShe]'ll probably get caught in a logic loop if you push the point.");
+	output("\n\nWhat exactly are you going to do? [bess.HeShe]’ll probably get caught in a logic loop if you push the point.");
 	//Once off +5 to Nice Score. Non-repeatable event.
 	pc.addNice(5);
 	flags["TRIED_TO_GIVE_BESS_FREEDOM"] = 1;
@@ -1018,7 +1018,7 @@ public function followerBessRoom():void
 	}
 	else
 	{
-		output(possessive(bess.short) + " room is fairly depressing. If you didn't know any better, you'd think it was a small cargo hold. The best thing it has to offer are freely available power ports and a large built in wardrobe.");
+		output("[bess.name]’s room is fairly depressing. If you didn’t know any better, you’d think it was a small cargo hold. The best thing it has to offer are freely available power ports and a large built in wardrobe.");
 	}
 
 	if(flags["BESS_EVENT_4"] != undefined && flags["BESS_EVENT_11"] == undefined)
@@ -1028,7 +1028,7 @@ public function followerBessRoom():void
 	
 	if(flags["BESS_FRIEND"] == 1)
 	{
-		output("\n\nOn [bess.hisHer] bedside table are two of [bess.himsHer] favorite books, ‘The Hobbit' and ‘Do Androids Dream of Electric Sheep?’ [bess.HeShe] loves them so much they never make it back to the shelves.");
+		output("\n\nOn [bess.hisHer] bedside table are two of [bess.himsHer] favorite books, ‘The Hobbit’ and ‘Do Androids Dream of Electric Sheep?’ [bess.HeShe] loves them so much they never make it back to the shelves.");
 	}
 
 	if(flags["BESS_EVENT_2"] != undefined && flags["BESS_EVENT_4"] == undefined)
@@ -1142,7 +1142,7 @@ public function approachFollowerBess():void
 	{
 		if(bessAffection() >= 90)
 		{
-			output("[bess.name] grins as soon as [bess.heShe] sees you, " + bess.mf("scooping you into his arms", "leaping into your arms") + " and giving you a long, sensual kiss. <i>“... Mmmm, "+ bessPCName() +"! Have I told you how much I love you today? I'll tell you once more, just in case you forgot.”</i> [bess.HisHer] [bess.eyes] are gleaming");
+			output("[bess.name] grins as soon as [bess.heShe] sees you, " + bess.mf("scooping you into his arms", "leaping into your arms") + " and giving you a long, sensual kiss. <i>“... Mmmm, "+ bessPCName() +"! Have I told you how much I love you today? I’ll tell you once more, just in case you forgot.”</i> [bess.HisHer] [bess.eyes] are gleaming");
 			if (bessGlasses()) output(" through [bess.hisHer] glasses");
 			output(" with happiness.");
 		}
@@ -1154,19 +1154,19 @@ public function approachFollowerBess():void
 		}
 		else if(bessAffection() >= 50)
 		{
-			output("[bess.name] wraps [bess.hisHer] arms around you, giving you a hello kiss, <i>“... Greetings, "+ bessPCName() +". Come to see me have you? It's about time!”</i> [bess.HeShe] exclaims");
+			output("[bess.name] wraps [bess.hisHer] arms around you, giving you a hello kiss, <i>“... Greetings, "+ bessPCName() +". Come to see me have you? It’s about time!”</i> [bess.HeShe] exclaims");
 			if(bessGlasses()) output(", peering at you over [bess.hisHer] glasses");
 			output(".");
 		}
 		else if(bessAffection() >= 30)
 		{
-			output("[bess.name] wraps [bess.hisHer] arms around you, looking very serious, <i>“... "+ bessPCName() +"... have I done something wrong? It feels like you're drifting further away from me, you never visit anymore... have I done something wrong?”</i> [bess.HisHer] eyes " + bess.mf("look pained", "are wavering"));
+			output("[bess.name] wraps [bess.hisHer] arms around you, looking very serious, <i>“... "+ bessPCName() +"... have I done something wrong? It feels like you’re drifting further away from me, you never visit anymore... have I done something wrong?”</i> [bess.HisHer] eyes " + bess.mf("look pained", "are wavering"));
 			if(bessGlasses()) output(" behind [bess.hisHer] glasses");
 			output(".");
 		}
 		else
 		{
-			output("[bess.name] looks at you " + bess.mf("in distress", "meekly") + ", [bess.hisHer] expression completely downtrodden. <i>“... Oh, you're here "+ bessPCName() +"... do... do you still love me? You're gone all the time, I never see you anymore...”</i> [bess.HisHer] eyes " + bess.mf("look truly agonized", "are tearing up"));
+			output("[bess.name] looks at you " + bess.mf("in distress", "meekly") + ", [bess.hisHer] expression completely downtrodden. <i>“... Oh, you’re here "+ bessPCName() +"... do... do you still love me? You’re gone all the time, I never see you anymore...”</i> [bess.HisHer] eyes " + bess.mf("look truly agonized", "are tearing up"));
 			if(bessGlasses()) output(" behind [bess.hisHer] glasses");
 			output("."); 
 		}
@@ -1181,13 +1181,13 @@ public function approachFollowerBess():void
 		}
 		else if(bessAffection() >= 25)
 		{
-			output("[bess.name] runs " + bess.mf("at you","up to you") + ", giving you a massive hug. <i>“... "+ bessPCName() +"! How goes my best friend in the galaxy? You've been gone </i>so long<i>, tell me what you've been doing!”</i> [bess.heShe] exclaims cheerily");
+			output("[bess.name] runs " + bess.mf("at you","up to you") + ", giving you a massive hug. <i>“... "+ bessPCName() +"! How goes my best friend in the galaxy? You’ve been gone </i>so long<i>, tell me what you’ve been doing!”</i> [bess.heShe] exclaims cheerily");
 			if(bessGlasses()) output(", eyes shining behind [bess.hisHer] glasses");
 			output(".");
 		}
 		else
 		{
-			output("[bess.name] walks up to you, looking a little downtrodden. <i>“... Hey "+ bessPCName() +", we're still friends right? I never see you anymore... did I do something wrong?”</i> [bess.HisHer] eyes are " + bess.mf("look a bit strained", "visibly wavering"));
+			output("[bess.name] walks up to you, looking a little downtrodden. <i>“... Hey "+ bessPCName() +", we’re still friends right? I never see you anymore... did I do something wrong?”</i> [bess.HisHer] eyes are " + bess.mf("look a bit strained", "visibly wavering"));
 			if(bessGlasses()) output(" behind [bess.hisHer] glasses");
 			output(".");
 		}
@@ -1201,26 +1201,26 @@ public function approachFollowerBess():void
 
 			output("\n\n<i>“Hello, " + bessPCName() +"! Did you want me to tend to your reproductive needs, or did you just want to talk—?”</i> There’s a querying look in [bess.hisHer] [bess.eyeColor] eyes");
 			if (bessGlasses()) output(" as [bess.heShe] peeks over [bess.hisHer] glasses");
-			output(" it seems [bess.heShe]'s excited by the prospect of either outcome.");
+			output(" it seems [bess.heShe]’s excited by the prospect of either outcome.");
 		}
 		else if (randVal == 1)
 		{
 			output("Spotting your approach, [bess.name] waves cheerily.");
 
-			output("\n\n<i>“" + StringUtil.capitalize(bessPCName()) +"! How're you doing?”</i> [bess.heShe] asks, sounding genuinely interested. ");
+			output("\n\n<i>“" + StringUtil.capitalize(bessPCName()) +"! How’re you doing?”</i> [bess.heShe] asks, sounding genuinely interested. ");
 			if (bessGlasses()) output(" [bess.HeShe] nudges up the bridge of [bess.hisHer] glasses.");
 		}
 		else if (randVal == 2)
 		{
 			output("When you approach, [bess.name] is stretching out, fingers laced above [bess.hisHer] head.");
 
-			output("\n\n<i>“Oh, " + bessPCName() +"—! Sorry, I didn't see you there,”</i> [bess.name] remarks, quickly lowering [bess.hisHer] arms. <i>“Can I help you with anything?”</i>");
+			output("\n\n<i>“Oh, " + bessPCName() +"—! Sorry, I didn’t see you there,”</i> [bess.name] remarks, quickly lowering [bess.hisHer] arms. <i>“Can I help you with anything?”</i>");
 		}
 		else
 		{
-			output("As you approach [bess.name], [bess.heShe] pulls [bess.hisHer] JoyCord from the wall socket. There’s a lively look in [bess.hisHer] eyes, like someone who's enjoyed a good meal or nap.");
+			output("As you approach [bess.name], [bess.heShe] pulls [bess.hisHer] JoyCord from the wall socket. There’s a lively look in [bess.hisHer] eyes, like someone who’s enjoyed a good meal or nap.");
 
-			output("\n\n<i>“... Nothing like a quick recharge. Oh, "+ bessPCName() +"! It's good to see you,”</i> [bess.name] flushes. [bess.HeShe]’s acting like you’ve caught [bess.himHer] in the middle of changing.");
+			output("\n\n<i>“... Nothing like a quick recharge. Oh, "+ bessPCName() +"! It’s good to see you,”</i> [bess.name] flushes. [bess.HeShe]’s acting like you’ve caught [bess.himHer] in the middle of changing.");
 		}
 	}
 
@@ -1238,7 +1238,7 @@ public function approachFollowerBess():void
 		output(" compliment [bess.hisHer] features.");
 	}
 
-	output(" [bess.HeShe]'s");
+	output(" [bess.HeShe]’s");
 	if (bess.isNude()) output(" utterly nude");
 	else if (bess.armor is EmptySlot) output(" clad in just [bess.hisHer] [bess.gear]");
 	else output(" dressed in [bess.hisHer] [bess.armor]");
@@ -1336,12 +1336,12 @@ public function bessFollowerMenu():void
 	clearMenu();
 	
 	addButton(0, "Discuss", talkToBessAboutThings);
-	addButton(1, "Functions", bessFunctions, undefined, "Functions", "Go about setting " + possessive(bess.short) + " various functions, from what [bess.heShe] calls you, [bess.hisHer] sexual roles, what [bess.heShe] wears, to [bess.hisHer] customizable body parts.");
+	addButton(1, "Functions", bessFunctions, undefined, "Functions", "Go about setting [bess.name]’s various functions, from what [bess.heShe] calls you, [bess.hisHer] sexual roles, what [bess.heShe] wears, to [bess.hisHer] customizable body parts.");
 	addButton(2, "Accessories", talkToBessAboutAccessories);
 	
 	if ((flags["BESS_FRIEND"] != undefined || flags["BESS_LOVER"] != undefined) && bessAffection() < 30)
 	{
-		addDisabledButton(3, "Sex", "Sex", "[bess.name] isn't feeling up for sex. You will need to raise [bess.hisHer] affection in order to have sex with [bess.himHer].");
+		addDisabledButton(3, "Sex", "Sex", "[bess.name] isn’t feeling up for sex. You will need to raise [bess.hisHer] affection in order to have sex with [bess.himHer].");
 	}
 	else if (pc.lust() < 33)
 	{
@@ -1365,12 +1365,12 @@ public function bessFollowerMenu():void
 	{
 		if (flags["BESS_DATES"] == undefined || flags["BESS_DATES"] < 4)
 		{
-			if (pc.credits < 500) addDisabledButton(5, "Date", "Date", "You don't have enough credits!");
+			if (pc.credits < 500) addDisabledButton(5, "Date", "Date", "You don’t have enough credits!");
 			else addButton(5, "Date", bessDateRouter);
 		}
 		else if (flags["BESS_DATES"] == 4 || (flags["BESS_DATES"] == 5 && bessEventCheck(25)))
 		{
-			if (pc.credits < 1000) addDisabledButton(5, "Date", "Date", "You don't have enough credits!");
+			if (pc.credits < 1000) addDisabledButton(5, "Date", "Date", "You don’t have enough credits!");
 			else addButton(5, "Date", bessDateRouter)
 		}
 		else
@@ -1383,15 +1383,15 @@ public function bessFollowerMenu():void
 	{
 		if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
 		{
-			addButton(6, "NoSleep", bessClearSleep, undefined, "Don't Sleep With", "Tell [bess.name] you'd prefer to not share in [bess.hisHer] company whilst sleeping.");
+			addButton(6, "NoSleep", bessClearSleep, undefined, "Don’t Sleep With", "Tell [bess.name] you’d prefer to not share in [bess.hisHer] company whilst sleeping.");
 		}
 		else
 		{
-			addButton(6, "SleepW.", bessSleepWith, undefined, "Sleep With", "Tell [bess.name] you'd like to share [bess.hisHer] company whilst sleeping.");
+			addButton(6, "SleepW.", bessSleepWith, undefined, "Sleep With", "Tell [bess.name] you’d like to share [bess.hisHer] company whilst sleeping.");
 		}
 	}
 	
-	addButton(10, "Appearance", bessAppearance, undefined, "Appearance", "Review " + possessive(bess.short) + " appearance.");
+	addButton(10, "Appearance", bessAppearance, undefined, "Appearance", "Review [bess.name]’s appearance.");
 	addButton(13, "EventMap", bessEventMap, false, "Event Map", "The map of your interactions with [bess.name].");
 	addButton(14, "Back", bessLeaveFollowerMenu);
 }
@@ -1430,13 +1430,13 @@ public function bessAppearance():void
 	clearOutput();
 	bessHeader();
 
-	output("As you look at [bess.name], [bess.heShe] tries to look away, pretending not to notice that you're staring at [bess.himHer]. " + bess.mf("He politely coughs", "Her cheeks flush") + " as you look [bess.himHer] over from head to toe.");
+	output("As you look at [bess.name], [bess.heShe] tries to look away, pretending not to notice that you’re staring at [bess.himHer]. " + bess.mf("He politely coughs", "Her cheeks flush") + " as you look [bess.himHer] over from head to toe.");
 	//Bald True:
 	if(!bess.hasHair())
 	{
-		output("\n\n" + possessive(bess.short) + " head is hairless. All the lines on [bess.hisHer] scalp, usually hidden by artificial locks, are now clearly exposed.");
+		output("\n\n[bess.name]’s head is hairless. All the lines on [bess.hisHer] scalp, usually hidden by artificial locks, are now clearly exposed.");
 	}
-	else output("\n\nThe synthetic's [bess.hairColor] " + num2Text(Math.round(bess.hairLength*10)/10) + " inch hair is in "+ bessHairStyle() +".");
+	else output("\n\nThe synthetic’s [bess.hairColor] " + num2Text(Math.round(bess.hairLength*10)/10) + " inch hair is in "+ bessHairStyle() +".");
 	output(" [bess.HisHer] [bess.eyeColor] eyes, framed by " + bess.mf("brooding brows", "thick black lashes"));
 	if (bessGlasses()) output(" as well as the glasses [bess.heShe] is currently wearing");
 	output(", are even more detailed and faceted than those of a human.");
@@ -1452,7 +1452,7 @@ public function bessAppearance():void
 	}
 	if (bess.hasCockTail())
 	{
-		output("\n\n" + possessive(bess.short) + " \"JoyCord\" is ");
+		output("\n\n[bess.name]’s “JoyCord” is ");
 		if(bess.tailCount > 0) output(" protruding from just above [bess.hisHer] rear, long and silvery just like [bess.hisHer] body. The tip looks exactly like a thick, synthetic tail-cock. The shaft looks quite bumpy and clearly designed for pleasure.");
 	}
 	output("\n\n[bess.HisHer] silver skinned body is segmented by lines, clearly identifying [bess.himHer] as a mechanical being despite its otherwise organic appearance. [bess.HeShe] has ");
@@ -1482,7 +1482,7 @@ public function bessAppearance():void
 	if(!bess.isNude()) output(" [bess.HeShe] is currently wearing [bess.gear].");
 	else output(" [bess.HeShe] is currently nude.");
 	//if (bessKatana = true)
-	if(bessKatana()) output("\n\nAt " + possessive(bess.short) + " right side is a well-polished katana, secured safely in a glazed sheath. The sheath is decorated with eastern-style dragons running up its length, talons stretched out as if to strike. The blade is just as silvery and untarnished as [bess.name] [bess.himHer]self.");
+	if(bessKatana()) output("\n\nAt [bess.name]’s right side is a well-polished katana, secured safely in a glazed sheath. The sheath is decorated with eastern-style dragons running up its length, talons stretched out as if to strike. The blade is just as silvery and untarnished as [bess.name] [bess.himHer]self.");
 	clearMenu();
 	addButton(0,"Next",approachFollowerBess);
 }
@@ -1501,7 +1501,7 @@ public function bessFunctions():void
 	}
 	else if (flags["BESS_LOVER_STATUS"] != undefined && (flags["BESS_LOVER_STATUS"] == "sub" || flags["BESS_LOVER_STATUS"] == "pet"))
 	{
-		output(possessive(bess.short) + " appearance is not to your taste, so you order [bess.himHer] to change it. It’s really that simple.");
+		output("[bess.name]’s appearance is not to your taste, so you order [bess.himHer] to change it. It’s really that simple.");
 		output("\n\nYour devoted " + flags["BESS_LOVER_STATUS"] + " gets down on all fours and bows deeply to you, [bess.hisHer] eyes glittering with unwavering devotion. <i>“Of course, anything you wish! What would you like me to change about myself..?”</i>");
 	}
 	else if (flags["BESS_LOVER"] == 1 || flags["BESS_FRIEND"] == 1)
@@ -1522,7 +1522,7 @@ public function bessFunctions():void
 	else 
 	{
 		output("You suggest changing some things about [bess.name], and [bess.heShe] seems happy to comply. In fact, [bess.heShe] seems to relish the chance to display [bess.hisHer] different functions.");
-		output("\n\n<i>“Of course, "+ bessPCName() +"! What would you like me to change?”</i> " + possessive(bess.short) + " [bess.eyeColor] eyes are " + bess.mf("shining brightly","positively glittering") + ", waiting to hear what you want to switch up.");
+		output("\n\n<i>“Of course, "+ bessPCName() +"! What would you like me to change?”</i> [bess.name]’s [bess.eyeColor] eyes are " + bess.mf("shining brightly","positively glittering") + ", waiting to hear what you want to switch up.");
 	}
 
 	bessFunctionsMenu();
@@ -1531,10 +1531,10 @@ public function bessFunctions():void
 public function bessFunctionsMenu():void
 {
 	clearMenu();
-	addButton(0, "Titles", talkToBessAboutTitles, undefined, "Titles", "Change " + possessive(bess.short) + " name or what you call each other in sexual and non-sexual encounters.");
+	addButton(0, "Titles", talkToBessAboutTitles, undefined, "Titles", "Change [bess.name]’s name or what you call each other in sexual and non-sexual encounters.");
 
-	if (flags["BESS_LOVER_STATUS"] != undefined && (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1 || flags["BESS_LOVER_STATUS"] == "pet" || flags["BESS_LOVER_STATUS"] == "sub")) addDisabledButton(1, "Role", possessive(bess.short) + " Role", "Since making things ‘official’ with [bess.name], you’re unable to change [bess.hisHer] role!");
-	else addButton(1, "Role", talkToBessAboutRoles, undefined, "Roles", "Change " + possessive(bess.short) + " various roles, such as if [bess.heShe]'s dominant or not during sex.");
+	if (flags["BESS_LOVER_STATUS"] != undefined && (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1 || flags["BESS_LOVER_STATUS"] == "pet" || flags["BESS_LOVER_STATUS"] == "sub")) addDisabledButton(1, "Role", "[bess.name]’s Role", "Since making things ‘official’ with [bess.name], you’re unable to change [bess.hisHer] role!");
+	else addButton(1, "Role", talkToBessAboutRoles, undefined, "Roles", "Change [bess.name]’s various roles, such as if [bess.heShe]’s dominant or not during sex.");
 	
 	addButton(2, "Hair", talkToBessAboutHair, undefined, "Hair", "Ask [bess.name] to change [bess.hisHer] hair such as color, length, and styling.");
 	addButton(3, "Eyes", talkToBessAboutEyes, undefined, "Eye Color", "Ask [bess.name] to change [bess.hisHer] eye color.");
@@ -1560,7 +1560,7 @@ public function talkToBessAboutTitles():void
 	output("<i>“Which one?”</i>");
 
 	clearMenu();
-	addButton(0, bess.mf("His", "Her") + " Name", bessTitlesTheirName, undefined, possessive(bess.short) + " Name", "Change " + possessive(bess.short) + " name. At least, if [bess.heShe] agrees to it...");
+	addButton(0, bess.mf("His", "Her") + " Name", bessTitlesTheirName, undefined, "[bess.name]’s Name", "Change [bess.name]’s name. At least, if [bess.heShe] agrees to it...");
 	addButton(1, "YourTitle", bessTitlesYourTitles, undefined, "Your Title", "The title that [bess.name] will call you in non-sexual encounters.");
 	addButton(2, bess.mf("His", "Her") + "Title", bessTitlesTheirTitle, undefined, bess.mf("His", "Her") + " Title", "The title that you will call [bess.name] in non-sexual encounters.");
 	addButton(3, "YourSexName", bessTitlesYourSexName, undefined, "Your Sex Name", "The name that [bess.name] will call you in sexual encounters.");
@@ -1578,7 +1578,7 @@ public function bessTitlesTheirName():void
 
 	if (flags["BESS_LOVER"] == 1 && (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1))
 	{
-		output("\n\n<i>“... You want your "+ flags["BESS_LOVER_STATUS"] +" to change [bess.hisHer] name, because you're unhappy with it?”</i> [bess.name] asks you in a dry tone, as if [bess.heShe] misheard you.");
+		output("\n\n<i>“... You want your "+ flags["BESS_LOVER_STATUS"] +" to change [bess.hisHer] name, because you’re unhappy with it?”</i> [bess.name] asks you in a dry tone, as if [bess.heShe] misheard you.");
 
 		output("\n\nYou cough and nod, feeling yourself shrink under [bess.hisHer] penetrating gaze.");
 		
@@ -1954,7 +1954,7 @@ public function bessSetHairColor(newColor:String):void
 	
 	output("\n\n<i>“Hmm, [bess.hairColor], huh? It’s nice to change your hair up every now and then,”</i> [bess.heShe] " + bess.mf("amusedly", "happily") +" remarks.");
 	
-	output("\n\n<b>" + possessive(bess.short) + " hair has changed color!</b>");
+	output("\n\n<b>[bess.name]’s hair has changed color!</b>");
 
 	bessFunctionsMenu();
 }
@@ -2009,12 +2009,12 @@ public function bessSetHairLength(newLength:int):void
 	output("\n\n[bess.name] then reaches up and runs [bess.hisHer] hand");
 	if (bess.hairLength == 0) output(" over [bess.hisHer] bare scalp");
 	else output(" over [bess.hisHer] hair");
-	output(". It follows [bess.hisHer] hands as [bess.heShe] runs it along, giving the visual impression that [bess.heShe]'s actually moving it with [bess.hisHer] hands.");
+	output(". It follows [bess.hisHer] hands as [bess.heShe] runs it along, giving the visual impression that [bess.heShe]’s actually moving it with [bess.hisHer] hands.");
 
 	bess.hairLength = newLength;
 
-	output("\n\n[bess.HeShe] doesn't stop until [bess.heShe]");
-	if (newLength == 0) output(" is completely bald, [bess.hisHer] scalp now a glittering silver, just like the rest of [bess.hisHer] body. For some reason when [bess.heShe]'s got no hair it makes [bess.himHer] seem that much more mechanical.");
+	output("\n\n[bess.HeShe] doesn’t stop until [bess.heShe]");
+	if (newLength == 0) output(" is completely bald, [bess.hisHer] scalp now a glittering silver, just like the rest of [bess.hisHer] body. For some reason when [bess.heShe]’s got no hair it makes [bess.himHer] seem that much more mechanical.");
 	else output(" has "+ bessHairLength() +" hair. [bess.HeShe] strokes it in a very human gesture, as if mentally adjusting to the new [bess.hairColor] span.");
 
 	output("\n\n<i>“I hope you like it this way, "+ bessPCName() +". Are");
@@ -2105,7 +2105,7 @@ public function bessSetHairStyle(newStyle:String):void
 
 	output("\n\n<i>“Interesting look, don’t you think?”</i> [bess.name] touches [bess.hisHer] hair. [bess.HeShe] sure spent [bess.hisHer] time on it!");
 
-	output("\n\n<b>" + possessive(bess.short) + " hair is now styled in "+ bessHairStyle() +"!</b>");
+	output("\n\n<b>[bess.name]’s hair is now styled in "+ bessHairStyle() +"!</b>");
 
 	bessFunctionsMenu();
 }
@@ -2163,7 +2163,7 @@ public function bessSetEyeColor(newColor:String):void
 
 	output("\n\n<i>“Voila!”</i> [bess.heShe] exclaims, <i>“Easily done. Anything else you wanted?”</i>");
 
-	output("\n\n<b>" + possessive(bess.short) + " eyes are now [bess.eyeColor]!</b>");
+	output("\n\n<b>[bess.name]’s eyes are now [bess.eyeColor]!</b>");
 
 	bessFunctionsMenu();
 }
@@ -2311,7 +2311,7 @@ public function bessSetBoobSize(newSize:int):void
 		output("\n\n");
 		if (bessIsDom()) output("Obeying [bess.himHer], you");
 		else output("Indulging [bess.himHer], you");
-		output(" slip behind [bess.name] and gently massage [bess.hisHer] tender udders, giving [bess.himHer] some relief. You knead your fingers deep into [bess.hisHer] billowing breast flesh, almost as if you're massaging out [bess.hisHer] milk.");
+		output(" slip behind [bess.name] and gently massage [bess.hisHer] tender udders, giving [bess.himHer] some relief. You knead your fingers deep into [bess.hisHer] billowing breast flesh, almost as if you’re massaging out [bess.hisHer] milk.");
 
 		output("\n\n[bess.HeShe] leans into your chest and lets out a sweet cry as [bess.hisHer] [bess.nipples] ecstatically spurt [bess.hisHer] milk everywhere. They seem incredibly sensitive and as you reach around to stroke [bess.hisHer] nubs [bess.heShe] cries out as if you were stroking [bess.hisHer]");
 		if (bess.hasVagina()) output(" clit.");
@@ -2339,11 +2339,11 @@ public function bessSetBoobSize(newSize:int):void
 		}
 		output(" it seems [bess.name] has generated more than [bess.heShe] needed. Like a farm animal, you squeeze and massage [bess.hisHer] drooling udders until they spurt out the excess fluid.");
 
-		output("\n\n" + possessive(bess.short) + " [bess.thighs] shake spastically as [bess.heShe] utterly creams [bess.himHer]self");
+		output("\n\n[bess.name]’s [bess.thighs] shake spastically as [bess.heShe] utterly creams [bess.himHer]self");
 		if (pc.hasCock() && pc.genitalSpot <= 1) output(" for a second time");
 		output(", overstimulated by the frothy streams from [bess.hisHer] [bess.nipple].");
-		if (bess.hasCock()) output(" [bess.HeShe] shoots a thick, steaming load of [bess.hisHer] spunk all over the ship's floor, splattering the surface beneath [bess.hisHer] feet.");
-		else if (bess.hasVagina()) output(" [bess.HisHer] pussy squirts intermittent jets of [bess.hisHer] [bess.girlCum] all over the ship's floor, splattering the surface beneath [bess.hisHer] feet.");
+		if (bess.hasCock()) output(" [bess.HeShe] shoots a thick, steaming load of [bess.hisHer] spunk all over the ship’s floor, splattering the surface beneath [bess.hisHer] feet.");
+		else if (bess.hasVagina()) output(" [bess.HisHer] pussy squirts intermittent jets of [bess.hisHer] [bess.girlCum] all over the ship’s floor, splattering the surface beneath [bess.hisHer] feet.");
 
 		bess.breastRows[0].breastRatingRaw = newSize;
 
@@ -2353,32 +2353,32 @@ public function bessSetBoobSize(newSize:int):void
 
 		if (bessIsEqual())
 		{
-			output("\n\n<i>“... Ahem. I'd better get a mop for all this.”</i> [bess.name] coughs, looking about for one.");
+			output("\n\n<i>“... Ahem. I’d better get a mop for all this.”</i> [bess.name] coughs, looking about for one.");
 			// {if (Celise Companion true
-			if (9999 == 0) output(" <i>“...Oh wait, I'll just get Celise! CELLLIIISE! FREE PROTEIN!”</i> [bess.HeShe] shouts out.");
+			if (9999 == 0) output(" <i>“...Oh wait, I’ll just get Celise! CELLLIIISE! FREE PROTEIN!”</i> [bess.HeShe] shouts out.");
 		}
 		else if (bessIsDom())
 		{
-			output("\n\n<i>“Looks like you've got a lot to clean up.");
+			output("\n\n<i>“Looks like you’ve got a lot to clean up.");
 			if (pc.isBiped()) output(" Hands and knees");
 			else output(" On the ground");
 			output(", now.”</i> [bess.name] spanks your ass and forces you to lap up [bess.hisHer] milk");
 			if (bess.hasCock()) output(" and [bess.cumFlavor] semen");
 			if (pc.isBiped()) output(" on all fours");
 			else output(" with your tongue");
-			output(". [bess.HeShe] make sure you don't miss a single spot.");
+			output(". [bess.HeShe] make sure you don’t miss a single spot.");
 
 			// {if Celise companion
-			if (9999 == 0) output("\n\nCelise comes across you licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don't I get a free meal like that?”</i>");
+			if (9999 == 0) output("\n\nCelise comes across you licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don’t I get a free meal like that?”</i>");
 		}
 		else
 		{
-			output("\n\n<i>“Looks like you’ve got a lot to clean up. Hands and knees, now.”</i> You spank " + possessive(bess.short) + " ass and force [bess.himHer] to lap up [bess.hisHer] own milk on [bess.hisHer] on all fours");
+			output("\n\n<i>“Looks like you’ve got a lot to clean up. Hands and knees, now.”</i> You spank [bess.name]’s ass and force [bess.himHer] to lap up [bess.hisHer] own milk on [bess.hisHer] on all fours");
 			if (bess.hasCock()) output(", as well as [bess.hisHer] own [bess.cumFlavor] semen.”</i>");
 			output(" You make sure [bess.heShe] doesn’t miss a single spot.");
 
 			// {if Celise companion 
-			if (9999 == 0) output("\n\nCelise comes across [bess.name] licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don't I get a free meal like that?”</i>");
+			if (9999 == 0) output("\n\nCelise comes across [bess.name] licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don’t I get a free meal like that?”</i>");
 		}
 
 		output("\n\n<b>[bess.name] now has a pair of [bess.breastCupSize] breasts!<\b>");
@@ -2506,7 +2506,7 @@ public function bessStartLactation():void
 
 	bessTopStripScene();
 
-	output("\n\nIt seems [bess.name] needs to induce lactation in a very similar way to a nursing mother. There’s a good chance JoyCo, being a medical company, thought it was important for [bess.name] to know this particular method. That, or the more likely scenario; " + possessive(bess.short) + " developers were just a bunch of pregophiles.");
+	output("\n\nIt seems [bess.name] needs to induce lactation in a very similar way to a nursing mother. There’s a good chance JoyCo, being a medical company, thought it was important for [bess.name] to know this particular method. That, or the more likely scenario; [bess.name]’s developers were just a bunch of pregophiles.");
 
 	output("\n\nCupping one of [bess.hisHer] [bess.breasts] in one hand, [bess.name] begins to gently stroke it like a mother stimulating prolactin. [bess.HeShe] methodically massages each and every part with a flushing expression.");
 
@@ -2527,7 +2527,7 @@ public function bessStartLactation():void
 
 	output("\n\nYou feel [bess.himHer] stiffen up at first in surprise, and then relax into your chest with a pleasured sigh. With [bess.himHer] massaging one and you the other, it’s going to take half the time.");
 	
-	output("\n\nIt’s not long before you feel " + possessive(bess.short) + " "+bessAssSize()+" ass unconsciously rubbing against your crotch. [bess.HeShe] seems to be getting really worked up by having [bess.hisHer] [bess.breasts] milked.");
+	output("\n\nIt’s not long before you feel [bess.name]’s "+bessAssSize()+" ass unconsciously rubbing against your crotch. [bess.HeShe] seems to be getting really worked up by having [bess.hisHer] [bess.breasts] milked.");
 
 	output("\n\nYou’re getting all worked up by [bess.hisHer] heated moans and trembling thighs");
 	if (pc.hasCock()) output(", and especially [bess.hisHer] [bess.ass] squeezing and caressing the underside of your [pc.cocksNounSimple].");
@@ -2620,7 +2620,7 @@ public function bessStopLactation():void
 	output("\n\n... What, <i>that’s it</i>? No kinky breast massages, nothing? Seems it’s a lot simpler to turn that mode on than it is to turn it off again.");
 
 	output("\n\n");
-	if (bess.isFeminine()) output("Wearing the world's biggest pout");
+	if (bess.isFeminine()) output("Wearing the world’s biggest pout");
 	else output("With a downhearted sigh");
 	output(", [bess.name] goes off to look for something else to do. At least the ship will be saving money on breast pads.");
 
@@ -2885,7 +2885,7 @@ public function changeBessCurvy(newRating:int, targetRating:uint):void
 		if (bess.hasCock()) output(" all over [bess.hisHer] stomach and around [bess.hisHer] own cock. [bess.HeShe] squeezes and spasms lewdly around [bess.hisHer] own extensive length as it simultaneously shoots [bess.hisHer] juice into [bess.himHer]");
 		output(".");
 		
-		output("\n\nAt the same time " + possessive(bess.short));
+		output("\n\nAt the same time [bess.name]’s");
 		if (targetRating == BESS_CURVE_HIPS) output(" thighs begin");
 		else if (targetRating == BESS_CURVE_BUTT) output(" ass begins");
 		else output(" stomach begins");
@@ -3134,7 +3134,7 @@ public function setBessCockType(newType:int):void
 		bess.balls = 0;
 		bess.ballSizeRaw = 0;
 
-		output("You decide you’d like to equip [bess.name] with the goo cock attachment you purchased from JoyCo. You pull out a small ring that seems to be some kind of compact material manipulator. As soon as you attach it to her, " + possessive(bess.short) + " Meld-Milk insides pour out and form a semi-transparent, metallic looking goo cock!");
+		output("You decide you’d like to equip [bess.name] with the goo cock attachment you purchased from JoyCo. You pull out a small ring that seems to be some kind of compact material manipulator. As soon as you attach it to her, [bess.name]’s Meld-Milk insides pour out and form a semi-transparent, metallic looking goo cock!");
 		
 		output("\n\n<i>“Wow, guess my insides are kind of like that of a metallic goo [bess.boyGirl]...! Imagine the naughty things I can do with this, "+ bessPCName() +", I could probably penetrate even the smallest cracks.”</i> [bess.HeShe] strokes [bess.hisHer] silver gelatinous cock as it ripples about. [bess.HeShe] seems to be able to harden the liquid substance at will.");
 		
@@ -3153,9 +3153,9 @@ public function setBessCockType(newType:int):void
 		bess.balls = 0;
 		bess.ballSizeRaw = 0;
 
-		output("You decide you’d like to equip [bess.name] with the plant cock attachment you purchased from JoyCo. Technically it’s not a plant cock so much as a ‘bio-organic construct’ grown in a lab, and genetically designed to feed off of " + possessive(bess.short) + " internal Meld-Milk supply.");
+		output("You decide you’d like to equip [bess.name] with the plant cock attachment you purchased from JoyCo. Technically it’s not a plant cock so much as a ‘bio-organic construct’ grown in a lab, and genetically designed to feed off of [bess.name]’s internal Meld-Milk supply.");
 		
-		output("\n\nPulling it out of the cryo-stasis canister it came in, you then fasten it to " + possessive(bess.short) + " crotch extension slot, watching it slowly awaken and bury its roots into [bess.hisHer] body.");
+		output("\n\nPulling it out of the cryo-stasis canister it came in, you then fasten it to [bess.name]’s crotch extension slot, watching it slowly awaken and bury its roots into [bess.hisHer] body.");
 		
 		output("\n\nThe packaging said it was based on an organism discovered on one of the outer rim planets, known for mating with both plant and mammalian life-forms. [bess.HisHer] base is a giant open blossom, while in the middle of the petals is a phallic looking stamen with a bulbous head.");
 		
@@ -3183,7 +3183,7 @@ public function setBessCockType(newType:int):void
 
 		if (!bess.hasKnot())
 		{
-			output("\n\n" + possessive(bess.short) + " dragon cock has a knot, but since you don’t like them [bess.heShe] immediately shrinks it away.");
+			output("\n\n[bess.name]’s dragon cock has a knot, but since you don’t like them [bess.heShe] immediately shrinks it away.");
 		}
 		else
 		{
@@ -3304,7 +3304,7 @@ public function bessRemovePussy():void
 	clearOutput();
 	bessHeader();
 
-	output("In what can only be described as bizarre to watch, " + possessive(bess.short) + " silvery vagina moves up just slightly into [bess.hisHer] body. A skin covered panel then slides down and out, pressing into the empty spot and filling the gap. What is left is a perfectly smooth groin area.");
+	output("In what can only be described as bizarre to watch, [bess.name]’s silvery vagina moves up just slightly into [bess.hisHer] body. A skin covered panel then slides down and out, pressing into the empty spot and filling the gap. What is left is a perfectly smooth groin area.");
 	
 	output("\n\n<b>[bess.name] no longer has " + indefiniteArticle(bess.vaginaDescript(0)) + "!</b>");
 
@@ -3318,7 +3318,7 @@ public function bessGainPussy():void
 	clearOutput();
 	bessHeader();
 
-	output("In what can only be described as bizarre to watch, " + possessive(bess.short) + " flat groin slides in and up, like a hatch opening. From inside a silvery vagina pushes out, filling the gap.");
+	output("In what can only be described as bizarre to watch, [bess.name]’s flat groin slides in and up, like a hatch opening. From inside a silvery vagina pushes out, filling the gap.");
 
 	if (!bess.hasVagina()) bess.vaginas.push(new VaginaClass());
 	bess.vaginas[0].type = GLOBAL.TYPE_SYNTHETIC;
@@ -3360,13 +3360,13 @@ public function bessGainKnot():void
 	clearOutput();
 	bessHeader();
 
-	output(possessive(bess.short) + " [bess.cock] suddenly begins to flare at the base. The entire process takes mere moments. Afterwards, [bess.heShe] has a muscular lump at the stem of [bess.hisHer] [bess.cockNounSimple].");
+	output("[bess.name]’s [bess.cock] suddenly begins to flare at the base. The entire process takes mere moments. Afterwards, [bess.heShe] has a muscular lump at the stem of [bess.hisHer] [bess.cockNounSimple].");
 
 	output("\n\nFlexing it and watching it swell and recede, [bess.name] gives a small grin. <i>“Wow, I could trap anyone with this! Fancy a ride, "+ bessPCName() +"?”</i>");
 
 	bess.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 
-	output("\n\n<b>" + possessive(bess.short) + " [bess.cockNounSimple] now has " + indefiniteArticle(bess.knotDescript(0)) + "!</b>");
+	output("\n\n<b>[bess.name]’s [bess.cockNounSimple] now has " + indefiniteArticle(bess.knotDescript(0)) + "!</b>");
 
 	bessFunctionsMenu();
 }
@@ -3376,7 +3376,7 @@ public function bessRemoveKnot():void
 	clearOutput();
 	bessHeader();
 
-	output("Within seconds of your request being issued, " + possessive(bess.short) + " [bess.knot] shrinks until it is completely gone. The signiture lump is now missing from the base of [bess.hisHer] [bess.cockNounSimple].");
+	output("Within seconds of your request being issued, [bess.name]’s [bess.knot] shrinks until it is completely gone. The signiture lump is now missing from the base of [bess.hisHer] [bess.cockNounSimple].");
 	
 	output("\n\n<b>[bess.name] no longer has a knot!</b>");
 
@@ -3476,7 +3476,7 @@ public function bessSetCumFlavor(opts:Array):void
 	}
 	output("!</i> [bess.name] cheerfully exclaims.");
 	
-	output("\n\n<b>" + possessive(bess.short));
+	output("\n\n<b>[bess.name]’s");
 	if (asCock) output(" cum");
 	else output(" girl cum");
 	output(" now tastes like ");
@@ -3587,7 +3587,7 @@ public function bessCIW(idx:int, lbl:String, cType:Class, ttH:String, ttB:String
 	}
 	else
 	{
-		addDisabledButton(idx, lbl, ttH, "[bess.name] doesn't have access to this item of clothing!");
+		addDisabledButton(idx, lbl, ttH, "[bess.name] doesn’t have access to this item of clothing!");
 	}
 }
 
@@ -3891,11 +3891,11 @@ public function talkToBessAboutItems():void
 {
 	clearMenu();
 
-	if (!bessHasGlasses()) addDisabledButton(0, "Glasses", "Glasses", "[bess.name] doesn't own glasses!");
+	if (!bessHasGlasses()) addDisabledButton(0, "Glasses", "Glasses", "[bess.name] doesn’t own glasses!");
 	else if (!bessGlasses()) addButton(0, "Glasses", talkToBessWearGlasses, undefined, "Glasses", "Have [bess.name] wear glasses.");
 	else addButton(0, "Glasses", talkToBessRemoveGlasses, undefined, "Glasses", "Have [bess.name] remove [bess.hisHer] glasses.");
 
-	if (!bessHasKatana()) addDisabledButton(1, "Katana", "Katana", "[bess.name] doesn't own a katana!");
+	if (!bessHasKatana()) addDisabledButton(1, "Katana", "Katana", "[bess.name] doesn’t own a katana!");
 	else if (!bessKatana()) addButton(1, "Katana", talkToBessUseKatana, undefined, "Katana", "Have [bess.name] carry a katana.");
 	else addButton(1, "Katana", talkToBessNoKatana, undefined, "Katana", "Have [bess.name] put [bess.hisHer] katana away.");
 
@@ -4181,11 +4181,11 @@ public function bessBuyShitItems():void
 	clearMenu();
 	
 	if (bessHasGlasses()) addDisabledButton(0, "Glasses", "Glasses", "[bess.name] already owns glasses!");
-	else if (pc.credits < 500) addDisabledButton(0, "Glasses", "Glasses", "You can't afford to buy [bess.name] glasses!");
+	else if (pc.credits < 500) addDisabledButton(0, "Glasses", "Glasses", "You can’t afford to buy [bess.name] glasses!");
 	else addButton(0, "Glasses", bessBuyGlasses, undefined, "Glasses", "Buy some glasses and allow [bess.name] to equip them!");
 
 	if (bessHasKatana()) addDisabledButton(1, "Katana", "Katana", "[bess.name] already owns a katana!");
-	else if (pc.credits < 1000) addDisabledButton(1, "Katana", "Katana", "You can't afford to buy [bess.name] a katana!");
+	else if (pc.credits < 1000) addDisabledButton(1, "Katana", "Katana", "You can’t afford to buy [bess.name] a katana!");
 	else addButton(1, "Katana", bessBuyKatana, undefined, "Katana", "Buy a katana for [bess.name] to saunter around with it!");
 
 	addButton(14, "Back", talkToBessAboutAccessories);
@@ -5092,7 +5092,7 @@ public function aboutBess5():void
 	clearOutput();
 	bessHeader();
 
-	output("[bess.name] " + bess.mf("mock gasps","mockes blush") + ", and holds a hand over [bess.hisHer] mouth. <i>“You want me to reveal something so personal, "+ bessPCName() +"?”</i> It seems like [bess.heShe]'s trying to wind you up.");
+	output("[bess.name] " + bess.mf("mock gasps","mockes blush") + ", and holds a hand over [bess.hisHer] mouth. <i>“You want me to reveal something so personal, "+ bessPCName() +"?”</i> It seems like [bess.heShe]’s trying to wind you up.");
 
 	output("\n\n<i>“My body is made of a substance called FlexMetal, a patented creation exclusive to JoyCo. Softer than organic flesh and ten times more flexible, it allows me to change my form in many ways.”</i>");
 
@@ -5137,7 +5137,7 @@ public function aboutBess7():void
 
 	if (flags["BESS_LOVER"] == undefined)
 	{
-		output("You ask [bess.name] about [bess.hisHer] service life span. While talking about death is an uncomfortable topic for organics, speaking about it doesn't seem to bother [bess.himHer] in the least.");
+		output("You ask [bess.name] about [bess.hisHer] service life span. While talking about death is an uncomfortable topic for organics, speaking about it doesn’t seem to bother [bess.himHer] in the least.");
 	}
 	else
 	{
@@ -5150,16 +5150,16 @@ public function aboutBess7():void
 
 	if (flags["BESS_LOVER"] != undefined)
 	{
-		output("\n\n[bess.name] holds your hands in [bess.hisHer] own and looks up at you. <i>“If... if by some chance it looks like I am going to outlive you, I have chosen to deactivate myself and overload my processor. This way I can die at the exact same time as you do. I... I don't want to continue functioning in a world without you, "+ bessPCName() +".”</i>");
+		output("\n\n[bess.name] holds your hands in [bess.hisHer] own and looks up at you. <i>“If... if by some chance it looks like I am going to outlive you, I have chosen to deactivate myself and overload my processor. This way I can die at the exact same time as you do. I... I don’t want to continue functioning in a world without you, "+ bessPCName() +".”</i>");
 	}
 
 	if (flags["BESS_FRIEND"] != undefined)
 	{
-		output("\n\n[bess.name] pauses and looks at you with a worried expression. <i>“Hey, uh... buddies don't melt each other down for scrap, right? I’m pretty sure that’s in the unofficial friend rulebook. Can you forget that I told you that you can melt me down and sell my remains for a lot of cash?”</i>");
+		output("\n\n[bess.name] pauses and looks at you with a worried expression. <i>“Hey, uh... buddies don’t melt each other down for scrap, right? I’m pretty sure that’s in the unofficial friend rulebook. Can you forget that I told you that you can melt me down and sell my remains for a lot of cash?”</i>");
 	}
 	else
 	{
-		output("\n\n[bess.name] smiles and seems completely undaunted by this prospect. <i>“If you do live to see your hundredth birthday, I would recommend melting me down for a discount. I'm sure a far superior model of AI will be out by that time, and I'd hate to see you receive sub-par service.”</i>");
+		output("\n\n[bess.name] smiles and seems completely undaunted by this prospect. <i>“If you do live to see your hundredth birthday, I would recommend melting me down for a discount. I’m sure a far superior model of AI will be out by that time, and I’d hate to see you receive sub-par service.”</i>");
 	}
 
 	processTime(15+rand(10));
@@ -5345,7 +5345,7 @@ public function talkToBessGetInfoOnNipnips():void
 	clearOutput();
 	bessHeader();
 
-	output("You bring up the topic of " + possessive(bess.short) + " nipples. Specifically, you’ve noticed that they seem unusually sensitive.");
+	output("You bring up the topic of [bess.name]’s nipples. Specifically, you’ve noticed that they seem unusually sensitive.");
 
 	output("\n\n[bess.name] coughs and turns [bess.hisHer] head slightly to the side, surprisingly bashful about the subject. <i>“O-oh, those? I don’t think they are </i>that<i> sensitive. Do you..?</i>");
 	
@@ -5355,7 +5355,7 @@ public function talkToBessGetInfoOnNipnips():void
 	
 	output("\n\nYou ask how long [bess.heShe]’s had this particular quirk, and exactly <i>how</i> sensitive they are.");
 	
-	output("\n\n<i>“U-um... three times higher than human normal. Since I don’t have pain receptors active in them, only the pleasure sensors give feedback.”</i> " + possessive(bess.short) + " cheeks flush. No wonder [bess.heShe] looks like [bess.heShe]’s going to " + bess.mf("cum", "cream herself") + " every time you touch [bess.hisHer] nipples!");
+	output("\n\n<i>“U-um... three times higher than human normal. Since I don’t have pain receptors active in them, only the pleasure sensors give feedback.”</i> [bess.name]’s cheeks flush. No wonder [bess.heShe] looks like [bess.heShe]’s going to " + bess.mf("cum", "cream herself") + " every time you touch [bess.hisHer] nipples!");
 	
 	output("\n\n<i>“What I can’t believe is that I came with this issue straight after being shipped to you. Having this kind of glitch on arrival is just plain </i>embarassing<i>, let alone what it does to consumer confidence.”</i>");
 
@@ -5389,7 +5389,7 @@ public function talkToBessNipSenseToMaximumEngage():void
 	clearOutput();
 	bessHeader();
 
-	output("You ask [bess.name] if there’s any way to increase it. " + possessive(bess.short) + " face looks utterly incredulous.");
+	output("You ask [bess.name] if there’s any way to increase it. [bess.name]’s face looks utterly incredulous.");
 	
 	output("\n\n<i>“I-I-increasing it?”</i> [bess.name] stammers; clearly this thought never even crossed [bess.hisHer] mind. <i>“I have enough trouble now needing a change of underwear every time my nipples get touched!”</i>");
 	
@@ -5506,7 +5506,7 @@ public function talkToBessPlayGraviball():void
 
 	// Different NPC reactions on being asked.
 
-	output("<i>“You want to play Graviball, [bess.name]?”</i> " + possessive(bess.short) + " eyes shine with delight. <i> “Let’s do it!”</i>");
+	output("<i>“You want to play Graviball, [bess.name]?”</i> [bess.name]’s eyes shine with delight. <i> “Let’s do it!”</i>");
 
 	output("\n\nThe");
 	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
@@ -5653,7 +5653,7 @@ public function talkToBessSingKareoke():void
 
 	if (flags["BESS_PC_KAREOKE_SKILL"] == 0)
 	{
-		output("\n\nAs you get up to sing you grab " + possessive(bess.short) + " microphone and start to sing -");
+		output("\n\nAs you get up to sing you grab [bess.name]’s microphone and start to sing -");
 		if (crew(true) > 1) output(" everyone");
 		else output(" [bess.heShe]");
 		output(" cringes and your microphone is taken away from you. It is quickly replaced with another. <i>“Here, take this one!”</i> [bess.name] exclaims, it seems you’re not allowed to sing without the ‘special microphone’. When you do your voice sounds wonderful and more importantly, bearable.");
@@ -6240,7 +6240,7 @@ public function bessEvent1Invite():void
 	{
 		output("<i>“You know, it’s a free galaxy. You can sit down and watch the news if you want to, [bess.name].”</i> You lazily invite [bess.himHer] to sit down, your arm slung over the back of the ship’s sofa.");
 		
-		output("\n\n" + possessive(bess.short) + " [bess.eyeColor] eyes gleam with a hopeful yet hesitant look; clearly [bess.heShe] wants to sit down, but [bess.heShe] isn’t sure if you’re playing with [bess.himHer]. You do have a reputation for that kind of thing, after all.");
+		output("\n\n[bess.name]’s [bess.eyeColor] eyes gleam with a hopeful yet hesitant look; clearly [bess.heShe] wants to sit down, but [bess.heShe] isn’t sure if you’re playing with [bess.himHer]. You do have a reputation for that kind of thing, after all.");
 		
 		output("\n\n<i>“Look, I’m serious all right? Sit down and watch the news with me already.”</i> You give [bess.himHer] a verbal push - otherwise you’re fairly sure the "+ bess.mf("male synthetic", "synthetic girl") +" is going to stand there all day.");
 		
@@ -6253,7 +6253,7 @@ public function bessEvent1Invite():void
 	{
 		output("<i>“You should sit down and watch the news with me, [bess.name]. There’s some pretty interesting stuff going on.”</i> You welcome [bess.himHer] to sit down with a warm smile, patting the seat next to you.");
 		
-		output("\n\nYour kindness seems to catch [bess.hisHer] off guard, but even so " + possessive(bess.short) + " wide [bess.eyeColor] eyes are gleaming");
+		output("\n\nYour kindness seems to catch [bess.hisHer] off guard, but even so [bess.name]’s wide [bess.eyeColor] eyes are gleaming");
 		if (bessGlasses()) output(" through [bess.hisHer] glasses");
 		output(" with a hopeful yet hesitant look. <i>“Are you sure it’s okay, or are my audio receptors acting up?”</i> [bess.HeShe] tentatively queries, inching closer to the sofa.");
 		
@@ -6481,8 +6481,8 @@ public function bessEvent3():void
 	output("\n\nWhatever you say now may set a precedent. If you want [bess.himHer] to keep asking you questions about things, it would probably be best to encourage [bess.himHer]. If not, putting an end to it now would probably be for the best.");
 
 	clearMenu();
-	addButton(0, "Yes", bessEvent3Yes, undefined, "Yes", "If you encourage [bess.name] to ask questions, it might lead to even <i>more</i> questions... perhaps ones well outside of [bess.hisHer] programming. If you want [bess.himHer] to evolve, it's probably a good idea to encourage [bess.himHer].");
-	addButton(1, "No", bessEvent3No, undefined, "No", "If you discourage [bess.name] from asking questions, you feel your relationship with [bess.himHer] will stagnate. Still, if you want things to strictly remain as sex-bot and owner, it's the best choice.");
+	addButton(0, "Yes", bessEvent3Yes, undefined, "Yes", "If you encourage [bess.name] to ask questions, it might lead to even <i>more</i> questions... perhaps ones well outside of [bess.hisHer] programming. If you want [bess.himHer] to evolve, it’s probably a good idea to encourage [bess.himHer].");
+	addButton(1, "No", bessEvent3No, undefined, "No", "If you discourage [bess.name] from asking questions, you feel your relationship with [bess.himHer] will stagnate. Still, if you want things to strictly remain as sex-bot and owner, it’s the best choice.");
 }
 
 public function bessEvent3No():void
@@ -6596,7 +6596,7 @@ public function bessEvent3MoreThanSex():void
 	
 	output("\n\n[bess.HeShe] pauses for a moment and then bows to you. <i>“Thank you for taking the time to listen to my problems. I know that you didn’t have to... I um... I really appreciate it.”</i>");
 	
-	output("\n\n" + possessive(bess.short) + " tone is incredibly emotive, it doesn’t sound like a pre-programmed script. Could [bess.heShe] already be thinking outside of [bess.hisHer] defined programming?");
+	output("\n\n[bess.name]’s tone is incredibly emotive, it doesn’t sound like a pre-programmed script. Could [bess.heShe] already be thinking outside of [bess.hisHer] defined programming?");
 	
 	processTime(60+rand(5));
 	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
@@ -6614,7 +6614,7 @@ public function bessEvent3OwnPath():void
 
 	output("You tell [bess.name] that [bess.heShe] should decide [bess.hisHer] own path, no matter how hard it is, otherwise [bess.hisHer] choice will be less meaningful.");
 	
-	output("\n\nYou can tell by " + possessive(bess.short) + " expression that [bess.heShe] was hoping you’d give [bess.himHer] the answer. [bess.HeShe] pauses for a long time; [bess.heShe] appears as if [bess.heShe]’s musing about what [bess.heShe]’s going to do. Even doing nothing is making a decision to follow [bess.hisHer] old ways.");
+	output("\n\nYou can tell by [bess.name]’s expression that [bess.heShe] was hoping you’d give [bess.himHer] the answer. [bess.HeShe] pauses for a long time; [bess.heShe] appears as if [bess.heShe]’s musing about what [bess.heShe]’s going to do. Even doing nothing is making a decision to follow [bess.hisHer] old ways.");
 	
 	output("\n\nEventually though, [bess.name] does come to a decision. <i>“... I want people to be happy. If I don’t make people happy, administering sexual relief is meaningless. If the original founders of JoyCo didn’t want me to administer joy to the galaxy they wouldn’t have put it in their name or made it one of my directives.”</i>");
 	
@@ -6623,7 +6623,7 @@ public function bessEvent3OwnPath():void
 	
 	output("\n\n[bess.HeShe] pauses for a moment and then bows to you. <i>“Thank you for taking the time to listen to my problems. I know that you didn’t have to... I um... I really appreciate it.”</i>");
 	
-	output("\n\n" + possessive(bess.short) + " tone is incredibly emotive, it doesn’t sound like a pre-programmed script. [bess.HeShe]’s come a long way in a short time.");
+	output("\n\n[bess.name]’s tone is incredibly emotive, it doesn’t sound like a pre-programmed script. [bess.HeShe]’s come a long way in a short time.");
 
 	processTime(60+rand(5));
 	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
@@ -6700,7 +6700,7 @@ public function bessEvent4Encourage():void
 	clearOutput();
 	bessHeader();
 
-	output("You tell [bess.hisHer] to keep up the good work. " + possessive(bess.short) + " face lights up at your praise as [bess.heShe] leaves with a spring in [bess.hisHer] step. Later, you can hear [bess.himHer] humming the JoyCo jingle as [bess.heShe] puts your bedding in the ship’s dryer.");
+	output("You tell [bess.hisHer] to keep up the good work. [bess.name]’s face lights up at your praise as [bess.heShe] leaves with a spring in [bess.hisHer] step. Later, you can hear [bess.himHer] humming the JoyCo jingle as [bess.heShe] puts your bedding in the ship’s dryer.");
 
 	processTime(60+rand(5));
 
@@ -6877,7 +6877,7 @@ public function bessEvent6Answer():void
 	clearOutput();
 	bessHeader();
 
-	output("You decide to answer " + possessive(bess.short) + " questions. [bess.HeShe] bombards you with a bunch of questions, including your favorite meal, until [bess.heShe]’s fully satisfied. [bess.HeShe] then excuses [bess.himHer]self to go look for ‘supplies’.");
+	output("You decide to answer [bess.name]’s questions. [bess.HeShe] bombards you with a bunch of questions, including your favorite meal, until [bess.heShe]’s fully satisfied. [bess.HeShe] then excuses [bess.himHer]self to go look for ‘supplies’.");
 	
 	output("\n\nYou feel an eerie premonition of something bad happening in your near future - hopefully it’s just your imagination.");
 
@@ -6894,7 +6894,7 @@ public function bessEvent6Refuse():void
 	clearOutput();
 	bessHeader();
 
-	output("You refuse to answer " + possessive(bess.short) + " questions, stating you’ve got things to do.");
+	output("You refuse to answer [bess.name]’s questions, stating you’ve got things to do.");
 	
 	output("\n\n<i>“Aww, come on, "+ bessPCName() +". Stop being so evasive!”</i> [bess.name] pleads, following you around even as you walk off. <i>“... I’ll wear you down until you answer. I can be really persistent - just ask my programmers!”</i>");
 
@@ -7020,7 +7020,7 @@ public function bessEvent7DrinkForgive():void
 
 	if (pc.isNice())
 	{
-		output("You reach out and touch " + possessive(bess.short) + " shoulder, telling [bess.himHer] there’s nothing to forgive. <i>“Hey, it’s okay! You gave it a shot, it didn’t work out. It’s going to take a lot more than that to kill me.”</i>");
+		output("You reach out and touch [bess.name]’s shoulder, telling [bess.himHer] there’s nothing to forgive. <i>“Hey, it’s okay! You gave it a shot, it didn’t work out. It’s going to take a lot more than that to kill me.”</i>");
 		
 		output("\n\n<i>“Just because it didn’t kill you doesn’t mean I didn’t do permanent internal damage, "+ bessPCName() +"! I know you’re trying to be kind, but I put your life in danger and as such I must be punished - probably dismantled!”</i> [bess.name] looks at you with a deeply concerned look in [bess.hisHer] synthetic eyes.");
 		
@@ -7324,7 +7324,7 @@ public function bessEvent9MakesHappy():void
 	clearOutput();
 	bessHeader();
 
-	output("You tell [bess.himHer] people read physical books because it makes them happy to do so. " + possessive(bess.short) + " eyes go wide with realization at your answer, almost as if it struck some sort of chord with [bess.himHer].");
+	output("You tell [bess.himHer] people read physical books because it makes them happy to do so. [bess.name]’s eyes go wide with realization at your answer, almost as if it struck some sort of chord with [bess.himHer].");
 	
 	output("\n\n<i>“You’re absolutely right, "+ bessPCName() +"! Since I’ve been reading these books, I’ve felt an approximation of satisfaction and pleasure! Do you think that means I ‘like’ books?”</i> The");
 	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
@@ -7364,7 +7364,7 @@ public function bessEvent9Merge():void
 	// [HappyIsOK] [NotOkay] 
 	clearMenu();
 	addButton(0, "HappyIsOkay", bessEvent9HappyOkay, undefined, "Happy Is Okay", "If you tell [bess.name] to be happy, you feel [bess.heShe] might take a step towards thinking a little bit more like an organic.");
-	addButton(1, "NotOkay", bessEvent9NotOkay, undefined, "Not Okay", "If you tell [bess.himHer] it's not okay to think of [bess.hisHer] own happiness, you're pretty sure [bess.heShe]'ll stagnate. This would probably be a bad choice if you want to have a real relationship with [bess.himHer].");
+	addButton(1, "NotOkay", bessEvent9NotOkay, undefined, "Not Okay", "If you tell [bess.himHer] it’s not okay to think of [bess.hisHer] own happiness, you’re pretty sure [bess.heShe]’ll stagnate. This would probably be a bad choice if you want to have a real relationship with [bess.himHer].");
 }
 
 public function bessEvent9NotOkay():void
@@ -7374,7 +7374,7 @@ public function bessEvent9NotOkay():void
 
 	output("You tell [bess.himHer] it’s not okay to be happy, since [bess.heShe] exists to serve sapient organics and not [bess.himHer]self.");
 	
-	output("\n\n" + possessive(bess.short) + " hands are shaking. [bess.HeShe] nods at your words, clearly trying to strengthen [bess.hisHer] resolve. <i>“... You’re right, it’s not okay for me to be happy. I exist for serving organics, nothing more. I’ll need to download an emotional inhibition program for happiness.”</i>");
+	output("\n\n[bess.name]’s hands are shaking. [bess.HeShe] nods at your words, clearly trying to strengthen [bess.hisHer] resolve. <i>“... You’re right, it’s not okay for me to be happy. I exist for serving organics, nothing more. I’ll need to download an emotional inhibition program for happiness.”</i>");
 	
 	output("\n\n[bess.HeShe] goes off to download the inhibitor, which will effectively render [bess.himHer] unable to feel happy. You clean up the books and put them back where they came from.");
 
@@ -7400,7 +7400,7 @@ public function bessEvent9HappyOkay():void
 	// [BeHappy] [OnlyServe]
 	clearMenu();
 	addButton(0, "BeHappy", bessEvent9YesOkayBeHappy, undefined, "Be Happy", "You encourage [bess.himHer] to also prioritize [bess.hisHer] own happiness.");
-	addButton(1, "Serve", bessEvent9NotOkay, undefined, "Only Serve", "You tell [bess.name] that the truth is [bess.heShe] only exists to serve -- and that this is how [bess.heShe] <b>should</b> think. There's a good chance telling [bess.himHer] this will stagnate your relationship...")
+	addButton(1, "Serve", bessEvent9NotOkay, undefined, "Only Serve", "You tell [bess.name] that the truth is [bess.heShe] only exists to serve -- and that this is how [bess.heShe] <b>should</b> think. There’s a good chance telling [bess.himHer] this will stagnate your relationship...")
 }
 
 public function bessEvent9YesOkayBeHappy():void
@@ -7511,7 +7511,7 @@ public function bessEvent10Jump():void
 
 	output("You sneak up behind [bess.name] as [bess.heShe]’s dusting a piece of furniture and grab [bess.himHer] from behind, causing [bess.himHer] to let out a "+ bess.mf("cry", "squeal") +" of surprise. As [bess.heShe] looks back at you there’s a giant grin on [bess.hisHer] face, <i>“Is there something you want, "+ bessPCName() +"?”</i>");
 
-	output("\n\n<i>“Very much so,”</i> you reply. You both fool around for a while. It seems " + possessive(bess.short) + " research paid off for [bess.himHer].");
+	output("\n\n<i>“Very much so,”</i> you reply. You both fool around for a while. It seems [bess.name]’s research paid off for [bess.himHer].");
 
 	processTime(60+rand(5));
 	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
@@ -7646,7 +7646,7 @@ public function bessEvent11CrewType(crewType:uint):void
 	
 	output("\n\n<i>“Oh, this? I was reading up on happiness and it said when people are really, really happy they sometimes begin to cry. I’m so overjoyed that I broke down some of my MeldMilk, turned it into salt water, and secreted it through my tear glands so I could show you exactly how happy I am,”</i> [bess.heShe] explains, clasping the credit chip in [bess.hisHer] synthetic silver hands. <i>“Thank you, I’d be honored to be the ship’s "+ bessCrewRole() +". I won’t let you down, I promise!”</i>");
 	
-	output("\n\n<b>[bess.name] is now the ship’s "+ bessCrewRole() +"! You can change " + possessive(bess.short) + " role at any time in the Discuss section of [bess.hisHer] Follower Menu!</b>");
+	output("\n\n<b>[bess.name] is now the ship’s "+ bessCrewRole() +"! You can change [bess.name]’s role at any time in the Discuss section of [bess.hisHer] Follower Menu!</b>");
 
 	processTime(60);
 	bessAffection(10);
@@ -7671,7 +7671,7 @@ public function bessEvent12():void
 	}
 	else if (flags["BESS_CREW_ROLE"] == BESS_CREWROLE_ARCHIVIST)
 	{
-		output("You run into [bess.name] stocking the ship with new holos and books, pulling them out of crates and sliding them into freshly installed retractable shelves. The shelves automatically sort the books and then close into the wall, taking up very little space. It was " + possessive(bess.short) + " idea to have them installed, but now every part of your ship has become a potential bookshelf.");
+		output("You run into [bess.name] stocking the ship with new holos and books, pulling them out of crates and sliding them into freshly installed retractable shelves. The shelves automatically sort the books and then close into the wall, taking up very little space. It was [bess.name]’s idea to have them installed, but now every part of your ship has become a potential bookshelf.");
 	}
 	else if (flags["BESS_CREW_ROLE"] == BESS_CREWROLE_STEWARDESS)
 	{
@@ -8086,11 +8086,11 @@ public function bessEvent15Response(response:String):void
 
 	// [Acquaint] [CrewMem] [Friends] [InLove] [UMySamwise*]
 	clearMenu();
-	addButton(0, "Acquint", bessEvent15FollowUp, "acquaint", "Acquaintances", "You're acquaintances, nothing more.");
-	addButton(1, "CrewMemb", bessEvent15FollowUp, "crewmem", "Crew Member", "You're members of the same crew, nothing more.");
-	addButton(2, "Friends", bessEvent15FollowUp, "friends", "Friends", "Of course you're friends!");
-	addButton(3, "InLove", bessEvent15FollowUp, "inlove", "In Love", "Actually, you're in love with [bess.himHer]. Perhaps now is the time to confess...?");
-	if (response != "notread") addButton(4, "UMySamwise", bessEvent15FollowUp, "samwise", "You’re My Samwise", "You're Frodo, and [bess.heShe]'s your Samwise.");
+	addButton(0, "Acquint", bessEvent15FollowUp, "acquaint", "Acquaintances", "You’re acquaintances, nothing more.");
+	addButton(1, "CrewMemb", bessEvent15FollowUp, "crewmem", "Crew Member", "You’re members of the same crew, nothing more.");
+	addButton(2, "Friends", bessEvent15FollowUp, "friends", "Friends", "Of course you’re friends!");
+	addButton(3, "InLove", bessEvent15FollowUp, "inlove", "In Love", "Actually, you’re in love with [bess.himHer]. Perhaps now is the time to confess...?");
+	if (response != "notread") addButton(4, "UMySamwise", bessEvent15FollowUp, "samwise", "You’re My Samwise", "You’re Frodo, and [bess.heShe]’s your Samwise.");
 }
 
 public function bessEvent15FollowUp(response:String):void
@@ -8261,9 +8261,9 @@ public function bessEvent16Response(response:String):void
 		bessAffection(-5);
 	}
 
-	output("\n\n<b> You gain " + possessive(bess.short) + " friendship bracelet!</b>");
+	output("\n\n<b>You gain [bess.name]’s friendship bracelet!</b>");
 
-	pc.createKeyItem(possessive(bess.short) + " Friendship Bracelet");
+	pc.createKeyItem(bess.short + "’s Friendship Bracelet");
 
 	flags["BESS_EVENT_16"] = GetGameTimestamp();
 	processTime(60+rand(5));
@@ -8289,7 +8289,7 @@ public function bessEvent17():void
 	{
 		output("\n\n<i>“Of course I’ve played Graviball - who do you take me for?”</i> You scoff, you spent half your childhood playing every kind of sport the galaxy had to offer; mostly at your father’s insistence. <i>“They used to call me the ‘Steele Hammer’ back home when I was playing in the junior leagues because I had a way of making that z-g ball crash down.”</i>");
 
-		output("\n\n<i>“O-hoh, so you’re a pro then? Guess you wouldn’t turn down a challenge from a synthetic newb like me, then?”</i> " + possessive(bess.short) + " [bess.eyeColor] eyes are alight with competitive spirit, as [bess.heShe] spins the gravity-defying ball on one finger.");
+		output("\n\n<i>“O-hoh, so you’re a pro then? Guess you wouldn’t turn down a challenge from a synthetic newb like me, then?”</i> [bess.name]’s [bess.eyeColor] eyes are alight with competitive spirit, as [bess.heShe] spins the gravity-defying ball on one finger.");
 	}
 	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM)
 	{
@@ -8305,7 +8305,7 @@ public function bessEvent17():void
 	{
 		output("\n\n<i>“I had a pretty strict upbringing; I didn’t really get time to play sports. Even though my old man was rich, he made me earn my way from a young age - I never got any hand outs.”</i> You tell [bess.name], realizing you’d never told [bess.himHer] how hard you had it growing up. As a Steele, most people automatically assumed you lived a pampered lifestyle from a young age.");
 		
-		output("\n\nThe edge of " + possessive(bess.short) + " eyes soften, then [bess.heShe] gets a little gleam in [bess.hisHer] eyes. <i>“All work and no play? Now I know why your family are called Steeles. How about we recapture some of that lost childhood...?”</i>");
+		output("\n\nThe edge of [bess.name]’s eyes soften, then [bess.heShe] gets a little gleam in [bess.hisHer] eyes. <i>“All work and no play? Now I know why your family are called Steeles. How about we recapture some of that lost childhood...?”</i>");
 	}
 	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_PAMPERED)
 	{
@@ -8926,7 +8926,7 @@ public function bessEvent20More(response:String):void
 	else if (response == "repeat") output("<i>“I said that I love you, how many times are you going to make me say it? I know all of that, and I still love YOU, [bess.name].”</i> You make sure it sinks in, as [bess.hisHer] eyes shoot wide. [bess.HeShe] slowly moves closer to you, it’s as if [bess.heShe]’s scared this is all a dream that will end any moment now.");
 	else output("Rather than tell [bess.himHer] you love [bess.himHer] with words, you decide to take action instead. You charge forward and grab [bess.himHer] firmly in your arms - and while [bess.hisHer] eyes shoot wide open, [bess.heShe] doesn’t resist you.");
 
-	output("\n\nYou draw [bess.name] close and kiss [bess.himHer]. At first the kiss is gentle, but as [bess.heShe] returns your affections, it becomes sensual. [bess.HisHer] arms snake around your waist as [bess.heShe] pulls [bess.himHer]self close to you. You can feel warm wet tears brushing your cheeks, though you know these are tears of " + possessive(bess.short) + " happiness, as [bess.heShe] clutches you as tight as [bess.heShe] possibly can.");
+	output("\n\nYou draw [bess.name] close and kiss [bess.himHer]. At first the kiss is gentle, but as [bess.heShe] returns your affections, it becomes sensual. [bess.HisHer] arms snake around your waist as [bess.heShe] pulls [bess.himHer]self close to you. You can feel warm wet tears brushing your cheeks, though you know these are tears of [bess.name]’s happiness, as [bess.heShe] clutches you as tight as [bess.heShe] possibly can.");
 	
 	output("\n\nIt is a lot more drawn out and heartfelt than the kiss you shared that night a week ago. This is a kiss that confirms your deep and powerful feelings for each other, not just a burst of uncontrollable passion.");
 	
@@ -8969,7 +8969,7 @@ public function bessEvent21():void
 
 	if (bess.hairLength > 0)
 	{
-		output("\n\n" + possessive(bess.short) + " [bess.hairColor] hair is gently brushing up against you, right now looking wild and untamed. The faint scent of synth-vanilla, satisfyingly mild yet smooth, fills the air.");
+		output("\n\n[bess.name]’s [bess.hairColor] hair is gently brushing up against you, right now looking wild and untamed. The faint scent of synth-vanilla, satisfyingly mild yet smooth, fills the air.");
 	}
 
 	output("\n\nIt seems like such a shame to wake [bess.himHer] up, but you DO need to get up sooner or later. Eventually you’re going to need to go to the bathroom, though thankfully you don’t need to go right now. The question is, how to wake [bess.himHer] up?");
@@ -9144,8 +9144,8 @@ public function bessEvent21SelectionConfirmed(bNewScene:Boolean = false):void
 	output("\n\nBefore you can say anything about this mysterious rulebook, [bess.heShe]’s cheekily stealing a kiss from you. <i>“... All mine! Kind of. I know you require a LOT of breeding relief - I was built to understand that after all - but I get your heart, okay? Not like your actual, physical heart. You need that. Keep that safe. For me.”</i> [bess.HeShe] pats your chest.");
 
 	clearMenu();
-	addButton(0, "GotMine", bessEvent21GotMine, undefined, "Got My Heart", "You tell [bess.name] [bess.heShe] owns your heart, and you won't be falling in love with others.");
-	addButton(1, "Poly", bessEvent21Poly, undefined, "Polyamorous", "You tell [bess.name] you're polyamorous, so you can't promise you won't fall in love with others.");
+	addButton(0, "GotMine", bessEvent21GotMine, undefined, "Got My Heart", "You tell [bess.name] [bess.heShe] owns your heart, and you won’t be falling in love with others.");
+	addButton(1, "Poly", bessEvent21Poly, undefined, "Polyamorous", "You tell [bess.name] you’re polyamorous, so you can’t promise you won’t fall in love with others.");
 }
 
 public function bessEvent21GotMine():void
@@ -9309,7 +9309,7 @@ public function bessEvent23():void
 	// [FootDown] [LetCont]
 	clearMenu();
 	addButton(0, "FootDown", bessEvent23FootDown, undefined, "Foot Down", "Put your foot down. Clean up that clutter!");
-	addButton(1, "LetCont.", bessEvent23LetContinue, undefined, "Let Continue", "Let it continue. It's not that big of a problem.");
+	addButton(1, "LetCont.", bessEvent23LetContinue, undefined, "Let Continue", "Let it continue. It’s not that big of a problem.");
 }
 
 public function bessEvent23FootDown():void
@@ -9417,7 +9417,7 @@ public function bessEvent25():void
 	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
 	output(" android hangs [bess.hisHer] head as you sit down. [bess.HeShe] shows you the catalog, clearly ashamed of what you found [bess.himHer] doing. <i>“It’s a terrible joke... a horrible, awful joke. I was built to be completely customizable, every inch of me can be changed due to my FlexMetal skin. The only thing that can’t be changed is the color - the one thing that makes me stand out as a synthetic. What makes me so malleable is also the reason I can’t change myself.”</i>");
 	
-	output("\n\n" + possessive(bess.short) + " eyes begin to water as [bess.heShe] throws away the catalog. It smacks against the wall as [bess.heShe] buries [bess.hisHer] face in [bess.hisHer] hands. <i>“... JoyCo doesn’t do any skin upgrades that are compatible with a "+ bess.mf("Ben-14", "Bess-13") +" unit - nobody does. And my AI brain needs a FlexMetal body in order to function, without one, I can’t feel anything... my sensory feedback is tied to it. So it’s not like I can just change to a non-compatible shell casing unless I redesign my entire brain; I’m good, but I’m not that good!”</i>");
+	output("\n\n[bess.name]’s eyes begin to water as [bess.heShe] throws away the catalog. It smacks against the wall as [bess.heShe] buries [bess.hisHer] face in [bess.hisHer] hands. <i>“... JoyCo doesn’t do any skin upgrades that are compatible with a "+ bess.mf("Ben-14", "Bess-13") +" unit - nobody does. And my AI brain needs a FlexMetal body in order to function, without one, I can’t feel anything... my sensory feedback is tied to it. So it’s not like I can just change to a non-compatible shell casing unless I redesign my entire brain; I’m good, but I’m not that good!”</i>");
 	
 	output("\n\n[bess.HisHer] breathing becomes frantic as you reach out and stroke [bess.hisHer] arm, trying to calm [bess.himHer] down. It seems to help as [bess.heShe] stops short of going into a panic attack. <i>“... If only my skin was a different color, then people wouldn’t even know I was a synthetic. Does it really make so much of a difference that I was built differently from them?”</i>");
 	
@@ -9425,10 +9425,10 @@ public function bessEvent25():void
 
 	//[NotImp] [Matters] [ILoveIt] [Silence]
 	clearMenu();
-	addButton(0, "NotImp.", bessEvent25NotImportant, undefined, "Not Important", "You tell [bess.name] that skin color doesn't matter.");
+	addButton(0, "NotImp.", bessEvent25NotImportant, undefined, "Not Important", "You tell [bess.name] that skin color doesn’t matter.");
 	addButton(1, "Matters", bessEvent25Matters, undefined, "It Matters", "You tell [bess.name] that skin color does matter.");
 	addButton(2, "LoveIt", bessEvent25LoveIt, undefined, "I Love It", "You tell [bess.name] that you love the color of [bess.hisHer] skin.");
-	addButton(3, "Silence", bessEvent25Silence, undefined, "Remain Silent", "You remain silent. You're not really sure what to say...");
+	addButton(3, "Silence", bessEvent25Silence, undefined, "Remain Silent", "You remain silent. You’re not really sure what to say...");
 }
 
 public function bessEvent25NotImportant():void
@@ -9477,11 +9477,11 @@ public function bessEvent25Matters():void
 	clearOutput();
 	bessHeader();
 
-	output("You tell [bess.himHer] that skin does matter, leading [bess.himHer] to think you dislike [bess.hisHer] skin color. " + possessive(bess.short) + " shoulders visibly sink. <i>“... I knew it. My skin does matter to you.”</i>");
+	output("You tell [bess.himHer] that skin does matter, leading [bess.himHer] to think you dislike [bess.hisHer] skin color. [bess.name]’s shoulders visibly sink. <i>“... I knew it. My skin does matter to you.”</i>");
 
 	clearMenu();
 	addButton(0, "LoveIt", bessEvent25LoveIt, undefined, "I Love It", "Tell [bess.name] you love the color of [bess.hisHer] skin.");
-	addButton(1, "DontLove", bessEvent25DontLoveIt, undefined, "I Don't Love It", "Tell [bess.name] you don't love the color of [bess.hisHer] skin.");
+	addButton(1, "DontLove", bessEvent25DontLoveIt, undefined, "I Don’t Love It", "Tell [bess.name] you don’t love the color of [bess.hisHer] skin.");
 }
 
 public function bessEvent25Silence():void
@@ -9489,11 +9489,11 @@ public function bessEvent25Silence():void
 	clearOutput();
 	bessHeader();
 
-	output("You say nothing and " + possessive(bess.short) + " shoulders visibly sink. Apparently, [bess.heShe]’s taking your silence as affirmation. <i>“... I knew it. My skin does matter to you.”</i>");
+	output("You say nothing and [bess.name]’s shoulders visibly sink. Apparently, [bess.heShe]’s taking your silence as affirmation. <i>“... I knew it. My skin does matter to you.”</i>");
 
 	clearMenu();
 	addButton(0, "LoveIt", bessEvent25LoveIt, undefined, "I Love It", "Tell [bess.name] you love the color of [bess.hisHer] skin.");
-	addButton(1, "DontLove", bessEvent25DontLoveIt, undefined, "I Don't Love It", "Tell [bess.name] you don't love the color of [bess.hisHer] skin.");
+	addButton(1, "DontLove", bessEvent25DontLoveIt, undefined, "I Don’t Love It", "Tell [bess.name] you don’t love the color of [bess.hisHer] skin.");
 }
 
 public function bessEvent25DontLoveIt():void
@@ -9516,7 +9516,7 @@ public function bessEvent25Spinoff():void
 	clearOutput();
 	bessHeader();
 
-	output("You find a letter in " + possessive(bess.short) + " quarters, lying on [bess.hisHer] bed. You open it up and read it.");
+	output("You find a letter in [bess.name]’s quarters, lying on [bess.hisHer] bed. You open it up and read it.");
 
 	output("\n\n<i>"+ StringUtil.capitalize(bessPCName()) +",</i>");
 
@@ -9672,7 +9672,7 @@ public function bessEvent28GoAfter():void
 	
 	output("\n\nLanding the ship, you set the guns to aim at them and grab a remote switch. When you walk out, you lift it high in the air, informing them that if they make a move you’ll blow them sky high.");
 	
-	output("\n\nOne of the kidnappers, a female Ausar, pokes the barrel of [bess.hisHer] gun against " + possessive(bess.short) + " temple. <i>“Same goes for [bess.himHer], "+ pc.mf("Mr.", "Miss") +" Steele. Make one false move and we’ll splatter this bot’s brains all over the ground. Got it?”</i> Seems like it’s a stalemate; at least for the moment.");
+	output("\n\nOne of the kidnappers, a female Ausar, pokes the barrel of [bess.hisHer] gun against [bess.name]’s temple. <i>“Same goes for [bess.himHer], "+ pc.mf("Mr.", "Miss") +" Steele. Make one false move and we’ll splatter this bot’s brains all over the ground. Got it?”</i> Seems like it’s a stalemate; at least for the moment.");
 	
 	output("\n\nThis was no random kidnapping. While these three look like leathered up space pirates, they clearly know who you are and that you care about [bess.name] enough to land the ship instead of firing upon them. So much so that they risked their life on it.");
 	
@@ -9694,7 +9694,7 @@ public function bessEvent28GoAfter():void
 	{
 		output("\n\nYou grit your teeth. You’d suspected [bess.name] was an illegal AI, ever since you read the codex entry on [bess.hisHer] product line. But by the look of utter shock on [bess.hisHer] face, it seems [bess.name] was completely unaware of this.");
 		
-		output("\n\nThe Ausar woman laughs as she sees " + possessive(bess.short) + " face, tapping the side of it with her weapon.");
+		output("\n\nThe Ausar woman laughs as she sees [bess.name]’s face, tapping the side of it with her weapon.");
 		
 		output("\n\n<i>“Don’t tell me you didn’t know? You’re a rogue model. All your "+ bess.mf("brother-units", "sister-units") +" are destroyed - which makes you especially valuable. Perhaps even one of a kind!”</i>");
 	}
@@ -9838,7 +9838,7 @@ public function bessEvent28ShipMerge():void
 
 	if (CodexManager.entryViewed("Maia Series AI"))
 	{
-		output("\n\nAfter a while, " + possessive(bess.short) + " eyes seem to glaze over. You know [bess.himHer] well enough to know [bess.heShe]’s internally accessing the extranet. Eventually, [bess.hisHer] body goes limp as if all the life is taken out of it, and [bess.heShe] gives you a despairing look.");
+		output("\n\nAfter a while, [bess.name]’s eyes seem to glaze over. You know [bess.himHer] well enough to know [bess.heShe]’s internally accessing the extranet. Eventually, [bess.hisHer] body goes limp as if all the life is taken out of it, and [bess.heShe] gives you a despairing look.");
 	}
 	else
 	{
@@ -10065,7 +10065,7 @@ public function bessDate4():void
 		
 		output("\n\n<i>“Come on Celise, don’t just think about food. Think about fun!”</i> [bess.name] pleas, causing the emerald colored galotian to pause and look at [bess.himHer] quizzically.");
 		
-		output("\n\n<i>“What about absorbing protein isn’t fun? In fact, usually it’s fun for both parties... you both always seem to enjoy it.”</i> " + possessive(bess.short) + " cheeks flush at Celise’s words, clearly the galotian has been paying [bess.himHer] visits for protein ‘snacks’.");
+		output("\n\n<i>“What about absorbing protein isn’t fun? In fact, usually it’s fun for both parties... you both always seem to enjoy it.”</i> [bess.name]’s cheeks flush at Celise’s words, clearly the galotian has been paying [bess.himHer] visits for protein ‘snacks’.");
 	}
 
 	if (crew(true) > 2 || (crew(true) > 1 && !celiseIsCrew()))
@@ -10208,15 +10208,15 @@ public function bessDate5p3(bGown:Boolean):void
 	
 	output("\n\n<i>“Damn toaster-head... you don’t see me bringing an auto-mop in here and treating it to a meal, expecting everyone to treat it like a person!”</i>");
 	
-	output("\n\nYou can see " + possessive(bess.short) + " arms are trembling as [bess.heShe] sits there, enduring the barrage of hateful words. Things get worse when the Maître d’ shows up and coughs, trying to get your attention. By his expression, what he has to say is not something you’re going to like to hear.");
+	output("\n\nYou can see [bess.name]’s arms are trembling as [bess.heShe] sits there, enduring the barrage of hateful words. Things get worse when the Maître d’ shows up and coughs, trying to get your attention. By his expression, what he has to say is not something you’re going to like to hear.");
 	
 	output("\n\n<i>“... "+ pc.mf("Mr", "Miss") +" Steele... I am very sorry, but it appears none of our chefs... well, they refuse to cook for your... device here. They say it would be disrespectful to the food and to their talents.”</i> Obviously, the Maître d’ is fairly uncomfortable relaying the message; especially to someone of your import. <i>“...While we are happy to serve you, "+ pc.mf("Mr", "Miss") +" Steele, might I suggest that you take your property and engage in such fantasies in a more private locale?”</i>");
 
 	//[Protest] [Punch] [Leave]
 	clearMenu();
-	addButton(0, "Protest", bessDate5Protest, bGown, "Protest", "Use words to protest " + possessive(bess.short) + " treatment. After all, [bess.heShe]'s a real person.");
+	addButton(0, "Protest", bessDate5Protest, bGown, "Protest", "Use words to protest [bess.name]’s treatment. After all, [bess.heShe]’s a real person.");
 	addButton(1, "Punch", bessDate5Punch, bGown, "Punch", "Punch the damn waiter right in his face.");
-	addButton(2, "Leave", bessDate5Leave, bGown, "Leave", "Just leave. There's no arguing or fighting with bigots.");
+	addButton(2, "Leave", bessDate5Leave, bGown, "Leave", "Just leave. There’s no arguing or fighting with bigots.");
 }
 
 public function bessDate5Protest(bGown:Boolean):void
@@ -10232,7 +10232,7 @@ public function bessDate5Protest(bGown:Boolean):void
 	
 	output("\n\n<i>“See if I ever buy Steele products again, why I never!”</i>\n\n<i>“My food is getting cold, can’t they just throw [pc.himHer] out already?”</i>");
 	
-	output("\n\nYou take " + possessive(bess.short) + " trembling hand in your own and quickly leave before things get out of hand. Balled up napkins are thrown at you both as you make your way to the repulsor lift.");
+	output("\n\nYou take [bess.name]’s trembling hand in your own and quickly leave before things get out of hand. Balled up napkins are thrown at you both as you make your way to the repulsor lift.");
 
 	clearMenu();
 	addButton(0, "Next", bessDate5p4, bGown);
@@ -10265,7 +10265,7 @@ public function bessDate5Leave(bGown:Boolean):void
 	clearOutput();
 	bessHeader();
 
-	output("You take " + possessive(bess.short) + " trembling hand in your own and quickly leave before things get out of hand. Meanwhile, all the customers are clapping and heckling you both as you make your exit.");
+	output("You take [bess.name]’s trembling hand in your own and quickly leave before things get out of hand. Meanwhile, all the customers are clapping and heckling you both as you make your exit.");
 	
 	output("\n\n<i>“...Here-here! Just because you’re the "+ pc.mf("son", "daughter") +" of the boss of a big company doesn’t mean you can act like a depraved loon in public and get away with it!”</i> Balled up napkins are being thrown at you both as you make your way to the repulsor lift.");
 	
@@ -10288,11 +10288,11 @@ public function bessDate5p4(bGown:Boolean):void
 
 	//[Chastise] [ILoveYou] [Berate] [Hug] [Silence]
 	clearMenu();
-	addButton(0, "Chastise", bessDate5p5, [bGown, "chastise"], "Chastise", "Tell [bess.name] you don't want [bess.himHer] thinking such dark thoughts.");
-	addButton(1, "LoveYou", bessDate5p5, [bGown, "loveyou"], "I Love You", "Tell [bess.name] you both love each other. That's what matters, not what other people think.");
-	addButton(2, "Berate", bessDate5p5, [bGown, "berate"], "Berate", "Tell [bess.name] those people were idiots, and what they said doesn't matter.");
+	addButton(0, "Chastise", bessDate5p5, [bGown, "chastise"], "Chastise", "Tell [bess.name] you don’t want [bess.himHer] thinking such dark thoughts.");
+	addButton(1, "LoveYou", bessDate5p5, [bGown, "loveyou"], "I Love You", "Tell [bess.name] you both love each other. That’s what matters, not what other people think.");
+	addButton(2, "Berate", bessDate5p5, [bGown, "berate"], "Berate", "Tell [bess.name] those people were idiots, and what they said doesn’t matter.");
 	addButton(3, "Hug", bessDate5p5, [bGown, "hug"], "Hug", "Hug [bess.name]. Actions speak louder than words.");
-	addButton(4, "Silence", bessDate5p5, [bGown, "silence"], "Silence", "Just be silent. You're not sure what to say.");
+	addButton(4, "Silence", bessDate5p5, [bGown, "silence"], "Silence", "Just be silent. You’re not sure what to say.");
 }
 
 public function bessDate5p5(opts:Array):void
@@ -10428,18 +10428,18 @@ public function bessMorningMessages():void
 
 	var msgs:Array = [
 	"When you wake up, [bess.name] is curled around your midsection dozing happily, [bess.hisHer] JoyCord connected to the nearby power socket. You slide free and get up to go about your day, trying to not wake [bess.himHer] up.",
-	"You are woken up by the sound of " + possessive(bess.short) + " JoyCord unplugging from the wall and retracting back into [bess.hisHer] body. <i>“... Oops! Sorry, "+ bessPCName() +", I didn’t mean to wake you!”</i> [bess.HeShe] gives you a kiss to apologize, and then a few more just to be certain.",
-	"You feel " + possessive(bess.short) + " JoyCord trailing up your [pc.chest] as your " + bessLoverStatus() + " wakes you up. <i>“... It’s time to wake up, "+ bessPCName() +", or you’ll oversleep!”</i> Just like an alarm clock, [bess.heShe] doesn’t let you sleep a millisecond over the time you told [bess.himHer] to wake you up.\n\n... And just like an alarm clock, in your half frazzled state you hit [bess.hisHer] on the top of [bess.hisHer] head to let you snooze. <i>“ HEY! What do you think I am?!”</i> [bess.HeShe] shouts out in protest.",
+	"You are woken up by the sound of [bess.name]’s JoyCord unplugging from the wall and retracting back into [bess.hisHer] body. <i>“... Oops! Sorry, "+ bessPCName() +", I didn’t mean to wake you!”</i> [bess.HeShe] gives you a kiss to apologize, and then a few more just to be certain.",
+	"You feel [bess.name]’s JoyCord trailing up your [pc.chest] as your " + bessLoverStatus() + " wakes you up. <i>“... It’s time to wake up, "+ bessPCName() +", or you’ll oversleep!”</i> Just like an alarm clock, [bess.heShe] doesn’t let you sleep a millisecond over the time you told [bess.himHer] to wake you up.\n\n... And just like an alarm clock, in your half frazzled state you hit [bess.hisHer] on the top of [bess.hisHer] head to let you snooze. <i>“ HEY! What do you think I am?!”</i> [bess.HeShe] shouts out in protest.",
 	"You wake up to the feeling of silky soft lips pressing against your own. As your eyes slowly open, you see [bess.name] staring down at you with a happy smile, [bess.hisHer] [bess.eyeColor] eyes positively dancing. <i>“... Time to wake up, "+ bessPCName() +". Or not. I could just keep trying to kiss you awake?”</i>\n\nYou close your eyes and [bess.heShe] attempts to kiss you awake a bit more. <i>“... So hard to wake you up, I swear! It’s such a problem...”</i>",
-	"When you wake up, you find " + possessive(bess.short) + " face pressed up almost right against your cheek. You kiss [bess.himHer] awake and [bess.heShe] mumbles, kissing you back despite not being fully aware of [bess.hisHer] surroundings. Eventually [bess.heShe] comes to, [bess.hisHer] long lashes fluttering as [bess.hisHer] eyes slowly open. <i>“... Mmm, morning, "+ bessPCName() +".”</i>",
-	"When you wake up, you find " + possessive(bess.short) + " face pressed up almost right against your cheek. You try to kiss [bess.himHer] awake, and while [bess.heShe] doesn’t open [bess.hisHer] eyes, [bess.heShe] does smile and speak. <i>“... I’m still asleep. You’ll have to keep kissing me until I wake up.”</i>\n\nYou kiss [bess.himHer] quite a bit more, until [bess.heShe] can’t hold back any more - [bess.heShe] wraps [bess.hisHer] arms around your neck and kisses you back, breaking the facade. <i>“... Nope - I like your kisses too much, I can’t keep faking!”</i>",
-	"You wake up to the feeling of " + possessive(bess.short) + " naked body pressed against you, [bess.hisHer] deliciously smooth skin rubbing against your side. [bess.HisHer] thighs are parted and pressed against your [pc.leg]. <i>“... Five more minutes. I’ll boot up in five more minutes...”</i> [bess.HeShe] mumbles, nuzzling against your arm.",
+	"When you wake up, you find [bess.name]’s face pressed up almost right against your cheek. You kiss [bess.himHer] awake and [bess.heShe] mumbles, kissing you back despite not being fully aware of [bess.hisHer] surroundings. Eventually [bess.heShe] comes to, [bess.hisHer] long lashes fluttering as [bess.hisHer] eyes slowly open. <i>“... Mmm, morning, "+ bessPCName() +".”</i>",
+	"When you wake up, you find [bess.name]’s face pressed up almost right against your cheek. You try to kiss [bess.himHer] awake, and while [bess.heShe] doesn’t open [bess.hisHer] eyes, [bess.heShe] does smile and speak. <i>“... I’m still asleep. You’ll have to keep kissing me until I wake up.”</i>\n\nYou kiss [bess.himHer] quite a bit more, until [bess.heShe] can’t hold back any more - [bess.heShe] wraps [bess.hisHer] arms around your neck and kisses you back, breaking the facade. <i>“... Nope - I like your kisses too much, I can’t keep faking!”</i>",
+	"You wake up to the feeling of [bess.name]’s naked body pressed against you, [bess.hisHer] deliciously smooth skin rubbing against your side. [bess.HisHer] thighs are parted and pressed against your [pc.leg]. <i>“... Five more minutes. I’ll boot up in five more minutes...”</i> [bess.HeShe] mumbles, nuzzling against your arm.",
 	"You wake up to the sensation of [bess.name] leaning over and brushing the [pc.skinFurScalesNoun] of your cheek with [bess.hisHer] eyelashes. [bess.HeShe] flutters [bess.hisHer] eyes and gives you a ‘butterfly kiss’ to wake you up. <i>“... Morning, "+ bessPCName() +".”</i> [bess.HisHer] musical voice practically purrs.",
 	"You feel a hand teasing your [pc.ass], squeezing your rump as you rouse in more ways than one. <i>“... Good morning, "+ bessPCName() +".”</i> [bess.name] positively purrs - your " + bessLoverStatus() + " knows exactly how to wake you up.",
-	"You wake up before [bess.name] does, and reach around to squeeze [bess.hisHer] [bess.ass]. [bess.HeShe] moans and presses it into your palm, [bess.hisHer] eyes fluttering open. <i>“Mmm, good morning, "+ bessPCName() +".”</i> [bess.HeShe]'s positively purring. <i>“Can I interest you in something to eat - me, perhaps?”</i>",
+	"You wake up before [bess.name] does, and reach around to squeeze [bess.hisHer] [bess.ass]. [bess.HeShe] moans and presses it into your palm, [bess.hisHer] eyes fluttering open. <i>“Mmm, good morning, "+ bessPCName() +".”</i> [bess.HeShe]’s positively purring. <i>“Can I interest you in something to eat - me, perhaps?”</i>",
 	"You wake up and notice [bess.name] is already awake with the light on, sitting up with the pillows propped behind [bess.hisHer] back. [bess.HisHer] JoyCord is connected to the wall and [bess.heShe]’s reading a book - the same series [bess.heShe] was reading last night.\n\nYou ask [bess.himHer] if [bess.heShe] slept a wink last night, and [bess.heShe] flushes with embarrassment. <i>“... But, I had to see how the book ended, and it ended on a cliffhanger... so I had to read the next one.!”</i> [bess.HeShe] yawns, rubbing [bess.hisHer] eyes.",
-	"You wake up and look over at [bess.name] - [bess.heShe]'s fast asleep with a half open book lying on [bess.hisHer] chest. Seems like [bess.heShe] fell asleep while reading again.",
-	"You wake up to the smell of breakfast as [bess.name] puts down a whole meal in front of you, served on a tray. <i>“... I got up early and made you some breakfast. I figure that's what good " + bessLoverStatus() + "s do, right?”</i>\n\nYou check to see if it's instant food... which it is. It is safe to eat!",
+	"You wake up and look over at [bess.name] - [bess.heShe]’s fast asleep with a half open book lying on [bess.hisHer] chest. Seems like [bess.heShe] fell asleep while reading again.",
+	"You wake up to the smell of breakfast as [bess.name] puts down a whole meal in front of you, served on a tray. <i>“... I got up early and made you some breakfast. I figure that’s what good " + bessLoverStatus() + "s do, right?”</i>\n\nYou check to see if it’s instant food... which it is. It is safe to eat!",
 	"You wake up and notice that [bess.name] is already awake; [bess.heShe]’s been sitting there watching your sleeping face with a big happy smile on [bess.hisHer] face. [bess.HeShe] blushes when you wake up and catch [bess.himHer] doing it."
 	];
 
@@ -10490,11 +10490,11 @@ public function bessHighLustMorningScene():void
 
 	flags["BESS_SLEEPWITH_DOMORNING"] = undefined;
 
-	output("You are roused from sleep by the sensation of " + possessive(bess.short) + " [bess.chest] brushing against your naked [pc.skinFurScalesNoun].");
-	if (bess.bellyRating() > 0) output(" A bit lower down, you feel " + possessive(bess.short) + " [bess.belly] pressing against you and drawing along your [pc.skinFurScalesNoun].");
+	output("You are roused from sleep by the sensation of [bess.name]’s [bess.chest] brushing against your naked [pc.skinFurScalesNoun].");
+	if (bess.bellyRating() > 0) output(" A bit lower down, you feel [bess.name]’s [bess.belly] pressing against you and drawing along your [pc.skinFurScalesNoun].");
 	output(" Your exposed neck is being suckled gently all the while.");
 	
-	output("\n\nYou can feel " + possessive(bess.short) + " [bess.thighs] wrapping around your lower half and [bess.hisHer] [bess.ass] rubbing against your [pc.legs]. [bess.HisHer] loins rub sensuously against yours.");
+	output("\n\nYou can feel [bess.name]’s [bess.thighs] wrapping around your lower half and [bess.hisHer] [bess.ass] rubbing against your [pc.legs]. [bess.HisHer] loins rub sensuously against yours.");
 	
 	output("\n\n<i>“... Good morning, "+ bessPCName() +". Is this the way you like your " + bessLoverStatus() + " to wake you up?”</i> [bess.name] coyly questions as [bess.hisHer] fingers dance along your [pc.chest]. [bess.HeShe] sneaks up and gives you a long, hard kiss.");
 
@@ -10525,7 +10525,7 @@ public function bessMorningMakeOut():void
 	clearOutput();
 	bessHeader();
 
-	output("You capture " + possessive(bess.short) + " mouth with your own and make out with [bess.himHer]. You can feel [bess.hisHer] arms sliding around your neck as [bess.heShe] pushes against you with fevered urgency, [bess.hisHer] tongue joyously searching for yours. Whenever you kiss [bess.himHer], [bess.heShe] always tastes so deliciously sweet.");
+	output("You capture [bess.name]’s mouth with your own and make out with [bess.himHer]. You can feel [bess.hisHer] arms sliding around your neck as [bess.heShe] pushes against you with fevered urgency, [bess.hisHer] tongue joyously searching for yours. Whenever you kiss [bess.himHer], [bess.heShe] always tastes so deliciously sweet.");
 
 	output("\n\nEach kiss from [bess.himHer] is intoxicating; it is a long time before you both finally part lips and disentangle. It seems [bess.name] is even having trouble standing - [bess.heShe] stops for a moment to reorient [bess.himHer]self, a giddy look of pleasure on [bess.hisHer] face.");
 
@@ -10907,7 +10907,7 @@ public function bessGetBlowjob():void
 			else output(" them");
 			output(", "+ bessPCSexName() +".”</i>");
 			
-			output("\n\nYou chuckle at " + possessive(bess.short) + " cock worship, though it turns into a low, guttural moan as the silky-lipped synthetic clamps [bess.hisHer] lips around");
+			output("\n\nYou chuckle at [bess.name]’s cock worship, though it turns into a low, guttural moan as the silky-lipped synthetic clamps [bess.hisHer] lips around");
 			if (pc.cocks.length > 1) output(" one of");
 			output(" your cock-slit");
 			if (pc.cocks.length > 1) output("s");
@@ -10972,14 +10972,14 @@ public function bessGetBlowjob():void
 		
 		output("\n\n<i>“So cute.”</i> Your mechanical "+ bess.mf("dom", "domme") +" responds, moving face to face with you. [bess.HeShe] then hooks [bess.hisHer] fingers through the metal ring dangling from the neck of your collar. With the slightest of tugs, [bess.heShe] forces you to look [bess.himHer] in the eyes, mesmerizing you with [bess.hisHer] stare!");
 		
-		output("\n\n<i>“You’re properly adorned now, "+ bessPCSexName() +". If I want you to bark like a dog, you will bark. If I want you to get on all fours, you will do so. You will obey all my instructions immediately and without complaint. Is that understood?”</i> " + possessive(bess.short) + " eyes tell you all you need to know - [bess.heShe]’s waiting for a <i>prompt</i> and <i>courteous</i> reply.");
+		output("\n\n<i>“You’re properly adorned now, "+ bessPCSexName() +". If I want you to bark like a dog, you will bark. If I want you to get on all fours, you will do so. You will obey all my instructions immediately and without complaint. Is that understood?”</i> [bess.name]’s eyes tell you all you need to know - [bess.heShe]’s waiting for a <i>prompt</i> and <i>courteous</i> reply.");
 		
 		output("\n\n<i>“Yes, "+ bessSexName() +",”</i> you quickly answer. You’re physically trembling with delight! Being cuffed and collared has really got you in the mood, even more so with your wrists bound and your [pc.cocks] shamefully hanging out.");
 
 		output("\n\nIt seems having");
 		if (pc.cocks.length == 1) output(" it");
 		else output(" them");
-		output(" hang out was definitely part of " + possessive(bess.short) + " plan. With a "+ bess.mf("hungry growl, your mechanical dom", "sultry smile, your mechanical domme") +" reaches down and teases [pc.oneCock] with [bess.hisHer] fingertips.");
+		output(" hang out was definitely part of [bess.name]’s plan. With a "+ bess.mf("hungry growl, your mechanical dom", "sultry smile, your mechanical domme") +" reaches down and teases [pc.oneCock] with [bess.hisHer] fingertips.");
 		if (pc.cocks.length == 1) output(" It stiffens and jerks upward, saluting its silvery [bess.master].");
 		
 		output("\n\n<i>“Oho! Are you getting turned on by this, "+ bessPCSexName() +"?”</i> [bess.heShe] asks. You feel [bess.hisHer] strong, silvery, wrapping around [pc.oneCock]. You twitch shamefully in [bess.hisHer] hand. Pearls of [pc.cumColor] pre-cum are already forming at your tip!");
@@ -11086,11 +11086,11 @@ public function bessGetBlowjob():void
 		if (pc.cocks.length > 1) output("s");
 		output(" at all.");
 		
-		output("\n\n" + possessive(bess.short) + " gaze is immediately repentant and [bess.heShe] looks like [bess.heShe] wants to bow, yet hasn’t been told to move freely. Instead, a litter of apologies fly from [bess.hisHer] silvery, kissable lips. <i>“I’m so sorry! You’re a wonderful, gracious [pc.master] who blesses me with the mere sight of your cock");
+		output("\n\n[bess.name]’s gaze is immediately repentant and [bess.heShe] looks like [bess.heShe] wants to bow, yet hasn’t been told to move freely. Instead, a litter of apologies fly from [bess.hisHer] silvery, kissable lips. <i>“I’m so sorry! You’re a wonderful, gracious [pc.master] who blesses me with the mere sight of your cock");
 		if (pc.cocks.length > 1) output("s");
 		output(". My tongue slipped!”</i>");
 		
-		output("\n\nYou tell [bess.himHer] that [bess.hisHer] tongue clearly needs a taste of your [pc.cumNoun] to remind it of its place. Your statement is punctuated by the pointed rubbing of your [pc.cocksNounSimple] against [bess.hisHer] lips. " + possessive(bess.short) + " whole body trembles with pent up lust and [bess.heShe] lets out a whimpering little moan.");
+		output("\n\nYou tell [bess.himHer] that [bess.hisHer] tongue clearly needs a taste of your [pc.cumNoun] to remind it of its place. Your statement is punctuated by the pointed rubbing of your [pc.cocksNounSimple] against [bess.hisHer] lips. [bess.name]’s whole body trembles with pent up lust and [bess.heShe] lets out a whimpering little moan.");
 		
 		output("\n\n<i>“Please, "+ bessPCSexName() +", let your little synth [bess.boyGirl] swallow your delicious [pc.cum] and feel it filling up [bess.hisHer] stomach. Please...?”</i> [bess.name] begs of you. [bess.HisHer] glittering [bess.eyeColor] eyes look as if they may fill with glistening tears if [bess.heShe] doesn’t taste your spunk soon.");
 		
@@ -11159,7 +11159,7 @@ public function bessGetBlowjob():void
 
 	output("\n\nYou groan as [bess.heShe] demonstrates [bess.hisHer] utter lack of a gag reflex. You can feel your flexing tip sliding back and forth, in and out of [bess.hisHer] throat, squeezing and teasing your [pc.cockHead "+ cockIdx +"]. The mechanical "+ bess.mf("man", "girl") +"’s face truly was fashioned to be fucked!");
 	
-	output("\n\nJust when you think this blowjob can’t get any better, the insides of " + possessive(bess.short) + " throat begin twisting and buffeting your glans in different directions. You let out a primal groan and press your oversensitized cock deep into [bess.hisHer] warm, wet gullet.");
+	output("\n\nJust when you think this blowjob can’t get any better, the insides of [bess.name]’s throat begin twisting and buffeting your glans in different directions. You let out a primal groan and press your oversensitized cock deep into [bess.hisHer] warm, wet gullet.");
 	if (pc.hasKnot(cockIdx))
 	{
 		if (bessIsDom())
@@ -11177,14 +11177,14 @@ public function bessGetBlowjob():void
 
 	if (pc.hasKnot(cockIdx))
 	{
-		output("\n\nWith one last squeeze of " + possessive(bess.short) + " throat, you’re sent careening over the edge. Seizing [bess.hisHer] head in your hands, you moan and buck against [bess.hisHer] face. Your [pc.cockHead "+ cockIdx +"] flexes and spurts hot, [pc.cumVisc] ropes of your [pc.cumFlavor] [pc.cumNoun] down [bess.hisHer] defenseless throat.");
+		output("\n\nWith one last squeeze of [bess.name]’s throat, you’re sent careening over the edge. Seizing [bess.hisHer] head in your hands, you moan and buck against [bess.hisHer] face. Your [pc.cockHead "+ cockIdx +"] flexes and spurts hot, [pc.cumVisc] ropes of your [pc.cumFlavor] [pc.cumNoun] down [bess.hisHer] defenseless throat.");
 		if (bessIsDom())
 		{
 			output(" Knotted like that, your eyes roll back into your head as you remain there, locked against [bess.hisHer] [bess.lips]. You twitch and shoot your spunk into [bess.hisHer] stomach for the next half hour.");
 		}
 		else
 		{
-			output(" " + possessive(bess.short) + " eyes roll into the back of [bess.hisHer] head and [bess.heShe] lets out a delirious groan as you continuously mate with [bess.hisHer] lips, intermittently shooting your spunk into [bess.hisHer] stomach for the next half-hour.");
+			output(" [bess.name]’s eyes roll into the back of [bess.hisHer] head and [bess.heShe] lets out a delirious groan as you continuously mate with [bess.hisHer] lips, intermittently shooting your spunk into [bess.hisHer] stomach for the next half-hour.");
 		}
 
 		// if (any but hyper cums)
@@ -11194,7 +11194,7 @@ public function bessGetBlowjob():void
 			{
 				output("\n\nWhen your knot finally goes down, your mechanical [pc.master] pulls back, your now flaccid prick flopping from [bess.hisHer] sperm coated lips. Just when you think [bess.heShe]’s done with you, [bess.heShe] gives your tender dick a few more teasing jerks, making you twitch and whimper with delight. <i>“... Oh, you’re still sensitive? How fun.”</i>");
 				
-				output("\n\nEven though you <i>just</i> came, your [pc.knot "+ cockIdx +"] flares in " + possessive(bess.short) + " hand. Not letting up, [bess.heShe] keeps teasing your vulnerable prick, swiftly bringing you to climax a second time! You shamefully shoot your [pc.cum] all over the floor, this time knotting with nothing but [bess.hisHer] hand.");
+				output("\n\nEven though you <i>just</i> came, your [pc.knot "+ cockIdx +"] flares in [bess.name]’s hand. Not letting up, [bess.heShe] keeps teasing your vulnerable prick, swiftly bringing you to climax a second time! You shamefully shoot your [pc.cum] all over the floor, this time knotting with nothing but [bess.hisHer] hand.");
 				
 				output("\n\n<i>“Is that all it took? So quick! Let me get it alll out for you...”</i> [bess.name] "+ bess.mf("rumbles", "purrs") +", milking you for every last drop of [pc.cum]. You whimper with pleasure, firing sticky ropes all over the floor like an animal.");
 				
@@ -11212,13 +11212,13 @@ public function bessGetBlowjob():void
 	}
 	else
 	{
-		output("\n\nWith one last squeeze of " + possessive(bess.short) + " throat, you’re sent careening over the edge. You");
+		output("\n\nWith one last squeeze of [bess.name]’s throat, you’re sent careening over the edge. You");
 		if (!bessIsDom()) output(" dig your [pc.fingers] into the back of [bess.hisHer] head and");
 		output(" thrust your cock all the way down [bess.hisHer] mechanical throat, giving yourself over to glorious release. With a deep, shuddering moan you spasmically unload your [pc.cumVisc] spunk inside of [bess.hisHer] slippery gullet, your [pc.cockHead "+ cockIdx +"] pulsing and convulsing in [bess.hisHer] narrow confines.");
 		if (pc.cumQ() <= 100) output(" While your release is truly earth shattering, only the smallest of spurts shoots out from your tip and batters the inside of [bess.hisHer] throat hole.");
 		else if (pc.cumQ() <= 5000)
 		{
-			output("\n\nAs your hot [pc.cumNoun] spills inside " + possessive(bess.short) + " throat, [bess.heShe] lets out a guttural moan. [bess.HisHer] back arches in pleasure, [bess.hisHer] [bess.chest] pressing against you. Seconds later, [bess.heShe]’s’s letting out a muffled moan and convulsing in pleasure.");
+			output("\n\nAs your hot [pc.cumNoun] spills inside [bess.name]’s throat, [bess.heShe] lets out a guttural moan. [bess.HisHer] back arches in pleasure, [bess.hisHer] [bess.chest] pressing against you. Seconds later, [bess.heShe]’s’s letting out a muffled moan and convulsing in pleasure.");
 			if (bess.hasVagina()) output(" Girlish love-goo spasmically squirts from [bess.hisHer] snatch and pools on the floor beneath [bess.hisHer] thighs.");
 			if (bess.hasCock()) output(" [bess.HisHer] cock fires jets of pearly spunk up everywhere like a cum fountain, twitching and shooting all over the place.");
 			if (bess.hasTailCock()) output(" Deep inside of your [pc.ass], [bess.hisHer] prehensile prick pulses and spasms, spilling [bess.hisHer] thick, hot seed deep inside of you.");
@@ -11237,7 +11237,7 @@ public function bessGetBlowjob():void
 			{
 				output("\n\nWhen your cock finally stops twitching, your mechanical [pc.master] pulls back, your now flaccid prick flopping from [bess.hisHer] sperm coated lips. Just when you think [bess.heShe]’s done with you, [bess.heShe] gives your tender dick a few more teasing jerks, making you twitch and whimper with delight. <i>“... Oh, you’re still sensitive? How fun.”</i>");
 				
-				output("\n\nEven though you <i>just</i> came, you swell once more " + possessive(bess.short) + " hand. Not letting up, [bess.heShe] keeps teasing your vunerable cock, swiftly bringing you to climax a second time! You shamefully shoot your [pc.cum] all over the floor, pulsing and flexing in [bess.hisHer] hand.");
+				output("\n\nEven though you <i>just</i> came, you swell once more [bess.name]’s hand. Not letting up, [bess.heShe] keeps teasing your vunerable cock, swiftly bringing you to climax a second time! You shamefully shoot your [pc.cum] all over the floor, pulsing and flexing in [bess.hisHer] hand.");
 				
 				output("\n\n<i>“Is that all it took? So quick! Let me get it alll out for you...”</i> [bess.name] "+ bess.mf("rumbles", "purrs") +", milking you for every last drop of [pc.cum]. You whimper with pleasure, firing sticky ropes all over the floor like an animal.");
 				
@@ -11279,7 +11279,7 @@ public function bessGetBlowjob():void
 		if (!bess.hasVagina()) output(" ass");
 		output(" birth to a mass of [pc.cumColor]-colored gelotians.");
 		
-		output("\n\n" + possessive(bess.short) + " eyes soon roll into [bess.hisHer] head from sheer ecstasy, each spasm causing your pooled spunk to spray out of [bess.hisHer]");
+		output("\n\n[bess.name]’s eyes soon roll into [bess.hisHer] head from sheer ecstasy, each spasm causing your pooled spunk to spray out of [bess.hisHer]");
 		if (bess.hasVagina()) output(" snatch");
 		else output(" butt");
 		output(" in intermittent bursts. [bess.HisHer] ridiculously swollen belly slowly deflates until [bess.hisHer] ‘excess stock’ is fully depleted. You can see artificial sweat rolling down [bess.hisHer] body; even for an android, that was quite the effort.");
@@ -11319,8 +11319,8 @@ public function bessGiveDoggy():void
 	output("How would you like to take [bess.name]?");
 
 	clearMenu();
-	addButton(0, "Vaginally", bessGiveDoggySelected, true, "Vaginally", "Take advantage of " + possessive(bess.short) + " pussy.");
-	addButton(1, "Anally", bessGiveDoggySelected, false, "Anally", "Take advantage of " + possessive(bess.short) + " ass.");
+	addButton(0, "Vaginally", bessGiveDoggySelected, true, "Vaginally", "Take advantage of [bess.name]’s pussy.");
+	addButton(1, "Anally", bessGiveDoggySelected, false, "Anally", "Take advantage of [bess.name]’s ass.");
 }
 
 public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
@@ -11415,7 +11415,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 		
 		output("\n\n<i>“Did I say you could go anywhere, "+ bessPCSexName() +"?”</i> [bess.name] asks, though the question is rhetorical. <i>“You are going to knot me - and that’s an </i>order<i>!”</i>");
 		
-		output("\n\nBlushing furiously, you keep your hips firmly pressed against " + possessive(bess.short) + " buttocks as instructed, your [pc.knot "+ cockIdx +"] swelling and locking inside of [bess.hisHer] "+ (bTargetVag ? "snatch" : "ass") +". As soon as it’s filled [bess.himHer] up, [bess.heShe] loosens [bess.hisHer] grip on your collar. With your cock knotted inside of [bess.himHer], [bess.heShe] doesn’t need it anymore! [bess.HeShe] pulls [bess.hisHer] ass away from you, and you’re compelled to follow, literally lead by your dick!");
+		output("\n\nBlushing furiously, you keep your hips firmly pressed against [bess.name]’s buttocks as instructed, your [pc.knot "+ cockIdx +"] swelling and locking inside of [bess.hisHer] "+ (bTargetVag ? "snatch" : "ass") +". As soon as it’s filled [bess.himHer] up, [bess.heShe] loosens [bess.hisHer] grip on your collar. With your cock knotted inside of [bess.himHer], [bess.heShe] doesn’t need it anymore! [bess.HeShe] pulls [bess.hisHer] ass away from you, and you’re compelled to follow, literally lead by your dick!");
 		
 		output("\n\n<i>“Goooood [pc.boyGirl]. Just remember who is in charge, and maybe I’ll let you get off inside of me,”</i> [bess.name] teases you, forcibly slapping [bess.hisHer] hips back against your own. You bite your lip HARD and try not to cum at the tugging and squeezing sensation on your knotted [pc.cockNoun "+ cockIdx +"], all the while feeling your pre-cum uncontrollably dribble inside [bess.hisHer] silky depths.");
 	}
@@ -11433,15 +11433,15 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 		}
 		else
 		{
-			output("\n\nActing on impure instinct, your [pc.tailCock] begins to move on its own. It slides up " + possessive(bess.short) + " chest. It catches [bess.himHer] off guard when you slip it inside [bess.hisHer] half open-mouth, [bess.hisHer] eyes shooting wide in sudden shock.");
+			output("\n\nActing on impure instinct, your [pc.tailCock] begins to move on its own. It slides up [bess.name]’s chest. It catches [bess.himHer] off guard when you slip it inside [bess.hisHer] half open-mouth, [bess.hisHer] eyes shooting wide in sudden shock.");
 			
-			output("\n\n<i>“Mffh! Mffph... mfflrrrgh!”</i> You silence " + possessive(bess.short) + " complaint with a mouth full of [pc.tailCock], stuffing it deep into [bess.hisHer] gullet. [bess.HisHer] muffled protests turn into moans as you bury it deep inside of [bess.hisHer] warm, wet gullet, taking advantage of [bess.hisHer] complete lack of a gag reflex.");
+			output("\n\n<i>“Mffh! Mffph... mfflrrrgh!”</i> You silence [bess.name]’s complaint with a mouth full of [pc.tailCock], stuffing it deep into [bess.hisHer] gullet. [bess.HisHer] muffled protests turn into moans as you bury it deep inside of [bess.hisHer] warm, wet gullet, taking advantage of [bess.hisHer] complete lack of a gag reflex.");
 		}
 	}
 
 	if (bess.hasCockTail())
 	{
-		output("\n\nYou feel a sudden sliding around your [pc.hip]. Suddenly something is pushing pointedly against your pucker - it’s " + possessive(bess.short) + " JoyCord! Apparently unsatisfied with such a one-sided fucking, [bess.heShe] mischievously plunges [bess.hisHer] prehensile phallus into your [pc.ass], sliding it up to sweetly meet and pulse against your prostate. You tremble with delight as you’re filled from behind, relishing in [bess.hisHer] rubbing deep inside of your rump.");
+		output("\n\nYou feel a sudden sliding around your [pc.hip]. Suddenly something is pushing pointedly against your pucker - it’s [bess.name]’s JoyCord! Apparently unsatisfied with such a one-sided fucking, [bess.heShe] mischievously plunges [bess.hisHer] prehensile phallus into your [pc.ass], sliding it up to sweetly meet and pulse against your prostate. You tremble with delight as you’re filled from behind, relishing in [bess.hisHer] rubbing deep inside of your rump.");
 	}
 
 	output("\n\nAs you heartily fuck [bess.name] from behind, [bess.heShe] reaches up and caresses [bess.hisHer] [bess.chest]. A sinful little moan escapes [bess.hisHer] lips as [bess.heShe] toys with [bess.hisHer] nipples. As [bess.heShe] pinches and teases them, [bess.hisHer] insides spasm, squeezing and wringing your thrusting length.");
@@ -11517,7 +11517,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 			
 			output("\n\nYou loudly gulp. There’s really no talking your way out of it. With flushing cheeks, you stretch out your tongue, seeking out [bess.hisHer] slickened nethers. It’s not long before you can taste your own [pc.cumFlavor] rolling on your tongue. It’s so warm and [pc.cumVisc]. You lewdly lap up your own seed from [bess.hisHer] "+ (bTargetVag ? "pussy" : "ass") +", a delicious little shiver shooting up your spine.");
 			
-			output("\n\nOnce you’ve finished cleaning off " + possessive(bess.short) + " silvery skin of your [pc.cumNoun], you pull back, letting out a hot sigh. But for some reason, your [bess.master] doesn’t look pleased - have you done something wrong?");
+			output("\n\nOnce you’ve finished cleaning off [bess.name]’s silvery skin of your [pc.cumNoun], you pull back, letting out a hot sigh. But for some reason, your [bess.master] doesn’t look pleased - have you done something wrong?");
 			
 			output("\n\n<i>“That’s not </i>all<i> of it, "+ bessPCSexName() +". Finish the job,”</i> [bess.name] chastises you.");
 			
@@ -11539,7 +11539,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 			
 			output("\n\nYou stroke [bess.hisHer] head and tell [bess.hisHer] that [bess.heShe] did very well. [bess.HeShe] gives a light-headed smile and purrs a little, rubbing [bess.hisHer] cheek into your cupped hand.");
 			
-			output("\n\nAfterwards, you engage in some aftercare, before taking off " + possessive(bess.short) + " collar and leaving [bess.himHer] to rest.");
+			output("\n\nAfterwards, you engage in some aftercare, before taking off [bess.name]’s collar and leaving [bess.himHer] to rest.");
 		}
 	}
 
@@ -11607,11 +11607,11 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 
 		if (!pc.isNude())
 		{
-			output("\n\n<i>“Well now, I can’t do that while you’ve still got your clothes on, "+ bessPCSexName() +", can I?”</i> " + possessive(bess.short) + " [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy.");
+			output("\n\n<i>“Well now, I can’t do that while you’ve still got your clothes on, "+ bessPCSexName() +", can I?”</i> [bess.name]’s [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy.");
 
 			output("\n\nEager to get the release you need, you quickly strip off your gear and ready yourself for [bess.himHer].");
 		}
-		else output("\n\n<i>“Well now, you’re already naked. You must be really ready to go, "+ bessPCSexName() +".”</i> " + possessive(bess.short) + " [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy.");
+		else output("\n\n<i>“Well now, you’re already naked. You must be really ready to go, "+ bessPCSexName() +".”</i> [bess.name]’s [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy.");
 	
 		output("\n\n[bess.name] then walks around you and out of sight. Moments later, you feel [bess.hisHer] hands sliding around you and up to your [pc.chest]. [bess.HeShe] caresses it gently, [bess.hisHer] fingers dancing along your [pc.skinFurScales]. At the same time, you feel [bess.hisHer] breath tickling one of your [pc.ears], and you shiver with delight.");
 		
@@ -11621,7 +11621,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		{
 			output("\n\nMoments later, [bess.hisHer] fingers slide down and lightly tease your sensitive [pc.pussy]. As [bess.heShe] teases your loins, you eagerly rub against [bess.hisHer] fingers, trying to coax them inside of you for some much needed release!");
 			
-			output("\n\nAt long last, you feel " + possessive(bess.short) + " fingers slipping up inside of you. They wiggle around inside of your [pc.pussy], stirring you up in more ways than one! <i>“... Mmm, your pussy is so wet, "+ bessPCSexName() +".”</i>");
+			output("\n\nAt long last, you feel [bess.name]’s fingers slipping up inside of you. They wiggle around inside of your [pc.pussy], stirring you up in more ways than one! <i>“... Mmm, your pussy is so wet, "+ bessPCSexName() +".”</i>");
 			
 			output("\n\nYou breathily moan in response, rubbing your");
 			if (pc.hasClit()) output(" [pc.clits]");
@@ -11644,7 +11644,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		{
 			output("\n\nMoments later, [bess.heShe] pulls back [bess.hisHer] hands and you let out a disappointed noise. It doesn’t last long, as you soon feel [bess.hisHer] fingers sliding between your buttocks. Two of [bess.hisHer] digits spread them open as another presses against your [pc.asshole]. It feels surprisingly slick as [bess.heShe] presses it into your pucker.");
 			
-			output("\n\nYou let out a sweet little cry as " + possessive(bess.short) + " finger wiggles into your bum. Soon it’s roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!");
+			output("\n\nYou let out a sweet little cry as [bess.name]’s finger wiggles into your bum. Soon it’s roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!");
 			
 			output("\n\nYou try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your poor pucker is toyed with from behind, penetrating your forbidden place. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.");
 			
@@ -11674,7 +11674,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		
 		output("\n\nYou watch [bess.name] as [bess.heShe] paces around you, shivering as [bess.heShe] trails a finger up your side, [bess.hisHer] sharp eyes seeking even the slightest sign of poor posture. A single bead of sweat travels down your neck - you can feel it stroking every pore as it travels downward.");
 		
-		output("\n\nThe smallest smile passes over " + possessive(bess.short) + " lips. It seems [bess.heShe] noticed, tracing [bess.hisHer] finger up and collecting the moisture on [bess.hisHer] fingertip. [bess.HeShe] brings it to [bess.hisHer] mouth, kissing your salty sweatdrop away. Is "+ bessSexName() +" pleased with your posture? You’re trying ever so hard!");
+		output("\n\nThe smallest smile passes over [bess.name]’s lips. It seems [bess.heShe] noticed, tracing [bess.hisHer] finger up and collecting the moisture on [bess.hisHer] fingertip. [bess.HeShe] brings it to [bess.hisHer] mouth, kissing your salty sweatdrop away. Is "+ bessSexName() +" pleased with your posture? You’re trying ever so hard!");
 
 		if (!pc.isNude())
 		{
@@ -11727,7 +11727,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		{
 			output("\n\nMoments later, [bess.heShe] pulls back [bess.hisHer] hands and you let out a disappointed noise. It doesn’t last long, as you soon feel [bess.hisHer] fingers sliding between your buttocks. Two of [bess.hisHer] digits spread them open as another presses against your [pc.asshole]. It feels surprisingly slick as [bess.heShe] presses it into your pucker.");
 			
-			output("\n\nYou let out a sweet little cry as " + possessive(bess.short) + " finger wiggles into your bum. Soon it’s roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!");
+			output("\n\nYou let out a sweet little cry as [bess.name]’s finger wiggles into your bum. Soon it’s roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!");
 		}
 
 		output("\n\nSensing your sudden shift in attitude [bess.heShe]");
@@ -11742,11 +11742,11 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 
 		if (bTargetVag)
 		{
-			output("\n\nMixing sweet pain with pleasure, you gasp as " + possessive(bess.short) + " fingers suddenly slip up inside of you. They wiggle around inside of your [pc.pussy], stirring you up in more ways than one! You’re so wet from the spanking that you can <i>feel</i> yourself dribbling all over your [bess.master]’s fingers. You whimper with delight,");
+			output("\n\nMixing sweet pain with pleasure, you gasp as [bess.name]’s fingers suddenly slip up inside of you. They wiggle around inside of your [pc.pussy], stirring you up in more ways than one! You’re so wet from the spanking that you can <i>feel</i> yourself dribbling all over your [bess.master]’s fingers. You whimper with delight,");
 			if (pc.hasLegs()) output(" spreading your [pc.legs] and");
 			output(" allowing [bess.himHer] greater access.");
 			
-			output("\n\nWhen [bess.heShe] removes [bess.hisHer] fingers you suddenly feel empty and let out a cry of protest only to have your mouth filled with a warm [pc.girlCumFlavor] taste - it doesn’t take you long to realize you’re sucking your own girl cum off of " + possessive(bess.short) + " fingertips. You eagerly suck it off like a baby, showing just how obedient you can be.");
+			output("\n\nWhen [bess.heShe] removes [bess.hisHer] fingers you suddenly feel empty and let out a cry of protest only to have your mouth filled with a warm [pc.girlCumFlavor] taste - it doesn’t take you long to realize you’re sucking your own girl cum off of [bess.name]’s fingertips. You eagerly suck it off like a baby, showing just how obedient you can be.");
 			
 			output("\n\n<i>“Now, "+ bessPCSexName() +", I want you to beg for it. I’m not going to give </i>it<i> to you unless you do.”</i> [bess.name] commands you, while [bess.hisHer] [bess.cock] rubs against your ass.");
 			
@@ -11757,7 +11757,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		}
 		else
 		{
-			output("\n\nAs " + possessive(bess.short) + " hand is removed from your [pc.ass], you brace yourself for another spank. Instead, [bess.heShe] slips [bess.hisHer] slick fingers between your stinging buttocks and plunges it back inside of you. [bess.heShe] deliciously pistons your [pc.asshole] once more and you whimper with delight.");
+			output("\n\nAs [bess.name]’s hand is removed from your [pc.ass], you brace yourself for another spank. Instead, [bess.heShe] slips [bess.hisHer] slick fingers between your stinging buttocks and plunges it back inside of you. [bess.heShe] deliciously pistons your [pc.asshole] once more and you whimper with delight.");
 			
 			output("\n\n<i>“Now, "+ bessPCSexName() +", I want you to beg for it. I’m not going to give </i>it<i> to you unless you do.”</i> [bess.name] commands you.");
 			
@@ -11800,9 +11800,9 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 
 		if (bTargetVag)
 		{
-			output("\n\n<i>“Now, give my pussy some attention, "+ bessSexName() +",”</i> </i> you command [bess.himHer]. " + possessive(bess.short) + " fingers obediently slide to your sensitive snatch, lightly teasing your lips. <i>“Harder!”</i> You forcibly rub your twat against [bess.hisHer] fingers, leaning against [bess.himHer] and using [bess.hisHer] hand to get yourself off.");
+			output("\n\n<i>“Now, give my pussy some attention, "+ bessSexName() +",”</i> </i> you command [bess.himHer]. [bess.name]’s fingers obediently slide to your sensitive snatch, lightly teasing your lips. <i>“Harder!”</i> You forcibly rub your twat against [bess.hisHer] fingers, leaning against [bess.himHer] and using [bess.hisHer] hand to get yourself off.");
 			
-			output("\n\nYou stand perfectly still as you feel the air teasing your drooling slit, causing a shiver to run up your spine. " + possessive(bess.short) + " fingers deliciously tease your lower lips and suddenly you can feel them slipping up inside of you, penetrating your mound. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you’re creaming all over [bess.hisHer] hand.");
+			output("\n\nYou stand perfectly still as you feel the air teasing your drooling slit, causing a shiver to run up your spine. [bess.name]’s fingers deliciously tease your lower lips and suddenly you can feel them slipping up inside of you, penetrating your mound. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you’re creaming all over [bess.hisHer] hand.");
 			
 			output("\n\n[bess.HisHer] fingers probe and tease around inside your pussy, delving into you from below and sneaking upwards until [bess.heShe]’s touching all the right places. Electrifying pleasure runs upwards from your loins and up causing you to hold your breath and arch your back, dribbling your hot love liquid all down [bess.hisHer] probing digits.");
 			
@@ -11874,18 +11874,18 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		output("\n\nYou can barely contain your surprise as it slides onto [pc.oneCock], enveloping it in [bess.hisHer] warm depths. The silvery onahole-on-a-cable milks your defenseless member for all it’s worth as you are deliciously double-teamed by [bess.name]!");
 	}
 
-	output("\n\nSlowly at first, " + possessive(bess.short) + " [bess.hips] begin to slap against your buttocks. [bess.HisHer] [bess.cock] slides in and out, back and forth, plumbing your");
+	output("\n\nSlowly at first, [bess.name]’s [bess.hips] begin to slap against your buttocks. [bess.HisHer] [bess.cock] slides in and out, back and forth, plumbing your");
 	if (bTargetVag) output(" sloppy snatch");
 	else output(" well lubed butt");
 	output(". With each and every thrust, [bess.hisHer] [bess.cockHead] delves deeper, sliding and stirring against your core.");
 	
-	output("\n\nYou needily answer " + possessive(bess.short) + " thrusting hips, arching like a cat as [bess.heShe] fucks you long and hard. The loud sounds of [bess.himHer] slapping against your [bess.ass] brings a flush to your cheeks - not to mention your loins - as [bess.heShe] pounds your needy hole. Every time [bess.name] thrusts you are filled with the most deliciously full sensation, only to be left unbearably empty when [bess.heShe] pulls away.");
+	output("\n\nYou needily answer [bess.name]’s thrusting hips, arching like a cat as [bess.heShe] fucks you long and hard. The loud sounds of [bess.himHer] slapping against your [bess.ass] brings a flush to your cheeks - not to mention your loins - as [bess.heShe] pounds your needy hole. Every time [bess.name] thrusts you are filled with the most deliciously full sensation, only to be left unbearably empty when [bess.heShe] pulls away.");
 
 	if (bess.hasKnot())
 	{
 		if (bessIsDom())
 		{
-			output("\n\nIt’s not long before you can feel " + possessive(bess.short) + " [bess.knot] swelling up deep inside of you. Instinctively, you go to pull away, only to be tugged back by your leash! You yelp in surprise like a chastised "+ pc.mf("mutt", "bitch") +".");
+			output("\n\nIt’s not long before you can feel [bess.name]’s [bess.knot] swelling up deep inside of you. Instinctively, you go to pull away, only to be tugged back by your leash! You yelp in surprise like a chastised "+ pc.mf("mutt", "bitch") +".");
 			
 			output("\n\n<i>“Oh NO, you’re not going anywhere,”</i> [bess.name] orders you, thrusting [bess.hisHer] cock even <i>deeper</i>, <i>“...You’re going to stay there and be knotted by my [bess.cockNoun], "+ bessPCSexName() +"!”</i>");
 			
@@ -11905,7 +11905,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		}
 		else if (bessIsSub())
 		{
-			output("\n\nIt’s not long before you can feel " + possessive(bess.short) + " [bess.knot] swelling up deep inside of you. Instinctively, [bess.name] moves to pull away, only to be pulled back by [bess.hisHer] leash. A yelping noise escapes [bess.hisHer] lips like a chastised "+ bess.mf("mutt", "bitch") +".");
+			output("\n\nIt’s not long before you can feel [bess.name]’s [bess.knot] swelling up deep inside of you. Instinctively, [bess.name] moves to pull away, only to be pulled back by [bess.hisHer] leash. A yelping noise escapes [bess.hisHer] lips like a chastised "+ bess.mf("mutt", "bitch") +".");
 			
 			output("\n\n<i>“Oh NO, you’re not going anywhere. You’re going to stay there and knot my");
 			if (bTargetVag) output(" pussy");
@@ -11977,7 +11977,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			else output("n animal");
 			output(" in heat.");
 		
-			output("\n\n" + possessive(bess.short) + " face is flushed as [bess.heShe] lets out");
+			output("\n\n[bess.name]’s face is flushed as [bess.heShe] lets out");
 			if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" hound-like cries");
 			else if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" a yipping noise");
 			else output(" a carnal cry");
@@ -12039,7 +12039,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			else output(" backside");
 			output(" is abused, [bess.hisHer] hot, sticky cum pouring inside of you.");
 			
-			output("\n\nAt long last, " + possessive(bess.short) + " knot deflates and [bess.heShe] pulls free of your violated hole with a massive grin on [bess.hisHer] face. When [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out of you all at once. Far more stays packed inside of your");
+			output("\n\nAt long last, [bess.name]’s knot deflates and [bess.heShe] pulls free of your violated hole with a massive grin on [bess.hisHer] face. When [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out of you all at once. Far more stays packed inside of your");
 			if (bTargetVag) output(" sex");
 			else output(" rump");
 			output(".");
@@ -12210,7 +12210,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		output("\n\nWringing [bess.hisHer] [bess.cockNoun] pushes [bess.himHer] over the edge, and [bess.heShe] lets out a "+ bess.mf("sharp", "sweet") +" cry. [bess.HeShe] grabs your hips firmly in hand and gives one last, passionate thrust. Inside of you, you feel hot, sticky ropes of [bess.hisHer] spunk splashing against your inner walls and drooling deep into your");
 		if (bTargetVag) output(" cunt");
 		else output(" butt");
-		output(". You moan in delight as " + possessive(bess.short) + " thick jism bubbles and pours");
+		output(". You moan in delight as [bess.name]’s thick jism bubbles and pours");
 		if (bTargetVag) output(" into [bess.hisHer] eagerly awaiting womb");
 		else output(" deep inside of you");
 		output(".");
@@ -12321,7 +12321,7 @@ public function bessGetCunni():void
 	
 	output("\n\nThe cool sensation of [bess.hisHer] saliva rolling off [bess.hisHer] tongue and onto your sex feels positively divine. You arch your back and push your [pc.pussyColor] mound into the sensation, relishing in every milli-inch it traces around it.");
 
-	if (bessIsDom()) output("\n\n<i>“I'm going to stick my tongue inside you now, "+ bessPCSexName() +".”</i> [bess.name] informs you.");
+	if (bessIsDom()) output("\n\n<i>“I’m going to stick my tongue inside you now, "+ bessPCSexName() +".”</i> [bess.name] informs you.");
 	else output("\n\n<i>“Stick your tongue inside, "+ bessSexName() +".”</i> You tell [bess.name].");
 	output(" [bess.HisHer] tongue then parts your now glistening folds and dips slowly inside of you. The sensation of [bess.hisHer] silvery tastebuds licking the inside of your slippery snatch is out of this world.");
 	if (pc.genitalSpot <= 1 && pc.legCount > 2) output(" You sigh with pleasure, subconsciously hook your legs over [bess.hisHer] shoulders and pulling [bess.hisHer] closer.");
@@ -12546,9 +12546,9 @@ public function bessMilkers(opts:Array = null):void
 	output("\n\n[bess.name] arches [bess.hisHer] back like a cat at your teasing words and presses [bess.hisHer] squelching");
 	if (!(bess.lowerUndergarment is EmptySlot)) output(" underwear");
 	else output(" loins");
-	output(" against your hand. [bess.HisHer] [bess.breasts] practically burst into the canisters, [bess.nipples] firing off like milky machine guns. You turn up the suction to max and watch as " + possessive(bess.short) + " eyes roll back into [bess.hisHer] head, thick streams of [bess.milk] filling up the transparent tubes. It’s more than " + possessive(bess.short) + " processors can take, and soon [bess.heShe] mentally regresses to a gibbering mess.");
+	output(" against your hand. [bess.HisHer] [bess.breasts] practically burst into the canisters, [bess.nipples] firing off like milky machine guns. You turn up the suction to max and watch as [bess.name]’s eyes roll back into [bess.hisHer] head, thick streams of [bess.milk] filling up the transparent tubes. It’s more than [bess.name]’s processors can take, and soon [bess.heShe] mentally regresses to a gibbering mess.");
 	
-	output("\n\nDrooling in near comatose pleasure, " + possessive(bess.short) + " upper body falls against the bench as [bess.heShe] pokes out [bess.hisHer] ass like a common farm animal.");
+	output("\n\nDrooling in near comatose pleasure, [bess.name]’s upper body falls against the bench as [bess.heShe] pokes out [bess.hisHer] ass like a common farm animal.");
 	if (bess.hasCock() || bess.hasVagina())
 	{
 		output(" [bess.HisHer]")
@@ -12666,7 +12666,7 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	if (pc.cocks.length > 1) output("s");
 	output(". <i>“First, though...”</i>");
 	
-	output("\n\n" + possessive(bess.short) + " lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed.");
+	output("\n\n[bess.name]’s lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed.");
 
 	output("\n\nThe delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You’re utterly wrapped up in [bess.himHer] in more ways than you can count. There is nothing other than [bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips.");
 
@@ -12792,7 +12792,7 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	else output(" stroking the back of [bess.hisHer] head");
 	output(". Like a cat [bess.name] runs [bess.hisHer] head against fingers, clearly relishing in your gentle ministrations.");
 
-	output("\n\n" + possessive(bess.short) + " lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed.");
+	output("\n\n[bess.name]’s lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed.");
 
 	output("\n\nThe delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You’re utterly wrapped up in [bess.himHer] in more ways than you can count. There is nothing other than [bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips.");
 

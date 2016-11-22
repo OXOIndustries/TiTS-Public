@@ -47,7 +47,7 @@ public function showPexiga():void
 }
 public function showNymFoe():void
 {
-	showBust("NYM-FOE");
+	showBust("NYMFOE");
 	if(inCombat())
 	{
 		if(enemy.HP() <= 0 || enemy.lust() >= enemy.lustMax()) showName("VICTORY:\nNYM-FOE");
@@ -645,7 +645,7 @@ public function argueWithBadger():void
 
 	output("\n\nThe sides of Badger’s mouth quirk up, slightly. <i>“Oh, is that all you’re worried about? Geez, you kind of had me scared there for a second. I almost thought you were about to do something silly.”</i> She waves a hand dismissively. <i>“You don’t want me to dick your friend there, that’s fine. I can be very respectful when the situation calls for it.”</i>");
 
-	if(!pc.isBimbo()) output("\n\nIf anything, the doctor’s assurances set you more on edge. You mentally check the condition of your [pc.weaponRanged], ready to reach for it at a moment’s notice.");
+	if(!pc.isBimbo()) output("\n\nIf anything, the doctor’s assurances set you more on edge. You mentally check the condition of your [pc.mainWeapon], ready to reach for it at a moment’s notice.");
 	else output("\n\nYou relax immediately. <i>“Oh thank goodness! I was worried you wouldn’t take it very well and do something mean to me! But if you’re, like, totally cool with it, then everything worked out just great!”</i>");
 	output(" You calmly ask Badger to unhook the pexiga from her machine.");
 
@@ -1116,8 +1116,8 @@ public function peacekeeperTalkAvailable():Boolean
 public function dclPeacekeeperTalk():void
 {
 	clearOutput();
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
+	showName("\nDELILAH");
+	showBust("DELILAH");
 	author("Adjatha");
 	output("You mention the UGC Peacekeepers to Del, as you take a seat at the bar. <i>“Oh, uh, those guys on the east end of town? Y-yeah, I think I’ve seen them.”</i>");
 	if(!pc.isBimbo()) output("\n\nYou mention that maybe they could help her out a bit. A favor here and there wouldn’t go amiss. While they’re not likely to free Delilah from her contract any time soon, it wouldn’t hurt to get them on her side. Maybe a free drink? Maybe a little something extra?}");
@@ -1145,7 +1145,7 @@ public function dclPeacekeeperTalk():void
 //player has distracted the Peacekeepers and selects this option from the East Novahome square
 public function exploreDrBadgersAbandonedBadgerBase():void
 {
-	currentLocation = rooms[currentLocation].northExit;
+	currentLocation = "304";
 	generateLocation(currentLocation);
 	
 	clearOutput();
@@ -1362,13 +1362,13 @@ public function fightTheNymfoe():void
 
 public function bouncyProc(ranged:Boolean = false):void
 {
-	//Enemy Status: Bouncy x5 ("Nym-Foe’s massive mammaries deflect kinetic damage!”</i>)
+	//Enemy Status: Bouncy x5 ("Nym-Foe’s massive mammaries deflect kinetic damage!")
 	//Combat Attacks
 	//Bouncy Breasts
-	//(passive as long as she has at least 1 stack of <i>“Bouncy”</i>, 20% chance to activate per stack of <i>“Bouncy”</i> if player deals kinetic damage to Nym-Foe).
-	//Ranged:
+	//(passive as long as she has at least 1 stack of "Bouncy", 20% chance to activate per stack of "Bouncy" if player deals kinetic damage to Nym-Foe).
 	if(enemy is NymFoe)
 	{
+		//Ranged:
 		if(ranged) output("As your [pc.rangedWeapon] barks out its payload at the swollen nursedroid, she simply giggles in delight. The jiggling, pillowy mountains of her inflated chest absorbs the shock of the attack. She bounces in place, clapping her hands in delight. <i>“Again! Again!”</i> she cheers. <b>It has no effect!</b>");
 		//Melee:
 		else output("You close in, swinging your [pc.meleeWeapon], but Nym-Foe shifts to take the blow directly on her inflated tits. Like fluid-filled armor, they rob your attack of its force! Her body bounces and jiggles but is otherwise unharmed. She titters, her entire frame swaying with the rippling waves radiating through her breasts. <b>It has no effect!</b>");
@@ -1677,8 +1677,8 @@ public function pcVictoryVsNymFoeMenu():void
 	//[Fuck] [Suck Out] [Harvest] [Leave]
 	
 	if(pc.lust() >= 33 && pc.hasGenitals()) addButton(0,"Fuck",fuckTheNymFoe,undefined,"Fuck","Take advantage of the sex-bot to sate the lusts she has inspired.");
-	else if(pc.lust() >= 33) addDisabledButton(1,"Fuck","Fuck","You need genitalia to do this.");
-	else addDisabledButton(1,"Fuck","Fuck","You’re not up for sex right now.");
+	else if(pc.lust() >= 33) addDisabledButton(0,"Fuck","Fuck","You need genitalia to do this.");
+	else addDisabledButton(0,"Fuck","Fuck","You’re not up for sex right now.");
 
 	if(pc.hasStatusEffect("Nym-Foe Injections")) addButton(1,"Suck Out",suckOutDatInjectionGoop,undefined,"Get the excess silicone sucked back out of your body.");
 	else addDisabledButton(1,"Suck Out","Suck Out","There’s no silicone inside you for her to suck out.");
@@ -1918,10 +1918,18 @@ public function salvageNymFoe():void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
-	output("Waste not, want not, right? You bend over the repurposed robot and release her safety clamps, opening her warm, squishy exterior. Unsurprisingly, the nurse’s interior is a dizzying mess of rewired circuitry and oily servos. Badger really did a number on this one.");
-	output("\n\nIt seems her chest has been stuffed with military-grade silicone. Luckily, the pouches seem to be intact, so carrying them away shouldn’t be too much trouble. Who could possibly need this much silicone?");
-	output("\n\nRight near where her heart would be, an elaborate hydraulic pump has been added, connected to a massive tank of Gush. You could probably load up some nearby spray pens from this central tank, if you wanted. You’ll just have to be careful not to let on that you’re carrying enough of the illegal drug to start a cartel.");
-	output("\n\nThe nursedroid’s Artificial Intelligence chip should be somewhere around her head. You could probably get a few credits for that, despite Badger’s reprogramming.");
+	
+	if(enemy.hasItem(new Silicone(),4) && enemy.hasItem(new Gush(),5) && enemy.hasItem(new DamagedVIChip()))
+	{
+		output("It seems you have looted all the robot’s detachable belongings.");
+	}
+	else
+	{
+		output("Waste not, want not, right? You bend over the repurposed robot and release her safety clamps, opening her warm, squishy exterior. Unsurprisingly, the nurse’s interior is a dizzying mess of rewired circuitry and oily servos. Badger really did a number on this one.");
+		if(!enemy.hasItem(new Silicone(),4)) output("\n\nIt seems her chest has been stuffed with military-grade silicone. Luckily, the pouches seem to be intact, so carrying them away shouldn’t be too much trouble. Who could possibly need this much silicone?");
+		if(!enemy.hasItem(new Gush(),5)) output("\n\nRight near where her heart would be, an elaborate hydraulic pump has been added, connected to a massive tank of Gush. You could probably load up some nearby spray pens from this central tank, if you wanted. You’ll just have to be careful not to let on that you’re carrying enough of the illegal drug to start a cartel.");
+		if(!enemy.hasItem(new DamagedVIChip())) output("\n\nThe nursedroid’s Artificial Intelligence chip should be somewhere around her head. You could probably get a few credits for that, despite Badger’s reprogramming.");
+	}
 	processTime(4);
 	
 	salvageNymFoeMenu();
@@ -1932,17 +1940,24 @@ public function lootTheNymFoe(item:ItemSlotClass):void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
-	if(item is Silicone) 
+	
+	switch(item)
 	{
-		item.quantity = 4;
-		output("After digging around inside her chassis, you come up with four bags of silicone.");
+		case Silicone:
+			item.quantity = 4;
+			output("After digging around inside her chassis, you come up with four bags of silicone.");
+			break;
+		case Gush:
+			item.quantity = 5;
+			output("After digging around inside her chassis, you come out with five fully loaded medipens, all full of Gush.");
+			break;
+		case DamagedVIChip:
+			output("Rooting around her head for the VI chip isn’t exactly fun, but it might be profitable. Bingo! You got it.");
+			break;
+		default:
+			output("BEEP BOOP. INPUT ERROR.");
+			break;
 	}
-	else if(item is Gush) 
-	{
-		item.quantity = 5;
-		output("After digging around inside her chassis, you come out with five fully loaded medipens, all full of Gush.");
-	}
-	else output("Rooting around her head for the VI chip isn’t exactly fun, but it might be profitable. Bingo! You got it.");
 	enemy.inventory.push(item);
 	
 	salvageNymFoeMenu();
@@ -2113,16 +2128,22 @@ public function dollmakerSalvage(item:ItemSlotClass):void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
-	if(item is IQBGone) 
-	{
-		output("After digging around inside the chassis, you come up with a syringe full of IQ B-Gone.");
-	}
-	else if(item is BrokenBrainmeltLamp) 
-	{
-		output("After digging around inside her chassis, you come out with a broken Brainmelt Lamp.");
-	}
-	else output("Getting the gun off the robot in a way that’ll let you use it isn’t fun, but the results could be.... Bingo! You got it.");
 	
+	switch(item)
+	{
+		case IQBGone:
+			output("After digging around inside the chassis, you come up with a syringe full of IQ B-Gone.");
+			break;
+		case BrokenBrainmeltLamp:
+			output("After digging around inside the chassis, you come out with a broken Brainmelt Lamp.");
+			break;
+		case BimboleumEmitter:
+			output("Getting the gun off the robot in a way that’ll let you use it isn’t fun, but the results could be.... Bingo! You got it.");
+			break;
+		default:
+			output("BEEP BOOP. INPUT ERROR.");
+			break;
+	}
 	enemy.inventory.push(item);
 	
 	dollmakerSalvageMenu();
@@ -2141,7 +2162,7 @@ public function dollmakerSalvageMenu():void
 	//[Leave] (Mouse Over: You’re done here. Time to get your pexiga healed!)
 	
 	if(enemy.hasItem(new IQBGone())) addDisabledButton(0,"Syringe","Syringe","You’ve already taken her IQ B-Gone syringe.");
-	else addButton(0,"Syringe",dollmakerSalvage,new Silicone(),"Syringe","A harvested needle filled with Doctor Badger’s patented IQ B-Gone serum. Law enforcement would be interested in this - maybe they can make a cure?");
+	else addButton(0,"Syringe",dollmakerSalvage,new IQBGone(),"Syringe","A harvested needle filled with Doctor Badger’s patented IQ B-Gone serum. Law enforcement would be interested in this - maybe they can make a cure?");
 
 	if(enemy.hasItem(new BrokenBrainmeltLamp())) addDisabledButton(1,"Lamp","Lamp","You already took the lamp.");
 	else addButton(1,"Lamp",dollmakerSalvage,new BrokenBrainmeltLamp(),"Lamp","The deceptively innocuous pink-bulbed Brainmelt Lamp seems to have been damaged in the fight. You might be able to sell it for scrap.");

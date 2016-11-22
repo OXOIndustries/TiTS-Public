@@ -40,9 +40,9 @@ public function useItem(item:ItemSlotClass):Boolean
 	
 	if (item.isUsable == false)
 	{
-		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
+		//trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
 		clearOutput();
-		output("Unable to use " + item.description + ".");
+		output("Unable to use " + item.description + " at present.");
 		//clearMenu();
 		//addButton(14,"Back",useItemFunction);
 		return false;
@@ -51,8 +51,8 @@ public function useItem(item:ItemSlotClass):Boolean
 	{
 		clearOutput();
 		output("Attempted to use " + item.description + " which had zero quantity.");
-		this.clearMenu();
-		this.addButton(14,"Back",useItemFunction);
+		clearMenu();
+		addButton(14,"Back",useItemFunction);
 		return false;
 	}
 	else 
@@ -92,8 +92,8 @@ public function useItem(item:ItemSlotClass):Boolean
 			{
 				clearOutput();
 				output("Error: Attempted to use item but item had no associated function. Tell Fenoxo he is a dirty hobo.");
-				this.clearMenu();
-				this.addButton(0,"Next",useItemFunction);
+				clearMenu();
+				addButton(0,"Next",useItemFunction);
 			}
 			
 			// Consume an item from the stack
@@ -203,12 +203,17 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		}
 	}
 	
-	if(usingCreature is PlayerCharacter && pc.hasPerk("Quickdraw") && (item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON))
+	if (usingCreature is PlayerCharacter) backToCombatInventory(item);
+}
+
+public function backToCombatInventory(item:ItemSlotClass):void
+{
+	if(pc.hasPerk("Quickdraw") && InCollection(item.type, [GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON]))
 	{
 		clearMenu();
 		addButton(0,"Next",combatInventoryMenu);
 	}
-	else if (usingCreature is PlayerCharacter)
+	else
 	{
 		CombatManager.processCombat();
 	}
@@ -235,11 +240,11 @@ public function shop(keeper:Creature):void {
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
 	//Menuuuu!
-	this.clearMenu();
-	this.addButton(0,"Buy Item",buyItem);
+	clearMenu();
+	addButton(0,"Buy Item",buyItem);
 	if(keeper.typesBought.length > 0) 
-		this.addButton(1,"Sell Item",sellItem);
-	this.addButton(14,"Back",mainGameMenu);
+		addButton(1,"Sell Item",sellItem);
+	addButton(14,"Back",mainGameMenu);
 }
 
 public function buyItem():void {
@@ -624,7 +629,7 @@ public function getBuyPrice(keeper:Creature,basePrice:Number):Number {
 	return buyPrice;
 }
 
-public function unequipMenu():void
+public function unequipMenu(inCombat:Boolean = false):void
 {
 	clearOutput();
 	var x:int = 0;
@@ -636,51 +641,54 @@ public function unequipMenu():void
 	equipmentDisplay();
 
 	clearMenu();
-	if (pc.upperUndergarment.shortName != "") 
+	if (pc.upperUndergarment.shortName != "")
 	{
-		addOverrideItemButton(0, pc.upperUndergarment, "U.Top Off", unequip, "bra");
+		if(inCombat) addDisabledButton(0, "U.Top Off", StringUtil.toDisplayCase(pc.upperUndergarment.longName), "Cannot be unequipped in combat.");
+		else addOverrideItemButton(0, pc.upperUndergarment, "U.Top Off", unequip, "bra");
 	}
-	else addDisabledButton(0,"Undertop");
+	else addDisabledButton(0, "Undertop", "Undertop", "You are not wearing anything in this slot.");
 
-	if (pc.shield.shortName != "") 
+	if (pc.shield.shortName != "")
 	{
 		addOverrideItemButton(1, pc.shield, "Shield Off", unequip, "shield");
 	}
-	else addDisabledButton(1,"Shield");
+	else addDisabledButton(1, "Shield", "Shield Generator", "You do not have a shield generator equipped.");
 	
 	if (pc.lowerUndergarment.shortName != "")
 	{
-		addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, "underwear");
+		if(inCombat) addDisabledButton(5, "U.Wear Off", StringUtil.toDisplayCase(pc.lowerUndergarment.longName), "Cannot be unequipped in combat.");
+		else addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, "underwear");
 	}
-	else addDisabledButton(5,"Underwear");
+	else addDisabledButton(5, "Underwear", "Underwear", "You are not wearing anything in this slot.");
 	
-	if (pc.meleeWeapon.shortName != "Rock") 
+	if (pc.meleeWeapon.shortName != "Rock")
 	{
 		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, "mWeapon");
 	}
-	else addDisabledButton(2,"Melee");
+	else addDisabledButton(2, "Melee", "Melee Weapon", "You do not have a melee weapon equipped.");
 	
-	if (pc.armor.shortName != "") 
+	if (pc.armor.shortName != "")
 	{
-		addOverrideItemButton(6, pc.armor, "Armor Off", unequip, "armor");
+		if(inCombat) addDisabledButton(6, "Armor Off", StringUtil.toDisplayCase(pc.armor.longName), "Cannot be unequipped in combat.");
+		else addOverrideItemButton(6, pc.armor, "Armor Off", unequip, "armor");
 	}
-	else addDisabledButton(6,"Armor");
+	else addDisabledButton(6, "Armor", "Armor", "You are not wearing anything in this slot.");
 	
 	if (pc.rangedWeapon.shortName != "Rock")
 	{
 		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, "rWeapon");
 	}
-	else addDisabledButton(7,"Ranged");
+	else addDisabledButton(7, "Ranged", "Ranged Weapon", "You do not have a ranged weapon equipped.");
 	
-	if (pc.accessory.shortName != "") 
+	if (pc.accessory.shortName != "")
 	{
 		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, "accessory");
 	}
-	else addDisabledButton(3,"Accessory");
+	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
 	
 	//Set user and target.
 	itemUser = pc;
-	addButton(14,"Back",generalInventoryMenu);
+	addButton(14, "Back", inventory);
 }
 
 public function keyItemDisplay():void
@@ -776,43 +784,65 @@ public function generalInventoryMenu():void
 	output("\n\n");
 	inventoryDisplay();
 	clearMenu();
-	var adjustment:int = 0;
-	for(x = 0; x < pc.inventory.length || x < 14; x++) {
+	var btnSlot:int = 0;
+	for (var i:int = 0; i < pc.inventory.length; i++)
+	{
 		//special slot 1
-		if(x+adjustment == 10) {
+		if(btnSlot >= 10 && (btnSlot + 5) % 15 == 0)
+		{
 			/* Nothing yet! */
-			adjustment++;
+			btnSlot++;
 		}
 		//interaction menu
-		if(x+adjustment == 11) {
-			if(itemInteractMenu(true) > 0) addButton(x+adjustment,"Interact",itemInteractMenu,undefined,"Interact","Interact with some of your items.");
-			adjustment++;
+		if(btnSlot >= 11 && (btnSlot + 4) % 15 == 0)
+		{
+			addButton(btnSlot, "Interact", itemInteractMenu, undefined, "Interact", "Interact with some of your items.");
+			btnSlot++;
 		}
 		//key item menu
-		if(x+adjustment == 12) {
-			addButton(x+adjustment,"Key Item",keyItemDisplay,undefined,"Key Items","View your list of key items.");
-			adjustment++;
+		if(btnSlot >= 12 && (btnSlot + 3) % 15 == 0)
+		{
+			addButton(btnSlot, "Key Item", keyItemDisplay, undefined, "Key Items", "View your list of key items.");
+			btnSlot++;
 		}
 		//unequip menu
-		if(x+adjustment == 13) {
-			addButton(x+adjustment,"Unequip",unequipMenu,undefined,"Unequip","Unequip an item.");
-			adjustment++;
+		if(btnSlot >= 13 && (btnSlot + 2) % 15 == 0)
+		{
+			addButton(btnSlot, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
+			btnSlot++;
 		}
+		//back
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
+		}
+		
 		//normal inventory
-		if(x < pc.inventory.length) {
-			if (pc.inventory[x].quantity > 0) {
-				
-				var tarSlot:int = x + adjustment;
-				if (tarSlot >= 14) tarSlot++;
-
-				(this as TiTS).addItemButton(tarSlot, pc.inventory[x], useItem, pc.inventory[x]);
-				
-			}
+		if (pc.inventory[i].quantity > 0)
+		{
+			addItemButton(btnSlot, pc.inventory[i], useItem, pc.inventory[i]);
+		}
+		btnSlot++;
+		
+		if(pc.inventory.length > 10 && (i + 1) == pc.inventory.length)
+		{
+			while((btnSlot + 5) % 15 != 0) { btnSlot++; }
+			//addButton(btnSlot + 0, "", null, undefined, "", "");
+			addButton(btnSlot + 1, "Interact", itemInteractMenu, undefined, "Interact", "Interact with some of your items.");
+			addButton(btnSlot + 2, "Key Item", keyItemDisplay, undefined, "Key Items", "View your list of key items.");
+			addButton(btnSlot + 3, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
+			addButton(btnSlot + 4, "Back", mainGameMenu);
 		}
 	}
+	
 	//Set user and target.
 	itemUser = pc;
-	addButton(14,"Back",mainGameMenu);
+	//addButton(10, "", null, undefined, "", "");
+	addButton(11, "Interact", itemInteractMenu, undefined, "Interact", "Interact with some of your items.");
+	addButton(12, "Key Item", keyItemDisplay, undefined, "Key Items", "View your list of key items.");
+	addButton(13, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
+	addButton(14, "Back", mainGameMenu);
 }
 
 public function itemInteractMenu(counter:Boolean = false):Number
@@ -854,12 +884,11 @@ public function itemInteractMenu(counter:Boolean = false):Number
 	}
 	
 	if(!counter) {
-		if(count > 0) {
-			clearBust();
-			showName("\nINTERACT");
-			output("What do you wish to interact with?" + itemMessages);
-		}
-		addButton(14, "Back", mainGameMenu);
+		clearBust();
+		showName("\nINTERACT");
+		if(count > 0) output("What do you wish to interact with?" + itemMessages);
+		else output("You don’t have anything from your inventory to interact with!");
+		addButton(14, "Back", inventory);
 	}
 	
 	return count;
@@ -880,6 +909,23 @@ public function combatInventoryMenu():void
 	var btnSlot:int = 0;
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
+		if(btnSlot >= 10 && (btnSlot + 5) % 15 == 0)
+		{
+			btnSlot++;
+		}
+		if(btnSlot >= 11 && (btnSlot + 4) % 15 == 0)
+		{
+			btnSlot++;
+		}
+		if(btnSlot >= 12 && (btnSlot + 3) % 15 == 0)
+		{
+			btnSlot++;
+		}
+		if(btnSlot >= 13 && (btnSlot + 2) % 15 == 0)
+		{
+			addButton(btnSlot, "Unequip", unequipMenu, true, "Unequip", "Unequip an item.");
+			btnSlot++;
+		}
 		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 		{
 			addButton(btnSlot, "Back", CombatManager.showCombatMenu);
@@ -897,13 +943,21 @@ public function combatInventoryMenu():void
 		}
 		btnSlot++;
 		
-		if(pc.inventory.length > 14 && (x + 1) == pc.inventory.length)
+		if(pc.inventory.length > 10 && (i + 1) == pc.inventory.length)
 		{
-			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
-			addButton(btnSlot, "Back", CombatManager.showCombatMenu);
+			while((btnSlot + 5) % 15 != 0) { btnSlot++; }
+			//addButton(btnSlot + 0, "", null, undefined, "", "");
+			//addButton(btnSlot + 1, "", null, undefined, "", "");
+			//addButton(btnSlot + 2, "", null, undefined, "", "");
+			addButton(btnSlot + 3, "Unequip", unequipMenu, true, "Unequip", "Unequip an item.");
+			addButton(btnSlot + 4, "Back", CombatManager.showCombatMenu);
 		}
 	}
 	
+	//addButton(10, "", null, undefined, "", "");
+	//addButton(11, "", null, undefined, "", "");
+	//addButton(12, "", null, undefined, "", "");
+	addButton(13, "Unequip", unequipMenu, true, "Unequip", "Unequip an item.");
 	addButton(14, "Back", CombatManager.showCombatMenu);
 }
 
@@ -965,9 +1019,24 @@ public function itemDisabledMessage(slot:Number, clearScreen:Boolean = true):voi
 public function unequip(arg:String, next:Boolean = true):void 
 {
 	clearOutput();
+	
+	if(inCombat())
+	{
+		if(!InCollection(arg, ["mWeapon", "rWeapon"]))
+		{
+			output("You’re in combat--you can’t possibly unequip this item right now!");
+			return;
+		}
+		else if(pc.inventory.length >= pc.inventorySlots())
+		{
+			output("You’re in combat and your inventory is too full to unequip an item now!");
+			return;
+		}
+	}
+	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var unequippedItems:Array = new Array();
-
+	
 	if(arg == "bra") {
 		if(!pc.itemSlotUnlocked(GLOBAL.UPPER_UNDERGARMENT))
 		{
@@ -1016,7 +1085,7 @@ public function unequip(arg:String, next:Boolean = true):void
 		}
 		if(pc.armor is Omnisuit) 
 		{
-			output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you're completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn't be better to just put it back on.\n\n");
+			output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.\n\n");
 			unequippedItems[unequippedItems.length] = new OmnisuitCollar();
 			pc.removeStatusEffect("Rubber Wrapped");
 		}
@@ -1043,8 +1112,9 @@ public function unequip(arg:String, next:Boolean = true):void
 	}
 	
 	unequippedItems[unequippedItems.length - 1].onRemove(pc);
-
+	
 	itemCollect(unequippedItems);
+	if(inCombat()) backToCombatInventory(unequippedItems[unequippedItems.length - 1]);
 }
 
 // atm, no equippable items have a stacksize > 1, so there is never a possibility that we'd have to split an item stack to equip an item the player holds in their inventory.
@@ -1060,21 +1130,21 @@ public function equipItem(arg:ItemSlotClass):void {
 	{
 		if(flags["OMNISUITED"] == undefined)
 		{
-			output("Putting strange objects around your neck probably isn't the best idea you've had, but then again, neither is running around the most dangerous parts of the galaxy trying to claim a fortune. Pressing a button on the shining band, you pop it open and line it up around your neck. It's a little tight, but it should fit without crushing your throat. Sucking in a nervous breath, you snap the ends together, feeling a hidden mechanism make a satisfying 'click'. It warms against your [pc.skinFurScales], pulling tighter and tighter until you fear it might start to choke you. It never does. Just when you're starting to panic, it stops shrinking.");
-			output("\n\nProbing around the edge with a fingertip, you realize that it wasn't just getting tighter - it was changing shape, molding itself to the exact shape of your neck. There isn't a single gap where your flesh isn't kissed by the warm, flexible metal. It hugs your [pc.skinFurScales] tightly, firm and constricting and yet forgiving enough not to pinch as you move around.");
-			if(pc.isBro()) output(" You bet you look fuckin' awesome - butch as hell.");
-			else if(pc.isBimbo()) output(" You bet you look sexy as fuck. You wonder if there's a ring to attach a leash to. The boys would love it.\n\n");
+			output("Putting strange objects around your neck probably isn’t the best idea you’ve had, but then again, neither is running around the most dangerous parts of the galaxy trying to claim a fortune. Pressing a button on the shining band, you pop it open and line it up around your neck. It’s a little tight, but it should fit without crushing your throat. Sucking in a nervous breath, you snap the ends together, feeling a hidden mechanism make a satisfying ‘click’. It warms against your [pc.skinFurScales], pulling tighter and tighter until you fear it might start to choke you. It never does. Just when you’re starting to panic, it stops shrinking.");
+			output("\n\nProbing around the edge with a fingertip, you realize that it wasn’t just getting tighter - it was changing shape, molding itself to the exact shape of your neck. There isn’t a single gap where your flesh isn’t kissed by the warm, flexible metal. It hugs your [pc.skinFurScales] tightly, firm and constricting and yet forgiving enough not to pinch as you move around.");
+			if(pc.isBro()) output(" You bet you look fuckin’ awesome - butch as hell.");
+			else if(pc.isBimbo()) output(" You bet you look sexy as fuck. You wonder if there’s a ring to attach a leash to. The boys would love it.\n\n");
 			if(eventQueue.indexOf(firstTimeOmniSuitOn) == -1) eventQueue.push(firstTimeOmniSuitOn);
 			pc.lockItemSlot(GLOBAL.ARMOR, "You try to replace your new collar but it refuses to unlock. Something is preventing you from removing it...");
 		}
 		else
 		{
-			output("You close the Omnisuit's collar around your neck once more, delighted to feel it molding itself to the shape of your body. After properly adjusting its shape, it hisses, and a wave of oily, latex-like material flows down your body, rapidly coating every inch of your form in clingy tightness. It feels wonderful, being wrapped up in ebony perfection once more, feeling it flowing back into position like the hands of a long lost lover.");
+			output("You close the Omnisuit’s collar around your neck once more, delighted to feel it molding itself to the shape of your body. After properly adjusting its shape, it hisses, and a wave of oily, latex-like material flows down your body, rapidly coating every inch of your form in clingy tightness. It feels wonderful, being wrapped up in ebony perfection once more, feeling it flowing back into position like the hands of a long lost lover.");
 			output("\n\nBest of all, everywhere it goes, sensation is heightened");
-			if(!pc.isNude()) output(", so much so that you feel compelled to remove your other garments. They chafe against your sleek new body, not to mention clashing with the flawless visual aesthetic you've acquired.");
-			else output(", so much so that you can't help but paw at yourself as you take on a sleek new aesthetic.");
-			output(" It's a shame that the Omnisuit only pleasantly stimulates you as it envelops your body this time. There's no full-body teasing of every neuron, just the lovely feel of something rubbery and warm cupping and gripping every part of your form.");
-			output("\n\n<i>\"Thank you for using your Omnisuit! Remember, the Omnisuit is the only clothing that can pander to your every desire, on the streets or in the sheets!\"</i> a perky female voice chirps from inside your collar as you inspect the finished product.\n\n");
+			if(!pc.isNude()) output(", so much so that you feel compelled to remove your other garments. They chafe against your sleek new body, not to mention clashing with the flawless visual aesthetic you’ve acquired.");
+			else output(", so much so that you can’t help but paw at yourself as you take on a sleek new aesthetic.");
+			output(" It’s a shame that the Omnisuit only pleasantly stimulates you as it envelops your body this time. There’s no full-body teasing of every neuron, just the lovely feel of something rubbery and warm cupping and gripping every part of your form.");
+			output("\n\n<i>“Thank you for using your Omnisuit! Remember, the Omnisuit is the only clothing that can pander to your every desire, on the streets or in the sheets!”</i> a perky female voice chirps from inside your collar as you inspect the finished product.\n\n");
 			if(eventQueue.indexOf(omniSuitRepeatFinisher) == -1) eventQueue.push(omniSuitRepeatFinisher);
 			pc.lockItemSlot(GLOBAL.ARMOR, "The Omnisuit collar has just been activated. Perhaps you should let it settle before removing it...");
 		}
@@ -1090,7 +1160,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		if(pc.armor is Omnisuit && (arg.type == GLOBAL.LOWER_UNDERGARMENT || arg.type == GLOBAL.UPPER_UNDERGARMENT))
 		{
 			//Attempt to put something else on
-			output("The moment the " + arg.longName + " comes in contact with your suit-enclosed form, you realize that this will never work. The new garment grates distractingly on your sensitized nerves. It's like trying to wear sandpaper after a decade of nothing but the finest silk. Shaking your head, you yank it off in a hurry. You'll have to ditch the Omnisuit if you're going to wear anything else with it. Strange that your backpack and other miscellaneous gear don't generate the same reaction.\n\n");
+			output("The moment the " + arg.longName + " comes in contact with your suit-enclosed form, you realize that this will never work. The new garment grates distractingly on your sensitized nerves. It’s like trying to wear sandpaper after a decade of nothing but the finest silk. Shaking your head, you yank it off in a hurry. You’ll have to ditch the Omnisuit if you’re going to wear anything else with it. Strange that your backpack and other miscellaneous gear don’t generate the same reaction.\n\n");
 			//Take the arg off! Ha ha!
 			removedItem = arg;
 		}
@@ -1111,7 +1181,7 @@ public function equipItem(arg:ItemSlotClass):void {
 	//A quick check to skip equipping if we've bailed out
 	if(removedItem == arg)
 	{
-
+		
 	}
 	else
 	{
@@ -1130,7 +1200,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		}
 		if(pc.hasStatusEffect("Gunlock") && arg.type == GLOBAL.RANGED_WEAPON)
 		{
-			output("<b> Your new ranged weapon doesn't suffer from the effects of gunlock!</b>");
+			output("<b> Your new ranged weapon doesn’t suffer from the effects of gunlock!</b>");
 			pc.removeStatusEffect("Gunlock");
 		}
 		//Set the quantity to 1 for the equipping, then set it back to holding - 1 for inventory!
@@ -1138,7 +1208,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			if(pc.armor is Omnisuit)
 			{
-				output("\n\nTouching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you're completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn't be better to just put it back on.\n\n");
+				output("\n\nTouching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.\n\n");
 				pc.removeStatusEffect("Rubber Wrapped");
 			}
 			removedItem = pc.armor;
@@ -1188,12 +1258,15 @@ public function equipItem(arg:ItemSlotClass):void {
 		// Renamed from lootList so I can distinguish old vs new uses
 		var unequippedItems:Array = new Array();
 		unequippedItems[unequippedItems.length] = removedItem;
+		
 		itemCollect(unequippedItems);
+		if(inCombat()) backToCombatInventory(arg);
 	}
 	else 
 	{
 		clearMenu();
-		addButton(0,"Next",itemScreen);
+		if(inCombat()) backToCombatInventory(arg);
+		else addButton(0, "Next", itemScreen);
 	}
 }
 
@@ -1257,25 +1330,30 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 	if (tItem)
 	{
 		output(". There is no room in your inventory for your new acquisition. Do you discard the item or replace a filled item slot?");
-		this.clearMenu();
-		this.addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
-		this.addButton(1,"Discard", discardItem, newLootList);
+		clearMenu();
+		addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
+		addButton(1,"Discard", discardItem, newLootList);
 		//Hacky fix. If you hit useLoot with stuff that has its own submenus, it'll overwrite the submenu with the loot info for the next item. For instance, if you loot a hand cannon and a spear, then equip the hand cannon, your old ZK rifle will vanish into the ether while the game jumps over it to the spear.
 		if ((newLootList.length >= 2)) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
 		else if ((newLootList[0] as ItemSlotClass).hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT)) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
-		else if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use", useLoot, newLootList);
+		else if ((newLootList[0] as ItemSlotClass).isUsable != true) addDisabledButton(2,"Use","Use","This item is not usable.");
+		else addButton(2,"Use", useLoot, newLootList);
 	}
 	else
 	{			
 		output(". The new acquisition");
 		if(newLootList[0].quantity > 1) output("s stow");
 		else output(" stows");
-		output(" away quite easily.\n");
+		output(" away quite easily.");
 		//Clear the item off the newLootList.
 		newLootList.splice(0,1);
-		this.clearMenu();
-		if(newLootList.length > 0) this.addButton(0,"Next",itemCollect,newLootList);
-		else this.addButton(0,"Next",lootScreen);
+		clearMenu();
+		if(newLootList.length > 0)
+		{
+			output("\n");
+			addButton(0,"Next",itemCollect,newLootList);
+		}
+		else addButton(0,"Next",lootScreen);
 	}
 }
 
@@ -1283,25 +1361,25 @@ public function discardItem(lootList:Array):void {
 	clearOutput();
 	output("You discard " + lootList[0].description + " (x" + lootList[0].quantity + ").\n\n");
 	lootList.splice(0,1);
-	this.clearMenu();
-	if(lootList.length > 0) this.addButton(0,"Next",itemCollect, lootList);
-	else this.addButton(0,"Next",lootScreen);
+	clearMenu();
+	if(lootList.length > 0) addButton(0,"Next",itemCollect, lootList);
+	else addButton(0,"Next",lootScreen);
 }
 
 public function replaceItemPicker(lootList:Array):void {
 	clearOutput();
 	output("You have " + lootList[0].description + " (x" + lootList[0].quantity + ") but there is no room left in your inventory.\n\n");
 	output("What will you replace?");
-	this.clearMenu();
+	clearMenu();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
 		{
 			var butDesc:String = pc.inventory[x].shortName + " x" + pc.inventory[x].quantity
-			this.addButton(x,butDesc,replaceItemGo,[x, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
+			addButton(x,butDesc,replaceItemGo,[x, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
 		}
 	}
 	
-	this.addButton(14, "Back",
+	addButton(14, "Back",
 		(function(c_lootList:Array):Function
 		{
 			return function():void
@@ -1333,8 +1411,8 @@ public function useLoot(lootList:Array):void {
 public function abandonLoot(lootList:Array):void {
 	output("You toss out " + lootList[0].description + ".");
 	lootList.splice(0,1);
-	this.clearMenu();
-	this.addButton(0,"Next",lootScreen);
+	clearMenu();
+	addButton(0,"Next",lootScreen);
 }
 
 public function replaceItemGo(args:Array):void 
@@ -1345,14 +1423,14 @@ public function replaceItemGo(args:Array):void
 	output("You toss out " + pc.inventory[indice].description + " (x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].description + " (x" + lootList[0].quantity + ").");
 	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);
-	this.clearMenu();
+	clearMenu();
 	if(lootList.length > 0) 
 	{
 		output("\n\n");
-		this.addButton(0,"Next",itemCollect, lootList);
+		addButton(0,"Next",itemCollect, lootList);
 	}
 	else 
-		this.addButton(0,"Next",lootScreen);
+		addButton(0,"Next",lootScreen);
 }
 
 public function quickLoot(... args):void
@@ -1385,14 +1463,14 @@ public function shipStorageMenuRoot():void
 	}
 	
 	clearOutput();
-	output("You turn to your ship's storage.");
+	output("You turn to your ship’s storage.");
 	
 	clearMenu();
 	
 	if (flags["SHIP_STORAGE_WARDROBE"] != undefined) 
 	{
-		 output(" A wardrobe closet lines a section of the wall, reminding you where you keep all your clothes, outfits and armors.");
-		 addButton(0, "Wardrobe", shipStorageMenuType, "WARDROBE");
+		output(" A wardrobe closet lines a section of the wall, reminding you where you keep all your clothes, outfits and armors.");
+		addButton(0, "Wardrobe", shipStorageMenuType, "WARDROBE");
 	}
 	else addDisabledButton(0, "Wardrobe");
 	
@@ -1636,7 +1714,7 @@ public function storeItem(args:Array):void
 	else if (item.quantity > 0)
 	{
 		// If we're THIS far in, we couldn't fit the item in at all.
-		output("There isn't enough room to store your item.");
+		output("There isn’t enough room to store your item.");
 		
 		clearMenu();
 		addButton(0, "Switch", replaceInStorage, [item, type], "Switch Items", "Switch an item in your ships storage with one in your inventory.");
@@ -1748,7 +1826,7 @@ public function takeItem(args:Array):void
 	else if (item.quantity > 0)
 	{
 		// If we're THIS far in, we couldn't fit the item in at all.
-		output("There isn't enough room to take your item.");
+		output("There isn’t enough room to take your item.");
 		
 		clearMenu();
 		addButton(0, "Switch", replaceInInventory, [item, type], "Switch Items", "Switch an item in your inventory with one in your ships storage.");

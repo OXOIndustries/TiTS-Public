@@ -53,8 +53,8 @@ public function approachCeria():void
 	{
 		flags["MET_CERIA"] = 1;
 		output("<i>“Welcome to Shear Beauty! I’m Ceria, I’ll be your stylist today. Here for a haircut, " + pc.mfn("Mister","Miss","") + "...?”</i>");
-		if(pc.isBimbo()) output("\n\n<i>“It's like, [pc.name]. This place is super cute!”</i>");
-		else if(pc.isBro()) output("\n\n<i>“[pc.name]. I'm jus' lookin'”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“It’s like, [pc.name]. This place is super cute!”</i>");
+		else if(pc.isBro()) output("\n\n<i>“[pc.name]. I’m jus’ lookin’”</i>");
 		else output("\n\n<i>“It’s [pc.name]. And maybe, just looking around right now.”</i>");
 
 		output("\n\n<i>“Well, [pc.name], we do trimming, lengthening, coloring and styling here. We’ve also got products you can take home over here on the left.”</i> Ceria gestures towards the rows of bottles, conditioners, and medipens on display. <i>“Just let me know what you want, ‘kay?”</i>");
@@ -81,9 +81,9 @@ public function ceriaMenu():void
 	addButton(1,"Styling",hairworkFromCeria,undefined,"Styling","Get your hair lengthened, cut, or dyed!");
 	addButton(2,"Talk",ceriaTalk,undefined,"Talk","Talk to Ceria.");
 	addButton(3,"Appearance",ceriaAppearance,undefined,"Appearance","Take a good look a the elfin proprietor.");
-	if(fuckedCeria() && pc.lust() >= 33) addButton(4,"Sex",ceriseSexApproach,undefined,"Sex","She seems like she'd be into it...");
-	else if(fuckedCeria()) addDisabledButton(4,"Sex","Sex","You aren't aroused enough for sex right now.");
-	else addDisabledButton(4,"Sex","Sex","You'll need to get to know her first!");
+	if(fuckedCeria() && pc.lust() >= 33) addButton(4,"Sex",ceriseSexApproach,undefined,"Sex","She seems like she’d be into it...");
+	else if(fuckedCeria()) addDisabledButton(4,"Sex","Sex","You aren’t aroused enough for sex right now.");
+	else addDisabledButton(4,"Sex","Sex","You’ll need to get to know her first!");
 	addButton(14,"Leave",mainGameMenu);
 }
 /*
@@ -187,7 +187,7 @@ public function hairworkFromCeria():void
 	if(InCollection(pc.hairType, GLOBAL.HAIR_TYPE_REGULAR, GLOBAL.HAIR_TYPE_QUILLS)) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style","Get your hair styled into something fashionable.");
 	else addDisabledButton(3,"Style","Style","You can only get traditional hair styled here.");
 	if(pc.hasPartFur() || pc.hasPartFeathers()) addButton(4,"Fur Color",furColorMenu,undefined,"Fur Color","Get your fur dyed too!");
-	else addDisabledButton(4,"Fur Color","Fur Color","You don't have fur to dye!");
+	else addDisabledButton(4,"Fur Color","Fur Color","You don’t have fur to dye!");
 	addButton(14,"Back",approachCeria);
 }
 public function serviceFromCeriaFinish():void
@@ -203,7 +203,7 @@ public function lengthenHairChoices():void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“Alright, what kind of length are you looking for? Remember I’ll have to redo your hairstyle after this if you’re not gonna just wear it loose. We charge by the inch, and it's pretty expensive. The nano-gel doesn't come cheap! I’ll give you your total when you tell me what you want.”</i>");
+	output("<i>“Alright, what kind of length are you looking for? Remember I’ll have to redo your hairstyle after this if you’re not gonna just wear it loose. We charge by the inch, and it’s pretty expensive. The nano-gel doesn’t come cheap! I’ll give you your total when you tell me what you want.”</i>");
 
 	//[All below options go to Lengthen Confirmation, gray out options PC already exceeds or can’t afford]
 	//[Short] 2
@@ -274,7 +274,7 @@ public function lengthenHairConfirmation(hairInches:Number = 0):void
 	
 	clearMenu();
 	if(pc.credits >= cost) addButton(0,"Okay",payTheLadyForLongHair,hairInches);
-	else addDisabledButton(0,"Okay","Okay","You can't pay for that!");
+	else addDisabledButton(0,"Okay","Okay","You can’t pay for that!");
 	//[OK] Go to Lengthen Treatment
 	//[Nevermind] Go to Ceria Main
 	addButton(1,"Nevermind",lengthenHairChoices);
@@ -327,43 +327,43 @@ public function getHairCut():void
 	//[Back] Go to Ceria Hairwork
 	var btn:int = 0;
 	if (pc.credits >= 200 && pc.hairLength > 0) addButton(btn++, "Shave", cutHair, 0);
-	else if(pc.hairLength > 0) addDisabledButton(btn++, "Shave", "Shave", "You can't afford that!");
+	else if(pc.hairLength > 0) addDisabledButton(btn++, "Shave", "Shave", "You can’t afford that!");
 	else addDisabledButton(btn++, "Shave", "Shave", "You need hair in order to get it cut!");
 	if(pc.credits >= 200 && pc.hairLength > 2) addButton(btn++,"Short",cutHair,2);
-	else if(pc.hairLength > 2) addDisabledButton(btn++,"Short","Short","You can't afford that!");
+	else if(pc.hairLength > 2) addDisabledButton(btn++,"Short","Short","You can’t afford that!");
 	else addDisabledButton(btn++,"Short","Short","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > 4) addButton(btn++,"Ear Length",cutHair,4);
-	else if(pc.hairLength > 4) addDisabledButton(btn++,"Ear Length","Ear Length","You can't afford that!");
+	else if(pc.hairLength > 4) addDisabledButton(btn++,"Ear Length","Ear Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Ear Length","Ear Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > 6) addButton(btn++,"Neck Length",cutHair,6);
-	else if(pc.hairLength > 6) addDisabledButton(btn++,"Neck Length","Neck Length","You can't afford that!");
+	else if(pc.hairLength > 6) addDisabledButton(btn++,"Neck Length","Neck Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Neck Length","Neck Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > 8) addButton(btn++,"Shoulders",cutHair,8);
-	else if(pc.hairLength > 8) addDisabledButton(btn++,"Shoulders","Shoulders","You can't afford that!");
+	else if(pc.hairLength > 8) addDisabledButton(btn++,"Shoulders","Shoulders","You can’t afford that!");
 	else addDisabledButton(btn++,"Shoulders","Shoulders","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > 13) addButton(btn++,"Long",cutHair,13);
-	else if(pc.hairLength > 13) addDisabledButton(btn++,"Long","Long","You can't afford that!");
+	else if(pc.hairLength > 13) addDisabledButton(btn++,"Long","Long","You can’t afford that!");
 	else addDisabledButton(btn++,"Long","Long","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2.6) addButton(btn++,"Back Length",cutHair,pc.tallness/2.6);
-	else if(pc.hairLength > pc.tallness/2.6) addDisabledButton(btn++,"Back Length","Back Length","You can't afford that!");
+	else if(pc.hairLength > pc.tallness/2.6) addDisabledButton(btn++,"Back Length","Back Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Back Length","Back Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2) addButton(btn++,"Ass Length",cutHair,pc.tallness/2);
-	else if(pc.hairLength > pc.tallness/2) addDisabledButton(btn++,"Ass Length","Ass Length","You can't afford that!");
+	else if(pc.hairLength > pc.tallness/2) addDisabledButton(btn++,"Ass Length","Ass Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Ass Length","Ass Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.6) addButton(btn++,"Thigh Length",cutHair,pc.tallness/1.6);
-	else if(pc.hairLength > pc.tallness/1.6) addDisabledButton(btn++,"Thigh Length","Thigh Length","You can't afford that!");
+	else if(pc.hairLength > pc.tallness/1.6) addDisabledButton(btn++,"Thigh Length","Thigh Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Thigh Length","Thigh Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.4) addButton(btn++,"Knee Length",cutHair,pc.tallness/1.4);
-	else if(pc.hairLength > pc.tallness/1.4) addDisabledButton(btn++,"Knee Length","Knee Length","You can't afford that!");
+	else if(pc.hairLength > pc.tallness/1.4) addDisabledButton(btn++,"Knee Length","Knee Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Knee Length","Knee Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.2) addButton(btn++,"Calf Length",cutHair,pc.tallness/1.2);
-	else if(pc.hairLength > pc.tallness/1.2) addDisabledButton(btn++,"Calf Length","Calf Length","You can't afford that!");
+	else if(pc.hairLength > pc.tallness/1.2) addDisabledButton(btn++,"Calf Length","Calf Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Calf Length","Calf Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness - 1) addButton(btn++,"Ankle Length",cutHair,(pc.tallness - 1));
-	else if(pc.hairLength > pc.tallness - 1) addDisabledButton(btn++,"Ankle Length","Ankle Length","You can't afford that!");
+	else if(pc.hairLength > pc.tallness - 1) addDisabledButton(btn++,"Ankle Length","Ankle Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Ankle Length","Ankle Length","Your hair is already shorter than that!");
 	if(pc.credits >= 100 && pc.hairLength > 1) addButton(13,"Trim",cutHair,(pc.hairLength - 1));
-	else if(pc.hairLength > 1) addDisabledButton(13,"Trim","Trim","You can't afford that!");
+	else if(pc.hairLength > 1) addDisabledButton(13,"Trim","Trim","You can’t afford that!");
 	else addDisabledButton(13,"Trim","Trim","Your hair is already shorter than that!");
 	addButton(14,"Back",hairworkFromCeria);
 
@@ -383,7 +383,7 @@ public function cutHair(hairInches:Number):void
 		if(pc.hasLivingHair())
 		{
 			output("Ceria sits you down in one of the salon chairs, eyeing your living [pc.hair].");
-			output("\n\n<i>“Okay, scissors aren’t going to work here, but fortunately...”</i> The elf reaches into the drawers at her station and pulls out a bottle of some pale yellow gel. <i>“You're not the only one who comes in here with hair that’s alive.”</i>");
+			output("\n\n<i>“Okay, scissors aren’t going to work here, but fortunately...”</i> The elf reaches into the drawers at her station and pulls out a bottle of some pale yellow gel. <i>“You’re not the only one who comes in here with hair that’s alive.”</i>");
 			output("\n\nCeria carefully measures out the gel and sets to working it into your hair, providing you with a gentle tingle and the sensation of your exotic tresses shortening bit by bit to the length you requested. Her work is impeccable, making sure no part gets too much or too little gel");
 		}
 		else
@@ -403,7 +403,7 @@ public function cutHair(hairInches:Number):void
 			output("\n\n<i>“Normally living hair’s a big pain to deal with. You can’t use scissors on it, so you have to use this stuff instead.”</i> The elf turns to get something out of the drawers at her station, giving you a good look at the way her ass almost peeks out of those jeans she wears.");
 			output("\n\nJust as you’re contemplating reaching for a feel Ceria turns back around, now holding a bottle of pale yellow gel. You watch as she carefully measures out the right amount of gel and puts it on her hands, showcasing the utility of her natural fairy gloves. Once her palms and fingers are evenly coated she leans forward and reaches into your hair, starting to caress each of the living strands.");
 			output("\n\n<i>“Hold real still, [pc.name]. I need to get each and every one.”</i>");
-			output("\n\nYou do your best to obey, but stars if the sight of those tanned elven tits hanging right in front of your eyes, teasing you with the swirls of tribal marks disappearing under her shirt and into her cleavage, doesn't make it a challenge. Not to mention her hands, smooth as silk and cool as a breeze, working each and every one of your living, sensitive strands of hair. You feel like you could cum right here in the salon chair if she kept it up for long enough, cum from your exotic hair and her exotic hands alone.");
+			output("\n\nYou do your best to obey, but stars if the sight of those tanned elven tits hanging right in front of your eyes, teasing you with the swirls of tribal marks disappearing under her shirt and into her cleavage, doesn’t make it a challenge. Not to mention her hands, smooth as silk and cool as a breeze, working each and every one of your living, sensitive strands of hair. You feel like you could cum right here in the salon chair if she kept it up for long enough, cum from your exotic hair and her exotic hands alone.");
 			output("\n\nSadly she doesn’t take nearly long enough, the gel soon running dry and with it leaving your hair feeling distinctly shorter. Ceria gives you a kiss on the cheek before stepping behind you and drawing your attention to the mirror.");
 		}
 		else
@@ -446,142 +446,125 @@ public function hairColorMainMenu():void
 	//[Gray out options the PC can’t afford.]
 	clearMenu();
 	//[Standard] Go to Standard Hair Color
-	if(pc.credits >= 500) addButton(0,"Standard",standardHairColorMenu,undefined,"Standard","Get dyed a traditional color.");
-	else addDisabledButton(0,"Standard","Standard","You can't afford that!");
+	if(pc.credits >= 500) addButton(0,"Standard",ceriaHairColorMenu,"standard","Standard","Get dyed a traditional color.");
+	else addDisabledButton(0,"Standard","Standard","You can’t afford that!");
 	//[Metallic] Go to Metallic Hair Color
-	if(pc.credits >= 500) addButton(1,"Metallic",metallicHairColorMenu,undefined,"Metallic","Get dyed a metallic color.");
-	else addDisabledButton(1,"Metallic","Metallic","You can't afford that!");
+	if(pc.credits >= 500) addButton(1,"Metallic",ceriaHairColorMenu,"metallic","Metallic","Get dyed a metallic color.");
+	else addDisabledButton(1,"Metallic","Metallic","You can’t afford that!");
 	//[Glowing] Go to Glowing Hair Color
-	if(pc.credits >= 600) addButton(2,"Glowing",glowingHairColorMenu,undefined,"Glowing","Get dyed a color that'll glow in the dark.");
-	else addDisabledButton(2,"Glowing","Glowing","You can't afford that!");
+	if(pc.credits >= 600) addButton(2,"Glowing",ceriaHairColorMenu,"glowing","Glowing","Get dyed a color that’ll glow in the dark.");
+	else addDisabledButton(2,"Glowing","Glowing","You can’t afford that!");
 	//[Back] Go To Hairwork
 	addButton(14,"Back",hairworkFromCeria);
 	processTime(1);
 }
 
-//Standard Hair Color
-public function standardHairColorMenu():void
+public function ceriaHairDyeColors(colorType:String = "none", dyePart:String = "none"):Array
 {
-	clearOutput();
-	showCeria();
-	author("Couch");
-	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>\n\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
-	//[Buttons for Colors] Go to Hair Treatment
-	//[Back] Go to Hairwork
-	if(pc.hairColor == "black") addDisabledButton(0,"Black","Black","Your hair is already black.");
-	else addButton(0,"Black",hairColorizing,"black","Black","Dye your hair black.");
-	if(pc.hairColor == "chocolate") addDisabledButton(1,"Chocolate","Chocolate","Your hair is already chocolate.");
-	else addButton(1,"Chocolate",hairColorizing,"chocolate","Chocolate","Dye your hair chocolate.");
-	if(pc.hairColor == "brown") addDisabledButton(2,"Brown","Brown","Your hair is already brown.");
-	else addButton(2,"Brown",hairColorizing,"brown","Brown","Dye your hair brown.");
-	if(pc.hairColor == "dirty blonde") addDisabledButton(3,"Dirty Blonde","Dirty Blonde","Your hair is already dirty blonde.");
-	else addButton(3,"Dirty Blonde",hairColorizing,"dirty blonde","Dirty Blonde","Dye your hair dirty blonde.");
-	if(pc.hairColor == "blonde") addDisabledButton(4,"Blonde","Blonde","Your hair is already blonde.");
-	else addButton(4,"Blonde",hairColorizing,"blonde","Blonde","Dye your hair blonde.");
-	if(pc.hairColor == "platinum blonde") addDisabledButton(5,"P.Blonde","Platinum Blonde","Your hair is already platinum blonde.");
-	else addButton(5,"P.Blonde",hairColorizing,"platinum blonde","Platinum Blonde","Dye your hair platinum blonde.");
-	if(pc.hairColor == "strawberry blonde") addDisabledButton(6,"S.B.Blonde","Strawberry Blonde","Your hair is already strawberry blonde.");
-	else addButton(6,"S.B.Blonde",hairColorizing,"strawberry blonde","Strawberry Blonde","Dye your hair strawberry blonde.");
-	if(pc.hairColor == "auburn") addDisabledButton(7,"Auburn","Auburn","Your hair is already auburn.");
-	else addButton(7,"Auburn",hairColorizing,"auburn","Auburn","Dye your hair auburn.");
-	if(pc.hairColor == "red") addDisabledButton(8,"Red","Red","Your hair is already red.");
-	else addButton(8,"Red",hairColorizing,"red","Red","Dye your hair red.");
-	if(pc.hairColor == "crimson") addDisabledButton(9,"Crimson","Crimson","Your hair is already crimson.");
-	else addButton(9,"Crimson",hairColorizing,"crimson","Crimson","Dye your hair crimson.");
-	if(pc.hairColor == "orange") addDisabledButton(10,"Orange","Orange","Your hair is already orange.");
-	else addButton(10,"Orange",hairColorizing,"orange","Orange","Dye your hair orange.");
-	if(pc.hairColor == "purple") addDisabledButton(11,"Purple","Purple","Your hair is already purple.");
-	else addButton(11,"Purple",hairColorizing,"purple","Purple","Dye your hair purple.");
-	if(pc.hairColor == "violet") addDisabledButton(12,"Violet","Violet","Your hair is already violet.");
-	else addButton(12,"Violet",hairColorizing,"violet","Violet","Dye your hair violet.");
-	if(pc.hairColor == "blue") addDisabledButton(13,"Blue","Blue","Your hair is already blue.");
-	else addButton(13,"Blue",hairColorizing,"blue","Blue","Dye your hair blue.");
+	var colorList:Array = [];
 	
-	addButton(14,"Back",hairColorMainMenu);
+	switch(colorType)
+	{
+		//Standard Color
+		case "standard":
+			colorList.push(["black", "Black"]);
+			colorList.push(["chocolate", "Chocolate"]);
+			colorList.push(["brown", "Brown"]);
+			colorList.push(["dirty blonde", "Dirty Blonde"]);
+			colorList.push(["blonde", "Blonde"]);
+			colorList.push(["platinum blonde", "P.Blonde"]);
+			colorList.push(["strawberry blonde", "S.B.Blonde"]);
+			colorList.push(["auburn", "Auburn"]);
+			colorList.push(["red", "Red"]);
+			colorList.push(["crimson", "Crimson"]);
+			colorList.push(["red-orange", "R.Orange"]);
+			colorList.push(["orange", "Orange"]);
+			colorList.push(["yellow-orange", "Y.Orange"]);
+			colorList.push(["yellow", "Yellow"]);
+			colorList.push(["yellow-green", "Y.Green"]);
+			colorList.push(["green", "Green"]);
+			colorList.push(["dark green", "D.Green"]);
+			colorList.push(["turquoise", "Turquoise"]);
+			colorList.push(["cerulean", "Cerulean"]);
+			colorList.push(["blue", "Blue"]);
+			colorList.push(["violet", "Violet"]);
+			colorList.push(["indigo", "Indigo"]);
+			colorList.push(["purple", "Purple"]);
+			colorList.push(["lavender", "Lavender"]);
+			colorList.push(["pink", "Pink"]);
+			colorList.push(["white", "White"]);
+			colorList.push(["ivory", "Ivory"]);
+			colorList.push(["gray", "Gray"]);
+			break;
+		//Metallic Color
+		case "metallic":
+			colorList.push(["chrome", "Chrome", ("Dye your " + dyePart + " chrome for a retro-futuristic look.")]);
+			colorList.push(["bronze", "Bronze"]);
+			colorList.push(["gold", "Gold", ("Dye your " + dyePart + " gold. King Midas will have nothing on you!")]);
+			colorList.push(["copper", "Copper"]);
+			colorList.push(["cobalt", "Cobalt"]);
+			colorList.push(["silver", "Silver", ("Dye your " + dyePart + " silver" + (dyePart == "hair" ? " like some kind of anime character" : "") + ".")]);
+			colorList.push(["rusty", "Rusty", ("Dye your " + dyePart + " rusty. The name of the dye is “Rusty Venture”.")]);
+			colorList.push(["steel", "Steel", ("Dye your " + dyePart + " steel. Really live up to your namesake.")]);
+			colorList.push(["sable", "Sable"]);
+			colorList.push(["metallic black", "M.Black", ("Dye your " + dyePart + " metallic black" + (silly ? " if you want to twinkle in the night sky" : "") + ".")]);
+			colorList.push(["pearl", "Pearl"]);
+			colorList.push(["rose gold", "Rose Gold"]);
+			colorList.push(["amethyst", "Amethyst"]);
+			colorList.push(["emerald", "Emerald"]);
+			break;
+		//Glowing Color
+		case "glowing":
+			colorList.push(["glowing red", "G.Red", ("Dye your " + dyePart + " to glow like the warning lights on a super-critical reactor.")]);
+			colorList.push(["glowing orange", "G.Orange", ("Dye your " + dyePart + " glowing orange. You’ll always be the center of attention" + (dyePart == "hair" ? " - and probably the first to get a multipass to boot!" : "."))]);
+			colorList.push(["glowing gold", "G.Gold", ("Dye your " + dyePart + " to glow like some kind of golden god.")]);
+			colorList.push(["glowing green", "G.Green", ("Dye your " + dyePart + " glowing green. You’ll be the envy of comic book monsters everywhere.")]);
+			colorList.push(["glowing blue", "G.Blue", ("Dye your " + dyePart + " glowing blue" + (dyePart == "hair" ? " for a bit of a cyber-punk look" : "") + ".")]);
+			colorList.push(["glowing purple", "G.Purple"]);
+			colorList.push(["glowing pink", "G.Pink"]);
+			colorList.push(["glowing silver", "G.Silver"]);
+			colorList.push(["glowing white", "G.White"]);
+			colorList.push(["iridescent", "Iridescent", ("Can’t decide on one color? Dye your " + dyePart + " iridescent for a more multi-colored look.")]);
+			break;
+	}
 	
-	if(pc.hairColor == "emerald") addDisabledButton(15,"Emerald","Emerald","Your hair is already emerald.");
-	else addButton(15,"Emerald",hairColorizing,"emerald","Emerald","Dye your hair emerald.");
-	if(pc.hairColor == "green") addDisabledButton(16,"Green","Green","Your hair is already green.");
-	else addButton(16,"Green",hairColorizing,"green","Green","Dye your hair green.");
-	if(pc.hairColor == "turquoise") addDisabledButton(17,"Turquoise","Turquoise","Your hair is already turquoise.");
-	else addButton(17,"Turquoise",hairColorizing,"turquoise","Turquoise","Dye your hair turquoise.");
-	if(pc.hairColor == "white") addDisabledButton(18,"White","White","Your hair is already white.");
-	else addButton(18,"White",hairColorizing,"white","White","Dye your hair white.");
-	if(pc.hairColor == "ivory") addDisabledButton(19,"Ivory","Ivory","Your hair is already ivory.");
-	else addButton(19,"Ivory",hairColorizing,"ivory","Ivory","Dye your hair ivory.");
-	if(pc.hairColor == "gray") addDisabledButton(20,"Gray","Gray","Your hair is already gray.");
-	else addButton(20,"Gray",hairColorizing,"gray","Gray","Dye your hair gray.");
-	if(pc.hairColor == "pink") addDisabledButton(21,"Pink","Pink","Your hair is already pink.");
-	else addButton(21,"Pink",hairColorizing,"pink","Pink","Dye your hair pink.");
-
-	addButton(29, "Back", hairColorMainMenu); // refactor to always keep a back button on every page?
-	
-	//addButton(21,"Purple",hairColorizing,"purple","Purple","Dye your hair purple.");
-	//addButton(22,"Violet",hairColorizing,"violet","Violet","Dye your hair violet.");
-	//addButton(23,"Blue",hairColorizing,"blue","Blue","Dye your hair blue.");
-	processTime(1);
-
+	return colorList;
 }
-//Metallic Hair Color
-public function metallicHairColorMenu():void
+public function ceriaHairColorMenu(colorType:String = "none"):void
 {
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
+	
+	var colorList:Array = ceriaHairDyeColors(colorType, "hair");
+	var i:int = 0;
+	var btnSlot:int = 0;
+	
 	//[Buttons for Colors] Go to Hair Treatment
 	clearMenu();
-	if(pc.hairColor == "chrome") addDisabledButton(0,"Chrome","Chrome","Your hair is already chrome.");
-	else addButton(0,"Chrome",hairColorizing,"chrome","Chrome","Dye your hair chrome for a retro-futuristic look.");
-	if(pc.hairColor == "bronze") addDisabledButton(1,"Bronze","Bronze","Your hair is already bronze.");
-	else addButton(1,"Bronze",hairColorizing,"bronze","Bronze","Dye your hair bronze.");
-	if(pc.hairColor == "gold") addDisabledButton(2,"Gold","Gold","Your hair is already gold.");
-	else addButton(2,"Gold",hairColorizing,"gold","Gold","Dye your hair gold. King Midas will have nothing on you!");
-	if(pc.hairColor == "copper") addDisabledButton(3,"Copper","Copper","Your hair is already copper.");
-	else addButton(3,"Copper",hairColorizing,"copper","Copper","Dye your hair copper.");
-	if(pc.hairColor == "cobalt") addDisabledButton(4,"Cobalt","Cobalt","Your hair is already cobalt.");
-	else addButton(4,"Cobalt",hairColorizing,"cobalt","Cobalt","Dye your hair cobalt.");
-	if(pc.hairColor == "silver") addDisabledButton(5,"Silver","Silver","Your hair is already silver.");
-	else addButton(5,"Silver",hairColorizing,"silver","Silver","Dye your hair silver like some kind of anime character.");
-	if(pc.hairColor == "rusty") addDisabledButton(6,"Rusty","Rusty","Your hair is already rusty.");
-	else addButton(6,"Rusty",hairColorizing,"rusty","Rusty","Dye your hair rusty. The name of the dye is \"Rusty Venture\".");
-	if(pc.hairColor == "steel") addDisabledButton(7,"Steel","Steel","Your hair is already steel.");
-	else addButton(7,"Steel",hairColorizing,"steel","Steel","Dye your hair steel. Really live up to your namesake.");
-	if(pc.hairColor == "metallic black") addDisabledButton(8,"M.Black","Metallic Black","Your hair is already metallic black.");
-	else addButton(8,"M.Black",hairColorizing,"metallic black","Metallic Black","Dye your hair metallic black" + (silly ? " if you want to twinkle in the night sky":"") + ".");
-	
-	addButton(14,"Back",hairColorMainMenu);
-
+	for(i = 0; i < colorList.length; i++)
+	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", hairColorMainMenu);
+			btnSlot++;
+		}
+		
+		if(pc.hairColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], hairColorizing, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), String((colorList[i].length > 2 ? colorList[i][2] : "Dye your hair " + colorList[i][0] + ".")));
+		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), String("Your hair is already " + colorList[i][0] + "."));
+		btnSlot++;
+		
+		if(colorList.length > 14 && (i + 1) == colorList.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", hairColorMainMenu);
+		}
+	}
 	//[Back] Go to Hairwork
-	processTime(1);
-}
-
-//Glowing Hair Color
-public function glowingHairColorMenu():void
-{
-	clearOutput();
-	showCeria();
-	author("Couch");
+	addButton(14, "Back", hairColorMainMenu);
+	
 	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
-	//[Buttons for Colors] Go to Hair Treatment
-	clearMenu();
-	if(pc.hairColor == "glowing gold") addDisabledButton(0,"G.Gold","Glowing Gold","Your hair is already glowing gold.");
-	else addButton(0,"G.Gold",hairColorizing,"glowing gold","Glowing Gold","Dye your hair to glow like some kind of golden god.");
-	if(pc.hairColor == "glowing orange") addDisabledButton(1,"G.Orange","Glowing Orange","Your hair is already glowing orange.");
-	else addButton(1,"G.Orange",hairColorizing,"glowing orange","Glowing Orange","Dye your hair glowing orange. You'll always be the center of attention - and probably the first to get a multipass to boot!");
-	if(pc.hairColor == "glowing red") addDisabledButton(2,"G.Red","Glowing Red","Your hair is already glowing red.");
-	else addButton(2,"G.Red",hairColorizing,"glowing red","Glowing Red","Dye your hair to glow like the warning lights on a super-critical reactor.");
-	if(pc.hairColor == "glowing purple") addDisabledButton(3,"G.Purple","Glowing Purple","Your hair is already glowing purple.");
-	else addButton(3,"G.Purple",hairColorizing,"glowing purple","Glowing Purple","Dye your hair glowing purple.");
-	if(pc.hairColor == "glowing blue") addDisabledButton(4,"G.Blue","Glowing Blue","Your hair is already glowing blue.");
-	else addButton(4,"G.Blue",hairColorizing,"glowing blue","Glowing Blue","Dye your hair glowing blue for a bit of a cyber-punk look.");
-	if(pc.hairColor == "glowing green") addDisabledButton(5,"G.Green","Glowing Green","Your hair is already glowing green.");
-	else addButton(5,"G.Green",hairColorizing,"glowing green","Glowing Green","Dye your hair glowing green. You'll be the envy of comic book monsters everywhere.");
-	if(pc.hairColor == "iridescent") addDisabledButton(6,"Iridescent","Iridescent","Your hair is already iridescent.");
-	else addButton(6,"Iridescent",hairColorizing,"iridescent","Iridescent","Can’t decide on one color? Dye your hair iridescent for a more multi-colored look.");
-	
-	addButton(14,"Back",hairColorMainMenu);
-	//[Back] Go to Hairwork
+	if(colorList.length > 14) output("\n\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
 	processTime(1);
 }
 
@@ -630,18 +613,18 @@ public function ceriaHairStyleChoices():void
 	else addDisabledButton(0,"Straight","Straight","Your hair is already straight.");
 	//[Ponytail]
 	if(pc.hairStyle != "ponytail" && pc.hairLength >= 5) addButton(1,"Ponytail",styleConfirmation,"ponytail","Ponytail","Get your hair styled into a ponytail.");
-	else if(pc.hairStyle != "ponytail") addDisabledButton(1,"Ponytail","Ponytail","Your hair isn't long enough to get put into a ponytail.");
+	else if(pc.hairStyle != "ponytail") addDisabledButton(1,"Ponytail","Ponytail","Your hair isn’t long enough to get put into a ponytail.");
 	else addDisabledButton(1,"Ponytail","Ponytail","You already have a ponytail.");
 	//[Pigtails]
 	if(pc.hairStyle != "pigtails" && pc.hairLength >= 5) addButton(2,"Pigtails",styleConfirmation,"pigtails","Pigtails","Get your hair styled into pigtails.");
-	else if(pc.hairStyle != "pigtails") addDisabledButton(2,"Pigtails","Pigtails","Your hair isn't long enough to get put into pigtails.");
+	else if(pc.hairStyle != "pigtails") addDisabledButton(2,"Pigtails","Pigtails","Your hair isn’t long enough to get put into pigtails.");
 	else addDisabledButton(2,"Pigtails","Pigtails","You already have a ponytail.");
 	//[Curls]
 	if(pc.hairStyle != "curls") addButton(3,"Curls",styleConfirmation,"curls","Curls","Get your hair styled into curls.");
 	else addDisabledButton(3,"Curls","Curls","You already have your hair curled.");
 	//[Braided]
 	if(pc.hairStyle != "braided" && pc.hairLength >= 5) addButton(4,"Braided",styleConfirmation,"braided","Braided","Get your hair styled into a braid.");
-	else if(pc.hairStyle != "braided") addDisabledButton(4,"Braided","Braided","Your hair isn't long enough to be braided.");
+	else if(pc.hairStyle != "braided") addDisabledButton(4,"Braided","Braided","Your hair isn’t long enough to be braided.");
 	else addDisabledButton(4,"Braided","Braided","You already have your hair braided!");
 	//[Afro]
 	if(pc.hairStyle != "afro" && pc.hairLength <= 12) addButton(5,"Afro",styleConfirmation,"afro","Afro","Get your hair styled into an afro.");
@@ -677,7 +660,7 @@ public function styleConfirmation(hStyle:String = ""):void
 	//[Nevermind] Go To Hairwork
 	clearMenu();
 	if(pc.credits >= 1200) addButton(0,"Okay",styleDatHairGo,hStyle);
-	else addDisabledButton(0,"Okay","Okay","You can't afford that.");
+	else addDisabledButton(0,"Okay","Okay","You can’t afford that.");
 	addButton(1,"Nevermind",hairworkFromCeria);
 }
 	
@@ -711,118 +694,51 @@ public function furColorMenu():void
 	//[Back] Go To Hairwork
 	processTime(1);
 	clearMenu();
-	if(pc.credits >= 1500) addButton(0,"Standard",furColor,undefined,"Standard","Standard colors.");
-	else addDisabledButton(0,"Standard","Standard","You can't afford this.");
-	if(pc.credits >= 1500) addButton(1,"Metallic",metalliaColor,undefined,"Metallic","Metallic colors.");
-	else addDisabledButton(1,"Metallic","Metallic","You can't afford this.");
-	if(pc.credits >= 1800) addButton(2,"Glowing",glowFurGo,undefined,"Glowing","Glowing colors.");
-	else addDisabledButton(2,"Glowing","Glowing","You can't afford this.");
+	if(pc.credits >= 1500) addButton(0,"Standard",ceriaFurColorMenu,"standard","Standard","Standard colors.");
+	else addDisabledButton(0,"Standard","Standard","You can’t afford this.");
+	if(pc.credits >= 1500) addButton(1,"Metallic",ceriaFurColorMenu,"metallic","Metallic","Metallic colors.");
+	else addDisabledButton(1,"Metallic","Metallic","You can’t afford this.");
+	if(pc.credits >= 1800) addButton(2,"Glowing",ceriaFurColorMenu,"glowing","Glowing","Glowing colors.");
+	else addDisabledButton(2,"Glowing","Glowing","You can’t afford this.");
 	addButton(14,"Back",hairworkFromCeria);
 }
 
-//Standard Fur Color
-public function furColor():void
+public function ceriaFurColorMenu(colorType:String = "none"):void
 {
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
-
-	clearMenu();
-	processTime(1);
-	//[Buttons for Colors] Go to Fur Treatment
-	if(pc.furColor == "black") addDisabledButton(0,"Black","Black","Your fur is already black.");
-	else addButton(0,"Black",furColorApplication,"black","Black","Dye your fur black.");
-	if(pc.furColor == "brown") addDisabledButton(1,"Brown","Brown","Your fur is already brown.");
-	else addButton(1,"Brown",furColorApplication,"brown","Brown","Dye your fur brown.");
-	if(pc.furColor == "tawny") addDisabledButton(2,"Tawny","Tawny","Your fur is already tawny.");
-	else addButton(2,"Tawny",furColorApplication,"tawny","Tawny","Dye your fur tawny.");
-	if(pc.furColor == "blonde") addDisabledButton(3,"Blonde","Blonde","Your fur is already blonde.");
-	else addButton(3,"Blonde",furColorApplication,"blonde","Blonde","Dye your fur blonde.");
-	if(pc.furColor == "red") addDisabledButton(4,"Red","Red","Your fur is already red.");
-	else addButton(4,"Red",furColorApplication,"red","Red","Dye your fur red.");
-	if(pc.furColor == "crimson") addDisabledButton(5,"Crimson","Crimson","Your fur is already crimson.");
-	else addButton(5,"Crimson",furColorApplication,"crimson","Crimson","Dye your fur crimson.");
-	if(pc.furColor == "pink") addDisabledButton(6,"Pink","Pink","Your fur is already pink.");
-	else addButton(6,"Pink",furColorApplication,"pink","Pink","Dye your fur pink.");
-	if(pc.furColor == "purple") addDisabledButton(7,"Purple","Purple","Your fur is already purple.");
-	else addButton(7,"Purple",furColorApplication,"purple","Purple","Dye your fur purple.");
-	if(pc.furColor == "violet") addDisabledButton(8,"Violet","Violet","Your fur is already violet.");
-	else addButton(8,"Violet",furColorApplication,"violet","Violet","Dye your fur violet.");
-	if(pc.furColor == "blue") addDisabledButton(9,"Blue","Blue","Your fur is already blue.");
-	else addButton(9,"Blue",furColorApplication,"blue","Blue","Dye your fur blue.");
-	if(pc.furColor == "green") addDisabledButton(10,"Green","Green","Your fur is already green.");
-	else addButton(10,"Green",furColorApplication,"green","Green","Dye your fur green.");
-	if(pc.furColor == "gray") addDisabledButton(11,"Gray","Gray","Your fur is already gray.");
-	else addButton(11,"Gray",furColorApplication,"gray","Gray","Dye your fur gray.");
-	if(pc.furColor == "white") addDisabledButton(12,"White","White","Your fur is already white.");
-	else addButton(12,"White",furColorApplication,"white","White","Dye your fur white.");
 	
-	addButton(14,"Back",furColorMenu);
-}
-
-//Metallic Fur Color
-public function metalliaColor():void
-{
-	clearOutput();
-	showCeria();
-	author("Couch");
-	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
-
-	processTime(1);
+	var colorList:Array = ceriaHairDyeColors(colorType, "fur");
+	var i:int = 0;
+	var btnSlot:int = 0;
+	
 	//[Buttons for Colors] Go to Fur Treatment
+	clearMenu();
+	for(i = 0; i < colorList.length; i++)
+	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", furColorMenu);
+			btnSlot++;
+		}
+		
+		if(pc.furColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], furColorApplication, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), String((colorList[i].length > 2 ? colorList[i][2] : "Dye your fur " + colorList[i][0] + ".")));
+		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), String("Your fur is already " + colorList[i][0] + "."));
+		btnSlot++;
+		
+		if(colorList.length > 14 && (i + 1) == colorList.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", furColorMenu);
+		}
+	}
 	//[Back] Go to Hairwork
-	clearMenu();
-	if(pc.furColor == "chrome") addDisabledButton(0,"Chrome","Chrome","Your fur is already chrome.");
-	else addButton(0,"Chrome",furColorApplication,"chrome","Chrome","Dye your fur chrome for a retro-futuristic look.");
-	if(pc.furColor == "bronze") addDisabledButton(1,"Bronze","Bronze","Your fur is already bronze.");
-	else addButton(1,"Bronze",furColorApplication,"bronze","Bronze","Dye your fur bronze.");
-	if(pc.furColor == "gold") addDisabledButton(2,"Gold","Gold","Your fur is already gold.");
-	else addButton(2,"Gold",furColorApplication,"gold","Gold","Dye your fur gold. King Midas will have nothing on you!");
-	if(pc.furColor == "copper") addDisabledButton(3,"Copper","Copper","Your fur is already copper.");
-	else addButton(3,"Copper",furColorApplication,"copper","Copper","Dye your fur copper.");
-	if(pc.furColor == "cobalt") addDisabledButton(4,"Cobalt","Cobalt","Your fur is already cobalt.");
-	else addButton(4,"Cobalt",furColorApplication,"cobalt","Cobalt","Dye your fur cobalt.");
-	if(pc.furColor == "silver") addDisabledButton(5,"Silver","Silver","Your fur is already silver.");
-	else addButton(5,"Silver",furColorApplication,"silver","Silver","Dye your fur silver like some kind of anime character.");
-	if(pc.furColor == "rusty") addDisabledButton(6,"Rusty","Rusty","Your fur is already rusty.");
-	else addButton(6,"Rusty",furColorApplication,"rusty","Rusty","Dye your fur rusty. The name of the dye is \"Rusty Venture\".");
-	if(pc.furColor == "steel") addDisabledButton(7,"Steel","Steel","Your fur is already steel.");
-	else addButton(7,"Steel",furColorApplication,"steel","Steel","Dye your fur steel. Really live up to your namesake.");
-	if(pc.furColor == "metallic black") addDisabledButton(8,"M.Black","Metallic Black","Your fur is already metallic black.");
-	else addButton(8,"M.Black",furColorApplication,"metallic black","Metallic Black","Dye your fur metallic black" + (silly ? " if you want to twinkle in the night sky":"") + ".");
+	addButton(14, "Back", furColorMenu);
 	
-	addButton(14,"Back",furColorMenu);
-}
-
-//Glowing Fur Color
-public function glowFurGo():void
-{
-	clearOutput();
-	showCeria();
-	author("Couch");
 	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
-	
+	if(colorList.length > 14) output("\n\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
 	processTime(1);
-	//[Buttons for Colors] Go to Fur Treatment
-	//[Back] Go to Hairwork
-	clearMenu();
-	if(pc.furColor == "glowing gold") addDisabledButton(0,"G.Gold","Glowing Gold","Your fur is already glowing gold.");
-	else addButton(0,"G.Gold",furColorApplication,"glowing gold","Glowing Gold","Dye your fur to glow like some kind of golden god.");
-	if(pc.furColor == "glowing orange") addDisabledButton(1,"G.Orange","Glowing Orange","Your fur is already glowing orange.");
-	else addButton(1,"G.Orange",furColorApplication,"glowing orange","Glowing Orange","Dye your fur glowing orange. You'll always be the center of attention - and probably the first to get a multipass to boot!");
-	if(pc.furColor == "glowing red") addDisabledButton(2,"G.Red","Glowing Red","Your fur is already glowing red.");
-	else addButton(2,"G.Red",furColorApplication,"glowing red","Glowing Red","Dye your fur to glow like the warning lights on a super-critical reactor.");
-	if(pc.furColor == "glowing purple") addDisabledButton(3,"G.Purple","Glowing Purple","Your fur is already glowing purple.");
-	else addButton(3,"G.Purple",furColorApplication,"glowing purple","Glowing Purple","Dye your fur glowing purple.");
-	if(pc.furColor == "glowing blue") addDisabledButton(4,"G.Blue","Glowing Blue","Your fur is already glowing blue.");
-	else addButton(4,"G.Blue",furColorApplication,"glowing blue","Glowing Blue","Dye your fur glowing blue for a bit of a cyber-punk look.");
-	if(pc.furColor == "glowing green") addDisabledButton(5,"G.Green","Glowing Green","Your fur is already glowing green.");
-	else addButton(5,"G.Green",furColorApplication,"glowing green","Glowing Green","Dye your fur glowing green. You'll be the envy of comic book monsters everywhere.");
-	if(pc.furColor == "iridescent") addDisabledButton(6,"Iridescent","Iridescent","Your fur is already iridescent.");
-	else addButton(6,"Iridescent",furColorApplication,"iridescent","Iridescent","Can’t decide on one color? Dye your fur iridescent for a more multi-colored look.");
-	
-	addButton(14,"Back",furColorMenu);
 }
 
 //Fur Treatment
@@ -890,8 +806,8 @@ public function furColorApplicationGo(newColor:String):void
 	author("Couch");
 	if(!pc.hasFur())
 	{
-		output("<i>“This is going to be a little trickier than doing your hair, but at least we don't have to do a full body job. Dealing with a full coat of fur can be quite tricky.”</i>");
-		if(fuckedCeria()) output(" Ceria's eyes rove up and down your body. <i>“But then again, some of us wouldn't mind giving you a full-body once-over.”</i>")
+		output("<i>“This is going to be a little trickier than doing your hair, but at least we don’t have to do a full body job. Dealing with a full coat of fur can be quite tricky.”</i>");
+		if(fuckedCeria()) output(" Ceria’s eyes rove up and down your body. <i>“But then again, some of us wouldn’t mind giving you a full-body once-over.”</i>")
 		output("\n\nThe bubbly hairstylist leads to a chair and instructs, <i>“Strip and lie down while I get the gel ready.”</i>");
 		output("\n\nYou’re provided a moment of privacy and a small towel to put across your lap for modesty before the elf returns. Ceria allows herself a moment to take in your almost-nude body with a lascivious smile before recovering her professional composure. ");
 		output("Reaching into the tub of gel, she takes out a thick glob and smears it across the parts of you covered in fur, working the gel in with confident, skilled strokes until it’s fully absorbed. You can feel the gel’s contents flowing through you just under the surface, diffusing across your entire body but particularly seeking out the spots where you’ve already got fur on display.");
@@ -964,7 +880,7 @@ public function ceriaTalk():void
 		addButton(2,"Her Race",talkToCeriaAboutHerRace,undefined,"Her Race","Ask her about her race.");
 		//[TouchPointyEars] Gray out until Her Race is done, go to Touch Pointy Ears
 		if(flags["CERIA_EAR_TOUCH_UNLOCKED"] != undefined) addButton(3,"TouchEars",touchPointyEars,undefined,"TouchEars","Touch those sensitive ears... you know you want to.");
-		else addDisabledButton(3,"Locked","Locked","You haven't unlocked this topic.");
+		else addDisabledButton(3,"Locked","Locked","You haven’t unlocked this topic.");
 		//[Back] Go to Ceria Main}
 		addButton(14,"Back",approachCeria);
 	}
@@ -1068,7 +984,7 @@ public function ceriaAppearance():void
 	author("Couch");
 	output("If you had to sum Ceria up in a phrase, it would be <i>“sparkly bubblegum elf”</i>. Practically everything about her, save for her well-tanned skin, is some shade of pink or blue, and most of it metallic at that. Her rose gold hair would hang down to just over her cleavage if it wasn’t tied back into a ponytail, while her eyes are a bright sapphire color with an unnatural gleam, both visibly the product of gene-modding. Her lips too are rose gold, either by mods or by lipstick. They’re just plump enough to be enticing without being slutty, and emphasized by the bubblegum you frequently see her blowing when she’s not doing someone’s hair.");
 	output("\n\nA luminous pink arrowhead-like marking adorns each of Ceria’s cheeks, drawing attention to her other notable facial feature, the pair of seven-inch triangular ears that stick out horizontally from either side of her head. Each is as long as her head is wide, twitching and drooping to emphasize - indeed, dramatize - every shift of her expression.");
-	output("\n\nBoth of Ceria’s arms are covered in what look like long metallic blue gloves, but they're far too form-fitting to really be gloves. They must be the product of transformation as well, replacing her skin with a glistening lapis material that flows and shimmers every time her fingers flex. They come to gently pointed tips with no distinct fingernails, just flawless metal all the way from her hands to halfway up her upper arms. Her legs, though you can't see them at the moment under her jeans, sport matching coverings from the thigh down. Unlike her hands, her feet forgo toes outright, instead being fused together and shaped in such a way that it looks as though she were wearing slippers with delicately pointed tips.");
+	output("\n\nBoth of Ceria’s arms are covered in what look like long metallic blue gloves, but they’re far too form-fitting to really be gloves. They must be the product of transformation as well, replacing her skin with a glistening lapis material that flows and shimmers every time her fingers flex. They come to gently pointed tips with no distinct fingernails, just flawless metal all the way from her hands to halfway up her upper arms. Her legs, though you can’t see them at the moment under her jeans, sport matching coverings from the thigh down. Unlike her hands, her feet forgo toes outright, instead being fused together and shaped in such a way that it looks as though she were wearing slippers with delicately pointed tips.");
 	output("\n\nThe elven girl’s white top and blue jeans are cut just daringly enough that you can see the luminous pink body markings along her lean belly and cleavage, and of course plenty daring enough that you can get a good look at her cleavage itself. Ceria’s sporting a hefty DD-cup rack that sits high and proud on her chest, and as soon as she spots you looking her over she crosses her arms underneath them to push those twin volleyballs up higher still, giving you a playful wink. Her hips are no less impressive, and her butt is just big enough to give her jeans something to stretch nice and tight around.");
 	output("\n\nStanding at 5’8” tall, she’s just a touch on the tall side for a human female, though far from imposingly so.");
 	if(fuckedCeria()) output(" You know from experience that she has a bubblegum-pink terran pussy between her legs, plus a cute little asshole between her cheeks right where it belongs.");
@@ -1099,7 +1015,7 @@ public function ceriaSexMenu():void
 	addButton(1,"Give Oral",giveDatElfSlootOral,undefined,"Give Oral","Put your tongue to work on Ceria’s snatch.");
 	//[Fuck Ceria] Take Ceria to the break room and give her pussy a pounding. // Requires dick.
 	if(pc.hasCock() && pc.cockThatFits(400) >= 0) addButton(2,"Fuck Ceria",fuckCeria,undefined,"Fuck Ceria","Take Ceria to the break room and give her pussy a pounding.");
-	else addDisabledButton(2,"Fuck Ceria","Fuck Ceria","You need a penis that'll fit inside Ceria to fuck her.");
+	else addDisabledButton(2,"Fuck Ceria","Fuck Ceria","You need a penis that’ll fit inside Ceria to fuck her.");
 	//[Fairy Footjob] You wouldn’t mind finding out what those slipper feet feel like on your dick. // Requires dick.
 	if(pc.hasCock()) addButton(3,"Footjob",fairyFootjob,undefined,"Footjob","You wouldn’t mind finding out what those slipper feet feel like on your dick.");
 	else addDisabledButton(3,"Footjob","Footjob","You need a dick to get a footjob.");
@@ -1433,31 +1349,31 @@ public function earFuckWithCeria():void
 {
 	clearOutput();
 	showCeria(true);
-	output("Looking at the elf-girl's quivering ears, an idea as perverted as it is brilliant strikes you. You reach out to gently stroke along the edge of Ceria's ear, smiling when she quivers in bliss. <i>\"You ever tried sliding one of these inside of someone before?");
+	output("Looking at the elf-girl’s quivering ears, an idea as perverted as it is brilliant strikes you. You reach out to gently stroke along the edge of Ceria’s ear, smiling when she quivers in bliss. <i>“You ever tried sliding one of these inside of someone before?");
 	if(pc.isBimbo()) 
 	{
-		output("\"</i> You giggle");
+		output("”</i> You giggle");
 		if(pc.hairLength > 2) output(" and twirl your hair");
-		output(". <i>\"I bet they feel just as good as any cock!\"</i>");
+		output(". <i>“I bet they feel just as good as any cock!");
 	}
-	else output(" They must be what, six or seven inches long? That's cock-sized, dear.\"</i>");
-	output(" Letting go so that the poor girl can stop squirming and think, you move your palm down to [pc.oneVagina]");
+	else output(" They must be what, six or seven inches long? That’s cock-sized, dear.");
+	output("”</i> Letting go so that the poor girl can stop squirming and think, you move your palm down to [pc.oneVagina]");
 	if(!pc.isCrotchExposed()) output(", pushing your [pc.lowerGarments] out of the way to better allow access");
 	output(", gently caressing your ");
 	if(pc.lust() >= 75) output("flushed");
 	else output("rapidly flushing");
 	output(" pussy.");
 	output("\n\nCeria watches, spellbound. ");
-	if(flags["CERIA_EARFUCKS"] != undefined) output("<i>\"A-again?\"</i> Her knees buckle, though whether from your teasing or her eagerness for her next ear-fuck, you'll never know. One thing for certain is that the elf is fluttering her eyelashes and gently chewing her gold-hued lip, tilting her head so that all you'd have to do is reach out and grab hold. Her cheeks flush hotter, moment by moment, all but begging you to stuff her sensitive ear as far into your twat as possible.");
-	else output("<i>\"I-inside?\"</i> Her knees knock together, and she nervously chews at her lips, ignorant of the flush spreading across her cheeks. <i>\"No I haven't, but...\"</i> she lowers herself to the ground, turning to let one of her flopping, pointed lengths point your way, <i>\"...I'm willing to give it a try. If you're gentle.\"</i> Looking up at you, her blush instantly deepens, and her ear quivers, bouncing provocatively. All you have to do is scoot forward and slide it inside...");
+	if(flags["CERIA_EARFUCKS"] != undefined) output("<i>“A-again?”</i> Her knees buckle, though whether from your teasing or her eagerness for her next ear-fuck, you’ll never know. One thing for certain is that the elf is fluttering her eyelashes and gently chewing her gold-hued lip, tilting her head so that all you’d have to do is reach out and grab hold. Her cheeks flush hotter, moment by moment, all but begging you to stuff her sensitive ear as far into your twat as possible.");
+	else output("<i>“I-inside?”</i> Her knees knock together, and she nervously chews at her lips, ignorant of the flush spreading across her cheeks. <i>“No I haven’t, but...”</i> she lowers herself to the ground, turning to let one of her flopping, pointed lengths point your way, <i>“...I’m willing to give it a try. If you’re gentle.”</i> Looking up at you, her blush instantly deepens, and her ear quivers, bouncing provocatively. All you have to do is scoot forward and slide it inside...");
 	output("\n\nYou can barely contain yourself, rather than rushing forward and pounding your puss into the side of her head, you take your time, gathering ");
 	if(pc.wettestVaginalWetness() >= 5) output("a handful of your free-flowing fluids");
 	else if(pc.wettestVaginalWetness() >= 4) output("a palmful of your ever-present vaginal lubrication");
 	else if(pc.wettestVaginalWetness() >= 3) output("a palmful of your abundant fluids");
 	else output("a palmful of your increasingly voluminous lubricant");
-	output(". <i>\"Hold still,\"</i> you bid, cupping the underside of the elf's twitching ear. Smearing your [pc.girlCum] along the smooth skin, you delight in the way your every motion is reflected on Ceria's face. She gasps and shudders, letting her eyelids droop low as the pleasure eats away at the dregs of her self-control. Her blue-encased thighs quiver delightfully as you round the very tip of her elven blessing, and as you make a stroke back along the top edge, she can't help but audibly moan, her lips parted in whorish bliss.");
-	output("\n\nEncouraged by the sight of the lust-drunk elf, you wrap your fingers the whole way around and start to pump her from wide base to narrow tip, jacking off Ceria's ear just as fast and hard as any dick. She reacts about as you would expect. Her mouth hangs slack whenever it isn't moaning obscenities, and tiny puddles of drool are beginning to form atop her DD-cup cleavage. She seems oblivious to her own state, so oblivious that she doesn't even react when you start smearing pussy-juice on her other ear, allowing you to pump both sides of her head equally forcefully.");
-	output("\n\nCeria's eyes roll back until they're little more than white slits, and a ragged moan rips its way out of her throat, blissfully screaming, <i>\"Yessssss!\"</i> Her hips twitch wildly, and the scent of strawberries fills the air, followed shortly by the sound of her sweet-scented girlcum splattered against the floor. You let go of her ears, too turned on by elf to hold back any longer. It's time you got to ride one of those sexy, elven blessings and see if your pussy can make her squirt as easily as your hands.");
+	output(". <i>“Hold still,”</i> you bid, cupping the underside of the elf’s twitching ear. Smearing your [pc.girlCum] along the smooth skin, you delight in the way your every motion is reflected on Ceria’s face. She gasps and shudders, letting her eyelids droop low as the pleasure eats away at the dregs of her self-control. Her blue-encased thighs quiver delightfully as you round the very tip of her elven blessing, and as you make a stroke back along the top edge, she can’t help but audibly moan, her lips parted in whorish bliss.");
+	output("\n\nEncouraged by the sight of the lust-drunk elf, you wrap your fingers the whole way around and start to pump her from wide base to narrow tip, jacking off Ceria’s ear just as fast and hard as any dick. She reacts about as you would expect. Her mouth hangs slack whenever it isn’t moaning obscenities, and tiny puddles of drool are beginning to form atop her DD-cup cleavage. She seems oblivious to her own state, so oblivious that she doesn’t even react when you start smearing pussy-juice on her other ear, allowing you to pump both sides of her head equally forcefully.");
+	output("\n\nCeria’s eyes roll back until they’re little more than white slits, and a ragged moan rips its way out of her throat, blissfully screaming, <i>“Yessssss!”</i> Her hips twitch wildly, and the scent of strawberries fills the air, followed shortly by the sound of her sweet-scented girlcum splattered against the floor. You let go of her ears, too turned on by elf to hold back any longer. It’s time you got to ride one of those sexy, elven blessings and see if your pussy can make her squirt as easily as your hands.");
 	processTime(10);
 	pc.lust(25);
 	clearMenu();
@@ -1467,8 +1383,8 @@ public function earFuckCeriaPart2():void
 {
 	clearOutput();
 	showCeria(true);
-	output("Ceria is like dough in your hands, heavy and pliant. If you weren't holding her up, she'd probably slump down into her own puddled juices. Holding her forehead, you guide the tip of her ear up to the lips of your [pc.vagina " + x + "], rubbing it gently against your lips. It's cooler than you expected, nowhere as hot and urgent as a penis might be, but the contact with your sordidly-soaked snatch soon has it warming. You ease it in and moan in delight, matched by Ceria's answering cry.");
-	output("\n\n<i>\"Ahh!\"</i> The elf's hips buck, and you have to hold her tight to keep her from slipping away. In the process, her slender ear dips further into your [pc.vagina " + x + "], it's narrow tip seemingly designed to perfectly spread your canal. Now that the process has started, you see no point in slowing and push her ear in further, sliding inch after inch of quivering elven bliss into your deepest depths. You had no idea that she could make it quiver so pleasurably! Ceria's ear twitches with every thrust, rubbing on your most sensitive places, making you wet enough to mat her hair to the side of her head as you slide home.");
+	output("Ceria is like dough in your hands, heavy and pliant. If you weren’t holding her up, she’d probably slump down into her own puddled juices. Holding her forehead, you guide the tip of her ear up to the lips of your [pc.vagina " + x + "], rubbing it gently against your lips. It’s cooler than you expected, nowhere as hot and urgent as a penis might be, but the contact with your sordidly-soaked snatch soon has it warming. You ease it in and moan in delight, matched by Ceria’s answering cry.");
+	output("\n\n<i>“Ahh!”</i> The elf’s hips buck, and you have to hold her tight to keep her from slipping away. In the process, her slender ear dips further into your [pc.vagina " + x + "], it’s narrow tip seemingly designed to perfectly spread your canal. Now that the process has started, you see no point in slowing and push her ear in further, sliding inch after inch of quivering elven bliss into your deepest depths. You had no idea that she could make it quiver so pleasurably! Ceria’s ear twitches with every thrust, rubbing on your most sensitive places, making you wet enough to mat her hair to the side of her head as you slide home.");
 	if(pc.clitLength >= 4)
 	{
 		output("\n\nYour oversized clit");
@@ -1479,15 +1395,15 @@ public function earFuckCeriaPart2():void
 		else output("they");
 		output(" crash");
 		if(pc.totalClits() == 1) output("es");
-		output(" against Ceria's silken locks, pressed between your body and hers. The human clitoris was never designed to be so big or so phallic, and you have to yank the elf back immediately lest you be overwhelmed by sensation. There's so much that you could get off in a moment if you stayed there, impaled on her ear and grinding against her head, yet you know all too well that rushing to the peak so early would be ultimately unsatisfying.");
+		output(" against Ceria’s silken locks, pressed between your body and hers. The human clitoris was never designed to be so big or so phallic, and you have to yank the elf back immediately lest you be overwhelmed by sensation. There’s so much that you could get off in a moment if you stayed there, impaled on her ear and grinding against her head, yet you know all too well that rushing to the peak so early would be ultimately unsatisfying.");
 	}
-	output("\n\nThe trembling stylist appears to be handling herself a little better now that you're confining your attentions to a single point of contact. Her eyes are half open, and she's moaning words again, things like <i>\"yes,\"</i> <i>\"fuck,\"</i> and <i>\"faster!\"</i> Looking down at her, you smile when you see her hands on her breasts. She's handling herself roughly, making the pliant titflesh wobble and bounce, her rigid nipples slightly crinkled as fingers slide around their areolae.");
-	output("\n\nAny attempt at conversation is abandoned, replaced by the heavy bump and grind of one sweaty body against another. Your [pc.vagina " + x + "] squelches lewdly with each back-and-forth movement, splattering more [pc.girlCumNoun] into Ceria's hair with each passing second. The scent of your pussy fills the air, tinted with the strawberry flavor of the elf's fruity ejaculations. You moan with her, tangling your fingers in her sodden locks, curling them around your knuckles as you slap her cheek with your cunt.");
+	output("\n\nThe trembling stylist appears to be handling herself a little better now that you’re confining your attentions to a single point of contact. Her eyes are half open, and she’s moaning words again, things like <i>“yes,”</i> <i>“fuck,”</i> and <i>“faster!”</i> Looking down at her, you smile when you see her hands on her breasts. She’s handling herself roughly, making the pliant titflesh wobble and bounce, her rigid nipples slightly crinkled as fingers slide around their areolae.");
+	output("\n\nAny attempt at conversation is abandoned, replaced by the heavy bump and grind of one sweaty body against another. Your [pc.vagina " + x + "] squelches lewdly with each back-and-forth movement, splattering more [pc.girlCumNoun] into Ceria’s hair with each passing second. The scent of your pussy fills the air, tinted with the strawberry flavor of the elf’s fruity ejaculations. You moan with her, tangling your fingers in her sodden locks, curling them around your knuckles as you slap her cheek with your cunt.");
 	output("\n\nHot, liquid twinges roll through your belly and into your [pc.vaginas], making your passage");
 	if(pc.totalVaginas() > 1) output("s");
 	output(" clench and squeeze. Your [pc.legOrLegs] tremble");
 	if(pc.legCount == 1) output("s");
-	output(", jolting forward in an extra hard thrust, forcing you to take all of Ceria's ear at once. The bizarre eroticism of it mixes in with your helpless ecstasy, flooding your [pc.vagina " + x + "] with bliss, both liquid and sensory. You can feel it flowing up your spine, robbing you of control of your muscles, making your body squirm and writhe on the end of Ceria's ear.");
+	output(", jolting forward in an extra hard thrust, forcing you to take all of Ceria’s ear at once. The bizarre eroticism of it mixes in with your helpless ecstasy, flooding your [pc.vagina " + x + "] with bliss, both liquid and sensory. You can feel it flowing up your spine, robbing you of control of your muscles, making your body squirm and writhe on the end of Ceria’s ear.");
 	if(pc.isSquirter()) output(" You splatter the side of her head with [pc.girlCumNoun], drenching her to the waist in your feminine enthusiasm.");
 	if(pc.hasCock()) 
 	{
@@ -1509,13 +1425,13 @@ public function earFuckCeriaPart3():void
 {
 	clearOutput();
 	showCeria(true);
-	output("When Ceria recovers, she looks like she wants to be angry with you, to be mad at how effectively you've soiled her once immaculate appearance, but it's tough for her to look stern with that fucked-out look just behind her eyes and strands of your nectar dripping from both her ears.");
+	output("When Ceria recovers, she looks like she wants to be angry with you, to be mad at how effectively you’ve soiled her once immaculate appearance, but it’s tough for her to look stern with that fucked-out look just behind her eyes and strands of your nectar dripping from both her ears.");
 	//First time
-	if(flags["CERIA_EARFUCKS"] == undefined) output("\n\n<i>\"That was messier than I expected... but fun. You'll have to give me a few minutes to freshen up before I can re-open the shop.\"</i> She bends low, still covered in your juices, and kisses you full on the lips. <i>\"Thanks, gorgeous!\"</i>");
+	if(flags["CERIA_EARFUCKS"] == undefined) output("\n\n<i>“That was messier than I expected... but fun. You’ll have to give me a few minutes to freshen up before I can re-open the shop.”</i> She bends low, still covered in your juices, and kisses you full on the lips. <i>“Thanks, gorgeous!”</i>");
 	//Repeat
-	else output("\n\n<i>\"That was so worth the mess.\"</i> Ceria bends low, still covered in your juices, and plants a messy kiss full on your lips. <i>\"Let me go clean up, then I can re-open the shop... or go for round two.\"</i>");
+	else output("\n\n<i>“That was so worth the mess.”</i> Ceria bends low, still covered in your juices, and plants a messy kiss full on your lips. <i>“Let me go clean up, then I can re-open the shop... or go for round two.”</i>");
 	//Merge
-	output("\n\nYou're left sitting there in a puddle of your own juices when she spins away, prancing off to a back room to clean up. A cleaning robot arrives in her absence, working to clean up the mess you two left on the floor, but the strawberry aroma lingers behind.");
+	output("\n\nYou’re left sitting there in a puddle of your own juices when she spins away, prancing off to a back room to clean up. A cleaning robot arrives in her absence, working to clean up the mess you two left on the floor, but the strawberry aroma lingers behind.");
 	processTime(15);
 	IncrementFlag("CERIA_EARFUCKS");
 	clearMenu();

@@ -34,7 +34,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 3;
 			_pregnancyQuantityMaximum = 6;
-			_definedAverageLoadSize = 720;
+			_definedAverageLoadSize = 7200;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			_pregnancyChildRace = GLOBAL.TYPE_WATERQUEEN;
 			_childMaturationMultiplier = 2.0;

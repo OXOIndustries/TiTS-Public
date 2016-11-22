@@ -4575,7 +4575,6 @@ package classes.GameData
 			pc.credits += sumCredits;
 			
 			// Emit some shit to state what the player got/did
-			
 			output("You defeated ");
 			for (var key:String in enemyNames)
 			{
@@ -4591,7 +4590,7 @@ package classes.GameData
 			output("!");
 			
 			kGAMECLASS.earnXP(sumXP, false);
-	
+			
 			//Monies!
 			if (sumCredits > 0) 
 			{
@@ -4603,8 +4602,6 @@ package classes.GameData
 				output(" loaded on " + (CombatManager.multipleEnemies() ? "anonymous credit chits" : "an anonymous credit chit") + " that you appropriate.");
 			}
 			
-			clearMenu();
-	
 			if (loot.length > 0)
 			{
 				output("\n");
@@ -4615,8 +4612,11 @@ package classes.GameData
 			}
 			else
 			{
+				clearMenu();
 				addButton(0, "Next", postCombatReturnToMenu);
 			}
+			
+			output("\n\n");
 		}
 	}
 }

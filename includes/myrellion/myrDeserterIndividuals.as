@@ -325,7 +325,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 		else output("gold");
 		output(" deserter");
 		if(!gold && flags["KNOW_RED_MYR_NAME"] == 1) output("- it’s Briha");
-		else if(gold && flags["KNOW_GOLD_MYR_NAME"] == 1) output("- it's Lys");
+		else if(gold && flags["KNOW_GOLD_MYR_NAME"] == 1) output("- it’s Lys");
 		output(". She’s holding her ");
 		if(!gold) output("semi-auto pistol and hatchet");
 		else output("trench shotgun and pistols");
@@ -353,7 +353,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 			else
 			{
 				output("\n\n<i>“Hi, soldier. ");
-				if(hasRedDildo()) output("May I have the Private back? I've lost enough fights to you to know how trying to take it will go down... so why don't we play nice?");
+				if(hasRedDildo()) output("May I have the Private back? I’ve lost enough fights to you to know how trying to take it will go down... so why don’t we play nice?");
 				else output("How about we skip the usual scuffles and just play nice? I’ve got into enough fights with you to know who’s going to end up on top,");
 				output("”</i> she wryly smiles.");
 			}
@@ -362,7 +362,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 		{
 			output("\n\n<i>“Fancy meeting you here. ");
 			//(PC has her strapon)
-			if(hasGoldDildo()) output("How about you generously let me have my strap-on and I skip the whole 'tough soldier' bit?");
+			if(hasGoldDildo()) output("How about you generously let me have my strap-on and I skip the whole ‘tough soldier’ bit?");
 			else output("How about we don’t fight this time? I’m sick of getting spanked by you - well, at least getting spanked in the non-fun way,");
 			output("”</i> she grins.");
 		}
@@ -394,24 +394,24 @@ public function myrDeserterNonCombatMenu(gold:Boolean = false):void
 	clearMenu();
 	//[Sex] [Talk] [Fight] [Flee]
 	if(pc.lust() >= 33) addButton(0,"Sex",sexWithAntGrills,gold);
-	else addDisabledButton(0,"Sex","Sex","You aren't aroused enough for that.");
+	else addDisabledButton(0,"Sex","Sex","You aren’t aroused enough for that.");
 	// Fight is not available with the pregnant red myr. Otherwise, it goes right to combat.
 	addButton(1,"Talk",talkToAntSloots,gold);
 	if(gold) addButton(2,"Fight",fightADumbShitAntWaifu,gold);
 	else 
 	{
-		if(flags["BRIHA_INCUBATION_TIMER"] != undefined) addDisabledButton(2,"Fight","Fight","You're not going to smack around a pregnant girl!");
+		if(flags["BRIHA_INCUBATION_TIMER"] != undefined) addDisabledButton(2,"Fight","Fight","You’re not going to smack around a pregnant girl!");
 		else addButton(2,"Fight",fightADumbShitAntWaifu,gold);
 	}
 	if((hasRedDildo() && !gold) || (gold && hasGoldDildo())) addButton(3,"Give Dildo",giveDildoToAntSloot,gold,"Give Dildo","Return your looted prize.");
-	else addDisabledButton(3,"Give Dildo","You don't have a dildo to give back.");
+	else addDisabledButton(3,"Give Dildo","You don’t have a dildo to give back.");
 	//Give Flower - new scene for Lys
 	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
 	if(gold)
 	{
 		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(4,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
 		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(4,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
-		else addDisabledButton(4,"Locked","Locked","You don't know her well enough for this.");
+		else addDisabledButton(4,"Locked","Locked","You don’t know her well enough for this.");
 	}
 	addButton(14,"Run",runFromDatAntSloot,gold);
 }
@@ -481,7 +481,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 	//Sit & Screw (Gold)
 	// Two variants - PC loss and PC Win/Consent version. For Gold Only.
 	// Also a variant for the first time you get this scene, either loss or win, where she introduces the strap on.
-	else addButton(0,"Sit'nScrew",sitAndScrewGoldMyr,undefined,"Sit & Screw","Have some fun screwing her... with her strap-on if you need one.");
+	else addButton(0,"Sit‘n’Screw",sitAndScrewGoldMyr,undefined,"Sit & Screw","Have some fun screwing her... with her strap-on if you need one.");
 	//Doggy Style (Both)
 	// PC Win or Non-Hostile Consent Only
 	// PC must have a dick.
@@ -489,7 +489,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 	// Max girth four inches.
 	if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
 	else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
-	else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can't do her doggie style without a dick of your own.");
+	else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can’t do her doggie style without a dick of your own.");
 	//Cum Splurge (Red)
 	// Pc must have a cock.
 	// Not available on loss.
@@ -502,7 +502,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 		if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
 		else addDisabledButton(2,"Anal Sex","Anal Sex","You need a penis that will fit inside her for this scene.");
 
-		if(pc.hasHardLightEquipped()) addButton(4,"CompareToys",doubleDildoBrihaStuffing,undefined,"Compare Toys","Show off your high-tech hardlight for the ant-girl" + (flags["RED_MYR_DESERT_DILDO_DONE"] != undefined) ? " and see how it stacks up to what she's used to":"" + ".");
+		if(pc.hasHardLightEquipped()) addButton(4,"CompareToys",doubleDildoBrihaStuffing,undefined,"Compare Toys","Show off your high-tech hardlight for the ant-girl" + (flags["RED_MYR_DESERT_DILDO_DONE"] != undefined) ? " and see how it stacks up to what she’s used to":"" + ".");
 		else addDisabledButton(4,"CompareToys","Compare Toys","You need hardlight-enabled underwear for this.");
 	}
 	else 
@@ -517,7 +517,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 		// Not Available on PC loss
 		// No fucking taurs.
 		// Must have frontgenitals.
-		if(!pc.isTaur()) addButton(4,"Hand-Play",handPlayForGoldWaifusInTraining,undefined,"Hand-Play","She's got four arms... put them to work.");
+		if(!pc.isTaur()) addButton(4,"Hand-Play",handPlayForGoldWaifusInTraining,undefined,"Hand-Play","She’s got four arms... put them to work.");
 		else addDisabledButton(4,"Hand-Play","Hand-Play","Tauric creatures cannot enjoy this scene.");
 	}
 	//REPLACED BY "CompareToys" SCENE:
@@ -534,7 +534,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 	if((gold && flags["GOLD_DILDOED"] != undefined) || ((!gold) && flags["RED_DILDOED"] != undefined)) dildoToolTip += " again";
 	dildoToolTip += ". Or you could stop just before orgasm....";
 	if((gold && flags["DILDO_SCREW_SCENE_SEEN"] != undefined) || (!gold && flags["RED_MYR_DESERT_DILDO_DONE"] != undefined)) addButton(5,"Steal Dildo",stealDildoScene,gold,"Steal Dildo",dildoToolTip);
-	else addDisabledButton(5,"Steal Dildo","Steal Dildo","You don't even know if they have one!");
+	else addDisabledButton(5,"Steal Dildo","Steal Dildo","You don’t even know if she has one!");
 
 	addButton(14,"Leave",leaveAntShits,gold);
 }
@@ -584,7 +584,7 @@ public function aboutAnAntSlootDeserter(gold:Boolean = false):void
 	{
 		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(1,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
 		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(1,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
-		else addDisabledButton(1,"Locked","Locked","You don't know her well enough for this.");
+		else addDisabledButton(1,"Locked","Locked","You don’t know her well enough for this.");
 	}
 }
 
@@ -785,7 +785,7 @@ public function specialRedAntPreggosShitEvent():void
 	output("\n\nWith a heavy heart, you take your infant child and kiss Briha goodbye");
 	if(hasRedDildo())
 	{
-		output(" - the sly veteran snags her vibrator out of your pack while your hands are full, with a tired smile that tells you she's hormonal enough to need it");
+		output(" - the sly veteran snags her vibrator out of your pack while your hands are full, with a tired smile that tells you she’s hormonal enough to need it");
 		removeRedDildo();
 	}
 	output(". It’s not hard to call a pick-up pod to carry ");
@@ -1002,7 +1002,7 @@ public function winVsAntGrillDeserts():void
 		//Sit & Screw (Gold)
 		// Two variants - PC loss and PC Win/Consent version. For Gold Only.
 		// Also a variant for the first time you get this scene, either loss or win, where she introduces the strap on.
-		else addButton(0,"Sit'nScrew",sitAndScrewGoldMyr,undefined,"Sit & Screw","Have some fun screwing her... with her strap-on if you need one.");
+		else addButton(0,"Sit‘n’Screw",sitAndScrewGoldMyr,undefined,"Sit & Screw","Have some fun screwing her... with her strap-on if you need one.");
 		//Doggy Style (Both)
 		// PC Win or Non-Hostile Consent Only
 		// PC must have a dick.
@@ -1010,7 +1010,7 @@ public function winVsAntGrillDeserts():void
 		// Max girth four inches.
 		if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
 		else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
-		else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can't do her doggie style without a dick of your own.");
+		else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can’t do her doggie style without a dick of your own.");
 		//Cum Splurge (Red)
 		// Pc must have a cock.
 		// Not available on loss.
@@ -1022,7 +1022,7 @@ public function winVsAntGrillDeserts():void
 			// PC must have cock.
 			if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
 			else addDisabledButton(2,"Anal Sex","Anal Sex","You need a penis that will fit inside her for this scene.");
-			if(pc.hasHardLightEquipped()) addButton(4,"CompareToys",doubleDildoBrihaStuffing,undefined,"Compare Toys","Show off your high-tech hardlight for the ant-girl" + (flags["RED_MYR_DESERT_DILDO_DONE"] != undefined) ? " and see how it stacks up to what she's used to":"" + ".");
+			if(pc.hasHardLightEquipped()) addButton(4,"CompareToys",doubleDildoBrihaStuffing,undefined,"Compare Toys","Show off your high-tech hardlight for the ant-girl" + (flags["RED_MYR_DESERT_DILDO_DONE"] != undefined) ? " and see how it stacks up to what she’s used to":"" + ".");
 			else addDisabledButton(4,"CompareToys","Compare Toys","You need hardlight-enabled underwear for this.");
 		}
 		else 
@@ -1037,7 +1037,7 @@ public function winVsAntGrillDeserts():void
 			// Not Available on PC loss
 			// No fucking taurs.
 			// Must have frontgenitals.
-			if(!pc.isTaur()) addButton(4,"Hand-Play",handPlayForGoldWaifusInTraining,undefined,"Hand-Play","She's got four arms... put them to work.");
+			if(!pc.isTaur()) addButton(4,"Hand-Play",handPlayForGoldWaifusInTraining,undefined,"Hand-Play","She’s got four arms... put them to work.");
 			else addDisabledButton(4,"Hand-Play","Hand-Play","Tauric creatures cannot enjoy this scene.");
 		}
 		//else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
@@ -1054,18 +1054,18 @@ public function winVsAntGrillDeserts():void
 		if((gold && flags["GOLD_DILDOED"] != undefined) || ((!gold) && flags["RED_DILDOED"] != undefined)) dildoToolTip += " again";
 		dildoToolTip += ". Or you could stop just before orgasm....";
 		if((gold && flags["DILDO_SCREW_SCENE_SEEN"] != undefined) || (!gold && flags["RED_MYR_DESERT_DILDO_DONE"] != undefined)) addButton(6,"Steal Dildo",stealDildoScene,gold,"Steal Dildo",dildoToolTip);
-		else addDisabledButton(6,"Steal Dildo","Steal Dildo","You don't even know if they have one!");
+		else addDisabledButton(6,"Steal Dildo","Steal Dildo","You don’t even know if she has one!");
 	}
 	else
 	{
-		if(enemy is MyrRedFemaleDeserter) addDisabledButton(0,"DildoScrew","Dildo Screw","You're not turned enough for sex.");
-		else addDisabledButton(0,"Sit'nScrew","Sit & Screw","You aren't turned on enough for this.");
-		addDisabledButton(1,"DoggyStyle","DoggyStyle","You aren't aroused enough for this.");
-		addDisabledButton(2,"Anal Sex","Anal Sex","You aren't aroused enough for this.");
-		addDisabledButton(3,"Cum Splurge","Cum Splurge","You aren't aroused enough for this.");
-		addDisabledButton(4,"Hand-Play","Hand-Play","You aren't aroused enough for this.");
+		if(enemy is MyrRedFemaleDeserter) addDisabledButton(0,"DildoScrew","Dildo Screw","You’re not turned enough for sex.");
+		else addDisabledButton(0,"Sit‘n’Screw","Sit & Screw","You aren’t turned on enough for this.");
+		addDisabledButton(1,"DoggyStyle","DoggyStyle","You aren’t aroused enough for this.");
+		addDisabledButton(2,"Anal Sex","Anal Sex","You aren’t aroused enough for this.");
+		addDisabledButton(3,"Cum Splurge","Cum Splurge","You aren’t aroused enough for this.");
+		addDisabledButton(4,"Hand-Play","Hand-Play","You aren’t aroused enough for this.");
 
-		addDisabledButton(6,"Steal Dildo","Steal Dildo","You aren't aroused enough for this.");
+		addDisabledButton(6,"Steal Dildo","Steal Dildo","You aren’t aroused enough for this.");
 	}
 	//Give Flower - new scene for Lys
 	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
@@ -1073,7 +1073,7 @@ public function winVsAntGrillDeserts():void
 	{
 		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(7,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
 		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(7,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
-		else addDisabledButton(7,"Locked","Locked","You don't know her well enough for this.");
+		else addDisabledButton(7,"Locked","Locked","You don’t know her well enough for this.");
 	}
 	addButton(14,"Leave",genericVictoryLeaveMyr);
 }
@@ -2028,12 +2028,12 @@ public function sitAndScrewGoldMyr():void
 		else
 		{
 			output("\n\n<i>“Mmm, you’re lacking a little something-something here,”</i> the naked deserter sultrily purrs, <i>“... Thankfully, ");
-			if(hasGoldDildo()) output("you've brought back");
+			if(hasGoldDildo()) output("you’ve brought back");
 			else output("I’ve got just");
 			output(" the thing to fix that.”</i>");
 			output("\n\nFirst, the busty battle-maiden strips off your [pc.gear]. After this, she ");
 			if(hasGoldDildo()) {
-				output("waggles the strap-on she just reclaimed - ten-plus inches of low-hanging fruit with an extra berry on the back for the wearer's pleasure.");
+				output("waggles the strap-on she just reclaimed - ten-plus inches of low-hanging fruit with an extra berry on the back for the wearer’s pleasure.");
 				removeGoldDildo();
 			}
 			else output("reaches into her kitpack. Out comes a rather impressive looking strap on - ten inches of golden veiny goodness. There’s another, smaller protrusion on the other side, designed to stimulate the wearer. It’s double-ended!");
@@ -2052,7 +2052,7 @@ public function sitAndScrewGoldMyr():void
 		
 		if(!useStrapon)
 		{
-			output("You ask the buxom beauty if she'll hop on your cock and take it for a ride.");
+			output("You ask the buxom beauty if she’ll hop on your cock and take it for a ride.");
 		}
 		//First Time Seeing Dildo Screw Scene:
 		else if(flags["DILDO_SCREW_SCENE_SEEN"] == undefined)
@@ -2079,13 +2079,13 @@ public function sitAndScrewGoldMyr():void
 		output("\n\nShe blinks her big black eyes, clearly surprised by your request. At the same time, she gulps, and a delighted flush travels across her cheeks.");
 
 		output("\n\n<i>“O-of course!");
-		if(flags["DILDO_SCREW_SCENE_SEEN"] == undefined && useStrapon) output("I mean, I haven’t had anyone to use it with for a while,");
+		if(flags["DILDO_SCREW_SCENE_SEEN"] == undefined && useStrapon) output(" I mean, I haven’t had anyone to use it with for a while,");
 		output("”</i> she breathily answers. <i>“Take off your things and lie down - I promise you won’t regret it.”</i>");
 
-		output("\n\nYou do as she asks, stripping off your [pc.gear] and lying back. As you watch on, the buxom beauty begins to slowly strip of her torn battle garb. It’s not long before you’re staring longingly at her honey-hued skin and ring-pierced nipples. Despite yourself, your ");
+		output("\n\nYou do as she asks, stripping off your [pc.gear] and lying back. As you watch on, the buxom beauty begins to slowly strip of her torn battle garb. It’s not long before you’re staring longingly at her honey-hued skin and ring-pierced nipples. Despite yourself, ");
 		if(pc.hasCock()) 
 		{
-			output("[pc.cocks] stiffen");
+			output("your [pc.cocks] stiffen");
 			if(pc.cockTotal() == 1) output("s");
 			if(pc.hasVagina()) output(" and ");
 		}
@@ -2180,7 +2180,7 @@ public function sitAndScrewGoldMyr():void
 
 		output("\n\n<i>“I’d love to linger, but I really must get going,”</i> she informs you, an inflection of regret in her voice. However, after she’s done dressing, you’re pinned down once more");
 		if(pc.credits >= 2) output(" as she steals some of your credits - and you’re too spent to resist!");
-		else output(" as she searches you for credits - and you're too spent to resist!");
+		else output(" as she searches you for credits - and you’re too spent to resist!");
 		output("\n\n<i>“Don’t take it personally, hon. A girl’s got to eat, especially when she’s gone AWOL,”</i> ");
 		if(pc.credits < 2) output("she sighs, coming up empty.");
 		else 
@@ -2300,8 +2300,8 @@ public function brihaPantyCollect():void
 
 	//[Take] [Leave]
 	clearMenu();
-	addButton(0,"Take",takeBrihasPanties,undefined,"Take","Pick those panties up and keep 'em - they're spoils of war!");
-	addButton(1,"Don't",dontTakeBrihasPanties,undefined,"Don't","Leave them where they are. Gross.");
+	addButton(0,"Take",takeBrihasPanties,undefined,"Take","Pick those panties up and keep ‘em - they’re spoils of war!");
+	addButton(1,"Don’t",dontTakeBrihasPanties,undefined,"Don’t","Leave them where they are. Gross.");
 }
 
 //Take
@@ -2341,8 +2341,8 @@ public function lysPantyCollect():void
 	output("Hang on a second. You look down on the ground and notice there’s a piece of fabric on the ground. Leaning down and picking it up, you realize they’re Lys’s panties. Did she leave them behind? The black sheer panties are rather alluring and definitely not military issue. You notice they’ve got a noticeably wet crotch.");
 	//[Take] [Leave]
 	clearMenu();
-	addButton(0,"Take",takeLysPanties,undefined,"Take","Pick those panties up and keep 'em - they're spoils of war!");
-	addButton(1,"Don't",dontTakeLysPanties,undefined,"Don't","Leave them where they are. Gross.");
+	addButton(0,"Take",takeLysPanties,undefined,"Take","Pick those panties up and keep ‘em - they’re spoils of war!");
+	addButton(1,"Don’t",dontTakeLysPanties,undefined,"Don’t","Leave them where they are. Gross.");
 }
 
 public function takeLysPanties():void
@@ -3007,13 +3007,13 @@ public function stolenDildoFap():void
 			if(!pc.isTaur()) addButton(2,"DP Vag",didloDPWivStolenDildo,"vag","DP Vag","Unlatch the dildo and stuff both ends inside your vagina. May end in accidental stretching.");
 			else addDisabledButton(2,"DP Vag","DP Vag","Your backside’s too far away to fuck.");
 		}
-		else addDisabledButton(2,"DP Vag","DP Vag","You don't have a vagina.");
+		else addDisabledButton(2,"DP Vag","DP Vag","You don’t have a vagina.");
 
 		if(pc.hasCuntTail()) addButton(3,"DP Tail",didloDPWivStolenDildo,"tail","DP Tail","Unlatch the dildo and stuff both ends inside your cunt tail. May end in accidental stretching.");
-		else addDisabledButton(3,"DP Tail","DP Tail","There's nowhere in your tail to put them!");
+		else addDisabledButton(3,"DP Tail","DP Tail","There’s nowhere in your tail to put them!");
 
 		if(pc.hasFuckableNipples()) addButton(4,"DP Nipple",didloDPWivStolenDildo,"tail","DP Nipple","Unlatch the dildo and stuff both ends inside your nipple.");
-		else addDisabledButton(4,"DP Nipple","DP Nipple","There's nowhere in your nipples to put them!");
+		else addDisabledButton(4,"DP Nipple","DP Nipple","There’s nowhere in your nipples to put them!");
 	}
 	addButton(14,"Back",masturbateMenu);
 }
