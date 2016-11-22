@@ -32,7 +32,7 @@ package classes.Items.Transformatives
 			
 			this.description = "a Taurico Venidae medipen";
 			
-			this.tooltip = "A potent one-shot cosmetic transformative from VesperTech, a Terran biocorp that produces the Taurico line of drugs. Taurico Venidae is sometimes called Deerium by those too stupid - or too lazy - to remember its full name. Nevertheless, VesperTech's marketing department has stuck by the original name for their venerable product. It promises a deer-like appearance, complete with antlers for males!\n\nIt comes in an easy to administer medipen.";
+			this.tooltip = "A potent one-shot cosmetic transformative from VesperTech, a Terran biocorp that produces the Taurico line of drugs. Taurico Venidae is sometimes called Deerium by those too stupid - or too lazy - to remember its full name. Nevertheless, VesperTech’s marketing department has stuck by the original name for their venerable product. It promises a deer-like appearance, complete with antlers for males!\n\nIt comes in an easy to administer medipen.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -90,7 +90,7 @@ package classes.Items.Transformatives
 		{
 			if(target.earTypeUnlocked(GLOBAL.TYPE_DEER))
 			{
-				output("\n\nYou reach up and scratch behind your ear, trying to satisfy a persistent itch. It won't go away, and amidst your frustration you suddenly realize there's a new sensation - your ears are changing! They contort and curve, a light covering of fuzzy fur growing across the back of them. When the transformation finishes, you have <b>lightly-furred deer ears!</b>");
+				output("\n\nYou reach up and scratch behind your ear, trying to satisfy a persistent itch. It won’t go away, and amidst your frustration you suddenly realize there’s a new sensation - your ears are changing! They contort and curve, a light covering of fuzzy fur growing across the back of them. When the transformation finishes, you have <b>lightly-furred deer ears!</b>");
 				target.earType = GLOBAL.TYPE_DEER;
 				target.earLength = 3;
 			}
@@ -105,24 +105,24 @@ package classes.Items.Transformatives
 				//Already has a tail: 
 				if(target.tailCount == 1) 
 				{
-					output("\n\nYou feel a strange pressure building in your [pc.tail], and a distinct itchiness to boot. You check behind yourself, irritably reaching back to inspect yourself, only to discover your tail is transforming! It's ");
+					output("\n\nYou feel a strange pressure building in your [pc.tail], and a distinct itchiness to boot. You check behind yourself, irritably reaching back to inspect yourself, only to discover your tail is transforming! It’s ");
 					if(target.hasTailFlag(GLOBAL.FLAG_LONG)) output("shortening, ");
 					else if(target.hasTailFlag(GLOBAL.FLAG_FURRED)) output("fluffing up, ");
 					else output("changing, ");
-					output("becoming softer, and changing at the base. By the time it settles into its new form, you realize that <b>you've got yourself a short fluffy tail - like a deer's!</b>");
+					output("becoming softer, and changing at the base. By the time it settles into its new form, you realize that <b>you’ve got yourself a short fluffy tail - like a deer’s!</b>");
 				}
 				else if(target.tailCount > 1) 
 				{
-					output("\n\nYou feel a strange pressure building in your [pc.tails], and a distinct itchiness to boot. You check behind yourself, irritably reaching back to inspect yourself, only to discover your tails are transforming! They're ");
+					output("\n\nYou feel a strange pressure building in your [pc.tails], and a distinct itchiness to boot. You check behind yourself, irritably reaching back to inspect yourself, only to discover your tails are transforming! They’re ");
 					if(target.hasTailFlag(GLOBAL.FLAG_LONG)) output("shortening, ");
 					else if(target.hasTailFlag(GLOBAL.FLAG_FURRED)) output("fluffing up, ");
 					else output("changing, ");
-					output("becoming softer, and changing at the base. By the time they settle into their new forms, you realize that <b>you've got yourself short fluffy tails - like a deer's!</b>");
+					output("becoming softer, and changing at the base. By the time they settle into their new forms, you realize that <b>you’ve got yourself short fluffy tails - like a deer’s!</b>");
 				}
 				//No tail to begin with:
 				else
 				{
-					output("\n\nYou feel a knot of pleasure forming at the base of your spine, right above your [pc.butt]. Gingerly reaching a hand down there, you find a sizeable bump! It looks like you're growing a tail! You moan in pleasure as your new appendage slowly but surely shapes itself together, coalescing into <b>a short fluffy tail - like a deer's!</b>");
+					output("\n\nYou feel a knot of pleasure forming at the base of your spine, right above your [pc.butt]. Gingerly reaching a hand down there, you find a sizeable bump! It looks like you’re growing a tail! You moan in pleasure as your new appendage slowly but surely shapes itself together, coalescing into <b>a short fluffy tail - like a deer’s!</b>");
 				}
 				target.tailType = GLOBAL.TYPE_DEER;
 				target.clearTailFlags();
@@ -140,7 +140,7 @@ package classes.Items.Transformatives
 			{
 				if(target.legType != GLOBAL.TYPE_DEER)
 				{
-					output("\n\nYou sense a slight itch spreading out along your [pc.legs], uniting in the middle. You look down to see yourself changing!");
+					output("\n\nYou sense a slight itch spreading out along your [pc.legOrLegs], uniting in the middle. You look down to see yourself changing!");
 					if(target.hasLegFlag(GLOBAL.FLAG_FURRED)) output(" Your fur begins to change, giving way to a light brown covering across your body save for your underbelly and tail turning white.");
 					output(" <b>You now have brown fur covering your lower body!</b>");
 					target.furColor = "brown";
@@ -155,7 +155,7 @@ package classes.Items.Transformatives
 					target.furColor = "white-dappled brown";
 				}
 				//Make sure hasfur.
-				if(target.hasLegFlag(GLOBAL.FLAG_FURRED)) target.addLegFlag(GLOBAL.FLAG_FURRED);
+				if(!target.hasLegFlag(GLOBAL.FLAG_FURRED)) target.addLegFlag(GLOBAL.FLAG_FURRED);
 			}
 			else output("\n\n" + target.furColorLockedMessage());
 		}
@@ -168,10 +168,10 @@ package classes.Items.Transformatives
 				//if no deer legs: 
 				if(target.legType != GLOBAL.TYPE_DEER)
 				{
-					output("\n\nYour [pc.legs] suddenly become weak, sending you tumbling onto your butt wondering what's happening. You flop on the floor helplessly feeling like ");
-					if(target.legCount == 1) output("you're splitting in half, until it really happens and your lower body becomes a pair of legs! They grow to look like those of a deer, with light brown fur capped by small black hooves.");
-					else output("they're turning to putty, until they change shape and start to resemble those of a deer, with light brown fur capped by small black hooves.");
-					if(target.legType == GLOBAL.TYPE_EQUINE || target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your new legs aren't much different than the old, to be honest.");
+					output("\n\nYour [pc.legOrLegs] suddenly become weak, sending you tumbling onto your butt wondering what’s happening. You flop on the floor helplessly feeling like ");
+					if(target.legCount == 1) output("you’re splitting in half, until it really happens and your lower body becomes a pair of legs! They grow to look like those of a deer, with light brown fur capped by small black hooves.");
+					else output("they’re turning to putty, until they change shape and start to resemble those of a deer, with light brown fur capped by small black hooves.");
+					if(target.legType == GLOBAL.TYPE_EQUINE || target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your new legs aren’t much different than the old, to be honest.");
 					else output(" You carefully get up, balancing yourself on your hooves as you try to get used to your new gait.");
 					output(" <b>You now have the legs of a deer!</b>");
 				}
@@ -181,9 +181,9 @@ package classes.Items.Transformatives
 					output("\n\nSuddenly, your whole body is assailed by a sensation of stretching. Your body contorts and strains, growing ");
 					if(target.legCount < 4) output("larger");
 					else if(target.legCount > 4) output("smaller");
-					output(" by the second... and more equine in shape. All you can do is endure it, trying to get used to the stretching feeling that's gripping your entire form. Slowly but surely, your rear end expands into the shape of a deer's backside, covering itself in fur.");
-					if(target.legCount < 4) output(" New legs begin to bud out of your changing body, growing down to support your alien frame. You've got four of them now, just enough to be able to carry your lightly-built, powerful equine frame.");
-					output(" After a few minutes, you're able to scrabble up onto your animalistic legs and give your tauric body a bit of a test. You quickly end up bounding about, just like a nimble " + target.mf("buck","doe") + ". <b>You've definitely got a deer body now</b>, complete with fuzzy fur and agile, tauric shape.");
+					output(" by the second... and more equine in shape. All you can do is endure it, trying to get used to the stretching feeling that’s gripping your entire form. Slowly but surely, your rear end expands into the shape of a deer’s backside, covering itself in fur.");
+					if(target.legCount < 4) output(" New legs begin to bud out of your changing body, growing down to support your alien frame. You’ve got four of them now, just enough to be able to carry your lightly-built, powerful equine frame.");
+					output(" After a few minutes, you’re able to scrabble up onto your animalistic legs and give your tauric body a bit of a test. You quickly end up bounding about, just like a nimble " + target.mf("buck","doe") + ". <b>You’ve definitely got a deer body now</b>, complete with fuzzy fur and agile, tauric shape.");
 					//Capacity Increase with taurbod unlock:
 					output("\n\nAs your body slowly transforms to be more deer-like, you feel your [pc.asshole]");
 					if(target.hasVagina()) 
@@ -192,17 +192,18 @@ package classes.Items.Transformatives
 						if(target.totalVaginas() == 1) output("s");
 					}
 					output(" to grow deeper, much more capacious. You feel like you could take much longer, thicker insertions now. Your tauric body certainly has room for it!");
-					if(target.isBimbo()) output(" You're already thinking about a hot stud to fill you up over and over, until he's completely spent.");
+					if(target.isBimbo()) output(" You’re already thinking about a hot stud to fill you up over and over, until he’s completely spent.");
 				}
 				//if tauric already: 
 				else
 				{
 					output("\n\nYour already tauric body itches and crawls, beginning to change as a result of the transformative you took. Your skin furs over, outcrops of brown fur popping up across your body. Your legs thin slightly, hooves on the end of your feet. The transformation is slow, but fills you with a subtle pleasure the whole time. <b>Your body is now that of a deer!</b>");
 				}
+				target.genitalSpot = 2;
 				target.legCount = 4;
-				target.clearLegFlags();
 				target.legType = GLOBAL.TYPE_DEER;
 				target.furColor = "brown";
+				target.clearLegFlags();
 				target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 				target.addLegFlag(GLOBAL.FLAG_HOOVES);
 				target.addLegFlag(GLOBAL.FLAG_FURRED);
@@ -218,7 +219,7 @@ package classes.Items.Transformatives
 				output("\n\nYou feel your [pc.face] start to strain, becoming ");
 				if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output("harder and firmer, taking on a more defined shape");
 				else output("softer and more malleable");
-				output(". You run a hand along your mutating features, and find that your face is taking on an altogether more human shape. You're soon left with a solidifying visage: " + pc.mfn("you've got a manly jaw and sharp features,","you have a cute little nose and delicate features,","you've got an androgynous visage somewhere between a typical male and a typical female,") + " <b>an altogether human face</b>.");
+				output(". You run a hand along your mutating features, and find that your face is taking on an altogether more human shape. You’re soon left with a solidifying visage: " + pc.mfn("you’ve got a manly jaw and sharp features,","you have a cute little nose and delicate features,","you’ve got an androgynous visage somewhere between a typical male and a typical female,") + " <b>an altogether human face</b>.");
 				pc.clearFaceFlags();
 				pc.faceType = GLOBAL.TYPE_HUMAN;
 			}
@@ -275,13 +276,13 @@ package classes.Items.Transformatives
 					//Normalgrow
 					else
 					{
-						output("\n\nYour [pc.cock " + y + "] grows, expanding outwards as waves of pleasure roll through it until finally, you can't help but cum just feeling it stretch. You huff a satisfied sigh and inspect your recently-grown cock.");
+						output("\n\nYour [pc.cock " + y + "] grows, expanding outwards as waves of pleasure roll through it until finally, you can’t help but cum just feeling it stretch. You huff a satisfied sigh and inspect your recently-grown cock.");
 						pc.orgasm();
 						pc.cocks[y].cLengthRaw += 1+rand(2);
 						if(pc.cocks[y].cLength() < maxGrowth - 5) pc.cocks[y].cLengthRaw++;
 					}
 					pc.libido(1);
-					output(" Looks like it's " + num2Text(pc.cocks[y].cLength()) + " inches long!");
+					output(" Looks like it’s " + num2Text(pc.cocks[y].cLength()) + " inches long!");
 				}
 			}
 			else output("\n\n" + pc.cockTypeLockedMessage());
@@ -316,15 +317,15 @@ package classes.Items.Transformatives
 				if(!pc.isCrotchExposed()) output("onto your thighs");
 				else output("onto the inside of your [pc.lowerUnderGarment]");
 				output(". You almost double over as waves of pleasure crash into your crotch, sending trembling shockwaves all through your body in reaction.");
-				output("\n\nYou cum, hard, drenching yourself in girl-cum. Rather than clamping down more, though, your sex seems to stretch out as it orgasms, growing larger, thicker, darker... by the time it's done, you feel like you're rocking ");
+				output("\n\nYou cum, hard, drenching yourself in girl-cum. Rather than clamping down more, though, your sex seems to stretch out as it orgasms, growing larger, thicker, darker... by the time it’s done, you feel like you’re rocking ");
 				if(pc.totalVaginas() == 1) output("a doe-cunt");
 				else output("doe-cunts");
 				if(pc.isNaga()) output(" on the face of your naga body");
 				else if(pc.legCount > 1) output(" between your [pc.legs]");
-				output(". A quick touch and feel tells you that that's exactly the case: <b>your feminine sex");
+				output(". A quick touch and feel tells you that that’s exactly the case: <b>your feminine sex");
 				if(pc.totalVaginas() == 1) output(" is");
 				else output("es are");
-				output(" now just like a deer's</b>.\n\nNow to find a nice, fat cock to break your new doe-cunt in...");
+				output(" now just like a deer’s</b>.\n\nNow to find a nice, fat cock to break your new doe-cunt in...");
 
 				for(var x:int = 0; x < pc.totalVaginas(); x++)
 				{
@@ -350,7 +351,7 @@ package classes.Items.Transformatives
 			if(target.tallnessUnlocked(target.tallness - 6))
 			{
 				//Shrink, variable from 5' to 6' for females and 5'6 to 6'6 for males
-				output("\n\nWhoa! The room's spinning, and if you're not imagining things, getting bigger. You glance around wide-eyed as your body shrinks, watching others suddenly tower over you. You're shorter now, your center of gravity lower to the ground, increasing your stability and speed. Checking your codex, apparently <b>you're now " + Math.floor(target.tallness / 12) + " feet");
+				output("\n\nWhoa! The room’s spinning, and if you’re not imagining things, getting bigger. You glance around wide-eyed as your body shrinks, watching others suddenly tower over you. You’re shorter now, your center of gravity lower to the ground, increasing your stability and speed. Checking your codex, apparently <b>you’re now " + Math.floor(target.tallness / 12) + " feet");
 				if(target.tallness % 12 != 0) output(" and " + Math.round(target.tallness % 12) + " inches");
 				output(" tall!</b>");
 
@@ -368,15 +369,20 @@ package classes.Items.Transformatives
 		//Horn TF
 		public function hornTFForDeertaur(pc:Creature):void
 		{
-			if(pc.hornsUnlocked(4 + rand(9)) && pc.hornLengthUnlocked(8 + rand(5)) && pc.hornTypeUnlocked(GLOBAL.TYPE_DEER))
+			var numPoints:int = 4 + rand(9);
+			var numLength:int = 8 + rand(5);
+			
+			if(pc.hornsUnlocked(numPoints) && pc.hornLengthUnlocked(numLength) && pc.hornTypeUnlocked(GLOBAL.TYPE_DEER))
 			{
 				//Antlers for males
 				if(pc.horns > 0) output("\n\nYour [pc.horns] crack, then flake away like little more than dust. In their place, you");
 				else output("\n\nYou");
-				output("feel a scratchy sensation just above your ears, and the moment you reach up to check it out you're struck by a sharp pain. Cringing, you scrunch your eyes shut as the pain passes, an odd sensation persisting in its wake. You gingerly reach up to feel it out, and your hand strikes bone! You grip it, feeling a velvety covering spread across its length. When all is said and done, <b>you have an impressive set of antlers!</b>");
+				output("feel a scratchy sensation just above your ears, and the moment you reach up to check it out you’re struck by a sharp pain. Cringing, you scrunch your eyes shut as the pain passes, an odd sensation persisting in its wake. You gingerly reach up to feel it out, and your hand strikes bone! You grip it, feeling a velvety covering spread across its length. When all is said and done, <b>you have an impressive set of antlers!</b>");
+				
+				pc.removeHorns();
 				pc.hornType = GLOBAL.TYPE_DEER;
-				pc.hornLength = 8 + rand(5);
-				pc.horns = 4 + rand(9);
+				pc.hornLength = numLength;
+				pc.horns = numPoints;
 			}
 			else output("\n\n" + pc.hornsLockedMessage());
 		}
