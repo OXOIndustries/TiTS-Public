@@ -40,3 +40,9 @@ public function outsideCanadiaBarBonus():Boolean
 	return false;
 }
 
+public function bathAreaBonus():Boolean
+{
+	vendingMachineString();
+	addButton(0,"V.Machine",approachVesperianVendingMachine);
+	return false;
+}

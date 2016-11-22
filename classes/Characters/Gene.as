@@ -10,6 +10,7 @@
 	import classes.Items.Transformatives.MinoCharge;
 	import classes.Items.Transformatives.Circumscriber;
 	import classes.Items.Transformatives.Turtleneck;
+	import classes.Items.Transformatives.TauricoVenidae;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -36,6 +37,7 @@
 			inventory.push(new BumpyRoad());
 			inventory.push(new Circumscriber());
 			inventory.push(new Turtleneck());
+			inventory.push(new TauricoVenidae());
 			
 			this.typesBought = [];
 			

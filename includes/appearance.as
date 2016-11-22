@@ -1125,35 +1125,44 @@ public function appearance(forTarget:Creature):void
 		else if(target.legType == GLOBAL.TYPE_AVIAN && target.isTaur()) output2(" From the waist down you possess a sleek, " + num2Text(target.legCount) + "-legged body, appearing much like a crossbreed between a bird and that of an equine."); 
 		else if(target.isTaur())
 		{
-			output2(" From the waist down, you have a bestial, " + num2Text(target.legCount) + "-legged form vaguely like that of a");
-			switch(target.legType)
+			if(target.legType == GLOBAL.TYPE_DEER)
 			{
-				case GLOBAL.TYPE_BOVINE:
-				case GLOBAL.TYPE_DEER:
-				case GLOBAL.TYPE_GOAT:
-					output2(" bovid"); break;
-				case GLOBAL.TYPE_CANINE:
-				case GLOBAL.TYPE_VULPINE:
-				case GLOBAL.TYPE_TANUKI:
-					output2(" canid"); break;
-				case GLOBAL.TYPE_FELINE:
-					output2(" felid"); break;
-				case GLOBAL.TYPE_PANDA:
-					output2("n ursid"); break;
-				case GLOBAL.TYPE_LAPINE:
-					output2(" lagomorph"); break;
-				case GLOBAL.TYPE_BADGER:
-					output2(" mustelid"); break;
-				case GLOBAL.TYPE_MOUSE:
-					output2(" rodent"); break;
-				case GLOBAL.TYPE_FROG:
-					output2("n amphibian"); break;
-				case GLOBAL.TYPE_LIZAN:
-					output2(" lizard"); break;
-				default:
-					output2(" horse"); break;
+				if(rand(2) == 0) output2(" Your " + num2Text(target.legCount) + " deer-like legs are capped with hooves, enabling you to nimbly leap and prance from place to place.");
+				else output2(" Your " + num2Text(target.legCount) + " lithe, agile legs end in hooves, enabling you to nimbly leap and prance from place to place.");
 			}
-			output2(".");
+			else
+			{
+				output2(" From the waist down, you have a bestial, " + num2Text(target.legCount) + "-legged form vaguely like that of a");
+				switch(target.legType)
+				{
+					case GLOBAL.TYPE_DEER:
+						output2(" deer"); break;
+					case GLOBAL.TYPE_BOVINE:	
+					case GLOBAL.TYPE_GOAT:
+						output2(" bovid"); break;
+					case GLOBAL.TYPE_CANINE:
+					case GLOBAL.TYPE_VULPINE:
+					case GLOBAL.TYPE_TANUKI:
+						output2(" canid"); break;
+					case GLOBAL.TYPE_FELINE:
+						output2(" felid"); break;
+					case GLOBAL.TYPE_PANDA:
+						output2("n ursid"); break;
+					case GLOBAL.TYPE_LAPINE:
+						output2(" lagomorph"); break;
+					case GLOBAL.TYPE_BADGER:
+						output2(" mustelid"); break;
+					case GLOBAL.TYPE_MOUSE:
+						output2(" rodent"); break;
+					case GLOBAL.TYPE_FROG:
+						output2("n amphibian"); break;
+					case GLOBAL.TYPE_LIZAN:
+						output2(" lizard"); break;
+					default:
+						output2(" horse"); break;
+				}
+				output2(".");
+			}
 		}
 		//Hip info only displays if you aren't a centaur. 
 		if(!target.isTaur()) {
