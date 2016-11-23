@@ -268,10 +268,22 @@ public function bodyPartCleanup(partName:String = "none"):void
 	
 	if(pc.isGoo()) altCheck = true;
 	
-	if((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) removeImmobilized();
-	if((altCheck || weightQ < perRatio[2] || heightQ < lvlRatio[2])) pc.removeStatusEffect("Overwhelmingly Endowed");
-	if((altCheck || weightQ < perRatio[1] || heightQ < lvlRatio[1])) pc.removeStatusEffect("Ludicrously Endowed");
-	if((altCheck || weightQ < perRatio[0] || heightQ < lvlRatio[0])) pc.removeStatusEffect("Egregiously Endowed");
+	if ((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
+	{
+		removeImmobilized();
+	}
+	if ((altCheck || weightQ < perRatio[2] || heightQ < lvlRatio[2]) && pc.hasStatusEffect("Overwhelmingly Endowed"))
+	{
+		pc.removeStatusEffect("Overwhelmingly Endowed");
+	}
+	if ((altCheck || weightQ < perRatio[1] || heightQ < lvlRatio[1]) && pc.hasStatusEffect("Ludicrously Endowed"))
+	{
+		pc.removeStatusEffect("Ludicrously Endowed");
+	}
+	if ((altCheck || weightQ < perRatio[0] || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Egregiously Endowed"))
+	{
+		pc.removeStatusEffect("Egregiously Endowed");
+	}
 }
 
 

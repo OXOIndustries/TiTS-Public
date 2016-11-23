@@ -2,7 +2,10 @@ package classes.GameData.Pregnancy
 {
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Containers.Genders;
+	import classes.Items.Guns.EmmysSalamanderPistol;
 	import classes.kGAMECLASS;
+	import flash.utils.getQualifiedClassName;
+	import classes.GLOBAL;
 	
 	/**
 	 * ...
@@ -22,7 +25,9 @@ package classes.GameData.Pregnancy
 			_typeInvalidated = true;
 			_knownTypes = null;
 			_typeBuckets = null;
+			_uniqueTypes = null;
 		}
+		
 		public var nurseryCacheInvalid:Boolean;
 		public var nurseryComputerCache:Object;
 		public var nurseryComputerUniquesCache:Array;
@@ -70,17 +75,13 @@ package classes.GameData.Pregnancy
 			return _numChildren;
 		}
 		
-		private static const ALL_GENDERS:uint
-			= ChildManager.GENDER_NEUTER 
-			| ChildManager.GENDER_FEMALE
-			| ChildManager.GENDER_MALE 
-			| ChildManager.GENDER_INTERSEX;
+
 			
 		public function ofGender(genderTypes:uint):Boolean
 		{
 			updateNumCache();
 			
-			if (genderTypes == ALL_GENDERS)
+			if (genderTypes == ChildManager.ALL_GENDERS)
 			{
 				return _numChildren > 0;
 			}
@@ -219,6 +220,110 @@ package classes.GameData.Pregnancy
 			for (var bucket:int = minAge + 3; bucket < (maxAge + 4) && bucket < 21; bucket++)
 			{
 				if (_ageBuckets[bucket].length > 0) return true;
+			}
+			
+			return false;
+		}
+		
+		public function filteredInAgeRangeYears(minAge:int, maxAge:int = -1, filters:Array = null):Boolean
+		{
+			updateAgeBuckets();
+			
+			var passedFilters:Boolean;
+			
+			if (maxAge != -1 && maxAge < minAge) maxAge = -1;
+			
+			if (minAge <= 0)
+			{
+				for (var i:int = 0; i < ChildManager.CHILDREN.length; i++)
+				{
+					passedFilters = true;
+					
+					if (filters != null)
+					{
+						for (var f:int = 0; f < filters.length; f++)
+						{
+							if (!filters[f](ChildManager.CHILDREN[i] as Child))
+							{
+								passedFilters = false;
+								break;
+							}
+						}
+						
+						if (passedFilters)
+						{
+							return true;
+						}
+					}
+					else
+					{
+						return true;
+					}
+				}
+			}
+			
+			// If no Max is specified, only check the min bucket
+			if (maxAge == -1)
+			{
+				var b:Array = _ageBuckets[minAge + 3];
+				
+				for (i = 0; i < b.length; i++)
+				{
+					passedFilters = true;
+					
+					if (filters != null)
+					{
+						for (f = 0; f < filters.length; f++)
+						{
+							if (!filters[f](b[i] as Child))
+							{
+								passedFilters = false;
+								break;
+							}
+						}
+						
+						if (passedFilters)
+						{
+							return true;
+						}
+					}
+					else
+					{
+						return true;
+					}
+				}
+			}
+			
+			for (var bucket:int = minAge + 3; bucket < (maxAge + 4) && bucket < 21; bucket++)
+			{
+				b = _ageBuckets[bucket];
+				
+				for (i = 0; i < b.length; i++)
+				{
+					passedFilters = true;
+					
+					if (filters != null)
+					{
+						for (f = 0; f < filters.length; f++)
+						{
+							if (!filters[f](b[i] as Child))
+							{
+								passedFilters = false;
+								break;
+							}
+						}
+						
+						if (passedFilters)
+						{
+							return true;
+						}
+					}
+					else
+					{
+						return true;
+					}
+				}
+				
 			}
 			
 			return false;
@@ -453,6 +558,11 @@ package classes.GameData.Pregnancy
 		
 		private function NumRequiredGenders(c:Child, genderTypes:uint, container:Genders):void
 		{
+			if (genderTypes == ChildManager.ALL_GENDERS)
+			{
+				container.add(c.NumGenders);
+				return;
+			}
 			if (genderTypes & ChildManager.GENDER_NEUTER) container.Neuter += c.NumNeuter;
 			if (genderTypes & ChildManager.GENDER_FEMALE) container.Female += c.NumFemale;
 			if (genderTypes & ChildManager.GENDER_MALE) container.Male += c.NumMale;
@@ -571,6 +681,106 @@ package classes.GameData.Pregnancy
 			
 			return t;
 		}
+		
+		public function filteredNumOfGendersInRange(genderTypes:uint, minAge:int, maxAge:int, filters:Array):Genders
+		{
+			updateAgeBuckets();
+			
+			var t:Genders = new Genders();
+			var cc:Child = null;
+			
+			if (maxAge != -1 && maxAge < minAge) maxAge = -1;
+			
+			if (minAge <= 0)
+			{
+				for (var i:int = 0; i < ChildManager.CHILDREN.length; i++)
+				{
+					cc = ChildManager.CHILDREN[i] as Child;
+					var passedFilters:Boolean = true;
+					
+					for (var f:int = 0; f < filters.length; f++)
+					{
+						if (!filters[f](cc))
+						{
+							passedFilters = false;
+							break;
+						}
+					}
+					
+					if (passedFilters)
+					{
+						NumRequiredGenders(cc, genderTypes, t);
+					}
+				}
+			}
+			else
+			{
+				var minBucket:int = -1;
+				var maxBucket:int = -1;
+				
+				if (minAge < 12)
+				{
+					minBucket = int(minAge / 3);
+				}
+				else if (minAge >= 12)
+				{
+					minBucket = int(minAge / 12) + 3;
+				}
+				
+				if (maxAge == -1)
+				{
+					for (i = 0; i < _ageBuckets[minBucket].length; i++)
+					{
+						cc = _ageBuckets[minBucket][i] as Child;
+						passedFilters = true;
+						
+						for (f = 0; f < filters.length; f++)
+						{
+							if (!filters[f](cc))
+							{
+								passedFilters = false;
+								break;
+							}
+						}
+						
+						if (passedFilters)
+						{
+							NumRequiredGenders(cc, genderTypes, t);
+						}
+					}
+				}
+				else
+				{
+					maxBucket = int(Math.min(int(maxAge / 12) + 3, 21));
+				
+					for (var bucket:int = minBucket; bucket < maxBucket; bucket++)
+					{
+						for (i = 0; i < _ageBuckets[bucket].length; i++)
+						{
+							cc = _ageBuckets[bucket][i] as Child;
+							passedFilters = true;
+							
+							for (f = 0; f < filters.length; f++)
+							{
+								if (!filters[f](cc))
+								{
+									passedFilters = false;
+									break;
+								}
+							}
+							
+							if (passedFilters)
+							{
+								NumRequiredGenders(cc, genderTypes, t);
+							}
+						}
+					}
+				}
+			}
+			
+			return t;
+		}
+		
 		
 		public function ofTypeInRange(raceType:uint, minAge:int, maxAge:int):Boolean
 		{
@@ -691,5 +901,137 @@ package classes.GameData.Pregnancy
 			
 			return _typeBuckets[typeString];
 		}
+		
+		// Store unique types in a two-tier dict:
+		// _root[type_path][children]
+		// type_path is the return from getQualifiedClassName() on a unique child ie a string
+		private var _uniqueTypes:Object;
+		private var _uniqueTypesInvalid:Boolean = true;
+		public function get uniqueTypesInvalid():Boolean { return _uniqueTypesInvalid; }
+		public function set uniqueTypesInvalid(v:Boolean):void { _uniqueTypesInvalid = v; }
+		
+		private function updateUniqueTypes():void
+		{
+			if (_uniqueTypesInvalid)
+			{
+				_uniqueTypes = [];
+				
+				var c:Array = ChildManager.CHILDREN;
+				
+				for (var i:int = 0; i < c.length; i++)
+				{
+					if (c[i] is UniqueChild)
+					{
+						var cFQN:String = getQualifiedClassName(c[i]);
+						if (_uniqueTypes.hasOwnProperty(cFQN))
+						{
+							_uniqueTypes[cFQN].push(c);
+						}
+						else
+						{
+							_uniqueTypes[cFQN] = [c];
+						}
+					}
+				}
+				
+				// This might be a performance hotspot, we'll see
+				for (var key:String in _uniqueTypes)
+				{
+					var tA:Array = _uniqueTypes[key];
+					tA.sortOn("Days", Array.DESCENDING | Array.NUMERIC);
+				}
+				
+				_uniqueTypesInvalid = false;
+			}
+		}
+		
+		public function ofUniqueType(childClassT:Class):Boolean
+		{
+			updateUniqueTypes();
+			
+			if (_uniqueTypes.hasOwnProperty(getQualifiedClassName(childClassT)))
+			{
+				return true;
+			}
+			
+			return false;
+		}
+		
+		public function numOfUniqueType(childClassT:Class):int
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			var num:int = 0;
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				var typeArray:Array = _uniqueTypes[cFQN] as Array;
+				for (var i:int = 0; i < typeArray.length; i++)
+				{
+					var c:UniqueChild = typeArray[i] as UniqueChild;
+					num += c.Quantity;
+				}
+			}
+			
+			return num;
+		}
+		
+		public function gendersOfUniqueTypeInRange(childClassT:Class, minAge:int, maxAge:int = -1):Genders
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			var genderTotals:Genders = new Genders();
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				
+				var typeArray:Array = _uniqueTypes[cFQN] as Array;
+				
+				for (var i:int = 0; i < typeArray.length; i++)
+				{
+					var c:UniqueChild = typeArray[i] as UniqueChild;
+					if (c.Months >= minAge && (maxAge == -1 || c.Months <= maxAge))
+					{
+						genderTotals.add(c.NumGenders);
+					}
+				}
+			}
+			
+			return genderTotals;
+		}
+		
+		public function youngestOfUniqueType(childClassT:Class):UniqueChild
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				// This subarrays should already be sorted in ascending order of days-old
+				return _uniqueTypes[cFQN][0];
+			}
+			
+			return null;
+		}
+		
+		/** Utility functions **/
+		private function isMobile(RaceType:int):Boolean
+		{
+			var noRoamTypeList:Array = [
+				GLOBAL.TYPE_TENTACLE,
+				GLOBAL.TYPE_CUNTSNAKE,
+				GLOBAL.TYPE_VENUSPITCHER,
+				GLOBAL.TYPE_COCKVINE,
+				GLOBAL.TYPE_WATERQUEEN,
+			];
+			
+			if (noRoamTypeList.indexOf(RaceType) == -1) return true;
+			return false;
+		}
+		
+		public const isMobileFilter:Array = [isMobile];
 	}
 }

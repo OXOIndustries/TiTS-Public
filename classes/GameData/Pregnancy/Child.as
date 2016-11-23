@@ -155,6 +155,13 @@ package classes.GameData.Pregnancy
 			
 			return weightedRand(ws);
 		}
+		
+		public function describeCollection(m:String, f:String, many:String):String
+		{
+			if (NumGenders.total > 1) return many;
+			if (NumMale > 0 || NumNeuter > 0) return m;
+			return f;
+		}
 	}
 
 }

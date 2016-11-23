@@ -40,6 +40,7 @@
 	import classes.GameData.CodexManager;
 	import classes.GameData.GameOptions;
 	import classes.GameData.Pregnancy.Handlers.*;
+	import classes.GameData.Pregnancy.Templates.*;
 	import classes.GameData.ChildManager;
 	
 	import fl.transitions.easing.None;
@@ -441,7 +442,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.98";
+			version = "0.6.99";
 
 			//temporary nonsense variables.
 			temp = 0;

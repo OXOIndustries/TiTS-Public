@@ -2,6 +2,7 @@ package classes.GameData
 {
 	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.Pregnancy.Containers.Genders;
+	import classes.Items.Guns.EmmysSalamanderPistol;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.Pregnancy.ChildCache;
 	import classes.GameData.Pregnancy.UniqueChild;
@@ -75,10 +76,15 @@ package classes.GameData
 		static public function addChild(newChild:Child):void
 		{
 			CHILDREN.push(newChild);
+			
 			if (CACHE == null) CACHE = new ChildCache();
 			CACHE.numInvalidated = true;
 			CACHE.ageInvalidated = true;
 			CACHE.typeInvalidated = true;
+			if (newChild is UniqueChild)
+			{
+				CACHE.uniqueTypesInvalid = true;
+			}
 		}
 		
 		/**
@@ -114,6 +120,7 @@ package classes.GameData
 		 */
 		static public function numChildren(uniqueOnly:Boolean = false):int
 		{
+			//TODO: This test should be moved up into the cache handler methods rather than here
 			if (uniqueOnly)
 			{
 				var numUnique:int = 0;
@@ -161,6 +168,8 @@ package classes.GameData
 		static public const GENDER_FEMALE:uint 		= 1 << 1;
 		static public const GENDER_MALE:uint 		= 1 << 2;
 		static public const GENDER_INTERSEX:uint 	= 1 << 3;
+		static public const ALL_GENDERS:uint		= ChildManager.GENDER_NEUTER | ChildManager.GENDER_FEMALE
+													| ChildManager.GENDER_MALE   | ChildManager.GENDER_INTERSEX;
 
 		/**
 		 * Determine if the player has any children of the specified gender.
@@ -204,6 +213,12 @@ package classes.GameData
 		{
 			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.inAgeRangeYears(minAge, maxAge);
+		}
+		
+		public static function mobileInAgeRangeYears(minAge:int, maxAge:int = -1):Boolean
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.filteredInAgeRangeYears(minAge, maxAge, CACHE.isMobileFilter);
 		}
 		
 		/**
@@ -318,11 +333,18 @@ package classes.GameData
 		 * @param	maxAge
 		 * @return
 		 */
-		static public function numofGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1):Genders
+		static public function numOfGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1):Genders
 		{
 			if (CACHE == null) CACHE = new ChildCache();
 			return CACHE.numOfGendersInRange(genderTypes, minAge, maxAge);
 		}
+		
+		static public function numOfMobileGendersInRange(genderTypes:uint, minAge:int, maxAge:int = -1):Genders
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.filteredNumOfGendersInRange(genderTypes, minAge, maxAge, CACHE.isMobileFilter);
+		}
+		
 		
 		/**
 		 * Determine if the player has any children of a specific racial type
@@ -417,19 +439,37 @@ package classes.GameData
 			return CACHE.getChildrenOfType(ofType);
 		}
 		
-		// Check to see if child can actually roam freely in the nursery!
-		static public function canRoam(RaceType:int):Boolean
+		/* Proto-unique-children handling */
+		static public function ofUniqueType(childClassT:Class):Boolean
 		{
-			var noRoamTypeList:Array = [
-				GLOBAL.TYPE_TENTACLE,
-				GLOBAL.TYPE_CUNTSNAKE,
-				GLOBAL.TYPE_VENUSPITCHER,
-				GLOBAL.TYPE_COCKVINE,
-				GLOBAL.TYPE_WATERQUEEN,
-			];
-			
-			if (noRoamTypeList.indexOf(RaceType) == -1) return true;
-			return false;
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.ofUniqueType(childClassT);
+		}
+		
+		static public function numOfUniqueType(childClassT:Class):int
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.numOfUniqueType(childClassT);
+		}
+		
+		/**
+		 * Get the number of children of a specific descendent of UniqueChild types in the
+		 * target age range, specified in months.
+		 * @param	childClassT		Class type reference to specific child type.
+		 * @param	minAge			Minimum age
+		 * @param	maxAge			Maximum age, -1 if no max.
+		 * @return
+		 */
+		static public function gendersOfUniqueTypeInRange(childClassT:Class, minAge:int, maxAge:int = -1):Genders
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.gendersOfUniqueTypeInRange(childClassT, minAge, maxAge);
+		}
+		
+		static public function youngestOfUniqueType(childClassT:Class):*
+		{
+			if (CACHE == null) CACHE = new ChildCache();
+			return CACHE.youngestOfUniqueType(childClassT);
 		}
 	}
 

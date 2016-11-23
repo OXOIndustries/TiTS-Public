@@ -1,5 +1,6 @@
 package classes.GameData.Pregnancy.Containers 
 {
+	import classes.Engine.Utility.weightedRand;
 	/**
 	 * ...
 	 * @author Gedan
@@ -35,6 +36,20 @@ package classes.GameData.Pregnancy.Containers
 		public function any():Boolean
 		{
 			return Male > 0 || Female > 0 || Intersex > 0 || Neuter > 0;
+		}
+		
+		public function get total():int
+		{
+			return Male + Female + Intersex + Neuter;
+		}
+		
+		public function mf(m:String, f:String):String
+		{
+			if (Male + Neuter > 0 && Female + Intersex == 0) return m;
+			if (Female + Intersex > 0 && Male + Neuter == 0) return f;
+			
+			var o:Array = [ { w: (Female + Intersex), v: f }, { w: (Male + Neuter), v: m } ];
+			return weightedRand(o);
 		}
 		
 		public var Male:int;

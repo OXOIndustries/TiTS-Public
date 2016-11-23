@@ -59,23 +59,6 @@ public function treatmentHourProcs(totalHours:int):void
 	var x:int = 0;
 	var i:int = 0;
 	
-	//Genital fixin'
-	if(pc.statusEffectv1("The Treatment") == 2)
-	{
-		if(!pc.hasCock() && (startHours < 50 && treatedHours >= 50))
-		{
-			AddLogEvent("A new penis springs out of your crotch new and fully formed. The Treatment seems determined to give you a dick. At least this one is like, totally cute.", "passive", (50 - startHours) * 60);
-			pc.createCock();
-			pc.setNewCockValues(0);
-		}
-		
-		if ((pc.balls == 0 || pc.ballSizeRaw <= 0) && (startHours < 58 && treatedHours >= 58))
-		{
-			AddLogEvent("A tremendous pressure builds in your loins, then releases into twin points of release - <b>your new testicles.</b> You suppose balls must be an important part of whatever you’re going through.", "passive", (58 - startHours) * 60);
-			pc.balls = 2;
-			pc.ballSizeRaw = 4;
-		}
-	}
 	//Amazon Effects
 	//     1. Amazon Treatment Section
 	if(pc.statusEffectv1("The Treatment") == 4)
@@ -1738,6 +1721,13 @@ public function treatmentHourProcs(totalHours:int):void
 				}
 			}
 			
+			if(!pc.hasCock() && treatedHours >= 50)
+			{
+				AddLogEvent("A new penis springs out of your crotch new and fully formed. The Treatment seems determined to give you a dick. At least this one is like, totally cute.", "passive", (treatedHours - startHours) * 60);
+				pc.createCock();
+				pc.setNewCockValues(0);
+			}
+			
 			//57 hours:
 			//Dick expands in size. Grow balls if none
 			if(startHours < 57 && treatedHours >= 57 && pc.hasCock())
@@ -1761,10 +1751,12 @@ public function treatmentHourProcs(totalHours:int):void
 					ExtendLogEvent(" You stroke two and giggle to yourself, just as pleased to give out a double handjob as to get one. It’s like, more efficient or something, like scratching two itches that seem unrelated but satisfy the exact same urge.");
 					ExtendLogEvent(ParseText("\n\nBy the time you’re able to think about anything but the friction of your palms on your pricks, your embiggened tools are at least three or four inches bigger and anxiously leaking pre. The gooey stuff pours out like water from leaky faucets, soaking your members in your pernicious polish. You aren’t sure <i>why</i> you’re so drippy, but you wager it has something to do with the budding tightness inside you, almost like something is about to squeeze the [pc.cumNoun] right out of you."));
 				}
+				
 				for(var cc:int = 0; cc < pc.cockTotal(); cc++)
 				{
 					pc.cocks[cc].cLengthRaw += 3 + rand(2);
 				}
+				
 				//Single Ball - add one
 				if(pc.balls == 1)
 				{
@@ -1816,6 +1808,13 @@ public function treatmentHourProcs(totalHours:int):void
 				pc.lust(pc.lustMax());
 			}
 			
+			if ((pc.balls <= 0 || pc.ballSizeRaw <= 0) && treatedHours >= 58)
+			{
+				AddLogEvent("A tremendous pressure builds in your loins, then releases into twin points of release - <b>your new testicles.</b> You suppose balls must be an important part of whatever you’re going through.", "passive", (treatedHours - startHours) * 60);
+				pc.balls = 2;
+				pc.ballSizeRaw = 4;
+			}
+		
 			//64 hours:
 			//Minimum lust raised to 33 + increase in refractory rate + ball swelling + cock swelling
 			if(startHours < 64 && treatedHours >= 64 && pc.hasCock() && pc.balls > 1)

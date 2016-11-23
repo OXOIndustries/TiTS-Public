@@ -28,6 +28,11 @@ public function furEffectBonusFunction():Boolean {
 		jadeUsesNippleMod();
 		return true;
 	}
+	else if(MailManager.isEntryViewed("jade_dumplings") && flags["JADE_MUFFLINGS"] != -1 && (flags["JADE_MUFFLINGS"] == undefined || (!pc.hasStatusEffect("MufflingsCD") && rand(10) == 0))) 
+	{
+		jadeMuffStuffedDumplingsOffer();
+		return true;
+	}
 	
 	output("The sign declared this store to be “Fur Effect,” and you can see why. Your");
 	if (pc.isNaga()) output(" snake-like tail sliters through");
@@ -96,6 +101,7 @@ public function approachJade():void {
 		output("Just like last time, Jade is leaning over the counter to greet you before you’re even halfway to her. Her pendulous, fur-wrapped tits sway and jiggle from every subtle movement she makes, unrestrained by top or bra. Smiling when she sees you looking, the red-eyed panda-girl presses them together with her forearms. <i>“Which of my goods can I interest you in today?”</i>");
 		output("\n\nThe girl could really work on her phrasing....");
 	}
+
 	processTime(2);
 	
 	jadeStoreSetup();
@@ -1159,4 +1165,99 @@ public function epilogueOfNippleOnNippleJadeSex():void {
 	output("\n\n<i>“Oh, hello, [pc.name],”</i>  Jade calls to you as you, already back behind her counter. <i>“I hope you enjoyed yourself today. Please, come back any time,”</i> she says, the very picture of a courteous merchant, except, of course, for the very pleased look on her face as she waves you out the door.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//Scene
+public function jadeMuffStuffedDumplingsOffer():void
+{
+	clearOutput();
+	showJade(true);
+	author("Altair Hayes");
+	output("You walk into Fur Effect, only to find the whole place empty save for a one of Jade's legs, which promptly disappears into the employee room, chased by tittering laughter.");
+	output("You follow after to find the plush panda sitting atop a countertop, facing away from you. She giggles again at the sound of your approach.");
+	output("\n\n<i>“Hey [pc.name], I see you finally came for the dumplings,”</i> she then turns towards you, revealing her belly to look a few months pregnant. She starts to bite her lower lip, then shakes her head and straightens, looking you straight in the eye. <i>“Don’t be shy, they’re right here! I’m keeping them warm.”</i>");
+	output("\n\nYou walk towards her, suspicion slowly giving way to realization of what she’s done. When she sees your shift in expression slowly spreads her legs, clearly anxious about your reaction... up until a dumpling slips out of her plump panda pussy onto the counter, slick with her juices. At that, her legs fall completely open, revealing a well-stuffed and dribbling cunt.");
+	output("\n\nYou stop in your tracks, should you continue?");
+
+	processTime(2);
+	clearMenu();
+	addButton(0,"DigIn",eatMuffDumplings,undefined,"DigIn","She made these just for you, might as well eat a few... or a lot.");
+	if(flags["JADE_MUFFLINGS"] == undefined) addButton(1,"YouJustAte",youJustAteJadesMuffInsWhatever,undefined,"YouJustAte","Politely pass up the free meal, claiming you’ve just ate. <b>You doubt she'll ever offer again if you refuse.");
+	else addButton(1,"YouJustAte",youJustAteJadesMuffInsWhatever,undefined,"YouJustAte","Politely pass up the free meal, claiming you’ve just ate. Maybe next time...");
+}
+
+//You Just Ate
+public function youJustAteJadesMuffInsWhatever():void
+{
+	clearOutput();
+	author("Altair Hayes");
+	showJade(true);
+	if(flags["JADE_MUFFLINGS"] == undefined) 
+	{
+		flags["JADE_MUFFLINGS"] = -1;
+		output("<i>“Sorry Jade, I uh, just ate. Was just stopping by to say hi,”</i> you explain.");
+		output("\n\nJade hangs her head and sighs heavily. After a pregnant pause, the dumpling-stuffed panda pushes her hair out of her eyes and doggedly straightens. <i>“That's okay, I guess.”</i> She takes the cunt liquor-coated dumpling off the counter and tosses it in the trash. <i>“You're missing out, though. They're pretty damned good.”</i> Smirking now, she tosses her head in the direction of the door. <i>“Go on now. If you aren't going to order from the menu, you're not allowed in the restaurant. Chef's orders.”</i>");
+		output("\n\nYou get out while the getting is good.");
+	}
+	else
+	{
+		//7 Day CD.
+		pc.createStatusEffect("MufflingsCD");
+		pc.setStatusMinutes("MufflingsCD",10080);
+		output("<i>“Sorry Jade, I uh, just ate. Was just stopping by to say hi,”</i> you explain.");
+		output("\n\nJade furrows her brow and pouts her lips, before shrugging it off. <i>“That’s okay, more for me, or the next customer for that matter.”</i>");
+		output("\n\nShe then takes the cunt liquor coated dumpling off of the counter and tosses it into her mouth. <i>“Thur rully good tho,”</i> she says with a full mouth, happily chewing as she lets loose another dumpling from her pussy and eats it. You leave her to it and exit Fur Effect.");
+	}
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",move,rooms[currentLocation].eastExit);
+}
+
+//Dig In
+public function eatMuffDumplings():void
+{
+	clearOutput();
+	showJade(true);
+	IncrementFlag("JADE_MUFFLINGS");
+	author("Altair Hayes");
+	//7 Day CD.
+	pc.createStatusEffect("MufflingsCD");
+	pc.setStatusMinutes("MufflingsCD",10080);
+	sexedJade();
+	output("With a greedy smile you rush towards the counter, more than happy to start eating.");
+	output("\n\nYou start by sampling the one on the counter, the mixed tastes of pussy juice and a sweet fruity dumpling complimenting each other quite nicely. As soon as you swallow the dumpling another one slides out of Jade’s hole, followed by a small squeak of pleasure. <i>“Oh fuck!”</i>");
+	output("\n\nYou smirk at the idea that she’s getting off on the food she made to feed you, but you continue, eating the second dumpling, which tastes a bit airy and smoother than the last one, different flavors, you assume. You savor the flavor before you swallow, and, before Jade can squeeze another one out, you press your face against her pussy; providing a direct line of supply of dumplings. Taking your time with the varying flavors, you savor each one before swallowing.");
+	output("\n\nJade seems to be more than a bit happy that you’re enjoying her cooking, stroking your ");
+	if(pc.hasHair()) output("[pc.hair]");
+	else output("head");
+	output(" as you eat. Your hands snake up to her thighs, stroking them as she forces dumpling after dumpling out of her snatch, more and more cunt juice drooling out of her and down your chin, making quite a mess.");
+	output("\n\n<i>“En-joying, yourself?”</i> Jade asks through thick breaths. <i>“They- oh fuck - took, a while, to make. E-eat up.”</i>");
+	output("\n\nJade squeaks out in pleasure, her hips bucking a bit as another dumpling enters your mouth. It’s now, that with shaky hands, starts to push your face deeper in as she wraps her legs around your head for stability. The panda then moves a hand upward, taking some time to play with her ");
+	if(chars["JADE"].breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) output("nipples");
+	else output("breasts");
+	output(" as she coos and moans from the fun going on downstairs. She holds you like this for a while, passing dumplings from her lips to yours as she basks in the euphoria.");
+	output("\n\nEventually though, the stimulation from each serving of sweetness adds up, her moans becoming more audible as she finds herself on the precipice of climax. Noticing this, you decide to pass up on the dumplings, instead choosing to tongue her clit. You suck on her nub, gently bite it, and even grind it in between your teeth, careful not to cause more pain than pleasure. In due time your hard work pays off as you push her over the edge.");
+	output("\n\nHer body quakes and quivers, her cries suppressed by your new pair of thigh shaped earmuffs. She lets go of your head and moves her hands to her ");
+	if(chars["JADE"].breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) output("nipples");
+	else output("breasts");
+	output(", tears welling in her eyes as she rides out the orgasm, which is too strong for her legs to stay wrapped around you.");
+
+	output("\n\nWhat’s more telling of her pleasure though, is the continuous stream of dumplings pelting you in the face. Each one covering your face with a generous amount of cunt liquor. You try and catch some in your mouth, but most either fall to the floor, or end up hitting another part of your face.");
+	output("\n\nSlowly though, her orgasm and the stream of dumplings die down, occasional aftershocks sending another dumpling out, but judging by her belly returning to it’s normal size, she’s empty.");
+	output("\n\nYou get up and look at the mess before you, dumplings strewn across the floor, Jade unable to string together a syllable that doesn’t end in -uck, all tied together with a liter or two of her juices pooling at your feet. She doesn’t seem like she’s going to recover any time soon, so you lift her off the counter and set her down in a chair. You’re not entirely sure she notices your touch, as she has a thousand eye stare, unable to focus on anything before her.");
+	output("\n\nBefore you leave, you give her ");
+	if(pc.isNice()) output("a gentle kiss on the cheek and head out.");
+	else if(pc.isMischievous()) 
+	{
+		output("breasts");
+		if(chars["JADE"].breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) output(" and nipples");
+		output(" a groping session, forcing out another powerful orgasm, leaving her shivering and shaking.");
+	}
+	else output("clit a painful flicking session until it’s red and swollen, careful not to incite another orgasm.");
+	output(pc.modThickness(10, true));
+	processTime(20);
+	//Plus 80 lust - FEN: Nope, 30 or 40 is fine.
+	pc.lust(30+rand(11));
+	clearMenu();
+	addButton(0,"Next",move,rooms[currentLocation].eastExit);
 }
