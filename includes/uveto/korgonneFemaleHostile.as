@@ -352,7 +352,10 @@ public function defeatDaKorgiShit():void
 	if(pc.isTaur() && (pc.hasVagina() || (pc.hasCock() && pc.balls > 0))) addButton(5,"Sit On Her",sitOnKorgiForTaurs,undefined,"Sit On Her","Only centaurs are going to be able to do this.");
 	else addDisabledButton(5,"Sit On Her","Sit On Her","You need to be a centaur with a vagina or a centaur with balls and a penis for this.");
 	
-
+	if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades") && (!pc.hasCock() || eligibleForKorgiHumiliation())) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,undefined,"HardlightFuck","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
+	else if(!pc.hasHardLightEquipped()) addDisabledButton(6,"HardlightFuck","HardlightFuck","You need hardlight-enabled underwear for this.");
+	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","HardlightFuck","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size.</b>.");
+	else addDisabledButton(6,"HardlightFuck","HardlightFuck","Your [pc.cockBiggest] is nothing to scoff at. Use it instead.");
 
 	addButton(14,"Leave",defeatDaKorgiLeave);
 }
@@ -909,4 +912,203 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish2():void
 	processTime(30);
 	pc.orgasm();
 	CombatManager.genericLoss();
+}
+
+public function eligibleForKorgiHumiliation():Boolean
+{
+	return (pc.hasCock() && pc.biggestCockThickness() < 2.7);
+}
+
+//hardlight overclock versus giant korgonne pussy [tbd title]
+//button name: "Cock Mockery" (maybe) or "Hardlight Punishment" (meh)
+//PC win scene for female korgonne boobarian
+//requires equipped hardlight and either no cock or all cocks are too small (coder to determine size limit)
+//korgonne scoffs at PC's dick size/absence, PC turns on hardlight, forces size to maximum and punishes the bad dog
+//tooltip: See if your hardlight sextoy can satisfy this insatiable puppy slut.
+//disabled tooltip, no hardlight: You need hardlight-enabled underwear for this.
+//disabled tooltip, has a cock above minimum size: Your [pc.cockBiggest] is nothing to scoff at -- just use that instead.
+public function korgonneHardlightPussyStuffsStuffStuffings():void
+{
+	clearOutput();
+	author("Zeikfried");
+	showKorgiFemaleHostile(true);
+	var bimbo:Boolean = pc.isBimbo();
+	var bro:Boolean = pc.isBro();
+	var buttfux:Boolean = (pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) 
+	//intro for small cocks
+	//coder to define 'small' based on korgonne capacity
+	if(eligibleForKorgiHumiliation() && pc.hasCock())
+	{
+		output("You ");
+		if(!pc.isCrotchExposedByArmor()) output("begin to strip your [pc.armor]");
+		else output("advance on the korgonne");
+		output(", but she takes one look at you and laughs. Stunned, you follow her gaze to the object of her mirth - your [pc.cockNounSimple " + pc.biggestCockIndex() + "]");
+		if(!pc.isCrotchExposedByLowerUndergarment()) output(", bulging in your underthings");
+		output(".");
+		output("\n\n<i>“Youngling no good for fuck,”</i> the woman sneers. <i>“Maybe hunt cat girl instead. She not mind tiny.”</i>");
+		if(bimbo) output("\n\n<i>“Izzat so?”</i>");
+		else output("<i>“Yeah?”</i>");
+		output(" you challenge, irritated.");
+
+		output("\n\n<i>“Is so,”</i> snaps the dog bitch. She slips her pudgy fingers into her pussy, burying her hand to the knuckle - and then, with no discomfort and every evidence of relish, <i>curls them into a fist inside herself</i>. She is apparently much roomier on the inside, built to accommodate a huge knot. The korgonne shudders as she pulls her fist back out. <i>“");
+		if(InCollection(pc.race(), "korgonne","half-korgonne","huskar","half-huskar","ausar","half-ausar","canine","dog-morph","doggo","pupper")) output("Stranger");
+		else if(InCollection(pc.race(), "milodan","half-milodan","naleen","kaithrit","half-kaithrit","cat-morph")) output("Cat");
+		else output("Alien");
+		output(" too thin.”</i>");
+
+		output("\n\nYour blood burns and your cheek tingles in shame as the cold wind licks at your blushing face. A desperate urge to punish bubbles up in you");
+		if(pc.isNice()) output(", though you try to force it down");
+		output(". You’re tempted to fuck her anyway, even if she wouldn’t feel anything... and then you remember the special equipment you’re packing in your [pc.lowerUndergarment]. You could use your adjustable, high-tech hardlight underwear to give her a dicking fit to stretch a leithan, if you were of a mind....");
+		output("\n\n<i>“What about this, then?”</i> You reach for the controls and activate the hardlight projection. A long, glimmering white light-cock springs forth.");
+		output("\n\nThe korgonne is stunned - at least, for a moment. <i>“Pleasure shines,”</i> she oohs and ahhs. Her expression dulls. <i>“But still no knot. Useless.”</i>");
+
+		if(pc.isNice() || pc.isMischievous()) 
+		{
+			output("\n\n<i>“Just give it a chance. Maybe it’ll");
+			if(bimbo) output(", like,");
+			output(" grow on you,”</i> you offer, moving in. The defeated korgonne is unimpressed, but leans back and motions you in anyway.");
+		}
+		else output("\n\n<i>“Fuck you,”</i> you answer. The defeated korgonne huffs, but leans back and keeps her legs spread anyway.");
+	}
+	//if no cock
+	else
+	{
+		output("\n\nYou ");
+		if(!pc.isCrotchExposedByArmor()) output("shed your [pc.lowerGarment] and ");
+		output("begin to remove your [pc.lowerUndergarment], but the korgonne cocks her head and looks at you so quizzically that you stop.");
+
+		if(bro || pc.isAss()) output("\n\n<i>“What?”</i> you demand.");
+		else if(bimbo) output("\n\n<i>“Get an eyeful, honey,”</i> you flirt, running a hand over a [pc.hip].");
+		else output("\n\n<i>“Something on your mind?”</i> you ask.");
+
+		output("\n\nThe pudgy dog-girl begins to giggle disturbingly - moreso because she’s staring at your crotch when she does.");
+		output("\n\n<i>“Dumb ");
+		if(pc.felineScore() >= 4) output("cat");
+		else output("stranger");
+		output(" no need get butt cold,”</i> the barbarian laughs. <i>“Can see in pants... much flat, no bulge. No pleasure. Use hand instead.”</i> She spreads her fuzzy, plump thighs wide, exposing herself. Her puffy, bluish labia look normal, until she sticks her pudgy fingers inside and spreads them easily, revealing that deeper within she could easily accommodate a leithan without any trouble.");
+		if(!pc.isAss()) output("\n\n<i>“Hand? I could fit a leg in there,”</i> you spit.");
+		else if(bimbo || pc.isNice()) output("\n\n<i>“Hey, that’s mean,”</i> you protest.");
+		else output("\n\n<i>“It doesn’t matter if you don’t have the key when the lock is stripped,”</i> you frown.");
+
+		output("\n\nThe korgonne still laughs. <i>“Dumb ");
+		if(pc.felineScore() >= 4) output("cat");
+		else output("stranger");
+		output("...”</i> she repeats. The busty bitch’s mocking eyes bring the blood to your face; your nerves tingle as the cold wind licks at you through your protection, and you find yourself getting angry. Your thoughts flash to your ");
+		if(!pc.isTaur()) output("thumbs still tucked in the waist of your ");
+		output("[pc.lowerUndergarment] and its adjustable dildo projection - just the perfect thing to shut up this cocky, cock-demanding slut. Your fingers drift to the controls.");
+
+		if(pc.isAss() || bro) output("\n\n<i>“Scope this,”</i>");
+		else if(bimbo) output("\n\n<i>“Honey, you’re so fucked and you don’t even know it,”</i>");
+		else output("\n\n<i>“Yeah? What do you think of this?”</i>");
+		output(" you challenge. With a touch of the main power, the holo-dick springs into existence.");
+
+		output("\n\nThe korgonne’s tongue reels in and she sits up so fast her boobs bounce. <i>“Pleasure shines!”</i> she marvels. Her excitement doesn’t last long, though; when the holo doesn’t do anything else, she leans back again and resumes her bemused expression. <i>“Knot many too thin. Good for cat - not korgonne.”</i>");
+
+		if(bro || pc.isAss()) output("\n\n<i>“Deal with it,”</i> you grunt,");
+		else if(bimbo) output("\n\n<i>“Gosh, you’re picky. Don’t you think all dicks have their own charms?”</i> you ask facetiously,");
+		else output("\n\n<i>“I’m sorry you feel that way,”</i> you snap,");
+		output(" and begin to advance on the big-titted babe. She frowns, but then shrugs and spreads her legs again, preparing to enjoy herself anyway.");
+	}
+	//merge
+	output("\n\nInstead of simply falling on the ready woman, you step up and nudge her with your ");
+	if(pc.isTaur()) output("fore ");
+	output("[pc.foot] until she huffs and rolls over. The barbarian takes up position on hands and knees, hanging her head to try to watch the penetration but unable to see past either her heavy tits or her wide ass.");
+
+	output("\n\nYou place your ");
+	if(pc.isTaur()) 
+	{
+		output("fore ");
+		output("[pc.feet] ");
+	}
+	else output("hands ");
+	output("on her hips and pull her in, lining her up with the tip, then rest it inside her puffy vulva.");
+	if(pc.isTaur()) output(" She braces against the ground as you spear forward, sinking the holo-prick into her.");
+	else output(" Instead of guiding her onto the prick as she expects, however, you release her hips and lean forward, grabbing two handfuls of her huge breasts and carrying her off the ground, mashing them to her chest as you pull her roughly down onto your crotch. The korgonne moans as you manhandle her, a deep rumble that’s almost like a purr of pleasure. With the holographic rod in place, you let her drop again and she hits the ground with a ‘whoof’.");
+	output("\n\nAs you begin to pump, you can feel the korgonne trying to shift her hips to stimulate herself on the dildo - she continually drags the tip against a ring of nerves deep inside, emitting cute yips and grunts whenever you touch it.");
+	if(!pc.isTaur()) output(" Her enthusiasm is such that you find you have to move your hands back to her hips to keep the strap-on inside her, but this just makes her whine harder when she can’t scratch her itch.");
+	output("\n\n<i>“Bigger!”</i> grunts the wide-assed bitch. <i>“Need bigger for joy!”</i> She pushes her colossal heinie into you, trying to force more dildo inside, but there’s nothing left to take - your photonic cock is so deep in her pussy that the emitter is in the shade. <i>“");
+	if(pc.canineScore() >= 4) output("Stranger");
+	else if(pc.felineScore() >= 4) output("Cat");
+	else output("Alien");
+	output(" too small!”</i>");
+
+	output("\n\nWhy, this awful slut... your back stiffens in anger");
+	if(!pc.isTaur()) output(" and your fingers dig into her plush ass, which only makes her purr again");
+	output(". You had wanted to warm her up a little and grow the projection gradually, but without really thinking about it you find your rhythm slowing as your fingers go for the controls.");
+	output("\n\n<i>“Now slow, too,”</i> whines the korgonne. <i>“Small and slow... no joy.”</i>");
+	output("\n\nYou swallow the last insult she’ll deliver and hilt yourself deep inside, then release the safety and begin to crank up the size of the projection - rapidly. The hum from the device intensifies, but it’s still barely audible above the ambient wind... and the korgonne’s mewling. Suddenly, her spine straightens.");
+	output("\n\n<i>“Ooh?”</i> grunts the alien.");
+	output("\n\nYou can only imagine the sensations she’s experiencing. The length control maxes out early as the tip of the holo-cock bumps against the stout korgonne’s womb... but the girth just keeps going and going, spreading the dog-girl’s cerulean labia wider and wider. The slider reaches 60% of the maximum and the korgonne is only just now beginning to feel the effects.");
+	output("\n\n<i>“");
+	if(pc.canineScore() >= 4) output("Stranger");
+	else if(pc.felineScore() >= 4) output("Cat");
+	else output("Alien");
+	output(" get bigger? Give water-heat soon?”</i> the puppy slut croons.");
+
+	output("\n\nYou continue to swell your penile projection, inch by inch, until you begin to feel resistance. The big-booty bitch feels it as well - she lowers her chest to the ground, mashing her huge tits into the snow, trying to angle her body to help the tool touch every one of her insides.");
+
+	output("\n\n<i>“What? ");
+	if(pc.canineScore() >= 4) output("Stranger");
+	else if(pc.felineScore() >= 4) output("Cat");
+	else output("Alien");
+	output(" knot everywhere!”</i> She clenches her jaw as you max out the girth slider - the tip is clearly hurting, but the base must be touching <i>all</i> of her sweet spots, because she’s gyrating her hips like a dynamo and moaning. <i>“Joy! Korgonne feel joy!”</i>");
+
+	if(bimbo) output("\n\n<i>“I bet you do, honey,”</i> you sigh, looking wistfully at the monster cock you’re plunging into her ravenous pussy.");
+	else if(bro) output("\n\n<i>“Fuckin’ a right,”</i> you grunt.");
+	else if(pc.isNice()) output("\n\n<i>“Hope it’s not pinching too much,”</i> you say solicitously - though you’re still half-annoyed at the ungrateful breeding bitch.");
+	else if(pc.isMischievous()) output("\n\n<i>“Why? Your municipal bonds finally mature?”</i> you grunt, pummeling the korgonne’s womb with your dildo.");
+	else output("\n\n<i>“Keep quiet,”</i> you grunt, <i>“or I’ll shrink it back down.”</i>");
+	output(" The korgonne doesn’t acknowledge you... unless you count lowering her chest and raising her ass another inch, trying to milk more nerve connections from the swollen cock. Her breasts are bulging against their feeble leather bindings, now, and squashed to the point that that they’re visible around the edges of her stocky chest.");
+
+	output("\n\n<i>“Joy... j... fuck...”</i> stammers the woman. Her voice breaks into a cute grunt whenever you piston her pelvis with your faux-cock, becoming more and more a stream of gibberish than coherent speech. The uniform thickness of the cock is playing hell with her pussy - the nerves built to be pressed by a korgonne knot are not only being pressed, but dragged, rubbed, and smeared every which way as the un-tapered prick slides through her. The dog-girl’s eyes roll, and her tongue lolls further from her mouth with every thrust, until it’s a foot-long ribbon of limp, blue putty sculpting meaninglessly-abstract shapes against the white snow background.");
+
+	//if has cock (i.e. if entered via ‘cock too small’ criteria) and is not taur, stick a cock in her hairy asshole
+	if(buttfux) 
+	{
+		output("\n\nThe dumbstruck ecstasy of the busty bitch underneath you is a gratifying sight, especially after her mockery - but still, it’s a damn shame that <i>she’s</i> the one getting off most. Your [pc.cockSmallest] throbs in your underwear with every dose of nerve impulse the undies transmit, pinched against the back of the strap-on and ");
+		if(pc.cumQ() < 500) output("drooling");
+		else output("gushing");
+		output(" with pre. The woman’s plump ass taunts you, swaying from side to side and jiggling in your hands; a small, dark blue pucker peeks from between her cheeks every time you slam into her, just below her jaunty spitz tail. The longer you stare at it, the more your desire crystallizes... finally, unable to endure any more, you pull out of the korgonne and come to a rest.");
+		output("\n\n<i>“Why stop?”</i> grunts the savage, mazy with endorphins. <i>“Want finish...”</i>");
+		output("\n\nYou ignore her whining and reach into your [pc.lowerUndergarment], fishing for your maligned [pc.cockNounSimple " + pc.smallestCockIndex() + "]. When you feel the [pc.cockHead " + pc.smallestCockIndex() + "] in your hand, you pull it free and let it hang over the waistband of your underwear, bobbing merrily above the holographic hard-on. The korgonne shifts uneasily in your hands, and you squeeze harder to quiet her, which makes her purr unbecomingly once more. Lining up with her asshole, you draw back and thrust in again, spearing her gaping pussy on the strap-on and her asshole on your pre-drooling prick.");
+		output("\n\nThe new pressure straightens the korgonne’s back immediately. ");
+		if(pc.felineScore() >= 4) output("<i>“Ooh... cat aim bad like usual... wrong hole,”</i>");
+		else output("<i>“Stranger fuck like cat... wrong hole,”</i>");
+		output(" she snarks. Despite her sass, she pushes back against you eagerly, and her tight pucker wraps around your prick like melting velvet as you resume thrusting once again.");
+	}
+	output("\n\nSawing into the lusty savage, you make sure each stroke goes as deeply as possible to maximize the drag on her ultra-sensitized ring of nerves. The korgonne, for her part, tries to resist you, clamping down on your holo with her vaginal muscles, but she’s defeated by her own libido - her pussy gushes lubrication, thoroughly dousing your underwear with an intoxicating mint aroma. The pheromones begin to make you light-headed; your strokes feel far away and the korgonne’s plush ass jiggles hypnotically, to the point that ");
+	if(buttfux) output("if your cock weren’t about to pop from the pleasure of her tight asshole ");
+	output("you’d keep fucking her forever just to watch that hypnotic shake.");
+
+	output("\n\nThe korgonne, however, has no such endurance in her. A howl erupts from the lusty bitch as she climaxes, and she pushes hard off of the ground, trying to hilt herself on the dildo so forcefully that she almost knocks you down. You can feel vise-like muscles tightening and pulling on the hardlight; the projector’s hum deepens and your underwear are ");
+	if(silly) output("wedgied right into your buttcrack");
+	else output("tugged forward insistently");
+	output(" as her pussy tries to drink cum that’s not coming.");
+
+	//if has cock
+	if(buttfux) 
+	{
+		output("\n\nHer asshole is spasming too, writhing and washing over your cock with folds of warm flesh like a storming ocean. All the cum her pussy isn’t getting spurts from you, ");
+		if(pc.cumQ() < 15) output("drooling into her pucker a few drops at a time, pinched off by her tense squeezing and barely able to escape.");
+		else output("backing up against her tight-squeezed pucker, pinched off inside your urethra until the pressure of your load is too much to contain. An extra-large, stored-up load of [pc.cum] forces its way down your cock, squeezing through the korgonne’s gate to burst inside her.");
+		if(pc.cumQ() >= 15000) output(" The puppy-slut’s back arches as you dump spurt after spurt, distending her fuzzy belly until it pushes against the bottoms of her heavy breasts and pops them right out of the top of their flimsy restraints.");
+		//end ‘has cock’ insert
+	}
+	else
+	{
+		output("\n\nYou try to ignore the incredible pleasure coursing through your body, passed on by the phantom phallus, but there's too much. The dog-slut's pussy feels too tight. The fake cock feels too good - better than it has any reason to. You take a moment to mentally compliment the scientists who built this thing, and then forget all about it once your [pc.hips] start bucking with orgasmic bliss. Pleasure bursts up through your spinal cord and into your brain, distracting your conscious mind with a wall of heavenly ecstasy. Meanwhile, your body fucks the slobbery strumpet like a jackhammer, pounding your way through an orgasm, one alien-plowing thrust at a time.");
+	}
+	output("\n\nWith a single button press, you disperse the hardlight projection and the korgonne ");
+	if(buttfux) output("slides off your dick and ");
+	output("falls flat on the ground.");
+
+	output("\n\n<i>“What... knot gone... seed leak...”</i> she mumbles, half-asleep from her mind-melting orgasm. You collect your things and leave her there");
+	if(buttfux) output(", drooling [pc.cumNoun] from her asshole all over her thighs");
+	output(".");
+
+	//pass time, if has cock and is not taur then do pc orgasm, else raise lust
+	processTime(40);
+	pc.orgasm();
+	output("\n\n");
+	CombatManager.genericVictory();
 }
