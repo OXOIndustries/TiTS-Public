@@ -922,11 +922,11 @@ package classes.GameData.Pregnancy
 						var cFQN:String = getQualifiedClassName(c[i]);
 						if (_uniqueTypes.hasOwnProperty(cFQN))
 						{
-							_uniqueTypes[cFQN].push(c);
+							_uniqueTypes[cFQN].push(c[i]);
 						}
 						else
 						{
-							_uniqueTypes[cFQN] = [c];
+							_uniqueTypes[cFQN] = [c[i]];
 						}
 					}
 				}
