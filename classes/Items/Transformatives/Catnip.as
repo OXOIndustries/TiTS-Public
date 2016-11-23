@@ -245,9 +245,9 @@ package classes.Items.Transformatives
 			
 			// should get rid of facial hair also
 			if (target.thickness > 20 && target.thicknessUnlocked(target.thickness - 10)) changes++;
-			if (target.femininity < target.femininityMax() && target.femininityUnlocked(target.femininity + 1)) changes++;
+			if (Math.round(target.femininity) != 50 && target.femininityUnlocked(Math.round(target.femininity) + (target.femininity > 50 ? -1 : 1))) changes++;
 			
-			if (target.femininity >= target.femininityMax() && !target.hasPerk("Androgyny")) changes++;
+			if (Math.round(target.femininity) == 50 && !target.hasPerk("Androgyny")) changes++;
 			
 			var buttLimit:Number = 2;
 			if (target.hasVagina()) buttLimit = 4;
@@ -308,7 +308,7 @@ package classes.Items.Transformatives
 			
 			if (modFem(target, 100, 15, false))
 			{
-				output("\n\nYou feel a slight change in your facial structure. When they finish, <b>you feel less masculine</b>!");
+				output("\n\nYou feel a slight change in your facial structure. When they finish, <b>your gender traits are less pronounced</b>!");
 				changes++;
 			}
 			
@@ -318,11 +318,12 @@ package classes.Items.Transformatives
 				output("\n\nYou feel your [pc.lips] pucker reflexively, relaxing only to feel thinner and less pouty than before. <b>Your lips are less pronounced.</b>");
 				changes++;
 				target.lipMod--;
+				if (target.lipRating() > 2 && target.lipModUnlocked(target.lipMod - 1)) target.lipMod--;
 			}
 			
 			// hit cap and still going up! changed this one to work differently from CoC, it unties face description from femininity stat, so you can use femininity to change gender aligment without having feminine face - you can't really recognize gender from animalistic muzzle!
-			if (target.femininity >= target.femininityMax() && target.lipRating() <= 0 && !target.hasPerk("Androgyny")) {
-				output("\n\nYour [pc.face] is now very confusing - it has imponderable tint of femininity, while lacking distinct feminine features. You suspect you could make your apparent gender even more ambiguous.");
+			if (Math.round(target.femininity) == 50 && target.lipRating() <= 0 && !target.hasPerk("Androgyny")) {
+				output("\n\nYour [pc.face] is now very confusing — it would work on either a male or a female. And, according to your Codex, your microsurgeons are now attuned to keep it so.");
 				target.createPerk("Androgyny", 0, 0, 0, 0, "Your face is always androgynous.");
 				output("\n\n(<b>Perk Gained: Androgyny</b>)");
 			}
