@@ -2,7 +2,6 @@ package classes.GameData
 {
 	import classes.GameData.Pregnancy.Child;
 	import classes.GameData.Pregnancy.Containers.Genders;
-	import classes.Items.Guns.EmmysSalamanderPistol;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.Pregnancy.ChildCache;
 	import classes.GameData.Pregnancy.UniqueChild;

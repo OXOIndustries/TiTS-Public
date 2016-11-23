@@ -1173,7 +1173,7 @@ public function jadeMuffStuffedDumplingsOffer():void
 	clearOutput();
 	showJade(true);
 	author("Altair Hayes");
-	output("You walk into Fur Effect, only to find the whole place empty save for a one of Jade's legs, which promptly disappears into the employee room, chased by tittering laughter.");
+	output("You walk into Fur Effect, only to find the whole place empty save for a one of Jade’s legs, which promptly disappears into the employee room, chased by tittering laughter.");
 	output("You follow after to find the plush panda sitting atop a countertop, facing away from you. She giggles again at the sound of your approach.");
 	output("\n\n<i>“Hey [pc.name], I see you finally came for the dumplings,”</i> she then turns towards you, revealing her belly to look a few months pregnant. She starts to bite her lower lip, then shakes her head and straightens, looking you straight in the eye. <i>“Don’t be shy, they’re right here! I’m keeping them warm.”</i>");
 	output("\n\nYou walk towards her, suspicion slowly giving way to realization of what she’s done. When she sees your shift in expression slowly spreads her legs, clearly anxious about your reaction... up until a dumpling slips out of her plump panda pussy onto the counter, slick with her juices. At that, her legs fall completely open, revealing a well-stuffed and dribbling cunt.");
@@ -1182,7 +1182,7 @@ public function jadeMuffStuffedDumplingsOffer():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"DigIn",eatMuffDumplings,undefined,"DigIn","She made these just for you, might as well eat a few... or a lot.");
-	if(flags["JADE_MUFFLINGS"] == undefined) addButton(1,"YouJustAte",youJustAteJadesMuffInsWhatever,undefined,"YouJustAte","Politely pass up the free meal, claiming you’ve just ate. <b>You doubt she'll ever offer again if you refuse.");
+	if(flags["JADE_MUFFLINGS"] == undefined) addButton(1,"YouJustAte",youJustAteJadesMuffInsWhatever,undefined,"YouJustAte","Politely pass up the free meal, claiming you’ve just ate. <b>You doubt she’ll ever offer again if you refuse.");
 	else addButton(1,"YouJustAte",youJustAteJadesMuffInsWhatever,undefined,"YouJustAte","Politely pass up the free meal, claiming you’ve just ate. Maybe next time...");
 }
 
@@ -1196,7 +1196,7 @@ public function youJustAteJadesMuffInsWhatever():void
 	{
 		flags["JADE_MUFFLINGS"] = -1;
 		output("<i>“Sorry Jade, I uh, just ate. Was just stopping by to say hi,”</i> you explain.");
-		output("\n\nJade hangs her head and sighs heavily. After a pregnant pause, the dumpling-stuffed panda pushes her hair out of her eyes and doggedly straightens. <i>“That's okay, I guess.”</i> She takes the cunt liquor-coated dumpling off the counter and tosses it in the trash. <i>“You're missing out, though. They're pretty damned good.”</i> Smirking now, she tosses her head in the direction of the door. <i>“Go on now. If you aren't going to order from the menu, you're not allowed in the restaurant. Chef's orders.”</i>");
+		output("\n\nJade hangs her head and sighs heavily. After a pregnant pause, the dumpling-stuffed panda pushes her hair out of her eyes and doggedly straightens. <i>“That’s okay, I guess.”</i> She takes the cunt liquor-coated dumpling off the counter and tosses it in the trash. <i>“You’re missing out, though. They’re pretty damned good.”</i> Smirking now, she tosses her head in the direction of the door. <i>“Go on now. If you aren’t going to order from the menu, you’re not allowed in the restaurant. Chef’s orders.”</i>");
 		output("\n\nYou get out while the getting is good.");
 	}
 	else

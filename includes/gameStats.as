@@ -928,7 +928,7 @@ public function statisticsScreen(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
 					output2("\n<b>* Fathered, Raskvel @ Daycare:</b> " + StatTracking.getStat("pregnancy/raskvel sired/day care"));
 				if(StatTracking.getStat("pregnancy/zil call girl kids") > 0)
-					output2("\n<b>* Fathered, Zil Call Girl Children:</b> " + StatTracking.getStat("pregnancy/zil call girl kids"));
+					output2("\n<b>* Fathered, " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Zil Call Girl" : "Zheniya") + " Children:</b> " + StatTracking.getStat("pregnancy/zil call girl kids"));
 			}
 			if(totalProduce)
 			{
@@ -2673,19 +2673,19 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2(" Responded, Cleared Deck 92, Rescue time expired, Peter died");
 				if(flags["SAENDRA_XPACK1_CREDITOFFER"] == 2) output2(", Paid for the <i>Phoenix</i>, Completed");
-				if(flags["ZIL_CALLGIRL_SEXED"] != undefined && flags["ZIL_CALLGIRL_SEXED"] > 0) output2("\n<b>* Call Girl, Times Sexed:</b> " + zilCallGirlSexed());
+				if(flags["ZIL_CALLGIRL_SEXED"] != undefined && flags["ZIL_CALLGIRL_SEXED"] > 0) output2("\n<b>* " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya") + ", Times Sexed:</b> " + zilCallGirlSexed());
 			}
 			
 			if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined)
 			{
-				output2("\n<b>* Call Girl:</b> Met her");
+				output2("\n<b>* " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya") + ":</b> Met her");
 				if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] >= 2) output2(", Paid her for sex");
 			}
 			if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] != undefined)
 			{
 				output2("\n<b>* Pirate, Merc Guard:</b>");
 				if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] == 0) output2(" Active");
-				if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] == 1) output2(" Defeated him using call girl");
+				if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] == 1) output2(" Defeated him using " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "call girl" : "Zheniya"));
 				if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] == 2) output2(" Defeated him using Saendra’s tits!");
 				if(flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] == 3) output2(" Defeated him in combat");
 			}
@@ -2693,7 +2693,7 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2("\n<b>* Pirate, Techie Guard:</b>");
 				if(flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 0) output2(" Active");
-				if(flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 1) output2(" Defeated her using call girl");
+				if(flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 1) output2(" Defeated her using " + (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "call girl" : "Zheniya"));
 				if(flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 2) output2(" Defeated her using holo burn");
 				if(flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 3) output2(" Defeated her in combat");
 				if(flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 4) output2(" Lost against her in combat");
@@ -3123,6 +3123,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined) output2("\n<b>* Jade, Times Sexed:</b> " + flags["GOTTEN_INTIMATE_WITH_JADE"]);
 				if(flags["TITFUCKED_JADE"] != undefined) output2("\n<b>* Jade, Times Titfucked:</b> " + flags["TITFUCKED_JADE"]);
 				if(flags["TIMES_SAT_ON_JADES_FACE"] != undefined) output2("\n<b>* Jade, Times Sat on Her Face:</b> " + flags["TIMES_SAT_ON_JADES_FACE"]);
+				if(flags["JADE_MUFFLINGS"] != undefined) output2("\n<b>* Jade, Times Ate Her Dumplings:</b> " + (flags["JADE_MUFFLINGS"] == -1 ? "<i>Refused to eat from her</i>" : flags["JADE_MUFFLINGS"]));
 				variousCount++;
 			}
 			// Inessassassa
