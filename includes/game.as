@@ -2749,7 +2749,7 @@ public function racialPerkUpdateCheck():void
 			pc.removeStatusEffect("Arm Flower");
 		}
 	}
-	else if(pc.armType != GLOBAL.TYPE_FLOWER)
+	else if(pc.armType != GLOBAL.TYPE_FLOWER && pc.hasStatusEffect("Arm Flower"))
 	{
 		pc.removeStatusEffect("Arm Flower");
 	}
