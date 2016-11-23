@@ -1537,7 +1537,7 @@ public function zilCallGirlGo(hasSeen:Boolean = false):void
 		flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = undefined;
 		output("<i>“[pc.name]!”</i> a jubilant, if tired, voice calls from inside as you enter Zheniya’s home. You peek your head into the bedroom, and are greeted by the familiar sight of your zil lover sitting naked on her bed, now dramatically less gravid... though, you note happily, her breasts, hips, and ass all look delightfully thicker than when you first met her.");
 
-		var ZC:ZilCallgirlUniqueChild = ChildManager.youngestOfUniqueType(ZilCallgirlUniqueChild);
+		var ZC:UniqueChild = ChildManager.youngestOfUniqueType(ZilCallgirlUniqueChild);
 
 		output("\n\nZheniya rests back on her arms, smiling at you with those plush black lips of hers. <i>“Thank you again, for everything, love. I’ve left our new "+ZC.describeCollection("son", "daughter", "children") +" at your nursery, as you asked.");
 		if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == 1) output(" The woman working there, Briget, was quite lovely.");
@@ -2238,7 +2238,7 @@ public function zheniyaInAppt():void
 		flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = undefined;
 		output("<i>“[pc.name]!”</i> a jubilant, if tired, voice calls from inside as you enter Zheniya’s home. You peek your head into the bedroom, and are greeted by the familiar sight of your zil lover sitting naked on her bed, now dramatically less gravid... though, you note happily, her breasts, hips, and ass all look delightfully thicker than when you first met her.");
 
-		var ZC:ZilCallgirlUniqueChild = ChildManager.youngestOfUniqueType(ZilCallgirlUniqueChild);
+		var ZC:UniqueChild = ChildManager.youngestOfUniqueType(ZilCallgirlUniqueChild);
 
 		output("\n\nZheniya rests back on her arms, smiling at you with those plush black lips of hers. <i>“Thank you again, for everything, love. I’ve left our new "+ZC.describeCollection("son", "daughter", "children") +" at your nursery, as you asked.");
 		if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == 1) output(" The woman working there, Briget, was quite lovely.");
@@ -2405,6 +2405,7 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 	}
 	// Add child to nursery data
 	ChildManager.addChild(_tempZilGirlChildRef);
+	StatTracking.track("pregnancy/total day care", flags["ZIL_CALLGIRL_EGG_COUNT"]);
 	
 	StatTracking.track("pregnancy/zil call girl kids", flags["ZIL_CALLGIRL_EGG_COUNT"]);
 	
@@ -2418,6 +2419,7 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 	
 	MailManager.clearEntry("zil_callgirl_birth"); // Removes cached text but also sets timestamps to default
 	MailManager.unlockEntry("zil_callgirl_birth", GetGameTimestamp() + deltaT); // Regenerates cache and sets new appropriate timestamp
+	AddLogEvent("<b>New Email from Nurse Amanda Carter (A_Carter@TavrosMedical.net)!</b>", "words");
 }
 
 public function zilCallgirlPregnantAgain():void
