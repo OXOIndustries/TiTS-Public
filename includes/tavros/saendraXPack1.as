@@ -2379,12 +2379,12 @@ public function zilCallGirlBirthMessage():String
 {
 	var cs:String;
 
-	if (_tempZilGirlChildRef == null || (_tempZilGirlChildRef.NumMale == 1 && _tempZilGirlChildRef.NumFemale == 0)) cs = "Our staff has taken her in and delivered a health son. She and your child";
-	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 0) cs = "Our staff has taken her in and delivered a health daughter. She and your child";
-	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 1) cs = "Our staff has taken her in and delivered a health son and daughter. She and your children";
-	else cs = "Our staff has taken her in and delivered "+num2Text(_tempZilGirlChildRef.Quantity) + " children. She and your offspring";
+	if (_tempZilGirlChildRef == null || (_tempZilGirlChildRef.NumMale == 1 && _tempZilGirlChildRef.NumFemale == 0)) cs = "Our staff has taken her in and delivered a healthy son. She and your child";
+	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 0) cs = "Our staff has taken her in and delivered a healthy daughter. She and your child";
+	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 1) cs = "Our staff has taken her in and delivered a healthy son and daughter. She and your children";
+	else cs = "Our staff has taken her in and delivered " + num2Text(_tempZilGirlChildRef.Quantity) + " healthy children. She and your offspring";
 
-	var m:String = "Hello, "+pc.mf("Mr", "Miss") +". Steele, I’m writing on behalf of Zheniya to inform you that your partner arrived at the Tavros Residential Clinic a few moments ago, having gone into labor. "+cs+" should be free to return home within the next few hours.\n\nCongratulations!\n\nNurse Carter\nTavros Residential Clinic, Deck 45\n<i>Healthier living for tomorrow.</i>";
+	var m:String = "Hello, " + pc.mf("Mr", "Miss") + ". Steele, I’m writing on behalf of Zheniya to inform you that your partner arrived at the Tavros Residential Clinic a few moments ago, having gone into labor. " + cs + " should be free to return home within the next few hours.\n\nCongratulations!\n\nNurse Carter\nTavros Residential Clinic, Deck 45\n<i>Healthier living for tomorrow.</i>";
 
 	return m;
 
@@ -2403,9 +2403,10 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 		if (rand(2) == 0) _tempZilGirlChildRef.NumMale++;
 		else _tempZilGirlChildRef.NumFemale++;
 	}
-
+	//ChildManager.addChild(_tempZilGirlChildRef); Add child?
+	
 	StatTracking.track("pregnancy/zil call girl kids", flags["ZIL_CALLGIRL_EGG_COUNT"]);
-
+	
 	flags["ZIL_CALLGIRL_PREGMAIL"] = undefined;
 	flags["ZIL_CALLGIRL_EGG_COUNT"] = undefined;
 	flags["ZIL_CALLGIRL_GESTATION"] = undefined;
@@ -2414,7 +2415,7 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 	flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = 1;
 	if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == undefined) flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] = 1;
 	else flags["ZIL_CALLGIRL_TOTAL_BIRTHS"]++;
-
+	
 	MailManager.clearEntry("zil_callgirl_birth"); // Removes cached text but also sets timestamps to default
 	MailManager.unlockEntry("zil_callgirl_birth", GetGameTimestamp() + deltaT); // Regenerates cache and sets new appropriate timestamp
 }

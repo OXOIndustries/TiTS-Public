@@ -952,7 +952,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 		parentName = parentList[p];
 		var babies:Array = listBabiesOfParent(parentName);
 		
-		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName.toLowerCase())) + "</b></u>");
+		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : parentName) + "</b></u>");
 		if(StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") > 0) output(" - Total: " + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids"));
 		if(babies.length > 0)
 		{
@@ -974,22 +974,32 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				if(baby.featherColor == null) baby.featherColor = "NOT SET";
 				
 				// Print stats
-				output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				if(baby.Quantity == 1) output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				else output("\n<b>* " + StringUtil.toDisplayCase(num2Text(baby.Quantity)) + " Children:</b> ");
 				if(baby.Days >= 6570) output("18+ years");
 				else if(baby.Days >= 365) output(baby.Years + " year" + (baby.Years == 1 ? "" : "s"));
 				else if(baby.Days >= 30) output(baby.Months + " month" + (baby.Months == 1 ? "" : "s"));
 				else output("Newborn");
 				//output(" (Born: " + minutesToDate(baby.BornTimestamp) + ")");
 				//output(", " + formatFloat(baby.MaturationRate * 100) + " % growth rate");
-				output(", ");
-				output((baby.originalRace == "NOT SET" ? GLOBAL.TYPE_NAMES[baby.RaceType] : StringUtil.toDisplayCase(baby.originalRace)));
-				output(", ");
-				if(baby.NumNeuter > 0 || baby.NumFemale > 0 || baby.NumMale > 0 || baby.NumIntersex > 0)
+				output(",");
+				output(" " + (baby.originalRace == "NOT SET" ? GLOBAL.TYPE_NAMES[baby.RaceType] : StringUtil.toDisplayCase(baby.originalRace)));
+				output(",");
+				if(baby.Quantity == 1)
 				{
-					if(baby.NumNeuter > 0) output("Sexless");
-					if(baby.NumFemale > 0) output("Female");
-					if(baby.NumMale > 0) output("Male");
-					if(baby.NumIntersex > 0) output("Hermaphrodite");
+					if(baby.NumNeuter > 0) output(" Sexless");
+					if(baby.NumFemale > 0) output(" Female");
+					if(baby.NumMale > 0) output(" Male");
+					if(baby.NumIntersex > 0) output(" Hermaphrodite");
+				}
+				else if(baby.Quantity > 1)
+				{
+					var sexes:Array = [];
+					if(baby.NumMale > 0) sexes.push(" " + baby.NumMale + " son" + (baby.NumMale == 1 ? "" : "s"));
+					if(baby.NumFemale > 0) sexes.push(" " + baby.NumFemale + " daughter" + (baby.NumFemale == 1 ? "" : "s"));
+					if(baby.NumIntersex > 0) sexes.push(" " + baby.NumIntersex + " mixed-gender");
+					if(baby.NumNeuter > 0) sexes.push(" " + baby.NumNeuter + " ungendered");
+					if(sexes.length > 0) output(" " + CompressToList(sexes));
 				}
 				else output("<i>Unknown Sex</i>");
 				

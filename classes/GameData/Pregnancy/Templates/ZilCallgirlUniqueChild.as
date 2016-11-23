@@ -12,17 +12,17 @@ package classes.GameData.Pregnancy.Templates
 		public function ZilCallgirlUniqueChild()
 		{
 			Name = "";
-			UniqueParent = "ZilCallgirl";
+			UniqueParent = "Zheniya";
 			
 			originalRace = "zil";
-			skinTone = "fair";
-			lipColor = "red";
-			nippleColor = "light pink";
-			eyeColor = "brown";
-			hairColor = "hazel";
-			furColor = "NOT SET";
+			skinTone = "gold";
+			lipColor = "black";
+			nippleColor = "black";
+			eyeColor = "black";
+			hairColor = RandomInCollection(["black", "black", "yellow", "yellow and black striped"]);
+			furColor = "yellow";
 			scaleColor = "NOT SET";
-			chitinColor = "NOT SET";
+			chitinColor = "black";
 			featherColor = "NOT SET";
 		}
 	}
