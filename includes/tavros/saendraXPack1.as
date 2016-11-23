@@ -1221,7 +1221,7 @@ public function zilCallGirlAddendum(slot:int = 0):void
 		else
 		{
 			output("\n\nYou recognize one of the rooms as being where the local call girl lives. You can always give a knock if you feel the need to release some sexual tension.");
-			addButton(slot, "Call Girl", zilCallGirlGo, true, "Call Girl", "Visit Anon’s resident insectile call girl.");
+			addButton(slot, (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya"), zilCallGirlGo, true, (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya"), "Visit Anon’s resident insectile call girl.");
 		}
 	}
 	return;
@@ -2360,7 +2360,7 @@ public function processZheniyaEvents(deltaT:uint, doOut:Boolean, totalDays:int):
 	}
 	else if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 4)
 	{
-		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 60) < (GetGameTimestamp() + deltaT) && flags["ZIL_CALLGIRL_PREGMAIL"] == undefined)
+		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 60) < (GetGameTimestamp() + deltaT) && flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] == undefined)
 		{
 			zilCallGirlPregnancyEnds(deltaT);
 		}
@@ -2403,11 +2403,11 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 		if (rand(2) == 0) _tempZilGirlChildRef.NumMale++;
 		else _tempZilGirlChildRef.NumFemale++;
 	}
-	//ChildManager.addChild(_tempZilGirlChildRef); Add child?
+	// Add child to nursery data
+	ChildManager.addChild(_tempZilGirlChildRef);
 	
 	StatTracking.track("pregnancy/zil call girl kids", flags["ZIL_CALLGIRL_EGG_COUNT"]);
 	
-	flags["ZIL_CALLGIRL_PREGMAIL"] = undefined;
 	flags["ZIL_CALLGIRL_EGG_COUNT"] = undefined;
 	flags["ZIL_CALLGIRL_GESTATION"] = undefined;
 	flags["ZIL_CALLGIRL_PREG"] = undefined;
