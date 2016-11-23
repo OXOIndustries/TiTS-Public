@@ -486,7 +486,7 @@ public function approachCuntSnake(response:String = "intro"):void
 {
 	clearOutput();
 	showCuntSnake();
-	author("IVIysteriousPerson");
+	author("MistyBirb");
 	clearMenu();
 	
 	switch(response)

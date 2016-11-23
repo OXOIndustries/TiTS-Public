@@ -2011,7 +2011,7 @@ public function setBabyValuesOptions(response:String = "intro"):void
 {
 	clearOutput();
 	creationHeader("CODEX\nALERT");
-	author("IVIysteriousPerson");
+	author("MistyBirb");
 	clearMenu();
 	
 	var i:int = 0;

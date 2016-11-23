@@ -97,34 +97,34 @@ public function nurseryZilCallgirlRandomEvents():Boolean
 
 		var numZilCInfants:Genders = ChildManager.gendersOfUniqueTypeInRange(ZilCallgirlUniqueChild, 0, 12);
 
-		options.push("You catch a glimpse of Zheniya, wearing a slinkier version of the Steele Tech uniform top paired with a frilled skirt that leaves her waspy abdomen and long legs bare. She's quietly working away at scrubbing down the walls"+ (flags["ANNO_MISSION_OFFER"] == 3 ? " with a small, silvery-grey goo that covers her arm like a glove": "") + ". Seeing you watching, she gives her rump a little wiggle for you, working with a sultry spring in her step.");
+		options.push("You catch a glimpse of Zheniya, wearing a slinkier version of the Steele Tech uniform top paired with a frilled skirt that leaves her waspy abdomen and long legs bare. She’s quietly working away at scrubbing down the walls"+ (flags["ANNO_MISSION_OFFER"] == 3 ? " with a small, silvery-grey goo that covers her arm like a glove": "") + ". Seeing you watching, she gives her rump a little wiggle for you, working with a sultry spring in her step.");
 
 		// At least one infant
 		if (numZilCInfants.total >= 1)
 		{
-			options.push("You spy Zheniya sitting quietly in the corner, cradling" + (numZilCInfants.total > 1 ? " one of" : "") + " her child"+ (numZilCInfants.total > 1 ? "ren" : "") +" in her arms with her dress slipped down off one shoulder. Your half-zil child is nuzzled into "+numZilCInfants.mf("his", "her")+" mother's breast, hands wrapped tightly around the hefty mound and lips locked onto the black teat. Zheniya is leaning back, eyes half-lidded, stroking her child's wispy dark hair. She sees you and smiles, blowing a kiss your way.");
+			options.push("You spy Zheniya sitting quietly in the corner, cradling" + (numZilCInfants.total > 1 ? " one of" : "") + " her child"+ (numZilCInfants.total > 1 ? "ren" : "") +" in her arms with her dress slipped down off one shoulder. Your half-zil child is nuzzled into "+numZilCInfants.mf("his", "her")+" mother’s breast, hands wrapped tightly around the hefty mound and lips locked onto the black teat. Zheniya is leaning back, eyes half-lidded, stroking her child’s wispy dark hair. She sees you and smiles, blowing a kiss your way.");
 		}
 
 		if (numZilCInfants.total >= 3)
 		{
-			options.push("Zheniya is sitting on the floor nearby, giggling and smiling as several adorable half-zil crawl all over her. She hugs them each in turn, kissing their brows or throwing them up in the air, "+ (numZilCInfants.Female >= 1 ? "letting their little wings float them back into her arms":"catching them with a gleeful spin") +". She seems perfectly at home, surrounded by her children." + (ChildManager.numChildren() > numZilCInfants.total ? " And even some that aren't hers, you see." : ""));
+			options.push("Zheniya is sitting on the floor nearby, giggling and smiling as several adorable half-zil crawl all over her. She hugs them each in turn, kissing their brows or throwing them up in the air, "+ (numZilCInfants.Female >= 1 ? "letting their little wings float them back into her arms":"catching them with a gleeful spin") +". She seems perfectly at home, surrounded by her children." + (ChildManager.numChildren() > numZilCInfants.total ? " And even some that aren’t hers, you see." : ""));
 		}
 
 		var numTeens:Genders = ChildManager.numOfMobileGendersInRange(ChildManager.ALL_GENDERS, 14);
 
 		if (numTeens.total > 0 && !zilCallGirlPregnant())
 		{
-			options.push("You hear Zheniya before you see her, buzzing and breathing hard. You turn around just in time to see her back-peddling around a corner, a boffer spear clutched in one hand, one of your children following close on her heels, aggressively lunging and thrusting. The former warrior blocks every strike, turning away blow after blow until her young opponent is covered with a sheen of sweat and starting to fumble. One precise counter-strike disarms "+ numTeens.mf("him", "her") +", and your zil lover catches the extra spear in her off-hand, spinning both under her arms.\n\n<i>“You fight well!”</i> she smiles. Turning to you, she adds, <i>“It seems martial prowess runs in the family, [pc.name]. It feels good to get a little wholesome exercise.”</i>\n\n<i>“Yeah, that was fun!”</i> her sparring partner grins, trying not to look too winded while you're still looking.");
+			options.push("You hear Zheniya before you see her, buzzing and breathing hard. You turn around just in time to see her back-peddling around a corner, a boffer spear clutched in one hand, one of your children following close on her heels, aggressively lunging and thrusting. The former warrior blocks every strike, turning away blow after blow until her young opponent is covered with a sheen of sweat and starting to fumble. One precise counter-strike disarms "+ numTeens.mf("him", "her") +", and your zil lover catches the extra spear in her off-hand, spinning both under her arms.\n\n<i>“You fight well!”</i> she smiles. Turning to you, she adds, <i>“It seems martial prowess runs in the family, [pc.name]. It feels good to get a little wholesome exercise.”</i>\n\n<i>“Yeah, that was fun!”</i> her sparring partner grins, trying not to look too winded while you’re still looking.");
 		}
 
 		if (zilCallGirlPregnant())
 		{
-			options.push("Zheniya is sitting nearby, both hands on her "+zilCallGirlBellyFragment()+". Briget is standing over her, fussing over the pregnant zil: insisting she improve her diet, exercise but not over-strain herself... the usual spiel from the robotic matron. Zheniya nods agreeably with every point, though she's clearly more interested in Briget's massive bosom, which quivers under her jacket with every over-acted motion.");
+			options.push("Zheniya is sitting nearby, both hands on her "+zilCallGirlBellyFragment()+". Briget is standing over her, fussing over the pregnant zil: insisting she improve her diet, exercise but not over-strain herself... the usual spiel from the robotic matron. Zheniya nods agreeably with every point, though she’s clearly more interested in Briget’s massive bosom, which quivers under her jacket with every over-acted motion.");
 		}
 
 		if (zilCallGirlPregnant() || numZilCInfants.total > 0)
 		{
-			options.push("Zheniya walks past you with a spring in her step. You catch her with a brief hug, and note that she's looking quite... slim today. At least, her normally bodacious bosom looks a little smaller. She chuckles and indicates the small box she's carrying under an arm: full of honey vials, fresh from the milker station upstairs.\n\n<i>“I could get used to that kind of treatment,”</i> she smiles. <i>“The machine may not be gentle... but it is </i>wonderfully<i> vigorous.”</i>");
+			options.push("Zheniya walks past you with a spring in her step. You catch her with a brief hug, and note that she’s looking quite... slim today. At least, her normally bodacious bosom looks a little smaller. She chuckles and indicates the small box she’s carrying under an arm: full of honey vials, fresh from the milker station upstairs.\n\n<i>“I could get used to that kind of treatment,”</i> she smiles. <i>“The machine may not be gentle... but it is </i>wonderfully<i> vigorous.”</i>");
 		}
 
 		output("\n\n" + RandomInCollection(options));
@@ -164,8 +164,7 @@ public function nurseryCafeteriaFunc():Boolean
 public function nurseryG14Func():Boolean
 {
 	output("You’re standing in a long, pastel-blue corridor connecting the foyer to the children’s wing of the nursery.");
-	// 9999 - pending roaming-only check
-	var numKids:int = ChildManager.numInAgeRangeYears(2, 8);
+	var numKids:int = ChildManager.numOfMobileGendersInRange(2, 8).total;
 	if (numKids >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
 	else if (numKids >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
 
@@ -178,8 +177,7 @@ public function nurseryEducationCenterFunc():Boolean
 {
 	if (hours >= 7 && hours <= 16)
 	{
-		// 9999 - pending roaming-only check
-		if (ChildManager.inAgeRangeYears(3, 16))
+		if (ChildManager.mobileInAgeRangeYears(3, 16))
 		{
 			output("\n\nThe schoolrooms are up and operational now that you’ve started to deposit your offspring here. Steele Tech keeps several teachers on retainer here, and those who aren’t actively busy overseeing your children’s’ education are working away on future course material and lesson plans.");
 		}
@@ -220,14 +218,14 @@ public function nurserySpecialistRooms():Boolean
 	{
 		var numSnake:int = ChildManager.numOfType(GLOBAL.TYPE_CUNTSNAKE);
 		
-		output("\n\nA modular chamber simulating tropical rainforest weather is filled with various flora from Mhen'ga. There, it houses a hatchery and living environment perfectly suited for any cunt snakes you may have.");
+		output("\n\nA modular chamber simulating tropical rainforest weather is filled with various flora from Mhen’ga. There, it houses a hatchery and living environment perfectly suited for any cunt snakes you may have.");
 		addButton(numSpecialsButtons++, "C.Snake", cuntsnakeHatchery, numSnake, "Cunt Snake Chamber", "Check on any cunt snakes or cunt snake eggs you may have.");
 		numSpecials++;
 	}
 
 	if (ChildManager.ofType(GLOBAL.TYPE_VENUSPITCHER))
 	{
-		output("\n\nOne of the modular chambers has been opened up and filled with soil sourced directly from Mhen'ga, allowing for the absolute best growing conditions possible for your venus pitcher offspring. Somehow, Briget has managed to secure a naleen female onto the staff, who is currently slithering about the jungle-like environ making sure everything is picture-perfect - and guaranteeing that your planty offpsring will have someone native to play with as they develop.");
+		output("\n\nOne of the modular chambers has been opened up and filled with soil sourced directly from Mhen’ga, allowing for the absolute best growing conditions possible for your venus pitcher offspring. Somehow, Briget has managed to secure a naleen female onto the staff, who is currently slithering about the jungle-like environ making sure everything is picture-perfect - and guaranteeing that your planty offpsring will have someone native to play with as they develop.");
 		numSpecials++;
 	}
 
@@ -287,7 +285,7 @@ public function nurseryStairs2F():Boolean
 
 public function nurseryPlayerApptFunc():Boolean
 {
-	if (flags["BRIGET_MET"] != undefined && (pc as PlayerCharacter).hasPregnancyOfTypeOtherThan("EggTrainerFauxPreg")) addButton(0, "Maternity", nurseryMaternityWait, undefined, "Maternity Wait", "The nursery is set up to support you for the long term if need be. If adventuring across the galaxy while pregnant doesn't seem like the best idea, you can move into the nursery and allow the staff to take care of you until you're ready to pop.");
+	if (flags["BRIGET_MET"] != undefined && (pc as PlayerCharacter).hasPregnancyOfTypeOtherThan("EggTrainerFauxPreg")) addButton(0, "Maternity", nurseryMaternityWait, undefined, "Maternity Wait", "The nursery is set up to support you for the long term if need be. If adventuring across the galaxy while pregnant doesn’t seem like the best idea, you can move into the nursery and allow the staff to take care of you until you’re ready to pop.");
 	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
 	addButton(1, "Shower", showerOptions, 0); // 9999 this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
@@ -297,7 +295,7 @@ public function nurseryPlayerApptFunc():Boolean
 
 public function nurseryBrigetsApptFunc():Boolean
 {
-	if (flags["BRIGET_MET"] == undefined) showName("NURSERY:\nNURSE'S APPT.");
+	if (flags["BRIGET_MET"] == undefined) showName("NURSERY:\nNURSE’S APPT.");
 	if (flags["BRIGET_MET"] != undefined && (hours < 7 || hours > 16))
 	{
 		output("\n\nBriget herself is sitting in the bedroom, working on a small holoterminal on the desk. She glances up at you and smiles faintly, clearly none-too-disturbed by your presence in her abode.");
@@ -954,7 +952,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 		parentName = parentList[p];
 		var babies:Array = listBabiesOfParent(parentName);
 		
-		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName.toLowerCase())) + "</b></u>");
+		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : parentName) + "</b></u>");
 		if(StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") > 0) output(" - Total: " + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids"));
 		if(babies.length > 0)
 		{
@@ -976,22 +974,32 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				if(baby.featherColor == null) baby.featherColor = "NOT SET";
 				
 				// Print stats
-				output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				if(baby.Quantity == 1) output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				else output("\n<b>* " + StringUtil.toDisplayCase(num2Text(baby.Quantity)) + " Children:</b> ");
 				if(baby.Days >= 6570) output("18+ years");
 				else if(baby.Days >= 365) output(baby.Years + " year" + (baby.Years == 1 ? "" : "s"));
 				else if(baby.Days >= 30) output(baby.Months + " month" + (baby.Months == 1 ? "" : "s"));
 				else output("Newborn");
 				//output(" (Born: " + minutesToDate(baby.BornTimestamp) + ")");
 				//output(", " + formatFloat(baby.MaturationRate * 100) + " % growth rate");
-				output(", ");
-				output((baby.originalRace == "NOT SET" ? GLOBAL.TYPE_NAMES[baby.RaceType] : StringUtil.toDisplayCase(baby.originalRace)));
-				output(", ");
-				if(baby.NumNeuter > 0 || baby.NumFemale > 0 || baby.NumMale > 0 || baby.NumIntersex > 0)
+				output(",");
+				output(" " + (baby.originalRace == "NOT SET" ? GLOBAL.TYPE_NAMES[baby.RaceType] : StringUtil.toDisplayCase(baby.originalRace)));
+				output(",");
+				if(baby.Quantity == 1)
 				{
-					if(baby.NumNeuter > 0) output("Sexless");
-					if(baby.NumFemale > 0) output("Female");
-					if(baby.NumMale > 0) output("Male");
-					if(baby.NumIntersex > 0) output("Hermaphrodite");
+					if(baby.NumNeuter > 0) output(" Sexless");
+					if(baby.NumFemale > 0) output(" Female");
+					if(baby.NumMale > 0) output(" Male");
+					if(baby.NumIntersex > 0) output(" Hermaphrodite");
+				}
+				else if(baby.Quantity > 1)
+				{
+					var sexes:Array = [];
+					if(baby.NumMale > 0) sexes.push(" " + baby.NumMale + " son" + (baby.NumMale == 1 ? "" : "s"));
+					if(baby.NumFemale > 0) sexes.push(" " + baby.NumFemale + " daughter" + (baby.NumFemale == 1 ? "" : "s"));
+					if(baby.NumIntersex > 0) sexes.push(" " + baby.NumIntersex + " mixed-gender");
+					if(baby.NumNeuter > 0) sexes.push(" " + baby.NumNeuter + " ungendered");
+					if(sexes.length > 0) output(" " + CompressToList(sexes));
 				}
 				else output("<i>Unknown Sex</i>");
 				
@@ -1050,7 +1058,7 @@ public function nurseryMeetBriget():void
 	//[Hug] [No hug]
 	clearMenu();
 	addButton(0, "Hug", nurseryMeetBrigetII, true, "Hug Her", "Nursedroids give the best hugs!");
-	addButton(1, "No Hug", nurseryMeetBrigetII, false, "Don't Hug", "You're a little old for hugs, huh?");
+	addButton(1, "No Hug", nurseryMeetBrigetII, false, "Don’t Hug", "You’re a little old for hugs, huh?");
 }
 
 public function nurseryMeetBrigetII(acceptedHug:Boolean):void
@@ -1122,7 +1130,7 @@ public function nurseryBrigetMenu():void
 {
 	clearMenu();
 	//addButton(0, "Talk", nurseryBrigetTalkMenu, undefined, "Talk", "Sit and have a chat with Briget.");
-	addButton(1, "Nursery", nurseryBrigetNurseryTalk, undefined, "Nursery", "Discuss the nursery's status and functions with its head nurse.");
+	addButton(1, "Nursery", nurseryBrigetNurseryTalk, undefined, "Nursery", "Discuss the nursery’s status and functions with its head nurse.");
 	//if (hours >= 7 && hours <= 16) addButton(2, "PrivateRoom", nurseryBrigetPrivateRoom, undefined, "Private Room", "Suggest that you and Briget move somewhere more private");
 	//else addButton(2, "Sex", nurseryBrigetSex, undefined, "Sex", "See if you can make this motherly gynoid feel like a woman...");
 	//addButton(10, "Appearance", );
@@ -1146,10 +1154,10 @@ public function nurseryBrigetNurseryTalkMenu(lastFunc:Function = null):void
 {
 	clearMenu();
 	
-	if (lastFunc != nurseryBrigetNurseryStatus) addButton(0, "Status", nurseryBrigetNurseryStatus, undefined, "Nursery Status", "Ask Briget about the nursery's current status.");
+	if (lastFunc != nurseryBrigetNurseryStatus) addButton(0, "Status", nurseryBrigetNurseryStatus, undefined, "Nursery Status", "Ask Briget about the nursery’s current status.");
 	else addDisabledButton(0, "Status");
 
-	if (lastFunc != nurseryBrigetNurseryStaff) addButton(1, "Staff", nurseryBrigetNurseryStaff, undefined, "Nursery Staff", "Ask Briget about the nursery's special staff.");
+	if (lastFunc != nurseryBrigetNurseryStaff) addButton(1, "Staff", nurseryBrigetNurseryStaff, undefined, "Nursery Staff", "Ask Briget about the nursery’s special staff.");
 	else addDisabledButton(1, "Staff");
 
 	addButton(14, "Back", nurseryBrigetMenu);

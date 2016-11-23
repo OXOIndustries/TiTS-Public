@@ -83,9 +83,9 @@ public function ilariaMenu():void
 		if(pc.lust() >= 33) addButton(1,"Sex",sexWithIlaria,undefined,"Sex","Most of her scenes involve you “helping” her attached to her cock-milker, to save up some “special sauce.”");
 		else addDisabledButton(1,"Sex","Sex","You are not aroused enough for this!");
 	}
-	else addDisabledButton(1,"Sex","Sex","She doesn't seem like she's ready for this just yet.");
+	else addDisabledButton(1,"Sex","Sex","She doesn’t seem like she’s ready for this just yet.");
 	if(flags["ILERIA_GLAZED"] != undefined) addButton(2,"Appearance",ilariaAppearance,undefined,"Appearance","Take a look at her.");
-	else addDisabledButton(2,"Appearance","Appearance","You haven't seen <i>all</i> of her yet.");
+	else addDisabledButton(2,"Appearance","Appearance","You haven’t seen <i>all</i> of her yet.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -113,19 +113,19 @@ public function orderFromIlaria():void
 
 	clearMenu();
 	if(getOrderPrice("Sin-a-Bunny") <= pc.credits) addButton(0,"Sin-a-Bunny",actuallyOrderFromIlaria,"Sin-a-Bunny","Sin-a-Bunny","Ilaria’s famous cinnamon-sprinkle buns, served piping hot and sinfully soft straight from her oven. Best with a glaze of her special homemade cream!");
-	else addDisabledButton(0,"Sin-a-Bunny","Sin-a-Bunny","You can't afford this.");
+	else addDisabledButton(0,"Sin-a-Bunny","Sin-a-Bunny","You can’t afford this.");
 	if(getOrderPrice("Vanilla Iced Teats") <= pc.credits) addButton(1,"Vanilla Ice C.",actuallyOrderFromIlaria,"Vanilla Iced Teats","Vanilla Iced Teats","Ye olde ice cream, but with a milky twist! This designer brand is sourced from humanoid milk, but processed and flavored to be ten times tastier than a Terran bovine!");
-	else addDisabledButton(1,"Vanilla Iced Teats","Vanilla Iced Teats","You can't afford this.");
+	else addDisabledButton(1,"Vanilla Iced Teats","Vanilla Iced Teats","You can’t afford this.");
 	if(getOrderPrice("Kaithrit Kittycake") <= pc.credits) addButton(2,"Kaithrit Cake",actuallyOrderFromIlaria,"Kaithrit Kittycake","Kaithrit Kittycake","Cheesecake, sort of. Made with a rich, thick cream that kaithrit go wild for, but condensed into a milky cake. Way more sugary than the Terran equivalent, it’ll melt in your mouth in the blink of an eye!");
-	else addDisabledButton(2,"Kaithrit Kittycake","Kaithrit Kittycake","You can't afford this.");
+	else addDisabledButton(2,"Kaithrit Kittycake","Kaithrit Kittycake","You can’t afford this.");
 	if(getOrderPrice("Ausar Pup Pie") <= pc.credits) addButton(3,"Ausar Pup Pie",actuallyOrderFromIlaria,"Ausar Pup Pie","Ausar Pup Pie","A sweet, earthy pie made from Ausaril fruits and crust. Served in bite-sized cubes with individual flavorings - always piping hot!");
-	else addDisabledButton(3,"Ausar Pup Pie","Ausar Pup Pie","You can't afford this.");
+	else addDisabledButton(3,"Ausar Pup Pie","Ausar Pup Pie","You can’t afford this.");
 	if(getOrderPrice("Dzaan Cream Smoothie") <= pc.credits) addButton(4,"D. Smoothie",actuallyOrderFromIlaria,"Dzaan Cream Smoothie","Dzaan Cream Smoothie","Called as such because it’s as addictive as a dzaan alpha - well, maybe not really, but one taste will have you begging for more of this sweet, creamy smoothy, guaranteed!");
-	else addDisabledButton(4,"Dzaan Cream Smoothie","Dzaan Cream Smoothie","You can't afford this.");
+	else addDisabledButton(4,"Dzaan Cream Smoothie","Dzaan Cream Smoothie","You can’t afford this.");
 	if(getOrderPrice("Raxxian Road") <= pc.credits) addButton(5,"Raxxian Road",actuallyOrderFromIlaria,"Raxxian Road","Raxxian Road","A chunky whipped cream dessert filled with chocolate chunks and loaded down with cookie crumble and sprinkles. The favorite of kids on the station!");
-	else addDisabledButton(5,"Raxxian Road","Raxxian Road","You can't afford this.");
+	else addDisabledButton(5,"Raxxian Road","Raxxian Road","You can’t afford this.");
 	if(getOrderPrice("Gryvain Jigglers") <= pc.credits) addButton(6,"GryvainJiggler",actuallyOrderFromIlaria,"Gryvain Jigglers","Gryvain Jigglers","A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
-	else addDisabledButton(6,"Gryvain Jigglers","Gryvain Jigglers","You can't afford this.");
+	else addDisabledButton(6,"Gryvain Jigglers","Gryvain Jigglers","You can’t afford this.");
 	
 	addButton(14,"Back",ilariaMenu);
 }
@@ -422,7 +422,7 @@ public function sexWithIlaria():void
 	output("\n\n<i>“Oh, greedy " + pc.mf("boy","girl") + ", wanting me all to yourself!”</i> she teases. <i>“I love it. C’mon back - I could use a hand emptying out some... pent up pressure, anyway.”</i>");
 	output("\n\nIlaria gives you a wink and takes you by the hand, leading you around the end of the bar and towards the little back-room door every shop on the station has. Everyone watches the two of you go; a few with jealousy, a few with arousal, but most with just silent interest or confusion. She’s barely closed the door before her corset’s straining strings are snapping open, letting those big, heavy breasts fall free - and right into your hands. You press yourself into the busty bunny’s back, kneading her heaving chest until she moans openly, pushing back against you and grinding her meaty ass into your crotch.");
 	output("\n\nHer skirt’s the next obstacle, but it comes off with an elastic pop at your insistent yanks, leaving her puff-ball tail and smooth curves bare.");
-	if(flags["FUCKED_ILARIA"] == undefined) output(" As always,");
+	if(flags["FUCKED_ILARIA"] != undefined) output(" As always,");
 	output(" Ilaria’s bare body is covered in vibrators: a pair of pasties covering her nipples, a pair of bullets spreading the lips of her drooling pussy and protruding half way from tight behind, a pair of vib-pads hugging her cum-swollen sack, and of course, a silver ring around ");
 	//first time:
 	if(flags["FUCKED_ILARIA"] == undefined) output("what turns out to be a throbbing, six-inch pillar of red ausar meat. Ilaria’s packing a puppy pecker!");

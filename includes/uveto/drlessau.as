@@ -232,16 +232,20 @@ public function drLessauOral():void
 	else output("after slithering around so your coils drape across his.");
 	output(" Two hands take hold of your hips, while two more set to relieving you of your gear so that you’re left completely nude.");
 	
+	var i:int = -1;
+	
 	if (pc.hasCock())
 	{
-		output("\n\nThe chimera’s breath is hot against your [pc.cockHead] as he examines your cock up close. You feel the tip of his tongue flick over your cumslit, circling around it in a display of oral dexterity that has you hungry to feel what it’s like to be buried in his mouth. Lessau isn’t ready to let you have that yet, though. Instead he runs his tongue down your shaft all the way to the [pc.base], taking a few sweeping licks of the sensitive underside. ");
-		if (pc.hasStatusEffect("Genital Slit")) output("You gasp when his tongue suddenly delves into your cock’s normally untouched container, teasing it open to let a wave of your masculine musk billow forth from the depths of your slit.");
-		else if (pc.hasSheath()) output("You gasp when his tongue suddenly delves into your cock’s normally untouched container, teasing it open to let a wave of your masculine musk billow forth from the depths of your sheath.");
+		i = pc.biggestCockIndex();
 		
-		if (pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_HUMAN) output("\n\n<i>“A touch vanilla for my tastes, [pc.name].”</i> Lessau says with a teasing smile as he draws back. <i>“Though I cannot deny that you work quite well with it, as I’m sure you would with anything else you chose to bear between your legs.”</i>");
+		output("\n\nThe chimera’s breath is hot against your [pc.cockHead " + i + "] as he examines your cock up close. You feel the tip of his tongue flick over your cumslit, circling around it in a display of oral dexterity that has you hungry to feel what it’s like to be buried in his mouth. Lessau isn’t ready to let you have that yet, though. Instead he runs his tongue down your shaft all the way to the [pc.base " + i + "], taking a few sweeping licks of the sensitive underside. ");
+		if (pc.hasStatusEffect("Genital Slit")) output("You gasp when his tongue suddenly delves into your cock’s normally untouched container, teasing it open to let a wave of your masculine musk billow forth from the depths of your slit.");
+		else if (pc.hasSheath(i)) output("You gasp when his tongue suddenly delves into your cock’s normally untouched container, teasing it open to let a wave of your masculine musk billow forth from the depths of your sheath.");
+		
+		if (pc.cocks[i].cType == GLOBAL.TYPE_HUMAN) output("\n\n<i>“A touch vanilla for my tastes, [pc.name].”</i> Lessau says with a teasing smile as he draws back. <i>“Though I cannot deny that you work quite well with it, as I’m sure you would with anything else you chose to bear between your legs.”</i>");
 		else output("\n\n<i>“A fitting choice of shape, [pc.name].”</i> Lessau says as he draws back, licking his lips. <i>“You have excellent tastes, though I imagine you would be just as delicious with anything you chose to wield.”</i>");
 		
-		output("\n\nWith not a further word he opens his jaws and swallows your shaft. There’s a moment of fright at his fangs, but they prove safer than they appear - or perhaps the doctor is just that experienced at sucking dick. Any hesitation vanishes when that tongue wraps itself around you in a tight spiral, licking and sucking at every inch of [pc.oneCock] that disappears down the chimera’s gullet until his nose is pressed to your belly. You give a heady groan, letting yourself go limp and just enjoy the hot, wet sensations wreathing your dick.");
+		output("\n\nWith not a further word he opens his jaws and swallows your shaft. There’s a moment of fright at his fangs, but they prove safer than they appear - or perhaps the doctor is just that experienced at sucking dick. Any hesitation vanishes when that tongue wraps itself around you in a tight spiral, licking and sucking at every inch of your [pc.cockNoun " + i + "] that disappears down the chimera’s gullet until his nose is pressed to your belly. You give a heady groan, letting yourself go limp and just enjoy the hot, wet sensations wreathing your dick.");
 		output("\n\nYour relaxation is interrupted by a gasp of surprise as Lessau’s tongue slips out from under your dick to get at ");
 		if (pc.balls > 0) output("your balls. The way the tip feels when it caresses your sack is absolutely heavenly, each brush feeling like it stimulates your nuts to churn faster, get even more ready with the cum that’s quickly forming into a thick pressure just behind your dick, one you strive to hold back just a little longer.\n\n")
 		else output("the patch of smooth [pc.skinFurScalesNoun] that sits just below. You don’t immediately grasp why until he digs his tongue in at just the right angle and you suddenly feel a glorious pressure on your prostate, a stimulating sensation that feels like it spurs your body onward into making even more cum, getting even more ready for when you can’t hold it in anymore.\n\n");
@@ -260,19 +264,21 @@ public function drLessauOral():void
 	}
 	else
 	{
-		output("\n\nLessau’s tongue starts at your delta, teasing the more sensitive [pc.skinFurScalesNoun] that sits just above [pc.oneVagina]. It’s just enough to tickle, leaving you off-guard for when he opens his mouth and blows a hot breath over your nether lips. Your " + (pc.totalClits() > 1 ? "clits pop" : "clit pops") + " out immediately, stiffening at the sudden warmth. That moment of vulnerability is all Lessau needs, and his tongue seizes " + (pc.totalClits() > 1 ? "one of your clits" : "your clit") + " with a display of the oral dexterity that only a prehensile tongue can offer. His mouth envelops your clit, his fangs gently grazing your sensitive nub with an expertise that suggests more than a few of the female lab assistants outside have gotten to experience this before you.");
-		output("\n\nLost in the pleasure, you hardly notice what Lessau’s tongue is doing until it slips into your pussy, drawing forth a gasp as that long, thin tongue snakes its way deep into those [pc.vaginaColor] depths. His lips stay right where they are, sucking away at your clit while his tongue coaxes your [pc.girlCum] to the surface.");
+		i = rand(pc.vaginas.length);
+		
+		output("\n\nLessau’s tongue starts at your delta, teasing the more sensitive [pc.skinFurScalesNoun] that sits just above [pc.oneVagina]. It’s just enough to tickle, leaving you off-guard for when he opens his mouth and blows a hot breath over your nether lips. Your " + (pc.totalClits() > 1 ? "clits pop" : "clit pops") + " out immediately, stiffening at the sudden warmth. That moment of vulnerability is all Lessau needs, and his tongue seizes [pc.oneClit] with a display of the oral dexterity that only a prehensile tongue can offer. His mouth envelops your clit, his fangs gently grazing your sensitive nub with an expertise that suggests more than a few of the female lab assistants outside have gotten to experience this before you.");
+		output("\n\nLost in the pleasure, you hardly notice what Lessau’s tongue is doing until it slips into your pussy, drawing forth a gasp as that long, thin tongue snakes its way deep into those [pc.vaginaColor " + i + "] depths. His lips stay right where they are, sucking away at your clit while his tongue coaxes your [pc.girlCum] to the surface.");
 		if(pc.wetness() > 2) output("Your pussy is more than happy to oblige, of course, practically flooding in short order.");
 		output("You’re left with little to do but " + (pc.femininity < 50 ? "groan" : "moan"));
 		if (pc.hasBreasts()) output(", fondle your breasts,");
 		output(" and try to relax while awaiting the inevitable orgasm.");
 		
-		output("\n\nYet it doesn’t come. You get tantalizingly close, so close you can taste it, before the clit-sucking stops and Lessau’s tongue withdraws. You’re left quivering and confused, dialing down just a bit before the chimera lifts a hand and spreads your lips wide, baring the freshly glistening [pc.vaginaColor] to the air.");
-		output("\n\n<i>“A beautiful womanhood, [pc.name].”</i> Lessau says as he looks up at you with a glint in his eye that indicates he knows full well how close you were to cumming. <i>“" + (pc.vaginas.type == GLOBAL.TYPE_HUMAN ? "A little vanilla in form, but the taste is delectable" : "You’ve acquired quite the delicious endowment for yourself") + "”</i>.");
+		output("\n\nYet it doesn’t come. You get tantalizingly close, so close you can taste it, before the clit-sucking stops and Lessau’s tongue withdraws. You’re left quivering and confused, dialing down just a bit before the chimera lifts a hand and spreads your lips wide, baring the freshly glistening [pc.vaginaColor " + i + "] to the air.");
+		output("\n\n<i>“A beautiful womanhood, [pc.name].”</i> Lessau says as he looks up at you with a glint in his eye that indicates he knows full well how close you were to cumming. <i>“" + (pc.vaginas[i].type == GLOBAL.TYPE_HUMAN ? "A little vanilla in form, but the taste is delectable" : "You’ve acquired quite the delicious endowment for yourself") + "”</i>.");
 		output("\n\n<i>“You tease,”</i> you reply, <i>“get back in there!”</i>");
 		output("\n\nHe does, almost. Certainly he delves back in, but rather than slipping into your pussy you feel his tongue run up the right side of your exposed snatch, then the left. Back and forth he licks, his tonguetip flicking your clit each time he switches sides. His fingertips stay in place, keeping you spread, keeping it easy for him to lick and suck at your petals while letting your [pc.girlCumNoun] flow freely. Gods, that tongue feels amazing");
 		//"Vanae or otherwise cilia-laden pussy"
-		if (pc.vaginas.type == GLOBAL.TYPE_SIREN || pc.vaginas.type == GLOBAL.TYPE_VANAE) output(", especially when it teases your feelers");
+		if (InCollection(pc.vaginas[i].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_VANAE])) output(", especially when it teases your feelers");
 		output("!");
 		output("\n\nIt’s more than enough to cum from. You throw your head back in an exultant groan as your pussy clenches and turns even juicier, leaving a puddle on the doctor’s desk that he happily licks up in a way that makes him look even more catlike.");
 	}
@@ -422,14 +428,9 @@ public function steeleBiomedGangbang():void
 	if (flags["BIOMED_GANGBANGED"] == undefined) 
 	{
 		output("\n\nYou start by reaching for a cute-looking wolf boy - originally an ausar, you’re guessing - giving him a round of ear-scratching. The attention quickly causes him to look up after the initial shiver, right into a perfect view of your " + pc.mf("undercleavage", "chest and teasing smirk") + ".");
-		output("\n\n<i>“Up for some fun?”</i> you ask as you keep your hand in place, continuing to scratch his ears. Your other hand reaches up to ");
-		if (!pc.isChestExposed())
-		{ 
-			if (pc.hasArmor()) output("pull your [pc.armor] "); 
-			if (pc.isChestGarbed()) output("and [pc.undertop] "); 
-			output("away to bare your [pc.chest]");
-		}
-		else output("run along your naked [pc.chest] invitingly");
+		output("\n\n<i>“Up for some fun?”</i> you ask as you keep your hand in place, continuing to scratch his ears. Your other hand reaches up to");
+		if (!pc.isChestExposed()) output(" pull your [pc.upperGarments] away to bare your [pc.chest]");
+		else output(" run along your naked [pc.chest] invitingly");
 		output(", making it clear exactly what kind of fun you’re interested in. You cast your gaze around the room in an open invitation, hoping someone else will be bold enough to come forward. To your delight, you soon feel a pair of large, fur-covered hands slip under your arms to lay over your chest, and a pair of gigantic breasts squish against your back.");
 		if (pc.hasWings()) output(" Ooh, <i>damn</i> that feels good against your wingpoints.");
 		
@@ -481,16 +482,16 @@ public function steeleBiomedGangbangII():void
 	
 	output("Distracted by your indulgence, you give a muffled grunt of surprise as " + (flags["BIOMED_GANGBANGED"] == undefined ? "the wolf" : "Walt") + " slips your remaining gear off to get at your [pc.hips]. A sweep of his tongue along your [pc.vagOrAss] makes you shiver, prompting him to keep going, each lick digging a little deeper in.");
 	output("\n\nMore of their coworkers join in now, assisting " + (flags["BIOMED_GANGBANGED"] == undefined ? "the minotauress" : "Cynthia") + " with going for a feel of your [pc.chest], your ass, " + (pc.hasTail() ? "your tail, " : "") + "" + (pc.hasWings() ? "your wings, " : "") + "any and every part of your body. There’s scales, fur, even downy feathers stroking your body, surrounding you on all sides with colors and forms of all varieties. Stars, everyone here is just so exotic!");
-	output("\n\n<i>“Alright, alright, let's not crowd " + pc.mf("him", "her") + ",”</i> the minotauress says after a bit of this. <i>“You’ll all get a turn, let's do this all nice and orderly-like.”</i> She looks down at you with a grin as the rest of her coworkers draw back a bit."); 
+	output("\n\n<i>“Alright, alright, let’s not crowd " + pc.mf("him", "her") + ",”</i> the minotauress says after a bit of this. <i>“You’ll all get a turn, let’s do this all nice and orderly-like.”</i> She looks down at you with a grin as the rest of her coworkers draw back a bit."); 
 	if (flags["BIOMED_GANGBANGED"] == undefined) output("<i>“Name’s Cynthia, by the way. Pleasure to meet you, boss.”</i>");
 	
 	output("\n\nAt her command, one of the scientists switches off the central display to leave the table bare. Cynthia pulls you down onto the table, your head resting comfortably on those pillowy cowtits. Her hands slide down to spread both your legs and hers.");
 	output("\n\n<i>“Alright, boys and girls,”</i> you say with a broad grin of your own, <i>“come and get it!”</i>");
 	output("\n\n" + (flags["BIOMED_GANGBANGED"] == undefined ? "The wolf boy from before" : "Even though he just came, Walt") + " is the first to mount you, cramming his cock deep into your waiting [pc.vagOrAss] with an open howl. You gasp in delight, clenching reflexively around him as he starts fucking you with firm, steady strokes. Each thrust plunges to exactly the right depth that you feel that knot stretch you even wider every time he bottoms out, teasing at popping inside but never quite taking that last step that would lock you up for anyone else to enjoy.");
 	output("\n\n<i>“Ooh, good boy,”</i> you purr, <i>“fuck me just like that. Give me that dirty dog dick!”</i>");
-	output("\n\n<i>“Yes " + pc.mf("sir", "ma'am") + ",”</i> he replies" + (flags["BIOMED_GANGBANGED"] == undefined ? ", the first words you’ve yet heard from him" : "") + ". <i>“I’ll do my best.”</i>");
-	output("\n\n<i>“" + (flags["BIOMED_GANGBANGED"] == undefined ? "That's Walt, by the way." : "That boy’s got some awesome stamina.") + "”</i> Cynthia whispers as her hands slide back up to your chest, " + (pc.biggestTitSize() < 1 ? "caressing your muscles" : "kneading your tits") + " while you lie back and enjoy the fucking. You can see more lining up behind him, both the remaining boys and quite a few dick-wielding girls.");
-	output("\n\nIt's not much longer before Walt cums, filling you with that deliciously hot lupine spunk. You join him in howling, feeling his knot heat up and swell " + (pc.hasVagina() ? "just outside your pussy lips" : "right at the edge of your backdoor") + ". He certainly doesn't lack for volume nor duration, jet after jet of creamy canine cum spurting into your waiting depths. It leaks freely from your [pc.vagOrAss] as he pulls out" + (pc.hasVagina() ? ", even flowing down to run over your tailhole as well" : "") + ". The next one quickly steps up, this one a lizard girl packing a pair of matching reptilian pricks. This time Cynthia gets to moo as one of the cocks goes into her waiting cunt, the other pressing into your freshly cum - lubed ass.");
+	output("\n\n<i>“Yes " + pc.mf("sir", "ma’am") + ",”</i> he replies" + (flags["BIOMED_GANGBANGED"] == undefined ? ", the first words you’ve yet heard from him" : "") + ". <i>“I’ll do my best.”</i>");
+	output("\n\n<i>“" + (flags["BIOMED_GANGBANGED"] == undefined ? "That’s Walt, by the way." : "That boy’s got some awesome stamina.") + "”</i> Cynthia whispers as her hands slide back up to your chest, " + (pc.biggestTitSize() < 1 ? "caressing your muscles" : "kneading your tits") + " while you lie back and enjoy the fucking. You can see more lining up behind him, both the remaining boys and quite a few dick-wielding girls.");
+	output("\n\nIt’s not much longer before Walt cums, filling you with that deliciously hot lupine spunk. You join him in howling, feeling his knot heat up and swell " + (pc.hasVagina() ? "just outside your pussy lips" : "right at the edge of your backdoor") + ". He certainly doesn’t lack for volume nor duration, jet after jet of creamy canine cum spurting into your waiting depths. It leaks freely from your [pc.vagOrAss] as he pulls out" + (pc.hasVagina() ? ", even flowing down to run over your tailhole as well" : "") + ". The next one quickly steps up, this one a lizard girl packing a pair of matching reptilian pricks. This time Cynthia gets to moo as one of the cocks goes into her waiting cunt, the other pressing into your freshly cum - lubed ass.");
 	
 	if (pc.hasCock())
 	{
@@ -507,7 +508,7 @@ public function steeleBiomedGangbangII():void
 	else
 	{
 		output("\n\nAt the same time another girl, this one showing some scorpion traits, kneels over you and curls her tail around to in front of her. She licks and sucks on her own stinger, showing off how it conceals a sleek indigo-colored cock as big as the one plundering your ass right now.");
-		output("\n\n<i>“Ready for some double penetration action, boss?”</i> the scorpion-girl asks with a wink as she curls her tail back around behind her. You just spread [pc.oneCunt] and give a beckoning smile, followed by a croon of delight as that tailcock plunges into your freshly-fucked cunt. The scorpion-girl looks proud at your reaction, her hands coming up to draw her hair back as her tail starts to fuck you in a steady rhythm.");
+		if (pc.hasVagina()) output("\n\n<i>“Ready for some double penetration action, boss?”</i> the scorpion-girl asks with a wink as she curls her tail back around behind her. You just spread [pc.oneCunt] and give a beckoning smile, followed by a croon of delight as that tailcock plunges into your freshly-fucked cunt. The scorpion-girl looks proud at your reaction, her hands coming up to draw her hair back as her tail starts to fuck you in a steady rhythm.");
 	}
 	
 	output("\n\nShe sets to working herself in time with the anal pounding you’re getting, while Cynthia has long since stopped trying to make introductions in favor of mooing away under you. You look up to see that two more of the scientists have come around to start sucking on her tits")
@@ -516,7 +517,7 @@ public function steeleBiomedGangbangII():void
 	
 	output("\n\n<i>“Oh yeah,”</i> Cynthia moans, <i>“drink it </i>all<i>! You know how I like it, moo-ooooh yeah!”</i>");
 	output("\n\n<i>“She really is a total milk slut,”</i> Walt says as he slips up beside you, running a hand along your side as he admires the two of you.");
-	if (pc.milkFullness >= 30) output("<i>“Looks like you are too, hm?”</i> \n\n<i>“Maaaybe,”</i> you reply with a wink, followed by a coo of delight at a particularly good suck.");
+	if (pc.milkFullness >= 30) output(" <i>“Looks like you are too, hm?”</i>\n\n<i>“Maaaybe,”</i> you reply with a wink, followed by a coo of delight at a particularly good suck. ");
 	else output("\n\n");
 	output("You reach over with an arm to pull Walt in for a kiss, setting to making out as you’re fucked" + (pc.milkFullness >= 30 ? ", sucked, and everything in-between" : "") + ". He quickly shows his experience working a muzzle, that strong canine tongue slipping dominantly into your mouth while his lips stay firmly pressed to yours, coaxing them open enough so that those on the sides of you are given a real show of your wet, sloppy, wonderfully savage kiss.");
 	output("\n\nYou hardly even notice when the lizard-girl hisses, packing your ass with a fresh load of thick, sticky cum. It’s only when she pulls out that you glance past the pile already on top of you to see that there’s still quite a number waiting their turn. The less patient ones have started in on each other, filling the room with the sounds of sex. It’s music to your ears as you lounge back and get ready for the real reaming yet to come.");

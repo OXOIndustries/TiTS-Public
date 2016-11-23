@@ -72,7 +72,7 @@ public function configureMails():void
 	MailManager.addMailEntry("megaschlong", "<i>This message is a garbled mess of hyperlinks and what looks like Russian. What English there is is clearly trying to get you to click on said links and purchase a coursebook of penile exercises. Delightful.</i>", "One quick trick about how my cock grew 15 inches -- nanomachine free!", "MegaSchlong", "MegaSchlong@GalFuckMeet.org", quickPCTo, quickPCToAddress);
 	SpamEmailKeys.push("megaschlong");
 
-	MailManager.addMailEntry("bubbleBuddyMail",bubbleBuddyEmail(),"There's Got To Be A Better Way!","TamaniCorp","Marketing@TamaniCorp.corp",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("bubbleBuddyMail",bubbleBuddyEmail(),"There’s Got To Be A Better Way!","TamaniCorp","Marketing@TamaniCorp.corp",quickPCTo,quickPCToAddress);
 	SpamEmailKeys.push("bubbleBuddyMail");
 	
 	MailManager.addMailEntry("xenoPrincess", "Hello, fellow star-traveler! My name is Amy, and I represent the interests of a small but growing group of activists who oppose the growing power of mega-corporations across the galaxy, especially in recently colonized worlds. It has recently come to our attention that a naleen princess has been taken as a test subject by Xenogen Biotech, doomed to slavery and sick experiments. We need your help to free her! 90% of every donation we receive will go directly to supporting our streaking campaign outside the Xenogen offices in support of our captured naleen brothers and sisters.", "Xeno Princess Needs Your Help!", "Amy Lovelace", "NaleenLover13@GalLink.net", quickPCTo, quickPCToAddress);
@@ -141,9 +141,9 @@ public function configureMails():void
 		msg += "Dear " + pc.mf("Mr.", "Ms") + " Steele,";
 		msg += "\n\nAfter some discussion among the executive board, we have decided to inform you of an opportunity for work in the Myrellion system, which";
 		if (reclaimedProbeMyrellion() == false) msg += " we have on good authority that";
-		msg += " you have recently visited. One of the company's asteroid mining vessels, the <i>U.G.C.S. Kashima</i>, recently went dark in the orbit of Myrellion's second moon. The assignment should have been relatively safe, and due to the Confederate presence in the sector, we do not believe it to have fallen victim to piracy. Whether the <i>Kashima</i>’s failure to report is due to technical difficulties or some other problem is unknown, though its transponder appears to be active." 
-		msg += "\n\nSteele Tech has taken the precaution of contracting a Nova Securities support-rescue vessel to investigate and either recover the crew or assist in repairs as needed. However, due to your proximity to the <i>Kashima</i> and the value of its cargo, it may prove prudent to have a representative of the company such as yourself present as well. And, of course, will necessitate a contractor's fee for yourself.";
-		msg += "\n\nThe <i>Kashima</i>'s last known location has been included with this message. Act accordingly.";
+		msg += " you have recently visited. One of the company’s asteroid mining vessels, the <i>U.G.C.S. Kashima</i>, recently went dark in the orbit of Myrellion’s second moon. The assignment should have been relatively safe, and due to the Confederate presence in the sector, we do not believe it to have fallen victim to piracy. Whether the <i>Kashima</i>’s failure to report is due to technical difficulties or some other problem is unknown, though its transponder appears to be active." 
+		msg += "\n\nSteele Tech has taken the precaution of contracting a Nova Securities support-rescue vessel to investigate and either recover the crew or assist in repairs as needed. However, due to your proximity to the <i>Kashima</i> and the value of its cargo, it may prove prudent to have a representative of the company such as yourself present as well. And, of course, will necessitate a contractor’s fee for yourself.";
+		msg += "\n\nThe <i>Kashima</i>’s last known location has been included with this message. Act accordingly.";
 		msg += "\n\nKindest regards,\n\nWilliam B. Brannagan, Director\n\nSteele Tech Job Services Department";
 		
 		return msg;
@@ -191,7 +191,7 @@ public function configureMails():void
 	MailManager.addMailEntry("emmy_apology", emmyApologyEmail,"Sorry!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("emmy_gift_starter", emmyGiftStarterEmail,"Thinking of You!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("emmy_implant_explain_email", emmyImplantExplainEmail,"Something off my chest...","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
-	MailManager.addMailEntry("emmy_harness_here", harnessDeliveryMessageFromEmmy,"IT'S HERE!?!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("emmy_harness_here", harnessDeliveryMessageFromEmmy,"IT’S HERE!?!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
 	
 	MailManager.addMailEntry("letter_from_shade", createLetterFromShade, createSubjectFromShade, "Shade Irons", "Shade@Stormguard.net", quickPCTo, quickPCToAddress);
 
@@ -202,7 +202,7 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("steph_on_demand", stephOnDemandMail, "Galactic Huntress: Now on Demand!", "GalacNet VOD", "noreply@galacnet.corp", quickPCTo, quickPCToAddress);
 
-	MailManager.addMailEntry("jade_dumplings", "I'm making <i>special</i> dumplings, if you want some, come to the shop ;)\n\n~Jade", "Dumplings!","Jade","professional_panda@cmail.com",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("jade_dumplings", "I’m making <i>special</i> dumplings, if you want some, come to the shop ;)\n\n~Jade", "Dumplings!","Jade","professional_panda@cmail.com",quickPCTo,quickPCToAddress);
 	
 	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 }

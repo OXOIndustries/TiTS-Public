@@ -438,12 +438,12 @@ public function sx1PuzzleOfDoomMenu():void
 	if (flags["SAENDRA_XPACK1_ASKEDSAEN"] == undefined) addButton(2, "Saendra", sx1AskSaendra, undefined, "Ask Saendra", "Get your favourite bitchkitten’s professional input.");
 	else addButton(2, "Distract", sx1SaenDistract, undefined, "Distract", "Have Saendra pop her tits out and distract one of the guards.");
 
-	if (flags["SAENDRA_XPACK1_ASKEDVAL"] == undefined) addButton(3, "Valeria", sx1AskValiera, undefined, "Ask Valeria", "Pitch an idea to Saendra's holographic best friend...");
-	else if (flags["SAENDRA_XPACK1_ASKEDVAL"] == 1) addButton(3, "Holo Burn", sx1Holoburn, undefined, "Holo Burn", "Try and overload the rooms electronics, and fry whoever's jacked into the computer system in there.");
+	if (flags["SAENDRA_XPACK1_ASKEDVAL"] == undefined) addButton(3, "Valeria", sx1AskValiera, undefined, "Ask Valeria", "Pitch an idea to Saendra’s holographic best friend...");
+	else if (flags["SAENDRA_XPACK1_ASKEDVAL"] == 1) addButton(3, "Holo Burn", sx1Holoburn, undefined, "Holo Burn", "Try and overload the rooms electronics, and fry whoever’s jacked into the computer system in there.");
 	else addDisabledButton(3, "Holo Burn");
 
 	if (pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.hasItem(new FlashGrenade())) addButton(4, "Flashbang", sx1ThrowFlashbang, undefined, "Flashbang", "Throw a flashbang in and storm the room.");
-	else addDisabledButton(4, "Flashbang", "Throw Flashbang", "You don't have any flashbangs to hand.");
+	else addDisabledButton(4, "Flashbang", "Throw Flashbang", "You don’t have any flashbangs to hand.");
 }
 
 public function sx1AskValiera():void
@@ -548,19 +548,19 @@ public function sx1CallgirlMenu():void
 	}
 	else if (pc.credits < 500)
 	{
-		addDisabledButton(0, "Okay...", "Okay", "You don't have enough credits!");
+		addDisabledButton(0, "Okay...", "Okay", "You don’t have enough credits!");
 	}
 	else if (!pc.hasCock() && !pc.hasVagina())
 	{
-		addDisabledButton(0, "Okay...", "Okay", "As nice as a quick romp with the callgirl sounds, you'd need some genitals to fully enjoy the experience...");
+		addDisabledButton(0, "Okay...", "Okay", "As nice as a quick romp with the callgirl sounds, you’d need some genitals to fully enjoy the experience...");
 	}
 	else
 	{
-		addDisabledButton(0, "Okay", "Okay", "Saen probably wouldn't take too kindly to you literally fucking around any longer.")
+		addDisabledButton(0, "Okay", "Okay", "Saen probably wouldn’t take too kindly to you literally fucking around any longer.")
 	}
 
 	if (pc.credits >= 500) addButton(1, "Job", sx1CallgirlOfferJob, undefined, "Offer Job", "Offer the Callgirl 500 credits to distract the guards.");
-	else addDisabledButton(1, "Job", "Offer Job", "You don't have enough credits to offer the Callgirl!");
+	else addDisabledButton(1, "Job", "Offer Job", "You don’t have enough credits to offer the Callgirl!");
 
 	addButton(2, "Nevermind", sx1CallgirlNevermind);
 }
@@ -1221,7 +1221,7 @@ public function zilCallGirlAddendum(slot:int = 0):void
 		else
 		{
 			output("\n\nYou recognize one of the rooms as being where the local call girl lives. You can always give a knock if you feel the need to release some sexual tension.");
-			addButton(slot, "Call Girl", zilCallGirlGo, true, "Call Girl", "Visit Anon’s resident insectile call girl.");
+			addButton(slot, (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya"), zilCallGirlGo, true, (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined ? "Call Girl" : "Zheniya"), "Visit Anon’s resident insectile call girl.");
 		}
 	}
 	return;
@@ -1260,7 +1260,7 @@ public function zilCallgirlPregnancyNotice():void
 	processTime(10);
 
 	clearMenu();
-	addButton(0, "So?", zilCallgirlPregnancyNoticeSo, undefined, "So?", "How is this any concern of yours, even if it is your kid? It's her job. She should have taken better precautions to prevent this.");
+	addButton(0, "So?", zilCallgirlPregnancyNoticeSo, undefined, "So?", "How is this any concern of yours, even if it is your kid? It’s her job. She should have taken better precautions to prevent this.");
 	addButton(1, "Mine?", zilCallgirlPregnancyNoticeMine, undefined, "Mine?", "How can she be so sure that you’re the father? She has plenty of customers, after all.");
 }
 
@@ -1308,7 +1308,7 @@ public function zilCallgirlPregnancyNoticeMine():void
 	clearMenu();
 	addButton(0, "Piss Off", zilCallgirlPregnancyNoticeMinePissOff);
 	addButton(1, "Money", zilCallgirlPregnancyNoticeMineMoney, undefined, "Money", "Well, it would be mighty shitty of you not to <i>at least</i> offer the unexpected mother-to-be some financial support.");
-	addButton(2, "Father", zilCallgirlPregnancyNoticeMineFather, undefined, "Father", "Of course you'll be there for her and the child. You wouldn't want for her to have to raise it by herself, or for it to grow up without a father.");
+	addButton(2, "Father", zilCallgirlPregnancyNoticeMineFather, undefined, "Father", "Of course you’ll be there for her and the child. You wouldn’t want for her to have to raise it by herself, or for it to grow up without a father.");
 }
 
 public function zilCallgirlPregnancyNoticeMinePissOff():void
@@ -1388,9 +1388,8 @@ public function zilCallgirlPregnancyMineMerge():void
 
 public function showZilCallGirl(cum:Boolean = false):void
 {
-	if (CodexManager.entryViewed("Zil")) showName("ZIL\nCALL GIRL");
-	else if (flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined) showName("ALIEN\nCALL GIRL");
-	else showName("\nZHENIYA");
+	if (flags["ZIL_CALLGIRL_NAME_KNOWN"] != undefined) showName("\nZHENIYA");
+	else showName((CodexManager.entryViewed("Zil") ? "ZIL" : "ALIEN") + "\nCALL GIRL");
 	
 	var sBust:String = "ZIL_CALLGIRL";
 
@@ -1538,7 +1537,7 @@ public function zilCallGirlGo(hasSeen:Boolean = false):void
 		flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = undefined;
 		output("<i>“[pc.name]!”</i> a jubilant, if tired, voice calls from inside as you enter Zheniya’s home. You peek your head into the bedroom, and are greeted by the familiar sight of your zil lover sitting naked on her bed, now dramatically less gravid... though, you note happily, her breasts, hips, and ass all look delightfully thicker than when you first met her.");
 
-		var ZC:ZilCallgirlUniqueChild = ChildManager.youngestOfUniqueType(ZilCallgirlUniqueChild);
+		var ZC:UniqueChild = ChildManager.youngestOfUniqueType(ZilCallgirlUniqueChild);
 
 		output("\n\nZheniya rests back on her arms, smiling at you with those plush black lips of hers. <i>“Thank you again, for everything, love. I’ve left our new "+ZC.describeCollection("son", "daughter", "children") +" at your nursery, as you asked.");
 		if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == 1) output(" The woman working there, Briget, was quite lovely.");
@@ -1547,7 +1546,7 @@ public function zilCallGirlGo(hasSeen:Boolean = false):void
 	}
 	else
 	{
-		output("You walk right up to the call girl's door and give it a quick knock. A throaty, seductive voice answers your summons from within: <i>“Come on in, sugar!”</i>");
+		output("You walk right up to the call girl’s door and give it a quick knock. A throaty, seductive voice answers your summons from within: <i>“Come on in, sugar!”</i>");
 		output("\n\nYou slide the door open and find the call girl is sitting on the edge of her bed, applying a bit of makeup. The smells of incense and perfume hit you immediately, followed shortly by a barely-suppressed, familiar aroma: sex, arousal, and cum mixing together with the ");
 		if (CodexManager.entryViewed("Zil")) output("zil");
 		else output("alien");
@@ -1560,7 +1559,7 @@ public function zilCallGirlGo(hasSeen:Boolean = false):void
 		if(zilCallGirlPregnant() || StatTracking.getStat("pregnancy/zil call girl kids") > 0)
 		{
 			if (StatTracking.getStat("pregnancy/zil call girl kids") > 0) output(" I’m glad the father of my children would take the time to see me again.");
-			else if (zilCallGirlPregnant()) output(" And you should be too, honey. This baby bump means that I’m bearing your spawn and I’m so happy that you've come back to see me again.");
+			else if (zilCallGirlPregnant()) output(" And you should be too, honey. This baby bump means that I’m bearing your spawn and I’m so happy that you’ve come back to see me again.");
 			if (CodexManager.entryViewed("Zil")) output(" Few other zil would be so considerate");
 		}
 		else output(" A familiar face is quite refreshing in this oh-so-busy place");
@@ -1627,7 +1626,7 @@ public function zilCallgirlSexMenu(isFreebie:Boolean = false):void
 
 public function zilCallgirlStopWhoringTooltip():String
 {
-	if (flags["ZIL_CALLGIRL_STOPWHORE_ATTEMPTS"] == undefined) return "You're not so sure you like the idea of your baby-momma supporting herself this way anymore. It just doesn't seem like what's best for her <i>or</i> your child.";
+	if (flags["ZIL_CALLGIRL_STOPWHORE_ATTEMPTS"] == undefined) return "You’re not so sure you like the idea of your baby-momma supporting herself this way anymore. It just doesn’t seem like what’s best for her <i>or</i> your child.";
 	if (flags["ZIL_CALLGIRL_STOPWHORE_ATTEMPTS"] == 1) return "Maybe you could find a way to convince Zheniya to give up her whoring ways...";
 	return null;
 }
@@ -1730,10 +1729,10 @@ public function zilCallgirlStopWhoring(fromPregnancyTalk:Boolean = false):void
 
 		processTime(5);
 		clearMenu();
-		addButton(1, "Offer Help", zilCallgirlStopWhoreOfferHelp, undefined, "Offer Help", "She's nuts if she won't accept credits from you! Is her pride really worth all this ignominy? ");
+		addButton(1, "Offer Help", zilCallgirlStopWhoreOfferHelp, undefined, "Offer Help", "She’s nuts if she won’t accept credits from you! Is her pride really worth all this ignominy? ");
 		if (flags["BRIGET_MET"] != undefined) addButton(1, "Nursery Job", zilCallgirlStopWhoreNursery, undefined, "Nursery Job", "Well, if Zheniya wants to work for a living, maybe you could offer her a job.");
-		else addDisabledButton(1, "Nursery Job", "Nursery Job", "It'd probably be a good idea to actually go speak to the person overseeing the nursery on your behalf before offering jobs to people!");
-		addButton(1, "Okay", zilCallgirlStopWhoreOkay, undefined, "Okay", "You suppose you'll have to live with that, then.");
+		else addDisabledButton(1, "Nursery Job", "Nursery Job", "It’d probably be a good idea to actually go speak to the person overseeing the nursery on your behalf before offering jobs to people!");
+		addButton(1, "Okay", zilCallgirlStopWhoreOkay, undefined, "Okay", "You suppose you’ll have to live with that, then.");
 	}
 }
 
@@ -2196,12 +2195,12 @@ public function resDeck16Func():Boolean
 {
 	if (zilCallgirlAtNursery())
 	{
-		output("\n\nOne of the apartments is certainly occupied, though: several Mhen’gan flowers are growing from pots in the window, and red silk curtains are flittering in the artificial breeze. A nameplate underneath that residence reads <i>“Zheniya”</i> - your lover has found quite a lovely place for herself with her new paycheck.");
+		output("\n\nOne of the apartments is certainly occupied, though: several Mhen’gan flowers are growing from pots in the window, and red silk curtains are flittering in the artificial breeze. A nameplate underneath that residence reads “Zheniya” - your lover has found quite a lovely place for herself with her new paycheck.");
 	}
 
 	if (hours >= 8 && hours <= 16)
 	{
-		if (zilCallgirlAtNursery()) output(" You'll have to pay her a visit when she isn't busy working in the nursery.");
+		if (zilCallgirlAtNursery()) output(" You’ll have to pay her a visit when she isn’t busy working in the nursery.");
 		flags["NAV_DISABLE"] = NAV_WEST_DISABLE;
 	}
 
@@ -2239,7 +2238,7 @@ public function zheniyaInAppt():void
 		flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = undefined;
 		output("<i>“[pc.name]!”</i> a jubilant, if tired, voice calls from inside as you enter Zheniya’s home. You peek your head into the bedroom, and are greeted by the familiar sight of your zil lover sitting naked on her bed, now dramatically less gravid... though, you note happily, her breasts, hips, and ass all look delightfully thicker than when you first met her.");
 
-		var ZC:ZilCallgirlUniqueChild = ChildManager.youngestOfUniqueType(ZilCallgirlUniqueChild);
+		var ZC:UniqueChild = ChildManager.youngestOfUniqueType(ZilCallgirlUniqueChild);
 
 		output("\n\nZheniya rests back on her arms, smiling at you with those plush black lips of hers. <i>“Thank you again, for everything, love. I’ve left our new "+ZC.describeCollection("son", "daughter", "children") +" at your nursery, as you asked.");
 		if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == 1) output(" The woman working there, Briget, was quite lovely.");
@@ -2361,7 +2360,7 @@ public function processZheniyaEvents(deltaT:uint, doOut:Boolean, totalDays:int):
 	}
 	else if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 4)
 	{
-		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 60) < (GetGameTimestamp() + deltaT) && flags["ZIL_CALLGIRL_PREGMAIL"] == undefined)
+		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 60) < (GetGameTimestamp() + deltaT) && flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] == undefined)
 		{
 			zilCallGirlPregnancyEnds(deltaT);
 		}
@@ -2380,12 +2379,12 @@ public function zilCallGirlBirthMessage():String
 {
 	var cs:String;
 
-	if (_tempZilGirlChildRef == null || (_tempZilGirlChildRef.NumMale == 1 && _tempZilGirlChildRef.NumFemale == 0)) cs = "Our staff has taken her in and delivered a health son. She and your child";
-	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 0) cs = "Our staff has taken her in and delivered a health daughter. She and your child";
-	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 1) cs = "Our staff has taken her in and delivered a health son and daughter. She and your children";
-	else cs = "Our staff has taken her in and delivered "+num2Text(_tempZilGirlChildRef.Quantity) + " children. She and your offspring";
+	if (_tempZilGirlChildRef == null || (_tempZilGirlChildRef.NumMale == 1 && _tempZilGirlChildRef.NumFemale == 0)) cs = "Our staff has taken her in and delivered a healthy son. She and your child";
+	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 0) cs = "Our staff has taken her in and delivered a healthy daughter. She and your child";
+	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 1) cs = "Our staff has taken her in and delivered a healthy son and daughter. She and your children";
+	else cs = "Our staff has taken her in and delivered " + num2Text(_tempZilGirlChildRef.Quantity) + " healthy children. She and your offspring";
 
-	var m:String = "Hello, "+pc.mf("Mr", "Miss") +". Steele, I'm writing on behalf of Zheniya to inform you that your partner arrived at the Tavros Residential Clinic a few moments ago, having gone into labor. "+cs+" should be free to return home within the next few hours.\n\nCongratulations!\n\nNurse Carter\nTavros Residential Clinic, Deck 45\n<i>Healthier living for tomorrow.</i>";
+	var m:String = "Hello, " + pc.mf("Mr", "Miss") + ". Steele, I’m writing on behalf of Zheniya to inform you that your partner arrived at the Tavros Residential Clinic a few moments ago, having gone into labor. " + cs + " should be free to return home within the next few hours.\n\nCongratulations!\n\nNurse Carter\nTavros Residential Clinic, Deck 45\n<i>Healthier living for tomorrow.</i>";
 
 	return m;
 
@@ -2404,10 +2403,12 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 		if (rand(2) == 0) _tempZilGirlChildRef.NumMale++;
 		else _tempZilGirlChildRef.NumFemale++;
 	}
-
+	// Add child to nursery data
+	ChildManager.addChild(_tempZilGirlChildRef);
+	StatTracking.track("pregnancy/total day care", flags["ZIL_CALLGIRL_EGG_COUNT"]);
+	
 	StatTracking.track("pregnancy/zil call girl kids", flags["ZIL_CALLGIRL_EGG_COUNT"]);
-
-	flags["ZIL_CALLGIRL_PREGMAIL"] = undefined;
+	
 	flags["ZIL_CALLGIRL_EGG_COUNT"] = undefined;
 	flags["ZIL_CALLGIRL_GESTATION"] = undefined;
 	flags["ZIL_CALLGIRL_PREG"] = undefined;
@@ -2415,9 +2416,10 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 	flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = 1;
 	if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == undefined) flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] = 1;
 	else flags["ZIL_CALLGIRL_TOTAL_BIRTHS"]++;
-
+	
 	MailManager.clearEntry("zil_callgirl_birth"); // Removes cached text but also sets timestamps to default
 	MailManager.unlockEntry("zil_callgirl_birth", GetGameTimestamp() + deltaT); // Regenerates cache and sets new appropriate timestamp
+	AddLogEvent("<b>New Email from Nurse Amanda Carter (A_Carter@TavrosMedical.net)!</b>", "words");
 }
 
 public function zilCallgirlPregnantAgain():void

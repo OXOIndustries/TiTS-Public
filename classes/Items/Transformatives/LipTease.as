@@ -66,7 +66,7 @@
 		{
 			clearOutput();
 			kGAMECLASS.showName("LIP\nTEASE");
-			author("IVIysteriousPerson");
+			author("MistyBirb");
 			
 			// First Consumption Text:
 			output("You hold the applicator in your palm. ");
@@ -107,7 +107,7 @@
 		{
 			clearOutput();
 			kGAMECLASS.showName("LIP\nTEASE");
-			author("IVIysteriousPerson");
+			author("MistyBirb");
 			
 			output("You put the lip balm back into your inventory.\n\n");
 			kGAMECLASS.itemCollect([new LipTease()]);
@@ -123,7 +123,7 @@
 			
 			clearOutput();
 			kGAMECLASS.showName(colorType.toUpperCase() + "\nCOLORS");
-			author("IVIysteriousPerson");
+			author("MistyBirb");
 			
 			output("What color do you choose?\n\n");
 			
@@ -218,7 +218,7 @@
 			
 			clearOutput();
 			kGAMECLASS.showName(colorType.toUpperCase() + "\nSIZE");
-			author("IVIysteriousPerson");
+			author("MistyBirb");
 			
 			output("You make your selection and give the cylinder a good shake, hearing a bit of liquid slosh around inside. Now, which end are you going to use? The “+” side will enlarge your " + lipTypeString(colorType) + ", while the “-” side will shrink them.");
 			
@@ -247,7 +247,7 @@
 			
 			clearOutput();
 			kGAMECLASS.showName("LIP\nTEASE");
-			author("IVIysteriousPerson");
+			author("MistyBirb");
 			
 			output("You pull off the cap and pucker your " + lipType + ", liberally applying the balm. There’s not much in there, and it only takes a few passes over each lip to exhaust the applicator.");
 			

@@ -2,7 +2,6 @@ package classes.GameData.Pregnancy
 {
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Containers.Genders;
-	import classes.Items.Guns.EmmysSalamanderPistol;
 	import classes.kGAMECLASS;
 	import flash.utils.getQualifiedClassName;
 	import classes.GLOBAL;
@@ -75,8 +74,6 @@ package classes.GameData.Pregnancy
 			return _numChildren;
 		}
 		
-
-			
 		public function ofGender(genderTypes:uint):Boolean
 		{
 			updateNumCache();
