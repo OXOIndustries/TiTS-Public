@@ -9,6 +9,7 @@
 	import classes.Items.Guns.HammerPistolScavenged;
 	import classes.Items.Melee.YappiStrap;
 	import classes.Items.Armor.InsulatedCoat;
+	import classes.Items.Upgrades.HardLightUpgrade;
 
 
 	import classes.kGAMECLASS;
@@ -238,6 +239,8 @@
 			if(rand(20) == 0) inventory.push(new YappiStrap());
 			//5% chance of InsulatedCoat
 			if(rand(20) == 0) inventory.push(new InsulatedCoat());
+			//Temporarily put on these snowbitches till I find a real home for it.
+			if(!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());
 			/*
 			if (rand(10) == 0)
 			{

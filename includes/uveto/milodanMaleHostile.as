@@ -68,7 +68,7 @@ public function encounterAMilodan():void
 		output("\n\nYour Codex beeps a warning: <i>“New species detected. Milodan. Conflict aversion measures are recommended.”</i>\n\nYeah. Right. At least you’ll have a new Codex entry to read if you live...");
 		CodexManager.unlockEntry("Milodan");
 	}
-	output("\n\n<b>It’s a fight!</i>");	
+	output("\n\n<b>It’s a fight!</b>");	
 	clearMenu();
 	addButton(0,"Next", CombatManager.beginCombat);
 }
