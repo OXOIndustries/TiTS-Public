@@ -125,7 +125,7 @@ public function leaveDefeatedDudeleen():void {
 public function getButtfuckedByDudeleen():void
 {
 	clearOutput();
-	author("IVIysteriousPerson");
+	author("MistyBirb");
 	showBust("NALEEN_MALE");
 	showName("NALEEN\nMALE");
 	

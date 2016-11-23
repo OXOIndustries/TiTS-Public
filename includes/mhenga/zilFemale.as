@@ -1486,7 +1486,7 @@ public function normalZilgirlCockfuck():void
 	clearOutput();
 	showBust("ZILFEMALE");
 	showName("FEMALE\nZIL");
-	author("IVIsteriousPerson");
+	author("MistyBirb");
 	
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
