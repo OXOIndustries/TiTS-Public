@@ -1176,6 +1176,7 @@
 			"SHOU",
 			"UTHSTAR",
 			"WOLFYNAIL",
+			"FUBMISTRESS",
 		];
 		
 		// Any time we want to show a name, this is where it'll be getting pulled from
@@ -1202,6 +1203,7 @@
 			"Shou",
 			"Uthstar",
 			"Wolfy-Nail",
+			"FubMistress",
 		];
 		
 		// These are what show up in the options menu combo boxes
