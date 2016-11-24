@@ -3,7 +3,7 @@ public function initTarkusRooms():void
 		//#1 Ship Hangar
 	rooms["201"] = new RoomClass(this);
 	rooms["201"].roomName = "SHIP\nHANGAR";
-	rooms["201"].description = "You're in the main dock of Novahome, the starship wreckage that currently serves as the raskvel home city. Several dozen of the little scaly creatures are running around, helping to load or offload other ships as they come and go from the Nova's dock. Most of them are heading east across the suitably massive hangar; you'll have to walk for some time to traverse the whole of it. Distantly, you can make out a service corridor next to a cargo-elevator. That'd be your ticket anywhere.";
+	rooms["201"].description = "You’re in the main dock of Novahome, the starship wreckage that currently serves as the raskvel home city. Several dozen of the little scaly creatures are running around, helping to load or offload other ships as they come and go from the Nova’s dock. Most of them are heading east across the suitably massive hangar; you’ll have to walk for some time to traverse the whole of it. Distantly, you can make out a service corridor next to a cargo-elevator. That’d be your ticket anywhere.";
 	rooms["201"].runOnEnter = firstTimeOnTarkusBonus;
 	//rooms["201"].northExit = "NOVA SHIP DECK ELEVATOR";
 	rooms["201"].eastExit = "202";
@@ -40,7 +40,7 @@ public function initTarkusRooms():void
 	//#2 Eastern Hangar
 	rooms["202"] = new RoomClass(this);
 	rooms["202"].roomName = "EASTERN\nHANGAR";
-	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It's obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going east into an access tunnel; the nearby cargo elevator's doors sit askew in their frame, obviously nonfunctional.\n\nThe U.G.C. scouts have set up an office to the north. They might be able to give you a lift to some of the more remote destinations on planet.";
+	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It’s obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going east into an access tunnel; the nearby cargo elevator’s doors sit askew in their frame, obviously nonfunctional.\n\nThe U.G.C. scouts have set up an office to the north. They might be able to give you a lift to some of the more remote destinations on planet.";
 	rooms["202"].runOnEnter = undefined;
 	rooms["202"].westExit = "201";
 	rooms["202"].eastExit = "203";
@@ -66,7 +66,7 @@ public function initTarkusRooms():void
 	//#3 UPPER STAIRWELL
 	rooms["203"] = new RoomClass(this);
 	rooms["203"].roomName = "UPPER\nSTAIRWELL";
-	rooms["203"].description = "You're standing inside a wide corridor labeled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can go down into the ship or west out into the hangar.";
+	rooms["203"].description = "You’re standing inside a wide corridor labeled as “Starewell” in painted script. The writing is as crude as it is misspelled. It isn’t even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There’s no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can go down into the ship or west out into the hangar.";
 	rooms["203"].runOnEnter = undefined;
 	rooms["203"].westExit = "202";
 	rooms["203"].outExit = "204";
@@ -80,7 +80,7 @@ public function initTarkusRooms():void
 	//#4 LOWER STAIRWELL
 	rooms["204"] = new RoomClass(this);
 	rooms["204"].roomName = "LOWER\nSTAIRWELL";
-	rooms["204"].description = "There's a crudely written sign hanging above a spiralling ramp. It reads, \"Stairwill.\" You're pretty sure that whoever wrote it meant to write \"Stairwell,\" but even so, there isn't a stair to be seen. The smooth metal deckplates arc up around a central column in a huge ramp, leading to the Nova's middle decks where the hangar is located. An access corridor stretches away to the east. Faded texts indicate that it was once used for maintenance, but nowadays, it seems to be the main route between Novahome and the ship's hangar-turned-landing-pad.";
+	rooms["204"].description = "There’s a crudely written sign hanging above a spiralling ramp. It reads, “Stairwill.” You’re pretty sure that whoever wrote it meant to write “Stairwell,” but even so, there isn’t a stair to be seen. The smooth metal deckplates arc up around a central column in a huge ramp, leading to the Nova’s middle decks where the hangar is located. An access corridor stretches away to the east. Faded texts indicate that it was once used for maintenance, but nowadays, it seems to be the main route between Novahome and the ship’s hangar-turned-landing-pad.";
 	rooms["204"].runOnEnter = undefined;
 	rooms["204"].eastExit = "205";
 	rooms["204"].inExit = "203";
@@ -94,7 +94,7 @@ public function initTarkusRooms():void
 	//#5 SHIP CORRIDOR
 	rooms["205"] = new RoomClass(this);
 	rooms["205"].roomName = "SHIP\nCORRIDOR";
-	rooms["205"].description = "You're in the middle of a bend in a massive, maintenance access corridor. Once, long ago, it was used by work robots to move between various sections of the ship unseen. Now, with much of the ship in disrepair, it's the main thoroughfare between Novahome's central corridor and the hangar. The raskvel streaming by you seem excited to have all the offworlders around, stopping them to jabber questions almost nonstop. You narrowly escape the same fate as you go on your way. A ramp is visible to the west, and a corridor stretches south towards Novahome proper, glowing faintly.";
+	rooms["205"].description = "You’re in the middle of a bend in a massive, maintenance access corridor. Once, long ago, it was used by work robots to move between various sections of the ship unseen. Now, with much of the ship in disrepair, it’s the main thoroughfare between Novahome’s central corridor and the hangar. The raskvel streaming by you seem excited to have all the offworlders around, stopping them to jabber questions almost nonstop. You narrowly escape the same fate as you go on your way. A ramp is visible to the west, and a corridor stretches south towards Novahome proper, glowing faintly.";
 	rooms["205"].runOnEnter = undefined;
 	rooms["205"].westExit = "204";
 	rooms["205"].southExit = "206";
@@ -120,7 +120,7 @@ public function initTarkusRooms():void
 	//#7 NOVAHOME
 	rooms["207"] = new RoomClass(this);
 	rooms["207"].roomName = "\nNOVAHOME";
-	rooms["207"].description = "Here in the central tunnel of the Nova, the ceiling is at least forty feet tall, and the walls are wide enough to handle a football field. This vessel could easily match the biggest dreadnaughts in the terran navy pound for pound, but it's obvious from its unique internal structure that it was not a ship meant for war. Whatever its original purpose, the raskvel have turned it into their home. Metallic structures have sprung up on all sides, though the central part of the tunnel remains clear, leading east and west from here. A maintenance corridor to the north leads back toward the hangar.";
+	rooms["207"].description = "Here in the central tunnel of the Nova, the ceiling is at least forty feet tall, and the walls are wide enough to handle a football field. This vessel could easily match the biggest dreadnaughts in the terran navy pound for pound, but it’s obvious from its unique internal structure that it was not a ship meant for war. Whatever its original purpose, the raskvel have turned it into their home. Metallic structures have sprung up on all sides, though the central part of the tunnel remains clear, leading east and west from here. A maintenance corridor to the north leads back toward the hangar.";
 	rooms["207"].runOnEnter = undefined;
 	rooms["207"].northExit = "206";
 	rooms["207"].eastExit = "208";
@@ -134,7 +134,7 @@ public function initTarkusRooms():void
 	//#8 NOVAHOME
 	rooms["208"] = new RoomClass(this);
 	rooms["208"].roomName = "\nNOVAHOME";
-	rooms["208"].description = "You are in the central tunnel of Novahome. Once a gigantic tunnel in the core of an ancient ship, it's now packed with houses and shops of all styles and sizes. On one side, there's a shack made from stapled-together, rusted plates, while on the north lies a structure of all hard, angled starship parts. You can continue east or west from here, though a huge wall looms in the former direction before long.";
+	rooms["208"].description = "You are in the central tunnel of Novahome. Once a gigantic tunnel in the core of an ancient ship, it’s now packed with houses and shops of all styles and sizes. On one side, there’s a shack made from stapled-together, rusted plates, while on the north lies a structure of all hard, angled starship parts. You can continue east or west from here, though a huge wall looms in the former direction before long.";
 	rooms["208"].runOnEnter = colensosAdjacentRoomStuff;
 	rooms["208"].eastExit = "209";
 	rooms["208"].westExit = "207";
@@ -174,7 +174,7 @@ public function initTarkusRooms():void
 	//#10 NOVAHOME
 	rooms["210"] = new RoomClass(this);
 	rooms["210"].roomName = "\nNOVAHOME";
-	rooms["210"].description = "You're almost smack in the middle of the tremendous passageway that runs through the center of this starship-turned-town. It would take at least fifteen minutes of walking to reach either end, and there's plenty of lateral room as well. Such a huge, central void would make this ship poorly suited for combat, but perhaps it served some other purpose back in its day. Now, it's being used as a place of residence and business, filled with raskvel of every color and variety.";
+	rooms["210"].description = "You’re almost smack in the middle of the tremendous passageway that runs through the center of this starship-turned-town. It would take at least fifteen minutes of walking to reach either end, and there’s plenty of lateral room as well. Such a huge, central void would make this ship poorly suited for combat, but perhaps it served some other purpose back in its day. Now, it’s being used as a place of residence and business, filled with raskvel of every color and variety.";
 	rooms["210"].runOnEnter = BonusFunction210;
 	rooms["210"].eastExit = "207";
 	rooms["210"].westExit = "211";
@@ -203,7 +203,7 @@ public function initTarkusRooms():void
 	//#12 NOVAHOME
 	rooms["212"] = new RoomClass(this);
 	rooms["212"].roomName = "\nNOVAHOME";
-	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings. A steady stream of raskvel are coming and going from inside a cavernous chamber to the north, clearly marked \"MESS\" in large, white letters. A pair of large windows on either side of the door are currently obstructed thanks to a pair of gigantic sandwich boards set up with some crudely-drawn caricatures of soups, sandwiches, and steaks beside prices in the local currency.";
+	rooms["212"].description = "You’re definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There’s still plenty of room, though. Where you’re standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings. A steady stream of raskvel are coming and going from inside a cavernous chamber to the north, clearly marked “MESS” in large, white letters. A pair of large windows on either side of the door are currently obstructed thanks to a pair of gigantic sandwich boards set up with some crudely-drawn caricatures of soups, sandwiches, and steaks beside prices in the local currency.";
 	rooms["212"].runOnEnter = steeleTechTarkusOutsideFunction;
 	rooms["212"].eastExit = "211";
 	rooms["212"].westExit = "213";
@@ -218,7 +218,7 @@ public function initTarkusRooms():void
 	//#13 NOVAHOME
 	rooms["213"] = new RoomClass(this);
 	rooms["213"].roomName = "\nNOVAHOME";
-	rooms["213"].description = "The Nova's internal lighting flickers gently with its own asynchronous rhythm. To the east, the illumination is brighter and more steady. You estimate the ship's powerplants are located in the aft of the ship, near its engines, and the power conduits are in less than pristine condition. Further west, where the corridor ends, it's even dimmer, oddly reminiscent of just minutes after sunset.";
+	rooms["213"].description = "The Nova’s internal lighting flickers gently with its own asynchronous rhythm. To the east, the illumination is brighter and more steady. You estimate the ship’s powerplants are located in the aft of the ship, near its engines, and the power conduits are in less than pristine condition. Further west, where the corridor ends, it’s even dimmer, oddly reminiscent of just minutes after sunset.";
 	rooms["213"].runOnEnter = bonusFunction213;
 	rooms["213"].eastExit = "212";
 	rooms["213"].westExit = "214";
@@ -232,7 +232,7 @@ public function initTarkusRooms():void
 	//#14 WEST NOVAHOME
 	rooms["214"] = new RoomClass(this);
 	rooms["214"].roomName = "WEST\nNOVAHOME";
-	rooms["214"].description = "West Novahome is located near the fore of the ship, where the power is weak and the lighting dim. You can see that the tunnel is narrower here than to the east as well. Even the western wall is in disrepair; it's covered in years of rust despite recent attempts to repair it. Even now, raskvel mechanics are toiling away alongside a nonfunctional hatch. Maybe someday they'll actually get this junker working again. The rest of Novahome stretches away to the east.";
+	rooms["214"].description = "West Novahome is located near the fore of the ship, where the power is weak and the lighting dim. You can see that the tunnel is narrower here than to the east as well. Even the western wall is in disrepair; it’s covered in years of rust despite recent attempts to repair it. Even now, raskvel mechanics are toiling away alongside a nonfunctional hatch. Maybe someday they’ll actually get this junker working again. The rest of Novahome stretches away to the east.";
 	rooms["214"].runOnEnter = westNovahomeBonus;
 	rooms["214"].eastExit = "213";
 	rooms["214"].moveMinutes = 2;
@@ -244,7 +244,7 @@ public function initTarkusRooms():void
 	//#15 MAKESHIFT GANGPLANK
 	rooms["215"] = new RoomClass(this);
 	rooms["215"].roomName = "MAKESHIFT\nGANGPLANK";
-	rooms["215"].description = "With every step you take out onto this gangplank, you hear the telltale groans of metal straining. You can feel it flexing from the combined foot traffic of dozens of raskvel scavengers, droids, and other rushers as they move along the improvised structure. You'd be more worried if it wasn't so thick and the welds didn't look so solid. All you have to do is stay away from the edges and keep your balance. If you follow it up to the north, you'll find yourself back inside the Nova, now Novahome. Continuing south will deposit you on the surface of Tarkus.";
+	rooms["215"].description = "With every step you take out onto this gangplank, you hear the telltale groans of metal straining. You can feel it flexing from the combined foot traffic of dozens of raskvel scavengers, droids, and other rushers as they move along the improvised structure. You’d be more worried if it wasn’t so thick and the welds didn’t look so solid. All you have to do is stay away from the edges and keep your balance. If you follow it up to the north, you’ll find yourself back inside the Nova, now Novahome. Continuing south will deposit you on the surface of Tarkus.";
 	rooms["215"].runOnEnter = undefined;
 	rooms["215"].northExit = "211";
 	rooms["215"].southExit = "216";
@@ -256,7 +256,7 @@ public function initTarkusRooms():void
 	//#16 RUST FIELDS
 	rooms["216"] = new RoomClass(this);
 	rooms["216"].roomName = "RUST\nFIELDS";
-	rooms["216"].description = "You're standing the middle of the Tarkus' famed rust fields, so called thanks to the endless tracks of discarded, rusting machinery. Reddish flakes blow by your [pc.feet] on arid, metallic-tasting breezes, and the unmistakable tang of ancient pollution clings to your tongue with every breath. The place is a ruin of wasted potential and shattered dreams with the only visible sign of civilization rising up to the north: Novahome, a starship-turned native city.";
+	rooms["216"].description = "You’re standing the middle of the Tarkus’ famed rust fields, so called thanks to the endless tracks of discarded, rusting machinery. Reddish flakes blow by your [pc.feet] on arid, metallic-tasting breezes, and the unmistakable tang of ancient pollution clings to your tongue with every breath. The place is a ruin of wasted potential and shattered dreams with the only visible sign of civilization rising up to the north: Novahome, a starship-turned native city.";
 	rooms["216"].runOnEnter = rustPlainsEncounters;
 	rooms["216"].northExit = "215";
 	rooms["216"].westExit = "217";
@@ -271,7 +271,7 @@ public function initTarkusRooms():void
 	//#17 RUST FIELDS
 	rooms["217"] = new RoomClass(this);
 	rooms["217"].roomName = "RUST\nFIELDS";
-	rooms["217"].description = "Mounds of rusted machinery, ancient hulks, and plastics pile up around you into trackless dunes to the east, south, and west. Your every movement is chased by the soft crunching of metal flakes breaking under[pc.foot], and you're constantly spotting new oddities in the mess. They're all too damaged, rotten, or rusted to be useful. Here in the shadow of the Nova, it's likely the area has been picked clean of valuables.";
+	rooms["217"].description = "Mounds of rusted machinery, ancient hulks, and plastics pile up around you into trackless dunes to the east, south, and west. Your every movement is chased by the soft crunching of metal flakes breaking under[pc.foot], and you’re constantly spotting new oddities in the mess. They’re all too damaged, rotten, or rusted to be useful. Here in the shadow of the Nova, it’s likely the area has been picked clean of valuables.";
 	rooms["217"].runOnEnter = rustPlainsEncounters;
 	rooms["217"].westExit = "218";
 	rooms["217"].eastExit = "216";
@@ -285,7 +285,7 @@ public function initTarkusRooms():void
 	//#18 RUST FIELDS
 	rooms["218"] = new RoomClass(this);
 	rooms["218"].roomName = "RUST\nFIELDS";
-	rooms["218"].description = "This close to the nova, you can't help but be impressed by its sheer size and durability. Even though the hull is heavily scaled with rust, the metal appears sound underneath the crusty, red-flecked layer. This is clearly a ship that was meant to last a very, very long time, and it has. All around, small, uneven dunes of dirt, dust, and rust rise up, hiding half-buried garbage from a variety of different races. You can walk across them to the east, west, and south. The Nova blocks passage to the north.";
+	rooms["218"].description = "This close to the nova, you can’t help but be impressed by its sheer size and durability. Even though the hull is heavily scaled with rust, the metal appears sound underneath the crusty, red-flecked layer. This is clearly a ship that was meant to last a very, very long time, and it has. All around, small, uneven dunes of dirt, dust, and rust rise up, hiding half-buried garbage from a variety of different races. You can walk across them to the east, west, and south. The Nova blocks passage to the north.";
 	rooms["218"].runOnEnter = rustPlainsEncounters;
 	rooms["218"].westExit = "219";
 	rooms["218"].eastExit = "217";
@@ -300,7 +300,7 @@ public function initTarkusRooms():void
 	//#19 RUST FIELDS
 	rooms["219"] = new RoomClass(this);
 	rooms["219"].roomName = "RUST\nFIELDS";
-	rooms["219"].description = "An unstable pile of rusted ships and gutted battle tanks has been built up to the southwest, perhaps stacked there by natives sorting through the junk for still-usable treasures. Regardless, the massive mound is too sheer and rusted to climb. If you tried, you'd either tip it over onto yourself or just cut yourself on erosion-sharpened metal. You can traverse around it by going west or south, or you could head east in the shadow of the Nova.";
+	rooms["219"].description = "An unstable pile of rusted ships and gutted battle tanks has been built up to the southwest, perhaps stacked there by natives sorting through the junk for still-usable treasures. Regardless, the massive mound is too sheer and rusted to climb. If you tried, you’d either tip it over onto yourself or just cut yourself on erosion-sharpened metal. You can traverse around it by going west or south, or you could head east in the shadow of the Nova.";
 	rooms["219"].runOnEnter = rustPlainsEncounters;
 	rooms["219"].westExit = "220";
 	rooms["219"].eastExit = "218";
@@ -314,7 +314,7 @@ public function initTarkusRooms():void
 	//#20 RUST CANYON
 	rooms["220"] = new RoomClass(this);
 	rooms["220"].roomName = "RUST\nCANYON";
-	rooms["220"].description = "You're standing in the shadow of two different mounds of metal. To the northeast, the Nova towers above you. To the south and west, a huge pile of busted machinery has been stacked at least thirty feet into the air. Well-trod paths have been worn through the metallic dust between the two obstacles, leading north between the monolithic wreckages. You can also travel east to get out of this narrow, ferrous valley and out into the rust fields.";
+	rooms["220"].description = "You’re standing in the shadow of two different mounds of metal. To the northeast, the Nova towers above you. To the south and west, a huge pile of busted machinery has been stacked at least thirty feet into the air. Well-trod paths have been worn through the metallic dust between the two obstacles, leading north between the monolithic wreckages. You can also travel east to get out of this narrow, ferrous valley and out into the rust fields.";
 	rooms["220"].runOnEnter = rustPlainsEncounters;
 	rooms["220"].northExit = "221";
 	rooms["220"].eastExit = "219";
@@ -327,7 +327,7 @@ public function initTarkusRooms():void
 	//#21 RUST CANYON
 	rooms["221"] = new RoomClass(this);
 	rooms["221"].roomName = "RUST\nCANYON";
-	rooms["221"].description = "The path between the Nova and the piled detritus is almost punishingly narrow here. You have to duck and weave to navigate around the angled prow of the colossal starship. The air is stagnant and thick with dust. There isn't even that much light down here; the piled metal hulks above are leaning against the much larger hull of the Nova, keeping this area perpetually dark. You can squeeze south or west from here. Both directions are far more open and well lit.";
+	rooms["221"].description = "The path between the Nova and the piled detritus is almost punishingly narrow here. You have to duck and weave to navigate around the angled prow of the colossal starship. The air is stagnant and thick with dust. There isn’t even that much light down here; the piled metal hulks above are leaning against the much larger hull of the Nova, keeping this area perpetually dark. You can squeeze south or west from here. Both directions are far more open and well lit.";
 	rooms["221"].runOnEnter = rustCoastEncounters;
 	rooms["221"].westExit = "222";
 	rooms["221"].southExit = "220";
@@ -340,7 +340,7 @@ public function initTarkusRooms():void
 	//#22 NEXT TO\nA JUNK PILE
 	rooms["222"] = new RoomClass(this);
 	rooms["222"].roomName = "NEXT TO\nA JUNK PILE";
-	rooms["222"].description = "The air here smells vaguely of molten metal and pollution, stronger than many other places on Tarkus. The flakes of iron and other ferrous-based materials that make up the dusty soil are fine, so small you could almost mistake it for reddish-brown dirt if you didn't look too closely. You could head north around the prow of the Nova, east alongside a towering pile of junk, or west to the other side of the heap.";
+	rooms["222"].description = "The air here smells vaguely of molten metal and pollution, stronger than many other places on Tarkus. The flakes of iron and other ferrous-based materials that make up the dusty soil are fine, so small you could almost mistake it for reddish-brown dirt if you didn’t look too closely. You could head north around the prow of the Nova, east alongside a towering pile of junk, or west to the other side of the heap.";
 	rooms["222"].runOnEnter = tryEncounterBess;
 	rooms["222"].eastExit = "221";
 	rooms["222"].northExit = "223";
@@ -354,7 +354,7 @@ public function initTarkusRooms():void
 	//#23 NOVA\nPOINT
 	rooms["223"] = new RoomClass(this);
 	rooms["223"].roomName = "NOVA\nPOINT";
-	rooms["223"].description = "You're standing directly under the nose of the Nova. Around you hang stalactites of ancient, corroded metal, testaments to corrosive forces that have seen fit to grace the ship with a beard worthy of father time. In spite of that, the hull looks thick enough to remain spaceworthy. It was obviously built to withstand an obscene amount of punishment. The ground here is relatively flat. Why, there's barely even any junk sticking up out of the \"soil!\" You can amble around similar terrain to the north and west. Heading south would put you on a path alongside a mound of twisted wreckage.";
+	rooms["223"].description = "You’re standing directly under the nose of the Nova. Around you hang stalactites of ancient, corroded metal, testaments to corrosive forces that have seen fit to grace the ship with a beard worthy of father time. In spite of that, the hull looks thick enough to remain spaceworthy. It was obviously built to withstand an obscene amount of punishment. The ground here is relatively flat. Why, there’s barely even any junk sticking up out of the “soil!” You can amble around similar terrain to the north and west. Heading south would put you on a path alongside a mound of twisted wreckage.";
 	rooms["223"].runOnEnter = rustCoastEncounters;
 	rooms["223"].southExit = "222";
 	rooms["223"].westExit = "228";
@@ -368,7 +368,7 @@ public function initTarkusRooms():void
 	//#24 SHIPSIDE\nFIELD
 	rooms["224"] = new RoomClass(this);
 	rooms["224"].roomName = "SHIPSIDE\nFIELD";
-	rooms["224"].description = "The surrounding expanse of flat, dusty fields is about as desolate as it gets, but even that hasn't stopped life, at least not yet. There's a few silvery plant stalks capped with iridescent blue leaves waving gently in the polluted breezes, somehow still here in spite of all this place has gone through. Stepping gingerly, you could go south or west from here. The Nova blocks passage to the east, and gray cliffs stretch up towards a cloudless sky to the north.";
+	rooms["224"].description = "The surrounding expanse of flat, dusty fields is about as desolate as it gets, but even that hasn’t stopped life, at least not yet. There’s a few silvery plant stalks capped with iridescent blue leaves waving gently in the polluted breezes, somehow still here in spite of all this place has gone through. Stepping gingerly, you could go south or west from here. The Nova blocks passage to the east, and gray cliffs stretch up towards a cloudless sky to the north.";
 	rooms["224"].runOnEnter = rustCoastEncounters;
 	rooms["224"].southExit = "223";
 	rooms["224"].westExit = "225";
@@ -422,7 +422,7 @@ public function initTarkusRooms():void
 	//#26 OIL SEA\nBEACH
 	rooms["226"] = new RoomClass(this);
 	rooms["226"].roomName = "OIL SEA\nBEACH";
-	rooms["226"].description = "Here on the beach of the Oil Sea, you can't help but be aware of its stunning, unnatural beauty, a property lent to it by the glossy, metallic materials that comprise its slowly rolling waves. The smell is obscenely clingy. You can practically feel the tainted air sticking to the roof of your mouth, lending credence to the worrying thoughts that are assailing your mind, wondering how quickly this place is poisoning you. You can travel along the beach to the south, or you could head east away from the liquid's edge. A sheer cliff face blocks travel north, and you don't even want to think about trying to swim through the sludge to the west.";
+	rooms["226"].description = "Here on the beach of the Oil Sea, you can’t help but be aware of its stunning, unnatural beauty, a property lent to it by the glossy, metallic materials that comprise its slowly rolling waves. The smell is obscenely clingy. You can practically feel the tainted air sticking to the roof of your mouth, lending credence to the worrying thoughts that are assailing your mind, wondering how quickly this place is poisoning you. You can travel along the beach to the south, or you could head east away from the liquid’s edge. A sheer cliff face blocks travel north, and you don’t even want to think about trying to swim through the sludge to the west.";
 	rooms["226"].runOnEnter = rustCoastEncounters;
 	rooms["226"].southExit = "227";
 	rooms["226"].eastExit = "225";
@@ -448,7 +448,7 @@ public function initTarkusRooms():void
 	//#28 OIL SEA\nBEACH
 	rooms["228"] = new RoomClass(this);
 	rooms["228"].roomName = "OIL SEA\nBEACH";
-	rooms["228"].description = "Here, at the tip of a small, oily inlet, the beach is even more blackened than elsewhere, perhaps due to collecting sludge and sediment carried on the waves. You can actually spot pools of tar alongside silvery swirls and reddish quagmires, each of them as beautiful as they are deadly. It's hard not to feel like this whole planet is a spectacle of pollution and rot heaped upon itself until it's gained its own sense of obscene beauty. Surely there's something of value left on this planet - perhaps half-buried in the beach to the south or west. Maybe you could find something to the east, near the nose of the Nova or to the north under the cliffs.";
+	rooms["228"].description = "Here, at the tip of a small, oily inlet, the beach is even more blackened than elsewhere, perhaps due to collecting sludge and sediment carried on the waves. You can actually spot pools of tar alongside silvery swirls and reddish quagmires, each of them as beautiful as they are deadly. It’s hard not to feel like this whole planet is a spectacle of pollution and rot heaped upon itself until it’s gained its own sense of obscene beauty. Surely there’s something of value left on this planet - perhaps half-buried in the beach to the south or west. Maybe you could find something to the east, near the nose of the Nova or to the north under the cliffs.";
 	rooms["228"].runOnEnter = rustCoastEncounters;
 	rooms["228"].northExit = "225";
 	rooms["228"].eastExit = "223";
@@ -477,7 +477,7 @@ public function initTarkusRooms():void
 	//#30 OIL SEA\nBEACH
 	rooms["230"] = new RoomClass(this);
 	rooms["230"].roomName = "OIL SEA\nBEACH";
-	rooms["230"].description = "This narrow strip of beach is made all the more precarious by a looming pile of wasted hulks and gutted spaceships. Someone went through all the trouble of scrounging them for useful parts and stacking the corroded leftovers into a pile, and whoever it was didn't even have the foresight to make it a little further away from the beach. You'll be forced to squeeze between the metal and the viscous waves numerous times if you want to go north or south, the only passable directions.";
+	rooms["230"].description = "This narrow strip of beach is made all the more precarious by a looming pile of wasted hulks and gutted spaceships. Someone went through all the trouble of scrounging them for useful parts and stacking the corroded leftovers into a pile, and whoever it was didn’t even have the foresight to make it a little further away from the beach. You’ll be forced to squeeze between the metal and the viscous waves numerous times if you want to go north or south, the only passable directions.";
 	rooms["230"].runOnEnter = rustCoastEncounters;
 	rooms["230"].northExit = "229";
 	rooms["230"].southExit = "231";
@@ -490,7 +490,7 @@ public function initTarkusRooms():void
 	//#31 OIL SEA\nBEACH
 	rooms["231"] = new RoomClass(this);
 	rooms["231"].roomName = "OIL SEA\nBEACH";
-	rooms["231"].description = "A slurping sound announces the languid connection of a minor waterway to the beach. The sluggish water pours an irregular stream into the contaminated water, creating a chunky froth. Fat-like chunks of scum litter the sand, looking like greasy, gray-black stones, already blistering in the elements. The smell of baked crude oil saturates the air, making it hard to breathe. You pick your way carefully through the deposits, holding your breath as one crumbles with your passing, filling the air with visible fumes. The wall stacked junkers blocking off the northeast doesn't help either. You can follow the beach to the north and east.";
+	rooms["231"].description = "A slurping sound announces the languid connection of a minor waterway to the beach. The sluggish water pours an irregular stream into the contaminated water, creating a chunky froth. Fat-like chunks of scum litter the sand, looking like greasy, gray-black stones, already blistering in the elements. The smell of baked crude oil saturates the air, making it hard to breathe. You pick your way carefully through the deposits, holding your breath as one crumbles with your passing, filling the air with visible fumes. The wall stacked junkers blocking off the northeast doesn’t help either. You can follow the beach to the north and east.";
 	rooms["231"].runOnEnter = rustCoastEncounters;
 	rooms["231"].northExit = "230";
 	rooms["231"].eastExit = "232";
@@ -503,7 +503,7 @@ public function initTarkusRooms():void
 	//#32 OIL SEA\nBEACH
 	rooms["232"] = new RoomClass(this);
 	rooms["232"].roomName = "OIL SEA\nBEACH";
-	rooms["232"].description = "The world around you gradually turns red. You rub your eyes, blaming fatigue for the sudden crimson shift. After blinking several times, you realize, no, the world has actually gone red. The sands are an unhealthy red-black, silicates tossed with metal particulates, and the entire stretch of water here looks uncomfortably like blood. Something massive is corroding off shore on this beach. You can see the mirror stillness of the \"water\" several yards out from where you stand, and try to shake off the impression of some oceanic titan bleeding to death. The beach curves around to the south and west while twisting, creaking mass of forgotten wrecks have been stacked to the north and east, blocking your way.";
+	rooms["232"].description = "The world around you gradually turns red. You rub your eyes, blaming fatigue for the sudden crimson shift. After blinking several times, you realize, no, the world has actually gone red. The sands are an unhealthy red-black, silicates tossed with metal particulates, and the entire stretch of water here looks uncomfortably like blood. Something massive is corroding off shore on this beach. You can see the mirror stillness of the “water” several yards out from where you stand, and try to shake off the impression of some oceanic titan bleeding to death. The beach curves around to the south and west while twisting, creaking mass of forgotten wrecks have been stacked to the north and east, blocking your way.";
 	rooms["232"].runOnEnter = rustCoastEncounters;
 	rooms["232"].westExit = "231";
 	rooms["232"].southExit = "233";
@@ -529,7 +529,7 @@ public function initTarkusRooms():void
 	//#34 OIL SEA\nBEACH
 	rooms["234"] = new RoomClass(this);
 	rooms["234"].roomName = "OIL SEA\nBEACH";
-	rooms["234"].description = "The silence of your walk is interrupted by a chattering of high pitched tones. You glance around quickly, looking for the source of the ringing notes. You see nothing but the yellow-tinged fluid of the sea and this area's glittering sand. It is not until you begin walking that you hear the tinkling notes once more. You take a few more experimental steps forward, then look down, feeling awed and foolish at the same time. Chemical reactions here have crystallized the sand into miniscule, interlocking crystals. Each step snaps hundreds of them, resulting in the sound of scattered bells. The waterside twists away to the south and west, but you could head east into the rust fields if you wanted.";
+	rooms["234"].description = "The silence of your walk is interrupted by a chattering of high pitched tones. You glance around quickly, looking for the source of the ringing notes. You see nothing but the yellow-tinged fluid of the sea and this area’s glittering sand. It is not until you begin walking that you hear the tinkling notes once more. You take a few more experimental steps forward, then look down, feeling awed and foolish at the same time. Chemical reactions here have crystallized the sand into miniscule, interlocking crystals. Each step snaps hundreds of them, resulting in the sound of scattered bells. The waterside twists away to the south and west, but you could head east into the rust fields if you wanted.";
 	rooms["234"].runOnEnter = rustCoastEncounters;
 	rooms["234"].eastExit = "235";
 	rooms["234"].westExit = "233";
@@ -557,7 +557,7 @@ public function initTarkusRooms():void
 	//#36 RUST\nPATH
 	rooms["236"] = new RoomClass(this);
 	rooms["236"].roomName = "RUST\nPATH";
-	rooms["236"].description = "It is hard not to feel a little claustrophobic when you're standing in the shadows of two giants. It's even harder when those giants are two rusted skeletons of torn-up, corroded machinery. To the west is a pile of stripped-down tanks and the occasional ship or crane. To the east, the mound is comprised of thousands upon thousands of broken-down robots and androids, their valuable components removed, their bodies left to rot. You could follow the path south between them, north alongside the larger ship pile, or east beside those poor robots.";
+	rooms["236"].description = "It is hard not to feel a little claustrophobic when you’re standing in the shadows of two giants. It’s even harder when those giants are two rusted skeletons of torn-up, corroded machinery. To the west is a pile of stripped-down tanks and the occasional ship or crane. To the east, the mound is comprised of thousands upon thousands of broken-down robots and androids, their valuable components removed, their bodies left to rot. You could follow the path south between them, north alongside the larger ship pile, or east beside those poor robots.";
 	rooms["236"].runOnEnter = rustPlainsEncounters;
 	rooms["236"].northExit = "219";
 	rooms["236"].eastExit = "237";
@@ -602,7 +602,7 @@ public function initTarkusRooms():void
 	//#39 NEXT TO\nA CRASHED SHIP
 	rooms["239"] = new RoomClass(this);
 	rooms["239"].roomName = "NEXT TO A\nCRASHED SHIP";
-	rooms["239"].description = "Like a giant, orange egg, a rust-covered, ancient craft of alien design sits half-buried in Tarkus' iron-scaled surface. It seems that even alien metals are no match for the corrosive properties of this planet's atmosphere. What few hatches you can see are either sealed shut or only cracked open enough to let the elements into the interior, their hinges or mechanisms long since seized into immobility. You could circle around it to the north or south. Alternatively, you could travel west towards a pile of shattered robots.";
+	rooms["239"].description = "Like a giant, orange egg, a rust-covered, ancient craft of alien design sits half-buried in Tarkus’ iron-scaled surface. It seems that even alien metals are no match for the corrosive properties of this planet’s atmosphere. What few hatches you can see are either sealed shut or only cracked open enough to let the elements into the interior, their hinges or mechanisms long since seized into immobility. You could circle around it to the north or south. Alternatively, you could travel west towards a pile of shattered robots.";
 	rooms["239"].runOnEnter = rustPlainsEncounters;
 	rooms["239"].northExit = "216";
 	rooms["239"].westExit = "238";
@@ -617,7 +617,7 @@ public function initTarkusRooms():void
 	//SW corner of crashed ship
 	rooms["240"] = new RoomClass(this);
 	rooms["240"].roomName = "NEXT TO A\nCRASHED SHIP";
-	rooms["240"].description = "Flakes of corroded metal break off the egg-shaped hull of a crashed, alien ship in the slow, dry breezes that occasionally gust by, scratching at you as they travel by. You brush a few off your shoulder as you regard the ancient machinery. It is clear that the ship has been here so long that it's never going to be spaceworthy again. Some of the hatches are hanging open, frozen by rust, while others are staunchly sealed shut, virtually welded in place by time. You can head north or east around the ship, or you could head west toward a pile of discarded robots. To the south, there's an open area of the rust fields.";
+	rooms["240"].description = "Flakes of corroded metal break off the egg-shaped hull of a crashed, alien ship in the slow, dry breezes that occasionally gust by, scratching at you as they travel by. You brush a few off your shoulder as you regard the ancient machinery. It is clear that the ship has been here so long that it’s never going to be spaceworthy again. Some of the hatches are hanging open, frozen by rust, while others are staunchly sealed shut, virtually welded in place by time. You can head north or east around the ship, or you could head west toward a pile of discarded robots. To the south, there’s an open area of the rust fields.";
 	rooms["240"].runOnEnter = rustPlainsEncounters;
 	rooms["240"].northExit = "239";
 	rooms["240"].eastExit = "292";
@@ -633,7 +633,7 @@ public function initTarkusRooms():void
 	//E side of robot pile - fukkin robosexuals
 	rooms["241"] = new RoomClass(this);
 	rooms["241"].roomName = "NEXT TO\nA JUNK PILE";
-	rooms["241"].description = "A skeletal-looking arm with titanium-composite bones covered in cake-on hydraulic fluid nearly whacks you in the head as you walk alongside a stockpile of forgotten, looted automatons. You look closer until you spot a pair of dead eyes looking back at you, and suitably unnerved, you decide it'd be best not to look too close. If you walk a little ways to the east, you could come up alongside a crusty-looking ship. You could also go north or south if you wanted to stay next to the creepy-looking junkpile.";
+	rooms["241"].description = "A skeletal-looking arm with titanium-composite bones covered in cake-on hydraulic fluid nearly whacks you in the head as you walk alongside a stockpile of forgotten, looted automatons. You look closer until you spot a pair of dead eyes looking back at you, and suitably unnerved, you decide it’d be best not to look too close. If you walk a little ways to the east, you could come up alongside a crusty-looking ship. You could also go north or south if you wanted to stay next to the creepy-looking junkpile.";
 	rooms["241"].runOnEnter = rustPlainsEncounters;
 	rooms["241"].northExit = "238";
 	rooms["241"].eastExit = "240";
@@ -676,7 +676,7 @@ public function initTarkusRooms():void
 	//#44 NEXT TO\nA JUNK PILE
 	rooms["244"] = new RoomClass(this);
 	rooms["244"].roomName = "NEXT TO\nA JUNK PILE";
-	rooms["244"].description = "Skeletal robots lay sprawled across the heap, interlocked in a still, rusted orgy. Most are stripped of their chassis, their interiors bare to the elements. What heads remain stare blankly at corrosion-streaked sky, silent observers of the slow death of the planet. You know that they were simply piled here, but you can’t help but imagine some accidental meaning to the coiling of coolant tubes, the criss-crossing of arms, and the gape of silent jaw joints. Despite no real change in temperature, you shiver, resolving to walk faster past this section of the pile. If you head north or east, you'll stay alongside this artificial graveyard. You can also go west from here, towards a polluted beach, or south, towards a monolithic, metal blade that sticks up out of the ground like a shiny, gigantic rib.";
+	rooms["244"].description = "Skeletal robots lay sprawled across the heap, interlocked in a still, rusted orgy. Most are stripped of their chassis, their interiors bare to the elements. What heads remain stare blankly at corrosion-streaked sky, silent observers of the slow death of the planet. You know that they were simply piled here, but you can’t help but imagine some accidental meaning to the coiling of coolant tubes, the criss-crossing of arms, and the gape of silent jaw joints. Despite no real change in temperature, you shiver, resolving to walk faster past this section of the pile. If you head north or east, you’ll stay alongside this artificial graveyard. You can also go west from here, towards a polluted beach, or south, towards a monolithic, metal blade that sticks up out of the ground like a shiny, gigantic rib.";
 	rooms["244"].runOnEnter = rustCoastEncounters;
 	rooms["244"].northExit = "235";
 	rooms["244"].eastExit = "243";
@@ -745,7 +745,7 @@ public function initTarkusRooms():void
 	//#49 IRON\nRIDGES
 	rooms["249"] = new RoomClass(this);
 	rooms["249"].roomName = "IRON\nRIDGES";
-	rooms["249"].description = "From here, you can see two gigantic metal plates in the distance: one to the southeast and the other to the southwest. The former is at least a dozen feet taller than the latter, but they're both easily hundreds of feet tall, big enough to have come from a capital ship or ocean-going vessel. There's enough of a gap for you to squeeze south between them. You could also head east or west along the ridges. Due north, into the rust plains, is an option as well, but a heap of piled robots will block your travels before you go too far.";
+	rooms["249"].description = "From here, you can see two gigantic metal plates in the distance: one to the southeast and the other to the southwest. The former is at least a dozen feet taller than the latter, but they’re both easily hundreds of feet tall, big enough to have come from a capital ship or ocean-going vessel. There’s enough of a gap for you to squeeze south between them. You could also head east or west along the ridges. Due north, into the rust plains, is an option as well, but a heap of piled robots will block your travels before you go too far.";
 	rooms["249"].runOnEnter = rustRidgesEncounters;
 	rooms["249"].northExit = "243";
 	rooms["249"].eastExit = "251";
@@ -760,7 +760,7 @@ public function initTarkusRooms():void
 	//#50 IRON\nVALLEY
 	rooms["250"] = new RoomClass(this);
 	rooms["250"].roomName = "IRON\nVALLEY";
-	rooms["250"].description = "The light is dim but still sufficient for you to navigate against some of the smaller protrusions in the area. Rough orange walls pen you in to the east and west, curved in enough to remind you of bloodied waves frozen in time. You battle down the fleeting claustrophobia that rears its ugly head and consider your options. There's too many chunks of metal to the south to allow you any further into this metallic ravine. North is the only passable direction.";
+	rooms["250"].description = "The light is dim but still sufficient for you to navigate against some of the smaller protrusions in the area. Rough orange walls pen you in to the east and west, curved in enough to remind you of bloodied waves frozen in time. You battle down the fleeting claustrophobia that rears its ugly head and consider your options. There’s too many chunks of metal to the south to allow you any further into this metallic ravine. North is the only passable direction.";
 	rooms["250"].runOnEnter = rustRidgesEncounters;
 	rooms["250"].northExit = "249";
 	rooms["250"].planet = "PLANET: TARKUS";
@@ -772,7 +772,7 @@ public function initTarkusRooms():void
 	//#51 IRON\nRIDGES
 	rooms["251"] = new RoomClass(this);
 	rooms["251"].roomName = "IRON\nRIDGES";
-	rooms["251"].description = "The iron ridges provide a fascinating, if unnatural, landscape. Thousands of metallic plates of all sizes and descriptions comprise them, all aligned in the same north-south orientation. Here there's a bit of iron, flaking away into dust. There you can see a teal hunk of corroded bronze. Blue flakes fall like snow off alien pieces of metal you don't even recognize, but you know enough to realize that any value it once had flaked away with its structural integrity. The hunks of metal are too thick to the south to move in that direction, but travel east and west alongside the ridges is free and clear. To the north lie the rust plains and a distant pile of abandoned automatons.";
+	rooms["251"].description = "The iron ridges provide a fascinating, if unnatural, landscape. Thousands of metallic plates of all sizes and descriptions comprise them, all aligned in the same north-south orientation. Here there’s a bit of iron, flaking away into dust. There you can see a teal hunk of corroded bronze. Blue flakes fall like snow off alien pieces of metal you don’t even recognize, but you know enough to realize that any value it once had flaked away with its structural integrity. The hunks of metal are too thick to the south to move in that direction, but travel east and west alongside the ridges is free and clear. To the north lie the rust plains and a distant pile of abandoned automatons.";
 	rooms["251"].runOnEnter = rustRidgesEncounters;
 	rooms["251"].northExit = "242";
 	rooms["251"].eastExit = "252";
@@ -786,7 +786,7 @@ public function initTarkusRooms():void
 	//#52 IRON\nRIDGES
 	rooms["252"] = new RoomClass(this);
 	rooms["252"].roomName = "IRON\nRIDGES";
-	rooms["252"].description = "A gust of biting wind lances by your cheek, opening a narrow cut in your flesh when you get unlucky enough to catch a rust flake just wrong. The stacked panels to the south have channeled Tarkus' natural breezes into a dangerous wind tunnel here. It'd be best to move on before too long. The edges of the iron ridges can be followed to the east and west, or you can journey north into the rust plains.";
+	rooms["252"].description = "A gust of biting wind lances by your cheek, opening a narrow cut in your flesh when you get unlucky enough to catch a rust flake just wrong. The stacked panels to the south have channeled Tarkus’ natural breezes into a dangerous wind tunnel here. It’d be best to move on before too long. The edges of the iron ridges can be followed to the east and west, or you can journey north into the rust plains.";
 	rooms["252"].runOnEnter = rustRidgesEncounters;
 	rooms["252"].northExit = "253";
 	rooms["252"].eastExit = "255";
@@ -800,7 +800,7 @@ public function initTarkusRooms():void
 	//#53 RUST\nPLAINS
 	rooms["253"] = new RoomClass(this);
 	rooms["253"].roomName = "RUST\nPLAINS";
-	rooms["253"].description = "In an empty patch of the rust plains, Tarkus' ruined state is laid bare. There isn't a single living creature that you can see. The air smells like acid and ancient batteries. Worse still, fetid brown clouds roll across the sky, occasionally turning a sunny walk into a dreary slog. The ground isn't doing much to help either. It's covered in drifts of crumbled rust that hide razor-sharp bits of machinery and corrosive puddles. East and south of here, you can approach the iron ridges - groups of metal slabs of all shapes and sizes that have been gathered together for some unknown purpose. Some ancient ship wreckage lies a few minutes walk to the north, and robotic carcasses have been piled up a ways to the west.";
+	rooms["253"].description = "In an empty patch of the rust plains, Tarkus’ ruined state is laid bare. There isn’t a single living creature that you can see. The air smells like acid and ancient batteries. Worse still, fetid brown clouds roll across the sky, occasionally turning a sunny walk into a dreary slog. The ground isn’t doing much to help either. It’s covered in drifts of crumbled rust that hide razor-sharp bits of machinery and corrosive puddles. East and south of here, you can approach the iron ridges - groups of metal slabs of all shapes and sizes that have been gathered together for some unknown purpose. Some ancient ship wreckage lies a few minutes walk to the north, and robotic carcasses have been piled up a ways to the west.";
 	rooms["253"].runOnEnter = rustRidgesEncounters;
 	rooms["253"].northExit = "240";
 	rooms["253"].eastExit = "254";
@@ -830,7 +830,7 @@ public function initTarkusRooms():void
 	//#55 IRON\nRIDGES
 	rooms["255"] = new RoomClass(this);
 	rooms["255"].roomName = "IRON\nRIDGES";
-	rooms["255"].description = "Bits of rust - iron oxide, your old chemistry teacher would say - are falling like snow from the top of football field-sized sheet of metal to the east. Unlike a winter flurry, this precipitation grates on your [pc.skinFurScales] in a most irritating way. You brush a few off your shoulder and look around. There's enough room between the discarded metals to squeeze south into a metallic valley. You can always head west and north along the iron ridges as well.";
+	rooms["255"].description = "Bits of rust - iron oxide, your old chemistry teacher would say - are falling like snow from the top of football field-sized sheet of metal to the east. Unlike a winter flurry, this precipitation grates on your [pc.skinFurScales] in a most irritating way. You brush a few off your shoulder and look around. There’s enough room between the discarded metals to squeeze south into a metallic valley. You can always head west and north along the iron ridges as well.";
 	rooms["255"].runOnEnter = rustRidgesEncounters;
 	rooms["255"].northExit = "254";
 	rooms["255"].southExit = "256";
@@ -844,7 +844,7 @@ public function initTarkusRooms():void
 	//#56 IRON\nVALLEY
 	rooms["256"] = new RoomClass(this);
 	rooms["256"].roomName = "IRON\nVALLEY";
-	rooms["256"].description = "Sun glitters on the few places that these plates haven't been obscured by rust and corrosion, occasionally forcing you to squint your eyes. The further south you go, the narrower the space between the ridges grows. In the space of a few hundred steps, the walls of metal have all but closed together. They end not far ahead, but the gap between them is filled with dozens of smaller, erosion-sharpened slabs. There's little reason to brave such a dangerous path without some foreknowledge as to what lies beyond....";
+	rooms["256"].description = "Sun glitters on the few places that these plates haven’t been obscured by rust and corrosion, occasionally forcing you to squint your eyes. The further south you go, the narrower the space between the ridges grows. In the space of a few hundred steps, the walls of metal have all but closed together. They end not far ahead, but the gap between them is filled with dozens of smaller, erosion-sharpened slabs. There’s little reason to brave such a dangerous path without some foreknowledge as to what lies beyond....";
 	rooms["256"].runOnEnter = rustRidgesEncounters;
 	rooms["256"].northExit = "255";
 	rooms["256"].planet = "PLANET: TARKUS";
@@ -856,7 +856,7 @@ public function initTarkusRooms():void
 	//#57 IRON\nRIDGES
 	rooms["257"] = new RoomClass(this);
 	rooms["257"].roomName = "IRON\nRIDGES";
-	rooms["257"].description = "Here at the iron ridges, it's obvious how they got their name. Ancient decks and armor plates have been stacked upright in the filth, some big enough that they resemble narrow mountains. Some of the smaller ones look less stable than their big brothers; you'll have to step carefully if you don't want to get slabbed. They're so so densely packed to the south that there's no stepping between them. You'll have to search east and west of here for another way. Alternatively, you could step north into the rust plains, towards a wrecked ship.";
+	rooms["257"].description = "Here at the iron ridges, it’s obvious how they got their name. Ancient decks and armor plates have been stacked upright in the filth, some big enough that they resemble narrow mountains. Some of the smaller ones look less stable than their big brothers; you’ll have to step carefully if you don’t want to get slabbed. They’re so so densely packed to the south that there’s no stepping between them. You’ll have to search east and west of here for another way. Alternatively, you could step north into the rust plains, towards a wrecked ship.";
 	rooms["257"].runOnEnter = rustRidgesEncounters;
 	rooms["257"].northExit = "293";
 	rooms["257"].eastExit = "258";
@@ -884,7 +884,7 @@ public function initTarkusRooms():void
 	//#59 RUST\nPLAINS
 	rooms["259"] = new RoomClass(this);
 	rooms["259"].roomName = "RUST\nPLAINS";
-	rooms["259"].description = "This is one of the single most desolate, empty places you've yet come across on the planet of Tarkus. Rolling dunes of scale and metallic crust are your only company in every direction, shifting under your [pc.feet] to undermine your steps and concealing untold dangers. Distantly, you can make out huge metallic ridges to the south. A wrecked ship is visible in the western distance, and eastwards you can see light glittering off something silvery; are those trees? Much further north lies the wrecked Nova, now Novahome, its engines glowing dully under the raskvels' ministrations.";
+	rooms["259"].description = "This is one of the single most desolate, empty places you’ve yet come across on the planet of Tarkus. Rolling dunes of scale and metallic crust are your only company in every direction, shifting under your [pc.feet] to undermine your steps and concealing untold dangers. Distantly, you can make out huge metallic ridges to the south. A wrecked ship is visible in the western distance, and eastwards you can see light glittering off something silvery; are those trees? Much further north lies the wrecked Nova, now Novahome, its engines glowing dully under the raskvels’ ministrations.";
 	rooms["259"].runOnEnter = rustRidgesEncounters;
 	rooms["259"].northExit = "260";
 	rooms["259"].eastExit = "266";
@@ -899,7 +899,7 @@ public function initTarkusRooms():void
 	//#60 RUST\nPLAINS
 	rooms["260"] = new RoomClass(this);
 	rooms["260"].roomName = "RUST\nPLAINS";
-	rooms["260"].description = "It's hard not to feel depressed when taking in views like this one. The nova, crashed long ago, lies half-buried in the red-flecked sand. Another ship in even worse condition lies west. Rolling plains interrupted by small piles of parts and assorted junk are the only landmarks here to keep you company. In a way, this place feels like a technological graveyard, only the planet's inhabitants obviously haven't left anything to rest. The rust plains stretch away in all directions.";
+	rooms["260"].description = "It’s hard not to feel depressed when taking in views like this one. The nova, crashed long ago, lies half-buried in the red-flecked sand. Another ship in even worse condition lies west. Rolling plains interrupted by small piles of parts and assorted junk are the only landmarks here to keep you company. In a way, this place feels like a technological graveyard, only the planet’s inhabitants obviously haven’t left anything to rest. The rust plains stretch away in all directions.";
 	rooms["260"].runOnEnter = rustPlainsEncounters;
 	rooms["260"].northExit = "262";
 	rooms["260"].eastExit = "265";
@@ -928,7 +928,7 @@ public function initTarkusRooms():void
 	//#62 RUST\nFIELDS
 	rooms["262"] = new RoomClass(this);
 	rooms["262"].roomName = "RUST\nFIELDS";
-	rooms["262"].description = "Crusty collections of oxidized granules crunch underneath your every motion as you walk around, vaguely reminding you of the soft crackle of autumn leaves. That illusion is swiftly shattered by the feeling of a bone-dry breeze against your cheek, carried along the length of the Nova by weather systems you don't have time to study. That once-great capital ship's hull prevents any movement to the north, and an unsteady drift of dust amidst poorly-stacked machinery stops travel east.";
+	rooms["262"].description = "Crusty collections of oxidized granules crunch underneath your every motion as you walk around, vaguely reminding you of the soft crackle of autumn leaves. That illusion is swiftly shattered by the feeling of a bone-dry breeze against your cheek, carried along the length of the Nova by weather systems you don’t have time to study. That once-great capital ship’s hull prevents any movement to the north, and an unsteady drift of dust amidst poorly-stacked machinery stops travel east.";
 	rooms["262"].runOnEnter = rustPlainsEncounters;
 	rooms["262"].southExit = "260";
 	rooms["262"].westExit = "263";
@@ -941,7 +941,7 @@ public function initTarkusRooms():void
 	//#63 NEXT TO\nCRASHED SHIPS
 	rooms["263"] = new RoomClass(this);
 	rooms["263"].roomName = "NEXT TO\nCRASHED SHIPS";
-	rooms["263"].description = "This shaded area is markedly cooler than the surrounding spaces thanks to the two nearby starships. The Nova's shadow is far larger, but the other ship, the one to the south, helps keep away any glare at times when the Nova's is angled in the other direction. The only problem is the omnipresent breeze from the west, channeled between the two ancient hulks. It carries enough flecks of tiny metal to grate irritatingly against you. You can travel south alongside the smaller ship's hull, west into the wall of wind, or east next to the Nova.";
+	rooms["263"].description = "This shaded area is markedly cooler than the surrounding spaces thanks to the two nearby starships. The Nova’s shadow is far larger, but the other ship, the one to the south, helps keep away any glare at times when the Nova’s is angled in the other direction. The only problem is the omnipresent breeze from the west, channeled between the two ancient hulks. It carries enough flecks of tiny metal to grate irritatingly against you. You can travel south alongside the smaller ship’s hull, west into the wall of wind, or east next to the Nova.";
 	rooms["263"].runOnEnter = rustPlainsEncounters;
 	rooms["263"].eastExit = "262";
 	rooms["263"].southExit = "261";
@@ -968,7 +968,7 @@ public function initTarkusRooms():void
 	//#65 RUST\nFIELDS
 	rooms["265"] = new RoomClass(this);
 	rooms["265"].roomName = "RUST\nFIELDS";
-	rooms["265"].description = "The rust fields come to and end here, bordering on the edge of the scything glades. You can see how the glades get their name - the area is filled with silvery, tree-like plants, only the branches are tipped with sharp blades. As you watch, the wind carries a plastic bag into the side of one. It's impaled in a half-dozen places in seconds. The “trees” are too thick to risk travel to the east, and a mound of detritus to the north prevents movement that way.";
+	rooms["265"].description = "The rust fields come to and end here, bordering on the edge of the scything glades. You can see how the glades get their name - the area is filled with silvery, tree-like plants, only the branches are tipped with sharp blades. As you watch, the wind carries a plastic bag into the side of one. It’s impaled in a half-dozen places in seconds. The “trees” are too thick to risk travel to the east, and a mound of detritus to the north prevents movement that way.";
 	rooms["265"].runOnEnter = rustPlainsEncounters;
 	rooms["265"].southExit = "266";
 	rooms["265"].westExit = "260";
@@ -981,7 +981,7 @@ public function initTarkusRooms():void
 	//#66 RUST\nFIELDS
 	rooms["266"] = new RoomClass(this);
 	rooms["266"].roomName = "RUST\nFIELDS";
-	rooms["266"].description = "Here among the flat, featureless dunes of the rust fields, the sight of the silvery trees to the east comes as something of a relief. Of course, you dare not tread among them; it's quite clear their branches are tipped with deadly blades, and they seem to swing them around with predatory intent whenever something moves nearby. You can go north and south along the border or west deeper into the rust fields.";
+	rooms["266"].description = "Here among the flat, featureless dunes of the rust fields, the sight of the silvery trees to the east comes as something of a relief. Of course, you dare not tread among them; it’s quite clear their branches are tipped with deadly blades, and they seem to swing them around with predatory intent whenever something moves nearby. You can go north and south along the border or west deeper into the rust fields.";
 	rooms["266"].runOnEnter = rustRidgesEncounters;
 	rooms["266"].northExit = "265";
 	rooms["266"].southExit = "267";
@@ -995,7 +995,7 @@ public function initTarkusRooms():void
 	//#67 RUST\nFIELDS
 	rooms["267"] = new RoomClass(this);
 	rooms["267"].roomName = "RUST\nFIELDS";
-	rooms["267"].description = "You stand on a crossroads of sorts. Though you're technically in the rust fields, the iron ridges aren't far to the south, and the scything glade begins a few steps to the east. Luckily, there's a large enough gap between bladed trees for you to pass quite comfortably. You can spot at least one corroded stump in the middle of the open area - someone has gone through great pains to try and open a path through the deadly foilage.";
+	rooms["267"].description = "You stand on a crossroads of sorts. Though you’re technically in the rust fields, the iron ridges aren’t far to the south, and the scything glade begins a few steps to the east. Luckily, there’s a large enough gap between bladed trees for you to pass quite comfortably. You can spot at least one corroded stump in the middle of the open area - someone has gone through great pains to try and open a path through the deadly foilage.";
 	rooms["267"].runOnEnter = rustRidgesEncounters;
 	rooms["267"].northExit = "266";
 	rooms["267"].eastExit = "269";
@@ -1010,7 +1010,7 @@ public function initTarkusRooms():void
 	//#68 METAL\nRAVINE
 	rooms["268"] = new RoomClass(this);
 	rooms["268"].roomName = "METAL\nRAVINE";
-	rooms["268"].description = "This deep, dark crevice between two house-sized plates is about the quietest, most shadowy place you've found on planet. The air is markedly still, and drifts of fine dust have accumulated against the giant sheets of metal into small mounds. There's nowhere to travel but north from here.";
+	rooms["268"].description = "This deep, dark crevice between two house-sized plates is about the quietest, most shadowy place you’ve found on planet. The air is markedly still, and drifts of fine dust have accumulated against the giant sheets of metal into small mounds. There’s nowhere to travel but north from here.";
 	rooms["268"].runOnEnter = cockBoxDiscoveryBlurb;
 	rooms["268"].northExit = "267";
 	rooms["268"].planet = "PLANET: TARKUS";
@@ -1022,7 +1022,7 @@ public function initTarkusRooms():void
 	//#69 SCYTHING\nGLADE
 	rooms["269"] = new RoomClass(this);
 	rooms["269"].roomName = "SCYTHING\nGLADE";
-	rooms["269"].description = "From somewhere nearby comes a pained scream that's silenced almost as soon as it's begun. You can only assume that the local fauna ran afoul of the glittering flora. In fact, after looking around, you spot the source of distress: a small, quadrupedal creature dead in the shadow of one of the great steel sentinels, its body punctured in a dozen places. Narrow streams of blood gather in pools beneath it, just above the roots of the predatory plant that killed it. You had best keep your distance.";
+	rooms["269"].description = "From somewhere nearby comes a pained scream that’s silenced almost as soon as it’s begun. You can only assume that the local fauna ran afoul of the glittering flora. In fact, after looking around, you spot the source of distress: a small, quadrupedal creature dead in the shadow of one of the great steel sentinels, its body punctured in a dozen places. Narrow streams of blood gather in pools beneath it, just above the roots of the predatory plant that killed it. You had best keep your distance.";
 	rooms["269"].runOnEnter = undefined;
 	rooms["269"].eastExit = "270";
 	rooms["269"].westExit = "267";
@@ -1034,7 +1034,7 @@ public function initTarkusRooms():void
 	//#70 SCYTHING\nGLADE
 	rooms["270"] = new RoomClass(this);
 	rooms["270"].roomName = "SCYTHING\nGLADE";
-	rooms["270"].description = "The \"trees\" of the scything glade are relatively sparse and widespread here, allowing you a number of avenues of travel. If you head west, they briefly thicken, but you can spot the rolling vistas of the rust fields just beyond. Alternatively, you could follow the gaps between the scything trees to the north or the south. There doesn't seem to be any difference between the two paths besides direction.";
+	rooms["270"].description = "The “trees” of the scything glade are relatively sparse and widespread here, allowing you a number of avenues of travel. If you head west, they briefly thicken, but you can spot the rolling vistas of the rust fields just beyond. Alternatively, you could follow the gaps between the scything trees to the north or the south. There doesn’t seem to be any difference between the two paths besides direction.";
 	rooms["270"].runOnEnter = rustScytheGladeEncounters;
 	rooms["270"].northExit = "291";
 	rooms["270"].southExit = "271";
@@ -1047,7 +1047,7 @@ public function initTarkusRooms():void
 	//#71 SCYTHING\nGLADE
 	rooms["271"] = new RoomClass(this);
 	rooms["271"].roomName = "SCYTHING\nGLADE";
-	rooms["271"].description = "You're struck by how red the soil of Tarkus is inside the glade; it's so dark that's it's nearly purple in places, broken only by the glittering silver roots of the trees that hem that your path. The gaps between them trail north and east from here, wide enough for you to be safe from the deadly blades so long as you mind your position.";
+	rooms["271"].description = "You’re struck by how red the soil of Tarkus is inside the glade; it’s so dark that’s it’s nearly purple in places, broken only by the glittering silver roots of the trees that hem that your path. The gaps between them trail north and east from here, wide enough for you to be safe from the deadly blades so long as you mind your position.";
 	rooms["271"].runOnEnter = rustScytheGladeEncounters;
 	rooms["271"].northExit = "270";
 	rooms["271"].eastExit = "272";
@@ -1059,7 +1059,7 @@ public function initTarkusRooms():void
 	//#72 SCYTHING\nGLADE
 	rooms["272"] = new RoomClass(this);
 	rooms["272"].roomName = "SCYTHING\nGLADE";
-	rooms["272"].description = "The gaps between the deadly, bladed trees fork into a 'T' intersection, offering unrestricted movement to the north, south, and west. The silver blades on either side rattle menacingly in the breeze, and more than once, you catch yourself stepping back at the unexpected sound. You're glad for the good-sized gap in which you now stand. Those things don't look like the type to discriminate when it comes to targets.";
+	rooms["272"].description = "The gaps between the deadly, bladed trees fork into a ‘T’ intersection, offering unrestricted movement to the north, south, and west. The silver blades on either side rattle menacingly in the breeze, and more than once, you catch yourself stepping back at the unexpected sound. You’re glad for the good-sized gap in which you now stand. Those things don’t look like the type to discriminate when it comes to targets.";
 	rooms["272"].runOnEnter = rustScytheGladeEncounters;
 	rooms["272"].northExit = "283";
 	rooms["272"].southExit = "273";
@@ -1072,7 +1072,7 @@ public function initTarkusRooms():void
 	//#73 SCYTHING\nGLADE
 	rooms["273"] = new RoomClass(this);
 	rooms["273"].roomName = "SCYTHING\nGLADE";
-	rooms["273"].description = "Web-like shadows shade the path, cast by the looming, metal behemoths on either side. There's a certain menace in the air, like this place itself is filled with potential violence just waiting to burst out and claim its latest victim, but that may simply be your imagination acting up in this eerie location. Clear openings lead north and east, the only safe directions. Moving any other way would surely result in you being cut to ribbons.";
+	rooms["273"].description = "Web-like shadows shade the path, cast by the looming, metal behemoths on either side. There’s a certain menace in the air, like this place itself is filled with potential violence just waiting to burst out and claim its latest victim, but that may simply be your imagination acting up in this eerie location. Clear openings lead north and east, the only safe directions. Moving any other way would surely result in you being cut to ribbons.";
 	rooms["273"].runOnEnter = rustScytheGladeEncounters;
 	rooms["273"].northExit = "272";
 	rooms["273"].eastExit = "274";
@@ -1096,7 +1096,7 @@ public function initTarkusRooms():void
 	//#75 SCYTHING\nGLADE
 	rooms["275"] = new RoomClass(this);
 	rooms["275"].roomName = "SCYTHING\nGLADE";
-	rooms["275"].description = "The light catches on the curves of the countless, scythe-like blades above, shining so brightly that you have to raise a hand to shield your eyes with alarming regularity. The gap between them bends to the south and west from here, uneven but suitably broad. You're pretty sure that you can make out the edge of a cliff a good way to the east.";
+	rooms["275"].description = "The light catches on the curves of the countless, scythe-like blades above, shining so brightly that you have to raise a hand to shield your eyes with alarming regularity. The gap between them bends to the south and west from here, uneven but suitably broad. You’re pretty sure that you can make out the edge of a cliff a good way to the east.";
 	rooms["275"].runOnEnter = rustScytheGladeEncounters;
 	rooms["275"].southExit = "276";
 	rooms["275"].westExit = "274";
@@ -1108,7 +1108,7 @@ public function initTarkusRooms():void
 	//#76 SCYTHING\nGLADE
 	rooms["276"] = new RoomClass(this);
 	rooms["276"].roomName = "SCYTHING\nGLADE";
-	rooms["276"].description = "This winding path is almost maze-like. If it weren't for the readings from your codex, you'd risk getting lost in here, turned around until you got desperate enough to brave the bladed limbs. Instead, you're lucky enough to be able to chart your path. The path between the scythes twists east towards the face of a sheer cliff or canyon. You can't make out anything past the lip. The trail through the glade also goes back north.";
+	rooms["276"].description = "This winding path is almost maze-like. If it weren’t for the readings from your codex, you’d risk getting lost in here, turned around until you got desperate enough to brave the bladed limbs. Instead, you’re lucky enough to be able to chart your path. The path between the scythes twists east towards the face of a sheer cliff or canyon. You can’t make out anything past the lip. The trail through the glade also goes back north.";
 	rooms["276"].runOnEnter = rustScytheGladeEncounters;
 	rooms["276"].northExit = "275";
 	rooms["276"].eastExit = "277";
@@ -1120,7 +1120,7 @@ public function initTarkusRooms():void
 	//#77 PLANET\nDIVIDE
 	rooms["277"] = new RoomClass(this);
 	rooms["277"].roomName = "PLANET\nDIVIDE";
-	rooms["277"].description = "Standing on the edge of this tremendous cliff, you can't help but be overwhelmed by a sense of vertigo so powerful that you nearly topple off the edge. This is unlike any stone face you've ever seen before. Tarkus' metallic rocks protrude jaggedly out from the edge, yet they are short enough to allow you an unobstructed view towards the core of the planet, the reddish haze of the atmosphere the only thing that stops you from seeing through to the other side. Perhaps the native goblins or raskvel used ships to mine off the more prominent, valuable protrusions.";
+	rooms["277"].description = "Standing on the edge of this tremendous cliff, you can’t help but be overwhelmed by a sense of vertigo so powerful that you nearly topple off the edge. This is unlike any stone face you’ve ever seen before. Tarkus’ metallic rocks protrude jaggedly out from the edge, yet they are short enough to allow you an unobstructed view towards the core of the planet, the reddish haze of the atmosphere the only thing that stops you from seeing through to the other side. Perhaps the native goblins or raskvel used ships to mine off the more prominent, valuable protrusions.";
 	rooms["277"].runOnEnter = rustScytheGladeEncounters;
 	rooms["277"].westExit = "276";
 	rooms["277"].planet = "PLANET: TARKUS";
@@ -1131,7 +1131,7 @@ public function initTarkusRooms():void
 	//#78 SCYTHING\nGLADE
 	rooms["278"] = new RoomClass(this);
 	rooms["278"].roomName = "SCYTHING\nGLADE";
-	rooms["278"].description = "The dangerous flora of the scything glade is thinner here than in other places - you suppose due to the impending cliff to the east. More interestingly, an artificial platform starts just to the east, leading over the edge of the cliff to some kind of mechanical facility. From here, it's difficult to tell its purpose; you'll have to get closer for that.";
+	rooms["278"].description = "The dangerous flora of the scything glade is thinner here than in other places - you suppose due to the impending cliff to the east. More interestingly, an artificial platform starts just to the east, leading over the edge of the cliff to some kind of mechanical facility. From here, it’s difficult to tell its purpose; you’ll have to get closer for that.";
 	rooms["278"].runOnEnter = rustScytheGladeEncounters;
 	rooms["278"].northExit = "281";
 	rooms["278"].eastExit = "279";
@@ -1143,7 +1143,7 @@ public function initTarkusRooms():void
 	//#79 ARTIFICIAL\nPLATFORM
 	rooms["279"] = new RoomClass(this);
 	rooms["279"].roomName = "ARTIFICIAL\nPLATFORM";
-	rooms["279"].description = "You're standing on the west end of a metal platform. Its surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. Barricades have been set up to the east around it.";
+	rooms["279"].description = "You’re standing on the west end of a metal platform. Its surface gleams in the light from Tarkus’ sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. Barricades have been set up to the east around it.";
 	rooms["279"].runOnEnter = eastTransitStationBonus;
 	rooms["279"].westExit = "278";
 	rooms["279"].eastExit = "350";
@@ -1169,7 +1169,7 @@ public function initTarkusRooms():void
 	//#82 SCYTHING\nGLADE
 	rooms["282"] = new RoomClass(this);
 	rooms["282"].roomName = "SCYTHING\nGLADE";
-	rooms["282"].description = "Two predatory plants have grown in too close to each other to the north. Their trunks have twisted around each other in a twisted, unhealthy-looking shape, and their many blades hang like sickly drapes around them, grinding audibly with every arid breeze. The air itself smells vaguely of blood, and the ground seems almost stained with it as well. You can't really tell if the earth is truly saturated given how red with rust everything is, nor do you want to find out.";
+	rooms["282"].description = "Two predatory plants have grown in too close to each other to the north. Their trunks have twisted around each other in a twisted, unhealthy-looking shape, and their many blades hang like sickly drapes around them, grinding audibly with every arid breeze. The air itself smells vaguely of blood, and the ground seems almost stained with it as well. You can’t really tell if the earth is truly saturated given how red with rust everything is, nor do you want to find out.";
 	rooms["282"].runOnEnter = rustScytheGladeEncounters;
 	rooms["282"].eastExit = "281";
 	rooms["282"].westExit = "283";
@@ -1181,7 +1181,7 @@ public function initTarkusRooms():void
 	//#83 SCYTHING\nGLADE
 	rooms["283"] = new RoomClass(this);
 	rooms["283"].roomName = "SCYTHING\nGLADE";
-	rooms["283"].description = "A gnarled, argent root has emerged from the granular soil like the back of some great sandworm. If it did not catch the light so beautifully, you might have wound up tripping over it. As it is, you're able to move carefully over its thickness. The thing's \"bark,\" if it can be called that, is smooth to the touch, almost slickened with a kind of oil. Perhaps that secretion is what keeps it from corroding away. The path twists east and south from here.";
+	rooms["283"].description = "A gnarled, argent root has emerged from the granular soil like the back of some great sandworm. If it did not catch the light so beautifully, you might have wound up tripping over it. As it is, you’re able to move carefully over its thickness. The thing’s “bark,” if it can be called that, is smooth to the touch, almost slickened with a kind of oil. Perhaps that secretion is what keeps it from corroding away. The path twists east and south from here.";
 	rooms["283"].runOnEnter = rustScytheGladeEncounters;
 	rooms["283"].eastExit = "282";
 	rooms["283"].southExit = "272";
@@ -1193,7 +1193,7 @@ public function initTarkusRooms():void
 	//#84 SCYTHING\nGLADE
 	rooms["284"] = new RoomClass(this);
 	rooms["284"].roomName = "SCYTHING\nGLADE";
-	rooms["284"].description = "This close to Tarkus' great chasm, the air can go from placid warmth to gusting currents of chemical-tinted coolness that whip the flakey dust into an all-natural sand-blaster in an instant. Such gusts end almost as soon as they begin, long before they can cause much in the way of damage, but it is quite the irritant. You can walk east out onto the edge or north along the edges of the scything glade.";
+	rooms["284"].description = "This close to Tarkus’ great chasm, the air can go from placid warmth to gusting currents of chemical-tinted coolness that whip the flakey dust into an all-natural sand-blaster in an instant. Such gusts end almost as soon as they begin, long before they can cause much in the way of damage, but it is quite the irritant. You can walk east out onto the edge or north along the edges of the scything glade.";
 	rooms["284"].runOnEnter = rustScytheGladeEncounters;
 	rooms["284"].northExit = "286";
 	rooms["284"].eastExit = "285";
@@ -1206,7 +1206,7 @@ public function initTarkusRooms():void
 	//#85 PLANET\nDIVIDE
 	rooms["285"] = new RoomClass(this);
 	rooms["285"].roomName = "PLANET\nDIVIDE";
-	rooms["285"].description = "Whoah. The view from here is outstanding. Firstly, there's the awe-inspiring chasm before you, but that's just the start of it. The walls of the seemingly bottomless pit are covered with rusty stalactites, gleaming gems, and veins of the most beautiful amethyst. Perhaps a mile away, you can make out the opposite side of the chasm. By the stars above, this thing is huge, and it runs around the entire circumference of the planet! The hazy, polluted atmosphere stops you from seeing the whole way down whatever is holding this wreck together. The only viable direction is to the west.";
+	rooms["285"].description = "Whoah. The view from here is outstanding. Firstly, there’s the awe-inspiring chasm before you, but that’s just the start of it. The walls of the seemingly bottomless pit are covered with rusty stalactites, gleaming gems, and veins of the most beautiful amethyst. Perhaps a mile away, you can make out the opposite side of the chasm. By the stars above, this thing is huge, and it runs around the entire circumference of the planet! The hazy, polluted atmosphere stops you from seeing the whole way down whatever is holding this wreck together. The only viable direction is to the west.";
 	rooms["285"].runOnEnter = rustScytheGladeEncounters;
 	rooms["285"].westExit = "284";
 	rooms["285"].planet = "PLANET: TARKUS";
@@ -1217,7 +1217,7 @@ public function initTarkusRooms():void
 	//#86 PLANET\nDIVIDE
 	rooms["286"] = new RoomClass(this);
 	rooms["286"].roomName = "PLANET\nDIVIDE";
-	rooms["286"].description = "The edge of the planet's immense, bisecting chasm rears its ugly to the east, its shattered surface as irregular as the mineral-dense formations that line its walls. So far away that you can barely make it out, you can see the other half of the planet, or more accurately, the other half-planet that's leashed to make up greater Tarkus. From here, it looks just about as trashed, though the wall on that side is a different shade of orange. You can continue south or west from here, though going west will take you back into the scything glade.";
+	rooms["286"].description = "The edge of the planet’s immense, bisecting chasm rears its ugly to the east, its shattered surface as irregular as the mineral-dense formations that line its walls. So far away that you can barely make it out, you can see the other half of the planet, or more accurately, the other half-planet that’s leashed to make up greater Tarkus. From here, it looks just about as trashed, though the wall on that side is a different shade of orange. You can continue south or west from here, though going west will take you back into the scything glade.";
 	rooms["286"].runOnEnter = rustScytheGladeEncounters;
 	rooms["286"].southExit = "284";
 	rooms["286"].westExit = "287";
@@ -1229,7 +1229,7 @@ public function initTarkusRooms():void
 	//#87 SCYTHING\nGLADE
 	rooms["287"] = new RoomClass(this);
 	rooms["287"].roomName = "SCYTHING\nGLADE";
-	rooms["287"].description = "The sharp-bladed trees are a little farther back from the path here than elsewhere, perhaps due to the sizes of the few that do grow nearby. They're easily twice as big as those around them. This could be a prime location for catching prey. You can definitely spot more than one skeleton half-buried in the rust-flaked earth around them.";
+	rooms["287"].description = "The sharp-bladed trees are a little farther back from the path here than elsewhere, perhaps due to the sizes of the few that do grow nearby. They’re easily twice as big as those around them. This could be a prime location for catching prey. You can definitely spot more than one skeleton half-buried in the rust-flaked earth around them.";
 	rooms["287"].runOnEnter = outsideLanesPlane;
 	rooms["287"].northExit = "LANESSHOP";
 	rooms["287"].eastExit = "286";
@@ -1243,7 +1243,7 @@ public function initTarkusRooms():void
 	/*
 	rooms["288"] = new RoomClass(this);
 	rooms["288"].roomName = "DEAD END\nGLADE";
-	rooms["288"].description = "The path that you're currently walking comes to an abrupt and sudden end here, terminated by a ring of the bladed trees that loom over the edges like leering ghouls, ready to pounce on the unwary. In a way they are. You have no real desire to put their predatory instincts to the test, of course. The way south leads out of here.\n\n<b>Maybe Fen will put something here later?</b>";
+	rooms["288"].description = "The path that you’re currently walking comes to an abrupt and sudden end here, terminated by a ring of the bladed trees that loom over the edges like leering ghouls, ready to pounce on the unwary. In a way they are. You have no real desire to put their predatory instincts to the test, of course. The way south leads out of here.\n\n<b>Maybe Fen will put something here later?</b>";
 	rooms["288"].runOnEnter = rustScytheGladeEncounters;
 	rooms["288"].southExit = "287";
 	rooms["288"].planet = "PLANET: TARKUS";
@@ -1252,8 +1252,8 @@ public function initTarkusRooms():void
 	rooms["288"].addFlag(GLOBAL.HAZARD);
 	*/
 	rooms["LANESSHOP"] = new RoomClass(this);
-	rooms["LANESSHOP"].roomName = "LANE'S\nPLANE";
-	rooms["LANESSHOP"].description = "You're inside of a reasonably well constructed hut. The interior is dressed from top to bottom with fine, lacy fabrics and thin streamers blowing in the calm breeze, making it look quite inviting and standoffish, compared to the harshness of the surrounding area. The hut looks to have three rooms, and is only one story tall.";
+	rooms["LANESSHOP"].roomName = "LANE’S\nPLANE";
+	rooms["LANESSHOP"].description = "You’re inside of a reasonably well constructed hut. The interior is dressed from top to bottom with fine, lacy fabrics and thin streamers blowing in the calm breeze, making it look quite inviting and standoffish, compared to the harshness of the surrounding area. The hut looks to have three rooms, and is only one story tall.";
 	rooms["LANESSHOP"].runOnEnter = enterLanesShop;
 	rooms["LANESSHOP"].southExit = "287";
 	rooms["LANESSHOP"].planet = "PLANET: TARKUS";
@@ -1276,7 +1276,7 @@ public function initTarkusRooms():void
 	//#90 SCYTHING\nGLADE
 	rooms["290"] = new RoomClass(this);
 	rooms["290"].roomName = "SCYTHING\nGLADE";
-	rooms["290"].description = "Webs of small, argent roots cross the open area between the trees here, exposed by eroding soil. The way they twist and entwine makes it impossible to distinguish one tree's roots from the next. It wouldn't surprise you to learn that they were all part of one giant root network, sharing nutrients from any tree lucky enough to catch a snack. You step carefully; there's no point in getting turned into fertilizer before you've claimed your legacy. The gap between the scythe-bearing branches twists north and west from here.";
+	rooms["290"].description = "Webs of small, argent roots cross the open area between the trees here, exposed by eroding soil. The way they twist and entwine makes it impossible to distinguish one tree’s roots from the next. It wouldn’t surprise you to learn that they were all part of one giant root network, sharing nutrients from any tree lucky enough to catch a snack. You step carefully; there’s no point in getting turned into fertilizer before you’ve claimed your legacy. The gap between the scythe-bearing branches twists north and west from here.";
 	rooms["290"].runOnEnter = rustScytheGladeEncounters;
 	rooms["290"].northExit = "289";
 	rooms["290"].westExit = "291";
@@ -1288,7 +1288,7 @@ public function initTarkusRooms():void
 	//#91 SCYTHING\nGLADE
 	rooms["291"] = new RoomClass(this);
 	rooms["291"].roomName = "SCYTHING\nGLADE";
-	rooms["291"].description = "Not far to the northwest, one of the trees looks to be suffering from the planet's mildly corrosive atmosphere. You look a little closer and discover, much to your disdain, that it isn't rust but dried-on blood. The ground around it is stained a dull crimson. There's no visible corpse, but you are very, very sure that you don't want to get any closer to these deadly plants. The gap between the dangerous flora bends east and south.";
+	rooms["291"].description = "Not far to the northwest, one of the trees looks to be suffering from the planet’s mildly corrosive atmosphere. You look a little closer and discover, much to your disdain, that it isn’t rust but dried-on blood. The ground around it is stained a dull crimson. There’s no visible corpse, but you are very, very sure that you don’t want to get any closer to these deadly plants. The gap between the dangerous flora bends east and south.";
 	rooms["291"].runOnEnter = rustScytheGladeEncounters;
 	rooms["291"].eastExit = "290";
 	rooms["291"].southExit = "270";
@@ -1300,7 +1300,7 @@ public function initTarkusRooms():void
 	//#92 NEXT TO\nCRASHED SHIP
 	rooms["292"] = new RoomClass(this);
 	rooms["292"].roomName = "NEXT TO\nCRASHED SHIP";
-	rooms["292"].description = "A forgotten ship that looks almost as old as the rest of the planet crashed here so long ago that the junk mounds have consumed at least half of its bulk. A fanciful musing that this is just the tip of a much larger craft comes to mind. What if this rounded, orange tip is just the capstone of a city-sized colony vessel? It would explain the wide variety of sapient natives. It's likely no more than idle thought. You can head east, south, and west of here.";
+	rooms["292"].description = "A forgotten ship that looks almost as old as the rest of the planet crashed here so long ago that the junk mounds have consumed at least half of its bulk. A fanciful musing that this is just the tip of a much larger craft comes to mind. What if this rounded, orange tip is just the capstone of a city-sized colony vessel? It would explain the wide variety of sapient natives. It’s likely no more than idle thought. You can head east, south, and west of here.";
 	rooms["292"].runOnEnter = rustPlainsEncounters;
 	rooms["292"].eastExit = "293";
 	rooms["292"].southExit = "254";
@@ -1351,7 +1351,7 @@ public function initTarkusRooms():void
 
 	rooms["301"] = new RoomClass(this);
 	rooms["301"].roomName = "THE\nMESS";
-	rooms["301"].description = "The Mess sure lives up to its name. Once the ship's mess hall, a vessel of this size would have had a large cafeteria, and this place doesn't disappoint. Easily large enough to seat several hundred raskvel (and it currently is), the Mess is dimly lit and smoky, thanks to a combination of tall, hookah-like devices set up on several tables as well as a pillar of woodsmoke coming from the kitchen, which is exposed to the mess hall thanks to a busted-in bulkhead. Several raskvel chefs in cute white aprons are running around trying to tend to dozens of orders at once. The wait-staff are hurrying about, trying to deliver their goods as fast as they can. Strangely, most of the waiters and waitresses are human, each bearing the emblem of the Carver Catering Company - three C's across the breast and back of their sheer black uniforms.\n\nOn the far side of the Mess, there's another room sealed off from the restaurant by a pair of heavy doors and glass windows. By its dark interior and the off-worlders coming and going, you reckon that's the way to the local tavern.";
+	rooms["301"].description = "The Mess sure lives up to its name. Once the ship’s mess hall, a vessel of this size would have had a large cafeteria, and this place doesn’t disappoint. Easily large enough to seat several hundred raskvel (and it currently is), the Mess is dimly lit and smoky, thanks to a combination of tall, hookah-like devices set up on several tables as well as a pillar of woodsmoke coming from the kitchen, which is exposed to the mess hall thanks to a busted-in bulkhead. Several raskvel chefs in cute white aprons are running around trying to tend to dozens of orders at once. The wait-staff are hurrying about, trying to deliver their goods as fast as they can. Strangely, most of the waiters and waitresses are human, each bearing the emblem of the Carver Catering Company - three C’s across the breast and back of their sheer black uniforms.\n\nOn the far side of the Mess, there’s another room sealed off from the restaurant by a pair of heavy doors and glass windows. By its dark interior and the off-worlders coming and going, you reckon that’s the way to the local tavern.";
 	rooms["301"].runOnEnter = messBonusFunction;
 	rooms["301"].northExit = "365";
 	rooms["301"].southExit = "212";
@@ -1365,7 +1365,7 @@ public function initTarkusRooms():void
 
 	rooms["302"] = new RoomClass(this);
 	rooms["302"].roomName = "THE\nMESS";
-	rooms["302"].description = "You're in the Mess' attached bar, thankfully separated from the deafening din of the open hall by a sturdy wall and thick windows. Though still smoky, the bar has a much calmer, friendlier atmosphere, and you're quickly able to find a seat thanks to a hostess at the door, wearing a strikingly skimpy version of the Carver uniform: a simple black vest, a thong, and fishnets to cover most of her body. The rest of the staff seems to be just as scantily clad, if not more so: a stage has been erected on one wall, where a topless ausar girl in nothing but her fishnets and a pair of pasties is currently singing to the accompaniment of an old-earth jazz band made up of raskvel in little tuxedos. The bar here is clearly catering to a higher-class clientele, and most of the people lounging around are fellow spacers and pioneers coming in for the planet rush, while others have the air of off-duty U.G.C. scouts and engineers. Almost everyone has a drink or a half-nude server in their lap, maybe both. This place is a weird mesh of retro earth and sensuality, that's for sure.";
+	rooms["302"].description = "You’re in the Mess’ attached bar, thankfully separated from the deafening din of the open hall by a sturdy wall and thick windows. Though still smoky, the bar has a much calmer, friendlier atmosphere, and you’re quickly able to find a seat thanks to a hostess at the door, wearing a strikingly skimpy version of the Carver uniform: a simple black vest, a thong, and fishnets to cover most of her body. The rest of the staff seems to be just as scantily clad, if not more so: a stage has been erected on one wall, where a topless ausar girl in nothing but her fishnets and a pair of pasties is currently singing to the accompaniment of an old-earth jazz band made up of raskvel in little tuxedos. The bar here is clearly catering to a higher-class clientele, and most of the people lounging around are fellow spacers and pioneers coming in for the planet rush, while others have the air of off-duty U.G.C. scouts and engineers. Almost everyone has a drink or a half-nude server in their lap, maybe both. This place is a weird mesh of retro earth and sensuality, that’s for sure.";
 	rooms["302"].runOnEnter = barBonusFunction;
 	rooms["302"].eastExit = "301";
 	rooms["302"].moveMinutes = 1;
@@ -1388,7 +1388,7 @@ public function initTarkusRooms():void
 	rooms["303"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["304"] = new RoomClass(this);
-	rooms["304"].roomName = "DR. BADGER'S\nBIMBOTORIUM";
+	rooms["304"].roomName = "DR. BADGER’S\nBIMBOTORIUM";
 	rooms["304"].description = "";
 	rooms["304"].runOnEnter = drBadgerBonusShit;
 	rooms["304"].moveMinutes = 1;
@@ -1413,7 +1413,7 @@ public function initTarkusRooms():void
 
 	rooms["350"] = new RoomClass(this);
 	rooms["350"].roomName = "THE\nCHASMFALL";
-	rooms["350"].description = "Before you is the Chasmfall, a chasm through the heart of the planet where Tarkus was stitched together centuries if not millennia ago from the shattered remains of two disparate worlds. Here is the border between this half of the world and another, separated by a gap nearly a mile wide. At the edge of the rift, you can see a towering steel structure: the monitor station, one of the few structures on Tarkus you've seen that actually looks well-cared-for. Beyond it, you can see a massive cargo elevator and shaft have been built into the side of the chasm, surrounded by hundreds of the great tethers bolted between the halves of the planet, desperately straining to hold Tarkus together. Each of them seems attached to that building, each carefully checked and monitored constantly for any sign of trouble.";
+	rooms["350"].description = "Before you is the Chasmfall, a chasm through the heart of the planet where Tarkus was stitched together centuries if not millennia ago from the shattered remains of two disparate worlds. Here is the border between this half of the world and another, separated by a gap nearly a mile wide. At the edge of the rift, you can see a towering steel structure: the monitor station, one of the few structures on Tarkus you’ve seen that actually looks well-cared-for. Beyond it, you can see a massive cargo elevator and shaft have been built into the side of the chasm, surrounded by hundreds of the great tethers bolted between the halves of the planet, desperately straining to hold Tarkus together. Each of them seems attached to that building, each carefully checked and monitored constantly for any sign of trouble.";
 	rooms["350"].runOnEnter = chasmfallBonusFunction;
 	rooms["350"].westExit = "279";
 	rooms["350"].planet = "PLANET: TARKUS";
@@ -1424,7 +1424,7 @@ public function initTarkusRooms():void
 
 	rooms["351"] = new RoomClass(this);
 	rooms["351"].roomName = "LIFT\nSTATION";
-	rooms["351"].description = "The lift station's foyer is a large, semi-circular waiting room, dominated by a big desk facing outward, laden with security monitors and data outputs, showing the status of the rift and tethers at a glance. The pirates have, wisely, jacked internal camera feeds from the core station below, preventing you from getting a head's-up on their positions.";
+	rooms["351"].description = "The lift station’s foyer is a large, semi-circular waiting room, dominated by a big desk facing outward, laden with security monitors and data outputs, showing the status of the rift and tethers at a glance. The pirates have, wisely, jacked internal camera feeds from the core station below, preventing you from getting a head’s-up on their positions.";
 	rooms["351"].runOnEnter = liftStationBonus;
 	rooms["351"].westExit = "350";
 	rooms["351"].eastExit = "352";
@@ -1437,7 +1437,7 @@ public function initTarkusRooms():void
 
 	rooms["352"] = new RoomClass(this);
 	rooms["352"].roomName = "ENGINEERING\nDECK";
-	rooms["352"].description = "A short flight of stairs leads down from the Lift Station's entrance to the engineering deck, a dark room surrounded by thrumming machinery and readouts from all over the station. You can clearly see the lift controls, now set to ";
+	rooms["352"].description = "A short flight of stairs leads down from the Lift Station’s entrance to the engineering deck, a dark room surrounded by thrumming machinery and readouts from all over the station. You can clearly see the lift controls, now set to ";
 	rooms["352"].runOnEnter = liftStationEngineeringDeckBonusFunc;
 	rooms["352"].westExit = "351";
 	rooms["352"].eastExit = "353";
@@ -1450,7 +1450,7 @@ public function initTarkusRooms():void
 
 	rooms["353"] = new RoomClass(this);
 	rooms["353"].roomName = "LIFT\nSTATION";
-	rooms["353"].description = "Just beyond the control station is the huge cargo elevator leading down into the chasm between worlds. Large enough for a couple of cargo freighters to ride down side by side together, the cargo lift is currently stacked with crates and heavy equipment, doubtless intended for the tether station at the core. Stepping forward, you can see the elevator tracks leading down almost beyond sight, deep into the planetary heart.\n\nBeside the cargo lift, though, is a much smaller personnel elevator: a glass-encased car on a straight rail down to the station below, just big enough for a dozen workers or so to cram into. That's your ticket down.";
+	rooms["353"].description = "Just beyond the control station is the huge cargo elevator leading down into the chasm between worlds. Large enough for a couple of cargo freighters to ride down side by side together, the cargo lift is currently stacked with crates and heavy equipment, doubtless intended for the tether station at the core. Stepping forward, you can see the elevator tracks leading down almost beyond sight, deep into the planetary heart.\n\nBeside the cargo lift, though, is a much smaller personnel elevator: a glass-encased car on a straight rail down to the station below, just big enough for a dozen workers or so to cram into. That’s your ticket down.";
 	rooms["353"].runOnEnter = bombAlertBonusFunction;
 	rooms["353"].westExit = "352";
 	rooms["353"].planet = "PLANET: TARKUS";
@@ -1486,7 +1486,7 @@ public function initTarkusRooms():void
 
 	rooms["356"] = new RoomClass(this);
 	rooms["356"].roomName = "CORE\nPLATFORM";
-	rooms["356"].description = "This platform circles around a massive, ancient machine of alien design. It's roughly cylindrical and extends at least a few hundred feet in all directions. Metal gratings provide a solid anchor for your [pc.feet] thanks to the electromagnetic gear you picked up in the elevator.";
+	rooms["356"].description = "This platform circles around a massive, ancient machine of alien design. It’s roughly cylindrical and extends at least a few hundred feet in all directions. Metal gratings provide a solid anchor for your [pc.feet] thanks to the electromagnetic gear you picked up in the elevator.";
 	rooms["356"].runOnEnter = undefined;
 	rooms["356"].westExit = "355";
 	rooms["356"].northExit = "357";
@@ -1510,7 +1510,7 @@ public function initTarkusRooms():void
 
 	rooms["358"] = new RoomClass(this);
 	rooms["358"].roomName = "CORE\nPLATFORM";
-	rooms["358"].description = "Beams of energy and corded metal alike radiate from the central column, connecting to the planet on all sides. To the north, or at least what your codex's instruments report as north, are a series of floating platforms laden with all manner of crates and equipment. They do not appear to be a permanent installation; perhaps the pirates brought them with them?";
+	rooms["358"].description = "Beams of energy and corded metal alike radiate from the central column, connecting to the planet on all sides. To the north, or at least what your codex’s instruments report as north, are a series of floating platforms laden with all manner of crates and equipment. They do not appear to be a permanent installation; perhaps the pirates brought them with them?";
 	rooms["358"].runOnEnter = undefined;
 	rooms["358"].eastExit = "359";
 	rooms["358"].westExit = "357";
@@ -1549,7 +1549,7 @@ public function initTarkusRooms():void
 	//Middle Pirate platform
 	rooms["KHORGAN_CENTER_COVER"] = new RoomClass(this);
 	rooms["KHORGAN_CENTER_COVER"].roomName = "FLOATING\nPLATFORM";
-	rooms["KHORGAN_CENTER_COVER"].description = "One of the large hover-platforms at the edge of the station, bridging the gap between the station and the crust for ease of mining. The middle of the three, this platform took a hell of a beating from the captain's opening salvo. Between the cracks and holes left in the plates, you can see the distant stars through the Tarkus rift.";
+	rooms["KHORGAN_CENTER_COVER"].description = "One of the large hover-platforms at the edge of the station, bridging the gap between the station and the crust for ease of mining. The middle of the three, this platform took a hell of a beating from the captain’s opening salvo. Between the cracks and holes left in the plates, you can see the distant stars through the Tarkus rift.";
 	rooms["KHORGAN_CENTER_COVER"].runOnEnter = spessPirateCaptainFightFightGoTimeBonus;
 	rooms["KHORGAN_CENTER_COVER"].southExit = "358";
 	rooms["KHORGAN_CENTER_COVER"].eastExit = "KHORGAN_RIGHT_COVER";
@@ -1577,7 +1577,7 @@ public function initTarkusRooms():void
 	//Ultranorth pirate platform
 	rooms["360"] = new RoomClass(this);
 	rooms["360"].roomName = "MINING\nPLATFORM";
-	rooms["360"].description = "The ledge where the pirate captain was working is little more than a large platform extending from the main control station, allowing access to the dead core of the planet. Crates of drilling equipment, as well as a destroyed powered exoskeleton, are scattered around, evidence of the pirates' plot.";
+	rooms["360"].description = "The ledge where the pirate captain was working is little more than a large platform extending from the main control station, allowing access to the dead core of the planet. Crates of drilling equipment, as well as a destroyed powered exoskeleton, are scattered around, evidence of the pirates’ plot.";
 	rooms["360"].runOnEnter = PlatinumSuperBonusFunction;
 	//rooms["360"].southExit = "360";
 	//rooms["360"].northExit = "360";
@@ -1672,7 +1672,7 @@ public function initTarkusRooms():void
 
 	rooms["DECK 13 AIRLOCK"] = new RoomClass(this);
 	rooms["DECK 13 AIRLOCK"].roomName = "DECK 13\nAIRLOCK";
-	rooms["DECK 13 AIRLOCK"].description = "The airlock on Deck 13 is just like any other airlock you've been in: cramped and claustrophobic, with several space suits bolted to one wall. Each proudly displays the <i>Nova</i>'s crest on the breast in faded, barely-legible fabric. A hatch to the north will take you deeper into the mysterious \"ghost deck.\"";
+	rooms["DECK 13 AIRLOCK"].description = "The airlock on Deck 13 is just like any other airlock you’ve been in: cramped and claustrophobic, with several space suits bolted to one wall. Each proudly displays the <i>Nova</i>’s crest on the breast in faded, barely-legible fabric. A hatch to the north will take you deeper into the mysterious “ghost deck.”";
 	rooms["DECK 13 AIRLOCK"].runOnEnter = deck13AirlockFunc;
 	rooms["DECK 13 AIRLOCK"].planet = "PLANET: TARKUS";
 	rooms["DECK 13 AIRLOCK"].system = "SYSTEM: REDACTED";
@@ -1695,7 +1695,7 @@ public function initTarkusRooms():void
 
 	rooms["DECK 13 ARMORY"] = new RoomClass(this);
 	rooms["DECK 13 ARMORY"].roomName = "DECK 13\nARMORY";
-	rooms["DECK 13 ARMORY"].description = "The \"armory\" on Deck 13 is full of deactivated robots. Without some serious hardware and software on your end, they're likely to stay that way. Still, there's also a traditional armory with racks full of basic firearms meant for ship's security personnel.";
+	rooms["DECK 13 ARMORY"].description = "The “armory” on Deck 13 is full of deactivated robots. Without some serious hardware and software on your end, they’re likely to stay that way. Still, there’s also a traditional armory with racks full of basic firearms meant for ship’s security personnel.";
 	rooms["DECK 13 ARMORY"].runOnEnter = deck13ArmoryFunc;
 	rooms["DECK 13 ARMORY"].planet = "PLANET: TARKUS";
 	rooms["DECK 13 ARMORY"].system = "SYSTEM: REDACTED";

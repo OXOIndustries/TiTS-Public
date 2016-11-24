@@ -21,7 +21,7 @@ public function initUvetoRooms():void
 	/* Ship Docking */
 	rooms["UVS F15"] = new RoomClass(this);
 	rooms["UVS F15"].roomName = "SHIP\nHANGAR";
-	rooms["UVS F15"].description = "Your ship is docked here, connected by a short umbilical to one of Uveto Station's four large arms. Several readouts beep noisily on the bulkhead just ahead of you. More impressively, though, you're treated to a view of the icy planet below, courtesy of a large, reinforced window nearby. Uveto slowly rolls beneath you, a solid ball of pale blue and frozen whites.";
+	rooms["UVS F15"].description = "Your ship is docked here, connected by a short umbilical to one of Uveto Station’s four large arms. Several readouts beep noisily on the bulkhead just ahead of you. More impressively, though, you’re treated to a view of the icy planet below, courtesy of a large, reinforced window nearby. Uveto slowly rolls beneath you, a solid ball of pale blue and frozen whites.";
 	rooms["UVS F15"].planet = "UVETO STATION";
 	rooms["UVS F15"].system = "SYSTEM: SIRETTA";
 	rooms["UVS F15"].westExit = "UVS D15";
@@ -52,7 +52,7 @@ public function initUvetoRooms():void
 
 	rooms["UVS D11"] = new RoomClass(this);
 	rooms["UVS D11"].roomName = "SHOP\nPASSAGE";
-	rooms["UVS D11"].description = "The corridor south, leading back to the docking port, widens out into a row of shops. Most of them look like your average general stores and supply shops. One of the shops does catch your eye, though, with its neon blue sign advertising it as the “Last Chance”.\n\nTo the north is the heart of the station, a circle of wide corridors surrounding the massive behemoth that is the station's space elevator.";
+	rooms["UVS D11"].description = "The corridor south, leading back to the docking port, widens out into a row of shops. Most of them look like your average general stores and supply shops. One of the shops does catch your eye, though, with its neon blue sign advertising it as the “Last Chance”.\n\nTo the north is the heart of the station, a circle of wide corridors surrounding the massive behemoth that is the station’s space elevator.";
 	rooms["UVS D11"].planet = "UVETO STATION";
 	rooms["UVS D11"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D11"].northExit = "UVS D9";
@@ -63,7 +63,7 @@ public function initUvetoRooms():void
 	
 	rooms["UVS D9"] = new RoomClass(this);
 	rooms["UVS D9"].roomName = "PROMENADE\nSOUTH";
-	rooms["UVS D9"].description = "You're standing on the southern-most edge of a circular promenade that surrounds Uveto Station's huge space elevator. The elevator access doors are just a few steps north of you, surrounded by a handful of merchants and spacers.\n\nTo the east, you see a sign pointing towards the station manager's office. You docked your ship a ways to the south, down the tether arm.";
+	rooms["UVS D9"].description = "You’re standing on the southern-most edge of a circular promenade that surrounds Uveto Station’s huge space elevator. The elevator access doors are just a few steps north of you, surrounded by a handful of merchants and spacers.\n\nTo the east, you see a sign pointing towards the station manager’s office. You docked your ship a ways to the south, down the tether arm.";
 	rooms["UVS D9"].planet = "UVETO STATION";
 	rooms["UVS D9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D9"].eastExit = "UVS F9";
@@ -84,7 +84,7 @@ public function initUvetoRooms():void
 	/* Store? */
 	rooms["UVS B11"] = new RoomClass(this);
 	rooms["UVS B11"].roomName = "THE LAST\nCHANCE";
-	rooms["UVS B11"].description = "You're inside a small, brightly lit merchant stall. The walls are a warm, inviting off-pink and plastered with posters advertising various survival gear companies. Ausar heavy metal is playing over the speakers, tuned down to be barely audible over the rumble of a heater bolted to the wall. Racks of equipment, ranging from shield belts and personal heaters to ropes and pitons and jetpacks hang on the walls. Several vials are arranged on the counter, advertising various ausar-related gene mods on their labels.";
+	rooms["UVS B11"].description = "You’re inside a small, brightly lit merchant stall. The walls are a warm, inviting off-pink and plastered with posters advertising various survival gear companies. Ausar heavy metal is playing over the speakers, tuned down to be barely audible over the rumble of a heater bolted to the wall. Racks of equipment, ranging from shield belts and personal heaters to ropes and pitons and jetpacks hang on the walls. Several vials are arranged on the counter, advertising various ausar-related gene mods on their labels.";
 	rooms["UVS B11"].planet = "UVETO STATION";
 	rooms["UVS B11"].system = "SYSTEM: SIRETTA";
 	rooms["UVS B11"].northExit = "UVS B9";
@@ -96,7 +96,7 @@ public function initUvetoRooms():void
 
 	rooms["UVS B9"] = new RoomClass(this);
 	rooms["UVS B9"].roomName = "PROMENADE\nSOUTH-WEST";
-	rooms["UVS B9"].description = "You're standing on the south-western edge of a circular promenade that surrounds Uveto Station's huge space elevator. To the south is a row of shops, one of which has the catchy, if grim, name “Last Chance”. You're just a hop and a skip from the elevator doors, either east or north of you.\n\nTo the north is a small lounge where several spacers are milling about, drinking and watching a holoscreen. It is, appropriately, labeled “Spacer's Lounge”.";
+	rooms["UVS B9"].description = "You’re standing on the south-western edge of a circular promenade that surrounds Uveto Station’s huge space elevator. To the south is a row of shops, one of which has the catchy, if grim, name “Last Chance”. You’re just a hop and a skip from the elevator doors, either east or north of you.\n\nTo the north is a small lounge where several spacers are milling about, drinking and watching a holoscreen. It is, appropriately, labeled “Spacer’s Lounge”.";
 	rooms["UVS B9"].planet = "UVETO STATION";
 	rooms["UVS B9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS B9"].northExit = "UVS B7";
@@ -118,7 +118,7 @@ public function initUvetoRooms():void
 
 	rooms["UVS B7"] = new RoomClass(this);
 	rooms["UVS B7"].roomName = "SPACERS\nLOUNGE";
-	rooms["UVS B7"].description = "A small lounge has been set up here, centered around an Apollo's Coffee shop and several holoscreens lining the walls. There's even a massage parlour set up here. An access door to the station's mighty space elevator is just to the east of you, and the shops are a few steps south. All around, a very convenient place to be.\n\nSeveral security goons are standing to the north, preventing you from accessing the northern portions of the stations without proper clearance. You don't need anything there anyway.";
+	rooms["UVS B7"].description = "A small lounge has been set up here, centered around an Apollo’s Coffee shop and several holoscreens lining the walls. There’s even a massage parlour set up here. An access door to the station’s mighty space elevator is just to the east of you, and the shops are a few steps south. All around, a very convenient place to be.\n\nSeveral security goons are standing to the north, preventing you from accessing the northern portions of the stations without proper clearance. You don’t need anything there anyway.";
 	rooms["UVS B7"].planet = "UVETO STATION";
 	rooms["UVS B7"].system = "SYSTEM: SIRETTA";
 	//rooms["UVS B7"].northExit = "UVS B5";
@@ -156,7 +156,7 @@ public function initUvetoRooms():void
 
 	rooms["UVS F7"] = new RoomClass(this);
 	rooms["UVS F7"].roomName = "PROMENADE\nEAST";
-	rooms["UVS F7"].description = "You're standing at the eastern-most edge of a circular promenade surrounding Uveto Station's space elevator. An access door to it is just to the west of you. A corridor to the east directs you to the executive offices. A very threatening pair of gun pods are bolted to the ceiling, silently tracking movement near the reinforced glass doors to the executive wing.\n\nSeveral security goons are standing to the north, preventing you from accessing the northern portions of the stations without proper clearance. You don't need anything there anyway.";
+	rooms["UVS F7"].description = "You’re standing at the eastern-most edge of a circular promenade surrounding Uveto Station’s space elevator. An access door to it is just to the west of you. A corridor to the east directs you to the executive offices. A very threatening pair of gun pods are bolted to the ceiling, silently tracking movement near the reinforced glass doors to the executive wing.\n\nSeveral security goons are standing to the north, preventing you from accessing the northern portions of the stations without proper clearance. You don’t need anything there anyway.";
 	rooms["UVS F7"].planet = "UVETO STATION";
 	rooms["UVS F7"].system = "SYSTEM: SIRETTA";
 	//rooms["UVS F7"].northExit = "UVS F5";
@@ -179,7 +179,7 @@ public function initUvetoRooms():void
 
 	rooms["UVS F9"] = new RoomClass(this);
 	rooms["UVS F9"].roomName = "PROMENADE\nSOUTH-EAST";
-	rooms["UVS F9"].description = "You're standing on the south-eastern edge of a circular promenade that surrounds Uveto Station's huge space elevator. You're just a hop and a skip from the elevator doors, either west or north of you.\n\nA sign on the wall indicates a corridor eastward as leading to the station chief and other executives' offices.";
+	rooms["UVS F9"].description = "You’re standing on the south-eastern edge of a circular promenade that surrounds Uveto Station’s huge space elevator. You’re just a hop and a skip from the elevator doors, either west or north of you.\n\nA sign on the wall indicates a corridor eastward as leading to the station chief and other executives’ offices.";
 	rooms["UVS F9"].planet = "UVETO STATION";
 	rooms["UVS F9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS F9"].northExit = "UVS F7";
@@ -259,7 +259,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI H34"] = new RoomClass(this);
 	rooms["UVI H34"].roomName = "IRESTEAD\nCENTRAL HUB";
-	rooms["UVI H34"].description = "The back of the Uveto VII central hub is a large, metal structure with vaulted ceilings and glass windows covered with frost. A great deal of cargo is stacked up all over, mostly showing Camarilla, Steele Tech, and RhenWorld markings.\n\nThe space elevator's access is just to the west of you. To the north, you see markings indicating a Sheriff's station. To the south you see an office building marked with the Steele Tech logo and a heading that labels it as the main office of the company's biomedical division. ";
+	rooms["UVI H34"].description = "The back of the Uveto VII central hub is a large, metal structure with vaulted ceilings and glass windows covered with frost. A great deal of cargo is stacked up all over, mostly showing Camarilla, Steele Tech, and RhenWorld markings.\n\nThe space elevator’s access is just to the west of you. To the north, you see markings indicating a Sheriff’s station. To the south you see an office building marked with the Steele Tech logo and a heading that labels it as the main office of the company’s biomedical division. ";
 	rooms["UVI H34"].planet = "PLANET: UVETO VII";
 	rooms["UVI H34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI H34"].northExit = "UVI H32";
@@ -283,7 +283,7 @@ public function initUvetoRooms():void
 	rooms["UVI H36"].addFlag(GLOBAL.NPC);
 	
 	rooms["UVI H38"] = new RoomClass(this);
-	rooms["UVI H38"].roomName = "LESSAU'S\nOFFICE";
+	rooms["UVI H38"].roomName = "LESSAU’S\nOFFICE";
 	rooms["UVI H38"].description = "Dr. Lessau’s office consists of a clean white room decorated with dark blue carpeting, joined at the edges by dark wood baseboards that look freshly waxed. Paintings hung on the walls sport matching dark wood frames and depict various murals of creatures from human and ausar mythology. One depicts a dragon spiraling through the air, another a beautiful unicorn in a tranquil forest clearing, a third a chimera roaring in triumph as it stands over a horde of other beasts. The back of the room is taken up by a large wooden desk sporting a holoterminal which spans nearly its entire width, most of the displays alight with various genomes and reports. ";
 	rooms["UVI H38"].planet = "PLANET: UVETO VII";
 	rooms["UVI H38"].system = "SYSTEM: SIRETTA";
@@ -348,7 +348,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI J34"] = new RoomClass(this);
 	rooms["UVI J34"].roomName = "GEO. SURVEY\nEXTERIOR";
-	rooms["UVI J34"].description = "To the north, through a small tunnel, there is a building marked as the Geological Survey Station. It is a three story building with a glass hexagonal observation deck on top, similar to some landing control towers you’ve seen. Each glass pane appears to have armored shutters mounted to it, presumably to keep out Uveto's extreme storms.\n\nAround the side of the building you can see a set of antennas and a sealed sensor dome.\n\nTo the south, you can see a large elevator shaft that seems to go <i>down</i>. To the east, you see a pair of heavy doors.";
+	rooms["UVI J34"].description = "To the north, through a small tunnel, there is a building marked as the Geological Survey Station. It is a three story building with a glass hexagonal observation deck on top, similar to some landing control towers you’ve seen. Each glass pane appears to have armored shutters mounted to it, presumably to keep out Uveto’s extreme storms.\n\nAround the side of the building you can see a set of antennas and a sealed sensor dome.\n\nTo the south, you can see a large elevator shaft that seems to go <i>down</i>. To the east, you see a pair of heavy doors.";
 	rooms["UVI J34"].planet = "PLANET: UVETO VII";
 	rooms["UVI J34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI J34"].northExit = "UVI J32";
@@ -372,7 +372,7 @@ public function initUvetoRooms():void
 	/* Entrance */
 	rooms["UVI L34"] = new RoomClass(this);
 	rooms["UVI L34"].roomName = "CENTRAL HUB\nENTRANCE";
-	rooms["UVI L34"].description = "A huge steel door leads out from the central hub of Irestead, Uveto's hub city, out onto the snowy main street. You're buffeted by strong, icy winds that bite at your [pc.skinFurScales], forcing you to wrap your arms around yourself... and this is within the boundaries the protective walls that surround the city. ";
+	rooms["UVI L34"].description = "A huge steel door leads out from the central hub of Irestead, Uveto’s hub city, out onto the snowy main street. You’re buffeted by strong, icy winds that bite at your [pc.skinFurScales], forcing you to wrap your arms around yourself... and this is within the boundaries the protective walls that surround the city. ";
 	rooms["UVI L34"].planet = "PLANET: UVETO VII";
 	rooms["UVI L34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI L34"].eastExit = "UVI N34";
@@ -380,9 +380,9 @@ public function initUvetoRooms():void
 	rooms["UVI L34"].moveMinutes = 3;
 	rooms["UVI L34"].addFlag(GLOBAL.OUTDOOR);
 	rooms["UVI L34"].runOnEnter = function():Boolean {
-		output("\n\nA long, snow-encrusted street runs north to south just ahead. To the west is the warm, protective embrace of Uveto's central hub.");
-		if (pc.willTakeColdDamage()) output(" It's all you can do to force yourself not to run for it... holy SHIT it's cold here! You've got to get inside, or find some way to warm yourself up ASAP.");
-		else if (pc.hasHeatBelt()) output(" Even with the warmth provided by your heat belt, it's still freezing cold out here. Just not lethally so.");
+		output("\n\nA long, snow-encrusted street runs north to south just ahead. To the west is the warm, protective embrace of Uveto’s central hub.");
+		if (pc.willTakeColdDamage()) output(" It’s all you can do to force yourself not to run for it... holy SHIT it’s cold here! You’ve got to get inside, or find some way to warm yourself up ASAP.");
+		else if (pc.hasHeatBelt()) output(" Even with the warmth provided by your heat belt, it’s still freezing cold out here. Just not lethally so.");
 		
 		return false;
 	};
@@ -414,7 +414,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI N38"] = new RoomClass(this);
 	rooms["UVI N38"].roomName = "\nINTERSECTION";
-	rooms["UVI N38"].description = "An intersection connects an eastward road to the main street. To the east, you can see a huge, black gate in the town's wall, separating you from the hostile wilderness outside. A few large, intimidating gun turrets are pointed out into the wastes.";
+	rooms["UVI N38"].description = "An intersection connects an eastward road to the main street. To the east, you can see a huge, black gate in the town’s wall, separating you from the hostile wilderness outside. A few large, intimidating gun turrets are pointed out into the wastes.";
 	rooms["UVI N38"].planet = "PLANET: UVETO VII";
 	rooms["UVI N38"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N38"].northExit = "UVI N36";
@@ -435,7 +435,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI N42"] = new RoomClass(this);
 	rooms["UVI N42"].roomName = "SOUTHERN\nCOMMERCE";
-	rooms["UVI N42"].description = "Several shops are set up around the southern end of the main street, advertising their wares. Most are simple things like grocery stores, a computer shop, and the like. To the west, though, you spot a shop that catches your eye: the Hunter's Dream. Opposite is a holographic sign above a storefront featuring a decal of a multi-legged, tauric alien and the words, <i>“Spinarran Silk & Steel”</i>. The display windows to the east show off samples: polished weapons, exotic body armor, and even mundane clothing.";
+	rooms["UVI N42"].description = "Several shops are set up around the southern end of the main street, advertising their wares. Most are simple things like grocery stores, a computer shop, and the like. To the west, though, you spot a shop that catches your eye: the Hunter’s Dream. Opposite is a holographic sign above a storefront featuring a decal of a multi-legged, tauric alien and the words, <i>“Spinarran Silk & Steel”</i>. The display windows to the east show off samples: polished weapons, exotic body armor, and even mundane clothing.";
 	rooms["UVI N42"].planet = "PLANET: UVETO VII";
 	rooms["UVI N42"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N42"].northExit = "UVI N40";
@@ -459,7 +459,7 @@ public function initUvetoRooms():void
 	/* Another Store */
 	rooms["UVI L42"] = new RoomClass(this);
 	rooms["UVI L42"].roomName = "HUNTERS\nDREAM";
-	rooms["UVI L42"].description = "The inside of the Hunter's Dream looks like a cross between an old-school hunter's lodge, complete with animal trophies and holo-photos of successful hunters standing over their kills, and a modern shop with glass panes protecting expensive weapons and a softly-beeping credit swipe.";
+	rooms["UVI L42"].description = "The inside of the Hunter’s Dream looks like a cross between an old-school hunter’s lodge, complete with animal trophies and holo-photos of successful hunters standing over their kills, and a modern shop with glass panes protecting expensive weapons and a softly-beeping credit swipe.";
 	rooms["UVI L42"].planet = "PLANET: UVETO VII";
 	rooms["UVI L42"].system = "SYSTEM: SIRETTA";
 	rooms["UVI L42"].eastExit = "UVI N42";
@@ -469,7 +469,7 @@ public function initUvetoRooms():void
 	rooms["UVI L42"].runOnEnter = function():Boolean {
 		if (flags["MET_HUNTERS_DREAM_SHOPKEEP"] == undefined)
 		{
-			output("\n\nA young humanoid woman with fox-like ears is standing behind the counter, dressed in snow-white leathers and hides that leave little bare. At first glance you think she's an albino, what with red eyes and snowy hair.");
+			output("\n\nA young humanoid woman with fox-like ears is standing behind the counter, dressed in snow-white leathers and hides that leave little bare. At first glance you think she’s an albino, what with red eyes and snowy hair.");
 		}
 		else
 		{
@@ -496,7 +496,7 @@ public function initUvetoRooms():void
 	/* Maglev Station */
 	rooms["UVI P40"] = new RoomClass(this);
 	rooms["UVI P40"].roomName = "MAGLEV\nSTATION";
-	rooms["UVI P40"].description = "You're underneath Irestead now, perhaps fifty feet underground. A large, two-track train station has been constructed here, connected to the town above via a bank of elevators and stairs. Safe and warm beneath the ground, the train station seems to be one of the most populated places in town: several dozen ausar and leithans are milling about, most dressed in heavily padded and furred coats bearing various corporate insignias: RhenWorld and Akkadi the most prevalent of them. You get the impression many of the people here are either coming from or going to the savicite mines outside of town.";
+	rooms["UVI P40"].description = "You’re underneath Irestead now, perhaps fifty feet underground. A large, two-track train station has been constructed here, connected to the town above via a bank of elevators and stairs. Safe and warm beneath the ground, the train station seems to be one of the most populated places in town: several dozen ausar and leithans are milling about, most dressed in heavily padded and furred coats bearing various corporate insignias: RhenWorld and Akkadi the most prevalent of them. You get the impression many of the people here are either coming from or going to the savicite mines outside of town.";
 	rooms["UVI P40"].planet = "PLANET: UVETO VII";
 	rooms["UVI P40"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P40"].northExit = "UVI P38";
@@ -507,7 +507,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI N32"] = new RoomClass(this);
 	rooms["UVI N32"].roomName = "MEAD\nSTREET";
-	rooms["UVI N32"].description = "A small alley leads down from the street and to a door on a small brown building with a neon sign out front announcing it as the town's Mead Hall. How quaint.";
+	rooms["UVI N32"].description = "A small alley leads down from the street and to a door on a small brown building with a neon sign out front announcing it as the town’s Mead Hall. How quaint.";
 	rooms["UVI N32"].planet = "PLANET: UVETO VII";
 	rooms["UVI N32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N32"].northExit = "UVI N30";
@@ -519,7 +519,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI N30"] = new RoomClass(this);
 	rooms["UVI N30"].roomName = "TEMPLE\nSTREET";
-	rooms["UVI N30"].description = "The main street comes to a head here, leading up to a huge wooden building with a pair of blazing fires flickering in metal braziers outside. Wide marble steps lead up to a pair of metal-reinforced doors. A pair of armored humans are standing outside, clad in snow-white ceramic plates with dark scarves, capes, and kilts over them. Each has a longspear grasped in his hands, and an energy pistol on his hip.\n\nTo the east, you can see the nearest house to the temple. It's a small, dark gray building that you imagine must be largely built underground. A small plate beside it gives the street address, and says in flowing letters ‘Shade and Astra Irons’.";
+	rooms["UVI N30"].description = "The main street comes to a head here, leading up to a huge wooden building with a pair of blazing fires flickering in metal braziers outside. Wide marble steps lead up to a pair of metal-reinforced doors. A pair of armored humans are standing outside, clad in snow-white ceramic plates with dark scarves, capes, and kilts over them. Each has a longspear grasped in his hands, and an energy pistol on his hip.\n\nTo the east, you can see the nearest house to the temple. It’s a small, dark gray building that you imagine must be largely built underground. A small plate beside it gives the street address, and says in flowing letters ‘Shade and Astra Irons’.";
 	rooms["UVI N30"].planet = "PLANET: UVETO VII";
 	rooms["UVI N30"].system = "SYSTEM: SIRETTA";
 	//rooms["UVI N30"].northExit = "UVI N28"; // 9999 CUT UNTIL READY
@@ -542,7 +542,7 @@ public function initUvetoRooms():void
 
 	rooms["UVI P32"] = new RoomClass(this);
 	rooms["UVI P32"].roomName = "THE\nFREEZER";
-	rooms["UVI P32"].description = "There is only a brief landing to kick the snow off your feet before the floor immediately plunges downwards in the form of a staircase, though the steps are mercifully wide and drunkard friendly. Each step downwards brings you further away from the biting chill and, instead, to the warm, cozy atmosphere of what is a tavern. Emphasis on warm, thankfully.\n\nDespite its name, the Freezer is actually a decidedly homely establishment. Heaters in nearly every corner of the room keep the air from dipping into Uveto's usually frigid temperatures, and a scattering of cracked peanut shells on the floor lend the place a homey, if rustic, feel.\n\nThere's plenty of space between the various tables, varying from long bench seats to more intimate two seat square tables and everything in between - it feels a bit like a collection of various ways to <i>do</i> tables.\n\nThere's a subfloor to the east; slightly lower than the main tavern floor, but only by a few steps.";
+	rooms["UVI P32"].description = "There is only a brief landing to kick the snow off your feet before the floor immediately plunges downwards in the form of a staircase, though the steps are mercifully wide and drunkard friendly. Each step downwards brings you further away from the biting chill and, instead, to the warm, cozy atmosphere of what is a tavern. Emphasis on warm, thankfully.\n\nDespite its name, the Freezer is actually a decidedly homely establishment. Heaters in nearly every corner of the room keep the air from dipping into Uveto’s usually frigid temperatures, and a scattering of cracked peanut shells on the floor lend the place a homey, if rustic, feel.\n\nThere’s plenty of space between the various tables, varying from long bench seats to more intimate two seat square tables and everything in between - it feels a bit like a collection of various ways to <i>do</i> tables.\n\nThere’s a subfloor to the east; slightly lower than the main tavern floor, but only by a few steps.";
 	rooms["UVI P32"].planet = "PLANET: UVETO VII";
 	rooms["UVI P32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P32"].eastExit = "UVI R32"; // 9999 TEMP CHECK THIS
@@ -555,7 +555,7 @@ public function initUvetoRooms():void
 	/* Mead Hall */
 	rooms["UVI R32"] = new RoomClass(this);
 	rooms["UVI R32"].roomName = "THE\nFREEZER";
-	rooms["UVI R32"].description = "A subfloor to the tavern-proper, this part of the room serves to house a giant, circular firepit with hardy seating set all around a roaring fire.\n\nThe heat of marvelous, massive flames constantly licks at your [pc.face] as the barely-controlled fire keeps the interior of the tavern pleasantly warm at a distance, but the pit itself offers those fresh from a trek across the ice plains a place to really get some warmth back into their limbs.\n\nThere's a small, unassuming door with a subtle ‘Staff Only’ notice on it tucked into the south corner of the room.";
+	rooms["UVI R32"].description = "A subfloor to the tavern-proper, this part of the room serves to house a giant, circular firepit with hardy seating set all around a roaring fire.\n\nThe heat of marvelous, massive flames constantly licks at your [pc.face] as the barely-controlled fire keeps the interior of the tavern pleasantly warm at a distance, but the pit itself offers those fresh from a trek across the ice plains a place to really get some warmth back into their limbs.\n\nThere’s a small, unassuming door with a subtle ‘Staff Only’ notice on it tucked into the south corner of the room.";
 	rooms["UVI R32"].planet = "PLANET: UVETO VII";
 	rooms["UVI R32"].system = "SYSTEM: SIRETTA";
 	rooms["UVI R32"].southExit = "UVI R34";
@@ -570,7 +570,7 @@ public function initUvetoRooms():void
 	/* Back Room */
 	rooms["UVI R34"] = new RoomClass(this);
 	rooms["UVI R34"].roomName = "THE FREEZER:\nBACKROOM";
-	rooms["UVI R34"].description = "The freezers back room. Shouldn't be able to see this atm! 9999";
+	rooms["UVI R34"].description = "The freezers back room. Shouldn’t be able to see this atm! 9999";
 	rooms["UVI R34"].planet = "PLANET: UVETO VII";
 	rooms["UVI R34"].system = "SYSTEM: SIRETTA";
 	rooms["UVI R34"].northExit = "UVI R32";
@@ -663,7 +663,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP F38"] = new RoomClass(this);
 	rooms["UVIP F38"].roomName = "SLOPING\nPATH";
-	rooms["UVIP F38"].description = "The ice and snow packed down outside of Irestead sweeps open into northward and southern passages, chasms through the accumulation worn down by traffic. The path ahead seems to dip downward the further east you go, though you're sure Irestead didn't seem to be built on a hill... or maybe it is, and the snow's just so damn high that it looks like the ground's ten feet higher than it ought to be.\n\nThe only way you're going to get anywhere in this snowbound hell is through these pathways, that's for sure. One wrong step up top and you'd go plummeting to your doom, no doubt.";
+	rooms["UVIP F38"].description = "The ice and snow packed down outside of Irestead sweeps open into northward and southern passages, chasms through the accumulation worn down by traffic. The path ahead seems to dip downward the further east you go, though you’re sure Irestead didn’t seem to be built on a hill... or maybe it is, and the snow’s just so damn high that it looks like the ground’s ten feet higher than it ought to be.\n\nThe only way you’re going to get anywhere in this snowbound hell is through these pathways, that’s for sure. One wrong step up top and you’d go plummeting to your doom, no doubt.";
 	rooms["UVIP F38"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F38"].northExit = "UVIP F36";
@@ -677,7 +677,7 @@ public function initUvetoRooms():void
 	/* South End */
 	rooms["UVIP F40"] = new RoomClass(this);
 	rooms["UVIP F40"].roomName = "GEOLOGIC\nSURVEY DRONE";
-	rooms["UVIP F40"].description = "You're barely outside the gates of Irestead, and you've already found someone -- or rather, some<i>thing</i> the snow's gotten the best of. There used to be a path south of here, it looks like, but a big fat sphere of a droid has crashed into the snow, causing a snow-slide over itself, blocking the way. The drone looks old, and it's so frozen that it's almost ice blue now. You can just barely make out ‘Irestead Geolo-’ printed on the side.";
+	rooms["UVIP F40"].description = "You’re barely outside the gates of Irestead, and you’ve already found someone -- or rather, some<i>thing</i> the snow’s gotten the best of. There used to be a path south of here, it looks like, but a big fat sphere of a droid has crashed into the snow, causing a snow-slide over itself, blocking the way. The drone looks old, and it’s so frozen that it’s almost ice blue now. You can just barely make out ‘Irestead Geolo-’ printed on the side.";
 	rooms["UVIP F40"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F40"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F40"].northExit = "UVIP F38";
@@ -689,7 +689,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP H40"] = new RoomClass(this);
 	rooms["UVIP H40"].roomName = "DEEP\nPATHWAY";
-	rooms["UVIP H40"].description = "The path through the snow is particularly deep here, maybe fifteen feet below the surface of the snowbanks. Crystals of ice and mineral peek out from the uneven walls of the chasm you're following, brilliantly reflecting the light of the swirling gas giant in the sky.";
+	rooms["UVIP H40"].description = "The path through the snow is particularly deep here, maybe fifteen feet below the surface of the snowbanks. Crystals of ice and mineral peek out from the uneven walls of the chasm you’re following, brilliantly reflecting the light of the swirling gas giant in the sky.";
 	rooms["UVIP H40"].planet = "PLANET: UVETO VII";
 	rooms["UVIP H40"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H40"].eastExit = "UVIP J40";
@@ -713,7 +713,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP J38"] = new RoomClass(this);
 	rooms["UVIP J38"].roomName = "SHATTERED\nSPIRE";
-	rooms["UVIP J38"].description = "One of Uveto's iconic pillars of swirling black mineral used to rise from the snow here, reaching towards the storm-wracked sky. This one, though, seems to have been blown to smithereens, scattering black shards of obsidian-like material across the snow for yards around. Wonder what happened?";
+	rooms["UVIP J38"].description = "One of Uveto’s iconic pillars of swirling black mineral used to rise from the snow here, reaching towards the storm-wracked sky. This one, though, seems to have been blown to smithereens, scattering black shards of obsidian-like material across the snow for yards around. Wonder what happened?";
 	rooms["UVIP J38"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J38"].eastExit = "UVIP L38";
@@ -725,7 +725,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L38"] = new RoomClass(this);
 	rooms["UVIP L38"].roomName = "SOUTHERN\nLAKE SHORE";
-	rooms["UVIP L38"].description = "The great ice lake stretches out beyond your horizons to the north, blue and placid as can be, yet you know it would be suicide to try walking out on it. The ice doesn't look very thick at all. To the south, the snowbank recedes into a gulley, seemingly packed down by heavy traffic; westward lies more lakeshore and a field of endless snow.";
+	rooms["UVIP L38"].description = "The great ice lake stretches out beyond your horizons to the north, blue and placid as can be, yet you know it would be suicide to try walking out on it. The ice doesn’t look very thick at all. To the south, the snowbank recedes into a gulley, seemingly packed down by heavy traffic; westward lies more lakeshore and a field of endless snow.";
 	rooms["UVIP L38"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L38"].eastExit = "UVIP N38";
@@ -737,7 +737,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP N38"] = new RoomClass(this);
 	rooms["UVIP N38"].roomName = "SOUTHERN\nLAKE SHORE";
-	rooms["UVIP N38"].description = "The great ice lake stretches out beyond your horizons to the north, blue and placid as can be, yet you know it would be suicide to try walking out on it. The ice doesn't look very thick at all. Southwards lies a packed-in path through the snow, seemingly the safest way to get further afield from Irestead.";
+	rooms["UVIP N38"].description = "The great ice lake stretches out beyond your horizons to the north, blue and placid as can be, yet you know it would be suicide to try walking out on it. The ice doesn’t look very thick at all. Southwards lies a packed-in path through the snow, seemingly the safest way to get further afield from Irestead.";
 	rooms["UVIP N38"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N38"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N38"].southExit = "UVIP N40";
@@ -761,7 +761,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP N42"] = new RoomClass(this);
 	rooms["UVIP N42"].roomName = "WINDING\nPATHS";
-	rooms["UVIP N42"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. ";
+	rooms["UVIP N42"].description = "You’re making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. ";
 	rooms["UVIP N42"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N42"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N42"].northExit = "UVIP N40";
@@ -773,7 +773,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP N44"] = new RoomClass(this);
 	rooms["UVIP N44"].roomName = "WINDING\nCROSSROADS";
-	rooms["UVIP N44"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path branches here, heading both north towards the lake and eastwards towards the distant glacial rift. To the south, the path twists away to the west.";
+	rooms["UVIP N44"].description = "You’re making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path branches here, heading both north towards the lake and eastwards towards the distant glacial rift. To the south, the path twists away to the west.";
 	rooms["UVIP N44"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N44"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N44"].northExit = "UVIP N42";
@@ -786,7 +786,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP N46"] = new RoomClass(this);
 	rooms["UVIP N46"].roomName = "WINDING\nPATHS";
-	rooms["UVIP N46"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path here twists northwards and back west, though not quite towards Irestead.";
+	rooms["UVIP N46"].description = "You’re making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path here twists northwards and back west, though not quite towards Irestead.";
 	rooms["UVIP N46"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N46"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N46"].northExit = "UVIP N44";
@@ -798,7 +798,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L46"] = new RoomClass(this);
 	rooms["UVIP L46"].roomName = "WINDING\nPATHS";
-	rooms["UVIP L46"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The western path is marred by a pair of metal stands, tripods by the looks of them, behind torn shreds of some kind of wire. Maybe drone platforms of some sort?";
+	rooms["UVIP L46"].description = "You’re making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The western path is marred by a pair of metal stands, tripods by the looks of them, behind torn shreds of some kind of wire. Maybe drone platforms of some sort?";
 	rooms["UVIP L46"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L46"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L46"].eastExit = "UVIP N46";
@@ -810,7 +810,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP J46"] = new RoomClass(this);
 	rooms["UVIP J46"].roomName = "ABANDONED\nCAMP";
-	rooms["UVIP J46"].description = "The path here ends in a small basin, dipping just below the winding vales to the north. Several tattered tents can still be seen here, surrounding a long-abandoned fire pit. Everything here is too wind-wracked and torn to be of use at first glance -- you'll find little shelter here, sadly. ";
+	rooms["UVIP J46"].description = "The path here ends in a small basin, dipping just below the winding vales to the north. Several tattered tents can still be seen here, surrounding a long-abandoned fire pit. Everything here is too wind-wracked and torn to be of use at first glance -- you’ll find little shelter here, sadly. ";
 	rooms["UVIP J46"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J46"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J46"].eastExit = "UVIP L46";
@@ -826,7 +826,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP P44"] = new RoomClass(this);
 	rooms["UVIP P44"].roomName = "WINDING\nPATHS";
-	rooms["UVIP P44"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The snowy vale you're following leads east to west, and seems to have seen vehicular travel recently. Maybe this is the way researchers use when going out to the Glacial Rift?";
+	rooms["UVIP P44"].description = "You’re making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The snowy vale you’re following leads east to west, and seems to have seen vehicular travel recently. Maybe this is the way researchers use when going out to the Glacial Rift?";
 	rooms["UVIP P44"].planet = "PLANET: UVETO VII";
 	rooms["UVIP P44"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP P44"].eastExit = "UVIP R44";
@@ -838,7 +838,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP R44"] = new RoomClass(this);
 	rooms["UVIP R44"].roomName = "WINDING\nPATHS";
-	rooms["UVIP R44"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The snowy vale you're following leads east to west, and seems to have seen vehicular travel recently. Maybe this is the way researchers use when going out to the Glacial Rift?\n\nA metal platform is precariously balanced overhead, bolted onto some sort of hard surface underneath the snow here. Several fuel canisters are strapped down, and a ladder leads up to the surface. An emergency supply cache, you guess. A quick peek up at it reveals the logo the Confederate Peacekeepers emblazoned on a metal sign.";
+	rooms["UVIP R44"].description = "You’re making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The snowy vale you’re following leads east to west, and seems to have seen vehicular travel recently. Maybe this is the way researchers use when going out to the Glacial Rift?\n\nA metal platform is precariously balanced overhead, bolted onto some sort of hard surface underneath the snow here. Several fuel canisters are strapped down, and a ladder leads up to the surface. An emergency supply cache, you guess. A quick peek up at it reveals the logo the Confederate Peacekeepers emblazoned on a metal sign.";
 	rooms["UVIP R44"].planet = "PLANET: UVETO VII";
 	rooms["UVIP R44"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R44"].eastExit = "UVIP T44";
@@ -857,7 +857,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP T44"] = new RoomClass(this);
 	rooms["UVIP T44"].roomName = "WINDING\nPATHS";
-	rooms["UVIP T44"].description = "You're making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path curves north and west, with the walls of the vale made of ice that's been polished so smooth by... something... that you could probably skate off them. You bet the natives have a great time playing around here.";
+	rooms["UVIP T44"].description = "You’re making your way through shallow paths winding through the snow, faint trails to follow towards what you hope is some worthy destination -- or at least somewhere warm. The path curves north and west, with the walls of the vale made of ice that’s been polished so smooth by... something... that you could probably skate off them. You bet the natives have a great time playing around here.";
 	rooms["UVIP T44"].planet = "PLANET: UVETO VII";
 	rooms["UVIP T44"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T44"].northExit = "UVIP T42";
@@ -929,7 +929,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP X36"] = new RoomClass(this);
 	rooms["UVIP X36"].roomName = "WINDING\nPATHS";
-	rooms["UVIP X36"].description = "The snowy paths slope sharply upwards the further east you go, making it hard to get your footing the further you go. Here, the trail you've been following curves around a large mound of ice and rock, twisting north and south across uneven fields.";
+	rooms["UVIP X36"].description = "The snowy paths slope sharply upwards the further east you go, making it hard to get your footing the further you go. Here, the trail you’ve been following curves around a large mound of ice and rock, twisting north and south across uneven fields.";
 	rooms["UVIP X36"].planet = "PLANET: UVETO VII";
 	rooms["UVIP X36"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X36"].northExit = "UVIP X34";
@@ -967,7 +967,7 @@ public function initUvetoRooms():void
 	/* BLU ROOM */
 	rooms["UVIP R36"] = new RoomClass(this);
 	rooms["UVIP R36"].roomName = "HIDDEN\nCAVE";
-	rooms["UVIP R36"].description = "You stand in a small, secluded cave hidden away from the stormy outside at the back of a reclusive vale. It's surprisingly warm in here, though perhaps that's only due to the protection the cave offers from the constant wind.\n\n<b>It's safe to sleep in here, even without a heat belt.</b>";
+	rooms["UVIP R36"].description = "You stand in a small, secluded cave hidden away from the stormy outside at the back of a reclusive vale. It’s surprisingly warm in here, though perhaps that’s only due to the protection the cave offers from the constant wind.\n\n<b>It’s safe to sleep in here, even without a heat belt.</b>";
 	rooms["UVIP R36"].planet = "PLANET: UVETO VII";
 	rooms["UVIP R36"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R36"].eastExit = "UVIP T36";
@@ -1001,7 +1001,7 @@ public function initUvetoRooms():void
 	/* NORTH END */
 	rooms["UVIP F36"] = new RoomClass(this);
 	rooms["UVIP F36"].roomName = "NORTHERN\nRISE";
-	rooms["UVIP F36"].description = "The further north you go from Irestead's gate, more intense the ever-present gale becomes. You're fairly sure you're climbing upwards again, if only slightly. Irestead's walls still loom large in the distance, when you can see it through the blasting snows.";
+	rooms["UVIP F36"].description = "The further north you go from Irestead’s gate, more intense the ever-present gale becomes. You’re fairly sure you’re climbing upwards again, if only slightly. Irestead’s walls still loom large in the distance, when you can see it through the blasting snows.";
 	rooms["UVIP F36"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F36"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F36"].northExit = "UVIP F34";
@@ -1025,7 +1025,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP F32"] = new RoomClass(this);
 	rooms["UVIP F32"].roomName = "BLACK PILLAR\nCIRCLE";
-	rooms["UVIP F32"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It's polished to such a sheen that you can see your own reflection in the surface, misty and black. Your path wraps around it, north and east.";
+	rooms["UVIP F32"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It’s polished to such a sheen that you can see your own reflection in the surface, misty and black. Your path wraps around it, north and east.";
 	rooms["UVIP F32"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F32"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F32"].northExit = "UVIP F30";
@@ -1038,7 +1038,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP F30"] = new RoomClass(this);
 	rooms["UVIP F30"].roomName = "BLACK PILLAR\nCIRCLE";
-	rooms["UVIP F30"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It's polished to such a sheen that you can see your own reflection in the surface, misty and black. Someone's spent a great deal of time with a chisel around here, carving shapes and crude pictures onto the black surface. You can more or less make out what looks like a saber-toothed tiger man with a pair of chubby, busty huskar girls under each arm. Naturally, cock and tits are on full display.";
+	rooms["UVIP F30"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It’s polished to such a sheen that you can see your own reflection in the surface, misty and black. Someone’s spent a great deal of time with a chisel around here, carving shapes and crude pictures onto the black surface. You can more or less make out what looks like a saber-toothed tiger man with a pair of chubby, busty huskar girls under each arm. Naturally, cock and tits are on full display.";
 	rooms["UVIP F30"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F30"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F30"].northExit = "UVIP F28";
@@ -1050,7 +1050,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP F28"] = new RoomClass(this);
 	rooms["UVIP F28"].roomName = "BLACK PILLAR\nCIRCLE";
-	rooms["UVIP F28"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It's polished to such a sheen that you can see your own reflection in the surface, misty and black.\n\nThe curved path finally loops back around from either side of the dark pillar here, combining back into a single north-south trail. ";
+	rooms["UVIP F28"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It’s polished to such a sheen that you can see your own reflection in the surface, misty and black.\n\nThe curved path finally loops back around from either side of the dark pillar here, combining back into a single north-south trail. ";
 	rooms["UVIP F28"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F28"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F28"].northExit = "UVIP F26";
@@ -1064,7 +1064,7 @@ public function initUvetoRooms():void
 	/* Toward Fishing Hole */
 	rooms["UVIP H28"] = new RoomClass(this);
 	rooms["UVIP H28"].roomName = "BLACK PILLAR\nCIRCLE";
-	rooms["UVIP H28"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It's polished to such a sheen that you can see your own reflection in the surface, misty and black. The path back north can be accessed by going west of here, you think, but to the east is a sloping hillside that leads towards the icy lakeshore.";
+	rooms["UVIP H28"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It’s polished to such a sheen that you can see your own reflection in the surface, misty and black. The path back north can be accessed by going west of here, you think, but to the east is a sloping hillside that leads towards the icy lakeshore.";
 	rooms["UVIP H28"].planet = "PLANET: UVETO VII";
 	rooms["UVIP H28"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H28"].eastExit = "UVIP J28";
@@ -1077,7 +1077,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP H30"] = new RoomClass(this);
 	rooms["UVIP H30"].roomName = "BLACK PILLAR\nCIRCLE";
-	rooms["UVIP H30"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It's polished to such a sheen that you can see your own reflection in the surface, misty and black. The path here runs north and south, vaguely curved around the pillar's base.";
+	rooms["UVIP H30"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It’s polished to such a sheen that you can see your own reflection in the surface, misty and black. The path here runs north and south, vaguely curved around the pillar’s base.";
 	rooms["UVIP H30"].planet = "PLANET: UVETO VII";
 	rooms["UVIP H30"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H30"].northExit = "UVIP H28";
@@ -1089,7 +1089,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP H32"] = new RoomClass(this);
 	rooms["UVIP H32"].roomName = "BLACK PILLAR\nCIRCLE";
-	rooms["UVIP H32"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It's polished to such a sheen that you can see your own reflection in the surface, misty and black. Westward and north take you around the pillar, and to the east you can see a great, placid lake of ice.";
+	rooms["UVIP H32"].description = "A huge pillar of some obsidian-like substance rises from the snow here, piercing the heavens with dark solidity. It’s polished to such a sheen that you can see your own reflection in the surface, misty and black. Westward and north take you around the pillar, and to the east you can see a great, placid lake of ice.";
 	rooms["UVIP H32"].planet = "PLANET: UVETO VII";
 	rooms["UVIP H32"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H32"].northExit = "UVIP H30";
@@ -1113,7 +1113,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L28"] = new RoomClass(this);
 	rooms["UVIP L28"].roomName = "LAKESIDE\nAPPROACH";
-	rooms["UVIP L28"].description = "The footpath down to the lake stretches southwards from here, with steps carved into the ice to allow an easier descent. Someone's rigged up a rope and pitons on the edge of the ice-cliff, making the descent somewhat manageable.";
+	rooms["UVIP L28"].description = "The footpath down to the lake stretches southwards from here, with steps carved into the ice to allow an easier descent. Someone’s rigged up a rope and pitons on the edge of the ice-cliff, making the descent somewhat manageable.";
 	rooms["UVIP L28"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L28"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L28"].southExit = "UVIP L30";
@@ -1125,7 +1125,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L30"] = new RoomClass(this);
 	rooms["UVIP L30"].roomName = "LAKESIDE\nAPPROACH";
-	rooms["UVIP L30"].description = "The footpath down to the lake stretches southwards from here, with steps carved into the ice to allow an easier descent. Someone's rigged up a rope and pitons on the edge of the ice-cliff, making the descent somewhat manageable.";
+	rooms["UVIP L30"].description = "The footpath down to the lake stretches southwards from here, with steps carved into the ice to allow an easier descent. Someone’s rigged up a rope and pitons on the edge of the ice-cliff, making the descent somewhat manageable.";
 	rooms["UVIP L30"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L30"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L30"].northExit = "UVIP L28";
@@ -1137,7 +1137,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L32"] = new RoomClass(this);
 	rooms["UVIP L32"].roomName = "LAKESIDE\nAPPROACH";
-	rooms["UVIP L32"].description = "You've reached the bottom of an icy cliff, looming high above you. A set of steps have been chiseled into the surface of the western ice, allowing a precarious ascent. To the east is the icy lake, serene and darkly beautiful.";
+	rooms["UVIP L32"].description = "You’ve reached the bottom of an icy cliff, looming high above you. A set of steps have been chiseled into the surface of the western ice, allowing a precarious ascent. To the east is the icy lake, serene and darkly beautiful.";
 	rooms["UVIP L32"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L32"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L32"].northExit = "UVIP L30";
@@ -1150,7 +1150,7 @@ public function initUvetoRooms():void
 	/* FISHING HOLE */
 	rooms["UVIP N32"] = new RoomClass(this);
 	rooms["UVIP N32"].roomName = "THE\nICE LAKE";
-	rooms["UVIP N32"].description = "You stand on the shore of an icy lake, stretching out to the horizon in three directions. Someone's carved out a hole in the ice at your [pc.feet], giving access to the internal waters beneath the moon's icy surface.";
+	rooms["UVIP N32"].description = "You stand on the shore of an icy lake, stretching out to the horizon in three directions. Someone’s carved out a hole in the ice at your [pc.feet], giving access to the internal waters beneath the moon’s icy surface.";
 	rooms["UVIP N32"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N32"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N32"].westExit = "UVIP L32";
@@ -1162,7 +1162,7 @@ public function initUvetoRooms():void
 	/* NORTH END */
 	rooms["UVIP F26"] = new RoomClass(this);
 	rooms["UVIP F26"].roomName = "SNOWBANK\nAPPROACH";
-	rooms["UVIP F26"].description = "To the north, you can see a towering mountain of snow and ice that's accumulated over who-knows how many years. It looks untouched by human hands -- or anyone else's -- yet is much too tall to risk climbing. Who knows if it's solid enough to support your weight?";
+	rooms["UVIP F26"].description = "To the north, you can see a towering mountain of snow and ice that’s accumulated over who-knows how many years. It looks untouched by human hands -- or anyone else’s -- yet is much too tall to risk climbing. Who knows if it’s solid enough to support your weight?";
 	rooms["UVIP F26"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F26"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F26"].northExit = "UVIP F24";
@@ -1174,7 +1174,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP F24"] = new RoomClass(this);
 	rooms["UVIP F24"].roomName = "SNOWBANK\nWEST";
-	rooms["UVIP F24"].description = "You're standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You'll have to make your way around this frozen behemoth if you want to progress.";
+	rooms["UVIP F24"].description = "You’re standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You’ll have to make your way around this frozen behemoth if you want to progress.";
 	rooms["UVIP F24"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F24"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F24"].northExit = "UVIP F22";
@@ -1187,7 +1187,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP F22"] = new RoomClass(this);
 	rooms["UVIP F22"].roomName = "SNOWBANK\nWEST";
-	rooms["UVIP F22"].description = "You're standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You'll have to make your way around this frozen behemoth if you want to progress.\n\nTo the immediate west, you can see the yawning maw of a cave, hollowed out from another equally massive snowbank. Definitely made by someone, you think. Might be a safe place to camp inside.";
+	rooms["UVIP F22"].description = "You’re standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You’ll have to make your way around this frozen behemoth if you want to progress.\n\nTo the immediate west, you can see the yawning maw of a cave, hollowed out from another equally massive snowbank. Definitely made by someone, you think. Might be a safe place to camp inside.";
 	rooms["UVIP F22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F22"].northExit = "UVIP F20";
@@ -1201,7 +1201,7 @@ public function initUvetoRooms():void
 	/* BLU ROOM */
 	rooms["UVIP D22"] = new RoomClass(this);
 	rooms["UVIP D22"].roomName = "SNOWBANK\nCAVE";
-	rooms["UVIP D22"].description = "You stand in a snowy cave, clearly dug out by hand from the titanic snowbank around you. An animal pelt is spread out on the ground, providing some relief from the constant cold should you desire it. Perhaps whoever made this cave intended it to be a waystation between Irestead and the Rift? Or are you treading in someone's home...?\n\n<b>It's safe to sleep in here, even without a heat belt.</b>";
+	rooms["UVIP D22"].description = "You stand in a snowy cave, clearly dug out by hand from the titanic snowbank around you. An animal pelt is spread out on the ground, providing some relief from the constant cold should you desire it. Perhaps whoever made this cave intended it to be a waystation between Irestead and the Rift? Or are you treading in someone’s home...?\n\n<b>It’s safe to sleep in here, even without a heat belt.</b>";
 	rooms["UVIP D22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP D22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP D22"].eastExit = "UVIP F22";
@@ -1210,7 +1210,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP F20"] = new RoomClass(this);
 	rooms["UVIP F20"].roomName = "SNOWBANK\nWEST";
-	rooms["UVIP F20"].description = "You're standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. Though the snowbanks obscure most of your vision, you're almost sure you can spy the dark shapes of tents to the north. Some kind of village, perhaps?";
+	rooms["UVIP F20"].description = "You’re standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. Though the snowbanks obscure most of your vision, you’re almost sure you can spy the dark shapes of tents to the north. Some kind of village, perhaps?";
 	rooms["UVIP F20"].planet = "PLANET: UVETO VII";
 	rooms["UVIP F20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP F20"].eastExit = "UVIP H20";
@@ -1222,7 +1222,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP H20"] = new RoomClass(this);
 	rooms["UVIP H20"].roomName = "SNOWBANK\nNORTH";
-	rooms["UVIP H20"].description = "You're standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. Though the snowbanks obscure most of your vision, you're almost sure you can spy the dark shapes of tents to the north. Some kind of village, perhaps?\n\nTo the east, you see another cave opening -- this one carved from the flank of an ice formation, and playing host to several small obsidian growths piercing the surface around the mouth. It looks... ominous, to say the least, but there's no outward sign of threat.";
+	rooms["UVIP H20"].description = "You’re standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. Though the snowbanks obscure most of your vision, you’re almost sure you can spy the dark shapes of tents to the north. Some kind of village, perhaps?\n\nTo the east, you see another cave opening -- this one carved from the flank of an ice formation, and playing host to several small obsidian growths piercing the surface around the mouth. It looks... ominous, to say the least, but there’s no outward sign of threat.";
 	rooms["UVIP H20"].planet = "PLANET: UVETO VII";
 	rooms["UVIP H20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H20"].eastExit = "UVIP J20";
@@ -1235,7 +1235,7 @@ public function initUvetoRooms():void
 	/* BLU ROOM */
 	rooms["UVIP J20"] = new RoomClass(this);
 	rooms["UVIP J20"].roomName = "ICE-HEWN\nCAVERN";
-	rooms["UVIP J20"].description = "You're standing in the mouth of a gaping cavern, a natural formation in the ice by the looks like things. Shards of a half-sunken black pillar can be seen through the northern wall, creating a kind of archway around a tunnel leading deeper. The way out is back west, up a slight incline.\n\n<b>It's safe to sleep in here, even without a heat belt.</b>";
+	rooms["UVIP J20"].description = "You’re standing in the mouth of a gaping cavern, a natural formation in the ice by the looks like things. Shards of a half-sunken black pillar can be seen through the northern wall, creating a kind of archway around a tunnel leading deeper. The way out is back west, up a slight incline.\n\n<b>It’s safe to sleep in here, even without a heat belt.</b>";
 	rooms["UVIP J20"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J20"].northExit = "UVIP J18";
@@ -1247,7 +1247,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP J18"] = new RoomClass(this);
 	rooms["UVIP J18"].roomName = "ICE-HEWN\nCAVERN";
-	rooms["UVIP J18"].description = "You've ventured deep into an icy cavern, a dozen feet or more beneath the Uvetan moon's surface. Spears of ice hang ominously from the ceiling above, and the floor is slick -- too slick for comfort. Still, you're well shielded from the piercing winds up above.\n\n<b>It's safe to sleep in here, even without a heat belt.</b>";
+	rooms["UVIP J18"].description = "You’ve ventured deep into an icy cavern, a dozen feet or more beneath the Uvetan moon’s surface. Spears of ice hang ominously from the ceiling above, and the floor is slick -- too slick for comfort. Still, you’re well shielded from the piercing winds up above.\n\n<b>It’s safe to sleep in here, even without a heat belt.</b>";
 	rooms["UVIP J18"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J18"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J18"].southExit = "UVIP J20";
@@ -1258,7 +1258,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP H24"] = new RoomClass(this);
 	rooms["UVIP H24"].roomName = "SNOWBANK\nSOUTH";
-	rooms["UVIP H24"].description = "You're standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You'll have to make your way around this frozen behemoth if you want to progress. The path here wraps east to west, directly under a looming peak of ice.";
+	rooms["UVIP H24"].description = "You’re standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You’ll have to make your way around this frozen behemoth if you want to progress. The path here wraps east to west, directly under a looming peak of ice.";
 	rooms["UVIP H24"].planet = "PLANET: UVETO VII";
 	rooms["UVIP H24"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP H24"].eastExit = "UVIP J24";
@@ -1270,7 +1270,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP J24"] = new RoomClass(this);
 	rooms["UVIP J24"].roomName = "SNOWBANK\nSOUTH";
-	rooms["UVIP J24"].description = "You're standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You'll have to make your way around this frozen behemoth if you want to progress. The path curves north and west, pinching you between the great snowbank and a wall of solid ice, looming above you on the other side.";
+	rooms["UVIP J24"].description = "You’re standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You’ll have to make your way around this frozen behemoth if you want to progress. The path curves north and west, pinching you between the great snowbank and a wall of solid ice, looming above you on the other side.";
 	rooms["UVIP J24"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J24"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J24"].northExit = "UVIP J22";
@@ -1282,7 +1282,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP J22"] = new RoomClass(this);
 	rooms["UVIP J22"].roomName = "SNOWBANK\nEAST";
-	rooms["UVIP J22"].description = "You're standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You'll have to make your way around this frozen behemoth if you want to progress. Rather than wrapping all the way around the snowbank, it seems like the way forward is up a slight incline, going northward.";
+	rooms["UVIP J22"].description = "You’re standing in the shadow of a mountain of snow and ice, the build up of years of endless storms on the Uvetan moon. You’ll have to make your way around this frozen behemoth if you want to progress. Rather than wrapping all the way around the snowbank, it seems like the way forward is up a slight incline, going northward.";
 	rooms["UVIP J22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J22"].eastExit = "UVIP L22";
@@ -1294,7 +1294,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L22"] = new RoomClass(this);
 	rooms["UVIP L22"].roomName = "LAKESHORE\nINCLINE";
-	rooms["UVIP L22"].description = "From the top of the small incline beyond the snowbanks, you're able to see a great and placid lakeshore stretching off into the east. The rise continues northwards, along an ice-hewn cliffside overlooking the lake. In the distance, you can see pillars of smoke rising. Maybe someone lives thataways?";
+	rooms["UVIP L22"].description = "From the top of the small incline beyond the snowbanks, you’re able to see a great and placid lakeshore stretching off into the east. The rise continues northwards, along an ice-hewn cliffside overlooking the lake. In the distance, you can see pillars of smoke rising. Maybe someone lives thataways?";
 	rooms["UVIP L22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L22"].northExit = "UVIP L20";
@@ -1306,7 +1306,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L20"] = new RoomClass(this);
 	rooms["UVIP L20"].roomName = "LAKESHORE\nINCLINE";
-	rooms["UVIP L20"].description = "You're in the middle of a strongly steeping incline, running north and south along the shore of a lake. The northern path takes you towards what looks like some sort of village beyond the lake, and south back towards Irestead.";
+	rooms["UVIP L20"].description = "You’re in the middle of a strongly steeping incline, running north and south along the shore of a lake. The northern path takes you towards what looks like some sort of village beyond the lake, and south back towards Irestead.";
 	rooms["UVIP L20"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L20"].northExit = "UVIP L18";
@@ -1318,7 +1318,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L18"] = new RoomClass(this);
 	rooms["UVIP L18"].roomName = "LAKESHORE\nINCLINE";
-	rooms["UVIP L18"].description = "You're in the middle of a strongly steeping incline, running north and south along the shore of a lake. The northern path takes you towards what looks like some sort of village beyond the lake, and south back towards Irestead. Several small ropes have been pitoned into the ice, going down to the lakeshore. Much too dangerous for you, though.";
+	rooms["UVIP L18"].description = "You’re in the middle of a strongly steeping incline, running north and south along the shore of a lake. The northern path takes you towards what looks like some sort of village beyond the lake, and south back towards Irestead. Several small ropes have been pitoned into the ice, going down to the lakeshore. Much too dangerous for you, though.";
 	rooms["UVIP L18"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L18"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L18"].northExit = "UVIP L16";
@@ -1330,7 +1330,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L16"] = new RoomClass(this);
 	rooms["UVIP L16"].roomName = "LAKESHORE\nINCLINE";
-	rooms["UVIP L16"].description = "You're in the middle of a strongly steeping incline, running north and south along the shore of a lake. The northern path takes you towards what looks like some sort of village beyond the lake, and south back towards Irestead. The path curves eastwards, further up the hill, as well as south back down.";
+	rooms["UVIP L16"].description = "You’re in the middle of a strongly steeping incline, running north and south along the shore of a lake. The northern path takes you towards what looks like some sort of village beyond the lake, and south back towards Irestead. The path curves eastwards, further up the hill, as well as south back down.";
 	rooms["UVIP L16"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L16"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L16"].eastExit = "UVIP N16";
@@ -1342,7 +1342,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP N16"] = new RoomClass(this);
 	rooms["UVIP N16"].roomName = "LAKESHORE\nINCLINE";
-	rooms["UVIP N16"].description = "Even after turning east, you find yourself still progressing along a sloping path. The cliffside is huge, you've come to realize -- much bigger than you thought before, almost glacial. The path you're taking, though, is well traveled it seems. You can see fresh footprints in the snow. Pawprints, more accurately.";
+	rooms["UVIP N16"].description = "Even after turning east, you find yourself still progressing along a sloping path. The cliffside is huge, you’ve come to realize -- much bigger than you thought before, almost glacial. The path you’re taking, though, is well traveled it seems. You can see fresh footprints in the snow. Pawprints, more accurately.";
 	rooms["UVIP N16"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N16"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N16"].eastExit = "UVIP P16";
@@ -1366,7 +1366,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP P14"] = new RoomClass(this);
 	rooms["UVIP P14"].roomName = "LAKESHORE\nINCLINE";
-	rooms["UVIP P14"].description = "You're in the middle of a relatively straight path, made up of stairs carved out of the ice, leading up towards the ice shelf north of the lakeshore. Back southwards, you can see the lake sprawling out almost to the horizons, perfectly smooth and placid. Further west are the dim walls of Irestead, barely visible even from your height.";
+	rooms["UVIP P14"].description = "You’re in the middle of a relatively straight path, made up of stairs carved out of the ice, leading up towards the ice shelf north of the lakeshore. Back southwards, you can see the lake sprawling out almost to the horizons, perfectly smooth and placid. Further west are the dim walls of Irestead, barely visible even from your height.";
 	rooms["UVIP P14"].planet = "PLANET: UVETO VII";
 	rooms["UVIP P14"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP P14"].northExit = "UVIP P12";
@@ -1378,7 +1378,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP P12"] = new RoomClass(this);
 	rooms["UVIP P12"].roomName = "ICE RIDGE\nWEST";
-	rooms["UVIP P12"].description = "You're standing on a tremendous ice shelf overlooking the frozen lake. Southwards is the path back down, precarious as it is, and to the east you see an endless white expanse. The Glacial Rift. West of here, though, you think you see a small village of tents, with smoke coming from some of them. Natives, perhaps?";
+	rooms["UVIP P12"].description = "You’re standing on a tremendous ice shelf overlooking the frozen lake. Southwards is the path back down, precarious as it is, and to the east you see an endless white expanse. The Glacial Rift. West of here, though, you think you see a small village of tents, with smoke coming from some of them. Natives, perhaps?";
 	rooms["UVIP P12"].planet = "PLANET: UVETO VII";
 	rooms["UVIP P12"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP P12"].northExit = "UVIP P10";
@@ -1415,7 +1415,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R10"].runOnEnter = function():Boolean {
 		if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined)
 		{
-			output("\n\nIt looks like the probe was damaged in the crash. It's silent and dark.");
+			output("\n\nIt looks like the probe was damaged in the crash. It’s silent and dark.");
 			addButton(0, "Reactivate", uvetoReactivateProbe, undefined, "Reactivate Probe", "You could probably give this probe a repair job and use it to broadcast a signal back to Irestead. If you do, you might be able to call for quick transportation...");
 		}
 		else
@@ -1430,7 +1430,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP N10"] = new RoomClass(this);
 	rooms["UVIP N10"].roomName = "ICE RIDGE\nWEST";
-	rooms["UVIP N10"].description = "You find yourself approaching a small valley between two towering snowbanks. Pillars of black mineral rise like claws all around you, growing thicker the further west you look. The path that way looks narrow but well traveled, with many pawprints etched in the snow. That village you've been seeing must be nearby.";
+	rooms["UVIP N10"].description = "You find yourself approaching a small valley between two towering snowbanks. Pillars of black mineral rise like claws all around you, growing thicker the further west you look. The path that way looks narrow but well traveled, with many pawprints etched in the snow. That village you’ve been seeing must be nearby.";
 	rooms["UVIP N10"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N10"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N10"].eastExit = "UVIP P10";
@@ -1451,7 +1451,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP L10"] = new RoomClass(this);
 	rooms["UVIP L10"].roomName = "ICE RIDGE\nWEST";
-	rooms["UVIP L10"].description = "You're in the middle of a vale between two snowbanks, pierced with towering pillars of black mineral that reach to the sky like feral claws. Ahead, you can make out a pair of gates erected between two pillars, looking to be made of tanned leather or hide stretched taut over bone trestles. Friendly.";
+	rooms["UVIP L10"].description = "You’re in the middle of a vale between two snowbanks, pierced with towering pillars of black mineral that reach to the sky like feral claws. Ahead, you can make out a pair of gates erected between two pillars, looking to be made of tanned leather or hide stretched taut over bone trestles. Friendly.";
 	rooms["UVIP L10"].planet = "PLANET: UVETO VII";
 	rooms["UVIP L10"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP L10"].eastExit = "UVIP N10";
@@ -1463,7 +1463,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP J10"] = new RoomClass(this);
 	rooms["UVIP J10"].roomName = "VILLAGE\nENTRANCE";
-	rooms["UVIP J10"].description = "In front of you are a pair of towering, primitive gates stretched between two pillars of black mineral jutting from the ground. While transient-looking, the gate nevertheless blocks off the village approach. Looks like either nobody's home, or they don't want company.";
+	rooms["UVIP J10"].description = "In front of you are a pair of towering, primitive gates stretched between two pillars of black mineral jutting from the ground. While transient-looking, the gate nevertheless blocks off the village approach. Looks like either nobody’s home, or they don’t want company.";
 	rooms["UVIP J10"].planet = "PLANET: UVETO VII";
 	rooms["UVIP J10"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP J10"].eastExit = "UVIP L10";
@@ -1474,7 +1474,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP P8"] = new RoomClass(this);
 	rooms["UVIP P8"].roomName = "RIFT\nAPPROACH";
-	rooms["UVIP P8"].description = "You find yourself facing a rise of ice and snow, a sturdy enough path it seems, that leads eastward into the endless white fields of the Rift. The footing is decent enough, though you're awfully exposed here -- both to the elements and to potential attackers. Get a move on!";
+	rooms["UVIP P8"].description = "You find yourself facing a rise of ice and snow, a sturdy enough path it seems, that leads eastward into the endless white fields of the Rift. The footing is decent enough, though you’re awfully exposed here -- both to the elements and to potential attackers. Get a move on!";
 	rooms["UVIP P8"].planet = "PLANET: UVETO VII";
 	rooms["UVIP P8"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP P8"].eastExit = "UVIP R8";
@@ -1514,7 +1514,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP T6"] = new RoomClass(this);
 	rooms["UVIP T6"].roomName = "RIFT\nAPPROACH";
-	rooms["UVIP T6"].description = "The ice plains are beginning to live up to their name, becoming less about towering snowbanks and winding passages, and more an open stretch of solid ice stretching eastwards to the horizon. Several small shards of black mineral have pierced the ice nearby here, only a few feet tall now, like they've partially sunk into the moon itself.";
+	rooms["UVIP T6"].description = "The ice plains are beginning to live up to their name, becoming less about towering snowbanks and winding passages, and more an open stretch of solid ice stretching eastwards to the horizon. Several small shards of black mineral have pierced the ice nearby here, only a few feet tall now, like they’ve partially sunk into the moon itself.";
 	rooms["UVIP T6"].planet = "PLANET: UVETO VII";
 	rooms["UVIP T6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP T6"].eastExit = "UVIP V6";
@@ -1526,7 +1526,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP V6"] = new RoomClass(this);
 	rooms["UVIP V6"].roomName = "RIFT\nAPPROACH";
-	rooms["UVIP V6"].description = "The ice plains are beginning to live up to their name, becoming less about towering snowbanks and winding passages, and more an open stretch of solid ice stretching eastwards to the horizon. There's a straight shot eastward to the Rift now, visible as an endless expanse of flawless ice.";
+	rooms["UVIP V6"].description = "The ice plains are beginning to live up to their name, becoming less about towering snowbanks and winding passages, and more an open stretch of solid ice stretching eastwards to the horizon. There’s a straight shot eastward to the Rift now, visible as an endless expanse of flawless ice.";
 	rooms["UVIP V6"].planet = "PLANET: UVETO VII";
 	rooms["UVIP V6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V6"].eastExit = "UVIP X6";
@@ -1538,7 +1538,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP X6"] = new RoomClass(this);
 	rooms["UVIP X6"].roomName = "RIFT\nAPPROACH";
-	rooms["UVIP X6"].description = "The ice plains are beginning to live up to their name, becoming less about towering snowbanks and winding passages, and more an open stretch of solid ice stretching eastwards to the horizon.\n\nHere you are, the edge of the Glacial Rift. It's been a long time in coming, but you're finally here.";
+	rooms["UVIP X6"].description = "The ice plains are beginning to live up to their name, becoming less about towering snowbanks and winding passages, and more an open stretch of solid ice stretching eastwards to the horizon.\n\nHere you are, the edge of the Glacial Rift. It’s been a long time in coming, but you’re finally here.";
 	rooms["UVIP X6"].planet = "PLANET: UVETO VII";
 	rooms["UVIP X6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X6"].eastExit = "UVIP Z6";
@@ -1565,7 +1565,7 @@ public function initUvetoRooms():void
 	/* CENTER BRANCH */
 	rooms["UVIP R12"] = new RoomClass(this);
 	rooms["UVIP R12"].roomName = "MIDDLE\nPATH";
-	rooms["UVIP R12"].description = "Curving away from the central plateau is a solid, pack-snow path twisting south-east. You think this might lead you to the Rift eventually, but it's a long journey. Somewhere in the middle distance, though, you can see a tower reaching up into the sky. Definitely Confederate-made, no doubt about it.";
+	rooms["UVIP R12"].description = "Curving away from the central plateau is a solid, pack-snow path twisting south-east. You think this might lead you to the Rift eventually, but it’s a long journey. Somewhere in the middle distance, though, you can see a tower reaching up into the sky. Definitely Confederate-made, no doubt about it.";
 	rooms["UVIP R12"].planet = "PLANET: UVETO VII";
 	rooms["UVIP R12"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R12"].eastExit = "UVIP T12";
@@ -1589,7 +1589,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP V12"] = new RoomClass(this);
 	rooms["UVIP V12"].roomName = "MIDDLE\nPATH";
-	rooms["UVIP V12"].description = "Curving away from the central plateau is a solid, pack-snow path twisting directly south, now. The snow's been packed in here so hard that you're sure some hover-vehicles have passed through here recently. Probably to that tower to the south?";
+	rooms["UVIP V12"].description = "Curving away from the central plateau is a solid, pack-snow path twisting directly south, now. The snow’s been packed in here so hard that you’re sure some hover-vehicles have passed through here recently. Probably to that tower to the south?";
 	rooms["UVIP V12"].planet = "PLANET: UVETO VII";
 	rooms["UVIP V12"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V12"].southExit = "UVIP V14";
@@ -1613,7 +1613,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP V16"] = new RoomClass(this);
 	rooms["UVIP V16"].roomName = "TOWER\nROAD";
-	rooms["UVIP V16"].description = "The southward pass here leads towards the big metal tower, swaying ever so slightly in the stiff plains wind. Either side of your path is lined with tall accumulations of snow, blown aside by hover vehicles.\n\nYou can see the tower building, now, just south-east of here. It's a small, boxy building, more like a reinforced hut than anything. Not much further.";
+	rooms["UVIP V16"].description = "The southward pass here leads towards the big metal tower, swaying ever so slightly in the stiff plains wind. Either side of your path is lined with tall accumulations of snow, blown aside by hover vehicles.\n\nYou can see the tower building, now, just south-east of here. It’s a small, boxy building, more like a reinforced hut than anything. Not much further.";
 	rooms["UVIP V16"].planet = "PLANET: UVETO VII";
 	rooms["UVIP V16"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V16"].northExit = "UVIP V14";
@@ -1650,7 +1650,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP V20"] = new RoomClass(this);
 	rooms["UVIP V20"].roomName = "TOWER\nROAD";
-	rooms["UVIP V20"].description = "You're a little south of the relay tower, a big pyramid of spacer-made metal swaying in the constant winds. Eastwards is the Rift, the endless span of smooth ice leading to the end of the world. West is the ice lake, much lower and more placid, shielded from the storms.";
+	rooms["UVIP V20"].description = "You’re a little south of the relay tower, a big pyramid of spacer-made metal swaying in the constant winds. Eastwards is the Rift, the endless span of smooth ice leading to the end of the world. West is the ice lake, much lower and more placid, shielded from the storms.";
 	rooms["UVIP V20"].planet = "PLANET: UVETO VII";
 	rooms["UVIP V20"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V20"].northExit = "UVIP V18";
@@ -1662,7 +1662,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP V22"] = new RoomClass(this);
 	rooms["UVIP V22"].roomName = "RIFT\nAPPROACH";
-	rooms["UVIP V22"].description = "The path turns east-north here, connecting the blasted-out tower road and the approach to the Rift. You're at the very edge of the plains now, almost to the endless ice of the glacial regions.";
+	rooms["UVIP V22"].description = "The path turns east-north here, connecting the blasted-out tower road and the approach to the Rift. You’re at the very edge of the plains now, almost to the endless ice of the glacial regions.";
 	rooms["UVIP V22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP V22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP V22"].northExit = "UVIP V20";
@@ -1674,7 +1674,7 @@ public function initUvetoRooms():void
 
 	rooms["UVIP X22"] = new RoomClass(this);
 	rooms["UVIP X22"].roomName = "RIFT\nAPPROACH";
-	rooms["UVIP X22"].description = "The ice plains are beginning to live up to their name, becoming less about towering snowbanks and winding passages, and more an open stretch of solid ice stretching eastwards to the horizon.\n\nHere you are, the edge of the Glacial Rift. It's been a long time in coming, but you're finally here.";
+	rooms["UVIP X22"].description = "The ice plains are beginning to live up to their name, becoming less about towering snowbanks and winding passages, and more an open stretch of solid ice stretching eastwards to the horizon.\n\nHere you are, the edge of the Glacial Rift. It’s been a long time in coming, but you’re finally here.";
 	rooms["UVIP X22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP X22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP X22"].eastExit = "UVIP Z22";

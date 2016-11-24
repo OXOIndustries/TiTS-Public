@@ -125,9 +125,9 @@ public function iceQueenMessageHelpII():void
 
 	//[Help Him] [Question] [Refuse]
 	clearMenu();
-	addButton(0, "Help Him", iceQueenHelpHim, undefined, "Help Him", "You've made your decision: you'll take Kandar to Uveto as he asked.");
-	addButton(1, "Question", iceQueenQuestion, undefined, "Question Him", "You've got some questions first...");
-	addButton(2, "Refuse", iceQueenRefuse, undefined, "Refuse", "You don't want anything to do with this.");
+	addButton(0, "Help Him", iceQueenHelpHim, undefined, "Help Him", "You’ve made your decision: you’ll take Kandar to Uveto as he asked.");
+	addButton(1, "Question", iceQueenQuestion, undefined, "Question Him", "You’ve got some questions first...");
+	addButton(2, "Refuse", iceQueenRefuse, undefined, "Refuse", "You don’t want anything to do with this.");
 }
 
 public function iceQueenRefuse():void
@@ -162,9 +162,9 @@ public function iceQueenQuestion():void
 	
 	addDisabledButton(1, "Question");
 	addButton(5, "Destination", iceQueenQuestionDestination, undefined, "Destination", "So where are you going, exactly?");
-	addButton(6, "Cargo", iceQueenQuestionCargo, undefined, "Cargo", "What's this cargo, exactly?");
+	addButton(6, "Cargo", iceQueenQuestionCargo, undefined, "Cargo", "What’s this cargo, exactly?");
 	addButton(7, "Captain", iceQueenQuestionCaptain, undefined, "Captain", "You want to know more about Zaalt before you think about letting him aboard your ship.");
-	addButton(8, "Ice Queen", iceQueenQuestionIceQueen, undefined, "Ice Queen", "Ask about Zaalt's ship, and what went wrong.");
+	addButton(8, "Ice Queen", iceQueenQuestionIceQueen, undefined, "Ice Queen", "Ask about Zaalt’s ship, and what went wrong.");
 	addButton(9, "Credits?", iceQueenQuestionCredits, undefined, "Credits?", "How much are you going to be making from this?");
 }
 
@@ -350,8 +350,8 @@ public function iceQueenHelpHimII():void
 	processTime(7);
 
 	clearMenu();
-	addButton(0, "Inspect Cargo", iceQueenLetsGoInspectCargo, undefined, "Inspect Cargo", "Let's have a look at that precious cargo.");
-	addButton(1, "No Weapons", iceQueenLetsGoNoWeapons, undefined, "No Weapons", "You'll take Zaalt aboard on one condition: no weapons. After all: trust, but verify.");
+	addButton(0, "Inspect Cargo", iceQueenLetsGoInspectCargo, undefined, "Inspect Cargo", "Let’s have a look at that precious cargo.");
+	addButton(1, "No Weapons", iceQueenLetsGoNoWeapons, undefined, "No Weapons", "You’ll take Zaalt aboard on one condition: no weapons. After all: trust, but verify.");
 	addButton(2, "Flirt", iceQueenLetsGoFlirt, undefined, "Flirt", "Maybe you could get a little more... personal... reward for helping this buff kitty-cat out?");
 	addButton(3, "Nothing", iceQueenLetsGoNothing, undefined, "Nothing", "Get on with things.");
 }
@@ -676,9 +676,9 @@ public function iceQueenBeatZaalt():void
 	output("\n\nYou breathe a sigh of relief as the threat passes... for now. When he wakes up, though, who knows what’s going to happen?");
 
 	clearMenu();
-	addButton(0, "Kill Him", iceQueenBeatZaaltKill, undefined, "Kill Him", "Zaalt went insane, and God only knows what he'd have done if you hadn't fought him down. You'll brook no threat aboard your ship."); // pls go murderfucks
-	addButton(1, "Authorities", iceQueenBeatZaaltWOOPWOOPITSDASOUNDOFDASPACEPOLICE, undefined, "Authorities", "Zaalt went insane, and he can't be trusted anymore. Call the local Peacekeepers and have them arrest your would-be assailant.");
-	addButton(2, "Help Him", iceQueenBeatZaaltHelpHim, undefined, "Help Him", "Whatever just happened, you don't think it was Zaalt's fault. Something made him freak out -- you've got to find out what.");
+	addButton(0, "Kill Him", iceQueenBeatZaaltKill, undefined, "Kill Him", "Zaalt went insane, and God only knows what he’d have done if you hadn’t fought him down. You’ll brook no threat aboard your ship."); // pls go murderfucks
+	addButton(1, "Authorities", iceQueenBeatZaaltWOOPWOOPITSDASOUNDOFDASPACEPOLICE, undefined, "Authorities", "Zaalt went insane, and he can’t be trusted anymore. Call the local Peacekeepers and have them arrest your would-be assailant.");
+	addButton(2, "Help Him", iceQueenBeatZaaltHelpHim, undefined, "Help Him", "Whatever just happened, you don’t think it was Zaalt’s fault. Something made him freak out -- you’ve got to find out what.");
 }
 
 public function iceQueenBeatZaaltKill():void
@@ -777,9 +777,9 @@ public function iceQueenBeatZaaltHelpHim():void
 
 	output("\n\n");
 	// 9999
-	if (!pc.myMiddleNameIsJensen()) output("Do implants just rupture like that all the time? If so, that's fucking horrifying... and t");
+	if (!pc.myMiddleNameIsJensen()) output("Do implants just rupture like that all the time? If so, that’s fucking horrifying... and t");
 	else output("T");
-	output("hat doesn’t exactly explain why he went ballistic on you, though. And you need to make sure that doesn't happen again before you do anything... like take him onto a crowded space station to deliver his product.");
+	output("hat doesn’t exactly explain why he went ballistic on you, though. And you need to make sure that doesn’t happen again before you do anything... like take him onto a crowded space station to deliver his product.");
 
 	output("\n\n<i>“Oh shit, the delivery!”</i> Zaalt says with a start. <i>“How’re we doing for time, [pc.name]? We’ve got to-”</i>");
 	
@@ -949,8 +949,8 @@ public function iceQueenKaraShowsUp():void
 	processTime(5);
 
 	clearMenu();
-	addButton(0, "Interrupt", iceQueenKaraShowsUpInterrupt, undefined, "Interrupt", "What the hell, guys? First you get Zaalt going crazy on you, and now he's been playing you? No way you're taking this lying down!");
-	addButton(1, "Keep Cool", iceQueenKaraShowsUpCOOLIT, undefined, "Play It Cool", "This really doesn't concern you. Just play it cool, get your credits, and put this all behind you.");
+	addButton(0, "Interrupt", iceQueenKaraShowsUpInterrupt, undefined, "Interrupt", "What the hell, guys? First you get Zaalt going crazy on you, and now he’s been playing you? No way you’re taking this lying down!");
+	addButton(1, "Keep Cool", iceQueenKaraShowsUpCOOLIT, undefined, "Play It Cool", "This really doesn’t concern you. Just play it cool, get your credits, and put this all behind you.");
 }
 
 public function iceQueenKaraShowsUpCOOLIT():void
@@ -1028,8 +1028,8 @@ public function iceQueenKaraShowsUpInterrupt():void
 	//[Sure] [Sex?] [No]
 	clearMenu();
 	addButton(0, "Sure", iceQueenKaraShowsUpInterruptSure, undefined, "Sure", "Sounds fair.");
-	addButton(1, "Sex?", iceQueenKaraShowsUpInterruptSex, undefined, "Sex?", "Credits and " + (flags["SEXED_KARA"] == undefined ? "letting Kara make good on her previous offers for a little post-danger recreation" : "another roll in the hay with Kara") + ", and you'll call it even.");
-	addButton(2, "No", iceQueenKaraShowsUpInterruptNo, undefined, "No", "No way. Fuck this. You're not letting this go easy!");
+	addButton(1, "Sex?", iceQueenKaraShowsUpInterruptSex, undefined, "Sex?", "Credits and " + (flags["SEXED_KARA"] == undefined ? "letting Kara make good on her previous offers for a little post-danger recreation" : "another roll in the hay with Kara") + ", and you’ll call it even.");
+	addButton(2, "No", iceQueenKaraShowsUpInterruptNo, undefined, "No", "No way. Fuck this. You’re not letting this go easy!");
 }
 
 public function iceQueenKaraShowsUpInterruptSure():void
@@ -1104,7 +1104,7 @@ public function iceQueenKaraShowsUpInterruptNo():void
 
 	processTime(5);
 	
-	pc.createKeyItem("Broken Psi Amp", 0, 0, 0, 0, "A broken Psionic Amplifier, removed from Captain Zaalt Kandar's skull. After it went <i>slightly</i> batshit.");
+	pc.createKeyItem("Broken Psi Amp", 0, 0, 0, 0, "A broken Psionic Amplifier, removed from Captain Zaalt Kandar’s skull. After it went <i>slightly</i> batshit.");
 	output("\n\n<b>New Key Item: Broken Psi Amp</b>.\n\n");
 
 	processTime(30 + rand(15));
@@ -1187,6 +1187,6 @@ public function iceQueenKaraSexytimes():void
 	else
 	{
 		addButton(0, "TakeDick", kq2KaraTakeKittydick, undefined, "Take Her Dick", "Ride her kitty cock!");
-		addButton(1, "FuckHer", kq2KaraFuckKittysKitty, undefined, "Fuck Kara", "Fuck Pussy's Pussy!");
+		addButton(1, "FuckHer", kq2KaraFuckKittysKitty, undefined, "Fuck Kara", "Fuck Pussy’s Pussy!");
 	}
 }

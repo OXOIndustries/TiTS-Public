@@ -2,7 +2,7 @@ public function initMhengaRooms():void
 {
 	rooms["SHIP HANGAR"] = new RoomClass(this);
 	rooms["SHIP HANGAR"].roomName = "SHIP\nHANGAR";
-	rooms["SHIP HANGAR"].description = "Though dubbed a hangar, this suspended platform is little more than an exposed landing pad. It's a hexagonal, steelcrete plate, one of dozens that ring the central elevator spire. Blinking lights ring the edges to guide you when taking off or landing, and to keep other ships from clipping the platform when seeking their own. An elevator door hangs open to the south, waiting for you to press the button that will take you back to the ground, while your ship remains parked here, ready to be entered.";
+	rooms["SHIP HANGAR"].description = "Though dubbed a hangar, this suspended platform is little more than an exposed landing pad. It’s a hexagonal, steelcrete plate, one of dozens that ring the central elevator spire. Blinking lights ring the edges to guide you when taking off or landing, and to keep other ships from clipping the platform when seeking their own. An elevator door hangs open to the south, waiting for you to press the button that will take you back to the ground, while your ship remains parked here, ready to be entered.";
 	rooms["SHIP HANGAR"].runOnEnter = mhengaShipHangarFunc;
 	rooms["SHIP HANGAR"].planet = "PLANET: MHEN'GA";
 	rooms["SHIP HANGAR"].system = "SYSTEM: ARA ARA";
@@ -29,7 +29,7 @@ public function initMhengaRooms():void
 	//2 - Flahne’s Office
 	rooms["CUSTOMS OFFICE"] = new RoomClass(this);
 	rooms["CUSTOMS OFFICE"].roomName = "CUSTOMS\nOFFICE";
-	rooms["CUSTOMS OFFICE"].description = "This office is one of many set up around the spaceport to process customs both coming and going. Other identical rooms can be spotted through doorways to the north, but they appear to be closed down or currently occupied. A single, large desk sits on the east side of the room, kept fairly tidy aside from a mug filled with lollipops and candy. A name placard proclaims the desk’s owner to be Flahne. A doorway to the west opens out back into the jungle at the base of an elevator. The door to the south is labeled 'Out to Esbeth.'";
+	rooms["CUSTOMS OFFICE"].description = "This office is one of many set up around the spaceport to process customs both coming and going. Other identical rooms can be spotted through doorways to the north, but they appear to be closed down or currently occupied. A single, large desk sits on the east side of the room, kept fairly tidy aside from a mug filled with lollipops and candy. A name placard proclaims the desk’s owner to be Flahne. A doorway to the west opens out back into the jungle at the base of an elevator. The door to the south is labeled ‘Out to Esbeth.’";
 	rooms["CUSTOMS OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["CUSTOMS OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["CUSTOMS OFFICE"].westExit = "SPACEPORT ELEVATOR";
@@ -42,8 +42,8 @@ public function initMhengaRooms():void
 
 	//3. Esbeth’s Northern Path
 	rooms["ESBETH'S NORTH PATH"] = new RoomClass(this);
-	rooms["ESBETH'S NORTH PATH"].roomName = "ESBETH'S\nNORTH PATH";
-	rooms["ESBETH'S NORTH PATH"].description = "This small jungle town, Esbeth, doesn’t even have proper roads. There’s a hard-packed path underfoot, still blackened in places from when some kind of torch was used to burn away the omnipresent overgrowth. Prefabricated buildings have sprung up on all sides of this east-west path, though the one to the north is the biggest and most secure looking by far. A sign marking it as the \"Office of Customs and Governance\" hangs above the entrance, letting you know exactly what it is.";
+	rooms["ESBETH'S NORTH PATH"].roomName = "ESBETH’S\nNORTH PATH";
+	rooms["ESBETH'S NORTH PATH"].description = "This small jungle town, Esbeth, doesn’t even have proper roads. There’s a hard-packed path underfoot, still blackened in places from when some kind of torch was used to burn away the omnipresent overgrowth. Prefabricated buildings have sprung up on all sides of this east-west path, though the one to the north is the biggest and most secure looking by far. A sign marking it as the “Office of Customs and Governance” hangs above the entrance, letting you know exactly what it is.";
 	rooms["ESBETH'S NORTH PATH"].planet = "PLANET: MHEN'GA";
 	rooms["ESBETH'S NORTH PATH"].system = "SYSTEM: ARA ARA";
 	rooms["ESBETH'S NORTH PATH"].northExit = "CUSTOMS OFFICE";
@@ -57,7 +57,7 @@ public function initMhengaRooms():void
 	//4. The Northwest Corner of Esbeth
 	rooms["NORTHWEST ESBETH"] = new RoomClass(this);
 	rooms["NORTHWEST ESBETH"].roomName = "NORTHWEST\nESBETH";
-	rooms["NORTHWEST ESBETH"].description = "Turning 90 degrees, the hard-packed path that serves as Esbeth’s only road hooks south and east from here, marking the northwest-most portion of town. A secure, barbed-wire-topped fence blocks off the north, though you can see the space port's cargo elevator stretching skyward on the other side. Farther to the northwest, you can see a series of towers with cannons mounted atop them, swiveling this way and that as they eye the burned-back jungle for danger.";
+	rooms["NORTHWEST ESBETH"].description = "Turning 90 degrees, the hard-packed path that serves as Esbeth’s only road hooks south and east from here, marking the northwest-most portion of town. A secure, barbed-wire-topped fence blocks off the north, though you can see the space port’s cargo elevator stretching skyward on the other side. Farther to the northwest, you can see a series of towers with cannons mounted atop them, swiveling this way and that as they eye the burned-back jungle for danger.";
 	rooms["NORTHWEST ESBETH"].planet = "PLANET: MHEN'GA";
 	rooms["NORTHWEST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["NORTHWEST ESBETH"].southExit = "WEST ESBETH 1";
@@ -69,7 +69,7 @@ public function initMhengaRooms():void
 	//5. Esbeth’s Western Path
 	rooms["WEST ESBETH 1"] = new RoomClass(this);
 	rooms["WEST ESBETH 1"].roomName = "WEST\nESBETH";
-	rooms["WEST ESBETH 1"].description = "The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends farther to the north and continues straight on to the south. The western building is closed and locked, for now.\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front states their purpose: \"Crazy Carl’s Crude Cylinder Collection Cache\". The crude neon outline of a handgun helps you fill in the blanks.";
+	rooms["WEST ESBETH 1"].description = "The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends farther to the north and continues straight on to the south. The western building is closed and locked, for now.\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front states their purpose: “Crazy Carl’s Crude Cylinder Collection Cache”. The crude neon outline of a handgun helps you fill in the blanks.";
 	rooms["WEST ESBETH 1"].planet = "PLANET: MHEN'GA";
 	rooms["WEST ESBETH 1"].system = "SYSTEM: ARA ARA";
 	rooms["WEST ESBETH 1"].southExit = "WEST ESBETH 2";
@@ -106,7 +106,7 @@ public function initMhengaRooms():void
 	//8. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 1"] = new RoomClass(this);
 	rooms["SOUTH ESBETH 1"].roomName = "SOUTH\nESBETH";
-	rooms["SOUTH ESBETH 1"].description = "The southern portion of Esbeth’s lone, circular road stretches east and west from here. To the west, it curls up to the north in a 90 degree bend. The scent of sweet alien flowers graces your nose here, a pleasant distraction from the aroma of charred-away vegetation and freshly installed plumbing that plagues most of this place. You can see the trees in the distance, dark and foreboding but undoubtedly full of life and riches. To the south is what looks like a small, rambling junkyard, overflowing with spaceship and auto scrap. There is a flat-roofed stone hut buried in the detritus - a wooden sign bolted onto the front declares it to be \"The Art of Scrapyard Maintenance\". The ‘O’ is a painted Yin-Yang symbol.";
+	rooms["SOUTH ESBETH 1"].description = "The southern portion of Esbeth’s lone, circular road stretches east and west from here. To the west, it curls up to the north in a 90 degree bend. The scent of sweet alien flowers graces your nose here, a pleasant distraction from the aroma of charred-away vegetation and freshly installed plumbing that plagues most of this place. You can see the trees in the distance, dark and foreboding but undoubtedly full of life and riches. To the south is what looks like a small, rambling junkyard, overflowing with spaceship and auto scrap. There is a flat-roofed stone hut buried in the detritus - a wooden sign bolted onto the front declares it to be “The Art of Scrapyard Maintenance”. The ‘O’ is a painted Yin-Yang symbol.";
 	rooms["SOUTH ESBETH 1"].planet = "PLANET: MHEN'GA";
 	rooms["SOUTH ESBETH 1"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTH ESBETH 1"].westExit = "SOUTHWEST ESBETH";
@@ -119,7 +119,7 @@ public function initMhengaRooms():void
 	//9. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 2"] = new RoomClass(this);
 	rooms["SOUTH ESBETH 2"].roomName = "SOUTH\nESBETH";
-	rooms["SOUTH ESBETH 2"].description = "Traffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. The building to the north is a monolithic looking thing labeled 'Xenogen Biotech.' A large doorway to the north provides access, and the road goes on to the east and west.";
+	rooms["SOUTH ESBETH 2"].description = "Traffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. The building to the north is a monolithic looking thing labeled ‘Xenogen Biotech.’ A large doorway to the north provides access, and the road goes on to the east and west.";
 	rooms["SOUTH ESBETH 2"].planet = "PLANET: MHEN'GA";
 	rooms["SOUTH ESBETH 2"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTH ESBETH 2"].westExit = "SOUTH ESBETH 1";
@@ -234,8 +234,8 @@ public function initMhengaRooms():void
 
 	//17. Burt’s Badass Whatever
 	rooms["BURT'S MAIN HALL"] = new RoomClass(this);
-	rooms["BURT'S MAIN HALL"].roomName = "BURT'S BADASS\nMEAD HALL";
-	rooms["BURT'S MAIN HALL"].description = "A cloud of smoky inhalants hangs around the rafters of this high-ceilinged chamber to lend this place an air of mystery. The obnoxious music playing from an illuminated audio system in the corner along with the noisy beeps of a gaming system dispel that notion immediately. A huge bar lies against the western wall, shining dully in the artificial lighting. It's obviously the most well-maintained and cared for object in the entire establishment. A doorway to the south leads back out onto the streets of Mhen'ga.";
+	rooms["BURT'S MAIN HALL"].roomName = "BURT’S BADASS\nMEAD HALL";
+	rooms["BURT'S MAIN HALL"].description = "A cloud of smoky inhalants hangs around the rafters of this high-ceilinged chamber to lend this place an air of mystery. The obnoxious music playing from an illuminated audio system in the corner along with the noisy beeps of a gaming system dispel that notion immediately. A huge bar lies against the western wall, shining dully in the artificial lighting. It’s obviously the most well-maintained and cared for object in the entire establishment. A doorway to the south leads back out onto the streets of Mhen’ga.";
 	rooms["BURT'S MAIN HALL"].planet = "PLANET: MHEN'GA";
 	rooms["BURT'S MAIN HALL"].system = "SYSTEM: ARA ARA";
 	rooms["BURT'S MAIN HALL"].southExit = "NORTH ESBETH 2";
@@ -248,8 +248,8 @@ public function initMhengaRooms():void
 
 	//"18". Burt’s Badass Whatever Part. II
 	rooms["BURT'S BACK END"] = new RoomClass(this);
-	rooms["BURT'S BACK END"].roomName = "THE BACK\nOF BURT'S";
-	rooms["BURT'S BACK END"].description = "This secluded area of the bar is mostly empty. The few people bothering to hang out back here don't seem to have any interest in communicating, leaving you with only the darkness for company. Empty tables abound, but the better-lit hall to the south looks infinitely more companionable.";
+	rooms["BURT'S BACK END"].roomName = "THE BACK\nOF BURT’S";
+	rooms["BURT'S BACK END"].description = "This secluded area of the bar is mostly empty. The few people bothering to hang out back here don’t seem to have any interest in communicating, leaving you with only the darkness for company. Empty tables abound, but the better-lit hall to the south looks infinitely more companionable.";
 	rooms["BURT'S BACK END"].planet = "PLANET: MHEN'GA";
 	rooms["BURT'S BACK END"].system = "SYSTEM: ARA ARA";
 	rooms["BURT'S BACK END"].southExit = "BURT'S MAIN HALL";
@@ -312,7 +312,7 @@ public function initMhengaRooms():void
 	//23. Ferngrowth Bend
 	rooms["FERNGROWTH BEND 1"] = new RoomClass(this);
 	rooms["FERNGROWTH BEND 1"].roomName = "FERNGROWTH\nBEND";
-	rooms["FERNGROWTH BEND 1"].description = "The claustrophobic path twists here, cocked to wind north and west around the trunk of a giant, gray-barked tree. The lower branches are covered with leaves of the deepest purple, large, wet looking leaves that seem to dip under their own weight. No sunlight reaches past the upper canopy to fall on them, but the tree is producing them all the same. The ferns around the path are tall and alien but undoubtedly similar to Earth's. Convergent evolution at work, you suppose.";
+	rooms["FERNGROWTH BEND 1"].description = "The claustrophobic path twists here, cocked to wind north and west around the trunk of a giant, gray-barked tree. The lower branches are covered with leaves of the deepest purple, large, wet looking leaves that seem to dip under their own weight. No sunlight reaches past the upper canopy to fall on them, but the tree is producing them all the same. The ferns around the path are tall and alien but undoubtedly similar to Earth’s. Convergent evolution at work, you suppose.";
 	rooms["FERNGROWTH BEND 1"].planet = "PLANET: MHEN'GA";
 	rooms["FERNGROWTH BEND 1"].system = "SYSTEM: ARA ARA";
 	rooms["FERNGROWTH BEND 1"].southExit = "FERNGROWTH PATH 2";
@@ -338,7 +338,7 @@ public function initMhengaRooms():void
 	//25. A Fern-Shrouded Path
 	rooms["FERNGROWTH PATH 4"] = new RoomClass(this);
 	rooms["FERNGROWTH PATH 4"].roomName = "FERNGROWTH\nPATH";
-	rooms["FERNGROWTH PATH 4"].description = "Ferns sprout up on all sides of the path, but for some reason, they haven't encroached on it just yet. These particular specimens reach up about four feet, but just to the west there is a patch of them so giant that they tower overhead. You can also see that the vegetation and terrain around the path changes wildly to the east. There, the paths are much more open and the vegetation less dense. How odd.";
+	rooms["FERNGROWTH PATH 4"].description = "Ferns sprout up on all sides of the path, but for some reason, they haven’t encroached on it just yet. These particular specimens reach up about four feet, but just to the west there is a patch of them so giant that they tower overhead. You can also see that the vegetation and terrain around the path changes wildly to the east. There, the paths are much more open and the vegetation less dense. How odd.";
 	rooms["FERNGROWTH PATH 4"].planet = "PLANET: MHEN'GA";
 	rooms["FERNGROWTH PATH 4"].system = "SYSTEM: ARA ARA";
 	rooms["FERNGROWTH PATH 4"].westExit = "FERNGROWTH PATH 3";
@@ -351,7 +351,7 @@ public function initMhengaRooms():void
 	//26. The Intersection of Ferns and Lichens
 	rooms["FERNS AT LICHENS 1"] = new RoomClass(this);
 	rooms["FERNS AT LICHENS 1"].roomName = "FERNS AND\nLICHENS";
-	rooms["FERNS AT LICHENS 1"].description = "The ferns that hug the pathway to the west die off here under the weight of some very aggressive lichens that have scoured them away. The western path fades here, but the ground is open to the north and south so that you can tread across soft earth in whichever direction you like. A copse of gray trees covered in bioluminescent lichens grows to the east, the trunks so close together that there's no decent way to travel past them. The colorful composite organisms also carpet the ground in a blanket of shifting, almost psychedelic hues.";
+	rooms["FERNS AT LICHENS 1"].description = "The ferns that hug the pathway to the west die off here under the weight of some very aggressive lichens that have scoured them away. The western path fades here, but the ground is open to the north and south so that you can tread across soft earth in whichever direction you like. A copse of gray trees covered in bioluminescent lichens grows to the east, the trunks so close together that there’s no decent way to travel past them. The colorful composite organisms also carpet the ground in a blanket of shifting, almost psychedelic hues.";
 	rooms["FERNS AT LICHENS 1"].planet = "PLANET: MHEN'GA";
 	rooms["FERNS AT LICHENS 1"].system = "SYSTEM: ARA ARA";
 	rooms["FERNS AT LICHENS 1"].northExit = "LICHENS 4";
@@ -391,7 +391,7 @@ public function initMhengaRooms():void
 	//29. The Intersection of Lichens and Giant Ironwoods
 	rooms["LICHENS AT IRONWOODS 1"] = new RoomClass(this);
 	rooms["LICHENS AT IRONWOODS 1"].roomName = "IRONWOODS\nAND LICHENS";
-	rooms["LICHENS AT IRONWOODS 1"].description = "Here, dozens of multihued lichens clash against a larger and entirely different type of jungle life. Gigantic trees, each at least a dozen feet around, tower over you. Their rusty red bark gives them a surprisingly familiar appearance until you brush your hand against one. The stuff flakes right off on your fingers! Underneath where you touched shines a silvery metallic color. These trees' bark is literally iron hard.";
+	rooms["LICHENS AT IRONWOODS 1"].description = "Here, dozens of multihued lichens clash against a larger and entirely different type of jungle life. Gigantic trees, each at least a dozen feet around, tower over you. Their rusty red bark gives them a surprisingly familiar appearance until you brush your hand against one. The stuff flakes right off on your fingers! Underneath where you touched shines a silvery metallic color. These trees’ bark is literally iron hard.";
 	rooms["LICHENS AT IRONWOODS 1"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS AT IRONWOODS 1"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS AT IRONWOODS 1"].westExit = "LICHENS 1";
@@ -405,7 +405,7 @@ public function initMhengaRooms():void
 	//30.Between Lichens and Ironwoods
 	rooms["LICHENS AND IRONWOODS 1"] = new RoomClass(this);
 	rooms["LICHENS AND IRONWOODS 1"].roomName = "IRONWOODS\nAND LICHENS";
-	rooms["LICHENS AND IRONWOODS 1"].description = "There's plenty of space to explore on this north-south causeway thanks to the lichen that seems to have eaten back most of the other plant-life. Tight clusters of trees block the way west, and another gigantic variety sprouts up to the east, covered in rust-red bark that closer inspection reveals to be actual iron. The lichens bathe everything but the trees to the east in gentle bioluminescence. They can't seem to grow on the ferrous coverings of the eastern trunks and die off that way.";
+	rooms["LICHENS AND IRONWOODS 1"].description = "There’s plenty of space to explore on this north-south causeway thanks to the lichen that seems to have eaten back most of the other plant-life. Tight clusters of trees block the way west, and another gigantic variety sprouts up to the east, covered in rust-red bark that closer inspection reveals to be actual iron. The lichens bathe everything but the trees to the east in gentle bioluminescence. They can’t seem to grow on the ferrous coverings of the eastern trunks and die off that way.";
 	rooms["LICHENS AND IRONWOODS 1"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS AND IRONWOODS 1"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS AND IRONWOODS 1"].southExit = "LICHENS AT IRONWOODS 1";
@@ -472,7 +472,7 @@ public function initMhengaRooms():void
 	//35. A Bend in the Lichens
 	rooms["LICHENS BEND 2"] = new RoomClass(this);
 	rooms["LICHENS BEND 2"].roomName = "LICHEN\nBEND";
-	rooms["LICHENS BEND 2"].description = "You nearly stumble face first into a mess of brambles, hidden behind a camouflaging layer of brown-green lichens that covers them like camo netting. They seem to go on forever to the north and west, effectively arresting any travel in those directions for now. Meanwhile, the path you're now striding across twists away to the east and south, both directions equally overgrown with the odd life.";
+	rooms["LICHENS BEND 2"].description = "You nearly stumble face first into a mess of brambles, hidden behind a camouflaging layer of brown-green lichens that covers them like camo netting. They seem to go on forever to the north and west, effectively arresting any travel in those directions for now. Meanwhile, the path you’re now striding across twists away to the east and south, both directions equally overgrown with the odd life.";
 	rooms["LICHENS BEND 2"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS BEND 2"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS BEND 2"].eastExit = "LICHENS 2";
@@ -485,7 +485,7 @@ public function initMhengaRooms():void
 	//36. The Lichen-Covered Jungle
 	rooms["LICHENS 3"] = new RoomClass(this);
 	rooms["LICHENS 3"].roomName = "LICHEN\nJUNGLE";
-	rooms["LICHENS 3"].description = "Glowing lights of all colors assault your senses as you travel through this segment of humid forest, nearly dazzling you with their natural variations and shifting palettes. The lichens that have overgrown everything here are the source of the unearthly auras. At least you have something pretty to look at while you explore. Between the durable brambles to the west and some dense, boring-looking trees to the east, you're hemmed onto the surprisingly open path you now tread. It leads north and south.";
+	rooms["LICHENS 3"].description = "Glowing lights of all colors assault your senses as you travel through this segment of humid forest, nearly dazzling you with their natural variations and shifting palettes. The lichens that have overgrown everything here are the source of the unearthly auras. At least you have something pretty to look at while you explore. Between the durable brambles to the west and some dense, boring-looking trees to the east, you’re hemmed onto the surprisingly open path you now tread. It leads north and south.";
 	rooms["LICHENS 3"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS 3"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS 3"].northExit = "LICHENS BEND 2";
@@ -511,7 +511,7 @@ public function initMhengaRooms():void
 	//38. The Ironwoods
 	rooms["IRONWOODS 1"] = new RoomClass(this);
 	rooms["IRONWOODS 1"].roomName = "THE\nIRONWOODS";
-	rooms["IRONWOODS 1"].description = "There really isn't any name more fitting for this section of Mhen'ga's wilderness than the ironwoods. The trees here are gigantic enough to be awe-inspiring and tough enough to give more than a few lumber harvesting devices trouble. Rust is caked all over their bark, but if you brush it away, you can expose the silvery sheen of their metallic bark. The natural path you follow between them is barely obstructed by any brush as the dense canopy high above keeps things shaded enough to discourage new growth.";
+	rooms["IRONWOODS 1"].description = "There really isn’t any name more fitting for this section of Mhen’ga’s wilderness than the ironwoods. The trees here are gigantic enough to be awe-inspiring and tough enough to give more than a few lumber harvesting devices trouble. Rust is caked all over their bark, but if you brush it away, you can expose the silvery sheen of their metallic bark. The natural path you follow between them is barely obstructed by any brush as the dense canopy high above keeps things shaded enough to discourage new growth.";
 	rooms["IRONWOODS 1"].planet = "PLANET: MHEN'GA";
 	rooms["IRONWOODS 1"].system = "SYSTEM: ARA ARA";
 	rooms["IRONWOODS 1"].northExit = "IRONWOODS BEND 1";
@@ -537,7 +537,7 @@ public function initMhengaRooms():void
 	//40. The Ironwoods
 	rooms["IRONWOODS 2"] = new RoomClass(this);
 	rooms["IRONWOODS 2"].roomName = "THE\nIRONWOODS";
-	rooms["IRONWOODS 2"].description = "A fair amount of underbrush has grown here, and the soil is fairly damp. As you might expect, you can hear the babbling of a gentle-sounding brook somewhere to the east. It is likely responsible for the surge in vegetation around you, even in the dim light the ironwoods allow to reach the jungle floor. There's still enough open ground to move to the east and the west without much issue.";
+	rooms["IRONWOODS 2"].description = "A fair amount of underbrush has grown here, and the soil is fairly damp. As you might expect, you can hear the babbling of a gentle-sounding brook somewhere to the east. It is likely responsible for the surge in vegetation around you, even in the dim light the ironwoods allow to reach the jungle floor. There’s still enough open ground to move to the east and the west without much issue.";
 	rooms["IRONWOODS 2"].planet = "PLANET: MHEN'GA";
 	rooms["IRONWOODS 2"].system = "SYSTEM: ARA ARA";
 	rooms["IRONWOODS 2"].eastExit = "BABBLING BROOK 1";
@@ -563,7 +563,7 @@ public function initMhengaRooms():void
 	//42. The Ironwoods
 	rooms["IRONWOODS 3"] = new RoomClass(this);
 	rooms["IRONWOODS 3"].roomName = "THE\nIRONWOODS";
-	rooms["IRONWOODS 3"].description = "Between the huge trunks of the red-tinted ironwoods, a large amount of vegetation has grown. Exotic bushes two feet high rustle on either side of the damp path, their leaves a matte blue. You can hear the sound of running water to the west, indicating the stream you crossed to get out this far. You idly brush a flake of rust from your [pc.skinFurScales] as you walk, frowning up at the tree that's shedding such filth. You can go east and west.";
+	rooms["IRONWOODS 3"].description = "Between the huge trunks of the red-tinted ironwoods, a large amount of vegetation has grown. Exotic bushes two feet high rustle on either side of the damp path, their leaves a matte blue. You can hear the sound of running water to the west, indicating the stream you crossed to get out this far. You idly brush a flake of rust from your [pc.skinFurScales] as you walk, frowning up at the tree that’s shedding such filth. You can go east and west.";
 	rooms["IRONWOODS 3"].planet = "PLANET: MHEN'GA";
 	rooms["IRONWOODS 3"].system = "SYSTEM: ARA ARA";
 	rooms["IRONWOODS 3"].eastExit = "IRONWOODS BEND 2";
@@ -576,7 +576,7 @@ public function initMhengaRooms():void
 	//43. A Bend in the Ironwoods
 	rooms["IRONWOODS BEND 2"] = new RoomClass(this);
 	rooms["IRONWOODS BEND 2"].roomName = "IRONWOODS\nBEND";
-	rooms["IRONWOODS BEND 2"].description = "A trunk as wide as a small graffball court towers above to the northeast, and the winding little trail you've been following curves around to the west and south. This seems to be the last of the immense rusty trunks if you go south, though a great many can be seen along the way to the west. Orange-leaved plants glimmer along either side of this trail to the south. You even spot some tracks, though you are unable to determine what kind of animal left them. They definitely don't belong to any species you're familiar with.";
+	rooms["IRONWOODS BEND 2"].description = "A trunk as wide as a small graffball court towers above to the northeast, and the winding little trail you’ve been following curves around to the west and south. This seems to be the last of the immense rusty trunks if you go south, though a great many can be seen along the way to the west. Orange-leaved plants glimmer along either side of this trail to the south. You even spot some tracks, though you are unable to determine what kind of animal left them. They definitely don’t belong to any species you’re familiar with.";
 	rooms["IRONWOODS BEND 2"].planet = "PLANET: MHEN'GA";
 	rooms["IRONWOODS BEND 2"].system = "SYSTEM: ARA ARA";
 	rooms["IRONWOODS BEND 2"].westExit = "IRONWOODS 3";
@@ -590,7 +590,7 @@ public function initMhengaRooms():void
 	//10m travel time?
 	rooms["DENSE ORANGE 1"] = new RoomClass(this);
 	rooms["DENSE ORANGE 1"].roomName = "THE DENSE\nORANGE";
-	rooms["DENSE ORANGE 1"].description = "Orange-hued plants of all descriptions grow thickly here, forcing you to struggle past crimson vines and trample the occasional green sprout on your way. It's rough traveling, but at least there's still the path. It seems to have been kept clear by animals of some kind; more than a few vibrant leaves have bite-shaped chunks missing out of them. The path struggles through to the north and south.";
+	rooms["DENSE ORANGE 1"].description = "Orange-hued plants of all descriptions grow thickly here, forcing you to struggle past crimson vines and trample the occasional green sprout on your way. It’s rough traveling, but at least there’s still the path. It seems to have been kept clear by animals of some kind; more than a few vibrant leaves have bite-shaped chunks missing out of them. The path struggles through to the north and south.";
 	rooms["DENSE ORANGE 1"].planet = "PLANET: MHEN'GA";
 	rooms["DENSE ORANGE 1"].system = "SYSTEM: ARA ARA";
 	rooms["DENSE ORANGE 1"].northExit = "IRONWOODS BEND 2";
@@ -603,7 +603,7 @@ public function initMhengaRooms():void
 	//45. The Dense Orange
 	rooms["DENSE ORANGE 2"] = new RoomClass(this);
 	rooms["DENSE ORANGE 2"].roomName = "THE DENSE\nORANGE";
-	rooms["DENSE ORANGE 2"].description = "The jungle on either side is flooded with orangish plants of all sizes and descriptions. There are waist-high, peach-colored ferns. There are trees with tangerine vines covering their trunks. There's even tufts of round-bladed, orange grass under[pc.foot]. The way through this mess of spectacularly hued organic growth looks well traveled, though no obvious tracks reveal themselves. You can continue north and south from here.";
+	rooms["DENSE ORANGE 2"].description = "The jungle on either side is flooded with orangish plants of all sizes and descriptions. There are waist-high, peach-colored ferns. There are trees with tangerine vines covering their trunks. There’s even tufts of round-bladed, orange grass under[pc.foot]. The way through this mess of spectacularly hued organic growth looks well traveled, though no obvious tracks reveal themselves. You can continue north and south from here.";
 	rooms["DENSE ORANGE 2"].planet = "PLANET: MHEN'GA";
 	rooms["DENSE ORANGE 2"].system = "SYSTEM: ARA ARA";
 	rooms["DENSE ORANGE 2"].northExit = "DENSE ORANGE 1";
@@ -629,7 +629,7 @@ public function initMhengaRooms():void
 	//47. The Dense Orange
 	rooms["DENSE ORANGE 4"] = new RoomClass(this);
 	rooms["DENSE ORANGE 4"].roomName = "THE DENSE\nORANGE";
-	rooms["DENSE ORANGE 4"].description = "Treading carefully, you do your best to traverse Mhen'ga's less-than-hospitable terrain without injuring yourself, and thus far, it's going fairly well. This small trail is the only way through the dense orange undergrowth that surrounds it. With enough time and effort it might be possible to blaze your own trail through the shimmering, peach-hued leaves, but it would take so long that by the time you got anywhere, the planet rush would be over and Mhen'ga colonized. You can follow the path north and south.";
+	rooms["DENSE ORANGE 4"].description = "Treading carefully, you do your best to traverse Mhen’ga’s less-than-hospitable terrain without injuring yourself, and thus far, it’s going fairly well. This small trail is the only way through the dense orange undergrowth that surrounds it. With enough time and effort it might be possible to blaze your own trail through the shimmering, peach-hued leaves, but it would take so long that by the time you got anywhere, the planet rush would be over and Mhen’ga colonized. You can follow the path north and south.";
 	rooms["DENSE ORANGE 4"].planet = "PLANET: MHEN'GA";
 	rooms["DENSE ORANGE 4"].system = "SYSTEM: ARA ARA";
 	rooms["DENSE ORANGE 4"].northExit = "DENSE ORANGE 3";
@@ -642,7 +642,7 @@ public function initMhengaRooms():void
 	//48. An Orange Intersection
 	rooms["ORANGE INTERSECTION 1"] = new RoomClass(this);
 	rooms["ORANGE INTERSECTION 1"].roomName = "ORANGE\nINTERSECTION";
-	rooms["ORANGE INTERSECTION 1"].description = "The tangerine-dyed foilage is split by the meeting of two paths here. One, a narrow, old path, travels north and south through the candy-colored growth. The other snakes off to the east. It looks much less traveled. Indeed, you might not have noticed it if the gap in the plant-life weren't so obviously illuminated thanks to the dayglow tone of the surrounding leaves.";
+	rooms["ORANGE INTERSECTION 1"].description = "The tangerine-dyed foilage is split by the meeting of two paths here. One, a narrow, old path, travels north and south through the candy-colored growth. The other snakes off to the east. It looks much less traveled. Indeed, you might not have noticed it if the gap in the plant-life weren’t so obviously illuminated thanks to the dayglow tone of the surrounding leaves.";
 	rooms["ORANGE INTERSECTION 1"].planet = "PLANET: MHEN'GA";
 	rooms["ORANGE INTERSECTION 1"].system = "SYSTEM: ARA ARA";
 	rooms["ORANGE INTERSECTION 1"].northExit = "DENSE ORANGE 4";
@@ -656,7 +656,7 @@ public function initMhengaRooms():void
 	//49. The Dense Orange
 	rooms["DENSE ORANGE 5"] = new RoomClass(this);
 	rooms["DENSE ORANGE 5"].roomName = "THE DENSE\nORANGE";
-	rooms["DENSE ORANGE 5"].description = "Orange plants of every shape and size grow in droves around you. Though some bear fruit of crimson or green, most types are a nearly matching shade of tangerine, perhaps to camouflage them against their peers or some other unknown purpose. Regardless, the path you're standing on leads north towards an intersection and south towards a westward bend.";
+	rooms["DENSE ORANGE 5"].description = "Orange plants of every shape and size grow in droves around you. Though some bear fruit of crimson or green, most types are a nearly matching shade of tangerine, perhaps to camouflage them against their peers or some other unknown purpose. Regardless, the path you’re standing on leads north towards an intersection and south towards a westward bend.";
 	rooms["DENSE ORANGE 5"].planet = "PLANET: MHEN'GA";
 	rooms["DENSE ORANGE 5"].system = "SYSTEM: ARA ARA";
 	rooms["DENSE ORANGE 5"].northExit = "ORANGE INTERSECTION 1";
@@ -682,7 +682,7 @@ public function initMhengaRooms():void
 	//51. Deep Forest
 	rooms["DEEP FOREST 1"] = new RoomClass(this);
 	rooms["DEEP FOREST 1"].roomName = "DEEP\nFOREST";
-	rooms["DEEP FOREST 1"].description = "Navigation is tricky with so little light to illuminate the way, but the lack of visible light assists you in other ways, keeping brush and undergrowth to an absolute minimum. If you were so inclined, you could easily wander around the gloomy woods. It would be wise not to wander too far, however; you don't want to get lost on such a wild planet. The woodland trail makes a straight line east to west. In the former direction, the forest lightens. In the latter, a small brook crosses the trail. The waters are crystal clear and shallow enough to cross without issue.";
+	rooms["DEEP FOREST 1"].description = "Navigation is tricky with so little light to illuminate the way, but the lack of visible light assists you in other ways, keeping brush and undergrowth to an absolute minimum. If you were so inclined, you could easily wander around the gloomy woods. It would be wise not to wander too far, however; you don’t want to get lost on such a wild planet. The woodland trail makes a straight line east to west. In the former direction, the forest lightens. In the latter, a small brook crosses the trail. The waters are crystal clear and shallow enough to cross without issue.";
 	rooms["DEEP FOREST 1"].planet = "PLANET: MHEN'GA";
 	rooms["DEEP FOREST 1"].system = "SYSTEM: ARA ARA";
 	rooms["DEEP FOREST 1"].eastExit = "DARK ORANGE CORNER 1";
@@ -695,7 +695,7 @@ public function initMhengaRooms():void
 	//52. Deep Intersection
 	rooms["DEEP INTERSECTION 1"] = new RoomClass(this);
 	rooms["DEEP INTERSECTION 1"].roomName = "DEEP\nINTERSECTION";
-	rooms["DEEP INTERSECTION 1"].description = "The well-packed earth splits off in a 'T' intersection - an east fork, a south fork, and a west fork. In the east-west route, the trail remains steady and smooth through the near darkness. To the south, you can see shafts of sunlight flickering down through the treetops, but it also smells thick and damp with humidity, pollen, and spores. A babbling brook crosses the path just east of here. It's barely a few inches deep and so placid that the crossing would be little more than a damp footnote on your journey.";
+	rooms["DEEP INTERSECTION 1"].description = "The well-packed earth splits off in a ‘T’ intersection - an east fork, a south fork, and a west fork. In the east-west route, the trail remains steady and smooth through the near darkness. To the south, you can see shafts of sunlight flickering down through the treetops, but it also smells thick and damp with humidity, pollen, and spores. A babbling brook crosses the path just east of here. It’s barely a few inches deep and so placid that the crossing would be little more than a damp footnote on your journey.";
 	rooms["DEEP INTERSECTION 1"].planet = "PLANET: MHEN'GA";
 	rooms["DEEP INTERSECTION 1"].system = "SYSTEM: ARA ARA";
 	rooms["DEEP INTERSECTION 1"].eastExit = "DEEP FOREST 1";
@@ -709,7 +709,7 @@ public function initMhengaRooms():void
 	//53. Deep Forest
 	rooms["DEEP FOREST 2"] = new RoomClass(this);
 	rooms["DEEP FOREST 2"].roomName = "DEEP\nFOREST";
-	rooms["DEEP FOREST 2"].description = "The shadows here move with a kind of unnerving motion, twisting this way and that as unseen breezes rustle the leaves some hundreds of feet above. You continually flick your gaze around, and in a way, you're thankful that the darkness has kept the bushes down to minimum here. There's less places for potential foes to lurk. Unless... they're above you? You jerk back, staring at the trees in alarm. Emptiness. Well, you can always follow the path east through the darkness or west towards a more illuminated bend.";
+	rooms["DEEP FOREST 2"].description = "The shadows here move with a kind of unnerving motion, twisting this way and that as unseen breezes rustle the leaves some hundreds of feet above. You continually flick your gaze around, and in a way, you’re thankful that the darkness has kept the bushes down to minimum here. There’s less places for potential foes to lurk. Unless... they’re above you? You jerk back, staring at the trees in alarm. Emptiness. Well, you can always follow the path east through the darkness or west towards a more illuminated bend.";
 	rooms["DEEP FOREST 2"].planet = "PLANET: MHEN'GA";
 	rooms["DEEP FOREST 2"].system = "SYSTEM: ARA ARA";
 	rooms["DEEP FOREST 2"].eastExit = "DEEP INTERSECTION 1";
@@ -722,7 +722,7 @@ public function initMhengaRooms():void
 	//54. Corner of Iron and Dark
 	rooms["IRON AND DARK CORNER 1"] = new RoomClass(this);
 	rooms["IRON AND DARK CORNER 1"].roomName = "IRONWOOD &\nDARK CORNER";
-	rooms["IRON AND DARK CORNER 1"].description = "Twisting, the path curves away to the north and the east. To the east, the canopy above has grown in so thick that the forest floor is in a perpetual nightfall. To the north, strange, reddish trees clash with all varieties of colored lichens. Bits of sunlight do stream down to illuminate the area you're standing in, but it is neither as bright or as gloomy as the north and the east respectively.";
+	rooms["IRON AND DARK CORNER 1"].description = "Twisting, the path curves away to the north and the east. To the east, the canopy above has grown in so thick that the forest floor is in a perpetual nightfall. To the north, strange, reddish trees clash with all varieties of colored lichens. Bits of sunlight do stream down to illuminate the area you’re standing in, but it is neither as bright or as gloomy as the north and the east respectively.";
 	rooms["IRON AND DARK CORNER 1"].planet = "PLANET: MHEN'GA";
 	rooms["IRON AND DARK CORNER 1"].system = "SYSTEM: ARA ARA";
 	rooms["IRON AND DARK CORNER 1"].northExit = "LICHENS AT IRONWOODS 1";
@@ -736,7 +736,7 @@ public function initMhengaRooms():void
 	//55. Narrow Path
 	rooms["NARROW PATH 1"] = new RoomClass(this);
 	rooms["NARROW PATH 1"].roomName = "NARROW\nPATH";
-	rooms["NARROW PATH 1"].description = "There's so much plant-life surrounding this path that it's very difficult to follow. Under[pc.foot], you spot recently trampled grasses and mushroom-like growth. Whoever blazed this trail did it not so long ago, and judging by how some of the vegetation is growing back in, there hasn't been enough traffic to keep the jungle from coming in to reclaim it. A junction with a more traveled route lies to the west. To the east, the narrow way continues.";
+	rooms["NARROW PATH 1"].description = "There’s so much plant-life surrounding this path that it’s very difficult to follow. Under[pc.foot], you spot recently trampled grasses and mushroom-like growth. Whoever blazed this trail did it not so long ago, and judging by how some of the vegetation is growing back in, there hasn’t been enough traffic to keep the jungle from coming in to reclaim it. A junction with a more traveled route lies to the west. To the east, the narrow way continues.";
 	rooms["NARROW PATH 1"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW PATH 1"].system = "SYSTEM: ARA ARA";
 	rooms["NARROW PATH 1"].westExit = "ORANGE INTERSECTION 1";
@@ -763,7 +763,7 @@ public function initMhengaRooms():void
 	//DEEP JURGLE
 	rooms["NARROW PATH 2"] = new RoomClass(this);
 	rooms["NARROW PATH 2"].roomName = "NARROW\nJUNGLE PATH";
-	rooms["NARROW PATH 2"].description = "The scorch marks that marred the trees high above to the north continue down and to the south here. You can see them dipping closer and closer to the jungle floor, and it truly is a jungle here. The air is far more humid than it is to the north. The buzz from the myriad life-forms, many of them insectile, is nearly deafening this deep in the jungle. The trunks of the trees seem thicker, the plant-life denser. This is unquestionably what you'd classify as 'deep jungle'. To the north, the path leads to a slightly less overgrown area. To the south, the jungle worsens.";
+	rooms["NARROW PATH 2"].description = "The scorch marks that marred the trees high above to the north continue down and to the south here. You can see them dipping closer and closer to the jungle floor, and it truly is a jungle here. The air is far more humid than it is to the north. The buzz from the myriad life-forms, many of them insectile, is nearly deafening this deep in the jungle. The trunks of the trees seem thicker, the plant-life denser. This is unquestionably what you’d classify as ‘deep jungle’. To the north, the path leads to a slightly less overgrown area. To the south, the jungle worsens.";
 	rooms["NARROW PATH 2"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW PATH 2"].system = "SYSTEM: ARA ARA";
 	rooms["NARROW PATH 2"].northExit = "NARROW BEND 1";
@@ -776,7 +776,7 @@ public function initMhengaRooms():void
 	//58. Narrow Jungle Path
 	rooms["NARROW PATH 3"] = new RoomClass(this);
 	rooms["NARROW PATH 3"].roomName = "NARROW\nJUNGLE PATH";
-	rooms["NARROW PATH 3"].description = "Droplets of water fall from higher up in this verdant, almost claustrophobic jungle. Everything seems to be coated in a fine layer of humidity from the omnipresent moisture. Perhaps it would explain why the scorched leaves on either side of the path never caught fire. A divot in the ground starts here, burrowing away to the south. It doesn't look to get much deeper, but it does look to have charred the earth with carbon as it went. The source lies to the south.";
+	rooms["NARROW PATH 3"].description = "Droplets of water fall from higher up in this verdant, almost claustrophobic jungle. Everything seems to be coated in a fine layer of humidity from the omnipresent moisture. Perhaps it would explain why the scorched leaves on either side of the path never caught fire. A divot in the ground starts here, burrowing away to the south. It doesn’t look to get much deeper, but it does look to have charred the earth with carbon as it went. The source lies to the south.";
 	rooms["NARROW PATH 3"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW PATH 3"].system = "SYSTEM: ARA ARA";
 	rooms["NARROW PATH 3"].northExit = "NARROW PATH 2";
@@ -801,7 +801,7 @@ public function initMhengaRooms():void
 	//60. Deep\nJungle
 	rooms["DEEP JUNGLE 1"] = new RoomClass(this);
 	rooms["DEEP JUNGLE 1"].roomName = "DEEP\nJUNGLE";
-	rooms["DEEP JUNGLE 1"].description = "There is so much pollen in the air here that you can't help but stifle a series of uncontrollable sneezes. The entire place is covered in vines, flowers, and overgrowth that lacks a decent word in your language to describe it. Some of the dangling cords of plant matter even appear to be prehensile, twitching to grap a fist-sized insect out of the air. You hear the crack of an exoskeleton break after. <b>You had best be on guard here.</b>";
+	rooms["DEEP JUNGLE 1"].description = "There is so much pollen in the air here that you can’t help but stifle a series of uncontrollable sneezes. The entire place is covered in vines, flowers, and overgrowth that lacks a decent word in your language to describe it. Some of the dangling cords of plant matter even appear to be prehensile, twitching to grap a fist-sized insect out of the air. You hear the crack of an exoskeleton break after. <b>You had best be on guard here.</b>";
 	rooms["DEEP JUNGLE 1"].planet = "PLANET: MHEN'GA";
 	rooms["DEEP JUNGLE 1"].system = "SYSTEM: ARA ARA";
 	rooms["DEEP JUNGLE 1"].northExit = "DEEP INTERSECTION 1";
@@ -829,7 +829,7 @@ public function initMhengaRooms():void
 	//62. Forked\nJungle
 	rooms["FORKED DEEP JUNGLE 1"] = new RoomClass(this);
 	rooms["FORKED DEEP JUNGLE 1"].roomName = "DEEP JUNGLE\nFORK";
-	rooms["FORKED DEEP JUNGLE 1"].description = "There are three distinct paths that you could follow from this point: one to the east, one to the south, and one to the west. The latter two show a distinct difference in the bordering plant-life; it's almost entirely vines covered in flowers. You can spot the odd tree-trunk here or there, but they're completely overgrown by the green tendrils. They seem almost... strangled. It would be wise not to stray too far from the openings in that direction. To the east, the trail looks a little less threatening, but it is still in the deep, dark jungle.";
+	rooms["FORKED DEEP JUNGLE 1"].description = "There are three distinct paths that you could follow from this point: one to the east, one to the south, and one to the west. The latter two show a distinct difference in the bordering plant-life; it’s almost entirely vines covered in flowers. You can spot the odd tree-trunk here or there, but they’re completely overgrown by the green tendrils. They seem almost... strangled. It would be wise not to stray too far from the openings in that direction. To the east, the trail looks a little less threatening, but it is still in the deep, dark jungle.";
 	rooms["FORKED DEEP JUNGLE 1"].planet = "PLANET: MHEN'GA";
 	rooms["FORKED DEEP JUNGLE 1"].system = "SYSTEM: ARA ARA";
 	rooms["FORKED DEEP JUNGLE 1"].eastExit = "DEEP JUNGLE 2";
@@ -842,7 +842,7 @@ public function initMhengaRooms():void
 	
 		rooms["VINED JUNGLE 1"] = new RoomClass(this);
 	rooms["VINED JUNGLE 1"].roomName = "VINED\nJUNGLE";
-	rooms["VINED JUNGLE 1"].description = "A vine lashes out at your [pc.foot]. Kicking it away, you briefly stumble, but nothing seems to capitalize on your momentary loss of balance. You're probably not the prey it was looking for. There's so many of those plant-like tentacles here that they may as well be impenetrable walls of squirming flesh. Something has been keeping them pruned back from this path enough to navigate. You can go north and south from here.";
+	rooms["VINED JUNGLE 1"].description = "A vine lashes out at your [pc.foot]. Kicking it away, you briefly stumble, but nothing seems to capitalize on your momentary loss of balance. You’re probably not the prey it was looking for. There’s so many of those plant-like tentacles here that they may as well be impenetrable walls of squirming flesh. Something has been keeping them pruned back from this path enough to navigate. You can go north and south from here.";
 	rooms["VINED JUNGLE 1"].planet = "PLANET: MHEN'GA";
 	rooms["VINED JUNGLE 1"].system = "SYSTEM: ARA ARA";
 	rooms["VINED JUNGLE 1"].northExit = "FORKED DEEP JUNGLE 1";
@@ -868,7 +868,7 @@ public function initMhengaRooms():void
 	//65. Vined\nJungle
 	rooms["VINED JUNGLE 3"] = new RoomClass(this);
 	rooms["VINED JUNGLE 3"].roomName = "VINED\nJUNGLE";
-	rooms["VINED JUNGLE 3"].description = "The unnatural, squirming walls on either side undulate like the waves of an ocean stuck on its side. It's enough to set one's nerves on edge, and the darkness of the deep jungle's atmosphere doesn't really help. A lazily buzzing bug with at least twelve finger-sized legs crosses your way, but it doesn't stop to pay you any attention. To the west, the vines thin. To the east, both the tendrils and the path continue on much the same.";
+	rooms["VINED JUNGLE 3"].description = "The unnatural, squirming walls on either side undulate like the waves of an ocean stuck on its side. It’s enough to set one’s nerves on edge, and the darkness of the deep jungle’s atmosphere doesn’t really help. A lazily buzzing bug with at least twelve finger-sized legs crosses your way, but it doesn’t stop to pay you any attention. To the west, the vines thin. To the east, both the tendrils and the path continue on much the same.";
 	rooms["VINED JUNGLE 3"].planet = "PLANET: MHEN'GA";
 	rooms["VINED JUNGLE 3"].system = "SYSTEM: ARA ARA";
 	rooms["VINED JUNGLE 3"].eastExit = "VINED JUNGLE 2";
@@ -881,7 +881,7 @@ public function initMhengaRooms():void
 	//66. Overgrown\nRock
 	rooms["OVERGROWN ROCK 1"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 1"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 1"].description = "A rock, almost mountain-like in proportions, towers overhead to the west of here. It's so tall that you would be in its shadow if everything weren't already so deeply steeped in darkness. You wager it rises up at least a few hundred feet into the air, its walls almost completely sheer. It's been there long enough to have accumulated a healthy covering of mosses, fungi, and other growths. You can go north and south around it or east on a trail that's surrounded by tentacles.";
+	rooms["OVERGROWN ROCK 1"].description = "A rock, almost mountain-like in proportions, towers overhead to the west of here. It’s so tall that you would be in its shadow if everything weren’t already so deeply steeped in darkness. You wager it rises up at least a few hundred feet into the air, its walls almost completely sheer. It’s been there long enough to have accumulated a healthy covering of mosses, fungi, and other growths. You can go north and south around it or east on a trail that’s surrounded by tentacles.";
 	rooms["OVERGROWN ROCK 1"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 1"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 1"].northExit = "OVERGROWN ROCK 2";
@@ -895,7 +895,7 @@ public function initMhengaRooms():void
 	//67. Overgrown\nRock
 	rooms["OVERGROWN ROCK 2"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 2"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 2"].description = "You stand at what could be called the corner of the mountainous boulder if it were less jagged and more orderly in its change of direction. There's enough clear space around it for you to keep going to the south or the west along the rock face. An infestation of vines, more tentacles really, blocks the way to the north and the east. Looking at how they move, you don't have any desire to get too close to them.";
+	rooms["OVERGROWN ROCK 2"].description = "You stand at what could be called the corner of the mountainous boulder if it were less jagged and more orderly in its change of direction. There’s enough clear space around it for you to keep going to the south or the west along the rock face. An infestation of vines, more tentacles really, blocks the way to the north and the east. Looking at how they move, you don’t have any desire to get too close to them.";
 	rooms["OVERGROWN ROCK 2"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 2"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 2"].southExit = "OVERGROWN ROCK 1";
@@ -908,7 +908,7 @@ public function initMhengaRooms():void
 	//68. Overgrown\nRock
 	rooms["OVERGROWN ROCK 3"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 3"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 3"].description = "A flat, almost featureless rock wall rises up to the south of here, towering over you by hundreds of feet. Its cracks and crevices are almost entirely filled with colorful forms of plant life, but for some reason, nothing has grown that close to it, enabling you to walk by it to the east and the west as you wish. To the north, there's thousands of vines bundled together. Most hang there limply, yet some are moving, squirming like tentacles. A path leads north between them, if you dare head through them.";
+	rooms["OVERGROWN ROCK 3"].description = "A flat, almost featureless rock wall rises up to the south of here, towering over you by hundreds of feet. Its cracks and crevices are almost entirely filled with colorful forms of plant life, but for some reason, nothing has grown that close to it, enabling you to walk by it to the east and the west as you wish. To the north, there’s thousands of vines bundled together. Most hang there limply, yet some are moving, squirming like tentacles. A path leads north between them, if you dare head through them.";
 	rooms["OVERGROWN ROCK 3"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 3"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 3"].northExit = "VINED JUNGLE 4";
@@ -948,7 +948,7 @@ public function initMhengaRooms():void
 	//71. Vined\nJungle
 	rooms["VINED JUNGLE 6"] = new RoomClass(this);
 	rooms["VINED JUNGLE 6"].roomName = "VINED\nJUNGLE";
-	rooms["VINED JUNGLE 6"].description = "Between the darkness, the squirming plants, and the gigantic bugs that constantly flit by, you're ready to step somewhere that doesn't seem so obviously dangerous. A few rays of amber sunlight do trickle down, but they only serve to highlight the moist sheen that covers the green mounds. To the east, there appears to be a three-way fork. The path continues to the west unbroken.";
+	rooms["VINED JUNGLE 6"].description = "Between the darkness, the squirming plants, and the gigantic bugs that constantly flit by, you’re ready to step somewhere that doesn’t seem so obviously dangerous. A few rays of amber sunlight do trickle down, but they only serve to highlight the moist sheen that covers the green mounds. To the east, there appears to be a three-way fork. The path continues to the west unbroken.";
 	rooms["VINED JUNGLE 6"].planet = "PLANET: MHEN'GA";
 	rooms["VINED JUNGLE 6"].system = "SYSTEM: ARA ARA";
 	rooms["VINED JUNGLE 6"].westExit = "VINED JUNGLE 5";
@@ -962,7 +962,7 @@ public function initMhengaRooms():void
 	//72. Overgrown\nRock
 	rooms["OVERGROWN ROCK 4"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 4"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 4"].description = "The rock face is jagged and uneven as you crest this corner of the mountainous boulder. Its craggy surface is rough and broken, and a number of boulders have fallen into a crude pile around it. There's about fifteen feet of relatively clear space hugging its base that you can easily travel through. To the south, the jungle is so thick and dense that it would be difficult if not impossible to traverse without first burning back the overgrowth. The air here is almost as dank as the visibility is poor.";
+	rooms["OVERGROWN ROCK 4"].description = "The rock face is jagged and uneven as you crest this corner of the mountainous boulder. Its craggy surface is rough and broken, and a number of boulders have fallen into a crude pile around it. There’s about fifteen feet of relatively clear space hugging its base that you can easily travel through. To the south, the jungle is so thick and dense that it would be difficult if not impossible to traverse without first burning back the overgrowth. The air here is almost as dank as the visibility is poor.";
 	rooms["OVERGROWN ROCK 4"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 4"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 4"].westExit = "OVERGROWN ROCK 5";
@@ -975,7 +975,7 @@ public function initMhengaRooms():void
 	//73. Overgrown\nRock
 	rooms["OVERGROWN ROCK 5"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 5"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 5"].description = "Climbing high up into the canopy, this gray-colored, monolithic slab of rock almost seems to have burst from the ground ages ago, perhaps forced out by Mhen'ga's unearthly subterranean forces. Its surface is relatively unmarked aside from some tiny fissures that the plants have worked into it. The open space around it continues to the east and west; in the latter direction, the rock has broken apart enough to create a pile of rocks around its base.";
+	rooms["OVERGROWN ROCK 5"].description = "Climbing high up into the canopy, this gray-colored, monolithic slab of rock almost seems to have burst from the ground ages ago, perhaps forced out by Mhen’ga’s unearthly subterranean forces. Its surface is relatively unmarked aside from some tiny fissures that the plants have worked into it. The open space around it continues to the east and west; in the latter direction, the rock has broken apart enough to create a pile of rocks around its base.";
 	rooms["OVERGROWN ROCK 5"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 5"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 5"].westExit = "OVERGROWN ROCK 6";
@@ -988,7 +988,7 @@ public function initMhengaRooms():void
 	//74. Overgrown\nRock
 	rooms["OVERGROWN ROCK 6"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 6"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 6"].description = "The humidity is almost overpowering here. It makes the ground damp, it makes the rock shine, and it makes your [pc.skinFurScales] uncomfortably clammy. Leaves the size of small cars hang off the side of a trunk as big around as a small room. You could probably push past them if it weren't for the thorny bushes and toothed flowers underneath. Even if you cut into the deep jungle that way, you'd be lost in no time. It'd be better to follow the open space along the sides of this rock to the east and west.";
+	rooms["OVERGROWN ROCK 6"].description = "The humidity is almost overpowering here. It makes the ground damp, it makes the rock shine, and it makes your [pc.skinFurScales] uncomfortably clammy. Leaves the size of small cars hang off the side of a trunk as big around as a small room. You could probably push past them if it weren’t for the thorny bushes and toothed flowers underneath. Even if you cut into the deep jungle that way, you’d be lost in no time. It’d be better to follow the open space along the sides of this rock to the east and west.";
 	rooms["OVERGROWN ROCK 6"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 6"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 6"].westExit ="OVERGROWN ROCK 7";
@@ -1014,7 +1014,7 @@ public function initMhengaRooms():void
 	//76. Overgrown\nRock
 	rooms["OVERGROWN ROCK 8"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 8"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 8"].description = "There's a series of half-broken, hard corners around the edge of this granite-like monolith. You can follow it to the north and east; there's plenty of room around it to walk, so long as you don't mind the humidity and darkness of this part of the jungle. High as it is, the column-like trees stretch higher still and cover it all with their dense wall of greenery. You doubt that even if you had the means to climb up there that there would be any more illumination to be found. You'll have to find your way out of the deep jungle if you ever want decent lighting again.";
+	rooms["OVERGROWN ROCK 8"].description = "There’s a series of half-broken, hard corners around the edge of this granite-like monolith. You can follow it to the north and east; there’s plenty of room around it to walk, so long as you don’t mind the humidity and darkness of this part of the jungle. High as it is, the column-like trees stretch higher still and cover it all with their dense wall of greenery. You doubt that even if you had the means to climb up there that there would be any more illumination to be found. You’ll have to find your way out of the deep jungle if you ever want decent lighting again.";
 	rooms["OVERGROWN ROCK 8"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 8"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 8"].northExit = "OVERGROWN ROCK 9";
@@ -1027,7 +1027,7 @@ public function initMhengaRooms():void
 	//77. Overgrown\nRock
 	rooms["OVERGROWN ROCK 9"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 9"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 9"].description = "Following alongside the stone protrusion, you're treated to all manner of exotic sights and sounds. You hear animal calls that sound like high-pitched whistles. There’s a bird whose squawk reminds you of the sound of a laser weapon going off. You even see a flower that pivots to follow you, its petals glowing an almost ultraviolet color. This truly is a strange and wonderful planet, but a touch dangerous too. The path leads north and south.";
+	rooms["OVERGROWN ROCK 9"].description = "Following alongside the stone protrusion, you’re treated to all manner of exotic sights and sounds. You hear animal calls that sound like high-pitched whistles. There’s a bird whose squawk reminds you of the sound of a laser weapon going off. You even see a flower that pivots to follow you, its petals glowing an almost ultraviolet color. This truly is a strange and wonderful planet, but a touch dangerous too. The path leads north and south.";
 	rooms["OVERGROWN ROCK 9"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 9"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 9"].northExit = "OVERGROWN ROCK 10";
@@ -1040,7 +1040,7 @@ public function initMhengaRooms():void
 	//78. Overgrown\nRock
 	rooms["OVERGROWN ROCK 10"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 10"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 10"].description = "You stand at one corner of the giant stone. From where you're standing, you can't even make out the top, but you can see that its surface is riddled with mosses and lichen-like growths. You wager that it has been here for quite a long time, though you'd need a geologist for an accurate guess. The surrounding plant life has stayed away from the rocky protrusion for some reason, leaving a fifteen foot wide path that you can follow around it. There is also a small, maybe three foot wide, trail in between a few dozen person-sized leaves.";
+	rooms["OVERGROWN ROCK 10"].description = "You stand at one corner of the giant stone. From where you’re standing, you can’t even make out the top, but you can see that its surface is riddled with mosses and lichen-like growths. You wager that it has been here for quite a long time, though you’d need a geologist for an accurate guess. The surrounding plant life has stayed away from the rocky protrusion for some reason, leaving a fifteen foot wide path that you can follow around it. There is also a small, maybe three foot wide, trail in between a few dozen person-sized leaves.";
 	rooms["OVERGROWN ROCK 10"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 10"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 10"].southExit = "OVERGROWN ROCK 9";
@@ -1054,7 +1054,7 @@ public function initMhengaRooms():void
 	//79. Overgrown\nRock
 	rooms["OVERGROWN ROCK 11"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 11"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 11"].description = "There's a gigantic rock here; its sheer walls almost stretch up to the canopy itself. Though covered in moss and small vines, it does not look to have succumbed to the jungle's clutches just yet. There is a path around it, leading east and west, while another path leads away to the north. That trail leads between an army of blooming purple flowers. There are so many of them that they look almost like a sea of amethyst, rustling slightly in gentle breezes.";
+	rooms["OVERGROWN ROCK 11"].description = "There’s a gigantic rock here; its sheer walls almost stretch up to the canopy itself. Though covered in moss and small vines, it does not look to have succumbed to the jungle’s clutches just yet. There is a path around it, leading east and west, while another path leads away to the north. That trail leads between an army of blooming purple flowers. There are so many of them that they look almost like a sea of amethyst, rustling slightly in gentle breezes.";
 	rooms["OVERGROWN ROCK 11"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 11"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 11"].westExit = "OVERGROWN ROCK 10";
@@ -1107,7 +1107,7 @@ public function initMhengaRooms():void
 	//83. Giant\nLeaves
 	rooms["GIANT LEAVES 3"] = new RoomClass(this);
 	rooms["GIANT LEAVES 3"].roomName = "GIANT\nLEAVES";
-	rooms["GIANT LEAVES 3"].description = "There's nothing but leaves in every direction except north. Every other way is just a wall of torso-sized, shimmering fronds. They're even above you, glistening dully with collected moisture. It looks like a dead end, for now. You can either hang around here or go back through the dense plants to the north.";
+	rooms["GIANT LEAVES 3"].description = "There’s nothing but leaves in every direction except north. Every other way is just a wall of torso-sized, shimmering fronds. They’re even above you, glistening dully with collected moisture. It looks like a dead end, for now. You can either hang around here or go back through the dense plants to the north.";
 	rooms["GIANT LEAVES 3"].planet = "PLANET: MHEN'GA";
 	rooms["GIANT LEAVES 3"].system = "SYSTEM: ARA ARA";
 	rooms["GIANT LEAVES 3"].northExit = "GIANT LEAVES 2";
@@ -1120,7 +1120,7 @@ public function initMhengaRooms():void
 	//84. Purple\nFlowers
 	rooms["PURPLE FLOWERS 1"] = new RoomClass(this);
 	rooms["PURPLE FLOWERS 1"].roomName = "PURPLE\nFLOWERS";
-	rooms["PURPLE FLOWERS 1"].description = "You're on a path that winds its way through masses of purple blooms of all sizes and descriptions. Some are almost as big as an average man, others are so tiny you could fit two or three on a pinky finger. Insects swarm around them, content to harvest the flower's nectar instead of bothering you. You're grateful; some of them seem to be packing dangerous-looking stingers. You can go south and west along the path.";
+	rooms["PURPLE FLOWERS 1"].description = "You’re on a path that winds its way through masses of purple blooms of all sizes and descriptions. Some are almost as big as an average man, others are so tiny you could fit two or three on a pinky finger. Insects swarm around them, content to harvest the flower’s nectar instead of bothering you. You’re grateful; some of them seem to be packing dangerous-looking stingers. You can go south and west along the path.";
 	rooms["PURPLE FLOWERS 1"].planet = "PLANET: MHEN'GA";
 	rooms["PURPLE FLOWERS 1"].system = "SYSTEM: ARA ARA";
 	rooms["PURPLE FLOWERS 1"].westExit = "PURPLE FLOWERS 2";
@@ -1133,7 +1133,7 @@ public function initMhengaRooms():void
 	//85. Purple\nFlowers
 	rooms["PURPLE FLOWERS 2"] = new RoomClass(this);
 	rooms["PURPLE FLOWERS 2"].roomName = "PURPLE\nFLOWERS";
-	rooms["PURPLE FLOWERS 2"].description = "The air is almost sickeningly sweet here. Between the humid jungle air and the densely packed flowering plants, it feels almost as if there's no oxygen in here to breathe! Something - or someone - has kept the blooming plants from encroaching onto this trail. You're secretly thankful for whatever has kept the plants pruned back as you consider your options: east or west.";
+	rooms["PURPLE FLOWERS 2"].description = "The air is almost sickeningly sweet here. Between the humid jungle air and the densely packed flowering plants, it feels almost as if there’s no oxygen in here to breathe! Something - or someone - has kept the blooming plants from encroaching onto this trail. You’re secretly thankful for whatever has kept the plants pruned back as you consider your options: east or west.";
 	rooms["PURPLE FLOWERS 2"].planet = "PLANET: MHEN'GA";
 	rooms["PURPLE FLOWERS 2"].system = "SYSTEM: ARA ARA";
 	rooms["PURPLE FLOWERS 2"].westExit = "PURPLE FLOWERS 3";
@@ -1146,7 +1146,7 @@ public function initMhengaRooms():void
 	//86. Purple\nFlowers
 	rooms["PURPLE FLOWERS 3"] = new RoomClass(this);
 	rooms["PURPLE FLOWERS 3"].roomName = "PURPLE\nFLOWERS";
-	rooms["PURPLE FLOWERS 3"].description = "Both sides of the trail are ringed in curtains of amethyst blooms. The violet flowers are so densely packed, and the air so humid and heavily scented, that you can barely breathe. Their smell would normally be pleasant, but there are just too many of them! The local bugs don't seem to mind; they're here in droves. You can pass through the buzzing insects to the east, deeper into the deep jungle, or go north to Esbeth.";
+	rooms["PURPLE FLOWERS 3"].description = "Both sides of the trail are ringed in curtains of amethyst blooms. The violet flowers are so densely packed, and the air so humid and heavily scented, that you can barely breathe. Their smell would normally be pleasant, but there are just too many of them! The local bugs don’t seem to mind; they’re here in droves. You can pass through the buzzing insects to the east, deeper into the deep jungle, or go north to Esbeth.";
 	rooms["PURPLE FLOWERS 3"].planet = "PLANET: MHEN'GA";
 	rooms["PURPLE FLOWERS 3"].system = "SYSTEM: ARA ARA";
 	rooms["PURPLE FLOWERS 3"].northExit = "PURPLE FLOWERS 4";
@@ -1159,7 +1159,7 @@ public function initMhengaRooms():void
 	//87. Purple\nFlowers
 	rooms["PURPLE FLOWERS 4"] = new RoomClass(this);
 	rooms["PURPLE FLOWERS 4"].roomName = "PURPLE\nFLOWERS";
-	rooms["PURPLE FLOWERS 4"].description = "All around this gently winding woodpath, there are numerous flowers growing, all in bloom. It isn't too bad here. They tint the air pleasantly with their sweet aroma, and they haven't grown up enough to truly stop you from wandering off the trail if you wanted. However, the jungle changes to the south. The trees are taller, the canopy is thicker, the air is humid, and the flowers have overgrown everything except the path. You could head back north, toward Esbeth, or south, into the <b>deep jungle</b>.";
+	rooms["PURPLE FLOWERS 4"].description = "All around this gently winding woodpath, there are numerous flowers growing, all in bloom. It isn’t too bad here. They tint the air pleasantly with their sweet aroma, and they haven’t grown up enough to truly stop you from wandering off the trail if you wanted. However, the jungle changes to the south. The trees are taller, the canopy is thicker, the air is humid, and the flowers have overgrown everything except the path. You could head back north, toward Esbeth, or south, into the <b>deep jungle</b>.";
 	rooms["PURPLE FLOWERS 4"].planet = "PLANET: MHEN'GA";
 	rooms["PURPLE FLOWERS 4"].system = "SYSTEM: ARA ARA";
 	rooms["PURPLE FLOWERS 4"].northExit = "JUNGLE EDGE";
@@ -1183,7 +1183,7 @@ public function initMhengaRooms():void
 	//89. Penny's Office. See Penny.as for more info. - see scrapyard.as for more info!
 	rooms["PENNY'S OFFICE"] = new RoomClass(this);
 	rooms["PENNY'S OFFICE"].roomName = "U.G.C. PEACE-\nKEEPERS";
-	rooms["PENNY'S OFFICE"].description = "The interior of this office is painted a cool, soothing blue, but even that can't hide the fact that nobody wants to have to spend much time here. The whole place looks stout and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they're on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind which you'd expect to see on top of a hovercar or police cruiser.";
+	rooms["PENNY'S OFFICE"].description = "The interior of this office is painted a cool, soothing blue, but even that can’t hide the fact that nobody wants to have to spend much time here. The whole place looks stout and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they’re on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind which you’d expect to see on top of a hovercar or police cruiser.";
 	rooms["PENNY'S OFFICE"].runOnEnter = pennysOffice;
 	rooms["PENNY'S OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["PENNY'S OFFICE"].system = "SYSTEM: ARA ARA";
@@ -1194,7 +1194,7 @@ public function initMhengaRooms():void
 	//90. Kelly's Office - dat secretary
 	rooms["KELLY'S OFFICE"] = new RoomClass(this);
 	rooms["KELLY'S OFFICE"].roomName = "XENOGEN\nOFFICE";
-	rooms["KELLY'S OFFICE"].description = "The inside of this office is decorated in the style of high class terrans, with wood grain floors and eggshell-toned walls illuminated by angled glowbulbs. A few potted plants sit around the periphery, obviously non-native. Well-conceiled vents in the ceilings feed a steady influx of purified, cooled air into this chamber to keep it comfortable. Across the room is an expansive desk equipped with everything you would expect to find on a classy secretary's desk: a terminal, old-fashioned writing utensils, holopaper, and even a small statue of a busty centaur. A monolithic white door sits framed in the western wall, while a simpler one is in the southern, leading back outside.";
+	rooms["KELLY'S OFFICE"].description = "The inside of this office is decorated in the style of high class terrans, with wood grain floors and eggshell-toned walls illuminated by angled glowbulbs. A few potted plants sit around the periphery, obviously non-native. Well-conceiled vents in the ceilings feed a steady influx of purified, cooled air into this chamber to keep it comfortable. Across the room is an expansive desk equipped with everything you would expect to find on a classy secretary’s desk: a terminal, old-fashioned writing utensils, holopaper, and even a small statue of a busty centaur. A monolithic white door sits framed in the western wall, while a simpler one is in the southern, leading back outside.";
 	rooms["KELLY'S OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["KELLY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["KELLY'S OFFICE"].westExit = "JULIAN'S OFFICE";
@@ -1205,8 +1205,8 @@ public function initMhengaRooms():void
 
 	//91. Julian's Office
 	rooms["JULIAN'S OFFICE"] = new RoomClass(this);
-	rooms["JULIAN'S OFFICE"].roomName = "SCIENTIST'S\nOFFICE";
-	rooms["JULIAN'S OFFICE"].description = "The pure white, self-illuminating walls, floor, and ceiling provide a perfectly uniform distribution of luminance, lending the whole space a dream-like, heavenly quality. More strange than the lighting is the desk that curves through the northern half of this chamber. It's carved from one solid piece of translucent material that reflects the light into dazzling patterns of hypnotizing shine. The doorway to the east is the same featureless alabaster. It doesn't even have a doorknob, instead relying on proximity scanners and motorized retractors to slide it out of the way and into the wall. This place feels nothing like the rest of Esbeth.";
+	rooms["JULIAN'S OFFICE"].roomName = "SCIENTIST’S\nOFFICE";
+	rooms["JULIAN'S OFFICE"].description = "The pure white, self-illuminating walls, floor, and ceiling provide a perfectly uniform distribution of luminance, lending the whole space a dream-like, heavenly quality. More strange than the lighting is the desk that curves through the northern half of this chamber. It’s carved from one solid piece of translucent material that reflects the light into dazzling patterns of hypnotizing shine. The doorway to the east is the same featureless alabaster. It doesn’t even have a doorknob, instead relying on proximity scanners and motorized retractors to slide it out of the way and into the wall. This place feels nothing like the rest of Esbeth.";
 	rooms["JULIAN'S OFFICE"].runOnEnter = juliansOffice;
 	rooms["JULIAN'S OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["JULIAN'S OFFICE"].system = "SYSTEM: ARA ARA";
@@ -1216,7 +1216,7 @@ public function initMhengaRooms():void
 	
 	//92. Crazy Carls
 	rooms["CRAZY CARLS"] = new RoomClass(this);
-	rooms["CRAZY CARLS"].roomName = "CRAZY\nCARL'S";
+	rooms["CRAZY CARLS"].roomName = "CRAZY\nCARL’S";
 	rooms["CRAZY CARLS"].description = "";
 	rooms["CRAZY CARLS"].runOnEnter = carlsShopDescription;
 	rooms["CRAZY CARLS"].planet = "PLANET: MHEN'GA";
@@ -1228,7 +1228,7 @@ public function initMhengaRooms():void
 	//93. Medical Office
 	rooms["ESBETH MEDICAL OFFICE"] = new RoomClass(this);
 	rooms["ESBETH MEDICAL OFFICE"].roomName = "MEDICAL\nOFFICE";
-	rooms["ESBETH MEDICAL OFFICE"].description = "The inside of the medical office is about as ramshackle and rundown as the outside of the shack. Standard manufactured alumiplate forms the walls, and the floor is made of the same bland, reflective stuff. Discarded wrappers and bits of clothing are scattered everywhere. There isn't even a trash receptacle anywhere to put it into. More importantly, a single bed is built into the east wall, covered in fresh fabric of one kind or another. The only piece of equipment that looks moderately well-maintained is a seemingly worn chair close to the bed.\n\nThe door to the west leads back to the streets of Esbeth.";
+	rooms["ESBETH MEDICAL OFFICE"].description = "The inside of the medical office is about as ramshackle and rundown as the outside of the shack. Standard manufactured alumiplate forms the walls, and the floor is made of the same bland, reflective stuff. Discarded wrappers and bits of clothing are scattered everywhere. There isn’t even a trash receptacle anywhere to put it into. More importantly, a single bed is built into the east wall, covered in fresh fabric of one kind or another. The only piece of equipment that looks moderately well-maintained is a seemingly worn chair close to the bed.\n\nThe door to the west leads back to the streets of Esbeth.";
 	rooms["ESBETH MEDICAL OFFICE"].runOnEnter = mhengaMedicalThingerBonusFunc;
 	rooms["ESBETH MEDICAL OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["ESBETH MEDICAL OFFICE"].system = "SYSTEM: ARA ARA";
@@ -1315,7 +1315,7 @@ public function initMhengaRooms():void
 
 	rooms["VALLEY FLOOR"] = new RoomClass(this);
 	rooms["VALLEY FLOOR"].roomName = "VALLEY\nFLOOR";
-	rooms["VALLEY FLOOR"].description = "You are standing at the bottom of a thick, misty valley, surrounded by colossal trees covered in luminous lichen. The pulsing colors light up the eerily thick mist. This doesn't feel like a safe place to be standing. The temperature here is very cold and it is very wet.\n\nTo the north there is a path leading up and out of the fog filled valley. You seem free to move in any other direction, but the fog makes it hard to see what awaits you there.";
+	rooms["VALLEY FLOOR"].description = "You are standing at the bottom of a thick, misty valley, surrounded by colossal trees covered in luminous lichen. The pulsing colors light up the eerily thick mist. This doesn’t feel like a safe place to be standing. The temperature here is very cold and it is very wet.\n\nTo the north there is a path leading up and out of the fog filled valley. You seem free to move in any other direction, but the fog makes it hard to see what awaits you there.";
 	rooms["VALLEY FLOOR"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["VALLEY FLOOR"].planet = "PLANET: MHEN'GA";
 	rooms["VALLEY FLOOR"].system = "SYSTEM: ARA ARA";
@@ -1329,7 +1329,7 @@ public function initMhengaRooms():void
 
 	rooms["MISTY VALLEY 1"] = new RoomClass(this);
 	rooms["MISTY VALLEY 1"].roomName = "MISTY\nVALLEY";
-	rooms["MISTY VALLEY 1"].description = "Gigantic, ghostly trees tower around you, looming within the pervasive mist. Flickering sparks, which you know to be lichen, wink at you from every direction, like a million glowing eyes staring at you.\n\nIt's hard to find your way here. There's mist in every direction, and the ground is flat and wet. Which way will you go?";
+	rooms["MISTY VALLEY 1"].description = "Gigantic, ghostly trees tower around you, looming within the pervasive mist. Flickering sparks, which you know to be lichen, wink at you from every direction, like a million glowing eyes staring at you.\n\nIt’s hard to find your way here. There’s mist in every direction, and the ground is flat and wet. Which way will you go?";
 	rooms["MISTY VALLEY 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["MISTY VALLEY 1"].planet = "PLANET: MHEN'GA";
 	rooms["MISTY VALLEY 1"].system = "SYSTEM: ARA ARA";
@@ -1343,7 +1343,7 @@ public function initMhengaRooms():void
 
 	rooms["MISTY VALLEY 2"] = new RoomClass(this);
 	rooms["MISTY VALLEY 2"].roomName = "MISTY\nVALLEY";
-	rooms["MISTY VALLEY 2"].description = "Pale, monolithic trees loom all around you, like ancient gods watching your every move. You can't see the canopy at all, nor much of anything else through the thick fog that surrounds you. Bioluminescent lines run up each tree like arteries of light, blinking and pulsing.\n\nYou almost step into a small river to the north-east as you are blinded by the opaque mist. The only safe ways to walk seem to be east or south.";
+	rooms["MISTY VALLEY 2"].description = "Pale, monolithic trees loom all around you, like ancient gods watching your every move. You can’t see the canopy at all, nor much of anything else through the thick fog that surrounds you. Bioluminescent lines run up each tree like arteries of light, blinking and pulsing.\n\nYou almost step into a small river to the north-east as you are blinded by the opaque mist. The only safe ways to walk seem to be east or south.";
 	rooms["MISTY VALLEY 2"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["MISTY VALLEY 2"].planet = "PLANET: MHEN'GA";
 	rooms["MISTY VALLEY 2"].system = "SYSTEM: ARA ARA";
@@ -1399,7 +1399,7 @@ public function initMhengaRooms():void
 
 	rooms["DEEP MIST 1"] = new RoomClass(this);
 	rooms["DEEP MIST 1"].roomName = "DEEP\nMIST";
-	rooms["DEEP MIST 1"].description = "The fog here is so thick you can barely see in front of your nose, and that's dangerous. You're not sure if your next step is going to meet solid ground, or be over the edge of a ravine. Given that you can't see where you're going, it seems smart to turn back.\n\nYou're pretty sure you came from the north. Thankfully, your Codex remembers which way that is.";
+	rooms["DEEP MIST 1"].description = "The fog here is so thick you can barely see in front of your nose, and that’s dangerous. You’re not sure if your next step is going to meet solid ground, or be over the edge of a ravine. Given that you can’t see where you’re going, it seems smart to turn back.\n\nYou’re pretty sure you came from the north. Thankfully, your Codex remembers which way that is.";
 	rooms["DEEP MIST 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["DEEP MIST 1"].planet = "PLANET: MHEN'GA";
 	rooms["DEEP MIST 1"].system = "SYSTEM: ARA ARA";
@@ -1427,7 +1427,7 @@ public function initMhengaRooms():void
 
 	rooms["NARROW GORGE 1"] = new RoomClass(this);
 	rooms["NARROW GORGE 1"].roomName = "NARROW\nGORGE";
-	rooms["NARROW GORGE 1"].description = "The fog seems a bit thinner here. You're standing on the edge of a narrow gorge that runs from the east. You can hear a trickling at the bottom and can see an easy way down. There's also a fallen tree spanning the gorge offering an easy way across.\n\nYou could follow the gorge to the east and downstream, or head north or south. The felled tree looks sturdy so you're fairly sure it will hold your weight. ";
+	rooms["NARROW GORGE 1"].description = "The fog seems a bit thinner here. You’re standing on the edge of a narrow gorge that runs from the east. You can hear a trickling at the bottom and can see an easy way down. There’s also a fallen tree spanning the gorge offering an easy way across.\n\nYou could follow the gorge to the east and downstream, or head north or south. The felled tree looks sturdy so you’re fairly sure it will hold your weight. ";
 	rooms["NARROW GORGE 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["NARROW GORGE 1"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW GORGE 1"].system = "SYSTEM: ARA ARA";
@@ -1441,7 +1441,7 @@ public function initMhengaRooms():void
 
 	rooms["NARROW GORGE 2"] = new RoomClass(this);
 	rooms["NARROW GORGE 2"].roomName = "NARROW\nGORGE";
-	rooms["NARROW GORGE 2"].description = "This narrow gorge runs to the east with a small creek running through its center. It trickles down from the west where a small path leads up and out of the gorge. Walls of earth surround you on the other sides, looming like the sides of a massive grave.\n\nIt's hard to walk here without getting your [pc.feet] wet. The temperature is noticeably cooler, but at least there's less mist about. ";
+	rooms["NARROW GORGE 2"].description = "This narrow gorge runs to the east with a small creek running through its center. It trickles down from the west where a small path leads up and out of the gorge. Walls of earth surround you on the other sides, looming like the sides of a massive grave.\n\nIt’s hard to walk here without getting your [pc.feet] wet. The temperature is noticeably cooler, but at least there’s less mist about. ";
 	rooms["NARROW GORGE 2"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["NARROW GORGE 2"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW GORGE 2"].system = "SYSTEM: ARA ARA";
@@ -1511,7 +1511,7 @@ public function initMhengaRooms():void
 
 	rooms["CLOUD FOREST 1"] = new RoomClass(this);
 	rooms["CLOUD FOREST 1"].roomName = "CLOUD\nFOREST";
-	rooms["CLOUD FOREST 1"].description = "You are surrounded by pale, majestic trees of impossible height that stretch skyward and out of view. The area is misty but in chunks, fog lining the ground like a blanket while other portions wrap intimately around the ancient monoliths.\n\nThis whole area seems peaceful and the air is crisp and cool. It feels oddly peaceful, unlike the rest of the Mhen'gan jungle. You're aware that appearances can be deceiving.\n\nA mess of tree roots to the north and south bar your path. Everywhere else seems fair game.";
+	rooms["CLOUD FOREST 1"].description = "You are surrounded by pale, majestic trees of impossible height that stretch skyward and out of view. The area is misty but in chunks, fog lining the ground like a blanket while other portions wrap intimately around the ancient monoliths.\n\nThis whole area seems peaceful and the air is crisp and cool. It feels oddly peaceful, unlike the rest of the Mhen’gan jungle. You’re aware that appearances can be deceiving.\n\nA mess of tree roots to the north and south bar your path. Everywhere else seems fair game.";
 	rooms["CLOUD FOREST 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["CLOUD FOREST 1"].planet = "PLANET: MHEN'GA";
 	rooms["CLOUD FOREST 1"].system = "SYSTEM: ARA ARA";

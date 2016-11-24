@@ -98,19 +98,19 @@ public function holidayMenu():void
 		addButton(1,"GoblinSuit",goblinCostume,undefined,"Goblin","You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits");
 		addButton(2,"Helmet",metroidMaskParody,undefined,"Helmet","This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits");
 		if(!pc.hasGenitals()) addDisabledButton(3,"Armor","Armor","Looks like that outfit is for people with genitalia.");
-		else if(flags["MET_SYRI"] == undefined) addButton(3,"Armor",greenArmor,undefined,"Armor","There's a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You're pretty sure it's modeled after some video game character. The armor's probably not real, but it'll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
-		else addButton(3,"Armor",greenArmor,undefined,"Armor","There's a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You're pretty sure it's modeled after some video game character... didn't you see Syri playing as this chick once? The armor's probably not real, but it'll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
+		else if(flags["MET_SYRI"] == undefined) addButton(3,"Armor",greenArmor,undefined,"Armor","There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character. The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
+		else addButton(3,"Armor",greenArmor,undefined,"Armor","There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character... didn’t you see Syri playing as this chick once? The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
 		if(pc.isTaur()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur... though you have a tauric lower half already.");
-		else if(pc.isPregnant()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur. To avoid complications, you probably shouldn't wear this while pregnant.");
+		else if(pc.isPregnant()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur. To avoid complications, you probably shouldn’t wear this while pregnant.");
 		else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(4,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
 		else addDisabledButton(4,"HorseSuit","HorseSuit","You need to have made it to the second planet (and have genitals) for this choice.");
 	}
 	else
 	{
-		addDisabledButton(1,"GoblinSuit","GoblinSuit","You can't afford this junk. Crap.");
-		addDisabledButton(2,"Helmet","Helmet","You can't afford this junk. Crap.");
-		addDisabledButton(3,"Armor","Armor","You can't afford this junk. Crap.");
-		addDisabledButton(4,"HorseSuit","Horse Suit","You can't afford this junk. Crap.");
+		addDisabledButton(1,"GoblinSuit","GoblinSuit","You can’t afford this junk. Crap.");
+		addDisabledButton(2,"Helmet","Helmet","You can’t afford this junk. Crap.");
+		addDisabledButton(3,"Armor","Armor","You can’t afford this junk. Crap.");
+		addDisabledButton(4,"HorseSuit","Horse Suit","You can’t afford this junk. Crap.");
 	}
 	addButton(14,"Leave",leaveLikeABitch);
 }
@@ -224,7 +224,7 @@ public function chooseDatGobboCostume():void
 	output("Goblins are spooky, right? This should be enough to get through that creepy wall of stares that frustrated you before. After Holiday collects her payment, she gestures at a curtained corner of the room. <i>“Feel free to change here,”</i> she offers, hoisting herself daintily atop one of the crates and leaning back to rest her head against the wall. <i>“I mean, unless you strip down in public regularly. If that’s your thing, that’s cool, I’m just offering.”</i>");
 	output("\n\nYou protest, ");
 	if(!pc.isNude()) output("asking what you’re supposed to do with your [pc.gear]. <i>“Man, you can’t wear clothing under a bodysuit,”</i>");
-	else output("asking what you're supposed to do with your equipment. <i>“Man, you can’t wear a backpack or a tablet under a bodysuit,”</i>");
+	else output("asking what you’re supposed to do with your equipment. <i>“Man, you can’t wear a backpack or a tablet under a bodysuit,”</i>");
 	output(" she chides, heels slowly kicking against the crate. <i>“It’d look all lumpy and dumb. Have a little class. I’ll watch your shit for you tonight and you can pick it up after you’re done partying.”</i> She tilts her head to the side, pink hair falling across her cat-like yellow eyes. <i>“Don’t you trust me?”</i> The crate she’s sitting on lets out a deep, rumbling growl, which she silences with a crunching blow from her knuckles on the container’s reinforced lid.");
 	output("\n\nYou haven’t met very many people less trustworthy than this woman, but the alternative is another long trip back to your ship and your time to enjoy the festivities is running out. Fuck it, you decide. Grabbing your costume in both arms, you head to the curtained corner,");
 	if(!pc.isNude()) output(" stripping out of your [pc.gear] and");
@@ -1448,8 +1448,8 @@ public function taurDickSexScene():void
 	pc.lust(200);
 	clearMenu();
 	//[Ma’andi] [Sa’andi]
-	addButton(0,"Ma'andi",fuckLeithansAsTaur,"Ma'andi","Ma'andi","She's the one in the black spandex getup.");
-	addButton(1,"Sa'andi",fuckLeithansAsTaur,"Sa'andi","Sa'andi","You'd prefer the sister in the lace.");
+	addButton(0,"Ma’andi",fuckLeithansAsTaur,"Ma'andi","Ma’andi","She’s the one in the black spandex getup.");
+	addButton(1,"Sa’andi",fuckLeithansAsTaur,"Sa'andi","Sa’andi","You’d prefer the sister in the lace.");
 }
 
 public function leithanSister(arg:String):String
@@ -1588,14 +1588,14 @@ public function maleTaurSubbyEpilogue():void
 {
 	clearOutput();
 	showName("HOURS\nLATER...")
-	output("Your memories of the night are an indistinct blur of humping, drinking, and cumming. No matter how times you did your best to paint the bar, you never got more than a few hands on your cock, draining your oozy horse-cock into laughing mouths or sloshing cups. You aren't even sure how many times you came, just that your balls ache like they've been pumped dry.");
+	output("Your memories of the night are an indistinct blur of humping, drinking, and cumming. No matter how times you did your best to paint the bar, you never got more than a few hands on your cock, draining your oozy horse-cock into laughing mouths or sloshing cups. You aren’t even sure how many times you came, just that your balls ache like they’ve been pumped dry.");
 	output("\n\nMore disturbing is the fact that you woke up onboard your ship... and that you aren’t on the planet any longer. You don’t remember anything about setting out into space - rearing up on a table and letting a galotian squeeze your load out onto Holidays tits? Sure, but nothing about the trip back to your ship. Heck, you’re even pretty sure that a curvy leithan snuck her tail up your ass while you were spanked by some white-furred ausar lass.");
 	pc.buttChange(250);
 	output(" You came harder than ever, but you’re feeling pretty sore now.");
 	output("\n\nIt isn’t until you check your ship’s logs that you stumble upon some clarity. There’s a new message, one you didn’t put in there. You hit play, bringing it up on the main screen. A cute, white-furred kaithrit pops up on screen, waving nervously.");
 	output("\n\n<i>“Hey, I don’t know what you were on about when you said that the whole centaur thing was just a costume. I mean... damn, you must have been slipped something at the bar. It’s pretty obvious you got some high-quality mods to produce that piece of work.”</i> She chuckles and looks behind herself at your slumbering form. <i>“You might not remember me from the party. It was pretty fun - you can cum like a void-cursed geyser with the right encouragement, right show-pony?”</i>");
 	output("\n\nThe kaithrit rubs her belly and burps. <i>“You were super out of it by the time the cops busted up the party. You should’ve seen the gear those peacekeepers were fitted with. They looked more like soldiers than officers of the law. From what I heard while me and that pink-haired girl were dragging you out the back, they were looking for some thief that made off with a bunch of symbiosis tech. Crazy shit, right?”</i> She tucks her hair behind a flicking cat ear and smiles.");
-	output("\n\n<i>“Lucky for you, I work in customs. Between me and your friend, Christmas or Halloday or whatever she called herself, we got you back to your ship, and I’ll be sending you off world in a minute. You seemed too nice, and well... submissive to do anything wrong. Don't let the other girls be too mean to you out there, okay?”</i> The kaithrit nervously smiles. <i>“Oh, and your friend says she stashed your stuff in the compartments under your bunk. Uhmm... goodbye, in case I don’t see you again, you sexy centaur, you.”</i>");
+	output("\n\n<i>“Lucky for you, I work in customs. Between me and your friend, Christmas or Halloday or whatever she called herself, we got you back to your ship, and I’ll be sending you off world in a minute. You seemed too nice, and well... submissive to do anything wrong. Don’t let the other girls be too mean to you out there, okay?”</i> The kaithrit nervously smiles. <i>“Oh, and your friend says she stashed your stuff in the compartments under your bunk. Uhmm... goodbye, in case I don’t see you again, you sexy centaur, you.”</i>");
 	output("\n\nBlushing one last time, the cat-girl cuts off the recording, leaving you alone with your thoughts.");
 	output("\n\nWait! <b>You’re still wearing the costume...</b>");
 	processTime(450);
@@ -1607,7 +1607,7 @@ public function maleTaurSubCostumeFinale():void
 {
 	clearOutput();
 	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
-	output("\n\nWell, at least you’ll be well-equipped to mate with some mares, if they'll let you near their pussies. Maybe they'll let you flood a few milkers to prove your worth...");
+	output("\n\nWell, at least you’ll be well-equipped to mate with some mares, if they’ll let you near their pussies. Maybe they’ll let you flood a few milkers to prove your worth...");
 	output("Something seems a little off about that thought, but the mental image of a half-dozen girls crouching beneath you, giggling while they handle your jizz-swollen orbs has your cock threatening to rear its flaring head all over again, and who are you gonna find to help you get off in the cold void of space?");
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasVagina()) output(", male");
