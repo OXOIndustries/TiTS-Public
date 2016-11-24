@@ -1468,6 +1468,12 @@ public function variableRoomUpdateCheck():void
 	//Place/remove Semith's NPC flag from his apartment based on time.
 	if (hours > 17) rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].addFlag(GLOBAL.NPC);
 	else rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].removeFlag(GLOBAL.NPC);
+	//Zheniya's schedule
+	if (zilCallgirlAtNursery())
+	{
+		if (hours >= 8 && hours <= 16) rooms["RESIDENTIAL DECK ZHENIYA"].removeFlag(GLOBAL.NPC);
+		else rooms["RESIDENTIAL DECK ZHENIYA"].addFlag(GLOBAL.NPC);
+	}
 	//Nursery
 	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16))
 	{
