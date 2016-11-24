@@ -1079,11 +1079,11 @@ package classes.Items.Transformatives
 					target.lipColor = "black";
 				}
 				
-				if (!target.hasPerk("Androgyny"))
+				if (target.femininity < 45 || target.femininity > 55)
 				{
-					AddLogEvent("Your fox's muzzle has grown so distinctly vulpine that few, if any human features remain on your face. The slender vulpine muzzle gives you a rather androgynous appearance.\n\n(<b>Perk Gained: Androgyny</b> - Your animalistic visage maintain an androgynous appearance that would befit either gender.)", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
-					target.createPerk("Androgyny", 1, 0, 0, 0, "Your animalistic visage maintain an androgynous appearance that would befit either gender.");
+					ExtendLogEvent(" Your fox's muzzle has grown so distinctly vulpine that few, if any human features remain on your face. The slender vulpine muzzle gives you a rather androgynous appearance.");
 				}
+				target.femininity = 50;
 				
 				return false;
 			}
@@ -1094,6 +1094,12 @@ package classes.Items.Transformatives
 					target.addFaceFlag(GLOBAL.FLAG_MUZZLED);
 					
 					AddLogEvent("Your face begins to tingle, and is followed by a tugging sensation between your eyes. Your nose pushes outwards, widening slightly as it grows, until it rests upon your face as the signature thin <b>muzzle of a fox</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+				
+					if (target.femininity < 45 || target.femininity > 55)
+					{
+						ExtendLogEvent(" Your fox's muzzle has grown so distinctly vulpine that few, if any human features remain on your face. The slender vulpine muzzle gives you a rather androgynous appearance.");
+					}
+					target.femininity = 50;
 					
 					return false;
 				}

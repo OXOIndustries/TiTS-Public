@@ -344,6 +344,7 @@ package classes.Items.Transformatives
 					target.faceFlags = [GLOBAL.FLAG_MUZZLED, GLOBAL.FLAG_BEAK];
 					if (!Foxfire.colorsMatching(target)) target.lipColor = "ivory";
 					target.lipMod = -10;
+					target.femininity = 50;
 				});
 			}
 			
