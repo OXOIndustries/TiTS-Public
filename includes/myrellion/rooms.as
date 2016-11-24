@@ -1604,7 +1604,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["840"] = new RoomClass(this);
 	rooms["840"].roomName = "MANOR\nWAR ROOM";
-	rooms["840"].description = "840";
+	rooms["840"].description = "";
 	rooms["840"].system = "SYSTEM: SINDATHU";
 	rooms["840"].planet = "PLANET: MYRELLION";
 	rooms["840"].eastExit = "834";
