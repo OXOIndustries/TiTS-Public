@@ -68,6 +68,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Myr Fungus", myrFungusCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Bothrioc", bothriocCodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Enessa", enessaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
@@ -2204,6 +2205,53 @@ public function crystalGooCodexEntry():void
 	CodexManager.viewedEntry("Ganrael");
 }
 
+public function bothriocCodexEntry():void
+{
+	clearOutputCodex();
+	outputCodex(header("Bothrioc"));
+	outputCodex("<b>Name (Singular & Plural):</b> Bothrioc");
+	outputCodex("\n<b>Sexes:</b> Monogendered, generally regarded as feminine. A subtype comprising less than 5% of the population are known as the “quadommes” due to their tendency to keep a large harem of submissives and their unique physical characteristics.");
+	outputCodex("\n<b>Height:</b> 5’6” pidemme, 7’6” quadomme.");
+	outputCodex("\n<b>Weight:</b> 150 pidemme, 300lbs quadomme.");
+	outputCodex("\n<b>Life Expectancy:</b> Upwards of 90 years. Low fertility and primitive understanding of medicine keeps population growth slow.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Physical Characteristics"));
+	outputCodex("Bothrioc are a white-skinned, four-armed humanoid species with extensive, flexible chitinous armor. The only places on their body that have skin are the stomach beneath the ribs, the head and major joints such as the groin, armpits and buttocks. Their noseless faces are mostly free of chitin, but for a few plates that sculpt their features. Where these plates form differ from bothrioc to bothrioc, although all have an upper and lower lip plate creating smooth, thin, hard lips that nevertheless are fully capable of articulation. Furthermore, their foreheads possess the only skin tone plate of chitin on their body, which blends in seamlessly to the skin around it, but is grooved to direct sweat away from their eyes in lieu of the more common eyebrow seen amongst most species. All bothrioc have solid-color eyes, ranging from dark brown to iridescent purple to pitch black. Bothrioc can see in the dark better than most species, relying on a light reflection system to enhance dim conditions. In complete darkness they are as blind as any other.");
+	outputCodex("\n\nBothrioc ears are sensitive and have a chitinous coat that dampens incoming sounds, limiting the amount of damage loud noises may otherwise do to them. Sensorially bothrioc largely rely on a small pair of antennae embedded just behind the hairline that are angled straight up. These pick up minute vibrations and allow them to detect movement relative to their position. Amongst other things, this feature of bothrioc anatomy is crucial to their famous trapdoor ambush as it allows them to detect when prey enter their range without having to see them. Furthermore, the antennae are capable of picking up scents, though bothrioc tend to have peculiar preferences in scent compared to other species due to the unusual structure of this olfactory organ.");
+	outputCodex("\n\nThey possess no definite secondary sexual characteristics, giving off an intense impression of androgyny. They are generally identified as feminine due to their tendency toward lean muscle and flared hips, but essentially no bothrioc will be offended if referred to in the masculine or feminine. ");
+	outputCodex("\n\nBothrioc possess good strength all around, but are notable for their extreme agility. The traditional hunting technique of bothrioc is to lie in wait with a spear and bolas, then spring out of hiding while letting loose a pair of bolas, followed by rapidly closing the distance to attack with their spear. Generally, most prey animals are dead before they are able to make a move. In modern times, bothrioc are adept gunslingers and tend to favor rapiers and other quick, thrusting implements when in melee combat. The bothrioc are no strangers to psychological warfare and will attempt to tease or dominate opponents not defeated in the first strike whenever appropriate.");
+	outputCodex("\n\nAll bothrioc possess a chitinous abdomen analogous to a tail above their buttocks, which is their reproductive organ, a complex ovipositor. Other than this organ, they only possess a cloaca situated between their buttocks.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Quadommes"));
+	outputCodex("The “quadomme” bothrioc, also known as harem-queens, have two unique adaptations from their brethren. The most noteworthy is their larger ovipositing abdomens: These contain a functioning silk spinnerette which they can use to produce durable and adhesive webs. The second is that they possess four legs, allowing them to rest comfortably atop one of their large webs. The legs are arranged in a diamond configuration such that two legs point forward and two back. The legs are longer on a dominatrix bothrioc than their cousins which allows them to maintain height comparable to their standing kin even with their knees completely relaxed, and while they can get into a respectable running gait, they find it uncomfortable and are unlikely to be distance runners. These adaptations have resulted in a change in their predation habits from being solitary mobile predators to sedate entrapment predators. This mindset causes them to collect lovers as well as food, and they will generally keep submissive bothrioc or other suitable incubators around for many years. Successful dominatrixes occasionally have as few as ten such incubators but up to as many as two hundred, according to one legend of a bothrioc warlord.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("The reproductive habits of bothrioc are complex and have only recently become understood by the limited research teams able to travel around the cave systems of Myrellion.");
+	outputCodex("\n\nGenerally speaking, the species creates a dominant and submissive role between two members when they meet, if one of them feels the desire to reproduce. One partner assumes dominance by force or persuasion, inserting their ovipositor into the ovipositor of the submissive party and retrieving some of the fluid within the reserve. This fluid, which serves as a lubricant and psychoaffective when used for oviposition, is able to fertilize eggs when taken into the ovipositing cavity of a bothrioc. Some debate exists about the viability of potential insemination using other fluids; as no alien researcher has been willing to engage in intercourse with the ovipositor, it remains uncertain. It is theorized that any genetic-material delivery fluid will suffice, as it has been shown a nyrean male can fertilize bothrioc eggs.");
+	outputCodex("\n\nHaving taken their fertilization fluid from the submissive party, the dominant will then insert their ovipositor into the cloaca of the submissive party to begin oviposition. Alternatively, they will elect to hunt down a different submissive to lay the eggs into, depending upon taste. The eggs themselves are round and somewhat pliable, getting firmer as the young within mature and need more protection. The eggs are noted to be about 5” across and of a distinct, dark violet hue when laid. ");
+	outputCodex("\n\nThe effects of the slime that accompanies eggs from their ovipositor are incredibly versatile. First, it acts as a lubricant, easing passage for both the dominant and submissive parties. Second, it acts as a fertilizer or semen-analogue, as discussed above. Third, it is mildly adhesive to egg shells and strongly adhesive to itself, creating a situation in which eggs attach to the lining of whatever orifice they are in surrounded by a substantial bubble of the slime. Fourth, it carries a hormonal and psychoaffective payload.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Psychoactive Effects"));
+	outputCodex("Hormonally, bothrioc reproductive oil carries many oestrogen and progesterone analogues, which in most species will have a feminizing effect as well as an uptick in sex drive due to a more minute amount of testosterone. In a technically-genderless species like bothrioc, there is little to no effect on secondary sexual characteristics, but instead these hormones serve as a trigger to reduce egg production and increase slime production within their ovipositing abdomens. As such, a repeated submissive is pushed further and further into the fertilizing role and becomes less and less effective when ovipositing. The hormones used in egg production, however, are self-reinforcing. A bothrioc who has reason to produce more eggs, for example, having deposited them or having had them deteriorate, will experience a mild increase in egg production. As such, a dominant bothrioc will eventually produce vast amounts of eggs, but a submissive bothrioc is not eternally caught on the submissive side if they seek to change.");
+	outputCodex("\n\nThe psychoaffective payload, however, may keep a submissive member of the bothrioc on the submissive side. These chemicals produce low-level euphoria and suggestibility through the duration of egg incubation, reaching a peak during the final evacuation of the eggs, generally guaranteeing orgasm and, due to heightened suggestibility, firmly entrenching the idea in the egg-layer’s mind that carrying and laying eggs is an activity they enjoy and would like to experience again. Thanks to the suggestibility throughout the incubation, an incubator is more easily acquired by another dominant bothrioc for further oviposition if they have currently unimpregnated orifices.");
+	outputCodex("\n\nWhile the psychoaffective payload’s effects are not inherently permanent, they are self-reinforcing and will eventually achieve permanence within the subject’s mind on repeated or intense exposure. The end result of this, easily observable among the harems of dominatrix bothrioc, is an extremely carefree and happy state of mind, resulting in low willpower and high libido. Many have assumed that this results in intelligence loss, however when sufficiently invested in something the submissives have tested to have mental faculties within the standard deviations of their species and notably some geniuses.Their altered state of mind does, on occasion, result in such a disconnect from usual affairs that the subjects become less capable of understanding someone who is not motivated by sex. Additionally, their speech becomes peppered with frequent vocalized pauses to collect their thoughts as well as a changing vocabulary reflecting their general pleasure with life and lack of desire to be serious or be particularly invested in matters most would consider important.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Intelligence"));
+	outputCodex("Bothrioc are sentient, sapient, language-using predators. They lack much of a distinctive culture due to their solitary nature. They hunt alone, and usually only seek each other out for reproductive or sexual satisfaction. As such, while they are not actively shunned by the myr that rule the surface, they have little say in the affairs of the world above or below. Dominant bothrioc are excellent tacticians and cavern combat experts, typically have excellent vision unlike the myr, and have been occasionally hired by both sides as commanders for troops, especially when plotting surgical strikes. They lack a head for numbers and have fallen out of favor in the trench warfare currently underway on Myrellion.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("History"));
+	outputCodex("Traditionally apex predators, the bothrioc’s inability to collectively organize has resulted in them been completely outstripped by the myr and even the nyrea, so have little to no say in the wider affairs of the planet, occupying the same political position the similarly-minded wetraxxal do. If bothrioc were removed from the planet today, there would be little evidence they existed aside from mentions in myr records.");
+	outputCodex("\n\nThe long history between bothrioc and the two myr species is recorded universally by the latter and is thus biased. What can be understood to be true is that bothrioc have enjoyed a sort of mixed fascination and revulsion from the myr, as evidenced by their twin nicknames of “Egg-Giver” and “Egg-Beast.” In fact, most tales the myrs tell of bothrioc are twinned with one variant favoring them and another casting them down. Gold myr tell of a beautiful queen who came to be enthralled of a bothrioc lover. In one telling, the bothrioc became her consort and inseminated the queen via her ovipositor, and also gave the queen eggs to build a sizable bothrioc family at the palace in addition to the royal family. In another telling, the bothrioc was in fact of the dominatrix subspecies, and stole the queen away to the deeper caverns where she simply became another pet in the harem. Both tellings are uncharacteristic of bothrioc behavior as they neither form families nor do they kidnap their harems, generally. What this and dozens of other tales tell the anthropologist is that bothrioc have always participated in history alongside the myr, whether as slaves, merchants, prostitutes, generals or royalty.");
+	outputCodex("\n\nThe bothrioc and the nyrea are the source of the native variant on the phrase “getting along like cats and dogs.” This is largely due to the difference in value between a nyrean male and a nyrean female as far as bothrioc are concerned. A nyrean male is the ultimate prize, as with one docking it is possible to fertilize eggs, deposit them, and take in a second dose of semen to fertilize the next batch when they are ready, a veritable sexual one-stop shop. Meanwhile, bothrioc have almost no interest in attempting to take nyrean women due to the lack of fertile material and their tendency to struggle and fight back. This doesn’t stop dominant bothrioc from mounting a surprise attack to drop some eggs for spite, even in the nyrean’s own ovipositor, which results in a dual-pregnancy when she inevitably uses her ovipositor on some hapless submissive. Nyrean women will of course take every opportunity to take advantage of the submissive bothrioc in the same way the dominant bothrioc are known to take advantage of them, and it is not unknown for a bothrioc’s ambush to be botched, allowing the nyrean to turn the tables on a dominant as well. That the two share the same habitat results in many such interactions happening on a regular basis, which is what caused the myr to coin the phrase “fighting and fucking like the both and nyr.”");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Bothrioc");
+}
 
 /* Uveto */
 
@@ -3155,6 +3203,7 @@ public function rhenWorldCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("RhenWorld");
 }
+
 public function snuggleCodex():void
 {
 	clearOutputCodex();
@@ -3168,6 +3217,7 @@ public function snuggleCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Snugglé");
 }
+
 public function steeleTechCodex():void
 {
 	clearOutputCodex();
@@ -3181,6 +3231,7 @@ public function steeleTechCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Steele Tech");
 }
+
 public function xenogenCodex():void
 {
 	clearOutputCodex();
@@ -3209,6 +3260,7 @@ public function blackVoidCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Black Void");
 }
+
 public function jointAusarFederationCodex():void
 {
 	clearOutputCodex();
@@ -3224,6 +3276,7 @@ public function jointAusarFederationCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("J.A.F.");
 }
+
 public function scarletFederationCodex():void
 {
 	clearOutputCodex();
@@ -3238,6 +3291,7 @@ public function scarletFederationCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Scarlet Federation");
 }
+
 public function terranSpaceCoalitionCodex():void
 {
 	clearOutputCodex();
@@ -3253,6 +3307,7 @@ public function terranSpaceCoalitionCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("T.S.C.");
 }
+
 public function unitedGalacticConfederacyCodex():void
 {
 	clearOutputCodex();
@@ -3270,13 +3325,12 @@ public function unitedGalacticConfederacyCodex():void
 	CodexManager.viewedEntry("U.G.C.");
 }
 
-
 /* Religions */
 
 public function stormguardCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("STORMGUARD");
 	outputCodex(header("Stormguard"));
 	outputCodex("A neo-pagan religion whose roots can largely be traced to Terra, the Stormguard are best described as a warrior-cult. They advertise themselves as dedicated to honor, prowess, and a connection to nature, wherein they believe the gods lie.");
 	outputCodex("\n\nStormguard priests teach that holiness is found in one’s strength. Because of their eagerness to prove their prowess, Stormguard have developed something of a mercenary reputation on the frontier, as they are commonly hired on as muscle by private security and planet rusher groups. Those who do not venture into the void in search of battles are often found on the most hostile and storm-wracked planets in the galaxy, which they view as being the closest places to their mercurial gods.");
@@ -3289,4 +3343,3 @@ public function stormguardCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Stormguard");
 }
-

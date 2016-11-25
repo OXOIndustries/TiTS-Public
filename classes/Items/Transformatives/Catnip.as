@@ -306,7 +306,7 @@ package classes.Items.Transformatives
 				changes++;
 			}
 			
-			if (modFem(target, 100, 15, false))
+			if (modFem(target, 50, 15, false))
 			{
 				output("\n\nYou feel a slight change in your facial structure. When they finish, <b>your gender traits are less pronounced</b>!");
 				changes++;
