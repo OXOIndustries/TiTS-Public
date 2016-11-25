@@ -941,7 +941,7 @@ public function drLessauBonus():Boolean
 	}
 	else
 	{
-		output("\n\nDr. Lessau is here as usual, the chimera tapping away at his terminal until he sees you come in");
+		output("\n\nDr. Lessau is here as usual, the chimera tapping away at his terminal until he sees you come in.");
 		addButton(0,"Lessau", drLessauIPresume)
 	}
 	
