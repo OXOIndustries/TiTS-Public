@@ -2211,8 +2211,8 @@ public function bothriocCodexEntry():void
 	outputCodex(header("Bothrioc"));
 	outputCodex("<b>Name (Singular & Plural):</b> Bothrioc");
 	outputCodex("\n<b>Sexes:</b> Monogendered, generally regarded as feminine. A subtype comprising less than 5% of the population are known as the “quadommes” due to their tendency to keep a large harem of submissives and their unique physical characteristics.");
-	outputCodex("\n<b>Height:</b> 5’6” pidemme, 7’6” quadomme.");
-	outputCodex("\n<b>Weight:</b> 150 pidemme, 300lbs quadomme.");
+	outputCodex("\n<b>Height:</b> 5\' 6\" pidemme, 7\' 6\" quadomme.");
+	outputCodex("\n<b>Weight:</b> 150 lbs pidemme, 300 lbs quadomme.");
 	outputCodex("\n<b>Life Expectancy:</b> Upwards of 90 years. Low fertility and primitive understanding of medicine keeps population growth slow.");
 	outputCodex("\n\n");
 
