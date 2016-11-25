@@ -16616,6 +16616,7 @@
 			var removals:Array = new Array();
 			var cumDrain:Boolean = !hasPerk("No Cum Leakage");
 			var amountStored:Number = 0;
+			var omitNotice:Boolean = hasStatusEffect("Omit Cumflation Messages");
 
 			//Find the index value for various types of cumflation.
 			for(var x:int = 0; x < statusEffects.length; x++)
@@ -16689,7 +16690,7 @@
 						notice = "There's no lack of " + fluidNoun(statusEffects[z].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
 					
-					if (notice.length > 0)
+					if (!omitNotice && notice != "")
 					{
 						AddLogEvent(notice, "words", timePassed);
 						notice = "";
@@ -16749,10 +16750,10 @@
 						notice = "There's no lack of " + fluidNoun(statusEffects[a].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
 					
-					if (notice.length > 0)
+					if (!omitNotice && notice != "")
 					{
 						AddLogEvent(notice, "words", timePassed);
-						notice = ""
+						notice = "";
 					}
 				}
 				if(statusEffects[a].value1 <= 0) removals.push("Anally-Filled");
@@ -16809,10 +16810,8 @@
 				removeStatusEffect(removals[0]);
 				removals.splice(0,1);
 			}
-			if(notice != "")
+			if(!omitNotice)
 			{
-				if(hasStatusEffect("Omit Cumflation Messages")) return;
-				
 				if(amountStored >= (25000 / 4 / 2))
 				{
 					var delayTime:int = 30 * Math.floor(amountStored / 25000);
