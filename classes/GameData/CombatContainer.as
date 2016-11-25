@@ -1664,7 +1664,6 @@ package classes.GameData
 				// Failure to escape
 				if (target.hasStatusEffect("Mimbrane Smother"))
 				{
-					// lust tick
 					target.lust(10 + target.libido()/10);
 
 					//{fail to escape 1} 
@@ -1701,6 +1700,10 @@ package classes.GameData
 					{
 						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple("Escape Artist");
+						else if (hasEnemyOfClass(BothriocPidemme))
+						{
+							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. Shooting the bothrioc atop you a winning smile, you wriggle your way out from under them back between their legs, squirming out of your bindings as you take to your feet.");
+						}
 						else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
 						if(panicJack)
 						{
@@ -1730,6 +1733,10 @@ package classes.GameData
 							output("You manage to tear yourself out of the goo’s grasp, wrenching your limbs free one by one. She squeals as you pop yourself out of her, eyes crossing as her whole body quakes with the aftershocks.");
 							output("\n\n<i>“Aww, why do you have to be that way?”</i> she pouts, wiggling away from you.");
 						}
+						else if (hasEnemyOfClass(BothriocPidemme))
+						{
+							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the bolo.");
+						}
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
 						{
@@ -1748,6 +1755,10 @@ package classes.GameData
 					else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
 					else if (hasEnemyOfClass(GrayPrime) && target is PlayerCharacter) kGAMECLASS.grayPrimeFailEscape();
 					else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("Try as you might, struggling against the heavy ropes of the nyrea huntresses net, you just can’t find a way out of the net that has you restrained.");
+					else if (hasEnemyOfClass(BothriocPidemme))
+					{
+						output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. The bindings loosen a little, but your freedom is still out of reach... for now.");
+					}
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 					if(panicJack)
