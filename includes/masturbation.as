@@ -52,11 +52,11 @@ public function arousalMenu():void {
 	}
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 66)
 	{
-		output("Out here? In public?\n\n...Yeah, that'll do nicely.\n\n");
+		output("Out here? In public?\n\n...Yeah, that’ll do nicely.\n\n");
 	}
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33)
 	{
-		output("Out here? In public?\n\n...<b>it'll have to do</b>.\n\n");
+		output("Out here? In public?\n\n...<b>it’ll have to do</b>.\n\n");
 	}
 	
 	if(aborted)
@@ -113,7 +113,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		if(pc.isMilkTank())
 		{
 			clearOutput();
-			output("<b>You feel a strong urge to relieve the unbearable pressure your lactating mammaries are experiencing; but thanks to the enhancements to your [pc.fullChest], you are confident they won't ever stop - or even slow down - [pc.milk] production, and you find it easy to resist.</b>");
+			output("<b>You feel a strong urge to relieve the unbearable pressure your lactating mammaries are experiencing; but thanks to the enhancements to your [pc.fullChest], you are confident they won’t ever stop - or even slow down - [pc.milk] production, and you find it easy to resist.</b>");
 			clearMenu();
 			addButton(0, "Next", function():void 
 			{
@@ -303,7 +303,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			fap = new FapCommandContainer();
 			fap.text = "Panty Fap";
 			fap.ttHeader = "Panty Fap";
-			fap.ttBody = "Use a pair of panties that you've collected as a cumrag.";
+			fap.ttBody = "Use a pair of panties that you’ve collected as a cumrag.";
 			fap.func = futaBabePantyfapsRouter;
 			fap.ignoreRandomSelection = false;
 			faps.push(fap);
@@ -318,7 +318,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			fap = new FapCommandContainer();
 			fap.text = "PantySchlick";
 			fap.ttHeader = "PantySchlick";
-			fap.ttBody = "Use a pair of panties that you've collected as fuel for feminine masturbation.";
+			fap.ttBody = "Use a pair of panties that you’ve collected as fuel for feminine masturbation.";
 			fap.func = futaBabePantySchlicksRouter;
 			fap.ignoreRandomSelection = false;
 			faps.push(fap);
@@ -364,8 +364,8 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	if(pc.hasKeyItem("Vi's Vagina"))
 	{
 		fap = new FapCommandContainer();
-		fap.text = "Vi's Vagina";
-		fap.ttHeader = "Vi's Vagina";
+		fap.text = "Vi’s Vagina";
+		fap.ttHeader = "Vi’s Vagina";
 		fap.ttBody = "Use the vagina you took from the V-Ko droid on Myrellion to sate yourself.";
 		fap.func = viPussyFapScene;
 		faps.push(fap);
@@ -376,7 +376,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap = new FapCommandContainer();
 		fap.text = "CuffSelf";
 		fap.ttHeader = "Cuff Yourself";
-		fap.ttBody = "You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull or cow to give you a reaming.";
+		fap.ttBody = "You bet that if you cuffed yourself naked somewhere public, there’d be at least one randy bull or cow to give you a reaming.";
 		fap.func = cuffSelfRouter;
 		faps.push(fap);
 	}
@@ -404,7 +404,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap = new FapCommandContainer();
 		fap.text = "BubbleBuddy";
 		fap.ttHeader = "Bubble Buddy";
-		fap.ttBody = "Smaller and thinner than a  normal onahole but larger than a prophylactic, the lilac-colored Bubble Buddy is a self-lubricating pocket pussy that will \"contain and sustain\" the semen of its user. Though only six inches long, the gelatinous surface seems VERY stretchy.";
+		fap.ttBody = "Smaller and thinner than a normal onahole but larger than a prophylactic, the lilac-colored Bubble Buddy is a self-lubricating pocket pussy that will “contain and sustain” the semen of its user. Though only six inches long, the gelatinous surface seems VERY stretchy.";
 		fap.func = jackIntoDaBubbleBooty;
 		faps.push(fap);
 	}
@@ -475,13 +475,13 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	//Exhibitionist fap! - overrides all other faps
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 66)
 	{
-		output("Out here? In public?\n\n...Yeah, that'll do nicely.\n\n");
+		output("Out here? In public?\n\n...Yeah, that’ll do nicely.\n\n");
 		
 		addButton(0,"Exhibitionism",goddamnitJimTAndYourExhibitionism);
 		//Special new texas shit
 		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 		{
-			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
+			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there’d be at least one randy bull to give you a reaming.");
 		}
 		addButton(14,"Back",mainGameMenu);
 		return;
@@ -489,13 +489,13 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	//Low Exhibitionist fap! - overrides all other faps
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33)
 	{
-		output("Out here? In public?\n\n...<b>it'll have to do</b>.\n\n");
+		output("Out here? In public?\n\n...<b>it’ll have to do</b>.\n\n");
 		
 		addButton(0,"Exhibitionism",moderateExhibitionOmniFap);
 		//Special new texas shit
 		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 		{
-			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
+			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there’d be at least one randy bull to give you a reaming.");
 		}
 		addButton(14,"Back",mainGameMenu);
 		return;
@@ -503,15 +503,15 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	//Pussy out, unless you're being force-fapped.
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.libido() < 70)
 	{
-		if(pc.libido() < 10) output("You'd never even consider masturbating in public!");
+		if(pc.libido() < 10) output("You’d never even consider masturbating in public!");
 		else if(pc.libido() < 20) {
-			output("No way. You aren't the kind of person that would masturbate in public");
+			output("No way. You aren’t the kind of person that would masturbate in public");
 			if(pc.lust() >= 75) output(", no matter how horny you are!");
 			else output(".");
 		}
-		else if(pc.libido() < 30) output("The galaxy may be a wide-open place with all kinds of different social norms concerning publicly self-satisfying sexual needs, but you're too nervous to engage in that sort of thing yourself.");
-		else if(pc.libido() < 40) output("This is a public place! You aren't keen on the idea of masturbating here. Maybe slip back to somewhere a little more private.");
-		else if(pc.libido() < 50) output("You aren't the kind of person to just drop trou and take care of business in public, even if it would be kind of hot.")
+		else if(pc.libido() < 30) output("The galaxy may be a wide-open place with all kinds of different social norms concerning publicly self-satisfying sexual needs, but you’re too nervous to engage in that sort of thing yourself.");
+		else if(pc.libido() < 40) output("This is a public place! You aren’t keen on the idea of masturbating here. Maybe slip back to somewhere a little more private.");
+		else if(pc.libido() < 50) output("You aren’t the kind of person to just drop trou and take care of business in public, even if it would be kind of hot.")
 		else if(pc.libido() < 60) 
 		{
 			output("Yeah, you definitely want to masturbate, but this is a public place! Everyone would be able to see you there with your [pc.butt] in the dirt, ");
@@ -519,28 +519,28 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 			else if(pc.hasVagina()) output("grinding your [pc.vaginas] like wild.");
 			else output("playing with yourself like some kind of wild animal.");
 			pc.lust(5);
-			output(" Fuck! Now you're even hornier.");
+			output(" Fuck! Now you’re even hornier.");
 		}
 		else 
 		{
-			output("You consider masturbating here, but ultimately, you can't. It doesn't matter that having people watching you masturbating would be totally hot. You're still too nervous about it all. What if someone took a picture and put it up on the extranet? You can imagine the tabloids now: some garish headline plastered above a picture of you with both hands");
+			output("You consider masturbating here, but ultimately, you can’t. It doesn’t matter that having people watching you masturbating would be totally hot. You’re still too nervous about it all. What if someone took a picture and put it up on the extranet? You can imagine the tabloids now: some garish headline plastered above a picture of you with both hands");
 			if(pc.hasCuntTail() && pc.hasCock()) output(" pumping your cunt-tail up and down on [pc.oneCock].");
 			else if(pc.hasCock() && pc.canAutoFellate(-1)) output(" aiming your wildly orgasming cock into your own mouth, your [pc.lips] sealed tightly about the head.");
 			else if(pc.hasCock()) output(" vigorously pumping at [pc.oneCock].");
 			else if(pc.hasVagina()) output(" doing your level best to fist [pc.oneVagina], your other hand toying with a [pc.nipple].");
 			else output(" roaming licentiously across your own body.");
-			output("\n\nYou whimper. The idle thoughts have you feeling even hotter now. You'd better find a good place to relieve yourself.");
+			output("\n\nYou whimper. The idle thoughts have you feeling even hotter now. You’d better find a good place to relieve yourself.");
 		}
 		output("\n\n(70 libido or sufficient exhibitionism experience is required to masturbate in public spaces.)");
 		aborted = true;
 		if(pc.perkv1("'Nuki Nuts") > 0) 
 		{
-			output("\n\n<b>No! You have to do this! You're getting too swollen not to!</b> You'll have to just blush and bear it!");
+			output("\n\n<b>No! You have to do this! You’re getting too swollen not to!</b> You’ll have to just blush and bear it!");
 			aborted = false;
 		}
 		else if(roundTwo)
 		{
-			output("\n\n<b>No! You have to - you're too turned on from milking yourself!");
+			output("\n\n<b>No! You have to - you’re too turned on from milking yourself!");
 			aborted = false;
 		}
 		output("\n\n");
@@ -639,7 +639,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 public function tailCockCeliseFaps():void {
 	clearOutput();
 	author("Savin");
-	output("God damn you're horny.");
+	output("God damn you’re horny.");
 	output("\n\nYou breathe a lusty sigh as the heat of arousal courses through your body, demanding release. You ");
 	if(pc.armor.shortName != "") output("strip out of your [pc.armor] and ");
 	output("toss your gear aside before flopping down on your bed, ");
@@ -648,18 +648,18 @@ public function tailCockCeliseFaps():void {
 	output(" as you grab your codex tablet and hook it into its stand at your bedside. Opening up the extranet, you flick through a quick search for free porn. Your hand idly reaches around as you scroll, grabbing your [pc.tailCock] and gently stroking it to hardness as you search, browsing past a dozen quick vids of buxom women and chisel-chested men of a dozen races, all oiled up with bodies entangled in myriad erotic poses. Hot. Your stroking slowly picks up in pace");
 	if(pc.biggestTitSize() > 1) output(", your hand occasionally trailing from the tablet to grope and squeeze your [pc.chest], pinching the hardening teats atop them");
 	output(".");
-	output("\n\nIt takes a good long while to finally find a good vid: one you think you can actually stomach all the way through. One of the actors is a little butter-faced, but hey, the curves on the other one... damn. Oh, that's nice.... You stroke harder and faster as the foreplay starts in earnest, a meaty cock finding a nice sheath in an alien girl's mouth, making her throat bulge with the gene-spliced boy's massive girth. Your tail-wang writhes in your hand, straining against your grasp as you jerk it, the first pearly beads forming at your tip.");
-	output("\n\nThe way it pools and dribbles in your hand makes you think of a certain galotian who's probably about ready for a snack. Getting a nice and dirty thought forming in your mind, you key the ship's intercom and call the goo-girl up to your quarters for a meal at the captain's mess. She's quick on her... uh... gooey amorphus mass... and before the first blowjob scene's over, you hear a faint knock on your door. About as heavy as a goo-girl can manage, given her make-up. You call, <i>“Enter,”</i> shooting the green girl a grin, making sure she can see exactly what's on screen and just how hard your [pc.tailCock] is.");
-	output("\n\nShe may not be a genius, but Celise's cock-hungry nature takes the fore as she slithers over, her blobby mass of green gel rolling over itself as she approaches, a great big smile on her face. <i>“Oooh, I don't get to come up here much,”</i> she says, looking around your cabin with mock interest, her eyes never leaving the cock in your hand. <i>“But if I knew there were going to be treats like that, I'd be up here like, every day.”</i>");
+	output("\n\nIt takes a good long while to finally find a good vid: one you think you can actually stomach all the way through. One of the actors is a little butter-faced, but hey, the curves on the other one... damn. Oh, that’s nice.... You stroke harder and faster as the foreplay starts in earnest, a meaty cock finding a nice sheath in an alien girl’s mouth, making her throat bulge with the gene-spliced boy’s massive girth. Your tail-wang writhes in your hand, straining against your grasp as you jerk it, the first pearly beads forming at your tip.");
+	output("\n\nThe way it pools and dribbles in your hand makes you think of a certain galotian who’s probably about ready for a snack. Getting a nice and dirty thought forming in your mind, you key the ship’s intercom and call the goo-girl up to your quarters for a meal at the captain’s mess. She’s quick on her... uh... gooey amorphus mass... and before the first blowjob scene’s over, you hear a faint knock on your door. About as heavy as a goo-girl can manage, given her make-up. You call, <i>“Enter,”</i> shooting the green girl a grin, making sure she can see exactly what’s on screen and just how hard your [pc.tailCock] is.");
+	output("\n\nShe may not be a genius, but Celise’s cock-hungry nature takes the fore as she slithers over, her blobby mass of green gel rolling over itself as she approaches, a great big smile on her face. <i>“Oooh, I don’t get to come up here much,”</i> she says, looking around your cabin with mock interest, her eyes never leaving the cock in your hand. <i>“But if I knew there were going to be treats like that, I’d be up here like, every day.”</i>");
 	output("\n\nYou feel a surge of affection at her eagerness, and quickly lay back down on your belly, tail wagging enticingly at the galotian in the closest facsimile to a <i>“come hither”</i> waggle as you can manage with a rock-hard pre-dripping tail-cock. Celise hops into your bed, snuggling up next to you, her flank sticking wetly to your [pc.skin]. <i>“Oooh, whatcha watching?”</i>");
-	output("\n\nYou hover a finger over the name of the vid, but the sudden insertion of a huge cock into a huge-titted bimbo's asshole opposite the two in her mouth gets the point across pretty quickly. Celise licks her lips as she watches the holo-vid progress, but you've got more in mind than just snuggling with a porno. You reach your tail around and nuzzle it against her cheek, letting it practically submerge in the hot, viscous gel of her body. With a squeal of delight, Celise rolls onto her back, taking your tail-cock in her mouth as her eyes keep trained on the vid. You let out a contented little sigh as your [pc.tailCock] finds a nice, warm, wet sheathe to hold it, but that turns into a low moan of pleasure as Celise's mouth starts to work its wonders, gyrating and washing over and around your cock rather than simply fellating it, getting the most out of her alien biology as her semi-liquid body churns around your member.");
-	output("\n\nMmmm, that's niiiiice. Your breath comes heavier as Celise suckles from your cock, little droplets of pre starting to float listlessly in her transparent head. You see a hand vanish down into her crotch, pleasuring her one constant feature -- her big, loose, gooey cunt - as she watches the porno progress from DP to cowgirl as the busty alien rides a huge cock, giving handies to two other males and a hung hermaphrodite pleasures herself with the whore's big tits. Following along herself, Celise pops your [pc.tailCock] out of her mouth, shifting it downward to her big, bouncy teats and locking it between them, binding your dick in a prison of soft warm goo-tit. Still raptly watching the orgy onscreen, Celise starts to squeeze and move her tits, wanking you off between the two huge orbs. You moan, hips wiggling happily as your cock is coated in green slime, slipping easily through her cleavage again and again, with just enough resistance to let you feel the cum bubbling up through your prick, making you even harder as your seed comes up to feed your gooey friend.");
-	output("\n\nWith your cock submerged in Celise's gooey tits, your orgasm mounts toward the inevitable, spurred on by her slick sliding tits as she moves them faster and faster. But just before your climax can come, the pornstar's position changes, the girl rolling onto all fours to be pounded in every hole by her lovers. A moment later, she slides up onto your back, flopping down atop you with breasts pressing into your back, hands stroking your shoulders soothingly as her big, bubbly buttcheeks lock around your [pc.tailCock], squeezing it ever so smoothly. Celise flexes her cheeks, massaging your prick as she works your shoulders, cheek nuzzling against your own as you watch the money shot, cum splattering everywhere on the bimbo's body, three cocks all coating her in a multi-colored spunk parade.");
-	output("\n\n<i>“You wanna cum, too?”</i> Celise asks, her breasts pressing down into your back, practically folding around you. Her ass never stops jacking you off, harder and faster until she's leaving you with little choice but to join in on the on-screen debauchery. With a grunt and a lusty moan, you feel the spunk traveling up your tail as you finally reach the pinnacle of pleasure, and a moment later Celise yelps with sudden glee as the first of many great [pc.cumColor] globs burst out from between her ass cheeks, raining down onto her back. She rolls over, mouth open wide as your spunk falls all over her, absorbed into her gooey body as she feeds on your sexual release.");
-	output("\n\nYou ride the orgasm out, humping your hips against her quivering body as Celise sucks up every drop you have to give her; soon she's got your cock plugged into her twat, wringing out anything that didn't burst onto her back moments before. When the [pc.cumColor] explosion comes to an end, Celise seems awfully pleased, rolling back onto her belly, practically wrapping your head in her giant tits as she plants a kiss on your head. <i>“That was a nice snack, cap'n. We should do this again sometime, like, soon.”</i>");
+	output("\n\nYou hover a finger over the name of the vid, but the sudden insertion of a huge cock into a huge-titted bimbo’s asshole opposite the two in her mouth gets the point across pretty quickly. Celise licks her lips as she watches the holo-vid progress, but you’ve got more in mind than just snuggling with a porno. You reach your tail around and nuzzle it against her cheek, letting it practically submerge in the hot, viscous gel of her body. With a squeal of delight, Celise rolls onto her back, taking your tail-cock in her mouth as her eyes keep trained on the vid. You let out a contented little sigh as your [pc.tailCock] finds a nice, warm, wet sheathe to hold it, but that turns into a low moan of pleasure as Celise’s mouth starts to work its wonders, gyrating and washing over and around your cock rather than simply fellating it, getting the most out of her alien biology as her semi-liquid body churns around your member.");
+	output("\n\nMmmm, that’s niiiiice. Your breath comes heavier as Celise suckles from your cock, little droplets of pre starting to float listlessly in her transparent head. You see a hand vanish down into her crotch, pleasuring her one constant feature -- her big, loose, gooey cunt - as she watches the porno progress from DP to cowgirl as the busty alien rides a huge cock, giving handies to two other males and a hung hermaphrodite pleasures herself with the whore’s big tits. Following along herself, Celise pops your [pc.tailCock] out of her mouth, shifting it downward to her big, bouncy teats and locking it between them, binding your dick in a prison of soft warm goo-tit. Still raptly watching the orgy onscreen, Celise starts to squeeze and move her tits, wanking you off between the two huge orbs. You moan, hips wiggling happily as your cock is coated in green slime, slipping easily through her cleavage again and again, with just enough resistance to let you feel the cum bubbling up through your prick, making you even harder as your seed comes up to feed your gooey friend.");
+	output("\n\nWith your cock submerged in Celise’s gooey tits, your orgasm mounts toward the inevitable, spurred on by her slick sliding tits as she moves them faster and faster. But just before your climax can come, the pornstar’s position changes, the girl rolling onto all fours to be pounded in every hole by her lovers. A moment later, she slides up onto your back, flopping down atop you with breasts pressing into your back, hands stroking your shoulders soothingly as her big, bubbly buttcheeks lock around your [pc.tailCock], squeezing it ever so smoothly. Celise flexes her cheeks, massaging your prick as she works your shoulders, cheek nuzzling against your own as you watch the money shot, cum splattering everywhere on the bimbo’s body, three cocks all coating her in a multi-colored spunk parade.");
+	output("\n\n<i>“You wanna cum, too?”</i> Celise asks, her breasts pressing down into your back, practically folding around you. Her ass never stops jacking you off, harder and faster until she’s leaving you with little choice but to join in on the on-screen debauchery. With a grunt and a lusty moan, you feel the spunk traveling up your tail as you finally reach the pinnacle of pleasure, and a moment later Celise yelps with sudden glee as the first of many great [pc.cumColor] globs burst out from between her ass cheeks, raining down onto her back. She rolls over, mouth open wide as your spunk falls all over her, absorbed into her gooey body as she feeds on your sexual release.");
+	output("\n\nYou ride the orgasm out, humping your hips against her quivering body as Celise sucks up every drop you have to give her; soon she’s got your cock plugged into her twat, wringing out anything that didn’t burst onto her back moments before. When the [pc.cumColor] explosion comes to an end, Celise seems awfully pleased, rolling back onto her belly, practically wrapping your head in her giant tits as she plants a kiss on your head. <i>“That was a nice snack, cap’n. We should do this again sometime, like, soon.”</i>");
 	output("\n\nYou nod, yawning powerfully as your tailcock slithers out of her, wrapping back around");
 	if(pc.legCount > 1) output(" one of");
-	output(" your [pc.legOrLegs]. To your surprise, though, the goo's already curled up on you, snoring softly. You sigh and reach back, patting her jiggling ass cheek before locking your arms under your own [pc.face] for a quick nap in the afterglow.");
+	output(" your [pc.legOrLegs]. To your surprise, though, the goo’s already curled up on you, snoring softly. You sigh and reach back, patting her jiggling ass cheek before locking your arms under your own [pc.face] for a quick nap in the afterglow.");
 	processTime(45 + rand(5));
 	pc.orgasm();
 	celise.orgasm();
@@ -718,8 +718,8 @@ public function vaginalFap():void {
 	output(" Your body gives a gentle shudder at that");
 	if(pc.hasTail()) output(", your [pc.tail] flicking wildly behind you");
 	output(".");
-	if(rooms[currentLocation].hasFlag(GLOBAL.BED)) output(" You're thankful to have a bed, and you lean back against the headboard, letting your [pc.legOrLegs] splay wide and twitch in a visible display of your enjoyment.");
-	else if(InShipInterior()) output(" You're thankful to be in the comfort of your ship and splay your [pc.legOrLegs] out as much as the ship will allow, flexing your muscles in rapacious enjoyment.");
+	if(rooms[currentLocation].hasFlag(GLOBAL.BED)) output(" You’re thankful to have a bed, and you lean back against the headboard, letting your [pc.legOrLegs] splay wide and twitch in a visible display of your enjoyment.");
+	else if(InShipInterior()) output(" You’re thankful to be in the comfort of your ship and splay your [pc.legOrLegs] out as much as the ship will allow, flexing your muscles in rapacious enjoyment.");
 	else
 	{
 		output(" You slump down against the nearest upright surface since your [pc.legOrLegs] seem");
@@ -750,7 +750,7 @@ public function vaginalFap():void {
 	}
 	output("\n\nYou moan, loud and low but inexorably rising higher with each touch and caress, each thrusting slip through your needy crevice. Arching your [pc.hips], you hump against your hand, grinding back into your quickly moving fingers");
 	if(pc.totalClits() > 0) output(", some plunging inside while others tend to [pc.oneClit]");
-	output(", your body practically on autopilot at this point - a quivering, pre-orgasm wreck. It's no surprise to you; this is what you wanted after all. A high pitched, keening whine escapes your [pc.lips] as you climb towards the peak of pleasure, and your fingers are rapidly becoming soaked with your [pc.girlCum].");
+	output(", your body practically on autopilot at this point - a quivering, pre-orgasm wreck. It’s no surprise to you; this is what you wanted after all. A high pitched, keening whine escapes your [pc.lips] as you climb towards the peak of pleasure, and your fingers are rapidly becoming soaked with your [pc.girlCum].");
 	
 	output("\n\nThen, it comes all at once, an explosion of ecstasy strong enough to make your eyes roll back and your body go on autopilot: fingers thrusting, [pc.hips] lurching, [pc.legOrLegs] quivering. Your wail turns into a lurid moan every bit as sloppy as your spasming [pc.vaginas]");
 	if(pc.isSquirter()) output(", just before you squirt out ribbons of [pc.girlCum]");
@@ -760,10 +760,10 @@ public function vaginalFap():void {
 	
 	if(pc.hasCock()) {
 		output("\n\nYour male anatomy goes off as well, triggered by the squelching blissplosions in your [pc.vaginas]. [pc.Cum] launches out of [pc.eachCock] in thick ropes onto your [pc.belly] and [pc.chest].");
-		if(pc.cumQ() < 25) output(" By the time you finish, you've got a nice little puddle there.");
-		else if(pc.cumQ() <= 100) output(" By the time you finish, you've soaked yourself and have thick ribbons of [pc.cumColor] goo rolling down either side of your [pc.hips].");
+		if(pc.cumQ() < 25) output(" By the time you finish, you’ve got a nice little puddle there.");
+		else if(pc.cumQ() <= 100) output(" By the time you finish, you’ve soaked yourself and have thick ribbons of [pc.cumColor] goo rolling down either side of your [pc.hips].");
 		else if(pc.cumQ() <= 300) {
-			output(" By the time you finish, you've soaked yourself in [pc.cumColor] from the waist to the neck in your lovegoo, and huge streamers of the stuff are running off you to puddle on the ");
+			output(" By the time you finish, you’ve soaked yourself in [pc.cumColor] from the waist to the neck in your lovegoo, and huge streamers of the stuff are running off you to puddle on the ");
 			if(rooms[currentLocation].hasFlag(GLOBAL.BED)) output("bed");
 			else if(InShipInterior()) output("deck");
 			else output("ground");
@@ -771,7 +771,7 @@ public function vaginalFap():void {
 			applyCumSoaked(pc);
 		}
 		else {
-			output(" It never really seems to end, not until you've splattered huge [pc.cumColor] gobs across your [pc.face] a half-dozen times and thoroughly painted the whole of your body with the seed-filled fluid.");
+			output(" It never really seems to end, not until you’ve splattered huge [pc.cumColor] gobs across your [pc.face] a half-dozen times and thoroughly painted the whole of your body with the seed-filled fluid.");
 			if(pc.cumQ() >= 10000) output(" Warm wetness rises up around you as you finish out, blissed out and semi-conscious.");
 			applyCumSoaked(pc);
 			if(pc.cumQ() > 5000) applyCumSoaked(pc);
@@ -792,7 +792,7 @@ public function vaginalFap():void {
 public function singleDickFap():void {
 	clearOutput();
 	clearList();
-	if(pc.isNude() || pc.isCrotchExposed()) output("You sigh and stretch, letting [pc.eachCock] hang free. Sometimes, it's good to be nude. You");
+	if(pc.isNude() || pc.isCrotchExposed()) output("You sigh and stretch, letting [pc.eachCock] hang free. Sometimes, it’s good to be nude. You");
 	else {
 		if(!pc.isCrotchExposedByArmor() && pc.hasArmor()) {
 			output("You go ahead and pop open the bottom half of your [pc.armor]");
@@ -801,16 +801,16 @@ public function singleDickFap():void {
 		}
 		else output("You go ahead and pull down your [pc.lowerUndergarment] to free [pc.eachCock], and you");
 	}
-	output(" idly reach down to toy with [pc.oneCock], grabbing hold and feeling it fill out in your palm, stiffening in anticipatory lust - not that you needed any more. You're plenty horny, and you begin to stroke, working yourself towards greater levels of pleasure with great vigor, pumping hard and fast on your ");
+	output(" idly reach down to toy with [pc.oneCock], grabbing hold and feeling it fill out in your palm, stiffening in anticipatory lust - not that you needed any more. You’re plenty horny, and you begin to stroke, working yourself towards greater levels of pleasure with great vigor, pumping hard and fast on your ");
 	if(pc.cockTotal() > 1) output("chosen ");
 	output(" phallus. The [pc.cockHead] plumps up nice and full in your grip, already swelling out to its full size");
 	if(pc.hasCockFlag(GLOBAL.FLAG_FLARED)) output(", the flare dangerously expanding already");
 	output(", hot, lusty, and ready for action.");
 	//In ship? Pull up porno!
 	if(InShipInterior()) {
-		output("\n\nWith your other hand, you manipulate the ship's computer to pull up some pornography from the extranet. At first, all you get are a bunch of pop-up holos about getting a space-order bride, pirating music, and cleaning malware off your computer systems, but eventually, you hit the jackpot");
+		output("\n\nWith your other hand, you manipulate the ship’s computer to pull up some pornography from the extranet. At first, all you get are a bunch of pop-up holos about getting a space-order bride, pirating music, and cleaning malware off your computer systems, but eventually, you hit the jackpot");
 		if(silly) output(": XMiniatureGiantSpaceHamster.com");
-		output(". There's four breasted whores from Omikron Perseus VI, three-cocked trannies masturbating, and even missionary sex in the missionary position for the sole purpose of procreation. You scroll through, picking video after video, watching increasingly debauched activities until [pc.eachCock] feels so full that it could burst.");
+		output(". There’s four breasted whores from Omikron Perseus VI, three-cocked trannies masturbating, and even missionary sex in the missionary position for the sole purpose of procreation. You scroll through, picking video after video, watching increasingly debauched activities until [pc.eachCock] feels so full that it could burst.");
 	}
 	//Bottom of dick intro
 	var selector:Array = new Array();
@@ -835,7 +835,7 @@ public function singleDickFap():void {
 	else if(temp == GLOBAL.FLAG_STINGER_BASED) {
 		output("\n\nYou start by gently feeling around the base of your shaft, letting your wriggling tendrils brush your knuckles, their stinging venom both painful and pleasant all at once. A chemical excitement spreads up your arm, darkening the [pc.skin]");
 		if(pc.skinType != GLOBAL.SKIN_TYPE_SKIN) output(" under your [pc.skinFurScales]");
-		output(", exciting your heart until you feel it's about to thud its way out of your chest. A ripple of sensual pleasure spreads out from your crotch as the venom circulates through your bloodstream to its goal.");
+		output(", exciting your heart until you feel it’s about to thud its way out of your chest. A ripple of sensual pleasure spreads out from your crotch as the venom circulates through your bloodstream to its goal.");
 	}
 	//Nothing special:
 	else output("\n\nYou start by gently caressing yourself, twisting your fingers around your dick, caressing the sensitive underside of your dick as your lasciviousness mounts. Every contact of [pc.skinFurScales] on skin sends electric currents of pleasure shooting through your body.");
@@ -851,23 +851,23 @@ public function singleDickFap():void {
 	
 	//Pointed
 	if(temp == GLOBAL.FLAG_TAPERED) {
-		output("\n\nSoon, you're panting with excitement, thrusting against your hand when your fingers touch the sensitive point to bury yourself back to down to your [pc.knot] in your hand's reflexively tight grip. You stroke up again, fondle yourself, and whine as your body forces you to thrust, embedding your pointed prick deep into your hand once more, pleasuring yourself with rapid humps and vice-like squeezes.");
+		output("\n\nSoon, you’re panting with excitement, thrusting against your hand when your fingers touch the sensitive point to bury yourself back to down to your [pc.knot] in your hand’s reflexively tight grip. You stroke up again, fondle yourself, and whine as your body forces you to thrust, embedding your pointed prick deep into your hand once more, pleasuring yourself with rapid humps and vice-like squeezes.");
 	}
 	//Flared
 	else if(temp == GLOBAL.FLAG_FLARED) {
-		output("\n\nSoon, you're panting with excitement, your [pc.hips] quivering as you dance your touches up past the middle of your flexing member. Your member gives a mighty shudder when you approach the flare, and that masculine ring thickens in response, engorging with fresh blood and becoming even more responsive to your touches.");
+		output("\n\nSoon, you’re panting with excitement, your [pc.hips] quivering as you dance your touches up past the middle of your flexing member. Your member gives a mighty shudder when you approach the flare, and that masculine ring thickens in response, engorging with fresh blood and becoming even more responsive to your touches.");
 		if(pc.isTaur()) output(" You fail to suppress a muted whinney as your body gives in to its animalistic instincts.");
 	}
 	//Anemone Wavy
 	else if(temp == GLOBAL.FLAG_STINGER_TIPPED) {
-		output("\n\nSoon, you're panting with excitement and stroking your hand up and down your length. It's hard and sensitive as you've come to expect, but on your upstrokes, you get to your favorite part: the squirming tendrils that ring your crown. They have all the sensitivity of your cocktip, but at the same time, they also move with their own independant skills and desires, slipping between your fingers and dosing you with even more of your own venom.");
+		output("\n\nSoon, you’re panting with excitement and stroking your hand up and down your length. It’s hard and sensitive as you’ve come to expect, but on your upstrokes, you get to your favorite part: the squirming tendrils that ring your crown. They have all the sensitivity of your cocktip, but at the same time, they also move with their own independant skills and desires, slipping between your fingers and dosing you with even more of your own venom.");
 	}
 	//Prehensile
 	else if(temp == GLOBAL.FLAG_PREHENSILE) {
-		output("\n\nSoon, you're panting with excitement and handling the [pc.cockTip], twitching excitedly as it squirms against your hand, wrapping around your wrist and tugging it to make it move faster. Your own cock is encouraging you to jack off, driving your arm with pistol-like speed, forcing you to drive your need even hire, until it becomes a palpable, almost tangible thing. You cry out and jack harder, faster, and your cock straightens out under the assault, letting you pleasure its entire length unimpeded.");
+		output("\n\nSoon, you’re panting with excitement and handling the [pc.cockTip], twitching excitedly as it squirms against your hand, wrapping around your wrist and tugging it to make it move faster. Your own cock is encouraging you to jack off, driving your arm with pistol-like speed, forcing you to drive your need even hire, until it becomes a palpable, almost tangible thing. You cry out and jack harder, faster, and your cock straightens out under the assault, letting you pleasure its entire length unimpeded.");
 	}
 	//Nothing special
-	else output("\n\nSoon, you are panting with excitement, your hips giving little upward lurches when you fondle your [pc.cockHead], letting your fingers play over it while you imagine it's actually some cute alien doing the touching.");
+	else output("\n\nSoon, you are panting with excitement, your hips giving little upward lurches when you fondle your [pc.cockHead], letting your fingers play over it while you imagine it’s actually some cute alien doing the touching.");
 	
 	//Precum addendum: requires high ball fullness or production!
 	if(pc.ballFullness >= 33 || pc.cumQ() >= 500) {
@@ -883,7 +883,7 @@ public function singleDickFap():void {
 			else output("They churn");
 			output(" in needy anticipation, clinging tighter to your body in the moment before you explode.");
 		}
-		else output(" A lusty heat surges through your core, pumping and squeezing as pressure grows, and you realize that you're about to explode.");
+		else output(" A lusty heat surges through your core, pumping and squeezing as pressure grows, and you realize that you’re about to explode.");
 	}
 	//Cumming!
 	output("\n\nAt that moment, your climax hits you, fissuring through your brain in cerebellum-cleaving tremors of pure bliss. Your [pc.cock] bloats as your rational thought shuts down, twitching in wild, uncontrolled spasms.");
@@ -905,10 +905,10 @@ public function singleDickFap():void {
 		output(" Thick spurt after thick spurt emerges from your cumslit, painting you from your [pc.belly] to your [pc.hair] in [pc.cumColor] relief.");
 	}
 	else if(pc.cumQ() <= 500) {
-		output(" Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human's by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
+		output(" Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human’s by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
 	}
 	else {
-		output(" Large torrents of [pc.cum] spray out of your cumslit with such vigor that you're able to watch them arc through the air before they rain down around you, each many times the size of a normal orgasm in its own right. The [pc.cumColor] rain slicks you from [pc.feet] to [pc.face], staining you the proof of your incredible virility");
+		output(" Large torrents of [pc.cum] spray out of your cumslit with such vigor that you’re able to watch them arc through the air before they rain down around you, each many times the size of a normal orgasm in its own right. The [pc.cumColor] rain slicks you from [pc.feet] to [pc.face], staining you the proof of your incredible virility");
 		if(pc.cumQ() < 1000) {}
 		else if(pc.cumQ() < 2000) output(", never mind the growing puddle below");
 		else if(pc.cumQ() <= 5000) output(", never mind the inch-deep puddle below");
@@ -917,7 +917,7 @@ public function singleDickFap():void {
 		else if(pc.cumQ() <= 30000) output(", never mind the rapidly-deepening lake below");
 		else if(pc.cumQ() <= 50000) {
 			if(rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR)) output(", never mind the swimming pool-like lake below");
-			else output(", never mind the room-flooding pool you've created");
+			else output(", never mind the room-flooding pool you’ve created");
 		}
 		else output(", never mind the physics-defying amount in the lake below");
 		output(".");
@@ -928,7 +928,7 @@ public function singleDickFap():void {
 		if(pc.cumQ() > 50000) applyCumSoaked(pc);
 	}
 	if(pc.libido() <= 33) output("\n\nYou exhale a few long, slow pants as you come down from that glorious, orgasmic high");
-	else if(pc.libido() <= 66) output("\n\nYou let out a dazed, happy smile now that you're sexually sated");
+	else if(pc.libido() <= 66) output("\n\nYou let out a dazed, happy smile now that you’re sexually sated");
 	else output("\n\nYou groan, wish you had time for a repeat performance");
 	output(", straighten yourself up a little, and prepare to resume your journeys.");
 	processTime(45 + rand(5));
@@ -939,28 +939,28 @@ public function singleDickFap():void {
 
 public function multiCockFap():void {
 	clearOutput();
-	output("There's no time like the present to deal with the insistent pulsations originating down south. You ");
+	output("There’s no time like the present to deal with the insistent pulsations originating down south. You ");
 	if(!pc.isNude() || (!pc.isCrotchExposed() && !pc.isChestExposed())) {
 		output("strip out of your ");
 		clearList();
 		if(pc.hasArmor() && !pc.isCrotchExposedByArmor()) addToList("[pc.armor]");
 		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment()) addToList("[pc.lowerUndergarment]");
 		if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) addToList("[pc.upperUndergarment]");
-		output(formatList() + " to expose your [pc.cocks]. With the multiple endowments that you bear, there's no doubt that this is going to be a very messy, if enjoyable, experience.");
+		output(formatList() + " to expose your [pc.cocks]. With the multiple endowments that you bear, there’s no doubt that this is going to be a very messy, if enjoyable, experience.");
 	}
-	else output("find yourself a good spot to settle your nude form and remove the few pieces of kit you keep with you. There's no point in making a mess of your equipment after all.");
+	else output("find yourself a good spot to settle your nude form and remove the few pieces of kit you keep with you. There’s no point in making a mess of your equipment after all.");
 	if(pc.libido() <= 33) {
-		output(" Your [pc.cocks] don't seem to react much to the changing environs, ");
+		output(" Your [pc.cocks] don’t seem to react much to the changing environs, ");
 		if(pc.lust() <= 50) output("aside from slowly stiffening thanks to a few quick pumps");
 		else output("aside from getting a little harder when your hands make contact with one of them");
 	}
-	else if(pc.libido() <= 66) output("Your [pc.cocks] react like slowly-rousing beasts, each one getting thicker, harder, and eager for contact as though they're aware of what's to come");
+	else if(pc.libido() <= 66) output("Your [pc.cocks] react like slowly-rousing beasts, each one getting thicker, harder, and eager for contact as though they’re aware of what’s to come");
 	else output("Your [pc.cocks] react like well-trained animals, stiffening to firm, full mast in seconds, so eager for pleasure that they bob in place excitedly whenever your hand comes close");
 	output(", and you sigh as your hands commence true self-pleasure.");
 	
 	//Two cocks: The ol' double-stroke
 	if(pc.cockTotal() == 2) {
-		output("\n\nYour groin seems perfectly made for you to masturbate; your [pc.cock 0] is in your right hand and your [pc.cock 1] is in your left. There's no worry of having a penis left out and trying to juggle it into some kind of rotation. You don't need to double-up both hands on one dick to try and increase the sensation. You can just... lie back and stroke. Up and down, you slide your hands on the slow journey, sometimes keeping them in a steady, matched rhythm, and other times alternating so that you jack up one while the other is on an oh-so-pleasurable downstroke.");
+		output("\n\nYour groin seems perfectly made for you to masturbate; your [pc.cock 0] is in your right hand and your [pc.cock 1] is in your left. There’s no worry of having a penis left out and trying to juggle it into some kind of rotation. You don’t need to double-up both hands on one dick to try and increase the sensation. You can just... lie back and stroke. Up and down, you slide your hands on the slow journey, sometimes keeping them in a steady, matched rhythm, and other times alternating so that you jack up one while the other is on an oh-so-pleasurable downstroke.");
 	}
 	var tailPussied:Boolean = false;
 	var titFucked:Boolean = false;
@@ -968,7 +968,7 @@ public function multiCockFap():void {
 	var sucked:Boolean = false;
 	//Three dicks+
 	if(pc.cockTotal() > 2) {
-		output("\n\nYour groin seems almost too bountiful, if such a thing is possible. There's all these wonderfully erect phalluses aching to be touched and yet you only have two hands to tend to them with.");
+		output("\n\nYour groin seems almost too bountiful, if such a thing is possible. There’s all these wonderfully erect phalluses aching to be touched and yet you only have two hands to tend to them with.");
 		if(pc.hasTailCunt() && pc.tailCount >= pc.cockTotal() - 2) {		
 			output(" Without a single thought from you, your ");
 			if(pc.cockTotal() > 3) output("tails snake around and cover");
@@ -979,12 +979,12 @@ public function multiCockFap():void {
 			tailPussied = true;
 		}
 		else if(pc.tailCount >= pc.cockTotal() - 2 && pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.tailType != GLOBAL.TYPE_HUMAN) {
-			output(" Lucky for you, you've got [pc.tails] that are more than capable of wrapping around an unclaimed tool and stroking up and down, letting you please every single cock at once in a symphony of pleasure ");
+			output(" Lucky for you, you’ve got [pc.tails] that are more than capable of wrapping around an unclaimed tool and stroking up and down, letting you please every single cock at once in a symphony of pleasure ");
 			if(pc.cockTotal() >= 7) output("with so many different harmonies that it almost overloads your mind");
-			else output("so powerful that it's hard not to slip away into the ecstasy immediately");
+			else output("so powerful that it’s hard not to slip away into the ecstasy immediately");
 			output(".");
 		}
-		else output(" You aren't one to give up on a challenge, and you stroke yourself in earnest, letting each cock have a few strong pumps up and down before moving to the next of your many penises. You circle around, never staying on one cock too long, always moving to the next once it's aching for a touch, so much more sensitive after tasting a moment of denial.");
+		else output(" You aren’t one to give up on a challenge, and you stroke yourself in earnest, letting each cock have a few strong pumps up and down before moving to the next of your many penises. You circle around, never staying on one cock too long, always moving to the next once it’s aching for a touch, so much more sensitive after tasting a moment of denial.");
 	}
 	
 	
@@ -993,7 +993,7 @@ public function multiCockFap():void {
 		output("\n\n");
 		if(pc.cumQ() <= 25) output("After a while of this, single pearls of pre-cum bead on your tips to shine in the light, begging to be touched and smeared over your sexy, throbbing fuck-sticks.");
 		else if(pc.cumQ() <= 150) output("After a while of this, single droplets of pre bead from your cumslits. They are the vanguard of a small contingent of lubricating leakages that rolls down the surfaces of your [pc.cockHeads] in a delightful way.");
-		else output("After a while of this, big droplets of pre-cum emerge from your cumslits, one after another. Each is hot on the heels of its predecessor, and in moments, your multitudinous masts are wreathed in eager cock-slime. There's so much that the rest of your crotch grows sticky with the wet-hot mess.");
+		else output("After a while of this, big droplets of pre-cum emerge from your cumslits, one after another. Each is hot on the heels of its predecessor, and in moments, your multitudinous masts are wreathed in eager cock-slime. There’s so much that the rest of your crotch grows sticky with the wet-hot mess.");
 		output(" You gather up the distilled eagerness in the palm of each hand and firmly smear it down your lengths");
 		if(pc.cockTotal() > 2) {
 			output(", repeating the action ");
@@ -1016,7 +1016,7 @@ public function multiCockFap():void {
 	if(pc.hasVagina()) {
 		output("\n\n[pc.EachVagina] is hot and wet ");
 		if(pc.balls > 0) {
-			output("enough to soak the underside of your [pc.sack], but you're far too busy to give ");
+			output("enough to soak the underside of your [pc.sack], but you’re far too busy to give ");
 			if(pc.vaginaTotal() == 1) output("it");
 			else output("them");
 			output(" the fucking ");
@@ -1024,7 +1024,7 @@ public function multiCockFap():void {
 			else output("it deserves");
 			output(" right this minute. The sinful friction of your ball-skin against your vaginal lips will have to remain a simmering undercurrent of additional enjoyment while you focus on pleasing your pricks.");
 		}
-		else output("enough to look puffy and enticing, begging to be fucked, but you're far too busy with your pricks to divert into a simmering snatch right now.");
+		else output("enough to look puffy and enticing, begging to be fucked, but you’re far too busy with your pricks to divert into a simmering snatch right now.");
 	}
 	var choices:Array = new Array();
 	//Randomly select from available!
@@ -1040,15 +1040,15 @@ public function multiCockFap():void {
 	//Nipplefuck
 	if(select == 1) {
 		nippleFucked = true;
-		output("\n\nThe excitement builds inside you, but you aren't yet ready to cum. You've got wonderful little [pc.nipples] perfectly made to assist in this task, and you're ");
+		output("\n\nThe excitement builds inside you, but you aren’t yet ready to cum. You’ve got wonderful little [pc.nipples] perfectly made to assist in this task, and you’re ");
 		if(pc.cocks[0].cLength()/pc.tallness >= 1/5) output("plenty ");
 		output("long enough to pull it off. Bending forward, you lower your [pc.fullChest] to line up ");
 		if(pc.cockTotal() > 2) output("the pulsating phalluses lucky enough to be in your hands");
 		else output("the dual phalluses");
-		output(" with your chest-mounted dick-pleasers. When the paired pairs of sexual organs make contact, the resulting electric tingle nearly causes you to jerk them out of alignment. You manage to hold firm... barely, leaning down and pushing one [pc.cockHead] in your left side and one [pc.cockHead 1] in the other. Once you've sunk a few inches of phallic flesh directly into your ");
+		output(" with your chest-mounted dick-pleasers. When the paired pairs of sexual organs make contact, the resulting electric tingle nearly causes you to jerk them out of alignment. You manage to hold firm... barely, leaning down and pushing one [pc.cockHead] in your left side and one [pc.cockHead 1] in the other. Once you’ve sunk a few inches of phallic flesh directly into your ");
 		if(!pc.hasLipples()) output("squeezing cunt-nipples");
 		else output("suckling, fellating lipples");
-		output(", you hold your position, jacking up and down the exposed lengths while shifting your posture slightly to ensure there's a constant deluge of sensation assaulting the sensitive, paired glans.");
+		output(", you hold your position, jacking up and down the exposed lengths while shifting your posture slightly to ensure there’s a constant deluge of sensation assaulting the sensitive, paired glans.");
 		if(pc.totalNipples() > 2) output(" If only you had more hands to guide the rest into your other unoccupied tit-twats.");
 	}
 	//Single tailpussy, assumes the earlier tailpussy thing didn't happen. Requires a cock that fits.
@@ -1057,7 +1057,7 @@ public function multiCockFap():void {
 		output("\n\n");
 		if(pc.tailCount > 1) output("One of y");
 		else output("Y");
-		output("our [pc.tail] arcs around while you are handling your [pc.cocks] in a way that reminds you vaguely of a snake's sinuous slithering, only with dripping pussy-juice in place of baleful hissing. It quickly snaps down onto [pc.oneCockHead], butting its outstretched folds against it before parting them with a quick thrust downward, devouring much of the shaft. You throw back your head and moan out at the overwhelmingly blissful gratification of fucking a pussy and having an overly-sensitive pussy fucked all at the same. Meanwhile, the greedy tail-twat pushes down until it hits your fast-pumping knuckle, and there, it stops, squeezing tight and beginning to ripple in heavenly contractions that threaten to milk every drop of pre-cum from your body.");
+		output("our [pc.tail] arcs around while you are handling your [pc.cocks] in a way that reminds you vaguely of a snake’s sinuous slithering, only with dripping pussy-juice in place of baleful hissing. It quickly snaps down onto [pc.oneCockHead], butting its outstretched folds against it before parting them with a quick thrust downward, devouring much of the shaft. You throw back your head and moan out at the overwhelmingly blissful gratification of fucking a pussy and having an overly-sensitive pussy fucked all at the same. Meanwhile, the greedy tail-twat pushes down until it hits your fast-pumping knuckle, and there, it stops, squeezing tight and beginning to ripple in heavenly contractions that threaten to milk every drop of pre-cum from your body.");
 	}
 	//Hugecock lick - 1/6th body height and less than 1/2 body height or prehensile!.
 	else if(select == 3) {
@@ -1080,14 +1080,14 @@ public function multiCockFap():void {
 			else output("two");
 			output(" of your [pc.cocks]");
 		}
-		output(" into your cleavage and wrapping your arms around the whole mass, pinning the pre-leaking pricks into a valley of soft, supple [pc.skinFurScales] that you never want them to escape from. Once secure, you bounce yourself up and down along your lengths by leaning forward and back, letting your heavy breasts jiggle and shake around their charges, smothering yourself in the warm heaven of a bountiful bosom. It's so damn good that you have a hard time hanging to your senses - excepting touch, of course.");
+		output(" into your cleavage and wrapping your arms around the whole mass, pinning the pre-leaking pricks into a valley of soft, supple [pc.skinFurScales] that you never want them to escape from. Once secure, you bounce yourself up and down along your lengths by leaning forward and back, letting your heavy breasts jiggle and shake around their charges, smothering yourself in the warm heaven of a bountiful bosom. It’s so damn good that you have a hard time hanging to your senses - excepting touch, of course.");
 	}
 	//Can't quality for anything special, get half-assed scene.
 	else {
 		output("\n\nAt first, you try to keep your pace fairly steady, but the longer you go, the longer you stroke, the more anxious and jerky your hands become. Your [pc.hips] occasionally twitch as well, and your [pc.legOrLegs]");
 		if(pc.legCount == 1) output(" is");
 		else output(" are");
-		output(" soon shaking in excitement. Moaning, you pick up the tempo, pumping [pc.eachCock] with long, furious strokes. You feel almost possessed by the building pleasure (and consummately increasing pressure), forced past the point where you could stop if you wanted to. Now, the brake handle has snapped off, and you're on a one-way train to ecstasy.");
+		output(" soon shaking in excitement. Moaning, you pick up the tempo, pumping [pc.eachCock] with long, furious strokes. You feel almost possessed by the building pleasure (and consummately increasing pressure), forced past the point where you could stop if you wanted to. Now, the brake handle has snapped off, and you’re on a one-way train to ecstasy.");
 	}
 	//Stock pre-orgasm message
 	if(pc.balls > 0) {
@@ -1096,7 +1096,7 @@ public function multiCockFap():void {
 		else output("starts to lurch and churn");
 		output(" in your tightening [pc.sack] as a satisfying warmth spreads through your core, squeezed through internal passageways by involuntary clenching and contracting muscles.");
 	}
-	else output("\n\nThe muscles in your abdomen abruptly begin to tighten and contract, squeezing in ways that make your [pc.cocks] jump in your hands, and you feel a building sense of warmth that's spreading through your core.");
+	else output("\n\nThe muscles in your abdomen abruptly begin to tighten and contract, squeezing in ways that make your [pc.cocks] jump in your hands, and you feel a building sense of warmth that’s spreading through your core.");
 	output(" The further the heat spreads, the better it feels, and at the same time, the more you feel like you NEED to cum... to release all that pent-up, rising wave of passion before it overwhelms you.");
 	//JIZZBOMB!
 	output("\n\n");
@@ -1143,8 +1143,8 @@ public function multiCockFap():void {
 		else if(pc.cumQ() <= 15) output(", leaving you with a few nicely-sized blobs of [pc.cum] to swallow as you ride out the culmination of your masturbation session.");
 		else if(pc.cumQ() <= 50) output("filling your cheeks with a hot load of liquid bliss for you to hurriedly gulp down.");
 		else if(pc.cumQ() <= 200) output("flooding your cheeks with so much that you have to hurriedly gulp to keep it from leaking out your [pc.lips].");
-		else if(pc.cumQ() <= 750) output("stuffing your cheeks with so much that even with you hurriedly gulping there's still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
-		else output("flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you're likely unrecognizable.");
+		else if(pc.cumQ() <= 750) output("stuffing your cheeks with so much that even with you hurriedly gulping there’s still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
+		else output("flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you’re likely unrecognizable.");
 		output(" ");
 	}
 	//Bits for nipplefucking
@@ -1163,7 +1163,7 @@ public function multiCockFap():void {
 		else if(pc.hasSheath(0) || pc.hasSheath(1)) output("base and sheath");
 		else output("bases");
 		output(" and squeeze tight as you orgasm. ");
-		if(pc.cumQ() <= 5) output("[pc.Cum] shoots out in tiny, droplet-sized volleys. There's so little that you have to wonder if you should give your body time to recuperate or perhaps investigate something to decrease your refractory period.");
+		if(pc.cumQ() <= 5) output("[pc.Cum] shoots out in tiny, droplet-sized volleys. There’s so little that you have to wonder if you should give your body time to recuperate or perhaps investigate something to decrease your refractory period.");
 		else if(pc.cumQ() <= 25) output("[pc.Cum] launches out in average volleys, spilling droplets all over your [pc.belly] that combine into a fair-sized pool.");
 		else if(pc.cumQ() <= 100) output("[pc.Cum] shoots out in thick ropes of creamy bliss, splattering across your [pc.fullChest] and [pc.belly] in such quantity that it would shame a human.");
 		else if(pc.cumQ() <= 500) {
@@ -1186,7 +1186,7 @@ public function multiCockFap():void {
 	if(pc.libido() <= 25) output("\n\nYou wipe up as best you can and gear up after a few minutes of rest, feeling like you can take on the world.");
 	else if(pc.libido() <= 50) output("\n\nYou make a half-hearted attempt to wipe up before getting your gear back on and getting ready go back to exploring.");
 	else if(pc.libido() <= 75) output("\n\nYou barely bother to clear your sexual juices from your body before getting dressed and getting back to exploring the universe for sexy aliens to fuck.");
-	else output("\n\nYou get your gear back on without bothering to clean up. You're just going to find something to fuck anyway.");
+	else output("\n\nYou get your gear back on without bothering to clean up. You’re just going to find something to fuck anyway.");
 	processTime(45 + rand(5));
 	pc.orgasm();
 	if(tailPussied) pc.loadInCuntTail(pc);
@@ -1317,12 +1317,12 @@ public function milkturbation():void
 		else if(pc.milkFullness >= 75) output("engorged tips");
 		else if(pc.milkFullness < 25) output("sore nips");
 		else output("[pc.nipples]");
-		output(", something you're more than thankful for since you started lactating.");
+		output(", something you’re more than thankful for since you started lactating.");
 	}
 	//Clothed
 	else
 	{
-		output("Modesty is all well and good, but it's a pain in the ass to strip out of your [pc.upperGarments] just to drain your ");
+		output("Modesty is all well and good, but it’s a pain in the ass to strip out of your [pc.upperGarments] just to drain your ");
 		if(pc.milkFullness >= 200) output("achy, leaking teats");
 		else if(pc.milkFullness >= 150) output("[pc.milkNoun]-bloated teats");
 		else if(pc.milkFullness >= 100) output("swollen nips");
@@ -1335,7 +1335,7 @@ public function milkturbation():void
 	if(!InShipInterior())
 	{
 		output(" Looking around to ");
-		if(pc.libido() >= 75) output("make sure you've got an audience");
+		if(pc.libido() >= 75) output("make sure you’ve got an audience");
 		else output("make sure no one is looking too closely");
 	}
 	else output(" Setting comfortably in a quiet corner");
@@ -1346,7 +1346,7 @@ public function milkturbation():void
 	{
 		output("\n\nYou work your chest with rhythmic, ");
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
-		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.cumColor] tit-cream out. It doesn't work though; you'll have to give your body time to build some up first.");
+		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.cumColor] tit-cream out. It doesn’t work though; you’ll have to give your body time to build some up first.");
 		pc.lust(5+rand(3));
 		pc.boostLactation(1);
 	}
@@ -1363,17 +1363,17 @@ public function milkturbation():void
 			else if(pc.totalBreasts() == 3) output("trio");
 			else if(pc.totalBreasts() == 4) output("quartet");
 			else output("army");
-			output(" of soda bottles that have been shaken and had the caps unscrewed - so full of potential energy needing to leak and spray everywhere. That's precisely what you do: spray. Liberal amounts of [pc.milk] are rushing out in thin streams, but they're too fine to vent all of your pressure any time soon. You'll have to milk it all out by hand.");
+			output(" of soda bottles that have been shaken and had the caps unscrewed - so full of potential energy needing to leak and spray everywhere. That’s precisely what you do: spray. Liberal amounts of [pc.milk] are rushing out in thin streams, but they’re too fine to vent all of your pressure any time soon. You’ll have to milk it all out by hand.");
 		}
 		//Fuck you needed some relief intro
 		else if(pc.milkFullness >= 175)
 		{
-			output("\n\nIt does not take more than a second or two to make your [pc.nipples] shine with their own moisture, but you keep working yourself all the same. [pc.MilkColor] droplets hang from the tips of your tingling teats. You catch them in your palms and use them to lubricate your hands’ motions across your [pc.fullChest]. Soon, thin streams are spraying out even when you aren't squeezing. Your chest is clearly overdue for a good milking.");
+			output("\n\nIt does not take more than a second or two to make your [pc.nipples] shine with their own moisture, but you keep working yourself all the same. [pc.MilkColor] droplets hang from the tips of your tingling teats. You catch them in your palms and use them to lubricate your hands’ motions across your [pc.fullChest]. Soon, thin streams are spraying out even when you aren’t squeezing. Your chest is clearly overdue for a good milking.");
 		}
 		//It was about time you tended to these tits intro
 		else if(pc.milkFullness >= 90)
 		{
-			output("\n\nJudging by how full they feel, you've left them untended a little too long. It doesn't take long to tap the swollen milk-tanks; [pc.milk] bubbles out into a few pendulous droplets as you tug. You smear it over your [pc.nipples] as you work them, tugging and pulling until thin streams of [pc.milkColor] are arcing through the air with every movement of your hands. There's no disguising your sigh of relief or the mess you're starting to make now that you've gotten started.");
+			output("\n\nJudging by how full they feel, you’ve left them untended a little too long. It doesn’t take long to tap the swollen milk-tanks; [pc.milk] bubbles out into a few pendulous droplets as you tug. You smear it over your [pc.nipples] as you work them, tugging and pulling until thin streams of [pc.milkColor] are arcing through the air with every movement of your hands. There’s no disguising your sigh of relief or the mess you’re starting to make now that you’ve gotten started.");
 		}
 		//Normal milking intro
 		else if(pc.milkFullness >= 40)
@@ -1382,7 +1382,7 @@ public function milkturbation():void
 		}
 		//Gotta work pretty hard to start intro
 		/*else {
-			output("\n\nNo amount of tugging, squeezing, and pulling seems to be making any difference. You know you have some [pc.milk] inside you, not much but certainly enough to lactate. If only you could get it started! Groaning softly as your efforts turn your [pc.nipples], you keep at it with a persistence born of lactic desire. Dribbles of moisture trickle out eventually. To you, they're the texture of success, and you beam with enjoyment as you prepare to drain the rest.");
+			output("\n\nNo amount of tugging, squeezing, and pulling seems to be making any difference. You know you have some [pc.milk] inside you, not much but certainly enough to lactate. If only you could get it started! Groaning softly as your efforts turn your [pc.nipples], you keep at it with a persistence born of lactic desire. Dribbles of moisture trickle out eventually. To you, they’re the texture of success, and you beam with enjoyment as you prepare to drain the rest.");
 		}*/
 		//Middle: Express a small amount of milk for a human
 		if(pc.milkQ() < 300)
@@ -1393,7 +1393,7 @@ public function milkturbation():void
 				output(" You even lift a [pc.chest] to your [pc.lips] and suckle some of your bounty from the tap.");
 				pc.milkInMouth(pc);
 			}
-			else output(" You find yourself wishing your [pc.chest] were big enough to bring to your [pc.lips]. You'd like a taste, however brief.");
+			else output(" You find yourself wishing your [pc.chest] were big enough to bring to your [pc.lips]. You’d like a taste, however brief.");
 		}
 		//Middle: Express a normal amount of milk for a human
 		else if(pc.milkQ() <= 1000)
@@ -1411,12 +1411,12 @@ public function milkturbation():void
 		//Middle: Express a large amount of milk for a human
 		else if(pc.milkQ() <= 1600)
 		{
-			output("\n\nThe [pc.milk] comes out under your attentions in heavy drops and thick streams, splattering wetly on the floor with each exaggerated pump of your hands. It runs over your arms in thick streams. There's no way to avoid making a mess when you're producing this much, so you go with it, letting the [pc.milkColor] fluid run down your chest and [pc.belly]. Most terran mothers couldn't come anywhere close to your lactic prowess unaided.");
+			output("\n\nThe [pc.milk] comes out under your attentions in heavy drops and thick streams, splattering wetly on the floor with each exaggerated pump of your hands. It runs over your arms in thick streams. There’s no way to avoid making a mess when you’re producing this much, so you go with it, letting the [pc.milkColor] fluid run down your chest and [pc.belly]. Most terran mothers couldn’t come anywhere close to your lactic prowess unaided.");
 		}
 		//Middle: Express milk like a cow (low)
 		else if(pc.milkQ() <= 3000)
 		{
-			output("\n\nThe [pc.milk] forms into puddles between your [pc.feet] while you're still getting started, and as you settle into giving yourself a proper milking, they only get bigger. Streams of [pc.milkColor] spill down your forearms to your elbows before falling off in rivers. You groan in animal pleasure, unable to help yourself; there's just so much coming out of you, and it feels like such a relief. The human body wasn't made to gush like this, but isn't science wonderful?");
+			output("\n\nThe [pc.milk] forms into puddles between your [pc.feet] while you’re still getting started, and as you settle into giving yourself a proper milking, they only get bigger. Streams of [pc.milkColor] spill down your forearms to your elbows before falling off in rivers. You groan in animal pleasure, unable to help yourself; there’s just so much coming out of you, and it feels like such a relief. The human body wasn’t made to gush like this, but isn’t science wonderful?");
 			if(pc.biggestTitSize() >= 5)
 			{
 				output(" Grabbing a teat, you lift it to your [pc.lips] for a sample. The flow is strong enough to flood your cheeks in spite of your gluttonous swallowing. Eventually you have to let go. Streamers of [pc.milk] come out in a spray.");
@@ -1427,10 +1427,10 @@ public function milkturbation():void
 		//Middle: Express milk like a fucking cow
 		else if(pc.milkQ() <= 7000)
 		{
-			output("\n\nThe [pc.milk] almost immediately gathers into deep puddles around your [pc.feet] as you extract the wondrous fluid. Cows and cow-like creatures are your only competition when it comes to unbridled lactation, and even then, you're sure such base creatures could never appreciate the heavenly sensations of it rolling down the underside of your [pc.chest] and arms. ");
+			output("\n\nThe [pc.milk] almost immediately gathers into deep puddles around your [pc.feet] as you extract the wondrous fluid. Cows and cow-like creatures are your only competition when it comes to unbridled lactation, and even then, you’re sure such base creatures could never appreciate the heavenly sensations of it rolling down the underside of your [pc.chest] and arms. ");
 			if(pc.biggestTitSize() >= 5)
 			{
-				output("Lifting one of your udders to your [pc.lips], you gleefully gulp the [pc.milkFlavor] liquid down. You let it fall away after a few swallows with a satisfied 'ahhh,' sating both your hunger and your need to empty your chest.");
+				output("Lifting one of your udders to your [pc.lips], you gleefully gulp the [pc.milkFlavor] liquid down. You let it fall away after a few swallows with a satisfied ‘ahhh,’ sating both your hunger and your need to empty your chest.");
 				pc.milkInMouth(pc);
 			}
 			else output("Aiming down, you splatter more and more of your lactic cargo into the budding lake while wishing you could sample it yourself. If only your chest was bigger!");
@@ -1451,7 +1451,7 @@ public function milkturbation():void
 			output("\n\nThe [pc.milk] sprays out like soda from a fountain, foaming from its own incredible pressure as it escapes you. You ");
 			if(pc.legCount <= 1) output("shift position");
 			else output("spread your [pc.legs]");
-			output(" to stop the inevitable splatters from soaking your lower body as you express the stuff with machine-like efficiency, flooding the area with more [pc.milk] than an organic has any business creating. There's so much that you can't help but stifle a smile; there isn't a cow-girl or alien in the galaxy that could keep up with you.");
+			output(" to stop the inevitable splatters from soaking your lower body as you express the stuff with machine-like efficiency, flooding the area with more [pc.milk] than an organic has any business creating. There’s so much that you can’t help but stifle a smile; there isn’t a cow-girl or alien in the galaxy that could keep up with you.");
 			if(pc.biggestTitSize() >= 5)
 			{
 				output(" Lifting one weighty teat to your lips, you coat your chin and mouth immediately, getting a nice full draught of [pc.milkFlavor] to sample for your troubles.");
@@ -1464,12 +1464,12 @@ public function milkturbation():void
 			output("\n\nThe [pc.milk] gushes out of you in ");
 			if(pc.totalNipples() == 2) output("twinned");
 			else output("matched");
-			output(" geysers, foaming and splattering from the liquid force, so powerful and yet so pleasant-feeling all at once. Holding onto your [pc.chest] for dear life, you give tentative, encouraging squeezes whenever your firehose-like lactation slows, instantly restarting the flagging [pc.milkColor] deluge. Your fingers sometimes find their way to your [pc.nipples] where they can playfully tug and caress the milk-slicked spouts, ignorant of the lake rising up around your [pc.legOrLegs]. Someone is going to have to clean all this up, but that's a problem for someone who isn't experiencing the incredible relief of squeezing out gallons of delicious [pc.milkNoun].");
+			output(" geysers, foaming and splattering from the liquid force, so powerful and yet so pleasant-feeling all at once. Holding onto your [pc.chest] for dear life, you give tentative, encouraging squeezes whenever your firehose-like lactation slows, instantly restarting the flagging [pc.milkColor] deluge. Your fingers sometimes find their way to your [pc.nipples] where they can playfully tug and caress the milk-slicked spouts, ignorant of the lake rising up around your [pc.legOrLegs]. Someone is going to have to clean all this up, but that’s a problem for someone who isn’t experiencing the incredible relief of squeezing out gallons of delicious [pc.milkNoun].");
 		}
 		//Middle: Express milk like you have debug mode on
 		else
 		{
-			output("\n\nThe [pc.milk] explodes out of you like matter from a quasar, the overwhelming lactic mass practically a singularity of liquid fulfillment. You barely have to touch your [pc.chest] to keep it going once it starts. Your [pc.nipples] quiver and pulse as they disgorge the torrential [pc.milkColor] rivers. So much flows from you that you're soon lifted on a tide of your own making, floating in blissful relaxation while you shower yourself with even more, listening to the gentle patter of your rain impacting your new-born lake. Tugging nonstop, your fingers do their best to keep the milk eruptions going, or perhaps you're merely reveling in the sensation, stimulating yourself to a plateau of gushing bliss.");
+			output("\n\nThe [pc.milk] explodes out of you like matter from a quasar, the overwhelming lactic mass practically a singularity of liquid fulfillment. You barely have to touch your [pc.chest] to keep it going once it starts. Your [pc.nipples] quiver and pulse as they disgorge the torrential [pc.milkColor] rivers. So much flows from you that you’re soon lifted on a tide of your own making, floating in blissful relaxation while you shower yourself with even more, listening to the gentle patter of your rain impacting your new-born lake. Tugging nonstop, your fingers do their best to keep the milk eruptions going, or perhaps you’re merely reveling in the sensation, stimulating yourself to a plateau of gushing bliss.");
 		}
 		//Orgasm Odds
 		//10% per 400 mLs over 1L. So: 2L: 25%, 4L: 75%, etc
@@ -1480,17 +1480,17 @@ public function milkturbation():void
 		//End: Didn't orgasm due to not enough milking (20% or less chance of orgasm)
 		if(!orgasmed && orgasmOdds <= 20)
 		{
-			output("\n\nSlowing to a trickle as your supply exhausts itself, your " + possessive(pc.chestDesc()) + " flow finally gives up in spite of your relentless tugging. You've milked out as much as you can by hand, leaving yourself with sore, glossy nipples and a moistened front. Tending to such a sensitive area has left you with a certain residual warmth in your [pc.crotch]");
+			output("\n\nSlowing to a trickle as your supply exhausts itself, your " + possessive(pc.chestDesc()) + " flow finally gives up in spite of your relentless tugging. You’ve milked out as much as you can by hand, leaving yourself with sore, glossy nipples and a moistened front. Tending to such a sensitive area has left you with a certain residual warmth in your [pc.crotch]");
 			pc.lust(10+rand(4));
-			if(pc.lust() < pc.lustMax()) output(", but it's not unmanageable.");
+			if(pc.lust() < pc.lustMax()) output(", but it’s not unmanageable.");
 			else {
-				output(", and you're going to have to masturbate immediately if you want to have any chance of thinking straight in the near future.");
+				output(", and you’re going to have to masturbate immediately if you want to have any chance of thinking straight in the near future.");
 			}
 		}
 		//End: Got really close to orgasm but couldn't quite get there -> Immediately choose a random fap scene for next (had a chance above 20%)
 		else if(orgasmOdds > 20 && !orgasmed)
 		{
-			output("\n\nMoaning as your flow gradually tapers off, your fingers go wild on your [pc.chest], tugging, squeezing, and pulling in an effort to take you to orgasm. Milking has felt so good, so wonderfully, sensuously swell, that you've let yourself grow aroused beyond reason. Your slick teats ache from the constant stimulation, but it's a wonderfully satisfying ache that sends tingles of ");
+			output("\n\nMoaning as your flow gradually tapers off, your fingers go wild on your [pc.chest], tugging, squeezing, and pulling in an effort to take you to orgasm. Milking has felt so good, so wonderfully, sensuously swell, that you’ve let yourself grow aroused beyond reason. Your slick teats ache from the constant stimulation, but it’s a wonderfully satisfying ache that sends tingles of ");
 			if(pc.hasVagina()) output("crotch-dampening ");
 			else if(pc.hasCock()) output("cock-thickening ");
 			else if(pc.balls > 0) output("ball-teasing ");
@@ -1501,7 +1501,7 @@ public function milkturbation():void
 		//End: Minor orgasm all up in
 		else if(pc.milkQ() <= 5000)
 		{
-			output("\n\nGroaning as the pleasure of it all wells up in your breast, you let your hands do as they will, mauling your [pc.chest] with eager squeezes, wringing every last drop of [pc.milk] out. Each tug on a sore teat is a percussive pleasure note against the backdrop of your chest's sensuous symphony, building inexorably towards what can only be a climax. You moan");
+			output("\n\nGroaning as the pleasure of it all wells up in your breast, you let your hands do as they will, mauling your [pc.chest] with eager squeezes, wringing every last drop of [pc.milk] out. Each tug on a sore teat is a percussive pleasure note against the backdrop of your chest’s sensuous symphony, building inexorably towards what can only be a climax. You moan");
 			if(pc.hasPerk("Ditz Speech") || pc.hasPerk("Brute Speech")) output(" brainlessly");
 			output(" as the last few drops fall away, pinching harder, the pain and pleasure all mixing together to make you quiver with bliss. You sag back in the wake of it, a satisfied smile on your [pc.lips].");
 		}
@@ -1509,7 +1509,7 @@ public function milkturbation():void
 		//This one is for cow-girls. Requires boobs.
 		else if(pc.hasBreasts() && pc.cowScore() >= 4)
 		{
-			output("\n\nMooing at the ecstatic release that only milking can provide, your body responds to the sensation of emptying its [pc.milk] reservoirs in the only way it knows: bombarding you with blissful tremors of bovine pleasure. You moo again, louder and firmer than the first time. The first time was an instinctual vocalization. This time, it's a intentional declaration of your very purpose. Your [pc.chest] and the pleasure are gifts given to you so that you can make as much [pc.milk] to share with the galaxy as possible. Your eyes roll back, ");
+			output("\n\nMooing at the ecstatic release that only milking can provide, your body responds to the sensation of emptying its [pc.milk] reservoirs in the only way it knows: bombarding you with blissful tremors of bovine pleasure. You moo again, louder and firmer than the first time. The first time was an instinctual vocalization. This time, it’s a intentional declaration of your very purpose. Your [pc.chest] and the pleasure are gifts given to you so that you can make as much [pc.milk] to share with the galaxy as possible. Your eyes roll back, ");
 			if(pc.hasVagina())
 			{
 				output("your [pc.vaginas] gush");
@@ -1524,18 +1524,18 @@ public function milkturbation():void
 			}
 			output("your [pc.legOrLegs] quiver");
 			if(pc.legCount == 1) output("s");
-			output(", and your flow finally ends, leaving you messy but totally sated. You can't wait to lactate again.");
+			output(", and your flow finally ends, leaving you messy but totally sated. You can’t wait to lactate again.");
 		}
 		//End: Shuddering, milky messgasm - non-cow
 		else
 		{
 			output("\n\nTwitching whenever your fingers pinch particularly aggressively, you feel the pleasure rising up in inverse proportion to the amount of [pc.milk] left inside you. You maul your own [pc.chest], panting, your eyes rolling back as the ecstasy overwhelms your consciousness.");
 			if(pc.hasPerk("Ditz Speech")) output(" Airheaded giggles mix with your moans, declaring your status as a climax-addled milk-slut for the universe to see.");
-			output(" The oiled slickness of your [pc.chest] makes your gropes all the more pleasant. Your misused nerves fire spasmodically, feeding your immense boobgasm until you're panting and gasping, your whole body shuddering in wild convulsions.");
+			output(" The oiled slickness of your [pc.chest] makes your gropes all the more pleasant. Your misused nerves fire spasmodically, feeding your immense boobgasm until you’re panting and gasping, your whole body shuddering in wild convulsions.");
 			//Dick
 			if(pc.hasCock())
 			{
-				output("\n\n[pc.Cum] sprays from your [pc.cocks] in lewd waves, unable to hold back with how good you're feeling. The hands-free ejaculation seems to keep going as long as you can keep your breasts cumming");
+				output("\n\n[pc.Cum] sprays from your [pc.cocks] in lewd waves, unable to hold back with how good you’re feeling. The hands-free ejaculation seems to keep going as long as you can keep your breasts cumming");
 				if(pc.cumQ() <= 100) output(", though it rapidly diminishes to little more than dick-shakes and slow-leaking droplets.");
 				else output(", spurting quite a bit of [pc.cum] everywhere.");
 			}
@@ -1626,7 +1626,7 @@ public function wutwutindabuttbuttFap():void
 	}
 	else
 	{
-		output("A quick fiddle with your [pc.gear], and a muted clatter soon follows as it finds itself hastily discarded. Finally you're free to truly enjoy being nude; not a single scrap of material clinging to your frame. No unsightly claps, no constricting holsters... freedom.");
+		output("A quick fiddle with your [pc.gear], and a muted clatter soon follows as it finds itself hastily discarded. Finally you’re free to truly enjoy being nude; not a single scrap of material clinging to your frame. No unsightly claps, no constricting holsters... freedom.");
 
 		output("\n\nY");
 	}
@@ -1644,7 +1644,7 @@ public function wutwutindabuttbuttFap():void
 	}
 	else if (pc.hasCock() && pc.hasVagina())
 	{
-		output("our gaze wanders over your [pc.cocks] as a trickle of arousal meanders down the inside of your thigh, only serving to remind you that there's no shortage of choices to be made when it comes to relieving a little... tension.... You give [pc.oneCock] a teasing tug with one hand and [pc.oneVagina] a tantalizing stroke with the other,");
+		output("our gaze wanders over your [pc.cocks] as a trickle of arousal meanders down the inside of your thigh, only serving to remind you that there’s no shortage of choices to be made when it comes to relieving a little... tension.... You give [pc.oneCock] a teasing tug with one hand and [pc.oneVagina] a tantalizing stroke with the other,");
 	}
 	else
 	{
@@ -1653,7 +1653,7 @@ public function wutwutindabuttbuttFap():void
 	
 	if (pc.hasCock() || pc.hasVagina())
 	{
-		output(" but there's an itch that's been bothering you for the last few hours, and it's time to take care of it.");
+		output(" but there’s an itch that’s been bothering you for the last few hours, and it’s time to take care of it.");
 	}
 
 	output("\n\nYou draw your hands away from");
@@ -1685,13 +1685,13 @@ public function wutwutindabuttbuttFap():void
 			output(" you circle your fingertips around your wet bum, making sure to collect");
 			if (pc.ass.wetness() >= 3) output(" a liberal amount of lubrication");
 			else output(" as much lubrication as you can muster");
-			output("; you have a feeling you'll need all the help you can get.");
+			output("; you have a feeling you’ll need all the help you can get.");
 		}
 		else if (pc.hasVagina())
 		{
 			output(" you take advantage of your [pc.vagina " + pc.highestWetnessIndex() + "] and coat your fingers with a");
 			if (pc.wettestVaginalWetness() >= 3) output(" liberal");
-			output(" quantity of [pc.girlCum]; you have a feeling you'll need all the help you can get.");
+			output(" quantity of [pc.girlCum]; you have a feeling you’ll need all the help you can get.");
 		}
 		else if (pc.hasCock())
 		{
@@ -1701,7 +1701,7 @@ public function wutwutindabuttbuttFap():void
 		{
 			output(" you divert one of your hands to your mouth and take a moment to");
 			if (pc.ass.looseness() <= 1) output(" liberally");
-			output(" slaver a finger with spittle; you have a feeling you'll need all the help you can get.");
+			output(" slaver a finger with spittle; you have a feeling you’ll need all the help you can get.");
 		}
 
 		if (pc.ass.looseness() <= 1)
@@ -1724,7 +1724,7 @@ public function wutwutindabuttbuttFap():void
 		output("\n\nYour fingers poke at your [pc.asshole], swallowed whole in short order by your well-trained and cock-famished ass. You could probably slip your whole hand in without much effort....");
 	}
 
-	output("\n\nYou've soon");
+	output("\n\nYou’ve soon");
 	if (pc.ass.looseness() <= 2) output(" worked");
 	else output(" slipped");
 	output(" your finger");
@@ -1758,7 +1758,7 @@ public function wutwutindabuttbuttFap():void
 		if (pc.isLactating())
 		{
 			output(" A dribble of [pc.milk] escapes from your [pc.nipple]; a sight that only spurs you to lick your lips and pull your tit toward your mouth for a quick taste.");
-			if (pc.milkQ() >= 500) output(" Soon you're suckling greedily from your [pc.nippleColor] teat, gulping down mouthful after mouthful of [pc.milkNoun].");
+			if (pc.milkQ() >= 500) output(" Soon you’re suckling greedily from your [pc.nippleColor] teat, gulping down mouthful after mouthful of [pc.milkNoun].");
 		}
 		else if (pc.biggestTitSize() <= 3)
 		{
@@ -1885,7 +1885,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	//GotLowerGarment - armor or underwear:
 	if(pc.isCrotchGarbed() && !pc.isCrotchExposed())
 	{
-		output("Void, you're so damn horny! Beneath your [pc.lowerGarment], your loins ache needily.");
+		output("Void, you’re so damn horny! Beneath your [pc.lowerGarment], your loins ache needily.");
 		if(pc.hasCock() || pc.hasVagina()) 
 		{
 			output(" Throbbing with need,");
@@ -1911,10 +1911,10 @@ public function goddamnitJimTAndYourExhibitionism():void
 	//else / Bottom Nudefucker:
 	else
 	{
-		output("Void, you're so damn horny! Your loins ache with need, your bare crotch begging to be attended to.");
+		output("Void, you’re so damn horny! Your loins ache with need, your bare crotch begging to be attended to.");
 	}
 
-	output("\n\nWith a flushing face, you look around. You're still in public. Could you masturbate... here? In front of all these people?");
+	output("\n\nWith a flushing face, you look around. You’re still in public. Could you masturbate... here? In front of all these people?");
 
 	output("\n\nYou look into their eyes as the ");
 	//Tavros:
@@ -1924,12 +1924,12 @@ public function goddamnitJimTAndYourExhibitionism():void
 	else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("New Texans");
 	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("myr");
 	else output("onlookers");
-	output(" peer at you curiously, wondering what's the matter. The longer they look, the fiercer the forbidden flame burns between your loins. You yearn to stroke it, <i>expose</i> it, display it in front of everyone....");
+	output(" peer at you curiously, wondering what’s the matter. The longer they look, the fiercer the forbidden flame burns between your loins. You yearn to stroke it, <i>expose</i> it, display it in front of everyone....");
 
 	//Else // PC is nude:
 	if(pc.isNude() || (pc.isCrotchExposed() && pc.isAssExposed() && pc.isChestExposed()))
 	{
-		output("\n\nYou're already butt-naked, ");
+		output("\n\nYou’re already butt-naked, ");
 		if(pc.hasArmor() || pc.hasLowerGarment() || pc.hasUpperGarment()) output(" or close enough to it, wearing nothing but clothing designed to expose your baser attributes. ");
 		else output("of course, wearing nothing but your [pc.skinFurScales]. ");
 		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("Even here, such blatant nudity is met with lusty looks.");
@@ -1942,12 +1942,12 @@ public function goddamnitJimTAndYourExhibitionism():void
 		output("\n\nBefore their eyes, you begin slowly stripping off your [pc.armor]. They watch on with wide open eyes and mouths as you peel it off your [pc.skinFurScales], exposing your bare body to the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 		//GotUpperUndergarment:
 		if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) output(" Sliding your fingers up your bare flesh, you sensuously slide off your [pc.upperUndergarment]. The slowly gathering crowd gazes upon your [pc.chest] and you shiver with delight.");
-		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment()) output(" Making a show of it, you hook your thumbs under your [pc.lowerUndergarment]. With a long, pointed bend, you strip them off, poking your bare [pc.skinFurScalesColor] buttocks at any watching bystanders. You try to control the quiver in your [pc.thighs] as you do so; it's hard to contain your mounting excitement!");
+		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment()) output(" Making a show of it, you hook your thumbs under your [pc.lowerUndergarment]. With a long, pointed bend, you strip them off, poking your bare [pc.skinFurScalesColor] buttocks at any watching bystanders. You try to control the quiver in your [pc.thighs] as you do so; it’s hard to contain your mounting excitement!");
 	}
 	//Else - not wearing armor that covers shit but SOMETHING is
 	else
 	{
-		output("\n\nBefore their gaze, you begin touching yourself. Of course, they're already <i>looking</i>, what with you traipsing around in nothing but your ");
+		output("\n\nBefore their gaze, you begin touching yourself. Of course, they’re already <i>looking</i>, what with you traipsing around in nothing but your ");
 		if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) output("[pc.upperUndergarment]");
 		if((pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) && (pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment())) output(" and ");
 		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment()) output("[pc.lowerUndergarment]");
@@ -1966,7 +1966,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	output(" gather around you, you ");
 	if(pc.biggestTitSize() > 2) output("heft");
 	else output("stroke");
-	output(" your [pc.chest] for their benefit. They're totally fixated on every detail of ");
+	output(" your [pc.chest] for their benefit. They’re totally fixated on every detail of ");
 	if(pc.biggestTitSize() < 1) output("it");
 	else output("them");
 	output(" and your [pc.nipples]. You grin and slide your hands down and along your [pc.belly]. Their ");
@@ -2003,7 +2003,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	else if(pc.hasCock()) output("jerking your [pc.cocks] and fingering your ass");
 	else if(pc.hasVagina()) output("frigging your [pc.vaginas] and fingering your ass");
 	else output("fingering your ass");
-	output(" in public, and everyone can see it - it's such a rush!");
+	output(" in public, and everyone can see it - it’s such a rush!");
 
 	output("\n\n<i>“Go on, record me - spread it around!”</i> You cry out. The idea of a whole ");
 	if(rooms[currentLocation].planet == "TAVROS STATION") output("station");
@@ -2041,11 +2041,11 @@ public function goddamnitJimTAndYourExhibitionism():void
 		else output("ass fingering");
 		output(", [pc.thighs] quaking in delight.");
 	}
-	output("\n\nDimly, you're aware of flashing around you as the assembled voyeurs take photos of your [pc.skinFurScalesColor], ");
+	output("\n\nDimly, you’re aware of flashing around you as the assembled voyeurs take photos of your [pc.skinFurScalesColor], ");
 	if(pc.hasCock() && pc.cumQ() >= 5) output("[pc.cumNoun]-splattered");
 	else output("sweaty");
 	output(" body. You bask in the afterglow for a good long while. Once you start getting cold, you pick yourself up and gather your things, feeling a fuzzy sense of fulfillment.");
-	output("\n\nYou smile brightly and slip on your [pc.gear]. Sex really is better when you've got an audience, even when it's with yourself.");
+	output("\n\nYou smile brightly and slip on your [pc.gear]. Sex really is better when you’ve got an audience, even when it’s with yourself.");
 	processTime(20);
 
 	pc.orgasm();
@@ -2077,57 +2077,57 @@ public function futaBabePantyfapsRouter():void
 	else
 	{
 		clearOutput();
-		output("You've collected " + pantyFapCount() + " of 10 possible pairs of ladies' underwear. Which will you use?");
+		output("You’ve collected " + pantyFapCount() + " of 10 possible pairs of ladies’ underwear. Which will you use?");
 		clearMenu();
 		var button:int = 0;
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained."))
 		{
-			addButton(button,"Emmy's",futaBabePantyfaps,"Emmy","Emmy's Panties","Use Emmy's cum-stained, purple panties for a quick wank.");
+			addButton(button,"Emmy’s",futaBabePantyfaps,"Emmy","Emmy’s Panties","Use Emmy’s cum-stained, purple panties for a quick wank.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
-			addButton(button,"Kiro's",futaBabePantyfaps,"Kiro","Kiro's Panties","Use Kiro's lacy, crotchless panties for a quick wank.");
+			addButton(button,"Kiro’s",futaBabePantyfaps,"Kiro","Kiro’s Panties","Use Kiro’s lacy, crotchless panties for a quick wank.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
 		{
-			addButton(button,"Penny's",futaBabePantyfaps,"Penny","Penny's Panties","Use Penny's blue (but crotchless) panties for a quick fap.");
+			addButton(button,"Penny’s",futaBabePantyfaps,"Penny","Penny’s Panties","Use Penny’s blue (but crotchless) panties for a quick fap.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 		{
-			addButton(button,"Saendra's",futaBabePantyfaps,"Saendra","Saendra's Panties","Use Saendra's tight, pink panties to stroke one out.");
+			addButton(button,"Saendra’s",futaBabePantyfaps,"Saendra","Saendra’s Panties","Use Saendra’s tight, pink panties to stroke one out.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
 		{
-			addButton(button,"Syri's",futaBabePantyfaps,"Syri","Syri's Panties","Use Syri's sky-blue, silky bloomers for a little self-pleasure.");
+			addButton(button,"Syri’s",futaBabePantyfaps,"Syri","Syri’s Panties","Use Syri’s sky-blue, silky bloomers for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
 		{
-			addButton(button,embry.short + "'s",jackOffWithLadyPantiesYouSicko,"[embry.name]",embry.short + "'s Panties","Use [embry.name]'s pink, heart-covered panties for a little self-pleasure.");
+			addButton(button,embry.short + "’s",jackOffWithLadyPantiesYouSicko,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
 		{
-			addButton(button,"Xanthe's",jackOffWithLadyPantiesYouSicko,"Xanthe","Xanthe's Panties","Use Xanthe's lacy black panties for a little self-pleasure.");
+			addButton(button,"Xanthe’s",jackOffWithLadyPantiesYouSicko,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
-			addButton(button,"Aina's",jackOffWithLadyPantiesYouSicko,"Aina","Aina's Panties","Use Aina's large, striped centaur panties for a little self-pleasure.");
+			addButton(button,"Aina’s",jackOffWithLadyPantiesYouSicko,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
 		{
-			addButton(button,"Briha's",jackOffWithLadyPantiesYouSicko,"Briha","Briha's Panties","Use Briha's nylon, camo-print panties for a little self-pleasure.");
+			addButton(button,"Briha’s",jackOffWithLadyPantiesYouSicko,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
 		{
-			addButton(button,"Lys's",jackOffWithLadyPantiesYouSicko,"Lys","Lys's Panties","Use Lys's sheer black panties for a little self-pleasure.");
+			addButton(button,"Lys’s",jackOffWithLadyPantiesYouSicko,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
 			button++;
 		}
 		addButton(14,"Back",masturbateMenu);
@@ -2153,57 +2153,57 @@ public function futaBabePantySchlicksRouter():void
 	else
 	{
 		clearOutput();
-		output("You've collected " + pantyFapCount() + " of 10 possible pairs of ladies' underwear. Which will you use?");
+		output("You’ve collected " + pantyFapCount() + " of 10 possible pairs of ladies’ underwear. Which will you use?");
 		clearMenu();
 		var button:int = 0;
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) 
 		{
-			addButton(button,"Emmy's",futaPantiesFapInPussy,"Emmy","Emmy's Panties","Use Emmy's purple, cummy panties for a quick jill-off session.");
+			addButton(button,"Emmy’s",futaPantiesFapInPussy,"Emmy","Emmy’s Panties","Use Emmy’s purple, cummy panties for a quick jill-off session.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
-			addButton(button,"Kiro's",futaPantiesFapInPussy,"Kiro","Kiro's Panties","Use Kiro's lacy, crotchless panties for a quick jill-off session.");
+			addButton(button,"Kiro’s",futaPantiesFapInPussy,"Kiro","Kiro’s Panties","Use Kiro’s lacy, crotchless panties for a quick jill-off session.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
 		{
-			addButton(button,"Penny's",futaPantiesFapInPussy,"Penny","Penny's Panties","Use Penny's blue (but crotchless) panties for a quick bit of self-pleasure.");
+			addButton(button,"Penny’s",futaPantiesFapInPussy,"Penny","Penny’s Panties","Use Penny’s blue (but crotchless) panties for a quick bit of self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 		{
-			addButton(button,"Saendra's",futaPantiesFapInPussy,"Saendra","Saendra's Panties","Use Saendra's tight, pink panties to stroke one out.");
+			addButton(button,"Saendra’s",futaPantiesFapInPussy,"Saendra","Saendra’s Panties","Use Saendra’s tight, pink panties to stroke one out.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
 		{
-			addButton(button,"Syri's",futaPantiesFapInPussy,"Syri","Syri's Panties","Use Syri's sky-blue, silky bloomers for a little self-pleasure.");
+			addButton(button,"Syri’s",futaPantiesFapInPussy,"Syri","Syri’s Panties","Use Syri’s sky-blue, silky bloomers for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
 		{
-			addButton(button,embry.short + "'s",pureLadyWaifuPussyRubFap,"[embry.name]",embry.short + "'s Panties","Use [embry.name]'s pink, heart-covered panties for a little self-pleasure.");
+			addButton(button,embry.short + "’s",pureLadyWaifuPussyRubFap,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
 		{
-			addButton(button,"Xanthe's",pureLadyWaifuPussyRubFap,"Xanthe","Xanthe's Panties","Use Xanthe's lacy black panties for a little self-pleasure.");
+			addButton(button,"Xanthe’s",pureLadyWaifuPussyRubFap,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
-			addButton(button,"Aina's",pureLadyWaifuPussyRubFap,"Aina","Aina's Panties","Use Aina's large, striped centaur panties for a little self-pleasure.");
+			addButton(button,"Aina’s",pureLadyWaifuPussyRubFap,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
 		{
-			addButton(button,"Briha's",pureLadyWaifuPussyRubFap,"Briha","Briha's Panties","Use Briha's nylon, camo-print panties for a little self-pleasure.");
+			addButton(button,"Briha’s",pureLadyWaifuPussyRubFap,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
 		{
-			addButton(button,"Lys's",pureLadyWaifuPussyRubFap,"Lys","Lys's Panties","Use Lys's sheer black panties for a little self-pleasure.");
+			addButton(button,"Lys’s",pureLadyWaifuPussyRubFap,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
 			button++;
 		}
 		addButton(14,"Back",masturbateMenu);
@@ -2283,7 +2283,7 @@ public function futaBabePantyfaps(waifu:String = ""):void
 	else 
 	{
 		if(pc.isNude()) output("\n\nYou congratulate yourself on making the choice to do your travels almost entirely naked, tossing your bags aside, and getting comfortable, stopping to run your tongue along the palm of your ");
-		else output("\n\nHappy that your chosen dress won't slow you down in the slightest, you get comfortable, stopping to run your tongue along the palm of your ");
+		else output("\n\nHappy that your chosen dress won’t slow you down in the slightest, you get comfortable, stopping to run your tongue along the palm of your ");
 	}
 	if(silly) output("fapping ");
 	output("hand before reaching back down to encircle your prick, starting to jack off nice and easy, pretending that it’s " + waifu + "’s mouth instead. Chewing your lip, you sigh into the wonderful little shockwaves of pleasure spilling up from your dick. <i>“Ah yeah,”</i> you murmur to yourself, moving a little faster, caressing every inch of your stiffening cockflesh.");
@@ -2505,7 +2505,7 @@ public function moderateExhibitionOmniFap():void
 	// PC is crotch garbed, not a neuter && not a taur OR a chestgarbed taur OR chestgarbed neuter.
 	if((!pc.isCrotchExposed() && pc.hasGenitals() && !pc.isTaur()) || (pc.isTaur && !pc.isChestExposed()) || (!pc.hasGenitals() && !pc.isChestExposed()))
 	{
-		output("Void, it's so hard to <i>think</i> right now! Instead, your senses are reeling, your head filled with an all-consuming, lusty haze. Your ");
+		output("Void, it’s so hard to <i>think</i> right now! Instead, your senses are reeling, your head filled with an all-consuming, lusty haze. Your ");
 		//TaurOrNeuter:
 		if(pc.isTaur() || !pc.hasGenitals()) output(" [pc.breasts] and [pc.nipples]");
 		//Else if PC.GotCock: 
@@ -2521,7 +2521,7 @@ public function moderateExhibitionOmniFap():void
 	// else
 	else
 	{
-		output("Void, it's so hard to <i>think</i> right now! Instead, your senses are reeling, your head filled with an all-consuming, lusty haze. Walking around ");
+		output("Void, it’s so hard to <i>think</i> right now! Instead, your senses are reeling, your head filled with an all-consuming, lusty haze. Walking around ");
 		if(!pc.isNude()) output("half-");
 		output("naked has wound you all up - now your lewdly exposed ");
 		if(pc.isTaur() || !pc.hasGenitals()) output("[pc.chest]");
@@ -3452,11 +3452,11 @@ public function autofellatioForNormies():void
 	else output("forward");
 	output(" to get a better look at your ");
 	if(pc.cockTotal() > 1) output("biggest ");
-	output("[pc.cockNoun " + x + "]. It's definitely just as ready to go as the rest of you.");
+	output("[pc.cockNoun " + x + "]. It’s definitely just as ready to go as the rest of you.");
 
 	output("\n\nYou wrap your hand around the sizeable member");
 	if(pc.cocks[x].thickness() >= 4) output(", unable to close your fingers around the girthy rod");
-	output(", groaning at the pleasure it radiates from the contact. Those first few touches always seem so much more startling than those that follow. You'd relive the sensation of going from zero contact to the pleasant frisson of skin on skin if you could, but you'll have to settle for adding your other hand, grabbing yourself in a double grip to slowly stroke your iron-hard tool.");
+	output(", groaning at the pleasure it radiates from the contact. Those first few touches always seem so much more startling than those that follow. You’d relive the sensation of going from zero contact to the pleasant frisson of skin on skin if you could, but you’ll have to settle for adding your other hand, grabbing yourself in a double grip to slowly stroke your iron-hard tool.");
 	//Tits
 	if(pc.canTitFuck(true)) 
 	{
@@ -3468,32 +3468,32 @@ public function autofellatioForNormies():void
 	//No tits
 	else 
 	{
-		output("\n\nYou stroke a few times, making sure you're as hard as humanly");
+		output("\n\nYou stroke a few times, making sure you’re as hard as humanly");
 		if(pc.race() != "terran" && pc.race() != "human") output(" (or inhumanly)");
 		output(" possible before you get to the main event. ");
 	}
 	//Merge no new pg for no tits
-	output("The [pc.cockHead " + x + "] flushes darker, throbbing eagerly to signal its readiness. Figuring that it's now or never, you lick your lips and bend low, taking it directly into your maw. It's amazing. You can feel it all: the [pc.lips] sealed tight around your [pc.cockNoun " + x + "], the slightly salty taste of your flesh on your tongue, and the fluttering thrill of masturbating in a way that most sapients could only dream of.");
-	if(pc.isBimbo()) output(" No wonder galotians are always sucking cock! It's the tastiest thing in the galaxy! Like, totally yummy!");
+	output("The [pc.cockHead " + x + "] flushes darker, throbbing eagerly to signal its readiness. Figuring that it’s now or never, you lick your lips and bend low, taking it directly into your maw. It’s amazing. You can feel it all: the [pc.lips] sealed tight around your [pc.cockNoun " + x + "], the slightly salty taste of your flesh on your tongue, and the fluttering thrill of masturbating in a way that most sapients could only dream of.");
+	if(pc.isBimbo()) output(" No wonder galotians are always sucking cock! It’s the tastiest thing in the galaxy! Like, totally yummy!");
 	else if(kiroTrust() >= 60) output(" No wonder Kiro seems so keen to ram her dick down every throat in the system. Blowjobs feel great!");
 	else output(" No wonder New Texan cow-girls are always wanting to suck dick. It actually tastes pretty great!");
 
 	output("\n\nYou can only take ");
 	if(!pc.hasMuzzle()) output("a few inches");
 	else output("a good seven or eight inches");
-	output(" in before physics prevents you from taking things any farther, but it's still plenty. You've got your hands");
+	output(" in before physics prevents you from taking things any farther, but it’s still plenty. You’ve got your hands");
 	if(pc.canTitFuck(true)) output(" and breasts");
 	output(" to please the rest. You slide up and back down, stroking");
 	if(pc.canTitFuck(true)) output(" and bouncing");
 	output(" to the tempo you set with your straining lips, getting yourself good and slick. Sucking yourself like this generates some of the sloppiest sounding, lewdest noises you could imagine");
-	if(pc.isTreated()) output(". You should totally record this sometime. It'd probably make a bull blow a hole in his pants.");
-	else if(pc.exhibitionism() >= 66) output(". You should totally record this sometime. It'd probably make a viewer blow a hole in his pants.");
+	if(pc.isTreated()) output(". You should totally record this sometime. It’d probably make a bull blow a hole in his pants.");
+	else if(pc.exhibitionism() >= 66) output(". You should totally record this sometime. It’d probably make a viewer blow a hole in his pants.");
 	else output(".");
-	output("\n\nThere's no slowing down now that you've gotten started. The faster you bob, the tighter you make your [pc.lips] and the harder you suck, increasing the raw pleasure. Hormones flood your bloodstream with every squeeze on your turgid, virile length. Your synapses fire faster and harder until you're sure your entire nervous system is a conduit of sizzling, electric pleasure. Sloppy squishes accompany your frenzied strokes as you bring yourself closer to the peak, courting your [pc.balls] to finally give up their hidden treasure.");
+	output("\n\nThere’s no slowing down now that you’ve gotten started. The faster you bob, the tighter you make your [pc.lips] and the harder you suck, increasing the raw pleasure. Hormones flood your bloodstream with every squeeze on your turgid, virile length. Your synapses fire faster and harder until you’re sure your entire nervous system is a conduit of sizzling, electric pleasure. Sloppy squishes accompany your frenzied strokes as you bring yourself closer to the peak, courting your [pc.balls] to finally give up their hidden treasure.");
 	output("\n\nEcstatic contractions wrack your middle for seconds that feel like hours, and the dam finally breaks. Your [pc.cock " + x + "] goes off, spasming in your hands");
 	if(pc.canTitFuck(true)) output(", jostling your boobs, and");
 	else output(",");
-	output(" spurting its [pc.cum] directly into your waiting mouth. There's no time to pull off, not when you were that distracted by the pleasure.");
+	output(" spurting its [pc.cum] directly into your waiting mouth. There’s no time to pull off, not when you were that distracted by the pleasure.");
 
 	var cum:Number = pc.cumQ();
 	//Treated, no new PG
@@ -3503,24 +3503,24 @@ public function autofellatioForNormies():void
 		{
 			output("Sadly, you can barely manage to shoot a few drops onto your tongue. You should probably wait a bit before you try this the next time, maybe take a few transformations. You ");
 			if(flags["PLANET_3_UNLOCKED"] != undefined) output("heard rumors of a nursedroid on Myrellion that can make you more potent");
-			else output("heard rumors of a transformation that'll let your balls get so full of cum that they swell up like beanbags");
+			else output("heard rumors of a transformation that’ll let your balls get so full of cum that they swell up like beanbags");
 			output(". Maybe you should look into that.");
 		}
 		else if(cum < 300)
 		{
-			output("It tastes every bit as perfect as you would expect. There's just something about orgasmic juices, be they masculine or feminine, that tastes like nirvana to your Treated tongue. You make sure to swallow as little, waiting until ");
-			if(cum < 50) output("you've got bulging cheeks");
-			else output("you've got a nice little lake");
+			output("It tastes every bit as perfect as you would expect. There’s just something about orgasmic juices, be they masculine or feminine, that tastes like nirvana to your Treated tongue. You make sure to swallow as little, waiting until ");
+			if(cum < 50) output("you’ve got bulging cheeks");
+			else output("you’ve got a nice little lake");
 			output(" to swallow.");
 		}
 		else if(cum < 3001)
 		{
-			output("The juicy waves that roll into your waiting maw are too voluminous not to swallow. If you waited more than a half-second to suck it down, you'd wind up choking on it. You do your best to make your swallows as pleasurable as possible, practicing for the day you're sucking spunk from someone every bit as endowed as yourself.");
+			output("The juicy waves that roll into your waiting maw are too voluminous not to swallow. If you waited more than a half-second to suck it down, you’d wind up choking on it. You do your best to make your swallows as pleasurable as possible, practicing for the day you’re sucking spunk from someone every bit as endowed as yourself.");
 		}
 		else
 		{
-			output("There's so much that it rolls down the corners of your mouth, but you try and swallow all the same. It tastes so good that you can't imagine anything else. Cum like, totally belongs in your tummy, after all! But there's simply too much for you to keep up. You drink until your belly is full and bulging, then pull off to take the rest on your face.");
-			if(cum >= 6000) output(" Yet it won't stop coming, not even after you're wearing a gooey mask and every inch of your body from your head to your [pc.feet] is drenched. You sit there, still pumping, luxuriating in a puddle of your own creation, promising yourself that you'll do this in a tub sometime so that you can take a jizz-bath.");
+			output("There’s so much that it rolls down the corners of your mouth, but you try and swallow all the same. It tastes so good that you can’t imagine anything else. Cum like, totally belongs in your tummy, after all! But there’s simply too much for you to keep up. You drink until your belly is full and bulging, then pull off to take the rest on your face.");
+			if(cum >= 6000) output(" Yet it won’t stop coming, not even after you’re wearing a gooey mask and every inch of your body from your head to your [pc.feet] is drenched. You sit there, still pumping, luxuriating in a puddle of your own creation, promising yourself that you’ll do this in a tub sometime so that you can take a jizz-bath.");
 			applyCumSoaked(pc);
 		}
 		output("\n\nThe sated dick wobbles back and forth in front of you, slowly going soft");
@@ -3539,11 +3539,11 @@ public function autofellatioForNormies():void
 		}
 		else if(cum < 3001)
 		{
-			output("The volimunous ejaculate pours in so heavy and so fast that you have to swallow it. There isn't really a choice. If you didn't, you'd probably wind up choking on it.");
+			output("The volimunous ejaculate pours in so heavy and so fast that you have to swallow it. There isn’t really a choice. If you didn’t, you’d probably wind up choking on it.");
 			if(cum < 6000) output(" You spend a few minutes cumming and gulping, too dazzled by pleasure to contemplate guzzling your own [pc.cumNoun].");
 			else 
 			{
-				output("No mortal mouth could keep up with the immense waves of ejaculate you're generating. Trails of [pc.cumColor] squirt from the corners of your mouth before you manage to pull back, but by then it's too late - you're coughing up [pc.cumNoun] while your [pc.cock " + x + "] rains more on you, drenching you from head to toe in the [pc.cumFlavor] stuff. It's an absolute mess");
+				output("No mortal mouth could keep up with the immense waves of ejaculate you’re generating. Trails of [pc.cumColor] squirt from the corners of your mouth before you manage to pull back, but by then it’s too late - you’re coughing up [pc.cumNoun] while your [pc.cock " + x + "] rains more on you, drenching you from head to toe in the [pc.cumFlavor] stuff. It’s an absolute mess");
 				if(cum > 9000) output(", one that only grows worse the longer you orgasm, half-burying you in a lake of your own creation");
 				output(".");
 				applyCumSoaked(pc);
@@ -3552,8 +3552,8 @@ public function autofellatioForNormies():void
 		output("\n\nYour sated dick wobbles back and forth in front of you, slowly going soft");
 		if(cum >= 6000) output(" beneath its [pc.cumColor] veneer");
 		output(". That felt absolutely amazing!");
-		if(!InShipInterior()) output(" It's a good thing you don't have to clean up the mess.");
-		else if(celiseIsCrew()) output(" It's a good thing Celise will have a field day with this mess.");
+		if(!InShipInterior()) output(" It’s a good thing you don’t have to clean up the mess.");
+		else if(celiseIsCrew()) output(" It’s a good thing Celise will have a field day with this mess.");
 	}
 	processTime(20);
 	pc.orgasm();

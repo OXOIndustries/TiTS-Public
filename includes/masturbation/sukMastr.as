@@ -4,9 +4,9 @@
 	if(pumpedCunts() >= pc.totalVaginas())
 	{
 		clearOutput();
-		output("You're too pumped up! The instant you fit the cup over [pc.oneVagina], you've already filled it. ");
+		output("You’re too pumped up! The instant you fit the cup over [pc.oneVagina], you’ve already filled it. ");
 		if(pc.totalVaginas() == 1) output("It is ");
-		else output("They're simply ");
+		else output("They’re simply ");
 		output("too swollen.");
 		clearMenu();
 		addButton(0,"Next",masturbateMenu);
@@ -70,7 +70,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 	{
 		output(", delighted to discover that the cunt-moulded cup in your hand will still fit over your expanded pussy, allowing you to pump it up once more. Best of all, the cup still lingers with your residual scent");
-		if(flags["PUMPED_KIRO_PUSSY"] != undefined) output(" alongside Kiro's muskier, rich aroma");
+		if(flags["PUMPED_KIRO_PUSSY"] != undefined) output(" alongside Kiro’s muskier, rich aroma");
 		output(". The sensuous smell instantly ");
 	}
 	else if(flags["PUMPED_KIRO_PUSSY"] != undefined) 
@@ -78,9 +78,9 @@ public function properlyUseTheSukmastr(x:int = 0):void
 		output(", delighted to discover that the cunt-moulded cup in your hand still smells vaguely of Kiro’s luscious pussy. It’s a heady aroma that instantly ");
 	}
 	//Used before
-	else if(flags["SUKMASTRED"] != undefined) output(", delighted to discover a hint of lingering, salacious scent, the evidence of your previous play. It's a heady aroma that instantly ");
+	else if(flags["SUKMASTRED"] != undefined) output(", delighted to discover a hint of lingering, salacious scent, the evidence of your previous play. It’s a heady aroma that instantly ");
 	//Catch-all
-	else output(", delighted to discover that the cunt-moulded cup comes pre-treated with a dusting concentrated doh'rahn pheromones. It's a heady, musky aroma that instantly ");
+	else output(", delighted to discover that the cunt-moulded cup comes pre-treated with a dusting concentrated doh’rahn pheromones. It’s a heady, musky aroma that instantly ");
 	if(pc.hasCock())
 	{
 		if(pc.lust() >= 75) output("induces your [pc.cocks] to throb and ");
@@ -159,10 +159,10 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	output("\n\nOnce your [pc.girlCum] reaches the level of the pump’s hose, it loudly burbles, devouring your lady-jizz with enthusiasm, seemingly doubling the suction in an instant. Your pussy puffs up, and the pleasure comes back twice as strong. Your [pc.hips] shake, and your body quivers, delighted to be so forcefully sucked. Nerves sizzle and misfire. Your crotch is a constant barrage of pleasure and desire, delirious tingles and masochistic pain mixing together into an ecstatic stew.");
 	output("\n\nUnable to keep your hands off your puffed-up puss, you flick the release switch, briefly shutting off the pump so that you can touch the raw, engorged flesh. ");
 	if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output("The expression ‘flicking the bean’ suddenly makes a lot more sense now that your gash is so swollen, and you do that once, making your puffy pussy jiggle delightedly. ");
-	else output("Giggling, you 'flick the bean,' marveling at how your bloated femininity jiggles, not losing an ounce of its expanded size. ")
+	else output("Giggling, you ‘flick the bean,’ marveling at how your bloated femininity jiggles, not losing an ounce of its expanded size. ")
 	output("You revel in molesting the swollen flesh, plunging fingers in, squeezing the lips together, and softly spanking its tender surface.");
 	if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output("\n\nIf it’s this good now, what’ll happen once you pump it up even more?");
-	else output("\n\nIf it's staying this big now, how long can you keep it looking lewd if you blow it up all the way?");
+	else output("\n\nIf it’s staying this big now, how long can you keep it looking lewd if you blow it up all the way?");
 	output("\n\n");
 	//Get count of total max-pumped vags
 	var totalPumpedVags:int = 0;
@@ -199,7 +199,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 
 	if(rand(4) == 0 && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 	{
-		output("\n\nYour rubbery, inflated cunt aches, but it isn't receding much at all. You sit there, watching it, occassionally reaching down to give it a little love-pat, amazed at how plush it seems. <b>Your [pc.vagina " + x + "] appears to to be permanently irrecovably expanded.</b> Pumping it any more would be pointless - it fills the cup as is.");
+		output("\n\nYour rubbery, inflated cunt aches, but it isn’t receding much at all. You sit there, watching it, occassionally reaching down to give it a little love-pat, amazed at how plush it seems. <b>Your [pc.vagina " + x + "] appears to to be permanently irrecovably expanded.</b> Pumping it any more would be pointless - it fills the cup as is.");
 		pc.vaginas[x].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 		pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
 	}
@@ -210,7 +210,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	}
 	else if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 	{
-		output("\n\nEventually, your [pc.vagina " + x + "] stops looking so obscenely-inflated and shrinks back down to its normal, puffy self. You wonder if a few more play sessions won't fix that. After all, it worked once...");
+		output("\n\nEventually, your [pc.vagina " + x + "] stops looking so obscenely-inflated and shrinks back down to its normal, puffy self. You wonder if a few more play sessions won’t fix that. After all, it worked once...");
 	}
 	else
 	{

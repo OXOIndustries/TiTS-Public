@@ -220,7 +220,7 @@ public function korgiLadyDickLossPart4(x:int):void
 	if(!pc.hasKnot(x)) output("\n\nYou draw your hand back from the girl’s slavering cum-tunnel. Thick webs of spoo drip from your sore fingers and leave gooey blobs across the korgonne’s fat rear. Pulling out of the subdued savage, you rise quickly to leave before she regains the use of her higher motor function. Unfortunately, you’re considerably more tired than you realized; your [pc.legs] give out and you land right on your [pc.ass]. A wave of dizziness overtakes you and, chest heaving from the exhausting ordeal, you lean against the tunnel’s wall to gather your strength.");
 	else 
 	{
-		output("\n\nYour gushing stream of seed slows to a mere rivulet and finally, after a few more weak pumps, your orgasm recedes. You lay on top of the girl, heart racing  and lungs gulping warm, musky air. After a minute or so, you rise to leave, but find yourself stuck. It seems your [pc.knot " + x + "] has swollen to its fullest, tying the two of you together in a bestial bond. You try to pull off, but between the girl’s tightness and your girth, you may as well be conjoined. Seed sloshes around your softening member, sealed within her plump pussy.");
+		output("\n\nYour gushing stream of seed slows to a mere rivulet and finally, after a few more weak pumps, your orgasm recedes. You lay on top of the girl, heart racing and lungs gulping warm, musky air. After a minute or so, you rise to leave, but find yourself stuck. It seems your [pc.knot " + x + "] has swollen to its fullest, tying the two of you together in a bestial bond. You try to pull off, but between the girl’s tightness and your girth, you may as well be conjoined. Seed sloshes around your softening member, sealed within her plump pussy.");
 		if(!pc.isAss()) output(" In deference");
 		else output(" To further humiliate");
 		output(" to the bound savage, you lift your [pc.leg] over her and climb off, turning around so that your [pc.ass] rests against hers.");
@@ -261,7 +261,7 @@ public function loseToFemKorgonneNoDick():void
 
 	if(pc.hasVagina())
 	{
-		output("\n\nThe padded paw on your slit begins to slide up and down,  stroking your folds with an uncertain, almost experimental curiosity. You gulp as heat floods into your hips, squirming under the savage’s inexpert motions. One of her soft, leathery fingertips grazes [pc.oneClit], and you roll your shoulders with a slight moan as the girl’s soft leather strokes your sensitive nub. Her wide eyes open a bit wider at your reaction, and her thumb bears down with an intensity that leaves you shuddering and gasping for air.");
+		output("\n\nThe padded paw on your slit begins to slide up and down, stroking your folds with an uncertain, almost experimental curiosity. You gulp as heat floods into your hips, squirming under the savage’s inexpert motions. One of her soft, leathery fingertips grazes [pc.oneClit], and you roll your shoulders with a slight moan as the girl’s soft leather strokes your sensitive nub. Her wide eyes open a bit wider at your reaction, and her thumb bears down with an intensity that leaves you shuddering and gasping for air.");
 		if(korgiTranslate()) output(" <i>“Alien wears joy on outside of body?”</i> she discovers with a shock. <i>“So weak! Anyone breed you with touch,”</i> she sneers, adding a tweak to prove her point.");
 		output(" Currents of bliss crackle up and down your abdomen as the korgonne’s other fingers roll, pinch, and massage the yielding folds of your labia. Reaching one hand up to grasp your [pc.nipple] and the other to your mouth, you jam the second knuckle of your forefinger between your teeth to mute your cries of pleasure.");
 		output("\n\nJust as your hips begin bucking under the girl’s assault, she stops, leaving you squirming and panting with unfinished need. ");
@@ -288,7 +288,7 @@ public function korgiNoDickPart2Loss():void
 	output("\n\nThe korgonne’s aggressive downward motion presses your [pc.face] to her cunt; lips and folds part around you as you plunge into her quivering tunnel. Your heart races, your [pc.skinFurScales] prickle");
 	if(!pc.hasFur() && !pc.hasScales() && !pc.hasFeathers()) output("s");
 	output(", and you nearly orgasm from the immersion in her depths. This faint, yet overpowering scent... it must be the girl’s pheromones, driving you wild. You try to cry out, opening your mouth an inch. The added girth of the insertion drives the girl wild; her soft moans turn loud enough to echo through the tunnel. The ecstasy even reaches you, with your ears clamped down by the pudgy thighs enveloping your head. You thrust your nose deeper, feeling her strong muscles yield to the invasive olfactory assault. Within seconds, the girl’s impatient twat suckles at your [pc.face] with a level of need normally reserved for a dog in heat.");
-	output("\n\nBy wiggling your face side to side, you manage to squeeze your tongue out into her recesses. Your nose is flooded with bracing, minty scent and her gushing interior clamps down with orgasmic spasms, you lap at her vulnerable core with a lewd fascination. It’s as if every inch of her inner passage is as sensitive as a clit! No matter where you lick, the pressure of your tongue milks another orgasm from the bucking barbarian. Rivulets of femme cum stream from her vaginal depths faster than you can lick, the glistening nectar rolling down your chin even as her thighs and ass clench  hard enough to pick up a face-shaped imprint. Howling, she collapses atop your chest.");
+	output("\n\nBy wiggling your face side to side, you manage to squeeze your tongue out into her recesses. Your nose is flooded with bracing, minty scent and her gushing interior clamps down with orgasmic spasms, you lap at her vulnerable core with a lewd fascination. It’s as if every inch of her inner passage is as sensitive as a clit! No matter where you lick, the pressure of your tongue milks another orgasm from the bucking barbarian. Rivulets of femme cum stream from her vaginal depths faster than you can lick, the glistening nectar rolling down your chin even as her thighs and ass clench hard enough to pick up a face-shaped imprint. Howling, she collapses atop your chest.");
 	if(pc.hasVagina()) output(" Slowly, gratefully, her long, rough tongue begins to lap at your [pc.clit], its rough surface playing merry havoc on your over-excited nerves. With idle, swishing motions, the savage easily brings you to climax - a small reward for your earlier enthusiasm.");
 	output(" Between the soft weight of the plump korgonne atop you and the exhaustion of your fight and subsequent fuck, you drift off.");
 	output("\n\nWhen you rouse, the savage is gone, though thankfully she left your gear behind. You’re tempted to go deeper into the tunnel to try to find her for a second round, but think better of it. The minty taste is still on your lips as you set off once more.");
@@ -307,7 +307,7 @@ public function defeatDaKorgiShit():void
 	clearOutput();
 	showKorgiFemaleHostile();
 	author("Adjatha");
-	output("The barbarian crouches low in the snow and ice, breathing clouds that billow around her sapphire snout. It’s hard to think about what to do with the girl while the cold creeps in at every corner, so you grasp her wrists and lead her a short distance away, to an embankment where the snow has formed a natural shield against the biting wind. When the two of you step into the meager shelter, the korgonne sinks to all fours, casting aside her wintry gear, leaving  only an odd assortment of jewelry and thin straps of black leather to restrain her massive, E-cup chest. Head downcast, she leans forward to rub the backs of her ears against your crotch in deference.");
+	output("The barbarian crouches low in the snow and ice, breathing clouds that billow around her sapphire snout. It’s hard to think about what to do with the girl while the cold creeps in at every corner, so you grasp her wrists and lead her a short distance away, to an embankment where the snow has formed a natural shield against the biting wind. When the two of you step into the meager shelter, the korgonne sinks to all fours, casting aside her wintry gear, leaving only an odd assortment of jewelry and thin straps of black leather to restrain her massive, E-cup chest. Head downcast, she leans forward to rub the backs of her ears against your crotch in deference.");
 	if(!korgiTranslate()) output(" She mumbles in a soft, sing-songy language rather like the hiss of the wind over your haven. The only words you catch are a common ones: <i>“Alien”</i> and <i>“fuck.”</i>");
 	else output(" <i>“Alien is good for fight,”</i> she coos. <i>“Strong body fire. Is good for fuck, yes?”</i>");
 
@@ -332,11 +332,11 @@ public function defeatDaKorgiShit():void
 	//[Tit Fuck]
 	//Needs cock
 	if(pc.hasCock() && pc.smallestCockLength() < 42) addButton(1,"Tit Fuck",titfuckKorgonneWin,undefined,"Tit Fuck","A tightly bound chest like hers would be perfect for people with dicks.");
-	else if(pc.hasCock()) addDisabledButton(1,"Tit Fuck","Tit Fuck","You're too big this. Maybe do something more appropriate to the size of your maleness.");
+	else if(pc.hasCock()) addDisabledButton(1,"Tit Fuck","Tit Fuck","You’re too big this. Maybe do something more appropriate to the size of your maleness.");
 	else addDisabledButton(1,"Tit Fuck","Tit Fuck","You need a penis to tit-fuck her.");
 
 	//Giant dick sex - dick >= 42
-	if(pc.hasCock() && dickBigEnoughForHyperKorgi()) addButton(2,"DickWorship",winVsKorgonneAndMakeHerLoveTheBigDeeeeek,undefined,"Dick Worship","You'd never fit inside the little thing, but that doesn't mean she can't please your maleness in other ways.");
+	if(pc.hasCock() && dickBigEnoughForHyperKorgi()) addButton(2,"DickWorship",winVsKorgonneAndMakeHerLoveTheBigDeeeeek,undefined,"Dick Worship","You’d never fit inside the little thing, but that doesn’t mean she can’t please your maleness in other ways.");
 	else addDisabledButton(2,"DickWorship","Dick Worship","You need a dick at least 42 inches long for her to please you with her whole body.");
 
 	//[Ride Her Tongue]
@@ -466,7 +466,7 @@ public function letDatKorgiLeadWinsex():void
 	if(!pc.isCrotchExposed()) output("strip off your gear and ");
 	output("sit down at her side, spreading your arms in an open gesture of yielding consent. A grin overtakes her teal lips and the submissive girl regains a measure of her savagery.");
 	if(korgiTranslate()) output(" <i>“Strong alien is smart. Make weak please strong. Is best.”</i>");
-	output(" Leaning forward, she presses her supple E-cups against your chest, while rising to press plump pussy lips against your [pc.cock " + x + "]. The girl’s curled tail wags energetically, a mischievous look of predatory glee on her face as the warm nectar of her slit drips down your shaft. A thrill of cold heat runs through you, your [pc.cocks] stiffening as her faintly minty scent fills your nostrils. Squeezing her thighs around you, the primal girl drags her melons over your [pc.skinFurScales] while her fingers trace the interiors of your arms. Her palms apply pressure to keep your hands against the ground, while she wiggles her small blue nose in your face before  lightly nibbling at your [pc.nipples].");
+	output(" Leaning forward, she presses her supple E-cups against your chest, while rising to press plump pussy lips against your [pc.cock " + x + "]. The girl’s curled tail wags energetically, a mischievous look of predatory glee on her face as the warm nectar of her slit drips down your shaft. A thrill of cold heat runs through you, your [pc.cocks] stiffening as her faintly minty scent fills your nostrils. Squeezing her thighs around you, the primal girl drags her melons over your [pc.skinFurScales] while her fingers trace the interiors of your arms. Her palms apply pressure to keep your hands against the ground, while she wiggles her small blue nose in your face before lightly nibbling at your [pc.nipples].");
 	output("\n\nBubbles of your precum add froth to the girl’s dripping lubrication, leaving your cock faintly glistening in the embankment’s shadowed shelter. Reaching between her legs, she curls her padded fingers around your girth, stroking slowly as her pussy lips engulf your cockhead.");
 	if(pc.balls > 0) output(" Her precum-slick palm slides across your swollen sack, offering a surprisingly tender massage. She caresses your [pc.sack] possessively, a small trickle of drool building at the corner of her mouth.");
 	output(" The korgonne woman pushes forward on her knees, her hand moving upward in short, swift strokes, spurring your stiffness to almost painful nearness. As she reaches your [pc.cockHead " + x + "], she pulls back and settles her ass against your lubricated tip. You rise just a fraction and she thrusts you flat against the ground once more. With agonizing slowness, she pushes herself down onto your length, sighing with satisfaction as each inch parts her suckling pucker a little bit more.");
@@ -680,7 +680,7 @@ public function winVsKorgonneAndMakeHerLoveTheBigDeeeeek():void
 	//Covered
 	if(!pc.isCrotchExposed())
 	{
-		output("Boy is she in for a surprise. You answer her in the only language she'll understand: shifting your [pc.lowerGarments] to free the behemoth");
+		output("Boy is she in for a surprise. You answer her in the only language she’ll understand: shifting your [pc.lowerGarments] to free the behemoth");
 		var bigDicks:int = 0;
 		for(x = 0; x < pc.totalCocks(); x++)
 		{
@@ -738,7 +738,7 @@ public function winVsKorgonneAndMakeHerLoveTheBigDeeeeek():void
 		else if(pc.cumQ() < 1500) output(", dribbling the first dollops of pre");
 		else output(", dribbling a curtain of pre");
 		output(". But that doesn’t slow her down at all. She licks her way up as high as she can, and when she can lick no higher, she wraps her arms around your hyper-sized girth, pushing your moistened flesh against her pillowy breasts while simultaneously pulling you downward, letting your dick’s own tremendous weight assist her in reorienting your phallus to a slightly more horizontal angle.");
-		output("\n\nShe’s like an adorable, cold-weather gymnast, climbing hand-over-hand up your length. She slobbers and moans against it, and you can feel her nipples as they slide over your spit-lubed dick, gently digging into the sensitive skin like the corner of a half-melted ice cube. You " + pc.mf("groan","moan") + " encouragingly and try your best not to shake your hips. You can always grind her into a puddle of cum and melted snow later -  if she fails to properly sate you.");
+		output("\n\nShe’s like an adorable, cold-weather gymnast, climbing hand-over-hand up your length. She slobbers and moans against it, and you can feel her nipples as they slide over your spit-lubed dick, gently digging into the sensitive skin like the corner of a half-melted ice cube. You " + pc.mf("groan","moan") + " encouragingly and try your best not to shake your hips. You can always grind her into a puddle of cum and melted snow later - if she fails to properly sate you.");
 	}
 	//Merge
 	output("\n\nThe noisily slurping native climbs your [pc.cock " + x + "] with the kind of eager affection you’d expect from a hungry galotian or ausar in heat, squeezing and stroking just slightly off-tempo from her slithering, salivating tongue. When she finally reaches the summit and seals her lips around your ");
@@ -794,7 +794,7 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish1():void
 			output("swinging her spear around and cracking it against the back of your skull. The strike has little effect on your gooey frame, but you act dazed to avoid letting your captor know too much.");
 			pc.HP(-5);
 		}
-		else output("hefting her spear and giving you a warning look. It's a wasted gesture; you're too turned on and eager for whatever she has planned to resist in the slightest.");
+		else output("hefting her spear and giving you a warning look. It’s a wasted gesture; you’re too turned on and eager for whatever she has planned to resist in the slightest.");
 		output(" With a self-satisfied nod, she grabs hold and begins to drag you toward a snow bank that conceals a small cave.");
 	}
 	else 
@@ -805,7 +805,7 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish1():void
 			output("swinging her spear around and cracking it against the back of your skull. Your sight blossoms into a brilliant sea of white, as if the permafrost had swallowed you whole. Numbness. Darkness. A sensation of movement. When you come to, the snow is gone but the snow’s daughter remains.");
 			pc.HP(-10);
 		}
-		else output("hefting her spear and giving you a warning look. It's a wasted gesture; you're too turned on and eager for whatever she has planned to resist in the slightest. With a self-satisfied nod, she grabs hold and begins to drag you toward a snow bank that conceals a small cave.");
+		else output("hefting her spear and giving you a warning look. It’s a wasted gesture; you’re too turned on and eager for whatever she has planned to resist in the slightest. With a self-satisfied nod, she grabs hold and begins to drag you toward a snow bank that conceals a small cave.");
 	}
 	var prelust:Number = pc.lust();
 	processTime(30);
@@ -1096,7 +1096,7 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 	}
 	else
 	{
-		output("\n\nYou try to ignore the incredible pleasure coursing through your body, passed on by the phantom phallus, but there's too much. The dog-slut's pussy feels too tight. The fake cock feels too good - better than it has any reason to. You take a moment to mentally compliment the scientists who built this thing, and then forget all about it once your [pc.hips] start bucking with orgasmic bliss. Pleasure bursts up through your spinal cord and into your brain, distracting your conscious mind with a wall of heavenly ecstasy. Meanwhile, your body fucks the slobbery strumpet like a jackhammer, pounding your way through an orgasm, one alien-plowing thrust at a time.");
+		output("\n\nYou try to ignore the incredible pleasure coursing through your body, passed on by the phantom phallus, but there’s too much. The dog-slut’s pussy feels too tight. The fake cock feels too good - better than it has any reason to. You take a moment to mentally compliment the scientists who built this thing, and then forget all about it once your [pc.hips] start bucking with orgasmic bliss. Pleasure bursts up through your spinal cord and into your brain, distracting your conscious mind with a wall of heavenly ecstasy. Meanwhile, your body fucks the slobbery strumpet like a jackhammer, pounding your way through an orgasm, one alien-plowing thrust at a time.");
 	}
 	output("\n\nWith a single button press, you disperse the hardlight projection and the korgonne ");
 	if(buttfux) output("slides off your dick and ");
