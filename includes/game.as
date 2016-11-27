@@ -1973,7 +1973,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//Anno Mail
 		if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
 		//KIRO FUCKMEET
-		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined) { goMailGet("kirofucknet"); }
+		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", -1, kiroFuckNetBonus()); }
 		//KIRO DATEMEET
 		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && rand(10) == 0) { goMailGet("kirodatemeet"); }
 		trySendStephMail();
