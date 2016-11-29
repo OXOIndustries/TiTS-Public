@@ -1801,6 +1801,7 @@ package classes.GameData
 					if(pc.hasStatusEffect("Varmint Buddy")) addButton(bOff, "Varmint", selectDroneTarget, undefined, "Varmint, Go!", ("Have your varmint target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.hasTamWolf()) addButton(bOff, "TamWolf", selectDroneTarget, undefined, "Tam-wolf, Go!", ("Have Tam-wolf target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory is SiegwulfeItem) addButton(bOff, "Siegwulfe", selectDroneTarget, undefined, "Siegwulfe, Go!", ("Have [wulfe.name] target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addButton(bOff, pc.accessory.shortName, selectDroneTarget, undefined, "Accessory Target", ("Have your " + pc.accessory.longName + " target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else addButton(bOff, "Drone Target", selectDroneTarget, undefined, "Drone Target", ("Have your drone target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 				}
 				else
@@ -1808,6 +1809,7 @@ package classes.GameData
 					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate with your varmint right now!");
 					else if(pc.hasTamWolf()) addDisabledButton(bOff, "TamWolf", "Tam-wolf, Go!", "You can’t communicate with Tam-wolf right now!");
 					else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You can’t communicate with [wulfe.name] right now!");
+					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addDisabledButton(bOff, pc.accessory.shortName, "Accessory Target", ("You can’t access your " + pc.accessory.longName + " right now!"));
 					else addDisabledButton(bOff, "Drone Target", "Drone Target", "You can’t access your combat drone right now!");
 				}
 				bOff++;
