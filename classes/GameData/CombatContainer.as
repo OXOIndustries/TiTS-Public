@@ -3145,7 +3145,7 @@ package classes.GameData
 					msg = "\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false);
 					if(target.isPlural) msg += " don’t";
 					else msg += " doesn’t";
-					msg += " seem to care to care for your erotically-charged display.</b>";
+					msg += " seem to care for your erotically-charged display.</b>";
 					output(msg);
 				}
 				else if(teaseType == "SQUIRT") 
