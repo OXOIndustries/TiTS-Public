@@ -65,10 +65,10 @@ public function approachLiliana():void
 	{
 		showBust("LILIANA_BLANKET");
 		flags["MET_LILIANA"] = 1;
-		output("You walk over to the light haired myrmedion, planning to ask her if she wants a drink. Her features are as fair as her hair, pale white skin with rosy cheeks and dark obsidian eyes. Her arms are hidden under a blanket that surrounds her body below the neck. The blanket prevents any detailed examination of her body, but judging by how tightly she's hugging it to herself she could be quite curvaceous and you wouldn't be able to tell. She retains her nervous look as you come closer, avoiding direct eye contact until you're standing at her table.");
+		output("You walk over to the light haired myrmedion, planning to ask her if she wants a drink. Her features are as fair as her hair, pale white skin with rosy cheeks and dark obsidian eyes. Her arms are hidden under a blanket that surrounds her body below the neck. The blanket prevents any detailed examination of her body, but judging by how tightly she’s hugging it to herself she could be quite curvaceous and you wouldn’t be able to tell. She retains her nervous look as you come closer, avoiding direct eye contact until you’re standing at her table.");
 		output("\n\n<i>“Hey there, could I buy you a-”</i>");
 		output("\n\n<i>“Please don’t report me! I’ll p-pay you,”</i> she blurts out, throwing her arms out of the blanket and holding her hands up protectively. The cloth falls away in the process, revealing a thin but fit frame covered by the uniform of the gold myr military. An insignia detailing a wispy green cloud with folded angelic wings is emblazoned on its upper left shoulder. Its lower left shoulder is torn away, revealing a nasty looking surgical scar where her fourth arm is missing. Her voice was quiet enough that only you heard her words, but some closer bar patrons looked up for a moment before returning to their drinks and jovial talk. You sit down next to the shuddering myrmedion, cocking an eyebrow and asking what you would report her for. She looks about ready to break down crying, but manages to hold it together as she explains.");
-		output("\n\n<i>“I-I ran away from the army. Usually you hear of people doing that and getting away with it.  Before now there’s been too much chaos to prioritize hunting down deserters. But ever since the space people came the officers hire bounty hunters to bring in deserters for who knows what kind of punishment. I don’t want to go through anything like that. Then again they might just think I’m dead. Some deserters are found dead before they even got back to the cities,”</i> she says, covering her face with her upper pair of hands. Her lower right one struggles to find its missing twin for a moment before balling into a fist and pressing into the table. After a few seconds of this she forces herself to relax, putting all of her hands palms down on the table and breathing deeply.");
+		output("\n\n<i>“I-I ran away from the army. Usually you hear of people doing that and getting away with it. Before now there’s been too much chaos to prioritize hunting down deserters. But ever since the space people came the officers hire bounty hunters to bring in deserters for who knows what kind of punishment. I don’t want to go through anything like that. Then again they might just think I’m dead. Some deserters are found dead before they even got back to the cities,”</i> she says, covering her face with her upper pair of hands. Her lower right one struggles to find its missing twin for a moment before balling into a fist and pressing into the table. After a few seconds of this she forces herself to relax, putting all of her hands palms down on the table and breathing deeply.");
 		output("\n\n<i>“Sorry about that. I haven’t gotten a lot of sleep for the last couple days. I get scared from the smallest things and I don’t really have any place to go. I’ve been sleeping in the medical bay where people go for treatment from the space-faring races. I’m not sure whether to trust them, so I only ask for a bed. I’m afraid if I tell them too much they might turn me in to the military command,”</i> she says, returning to fidgeting about halfway through. The longer she talks the more fearful she seems to get, and you put a hand on her shoulder to comfort her. She jumps at your touch, but then relaxes a little and smiles.");
 		output("\n\n<i>“I don’t have the same kind of money as you have in space, but I could pay you in s-sex if you don’t tell anyone about me. My name is Liliana by the way, Liliana Aleszra”</i> she says sheepishly, her rosy cheeks flushing scarlet. You reply with your name before contemplating your decision. You could have sex with her, or you could prod her to continue talking.");
 		processTime(3);
@@ -103,15 +103,15 @@ public function lilianaMenu():void
 		else if(pc.hasCock() && pc.cockThatFits(300) >= 0) addButton(0,"Sex",sexUpDatAntBitch);
 		else addDisabledButton(0,"Sex","Sex","You need a dick that will fit in her vagina or a vagina of your own to engage in intercourse with Liliana");		
 	}
-	else addDisabledButton(0,"Sex","Sex","You aren't presently aroused enough for sex.");
+	else addDisabledButton(0,"Sex","Sex","You aren’t presently aroused enough for sex.");
 	//[TALK]
 	if(flags["LILIANA_TALKS"] == undefined) addButton(1,"Talk",talkToLilianaYouBafoooooon,undefined,"Talk","Talk to Liliana about her situation.");
 	else if(flags["LILIANA_TALKS"] == 1) addButton(1,"Talk",talkToLilianaYouBafoooooon,undefined,"Talk","Talk to Liliana about her missing arm.");
 	else if(flags["LILIANA_TALKS"] == 2 && lilianaEncouraged() && lilianaArms() >= 4) addButton(1,"Talk",talkToLilianaYouBafoooooon,undefined,"Talk","Talk to Liliana about her that doctor you two met.");
-	else addDisabledButton(1,"Talk","Talk","You don't have anything more to discuss with Liliana.");
+	else addDisabledButton(1,"Talk","Talk","You don’t have anything more to discuss with Liliana.");
 
 	if(hours >= 19) addButton(2,"Cuddles",cuddleDatAntBiyooootchToSleepizzles,undefined,"Cuddles","Cuddle with Liliana to help her sleep.");
-	else addDisabledButton(2,"Cuddles","Cuddles","It's not late enough at night for cuddles.");
+	else addDisabledButton(2,"Cuddles","Cuddles","It’s not late enough at night for cuddles.");
 
 	addButton(5,"Appearance",lilianaAppearance);
 	addButton(14,"Leave",talkToLilianaLater);
@@ -169,7 +169,7 @@ public function talkToLilianaYouBafoooooon():void
 		output("You tell Liliana you’d like to hear about her time in the army and why she deserted. She looks earnest but hugs herself tightly. She seems happy to have someone to talk to, but apprehensive about the subject. You put one of your hands over hers, calming their erratic movements for the moment.");
 		output("\n\n<i>“Ok. I got drafted just a short time ago. At first I was scared. Who wouldn’t be going into war with a pretty low survival rating? I didn’t want to get chopped up into little pieces because I couldn’t hold the swords and axes they use. I got through training because the other girls were drafted too, and they were nice. I didn’t know any of them going into training, but I got so close to some of them that I didn’t want to be separated when it came to assignment time,”</i> she says calmly. When the topic of her assignment comes up she pauses uncomfortably.");
 		output("\n\n<i>“So... even after training I still couldn’t use axes effectively, and to make it worse I can’t shoot very well. The army is desperate nowadays though, so they found me a position. I got a field promotion to chemical division less than a week after I got to the battlefield. The girls I was deployed with told me not to worry, because it’s really easy and they usually go in when there isn’t any shooting going on,”</i> she continues, pointing to the emblem on her shoulder as if to elaborate before she pulls her blanket tighter around herself.");
-		output("\n\n<i>“I met one of the scientists that head the division on my first day there. She really made me feel at home, and told me some things about my equipment and duties in my new position. The chemical division wear these bulky air-tight suits hooked up to large oxygen and gas tanks. When we weren’t on the field we pretty much got to have free time in whatever cities were nearest to our deployment area, but when we went out we would clear the path for the other soldiers. Without us they would have had a much tougher time fighting the entrenched red soldiers.</i>\" she says. At the end of this portion of speech she clenches her fists so hard her knuckles turn white.");
+		output("\n\n<i>“I met one of the scientists that head the division on my first day there. She really made me feel at home, and told me some things about my equipment and duties in my new position. The chemical division wear these bulky air-tight suits hooked up to large oxygen and gas tanks. When we weren’t on the field we pretty much got to have free time in whatever cities were nearest to our deployment area, but when we went out we would clear the path for the other soldiers. Without us they would have had a much tougher time fighting the entrenched red soldiers.”</i> she says. At the end of this portion of speech she clenches her fists so hard her knuckles turn white.");
 		output("\n\n<i>“I got my first actual mission maybe two weeks after that. I had to go out in the middle of the night and gas a trench, that’s all. It was an area that had been deadlocked for months. The transport dropped me off at our trench, and I had to walk to the red side in my suit. It was very dark and the fog was thick, so I couldn’t see much of anything. The red trench wasn’t too far away. It felt like an eternity because of the darkness, but I suppose it helped when they couldn’t see me either. I got right up to the lookout’s post before they saw anything, and by then it was too late. They taught us in practice to start the gas going just before we reached the target, that way the enemy wouldn’t hear the mechanisms startup. The lookout took the gas first, and was out by the time she gasped to sound the alarm,”</i> she says shakily. You’re afraid for a moment that she’ll hurt herself with how tense she is, but she notices her tightness and relaxes a little.");
 		output("\n\n<i>“They call this new stuff Angel’s Breath, because the people it affects just go to sleep. The lookout kind of sighed and fell at the entrance to the trench, and then all I had to do was walk along the edge and let the gas do its work. The reds that weren’t already sleeping managed a glance at me before the gas reached their lungs. They all just fell where they were sitting, peaceful looks on their faces...”</i> The poor ant-girl looks on the verge of a breakdown, and you ");
 		if(pc.isNice() || pc.isMischievous()) output("gently squeeze her shoulder to calm her");
@@ -199,7 +199,7 @@ public function talkToLilianaYouBafoooooon():void
 		clearMenu();
 		//[Encourage-arm][Encourage-stay]
 		if(pc.credits >= 2000) addButton(0,"Get An Arm",lilianaIsTotallyRobocopAnt,undefined,"Get An Arm","Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.");
-		else addDisabledButton(0,"Get An Arm","Get An Arm","You don't have enough credits to help Liliana get a new arm.");
+		else addDisabledButton(0,"Get An Arm","Get An Arm","You don’t have enough credits to help Liliana get a new arm.");
 		//[Encourage-arm](requires at least 2k credits to start)
 		//tooltip: Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.
 		//Tooltip: encourage Liliana that she’ll be ok even without the arm.
@@ -232,7 +232,7 @@ public function encourageWhatsHerButtNotToBeRobocop():void
 	clearOutput();
 	showLiliana();
 	flags["LILIANA_NO_ARMS_ARE_COOL"] = 1;
-	output("You put a hand over her strained fingers, and she jumps before relaxing. A hand-shaped mark is left over the smooth scar before it slowly fades back to a uniform waxy pink. You tell her if she really doesn’t want to fix the arm there’s no need to do so. She shouldn’t think about it so hard if it makes her this stressed. She still has three perfectly good arms, which is one more than <i>you’ve</i> got. Unless she’s decided on an offworld heavy lifting career while you were away, it's fine. You also tell her that sometimes you wish you had even one extra arm to help with various tasks. She laughs at this and gives you a smile.");
+	output("You put a hand over her strained fingers, and she jumps before relaxing. A hand-shaped mark is left over the smooth scar before it slowly fades back to a uniform waxy pink. You tell her if she really doesn’t want to fix the arm there’s no need to do so. She shouldn’t think about it so hard if it makes her this stressed. She still has three perfectly good arms, which is one more than <i>you’ve</i> got. Unless she’s decided on an offworld heavy lifting career while you were away, it’s fine. You also tell her that sometimes you wish you had even one extra arm to help with various tasks. She laughs at this and gives you a smile.");
 	output("\n\n<i>“I guess you’re right. I’ve been so worried about what people would think if I did do it that I forgot leaving them like this was an option. I guess the phantom feelings made me feel like I needed to have it back. Thanks for helping me get a little of this stress out,”</i> she says thankfully. You ask her if her planet has physical therapy for people with missing limbs. That might help with the phantom pains and tenseness.");
 	output("\n\n<i>“I don’t know if there’s anything like that specifically, but I know there are a couple therapy places in the city I live in. Maybe after all this is over I could ask if they know any ways to help. I’m sure they wouldn’t mind trying even if it wasn’t their specialty,”</i> she continues. Her mood seems to have markedly improved since you started talking with her.");
 	processTime(3);
@@ -263,8 +263,8 @@ public function lilianaIsTotallyRobocopAnt():void
 	//[real][robo]
 	clearMenu();
 	addButton(0,"Robo Arm",roboArmsForAllTheLittleAntLadies,undefined,"Robo Arm","Get Liliana a robotic arm.\n\nCosts 2000 credits.");
-	if(pc.credits >= 6000) addButton(1,"Real Arm",getARealArmBabeeeeeeeeeeee,undefined,"Real Arm","Pay to have the doctor regenerate Lilian's arm.\n\nCosts 6000 credits.");
-	else addDisabledButton(1,"Real Arm","Real Arm","You don't have the credits to get her a real arm.\n\nCosts 6000 credits.");
+	if(pc.credits >= 6000) addButton(1,"Real Arm",getARealArmBabeeeeeeeeeeee,undefined,"Real Arm","Pay to have the doctor regenerate Lilian’s arm.\n\nCosts 6000 credits.");
+	else addDisabledButton(1,"Real Arm","Real Arm","You don’t have the credits to get her a real arm.\n\nCosts 6000 credits.");
 }
 
 //[Real]
@@ -297,7 +297,7 @@ public function roboArmsForAllTheLittleAntLadies():void
 	showLiliana();
 	output("You tell her you’ll opt for the robotic arm. The doctor gives a nod and writes something down on a sheet of paper.");
 	output("\n\n<i>“The bill will be sent to your credit account,”</i> she says as she returns her attention to the waiting ant-girl. Liliana stands uncomfortably, fidgeting with her three remaining hands as the doctor approaches her.");
-	output("\n\n<i>“Cheer up. By the time you leave here you’ll have a shiny new arm to cover up that scar. I’m doctor Anilla, head of surgeries here at our makeshift little hospital, so I’ll be with you the entire way. Your friend will have to wait outside during the actual operation, but [pc.heShe] can be there waiting as soon as you wake up from the anaesthetics. The room we use for surgeries is just down the hall.</i>\"");
+	output("\n\n<i>“Cheer up. By the time you leave here you’ll have a shiny new arm to cover up that scar. I’m doctor Anilla, head of surgeries here at our makeshift little hospital, so I’ll be with you the entire way. Your friend will have to wait outside during the actual operation, but [pc.heShe] can be there waiting as soon as you wake up from the anaesthetics. The room we use for surgeries is just down the hall.”</i>");
 	output("\n\nThe two of you follow doctor Anilla down the hall to a set of double doors. You’re made to wait outside while Liliana is taken for surgery. What you see of the room is reassuring, totally clean looking and orderly. The doctor comes out to give you checkups every half hour or so, mentioning that it’s going well and her nerves are responding to the replacement.");
 	output("\n\nYou begin to worry that something has gone wrong when doctor Anilla disappears for more than an hour. Hopefully Liliana is doing alright. Just when you plan to go ask someone, the Leithan surgeon appears from a door to tell you that the surgery was a success. She leads you to a room labeled ‘Patient Recovery’.");
 	output("\n\nYou follow her through the next door, finding two rows of recovering patients lying in hospital beds. Liliana is about halfway down the left row, having woken up a short time before you arrived. She sits on the edge of the bed, rubbing her eyes with her upper hands. Her lower pair of arms, including a humanoid synthetic arm that has replaced her missing one, sits in her lap. She gives you a groggy smile when she sees you, and her new arm instinctively rises in a wave. She stares at it for a few seconds before her eyes go wide.");
@@ -382,7 +382,7 @@ public function sexUpDatAntBitch():void
 	//ifnaked:
 	if(pc.isNude() || pc.isChestExposed() || pc.isCrotchExposed() || pc.isAssExposed()) 
 	{
-		output("You tell Liliana that you’ll take her up on that offer of sex. She blushes, nodding and standing from her chair. She tells you to follow her as she walks out of the bar and toward the medical facility. You tag along, staying close as you maneuver the DMZ. As you walk into the reception area a nurse stops you. She informs you that you’ll need to put some" + (!pc.isNude() ? " decent" : "") + " clothes on if you plan to stay in the hospital due to the risk of spreading infection. The nurse mentions that you can wait outside or leave.\n\nIronically, you'll need some clothing to get busy with the ant-girl. The two of you walk away sheepishly.");
+		output("You tell Liliana that you’ll take her up on that offer of sex. She blushes, nodding and standing from her chair. She tells you to follow her as she walks out of the bar and toward the medical facility. You tag along, staying close as you maneuver the DMZ. As you walk into the reception area a nurse stops you. She informs you that you’ll need to put some" + (!pc.isNude() ? " decent" : "") + " clothes on if you plan to stay in the hospital due to the risk of spreading infection. The nurse mentions that you can wait outside or leave.\n\nIronically, you’ll need some clothing to get busy with the ant-girl. The two of you walk away sheepishly.");
 		processTime(8);
 		//[choice to leave or stay])
 		clearMenu();
@@ -426,9 +426,9 @@ public function sexUpDatAntBitch():void
 
 		clearMenu();
 		if(pc.hasCock()) addButton(0,"Use Dick",maleFuxLiliana);
-		else addDisabledButton(0,"Use Dick","Use Dick","You don't have a dick to use on Liliana.");
+		else addDisabledButton(0,"Use Dick","Use Dick","You don’t have a dick to use on Liliana.");
 		if(pc.hasVagina()) addButton(1,"Use Vagina",girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferentPeople);
-		else addDisabledButton(1,"Use Vagina","Use Vagina","You don't have a vagina to use with Liliana.");
+		else addDisabledButton(1,"Use Vagina","Use Vagina","You don’t have a vagina to use with Liliana.");
 		if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded() && (flags["LILIANA_HOLODONGED"] != undefined || flags["LILIANA_TALKS"] == 3)) addButton(2,"HL Dildo",lilianaSexyholocawk,false,"HL Dildo","Use your hardlight-equipped [pc.lowerGarments] to have some fun with Liliana.");
 		else if(!(flags["LILIANA_HOLODONGED"] != undefined || flags["LILIANA_TALKS"] == 3)) addDisabledButton(2,"HL Dildo","HL Dildo","You need to help Liliana out with her missing arm problem before you can do this.");
 		else if(!pc.hasHardLightUpgraded() && pc.hasHardLightEquipped()) addDisabledButton(2,"HL Dildo","HL Dildo","You need an upgrade to your hardlight dildo in order to do this.");
@@ -443,15 +443,15 @@ public function maleFuxLiliana():void
 	showLiliana(true);
 	var x:int = pc.cockThatFits(300);
 	if(x < 0) x = pc.smallestCockIndex();
-	output("You line up your [pc.cock " + x  + "] with her glistening hole, pressing the [pc.cockHead " + x + "] against it. You gently ease into her, reveling in the tightness of her passage. She clenches instinctively as you enter her, tight as a vice but not quite painful. Her hands clench the sheet of the bed as her legs splay out to the sides.");
+	output("You line up your [pc.cock " + x + "] with her glistening hole, pressing the [pc.cockHead " + x + "] against it. You gently ease into her, reveling in the tightness of her passage. She clenches instinctively as you enter her, tight as a vice but not quite painful. Her hands clench the sheet of the bed as her legs splay out to the sides.");
 	pc.cockChange();
 
-	output("\n\nOnce your [pc.cock " + x  + "] has entered as deep as it can into her you massage her muscles. ");
+	output("\n\nOnce your [pc.cock " + x + "] has entered as deep as it can into her you massage her muscles. ");
 	if(lilianaEncouraged()) output("Her insides are incredibly tight");
 	else output("She’s much more tense than you’re used to");
 	output(", but soften");
 	if(!lilianaEncouraged()) output("s");
-	output(" in your hands. Once she relaxes enough you begin to move slowly, moaning as her smooth passage clamps tightly to your [pc.cock " + x  + "].");
+	output(" in your hands. Once she relaxes enough you begin to move slowly, moaning as her smooth passage clamps tightly to your [pc.cock " + x + "].");
 
 	output("\n\nLiliana moves her upper pair of hands from the sheets and uses them to grasp your ");
 	if(!pc.isTaur()) output("shoulders");
@@ -461,7 +461,7 @@ public function maleFuxLiliana():void
 	else output("the front of your tauric body");
 	output(", eyes closed as she rides the waves of pleasure you’re sending through her. You brush one of your hands through her sandy blonde hair, pulling her deeper into her kisses till she resolves to breathing you in. Her hot exhalations warm you to the core, filling you with her need.");
 
-	output("\n\nThe golden haired ant-girl tenses suddenly, her legs clenching around your waist. She lets out a short series of gasping moans as she cums around your [pc.cock " + x  + "]. Her already tight passage threatens to push your [pc.cockNoun " + x  + "] from its depths, but you continue to piston into her, holding her abdomen for support. Her lust-induced pelvic strength is no match for your desire.");
+	output("\n\nThe golden haired ant-girl tenses suddenly, her legs clenching around your waist. She lets out a short series of gasping moans as she cums around your [pc.cock " + x + "]. Her already tight passage threatens to push your [pc.cockNoun " + x + "] from its depths, but you continue to piston into her, holding her abdomen for support. Her lust-induced pelvic strength is no match for your desire.");
 
 	output("\n\n<i>“I can’t! I can’t f-feel my butt!”</i> she says, sounding fully hazed with pleasure. Her legs twitch senselessly whenever you enter her, probably being flushed with all kinds of sensory input they’re unable to handle. You grasp one of her toned thighs to steady it, moaning when her insides tighten in response.");
 
@@ -810,7 +810,7 @@ public function lilianaSexyholocawk(talked:Boolean = false):void
 		}
 		clearMenu();
 		if(pc.credits >= 2000) addButton(0,"Get An Arm",lilianaIsTotallyRobocopAnt,undefined,"Get An Arm","Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.");
-		else addDisabledButton(0,"Get An Arm","Get An Arm","You don't have enough credits to help Liliana get a new arm.");
+		else addDisabledButton(0,"Get An Arm","Get An Arm","You don’t have enough credits to help Liliana get a new arm.");
 		//[Encourage-arm](requires at least 2k credits to start)
 		//tooltip: Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.
 		//Tooltip: encourage Liliana that she’ll be ok even without the arm.

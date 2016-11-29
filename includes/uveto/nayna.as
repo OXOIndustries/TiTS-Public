@@ -110,7 +110,7 @@ public function lookAtWeatherDrone():void
 	if(flags["NAYNA_QUEST_STARTED"] == 1) output(" ")
 	clearMenu();
 	addButton(0,"Take It",takeANaynaDrone);
-	addButton(4,"Back",mainGameMenu);
+	addButton(14,"Back",mainGameMenu);
 }
 
 public function takeANaynaDrone():void
