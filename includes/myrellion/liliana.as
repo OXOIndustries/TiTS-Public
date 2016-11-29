@@ -429,7 +429,9 @@ public function sexUpDatAntBitch():void
 		else addDisabledButton(0,"Use Dick","Use Dick","You don't have a dick to use on Liliana.");
 		if(pc.hasVagina()) addButton(1,"Use Vagina",girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferentPeople);
 		else addDisabledButton(1,"Use Vagina","Use Vagina","You don't have a vagina to use with Liliana.");
-		if(pc.hasHardLightEquipped() && (flags["LILIANA_HOLODONGED"] != undefined || flags["LILIANA_TALKS"] == 3)) addButton(2,"HL Dildo",lilianaSexyholocawk,false,"HL Dildo","Use your hardlight-equipped [pc.lowerGarments] to have some fun with Liliana.");
+		if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded() && (flags["LILIANA_HOLODONGED"] != undefined || flags["LILIANA_TALKS"] == 3)) addButton(2,"HL Dildo",lilianaSexyholocawk,false,"HL Dildo","Use your hardlight-equipped [pc.lowerGarments] to have some fun with Liliana.");
+		else if(!(flags["LILIANA_HOLODONGED"] != undefined || flags["LILIANA_TALKS"] == 3)) addDisabledButton(2,"HL Dildo","HL Dildo","You need to help Liliana out with her missing arm problem before you can do this.");
+		else if(!pc.hasHardLightUpgraded() && pc.hasHardLightEquipped()) addDisabledButton(2,"HL Dildo","HL Dildo","You need an upgrade to your hardlight dildo in order to do this.");
 		else addDisabledButton(2,"HL Dildo","HL Dildo","You need undergarments equipped with a hardlight dildo and to know Liliana decently well in order to do this.");
 	}
 }
