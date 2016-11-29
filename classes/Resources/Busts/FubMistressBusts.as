@@ -3,7 +3,7 @@ package classes.Resources.Busts
 	import flash.geom.Rectangle;
 	/**
 	 * ...
-	 * @author Gedan
+	 * @author Fenoxo
 	 */
 	public class FubMistressBusts 
 	{

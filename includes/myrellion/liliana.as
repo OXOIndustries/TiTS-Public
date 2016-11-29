@@ -204,6 +204,8 @@ public function talkToLilianaYouBafoooooon():void
 		//tooltip: Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.
 		//Tooltip: encourage Liliana that she’ll be ok even without the arm.
 		addButton(1,"Encourage",encourageWhatsHerButtNotToBeRobocop,undefined,"Encourage","Encourage Liliana that she’ll be ok even without the arm.");
+		if(pc.hasHardLightEquipped()) addButton(2,"TechIsSexy",lilianaSexyholocawk,true,"TechIsSexy","Use your hardlight-equipped [pc.lowerGarments] to show Liliana how much fun integrated technology can be.");
+		else addDisabledButton(2,"TechIsSexy","TechIsSexy","You need undergarments equipped with a hardlight dildo to do this.");
 	}
 	//[talk3]
 	//(only available after arm stuff and if arm was fixed)
@@ -410,19 +412,25 @@ public function sexUpDatAntBitch():void
 
 		output("\n\nYou let your [pc.tongue] wander lower, teasing her pussy’s soaking entrance. You knead the thin muscle of her legs, stopping when you reach the place where skin transitions to chitin. The ant-girl’s legs clench tighter in response, trying to hold you tight but failing when they don’t find their mark. The rising volume of her moans are muted by her warm body, and you continue to lick until you feel her empty hole begin to twitch spasmodically.");
 
-		output("\n\nYou slip around her fruitless leg-lock, swiftly moving to kiss her while the electric lust of orgasm still courses along her nerves. She tries to return it, but the pulses of feeling prevent her from putting forth too much effort. When she calms you pull away, stripping out of your [pc.lowerGarment]. Liliana stares in anticipation as you undress, looking at your ");
+		output("\n\nYou slip around her fruitless leg-lock, swiftly moving to kiss her while the electric lust of orgasm still courses along her nerves. She tries to return it, but the pulses of feeling prevent her from putting forth too much effort. When she calms you pull away");
+		if(!pc.isCrotchExposed()) 
+		{
+			if(pc.hasHardLightEquipped()) output(", tugging at the hem of your hologram-equipped underthings. Liliana stares in anticipation as you pull down, looking at your ");
+			else output(", stripping out of your [pc.lowerGarment]. Liliana stares in anticipation as you undress, looking at your ");
+		}
+
 		if(pc.hasCock() && pc.hasVagina()) output("[pc.cocks] and [pc.vaginas]");
 		else if(pc.hasCock()) output("[pc.cocks]");
 		else if(pc.hasVagina()) output("[pc.vaginas]");
 		output(".");
+
 		clearMenu();
-		if(pc.hasCock() && pc.hasVagina())
-		{
-			addButton(0,"Use Dick",maleFuxLiliana);
-			addButton(1,"Use Vagina",girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferentPeople);
-		}
-		else if(pc.hasCock()) addButton(0,"Next",maleFuxLiliana);
-		else if(pc.hasVagina()) addButton(0,"Next",girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferentPeople);
+		if(pc.hasCock()) addButton(0,"Use Dick",maleFuxLiliana);
+		else addDisabledButton(0,"Use Dick","Use Dick","You don't have a dick to use on Liliana.");
+		if(pc.hasVagina()) addButton(1,"Use Vagina",girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferentPeople);
+		else addDisabledButton(1,"Use Vagina","Use Vagina","You don't have a vagina to use with Liliana.");
+		if(pc.hasHardLightEquipped() && (flags["LILIANA_HOLODONGED"] != undefined || flags["LILIANA_TALKS"] == 3)) addButton(2,"HL Dildo",lilianaSexyholocawk,false,"HL Dildo","Use your hardlight-equipped [pc.lowerGarments] to have some fun with Liliana.");
+		else addDisabledButton(2,"HL Dildo","HL Dildo","You need undergarments equipped with a hardlight dildo and to know Liliana decently well in order to do this.");
 	}
 }
 
@@ -532,4 +540,301 @@ public function girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferen
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//Liliana new scene
+//button name (maybe): 'Tech is Sexy'
+//requires hardlight undies and adjustable hardlight size pak
+//first appears through Lil's talk menu 2nd stage, alongside 'Encourage-arm' and 'Encourage-stay' options, and can be selected in lieu of one of them
+//re-appears in Lil's sex menu after PC has performed it once /OR/ if Lil has arm
+//tooltip: Acquaint Liliana with the finer points of technology using your lewd, luminous prosthesis.
+//disabled tooltip, no hardlight: You need hardlight-enabled underwear with a toy of adjustable size for this.
+
+public function lilianaSexyholocawk(talked:Boolean = false):void
+{
+	clearOutput();
+	showLiliana(true);
+	//intro if entering from the second 'Talk' scene (i.e. the arm-selection scene)
+	//replaces/retraces the usual Sex menu intro where Lil takes PC to her bed
+	if(talked)
+	{
+		if(pc.isBimbo()) output("<i>“Why worry about stuff like that?”</i> you ask, earnestly. <i>“All that matters is the fun it brings you.”</i>");
+		else if(pc.isBro() || pc.isAss())
+		{
+			output("<i>“You worry about a lot of shit that’ll never happen,”</i> you grunt.");
+			if(pc.isBro()) output(" <i>“You’d be happier with it.”</i>");
+			else output(" <i>“Most people don’t pay attention to anyone but themselves. Of course, I don’t mind if you suffer for </i>my<i> approval... but I’d jump at the chance to have some pleasure in my life instead of constant pain.”</i>");
+		}
+		else if(pc.isMischievous()) output("<i>“Oh, and your scar is so pleasing, right?”</i> you jibe. <i>“You’re missing out on a lot of fun... or at least, the chance to end that pain.”</i>");
+		else output("<i>“Haven’t you done enough, though?”</i> you ask, earnestly. <i>“You have a chance to be happy. Do you really need to be in pain to please strangers?”</i>");
+		output("\n\nLiliana rubs the gap in her side and considers. <i>“You think technology can accomplish something like that?”</i>");
+
+		if(pc.isBimbo()) output("\n\n<i>“Totally. I’ve seen some amazing, sexy tech out there.”</i>");
+		else if(pc.isBro()) output("\n\n<i>“Yup.”</i>");
+		else if(pc.isAss()) output("\n\n<i>“Duh.”</i>");
+		else if(pc.isMischievous()) output("\n\n<i>“Look at this face. Would I lie to you?”</i> you ask deviously.");
+		else output("\n\n<i>“Well... sure it could.”</i>");
+		output(" Your mind, reaching for impressive tech you can demonstrate for the girl, wanders to your upgraded underoos and you lean in conspiratorially. <i>“In fact, I have some on me right now that could give you </i>a lot<i> of pleasure.”</i>");
+
+		output("\n\nYou point toward your crotch, and activate the prosthesis at its lowest setting. A cute little prick fizzles into life for a few seconds, then disappears when you cut the power. The myr, who had drawn close in to hear your whisper, blushes a golden orange. <i>“Oh my...”</i> she stammers.");
+
+		if(pc.isBro()) output("\n\n<i>“So, wanna fuck?”</i>");
+		else 
+		{
+			output("\n\n<i>“Would you like to go somewhere private and see more?”</i> you ask. <i>“The full demonstration ");
+			if(pc.isBimbo()) output("will make your pussy break out in applause");
+			else output("is much more impressive");
+			output(".”</i>");
+		}
+		output("\n\nShe’s so embarrassed that her voice is barely more than a whisper. <i>“Okay,”</i> she says, looking from under her eyebrows.");
+		if(pc.isCrotchExposed() || pc.isChestExposed() || pc.isAssExposed()) 
+		{
+			output(" <i>“But, um... I’m staying in a field hospital right now and they’re really strict about exposed skin, so... you should cover up with this.”</i> She shoves her blanket at you.");
+			output("\n\nYou ");
+			if(pc.isNice()) output("nod, and ");
+			else output("roll your eyes, but ");
+			output("take the threadbare cloth and drape it around yourself. <i>“How do I look? ");
+			if(pc.isAss()) output("Like a bum?");
+			else output("Mysterious?");
+			output("”</i>");
+
+			if(pc.isAss()) output("\n\n<i>“No, not at all,”</i>");
+			else output("\n\n<i>“Yes, very,”</i>");
+			output(" the myr-girl laughs.");
+		}
+		output(" She pulls you along by the hand, shrinking from the knowing stares of the patrons as she leads you from the bar and into the demilitarized zone. Her fingers drum nervously on your palm, ");
+		if(pc.isNice()) output("and you squeeze her hand in reassurance. Liliana looks at you, then smiles, reassured.");
+		else if(pc.isMischievous()) 
+		{
+			output("and you amuse yourself by ‘stumbling’ into her as often as you believably can, pressing your ");
+			if(pc.biggestTitSize() >= 10) output("lewd ");
+			output("body against her in ways that ensure the poor girl is bright pink with embarrassment by the time you reach your destination.");
+		}
+		else output("and you smile to yourself, gratified.");
+
+		output("\n\nShe takes you to a medical facility where the busy staff check you in with nary a glance, and leads you through sterile sterling hallways to a barracks-like room. Several myrrish heads turn as Liliana leads you to her bed, attention you’re sure isn’t lost on her.");
+		output("\n\n<i>“I’m going to close the privacy curtain,”</i> she says. <i>“It’s there so we can sleep whenever we need to. It blocks most noises, so....”</i>");
+		output("\n\n<i>“...it should block </i>our<i> noise?”</i> you finish helpfully. Liliana smiles again");
+		if(pc.isMischievous()) 
+		{
+			output(", and you continue: <i>“That sounds like a challenge.”</i>");
+			output("\n\n<i>“Oh, no, not at all. Please...”</i> the nervous myr stammers. You motion her to relax, and she finally begins to disrobe, relieved");
+		}
+		output(".");
+
+		output("\n\nLiliana pulls off her top, grabbing the hem and tugging it over her head to reveal her breasts, which are bound tightly in a wrap - though like a badly-disguised birthday present, you can already tell what’s inside and you want it even more. She separates from the shirt and pauses when she detects your gaze on her chest, coloring under every second of scrutiny. You meet her eyes and she smiles again in relief, then the wrap too is peeled away. Liliana covers herself with two hands as she removes it, gauging the interest in your face. Slowly, through parted fingers, small, pert breasts and cute golden nipples appear, trembling slightly with her excited breath.");
+		output("\n\n<i>“So?”</i> she says.");
+
+		if(pc.isNice()) output("\n\nYou lean in and kiss her. Liliana is surprised at first, then gratified; her lips part and meet yours, pulling greedily in a show of affection.");
+		else
+		{
+			output("\n\nYou hold your chin and narrow your eyes in mock appraisal. Liliana curses you, laughing, and smacks you with a pillow");
+			if(pc.isMischievous()) output(", whereupon you press close and capture her lips with a surprise kiss. She drinks you greedily, but you separate from the eager myr and fold your hands.");
+			else output(" but you fend her off and recline placidly.");
+		}
+		output("\n\n<i>“What’s up?”</i> Liliana asks. <i>“Why’d you stop? Do I need to do something?”</i>");
+
+		//do flags["LILIANA_SEEN_NAKKERS"] = 1
+		flags["LILIANA_SEEN_NAKKERS"] = 1;
+		//end of ‘2nd talk topic’ ver. intro
+	}
+	//first time intro if coming from sex menu
+	else if(flags["LILIANA_HOLODONGED"] == undefined)
+	{
+		output("<i>“By the way, how are you liking that new arm?”</i>");
+		output("\n\nLiliana smiles, keenly conscious of expected gratitude. <i>“It’s great. I didn’t imagine that it could feel as natural as my own, but alien technology really is wonderful.”</i> S");
+		if(flags["LILIANA_ARMS"] == 1) output("ervomotors whirr quietly as s");
+		output("he presses her new fingers together with the old.");
+
+		if(!pc.isAss()) 
+		{
+			output("\n\nYou return her smile warmly, to put her back at ease. ");
+			if(pc.isBimbo()) output("<i>“Mmm, you think that’s good, honey? I’ve got some tech that’ll </i>really<i> knock you out of your pants,”</i> you purr.");
+			else output("<i>“Yeah? Want to see some even wilder tech?”</i> you ask.");
+		}
+		else output("\n\n<i>“You haven’t seen shit. I can show you tech that’ll make your knees weak,”</i> you grin.");
+		output("\n\nLiliana looks momentarily startled by your suggestion, and her face colors. She considers carefully, then speaks: <i>“Yes... I suppose you </i>would<i> have even more surprises in store. I’d... like that.”</i>");
+	}
+	//when coming from sex menu
+	else
+	{
+		//intro from sex menu here
+		if(!pc.isAss() && !pc.isBro()) output("<i>“Hey so... wanna play with our toys again?”</i>");
+		else 
+		{
+			output("<i>“I want to fuck you with my strap-on again.”</i>");
+			if(!pc.isTaur() && !pc.hasAirtightSuit()) output(" You stick your thumb in your [pc.lowerUndergarment] and tug the waistband to remind her of your photonic pleasure-tool.");
+		}
+		output("\n\nLiliana blushes. <i>“Okay. Show me how they work again.”</i>");
+	}
+	//merge all intros here
+	output("\n\nYou nod. <i>“Press that decal,”</i> you say, pointing at your underwear.");
+	output("\n\nLiliana giggles nervously. <i>“Okay...”</i> she says, and touches the spot. Your tech-tool springs into life, beaming from your crotch. Liliana covers her mouth and laughs. <i>“That’s so cute.”</i>");
+	output("\n\nCute, eh? You point to another spot. <i>“Slide your finger along here.”</i>");
+	output("\n\nLiliana obliges, tracing a ticklish line along your waist. Her eyes widen as your little photonic prick goes from the lowest length setting to the highest, stretching out so quickly that ");
+	if(pc.isTaur()) output("it bumps the ground");
+	else output("the glans pokes her in the chest");
+	output(".");
+	if(flags["LILIANA_HOLODONGED"] == undefined) output(" <i>“Oh, wow...”</i>");
+	else output(" <i>“I never get tired of that,”</i>");
+	output(" the myr marvels.");
+
+	if(pc.isTaur()) output("\n\nYou sit on your haunches, causing the long prick to bob into the air, then beckon Liliana closer. She scoots");
+	else output("\n\nYou scoot");
+	output(" up, intentionally nudging the cock-head through her shallow cleavage; the sensation of her pale, smooth skin transits the toy and tingles your nerves. <i>“Next, here,”</i> you instruct, pointing to another elongated decal.");
+	output("\n\nShe touches it, more a caress than a swipe. The prick thickens to maximum girth, swelling so much that it touches both of the petite-chested girl’s nipples. Liliana shivers, and you feel a new tingle in your spine from watching her arousal.");
+	//misch/mean and has cock or vag
+	if((pc.isMischievous() || pc.isAss()) && (pc.hasCock() || pc.hasVagina()))
+	{
+		output("\n\n<i>“Now here,”</i> you say, indicating one last spot. Liliana touches it, then recoils when her finger comes away wet. She re-summons her courage and touches it again; nothing happens, and she begins to rub, trying to find the spot.");
+		output("\n\n<i>“It’s not doing anything,”</i> the myr says.");
+		output("\n\n<i>“Oh yes it is,”</i> you grunt, and shudder out another drop of ");
+		if(pc.hasCock()) output("pre-cum");
+		else output("lubrication");
+		output(" as her misguided finger rubs ");
+		if(pc.hasCock()) output("your real cock");
+		else output("[pc.oneClit]");
+		output(" through the fabric.");
+
+		output("\n\nLiliana pulls away, laughing. <i>“You’re bad,”</i> she scolds.");
+	}
+	//no new paragraph (continue from either <i>“her arousal”</i> or <i>“she scolds”</i>)<i>“);
+	output(" The myr sits on the bed and beckons you closer with a finger, spreading her legs. Her small abdomen hangs between them and her pussy glistens on the end, like a dewdrop. Unable to stare anywhere else, you fumble for the controls to your sex-aid, reducing it in size until it neatly matches and setting it there.");
+	output("\n\nYou move ");
+	if(pc.isTaur()) output("astride the woman, placing your fore[pc.feet] on either side,");
+	else output("toward her,");
+	output(" and she trembles. A drop of sweet-smelling myrrish nectar falls from her vulva to wet the bedspread - glib observations about wetness and lust form in your ready mind, but before you can speak, Liliana pulls you into a passionate ");
+	if(pc.isTaur()) output("hug");
+	else output("kiss");
+	output(". Your faux-prick slips into her, guided by the myr’s ");
+	if(talked) output("third hand");
+	else output("lower hands");
+	output("; her ");
+	if(pc.isTaur()) output("arms");
+	else output("lips");
+	output(" jar slightly as your entry thrust pushes her higher on the bed. The warmth and tightness of her slight body transmits to you through the toy; you can feel every inch of her as though you were there.");
+	if(pc.isTaur()) output(" You lean forward and she");
+	else output(" She breaks the kiss and");
+	output(" meets your gaze.");
+
+	output("\n\n<i>“Well... you’re inside,”</i> Liliana whispers. Her shy eyes still peer at you from under long lashes, but in her voice you hear a note of... validation? Perhaps pride?");
+
+	//yeah, missionary position!
+	output("\n\nYou brace against the bed mattress and begin to pump the little myr, starting slowly, relying on her face for cues. Liliana obliges; her eyes glitter with excitement, encouraging you to go faster, push deeper. Her face twists into a grin of pleasure; her teeth appear in a tense smile and she bites her lip as a particularly well-aimed stroke hits her nerves. The encouragement in her eyes takes on a shade of pleading, begging you for another just-right stroke, and another, which you deliver and she greedily accepts.");
+
+	if(pc.isTaur())
+	{
+		output("\n\nLiliana’s fingers creep along your side until they find the controls to your underwear. They quickly locate the unlock button and press it; you worry that her squeezing thighs might touch the size controls, but she seems aware of them - they spread wide and allow you to hilt yourself completely in her pussy, then fold around you. While you’re ");
+		if(pc.PQ() >= 80) output("easily ");
+		output("strong enough to pull away from the quivering girl, you decide to wait and see what she does.");
+	}
+	else output("\n\nYour fingers creep to your underwear, locating the unlock button. Liliana parts her legs at first, in concern that she might touch the size controls with her thighs - and then has another idea. She hooks her knees around your [pc.butt] and pulls you in closer. You could resist if you wanted, but instead allow her to draw you in until the toy is hilted in her pussy and her hand is at the controls, resting atop yours.");
+	output("\n\nLiliana touches the length control first, tracing a line along your side that stretches the cock in her cunt. Her cute, lip-biting expression returns as you feel the toy’s tip bump the opening of her womb; her hand moves to the girth control and she blushes when you give her a knowing smile, but you feel another caress, regardless. The photonic prong swells, pressing against the walls of Liliana’s sex, and she continues her slow tickle until you see her eyes pinch shut in the pleasure of having all her sensitive places touched at once. She stops to savor it - ten seconds, twenty. You begin to move again, but her legs resist you and bring you to a stop. One last touch radiates from your side, and the toy swells again, just a hair’s breadth. Liliana sighs, and opens her eyes again... clear, shining, and beckoning. Her legs unlock; she’s ready.");
+	output("\n\nSo are you. You begin to pump at the ant-girl quickly, stretching her pussy with brutish strokes of your filled-to-fit toy, heedless of the disengaged safety lock on the dildo and her squeezing thighs. ");
+	if(pc.isTaur()) output("Liliana makes a token gesture to stop from brushing the controls by raising her legs to wrap around your back, and goes back to savoring the sex.");
+	else output("You make a token gesture to keep her legs off the controls by grabbing them under the knee and pushing them up to her shoulders; Liliana doesn’t seem to mind the contortion, and even shivers in pleasure as you man-handle her slender body.");
+	output(" Her petite breasts tremble with each push of your artificial cock, and her nipples are hard as golden jewelry, sticking up and begging to be touched. Liliana beats you to it; two of her hands grab her nipples and begin to pinch and squeeze, causing her to moan in soprano ecstasy. The girl conforms her body to yours, pressing flesh to [pc.skinFurScales] and rubbing so close that the delicately sweet aroma of myrrish sweat lingers.");
+	output("\n\nAll these sights and scents spur your libido on, drawing out and hilting in the myr girl with deep, sawing motions that set Liliana moaning as your light-lance drags her nerves like a seine. Her back begins to arch under you, curling a quarter-moon on each thrust; her breaths come short now, heavy panting that exposes just how far she’s fallen into pleasure. Her eyes shut and flutter open intermittently, and whenever you manage to catch them with your own gaze, they radiate gratitude and adoration.");
+
+	//if PC has cock and is not horse
+	if(pc.hasCock() && !pc.isTaur())
+	{
+		output("\n\nLiliana’s fingers return to your [pc.lowerUndergarment] again, but not for the controls. She slips into the waistband and touches the tip of your [pc.cockNounSimple], extracting a squeeze of precum from your hair-trigger nerves. The myr giggles as the [pc.cumVisc] fluid coats her fingers, and then guides your cock upright, so it’s pressed between your stomach and her crotch. She pulls your shoulders close with her other hands, positioning you so that your stiff, sensitive prick rubs against her body with each thrust of the strap-on toy, doubling your pleasure.");
+	}
+	//if no cock but has vag and is not horse
+	else if(pc.hasVagina() && !pc.isTaur())
+	{
+		output("\n\nLiliana’s abdomen curls and flexes with the rest of her as you abuse her pussy; a strange rhythm of touches continues to drum against your pelvis and the myr under you stretches and shifts her body, trying to accomplish you-know-not-what. Frustrated, Liliana grabs your shoulders and pushes you away from her chest, until you’re riding her upright. From here, the purpose of her abdomen’s strange drumbeat becomes clear; every time you thrust or withdraw, it rubs against your [pc.clit], sending a stir of sexual excitement through your own neglected pussy. Liliana smiles as your eyes brighten with understanding, but she doesn’t speak... except to issue the next low moan that accompanies each thrust.");
+	}
+	//merge
+	output("\n\nThe myr compels you with her eyes, begging deeper, stronger thrusts into an ever-wetter sex. You oblige, and within minutes, her muscles tense.");
+	output("\n\n<i>“Gonna... cum!”</i>");
+
+	output("\n\nThe slight woman locks up, ");
+	if(!pc.isTaur())
+	{
+		output("throwing her arms around your neck and ");
+	}
+	output("pressing herself into you. Her stiff nipples poke a sewing stitch into your [pc.skinFurScales] as she shakes and curls her back, moaning in low register. Tiny drops of sweat bead on her skin and her stomach ripples visibly as her lower body squeezes out orgasm in waves like a tube of toothpaste. The ant-girl’s pussy clings to your toy so wetly and her body is so close that her orgasm triggers you as well.");
+	if(pc.hasCock())
+	{
+		output(" Your [pc.cockHead], pressed against her spasming stomach muscles, spurts a ");
+		if(pc.cumQ() < 100) output("dribble");
+		else output("line");
+		output(" of cum");
+		if(pc.cumQ() > 500) output(", then another. In moments, your underwear is soaked in [pc.cumVisc] [pc.cumNoun] by your overproductive [pc.balls], and every one of Liliana’s writhing contortions generates a slick, squishing sound from your nethers");
+		output(".");
+	}
+	else if(pc.hasVagina())
+	{
+		output(" Tickled by the tip of her abdomen, your [pc.clit] transmits a tingling spasm through your [pc.vaginas], which ");
+		if(pc.wettestVaginalWetness() < 3) 
+		{
+			output("dribble");
+			if(pc.totalVaginas() == 1) output("s");
+			output(" a trickle of [pc.girlCum] into your underwear");
+		}
+		else
+		{
+			output("gush");
+			if(pc.totalVaginas() == 1) output("es");
+			output(" with enough [pc.girlCum] to soak your underwear and slick Liliana’s chitin");
+		}
+		output(".");
+	}
+	else output(" Your sad, neglected asshole, at the mercy of the waves of related pleasure transmitting to you through the feedback, twitches and clenches, orgasming in solitude.");
+
+	//endings
+	//if came from talk scene (flags["LILIANA_TALKS"] = 2)
+	if(talked)
+	{
+		flags["LILIANA_TALKS"] = 2;
+		output("\n\nIt takes several minutes for Liliana to regain her wind.");
+		output("\n\n<i>“That was good,”</i> she muses, squirming around the perfect-fit-prick and drawing aftershocks from you. <i>“I suppose you’re right. There’s something to be said for technology.”</i>");
+		output("\n\nEqually exhausted, you pull out of her twitching pussy and tap the power control. The faux-cock disappears instantly, leaving a dick-shaped mold of myrrish pussy-nectar hanging in the air for a fraction of a second before it falls to splatter her abdomen. The sight provokes a laugh from the girl.");
+		if(pc.isBimbo()) output("\n\n<i>“Din’ I tell you?”</i>");
+		else if(pc.isBro() || pc.isNice()) output("\n\n<i>“Well?”</i>");
+		else output("\n\n<i>“Told you it was wild,”</i>");
+		output(" you finally grunt, having caught your breath.");
+
+		output("\n\nLiliana rubs her scar thoughtfully, then looks up at the ceiling. <i>“Yeah...”</i> she agrees. <i>“About that... I never asked your opinion, did I? About the arm thing. I just dumped all my worries on you instead and you had to distract me from my obsession. What do you think?”</i>");
+		//re-present the ‘buy an arm’ choices from Lil’s 2nd talk scene, minus the current scene
+		IncrementFlag("LILIANA_HOLODONGED");
+		processTime(25);
+		if(pc.isTaur()) pc.lust(15);
+		else
+		{
+			pc.orgasm();
+		}
+		clearMenu();
+		if(pc.credits >= 2000) addButton(0,"Get An Arm",lilianaIsTotallyRobocopAnt,undefined,"Get An Arm","Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.");
+		else addDisabledButton(0,"Get An Arm","Get An Arm","You don't have enough credits to help Liliana get a new arm.");
+		//[Encourage-arm](requires at least 2k credits to start)
+		//tooltip: Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.
+		//Tooltip: encourage Liliana that she’ll be ok even without the arm.
+		addButton(1,"Encourage",encourageWhatsHerButtNotToBeRobocop,undefined,"Encourage","Encourage Liliana that she’ll be ok even without the arm.");
+	}
+	//else if did not come from talk scene
+	else
+	{
+		output("\n\nLiliana takes several minutes to catch her breath, as do you after the energetic performance. She beams a wide, happy smile at you throughout");
+		if(!pc.isAss()) output(", which you return easily");
+		output(". When she has wind enough, she leans in for a hug and a final kiss.");
+		output("\n\n<i>“Thanks,”</i> Liliana says, breaking away from the embrace. <i>“I hope I see you again sometime.”</i>");
+		output("\n\nYou nod and pull free of her still-twitching pussy, then deactivate the dildo. It vanishes so quickly that a faint outline of myrrish girlcum hangs in the air for a split-second.");
+		if(!pc.isCrotchExposedByArmor() && !(pc.armor is EmptySlot)) output(" You re-dress, stuffing your soggy, nectar-sodden underwear into your [pc.armor], and bid her good-bye.");
+		else output(" You bid her good-bye, then exit the facility with your exposed, myr-cum-soaked underwear visible for all to see. You’re almost certain that, behind you, Liliana is blushing again.");
+		//end
+		//pass time; raise lust if unsexed or horse, else do PC orgasm
+		//if not going to arm-surgeon, place PC wherever he goes after sex with Liliana
+		IncrementFlag("LILIANA_HOLODONGED");
+		processTime(25);
+		if(pc.isTaur()) pc.lust(15);
+		else
+		{
+			pc.orgasm();
+		}
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
