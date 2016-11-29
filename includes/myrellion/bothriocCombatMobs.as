@@ -236,6 +236,47 @@ public function bothriocPidemmeLossSelector(fromCombat:Boolean = false):void
 	}
 }
 
+public function bothriocPidemmePCVictory():void
+{
+	clearOutput();
+	showStandardBothrioc();
+	showName("VICTORY:\nBOTHRIOC PIDEMME");
+
+	if (enemy.HP() <= 0)
+	{
+		output("The pale creature falls a knee before you, her (his?) chest heaving with the effort of sucking down air in the face of the onslaught you have wrought on them. Her head hangs low, averting her gaze from falling on the more dominant member of the exchange...");
+	}
+	else
+	{
+		output("The pale creatures knees disappear out from under her (him?) after a momentary final tremble of resistance. Her pale features are tinged with the slightest hue of color; the crushing lust you've evoked in her further evidenced by her throbbing ovipositor jutting behind her and drooling with need...");
+	}
+
+	output("The only question remaining now is how to best teach her the error of her ways.");
+
+	clearMenu();
+
+	if (pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(0, "Dock Ovi", bothriocPidemmeDockOvi);
+	if (pc.hasVagina()) addButton(1, "Vag Ride", bothriocPidemmeVagRide, false);
+	addButton(2, "Ass Ride", bothriocPidemmeVagAssRide, true)
+
+	addButton(14, "Leave", bothriocPidemmeVictoryLeave);
+}
+
+public function bothriocPidemmeVictoryLeave():void
+{
+	clearOutput();
+	showStandardBothrioc();
+	showName("VICTORY:\nBOTHRIOC PIDEMME");
+
+	if (bothriocAddiction() < 50) output("No sense in rewarding your assailant after putting her in her place.");
+	else output("You have to admit to yourself that just giving the egg-giver exactly what she wanted in the first place is a tempting thought... but clearly she's proven herself undeserving of the chance to leave you with her eggs entirely.");
+
+	output("\n\nYou leave her to her devices, knelt amongst the cavern floors.");
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.genericVictory);
+}
+
 public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 {
 	if (bothriocAddiction() >= 60 || !fromCombat)
@@ -656,5 +697,130 @@ public function bothriocPidemmeVagEggs(fromCombat:Boolean):void
 
 public function bothriocPidemmeOralTime(fromCombat:Boolean):void
 {
-	
+	if (bothriocAddiction() >= 60 || !fromCombat)
+	{
+		output("<i>“Well now, precious,”</i> murmurs the bothrioc, lying themselves down on top of your back, <i>“let’s have a feel of you.”</i> They don’t tie your hands, but you make no attempt to fight them off - just the touch of the heavy, juicy weight of their sheer black abdomen on your [pc.butt] sends a shiver of pure delight up your spine, making you feel unfocused and pliant. Slender hands touch your rounded belly, describing comforting, round movements over the taut skin. Soft laughter tinkles in your [pc.ears].");
+
+		output("\n\n<i>“I should have guessed. A nice, eager incubator strolls into my territory, ready to please - of course somebody got to you before me.”</i>");
+		if (pc.hasVagina()) output(" Smooth fingers find your [pc.vagina], stroking your puffy labia. When the bothrioc speak next, it’s in a tone of aroused wonder. <i>“Bearing multiple broods, farlander? Yours must be a very receptive and eager kind. There are more of you, right? I could use more than one...”</i>");
+		output(" They sigh heavily.");
+
+		output("\n\n<i>“I’m sorry!”</i> you wail. <i>“It’s just that... <i>“ An elegant, chitinous digit touches your [pc.lips].");
+		
+		output("\n\n<i>“I know, I know,”</i> laughs the bothrioc. <i>“You can’t help");
+		if (!pc.hasKnees()) output(" kneeling down");
+		else output(" getting on your [pc.knees]");
+		output(" and presenting yourself for anything you run into that needs to breed. Nobody’s blaming you for who you are, sweet incubator.”</i> They stroke the line of your jaw silently for a while, and you get lost in the comforting movement, craning your chin so that they can stroke the sensitive [pc.skin] on your neck. <i>“Tell you what,”</i> they whisper,");
+		if (pc.biggestTitSize() <= 1) output(" other hands drifting down your chest to touch your [pc.nipples]");
+		else output(" other hands drifting down to cup your [pc.breasts] and knead them");
+		output(", <i>“would you like a suckle? I can hold myself back - for you.”</i>");
+		
+		output("\n\nYou find yourself blushing from the kindness of the egg-giver, and the warmth you can feel throbbing between you.");
+		
+		output("\n\n<i>“Would you really mind - ?”</i> The bothrioc shifts themselves upwards, deliberately dragging the heavy weight of their abdomen up your spine, and arranges themselves in front of you so they are sat on top of that black, shiny teardrop, The distended, violet hole winks at you wetly, the tip of their pent-up ovipositor clear to see.");
+		
+		output("\n\n<i>“Of course not, precious,”</i> they smile. <i>“Open wide.”</i> The purple tip presses insistently against your [pc.lips], and with a sigh of pure pleasure you do exactly what they say.");
+		
+		output("\n\nIt’s a little softer on the surface, perhaps, than a cock; beneath the skin though it’s a bulbous tube of restless muscle that reacts to the rubbing of your lips and tongue across it by bunching up and thrusting deeper into your maw. It’s heaven, in other words, and you gladly stretch your jaw to get the first big, round segment into your mouth, tightening your cheeks around it assiduously, so that when the bothrioc draws it back it leaves your lips with a distinct <i>“pop”</i>. Then it comes back, slathered with a fresh payload of oil to smear and drool across your [pc.lips], dribbling down your chin.");
+		
+		output("\n\nYou eagerly swallow the slightly numbing, coating substance, relish it dollop into your stomach, and embrace the warm fuzz which engulfs you; stretching out from your head to join hands with the glow that pulses from your core so that you are a being of total, sensual, submissive lust, overcome with bliss at abasing yourself in front of the alien creature and pleasuring their strange, long egg-stalk. In to the back of your throat, suck... out, dragging your lips and [pc.tongue] along the bulbous tube. In to the back of your throat, suck... swallow, coo as the lubricant coats a fresh layer of tenderness over your [pc.skinFurScales]. The fact that");
+		if (pc.hasCock()) output(" [pc.eachCock] is rock hard, readily dripping pre");
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasVagina()) output(" [pc.eachVagina");
+		output(" is sopping wet, spread and waiting to be taken} is almost a side note; it’s at your mouth that you are taking the most enjoyment.");
+
+		output("\n\nThe only thing which seems to matter is making the experience better for the egg-giver, because it seems every time you draw a groan of pleasure from their lips, every time you make them thrust into your mouth a little harder, a blurry wave of ecstasy washes right through you. You reach out and stroke the latex-like sheen of their abdomen, willing them to give you more.");
+		if (pc.hasLongTongue()) output(" You wrap your lithe, flexible tongue around the ovipositor, squeezing and rubbing the segments all the way up to the opening.");
+		output(" You tongue the inside of the dilated tube, moving your head this way and that so you can flick at the sensitive inner flesh, making the bothrioc cry out with pleasure, one pair of hands clutching your head whilst the other two play with their tiny black nipples.");
+		
+		output("\n\n<i>“You are amazing, precious,”</i> they attest throatily, stroking behind your [pc.ear]. <i>“No wonder everything wants to breed you... a mouth and a will to please like yours needs to be given to the next generation, a thousand times over - <i>“ Unable to contain themselves any further, they thrust their thick, purple egg-stalk in deep, sinking straight down into your throat. The overwhelming sensation you feel at being taken like this, your air-flow blocked by the bothrioc’s oil-slicked urge, is one of deep arousal, your [pc.nipples]");
+		if (!pc.hasFuckableNipples()) output(" hardening up instantly");
+		else output(" drooling arousal freely");
+		output(". A small whimper of joy is the first sound out of your mouth when the bothrioc retracts themselves, your [pc.lips] and [pc.tongue] dragging along their bulging ovipositor all the way. They respond by pumping straight back into your throat even harder, delivering a gobbet of oil straight to your stomach.");
+		
+		output("\n\nThe lithe spider-being throat-fucks you for... well, it doesn’t matter. For as long as they want. You’re just happy to be of such gleeful, glorious use, your mouth and oesophagus the worshipful sleeve into which the wonderful, thick egg-stalk can imperiously thrust into again and again, slickened with the oil that makes everything so clear, so peaceful. At some point you orgasm;");
+		if (pc.hasCock()) output(" [pc.cum] spurts over your [pc.belly] and the ground from your deliriously flexing [pc.cock]");
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasVagina()) output(" [pc.femcum soaks your [pc.thighs], leaking from your clenching [pc.vagina]");
+		output(". Maybe you do it multiple times. It doesn’t matter. What matters is pleasuring the wonderful, strong, kind dominant with your wet, needy face-cunt.");
+		
+		output("\n\nThe bothrioc’s frenzy of arousal grows to the point that, their black eyes locking with yours, you fuzzily worry that they are going to forget themselves and impregnate your stomach anyway. Would that be so bad? You could take it, you’re sure... the very moment that thought occurs though, they retract themselves slowly from your face, trailing clear lubricant as they go. You let their tip go with a teasing smack of your lips, panting hard but happily, uncaring of the amount of drool and alien fluid that have liberally painted your face.");
+		
+		output("\n\n<i>“No... I can hold myself back,”</i> purrs the bothrioc, thin chest heaving, admiring the view below them as they retract their ovipositor entirely. <i>“You’ve had enough of the gift for today, and I can always find someone else to take my eggs. What to do you say, precious?”</i>");
+		
+		output("\n\n<i>“Thank you, egg-giver,”</i> you chime, giving them a big, oil-slathered smile. They gather you up in their four arms and give you a long, tender squeeze, hot against their flat, white chest.");
+		
+		output("\n\n<i>“You are very welcome,”</i> they breathe in your ear. <i>“Come and find me once you have borne your current clutch. A precious brood queen like you should never be without a full, teeming belly.”</i>");
+		
+		output("\n\nThey lay you down gently and depart silently. You’re too exhausted and unfocused under the fuzz of bothri-oil to do anything but lie there and doze for a little while. Eventually, with a slight feeling of regret that nothing else has found you, twisted your body this way and that and rammed themselves into your tender holes as they please, you wipe your face clean, find your gear, and press on.");
+	}
+	else
+	{
+		output("<i>“Our numbers have been thinned and scattered terribly by the myr war,”</i> the bothrioc says, as they");
+		if (pc.isTaur()) output(" lay you down");
+		else output(" bend you forward");
+		output(", pull your hands behind your back and truss them with a bolo. <i>“Travellers to our lands are few and heavily armed. Needs must, farlander. You understand.”</i>");
+		
+		output("\n\nTheir curt tone dissolves into amused laughter a moment later when, after straddling you and using one pair of hands to hold you by the shoulders, another pair of chitin-gloved hands touch your");
+		if (pc.bellyRating() < 20) output(" lightly");
+		else if (pc.bellyRating() > 50) output(" heavily");
+		output(" bulging belly.");
+		
+		output("\n\n<i>“You DO understand! Is this the work of one of my friends? Or did some mean old nyrea get to you first?”</i>");
+		if (pc.hasVagina()) output(" Smooth fingers find your [pc.vagina], stroking your puffy labia. When the bothrioc speak next, it’s in a tone of aroused wonder. <i>“Bearing multiple broods, farlander? Yours must be a very receptive and eager kind. There are more of you, right? I could use more than one...”</i>");
+		output(" You shiver as the smooth weight of the creature’s bulging abdomen rests down on top of your back, their hands describing soothing circles over your swollen stomach. <i>“Whatever the case, it’s nice to know you’re... accommodating, farlander. That will serve you well, as you’re changed into a perfect little incubator.”</i>");
+		
+		output("\n\nThey sigh dreamily, before slowly working their way upwards, deliberately dragging that latex-covered weight up your spine. You look up blearily to find they have turned around to face you, sitting down on top of their abdomen with legs splayed, its tip a few inches away from your face. The distended, violet hole winks at you wetly, the tip of their pent-up ovipositor clear to see.");
+		
+		output("\n\n<i>“It does leave us a little bit of an issue though, farlander,”</i> husks the bothrioc, gazing down at you, four hands moving up and down their flat, lissom front in a sensual dance of fingers. <i>“I’ve got eggs to plant, but being the sort of person that bends that");
+		if (pc.buttRating() < 10) output(" cute little");
+		else output(" big fat");
+		output(" ass over for anything that feels a need to breed, you can’t take any more. Poor luck for me...”</i> They don’t look disappointed; far from it. Their black eyes flit over your prone form with naked lust. Their abdominal slit dilates and the violet tip of their ovipositor slides its way out, a thick, bulbous member utterly slathered in oil. It bumps against your [pc.lips] and you wince automatically; it is utterly, obscenely alien.");
+		
+		output("\n\n<i>“Hmm yes,”</i> hums the bothrioc, half with lust and half with affirmation. <i>“Eager incubator or not, you don’t have the right frame of mind yet, do you? So I will do my bit for the greater good. No eggs will be planted today, but you shall have plenty of my oil. Once you’ve had enough,”</i> they say, gazing into your [pc.eyes] with their half-lidded black orbs, <i>“everything will become much clearer, much easier for you. I promise you that precious, from the bottom of my hearts.”</i>");
+		
+		output("\n\nYou can’t see any way out of this; you are utterly beaten and your hands are securely tied behind your back.");
+		if (bothriocAddiction() <= 24) output(" Maybe if you just don’t think about it...");
+		else output(" The warm glow inside of you helps; you find if you sink yourself into that and relax, this doesn’t seem so bad at all...");
+		output(" The purple tip bumps insistently against your lips, and closing your eyes you open up and accept the warm, oil-slathered ovipositor past your teeth.");
+		
+		output("\n\nIt’s a little softer on the surface, perhaps, than a cock; beneath the skin though it’s a bulbous tube of restless muscle that reacts to the rubbing of your lips and tongue across it by bunching up and thrusting deeper into your maw. The first big, round segment stretches your mouth quite wide - and then it retracts, slipping back inside the bothrioc momentarily. Then it’s back, slathered with a fresh payload of oil to smear and drool across your [pc.lips], the walls of your mouth and dribble down your chin. The bothrioc groans with pleasure, one pair of hands holding your head whilst the other two busy themselves on their tiny, black nipples, as you stoically loosen your jaw and accept the bulging segment whole.");
+		
+		output("\n\nThe process repeats itself; the spider-being extends their big, purple ovipositor into your mouth, each time a little deeper, and then draws all the way back, so that when they next push inside there’s another generous coating of bothri-oil to slather all over you.");
+		if (bothriocAddiction() <= 24) output" You do your best to avoid swallowing it - their ulterior motive has to be denied - but you have to let some of it slide down your throat, to avoid choking. Steadily you find yourself relaxing despite yourself, a warm, calming buzz settling over you, and it becomes easier and easier to lose yourself to the rhythm of pleasuring the egg-beast. Holding onto your disgust seems pointless. If the creature wishes to make this more manageable for you, why should you fight it? You swallow a little more of the warm, slightly numbing fluid peaceably.");
+		else output(" Your initial disgust fades as you let the warm, slightly numbing fluid slide down your throat almost by instinct, and an enjoyable, unfocused buzz settles over your perception. You don’t like the egg-beast making you do this (don’t you?), however you may as well let the oil do its business and relax you, so that this bizarre oral can go quickly and painlessly.");
+		
+		output("\n\n<i>“Yes precious,”</i> says the bothrioc, looking down at you closely, <i>“it’s not so bad, is it? Not when you let go. Open wide... <i>“ they arch their head back and sigh as they push their ovipositor in deep, straining your lips and touching the back of your throat with it. Such is the state of your relaxation now that no urge to choke occurs. Indeed, you clamp your cheeks around it, intent on drawing off the lube and intensifying the happy little cloud that is settling over your mind.");
+		
+		output("\n\n<i>“Mmm... <i>“ they groan as they retract again, the slick bumps riding over your [pc.tongue]. <i>“I can tell you’ve had plenty of experience. Did you");
+		if (pc.hasKnees()) output(" get on your [pc.knees] and");
+		else output(" kneel and");
+		output(" polish the egg-stalk of whatever stuffed you full of their young? Before and after, probably.”</i> The blush on your cheeks matches the high color you can see blossoming on their own chalk-white features, oil oozing freely down from their abdominal opening. Your oral, and the sight of your body, plump with life, is working them up. <i>“Think open thoughts, brood queen,”</i> they urge. <i>“I want to feel every inch of your ripe touch.”</i>");
+		
+		output("\n\nThis time, when the ovipositor thrusts itself past your lips, fills your mouth and touches the back of your throat, it doesn’t stop. The relaxation the creature has imbued you with is such that suppressing your gag reflex is a cinch; you simply open wide and feel the bulbous tube stretch down your oesophagus, its segments bulging your neck, lustrous oil drooling down your chin. The bothrioc moans with pure delight, two hands clutching the sides of their thin face, almost the entire extent of their sex shoved into your face. Just as stars begin to take over your vision it retracts outwards so that only the first segment is widening your lips, allowing you to take a big gulp of air. Then they thrust themselves back down that tight passageway they’ve claimed as their own.");
+		
+		output("\n\nThe utterly obscene sounds of a thick, bulbous, oily ovipositor funnelling itself in and out of your throat fill the cavern, lubricant dripping down thickly from your chin onto the dirt. The bothrioc violates you with increasing passion, the smooth bulges of their violet egg-tube pushing past your tonsils and stretching your throat forcefully. If it weren’t for the being’s copious fluids it would be a deeply unpleasant experience. With, it simply is something you have to do, calmly and blithely. If you hollow your cheeks around the creature’s length they groan with ecstasy, and the encompassing buzz seems to intensify, gratifying you and making you feel pleased, soft and eager to be used as a receptacle for the dominant’s lust.");
+		
+		output("\n\nThe bothrioc’s frenzy of arousal grows to the point that, their black eyes locking with yours, you suddenly worry that they are going to forget themselves and impregnate your stomach anyway. The very moment that thought occurs though, they retract themselves slowly from your face, trailing clear lubricant as they go. You cough, [pc.tongue] hanging out and pant, uncaring of the amount of drool and alien fluid which dribbles downwards.");
+		
+		output("\n\n<i>“No... I can hold myself back,”</i> purrs the bothrioc, thin chest heaving, admiring the view below them. <i>“You’ve had enough of the gift for today, and I can always find someone else to take my eggs.”</i> Once their ovipositor is entirely holstered, they climb back on top of you, enjoying the touch of your [pc.skinFurScales] as they untie your hands. <i>“For now, anyway,”</i> they whisper in your ear. <i>“Find me once you have borne your current clutch, precious. A breeding queen-in-training like you should never be without a round belly teeming with spawn.”</i>");
+		
+		output("\n\nThey lift themselves off you and leave silently. You’re too exhausted and unfocused under the fuzz of bothri-oil to do anything but lie there and doze for a little while. Eventually the nagging thought of something else finding you and making coarse use of you drives you back up onto your feet, wipe your face clean, find your gear, and press on.");
+	}
+
+	IncrementFlag(flags["BOTHRIOC_FUCKED"]);
+
+	processTime(25 + rand(10));
+	pc.loadInMouth(enemy);
+	pc.orgasm();
+
+	if (fromCombat)
+	{
+		CombatManager.genericLoss();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
