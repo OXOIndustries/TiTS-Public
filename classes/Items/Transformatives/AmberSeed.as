@@ -54,7 +54,7 @@ package classes.Items.Transformatives
 			this.description = "a blister pack of “Amber Seed”";
 			//Displayed on tooltips during mouseovers
 			// Note: it not "may" cause, it "will". It contained some ramblings about how nut could be nanomachine doped, but it was droped.
-			this.tooltip = "Conventional transformative in the form of a large... nut? You can only guess at whatever it was grown naturally, or through synthetic process. A big, flashy label says “Brand new FluidShift technology! Quick and painless!” You spot a line of fine print at the back stating: “May cancel lactation in mammalian species.”";
+			this.tooltip = "Conventional transformative in the form of a large... nut? You can only guess at whether it was grown naturally, or through synthetic process. A big, flashy label says “Brand new FluidShift technology! Quick and painless!” You spot a line of fine print at the back stating: “May cancel lactation in mammalian species.”";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -121,7 +121,7 @@ package classes.Items.Transformatives
 			{
 				options.push(function():*{
 					var wasFluffy:Boolean = target.hasSkinFlag(GLOBAL.FLAG_FLUFFY);
-					output("\n\nA sudden shiver overtake you as you feel a strange sensation throughout your [pc.skinFurScales]. In a matter of seconds, you are covered in an odd goo-like substance.");
+					output("\n\nA sudden shiver overtakes you as you feel a strange sensation throughout your [pc.skinFurScales]. In a matter of seconds, you are covered in an odd goo-like substance.");
 					var newTone:String = RandomInCollection(avianFeatherTones);
 					if (target.skinToneUnlocked(newTone)) target.skinTone = newTone;
 					output(" You briefly panic and quickly brush it off, revealing smooth, [pc.skinTone] skin. Strange...");

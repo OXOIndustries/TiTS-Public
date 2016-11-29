@@ -95,7 +95,7 @@ public function icedTreatsInterior():Boolean
 		if(flags["YAMMI_RECRUITED"] == undefined)
 		{
 			output("The shop interior is made up of row after row of clear plastic devices with trays in front for bowls, and handles to draw the ice cream treats. Just like last time, you spot women occupying the space inside the machinery. Yammi calls to you almost as soon as you step inside the door.");
-			output("\n\n<i>“Welcome back to Iced Teats! When you'd like to order, just say the word.”</i> The orange-skinned alien is dressed the same as the last time you saw her, sporting a bright red miniskirt and vest combo that would threaten sensibilities on a more modest world. Her cheerful eyes watch you curiously as you make your way around the shop.");
+			output("\n\n<i>“Welcome back to Iced Teats! When you’d like to order, just say the word.”</i> The orange-skinned alien is dressed the same as the last time you saw her, sporting a bright red miniskirt and vest combo that would threaten sensibilities on a more modest world. Her cheerful eyes watch you curiously as you make your way around the shop.");
 			addButton(0,"Yammi",yammiRepeatMenu,true,"Yammi","Approach the aquatic alien behind the counter.");
 		}
 		else
@@ -118,18 +118,18 @@ public function yammiRepeatMenu(outputS:Boolean = true):void
 	}
 	clearMenu();
 	if(pc.credits >= 10) addButton(0,"Cone",orderAYammiCone,undefined,"Cone","Order a cone for the low low price of 10 credits.");
-	else addDisabledButton(0,"Cone","Cone","You can't afford the 10 credits for a cone.");
+	else addDisabledButton(0,"Cone","Cone","You can’t afford the 10 credits for a cone.");
 	if(pc.credits >= 20) addButton(1,"Bowl",orderAYammiBowl,undefined,"Bowl","Order a bowl for the not so low price of 20 credits.");
-	else addDisabledButton(1,"Bowl","Bowl","You can't afford the 20 credit cost of a bowl of titty-milk icecream. How sad.");
+	else addDisabledButton(1,"Bowl","Bowl","You can’t afford the 20 credit cost of a bowl of titty-milk icecream. How sad.");
 	if(pc.credits >= 50) addButton(2,"Feast",orderAYammiFeast,undefined,"Feast","Order a veritable feast of icecream. It only costs 50 credits - a huge savings, according to the menu.")
-	else addDisabledButton(2,"Feast","Feast","You can't afford the 50 credits a feast would cost.");
+	else addDisabledButton(2,"Feast","Feast","You can’t afford the 50 credits a feast would cost.");
 	if(flags["YAMMI_RECRUITED"] == undefined)
 	{
 		addButton(3,"Questions",questionsForYammi,undefined,"Questions","Strike up a conversation and ask her about some stuff.");
 		if(flags["YAMMI_BAD_DAY"] == 2)
 		{
-			if(pc.credits >= 7000) addButton(4,"Free Her",payForYammisSlutitude,undefined,"Free Her","Pay for Yammi's debt so that she can get out of this hellhole.");
-			else addDisabledButton(4,"Free Her","Free Her","You can't afford to buy Yammi out of her contract.\n\n7000 credits");
+			if(pc.credits >= 7000) addButton(4,"Free Her",payForYammisSlutitude,undefined,"Free Her","Pay for Yammi’s debt so that she can get out of this hellhole.");
+			else addDisabledButton(4,"Free Her","Free Her","You can’t afford to buy Yammi out of her contract.\n\n7000 credits");
 		}
 	}
 	addButton(14,"Back",mainGameMenu);
@@ -209,13 +209,13 @@ public function preparingToGetIceCream(servingType:String = "cone"):void
 	output("\n\nYou examine the selection before you, each device containing a woman with her tits wrapped in a net of straps ready to surrender her flavored breast milk for your snacking pleasure. Various tubes and devices are in place to feed them, please them, and clean them. As you examine the flavor tags on each machine, the occupant watches you from inside; some are expectant, some a bit tired, and some look pleading, their massive melons overfull.");
 	//(Flavors would be Gewinfruit, Yokto, Blitzaberry, Strawberry, Jumbijumbi, Darginut, Chocolate, and Flameberks)
 	clearMenu();
-	addButton(0,"Gewinfruit",gewinFruit,servingType,"Gewinfruit","Try some gewinfruit flavor. It's supposed to be quite rich.");
+	addButton(0,"Gewinfruit",gewinFruit,servingType,"Gewinfruit","Try some gewinfruit flavor. It’s supposed to be quite rich.");
 	addButton(1,"Yokto",getYokto,servingType,"Yokto","Try some Yokto flavor.");
 	addButton(2,"Blitzaberry",blitzaberryCone,servingType,"Blitzaberry","Try some blitzaberry, a childhood favorite.");
-	addButton(3,"Strawberry",strawberryIcedCream,servingType,"Strawberry","Try some strawberry. Who doesn't love strawberries?");
-	addButton(4,"Jumbijumbi",JumbijumbiCream,servingType,"Jumbijumbi","You hear it's an acquired taste!");
+	addButton(3,"Strawberry",strawberryIcedCream,servingType,"Strawberry","Try some strawberry. Who doesn’t love strawberries?");
+	addButton(4,"Jumbijumbi",JumbijumbiCream,servingType,"Jumbijumbi","You hear it’s an acquired taste!");
 	addButton(5,"Darginut",darginutIcedCream,servingType,"Darginut","Try some darginut, a hearty favorite of U.G.C. troops.");
-	addButton(6,"Chocolate",chocolateIcedCream,servingType,"Chocolate","Who doesn't love chocolate?");
+	addButton(6,"Chocolate",chocolateIcedCream,servingType,"Chocolate","Who doesn’t love chocolate?");
 	addButton(7,"Flameberks",flameberksIcedCream,servingType,"Flameberks","Judging by the name alone, it has to be spicy.");
 }
 
@@ -749,8 +749,8 @@ public function askyammiAboutSex():void
 	clearOutput();
 	yammiShopDisplay();
 	output("You don’t feel shy mentioning that so many beauties around is pretty stimulating, not the least of which is Yammi herself. Her face goes blood-orange in blush.");
-	output("\n\n<i>“Officially the company doesn’t condone unauthorized breeding and/or sexual interaction with our employees,”</i> she says calmly. When you inquire about unofficially, she smiles a little. <i>“Well, some of the girls are stored in back in case we need to switch flavors, and a friendly visit is possible, sometimes. They do enjoy warm flesh after all the cold machines. For a slight tip of course... a girl’s got to pay her way somehow!”</i> She taps the counter nervously. <i>“Not today though. The girls who would be up for that aren't in. But... maybe for a big enough tip, I might be convinced to put up the ‘Momentary Delay’ sign and lock the door for a little personal time. A woman has needs.”</i>");
-	//output("\n\n<b>Placeholder till some sex appears. Someone be a dear and write this for me. She doesn't need scenes for everybody.</b>");
+	output("\n\n<i>“Officially the company doesn’t condone unauthorized breeding and/or sexual interaction with our employees,”</i> she says calmly. When you inquire about unofficially, she smiles a little. <i>“Well, some of the girls are stored in back in case we need to switch flavors, and a friendly visit is possible, sometimes. They do enjoy warm flesh after all the cold machines. For a slight tip of course... a girl’s got to pay her way somehow!”</i> She taps the counter nervously. <i>“Not today though. The girls who would be up for that aren’t in. But... maybe for a big enough tip, I might be convinced to put up the ‘Momentary Delay’ sign and lock the door for a little personal time. A woman has needs.”</i>");
+	//output("\n\n<b>Placeholder till some sex appears. Someone be a dear and write this for me. She doesn’t need scenes for everybody.</b>");
 	processTime(2);
 	clearMenu();
 	addButton(14,"Back",questionsForYammi);

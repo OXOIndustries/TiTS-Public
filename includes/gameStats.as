@@ -4499,6 +4499,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["LILIANA_ARMS"] == 2) output2(" Regenerated");
 						if(flags["LILIANA_ARMS"] > 2) output2(" <i>Unknown</i>");
 					}
+					if(flags["LILIANA_HOLODONGED"] != undefined) output2("\n<b>Liliana, Times Fucked Her With Hardlight Strap-On:</b> " + flags["LILIANA_HOLODONGED"]);
 				}
 				variousCount++;
 			}
@@ -4765,6 +4766,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2("\n<b><u>Bath House</u></b>");
 				output2("\n<b>* Matron Oserre:</b> Met her");
 				if(flags["OSERRE_BATHED"] != undefined) output2(", Bathed with her");
+				if(flags["OSERRE_HARDLIGHTED"] != undefined) output2("\n<b>Matron Oserre, Times Fucked Her With Hardlight Strap-On:</b> " + flags["OSERRE_HARDLIGHTED"]);
 				variousCount++;
 			}
 			// Renvraaa

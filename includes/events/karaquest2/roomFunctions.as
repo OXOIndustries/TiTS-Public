@@ -372,13 +372,13 @@ public function kq2rfYardB2():Boolean
 	if (pc.characterClass == GLOBAL.CLASS_MERCENARY)
 	{
 		output(" Hey, you could do something with that....");
-		if(flags["KQ2_RND_ENTRANCE_OPEN"] == undefined) addButton(0, "Use Tank", kq2UseTank, undefined, "Use the Tank", "That sure is a nice door the research facility has. It'd be a shame if something were to... <i>happen</i> to it. Hop in that tank, crane the main gun around, and knock.");
-		else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 1) addDisabledButton(0, "Use Tank", "Use the Tank", "You've already used this--no point in using it again unless you want to bring the whole place down.");
-		else addDisabledButton(0, "Use Tank", "Use the Tank", "The doors are already open--there's really no point in causing unnecessary destruction here...");
+		if(flags["KQ2_RND_ENTRANCE_OPEN"] == undefined) addButton(0, "Use Tank", kq2UseTank, undefined, "Use the Tank", "That sure is a nice door the research facility has. It’d be a shame if something were to... <i>happen</i> to it. Hop in that tank, crane the main gun around, and knock.");
+		else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 1) addDisabledButton(0, "Use Tank", "Use the Tank", "You’ve already used this--no point in using it again unless you want to bring the whole place down.");
+		else addDisabledButton(0, "Use Tank", "Use the Tank", "The doors are already open--there’s really no point in causing unnecessary destruction here...");
 	}
 	else
 	{
-		addDisabledButton(0, "Use Tank", "Use the Tank", "You have no idea how to pilot a tank. Don't be crazy; you're not a space marine.");
+		addDisabledButton(0, "Use Tank", "Use the Tank", "You have no idea how to pilot a tank. Don’t be crazy; you’re not a space marine.");
 	}
 
 	return false;
@@ -421,14 +421,14 @@ public function kq2rfYardB3():Boolean
 		}
 		else if (pc.IQ() >= 75)
 		{
-			addButton(0, "Override", kq2rfManualOverride, undefined, "Manual Override", "Try and breach the security system yourself with a little bit of hacking. It'd be easier if you had a key card, though... ");
+			addButton(0, "Override", kq2rfManualOverride, undefined, "Manual Override", "Try and breach the security system yourself with a little bit of hacking. It’d be easier if you had a key card, though... ");
 		}
 		else
 		{
 			addDisabledButton(0, "Door Lock", "Security Door Lock", "You should look around and see if you can scrounge up the security key pass for this door; it looks pretty important.");
 		}
 
-		addButton(1, "Kara?", kq2rfKaraOverride, undefined, "Kara?", "Have Kara override the door. You'll need to cover her for a few moments while she works.");
+		addButton(1, "Kara?", kq2rfKaraOverride, undefined, "Kara?", "Have Kara override the door. You’ll need to cover her for a few moments while she works.");
 
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	}
@@ -808,7 +808,7 @@ public function kq2rfHelipadElevator():Boolean
 	
 	if (flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined)
 	{
-		output("\n\nThe roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
+		output("\n\nThe roof’s been caved in, and a dead pirate in massive armor lies on the floor of the car. You’re amazed the elevator is still functional.");
 	}
 	
 	addButton(0, "Labs", move, "K2_LABELEVATOR");
@@ -824,7 +824,7 @@ public function kq2rfLobbyElevator():Boolean
 
 	if (flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined)
 	{
-		output("\n\nThe roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
+		output("\n\nThe roof’s been caved in, and a dead pirate in massive armor lies on the floor of the car. You’re amazed the elevator is still functional.");
 	}
 
 	addButton(0, "Labs", move, "K2_LABELEVATOR");
@@ -873,7 +873,7 @@ public function kq2rfKhansLab():Boolean
 	if (flags["KQ2_WATSON_MET"] != undefined && flags["KQ2_KHANS_FILES"] == undefined)
 	{
 		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
-		output("\n\nYou and Kara should probably deal with Khan's files before you leave the R&D level.");
+		output("\n\nYou and Kara should probably deal with Khan’s files before you leave the R&D level.");
 	}
 
 	if (flags["KQ2_KHAN_LOOTED"] == undefined)
@@ -883,10 +883,10 @@ public function kq2rfKhansLab():Boolean
 	else
 	{
 		if (flags["KQ2_KHAN_LOOTED_COAT"] == undefined) addButton(0, "Labcoat", kq2LootLabCoat, true, "Khans Labcoat", "Grab Khans labcoat.");
-		else addDisabledButton(0, "LabCoat", "Lab Coat", "You've already taken it!");
+		else addDisabledButton(0, "LabCoat", "Lab Coat", "You’ve already taken it!");
 
 		if (flags["KQ2_KHAN_LOOTED_CASTER"] == undefined) addButton(1, "ArcCaster", kq2LootArcCaster, true, "Khans ArcCaster", "Grab Khans Arc Caster.");
-		else addDisabledButton(1, "ArcCaster", "Arc Caster", "You've already taken it!");
+		else addDisabledButton(1, "ArcCaster", "Arc Caster", "You’ve already taken it!");
 	}
 
 	return false;
@@ -953,7 +953,7 @@ public function kq2rfServerRoom():Boolean
 	if (flags["KQ2_NUKE_STARTED"] == undefined)
 	{
 		if(!pc.isNice()) addButton(0, "S.Destruct", kq2WatsonSelfDestruct, undefined, "Self Destruct", "Might as well make a futile, childish gesture... and blow this place to kingdom come!");
-		else addDisabledButton(0, "S.Destruct", "Self Destruct", "You couldn't possibly think about doing that!");
+		else addDisabledButton(0, "S.Destruct", "Self Destruct", "You couldn’t possibly think about doing that!");
 	}
 	else addDisabledButton(0, "S.Destruct", "Self Destruct", ("This has been activated already. Get out of here before the place blows!\n\n<b>" + ((flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION > GetGameTimestamp()) ? ("T-minus: " + prettifyMinutes(flags["KQ2_NUKE_STARTED"] + KQ2_NUKE_DURATION - GetGameTimestamp())) : "NUKE DETONATED") + "</b>"));
 
@@ -998,7 +998,7 @@ public function kq2rfLabElevator():Boolean
 
 	if (flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined)
 	{
-		output("\n\nThe roof's been caved in, and a dead pirate in massive armor lies on the floor of the car. You're amazed the elevator is still functional.");
+		output("\n\nThe roof’s been caved in, and a dead pirate in massive armor lies on the floor of the car. You’re amazed the elevator is still functional.");
 	}
 
 	if (flags["KQ2_DEFEATED_JUGGERNAUT"] == undefined && flags["KQ2_KHANS_FILES"] != undefined)
@@ -1034,7 +1034,7 @@ public function kq2rfLabElevator():Boolean
 	addDisabledButton(0, "Labs", "Research Level", "You are already on this floor.");
 	addButton(1, "Lobby", move, "K2_LOBBYELEVATOR");
 	if(flags["KQ2_KHANS_FILES"] != undefined) addButton(2, "Roof", move, "K2_HELIPADELEVATOR");
-	else addDisabledButton(2, "Roof", "Helipad", "You can't go there--Kara isn't finished with what she has to do here yet!");
+	else addDisabledButton(2, "Roof", "Helipad", "You can’t go there--Kara isn’t finished with what she has to do here yet!");
 
 	return false;
 }

@@ -345,7 +345,7 @@ public function jackIntoDaBubbleBooty():void
 	author("Adjatha");
 	showName("BUBBLE\nBUDDY");
 	CodexManager.unlockEntry("Bubble Buddy");
-	if(flags["BUBBLE_BUDDIED"] == undefined) output("Taking out the light purple toy, you turn it around in your hands for a moment to inspect the thing. It's roughly six inches long and two inches wide, with a hole at one of the ends. The interior drips with an oily lubrication that the wobbly gel of the toy seems to perpetually produce. The sheath has a thin membrane at the top that seems to serve as a cap, resembling nothing so much as a circle of stretched latex. It's not shooting out any lasers or floating in mid air, so you assume you'll have to do this the old fashioned way.\n\n");
+	if(flags["BUBBLE_BUDDIED"] == undefined) output("Taking out the light purple toy, you turn it around in your hands for a moment to inspect the thing. It’s roughly six inches long and two inches wide, with a hole at one of the ends. The interior drips with an oily lubrication that the wobbly gel of the toy seems to perpetually produce. The sheath has a thin membrane at the top that seems to serve as a cap, resembling nothing so much as a circle of stretched latex. It’s not shooting out any lasers or floating in mid air, so you assume you’ll have to do this the old fashioned way.\n\n");
 	
 	if(!pc.isNude()) output("Stripping out of your [pc.gear], you tentatively grip the squishy toy in one hand. ");
 	output("The Bubble Buddy is warm to the touch, its supple surface jiggling in your grip. Your [pc.cocks] ");
@@ -356,14 +356,14 @@ public function jackIntoDaBubbleBooty():void
 	if(pc.cocks[x].thickness() < 2) output(" The slick, slimy interior slides down the tender flesh of your swollen member, enlarging as it conforms to the shape of your stiffening shaft.");
 	else if(pc.cocks[x].thickness < 4) output(" The yielding toy slides over your [pc.cock " + x + "] with only a modicum of difficulty. Its yielding, purple bulk distends as it swallows the girth of your plump pecker.");
 	//Cock Thickness over 4":
-	else output(" The narrow opening of the toy makes for a difficult fitting, but the toy's gelatinous bulk stretches, inch by inch, until it slides down onto your cockhead, taut and straining.");
+	else output(" The narrow opening of the toy makes for a difficult fitting, but the toy’s gelatinous bulk stretches, inch by inch, until it slides down onto your cockhead, taut and straining.");
 	output(" The inner folds of the pocket pussy clench with a moist softness that caresses your throbbing trunk with squelching voracity.");
 
 	//added text for cocks between 7" and 18": 
 	if(pc.cocks[x].cLength() < 7) {}
-	else if(pc.cocks[x].cLength() < 18) output("\n\nSliding the six inch toy onto your weighty member tenderly, you bottom out inside of it. Your [pc.cockHead " + x + "] bumps the latex top and pushes outward. The rubbery cap stretches over your crest as you drag the lilac onahole the rest of the way down to your root. Pausing, you marvel at the flexibility of the thing- your entire cockhead is perfectly wrapped in a stretchy second skin that connects all the way down to the toy's gelatinous base. When you ease it back up, the latex returns to its taut state without so much as a stretch mark as evidence of your distending thrust. Despite its size, this will work just fine for someone of your endowments.");
+	else if(pc.cocks[x].cLength() < 18) output("\n\nSliding the six inch toy onto your weighty member tenderly, you bottom out inside of it. Your [pc.cockHead " + x + "] bumps the latex top and pushes outward. The rubbery cap stretches over your crest as you drag the lilac onahole the rest of the way down to your root. Pausing, you marvel at the flexibility of the thing- your entire cockhead is perfectly wrapped in a stretchy second skin that connects all the way down to the toy’s gelatinous base. When you ease it back up, the latex returns to its taut state without so much as a stretch mark as evidence of your distending thrust. Despite its size, this will work just fine for someone of your endowments.");
 	//added text for cocks over 18":
-	else output("\n\nSliding the six inch toy onto your weighty member tenderly, you bottom out inside of it all too quickly. Your [pc.cockHead " + x + "] bumps the latex top and pushes outward. The rubbery cap stretches over your crest as you drag the lilac onahole further and further down. The tension of the stretching elastic, rather than squishing entirely against your cockhead, is transferred all along the toy's inner surface, tightening the whole sheath the further you go. The flexibility of the thing is incredible- an entire foot of your titanic shaft is perfectly wrapped in a stretchy second skin that connects all the way down to the toy's gelatinous base. When you ease it back up, the latex pulls eagerly, adding speed to your return stroke as compensation for the slow tightness of insertion. Despite the dilating pressure your [pc.cock " + x + "] puts on the small pussy, it returns to its taut state without so much as a stretch mark where you your length had distended it. Despite its size, this will work just fine for someone of your endowments.");
+	else output("\n\nSliding the six inch toy onto your weighty member tenderly, you bottom out inside of it all too quickly. Your [pc.cockHead " + x + "] bumps the latex top and pushes outward. The rubbery cap stretches over your crest as you drag the lilac onahole further and further down. The tension of the stretching elastic, rather than squishing entirely against your cockhead, is transferred all along the toy’s inner surface, tightening the whole sheath the further you go. The flexibility of the thing is incredible- an entire foot of your titanic shaft is perfectly wrapped in a stretchy second skin that connects all the way down to the toy’s gelatinous base. When you ease it back up, the latex pulls eagerly, adding speed to your return stroke as compensation for the slow tightness of insertion. Despite the dilating pressure your [pc.cock " + x + "] puts on the small pussy, it returns to its taut state without so much as a stretch mark where you your length had distended it. Despite its size, this will work just fine for someone of your endowments.");
 	output("\n\nFingers tightening around the pliant Bubble Buddy, you ease into a slow, steady pace. The toy fits you perfectly - its slurping, gooey interior suckling at your [pc.cock " + x + "] with an almost organic heat. Squeezing its gelatinous base does wonderful things to the interior, the complex gel structure spreading small amounts of tension around its length like the trembling tightness of a pussy at the verge of climax. As you pump the sheath along your member, you unconsciously gnaw at your lower lip, [pc.chest] rising and falling with exhilarated quickness. Before long, you have both hands firmly around the lilac toy, pumping the semi-transparent jelly with uninhibited delight.");
 	output("\n\nThe Bubble Buddy slaps wetly against your [pc.skinFurScales] as you jerk the slimy sheath along your length, the fat cumvein of your member tensing with the final, exquisite strokes of your imminent orgasm. Squeezing the lavender-hued tightness around your tingling tool provokes a trembling jiggle that starts at your root and whips upward like a jet of liquid distress through the sensitive surface of your [pc.cock " + x + "]. Clutching the onahole at the peak of your cockhead, you moan in a satisfied stupor as the toy hugs and suckles at your meat. [pc.CumColor] spurts of bubbling pre-cum splatter against the taut tip of the sheath for a desperate, tense moment before you release your [pc.cumVisc] seed.");
 	//{small volume (1-300mL) }
@@ -460,7 +460,7 @@ public function battenTheHatches():void
 {
 	clearOutput();
 	author("Adjatha");
-	showName("GIVING 'ER\nALL YOU'VE GOT!");
+	showName("GIVING ‘ER\nALL YOU’VE GOT!");
 	output("Clinging to the sex toy like it’s a life raft, you toss back your head and lean backward until you’re lying on the ground. ");
 	if(pc.tailCount > 0) output("Your [pc.tail] thrashes under you, frenzied by the raw, blinding organ-pleasure that leaves the rest of your body trembling and diminished. ");
 	output("Weakly pumping your hands around the squelching toy, the jiggling mass of its carnal contents roll up your [pc.legs], over your [pc.hips] and even across your groin, pinning your arms with its liquid weight. The [pc.cumColor] lake within the purple latex fills with each spasming pump, slowly burying you under the heavy warmth of your gushing seed.");
@@ -576,14 +576,14 @@ public function giveCeliseATreat(item:ItemSlotClass):void
 		processTime(3);
 		//[Don’t Play] [Futa Goo] / [Tentacle Goo]
 		clearMenu();
-		addButton(0,"Don't Play",dontPlayWithYourFood,undefined);
+		addButton(0,"Don’t Play",dontPlayWithYourFood,undefined);
 		if(flags["GIGACELISE"] != 1)
 		{
 			if(pc.hasCock()) addButton(1,"Futa Goo",celiseFutaGooForYou2,undefined);
 			else addDisabledButton(1,"Futa Goo","Futa Goo","You need a penis for this. Where did you get all this cum without a penis?");
 		}
 		else addButton(1,"Tentacle Goo",tentacleGooCeliseFeeding,undefined);
-		addButton(0,"Don't Play",dontPlayWithYourFood,undefined);
+		addButton(0,"Don’t Play",dontPlayWithYourFood,undefined);
 	}
 	//{Large Bubble}
 	else if(item is LargeCumBubble)
@@ -609,7 +609,7 @@ public function giveCeliseATreat(item:ItemSlotClass):void
 		//[Too Obvious] [Perfect]
 		//{Perfect option is grayed out if the player doesn’t have a penis. Mouse over text: You’ll need sex organs for this. How did you fill up the Bubble Buddy without them?}
 		clearMenu();
-		addButton(0,"Too Obvious",tooObviousTittyCelise,undefined,"Too Obvious","That's way too obvious. You've got better things to do.")
+		addButton(0,"Too Obvious",tooObviousTittyCelise,undefined,"Too Obvious","That’s way too obvious. You’ve got better things to do.")
 		if(pc.hasCock()) addButton(1,"Perfect",tittyFuckCelise);
 		else addDisabledButton(1,"Perfect","Perfect","You’ll need sex organs for this. How did you fill up the Bubble Buddy without them?");
 	}

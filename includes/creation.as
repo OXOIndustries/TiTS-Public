@@ -130,12 +130,12 @@ public function startCharacterCreation(e:Event = null):void
 	userInterface.hidePCStats();
 	userInterface.hideNPCStats();
 	clearMenu();
-	addButton(0,"Human",confirmRaceChoice,"human","Human Mother","Victor's child will be born a full-blooded human.");
-	addButton(1,"Ausar",confirmRaceChoice,"ausar","Ausar Mother","Victor's child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.");
-	addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor's child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
-	addButton(3,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor's child would have a leithan mother, though that race's unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
-	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor's child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
-	addButton(5,"Gryvain", confirmRaceChoice, "gryvain", "Gryvain Mother", "Victor's child would have a gryvain mother. The gryvain are a technologically advanced race of winged hermaphrodites: a halfbreed child would have scaled legs and human-style arms, a fleshy upper body, a pair of draconic wings, and a lengthy tail. Gryvain also have monochrome gold eyes and frilled ears which their children inherit, though most children with human fathers lack horns. Halfbreed gryvain can be born female or as hermaphrodites, and both sexes tend to have voluptuous figures and high sexual sensitivity.");
+	addButton(0,"Human",confirmRaceChoice,"human","Human Mother","Victor’s child will be born a full-blooded human.");
+	addButton(1,"Ausar",confirmRaceChoice,"ausar","Ausar Mother","Victor’s child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.");
+	addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor’s child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
+	addButton(3,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor’s child would have a leithan mother, though that race’s unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
+	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor’s child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
+	addButton(5,"Gryvain", confirmRaceChoice, "gryvain", "Gryvain Mother", "Victor’s child would have a gryvain mother. The gryvain are a technologically advanced race of winged hermaphrodites: a halfbreed child would have scaled legs and human-style arms, a fleshy upper body, a pair of draconic wings, and a lengthy tail. Gryvain also have monochrome gold eyes and frilled ears which their children inherit, though most children with human fathers lack horns. Halfbreed gryvain can be born female or as hermaphrodites, and both sexes tend to have voluptuous figures and high sexual sensitivity.");
 	
 	if (GENERATED_CHARACTER["disabled"] == undefined)
 	{
@@ -159,15 +159,15 @@ public function confirmRaceChoice(race:String = "human"):void {
 	clearOutput();
 	if(race == "human")
 	{
-		output("A purely human heritage would give Victor's child the body one would expect - two legs, two arms, two eyes, a head of hair, etc.... There's really not much more to say about such a choice.");
+		output("A purely human heritage would give Victor’s child the body one would expect - two legs, two arms, two eyes, a head of hair, etc.... There’s really not much more to say about such a choice.");
 	}
 	else if(race == "ausar")
 	{
-		output("As a half-ausar, Victor's child would start with dog-like ears, a canine tail, and a red, knotted penis if male. The ausar are known for their close bond with humanity and would be a likely pick for the child's mother.");
+		output("As a half-ausar, Victor’s child would start with dog-like ears, a canine tail, and a red, knotted penis if male. The ausar are known for their close bond with humanity and would be a likely pick for the child’s mother.");
 	}
 	else if(race == "kaithrit")
 	{
-		output("The kaithrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it'll have a soft-spined, cat-like penis.");
+		output("The kaithrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it’ll have a soft-spined, cat-like penis.");
 	}
 	else if(race == "leithan")
 	{
@@ -175,7 +175,7 @@ public function confirmRaceChoice(race:String = "human"):void {
 	}
 	else if(race == "kui-tan")
 	{
-		output("The kui-tan are a raccoon-like race who invariably have a phallus with multiple knots. They are also known to have fuzzy, rounded ears, fluffy tails bigger than many species' adolescent young, and balls that engorge with seed the longer they go without release.");
+		output("The kui-tan are a raccoon-like race who invariably have a phallus with multiple knots. They are also known to have fuzzy, rounded ears, fluffy tails bigger than many species’ adolescent young, and balls that engorge with seed the longer they go without release.");
 	}
 	else if (race == "gryvain")
 	{
@@ -547,7 +547,7 @@ public function chooseThickness():void {
 	author("Fenoxo & JimThermic");
 	// Just neatened this up and made the description of thickset more clear. The original explanation was a bit roundabout.
 	output("The doctor notes that down on his holopad, a light chuckle escaping his lips. <i>“Okay, noted. Glad to see you’ve got this well thought out.”</i>");
-	output("\n\n<i>“Alright, let’s eliminate some of the variables. How thickset would you like [pc.himHer] to be? We're talking broadness of [pc.hisHer] overall frame - hips, shoulders, and so forth - not [pc.hisHer] weight.”</i>");
+	output("\n\n<i>“Alright, let’s eliminate some of the variables. How thickset would you like [pc.himHer] to be? We’re talking broadness of [pc.hisHer] overall frame - hips, shoulders, and so forth - not [pc.hisHer] weight.”</i>");
 	output("\n\n<b>How thickset would you like your character to be?</b>");
 	
 	//[Height Box]
@@ -796,9 +796,9 @@ public function chooseBreastSize():void {
 	output("\n\nThe doctor rubs the bridge of his nose in exasperation. <i>“Look, it’s not that weird a thing for parents to choose these days - it’s practically like hair or eye color.”</i>");
 	if(!pc.hasVagina())
 	{
-		output("\n\n<i>“Plus, how do I know you don’t want your kid to grow up as the universe’s hottest tranz? It is you we're talking about after all, Victor.”</i>");
+		output("\n\n<i>“Plus, how do I know you don’t want your kid to grow up as the universe’s hottest tranz? It is you we’re talking about after all, Victor.”</i>");
 		output("\n\n<i>“Remind me why I pay you again?”</i> Victor retorts.");
-		output("\n\n<i>“Not for my sense of humor, obviously,”</i> the doctor clears his throat. <i>“Ahem. Well, just pick flat if you don't want them.”</i>");
+		output("\n\n<i>“Not for my sense of humor, obviously,”</i> the doctor clears his throat. <i>“Ahem. Well, just pick flat if you don’t want them.”</i>");
 	}
 	output("\n\n<b>What size would you like your character’s breasts to be?</b>");
 	
@@ -1046,7 +1046,7 @@ public function chooseSexualGift():void {
 	
 	//OLD
 	/*
-	output("<i>“Great!”</i> Your personal physician notes your choice and says, <i>“This is one of the tougher choices future parents have to make. We can work some tweaks into your successor’s genome that’ll give them a bit of a gift, if you know what I mean - even beyond the choices you’ve made so far. The downside is that we can only safely insert one of these options into your child's genome.”</i>");
+	output("<i>“Great!”</i> Your personal physician notes your choice and says, <i>“This is one of the tougher choices future parents have to make. We can work some tweaks into your successor’s genome that’ll give them a bit of a gift, if you know what I mean - even beyond the choices you’ve made so far. The downside is that we can only safely insert one of these options into your child’s genome.”</i>");
 	output("\n\n<i>“I’ll give you the quick rundown of all the choices. ‘Virile’ increases the quality of sperm produced by your offspring, even if she’s a girl that splices on a dick later. ‘Potent’ is similar to virile, but it impacts the quantity produced, rather than quality. This one seems to be pretty popular among those who can afford these kinds of modifications. ‘Elasticity’ allows for bigger insertions with less chance of, uh... stretching.”</i>");
 	output("\n\nThe doctor coughs a bit nervously. <i>“‘Fertility’ enhances the chances of becoming pregnant. ‘Milky’ causes lactation to be more easily induced and much harder to stop. ‘Incubator’... well, it makes pregnancies a little faster. ‘Hung’ would enlarge the size of male organs and cause them be more receptive to future splices. Conversely, ‘mini’ would, uh, cause masculine organs to tend towards smallness - as the name implies.”</i>");
 	output("\n\nVictor sighs as the doctor drones on, knowing that these could be important but a little tired of the total volume of the information.");
@@ -1215,7 +1215,7 @@ public function chooseAPhysicalAffinity():void {
 	//OLD
 	/*
 	output("<i>“Grrrreat,”</i> the doctor muses as he checks your selection. <i>“Just one more thing: I can slip in affinity for a certain attribute. These are all pretty self explanatory, so I won’t have to bore you overmuch. Suffice to say, your " + pc.mf("son","daughter") + " will be able to increase the chosen attribute more easily. We can do physique, reflexes, aim, intelligence, or willpower. Personally, I recommend intelligence.”</i>");
-	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum.\n\n<b>Physique</b> is a measurement of a character's strength and endurance. Its primary usage to land melee strikes and increase the damage of said strikes.\n\n<b>Reflexes</b> are a measurement of piloting aptitude, but they also come in handy when having to avoid a surprise attack or trap.\n\n<b>Aim</b> is a representation of how well one can aim both hand-held and ship-board ranged weaponry.\n\n<b>Intelligence</b> increases the effectiveness of technology-based attacks, primarily those used by tech specialists. It is also useful any time one has to deal with sophisticated machinery.\n\n<b>Willpower</b> is used to counter sexual urges and addictions, resist psionics, and strengthen one's own psionics, should a person of human descent somehow gain mind powers.\n\n<b>Libido</b>, while not an option the doc is giving, deals with how fast lust increases over time and susceptible to incidental lusts and perversions one is. It is not capped by level and scales from 1 to 100.");
+	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum.\n\n<b>Physique</b> is a measurement of a character’s strength and endurance. Its primary usage to land melee strikes and increase the damage of said strikes.\n\n<b>Reflexes</b> are a measurement of piloting aptitude, but they also come in handy when having to avoid a surprise attack or trap.\n\n<b>Aim</b> is a representation of how well one can aim both hand-held and ship-board ranged weaponry.\n\n<b>Intelligence</b> increases the effectiveness of technology-based attacks, primarily those used by tech specialists. It is also useful any time one has to deal with sophisticated machinery.\n\n<b>Willpower</b> is used to counter sexual urges and addictions, resist psionics, and strengthen one’s own psionics, should a person of human descent somehow gain mind powers.\n\n<b>Libido</b>, while not an option the doc is giving, deals with how fast lust increases over time and susceptible to incidental lusts and perversions one is. It is not capped by level and scales from 1 to 100.");
 	*/
 	
 	//NEW
@@ -1428,7 +1428,7 @@ public function chooseClass():void {
 	
 	//OLD
 	/*
-	output("You're all grown up and finished with your schooling. Dad pushed you hard, which makes sense. He accomplished a lot and wants you to follow in his footsteps, but for whatever reason, he insisted you take on an occupation, and an odd one at that.");
+	output("You’re all grown up and finished with your schooling. Dad pushed you hard, which makes sense. He accomplished a lot and wants you to follow in his footsteps, but for whatever reason, he insisted you take on an occupation, and an odd one at that.");
 	*/
 	
 	//NEW
@@ -1519,7 +1519,7 @@ public function tutorialIntro():void {
 	output("Your dad’s health had been declining throughout your years of education, but you never really worried too much about it. He was super rich, able to afford his own private doctors, so the thought that one day he could disappear never entered your mind. When you started your career, he was there to see you off, smiling gregariously, but your job made it difficult to stay in touch. Most communications were done via written messages, until even those became scarce. You had assumed it to be a consequence of your different schedules and busy work lives, then...");
 	output("\n\nThe news of his death arrived in a brief missive, containing an invitation to a funeral as well as a travel voucher to get you there. You quit your job on the spot. The way Dad talked, you’re sure he would have wanted you to take over the family business. What could have killed him? He always seemed so big and imposing. Even when his back was bent by age, he still had vital energy about him, seeming as busy as a man a tenth of his age. You don’t know why anti-agathic treatments stopped working on him. Worse, he aged far more rapidly than he should have, losing his youth in a short decade.");
 	output("\n\nYou shake your head to chase away the unwelcome thoughts and focus on packing. The trip is boring, leaving you with nothing to think about except life without your father and the uncertain future ahead. Hopefully the old man was lucky enough to go out in a dignified way.");
-	output("\n\nYour transport pulls up to Tavros Station, where the service is being held. Adjusting your finest clothes, you walk through the airlock and up some old-fashioned steps towards the theater Dad's money bought him, trying to keep your eyes clear as you breeze past a surprisingly low amount of paparazzi. They must have gotten decent security this time.");
+	output("\n\nYour transport pulls up to Tavros Station, where the service is being held. Adjusting your finest clothes, you walk through the airlock and up some old-fashioned steps towards the theater Dad’s money bought him, trying to keep your eyes clear as you breeze past a surprisingly low amount of paparazzi. They must have gotten decent security this time.");
 	output("\n\nYou push open the doors and step inside...");
 	clearMenu();
 	addButton(0,"Next",tutorialIntro2);
@@ -1597,7 +1597,7 @@ public function tutorialIntro4():void {
 	output("\n\nThe recording smiles wistfully for a moment before resuming, <i>“I suppose that might have contributed to my demise, but damn, it was worth it. You’ll see for yourself once you get out there.”</i>");
 	output("\n\nSure, whatever.");
 	output("\n\n<i>“I’ve arranged to have a few dozen probes sent through the gates once they open. Each one is military grade hardened and keyed to only open for one of our family, so don’t lose too much of yourself. They all have clues pointing towards other probes secreted inside them, except for one. One has my personal, encrypted key. With that, you can open my deposit box in the bank I own on this station and take control of my company,”</i> Even projected through the soulless holoprojector, your dad’s spirit shines through his tear-misted eyes. <i>“I’m sure you’ll make me proud out there.”</i>");
-	output("\n\nThe projection of your father tilts its head, gesturing towards another door behind it. <i>“Through the door behind, you'll find a hangar with the ship I started my journey on, repaired to usable condition and outfitted with standard, modernized technology. It’s a good starting point, but you should see if you can jump up to something better, particularly if you pick up the number of crewmates I did. That little junker can only hold a few people.”</i>");
+	output("\n\nThe projection of your father tilts its head, gesturing towards another door behind it. <i>“Through the door behind, you’ll find a hangar with the ship I started my journey on, repaired to usable condition and outfitted with standard, modernized technology. It’s a good starting point, but you should see if you can jump up to something better, particularly if you pick up the number of crewmates I did. That little junker can only hold a few people.”</i>");
 	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing.... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
 	//[Open Door]
 	clearMenu();
@@ -1720,7 +1720,7 @@ public function takeCelise():void {
 		if(pc.cockTotal() > 1) output("s");
 		output(" as she twists and twirls all around you, and you realize you can hold back no longer. Her tongue is sweet on yours, swirling around your mouth as you throw your head back and cum, pumping a thick batch of protein straight into her dick-suckling snatch. The quivering slit tugs harder on your boner");
 		if(pc.cockTotal() > 1) output("s");
-		output(", eagerly pulling more fresh ejaculations inside where they dilute her green into an opaque " + pc.cumColor() + ". Your " + pc.hipsDescript() + " jerk and shake while your " + pc.cockDescript(x) + " flexes inside its gooey prison, throwing long ropes of suppressed lust for what feels like ages. Whenever you think it's about to end, the tugging starts again, and you whimper as the endless orgasm renews itself.");
+		output(", eagerly pulling more fresh ejaculations inside where they dilute her green into an opaque " + pc.cumColor() + ". Your " + pc.hipsDescript() + " jerk and shake while your " + pc.cockDescript(x) + " flexes inside its gooey prison, throwing long ropes of suppressed lust for what feels like ages. Whenever you think it’s about to end, the tugging starts again, and you whimper as the endless orgasm renews itself.");
 		output("\n\nAt some point");
 		if(pc.balls > 0) output(", your " + pc.ballsDescript() + " start to hurt. Not long after");
 		output(", the juicy pleasure-flow dries up, and Celise allows your orgasm to finish. She’s shuddering herself as she detaches, so wracked by pleasure that one of her arms liqueifies, dropping to the floor for a moment until it slithers over to rejoin the rest of her. Her hair is melting, her tits are sagging, and her whole body shudders from time to time, shaking with post-orgasm spasms. She burbles, <i>“That was great! You’re gonna take me on your ship now, right?”</i>");
@@ -1762,7 +1762,7 @@ public function takeCelise():void {
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Take Her",takeCeliseAsACrewMember);
-	addButton(1,"Don't",ignoreCelise);
+	addButton(1,"Don’t",ignoreCelise);
 }
 
 //Take Celise on As A Crew Member
@@ -1773,7 +1773,7 @@ public function takeCeliseAsACrewMember():void {
 	//{Nice}
 	if(pc.isNice()) output("You smile broadly and admit that you’d be happier to have her along; the more the merrier, in fact!");
 	//{Mischievious}
-	else if(pc.isMischievous()) output("<i>“Why not? If nothing else, I guess I can use you as a super-soft beanbag chair, when we aren't fucking.”</i>");
+	else if(pc.isMischievous()) output("<i>“Why not? If nothing else, I guess I can use you as a super-soft beanbag chair, when we aren’t fucking.”</i>");
 	//{Mean}
 	else output("You shrug and admit you don’t mind her coming along, so long as she stays out of your hair and doesn’t clog the vents with... stray moisture.");
 	//{merge}
@@ -1797,7 +1797,7 @@ public function checkOutYourShip():void {
 	
 	output("A sprawling, brightly lit hangar greets your eyes, empty save for a single ship near the back. Your gaze is pulled away from the distant craft by the sheer size of the enclosure. A hangar like this must have cost your father a veritable fortune to buy out - not much considering how wealthy he was, but no insignificant chunk of change. Magnetically-bounded plasma shields hold in the atmosphere while remaining transparent enough for you to view the nearby warp gate and inky blackness beyond. Perhaps the only thing this place couldn’t hold would be a capital ship, but a number of moorings with connective umbilicals stand by to tether one outside in that extreme scenario.");
 	output("\n\nYou chuckle and wonder if you’ll ever need anything that grandiose while you turn your attention back to the light craft in the corner, currently surrounded by techs. Breezing up to them, you get your first good look at your inheritance; in short, it’s a bit of a junker. The hull plating is ancient and rusted in a dozen places where the paint has long since rotted off. Whole pieces of it are still on the floor, being cut into with plasma torches to replace dead tech, and the design of it is a century out of date. You bite back your sigh before it leaves your mouth, noting the newly installed engines and computer systems. Still, new engines don’t make it look any less like a elderly rim-jockey’s heap.");
-	output("\n\n<i>“Hello there! You must be the young Captain Steele! A pleasure to meet you,”</i> one of the technicians says once he spots you. <i>“Sorry the ship is in such rough shape. Towing it all the way out here took a little longer than anticipated, so we got a late start. We’re pulling a double shift to get it all done by tonight. Just give us a little more time, maybe get a bite to eat and a place to stay 'til morning. She’ll look a hundred times better once we finish up, I promise.”</i>");
+	output("\n\n<i>“Hello there! You must be the young Captain Steele! A pleasure to meet you,”</i> one of the technicians says once he spots you. <i>“Sorry the ship is in such rough shape. Towing it all the way out here took a little longer than anticipated, so we got a late start. We’re pulling a double shift to get it all done by tonight. Just give us a little more time, maybe get a bite to eat and a place to stay ‘til morning. She’ll look a hundred times better once we finish up, I promise.”</i>");
 	output("\n\nYou shake the hangar tech’s hand and nod to him, understanding the enormity of the project before them. The nametag on his jumper lists him as ‘Zeke’. He nods and jovially quips, <i>“Yah, my name’s Zeke, or Z if you really wanna get short with it. Whatever you bring in here, I’ll keep maintained or fix up. Cleaning up other folks’ messes is kinda my business.”</i> Zeke waves you off. <i>“Go on, get something to eat. I’m sure you had a shitty day and don’t wanna spend the rest of it hanging around us while we put this back together.”</i>");
 	output("\n\nA clearly marked exit portal dilates as you approach, and you step out into the station’s main thoroughfare. It’s surprisingly quiet and devoid of the shops you’d expect to see. The only place with any grub looks to be an “Anon’s Bar”</i>, though it boasts mention of rooms for rent as well.");
 	output("\n\nYou head on in...");
@@ -1810,12 +1810,12 @@ public function getFoodAndDrink():void {
 	//Meet your rival
 	clearOutput();
 	clearBust(true);
-	creationHeader("ANON'S BAR\nAND BOARD");
+	creationHeader("ANON’S BAR\nAND BOARD");
 	generateMapForLocation("ANON'S BAR AND BOARD");
 	
 	output("Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. One of them notices you and asks, <i>“A drink for you, hun?”</i>");
 	output("\n\nAfter a moment, you decide to order a whiskey. Regardless of your personal feelings, Dad asked you to knock one back for him. You may as well humor the dead codger, even if he did make acquiring your inheritance a trial and a half. At that point, your belly rumbles, and you realize that you haven’t had anything to eat since this morning.");
-	output("\n\n<i>“How about I bring out some hot buns with that for you to munch on. You can look over the menu while you snack.”</i> She doesn't wait around for an answer, moving off to drop a single drink off at a nearby table on her way to the kitchen. The drink is scooped up by a figure obscured by the bar's dusky atmosphere. It's difficult to make out much about... the humanoid shape, but its gender and features elude you. There’s nothing else to do, so you ponder the nearby person... just what sex are they?");
+	output("\n\n<i>“How about I bring out some hot buns with that for you to munch on. You can look over the menu while you snack.”</i> She doesn’t wait around for an answer, moving off to drop a single drink off at a nearby table on her way to the kitchen. The drink is scooped up by a figure obscured by the bar’s dusky atmosphere. It’s difficult to make out much about... the humanoid shape, but its gender and features elude you. There’s nothing else to do, so you ponder the nearby person... just what sex are they?");
 	//[Male] [Female]
 	clearMenu();
 	addButton(0, "Male", function():void { setRivalGender(1); rivalSpillsTheBeans(); } );
@@ -1826,7 +1826,7 @@ public function jackJillSkip():void
 {
 	clearOutput();
 	clearBust(true);
-	creationHeader("ANON'S BAR\nAND BOARD");
+	creationHeader("ANON’S BAR\nAND BOARD");
 	generateMapForLocation("ANON'S BAR AND BOARD");
 	
 	output("What gender is your rival?");

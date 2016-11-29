@@ -9,7 +9,7 @@ public function nameOfDestinyChoice():void
 {
 	clearOutput();
 	showName("FATED\nNAME!");
-	output("The chosen name is one that hangs heavy under the weight of destiny. Should you embrace your destiny, you may discover just how little Victor's science may mean. Certain choices may be invalidated. You may find yourself a woman instead of a man, or a race unlike any other in the known galaxy.\n\n<b>Do you embrace the path the fates have spooled out before you or resign yourself to mediocrity?</b>");
+	output("The chosen name is one that hangs heavy under the weight of destiny. Should you embrace your destiny, you may discover just how little Victor’s science may mean. Certain choices may be invalidated. You may find yourself a woman instead of a man, or a race unlike any other in the known galaxy.\n\n<b>Do you embrace the path the fates have spooled out before you or resign yourself to mediocrity?</b>");
 	addButton(0,"Accept Fate",customPCCheck,true)
 	addButton(1,"Deny Fate",fatedPCOptionsFinisher);
 }
@@ -25,6 +25,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 {
 	var short:String = pc.short.toLowerCase();
 	var bonusTexts:String = "";
+	var i:int = 0;
 	switch (short)
 	{
 		case "archie":
@@ -55,7 +56,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.skinTone = "purple and white";
 			pc.createStatusEffect("Perfect Simulant",0,0,0,0,false,"Icon_Gears_Three","You were created by the scientists at Steele Tech to be the perfect heir, and as such, your maximum capabilities exceed even those of the luckiest terrans. You walk, talk, breathe, and eat, just like any living creature, even simulating DNA to allow you to emulate the effects of transformative items on true organics.",false,0);
 			pc.createStatusEffect("Naoki Stripe");
-			bonusTexts = "Good thing Victor's scientists made you to be the perfect heir. So long as you aren't distracted by your ability to experience inhuman amounts of pleasure, you'll do just fine! ...Now, what to do with all this silicone?";
+			bonusTexts = "Good thing Victor’s scientists made you to be the perfect heir. So long as you aren’t distracted by your ability to experience inhuman amounts of pleasure, you’ll do just fine! ...Now, what to do with all this silicone?";
 			var siliconeBoners:ItemSlotClass = new Silicone();
 			siliconeBoners.quantity = 10;
 			pc.inventory.push(siliconeBoners);
@@ -68,7 +69,8 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.fertilityRaw = 10;
 			pc.removePerk("Infertile");
 			pc.pregnancyIncubationBonusMotherRaw = 10;
-			bonusTexts = "You've always been ridiculously fertile. The doctors warned you at a young age. Just a glance at the wrong alien and you'll blow up with babies! But that's not new.";
+			pc.pregnancyMultiplierRaw += 1;
+			bonusTexts = "You’ve always been ridiculously fertile. The doctors warned you at a young age. Just a glance at the wrong alien and you’ll blow up with babies! But that’s not new.";
 			pc.tallness = 59;
 			pc.thickness = 30;
 			pc.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
@@ -132,14 +134,14 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.vaginas[0].wetnessRaw = 5;
 			if(!pc.hasCock()) pc.createCock();
-			pc.cocks[0].cType = GLOBAL.TYPE_ANEMONE;
+			pc.shiftCock(0, GLOBAL.TYPE_ANEMONE);
 			pc.cocks[0].cLengthRaw = 12;
 			pc.cocks[0].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 			pc.cocks[0].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
 			pc.cocks[0].addFlag(GLOBAL.FLAG_STINGER_BASED);
 			pc.balls = 0;
 			pc.clitLength = 0.7;
-			bonusTexts = "You've always been a big-dicked, dragon-like hermaphrodite.";
+			bonusTexts = "You’ve always been a big-dicked, dragon-like hermaphrodite.";
 			break;
 		//Name: KosMos
 		//Appearance: 5'8" Female Gynoid (Female Android) with light skin, red eyes, ass-length blue hair. Built-in high heels. B-cup breasts. One Vagina, one ass.
@@ -154,7 +156,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(pc.breastRows[0].breastRatingRaw < 2) pc.breastRows[0].breastRatingRaw = 2;
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.createStatusEffect("Perfect Simulant",0,0,0,0,false,"Icon_Gears_Three","You were created by the scientists at Steele Tech to be the perfect heir, and as such, your maximum capabilities exceed even those of the luckiest terrans. You walk, talk, breathe, and eat, just like any living creature, even simulating DNA to allow you to emulate the effects of transformative items on true organics.",false,0);
-			bonusTexts = "Good thing Victor's scientists made you to be the perfect heir. So long as you aren't distracted by your ability to experience inhuman amounts of pleasure, you'll do just fine!";
+			bonusTexts = "Good thing Victor’s scientists made you to be the perfect heir. So long as you aren’t distracted by your ability to experience inhuman amounts of pleasure, you’ll do just fine!";
 			break;
 		/*Name: Sennil Kharnish
 		Gender: Woman
@@ -200,7 +202,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.removePerk("Infertile");
 			pc.cumQualityRaw = 3;
 			if(pc.femininity < 70) pc.femininity = 70;
-			bonusTexts += "You've always had an amazing physique, and the best of both genders - the better to colonate new worlds with your young.";
+			bonusTexts += "You’ve always had an amazing physique, and the best of both genders - the better to colonate new worlds with your young.";
 			break;
 		/*Name : Kaeln
 		Gender : male
@@ -221,6 +223,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		The things that count (;-p) :
 		he has a rather well-endowed human-like cock (10 inches in lengh, 2 inches wild) and larger than average balls
 		He has two flat breasts with one nipple each */
+		//9999 needs monkey parts!
 		case "kaeln":
 			if(!TF) break;
 			//Would set legs/tail/feet, but Simii parts are not presently set up for PC.
@@ -236,9 +239,10 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hairLength = 13;
 			pc.hairColor = pc.furColor;
 			pc.cocks[0].cLengthRaw = 10;
+			pc.balls = 2;
 			if(pc.ballSizeRaw < 8) pc.ballSizeRaw = 8;
 			if(pc.breastRows[0].breastRatingRaw > 0) pc.breastRows[0].breastRatingRaw = 0;
-			bonusTexts += "You've always been a bit of a monkey. Nothing wrong with that. (Note: Monkey parts aren't properly supported at the time of coding this character. If this changes down the road, please feel free to log a bug report, and we'll get this PC updated.)";
+			bonusTexts += "You’ve always been a bit of a monkey. Nothing wrong with that. (Note: Monkey parts aren’t properly supported at the time of coding this character. If this changes down the road, please feel free to log a bug report, and we’ll get this PC updated.)";
 			break;
 		/*Anon All available shark transformations.
 		Hermaphrodite with normal vagina, normal 8" penis, 2 E cup breasts.
@@ -257,7 +261,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.gills = true;
 			pc.skinTone = "blue";
 			pc.femininity = 100;
-			bonusTexts += "You've always been a bit of an aquatic terror, haven't you?";
+			bonusTexts += "You’ve always been a bit of an aquatic terror, haven’t you?";
 			break;
 		/*Tia Height: Maximum
 		Build: Curvy
@@ -294,7 +298,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.breastRows[0].breastRatingRaw = 29;
 			pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_FUCKABLE;
 			if(!pc.hasCock()) pc.createCock();
-			pc.cocks[0].cType = GLOBAL.TYPE_TENTACLE;
+			pc.shiftCock(0, GLOBAL.TYPE_TENTACLE);
 			pc.cocks[0].cLengthRaw = 24;
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.vaginas[0].loosenessRaw = 1;
@@ -320,19 +324,18 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.createStatusEffect("Goo Crotch");
 			flags["GALOMAX_DOSES"] = 5;
 			if(pc.elasticity < 3) pc.elasticity = 3;
-			var x:int = 0;
-			for(x = 0; x < pc.totalCocks(); x++)
+			for(i = 0; i < pc.totalCocks(); i++)
 			{
-				if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,x)) pc.cocks[x].addFlag(GLOBAL.FLAG_GOOEY);
-				pc.cocks[x].cockColor = pc.hairColor;
+				if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) pc.cocks[i].addFlag(GLOBAL.FLAG_GOOEY);
+				pc.cocks[i].cockColor = pc.hairColor;
 			}
-			for(x = 0; x < pc.totalVaginas(); x++)
+			for(i = 0; i < pc.totalVaginas(); i++)
 			{
-				if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY)) pc.vaginas[x].addFlag(GLOBAL.FLAG_GOOEY);
-				pc.vaginas[x].vaginaColor = pc.hairColor;
+				if(!pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY)) pc.vaginas[i].addFlag(GLOBAL.FLAG_GOOEY);
+				pc.vaginas[i].vaginaColor = pc.hairColor;
 			}
 			pc.createStatusEffect("Gel Body");
-			bonusTexts = " You've always been a sexy goo-girl!";
+			bonusTexts = " You’ve always been a sexy goo-girl!";
 			break;
 		/*Skeith Straud I can't seem to get any confirmation, I pledged on March 19 at 11:15 AM, if I do qualify for the char, here is the description, if I don't, my apologies for wasting your time.
 		
@@ -349,6 +352,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.tongueType = GLOBAL.TYPE_DRACONIC;
 			pc.tailType = GLOBAL.TYPE_DRACONIC;
 			pc.tailCount = 1;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.clearTongueFlags();
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
 			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
@@ -363,7 +369,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.clitLength = 4;
 			pc.nipplesPerBreast = 2;
 			pc.ass.wetnessRaw = 2;
-			bonusTexts = "You've always been a draconic hermaphrodite with lots of neon-green accents!";
+			bonusTexts = "You’ve always been a draconic hermaphrodite with lots of neon-green accents!";
 			break;
 		/*Nivâ My character should be a human female without any transformation. She has red shoulder long hair which is bond i a ponytail. She also has olive skin, a curvy body, D-cup breasts and an normal ass. She has a red gem belly button piercing and also red gem earrings. Her main atribute is close combat, so she needs a lot of strength and speed. Her weapons are 2 blades. They are nano blades which she activate with her will power. The nanites are in her whole body. When she fights the blades come out and cover her hands. The nanites also cover parts of her body like an secound skin. You could say she is the space Witchblade.( Here a reference pic http://www.1zoom.net/Anime/wallpaper/98382/z565.1/ )
 
@@ -399,28 +405,45 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		//Skyhusky I would like a tall husky girl to play, Haha. Vague! <3
 		case "skyhusky":
 			if(!TF) break;
-			if(pc.hasVagina()) pc.vaginas[0].type = GLOBAL.TYPE_CANINE;
+			if(pc.hasVagina())
+			{
+				for(i = 0; i < pc.vaginas.length; i++)
+				{
+					pc.shiftVagina(i, GLOBAL.TYPE_CANINE);
+				}
+			}
 			if(pc.hasCock()) 
 			{
-				pc.cocks[0].cType = GLOBAL.TYPE_CANINE;
-				pc.cocks[0].cockColor = "red";
-				pc.cocks[0].knotMultiplier = 1.5;
+				for(i = 0; i < pc.cocks.length; i++)
+				{
+					pc.shiftCock(i, GLOBAL.TYPE_CANINE);
+					pc.cocks[i].cockColor = "red";
+					pc.cocks[i].knotMultiplier = 1.5;
+				}
 			}
 			pc.armType = GLOBAL.TYPE_CANINE;
 			pc.clearArmFlags();
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
+			pc.addArmFlag(GLOBAL.FLAG_FLUFFY);
 			pc.legType = GLOBAL.TYPE_CANINE;
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_FURRED);
+			pc.addLegFlag(GLOBAL.FLAG_FLUFFY);
 			pc.tailCount = 1;
 			pc.tailType = GLOBAL.TYPE_CANINE;
-			pc.skinType = GLOBAL.SKIN_TYPE_FUR;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+			pc.addTailFlag(GLOBAL.FLAG_FURRED);
+			pc.clearSkinFlags();
+			pc.addSkinFlag(GLOBAL.FLAG_FLUFFY);
+			pc.createPerk("Regal Mane", GLOBAL.FLAG_FURRED, 0, 0, 0, "You have an impressive mane bordering your neck.");
 			pc.furColor = "white";
 			pc.hairColor = "white";
 			if(pc.tallness < 72) pc.tallness = 72;
 			if(pc.femininity < 70) pc.femininity = 70;
-			bonusTexts = "You've always been a tall husky girl, just waiting to play!";
+			bonusTexts = "You’ve always been a tall husky girl, just waiting to play!";
 			break;
 		/*Kad'Rick A Viking. Because my pseudo mean warlord in old viking and mostly because i like Norse mythology.
 		Appearance :
@@ -473,13 +496,13 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasCock()) pc.createCock();
 			pc.createCock();
 			pc.createCock();
-			pc.cocks[0].cType = GLOBAL.TYPE_DRACONIC;
+			pc.shiftCock(0, GLOBAL.TYPE_DRACONIC);
 			pc.cocks[0].cLengthRaw = 105;
 			pc.cocks[0].cockColor = "black";
-			pc.cocks[1].cType = GLOBAL.TYPE_DRACONIC;
+			pc.shiftCock(1, GLOBAL.TYPE_DRACONIC);
 			pc.cocks[1].cLengthRaw = 105;
 			pc.cocks[1].cockColor = "black";
-			pc.cocks[2].cType = GLOBAL.TYPE_DRACONIC;
+			pc.shiftCock(2, GLOBAL.TYPE_DRACONIC);
 			pc.cocks[2].cLengthRaw = 17;
 			pc.cocks[2].cockColor = "black";
 			pc.balls = 4;
@@ -498,6 +521,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.clearTongueFlags();
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
 			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.removeHorns();
 			pc.horns = 2;
 			pc.hornLength = 12;
 			pc.hornType = GLOBAL.TYPE_DRACONIC;
@@ -513,7 +537,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_SCALED);
-			bonusTexts = "You've always been an exceptionally endowed dragoness.";
+			bonusTexts = "You’ve always been an exceptionally endowed dragoness.";
 			break;
 		/*All bovine features with a feminine appearance,
 		Name: Daisy
@@ -532,7 +556,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.tallness = 75;
 			pc.breastRows[0].breastRatingRaw = 22;
-			pc.cocks[0].cType = GLOBAL.TYPE_EQUINE;
+			pc.shiftCock(0, GLOBAL.TYPE_EQUINE);
 			pc.cocks[0].cLengthRaw = 20;
 			pc.balls = 2;
 			pc.ballSizeRaw = 35;
@@ -566,7 +590,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.femininity = 50;
 			pc.removeCocks();
 			pc.removeVaginas();
-			bonusTexts = "You've always been a neuter. Life's easier that way.";
+			bonusTexts = "You’ve always been a neuter. Life’s easier that way.";
 			break;
 		/*Dacraun 6 ft 7
 		approximately 20 inch long black as empty space hair (@_@)
@@ -630,19 +654,21 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
 			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.armType = GLOBAL.TYPE_DRACONIC;
+			pc.clearArmFlags();
+			pc.addArmFlag(GLOBAL.FLAG_SCALED);
 			pc.clitLength = 0.5;
 			pc.balls = 2;
 			pc.ballSizeRaw = 3.5;
 			pc.breastRows[0].breastRatingRaw = 3;
-			pc.cocks[0].cLengthRaw = 20;
 			pc.shiftCock(0, GLOBAL.TYPE_DRACONIC);
+			pc.cocks[0].cLengthRaw = 20;
 			pc.cumMultiplierRaw = 40;
 			pc.ballEfficiency = 150;
 			break;
 		/*Alexia, Female, normal genitals, Futa Optional, D cup breast, Kind, Pansexual, piercings and Tattooes, Not a total slut. (Space Pirate with a strict moral code, if possible) =), jelvegaa@hotmail.com*/
 		case "alexia":
 			if(!TF) break;
-			if(pc.hasVagina()) pc.createVagina();
+			if(!pc.hasVagina()) pc.createVagina();
 			pc.breastRows[0].breastRatingRaw = 4;
 			break;
 		/*Name: Brenda Reynolds
@@ -1032,6 +1058,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.clearTongueFlags();
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
 			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.removeHorns();
 			pc.horns = 4;
 			pc.hornType = GLOBAL.TYPE_DEMONIC;
 			pc.hornLength = 4;
@@ -1042,8 +1069,8 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			pc.breastRows[0].breastRatingRaw = 0;
 			if(!pc.hasCock()) pc.createCock();
+			pc.shiftCock(0, GLOBAL.TYPE_DEMONIC);
 			pc.cocks[0].cLengthRaw = 9;
-			pc.cocks[0].cType = GLOBAL.TYPE_DEMONIC;
 			pc.ballSizeRaw = 6;			
 			break;
 		case "":
@@ -1070,7 +1097,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 	{
 		clearOutput();
 		showName("\n????");
-		output("Reality seems to warp, but then, things are as they always have been, aren't they? You look over your [pc.chest], [pc.crotch]. Yup, everything is fine.");
+		output("Reality seems to warp, but then, things are as they always have been, aren’t they? You look over your [pc.chest], [pc.crotch]. Yup, everything is fine.");
 		if(bonusTexts != "") output(" " + bonusTexts);
 		resetBabyValues();
 		clearMenu();

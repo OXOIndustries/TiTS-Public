@@ -26,7 +26,7 @@ public function myrellionManorOutsideBedroom():Boolean
 
 public function myrellionManorEnterWarroom():Boolean
 {
-	clearOutput();
+	//clearOutput();
 
 	//War Room (First Time)
 	if (flags["MANOR_WARROOM_ENTERED"] == undefined)
@@ -83,7 +83,7 @@ public function myrellionManorGoInside():Boolean
 	else output("Pursing your lips");
 	output(" at this new guard, you quickly take a look around the room. A lift platform dominates the center of the small room, surrounded by dusty crates. This must have been an access for moving supplies up from the basement, you surmise.");
 
-	addButton(0, "Go Down", myrellionManorAdminRoom)
+	addButton(0, "Go Down", move, "841");
 	addButton(14, "Leave", move, "834");
 	return false;
 }
@@ -92,20 +92,21 @@ public function myrellionManorAdminRoom():Boolean
 {
 	if (flags["MANOR_ADMINROOM_ENTERED"] == undefined)
 	{
-		clearOutput();
+		//clearOutput();
 		selleraHeader();
 
-		currentLocation = "841";
 		flags["MANOR_WARROOM_ENTERED"] = 1;
 		flags["MANOR_ADMINROOM_ENTERED"] = 1;
 
 		output("After a brief moment, you look the guard in the eyes. There’s a brief moment of mutual assessment before she about-faces and leads you onto the lift. You’re both taken down a level into a room nearly identical to the last. The only difference that’s readily apparent is the lack of noise on the other side of the door.");
 		
-		output("\n\nOnce more, you’re treated to a good view of some tight red myr physique as the uniformed soldier steps off the lift and slowly approaches the door on the other side of the room. Goodness. You don’t think you could ever get tired of watching <i>that</i>, and if these red-hued girls insist on leading you everywhere, you’ll likely have plenty more opportunities to put that theory to the test. Careful not to be caught gawking, you place one foot in front of the other and force yourself to look forward. You make your way over to the door and open it, stepping into a very, very different room from the one upstairs.");
+		output("\n\nOnce more, you’re treated to a good view of some tight red myr physique as the uniformed soldier steps off the lift and slowly approaches the door on the other side of the room. Goodness. You don’t think you could ever get tired of watching <i>that</i>, and if these red-hued girls insist on leading you everywhere, you’ll likely have plenty more opportunities to put that theory to the test. Careful not to be caught gawking, you");
+		if(pc.hasLegs() && pc.hasFeet()) output(" place one [pc.foot] in front of the other and");
+		output(" force yourself to look forward. You make your way over to the door and open it, stepping into a very, very different room from the one upstairs.");
 		
 		output("\n\nThe lights are dimmer here, for one. It’s also much emptier. In fact, you can only see three myr inside, and each are covered in battle honors and signs of prestige. You don’t need any codex or translator to tell you that these are some very high-ranked veterans of the war. A set of eyes and a pair of brain cells to rub together");
 		if (pc.IQ() <= 25) output(", even if they’re your <i>last</i> pair,");
-		output(" get the message across just fine. Two of the myr look to be on their way out, actually, and both throw you curious glances before heading out a back door. Your attention, however, is on the third sitting at the other end of a long table: a Scarlet Federation officer whose uniform has more metal on it than Tarkus.");
+		output(" get the message across just fine. Two of the myr look to be on their way out, actually, and both throw you curious glances before heading out a back door. Your attention, however, is on the third sitting at the other end of a long table: a Scarlet Federation officer whose uniform " + (flags["BEEN_ON_TARKUS"] != undefined ? "has more metal on it than Tarkus" : "is heavily decorated in medals") + ".");
 		if (flags["MET_NEHZARA"] != undefined) output(" A uniform, you note, which looks to be of the same type worn by Colonel Nehzara.");
 		output(" The air around her seems to fill with intensity as she leans forward to skewer you with her jet-black gaze.");
 		
@@ -143,7 +144,9 @@ public function myrellionManorAdminRoom():Boolean
 		output("\n\n<i>“Oh, that’s ornamental,”</i> she reveals with a small laugh. <i>“I carry it during public appearances. It’ll chop through you just fine, but I wouldn’t want to use it in combat. I’d be cut down in the time it took to recover from a single swing.”</i> You breathe a sigh of relief. You didn’t want to believe anyone on this planet could possibly be capable of actually wielding that thing in battle. That would be genuinely terrifying.");
 		
 		output("\n\nSellera pulls out a chair at the side of the table, near the closer end, and waves at the opposite chair, beckoning you to do the same. You comply, finding that the large table gives you just enough space to feel separated from her while still seeming close and intimate. <i>“So, Captain Steele,”</i> she says carefully, sitting back and taking a slow, prolonged breath. <i>“I’ll get to the point. Why are you in Kressia?”</i>");
-
+		
+		processTime(5);
+		
 		clearMenu();
 		addButton(0, "Mission", selleraYourMission, undefined, "Your Mission", "Tell Sellera you're here searching for a way to get your father's fortune and prove your worth.");
 		addButton(1, "Sightseeing", selleraSightseeing, undefined, "Sightseeing", "Tell Sellera you're just the first fruit of Myrellion's new tourist industry, taking in the sights and experiences of the whole planet.");
@@ -152,10 +155,13 @@ public function myrellionManorAdminRoom():Boolean
 	}
 	else
 	{
-		flags["NAV_DISABLE"] = NAV_IN_DISABLE;
+		output("You find yourself in a dimmer level than the one above. Standing before you are two guards in front of the administration office of Field Marshal Sellera.");
+		output("\n\nDo you need enter and speak to her about anything?");
+		flags["NAV_DISABLED"] = NAV_IN_DISABLE;
+		clearMenu();
 		addButton(0, "Sellera", approachSellera, undefined, "Approach Sellera", "May as well visit the marshal while you're here.");
 		addButton(14, "Leave", move, "834");
-		return false;
+		return true;
 	}
 }
 
@@ -254,6 +260,9 @@ public function approachSellera():void
 {
 	clearOutput();
 	selleraHeader();
+	
+	currentLocation = "841";
+	generateMap();
 
 	output("Giving a nod to the Red soldier, you head into the office and wait for one of the uniformed women to approach you. Once again, you follow the soldier to a side-room, onto a lift, and down into the basement lair of Field Marshal Sellera.");
 	
@@ -552,8 +561,9 @@ public function selleraLeave():void
 	output("\n\n<i>“Quite right,”</i> she replies. You think you catch a suppressed sigh in her voice as she summons a soldier to take you to the lift. She watches you turn around and go, causing you to wonder if she’s stealing a glance at your [pc.butt] in the same way you’ve been peeking at every other pair of cheeks in the place. The thought causes you to smile to yourself, though you say nothing to your escort.");
 	
 	output("\n\nA few minutes later, you find yourself back outside the administration office, standing in the manor’s west wing.");
-
-	currentLocation = "840";
+	
+	processTime(3);
+	
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move, "834");
 }

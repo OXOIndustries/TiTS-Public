@@ -91,10 +91,10 @@ public function eggTrainerMenu():void
 	if(pc.findEmptyPregnancySlot(0) != -1)
 	{
 		addButton(1,"Egg Trainer",eggTrainingMachineTime,undefined,"Egg Training","Have the machine fill you with eggs and lube, then lay them right back into the cleaning pool. Something tells you between a tentacle fucking and a two-way oviposition, you’d be in for a wild ride.");
-		if(flags["EGG_TRAINING"] == undefined) addDisabledButton(2,"Carry Train","Carry Train","You aren't experienced enough with this machine to try this.");
+		if(flags["EGG_TRAINING"] == undefined) addDisabledButton(2,"Carry Train","Carry Train","You aren’t experienced enough with this machine to try this.");
 		else addButton(2,"Carry Train",carryTrainingWithEggMachine,undefined,"Carry Train","Have the tentacle-device fill you with eggs. This option advertises TamaniCorp brand Lock-Lube, made to ensure that your eggs are lodged inside you for a good long while... You’ll be carrying so many eggs that you’ll look positively pregnant for about a week, it tells you.");
 		if(flags["EGG_TRAINING"] >= 4) addButton(3,"Faux Preg",fauxPregImplantation,undefined,"Faux Preg","This special <i>“service”</i> causes the tentacle to fuck a single, unique egg into you - what the screen labels a <i>“faux-preg egg.”</i> This special egg lodges inside you and grows, grows, grows inside you until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.");
-		else addDisabledButton(3,"Faux Preg","Faux Preg","You are not yet experienced enough for this. You'll have to work up to it.");
+		else addDisabledButton(3,"Faux Preg","Faux Preg","You are not yet experienced enough for this. You’ll have to work up to it.");
 	}
 	else
 	{
@@ -628,7 +628,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int, doOut:Boo
 			if(pc.vaginas[pregSlot].bonusCapacity < 50)
 			{
 				pc.vaginas[pregSlot].bonusCapacity += 10;
-				if (doOut) output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You’re pretty sure you’ve gotten a little stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -637,7 +637,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int, doOut:Boo
 			if(pc.ass.bonusCapacity < 50)
 			{
 				pc.ass.bonusCapacity += 10;
-				if (doOut) output("\n\n<b>You're pretty sure you've gotten a little stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You’re pretty sure you’ve gotten a little stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -651,7 +651,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int, doOut:Boo
 			if(pc.vaginas[pregSlot].bonusCapacity < 200)
 			{
 				pc.vaginas[pregSlot].bonusCapacity += 25;
-				if (doOut) output("\n\n<b>You're pretty sure you've gotten a good bit stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You’re pretty sure you’ve gotten a good bit stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -660,7 +660,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int, doOut:Boo
 			if(pc.ass.bonusCapacity < 200)
 			{
 				pc.ass.bonusCapacity += 25;
-				if (doOut) output("\n\n<b>You're pretty sure you've gotten a good bit stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You’re pretty sure you’ve gotten a good bit stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -673,7 +673,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int, doOut:Boo
 			if(pc.vaginas[pregSlot].bonusCapacity < 300)
 			{
 				pc.vaginas[pregSlot].bonusCapacity += 50;
-				if (doOut) output("\n\n<b>You're pretty sure you've gotten a lot stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You’re pretty sure you’ve gotten a lot stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -682,7 +682,7 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int, doOut:Boo
 			if(pc.ass.bonusCapacity < 300)
 			{
 				pc.ass.bonusCapacity += 50;
-				if (doOut) output("\n\n<b>You're pretty sure you've gotten a lot stretchier down there from the experience.");
+				if (doOut) output("\n\n<b>You’re pretty sure you’ve gotten a lot stretchier down there from the experience.");
 				effect = true;
 			}
 		}
@@ -779,7 +779,7 @@ public function eggTrainerPreggoRemoval():void
 	if(pc.hasCock()) 
 	{
 		if(pc.cockTotal() == 1) output(" Your [pc.cock] is soon as hard as diamonds, begging for attention you don’t want to give it");
-		else output(" Your [pc.cocks] are soon as hard as diamonds, begging for attention you don't want to give them");
+		else output(" Your [pc.cocks] are soon as hard as diamonds, begging for attention you don’t want to give them");
 		output("; letting the tentacle milk all the cum out of you is so much sweeter than giving in and using your hands!");
 	}
 
@@ -866,7 +866,7 @@ public function bonusFauxEggEffects(pregSlot:int):void
 			if(pc.vaginas[pregSlot].minLooseness < 5) 
 			{
 				pc.vaginas[pregSlot].minLooseness++;
-				output("\n\n<b>After all that stretching, you're pretty sure your vagina is going to have a tough time tightening back up... if it can at all.</b>");
+				output("\n\n<b>After all that stretching, you’re pretty sure your vagina is going to have a tough time tightening back up... if it can at all.</b>");
 				effect = true;
 			}
 		}
@@ -875,7 +875,7 @@ public function bonusFauxEggEffects(pregSlot:int):void
 			if(pc.ass.minLooseness < 5)
 			{
 				pc.ass.minLooseness++;
-				output("\n\n<b>After all that stretching, you're pretty sure your ass is going to have a tough time tightening back up... if it can at all.</b>");
+				output("\n\n<b>After all that stretching, you’re pretty sure your ass is going to have a tough time tightening back up... if it can at all.</b>");
 				effect = true;
 			}
 		}
@@ -888,7 +888,7 @@ public function bonusFauxEggEffects(pregSlot:int):void
 			if(pc.vaginas[pregSlot].minLooseness < 3) 
 			{
 				pc.vaginas[pregSlot].minLooseness++;
-				output("\n\n<b>After all that stretching, you're pretty sure your vagina is going to have a tough time tightening back up... if it can at all.</b>");
+				output("\n\n<b>After all that stretching, you’re pretty sure your vagina is going to have a tough time tightening back up... if it can at all.</b>");
 				effect = true;
 			}
 		}
@@ -897,7 +897,7 @@ public function bonusFauxEggEffects(pregSlot:int):void
 			if(pc.ass.minLooseness < 3)
 			{
 				pc.ass.minLooseness++;
-				output("\n\n<b>After all that stretching, you're pretty sure your ass is going to have a tough time tightening back up... if it can at all.</b>");
+				output("\n\n<b>After all that stretching, you’re pretty sure your ass is going to have a tough time tightening back up... if it can at all.</b>");
 				effect = true;
 			}
 		}

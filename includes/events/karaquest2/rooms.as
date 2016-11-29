@@ -47,7 +47,7 @@ public function kquest2InitRooms():void
 	
 	rooms["K2_LZ"] = new RoomClass(this);
 	rooms["K2_LZ"].roomName = "LANDING\nZONE";
-	rooms["K2_LZ"].description = "The edge of the plateau overlooks a vast, sun-scorched desert many miles from the heart of Myrellion's civilization. The <i>Ghost</i> is parked not far from here, out of sight of anybody looking up from the surface.\n\n<i>“Come on, [pc.name], let's get going,”</i> Kara says, adjusting the rifle strap clinging to her chest.";
+	rooms["K2_LZ"].description = "The edge of the plateau overlooks a vast, sun-scorched desert many miles from the heart of Myrellion’s civilization. The <i>Ghost</i> is parked not far from here, out of sight of anybody looking up from the surface.\n\n<i>“Come on, [pc.name], let’s get going,”</i> Kara says, adjusting the rifle strap clinging to her chest.";
 	rooms["K2_LZ"].runOnEnter = null;
 	rooms["K2_LZ"].planet = planetName;
 	rooms["K2_LZ"].system = systemName;
@@ -182,7 +182,7 @@ public function kquest2InitRooms():void
 
 	rooms["K2_YARDC1"] = new RoomClass(this);
 	rooms["K2_YARDC1"].roomName = "TRAINING\nYARD";
-	rooms["K2_YARDC1"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.\n\nThere's a gate in the electric fence here. Just outside it is a machine-gun nest surrounded by sandbags and shield projectors. Too bad you can't reach them...";
+	rooms["K2_YARDC1"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.\n\nThere’s a gate in the electric fence here. Just outside it is a machine-gun nest surrounded by sandbags and shield projectors. Too bad you can’t reach them...";
 	rooms["K2_YARDC1"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDC1"].planet = planetName;
 	rooms["K2_YARDC1"].system = systemName;
@@ -206,7 +206,7 @@ public function kquest2InitRooms():void
 
 	rooms["K2_YARDB1"] = new RoomClass(this);
 	rooms["K2_YARDB1"].roomName = "TRAINING\nYARD";
-	rooms["K2_YARDB1"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.\n\nThere's a gate in the electric fence here. Just outside it is a machine-gun nest surrounded by sandbags and shield projectors. Too bad you can't reach them...";
+	rooms["K2_YARDB1"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see a barracks to the north, the door to the research facility to the east, and a radio tower to the south-east.\n\nThere’s a gate in the electric fence here. Just outside it is a machine-gun nest surrounded by sandbags and shield projectors. Too bad you can’t reach them...";
 	rooms["K2_YARDB1"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDB1"].planet = planetName;
 	rooms["K2_YARDB1"].system = systemName;
@@ -256,7 +256,7 @@ public function kquest2InitRooms():void
 
 	rooms["K2_YARDA2"] = new RoomClass(this);
 	rooms["K2_YARDA2"].roomName = "TRAINING\nYARD";
-	rooms["K2_YARDA2"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see the door to the research facility to the south-east, and a radio tower to the south-east.\n\nYou're right in front of the Black Void barracks. Going to be a lot of pirates in there.";
+	rooms["K2_YARDA2"].description = "The courtyard of the base is wide and open, with little in the way of cover other than a few supply crates or ID-locked vehicles parked around the entrance. You can see the door to the research facility to the south-east, and a radio tower to the south-east.\n\nYou’re right in front of the Black Void barracks. Going to be a lot of pirates in there.";
 	rooms["K2_YARDA2"].runOnEnter = tryProcKQ2CombatCourtyards;
 	rooms["K2_YARDA2"].planet = planetName;
 	rooms["K2_YARDA2"].system = systemName;
@@ -280,7 +280,7 @@ public function kquest2InitRooms():void
 
 	rooms["K2_BARRACKSENTRANCE"] = new RoomClass(this);
 	rooms["K2_BARRACKSENTRANCE"].roomName = "BARRACKS\nENTRANCE";
-	rooms["K2_BARRACKSENTRANCE"].description = "The interior of the Black Void barracks looks classic military, with bunk beds arranged in rows all the way across it. Bits of armor and uniforms are scattered around, along with several knocked-out pirates from your scuffle. There's a door going north. ";
+	rooms["K2_BARRACKSENTRANCE"].description = "The interior of the Black Void barracks looks classic military, with bunk beds arranged in rows all the way across it. Bits of armor and uniforms are scattered around, along with several knocked-out pirates from your scuffle. There’s a door going north. ";
 	rooms["K2_BARRACKSENTRANCE"].runOnEnter = kq2rfBarracksEntrance; //PC guaranteed to fight the first time in this square
 	rooms["K2_BARRACKSENTRANCE"].planet = planetName;
 	rooms["K2_BARRACKSENTRANCE"].system = systemName;
@@ -383,7 +383,7 @@ public function kquest2InitRooms():void
 	rooms["K2_LAB1"].addFlag(GLOBAL.INDOOR);
 
 	rooms["K2_KHANSLAB"] = new RoomClass(this);
-	rooms["K2_KHANSLAB"].roomName = "\nKHAN'S LAB";
+	rooms["K2_KHANSLAB"].roomName = "\nKHAN’S LAB";
 	//rooms["K2_KHANSLAB"].description = "desc";
 	rooms["K2_KHANSLAB"].runOnEnter = kq2rfKhansLab;
 	rooms["K2_KHANSLAB"].planet = planetName;
@@ -406,7 +406,7 @@ public function kquest2InitRooms():void
 	rooms["K2_LAB2"].addFlag(GLOBAL.INDOOR);
 
 	rooms["K2_KHANSQUARTERS"] = new RoomClass(this);
-	rooms["K2_KHANSQUARTERS"].roomName = "KHAN'S\nQUARTERS";
+	rooms["K2_KHANSQUARTERS"].roomName = "KHAN’S\nQUARTERS";
 	//rooms["K2_KHANSQUARTERS"].description = "desc";
 	rooms["K2_KHANSQUARTERS"].runOnEnter = kq2rfKhansQuarters;
 	rooms["K2_KHANSQUARTERS"].planet = planetName;
@@ -437,7 +437,7 @@ public function kquest2InitRooms():void
 
 	rooms["K2_SLAVEQUARTERS"] = new RoomClass(this);
 	rooms["K2_SLAVEQUARTERS"].roomName = "SLAVE\nQUARTERS";
-	rooms["K2_SLAVEQUARTERS"].description = "The room marked ‘Slave Quarters’ looks like the harem chamber it is: a large, circular room lined with silk drapes over fake windows showing digital landscapes. It's filled with divans, cushions, and luxurious blankets made from the finest and most expensive of materials from across the galaxy. A fountain sits in the middle of the room, depicting three gold myr women with streams of water flowing from their over-sized nipples into a bathing pool.\n\nSeveral red myr are lounging around the room, maybe a dozen of them all told. Each is scantily clad with transparent silks clinging around her breasts and hips, if she's wearing anything at all. Each bears a finely wrought gold chain linked between her pierced nipples, among other jewelry all meant to evoke and arouse. The only article that stands out is the slim metal collar each and every one of them wears, a solid band of steel adorned only with a small holographic readout projecting just under the chin. The girls look up as you and Kara enter, their eyes vacant and lusty; several of them make sensual little moans, others cup their breasts or crawl toward you over the cushions.";
+	rooms["K2_SLAVEQUARTERS"].description = "The room marked ‘Slave Quarters’ looks like the harem chamber it is: a large, circular room lined with silk drapes over fake windows showing digital landscapes. It’s filled with divans, cushions, and luxurious blankets made from the finest and most expensive of materials from across the galaxy. A fountain sits in the middle of the room, depicting three gold myr women with streams of water flowing from their over-sized nipples into a bathing pool.\n\nSeveral red myr are lounging around the room, maybe a dozen of them all told. Each is scantily clad with transparent silks clinging around her breasts and hips, if she’s wearing anything at all. Each bears a finely wrought gold chain linked between her pierced nipples, among other jewelry all meant to evoke and arouse. The only article that stands out is the slim metal collar each and every one of them wears, a solid band of steel adorned only with a small holographic readout projecting just under the chin. The girls look up as you and Kara enter, their eyes vacant and lusty; several of them make sensual little moans, others cup their breasts or crawl toward you over the cushions.";
 	rooms["K2_SLAVEQUARTERS"].runOnEnter = null;
 	rooms["K2_SLAVEQUARTERS"].planet = planetName;
 	rooms["K2_SLAVEQUARTERS"].system = systemName;
@@ -446,7 +446,7 @@ public function kquest2InitRooms():void
 
 	rooms["K2_SERVERROOM"] = new RoomClass(this);
 	rooms["K2_SERVERROOM"].roomName = "SERVER\nROOM";
-	rooms["K2_SERVERROOM"].description = "The Black Void's server room is a vast, dark chamber lined with thousands upon thousands of servers, all bristling with data. A holoprojector is sat at the center, with a couch facing it. Watson is nowhere to be seen.";
+	rooms["K2_SERVERROOM"].description = "The Black Void’s server room is a vast, dark chamber lined with thousands upon thousands of servers, all bristling with data. A holoprojector is sat at the center, with a couch facing it. Watson is nowhere to be seen.";
 	rooms["K2_SERVERROOM"].runOnEnter = kq2rfServerRoom;
 	rooms["K2_SERVERROOM"].planet = planetName;
 	rooms["K2_SERVERROOM"].system = systemName;

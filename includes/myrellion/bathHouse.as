@@ -38,8 +38,8 @@ public function approachBathMatron():void
 	}
 	else
 	{
-		addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
-		addDisabledButton(1,"PrivateBath","Private Bath","You don't have the money!\n\nCost: 50 credits");
+		addDisabledButton(0,"Public Bath","Public Bath","You can’t afford the 50 credits it would cost to use the public bath.");
+		addDisabledButton(1,"PrivateBath","Private Bath","You don’t have the money!\n\nCost: 50 credits");
 	}
 	addButton(2,"Talk",talkToMatronAbootBathHooose,undefined,"Talk","Ask about her and the bath house itself.");
 	addButton(14,"Leave",mainGameMenu);
@@ -76,8 +76,8 @@ public function talkToMatronAbootBathHooose():void
 	}
 	else
 	{
-		addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
-		addDisabledButton(1,"PrivateBath","Private Bath","You don't have the money!\n\nCost: 50 credits");
+		addDisabledButton(0,"Public Bath","Public Bath","You can’t afford the 50 credits it would cost to use the public bath.");
+		addDisabledButton(1,"PrivateBath","Private Bath","You don’t have the money!\n\nCost: 50 credits");
 	}
 	addDisabledButton(2,"Talk","Talk","You just finished that.");
 	addButton(14,"Leave",mainGameMenu);
@@ -114,14 +114,14 @@ public function publicBathBackMenu():void
 {
 	clearOutput();
 	showName("BATH\nHOUSE");
-	output("No, that won't do. You back away and consider your options.");
+	output("No, that won’t do. You back away and consider your options.");
 	publicBathMenu();
 }
 public function publicBathMenu():void
 {
 	clearMenu();
-	addButton(0,"Red Officer",chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoSaysRedOfficerWhatDidYouThinkIdSayShenanigans,undefined,"Red Officer","You catch sight of a very uncomfortable red myr woman sitting at the back of the upper pool. She's naked, revealing a body of albino-pale flesh and crimson plates, though one of her arms is guardedly wrapped around her chest to preserve some measure of her modesty. She looks like she could use some friendly company... or a little loosening up.");
-	addButton(1,"Honeypot",honeyPotFunTimes,undefined,"Honeypot","There's a gold myr woman on the second tier with a rack you can hardly believe: she's rocking a pair of breasts too large to be constrained by any bra you've ever seen. Her tits float like a pair of balloons, strained to the absolute physical limit with an overabundance of myr nectar. She'd probably appreciate someone attending to those awesome curves of hers...");
+	addButton(0,"Red Officer",chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoSaysRedOfficerWhatDidYouThinkIdSayShenanigans,undefined,"Red Officer","You catch sight of a very uncomfortable red myr woman sitting at the back of the upper pool. She’s naked, revealing a body of albino-pale flesh and crimson plates, though one of her arms is guardedly wrapped around her chest to preserve some measure of her modesty. She looks like she could use some friendly company... or a little loosening up.");
+	addButton(1,"Honeypot",honeyPotFunTimes,undefined,"Honeypot","There’s a gold myr woman on the second tier with a rack you can hardly believe: she’s rocking a pair of breasts too large to be constrained by any bra you’ve ever seen. Her tits float like a pair of balloons, strained to the absolute physical limit with an overabundance of myr nectar. She’d probably appreciate someone attending to those awesome curves of hers...");
 	//Alone
 	//Tooltip: You don’t want to bathe with anybody else in particular. Just go in, get clean, and get out.
 	addButton(2,"Alone",batheAloneYouSloot,undefined,"Alone","You don’t want to bathe with anybody else in particular. Just go in, get clean, and get out.");
@@ -137,7 +137,7 @@ public function showRedMyrOfficer():void
 }
 
 //Red Officer
-//Tooltip: You catch sight of a very uncomfortable red myr woman sitting at the back of the upper pool. She's naked, revealing a body of albino-pale flesh and crimson plates, though one of her arms is guardedly wrapped around her chest to preserve some measure of her modesty. She looks like she could use some friendly company... or a little loosening up. 
+//Tooltip: You catch sight of a very uncomfortable red myr woman sitting at the back of the upper pool. She’s naked, revealing a body of albino-pale flesh and crimson plates, though one of her arms is guardedly wrapped around her chest to preserve some measure of her modesty. She looks like she could use some friendly company... or a little loosening up. 
 public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoSaysRedOfficerWhatDidYouThinkIdSayShenanigans():void
 {
 	clearOutput();
@@ -178,7 +178,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 		clearMenu();
 		//Ride Dick
 		if(pc.cockThatFits(100) >= 0) addButton(0,"Ride Dick",rideDickWithRedMyrSloot,undefined,"Ride Dick","Pull your anonymous lover up and onto your cock before you blow. Give her the full experience!");
-		else addDisabledButton(0,"Ride Dick","Ride Dick","You're too big to fit inside her.");
+		else addDisabledButton(0,"Ride Dick","Ride Dick","You’re too big to fit inside her.");
 		addButton(1,"Water Nut",waterNutBustAttack,undefined,"Water Nut","Be naughty and bust your nut in the water. The locals might not like it... or maybe they will, cock-starved and horny as they seem to be.");
 		addButton(2,"Swallow",swallowThisLoadYonderOcifer,undefined,"Swallow It","Get her under the water to swallow your load.");
 	}
@@ -329,10 +329,10 @@ public function bustANutMidMyrEpilogue():void
 }
 
 //Gold Myr Girls
-//Tooltip: A group of giggling gold myr girls are hanging around one corner of the lower pool, about a half dozen naked, curvaceous girls scrubbing each other's backs, washing their hair, and generally having a good time. The girls are definitely the highlight of the bath house, drawing looks from all around the pool. They look like a sure way to have a good time...
+//Tooltip: A group of giggling gold myr girls are hanging around one corner of the lower pool, about a half dozen naked, curvaceous girls scrubbing each other’s backs, washing their hair, and generally having a good time. The girls are definitely the highlight of the bath house, drawing looks from all around the pool. They look like a sure way to have a good time...
 
 //Honeypot
-//Tooltip: There's a gold myr woman on the second tier with a rack you can hardly believe: she's rocking a {Jacques00-sized bust // pair of breasts too large to be constrained by any bra you've ever seen}. Her tits float like a pair of balloons, strained to the absolute physical limit with an overabundance of myr nectar. She'd probably appreciate someone attending to those awesome curves of hers... 
+//Tooltip: There’s a gold myr woman on the second tier with a rack you can hardly believe: she’s rocking a {Jacques00-sized bust // pair of breasts too large to be constrained by any bra you’ve ever seen}. Her tits float like a pair of balloons, strained to the absolute physical limit with an overabundance of myr nectar. She’d probably appreciate someone attending to those awesome curves of hers... 
 
 public function showHoneypot():void
 {
@@ -447,12 +447,12 @@ public function bathHouseGoldMyrGroup():void
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(200) >= 0) addButton(0,"Clean Penis",cleanMuhPenisYo,undefined,"Clean Penis","You have a hunch that they'd be quite adept at cleaning your penis.");
-		else addDisabledButton(0,"Clean Penis","Clean Penis","You're too big for the type of cleaning they're liable to give...");
+		if(pc.cockThatFits(200) >= 0) addButton(0,"Clean Penis",cleanMuhPenisYo,undefined,"Clean Penis","You have a hunch that they’d be quite adept at cleaning your penis.");
+		else addDisabledButton(0,"Clean Penis","Clean Penis","You’re too big for the type of cleaning they’re liable to give...");
 	}
-	else addDisabledButton(0,"Clean Penis","Clean Penis","You don't have a tallywacker to clean!");
+	else addDisabledButton(0,"Clean Penis","Clean Penis","You don’t have a tallywacker to clean!");
 	if(pc.hasVagina()) addButton(1,"Clean Vagina",cleanMuhVaginaYo,undefined,"Clean Vagina","Have them tend to your vagina.");
-	else addDisabledButton(1,"Clean Vagina","Clean Vagina","You don't have a vagina to clean!");
+	else addDisabledButton(1,"Clean Vagina","Clean Vagina","You don’t have a vagina to clean!");
 	addButton(14,"Back",publicBathBackMenu);
 }
 
@@ -521,7 +521,7 @@ public function cleanPenisPartDues(x:int):void
 	//med-huge cocks fuck the curvy ringleader (plus shy myr if tailcock)
 	else
 	{
-		output("The myr's smooth strokes bring you to full erectness, and her eyes widen as your [pc.cock " + x + "] swells past " + num2Text(Math.round(pc.cocks[x].cLength()-4)) + " inches. The voluptuous myr opposite you raises an eyebrow.");
+		output("The myr’s smooth strokes bring you to full erectness, and her eyes widen as your [pc.cock " + x + "] swells past " + num2Text(Math.round(pc.cocks[x].cLength()-4)) + " inches. The voluptuous myr opposite you raises an eyebrow.");
 		output("\n\n<i>“Another for me?”</i> she inquires innocently. The tall woman relinquishes your arm with a slight air of defeat and gently pushes you over toward the wide-hipped sexpot, who bids you be seated. The other myr busily begin wetting and rubbing your [pc.skinFurScales] in ways that conveniently conceal your crotch from outside scrutiny.");
 		output("\n\n<i>“We have a contest going,”</i> the curvy myr whispers. Her medium-length blonde hair cascades from her neck as she leans in. <i>“She’s quite certain that she’s the best... but I’m winning.”</i> She seats herself in your lap and looks pointedly at the taller woman. <i>“Would you be so kind as to wash our visitor’s chest while I see to " + pc.mf("his","her") + " lower half?”</i>");
 		output("\n\nThe disappointed myr anoints your [pc.chest] with warm water; meanwhile, the myr in your lap has turned around and begun gently washing your [pc.legOrLegs]. Her fantastic, heart-shaped ass and wide, egg-laying abdomen are on full display as she bends forward, and she makes sure to rub against the base of your [pc.cock " + x + "] before throwing a knowing glance over her shoulder. She raises her perfectly-rounded booty above the water, and you very briefly feel fingertips guiding your penis into place before she lowers the opening of her sex onto the lengthy shaft. Several of the smaller women wince as your pole slides home.");
@@ -627,7 +627,7 @@ public function backFromPrivateBath():void
 {
 	clearOutput();
 	showOserre();
-	output("<i>\"Uh... nevermind. I've changed my mind.\"</i>\n\nThe matron shrugs and refunds your credits.");
+	output("<i>“Uh... nevermind. I’ve changed my mind.”</i>\n\nThe matron shrugs and refunds your credits.");
 	processTime(1);
 	pc.credits += 50;
 	clearMenu();
@@ -665,7 +665,7 @@ public function oserrePrivateBath():void
 	else addDisabledButton(1,"Male Parts","Male Parts","You don’t have a dick to clean!");
 	if(pc.hasVagina()) addButton(2,"FemaleParts",oserreFemaleParts,undefined,"FemaleParts","Ask the myr matron to please your vagina. It wouldn’t be surprising if she used something long and stiff to ‘clean’ deep inside...");
 	else addDisabledButton(2,"FemaleParts","FemaleParts","You don’t have a vagina, dirty or otherwise!");
-	if(pc.hasHardLightEquipped() && flags["OSERRE_DILDOS_SEEN"] != undefined && pc.hasHardLightUpgraded()) addButton(3,"HL Dildo",oserreDildoDisplayScene,undefined,"HL Dildo","Oserre's a dildo collector - what'll she say when you show off your hardlight?");
+	if(pc.hasHardLightEquipped() && flags["OSERRE_DILDOS_SEEN"] != undefined && pc.hasHardLightUpgraded()) addButton(3,"HL Dildo",oserreDildoDisplayScene,undefined,"HL Dildo","Oserre’s a dildo collector - what’ll she say when you show off your hardlight?");
 	else if(!pc.hasHardLightEquipped()) addDisabledButton(3,"HL Dildo","HL Dildo","You need hardlight-enabled underwear with a toy of adjustable size for this.");
 	else if(!pc.hasHardLightUpgraded()) addDisabledButton(3,"HL Dildo","HL Dildo","You need an upgrade for your hardlight dildo that will let you adjust its size for this.");
 	else addDisabledButton(3,"HL Dildo","HL Dildo","You need to see something else to unlock this.");
@@ -1004,7 +1004,7 @@ public function oserreFemaleParts():void
 	//display 2 at random before moving to the double-ender
 	IncrementFlag("OSERRE_DILDOS_SEEN");
 	dildoPicker(oserreFemaleParts,0);
-	//Continues from doubleEndedOserre()<i>“
+	//Continues from doubleEndedOserre()
 }
 
 public function dildoPicker(cumFrom:Function, shown:int):void
@@ -1132,7 +1132,7 @@ public function privateBathBathBathBathBathNotBessNoJustBath():void
 	author("Gardeford");
 	output("One of the order’s many sisters direct you to an unused hot spring, letting you in before closing the durable curtain. You find yourself in a miniature changing room, with a sizeable chest to store your belongings. A mirror stands in the other corner to help with the removal of necklaces, along with a rag to wipe the condensation off of said mirror.");
 	output("\n\nYou stash your [pc.gear] in the containers, preparing yourself before entering the bath. The hot spring pool is surprisingly large, reaching what must be 20 feet in diameter. They must use these rooms for private parties as well. The bath appears to be hewn directly from the surrounding cave, with ornate designs chiseled into the smooth stone. A small stream trickles into the water from one end of the room, only to continue out the other end and down another small tunnel.");
-	output("\n\nA large brass bell hangs on the wall just beside the door, with a small instruction plaque beneath labeled 'Ring For Assistance.' ");
+	output("\n\nA large brass bell hangs on the wall just beside the door, with a small instruction plaque beneath labeled ‘Ring For Assistance.’ ");
 	if(flags["BEEN_PRIVATE_BATHED"] == undefined) output("You aren’t sure what kind of assistance is available, but you imagine it comes in a pretty white robe.");
 	else output("The label brings back memories of your last encounter, and your fingers itch to ring it again.");
 	output(" You could ring the shining bell to summon the order’s assistant, or you could have this gigantic bath to yourself.");
@@ -1222,9 +1222,9 @@ public function assistanceWithPrivateBath():void
 	clearMenu();
 	addButton(0,"Decline",declineBathHJs);
 	if(pc.hasCock()) addButton(1,"MaleService",acceptPrivateBathHJs,true,"Male Service", "Get some cleansing for your male parts.");
-	else addDisabledButton(1,"MaleService","Male Service","You don't have any male parts to service");
+	else addDisabledButton(1,"MaleService","Male Service","You don’t have any male parts to service");
 	if(pc.hasVagina()) addButton(2,"FemaleService",acceptPrivateBathHJs,false,"Female Service","Get some DEEP cleansing.");
-	else addDisabledButton(2,"FemaleService","Female Service","You don't have any female parts to cleanse.");
+	else addDisabledButton(2,"FemaleService","Female Service","You don’t have any female parts to cleanse.");
 }
 
 //Decline
@@ -1399,7 +1399,7 @@ public function oserreDildoDisplayScene():void
 		output("\n\nThe matron is still waiting patiently for you to speak, all smiles and indulgence. You clear your throat. ");
 		if(pc.isBimbo()) output("<i>“You still love big, hard, toy dicks, don’tcha?”</i> you ask.");
 		else if(pc.isBro()) output("<i>“You still got your dildos?”</i> you ask.");
-		else if(pc.isNice()) output("<i>“So... that box of  ‘female cleansing aids’ you brought out the other time... are you still into those?”</i> you ask.");
+		else if(pc.isNice()) output("<i>“So... that box of ‘female cleansing aids’ you brought out the other time... are you still into those?”</i> you ask.");
 		else 
 		{
 			output("<i>“Hey, do you still have that collection of freaky alien rubber-dongers?”</i> you ask, loudly enough to be heard");

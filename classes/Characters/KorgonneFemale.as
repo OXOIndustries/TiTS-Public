@@ -275,7 +275,7 @@
 		{
 			output("The barbarian girl snaps her teeth in the icy air, her nose and lips flushing to a deep indigo. Her dense fur stands on end, and her curled tail practically vibrates in place. Her hackles up, the savage’s horizontally slitted pupils dilate to nearly swallow her irises entirely. Frothy, foaming saliva leaks from her open mouth, and her long tongue hangs as if forgotten from the side.");
 			if(kGAMECLASS.silly) output(" <i>“Many fierce!”</i> she barks. <i>“Am rage! Wow so scare.”</i>");
-			long = "The short, plump canid is outfitted with an eclectic assortment of arms, some clearly forged by her people, others presumably scavenged from invading off-worlders. The faint crackle of a simple shield sizzles the billowing snow around her while the savage hefts a spear tipped with black, glossy stone in one hand. In the other, she wields a  and a foot-long, thickly-braided strap. Her coat bulges with shallow pockets, the shape of various firearms sticking out at odd angles. Her eyes flare with viridian recklessness.\n\nThe barbarian’s chest rises and falls with the carnal lust for battle overtaking her. Hot breath steams between clenched teeth, saliva leaking down the sides of her mouth.";
+			long = "The short, plump canid is outfitted with an eclectic assortment of arms, some clearly forged by her people, others presumably scavenged from invading off-worlders. The faint crackle of a simple shield sizzles the billowing snow around her while the savage hefts a spear tipped with black, glossy stone in one hand. In the other, she wields a and a foot-long, thickly-braided strap. Her coat bulges with shallow pockets, the shape of various firearms sticking out at odd angles. Her eyes flare with viridian recklessness.\n\nThe barbarian’s chest rises and falls with the carnal lust for battle overtaking her. Hot breath steams between clenched teeth, saliva leaking down the sides of her mouth.";
 			reflexesRaw += 20;
 			physiqueRaw += 20;
 			willpowerRaw = 1;
@@ -303,7 +303,7 @@
 			{
 				output("\n\nYou try to close your eyes, but it’s not enough. The flare turns the reflective snow all around you into diamond-sharp luminance that feels like it’s cauterizing your eyes. Your head reels, a slight ringing in your ears as you blink rapidly, unable to clear the white emptiness that fills your sight. <b>You have been blinded!</b>");
 				//(Inflicts the <i>“Blindness”</i> status)
-				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0xFF0000);
+				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0xFF0000);
 			}
 			createStatusEffect("Korgi Blind Used");
 		}
@@ -332,14 +332,14 @@
 			}
 			else
 			{
-				output("\nYou can't quite get out of the way, and in a flash of fur and ice, you're left cold and smarting from the hit.")
+				output("\nYou can’t quite get out of the way, and in a flash of fur and ice, you’re left cold and smarting from the hit.")
 				var damage:TypeCollection = new TypeCollection( { kinetic: (physique()-5), freezing: 10 } );
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
 				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 35)
 				{
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-					output(" Worst of all, <b>You're stuck in the snow for the moment, tripped up.</b>");
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
+					output(" Worst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
 				}
 			}
 		}
@@ -413,7 +413,7 @@
 					{
 						output(" <b>You are sent realing by the blow, staggered.</b>");
 						if (target.hasStatusEffect("Staggered")) target.setStatusValue("Staggered", 1, 5);
-						else target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
+						else target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You’re staggered, and your Aim and Reflexes have been reduced!", true, 0);
 					}
 				}
 				//Miss
