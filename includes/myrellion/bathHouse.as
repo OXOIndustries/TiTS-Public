@@ -1403,8 +1403,7 @@ public function oserreDildoDisplayScene():void
 		else 
 		{
 			output("<i>“Hey, do you still have that collection of freaky alien rubber-dongers?”</i> you ask, loudly enough to be heard");
-			if(9999) output(" in the hallway");
-			else output("all the way to the public baths");
+			output("all the way to the public baths");
 			output(". Oserre winces.");
 		}
 
