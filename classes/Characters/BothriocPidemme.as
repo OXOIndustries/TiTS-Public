@@ -18,6 +18,8 @@ package classes.Characters
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
 	import classes.StringUtil;
+	import classes.Util.RandomInCollection;
+	import classes.Util.InCollection;
 	
 	
 	public class BothriocPidemme extends Creature
@@ -278,10 +280,17 @@ package classes.Characters
 			else
 			{
 				var dr:DamageResult = applyDamage(damageRand(rangedDamage(), 15), this, target, "suppress");
+				if (dr.shieldDamage > 0 && dr.hpDamage <= 0)
+				{
+					output(" The shot spangs off of your shields.");
+				}
+				else
+				{
+					output(" You wince as the crude weapon finds its mark.");
+				}
+				outputDamage(dr);
 				
 			}
-			
-			" {Success, shielded: The shot spangs off of your shields.} {Success, unshielded: You wince as the crude weapon finds its mark.} {Failure: }");
 		}
 		
 		private var _preppedBolo:Boolean = false;
