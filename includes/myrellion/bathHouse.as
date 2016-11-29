@@ -665,6 +665,10 @@ public function oserrePrivateBath():void
 	else addDisabledButton(1,"Male Parts","Male Parts","You don’t have a dick to clean!");
 	if(pc.hasVagina()) addButton(2,"FemaleParts",oserreFemaleParts,undefined,"FemaleParts","Ask the myr matron to please your vagina. It wouldn’t be surprising if she used something long and stiff to ‘clean’ deep inside...");
 	else addDisabledButton(2,"FemaleParts","FemaleParts","You don’t have a vagina, dirty or otherwise!");
+	if(pc.hasHardLightEquipped() && flags["OSERRE_DILDOS_SEEN"] != undefined && pc.hasHardLightUpgraded()) addButton(3,"HL Dildo",oserreDildoDisplayScene,undefined,"HL Dildo","Oserre's a dildo collector - what'll she say when you show off your hardlight?");
+	else if(!pc.hasHardLightEquipped()) addDisabledButton(3,"HL Dildo","HL Dildo","You need hardlight-enabled underwear with a toy of adjustable size for this.");
+	else if(!pc.hasHardLightUpgraded()) addDisabledButton(3,"HL Dildo","HL Dildo","You need an upgrade for your hardlight dildo that will let you adjust its size for this.");
+	else addDisabledButton(3,"HL Dildo","HL Dildo","You need to see something else to unlock this.");
 }
 //Treasure Hunt - suits all body types and sexes
 //tooltip: Have Matron Oserre explore your body with her hands and comment on what she finds. The happy ending may not be as intense, but you’ll still climax - probably.
@@ -998,8 +1002,9 @@ public function oserreFemaleParts():void
 	output("\n\n<i>“Let me show you some of my favorites,”</i> Oserre says, enthused.");
 
 	//display 2 at random before moving to the double-ender
+	IncrementFlag("OSERRE_DILDOS_SEEN");
 	dildoPicker(oserreFemaleParts,0);
-	//Continues from doubleEndedOserre()"
+	//Continues from doubleEndedOserre()<i>“
 }
 
 public function dildoPicker(cumFrom:Function, shown:int):void
@@ -1362,6 +1367,232 @@ public function privateBathServiceEpilogue():void
 	author("Gardeford");
 	output("You stay in the pool for a little while longer, waiting for the venom to work its way out of your system. When you don’t feel like fucking the next living thing you see, you hop out of the giant tub and dry off. Your [pc.gear] is exactly where you left it in the locker room, and you grab it as you head out the doors. The orderlies at the door show you back to the main lobby, where you can decide what to do next.");
 	pc.shower();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Oserre dildo display
+//requires having seen Oserre's 'female cleansing' scene where she shows off her dildo collection
+//also requires adjustable hardlight pak
+//PC presents hardlight dildo to the blind lady, teases her by playing with the size in her hands, then fucks her
+//tooltip: Oserre's a dildo collector - what'll she say when you show off your hardlight?
+//disabled tooltip, no hardlight: You need hardlight-enabled underwear with a toy of adjustable size for this.
+//disabled tooltip, has not seen Oserre's female cleansing dildo scene: You need to see something else to unlock this.
+
+public function oserreDildoDisplayScene():void
+{
+	clearOutput();
+	showOserre();
+	//first time seeing this scene
+	if(flags["OSERRE_HARDLIGHTED"] == undefined)
+	{
+		output("Pondering the matron’s question, your eyes wander to the drawer where Oserre stores her secret dildo stash. ");
+		if(pc.isTaur() || pc.hasAirtightSuit()) output("You don’t really get much chance to toy with your technotronic underwear, situated as you are... what would Oserre say if you introduced her to it?");
+		else 
+		{
+			output("Without really meaning to, you reach for your [pc.lowerGarment] to begin undressing");
+			if(!pc.isCrotchExposedByArmor()) output(", and your thumb hooks the waistband of your [pc.lowerUndergarment]. You pause");
+			else output(", but pause");
+			output(" as two links come together. How wild would Oserre go if you showed off your fancy hardlight toy?");
+		}
+
+		output("\n\nThe matron is still waiting patiently for you to speak, all smiles and indulgence. You clear your throat. ");
+		if(pc.isBimbo()) output("<i>“You still love big, hard, toy dicks, don’tcha?”</i> you ask.");
+		else if(pc.isBro()) output("<i>“You still got your dildos?”</i> you ask.");
+		else if(pc.isNice()) output("<i>“So... that box of  ‘female cleansing aids’ you brought out the other time... are you still into those?”</i> you ask.");
+		else 
+		{
+			output("<i>“Hey, do you still have that collection of freaky alien rubber-dongers?”</i> you ask, loudly enough to be heard");
+			output("all the way to the public baths");
+			output(". Oserre winces.");
+		}
+
+		output("\n\n<i>“Yes, indeed,”</i> she returns.");
+
+		if(pc.isBimbo() || pc.isBro() || pc.isAss())
+		{
+			output("\n\n<i>“Wanna see mine?”</i>");
+		}
+		else if(pc.isNice()) output("\n\n<i>“I have one with me... would you like to play with it?”</i>");
+		else output("\n\n<i>“I brought one... wanna </i>touch<i> it?”</i>");
+
+		output("\n\nOserre smiles - a smile so eager that you would bet her eyes are twinkling. <i>“Oh, yes. I would relish the chance.”</i>");
+
+		output("\n\nYou ");
+		if(!pc.isCrotchExposedByArmor()) output("quickly strip down to just your [pc.lowerUndergarment] and ");
+		output("invite her to inspect your hardlight projector. The myr’s four hands reach out to you; after a moment to understand her meaning, you ");
+		if(pc.isTaur()) output("lower her to the level of your legs and then move astride them, bringing your crotch to Oserre’s palms.");
+		else output("take them into yours and move them to your crotch.");
+		output(" A shiver passes through you as the myrrish fingers begin to explore your underpants, from outside to inside. But when she fails to locate any ‘cleansing aid’ as she understands it, the matron is at a loss.");
+		output("\n\n<i>“There seems to be nothing here... aside from your charming self,”</i> she flirts");
+		if(pc.hasCock()) output(", tracing the [pc.cockNounSimple]-shaped outline of your bulge");
+		output(". <i>“Is there some action or mechanism that you must demonstrate?”</i>");
+
+		output("\n\nYou bite your tongue to stifle a laugh and reach for the controls. Oserre will be surprised with your ‘demonstration’... you’re going to ‘demonstrate’ a big fat dick right into her hands. <i>“Yes,”</i> you answer patiently. You tap the power and the garment goes to work: a thick prick blooms from the projector, parting the myr’s fingers like a bull through tall grass. Oserre practically jumps.");
+		output("\n\n<i>“Why... that’s astounding! I felt no machinery move at all!”</i> The myr matron leans in, astonished, and her hands caress their way up the prick to take its measure. The touches translate to your waiting nerves, sending shivers of pleasure up your back, and you decide not to squander her excitement.");
+		output("\n\n<i>“Keep, er, watching,”</i> you encourage. You slide your fingers along both the length and girth controls, up-sizing the hardlight hard-on, nearly boring a hole in Oserre’s cage of hands. The fat tip plows them apart... and grows right down Oserre’s top. The myr gasps as the prick keels through her cleavage.");
+		output("\n\n<i>“Oh, my gracious!”</i> she exclaims.");
+
+		output("\n\nThe holo-cock pushes her breasts apart as it did her hands, forcing them against the sides of her robe. You can feel her smooth, tielding skin through the feedback, and the big, jiggling beauties draw your stare like an indecent sculpture, trickling drops of nectar into the fabric as the prick squeezes. You cut the growth when you hear an abrupt ‘<i>rrrip</i>’ - the myr’s neckline has begun to tear from the strain of resisting her hefty breasts.");
+
+		output("\n\nYou’re not the only one to hear it; Oserre flinches as well. But far from being upset, she seems ridiculously aroused. Her mouth hangs open in dumbfounded hunger and her hands trace every exposed inch of the projection’s surface, from the base to her chest, and then caress the indent in her bosom where the prick has made a cozy new home.");
+
+		output("\n\n<i>“Adjustable in size,”</i> she marvels, <i>“and produced from a space no thicker than a cloth! This is truly an amazing cleansing aid!”</i>");
+		output("\n\nEven if you didn’t already suspect there were something more than professional admiration for your toy, the puffy diamonds hiding under Oserre’s top would give it away. With one eye figuratively and one eye literally on her stiff nipples, you make a suggestion.");
+		if(pc.isBimbo()) output(" <i>“Then, honey, you wanna try it out?”</i>");
+		else if(pc.isBro() || pc.isAss()) output(" <i>“Then, wanna fuck?”</i>");
+		else output(" <i>“Would you like to see how it feels for yourself?”</i>");
+
+		output("\n\nOserre’s face lights up, but then is just as quickly pained with consternation. <i>“I don’t know if that’s appropriate. I mean, I certainly would... but </i>my<i> cleansing and release is not the purpose of this bathhouse... and not what you paid for.”</i>");
+
+		output("\n\nYour ");
+		if(pc.isTaur()) output("mind’s eye drifts");
+		else output("eyes drift");
+		output(" to her huge, straining breasts again, contorting around the unforgivingly hard cock and bulging against her robe. ");
+		if(pc.isBimbo()) output("<i>“Ooh, but watching you enjoy yourself will make my ‘spiritual release’ all the more amazing.”</i>");
+		else if(pc.isBro() || pc.isMischievous() || pc.isAss()) output("<i>“Whatever. Isn’t the customer always right? You can ‘cleanse’ me afterward.”</i>");
+		else output("<i>“That’s okay; I want to do it. You can return the favor afterward.”</i>");
+
+		output("\n\nThe ant matron doesn’t argue again. She retrieves the fat prick from her cleavage with a grin and a nod, and stands up. <i>“Then, I accept. Please position me however you think best for my... refreshment.”</i>");
+	}
+	//repeats
+	else
+	{
+		if(pc.isBimbo() || pc.isNice() || pc.isMischievous())
+		{
+			output("<i>“");
+			if(pc.isBimbo()) output("Ooh, I came so much");
+			else output("I quite enjoyed myself");
+			output(" last time you rode my ‘cleansing aid’... could we do that again?”</i> you ask.");
+		}
+		else
+		{
+			output("<i>“I wanna fuck you with my dildo");
+			if(pc.isAss()) output(" and see those big titties flapping in my face again");
+			output("... how about you get down on this?”</i> you ask, crudely thrusting your crotch.");
+		}
+		output("\n\nOserre’s smile twinkles. <i>“Absolutely,”</i> she answers, templing her fingers together. <i>“But... would you please produce it now, so I can make sure it’s sized for perfect spiritual relief?”</i> Her hands drift toward your crotch as she speaks, coming to rest near the projector. The bawdiness and shamelessness of this woman, now that you two have become more intimate and not so formal, is absolutely astonishing. She presses her heavy breasts into you, trying to arouse an affirmative response.");
+
+		output("\n\nBut, of course, there’s only one thing to say as you stare into the heaving cleavage: <i>“All right,”</i> you answer, tingling from the caresses of four alien hands. Oserre plants a soft kiss on your ");
+		if(pc.isTaur()) output("flank");
+		else output("chest");
+		output(", and then waits patiently for you to engage the toy.");
+
+		output("\n\nTapping the power control brings your [pc.lowerUndergarment] to life, and a modest holo-cock emerges from the projector, sliding between the matron’s palms. Oserre looks pleased - but only because she knows you can make it much, much thicker. You move to the size controls, ramping up both the length and girth sliders, doing your best to match the size that charmed the horny myr last time and shuddering as the toy transmits the feeling of sliding through her fingers.");
+		output("\n\nOserre seems to have a different idea. Instead of trying to eyeball the photo-cock’s dimensions, she brazenly shoves it between her tits, right through her cleavage, the same way it surprised her the first time. The lusty woman leans forward into the cock, jiggling her breasts inside her tightening top for as long as she still can to allow the tip easy passage. Just as they begin to strain at the stitches, before the robe rips again, she motions for you to stop.");
+		output("\n\n<i>“I had my robe made slightly looser, on the chance that you might come back,”</i> she flirts. The golden flesh pressed up to the window of her plunging neckline quivers as she withdraws from the cock, and fills in like deep water, re-forming the matron’s perfect cleavage.");
+		output("\n\nOserre stands and holds her hands out to you. <i>“Once more I invite you to position me however you deem fit... and please, don’t be afraid to be forceful.”</i>");
+	}
+	//merge intros
+	output("\n\nYou take the myr’s hands eagerly, posing her in your mind like a love doll, trying to decide on the best way to have her. A simple cowgirl position seems the best way to enjoy her enthusiasm - and those gorgeous, heavy tits.");
+	output("\n\nOserre follows obediently as you lead her to her personal bath. You take a seat at poolside, ");
+	if(pc.isTaur()) output("awkwardly resting your {num. of legs}-legged bulk against the adjoining wall,");
+	else output("dangling your [pc.feet] in the water,");
+	output(" and pull the unwary matron onto your lap - the sudden descent elicits a gasp from her, and the sharp intake of air presses her breasts against you, with their hard, wet nipples. Speaking of... you tug at Oserre’s neckline, trying to free her gorgeous bust. The myr helps, impatiently grabbing the fabric in four hands and tearing a deep rip. She reaches in and lifts her breasts free of her robe, allowing them to jiggle as she moves, bumping into your");
+	if(pc.biggestTitSize() < 1) output(" chest");
+	else output(" [pc.chest]");
+	output(" and dribbling honey. So far, so good!");
+
+	output("\n\nThe photon piston bobs in the air behind her, fencing with her trembling abdomen which is already beginning to leak myrrish fem-lube onto your [pc.legs]. <i>“How intimate,”</i> the matron remarks, and another breath pushes her breasts into skinship with your naked [pc.chestNoun].");
+	output("\n\nSaying nothing, you reach both hands around her waist and raise her abdomen as high as you can, trying to line it up with the tip of the cock. Oserre wraps her arms around your neck and clings close to you, doing her best to angle herself and help you get the elevation you need to impale her; her breasts ");
+	if(pc.biggestTitSize() < 1) output("press sticky, sweet nectar into your chest.");
+	else output("marry with your own [pc.breasts], smearing sticky, sweet nectar through your cleavage.");
+
+	output("\n\nThe myr’s grasping, drooling pussy finds the shaft, just inches below the tip. With one final push, she surmounts the monster mirage and captures its tip. Oserre’s mouth opens in a cute ‘oh’ as she achieves penetration, as does yours, and she breaks her embrace around your neck. Instead, she presses her palms flat against your chest and practically shoves herself onto the enormous holo-dick.");
+
+	output("\n\nThe myr matron releases a lingering hiss of breath through her teeth as her abdomen settles onto your crotch, nearly taking the whole length of the dildo in her impressive cunt; the warm, wet walls of her pulsing pussy are transmitted to you through the toy. She smiles at you from beneath her hood, and her tense arms relax. In their place, her splayed legs straddle your pelvis and brace, folded, against the floor. She begins to raise her abdomen and push with her calves, lifting her weighty ant-booty up the dildo with a lewd, wet ‘schlick’ and sinking down again.");
+	output("\n\nThe busty myr shudders as the dildo enters her a second time, and stops at the bottom. You’re not sure, but you suspect that you see a hint of devilry in her smile. It would be easy to tell if you could see her eyes....");
+	output("\n\n<i>“A bit more... spiritual unguent would seem to be in order,”</i> the wily woman murmurs. <i>“Could you hand me the pink bottle by your elbow?”</i>");
+	output("\n\nYou look left and identify the bottle, then pass it to the woman. She opens the stopper and takes a deep smell, then pours some onto her hands. It’s oily and thin, and she raises up on the dildo to rub the oil along the shaft. Surely she can’t be serious that she needs more lube... there’s so much myrrish pussy-juice that it’s beginning to form a puddle in your lap.");
+	output("\n\n<i>“This will be much more suitable,”</i> Oserre asserts confidently. As she works the oil into the holo-rod, the smell makes its way to you... and the scent of it sends blood rushing to your head and your ");
+	if(pc.hasGenitals()) output("genitals");
+	else output("asshole");
+	output(".");
+	if(pc.hasCock())
+	{
+		output(" Your ");
+		if(pc.cockTotal() == 1) output("cock swells");
+		else output("cocks swell");
+		output(" painfully and begin");
+		if(pc.cockTotal() == 1) output("s");
+		output(" to drool precum, trapped under the fabric of your [pc.lowerUndergarment] and the myr’s booty.");
+	}
+	else output(" Your [pc.vagOrAss] inflames with lust, twitching and protesting its emptiness to your spinal nerves. }Understanding comes quickly: the oil must be an aphrodisiac.");
+
+	output("\n\nOserre slides down the slut-slicked strap-on stanchion again, and the change wrought by the aphrodisiac oil is immediate and intense. Her whole chest colors a brilliant orange as heated blood rushes to her golden skin and she pumps her pussy on you, grinding the oil into a froth and releasing even more fragrance into the air. Your whole body aches for release as you watch and feel the randy myr ride your toy; she begins to pump her hips so violently that her gorgeous, unrestrained breasts fly freely in the air as she sinks down, bobbing and swinging like globose pendulums. They slap against her ribs so loudly when they fall that they begin to gush and drool honey all over the both of you, turning your lovemaking into a soupy, syrupy mess of slick flesh.");
+	output("\n\nThe oils and enthusiasm bring Oserre to her ‘spiritual relief’ within minutes. The myr woman groans and shudders, pressing her sopping bust to your chest and going limp in your arms as her abdomen ripples around its huge invader. You can literally see the bands of chitin on it rise and fall as contractions pass through the muscle, desperately milking the photo-prick for cum but collecting only more aphrodisiacs. Close as you are to your own climax, the pressure of her orgasm on your toy is maddening. Sweet-scented fem-cum pours from her, running down your lap and into the pool, adulterating the clean water with oily, sticky love. The myr’s skin glows with burning blood, and her pelvis jerks back and forth, cutely flexing her stomach as she works out her enormous orgasm onto you. After a minute of twitching, she seems to regain some muscle control.");
+	output("\n\nThe myr rests in your lap, with her arms draped loosely around and her honeyed breasts pressed to you for a pillow. Her antennae droop from the exertion, but the smile on her face would be almost beatific if it weren’t so open-mouthed and panting. She remains with you for another minute, then with one last push separates herself from the monster dildo. Wobbly-legged, Oserre dismounts you and kneels beside.");
+	output("\n\n<i>“Truly exceptional,”</i> she praises. You’re not sure if she’s referring to your technological tool or to you - her eyes are, as always, invisible and impervious.");
+	if(pc.isBimbo()) output("\n\n<i>“Like, you know it,”</i> you chirp, pulling the tip toward you with a finger and letting it spring back to position.");
+	else if(pc.isBro()) output("\n\n<i>“Yuh,”</i> you answer, tersely.");
+	else output("\n\n<i>“I thought you’d like it,”</i> you reply.");
+
+	output("\n\n<i>“This garment... do you wash it in water?”</i> Oserre asks, folding her hands into her sleeves.");
+	output("\n\nHazy, you almost nod at her but check yourself and respond aloud.");
+
+	output("\n\n<i>“Very good,”</i> Oserre replies. As quick as a blink, she pulls your underwear from your limp body, active dildo and all; the sensory feed disconnects with a sudden absence that feels almost like a pinch. The matron takes it to the doorway, where she rings a small chime. An attendant comes to meet her, but takes one look at Oserre’s ripped robe and your ");
+	if(pc.hasCock()) output("pre-cum and ");
+	output("honey-soaked underwear, still erect with a hardlight hard-on, and begins to giggle nervously. The matron hands your [pc.lowerUndergarment] over and orders the embarrassed girl to clean and return it.");
+
+	output("\n\nRejoining you at poolside, Oserre places a hand over yours. <i>“Thank you. I feel truly refreshed. Now... I must attend to my duty and see to your spiritual needs,”</i> she says. Her fingers begin to walk along your thigh, heading for your ");
+	if(pc.hasCock()) output("[pc.cocksLight]");
+	else if(pc.hasVagina()) output("[pc.vaginas]");
+	else output("[pc.ass]");
+	output(". <i>“Why don’t you slip into the bath?”</i>");
+
+	output("\n\nYou eye the water, fragrant and glossy with Oserre’s spilled fem-cum, breast honey");
+	if(pc.hasCock() && pc.cumQ() >= 500) output(", your copious rivers of pre");
+	output(", and frothy aphrodisiac oils. The matron presses gently but insistently on your back, urging you into the water - you’re unsure if she knows that it’s been adulterated by her sexual ‘cleansing’. A glance into her face tells you the answer: she’s grinning pervertedly and quivering with excitement, a flush-faced picture of clear intent. <i>She knows.</i>");
+	output("\n\nYielding to her insistence, you slide into the pool. The matron kneels beside you and begins to douse your body with the smutty, aphrodisiac-laden water. New blood flows into your ");
+	if(pc.hasGenitals())
+	{
+		output("sex");
+		if(pc.cockTotal() + pc.totalVaginas() > 1) output("es");
+	}
+	else output("asshole");
+	output(" as the oil-and-nectar froth touches your [pc.skinFurScales], pounding at your nerves and throbbing in your temples.");
+
+	output("\n\nOserre manages to read your mood in her inscrutable way. Her oily hand slides down your [pc.belly] and comes to rest on your ");
+	if(pc.hasCock()) output("[pc.cockNounSimple], which she begins to stroke.");
+	else if(pc.hasVagina()) output("[pc.clitoris], which she begins to rub.");
+	else output("[pc.asshole], which she begins to finger.");
+	//(if cock+balls)
+	if(pc.hasCock() && pc.balls > 1) output(" Another hand joins it, caressing your swollen sack and fingering the sweet spot of nerves at the base.");
+	output(" Within minutes, the slick, soft touches bring you the rest of the way to climax.");
+
+	//if cock
+	if(pc.hasCock())
+	{
+		output("\n\n[pc.Cum] ");
+		if(pc.cumQ() < 20) output("dribbles from you, blending flawlessly with the rainbows of colored oil continuously forming and breaking on the water’s surface with nary a [pc.cumColor] speck to reveal your release.");
+		else if(pc.cumQ() < 250) output("spurts from your cock in thick, pent-up ropes that lance out with enough force to break the water’s surface.");
+		//big only
+		if(pc.cumQ() >= 500) output(" Your wanton body produces so much, spurt after shot after stroke, that the color and consistency of the pool begin to change, becoming tangibly [pc.cumVisc] and streaked with [pc.cumColor]. The spunk clings to Oserre’s hand as it glides up your prick, in and out of the water, churning your mess of cum in with her own like a surreal external fertilization.");
+	}
+	//if vagOrAss
+	else
+	{
+		output("\n\nThe myr’s finger inside you is pinned in place by your nearly-painful contractions; the aphrodisiac oils inside your ");
+		if(pc.hasVagina()) output("pussy");
+		else output("hole");
+		output(" tease and torment the nerves even now, causing mini-orgasms as your folds rub against one another and your muscles spasm.");
+		if(pc.isSquirter() && pc.hasVagina()) output(" [pc.GirlCum] gushes from you, turning the water immediately surrounding into a pastel melange of pink oils, golden honey, and [pc.girlCumColor] jizz.");
+	}
+
+	output("\n\nOserre retracts her hand after you’ve spent your orgasm, careful to avoid inducing any further excitement - after all, the lingering oils will take care of that. She dutifully washes your body of the sexual smut you two have created, as best she can with the corrupted bath, and then aids your spent body in climbing out with surprising strength. The myr towels you off and retrieves your underwear, which are sitting on a shelf by the door, still projecting their monster cock. The attendant must have come and gone while you were distracted by Oserre’s hands; you wonder idly if she lingered, and for how long");
+	if(pc.exhibitionism() >= 33) output(" - the thought of her watching you get off brings a restless tingle to your sex");
+	output(".");
+
+	output("\n\nOserre regards you warmly as you dress. <i>“I have no words to express my gratitude for your assistance and selflessness in refreshing my own spirit. I am ashamed to admit that I had neglected it for too long... your help was most welcome. Perhaps the soul of our order flows through you... I hope you return to visit us again.”</i>");
+	output("\n\nYou stop to read between the lines and determine just how Oserre feels, but you needn’t have done. The myr matron leans over one last time, kissing you on the cheek in farewell... and pressing her naked breasts to you again.");
+
+	IncrementFlag("OSERRE_HARDLIGHTED");
+	//end
+	//do pc orgasm; pass time; place PC wherever he goes after Oserre session
+	processTime(35);
+	pc.orgasm();
+	//feel free to give herm PCs a tiny chance to become pregnant with own (human) kid from bathing in their own spunk
+	//Fen note: nope
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
