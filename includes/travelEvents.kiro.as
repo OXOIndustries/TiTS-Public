@@ -78,6 +78,7 @@ public function approachKiroAtTheBar(back:Boolean = false):void
 		clearMenu();
 		addButton(0,"Sure",kiroIntroductoryScene,true);
 		addButton(1,"No Thanks",kiroIntroductoryScene,false);
+		return;
 	}
 	//Back approach
 	if(back)
@@ -87,7 +88,7 @@ public function approachKiroAtTheBar(back:Boolean = false):void
 		return;
 	}
 	//Kally's Bar is speciul
-	else if(currentLocation == "CANADA5" && flags["KIRO_MET_KALLY"] != undefined) 
+	if(currentLocation == "CANADA5" && flags["KIRO_MET_KALLY"] != undefined) 
 	{
 		//Kiro is always presentable for her sis!
 		kiro.ballSizeRaw = 10;
@@ -118,19 +119,19 @@ public function approachKiroAtTheBar(back:Boolean = false):void
 		return;
 	}
 	//Orgy prompt!
-	else if(((MailManager.isEntryUnlocked("kirofucknet") && flags["KIRO_ORGY_DATE"] == undefined) || (flags["KIRO_ORGY_DATE"] != undefined && flags["KIRO_ORGY_DATE"] + 2 < days)) && pc.hasCock() && rand(4) == 0)
+	if(((MailManager.isEntryUnlocked("kirofucknet") && flags["KIRO_ORGY_DATE"] == undefined) || (flags["KIRO_ORGY_DATE"] != undefined && flags["KIRO_ORGY_DATE"] + 2 < days)) && pc.hasCock() && rand(4) == 0)
 	{
 		galLinkFuckMeetInvite();
 		return;
 	}
 	//Full balls? Kiro'll drain 'em
-	else if(pc.hasStatusEffect("Blue Balls") && pc.hasCock())
+	if(pc.hasStatusEffect("Blue Balls") && pc.hasCock())
 	{
 		fluffilyWhorishPawjobs();
 		return;
 	}
 	//BF approach
-	else if(flags["KIRO_GF"] != undefined)
+	if(flags["KIRO_GF"] != undefined)
 	{
 		output("Kiro’s face lights up at your approach. <i>“There you are, [pc.boyGirl]friend. Where have you been? Lost in some ");
 		if(rand(5) == 0) output("galotian’s cunt");
