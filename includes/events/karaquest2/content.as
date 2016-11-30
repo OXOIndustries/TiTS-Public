@@ -265,7 +265,7 @@ public function kq2InitTalkMenu():void
 	if (flags["KQ2_BV_TALK"] != undefined && flags["KQ2_F_TALK"] == undefined) addButton(1, "Friend", kq2KaraTalkFriend, undefined, "“Friend”", "Who is this friend of yours, Kara?");
 	else if (flags["KQ2_BV_TALK"] != undefined && flags["KQ2_F_TALK"] != undefined)
 	{
-		if (flags["KQ2_F_TALK"] != 2) addButton(1, "Push", kq2KaraPushFriend, undefined, "Push “Friend”", "You're not letting her get off the hook that easily.");
+		if (flags["KQ2_F_TALK"] != 2) addButton(1, "Push", kq2KaraPushFriend, undefined, "Push “Friend”", "You’re not letting her get off the hook that easily.");
 		else addDisabledButton(1, "Push");
 	}
 	else addDisabledButton(1, "Friend");
@@ -279,10 +279,10 @@ public function kq2InitTalkMenu():void
 	if (flags["KQ2_PLACE_TALK"] == undefined) addButton(4, "This Place", kq2ThisPlace, undefined, "This Place", "How did Kara know about this place, anyway?");
 	else addDisabledButton(4, "This Place");
 
-	if (flags["KQ2_HERSELF_TALK"] == undefined) addButton(5, "Herself", kq2Herself, undefined, "Herself", "Ask Kara about herself. You need to know who you're working with, after all.");
+	if (flags["KQ2_HERSELF_TALK"] == undefined) addButton(5, "Herself", kq2Herself, undefined, "Herself", "Ask Kara about herself. You need to know who you’re working with, after all.");
 	else addDisabledButton(5, "Herself");
 
-	addButton(14, "Next", kq2InitTalkNext, undefined, "Decisions....", "You've heard enough. Time to make your choice.");
+	addButton(14, "Next", kq2InitTalkNext, undefined, "Decisions....", "You’ve heard enough. Time to make your choice.");
 }
 
 public function kq2KaraTalkBlackVoid():void
@@ -486,8 +486,8 @@ public function kq2InitTalkNext():void
 	processTime(1);
 
 	clearMenu();
-	addButton(0, "DontTrust", kq2DontTrust, undefined, "Trust Issues", "Tell Kara that you don't trust her.");
-	addButton(1, "LetsGo", kq2LetsGo, undefined, "I'm In", "Let's do this.");
+	addButton(0, "DontTrust", kq2DontTrust, undefined, "Trust Issues", "Tell Kara that you don’t trust her.");
+	addButton(1, "LetsGo", kq2LetsGo, undefined, "I’m In", "Let’s do this.");
 	addButton(2, "No", kq2NotGonnaHappen, undefined, "No Way", "No way. Find someone else.");
 }
 
@@ -786,9 +786,9 @@ public function kq2MeetWatson():void
 	//[Watson] [Kara] [Constellation] [Intervention]
 	clearMenu();
 	addButton(0, "Watson", kq2WatsonTalkWatson, undefined, "Watson", "Ask the strange pirate program about itself.");
-	addButton(1, "Kara", kq2WatsonTalkKara, undefined, "Kara", "Ask Watson about the Void's beef with Kara.");
+	addButton(1, "Kara", kq2WatsonTalkKara, undefined, "Kara", "Ask Watson about the Void’s beef with Kara.");
 	addButton(2, "Constellation", kq2WatsonTalkConstellation, undefined, "Constellation", "Ask Watson about the incident aboard the Constellation.");
-	addButton(3, "Intervention", kq2WatsonTalkIntervention, undefined, "Intervention", "Finish this conversation. Why isn't Watson trying to stop you?");
+	addButton(3, "Intervention", kq2WatsonTalkIntervention, undefined, "Intervention", "Finish this conversation. Why isn’t Watson trying to stop you?");
 }
 
 public function kq2WatsonTalkWatson():void
@@ -1266,7 +1266,7 @@ public function kq2EncounterKhan():void
 	CombatManager.victoryScene(kq2KhanPCVictory);
 	CombatManager.lossScene(kq2KhanPCDefeat);
 	CombatManager.displayLocation("DR KHAN");
-	CombatManager.encounterText("You're fighting Doctor Khan, a kui-tan male with a pair of balls"+ (flags["MET_KIRO"] == undefined ? " that look more like a couple economy-sized beanbag chairs underneath him." : " that would make even Kiro jealous -- or wet. It's hard to tell!") +" The doctor's carrying an over-sized lightning gun, but is otherwise unarmed and unarmored -- he's sitting buck naked on his mammoth balls. A shimmering green hardlight device encloses his cock, which seems to be at full mast, but is completely untended to by the girls surrounding him.\n\nSeveral gold myr girls surround the doctor, fawning over him with blissful, vapid expressions on their faces. They're clad in nothing but open-faced lab coats, showing off bare breasts and groins, and each wears a small metal collar around her neck, displaying a tiny holographic tag. They lovingly caress his sack, chest, any inch of tender flesh save for the light-bound cock between his raised legs.");
+	CombatManager.encounterText("You’re fighting Doctor Khan, a kui-tan male with a pair of balls"+ (flags["MET_KIRO"] == undefined ? " that look more like a couple economy-sized beanbag chairs underneath him." : " that would make even Kiro jealous -- or wet. It’s hard to tell!") +" The doctor’s carrying an over-sized lightning gun, but is otherwise unarmed and unarmored -- he’s sitting buck naked on his mammoth balls. A shimmering green hardlight device encloses his cock, which seems to be at full mast, but is completely untended to by the girls surrounding him.\n\nSeveral gold myr girls surround the doctor, fawning over him with blissful, vapid expressions on their faces. They’re clad in nothing but open-faced lab coats, showing off bare breasts and groins, and each wears a small metal collar around her neck, displaying a tiny holographic tag. They lovingly caress his sack, chest, any inch of tender flesh save for the light-bound cock between his raised legs.");
 
 	clearMenu();
 	addButton(0, "Fight!", CombatManager.beginCombat);
@@ -1325,7 +1325,7 @@ public function kq2KhanVictoryMenu():void
 	if (flags["KQ2_KHAN_KHAN"] == undefined) addButton(1, "Talk: Khan", kq2KhanPCVictoryTalkKhan, undefined, "Talk: Dr. Khan", "Talk to the defeated researcher.");
 	else addDisabledButton(1, "Talk: Khan");
 
-	if (pc.hasGenitals()) addButton(2, "Fuck Khan", kq2KhanVictoryFuckRouter, undefined, "Fuck Dr. Khan", "Give the doctor a taste of his own medicine. Make him service you orally while Kara milks what's gotta be gallons of spooge via the back door.");
+	if (pc.hasGenitals()) addButton(2, "Fuck Khan", kq2KhanVictoryFuckRouter, undefined, "Fuck Dr. Khan", "Give the doctor a taste of his own medicine. Make him service you orally while Kara milks what’s gotta be gallons of spooge via the back door.");
 	else addDisabledButton(2, "Fuck Khan", "Fuck Dr. Khan", "You will need genitals for this!");
 
 	if (flags["KQ2_KHAN_LOOTED"] == undefined)
@@ -1337,13 +1337,13 @@ public function kq2KhanVictoryMenu():void
 		addDisabledButton(3, "Loot Room");
 
 		if (flags["KQ2_KHAN_LOOTED_COAT"] == undefined) addItemButton(5, new KhansLabCoat(), kq2LootLabCoat);
-		else addDisabledButton(5, "LabCoat", "Lab Coat", "You've already taken it!");
+		else addDisabledButton(5, "LabCoat", "Lab Coat", "You’ve already taken it!");
 
 		if (flags["KQ2_KHAN_LOOTED_CASTER"] == undefined) addItemButton(6, new KhansArcCaster(), kq2LootArcCaster);
-		else addDisabledButton(6, "ArcCaster", "Arc Caster", "You've already taken it!")
+		else addDisabledButton(6, "ArcCaster", "Arc Caster", "You’ve already taken it!")
 	}
 
-	addButton(14, "Leave", kq2KhanLeave, undefined, "Leave", "Leave the researchers to their business. You've come here to destroy their work, after all.");
+	addButton(14, "Leave", kq2KhanLeave, undefined, "Leave", "Leave the researchers to their business. You’ve come here to destroy their work, after all.");
 }
 
 public function kq2KhanPCVictoryTalkMyr():void
@@ -2132,10 +2132,10 @@ public function kq2EncounterAmara():void
 
 	//[Money] [Help Kara] [Fuck Pirates] [Stay Silent]
 	clearMenu();
-	addButton(0, "Money", kq2EncounterAmaraMoney, undefined, "For The Money", "Say that you're here for the money. Like she said, just a hired gun.");
+	addButton(0, "Money", kq2EncounterAmaraMoney, undefined, "For The Money", "Say that you’re here for the money. Like she said, just a hired gun.");
 	addButton(1, "HelpKara", kq2EncounterAmaraKara, undefined, "For Kara", "Say that you came here to help a friend.");
-	addButton(2, "FuckPirates", kq2EncounterAmaraFuckPirates, undefined, "Fuck Pirates", "You're just here to fuck up some pirates!");
-	addButton(3, "Silence", kq2EncounterAmaraSilent, undefined, "Stay Silent", "Don't answer her question.");
+	addButton(2, "FuckPirates", kq2EncounterAmaraFuckPirates, undefined, "Fuck Pirates", "You’re just here to fuck up some pirates!");
+	addButton(3, "Silence", kq2EncounterAmaraSilent, undefined, "Stay Silent", "Don’t answer her question.");
 }
 
 public function kq2EncounterAmaraMoney():void
@@ -2164,8 +2164,8 @@ public function kq2EncounterAmaraMoney():void
 		output("\n\n<i>“[pc.name]...”</i> Kara says, eyeing you. <i>“Come on. We’re almost out of here... we can take her.”</i>");
 
 		clearMenu();
-		addButton(0, "Betray", kq2AmaraBetrayKara, undefined, "Betray Kara", "Fuck it. Money's money. Accept the pirate's offer and turn on your partner.");
-		addButton(1, "Refuse", kq2AmaraRefuseOffer, undefined, "Refuse", "Money or no, you've got honor. Stay with Kara, and fight the pirates.")
+		addButton(0, "Betray", kq2AmaraBetrayKara, undefined, "Betray Kara", "Fuck it. Money’s money. Accept the pirate’s offer and turn on your partner.");
+		addButton(1, "Refuse", kq2AmaraRefuseOffer, undefined, "Refuse", "Money or no, you’ve got honor. Stay with Kara, and fight the pirates.")
 	}
 }
 
@@ -2519,7 +2519,7 @@ public function kq2KaraSexytimes():void
 	else
 	{
 		addButton(0, "TakeDick", kq2KaraTakeKittydick, undefined, "Take Her Dick", "Ride her kitty cock!");
-		addButton(1, "FuckHer", kq2KaraFuckKittysKitty, undefined, "Fuck Kara", "Fuck Pussy's Pussy!");
+		addButton(1, "FuckHer", kq2KaraFuckKittysKitty, undefined, "Fuck Kara", "Fuck Pussy’s Pussy!");
 	}
 }
 
@@ -2733,7 +2733,7 @@ public function kq2PostKaraSexyCombine(gotFucked:Boolean = false):void
 	//[Stay] [Go]
 	clearMenu();
 	addButton(0, "Stay", kq2PostKaraSexyCombineStay, undefined, "Stay", "Stay the night with Kara.");
-	addButton(1, "Go", kq2PostKaraSexyCombineGo, undefined, "Go", "You've got to go.");
+	addButton(1, "Go", kq2PostKaraSexyCombineGo, undefined, "Go", "You’ve got to go.");
 }
 
 public function kq2PostKaraSexyCombineGo():void
@@ -2936,25 +2936,25 @@ public function kq2DaneCoordEmail():void
 	if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined) output("\n\nHow’s my favorite cocksleeve doing?");
 	else output("Sure hope this is actually your email address...");
 	
-	output("\n\nSo I don't know if you’re actually the one that blew myrellion up or not. Dont really care either. Your dickweed cousin fired me right after.");
+	output("\n\nSo I don’t know if you’re actually the one that blew myrellion up or not. Dont really care either. Your dickweed cousin fired me right after.");
 	if (rival.mf("m", "f") == "f") output(" What a bitch. Shoulda fucked her when I had the chance.");
-	else output(" What an asshole. Glad I'm not working for him anymore.");
-	output(" Didn't even get my last paycheck. So I wrote down those dumb coordinates [rival.heShe] was yammering on about on my way out.");
+	else output(" What an asshole. Glad I’m not working for him anymore.");
+	output(" Didn’t even get my last paycheck. So I wrote down those dumb coordinates [rival.heShe] was yammering on about on my way out.");
 
-	output("\n\nOops, I must have accidentally attached them to this message. Ha, silly me. Be a shame if somebody put a boot up [rival.name]'s ass on the next planet when [rival.heShe]'s not expecting it.");
+	output("\n\nOops, I must have accidentally attached them to this message. Ha, silly me. Be a shame if somebody put a boot up [rival.name]’s ass on the next planet when [rival.heShe]’s not expecting it.");
 
 	output("\n\nJust sayin.");
 
 	//{if fucked:
 	if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined)
 	{
-		output("\n\nSoooo if you want a repeat of Mhen'ga, maybe we can hook up sometime? C'mon, I know you liked it ;)");
+		output("\n\nSoooo if you want a repeat of Mhen’ga, maybe we can hook up sometime? C’mon, I know you liked it ;)");
 		if (silly) output(" Woulda save-scummed out of it otherwise!");
 		
-		output("\n\n<b>Below the message is attached a picture of Dane's rock-hard tentacle wang, multiple knots fully engorged between his snowy fingers. Looks like somebody's been thinking of you...</b>");
+		output("\n\n<b>Below the message is attached a picture of Dane’s rock-hard tentacle wang, multiple knots fully engorged between his snowy fingers. Looks like somebody’s been thinking of you...</b>");
 	}
 
-	output("\n\nAt the bottom of the message, you see several stellar coordinates: the next probe's location! Well, looks like Benedict Ausar just saved your inheritance!");
+	output("\n\nAt the bottom of the message, you see several stellar coordinates: the next probe’s location! Well, looks like Benedict Ausar just saved your inheritance!");
 
 	if (!MailManager.isEntryUnlocked("danemyrellioncoords")) MailManager.unlockEntry("danemyrellioncoords", GetGameTimestamp());
 

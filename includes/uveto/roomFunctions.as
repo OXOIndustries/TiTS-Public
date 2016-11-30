@@ -74,7 +74,7 @@ public function uvetoSpaceElevatorInBonus():Boolean
 {
 	output("\n\nWhere do you want to get off at?");
 	addButton(5,"Up",rideSpaceElevatorUp,undefined,"Space Elevator: Up","Ride the space elevator up to the station.");
-	addButton(7,"Down",rideSpaceElevatorDown,undefined,"Space Elevator: Down","Ride the space elevator down to the ice moon's surface.");
+	addButton(7,"Down",rideSpaceElevatorDown,undefined,"Space Elevator: Down","Ride the space elevator down to the ice moon’s surface.");
 	return true;
 }
 
@@ -86,7 +86,7 @@ public function uvetoSpaceElevatorBaseBonus():Boolean
 		uvetoGreetingParty();
 		return true;
 	}
-	addButton(7,"S.Elevator",rideSpaceElevatorDown,undefined,"Space Elevator","Ride the space elevator down to the ice moon's surface.");
+	addButton(7,"S.Elevator",rideSpaceElevatorDown,undefined,"Space Elevator","Ride the space elevator down to the ice moon’s surface.");
 	return false;
 }
 
@@ -265,8 +265,8 @@ public function flyToUveto():void
 		output("\n\nYou hear multiple bings as a side monitor opens a cascade of pure-text forms and contracts. <i>“If you do not have business with the Camarilla at this time, I encourage you to adjust your orbit elsewhere, as any undocumented entry onto this planet will be construed as a breach of corporate treaty and we will be forced to sue with extreme prejudice.”</i>");
 
 		//if (flags["MET_ORRYX"] == undefined)
-		if (!CodexManager.hasUnlockedEntry("Camarilla")) output("\n\nYou ask for more information about the planet. Does this creature's species live there?");
-		else output("You ask if there's a tove colony of Uveto. You certainly weren't expecting one.");
+		if (!CodexManager.hasUnlockedEntry("Camarilla")) output("\n\nYou ask for more information about the planet. Does this creature’s species live there?");
+		else output("You ask if there’s a tove colony of Uveto. You certainly weren’t expecting one.");
 
 		output("\n\n<i>“On that ice ball? High Executives, no! You couldn’t pay me to set foot on that hellsphere!”</i>");
 		
@@ -386,15 +386,15 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 		{
 			if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.OUTDOOR))
 			{
-				output("\n\nYou wrap your arms around yourself, desperately trying to fend off the overwhelming cold. The planet's freezing you to your bones");
+				output("\n\nYou wrap your arms around yourself, desperately trying to fend off the overwhelming cold. The planet’s freezing you to your bones");
 				if (!tPC.isNude()) output(", no matter how much clothing you wear");
-				else output(" -- and being naked, you've got next to no defense against the chill");
-				output(". You feel like you might collapse if you don't take shelter soon!");
+				else output(" -- and being naked, you’ve got next to no defense against the chill");
+				output(". You feel like you might collapse if you don’t take shelter soon!");
 				if (damageResult.totalDamage > 0) outputDamage(damageResult);
 			}
 			else
 			{
-				output("\n\nThe cold on Uveto is absolutely piercing out here, with no walls or fluffy ausar to block the howling winds and free-flying shards of ice tearing across the rolling plains of ice and alien obsidian. You clutch your arms around yourself, trying to shield your body from the frigid cold, but to no avail. Shivering madly, you glance around in desperation: <b>you need to find shelter fast, or you're going to freeze!</b>");
+				output("\n\nThe cold on Uveto is absolutely piercing out here, with no walls or fluffy ausar to block the howling winds and free-flying shards of ice tearing across the rolling plains of ice and alien obsidian. You clutch your arms around yourself, trying to shield your body from the frigid cold, but to no avail. Shivering madly, you glance around in desperation: <b>you need to find shelter fast, or you’re going to freeze!</b>");
 				if (damageResult.totalDamage > 0) outputDamage(damageResult);
 			}
 		}
@@ -403,9 +403,9 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 			output("\n\nThe Uvetan cold chills you to your");
 			if (!tPC.isGoo()) output(" bones");
 			else output(" gooey core");
-			output(", making you shiver uncontrollably. No matter where you go, there's no stopping the incessant, numbing cold. It physically <i>hurts</i> to be out here, and the longer you stay, the more your vision blurs and blurs... ");
+			output(", making you shiver uncontrollably. No matter where you go, there’s no stopping the incessant, numbing cold. It physically <i>hurts</i> to be out here, and the longer you stay, the more your vision blurs and blurs... ");
 
-			output("\n\nSuddenly, your [pc.foot] catches, and before you can realize what's happening you pitch forward, planting your face in the thick snow. You gasp, flailing your arms for a moment, but... you can't seem to find the energy -- the vital strength -- to pick yourself up again. Snow settles onto your back, still blowing over you with heartless, frigid force. Try as you might, you find yourself fading, eyes starting to close. So sleepy...");
+			output("\n\nSuddenly, your [pc.foot] catches, and before you can realize what’s happening you pitch forward, planting your face in the thick snow. You gasp, flailing your arms for a moment, but... you can’t seem to find the energy -- the vital strength -- to pick yourself up again. Snow settles onto your back, still blowing over you with heartless, frigid force. Try as you might, you find yourself fading, eyes starting to close. So sleepy...");
 
 			output("\n\nBlackness takes you.");
 			if (damageResult.totalDamage > 0) outputDamage(damageResult);
@@ -451,7 +451,7 @@ public function addUvetoCold(notice:Boolean = false):void
 {
 	if (!pc.hasStatusEffect("Bitterly Cold"))
 	{
-		(pc as PlayerCharacter).createStatusEffect("Bitterly Cold", 0, 0, 0, 0, false, "Icon_Snowflake", "The bitter, piercing cold of Uveto's icy tundra threatens to chill you to the bone. Better wrap up nice and tight, maybe even find something to heat you up to better stave off the freezing winds.", false, 0, UIStyleSettings.gColdStatusColour);
+		(pc as PlayerCharacter).createStatusEffect("Bitterly Cold", 0, 0, 0, 0, false, "Icon_Snowflake", "The bitter, piercing cold of Uveto’s icy tundra threatens to chill you to the bone. Better wrap up nice and tight, maybe even find something to heat you up to better stave off the freezing winds.", false, 0, UIStyleSettings.gColdStatusColour);
 		
 		if(notice)
 		{
@@ -497,9 +497,9 @@ public function uvetoSearchAbandonedCamp():void
 {
 	clearOutput();
 	
-	output("This place has been abandoned for some time. Whoever was here before isn't coming back, you decide. You spend a few minutes tossing the tents, looking for anything of value the previous occupants might have left behind. There's nothing inside, save emptied containers and tattered scraps of cloth. Only when you glance into the fire pit do you catch a glimpse of something worthwhile: you lean over and pull a small, black amulet out of the dusty covering of snow.");
+	output("This place has been abandoned for some time. Whoever was here before isn’t coming back, you decide. You spend a few minutes tossing the tents, looking for anything of value the previous occupants might have left behind. There’s nothing inside, save emptied containers and tattered scraps of cloth. Only when you glance into the fire pit do you catch a glimpse of something worthwhile: you lean over and pull a small, black amulet out of the dusty covering of snow.");
 
-	output("\n\nYou hold it up to the light, eyeing the horse-shaped talisman warily. Wonder who left this... and why? Either way, you're fairly certain the creature it depicts is a leithan, and the amulet looks to be in good shape. With a shrug, you pocket it.");
+	output("\n\nYou hold it up to the light, eyeing the horse-shaped talisman warily. Wonder who left this... and why? Either way, you’re fairly certain the creature it depicts is a leithan, and the amulet looks to be in good shape. With a shrug, you pocket it.");
 	
 	lootScreen = uvetoAbandonedCampLootCheck;
 	flags["UVIP_J46_SEARCHED"] = 1;
@@ -708,12 +708,12 @@ public function uvetoBarBonus():Boolean
 	if(hours % 2 == 0) 
 	{
 		output("\n\nAn old-style videoscreen is on in the corner, displaying a perverted-looking show - Steph Irson, Galactic Huntress by the looks of it.");
-		addButton(1,"Watch",watchUvetoStephIrson,undefined,"Watch","It looks like the TV is currently running the latest episode of <i>Steph Irson: Galactic Huntress</i> if you'd care to watch.");
+		addButton(1,"Watch",watchUvetoStephIrson,undefined,"Watch","It looks like the TV is currently running the latest episode of <i>Steph Irson: Galactic Huntress</i> if you’d care to watch.");
 	}
 	else
 	{
 		output("\n\nAn old-style videoscreen is on in the corner, displaying a perverted-looking documentary about the infamous male ultraporn-star, Tank Kannon.");
-		addButton(1, "Watch", tankKannonBiopic, undefined, "Watch", "It looks like there's a biopic about the incredibly endowed ultraporn-star, Tank Kannon, on if you want to watch it.");
+		addButton(1, "Watch", tankKannonBiopic, undefined, "Watch", "It looks like there’s a biopic about the incredibly endowed ultraporn-star, Tank Kannon, on if you want to watch it.");
 	}
 	
 	// Shade events.
@@ -759,7 +759,7 @@ public function watchTankBlowFirstPornLoad():void
 	showBust("TANK_KANNON");
 	showName("TANK\nKANNON");
 	output("After a brief commercial intermission for Intimints, the mints that get the hint, the show returns, cutting to a feed of a younger, nervous-looking Tank.");
-	output("\n\nStanding a little too close to the camera, the young hybrid scratches the back of his neck nervously. <i>“H-hey ‘net! My name’s... Tank. Yeah. Tank Kannon...”</i> He grins to himself, apparently pleased with his own trite cleverness. <i>“...and I’m got something to show you.”</i> He hops down from his perch, allowing the wide-angle lens to capture every inch of sizable body - and more sizable endowments. His cock, half-hard but rapidly thickening, is laid out across an expanse of slick-looking plastic, ending in a ramp leading up to an expansive bathtub. It’s obvious from the size of the room and the niceties on display that Tank's station has already started to improve at the time of this recording.");
+	output("\n\nStanding a little too close to the camera, the young hybrid scratches the back of his neck nervously. <i>“H-hey ‘net! My name’s... Tank. Yeah. Tank Kannon...”</i> He grins to himself, apparently pleased with his own trite cleverness. <i>“...and I’m got something to show you.”</i> He hops down from his perch, allowing the wide-angle lens to capture every inch of sizable body - and more sizable endowments. His cock, half-hard but rapidly thickening, is laid out across an expanse of slick-looking plastic, ending in a ramp leading up to an expansive bathtub. It’s obvious from the size of the room and the niceties on display that Tank’s station has already started to improve at the time of this recording.");
 	output("\n\nThe ever-erect Mr. Kannon is grinning like a cheshire cat and gently patting the top of his insurmountable swell. <i>“Yes, ladies and gents - it’s all real. I haven’t been implanted. I don’t have a disease to my name. This is 100%, naturally grown UGC-approved cock-meat, though I will admit that certain... growth aids were used to help this little pony grow into the bitch-basting stallion he is today.”</i> Groaning in pleasure, Tank struggles to keep his slobbering, canine tongue in his mouth. <i>“S-sorry! I’ve got an assistant just out of frame, one thing they don’t warn you about when your balls get this big is how good it feels to have them licked. I can’t help but throb, and when I throb, my dick drags itself a few inches back and forth along this very, very slick plastic. Hnng!”</i>");
 	output("\n\nTank looks like he’s having trouble keeping it together. A few beads of sweat roll down his brow, and the muscles in his well-defined pectorals and biceps visibly clench. Veins in his cock swell, as thick as pipes, pumping gallons of blood in an effort to maintain the impressively-endowed amateur’s erect state. His eyelids flutter closed, and his hips lurch, compressing his sheath slightly before finally transferring the movement into the dozen feet of dick on display. Plastic crinkles beneath it, threatening to be drowned out by the sloppy sound of lube parting around the indiscrete erection.");
 	output("\n\n<i>“W-w-wow,”</i> Tank gasps, openly stroking his cock. <i>“I’ve never...”</i> He pants, his watermelon-sized nuts clenching and wobbling, undoubtedly in reaction to a salacious tongue-bath from behind. <i>“... had a setup like this,”</i> he tries to explain midway through a thrust. <i>“I’m n-not sure how long I’ll last! Fuck, babe keep licking like that!”</i>");
@@ -769,9 +769,9 @@ public function watchTankBlowFirstPornLoad():void
 	output("\n\n<i>“Cum!”</i>");
 	output("\n\nTank throws his head back and howls, but the focus isn’t on his head. The feed cuts to a second camera, positioned above the tub for a bird’s-eye view of the coming cum-carnage. Pre-cum already fills the tub to half-way, even with the drain open and gurgling. Then tank’s flare flares wider, undoubtedly and obscenely equine. His urethra looks almost alien, protruding slightly from the otherwise smooth surface of his outlandish show-pony. It distends, stretching almost six-inches wide, and releases ");
 	if(flags["MET_KIRO"] != undefined ) output("a single squirt of cum big enough to make Kiro’s look like drops in a bucket");
-	else if(flags["NAYNA_BLOWN"] != undefined) output("a single squirt of cum big enough to make Nayna's look like drops in a bucket");
-	else if(penny.hasCock()) output("a single squirt of cum big enough to make Penny's look like drops in a bucket");
-	else if(flags["SUCKED_BRYNN"] != undefined || flags["DEEPTHROATED_BRYNN"] != undefined) output("a single squirt of cum big enough to make Brynn's look like drops in a bucket");
+	else if(flags["NAYNA_BLOWN"] != undefined) output("a single squirt of cum big enough to make Nayna’s look like drops in a bucket");
+	else if(penny.hasCock()) output("a single squirt of cum big enough to make Penny’s look like drops in a bucket");
+	else if(flags["SUCKED_BRYNN"] != undefined || flags["DEEPTHROATED_BRYNN"] != undefined) output("a single squirt of cum big enough to make Brynn’s look like drops in a bucket");
 	else output("the biggest single squirt of cum you’ve ever seen.");
 	output(". The eggshell-colored wall is suddenly and completely bathed in white, slopping down in sticky-looking waves into the tub. The second shot hits right on top of the first, causing a spunk-cascade big enough to completely overfill the woefully inadequate sperm-receptacle.");
 	output("\n\nWaves of the gooey stuff roll over the edges, pouring across a floor covered in plastic sheeting, but you’re pretty sure it still won’t be enough. Cutting back to the original view, you see tank collapse over his own dick, moaning and licking, hugging himself while his legs futilely scrabble for leverage, determined to give him something, anything, while he climaxes. He seems to be completely out of it, a passenger in his own body while pleasure takes control.");
@@ -925,7 +925,7 @@ public function uvetoStationLoungeFunc():Boolean
 {
 	if (uvetoStationLoungeHuskarBimboActive())
 	{
-		output("\n\nGalina and Marina are lounging around in the cafe, probably on their lunch break. Though they're happily chattering away over their plates and fooling around with data-pads loaded with more science than you can shake a textbook at, they're perfectly willing to stop and flash you inviting smiles when you pass by.");
+		output("\n\nGalina and Marina are lounging around in the cafe, probably on their lunch break. Though they’re happily chattering away over their plates and fooling around with data-pads loaded with more science than you can shake a textbook at, they’re perfectly willing to stop and flash you inviting smiles when you pass by.");
 		addButton(0, "Huskars", annoUvetoHuskarFoursomeRepeat, undefined, "Huskar Twins", "Go over and see if you can stir up some sexy trouble with the bimbo-geniuses.");
 	}
 
@@ -941,7 +941,7 @@ public function drLessauBonus():Boolean
 	}
 	else
 	{
-		output("\n\nDr. Lessau is here as usual, the chimera tapping away at his terminal until he sees you come in");
+		output("\n\nDr. Lessau is here as usual, the chimera tapping away at his terminal until he sees you come in.");
 		addButton(0,"Lessau", drLessauIPresume)
 	}
 	

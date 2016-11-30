@@ -35,7 +35,7 @@ public function gooColor():String
 public function showZodee():void
 {
 	showBust("ZODEE");
-	showName("\nZO'DEE");
+	showName("\nZO’DEE");
 }
 
 public function gooBiomassMax():Number
@@ -68,7 +68,7 @@ public function zodeeGivesFirstGalomax():void
 {
 	showName("A\nSTRANGER");
 	showBust("ZODEE");
-	output("\n\nThere's another rusher here - a rahn by the looks of it. She's dressed in a pale white jumpsuit that hides most of her gleaming teal, gelatinous skin from view but does little to conceal the weighty jiggle of her chest. Her hands are in her pack, sorting through enough gleaming prizes to make your belly clench with envy, and her plump rump is positioned perfectly to entice you with its restless wiggles. Just how much did she find before you got here?");
+	output("\n\nThere’s another rusher here - a rahn by the looks of it. She’s dressed in a pale white jumpsuit that hides most of her gleaming teal, gelatinous skin from view but does little to conceal the weighty jiggle of her chest. Her hands are in her pack, sorting through enough gleaming prizes to make your belly clench with envy, and her plump rump is positioned perfectly to entice you with its restless wiggles. Just how much did she find before you got here?");
 	output("\n\nTossing items carelessly over her shoulder, the rahn seems blithely unaware of your presence until a pill-bottle smacks off your chest, rattling noisily. She draws in the blink of an eye, then lowers her weapon at the sight of another galactic traveler.");
 	output("\n\n<i>“Oh, didn’t think I’d bump into another rusher out here. You can have the GaloMax if you want. Not much use to a girl like me.”</i> She eyeballs you from the crown of your head to the bottom");
 	if(pc.legCount != 1) output("s");
@@ -487,13 +487,13 @@ public function galoMaxTFProc():void
 	else if(flags["GALOMAX_DOSES"] == 5)
 	{
 		output("You unexpectedly feel a little faint, your [pc.legOrLegs] wobbling uncontrollably. Attempting to hold yourself together you place your hands on your thighs and command the rebellious biomass to support you, only to have your hands sink <i>inside</i> your simulated musculature. It feels... good. Without thinking, you plunge into your elbows, squeezing and kneading your own goopy insides.");
-		output("\n\nThe ground rushes up at you when the last bits of rigidity fade away, but instead of hitting cold, hard ground, you bounce on a cushion off your own making, feeling your [pc.butt] sink halfway into the mound of jiggling goo. <b>You don't have ");
+		output("\n\nThe ground rushes up at you when the last bits of rigidity fade away, but instead of hitting cold, hard ground, you bounce on a cushion off your own making, feeling your [pc.butt] sink halfway into the mound of jiggling goo. <b>You don’t have ");
 		if(pc.legCount == 1) output("a [pc.leg]");
 		else output("[pc.legs]");
-		output(" anymore!</b> Instead, a large blob of slime cradles your form. It's even more comfortable than the highest quality beanbag chair, but far wetter.");
-		output("\n\nStraightening back up is a challenge. Your hips keep sliding back and forth through your bottom half, making it almost impossible to find your center of balance, and when you forget to think about it, that selfsame bottom half thins and spreads, lowering you dangerously. There's no other choice but to take your time and adjust to your new form. With practice, you learn to stay upright. Maintaining the cohesion of your drippy base becomes almost second nature, allowing you to slide around just as fast as you could walk.");
-		output("\n\nAnd it feels fantastic. Just sticking a hand inside yourself has you quivering in bliss. Scooping a handful of yourself out doesn't even hurt. It just feels weird, like that part of you has gone numb. Pushing it back into your returns everything to normal, or as close to normal gets <b>when your only mode of transportation is rolling along on a mound of slime.</b>");
-		output("\n\nGaloMax won't be much use to you now. You're almost indistinguishable from Galotians at a glance.");
+		output(" anymore!</b> Instead, a large blob of slime cradles your form. It’s even more comfortable than the highest quality beanbag chair, but far wetter.");
+		output("\n\nStraightening back up is a challenge. Your hips keep sliding back and forth through your bottom half, making it almost impossible to find your center of balance, and when you forget to think about it, that selfsame bottom half thins and spreads, lowering you dangerously. There’s no other choice but to take your time and adjust to your new form. With practice, you learn to stay upright. Maintaining the cohesion of your drippy base becomes almost second nature, allowing you to slide around just as fast as you could walk.");
+		output("\n\nAnd it feels fantastic. Just sticking a hand inside yourself has you quivering in bliss. Scooping a handful of yourself out doesn’t even hurt. It just feels weird, like that part of you has gone numb. Pushing it back into your returns everything to normal, or as close to normal gets <b>when your only mode of transportation is rolling along on a mound of slime.</b>");
+		output("\n\nGaloMax won’t be much use to you now. You’re almost indistinguishable from Galotians at a glance.");
 
 		pc.legCount = 1;
 		pc.clearLegFlags();
@@ -734,7 +734,7 @@ public function gooHairAdjustmenu():void
 	clearGhostMenu();
 	addGhostButton(0,"Lengthen",lengthenHairGoo,undefined,"Lengthen","Put 100 mLs of biomass into adding an inch to your hair.");
 	if(pc.hasHair()) addGhostButton(1,"Shorten",shortenHairGoo,undefined,"Shorten","Shorten your gooey hair, regaining a portion of its biomass.");
-	else addDisabledGhostButton(1,"Shorten","Shorten","You've got to have hair in order to shorten it!");
+	else addDisabledGhostButton(1,"Shorten","Shorten","You’ve got to have hair in order to shorten it!");
 	if(pc.hairLength <= 0) addDisabledGhostButton(2,"Style","Style","You need some hair in order to style it!");
 	else addGhostButton(2,"Style",newGooStyle,undefined,"Style","Style your hair into a more pleasing shape.");
 	addGhostButton(14,"Back",gooShiftMenu);
@@ -804,18 +804,18 @@ public function newGooStyle():void
 	else addDisabledGhostButton(0,"Straight","Straight","Your hair is already straight.");
 	//[Ponytail]
 	if(pc.hairStyle != "ponytail" && pc.hairLength >= 5) addGhostButton(1,"Ponytail",gooStyle,"ponytail","Ponytail","Style your hair into a ponytail.");
-	else if(pc.hairStyle != "ponytail") addDisabledGhostButton(1,"Ponytail","Ponytail","Your hair isn't long enough to get put into a ponytail.");
+	else if(pc.hairStyle != "ponytail") addDisabledGhostButton(1,"Ponytail","Ponytail","Your hair isn’t long enough to get put into a ponytail.");
 	else addDisabledGhostButton(1,"Ponytail","Ponytail","You already have a ponytail.");
 	//[Pigtails]
 	if(pc.hairStyle != "pigtails" && pc.hairLength >= 5) addGhostButton(2,"Pigtails",gooStyle,"pigtails","Pigtails","Style your hair into pigtails.");
-	else if(pc.hairStyle != "pigtails") addDisabledGhostButton(2,"Pigtails","Pigtails","Your hair isn't long enough to get put into pigtails.");
+	else if(pc.hairStyle != "pigtails") addDisabledGhostButton(2,"Pigtails","Pigtails","Your hair isn’t long enough to get put into pigtails.");
 	else addDisabledGhostButton(2,"Pigtails","Pigtails","You already have a ponytail.");
 	//[Curls]
 	if(pc.hairStyle != "curls") addGhostButton(3,"Curls",gooStyle,"curls","Curls","Style your hair into curls.");
 	else addDisabledGhostButton(3,"Curls","Curls","You already have your hair curled.");
 	//[Braided]
 	if(pc.hairStyle != "braided" && pc.hairLength >= 5) addGhostButton(4,"Braided",gooStyle,"braided","Braided","Style your hair into a braid.");
-	else if(pc.hairStyle != "braided") addDisabledGhostButton(4,"Braided","Braided","Your hair isn't long enough to be braided.");
+	else if(pc.hairStyle != "braided") addDisabledGhostButton(4,"Braided","Braided","Your hair isn’t long enough to be braided.");
 	else addDisabledGhostButton(4,"Braided","Braided","You already have your hair braided!");
 	//[Afro]
 	if(pc.hairStyle != "afro" && pc.hairLength <= 12) addGhostButton(5,"Afro",gooStyle,"afro","Afro","Style your hair into an afro.");
@@ -942,14 +942,14 @@ public function gooBodyCustomizer():void
 	if(pc.skinType != GLOBAL.SKIN_TYPE_GOO || pc.hairType != GLOBAL.HAIR_TYPE_GOO)
 	{
 		if(gooBiomass() >= 20) addGhostButton(5,"Revert Skin",revertGooBodyPart,"skin","Revert Skin and Hair","Revert your skin and hair back to goo.\n\n<b>20 mLs Biomass</b>");
-		else addDisabledGhostButton(5,"Revert Skin","Revert Skin","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+		else addDisabledGhostButton(5,"Revert Skin","Revert Skin","You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
 		nonGooPart++;
 	}
 	else addDisabledGhostButton(5,"Revert Skin","Revert Skin","Your skin and hair are already made of goo!");
 	if(pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasArmFlag(GLOBAL.FLAG_FEATHERED))
 	{
 		if(gooBiomass() >= 20) addGhostButton(6,"Revert Arms",revertGooBodyPart,"arms","Revert Arms","Revert your arms back to goo.\n\n<b>20 mLs Biomass</b>");
-		else addDisabledGhostButton(6,"Revert Arms","Revert Arms","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+		else addDisabledGhostButton(6,"Revert Arms","Revert Arms","You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
 		nonGooPart++;
 	}
 	else addDisabledGhostButton(6,"Revert Arms","Revert Arms","Your arms are already made of goo!");
@@ -960,7 +960,7 @@ public function gooBodyCustomizer():void
 			if(pc.statusEffectv1("Gel Body") >= 1) addGhostButton(7,"Revert Body",revertGooBodyLegs,"mound","Revert Lower Body","Revert your lower body back to an amorphous goo mound.\n\n<b>20 mLs Biomass</b>");
 			else addGhostButton(7,"Revert Legs",revertGooBodyLegs,"legs","Revert Lower Body","Revert your lower body back to goo.\n\n<b>20 mLs Biomass</b>");
 		}
-		else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+		else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
 		nonGooPart++;
 	}
 	else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","Your lower body is already made of goo!");
@@ -969,7 +969,7 @@ public function gooBodyCustomizer():void
 		if(pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_FLUFFY) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasArmFlag(GLOBAL.FLAG_FEATHERED))
 		{
 			if(gooBiomass() >= 20) addGhostButton(8,"Revert Tail",revertGooBodyPart,"tail","Revert Tail","Revert [pc.eachTail] back to goo.\n\n<b>20 mLs Biomass</b>");
-			else addDisabledGhostButton(8,"Revert Tail","Revert Tail","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+			else addDisabledGhostButton(8,"Revert Tail","Revert Tail","You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
 			nonGooPart++;
 		}
 		else
@@ -982,7 +982,7 @@ public function gooBodyCustomizer():void
 	if(nonGooPart > 1)
 	{
 		if(gooBiomass() >= (20 * nonGooPart)) addGhostButton(9,"Revert All",revertGooBodyPart,"all","Revert All","Revert almost every body part back to goo.\n\n<b>" + (20 * nonGooPart) + " mLs Biomass</b>");
-		else addDisabledGhostButton(9,"Revert All","Revert All","You don't have enough biomass for that.\n\n<b>" + (20 * nonGooPart) + " mLs Biomass</b>");
+		else addDisabledGhostButton(9,"Revert All","Revert All","You don’t have enough biomass for that.\n\n<b>" + (20 * nonGooPart) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(9,"Revert All","Revert All","You’ll need to have more than one body part that is able to revert in order to try this!");
 	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO && pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(10,"Match Color",revertGooBodyColor,"menu","Match Colors","Force the color of your body or hair to match one another.");
@@ -1388,38 +1388,38 @@ public function gooChestCustomizer():void
 	if(pc.bRows() < boobRowMax)
 	{
 		if(gooBiomass() >= 200) addGhostButton(0,"Add Row",gooGrowNewBreastRow,undefined,"Add New Row","Grow an additional row of breasts and nipples.\n\n<b>200 mLs Biomass</b>");
-		else addDisabledGhostButton(0,"Add Row","Add New Row","You don't have enough biomass for that.\n\n<b>200 mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Add Row","Add New Row","You don’t have enough biomass for that.\n\n<b>200 mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(0,"Add Row","Add New Row","You have too many rows of breasts to grow more.");
 	if(pc.bRows() > 1) addGhostButton(1,"Remove Row",gooRemoveBreastRow,undefined,"Remove Row","Remove your bottom-most breast row.");
-	else addDisabledGhostButton(1,"Remove Row","Remove Row","You'd look incredibly weird without anything on your chest at all.");
+	else addDisabledGhostButton(1,"Remove Row","Remove Row","You’d look incredibly weird without anything on your chest at all.");
 	if(pc.bRows() == 1 && pc.biggestTitSize() < 198) addGhostButton(2,"ExpandBoobs",gooExpandBreastsMenu,undefined,"Expand Breasts","Make your row of breasts larger.\n\n<b>" + gooExpandBreastsCost(0) + " mLs Biomass</b>");
 	else if(pc.smallestTitSize() < 198) addGhostButton(2,"ExpandBoobs",gooExpandBreastsMenu,undefined,"Expand Breasts","Make a single row of breasts larger.");
-	else addDisabledGhostButton(2,"ExpandBoobs","Expand Breasts","You can't make your breasts any larger without straining the limits of your cohesion.");
+	else addDisabledGhostButton(2,"ExpandBoobs","Expand Breasts","You can’t make your breasts any larger without straining the limits of your cohesion.");
 	if(pc.bRows() == 1 && pc.biggestTitSize() >= 1) addGhostButton(3,"ShrinkBoobs",gooShrinkBreastsMenu,undefined,"Shrink Boobs","Make your row of breasts smaller.");
 	else if(pc.biggestTitSize() >= 1) addGhostButton(3,"ShrinkBoobs",gooShrinkBreastsMenu,undefined,"Shrink Boobs","Make a single row of breasts smaller.");
 	else addDisabledGhostButton(3,"ShrinkBoobs","Shrink Boobs","You cannot make your breasts any smaller.");
-	if(gooBiomass() < 300) addDisabledGhostButton(5,"Add Nipples","Add Nipples","You don't have enough biomass for that.\n\n<b>300 mLs Biomass</b>");
+	if(gooBiomass() < 300) addDisabledGhostButton(5,"Add Nipples","Add Nipples","You don’t have enough biomass for that.\n\n<b>300 mLs Biomass</b>");
 	if(pc.nipplesPerBreast < 4) addGhostButton(5,"Add Nipples",gooAddNipples,undefined,"Add Nipples","Add another nipple to every breast.\n\n<b>300 mLs Biomass</b>");
-	else addDisabledGhostButton(5,"Add Nipples","Add Nipples","You don't think you could handle having any more nipples.");
+	else addDisabledGhostButton(5,"Add Nipples","Add Nipples","You don’t think you could handle having any more nipples.");
 	if(pc.nipplesPerBreast > 1) addGhostButton(6,"Remove Nip",gooRemoveNipples,undefined,"Remove Nipples","Remove a nipple from each of your breasts.\n\n<b>225 mLs Biomass Gain</b>");
 	else addDisabledGhostButton(6,"Remove Nip","Remove Nip","You cannot remove any more nipples. Breasts without even a single nip would look quite strange. Too strange, even for you.\n\n<b>225 mLs Biomass Gain</b>");
 	if(gooBiomass() >= 100) addGhostButton(7,"Widen Nips",widenGooNipples,undefined,"Widen Nipples","Widen the areola of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
-	else addDisabledGhostButton(7,"Widen Nips","Widen Nipples","You don't have enough biomass to widen your nipples.\n\n<b>100 mLs Biomass</b>");
+	else addDisabledGhostButton(7,"Widen Nips","Widen Nipples","You don’t have enough biomass to widen your nipples.\n\n<b>100 mLs Biomass</b>");
 	if(pc.nippleWidthRatio >= 1) addGhostButton(8,"Narrow Nips",narrowGooNips,undefined,"Narrow Nipples","Make your nipples narrower.\n\n<b>75 mLs Biomass Gain</b>");
-	else addDisabledGhostButton(8,"Narrow Nips","Narrow Nipples","You can't make your nipples any narrower.\n\n<b>75 mLs Biomass Gain");
+	else addDisabledGhostButton(8,"Narrow Nips","Narrow Nipples","You can’t make your nipples any narrower.\n\n<b>75 mLs Biomass Gain");
 
 	if(gooBiomass() >= 100) addGhostButton(10,"LengthenNips",lengthenGooNips,undefined,"Lengthen Nipples","Lengthen the tips of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
-	else addDisabledGhostButton(10,"LengthenNips","Lengthen Nipples","You don't have enough biomass to lengthen your nipples.\n\n<b>100 mLs Biomass</b>");
+	else addDisabledGhostButton(10,"LengthenNips","Lengthen Nipples","You don’t have enough biomass to lengthen your nipples.\n\n<b>100 mLs Biomass</b>");
 	if(pc.nippleLengthRatio >= 1) addGhostButton(11,"Shorten Nips",shortenGooNips,undefined,"Shorten Nipples","Shorten the tips of your [pc.nipplesNoun].\n\n<b>75 mLs Biomass Gain</b>");
 	else addDisabledGhostButton(11,"Shorten Nips","Shorten Nipples","You cannot make your [pc.nipplesNoun] and shorter.\n\n<b>75 mLs Biomass Gain</b>");
 	addGhostButton(4,"Nip Type",nippleTypeGooMenu,undefined,"Nip Type","Change what type of nipples you will have.");
 	if(pc.hasDickNipples()) 
 	{
 		if(gooBiomass() >= pc.totalNipples() * 25) addGhostButton(9,"DickNipType",dickNippleGooCustomizer,undefined,"Dick Nipple Type","Change the type of penis that your dick-nipples resemble.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
-		else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have enough biomass to change what type of dick-nipples you're sporting.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
+		else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don’t have enough biomass to change what type of dick-nipples you’re sporting.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
 	}
-	else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have any dick-nipples to customize.");
+	else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don’t have any dick-nipples to customize.");
 	addGhostButton(14,"Back",gooShiftMenu);
 }
 
@@ -1518,35 +1518,35 @@ public function nippleTypeGooMenu():void
 	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_NORMAL))
 	{
 		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL) <= gooBiomass()) addGhostButton(0,"Normal",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_NORMAL,"Normal","Change your nipples to be normal-looking.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL) + " mLs Biomass</b>");
-		else addDisabledGhostButton(0,"Normal","Normal","You don't have enough biomass to make all your nipples normal.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL) + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Normal","Normal","You don’t have enough biomass to make all your nipples normal.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(0,"Normal","Normal","All your nipples are already normal.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL) + " mLs Biomass</b>");
 	//Inverted
 	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_INVERTED))
 	{
 		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED) <= gooBiomass()) addGhostButton(1,"Inverted",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_INVERTED,"Inverted","Change your nipples to be inverted.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED) + " mLs Biomass</b>");
-		else addDisabledGhostButton(1,"Inverted","Inverted","You don't have enough biomass to make all your nipples inverted.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED) + " mLs Biomass</b>");
+		else addDisabledGhostButton(1,"Inverted","Inverted","You don’t have enough biomass to make all your nipples inverted.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(1,"Inverted","Inverted","All your nipples are already inverted.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED) + " mLs Biomass</b>");
 	//Fuckable
 	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_FUCKABLE))
 	{
 		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE) <= gooBiomass()) addGhostButton(2,"Fuckable",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_FUCKABLE,"Fuckable","Change your nipples to be fuckable.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE) + " mLs Biomass</b>");
-		else addDisabledGhostButton(2,"Fuckable","Fuckable","You don't have enough biomass to make all your nipples fuckable.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE) + " mLs Biomass</b>");
+		else addDisabledGhostButton(2,"Fuckable","Fuckable","You don’t have enough biomass to make all your nipples fuckable.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(2,"Fuckable","Fuckable","All your nipples are already fuckable.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE) + " mLs Biomass</b>");
 	//Lipples
 	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_LIPPLES))
 	{
 		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES) <= gooBiomass()) addGhostButton(3,"Lipples",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_LIPPLES,"Lipples","Change your nipples to be fuckable sets of lips.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES) + " mLs Biomass</b>");
-		else addDisabledGhostButton(3,"Lipples","Lipples","You don't have enough biomass to make all your nipples fuckable sets of lips.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES) + " mLs Biomass</b>");
+		else addDisabledGhostButton(3,"Lipples","Lipples","You don’t have enough biomass to make all your nipples fuckable sets of lips.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(3,"Lipples","Lipples","All your nipples are already fuckable sets of lips.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES) + " mLs Biomass</b>");
 	//Dicknipples
 	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_DICK))
 	{
 		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) <= gooBiomass()) addGhostButton(4,"DickNipples",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_DICK,"Dick Nipples","Change your nipples to be dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
-		else addDisabledGhostButton(4,"DickNipples","Dick Nipples","You don't have enough biomass to make all your nipples dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+		else addDisabledGhostButton(4,"DickNipples","Dick Nipples","You don’t have enough biomass to make all your nipples dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(4,"DickNipples","Dick Nipples","All your nipples are already dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
 	addGhostButton(14,"Back",gooChestCustomizer);
@@ -1566,9 +1566,9 @@ public function nippleGooGetsTypeChanged(target:int):void
 	{
 		//Spend biobutts
 		gooBiomass(-1 * nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED));
-		if(pc.hasFuckableNipples()) output2("You close up the passages inside your [pc.nipples] and reform their normal tips, leaving them delightfully inverted. When you get horny enough, they'll be sure to pop back out.");
-		else output2(pc.mf("Chuckling","Giggling") + " to yourself, you push your [pc.nipples] back into themselves, willing them to turn into simple 'innies.' Of course, when you get sufficiently horny, they'll pop right back out.");
-		output2(" <b>Aren't inverted nipples fun?</b>");
+		if(pc.hasFuckableNipples()) output2("You close up the passages inside your [pc.nipples] and reform their normal tips, leaving them delightfully inverted. When you get horny enough, they’ll be sure to pop back out.");
+		else output2(pc.mf("Chuckling","Giggling") + " to yourself, you push your [pc.nipples] back into themselves, willing them to turn into simple ‘innies.’ Of course, when you get sufficiently horny, they’ll pop right back out.");
+		output2(" <b>Aren’t inverted nipples fun?</b>");
 	}
 	else if(target == GLOBAL.NIPPLE_TYPE_FUCKABLE)
 	{
@@ -1578,7 +1578,7 @@ public function nippleGooGetsTypeChanged(target:int):void
 	else if(target == GLOBAL.NIPPLE_TYPE_LIPPLES)
 	{
 		gooBiomass(-1 * nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES));
-		output2("Reinforcing your [pc.nipples] with fresh biomass, you will them into malleability. Then, with gentle squeezes, you sculpt them into a pair of puckered, almost smiling lips, wrapped around a nerve-line passage that's sure to please. <b>You've given yourself lipples,</b> perfect for exotic fun.");
+		output2("Reinforcing your [pc.nipples] with fresh biomass, you will them into malleability. Then, with gentle squeezes, you sculpt them into a pair of puckered, almost smiling lips, wrapped around a nerve-line passage that’s sure to please. <b>You’ve given yourself lipples,</b> perfect for exotic fun.");
 	}
 	else if(target == GLOBAL.NIPPLE_TYPE_DICK)
 	{
@@ -1602,7 +1602,7 @@ public function widenGooNipples():void
 	var totalNips:int = pc.totalNipples();
 	output2("You grab hold of the edges of ");
 	if(totalNips > 2) output2("two of ");
-	output2("your [pc.nipples] and pull, stretching the areolae wider. You gasp in mixed pleasure and pain, watching your malleable flesh adjust to its new shape. Your body's alien flexibility never ceases to amaze.");
+	output2("your [pc.nipples] and pull, stretching the areolae wider. You gasp in mixed pleasure and pain, watching your malleable flesh adjust to its new shape. Your body’s alien flexibility never ceases to amaze.");
 	if(totalNips > 2) output2(" You repeat the process until every single teat-topper is proportionally correct.");
 	if(pc.nippleWidth(x) <= 1) pc.nippleWidthRatio += 0.5;
 	else pc.nippleWidthRatio += 0.25;
@@ -1617,7 +1617,7 @@ public function narrowGooNips():void
 	var totalNips:int = pc.totalNipples();
 	output2("You grab hold of the edges of ");
 	if(totalNips > 2) output2("two of ");
-	output2("your [pc.nipples] and pinch, forcing the edges of the areolae inward. You gasp in mixed pleasure and pain, watching your malleable flesh adjust to its new shape. Your body's alien flexibility never ceases to amaze.");
+	output2("your [pc.nipples] and pinch, forcing the edges of the areolae inward. You gasp in mixed pleasure and pain, watching your malleable flesh adjust to its new shape. Your body’s alien flexibility never ceases to amaze.");
 	if(totalNips > 2) output2(" You repeat the process until the whole set is appropriate matched.");
 	if(pc.nippleWidth(x) <= 1) pc.nippleWidthRatio -= 0.5;
 	else pc.nippleWidthRatio -= 0.25;
@@ -1646,7 +1646,7 @@ public function shortenGooNips():void
 	clearOutput2();
 	var totalNips:int = pc.totalNipples();
 	output2("Your [pc.nipples] are entirely too distracting, always bulging forward and getting in the way! You push back on their tips, gingerly squishing them partway back into your body. You can feel the biomass bubble through you as the excess flesh is converted back into goopy potential.");
-	if(totalNips > 2) output2(" You make sure to give the rest of your [pc.nipplesNoun] equal treatment. Can't have any looking disproportional, can you?")
+	if(totalNips > 2) output2(" You make sure to give the rest of your [pc.nipplesNoun] equal treatment. Can’t have any looking disproportional, can you?")
 	if(pc.nippleLength(x) <= 1.5) pc.nippleLengthRatio -= 0.5;
 	else pc.nippleLengthRatio -= 0.25;
 	gooBiomass(75);
@@ -1663,7 +1663,7 @@ public function gooAddNipples():void
 		output2("One nipple per ");
 		if(pc.biggestTitSize() < 1) output2("pectoral");
 		else output2("breast");
-		output2(" hardly seems fitting. You blink your eyes and focus, and when you look back down, <b>you've doubled your nipples.</b>");
+		output2(" hardly seems fitting. You blink your eyes and focus, and when you look back down, <b>you’ve doubled your nipples.</b>");
 	}
 	else if(pc.nipplesPerBreast == 2) 
 	{
@@ -1674,7 +1674,7 @@ public function gooAddNipples():void
 	}
 	else
 	{
-		output2("Triple-nipples are pretty awesome, but what's better than having a quartet of teats? You pinch the flesh alongside your current tit-tips and visualize it as a perfect copy of the others, moaning when you feel the goo solidify into another perfect nip.");
+		output2("Triple-nipples are pretty awesome, but what’s better than having a quartet of teats? You pinch the flesh alongside your current tit-tips and visualize it as a perfect copy of the others, moaning when you feel the goo solidify into another perfect nip.");
 	}
 	pc.nipplesPerBreast++;
 	gooBiomass(-300);
@@ -1687,7 +1687,7 @@ public function gooRemoveNipples():void
 {
 	clearOutput2();
 	if(pc.nipplesPerBreast == 2) output2("Deciding double-nipples are better in your imagination than in real life, you glare the offending teats and watch them shrink away to nothing, leaving you with a single [pc.nipple] per breast once more.");
-	else if(pc.nipplesPerBreast == 3) output2("You close your eyes and gently touch your triple-nipples, pushing one part of the triumvirate down in order to leave you with doubled sets. Isn't being made of goo wonderful?");
+	else if(pc.nipplesPerBreast == 3) output2("You close your eyes and gently touch your triple-nipples, pushing one part of the triumvirate down in order to leave you with doubled sets. Isn’t being made of goo wonderful?");
 	else output2("You will your quad nipples away, diminishing a quarter of their over-sensitive size and leaving you with triple nips.");
 	pc.nipplesPerBreast--;
 	gooBiomass(225);
@@ -1721,7 +1721,7 @@ public function gooShrinkBreastsMenu():void
 		//Display costs
 		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - <b>Biomass Gain: </b>" + boobCost + " mLs");
 		if(pc.breastRows[0].breastRating() >= 1) addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),shrinkASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Shrink this row.\n\n<b>" + boobCost + " mLs Biomass Gain</b>");
-		else addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You can't make this row any smaller.");
+		else addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You can’t make this row any smaller.");
 	}
 	showBiomass();
 	addGhostButton(14,"Back",gooChestCustomizer);
@@ -1736,8 +1736,8 @@ public function shrinkASpecificTitRow(arg:int = 0):void
 	}
 	else 
 	{
-		output2("There's barely any biomass fortifying your chest, but you drain it away all the same, ");
-		if(pc.breastRows[arg].breastRating() >= 2) output2("minimizing the size of your tits. If you want to get rid of them entirely, you'll need to deal with whatever else is keeping them so swollen.");
+		output2("There’s barely any biomass fortifying your chest, but you drain it away all the same, ");
+		if(pc.breastRows[arg].breastRating() >= 2) output2("minimizing the size of your tits. If you want to get rid of them entirely, you’ll need to deal with whatever else is keeping them so swollen.");
 		else output2("leaving you with a nice set of pectorals for your trouble.");
 	}
 	//Figure out refund amount.
@@ -1775,7 +1775,7 @@ public function gooExpandBreastsMenu():void
 		}
 		else
 		{
-			output2("No matter how hard you try, you can't muster up anything more than an empty feeling inside yourself. It looks like you'll need more biomass for this.");
+			output2("No matter how hard you try, you can’t muster up anything more than an empty feeling inside yourself. It looks like you’ll need more biomass for this.");
 			addGhostButton(0,"Next",gooChestCustomizer);
 			return;
 		}
@@ -1790,7 +1790,7 @@ public function gooExpandBreastsMenu():void
 		//Display costs
 		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - <b>Biomass cost: </b>" + boobCost + " mLs");
 		if(gooBiomass() >= boobCost) addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),expandASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Enlarge this row.\n\n<b>" + boobCost + " mLs Biomass</b>");
-		else addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You don't have enough biomass to enlarge this row.\n\n<b>" + boobCost + " mLs Biomass</b>");
+		else addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You don’t have enough biomass to enlarge this row.\n\n<b>" + boobCost + " mLs Biomass</b>");
 	}
 	showBiomass();
 	addGhostButton(14,"Back",gooChestCustomizer);
@@ -1822,9 +1822,9 @@ public function expandASpecificTitRow(arg:int):void
 			pc.lust(10);
 		}
 		//Pretty fuckin' big to huge
-		else if(pc.breastRows[arg].breastRating() < 30) output2("Some might say that top-heavy is an apt description for a [pc.boyGirl] like you, but that's just the start. You massage the bouncy, slick surface of your tits, openly groping them as you direct more of your internal mass reserves to fill them, to add to their wiggle and jiggle. You've got huge, brazen boobs, and you've made them bigger yet. Maybe you should do it again?");
+		else if(pc.breastRows[arg].breastRating() < 30) output2("Some might say that top-heavy is an apt description for a [pc.boyGirl] like you, but that’s just the start. You massage the bouncy, slick surface of your tits, openly groping them as you direct more of your internal mass reserves to fill them, to add to their wiggle and jiggle. You’ve got huge, brazen boobs, and you’ve made them bigger yet. Maybe you should do it again?");
 		//Huge to megahuge
-		else output2("More. You dig your fingers into your [pc.breasts " + arg + "], sinking your digits deep into the forgiving, gooey orbs, rolling the hefty mounds back and forth as you pump more heavy goo into their capacious interiors. It feels good, stretching the membrane of your \"skin\" taut, then letting it loose enough to allow the barest hint of natural sag.");
+		else output2("More. You dig your fingers into your [pc.breasts " + arg + "], sinking your digits deep into the forgiving, gooey orbs, rolling the hefty mounds back and forth as you pump more heavy goo into their capacious interiors. It feels good, stretching the membrane of your “skin” taut, then letting it loose enough to allow the barest hint of natural sag.");
 	}
 	var boobCost:Number = gooExpandBreastsCost(arg);
 	//Spend the biomass.
@@ -1851,7 +1851,7 @@ public function gooGrowNewBreastRow():void
 		if(pc.breastRows[0].breastRating() < 1) output2("your [pc.nipples]");
 		else output2("your [pc.breasts]");
 	}
-	output2(", you give your supple, yielding goo-flesh a tug. Right on cue, " + num2Text(pc.nipplesPerBreast * pc.breastRows[pc.bRows()-1].breasts) + " slight bulges form beneath your fingers, new nipples that ape the appearance of those above. There's not much breast built up below, just enough to form a foundation for future growth.");
+	output2(", you give your supple, yielding goo-flesh a tug. Right on cue, " + num2Text(pc.nipplesPerBreast * pc.breastRows[pc.bRows()-1].breasts) + " slight bulges form beneath your fingers, new nipples that ape the appearance of those above. There’s not much breast built up below, just enough to form a foundation for future growth.");
 	output2(" <b>You have " + num2Text(pc.bRows()+1) + " rows of breasts.</b>");
 	pc.createBreastRow();
 	pc.breastRows[pc.bRows()-1].breasts = pc.breastRows[pc.bRows()-2].breasts;
@@ -1870,7 +1870,7 @@ public function boobsVolumeCheesed(boobRating:Number):Number
 public function gooRemoveBreastRow():void
 {
 	clearOutput2();
-	output2("Grabbing hold of the bottom edge of your chest, you push your palms flat against the [pc.nipples " + (pc.bRows()-1) + "] and concentrate on removing the extra row from your body. There's a brief, answering tingle, followed by the satisfaction of absorbed biomass.");
+	output2("Grabbing hold of the bottom edge of your chest, you push your palms flat against the [pc.nipples " + (pc.bRows()-1) + "] and concentrate on removing the extra row from your body. There’s a brief, answering tingle, followed by the satisfaction of absorbed biomass.");
 	output2(" <b>You have " + num2Text(pc.bRows()-1) + " row");
 	if(pc.bRows() > 2) output2("s");
 	output2(" of breasts.</b>")
@@ -1912,9 +1912,9 @@ public function gooCockRootMenu():void
 	{
 		if(!pc.createCockUnlocked(pc.cockTotal() + 1)) addDisabledGhostButton(0,"Grow One","Grow One","Something is preventing you from growing a penis.");
 		else if(pc.cockTotal() < 10) addGhostButton(0,"Grow One",growANewGooCock,undefined,"Grow One","Grow a new, gooey penis.\n\n<b>500 mLs Biomass</b>");
-		else addDisabledGhostButton(0,"Grow One","Grow One","There's no room for any more penises!");
+		else addDisabledGhostButton(0,"Grow One","Grow One","There’s no room for any more penises!");
 	}
-	else addDisabledGhostButton(0,"Grow One","Grow One","You don't have enough biomass for that.\n\n<b>500 mLs Biomass</b>");
+	else addDisabledGhostButton(0,"Grow One","Grow One","You don’t have enough biomass for that.\n\n<b>500 mLs Biomass</b>");
 
 	if(pc.hasCock()) 
 	{
@@ -1945,17 +1945,17 @@ public function gooCockRootMenu():void
 			}
 			if(!pc.removeCocksUnlocked()) addDisabledGhostButton(6,"Remove All","Remove All","Something is preventing your penises from being removed all the same time.");
 			else if(pc.cockTotal() == numGooCocks) addGhostButton(6,"Remove All",removeAllGooCocks,undefined,"Remove All Cocks","Remove all penises.");
-			else addDisabledGhostButton(6,"Remove All","Remove All","Your penises aren't all made of goo and cannot be removed at the same time.");
+			else addDisabledGhostButton(6,"Remove All","Remove All","Your penises aren’t all made of goo and cannot be removed at the same time.");
 		}
-		else addDisabledGhostButton(6,"Remove All","Remove All","You don't have multiple goo penises to try this.");
+		else addDisabledGhostButton(6,"Remove All","Remove All","You don’t have multiple goo penises to try this.");
 	}
 	else
 	{
 		addDisabledGhostButton(1,"Reshape","Reshape","You have no penis to reshape.");
 		addDisabledGhostButton(2,"Lengthen","Lengthen","You have no penis to lengthen.");
 		addDisabledGhostButton(3,"Shorten","Shorten","You have no penis to shorten.");
-		addDisabledGhostButton(5,"Remove 1","Remove One","You don't have a penis to remove.");
-		addDisabledGhostButton(6,"Remove All","Remove All","You don't have a penis to remove.");
+		addDisabledGhostButton(5,"Remove 1","Remove One","You don’t have a penis to remove.");
+		addDisabledGhostButton(6,"Remove All","Remove All","You don’t have a penis to remove.");
 	}
 	addGhostButton(14,"Back",gooCrotchCustomizer);
 }
@@ -1982,21 +1982,21 @@ public function gooBallsMenu():void
 	if(pc.balls > 0)
 	{
 		if(gooBiomass() >= nutExpansionCost()) addGhostButton(2,"Expand Balls",expandoNuts,undefined,"Expand Balls","Expand the diameter of your balls by approximately one inch.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
-		else addDisabledGhostButton(2,"Expand Balls","Expand Balls","You don't have the necessary biomass to expand your testicular endowments.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
+		else addDisabledGhostButton(2,"Expand Balls","Expand Balls","You don’t have the necessary biomass to expand your testicular endowments.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
 		if(pc.ballDiameter() > 1) addGhostButton(3,"Shrink Balls",nutShrinkGo,undefined,"Shrink Balls","Reduce the size of your testicular endowments significantly.");
-		else addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You can't get any smaller down there!");
+		else addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You can’t get any smaller down there!");
 
 		if(pc.hasStatusEffect("Uniball")) addGhostButton(5,"Loosen Sack",tautSackToggle,undefined,"Loosen Sack","Let your nutsack hang a little lower and freer.");
 		else if(gooBiomass() >= 100) addGhostButton(5,"Tighten Sack",tautSackToggle,undefined,"Tighten Sack","Tighten up your nutsack into a nice, smooth bulge.\n\n<b>100 mLs Biomass</b>");
-		else addDisabledGhostButton(5,"Tighten Sack","Tighten Sack","You don't have enough biomass to tighten your sack into a nice, smooth bulge.");
+		else addDisabledGhostButton(5,"Tighten Sack","Tighten Sack","You don’t have enough biomass to tighten your sack into a nice, smooth bulge.");
 		
 		if(pc.statusEffectv1("Special Scrotum") != GLOBAL.FLAG_GOOEY) addGhostButton(6,"Convert Sack",gooSpecialSack,"convert","Convert Sack","Convert your nutsack into goo.");
 		else if(pc.hasStatusEffect("Special Scrotum")) addGhostButton(6,"Revert Sack",gooSpecialSack,"revert","Revert Sack","Remove your nutsack’s special properties.");
 	}
 	else 
 	{
-		addDisabledGhostButton(2,"Expand Balls","Expand Balls","You don't have balls to expand.");
-		addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You don't have any balls to shrink!");
+		addDisabledGhostButton(2,"Expand Balls","Expand Balls","You don’t have balls to expand.");
+		addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You don’t have any balls to shrink!");
 		addDisabledGhostButton(5,"Sack Options","Sack Options","If you had balls, you could use this button to make your nutsack pull up high and tight or swing low and free.");
 	}
 	addGhostButton(14,"Back",gooCrotchCustomizer);
@@ -2098,8 +2098,8 @@ public function expandoNuts():void
 		if(pc.ballDiameter() < 1) output2("Your [pc.balls] abruptly puffs up with new mass, swelling on command. The addition of new biomass roughly doubles the size of your endowment, causing you to feel swollen and vaguely horny. You can probably cum so much right now!");
 		else if(pc.ballDiameter() < 2) output2("A channel of syrupy biomass forms between your pubic mound and the low-hanging fruit of your loins, reinforcing your [pc.balls] with enough new weight to make it wobble and jiggle as it expands. The experience leaves you feeling vaguely horny.");
 		else if(pc.ballDiameter() < 3) output2("Your plump nut wobbles as you focus on enhancing its girth, swelling out with new, virile goo with every beat of what you assume is your heart. The experience leaves you hot enough to melt - or try cumming a few times just to judge the effectiveness of your enhanced organ.");
-		else if(pc.ballDiameter() < 5) output2("You're more than big enough to be considered well-endowed by most galactic species, but you want your [pc.balls] to be bigger, heavier. You want your dripping-wet sack to jiggle with every step you make, to bulge your clothes and promise a swift impregnation to those daring enough to let you get too close.\n\nRipples roll across the surface of your expanding sperm-factory while it trembles and grows, flooding with fresh mass. You stagger, feeling light-headed from the effort of it all, but when the feeling passes, you've got a bigger, bulgier ball.");
-		else if(pc.ballDiameter() < 10) output2("Forcing yet more goo into the overtaxed sack between your legs, you gradually expand your [pc.balls]. The bigger it gets, the heavier each expansion seems to be and the more wildly erotic your orgasms will become. You can only imagine the deluge you'll release when you get off after this. You're a one-" + pc.mf("man","woman") + " bukkake show, and if you keep this up, you'll need to upgrade the ship's plumbing.");
+		else if(pc.ballDiameter() < 5) output2("You’re more than big enough to be considered well-endowed by most galactic species, but you want your [pc.balls] to be bigger, heavier. You want your dripping-wet sack to jiggle with every step you make, to bulge your clothes and promise a swift impregnation to those daring enough to let you get too close.\n\nRipples roll across the surface of your expanding sperm-factory while it trembles and grows, flooding with fresh mass. You stagger, feeling light-headed from the effort of it all, but when the feeling passes, you’ve got a bigger, bulgier ball.");
+		else if(pc.ballDiameter() < 10) output2("Forcing yet more goo into the overtaxed sack between your legs, you gradually expand your [pc.balls]. The bigger it gets, the heavier each expansion seems to be and the more wildly erotic your orgasms will become. You can only imagine the deluge you’ll release when you get off after this. You’re a one-" + pc.mf("man","woman") + " bukkake show, and if you keep this up, you’ll need to upgrade the ship’s plumbing.");
 		else output2("If there are gods, out there in the void, they must have a [pc.balls] like yours. The melon-sized spunk-tank is constantly swaying and bouncing, jiggling wetly at the slightest contact. Merely pouring additional mass into your overstuffed sack has it threatening to throw you off balance with its ungainly wobbling.");
 	}
 	else
@@ -2107,8 +2107,8 @@ public function expandoNuts():void
 		if(pc.ballDiameter() < 1) output2("Your [pc.balls] abruptly puff up with new mass, swelling on command. The addition of new biomass roughly doubles the size of your endowment, causing you to feel swollen and vaguely horny. You can probably cum so much right now!");
 		else if(pc.ballDiameter() < 2) output2("Channels of syrupy biomass forms between your pubic mound and the low-hanging fruit of your loins, reinforcing your [pc.balls] with enough new weight to make them wobble and jiggle as they expand. The experience leaves you feeling vaguely horny.");
 		else if(pc.ballDiameter() < 3) output2("Your plump nuts wobble as you focus on enhancing their girth, swelling out with new, virile goo with every beat of what you assume is your heart. The experience leaves you hot enough to melt - or squirt.");
-		else if(pc.ballDiameter() < 5) output2("You're more than big enough to be considered well-endowed by most galactic species, but you want your [pc.balls] to be bigger, heavier. You want your dripping-wet sack to jiggle with every step you make, to bulge your clothes and promise a swift impregnation to those daring enough to let you get too close.\n\nRipples roll across the surface of your expanding sperm-factories while they tremble and grow, flooding with fresh mass. You stagger, feeling light-headed from the effort of it all, but when the feeling passes, you've got bigger, bulgier balls.");
-		else if(pc.ballDiameter() < 10) output2("Forcing yet more goo into the overtaxed sack between your legs, you gradually expand your [pc.balls]. The bigger they get, the more you have to push inside to make an appreciable difference in size, and the more wildly erotic your orgasms will become. You can only imagine the deluge you'll release when you get off after this. You're a one-" + pc.mf("man","woman") + " bukkake show, and if you keep this up, you'll need to upgrade the ship's plumbing.");
+		else if(pc.ballDiameter() < 5) output2("You’re more than big enough to be considered well-endowed by most galactic species, but you want your [pc.balls] to be bigger, heavier. You want your dripping-wet sack to jiggle with every step you make, to bulge your clothes and promise a swift impregnation to those daring enough to let you get too close.\n\nRipples roll across the surface of your expanding sperm-factories while they tremble and grow, flooding with fresh mass. You stagger, feeling light-headed from the effort of it all, but when the feeling passes, you’ve got bigger, bulgier balls.");
+		else if(pc.ballDiameter() < 10) output2("Forcing yet more goo into the overtaxed sack between your legs, you gradually expand your [pc.balls]. The bigger they get, the more you have to push inside to make an appreciable difference in size, and the more wildly erotic your orgasms will become. You can only imagine the deluge you’ll release when you get off after this. You’re a one-" + pc.mf("man","woman") + " bukkake show, and if you keep this up, you’ll need to upgrade the ship’s plumbing.");
 		else output2("If there are gods, out there in the void, they must have [pc.balls] like yours. The melon-sized spunk-tanks are constantly swaying and bouncing, jiggling wetly at the slightest contact. Merely pouring additional mass into your overstuffed sack has it threatening to throw you off balance with its ungainly wobbling.");
 	}
 	gooBiomass(nutExpansionCost() * -1);
@@ -2135,7 +2135,7 @@ public function tautSackToggle():void
 		output2("Biomass flows into the lining of your gooey nutsack, reinforcing the lining and drawing it up tighter against your drippy crotch");
 		if(pc.balls > 1) output2(", squeezing your balls together until your package appears almost spherical");
 		else output2(", squeezing your package into a primly-packed, almost spherical bulge");
-		output2(". You've got a tight, aesthetically pleasing nutsack. It shines as if polished.");
+		output2(". You’ve got a tight, aesthetically pleasing nutsack. It shines as if polished.");
 		gooBiomass(-100);
 	}
 	else 
@@ -2175,7 +2175,7 @@ public function nutLossCost():Number
 public function removeATesticle():void
 {
 	clearOutput2();
-	output2("As easily as snapping your fingers, you're down one testicle");
+	output2("As easily as snapping your fingers, you’re down one testicle");
 	if(pc.balls == 1) output2(", leaving your [pc.sack] to shrink back into the smooth fluid encompassing your pubic mound");
 	output2(". Now you can put that biomass to better use...");
 	gooBiomass(nutLossCost());
@@ -2189,20 +2189,20 @@ public function growSomeGooBalls():void
 {
 	clearOutput2();
 	if(pc.balls == 0) {
-		if(!pc.hasCock()) output2("Other people might call you crazy for wanting a bulging ballsack without even a single penis to vent the sperm with, but you don't care. You direct your amorphous crotch to fill out a gelatinous flap of skin, rolling a semi-solid lump of spunk-churning delightfulness.\n\nNow that you've got one perfect nut, perhaps you could give it a twin?");
-		else output2("It's never to late to gift your [pc.cocks] a weighty, spunk-churning companion. Gripping a fold of aqueous skin, you tug it, shaping it into an empty sack just in time for a nicely-rounded ball of gelatinous nutflesh to slide down into it.\n\nYou can already feel your single nut brewing up a fresh batch of [pc.cumNoun]. Maybe you should give it a companion?");
+		if(!pc.hasCock()) output2("Other people might call you crazy for wanting a bulging ballsack without even a single penis to vent the sperm with, but you don’t care. You direct your amorphous crotch to fill out a gelatinous flap of skin, rolling a semi-solid lump of spunk-churning delightfulness.\n\nNow that you’ve got one perfect nut, perhaps you could give it a twin?");
+		else output2("It’s never to late to gift your [pc.cocks] a weighty, spunk-churning companion. Gripping a fold of aqueous skin, you tug it, shaping it into an empty sack just in time for a nicely-rounded ball of gelatinous nutflesh to slide down into it.\n\nYou can already feel your single nut brewing up a fresh batch of [pc.cumNoun]. Maybe you should give it a companion?");
 		pc.ballSizeRaw = 3.4;
 	}
 	else if(pc.balls == 1)
 	{
-		output2("Envisioning your [pc.sack] with a second, identical lump inside, you revel in the sensation of your slimy loins forging a second testicle, building an oblong organ up from the size of a marble until it's big enough to match its brother.\n\nYou've got two gooey balls.");
+		output2("Envisioning your [pc.sack] with a second, identical lump inside, you revel in the sensation of your slimy loins forging a second testicle, building an oblong organ up from the size of a marble until it’s big enough to match its brother.\n\nYou’ve got two gooey balls.");
 	}
 	else
 	{
 		output2("You grab hold of your slippery sack and give the semi-solid nuts inside a familiar squeeze. Why stop at " + num2Text(pc.balls) + " balls when you can have even more? You bid your reserves of organic matter to flow down into your [pc.sack], pumping it up with a dripping-wet orb, a syrupy-slick spunk-factory. You finish crafting the new testicle in a matter of seconds. It bulges");
 		if(pc.legCount > 1) output2(" against your [pc.legs] ");
 		else output2(" against your [pc.leg] ");
-		output2("with every movement, a potent reminder of how egregiously sexual you've become.")
+		output2("with every movement, a potent reminder of how egregiously sexual you’ve become.")
 	}
 	gooBiomass(-1*nutGrowCost());
 	pc.balls++;
@@ -2230,7 +2230,7 @@ public function reshapeACaaaawk():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.CockShape " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");	
 		}
 	}
 	showBiomass();
@@ -2311,7 +2311,7 @@ public function seriouslyThoReshapeDatGooCock(arg:Array):void
 	}
 	else if(type == GLOBAL.TYPE_EQUINE)
 	{
-		output2(", a turgid, bestial mast made to plow your mates wide-open. You nearly cum from the feeling of your semi-liquid dicktip fattening and bloating, filling with more and more biomass until you've got a flare any stallion would be proud of, to say nothing of the sheath that's quietly crept up below!");
+		output2(", a turgid, bestial mast made to plow your mates wide-open. You nearly cum from the feeling of your semi-liquid dicktip fattening and bloating, filling with more and more biomass until you’ve got a flare any stallion would be proud of, to say nothing of the sheath that’s quietly crept up below!");
 		pc.lust(10);
 	}
 	else if(type == GLOBAL.TYPE_CANINE || type == GLOBAL.TYPE_VULPINE)
@@ -2321,11 +2321,11 @@ public function seriouslyThoReshapeDatGooCock(arg:Array):void
 	}
 	else if(type == GLOBAL.TYPE_FELINE)
 	{
-		output2(". The whole thing wobbles like a plate of half-melted jello, gaining definition and features with every shake. It gradually reveals a feline shape, complete with rubbery spines to stimulate your lovers' innermost folds.");
+		output2(". The whole thing wobbles like a plate of half-melted jello, gaining definition and features with every shake. It gradually reveals a feline shape, complete with rubbery spines to stimulate your lovers’ innermost folds.");
 	}
 	else if(type == GLOBAL.TYPE_BEE)
 	{
-		output2(", one with a nice thick foreskin and wonderfully fragrant pheromones. All you'll have to do is whip it out and the ladies (or boys) will come running. You close your eyes and reach down to touch it, delighted to discover that it's already changed to the appropriate shape. Marvelous")
+		output2(", one with a nice thick foreskin and wonderfully fragrant pheromones. All you’ll have to do is whip it out and the ladies (or boys) will come running. You close your eyes and reach down to touch it, delighted to discover that it’s already changed to the appropriate shape. Marvelous")
 	}
 	else if(type == GLOBAL.TYPE_DRACONIC)
 	{
@@ -2339,7 +2339,7 @@ public function seriouslyThoReshapeDatGooCock(arg:Array):void
 	}
 	else if(type == GLOBAL.TYPE_DEMONIC)
 	{
-		output2(". Fluid undulations roll along the shifting length, absorbing some details and revealing others. Studs stand out from the human-like length, the kind of corrupt-looking nodules you'd expect to see on lining a demon-lord's prick. It's perfect, just like you imagined... only slightly more drippy.");
+		output2(". Fluid undulations roll along the shifting length, absorbing some details and revealing others. Studs stand out from the human-like length, the kind of corrupt-looking nodules you’d expect to see on lining a demon-lord’s prick. It’s perfect, just like you imagined... only slightly more drippy.");
 	}
 	else if(type == GLOBAL.TYPE_KUITAN)
 	{
@@ -2347,7 +2347,7 @@ public function seriouslyThoReshapeDatGooCock(arg:Array):void
 	}
 	else
 	{
-		output2(". Few things are as rewarding as watching your own flesh dance to your every whim. The goo reshapes wildly, discarding old features and trading them in for new. Through it all is the pleasant tingle and undeniable sexual thrill of contact with your crotch. Your misfiring nerves can't help but feed you pleasure until your cock is formed perfectly to your mental specification.")
+		output2(". Few things are as rewarding as watching your own flesh dance to your every whim. The goo reshapes wildly, discarding old features and trading them in for new. Through it all is the pleasant tingle and undeniable sexual thrill of contact with your crotch. Your misfiring nerves can’t help but feed you pleasure until your cock is formed perfectly to your mental specification.")
 	}
 	
 	pc.shiftCock(x,type);
@@ -2406,7 +2406,7 @@ public function removeGooCockRoot():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");	
 		}
 	}
 	showBiomass();
@@ -2476,7 +2476,7 @@ public function lengthenGooCock():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");	
 		}
 	}
 	showBiomass();
@@ -2504,7 +2504,7 @@ public function lengthenSelectedGooCock(arg:int = 0):void
 	//NOT ENOUGH! ABORT!
 	else
 	{
-		output2("No matter how hard you try, you can't muster up anything more than an empty feeling inside yourself. It looks like you'll need more biomass for this.");
+		output2("No matter how hard you try, you can’t muster up anything more than an empty feeling inside yourself. It looks like you’ll need more biomass for this.");
 	}
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooCockRootMenu);
@@ -2530,7 +2530,7 @@ public function shortenADick():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");	
 		}
 	}
 	showBiomass();
@@ -2572,12 +2572,12 @@ public function shortenSelectedCock(arg:int = 0):void
 	}
 	else if(pc.cocks[arg].cLengthRaw > 1)
 	{
-		output2("Turns out that there can be too much of a good thing. You glance down at your [pc.cockNoun " + arg + "] and focus, willing it to become a little more reasonably sized. After it shrinks down to about one inch, it suddenly stops... looks like you can't get it any smaller than that without having to remove it.");
+		output2("Turns out that there can be too much of a good thing. You glance down at your [pc.cockNoun " + arg + "] and focus, willing it to become a little more reasonably sized. After it shrinks down to about one inch, it suddenly stops... looks like you can’t get it any smaller than that without having to remove it.");
 		pc.cocks[arg].cLengthRaw = 1;
 	}
 	else
 	{
-		output2("You try and try but you can't quite shift the biomass of your [pc.cockNoun " + arg + "] to get it any smaller... You guess your pecker is as small as it's going to get... unless you decide to remove it.");
+		output2("You try and try but you can’t quite shift the biomass of your [pc.cockNoun " + arg + "] to get it any smaller... You guess your pecker is as small as it’s going to get... unless you decide to remove it.");
 		output2("\n\nDo you want to remove it?");
 		
 		clearGhostMenu();
@@ -2603,16 +2603,16 @@ public function vaginaGooRootMenu():void
 	{
 		if(!pc.createVaginaUnlocked(pc.totalVaginas() + 1)) addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","Something is preventing you from growing a vagina.");
 		else if(pc.totalVaginas() < 3) addGhostButton(0,"Grow Vagina",growAGoogina,undefined,"Grow Vagina","Grow a new vagina.\n\n<b>500 mLs Biomass</b>");
-		else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","There's no room for any more vaginas!");
+		else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","There’s no room for any more vaginas!");
 	}
-	else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","You don't have enough biomass for that!\n\n<b>500 mLs Biomass</b>");
+	else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","You don’t have enough biomass for that!\n\n<b>500 mLs Biomass</b>");
 
 	if(gooBiomass() >= 200)
 	{
 		if(pc.hasVagina()) addGhostButton(1,"Reshape",shiftACuntYaCunt,undefined,"Reshape","Reshape your vagina into another form.\n\n<b>200 mLs Biomass</b>");
-		else addDisabledGhostButton(1,"Reshape","Reshape","You don't have a vagina to reshape.");
+		else addDisabledGhostButton(1,"Reshape","Reshape","You don’t have a vagina to reshape.");
 	}
-	else addDisabledGhostButton(1,"Reshape","Reshape","You don't have enough biomass to reshape your vagina.\n\n<b>200 mLs Biomass</b>");
+	else addDisabledGhostButton(1,"Reshape","Reshape","You don’t have enough biomass to reshape your vagina.\n\n<b>200 mLs Biomass</b>");
 	if(gooBiomass() >= 100)
 	{
 		if(pc.hasVagina()) addGhostButton(2,"Grow Clit",addClitGooMenu,undefined,"Grow Clit","Grow a new clitoris.\n\n<b>100 mLs Biomass</b>");
@@ -2621,7 +2621,7 @@ public function vaginaGooRootMenu():void
 	else addDisabledGhostButton(2,"Grow Clit","Grow Clit","You do not have enough biomass for this.\n\n<b>100 mLs Biomass</b>");
 	if(pc.totalVaginas() == 1 && pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY) && pc.vaginas[0].clits <= 1) addDisabledGhostButton(3,"Remove Clit","Remove Clit","You cannot remove your only clit. It just seems... wrong without it.");
 	else if(pc.hasVagina()) addGhostButton(3,"Remove Clit",removeGooClitVagSelector,undefined,"Remove Clit","Remove an excess clitoris.");
-	else addDisabledGhostButton(3,"Remove Clit","Remove Clit","You don't have a vagina to remove a clit from.");
+	else addDisabledGhostButton(3,"Remove Clit","Remove Clit","You don’t have a vagina to remove a clit from.");
 	
 	var x:int = 0;
 	if(pc.hasVagina())
@@ -2644,7 +2644,7 @@ public function vaginaGooRootMenu():void
 			else if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag","Remove Vagina","Your vagina is pregnant and cannot be removed.");
 			else addGhostButton(5,"Remove Vag",removeAVag,0,"Remove Vagina","Remove your vagina.");
 	}
-		else addDisabledGhostButton(5,"Remove Vag","Remove Vagina","Your vagina isn't made of goo and cannot be removed.");
+		else addDisabledGhostButton(5,"Remove Vag","Remove Vagina","Your vagina isn’t made of goo and cannot be removed.");
 	}
 	else if(!pc.hasVagina()) addDisabledGhostButton(5,"Remove Vag","Remove Vag","You have no vagina to remove.");
 	
@@ -2657,14 +2657,14 @@ public function vaginaGooRootMenu():void
 			else if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag 1","Remove First Vagina","Your first vagina is pregnant and cannot be removed.");
 			else addGhostButton(5,"Remove Vag 1",removeAVag,0,"Remove First Vagina","Remove your first vagina.");
 		}
-		else addDisabledGhostButton(5,"Remove Vag 1","Remove First Vagina","This vagina isn't made of goo and cannot be removed.");
+		else addDisabledGhostButton(5,"Remove Vag 1","Remove First Vagina","This vagina isn’t made of goo and cannot be removed.");
 		if(pc.vaginas[1].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			if(!pc.removeVaginaUnlocked(1, 1)) addDisabledGhostButton(6,"Remove Vag 2","Remove Second Vagina","Something is preventing this vagina from being removed.");
 			else if(pc.isPregnant(1)) addDisabledGhostButton(6,"Remove Vag 2","Remove Second Vagina","Your second vagina is pregnant and cannot be removed.");
 			else addGhostButton(6,"Remove Vag 2",removeAVag,1,"Remove Second Vagina","Remove your second vagina.");
 		}
-		else addDisabledGhostButton(6,"Remove Vag 2","Remove Second Vagina","This vagina isn't made of goo and cannot be removed.");
+		else addDisabledGhostButton(6,"Remove Vag 2","Remove Second Vagina","This vagina isn’t made of goo and cannot be removed.");
 	}
 	//else addDisabledGhostButton(6,"Remove Vag 2","Remove Second Vagina","You have no vagina to remove.");
 	if(pc.totalVaginas() > 2)
@@ -2675,7 +2675,7 @@ public function vaginaGooRootMenu():void
 			else if(pc.isPregnant(2)) addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","Your third vagina is pregnant and cannot be removed.");
 			else addGhostButton(7,"Remove Vag 3",removeAVag,2,"Remove Third Vagina","Remove your third vagina.");
 		}
-		else addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","This vagina isn't made of goo and cannot be removed.");
+		else addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","This vagina isn’t made of goo and cannot be removed.");
 	}
 	//else addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","You have no vagina to remove.");
 	
@@ -2703,7 +2703,7 @@ public function vaginaGooRootMenu():void
 			else if(numPregVags > 0) addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","Your vaginas cannot be removed at the same time because at least one of them is currently pregnant.");
 			else addGhostButton(8,"Remove Vags",removeAllVags,undefined,"Remove Vaginas","Remove all vaginas.");
 		}
-		else addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","Your vaginas aren't all made of goo and cannot be removed at the same time.");
+		else addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","Your vaginas aren’t all made of goo and cannot be removed at the same time.");
 	}
 	else if(pc.totalVaginas() == 1) addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","You need multiple goo vaginas in order to try this.");
 	//else addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","You have no vaginas to remove.");
@@ -2785,7 +2785,7 @@ public function addClitGooMenu():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.upperCase(num2Text(x+1)),"This vagina isn't made of goo and cannot be morphed that way.");
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.upperCase(num2Text(x+1)),"This vagina isn’t made of goo and cannot be morphed that way.");
 		}
 	}
 	addGhostButton(14,"Back",gooCrotchCustomizer);
@@ -2795,7 +2795,7 @@ public function addClitGooMenu():void
 public function addGooClitNau(arg:int = 0):void
 {
 	clearOutput2();
-	output2("Growing a clit is harder than you feel it ought to be - not because there's anything special about that chunk of biomass, but because increasing the nerve density on the surface of the bud is maddeningly distracting. You push through until you've added another [pc.clit] to your [pc.vagina " + arg + "].");
+	output2("Growing a clit is harder than you feel it ought to be - not because there’s anything special about that chunk of biomass, but because increasing the nerve density on the surface of the bud is maddeningly distracting. You push through until you’ve added another [pc.clit] to your [pc.vagina " + arg + "].");
 	pc.vaginas[arg].clits++;
 	gooBiomass(-100);
 	clearGhostMenu();
@@ -2822,7 +2822,7 @@ public function removeGooClitVagSelector():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.upperCase(num2Text(x+1)),"This vagina isn't made of goo and cannot be morphed that way.");
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.upperCase(num2Text(x+1)),"This vagina isn’t made of goo and cannot be morphed that way.");
 		}
 	}
 	showBiomass();
@@ -2860,7 +2860,7 @@ public function shiftACuntYaCunt():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","This vagina isn't made of goo and cannot be morphed.");
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","This vagina isn’t made of goo and cannot be morphed.");
 		}
 	}
 	addGhostButton(14,"Back",vaginaGooRootMenu);
@@ -2950,8 +2950,8 @@ public function hymenRestorationForGoos():void
 			hymens++;
 		}
 	}
-	if(hymens > 1) output2("You decide that you'd like to be a virgin once more, and like magic, it is so. Your hymens are restored.");
-	else output2("You decide that you'd like to be a virgin once more, and like magic, it is so. Your hymen is restored.");
+	if(hymens > 1) output2("You decide that you’d like to be a virgin once more, and like magic, it is so. Your hymens are restored.");
+	else output2("You decide that you’d like to be a virgin once more, and like magic, it is so. Your hymen is restored.");
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
 }

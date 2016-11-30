@@ -22,6 +22,11 @@ Offers a once an hour shield booster item that restores up to 30 shields.
 //<i>\"My owners have programmed me to purchase medical-type items and treatments at near galactic bazaar rates.\"</i> V-Ko seems rather pleased about admitting that her purchase prices are substandard.
 
 
+public function metVKoDroid():Boolean
+{
+	return (flags["MET_VKO"] != undefined || flags["MET_VI"] != undefined);
+}
+
 public function showVKo(nude:Boolean = false):void
 {
 	showBust(vKoBustDisplay(nude));

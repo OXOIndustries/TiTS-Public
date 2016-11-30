@@ -77,7 +77,7 @@ public function firstChanceToHireYammi():void
 	clearMenu();
 	addButton(0,"Sympathy",yammiSympathy);
 	if(pc.credits >= 7000) addButton(1,"Pay It",payForYammisSlutitude);
-	else addDisabledButton(1,"Pay It","Pay It","You can't afford to pay it.");
+	else addDisabledButton(1,"Pay It","Pay It","You can’t afford to pay it.");
 }
 
 //Sympathy
@@ -528,7 +528,7 @@ public function yammisMenu():void
 	if(flags["NALEEN_SNUGGLED"] != undefined) addButton(6,"Ginder Fish",ginderFishStuff,undefined,"Ginder Fish","A flame-cooked fish from the jungle world of Mhen’ga, imported at the captain’s request. Soft and rich; topped with lemons and a native honey-sauce.");
 	else addDisabledButton(6,"????","????","You have not yet discovered this recipe.");
 	//Yammi’s Sammich
-	addButton(7,"Y's Sammich",yammiSammich,undefined,"Yammi's Sandwich","A four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
+	addButton(7,"Y’s Sammich",yammiSammich,undefined,"Yammi’s Sandwich","A four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
 	//N.T. Milkshake
 	//Requires Crew Reaha
 	if(reahaIsCrew()) addButton(8,"N.T.Milkshake",newTexasMilkshake,undefined,"N.T.Milkshake","New Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
@@ -769,9 +769,9 @@ public function yammiFollowerSexMenu():void
 	}
 	else
 	{
-		addDisabledButton(0,"Fuck Her Ass","Fuck Her Ass","You're not aroused enough to be interested in this.");
-		addDisabledButton(1,"Fuck Her Vag","Fuck Her Vag","You're not aroused enough to be interested in this.");
-		addDisabledButton(2,"Get Licked","Get Licked","You're not aroused enough to be interested in this.");
+		addDisabledButton(0,"Fuck Her Ass","Fuck Her Ass","You’re not aroused enough to be interested in this.");
+		addDisabledButton(1,"Fuck Her Vag","Fuck Her Vag","You’re not aroused enough to be interested in this.");
+		addDisabledButton(2,"Get Licked","Get Licked","You’re not aroused enough to be interested in this.");
 	}
 	addButton(14,"Back",yammiInTheKitchen);
 }

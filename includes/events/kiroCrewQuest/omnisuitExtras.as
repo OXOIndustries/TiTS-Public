@@ -68,23 +68,23 @@ public function omniSuitRepeatFinisher():void
 	//Low lib
 	if(pc.libido() < 33)
 	{
-		output("You're completely covered from head to toe in shining ebony. It's thickened up nicely to conceal your crotch and [pc.nipples], but you know from experience how quickly the material can thin out to expose a latex-encased bit of genitalia in the bedroom. It really is the swiss-army knife of outfits!");
+		output("You’re completely covered from head to toe in shining ebony. It’s thickened up nicely to conceal your crotch and [pc.nipples], but you know from experience how quickly the material can thin out to expose a latex-encased bit of genitalia in the bedroom. It really is the swiss-army knife of outfits!");
 	}
 	//Medium
 	else if(pc.libido() < 66)
 	{
-		output("You're completely covered from head to toe in shining ebony. Though it has thickened nicely around your [pc.nipples] and ");
+		output("You’re completely covered from head to toe in shining ebony. Though it has thickened nicely around your [pc.nipples] and ");
 		if(pc.hasGenitals()) output("genitals");
 		else output("anus");
-		output(", it doesn't really do much to conceal them. If anything, the gleaming surface makes your body seem that much more lewd. Perfect for distracting your enemies... or enticing a girlfriend.");
+		output(", it doesn’t really do much to conceal them. If anything, the gleaming surface makes your body seem that much more lewd. Perfect for distracting your enemies... or enticing a girlfriend.");
 	}
 	//High!
 	else
 	{
-		output("You're completely covered from head to toe in shining ebony, though the coverage does absolutely nothing to conceal any part of your form. If anything, it seems to highlight it, thickening nicely around the features of your [pc.nipples] and ");
+		output("You’re completely covered from head to toe in shining ebony, though the coverage does absolutely nothing to conceal any part of your form. If anything, it seems to highlight it, thickening nicely around the features of your [pc.nipples] and ");
 		if(pc.hasGenitals()) output("genitalia");
 		else output("anus");
-		output(" to make them somehow look even more prominent and lewd than ever before, even when you aren't turned on. You look like a walking advertisement for sex, only decent in the barest legal sense. Anyone with a lick of sense would know that with an outfit like that, you just want to fuck or get fucked.");
+		output(" to make them somehow look even more prominent and lewd than ever before, even when you aren’t turned on. You look like a walking advertisement for sex, only decent in the barest legal sense. Anyone with a lick of sense would know that with an outfit like that, you just want to fuck or get fucked.");
 	}
 	output("\n\n");
 	pc.unlockItemSlot(GLOBAL.ARMOR);
@@ -129,14 +129,14 @@ public function firstTimeOmniSuitOn():void
 		return;
 	}
 	clearOutput();
-	output("The binding collar hisses, startling you. You jerk a hand up to it, discovering nothing, but a moment later, you feel the source of the sound - something is sliding down the flesh of your neck, coating your collarbones on its way to your chest and shoulders. Your fingers find the foreign material. It feels slick, almost wet, yet solid and rubbery. Looking down, you can see it now, flowing across your body, shooting out inky streamers ahead of the creeping black edge. You try to block it with your hand to little avail - onyx creeps under your fingers, varnishing your body in sleek perfection. Deciding it's either harmless or impossible to stop, you ");
+	output("The binding collar hisses, startling you. You jerk a hand up to it, discovering nothing, but a moment later, you feel the source of the sound - something is sliding down the flesh of your neck, coating your collarbones on its way to your chest and shoulders. Your fingers find the foreign material. It feels slick, almost wet, yet solid and rubbery. Looking down, you can see it now, flowing across your body, shooting out inky streamers ahead of the creeping black edge. You try to block it with your hand to little avail - onyx creeps under your fingers, varnishing your body in sleek perfection. Deciding it’s either harmless or impossible to stop, you ");
 	if(!pc.isNude()) output("peel off your gear to ");
 	output("watch its progress.");
 
-	output("\n\nSable shine flows down your [pc.chest], pausing briefly at your [pc.nipples] only to encase them a moment later, shrouding them and yet somehow doing absolutely nothing to conceal them. If anything, every detail seems emphasized, brought out in stark relief. The black coating turns your shoulders glossy at the same time, squeezing down on you until it treads on the edge between comfortably snug and claustrophobically taut. It oozes over your biceps, complementing the shape of your body with latex-like shine. You roll your shoulders, finding that it doesn't restrict your movement in the slightest, not even when it nearly doubles you over with laughter at the tickling prickles of your belly button being enveloped.");
-	output("\n\nYou prod at yourself while your forearms gain a millimeter-thin coating of mystery material, your fingers gently poking your [pc.nipples]. You gasp at just how <i>good</i> it feels. Touch seems heightened everywhere that the black covers, but in the best way. It doesn't help that your [pc.nipples] seem so puffy and engorged, like you've been toying with them all day. When it curls around the tips of your fingers, you discover that playing with your nips feels even better, like your digits are being fondled at the same time as your nipples.");
+	output("\n\nSable shine flows down your [pc.chest], pausing briefly at your [pc.nipples] only to encase them a moment later, shrouding them and yet somehow doing absolutely nothing to conceal them. If anything, every detail seems emphasized, brought out in stark relief. The black coating turns your shoulders glossy at the same time, squeezing down on you until it treads on the edge between comfortably snug and claustrophobically taut. It oozes over your biceps, complementing the shape of your body with latex-like shine. You roll your shoulders, finding that it doesn’t restrict your movement in the slightest, not even when it nearly doubles you over with laughter at the tickling prickles of your belly button being enveloped.");
+	output("\n\nYou prod at yourself while your forearms gain a millimeter-thin coating of mystery material, your fingers gently poking your [pc.nipples]. You gasp at just how <i>good</i> it feels. Touch seems heightened everywhere that the black covers, but in the best way. It doesn’t help that your [pc.nipples] seem so puffy and engorged, like you’ve been toying with them all day. When it curls around the tips of your fingers, you discover that playing with your nips feels even better, like your digits are being fondled at the same time as your nipples.");
 	if(pc.lust() < 70) output(" You flush with sudden arousal, moaning and rubbing faster, watching the latex-like ink curl over your [pc.hips].");
-	else output(" You moan in whorish delight. Fuck, maybe you shouldn't have tried this on while you were so goddamned <i>horny</i>. Watching the latex-like ink curl over your [pc.hips], you rub faster, counting down the seconds until your groin can feel just as <i>tight</i> and sensitive as the rest of you.");
+	else output(" You moan in whorish delight. Fuck, maybe you shouldn’t have tried this on while you were so goddamned <i>horny</i>. Watching the latex-like ink curl over your [pc.hips], you rub faster, counting down the seconds until your groin can feel just as <i>tight</i> and sensitive as the rest of you.");
 
 	//Dick
 	if(pc.cockTotal() == 1)
@@ -153,32 +153,32 @@ public function firstTimeOmniSuitOn():void
 		output("\n\n[pc.Cum] abruptly fires out of you in one long, ropey spurt, appearing on the outside of your shining encasement as if by magic. Either ");
 		if(pc.cockTotal() == 1) output("a tiny hole has");
 		else output("tiny holes have");
-		output(" opened or the slick black is more permeable than it would appear. Two more successive, uncontrollable ejaculations fire off, undeniably pleasant but without any accompanying relief, leaving you stiff, aching, and just as horny as you were a moment ago. Only now that you think about it, you realize that your latex bondage no longer feels quite so tight. The rubbery goo might as well be a second skin... or just your regular skin. It's increasingly hard to tell the difference with your ultra-sensitized organ");
+		output(" opened or the slick black is more permeable than it would appear. Two more successive, uncontrollable ejaculations fire off, undeniably pleasant but without any accompanying relief, leaving you stiff, aching, and just as horny as you were a moment ago. Only now that you think about it, you realize that your latex bondage no longer feels quite so tight. The rubbery goo might as well be a second skin... or just your regular skin. It’s increasingly hard to tell the difference with your ultra-sensitized organ");
 		if(pc.cockTotal() > 1) output("s");
 		output(".");
 		pc.orgasm();
-		output("\n\nWithout much thought, you reach down and stroke, immediately moaning. Your fingers squeak loudly as they slide along the exotic second skin, but it doesn't diminish the intensity of the answering pleasure. If anything, it heightens it. You pump your sloppy, drooling cock faster and faster, driving yourself to an orgasm that seems a few strokes away. That peak is easier than ever to climb. You're bucking and spurting in no time, firing [pc.cum] ");
+		output("\n\nWithout much thought, you reach down and stroke, immediately moaning. Your fingers squeak loudly as they slide along the exotic second skin, but it doesn’t diminish the intensity of the answering pleasure. If anything, it heightens it. You pump your sloppy, drooling cock faster and faster, driving yourself to an orgasm that seems a few strokes away. That peak is easier than ever to climb. You’re bucking and spurting in no time, firing [pc.cum] ");
 		if(pc.cumQ() < 8) output("out in weak bursts. It would seem this strange suit does nothing for your virility.");
 		else if(pc.cumQ() < 150) output("out in long lines, painting the ground and your fingers.");
 		else if(pc.cumQ() < 5000) output("out in thick streams, creating nice big puddles of wasted jism.");
 		else output("out in huge, seemingly endless streams, flooding the immediate area in a liquid declaration of bliss.");
-		output(" You feel the excess rolling over your knuckles, and even that feels like a lover's tongue.");
+		output(" You feel the excess rolling over your knuckles, and even that feels like a lover’s tongue.");
 		pc.orgasm();
 	}
 	//No pussy but dick
 	if(!pc.hasVagina() && pc.hasCock())
 	{
-		output("\n\nSagging to the ground, you're secretly thankful for the perfect encasement. The strange material might let your [pc.cum] spurt out, but it can't seem to get back in. It rolls down your knuckles and [pc.legOrLegs] without ever actually getting inside, and as an added bonus, your [pc.cocks] ");
+		output("\n\nSagging to the ground, you’re secretly thankful for the perfect encasement. The strange material might let your [pc.cum] spurt out, but it can’t seem to get back in. It rolls down your knuckles and [pc.legOrLegs] without ever actually getting inside, and as an added bonus, your [pc.cocks] ");
 		if(pc.cockTotal() == 1) output("is");
 		else output("are");
 		output(" still rock-hard, too teased by feeling of sperm oozing down ");
 		if(pc.cockTotal() > 1) output("their sides");
 		else output("its side");
 		output(" to even entertain the idea of going soft.");
-		output("\n\nYou tell yourself that you've decided to jack off some more, but the simple truth is that your hand was already back around ");
+		output("\n\nYou tell yourself that you’ve decided to jack off some more, but the simple truth is that your hand was already back around ");
 		if(pc.cockTotal() > 1) output("a");
 		else output("your");
-		output(" dick, deliriously milking more bliss from your sensation-enhanced flesh. You doubt you could stop if you wanted to, and as the [pc.cum] rains down on your [pc.belly], you realize that you really don't want to.");
+		output(" dick, deliriously milking more bliss from your sensation-enhanced flesh. You doubt you could stop if you wanted to, and as the [pc.cum] rains down on your [pc.belly], you realize that you really don’t want to.");
 	}
 	//Cunts!
 	if(pc.hasVagina())
@@ -191,11 +191,11 @@ public function firstTimeOmniSuitOn():void
 		output(". Tendrils of the onyx goo gingerly explore the folds of your [pc.vaginas], sinking into the cracks and crevices before daring to slide across the ");
 		if(pc.wettestVaginalWetness() < 4) output("sopping wet");
 		else output("openly drooling");
-		output(" folds. It's a bizarre feeling, the latex sliding and binding, creeping and caressing your most private places, transforming the fleshy hole");
+		output(" folds. It’s a bizarre feeling, the latex sliding and binding, creeping and caressing your most private places, transforming the fleshy hole");
 		if(pc.totalVaginas() > 1) output("s");
 		output(" into gleaming perfection. It pauses for a second at your clitoral hood");
 		if(clits > 1) output("s");
-		output(" as if considering before diving in, tormenting you with explosive bliss. It's like a thousand thrashing tongues caressing your every inch while hundreds of different mouths suck away at ");
+		output(" as if considering before diving in, tormenting you with explosive bliss. It’s like a thousand thrashing tongues caressing your every inch while hundreds of different mouths suck away at ");
 		if(clits > 1) output("them");
 		else output("it");
 		output(".");
@@ -229,18 +229,18 @@ public function firstTimeOmniSuitOn():void
 		output(" feels more sensitive than ever before. Every caress is the perfect massage. Your [pc.clits] ");
 		if(clits == 1) output("is a lightning rod");
 		else output("are lightning rods");
-		output(" for orgasm or a firearm's trigger - one little squeeze makes you go off.");
+		output(" for orgasm or a firearm’s trigger - one little squeeze makes you go off.");
 		pc.orgasm();
 		pc.orgasm();
 	}
 	//No genitals
 	if(!pc.hasGenitals())
 	{
-		output("\n\nPanting in anticipation, you shudder when the tide of sable slides over your [pc.butt] and toward your [pc.asshole]. You feel it pause around your ring as if considering, then, all at once, it slides inward, wrapping your crinkled star in slick, perfect blackness. You reach back to feel it, promising yourself that you just want to see what it's doing back there, but the reality is that you just want to touch it. It tingles hotly, and you can only imagine how good it'll feel to slip your equally glossy fingers inside. Your [pc.asshole] pulses, winking open and closed at the idea.");
-		output("\n\nIt's better than you imagined. You ignore the audible squeak of latex-against-latex and thrust in farther, groaning at just how fucking sensitive your ass has become. Paroxiasms of pleasure ripped through you at the intrusion, and you find yourself squeezing down to heighten the bliss even as you press up to the knuckle. The resulting orgasm is almost too much for you, and you drop to the ground, laying out on your back so that you can continue to thrust inside.");
+		output("\n\nPanting in anticipation, you shudder when the tide of sable slides over your [pc.butt] and toward your [pc.asshole]. You feel it pause around your ring as if considering, then, all at once, it slides inward, wrapping your crinkled star in slick, perfect blackness. You reach back to feel it, promising yourself that you just want to see what it’s doing back there, but the reality is that you just want to touch it. It tingles hotly, and you can only imagine how good it’ll feel to slip your equally glossy fingers inside. Your [pc.asshole] pulses, winking open and closed at the idea.");
+		output("\n\nIt’s better than you imagined. You ignore the audible squeak of latex-against-latex and thrust in farther, groaning at just how fucking sensitive your ass has become. Paroxiasms of pleasure ripped through you at the intrusion, and you find yourself squeezing down to heighten the bliss even as you press up to the knuckle. The resulting orgasm is almost too much for you, and you drop to the ground, laying out on your back so that you can continue to thrust inside.");
 		output("\n\nAdding a third finger, you rapidly climb to the peak of your second orgasm, drooling all over yourself while you treat your anus as a squeaking sex-toy. ");
-		if(pc.libido() >= 50) output("You briefly make a second attempt at mentally justifying this newest descent into depravity, but honestly, you just don't care. You like to fuck. You like to fuck a lot, and if you want to fuck your own ass until you're a drooling wreck, so be it.");
-		else output("You try your damnedest to justify this sudden, pernicious desire for self-pleasure, but nothing comes to mind. The spikes of pleasure aren't helping. Whenever you get close to lying on your back and stuffing four fingers into your asshole, ecstasy short-circuits your brain. You give up before long. Why try to explain it?");
+		if(pc.libido() >= 50) output("You briefly make a second attempt at mentally justifying this newest descent into depravity, but honestly, you just don’t care. You like to fuck. You like to fuck a lot, and if you want to fuck your own ass until you’re a drooling wreck, so be it.");
+		else output("You try your damnedest to justify this sudden, pernicious desire for self-pleasure, but nothing comes to mind. The spikes of pleasure aren’t helping. Whenever you get close to lying on your back and stuffing four fingers into your asshole, ecstasy short-circuits your brain. You give up before long. Why try to explain it?");
 		output("\n\nYou close your eyes and listen to the squeaking of your asshole, forgetting all about the suit while you cum... and cum... and cum....");
 		pc.orgasm();
 		pc.orgasm();
@@ -254,14 +254,14 @@ public function firstTimeOmniSuitOn():void
 public function putOnDaOmniSuitFirstTime2():void
 {
 	clearOutput();
-	output("When you come to, you feel sore in all the right places and utterly satisfied, like you spent the better part of an evening on a drug and hooker-fueled bender. You're still wearing the suit, of course, ");
+	output("When you come to, you feel sore in all the right places and utterly satisfied, like you spent the better part of an evening on a drug and hooker-fueled bender. You’re still wearing the suit, of course, ");
 	//low libido variant
 	if(pc.libido() < 33)
 	{
 		output("but what you see when you look down shocks you.");
-		output("\n\nThe oily suit's surface has transformed from a second skin into a far more revealing, rubber-like covering. Your [pc.nipples] are completely concealed.");
-		if(pc.hasCock()) output(" Instead of seeing your [pc.cocks] in stark relief, jutting out proudly, there's a relatively chaste bulge, more rubbery material than cock.");
-		else if(pc.hasVagina()) output(" Instead of seeing your [pc.vaginas] in stark relief, engorged and fuckable, there's a featureless, almost chaste mound of rubber.");
+		output("\n\nThe oily suit’s surface has transformed from a second skin into a far more revealing, rubber-like covering. Your [pc.nipples] are completely concealed.");
+		if(pc.hasCock()) output(" Instead of seeing your [pc.cocks] in stark relief, jutting out proudly, there’s a relatively chaste bulge, more rubbery material than cock.");
+		else if(pc.hasVagina()) output(" Instead of seeing your [pc.vaginas] in stark relief, engorged and fuckable, there’s a featureless, almost chaste mound of rubber.");
 		output(" Feeling around your rear, you find your [pc.asshole] has been similarly obscured.");
 	}
 	//Med libido variant
@@ -274,7 +274,7 @@ public function putOnDaOmniSuitFirstTime2():void
 		{
 			output("\n\nYour [pc.cocks] fare");
 			if(pc.cockTotal() == 1) output("s");
-			output(" little better. The suit's strange material has wrapped around ");
+			output(" little better. The suit’s strange material has wrapped around ");
 			if(pc.cockTotal() == 1) output("it");
 			else output("them");
 			output(" a little more thickly, perhaps to conceal some of ");
@@ -304,16 +304,16 @@ public function putOnDaOmniSuitFirstTime2():void
 		//Neither
 		if(!pc.hasGenitals())
 		{
-			output("\n\nYou can feel that your [pc.asshole] is no longer so completely exposed, but the perfectly-smoothed surfaces of your cheeks don't do much to hide it. Whenever you move, you can feel them come apart, exposing the shape of your rectal entrance, if not the details themselves. It's like the suit is tighter around your sides, trying to tug your cheeks apart, giving you the appearance of a nearly shameless buttslut. You shudder to imagine what sort of show you'll be giving just by [pc.moving] away.");
+			output("\n\nYou can feel that your [pc.asshole] is no longer so completely exposed, but the perfectly-smoothed surfaces of your cheeks don’t do much to hide it. Whenever you move, you can feel them come apart, exposing the shape of your rectal entrance, if not the details themselves. It’s like the suit is tighter around your sides, trying to tug your cheeks apart, giving you the appearance of a nearly shameless buttslut. You shudder to imagine what sort of show you’ll be giving just by [pc.moving] away.");
 		}
 		//Merge
-		output("\n\nAt least you're technically decent. Only the most prudish worlds would be able to come up with a crime for [pc.walking] around completely covered.");
+		output("\n\nAt least you’re technically decent. Only the most prudish worlds would be able to come up with a crime for [pc.walking] around completely covered.");
 	}
 	//High libido variant
 	else
 	{
 		output("but what you see when you look down has you flushing with fresh excitement.");
-		output("\n\nYour latex-like coating has continued to thicken during your slumber, exchanging perfect detail for a sleeker, mirror shine. Your whole body looks glossy and polished. Why, you can even see your reflection in your [pc.chest]. It stares back up at you with a lusty look in its eyes. Protruding forth massively, your [pc.nipples] do their best to distort the image. They're too smooth and puffy, too lacquered with latex to appear as anything more than ornaments on a sex-toy. Their very existence is an invitation to touch, begging anyone who looks in their general direction to pinch one and lead you around by the tingling bundle of nerves.");
+		output("\n\nYour latex-like coating has continued to thicken during your slumber, exchanging perfect detail for a sleeker, mirror shine. Your whole body looks glossy and polished. Why, you can even see your reflection in your [pc.chest]. It stares back up at you with a lusty look in its eyes. Protruding forth massively, your [pc.nipples] do their best to distort the image. They’re too smooth and puffy, too lacquered with latex to appear as anything more than ornaments on a sex-toy. Their very existence is an invitation to touch, begging anyone who looks in their general direction to pinch one and lead you around by the tingling bundle of nerves.");
 		//Dick
 		if(pc.hasCock())
 		{
@@ -324,9 +324,9 @@ public function putOnDaOmniSuitFirstTime2():void
 			if(pc.cockTotal() == 1) output("It looks");
 			else output("They look");
 			output(" better than ever before now that ");
-			if(pc.cockTotal() == 1) output("it's");
-			else output("they've");
-			output(" been suitably adorned in your shining suit, thicker and fatter with each vein and feature highlighted by a glossy surface that just begs to be slathered in spit, pussy-juice, or a mix of both. Even when completely soft, the added artificial sturdiness should keep them jutting forward in a perfect advertisement of your capability as a mate. The strange material is far more capable than any real latex or rubber ever could be. It looks perfect and smooth when you're small, and when you get hard, like now, it expands right alongside your [pc.cocks], perfectly mated to your mating tool");
+			if(pc.cockTotal() == 1) output("it’s");
+			else output("they’ve");
+			output(" been suitably adorned in your shining suit, thicker and fatter with each vein and feature highlighted by a glossy surface that just begs to be slathered in spit, pussy-juice, or a mix of both. Even when completely soft, the added artificial sturdiness should keep them jutting forward in a perfect advertisement of your capability as a mate. The strange material is far more capable than any real latex or rubber ever could be. It looks perfect and smooth when you’re small, and when you get hard, like now, it expands right alongside your [pc.cocks], perfectly mated to your mating tool");
 			if(pc.cockTotal() > 1) output("s");
 			output(".");
 		}
@@ -337,7 +337,7 @@ public function putOnDaOmniSuitFirstTime2():void
 			if(pc.totalVaginas() == 1) output("s");
 			output(" to jut outward, flush as if ");
 			if(pc.totalVaginas() == 1) output("it has");
-			else output("they've");
+			else output("they’ve");
 			output(" spent the last hour being aggressively teased and fondled. [pc.EachClit] appears just as swollen if not more, proudly standing out from ");
 			if(pc.totalClits() == 1) output("its hood");
 			else output("their hoods");
@@ -347,30 +347,30 @@ public function putOnDaOmniSuitFirstTime2():void
 			output(". Most wonderfully of all, your erotic exterior coating still permits your feminine moisture through - and you expect it will allow cum through just as easily.");
 		}
 		//Butthole
-		output("\n\nThough it remains steadfastly hidden from your view, you can feel the changes in your [pc.asshole] as well. The shiny black goo has very obviously thickened around the edge of your rim, making it feel bloated and swollen - all while transmitting sensation more effectively than your own skin. You touch it once, just to feel and gasp. It's like a fat little doughnut with a crinkly hole in the middle, ready to stretch around anything you dare to put inside. What's more, the way contact is sending lewd little shivers up your spine is decidedly distracting");
+		output("\n\nThough it remains steadfastly hidden from your view, you can feel the changes in your [pc.asshole] as well. The shiny black goo has very obviously thickened around the edge of your rim, making it feel bloated and swollen - all while transmitting sensation more effectively than your own skin. You touch it once, just to feel and gasp. It’s like a fat little doughnut with a crinkly hole in the middle, ready to stretch around anything you dare to put inside. What’s more, the way contact is sending lewd little shivers up your spine is decidedly distracting");
 		if(pc.hasVagina()) output(", almost vaginal in nature.");
-		else output(". You imagine that it isn't far off from a pussy... only in your butt.");
+		else output(". You imagine that it isn’t far off from a pussy... only in your butt.");
 
 		//Merge
-		output("\n\nThe strangest thing is that you are technically 'decent' by the U.G.C.'s vague standards. Clean, sterile black covers every part of your body from the neck down. Of course, coverage doesn't equal concealment, but here on the frontier, you doubt anyone will care. You can [pc.walk] around showing off your body to the whole universe 100% of the time, even fuck in it, apparently, all without a care in the world.");
+		output("\n\nThe strangest thing is that you are technically ‘decent’ by the U.G.C.’s vague standards. Clean, sterile black covers every part of your body from the neck down. Of course, coverage doesn’t equal concealment, but here on the frontier, you doubt anyone will care. You can [pc.walk] around showing off your body to the whole universe 100% of the time, even fuck in it, apparently, all without a care in the world.");
 		if(pc.exhibitionism() >= 66) output(" Stars, this is truly the perfect piece of clothing.");
 		else if(pc.exhibitionism() >= 33) output(" The thought gives you a naughty thrill. Are you really that much of an exhibitionist?");
-		else output(" The thought gives you a nervous thrill. Sure, it's sexy as hell, but doing that would turn you into some kind of exhibitionist.");
+		else output(" The thought gives you a nervous thrill. Sure, it’s sexy as hell, but doing that would turn you into some kind of exhibitionist.");
 	}
 	//Merge
-	output("\n\nThe collar chimes, and a demure voice purrs, <i>\"Initial configuration and neural interface complete. Congratulations on the purchase of your new Omnisuit, the ultimate in wearable technology. To remove, simply press the stud on the control collar. No other manual control is needed - the Omnisuit will shape itself to match your desires, all while ensuring that tactile sensation exceeds that of uncovered skin.\"</i> There's a long pause, followed by a second message, <i>\"This prototype is not for resale or display in any fashion. Violation of your NDA may result in significant legal penalties.\"</i>");
-	output("\n\nGood thing you didn't sign any NDA. You must admit that it does look pretty good, and with its current design, you won't have a problem [pc.walking] around the more prudish parts of the galaxy.");
+	output("\n\nThe collar chimes, and a demure voice purrs, <i>“Initial configuration and neural interface complete. Congratulations on the purchase of your new Omnisuit, the ultimate in wearable technology. To remove, simply press the stud on the control collar. No other manual control is needed - the Omnisuit will shape itself to match your desires, all while ensuring that tactile sensation exceeds that of uncovered skin.”</i> There’s a long pause, followed by a second message, <i>“This prototype is not for resale or display in any fashion. Violation of your NDA may result in significant legal penalties.”</i>");
+	output("\n\nGood thing you didn’t sign any NDA. You must admit that it does look pretty good, and with its current design, you won’t have a problem [pc.walking] around the more prudish parts of the galaxy.");
 	if(pc.libido() < 33)
 	{
 		output(" As an experiment, you imagine yourself about to have sex, curious what will happen. Nothing happens at first, but when you truly focus in on the fantasy");
 
-		output(", the suit's rubbery surface thins, exposing your [pc.nipples]");
+		output(", the suit’s rubbery surface thins, exposing your [pc.nipples]");
 		if(pc.hasCock() || pc.balls > 0 || pc.hasVagina()) output(",");
 		output(" ");
 		if(pc.hasCock()) output("[pc.cocks], ");
 		if(pc.balls > 0) output("[pc.balls], ");
 		if(pc.hasVagina()) output("[pc.vaginas], ");
-		output("and [pc.asshole]. They're still coated in a thin veneer of inky blackness, but that's a bonus, right? Every inch of shrinkwrapped flesh is enticingly, distractingly sensitive. If you aren't careful, you're going to waste the whole day away masturbating.");
+		output("and [pc.asshole]. They’re still coated in a thin veneer of inky blackness, but that’s a bonus, right? Every inch of shrinkwrapped flesh is enticingly, distractingly sensitive. If you aren’t careful, you’re going to waste the whole day away masturbating.");
 	}
 	else if(pc.libido() < 66)
 	{
@@ -388,11 +388,11 @@ public function putOnDaOmniSuitFirstTime2():void
 		output(" In addition, your [pc.nipples] gain in resolution second by second, freed from the thick layers of latex");
 		if(pc.hasNormalNipples() || pc.hasInvertedNipples() || pc.hasNippleCocks() || pc.hasTentacleNipples()) output(" to stand proud and hot,");
 		else output(" and");
-		output(" ready to be fondled. Well, at least you can fuck in this thing. You brush a thigh and shudder at just how pleasant and wonderful it feels. And if your thigh feels like that... No. You stop yourself before you wind up losing the whole day masturbating to a latex-fetishist's wet dream.");
+		output(" ready to be fondled. Well, at least you can fuck in this thing. You brush a thigh and shudder at just how pleasant and wonderful it feels. And if your thigh feels like that... No. You stop yourself before you wind up losing the whole day masturbating to a latex-fetishist’s wet dream.");
 	}
 	else
 	{
-		output(" You consider desiring the suit to change shape, but shrug after regarding your enhanced attributes. You like to get fucked... a lot, and you can't imagine a world where a line of potential partners aren't following you around, waiting their turn for a chance... not while you're wearing this.");
+		output(" You consider desiring the suit to change shape, but shrug after regarding your enhanced attributes. You like to get fucked... a lot, and you can’t imagine a world where a line of potential partners aren’t following you around, waiting their turn for a chance... not while you’re wearing this.");
 	}
 	statOutOmniCollar();
 	output("\n\nOr you could push the button and take it off.");
@@ -410,7 +410,7 @@ public function omnisuitChangeUpdate():void
 	//Low libido -> med
 	if(pc.armor.defense == 3 && pc.libido() >= 33)
 	{
-		AddLogEvent("Your Omnisuit begins to thin out, showing more of your body with each passing second. You soon realize that it's changing to put your body on display, brazenly showing your sexual attributes while still keeping you legally clothed. You suppose it could be worse - it does seem to mask some of the finer details. Perhaps the suit is responding to your enhanced libido?", "passive");
+		AddLogEvent("Your Omnisuit begins to thin out, showing more of your body with each passing second. You soon realize that it’s changing to put your body on display, brazenly showing your sexual attributes while still keeping you legally clothed. You suppose it could be worse - it does seem to mask some of the finer details. Perhaps the suit is responding to your enhanced libido?", "passive");
 		statOutOmniCollar();
 	}
 	//Medium libido to high
@@ -420,7 +420,7 @@ public function omnisuitChangeUpdate():void
 		if(pc.hasCock()) ExtendLogEvent(ParseText("[pc.cocks], fattening around the veins, highlighting every feature in stark, black perfection."));
 		else if(pc.hasVagina()) ExtendLogEvent(ParseText("[pc.vaginas], fattening around the lips, highlighting your femininity in stark, black perfection."));
 		else ExtendLogEvent(ParseText("[pc.asshole], fatting around the ring, thickening your pucker into a shining, fuckable doughnut."));
-		ExtendLogEvent(" And that isn't the only place that changes. All over, the suit becomes subtly more lewd, shifting to better display your body. You've become a walking advertisement for sex, perhaps as a response to your ever-heightening libido.");
+		ExtendLogEvent(" And that isn’t the only place that changes. All over, the suit becomes subtly more lewd, shifting to better display your body. You’ve become a walking advertisement for sex, perhaps as a response to your ever-heightening libido.");
 		statOutOmniCollar();
 	}
 }

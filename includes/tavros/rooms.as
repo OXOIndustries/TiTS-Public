@@ -3,7 +3,7 @@ public function initTavrosRooms():void
 {
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";
-	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon's Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father's fortune. Luckily, the galaxy is vast. Your cousin won't be claiming anything for at least a few months if the scale of your father's challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";
+	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon’s Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father’s fortune. Luckily, the galaxy is vast. Your cousin won’t be claiming anything for at least a few months if the scale of your father’s challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";
 	rooms["HOTEL ROOM"].planet = "TAVROS STATION";
 	rooms["HOTEL ROOM"].system = "SYSTEM: KALAS";
 	rooms["HOTEL ROOM"].eastExit = "ANON'S BOARD HALL";
@@ -24,7 +24,7 @@ public function initTavrosRooms():void
 	
 	rooms["HOTEL CORRIDOR"] = new RoomClass(this);
 	rooms["HOTEL CORRIDOR"].roomName = "\nCORRIDOR";
-	rooms["HOTEL CORRIDOR"].description = "A small, cramped corridor connects many of the rooms-for-rent offered at Anon's Bar and Board, locked away behind a security acccess door to keep out ‘undesireables’. The furnishings are cheap, the walls are dank and horrible, and the floor is a mess. Not that it matters much; not like you'd willingly spend much time in a corridor.";
+	rooms["HOTEL CORRIDOR"].description = "A small, cramped corridor connects many of the rooms-for-rent offered at Anon’s Bar and Board, locked away behind a security acccess door to keep out ‘undesireables’. The furnishings are cheap, the walls are dank and horrible, and the floor is a mess. Not that it matters much; not like you’d willingly spend much time in a corridor.";
 	rooms["HOTEL CORRIDOR"].planet = "TAVROS STATION";
 	rooms["HOTEL CORRIDOR"].system = "SYSTEM: KALAS";
 	rooms["HOTEL CORRIDOR"].moveMinutes = 1;
@@ -52,8 +52,8 @@ public function initTavrosRooms():void
 
 	//101. Anon's Board Hall
 	rooms["ANON'S BOARD HALL"] = new RoomClass(this);
-	rooms["ANON'S BOARD HALL"].roomName = "ANON'S BOARD\nHALL";
-	rooms["ANON'S BOARD HALL"].description = "Located at the top of a stairway above the bar, this short hallway stretches briefly to the north before coming to an unremarkable, metallic dead-end. Automated doorways line the east and west sides, connecting to different rooms, their surfaces kept moderately clean but pitted with rust here or there. This isn't the kind of place you'd want to stay for long, if you could help it. Anon's Bar and Board lies down the steel-grated stairwell to the south.";
+	rooms["ANON'S BOARD HALL"].roomName = "ANON’S BOARD\nHALL";
+	rooms["ANON'S BOARD HALL"].description = "Located at the top of a stairway above the bar, this short hallway stretches briefly to the north before coming to an unremarkable, metallic dead-end. Automated doorways line the east and west sides, connecting to different rooms, their surfaces kept moderately clean but pitted with rust here or there. This isn’t the kind of place you’d want to stay for long, if you could help it. Anon’s Bar and Board lies down the steel-grated stairwell to the south.";
 	rooms["ANON'S BOARD HALL"].planet = "TAVROS STATION";
 	rooms["ANON'S BOARD HALL"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BOARD HALL"].southExit = "ANON'S BAR AND BOARD";
@@ -65,8 +65,8 @@ public function initTavrosRooms():void
 
 	//102 "ANON'S BAR AND BOARD". Anon's Bar and Board
 	rooms["ANON'S BAR AND BOARD"] = new RoomClass(this);
-	rooms["ANON'S BAR AND BOARD"].roomName = "ANON'S BAR\nAND BOARD";
-	rooms["ANON'S BAR AND BOARD"].description = "Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. A rickety metal stairway rises up to the north, leading to the board portion of this establishment. You've already roomed there once, and the accomodations were far from great. A door to the west opens out into a central thoroughfare.";
+	rooms["ANON'S BAR AND BOARD"].roomName = "ANON’S BAR\nAND BOARD";
+	rooms["ANON'S BAR AND BOARD"].description = "Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. A rickety metal stairway rises up to the north, leading to the board portion of this establishment. You’ve already roomed there once, and the accomodations were far from great. A door to the west opens out into a central thoroughfare.";
 	rooms["ANON'S BAR AND BOARD"].planet = "TAVROS STATION";
 	rooms["ANON'S BAR AND BOARD"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BAR AND BOARD"].northExit = "ANON'S BOARD HALL";
@@ -80,8 +80,8 @@ public function initTavrosRooms():void
 
 	//103 "MERCHANT'S THOROUGHFARE". Merchant's Thoroughfare
 	rooms["MERCHANT'S THOROUGHFARE"] = new RoomClass(this);
-	rooms["MERCHANT'S THOROUGHFARE"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["MERCHANT'S THOROUGHFARE"].description = "The crowds in this part of the station are particularly thick thanks to the rush. You hear talk of old shops closing, their owners out trawling the rim, trying to strike it rich, while newer stores have opened their doors to take their place. For now, Anon's Bar and Board is ready for your business to the east. Its interior promises cheap but delicious foods likely to broaden the waistline, but then again, what are you to expect from bar food?";
+	rooms["MERCHANT'S THOROUGHFARE"].roomName = "MERCHANT’S\nTHOROUGHFARE";
+	rooms["MERCHANT'S THOROUGHFARE"].description = "The crowds in this part of the station are particularly thick thanks to the rush. You hear talk of old shops closing, their owners out trawling the rim, trying to strike it rich, while newer stores have opened their doors to take their place. For now, Anon’s Bar and Board is ready for your business to the east. Its interior promises cheap but delicious foods likely to broaden the waistline, but then again, what are you to expect from bar food?";
 	rooms["MERCHANT'S THOROUGHFARE"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE"].eastExit = "ANON'S BAR AND BOARD";
@@ -96,8 +96,8 @@ public function initTavrosRooms():void
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 
 	rooms["MERCHANT'S THOROUGHFARE2"] = new RoomClass(this);
-	rooms["MERCHANT'S THOROUGHFARE2"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["MERCHANT'S THOROUGHFARE2"].description = "The busy merchant's deck sprawls out before you. Arranged in a circular pattern, it winds its way around the entire station filled with shops of every style and variety. A cornucopia of races attend to their business here, forming a crowd as dense and multicultered as any you've seen before. People of all walks of life have come together here, united by the Rush, or at least united by a desire to eke a profit out of it.";
+	rooms["MERCHANT'S THOROUGHFARE2"].roomName = "MERCHANT’S\nTHOROUGHFARE";
+	rooms["MERCHANT'S THOROUGHFARE2"].description = "The busy merchant’s deck sprawls out before you. Arranged in a circular pattern, it winds its way around the entire station filled with shops of every style and variety. A cornucopia of races attend to their business here, forming a crowd as dense and multicultered as any you’ve seen before. People of all walks of life have come together here, united by the Rush, or at least united by a desire to eke a profit out of it.";
 
 	//OLD DESC: UPDATE WITH TAVROS EXPACKThe station curves away to the north and east from here, though the eastern passages are presently shuttered for maintenance. ";
 	rooms["MERCHANT'S THOROUGHFARE2"].planet = "TAVROS STATION";
@@ -199,7 +199,7 @@ public function initTavrosRooms():void
 
 	//109 "BETHS BROADS" Beth's Busty Broads
 	rooms["BETHS BROADS"] = new RoomClass(this);
-	rooms["BETHS BROADS"].roomName = "BETH'S\nBUSTY BROADS";
+	rooms["BETHS BROADS"].roomName = "BETH’S\nBUSTY BROADS";
 	rooms["BETHS BROADS"].description = "";
 	rooms["BETHS BROADS"].planet = "TAVROS STATION";
 	rooms["BETHS BROADS"].system = "SYSTEM: KALAS";
@@ -239,7 +239,7 @@ public function initTavrosRooms():void
 
 	//9003 - 110 MERCHANT'S THOROUGHFARE
 	rooms["110"] = new RoomClass(this);
-	rooms["110"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["110"].roomName = "MERCHANT’S\nTHOROUGHFARE";
 	rooms["110"].description = "The merchant’s thoroughfare twists through the station on its circular route, bending gradually to the east the further north you go. The shops in the immediate area have all been shuttered for now, left vacant until a brave soul makes an attempt at mercantilism.";
 	rooms["110"].planet = "TAVROS STATION";
 	rooms["110"].system = "SYSTEM: KALAS";
@@ -255,7 +255,7 @@ public function initTavrosRooms():void
 
 	//9004
 	rooms["9004"] = new RoomClass(this);
-	rooms["9004"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9004"].roomName = "MERCHANT’S\nTHOROUGHFARE";
 	rooms["9004"].description = "The walls in this section of the merchant deck are suspiciously bare, though you wager the lack of open storefronts has more to do with the awkward curvature of the station hall than a lack of business. Sapients of all descriptions pass by on all sides, hurrying along to their destinations. You’re very clearly reminded of why they call it a “rush.”";
 	rooms["9004"].planet = "TAVROS STATION";
 	rooms["9004"].system = "SYSTEM: KALAS";
@@ -270,7 +270,7 @@ public function initTavrosRooms():void
 
 	//9005
 	rooms["9005"] = new RoomClass(this);
-	rooms["9005"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9005"].roomName = "MERCHANT’S\nTHOROUGHFARE";
 	rooms["9005"].description = "Glass windows along the north of the passage brazenly display a series of mannequins in undergarments both fashionable and enticing. “Mi Amour” is the name of it, judging by the red-glowing sign above. It’s door is open for business, but there are many other shops to peruse on the merchant deck.";
 	rooms["9005"].planet = "TAVROS STATION";
 	rooms["9005"].system = "SYSTEM: KALAS";
@@ -285,7 +285,7 @@ public function initTavrosRooms():void
 
 	//9006
 	rooms["9006"] = new RoomClass(this);
-	rooms["9006"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9006"].roomName = "MERCHANT’S\nTHOROUGHFARE";
 	rooms["9006"].description = "A spacious window (or convincing display) lines the curving wall to the north. The view is magnificent. You can see the sun drift across your view as the station spins, and just as it passes beyond sight, the faint sparkles of the system’s ice belt light up like shining diamonds against the glimmering starfield behind. A few kaithrit have their noses pressed up against the glass, their doubled tails curled up in excitement.";
 	rooms["9006"].planet = "TAVROS STATION";
 	rooms["9006"].system = "SYSTEM: KALAS";
@@ -299,7 +299,7 @@ public function initTavrosRooms():void
 
 	//9007
 	rooms["9007"] = new RoomClass(this);
-	rooms["9007"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9007"].roomName = "MERCHANT’S\nTHOROUGHFARE";
 	rooms["9007"].description = "Holographic cow-girls cover the walls of this passage, imploring you to visit scenic New Texas, “The reason they call this galaxy the milky way!” A display with buff-looking bull-boys flanks the bovine lasses, unsubtly appealing to another demographic. Both sections of hall have attentive crowds of curious onlookers.\n\nNeon green and pink light spills across the deck plating from a store to the north, the infamous logo of the Tamani Corporation above the door advising potential patrons of the establishment what lays inside.";
 	rooms["9007"].planet = "TAVROS STATION";
 	rooms["9007"].system = "SYSTEM: KALAS";
@@ -314,8 +314,8 @@ public function initTavrosRooms():void
 
 	//9008
 	rooms["9008"] = new RoomClass(this);
-	rooms["9008"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["9008"].description = "Bending away to the south and west, the merchant’s thoroughfare snakes its way around the circumference of the station, blazing a wide path between seemingly endless storefronts. Many in the immediate area are closed, shuttered and covered with temporary advertisements. \"Visit beautiful Bogrum 12! Luxurious mud baths, sulfur springs, and exotic slug women await you!\"";
+	rooms["9008"].roomName = "MERCHANT’S\nTHOROUGHFARE";
+	rooms["9008"].description = "Bending away to the south and west, the merchant’s thoroughfare snakes its way around the circumference of the station, blazing a wide path between seemingly endless storefronts. Many in the immediate area are closed, shuttered and covered with temporary advertisements. “Visit beautiful Bogrum 12! Luxurious mud baths, sulfur springs, and exotic slug women await you!”";
 	rooms["9008"].planet = "TAVROS STATION";
 	rooms["9008"].system = "SYSTEM: KALAS";
 	rooms["9008"].southExit = "9009";
@@ -342,7 +342,7 @@ public function initTavrosRooms():void
 	//9010
 	rooms["9010"] = new RoomClass(this);
 	rooms["9010"].roomName = "RED\nLIGHT ZONE";
-	rooms["9010"].description = "You’re deep in Tavros Station’s red light district now. Foot traffic here is a little thinner than elsewhere on the merchant deck, but what’s here is far more lurid. Nude or barely-clothed bodies are frequently on display, stretching the taboo against public sex to the breaking point.\n\nThere is a long storefront here, though you cannot see inside. Instead, the walls to either side of the door are lined with holo projections wearing risque BDSM outfits. They're paddling each other or playing with long, phallic objects for your pleasure. As you watch on, a shimmering model gives you a cottettish wink, gesturing for you to get inside.\n\nThe sign over the door reads 'The Happy Tails', with the name underlined by a gigantic glowing whip.";
+	rooms["9010"].description = "You’re deep in Tavros Station’s red light district now. Foot traffic here is a little thinner than elsewhere on the merchant deck, but what’s here is far more lurid. Nude or barely-clothed bodies are frequently on display, stretching the taboo against public sex to the breaking point.\n\nThere is a long storefront here, though you cannot see inside. Instead, the walls to either side of the door are lined with holo projections wearing risque BDSM outfits. They’re paddling each other or playing with long, phallic objects for your pleasure. As you watch on, a shimmering model gives you a cottettish wink, gesturing for you to get inside.\n\nThe sign over the door reads ‘The Happy Tails’, with the name underlined by a gigantic glowing whip.";
 	rooms["9010"].planet = "TAVROS STATION";
 	rooms["9010"].system = "SYSTEM: KALAS";
 	rooms["9010"].southExit = "9011";
@@ -356,7 +356,7 @@ public function initTavrosRooms():void
 	//9011
 	rooms["9011"] = new RoomClass(this);
 	rooms["9011"].roomName = "RED\nLIGHT ZONE";
-	rooms["9011"].description = "One of the displays catches your attention, glaring and purple: \"De-Stress For Less! Beth’s Broads: They’re built to please!\" It’s quite clear what they’re selling: a service that would be illegal in more prudish places. Here on the frontier? Companionship can be had few credits - or a few thousand. Crimson lighting paves the way north and south through the red light section of the merchant deck.";
+	rooms["9011"].description = "One of the displays catches your attention, glaring and purple: “De-Stress For Less! Beth’s Broads: They’re built to please!” It’s quite clear what they’re selling: a service that would be illegal in more prudish places. Here on the frontier? Companionship can be had few credits - or a few thousand. Crimson lighting paves the way north and south through the red light section of the merchant deck.";
 	rooms["9011"].planet = "TAVROS STATION";
 	rooms["9011"].system = "SYSTEM: KALAS";
 	rooms["9011"].southExit = "9012";
@@ -369,7 +369,7 @@ public function initTavrosRooms():void
 	//9012
 	rooms["9012"] = new RoomClass(this);
 	rooms["9012"].roomName = "RED\nLIGHT ZONE";
-	rooms["9012"].description = "A glowing pink sign announces that \"Beth's Busty Broads\" is open for business to the east. Skimpy girls and broad-chested males alike pass through doors that proudly proclaim “Never closed!” You can imagine why. Sexual needs don’t keep hours of operation, and neither does this brothel. The other side of the passage houses a simplistic laser light show and thumping sound system, designed to draw the eye to Beth’s.";
+	rooms["9012"].description = "A glowing pink sign announces that “Beth’s Busty Broads” is open for business to the east. Skimpy girls and broad-chested males alike pass through doors that proudly proclaim “Never closed!” You can imagine why. Sexual needs don’t keep hours of operation, and neither does this brothel. The other side of the passage houses a simplistic laser light show and thumping sound system, designed to draw the eye to Beth’s.";
 	rooms["9012"].planet = "TAVROS STATION";
 	rooms["9012"].system = "SYSTEM: KALAS";
 	rooms["9012"].southExit = "9013";
@@ -382,7 +382,7 @@ public function initTavrosRooms():void
 
 	//9013
 	rooms["9013"] = new RoomClass(this);
-	rooms["9013"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9013"].roomName = "MERCHANT’S\nTHOROUGHFARE";
 	rooms["9013"].description = "The gradually arcing curve of the merchant deck bends away to the north and the west from here. In the former direction is a tunnel lighted in a hazy, ruby glow - the red light zone. Many shops of ill repute conduct business in that area, and holograms warn away any sapients below their species’ age of consent. The other direction wraps back around, eventually leading to the lift, where more mundane boutiques ply their wares.";
 	rooms["9013"].planet = "TAVROS STATION";
 	rooms["9013"].system = "SYSTEM: KALAS";
@@ -396,8 +396,8 @@ public function initTavrosRooms():void
 
 	//9014
 	rooms["9014"] = new RoomClass(this);
-	rooms["9014"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["9014"].description = "There’s no substitute for seeing the kind of racial diversity that the rush brings on. Daynar and ovir alike fill the corridor, mixed with more humans and ausar than you care to count. A party of burly thraggen part the mismatched races more effectively than any wall of hardlight ever could. Nobody wants to mess with a few hundred pounds of green-skinned fury. The shops in the immediate area are all shut down, barricaded up by the health department, but glowing signs still declare, \"Reduce protonic thruster buildup with SKREMULAX! Now in blue!\"";
+	rooms["9014"].roomName = "MERCHANT’S\nTHOROUGHFARE";
+	rooms["9014"].description = "There’s no substitute for seeing the kind of racial diversity that the rush brings on. Daynar and ovir alike fill the corridor, mixed with more humans and ausar than you care to count. A party of burly thraggen part the mismatched races more effectively than any wall of hardlight ever could. Nobody wants to mess with a few hundred pounds of green-skinned fury. The shops in the immediate area are all shut down, barricaded up by the health department, but glowing signs still declare, “Reduce protonic thruster buildup with SKREMULAX! Now in blue!”";
 	rooms["9014"].planet = "TAVROS STATION";
 	rooms["9014"].system = "SYSTEM: KALAS";
 	rooms["9014"].westExit = "9015";
@@ -410,7 +410,7 @@ public function initTavrosRooms():void
 
 	//9015
 	rooms["9015"] = new RoomClass(this);
-	rooms["9015"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9015"].roomName = "MERCHANT’S\nTHOROUGHFARE";
 	rooms["9015"].description = "A neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open to the east, allowing you a glimpse of the salon inside. The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you follow the arcing thoroughfare east, you could visit the red light zone.";
 	rooms["9015"].planet = "TAVROS STATION";
 	rooms["9015"].system = "SYSTEM: KALAS";
@@ -425,7 +425,7 @@ public function initTavrosRooms():void
 
 	//9016
 	rooms["9016"] = new RoomClass(this);
-	rooms["9016"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9016"].roomName = "MERCHANT’S\nTHOROUGHFARE";
 	rooms["9016"].description = "The cold metal flooring gives way to a high-dollar screen under your [pc.feet], advertising the latest “Sphinxes of Arachnu” flick, subtitled, “This Time, It’s Purrsonal.” It looks like the kind of movie that spent half its budget on special effects and the other half on feminine eye-candy. You doubt they spent more than twenty credits on the script.";
 	rooms["9016"].planet = "TAVROS STATION";
 	rooms["9016"].system = "SYSTEM: KALAS";
@@ -439,8 +439,8 @@ public function initTavrosRooms():void
 
 	//9017
 	rooms["9017"] = new RoomClass(this);
-	rooms["9017"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["9017"].description = "You’ve reached the epicenter of north and east on Tavros Station’s merchant deck. The curving gray corridor arcs away in both directions, filled with the sights and sounds of a hundred different worlds. Gleaming holograms advertise, \"You can keep scrubbing, but you'll never erase those drives the way E-Horizons can!\" while women in skimpy leotards offer free samples of something only a galotian or rahn could hope to digest.";
+	rooms["9017"].roomName = "MERCHANT’S\nTHOROUGHFARE";
+	rooms["9017"].description = "You’ve reached the epicenter of north and east on Tavros Station’s merchant deck. The curving gray corridor arcs away in both directions, filled with the sights and sounds of a hundred different worlds. Gleaming holograms advertise, “You can keep scrubbing, but you’ll never erase those drives the way E-Horizons can!” while women in skimpy leotards offer free samples of something only a galotian or rahn could hope to digest.";
 	rooms["9017"].planet = "TAVROS STATION";
 	rooms["9017"].system = "SYSTEM: KALAS";
 	rooms["9017"].northExit = "9018";
@@ -453,7 +453,7 @@ public function initTavrosRooms():void
 
 	//9018
 	rooms["9018"] = new RoomClass(this);
-	rooms["9018"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9018"].roomName = "MERCHANT’S\nTHOROUGHFARE";
 	rooms["9018"].description = "Crowds are thick this close to the lifts, and the preponderance of nearby shops isn’t helping matters. Most stores closed down, either to get away from the Rush madness or to try to strike it rich themselves. Yet the storefronts in this area are as lively as ever. New businesses have sprung up in the bones of the old, and there’s more than enough clientele to keep them busy.";
 	rooms["9018"].planet = "TAVROS STATION";
 	rooms["9018"].system = "SYSTEM: KALAS";
@@ -499,7 +499,7 @@ public function initTavrosRooms():void
 	//1002 South Plaza
 	rooms["RESIDENTIAL DECK 2"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 2"].roomName = "SOUTH\nPLAZA";
-	rooms["RESIDENTIAL DECK 2"].description = "You're in front of a row of elevator shafts surrounded by a large plaza area. The design reminds you of a city square, but instead of a fountain feature, the lifts are the centerpiece. Still, there's all the common fare of a common space; there are decorative garden beds with exotic yet harmless shrubbery and park benches to sit on.\n\nBeyond the sprawling public space and in each of the four cardinal directions are residential arcades; high-roofed walkways marked by countless successive arches.";
+	rooms["RESIDENTIAL DECK 2"].description = "You’re in front of a row of elevator shafts surrounded by a large plaza area. The design reminds you of a city square, but instead of a fountain feature, the lifts are the centerpiece. Still, there’s all the common fare of a common space; there are decorative garden beds with exotic yet harmless shrubbery and park benches to sit on.\n\nBeyond the sprawling public space and in each of the four cardinal directions are residential arcades; high-roofed walkways marked by countless successive arches.";
 	rooms["RESIDENTIAL DECK 2"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 2"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 2"].northExit = "LIFT: RESIDENTIAL DECK";
@@ -516,7 +516,7 @@ public function initTavrosRooms():void
 	//1003 South-East Plaza
 	rooms["RESIDENTIAL DECK 3"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 3"].roomName = "SOUTH-EAST\nPLAZA";
-	rooms["RESIDENTIAL DECK 3"].description = "This corner of the residential plaza is quite busy. The foot traffic is between the large elevator shafts in the center of the plaza and people's dwellings. There are apartments lining the plaza, a premium spot for anyone in a rush.\n\nThere are some large trees here casting shade upon the paved ground. The only breeze is from the deck's air conditioning systems, which keep everything at a nice, mild temperature.\n\nYou can follow the curve of the plaza here northward, towards the bridge to the western ward. You can also head west where the entrance to the deck's elevators are.";
+	rooms["RESIDENTIAL DECK 3"].description = "This corner of the residential plaza is quite busy. The foot traffic is between the large elevator shafts in the center of the plaza and people’s dwellings. There are apartments lining the plaza, a premium spot for anyone in a rush.\n\nThere are some large trees here casting shade upon the paved ground. The only breeze is from the deck’s air conditioning systems, which keep everything at a nice, mild temperature.\n\nYou can follow the curve of the plaza here northward, towards the bridge to the western ward. You can also head west where the entrance to the deck’s elevators are.";
 	rooms["RESIDENTIAL DECK 3"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 3"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 3"].northExit = "RESIDENTIAL DECK 4";
@@ -529,7 +529,7 @@ public function initTavrosRooms():void
 	//1004 East Plaza
 	rooms["RESIDENTIAL DECK 4"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 4"].roomName = "EAST\nPLAZA";
-	rooms["RESIDENTIAL DECK 4"].description = "There's a large lush patch of purple plants here in the plaza. They're covered in patchy blue spots. Soft, cyan blossoms are poking out from them on long, dangly stems. They smell fresh and crisp rather than floral.\n\nThe plaza stretches out north to south, but there's a large residential arcade to the east. It seems to head all the way out to a residential ward, though the thoroughfare itself is lined with doors to residential apartments.";
+	rooms["RESIDENTIAL DECK 4"].description = "There’s a large lush patch of purple plants here in the plaza. They’re covered in patchy blue spots. Soft, cyan blossoms are poking out from them on long, dangly stems. They smell fresh and crisp rather than floral.\n\nThe plaza stretches out north to south, but there’s a large residential arcade to the east. It seems to head all the way out to a residential ward, though the thoroughfare itself is lined with doors to residential apartments.";
 	rooms["RESIDENTIAL DECK 4"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 4"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 4"].northExit = "RESIDENTIAL DECK 5";
@@ -543,7 +543,7 @@ public function initTavrosRooms():void
 	//1005 North-East Plaza
 	rooms["RESIDENTIAL DECK 5"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 5"].roomName = "NORTH-EAST\nPLAZA";
-	rooms["RESIDENTIAL DECK 5"].description = "This part of the plaza is marked by large, leafy ferns, and by their distinctly green look, they're likely terran. Some station tourists are stopping to take photos; they must be authentic palm trees. They lack coconuts, either through rigorous pruning or selective breeding, making it safe for pedestrians to pass beneath.\n\nThe plaza continues east and south in a wide curve.";
+	rooms["RESIDENTIAL DECK 5"].description = "This part of the plaza is marked by large, leafy ferns, and by their distinctly green look, they’re likely terran. Some station tourists are stopping to take photos; they must be authentic palm trees. They lack coconuts, either through rigorous pruning or selective breeding, making it safe for pedestrians to pass beneath.\n\nThe plaza continues east and south in a wide curve.";
 	rooms["RESIDENTIAL DECK 5"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 5"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 5"].southExit = "RESIDENTIAL DECK 4";
@@ -556,7 +556,7 @@ public function initTavrosRooms():void
 	//1006 North Plaza
 	rooms["RESIDENTIAL DECK 6"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 6"].roomName = "NORTH\nPLAZA";
-	rooms["RESIDENTIAL DECK 6"].description = "You're standing on the north side of the plaza and in front of a large row of elevator shafts. All around you is a massive public plaza, filled with scenic shrubbery and paved walkways. There's a few park benches as well, which residents seem to be making full use of.\n\nAt each of the cardinal points are gigantic residential arcades that continue out as far as the eye can see. Just like the walls of the plaza, the arcades are lined with residential entrances. It must be nice to walk right out your door and into such a nice garden-filled space.\n\nYou can head in any direction, with south heading back into the elevators and north heading into one of the residential thoroughfares. East and west heads around the plaza.";
+	rooms["RESIDENTIAL DECK 6"].description = "You’re standing on the north side of the plaza and in front of a large row of elevator shafts. All around you is a massive public plaza, filled with scenic shrubbery and paved walkways. There’s a few park benches as well, which residents seem to be making full use of.\n\nAt each of the cardinal points are gigantic residential arcades that continue out as far as the eye can see. Just like the walls of the plaza, the arcades are lined with residential entrances. It must be nice to walk right out your door and into such a nice garden-filled space.\n\nYou can head in any direction, with south heading back into the elevators and north heading into one of the residential thoroughfares. East and west heads around the plaza.";
 	rooms["RESIDENTIAL DECK 6"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 6"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 6"].northExit = "RESIDENTIAL DECK 12";
@@ -571,7 +571,7 @@ public function initTavrosRooms():void
 	//1007 North-West Plaza
 	rooms["RESIDENTIAL DECK 7"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 7"].roomName = "NORTH-WEST\nPLAZA";
-	rooms["RESIDENTIAL DECK 7"].description = "It's hard not to be dazzled by this portion of the plaza. Between the walkways are clusters of prismatic crystals, ranging in size from tiny gem-like shrubs to twenty-foot monoliths. Artificial light flows from above, striking the stones and causing them to sparkle.\n\nA few water features run over the crystals, causing their scintillating light to flurry about beneath the ripples. It's almost hypnotic, but very relaxing. Understandably, there's a lot of public seating about. Among the normal tables, and nestled beneath some of the larger crystals, are 4D chess tables - square, black and white cage-like objects floating in mid-air, each flanked by a pair of chairs.\n\nThe plaza curves here from west to south, lined by various residential apartments.";
+	rooms["RESIDENTIAL DECK 7"].description = "It’s hard not to be dazzled by this portion of the plaza. Between the walkways are clusters of prismatic crystals, ranging in size from tiny gem-like shrubs to twenty-foot monoliths. Artificial light flows from above, striking the stones and causing them to sparkle.\n\nA few water features run over the crystals, causing their scintillating light to flurry about beneath the ripples. It’s almost hypnotic, but very relaxing. Understandably, there’s a lot of public seating about. Among the normal tables, and nestled beneath some of the larger crystals, are 4D chess tables - square, black and white cage-like objects floating in mid-air, each flanked by a pair of chairs.\n\nThe plaza curves here from west to south, lined by various residential apartments.";
 	rooms["RESIDENTIAL DECK 7"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 7"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 7"].southExit = "RESIDENTIAL DECK 8";
@@ -585,7 +585,7 @@ public function initTavrosRooms():void
 	//1008 West Plaza
 	rooms["RESIDENTIAL DECK 8"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 8"].roomName = "WEST\nPLAZA";
-	rooms["RESIDENTIAL DECK 8"].description = "This part of the plaza is filled with shielded aviaries housing all kinds of colorful winged creatures. When they're not hovering about, they're resting in their nests, most of which are built in hollowed out trees. A rainbow-hued, six-winged bird seems to have pride of place at the top of the largest tree.\n\nThere's a large arcade-like thoroughfare to the west, stretching out all the way to a far off residential ward. Identical to the plaza, the side-walls are lined with residential entryways, each decorated as the owner sees fit.\n\nBesides the west walkway, you can head north or south here and circle around the plaza. This side doesn't seem to have an entry point to the elevators.";
+	rooms["RESIDENTIAL DECK 8"].description = "This part of the plaza is filled with shielded aviaries housing all kinds of colorful winged creatures. When they’re not hovering about, they’re resting in their nests, most of which are built in hollowed out trees. A rainbow-hued, six-winged bird seems to have pride of place at the top of the largest tree.\n\nThere’s a large arcade-like thoroughfare to the west, stretching out all the way to a far off residential ward. Identical to the plaza, the side-walls are lined with residential entryways, each decorated as the owner sees fit.\n\nBesides the west walkway, you can head north or south here and circle around the plaza. This side doesn’t seem to have an entry point to the elevators.";
 	rooms["RESIDENTIAL DECK 8"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 8"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 8"].northExit = "RESIDENTIAL DECK 7";
@@ -599,7 +599,7 @@ public function initTavrosRooms():void
 	//1009 South-West Plaza
 	rooms["RESIDENTIAL DECK 9"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 9"].roomName = "SOUTH-WEST\nPLAZA";
-	rooms["RESIDENTIAL DECK 9"].description = "This area has a lot of strange interpretive art. There are a number of residents dwelling near them, each arguing about what exactly the messy-looking statues are. It's like an inkblot test; everyone seems to see something a little different.\n\nThe plaza curves around here from north to west. The latter leads to the front of the deck's elevators.";
+	rooms["RESIDENTIAL DECK 9"].description = "This area has a lot of strange interpretive art. There are a number of residents dwelling near them, each arguing about what exactly the messy-looking statues are. It’s like an inkblot test; everyone seems to see something a little different.\n\nThe plaza curves around here from north to west. The latter leads to the front of the deck’s elevators.";
 	rooms["RESIDENTIAL DECK 9"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 9"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 9"].northExit = "RESIDENTIAL DECK 8";
@@ -612,7 +612,7 @@ public function initTavrosRooms():void
 	//1010 East Walkway 1
 	rooms["RESIDENTIAL DECK 10"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 10"].roomName = "EAST\nWALKWAY";
-	rooms["RESIDENTIAL DECK 10"].description = "The eastern thoroughfare is massive and multi-laned, with some residents opting to take small hover-carts between the plaza elevators and the outer wards. Thankfully, the small yet speedy vehicles don't share the same routes as the pedestrians, only scooting along the inner lanes.\n\nThere are many residential estates located in the plaza, some with vehicles parked out front and console locked.\n\nTo the south is a tall but narrow apartment, its facade decorated in understated dull red and slate trimmings, mimicking an old-fashioned brick townhouse. Its door and windows are slightly smaller and lower than seems to be the norm around here. The holo-number next to the door reads 107.";
+	rooms["RESIDENTIAL DECK 10"].description = "The eastern thoroughfare is massive and multi-laned, with some residents opting to take small hover-carts between the plaza elevators and the outer wards. Thankfully, the small yet speedy vehicles don’t share the same routes as the pedestrians, only scooting along the inner lanes.\n\nThere are many residential estates located in the plaza, some with vehicles parked out front and console locked.\n\nTo the south is a tall but narrow apartment, its facade decorated in understated dull red and slate trimmings, mimicking an old-fashioned brick townhouse. Its door and windows are slightly smaller and lower than seems to be the norm around here. The holo-number next to the door reads 107.";
 	rooms["RESIDENTIAL DECK 10"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 10"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 10"].southExit = "RESIDENTIAL DECK SEMITHS APARTMENT";
@@ -626,8 +626,8 @@ public function initTavrosRooms():void
 	
 	//Semith Apartment
 	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"] = new RoomClass(this);
-	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].roomName = "SEMITH'S\nAPARTMENT";
-	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].description = "Semith's home is a series of cozy spaces orientated quite vertically. A circular lift in the middle of the tall apartment can soundlessly transport you from a plush lounge stuffed with squashy settees, to a spice-scented kitchen, to an incredibly untidy study, to who knows what else. Semith likes synth-mahogany, and it shows. Every space is furnished in rich red-brown, with pieces of artwork straddling the line between tasteful and unsettling here and there.";
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].roomName = "SEMITH’S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].description = "Semith’s home is a series of cozy spaces orientated quite vertically. A circular lift in the middle of the tall apartment can soundlessly transport you from a plush lounge stuffed with squashy settees, to a spice-scented kitchen, to an incredibly untidy study, to who knows what else. Semith likes synth-mahogany, and it shows. Every space is furnished in rich red-brown, with pieces of artwork straddling the line between tasteful and unsettling here and there.";
 	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].northExit = "RESIDENTIAL DECK 10";
@@ -639,7 +639,7 @@ public function initTavrosRooms():void
 	//1011 East Walkway 2
 	rooms["RESIDENTIAL DECK 11"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 11"].roomName = "EAST\nWALKWAY";
-	rooms["RESIDENTIAL DECK 11"].description = "There are a number of double story apartments here with balconies, easily fitting into the high-roofed residential arcade. There's also a dock for hover carts and a small payment terminal, for those not wishing to walk back and forth down the thoroughfare.\n\nThere's a particularly large apartment to the north of here. The classy pillars and archways mix with the lascivious color scheme of red and gold, making it look like an upper-class bordello more than a residence. The holo-sign next to the door reads 112.\n\nThere's a large steel wall to the east. West leads back in the direction of the central plaza.";
+	rooms["RESIDENTIAL DECK 11"].description = "There are a number of double story apartments here with balconies, easily fitting into the high-roofed residential arcade. There’s also a dock for hover carts and a small payment terminal, for those not wishing to walk back and forth down the thoroughfare.\n\nThere’s a particularly large apartment to the north of here. The classy pillars and archways mix with the lascivious color scheme of red and gold, making it look like an upper-class bordello more than a residence. The holo-sign next to the door reads 112.\n\nThere’s a large steel wall to the east. West leads back in the direction of the central plaza.";
 	rooms["RESIDENTIAL DECK 11"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 11"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 11"].northExit = "RESIDENTIAL DECK 19";
@@ -653,7 +653,7 @@ public function initTavrosRooms():void
 	//1012 North Walkway 1
 	rooms["RESIDENTIAL DECK 12"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 12"].roomName = "NORTH\nWALKWAY";
-	rooms["RESIDENTIAL DECK 12"].description = "The northward walkway is huge both longways and upward, making it easier for larger species to get about. Hover-carts are for rent here, allowing easy travel around the residential deck. You notice some of them have different steering wheels and seating, allowing for all sorts of species to make use of them.\n\nThe residential buildings lining this part of the deck aren't very decorated, and those that are have been done with cheap holos. You can easily see through the flickering facades, making such holo-decor all but pointless.\n\nTo the north, the walkway continues for quite some time. The central plaza lies to the south, along with the elevators that allow deck transit.";
+	rooms["RESIDENTIAL DECK 12"].description = "The northward walkway is huge both longways and upward, making it easier for larger species to get about. Hover-carts are for rent here, allowing easy travel around the residential deck. You notice some of them have different steering wheels and seating, allowing for all sorts of species to make use of them.\n\nThe residential buildings lining this part of the deck aren’t very decorated, and those that are have been done with cheap holos. You can easily see through the flickering facades, making such holo-decor all but pointless.\n\nTo the north, the walkway continues for quite some time. The central plaza lies to the south, along with the elevators that allow deck transit.";
 	rooms["RESIDENTIAL DECK 12"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 12"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 12"].northExit = "RESIDENTIAL DECK 13";
@@ -666,7 +666,7 @@ public function initTavrosRooms():void
 	//1013 North Walkway 2
 	rooms["RESIDENTIAL DECK 13"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 13"].roomName = "NORTH\nWALKWAY";
-	rooms["RESIDENTIAL DECK 13"].description = "This largely unlived in part of the deck is almost achingly quiet, each footstep echoing down the incredibly tall and long walkway. Each room has ridiculously cheap pricing on it. There are also a few advertising boards up, mostly displaying the latest movies and soft-drink products.\n\nSouth leads towards the central plaza. There's a large steel wall to the north. It seems that part of the station is still under construction.";
+	rooms["RESIDENTIAL DECK 13"].description = "This largely unlived in part of the deck is almost achingly quiet, each footstep echoing down the incredibly tall and long walkway. Each room has ridiculously cheap pricing on it. There are also a few advertising boards up, mostly displaying the latest movies and soft-drink products.\n\nSouth leads towards the central plaza. There’s a large steel wall to the north. It seems that part of the station is still under construction.";
 	rooms["RESIDENTIAL DECK 13"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 13"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 13"].southExit = "RESIDENTIAL DECK 12";
@@ -678,7 +678,7 @@ public function initTavrosRooms():void
 	//1014 West Walkway 1
 	rooms["RESIDENTIAL DECK 14"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 14"].roomName = "WEST\nWALKWAY";
-	rooms["RESIDENTIAL DECK 14"].description = "The western walkway has a lot of glitzy looking apartments. It's only a <i>very</i> close look and touch that reveals they're all covered in hard-light holos, not designed out of gold and marble. By the look of the few who haven't 'covered up', they're actually exceptionally plain; probably why their owners invested in the hard-light flourish. The walkway continues west for quite a while. It's a considerably shorter walk back east and to the deck's public plaza.";
+	rooms["RESIDENTIAL DECK 14"].description = "The western walkway has a lot of glitzy looking apartments. It’s only a <i>very</i> close look and touch that reveals they’re all covered in hard-light holos, not designed out of gold and marble. By the look of the few who haven’t ‘covered up’, they’re actually exceptionally plain; probably why their owners invested in the hard-light flourish. The walkway continues west for quite a while. It’s a considerably shorter walk back east and to the deck’s public plaza.";
 	rooms["RESIDENTIAL DECK 14"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 14"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 14"].westExit = "RESIDENTIAL DECK 15";
@@ -691,7 +691,7 @@ public function initTavrosRooms():void
 	//1015 West Walkway 2
 	rooms["RESIDENTIAL DECK 15"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 15"].roomName = "WEST\nWALKWAY";
-	rooms["RESIDENTIAL DECK 15"].description = "This part of the walkway is fairly standard. There's a few humble decorations outside the stock-standard doors: pot plants, mats, the usual fare. Even in space and during such an advanced technological era, some things don't change all that much.\n\nTo the south, you notice a residence with two barn-like doors. Attached to the artificial windows are boxes filled with blossoming flowers. The number beside the door is 154.\n\nThe thoroughfare here ends in a gigantic steel wall to the west. Seems that part of the station is still under construction. You can only head back east.";
+	rooms["RESIDENTIAL DECK 15"].description = "This part of the walkway is fairly standard. There’s a few humble decorations outside the stock-standard doors: pot plants, mats, the usual fare. Even in space and during such an advanced technological era, some things don’t change all that much.\n\nTo the south, you notice a residence with two barn-like doors. Attached to the artificial windows are boxes filled with blossoming flowers. The number beside the door is 154.\n\nThe thoroughfare here ends in a gigantic steel wall to the west. Seems that part of the station is still under construction. You can only head back east.";
 	rooms["RESIDENTIAL DECK 15"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 15"].system = "SYSTEM: KALAS";
 	//rooms["RESIDENTIAL DECK 15"].southExit = "RESIDENTIAL DECK 18"; -> added to game.as
@@ -706,7 +706,7 @@ public function initTavrosRooms():void
 	//1016 South Walkway 1
 	rooms["RESIDENTIAL DECK 16"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 16"].roomName = "SOUTH\nWALKWAY";
-	rooms["RESIDENTIAL DECK 16"].description = "The considerably large southern arcade stretches out as far as the eye can see, but many of the residences are for sale. By the looks of things, they're unlived in, which means this part of the deck must be brand new. Given the Rush started not long ago, it's not surprising—galactic expansion <i>is</i> the name of the game right now. You can head south and along the walkway, or north and towards the public plaza.";
+	rooms["RESIDENTIAL DECK 16"].description = "The considerably large southern arcade stretches out as far as the eye can see, but many of the residences are for sale. By the looks of things, they’re unlived in, which means this part of the deck must be brand new. Given the Rush started not long ago, it’s not surprising—galactic expansion <i>is</i> the name of the game right now. You can head south and along the walkway, or north and towards the public plaza.";
 	rooms["RESIDENTIAL DECK 16"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 16"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 16"].northExit = "RESIDENTIAL DECK 2";
@@ -721,12 +721,13 @@ public function initTavrosRooms():void
 	
 	rooms["RESIDENTIAL DECK ZHENIYA"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK ZHENIYA"].roomName = "ZHENIYA’S\nAPARTMENT";
-	rooms["RESIDENTIAL DECK ZHENIYA"].description = "The inside of Zheniya's apartment is cozy and warm. Silk and bead curtains hang from the walls and doorways, and the lights have been tuned down to a low, sensual red glow throughout. The heat is above station standard, mimicking the musky humidity of her native planet's jungles. A few incense candles are burning on shelves and tables, though the scent is nowhere near as overwhelming as you remember from Zheniya's last abode.\n\nZheniya sits nearby, nude as the day you met her. In her own home, she still prefers the openness of bare flesh, allowed her ever-present honied smell to suffuse the air around her.";
+	rooms["RESIDENTIAL DECK ZHENIYA"].description = "The inside of Zheniya’s apartment is cozy and warm. Silk and bead curtains hang from the walls and doorways, and the lights have been tuned down to a low, sensual red glow throughout. The heat is above station standard, mimicking the musky humidity of her native planet’s jungles. A few incense candles are burning on shelves and tables, though the scent is nowhere near as overwhelming as you remember from Zheniya’s last abode.\n\nZheniya sits nearby, nude as the day you met her. In her own home, she still prefers the openness of bare flesh, allowed her ever-present honied smell to suffuse the air around her.";
 	rooms["RESIDENTIAL DECK ZHENIYA"].eastExit = "RESIDENTIAL DECK 16";
 	rooms["RESIDENTIAL DECK ZHENIYA"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK ZHENIYA"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK ZHENIYA"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK ZHENIYA"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK ZHENIYA"].addFlag(GLOBAL.PRIVATE);
 	rooms["RESIDENTIAL DECK ZHENIYA"].runOnEnter = zheniyasApartmentFunc;
 
 	//BAKERY
@@ -746,7 +747,7 @@ public function initTavrosRooms():void
 	//1017 South Walkway 2
 	rooms["RESIDENTIAL DECK 17"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 17"].roomName = "SOUTH\nWALKWAY";
-	rooms["RESIDENTIAL DECK 17"].description = "This part of the thoroughfare shines with countless holo-decorated apartments. The light-projected exteriors spruce up the otherwise plain exteriors, transforming this region into a shimmering cultural hotpot. One of the apartments to the west doesn't have a virtual exterior, but it <i>does</i> have a rather pimped-out looking hoverbike. Black, sleek looking plates cover its outside, with constantly shifting flame-paint on the sides; must be digital. Looks like a two-seater.\n\nA fair way north is the central plaza and the deck elevators. There's a large steel wall to the south with 'under construction' written on it.";
+	rooms["RESIDENTIAL DECK 17"].description = "This part of the thoroughfare shines with countless holo-decorated apartments. The light-projected exteriors spruce up the otherwise plain exteriors, transforming this region into a shimmering cultural hotpot. One of the apartments to the west doesn’t have a virtual exterior, but it <i>does</i> have a rather pimped-out looking hoverbike. Black, sleek looking plates cover its outside, with constantly shifting flame-paint on the sides; must be digital. Looks like a two-seater.\n\nA fair way north is the central plaza and the deck elevators. There’s a large steel wall to the south with ‘under construction’ written on it.";
 	rooms["RESIDENTIAL DECK 17"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 17"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 17"].northExit = "RESIDENTIAL DECK 16";
@@ -762,7 +763,7 @@ public function initTavrosRooms():void
 
 	//1019 Fyn's Apartment
 	rooms["RESIDENTIAL DECK 19"] = new RoomClass(this);
-	rooms["RESIDENTIAL DECK 19"].roomName = "FYN'S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK 19"].roomName = "FYN’S\nAPARTMENT";
 	rooms["RESIDENTIAL DECK 19"].description = "";
 	rooms["RESIDENTIAL DECK 19"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 19"].system = "SYSTEM: KALAS";
@@ -814,7 +815,7 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYE14"] = new RoomClass(this);
 	rooms["NURSERYE14"].roomName = "NURSERY\nFOYER";
-	rooms["NURSERYE14"].description = "You're standing in the vaulted entrance of your personal nursery, an entire sub-deck dedicated to taking in and caring for your children. ";
+	rooms["NURSERYE14"].description = "You’re standing in the vaulted entrance of your personal nursery, an entire sub-deck dedicated to taking in and caring for your children. ";
 	rooms["NURSERYE14"].runOnEnter = nurseryFoyerFunc;
 	rooms["NURSERYE14"].southExit = "NURSERYELEVATOR";
 	rooms["NURSERYE14"].westExit = "NURSERYSTAIRS1F";
@@ -830,7 +831,7 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYE12"] = new RoomClass(this);
 	rooms["NURSERYE12"].roomName = "NURSERY:\nCOMMON AREA";
-	rooms["NURSERYE12"].description = "The nursery's common area is a large, open room painted a rainbow of bright colors and equipped with a myriad of entertainment: holoscreens, video game consoles, toys of all descriptions, and racks of Codex tablets loaded with every book and educational program known to Man -- and most other galactic species.";
+	rooms["NURSERYE12"].description = "The nursery’s common area is a large, open room painted a rainbow of bright colors and equipped with a myriad of entertainment: holoscreens, video game consoles, toys of all descriptions, and racks of Codex tablets loaded with every book and educational program known to Man -- and most other galactic species.";
 	rooms["NURSERYE12"].runOnEnter = nurseryCommonAreaFunc;
 	rooms["NURSERYE12"].southExit = "NURSERYE14";
 	rooms["NURSERYE12"].eastExit = "NURSERYG12";
@@ -844,7 +845,7 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYG12"] = new RoomClass(this);
 	rooms["NURSERYG12"].roomName = "NURSERY\nCAFETERIA";
-	rooms["NURSERYG12"].description = "You're standing in the nursery's cafeteria, a cozy structure modelled after a posh cafe on one side -- for the older children, no doubt -- and that of a play palace on the other, replete with benches and an animatronic servant that distributes the food. The two sides are separated by a small divide, just enough to keep the noise down.";
+	rooms["NURSERYG12"].description = "You’re standing in the nursery’s cafeteria, a cozy structure modelled after a posh cafe on one side -- for the older children, no doubt -- and that of a play palace on the other, replete with benches and an animatronic servant that distributes the food. The two sides are separated by a small divide, just enough to keep the noise down.";
 	rooms["NURSERYG12"].runOnEnter = nurseryCafeteriaFunc;
 	rooms["NURSERYG12"].westExit = "NURSERYE12";
 	rooms["NURSERYG12"].planet = "TAVROS STATION";
@@ -871,7 +872,7 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYI14"] = new RoomClass(this);
 	rooms["NURSERYI14"].roomName = "\nNURSERY";
-	rooms["NURSERYI14"].description = "You're standing at a T-bone intersection of corridors, connecting the foyer back west to a huge complex to the east marked ‘Education Center’, and another branch south that leads into dozens of other, smaller halls and the bedrooms.";
+	rooms["NURSERYI14"].description = "You’re standing at a T-bone intersection of corridors, connecting the foyer back west to a huge complex to the east marked ‘Education Center’, and another branch south that leads into dozens of other, smaller halls and the bedrooms.";
 	rooms["NURSERYI14"].runOnEnter = nurseryI14Func;
 	rooms["NURSERYI14"].eastExit = "NURSERYK14";
 	rooms["NURSERYI14"].westExit = "NURSERYG14";
@@ -913,7 +914,7 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYK14"] = new RoomClass(this);
 	rooms["NURSERYK14"].roomName = "NURSERY:\nEDU. CENTER";
-	rooms["NURSERYK14"].description = "The nursery's education center greets you with a sprawling, circular chamber dominated by a rounded desk and several holoscreens along the walls, displaying curriculums and after-school opportunities. Several doors branch off from the main chamber, into an individual sets of classrooms for each grade -- from preschool all the way to 12th grade, and even including a few technical and shop classes.";
+	rooms["NURSERYK14"].description = "The nursery’s education center greets you with a sprawling, circular chamber dominated by a rounded desk and several holoscreens along the walls, displaying curriculums and after-school opportunities. Several doors branch off from the main chamber, into an individual sets of classrooms for each grade -- from preschool all the way to 12th grade, and even including a few technical and shop classes.";
 	rooms["NURSERYK14"].runOnEnter = nurseryEducationCenterFunc;
 	rooms["NURSERYK14"].westExit = "NURSERYI14";
 	rooms["NURSERYK14"].planet = "TAVROS STATION";
@@ -942,7 +943,7 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYC6"] = new RoomClass(this);
 	rooms["NURSERYC6"].roomName = "NURSERY:\nSTAFF ROOM";
-	rooms["NURSERYC6"].description = "Immediately off the stairs once you reach the second floor is a small, cozy break room. A few chairs, a JoyCo vending machine, and a full-suite kitchen make sure that the nursery's staff and permanent residents have everything they need to stay sane when off the clock.";
+	rooms["NURSERYC6"].description = "Immediately off the stairs once you reach the second floor is a small, cozy break room. A few chairs, a JoyCo vending machine, and a full-suite kitchen make sure that the nursery’s staff and permanent residents have everything they need to stay sane when off the clock.";
 	rooms["NURSERYC6"].runOnEnter = nurseryC6Func;
 	rooms["NURSERYC6"].southExit = "NURSERYSTAIRS2F";
 	rooms["NURSERYC6"].eastExit = "NURSERYE6";
@@ -1013,7 +1014,7 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYG4"] = new RoomClass(this);
 	rooms["NURSERYG4"].roomName = "NURSERY:\nYOUR APPT.";
-	rooms["NURSERYG4"].description = "The private suite you've been assigned in the nursery is... well, it looks like your room growing up. So much so that you're half sure Dad just boxed your things up and mailed them out here. Familiar posters, devices, and even the bedspread all remind you of home.\n\nOn top of the bedroom suite, your apartment comes equipped with a kitchen, living room... everything you need to live here more than comfortably for extended periods of time, really.";
+	rooms["NURSERYG4"].description = "The private suite you’ve been assigned in the nursery is... well, it looks like your room growing up. So much so that you’re half sure Dad just boxed your things up and mailed them out here. Familiar posters, devices, and even the bedspread all remind you of home.\n\nOn top of the bedroom suite, your apartment comes equipped with a kitchen, living room... everything you need to live here more than comfortably for extended periods of time, really.";
 	rooms["NURSERYG4"].runOnEnter = nurseryPlayerApptFunc;
 	rooms["NURSERYG4"].southExit = "NURSERYG6";
 	rooms["NURSERYG4"].planet = "TAVROS STATION";
@@ -1024,8 +1025,8 @@ public function initTavrosRooms():void
 	rooms["NURSERYG4"].addFlag(GLOBAL.BED);
 
 	rooms["NURSERYG8"] = new RoomClass(this);
-	rooms["NURSERYG8"].roomName = "NURSERY:\nBRIGET'S APPT.";
-	rooms["NURSERYG8"].description = "The apartment granted to your nurse-maid gynoid is surprisingly spartan, given her age and humanism. Maybe she just doesn't spend much time here? There's a queen-sized bed, immaculately made, in one room, and a spotlessly clean kitchen that opens into a dining room with a pair of chairs around a mahogany table -- the most expensive-looking thing around.";
+	rooms["NURSERYG8"].roomName = "NURSERY:\nBRIGET’S APPT.";
+	rooms["NURSERYG8"].description = "The apartment granted to your nurse-maid gynoid is surprisingly spartan, given her age and humanism. Maybe she just doesn’t spend much time here? There’s a queen-sized bed, immaculately made, in one room, and a spotlessly clean kitchen that opens into a dining room with a pair of chairs around a mahogany table -- the most expensive-looking thing around.";
 	rooms["NURSERYG8"].runOnEnter = nurseryBrigetsApptFunc;
 	rooms["NURSERYG8"].northExit = "NURSERYG6";
 	rooms["NURSERYG8"].planet = "TAVROS STATION";

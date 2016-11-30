@@ -257,16 +257,16 @@ public function kallyBarMenu():void
 {
 	clearMenu();
 	if(!pc.isSmashed()) addButton(0,"Buy Drink",buyADrinkFromKally);
-	else addDisabledButton(0,"Buy Drink","Buy Drink","You're so drunk she won't serve you any more.");
+	else addDisabledButton(0,"Buy Drink","Buy Drink","You’re so drunk she won’t serve you any more.");
 	addButton(1,"Appearance",kallyAppearance);
 	if(!pc.hasStatusEffect("Tapped Kally") && pc.isBimbo()) addButton(5,"Suck Kally",kallyNeedsTappedByBimbos,undefined,"Suck Kally","Kally looks... and smells... like she needs some relief. Who better to help than you?");
 	else if(pc.isBro() && pc.hasCock())
 	{
 		addButton(5,"Eat Pussy",kallyGetsEatenOutByBroz,undefined,"Eat Pussy","You know that deep down, all Kally wants to do is taste your dick and offer her pussy.");
 	}
-	else if(pc.isBro()) addDisabledButton(5,"Eat Pussy","Eat Pussy","Something tell you she isn't going to let you just pick her up and start eating her pussy unless you've got the biggest, nicest smelling cock in the bar.");
-	else if(pc.isBimbo()) addDisabledButton(5,"Suck Kally","Suck Kally","She's still cooling off from your last attempt!");
-	else addDisabledButton(5,"Seduce Kally","Seduce Kally","You'd need to be extremely oversexed to so brazenly seduce Kally - like a bimbo or brute.");
+	else if(pc.isBro()) addDisabledButton(5,"Eat Pussy","Eat Pussy","Something tell you she isn’t going to let you just pick her up and start eating her pussy unless you’ve got the biggest, nicest smelling cock in the bar.");
+	else if(pc.isBimbo()) addDisabledButton(5,"Suck Kally","Suck Kally","She’s still cooling off from your last attempt!");
+	else addDisabledButton(5,"Seduce Kally","Seduce Kally","You’d need to be extremely oversexed to so brazenly seduce Kally - like a bimbo or brute.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -283,7 +283,7 @@ public function kallyAppearance():void
 	output("\n\nBetween her legs swings a long, blunted prick, not quite equine but not quite normal for a kui-tan either. She’s obviously done some modding - enough that it never seems to retract back into its sheath. Nor does she seem to mind that it’s always visible beneath the hem of her skirt, swaying in a clear advertisement of her hermaphroditic sexuality. At the same time, she never seems to go out of her way to advertise it, seemingly happy to be who she is, where she is.");
 	processTime(1);
 	kallyBarMenu();
-	addDisabledButton(1,"Appearance","Appearance","You're looking at that right now.");
+	addDisabledButton(1,"Appearance","Appearance","You’re looking at that right now.");
 }
 
 //Buy Drink
@@ -317,7 +317,7 @@ public function askKallyAboutHearts():void
 	//[Who’s Milk?] [But Is It Safe?] [Okay - Requires Previous topics]
 	processTime(3);
 	clearMenu();
-	addButton(0,"Who's Milk?",whoseMilkIsAdoraholKally,undefined,"Who's Milk","But who is milking this stuff out?");
+	addButton(0,"Who’s Milk?",whoseMilkIsAdoraholKally,undefined,"Who’s Milk","But who is milking this stuff out?");
 	addButton(1,"Is It Safe?",butIsAdoraholSafe,undefined,"Is It Safe?","Ask her if it is safe.");
 }
 
@@ -332,7 +332,7 @@ public function butIsAdoraholSafe():void
 	processTime(1);
 	//Menu with safe grayed out
 	clearMenu();
-	addButton(0,"Who's Milk?",whoseMilkIsAdoraholKally,undefined,"Who's Milk","But who is milking this stuff out?");
+	addButton(0,"Who’s Milk?",whoseMilkIsAdoraholKally,undefined,"Who’s Milk","But who is milking this stuff out?");
 	addDisabledButton(1,"Is It Safe?","Is It Safe?","You just did this.");
 }
 
@@ -369,7 +369,7 @@ public function whoseMilkIsAdoraholKally():void
 	processTime(2);
 	//[Gross -Permanently disable those drinks] [Just You?]
 	clearMenu();
-	addButton(0,"Gross",grossStuffKally,undefined,"Gross","Tell her you think it's gross.");
+	addButton(0,"Gross",grossStuffKally,undefined,"Gross","Tell her you think it’s gross.");
 	addButton(1,"Just You?",justKallyMakesEverything,undefined,"Just You?","So she makes it herself?");
 }
 
@@ -435,13 +435,13 @@ public function kallyDrinkMenu():void
 		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(0,"*Doe-Eyed D",kallyDrinkPurchase,"Doe-Eyed Draught","Doe-Eyed Draught","Doe-Eyed Draught is a local microbrew produced in-house and flavored with our special additive. The warm amber beer bears a slight, hoppy flavor with a hint of almond. Sure to have you looking doe-eyed after a few drinks! 14% alcohol equivalency by volume.\n\nPrice: 6 Credits");
 		else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","That marking is suspicious. You should ask about it.");
 	}
-	else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","You can't afford that.\n\nPrice: 6 Credits");
+	else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","You can’t afford that.\n\nPrice: 6 Credits");
 	if(pc.credits >= 7) 
 	{
 		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(1,"*N. Nookie",kallyDrinkPurchase,"Nutty Nookie","Nutty Nookie","A rich, nutty beer with a flavor that’s best described as chocolatey. Nutty Nookie’s aren’t for the faint of heart, as they contain 13% alcohol equivalency by volume and a generous helping of our secret ingredient to lend it a thicker, warmer afterglow.\n\nPrice: 7 Credits");
 		else addDisabledButton(1,"*N. Nookie","Nutty Nookie","That marking is suspicious. You should ask about it.");
 	}
-	else addDisabledButton(1,"*N. Nookie","Nutty Nookie","You can't afford that.\n\nPrice: 7 Credits");
+	else addDisabledButton(1,"*N. Nookie","Nutty Nookie","You can’t afford that.\n\nPrice: 7 Credits");
 	if(pc.credits >= 10) 
 	{
 		addButton(2,"V. Vapor",kallyDrinkPurchase,"V. Vapor","Vesperian Vapor","Like its namesake, a Vesperian Vapor is a light, crisp drink with a hint of citrous flavor hiding just beneath its bubbly effervescence. Contains 7% alcohol by volume.\n\nPrice: 10 Credits");
@@ -481,7 +481,7 @@ public function backToKallyMain():void
 
 public function addLoveyDoveWithAlcohol():void
 {
-	if(!pc.hasStatusEffect("Adorahol")) pc.createStatusEffect("Adorahol",1,0,0,0,false,"Icon_Wine","You're feeling more affectionate that you otherwise would, no doubt the result of Kally's 'special' drinks.",false,0,0xB793C4);
+	if(!pc.hasStatusEffect("Adorahol")) pc.createStatusEffect("Adorahol",1,0,0,0,false,"Icon_Wine","You’re feeling more affectionate that you otherwise would, no doubt the result of Kally’s ‘special’ drinks.",false,0,0xB793C4);
 	else pc.addStatusValue("Adorahol",1,1);
 }
 
@@ -578,7 +578,7 @@ public function kallyTalkMenu():void
 	//Own Bar?
 	addButton(0,"Own Bar?",askKallyAboutOwningHerBar,undefined,"Own Bar?","Ask her if she owns the bar or just works here.");
 	//You’re Cute
-	addButton(1,"You're Cute",tellKallyShesCute,undefined,"You're Cute","Flirt with the bartender.");
+	addButton(1,"You’re Cute",tellKallyShesCute,undefined,"You’re Cute","Flirt with the bartender.");
 	//Rush?
 	addButton(2,"Rush?",talkToKallyAboutTheRush,undefined,"Rush?","Ask her what she thinks about the rush.");
 	//Galotians
@@ -587,7 +587,7 @@ public function kallyTalkMenu():void
 	if(flags["LANDED_ON_TEXAS"] != undefined) addButton(4,"New Texas",talkToKallyAboutNewTexas,undefined,"New Texas","Ask her what she thinks about New Texas.");
 	else addDisabledButton(4,"Locked","Locked","You need to know more about the universe to ask this.")
 	//Mhen’ga
-	addButton(5,"Mhen'ga",talkToKallyAboutMhenga,undefined,"Mhen'ga","Ask her what she thinks about Mhen'ga.");
+	addButton(5,"Mhen’ga",talkToKallyAboutMhenga,undefined,"Mhen’ga","Ask her what she thinks about Mhen’ga.");
 	//Tarkus
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(6,"Tarkus",talkToKallyAboutTarkus,undefined,"Tarkus","Ask her what she thinks about Tarkus.");
 	else addDisabledButton(6,"Locked","Locked","You need to know more about the universe to ask this.")
@@ -595,14 +595,14 @@ public function kallyTalkMenu():void
 	addButton(7,"Ausar",askKallyAboutAusar,undefined,"Ausar","Ask her what she thinks about the ausar.");
 	//Kiro (Requires Unlock)
 	if(flags["KIRO_MET_KALLY"] != undefined) addButton(8,"Kiro",kallyTalksAboutKiro,undefined,"Kiro","Ask her if she admires her sister.");
-	else addDisabledButton(8,"Locked","Locked","You have not unlocked this topic. Shhh. It's a sekrit.");
+	else addDisabledButton(8,"Locked","Locked","You have not unlocked this topic. Shhh. It’s a sekrit.");
 
-	if(pc.hasStatusEffect("KallyKiro")) addDisabledButton(9,"Picardine","Picardine","You already told her about the picardine. You're just waiting to see the reaction.");
+	if(pc.hasStatusEffect("KallyKiro")) addDisabledButton(9,"Picardine","Picardine","You already told her about the picardine. You’re just waiting to see the reaction.");
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 1 || flags["KIRO_KALLY_PICARDINE_QUEST"] == 2) addButton(9,"Picardine",tellKellyPicardine,undefined,"Picardine","Tell Kally that her sister sent her that Picardine!");
-	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 3 || flags["KIRO_KALLY_PICARDINE_QUEST"] == -2) addDisabledButton(9,"Picardine","Picardine","You already told her about this. There's nothing more to add.");
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 3 || flags["KIRO_KALLY_PICARDINE_QUEST"] == -2) addDisabledButton(9,"Picardine","Picardine","You already told her about this. There’s nothing more to add.");
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == -1) addDisabledButton(9,"Picardine","Picardine","You already discussed this with Kiro and decided not to dwell on it.");
-	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == undefined) addDisabledButton(9,"Locked","Locked","You don't know enough to discuss this topic. Perhaps you should talk to her about other things first.");
-	else addDisabledButton(9,"Locked","Locked","You don't know enough to discuss this topic, but you're pretty sure it somehow relates to her relationship with Kiro.");
+	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == undefined) addDisabledButton(9,"Locked","Locked","You don’t know enough to discuss this topic. Perhaps you should talk to her about other things first.");
+	else addDisabledButton(9,"Locked","Locked","You don’t know enough to discuss this topic, but you’re pretty sure it somehow relates to her relationship with Kiro.");
 	
 	addButton(14,"Back",backToKallyMain);
 }
@@ -841,7 +841,7 @@ public function askKallyAboutAusar():void
 	if(pc.race() == "terran" || pc.race() == "human") output("you");
 	else output("the");
 	output(" terrans and the ausar, ");
-	if(pc.race() == "terran" || pc.race() == "human") output("you've");
+	if(pc.race() == "terran" || pc.race() == "human") output("you’ve");
 	else output("they’ve");
 	output(" created more technology that the universe depends on than anyone else. Warp gates? I still can’t wrap my head around how those things work, and don’t even get me started on Light Drives.”</i> She shakes her head. <i>“I almost wish I could go back in time and kiss every single one of the scientists that let us travel between the stars.”</i> Her lips curl. <i>“If any of them invent working teleportation or portal technology, I’ll do more than that.”</i>");
 	output("\n\nYou rock back in surprise. <i>“Really?”</i>");
@@ -944,8 +944,8 @@ public function kiroKallyMeetingPart1():void
 	//[Nod] [Laugh] [No]
 	clearMenu();
 	addButton(0,"Nod",notAtKiroAboutHavingBack);
-	addButton(1,"Laugh",laughAtKiroAboutHavingBack,undefined,"Laugh","The idea of you not having her back is so insane that you can't help but laugh.");
-	addButton(2,"No",noDiceKiroNotHelping,undefined,"No","Tell her that you won't lie for her. If she wants her sister to like her, she should be honest.");
+	addButton(1,"Laugh",laughAtKiroAboutHavingBack,undefined,"Laugh","The idea of you not having her back is so insane that you can’t help but laugh.");
+	addButton(2,"No",noDiceKiroNotHelping,undefined,"No","Tell her that you won’t lie for her. If she wants her sister to like her, she should be honest.");
 }
 
 //Nod:
@@ -1196,12 +1196,12 @@ public function postKallyMeetingTalksMenu(showText:Boolean = true):void
 			if(pc.mf("m","f") == "m") addButton(0,"Boyfriend?",kiroBFGFConvo,undefined,"Boyfriend?","Press for a proper reaction on what Kally called you.");
 			else addButton(0,"Girlfriend?",kiroBFGFConvo,undefined,"Girlfriend?","Press for a proper reaction on what Kally called you.")
 		}
-		if(flags["KIRO_HOT_SIS"] == 1) addDisabledButton(1,"She's Hot","She's Hot","You already talked about this.");
-		else addButton(1,"She's Hot",kallyIsHotKiroSays,undefined,"She's Hot","Tell Kiro you think she has a hot sister.");
+		if(flags["KIRO_HOT_SIS"] == 1) addDisabledButton(1,"She’s Hot","She’s Hot","You already talked about this.");
+		else addButton(1,"She’s Hot",kallyIsHotKiroSays,undefined,"She’s Hot","Tell Kiro you think she has a hot sister.");
 		if(flags["KIRO_OTHER_SIBLINGS"] == 1) addDisabledButton(2,"Siblings?","Siblings?","You already talked about this.");
 		else addButton(2,"Siblings?",askAbootOtherKiroSisters,undefined,"Siblings?","Ask Kiro if she has other siblings.");
-		if(flags["KIRO_NUN_NUMBER"] == 1) addDisabledButton(3,"Nun's #?","Nun's #?","You already talked about this.");
-		else addButton(3,"Nun's #?",getTheNunsNumberFromKiro,undefined,"Nun's #?","Ask Kiro if she still has that nun pornstar's contact information.");
+		if(flags["KIRO_NUN_NUMBER"] == 1) addDisabledButton(3,"Nun’s #?","Nun’s #?","You already talked about this.");
+		else addButton(3,"Nun’s #?",getTheNunsNumberFromKiro,undefined,"Nun’s #?","Ask Kiro if she still has that nun pornstar’s contact information.");
 		addButton(14,"Done",kiroWrapUpFunction);
 	}
 	else
@@ -1226,8 +1226,8 @@ public function kallyIsHotKiroSays():void
 	flags["KIRO_HOT_SIS"] = 1;
 	processTime(1);
 	clearMenu();
-	addButton(0,"Okay",okayKiroYourSisAintHot,undefined,"Okay","Don't rock the boat.");
-	addButton(1,"Push Her",pushKiroToWannaFuckHerSis,undefined,"Push Her","There's no way Kiro doesn't think her sis is a stone cold fox. Push her till she admits it.");
+	addButton(0,"Okay",okayKiroYourSisAintHot,undefined,"Okay","Don’t rock the boat.");
+	addButton(1,"Push Her",pushKiroToWannaFuckHerSis,undefined,"Push Her","There’s no way Kiro doesn’t think her sis is a stone cold fox. Push her till she admits it.");
 }
 
 //[Ok]
@@ -1272,7 +1272,7 @@ public function pushKiroToWannaFuckHerSis():void
 	pc.lust(15);
 	flags["KIRO_INCEST_TEASED"] = 1;
 	clearMenu();
-	addButton(0,"Let's Go",letsGoButtfuckMeKiro,undefined,"Let's Go","Let her get her revenge in right now.");
+	addButton(0,"Let’s Go",letsGoButtfuckMeKiro,undefined,"Let’s Go","Let her get her revenge in right now.");
 	addButton(1,"No",nobuttfuxForMeThanks,undefined,"No","Get out of a rough reaming. Kiro might not be happy about it.");
 }
 
@@ -2291,7 +2291,7 @@ public function tellKellyPicardine():void
 	addButton(0,"Blow Her",tellKallySheShouldBlowKiro);
 	addButton(1,"Kiss Her",tellKallyToKissHerSisterItsTotallyNotIncestAndOkay);
 	addButton(2,"Be Honest",tellKallyToBeSerious);
-	addButton(3,"Don't",dontTellKiroAboutPicardine);
+	addButton(3,"Don’t",dontTellKiroAboutPicardine);
 }
 
 //Don’t
@@ -2319,10 +2319,10 @@ public function tellKallySheShouldBlowKiro():void
 	output("\n\nIt was worth a try...");
 	processTime(2);
 	clearMenu();
-	addDisabledButton(0,"Blow Her","Blow Her","Nope, this won't work.");
+	addDisabledButton(0,"Blow Her","Blow Her","Nope, this won’t work.");
 	addButton(1,"Kiss Her",tellKallyToKissHerSisterItsTotallyNotIncestAndOkay);
 	addButton(2,"Be Honest",tellKallyToBeSerious);
-	addButton(3,"Don't",dontTellKiroAboutPicardine);
+	addButton(3,"Don’t",dontTellKiroAboutPicardine);
 }
 
 //Be Honest
@@ -2383,10 +2383,10 @@ public function noKallyThatKissSuggestionWasJustAPrankBro():void
 	output("<i>“Probably not...”</i>");
 	output("\n\nKally nods. <i>“Yeah... what to do...?”</i>");
 	clearMenu();
-	addDisabledButton(0,"Blow Her","Blow Her","If kissing won't work, blowing definitely won't.");
+	addDisabledButton(0,"Blow Her","Blow Her","If kissing won’t work, blowing definitely won’t.");
 	addDisabledButton(1,"Kiss Her","Kiss Her","You just ruled this idea out.");
 	addButton(2,"Be Honest",tellKallyToBeSerious);
-	addButton(3,"Don't",dontTellKiroAboutPicardine);
+	addButton(3,"Don’t",dontTellKiroAboutPicardine);
 }
 
 //Kissed Her

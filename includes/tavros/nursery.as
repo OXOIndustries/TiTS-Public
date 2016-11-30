@@ -49,7 +49,7 @@ public function zilCallgirlAtNursery():Boolean
 {
 	if (flags["ZIL_CALLGIRL_AT_NURSERY"] == 1) return true;
 
-	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 3 && flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + (24 * 60) <= GetGameTimestamp())
+	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 3 && flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] != undefined && flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + (24 * 60) <= GetGameTimestamp())
 	{
 		flags["ZIL_CALLGIRL_AT_NURSERY"] = 1;
 		return true;

@@ -379,11 +379,11 @@
 			{
 				output("\n\nThere’s a slight pinch as the needle goes in and you nearly jump as your flesh drinks in the wicked broth of Doctor Badger’s patented IQ B-Gone formula. In a second, the syringe is empty and you swat the injector arm away, but you can already feel it going to work. You try to think, but the sensations from your body are just far more important. It feels... ticklish. You giggle and try to assess the damage, but the tickling grows more intense and you start drooling with delight. Uh oh...");
 				//{player takes 2-5 points of temporary Intelligence damage}
-				if(!target.hasStatusEffect("IQ B-Gone")) target.createStatusEffect("IQ B-Gone", 5, 0, 0, 0, false, "Icon_Lips_Lick", "It's like, harder to think and stuff! Hopefully it'll be tempor... temp... short!\n\n<b>-5 Intelligence.</b>", true, 0);
+				if(!target.hasStatusEffect("IQ B-Gone")) target.createStatusEffect("IQ B-Gone", 5, 0, 0, 0, false, "Icon_Lips_Lick", "It’s like, harder to think and stuff! Hopefully it’ll be tempor... temp... short!\n\n<b>-5 Intelligence.</b>", true, 0);
 				else 
 				{
 					target.addStatusValue("IQ B-Gone",1,5);
-					target.setStatusTooltip("IQ B-Gone","It's like, harder to think and stuff! Hopefully it'll be tempor... temp... short!\n\n<b>-" + target.statusEffectv1("IQ B-Gone") + " Intelligence.</b>");
+					target.setStatusTooltip("IQ B-Gone","It’s like, harder to think and stuff! Hopefully it’ll be tempor... temp... short!\n\n<b>-" + target.statusEffectv1("IQ B-Gone") + " Intelligence.</b>");
 				}
 				target.intelligenceMod -= 5;
 			}
@@ -409,11 +409,11 @@
 			{
 				output("\n\nSomething about the light from the lamp catches your attention and it sure isn’t the fake hypno-swirl scrawled on it. Your head feels fuzzy and hot, like someone’s microwaving your brain. You should be more concerned, but your body seems to be drinking in the radiation like a sponge thrown in an ocean. <i>“Please don’t tell the Doctor that I tampered with her Brainmelt Lamp, Spurt Sucker”</i> the Doll Maker coaxes. <i>“I mean, uh, you will forget all that you have seen!”</i> Honestly, it’s getting really hard to remember much of anything.");
 				//{player takes 2-5 points of temporary Willpower damage}
-				if(!target.hasStatusEffect("Brainmelt Lamps")) target.createStatusEffect("Brainmelt Lamps", 5, 0, 0, 0, false, "Icon_DizzyDrunk","It's hard to focus.\n\n<b>-5 Willpower.</b>", true, 0);
+				if(!target.hasStatusEffect("Brainmelt Lamps")) target.createStatusEffect("Brainmelt Lamps", 5, 0, 0, 0, false, "Icon_DizzyDrunk","It’s hard to focus.\n\n<b>-5 Willpower.</b>", true, 0);
 				else 
 				{
 					target.addStatusValue("Brainmelt Lamps",1,5);
-					target.setStatusTooltip("Brainmelt Lamps","It's hard to focus.\n\n<b>-" + target.statusEffectv1("Brainmelt Lamps") + " Willpower.</b>");
+					target.setStatusTooltip("Brainmelt Lamps","It’s hard to focus.\n\n<b>-" + target.statusEffectv1("Brainmelt Lamps") + " Willpower.</b>");
 				}
 				target.willpowerMod -= 5;
 			}
@@ -441,11 +441,11 @@
 			{
 				output("\n\nYou’re too slow to avoid the visor and it clicks around your eyes like an optic explosion. Rapid images of incredibly graphic ultraporn crackles across your vision. More alarmingly, YOU seem to be the star of every single one! Fake memories of fictitious fucking floods into you and, like a full sink with the tap on full blast, your real memories start flowing out of the basin. Years of training gurgle away as your life story is rewritten, chapter by cum-soaked chapter. Gaps in your memory start opening up like black holes-you can tell something’s missing, but you can’t put a finger on what it’s supposed to have been. When the visor finally pulls away, you’re so dizzy, you doubt you could hit the broadside of a ship, much less spindly robotic arms!");
 				//{player takes 2-5 points of temporary Aim damage}
-				if(!target.hasStatusEffect("Mindwashed")) target.createStatusEffect("Mindwashed", 5, 0, 0, 0, false, "Icon_MindcontrolledMindbroke","You're dizzy from having so much smut stuffed into your brain!\n\n<b>-5 Aim.</b>", true, 0);
+				if(!target.hasStatusEffect("Mindwashed")) target.createStatusEffect("Mindwashed", 5, 0, 0, 0, false, "Icon_MindcontrolledMindbroke","You’re dizzy from having so much smut stuffed into your brain!\n\n<b>-5 Aim.</b>", true, 0);
 				else 
 				{
 					target.addStatusValue("Mindwashed",1,5);
-					target.setStatusTooltip("Mindwashed","You're dizzy from having so much smut stuffed into your brain!\n\n<b>-" + target.statusEffectv1("Mindwashed") + " Aim.</b>");
+					target.setStatusTooltip("Mindwashed","You’re dizzy from having so much smut stuffed into your brain!\n\n<b>-" + target.statusEffectv1("Mindwashed") + " Aim.</b>");
 				}
 				target.aimMod -= 5;
 				var damage:TypeCollection = new TypeCollection( { tease: 10 } );
@@ -504,7 +504,7 @@
 			else
 			{
 				output("\n\nThe Emitter fires and the air ripples as a ring-like distortion bloops out of the barrel and into your defenseless body. You prepared for the worst but when the bliss hits you, it’s all you can do to keep yourself from orgasming on the spot! Sheer, animal pleasure cascades up and down your frame, impregnating your cells with the empty-headed need to be used. You giggle, hiccup, and your body shudders as curves start filling out like you’re being inflated from within. Unfamiliar mass balloons on your [pc.ass] and [pc.chest] as your muscles are repurposed into sweet, sensitive  fuckmeat. You bite your lower lip and try to fight through the crippling ecstasy.");
-				output("\n\nThe expanded flesh slowly begins to shrink a second later, not fast enough for your liking. You've no doubt that if you don't win this fight, the machine will dose you again and again... until it becomes permanent.");
+				output("\n\nThe expanded flesh slowly begins to shrink a second later, not fast enough for your liking. You’ve no doubt that if you don’t win this fight, the machine will dose you again and again... until it becomes permanent.");
 				//{player takes 2-5 points of temporary Physique damage}
 				if(!target.hasStatusEffect("Bimboleum")) target.createStatusEffect("Bimboleum", 5, 0, 0, 0, false, "Icon_Drug_Pill_Heart","Your body is weird and squishy, the muscles too plush with pleasure to flex properly.\n\n<b>-5 Physique.</b>", true, 0);
 				else 
