@@ -257,7 +257,7 @@ public function bothriocPidemmePCVictory():void
 
 	if (pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(0, "Dock Ovi", bothriocPidemmeDockOvi);
 	if (pc.hasVagina()) addButton(1, "Vag Ride", bothriocPidemmeVagRide, false, "Vaginal Ride", "Their ovipositor, your pussy.");
-	addButton(2, "Ass Ride", bothriocPidemmeVagAssRide, true, "Ass Ride", "Their ovipositor, your ass.");
+	addButton(2, "Ass Ride", bothriocPidemmeVagRide, true, "Ass Ride", "Their ovipositor, your ass.");
 
 	addButton(14, "Leave", bothriocPidemmeVictoryLeave);
 }
@@ -832,7 +832,7 @@ public function bothriocPidemmeDockOvi():void
 	showName("VICTORY:\nBOTHRIOC PIDEMME");
 
 	var cockIdx:int = pc.cockThatFits(enemy.vaginalCapacity());
-	var cock2Idx:int = pc.cocks.length > 1 ? pc.cockThatFits2(enemy.vaginalCapacity()) ? -1;
+	var cock2Idx:int = pc.cocks.length > 1 ? pc.cockThatFits2(enemy.vaginalCapacity()) : -1;
 	var cockTag:String = "[pc.cock " + cockIdx + "]";
 
 	output("<i>“So how do you people fertilize these eggs of yours?”</i> you query");
@@ -841,7 +841,7 @@ public function bothriocPidemmeDockOvi():void
 	if (CodexManager.hasViewedEntry("Bothrioc") || flags["BOTHRIOC_PIDEMME_DOCKED"] != undefined) output(" You already know this of course but it’s always a pleasure to make them repeat it, given how well it segues into the hot and heavy.");
 	
 	output("\n\n<i>“Our ovipositor does everything, farlander,”</i> the lithe piebald creature mumbles in response, from their position on the ground in front of you. You notice a slight sneer cross their long face when you");
-	if (pc.hasLowerUndergarment()) output(" discard your [pc.lowerUndergarment and");
+	if (pc.hasLowerGarment()) output(" discard your [pc.lowerUndergarment and");
 	output(" let [pc.eachCock] flop downwards meaningfully. If anything, their distaste increases your ardour for having your way with this wannabe predator. <i>“We can push it into another’s egg-chamber, collect the oil there and use that to seed our load; then we find someone else to take our readied eggs.”</i>");
 
 	output("\n\n<i>“So then... <i>“ you say with mocking thoughtfulness, standing over the defeated pidemme, deliberately swinging your "+cockTag+" close to their pale face. <i>“If I were to, let’s say, fuck that plump abdomen of yours absolutely silly my... oil... would fertilize the eggs in there, correct?”</i>");
@@ -921,7 +921,7 @@ public function bothriocPidemmeDockOvi():void
 	IncrementFlag("BOTHRIOC_FUCKED");
 
 	processTime(20+rand(10));
-	enemy.loadInCunt(0, pc);
+	enemy.loadInCunt(pc, 0);
 	pc.orgasm();
 
 	CombatManager.genericVictory();
@@ -939,6 +939,14 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 	if (!isAnal && pc.hasVagina())
 	{
 		holeIdx = pc.cuntThatFits(enemy.cockVolume(0));
+		if (pc.isPregnant(holeIdx))
+		{
+			var possNewHole:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
+			if (possNewHole != -1)
+			{
+				holeIdx = possNewHole;
+			}
+		}
 		holeTag = "[pc.vagina " + holeIdx + "]";
 	}
 
@@ -1021,7 +1029,7 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 	if (!isAnal)
 	{
 		output(", [pc.femcum]");
-		if (pc.vaginas[vagIdx].wetness() <= 2) output(" drooling");
+		if (pc.vaginas[holeIdx].wetness() <= 2) output(" drooling");
 		else output(" gushing");
 		output(" freely down the bothrioc’s eager, distended stalk and over their latex-like armor.");
 	}
@@ -1038,20 +1046,114 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 
 	output("\n\n<i>“Please,”</i> they whisper.");
 
-	//[Let them] [Nope]
-	clearMenu();
-	addButton(0, "Let Them", bothriocPidemmeVagRideII, [isAnal, true]);
-	addButton(1, "Nope", bothriocPidemmeVagRideII, [isAnal, false]);
+	// Only offer the choice if the hole in question could actually be egged
+	if (!pc.isPregnant(isAnal ? 3 : holeIdx))
+	{
+		//[Let them] [Nope]
+		clearMenu();
+		addButton(0, "Let Them", bothriocPidemmeVagRideII, [isAnal, true, holeIdx], "Let Them", "Let them release their eggs inside you.");
+		addButton(1, "Nope", bothriocPidemmeVagRideII, [isAnal, false, holeIdx], "Nope", "Deny them.");
+	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", bothriocPidemmeVagRideII, [isAnal, false, holeIdx]);
+	}
 }
 
 public function bothriocPidemmeVagRideII(opts:Array):void
 {
 	var isAnal:Boolean = opts[0];
 	var isEgging:Boolean = opts[1];
+	var holeIdx:int = opts[2];
 	
 	clearOutput();
 	showBothriocPidemme();
 	showName("VICTORY:\nBOTHRIOC PIDEMME");
 
+	if (isEgging)
+	{
+		if (bothriocAddiction() <= 50)
+		{
+			output("You’re so high you couldn’t care less - and you do feel bad about denying the little bugger this badly.");
+		}
+		else
+		{
+			output(" The only thing that would make this any better is getting a nice, heavy clutch to carry away with you - and you do feel bad about denying the generous egg-giver this badly.");
+		}
+		
+		output("\n\n<i>“Go on then,”</i> you gasp, still gripping their smooth abdomen tightly with your legs. <i>“For being so good.”</i>");
+		
+		output("\n\nImmediately, and with an ecstatic, almost pained howl, the bothrioc releases a huge gush of oil into you, so large it washes warmly back down their latex egg-sac in clear, oozing rivers. The heavy, round objects which are then expelled into your relaxed, waiting womb come out in a heady rush, practically fighting each other down the bothrioc’s ovipositor to get into that wet, plush breeding bay that has been tormenting them this entire time. Your eyes cross as your belly plumps out, crammed with alien young that your pussy eagerly coaxes inside with delicious clenches.");
+		
+		output("\n\n<i>“Thank you... <i>“ groans the ");
+		if (pc.hasCock()) output(" cum-spattered");
+		output(" bothrioc every time they squeeze an oval past your sensitive lips, their whole body clenched up in ecstasy. <i>“Thank you... thank you... aargh... thank you!”</i> ");
+		
+		output("\n\nThey sag at last, their abdomen notably deflated, their oozing violet egg-stalk flopping outwards. Exhaustion and the shimmering relaxation that the creature’s fluids induce compel you to");
+		if (pc.isTaur()) output(" lower yourself");
+		else output(" flop");
+		output(" down on top of them, your rounded stomach");
+		if (!pc.isTaur()) output(" and [pc.chest]");
+		output(" pressing into the warm curve of their back.");
+		
+		output("\n\n<i>“That wasn’t so bad in the end, was it?”</i> you murmur in their plated ear.");
+		
+		output("\n\n<i>“No... it wasn’t,”</i> comes the breathy reply. They slide around to face you, press their hands against your belly, strokes your chin, and reaches their thin lips up to your own ear. <i>“Next time though, farlander... I think you’ll see things a little bit differently.”</i>");
+		
+		output("\n\nImplied malice or not, it’s difficult to want to do anything but hold the warm, lithe creature for a little while longer, share the wonderful, sticky glow. Eventually they disentangle and silently retreat back into the darkness, leaving you to pick up your gear and continue on - a little more splay-");
+		if (pc.hasFeet()) output(" footed");
+		else output(" hipped");
+		output(" than you were.");
 
+		processTime(20+rand(10));
+		if (isAnal) pc.loadInAss(enemy);
+		else pc.loadInCunt(enemy, holeIdx);
+		pc.orgasm();
+	}
+	else
+	{
+		if (bothriocAddiction() > 50)
+		{
+			output("The desire to accept a nice, big clutch and ease the egg-giver’s burden is so great that it almost bypasses your brain and flies past your lips anyway - but somehow you clamp down on it.");
+			
+			output("\n\n<i>“Not today, lover,”</i> you purr, continuing to thrust away, riding out your dazzling orgasm. <i>“Just think how great it will feel for all this... when you do get to finally release them... <i>“");
+			
+			output("\n\nThe bothrioc grits their teeth - but despite continuing to leak oil deliriously into your cunt, they manage to hold on. When you finally come down, draw the still-achingly erect ovipositor out of your oozing, gently aching hole, you");
+			if (pc.isTaur()) output(" lower yourself");
+			else output(" flop");
+			output(" down on top of them, stroking their sculpted chin and bulging, pent up abdomen comfortingly.");
+			
+			output("\n\n<i>“Maybe next time,”</i> you soothe into their ear. <i>“If you’re good.”</i>");
+			
+			output("\n\n<i>“Just... get out of here,”</i> they grit. <i>“If I don’t find an incubator who isn’t a sadist in the next hour, I’m going to burst.”</i>");
+			
+			output("\n\nYou pat their " + enemy.hairColor + " hair and go to fetch your gear, laughing as you watch the bothrioc hobble off, clutching their dangerously swollen egg-sac.");
+		}
+		else
+		{
+			output("You snort, despite yourself. How stupid do you look?");
+			
+			output("\n\n<i>“I told you, keep those to yourself,”</i> you order sternly, continuing to thrust away, riding out your dazzling orgasm. <i>“You can always find another chump to stick them into - so long as you’ve still got your tube.”</i>");
+			
+			output("\n\nThe bothrioc grits their teeth - but they take the point and manage to hold on, despite leaking oil deliriously into your pulsing cunt. When you finally come down, draw the still-achingly erect ovipositor out of your oozing, gently aching hole, you");
+			if (pc.isTaur()) output(" lower yourself");
+			else output(" flop");
+			output(" down on top of them, stroking their sculpted chin and bulging, pent up abdomen comfortingly.");
+			
+			output("\n\n<i>“Maybe next time, precious,”</i> you coo mockingly in their ear. <i>“If you’re good.”</i>");
+			
+			output("\n\n<i>“I’ll get you next time, farlander,”</i> they grit back. <i>“And once your attitude has been corrected, I’ll pump your every hole so full of eggs you won’t be able to move. Please get off me now - if I don’t find an incubator who isn’t a sadist in the next hour, I am going to burst.”</i>");
+			
+			output("\n\nYou pat their "+ enemy.hairColor + " hair and go to fetch your gear, laughing as you watch the bothrioc hobble off, clutching their dangerously swollen egg-sac.");
+		}
+
+		processTime(20+rand(10));
+		enemy.impregnationType = ""; // Remove the impreg. type to avoid egging the player during orgasm.
+		if (isAnal) pc.loadInAss(enemy);
+		else pc.loadInCunt(enemy, holeIdx);
+		pc.orgasm();
+	}
+
+	CombatManager.genericVictory();
 }
