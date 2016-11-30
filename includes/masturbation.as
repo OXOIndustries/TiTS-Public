@@ -1,4 +1,4 @@
-﻿import classes.GameData.CommandContainers.FapCommandContainer;
+import classes.GameData.CommandContainers.FapCommandContainer;
 import classes.Items.Armor.GooArmor;
 import classes.Items.Miscellaneous.MagicMilker;
 import classes.Items.Toys.HoverHole;
@@ -415,6 +415,15 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ttHeader = "SukMastr 2000";
 		fap.ttBody = "This high-quality pussy pump is perfect for a little bit of cunt-expanding fun. Comes with pump, vaginal cup, and remote.";
 		fap.func = useTheSuckMasta;
+		faps.push(fap);
+	}
+	if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "HL Strapon";
+		fap.ttHeader = "Hardlight Strap-on";
+		fap.ttBody = "You upgraded your strap-on. A dick you enlarge at will might be fun to play with!";
+		fap.func = adjustableHolofap;
 		faps.push(fap);
 	}
 	return faps;
@@ -3562,3 +3571,229 @@ public function autofellatioForNormies():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+public function adjustableHolofap():void
+{
+	clearOutput();
+	showName("\nMASTURBATION");
+	//First time
+	if(flags["HL_STRAPON_FAP_ADJUSTABLE"] == undefined)	output("Now seems like as a good a time as any to give your newly-upgraded virtual phallus a proper ‘inspection’.");
+	else
+	{
+		//Repeat bimbo
+		if(pc.isBimbo()) output("You decide that you need a good hard cum, just so that you can like, think or whatever. It’d be more fun with someone else, but desperate times call for desperate orgasms!");
+		//Lust 90+
+		else if(pc.lust() >= 90) output("Fuck, you need to cum and cum now! Flicking your eyes down, you remember your hardlight dildo. Yeah... it’ll do the job.");
+		//High libido (80+ plus)
+		else if(pc.libido() >= 80) output("Now seems like as good a time as any for a quick orgasm, but it’s always a good time for an orgasm. Looking down, you decide to play with the hardlight member this time.");
+		//Repeat No genitals
+		else if(!pc.hasGenitals()) output("What better way to get relief than your adjustable, photonic member? All the fun of having a dick with none of the downsides!");
+		//Repeat Genitals
+		else
+		{
+			output("In spite ");
+			if(pc.lust() >= 50) output("of the need coursing through ");
+			else output("of your biological predisposition to using ");
+			output("your ");
+			if(pc.hasCock()) output("[pc.cocks]");
+			if(pc.isHerm()) output(" and ");
+			if(pc.hasVagina()) output("[pc.vaginas]");
+			output(", you decide to mix it up and play with your upgraded hardlight dildo.");
+		}
+	}
+	//No new PG: Activation
+	output(" ");
+	//Bimbo
+	if(pc.isBimbo()) output("You reach for your crotch and, in your horny daze, clumsily bump the activation stud to your [pc.lowerUndergarment]. The dazzling spear or light manifests with an audible hum almost loud enough to overwhelm the bimbolicious thought that swims to the front of your mind: <i>cock</i>. Whatever you had planned, it’s long gone. There’s a dick here to play with!");
+	//Lust90+
+	else if(pc.lust() >= 90) 
+	{
+		if(!pc.isCrotchExposedByArmor()) output("Your [pc.armor can’t hit the ground fast enough. ");
+		output("With trembling fingers, you flick the activation control and moan intensely at the sudden appearance of your glowing, holographic prong. It’s more than force and light. It’s package full of simulated sensation, one that transmits the tight tingling of a fully-engorged prick right up your spinal cord. Were it real, it’d be twitching from your massive levels of desire.");
+	}
+	//Normal
+	else
+	{
+		if(!pc.isCrotchExposedByArmor()) output("Slipping out of your [pc.armor], y");
+		else output("Y");
+		output("ou flick the activation control on your [pc.lowerUndergarment]. An eight-inch prong manifests out of pure force and light, bringing with it the simulated tingling eroticism of a fully-engorged dick.");
+	}
+
+	//Foreplay PG - Randomized
+	var choices:Array = [1];
+	//Pawjobbie!
+	if(pc.hasLegFlag(GLOBAL.FLAG_PAWS) && pc.legCount == 2 && pc.RQ() >= 60) choices.push(2);
+	//Tailjob
+	if(pc.tailCount >= 1 && pc.hasTailFlag(GLOBAL.FLAG_LONG) && pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE)) choices.push(3);
+	if(pc.hasParasiteTail() && pc.tailCount >= 1) choices.push(4);
+
+	var select:int = choices[rand(choices.length)];
+
+	//Squeeze and Tug
+	if(select == 1)
+	{
+		output("\n\nTouching it is automatic. Your hands are wrapped around it before you have time to consciously think about.");
+		if(pc.hasArmFlag(GLOBAL.FLAG_PAWS)) output(" The pads on your fingertips and palms feel <i>fantastic</i> against the buzzing rod.");
+		else 
+		{
+			output(" The feeling of your ");
+			if(pc.hasArmFlag(GLOBAL.FLAG_SCALED)) output("scales");
+			else if(pc.hasArmFlag(GLOBAL.FLAG_FURRED)) output("fur");
+			else if(pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output("chitin");
+			else output("[pc.skinNoun]");
+			output(" sliding against the buzzing rod is exactly what you needed.");
+		}
+		output(" Of course, it doesn’t feel quite like a dick. It’s too hard, for one. There’s little to no give in the buzzing length, and its surface is strangely smooth. It has a sort of skin-like texture, but you can slide alongside it as well as if it was coated in a thick layer of lube. In short, it’s the perfect tool for fucking or stroking. All the fun and none of the mess!");
+		output("\n\nSo it’s no surprise that you sit there, pumping away at the buzzing length for far longer than you intended, enjoying the gradual build-up far too much to rush into an unsatisfying climax.");
+		//Pawpads: 
+		if(pc.hasArmFlag(GLOBAL.FLAG_PAWS)) output(" You frequently switch from a full-handed grip to playful caresses of your padded fingertips. Taking full advantage of the supple, leathery cushions on your digits, you drag them up and down glittering rod. They feel almost like hungry tongues, each licking a path along your unnatural shaft.");
+		else if(pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output(" You squeeze tighter and moan. The toy is incapable of transmitting anything even close to pain, only greater levels of enjoyment. Chitin creaks as you pump, squeezing tighter and tighter. Your armored hands are perfect for this toy, hard enough to match it and smooth enough to slide easily no matter how tightly you cradle the unnatural shaft.");
+		else if(pc.hasArmFlag(GLOBAL.FLAG_FURRED)) output(" You release your full-handed grip before long and switch to gently caressing the rock-hard length, allowing yourself to dwell on the pleasant, almost tickly caresses of your own fluffy mits. It’s like caressing yourself with four or five feather dusters at once, burying you in an avalanche of gentle pleasures.");
+		else output(" As the pleasure rises, you stack one hand atop the other, forming a tunnel of tightening skin to drive yourself through. It feels fabulous enough for your hips to lurch upward of their own accord now and then, bucking like a breeding bronco.");
+		output("\n\nIt feels lovely, but there’s so much more this toy can do. You stop and regard the enhanced controls. There could be so much to stroke...");
+	}
+	//Self pawjob - requires pawtype feet with soft paw pads. Notaurs. RQ() >= 60
+	else if(select == 2)
+	{
+		output("\n\nWiggling your claw-tipped toes, you’re struck by a particularly perverse idea: a pawjob. If you’re going to have soft, oh-so-supple pads on the bottom of your feet, you might as well put them to use. Grabbing yourself by the ankles, you bend yourself into position: heels nestled against your [pc.lowerUndergarment] and padded toes cradling the incandescent tip. Just making contact is amazing, even if the dick itself feels a little too strange to be entirely real. It’s kind of slippery - just holding position, you find yourself shifting and sliding against it, blasting bolts of pure ecstasy through the neural link. It feels like somebody dipped it in expensive lube before they turned it on.");
+		output("\n\nPleasure, and the need for more of it, drive your [pc.legs] to flex before you can waste any more time puzzling over the photon phallus’s properties. It feels good, nestled in there between your ");
+		if(pc.hasLegFlag(GLOBAL.FLAG_FURRED)) output("fur-lined ");
+		else if(pc.hasLegFlag(GLOBAL.FLAG_SCALED)) output("scaly ");
+		output("feet, cradled by the pillowy cushions meant for quieting your footsteps. Tongue lolling, you drive your ankles up and down, stroking off the glowing cock with your animalistic feet, wiggling your thick toes to rub the underside of the crown with every pass. It looks so perverse, stroking off with your soles like this, but it feels too good to care. Even when your hips buck hard enough to roll you onto your back, you keep humping your feet.");
+		output("\n\nIt’s a lovely experience, but biology demands you change it up after a cramp starts in your thigh. Maybe you could give the enhanced controls a whirl.");
+	}
+	//Tailjob - long and prehensile required
+	else if(select == 3)
+	{
+		output("\n\nHands would be the obvious tool for this job, but you’ve got something better: a prehensile tail. Wrapping the ass-mounted organ around your [pc.hips], you gently bring it into contact with the rock-hard pole of projected light. It feels <i>nice</i>. Nice enough for you to sigh with pleasure and wrap your [pc.tail] the whole way around. Oh stars that feels nice! Better still, the dick itself feels strangely smooth, like it’s been coated in a thick layer of lubricant. You’re able to slide your tail up and down its length with ease.");
+		output("\n\nLooping your tail around and around into a coil of pleasure is a piece of cake and doesn’t slow your stroking in the least. It’s almost like fucking a stranger in a way. The neuron-linked cock is so much more sensitive than your tail ever could be. Leaning back, you keep stroking and squeezing at it, moaning, imagining in your mind’s eye that someone else is doing the riding. The blissful tailfuck comes to an end all-too soon when your muscles begin to tire. You give one last, ecstatic squeeze before letting your [pc.tail] fall away, revealing the glowing blue length once more.");
+		output("\n\nIt’s time to take those upgraded controls for a spin.");
+	}
+	//Cunttail tease
+	else if(select == 4)
+	{
+		output("\n\nWhy use your hands when you’ve got ");
+		if(pc.tailCount == 1) output("a pocket pussy");
+		else output("pocket pussies");
+		output(" hanging off your ass? Grabbing hold of ");
+		if(pc.tailCount > 1) output("one of ");
+		output("your parasitic dick-sleeve");
+		if(pc.tailCount > 1) output("s");
+		output(", you pull it around and present it with your projected prick. Perhaps a little predictably, it doesn’t seem to care. Fortunately for you, having a linked nervous system means that you can make it care. With a little focus, you soon have the snake-like organ dripping wet and slowly sinking down. It’s luscious folds swiftly envelop the blue-glowing length, and you moan from the abrupt double-sensation of both penetrating and being penetrated.");
+		output("\n\nSlight distaste radiates out from the parasite, but you ignore it. It feels too good not to. Grabbing hold of the snake in both hands, you start pumping it up and down, groaning in delight from your fervent, tail-snake-assisted masturbation. There’s so much lube drooling from the wriggling cunt that the fabric of your [pc.lowerUndergarment] is utterly drenched in it. Your crotch is going to smell like pussy for quite some time at this rate, but you can’t make yourself care. You stroke once more, squeezing your fake prick with dozens of rings of concentric muscles before the snake decides it has had enough and actively begins to fight your control.");
+		output("\n\nYou let it go and glance to the upgraded controls. More dick means it'll feel even better, right?");
+	}
+	else output("\n\nERROR: Invalid foreplay scene selected. Fenoxo fucked up. Please hit up the bug report forums on forums.fenoxo.com and post about. Maybe safe to file and include that as an attachment too, so we can figure out just what went wrong! Thanks!");
+
+	choices = [1,1];
+	//Nipplefuck
+	if(pc.hasFuckableNipples()) choices.push(2,2);
+	//Enormous footjob (odds increased if footjobbed before)
+	var feeted:Boolean = (select == 2);
+	if(feeted) 
+	{
+		choices.push(3,3);
+	}
+	choices.push(3);
+
+	select = choices[rand(choices.length)];
+
+	//BIG DICK GOOO
+	//Default hugjob
+	if(select == 1)
+	{
+		output("\n\nCould it reach past your head? You grab the length control and crank it up... and up. A column of glowing imitation flesh stabs upward into your field of view, wobbling around like a big noodle. You may feel more of that tingling, tumescent sensation, but it’s too thin. Keeping one finger on the length adjustment, you reach for the girth control and flick. It feels incredible, your holo-dick rippling and widening, dilating an inch at a time. Fake, hardlight-rendered veins bulge, doubling in size. Soon, it’s at least a foot across, and it’s getting wider. Every millimeter added size intensifies the pleasure.");
+		output("\n\nThere doesn’t seem to be an upper limit, or if there is, you haven’t hit it yet. You let the growth ebb, then crank it up in pulses, tantalizing yourself with rhythmic spikes of pleasure and growth. The crown of the glow-dong is soon looming over your head, sometimes rubbing against your face when your [pc.hips] uncontrollably lurch upward. You moan, abdominal muscles rippling, cock growing. It feels too good to stop. You wrap your free arm around the side, squeezing down, providing yourself a tight right to fuck, one that you force further and further from your body with every unsubtle push on the controls.");
+		output("\n\nThe moment you hit the maximum size, you nearly climax from the passive sensations it radiates. Bright blue dick looms three foot past the top of your head, the shaft nearly two feet across. You wrap your other arm around it, one over the other, hugging it tight to your [pc.chest]. It’s so easy to stroke, and it feels so good! You can’t help but start to kiss and lick it, creating bright points of pleasure atop the droning wall of constant need. Whimpering against your holo-cock, you make love to it, embracing so tightly that the ensuing jolt of electric bliss sets off an orgasmic cascade.");
+		output("\n\n");
+		//Dick
+		if(pc.hasCock())
+		{
+			output("[pc.Cum] bubbles and froths");
+			if(!pc.isCrotchExposed()) 
+			{
+				output(" inside your underwear, soaking it in your ignored organ");
+				if(pc.cockTotal() > 1) output("s’");
+				else output("’s");
+				output(" spunky love. ");
+			}
+			else output(" before spurting out in wide arcs, left free by your crotch-exposing underwear to spray everywhere. ");
+		}
+		//No new PG
+		output("You collapse backward, the weightless rod clutched tight, whimpering and moaning, hips rolling thoughtlessly. The orgasm rolls on into a second, the bright dick’s hardness seemingly inexhaustible. Holding on becomes an impossibility. Your arms are too far from your crotch for your brain think about any longer. They flop to the side of your thrusting form, and the orgasms roll on. Your [pc.lips] cannot kiss hard enough, cannot please enough of the length, not even when they’re buzzing and tingling from mashed so forcefully against the rod of artificial lust.");
+		output("\n\nYou cum so hard that it <i>hurts</i> a little, and from that pain, you find the strength to flick the off switch. You flop onto the ground like a puppet with its strings cut the moment the holocock vanishes, so fucked out that aftershocks of bliss are still bouncing around in your head.");
+		if(pc.libido() <= 75) 
+		{
+			pc.libido(1);
+			output("<b> It’ll be harder to avoid sexual thoughts after an experience like that!");
+		}
+		processTime(35);
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+	}
+	//Nipple fuckarooni :3
+	else if(select == 2)
+	{
+		output("\n\nCould it reach all the way up to your [pc.nippleCunts]? You ");
+		if(!pc.isChestExposed()) output("pull your [pc.upperGarments] out of the way and ");
+		output("grab hold of the length control, sharply cranking it up, gasping when the weightless dick gains a foot of length in seconds. With its new length comes an increase in the bizarre sensation of needy hardness. Where before it faintly felt like wearing a tumescent dick, now it seems to be almost all you can feel. Aching, rigid length dominates your thoughts right up up until the moment the tip bumps your [pc.breast].");
+		output("\n\nRight, you have a wet - no, dripping wet, hole for it slip into. Grabbing hold of the buzzing saber of light, you gently guide it into your leaky tit and cum on the spot. It’s so good... but it could be better! You reach for the thickness control and crank it up, spreading your chest-mounted fucktunnel wide around this glorious piece of technology. You lean forward, burying more inside you, jiggling and wobbling in sublime pleasure, fucking yourself and being fucked.");
+		output("\n\nFingers slip into ");
+		if(pc.totalNipples() > 2) output("an unoccupied");
+		else output("the other");
+		output(" chestcunt with ease, but it’s not the same. Your wriggling digits can’t probe as deeply as the hardlight dick. ");
+		if(pc.canLactate()) output("They can’t fill you so full that the [pc.milk] is being squeezed out around them. ");
+		else output("THey can't fill you so full that you feel like your chest is more dick than tit. ");
+		output("And they certainly can’t feel the sublime pleasure of being buried deep into a squeezing pussy the same way. Groaning and moaning, you rock back and forth, drooling spit");
+		if(pc.canLactate()) output(" and [pc.milkNoun]");
+		output(". You’re like a fountain of moisture, creaming yourself all over the upsized cock.");
+		output("\n\nJolts of electrified pleasure buzz through nerves made raw by sheer voltage, crackling up your spine in waves of dizzying bliss. You gurgle thoughtlessly and clench when it finally overwhelms you, every muscle clamping down, tits ");
+		if(pc.canLactate()) output("squirting");
+		else output("leaking");
+		if(pc.hasCock()) output(", [pc.cocks] firing off");
+		if(pc.hasVagina()) 
+		{
+			output(", [pc.vaginas] spasming");
+			if(pc.isSquirter()) output(" and squirting");
+		}
+		output(", and [pc.hips] lurching uncontrollably.");
+		output("\n\nWhen you come to, you’re lying on your back and idly fingering a gaping nipple. The dick is still there, looming over you, compelling you to thrust it into something, but this time, you flip the switch off and sag back, satiated.");
+		if(pc.canLactate()) pc.milked();
+		processTime(30);
+		pc.orgasm();
+		pc.orgasm();
+	}
+	//Enormous footjob (odds increased if footjobbed before)
+	else if(select == 3)
+	{
+		if(feeted) output("\n\nMaking it longer would make it easier to rub with your [pc.feet], easier to sit and cradle between your soles for as long as you wished, cramps be damned.");
+		else output("\n\nMaking it longer would make it easy to touch with your [pc.feet] - easy enough that you could stroke yourself off between your soles.");
+		output(" You grab hold of the controls - both for length and girth - and crank them both up. Pale blue light sizzles and hums as it extends further and further from your body, the electric-blue simulacrum of a penis snaking across the floor. You feel its sensations far more strongly than before. Just brushing your thighs is almost as good as sex.");
+		output("\n\nTaking a deep breath to steady your nerves, you spread your [pc.legs] and bend your knees inward, placing your [pc.feet] just to the side of the photon-cock. Surprisingly, you can feel the heat they radiate through the neural interface laced into your [pc.lowerUndergarment]. It tantalizes your senses until you can wait no longer, and you press your ");
+		if(pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output("soft-padded ");
+		output("toes down against it, then the balls of your feet, and finally slip your heels down just under its bottom. You feel so naughty, rubbing your soles against an over-sized dick, one that isn’t even your own.");
+		output("\n\nBuoyed by the erotic thrill, you join your hands into the action, placing them atop the lengthy snake and stroking, setting a tempo that your feet soon follow. It’s so long that individual strokes take a couple of seconds, even once you’re really pumping it. The photon-cock is perfect, naturally slippery enough for you to slide against with ease, and it only gets better with more pressure. You twist your legs so that your arches conform to the natural, phallic shape between them, maximizing the intensity of the act.");
+		output("\n\nWho would have guess that heaven is real, and your feet are the keys to entering? Floating on cloud nine, you milk your low-friction phallus ever faster");
+		if(pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output(", squeezing your padded paws tightly enough against it that they may as be molded in the shape of your underwear-mounted holo-dong");
+		output(". At some point, you dully realize that you’ve reached climax.");
+		if(pc.hasCock()) output(" [pc.EachCock] is spurting [pc.cumVisc] seed over your [pc.lowerUndergarment].");
+		if(pc.hasVagina())
+		{
+			output(" Your [pc.vaginas] ");
+			if(pc.totalVaginas() == 1) output("is");
+			else output("are");
+			output(" clenching uselessly, grinding your engorged folds against one another.");
+		}
+		output(" Arcing your back, you pant and rub faster, writhing against the ground until your ebbing muscle control gives out entirely, and your feet fly off the slick blue member.");
+		output("\n\nYou pant for breath and flip the dildo off, utterly contented.");
+		processTime(35);
+		pc.orgasm();
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	IncrementFlag("HL_STRAPON_FAP_ADJUSTABLE");
+}
+
+
+

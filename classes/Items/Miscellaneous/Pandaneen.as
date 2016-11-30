@@ -627,6 +627,7 @@
 						target.armType = GLOBAL.TYPE_PANDA;
 						target.clearArmFlags();
 						target.addArmFlag(GLOBAL.FLAG_FURRED);
+						target.addArmFlag(GLOBAL.FLAG_PAWS);
 						changes++;
 					}
 					//Fur is grown
