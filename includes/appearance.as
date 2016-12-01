@@ -661,9 +661,9 @@ public function appearance(forTarget:Creature):void
 			//Demonic horns
 			if(target.hornType == GLOBAL.TYPE_DEMONIC)
 			{
-				if(target.horns <= 2) output2(" A small pair of pointed horns has broken through the " + target.skin() + " on your forehead, proclaiming some demonic taint to any who see them.");
-				else if(target.horns <= 4) output2(" A quartet of prominent horns has broken through your " + target.skin() + ". The back pair are longer, and curve back along your head. The front pair protrude forward demonically.");
-				else if(target.horns <= 6) output2(" Six horns have sprouted through your " + target.skin() + ", the back two pairs curve backwards over your head and down towards your neck, while the front two horns stand almost eight inches long upwards and a little forward.");
+				if(target.horns <= 2) output2(" A " + (target.hornLength <= 2 ? "small pair of" : ("pair of " + num2Text(target.hornLength) + "-inch long")) + " pointed horns has broken through the " + target.skin() + " on your forehead, proclaiming some demonic taint to any who see them.");
+				else if(target.horns <= 4) output2(" A quartet of " + (target.hornLength <= 4 ? "prominent" : (num2Text(target.hornLength) + "-inch long")) + " horns has broken through your " + target.skin() + ". The back pair are longer, and curve back along your head. The front pair protrude forward demonically.");
+				else if(target.horns <= 6) output2(" Six horns have sprouted through your " + target.skin() + ", the back two pairs curve backwards over your head and down towards your neck, while the front two horns stand " + (target.hornLength < 8 ? "almost eight" : num2Text(target.hornLength)) + " inches long upwards and a little forward.");
 				else output2(" A large number of thick demonic horns sprout through your " + target.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly " + num2Text(target.hornLength) + " inches while the rest curve back over your head, some of the points ending just below your ears. You estimate you have a total of " + num2Text(target.horns) + " horns.");
 			}
 			//Minotaur horns
