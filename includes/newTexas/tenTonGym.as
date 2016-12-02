@@ -1630,6 +1630,8 @@ public function liftVoyeurism():void
 	var watchedNico:Boolean = (flags["WATCHED_NICO"] != undefined);
 	var watchedLee:Boolean = (flags["WATCHED_LEE"] != undefined);
 
+	if(watchedNico && watchedLee) showName("LEE\n& NICO");
+
 	var sore:Boolean = pc.hasStatusEffect("Sore");
 	var verySore:Boolean = pc.hasStatusEffect("Very Sore");
 	var wornOut:Boolean = pc.hasStatusEffect("Worn Out");
