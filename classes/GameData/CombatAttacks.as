@@ -548,7 +548,7 @@ package classes.GameData
 			}
 			// We made it here, the attack landed
 			
-			if (attacker is PlayerCharacter) output("You land a hit on [target.combatName] with your " + attacker.rangedWeapon.longName + "!");
+			if (attacker is PlayerCharacter) output("You land a hit on " + target.getCombatName() + " with your " + attacker.rangedWeapon.longName + "!");
 			else if (attacker.isPlural) output("[attacker.CombatName] connects with their " + plural(attacker.rangedWeapon.longName) + "!");
 			else if (target is PlayerCharacter) output("[attacker.CombatName] hits you with [attacker.combatHisHer] " + attacker.rangedWeapon.longName + "!");
 			else output("[attacker.CombatName] connects with [attacker.combatHisHer] " + attacker.rangedWeapon.longName + "!");
@@ -614,7 +614,7 @@ package classes.GameData
 			}
 			if (target is ZilFemale) kGAMECLASS.flags["HIT_A_ZILGIRL"] = 1;
 			
-			if (attacker is PlayerCharacter) output("You land a hit on [target.combatName] with your " + attacker.meleeWeapon.longName + "!");
+			if (attacker is PlayerCharacter) output("You land a hit on " + target.getCombatName() + " with your " + attacker.meleeWeapon.longName + "!");
 			else if (attacker.isPlural) output("[attacker.CombatName] connects with their " + plural(attacker.meleeWeapon.longName) + "!");
 			else if (target is PlayerCharacter) output("[attacker.CombatName] hits you with [attacker.combatHisHer] " + attacker.meleeWeapon.longName + "!");
 			else output("[attacker.CombatName] connects with [attacker.combatHisHer] " + attacker.meleeWeapon.longName + "!");
@@ -1064,7 +1064,7 @@ package classes.GameData
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You draw back your " + attacker.meleeWeapon.longName + " and land a hit on [target.combatName]!");
+			if (attacker is PlayerCharacter) output("You draw back your " + attacker.meleeWeapon.longName + " and land a hit on " + target.getCombatName() + "!");
 			else if (target is PlayerCharacter) output("[attacker.CombatName] draws back [attacker.combatHisHer] " + attacker.meleeWeapon.longName + " and lands a hit on you!");
 			else output("[attacker.CombatName] draws back [attacker.combatHisHer] " + attacker.meleeWeapon.longName + " and lands a hit on [target.combatName]!");
 			
@@ -1204,7 +1204,7 @@ package classes.GameData
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You overcharge your " + attacker.rangedWeapon.longName + " and land a hit on [target.combatName]!");
+			if (attacker is PlayerCharacter) output("You overcharge your " + attacker.rangedWeapon.longName + " and land a hit on " + target.getCombatName() + "!");
 			else output(" [attacker.CombatName] connects with [attacker.combatHisHer] overcharged " + attacker.rangedWeapon.attackNoun + "!");
 			
 			var d:TypeCollection = attacker.rangedDamage();

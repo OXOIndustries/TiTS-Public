@@ -193,7 +193,7 @@ public function kiCargoLiftVictory():void
 	currentLocation = "KI-L22";
 	generateMap();
 	
-	output("You’ve dropped the closest of the creatures, buying yourself some time, but the elevator’s still clogged with bodies now. Most of the Nova troops have been dragged to the deck by writhing tentacles, their armor torn open and the bodies violated. More and more of your mutated employees are leaping down from the open doors, grabbing at whoever’s left standing.");
+	output("You’ve dropped the closest of the creatures, buying yourself some time, but the elevator’s still clogged with bodies now. Most of the Nova troops have been dragged to the deck by writhing tentacles, their armor torn open and their bodies violated. More and more of your mutated employees are leaping down from the open doors, grabbing at whoever’s left standing.");
 	
 	output("\n\nYou have to get out of here. Right now.");
 	
@@ -203,7 +203,7 @@ public function kiCargoLiftVictory():void
 	
 	output("\n\nThe gaping doors rush down to meet you, blessedly devoid of more fuck-hungry mutants. You spin, shoving back another slavering mutant, desperately throwing off lunging tentacles as more of the creatures turn their eyes toward you, moaning hungrily. Shit.");
 	
-	output("\n\nBefore they can close the distance, though, you hear a bestial roar echoing through the chamber, even over the screaming and the gunfire. For a moment, you fear something even deadlier is coming your way... and you’re right. Thankfully, it’s not another tentacled abomination. Instead, Chief Neykkar comes barrel through the crowd after you, smashing skulls with the butt of her gun until she’s beside you again, eyes wide in terror and horror. Behind her, the last of the Nova troops goes down, dragged to the deck by a half dozen lust-addled bodies.");
+	output("\n\nBefore they can close the distance, though, you hear a bestial roar echoing through the chamber, even over the screaming and the gunfire. For a moment, you fear something even deadlier is coming your way... and you’re right. Thankfully, it’s not another tentacled abomination. Instead, Chief Neykkar comes barrelling through the crowd after you, smashing skulls with the butt of her gun until she’s beside you again, eyes wide in terror and horror. Behind her, the last of the Nova troops goes down, dragged to the deck by a half dozen lust-addled bodies.");
 	
 	output("\n\n<i>“Your crew sucks, Steele,”</i> she growls, kicking one of them back into several of its fellows. <i>“Go. I’ll cover you.”</i>");
 	

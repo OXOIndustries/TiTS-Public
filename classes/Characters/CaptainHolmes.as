@@ -269,7 +269,7 @@ package classes.Characters
 		
 		public function cumSpray(target:Creature, hostiles:Array):void
 		{
-			output("The captain stumbles back, rearing his tentacle-laden head back and convulsing violently. You blink in surprise as his head snaps forward, and every tentacle he's got goes completely rigid, pointed right at [target.combatName] with all of their tapered tips. They swell, and then erupt in a geyser of pink-hued liquid, spraying it all over [target.combatHimHer].");
+			output("The captain stumbles back, rearing his tentacle-laden head back and convulsing violently. You blink in surprise as his head snaps forward, and every tentacle he’s got goes completely rigid, pointed right at [target.combatName] with all of their tapered tips. They swell, and then erupt in a geyser of pink-hued liquid, spraying it all over [target.combatHimHer].");
 			if (combatMiss(this, target))
 			{
 				output(" [target.CombatHeShe] shake" + (target is PlayerCharacter ? "" : "s") +" it off, drooling pink spunk everywhere.");
@@ -308,11 +308,11 @@ package classes.Characters
 			{
 				output(" You don’t react in time to dodge, and quickly find your lower body wrapped in throbbing, leaking tentacle cocks. More tentacles swing around grab your arms, thrusting towards your mouth");
 				if (target.biggestTitSize() >= 2) output(" and tits");
-				output(". <b>You're grappled</b>!");
+				output(". <b>You’re grappled</b>!");
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: 4, drug: target.hasAirtightSuit() ? 0 : 4 } ), 15), this, target, "minimal");
 				
-				target.createStatusEffect("Grappled", 0, 50, 0, 0, false, "Constrict", "You're pinned in a grapple.", true, 0);
+				target.createStatusEffect("Grappled", 0, 50, 0, 0, false, "Constrict", "You’re pinned in a grapple.", true, 0);
 			}
 			else
 			{
@@ -329,7 +329,7 @@ package classes.Characters
 			}
 			else
 			{
-				output("The deranged mutant roars, hefting you up with his half dozen tentacles. You scream, flailing about as you're hauled off your [pc.feet] by inhuman strength. Holmes lets out a bellow that rocks the bridge, and you're sent flying across the room. You slam head-first into one of the bulkheads, and your vision explodes in shooting stars! <b>The force of the blow leaves you stunned!</b>");
+				output("The deranged mutant roars, hefting you up with his half dozen tentacles. You scream, flailing about as you’re hauled off your [pc.feet] by inhuman strength. Holmes lets out a bellow that rocks the bridge, and you’re sent flying across the room. You slam head-first into one of the bulkheads, and your vision explodes in shooting stars! <b>The force of the blow leaves you stunned!</b>");
 
 				applyDamage(damageRand(new TypeCollection( { kinetic: 25 }, DamageFlag.CRUSHING), 15), this, target, "minimal");
 				target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0, 0xFF0000);
@@ -354,9 +354,9 @@ package classes.Characters
 		
 		public function runaway():void
 		{
-			output("A panicked scream tears through the bridge, even over the sounds of battle. The woman Captain Holmes had been accosting pushes past you, bolting as fast as she can towards the doors. Shit -- there goes your best chance to figure out what's going on here. All you manage to catch before she escapes is a look at her: a short, skinny woman in a torn-up lab coat and scrubs. A doctor, maybe?");
+			output("A panicked scream tears through the bridge, even over the sounds of battle. The woman Captain Holmes had been accosting pushes past you, bolting as fast as she can towards the doors. Shit -- there goes your best chance to figure out what’s going on here. All you manage to catch before she escapes is a look at her: a short, skinny woman in a torn-up lab coat and scrubs. A doctor, maybe?");
 
-			output("\n\n<b>You'll have to find her after this!</b>\n\n");
+			output("\n\n<b>You’ll have to find her after this!</b>\n\n");
 		}
 	}
 }

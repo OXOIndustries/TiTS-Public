@@ -68,7 +68,7 @@ public function kiInitRooms():void
 
 	rooms["KI-H18"] = new RoomClass(this);
 	rooms["KI-H18"].roomName = "COMMAND\nDECK";
-	rooms["KI-H18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nThere’s a semi-transparent window to the north with the words ‘MEDBAY’ stenciled in white across it, overtop the galactical med-corp symbol. ";
+	rooms["KI-H18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.\n\nThere’s a semi-transparent window to the north with the words ‘MEDBAY’ stenciled in white across it, overtop the galactic med-corp symbol. ";
 	rooms["KI-H18"].runOnEnter = kiH18RoomFunction;
 	rooms["KI-H18"].planet = planetName;
 	rooms["KI-H18"].system = systemName;
@@ -79,7 +79,7 @@ public function kiInitRooms():void
 
 	rooms["KI-J18"] = new RoomClass(this);
 	rooms["KI-J18"].roomName = "COMMAND\nDECK";
-	rooms["KI-J18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nThere’s a restroom on either side of the corridor here. From the sounds coming from inside them both, you figure entering will only get you into another fight with the mutant crewmen.";
+	rooms["KI-J18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.\n\nThere’s a restroom on either side of the corridor here. From the sounds coming from inside them both, you figure entering will only get you into another fight with the mutant crewmen.";
 	rooms["KI-J18"].runOnEnter = commandDeckRandomEncounter;
 	rooms["KI-J18"].planet = planetName;
 	rooms["KI-J18"].system = systemName;
@@ -90,7 +90,7 @@ public function kiInitRooms():void
 
 	rooms["KI-L18"] = new RoomClass(this);
 	rooms["KI-L18"].roomName = "COMMAND\nDECK";
-	rooms["KI-L18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nTo the south is a bank of elevators. One set for crew, another meant for handling heavy cargo. Both sets of elevators have been disabled... you don’t think you could stand up to another ambush like that again.";
+	rooms["KI-L18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.\n\nTo the south is a bank of elevators. One set for crew, another meant for handling heavy cargo. Both sets of elevators have been disabled... you don’t think you could stand up to another ambush like that again.";
 	rooms["KI-L18"].runOnEnter = kiL18RoomFunction;
 	rooms["KI-L18"].planet = planetName;
 	rooms["KI-L18"].system = systemName;
@@ -127,7 +127,7 @@ public function kiInitRooms():void
 
 	rooms["KI-N18"] = new RoomClass(this);
 	rooms["KI-N18"].roomName = "COMMAND\nDECK";
-	rooms["KI-N18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nAn airlock door sits on the north bulkhead, though the control panel has been ripped out. The wires inside are slathered in spooge, making sure nobody’s operating it without a serious deep cleaning.";
+	rooms["KI-N18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.\n\nAn airlock door sits on the north bulkhead, though the control panel has been ripped out. The wires inside are slathered in spooge, making sure nobody’s operating it without a serious deep cleaning.";
 	rooms["KI-N18"].runOnEnter = commandDeckRandomEncounter;
 	rooms["KI-N18"].planet = planetName;
 	rooms["KI-N18"].system = systemName;
@@ -148,7 +148,7 @@ public function kiInitRooms():void
 
 	rooms["KI-P18"] = new RoomClass(this);
 	rooms["KI-P18"].roomName = "COMMAND\nDECK";
-	rooms["KI-P18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.";
+	rooms["KI-P18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.";
 	rooms["KI-P18"].runOnEnter = kiP18CommandDeck;
 	rooms["KI-P18"].planet = planetName;
 	rooms["KI-P18"].system = systemName;
@@ -183,7 +183,7 @@ public function kiInitRooms():void
 	
 	rooms["KI-E9"] = new RoomClass(this);
 	rooms["KI-E9"].roomName = "OFFICER’S\nQUARTERS";
-	rooms["KI-E9"].description = "One of the big draws of working for Steele Tech’s always been the lush accommodations, and the <i>Kashima</i>’s no exception to the rule. The officer’s quarters are arrayed along a winding corridor that’s got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nThe access room, and the vent that brought you to this deck, is just off to the east, offering at least some semblance of a place you could consider safe enough to catch a breather.";
+	rooms["KI-E9"].description = "One of the big draws of working for Steele Tech’s always been the lush accommodations, and the <i>Kashima</i>’s no exception to the rule. The officer’s quarters are arrayed along a winding corridor that’s got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nThe access room, and the vent that brought you to this deck, is just off to the west, offering at least some semblance of a place you could consider safe enough to catch a breather.";
 	rooms["KI-E9"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-E9"].planet = planetName;
 	rooms["KI-E9"].system = systemName;
@@ -287,7 +287,7 @@ public function kiInitRooms():void
 	
 	rooms["KI-EngineeringVent"] = new RoomClass(this);
 	rooms["KI-EngineeringVent"].roomName = "ACCESS\nROOM";
-	rooms["KI-EngineeringVent"].description = "A near-claustrophbic room full of random odds and ends, obviously used as a makeshift place for storage rather than its clearly intended purpose as a means of accessing an array of maintenance shafts around the ship.";
+	rooms["KI-EngineeringVent"].description = "A near-claustrophobic room full of random odds and ends, obviously used as a makeshift place for storage rather than its clearly intended purpose as a means of accessing an array of maintenance shafts around the ship.";
 	rooms["KI-EngineeringVent"].eastExit = "KI-Engineering";
 	rooms["KI-EngineeringVent"].runOnEnter = kiEngineeringAccessRoom;
 	rooms["KI-EngineeringVent"].planet = planetName;
