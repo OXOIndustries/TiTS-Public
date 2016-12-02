@@ -94,6 +94,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/darnock.png", mimeType = "image/png")]
 		public var Bust_DARNOCK:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/dollmaker.png", mimeType = "image/png")]
+		public var Bust_DOLLMAKER:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/dryad.png", mimeType = "image/png")]
 		public var Bust_DRYAD:Class;
 		
@@ -493,6 +496,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/darnock.png", mimeType = "image/png")]
 			public var Full_DARNOCK:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dollmaker.png", mimeType = "image/png")]
+			public var Full_DOLLMAKER:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad.png", mimeType = "image/png")]
 			public var Full_DRYAD:Class;
 			
