@@ -186,7 +186,7 @@ public function showReahaTalkMenu(func:Function = null):void
 {
 	clearMenu();
 
-	if (func != reahaTalkTreatment) addButton(0, "Treatment", reahaTalkTreatment, undefined, "The Treatment", "Ask Reaha about the Treatment that's so popular on her homeworld.");
+	if (func != reahaTalkTreatment) addButton(0, "Treatment", reahaTalkTreatment, undefined, "The Treatment", "Ask Reaha about the Treatment that’s so popular on her homeworld.");
 	else addDisabledButton(0, "Treatment","Treatment","");
 
 	if (func != reahaTalkNewTexas) addButton(1, "New Texas", reahaTalkNewTexas, undefined, "New Texas", "Ask Reaha about her homeworld.");
@@ -322,7 +322,7 @@ public function reahaTalkTreatmentComfort():void
 	
 	output("\n\nReaha takes a deep breath, looks at you with her big blue eyes, and steps up with her arms wide open. You take the cow-girl up on her offer, pulling her into a tight hug. Her arms clutch around your back, and the quiver in her voice as she speaks again clues you in to just how close to tears she is: <i>“Just...");
 	if (shipLocation == "500") output(" do whatever you came here to do, and let’s leave. Okay? I don’t want to be here a second longer, [pc.master]. This planet makes me sick!”</i>");
-	else output(" just promise me that you won't hang around there too much [pc.master]. The place makes me sick!”</i>");
+	else output(" just promise me that you won’t hang around there too much [pc.master]. The place makes me sick!”</i>");
 
 	processTime(5);
 
@@ -524,11 +524,11 @@ public function reahaTalkAddiction():void
 	clearMenu();
 	if (flags["REAHA_TALK_ADDICTION_CURE"] == undefined)
 	{
-		addButton(0, "Cure", reahaTalkAddictionCure, undefined, "Cure Addiction", "Tell Reaha you'd like to help her out with her problem, if you can.");
+		addButton(0, "Cure", reahaTalkAddictionCure, undefined, "Cure Addiction", "Tell Reaha you’d like to help her out with her problem, if you can.");
 		addButton(1, "Sorry", reahaTalkAddictionSorry, undefined, "Sorry", "Tell Reaha “too bad” about that whole patch thing.");
 		addButton(2, "I Like", reahaTalkAddictionILike, undefined, "I Like Them", "Tell Reaha you like her just the way she is: drooling with lust and covered in patches.");
 	}
-	else addButton(0, "Cure", reahaTalkAddictionCure, undefined, "Cure Addiction", "Ask Reaha how she thinks she's doing with her addiction. ");
+	else addButton(0, "Cure", reahaTalkAddictionCure, undefined, "Cure Addiction", "Ask Reaha how she thinks she’s doing with her addiction. ");
 }
 
 public function reahaTalkAddictionSorry():void
@@ -796,7 +796,7 @@ public function reahaTalkGeneModsBefore():void
 	{
 		if (flags["REAHA_TALK_GENEMODS_BEFORE"] == 2)
 		{
-			output("<i>“Sorry, [pc.name],”</i> Reaha says with a little shrug of her shoulders. <i>“I deleted them after I showed them to you. I decided I didn't need any more reminders of who I was.");
+			output("<i>“Sorry, [pc.name],”</i> Reaha says with a little shrug of her shoulders. <i>“I deleted them after I showed them to you. I decided I didn’t need any more reminders of who I was.");
 			if (reahaConfidence() >= REAHA_CONFIDENCE_HIGH) output(" I like who I am now... thanks to you.");
 			else if (reahaConfidence() <= REAHA_CONFIDENCE_LOW) output(" I know I should have asked permission first, but... I just wanted them gone. I want to be me now.");
 			output("”</i>");
@@ -1163,7 +1163,7 @@ public function reahaBreastMilkIceCream():void
 	output("\n\nThe two of you quickly make your way out of the customs office and out into the New Texan main street. From there, it’s a hop and a skip to the Iced Teats shop. You usher Reaha up into the storefront, into the refreshing coolness of the shop.");
 	if (flags["REAHA_ICE_CREAM_TIMES"] == undefined) output(" Reaha’s eyes go wide as she sees the girls trapped in glass cases, their teats strapped to suction devices to draw out their milk.");
 	
-	output("\n\n<i>“Hello, welcome to Iced Teats! My name is " + icedTeatsAlienName() + "!  What can I get for you today?”</i> the girl behind the counter chirps happily, indicating the large flavor list behind her.  <i>“We have cones, bowls, or frozen feasts, in any combination of flavors you prefer!”</i>");
+	output("\n\n<i>“Hello, welcome to Iced Teats! My name is " + icedTeatsAlienName() + "! What can I get for you today?”</i> the girl behind the counter chirps happily, indicating the large flavor list behind her. <i>“We have cones, bowls, or frozen feasts, in any combination of flavors you prefer!”</i>");
 	
 	output("\n\nThat’s nice and all, but you’d rather get a cone of your own favorite flavor. Reaha flavor.");
 	
@@ -1202,8 +1202,8 @@ public function reahaBreastMilkIceCreamGreedy():void
 
 	output("You thank " + icedTeatsAlienName() + " for the special treat and take Reaha by the hand, leading her back to the ship while you slurp down your delicious, oh-so-sweet ice cream cone. You quickly return to your ship, whereupon");
 	if (pc.isNice()) output(" you give Reaha an appreciative pat on the head and thank her for dessert.");
-	else if (pc.isMischievous()) output(" you slurp out the graham cracker cone and hang it on one of Reaha's horns, letting the cow-girl deal with it.");
-	else output(" you poke Reaha in the belly hard enough to make her gasp. While her gob's open, you plant the graham cracker cone between her lips and saunter off.");
+	else if (pc.isMischievous()) output(" you slurp out the graham cracker cone and hang it on one of Reaha’s horns, letting the cow-girl deal with it.");
+	else output(" you poke Reaha in the belly hard enough to make her gasp. While her gob’s open, you plant the graham cracker cone between her lips and saunter off.");
 
 	processTime(5);
 
@@ -1525,9 +1525,9 @@ public function reahaBootOffShip():void
 		clearMenu();
 		addButton(0, "Nevermind", reahaBootOffShipNevermind);
 		//if (pc.credits >= 50) {applies to tavros-kickoff}
-		addButton(1, "Go2Tavros", reahaBootOffShipGo2Tavros, undefined, "Go to Tavros", "Tell Reaha to go to Tavros Station. She'll probably go hang out at Beth's again, knowing her.");
-		//else addDisabledButton(1, "Go2Tavros", "Go to Tavros", "You'd need to afford for Reaha's transport to Tavros....")
-		if (9999 == 0) addButton(2, "New Texas", reahaBootOffShipNewTexas, undefined, "Stay on New Texas", "Tell Reaha she's stuck here on New Texas, damned be the consequences.");
+		addButton(1, "Go2Tavros", reahaBootOffShipGo2Tavros, undefined, "Go to Tavros", "Tell Reaha to go to Tavros Station. She’ll probably go hang out at Beth’s again, knowing her.");
+		//else addDisabledButton(1, "Go2Tavros", "Go to Tavros", "You’d need to afford for Reaha’s transport to Tavros....")
+		if (9999 == 0) addButton(2, "New Texas", reahaBootOffShipNewTexas, undefined, "Stay on New Texas", "Tell Reaha she’s stuck here on New Texas, damned be the consequences.");
 	}
 	else
 	{
