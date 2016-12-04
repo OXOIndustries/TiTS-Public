@@ -422,7 +422,7 @@ public function showMailsHandler(e:Event = null):void
 		{
 			userInterface.showSecondaryOutput();
 			clearOutput2();
-			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something’s messed up with it’s quantuum comms. device... or it’s getting some serious interference. You’ll not be able to use the function until you get back to your ship and tinker with it.");
+			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something’s messed up with it’s quantum comms. device... or it’s getting some serious interference. You’ll not be able to use the function until you get back to your ship and tinker with it.");
 			return;
 		}
 		else

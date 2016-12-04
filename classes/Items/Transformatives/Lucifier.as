@@ -149,6 +149,10 @@ package classes.Items.Transformatives
 					TFList.push(18);
 			}
 			
+			// *Grow longer horns
+			if(target.hasHorns(GLOBAL.TYPE_DEMONIC) && target.hornLength < 60)
+				TFList.push(19);
+			
 			// TF texts
 			while(totalTFs > 0)
 			{
@@ -234,14 +238,14 @@ package classes.Items.Transformatives
 						output("Hard keratin forces its way outward from above your brow, as if the horns you already had there were simply the tip of the iceberg. When they finally stop growing, you find that <b>you now have a set of longer demonic horns.</b>");
 						
 						target.horns = 4;
-						target.hornLength = 4;
+						if(target.hornLength < 4) target.hornLength = 4;
 					}
 					else if(target.horns < 6 && target.hornsUnlocked(6))
 					{
 						output("More hard keratin forces its way into existence above your brow, extending your demonic horns larger than they were previously and sprouting new ones in the process. When they finally stop growing, you feel mildly unbalanced; <b>you are now sporting a great, curving demon rack, impossible to ignore.</b>");
 						
 						target.horns = 6;
-						target.hornLength = 8;
+						if(target.hornLength < 8) target.hornLength = 8;
 					}
 					else output(target.hornsLockedMessage());
 				}
@@ -492,6 +496,25 @@ package classes.Items.Transformatives
 						target.earType = GLOBAL.TYPE_DEMONIC;
 					}
 					else output(target.earTypeLockedMessage());
+				}
+				// *Grow longer horns
+				else if(select == 19)
+				{
+					var newHornLength:Number = (target.hornLength + 2);
+					if(target.horns <= 2 && newHornLength < 2) newHornLength = 2;
+					else if(target.horns <= 4 && newHornLength < 4) newHornLength = 4;
+					else if(target.horns <= 6 && newHornLength < 8) newHornLength = 8;
+					else if(newHornLength < 12) newHornLength = 12;
+					
+					var hornChange:int = Math.floor(newHornLength - target.hornLength);
+					
+					if(target.hornLengthUnlocked(newHornLength))
+					{
+						output("Hard keratin forces its way outward from above your brow, extending the length of your current horns by " + kGAMECLASS.num2Text(hornChange) + " inches when they finally stop growing. Touching them, you find that <b>your demonic horns are now longer.</b>");
+						
+						target.hornLength = newHornLength;
+					}
+					else output(target.hornLengthLockedMessage());
 				}
 				
 				totalTFs--;

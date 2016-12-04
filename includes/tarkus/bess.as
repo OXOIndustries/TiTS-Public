@@ -1560,7 +1560,7 @@ public function talkToBessAboutTitles():void
 	output("<i>“Which one?”</i>");
 
 	clearMenu();
-	addButton(0, bess.mf("His", "Her") + " Name", bessTitlesTheirName, undefined, "[bess.name]’s Name", "Change [bess.name]’s name. At least, if [bess.heShe] agrees to it...");
+	addButton(0, bess.mf("His", "Her") + " Name", bessTitlesTheirName, undefined, bess.short + "’s Name", "Change [bess.name]’s name. At least, if [bess.heShe] agrees to it...");
 	addButton(1, "YourTitle", bessTitlesYourTitles, undefined, "Your Title", "The title that [bess.name] will call you in non-sexual encounters.");
 	addButton(2, bess.mf("His", "Her") + "Title", bessTitlesTheirTitle, undefined, bess.mf("His", "Her") + " Title", "The title that you will call [bess.name] in non-sexual encounters.");
 	addButton(3, "YourSexName", bessTitlesYourSexName, undefined, "Your Sex Name", "The name that [bess.name] will call you in sexual encounters.");
@@ -3115,7 +3115,7 @@ public function setBessCockType(newType:int):void
 		bess.balls = 0;
 		bess.ballSizeRaw = 0;
 
-		output("You decide you’d like to equip [bess.name] with the tentacle cock attachment you purchased from JoyCo. It’s a slippery sucker to attach (literally) as you fasten the strange <i>“phallus”</i> between [bess.himHer] legs.");
+		output("You decide you’d like to equip [bess.name] with the tentacle cock attachment you purchased from JoyCo. It’s a slippery sucker to attach (literally) as you fasten the strange “phallus” between [bess.hisHer] legs.");
 		
 		output("\n\nIt swings about as [bess.heShe] swells and shrinks it at will, there’s not many things it couldn’t probe or penetrate. At its tip is a slit where [bess.hisHer] seed can be pumped out into any orifice.");
 		
@@ -3134,7 +3134,7 @@ public function setBessCockType(newType:int):void
 		bess.balls = 0;
 		bess.ballSizeRaw = 0;
 
-		output("You decide you’d like to equip [bess.name] with the goo cock attachment you purchased from JoyCo. You pull out a small ring that seems to be some kind of compact material manipulator. As soon as you attach it to her, [bess.name]’s Meld-Milk insides pour out and form a semi-transparent, metallic looking goo cock!");
+		output("You decide you’d like to equip [bess.name] with the goo cock attachment you purchased from JoyCo. You pull out a small ring that seems to be some kind of compact material manipulator. As soon as you attach it to [bess.hisHer], [bess.name]’s Meld-Milk insides pour out and form a semi-transparent, metallic looking goo cock!");
 		
 		output("\n\n<i>“Wow, guess my insides are kind of like that of a metallic goo [bess.boyGirl]...! Imagine the naughty things I can do with this, "+ bessPCName() +", I could probably penetrate even the smallest cracks.”</i> [bess.HeShe] strokes [bess.hisHer] silver gelatinous cock as it ripples about. [bess.HeShe] seems to be able to harden the liquid substance at will.");
 		

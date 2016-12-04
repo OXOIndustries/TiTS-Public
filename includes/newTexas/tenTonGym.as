@@ -87,7 +87,7 @@ public function weightRoomBonusFunction():Boolean
 	output("The sounds of grunts and clanking metal greet you as you walk into the weight room. Half the room is taken up with machines for working every possible muscle, all of them with stacks of heavy plates over a meter high, to account for the brute strength the Treatment bestows upon some of its users. The room’s other half is filled with various types of weight benches and racks of free weights, for those who want to pump iron without mechanical assistance. The gym’s front windows make up most of one wall, and the opposite wall is all mirrors.");
 	output("\n\nMost of the room’s occupants are bulls, focusing largely on their chests and arms, with a few of them pressing hard on the leg machines. A few cows are scattered around the room, working on their arms and legs or doing ab exercises on mats. Bulls and cows both ogle and catcall each other as they work, often stopping in the middle of a set to do so. A dark-skinned cowgirl is lifting heavier weights on a machine, and offers a challenging smirk to anyone who approaches her.");
 	//if met Busky, and time is between 5pm and midnight
-	if(flags["MET_BUSKY"] == true && hours >= 17 && hours <= 24) output("\n\nYou see another familiar face, Busky, hidden under a bench press. Whenever he takes a break, he stares dreamily at the bulging crotches of other bulls. He seems to be in the middle of an extensive workout, lifting around 300 imperial pounds. It's a rather low amount compared to the other bulls lifting twice, some thrice that much weight. However his endurance is astonishing, doing longer reps than any other bull. Compensating for weight, he's doing a much harder workout, and his body is showing it. His heaving chest is sweating profusely, being soaked up by his sodden undershirt and gym shorts.");
+	if(flags["MET_BUSKY"] == true && hours >= 17 && hours <= 24) output("\n\nYou see another familiar face, Busky, hidden under a bench press. Whenever he takes a break, he stares dreamily at the bulging crotches of other bulls. He seems to be in the middle of an extensive workout, lifting around 300 imperial pounds. It’s a rather low amount compared to the other bulls lifting twice, some thrice that much weight. However his endurance is astonishing, doing longer reps than any other bull. Compensating for weight, he’s doing a much harder workout, and his body is showing it. His heaving chest is sweating profusely, being soaked up by his sodden undershirt and gym shorts.");
 	//[Light Workout] Go to Light Workout {locked if PC has [Sore] debuff or doesn’t have 30 energy}
 	if(pc.energy() >= 30 && !pc.isWornOut()) addButton(0,"Light Workout",lightWorkout,undefined,"Light Workout","A light workout that’ll help you build a little bit of muscle.");
 	else addDisabledButton(0,"Light Workout","Light Workout","You’re too tired for that workout.");
@@ -1686,7 +1686,7 @@ public function liftVoyeurism():void
 	output("\n\n<i>“Sorry, was just going out to get a bite to eat, something I can really dig into. Probably a taco with a milkshake or two,”</i> ");
 	if(watchedNico) output("Nico’s");
 	else output("the bull’s");
-	output(" eyes are utterly fixated on her breasts, and she does a little half hop when she hears the word <i>“milkshakes”</i>.");
+	output(" eyes are utterly fixated on her breasts, and she does a little half hop when she hears the word “milkshakes”.");
 
 	output("\n\n<i>“Well, you don’t have to go out to eat out,”</i> ");
 	if(watchedLee) output("Lee");
@@ -1737,9 +1737,9 @@ public function liftVoyeurism():void
 	else output("the bull’s");
 	output(" moans, he seems to enjoy it.");
 
-	output("\n\nBut before long the slutty shivering mess of a cow starts to find herself approaching orgasm yet again, and this time the bull’s not going to stop her, he keeps tonguefucking her cunny, her juices now streaming out of her pussy. She bucks against the ");
+	output("\n\nBut before long the slutty shivering mess of a cow starts to find herself approaching orgasm yet again, and this time the bull’s not going to stop her, he keeps tonguefucking her cunny, her juices now streaming out of her pussy. She bucks against ");
 	if(watchedNico) output("Nico’s");
-	else output("bull’s");
+	else output("the bull’s");
 	output(" mouth, her muffled moans begging for more. She clenches her fists and pulls herself off of the bulls mast, letting out a bellowing moo as she cums, her cunny squirting the last of her fem-lube onto the lucky bull’s face.");
 	output("\n\nShe takes a moment to compose herself, slowly standing on her shaky legs. Almost falling if it weren’t for ");
 	if(watchedNico) output("Nico");

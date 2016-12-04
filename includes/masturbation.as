@@ -3681,7 +3681,7 @@ public function adjustableHolofap():void
 		if(pc.tailCount > 1) output("s");
 		output(", you pull it around and present it with your projected prick. Perhaps a little predictably, it doesn’t seem to care. Fortunately for you, having a linked nervous system means that you can make it care. With a little focus, you soon have the snake-like organ dripping wet and slowly sinking down. It’s luscious folds swiftly envelop the blue-glowing length, and you moan from the abrupt double-sensation of both penetrating and being penetrated.");
 		output("\n\nSlight distaste radiates out from the parasite, but you ignore it. It feels too good not to. Grabbing hold of the snake in both hands, you start pumping it up and down, groaning in delight from your fervent, tail-snake-assisted masturbation. There’s so much lube drooling from the wriggling cunt that the fabric of your [pc.lowerUndergarment] is utterly drenched in it. Your crotch is going to smell like pussy for quite some time at this rate, but you can’t make yourself care. You stroke once more, squeezing your fake prick with dozens of rings of concentric muscles before the snake decides it has had enough and actively begins to fight your control.");
-		output("\n\nYou let it go and glance to the upgraded controls. More dick means it'll feel even better, right?");
+		output("\n\nYou let it go and glance to the upgraded controls. More dick means it’ll feel even better, right?");
 	}
 	else output("\n\nERROR: Invalid foreplay scene selected. Fenoxo fucked up. Please hit up the bug report forums on forums.fenoxo.com and post about. Maybe safe to file and include that as an attachment too, so we can figure out just what went wrong! Thanks!");
 
@@ -3728,7 +3728,7 @@ public function adjustableHolofap():void
 		if(pc.libido() <= 75) 
 		{
 			pc.libido(1);
-			output("<b> It’ll be harder to avoid sexual thoughts after an experience like that!");
+			output(" <b>It’ll be harder to avoid sexual thoughts after an experience like that!</b>");
 		}
 		processTime(35);
 		pc.orgasm();
@@ -3747,7 +3747,7 @@ public function adjustableHolofap():void
 		else output("the other");
 		output(" chestcunt with ease, but it’s not the same. Your wriggling digits can’t probe as deeply as the hardlight dick. ");
 		if(pc.canLactate()) output("They can’t fill you so full that the [pc.milk] is being squeezed out around them. ");
-		else output("THey can't fill you so full that you feel like your chest is more dick than tit. ");
+		else output("THey can’t fill you so full that you feel like your chest is more dick than tit. ");
 		output("And they certainly can’t feel the sublime pleasure of being buried deep into a squeezing pussy the same way. Groaning and moaning, you rock back and forth, drooling spit");
 		if(pc.canLactate()) output(" and [pc.milkNoun]");
 		output(". You’re like a fountain of moisture, creaming yourself all over the upsized cock.");
@@ -3801,8 +3801,8 @@ public function adjustableHolofap():void
 		if(pc.breastRows[0].breastRating() < 20) output("large breasts");
 		else if(pc.breastRows[0].breastRating() < 50) output("large, cumbersome breasts");
 		else output("immense, wobbling breasts");
-		output(" for the size controls and, after chewing your lip in indecision, slide up the length until you're looking at two full feet of electronic dong. It's a little silly though, being as thin as its old, eight-inch self, so you give the girth controls a go as well, rounding it out into a nice, thick pillar. With the increased size comes a proportional increase too in sensation. You need not touch it to notice. The photon-cock radiates a greater sense of urgency, a steadily buzzing thrill that begs you to wrap something, anything around the totemic shaft.");
-		output("\n\nHow fortunate that you've got such lovely melons. ");
+		output(" for the size controls and, after chewing your lip in indecision, slide up the length until you’re looking at two full feet of electronic dong. It’s a little silly though, being as thin as its old, eight-inch self, so you give the girth controls a go as well, rounding it out into a nice, thick pillar. With the increased size comes a proportional increase too in sensation. You need not touch it to notice. The photon-cock radiates a greater sense of urgency, a steadily buzzing thrill that begs you to wrap something, anything around the totemic shaft.");
+		output("\n\nHow fortunate that you’ve got such lovely melons. ");
 		if(!pc.isChestExposed()) output("Yanking down your [pc.upperGarments] to reveal the glorious orbs");
 		else output("Rolling back your shoulders to reveal the glorious orbs");
 		output(", you grab hold of one and open up the valley of your cleavage. At the same time time, you twist your [pc.hips] backwards, angling the projector so that the glowing length slaps into place between your boobs. Your tits wobble from the impact, then slip back into position, enveloping the hardlight strap-on so completely that it takes your eyes a second to adjust to the reduced illumination.");
@@ -3811,13 +3811,13 @@ public function adjustableHolofap():void
 		output(", you bounce them downward, driving the big blue dick through your tits until it bumps your [pc.lipsChaste].");
 
 		output("\n\nDelirious with lust for your own curvaceous body, you let go of your right tit - to make the photon prong just a few inches longer. The warm, electronic buzz intensifies, spreading deeper into your chest, and the cockhead climbs just high enough to slide into your moan-gaped mouth. ");
-		if(pc.isBimbo()) output("Exactly where it belongs. Pity it isn't a real dick. Few things feel better than bathing your tonsils in boy-butter.");
-		else output("And since it's already there, you might as well give it a little kiss and suckle.");
+		if(pc.isBimbo()) output("Exactly where it belongs. Pity it isn’t a real dick. Few things feel better than bathing your tonsils in boy-butter.");
+		else output("And since it’s already there, you might as well give it a little kiss and suckle.");
 		output(" You groan into the strap-on, and the vibrations nearly drive your tightly-strung body over the edge. Nearly.");
 
-		output("\n\nTit-fucking yourself seems so lewd, so decadent. There's something almost sinful about using a piece of technology to experience both sides of this sensuous act. Rolling your hips and your back, you bounce your boobs to the tempo of your growing delight, kissing and licking all over the upgraded rod. It's naturally slippery enough to slide through your canyon-like cleavage with ease, but once wet with your drool, the strap-on becomes a force of pure, slickened pleasure. Fucking your tits becomes a sloppy, soaked affair. Strings of saliva cling between your lips and the glowing tip when you gasp for breath.");
-		output("\n\nAnd then you're bending to the side, heedlessly slurping on the simulated prong, your [pc.tongue] curling to lick a spot so sensitive that it shoots arcs of electrified pleasure straight into your quivering crotch. There's so much sensation. Your fingertips dig deep into your [pc.skinFurScales], propelling them up-and-down in a motion fast enough to match a jackhammer.");
-		output("\n\nWhen you cum, it's a surprisingly quiet affair. Your [pc.lips] are pressed too tightly to the faux flesh for more than a few whimpers to escape. Quivering tits vibrate against the super-sized shaft. It's incredible.");
+		output("\n\nTit-fucking yourself seems so lewd, so decadent. There’s something almost sinful about using a piece of technology to experience both sides of this sensuous act. Rolling your hips and your back, you bounce your boobs to the tempo of your growing delight, kissing and licking all over the upgraded rod. It’s naturally slippery enough to slide through your canyon-like cleavage with ease, but once wet with your drool, the strap-on becomes a force of pure, slickened pleasure. Fucking your tits becomes a sloppy, soaked affair. Strings of saliva cling between your lips and the glowing tip when you gasp for breath.");
+		output("\n\nAnd then you’re bending to the side, heedlessly slurping on the simulated prong, your [pc.tongue] curling to lick a spot so sensitive that it shoots arcs of electrified pleasure straight into your quivering crotch. There’s so much sensation. Your fingertips dig deep into your [pc.skinFurScales], propelling them up-and-down in a motion fast enough to match a jackhammer.");
+		output("\n\nWhen you cum, it’s a surprisingly quiet affair. Your [pc.lips] are pressed too tightly to the faux flesh for more than a few whimpers to escape. Quivering tits vibrate against the super-sized shaft. It’s incredible.");
 		if(pc.hasCock())
 		{
 			output(" [pc.Cum] spurts in long ropes from your neglected [pc.cocks]");
