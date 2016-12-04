@@ -6439,6 +6439,11 @@
 			{
 				physiqueMod += statusEffectv1("Bimboleum");
 			}
+			if (hasStatusEffect("Psychic Miasma"))
+			{
+				aimMod += 5;
+				reflexesMod += 5;
+			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
 				{
