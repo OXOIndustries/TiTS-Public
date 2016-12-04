@@ -179,7 +179,7 @@ package classes.GameData.Pregnancy
 					
 					if (y >= 18)
 					{
-						_ageBuckets[21].push(cc);
+						_ageBuckets[20].push(cc);
 					}
 					else if (y >= 1)
 					{
