@@ -1760,7 +1760,7 @@ public function liftVoyeurism():void
 	else
 	{
 		output("\n\n<i>“Sure thing. You know what I like, after all.”</i>");
-		output("\n\n<i>“I’m still not sure which you like more - my ass or my taco recipe.”</i>");
+		output("\n\n<i>“I’m still not sure which you like more - my ass or my cooking.”</i>");
 		output("\n\n<i>“Only one way to find out, right?”</i> and without another word he scoops her up, much to her surprise, and walks out with her giggling like a schoolgirl.");
 	}
 
