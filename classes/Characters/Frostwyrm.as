@@ -236,17 +236,17 @@ package classes.Characters
 			
 			//PC fails willpower save
 			if (target.willpower() + rand(20) + 1 < willpower())
-				{
-					output("\nPsychic energy assaults your mind, filling your brain with confused and swirling thoughts, and your vision becomes incredibly hazy. It’s hard to focus on the fight, and <b>your reflexes and aim both seem lowered</b> by the psychic miasma.");
-					target.createStatusEffect("Psychic Miasma", 0, 0, 0, 0, false, "Icon_OffDown", "You’ve been struck by a psychic miasma, reducing your effective aim and reflexes by 5", true, 0, 0xFF0000);
-					target.aimMod -= 5
-					target.reflexesMod -= 5
-				}
+			{
+				output("\nPsychic energy assaults your mind, filling your brain with confused and swirling thoughts, and your vision becomes incredibly hazy. It’s hard to focus on the fight, and <b>your reflexes and aim both seem lowered</b> by the psychic miasma.");
+				target.createStatusEffect("Psychic Miasma", 0, 0, 0, 0, false, "Icon_OffDown", "You’ve been struck by a psychic miasma, reducing your effective aim and reflexes by 5", true, 0, 0xFF0000);
+				target.aimMod -= 5
+				target.reflexesMod -= 5
+			}
 			//PC passes willpower save
 			else
-				{
-					output("\n\nYou grab your head, desperately resisting the onslaught of psychic energy assaulting your mind.");
-				}
+			{
+				output("\n\nYou grab your head, desperately resisting the onslaught of psychic energy assaulting your mind.");
+			}
 		}
 		
 		//The shock of my tail, a thunderbolt!

@@ -566,7 +566,7 @@ public function lactationUpdateHourTick(totalHours:int):void
 	//Drops a tiny amount if below 50.
 	if (pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant() && !pc.hasPerk("Honeypot") && !pc.hasPerk("Mega Milk") && !pc.hasPerk("Hypermilky")) 
 	{
-		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) {}
+		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk") || (flags["NURSERY_MATERNITY_WAIT_ACTIVE"] != undefined)) {}
 		else if (pc.hasPerk("Milky") || pc.hasPerk("Treated Milk"))
 		{
 			t = 0.02 * totalHours;

@@ -1034,7 +1034,6 @@ package classes.GameData
 					
 					target.aimMod += 5
 					target.reflexesMod += 5
-					
 				}
 			}
 		}

@@ -168,7 +168,7 @@ public function approachKally():void
 			output("Kally bounces up well before you ");
 			if(!pc.isTaur() && !pc.isNaga() && !pc.isGoo()) output("find a seat");
 			else output("lean up on the bar");
-			output(". <i>“Hey there good lookin’. Never woulda thought my sister would let a treasure out of her sight, but I guess you must be something special about you. What can I getcha?”</i>");
+			output(". <i>“Hey there good lookin’. Never woulda thought my sister would let a treasure out of her sight, but I guess there must be something special about you. What can I getcha?”</i>");
 		}
 		//2
 		else if(rand(9) == 0)

@@ -1357,7 +1357,9 @@ public function nurseryMaternityWaitTime(duration:int = 0):void
 	// 9999 - Maybe needs better text...
 	output("You wait for" + (timeList.length > 0 ? (" approximately" + CompressToList(timeList)) : " some time") + " as Briget tends to you for the desired amount of time....");
 	
+	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = 1;
 	processTime(duration);
+	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = undefined;
 	
 	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc, "EggTrainerFauxPreg");
 	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
@@ -1505,7 +1507,9 @@ public function nurseryMaternityWaitGo():void
 		}
 	} while (bEndedSecondPreg)
 
+	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = 1;
 	processTime(finalDuration);
+	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = undefined;
 
 	clearMenu();
 	addButton(0, "Next", nurseryMaternityWaitPostBirths, { births: allBirths, dur: finalDuration });
