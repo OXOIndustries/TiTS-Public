@@ -391,7 +391,7 @@ public function rideVaginalMilodanMaleBecauseTHEYIFFENING():void
 	pc.lust(9001);
 	clearMenu();
 	addButton(0,"Yes",takeALootInYerCooterFromMildan,x,"Yes","Take a load in the pussy.");
-	addButton(1,"No",noPuppyPoppersForYou,"No","In the far future, the pull-out method has a 100% success rate.");
+	addButton(1,"No",noPuppyPoppersForYou,undefined,"No","In the far future, the pull-out method has a 100% success rate.");
 }
 
 //[Yes]
