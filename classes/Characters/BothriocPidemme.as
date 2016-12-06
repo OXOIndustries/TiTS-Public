@@ -1,5 +1,6 @@
 package classes.Characters
 {
+	import classes.CockClass;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
@@ -8,6 +9,7 @@ package classes.Characters
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.BothriocRapier;
 	import classes.StorageClass;
+	import classes.VaginaClass;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.Engine.Utility.weightedRand;
@@ -44,20 +46,24 @@ package classes.Characters
 			this.rangedWeapon = new BothriocRifle();
 			this.armor = new ChitPlate();
 			
-			this.physiqueRaw = 20;
-			this.reflexesRaw = 32;
-			this.aimRaw = 22;
-			this.intelligenceRaw = 12;
-			this.willpowerRaw = 14;
-			this.libidoRaw = 20;
+			baseHPResistances.kinetic.damageValue = 25.0;
+			baseHPResistances.electric.damageValue = 25.0;
+			baseHPResistances.burning.damageValue = 25.0;
+			
+			this.physiqueRaw = 18;
+			this.reflexesRaw = 25;
+			this.aimRaw = 18;
+			this.intelligenceRaw = 10;
+			this.willpowerRaw = 8;
+			this.libidoRaw = 30;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.level = 6;
+			this.level = 7;
 			this.XPRaw = normalXP();
 			this.credits = 80 + rand(80);
-			this.HPMod = 0;
+			this.HPMod = 70;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 35;
@@ -130,9 +136,22 @@ package classes.Characters
 			this.buttRatingRaw = 2;
 			//No dicks here!
 			this.cocks = new Array();
-			this.createCock();
-			this.cocks[0].cLengthRaw = 6;
-			this.cocks[0].cThicknessRatioRaw = 1.75;
+			var c:CockClass = new CockClass();
+			cocks.push(c);
+			c.cLengthRaw = 8;
+			c.cThicknessRatioRaw = 1.75;
+			c.cType = GLOBAL.TYPE_BOTHRIOC;
+			c.addFlag(GLOBAL.FLAG_LUBRICATED);
+			c.addFlag(GLOBAL.FLAG_OVIPOSITOR);
+			c.addFlag(GLOBAL.FLAG_RIBBED);
+			
+			this.vaginas = [];
+			var v:VaginaClass = new VaginaClass();
+			vaginas.push(v);
+			v.wetnessRaw = 2;
+			v.loosenessRaw = 3;
+			v.type = GLOBAL.TYPE_BOTHRIOC;
+			
 			//balls
 			this.balls = 2;
 			this.cumMultiplierRaw = 6;
@@ -163,8 +182,10 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
-			isUniqueInFight = false;
+			isUniqueInFight = true;
 			btnTargetText = "B.Pidemme";
+			
+			createStatusEffect("Force Fem Gender");
 			
 			this._isLoading = false;
 		}
@@ -209,13 +230,14 @@ package classes.Characters
 			
 			enemyAttacks.splice(enemyAttacks.indexOf(attack), 1);
 			
+			output("\n\n");
+			
 			if (InCollection(attack, rapierThrust, gunshot, tease) && _preppedBolo)
 			{
-				output("\n\n");
 				boloShot(target, attack);
 			}
 			else
-			{
+			{	
 				weightedRand(enemyAttacks)(target);
 			}
 			

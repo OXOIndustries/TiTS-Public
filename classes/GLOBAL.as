@@ -205,6 +205,7 @@
 		public static const TYPE_KORGONNE:int								= 66;
 		public static const TYPE_FLOWER:int									= 67;
 		public static const TYPE_WATERQUEEN:int								= 68;
+		public static const TYPE_BOTHRIOC:int								= 69;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -276,6 +277,7 @@
 			"Korgonne",
 			"Flower",
 			"Water Queen",
+			"Bothrioc"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

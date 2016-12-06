@@ -1,6 +1,6 @@
 public function showBothriocPidemme():void
 {
-	showName("ENCOUNTER:\nBOTHRIOC PIDEMME");
+	showName("ENCOUNTER:\nBOTHRIOC");
 	author("Nonesuch");
 	showBust("BOTHRIOC_PIDEMME"); // pidemme, 9999 decide what things are going to be called when the bulk of the content is coded to cover reuse
 }
@@ -15,7 +15,7 @@ public function encounterPidemmeBothrioc():void
 
 		output("\n\nYou try to remain alert in your gloomy surroundings, scanning every object that looms into view carefully, keeping your ears pinned back for any faint sound. You still almost start out of your skin when a four-armed, black-chitined warrior bursts seemingly out of nowhere, whirling some sort of rope weapon over their head. They draw a rapier from the mass of belts wrapped around the swell of their hips with one set of arms, fling the spinning ropes at your [pc.legs] with the other and launch themselves at you, all in one vicious, fluid movement.");
 
-		if (pc.reflexes() + rand(30) + 1 > 30)
+		if (pc.reflexes() + (rand(60) - 39) > 30)
 		{
 			output("\n\nActing solely on instinct, you sidestep the bolo, grab your [pc.meleeWeapon] and stab it upwards, managing to parry the rapier strike with a judder. You stagger backwards, taking in your assailant as they circle you.");
 
@@ -180,13 +180,13 @@ public function fightBothriocPidemme(isTripped:Boolean = false):void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(new BothriocPidemme());
-	CombatManager.displayLocation("FIGHT:\nBOTHRIOC PIDEMME");
+	CombatManager.displayLocation("BOTHRIOC");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(bothriocPidemmePCVictory);
 	CombatManager.lossScene(bothriocPidemmePCLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "You’re facing off against a pidemme bothrioc. Their two legs, four arms and straight antennae are armored in black chitin, flexible and burnished like latex. Elsewhere on their body, their human-like skin is ghostly white. You can clearly see this, because aside from a jumble of belts wrapped around their curvy waist, the creature is entirely naked. Perhaps this is because they feel they have nothing to hide; between their legs there is simply a blank expanse, and although they have small, black nipples, their chest is quite flat. Underneath their messy shock of "+ CombatManager.getHostileCharacters()[0].hairColor + " hair, their face seems to shift from masculine to feminine depending on how the dim light strikes it. Two pupil-less, tar-like eyes watch your every move.\n\nAbove their round butt and swaying with their every move, the bothrioc’s arthropod-like abdomen is covered tightly in the same austere, gleaming chitin that their limbs are. Occasionally you catch a glimpse of its wet tip; ovipositor open and ready to breed you, as soon as you give in.\n\nThe spider-being wields a rapier, a long rifle and a seemingly inexhaustible supply of bolos. They switch between them seamlessly, each of the four hands arranging itself just so to make efficient use of the weapon currently equipped.";
+		var m:String = "The pidemme's two legs, four arms and straight antennae are armored in black chitin, flexible and burnished like latex. Elsewhere on their body, their human-like skin is ghostly white. You can clearly see this, because aside from a jumble of belts wrapped around their curvy waist, the creature is entirely naked. Perhaps this is because they feel they have nothing to hide; between their legs there is simply a blank expanse, and although they have small, black nipples, their chest is quite flat. Underneath their messy shock of "+ CombatManager.getHostileCharacters()[0].hairColor + " hair, their face seems to shift from masculine to feminine depending on how the dim light strikes it. Two pupil-less, tar-like eyes watch your every move.\n\nAbove their round butt and swaying with their every move, the bothrioc’s arthropod-like abdomen is covered tightly in the same austere, gleaming chitin that their limbs are. Occasionally you catch a glimpse of its wet tip; ovipositor open and ready to breed you, as soon as you give in.\n\nThe spider-being wields a rapier, a long rifle and a seemingly inexhaustible supply of bolos. They switch between them seamlessly, each of the four hands arranging itself just so to make efficient use of the weapon currently equipped.";
 
 		return m;
 	});
@@ -204,7 +204,7 @@ public function bothriocPidemmePCLoss():void
 {
 	clearOutput();
 	showBothriocPidemme();
-	showName("DEFEAT:\nBOTHRIOC PIDEMME");
+	showName("DEFEAT:\nBOTHRIOC");
 
 	if (pc.HP() <= 0)
 	{
@@ -240,7 +240,7 @@ public function bothriocPidemmePCVictory():void
 {
 	clearOutput();
 	showBothriocPidemme();
-	showName("VICTORY:\nBOTHRIOC PIDEMME");
+	showName("VICTORY:\nBOTHRIOC");
 
 	if (enemy.HP() <= 0)
 	{
@@ -255,8 +255,12 @@ public function bothriocPidemmePCVictory():void
 
 	clearMenu();
 
-	if (pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(0, "Dock Ovi", bothriocPidemmeDockOvi);
+	if (!pc.hasCock()) addDisabledButton(0, "Dock Ovi", "Dock Ovipositor", "You'd need a cock for this.");
+	else if (pc.cockThatFits(enemy.vaginalCapacity(0)) == -1) addDisabledButton(0, "Dock Ovi", "Dock Ovipositor", "You're too big to slide into her ovipositor!");
+	else addButton(0, "Dock Ovi", bothriocPidemmeDockOvi);
+	
 	if (pc.hasVagina()) addButton(1, "Vag Ride", bothriocPidemmeVagRide, false, "Vaginal Ride", "Their ovipositor, your pussy.");
+	
 	addButton(2, "Ass Ride", bothriocPidemmeVagRide, true, "Ass Ride", "Their ovipositor, your ass.");
 
 	addButton(14, "Leave", bothriocPidemmeVictoryLeave);
@@ -266,7 +270,7 @@ public function bothriocPidemmeVictoryLeave():void
 {
 	clearOutput();
 	showBothriocPidemme();
-	showName("VICTORY:\nBOTHRIOC PIDEMME");
+	showName("VICTORY:\nBOTHRIOC");
 
 	if (bothriocAddiction() < 50) output("No sense in rewarding your assailant after putting her in her place.");
 	else output("You have to admit to yourself that just giving the egg-giver exactly what she wanted in the first place is a tempting thought... but clearly she's proven herself undeserving of the chance to leave you with her eggs entirely.");
@@ -829,7 +833,7 @@ public function bothriocPidemmeDockOvi():void
 {
 	clearOutput();
 	showBothriocPidemme();
-	showName("VICTORY:\nBOTHRIOC PIDEMME");
+	showName("VICTORY:\nBOTHRIOC");
 
 	var cockIdx:int = pc.cockThatFits(enemy.vaginalCapacity());
 	var cock2Idx:int = pc.cocks.length > 1 ? pc.cockThatFits2(enemy.vaginalCapacity()) : -1;
@@ -931,7 +935,7 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 {
 	clearOutput();
 	showBothriocPidemme();
-	showName("VICTORY:\nBOTHRIOC PIDEMME");
+	showName("VICTORY:\nBOTHRIOC");
 
 	var holeIdx:int = -1;
 	var holeTag:String = "[pc.asshole]";
@@ -1069,7 +1073,7 @@ public function bothriocPidemmeVagRideII(opts:Array):void
 	
 	clearOutput();
 	showBothriocPidemme();
-	showName("VICTORY:\nBOTHRIOC PIDEMME");
+	showName("VICTORY:\nBOTHRIOC");
 
 	if (isEgging)
 	{
