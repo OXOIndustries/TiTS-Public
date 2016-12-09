@@ -297,7 +297,7 @@ public function yesGetTheMilodanOff(x:int):void
 
 	output("\n\nHe pants, his cock abnormally swollen. His knot is bulging outwards, you realize, and you can’t help but " + pc.mf("snicker","giggle") + ".");
 
-	output("\n\n<i>“Probably the first time you’ve ever had </i>that<i> out without it being in a bitch, huh? You must be so confused. <i>“");
+	output("\n\n<i>“Probably the first time you’ve ever had </i>that<i> out without it being in a bitch, huh? You must be so confused. ");
 	//PC’s current dick has a knot: 
 	if(pc.hasKnot(x)) output("Don’t worry though, I’ll show you what it’s like to be on the receiving end.");
 	else output("Don’t worry, that’s only the beginning.");
@@ -410,6 +410,7 @@ public function takeALootInYerCooterFromMildan(x:int):void
 	output("\n\nYou ");
 	if(!pc.isCrotchExposed()) output("throw your clothes back on and ");
 	output("head out, leaving the milodan lying in the snow with orders to <i>“Stay”</i> until you’re gone.\n\n");
+
 	pc.loadInCunt(enemy,x);
 	processTime(5);
 	pc.orgasm();
@@ -985,4 +986,82 @@ public function dontWrestleTheMilodanBecauseHisCockIsBetterThanYours():void
 	}
 	output("\n\n");
 	CombatManager.genericLoss();
+}
+
+public function milodanPregnancyEnds():void
+{
+	clearOutput();
+	author("Wsan");
+	showName("\nBIRTHING!");
+
+	var se:StorageClass = pc.getStatusEffect("Milodan Pregnancy Ends");
+	
+	var numChildren:int = se.value1;
+	var bRatingContrib:int = se.value2;
+	var pregSlot:int = se.value3;
+	var babym:Boolean = (se.value4 == 1 ? false : true);
+
+	if(currentLocation != "SHIP INTERIOR") 
+	{
+		output("Oh, jeez! You can feel a stirring in your stomach; it feels like the kit");
+		if(numChildren > 1) output("s");
+		output(" want");
+		if(numChildren == 1) output("s");
+		output(" out. Time to get back to your ship!");
+		output("\n\nYou stumble aboard your ship, shutting yourself in your room and lying down on a blanket.");
+	}
+	else
+	{
+		output("Oh, jeez! The kit");
+		if(numChildren > 1) output("s");
+		output(" want");
+		if(numChildren == 1) output("s");
+		output(" out, and ");
+		if(numChildren == 1) output("it wants");
+		else output("they want");
+		output(" out <i>now</i>. You shut yourself in your room and lie down on a blanket.");
+	}
+	//Hour passes
+	output("\n\nBy the time you're finished, there's ");
+	if(numChildren == 1) output("a lone kit");
+	else
+	{
+		output(num2Text(numChildren) + " healthy kits");
+	}
+	output(" on your blanket, waving ");
+	if(numChildren == 1)
+	{
+		if( babym ) output("his");
+		else output("her");
+	}
+	else output("their");
+	output(" little arms and feet about. Oddly enough, none of them are crying. That Milodan toughness at work, you suspect. With a tired smile, you gently wash ");
+	if(numChildren > 1) output("each one");
+	if( babym ) output("him");
+	else output("her");
+	output(" off with some warm water and bundle your ");
+	if(numChildren == 1) output("child");
+	else output("children");
+	output(" up in some comfortable sheets before calling for the nursery pods. Watching the kit");
+	if(numChildren > 1) output("s");
+	output(" disappear makes you forlorn for a while, but you remind yourself that it'd be wildly irresponsible to take your kids along on your incredibly dangerous space journey. This is for the best, really. You can see them on Tavros any time you want to.");
+	output("\n\nAs for you, you quickly wash yourself off in the shower and practically crawl into your bed looking and feeling like some kind of half-dead sea slug. Giving birth is tiring work, and it's definitely time for a nap.");
+
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	pc.removeStatusEffect("Milodan Pregnancy Ends");
+	//14 hours pass
+
+	processTime(14*60);
+	clearMenu();
+	addButton(0,"Next",milodanPreggoEpilogue);
+}
+
+public function milodanPreggoEpilogue():void
+{
+	clearOutput();
+	showName("MORNING\nAFTER");
+	output("You wake up with a slight headache and a dry mouth, both of which dissipate when you rouse yourself from your well-deserved slumber and wash yourself. Time to get back to adventuring!");
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

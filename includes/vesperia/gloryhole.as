@@ -504,7 +504,9 @@ public function getGloryholePregContainer():PregnancyPlaceholder
 
 public function gloryholeWait():void
 {
-	if(rand(3) == 0)
+	if(kiroKallyThreesomeUnlockPoints() >= 3 && flags["KIRO_KALLY_PICARDINE_QUEST"] == 3 && flags["KALLY_FAP_2_KIRO"] != undefined && kiroKallyThreesomes() == 0)
+		kallyAndKiroGloryholeThreesomeMeeting();
+	else if(rand(3) == 0)
 	{
 		clearOutput();
 		showName("\nWAITING");

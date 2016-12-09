@@ -1835,7 +1835,14 @@ public function variableRoomUpdateCheck():void
 		rooms["UVI P30"].removeFlag(GLOBAL.NPC);
 	}
 	
-	
+	/* VESPERIA / CANADIA STATION */
+	if(flags["KALLY_FAP_2_KIRO"] != undefined)
+	{
+		rooms["CANADA7"].eastExit = "CANADA8";
+	}
+	else rooms["CANADA7"].eastExit = "";
+
+
 	/* MISC */
 	
 	// Kiro's Airlock
@@ -1845,7 +1852,7 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["KI-E23"].removeFlag(GLOBAL.LIFTDOWN);
 		rooms["KI-E23"].addFlag(GLOBAL.HAZARD);
-}
+	}
 	else
 	{
 		rooms["KI-E23"].addFlag(GLOBAL.LIFTDOWN);

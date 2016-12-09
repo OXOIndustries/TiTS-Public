@@ -940,7 +940,10 @@ public function DeepCavesBonus():Boolean
 			choices[choices.length] = crystalGooEncounterType1;
 		}
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
-		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(secondZodeeEncouonterForGaloMax);
+		if (flags["ZODEE_GALOQUEST"] == 1) choices.push(secondZodeeEncouonterForGaloMax);
+		
+		choices.push(encounterPidemmeBothrioc);
+		choices.push(encounterPidemmeBothrioc);
 		
 		//Run the event
 		choices[rand(choices.length)]();
