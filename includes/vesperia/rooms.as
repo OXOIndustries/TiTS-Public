@@ -99,7 +99,7 @@ public function initVesperiaRoom():void
 	rooms["CANADA7"].planet = "CANADIA STATION";
 	rooms["CANADA7"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA7"].northExit = "CANADA5";
-	rooms["CANADA7"].eastExit = "CANADA8";
+	rooms["CANADA7"].eastExit = "";
 	//rooms["CANADA7"].southExit = "";
 	rooms["CANADA7"].westExit = "CANADA9";
 	rooms["CANADA7"].moveMinutes = 1;

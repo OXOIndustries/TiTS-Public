@@ -171,6 +171,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
 		public var Bust_JOYCO_VENDING_MACHINE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/kally.png", mimeType = "image/png")]
+		public var Bust_KALLY:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kally_nude.png", mimeType = "image/png")]
+		public var Bust_KALLY_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/kelly_nude.png", mimeType = "image/png")]
@@ -566,6 +571,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/joyco_vending_machine.png", mimeType = "image/png")]
 			public var Full_JOYCO_VENDING_MACHINE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kally.png", mimeType = "image/png")]
+			public var Full_KALLY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kally_nude.png", mimeType = "image/png")]
+			public var Full_KALLY_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly.png", mimeType = "image/png")]
 			public var Full_KELLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly_nude.png", mimeType = "image/png")]
