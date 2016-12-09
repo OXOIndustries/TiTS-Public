@@ -74,8 +74,7 @@
 			this.level = 8;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			//this.HPMod = 350;
-			HPMod = -100;
+			this.HPMod = 350;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
@@ -165,12 +164,12 @@
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.impregnationType = "MilodanPregnancy";
-			this.cumQualityRaw = 10000;
+			this.cumQualityRaw = 3;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 8;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
-			this.ballEfficiency = 1000;
+			this.ballEfficiency = 7;
 			//Scales from 0 (never produce more) to infinity.
 			this.refractoryRate = 6;
 			this.minutesSinceCum = 420;

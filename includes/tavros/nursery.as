@@ -88,6 +88,219 @@ public function nurseryFoyerFunc():Boolean
 	return false;
 }
 
+public function milodanPlayOptions(button:Number):Number
+{
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 16) > 0)
+	{
+		addButton(button,"Milodan",playWithMilodan);
+		button++;
+	}
+	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 17, 9001) > 0)
+	{
+		addDisabledButton(button,"Milodan","Milodan","You don't have any kits young enough to play with. Maybe when you finish the quest, you'll have time to be a real parent.");
+		button++;
+	}
+	else output("Dafuq is dis shit");
+	return button;
+}
+public function playWithMilodan(choice:Number = -1):void
+{
+	clearOutput();
+	author("Wsan");
+	showName("PLAY\nTIME!");
+	//Build menu for playing
+	if(choice == -1)
+	{
+		output("Which age group will you play with? (Buttons are in month age ranges)");
+		clearMenu();
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 0, 2) > 0) addButton(0,"0-2 Months",playWithMilodan,0);
+		else addDisabledButton(0,"0-2 Months","0-2 Months","You have no kits in that age range.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 3, 6) > 0) addButton(1,"3-6 Months",playWithMilodan,1);
+		else addDisabledButton(1,"3-6 Months","3-6 Months","You have no kits in that age range.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 7, 16) > 0) addButton(2,"7-16 Months",playWithMilodan,2);
+		else addDisabledButton(2,"7-16 Months","7-16 Months","You have no kits in that age range.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 17, 9001) > 0) addDisabledButton(3,"16+ Months","16+ Month","These kits are too old to play with.");
+		return;
+	}
+	
+	var boy:Boolean = true;
+	var girl:Boolean = false;
+	var youngMilos:Number = ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 7, 16);
+
+	//Play with baby (0-8 weeks)
+	if(choice == 0)
+	{
+		boy = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_MALE, 0, 2);
+		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 0, 2);
+		if(boy && girl) boy = (rand(2) == 0);		
+
+		if(boy) output("He's");
+		else output("She's");
+		output(" too young to play yet, but you reach into the cot where a kit is swaddled in cloth and gently boop ");
+		if(boy) output("him");
+		else output("her");
+		output(" on the nose. Milodan kits are blind for several weeks, so the kit can't see you, but ");
+		if(boy) output("he");
+		else output("she");
+		output(" can smell you. ");
+		if(boy) output("He");
+		else output("She");
+		output(" sniffles when you remove your finger from ");
+		if(boy) output("his");
+		else output("her");
+		output(" snout and waves at you with outstretched arms, grabbing onto your fingertip with ");
+		if(boy) output("his");
+		else output("her");
+		output(" tiny hands. You can feel ");
+		if(boy) output("him");
+		else output("her");
+		output(" pulling your hand down, and when you acquiesce ");
+		if(boy) output("he");
+		else output("she");
+		output(" wraps ");
+		if(boy) output("his");
+		else output("her");
+		output(" arms around your fingers and falls asleep. You stroke ");
+		if(boy) output("his");
+		else output("her");
+		output(" hair with a smile, stealthily extricating your hand from the tiny kit's grip and watching ");
+		if(boy) output("him");
+		else output("her");
+		output(" snoozing in the cot.");
+	}
+	//Play with baby (9-24 weeks)
+	else if(choice == 1)
+	{
+		boy = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_MALE, 3, 6);
+		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 3, 6);
+		if(boy && girl) boy = (rand(2) == 0);
+
+		output("You notice a kit sitting upright in ");
+		if(boy) output("his");
+		else output("her");
+		output(" cot as you tiptoe by. ");
+		if(boy) output("He");
+		else output("She");
+		output(" lifts ");
+		if(boy) output("his");
+		else output("her");
+		output(" arms up, pointing upwards and clearly wanting to be picked up.");
+		output("\n\nYou lift ");
+		if(boy) output("him");
+		else output("her");
+		output(" out of ");
+		if(boy) output("his");
+		else output("her");
+		output(" little bed. Woof! ");
+		if(boy) output("He's");
+		else output("She's");
+		output(" a lot heavier than ");
+		if(boy) output("he");
+		else output("she");
+		output(" was a few weeks ago. ");
+		if(boy) output("He");
+		else output("She");
+		output(" solemnly inspects you with wide eyes, reaching out to paw at your chin. You give ");
+		if(boy) output("his");
+		else output("her");
+		output(" little tufts of cheek fur a scruff, and ");
+		if(boy) output("he");
+		else output("she");
+		output(" responds by making a little noise that sounds like a bark. What a little cutie. You place the kit back in ");
+		if(boy) output("his");
+		else output("her");
+		output(" cot after a couple of minutes of idle play.");
+	}
+	//Play with baby (25-52 weeks)
+	else if(choice == 2)
+	{
+		boy = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_MALE, 7, 16);
+		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 7, 16);
+		if(boy && girl) boy = (rand(2) == 0);
+		//One kit
+		if(youngMilos == 1)
+		{
+			output("You see your kit sitting down in ");
+			if(boy) output("his");
+			else output("her");
+			output(" nappies in the play area, waving a rattle around with a pacifier in ");
+			if(boy) output("his");
+			else output("her");
+			output(" mouth. Upon spotting you, ");
+			if(boy) output("he");
+			else output("she");
+			output(" shakily gets to ");
+			if(boy) output("his");
+			else output("her");
+			output(" feet and takes a few wobbling steps towards you before toppling over. Not to be deterred, though, ");
+			if(boy) output("he");
+			else output("she");
+			output(" crawls over to your [pc.leg] and uses it to brace ");
+			if(boy) output("himself");
+			else output("herself");
+			output(", raising ");
+			if(boy) output("him");
+			else output("her");
+			output(" to a standing position.");
+			output("\n\n<i>“Mu mu,”</i> ");
+			if(boy) output("he");
+			else output("she");
+			output(" says, looking up at you very seriously. <i>“Mu mu.”</i>");
+			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss ");
+			if(boy) output("his");
+			else output("her");
+			output(" hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
+			output("\n\n<i>“Buh,”</i> the kit responds, shaking ");
+			if(boy) output("his");
+			else output("her");
+			output(" rattle.");
+			output("\n\nYou spend some time with your fluffy kit, playing with ");
+			if(boy) output("him");
+			else output("her");
+			output(" and ");
+			if(boy) output("his");
+			else output("her");
+			output(" little set of blocks.");
+		}
+		//Multiple kits
+		else
+		{
+			output("You see your kits sitting in their nappies in the play area, waving rattles around emphatically. One of them spots you, nudging ");
+			if(boy) output("his");
+			else output(" littermate over and clambering atop ");
+			if(boy) output("him");
+			else output("her");
+			output(" to get to you. Standing and taking a few wobbly steps, ");
+			if(boy) output("he");
+			else output("she");
+			output(" falls back down when the kit ");
+			if(boy) output("he");
+			else output("she");
+			output(" climbed over bops ");
+			if(boy) output("him");
+			else output("her");
+			output(" with a rattle. Rather than crying, though, both of them crawl over to you to hug your [pc.leg].");
+			output("\n\n<i>“Muh,”</i> one of them says, looking up at you intently. <i>“Mu mu.”</i>");
+			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss ");
+			if(boy) output("his");
+			else output("her");
+			output(" hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
+			output("\n\n<i>“Buh,”</i> the kit responds, shaking ");
+			if(boy) output("his");
+			else output("her");
+			output(" rattle.");
+
+			//2 kits: 
+			if(youngMilos <= 2) output("\n\nYou spend some time with the two fluffy kits, playing with them and their little set of blocks.");
+			//3-9 kits:
+			else if(youngMilos < 10) output("\n\nYou're quickly joined by the rest of your fluffy kits. You spend some time playing with them and their little set of blocks, making sure they play nice.");
+			else output("\n\nYou're soon surrounded by a fluffy horde of kits, crawling all around (and over) you. You spend some time playing with them and their little set of blocks, making sure they play nice.");
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
 public function nurseryZilCallgirlRandomEvents():Boolean
 {
 	if (!zilCallgirlAtNursery() || hours < 8 || hours > 16) return false;
@@ -199,6 +412,8 @@ public function nurseryKidsDormsFunc():Boolean
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
 
 	nurseryZilCallgirlRandomEvents();
+	var button:Number = 0;
+	button = milodanPlayOptions(button);
 
 	return false;
 }

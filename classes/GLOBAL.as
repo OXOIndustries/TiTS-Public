@@ -278,7 +278,8 @@
 			"Korgonne",
 			"Flower",
 			"Water Queen",
-			"Bothrioc"
+			"Bothrioc",
+			"Milodan"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

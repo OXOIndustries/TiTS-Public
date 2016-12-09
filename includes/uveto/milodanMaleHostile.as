@@ -297,7 +297,7 @@ public function yesGetTheMilodanOff(x:int):void
 
 	output("\n\nHe pants, his cock abnormally swollen. His knot is bulging outwards, you realize, and you can’t help but " + pc.mf("snicker","giggle") + ".");
 
-	output("\n\n<i>“Probably the first time you’ve ever had </i>that<i> out without it being in a bitch, huh? You must be so confused. <i>“");
+	output("\n\n<i>“Probably the first time you’ve ever had </i>that<i> out without it being in a bitch, huh? You must be so confused. ");
 	//PC’s current dick has a knot: 
 	if(pc.hasKnot(x)) output("Don’t worry though, I’ll show you what it’s like to be on the receiving end.");
 	else output("Don’t worry, that’s only the beginning.");
@@ -411,9 +411,7 @@ public function takeALootInYerCooterFromMildan(x:int):void
 	if(!pc.isCrotchExposed()) output("throw your clothes back on and ");
 	output("head out, leaving the milodan lying in the snow with orders to <i>“Stay”</i> until you’re gone.\n\n");
 
-	output("\n\nPUSSY TAKIN: " + x);
 	pc.loadInCunt(enemy,x);
-	if(pc.isPregnant()) output(" PREGGOS");
 	processTime(5);
 	pc.orgasm();
 	CombatManager.genericVictory();

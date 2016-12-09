@@ -62,7 +62,6 @@ package classes.GameData.Pregnancy.Handlers
 				else buffer = " it feels like there's an entire litter in there!";
 
 				AddLogEvent(ParseText("The bump in your tummy is definitely noticeable now, announcing your fertility to everyone. Getting around is a little bit of a hassle, but at the same time you feel a kind of pride in it. Every glance at your baby-bump and smile directed your way is like a reminder you're full of life. Very <i>active</i> life, if the little punches and kicks are a reliable indicator. You can't help but wonder how many of the fuzzy little furballs you've got inside you;" + buffer),"passive");
-				AddLogEvent(ParseText("Your queasy stomach has been complaining more and more; you can barely keep meals down." + (kGAMECLASS.pc.bellyRating() < 10 ? " Despite this, your [pc.belly] seems bigger, if anything." : "")), "passive");
 				
 				kGAMECLASS.pc.bellyRatingMod += 15;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
@@ -75,7 +74,7 @@ package classes.GameData.Pregnancy.Handlers
 				var m:String = "You must be getting close to delivering by now. You've swollen to uncomfortably large proportions, your pregnancy readily evident to everyone around you. ";
 				if(kGAMECLASS.pc.isTaur()) m += "Your tummy hangs low to the ground";
 				else m += "Your tummy protrudes forward";
-				m ++ ", full of Milodan kits waiting to be unleashed on the toys in the nursery. You wind up thinking as you walk, wondering what your children will go on to do. The luxury of having Steele Tech's backing is that the potential for your offspring is effectively limitless; if nothing else, they can be brought up in comfort.";
+				m += ", full of Milodan kits waiting to be unleashed on the toys in the nursery. You wind up thinking as you walk, wondering what your children will go on to do. The luxury of having Steele Tech's backing is that the potential for your offspring is effectively limitless; if nothing else, they can be brought up in comfort.";
 
 				AddLogEvent(m, "passive");
 				
@@ -134,7 +133,7 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData = mother.pregnancyData[pregSlot];
 			
 			//If this is the first birth, go at it.
-			if (!mother.hasStatusEffect("Milodan Pregnancy Ends") && !disableExploreEvents())
+			if (!mother.hasStatusEffect("Milodan Pregnancy Ends") && !kGAMECLASS.disableExploreEvents())
 			{
 				// Baby count check (just in case)
 				var babies:int = mother.pregnancyData[pregSlot].pregnancyQuantity;
