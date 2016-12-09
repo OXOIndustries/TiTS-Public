@@ -12,7 +12,7 @@ public function TundraEncounterBonus():Boolean
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	//Just reuse Uveto's shit. It doesnt matter much really.
 	IncrementFlag("TUNDRA_STEP");
-
+	encounterAMilodan();
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if(flags["TUNDRA_STEP"] >= 5 && rand(4) == 0) {

@@ -206,6 +206,7 @@
 		public static const TYPE_FLOWER:int									= 67;
 		public static const TYPE_WATERQUEEN:int								= 68;
 		public static const TYPE_BOTHRIOC:int								= 69;
+		public static const TYPE_MILODAN:int								= 70;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
