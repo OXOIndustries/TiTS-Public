@@ -1016,7 +1016,7 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			output2(" Your");
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
-			output2(" hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
+			output2(" hands are " + (target.hasArmFlag(GLOBAL.FLAG_PAWS) ? "somewhat paw-like" : "still largely human") + " in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
 		}
 		else if(target.armType == GLOBAL.TYPE_PANDA) 
 		{
