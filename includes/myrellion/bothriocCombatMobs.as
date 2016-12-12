@@ -11,8 +11,6 @@ public function encounterPidemmeBothrioc():void
 
 	if (flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] == undefined)
 	{
-		flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] = 1;
-
 		output("\n\nYou try to remain alert in your gloomy surroundings, scanning every object that looms into view carefully, keeping your ears pinned back for any faint sound. You still almost start out of your skin when a four-armed, black-chitined warrior bursts seemingly out of nowhere, whirling some sort of rope weapon over their head. They draw a rapier from the mass of belts wrapped around the swell of their hips with one set of arms, fling the spinning ropes at your [pc.legs] with the other and launch themselves at you, all in one vicious, fluid movement.");
 
 		if (pc.reflexes() + (rand(60) - 39) > 30)
@@ -146,6 +144,7 @@ public function encounterPidemmeBothrioc():void
 	}
 
 	processTime(7+rand(3));
+	IncrementFlag("BOTHRIOC_PIDEMME_ENCOUNTERED");
 }
 
 public function standardBothriocEncounterOfferRefuse():void
@@ -186,14 +185,14 @@ public function fightBothriocPidemme(isTripped:Boolean = false):void
 	CombatManager.victoryScene(bothriocPidemmePCVictory);
 	CombatManager.lossScene(bothriocPidemmePCLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "The pidemme's two legs, four arms and straight antennae are armored in black chitin, flexible and burnished like latex. Elsewhere on their body, their human-like skin is ghostly white. You can clearly see this, because aside from a jumble of belts wrapped around their curvy waist, the creature is entirely naked. Perhaps this is because they feel they have nothing to hide; between their legs there is simply a blank expanse, and although they have small, black nipples, their chest is quite flat. Underneath their messy shock of "+ CombatManager.getHostileCharacters()[0].hairColor + " hair, their face seems to shift from masculine to feminine depending on how the dim light strikes it. Two pupil-less, tar-like eyes watch your every move.\n\nAbove their round butt and swaying with their every move, the bothrioc’s arthropod-like abdomen is covered tightly in the same austere, gleaming chitin that their limbs are. Occasionally you catch a glimpse of its wet tip; ovipositor open and ready to breed you, as soon as you give in.\n\nThe spider-being wields a rapier, a long rifle and a seemingly inexhaustible supply of bolos. They switch between them seamlessly, each of the four hands arranging itself just so to make efficient use of the weapon currently equipped.";
+		var m:String = "The pidemme’s two legs, four arms and straight antennae are armored in black chitin, flexible and burnished like latex. Elsewhere on their body, their human-like skin is ghostly white. You can clearly see this, because aside from a jumble of belts wrapped around their curvy waist, the creature is entirely naked. Perhaps this is because they feel they have nothing to hide; between their legs there is simply a blank expanse, and although they have small, black nipples, their chest is quite flat. Underneath their messy shock of "+ CombatManager.getHostileCharacters()[0].hairColor + " hair, their face seems to shift from masculine to feminine depending on how the dim light strikes it. Two pupil-less, tar-like eyes watch your every move.\n\nAbove their round butt and swaying with their every move, the bothrioc’s arthropod-like abdomen is covered tightly in the same austere, gleaming chitin that their limbs are. Occasionally you catch a glimpse of its wet tip; ovipositor open and ready to breed you, as soon as you give in.\n\nThe spider-being wields a rapier, a long rifle and a seemingly inexhaustible supply of bolos. They switch between them seamlessly, each of the four hands arranging itself just so to make efficient use of the weapon currently equipped.";
 
 		return m;
 	});
 	
 	if (isTripped)
 	{
-		pc.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+		pc.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
 	}
 
 	clearMenu();
@@ -248,15 +247,15 @@ public function bothriocPidemmePCVictory():void
 	}
 	else
 	{
-		output("The pale creatures knees disappear out from under her (him?) after a momentary final tremble of resistance. Her pale features are tinged with the slightest hue of color; the crushing lust you've evoked in her further evidenced by her throbbing ovipositor jutting behind her and drooling with need...");
+		output("The pale creatures knees disappear out from under her (him?) after a momentary final tremble of resistance. Her pale features are tinged with the slightest hue of color; the crushing lust you’ve evoked in her further evidenced by her throbbing ovipositor jutting behind her and drooling with need...");
 	}
 
 	output("The only question remaining now is how to best teach her the error of her ways.");
 
 	clearMenu();
 
-	if (!pc.hasCock()) addDisabledButton(0, "Dock Ovi", "Dock Ovipositor", "You'd need a cock for this.");
-	else if (pc.cockThatFits(enemy.vaginalCapacity(0)) == -1) addDisabledButton(0, "Dock Ovi", "Dock Ovipositor", "You're too big to slide into her ovipositor!");
+	if (!pc.hasCock()) addDisabledButton(0, "Dock Ovi", "Dock Ovipositor", "You’d need a cock for this.");
+	else if (pc.cockThatFits(enemy.vaginalCapacity(0)) == -1) addDisabledButton(0, "Dock Ovi", "Dock Ovipositor", "You’re too big to slide into her ovipositor!");
 	else addButton(0, "Dock Ovi", bothriocPidemmeDockOvi);
 	
 	if (pc.hasVagina()) addButton(1, "Vag Ride", bothriocPidemmeVagRide, false, "Vaginal Ride", "Their ovipositor, your pussy.");
@@ -273,7 +272,7 @@ public function bothriocPidemmeVictoryLeave():void
 	showName("VICTORY:\nBOTHRIOC");
 
 	if (bothriocAddiction() < 50) output("No sense in rewarding your assailant after putting her in her place.");
-	else output("You have to admit to yourself that just giving the egg-giver exactly what she wanted in the first place is a tempting thought... but clearly she's proven herself undeserving of the chance to leave you with her eggs entirely.");
+	else output("You have to admit to yourself that just giving the egg-giver exactly what she wanted in the first place is a tempting thought... but clearly she’s proven herself undeserving of the chance to leave you with her eggs entirely.");
 
 	output("\n\nYou leave her to her devices, knelt amongst the cavern floors.");
 
@@ -294,7 +293,7 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 
 		output("\n\nYou next feel a chitinous hand caress your face, tracing down the jawline, onto your neck, as another encircles your [pc.breasts]. Though you two are strangers (probably? The entrancing, eerie creatures down here tend to blend into one another for you), there’s a loving familiarity to the procedure. It’s not like it’s any secret between you two that you’re attached to the attentions of the bothrioc.");
 
-		output("\n\n<i>“Wonderful morsel... <i>“ they moan, extending their ovipositor, letting the thick organ drool all over your [pc.ass] as it searches out a hole to breed, making you shiver with anticipation. <i>“So perfect for...”</i> The eggshaft tenses up and shoves itself into your [pc.butthole].");
+		output("\n\n<i>“Wonderful morsel...”</i> they moan, extending their ovipositor, letting the thick organ drool all over your [pc.ass] as it searches out a hole to breed, making you shiver with anticipation. <i>“So perfect for...”</i> The eggshaft tenses up and shoves itself into your [pc.butthole].");
 		pc.buttChange(enemy.cockVolume(0), true, true, false);
 		output(" You are well trained now in handling ovipositors, and though you coo with delight at being penetrated, it doesn’t knock the breath out of you like it once did. Well, almost. By the third or fourth ring that stretches your ass wide, the rhythmic hammering of inch after inch of eggtube being fed into your ass is still threatening to knock the breath completely out of you. The only thing keeping your breathing relatively steady is plenty of practice.");
 		
@@ -313,7 +312,7 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		if (pc.canLactate()) output(" oozing [pc.milk]");
 		else if (pc.hasNippleCunts() || pc.hasLipples()) output(" throbbing");
 		else output(" hardening");
-		output(",  squeals of total abandon are forced past your lips.");
+		output(", squeals of total abandon are forced past your lips.");
 		
 		output("\n\nActing on your body’s impulse, you crane your neck up toward the supine bothrioc and plant a kiss on their cheek. Stirring in surprise, the bothrioc turns and plants a hard kiss directly on your lips. Before either of you really process the thought, you’re tongue-kissing to the hammering of your hearts and the clenching of your ass and the relentless advance of the eggs.");
 		
@@ -373,9 +372,10 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		{
 			output("\n\n<i>“It’s good to see an egg-slut with none of those nasty extra parts. Were you born this way, farlander, or did you choose it? Did you think to yourself that the only pleasure you should have in life is our eggs as you shunned whatever was cluttering up your perfect mound? Or were you always one for the pleasures of the cloaca? Either way, you’re a beautiful incubator. Sleep well.”</i>");
 		}
+		// Bothrioc TF’d:
 		else if (pc.race().indexOf("bothrioc") != -1)
 		{
-			output("\n\nBothrioc TF’d: <i>“I can see you’re so enamored with us that you decided to become us. So long as your cloaca is a home to eggs, you’ll be ensnared in our love no matter what you are.”</i>");
+			output("\n\n<i>“I can see you’re so enamored with us that you decided to become us. So long as your cloaca is a home to eggs, you’ll be ensnared in our love no matter what you are.”</i>");
 		}
 		else
 		{
@@ -395,11 +395,11 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		else output(" your taint");
 		output(" and into the crack of your ass.");
 
-		if (flags["BOTHRIOC_FUCKED"] == undefined)
+		if (flags["BOTHRIOC_PIDEMME_FUCKED"] == undefined)
 		{
 			output(" The sheer repulsiveness of the situation makes you clench up automatically, willing yourself to be anywhere else.");
 		}
-		else if (flags["BOTHRIOC_FUCKED"] <= 24)
+		else if (flags["BOTHRIOC_PIDEMME_FUCKED"] <= 24)
 		{
 			output(" You’re at least used to this now, but you can’t stop your body clenching up with awful anticipation.");
 		}
@@ -499,7 +499,7 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		output("\n\nThe bolos are slipped off your hands. Presumably the creature leaves, although you don’t hear them doing so. You lie there for several long minutes, simply cradling your egg-swollen [pc.stomach]. You’re hardly able to think or move, and the weight settled inside you makes you feel more soporific than uncomfortable. It is only after some minutes of a strange, peaceful doze that you clamber back to your [pc.feet] and limp over to where your [pc.gear] was flung.");
 	}
 
-	IncrementFlag(flags["BOTHRIOC_FUCKED"]);
+	IncrementFlag("BOTHRIOC_PIDEMME_FUCKED");
 
 	processTime(25 + rand(10));
 	pc.loadInAss(enemy);
@@ -532,7 +532,7 @@ public function bothriocPidemmeVagEggs(fromCombat:Boolean):void
 		else output(" over your scalp");
 		output(", a smooth, swollen weight settling down atop you. Your whole body keens for the long, hard breeding it’s about to take.");
 
-		output("\n\n<i>“Very nice, little one,”</i> the bothrioc laughs, stroking the side of your face fondly. <i>“But I notice we have a slight problem... <i>“ another pair of hands find your [pc.belly] and stroke the swollen curve with soothing, circular motions. <i>“It seems someone got to you beforehand. One of my friends? A mean old nyrea?”</i> You feel the warm, oily touch of the bothrioc’s ovipositor, gently sliding between the cheeks of your [pc.ass], shrinking itself down to a small tip, teasing your [pc.anus] for a moment... then slithering further down, across the sensitive skin of your taint to touch the labia of your "+vagTag+". You gasp slightly as it rides over your [pc.clit], making it tingle with pleasure.");
+		output("\n\n<i>“Very nice, little one,”</i> the bothrioc laughs, stroking the side of your face fondly. <i>“But I notice we have a slight problem...”</i> another pair of hands find your [pc.belly] and stroke the swollen curve with soothing, circular motions. <i>“It seems someone got to you beforehand. One of my friends? A mean old nyrea?”</i> You feel the warm, oily touch of the bothrioc’s ovipositor, gently sliding between the cheeks of your [pc.ass], shrinking itself down to a small tip, teasing your [pc.anus] for a moment... then slithering further down, across the sensitive skin of your taint to touch the labia of your "+vagTag+". You gasp slightly as it rides over your [pc.clit], making it tingle with pleasure.");
 		
 		output("\n\n<i>“Fortunately for us you’re a very dedicated little egg-slut, and have provided other breeding hole");
 		if (pc.vaginas.length > 1) output("s");
@@ -540,7 +540,7 @@ public function bothriocPidemmeVagEggs(fromCombat:Boolean):void
 		
 		output("\n\n<i>“More than anything,”</i> you moan, with all your heart.");
 		
-		output("\n\n<i>“Very well... <i>“");
+		output("\n\n<i>“Very well...”</i>");
 		
 		output("\n\n");
 		if (pc.vaginas[vagIdx].looseness() <= 2) output("After a moment’s resistance");
@@ -556,9 +556,9 @@ public function bothriocPidemmeVagEggs(fromCombat:Boolean):void
 		output(". You moan as your cunt clenches up, willing more of the creature’s fantastic egg cock into you.");
 		pc.cuntChange(vagIdx, enemy.cockVolume(0), true, true, false);
 		
-		output("\n\n<i>“It’s wonderful, isn’t it farlander?”</i> sighs the bothrioc, tenderly stroking the line of your jaw at the same time as holding you firmly in place. The tip of the ovipositor presses against your cervix; you feel nothing but an intense wish for it to fill you further, to insert its oil and love into every cell of your being. <i>“Now you have accepted where your place is. You’ll carry that message into the stars, won’t you? So these caves are filled with sexy, pliant farlanders like you... <i>“ it coos into your ear as the tip narrows down into a small tip again and then gently penetrates your cervix. Only the powerful, subliminal directive to completely relax stops you from clenching up with glee.");
+		output("\n\n<i>“It’s wonderful, isn’t it farlander?”</i> sighs the bothrioc, tenderly stroking the line of your jaw at the same time as holding you firmly in place. The tip of the ovipositor presses against your cervix; you feel nothing but an intense wish for it to fill you further, to insert its oil and love into every cell of your being. <i>“Now you have accepted where your place is. You’ll carry that message into the stars, won’t you? So these caves are filled with sexy, pliant farlanders like you...”</i> it coos into your ear as the tip narrows down into a small tip again and then gently penetrates your cervix. Only the powerful, subliminal directive to completely relax stops you from clenching up with glee.");
 		
-		output("\n\n<i>“Very well done,”</i> they whisper once they are fully inside, ovipositor pulsating up every inch of your cunt to reach right up into your womb. The burnished carapace of its abdomen is pressed down on your [pc.ass], and you catch your breath when you feel it tense up. <i>“Here is your reward... <i>“");
+		output("\n\n<i>“Very well done,”</i> they whisper once they are fully inside, ovipositor pulsating up every inch of your cunt to reach right up into your womb. The burnished carapace of its abdomen is pressed down on your [pc.ass], and you catch your breath when you feel it tense up. <i>“Here is your reward...”</i>");
 		
 		output("\n\nThe first egg stretches your pussy lips so wide you think it’s not going to fit; when it finally does pressure its way into your tunnel you cum right there and then,");
 		if (pc.isTaur()) output(" clenching your fists");
@@ -612,7 +612,7 @@ public function bothriocPidemmeVagEggs(fromCombat:Boolean):void
 		
 		output("\n\nTheir curt tone dissolves into amused laughter a moment later when, after straddling you and using one pair of hands to hold you by the shoulders, another pair of chitin-gloved hands touch your lightly bulging belly.");
 		
-		output("\n\n<i>“You DO understand! Is this the work of one of my friends? Or did some mean old nyrea get to you first?”</i> You shiver as the smooth weight of the creature’s bulging abdomen rests down on top of your back, their hands describing soothing circles over your swollen stomach. <i>“Whatever the case, it’s nice to know you’re... accommodating, farlander. That will serve you well, as we change you into a perfect little incubator... <i>“ they sigh dreamily, and at last you feel the warm, oily touch of the bothrioc’s ovipositor, gently sliding between the cheeks of your [pc.ass].");
+		output("\n\n<i>“You DO understand! Is this the work of one of my friends? Or did some mean old nyrea get to you first?”</i> You shiver as the smooth weight of the creature’s bulging abdomen rests down on top of your back, their hands describing soothing circles over your swollen stomach. <i>“Whatever the case, it’s nice to know you’re... accommodating, farlander. That will serve you well, as we change you into a perfect little incubator...”</i> they sigh dreamily, and at last you feel the warm, oily touch of the bothrioc’s ovipositor, gently sliding between the cheeks of your [pc.ass].");
 		
 		output("\n\n<i>“It does leave us a bit of a problem though, precious. I NEED to lay some eggs, but it feels like your cloaca is stuffed to the gills.”</i> The egg-tube shrinks itself down to a small tip, teasing your [pc.anus] for a moment... and then it slithers further down, across the sensitive skin of your taint to touch the labia of your "+vagTag+". You gasp slightly as it rides over your [pc.clit], making it tingle with pleasure. <i>“Fortunately for us, it seems you have other hole");
 		if (pc.vaginas.length > 1) output("s");
@@ -632,9 +632,9 @@ public function bothriocPidemmeVagEggs(fromCombat:Boolean):void
 		output(" from your stuffed cunt. You moan as it clenches up, willing more of the creature’s fantastic egg cock into you.");
 		pc.cuntChange(vagIdx, enemy.cockVolume(0), true, true, false);
 		
-		output("\n\n<i>“It’s wonderful once you let go, isn’t it farlander?”</i> sighs the bothrioc, tenderly stroking the line of your jaw at the same time as holding you firmly in place. The tip of the ovipositor presses against your cervix; it has you utterly filled. <i>“Once you accept where your true place is. Just a little more, precious... think soft thoughts... <i>“ it coos into your ear as the tip narrows down again and then gently penetrates your cervix. You don’t feel pain; the sheer oiled relaxation the bothrioc has poured into you makes you will it on, anything for another inch of that wonderful, full sensation.");
+		output("\n\n<i>“It’s wonderful once you let go, isn’t it farlander?”</i> sighs the bothrioc, tenderly stroking the line of your jaw at the same time as holding you firmly in place. The tip of the ovipositor presses against your cervix; it has you utterly filled. <i>“Once you accept where your true place is. Just a little more, precious... think soft thoughts...”</i> it coos into your ear as the tip narrows down again and then gently penetrates your cervix. You don’t feel pain; the sheer oiled relaxation the bothrioc has poured into you makes you will it on, anything for another inch of that wonderful, full sensation.");
 		
-		output("\n\n<i>“Very well done,”</i> they whisper once they are fully inside, ovipositor pulsating up every inch of your cunt to reach right up into your womb. The burnished carapace of its abdomen is pressed down on your [pc.ass], and you catch your breath when you feel it tense up. <i>“Now comes the really good part... <i>“");
+		output("\n\n<i>“Very well done,”</i> they whisper once they are fully inside, ovipositor pulsating up every inch of your cunt to reach right up into your womb. The burnished carapace of its abdomen is pressed down on your [pc.ass], and you catch your breath when you feel it tense up. <i>“Now comes the really good part...”</i>");
 		
 		output("\n\nThe first egg stretches your pussy lips so wide you think it’s not going to fit; when it finally does pressure its way into your tunnel you cum right there and then,");
 		if (pc.isTaur()) output(" clenching your fists");
@@ -682,7 +682,7 @@ public function bothriocPidemmeVagEggs(fromCombat:Boolean):void
 		output("\n\nThe bolos are slipped off your hands and their weight lifts off your back. Presumably the creature leaves, although you don’t hear them doing so. You lie there for several long minutes, unable to do anything but cradle your swollen midriff, utterly stuffed from back to front with alien spawn. You’re hardly able to think or move, and the weight settled inside you makes you feel more soporific than uncomfortable. It is only after some minutes of a strange, peaceful doze that you clamber back to your [pc.feet] and wobble over to where your [pc.gear] was flung.");
 	}
 
-	IncrementFlag(flags["BOTHRIOC_FUCKED"]);
+	IncrementFlag("BOTHRIOC_PIDEMME_FUCKED");
 
 	processTime(25 + rand(10));
 	pc.loadInCunt(enemy, vagIdx);
@@ -709,7 +709,7 @@ public function bothriocPidemmeOralTime(fromCombat:Boolean):void
 		if (pc.hasVagina()) output(" Smooth fingers find your [pc.vagina], stroking your puffy labia. When the bothrioc speak next, it’s in a tone of aroused wonder. <i>“Bearing multiple broods, farlander? Yours must be a very receptive and eager kind. There are more of you, right? I could use more than one...”</i>");
 		output(" They sigh heavily.");
 
-		output("\n\n<i>“I’m sorry!”</i> you wail. <i>“It’s just that... <i>“ An elegant, chitinous digit touches your [pc.lips].");
+		output("\n\n<i>“I’m sorry!”</i> you wail. <i>“It’s just that...”</i> An elegant, chitinous digit touches your [pc.lips].");
 		
 		output("\n\n<i>“I know, I know,”</i> laughs the bothrioc. <i>“You can’t help");
 		if (!pc.hasKnees()) output(" kneeling down");
@@ -725,7 +725,7 @@ public function bothriocPidemmeOralTime(fromCombat:Boolean):void
 		
 		output("\n\n<i>“Of course not, precious,”</i> they smile. <i>“Open wide.”</i> The purple tip presses insistently against your [pc.lips], and with a sigh of pure pleasure you do exactly what they say.");
 		
-		output("\n\nIt’s a little softer on the surface, perhaps, than a cock; beneath the skin though it’s a bulbous tube of restless muscle that reacts to the rubbing of your lips and tongue across it by bunching up and thrusting deeper into your maw. It’s heaven, in other words, and you gladly stretch your jaw to get the first big, round segment into your mouth, tightening your cheeks around it assiduously, so that when the bothrioc draws it back it leaves your lips with a distinct <i>“pop”</i>. Then it comes back, slathered with a fresh payload of oil to smear and drool across your [pc.lips], dribbling down your chin.");
+		output("\n\nIt’s a little softer on the surface, perhaps, than a cock; beneath the skin though it’s a bulbous tube of restless muscle that reacts to the rubbing of your lips and tongue across it by bunching up and thrusting deeper into your maw. It’s heaven, in other words, and you gladly stretch your jaw to get the first big, round segment into your mouth, tightening your cheeks around it assiduously, so that when the bothrioc draws it back it leaves your lips with a distinct “pop”. Then it comes back, slathered with a fresh payload of oil to smear and drool across your [pc.lips], dribbling down your chin.");
 		
 		output("\n\nYou eagerly swallow the slightly numbing, coating substance, relish it dollop into your stomach, and embrace the warm fuzz which engulfs you; stretching out from your head to join hands with the glow that pulses from your core so that you are a being of total, sensual, submissive lust, overcome with bliss at abasing yourself in front of the alien creature and pleasuring their strange, long egg-stalk. In to the back of your throat, suck... out, dragging your lips and [pc.tongue] along the bulbous tube. In to the back of your throat, suck... swallow, coo as the lubricant coats a fresh layer of tenderness over your [pc.skinFurScales]. The fact that");
 		if (pc.hasCock()) output(" [pc.eachCock] is rock hard, readily dripping pre");
@@ -737,7 +737,7 @@ public function bothriocPidemmeOralTime(fromCombat:Boolean):void
 		if (pc.hasLongTongue()) output(" You wrap your lithe, flexible tongue around the ovipositor, squeezing and rubbing the segments all the way up to the opening.");
 		output(" You tongue the inside of the dilated tube, moving your head this way and that so you can flick at the sensitive inner flesh, making the bothrioc cry out with pleasure, one pair of hands clutching your head whilst the other two play with their tiny black nipples.");
 		
-		output("\n\n<i>“You are amazing, precious,”</i> they attest throatily, stroking behind your [pc.ear]. <i>“No wonder everything wants to breed you... a mouth and a will to please like yours needs to be given to the next generation, a thousand times over - <i>“ Unable to contain themselves any further, they thrust their thick, purple egg-stalk in deep, sinking straight down into your throat. The overwhelming sensation you feel at being taken like this, your air-flow blocked by the bothrioc’s oil-slicked urge, is one of deep arousal, your [pc.nipples]");
+		output("\n\n<i>“You are amazing, precious,”</i> they attest throatily, stroking behind your [pc.ear]. <i>“No wonder everything wants to breed you... a mouth and a will to please like yours needs to be given to the next generation, a thousand times over--”</i> Unable to contain themselves any further, they thrust their thick, purple egg-stalk in deep, sinking straight down into your throat. The overwhelming sensation you feel at being taken like this, your air-flow blocked by the bothrioc’s oil-slicked urge, is one of deep arousal, your [pc.nipples]");
 		if (!pc.hasFuckableNipples()) output(" hardening up instantly");
 		else output(" drooling arousal freely");
 		output(". A small whimper of joy is the first sound out of your mouth when the bothrioc retracts themselves, your [pc.lips] and [pc.tongue] dragging along their bulging ovipositor all the way. They respond by pumping straight back into your throat even harder, delivering a gobbet of oil straight to your stomach.");
@@ -794,9 +794,9 @@ public function bothriocPidemmeOralTime(fromCombat:Boolean):void
 		if (bothriocAddiction() <= 24) output(" You do your best to avoid swallowing it - their ulterior motive has to be denied - but you have to let some of it slide down your throat, to avoid choking. Steadily you find yourself relaxing despite yourself, a warm, calming buzz settling over you, and it becomes easier and easier to lose yourself to the rhythm of pleasuring the egg-beast. Holding onto your disgust seems pointless. If the creature wishes to make this more manageable for you, why should you fight it? You swallow a little more of the warm, slightly numbing fluid peaceably.");
 		else output(" Your initial disgust fades as you let the warm, slightly numbing fluid slide down your throat almost by instinct, and an enjoyable, unfocused buzz settles over your perception. You don’t like the egg-beast making you do this (don’t you?), however you may as well let the oil do its business and relax you, so that this bizarre oral can go quickly and painlessly.");
 		
-		output("\n\n<i>“Yes precious,”</i> says the bothrioc, looking down at you closely, <i>“it’s not so bad, is it? Not when you let go. Open wide... <i>“ they arch their head back and sigh as they push their ovipositor in deep, straining your lips and touching the back of your throat with it. Such is the state of your relaxation now that no urge to choke occurs. Indeed, you clamp your cheeks around it, intent on drawing off the lube and intensifying the happy little cloud that is settling over your mind.");
+		output("\n\n<i>“Yes precious,”</i> says the bothrioc, looking down at you closely, <i>“it’s not so bad, is it? Not when you let go. Open wide...”</i> they arch their head back and sigh as they push their ovipositor in deep, straining your lips and touching the back of your throat with it. Such is the state of your relaxation now that no urge to choke occurs. Indeed, you clamp your cheeks around it, intent on drawing off the lube and intensifying the happy little cloud that is settling over your mind.");
 		
-		output("\n\n<i>“Mmm... <i>“ they groan as they retract again, the slick bumps riding over your [pc.tongue]. <i>“I can tell you’ve had plenty of experience. Did you");
+		output("\n\n<i>“Mmm...”</i> they groan as they retract again, the slick bumps riding over your [pc.tongue]. <i>“I can tell you’ve had plenty of experience. Did you");
 		if (pc.hasKnees()) output(" get on your [pc.knees] and");
 		else output(" kneel and");
 		output(" polish the egg-stalk of whatever stuffed you full of their young? Before and after, probably.”</i> The blush on your cheeks matches the high color you can see blossoming on their own chalk-white features, oil oozing freely down from their abdominal opening. Your oral, and the sight of your body, plump with life, is working them up. <i>“Think open thoughts, brood queen,”</i> they urge. <i>“I want to feel every inch of your ripe touch.”</i>");
@@ -812,7 +812,7 @@ public function bothriocPidemmeOralTime(fromCombat:Boolean):void
 		output("\n\nThey lift themselves off you and leave silently. You’re too exhausted and unfocused under the fuzz of bothri-oil to do anything but lie there and doze for a little while. Eventually the nagging thought of something else finding you and making coarse use of you drives you back up onto your feet, wipe your face clean, find your gear, and press on.");
 	}
 
-	IncrementFlag(flags["BOTHRIOC_FUCKED"]);
+	IncrementFlag("BOTHRIOC_PIDEMME_FUCKED");
 
 	processTime(25 + rand(10));
 	pc.loadInMouth(enemy);
@@ -848,11 +848,26 @@ public function bothriocPidemmeDockOvi():void
 	if (pc.hasLowerGarment()) output(" discard your [pc.lowerUndergarment and");
 	output(" let [pc.eachCock] flop downwards meaningfully. If anything, their distaste increases your ardour for having your way with this wannabe predator. <i>“We can push it into another’s egg-chamber, collect the oil there and use that to seed our load; then we find someone else to take our readied eggs.”</i>");
 
-	output("\n\n<i>“So then... <i>“ you say with mocking thoughtfulness, standing over the defeated pidemme, deliberately swinging your "+cockTag+" close to their pale face. <i>“If I were to, let’s say, fuck that plump abdomen of yours absolutely silly my... oil... would fertilize the eggs in there, correct?”</i>");
+	output("\n\n<i>“So then...”</i> you say with mocking thoughtfulness, standing over the defeated pidemme, deliberately swinging your "+cockTag+" close to their pale face. <i>“If I were to, let’s say, fuck that plump abdomen of yours absolutely silly my... oil... would fertilize the eggs in there, correct?”</i>");
 	
-	output("\n\n<i>“I- <i>“ splutters the [enemy.hairColor]-haired bothrioc, some color finally blooming on their face. <i>“It’s alien seed, so - I don’t know if - <i>“");
+	output("\n\n<i>“I--”</i> splutters the [enemy.hairColor]-haired bothrioc, some color finally blooming on their face. <i>“It’s alien seed, so - I don’t know if--”</i>");
 	
-	output("\n\n<i>“Only one way to find out. Turn around, ‘precious’.”</i> Eyes down, the supple, six-limbed being shifts themselves so the curves of their snow-white back and bum is visible, between which their bulging, blimp-like abdomen dominates proceedings. It’s impossible to tell really with these creatures, but given its size in comparison to the bothrioc carrying it, the androgyne really must be bursting to the brim with eggs. It is taut, uniformly black and glossy all the way around, and - you murmur as you press your hands against it, moving it back and forth - is warm and pleasantly smooth to the touch. At the tip, winking and glistening at you with wet arousal, is the ovipositor’s entrance; dilated and brilliantly violet within.");
+	output("\n\n<i>“Only one way to find out. Turn around, ‘precious’.”</i>");
+	
+	clearMenu();
+	addButton(0, "Next", bothriocPidemmeDockOviII, [cockIdx, cock2Idx, cockTag]);
+}
+public function bothriocPidemmeDockOviII(arg:Array):void
+{
+	clearOutput();
+	showBothriocPidemme();
+	showName("VICTORY:\nBOTHRIOC");
+	
+	var cockIdx:int = arg[0];
+	var cock2Idx:int = arg[1];
+	var cockTag:String = arg[2];
+	
+	output("Eyes down, the supple, six-limbed being shifts themselves so the curves of their snow-white back and bum is visible, between which their bulging, blimp-like abdomen dominates proceedings. It’s impossible to tell really with these creatures, but given its size in comparison to the bothrioc carrying it, the androgyne really must be bursting to the brim with eggs. It is taut, uniformly black and glossy all the way around, and - you murmur as you press your hands against it, moving it back and forth - is warm and pleasantly smooth to the touch. At the tip, winking and glistening at you with wet arousal, is the ovipositor’s entrance; dilated and brilliantly violet within.");
 	
 	output("\n\nYou dip your finger into the warm, oily hole and laugh quietly when the crouched bothrioc tenses up slightly. When you dip two fingers in, circling the slick walls of the tube inside before gently spreading it, you force a gasp past their lips, their chitin-clad fingers clutching the dirt. The body you are toying with is inexpressibly alien - but the effect you’re having on the pent-up being attached to it, eerily beautiful with its immaculate white skin and gleaming, latex-like armor, is undeniably arousing, heat wiring down to your [pc.crotch], your "+cockTag+" hardening up inexorably. You place");
 	if (pc.isNaga() || pc.isGoo()) output(" yourself behind");
@@ -922,7 +937,7 @@ public function bothriocPidemmeDockOvi():void
 	output("\n\n<i>“Spread my kids far and wide, ‘precious’.”</i>");
 
 	IncrementFlag("BOTHRIOC_PIDEMME_DOCKED");
-	IncrementFlag("BOTHRIOC_FUCKED");
+	IncrementFlag("BOTHRIOC_PIDEMME_FUCKED");
 
 	processTime(20+rand(10));
 	enemy.loadInCunt(pc, 0);
@@ -959,15 +974,15 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 	output("\n\n<i>“Get on your front,”</i> you demand. Cowed by your");
 	if (enemy.HP() <= 0) output(" physical");
 	else output(" sexual");
-	output(" dominance the bothrioc does so without a word, slender black-armored limbs turning themselves around and laying their flat tummy on the ground, round butt exposed and plump abdomen in the air. You lay your hands on the pleasantly warm, latex-like burnish of the abdomen and lead them up to the dilated slit at the top, wet and brilliantly violet. The bothrioc murmurs and then inhales sharply when you circle the rim with your finger, enjoying the sensation of warm oil which drips freely from the thick tube holstered within. It requires very little stimulus for you to coax their ovipositor outwards, sprouting outwards thickly like a sturdy, bulbous branch of bamboo.");
+	output(" dominance the bothrioc does so without a word, slender black-armored limbs turning themselves around and laying their flat tummy on the ground, round butt exposed and plump abdomen in the air. You lay your hands on the pleasantly warm, latex-like burnish of the abdomen and lead them up to the dilated slit at the top, wet and brilliantly violet. The bothrioc murmurs and then inhales sharply when you circle the rim with your finger, enjoying the sensation of warm oil which drips freely from the thick tube holstered within. It requires very little stimulus for you to coax their ovipositor, sprouting outwards thickly like a sturdy, bulbous branch of bamboo.");
 
-	output("\n\n<i>“If that is - what you wanted all along, farlander- <i>“ gasps the bothrioc as you grasp your newfound pet and stroke it, at least seven inches of length now reaching upwards, <i>“ -why didn’t you, why didn’t you just roll over for me?”</i>");
+	output("\n\n<i>“If that is - what you wanted all along, farlander--”</i> gasps the bothrioc as you grasp your newfound pet and stroke it, at least seven inches of length now reaching upwards, <i>“--why didn’t you, why didn’t you just roll over for me?”</i>");
 
 
-	output("\n\nThey’re trying for bravado, but all you can hear in their not-quite-male-not-quite-female voice is need. You say nothing as you move into them,");
-	if (pc.isNaga()) output(" swaddling their lower body in [pc.legs]");
-	else if (pc.isGoo()) output(" sticky goo");
-	else output(" one [pc.foot] either side of their abdomen");
+	output("\n\nThey’re trying for bravado, but all you can hear in their not-quite-male-not-quite-female voice is need. You say nothing as you move over them");
+	if (pc.isNaga()) output(", swaddling their lower body in your [pc.legs]");
+	else if (pc.isGoo()) output(", swaddling their lower body in sticky goo");
+	else if (pc.legCount > 1) output(", one [pc.foot] either side of their abdomen");
 	output(" so that the creature’s wonderfully dexterous and chunky ovipositor is pressed against your "+holeTag+". Gently you stroke yourself with the tip, rubbing it across your sensitive");
 	if (isAnal) output(" ring until arousal is coursing through you, your ass aching for a thick intruder to scratch your building itch....")
 	else
@@ -980,7 +995,7 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 
 	output("\n\n<i>“You pump eggs into me with this thing without my say so,”</i> you say at last, gazing levelly down at the prone bothrioc, <i>“it will be the very last thing you do with it.”</i> Their moan combines with your sigh as you push forward and slide bumpy egg dick into your waiting wet hole.");
 
-	output("\n\nIt’s a thoroughly odd position to take to get some satisfaction out of a defeated foe, but that only adds to its exotic allure. How many other beings can you watch knelt beneath you, gasping and clutching the ground, whilst you penetrate yourself on them? The overriding sense of calmness helps. There must be some contact reaction with the oil - ever since you slathered your fingers in it, you have felt serenely driven by your own sexual desires, radiating with assured, sensual need. You sit further down on the thick stalk, letting it push deep into your sensitive inner walls, before rotating  and flexing your hips, seeing what you can get away with, all the little explosions of pleasure go off in your "+holeTag+". You could sit here all day on top of your well-lubricated androgyne-mounted dildo, slowly rotating it back and forth, letting the pleasure overtake you. Maybe you will! Your muscles clench up and you exhale dreamily");
+	output("\n\nIt’s a thoroughly odd position to take to get some satisfaction out of a defeated foe, but that only adds to its exotic allure. How many other beings can you watch knelt beneath you, gasping and clutching the ground, whilst you penetrate yourself on them? The overriding sense of calmness helps. There must be some contact reaction with the oil - ever since you slathered your fingers in it, you have felt serenely driven by your own sexual desires, radiating with assured, sensual need. You sit further down on the thick stalk, letting it push deep into your sensitive inner walls, before rotating and flexing your hips, seeing what you can get away with, all the little explosions of pleasure go off in your "+holeTag+". You could sit here all day on top of your well-lubricated androgyne-mounted dildo, slowly rotating it back and forth, letting the pleasure overtake you. Maybe you will! Your muscles clench up and you exhale dreamily");
 	if (pc.hasVagina())
 	{
 		output(", feeling your [pc.femCumColor] juices");
@@ -989,8 +1004,8 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 		output(" downwards.");
 	}
 
-	output("\n\nBy the intense way they are clutching the dirt with all four hands, the intense strain in their back muscles, and the steady <i>“huff huff huff”</i> being forced past their thin lips, you can tell it’s taking everything the bothrioc’s got not to release their eggs up into you. The abdomen you’re currently riding looks very swollen - just how many have they got backed up in there? Teasingly you");
-	if (pc.isTaur()) output(" push you [pc.ass] down even harder");
+	output("\n\nBy the intense way they are clutching the dirt with all four hands, the intense strain in their back muscles, and the steady “huff huff huff” being forced past their thin lips, you can tell it’s taking everything the bothrioc’s got not to release their eggs up into you. The abdomen you’re currently riding looks very swollen - just how many have they got backed up in there? Teasingly you");
+	if (pc.isTaur()) output(" push your [pc.ass] down even harder");
 	else if (pc.isNaga()) output(" grip your coils");
 	else if (pc.isGoo()) output(" grip your viscous mass");
 	else output(" [pc.hips] around it");
@@ -1090,11 +1105,11 @@ public function bothriocPidemmeVagRideII(opts:Array):void
 		
 		output("\n\nImmediately, and with an ecstatic, almost pained howl, the bothrioc releases a huge gush of oil into you, so large it washes warmly back down their latex egg-sac in clear, oozing rivers. The heavy, round objects which are then expelled into your relaxed, waiting womb come out in a heady rush, practically fighting each other down the bothrioc’s ovipositor to get into that wet, plush breeding bay that has been tormenting them this entire time. Your eyes cross as your belly plumps out, crammed with alien young that your pussy eagerly coaxes inside with delicious clenches.");
 		
-		output("\n\n<i>“Thank you... <i>“ groans the ");
+		output("\n\n<i>“Thank you...”</i> groans the ");
 		if (pc.hasCock()) output(" cum-spattered");
 		output(" bothrioc every time they squeeze an oval past your sensitive lips, their whole body clenched up in ecstasy. <i>“Thank you... thank you... aargh... thank you!”</i> ");
 		
-		output("\n\nThey sag at last, their abdomen notably deflated, their oozing violet egg-stalk flopping outwards. Exhaustion and the shimmering relaxation that the creature’s fluids induce compel you to");
+		output("\n\nThey sag at last, their abdomen notably deflated, their oozing violet egg-stalk flopping out. Exhaustion and the shimmering relaxation that the creature’s fluids induce compel you to");
 		if (pc.isTaur()) output(" lower yourself");
 		else output(" flop");
 		output(" down on top of them, your rounded stomach");
@@ -1121,7 +1136,7 @@ public function bothriocPidemmeVagRideII(opts:Array):void
 		{
 			output("The desire to accept a nice, big clutch and ease the egg-giver’s burden is so great that it almost bypasses your brain and flies past your lips anyway - but somehow you clamp down on it.");
 			
-			output("\n\n<i>“Not today, lover,”</i> you purr, continuing to thrust away, riding out your dazzling orgasm. <i>“Just think how great it will feel for all this... when you do get to finally release them... <i>“");
+			output("\n\n<i>“Not today, lover,”</i> you purr, continuing to thrust away, riding out your dazzling orgasm. <i>“Just think how great it will feel for all this... when you do get to finally release them...”</i>");
 			
 			output("\n\nThe bothrioc grits their teeth - but despite continuing to leak oil deliriously into your cunt, they manage to hold on. When you finally come down, draw the still-achingly erect ovipositor out of your oozing, gently aching hole, you");
 			if (pc.isTaur()) output(" lower yourself");
