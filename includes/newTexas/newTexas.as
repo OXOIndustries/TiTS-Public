@@ -68,7 +68,7 @@ public function customsAndCheckInOnNewTexas():Boolean
 		output(". Sometimes when she does so, Ogram will flick a button on his holo terminal, which immediately causes Amma to squirm in her seat.");
 		if(flags["FUCKED_TEXAN_CUSTOMS"] == undefined) output(" What kind of game are they playing?");
 		addButton(0,"Ogram",repeatOgramApproach,undefined,"Ogram","Talk to the burly bull at the customs desk.");
-		addButton(1,"Amma",approachDatCowGalRepeat,undefined,"Amma","Talk to the busty cow-girl at the visitor's desk.")
+		addButton(1,"Amma",approachDatCowGalRepeat,undefined,"Amma","Talk to the busty cow-girl at the visitor’s desk.")
 	}
 	return false;
 }
@@ -89,10 +89,10 @@ public function approachCustomsFirstTime():void
 	//[Disarm] [No Way!] [No Weapons!]
 	clearMenu();
 	if(pc.hasEquippedWeapon()) addButton(0,"Disarm",disarmMeHoss,undefined,"Disarm","Allow Ogram to disarm you.");
-	else addDisabledButton(0,"Disarm","Disarm","You don't have any weapons to disarm!");
+	else addDisabledButton(0,"Disarm","Disarm","You don’t have any weapons to disarm!");
 	addButton(1,"No Way!",noWayTexasJose,undefined,"No Way!","Refuse to be disarmed.");
-	if(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) addButton(2,"No Weapons!",noWeaponsInTexasHoss,undefined,"No Weapons!","Inform Ogram that you aren't carrying any real weapons. All you need are your fists or a rock to chuck, and you can find rocks anywhere.");
-	else addDisabledButton(2,"No Weapons","No Weapons","You can't get by for having no weapons while actually carrying weapons. It just doesn't work. Come on, man.");
+	if(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) addButton(2,"No Weapons!",noWeaponsInTexasHoss,undefined,"No Weapons!","Inform Ogram that you aren’t carrying any real weapons. All you need are your fists or a rock to chuck, and you can find rocks anywhere.");
+	else addDisabledButton(2,"No Weapons","No Weapons","You can’t get by for having no weapons while actually carrying weapons. It just doesn’t work. Come on, man.");
 
 }
 
@@ -144,7 +144,7 @@ public function customsPassFinale():void
 {
 	output("\n\nYou spend a minute or two filling in your signature or initials on a few forms. Eventually, you hand them over to Ogram, who stamps them. As he does so, you notice the bull-man wince, snaking a hand down under the desk. Maybe he’s got a cramp?");
 	output("\n\n<i>“Alright. Just step on over to the visitor check-in desk. Somebody’ll be with you...”</i> He shudders a little bit, barely muting a curse. <i>“Uh, real soon.”</i>");
-	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0,0xFF0000);
+	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at New Texas’ customs.",false,0,0xFF0000);
 	if(pc.hasEquippedWeapon()) flags["CHECKED_GEAR_AT_OGGY"] = 1;
 	processTime(2);
 	clearMenu();
@@ -234,14 +234,14 @@ public function repeatOgramApproach():void
 	clearMenu();
 	addButton(0,"Talk",talkToOggy,true);
 	if(pc.lust() >= 33) addButton(1,"Sex",askOggyForSex,undefined,"Sex","See if the big bull is up for sex.");
-	else addDisabledButton(1,"Sex","Sex","You aren't quite aroused enough for sex.");
+	else addDisabledButton(1,"Sex","Sex","You aren’t quite aroused enough for sex.");
 	if(pc.hasStatusEffect("Disarmed")) {
 		addButton(3,"Rearm",rearmAtOgram,undefined,"Rearm","Get your weapons back.");
-		addDisabledButton(4,"Disarm","Disarm","You've already been disarmed.");
+		addDisabledButton(4,"Disarm","Disarm","You’ve already been disarmed.");
 	}
 	else 
 	{
-		addDisabledButton(3,"Rearm","Rearm","You can't pick up any weapons here - they don't have yours.");
+		addDisabledButton(3,"Rearm","Rearm","You can’t pick up any weapons here - they don’t have yours.");
 		addButton(4,"Disarm",getDisarmedRepeat,undefined,"Get disarmed so that you can explore the planet.");
 	}
 	addButton(14,"Leave",mainGameMenu);
@@ -280,9 +280,9 @@ public function getDisarmedRepeat():void
 	}
 	else
 	{
-		output("You casually inform him that you don't have any weapons, watching as Og's eyebrow climbs steadily higher.\n\n<i>“I'll have to give you a quick check-over,”</i> he says while waving a portable scanner over your body. <i>“All right, you're clear. Have a good one.”</i>");
+		output("You casually inform him that you don’t have any weapons, watching as Og’s eyebrow climbs steadily higher.\n\n<i>“I’ll have to give you a quick check-over,”</i> he says while waving a portable scanner over your body. <i>“All right, you’re clear. Have a good one.”</i>");
 	}
-	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0,0xFF0000);
+	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at New Texas’ customs.",false,0,0xFF0000);
 	
 	processTime(1);
 	clearMenu();
@@ -305,7 +305,7 @@ public function talkToOggy(display:Boolean = false):void
 	addButton(0,"The Treatment",talkToOggyAbootTreatManz,undefined,"The Treatment","Ask the brute what his take on the Treatment is.");
 	addButton(1,"CurrentJob",oggysCurrentJob,undefined,"Current Job","Ask him about his job now.");
 	addButton(2,"Old Job",oggysOldJob,undefined,"Old Job","Ask him about his old job.");
-	addButton(3,"Amma",askOggyAboutAmma,undefined,"Amma","Ask him about that hot cow-girl manning the visitor's desk.");
+	addButton(3,"Amma",askOggyAboutAmma,undefined,"Amma","Ask him about that hot cow-girl manning the visitor’s desk.");
 	addButton(14,"Back",repeatOgramApproach);
 }
 
@@ -320,14 +320,14 @@ public function talkToOggyAbootTreatManz():void
 	output("\n\nOgram shrugs, <i>“Hey, if you want the tourist pitch, talk to Amma. I just live here.”</i>");
 	output("\n\n<i>“But you got the Treatment,”</i> you suggest, indicating his bulging muscles and bull-horns.");
 	output("\n\n<i>“Heh. Yeah. Kind of a snap decision, but... well, it’s actually pretty cool, you know. I was pretty ripped before -- kind of a requirement when you’re a bodyguard -- but </i>damn<i> that stuff jacked my muscles out. Could bend bars, these guns,”</i> he says, flexing. <i>“Plus I put on another foot of height and got these love-handles.”</i> He jerks a thumb towards his enormous horns.");
-	output("\n\n<i>“Pretty weird how different it works on guys and gals, though. When I got it, I figured I was gonna get huge tits and turn into a bimbo. Never actually occurred to me to talk to a bull around here, I guess. Didn’t see one till after I ran into the gift shop and Treated up.”</i>");
+	output("\n\n<i>“Pretty weird how different it works on guys and gals, though. When I got it, I figured I was gonna get huge tits and turn into a bimbo. Never actually occurred to me to talk to a bull around here, I guess. Didn’t see one ‘til after I ran into the gift shop and Treated up.”</i>");
 	output("\n\nOg leans back in his chair, locking his fingers behind his head. <i>“Can’t complain, really. After I got it, they let me have the run of the place. Any girl I wanted spread her legs for nothing. Especially if you catch ‘em in the milk barns... they practically beg for it, all hooked up to their milkers. Should hear Amma when she’s getting milked... any cock in a storm, that girl.”</i>");
 	output("\n\n<i>“Especially if it’s yours!”</i> she calls over with a wink.");
 	output("\n\nOgram grins, his pants visibly straining.");
 	processTime(6);
 	talkToOggy(false);
 	removeButton(0);
-	addDisabledButton(0,"The Treatment","The Treatment","Seriously? You're talking about that right now.");
+	addDisabledButton(0,"The Treatment","The Treatment","Seriously? You’re talking about that right now.");
 }
 
 //Current Job
@@ -354,7 +354,7 @@ public function oggysCurrentJob():void
 	processTime(6);
 	talkToOggy(false);
 	removeButton(1);
-	addDisabledButton(1,"CurrentJob","CurrentJob","Seriously? You're talking about that right now.");
+	addDisabledButton(1,"CurrentJob","CurrentJob","Seriously? You’re talking about that right now.");
 }
 
 //Old Job
@@ -374,7 +374,7 @@ public function oggysOldJob():void
 	processTime(5);
 	talkToOggy(false);
 	removeButton(2);
-	addDisabledButton(2,"Old Job","Old Job","Seriously? You're talking about that right now.");
+	addDisabledButton(2,"Old Job","Old Job","Seriously? You’re talking about that right now.");
 }
 
 //Amma
@@ -394,7 +394,7 @@ public function askOggyAboutAmma():void
 	processTime(3);
 	talkToOggy(false);
 	removeButton(3);
-	addDisabledButton(3,"Amma","Amma","Seriously? You're talking about that right now.");
+	addDisabledButton(3,"Amma","Amma","Seriously? You’re talking about that right now.");
 }
 
 //Sex
@@ -425,10 +425,10 @@ public function askOggyForSex():void
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogram gets her mouth, you get her pussy.");
-		else addDisabledButton(0,"Spit Roast","Spit Roast","You're too big to spitroast her.");
+		else addDisabledButton(0,"Spit Roast","Spit Roast","You’re too big to spitroast her.");
 	}
 	else addDisabledButton(0,"Spit Roast","Spit Roast","Spitroasting Amma requires you to have a penis of some kind.");
-	addButton(1,"ServiceOggy",worshipZeBullCawk, undefined, "Service Oggy","Help Amma orally service Ogram's dick. Really get in there and give it the worship it deserves.");
+	addButton(1,"ServiceOggy",worshipZeBullCawk, undefined, "Service Oggy","Help Amma orally service Ogram’s dick. Really get in there and give it the worship it deserves.");
 	addButton(14,"Back",approachDatCowGalRepeat);
 }
 
@@ -451,7 +451,7 @@ public function approachDatCowGalRepeat():void
 	clearMenu();
 	addButton(0,"Talk",talkToAmma,true,"Talk","See if the cow-girl wants to talk about anything.");
 	if(pc.lust() >= 33) addButton(1,"Sex",sexChatWithAmma,undefined,"Sex","See if the lusty cow-girl is up for a quickie.");
-	else addDisabledButton(1,"Sex","Sex","You aren't aroused enough for sex.");
+	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for sex.");
 	addButton(14,"Leave",mainGameMenu);	
 }
 
@@ -470,10 +470,10 @@ public function talkToAmma(display:Boolean = false):void
 	}
 	clearMenu();
 	addButton(0,"The Treatment",askAmmaAbootZeTreatManz,undefined,"The Treatment","Ask the cow-girl what she thinks of the Treatment.");
-	addButton(1,"Who'sInCharge",whosInCharge,undefined,"Who's In Charge Here?","Ask Amma about who runs this planet.");
+	addButton(1,"Who’sInCharge",whosInCharge,undefined,"Who’s In Charge Here?","Ask Amma about who runs this planet.");
 	addButton(2,"Herself",askAmmaAboutHerSelf,undefined,"Herself","Ask Amma about herself.");
-	if(flags["OGRIM_UNLOCKED_FROM_AMMA_TALK_MENU"] != undefined) addButton(3,"Ogram",askAmmaAboutOgram,undefined,"Ogram","Ask her about that big lug she's been seeing, Ogram.");
-	else addDisabledButton(3,"Locked","Locked","You'll need to talk to Amma about something else in particular before this scene unlocks.");
+	if(flags["OGRIM_UNLOCKED_FROM_AMMA_TALK_MENU"] != undefined) addButton(3,"Ogram",askAmmaAboutOgram,undefined,"Ogram","Ask her about that big lug she’s been seeing, Ogram.");
+	else addDisabledButton(3,"Locked","Locked","You’ll need to talk to Amma about something else in particular before this scene unlocks.");
 	addButton(14,"Back",approachDatCowGalRepeat);
 }
 
@@ -498,7 +498,7 @@ public function askAmmaAbootZeTreatManz():void
 	processTime(7);
 	talkToAmma(false);
 	removeButton(0);
-	addDisabledButton(0,"The Treatment","The Treatment","You're already talking about that.");
+	addDisabledButton(0,"The Treatment","The Treatment","You’re already talking about that.");
 }
 
 //Who’s in Charge?
@@ -539,7 +539,7 @@ public function whosInCharge():void
 	
 	talkToAmma(false);
 	removeButton(1);
-	addDisabledButton(1,"Who'sInCharge","Who'sInCharge","You're already talking about that.");
+	addDisabledButton(1,"Who’sInCharge","Who’sInCharge","You’re already talking about that.");
 }
 
 //Herself
@@ -562,7 +562,7 @@ public function askAmmaAboutHerSelf():void
 	processTime(6);
 	talkToAmma(false);
 	removeButton(2);
-	addDisabledButton(2,"Herself","Herself","You're already talking about that.");
+	addDisabledButton(2,"Herself","Herself","You’re already talking about that.");
 }
 
 //Ogram
@@ -580,7 +580,7 @@ public function askAmmaAboutOgram():void
 	processTime(4);
 	talkToAmma(false);
 	removeButton(3);
-	addDisabledButton(3,"Ogram","Ogram","You're already talking about that.");
+	addDisabledButton(3,"Ogram","Ogram","You’re already talking about that.");
 }
 
 //Sex
@@ -610,10 +610,10 @@ public function sexChatWithAmma():void
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogram gets her mouth, you get her pussy.");
-		else addDisabledButton(0,"Spit Roast","Spit Roast","You're too big to spitroast her.");
+		else addDisabledButton(0,"Spit Roast","Spit Roast","You’re too big to spitroast her.");
 	}
 	else addDisabledButton(0,"Spit Roast","Spit Roast","Spitroasting Amma requires you to have a penis of some kind.");
-	addButton(1,"ServiceOggy",worshipZeBullCawk,undefined,"Service Oggy","Help Amma orally service Ogram's dick. Really get in there and give it the worship it deserves.");
+	addButton(1,"ServiceOggy",worshipZeBullCawk,undefined,"Service Oggy","Help Amma orally service Ogram’s dick. Really get in there and give it the worship it deserves.");
 	addButton(14,"Back",approachDatCowGalRepeat);
 }
 
@@ -643,7 +643,7 @@ public function spitRoastAmmoOnYerDicks():void
 
 	output("\n\nThat’s an invitation that’s hard to turn down. You shrug yourself out of your [pc.gear] and grab [pc.oneCock]");
 	if(!pc.isCrotchExposed()) output(", finally freeing your turgid rod from the confines of your [pc.lowerGarment]");
-	output(". Amma gasps happily as your prick flops onto her back and wiggles herself back against you, grinding your [pc.cock " + x + "] into crack of her ass. You shudder with pleasure as she puts just the perfect amount of pressure on your cock, squeezing it between her plump cheeks and riding it up and down. You give her a sharp swat on the ass, making her jiggly butt bounce. Another spank, and she squeals in delight -- and quickly finds her mouth plugged full of Ogram’s lengthy bovine dong. Her cry of pleasure is muffled into a low, husky moan around Og’s dick, but she’s hardly complaining about it: indeed, her slim tail swishes faster as she starts to suckle on her lover’s rod.");
+	output(". Amma gasps happily as your prick flops onto her back and wiggles herself back against you, grinding your [pc.cock " + x + "] into the crack of her ass. You shudder with pleasure as she puts just the perfect amount of pressure on your cock, squeezing it between her plump cheeks and riding it up and down. You give her a sharp swat on the ass, making her jiggly butt bounce. Another spank, and she squeals in delight -- and quickly finds her mouth plugged full of Ogram’s lengthy bovine dong. Her cry of pleasure is muffled into a low, husky moan around Og’s dick, but she’s hardly complaining about it: indeed, her slim tail swishes faster as she starts to suckle on her lover’s rod.");
 
 	output("\n\nYour own hand slips down between Amma’s legs, brushing across the wet gash between her legs. She shivers happily at your touch, spreading her legs nice and wide as a brace of your digits slide easily into her, spreading her slutty hole out for you. God <i>damn</i> she’s wet, almost like an ausar the way she’s all but drooling her excitement across your fingers. You pull them out and ");
 	//if Treated:
@@ -654,7 +654,7 @@ public function spitRoastAmmoOnYerDicks():void
 	output("\n\nYou hear a muffled cry of pleasure belt out around Ogram’s throat-stuffing bullcock as your cock slides into the boiling, sodden slit between the buxom cow’s legs. Amma’s pussy easily parts to allow you entry, completely unresistant to your thrust -- but when you hilt yourself in the cow, your crotch pressed tight against her bubble butt, she squeezes hard: not enough to stop you, she’s much too wet for that, but enough to make it feel absolutely incredible when you pull out of her, every muscle in the bimbo bovine’s cunt massaging your rod until just the tip is still spreading her open.");
 	pc.cockChange();
 	output("\n\n<i>“Like that, huh?”</i> Og grins, taking the cow by the horns and pulling her face into his groin, hard enough to nearly rip her from your grasp. <i>“Come on, harder, slut! Put that tongue to work.”</i>");
-	output("\n\nAmma moans, but a moment later wrings a grunt of pleasure from her lover as she apparently fulfils his wish. Her hands shift down from his waist to his balls, both hands cupping worshipfully around the bull’s massive, swinging nads, squeezing just enough that you can see the hefty balls inside the sack shift around under her ministrations. One of his hands moves from horn to head, gently stroking Amma’s hair as she sucks and fondles, clearly hitting just the right spots on her bull.");
+	output("\n\nAmma moans, but a moment later wrings a grunt of pleasure from her lover as she apparently fulfills his wish. Her hands shift down from his waist to his balls, both hands cupping worshipfully around the bull’s massive, swinging nads, squeezing just enough that you can see the hefty balls inside the sack shift around under her ministrations. One of his hands moves from horn to head, gently stroking Amma’s hair as she sucks and fondles, clearly hitting just the right spots on her bull.");
 	output("\n\nAnd on you, too. Amma’s cunt alternates between vice-like tightness and so loose you practically fall back into her, working you up into a pounding frenzy as you desperately try to get more of her bovine pussy, drowning in the sensation of her slit around your [pc.cock " + x + "]. You grab Amma’s tail, giving it just enough of a pull to make her cry out and clench down, using it to ram yourself deeper still inside the slutty cow, slapping into her ass hard enough to make the soft flesh bounce and jiggle madly as you hammer home again and again. Amma’s sexy moans devolve into feral, animalistic grunts of pleasure that come out wet and half-muffled as Ogram continues to forcefully face-fuck her, his own hips pistoning until his sack slaps against her drool-slathered chin.");
 	output("\n\nSuddenly, Og grunts, slamming himself hilt-deep in Amma’s throat. The cow gags and squirms around on your cocks, unable to escape as the bull bellows loudly and cums; all you see is his heaving chest and a thick waterfall of backed-up spooge pouring back out around his cock, splattering on the floor. The cow-girl’s body reacts to the mouthful of cum on instinct, her hands and mouth working overtime to suckle out every drop of seed from the well-hung bullman. Despite her attention fixated on Og, the cow certainly isn’t ignoring you: spurred on by the taste of spunk, her cunt contracts hard around you, milking your [pc.cock " + x + "] like a machine as you thrust in, every second a different muscle squeezing or caressing your shaft as you glide through her sultry, sodden snatch.");
 	output("\n\nWith a final groan of pleasure, Og pulls out of Amma’s face, slumping back against his desk and leaving the cow dripping his seed down her chin. She shoots a white-stained grin over her shoulder and winks at you. <i>“You too, cutey! Give it to me from both ends!”</i>");
@@ -813,7 +813,7 @@ public function useDaMilkar():void
 		addButton(0,"Okay",okayEllieYaCuntLetsMilkMeFirstTime);
 		addButton(1,"No Thanks",FirstManMilkUseNoThanks);
 		if(!pc.hasPheromones()) addDisabledButton(2,"Blowjob","Blowjob","Only pheromone-emitting males can ask Carrie for a blowjob.");
-		else addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there's a perfectly developed cow-girl close at hand?");
+		else addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there’s a perfectly developed cow-girl close at hand?");
 		addButton(14,"Leave",mainGameMenu);
 	}
 	//Repeat
@@ -826,7 +826,7 @@ public function useDaMilkar():void
 		//Use w/o Carrie
 		addButton(1,"w/o Carrie",useTheMilkerWithoutCarrieYaSkag,undefined,"w/o Carrie","Tell Carrie you can get yourself situated.");
 		if(!pc.hasPheromones()) addDisabledButton(2,"Blowjob","Blowjob","Only pheromone-emitting males can ask Carrie for a blowjob.");
-		else addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there's a perfectly developed cow-girl close at hand?");
+		else addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there’s a perfectly developed cow-girl close at hand?");
 		addButton(14,"Leave",mainGameMenu);
 	}
 }
@@ -1163,22 +1163,22 @@ public function getFoodAtBigTs():void
 	}
 	clearMenu();
 	//[Roast Beef] - 10
-	if(pc.credits >= 10) addButton(0,"Roast Beef",orderUp,"Roast Beef","Roast Beef","A delicious roast beef sandwich. It'll hit the spot even if it won't do much for your waistline.\n\n10 Credits.");
-	else addDisabledButton(0,"Roast Beef","Roast Beef","You can't afford a roast beef sandwich. You'd need 10 credits.");
+	if(pc.credits >= 10) addButton(0,"Roast Beef",orderUp,"Roast Beef","Roast Beef","A delicious roast beef sandwich. It’ll hit the spot even if it won’t do much for your waistline.\n\n10 Credits.");
+	else addDisabledButton(0,"Roast Beef","Roast Beef","You can’t afford a roast beef sandwich. You’d need 10 credits.");
 	//[Ribs] - 20
-	if(pc.credits >= 20) addButton(1,"Ribs",orderUp,"Ribs","Ribs","A plateful of awesome ribs - just what you needed for a pick-me-up. Of course ribs aren't the healthiest meal.\n\n20 Credits.");
-	else addDisabledButton(1,"Ribs","Ribs","You can't afford ribs. You'd need 20 credits.");
+	if(pc.credits >= 20) addButton(1,"Ribs",orderUp,"Ribs","Ribs","A plateful of awesome ribs - just what you needed for a pick-me-up. Of course ribs aren’t the healthiest meal.\n\n20 Credits.");
+	else addDisabledButton(1,"Ribs","Ribs","You can’t afford ribs. You’d need 20 credits.");
 	//[Burger] - 9
 	if(pc.credits >= 9) addButton(2,"Burger",orderUp,"Burger","Burger","A big, greaser burger. Your belly will love you. Your belt will hate you.\n\n9 Credits.");
-	else addDisabledButton(2,"Burger","Burger","You can't afford a burger. You'd need 9 credits.");
+	else addDisabledButton(2,"Burger","Burger","You can’t afford a burger. You’d need 9 credits.");
 	//[Salad] - 5
-	if(pc.credits >= 5) addButton(3,"Salad",orderUp,"Salad","Salad","A meal designed for the body-conscious cow-girl on the go, it doesn't fill you up too much, but it won't add to your waistline.\n\n5 Credits.");
-	else addDisabledButton(3,"Salad","Salad","You can't afford a salad. You'd need 5 credits.");
+	if(pc.credits >= 5) addButton(3,"Salad",orderUp,"Salad","Salad","A meal designed for the body-conscious cow-girl on the go, it doesn’t fill you up too much, but it won’t add to your waistline.\n\n5 Credits.");
+	else addDisabledButton(3,"Salad","Salad","You can’t afford a salad. You’d need 5 credits.");
 	//[BBQ To-Go] - 20
 	if(pc.credits >= 20) addButton(4,"BBQ To-Go",bbqToGo,undefined,"BBQ To-Go","Get some delicious BBQ for the road. Then you can grab a snack whenever you feel like it.\n\n20 Credits.")
 	else addDisabledButton(4,"BBQ To-Go","BBQ To-Go","You need 20 credits to afford BBQ To-Go.");
 	//If PC has Female Treatment/ is Bimbo/ has Fluid Addiction: 
-	if((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM)) addButton(5,"\"SpecialOrder\"",specialOrdersForTreatedGals,undefined,"\"Special Order\"","Get a meal with some of the Chef's special sauce. It's practically free food!");
+	if((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM)) addButton(5,"“SpecialOrder”",specialOrdersForTreatedGals,undefined,"“Special Order”","Get a meal with some of the Chef’s special sauce. It’s practically free food!");
 	//["Special Order”</i>]...
 	addButton(14,"Back",mainGameMenu);
 
@@ -1198,21 +1198,21 @@ public function orderUp(order:String = ""):void
 		pc.energy(100);
 		pc.modThickness(3, false);
 		pc.credits -= 20;
-		output("\n\nYou feel a little thicker after. All that food probably isn't good for you.");
+		output("\n\nYou feel a little thicker after. All that food probably isn’t good for you.");
 	}
 	else if(order == "Roast Beef")
 	{
 		pc.energy(75);
 		pc.modThickness(2, false);
 		pc.credits -= 10;
-		output("\n\nYou feel a little thicker after. All that food probably isn't good for you.");
+		output("\n\nYou feel a little thicker after. All that food probably isn’t good for you.");
 	}
 	else if(order == "Burger")
 	{
 		pc.energy(60);
 		pc.modThickness(2, false);
 		pc.credits -= 9;
-		output("\n\nYou feel a little thicker after. All that food probably isn't good for you.");
+		output("\n\nYou feel a little thicker after. All that food probably isn’t good for you.");
 	}
 	else
 	{
@@ -1336,8 +1336,8 @@ public function stephIrsonEp3Pt2():void
 	output("\n\n<i>“Working,”</i> he grunts, slapping the cow-girl on the ass. She shrieks, a large red-mark left on her behind.");
 	output("\n\nSteph pouts. <i>“C’mon, you’re the first stud I’ve seen all day.”</i>");
 	output("\n\nThe bull finally looks away from the jiggling cow-butt between his legs and glowers at the huntress. <i>“Lady, I’m balls-deep in a bitch right now. Can you wait like, five minutes?”</i>");
-	output("\n\n<i>“That doesn’t make for exciting television, now does it?”</i> Steph says, arms crossed. As she does so, her camera drone shudders and re-focuses on the gap between the stud and his breeder, zooming in on his huge cock pounding her spread pussy and giving you a gloriously high-def view of the fem-cum spurting out around his rod. Now <i>that</i>'s some good television.");
-	output("\n\n“You sure I can't borrow you for a minute?” Steph purrs, her feline ears perking up atop her head as one of her arms reaches out to caress the thick, tense muscles on the Treated man's arm.");
+	output("\n\n<i>“That doesn’t make for exciting television, now does it?”</i> Steph says, arms crossed. As she does so, her camera drone shudders and re-focuses on the gap between the stud and his breeder, zooming in on his huge cock pounding her spread pussy and giving you a gloriously high-def view of the fem-cum spurting out around his rod. Now <i>that</i>’s some good television.");
+	output("\n\n“You sure I can’t borrow you for a minute?” Steph purrs, her feline ears perking up atop her head as one of her arms reaches out to caress the thick, tense muscles on the Treated man’s arm.");
 	output("\n\nThe stud hilts himself in the cow and grunts with bestial enthusiasm, his breath hot and heavy as the camera drone focuses in on him, and then on thoroughly-bred cow beneath him. With another feral grunt, the bull takes a step back from the well-fucked cow-slut and letts a torrent of spooge pour out of her packed pussy, a waterfall of white that very nearly splatters on the camera drone. When it recovers, you’re treated to a full-frontal view of the stud’s cock: a huge equine phallus almost as long as his arm dangling between his muscular legs.");
 	output("\n\nHe turns to Steph with a toothy grin and grabs the Huntress’s ass in both hands, pulling the khaki-clad hostess up against himself. Steph makes a pathetic little yelp as she’s all but hauled off of her feet, her bare legs rubbing up against the bull’s half-hard prick - which immediately smears her tanned flesh with thick, white cream.");
 	output("\n\nThe bull grabs the camera drone as it passes by, making it chirp and buzz at him as he pulls its camera around to look him right in the face. <i>“Want some exciting television, viewers? I hear this slut tapes live, don’tcha?”</i>");
@@ -1355,7 +1355,7 @@ public function stephIrsonEp3Pt3():void
 	output("<i>“Hey, I’m not a-”</i> Steph starts to say, getting cut off when the bull bucks her onto the milker. His free hand all but rips her shirt off by the back, leaving tattered fragments of cloth hanging limply from Steph’s shoulders.");
 	output("\n\n<i>“Why don’t you interview this?”</i> he chuckles, aiming the camera drone down to watch as he cranes Steph’s head into the thighs of the cow-girl he was just fucking, rubbing the huntress’s nose into the cream-packed slit between them. The cow immediately starts to moan, arching her back and clutching at her over-sized jugs - you can’t see the action up close, but something tells you Steph isn’t exactly resisting the bull’s direction.");
 	output("\n\nThe stud chuckles and steps back, keeping one hand firmly planted on Steph’s back as he circles around, giving you - and the hundreds of thousands of other viewers across the galaxy - an ultra-HD panoramic of Steph Irson lapping up his cum from the cow’s twat. <i>“Always wanted to do a porno,”</i> he laughs, almost boomingly loud so close to the drone’s microphone.");
-	output("\n\nHe lets go of Steph’s back, and grunts approvingly when she stays right where he put her, making his bovine bottom moan and squirm between the attentions of the milker and Steph's apparently very talented tongue. The bull makes quick work of the rest of Steph’s clothing, yanking away her tattered top and pulling her khaki booty shorts down around her ankles, revealed a pussy with silver-grey lips.");
+	output("\n\nHe lets go of Steph’s back, and grunts approvingly when she stays right where he put her, making his bovine bottom moan and squirm between the attentions of the milker and Steph’s apparently very talented tongue. The bull makes quick work of the rest of Steph’s clothing, yanking away her tattered top and pulling her khaki booty shorts down around her ankles, revealed a pussy with silver-grey lips.");
 	output("\n\n<i>“Woah, what do we have here?”</i> the bull says, crouching down behind the bent-over huntress and focusing the drone in on her drooling sex. <i>“Nice and smooth and painted up...”</i> he reaches forward to tease a finger along her lips, tracing a thick digit around her sex before plunging a pair of them inside her... and then the rest in quick succession, burying himself to the wrist.");
 	output("\n\n<i>“Damn, babe, that’s some fine work you’ve got done down her. Fuckin’ stretchy as hell... it’s like you were just </i>made<i> for takin’ big dicks, huh?”</i>");
 	output("\n\nSteph yelps something, trying to sit up but finding herself trapped in the iron grasp of the cow-girl’s thighs. The bovine babe’s legs are wrapped around Steph’s shoulders, the camera reveals, pulling the huntress deeper and deeper into the cow’s cunny... and the growing lake of moisture pooling under her ass, drool and cum and feminine excitement mixing into what you can only imagine to be an heady aroma. Steph must be going insane down there...");
@@ -1407,7 +1407,7 @@ public function carrieFinishedMilking(amount:Number = 0):void
 	StatTracking.track("milkers/prostate milker uses");
 	StatTracking.track("milkers/cum milked", cumTotal);
 	addButton(0,"Sell It",sureSellMyCumBabiesFarAndWide,cumTotal);
-	addButton(1,"Don't Sell",noIDontWantToSellBabies);
+	addButton(1,"Don’t Sell",noIDontWantToSellBabies);
 }
 
 // Cum value calculation:
@@ -2373,7 +2373,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			showBust("HORISHA_AND_PECK", "CARRIE_NUDE", "CORA_NUDE");
 			
 			if(pc.isTreatedBull()) output("Your bullish impulses seethe in the presence of so many plush, willing cows, and once within the enclosed, steamy space of the communal shower, their sweet, fruity smell heavy in your nostrils, they make demands of you that you cannot resist. The presence of another male - even such a male as Peck, half the size of his owner, girly shoulders, hairless on his body and lips every bit as glossy and perfect for cock-sucking as Carrie’s - demands you step up and make it clear who the alpha here is.");
-			else output("It’s here, in the presence of so many plush, willing cows in the enclosed, steamy space of the communal shower, that you appreciate the pheromonal thing is actually a two-way street. The sweet, fruity smell of them hangs heavy in your nostrils and your masculine impulses seethe, making demands of you that you cannot resist. The presence of another male - even such a male as Peck, half the size of his owner, girly shoulders, hairless on his body and lips every bit as glossy and perfect for cock-sucking as Carrie's - demands you step up and make it clear who the alpha here is.");
+			else output("It’s here, in the presence of so many plush, willing cows in the enclosed, steamy space of the communal shower, that you appreciate the pheromonal thing is actually a two-way street. The sweet, fruity smell of them hangs heavy in your nostrils and your masculine impulses seethe, making demands of you that you cannot resist. The presence of another male - even such a male as Peck, half the size of his owner, girly shoulders, hairless on his body and lips every bit as glossy and perfect for cock-sucking as Carrie’s - demands you step up and make it clear who the alpha here is.");
 			output("\n\nThe moment he takes his tight clothes off, displaying an ass as pert, cute and provoking as his features, you’re on top of him, sliding your [pc.cock] between his pale cheeks, letting one hand trail down his flat front and the other firmly clutch his thick, eight-inch horse dick. He whimpers but doesn’t pull away, simply shifts his soft buttocks up your water-slicked shaft and looks over his shoulder at you with a butter-wouldn’t-melt expression. Pulse thudding in your temple, you push him against the enamel wall of the shower and use it as stanchion to inexorably open his pink fuck-hole with your [pc.cockHead] and push your dripping cock into the tight, hot tunnel of his ass, intent on reshaping it in your own throbbing, dominant dick’s image. His breathy little gasps, little tenses of the muscles and his slim fingers grasping at your [pc.hips] spur you on.");
 			
 			pc.cockChange();

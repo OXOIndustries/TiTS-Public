@@ -5,7 +5,7 @@
 
 public function goldenPeakBonusFunction():Boolean
 {
-	if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" Throw in a few more shady characters and a fist fight, and it'd feel like home!");
+	if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" Throw in a few more shady characters and a fist fight, and it’d feel like home!");
 	output(" A holoscreen is set up just over the bar, showing reruns of Steph Irson: Galactic Huntress.");
 
 	//First time - Kara quest first time proc
@@ -37,7 +37,7 @@ public function goldenPeakBonusFunction():Boolean
 			else addButton(1,"Shade",shadeApproach,undefined,"Shade","Go talk to Shade, the bounty hunter you met previously.");
 		}
 	}
-	addButton(5,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won't watch itself!");
+	addButton(5,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won’t watch itself!");
 	//if(flags["MET_CANDICE"] == undefined) addButton(0,"Bartender",approachTheBartenderAtTheBar,undefined,"Bartender","See if you can get a decent drink on this ant-infested mudball.");
 	//else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
 	if(flags["MET_EMBRY"] == undefined) addButton(0,"Waitress",callWaitress,undefined,"Waitress","Call a waitress to order some food.");
@@ -165,7 +165,7 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 	{
 		showBust("REAHA");
 		showName("\nREAHA");
-		output("You wake up to a loud, head-pounding... pounding. You blink yourself awake and struggle to your [pc.feet] as... something... hammers the door to the bathroom. You take a second to take inventory: you're on your ship, you've got your equipment, and your chest is splattered with blood, puke, and beer. Oof.");
+		output("You wake up to a loud, head-pounding... pounding. You blink yourself awake and struggle to your [pc.feet] as... something... hammers the door to the bathroom. You take a second to take inventory: you’re on your ship, you’ve got your equipment, and your chest is splattered with blood, puke, and beer. Oof.");
 		output("\n\n<i>BANG</i> goes the bathroom door.");
 		output("\n\nOh, shit, what <i>is</i> that!? You stumble away from the door and grab your [pc.rangedWeapon] and level it at the door. As you’re going for your weapon, though, you notice something huge and firm in your pack that wasn’t there before. You fish it out, and find yourself blinking at... an egg?");
 
@@ -179,14 +179,14 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 		else output(", giving you enough time to realize it’s a... a New Texas varmint!?");
 		output(" You rush forward and kick the varmint towards the door. It yelps and goes running, all the way to your gangplank. It’s an effort to get the creature off the ship, but with a little work, you set it loose on the tarmac... and immediately hear screams of alarm as it goes rushing off through the crowded street.");
 		output("\n\nYou take a step off the ship and wipe the sweat from your brow. How the hell did that get in your bathroom, and why? What did you get up to while you were blacked out, anyway?");
-		output("\n\nAs you're wondering, you hear a voice from overhead call out, <i>“");
+		output("\n\nAs you’re wondering, you hear a voice from overhead call out, <i>“");
 		//Normal Reaha
 		if(9999 == 9999) output("[pc.Master]! Heeeeelp!");
 		//if Treated Reaha: 
 		else if(chars["REAHA"].isTreated()) output("Hey! Up here!");
 		else output("[pc.name]! Heeeeelp!");
 		output("”</i>");
-		output("\n\nYou turn around and follow the sound up to the roof of your ship. Reaha's sitting on the roof, buck naked");
+		output("\n\nYou turn around and follow the sound up to the roof of your ship. Reaha’s sitting on the roof, buck naked");
 		//Normal & Treated
 		if(9999 == 9999 || chars["REAHA"].isTreated()) output(" as usual");
 		output(", and shivering pitifully.");
@@ -206,13 +206,13 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 	//PC's fucked Shade
 	else if(flags["SEXED_SHADE"] != undefined)
 	{
-		output("You wake up in an amazingly comfortable bed, naked and with a cold washcloth over your forehead, your cheeks still wet from being cleaned. You blink in the light, slowly coming to recognize the interior of Shade's ship.\n\nYour ");
+		output("You wake up in an amazingly comfortable bed, naked and with a cold washcloth over your forehead, your cheeks still wet from being cleaned. You blink in the light, slowly coming to recognize the interior of Shade’s ship.\n\nYour ");
 		if(!pc.isNude()) output("clothes");
 		else output("items");
-		output(" are neatly stacked on a chair beside the bed, and you're pretty sure you've been through a bath or shower at some point. The clock alerts you to the passage of three hours. Whew, what a ");
+		output(" are neatly stacked on a chair beside the bed, and you’re pretty sure you’ve been through a bath or shower at some point. The clock alerts you to the passage of three hours. Whew, what a ");
 		if(hours < 3 || hours > 16) output("night");
 		else output("day");
-		output(". At least Shade's not here to chastise you");
+		output(". At least Shade’s not here to chastise you");
 		if(pc.isNice()) output(", even if you would like to thank her for the motherly treatment");
 		output(". You pack your gear up and head out shortly.");
 		processTime(189);
@@ -225,7 +225,7 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 	//PC has no friends in the bar or lovers applicable
 	else
 	{
-		showName("SPACER'S\nROW");
+		showName("SPACER’S\nROW");
 		output("You wake up in an alley some hours later, covered in vomit and regretting your life choices. When the hell did you become such an alcoholic? Damn.");
 		output("\n\nYou stagger up, barely restraining yourself from barfing again. You check yourself over");
 		if(pc.credits >= 5) 
@@ -235,7 +235,7 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 		}
 		else
 		{
-			output(" and it looks like your stuff is still there. Maybe you didn't have enough credits to bother stealing.");
+			output(" and it looks like your stuff is still there. Maybe you didn’t have enough credits to bother stealing.");
 		}
 		processTime(189);
 		//PC in back alley
@@ -271,7 +271,7 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 	{
 		output("You look the cute halfbreed up and down, eyes playing across all the lush, tanned skin on display. <i>“How about some more fun?”</i>");
 		output("\n\nCandice looks around to make sure her boss isn’t anywhere nearby, then gives you a playful wink and sets her rags down on the bar. <i>“Well... I had fun last time, and I think I could squeeze in a quick break. Sound good?”</i>");
-		output("\n\nYou nod eagerly, and are quick to follow her out of the bar's back door, down into the alleyway behind it.");
+		output("\n\nYou nod eagerly, and are quick to follow her out of the bar’s back door, down into the alleyway behind it.");
 	}
 }*/
 
@@ -291,7 +291,7 @@ public function stephIrson4Go():void
 	output("\n\nSteph chuckles and turns away from the camera, start to walk through the narrow, winding caverns. The camera drone follows, keeping her thick, booty-short-straining behind in view for the audience. <i>“Nyrean females vie for dominance among their own kind like old-earth predators, with submissive losers being forced to carry alphas’ eggs after the fight. Eggs they get through reverse sex with a male: inserting their pseudo-penis in his genital slit and extracting semen from little sacs inside him. Pretty nifty, huh? So today, I’m on the hunt for the biggest, baddest alpha nyrea I can find and see if we can get this strange, unique twist on mating on camera for you viewers at home! I’ve done a little scouting, and I think I’ve found a pretty likely place to find one: a deep cavern just up the tunnel here, covered in glowing moss and cave drawings.”</i>");
 	output("\n\nA few moments later and the Huntress has arrived at the cave in question: a big crack in the wall surrounded by softly glowing blue moss that’s been artificially arranged into a swirling pattern around the cavern entrance, several concentric circles that make the passage seem much bigger and more intimidating than it actually is. A few small bushes grow from the ground nearby, forming a sweeping approach to the cave, almost like a manor house’s cultivated garden. Steph wasn’t kidding when she said nyrean queen!");
 	output("\n\n<i>“Right, ‘ere we are, then. I’m gonna have to be incredibly careful from here on out, unless I want to end up with a belly full of eggs. Nyrea are aggressive breeders, and alphas love to make other people carry their eggs for them - I’m just a walking incubator to these ovipositing beauties. I’m just shivering thinking about it,”</i> Steph adds, hugging her arms around herself. In the ultra-HD color on screen, you can’t help but notice a dark splotch suddenly form on her shorts between her legs. The camera drone immediately focuses in on it, until Steph reaches out and gives it a swat.");
-	output("\n\n<i>“Alright, it's about time to go get a look at a big, bad nyrean queen. Follow me!”</i> Steph whispers, adjusting her goggles and starting to creep towards the darkened tunnel entrance.");
+	output("\n\n<i>“Alright, it’s about time to go get a look at a big, bad nyrean queen. Follow me!”</i> Steph whispers, adjusting her goggles and starting to creep towards the darkened tunnel entrance.");
 	output("\n\nJust as she’s about to step through the cavern entrance, a woman steps out, smacking right into Steph and sending both of them tumbling to the ground. The camera zooms in on the alien woman, an insectile girl with a pair of big, bare breasts over a natural corset of chitin and long, elfin ears growing from her head. She lands on her ass with an <i>“oomph,”</i> rubbing her head where Steph bonked into her.");
 	processTime(6);
 	clearMenu();
@@ -317,7 +317,7 @@ public function stephIrsonEpisode4Part2():void
 	output("\n\nThe nyrea blinks, but accepts Steph’s hand and pulls herself to her feet. <i>“I guess it’s the same everywhere. Even where you offworlders are from, huh?”</i>");
 	output("\n\nSteph giggles. <i>“I don’t mind anymore, really. You sorta get used to everybody wanting to use you like a fucktoy eventually.”</i>");
 	output("\n\n<i>“Tell me about it!”</i> the nyrea smiles, folding her arms behind her back in a way that compels the camera to zoom in on her thrust-out chest, giving you a view of cream-pale flesh and black nipples that are still nice and stiff. <i>“Ugh, I’m so sick of...”</i>");
-	output("\n\nA moment later, the camera zooms up over her shoulder as another nyrea steps out, voice echoing off the stone: <i>“And what a marvelous fucktoy it is.”</i> The second nyrea is clutching a long spear and wearing padded chainmail that just barely conceals her bust... and the massive, half-hard cock bulging between her legs. The camera zooms in, ducking under Steph’s ass to get an angle on the beast that's only just restrained by the nyrea’s chainmail bikini bottom. <i>“If you two had kept wrestling much longer, I might have had to start jacking off. But now that I have your attention, I guess you can take care of my big, thick problem here with your... cute little fucktoy of a breeder body, can’t you?”</i>");
+	output("\n\nA moment later, the camera zooms up over her shoulder as another nyrea steps out, voice echoing off the stone: <i>“And what a marvelous fucktoy it is.”</i> The second nyrea is clutching a long spear and wearing padded chainmail that just barely conceals her bust... and the massive, half-hard cock bulging between her legs. The camera zooms in, ducking under Steph’s ass to get an angle on the beast that’s only just restrained by the nyrea’s chainmail bikini bottom. <i>“If you two had kept wrestling much longer, I might have had to start jacking off. But now that I have your attention, I guess you can take care of my big, thick problem here with your... cute little fucktoy of a breeder body, can’t you?”</i>");
 	processTime(6);
 	pc.lust(3);
 	clearMenu();
@@ -373,7 +373,7 @@ public function stephIrsonEpisode4Part5():void
 	
 	output("The tentacles are relentless, single-minded in their motions to pump Steph full of creamy, viscous seed. Her belly swells with the sheer volume of plant-spunk flooding into her womb and both ends of her gut, distending even more as the tentacles visibly squirm inside her, straining her body to its limits. Minutes fly by in vigorous fucking, the tentacles drilling deeper and deeper into Steph’s abused body, joined by even more small vines that worm their way into her holes beside their larger cousins. Every root and vine in the bush seems to be trying to wriggle its way into her, to give the Huntress its load of thick, creamy plant spunk.");
 	output("\n\nBy the time they’re done with her, Steph’s as white as a sheet, slathered with plant spooge from head to toe and still trickling milk as the vines latched onto her breasts release her. She sputters and coughs as the vine in her mouth withdraws, giving her a final money-shot across her cheeks in glorious close-up high definition. Her eyes flutter as the last squirts of cum plaster her gray lips, and her tongue laps it up with lazy hunger. She gives a full body shiver, drawing the camera’s eye towards her crotch as the tentacles buried in her twat slowly slither out, drawing out another screaming orgasm from the show’s host as they pop out, splattering her thighs with thier cum and hers.");
-	output("\n\nSteph slumps against the restraints still around her limbs, breathing hard and shivering with the aftershocks of repeated orgasm, completely at the plant’s mercy. However, it seems done with her now that she’s utterly filled with the vines' seed. The camera follows her as the tentacles draw her limp body back up through the bush over the pit and deposit her back on the surface, plopping her back on the stone cavern floor in a pool of white, creamy spunk. You can see one tentacle, however, still outside the pit, attached firmly to the Galactic Huntress’s backside.");
+	output("\n\nSteph slumps against the restraints still around her limbs, breathing hard and shivering with the aftershocks of repeated orgasm, completely at the plant’s mercy. However, it seems done with her now that she’s utterly filled with the vines’ seed. The camera follows her as the tentacles draw her limp body back up through the bush over the pit and deposit her back on the surface, plopping her back on the stone cavern floor in a pool of white, creamy spunk. You can see one tentacle, however, still outside the pit, attached firmly to the Galactic Huntress’s backside.");
 	output("\n\n<i>“Oof,”</i> Steph groans, rolling onto her hand and knees, ass in the air and face to the camera. <i>“Well, that’s it for another episode of </i>Steph Irson<i>... ugh, what’s that on my... uh, </i>Steph Irson’s Galactic Huntress<i>. Join us next week for... agh, what the-”</i> she gasps as the tentacle behind her flicks up, its bulbous purple cockhead peeking up to look at the camera, drooling from its cumslit. The camera flies over to take a look, showing where the tendril’s cockhead shifts into plant-like vine... and then travels down to join with Steph’s backside, just over her ass, foliage merging with flesh. She moans, and the tail squirms around, batting at the camera until it flies back.");
 	output("\n\n<i>“We’ll, um, next week we’ll be... uh,”</i> Steph slurs, her new cock-tail vanishing between her legs. <i>“We’ll be- gaaaaahhhhhh!”</i>");
 	output("\n\nThe tail plunges into her, pumping vigorously into her backside. She gives a startled squeal, slumping forward onto her big, milky jugs as her new appendage gets used to her. The camera feed fades to black, telling you to tune in next week for another exciting episode of <i>Steph Irson, Galactic Huntress</i>.");
@@ -421,11 +421,11 @@ public function vendingMachineMenu():void
 	clearOutput();
 	showBust("JOYCO_VENDING_MACHINE");
 	showName("VENDING\nMACHINE");
-	output("You walk over to the vending machine and give it a look. The main draw looks to be <i>JoyCo Power-up Potions</i>, guaranteed to double your pep. The small print spells out: <i>Only while cold. JoyCo is not responsible for food poisoning as a result of consuming warm beverages.</i> You might not be able to tote these wherever you go, but at least you can get a quick pick me up whenever you're feeling down, just five measly credits!");
+	output("You walk over to the vending machine and give it a look. The main draw looks to be <i>JoyCo Power-up Potions</i>, guaranteed to double your pep. The small print spells out: <i>Only while cold. JoyCo is not responsible for food poisoning as a result of consuming warm beverages.</i> You might not be able to tote these wherever you go, but at least you can get a quick pick me up whenever you’re feeling down, just five measly credits!");
 	processTime(1);
 	clearMenu();
 	if(pc.credits >= 5) addButton(0,"P.Potion",buyAPowahPotion,undefined,"Power Potion","Get yourself an energy drink. Only 5 credits!");
-	else addDisabledButton(0,"P.Potion","Power Potion","You can't even afford a five credit drink. Any poorer and you'll be living out of a box.");
+	else addDisabledButton(0,"P.Potion","Power Potion","You can’t even afford a five credit drink. Any poorer and you’ll be living out of a box.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -442,7 +442,7 @@ public function buyAPowahPotion():void
 	//if PC had less than 100 ENG:
 	if(pc.energy() < pc.energyMax()) output("\n\nTrue to its purpose, you quickly feel reinvigorated, like you could spring a marathon or wrestle a leithan to the ground! Whoo!");
 	//if PC had 100+ ENG:
-	else output("\n\nYou have to admit, you don't feel much different. Maybe you should just find a water fountain to wash the taste out... yuck.");
+	else output("\n\nYou have to admit, you don’t feel much different. Maybe you should just find a water fountain to wash the taste out... yuck.");
 	pc.credits -= 5;
 	pc.energy(100);
 	processTime(2);
