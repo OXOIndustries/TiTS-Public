@@ -854,7 +854,8 @@ public function giveFlahneATreatSetup():void
 				addItemButton(x, pc.inventory[choices[x]], rahnCumBubbleGift, pc.inventory[choices[x]]);
 			}
 		}
-		addButton(14,"Back",meetingFlahne);
+		//addButton(14,"Back",meetingFlahne);
+		addButton(14, "Back", mainGameMenu);
 	}
 }
 
