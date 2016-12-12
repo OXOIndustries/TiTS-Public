@@ -46,7 +46,7 @@ public function encounterAMilodan():void
 	var milodan_color:String = milodan.furColor;
 	showMilodanMale();
 	author("Wsan");
-	output("\n\nA hulking, shaggy-furred shape appears out of Uveto’s unforgiving landscapes. ");
+	output("A hulking, shaggy-furred shape appears out of Uveto’s unforgiving landscapes. ");
 	//PC tallness < 85: 
 	if(pc.tallness < 85) output("He’s markedly taller than you are, and his musculature is intense.");
 	//Pc tallness >= 85 to 89:
@@ -68,7 +68,10 @@ public function encounterAMilodan():void
 		output("\n\nYour Codex beeps a warning: <i>“New species detected. Milodan. Conflict aversion measures are recommended.”</i>\n\nYeah. Right. At least you’ll have a new Codex entry to read if you live...");
 		CodexManager.unlockEntry("Milodan");
 	}
-	output("\n\n<b>It’s a fight!</b>");	
+	output("\n\n<b>It’s a fight!</b>");
+	
+	IncrementFlag("MET_MILODAN_MALE");
+	
 	clearMenu();
 	addButton(0,"Next", CombatManager.beginCombat);
 }
@@ -621,7 +624,7 @@ public function giveMilodanMalesStinkyButtholeALick():void
 	output("\n\n...");
 	output("\n\nBy the time you let him go, you’ve made him paint both the ice and his stomach in pearlescent white jizz. His cock is still drooling pre-cum even now, but you’ve had your fun. Leaving the still-shaking barbarian on the ground, you walk away with a smile. Maybe you should do this more often.");
 	processTime(60);
-	pc.orgasm();
+	pc.lust(30);
 	output("\n\n");
 	CombatManager.genericVictory();
 }
@@ -1022,7 +1025,7 @@ public function milodanPregnancyEnds():void
 		output(" out <i>now</i>. You shut yourself in your room and lie down on a blanket.");
 	}
 	//Hour passes
-	output("\n\nBy the time you're finished, there's ");
+	output("\n\nBy the time you’re finished, there’s ");
 	if(numChildren == 1) output("a lone kit");
 	else
 	{
@@ -1044,8 +1047,8 @@ public function milodanPregnancyEnds():void
 	else output("children");
 	output(" up in some comfortable sheets before calling for the nursery pods. Watching the kit");
 	if(numChildren > 1) output("s");
-	output(" disappear makes you forlorn for a while, but you remind yourself that it'd be wildly irresponsible to take your kids along on your incredibly dangerous space journey. This is for the best, really. You can see them on Tavros any time you want to.");
-	output("\n\nAs for you, you quickly wash yourself off in the shower and practically crawl into your bed looking and feeling like some kind of half-dead sea slug. Giving birth is tiring work, and it's definitely time for a nap.");
+	output(" disappear makes you forlorn for a while, but you remind yourself that it’d be wildly irresponsible to take your kids along on your incredibly dangerous space journey. This is for the best, really. You can see them on Tavros any time you want to.");
+	output("\n\nAs for you, you quickly wash yourself off in the shower and practically crawl into your bed looking and feeling like some kind of half-dead sea slug. Giving birth is tiring work, and it’s definitely time for a nap.");
 
 	currentLocation = "SHIP INTERIOR";
 	generateMap();

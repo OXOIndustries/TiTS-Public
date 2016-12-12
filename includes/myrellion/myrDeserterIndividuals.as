@@ -2838,8 +2838,8 @@ public function giveLysAnOrgasm():void
 			output(" watches you clean up silently. Only when you pack her dildoes in your own kit does she speak.");
 		}
 		output("\n\n<i>“Hey... that’s my... mine,”</i> the myr says.");
-
-		if(pc.isBimbo() || pc.isBro()) output("\n\n<i>“Well, like, stop me,”</i> you laugh. <i>“I’ll prob’ly bring it back later.”</i>");
+		output("\n\n");
+		if(pc.isBimbo() || pc.isBro()) output("<i>“Well, like, stop me,”</i> you laugh. <i>“I’ll prob’ly bring it back later.”</i>");
 		else if(pc.isNice()) output("<i>“You can’t stop me, though,”</i> you say simply. <i>“And your wasteland code says I get to take what I want if so. If it makes you feel better, I’ll probably have it the next time you see me.”</i>");
 		else output("<i>“Yeah? Stop me,”</i> you retort. <i>“Oh, you can’t. That means I get to take a prize, right? Maybe I’ll bring it back after I have my fun.”</i>");
 		output("\n\nThe myr’s shoulders jerk like she wants to grab you, but her arms are wet noodles - you easily escape, grinning.");

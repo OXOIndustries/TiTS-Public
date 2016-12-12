@@ -300,10 +300,10 @@
 					damageRand(d, 15);
 					applyDamage(d, this, target, "melee");
 					if (!target.hasStatusEffect("Staggered") && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
-		  			{
-		  				output("<b> You’ve been staggered!</b>");
-		  				target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You’re staggered, and your Aim and Reflexes have been reduced by 20%!", true, 0);
-		  			}
+					{
+						output("<b> You’ve been staggered!</b>");
+						target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You’re staggered, and your Aim and Reflexes have been reduced by 20%!", true, 0);
+					}
 				}
 				
 			}
