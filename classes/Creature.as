@@ -12719,7 +12719,7 @@
 							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
 						}
 					}
-					return false;
+					//return false;
 				}
 			}
 			return true;
