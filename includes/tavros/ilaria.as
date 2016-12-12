@@ -47,7 +47,7 @@ public function approachIlaria():void
 	{
 		output("You’ve barely sauntered up to the counter before the one and only employee bounces over to you, springing on long, digitigrade legs behind the counter. Now that she’s a little closer, you’re not so sure it’s a bunny costume so much as some high-quality mod work she’s had done: a pair of fluffy white-and-pink rabbit’s ears swivel towards you atop her head, and a poof-ball of a tail wiggles like an jubilant ausar’s.");
 		output("\n\n<i>“Hey there, sweet stuff,”</i> the bunny-woman croons, leaning over the counter in a way that makes her ample chest wobble against the polished surface, barely constrained by her showy black corset. <i>“What can I getcha?”</i>");
-		output("\n\nYou notice a little name-tag is pinned to the stand-alone collar-and-bow-tie around her neck, reading on bubbly pink capitals: <i>“ILARIA.”</i>");
+		output("\n\nYou notice a little name-tag is pinned to the stand-alone collar-and-bow-tie around her neck, reading on bubbly pink capitals: “ILARIA.”");
 		
 		flags["MET_ILARIA"] = 1;
 	}
@@ -392,7 +392,7 @@ public function bunnyCreamCumBonanzaBullshitRemoteFuntimesExplosionIDunnoWhyThis
 	output("\n\nShe retrieves the plate, showing off ");
 	if(order == "Gryvain Jigglers" || order == "Vanilla Iced Teats") output(order);
 	else output(indefiniteArticle(order));
-	output(" slathered with a thick glaze of glistening white <i>“sauce,”</i> so fresh its practically steaming. Locking eyes with the cum-bunny, you grab a set of plasticware from the dispenser and dig in, taking a great big gulping bite of your salty-sweet treat.");
+	output(" slathered with a thick glaze of glistening white “sauce,” so fresh its practically steaming. Locking eyes with the cum-bunny, you grab a set of plasticware from the dispenser and dig in, taking a great big gulping bite of your salty-sweet treat.");
 	output("\n\n<i>“Delicious,”</i> you tell her, licking your [pc.lipsChaste].");
 	output("\n\nIlaria giggles");
 	//fuckd:
