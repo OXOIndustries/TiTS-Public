@@ -21,6 +21,7 @@ package classes.GameData.Pregnancy.Handlers
 	{
 		public function MilodanPregnancyHandler() 
 		{
+			_debugTrace = true;
 			_handlesType = "MilodanPregnancy";
 			_basePregnancyIncubationTime = 60 * 24 * 120; // 4 Months
 			_basePregnancyChance = 0.1;

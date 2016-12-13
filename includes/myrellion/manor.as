@@ -273,9 +273,9 @@ public function approachSellera():void
 	selleraMenu();
 }
 
-public function gatedButton(data:Object):void
+public function gatedButton(data:Object, forceLock:Boolean = false):void
 {
-	if (data.prevF != null && data.f != null && data.f == data.prevF)
+	if (forceLock || (data.prevF != null && data.f != null && data.f == data.prevF))
 	{
 		addDisabledButton(data.id, data.lbl, data.ttH, data.ttB);
 	}

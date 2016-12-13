@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<application xmlns="http://ns.adobe.com/air/application/13.0"> 
+    <id>com.taintedspace.tits</id> 
+    <versionNumber>{GAMEVERSION}</versionNumber> 
+    <filename>Trials in Tainted Space</filename> 
+    <versionLabel>Public Alpha {GAMEVERSION}</versionLabel>
+    <supportedProfiles>mobileDevice</supportedProfiles>
+    <customUpdateUI>false</customUpdateUI>
+    <allowBrowserInvocation>false</allowBrowserInvocation>
+        <initialWindow> 
+        <content>{BINPATH}/TITS_AIR.swf</content> 
+        <fullScreen>true</fullScreen>
+        <aspectRatio>any</aspectRatio>
+        <autoOrients>true</autoOrients>
+        <visible>true</visible>
+        <renderMode>direct</renderMode>
+    </initialWindow>
+    <android>
+       <manifestAdditions>
+        <![CDATA[
+        <manifest>
+           <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+           <supports-screens android:normalScreens="true"/>
+           <uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
+           <application android:enabled="true">
+               <activity android:excludeFromRecents="false">
+                   <intent-filter>
+                       <action android:name="android.intent.action.MAIN"/>
+                       <category android:name= "android.intent.category.LAUNCHER"/>
+                   </intent-filter>
+               </activity>
+           </application>
+        </manifest>
+        ]]>
+        </manifestAdditions>
+    </android>
+    <iPhone>
+    	<InfoAdditions>
+    		<![CDATA[
+    			<key>UIDeviceFamily</key>
+    			 <array>
+    			   <string>1</string>
+    			   <string>2</string>
+    			 </array>
+          <key>UIViewControllerBasedStatusBarAppearance</key>
+    			 <false/>
+    		]]>
+    	</InfoAdditions>
+        <requestedDisplayResolution>high</requestedDisplayResolution>
+      </iPhone>
+    <icon>
+        <image29x29>{ASSETSPATH}/icons/icon_29.png</image29x29>
+        <image57x57>{ASSETSPATH}icons/icon_57.png</image57x57>
+        <image72x72>{ASSETSPATH}icons/icon_72.png</image72x72>
+        <image144x144>{ASSETSPATH}icons/icon_144.png</image144x144>
+        <image512x512>{ASSETSPATH}icons/icon_512.png</image512x512>
+    </icon>
+</application>

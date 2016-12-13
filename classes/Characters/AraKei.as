@@ -24,19 +24,19 @@ package classes.Characters
 	import classes.Util.InCollection;
 	
 	
-	public class BothriocPidemme extends Creature
+	public class AraKei extends Creature
 	{
 		//constructor
-		public function BothriocPidemme()
+		public function AraKei()
 		{
 			_latestVersion = 1;
 			version = _latestVersion;
 			_neverSerialize = true;
 			
-			short = "bothrioc pidemme";
+			short = "Ara Kei";
 			originalRace = "bothrioc";
-			a = "the ";
-			capitalA = "The ";
+			a = "";
+			capitalA = "";
 			//this.long = "";
 			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
@@ -185,15 +185,72 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "B.Pidemme";
 			
-			createStatusEffect("Force Fem Gender");
+			// v1 == 0 -> they
+			// v1 == 1 -> he
+			// v2 == 2 -> she
+			createStatusEffect("Forced Gender");
 			
 			this._isLoading = false;
 		}
+		
+		// We're going to have to override the tag db because a bunch of the pronouns only implement
+		// mf rather than mfn
+		override public function getDescription(arg:String, arg2:*):String
+		{
+			var firstLetter:String = arg.substr(0, 1);
+			var actualTag:String = firstLetter.toLowerCase() + arg.substr(1);
+			var doCaps:Boolean = firstLetter == firstLetter.toUpperCase();
+			
+			switch (actualTag)
+			{
+				case "he":
+					return mfn("he", "she", "they");
+					break;
+				
+				case "his":
+					return mfn("his", "her", "their");
+					break;
+					
+				case "him":
+					return mfn("him", "her", "them");
+					break;
+					
+				case "himself":
+					return mfn("himself", "herself", "themselves");
+					break;
+					
+				default:
+					return super.getDescription(arg, arg2);
+					break;
+			}
+		}
+		
+		override public function mfn(m:String, f:String, n:String):String
+		{
+			switch (getStatusEffect("Forced Gender").value1)
+			{
+				case 0:
+				default:
+					return n;
+					break;
+					
+				case 1:
+					return m;
+					break;
+					
+				case 2:
+					return f;
+					break;
+			}
+		}
+		
 		
 		override public function get bustDisplay():String
 		{
 			return "BOTHRIOC_PIDEMME";
 		}
+		
+		
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{

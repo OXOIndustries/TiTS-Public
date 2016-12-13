@@ -76,12 +76,25 @@ public function initializeMyrellionRooms():void
 	rooms["603"].eastExit = "601";
 	rooms["603"].northExit = "613";
 	rooms["603"].westExit = "604";
+	rooms["603"].southExit = "BOTHRIOC EMBASSAY";
 	rooms["603"].moveMinutes = 2;
 	rooms["603"].runOnEnter = theEmbassyBonusFunc;
 	rooms["603"].addFlag(GLOBAL.INDOOR);
 	rooms["603"].addFlag(GLOBAL.NPC);
 	rooms["603"].addFlag(GLOBAL.PUBLIC);
-
+	
+	rooms["BOTHRIOC EMBASSAY"] = new RoomClass(this);
+	rooms["BOTHRIOC EMBASSAY"].roomName = "BOTHRIOC\nEMBASSAY";
+	rooms["BOTHRIOC EMBASSAY"].description = "";
+	rooms["BOTHRIOC EMBASSAY"].planet = "PLANET: MYRELLION";
+	rooms["BOTHRIOC EMBASSAY"].system = "SYSTEM: SINDATHU";
+	rooms["BOTHRIOC EMBASSAY"].northExit = "603";
+	rooms["BOTHRIOC EMBASSAY"].moveMinutes = 2;
+	//rooms["BOTHRIOC EMBASSAY"].runOnEnter = bothriocEmbassyFunc;
+	rooms["BOTHRIOC EMBASSAY"].addFlag(GLOBAL.INDOOR);
+	rooms["BOTHRIOC EMBASSAY"].addFlag(GLOBAL.NPC);
+	rooms["BOTHRIOC EMBASSAY"].addFlag(GLOBAL.PUBLIC);
+	
 	//604 Security Checkpoint
 	rooms["604"] = new RoomClass(this);
 	rooms["604"].roomName = "SECURITY\nCHECKPOINT";

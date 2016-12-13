@@ -1125,6 +1125,7 @@ public function bothriocPidemmeVagRideII(opts:Array):void
 		else output(" hipped");
 		output(" than you were.");
 
+		output("\n\n");
 		processTime(20+rand(10));
 		if (isAnal) pc.loadInAss(enemy);
 		else pc.loadInCunt(enemy, holeIdx);
@@ -1167,6 +1168,7 @@ public function bothriocPidemmeVagRideII(opts:Array):void
 			output("\n\nYou pat their "+ enemy.hairColor + " hair and go to fetch your gear, laughing as you watch the bothrioc hobble off, clutching their dangerously swollen egg-sac.");
 		}
 
+		output("\n\n");
 		processTime(20+rand(10));
 		enemy.impregnationType = ""; // Remove the impreg. type to avoid egging the player during orgasm.
 		if (isAnal) pc.loadInAss(enemy);

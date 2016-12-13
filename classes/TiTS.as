@@ -1282,6 +1282,10 @@
 		{
 			return chars["PEXIGA"];
 		}
+		public function get ara():AraKei
+		{
+			return chars["ARAKEI"];
+		}
 		
 		private var _dbgtestvar:int = 0;
 		public function dbgshieldparsertag():String
