@@ -13,7 +13,7 @@ package classes.UIComponents.ContentModuleComponents
 	import classes.kGAMECLASS;
 	import classes.Resources.NPCBustImages;
 	import classes.GLOBAL;
-	
+	import flash.display.DisplayObjectContainer;
 	/**
 	 * ...
 	 * @author Gedan
