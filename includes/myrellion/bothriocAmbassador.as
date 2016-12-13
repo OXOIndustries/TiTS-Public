@@ -93,10 +93,6 @@ public function araKeiMenu(lastF:Function = null):void
 					? "Perhaps if you displayed your devotion enough..."
 					: "Hey, it’s worth a short."
 	});
-
-	addButton(1, "Flirt", araKeiFlirt, undefined, "Flirt", 
-		
-	);
 	
 	addButton(10, "Appearance", araKeiAppearance);
 	addButton(14, "Leave", function():void { 
