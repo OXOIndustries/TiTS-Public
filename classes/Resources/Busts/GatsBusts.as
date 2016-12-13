@@ -247,9 +247,9 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Venus_Pitcher_Elder.png", mimeType = "image/png")]
 		public var Bust_VENUS_PITCHER_ELDER:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/gats/v-Ko.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/v-ko.png", mimeType = "image/png")]
 		public var Bust_VKO:Class;
-		[Embed(source = "../../../assets/images/npcs/gats/v-Ko_Nude.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/v-ko_Nude.png", mimeType = "image/png")]
 		public var Bust_VKO_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Female.png", mimeType = "image/png")]
