@@ -6,6 +6,8 @@ package classes.UIComponents.SideBarComponents
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -117,6 +119,14 @@ package classes.UIComponents.SideBarComponents
 			_statBars.energy.EndAnimation();
 		}
 		
+		private function removeChildrenFrom(o:DisplayObjectContainer):void
+		{
+			for (var i:int = 0; i < o.numChildren; i++)
+			{
+				o.removeChildAt(0);
+			}
+		}
+		
 		public function setBust(bustIdx:String):void
 		{
 			// See if we can even get the bust
@@ -165,7 +175,7 @@ package classes.UIComponents.SideBarComponents
 				
 				if (_bustImage && _bustImage is Sprite)
 				{
-					_bustImage.removeChildren();
+					removeChildrenFrom(_bustImage);
 					_bustImage.addChild(region);
 				}
 				
@@ -193,7 +203,7 @@ package classes.UIComponents.SideBarComponents
 				
 				if (_bustImage && _bustImage is Sprite)
 				{
-					_bustImage.removeChildren();
+					removeChildrenFrom(_bustImage);
 					_bustImage.addChild(bustObj);
 				}
 				
