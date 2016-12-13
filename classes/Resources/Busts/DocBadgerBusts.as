@@ -9,7 +9,7 @@ package classes.Resources.Busts
 		public function get PREVIEW():Class { return Bust_DRBADGER; }
 		public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/docbadger/hr/sig.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/docbadger/HR/sig.png", mimeType = "image/png")]
 		public var SigEmbed:Class;
 		
 		// More assumptions

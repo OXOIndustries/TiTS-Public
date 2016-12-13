@@ -48,10 +48,10 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/gats_old/v-ko.png", mimeType = "image/png")]
 		public var Bust_VKO:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/gats_old/ZilFemale.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats_old/zilFemale.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/gats_old/ZilMale.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats_old/zilMale.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
 		
 	}

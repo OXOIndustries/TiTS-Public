@@ -54,7 +54,7 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan_Nude.png", mimeType = "image/png")]
 		public var Bust_CAPTAIN_KHORGAN_NUDE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/gats/Celise.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/celise.png", mimeType = "image/png")]
 		public var Bust_CELISE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Crazy_Carl.png", mimeType = "image/png")]
@@ -83,7 +83,7 @@
 		public var Bust_FENRISDRONEIV:Class;
 		public var Bounds_FENRISDRONEIV:Rectangle = new Rectangle(48, 16, 64, 64);
 		
-		[Embed(source = "../../../assets/images/npcs/gats/Flahne.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Flahne_Nude.png", mimeType = "image/png")]
 		public var Bust_FLAHNE_NUDE:Class;
@@ -107,7 +107,7 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jill_Nude.png", mimeType = "image/png")]
 		public var Bust_JILL_NUDE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/gats/Jade.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/jade.png", mimeType = "image/png")]
 		public var Bust_JADE:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Jade_Nude.png", mimeType = "image/png")]
 		public var Bust_JADE_NUDE:Class;
@@ -115,7 +115,7 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Kaithrit_Scout.png", mimeType = "image/png")]
 		public var Bust_KAITHRIT_SCOUT:Class;
 
-		[Embed(source = "../../../assets/images/npcs/gats/Kelly.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Kelly_Nude.png", mimeType = "image/png")]
 		public var Bust_KELLY_NUDE:Class;
@@ -125,7 +125,7 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Kaska_Nude.png", mimeType = "image/png")]
 		public var Bust_KASKA_NUDE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/gats/Kiro.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/kiro.png", mimeType = "image/png")]
 		public var Bust_KIRO:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Kiro_Nude.png", mimeType = "image/png")]
 		public var Bust_KIRO_NUDE:Class;
@@ -158,7 +158,7 @@
 		[Embed(source = "../../../assets/images/npcs/gats/nayna.png", mimeType = "image/png")]
 		public var Bust_NAYNA:Class;
 
-		[Embed(source = "../../../assets/images/npcs/gats/Penny.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Penny_Nude.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE:Class;
@@ -178,7 +178,7 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Sellesy_Nude.png", mimeType = "image/png")]
 		public var Bust_SELLESY_NUDE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/gats/Sera.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/sera.png", mimeType = "image/png")]
 		public var Bust_SERA:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Sera_Nude.png", mimeType = "image/png")]
 		public var Bust_SERA_NUDE:Class;
@@ -189,7 +189,7 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Sexbot_Female.png", mimeType = "image/png")]
 		public var Bust_SEXBOT_FEMALE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/gats/Shekka.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/shekka.png", mimeType = "image/png")]
 		public var Bust_SHEKKA:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Shekka_Nude.png", mimeType = "image/png")]
 		public var Bust_SHEKKA_NUDE:Class;
@@ -222,7 +222,7 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Sydian_Male.png", mimeType = "image/png")]
 		public var Bust_SYDIAN_MALE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/gats/Syri.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/syri.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Syri_Nude.png", mimeType = "image/png")]
 		public var Bust_SYRI_NUDE:Class;
@@ -247,9 +247,9 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Venus_Pitcher_Elder.png", mimeType = "image/png")]
 		public var Bust_VENUS_PITCHER_ELDER:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/gats/V-Ko.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/v-Ko.png", mimeType = "image/png")]
 		public var Bust_VKO:Class;
-		[Embed(source = "../../../assets/images/npcs/gats/V-Ko_Nude.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/gats/v-Ko_Nude.png", mimeType = "image/png")]
 		public var Bust_VKO_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Female.png", mimeType = "image/png")]
