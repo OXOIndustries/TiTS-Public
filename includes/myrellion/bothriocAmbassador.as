@@ -457,4 +457,3 @@ public function araKeiNoPolishBooties():void
 	araKeiMenu();
 }
 
-
