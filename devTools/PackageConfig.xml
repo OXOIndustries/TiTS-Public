@@ -8,7 +8,7 @@
     <customUpdateUI>false</customUpdateUI>
     <allowBrowserInvocation>false</allowBrowserInvocation>
         <initialWindow> 
-        <content>{BINPATH}/TITS_AIR.swf</content> 
+        <content>TITS_AIR.swf</content> 
         <fullScreen>true</fullScreen>
         <aspectRatio>any</aspectRatio>
         <autoOrients>true</autoOrients>
@@ -49,10 +49,10 @@
         <requestedDisplayResolution>high</requestedDisplayResolution>
       </iPhone>
     <icon>
-        <image29x29>{ASSETSPATH}/icons/icon_29.png</image29x29>
-        <image57x57>{ASSETSPATH}icons/icon_57.png</image57x57>
-        <image72x72>{ASSETSPATH}icons/icon_72.png</image72x72>
-        <image144x144>{ASSETSPATH}icons/icon_144.png</image144x144>
-        <image512x512>{ASSETSPATH}icons/icon_512.png</image512x512>
+        <image29x29>icons/icon_29.png</image29x29>
+        <image57x57>icons/icon_57.png</image57x57>
+        <image72x72>icons/icon_72.png</image72x72>
+        <image144x144>icons/icon_144.png</image144x144>
+        <image512x512>icons/icon_512.png</image512x512>
     </icon>
 </application>
