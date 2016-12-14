@@ -458,4 +458,3 @@ public function araKeiNoPolishBooties():void
 }
 
 public function placeholder():void { }
-public function placeholder2():void {}
