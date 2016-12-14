@@ -8,7 +8,7 @@
     <customUpdateUI>false</customUpdateUI>
     <allowBrowserInvocation>false</allowBrowserInvocation>
         <initialWindow> 
-        <content>TITS_AIR.swf</content> 
+        <content>TiTS_AIR.swf</content> 
         <fullScreen>true</fullScreen>
         <aspectRatio>any</aspectRatio>
         <autoOrients>true</autoOrients>
