@@ -456,3 +456,4 @@ public function araKeiNoPolishBooties():void
 	processTime(2+rand(2));
 	araKeiMenu();
 }
+
