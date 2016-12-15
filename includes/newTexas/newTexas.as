@@ -779,11 +779,15 @@ public function getCarriePregContainer():PregnancyPlaceholder
 //Use Machine
 public function useDaMilkar():void
 {
-	if(carrieSoothingShowerChance())
+	// Special scenes
+	if(carrieSpecialChance())
 	{
-		if(carrieMilkerBadEndChance()) carrieMilkerBadEnd();
-		else carrieSoothingShowerGo();
-		return;
+		if(carrieSoothingShowerChance())
+		{
+			if(carrieMilkerBadEndChance()) carrieMilkerBadEnd();
+			else carrieSoothingShowerGo();
+			return;
+		}
 	}
 	
 	clearOutput();
@@ -2147,14 +2151,16 @@ public function carrieBlowjobsGo():void
 //Has done a scene with Cora in it
 //Scene has 20% chance of proccing when PC approaches milker. 0% chance if scene procced in last 24 hours, 50% chance if scene hasn’t procced in 72 hours.
 
+public function carrieSpecialChance():Boolean
+{
+	return (!pc.hasStatusEffect("NT Male Milker Disabled") && pc.hasPheromones() && pc.hasCock() && flags["CARRIE_BLOWJOBBED"] != undefined && flags["CORA_SUCKED"] != undefined);
+}
 public function carrieSoothingShowerChance():Boolean
 {
-	if(!pc.hasStatusEffect("NT Male Milker Disabled") && pc.hasPheromones() && pc.hasCock() && flags["CARRIE_BLOWJOBBED"] != undefined && flags["CORA_SUCKED"] != undefined)
-	{
-		if(pc.getStatusMinutes("Cora Showered") >= ((72 - 24) * 60)) return false;
-		if(pc.hasStatusEffect("Cora Showered") && rand(5) == 0) return true;
-		if(rand(2) == 0) return true;
-	}
+	if(pc.getStatusMinutes("Cora Showered") >= ((72 - 24) * 60)) return false;
+	if(flags["NT_BUILD_BOTTLE_PLANT"] != undefined) return true;
+	if(pc.hasStatusEffect("Cora Showered") && rand(5) == 0) return true;
+	if(rand(2) == 0) return true;
 	return false;
 }
 public function carrieSoothingShowerGo(response:String = "intro"):void
@@ -2509,7 +2515,7 @@ public function carrieMilkerBadEndChance():Boolean
 	if(flags["CARRIE_SHOWER_THREESOME"] != undefined && pc.biggestCockLength() >= 12 && pc.cumQ() >= 1000)
 	{
 		//if(rand(2) == 0) return true;
-		if(hours >= 6 && hours <= 12) return true;
+		if(hours >= 6 && hours < 18) return true;
 	}
 	return false;
 }
@@ -2555,10 +2561,9 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 				
 				// [Shower] [Walk] [Nah]
 				clearMenu();
-				addButton(0, "Shower", carrieSoothingShowerGo, "shower repeat", "Shower", "Take a shower with the sisters...");
-				addButton(1, "Walk", carrieMilkerBadEnd, "sure");
-				addButton(2, "Nah", carrieMilkerBadEnd, "nah");
-				
+				addButton(0, "Walk", carrieMilkerBadEnd, "sure");
+				addButton(1, "Nah", carrieMilkerBadEnd, "nah");
+				addButton(3, "Shower", carrieSoothingShowerGo, "shower repeat", "Shower", "Take a shower with the sisters...");
 			}
 			// If PC has chosen [Build It!]
 			else
@@ -2757,7 +2762,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			// - 40 energy, + 4 hours
 			processTime(225 + rand(31));
 			pc.energy(-40);
-			sweatyDebuff(1);
+			//sweatyDebuff(1);
 			pc.lust(100);
 			
 			clearMenu();
@@ -2779,7 +2784,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			output("\n\nThat sounds wonderful. A nice long sleep - followed by a thrash in bed with some soft, pleasant someone, perhaps - then right back to all this work that needs doing. There’s so much of it, and it’s so pleasant to set your hands to it. And there is nothing more important to do. Nothing at all.");
 			
 			processTime(20 + rand(6));
-			sweatyDebuff(1);
+			//sweatyDebuff(1);
 			
 			// [Yes] [Absolutely] [Definitely] [Lead the Way] [...wait]
 			clearMenu();

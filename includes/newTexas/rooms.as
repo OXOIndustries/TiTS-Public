@@ -944,7 +944,7 @@ public function initNewTexasRooms():void
 	rooms["NT OUTSIDE BARN"].addFlag(GLOBAL.PUBLIC);
 	// Temp Room: Showers
 	rooms["NT SHOWER HOUSE"] = new RoomClass(this);
-	rooms["NT SHOWER HOUSE"].roomName = "SHOWER\nROOM";
+	rooms["NT SHOWER HOUSE"].roomName = "SHOWER\nBLOCK";
 	rooms["NT SHOWER HOUSE"].description = "";
 	rooms["NT SHOWER HOUSE"].runOnEnter = undefined;
 	rooms["NT SHOWER HOUSE"].northExit = "NT OUTSIDE BARN";
