@@ -29,7 +29,7 @@ package classes.Items.Transformatives
 			
 			description = "a small bottle labeled “Skin Clear”";
 			
-			tooltip = "A skin lotion produced by J’ejune Pharmaceuticals. Following the success of Rubber-Made, J’ejune decided to capitalize on the idea of skin treatment cosmetics. Most flopped, but they had a second success with Skin Clear. Marketed as an alternative for those wishing to remove fur or scales, Skin Clear promises to give you smooth, creamy skin.\n\nThere’s a warning on the back that reads <i>“Danger: Do not ingest Skin Clear”</i>.";
+			tooltip = "A skin lotion produced by J’ejune Pharmaceuticals. Following the success of Rubber-Made, J’ejune decided to capitalize on the idea of skin treatment cosmetics. Most flopped, but they had a second success with Skin Clear. Marketed as an alternative for those wishing to remove fur or scales, Skin Clear promises to give you smooth, creamy skin.\n\nThere’s a warning on the back that reads, <i>“Danger: Do not ingest Skin Clear.”</i>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -65,7 +65,7 @@ package classes.Items.Transformatives
 			kGAMECLASS.showName("SKIN\nCLEAR");
 			author("Owens");
 			
-			output("You take out a small bottle of Skin Clear. Turning it over, you note that there’s a warning on the back which reads <i>“Danger: Do not ingest Skin Clear”</i>.");
+			output("You take out a small bottle of Skin Clear. Turning it over, you note that there’s a warning on the back which reads, <i>“Danger: Do not ingest Skin Clear.”</i>");
 			output("\n\nHow would you like to use this item?");
 			
 			clearMenu();
