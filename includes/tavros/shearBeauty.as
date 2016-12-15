@@ -133,9 +133,19 @@ public function buyFromCeria():void
 		if(flags["PLANET_3_UNLOCKED"] != undefined)
 		{
 			if(!chars["CERIA"].hasItem(new DoveBalm())) chars["CERIA"].inventory.push(new DoveBalm());
-			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin balms.";
+			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin balms";
+			if(CodexManager.entryViewed("Rubber-Made"))
+			{
+				if(!chars["CERIA"].hasItem(new SkinClear())) chars["CERIA"].inventory.push(new SkinClear());
+				chars["CERIA"].keeperBuy += " and lotions";
+			}
+			chars["CERIA"].keeperBuy += ".";
 		}
-		else chars["CERIA"].destroyItem(new DoveBalm());
+		else
+		{
+			chars["CERIA"].destroyItem(new DoveBalm());
+			chars["CERIA"].destroyItem(new SkinClear());
+		}
 		
 		// 9999 - Temporary placement until Aislinn is implemented!
 		if(9999 == 9999)
