@@ -2932,3 +2932,17 @@ public function kiroAndKallyGloryholeSupremo4():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+/*
+public function indexCheck():void
+{
+	var x:int = 0;
+	x = pc.cockThatFits(500,"volume");
+	trace("TEST 0 OVER. X = " + x);
+	x = pc.cockThatFits(500,"volume",[0]);
+	trace("TEST 1 OVER. X = " + x);
+	x = pc.cockThatFits(500,"volume",[1]);
+	trace("TEST 2 OVER. X = " + x);
+	x = pc.cockThatFits(500,"volume",[1,2]);
+	trace("TEST 3 OVER. X = " + x);
+}*/
