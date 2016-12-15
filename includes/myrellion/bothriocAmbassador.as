@@ -428,16 +428,71 @@ public function araKeiFlirt():void
 		processTime(3+rand(3));
 		// [Polish] [No]
 		clearMenu();
-		addButton(0, "Polish", araKeiPolishBooties);
+		addButton(0, "Polish", araKeiPolishBooties, undefined, "Polish Booties", "Yes. This is where you belong.");
 		if (pc.lust() < 90) addButton(1, "No", araKeiNoPolishBooties, undefined, "No", "No... it may be difficult, but you're not quite willing to abase yourself THAT much");
 		else addDisabledButton(1, "No", "No", "You can't bring yourself to say no... not with this amount of lust in your system.");
 		return;
+	}
+	else
+	{
+
 	}
 }
 
 public function araKeiPolishBooties():void
 {
+	clearOutput();
+	showAraKei();
 
+	flags["ARAKEI_POLISHED_BOOTIES"] = 1;
+
+	output("It occurs to you that you’ve wanted to do this for a long time now. That thought solidifies, becomes as intrinsically obvious as the need to breathe, when you reach forward, bend forward and lay your [pc.tongue] on Ara Kei’s latex-like chitin. When you drag it upwards, warmth suffuses you, submissive bliss radiating through your whole body. All of this sheer, black authority, the feet of a wise, beautiful, absolute master - it deserves to be polished. It NEEDS to be polished, so all may know the devotion this quadomme commands.");
+
+	output("\n\nAll this spreads inexorably through your mind in the course of three long licks directing along the warm, inflexible smoothness of Ara Kei’s calf, so that within moments you are nothing but a vessel of euphoric submissiveness. A little whimper of pleasure escapes your [pc.lips] as you change position and lavish saliva on [ara.his] inner knee");
+	if (pc.hasCock() || pc.hasVagina())
+	{
+		output("; ");
+		if (pc.hasCock()) output(" [pc.eachCock]");
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasVagina()) output(" [pc.eachVagina]");
+		if (pc.hasCock() && pc.hasVagina()) output(" are");
+		else output(" is");
+		output(" very, very");
+		if (pc.hasCock()) output(" erect");
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasVagina()) output(" wet");
+	}
+	output(".");
+
+	output("\n\n<i>“Yes little one,”</i> the bothrioc says, [ara.his] relaxed voice sending fuzzy sensation softly vibrating through you. <i>“Isn’t servility wonderful? This is what you have to look forward to every day when you do find a proper egg-giving master. Until then - I shall do them a favor and begin your training proper. Your technique needs work.”</i>");
+
+	output("\n\nYou aren’t doing the very best you could? The soft bliss subsuming you immediately narrows down into a laser-guided focus. You pay solemn, microscopic attention as Ara Kei silently directs [ara.his] foot-maid to come back over and begin work on the leg directly next to yours.");
+
+	output("\n\n<i>“See how she rolls her tongue, and goes with the grain,”</i> the quadomme instructs. Swiftly you follow suit, bending down to lap at Ara Kei’s narrow ankle, shivering at the way obeying [ara.his] order sends a fresh wave of pleasure crashing through your body. <i>“That prevents streaking. Kisses along the inner thigh are also very important... <i>“");
+
+
+	output("\n\nYou are not allowed to stop until Ara Kei’s leg shines wetly with your saliva - and even then, you are made to go over several areas again by your strict instructor. You don’t mind. Being knelt in front of the bothrioc and being forced to improve by them is gratifying beyond anything you think you’ve ever felt. By the end you feel ablaze with arousal,");
+	if (pc.hasCock()) output(" [pc.eachCock] hard against your [pc.belly]");
+	if (pc.hasCock() && pc.hasVagina()) output(" and");
+	if (pc.hasVagina()) output(" [pc.eachVagina] puffy and spread, fervently awaiting a hard breeding");
+	output(".");
+
+	output("\n\n<i>“Inexpertly but ardently done, Steele,”</i> says the quadomme. You practically purr when [ara.his] fingers");
+	if (pc.hasHair()) output(" run through your [pc.hair]");
+	else output(" rub you behind the [pc.ear]");
+	output(" fondly. <i>“Seeing you progress along the path so willingly warms my hearts. Ah... if only all farlanders had the same honesty and humbleness as you.”</i>");
+
+	output("\n\n<i>“Will you breed me now, "+ ara.mfn("master", "mistress", "master-mistress") +"?”</i> you ask. Perhaps there was a time when you wouldn’t have had asked such a question so directly. A colder, sadder time.");
+
+	output("\n\n<i>“Hmm,”</i> replies Ara Kei thoughtfully. [ara.he] withdraw"+ ara.mfn("s", "s", "") +" [ara.his] hand to touch the pit of your throat with a single finger, drawing it slowly up your neck. You shiver with bliss. <i>“No. For two reasons. Firstly, you must learn that worshipping a domme is a reward in and of itself. You can perhaps feel that for yourself now, but still, connecting the absolutely essential tasks of an incubator to getting packed with eggs - no, I will not do your future owner that disservice. Secondly: I can sense that you aren’t quite all the way there yet. Once you are - when I can see the beauty all the way through you, when the thought of disobeying me doesn’t even occur to you, when you will move the stars in order to lick the very tip of my boot - then. I promise you that sincerely, little one.”</i>");
+
+	output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realise that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mf("has", "has", "have") +" given you... leading you inexorably on...");
+
+	processTime(15);
+	pc.lust(15);
+	araKeiMenu(araKeiFlirt);
+
+//+ + Lust
 }
 
 public function araKeiNoPolishBooties():void
@@ -454,6 +509,6 @@ public function araKeiNoPolishBooties():void
 	output("\n\n<i>“This far, and still you clutch on to an utterly outmoded concept of dignity!”</i> sighs Ara Kei in exasperation, stepping back from you. <i>“I can hear, I can taste how unhappy it makes you, this obstruction you’ve designed for yourself. Until you break that down we can go no further, [pc.name]. I cannot show someone true paradise if they aren’t willing to take their hands away from their eyes.”</i> "+ ara.mfn("he points", "she points", "they point") +" silently, and the maid immediately scoots over and, with a sigh of bliss, resumes licking.");
 
 	processTime(2+rand(2));
-	araKeiMenu();
+	araKeiMenu(araKeiFlirt);
 }
 
