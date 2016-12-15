@@ -169,18 +169,35 @@ public function approachKally():void
 	{
 		output("Kally smiles so sweetly at you when you approach that you nearly melt, leaning on the bar for support. Was she always so adorable? It’s no wonder you keep coming back for drinks when the woman who serves them is so goddamn huggable. And if you hugged her, you could feel her nipples rubbing against you; they look so hard. It must be hell for her to keep that shirt on. Her skirt’s no better. One edge is clearly ascending, lifting the ruffled fabric upward on the back of a cylindrical length. The edge of the bar keeps you from getting a better look, sadly.");
 		output("\n\n<i>“I’m gonna have to cut you off, rush-[pc.boyGirl]. Any more and you’re going to pass out or get a little too handsy for a civilized establishment.”</i> Kally blinks, but to you it looks more like she’s fluttering her eyelashes. <i>“We can talk some more when you’re a little more sober.");
-		if(flags["KIRO_MET_KALLY"] != undefined) output(" I bet my sister wouldn’t mind you loving on her a little right about now.");
+		if(flags["KIRO_MET_KALLY"] != undefined) 
+		{
+			if(flags["KALLY_3SOME_TALK"] == undefined) output(" I bet my sister wouldn’t mind you loving on her a little right about now.");
+			else output("  I wouldn't mind sharing a little loving with you and my sister right now, if you can talk her into it. Just gotta put up my 'break' sign. Then we can really break you in.");
+		}
 		output("”</i>");
 		output("\n\nThat’s the best idea you’ve heard all week.");
 	}
 	//Met, drunk, have had special drinks
 	else if(pc.isDrunk() && pc.hasStatusEffect("Adorahol"))
 	{
-		output("Kally giggles when you come up to the bar, wobbling slightly. <i>“You better be careful with your drinks, spacer. I might have to cut you off soon.”</i>");
+		output("Kally giggles when you come up to the bar, wobbling slightly. <i>“");
+		if(flags["KALLY_3SOME_TALK"] == undefined) output("You better be careful with your drinks, spacer. I might have to cut you off soon.");
+		else 
+		{
+			output("You better be careful with your drinks, spacer, or my sister's going to talk you into ");
+			if(pc.legCount > 1 && pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) || pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output("walking bow-legged");
+			else if(pc.hasCock()) output("a surprise prostate examination");
+			else output("swallowing enough seed to drown a galotian")
+			output(".");
+		}
+		output("”</i>");
 		output("\n\nYour heart flutters at the knowledge that she cares about your well being, and you barely manage to fight off the urge to give her a hug and apologize for loving the drinks (and the person that serves them) so much. <i>“You’re the bartender. The awesome bartender. It’s your call.”</i>");
 		output("\n\nTwitching her ears and tail, the kui-tan smiles back at you, proving that for all professional poise, she’s about as resistant to your drunken flattery as an ausar in heat. Her nipples are practically jutting at you, so prominent...");
 		output("\n\nLaughing, Kally twists back and forth, letting her big ol’ boobs bounce back and forth, slapping into each other wildly enough that you nearly go dizzy trying to follow their dark chocolate tips. You put a hand to your head and straighten to meet her eyes once more, noting how they seem almost luminous in the bar’s dimmed lighting.");
-		output("\n\n<i>“I hope you enjoyed the show.”</i> Kally giggles. <i>“You’ve been such a wonderful patron that I couldn’t help but give you a little treat, but this might have to be your last one, okay?”</i> She whirls to grab a glass, sending her boobs bouncing once more.”</i>");
+		output("\n\n<i>“I hope you enjoyed the show.”</i> Kally giggles. <i>“");
+		if(flags["KALLY_3SOME_TALK"] == undefined) output("You’ve been such a wonderful patron that I couldn’t help but give you a little treat, but this might have to be your last one, okay?");
+		else output("You've got the 'nuki fever bad, but that's okay. You can look as much as you want while I'm working, and touch as much as you want when I'm not. You just can't drink as much as you want. It's getting close to cut-off time.");
+		output("”</i> She whirls to grab a glass, sending her boobs bouncing once more.”</i>");
 		output("\n\nThat sounds okay, as long as she’s the one to cut you off.");
 		//{+lust}
 		pc.lust(10);
@@ -190,7 +207,10 @@ public function approachKally():void
 	{
 		output("Kally is so pretty when she’s smiling at you... like right now. She brushes a stray lock out of hair out of her eyes, letting you see the sparkling windows to her soul. <i>“Hey, [pc.name]. The drinks treating you all right?”</i>");
 		output("\n\nYou nod, stealing a glance at the half hard length swaying between her legs and her easily-visible nipples. It’s so nice that she doesn’t even try to hide that she’s into you!");
-		output("\n\nKally slides her hand up your arm, over your shoulder, along the curve of your neck to your chin, and gently lifts your gaze back up to her face. <i>“I’m not on the menu, " + pc.mf("stud","hotness") + ", but I’d love to get you another drink, if you think you can handle it.”</i>");
+		output("\n\nKally slides her hand up your arm, over your shoulder, along the curve of your neck to your chin, and gently lifts your gaze back up to her face. <i>“");
+		if(flags["KALLY_3SOME_TALK"] == undefined) output("I’m not on the menu, " + pc.mf("stud","hotness") + ", but I’d love to get you another drink, if you think you can handle it.”");
+		else output("I can't while I'm working, but if you could talk Kiro into it, I could be persuaded to take a break... assuming you could handle both of us.");
+		output("</i>");
 		output("\n\nOh yeah, you can handle it. You could handle her too, if she’d let you.");
 	}
 	//Post threesome talk
@@ -765,7 +785,10 @@ public function tellKallyShesCute():void
 		output("\n\n<i>“Totally.”</i>");
 		output("\n\nThe sugary sweet bartender takes your arm and pulls it down, dragging your fingers along her cheek, chin, and to the nape of her neck. <i>“Then I think I can let you have a little treat.”</i> She guides your hand further south across silky fur to edge of her blouse, then slides you lower, letting your fingers cup a pillowy soft melon. You squeeze before you know what you’re doing, but Kally just smiles and secures your other hand, placing it upon her other breast. <i>“One more, then it’s back to work,”</i> she coos.");
 		output("\n\nYou can’t stop yourself. You caress her tits and thumb at her nipples, revelling in their supple glory. Kally doesn’t stop you from enjoying yourself, but she does make little sighs of enjoyment, only pulling your hands away after you’ve turned one grope into a dozen.");
-		output("\n\n<i>“Down [pc.boyGirl],”</i> the fuzzy club owner commands. She tugs her top to smooth the ruffles you’ve lent it, and shakes her hair, breathing a little more heavily than a few moments ago. <i>“Why don’t we see if there’s anything I can do for you that doesn’t require a bedroom, hrmm?”</i>");
+		output("\n\n<i>“Down [pc.boyGirl],”</i> the fuzzy club owner commands. She tugs her top to smooth the ruffles you’ve lent it, and shakes her hair, breathing a little more heavily than a few moments ago. <i>“");
+		if(flags["KALLY_3SOME_TALK"] == undefined) output("Why don’t we see if there’s anything I can do for you that doesn’t require a bedroom, hrmm?");
+		else output("If you rounded up my sister, I could be talked into giving you a little more time with the girls.");
+		output("”</i>");
 		pc.lust(5);
 	}
 	//Buzzed (or normal drunk)
@@ -777,14 +800,21 @@ public function tellKallyShesCute():void
 		output("\n\nKally waves your words away, but there’s a warm smile hidden behind. <i>“You’re far from the first to tell me that - especially after a few drinks.”</i>");
 		output("\n\nYou press on. <i>“But you like it!”</i>");
 		output("\n\n<i>“Maybe I do,”</i> the bartender giggles, <i>“but maybe I’m too busy doing my job to take flirty [pc.boyGirl]s like you for a ride.");
-		if(flags["KIRO_MET_KALLY"] != undefined) output(" Maybe I’m not going to mess up my sister’s good thing just so I can have a little fun.");
+		if(flags["KIRO_MET_KALLY"] != undefined) 
+		{
+			if(flags["KALLY_3SOME_TALK"] == undefined) output(" Maybe I’m not going to mess up my sister’s good thing just so I can have a little fun.");
+			else output(" Get Kiro involved, and it'd be worth my while.");
+		}
 		output("”</i> She grabs your hand in her paws and gently traces the back of it. <i>“But you are a real sweetheart. You are. And so long as you’re sweet to me, I’ll be sweet to you.”</i> Her hands are warm around yours. <i>“You’re a treat, [pc.name]. Don’t let anyone tell you different. Now is there anything I can do for you... that won’t get me fined for indecency?”</i>");
 	}
 	//Not drunk
 	else
 	{
 		output("<i>“You’re cute.”</i>");
-		output("\n\nKally smirks, <i>“And I’m a damned good bartender too. You gotta have something more interesting to talk about, right?”</i>");
+		output("\n\nKally smirks, <i>“");
+		if(flags["KALLY_3SOME_TALK"] == undefined) output("And I’m a damned good bartender too. You gotta have something more interesting to talk about, right?");
+		else output("And I'm a fantastic lay too, but while I'm working, let's stick to talkin'. Awright?");
+		output("”</i>");
 	}
 	processTime(1);
 	kallyBarMenu();
