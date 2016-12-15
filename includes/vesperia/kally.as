@@ -81,6 +81,12 @@ public function kallyBonusRoomTexts():Boolean
 	{
 		output("\n\nA small sign sits on the empty bar: ‘Break Time’");
 	}
+	else if(flags["KIRO_3SOME_REACTION"] == -1)
+	{
+		showBust("KALLY");
+		output("\n\nKally stays busy behind the bar, not bothering to look your way. The cushy kui-tan is wearing her typical barmaid outfit and busy mixing drinks for her thirsty patrons.");
+		addButton(0,"Kally",approachKally);
+	}
 	//Kally sisterfap!
 	else if(isKallySisterSchlicking())
 	{
@@ -141,13 +147,25 @@ public function approachKally():void
 {
 	clearOutput();
 	showKally();
+	//Bad Kally approach
+	if(flags["KIRO_3SOME_REACTION"] == -1)
+	{
+		output("No matter how you try to get her attention, Kally never approaches you. After a few particularly spirited attempts, a few burly looking patrons approach you.");
+		output("\n\n<i>“Why don’t you find another bar, friend,”</i> one grunts.");
+		output("\n\n<i>“Yeah pal, hit the a gate and find yourself a place to drink where you won’t bother the ladies working there.”</i>");
+		output("\n\n<i>“We’re trying to be nice about this, buddy.”</i>");
+		output("\n\nThere’s enough people here that any kind of fight would be unwise. You step away from the bar before things get rough, satisfying the locals for now. At least they didn’t shove you out the door.");
+		processTime(1);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);	
+	}
 	//Met, Not Kiro Introduced
-	if(flags["KIRO_MET_KALLY"] == undefined)
+	else if(flags["KIRO_MET_KALLY"] == undefined)
 	{
 		output("The moment you come up to the bar, Kally prances over with her tail bouncing along behind. <i>“Welcome back, [pc.name]. Hope the rush is treating you well. What can I get you? " + RandomInCollection(["Kui Creamers","Nutty Nookies","Vesperian Vapors","Royal Reds","Doe-Eyed Draughts","Pneumatic Pilsners"]) + " are selling pretty well. Peer pressure can’t be wrong... right?”</i>");
 	}
 	//CUT OFF
-	if(pc.isSmashed())
+	else if(pc.isSmashed())
 	{
 		output("Kally smiles so sweetly at you when you approach that you nearly melt, leaning on the bar for support. Was she always so adorable? It’s no wonder you keep coming back for drinks when the woman who serves them is so goddamn huggable. And if you hugged her, you could feel her nipples rubbing against you; they look so hard. It must be hell for her to keep that shirt on. Her skirt’s no better. One edge is clearly ascending, lifting the ruffled fabric upward on the back of a cylindrical length. The edge of the bar keeps you from getting a better look, sadly.");
 		output("\n\n<i>“I’m gonna have to cut you off, rush-[pc.boyGirl]. Any more and you’re going to pass out or get a little too handsy for a civilized establishment.”</i> Kally blinks, but to you it looks more like she’s fluttering her eyelashes. <i>“We can talk some more when you’re a little more sober.");
@@ -174,6 +192,74 @@ public function approachKally():void
 		output("\n\nYou nod, stealing a glance at the half hard length swaying between her legs and her easily-visible nipples. It’s so nice that she doesn’t even try to hide that she’s into you!");
 		output("\n\nKally slides her hand up your arm, over your shoulder, along the curve of your neck to your chin, and gently lifts your gaze back up to her face. <i>“I’m not on the menu, " + pc.mf("stud","hotness") + ", but I’d love to get you another drink, if you think you can handle it.”</i>");
 		output("\n\nOh yeah, you can handle it. You could handle her too, if she’d let you.");
+	}
+	//Post threesome talk
+	else if(kiroKallyThreesomes() > 0 && flags["KALLY_3SOME_TALK"] == undefined)
+	{
+		output("Kally walks up to you, shaking her head. <i>“You really are a massive slut, eh?”</i> She shakes her head. <i>“I guess you would have to be, to catch my sister’s eye.”</i>");
+		output("\n\nYou ");
+		if(pc.isBimbo()) output("gleefully nod, licking your lips. <i>“Yeaaaah... isn’t it the best?”</i>");
+		else if(pc.isNice()) output("look shamefully down at the countertop. <i>“I was trying to help, if you can believe that.”</i>");
+		else if(pc.isMischievous()) output("flash her your winningest smile. <i>“There’s nothing wrong with a little little slutting around between friends, my dear.”</i>");
+		else output("shrug. <i>“You can call me whatever you want, but we both know you’re the one desperate to plow your sister.”</i>");
+		output("\n\nKally ");
+		if(pc.isBimbo()) output("giggles");
+		else if(pc.isNice()) output("hooks a finger under your chin and smiles at you");
+		else if(pc.isMischievous()) output("chuckles just hard enough to send a delightful wobble through her lace-bound chest");
+		else output("smirks right back at you");
+		output(". <i>“Well, whatever it takes. I’ll just have to slut it up right alongside you.”</i> Kally adjusts her corset to sit a little lower, the tips of her nipples barely peeking over the top. Bending over, she pulls a tube of temporarily plumping lip-gloss and puckers. <i>“When Kiro sees me, she needs to see someone she wants to fuck, not the annoying sister she remembers.”</i> One coat of shine is applied, and the kui-tan’s mouth gains a glossy angel bow. <i>“Oooh! It tingles.”</i> She looks in the mirror and shakes her head. <i>“Not slutty enough.”</i> The determined bar owner smears two more coats across her increasingly cushiony lips, lacquering them in a glassy shine. They look almost excessively plush and naturally pouty. If Kiro thrusted too hard during a blowjob, she’d bounce right off.");
+		output("\n\nYou look on, too shocked to interrupt.");
+		output("\n\n<i>“Well, what do you think?”</i> Kally musses her hair and tosses it over a shoulder, cocking one hip to the side as confidently as she can. She’s chewing on one of her temporarily expanded lips, but her gaze is rapacious, sizing you up like a piece of meat.");
+		output("\n\n");
+		if(pc.hasCock())
+		{
+			if(pc.lust() >= 66)
+			{
+				output("A surge of stiffness reinforces your already hardened penis");
+				if(pc.cockTotal() > 1) output("es");
+			}
+			else
+			{
+				output("A surge of blood engorges your penis");
+				if(pc.cockTotal() > 1) output("es");
+			}
+		}
+		else if(pc.hasVagina())
+		{
+			output("A trickle of wetness ");
+			if(pc.legCount > 1) output("between your [pc.legs]");
+			else output("makes itself known");
+		}
+		else output("A flush of welcome warmth suffuses you");
+		output(" as she leans closer, presenting you with a very fuckable mouth. <i>“");
+		if(pc.isBimbo())
+		{
+			output("Like, super fuckable.");
+			if(pc.hasCock()) output(" Do you wanna give me a blowjob... for practice or something?");
+			else if(pc.hasVagina()) output(" Do you wanna practice eating out... for practice or something?");
+			else output(" If I had a dick or something, I’d really want your lips on it.");
+		}
+		else if(pc.isNice()) output("Uhh... really, um... fuckable?");
+		else if(pc.isMischievous()) output("Sexy enough that Kiro is going to have to run to the gloryholes every five minutes while you’re working.");
+		else output("Eminently fuckable.");
+		output("”</i>");
+		output("\n\nEars waggling, the Tanuki-girl pulls you into an enormous hug. <i>“Thank you for all of this -  for bringing us together, for breaking the ice, and being so cool with ");
+		if(flags["KIRO_BF_TALK"] == 1) output("me banging your girlfriend");
+		else output("us having a little sister side-action");
+		output(". I’m usually pretty busy behind the bar, but if you ever want to do something like that little gloryhole adventure again, set it up with Kiro, and I’ll find a way to be there.”</i>");
+		output("\n\nKally kisses you before allowing you to escape the hug, long and deep. There’s even a bit of tongue. By the time she releases you, you’re both flushed and breathing heavily.");
+		output("\n\n<i>“Kiro sure knows how to pick ‘em, huh?”</i>");
+		output("\n\nNow it’s your turn to smile. <i>“She sure does.”</i>");
+		processTime(5);
+		flags["KALLY_3SOME_TALK"] = 1;
+		clearMenu();
+		addButton(0,"Next",function():void {
+			clearOutput();
+			showKally();
+			output("Kally touches herself up with a bit more gloss, accidentally tarting herself up a little more in the process, before turning back your way, ecstatic. <i>“So what can I get my second favorite slut?”</i>");
+			kallyBarMenu();
+		});
+		return;
 	}
 	//Met, Kiro Introduced
 	else
@@ -2704,7 +2790,7 @@ public function actuallyPeeptime():void
 public function kallyAndKiroGloryholeThreesomeMeeting():void
 {
 	clearOutput();
-	showName("WORKING'\nGLORYHOLES");
+	showName("WORKIN'\nGLORYHOLES");
 	//Kiro shows up first.
 	//Kally shows up after.
 	output("The door in the stall to your left opens and closes. Strange, you didn’t hear anyone approach.");
@@ -2729,7 +2815,7 @@ public function kallyAndKiroGloryholeThreesomeMeeting():void
 public function kiroAndKallyGloryholeSupremo2():void
 {
 	clearOutput();
-	showName("WORKING'\nGLORYHOLES");
+	showName("WORKIN'\nGLORYHOLES");
 	output("The new arrival doesn’t say a word, just sticks a dark brown dick through the other side. It’s blunted at the tip like Kiro’s, but only about a foot long, still partway flaccid.");
 	if(flags["KALLY_BIMBO_TAPPED"] != undefined) output(" It looks like Kally’s...");
 	output("\n\nYou suppose you always knew this could happen. Two customers, both wanting to blow a hot load down your throat or all over you. You’ll just have to spread the love around. Reaching over with one cummy hand, you start stroking the flaccid newcomer. Your fingers are so filmy with Kiro’s pre-cum that they glide over the new prick like a well-oiled machine. In no time, it begins to stiffen, the base fattening, lifting the drooping front half its own pressurizing need. You help it out by picking it up, then popping off of Kiro to give it a wet kiss. The hermaphroditic Tanuki isn’t forgotten, of course - you’ve still got a hand on her, milking her ever-oozing member to drizzle your shoulders.");
@@ -2763,7 +2849,7 @@ public function kiroAndKallyGloryholeSupremo2():void
 public function kiroAndKallyGloryholeSupremo3():void
 {
 	clearOutput();
-	showName("WORKING'\nGLORYHOLES");
+	showName("WORKIN'\nGLORYHOLES");
 	output("<i>“Oh, sis,”</i> Kiro pants, <i>“how didn’t I see this coming? [pc.name] did, I guess, but... wow.”</i>");
 	output("\n\nKally giggles. <i>“I don’t know, but aren’t you weirded out or something?”</i>");
 	output("\n\n<i>“I’ve done weirder. Besides, I can’t think of a hotter girl to rub dicks with. I mean... your tits, Kally. I could drown those things in spunk - just say the word. And let me sample one of those jizzy beers you serve your regulars first!”</i>");
