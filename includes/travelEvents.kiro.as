@@ -1,4 +1,4 @@
-﻿//Bar Preview Blurb
+//Bar Preview Blurb
 public function kiroSetup(button:int = 0):void
 {
 	if(currentLocation == "CANADA5" && flags["KIRO_MET_KALLY"] != undefined) output("\n\nThe tanuki-girl pirate you saved is here, keeping an eye on her sister’s patrons, ready to crack some heads at a moment’s notice.");
@@ -10,6 +10,7 @@ public function kiroSetup(button:int = 0):void
 
 public function roamingKiroAvailable():Boolean
 {
+	if(flags["KIRO_3SOME_REACTION"] == -1) return false;
 	//flags["RESCUE KIRO FROM BLUEBALLS"] = 1;
 	//Not yet rescued.
 	if(flags["RESCUE KIRO FROM BLUEBALLS"] != 1) return false;
@@ -85,6 +86,11 @@ public function approachKiroAtTheBar(back:Boolean = false):void
 	{
 		output("Kiro’s eyes twinkle. <i>“What now?”</i>");
 		kiroMenu();
+		return;
+	}
+	if(flags["KIRO_3SOME_REACTION"] == undefined && kiroKallyThreesomes() > 0) 
+	{
+		kiroPostIncestChat();
 		return;
 	}
 	//Kally's Bar is speciul
@@ -3465,3 +3471,88 @@ public function kiroFuckOrgyFuntimes7():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function kiroPostIncestChat():void
+{
+	clearOutput();
+	showKiro();
+	output("<i>“[pc.name].”</i> Kiro swishes a drink around in her glass. <i>“Things aren’t going to change between us.”</i> She takes a swig. <i>“Are they?”</i>");
+	output("\n\n<i>“What?”</i> You cock your head to the side.");
+	output("\n\nKiro looks at you sidelong, smirking. <i>“Me and you. We’ve had a pretty good thing going for a while now. You watch my back, and I watch yours. Maybe we squeeze a little ‘nuki nookie in between.”</i> Her tail playfully swings up to boff your back. <i>“Now I discover that my sister fell for my charms even harder than you.”</i> With a heavy sigh, Kiro admits, <i>“I’ve always loved Kally, [pc.name]. In the way you love family, of course, but now she’s getting my dick hard too. How do I deal with that? Maybe this should be something a little more serious. I don’t want to hurt her. Fuck, I just don’t know.”</i>");
+	output("\n\nBombarded with questions, you shrug. <i>“Which question do you want answered.”</i>");
+	output("\n\nKiro punches you in the arm. <i>“All of ‘em, cockface.”</i>");
+	output("\n\nYou slug her right back.");
+	if(pc.PQ() < 50) output(" It barely budges her.");
+	else if(pc.PQ() < 80) output(" It almost knocks her out of her seat.");
+	output("\n\nThe kui-tan ");
+	if(pc.PQ() < 80) output("pretends to wince");
+	else output("winces");
+	output(". <i>“I guess what I’m asking is... is it going to bother you if I’m a little more serious with Kally?”</i> She puts a hand on your shoulder. <i>“Not to say that I want any less time around you, but I’m going to spend a little more time with her and a lot less time with random floozies, present company excluded, of course.");
+	if(flags["KIRO_BF_TALK"] == 1) output(" You’ll always be my [pc.boyGirl]friend on the side.");
+	output("”</i> Kiro grins.");
+	output("\n\nHow do take the news? A negative reaction might drive her away at this point.");
+	processTime(3);
+	clearMenu();
+	//[Good] [Middling] [Bad]
+	addButton(0,"Good",kiroIncestReactionGood);
+	addButton(1,"Middling",kiroIncestReactionNeutral);
+	addButton(2,"Bad",kiroIncestReactionBad);
+}
+
+//[Bad]
+public function kiroIncestReactionBad():void
+{
+	clearOutput();
+	showKiro();
+	output("<i>“Kiro,”</i> you explain, <i>“I was just trying to get you a little sweet sister-puss. Not ");
+	if(flags["KIRO_BF_TALK"] == 1) output("find you my replacement");
+	else output("take you off the market forever");
+	output(".”</i> You stand up. <i>“I was down for the three of us playing together, but not for playing second fiddle to someone you haven’t even seen in a decade.”</i>");
+	output("\n\nKiro’s ears flatten. <i>“It bothers you that much?”</i>");
+	output("\n\n<i>“Yes.”</i> Your voice is hard, the word sharp and clearly spoken.");
+	output("\n\n<i>“Then fuck you.”</i> The kui-tan stands up to you, nose to nose. <i>“Fuck you and frag the ship you rode in on. I’ve been nothing but nice to you - nothing but accepting of everything you wanted to do. I thought I had found a kindred spirit. I thought you could be happy for me. Void, how many sluts are you fucking on the side that I never even asked about? For all I know, you’ve got a dozen twats with wedding rings lined up in the hold of your ship, but it never mattered because </i>I don’t worry about that shit<i>. I cared about the times we spent together, and I thought you were the same.”</i> She scowls, reminding you that she’s got plenty of sharp teeth packed into her compact muzzle. <i>“Just leave then. We’ll be fine.”</i>");
+	output("\n\nKiro seems pretty pissed at you. You probably won’t see much of her now.");
+	flags["KIRO_3SOME_REACTION"] = -1;
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Middling]
+public function kiroIncestReactionNeutral():void
+{
+	clearOutput();
+	showKiro();
+	output("<i>“If it makes you happy, I guess It’ll have to.”</i>");
+	output("\n\nKiro sighs. <i>“I feel like I let you down.”</i>");
+	output("\n\nShrugging, you watch her down a heavy gulp while you answer, <i>“I was just thinking the three of us would be able to have a lot of fun together. I guess I didn’t think something like </i>this<i> would happen.”</i>");
+	output("\n\nThe kui-tan nods. <i>“Me neither.”</i>");
+	output("\n\n<i>“I’ll be okay.”</i> You lean over the bar, looking down at the polished surface. The news wasn’t exactly very welcome.");
+	output("\n\nKiro’s tail curls up around you, pulling you close to her. She gently puts an arm around your shoulder. <i>“You know I’ll still be all over you at the drop of a hat... and I bet Kally would vault over that bar in an instant at the prospect of making a sandwich out of the three of us.”</i> She kisses your nose. <i>“Look at it this way. Instead of having one slutty kui-tan to bang, you’ve got a pair.”</i>");
+	output("\n\nYou smile back at her.");
+	output("\n\n<i>“And who knows, maybe after we’ve had a few years to get to know each other better, she'll wind up smitten with you.”</i> Kiro winks.");
+	output("\n\nIt’s hard to maintain a grumpy mood in the face of such optimism.");
+	flags["KIRO_3SOME_REACTION"] = 0;
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Good]
+public function kiroIncestReactionGood():void
+{
+	clearOutput();
+	showKiro();
+	output("<i>“I’m happy for you,”</i> you answer. <i>“Truly. And proud of my skills as a matchmaker. Not just anyone would have the skills to hook two highly-bangable tanuki’s.”</i> You pat yourself on the chest proudly, then loop your arm over Kiro’s shoulders, squeezing her affectionately. <i>“You can keep fucking the tits off you sister so long as I can");
+	if(pc.isBimbo()) output(", like,");
+	output(" tag in from time to time.”</i>");
+	output("\n\nThrowing her head back and cackling, the raccoon-woman slaps the countertop. <i>“I knew there was a reason I liked you... besides the " + pc.mf("handsome appearance","beautiful face") + ".”</i> Reaching over under the bar, she gives your crotch a familiar squeeze. <i>“Play your cards right, and that could be sooner rather than later.");
+	if(flags["KALLY_3SOME_TALK"] != undefined) output(" Kally’s been dropping hints that she’d be down for another three way... this time with less walls in the way.");
+	else output(" But first I think Kally wants to talk to you.");
+	output("”</i> She leans in closer, this time kissing you on the lips while her paw remains busy below, teasing and caressing. It’s warm and hungry, but she pulls away before it can develop into anything more serious. You are pleased to note the dick-sized distention in Kiro’s clothing, jutting up between her breasts.");
+	output("\n\nKiro purrs, <i>“Can’t have you thinking I’ve forgotten about you.”</i>");
+	output("\n\nSmiling back at her, you consider what to do now that the heavy discussion is behind you.");
+	flags["KIRO_3SOME_REACTION"] = 1;
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
