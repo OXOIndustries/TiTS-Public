@@ -524,7 +524,7 @@ public function arbetzTalkOptions(response:int = 0):void
 		if (!pc.isNice()) output("So presumably that mouthful you call a name has a meaning?");
 		else output("That’s a... big name you’ve got. Does it have a meaning?");
 		output("”</i>");
-		output("\n\n<i>“Naturally,”</i> sniffs Una. <i>“Although “Baroness” is just a very rough translation of the five words used to describe my family’s standing, keep it simple for you blunt-mouthed space-drifters. Doridia, my mother, she was a very distinguished deto-menter. Least when she wasn’t screwing. I’m the seventh of fifteen children: Oreol, my oldest sister, she’s the one you’ve probably heard of. Invented a type of rubber cement that’s completely air tight once set. Doesn’t sound like much, but it’s useful to a space-bound race that can’t go a week without blowing a hole in something. And my goodness me does she think she’s special. Stuck up bitch. What I wouldn’t give to show her up, turn that arrogant little smirk of hers upside down...”</i>");
+		output("\n\n<i>“Naturally,”</i> sniffs Una. <i>“Although “Baroness” is just a very rough translation of the five words used to describe my family’s standing--keep it simple for you blunt-mouthed space-drifters. Doridia, my mother, she was a very distinguished deto-menter. Least when she wasn’t screwing. I’m the seventh of fifteen children: Oreol, my oldest sister, she’s the one you’ve probably heard of. Invented a type of rubber cement that’s completely air tight once set. Doesn’t sound like much, but it’s useful to a space-bound race that can’t go a week without blowing a hole in something. And my goodness me does she think she’s special. Stuck up bitch. What I wouldn’t give to show her up, turn that arrogant little smirk of hers upside down...”</i>");
 		output("\n\nUna is slowly turning a fetching shade of navy telling you this. You can’t help but notice you can just about see the rise of her nipples through the taut fabric of her suit as it quivers in indignation. Is it possible that getting this angry actually turns her on a bit?");
 		output("\n\n<i>“Have you tried inventing anything yourself?”</i> you ask with a slight cough.");
 		output("\n\n<i>“No, but I had a plan,”</i> Una replies, a wistful smile replacing her scowl. <i>“I calculated that with enough explosions detonated in the right places, I could change Daerinoys’ climate just enough to make it more liveable around its equator, as well as turn up a bunch of platinum 190 at the same time. It would have been expensive but so worth it. Even if it went wrong, I would’ve sealed my place in gabilani history forever. My name would have gone on for hours!”</i>");
@@ -903,7 +903,7 @@ public function arbetzSexScenes(response:String = ""):void
 		{
 			output(" the greater part of your [pc.cock " + y + "] is past his disgracefully stretched ring");
 		}
-		output(" you begin to saw into him, hissing to the pleasure of your lubed length sliding almost all the way out of his tight, muscular ass and then driving home into that buttered squeeze. Godi exhales hard with each firm push, grasping handfuls of the yellow sheets at first - but they come throaty gulps and groans of enjoyment soon enough, particularly as you tighten your grip on his straining cat-cock and jerk him with authoritative flicks.");
+		output(" you begin to saw into him, hissing to the pleasure of your lubed length sliding almost all the way out of his tight, muscular ass and then driving home into that buttered squeeze. Godi exhales hard with each firm push, grasping handfuls of the yellow sheets at first - but they become throaty gulps and groans of enjoyment soon enough, particularly as you tighten your grip on his straining cat-cock and jerk him with authoritative flicks.");
 		output("\n\n<i>“Bet you don’t get sugar like this from Una,");
 		if (pc.isAss()) output(" do you, whore?");
 		output("”</i> you growl, the intensity of your heat beginning to build.");
@@ -1085,7 +1085,7 @@ public function arbetzSexScenes(response:String = ""):void
 			{
 				output(" keeps his hands curled around your thighs, thin, sugared lips and rough, wet tongue moving up and down your [pc.cock " + y + "].");
 				output("\n\nYou buck and jounce between them gleefully, shoulders rubbing against Petr’s warm stiff chest as you thrust into Godi’s hot mouth, gasping and then crying out to how good both penetrating and being penetrated feels. You grip the kaithrit’s curly hair as you reach a second orgasm, the incessant rub of the cock in your back passage making you cum deliriously into the wet massage of his maw, the pleasure seizing you up made all the richer for the coarseness of the cock pumping in and out of your stretched asshole.");
-				output("\n\nDizzily you flop back on Petr’s chest and let him satiate himself on you for a second time, gasping and growling as he flap his swim-toughened thighs into your [pc.ass] and then releases his warm, gooey loads deep within you. You groan with profound contentment as you feel even more of it fill you up.");
+				output("\n\nDizzily you flop back on Petr’s chest and let him satiate himself on you for a second time, gasping and growling as he flaps his swim-toughened thighs into your [pc.ass] and then releases his warm, gooey loads deep within you. You groan with profound contentment as you feel even more of it fill you up.");
 			}
 			
 			processTime(10);
@@ -1196,7 +1196,7 @@ public function arbetzSexScenes(response:String = ""):void
 		if (pc.hasHair()) output(" headbutting");
 		else output(" headbutts");
 		output(" you as she mashes her mouth into your [pc.lips] again, serpentine tongue and hot, hard breath invading your mouth. It’s feral, it’s prickly, and the more vicious it gets the better the wet, wrenching struggle-fuck becomes.");
-		output("\n\nYou bark hoarsely and mould as much of yourself into Una’s sweaty, heaving softness as your [pc.cock " + y + "] bulges in irresistible, juicy release, [pc.cum] practically vacuumed out of your hardness into the gabilani’s ruthless, sweltering knead. She doesn’t care; beetle-black eyes fixed entirely on her own prize, breath hard on your");
+		output("\n\nYou bark hoarsely and mold as much of yourself into Una’s sweaty, heaving softness as your [pc.cock " + y + "] bulges in irresistible, juicy release, [pc.cum] practically vacuumed out of your hardness into the gabilani’s ruthless, sweltering knead. She doesn’t care; beetle-black eyes fixed entirely on her own prize, breath hard on your");
 		if (pc.tallness <= 54) output(" face");
 		else output(" [pc.chest]");
 		output(", she rides your spurting dick in total disregard, its rocklike state trapped within the squeeze of her pussy muscles as surely as if you were fitted with a cock-ring.");

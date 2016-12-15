@@ -2128,6 +2128,8 @@
 				case "cumType":
 					buffer = fluidNoun(cumType);
 					break;
+				case "femCumNoun":
+				case "femCumType":
 				case "girlCumNoun":
 				case "girlCumType":
 					buffer = fluidNoun(girlCumType);
@@ -2138,12 +2140,14 @@
 				case "cumGem":
 					buffer = cumGem();
 					break;
+				case "femCumGem":
 				case "girlCumGem":
 					buffer = girlCumGem();
 					break;
 				case "milkGem":
 					buffer = milkGem();
 					break;
+				case "femCumColor":
 				case "girlCumColor":
 					buffer = girlCumColor();
 					break;
@@ -2153,6 +2157,7 @@
 				case "cumVisc":
 					buffer = fluidViscosity(cumType);
 					break;
+				case "femCumVisc":
 				case "girlCumVisc":
 					buffer = fluidViscosity(girlCumType);
 					break;
@@ -2162,6 +2167,7 @@
 				case "cumFlavor":
 					buffer = fluidFlavor(cumType);
 					break;
+				case "femCumFlavor":
 				case "girlCumFlavor":
 					buffer = fluidFlavor(girlCumType);
 					break;
@@ -12713,7 +12719,7 @@
 							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
 						}
 					}
-					return false;
+					//return false;
 				}
 			}
 			return true;

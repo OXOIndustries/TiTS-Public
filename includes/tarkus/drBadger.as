@@ -126,6 +126,12 @@ public function drBadgerBonusShit():Boolean
 				nymfoeSetup();
 			}
 		}
+		// Failsafe (captured or otherwise not there)
+		else if(flags["DR_BADGER_TURNED_IN"] != undefined)
+		{
+			return false;
+		}
+		// Repeat vists
 		else addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
 	}
 	return false;

@@ -103,7 +103,7 @@ public function looksFamiliarToRamis():Boolean
 	switch(flags["RAMIS_FIRST_IMPRESSION"])
 	{
 		case "girlee":
-			if(pc.isFemale() || pc.isFemHerm() || pc.isSexless()) isSame = true;
+			if(pc.isFemale() || pc.isFemHerm() || pc.isSexless() || pc.isShemale()) isSame = true;
 			break;
 		case "boyo":
 			if(pc.isFemboy()) isSame = true;
@@ -227,7 +227,7 @@ public function approachRamis(special:String = "none"):void
 	// First approach
 	output("<i>“... dangling backwards it was! Silly willy didn’t check the airlocks.”</i> As her friends guffaw, the seven foot tall kaithrit swings around on her stool to regard you with unfocused, golden eyes. She narrowly avoids whacking you with her large, tank-top clad boobs. <i>“Oh aye, what d’we have here then?”</i> Her accent lilts and lollops around the words, drawing out “l”s and making every finishing sentence a musical declamation.");
 	// PC is female or futa
-	if(pc.isFemale() || pc.isFemHerm() || pc.isSexless())
+	if(pc.isFemale() || pc.isFemHerm() || pc.isSexless() || pc.isShemale())
 	{
 		output("\n\n<i>“Come to join the party have we,");
 		if(pc.mfn("m", "f", "n") != "f") output(" uh...");
@@ -444,7 +444,7 @@ public function ramisDrink(response:String = "drink"):void
 			output("You moan as you slowly regain consciousness. Oh Void... today is going to be hard. Very hard indeed. You feel like you’ve got a simultaneous case of flu and food poisoning, as well as if someone hit you around the [pc.legOrLegs] with a baseball bat a few times. The one good piece of news is, as you woozily cast your gaze around you, is that you did somehow manage to get back into your bed aboard your ship last night. You took something with you, though - there’s a large, hard object lying next to you. You moan again when you pull down the duvet and see what it is. A breadbin-sized conical construction bot in standby mode. Of course.");
 			output("\n\n<i>“Wakey wakey,”</i> trills Ramis, striding into the room from the bathroom in her underwear, toweling her hair. <i>“Nice shower unit you have. Way better than the communal ones you get on merc cruisers, lemme tell you.”</i> Aside from dilated pupils and a continued lack of coordination - a muscular hip knocks your bedside cabinet askew as she advances on a pile of clothes on the floor - she looks disgustingly unaffected by last night.");
 			output("\n\n<i>“We didn’t, uh...”</i> you trail off.");
-			if(pc.isFemale() || pc.isFemHerm() || pc.isSexless())
+			if(pc.isFemale() || pc.isFemHerm() || pc.isSexless() || pc.isShemale())
 			{
 				output("\n\n<i>“Uh? Oh, no. Don’t think so anyway,”</i> Ramis replies, unsteadily pulling on her jeans. <i>“I’m not into other");
 				if(pc.mf("m", "f") == "m") output("... eh,");

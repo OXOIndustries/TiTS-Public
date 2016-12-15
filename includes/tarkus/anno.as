@@ -1464,6 +1464,8 @@ public function cumWithAnnoOnTop():void
 	clearOutput();
 	author("Savin");
 	showAnno(true);
+	var x:int = pc.cockThatFits(chars["ANNO"].analCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
 	output("Time for a change of pace. Between hilt-deep thrusts into your ausar lover’s spasming ass, you catch her attention with a gentle hair-pull and whisper into one of her towering canid ears, <i>“What do you think about getting on top for a bit?”</i>");
 
 	output("\n\nAnno gives you a quizzical look before a small grin plays across her lips. <i>“I can try,”</i> she says, her voice trailing off into a little moan as you pull yourself out of her and saunter back, sliding down to sit against the other crate. Slowly, Anno stands up, taking her time to look over her shoulders at her backside, even reaching back to spread her cheeks - clearly for your benefit.");
