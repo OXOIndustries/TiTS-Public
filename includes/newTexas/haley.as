@@ -1241,12 +1241,8 @@ public function haleyEllieThreesome():void
 	showHaley();
 	author("Wsan");
 	
-  var mainCockIdx:int = pc.cockThatFits(chars["HALEY"].vaginalCapacity());
-  var subCockIdx:int = -1;
-  if (pc.cocks.length > 1)
-  {
-    subCockIdx = pc.cockThatFits(chars["HALEY"].analCapacity, "volume", [mainCockIdx]);
-  }
+	var mainCockIdx:int = pc.cockThatFits(chars["HALEY"].vaginalCapacity());
+	var subCockIdx:int = pc.cocks.length > 1 ? pc.cockThatFits(chars["HALEY"].analCapacity, "volume", [mainCockIdx]) : -1;
 	
 	output("Haley slumps over the milker with a resigned sigh as you approach, then looks up when she notices your presence.");
 	output("\n\n<i>“Heya, [pc.name]. Don’t s’pose you’ve come by to help me out with my problem?”</i> she asks hopefully.");
