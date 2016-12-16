@@ -3529,7 +3529,7 @@ public function kiroIncestReactionNeutral():void
 	output("\n\n<i>“I’ll be okay.”</i> You lean over the bar, looking down at the polished surface. The news wasn’t exactly very welcome.");
 	output("\n\nKiro’s tail curls up around you, pulling you close to her. She gently puts an arm around your shoulder. <i>“You know I’ll still be all over you at the drop of a hat... and I bet Kally would vault over that bar in an instant at the prospect of making a sandwich out of the three of us.”</i> She kisses your nose. <i>“Look at it this way. Instead of having one slutty kui-tan to bang, you’ve got a pair.”</i>");
 	output("\n\nYou smile back at her.");
-	output("\n\n<i>“And who knows, maybe after we’ve had a few years to get to know each other better, she'll wind up smitten with you.”</i> Kiro winks.");
+	output("\n\n<i>“And who knows, maybe after we’ve had a few years to get to know each other better, she’ll wind up smitten with you.”</i> Kiro winks.");
 	output("\n\nIt’s hard to maintain a grumpy mood in the face of such optimism.");
 	flags["KIRO_3SOME_REACTION"] = 0;
 	processTime(3);

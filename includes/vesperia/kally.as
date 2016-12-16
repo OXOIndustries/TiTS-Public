@@ -5,7 +5,7 @@ Wears this, basically.
 Will fuck almost anyone but only ever becomes emotionally attached to one person. (OH GOD IM MAKING THIS A WAIFU, ARENT I?)
 Drops the occasional "eh?"
 Fiercely protective of her establishment.
-Modded cum - includes an alcohol-like, empathy boosting substance. Lends her cream a slightly nutty, hoppy flavor. Getting drunk on it tends to result in lots of "I love you, maaaaan"  (Mixed in a lot of drinks!)
+Modded cum - includes an alcohol-like, empathy boosting substance. Lends her cream a slightly nutty, hoppy flavor. Getting drunk on it tends to result in lots of "I love you, maaaaan" (Mixed in a lot of drinks!)
 Went to Vesperia on an indentured service contract as a cook after hearing of her sister's exploits. Figured it was the only way to see a new planet.
 Paid off her contract quickly, and with a little help from a mysterious gift in the mail (Bigass chunk of polished picardine), she opened up a bar on one of Vesperia's biggest trade hubs.
 Obviously a "gift" from her sister to help her get started, but SHE DONT KNOW IT.
@@ -172,7 +172,7 @@ public function approachKally():void
 		if(flags["KIRO_MET_KALLY"] != undefined) 
 		{
 			if(flags["KALLY_3SOME_TALK"] == undefined) output(" I bet my sister wouldn’t mind you loving on her a little right about now.");
-			else output("  I wouldn't mind sharing a little loving with you and my sister right now, if you can talk her into it. Just gotta put up my 'break' sign. Then we can really break you in.");
+			else output(" I wouldn’t mind sharing a little loving with you and my sister right now, if you can talk her into it. Just gotta put up my ‘break’ sign. Then we can really break you in.");
 		}
 		output("”</i>");
 		output("\n\nThat’s the best idea you’ve heard all week.");
@@ -184,7 +184,7 @@ public function approachKally():void
 		if(flags["KALLY_3SOME_TALK"] == undefined) output("You better be careful with your drinks, spacer. I might have to cut you off soon.");
 		else 
 		{
-			output("You better be careful with your drinks, spacer, or my sister's going to talk you into ");
+			output("You better be careful with your drinks, spacer, or my sister’s going to talk you into ");
 			if(pc.legCount > 1 && pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) || pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output("walking bow-legged");
 			else if(pc.hasCock()) output("a surprise prostate examination");
 			else output("swallowing enough seed to drown a galotian")
@@ -196,7 +196,7 @@ public function approachKally():void
 		output("\n\nLaughing, Kally twists back and forth, letting her big ol’ boobs bounce back and forth, slapping into each other wildly enough that you nearly go dizzy trying to follow their dark chocolate tips. You put a hand to your head and straighten to meet her eyes once more, noting how they seem almost luminous in the bar’s dimmed lighting.");
 		output("\n\n<i>“I hope you enjoyed the show.”</i> Kally giggles. <i>“");
 		if(flags["KALLY_3SOME_TALK"] == undefined) output("You’ve been such a wonderful patron that I couldn’t help but give you a little treat, but this might have to be your last one, okay?");
-		else output("You've got the 'nuki fever bad, but that's okay. You can look as much as you want while I'm working, and touch as much as you want when I'm not. You just can't drink as much as you want. It's getting close to cut-off time.");
+		else output("You’ve got the ‘nuki fever bad, but that’s okay. You can look as much as you want while I’m working, and touch as much as you want when I’m not. You just can’t drink as much as you want. It’s getting close to cut-off time.");
 		output("”</i> She whirls to grab a glass, sending her boobs bouncing once more.”</i>");
 		output("\n\nThat sounds okay, as long as she’s the one to cut you off.");
 		//{+lust}
@@ -209,7 +209,7 @@ public function approachKally():void
 		output("\n\nYou nod, stealing a glance at the half hard length swaying between her legs and her easily-visible nipples. It’s so nice that she doesn’t even try to hide that she’s into you!");
 		output("\n\nKally slides her hand up your arm, over your shoulder, along the curve of your neck to your chin, and gently lifts your gaze back up to her face. <i>“");
 		if(flags["KALLY_3SOME_TALK"] == undefined) output("I’m not on the menu, " + pc.mf("stud","hotness") + ", but I’d love to get you another drink, if you think you can handle it.”");
-		else output("I can't while I'm working, but if you could talk Kiro into it, I could be persuaded to take a break... assuming you could handle both of us.");
+		else output("I can’t while I’m working, but if you could talk Kiro into it, I could be persuaded to take a break... assuming you could handle both of us.");
 		output("</i>");
 		output("\n\nOh yeah, you can handle it. You could handle her too, if she’d let you.");
 	}
@@ -263,7 +263,7 @@ public function approachKally():void
 		else if(pc.isMischievous()) output("Sexy enough that Kiro is going to have to run to the gloryholes every five minutes while you’re working.");
 		else output("Eminently fuckable.");
 		output("”</i>");
-		output("\n\nEars waggling, the Tanuki-girl pulls you into an enormous hug. <i>“Thank you for all of this -  for bringing us together, for breaking the ice, and being so cool with ");
+		output("\n\nEars waggling, the Tanuki-girl pulls you into an enormous hug. <i>“Thank you for all of this - for bringing us together, for breaking the ice, and being so cool with ");
 		if(flags["KIRO_BF_TALK"] == 1) output("me banging your girlfriend");
 		else output("us having a little sister side-action");
 		output(". I’m usually pretty busy behind the bar, but if you ever want to do something like that little gloryhole adventure again, set it up with Kiro, and I’ll find a way to be there.”</i>");
@@ -803,7 +803,7 @@ public function tellKallyShesCute():void
 		if(flags["KIRO_MET_KALLY"] != undefined) 
 		{
 			if(flags["KALLY_3SOME_TALK"] == undefined) output(" Maybe I’m not going to mess up my sister’s good thing just so I can have a little fun.");
-			else output(" Get Kiro involved, and it'd be worth my while.");
+			else output(" Get Kiro involved, and it’d be worth my while.");
 		}
 		output("”</i> She grabs your hand in her paws and gently traces the back of it. <i>“But you are a real sweetheart. You are. And so long as you’re sweet to me, I’ll be sweet to you.”</i> Her hands are warm around yours. <i>“You’re a treat, [pc.name]. Don’t let anyone tell you different. Now is there anything I can do for you... that won’t get me fined for indecency?”</i>");
 	}
@@ -813,7 +813,7 @@ public function tellKallyShesCute():void
 		output("<i>“You’re cute.”</i>");
 		output("\n\nKally smirks, <i>“");
 		if(flags["KALLY_3SOME_TALK"] == undefined) output("And I’m a damned good bartender too. You gotta have something more interesting to talk about, right?");
-		else output("And I'm a fantastic lay too, but while I'm working, let's stick to talkin'. Awright?");
+		else output("And I’m a fantastic lay too, but while I’m working, let’s stick to talkin’. Awright?");
 		output("”</i>");
 	}
 	processTime(1);
@@ -2080,7 +2080,7 @@ public function tapKallysKegAsBimboII():void
 		clearMenu();
 		addButton(0,"Next",kallyBimboBeejedGenericEpilogue);
 	}
-	//shots  - balls enormous and massive cumshot
+	//shots - balls enormous and massive cumshot
 	if(rand(2) == 0)
 	{
 		output("\n\n<i>“");
