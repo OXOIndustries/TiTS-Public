@@ -7551,7 +7551,7 @@
 			return cocks[index].cLength();
 		}
 		//Find the biggest cock that fits inside a given value
-		public function cockThatFits(fits: Number = 0, type: String = "area"): Number {
+		public function cockThatFits(fits: Number = 0, type: String = "volume",excludedIndexes: Array = null): Number {
 			trace("Fits value: " + fits);
 			if (cocks.length <= 0) return -1;
 			var counter: Number = cocks.length;
@@ -7559,7 +7559,12 @@
 			var index: Number = -1;
 			while (counter > 0) {
 				counter--;
-				if (type == "area") {
+				//Check if this index location is excluded
+				if(excludedIndexes != null && excludedIndexes.indexOf(counter) != -1)
+				{
+					trace("Excluded index from \"cockThatFits\" check: " + counter);
+				}
+				else if (type == "volume") {
 					if (cockVolume(counter, true) <= fits) {
 						//If one already fits
 						if (index >= 0) {
