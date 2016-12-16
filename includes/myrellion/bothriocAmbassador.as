@@ -81,6 +81,10 @@ public function araKeiMenu(lastF:Function = null):void
 	
 	if (flags["ARAKEI_TALKED_BOTHRIOC"] == undefined) addDisabledButton(1, "Flirt", "Flirt", "You don’t know this being well enough to try.");
 	else if (flags["ARAKEI_FLIRTED"] != undefined && pc.isTaur()) addDisabledButton(1, "Flirt", "Flirt", "Being a centaur displeases the bothrioc, for some reason. You won’t get any further with [ara.him] whilst you are one.");
+	else if (bothriocAddiction() >= 100 && flags["ARAKEI_POLISHED_BOOTIES"] != undefined && pc.isPregnant(3))
+	{
+		addDisabledButton(1, "Flirt", "Flirt", "You should probably deal with your current brood first. You get the overwhelming impression that being bred by Ara Kei is not for someone who is already stuffed with spawn.");
+	}
 	else gatedButton({ 
 		id: 1,
 		lbl: "Flirt", 
@@ -435,8 +439,261 @@ public function araKeiFlirt():void
 	}
 	else
 	{
+		if (flags["ARAKEI_POLISHED_BOOTIES"] == undefined)
+		{
+			flags["ARAKEI_POLISHED_BOOTIES"] = 1;
 
+			output("You prostrate yourself in front of Ara Kei and gaze at [ara.him] pleadingly. You don’t need to say anything; you can communicate your need, how [ara.he] "+ ara.mfn("makes", "makes", "make") +" you feel when you are in [ara.his] presence, without saying a word. <i>Fuck me. Fuck me hard. Make me yours.</i>");
+			
+			output("\n\n<i>“Ah, yes,”</i> smiles Ara Kei, gazing down fondly. <i>“Your reward. For having faith in my words, and being brave. There’s still one or two things you have left to learn though, Steele.”</i> [ara.He] "+ ara.mfn("shoos", "shoos", "shoo") +" [ara.his] foot-maid away. You watch as four, heeled boots slowly clack towards your face, until the elegant, black-and-white monster towers over you.");
+			
+			output("\n\n<i>“My second left leg has not been polished for at least four hours,”</i> they whisper. <i>“Begin immediately.”</i>");
+			
+			output("\n\nYou reach forward, bend forward and lay your [pc.tongue] on Ara Kei’s latex-like chitin, as if the order to do so had arrived from your own instincts. When you drag it upwards, warmth suffuses you, submissive bliss radiating through your whole body. All of this sheer, black authority, the feet of a wise, beautiful, absolute master - it deserves to be polished. It NEEDS to be polished, so all may know the devotion this quadomme commands.");
+			
+			output("\n\nAll this spreads inexorably through your mind in the course of three long licks directing along the warm, inflexible smoothness of Ara Kei’s calf, so that within moments you are nothing but a vessel of euphoric submissiveness. A little whimper of pleasure escapes your [pc.lips] as you change position and lavish saliva on [ara.his] inner knee");
+			if (pc.hasCock() || pc.hasVagina())
+			{
+				output(";");
+				if (pc.hasCock()) output(" [pc.eachCock]");
+				if (pc.hasCock() && pc.hasVagina()) output(" and");
+				if (pc.hasVagina()) output(" [pc.eachVagina]");
+				if (pc.hasCock() && pc.hasVagina() || pc.cocks.length > 1 || pc.vaginas.length > 1) output(" are");
+				else output(" is");
+				output(" very, very");
+				if (pc.hasCock()) output(" erect");
+				if (pc.hasCock() && pc.hasVagina()) output(" and");
+				if (pc.hasVagina()) output(" wet");
+			}
+			output(".")
+			
+			output("\n\n<i>“Yes little one,”</i> the bothrioc says, [ara.his] relaxed voice sending fuzzy sensation softly vibrating through you. <i>“Isn’t servility wonderful?");
+			if (flags["ARAKEI_REFUSED_BOOTIES" != undefined) output(" Just think - only a short time ago you refused to do this. Now you can appreciate how silly that attitude was, can’t you?”</i> you wag your head fervently. What an idiot you were being! <i>“");
+			else output(" ");
+			output("Let us not mistake willingness and effort for a job well done, though. Your technique needs work.”</i>");
+			
+			output("\n\nYou aren’t doing the very best you could? The soft bliss subsuming you immediately narrows down into a laser-guided focus. You pay solemn, microscopic attention as Ara Kei silently directs [ara.his] foot-maid to come back over and begin work on the leg directly next to yours.");
+			
+			output("\n\n<i>“See how she rolls her tongue, and goes with the grain,”</i> the quadomme instructs. Swiftly you follow suit, bending down to lap at Ara Kei’s narrow ankle, shivering at the way obeying [ara.his] order sends a fresh wave of pleasure crashing through your body. <i>“That prevents streaking. Kisses along the inner thigh are also very important...”</i>");
+			
+			output("\n\nYou are not allowed to stop until Ara Kei’s leg shines wetly with your saliva - and even then, you are made to go over several areas again by your strict instructor. You don’t mind. Being knelt in front of the bothrioc and forced to improve by them is gratifying beyond anything you think you’ve ever felt. By the end you feel ablaze with arousal,");
+			if (pc.hasCock()) output(" [pc.eachCock] hard against your [pc.belly]");
+			if (pc.hasCock() && pc.hasVagina()) output(" and");
+			if (pc.hasVagina()) output(" [pc.eachVagina] puffy and spread, fervently awaiting a hard breeding");
+			output(".");
+			
+			output("\n\n<i>“Inexpertly but ardently done, Steele,”</i> says the quadomme. You practically purr when [ara.his] fingers");
+			if (pc.hasHair()) output(" run through your [pc.hair]");
+			else output(" rub you behind the [pc.ear]");
+			output(" fondly. <i>“Watching your progress all the way along the path has warmed my hearts. Ah... if only all farlanders had the same honesty and humbleness as you.”</i>");
+			
+			output("\n\n<i>“Will you breed me now, "+ ara.mfn("master", "mistress", "master-mistress") +"?”</i> you ask. Perhaps there was a time when you wouldn’t have had asked such a question so directly. A colder, sadder time.");
+			
+			output("\n\n<i>“Hmm,”</i> replies Ara Kei thoughtfully. [ara.he] withdraw" + ara.mfn("s", "s", "") +" [ara.his] hand to touch the pit of your throat with a single finger, drawing it slowly up your neck. You shiver with bliss. <i>“No. You may believe me cruel and sadistic for this, Steele, but there’s a very important lesson I want you to take away from today: Worshipping a domme is a reward in and of itself. You can feel that for yourself now, but still, connecting the absolutely essential tasks of an incubator to getting packed with eggs - no, I will not do your");
+			if (flags["ARAKEI_RESOLVED_MASTER"] == undefined) output(" future");
+			output(" owner that disservice.");
+			if (flags["ARAKEI_REFUSED_BOOTIES"] != undefined) output(" Given you refused my wish earlier, it is all the more important for you to grasp this.");
+			output(" You have done everything I’ve asked though, and I honor my promises. Meditate on this lesson, and then come see me again, if you are still interested in... learning more.”</i>");
+			
+			output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realise that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mfn("has", "has", "have") +" given you... leading you inexorably on...");
+
+			processTime(20+rand(10));
+			pc.lust(15);
+			araKeiMenu(araKeiFlirt);
+		}
+		else
+		{
+			output("You prostrate yourself in front of Ara Kei and gaze at [ara.him] pleadingly. You don’t need to say anything; you can communicate your need, how [ara.he] make"+ ara.mfn("s", "s", "") +" you feel when you are in [ara.his] presence, without saying a word. <i>Fuck me. Fuck me hard. Make me yours.</i>");
+
+			output("\n\nBut you aren’t dumb, or at least not where getting what you want from the bothrioc is concerned. The peaceful, empathic clarity that comes from being an egg bitch allows you to perceive things that previously you could not. Like the fact Ara Kei’s jet, burnished abdomen is slightly more swollen than usual. Like the fact there’s just a hint of tetchiness to how [ara.he] "+ ara.mfn("is", "is", "are") +" directing [ara.his] minions, as if [ara.he] were pent up and on edge. You’ve picked your moment carefully. Perhaps this was the lesson [ara.he] "+ ara.mfn("was", "was", "were") +" trying to impart all along by denying you like this? The art of being able to perceive when a dominant is feeling the itch? It wouldn’t surprise you.");
+
+			if (flags["ARAKEI_THE_REAMENING"] == undefined)
+			{
+				output("\n\n<i>“So here we are at last, [pc.name] Steele,”</i> says the bothrioc ambassador. The big, pupil-less eyes are focused on you, and this time they don’t turn away; you are at the centre of Ara Kei’s attention, and it feels like being at the very bottom of a black, silk-lined pit. <i>“In the clearing at the end of the path. True understanding. And now I am to present you a small taste of the fruits available from achieving this state of being. I said that I would, and so it shall be. There is no need to rise.”</i>");
+			}
+			else
+			{
+				output("\n\n<i>“Again, Steele?”</i> says the bothrioc ambassador, raising an eyebrow. <i>“");
+				if (flags["ARAKEI_RESOLVED_MASTER"] != undefined) output(" Is your owner not seeing to your needs? The level of your abasement makes me worry.");
+				else output(" Can you not see the need for someone who has the time to properly take care of you, now? Occasionally getting me to fuck you senseless is a temporary solution at best.");
+				output("”</i> [ara.he] sigh" + ara.mfn("s", "s", "") +" heavily. <i>“Oh, very well. It is so difficult to say no to that face.”</i>");
+			}
+
+			output("\n\n[ara.He] shoo"+ ara.mfn("s", "s", "") +" away [ara.his] foot-maid, rise"+ ara.mfn("s", "s", "") +" up to their full height, and then stride"+ ara.mfn("s", "s", "") +" off in mesmerising, alien style. You");
+			if (pc.isNaga()) output(" slither after her, [pc.belly] rubbing along the ground");
+			else if (pc.isGoo()) output(" ooze deferentially after her");
+			else if (!pc.isTaur())
+			{
+				output(" follow on your [pc.hands]");
+				if (pc.hasKnees()) output(" and knees");
+			}
+			else output(" follow behind");
+			output(", eyes fixed on the gleaming black chitin rising and falling with utterly assured grace ahead of you.");
+
+			pc.lustRaw = pc.lustMax();
+			processTime(10+rand(5));
+
+			clearMenu();
+			addButton(0, "Next", araKeiTheReamening);
+			//Max out Lust
+		}
 	}
+}
+
+public function araKeiTheReamening():void
+{
+	clearOutput();
+	showAraKei();
+
+	output("Ara Kei leads you into a large, shaded room, maybe a former office space that has been cleared of its former accoutrements and hung with tall, thin tapestries and banners. When [ara.he] close"+ ara.mfn("s", "s", "") +" the door with a firm click behind you all the noise and bustle from the embassy is hushed down to a quiet drone; it’s as if it’s coming from a distant street outside. The room is dominated by a huge, cylindrical object that hangs from the ceiling all the way down to the floor, so odd-looking it almost breaks the spell of all that lithe, white flesh and plump, gleaming chitin in front of you. It’s like a massive mosquito net, or a drooping chandelier made entirely out of sheets; layer upon layer of white silk flowing downward and strung with an intricate pattern of ropes and pulleys.");
+
+	output("\n\n<i>“I must say, I’m very impressed with the siel’s work,”</i> the quadomme says, leaving you kneeling on the wooden floor to stride around the room, touching and stroking various large, white bundles securely tied to the ceiling. Between [ara.him] and the hanging sheeted object, you don’t immediately realise what they are. <i>“Made exactly to my specifications and then some,”</i> [ara.he] murmur"+ ara.mfn("s", "s", "") +", sinking [ara.his] long fingers into one of the webbed submissives with surgical precision, eliciting a hoarse gasp of pleasure from the uncovered mouth. <i>“If my people are ever uplifted, there is a very rich relationship to be had there. You will stand at the bottom of my bed, Steele.”</i>");
+
+	output("\n\nTremulously you do so, carefully pulling aside a silk sheet so that you can stand at the centre of the cylinder of hanging sheets and ropes. There’s a light on at the top of it. You try and control your breathing when the clack of four stilettoed feet comes steadily closer and the rays are blotted out by a tall shape behind you, but it’s impossible. Even when you’re not looking directly at [ara.him], the mere presence of Ara Kei makes your heart thump and your skin feel incredibly sensitive, begging to be touched.");
+
+	if (flags["ARAKEI_THE_REAMENING"] == undefined)
+	{
+		output("\n\n<i>“You probably think I’m dreadfully cruel,”</i> says the quadomme. [ara.His] hands move with business-like briskness over your body, divesting you of your [pc.gear] with the ease only a person with twenty fingers and a lot of practice undressing others could achieve. You shiver as the four hands come to rest on your naked frame, two on your shoulders and two on your waist, this time more tenderly. <i>“Denying you for so long, when your body has been crying out for me to throw you over the nearest desk and take you roughly for who knows how long now.”</i>  [ara.His] fingers are following the line of your muscles down one arm whilst another draws the limb out, pulling it taut; every so often [ara.his] fingertips dig in, probing, testing. A particular pinch near your inner elbow makes you gasp slightly, your bicep tensing up. Ara Kei makes a whispering <i>“ahh”</i> noise, and holding your arm in position, loops a knotted rope around your wrist.");
+
+		output("\n\n<i>“Didn’t you?”</i> [ara.he] persist"+ ara.mfn("s", "s", "") +", performing the same trick with your other arm, so that both limbs are splayed helplessly above you. <i>“Wondered why I didn’t make casual use of you whenever I felt like it? Did you wonder if it was an act of sadism?”</i>");
+
+		output("\n\n<i>“I - I did wonder, Ara Kei,”</i> you manage. [ara.He] "+ ara.mfn("is", "is", "are") +" concentrating on your lower half, now. Chitinous fingers drift over your [pc.groin],");
+		if (pc.hasCock())
+		{
+			output(" grasping your fervently erect cock");
+			if (pc.cocks.length > 1) output("s");
+			output(" momentarily");
+		}
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasVagina())
+		{
+			output(" sliding over the inner lips of your moistened cunt");
+			if (pc.vaginas.length > 1) output("s");
+		}
+		output(" - but that isn’t their main interest here. The bothrioc’s glossy digits roam over the mass of your [pc.thighs] and [pc.legs], twisting you this way and that, searching out those raw, tingling nerve-endings that they are looking for. The longer [ara.he] explore"+ ara.mfn("s", "s", "") +" your body, the more of those little tweaks and flexes that make you tense up [ara.he] discover"+ ara.mfn("s", "s", "") +", and... you don’t know for how much longer you can keep breathing if they keep touching you that way...");
+
+		output("\n\n<i>“I didn’t lie,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +", reaching down to");
+		if (pc.isNaga() || pc.isGoo())
+		{
+			output(" tie a series of rope loops around your");
+			if (pc.isNaga()) output(" serpentine lower half");
+			else output(" gooey lower half");
+		}
+		else output(" circle your ankles with rope");
+		output(", securing them tightly with practiced jerks of the wrist. [ara.He] step"+ ara.mfn("s", "s", "") +" back, you hear the squeak of pulleys, and the next second you are being hoisted off the ground. You fall forwards into mid-air, helplessly dangling from your trapped wrists and looped up [pc.legs].");
+
+		output("\n\n<i>“Looking after 40 incubators is far too much responsibility for me to bend over every cute morsel that happens to come into the embassy and give me the eye,”</i> [ara.he] murmur"+ ara.mfn("s", "s", "") +" in your ear. Somehow [ara.he] "+ ara.mfn("is", "is", "are") +" travelling with you, limbs shuffling in the hanging bed’s fabric behind you as [ara.he] winch"+ ara.mfn("es", "es", "") +" you further and further away from the hard, polished floor. Ten feet up your bound, helpless form comes to a stop with a click. Two hard, stilettoed feet come to rest on your waist. Three long fingers touch you near the pit of your neck, tracing your collarbone comfortingly until your breathing is no longer ragged and your heartbeat has dropped at least a bit.");
+
+		output("\n\n<i>“But that wasn’t the only reason, I admit,”</i> Ara Kei continues. [ara.He] "+ ara.mfn("is", "is", "are") +" utterly measured, the same tone of voice that [ara.he] used to address you the very first time you met still in place here, crouched over your naked and completely helpless form; composed, relentless, flawless power. [ara.His] hand slides away from your collarbone, down your spread-eagled arm, and grips you at a pressure point. At the same time, they curl another hand around your [pc.thigh] and pinches you there. It’s as if somebody just directed a bolt of electricity through you; you spasm in your bonds, crying out wordlessly, almost unaware of how");
+		if (pc.hasCock()) output(" [pc.eachCock] flexes up eagerly");
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasVagina()) output(" [pc.eachVagina] quivers with unspeakable pleasure");
+		if (pc.hasCock() || pc.hasVagina()) output(" to [ara.his] touch.");
+		else output(" effortlessly [ara.he] toy" + ara.mfn("s", "s", "") +" with your pleasure.");
+
+		output("\n\n<i>“If you have the ability to cure a half-blind person’s sight, why show them a beautiful landscape before you have done so?”</i> Another pair of simultaneous pinches, another blazing electrical spasm which scatters whatever thoughts you have to the four corners of the galaxy. <i>“Certainly I could have been doing this to you much sooner, but what a shame if you hadn’t already completely surrendered to me. To us. To a lifetime of bliss.”</i>");
+	}
+	else
+	{
+		output("\n\n[ara.His] hands move with business-like briskness over your body, divesting you of your [pc.gear] with the ease only a person with twenty fingers and a lot of practice undressing others could achieve. You shiver as the four hands come to rest on your naked frame, two on your shoulders and two on your waist, this time more tenderly.  [ara.his] fingers follow the line of your muscles down one arm whilst another draws the limb out, pulling it taut; every so often [ara.his] fingertips dig in, probing, testing. A particular pinch near your inner elbow makes you gasp slightly, your bicep tensing up. Ara Kei makes a whispering <i>“ahh”</i> noise, and holding your arm in position, loops a knotted rope around your wrist.");
+
+		output("\n\n<i>“It’s mostly down to memory, you know,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +" briskly, performing the same trick with your other arm, so that both limbs are splayed helplessly above you. <i>“If I can remember exactly what makes each of my subs crease up and whimper with pleasure I can remember exactly which articles need to be cited in front of the Kui Tan Consul, and if I can remember which articles... ”</i> chitinous fingers drift over your [pc.groin],");
+		if (pc.hasCock())
+		{
+			output(" grasping your fervently erect cock");
+			if (pc.cocks.length > 1) output("s");
+			output(" momentarily");
+		}
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasVagina())
+		{
+			output(" sliding over the inner lips of your moistened cunt");
+			if (pc.vaginas.length > 1) output("s");
+		}
+		output(" - but that isn’t their main interest here. The bothrioc’s glossy digits roam over the mass of your [pc.thighs] and [pc.legs], twisting you this way and that, searching out those raw, tingling nerve-endings that they are looking for. The longer [ara.he] explore"+ ara.mfn("s", "s", "") +" your body, the more of those little tweaks and flexes that make you tense up [ara.he] discover"+ ara.mfn("s", "s", "") +", and... you don’t know for how much longer you can keep breathing if [ara.he] keep"+ ara.mfn("s", "s", "") +" touching you that way... <i>“ ...you get the picture.”</i>");
+
+		output("\n\n[ara.He] reach"+ ara.mfn("es", "es", "") +" down to");
+		if (pc.isNaga() || pc.isGoo())
+		{
+			output(" tie a series of rope loops around your");
+			if (pc.isNaga()) output(" serpentine lower half");
+			else output(" gooey lower half");
+		}
+		else output(" circle your ankles with rope");
+		output(", securing them tightly with practiced jerks of the wrist. [ara.He] step"+ ara.mfn("s", "s", "") +" back, you hear the squeak of pulleys, and the next second you are being hoisted off the ground, helplessly dangling from your trapped wrists and looped up [pc.legs]. Somehow [ara.he] "+ ara.mfn("is", "is", "are") +" travelling with you, limbs shuffling in the hanging bed’s fabric behind you as [ara.he] winch"+ ara.mfn("es", "es", "") +" you further and further away from the hard, polished floor. Twelve feet up your bound, helpless form comes to a stop with a click. Two hard, stilettoed feet come to rest on your waist. Three long fingers touch you near the pit of your neck, tracing your collarbone comfortingly until your breathing is no longer ragged, your heartbeat has dropped at least a bit.");
+
+		output("\n\n<i>“So here we are again, Steele,”</i> Ara Kei goes on. [ara.He] "+ ara.mfn("is", "is", "are") +" utterly measured, the same tone of voice that [ara.he] used to address you the very first time you met still in place here, crouched over your naked and completely helpless form; composed, relentless, flawless power. [ara.His] hand slides away from your collarbone, down your spread-eagled arm, and grips you at a pressure point. At the same time, they curl another hand around your [pc.thigh] and pinches you there. It’s as if somebody just directed a bolt of electricity through you; you spasm in your bonds, crying out wordlessly, almost unaware of how");
+		if (pc.hasCock())
+		{
+			output(" [pc.eachCock] flex");
+			if (pc.cocks.length == 1) output("es");
+			output(" up eagerly");
+		}
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasVagina())
+		{
+			output(" [pc.eachVagina] quiver");
+			if (pc.vaginas.length == 1) output("s");
+			output(" with unspeakable pleasure");
+		}
+		if (pc.hasCock() || pc.hasVagina()) output(" to [ara.his] touch.");
+		else output(" effortlessly [ara.he] toy" + ara.mfn("s", "s", "") +" with your pleasure.");
+
+		output("\n\n<i>“Willingly you come in here - no, you beg to come in here, so that I can render you helpless, play with you as I wish and utterly engorge you with my children-to-be.”</i> Another pair of simultaneous pinches, another blazing electrical spasm which scatters whatever thoughts you have to the four corners of the galaxy. <i>“It doesn’t make the slightest bit of sense if you stop to think about it. But that’s the joy of my race, isn’t it?”</i> [ara.His] breath washes over the nape of your neck, and [ara.his] feet tighten their grip on your waist. <i>“We evolved so that the </i>prey<i> would come to </i>us<i>.”</i>");
+	}
+
+	output("\n\nThis time, four hands touch you in four different places, gently but firmly. The effect is to force you to inexorably arch your back, presenting your [pc.ass] to the huge, slim creature that has made [ara.himself] your puppet-master. You moan as something warm and oily nestles itself between your ass-cheeks, spreading them to press against your [pc.anus] with agonising slowness. At the same time, the four hands clamp where they are resting, at your elbows and just below your ribcage.");
+	if (pc.hasCock())
+	{
+		output(" Your desperate erection");
+		if (pc.cocks.length > 1) output("s are");
+		else output(" is");
+		output(" incredibly tight, unbearable arousal making");
+		if (pc.cocks.length > 1) output(" them");
+		else output(" it");
+		output(" rock hard");
+
+		if (pc.hasVagina()) output(", e");
+	}
+	if (!pc.hasCock() && pc.hasVagina()) output(" E");
+	if (pc.hasVagina())
+	{
+		output("cstatic electricity pulses through your cunt");
+		if (pc.vaginas.length > 1) output("s");
+		output(", making");
+		if (pc.vaginas.length == 1) output(" it");
+		else output(" them");
+		if (pc.wettestVaginalWetness() < 3) output(" drip");
+		else output(" drool");
+		output(" [pc.femcum] onto the floor far below.");
+	}
+	output(" The quadomme holds you like that, on a precipice of keening arousal, for what seems like hours, days of sadistic ecstasy; and then [ara.he] punch"+ ara.mfn("es", "es", "") +" [ara.his] ovipositor inwards, piercing your "+ (pc.mf("m", "f") == m ? "boy pussy" : "ass pussy") +" and spreading you with its first bulging section with a single fierce movement. You scream as you orgasm, thrashing helplessly against your bonds as");
+	if (pc.hasCock())
+	{
+		output(" [pc.eachCock] flume");
+		if (pc.cocks.length == 1) output("s");
+		output(" [pc.cum] into the air, hitting the far curtain you’re clenching up that hard");
+		if (pc.hasVagina()) output(" and");
+	}
+	if (pc.hasVagina())
+	{
+		output(" [pc.eachVagina] gutter");
+		if (pc.vaginas.length == 1) output("s");
+		output(" juices deliriously");
+	}
+	output(", full body pulses of submissive ecstasy which are made all the more powerful by how raw the bothrioc’s touch has left your nerve endings.");
+
+	output("\n\n<i>“Ah, the little death,”</i> sighs Ara Kei, fondling your heaving [pc.chest] with sweeps of [ara.his] hands all the while. Even in the middle of your shocking orgasm, you can feel [ara.him] narrowing [ara.his] focus, working out just where your");
+	if (pc.biggestTitSize() > 1) output(" breasts are");
+	else output(" chest is");
+	output(" most sensitive, just exactly how to touch your [pc.nipples] to make them tingle with agonising joy... <i>“You’re going to be dying a lot, over the next day or so.”</i>");
+
+	pc.orgasm();
+	processTime(20+rand(10));
+	pc.lustRaw = pc.lustMax * 0.4;
+
+	clearMenu();
+	addButton(0, "Next", );
 }
 
 public function araKeiPolishBooties():void
@@ -491,14 +748,14 @@ public function araKeiPolishBooties():void
 	processTime(15);
 	pc.lust(15);
 	araKeiMenu(araKeiFlirt);
-
-//+ + Lust
 }
 
 public function araKeiNoPolishBooties():void
 {
 	clearOutput();
 	showAraKei();
+
+	flags["ARAKEI_REFUSED_BOOTIES"] = 1;
 
 	output("You take big, sucking gulps of air. It takes a while, but at last the imperative urge to obey the dominant... to sink into the soft, sweet, fuzz of obedience... fades, and you can voice the words, as unpleasant and bitter as they are.");
 
@@ -511,4 +768,3 @@ public function araKeiNoPolishBooties():void
 	processTime(2+rand(2));
 	araKeiMenu(araKeiFlirt);
 }
-
