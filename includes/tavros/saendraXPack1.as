@@ -2058,7 +2058,9 @@ public function zilCallGirlFuckHer(inAppt:Boolean = false):void
 		output("\n\nYou manage to smile between receding shockwaves of pleasure, finally emptying your [pc.balls] inside her. She coos happily");
 		if (pc.cumQ() >= 1000) output(", even as your prodigious load gushes back out when you withdraw, soaking her bed in a [pc.cumColor] mess");
 		else output(" as you pull out, leaving her thighs and black lips stained with moisture");
-		output(". <i>“You’ll have to do that to me again soon. Won’t you?”</i> she smiles, leaning down to plant a kiss on your brow. {Not preggers: <i>“Maybe that virile seed of yours will take inside me again... I look forward to it.”</i>}");
+		output(". <i>“You’ll have to do that to me again soon. Won’t you?”</i> she smiles, leaning down to plant a kiss on your brow.");
+		// Not preggers:
+		if(!zilCallGirlPregnant()) output(" <i>“Maybe that virile seed of yours will take inside me again... I look forward to it.”</i>");
 
 		output("\n\nYou return the smile, rolling off of her and onto the bed beside her. As much as you’d like to stay, you do have business elsewhere.");
 
