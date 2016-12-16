@@ -33,8 +33,6 @@ public function landOnNewTexas():void
 	}
 }
 
-
-
 //output("\n\nCustoms & Check-in");
 //output("\n\nRoom Description");
 public function customsAndCheckInOnNewTexas():Boolean
@@ -781,10 +779,15 @@ public function getCarriePregContainer():PregnancyPlaceholder
 //Use Machine
 public function useDaMilkar():void
 {
-	if(carrieSoothingShowerChance())
+	// Special scenes
+	if(carrieSpecialChance())
 	{
-		carrieSoothingShowerGo();
-		return;
+		if(carrieSoothingShowerChance())
+		{
+			if(carrieMilkerBadEndChance()) carrieMilkerBadEnd();
+			else carrieSoothingShowerGo();
+			return;
+		}
 	}
 	
 	clearOutput();
@@ -820,15 +823,19 @@ public function useDaMilkar():void
 	else
 	{
 		output("When you approach, Carrie hops up and flashes you a big, doe-eyed smile. <i>“Hey there, [pc.name]! You here to use the boy-milker again? If so, since you’ve used it before, you can go on ahead without me if you want... or would you rather I stick around and help you out? I don’t mind either way!”</i>");
-		clearMenu();
-		//Use w/ Carrie
-		addButton(0,"w/Carrie",okayEllieYaCuntLetsMilkMeFirstTime,undefined,"w/Carrie","Ask Carrie to help you out in the milking stall. A little companionship never hurt, either.");
-		//Use w/o Carrie
-		addButton(1,"w/o Carrie",useTheMilkerWithoutCarrieYaSkag,undefined,"w/o Carrie","Tell Carrie you can get yourself situated.");
-		if(!pc.hasPheromones()) addDisabledButton(2,"Blowjob","Blowjob","Only pheromone-emitting males can ask Carrie for a blowjob.");
-		else addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there’s a perfectly developed cow-girl close at hand?");
-		addButton(14,"Leave",mainGameMenu);
+		useDaMilkarMenu();
 	}
+}
+public function useDaMilkarMenu():void
+{
+	clearMenu();
+	//Use w/ Carrie
+	addButton(0, "w/Carrie", okayEllieYaCuntLetsMilkMeFirstTime, undefined, "w/Carrie", "Ask Carrie to help you out in the milking stall. A little companionship never hurt, either.");
+	//Use w/o Carrie
+	addButton(1, "w/o Carrie", useTheMilkerWithoutCarrieYaSkag, undefined, "w/o Carrie", "Tell Carrie you can get yourself situated.");
+	if(!pc.hasPheromones()) addDisabledButton(2, "Blowjob", "Blowjob", "Only pheromone-emitting males can ask Carrie for a blowjob.");
+	else addButton(2, "Blowjob", carrieBlowjobIntro,undefined, "Blowjob", "Why have the harsh embrace of a machine when there’s a perfectly developed cow-girl close at hand?");
+	addButton(14, "Leave", mainGameMenu);
 }
 
 //No Thanks
@@ -1773,7 +1780,7 @@ public function carrieBlowjobIntro():void
 		//Time is 17:05-08:55
 		else
 		{
-			output("\n\n<i>“Maybe,”</i> Carrie murmurs. She looks slightly torn, turning her head away from you at the same time as pushing her warm, ample breast into your side. <i>“But I gotta job, big guy. Even though it’s really dead at... this time...”</i> You slide your hand down further, over the soft rise of her butt, slipping your fingers beneath her spandex costume and across the parting of her plump, over-juiced pussy, tracing it slowly. <i>“Ahh! Alright, ok,”</i> she half laughs, half gasps. <i>“We can do the off-peak special to get at that sperm of yours, if you like. Since you’re obviously very pent up.”</i>");
+			output("\n\n<i>“Maybe,”</i> Carrie murmurs. She looks slightly torn, turning her head away from you at the same time as pushing her warm, ample breast into your side. <i>“But I gotta job, big " + pc.mf("guy","girl") + ". Even though it’s really dead at... this time...”</i> You slide your hand down further, over the soft rise of her butt, slipping your fingers beneath her spandex costume and across the parting of her plump, over-juiced pussy, tracing it slowly. <i>“Ahh! Alright, ok,”</i> she half laughs, half gasps. <i>“We can do the off-peak special to get at that sperm of yours, if you like. Since you’re obviously very pent up.”</i>");
 			output("\n\nShe pulls away, retrieves a large glass jar from underneath the milking machine and then walks past it into the barn’s back lot, with her come-hither eyes, swishing tail and bouncing, heart-shaped ass beckoning you to follow. [pc.OneCock] eagerly leads the way.");
 			processTime(4);
 			clearMenu();
@@ -2144,14 +2151,16 @@ public function carrieBlowjobsGo():void
 //Has done a scene with Cora in it
 //Scene has 20% chance of proccing when PC approaches milker. 0% chance if scene procced in last 24 hours, 50% chance if scene hasn’t procced in 72 hours.
 
+public function carrieSpecialChance():Boolean
+{
+	return (!pc.hasStatusEffect("NT Male Milker Disabled") && pc.hasPheromones() && pc.hasCock() && flags["CARRIE_BLOWJOBBED"] != undefined && flags["CORA_SUCKED"] != undefined);
+}
 public function carrieSoothingShowerChance():Boolean
 {
-	if(!pc.hasStatusEffect("NT Male Milker Disabled") && pc.hasPheromones() && pc.hasCock() && flags["CARRIE_BLOWJOBBED"] != undefined && flags["CORA_SUCKED"] != undefined)
-	{
-		if(pc.getStatusMinutes("Cora Showered") >= ((72 - 24) * 60)) return false;
-		if(pc.hasStatusEffect("Cora Showered") && rand(5) == 0) return true;
-		if(rand(2) == 0) return true;
-	}
+	if(pc.getStatusMinutes("Cora Showered") >= ((72 - 24) * 60)) return false;
+	if(flags["NT_BUILD_BOTTLE_PLANT"] != undefined) return true;
+	if(pc.hasStatusEffect("Cora Showered") && rand(5) == 0) return true;
+	if(rand(2) == 0) return true;
 	return false;
 }
 public function carrieSoothingShowerGo(response:String = "intro"):void
@@ -2206,7 +2215,11 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// A Shower
 		// First / Threesome
 		case "shower intro":
-			showName("SHOWER\nROOM");
+			rooms["516"].removeFlag(GLOBAL.NPC);
+			currentLocation = "NT SHOWER HOUSE";
+			generateMap();
+			
+			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
 			if(flags["CARRIE_SHOWER_THREESOME"] == undefined)
@@ -2229,7 +2242,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome p1");
 			break;
 		case "shower threesome p1":
-			showName("SHOWER\nROOM");
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
 			output("These two are made for pleasure, and every moment their soft, sensitive bodies are not being used to experience it at its keenest edge seems like an outrage. With that in mind, you push Carrie against the wall");
@@ -2251,7 +2263,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome p2");
 			break;
 		case "shower threesome p2":
-			showName("SHOWER\nROOM");
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
 			var superCum:Boolean = false;
@@ -2284,7 +2295,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			else addButton(0, "Next", carrieSoothingShowerGo, "shower threesome end");
 			break;
 		case "shower threesome super cum":
-			showName("SHOWER\nROOM");
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
 			output("Of course, the girls know even then that’s not everything you’ve got to give. After only a few moments of rest under the beat of the hot water, drifting fingers and cooing exultations force you to get back to your role as " + pc.mf("papa bull", "alpha bitch") + ".");
@@ -2311,7 +2321,10 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome end");
 			break;
 		case "shower threesome end":
-			showName("SHOWER\nROOM");
+			currentLocation = "516";
+			generateMap();
+			
+			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
 			output("After you clean yourselves up one last time and then towel yourselves down, you");
@@ -2328,7 +2341,11 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			break;
 		// Repeat
 		case "shower repeat":
-			showName("SHOWER\nROOM");
+			rooms["516"].removeFlag(GLOBAL.NPC);
+			currentLocation = "NT SHOWER HOUSE";
+			generateMap();
+			
+			showLocationName();
 			showBust("HORISHA_AND_PECK");
 			
 			output("You don’t have to say anything; all you have to do is go across, curl each arm around a warm, giggly cow-girl, breathe in their sweet, milky scent and give their plump butts a good, healthy squeeze. Once again, they lead you to the showers detached from the main barn.");
@@ -2353,7 +2370,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			break;
 		// Join Us
 		case "shower fivesome intro":
-			showName("SHOWER\nROOM");
 			showBust("HORISHA_AND_PECK");
 			
 			output("<i>“Why don’t you join us?”</i> you offer with a rakish grin. <i>“You know it’ll be fun.”</i>");
@@ -2369,7 +2385,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p1");
 			break;
 		case "shower fivesome p1":
-			showName("SHOWER\nROOM");
 			showBust("HORISHA_AND_PECK", "CARRIE_NUDE", "CORA_NUDE");
 			
 			if(pc.isTreatedBull()) output("Your bullish impulses seethe in the presence of so many plush, willing cows, and once within the enclosed, steamy space of the communal shower, their sweet, fruity smell heavy in your nostrils, they make demands of you that you cannot resist. The presence of another male - even such a male as Peck, half the size of his owner, girly shoulders, hairless on his body and lips every bit as glossy and perfect for cock-sucking as Carrie’s - demands you step up and make it clear who the alpha here is.");
@@ -2408,7 +2423,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p2");
 			break;
 		case "shower fivesome p2":
-			showName("SHOWER\nROOM");
 			showBust("HORISHA_AND_PECK", "CORA_NUDE", "CARRIE_NUDE");
 			
 			output("You relax back on a wooden bench, [pc.eachCock] throbbing satisfyingly, reveling in the soundtrack of gently panting cowgirls and bois. With your immediate lust and bestial imperatives seen to, you’re happy to let somebody else take the lead. It’s no surprise who that is.");
@@ -2440,7 +2454,6 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p3");
 			break;
 		case "shower fivesome p3":
-			showName("SHOWER\nROOM");
 			showBust("HORISHA_AND_PECK", "CORA_NUDE", "CARRIE_NUDE");
 			
 			output("It’s a little while later. You sit back and bask in a well-earned glow next to Horisha, water drizzling down your [pc.chest]. Your hand lazily curls between her muscular thighs. In front of you Carrie and Peck are putting on a little show for you two, hands running over each other’s bare, heat-blushed bodies, constantly stealing lusty, snickering looks at their alphas. Cora’s being put to good use.");
@@ -2459,7 +2472,10 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p4");
 			break;
 		case "shower fivesome p4":
-			showName("SHOWER\nROOM");
+			currentLocation = "516";
+			generateMap();
+			
+			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
 			
 			output("After you clean yourselves up one last time and then towel yourselves down, you");
@@ -2485,5 +2501,412 @@ public function carrieSoothingShowerDone():void
 	if(pc.hasStatusEffect("Cora Showered")) pc.setStatusMinutes("Cora Showered", (72 * 60));
 	else pc.createStatusEffect("Cora Showered", 0, 0, 0, 0, true, "", "", false, (72 * 60));
 	mainGameMenu();
+}
+
+// “Bad” End
+/*
+Requirements
+* Has activated the shower scene
+* Big dick plus at least medium cum output
+* Has the Pher Cloud perk
+*/
+public function carrieMilkerBadEndChance():Boolean
+{
+	if(flags["CARRIE_SHOWER_THREESOME"] != undefined && pc.biggestCockLength() >= 12 && pc.cumQ() >= 1000)
+	{
+		//if(rand(2) == 0) return true;
+		if(hours >= 6 && hours < 18) return true;
+	}
+	return false;
+}
+//Scene has 50% chance of proc whenever shower scene would be available
+public function carrieMilkerBadEnd(response:String = "intro"):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	switch(response)
+	{
+		case "intro":
+			showName("CARRIE\n& CORA");
+			showBust("CARRIE", "CORA");
+			
+			if(flags["NT_BUILD_BOTTLE_PLANT"] == undefined)
+			{
+				output("The busy, frenetic sound of female conversation meets your ears as you approach the milker. Leant back on the looming apparatus, Carrie is chatting with her sister Cora. Her eyes and smile widen as you mosey up; the chatter dries up and the expression is mirrored when Cora turns around.");
+				output("\n\n<i>“Sup, girls?”</i> you grin.");
+				output("\n\n<i>“Nothing,”</i> they titter almost simultaneously, sharing a look as they do. Cows aren’t capable of slyness, but something does pass between the two busty redheads there; a soft thoughtfulness, perhaps.");
+				output("\n\n<i>“Reckon I’m gonna go for a walk,”</i> says Carrie. <i>“Stretch my hooves a little.”</i>");
+				output("\n\n<i>“I’ll look after your post,”</i> Cora offers.");
+				output("\n\n<i>“Wanna come with, big " + pc.mf("guy","girl") + "?”</i> Carrie smiles brightly.");
+				
+				processTime(2);
+				flags["NT_BUILD_BOTTLE_PLANT"] = 0;
+				
+				// [Sure] [Nah]
+				clearMenu();
+				addButton(0, "Sure", carrieMilkerBadEnd, "sure");
+				addButton(1, "Nah", carrieMilkerBadEnd, "nah");
+			}
+			// Repeats
+			// If Carrie ‘n Cora both at station when PC has chosen to go for walk but has not chosen [Build It!]
+			else if(flags["NT_BUILD_BOTTLE_PLANT"] == 0)
+			{
+				output("The busy, frenetic sound of female conversation meets your ears as you approach the milker. Leant back on the looming apparatus, Carrie is chatting with her sister Cora. Her eyes and smile widen as you mosey up; the chatter dries up and the expression is mirrored when Cora turns around.");
+				output("\n\n<i>“Sup, girls?”</i> you grin.");
+				output("\n\n<i>“Nothing,”</i> they titter almost simultaneously, sharing a look as they do. Cows aren’t capable of slyness, but something does pass between the two busty redheads there; a soft thoughtfulness, perhaps.");
+				output("\n\n<i>“I could use a walk,”</i> says Carrie casually. <i>“Or maybe there’s something else fun you’d like to do, big " + pc.mf("guy","girl") + "?”</i>");
+				
+				processTime(2);
+				
+				// [Shower] [Walk] [Nah]
+				clearMenu();
+				addButton(0, "Walk", carrieMilkerBadEnd, "sure");
+				addButton(1, "Nah", carrieMilkerBadEnd, "nah");
+				addButton(3, "Shower", carrieSoothingShowerGo, "shower repeat", "Shower", "Take a shower with the sisters...");
+			}
+			// If PC has chosen [Build It!]
+			else
+			{
+				output("<i>“Hey [pc.name],”</i> says Carrie, as you mosey up to her corner of the barn. <i>“");
+				if(hours >= 9 && hours < 17) output("Wanna earn some credits?");
+				else output("Wanna off-peak special?");
+				output(" Or you fixin’ to go look at the building site, maybe.”</i> She casts her eyes down demurely, but doesn’t keep the hopefulness out of her voice.");
+				
+				processTime(1);
+				
+				// [Reg options] [Build]
+				useDaMilkarMenu();
+				addButton(3, "Shower", carrieSoothingShowerGo, "shower repeat", "Shower", "Take a shower with the sisters...");
+				addButton(4, "Build", carrieMilkerBadEnd, "build it repeat");
+			}
+			break;
+		case "nah":
+			showName("CARRIE\n& CORA");
+			showBust("CARRIE", "CORA");
+			
+			output("<i>“Just want to use the machine,”</i> you reply.");
+			output("\n\n<i>“One track mind,”</i> pouts Carrie.");
+			
+			processTime(1);
+			
+			// Display regular options
+			useDaMilkarMenu();
+			break;
+		case "sure":
+			currentLocation = "NT BOTTLE TRAIL";
+			generateMap();
+			
+			showLocationName();
+			showBust("CARRIE");
+			
+			output("You slip your hand into Carrie’s own small, warm mitt and stroll with her beyond the barn and up a little trail leading eastwards.");
+			output("\n\nIt really is extremely pleasant on New Texas. There’s a timeless quality to the prairies and vast sky stretching out in all directions, as if nothing could possibly trouble you so long as you empty your mind and let your thoughts drift into the dusty green and powdery blue. Every huge, widely spaced building you can see looks well used, cared for... well, except <i>that</i> one.");
+			output("\n\n<i>“What’s that?”</i> you ask, pointing at the derelict skeleton of concrete and leaning wood.");
+			output("\n\n<i>“It was gonna be the semen bottling facility for Big T’s ranch,”</i> sighs Carrie, kicking at a pebble. <i>“We export the stuff you know, it’s almost as prized as our milk in the Beyond. But the bulls who were constructing it got transferred to Berylhead and nobody’s picked it up since, cuz there aren’t really enough bulls ‘round here to justify it. So now it’s just me and my dinky lil milker.”</i>");
+			// Male Treated:
+			if(pc.isTreatedBull()) output("\n\nIt hurts you on some deep, profound level to see a heavy lifting job like that left unfinished...");
+			
+			processTime(25 + rand(11));
+			
+			// [Build It!] [Shame]
+			clearMenu();
+			addButton(0, "Build It!", carrieMilkerBadEnd, "build it", "Build It!", "You can’t let that just stand there half-complete. And you can “justify” it on your own!");
+			addButton(1, "Shame", carrieMilkerBadEnd, "shame", "Shame", "Damn shame.");
+			break;
+		case "shame":
+			currentLocation = "516";
+			generateMap();
+			
+			showLocationName();
+			showBust("CARRIE", "CORA");
+			
+			output("<i>“Oh well,”</i> you say, squeezing her hand. <i>“Maybe one day.”</i>");
+			output("\n\n<i>“Yeah...”</i> the cowgirl smiles at you wistfully. <i>“One day.”</i>");
+			output("\n\nYou carry on your pleasant stroll, gallantly chaperoning the cowgirl against non-existent Varmints, and see her back to her post safe and sound.");
+			output("\n\n<i>“Nice walk?”</i> asks a distinctly bored-looking Cora.");
+			output("\n\n<i>“You didn’t miss any lovin’, don’t worry,”</i> her sister assures her.");
+			output("\n\n<i>“Good.”</i> Cora wriggles her shoulders, making her plush boobs tremble, barely constrained by her dungarees. <i>“Imagine you probably need a shower, after all that exercise.”</i>");
+			
+			processTime(25 + rand(11));
+			// + Lust
+			pc.lust(15);
+			
+			// [Shower] [Later]
+			clearMenu();
+			addButton(0, "Shower", carrieSoothingShowerGo, "shower repeat", "Shower", "Take a shower with the sisters..."); // Standard shower scenes
+			addButton(1, "Later", carrieMilkerBadEnd, "later");
+			break;
+		case "later":
+			showBust("CARRIE", "CORA");
+			
+			output("<i>“I’ll catch up with you later,”</i> you say. This is met with a shared, disappointed groan which dissolves, once again, into giggling.");
+			output("\n\n<i>“Get outta here then, ya big dumb tease,”</i> sighs Carrie, turning back to her sister.");
+			
+			processTime(1);
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "build it":
+			currentLocation = "NT BOTTLE PLANT";
+			generateMap();
+			
+			showLocationName();
+			showBust("CARRIE");
+			
+			output("Puffing your [pc.chest] out, you proclaim that you will complete the bottling facility. Hell, it might take a while - and you don’t know where you’re going to get the equipment--");
+			output("\n\n<i>“No! I can take care of that,”</i> says Carrie excitedly, pushing her soft boob into your side. <i>“Big T will happily dole out a loan if he knows it’s going to be paid back, and if </i>you’re<i> in charge and pitching in the labor...”</i>");
+			output("\n\nShe trots off in the direction of the ranch, and you roll up your sleeves.");
+			
+			processTime(2);
+			
+			clearMenu();
+			addButton(0, "Next", carrieMilkerBadEnd, "build it p1");
+			break;
+		case "build it p1":
+			showLocationName();
+			clearBust();
+			
+			output("You measure the existing framework with your codex and then take an inventory of the rot-resistant wood, tools, polymers and fasteners that are propped against the half-finished walls and scattered around the site. Seems as if most of what you need is already here, but there’s still umpteen things that need to be replaced and ordered, planks that have to be hauled, concrete that has to be mixed... you just tinker with little things, deliberately not looking at the size of the job you’ve taken on to begin with, but eventually - as you sketch and hoist and hammer and fit - the building takes shape in your mind, and you see how all the little things will fit together into a hugely satisfying whole.");
+			output("\n\n");
+			// Male Treated:
+			if(pc.isTreatedBull()) output("Being hard at work like this, getting sweaty under New Texas’s beaming sun, fills you with a contentment that’s almost beyond words. You forget for long spells that there is anything beyond this, the profound satisfaction of using your bullish strength and technical ability to make something appear in front of you, and when you do it’s with a sense of irritation.");
+			// Not Treated:
+			else output("Satisfying. That’s the word. For a serene amount of time you completely lose yourself in the work, sweating away to slowly make something appear in front of you, and there is a deep contentment to be found in it. Is this how it is for Male Treated?");
+			
+			// + 4 hours, - 40 energy
+			processTime(225 + rand(31));
+			pc.energy(-40);
+			sweatyDebuff(1);
+			pc.lust(50);
+			
+			// [pb]
+			clearMenu();
+			addButton(0, "Next", carrieMilkerBadEnd, "build it p2");
+			break;
+		case "build it p2":
+			showBust("CARRIE");
+			
+			if(!pc.hasStatusEffect("NT Build Bottle Plant Repeat")) output("Carrie comes back");
+			else
+			{
+				output("Carrie comes over");
+				pc.removeStatusEffect("NT Build Bottle Plant Repeat");
+			}
+			output(" with a loaded hamper basket after... how long has it been? Sweat is pouring down your back, but when you stand back from the building site you see you’ve barely even begun. You just want to keep going.");
+			output("\n\n<i>“Steady now, big " + pc.mf("guy","girl") + ",”</i> Carrie laughs, sitting herself down on the grass. <i>“Have a bite to eat.”</i> As it transpires, almost all of the cold picnic lunch she’s brought is for you. <i>“Course! I’ll be getting my vitamins a different way.”</i>");
+			output("\n\nYou lean back upon a half-constructed wall a little bit later, gazing beatifically up at the giant sky as Carrie hollows her cheeks around your [pc.cockBiggest], pulling and kneading at it in her warm, saliva-coated embrace with ardent bobs of her auburn head. Her slurps and lusty hums meld with you approving groans the further she manages to get her lips down your throbbing length, and you scritch her behind a flat ear every time her rough, wet tongue slides over a particularly good spot, a tactic that makes her flop at the grass with her tail happily. You glove your [pc.cockHeadBiggest] in her unresisting throat with firm, gentle pushes time and again, glorying in the tightness there");
+			if(pc.balls > 0) output(" whilst her tongue flicks over your [pc.balls]");
+			output(" until it eventually becomes too much, and you unload gloriously, fluming [pc.cum] directly into her gut with heavy, juicy pulses.");
+			output("\n\nYou plump the cowgirl’s belly out, withdraw to fill her mouth with [pc.cumVisc] approval, and when she can’t swallow anymore she milks the rest out with firm kneads of her smooth hands.");
+			output("\n\n<i>“Yeah,”</i> she says, after she’s obediently licked your sensitive cum-slit clean, <i>“I don’t think output is gonna be a concern. Why don’t you go catch a shower now?”</i>");
+			
+			// + 2 hours, - 20 energy, + sweaty perk, + Lust
+			processTime(105 + rand(31));
+			pc.energy(-20);
+			sweatyDebuff(1);
+			pc.orgasm();
+			
+			// [pb]
+			clearMenu();
+			addButton(0, "Next", carrieMilkerBadEnd, "build it p3");
+			break;
+		case "build it p3":
+			currentLocation = "NT SHOWER HOUSE";
+			generateMap();
+			
+			showLocationName();
+			showBust("CARRIE");
+			
+			output("You do so, luxuriating under the hot water in the shower block. Void, this is all just so gratifying. You do good work in the sunshine and then you get a blow job from a bouncy cowgirl and then you can work in the sunshine some more. The prospect stretches out in front of you, as glorious and endless as the prairies themselves...");
+			output("\n\nYou pause as you leave, grinning at the muffled strains of Horisha ruthlessly going at Peck with a strap-on (they put it on just for you, you’re sure). In the near distance, you can see your half-constructed building. A dozen things immediately stand out to you that need doing. You could go back. I mean, you haven’t got anything else that needs doing, do you?");
+			
+			// + 40 energy, - sweaty perk, - Lust
+			processTime(35 + rand(16));
+			pc.energy(40);
+			pc.shower();
+			
+			// [Go Back] [Do You?]
+			clearMenu();
+			addButton(0, "Go Back", carrieMilkerBadEnd, "go back");
+			addButton(1, "Do You?", carrieMilkerBadEnd, "do you");
+			break;
+		case "do you":
+			showBust("CARRIE");
+			
+			output("You frown. Oh yeah. The quest thing. With your cousin and your dad and the rest of it. Funny how easily you forgot about all that.");
+			output("\n\nReluctantly, you tear your eyes away from the tantalizing sight of the half-built bottling plant, and head back to the main barn.");
+			
+			processTime(25 + rand(11));
+			
+			if(flags["NT_BUILD_BOTTLE_PLANT"] < 1) flags["NT_BUILD_BOTTLE_PLANT"] = 1;
+			currentLocation = "516";
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "go back":
+			currentLocation = "NT BOTTLE PLANT";
+			generateMap();
+			
+			showLocationName();
+			showBust("CORA");
+			
+			output("Nope. Building that bottling plant is obviously the most important thing right now, and you’ve got the muscles and the will to do it. You nod with deep satisfaction, a certain indefinable tension falling away from you, as if something complicated and boring was being brushed out of your life.");
+			output("\n\nYou work away at the building, the structure taking shape around you, deepest content filling your mind and body for hours on end. This time it’s Cora who comes to visit you, dragging a cask of iced tea with her. In-between necking it, you point out that you’re at the stage where cock milking machines could begin to be installed.");
+			output("\n\n<i>“We talked to T about it,”</i> she replies, lying on her side, eyes traveling up and down your sweat-glazed frame. <i>“He’s ready to order some in, but he says he’s waiting on something.”</i>");
+			output("\n\n<i>“On what?”</i> you grunt, [pc.eachCock] engorging as you watch her slowly unbutton her dungarees, allowing her milk-heavy tits to flop out, bumping into each other mesmerizingly.");
+			output("\n\n<i>“Hmm... not entirely sure.”</i> Cora squeezes her nipples, a sigh escaping her full, glossy lips as she pools milk into her hands before carefully cupping it down her cleavage. She kneels in front of you, and without a word you slap your [pc.cockBiggest] into the river of warm cream now running between those full, luscious orbs. She looks up at you with a coy smile, fingers pressed into her soft flesh, reaching down to lick your [pc.cockHeadBiggest]. <i>“Commitment, I think.”</i>");
+			
+			// - 40 energy, + 4 hours
+			processTime(225 + rand(31));
+			pc.energy(-40);
+			//sweatyDebuff(1);
+			pc.lust(100);
+			
+			clearMenu();
+			addButton(0, "Next", carrieMilkerBadEnd, "go back p1");
+			break;
+		case "go back p1":
+			showBust("CORA_NUDE");
+			
+			output("After a long, luscious titjob ends with you spurting a [pc.cumColor], [pc.cumVisc] fountain right up her face and over her hair, you bend Cora over a wall and rail her plump, silky pussy until your name dissolves into wordless moos, wet walls tightening around the surge of your [pc.cockBiggest] again and again, fruity juices spattered right across your groin. You explode into fresh orgasm with a breathless groan, her big round ass jiggling with every forceful slap of your [pc.hips], pumping your flexing dick into her elastic squeeze until [pc.cum] is drooling onto the floor and your");
+			if(pc.balls == 1) output(" [pc.balls] is");
+			else if(pc.balls > 0) output(" [pc.balls] are");
+			else output(" semen gland is");
+			output(" achingly dry.");
+			
+			pc.cockChange();
+			pc.orgasm();
+			
+			output("\n\n<i>“Mmm... such a stud,”</i> the auburn cow purrs, once her eyes have rolled back down and she’s located a towel. <i>“Do you need somewhere to sleep?”</i> she asks, standing with you in front of the construction site, looking at it as she buckles her dungarees back up. <i>“There’s plenty of spare bunks back behind the barn, ‘n you can get back to it after you’ve had a rest.”</i> A kind hand rests in the small of your back. <i>“C’mon, don’t want you over-exerting yourself - least not on something that isn’t me.”</i>");
+			output("\n\nThat sounds wonderful. A nice long sleep - followed by a thrash in bed with some soft, pleasant someone, perhaps - then right back to all this work that needs doing. There’s so much of it, and it’s so pleasant to set your hands to it. And there is nothing more important to do. Nothing at all.");
+			
+			processTime(20 + rand(6));
+			//sweatyDebuff(1);
+			
+			// [Yes] [Absolutely] [Definitely] [Lead the Way] [...wait]
+			clearMenu();
+			addButton(0, "Yes", carrieMilkerBadEnd, "bad end");
+			addButton(1, "Absolutely", carrieMilkerBadEnd, "bad end");
+			addButton(2, "Definitely", carrieMilkerBadEnd, "bad end");
+			addButton(3, "Lead the Way", carrieMilkerBadEnd, "bad end");
+			addButton(4, "...Wait", carrieMilkerBadEnd, "wait");
+			break;
+		case "wait":
+			showBust("CORA_NUDE");
+			
+			output("You frown. There is something, isn’t there? You have to really work to pull your mind away from all that delicious manual labor and curvy cow girl in front of you, but grindingly you manage it, and when you do, you sigh in exasperation. Damnit. That whole quest thing. How tedious. How <i>complicated</i>. Still, yes - however reluctant you are to face up to it, it probably is a bit more important than building a semen storing facility singlehanded. You explain to Cora that you really should head back to your ship now. Her face falls, and a fresh blanket of heavy-heartedness descends.");
+			output("\n\n<i>“Aww. You sure? Well - it will always be here, when you choose to come back,”</i> she says. <i>“Do kinda think we need a big, strong " + pc.mf("bull", "cowmazon") + " here for a while before T is willin’ to give his blessing to it, though.”</i>");
+			output("\n\nYou head back to the main barn with her. The overwhelming reluctance does fade - but the memory of the unfinished building lingers.");
+			
+			processTime(25 + rand(11));
+			
+			if(flags["NT_BUILD_BOTTLE_PLANT"] < 2) flags["NT_BUILD_BOTTLE_PLANT"] = 2;
+			currentLocation = "516";
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "build it repeat":
+			currentLocation = "NT BOTTLE PLANT";
+			generateMap();
+			
+			showLocationName();
+			clearBust();
+			
+			output("<i>“I’ll come over with somethin’ nice when it’s my break,”</i> Carrie says with a big, happy smile as you stride purposefully eastwards. <i>“See ya soon!”</i>");
+			output("\n\nIt takes you a while to familiarize yourself again with the tools and where the semen bottling facility-to-be is at, but once you do, you quickly fall into a familiar rhythm. Measure and haul and position and hammer and fit and smooth and screw and measure and haul and... it’s so satisfying, doing this out here in the green fields that seem to stretch out forever.");
+			output("\n\n");
+			// Male Treated:
+			if(pc.isTreatedBull()) output("Being hard at work like this, getting sweaty under New Texas’s beaming sun, fills you with a contentment that’s almost beyond words. You forget for long spells that there is anything beyond this, the profound satisfaction of using your bullish strength and technical ability to make something appear in front of you, and when you do it’s with a sense of irritation.");
+			// Not Treated:
+			else output("Satisfying. That’s the word. For a serene amount of time you completely lose yourself in the work, sweating away to slowly make something appear in front of you, and there is a deep contentment to be found in it. Is this how it is for Male Treated?");
+			
+			// + 4 hours, - 40 energy
+			processTime(225 + rand(31));
+			pc.energy(-40);
+			sweatyDebuff(1);
+			pc.lust(50);
+			
+			// scene carries on as from first
+			pc.createStatusEffect("NT Build Bottle Plant Repeat");
+			
+			// [pb]
+			clearMenu();
+			addButton(0, "Next", carrieMilkerBadEnd, "build it p2");
+			break;
+		case "bad end":
+			currentLocation = "NT BUNKHOUSE";
+			generateMap();
+			
+			showName("A NEW\nSTUD");
+			showBust("CORA");
+			
+			if(pc.isMale() && !pc.isShemale()) output("Cora leads you to a male bunk house, adjoining the main barn on west side, before heading off with a squeeze of your hand to get herself cleaned up. The place is roomy and spacious by necessity, and sparsely populated - the young bulls there affirm that there aren’t all that many of them on T’s Ranch, and the ones that are mostly out getting laid. They are of course an amiable if not amazingly talkative bunch, and it’s easy to get on with them. The fittings are spartan and the smell of a number of bulls all together in one room leaves something to be desired, however. Spending a night there fills you with resolve - to build a suite for yourself into the bottling station. It will have a private bathroom and room for a king-sized bed. And a patio with a hot tub will adjoin it...");
+			else output("Cora leads to a bunk house designed specifically for cowmazons. The place is roomy and spacious by necessity, and sparsely populated - the handful of giant women that work on T’s ranch mostly have their own places. The three here accept you but make it pretty damn clear where your territory ends and theirs begin; it’s obvious this strain of the Treated doesn’t take kindly to close competitors. Spending a night there fills you with resolve - to build a suite for yourself into the bottling station. It will have a private bathroom and room for a king-sized bed. And a patio with a hot tub will adjoin it...");
+			
+			processTime(45 + rand(16));
+			// [pb]
+			clearMenu();
+			addButton(0, "Next", carrieMilkerBadEnd, "the end");
+			break;
+		case "the end":
+			currentLocation = "NT BOTTLE PLANT";
+			rooms["NT BOTTLE PLANT"].northExit = "NT BOTTLE PLANT NORTH";
+			rooms["NT BOTTLE PLANT"].eastExit = "NT BOTTLE PLANT EAST";
+			rooms["NT BOTTLE PLANT"].southExit = "NT BOTTLE PLANT SOUTH";
+			rooms["NT BOTTLE PLANT"].addFlag(GLOBAL.NPC);
+			rooms["516"].removeFlag(GLOBAL.NPC);
+			generateMap();
+			
+			showName("A NEW\nSTUD");
+			showBust("CARRIE_NUDE", "CORA_NUDE");
+			
+			output("Days stretch into weeks stretch into months, out and out towards the endless horizon. The bottling station expands and expands; with you in charge, Big T is happy to order in whole rows of dick milking machines, and you supervise their fitting. Whenever the thought of the quest to claim your father’s fortune intrudes, it’s an irritation, a gnat you bat away. Would all that money and running a mega-corporation really make you happy? Absolutely nowhere near as happy as you are putting the final touches to your sprawling New Texan estate, or getting [pc.eachCock] enthusiastically milked by Carrie and Cora every single night. Let your cousin have it. You know for a fact it won’t bring [rival.him] joy. Or make [rival.him] any less of an asshole.");
+			if(!pc.isTreated()) output("\n\nOf course, after a short while, T himself visits and almost apologetically brings up the fact that in order to live here, you have to get Treated. No biggie. You’ve been here long enough, rubbing shoulders and sleeping with the Treated for so long, you practically feel like one anyway. You apply the medpen yourself, and the vague worry that you might " + ((pc.isMale() && !pc.isShemale()) ? "become a sissy fauxcow is quickly washed away in the glorious, muscular, horned glory of becoming a bull. Void, did manual labor feel good before? You had NO idea." : "become a regular cow is quickly washed away in the glorious if slightly febrile joy of becoming a big, toned, horned cowmazon. Because of <i>course</i> you did."));
+			output("\n\nNaturally, you become the manager of the semen milking plant. You weren’t misinformed, it’s a pretty highly sought-after substance in a protein-hungry galaxy, and most of it gets lost down cowgirl holes. Fortunately you and your extremely productive");
+			if(pc.balls > 0)
+			{
+				if(pc.balls == 1) output(" testicle");
+				else output(" balls");
+			}
+			else
+			{
+				output(" dick");
+				if(pc.cocks.length > 1) output("s");
+			}
+			output(" can step in whenever there’s a shortfall; you and your two pet redheads, with their expertise at wringing every last virile spurt out of you. Although New Texans play fast and loose with each other Carrie and Cora never find much call to wander far from the estate of a particularly popular, energetic and fecund " + ((pc.isMale() && !pc.isShemale()) ? "bull" : "amazon") + ", particularly after you swell both of their bellies with the first of many children. They are delighted with the silver “Property of Steele” bell collars you get them over the first Wintermess. It all turns out to be pretty profitable, and the parties you throw with all the other residents of the outsized ranch become the stuff of NT legend - so much so that T-Bone himself is often in situ, staggering around your veranda with a beer stein the size of a barrel in one hand and Ellie in the other.");
+			output("\n\nThe very last time you think about your father’s quest is several years later. You are generously demonstrating the finer qualities of your factory’s output to a wealthy zel’rahn visitor interested in investing. Your eyes are fixed upon her red, upturned, jiggling bottom as you vigorously rail her across your desk, when the thought flies across your mind. You have to stop and laugh at the absurdity of it. There’s a sound of parting suction underneath the desk.");
+			output("\n\n<i>“What is it, dear?”</i> asks Carrie curiously.");
+			output("\n\n<i>“Oh, nothing, sweetheart,”</i> you sigh. You play with the remote in your hand, and are rewarded with a gasp and a coo from the cowgirl. Such a thoughtful gift that was from Ogram. <i>“Nothing at all. Carry on.”</i>");
+			output("\n\nCarrie");
+			if(pc.balls > 0) output(" slides her lips and tongue back over your [pc.balls]");
+			else if(pc.cocks.length > 1) output(" parts her lips around the head of your [pc.cock " + (1 + rand(pc.cocks.length - 1)) + "]");
+			else if(pc.hasVagina()) output(" slips her tongue back between the lips of your [pc.vagina]");
+			else output(" parts her lips around the head of the rahn’s extended ovi-cock");
+			output(" and you return to firmly slotting your [pc.cock] into the investor’s slick, oozing cunt, drawing a cooing moan from the quivering, partially clothed blancmange lady. The silly, over-complicated thought slips out of the window into the endlessly blue sky, never to return.");
+			
+			pc.removeEquipment();
+			if(pc.credits < 9000) pc.credits = 9000 + rand(2000);
+			
+			if(pc.refractoryRate < 900) pc.refractoryRate = 900;
+			if(pc.cumMultiplierRaw < 1000) pc.refractoryRate = 1000;
+			pc.boostCum(9000);
+			
+			days += 1215 + rand(31);
+			processTime(1440 + rand(1440));
+			
+			if(flags["NT_BUILD_BOTTLE_PLANT"] < 3) flags["NT_BUILD_BOTTLE_PLANT"] = 3;
+			
+			badEnd("THE END.");
+			break;
+		default:
+			output("Oh no, something went wrong!");
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
 }
 

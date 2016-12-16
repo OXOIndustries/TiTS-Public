@@ -4721,6 +4721,11 @@
 				adjectives.push("sticky", "glutinous", "viscous");
 			if(hasTongueFlag(GLOBAL.FLAG_NUBBY))
 				adjectives.push("textured", "rough", "abrasive", "raspy");
+			if(hasTongueFlag(GLOBAL.FLAG_LUBRICATED))
+			{
+				adjectives.push("lubricated", "wet", "slippery");
+				if(tongueType != GLOBAL.TYPE_GOOEY) adjectives.push("slimy", "slick");
+			}
 			
 			//Show adjective 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) 
@@ -5345,6 +5350,13 @@
 					{
 						if (skinType == GLOBAL.SKIN_TYPE_FUR) adjectives.push("fluffy");
 						if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push("downy");
+					}
+					if (hasSkinFlag(GLOBAL.FLAG_LUBRICATED))
+					{
+						if (skinType == GLOBAL.SKIN_TYPE_SKIN) adjectives.push(RandomInCollection(["glistening", "shining", "sparkling", "shimmering"]));
+						if (skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push(RandomInCollection(["shining", "sparkling", "shimmering"]));
+						if (skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN || skinType == GLOBAL.SKIN_TYPE_LATEX) adjectives.push(RandomInCollection(["glossy", "glistening", "slick"]));
+						if (skinType == GLOBAL.SKIN_TYPE_PLANT || skinType == GLOBAL.SKIN_TYPE_BARK) adjectives.push(RandomInCollection(["dewy", "damp", "moist"]));
 					}
 					if(adjectives.length > 0) output += RandomInCollection(adjectives);
 				}
@@ -7539,7 +7551,7 @@
 			return cocks[index].cLength();
 		}
 		//Find the biggest cock that fits inside a given value
-		public function cockThatFits(fits: Number = 0, type: String = "area"): Number {
+		public function cockThatFits(fits: Number = 0, type: String = "volume",excludedIndexes: Array = null): Number {
 			trace("Fits value: " + fits);
 			if (cocks.length <= 0) return -1;
 			var counter: Number = cocks.length;
@@ -7547,7 +7559,12 @@
 			var index: Number = -1;
 			while (counter > 0) {
 				counter--;
-				if (type == "area") {
+				//Check if this index location is excluded
+				if(excludedIndexes != null && excludedIndexes.indexOf(counter) != -1)
+				{
+					trace("Excluded index from \"cockThatFits\" check: " + counter);
+				}
+				else if (type == "volume") {
 					if (cockVolume(counter, true) <= fits) {
 						//If one already fits
 						if (index >= 0) {

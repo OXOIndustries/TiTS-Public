@@ -1835,6 +1835,16 @@ public function displayQuestLog(showID:String = "All"):void
 				if(siliconeTotal >= 4) output2(", Completed");
 				sideCount++;
 			}
+			// Semen Bottling Facility
+			if(flags["NT_BUILD_BOTTLE_PLANT"] > 0)
+			{
+				output2("\n<b><u>Semen Milking Factory</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["NT_BUILD_BOTTLE_PLANT"] >= 3) output2(" Fully built, Expanded, Employed as manager, Completed");
+				else if(flags["NT_BUILD_BOTTLE_PLANT"] >= 2) output2(" Half-way built");
+				else output2(" Partially built");
+				sideCount++;
+			}
 		}
 
 		if(showID == "Mhen'ga" || showID == "All")
