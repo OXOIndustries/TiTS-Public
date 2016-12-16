@@ -3,17 +3,17 @@
 	//time 0600-0959
 	if(hours >= 6 && hours < 10)
 	{
-		output("You're inside Beth's Busty Broads, and you seem to have arrived during their off-hours. A few customers are still nursing drinks, but none of the stages are occupied, and a custodial worker in a frumpy jumpsuit is tidying up. An empty desk near the door has a lit holo-board with a message printed on it.");
+		output("You’re inside Beth’s Busty Broads, and you seem to have arrived during their off-hours. A few customers are still nursing drinks, but none of the stages are occupied, and a custodial worker in a frumpy jumpsuit is tidying up. An empty desk near the door has a lit holo-board with a message printed on it.");
 	}
 	//hour 1000, 1300, 1600
 	else if (hours == 10 || hours == 13 || hours == 16)
 	{
-		output("You're inside Beth's Busty Broads, which seems to be doing very good business for itself. Many patrons are sitting tranquilly by the stage in the center of the floor, patiently watching the fluid, undulating dance of a purple doh’rahn in almost perfect silence. Even the air in the room seems to have an enchanted quality. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
+		output("You’re inside Beth’s Busty Broads, which seems to be doing very good business for itself. Many patrons are sitting tranquilly by the stage in the center of the floor, patiently watching the fluid, undulating dance of a purple doh’rahn in almost perfect silence. Even the air in the room seems to have an enchanted quality. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
 	}
 	//hour 1100, 1400, 1700
 	else if (hours == 11 || hours == 14 || hours == 17)
 	{
-		output("You're inside Beth's Busty Broads, which seems to be doing good business for itself. Customers ring the center stage, watching a modestly-endowed but <i>very</i> flexible human girl work the pole like a gymnast with an Electra complex. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
+		output("You’re inside Beth’s Busty Broads, which seems to be doing good business for itself. Customers ring the center stage, watching a modestly-endowed but <i>very</i> flexible human girl work the pole like a gymnast with an Electra complex. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
 	}
 	//hour 1200, 1500
 	else if(hours == 12 || hours == 15)
@@ -37,12 +37,12 @@
 	//hour 1800, 1900, 2100, 2200, 2400, 0100, 0300, 0400
 	else if(hours == 18 || hours == 19 || hours == 21 || hours == 22 || hours == 24 || hours == 1 || hours == 3 || hours == 4)
 	{
-		output("You're inside Beth's Busty Broads, which seems to be doing very good business for itself. Patrons stand two-deep around the stage in the center of the floor, jostling for better glimpses of an orange-and-yellow-scaled ovir with generous curves and stylish lingerie. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
+		output("You’re inside Beth’s Busty Broads, which seems to be doing very good business for itself. Patrons stand two-deep around the stage in the center of the floor, jostling for better glimpses of an orange-and-yellow-scaled ovir with generous curves and stylish lingerie. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
 	}
 	//hour 2000, 2300, 0200, 0500
 	else
 	{
-		output("You're inside Beth's Busty Broads, which seems to be doing good business for itself. Several patrons are gathered around the stage in the center of the show floor, watching a particularly well-endowed ausar girl strut her stuff on the pole. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
+		output("You’re inside Beth’s Busty Broads, which seems to be doing good business for itself. Several patrons are gathered around the stage in the center of the show floor, watching a particularly well-endowed ausar girl strut her stuff on the pole. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
 	}
 	terenshaAdditionalBonus();
 	addButton(0,"Desk",talkToBrothelLadyNewOmni);
@@ -75,24 +75,24 @@ public function talkToBrothelLady():void
 	clearOutput();
 	author("Savin");
 	showBrothelLady();
-	output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, \"<i>Welcome to Beth's Busty Broads. If you're here for our going out of business sale, you're out of luck. The selection's... pretty limited. And by that I mean we've got one slut left, and she's a handful.</i>\"");
-	output("\n\n\"<i>What happened to all the others?</i>\"");
-	output("\n\nShe cocks an eyebrow at you, finally bothering to look up from her slate. \"<i>Boss was using indentured labor, but she had some kinda crisis, whatever. Had to sell most of the contracts out. A lot of the regulars bought up their favorite sluts to keep 'em forever. Or close enough to forever as money can buy.</i>\"");
+	output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, <i>“Welcome to Beth’s Busty Broads. If you’re here for our going out of business sale, you’re out of luck. The selection’s... pretty limited. And by that I mean we’ve got one slut left, and she’s a handful.”</i>");
+	output("\n\n<i>“What happened to all the others?”</i>");
+	output("\n\nShe cocks an eyebrow at you, finally bothering to look up from her slate. <i>“Boss was using indentured labor, but she had some kinda crisis, whatever. Had to sell most of the contracts out. A lot of the regulars bought up their favorite sluts to keep ‘em forever. Or close enough to forever as money can buy.”</i>");
 	if (pc.isNice())
 	{
-		output("\n\n\"<i>Indentured labor... you mean slaves?</i>\"");
-		output("\n\nShe shrugs. \"<i>People go into debt they can't work off, so they sell themselves. They volunteer, and we've got contracts of debt for it. Half of these dumb bimbos bought ultra-grade mods to please their beaus, but what do you know, nobody put a ring on them. Saddest story in the galaxy.</i>\"");
+		output("\n\n<i>“Indentured labor... you mean slaves?”</i>");
+		output("\n\nShe shrugs. <i>“People go into debt they can’t work off, so they sell themselves. They volunteer, and we’ve got contracts of debt for it. Half of these dumb bimbos bought ultra-grade mods to please their beaus, but what do you know, nobody put a ring on them. Saddest story in the galaxy.”</i>");
 	}
 	if (pc.isMischievous())
 	{
-		output("\n\n\"<i>Indentured labor... you mean slaves?</i>\"");
-		output("\n\nShe shrugs. \"<i>People go into debt they can't work off, so they sell themselves. They volunteer, and we've got contracts of debt for it. Half of these dumb bimbos bought ultra-grade mods to please their beaus, but what do you know, nobody put a ring on them. Saddest story in the galaxy.</i>\"");
+		output("\n\n<i>“Indentured labor... you mean slaves?”</i>");
+		output("\n\nShe shrugs. <i>“People go into debt they can’t work off, so they sell themselves. They volunteer, and we’ve got contracts of debt for it. Half of these dumb bimbos bought ultra-grade mods to please their beaus, but what do you know, nobody put a ring on them. Saddest story in the galaxy.”</i>");
 	}
-	output("\n\nShe sets her slate down, steepling her fingers. \"<i>We've got one girl left for sale right now. She's an ornery slut, made herself up to be some kinda cow. Have to keep her patched up on aphrodisiacs or she gets wonky. If that's your thing, it's 100 credits a fling. Unless you're generous or horny enough to want some dumb cow's contract, anyway. I wouldn't if I were you, though; had to drag her off more than one burly sailor she didn't take to.</i>\"");
+	output("\n\nShe sets her slate down, steepling her fingers. <i>“We’ve got one girl left for sale right now. She’s an ornery slut, made herself up to be some kinda cow. Have to keep her patched up on aphrodisiacs or she gets wonky. If that’s your thing, it’s 100 credits a fling. Unless you’re generous or horny enough to want some dumb cow’s contract, anyway. I wouldn’t if I were you, though; had to drag her off more than one burly sailor she didn’t take to.”</i>");
 
 	if (pc.physique() <= 20)
 	{
-		output("  Looking you up and down, she adds, \"<i>Hate to see what she'd do to you, given half the chance.</i>\"")
+		output(" Looking you up and down, she adds, <i>“Hate to see what she’d do to you, given half the chance.”</i>")
 	}
 	processTime(3);
 	flags["TALK_TO_LADY_1ST"] = 1;
@@ -109,8 +109,8 @@ public function brothelMainMenu():void {
 	else addDisabledButton(1,"Contract","Contract","You already bought that slut.");
 	if(flags["HOWS_BUSINESS_BITCH"] == undefined) 
 	{
-		if(hours >= 6 && hours < 10) addDisabledButton(2,"How's Business","How's Business","The brothel mistress is napping in the office right now. You could wake her, but it would just get you a burst of profanity.");
-		else addButton(2, "How's Business", askAboutBusinessLikeASir);
+		if(hours >= 6 && hours < 10) addDisabledButton(2,"How’s Business","How’s Business","The brothel mistress is napping in the office right now. You could wake her, but it would just get you a burst of profanity.");
+		else addButton(2, "How’s Business", askAboutBusinessLikeASir);
 	}
 	//The Girls - new button for ‘Woman’/’Desk’ menu
 	else if(hours >= 6 && hours < 10) addDisabledButton(2,"The Girls","The Girls","The brothel mistress is napping in the office right now. You could wake her, but it would just get you a burst of profanity.");
@@ -122,7 +122,7 @@ public function brothelMainMenu():void {
 		{
 			if(pc.credits >= 100)
 			{
-				if(knowBethsOvir()) addButton(3,"Ovir 'Girl'",ovirGirlInBeths,undefined,"Ovir 'Girl'","Though advertised as a ‘broad’, this busty ovir is probably a male, judging by her colors. You could test the theory, if you wanted....");
+				if(knowBethsOvir()) addButton(3,"Ovir ‘Girl’",ovirGirlInBeths,undefined,"Ovir ‘Girl’","Though advertised as a ‘broad’, this busty ovir is probably a male, judging by her colors. You could test the theory, if you wanted....");
 				else addButton(3,"Ovir Girl",ovirGirlInBeths,undefined,"Ovir Girl","Watch the pretty ovir dance.");
 			}
 			else addDisabledButton(3,"Ovir Girl","Ovir Girl","You need 100 credits for conjugals, and you don’t have the money!");
@@ -130,16 +130,16 @@ public function brothelMainMenu():void {
 		else addDisabledButton(3,"Ovir Girl","Ovir Girl","The ovir’s not on stage right now. She works in the evenings, alternating dances with the ausar.");
 		if(hours == 10 || hours == 13 || hours == 16)
 		{
-			addDisabledButton(4,"Doh'rahn","Doh'rahn","The doh’rahn is on stage right now. She only dances for an hour at a time, so you could just come back in a bit if you’d like to buy her services. Have 100 credits handy.");
+			addDisabledButton(4,"Doh’rahn","Doh’rahn","The doh’rahn is on stage right now. She only dances for an hour at a time, so you could just come back in a bit if you’d like to buy her services. Have 100 credits handy.");
 		}
 		else
 		{
 			if(pc.credits >= 100)
 			{
-				if(flags["MET_VAANDE"] == undefined) addButton(4,"Doh'rahn",vaandeGo,undefined,"Doh'rahn","Visit the doh’rahn in her room and contract out some wet-work for 100 credits.");
+				if(flags["MET_VAANDE"] == undefined) addButton(4,"Doh’rahn",vaandeGo,undefined,"Doh’rahn","Visit the doh’rahn in her room and contract out some wet-work for 100 credits.");
 				else addButton(4,"Vaande",vaandeGo,undefined,"Vaande","Visit the doh’rahn in her room and contract out some wet-work for 100 credits.");
 			}
-			else addDisabledButton(4,"Doh'rahn","Doh'rahn","You need 100 credits for conjugals, and you don’t have the money!");
+			else addDisabledButton(4,"Doh’rahn","Doh’rahn","You need 100 credits for conjugals, and you don’t have the money!");
 		}
 	}
 	// Turn Tricks
@@ -174,11 +174,11 @@ public function talkToBrothelLadyNewOmni():void
 		
 		if(flags["TALK_TO_LADY_1ST"] == undefined || rand(2) == 0) output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones");
 		else output("You decide to approach the mistress again. Your entrance diverts her attention as she sets her tablet down and turns to greet you. With unremarkable boredom, she drones");
-		output(", <i>“Welcome to Beth's Busty Broads. If you're here for our");
+		output(", <i>“Welcome to Beth’s Busty Broads. If you’re here for our");
 		if(silly && rand(2) == 0) output(" ‘big ass, blow-out sale-a-thon’");
 		else output(" ‘going out of business’ sale");
-		output(", you're out of luck.");
-		if(flags["REAHA_BOUGHT"] == undefined) output(" The selection's... pretty limited. And by that I mean we've got one slut left for sale, and she's a handful.");
+		output(", you’re out of luck.");
+		if(flags["REAHA_BOUGHT"] == undefined) output(" The selection’s... pretty limited. And by that I mean we’ve got one slut left for sale, and she’s a handful.");
 		else (" The selection of available sluts have dried up.");
 		output(" Otherwise, feel free to enjoy the floor show or visit any of the other girls, who are </i>not<i> for sale, so don’t ask.”</i>");
 	}
@@ -187,21 +187,21 @@ public function talkToBrothelLadyNewOmni():void
 		output("\n\n<i>“There was a sale?”</i>"); 
 		output("\n\nShe cocks an eyebrow at you");
 		if(hours >= 22 || hours < 6) output(", finally bothering to look up from her slate");
-		output(". <i>“Boss was using indentured labor, but she had some kinda crisis, whatever. Had to sell most of the contracts out. A lot of the regulars bought up their favorite sluts to keep 'em forever. Or close enough to forever as money can buy.”</i>");
+		output(". <i>“Boss was using indentured labor, but she had some kinda crisis, whatever. Had to sell most of the contracts out. A lot of the regulars bought up their favorite sluts to keep ‘em forever. Or close enough to forever as money can buy.”</i>");
 		//nice or misch
 		if(pc.isNice() || pc.isMischievous())
 		{
 			output("\n\n<i>“Indentured labor... you mean slaves?”</i>");
-			output("\n\n<i>\"People go into debt they can't work off, so they sell themselves. They volunteer, and we've got contracts of debt for it. Half of these dumb bimbos bought ultra-grade mods to please their beaus, but what do you know, nobody put a ring on them. Saddest story in the galaxy.\"</i>");
+			output("\n\n<i>“People go into debt they can’t work off, so they sell themselves. They volunteer, and we’ve got contracts of debt for it. Half of these dumb bimbos bought ultra-grade mods to please their beaus, but what do you know, nobody put a ring on them. Saddest story in the galaxy.”</i>");
 		}
 		output("\n\nShe ");
 		//(time 0600-0959)
 		if(hours >= 6 && hours < 10) output(" frowns and rubs sleep from her eyes.");
 		else output(" sets her slate down, steepling her fingers.");
-		output(" <i>\"We've got one girl left for sale right now. She's an ornery slut, made herself up to be some kinda cow. Have to keep her patched up on aphrodisiacs or she gets wonky. If that's your thing, it's 100 credits a fling. Unless you're generous or horny enough to want some dumb cow's contract, anyway");
+		output(" <i>“We’ve got one girl left for sale right now. She’s an ornery slut, made herself up to be some kinda cow. Have to keep her patched up on aphrodisiacs or she gets wonky. If that’s your thing, it’s 100 credits a fling. Unless you’re generous or horny enough to want some dumb cow’s contract, anyway");
 		if(hours >= 6 && hours < 10) output("... in which case come back when I’m awake enough to decipher the legal papers");
-		output(". I wouldn't if I were you, though; had to drag her off more than one burly sailor she didn't take to.”</i>");
-		output("\n\nLooking you up and down, she adds, <i>“Hate to see what she'd do to you, given half the chance.\"</i>");
+		output(". I wouldn’t if I were you, though; had to drag her off more than one burly sailor she didn’t take to.”</i>");
+		output("\n\nLooking you up and down, she adds, <i>“Hate to see what she’d do to you, given half the chance.”</i>");
 		//(time 0600-0959)
 		if(hours >= 6 && hours < 10) output(" She shoos you from the office and closes the door.");
 		
@@ -214,17 +214,17 @@ public function talkToBrothelLadyNewOmni():void
 /*
 public function talkToBrothelLadyRepeatAgain():void
 {
-    clearOutput();
-    showBrothelLady();
+	clearOutput();
+	showBrothelLady();
 	author("JJ-Cup");
-    output("You decide to approach the mistress again. Your entrance diverts her attention as she sets her tablet down and turns to greet you. With unremarkable boredom, she drones, \"<i>Welcome to Beth's Busty Broads. If you're here for our");
-    if(silly) output(" big ass, blow-out sale-a-thon");
-    else output(" going out of business sale");
-    output(", you're out of luck. The selection of available sluts have dried up.</i>\"");
-    output("\n\nHm... Maybe better luck next time?");
-    
-    clearMenu();
-    addButton(14,"Leave",mainGameMenu);
+	output("You decide to approach the mistress again. Your entrance diverts her attention as she sets her tablet down and turns to greet you. With unremarkable boredom, she drones, <i>“Welcome to Beth’s Busty Broads. If you’re here for our");
+	if(silly) output(" big ass, blow-out sale-a-thon");
+	else output(" going out of business sale");
+	output(", you’re out of luck. The selection of available sluts have dried up.”</i>");
+	output("\n\nHm... Maybe better luck next time?");
+
+	clearMenu();
+	addButton(14,"Leave",mainGameMenu);
 }
 */
 
@@ -258,8 +258,8 @@ public function ovirGirlInBeths():void
 	clearMenu();
 	if(knowBethsOvir())
 	{
-		if(flags["OVIR_TEASED"] >= 1 || flags["TIMES_SEXED_ALISS"] >= 1) output("\n\nYou know from experience that she's actually a male ovir.");
-		else output("\n\nOvir females aren't usually so stacked. She must actually be a male...");
+		if(flags["OVIR_TEASED"] >= 1 || flags["TIMES_SEXED_ALISS"] >= 1) output("\n\nYou know from experience that she’s actually a male ovir.");
+		else output("\n\nOvir females aren’t usually so stacked. She must actually be a male...");
 		clearMenu();
 		addButton(0,"Watch",watchOvirDancer,undefined,"Watch","Ogle the ovir.");
 		addButton(1,"Tease",teaseTheOvir,undefined,"Tease","Tease the ovir until she gets a boner.");
@@ -437,7 +437,7 @@ public function vaandeGo():void
 	//tooltip: Use her cock on you.
 	addButton(1,"Ride Ovi",rideDatRahnBitchsOvi,undefined,"Ride Ovi","Use her cock on you.");
 	if(hasACumBubble()) addButton(2,"Give Bubble",giveVaandeATreatSetup,undefined,"Give Bubble","Give Vaande some shrink-wrapped cum - the perfect treat!");
-	else addDisabledButton(2,"Locked","Locked","You don't have the requisite items for this scene. Purchasing a Bubble Buddy may be the way to go...");
+	else addDisabledButton(2,"Locked","Locked","You don’t have the requisite items for this scene. Purchasing a Bubble Buddy may be the way to go...");
 }
 
 //Fuck Pussy
@@ -1650,7 +1650,7 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		else output(" new, extendable twelve inch tongue");
 		output(" and find that what Kat has told you is true - any gag reflex you had is long gone, and the inside of your throat feels... ribbed.");
 		output("\n\nYou shiver with the erotic implications of these transformations, and sigh as you shift over and consider the other novelty of your new form.");
-		output("\n\n<i>“Aww, don’t worry,”</i> leers Kat, looking with you in the mirror at the <i>“Property of Beth’s”</i> tattoo on your [pc.ass]. <i>“We’ll get that off you eventually.”</i>");
+		output("\n\n<i>“Aww, don’t worry,”</i> leers Kat, looking with you in the mirror at the “Property of Beth’s” tattoo on your [pc.ass]. <i>“We’ll get that off you eventually.”</i>");
 		
 		pc.createStatusEffect("Temporary Nudity Cheat");
 		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;

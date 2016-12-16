@@ -654,6 +654,7 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
 		else output2(" Your mouth contains " + indefiniteArticle(target.tongueDescript()) + ".");
+		if(target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) output2(" Because it constantly produces a steady stream of wet lube, you find yourself prone to drool--for better or worse.");
 
 		//Horns
 		if(target.horns > 0)

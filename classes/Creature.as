@@ -4721,6 +4721,11 @@
 				adjectives.push("sticky", "glutinous", "viscous");
 			if(hasTongueFlag(GLOBAL.FLAG_NUBBY))
 				adjectives.push("textured", "rough", "abrasive", "raspy");
+			if(hasTongueFlag(GLOBAL.FLAG_LUBRICATED))
+			{
+				adjectives.push("lubricated", "wet", "slippery");
+				if(tongueType != GLOBAL.TYPE_GOOEY) adjectives.push("slimy", "slick");
+			}
 			
 			//Show adjective 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) 
@@ -5345,6 +5350,13 @@
 					{
 						if (skinType == GLOBAL.SKIN_TYPE_FUR) adjectives.push("fluffy");
 						if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push("downy");
+					}
+					if (hasSkinFlag(GLOBAL.FLAG_LUBRICATED))
+					{
+						if (skinType == GLOBAL.SKIN_TYPE_SKIN) adjectives.push(RandomInCollection(["glistening", "shining", "sparkling", "shimmering"]));
+						if (skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push(RandomInCollection(["shining", "sparkling", "shimmering"]));
+						if (skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN || skinType == GLOBAL.SKIN_TYPE_LATEX) adjectives.push(RandomInCollection(["glossy", "glistening", "slick"]));
+						if (skinType == GLOBAL.SKIN_TYPE_PLANT || skinType == GLOBAL.SKIN_TYPE_BARK) adjectives.push(RandomInCollection(["dewy", "damp", "moist"]));
 					}
 					if(adjectives.length > 0) output += RandomInCollection(adjectives);
 				}

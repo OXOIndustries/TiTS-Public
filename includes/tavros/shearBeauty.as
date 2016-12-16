@@ -125,23 +125,40 @@ public function buyFromCeria():void
 	{
 		if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 		{
-			if(!chars["CERIA"].hasItem(new Hornitol())) chars["CERIA"].inventory.push(new Hornitol());
 			chars["CERIA"].keeperBuy += " Off to the side, there is a clear jar that contains a number of white gumball-like pills.";
+			if(!chars["CERIA"].hasItem(new Hornitol())) chars["CERIA"].inventory.push(new Hornitol());
 		}
 		else chars["CERIA"].destroyItem(new Hornitol());
 		
-		if(flags["PLANET_3_UNLOCKED"] != undefined)
+		if(flags["PLANET_3_UNLOCKED"] != undefined || CodexManager.entryViewed("Rubber-Made"))
 		{
-			if(!chars["CERIA"].hasItem(new DoveBalm())) chars["CERIA"].inventory.push(new DoveBalm());
-			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin balms.";
+			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin";
+			if(flags["PLANET_3_UNLOCKED"] != undefined)
+			{
+				if(!chars["CERIA"].hasItem(new DoveBalm())) chars["CERIA"].inventory.push(new DoveBalm());
+				chars["CERIA"].keeperBuy += " balms";
+			}
+			else chars["CERIA"].destroyItem(new DoveBalm());
+			if(flags["PLANET_3_UNLOCKED"] != undefined && CodexManager.entryViewed("Rubber-Made")) chars["CERIA"].keeperBuy += " and";
+			if(CodexManager.entryViewed("Rubber-Made"))
+			{
+				if(!chars["CERIA"].hasItem(new SkinClear())) chars["CERIA"].inventory.push(new SkinClear());
+				chars["CERIA"].keeperBuy += " lotions";
+			}
+			else chars["CERIA"].destroyItem(new SkinClear());
+			chars["CERIA"].keeperBuy += ".";
 		}
-		else chars["CERIA"].destroyItem(new DoveBalm());
+		else
+		{
+			chars["CERIA"].destroyItem(new DoveBalm());
+			chars["CERIA"].destroyItem(new SkinClear());
+		}
 		
 		// 9999 - Temporary placement until Aislinn is implemented!
 		if(9999 == 9999)
 		{
-			if(!chars["CERIA"].hasItem(new LipTease())) chars["CERIA"].inventory.push(new LipTease());
 			chars["CERIA"].keeperBuy += " Next to a small holo-mirror is a display holding an array of lip balms.";
+			if(!chars["CERIA"].hasItem(new LipTease())) chars["CERIA"].inventory.push(new LipTease());
 		}
 		else chars["CERIA"].destroyItem(new LipTease());
 	}
