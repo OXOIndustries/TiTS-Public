@@ -654,7 +654,7 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
 		else output2(" Your mouth contains " + indefiniteArticle(target.tongueDescript()) + ".");
-		if(target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) output2(" Because it constantly produces a steady stream of wet lube, you find yourself prone to drool--for better or worse.");
+		if(target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) output2(" Because it constantly produces a steady stream of wet lube, the inside of your mouth stays well lubricated.");
 
 		//Horns
 		if(target.horns > 0)
@@ -851,7 +851,7 @@ public function appearance(forTarget:Creature):void
 				else if (target.wingCount == 4) output2(" a quartet of");
 				else if (target.wingCount == 12) output2(" a dozen");
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition. From afar, they may look like innocent vines, but up close, each tenacle contain a bulbous head with a leaking cum-slit, perfect for mass breeding.");
+				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition. From afar, they may look like innocent vines, but up close, each tentacle contains a bulbous head with a leaking cum-slit, perfect for mass breeding.");
 			}
 		}
 		else output2(".");
@@ -2520,7 +2520,13 @@ public function crotchStuff(forTarget:Creature = null):void
 				}
 			}
 			//Variances based on lustiness & wetness & such. THE DETAIL!
-			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
+			if(target.vaginas[0].hasFlag(GLOBAL.FLAG_LUBRICATED))
+			{
+				if(target.libido() < 50 && target.lust() < 50) output2("Thin streams of [target.girlCum] occasionally dribble from ");
+				else if(target.libido() < 80 && target.lust() < 80) output2("Thick streams of [target.girlCum] drool constantly from ");
+				else output2("Immense streams of [target.girlCum] cascade profusely from ");
+			}
+			else if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 			{
 				//Wetness
 				if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes ");
@@ -2573,8 +2579,14 @@ public function crotchStuff(forTarget:Creature = null):void
 				//Else wetness -> size
 				else
 				{
+					if(target.vaginas[temp].hasFlag(GLOBAL.FLAG_LUBRICATED))
+					{
+						if(target.lust() < 50) output2(", frequently drooling its ever-present [target.girlCumNoun]");
+						else if(target.lust() < 75) output2(", constantly drooling thick strands of [target.girlCumNoun]");
+						else output2(", profusely seeping immense streams of [target.girlCumNoun]");
+					}
 					//High wetness shit
-					if(target.vaginas[temp].wetness() >= 4)
+					else if(target.vaginas[temp].wetness() >= 4)
 					{
 						if(target.lust() < 50) output2(", occassionally beading its ever-present [target.girlCumNoun]");
 						else if(target.lust() < 75) output2(", frequently drooling its ever-present [target.girlCumNoun]");
@@ -2651,7 +2663,13 @@ public function crotchStuff(forTarget:Creature = null):void
 	//BUNGHOLIO
 	if(target.ass != null) {
 		output2("\n\nYou have one " + target.assholeDescript(true) + ", placed between your cheeks where it belongs");
-		if(target.libido() < 50 && target.lust() < 50) //not particularly horny
+		if(target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED))
+		{
+			if(target.libido() < 50 && target.lust() < 50) output2(" with thin streams of lube leaking out of its edges.");
+			else if(target.libido() < 80 && target.lust() < 80) output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
+			else output2(" with immense streams of lubricant gushing profusely from the orifice, unrestrained and unending.");
+		}
+		else if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 		{
 			//Wetness
 			if(target.ass.wetness() < 0) output2(" without any sign of moisture.");

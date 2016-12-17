@@ -10676,7 +10676,7 @@
 			if (descripted) desc += " ";
 			rando = rand(9);
 			if (rando < 4) {
-				if (balls == 4 && rand(2) == 0) desc += "quad ";
+				if (!forceCount && balls == 4 && rand(2) == 0) desc += "quad ";
 				desc += "ball";
 			}
 			if (rando >= 4 && rando < 6) desc += "testicle";
@@ -17459,6 +17459,7 @@
 							{
 								AddLogEvent(ParseText("You feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>." + (isBimbo() ? " Nothing’s gonna to stop you from being, like, a totally hot sex doll!" : "")), "passive", maxEffectLength);
 								
+								if (skinType == GLOBAL.SKIN_TYPE_GOO && !hasSkinFlag(GLOBAL.FLAG_GOOEY)) addSkinFlag(GLOBAL.FLAG_GOOEY);
 								skinType = GLOBAL.SKIN_TYPE_LATEX;
 							}
 						}
