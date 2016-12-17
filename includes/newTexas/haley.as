@@ -1241,10 +1241,12 @@ public function haleyEllieThreesome():void
 	showHaley();
 	author("Wsan");
 	
-	var x:int = pc.cockThatFits(chars["HALEY"].vaginalCapacity());
-	if (x < 0) x = pc.biggestCockIndex();
-	var y:int = pc.cockThatFits(chars["HALEY"].analCapacity(),"volume",[x]);
-	if (y < 0) y = pc.smallestCockIndex();
+  var mainCockIdx:int = pc.cockThatFits(chars["HALEY"].vaginalCapacity());
+  var subCockIdx:int = -1;
+  if (pc.cocks.length > 1)
+  {
+    subCockIdx = pc.cockThatFits(chars["HALEY"].analCapacity, "volume", [mainCockIdx]);
+  }
 	
 	output("Haley slumps over the milker with a resigned sigh as you approach, then looks up when she notices your presence.");
 	output("\n\n<i>“Heya, [pc.name]. Don’t s’pose you’ve come by to help me out with my problem?”</i> she asks hopefully.");
@@ -1359,9 +1361,9 @@ public function haleyEllieThreesome():void
 	output("\n\n<i>“I’m gonna fuck you unconscious,”</i> Haley pants, scrabbling to align her swollen, dripping length with Ellie’s sodden snatch. The moment her flared head catches on the thick lips of Ellie’s sex, Haley thrusts with abandon, shoving half her dick into Ellie’s dripping cunt. Ellie utters a pleased scream of lust that resounds through the stall, losing herself to the intoxicating feeling of being full of cock, and your sense of reason dissipates. God damn - you can actually <i>see</i> the outline of Haley’s bloated horseprick moving under Ellie’s scaled skin as Haley fucks her.");
 	output("\n\nStanding behind the two mating ‘taurs as Haley makes little grunts of effort, thrusting ever-deeper into Ellie’s pussy to a cacophony of moans, you grab onto Haley’s hindquarters and ");
 	if (pc.isTaur()) output("mount her to");
-	if(pc.cockTotal() > 1) output(" align your [pc.cock " + x + "] with her drooling pussy and your [pc.cock " + y + "] with her raised, puffy asshole. After all... you didn’t specify <i>which</i> holes of hers you were going to fuck.");
+	if (subCockIdx >= 0) output(" align your [pc.cock " + mainCockIdx + "] with her drooling pussy and your [pc.cock " + subCockIdx + "] with her raised, puffy asshole. After all... you didn’t specify <i>which</i> holes of hers you were going to fuck.");
 	else output(" align your [pc.cock] with her delectable pussy - it’s drooling all over her heavy balls, her wetness dripping to the floor.");
-	output("\n\nWith your [pc.cockHead " + x + "] pressed against the wetness of Haley’s pussy, you start to push in - but it’s fucking <i>hard</i>! The amazonian taurgirl is not only ridiculously tight, but every time she fucks Ellie her passage flexes, another bead of pearlescent girlcum slipping down her flanks. Not to be deterred, you patiently wait until Haley is on her outstroke and then thrust into her with all your might.");
+	output("\n\nWith your [pc.cockHeadBiggest] pressed against the wetness of Haley’s pussy, you start to push in - but it’s fucking <i>hard</i>! The amazonian taurgirl is not only ridiculously tight, but every time she fucks Ellie her passage flexes, another bead of pearlescent girlcum slipping down her flanks. Not to be deterred, you patiently wait until Haley is on her outstroke and then thrust into her with all your might.");
 	output("\n\n<i>“Oh, </i>fuck<i>!”</i> she gasps, reflexively clamping down on you. Her back half begins to shudder, one of her hindlegs lifting off the ground, and you hear Ellie start to moan from under her.");
 	if (pc.isBimbo())
 	{
@@ -1428,21 +1430,21 @@ public function haleyEllieThreesome():void
 	output("\n\n<i>“Ooohh, fuck,”</i> you groan, the slap of naked flesh on flesh resounding throughout the stall as you empty yourself into Haley’s depths. <i>“Good girl - good giiirrrlll...”</i>");
 	output("\n\nThough Haley’s too busy shaking and shuddering to meaningfully vocalize it, you can tell your orgasm is only spurring hers on further. Below her, you’re treated to the sight of Ellie’s stomach starting to sag with the sheer liquid weight of Haley’s cum. Haley herself is beginning to look the same way, the endless flow of your jizz filling every fold and passage inside her with nowhere to go.");
 	if (pc.isLactating()) output(" You bite back a moan while [pc.milk] fountains from your jiggling breasts, your lactation induced by such vigorous ejaculation.");
-	if(pc.hasKnot(x))
+	if(pc.hasKnot(mainCockIdx))
 	{
 		output("\n\nShe looks back when she feels your knot");
-		if(pc.hasKnot(y)) output("s");
+		if(pc.hasKnot(subCockIdx)) output("s");
 		output(" pressing against her, realization slowly dawning on her face.");
 		output("\n\n<i>“You’re going to </i>knot<i> me?”</i> she asks in disbelief, shakily dismounting Ellie.");
 		if (pc.isBimbo()) output("\n\n<i>“And you’re gonna love it!”</i> you exclaim, still riding her from behind as she prostrates herself on the floor with her ass raised in the air for you to fuck. <i>“Your tight little kitty feels waaaaay too good not to knot it, Hales.”</i>");
 		else output("<i>“Hell yes,”</i> you pant, gripping her ass. <i>“No way I’m letting pussy this good just walk away without knotting it!”</i>");
 		output("\n\nShe seems to be satisfied with your answer, turning back and bracing herself as you begin to push inside her all over again. It’s much easier to penetrate her now, owing to the fact she’s lubricated by both your cum and her own fluids from her multiple earth-shattering orgasms. Your knot");
-		if (pc.hasKnot(y)) output("s");
+		if (pc.hasKnot(mainCockIdx)) output("s");
 		output(" slip into her with a lurid pop, plugging her dripping holes and sealing your cum inside her.");
 		if (pc.biggestCockLength() >= 20) output(" With her front legs failing her, you can see the imprint of your fat cock bulging outwards under her skin, although the detail quickly fades as you fill her with spunk.");
 		output("\n\n<i>“I hope you’re comfortable, ‘cuz we’re gonna be here a while,”</i> you tell her.");
 		output("\n\n<i>“Oh </i>god<i> that’s big,”</i> she moans, your knot");
-		if (pc.hasKnot(y)) output("s");
+		if (pc.hasKnot(subCockIdx)) output("s");
 		output(" securely nestled in ");
 		if (pc.cockTotal() > 1) output("the entrance to her holes.");
 		else output("her pussy.");
@@ -1455,7 +1457,7 @@ public function haleyEllieThreesome():void
 		{
 			output("overfilled body.");
 			output("Her asshole continually flexes around ");
-			if (pc.hasKnot(y)) output("the other knot");
+			if (pc.hasKnot(subCockIdx)) output("the other knot");
 			else output("your other dick");
 			output(" too, providing a softer contrast when her puffy donut turns inward.");
 		}
