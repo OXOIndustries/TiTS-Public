@@ -1630,7 +1630,7 @@ public function appearance(forTarget:Creature):void
 				// Goo moound
 				else
 				{
-					output2(" In place of legs you have a shifting amorphous blob. Thankfully it’s quite easy to propel yourself around on.");
+					output2(" In place of legs you have a shifting amorphous blob. Thankfully, it’s quite easy to propel yourself around on.");
 					if(target.hasArmor()) output2(" The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
 				}
 			}
