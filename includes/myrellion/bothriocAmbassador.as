@@ -66,6 +66,11 @@ public function bothriocEmbassyFunc():Boolean
 	return false;
 }
 
+public function araKeiSpecialGreetings():void
+{
+	if (bothriocAddiction() <= 0 && )
+}
+
 public function approachAraKei():void
 {
 	IncrementFlag("MET_ARAKEI");
@@ -335,6 +340,8 @@ public function araKeiTalkOtherBothrioc():void
 {
 	clearOutput();
 	showAraKei();
+
+	flags["ARAKEI_TALKED_OTHERBOTHRIOC"] = 1;
 
 	output("<i>“Do you have the support of the other bothrioc?”</i> you ask.");
 	
@@ -667,7 +674,9 @@ public function araKeiTheReamening():void
 		else output(" drool");
 		output(" [pc.femcum] onto the floor far below.");
 	}
-	output(" The quadomme holds you like that, on a precipice of keening arousal, for what seems like hours, days of sadistic ecstasy; and then [ara.he] punch"+ ara.mfn("es", "es", "") +" [ara.his] ovipositor inwards, piercing your "+ (pc.mf("m", "f") == m ? "boy pussy" : "ass pussy") +" and spreading you with its first bulging section with a single fierce movement. You scream as you orgasm, thrashing helplessly against your bonds as");
+	output(" The quadomme holds you like that, on a precipice of keening arousal, for what seems like hours, days of sadistic ecstasy; and then [ara.he] punch"+ ara.mfn("es", "es", "") +" [ara.his] ovipositor inwards, piercing your "+ (pc.mf("m", "f") == m ? "boy pussy" : "ass pussy") +" and spreading you with its first bulging section with a single fierce movement.");
+	pc.buttChange(ara.cockVolume(0), true, true, false);
+	output(" You scream as you orgasm, thrashing helplessly against your bonds as");
 	if (pc.hasCock())
 	{
 		output(" [pc.eachCock] flume");
@@ -693,7 +702,173 @@ public function araKeiTheReamening():void
 	pc.lustRaw = pc.lustMax * 0.4;
 
 	clearMenu();
-	addButton(0, "Next", );
+	addButton(0, "Next", araKeiTheReameningII);
+}
+
+public function araKeiTheReameningII():void
+{
+	clearOutput();
+	showAraKei();
+
+	output("Ara Kei spends at least half an hour inserting [ara.his] ovipositor into you; thick, oily segment after thick, oily segment, disappearing past your stretched ring. There seems to be no end to it, no end to how [ara.he] can bulk out your bowels with [ara.his] hot, bulbous sex, no end to how much of your sensitive slut body can be appropriated to serve as its clinging sleeve. Your perception of both it and time is warped by the fact [ara.he] refuse" + ara.mfn("s", "s", "") +" to stretch you wide again, refuse "+ara.mfn("s", "s", "")+" to force another vast, hard bulge into you, without mercilessly electrifying you, making you wriggle and spasm and wail to how [ara.his] four hands touch and tease you. Another orgasm is had");
+	if (pc.hasCock() || pc.hasVagina() || pc.isLactating())
+	{
+		output(", more")
+		if (pc.hasCock()) output(" [pc.cum]");
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasVagina()) output(" [pc.femcum]");
+		if ((pc.hasCock() || pc.hasVagina()) && pc.isLactating()) output(" and");
+		if (pc.isLactating()) output(" [pc.milk]");
+		output(" spurted wildly into the air");
+	}
+	output(" as [ara.he] carefully close"+ ara.mfn("s", "s", "") +" your windpipe, lovingly asphyxiating you with a knot of silken sheets so that sensuous stars burst inside your head. Another is pushed onto you whilst you’re still trying to regaining your breath, a low, tuneful groan forced past your lips, nerves jangling up one side of your body and then the other,");
+	if (pc.hasCock()) output(" your aching [pc.cock] flexing ecstatically but dryly to the bothrioc’s rigorous milking of your prostrate");
+	if (pc.hasCock() && pc.hasVagina()) output(" and");
+	if (pc.hasVagina()) output(" your throbbing [pc.vagina] quivering and clenching up to how [ara.he] pressures its tender walls through your stuffed [pc.asshole]");
+	if (!pc.hasVagina() && !pc.hasCock()) output(" your [pc.asshole] quivering and clenching up around the thick intruder spreading it wide")
+	output(".");
+
+	output("\n\n<i>“Such delightful sounds,”</i> [ara.he] laugh"+ ara.mfn("s", "s", "") +", <i>“such wonderful little dances");
+	if ((pc.hasCock() && pc.cumQ() >= 500) || (pc.hasVagina() && pc.femCumQ() >= 500) || (pc.isLactating() && pc.milkQ() >= 500)) output(" and such astonishing quantity of juices");
+	output("! Oh, you make me doubt my own wisdom, little one; maybe I do have a space for you, somewhere in my larder.”</i> There’s genuine passion and lust running through their cultured tone, now. <i>“Such an enjoyable mating display has me swollen and overburdened,”</i> [ara.he] growl"+ ara.mfn("s", "s", "") +" in your ear. [ara.He] pause"+ ara.mfn("s", "s", "") +" to bite you, hard, at the joining of neck and shoulder. You exhale raggedly, warm oil dribbling down from your [pc.anus], warm, fuzzy bliss twining with the sensation of being utterly owned, brutally dominated. <i>“You will take full responsibility for how worked up you’ve gotten me.”</i> Ara Kei");
+	if (!pc.hasFuckableNipples())
+	{
+		output(" tightens [ara.his] fingertips around your [pc.nipples]");
+		if (pc.isLactating())
+		{
+			output(", making them");
+			if (pc.milkQ() <= 200) output(" dribble");
+			else output(" spurt");
+			output(" [pc.milk]");
+		}
+	}
+	else
+	{
+		output(" slips [ara.his] fingertips into your [pc.nipples]");
+		if (pc.isLactating())
+		{
+			output(", making them");
+			if (pc.milkQ() <= 200) output(" dribble");
+			else output(" spurt");
+			output(" [pc.milk] around them");
+		}
+	}
+	output(" at the same time as the first of [ara.his] eggs travels down their extended egg-stalk and stretches your [pc.anus].");
+
+	// Doubled quantity or w/e
+	pc.loadInAss(ara);
+
+	output("\n\nOval after oval are ejaculated into your [pc.ass] and deposited heavily in your bowels. You chose to approach the quadomme when [ara.he] "+ara.mfn("was", "was", "were") +" particularly plump with eggs, and duly receive your reward for doing so; your belly bulks, then swells, then grows utterly taut with packed, bumpy warmth, Ara Kei breeding you with harsh gasps, clasps of your flesh and hisses, pausing occasionally to sink their teeth into your neck and [pc.ears]. The huge pressure [ara.his] load ");
+	if (pc.hasCock()) output(" puts on your poor prostate");
+	else if (pc.hasVagina()) output(" puts on your tingling pussy walls");
+	else output(" packs into your ass")
+	output(" drives you to another delirious orgasm");
+	if (pc.hasCock()) output(", your [pc.cock] straining to pulse out [pc.cum] it ran out of long ago");
+	output(", but the real joy is the indescribable sensation of fulfilling your purpose; the sunny, blossoming euphoria of taking everything an egg-giver’s got, of hearing their groans of pleasure as they pack you utterly full of new life. They deserve it, for being so powerful and beautiful - being a vessel for such a creature’s potent lusts makes you unspeakably happy. You only wish you could live forever in this movement - clasped by the arch-bothrioc, harshly twisted this way and that by their masterful hand, and having every inch of your soft, radiant self fucked by them.");
+
+	output("\n\nChitinous hands slide over your [pc.chest] and [pc.hips] soothingly when, at long last, the supply of eggs runs out. Ara Kei spends almost as much time withdrawing [ara.his] ovipositor as [ara.he] did inserting it. [ara.He] hold"+ ara.mfn("s", "s", "") +" you tight, stroking your sweat-soaked");
+	if (pc.hairLength > 0) output(" [pc.hair]");
+	else output(" scalp"); 
+	output(", whispering nothings in your teeth-imprinted ears, as another segment pulls back, stretching your tender asshole... and then coming free, making the breath catch in your throat. You don’t feel any less full for the glorious purple egg-cock retreating from you; the quadomme has packed your intestines with [ara.his] dense, oily love, more eggs than you’ve ever taken from any other source. When [ara.he] finally draw"+ ara.mfn("s", "s", "") +" away the tip of it, [ara.he] reach"+ ara.mfn("es", "es", "") +" down with two hands and, whilst gently stroking your face, squeezes your ass-cheeks firmly together until your [pc.anus] agrees to close itself up.");
+
+	//Lust down 40%, anal looseness up if ass tight
+	processTime(15+rand(10));
+	pc.orgasm();
+	pc.lustRaw = 0;
+
+	clearMenu();
+	addButton(0, "Next", araKeiTheReameningIII);
+}
+
+public function araKeiTheReameningIII():void
+{
+	clearOutput();
+	showAraKei();
+
+	output("<i>“I hope it was worth the wait, Steele,”</i> Ara Kei murmurs, supple chest pressing into your back. The best you can manage in response is a long, exhausted groan, which draws a husky laugh from the dominant. <i>“And that you are ready for the next stage.”</i>");
+
+	output("\n\nWait. You aren’t done...? There’s a shuffling above you as the warmth of [ara.his] white chest parts from you and [ara.he] move"+ ara.mfn("s", "s", "") +" [ara.himself] further up the vertical bed - so that the great teardrop shape of [ara.his] abdomen looms above your shoulders. Sticky strands of silk land on your [pc.skinFurScales], and before you can gather enough of your scattered thoughts to understand what [ara.he] "+ ara.mfn("is", "is", "are")+" doing, Ara Kei is skilfully manipulating your bonds and [ara.his] legs to turn you around and around, [ara.his] spinnerets busily producing thin but incredibly tough silk to wrap your entire frame in. Your [pc.legs] are cocooned in white, your arms are bound tightly to your side, your face is brought close to [ara.his] plump, nodule-like spinnerets - and then there is nothing but muffling, sticky darkness. The only part of your naked body [ara.he] leave"+ ara.mfn("s", "s", "") +" unbound are your nose and [pc.lips].");
+
+	output("\n\n<i>“Now then,”</i> says the monstrous bothrioc thoughtfully. You feel yourself being moved around, being brought downwards, dangled from above. How "+ ara.mfn("is", "is", "are") +" [ara.he] doing this? Where does [ara.his] physical strength come from? You don’t know. You don’t really care. You are [ara.her] pawn, the towering "+ ara.mfn("king", "queen", "king-queen") +" of this dark sensual hole you’ve tumbled down, and it doesn’t seem unreasonable that [ara.he] can turn your whole world this way and that however [ara.he] please"+ ara.mfn("s", "s", "") +". You are hoisted upwards again, you hear sticky wet sounds above you - and then finally you are left where you are. Dangling, bound and blind from the ceiling, utterly stuffed with the eggs of the being that’s done this to you. Thin, smooth lips meet yours, and for a moment Ara Kei’s tongue tangles with yours.");
+
+	output("\n\n<i>“You sit there and ruminate for a bit, little one,”</i> [ara.he] husk"+ ara.mfn("s", "s", "") +". <i>“Bask in the feeling of my spawn growing within you. I will be back to set you on your way in due course. Probably.”</i>");
+	if (pc.hasLowerGarment()) output(" You feel something soft being pushed past your [pc.lips], and you emit a muffled whimper when you realise what it is. The taste and smell of your own intense arousal inundates your senses as your [pc.lowerUndergarment] are stuffed into your mouth.");
+	if (pc.cumQ() <= 1000 && pc.femCumQ() <= 1000 && pc.milkQ() <= 1000) output(" Four stilettoes clack their way away from you, a door opens and shuts... and then you’re on your own.");
+	else
+	{
+		output(" Four stilettoes clack their way away from you, pausing halfway across the room.");
+
+		output("\n\n<i>“I’m going to have to get someone in here with a mop, aren’t I?”</i> Ara Kei sighs. You hear the rustle of heavily soiled linen. <i>“Farlanders - a lot of fun, but very high maintenance.”</i> A door opens and shuts... and then you’re on your own.");
+	}
+
+	processTime(55+rand(10));
+	clearMenu();
+	addButton(0, "Next", araKeiTheReameningIV);
+}
+
+public function araKeiTheReameningIV():void
+{
+	clearOutput();
+	showAraKei();
+
+	output("Time drifts by as you dangle there, a mummified ornament in a spider’s boudoir. Perhaps the old you would have gotten bored after about two minutes of this, but that could not be further from the case where the new you is concerned. The frazzling, mind-blowing sex you just endured has scattered your sense of self and pushed you into a state of Zen, happy simply to be the creature of total submission you have been molded into. Everything centres around the big, warm, contented glow in your tautened stomach, utter engorgement on a dominant’s lusts. As the moments slip by you can feel that reaching out and permeating every cell in your body, changing you to be even more suited to being an egg slut, softness piling on upon your [pc.chest] and [pc.hips]. It is true contentment, and hard, sharp thoughts - like your mission and whether your crew are wondering where you are - cannot pierce the all-encompassing fuzz.");
+
+	//Time forward 4 hours, normal Lust increase
+	output("\n\nOccasionally a door opens, a slight breeze touches your lower face. A single pair of armored feet will click-clack busily around and swiftly depart, or two pairs come in and you hear Ara Kei issue some brisk orders to the underlings around [ara.him] - or tend to the harem already here. Slithery, sticky sounds and murmurs as [ara.he] unbind"+ ara.mfn("s", "s", "") +" morsels attached to the ceiling and trusses up others; gasps, coos and moans as [ara.he] deliver"+ ara.mfn("s", "s", "") +" soft love, tough love, and hard  oil-drainings to those who remain here. You are given an insight into the sheer level of duty and engagement required to maintain the quadomme’s life: Constantly rotating [ara.his] attention"+ ara.mfn("s", "s", "") +" around 40 other people, [ara.his] never-ending awareness of where every submissive is at any one time, the docility, cooperative spirit and total investment of each haremling to make it all work like a well-oiled machine. It takes a while for your brood-slowed mind to think of this, but it eventually occurs that Ara Kei deliberately put you here so that you could observe all of this. A lesson within a lesson, imparted to a farlander who can carry the memory of these sights, sounds and feelings to the stars above, a willing vector of bothrioc love. Certainly [ara.his] cunning and lust are multi-layered enough.");
+
+	//Time forward 2 hours, high Lust increase
+
+	output("\n\nAgain and again the fact that the dominant wants you to be here, trussed up");
+	if (pc.hasLowerGarment()) output(", mouth stuffed with your [pc.lowerUndergarment]");
+	output(" and helpless, chimes all the way through you like a deep, repeating piano note, making heat climb up to your [pc.skinFurScales]. Each time your own arousal climbs a bit higher, abetted by the hot, plump glow suffusing your core, and after a while you’re rocking slightly in your adhesive bindings in frustration,");
+	if (pc.hasCock()) output(" [pc.eachCock] hard against the silk");
+	if (pc.hasCock() && pc.hasVagina()) output(" and");
+	if (pc.hasVagina()) output(" [pc.eachVagina moist and puffy, begging for the same filling your [pc.ass] has received");
+	if (!pc.hasCock() && !pc.hasVagina()) output(" seeking the slightest touch to bring pleasure to yourself")
+	output(". The sharp, certain sound of four chitinous heels return to you just as it’s starting to get unbearable.");
+
+	var unfilledVag:uint = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
+	if (unfilledVag >= 0)
+	{
+		output("\n\nAra Kei reaches up and undoes you from the ceiling, carefully drawing you downwards, laying you between [ara.his] four legs before peeling the silk away from your [pc.skinFurScales]. [ara.He] leave"+ ara.mfn("s", "s", "") +" your arms bound, however, forcing you to raise your [pc.ass] up with a telling stroke and press of a finger, and then unceremoniously thrusting [ara.his] ovipositor deep into your wet, spread pussy.");
+		pc.cuntChange(unfilledVag, ara.cockVolume(0), true, true, false);
+
+		output("\n\n<i>“I would hate for you to leave without tasting a range of a kept incubator’s experiences... <i>“ groans the quadomme, hands pressed into your [pc.chest] as [ara.he] stretch"+ ara.mfn("es", "es", "") +" your sensitive labia wide with rough thrust after thrust of hard, oily bulges. <i>“The ecstasy of a long, lavish breeding - and the crude joy of being simple, swift relief for your owner, whenever they feel like it.”</i> Your [pc.vagina] quivers around [ara.his] egg-stalk, drooling [pc.femcum] as it impatiently wills it on. The sensation is all the greater for how stuffed you already are, the bulges of unborn young in your gut compressing your pussy, making you feel every inch of Ara Kei’s thrusting, questing breeding pole. You tense up and orgasm as the first egg forces its way past your mouth and travels up your claimed tunnel, crying out and throwing your head back with delight as it blooms into your womb, the squeezing of thin fingers on your [pc.nipples] augmenting your slutty joy even more. The bothrioc doesn’t give you many eggs this time - even this quadomme, it seems, has limits - but it’s enough to swell out your stomach even more. Two layers of full, fertile weight for you to bear.");
+
+		// Regular bothrioc preggers
+		pc.loadInCunt(ara, unfilledVag);
+
+		output("\n\nAfter a short time relaxing against you, their whispering breath in your [pc.ears] and [pc.hair] and their flat chest moulded against your back, Ara Kei withdraws - each bump of their ovipositor sending little tingles through your tenderised cunt - draws you up into a kneeling position, and then stalks around to face you.");
+	}
+	else if (pc.hasCock())
+	{
+		output("\n\nIf not but dick: There’s a murmur of cultured amusement below you, and Ara Kei first tears a hole in the bindings where you are most incongruously bulging, allowing your [pc.cock] to dangle downwards. Hoarse gasps are forced past your [pc.lips] as [ara.he] play"+ ara.mfn("s", "s", "") +" with it for a time, stroking the underside with a single finger, circling the [pc.cockHead]");
+		if (pc.balls > 0) output(", teasing your [pc.balls] with gentle squeezes");
+		output(", allowing you to get so close to release you’re bulging up, before withdrawing agonisingly. You’re left on the edge as [ara.he] reach"+ ara.mfn("es", "es", "") +" up and undoes you from the ceiling, carefully drawing you down and peeling off [ara.his] silk, so that when you are finally left naked and kneeling before [ara.him], your [pc.cock] is as stiffly erect as your back. The face-splitting grin on the white face above you tells you how pleasing this sight is to [ara.him].");
+	}
+	else
+	{
+		output("\n\nAra Kei reaches up and undoes you from the ceiling, carefully drawing you downwards, laying you in front of [ara.him] before peeling the silk away from your [pc.skinFurScales]. [ara.His] movements are such that you are left");
+		if (pc.hasKnees()) output(" on your knees with");
+		output(" back straight, [pc.chest] out and hands behind your back.");
+	}
+
+	output("\n\n<i>“Did we enjoy our reward, little one?”</i> [ara.he] ask"+ ara.mfn("s", "s", "") +", raising a thin, immaculate eyebrow. The quadomme looks exactly the same as [ara.he] always "+ ara.mfn("has", "has", "have") +" - [ara.he] could have just finished delivering a seminar to you, rather than stuffing you utterly full of [ara.his] fertilised eggs and then keeping you bound for half a day, for all the difference it makes to [ara.his] snow-white facade. You have now experienced the depthless sexual despotism which underlies [ara.his] verbosity and apparent calm, however. A lake of tar that you could drown in for weeks, without ever touching its bottom.");
+
+	output("\n\n<i>“Yes, Ara Kei. Thank you,”</i> you manage. You receive a rub");
+	if (pc.hairLength > 0) output(" through your [pc.hair]");
+	else output(" behind the ear");
+	output(" in return.");
+
+	output("\n\n<i>“I shouldn’t do this,”</i> the bothrioc ambassador says as [ara.he] lead"+ ara.mfn("s", "s", "") +" you back through on all fours into the embassy. The massive clutch [ara.he] "+ ara.mfn("has", "has", "have") +" implanted into you necessitates you splay your [pc.hips] in order to move, practically dragging your baby bulge with you. <i>“But you have been an awfully sweet and obedient [pc.boyGirl] throughout Steele, and through your actions told me much about the outside galaxy. So if you’re ever feeling the need really badly again... <i>“ A finger touches you on the [pc.lips]. <i>“You know where to come.”</i>");
+
+	//PC gets double number usual bothrioc pregnancy in ass, regular bothrioc pregnancy in pussy if that happened
+
+	processTime((6 * 60) + rand(30));
+	pc.lust(10);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function araKeiPolishBooties():void
