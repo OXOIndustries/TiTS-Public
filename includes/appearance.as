@@ -2817,7 +2817,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	}
 	//Cat cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_FELINE) {
-		output2(" It ends in a tapered head");
+		output2(" It ends in a " + (target.cocks[x].hasFlag(GLOBAL.FLAG_TAPERED) ? "tapered" : "rounded") + " head");
 		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(", ringed in small, fleshy nubs that terrans have taken to calling “barbs” in spite of their softness. More of these “barbs” line the shaft, but they’re largest at the base, where they are likely to be rubbed against a clit mid-coitus.");
 		else output2(" much like that of a feline.");
 	}
@@ -2849,7 +2849,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	}
 	//Draconic Cawk Flava flav
 	else if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC || target.cocks[x].cType == GLOBAL.TYPE_GRYVAIN) {
-		output2(" With its tapered tip, there are few holes you wouldn’t be able to get into.");
+		output2(" With its " + (target.cocks[x].hasFlag(GLOBAL.FLAG_TAPERED) ? "tapered" : "bulbous") + " tip, there are few holes you wouldn’t be able to get into.");
 		if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC) output2(" It has a strange, knot-like bulb at its base, but doesn’t usually flare during arousal as a dog’s knot would.");
 	}
 	//Beees
