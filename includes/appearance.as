@@ -654,7 +654,7 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
 		else output2(" Your mouth contains " + indefiniteArticle(target.tongueDescript()) + ".");
-		if(target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) output2(" Because it constantly produces a steady stream of wet lube, you find yourself prone to drool--for better or worse.");
+		if(target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) output2(" Because it constantly produces a steady stream of wet lube, the inside of your mouth stays well lubricated.");
 
 		//Horns
 		if(target.horns > 0)
@@ -851,7 +851,7 @@ public function appearance(forTarget:Creature):void
 				else if (target.wingCount == 4) output2(" a quartet of");
 				else if (target.wingCount == 12) output2(" a dozen");
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition. From afar, they may look like innocent vines, but up close, each tenacle contain a bulbous head with a leaking cum-slit, perfect for mass breeding.");
+				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition. From afar, they may look like innocent vines, but up close, each tentacle contains a bulbous head with a leaking cum-slit, perfect for mass breeding.");
 			}
 		}
 		else output2(".");
@@ -918,22 +918,24 @@ public function appearance(forTarget:Creature):void
 		}
 		//Vanaebutt Skin
 		if(target.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + target.skinAccent + " trace brighter accents across much of your form.");
+		// Mimbrane sweat
+		if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined)
+		{
+			output2(" In addition, your body is soaked in");
+			if(target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) output2(" a viscous layer");
+			else if(target.statusEffectv1("Sweaty") <= 1) output2(" a light layer");
+			else if(target.statusEffectv1("Sweaty") <= 2) output2(" visible layers");
+			else if(target.statusEffectv1("Sweaty") <= 4) output2(" multiple layers");
+			else output2(" thick layers");
+			output2(" of oily, strawberry-scented " + (target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED) ? "lubrication" : "perspiration") + ", giving it a slick, sensual shine.");
+		}
 		// Lube skin!
-		if(target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED))
+		else if(target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED))
 		{
 			output2(" Your " + target.skin() + " is secreting");
 			if(target.hasSkinFlag(GLOBAL.FLAG_APHRODISIAC_LACED))output2(" an aphrodisiac sweat");
 			else output2(" a constant layer of lubrication");
 			output2(", giving it a slick oiled shine.");
-		}
-		else if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined)
-		{
-			output2(" In addition, your body is soaked in");
-			if(target.statusEffectv1("Sweaty") <= 1) output2(" a light layer");
-			else if(target.statusEffectv1("Sweaty") <= 2) output2(" visible layers");
-			else if(target.statusEffectv1("Sweaty") <= 4) output2(" multiple layers");
-			else output2(" thick layers");
-			output2(" of oily, strawberry-scented perspiration, giving it a slick, sensual shine.");
 		}
 		// Muscles - Sweaty ( Shazam Remix )
 		else if(target.hasStatusEffect("Sweaty"))
@@ -946,7 +948,7 @@ public function appearance(forTarget:Creature):void
 			output2(" of sweat, signaling the exertion of your previous physical activities.");
 		}
 		// Pheromones
-		if(target.hasPheromones()) output2(" " + ((target.hasPerk("Pheromone Sweat") && target.statusEffectv1("Sweaty") > 2) ? "Your entire body emits" : "Parts of your body emit") + " " + RandomInCollection(["aphrodisiac-laced", "lust-scented", "musky", "aromatic"]) + " pheromones, enticing potential mates.");
+		if(target.hasPheromones()) output2(" " + ((target.hasPerk("Pheromone Sweat") && target.skinIsSoaked()) ? "Your entire body emits" : "Parts of your body emit") + " " + RandomInCollection(["aphrodisiac-laced", "lust-scented", "musky", "aromatic"]) + " pheromones, enticing potential mates.");
 		//Wing arms
 		if(target.armType == GLOBAL.TYPE_AVIAN)
 		{
@@ -1630,7 +1632,7 @@ public function appearance(forTarget:Creature):void
 				// Goo moound
 				else
 				{
-					output2(" In place of legs you have a shifting amorphous blob. Thankfully it’s quite easy to propel yourself around on.");
+					output2(" In place of legs you have a shifting amorphous blob. Thankfully, it’s quite easy to propel yourself around on.");
 					if(target.hasArmor()) output2(" The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
 				}
 			}
@@ -2520,7 +2522,13 @@ public function crotchStuff(forTarget:Creature = null):void
 				}
 			}
 			//Variances based on lustiness & wetness & such. THE DETAIL!
-			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
+			if(target.vaginas[0].hasFlag(GLOBAL.FLAG_LUBRICATED))
+			{
+				if(target.libido() < 50 && target.lust() < 50) output2("Thin streams of [target.girlCum] occasionally dribble from ");
+				else if(target.libido() < 80 && target.lust() < 80) output2("Thick streams of [target.girlCum] drool constantly from ");
+				else output2("Immense streams of [target.girlCum] cascade profusely from ");
+			}
+			else if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 			{
 				//Wetness
 				if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes ");
@@ -2573,8 +2581,14 @@ public function crotchStuff(forTarget:Creature = null):void
 				//Else wetness -> size
 				else
 				{
+					if(target.vaginas[temp].hasFlag(GLOBAL.FLAG_LUBRICATED))
+					{
+						if(target.lust() < 50) output2(", frequently drooling its ever-present [target.girlCumNoun]");
+						else if(target.lust() < 75) output2(", constantly drooling thick strands of [target.girlCumNoun]");
+						else output2(", profusely seeping immense streams of [target.girlCumNoun]");
+					}
 					//High wetness shit
-					if(target.vaginas[temp].wetness() >= 4)
+					else if(target.vaginas[temp].wetness() >= 4)
 					{
 						if(target.lust() < 50) output2(", occassionally beading its ever-present [target.girlCumNoun]");
 						else if(target.lust() < 75) output2(", frequently drooling its ever-present [target.girlCumNoun]");
@@ -2651,7 +2665,13 @@ public function crotchStuff(forTarget:Creature = null):void
 	//BUNGHOLIO
 	if(target.ass != null) {
 		output2("\n\nYou have one " + target.assholeDescript(true) + ", placed between your cheeks where it belongs");
-		if(target.libido() < 50 && target.lust() < 50) //not particularly horny
+		if(target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED))
+		{
+			if(target.libido() < 50 && target.lust() < 50) output2(" with thin streams of lube leaking out of its edges.");
+			else if(target.libido() < 80 && target.lust() < 80) output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
+			else output2(" with immense streams of lubricant gushing profusely from the orifice, unrestrained and unending.");
+		}
+		else if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 		{
 			//Wetness
 			if(target.ass.wetness() < 0) output2(" without any sign of moisture.");
@@ -2799,7 +2819,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	}
 	//Cat cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_FELINE) {
-		output2(" It ends in a tapered head");
+		output2(" It ends in a " + (target.cocks[x].hasFlag(GLOBAL.FLAG_TAPERED) ? "tapered" : "rounded") + " head");
 		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(", ringed in small, fleshy nubs that terrans have taken to calling “barbs” in spite of their softness. More of these “barbs” line the shaft, but they’re largest at the base, where they are likely to be rubbed against a clit mid-coitus.");
 		else output2(" much like that of a feline.");
 	}
@@ -2831,7 +2851,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	}
 	//Draconic Cawk Flava flav
 	else if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC || target.cocks[x].cType == GLOBAL.TYPE_GRYVAIN) {
-		output2(" With its tapered tip, there are few holes you wouldn’t be able to get into.");
+		output2(" With its " + (target.cocks[x].hasFlag(GLOBAL.FLAG_TAPERED) ? "tapered" : "bulbous") + " tip, there are few holes you wouldn’t be able to get into.");
 		if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC) output2(" It has a strange, knot-like bulb at its base, but doesn’t usually flare during arousal as a dog’s knot would.");
 	}
 	//Beees
