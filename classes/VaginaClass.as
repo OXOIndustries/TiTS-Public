@@ -47,7 +47,7 @@
 				currWet += 2;
 				//if(currWet > 5) currWet = 5;
 			}
-			if(hasFlag(GLOBAL.FLAG_LUBRICATED) && currWet < 4) currWet = 4;
+			if(hasFlag(GLOBAL.FLAG_LUBRICATED)) currWet += 4;
 			
 			if (currWet < 0)
 			{

@@ -2870,7 +2870,7 @@
 				//Biomass vent
 				if(statusEffectv1("Goo Vent") == 1)
 				{
-					kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+					flags["GOO_BIOMASS"] = 0;
 				}
 				if(this is PlayerCharacter)
 				{
@@ -2972,7 +2972,7 @@
 				}
 				// 50% sweatiness and combat-ready description
 				if (rand(2) == 0) {
-					if(kGAMECLASS.flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1 && statusEffectv1(mimType) >= 3) {
+					if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1 && statusEffectv1(mimType) >= 3) {
 						if (descripted > 0) desc += ", ";
 						rando = rand(10);
 						if (rando == 0) desc += "glistening";
@@ -2987,7 +2987,7 @@
 						else desc += "sweating";
 						descripted++;
 					}
-					if (kGAMECLASS.flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == 1 && statusEffectv1(mimType) >= 4) {
+					if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == 1 && statusEffectv1(mimType) >= 4) {
 						if (descripted > 0) desc += " and ";
 						rando = rand(4);
 						if (rando == 0) desc += "lust-inducing";
@@ -3335,8 +3335,15 @@
 		public function hasPheromones():Boolean
 		{
 			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent")) return true;
-			if(hasPerk("Pheromone Sweat") && statusEffectv1("Sweaty") > 0) return true;
+			if(hasPerk("Pheromone Sweat") && (statusEffectv1("Sweaty") > 0 || skinIsSoaked())) return true;
 			if(accessory is Allure) return true;
+			return false;	
+		}
+		public function skinIsSoaked():Boolean
+		{
+			if(this is PlayerCharacter && flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined) return true;
+			if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) return true;
+			if(statusEffectv1("Sweaty") > 2) return true;
 			return false;	
 		}
 		//Mild exhib scene: arg = +1;
@@ -4947,9 +4954,9 @@
 			if (this is PlayerCharacter && hasStatusEffect("Mimbrane Face"))
 			{
 				//Birthmark
-				if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 1) facemim = " adorned with beauty marks just above them";
+				if (flags["MIMBRANE_FACE_APPEARANCE"] == 1) facemim = " adorned with beauty marks just above them";
 				//Lip piercings
-				else if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 2) facemim = " decorated with a pair of lip piercings";
+				else if (flags["MIMBRANE_FACE_APPEARANCE"] == 2) facemim = " decorated with a pair of lip piercings";
 			}
 			
 			return facemim;
@@ -8517,8 +8524,8 @@
 			//BIOMASS ADDED LAST!
 			if(statusEffectv1("Goo Vent") == 1) 
 			{
-				if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-				quantity += kGAMECLASS.flags["GOO_BIOMASS"];
+				if(flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+				quantity += flags["GOO_BIOMASS"];
 			}
 			trace("Total produced: " + quantity);
 			return quantity;
@@ -8659,8 +8666,8 @@
 			//GOO VENT BONUS!
 			if(statusEffectv1("Goo Vent") == 1) 
 			{
-				if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-				quantity += kGAMECLASS.flags["GOO_BIOMASS"];
+				if(flags["GOO_BIOMASS"] == undefined) flags["GOO_BIOMASS"] = 0;
+				quantity += flags["GOO_BIOMASS"];
 			}
 			// Round values.
 			quantity = Math.round(quantity / 10) * 10;
@@ -8788,8 +8795,11 @@
 			tailGenitalArg = 0;
 			tailGenitalColor = "";
 			clearTailFlags();
-			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-			flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+			if(this is PlayerCharacter)
+			{
+				flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+				flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+			}
 			return;
 		}
 		public function hasParasiteTail(typeOnly:Boolean = false): Boolean {
@@ -10230,7 +10240,7 @@
 		public function orangeMyrScore():int
 		{
 			var counter:int = myrScore();
-			if (kGAMECLASS.flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+			if (flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
 			{
 				if (hasPerk("Honeypot") && hasPerk("Myr Venom")) counter += 4;
 				if (tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;

@@ -918,22 +918,24 @@ public function appearance(forTarget:Creature):void
 		}
 		//Vanaebutt Skin
 		if(target.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + target.skinAccent + " trace brighter accents across much of your form.");
+		// Mimbrane sweat
+		if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined)
+		{
+			output2(" In addition, your body is soaked in");
+			if(target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) output2(" a viscous layer");
+			else if(target.statusEffectv1("Sweaty") <= 1) output2(" a light layer");
+			else if(target.statusEffectv1("Sweaty") <= 2) output2(" visible layers");
+			else if(target.statusEffectv1("Sweaty") <= 4) output2(" multiple layers");
+			else output2(" thick layers");
+			output2(" of oily, strawberry-scented " + (target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED) ? "lubrication" : "perspiration") + ", giving it a slick, sensual shine.");
+		}
 		// Lube skin!
-		if(target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED))
+		else if(target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED))
 		{
 			output2(" Your " + target.skin() + " is secreting");
 			if(target.hasSkinFlag(GLOBAL.FLAG_APHRODISIAC_LACED))output2(" an aphrodisiac sweat");
 			else output2(" a constant layer of lubrication");
 			output2(", giving it a slick oiled shine.");
-		}
-		else if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined)
-		{
-			output2(" In addition, your body is soaked in");
-			if(target.statusEffectv1("Sweaty") <= 1) output2(" a light layer");
-			else if(target.statusEffectv1("Sweaty") <= 2) output2(" visible layers");
-			else if(target.statusEffectv1("Sweaty") <= 4) output2(" multiple layers");
-			else output2(" thick layers");
-			output2(" of oily, strawberry-scented perspiration, giving it a slick, sensual shine.");
 		}
 		// Muscles - Sweaty ( Shazam Remix )
 		else if(target.hasStatusEffect("Sweaty"))
@@ -946,7 +948,7 @@ public function appearance(forTarget:Creature):void
 			output2(" of sweat, signaling the exertion of your previous physical activities.");
 		}
 		// Pheromones
-		if(target.hasPheromones()) output2(" " + ((target.hasPerk("Pheromone Sweat") && target.statusEffectv1("Sweaty") > 2) ? "Your entire body emits" : "Parts of your body emit") + " " + RandomInCollection(["aphrodisiac-laced", "lust-scented", "musky", "aromatic"]) + " pheromones, enticing potential mates.");
+		if(target.hasPheromones()) output2(" " + ((target.hasPerk("Pheromone Sweat") && target.skinIsSoaked()) ? "Your entire body emits" : "Parts of your body emit") + " " + RandomInCollection(["aphrodisiac-laced", "lust-scented", "musky", "aromatic"]) + " pheromones, enticing potential mates.");
 		//Wing arms
 		if(target.armType == GLOBAL.TYPE_AVIAN)
 		{
