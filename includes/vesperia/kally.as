@@ -15,6 +15,8 @@ Scene where the PC can slip her a drink with cum in it, sending her into ball-sw
 "Milk From the Tap" scene?
 Kiro Threesome?*/
 
+/* TEST */
+
 public function showKallyAndKiro(nude:Boolean = false):void
 {
 	if(nude) showBust("KALLY_NUDE",kiroBustDisplay(nude));
