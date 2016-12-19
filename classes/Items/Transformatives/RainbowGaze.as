@@ -129,7 +129,12 @@
 			author("Couch");
 			
 			output("You put the eyedropper back into your inventory.\n\n");
-			kGAMECLASS.itemCollect([new RainbowGaze()]);
+			if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new RainbowGaze()]);
+			else
+			{
+				clearMenu();
+				addButton(0,"Next",kGAMECLASS.useItemFunction);
+			}
 		}
 		
 		private function rbgUse(arg:Array):void
