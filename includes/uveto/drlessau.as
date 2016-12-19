@@ -234,7 +234,7 @@ public function drLessauOral():void
 	
 	var i:int = -1;
 	
-	if (pc.hasCock() && (!pc.hasVagina()) || rand(2) == 0)
+	if (pc.hasCock() && (!pc.hasVagina() || rand(2) == 0))
 	{
 		i = pc.biggestCockIndex();
 		
