@@ -6,28 +6,15 @@
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
-	import classes.Items.Accessories.Allure;
-	import classes.Items.Accessories.FlashGoggles;
-	import classes.Items.Accessories.SiegwulfeItem;
-	import classes.Items.Accessories.TamWolf;
-	import classes.Items.Accessories.TamWolfDamaged;
-	import classes.Items.Accessories.TamWolfII;
+	import classes.Items.Accessories.*;
 	import classes.Items.Armor.GooArmor;
 	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
-	import classes.Items.Miscellaneous.EmptySlot;
-	import classes.Items.Miscellaneous.HorsePill;
-	import classes.Items.Miscellaneous.Priapin;
-	import classes.Items.Miscellaneous.Cargobot;
-	import classes.Items.Transformatives.AmberSeed;
-	import classes.Items.Transformatives.Cerespirin;
-	import classes.Items.Transformatives.Clippex;
-	import classes.Items.Transformatives.Foxfire;
-	import classes.Items.Transformatives.Goblinola;
-	import classes.Items.Transformatives.SemensFriend;
+	import classes.Items.Miscellaneous.*;
+	import classes.Items.Transformatives.*;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
@@ -17321,6 +17308,7 @@
 				// Effects created with a 0 or less duration aren't handled by this code ever.
 				if (thisStatus.minutesLeft <= 0) continue;
 				
+				var startEffectLength:uint = thisStatus.minutesLeft;
 				var maxEffectLength:uint = Math.min(deltaT, thisStatus.minutesLeft);
 				thisStatus.minutesLeft -= maxEffectLength;
 				
@@ -17330,6 +17318,31 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "Curdsonwhey": 
+						
+						if (startEffectLength >= 180 && thisStatus.minutesLeft < 180)
+						{
+							Curdsonwhey.effectProc(this, startEffectLength, 180);
+						}
+						
+						if (startEffectLength >= 120 && thisStatus.minutesLeft < 120)
+						{
+							Curdsonwhey.effectProc(this, startEffectLength, 120);
+						}
+						
+						if (startEffectLength >= 60 && thisStatus.minutesLeft < 60)
+						{
+							Curdsonwhey.effectProc(this, startEffectLength, 60);
+						}
+						
+						if (requiresRemoval)
+						{
+							Curdsonwhey.effectProc(this, startEffectLength, 0);
+							
+							AddLogEvent("You swallow, and nod with approval as the bitterness of the Curdsonwhey at the back of your throat finally washes away.", "passive", maxEffectLength);
+						}
+						
+						break;
 					case "IQBGoneTimer":
 						if(requiresRemoval)
 						{

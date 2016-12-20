@@ -64,11 +64,6 @@ public function bothriocEmbassyFunc():Boolean
 	return false;
 }
 
-public function araKeiSpecialGreetings():Boolean
-{
-
-}
-
 public function approachAraKei():void
 {
 	clearOutput();
@@ -413,7 +408,7 @@ public function araKeiMenu(lastF:Function = null):void
 		arg: undefined, 
 		ttH: "Flirt",
 		ttB: bothriocAddiction() >= 100 
-				? "Debase yourself in front of this perfect being. (You probably don’t want to be anywhere anytime soon if you’re choosing this.)")
+				? "Debase yourself in front of this perfect being. (You probably don’t want to be anywhere anytime soon if you’re choosing this.)"
 				: bothriocAddiction() >= 50
 					? "Perhaps if you displayed your devotion enough..."
 					: "Hey, it’s worth a short."
@@ -484,7 +479,7 @@ public function setAraKeiGender(genderType:uint):void
 	clearOutput();
 	showAraKei();
 
-	araKei.setStatusValue("Forced Gender", genderType);
+	ara.setStatusValue("Forced Gender", 0, genderType);
 
 	switch (genderType)
 	{
@@ -791,7 +786,7 @@ public function araKeiFlirt():void
 			output(".")
 			
 			output("\n\n<i>“Yes little one,”</i> the bothrioc says, [ara.his] relaxed voice sending fuzzy sensation softly vibrating through you. <i>“Isn’t servility wonderful?");
-			if (flags["ARAKEI_REFUSED_BOOTIES" != undefined) output(" Just think - only a short time ago you refused to do this. Now you can appreciate how silly that attitude was, can’t you?”</i> you wag your head fervently. What an idiot you were being! <i>“");
+			if (flags["ARAKEI_REFUSED_BOOTIES"] != undefined) output(" Just think - only a short time ago you refused to do this. Now you can appreciate how silly that attitude was, can’t you?”</i> you wag your head fervently. What an idiot you were being! <i>“");
 			else output(" ");
 			output("Let us not mistake willingness and effort for a job well done, though. Your technique needs work.”</i>");
 			
@@ -990,7 +985,7 @@ public function araKeiTheReamening():void
 		else output(" drool");
 		output(" [pc.femcum] onto the floor far below.");
 	}
-	output(" The quadomme holds you like that, on a precipice of keening arousal, for what seems like hours, days of sadistic ecstasy; and then [ara.he] punch"+ ara.mfn("es", "es", "") +" [ara.his] ovipositor inwards, piercing your "+ (pc.mf("m", "f") == m ? "boy pussy" : "ass pussy") +" and spreading you with its first bulging section with a single fierce movement.");
+	output(" The quadomme holds you like that, on a precipice of keening arousal, for what seems like hours, days of sadistic ecstasy; and then [ara.he] punch"+ ara.mfn("es", "es", "") +" [ara.his] ovipositor inwards, piercing your "+ (pc.mf("m", "f") == "m" ? "boy pussy" : "ass pussy") +" and spreading you with its first bulging section with a single fierce movement.");
 	pc.buttChange(ara.cockVolume(0), true, true, false);
 	output(" You scream as you orgasm, thrashing helplessly against your bonds as");
 	if (pc.hasCock())
@@ -1015,7 +1010,7 @@ public function araKeiTheReamening():void
 
 	pc.orgasm();
 	processTime(20+rand(10));
-	pc.lustRaw = pc.lustMax * 0.4;
+	pc.lustRaw = pc.lustMax() * 0.4;
 
 	clearMenu();
 	addButton(0, "Next", araKeiTheReameningII);
@@ -1045,7 +1040,7 @@ public function araKeiTheReameningII():void
 	output(".");
 
 	output("\n\n<i>“Such delightful sounds,”</i> [ara.he] laugh"+ ara.mfn("s", "s", "") +", <i>“such wonderful little dances");
-	if ((pc.hasCock() && pc.cumQ() >= 500) || (pc.hasVagina() && pc.femCumQ() >= 500) || (pc.isLactating() && pc.milkQ() >= 500)) output(" and such astonishing quantity of juices");
+	if ((pc.hasCock() && pc.cumQ() >= 500) || (pc.hasVagina() && pc.wettestVaginalWetness() >= 4) || (pc.isLactating() && pc.milkQ() >= 500)) output(" and such astonishing quantity of juices");
 	output("! Oh, you make me doubt my own wisdom, little one; maybe I do have a space for you, somewhere in my larder.”</i> There’s genuine passion and lust running through their cultured tone, now. <i>“Such an enjoyable mating display has me swollen and overburdened,”</i> [ara.he] growl"+ ara.mfn("s", "s", "") +" in your ear. [ara.He] pause"+ ara.mfn("s", "s", "") +" to bite you, hard, at the joining of neck and shoulder. You exhale raggedly, warm oil dribbling down from your [pc.anus], warm, fuzzy bliss twining with the sensation of being utterly owned, brutally dominated. <i>“You will take full responsibility for how worked up you’ve gotten me.”</i> Ara Kei");
 	if (!pc.hasFuckableNipples())
 	{
@@ -1109,7 +1104,7 @@ public function araKeiTheReameningIII():void
 
 	output("\n\n<i>“You sit there and ruminate for a bit, little one,”</i> [ara.he] husk"+ ara.mfn("s", "s", "") +". <i>“Bask in the feeling of my spawn growing within you. I will be back to set you on your way in due course. Probably.”</i>");
 	if (pc.hasLowerGarment()) output(" You feel something soft being pushed past your [pc.lips], and you emit a muffled whimper when you realise what it is. The taste and smell of your own intense arousal inundates your senses as your [pc.lowerUndergarment] are stuffed into your mouth.");
-	if (pc.cumQ() <= 1000 && pc.femCumQ() <= 1000 && pc.milkQ() <= 1000) output(" Four stilettoes clack their way away from you, a door opens and shuts... and then you’re on your own.");
+	if (pc.cumQ() <= 1000 && pc.wettestVaginalWetness() <= 5 && pc.milkQ() <= 1000) output(" Four stilettoes clack their way away from you, a door opens and shuts... and then you’re on your own.");
 	else
 	{
 		output(" Four stilettoes clack their way away from you, pausing halfway across the room.");
@@ -1234,7 +1229,7 @@ public function araKeiPolishBooties():void
 
 	output("\n\n<i>“Hmm,”</i> replies Ara Kei thoughtfully. [ara.he] withdraw"+ ara.mfn("s", "s", "") +" [ara.his] hand to touch the pit of your throat with a single finger, drawing it slowly up your neck. You shiver with bliss. <i>“No. For two reasons. Firstly, you must learn that worshipping a domme is a reward in and of itself. You can perhaps feel that for yourself now, but still, connecting the absolutely essential tasks of an incubator to getting packed with eggs - no, I will not do your future owner that disservice. Secondly: I can sense that you aren’t quite all the way there yet. Once you are - when I can see the beauty all the way through you, when the thought of disobeying me doesn’t even occur to you, when you will move the stars in order to lick the very tip of my boot - then. I promise you that sincerely, little one.”</i>");
 
-	output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realise that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mf("has", "has", "have") +" given you... leading you inexorably on...");
+	output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realise that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mfn("has", "has", "have") +" given you... leading you inexorably on...");
 
 	processTime(15);
 	pc.lust(15);
@@ -1285,7 +1280,7 @@ public function approachCharles():void
 		{
 			output("\n\nYou don’t like his tone. You can’t place exactly why, but hearing the kind, generous bothrioc being talked of so cursorily irks you.");
 
-			output("\n\n<i>“Ara Kei is nice! [ara.he] can talk to me all [ara.he] like"+ ara.mfn("s", "s", "") +" if [ara.he] want"+ ara.mfn("s", "s", "") ",”</i> you say hotly. Charles looks at you beadily.");
+			output("\n\n<i>“Ara Kei is nice! [ara.he] can talk to me all [ara.he] like"+ ara.mfn("s", "s", "") +" if [ara.he] want"+ ara.mfn("s", "s", "") +",”</i> you say hotly. Charles looks at you beadily.");
 			
 			output("\n\n<i>“Already gotten tae you, haven’t they?”</i> he says. <i>“Righty ho, well - not sayin’ Ara ain’t nice or anythin’ - but if you want those strange urges to stop before they get so strong you can’t say no to ‘em, cum’n have a chat with me. I can fix ‘em... but only if you’re willing to be fixed.”</i>");
 		}
@@ -1442,7 +1437,7 @@ public function talkCharlesBuyFix():void
 
 	clearMenu();
 	if (pc.credits >= 15000) addButton(0, "Buy", charlesBuyFix);
-	else addButton(0, "Buy", "Buy", "You don't have enough credits.");
+	else addDisabledButton(0, "Buy", "Buy", "You don't have enough credits.");
 	addButton(1, "Don’t", mainGameMenu);
 }
 
