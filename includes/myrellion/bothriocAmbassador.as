@@ -55,8 +55,6 @@ public function bothriocEmbassyFunc():Boolean
 			
 			output("\n\n<i>“Hello again, Steele. Come to visit your favorite ambassador, have you? Come closer, let me get a good look at you.”</i> Ara Kei chimes airily.");
 			flags["ARAKEI_INVITED"] = 1;
-
-			araKeiSpecialGreetings();
 		}
 	}
 
@@ -66,15 +64,333 @@ public function bothriocEmbassyFunc():Boolean
 	return false;
 }
 
-public function araKeiSpecialGreetings():void
+public function araKeiSpecialGreetings():Boolean
 {
-	if (bothriocAddiction() <= 0 && )
+
 }
 
 public function approachAraKei():void
 {
-	IncrementFlag("MET_ARAKEI");
+	clearOutput();
+	showAraKei();
 
+	IncrementFlag("MET_ARAKEI");
+	var specialMenu:Boolean = false;
+
+	if (bothriocAddiction() <= 0 && flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined)
+	{
+		output("<i>“You’re looking healthy and brimming with that distinct do-as-you-please attitude of yours,”</i> Ara Kei says with a dry, not unfriendly curl of the lip. You find yourself exhaling when [ara.his] big, black eyes move away from you back to the bustle all around [ara.him]. There is something slightly disconcerting about being the sole focus of the bothrioc ambassador’s attention.");
+
+		output("\n\n<i>“Here to know more about my race?”</i> [ara.he] "+ ara.mfn("go", "go", "goes") +" on. <i>“I have always felt we are better experienced than studied, you know.”</i>");
+	}
+	else if (bothriocAddiction() <= 10 && flags["ARAKEI_ADDICTION_10"] == undefined)
+	{
+		flags["ARAKEI_ADDICTION_10"] = 1;
+
+		output("Ara Kei’s eyes widen as they roam over your face and body.");
+
+		output("\n\n<i>“Well, this is a new development. Come closer, Steele.”</i> You oblige. <i>“As I suspected. You’ve met with the unique hospitality of the bothrioc. Ahh.... <i>“ [ara.he] trail "+ ara.mfn("s", "s", "") +" off in a long, satisfied sigh, a sound that seems to tickle your [pc.skinFurScales]. <i>“This is an interesting turn of events indeed. Tell me, how did it feel?”</i>");
+
+		specialMenu = true;
+
+		//[Good] [Great] [Unpleasant]
+		clearMenu();
+		addButton(0, "Good", araKeiSpecialGreeting10Reaction, "good", "Good", "Admit you enjoyed yourself, but preserve your dignity.");
+		addButton(1, "Great", araKeiSpecialGreeting10Reaction, "great", "Great", "Freely let Ara Kei know how you feel about it.");
+		addButton(2, "Unpleasant", araKeiSpecialGreeting10Reaction, "bad", "Unpleasant", "Reject the experience.");
+	}
+	else if (bothriocAddiction() <= 20 && flags["ARAKEI_ADDICTION_20"] == undefined)
+	{
+		flags["ARAKEI_ADDICTION_20"] = 1;
+
+		output("Ara Kei greets you with an appraising eye, as you’ve become accustomed to. You take the opportunity to appraise Ara Kei right back. How have you not noticed how delightful [ara.he] look"+ ara.mfn("s", "s", "") +"? From the sharp, elegant smile gracing Ara Kei’s lips to the lustrous sheen of chitin, Ara Kei really is a masterpiece of bothrioc breeding.");
+
+		output("\n\n<i>“Careful now, Steele,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +", that smile growing larger as you drink [ara.him] in. <i>“We are beautiful and I appreciate the hunger in that eye, but if you gaze too long... well, you might never stop.”</i>");
+
+		output("\n\nYou snap out of it, but you can’t help admire the artful usage of all four hands bothrioc are capable of, as Ara Kei swiftly handles papers and pens and gestures subtle commands all in a continuous flurry of activity. You shudder to imagine what those hands could do if they got ahold of you.");
+	}
+	else if (bothriocAddiction() <= 30 && flags["ARAKEI_ADDICTION_30"] == undefined)
+	{
+		flags["ARAKEI_ADDICTION_30"] = 1;
+
+		output("Ara Kei simply gazes at you for what seems like a long time. Long enough for you to begin to feel weak at the [pc.knees]. Why is... when did it start becoming really difficult to not bow in front of [ara.him]? To wait for [ara.his] instruction before doing anything?");
+		// 9999
+		if (pc.willpower() + rand(pc.lustMax() / 4) > pc.libido() + pc.lust()) output(" By sheer force of will, you keep yourself upright and... almost succeed at looking Ara Kei in the eye.");
+		else output(" You can’t stop yourself from collapsing into a kneeling position, bowing your head before [ara.his] presence.");
+		
+		output("\n\n<i>“Ah,”</i> croons the ambassador, <i>“let me get a good look at you.”</i> A single smooth finger gently hooks your chin, pulling your face up toward [ara.his]. You shiver, unable to bring yourself to look into the gleaming dominatrix’s face. <i>“Look me in the eye, Steele.”</i>");
+		
+		output("\n\nIt is an instruction, so you do it instantly. You find yourself drowning in shining black pits of tar. Several long moments pass, and you find yourself calming down. You hadn’t even realized how tense you were.");
+		
+		output("\n\n<i>“That’s what I thought. You’re afraid. I understand, but you have no reason to fear. Let me show you something.”</i> Ara Kei takes hold of your shoulders, hugging you close with both arms on that side as you’re turned to get a good look at the harem busily maintaining the embassy. It’s always a slight shock that bothrioc aren’t actually cold, for all that chitin. Ara Kei is as warm as anyone else, though you can’t quite place what [ara.his] scent is.");
+		
+		output("\n\n<i>“Do you see this harem, Steele? They are my pride and joy. I love them more than life itself. They perform admirably at whatever I ask and I in turn provide for them. Master and servants are two halves to a whole, any sane dominatrix you meet will agree. What I’m trying to say is that you’re not losing yourself. They all can live healthy lives under me, and I’m sure when you find yours they’ll cherish you as I would.”</i> After a moment, Ara Kei releases you. <i>“Now, Steele. Do you understand my point?”</i> You nod, slowly. <i>“Good. Are you still afraid?”</i> After some deliberation, you answer noncommittally. <i>“We shall see what the future holds, then. Is there anything you need?”</i>");
+	}
+	else if (bothriocAddiction() <= 40 && flags["ARAKEI_ADDICTION_40"] == undefined)
+	{
+		flags["ARAKEI_ADDICTION_40"] = 1;
+
+		output("This time, the urge to kneel before Ara Kei is not as pressing as it was. It does, however, feel much more natural.");
+		if (pc.willpower() + rand(pc.lustMax() / 4) > pc.libido() + pc.lust()) output(" You remain standing. You figure there’s no need to debase yourself out of hand.");
+		else output(" You drop to your [pc.knees] into a proper kneel, bowing your head respectfully.");
+		
+		output("\n\n<i>“Hmm... ”</i> There’s a frivolous, musical quality to Ara’s normally-studied tones. <i>“It’s so precious to see an incubator coming along. What are you here for today, [pc.name]?”</i>");
+	}
+	else if (bothriocAddiction() <= 50 && flags["ARAKEI_ADDICTION_50"] == undefined)
+	{
+		flags["ARAKEI_ADDICTION_50"] = 1;
+
+		output("Ara Kei greets you with nothing more than a slight, immaculate curl of the lip. [ara.he] seem"+ ara.mfn("s", "s", "") +" to be waiting for something - and, immediately, you know what it is. This time the urge is completely overwhelming, and you don’t fight it. When you "+ (pc.hasKnees() ? "kneel" : "approximate a kneeling stance with your awkward lower body") +", a huge smile spreads over the quadomme’s face, and you feel a rush of puppyish glee and happiness. The sun shines above when you please the big, dominant bothrioc.");
+
+		output("\n\n<i>“You have come far since we first met, [pc.name],”</i> [ara.he] say"+ ara.mfn("s", "s", "") +". [ara.He] reach"+ ara.mfn("es", "es", "") +" a chitinous hand down and strok"+ ara.mfn("es", "es", "") +" your brow. Warmth blooms deep inside you, profound contentment and arousal");
+		if (pc.hasVagina()) output(" moistening [pc.eachVagina]");
+		if (pc.hasCock() && pc.hasVagina()) output(" and");
+		if (pc.hasCock()) output(" hardening up [pc.eachCock]");
+		output(" from the mere touch of this being. <i>“And now, I believe, you are on a threshold. Go on much further and you shall know the true contentment of being an incubator; you shall find what I believe to be your true role in life. But...”</i>");
+		
+		output("\n\nThe bothrioc’s voice turns sterner, and you find yourself snapping to attention, back straight, focusing on every word that forms on [ara.his] lips.");
+		
+		output("\n\n<i>“The time for playing and experimenting shall soon pass. Keep accepting eggs from my wild kin and you will not be able to go back to who you once were. Although my opinion is that being that person left you incomplete and unhappy - if that is who you want to be, this game you are playing must now come to an end. Push on and embrace it... or turn back now. Do you understand?”</i>");
+		
+		output("\n\nYou nod your head vigorously, and are granted with another wide smile.");
+		
+		output("\n\n<i>“Good. Now then, little one - was there something specific you came in here for?”</i>");
+	}
+	else if (bothriocAddiction() <= 50)
+	{
+		output("<i>“I see you have been enjoying the hospitality of my brethren!”</i>  Ara Kei’s big, black eyes regard you intently. You feel oddly soft and relaxed when [ara.he] "+ ara.mfn("does", "does", "do") +" that. <i>“Do keep me appraised of your situation, I’m intensely curious. Regardless - is there something you want today?”</i>");
+	}
+	else if (bothriocAddiction() >= 60 && bothriocAddiction() <= 70 && flags["ARAKEI_ADDICTION_70"] == undefined)
+	{
+		flags["ARAKEI_ADDICTION_70"] = 1;
+
+		output("A shiver runs down your spine as Ara considers you. Fantasies of [ara.him] throwing you over the nearby desk and forcefully making you [ara.his] assault you, making your [pc.skinFurScales] feel incredibly sensitive, begging to be touched. [ara.his] voice makes you snap out of your reverie.");
+		
+		output("\n\n<i>“I am delighted you have embraced who you truly are, little one,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +". The satisfaction in [ara.his] voice is like a soothing balm to your brow. <i>“To see an alien freely accept our gifts and become one of our own - that is a vindication of our ways beyond anything I could once have dreamed. It makes me all the more determined to set our race amongst the stars.”</i> [ara.he] rap"+ ara.mfn("s", "s", "") +" a boot down sharply and you immediately snap to attention. <i>“But enough hubris. Let us discuss you.”</i>");
+		
+		output("\n\nYou aren’t quite capable of looking the arch bothrioc in the face - at least not without instruction - but you can tell by the way [ara.his] long, white neck is moving that [ara.he] "+ ara.mfn("is", "is", "are") +" still giving you a good once over.");
+		
+		output("\n\n<i>“You need to find a master, Steele.”</i> It is an order, not a suggestion, and you nod immediately. <i>“I have already told you once - I cannot be that for you, as much as your body may cry out for it when you are in my presence. You need someone to put you in your place and focus your mind, otherwise you will be a vulnerable mess. Do you understand?”</i>");
+		
+		output("\n\n<i>“Yes "+ ara.mfn("sir", "mistress", "mis... si... ambassador") +",”</i> you say, back straight.");
+		
+		output("\n\n<i>“Good.”</i> [ara.his] tone softens and you relax slightly - although the imperative [ara.he] "+ ara.mfn("has", "has", "have") +" given you continues to burn brightly in your mind. <i>“What else can the embassy provide you with today?”</i>");
+	}
+	else if (bothriocAddiction() < 100)
+	{
+		output("As you take up your familiar kneeling station before the ambassador, you receive a small sign of affection from Ara Kei. You find your");
+		if (pc.hairLength > 0) output(" hair being ruffled");
+		else output(" scalp being caressed");
+		output(" by the bothrioc, in much the manner you might favor a pet.");
+
+		output("\n\n<i>“It’s a pleasure to see you as you are, [pc.name].”</i>");
+	}
+	else if (flags["ARAKEI_ADDICTION_100"] == undefined)
+	{
+		flags["ARAKEI_ADDICTION_100"] = 1;
+
+		output("You prostrate yourself in front of the scrying, black eyes of the bothrioc ambassador. Any lingering doubt, any shred of self-consciousness you might once have had about doing this have long since evaporated. And good riddance to it. You now clearly see how such concerns were clouds and shadows that cast themselves before the all-encompassing love that now radiates down to you from such big, dominant creatures as Ara Kei. [ara.His] powerful will is yours completely, and the mere thought of doing something that pleases [ara.him] even for a moment sends a shiver of pure joy down your spine.");
+
+		output("\n\n<i>“Good, isn’t it?”</i> Ara Kei says after a moment, and the fondness in [ara.his] tone sends heat rifling down to your groin,");
+		if (pc.hasVagina()) output(" making [pc.eachVagina] instantly become wet");
+		if (pc.hasVagina() && pc.hasCock()) output(" and");
+		if (pc.hasCock()) output(" [pc.eachCock] straining instantly to attention");
+		output(". <i>“Didn’t I tell you that it would all be worthwhile if you truly embraced our gift, [pc.name]? Now, all those clutches you stoutly bore have provided you with your true awakening. I’m very proud of you.”</i>");
+
+		output("\n\nYou beam at [ara.him] happily, and bathe in the waves of pure pleasure which wash over you when [ara.he] stroke"+ ara.mfn("s", "s", "") +" you underneath your chin.");
+
+		output("\n\n<i>“Let’s talk about your responsibilities,”</i> Ara Kei says in a cooler tone, withdrawing her gleaming hand. You quickly snap to attention, avidly hanging on every syllable that those wide, elegant lips form. <i>“Yes, responsibilities, little one! Just because you’re an incubator doesn’t mean you get to shirk them. As your better and mentor, I gave you an order. What was it?”</i>");
+
+		output("\n\n<i>“To find myself a master.”</i> The words come automatically to your lips. Did you remember? Your subconscious certainly did.");
+
+		output("\n\n<i>“Yes.”</i> The quadomme’s shift rustles as [ara.he] reposition"+ ara.mfn("s", "s", "") +" [ara.himself], allowing [ara.his] haremling to begin work on a different limb. Good void, do you envy them. <i>“And have you?”</i>");
+
+		araKeiPotentialMasterBlurbs();
+	}
+	else
+	{
+		// 'found' a master
+		if (flags["ARAKEI_RESOLVED_MASTER"] != undefined)
+		{
+			output("You kneel in front of Ara Kei and bask in total pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
+
+			output("\n\n<i>“Very pleasing,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +", smiling widely. <i>“What can the bothrioc do for you today, little one?”</i>");
+		}
+		// not found a master, but lane is currently top of the list
+		else if (flags["ARAKEI_RESOLVED_MASTER"] == undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_COUNTER"] != undefined && flags["LANE_DETOX_STATUS"] == undefined)
+		{
+			output("You kneel in front of Ara Kei, and shudder with pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
+			
+			output("\n\n<i>“Tell me about Lane,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +" after a moment’s pause.");
+			if (silly) output(" <i>“Why does"+ lane.mf("he", "she") +" wear the mask?”</i>");
+			
+			output("\n\nHaltingly, you try to tell the quadomme that you have broken away from the daynar - but your words get jumbled up as conflicting imperatives push against each other in your mind, and you come to a mumbling halt as a serious headache takes over.");
+			
+			output("\n\n<i>“It is not over yet, Steele,”</i> the bothrioc says, authority hardening [ara.his] tones. <i>“You must continue to fight against this parasite’s will. It hurts now, I know - but this is for your own good. You know that.”</i>");
+			
+			output("\n\nYou do.");
+		}
+		else if (flags["ARAKEI_RESOLVED_MASTER"] == undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_STATUS"] == 1)
+		{
+			output("You kneel in front of Ara Kei, and shudder with pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
+
+			output("\n\n<i>“Tell me about Lane,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +" after a moment’s pause.");
+			if (silly) output(" <i>“Why does "+ lane.mf("he","she") +" wear the mask?”</i>}");
+			
+			output("\n\nConfidently, you tell the quadomme that the daynar’s hypnotic compulsion has finally been flushed out of your system. A bright dawn of relief spreads across you as you verbalise it without a shred of doubt, without a single twinge of pain or hollowness. You share Ara Kei’s wide grin - at long last, it is over.");
+			
+			output("\n\n<i>“There is nothing that incubators cannot do, if they are given the necessary focus and drive by a dominant,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +". <i>“I’m very proud of you, Steele. Take a while to rest, and then come see me again - there is still your future to discuss.”</i>");
+		}
+		else
+		{
+			output("You kneel in front of Ara Kei, and shudder with pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
+
+			output("\n\n<i>“How goes it, little one?”</i> [ara.he] ask"+ ara.mfn("s", "s", "") +" distantly. <i>“Have you completed your task yet?”</i>");
+
+			araKeiPotentialMasterBlurbs();
+		}
+	}
+
+	if (!specialMenu) araKeiMenu();
+}
+
+public function araKeiPotentialMasterBlurbs():void
+{
+	// Lane, prio 1
+	if (flags["LANE_FULLY_HYPNOTISED"] != undefined)
+	{
+		output("\n\nA picture immediately forms in your head. It’s lithe, scaly and has... such fabulous, mesmeric patterns.");
+
+		output("\n\n<i>“Yes, Ara Kei,”</i> you say eagerly. <i>“I have.”</i>");
+
+		output("\n\n<i>“Tell me about them,”</i> replies the bothrioc coolly. <i>“And I will decide if they are suitable.”</i>");
+
+		output("\n\nWords pour out of your mouth as you describe Lane with gusto. It never crosses your mind to spare any detail about the relationship you and the daynar hypnotist share - you could no more lie or omit truth to the quadomme than you could turn into sand.");
+
+		output("\n\n<i>“That’s enough,”</i> says Ara Kei at length, and your flow immediately freezes. There’s a hardness to [ara.his] tone that slices straight through your blissful little cloud. <i>“Amongst my people Steele, there are those who use the gift for more than shared happiness. Inveigle others into their harem before forcing them into mines, or prostitute them to nyrea. Such dommes, if they are discovered by other dommes, are killed, or driven far away. Far away, to a shack on the fringes of a failed world, perhaps. I do not know exactly how this Lane individual has developed a hold on you, Steele, but they bear you nothing but ill-will.”</i>");
+
+		output("\n\nLane? Ill-will? That’s nonsense. You love Lane and Lane loves you... but if the bothrioc dominant is saying something different, and with such emphasis... your brain feels like it’s going to burst. A small, animal sound of distress reaches your ears, and it takes you a groggy moment to realise it came from your own lips.");
+
+		output("\n\n<i>“Yes Steele,”</i> Ara Kei insists, and more agony knives into your skull. <i>“I know it hurts, but sometimes pain is essential. I will not have you give yourself to this insidious, self-enriching parasite anymore. I DEMAND that, as your better and mentor. Do you understand?”</i>");
+
+		output("\n\nYes. The message is a throbbing artery of pain inside your mind, but it is there, pulsing over the fuzzy, pleasing entreaties of the flashing patterns - you are no longer to allow the daynar to do as they please.");
+
+		output("\n\n<i>“Good,”</i> says the quadomme slowly, still eyeing you closely. <i>“Once we have weaned you off this individual, we can talk about more suitable candidates for keeping a steady hand on you. For now... I suggest you find a close friend, to help you through the process of withdrawal. People like Lane very rarely let free meals out of their grasp easily.”</i>");
+
+		flags["ARAKEI_RESOLVED_MASTER"] = "lane";
+	}
+	// Sera
+	else if (fuckedSeraAsMistress())
+	{
+		output("\n\nA picture immediately forms in your head. It’s purple, curvy, and radiates sadism.");
+		
+		output("\n\n<i>“Yes, Ara Kei,”</i> you say eagerly. <i>“I have.”</i>");
+		
+		output("\n\n<i>“Tell me about them,”</i> replies the bothrioc coolly. <i>“And I will decide if they are suitable.”</i>");
+		
+		output("\n\nWords pour out of your mouth as you describe Sera with gusto. It never crosses your mind to spare any detail about the relationship you and the demonic shopkeeper share - you could no more lie or omit truth to the quadomme than you could turn into sand.");
+		
+		output("\n\n<i>“Hmm,”</i> says Ara Kei at length, when your flow finally gives out. [ara.he] "+ ara.mfn("is", "is", "are") +" having to exercise all of [ara.his] diplomatic talents not to grin. <i>“Certainly a rather, um... crude individual to have as a master, and I am not particularly happy about the fact she is not an egg-giver. However - I do detect a lot of shared fondness between you and this... person, and she certainly has the forcefulness required. Alright then, Steele - you may consider your obligation towards me annulled. Well done.”</i>");
+		
+		output("\n\nYou feel a wonderful feeling of relief and joy. You had no idea of the onus that had been laid upon you until the dominant chose to lift it away - it dissipating feels like a genuine weight off your shoulders.");
+		flags["ARAKEI_RESOLVED_MASTER"] = "sera";
+	}
+	// Xanthe
+	else if (xantheIsDommingPC())
+	{
+		output("\n\nA picture immediately forms in your head. It’s soft, blue and caterpillar-like.");
+		
+		output("\n\n<i>“Yes, Ara Kei,”</i> you say eagerly. <i>“I have.”</i>");
+		
+		output("\n\n<i>“Tell me about them,”</i> replies the bothrioc coolly. <i>“And I will decide if they are suitable.”</i>");
+		
+		output("\n\nWords pour out of your mouth as you describe Xanthe with gusto. It never crosses your mind to spare any detail about the relationship you and the siel shopkeeper share - you could no more lie or omit truth to the quadomme than you could turn into sand.");
+		
+		output("\n\n<i>“That’s enough,”</i> says Ara Kei at length, and your flow immediately freezes. <i>“It may not come as a surprise to you that I know of this Xanthe character. I have some interest in farlander textiles, and she is not quite as alien in appearance and manner as other visitors to our world. Yes... it is a shame she is not an egg-giver, and therefore can never truly satiate you. However, I like her manner, and the fact that from here I can keep an eye on her and properly adjudge her ability to manage a harem. Alright then, Steele - you may consider your obligation towards me annulled. Well done.”</i>");
+		
+		output("\n\nYou feel a wonderful feeling of relief and joy. You had no idea of the onus that had been laid upon you until the dominant chose to lift it away - it dissipating feels like a genuine weight off your shoulders.");
+		flags["ARAKEI_RESOLVED_MASTER"] = "xanthe";
+	}
+	// Gene
+	else if (geneSubmissionLevel() >= 7)
+	{
+		output("\n\nA picture immediately forms in your head. It’s huge, masculine and dragonish.");
+		
+		output("\n\n<i>“Yes, Ara Kei,”</i> you say eagerly. <i>“I have.”</i>");
+		
+		output("\n\n<i>“Tell me about them,”</i> replies the bothrioc coolly. <i>“And I will decide if they are suitable.”</i>");
+		
+		output("\n\nWords pour out of your mouth as you describe Gene with gusto. It never crosses your mind to spare any detail about the relationship you and the fanfir shopkeeper share - you could no more lie or omit truth to the quadomme than you could turn into sand.");
+		
+		output("\n\n<i>“That’s enough,”</i> says Ara Kei at length, and your flow immediately freezes. <i>“I know a little of this particular starwalker - or rather, eager tales of his theatrics from the gold myr. He is a liar and a glutton, and furthermore he is not an egg-giver. However - despite the hold he has over you, he does not extort you, and allows you to come and go as you please. And from here, moreover, I can watch him and make sure that continues to be the case.”</i> [ara.he] sigh"+ ara.mfn("s", "s", "") +". <i>“Very well, Steele - you may consider your obligation towards me annulled. Well done.”</i>");
+		
+		output("\n\nYou feel a wonderful feeling of relief and joy. You had no idea of the onus that had been laid upon you until the dominant chose to lift it away - it dissipating feels like a genuine weight off your shoulders.");
+		flags["ARAKEI_RESOLVED_MASTER"] = "gene";
+	}
+	// female treated
+	else if (pc.isTreated() && pc.hasVagina())
+	{
+		output("\n\nIt is rare for the sunny sensuality of being Treated to conflict with the calm, submissive peace of being an egg slut, but it does now. Your cow instincts dimly speak against the bothrioc’s constant insistence on finding a master - at least in the singular. Why shouldn’t you share yourself with whoever wants a piece, and limit possible sexiness in such a way?");
+		
+		output("\n\n<i>“Hey, um,”</i> you say, timidly. <i>“Is it, like, necessary for me to have an owner? I just like being yummy and happy with whoever’s into it.”</i>");
+		
+		output("\n\n<i>“There is something different about you isn’t there, Steele?”</i> replies Ara Kei after a moment’s pause. <i>“Even before you embraced the gift, your smell, speech patterns and body language were... odd. Care to explain that?”</i>");
+		
+		output("\n\nEagerly you explain to the nice "+ ara.mfn("lady", "man", "bug-lady-man-thing") +" about the Treatment - how wonderful it made you feel even before you were made to feel even <i>more</i> wonderful via the bothrioc. You describe New Texas, and your glowing descriptions are only brought to an end by measured but heartfelt laughter.");
+		
+		output("\n\n<i>“My word,”</i> hoots Ara Kei, gleaming black glove to [ara.his] mouth, <i>“what people. What paradises are built, what decadence is achieved when you have millennia of peace and elegant machines to do all the thinking for you! Alright then, Steele; I can see that me insisting that such a polyamorous beast as yourself to make serious commitments would only make you unhappy. My main worry about an unattached incubator is a lack of focus; however I doubt even with the sternest of masters you would be particularly focused anyway. We shall rely on that remarkable serendipity of yours that has allowed you to travel as far as you have unscathed instead. Consider your obligation towards me annulled.”</i> [ara.He] pause"+ ara.mfn("s", "s", "") +". <i>“That means you don’t have to worry anymore.”</i>");
+		
+		output("\n\nYou beam. Hurray!");
+		flags["ARAKEI_RESOLVED_MASTER"] = "treated";
+
+	}
+	else
+	{
+		output("\n\nYou feel cascading despondency; you came back into the quadomme’s presence, yet failed the task [ara.he] gave you. How could you be so feckless? From the heights of sheer ecstasy you were floating in a few moments ago to the depths of misery you are now cast into is a very long drop, and you feel every black inch.");
+		
+		output("\n\n<i>“I am sorry, Ara Kei. It does not seem if anyone is willing- <i>“");
+		
+		output("\n\n<i>“Oh, don’t give me that.”</i> A chitinous boot raps the floor impatiently, and your throat freezes instantly. <i>“There’s NOTHING worse than a self-pitying incubator. You are young, attractive, relatively well-off and extremely servile. You cannot tell me that there’s no-one out there that isn’t willing to crack a whip and pump you full of eggs from time to time, because I know it isn’t true. I gave you an order, and now you truly are what you are, you know what that means, don’t you?”</i>");
+		
+		output("\n\nYou do. You live and breathe that order.");
+		
+		output("\n\n<i>“So stop hanging around this office, expecting me to take you under my wing out of sheer pity - yes, Steele, I know what this is really about - and go find a nice, kind-but-extremely-forceful dominant to focus your mind and efforts. Have I made myself clear?”</i>");
+		
+		output("\n\nCrystal. The bothrioc ambassador allows just a hint of affection to warm the expression currently frosting [pc.his] face.");
+		
+		output("\n\n<i>“Good. Now scoot, unless there is something else you wish to discuss.”</i>");
+	}
+}
+
+public function araKeiSpecialGreeting10Reaction(choice:String):void
+{
+	clearOutput();
+	showAraKei();
+
+	switch (choice)
+	{
+		case "good":
+			output("You’re a bit uncomfortable with Ara’s probing question. You don’t really feel entirely up to admitting to the nerve-biting pleasure, and the warm glow that suffuses you in the wake. Nevertheless, you gather your courage, and guardedly admit that it was an enjoyable experience.");
+			output("\n\n<i>“I understand your reticence,”</i> the quadomme says, drawing back a little and regarding you in a softer focus. <i>“It can be difficult at first. I’m sure you’ll become more comfortable with yourself as things proceed. I wish you all the best in your exploration. Now - what can the embassy do for you today?”</i>");
+			output("\n\nThere was a certain, insidious assumption in there...");
+			break;
+
+		case "great":
+			output("You were seeing stars, and the entire time you’ve carried a clutch there’s been a warm glow suffusing every step. You unhesitatingly share your fantastic experience with Ara Kei. A warm smile splits [ara.his] face in two.");
+			output("\n\n<i>“That’s wonderful to hear! It is so important to embrace those feelings, and to be entirely open about them - to us, anyway. There is a long path ahead of you, [pc.name], but the fact you’ve taken to it in exactly the right manner means that every step along it will be a fresh pleasure for you to enjoy.”</i>");
+			output("\n\nThe sunny feeling inside of you intensifies as the quadomme talks, until you feel faintly giddy; you feel slightly disappointed and empty when finally [ara.his] voice ceases and [ara.his] attention drops back.");
+			output("\n\n<i>“Now then - what can the embassy do for you today?”</i>");
+			break;
+
+		case "bad":
+		default:
+			output("You bluntly describe your distaste for what transpired. Ara Kei nods sagely, drawing back.");
+			output("\n\n<i>“I understand. It isn’t for everyone. Nevertheless, I believe you’ll come to enjoy yourself and accept the changes, if you keep at it. Think of it as... an acquired taste.”</i>");
+			output("\n\nYou try and put the arachnid-esque ambassador’s confidence out of mind and consider what it is you <i>do</i> want.");
+			break;
+	}
+
+	processTime(3+rand(2));
 	araKeiMenu();
 }
 
