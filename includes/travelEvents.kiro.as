@@ -258,8 +258,19 @@ public function kiroRepeatedBFTalk():void
 	clearOutput();
 	showKiro();
 	output("<i>“So about that whole [pc.boyGirl]friend thing...”</i> you start.");
+	//Kally Done
+	if(flags["KIRO_3SOME_REACTION"] != undefined)
+	{
+		output("Kiro sighs heavily. She takes a drink of her beer to buy time, then sighs again. <i>“I don’t know, [pc.name]. Before I met you, I don’t know if there’s anyone else I would have even considered it with... but now, with Kally.”</i> Her voice hitches. <i>“I don’t know if I can do that to her. She’s my sister... and she loves me... and I think I kinda love her too.”</i> The kui-tan gives you a sad look. <i>“And the best and worst part is that you gave that to me. I never would’ve discovered all this if not for you.”</i>");
+		output("\n\nNow it’s your turn to sigh.");
+		output("\n\n<i>“But fuck it.”</i> A furry palm lands on your shoulder. <i>“There’s more than enough of me to go around, right?”</i> Kiro pulls you close, and whispers in your ear, <i>“Kally knows I’m going to be fucking my way through the galaxy. She won’t mind if the wonderful [pc.boyGirl] that brought us together is my [pc.boyGirl]friend too, right?”</i> She abruptly straightens, struck by a sudden idea. <i>“Maybe she’s into that. You saw how she talked about my sexual misadventures. What if that’s like her thing, seducing the galaxy’s biggest slut and trying to be her top bitch?”</i>");
+		output("\n\n<i>“That isn’t{, uh, yeah... maybe!/ entirely improbable.}”</i>");
+		output("\n\nKiro pulls you close and plants an aggressive kiss on your [pc.lipsChaste], her tongue snaking in to explode. She pops off after a solid thirty seconds of tonsel-hockey, smiling like she’s just pulled off the universe’s biggest heist. <i>“Yeah, you’re my fucking [pc.boyGirl]friend, one of two. Speaking of which, we should have some more fun with Kally sometime - see if we can get her as sweet on you as I am.”</i>");
+		output("\n\nThat sounds like a great idea.");
+		flags["KIRO_BF_TALK"] = 1;
+	}
 	//Trust to low
-	if(kiroTrust() < 100)
+	else if(kiroTrust() < 100)
 	{
 		output("\n\n<i>“Stop,”</i> Kiro cuts in. <i>“");
 		if(silly) output("HAMMER TIME! ");
@@ -3487,7 +3498,7 @@ public function kiroPostIncestChat():void
 	if(pc.PQ() < 80) output("pretends to wince");
 	else output("winces");
 	output(". <i>“I guess what I’m asking is... is it going to bother you if I’m a little more serious with Kally?”</i> She puts a hand on your shoulder. <i>“Not to say that I want any less time around you, but I’m going to spend a little more time with her and a lot less time with random floozies, present company excluded, of course.");
-	if(flags["KIRO_BF_TALK"] == 1) output(" You’ll always be my [pc.boyGirl]friend on the side.");
+	if(flags["KIRO_BF_TALK"] == 1) output(" You’ll always be my other [pc.boyGirl]friend.");
 	output("”</i> Kiro grins.");
 	output("\n\nHow do take the news? A negative reaction might drive her away at this point.");
 	processTime(3);
