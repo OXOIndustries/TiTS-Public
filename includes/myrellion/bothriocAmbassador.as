@@ -59,7 +59,7 @@ public function bothriocEmbassyFunc():Boolean
 	}
 
 	addButton(0, "Ara Kei", approachAraKei);
-	if (flags["ARAKEI_TALKED_BOTHRIOC"] != undefined) addButton(1, "Charles", );
+	if (flags["ARAKEI_TALKED_BOTHRIOC"] != undefined) addButton(1, "Charles", approachCharles, undefined, "Charles", "The russet-haired human seems to be the only one here who isn't under Ara Kei's spell.");
 
 	return false;
 }
@@ -1258,4 +1258,234 @@ public function araKeiNoPolishBooties():void
 
 	processTime(2+rand(2));
 	araKeiMenu(araKeiFlirt);
+}
+
+public function showCharles():void
+{
+	author("Nonesuch");
+	showName("\nCHARLES");
+	showBust("CHARLES");
+}
+
+public function approachCharles():void
+{
+	clearOutput();
+	showCharles();
+
+	if (flags["MET_CHARLES"] == undefined)
+	{
+		flags["MET_CHARLES"] = 1;
+		output("<i>“Hey pal,”</i> says the human with a wry grin when you amble across to him. He’s a fairly young, bluff-looking man who sounds like he comes from Ur Caledon. <i>“Hope Ara didn’t talk your ear off, ey?”</i>");
+
+		if (bothriocAddiction() <= 10)
+		{
+			output("\n\n<i>“Guid. She’s a nice enough person y’know - head screwed on tighter ‘n the other bigwig earwigs you’ll run into doon here - but you shouldn’t listen TOO closely to what she’s sayin’, if you catch me drift. If you find yourself - lessay getting sudden urges tae kneel a lot - cum’n have a chat with me. I can fix that.”</i>");
+		}
+		else if (bothriocAddiction() <= 50)
+		{
+			output("\n\nYou don’t like his tone. You can’t place exactly why, but hearing the kind, generous bothrioc being talked of so cursorily irks you.");
+
+			output("\n\n<i>“Ara Kei is nice! [ara.he] can talk to me all [ara.he] like"+ ara.mfn("s", "s", "") +" if [ara.he] want"+ ara.mfn("s", "s", "") ",”</i> you say hotly. Charles looks at you beadily.");
+			
+			output("\n\n<i>“Already gotten tae you, haven’t they?”</i> he says. <i>“Righty ho, well - not sayin’ Ara ain’t nice or anythin’ - but if you want those strange urges to stop before they get so strong you can’t say no to ‘em, cum’n have a chat with me. I can fix ‘em... but only if you’re willing to be fixed.”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“Oh no!”</i> you say, [pc.eyes] widening at the very thought of being unhappy in the presence of the kind, generous, powerful bothrioc. <i>“[ara.he] can talk to me as much as [ara.he] want"+ ara.mfn("s", "s", "") +". [ara.He]"+ ara.mfn("s", "s", "‘re") +" wonderful, "+ ara.mfn("isn’t", "isn’t", "aren’t") +" [ara.he]?”</i>");
+			
+			output("\n\nCharles laughs.");
+			
+			output("\n\n<i>“Wow,”</i> he chortles. <i>“They’ve already got tae you guid, haven’t they? Should’ve talked to me sooner.”</i> He looks you up and down with a keen eye. <i>“Hmm. I think you’re too far along to be helped properly - and you sound like you’re havin’ great craic bein’ an egg bin anyway - but if you want to keep those urges of yours under control, cum’n have a chat with me. I can fix ‘em... at least a bit.”</i>");
+		}
+	}
+	else
+	{
+		output("<i>“Hullo again, "+ pc.mf("Master", "Miss") +" Steele,”</i> says Charles with that wry grin of his when you go across to him. <i>“Needin’ a wee fix, by any chance?”</i>");
+	}
+
+	talkCharlesMenu();
+}
+
+public function talkCharlesMenu(lastF:Function = null):void
+{
+	clearMenu();
+	gatedButton({ 
+		id: 0,
+		lbl: "Myrellion", 
+		f: talkCharlesMyrellion,
+		arg: undefined, 
+		ttH: "Myrellion",
+		ttB: "Ask him what he's doing on this planet."
+	});
+	gatedButton({
+		id: 1,
+		lbl: "Ara Kei",
+		f: talkCharlesAraKei,
+		arg: undefined,
+		ttH: "Ara Kei",
+		ttB: "Ask him about the chief bothrioc."
+	});
+
+	if (flags["CHARLES_TALKED_FIX"] == undefined)
+	{
+		addButton(2, "Fix?", talkCharlesFix, undefined, "Fix?", "What’s all this about fixing?");
+	}
+	else if (flags["CHARLES_DISABLED_FIX"] == undefined)
+	{
+		addButton(2, "Fix", talkCharlesBuyFix, undefined, "Fix", "Buy some Curdsonwhey off the human.");
+	}
+
+	addButton(14, "Back", mainGameMenu);
+}
+
+public function talkCharlesMyrellion():void
+{
+	clearOutput();
+	showCharles();
+
+	output("<i>“Why did you come to Myrellion?”</i> you ask. <i>“And why did you decide to work in here?”</i>");
+	
+	output("\n\n<i>“Got a soft spot a mile wide, haven’t I,”</i> he replies with an affable shrug. <i>“These people are doomed, all uvvem, unless we can get them ant lasses to give up their nooks. The more offworlders there are doon here, workin’ with the locals, the less likely things are gonna kick off. Even the most fanatic gold ‘n red leaders know killin’ farlanders is probably a bad idea.”</i>");
+	
+	output("\n\n<i>“So why the bothrioc, particularly?”</i>");
+	
+	output("\n\n<i>“Every planet in the rush’s gotty race like this,”</i> the human says, gesturing at the room full of black-and-white arachnid people. <i>“Some poor bastards who aren’t quite advanced enough, or weren’t in the right spot when the flyin’ saucers landed, so don’t get to be the U.G.C.’s favored sons ‘n daughters. Usually they get the absolute shite exploited out of ‘em by the corporations, scooped up by the thousands to be taken to gene labs, private zoos and knockin’ shops whilst their homes get built over by whoever the winners were. I ain’t gonny let that happen to the bothrioc. They’ve got a chance, see: A leader with a plan, who can talk to the U.G.C. in their own bureaucratese.”</i>");
+	
+	output("\n\n<i>“That attitude don’t extend tae wantin’ eggs shoved up me, mind,”</i> he goes on, reverting to his more jovial tone. <i>“Compassion only goes so far.”</i>");
+
+	talkCharlesMenu(talkCharlesMyrellion);
+}
+
+public function talkCharlesAraKei():void
+{
+	clearOutput();
+	showCharles();
+
+	output("<i>“Do you get on with Ara?”</i> you ask.");
+	
+	output("\n\n<i>“Wouldn’t be here if I didn’t,”</i> Charles says. <i>“As you’ve probably noticed for yerselves, she loves the sound of her own voice - as a result of 40 people hangin’ off every word that comes out of her mooth - but that ain’t so bad, cos she’s gotty lot of interestin’ things to say. Travelled a lot to get her hands on all the information she needs for this citizenship case. Doubt there’s a more knowledgeable native on Myrellion.”</i>");
+	
+	output("\n\n<i>“[ara.he]"+ ara.mfn("’s", "’s", "‘re") +" a she to you, then,”</i> you observe. The ginger human snickers.");
+	
+	output("\n\n<i>“Oh aye. Kinda unavoidable to think when all the other leaders and diplomats around here are lasses too, ain’t it? Actually though, I do it to annoy her. She likes bein’ special, and bein’ lumped in with all the others winds her up, I know it does. It’s tae get back at her for that tragic tone she always takes with me.”</i>");
+	
+	output("\n\n<i>“Tragic?”</i>");
+	
+	output("\n\n<i>“Yeah.”</i> Charles stops writing for a moment to compose his thoughts. <i>“It’s just the way they are. I don’t go in for their egg stuff, right? I prefer dealin’ with people as an equal. For the bothrioc though, bein’ equal is a bit like sufferin’. Like... bein’ in limbo, not knowin’ what you should be doing. So though I’ve made alluv that clear to Ara, she basically thinks I’m makin’ myself miserable for no reason. If only I went down into the caves and found meself a nice lass to shove her ovipositor up me jacksie... so yeah. Tragic.”</i>");
+
+	if (bothriocAddiction() >= 50)
+	{
+		output("\n\n<i>“It is a bit tragic,”</i> you affirm, looking at him soulfully. He laughs again.");
+		
+		output("\n\n<i>“I got 40 colleagues telling me that every day mate, don’t worry about me not knowin’!”</i>");
+	}
+
+	talkCharlesMenu(talkCharlesAraKei);
+}
+
+public function talkCharlesFix():void
+{
+	clearOutput();
+	showCharles();
+
+	flags["CHARLES_TALKED_FIX"] = 1;
+
+	output("<i>“So - you have some sort of cure to bothrioc hormones?”</i> you ask.");
+
+	output("\n\n<i>“Ehh, nothin’ as cut and dried as that, I’m afraid,”</i> replies Charles, drawing his chair back to get at his bureau’s drawers. <i>“But the myr do make this stuff - <i>“Curdsonwhey”</i>, they call it - which fights off the mental effects. Tae stop their males walkin’ off in a dream with the first bothrioc they happen tae meet, y’know.”</i> He withdraws a medicinal bottle full of old-fashioned, oblong pills and stands it on the desk. <i>“Two things though, mate. This stuff ain’t cheap. It’s made from sum rare as hell cave fungus, but more tae the point the golds I get it from </i>really<i> don’t want me to have it. On account of me workin’ in here, ‘n probably helpin’ the head spider witch there to brew up a counter to it. So I am chargin’ a premium for it, I’m afraid.”</i>");
+
+	output("\n\nHe shakes a few lozenges out onto the wood and picks one up, looking you in the eye.");
+	
+	output("\n\n<i>“Second thing. It stops workin’ well after a certain point. You keep goin’ down to the caves and enjoyin’ the glow, it’ll have a permanent effect on you regardless of how many o’ these you take. And eventually... you won’t be able to take ‘em anyway.”</i>");
+
+	output("\n\nHe proffers it to you.");
+
+	if (bothriocAddiction() <= 10)
+	{
+		output(" You reach across and accept it, frowning slightly. What on earth is he talking about? Will you not be able to swallow, or something? It seems a ridiculous warning.");
+
+		output("\n\n<i>“Just remember what I said,”</i> Charles insists with a wry twist of his lip, plucking the pill back out of your hand.");
+	}
+	else if (bothriocAddiction() <= 50)
+	{
+		output("\n\nYou feel a dragging reluctance to take it - the innate knowledge that what is in his hand is frosty bleakness to the calm warmth inside you. Still, you reach across and accept the pill.");
+
+		output("\n\n<i>“Just a wee bit difficult, isn’t it? Remember what I said,”</i> Charles says with a wry twist of his lip, plucking it back out of your hand.");
+	}
+	else if (bothriocAddiction() <= 99)
+	{
+		output("\n\nSomething about the pill revolts you. It looks bad, you’re sure it will taste bad, and you’re absolutely certain it will make you deeply unhappy. You don’t understand why this nasty man is pressuring you to take it. Can’t he see how at peace you are with the world? Why would you want to change that? A slight sweat breaks out on your forehead, and you can’t help but look at the Caledonian with the deepest resentment, but you do force yourself to reach across and accept the pill.");
+
+		output("\n\n<i>“Difficult, isn’t it? Remember what I said,”</i> Charles insists with a wry twist of his lip, plucking it back out of your hand.");
+	}
+	else
+	{
+		flags["CHARLES_DISABLED_FIX"] = 1;
+		output("\n\nEverything about the pill revolts you. It’s unnatural, and speaks against your very being. You know innately that what is being offered in that hand of his is unhappiness, doubt and loneliness. You don’t hate the Caledonian for offering it, because he’s incapable of understanding (and you’re incapable of hate) - but equally, there is nothing in the galaxy that will make you touch that pill. You calmly refuse it.");
+
+		output("\n\n<i>“Aye, I thought as much, lookin’ at you,”</i> Charles sighs, stowing it and the bottle away. <i>“You’re a bothrioc plaything for the long haul, mate. Hope you’re canny with that.”</i>");
+
+		output("\n\nYou cheerfully assure him that you are.");
+	}
+
+	talkCharlesMenu(talkCharlesFix);
+}
+
+public function talkCharlesBuyFix():void
+{
+	clearOutput();
+	showCharles();
+
+	output("<i>“Got some?”</i> you query. By way of answer, Charles fetches the medicinal bottle out of his bureau drawer.");
+
+	output("\n\n<i>“Got the cash?”</i> you asks in turn. <i>“And the willing?”</i>");
+
+	clearMenu();
+	if (pc.credits >= 15000) addButton(0, "Buy", charlesBuyFix);
+	else addButton(0, "Buy", "Buy", "You don't have enough credits.");
+	addButton(1, "Don’t", mainGameMenu);
+}
+
+public function charlesBuyFix():void
+{
+	clearOutput();
+	showCharles();
+
+	if (bothriocAddiction() <= 10)
+	{
+		output("You take the brown pill.");
+		
+		output("\n\n<i>“Stay frosty, Steele,”</i> Charles grins at you, returning to his work.");
+	}
+	else if (bothriocAddiction() <= 50)
+	{
+		output("You feel a strange reluctance to take the pill you’ve bought - but you push that aside and pluck it out of Charles’s outstretched hand.");
+
+		output("\n\n<i>“Stay frosty, Steele,”</i> Charles grins at you, before returning to his work.");
+	}
+	else if (bothriocAddiction() <= 99)
+	{
+		output("It takes a huge amount of willpower to take the pill out of Charles’s outstretched hand - sweat breaks out on your brow, your soul seems to cry against it - but take it you do, despite how unhappy it makes you feel.");
+		
+		output("\n\n<i>“Doing the right thing, Steele,”</i> Charles says gently. <i>“Better tae have it under control, don’t you think?”</i> He returns to his work.");
+	}
+	else
+	{
+		flags["CHARLES_DISABLED_FIX"] = 1;
+
+		output("You frown at the pill in Charles’s outstretched hand. Why are you doing this? Everything about that lozenge revolts you. It’s unnatural, and speaks against your very being. You know innately that what is being offered in that hand of his is unhappiness, doubt and lovelessness. You don’t hate the Caledonian for offering it, because he’s incapable of understanding (and you’re incapable of hate) - but equally, there is nothing in the galaxy that will make you touch that medicine. Calmly, you tell him you’ve changed your mind.");
+		
+		output("\n\n<i>“Aye,”</i> he says gravely, putting the bottle away, <i>“I suspect you’ve changed your mind for guid. You’re a bothrioc plaything for the long haul now, mate. Hope you’re canny with that.”</i>");
+		
+		output("\n\nYou cheerfully assure him that you are.");
+
+		processTime(5);
+		talkCharlesMenu();
+		return;
+	}
+
+	processTime(3);
+	// cost
+	pc.credits -= 15000;
+	quickLoot([new Curdsonwhey()]);
 }
