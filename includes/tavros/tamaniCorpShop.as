@@ -75,7 +75,7 @@ public function lerrisRepeatApproach():void
 	}
 	else
 	{
-		output("You saunter up to the shop counter, and as always, you’re greeted by the familiar, bouncing form of Lerris. She gives you a pink-lipped smile and wiggles her hips, her [lerris.tails] lifting in the air behind her. The way she languidly leans over the counter and presses up her [lerris.breasts], she looks more like she’s ready  to bend over for you than to sell you cosmetics.");
+		output("You saunter up to the shop counter, and as always, you’re greeted by the familiar, bouncing form of Lerris. She gives you a pink-lipped smile and wiggles her hips, her [lerris.tails] lifting in the air behind her. The way she languidly leans over the counter and presses up her [lerris.breasts], she looks more like she’s ready to bend over for you than to sell you cosmetics.");
 		
 		output("\n\n<i>“Hey, cutie,”</i> she purrs, stretching out like a kitten in heat. <i>“Anything I can get for you? Or were you hoping to get hands on with the merchandise again? I know which I want...”</i>");
 	}
@@ -197,7 +197,7 @@ public function lerrisBackRoom():void
 	else addDisabledButton(1, "Items");
 
 	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(2, "BendHerOver", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
-	else addDisabledButton(2, "BendHerOver", "Bend Her Over", "You'd need a cock- or cock-like equipment- to give her a proper seeing to...");
+	else addDisabledButton(2, "BendHerOver", "Bend Her Over", "You’d need a cock- or cock-like equipment- to give her a proper seeing to...");
 	
 	addButton(14, "Back", lerrisMenu);
 }
@@ -300,7 +300,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		clearMenu();
 		addButton(0, "Suckle", lerrisSuckle, undefined, "Suckle", "Lerris is always eager to give you a sweet drink, straight from the taps!" +(pc.hasCock() ? " She might even reward you with a little reciprocal oral action..." : ""));
 		if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "BendHerOver", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
-		else addDisabledButton(1, "BendHerOver", "Bend Her Over", "You'd need a cock- or cock-like equipment- to give her a proper seeing to...");
+		else addDisabledButton(1, "BendHerOver", "Bend Her Over", "You’d need a cock- or cock-like equipment- to give her a proper seeing to...");
 	}
 	else if (itemInstance is Pussybloom)
 	{
@@ -336,7 +336,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		clearMenu();
 		addButton(0, "Suckle", lerrisSuckle, undefined, "Suckle", "Lerris is always eager to give you a sweet drink, straight from the taps!" +(pc.hasCock() ? " She might even reward you with a little reciprocal oral action..." : ""));
 		if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "BendHerOver", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
-		else addDisabledButton(1, "BendHerOver", "Bend Her Over", "You'd need a cock- or cock-like equipment- to give her a proper seeing to...");
+		else addDisabledButton(1, "BendHerOver", "Bend Her Over", "You’d need a cock- or cock-like equipment- to give her a proper seeing to...");
 	}
 	else if (itemInstance is Bovinium)
 	{
@@ -441,7 +441,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		clearMenu();
 		addButton(0, "Suckle", lerrisSuckle, undefined, "Suckle", "Lerris is always eager to give you a sweet drink, straight from the taps!" +(pc.hasCock() ? " She might even reward you with a little reciprocal oral action..." : ""));
 		if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "BendHerOver", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
-		else addDisabledButton(1, "BendHerOver", "Bend Her Over", "You'd need a cock- or cock-like equipment- to give her a proper seeing to...");
+		else addDisabledButton(1, "BendHerOver", "Bend Her Over", "You’d need a cock- or cock-like equipment- to give her a proper seeing to...");
 	}
 	else
 	{
@@ -546,9 +546,9 @@ public function lerrisBendHerOver():void
 
 	output("\n\nShe’s loving every second of it.");
 
-	if (lerris.hasHorns()) output("\n\nYour hands wander up and grab Lerris's bovine horns, using them like the handlebars they are to keep her right where you want her while you pound her slutty hole.");
+	if (lerris.hasHorns()) output("\n\nYour hands wander up and grab Lerris’s bovine horns, using them like the handlebars they are to keep her right where you want her while you pound her slutty hole.");
 	else output("\n\nYour hands keep Lerris steady, pinning her against the sofa while she serves as your perfect cock-holster time and time again.");
-	output(" Even with all the lube she made for you, she's crushingly tight, perfectly molding her inner flesh to every inch of your [pc.cockOrStrapon " + cockIdx + "], squeezing you from crown to base.");
+	output(" Even with all the lube she made for you, she’s crushingly tight, perfectly molding her inner flesh to every inch of your [pc.cockOrStrapon " + cockIdx + "], squeezing you from crown to base.");
 
 	output("\n\nWith Lerris still basting in her own cum and moaning like a whore, you don’t feel any obligation to hold back now. You start to feel a pressure building up, a tension in your loins roiling with your rising desire. Feeling the");
 	if (pc.hasCock()) output(" heavy weight of seed rushing up your [pc.cock " + cockIdx + "]");
@@ -776,7 +776,7 @@ public function lerrisTalkMenu(fromFunc:Function = null):void
 {
 	clearMenu();
 
-	if (flags["LERRIS_TALKED_ABOUT_MODS"] == undefined) addButton(0, "Mods", lerrisTalkMods, undefined, "Mods", "Lerris mentioned she has some first-hand experience with TamaniCorp's products. Ask her what she's taken.");
+	if (flags["LERRIS_TALKED_ABOUT_MODS"] == undefined) addButton(0, "Mods", lerrisTalkMods, undefined, "Mods", "Lerris mentioned she has some first-hand experience with TamaniCorp’s products. Ask her what she’s taken.");
 	else if (flags["FUCKED_LERRIS"] == undefined)
 	{
 		if (fromFunc != lerrisTalkLactaid) addButton(0, "Lactaid", lerrisTalkLactaid, undefined, "Lactaid", "What about Lactaid attracted Lerris to take so much of it?");
@@ -784,7 +784,7 @@ public function lerrisTalkMenu(fromFunc:Function = null):void
 	}
 	else
 	{
-		if (fromFunc != lerrisTalkHerBody) addButton(0, "Her Body", lerrisTalkHerBody, undefined, "Her Body", "Ask the cute cat-babe about her body. You didn't expect her -- him? -- to be equipped quite like that!");
+		if (fromFunc != lerrisTalkHerBody) addButton(0, "Her Body", lerrisTalkHerBody, undefined, "Her Body", "Ask the cute cat-babe about her body. You didn’t expect her -- him? -- to be equipped quite like that!");
 		else addDisabledButton(0, "Her Body");
 	}
 
@@ -947,7 +947,7 @@ public function lerrisDemonstration():void
 	output("\n\nThe back room is about what you’d expect for a space station’s shop: compact and filled uncomfortably full of inventory boxes, with a couple of small cargo bots standing idly by to fill orders. A small break room, complete with a comfy-looking couch and a JoyCo soda machine, is tucked away in the corner. Lerris leads you over, telling you to");
 	if (!pc.isTaur()) output(" have a seat on the couch");
 	else output(" park yourself next to the couch for her");
-	output(". Her request is music to your ears, and you quickly sprawl out,  reclining against the sofa and watching her movements with interest.");
+	output(". Her request is music to your ears, and you quickly sprawl out, reclining against the sofa and watching her movements with interest.");
 	
 	output("\n\nLerris turns around, tails swishing quickly over her jiggly behind. Their owner gives you a sultry wink over her shoulder as you start to hear the tell-tale sound of a zipper sliding down. <i>“This will only take a second,”</i> she purrs, voice full of sultry promises.");
 
@@ -967,7 +967,7 @@ public function lerrisDemonstration():void
 	output("\n\nYou can see the effects almost instantly: her palmable C-cups swell beneath their semi-transparent bra");
 	if (flags["MET_ELLIE"] != undefined) output(" which, you realize, looks just like Ellie’s. Given Lerris’s fixation on Lactaid, you guess you can understand why she’d be wearing a maternity bra!");
 	else output(". Now that you look at it, her top piece seems like something a milky porn star might wear, the kind special made to trap excess milk just in case.");
-	output(" A good thing she’s wearing it, too - you barely have time to blink before her nipples stiffen into little pink mountains, straining against the translucent material...  and then you see white cream begin bubbling up from their peaks. Lerris lets loose a little moan, bouncing on her high heels as what you can only assume is mindless pleasure rocks her body.");
+	output(" A good thing she’s wearing it, too - you barely have time to blink before her nipples stiffen into little pink mountains, straining against the translucent material... and then you see white cream begin bubbling up from their peaks. Lerris lets loose a little moan, bouncing on her high heels as what you can only assume is mindless pleasure rocks her body.");
 
 	output("\n\n<i>“Ohh that’s good!”</i> she purrs, tails curling around her legs. <i>“So... so full! Unnf!”</i>");
 
@@ -988,7 +988,7 @@ public function lerrisDemonstration():void
 
 	clearMenu();
 	addButton(0, "Drink", lerrisDrinkDatTittymilks, undefined, "Drink", "Help Lerris relieve some of her lactic excess. Considering how horny she obviously is, things might get out of hand...");
-	addButton(1, "No Thanks", lerrisNoTyNoDrinks, undefined,  "No Thanks", "You didn't exactly sign up to nurse right from a kaithrit dick-girl when this started. How about no?");
+	addButton(1, "No Thanks", lerrisNoTyNoDrinks, undefined, "No Thanks", "You didn’t exactly sign up to nurse right from a kaithrit dick-girl when this started. How about no?");
 }
 
 public function lerrisNoTyNoDrinks():void
