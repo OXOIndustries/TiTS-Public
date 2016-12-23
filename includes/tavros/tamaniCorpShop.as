@@ -548,7 +548,7 @@ public function lerrisBendHerOver():void
 
 	if (lerris.hasHorns()) output("\n\nYour hands wander up and grab Lerris's bovine horns, using them like the handlebars they are to keep her right where you want her while you pound her slutty hole.");
 	else output("\n\nYour hands keep Lerris steady, pinning her against the sofa while she serves as your perfect cock-holster time and time again.");
-	output(" Even with all the lube she made for you, she's crushingly tight, perfectly moulding her inner flesh to every inch of your [pc.cockOrStrapon " + cockIdx + "], squeezing you from crown to base.");
+	output(" Even with all the lube she made for you, she's crushingly tight, perfectly molding her inner flesh to every inch of your [pc.cockOrStrapon " + cockIdx + "], squeezing you from crown to base.");
 
 	output("\n\nWith Lerris still basting in her own cum and moaning like a whore, you don’t feel any obligation to hold back now. You start to feel a pressure building up, a tension in your loins roiling with your rising desire. Feeling the");
 	if (pc.hasCock()) output(" heavy weight of seed rushing up your [pc.cock " + cockIdx + "]");

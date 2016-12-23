@@ -486,7 +486,7 @@
 			if(target.armType == GLOBAL.TYPE_BEE && target.legType == GLOBAL.TYPE_BEE && target.tailType != GLOBAL.TYPE_BEE && target.tailTypeUnlocked(GLOBAL.TYPE_BEE) && changes < changeLimit && rand(3) == 0) {
 				//Has tails!
 				if(target.tailType != GLOBAL.TYPE_HUMAN && target.tailCount > 1) {
-					kGAMECLASS.output("\n\nYour [pc.tails] twitch, compulsively squeezing together. Beating faster, your heart hammers with sudden excitement, and you can feel it heating warmer and warmer back there. The flesh of your tails feels so hot and so strange. Nerves are firing nonsensically, leaving you confused about what's happening back there. You turn for a look in time to see them moulding together into one bloated lump, vaguely reminiscent of an insectile abdomen. The surface of it turns black and hard, like chitin, and a strange pressure is building near the very tip of it.");
+					kGAMECLASS.output("\n\nYour [pc.tails] twitch, compulsively squeezing together. Beating faster, your heart hammers with sudden excitement, and you can feel it heating warmer and warmer back there. The flesh of your tails feels so hot and so strange. Nerves are firing nonsensically, leaving you confused about what's happening back there. You turn for a look in time to see them molding together into one bloated lump, vaguely reminiscent of an insectile abdomen. The surface of it turns black and hard, like chitin, and a strange pressure is building near the very tip of it.");
 					kGAMECLASS.output("\n\nAn audible 'snick' fills the air as a stinger forces its way out of the very back, full of potent, arousing venom. <b>Your [pc.tails] have been replaced by a fully functional zil tail.</b>");
 				}
 				//Just one tail
@@ -556,7 +556,7 @@
 						else kGAMECLASS.output(" Up");
 						kGAMECLASS.output(" at the [pc.cockHead " + x+ "], the skin separates into two layers, an inner and outer layer. You're growing a long, stretchy foreskin");
 						if(target.hasCockFlag(GLOBAL.FLAG_BLUNT) || target.hasCockFlag(GLOBAL.FLAG_FLARED) || target.hasCockFlag(GLOBAL.FLAG_TAPERED)) 
-							kGAMECLASS.output(", moulding your phallus into a more human-like shape as it develops");
+							kGAMECLASS.output(", molding your phallus into a more human-like shape as it develops");
 						kGAMECLASS.output("! All traces of its old appearance long gone, <b>you find yourself with a gently-wilting zil-cock</b> packed with enough foreskin to stay covered - even when hard.");
 					}
 					

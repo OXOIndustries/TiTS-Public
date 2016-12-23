@@ -1008,7 +1008,7 @@ public function genesModsFrot():void
 	else output(" into your face");
 	output(" he begins to work his thighs, thrusting his bulge-cock into your [pc.cockBiggest] demandingly. <i>“Much better,”</i> he breathes.");
 	
-	output("\n\nHis bulging, rooster-like front moulds into your [pc.chest] as the smooth rub of your two cocks intensifies tenfold, the fanfir pinning you down and using his strength to rut against you. You keep one hand wrapped around the thrusting cocks as best you can");
+	output("\n\nHis bulging, rooster-like front molds into your [pc.chest] as the smooth rub of your two cocks intensifies tenfold, the fanfir pinning you down and using his strength to rut against you. You keep one hand wrapped around the thrusting cocks as best you can");
 	if (pc.tallness < 64) output(" - almost impossible, given the trunk-like size of each"); // 9999 on dis shit
 	output(". Gene gazes down at you with a certain goading look in his yellow eyes; evidently delighted with this new sensation, and delighted to have found a way to take it on his own terms, trapping you underneath his bulk and rubbing you silly.");
 
@@ -1199,7 +1199,7 @@ public function genesModsBellyrubFirstNotTheSpot():void
 	clearOutput();
 	geneHeader();
 
-	output("You move in and lay your hands on his chest and belly where you’ve chosen and begin to slowly rub, moulding the warm, heavy flesh under your hands as if it were stubborn clay, following the lines of muscle, trying to carefully work your fingers into him and loosen him up. It’s absorbing in its own way, and you’re just getting into it when Gene shifts and snorts with laughter, huge lungs vibrating under your touch.");
+	output("You move in and lay your hands on his chest and belly where you’ve chosen and begin to slowly rub, molding the warm, heavy flesh under your hands as if it were stubborn clay, following the lines of muscle, trying to carefully work your fingers into him and loosen him up. It’s absorbing in its own way, and you’re just getting into it when Gene shifts and snorts with laughter, huge lungs vibrating under your touch.");
 
 	output("\n\n<i>“Alright, that’s enough,”</i> he chuckles. <i>“You’re tickling me! I appreciate your attempt to introduce me to something new, dear Steele, but I’m afraid this does nothing for me.");
 	processTime(1);
