@@ -1,6 +1,6 @@
 public function geneHeader(nude:Boolean = false):void
 {
-	//showName("GENE'S\nMODS");
+	//showName("GENE’S\nMODS");
 	showName("\nGENE");
 	if(!nude) showBust("GENE");
 	else showBust("GENE_NUDE");
@@ -49,7 +49,7 @@ public function genesModsExteriorRoomDecorator():Boolean
 {
 	if (flags["GENES_MODS_ENTERED"] == undefined)
 	{
-		output("\n\nTo the west is a square, white plasti-flex autossembler, a type of self-constructing building that are common on recently colonized worlds. Its severe, glossy walls look ludicrously incongruous nestled amongst the pseudo-classical architecture of Gildenmere. Above the cavernous semicircular entrance are lit the words \"Gene's Mods\".");
+		output("\n\nTo the west is a square, white plasti-flex autossembler, a type of self-constructing building that are common on recently colonized worlds. Its severe, glossy walls look ludicrously incongruous nestled amongst the pseudo-classical architecture of Gildenmere. Above the cavernous semicircular entrance are lit the words “Gene’s Mods”.");
 	}
 	else
 	{
@@ -61,7 +61,7 @@ public function genesModsExteriorRoomDecorator():Boolean
 
 public function genesModsInteriorBonus():Boolean
 {
-	if(flags["GENES_MODS_ENTERED"] != undefined) output("You find yourself back in Gene's airy, sandy-colored room, decorated with stands showing off various types of gene-mods, both modern and antique. The walls are covered with old poster and shifting-image advertisements for mods; to your eyes they look quaint, but you'd guess to myr eyes they would be the exact opposite. Other, more esoteric trinkets and objects hang from the ceiling and crowd the corners. Despite the clutter the place is hangar-sized, and everything is very widely spaced.");
+	if(flags["GENES_MODS_ENTERED"] != undefined) output("You find yourself back in Gene’s airy, sandy-colored room, decorated with stands showing off various types of gene-mods, both modern and antique. The walls are covered with old poster and shifting-image advertisements for mods; to your eyes they look quaint, but you’d guess to myr eyes they would be the exact opposite. Other, more esoteric trinkets and objects hang from the ceiling and crowd the corners. Despite the clutter the place is hangar-sized, and everything is very widely spaced.");
 	genesModsInterior();
 	return true;
 }
@@ -80,7 +80,7 @@ public function genesModsInterior():void
 	{
 		flags["GENES_MODS_ENTERED"] = 1;
 		output("Stepping up the ramp into the shop, you find yourself in an airy, sandy-colored room, decorated with stands showing off various types of gene-mods, both modern and antique.");
-		output("\n\nThe walls are covered with old poster and shifting-image advertisements for mods; to your eyes they look quaint, but you'd guess to myr eyes they would be the exact opposite. Other, more esoteric trinkets and objects hang from the ceiling and crowd the corners. Despite the clutter the place is hangar-sized, and everything is very widely spaced.");
+		output("\n\nThe walls are covered with old poster and shifting-image advertisements for mods; to your eyes they look quaint, but you’d guess to myr eyes they would be the exact opposite. Other, more esoteric trinkets and objects hang from the ceiling and crowd the corners. Despite the clutter the place is hangar-sized, and everything is very widely spaced.");
 		if(flags["LANDED_ON_TEXAS"] != undefined) output(" You are reminded immediately of the size of things on New Texas.");
 		output(" That, combined with the color, gives the place the feeling of a town hall, or museum.");
 
@@ -199,7 +199,7 @@ public function genesModsMenu(cFunc:Function = null):void
 	}
 	else
 	{
-		if (!pc.hasVagina() && !pc.hasCock()) addDisabledButton(2, "Sex", "Sex", "You think you're going to need something for Gene to be interested in you. Something cock or pussy shaped, for instance.");
+		if (!pc.hasVagina() && !pc.hasCock()) addDisabledButton(2, "Sex", "Sex", "You think you’re going to need something for Gene to be interested in you. Something cock or pussy shaped, for instance.");
 	}
 
 	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED && flags["FAZIAN_QUEST_GENE"] == undefined)
@@ -280,7 +280,7 @@ public function geneAppearance():void
 	
 	output("\n\nHis carapace bottoms have a suggestively large codpiece.");
 	if (flags["GENE_FUCKED"] == undefined) output(" You’d guess, from the size of the rest of him, he packs pretty heavily.");
-	else output(" You know by now he has one sixteen inch fanfir cock, hot, ribbed and incredibly girthy, one six inch human cock, as simple and unassuming as you could  imagine save for the burgundy color, and four dense, melon-sized balls.");
+	else output(" You know by now he has one sixteen inch fanfir cock, hot, ribbed and incredibly girthy, one six inch human cock, as simple and unassuming as you could imagine save for the burgundy color, and four dense, melon-sized balls.");
 	output(" Behind his firm, muscular backside his two lizard-like tails swish restlessly, the two bulbous tips occasionally making a <i>“blat”</i> sound as they hit a surface.");
 	processTime(3);
 	genesModsMenu(geneAppearance);
@@ -433,7 +433,7 @@ public function genesModsTalkModsII():void
 	}
 	else
 	{
-		output("\n\nHe made a demand of you, and this close to the fanfir there's no denying him. You stare gladly up at his vast, tight bulk, simmering in the power and raw sexuality you can almost feel radiating off of him, stoking the heat in your [pc.groin].");
+		output("\n\nHe made a demand of you, and this close to the fanfir there’s no denying him. You stare gladly up at his vast, tight bulk, simmering in the power and raw sexuality you can almost feel radiating off of him, stoking the heat in your [pc.groin].");
 
 		genesModsTalkModsCombine();
 
@@ -448,7 +448,7 @@ public function genesModsTalkModsLookClosely():void
 
 	output("You do as he says and admire the huge wine glass shape that is the fanfir’s nipple-less chest, all suggestions and understated plateaus of tectonic muscle under vast amounts of bulk.");
 	if (pc.IQ() >= 60) output(" You do notice a strange fleck of lighter red, almost pink, on his lower left belly, just below the rib cage. You wonder, given how top heavy he is, if Gene’s even aware of it.");
-	else output(" It's difficult to deny how impressive he is in a bestial, masculine way.");
+	else output(" It’s difficult to deny how impressive he is in a bestial, masculine way.");
 	processTime(1);
 	genesModsTalkModsCombine();
 }
@@ -841,7 +841,7 @@ public function genesModsGoSex(isAuto:Boolean = false):void
 
 	clearMenu();
 	if(pc.hasVagina()) addButton(0, "OverCounter", genesModsOverCounter,undefined,"OverCounter","Get bent over the counter.");
-	else addDisabledButton(0,"OverCounter","OverCounter","You don't have a vagina to get plowed.");
+	else addDisabledButton(0,"OverCounter","OverCounter","You don’t have a vagina to get plowed.");
 
 	if (!pc.hasCock())
 	{
@@ -857,7 +857,7 @@ public function genesModsGoSex(isAuto:Boolean = false):void
 	}
 
 	addButton(2, "Blowjob", genesModsBlowjob, undefined, "Blowjob", "Get your lips around some dragon dick.");
-	addButton(3, "BellyRub", genesModsBellyrub, undefined, "Belly Rub", "Perhaps it's possible to make him putty in your hands?");
+	addButton(3, "BellyRub", genesModsBellyrub, undefined, "Belly Rub", "Perhaps it’s possible to make him putty in your hands?");
 }
 
 public function genesModsBlowjob():void
@@ -1008,7 +1008,7 @@ public function genesModsFrot():void
 	else output(" into your face");
 	output(" he begins to work his thighs, thrusting his bulge-cock into your [pc.cockBiggest] demandingly. <i>“Much better,”</i> he breathes.");
 	
-	output("\n\nHis bulging, rooster-like front moulds into your [pc.chest] as the smooth rub of your two cocks intensifies tenfold, the fanfir pinning you down and using his strength to rut against you. You keep one hand wrapped around the thrusting cocks as best you can");
+	output("\n\nHis bulging, rooster-like front molds into your [pc.chest] as the smooth rub of your two cocks intensifies tenfold, the fanfir pinning you down and using his strength to rut against you. You keep one hand wrapped around the thrusting cocks as best you can");
 	if (pc.tallness < 64) output(" - almost impossible, given the trunk-like size of each"); // 9999 on dis shit
 	output(". Gene gazes down at you with a certain goading look in his yellow eyes; evidently delighted with this new sensation, and delighted to have found a way to take it on his own terms, trapping you underneath his bulk and rubbing you silly.");
 
@@ -1199,7 +1199,7 @@ public function genesModsBellyrubFirstNotTheSpot():void
 	clearOutput();
 	geneHeader();
 
-	output("You move in and lay your hands on his chest and belly where you’ve chosen and begin to slowly rub, moulding the warm, heavy flesh under your hands as if it were stubborn clay, following the lines of muscle, trying to carefully work your fingers into him and loosen him up. It’s absorbing in its own way, and you’re just getting into it when Gene shifts and snorts with laughter, huge lungs vibrating under your touch.");
+	output("You move in and lay your hands on his chest and belly where you’ve chosen and begin to slowly rub, molding the warm, heavy flesh under your hands as if it were stubborn clay, following the lines of muscle, trying to carefully work your fingers into him and loosen him up. It’s absorbing in its own way, and you’re just getting into it when Gene shifts and snorts with laughter, huge lungs vibrating under your touch.");
 
 	output("\n\n<i>“Alright, that’s enough,”</i> he chuckles. <i>“You’re tickling me! I appreciate your attempt to introduce me to something new, dear Steele, but I’m afraid this does nothing for me.");
 	processTime(1);
@@ -1218,7 +1218,7 @@ public function genesModsBellyrubFirstNotTheSpot():void
 	{
 		output("”</i> He suddenly rears up, tails swinging around to encircle you, eyes gleaming lustily down at you. <i>“Time,”</i> he husks, <i>“for you to pay the price of your presumption.”</i>");
 
-		//  - Go to licked out
+		// - Go to licked out
 		clearMenu();
 		addButton(0, "Next", genesModsLickedOut);
 	}
