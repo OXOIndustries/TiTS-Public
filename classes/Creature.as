@@ -3936,7 +3936,7 @@
 		}
 		public function slowStatLoss(stat:String, arg:Number = 0):Number
 		{
-			slowStatGain(stat, arg > 0 ? 0 - arg : arg);
+			return slowStatGain(stat, arg > 0 ? 0 - arg : arg);
 		}
 		public function slowStatGain(stat:String, arg:Number = 0):Number {
 			var statCurrent: Number = 0;

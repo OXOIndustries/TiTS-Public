@@ -7,6 +7,9 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
+	import classes.GameData.StatTracking;
+	import classes.Engine.Utility.rand;
+	import classes.GameData.ChildManager;
 	/**
 	 * ...
 	 * @author Gedan
@@ -92,7 +95,7 @@ package classes.GameData.Pregnancy.Handlers
 			}
 		}
 		
-		public static function bothriocOnDurationEnd(mother:Creature, pregSLot:int, thisPtr:BasePregnancyHandler):void
+		public static function bothriocOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
 			var tEventCall:Function = (function(c_mother:Creature, c_pregSlot:int, c_thisPtr:BasePregnancyHandler):Function
 			{

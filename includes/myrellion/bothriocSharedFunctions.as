@@ -1,3 +1,4 @@
+import classes.GameData.Pregnancy.Handlers.BothriocPregnancyHandler;
 // Addiction is entirely related to receiving Bothrioc eggs.
 public function bothriocAddiction(val:Number = 0):Number
 {
@@ -79,7 +80,7 @@ public function bothriocEggnancySub50Effects(deltaT:uint, opt:int, doOut:Boolean
 
 		bothriocAddiction(1);
 		if (rand(4) <= 2 && pc.libido() < 80) pc.slowStatGain("libido", 2 + rand(2));
-		if (rand(4) <= 2 && pc.tone() > 20) pc.modTone(3 + rand(3), true);
+		if (rand(4) <= 2 && pc.tone > 20) pc.modTone(3 + rand(3), true);
 	}
 	else if (opt == 1)
 	{
@@ -191,7 +192,7 @@ public function bothriocEggnancySub100Effects(deltaT:uint, opt:int, doOut:Boolea
 
 		if (rand(2) == 0 && pc.biggestTitSize() >= 3 && (pc.nippleLength(0) < 1 || (pc.hasFuckableNipples() && pc.nippleWidth(0) < 2)))
 		{
-			if (pc.nippleLengt(0) < 1)
+			if (pc.nippleLength(0) < 1)
 			{
 				pc.nippleLengthRatio += 0.1;
 			}
@@ -237,11 +238,11 @@ public function bothriocEggnancySub100Effects(deltaT:uint, opt:int, doOut:Boolea
 
 			if (!didHigh)
 			{
-				ExtendLogEvent(ParseText(" Your [pc.vagina] feels very wet, the fuzzy sensation sinking into your crotch seeming to increase the volume of [pc.femcum] that you can produce - and how easy it is to turn you on. You shiver at the implication.");
+				ExtendLogEvent(ParseText(" Your [pc.vagina] feels very wet, the fuzzy sensation sinking into your crotch seeming to increase the volume of [pc.femcum] that you can produce - and how easy it is to turn you on. You shiver at the implication."));
 			}
 			else
 			{
-				ExtendLogEvent(ParseText(" Your [pc.vagina] is utterly soaked with arousal, dripping"+ (pc.hasLowerGarment() ? " out of your [pc.lowerUndergarment]" : (pc.hasLegs() ? " down your inner thigh" + " down your [pc.leg]")) +". It lubes itself up to the point now where you will never not be ready to take a hard breeding from whichever beautiful night-creature wishes to bend you over, regardless of the size of their bulging egg-cock. You cannot help but dribble [pc.femcum] freely at the thought."));
+				ExtendLogEvent(ParseText(" Your [pc.vagina] is utterly soaked with arousal, dripping"+ (pc.hasLowerGarment() ? " out of your [pc.lowerUndergarment]" : (pc.hasLegs() ? " down your inner thigh" : " down your [pc.leg]")) +". It lubes itself up to the point now where you will never not be ready to take a hard breeding from whichever beautiful night-creature wishes to bend you over, regardless of the size of their bulging egg-cock. You cannot help but dribble [pc.femcum] freely at the thought."));
 			}
 		}
 
@@ -275,7 +276,7 @@ public function bothriocEggnancySub100Effects(deltaT:uint, opt:int, doOut:Boolea
 
 		if (rand(2) == 0 && pc.longestCockLength(true) > 1)
 		{
-			for (var i:int = 0; i < pc.cocks.length; i++)
+			for (i = 0; i < pc.cocks.length; i++)
 			{
 				if (pc.cocks[i].cLengthRaw > 12) pc.cocks[i].cLengthRaw -= 1;
 				if (pc.cocks[i].cLengthRaw > 6) pc.cocks[i].cLengthRaw -= 1;
@@ -284,14 +285,14 @@ public function bothriocEggnancySub100Effects(deltaT:uint, opt:int, doOut:Boolea
 				if (pc.cocks[i].cLengthRaw < 1) pc.cocks[i].cLengthRaw = 1;
 			}
 
-			ExtendLogEvent(ParseText(" You shiver as [pc.eachCock] shrinks down, seeming to compress in on "+ (pc.cocks.length == 1 ? "itself" : "themselves") +" in response to the euphoric buzz, becoming more sensitive as a result." + (pc.longestCockLength > 6 ? " It’s impossible to separate the sensation of pleasure from having "+ (pc.cocks.length == 1 ? "a smaller dick" : "smaller dicks") +" - you cannot help but want to seek other ways of making yourself smaller, better suited to being an eager, sensitive sissy." : " You are smaller than most males and herms you will run into now, and that feels so <i>right</i> - your sensitive little sissy "+ (pc.cocks.length == 1 ? "clit" : "clits" ) +" suited not for penetration but for ruthless teasing, just another way for dominants to overwhelm your mind with submissive pleasure. Butterflies flutter in your tummy at the thought.")));
+			ExtendLogEvent(ParseText(" You shiver as [pc.eachCock] shrinks down, seeming to compress in on "+ (pc.cocks.length == 1 ? "itself" : "themselves") +" in response to the euphoric buzz, becoming more sensitive as a result." + (pc.longestCockLength() > 6 ? " It’s impossible to separate the sensation of pleasure from having "+ (pc.cocks.length == 1 ? "a smaller dick" : "smaller dicks") +" - you cannot help but want to seek other ways of making yourself smaller, better suited to being an eager, sensitive sissy." : " You are smaller than most males and herms you will run into now, and that feels so <i>right</i> - your sensitive little sissy "+ (pc.cocks.length == 1 ? "clit" : "clits" ) +" suited not for penetration but for ruthless teasing, just another way for dominants to overwhelm your mind with submissive pleasure. Butterflies flutter in your tummy at the thought.")));
 		}
 	}
 	else
 	{
 		AddLogEvent(ParseText("You sigh, basking in the feeling of the warm, dense glow of growing life within you. Whatever your original sentiments were concerning being an incubator have long since been eroded away in a tide of profound contentment and arousal. It just feels so <i>right</i>. Didn’t you always think this way? Didn’t you always see the galaxy as a light-strewn sexual carnival, to drift through with fingers trailed and give yourself to whichever vigorous, seductive creature desires you? It seems like if there ever was a time you didn’t think this way - constantly looking for opportunities to make love, knowing exactly how to put others at ease and make them think sexy thoughts - that was a small, cold, sadly misled version of you."), "passive", deltaT);
 
-		if (rand(4) == && !pc.hasPerk("Sexy Thinking"))
+		if (rand(4) == 0&& !pc.hasPerk("Sexy Thinking"))
 		{
 			ExtendLogEvent(" <b>You have gained the Sexy Thinking perk. The lower your will, the better your tease attacks will be.</b>");
 			pc.createPerk("Sexy Thinking",0,0,0,0,"Boosts tease damage more the dumber and less willful you are.");
@@ -309,7 +310,7 @@ public function bothriocEggnancy100Effects(deltaT:uint, opt:int):void
 	{
 		var s:String = "You shimmer with submissive bliss, and you stop for a moment, eyes closed, revelling in the ecstasy channeling through you; the sensation of bothrioc hormones completing their total rewiring of your body and brain. The wonderful sensations of being an incubator used to rise up within you, always seeming to reach towards some bright, brilliant horizon before ebbing disappointingly away after you gave birth. Now, you know, you have finally reached that horizon, and there will be no turning away from it now you have fully basked in its glory. You want for nothing but to make others happy. Just that thought now, of making some strong being groan with pleasure, or smirk at some sign of your total subservience, makes you shiver with delight,";
 		if (pc.hasCock()) s += " [pc.eachCock] becoming instantly hard";
-		if (pc.hasCock() && pc.hasVagina()) s += " and");
+		if (pc.hasCock() && pc.hasVagina()) s += " and";
 		if (pc.hasVagina()) s += " [pc.eachVagina] immediately growing plush and moist";
 		s += ".";
 
@@ -394,9 +395,9 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 	else
 	{
 		var c:Child = null;
-		var h:BothriocPregnancyHandler = PregnancyManager.findHandler("BothriocPregnancy");
+		var h:BothriocPregnancyHandler = PregnancyManager.findHandler("BothriocPregnancy") as BothriocPregnancyHandler;
 
-		StackTracking.track("pregnancy/fertile bothrioc eggs", numFertile);
+		StatTracking.track("pregnancy/fertile bothrioc eggs", numFertile);
 
 		if (pregSlot == 3)
 		{
@@ -422,6 +423,7 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 			else output(" Your backside is better adapted for doing this than you ever originally could have imagined - buttslut that you have become - but the sensation is still deep. You moan with relief when the bulk of it finally gets past your ring, and it comes free in a rush of clear lubricant.");
 			if (numFertile == 1) output(" Fortunately, that seems to be the only one. The rest must have absorbed into your body. After a few minute’s rest you clean yourself up and retrieve the big, heavy, oil-coated egg.");
 			else output(" You barely have time to draw in a few ragged breaths before the pressure builds again - another hard, smooth oval forcing its way out of your rectum...");
+			}
 		}
 		else
 		{
@@ -444,9 +446,12 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 			}
 
 			output("\n\nYou tense up as the first egg travels down your vaginal passage and stretches your labia.");
-			if (pc.vaginas[pregSlot].wetness() < 3 || pc.vaginas[pregSlot].looseness() < 3) output(" This is");
-			if (!ChildManager.hasChildren()) output(" presumably");
-			output(" a lot easier than giving birth to a human child, but it’s still pretty tough on your neat, tight pussy. You bite your lip and can’t help but cry out as the large, violet oval finally comes free in a rush of clear lubricant.");
+			if (pc.vaginas[pregSlot].wetness() < 3 || pc.vaginas[pregSlot].looseness() < 3)
+			{
+				output(" This is");
+				if (!ChildManager.hasChildren()) output(" presumably");
+				output(" a lot easier than giving birth to a human child, but it’s still pretty tough on your neat, tight pussy. You bite your lip and can’t help but cry out as the large, violet oval finally comes free in a rush of clear lubricant.");
+			}
 			else output(" Your female sex is incredibly well-designed for this, and the feeling you receive when the bulky oval emerges from your pussy is one of intense pleasure. You moan when it comes free in a rush of clear lubricant.");
 			if (numFertile == 1) output(" Fortunately, that seems to be the only one - the rest must have absorbed into your body. After a few minute’s rest you clean yourself up and retrieve the big, heavy, oil-coated egg.");
 			else output(" You barely have time to draw in a few ragged breaths before the pressure builds again - another hard, smooth oval travelling downwards from your womb...");
@@ -513,7 +518,8 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 
 			clearMenu();
 			addButton(0, "Leave", bothriocEggsLeave, numFertile);
-			addButton(1, "GetDrone", bothriocEggsDrone, numFertile);
+			addButton(1, "GetDrone", bothriocEggsDrone, [numFertile, deltaT]);
+		}
 	}
 }
 
@@ -533,8 +539,10 @@ public function bothriocEggsLeave(numFertile:int):void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function bothriocEggsDrone(numFertile:int):void
+public function bothriocEggsDrone(opts:Array):void
 {
+	var numFertile:int = opts[0];
+	var deltaT:uint = opts[1];
 	clearOutput();
 	
 	output("You use your codex to summon the drone, spending the time it takes to find its way to you by wiping the egg");
@@ -546,11 +554,13 @@ public function bothriocEggsDrone(numFertile:int):void
 	if (numFertile > 1) output(" each");
 	output(". The spawn-drone does eventually put in an appearance, and it hovers listening patiently as you give it instructions to put the egg");
 	if (numFertile > 1) output("s");
-	output(" somewhere warm, dry and dark in your nursery. You watch it depart laden with your bothrioc spawn with a slight pang and sense of emptiness{0-49:, despite yourself}. But hey, at least you’ll see them again eventually.");
+	output(" somewhere warm, dry and dark in your nursery. You watch it depart laden with your bothrioc spawn with a slight pang and sense of emptiness");
+	if (bothriocAddiction() < 50) output(", despite yourself");
+	output(". But hey, at least you’ll see them again eventually.");
 
 	StatTracking.track("pregnancy/total day care", numFertile);
 
-	var h:BothriocPregnancyHandler = PregnancyManager.findHandler("BothriocPregnancy");
+	var h:BothriocPregnancyHandler = PregnancyManager.findHandler("BothriocPregnancy") as BothriocPregnancyHandler;
 
 	var c:Child = Child.NewChildWeights(h.pregnancyChildRace, h.childMaturationMultiplier, numFertile, h.childGenderWeights);
 	c.BornTimestamp = GetGameTimestamp() + deltaT;
