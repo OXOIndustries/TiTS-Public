@@ -25,7 +25,7 @@ public function bothriocAddiction(val:Number = 0):Number
 
 public function updateBothriocAddiction(totalDays:uint):void
 {
-	if (!pc.hasStatusEffect("Bothrioc Eggs")) return;
+	if (pc.hasStatusEffect("Bothrioc Eggs")) return;
 
 	var drop:Number = 0;
 	for (var i:int = 0; i < totalDays; i++)
@@ -72,7 +72,7 @@ public function bothriocEggnancySub50Effects(deltaT:uint, opt:int, doOut:Boolean
 		{
 			effect.value1 = 1;
 
-			if (doOut) AddLogEvent("As hard as you try to keep your mind focused on what you’re doing, you find your thoughts continuously straying back to the warm glow in your gut... and the creature that put it there. The moment where you were made helpless, when the strange, lithe spider-being penetrated you and made you theirs keeps replaying in your head, and every time it does a thrill shivers through you. It felt so <i>good</i> to be exposed and controlled like that, and every time you allow yourself to admit that, it feels like you yourself have physically gotten a little bit softer, a little bit more sensitive. It’s an eerie sensation. A good sensation." + (bothriocAddiction() <= 49 ? "It’s probably best, you tell yourself uneasily, to tear your mind away from it." : ""), "passive", deltaT);
+			if (doOut) AddLogEvent("As hard as you try to keep your mind focused on what you’re doing, you find your thoughts continuously straying back to the warm glow in your gut... and the creature that put it there. The moment where you were made helpless, when the strange, lithe spider-being penetrated you and made you theirs keeps replaying in your head, and every time it does a thrill shivers through you. It felt so <i>good</i> to be exposed and controlled like that, and every time you allow yourself to admit that, it feels like you yourself have physically gotten a little bit softer, a little bit more sensitive. It’s an eerie sensation. A good sensation." + (bothriocAddiction() <= 49 ? " It’s probably best, you tell yourself uneasily, to tear your mind away from it." : ""), "passive", deltaT);
 		}
 		else
 		{

@@ -91,7 +91,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			if (!mother.hasStatusEffect("Bothrioc Eggs"))
 			{
-				mother.createStatusEffect("Bothrioc Eggs", 0, 0, 0, 0, false, "PILLS", "Bothrioc Eggs", false, 0, 0xFFFFFF);
+				mother.createStatusEffect("Bothrioc Eggs", 0, 0, 0, 0, false, "Charmed", "You have been impregnated by a bothrioc. A warm, dense glow suffuses you that is not at all unpleasant...", false, 0, 0xFFFFFF);
 			}
 		}
 		
