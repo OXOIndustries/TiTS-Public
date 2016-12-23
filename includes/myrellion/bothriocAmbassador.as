@@ -424,7 +424,7 @@ public function araKeiMenu(lastF:Function = null):void
 	addButton(10, "Appearance", araKeiAppearance);
 	addButton(14, "Leave", function():void { 
 		currentLocation = "603";
-		flags["ARAKEY_INVITED"] = undefined;
+		flags["ARAKEI_INVITED"] = undefined;
 		mainGameMenu();
 	});
 }
@@ -445,12 +445,13 @@ public function araKeiAppearance():void
 
 public function araKeiTalk():void
 {
-	if (flags["ARAKEY_TALKED"] == undefined)
+	if (flags["ARAKEI_TALKED"] == undefined)
 	{
+		flags["ARAKEI_TALKED"] = 1;
 		clearOutput();
 		showAraKei();
 
-		if (flags["ARAKEY_INVITED"] == undefined)
+		if (flags["ARAKEI_TALKED"] == undefined)
 		{
 			output("You approach the one clearly in charge");
 		}
