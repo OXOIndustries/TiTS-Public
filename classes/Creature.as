@@ -3880,6 +3880,7 @@
 			//Venom brings minimum up to 35.
 			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
 			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
+			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
 			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {
@@ -3933,6 +3934,10 @@
 			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");
 			return (0 + bonus);
 		}
+		public function slowStatLoss(stat:String, arg:Number = 0):Number
+		{
+			slowStatGain(stat, arg > 0 ? 0 - arg : arg);
+		}
 		public function slowStatGain(stat:String, arg:Number = 0):Number {
 			var statCurrent: Number = 0;
 			var statPercent: Number = 0;
@@ -3977,22 +3982,52 @@
 				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
 				return 0;
 			}
-			while (arg > 0) {
-				arg--;
-				if (statPercent < 30) change++;
-				else if (statPercent < 40) change += .9;
-				else if (statPercent < 50) change += .8;
-				else if (statPercent < 60) change += .7;
-				else if (statPercent < 65) change += .6;
-				else if (statPercent < 70) change += .5;
-				else if (statPercent < 75) change += .4;
-				else if (statPercent < 80) change += .3;
-				else if (statPercent < 85) change += .25;
-				else if (statPercent < 90) change += .2;
-				else if (statPercent < 95) change += .15;
-				else change += .1;
-				if(arg < 0) arg = 0;
+			
+			var isGain:Boolean = arg > 0;
+			arg = Math.abs(arg);
+			
+			if (isGain)
+			{
+				while (arg > 0) {
+					arg--;
+					if (statPercent < 30) change++;
+					else if (statPercent < 40) change += .9;
+					else if (statPercent < 50) change += .8;
+					else if (statPercent < 60) change += .7;
+					else if (statPercent < 65) change += .6;
+					else if (statPercent < 70) change += .5;
+					else if (statPercent < 75) change += .4;
+					else if (statPercent < 80) change += .3;
+					else if (statPercent < 85) change += .25;
+					else if (statPercent < 90) change += .2;
+					else if (statPercent < 95) change += .15;
+					else change += .1;
+					if(arg < 0) arg = 0;
+				}
 			}
+			else
+			{
+				while (arg > 0)
+				{
+					arg--;
+					
+					if (statPercent >= 95) change++;
+					else if (statPercent >= 90) change += .9;
+					else if (statPercent >= 85) change += .8;
+					else if (statPercent >= 80) change += .7;
+					else if (statPercent >= 75) change += .6;
+					else if (statPercent >= 70) change += .5;
+					else if (statPercent >= 65) change += .4;
+					else if (statPercent >= 60) change += .3;
+					else if (statPercent >= 50) change += .25;
+					else if (statPercent >= 40) change += .2;
+					else if (statPercent >= 30) change += .15;
+					else change += .1;					
+				}
+				
+				change = 0 - change;
+			}
+			
 			if (stat == "physique") return physique(change);
 			else if (stat == "reflexes") return reflexes(change);
 			else if (stat == "aim") return aim(change);
@@ -7373,15 +7408,29 @@
 			}
 			return index;
 		}
-		public function longestCockLength(): Number {
+		public function longestCockLength(raw:Boolean = false): Number {
 			if (cocks.length == 0) return 0;
 			var counter: Number = cocks.length;
 			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (cocks[index].cLength() < cocks[counter].cLength()) index = counter;
+			
+			if (!raw)
+			{
+				while (counter > 0) 
+				{
+					counter--;
+					if (cocks[index].cLength() < cocks[counter].cLength()) index = counter;
+				}
+				return cocks[index].cLength();
 			}
-			return cocks[index].cLength();
+			else
+			{
+				while (counter > 0) 
+				{
+					counter--;
+					if (cocks[index].cLengthRaw < cocks[counter].cLengthRaw) index = counter;
+				}
+				return cocks[index].cLengthRaw;
+			}
 		}
 		public function longestHorsecockLength(): Number {
 			if (cocks.length == 0) return 0;
@@ -7868,15 +7917,23 @@
 			}
 			return vaginas[index].wetness();
 		}
-		public function driestVaginalWetness(): Number {
+		public function driestVaginalWetness(raw:Boolean = false): Number {
 			if(!hasVagina()) return -1;
-			var counter: Number = vaginas.length;
-			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (vaginas[index].wetness() > vaginas[counter].wetness()) index = counter;
+			
+			var idx:int = 0;
+			
+			if (vaginas.length > 1)
+			{
+				for (var i:int = 1; i < vaginas.length; i++)
+				{
+					var cw:Number = raw ? vaginas[idx].wetnessRaw : vaginas[idx].wetness();
+					var nw:Number = raw ? vaginas[i].wetnessRaw : vaginas[i].wetness();
+					
+					if (nw < cw) idx = i;
+				}
 			}
-			return vaginas[index].wetness();
+			
+			return (raw ? vaginas[idx].wetnessRaw : vaginas[idx].wetness());
 		}
 		public function biggestVaginaIndex(): int {
 			if (vaginas.length == 0) return 0;

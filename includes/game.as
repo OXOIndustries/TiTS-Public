@@ -1920,6 +1920,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processMyrPregEvents(deltaT, doOut, totalDays);
 		thollumYardMushroomGrow();
 		laneHandleCredits(totalDays);
+		updateBothriocAddiction(totalDays);
 	}
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
