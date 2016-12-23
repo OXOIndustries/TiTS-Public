@@ -19,6 +19,7 @@ public function bothriocAddiction(val:Number = 0):Number
 		else flags["BOTHRIOC_ADDICTION"] = n;
 	}
 
+	trace("Bothrioc Addiction: " + flags["BOTHRIOC_ADDICTION"]);
 	return flags["BOTHRIOC_ADDICTION"];
 }
 

@@ -14,7 +14,7 @@ public function bothriocEmbassyFunc():Boolean
 	{
 		if (!CodexManager.entryUnlocked("Bothrioc"))
 		{
-			output("\n\nAs you step through the doorway of the main office, you’re greeted by a strange sight. Scurrying about are a bunch of insectile people, all of them androgynous and clearly not myr. Dominating the area is a seven foot tall blue-black member of the species, idly writing out something on a sheaf of paper as another member of the species polishes the bureaucrat’s four chitin-clad legs with their tongue. Your codex pipes up: <i>“<i>Bothrioc detected! Bothrioc are classified extremely dangerous and should be avoided where possible. A full entry has been downloaded.</i>”</i>");
+			output("As you step through the doorway of the main office, you’re greeted by a strange sight. Scurrying about are a bunch of insectile people, all of them androgynous and clearly not myr. Dominating the area is a seven foot tall blue-black member of the species, idly writing out something on a sheaf of paper as another member of the species polishes the bureaucrat’s four chitin-clad legs with their tongue. Your codex pipes up: <i>“<i>Bothrioc detected! Bothrioc are classified extremely dangerous and should be avoided where possible. A full entry has been downloaded.</i>”</i>");
 
 			output("\n\nThe dominant one laughs heartily, one of four hands partially covering a rather alarmingly wide smile. <i>“My, my. Offworlder technology certainly has a lot to say about us. It is also loud and insensitive. Welcome to the Bothrioc Embassy. I am your host and chief diplomat, Ara Kei Enya. Don’t be shy.”</i>");
 
@@ -72,7 +72,9 @@ public function approachAraKei():void
 	IncrementFlag("MET_ARAKEI");
 	var specialMenu:Boolean = false;
 
-	if (bothriocAddiction() <= 0 && flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined)
+	// This was gated behind having talked to her a bunch, but it makes dealing with the menu generation here 8000% more difficult
+	// up front.
+	if (bothriocAddiction() <= 0 /*&& flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined*/)
 	{
 		output("<i>“You’re looking healthy and brimming with that distinct do-as-you-please attitude of yours,”</i> Ara Kei says with a dry, not unfriendly curl of the lip. You find yourself exhaling when [ara.his] big, black eyes move away from you back to the bustle all around [ara.him]. There is something slightly disconcerting about being the sole focus of the bothrioc ambassador’s attention.");
 
