@@ -128,7 +128,7 @@
 		}
 		else
 		{
-			trace("Creature '" + prop + "' Game Version " + chars[prop].version);
+			//trace("Creature '" + prop + "' Game Version " + chars[prop].version);
 		}
 	}
 }

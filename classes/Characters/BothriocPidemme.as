@@ -156,6 +156,7 @@ package classes.Characters
 			this.balls = 2;
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+			this.impregnationType = "BothriocPregnancy";
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 1.5;
