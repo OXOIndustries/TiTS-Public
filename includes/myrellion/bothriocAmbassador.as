@@ -74,11 +74,16 @@ public function approachAraKei():void
 
 	// This was gated behind having talked to her a bunch, but it makes dealing with the menu generation here 8000% more difficult
 	// up front.
+	if (flags["ARAKEI_TALKED"] == undefined)
+	{
+		araKeiTalk();
+		specialMenu = true;
+	}
 	if (bothriocAddiction() <= 0 /*&& flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined*/)
 	{
 		output("<i>“You’re looking healthy and brimming with that distinct do-as-you-please attitude of yours,”</i> Ara Kei says with a dry, not unfriendly curl of the lip. You find yourself exhaling when [ara.his] big, black eyes move away from you back to the bustle all around [ara.him]. There is something slightly disconcerting about being the sole focus of the bothrioc ambassador’s attention.");
 
-		output("\n\n<i>“Here to know more about my race?”</i> [ara.he] "+ ara.mfn("go", "go", "goes") +" on. <i>“I have always felt we are better experienced than studied, you know.”</i>");
+		output("\n\n<i>“Here to know more about my race?”</i> [ara.he] "+ ara.mfn("goes", "goes", "go") +" on. <i>“I have always felt we are better experienced than studied, you know.”</i>");
 	}
 	else if (bothriocAddiction() <= 10 && flags["ARAKEI_ADDICTION_10"] == undefined)
 	{
@@ -393,7 +398,7 @@ public function araKeiSpecialGreeting10Reaction(choice:String):void
 
 public function araKeiMenu(lastF:Function = null):void
 {
-	clearOutput();
+	clearMenu();
 	
 	addButton(0, "Talk", araKeiTalk);
 	
@@ -447,11 +452,11 @@ public function araKeiTalk():void
 
 		if (flags["ARAKEY_INVITED"] == undefined)
 		{
-			output("\n\nYou approach the one clearly in charge");
+			output("You approach the one clearly in charge");
 		}
 		else
 		{
-			output("\n\nYou step forward in acceptance of the ambassador’s invitation");
+			output("You step forward in acceptance of the ambassador’s invitation");
 		}
 		output(". Your gaze slowly sweeps up and down, trying to take it all in. You’re already well used to meeting strange new life forms, but the mixture of new and familiar that this bothrioc has in spades makes it hard to pin down where to start.");
 
@@ -487,17 +492,17 @@ public function setAraKeiGender(genderType:uint):void
 	{
 		case 0:
 		default:
-			output("\n\nYou communicate your acceptance of the ambiguity, and throw in a full introduction while you’re at it. Ara Kei chuckles.");
+			output("You communicate your acceptance of the ambiguity, and throw in a full introduction while you’re at it. Ara Kei chuckles.");
 			output("\n\n<i>“Well, aren’t you the cagey type. Allow me to reintroduce myself. I am Ara Kei Enya. I rule this harem and represent the bothrioc before the galaxy as our ambassador. My goal is to drag my species kicking and screaming into the light of civilization.”</i>");
 			break;
 
 		case 1:
-			output("\n\nYou communicate that ultimately you think of Ara Kei as male, and that your name is [pc.name] Steele. This seems to give him pause.");
+			output("You communicate that ultimately you think of Ara Kei as male, and that your name is [pc.name] Steele. This seems to give him pause.");
 			output("\n\n<i>“Farlanders are full of surprises. The myr tend to think of us as female, given their cultural obsession with the idea of female power. Perhaps the men are the powerful ones where you’re from, hm? Perhaps... ah, well, allow me to reintroduce myself. I am Ara Kei Enya. I am the master of this harem, and the ambassador of the bothrioc before the entire galaxy. My goal is to drag my species kicking and screaming into the light of civilization.”</i>");
 			break;
 
 		case 2:
-			output("\n\nYou communicate that ultimately you think of Ara Kei as female, and that your name is [pc.name] Steele. She nods, amused.");
+			output("You communicate that ultimately you think of Ara Kei as female, and that your name is [pc.name] Steele. She nods, amused.");
 			output("\n\n<i>“That’s the standard line around here. Most every other species likes to think of us as female - even if it is usually they who bear our young. Ah, but we’ll get to that. Allow me to reintroduce myself. I am Ara Kei Enya. I am the mistress of this harem, and the ambassador of the bothrioc before the entire galaxy. My goal is to drag my species kicking and screaming into the light of civilization.”</i>");
 			break;
 	}
@@ -505,6 +510,8 @@ public function setAraKeiGender(genderType:uint):void
 	output("\n\nThe fabric of [ara.his] shift hisses softly as "+ ara.mfn("he repositions", "she repositions", "they reposition") + " [ara.himself]. The submissive waits patiently on their hands and knees until a new leg is presented to them, at which point the tongue-polishing continues unabated.");
 	
 	output("\n\n<i>“Since you have assuaged my curiosity, I shall do the same for you,”</i> the tall piebald being goes on. <i>“That is what I am here to do, after all. Nothing shall improve for our people unless someone stands here and talks to every visitor who wishes to get to know us, as wearisome as that may be. So what would you like to know?”</i>");
+	
+	araKeiMenu();
 }
 
 public function araKeiTalkMenu(lastF:Function = null):void
