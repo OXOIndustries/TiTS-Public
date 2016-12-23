@@ -70,14 +70,14 @@ public function approachRenvra():void
 
 		output("\n\n<i>“We do. To Federation troops. I’m not authorized to sell our stock to civilians. If you’re here to shop, I suggest you head across the park. Or head up to the manor house and tell the colonel you’d like to enlist, first. I’m sure she could find a use for you");
 		if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output(",”</i> she says, and you think she just might be sincere.");
-		else if(pc.isBimbo()) output(". You’re starting to get the feeling she doesn’t like you very much. What a meanie....");
-		else output(".");
+		else if(pc.isBimbo()) output(".”</i> You’re starting to get the feeling she doesn’t like you very much. What a meanie....");
+		else output(".”</i>");
 	}
 	else
 	{
-		output("You approach the gruff halfbreed quartermaster, coughing to get her attention. She rounds on you, hands firmly planted on her hips.\n\n\"<i>What, spacer? Got something to sell off");
+		output("You approach the gruff halfbreed quartermaster, coughing to get her attention. She rounds on you, hands firmly planted on her hips.\n\n<i>“What, spacer? Got something to sell off");
 		if(flags["RENVRA_SEXED"] != undefined) output(" -- or were you hoping to browse the... back room inventory again");
-		output("?");
+		output("?”</i>");
 	}
 	renvraMenu();
 }
@@ -88,13 +88,13 @@ public function renvraMenu():void
 	if(pc.lust() >= 33) 
 	{
 		if(flags["RENVRA_RACE_TALK"] == 1) addButton(0,"Fuck Her",fuckHerYouNancy,0,"Fuck Her");
-		else addDisabledButton(0,"Fuck Her","Fuck Her","You don't know her well enough for that.");
+		else addDisabledButton(0,"Fuck Her","Fuck Her","You don’t know her well enough for that.");
 	}
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren't aroused enough for sex.");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for sex.");
 	addButton(1,"Sell Items",sellItemsToRenvra);
 	addButton(2,"Talk:Race",talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharacter,undefined,"Talk: Her Race","Ask Revnra about herself, and what exactly she is.");
 	if(flags["RENVRA_SEXED"] != undefined) addButton(3,"Talk:HerSex",askRenvraAbootHerSex,undefined,"Talk: Her Sex","Ask Revnra about her biology in particular.");
-	else addDisabledButton(3,"Talk:HerSex","Talk: Her Sex","You've got to get a little more up close and personal with her before asking about that.");
+	else addDisabledButton(3,"Talk:HerSex","Talk: Her Sex","You’ve got to get a little more up close and personal with her before asking about that.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -127,8 +127,8 @@ public function talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharact
 		//if unfucked and codex unlocked: 
 		else
 		{
-			output("\n\nYou have to admit, one of those huge, pussy-stretching nyrean cocks must be pretty popular without those intimidating -- if surprisingly soft and harmless -- barbs on the tip.\n\nRenvra gives you an amused look and shifts her weight, emphasizing the hefty package between her legs. \"<i>You'd be right. And as it so happens, I'm overdue for a smoke break... if you want to see exactly what I'm packing, that is.</i>\"");
-			output("\n\nThe way she's looking at you, the implication is anything but subtle. Looks like this horny halfbreed wouldn't mind a roll in the proverbial hay afterall....");
+			output("\n\nYou have to admit, one of those huge, pussy-stretching nyrean cocks must be pretty popular without those intimidating -- if surprisingly soft and harmless -- barbs on the tip.\n\nRenvra gives you an amused look and shifts her weight, emphasizing the hefty package between her legs. <i>“You’d be right. And as it so happens, I’m overdue for a smoke break... if you want to see exactly what I’m packing, that is.”</i>");
+			output("\n\nThe way she’s looking at you, the implication is anything but subtle. Looks like this horny halfbreed wouldn’t mind a roll in the proverbial hay afterall....");
 		}
 	}
 	else 
@@ -154,7 +154,7 @@ public function talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharact
 	processTime(6);
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Fuck Her",fuckHerYouNancy,0,"Fuck Her");
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren't aroused enough for sex.");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for sex.");
 	if(flags["RENVRA_SEXED"] != undefined) addButton(1,"Her Sex",askRenvraAbootHerSex,undefined,"Ask Renvra about her biology in paricular.");
 	else addDisabledButton(1,"Her Sex","Her Sex","You must have had intercourse with her to unlock this discussion.");
 	//[Fuck Her] [Her Sex] [Leave]
@@ -620,10 +620,10 @@ public function buttFuckRenvra():void
 	else 
 	{
 		output("You slip yourself out of Renvra’s ass, nice and slow.");
-		if(pc.cumQ() < 20) output(" You enjoy the sight of her hole gaped in your wake, though your [pc.cum] isn't the least bit visible.");
-		else if(pc.cumQ() < 75) output(" The moment you part, though, you're treated to the sight of her [pc.cum]-glazed rectum, gleaming in the light.");
-		else if(pc.cumQ() < 150) output(" The moment you part, though, you're treated to the sight of a stream of your [pc.cum] running down her leg, her insides thoroughly coated in it.");
-		else if(pc.cumQ() < 500) output(" The moment you part, though, you're treated to the sight of a few streams of [pc.cum] pouring down her legs, the rest of it puddled in her gaped-out hole.")
+		if(pc.cumQ() < 20) output(" You enjoy the sight of her hole gaped in your wake, though your [pc.cum] isn’t the least bit visible.");
+		else if(pc.cumQ() < 75) output(" The moment you part, though, you’re treated to the sight of her [pc.cum]-glazed rectum, gleaming in the light.");
+		else if(pc.cumQ() < 150) output(" The moment you part, though, you’re treated to the sight of a stream of your [pc.cum] running down her leg, her insides thoroughly coated in it.");
+		else if(pc.cumQ() < 500) output(" The moment you part, though, you’re treated to the sight of a few streams of [pc.cum] pouring down her legs, the rest of it puddled in her gaped-out hole.")
 		else if(pc.cumQ() < 1000) output(" The moment you part, though, you’re treated to a veritable waterfull of your seed racing out after you, splattering onto the floor.");
 		output("\n\n<i>“Ugh,”</i> Renvra groans, finishing with her own load before flicking the towel down between her legs to clean up your mess as well. When she’s done, she tosses the towel into a waste basket with a contemptuous grunt and picks up her shirt, careful to avoid the puddle of spunk you’ve left on the floor. As she gets dressed, you hear her muttering about getting her trench wives to clean it up later.");
 	}
@@ -651,7 +651,7 @@ public function renvraEggnancyEnds(pregSlot:int):void
 	output("You feel a rumble in your gut, strong enough to make you nearly double over. Oh, God.... Your hands grab your gut, and instantly feel something shifting just under your gravid flesh. The eggs inside you are moving, straining against your gut in a desperate bid to escape. With a panicked cry, you slump down to the ground and strip off your [pc.gear]. A distinct wetness pools out of your");
 	if (pregSlot == 3) output(" [pc.asshole]");
 	else output(" [pc.cunt]");
-	output(" the moment you've gotten your gear out of the way. Your back arches as pleasure washes over you, brought on by the first egg starting its lengthy journey out of your");
+	output(" the moment you’ve gotten your gear out of the way. Your back arches as pleasure washes over you, brought on by the first egg starting its lengthy journey out of your");
 	if (pregSlot == 3) output(" bowels");
 	else output(" womb");
 	output(".");
@@ -671,19 +671,19 @@ public function renvraEggnancyEnds(pregSlot:int):void
 	
 	if (tGape < 5)
 	{
-		output(" forcing you to push like you've never pushed before to squeeze the egg through the");
+		output(" forcing you to push like you’ve never pushed before to squeeze the egg through the");
 		if (pregSlot == 3) output(" ring of your ass");
 		else output(" lips of your cunt");
 	}
 	else
 	{
-		output(" but nothing you can't handle with your incredibly well-loosened hole");
+		output(" but nothing you can’t handle with your incredibly well-loosened hole");
 	}
 	output(". The egg squeezes out with a wet “POP,” rolling out of you and onto the ground in a pool of pink nyrean fluids.");
 	
 	output("\n\nYou shiver as you lay the first egg of the clutch, dropping the egg down");
 	if(pc.legCount > 1) output(" between");
-	output(" your [pc.legOrLegs]. You sigh in relief, your belly noticeably shrunken. But it's not empty yet, and you soon feel another shift in your swollen gut.");
+	output(" your [pc.legOrLegs]. You sigh in relief, your belly noticeably shrunken. But it’s not empty yet, and you soon feel another shift in your swollen gut.");
 	if (pData.pregnancyQuantity == 2) output(" The");
 	else output(" A");
 	output(" second egg begins its descent, refusing to let you recover after the first. Your");
@@ -694,13 +694,13 @@ public function renvraEggnancyEnds(pregSlot:int):void
 	else if (pData.pregnancyQuantity > 3) output(" More eggs follow");
 	if (pData.pregnancyQuantity >= 3) output(", sliding out of you easily compared to the first."); 
 
-	output("\n\nYou spend minutes laying your nyrean eggs, dropping a clutch of "+ num2Text(pData.pregnancyQuantity) +" total eggs. When the final egg pops out, you flop onto your back, breathing hard. That took damn near everything out of you, and you find yourself nearly passing out after your ordeal. Before you do, however, you realize that you'll probably need to do... something about this clutch of eggs. You tap on your Codex and review the nyreas' entry. They'll be helpless for several weeks, so you can't exactly leave them here. You flip over to your comms and call in a pickup for the eggs - thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the eggs, and hands you a receipt before carting them back home.");
+	output("\n\nYou spend minutes laying your nyrean eggs, dropping a clutch of "+ num2Text(pData.pregnancyQuantity) +" total eggs. When the final egg pops out, you flop onto your back, breathing hard. That took damn near everything out of you, and you find yourself nearly passing out after your ordeal. Before you do, however, you realize that you’ll probably need to do... something about this clutch of eggs. You tap on your Codex and review the nyreas’ entry. They’ll be helpless for several weeks, so you can’t exactly leave them here. You flip over to your comms and call in a pickup for the eggs - thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the eggs, and hands you a receipt before carting them back home.");
 
 	output("\n\n<b>"+ pData.pregnancyQuantity +" nyrea will soon be waiting for you back at the nursery.</b>");
 
 	if (pData.pregnancyType == "RenvraEggPregnancy")
 	{
-		output("\n\nAt least, they're three-quarters nyrea.");
+		output("\n\nAt least, they’re three-quarters nyrea.");
 		if (silly || pc.isMischievous()) output(" Close enough for government work, right?");
 	}
 	
@@ -767,7 +767,7 @@ public function renvraMessageHandler():void
 
 public function renvraAlmostDue():void
 {
-	AddLogEvent("You note that your swollen belly is shifting awkwardly, and you're starting to feel very... wet. Your motherly instincts tell you that you'll be giving birth very, very soon.", "words");
+	AddLogEvent("You note that your swollen belly is shifting awkwardly, and you’re starting to feel very... wet. Your motherly instincts tell you that you’ll be giving birth very, very soon.", "words");
 }
 
 public function renvraBellyrubs():void
@@ -781,7 +781,7 @@ public function renvraBellyrubs():void
 		
 		if (InPublicSpace() && (kGAMECLASS.hours > 4 && kGAMECLASS.hours < 22))
 		{
-			m = "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs."
+			m = "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don’t have the heart to tell them you’re full of alien eggs."
 			if (pc.isBimbo() || pc.isTreated() || pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1)
 			{
 				m += " Besides, people rubbing all over you feels super good!";
@@ -793,7 +793,7 @@ public function renvraBellyrubs():void
 			m = "You stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. Your children inside you shift slightly, making your";
 			if (pc.statusEffectv1("Renvra Full Pregnancy Bellyrubs") == 3) m += " stomach rumble";
 			else m += " belly tremble";
-			m += ". It's surprisingly nice to just rub your belly, enjoying the fullness of it."
+			m += ". It’s surprisingly nice to just rub your belly, enjoying the fullness of it."
 			AddLogEvent(m);
 		}
 	}
@@ -806,7 +806,7 @@ public function renvraPregnancyMessage1():void
 	
 	output("You feel... ill. You slump against a nearby wall, clutching at your [pc.belly]. Ugh, what the...");
 
-	output("\n\nYou double over and puke, hucking your lunch all over the ground. You spend several minutes hurling before you're able to stand. Geez, shouldn't your nanomachines be able to keep you from getting just a little cold or something?");
+	output("\n\nYou double over and puke, hucking your lunch all over the ground. You spend several minutes hurling before you’re able to stand. Geez, shouldn’t your nanomachines be able to keep you from getting just a little cold or something?");
 	
 	processTime(10);
 	
@@ -818,11 +818,11 @@ public function renvraPregnancyMessage2():void
 	clearOutput();
 	author("Savin");
 	
-	output("You're not even surprised when you end up puking today.");
+	output("You’re not even surprised when you end up puking today.");
 
-	output("\n\nYou don't feel <i>bad</i>, per se. But something's fucking wrong. That's for sure.");
+	output("\n\nYou don’t feel <i>bad</i>, per se. But something’s fucking wrong. That’s for sure.");
 
-	output("\n\nWith a groan, you slump against the wall and pull out your Codex. A few moments of scanning, extranet searching, and cursing pretty much solidifies in your mind: you're pregnant. With a clutch of part-myr, part-nyrea, and part-human as well. Well look at you, Daddy's " + pc.mf("boy","girl") + "! He sure would be proud you're well on your way to leaving your trail of galactic bastards just like your old man.");
+	output("\n\nWith a groan, you slump against the wall and pull out your Codex. A few moments of scanning, extranet searching, and cursing pretty much solidifies in your mind: you’re pregnant. With a clutch of part-myr, part-nyrea, and part-human as well. Well look at you, Daddy’s " + pc.mf("boy","girl") + "! He sure would be proud you’re well on your way to leaving your trail of galactic bastards just like your old man.");
 	
 	processTime(10);
 	
@@ -831,17 +831,17 @@ public function renvraPregnancyMessage2():void
 
 public function renvraPregnancyMessage3():void
 {
-	AddLogEvent("Your belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you're not getting horribly sick in the mornings anymore!");	
+	AddLogEvent("Your belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you’re not getting horribly sick in the mornings anymore!");	
 }
 
 public function renvraPregnancyMessage4():void
 {
-	AddLogEvent(ParseText(" You're really starting to show, now. Anybody who looks your way can see you're obviously pregnant, and you've had to adjust your [pc.gear] to make room for your bloated gut. Every so often, you feel a slight movement under your [pc.skinFurScales] as your growing young shift or move. Occasionally, you could swear you feel them kick!\n\nFrom time to time, you find your hands wandering down to your belly, idly caressing your swollen form."));
+	AddLogEvent(ParseText(" You’re really starting to show, now. Anybody who looks your way can see you’re obviously pregnant, and you’ve had to adjust your [pc.gear] to make room for your bloated gut. Every so often, you feel a slight movement under your [pc.skinFurScales] as your growing young shift or move. Occasionally, you could swear you feel them kick!\n\nFrom time to time, you find your hands wandering down to your belly, idly caressing your swollen form."));
 }
 
 public function renvraPregnancyMessage5():void
 {
-	AddLogEvent("You find your hands wandering to your belly more and more -- as much to support the growing weight you're bearing as to caress the home of your unborn children.\n\nYou're so heavily showing now that you can't go much of anywhere without people staring. It won't be long now... maybe just a few weeks more!");
+	AddLogEvent("You find your hands wandering to your belly more and more -- as much to support the growing weight you’re bearing as to caress the home of your unborn children.\n\nYou’re so heavily showing now that you can’t go much of anywhere without people staring. It won’t be long now... maybe just a few weeks more!");
 }
 
 public function renvraMilkyTittiesGo():void
@@ -872,7 +872,7 @@ public function renvraMilkyTittiesGo():void
 	{
 		pc.milkRate = 10;
 		
-		AddLogEvent("Your breasts are starting to feel a little heavier as your body prepares for its coming young. While you're already lactating, your rate of production seems to be increasing in preparation.");
+		AddLogEvent("Your breasts are starting to feel a little heavier as your body prepares for its coming young. While you’re already lactating, your rate of production seems to be increasing in preparation.");
 	}
 	else
 	{
@@ -881,7 +881,7 @@ public function renvraMilkyTittiesGo():void
 		else m += " are";
 		m += " starting to grow, swelling with the beginnings of milk production. You find someplace quiet and pull your gear off, cupping your";
 		if (tBoobies) m += " freshly engorged";
-		m += ParseText(" breasts and squeezing out a trickle of [pc.milk] from your teat.\n\n<b>It appears you're lactating now!</b>");
+		m += ParseText(" breasts and squeezing out a trickle of [pc.milk] from your teat.\n\n<b>It appears you’re lactating now!</b>");
 		
 		AddLogEvent(m);
 	}
@@ -908,11 +908,11 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 		if (!InShipInterior()) output(" grab your Codex and dial an emergency medical alert, summoning an ambulance from the nearest hospital");
 		else 
 		{
-			if (shipLocation == "TAVROS HANGAR") output(" grab your Codex and dial Tavros station's emergency medical alert, summoning an ambulance from the nearest hospital.");
-			else output(" punch your ship to maximum LightDrive speed, and set a course for Tavros station. You've got just enough willpower left to forward an emergency medical alert to the dock, making sure an ambulance will be there when you arrive.");
+			if (shipLocation == "TAVROS HANGAR") output(" grab your Codex and dial Tavros station’s emergency medical alert, summoning an ambulance from the nearest hospital.");
+			else output(" punch your ship to maximum LightDrive speed, and set a course for Tavros station. You’ve got just enough willpower left to forward an emergency medical alert to the dock, making sure an ambulance will be there when you arrive.");
 		}
 
-		output("\n\nIt isn't long before you're in an ambulance, several V-KO droids looming over you as you're carted to a medical station. The last thing you see is a mask being placed over your face, and one of the droids telling you to be calm -- you'll be fine soon.");
+		output("\n\nIt isn’t long before you’re in an ambulance, several V-KO droids looming over you as you’re carted to a medical station. The last thing you see is a mask being placed over your face, and one of the droids telling you to be calm -- you’ll be fine soon.");
 
 		clearMenu();
 		addButton(0, "Next", renvraFullPregnancyPublicII, cpData);
@@ -927,13 +927,13 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 		output("\n\nYou curl up and spread your [pc.legOrLegs], giving your young charges as easy an access to the open air as you can. All there is to do after that is sit back and push. Your body convulses, the strange sensation of stretching pleasure overwhelming your senses.");
 		if (pc.hasVagina() || pc.hasCock()) output(" You instinctively begin masturbating, unable to resist the alien pleasure.");
 		else output(" You futilely rub at your over-sensitive groin, trying to coax some relief from your bare crotch.");
-		output(" The first child's crown starts pushing out of you, slowly but surely reaching the lips of your pussy. The stretch is incredible,");
+		output(" The first child’s crown starts pushing out of you, slowly but surely reaching the lips of your pussy. The stretch is incredible,");
 		var tGape:Number;
 		
 		if (pregSlot == 3) tGape = pc.ass.looseness();
 		else tGape = pc.vaginas[pregSlot].looseness();
-		if (tGape < 5) output(" forcing you to push like you've never pushed before to squeeze the newborn through the lips of your cunt");
-		else output(" but nothing you can't handle with your incredibly well-loosened hole");
+		if (tGape < 5) output(" forcing you to push like you’ve never pushed before to squeeze the newborn through the lips of your cunt");
+		else output(" but nothing you can’t handle with your incredibly well-loosened hole");
 		output(". After several minutes of screaming, grunting, and shouting... the first of your newborn children squeezes out with a wet “POP,” flopping out of you and onto the ground in a pool of pink nyrean fluids.");
 
 		output("\n\nYou shiver as you give birth");
@@ -942,22 +942,22 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 		output(", reaching down while you can and collecting the squalling newborn and bringing it to your breast. It cries out, thrashing its tiny, chitinous arms around until you bring its mouth to your [pc.nipple].");
 
 		output("\n\nYou sigh in relief as your first young suckles. Your belly is noticeably shrunken");
-		if (pData.pregnancyQuantity == 1) output(". You're left to recover from your... surprisingly pleasurable ordeal. You suppose if Renvra's seed is filled with aphrodisiacs, it's not entirely beyond the pale that your birthing fluids would be too. Weird, but it kept things from being painful, to say the least.");
+		if (pData.pregnancyQuantity == 1) output(". You’re left to recover from your... surprisingly pleasurable ordeal. You suppose if Renvra’s seed is filled with aphrodisiacs, it’s not entirely beyond the pale that your birthing fluids would be too. Weird, but it kept things from being painful, to say the least.");
 		else
 		{
-			output(", but it's not empty yet, and you soon feel another shift in your swollen gut. The second of your young begins its descent, refusing to let you recover after the first. Your sex spasms and quivers as the next child follows its "+ (rand(10) == 0 ? "brother" : "sister ") +", and you grunt and push it out, letting the soon-to-be born nyrea join its sibling.");
+			output(", but it’s not empty yet, and you soon feel another shift in your swollen gut. The second of your young begins its descent, refusing to let you recover after the first. Your sex spasms and quivers as the next child follows its "+ (rand(10) == 0 ? "brother" : "sister ") +", and you grunt and push it out, letting the soon-to-be born nyrea join its sibling.");
 
 			if (pData.pregnancyQuantity > 2)
 			{
 				output("\n\nAnother follows suit");
 				if (pData.pregnancyQuantity > 3) output(", and another");
-				output(". Before long you've got your arms completely full of crying, suckling nyrean babies. You thought these were supposed to come in eggs! Gah!");
+				output(". Before long you’ve got your arms completely full of crying, suckling nyrean babies. You thought these were supposed to come in eggs! Gah!");
 			} 
 		}
 
 		output("\n\nAfter spending a good long while making sure each of your children is wrapped up and well-fed from your breast, you set them aside for a moment and pull out your Codex. You flip over to your comms and call in a pickup for the eggs -- thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the newborns, and hands you a receipt before carting them back home.");
 
-		output("\n\n<b>" + pData.pregnancyQuantity + " nyrea-myr-human hybrids will soon be waiting for you back at the nursery.</b> You're going to have to find a name for whatever race you've");
+		output("\n\n<b>" + pData.pregnancyQuantity + " nyrea-myr-human hybrids will soon be waiting for you back at the nursery.</b> You’re going to have to find a name for whatever race you’ve");
 		if (StatTracking.getStat("pregnancy/renvra kids") == 0) output(" just created");
 		else output(" just added to");
 		output("!");
@@ -976,13 +976,13 @@ public function renvraFullPregnancyPublicII(pData:PregnancyData):void
 
 	output("\n\nYou wake up in a sterile room, feeling very... light and empty, for the first time in months! You feel great, too! ");
 
-	output("\n\nA local medical droid approaches when you've woken up, saying that you've recently given birth -- congratulations! You now have " + pData.pregnancyQuantity + " new child");
+	output("\n\nA local medical droid approaches when you’ve woken up, saying that you’ve recently given birth -- congratulations! You now have " + pData.pregnancyQuantity + " new child");
 	if (pData.pregnancyQuantity > 1) output("ren");
-	output(", who in accordance with your Emergency Medical Profile (when did you set <i>that</i> up?), have been delivered to Tavros Station's nursery.");
+	output(", who in accordance with your Emergency Medical Profile (when did you set <i>that</i> up?), have been delivered to Tavros Station’s nursery.");
 
-	if (pc.isBimbo()) output("\n\nAww, you don't even get to see them!?");
+	if (pc.isBimbo()) output("\n\nAww, you don’t even get to see them!?");
 
-	output("\n\nYou dismiss the droid and grab your [pc.gear] from a nearby bin, taking the opportunity to get dressed. Whatever drug they gave you is powerful as hell, and you're more than able to walk out of the med station and return to your ship in a few minutes.");
+	output("\n\nYou dismiss the droid and grab your [pc.gear] from a nearby bin, taking the opportunity to get dressed. Whatever drug they gave you is powerful as hell, and you’re more than able to walk out of the med station and return to your ship in a few minutes.");
 
 	processTime(10);
 	
