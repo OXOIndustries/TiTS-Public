@@ -31,7 +31,7 @@ package classes.Characters
 		{
 			_latestVersion = 1;
 			version = _latestVersion;
-			_neverSerialize = true;
+			_neverSerialize = false;
 			
 			short = "Ara Kei";
 			originalRace = "bothrioc";

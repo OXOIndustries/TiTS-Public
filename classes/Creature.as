@@ -6729,6 +6729,7 @@
 					else if (storageValueNum == 3) array[counter].value3 = newValue;
 					else if (storageValueNum == 4) array[counter].value4 = newValue;
 					else if (storageValueNum == 5) array[counter].description = newValue;
+					else throw new Error("setStorageValue called with an invalid index.");
 					return;
 				}
 			}

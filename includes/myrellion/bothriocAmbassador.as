@@ -49,7 +49,7 @@ public function bothriocEmbassyFunc():Boolean
 		}
 		else
 		{
-			output("\n\nStepping into the Bothrioc Embassy armed with your knowledge about the bothrioc is quite a different experience as you realize the vast majority of Ara Kei’s underlings scurrying about - mostly two-legged bothrioc, but some four-legged, some of the other native species, and even some offworlders - must in some way be a part of the gleaming dominatrix’s harem.");
+			output("Stepping into the Bothrioc Embassy armed with your knowledge about the bothrioc is quite a different experience as you realize the vast majority of Ara Kei’s underlings scurrying about - mostly two-legged bothrioc, but some four-legged, some of the other native species, and even some offworlders - must in some way be a part of the gleaming dominatrix’s harem.");
 			
 			output("\n\nStanding for the most part head and shoulders above the crowd is Ara Kei [ara.himself]. If you couldn’t tell by the deference of the underlings, the faded blue hair cascading off [ara.his] head makes it unmistakable just which tall bothrioc is Ara Kei Enya, and [ara.his] pitch black eyes are instantly upon you with laser focus. You’d like to think that’s because Ara Kei wants to keep an eye on you, but it’s just as possible Ara Kei simply makes a point of identifying every visitor.");
 			
@@ -487,7 +487,7 @@ public function setAraKeiGender(genderType:uint):void
 	clearOutput();
 	showAraKei();
 
-	ara.setStatusValue("Forced Gender", 0, genderType);
+	ara.setStatusValue("Forced Gender", 1, genderType);
 
 	switch (genderType)
 	{
@@ -578,11 +578,13 @@ public function araKeiTalkBothrioc():void
 	
 	output("\n\nThe ginger human busily eroding a mountain of paperwork into a hill gives a long drooping whistle from across the room, of the <i>“here comes the big one”</i> variety. The look Ara Kei gives him is nothing short of venomous, and all the more backed up by the incredible chitinous physiology on display.");
 	
-	output("\n\n<i>“Thank you, Charles, your commentary is appreciated.”</i> You’re not sure what the dynamic between the two of them is. Charles is clearly human, but he’s definitely working largely for Ara Kei. He’s not a harem boy, you think, but that’s all the conclusion you can draw.");
+	output("\n\n<i>“Thank you, Charles, your commentary is appreciated.”</i>");
+	
+	output("\n\nYou’re not sure what the dynamic between the two of them is. Charles is clearly human, but he’s definitely working largely for Ara Kei. He’s not a harem boy, you think, but that’s all the conclusion you can draw.");
 
 	processTime(5+rand(3));
 	clearMenu();
-	addButton(0, "Next", araKeiTalkBothrioc);
+	addButton(0, "Next", araKeiTalkBothriocII);
 }
 
 public function araKeiTalkBothriocII():void
