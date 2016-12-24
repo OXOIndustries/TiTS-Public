@@ -23,6 +23,11 @@ public function bothriocAddiction(val:Number = 0):Number
 	return flags["BOTHRIOC_ADDICTION"];
 }
 
+public function testForceAddiction():void
+{
+	flags["BOTHRIOC_ADDICTION"] = 100;
+}
+
 public function updateBothriocAddiction(totalDays:uint):void
 {
 	if (pc.hasStatusEffect("Bothrioc Eggs")) return;
@@ -442,7 +447,7 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 		}
 		else
 		{
-			output("\n\nA feeling of something dragging downwards in your womb has been gathering for some time now, and you gasp as your pussy suddenly spasms and a gush of oil warms your");
+			output("A feeling of something dragging downwards in your womb has been gathering for some time now, and you gasp as your pussy suddenly spasms and a gush of oil warms your");
 			if (pc.hasLowerGarment()) output(" [pc.lowerUndergarment].");
 			else output(" your inner thighs.");
 			if (InPublicSpace() || InShipInterior() || InRoomWithFlag(GLOBAL.PRIVATE))
