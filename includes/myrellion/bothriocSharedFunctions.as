@@ -56,7 +56,18 @@ public function bothriocEggnancyEffects(pregSlot:int, timePoint:uint):void
 	else if (bothriocAddiction() >= 50) bothriocEggnancySub100Effects(deltaT, rand(4), true);
 	else bothriocEggnancySub50Effects(deltaT, rand(3), true);
 
-	if (timePoint == 0) bothriocEggnancyEnds(pregSlot, deltaT);
+	if (timePoint == 0)
+	{
+		var tEventCall:Function = (function(c_pregSlot:int, c_deltaT:uint):Function
+		{
+			return function():void
+			{
+				bothriocEggnancyEnds(c_pregSlot, c_deltaT);
+				BothriocPregnancyHandler.cleanupPregnancy(pc, c_pregSlot, PregnancyManager.findHandler("BothriocPregnancy"));
+			}
+		})(pregSlot, deltaT);
+		eventQueue.push(tEventCall);
+	}
 }
 
 public function bothriocEggnancySub50Effects(deltaT:uint, opt:int, doOut:Boolean):void
@@ -134,7 +145,7 @@ public function bothriocEggnancySub50Effects(deltaT:uint, opt:int, doOut:Boolean
 				if (numWombsF > 1) filled += "s";
 			}
 
-			if (doOut) AddLogEvent(ParseText("You have to stop for a moment, clutch your egg-swollen gut, take deep breaths. For a while now some unnameable emotion has flared intermittently within you, threatening to overwhelm your senses, making your [pc.skinFurScales] tingle and your [pc.nipples] " (!pc.hasFuckableNipples() ? "harden up to tender points" : "moisten tenderly") +", and each time it feels bigger than the last. When it happens next it feels like a giant wave crashing over you; a woozy groan is forced past your lips as you are saturated in pure euphoria, "+ (pc.hasVagina() ? "[pc.eachVagina] widening and moistening readily" : "") + (pc.hasCock() && pc.hasVagina() ? " and " : "") + (pc.hasCock() ? "[pc.eachCock] becoming incredibly erect and tender" : "") +" in response. There’s a wonderful peace to be found in this bodily emotion, a sense that you can be at one with the entire galaxy, and a sadness steals in when it finally recedes back to your egg-packed "+ filled +". You can’t help but wish you could <i>always</i> feel like that. "), "passive", deltaT);
+			if (doOut) AddLogEvent(ParseText("You have to stop for a moment, clutch your egg-swollen gut, take deep breaths. For a while now some unnameable emotion has flared intermittently within you, threatening to overwhelm your senses, making your [pc.skinFurScales] tingle and your [pc.nipples] "+ (!pc.hasFuckableNipples() ? "harden up to tender points" : "moisten tenderly") +", and each time it feels bigger than the last. When it happens next it feels like a giant wave crashing over you; a woozy groan is forced past your lips as you are saturated in pure euphoria, "+ (pc.hasVagina() ? "[pc.eachVagina] widening and moistening readily" : "") + (pc.hasCock() && pc.hasVagina() ? " and " : "") + (pc.hasCock() ? "[pc.eachCock] becoming incredibly erect and tender" : "") +" in response. There’s a wonderful peace to be found in this bodily emotion, a sense that you can be at one with the entire galaxy, and a sadness steals in when it finally recedes back to your egg-packed "+ filled +". You can’t help but wish you could <i>always</i> feel like that. "), "passive", deltaT);
 		}
 		else
 		{
@@ -392,6 +403,9 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 		output(". You pass a tentative hand over your flatter stomach. The eggs that were implanted within you must have all broken down and been absorbed into your system.");
 		if (bothriocAddiction() >= 50) output(" You feel sad that you weren’t able to carry any cute bothrioc to term. You comfort yourself with the knowledge that their essence is a part of you now - and resolve to get another generous egg stuffing as soon as time permits.");
 		else output(" Able to think slightly more clearly now that the bothrioc hormones aren’t messing with you as much, you mostly feel relief that there is no onus on you to think about the future of a bunch of wee six limbed cave brats.");
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
 	}
 	else
 	{

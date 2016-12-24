@@ -97,14 +97,13 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function bothriocOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
-			var tEventCall:Function = (function(c_mother:Creature, c_pregSlot:int, c_thisPtr:BasePregnancyHandler):Function
+			var tEventCall:Function = (function(c_pregSlot:int):Function
 			{
 				return function():void
 				{
 					kGAMECLASS.bothriocEggnancyEffects(c_pregSlot, 0);
-					BothriocPregnancyHandler.cleanupPregnancy(c_mother, c_pregSlot, c_thisPtr);
 				}
-			})(mother, pregSlot, thisPtr);
+			})(pregSlot);
 			
 			kGAMECLASS.eventQueue.push(tEventCall);
 		}

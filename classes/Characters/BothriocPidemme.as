@@ -322,7 +322,7 @@ package classes.Characters
 		{
 			output("One of the bothrioc’s lower hands reaches into the collection of belts around their hips and pulls out a bolo. After passing it to the upper set of hands, a few quick swings has it spun up.");
 			_preppedBolo = true;
-			createStatusEffect("Bolo CD", 3, 0, 0, 0, true); // Not using builtin CD system to avoid back to back potential grapples
+			createStatusEffect("Bolo CD", 5, 0, 0, 0, true); // Not using builtin CD system to avoid back to back potential grapples
 		}
 		
 		private function boloShot(target:Creature, lastAttack:Function):void
@@ -350,7 +350,7 @@ package classes.Characters
 			{
 				output(" The whirling trap hits you right in the middle, heavy ropes wrapping themselves around your limbs and weights thumping into you with hard momentum.\n\nYou try and tear yourself loose of the tangle, but before you can the bothrioc pounces on you, pinning you to the ground under them.\n\n<i>“Now then, precious,”</i> they whisper, caressing your face. <i>“Let’s have no more silly struggling, hmm?”</i>");
 				
-				target.createStatusEffect("Grappled", 0, 66, 0, 0, false, "Constrict", "The bolos is still tangled around your limbs!", true, 0);
+				target.createStatusEffect("Grappled", 0, 50, 0, 0, false, "Constrict", "The bolos is still tangled around your limbs!", true, 0);
 				_grappleRound = 0;
 			}
 		}
