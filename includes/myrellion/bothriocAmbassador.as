@@ -1495,5 +1495,5 @@ public function charlesBuyFix():void
 	processTime(3);
 	// cost
 	pc.credits -= 15000;
-	quickLoot([new Curdsonwhey()]);
+	quickLoot(new Curdsonwhey());
 }
