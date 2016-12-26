@@ -410,8 +410,9 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		else output(" your taint");
 		output(" and into the crack of your ass.");
 
-		if (flags["BOTHRIOC_PIDEMME_FUCKED"] == undefined)
+		if (flags["BOTHRIOC_PIDEMME_FUCKED"] == undefined || flags["BOTHRIOC_PIDEMME_BUTT_EGGED"] == undefined)
 		{
+			flags["BOTHRIOC_PIDEMME_BUTT_EGGED"] = 1;
 			output(" The sheer repulsiveness of the situation makes you clench up automatically, willing yourself to be anywhere else.");
 		}
 		else if (flags["BOTHRIOC_PIDEMME_FUCKED"] <= 24)
