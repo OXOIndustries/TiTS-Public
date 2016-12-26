@@ -1310,6 +1310,8 @@ public function approachCharles():void
 	{
 		output("<i>“Hullo again, "+ pc.mf("Master", "Miss") +" Steele,”</i> says Charles with that wry grin of his when you go across to him. <i>“Needin’ a wee fix, by any chance?”</i>");
 	}
+	
+	processTime(2 + rand(3));
 
 	talkCharlesMenu();
 }
@@ -1361,6 +1363,7 @@ public function talkCharlesMyrellion():void
 	
 	output("\n\n<i>“That attitude don’t extend tae wantin’ eggs shoved up me, mind,”</i> he goes on, reverting to his more jovial tone. <i>“Compassion only goes so far.”</i>");
 
+	processTime(5);
 	talkCharlesMenu(talkCharlesMyrellion);
 }
 
@@ -1388,6 +1391,7 @@ public function talkCharlesAraKei():void
 		output("\n\n<i>“I got 40 colleagues telling me that every day mate, don’t worry about me not knowin’!”</i>");
 	}
 
+	processTime(5);
 	talkCharlesMenu(talkCharlesAraKei);
 }
 
@@ -1436,6 +1440,7 @@ public function talkCharlesFix():void
 		output("\n\nYou cheerfully assure him that you are.");
 	}
 
+	processTime(3 + rand(3));
 	talkCharlesMenu(talkCharlesFix);
 }
 
@@ -1448,6 +1453,8 @@ public function talkCharlesBuyFix():void
 
 	output("\n\n<i>“Got the cash?”</i> you asks in turn. <i>“And the willing?”</i>");
 
+	processTime(1);
+	
 	clearMenu();
 	if (pc.credits >= 15000) addButton(0, "Buy", charlesBuyFix);
 	else addDisabledButton(0, "Buy", "Buy", "You don't have enough credits.");
