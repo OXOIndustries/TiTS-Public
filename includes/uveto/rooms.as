@@ -501,7 +501,7 @@ public function initUvetoRooms():void
 	rooms["UVI P40"].system = "SYSTEM: SIRETTA";
 	rooms["UVI P40"].northExit = "UVI P38";
 	rooms["UVI P40"].moveMinutes = 1;
-	rooms["UVI P40"].runOnEnter = removeUvetoColdBonus;
+	rooms["UVI P40"].runOnEnter = uvetoMaglevStation;
 	rooms["UVI P40"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI P40"].addFlag(GLOBAL.TAXI); // 9999 TRAIN?
 
@@ -1421,7 +1421,7 @@ public function initUvetoRooms():void
 		else
 		{
 			output("\n\nThe probe is blinking, occasionally making a high-pitched <i>beep!</i>.");
-			addDisabledButton(0, "Taxi"); // 9999
+			addButton(0, "Maglev S.", move, "UVI P40");
 		}
 		return false;
 	};
