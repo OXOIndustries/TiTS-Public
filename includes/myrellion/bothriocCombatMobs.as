@@ -1,3 +1,4 @@
+import classes.Characters.BothriocPidemme;
 public function showBothriocPidemme():void
 {
 	showName("ENCOUNTER:\nBOTHRIOC");
@@ -221,6 +222,14 @@ public function bothriocPidemmeLossSelector(fromCombat:Boolean = false):void
 {
 	output("\n\n");
 
+	// If we're not actually coming from combat, make an actual instance of the enemy
+	// for various method calls of the scenes downrange
+	if (!fromCombat)
+	{
+		var e:BothriocPidemme = new BothriocPidemme();
+		setEnemy(e);
+	}
+	
 	if (!pc.isPregnant(3))
 	{
 		bothriocPidemmeButtEggs(fromCombat);
@@ -232,6 +241,12 @@ public function bothriocPidemmeLossSelector(fromCombat:Boolean = false):void
 	else
 	{
 		bothriocPidemmeOralTime(fromCombat);
+	}
+	
+	// Clear the enemy now we're done with it
+	if (!fromCombat)
+	{
+		setEnemy(null);
 	}
 }
 
@@ -293,7 +308,7 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 
 		output("\n\nYou next feel a chitinous hand caress your face, tracing down the jawline, onto your neck, as another encircles your [pc.breasts]. Though you two are strangers (probably? The entrancing, eerie creatures down here tend to blend into one another for you), there’s a loving familiarity to the procedure. It’s not like it’s any secret between you two that you’re attached to the attentions of the bothrioc.");
 
-		output("\n\n<i>“Wonderful morsel...”</i> they moan, extending their ovipositor, letting the thick organ drool all over your [pc.ass] as it searches out a hole to breed, making you shiver with anticipation. <i>“So perfect for...”</i> The eggshaft tenses up and shoves itself into your [pc.butthole].");
+		output("\n\n<i>“Wonderful morsel...”</i> they moan, extending their ovipositor, letting the thick organ drool all over your [pc.ass] as it searches out a hole to breed, making you shiver with anticipation. <i>“So perfect for...”</i> The eggshaft tenses up and shoves itself into your [pc.asshole].");
 		pc.buttChange(enemy.cockVolume(0), true, true, false);
 		output(" You are well trained now in handling ovipositors, and though you coo with delight at being penetrated, it doesn’t knock the breath out of you like it once did. Well, almost. By the third or fourth ring that stretches your ass wide, the rhythmic hammering of inch after inch of eggtube being fed into your ass is still threatening to knock the breath completely out of you. The only thing keeping your breathing relatively steady is plenty of practice.");
 		
