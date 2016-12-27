@@ -4104,7 +4104,7 @@
 			if(!accessoryOnly)
 			{
 				if(hasPerk("Attack Drone")) return true;
-		}
+			}
 			return (accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE));
 		}
 		public function hasActiveCombatDrone(robotOnly:Boolean = false, accessoryOnly:Boolean = false):Boolean
