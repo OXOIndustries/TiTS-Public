@@ -2125,8 +2125,11 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>Bothrioc Oil</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(bothriocAddiction() >= 100) output2(" Completely addicted to it");
-				else if(bothriocAddiction() >= 75) output2(" Accepting of it");
-				else if(bothriocAddiction() >= 50) output2(" Aroused by it");
+				else if(bothriocAddiction() >= 50)
+				{
+					output2(" Permanently aroused by it");
+					if(bothriocAddiction() >= 75) output2(", Accepting of it");
+				}
 				else if(bothriocAddiction() >= 25) output2(" Curious about it");
 				else output2(" Exposed to it");
 				output2("\n<b>* Bothrioc Hormone Level:</b> " + bothriocAddiction() + " %");

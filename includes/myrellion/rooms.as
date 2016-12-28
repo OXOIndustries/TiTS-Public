@@ -84,7 +84,7 @@ public function initializeMyrellionRooms():void
 	rooms["603"].addFlag(GLOBAL.PUBLIC);
 	
 	rooms["BOTHRIOC EMBASSAY"] = new RoomClass(this);
-	rooms["BOTHRIOC EMBASSAY"].roomName = "BOTHRIOC\nEMBASSAY";
+	rooms["BOTHRIOC EMBASSAY"].roomName = "BOTHRIOC\nEMBASSY";
 	rooms["BOTHRIOC EMBASSAY"].description = "";
 	rooms["BOTHRIOC EMBASSAY"].planet = "PLANET: MYRELLION";
 	rooms["BOTHRIOC EMBASSAY"].system = "SYSTEM: SINDATHU";
