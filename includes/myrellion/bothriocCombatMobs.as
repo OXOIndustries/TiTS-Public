@@ -1114,7 +1114,7 @@ public function bothriocPidemmeVagRideII(opts:Array):void
 		}
 		else
 		{
-			output(" The only thing that would make this any better is getting a nice, heavy clutch to carry away with you - and you do feel bad about denying the generous egg-giver this badly.");
+			output("The only thing that would make this any better is getting a nice, heavy clutch to carry away with you - and you do feel bad about denying the generous egg-giver this badly.");
 		}
 		
 		output("\n\n<i>“Go on then,”</i> you gasp, still gripping their smooth abdomen tightly with your legs. <i>“For being so good.”</i>");

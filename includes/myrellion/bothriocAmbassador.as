@@ -22,7 +22,7 @@ public function bothriocEmbassyFunc():Boolean
 		}
 		else
 		{
-			output("\n\nStepping into the bothrioc embassy is a fairly intimidating experience after crossing paths with the species before. There are so many scurrying about and performing various bureaucratic tasks that you’d struggle to count them. Not all of them are bothrioc, either.");
+			output("Stepping into the bothrioc embassy is a fairly intimidating experience after crossing paths with the species before. There are so many scurrying about and performing various bureaucratic tasks that you’d struggle to count them. Not all of them are bothrioc, either.");
 			
 			output("\n\nStanding mostly to the fore and off to one side by a counter is an extremely tall bothrioc, who on account of having four legs seems to have skipped the customary bureaucrat’s office chair, opting instead to simply nestle down amidst their legs.");
 			
@@ -37,7 +37,7 @@ public function bothriocEmbassyFunc():Boolean
 	{
 		if (flags["MET_ARAKEI"] == undefined)
 		{
-			output("\n\nYou step once more into the Bothrioc Embassy, greeted again by the sight of the tall one called Ara Kei being attended by a gaggle of underlings. The ambassador regards you unblinkingly, perhaps a bit miffed by your prior decision to depart without saying a word? After a long moment, Ara Kei speaks first.");
+			output("You step once more into the Bothrioc Embassy, greeted again by the sight of the tall one called Ara Kei being attended by a gaggle of underlings. The ambassador regards you unblinkingly, perhaps a bit miffed by your prior decision to depart without saying a word? After a long moment, Ara Kei speaks first.");
 			
 			output("\n\n<i>“Hello again, offworlder. Gotten over your fear of... Charles! What did you say we resemble?”</i>");
 			
@@ -59,7 +59,7 @@ public function bothriocEmbassyFunc():Boolean
 	}
 
 	addButton(0, "Ara Kei", approachAraKei);
-	if (flags["ARAKEI_TALKED_BOTHRIOC"] != undefined) addButton(1, "Charles", approachCharles, undefined, "Charles", "The russet-haired human seems to be the only one here who isn't under Ara Kei's spell.");
+	if (flags["ARAKEI_TALKED_BOTHRIOC"] != undefined) addButton(1, "Charles", approachCharles, undefined, "Charles", "The russet-haired human seems to be the only one here who isn’t under Ara Kei’s spell.");
 
 	return false;
 }
@@ -474,8 +474,8 @@ public function araKeiTalk():void
 		// [They] [He] [She]
 		clearMenu();
 		addButton(0, "They", setAraKeiGender, 0, "They", "The safe choice. Potentially the wise choice.");
-		addButton(1, "He", setAraKeiGender, 1, "He", "It's a he, right? Obviously a he.");
-		addButton(2, "She", setAraKeiGender, 2, "She", "It's a she, right? Obviously a she.");
+		addButton(1, "He", setAraKeiGender, 1, "He", "It’s a he, right? Obviously a he.");
+		addButton(2, "She", setAraKeiGender, 2, "She", "It’s a she, right? Obviously a she.");
 		return;
 	}
 
@@ -764,8 +764,8 @@ public function araKeiFlirt():void
 		// [Polish] [No]
 		clearMenu();
 		addButton(0, "Polish", araKeiPolishBooties, undefined, "Polish Booties", "Yes. This is where you belong.");
-		if (pc.lust() < 90) addButton(1, "No", araKeiNoPolishBooties, undefined, "No", "No... it may be difficult, but you're not quite willing to abase yourself THAT much");
-		else addDisabledButton(1, "No", "No", "You can't bring yourself to say no... not with this amount of lust in your system.");
+		if (pc.lust() < 90) addButton(1, "No", araKeiNoPolishBooties, undefined, "No", "No... it may be difficult, but you’re not quite willing to abase yourself THAT much");
+		else addDisabledButton(1, "No", "No", "You can’t bring yourself to say no... not with this amount of lust in your system.");
 		return;
 	}
 	else
@@ -1325,7 +1325,7 @@ public function talkCharlesMenu(lastF:Function = null):void
 		f: talkCharlesMyrellion,
 		arg: undefined, 
 		ttH: "Myrellion",
-		ttB: "Ask him what he's doing on this planet."
+		ttB: "Ask him what he’s doing on this planet."
 	});
 	gatedButton({
 		id: 1,
@@ -1404,7 +1404,7 @@ public function talkCharlesFix():void
 
 	output("<i>“So - you have some sort of cure to bothrioc hormones?”</i> you ask.");
 
-	output("\n\n<i>“Ehh, nothin’ as cut and dried as that, I’m afraid,”</i> replies Charles, drawing his chair back to get at his bureau’s drawers. <i>“But the myr do make this stuff - <i>“Curdsonwhey”</i>, they call it - which fights off the mental effects. Tae stop their males walkin’ off in a dream with the first bothrioc they happen tae meet, y’know.”</i> He withdraws a medicinal bottle full of old-fashioned, oblong pills and stands it on the desk. <i>“Two things though, mate. This stuff ain’t cheap. It’s made from sum rare as hell cave fungus, but more tae the point the golds I get it from </i>really<i> don’t want me to have it. On account of me workin’ in here, ‘n probably helpin’ the head spider witch there to brew up a counter to it. So I am chargin’ a premium for it, I’m afraid.”</i>");
+	output("\n\n<i>“Ehh, nothin’ as cut and dried as that, I’m afraid,”</i> replies Charles, drawing his chair back to get at his bureau’s drawers. <i>“But the myr do make this stuff - “Curdsonwhey”, they call it - which fights off the mental effects. Tae stop their males walkin’ off in a dream with the first bothrioc they happen tae meet, y’know.”</i> He withdraws a medicinal bottle full of old-fashioned, oblong pills and stands it on the desk. <i>“Two things though, mate. This stuff ain’t cheap. It’s made from sum rare as hell cave fungus, but more tae the point the golds I get it from </i>really<i> don’t want me to have it. On account of me workin’ in here, ‘n probably helpin’ the head spider witch there to brew up a counter to it. So I am chargin’ a premium for it, I’m afraid.”</i>");
 
 	output("\n\nHe shakes a few lozenges out onto the wood and picks one up, looking you in the eye.");
 	
@@ -1457,7 +1457,7 @@ public function talkCharlesBuyFix():void
 	
 	clearMenu();
 	if (pc.credits >= 15000) addButton(0, "Buy", charlesBuyFix);
-	else addDisabledButton(0, "Buy", "Buy", "You don't have enough credits.");
+	else addDisabledButton(0, "Buy", "Buy", "You don’t have enough credits.");
 	addButton(1, "Don’t", mainGameMenu);
 }
 
