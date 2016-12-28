@@ -691,7 +691,7 @@ package classes.GameData
 				else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is filled with a sudden rush of energy!</b>");
 			}
 	
-			if (target.hasStatusEffect("Porno Hacked Drone") && target.hasCombatDrone(true) && !target.hasStatusEffect("Varmint Buddy"))
+			if (target.hasStatusEffect("Porno Hacked Drone") && target.hasCombatDrone(true))
 			{
 				if(target.shields() > 0 || pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
 				{
