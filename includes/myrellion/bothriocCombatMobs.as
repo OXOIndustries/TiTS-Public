@@ -852,7 +852,7 @@ public function bothriocPidemmeDockOvi():void
 	showName("VICTORY:\nBOTHRIOC");
 
 	var cockIdx:int = pc.cockThatFits(enemy.vaginalCapacity());
-	var cock2Idx:int = pc.cocks.length > 1 ? pc.cockThatFits2(enemy.vaginalCapacity()) : -1;
+	var cock2Idx:int = pc.cocks.length > 1 ? pc.cockThatFits2(enemy.analCapacity()) : -1;
 	var cockTag:String = "[pc.cock " + cockIdx + "]";
 
 	output("<i>“So how do you people fertilize these eggs of yours?”</i> you query");
@@ -928,7 +928,7 @@ public function bothriocPidemmeDockOviII(arg:Array):void
 	
 		output("\n\nYou answer that by energetically working their tight little black rose loose before funnelling your tightly packed urge into their back passage, all the while you continue to thrust your "+cockTag+" into their stripe-textured ovipositor. For all their noise the bothrioc is clearly used to this; muscles relax around your [pc.cockTail] and it is soon thrusting into that cute, warm ass for all it is worth, sensual delight pulsing back up your spine, sound-tracked by a steady stream of gasps and alien curses from the other end.");
 	}
-	else if (pc.cocks.length > 1) output(" Your [pc.cock "+cock2Idx+"] tingles with dissatisfaction at not being able to claim that prize at the same time. If only you had something a bit more flexible...");
+	else if (cock2Idx >= 0) output(" Your [pc.cock "+cock2Idx+"] tingles with dissatisfaction at not being able to claim that prize at the same time. If only you had something a bit more flexible...");
 
 	output("\n\nAfter several long minutes of deeply enjoyable pushing, the filthy sounds of your copulation echoing off the cavern walls, the anticipation of release tightens up your body, and you let yourself fly over the edge. You clutch the bothrioc’s abdomen intently, your "+cockTag+" dilates");
 	if (pc.balls > 0) output(", your [pc.balls] clench");
