@@ -52,6 +52,11 @@ public function kiroKallyThreesomeUnlockPoints():Number
 	return counter;
 }
 
+public function kiroKallyThreesomesAvailable():Boolean
+{
+	return (kiroKallyThreesomes() > 0 && flags["KALLY_3SOME_TALK"] != undefined && flags["KIRO_3SOME_REACTION"] != undefined);
+}
+
 public function drinkFromTapKally():Number
 {
 	var drinks:Number = 0;

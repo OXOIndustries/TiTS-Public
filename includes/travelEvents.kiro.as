@@ -182,7 +182,11 @@ public function kiroMenu():void
 		if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren’t really interested in sex at the moment.");
 		else if(kiro.ballDiameter() > 14) addButton(3,"Sex",letsFuckKiro);
 		else addButton(3,"Sex",letsFuckKiro);
-		if(kiroKallyThreesomes() > 0) addButton(4,"Sister3Some",kiroKallyThreesomesApproach,undefined,"Sister Threesome","See if you can get the sisters together for a threesome.");
+
+		//Incest 3sums
+		if(kiroKallyThreesomesAvailable()) addButton(4,"Sister3Some",kiroKallyThreesomesApproach,undefined,"Sister Threesome","See if you can get the sisters together for a threesome.");
+		else if(kiroKallyThreesomes() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","You ought to do some talking with them before trying to rush them into any more incestual fun.");
+		else if(kiroKallyThreesomeUnlockPoints() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally haven't made the kind of breakthrough that would let you just walk up and ask this.");
 		else addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally don't really like each other that way...");
 		addButton(14,"Leave",mainGameMenu);
 		return;
@@ -199,7 +203,6 @@ public function kiroMenu():void
 	else addDisabledButton(4,"Relief BJ","Relief BJ","Kiro’s balls don’t look swollen enough to need the relief right now, though they are quite large.");
 	addButton(14,"Leave",mainGameMenu);
 }
-
 
 //Talk Option
 //Non BF intro
@@ -4048,6 +4051,7 @@ public function kiroKallyDoubleMilkingThreesome7(x:int):void
 	processTime(45);
 	pc.energy(25);
 	IncrementFlag("SISTER_MILK_ACT");
+	kiroKallyThreesomes(1);
 	clearMenu();
 	addButton(0,"Next",move,"CANADA5");
 }
