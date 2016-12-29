@@ -182,7 +182,11 @@ public function kiroMenu():void
 		if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren’t really interested in sex at the moment.");
 		else if(kiro.ballDiameter() > 14) addButton(3,"Sex",letsFuckKiro);
 		else addButton(3,"Sex",letsFuckKiro);
-		if(kiroKallyThreesomes() > 0) addButton(4,"Sister3Some",kiroKallyThreesomesApproach,undefined,"Sister Threesome","See if you can get the sisters together for a threesome.");
+
+		//Incest 3sums
+		if(kiroKallyThreesomesAvailable()) addButton(4,"Sister3Some",kiroKallyThreesomesApproach,undefined,"Sister Threesome","See if you can get the sisters together for a threesome.");
+		else if(kiroKallyThreesomes() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","You ought to do some talking with them before trying to rush them into any more incestual fun.");
+		else if(kiroKallyThreesomeUnlockPoints() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally haven't made the kind of breakthrough that would let you just walk up and ask this.");
 		else addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally don't really like each other that way...");
 		addButton(14,"Leave",mainGameMenu);
 		return;
@@ -199,7 +203,6 @@ public function kiroMenu():void
 	else addDisabledButton(4,"Relief BJ","Relief BJ","Kiro’s balls don’t look swollen enough to need the relief right now, though they are quite large.");
 	addButton(14,"Leave",mainGameMenu);
 }
-
 
 //Talk Option
 //Non BF intro
@@ -3579,6 +3582,8 @@ public function kiroKallyThreesomesApproach():void
 {
 	clearOutput();
 	showKallyAndKiro();
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
 	//Threesomes Intro
 	//Bimbo
 	if(pc.isBimbo()) output("<i>“Know what would be tons of fun?”</i> you ask, so bubbly you’re almost effervescent. <i>“Your sister.”</i>");
@@ -3609,8 +3614,16 @@ public function kiroKallyThreesomesApproach():void
 	clearMenu();
 	if(pc.hasCock() && pc.thinnestCockThickness() < 4) addButton(0,"Milk Them",kiroKallyDoubleMilkingThreesome,undefined,"Milk Them","Plug them both into the milker and buttfuck all the 'nuki seed their bulging ballsacks can carry.");
 	else addDisabledButton(0,"Milk Them","Milk Them","You need a penis that's less than four inches thick to plug both of them into Kiro's milker and buttfuck the seed out of them.");
-	addButton(14,"Back",approachKiroAtTheBar,true);
+	if(pc.hasVagina()) addButton(1,"Get DPed",kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenLikesToWriteBecauseHeHasShitTaste,undefined,"Get DPed","Take one sister in the vagina and the other in your butt. It's a Steele sandwich!");
+	else addDisabledButton(1,"Get DPed","Get DPed","Trying to take both of them in the butt is probably not a good idea. You should go get a vagina if you want to take them both at the same time.");
+	addButton(14,"Back",backFromSisterThreesomeMenu);
+}
 
+public function backFromSisterThreesomeMenu():void
+{
+	currentLocation = "CANADA5";
+	generateMap();
+	approachKiroAtTheBar(true);
 }
 
 //Milk Them
@@ -3651,7 +3664,7 @@ public function kiroKallyDoubleMilkingThreesome2():void
 {
 	clearOutput();
 	showKallyAndKiro(true);
-	currentLocation = "KIROS SHIP QUARTERS";
+	currentLocation = "KIROS SPUNK CHAMBER";
 	generateMap();
 	output("The milker is much as you remember it: an industrial pump buried behind an array of thumping holographic projections, each more pornographic than the last. Transparent hoses dangle from the central, cum-pumping core, each tipped with molded sleeves. Some resemble vaginas, others are simple textured sleeves designed to stimulate in unearthly ways as they suck. Behind are what can only be described as spunk silos, recently emptied to make room for fresh debauchery.");
 	//First Time
@@ -4048,6 +4061,7 @@ public function kiroKallyDoubleMilkingThreesome7(x:int):void
 	processTime(45);
 	pc.energy(25);
 	IncrementFlag("SISTER_MILK_ACT");
+	kiroKallyThreesomes(1);
 	clearMenu();
 	addButton(0,"Next",move,"CANADA5");
 }
