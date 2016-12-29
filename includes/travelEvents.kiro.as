@@ -3582,6 +3582,8 @@ public function kiroKallyThreesomesApproach():void
 {
 	clearOutput();
 	showKallyAndKiro();
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
 	//Threesomes Intro
 	//Bimbo
 	if(pc.isBimbo()) output("<i>“Know what would be tons of fun?”</i> you ask, so bubbly you’re almost effervescent. <i>“Your sister.”</i>");
@@ -3612,8 +3614,16 @@ public function kiroKallyThreesomesApproach():void
 	clearMenu();
 	if(pc.hasCock() && pc.thinnestCockThickness() < 4) addButton(0,"Milk Them",kiroKallyDoubleMilkingThreesome,undefined,"Milk Them","Plug them both into the milker and buttfuck all the 'nuki seed their bulging ballsacks can carry.");
 	else addDisabledButton(0,"Milk Them","Milk Them","You need a penis that's less than four inches thick to plug both of them into Kiro's milker and buttfuck the seed out of them.");
-	addButton(14,"Back",approachKiroAtTheBar,true);
+	if(pc.hasVagina()) addButton(1,"Get DPed",kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenLikesToWriteBecauseHeHasShitTaste,undefined,"Get DPed","Take one sister in the vagina and the other in your butt. It's a Steele sandwich!");
+	else addDisabledButton(1,"Get DPed","Get DPed","Trying to take both of them in the butt is probably not a good idea. You should go get a vagina if you want to take them both at the same time.");
+	addButton(14,"Back",backFromSisterThreesomeMenu);
+}
 
+public function backFromSisterThreesomeMenu():void
+{
+	currentLocation = "CANADA5";
+	generateMap();
+	approachKiroAtTheBar(true);
 }
 
 //Milk Them
@@ -3654,7 +3664,7 @@ public function kiroKallyDoubleMilkingThreesome2():void
 {
 	clearOutput();
 	showKallyAndKiro(true);
-	currentLocation = "KIROS SHIP QUARTERS";
+	currentLocation = "KIROS SPUNK CHAMBER";
 	generateMap();
 	output("The milker is much as you remember it: an industrial pump buried behind an array of thumping holographic projections, each more pornographic than the last. Transparent hoses dangle from the central, cum-pumping core, each tipped with molded sleeves. Some resemble vaginas, others are simple textured sleeves designed to stimulate in unearthly ways as they suck. Behind are what can only be described as spunk silos, recently emptied to make room for fresh debauchery.");
 	//First Time
