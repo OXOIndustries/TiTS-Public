@@ -114,7 +114,7 @@ public function initUvetoRooms():void
 	rooms["UVS A9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS A9"].eastExit = "UVS B9";
 	rooms["UVS A9"].moveMinutes = 1;
-	rooms["UVS A9"].runOnEnter = uvetoCarbonadoStore;
+	//rooms["UVS A9"].runOnEnter = uvetoCarbonadoStore;
 	rooms["UVS A9"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS A9"].addFlag(GLOBAL.COMMERCE);
 
