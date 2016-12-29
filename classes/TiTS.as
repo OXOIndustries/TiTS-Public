@@ -445,7 +445,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.05";
+			version = "0.7.06";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -911,6 +911,11 @@
 		public function ExecuteFunction(name:String):void
 		{
 			this[name]();
+		}
+		
+		public function ExecuteFunctionArgs(name:String, args:*):void
+		{
+			this[name](args);
 		}
 		
 		// This is hacky as fuck, but it's the ONLY way I can think of pinning down exactly where this issue happens

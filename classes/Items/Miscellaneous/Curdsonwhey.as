@@ -21,7 +21,7 @@
 			type = GLOBAL.DRUG;
 			
 			shortName = "Curdsonwhey";
-			longName = "bottle of Ovilium";
+			longName = "curdsonwhey lozenge";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			

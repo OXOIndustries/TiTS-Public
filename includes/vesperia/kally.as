@@ -19,7 +19,7 @@ Kiro Threesome?*/
 
 public function showKallyAndKiro(nude:Boolean = false):void
 {
-	if(nude) showBust("KALLY_NUDE",kiroBustDisplay(nude));
+	if(nude) showBust(kiroBustDisplay(nude),"KALLY_NUDE");
 	else showBust("KALLY",kiroBustDisplay(nude));
 	showName("KALLY\n& KIRO");
 }
