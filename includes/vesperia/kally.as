@@ -2692,7 +2692,7 @@ public function searchThePurse():void
 	clearOutput();
 	showName("SEARCH\nHANDBAG");
 	output("You sneak over to the handbag and pop it open. Nothing in there but some crumpled gum, a pack of condoms, tissues, some value-brand cookies.... Maybe there is a lot in there. You dig deeper through the mess, and with your persistance, you are rewarded.");
-	output("\n\n(<b>Key Item Gained:</b> Kally's Bedroom Key!)");
+	output("\n\n(<b>Key Item Gained:</b> Kally’s Bedroom Key!)");
 	pc.createKeyItem("Kally's Bedroom Key");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2755,7 +2755,7 @@ public function lieToZeCop():void
 	output("\n\nYou’d better get going before she thinks too hard about your story!");
 	processTime(3);
 	pc.addMischievous(5);
-	output("\n\n(<b>Key Item Gained:</b> Kally's Bedroom Key!)");
+	output("\n\n(<b>Key Item Gained:</b> Kally’s Bedroom Key!)");
 	processTime(4);
 	pc.createKeyItem("Kally's Bedroom Key");
 	clearMenu();
