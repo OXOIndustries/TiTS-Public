@@ -982,6 +982,8 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 				holeIdx = possNewHole;
 			}
 		}
+		if (holeIdx == -1) holeIdx = rand(pc.vaginas.length);
+		
 		holeTag = "[pc.vagina " + holeIdx + "]";
 	}
 
@@ -1017,10 +1019,12 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 		output(", feeling your [pc.femCumColor] juices");
 		if (pc.wettestVaginalWetness() <= 2) output(" drip");
 		else output(" dribble");
-		output(" downwards.");
+		output(" downwards");
+		if (isAnal || pc.vaginas.length > 1) output(" from your [pc.vaginas]");
 	}
+	output(".");
 
-	output("\n\nBy the intense way they are clutching the dirt with all four hands, the intense strain in their back muscles, and the steady “huff huff huff” being forced past their thin lips, you can tell it’s taking everything the bothrioc’s got not to release their eggs up into you. The abdomen you’re currently riding looks very swollen - just how many have they got backed up in there? Teasingly you");
+	output("\n\nBy the intense way they are clutching the dirt with all four hands, the intense strain in their back muscles, and the steady “huff huff huff” being forced past their thin lips, you can tell it’s taking everything the bothrioc’s got not to release their eggs up into you. The abdomen you’re currently riding looks very swollen - just how many have they got backed up in there? Teasingly, you");
 	if (pc.isTaur()) output(" push your [pc.ass] down even harder");
 	else if (pc.isNaga()) output(" grip your coils");
 	else if (pc.isGoo()) output(" grip your viscous mass");
@@ -1046,7 +1050,7 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 	if (pc.isBiped()) output(" between your [pc.hips]");
 	else output("-");
 	output(" as you athletically ratchet yourself upwards to an even bigger peak, making ruthless use of the bothrioc. Their egg stalk eagerly reaches itself into your "+holeTag+" as far as it will go, the series of smooth nodules stretching");
-	if (!isAnal) output(" you deliciously")
+	if (isAnal) output(" you deliciously")
 	else output(" your mouth and pushing against [pc.eachClit]");
 	output(" as you draw it inwards.");
 	if (pc.hasCock() && !pc.isTaur()) output(" Feverishly your hands descend to your [pc.cock], and you pump your length to the same delicious rhythm with which you bend the ovipositor within you, the overwhelming double pleasure seizing you up and forcing ecstatic cries past your [pc.lips].");
@@ -1119,11 +1123,11 @@ public function bothriocPidemmeVagRideII(opts:Array):void
 		
 		output("\n\n<i>“Go on then,”</i> you gasp, still gripping their smooth abdomen tightly with your legs. <i>“For being so good.”</i>");
 		
-		output("\n\nImmediately, and with an ecstatic, almost pained howl, the bothrioc releases a huge gush of oil into you, so large it washes warmly back down their latex egg-sac in clear, oozing rivers. The heavy, round objects which are then expelled into your relaxed, waiting womb come out in a heady rush, practically fighting each other down the bothrioc’s ovipositor to get into that wet, plush breeding bay that has been tormenting them this entire time. Your eyes cross as your belly plumps out, crammed with alien young that your pussy eagerly coaxes inside with delicious clenches.");
+		output("\n\nImmediately, and with an ecstatic, almost pained howl, the bothrioc releases a huge gush of oil into you, so large it washes warmly back down their latex egg-sac in clear, oozing rivers. The heavy, round objects which are then expelled into your relaxed, " + (isAnal ? "awaiting ass" : "waiting womb") + " come out in a heady rush, practically fighting each other down the bothrioc’s ovipositor to get into that wet, plush breeding bay that has been tormenting them this entire time. Your eyes cross as your belly plumps out, crammed with alien young that your " + (isAnal ? "ass" : "pussy") + " eagerly coaxes inside with delicious clenches.");
 		
 		output("\n\n<i>“Thank you...”</i> groans the ");
 		if (pc.hasCock()) output(" cum-spattered");
-		output(" bothrioc every time they squeeze an oval past your sensitive lips, their whole body clenched up in ecstasy. <i>“Thank you... thank you... aargh... thank you!”</i> ");
+		output(" bothrioc every time they squeeze an oval past your sensitive " + (isAnal ? "ring" : "lips") + ", their whole body clenched up in ecstasy. <i>“Thank you... thank you... aargh... thank you!”</i> ");
 		
 		output("\n\nThey sag at last, their abdomen notably deflated, their oozing violet egg-stalk flopping out. Exhaustion and the shimmering relaxation that the creature’s fluids induce compel you to");
 		if (pc.isTaur()) output(" lower yourself");
@@ -1151,11 +1155,11 @@ public function bothriocPidemmeVagRideII(opts:Array):void
 	{
 		if (bothriocAddiction() > 50)
 		{
-			output("The desire to accept a nice, big clutch and ease the egg-giver’s burden is so great that it almost bypasses your brain and flies past your lips anyway - but somehow you clamp down on it.");
+			output("The desire to accept a nice, big clutch and ease the egg-giver’s burden is so great that it almost bypasses your brain and flies past your " + (isAnal ? "ring" : "lips") + " anyway - but somehow you clamp down on it.");
 			
 			output("\n\n<i>“Not today, lover,”</i> you purr, continuing to thrust away, riding out your dazzling orgasm. <i>“Just think how great it will feel for all this... when you do get to finally release them...”</i>");
 			
-			output("\n\nThe bothrioc grits their teeth - but despite continuing to leak oil deliriously into your cunt, they manage to hold on. When you finally come down, draw the still-achingly erect ovipositor out of your oozing, gently aching hole, you");
+			output("\n\nThe bothrioc grits their teeth - but despite continuing to leak oil deliriously into your " + (isAnal ? "ass" : "cunt") + ", they manage to hold on. When you finally come down, draw the still-achingly erect ovipositor out of your oozing, gently aching hole, you");
 			if (pc.isTaur()) output(" lower yourself");
 			else output(" flop");
 			output(" down on top of them, stroking their sculpted chin and bulging, pent up abdomen comfortingly.");
@@ -1172,7 +1176,7 @@ public function bothriocPidemmeVagRideII(opts:Array):void
 			
 			output("\n\n<i>“I told you, keep those to yourself,”</i> you order sternly, continuing to thrust away, riding out your dazzling orgasm. <i>“You can always find another chump to stick them into - so long as you’ve still got your tube.”</i>");
 			
-			output("\n\nThe bothrioc grits their teeth - but they take the point and manage to hold on, despite leaking oil deliriously into your pulsing cunt. When you finally come down, draw the still-achingly erect ovipositor out of your oozing, gently aching hole, you");
+			output("\n\nThe bothrioc grits their teeth - but they take the point and manage to hold on, despite leaking oil deliriously into your pulsing " + (isAnal ? "anus" : "cunt") + ". When you finally come down, draw the still-achingly erect ovipositor out of your oozing, gently aching hole, you");
 			if (pc.isTaur()) output(" lower yourself");
 			else output(" flop");
 			output(" down on top of them, stroking their sculpted chin and bulging, pent up abdomen comfortingly.");
