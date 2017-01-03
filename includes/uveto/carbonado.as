@@ -51,24 +51,28 @@ public function uvetoCarbonadoStore():Boolean
 			}
 		}
 		else if (flags["MET_CFS_GWEN"] != undefined) output(" When she sees you at the door she gives a dreamy sigh, leaning her chin on both palms and staring.");
-	}
 
-	if (flags["MET_CFS_EIMEAR"] == undefined)
-	{
-		output("\n\nThe other counter is manned by a variety of staff, one of whom stands a head and shoulder's height above the rest. Your codex identifies her as half-ausar, half-bruchandus.");
+		if (flags["MET_CFS_EIMEAR"] == undefined)
+		{
+			output("\n\nThe other counter is manned by a variety of staff, one of whom stands a head and shoulder's height above the rest. Your codex identifies her as half-ausar, half-bruchandus.");
+		}
+		else
+		{
+			output("\n\nEimear walks around managing her counter, towering over her part-time staff and making sure none of them mess anything up.");
+		}
+		output(" Her swimsuit and sports-bra do precious little to contain her massive chest, and she often re-adjusts the uncomfortable looking garment.");
+		if (flags["HUNGOUT_CFS"] != undefined)
+		{
+			output(" She visibly relaxes when she sees you, stepping aside from her constant supervisory role in case you want to talk.");
+		}
+		else if (flags["MET_CFS_EIMEAR"] != undefined)
+		{
+			output(" She gives you a smile and a curt nod when she notices you.");
+		}
 	}
 	else
 	{
-		output("\n\nEimear walks around managing her counter, towering over her part-time staff and making sure none of them mess anything up.");
-	}
-	output(" Her swimsuit and sports-bra do precious little to contain her massive chest, and she often re-adjusts the uncomfortable looking garment.");
-	if (flags["HUNGOUT_CFS"] != undefined)
-	{
-		output(" She visibly relaxes when she sees you, stepping aside from her constant supervisory role in case you want to talk.");
-	}
-	else if (flags["MET_CFS_EIMEAR"] != undefined)
-	{
-		output(" She gives you a smile and a curt nod when she notices you.");
+		output("Gwen and Eimear are nowhere to be seen, the automated terminal still spun around as a prominent invitation toward self-service...");
 	}
 
 	if (flags["MET_CFS"] == undefined)
@@ -124,7 +128,6 @@ public function uvetoCarbonadoMenu():void
 		}
 
 		addButton(5, "Vidya", cfsGoVidja);
-		
 	}
 
 	addButton(14, "Leave", uvetoCarbonadoLeave);
@@ -133,6 +136,7 @@ public function uvetoCarbonadoMenu():void
 public function cfsGoBuyMenu():void
 {
 	shopkeep = gwen;
+	shopkeepBackFunctor = mainGameMenu;
 	buyItem();
 }
 
@@ -174,6 +178,8 @@ public function uvetoCarbonadoFirstTime():void
 	showCarbonado();
 
 	flags["MET_CFS_GWEN"] = 1;
+	flags["MET_CFS_EIMEAR"] = 1;
+	flags["MET_CFS"] = 1;
 
 	output("You wade through the myriad clothing racks, making your way to the main counter. The puazi clerk looks up from her comic, swiping the reader app off her screen. She looks around to make sure no one else has priority in needing help, and upon finding no one gives you a disarming smile and her full attention.");
 
@@ -185,7 +191,7 @@ public function uvetoCarbonadoFirstTime():void
 	if (pc.humanScore() <= 2) output(" You don’t look human, but there must be some in your genes.");
 	output("”</i> she says, attempting to push the determined saleswoman away from the counter. Her efforts are impeded by the latter’s batting arms.");
 
-	output("\n\n<i>“It’s ok Eemee, it’s really not a really bad one this time. I can still run the ship. Now, what can I help for you today, [pc.sirMam],”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
+	output("\n\n<i>“It’s ok Eemee, it’s really not a really bad one this time. I can still run the ship. Now, what can I help for you today, "+pc.mf("sir", "mam") +",”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
 
 	clearMenu();
 	addButton(0, "Talk", uvetoCarbonadoIntroTalk);
@@ -220,9 +226,12 @@ public function uvetoCarbonadoIntroMerge():void
 {
 	output("\n\n<i>“O-K, that’s enough front work for you right now. This is why we got the automated register, remember? Let’s go in back and get you taken care of,”</i> the taller woman says, picking her stocky friend up under the arms and then over her shoulder before she can embarrass herself further. The goat-like alien giggles as she’s hefted into the air, nigh oblivious to the situation.");
 
-	output("\n\n<i>“Sorry about this, I’m sure you’re a great [pc.guyGal]. Come back in a bit, ok? We’ll have this all fixed up and you can have some actually meaningful conversation,”</i> she apologizes, flashing the first smile you’ve seen since she came over. <i>“Eemee”</i> carts her tipsy friend into the back room, leaving you alone with the self running register.");
+	output("\n\n<i>“Sorry about this, I’m sure you’re a great "+ pc.mf("guy", "gal") +". Come back in a bit, ok? We’ll have this all fixed up and you can have some actually meaningful conversation,”</i> she apologizes, flashing the first smile you’ve seen since she came over. <i>“Eemee”</i> carts her tipsy friend into the back room, leaving you alone with the self running register.");
 
 	pc.createStatusEffect("Gwen In Back", 0, 0, 0, 0, true, "", "", false, 60);
+	
+	clearMenu();
+	addButton(0, "Next", function():void { clearOutput(); uvetoCarbonadoStore(); } );
 }
 
 public function uvetoCarbonadoTalk():void
