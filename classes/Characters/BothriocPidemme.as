@@ -186,7 +186,8 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "B.Pidemme";
 			
-			createStatusEffect("Force Fem Gender");
+			createStatusEffect("Force It Gender");
+			sexualPreferences.setRandomPrefs(2 + rand(3));
 			
 			this._isLoading = false;
 		}
@@ -263,8 +264,9 @@ package classes.Characters
 			else
 			{
 				output("The bothrioc’s warm oil has seeped into your [pc.skinFurScales] around your groin. It seems to radiate heat through you, making you feel helplessly aroused, a sensation enhanced by your tight binds. Meanwhile, the bothrioc continues to mold their lithe body against yours, one pair of hands massaging your [pc.chest] whilst the other caresses your face. Their thin, hard lips are glossy and incredibly smooth when they press against yours. While alien, it feels remarkable.");
-				applyDamage(new TypeCollection( { tease: 2, drug: 3 } ), this, target, "minimal");
 			}
+			
+			applyDamage(new TypeCollection( { tease: 2, drug: 3 } ), this, target, "minimal");
 		}
 		
 		private function rapierThrust(target:Creature):void

@@ -478,7 +478,7 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 		}
 
 		output("\n\nA fairly intense few minutes later, and you are gathering yourself, cheeks flushed, staring at the");
-		if (numFertile > 1) output(num2Text(numFertile));
+		if (numFertile > 1) output(" " + num2Text(numFertile));
 		output(" oil-coated egg");
 		if (numFertile > 1) output("s");
 		output(" that you have birthed.");
@@ -511,6 +511,7 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 			if (numFertile > 1) output("s");
 			output(" somewhere warm, dry and dark in your private nursery. You watch it depart laden with your bothrioc spawn with a slight pang and sense of emptiness");
 			if (bothriocAddiction() < 50) output(", despite yourself");
+			output(".");
 
 			c = Child.NewChildWeights(h.pregnancyChildRace, h.childMaturationMultiplier, numFertile, h.childGenderWeights);
 			c.BornTimestamp = GetGameTimestamp() + deltaT;
