@@ -186,8 +186,8 @@ public function kiroMenu():void
 		//Incest 3sums
 		if(kiroKallyThreesomesAvailable()) addButton(4,"Sister3Some",kiroKallyThreesomesApproach,undefined,"Sister Threesome","See if you can get the sisters together for a threesome.");
 		else if(kiroKallyThreesomes() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","You ought to do some talking with them before trying to rush them into any more incestual fun.");
-		else if(kiroKallyThreesomeUnlockPoints() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally haven't made the kind of breakthrough that would let you just walk up and ask this.");
-		else addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally don't really like each other that way...");
+		else if(kiroKallyThreesomeUnlockPoints() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally haven’t made the kind of breakthrough that would let you just walk up and ask this.");
+		else addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally don’t really like each other that way...");
 		addButton(14,"Leave",mainGameMenu);
 		return;
 	}
@@ -3612,9 +3612,9 @@ public function kiroKallyThreesomesApproach():void
 	processTime(5);
 	pc.lust(5);
 	clearMenu();
-	if(pc.hasCock() && pc.thinnestCockThickness() < 4) addButton(0,"Milk Them",kiroKallyDoubleMilkingThreesome,undefined,"Milk Them","Plug them both into the milker and buttfuck all the 'nuki seed their bulging ballsacks can carry.");
-	else addDisabledButton(0,"Milk Them","Milk Them","You need a penis that's less than four inches thick to plug both of them into Kiro's milker and buttfuck the seed out of them.");
-	if(pc.hasVagina()) addButton(1,"Get DPed",kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenLikesToWriteBecauseHeHasShitTaste,undefined,"Get DPed","Take one sister in the vagina and the other in your butt. It's a Steele sandwich!");
+	if(pc.hasCock() && pc.thinnestCockThickness() < 4) addButton(0,"Milk Them",kiroKallyDoubleMilkingThreesome,undefined,"Milk Them","Plug them both into the milker and buttfuck all the ‘nuki seed their bulging ballsacks can carry.");
+	else addDisabledButton(0,"Milk Them","Milk Them","You need a penis that’s less than four inches thick to plug both of them into Kiro’s milker and buttfuck the seed out of them.");
+	if(pc.hasVagina()) addButton(1,"Get DPed",kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenLikesToWriteBecauseHeHasShitTaste,undefined,"Get DPed","Take one sister in the vagina and the other in your butt. It’s a Steele sandwich!");
 	else addDisabledButton(1,"Get DPed","Get DPed","Trying to take both of them in the butt is probably not a good idea. You should go get a vagina if you want to take them both at the same time.");
 	addButton(14,"Back",backFromSisterThreesomeMenu);
 }
@@ -3859,7 +3859,7 @@ public function kiroKallyDoubleMilkingThreesome4(x:int):void
 	output("\n\nKally sighs dreamily.");
 	output("\n\n<i>“Tell us how it feels, and be as slutty as possible,”</i> Kiro instructs, massaging her orgasmically quivering sibling. <i>“No consequences, just me, you, [pc.name], and you creaming yourself over how good you feel.”</i>");
 	output("\n\n<i>“Mmmm, ‘kay sis.”</i> Kally straightens slightly, stopping to kiss her sister, though really it’s more of a drive-by-slobbering. <i>“It feels too good, like fucking a tight... tight... fuck! So tight! Just the tightest, prettiest, wettest pussy, wrapped around my dick, and my butt hurts, but it’s a good hurt!”</i> Kally moans, loudly enough to reverberate against the deckplates. <i>“Can’t think! Too much... good... oh yes, right there, [pc.name]. Make me cum for my sister! I’m gon-gonna... gonna cum for you, Kiro!”</i>");
-	output("\n\nYou slap her ass, and pound away, watching her dick flare inside its clear containment unit, straining until the sides smush up against the flexible plastic. Her ass clenches so crushingly tight that you find it impossible to orgasm yourself. Her climactically clenching butthole has you in a deathgrip, smashing you broadside into her prostate, making her spurt and squirt. Kally’s balls wobble and slosh, growing smaller by the second. Kiro reaches around to cradle them, but they dwindle in size until they’re smaller than a terran chicken's egg. Arching her back, Kally cries out, her whole body pulled tighter than a guitar’s string. She vibrates there as the last of her gene-modded spooge is wicked from her dick, then goes limp.");
+	output("\n\nYou slap her ass, and pound away, watching her dick flare inside its clear containment unit, straining until the sides smush up against the flexible plastic. Her ass clenches so crushingly tight that you find it impossible to orgasm yourself. Her climactically clenching butthole has you in a deathgrip, smashing you broadside into her prostate, making her spurt and squirt. Kally’s balls wobble and slosh, growing smaller by the second. Kiro reaches around to cradle them, but they dwindle in size until they’re smaller than a terran chicken’s egg. Arching her back, Kally cries out, her whole body pulled tighter than a guitar’s string. She vibrates there as the last of her gene-modded spooge is wicked from her dick, then goes limp.");
 	output("\n\nIf you weren’t holding her up off the floor, she’d have fallen flat on her face. Instead she dangles like a ragdoll in your arms, panting.");
 	output("\n\nKiro smiles at her fucked-out sister. <i>“");
 	if(flags["SISTER_MILK_ACT"] == undefined) output("Only the one tank, I’m afraid.”</i> She giggles. <i>“You’re going to have to try harder than that if you want to match me. That or take some of the supplements I’ve got in the mess. They’ll have that shriveled sack of yours so bloated with seed that we might have to make this a daily activity.");

@@ -108,13 +108,15 @@ public function initUvetoRooms():void
 
 	/* CFS */
 	rooms["UVS A9"] = new RoomClass(this);
-	rooms["UVS A9"].roomName = "GARDENFORKS";
-	rooms["UVS A9"].description = "9999 SORT THIS SHIT GARDE";
+	rooms["UVS A9"].roomName = "\nCARBONADO";
+	rooms["UVS A9"].description = "The shop's interior is just as large as it looks on the outside. A number of aliens of varying gender peruse the racks and displays of warm looking clothes. Bright labels tie the different merchandise to a number of top fashion companies, with a separate section dedicated to clothing made on Uveto itself. There are a number of changing rooms in the back for trying on clothing, and mirrors just off to their side to show off for friends. The other half of the store is mostly taken up by the entrance to a large sauna. Heat radiates from the opening, bathing the counter in warmth and a thin layer of precipitation.";
 	rooms["UVS A9"].planet = "UVETO STATION";
 	rooms["UVS A9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS A9"].eastExit = "UVS B9";
 	rooms["UVS A9"].moveMinutes = 1;
+	//rooms["UVS A9"].runOnEnter = uvetoCarbonadoStore;
 	rooms["UVS A9"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS A9"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["UVS B7"] = new RoomClass(this);
 	rooms["UVS B7"].roomName = "SPACERS\nLOUNGE";

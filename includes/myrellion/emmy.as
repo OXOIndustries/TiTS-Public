@@ -76,7 +76,7 @@ public function pushOutTheCumDummy():void
 	clearMenu();
 	//Buy item or leave
 	addButton(0,"Buy",buyFromEmmy,undefined,"Buy","Buy some of the weaponry.");
-	addButton(1,"Trade",tradeWivEmmy,undefined,"Trade","See if she'll buy some of your old gear. You could use the extra credits.");
+	addButton(1,"Trade",tradeWivEmmy,undefined,"Trade","See if she’ll buy some of your old gear. You could use the extra credits.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -85,7 +85,7 @@ public function emmyCumClearance():void
 {
 	if(currentLocation == "KIHASHOP")
 	{
-		if (emmy.bellyRating() >= 40) AddLogEvent("Emmy excuses herself to the employee room. A few moments of pregnant silence follow, broken by the abrupt sound of gallons of fluid jetting from something... something that isn't a faucet. Emmy's voice can be heard moaning deliriously, and wet-sounding slaps echo out to the sales floor. You're about to go check on her when she staggers out with a smile, her belly significantly deflated.", "passive");
+		if (emmy.bellyRating() >= 40) AddLogEvent("Emmy excuses herself to the employee room. A few moments of pregnant silence follow, broken by the abrupt sound of gallons of fluid jetting from something... something that isn’t a faucet. Emmy’s voice can be heard moaning deliriously, and wet-sounding slaps echo out to the sales floor. You’re about to go check on her when she staggers out with a smile, her belly significantly deflated.", "passive");
 		else if(emmy.bellyRating() >= 5) AddLogEvent("Emmy excuses herself to the back room, promising to return in a moment. You barely hear the sound of something wet popping out and a muffled, throaty moan. A few moments later, Emmy staggers back out with a tighter belly and a twitching dick.", "passive");
 	}
 }
@@ -94,7 +94,7 @@ public function emmyTeaseCum():void
 {
 	if(currentLocation == "KIHASHOP")
 	{
-		AddLogEvent("Emmy abruptly moans and collapses over the top of the counter, her hips furtively pumping back and forth. You don't get a good look at it, but it seems like the constant teasing has finally gotten to her, leaving the poor thing with nothing to do but quietly stuff her own womb with hours of backed-up discharge. By the time she straightens, she's gained a massively wobbling, cum-pregnant belly.", "passive");
+		AddLogEvent("Emmy abruptly moans and collapses over the top of the counter, her hips furtively pumping back and forth. You don’t get a good look at it, but it seems like the constant teasing has finally gotten to her, leaving the poor thing with nothing to do but quietly stuff her own womb with hours of backed-up discharge. By the time she straightens, she’s gained a massively wobbling, cum-pregnant belly.", "passive");
 	}
 }
 
@@ -154,7 +154,7 @@ public function gravidEmmyHarnessOverride():void
 		outputCodex("”</i>");
 		outputCodex("\n\nWell, that failed. What now?");
 	}
-	else outputCodex("<i>ERROR: Access code disabled.</i>\n\nIt looks like Emmy's had as much as she can take for right now. She'll probably re-enable your access in a little while.");
+	else outputCodex("<i>ERROR: Access code disabled.</i>\n\nIt looks like Emmy’s had as much as she can take for right now. She’ll probably re-enable your access in a little while.");
 	userInterface.outputCodex();
 	clearGhostMenu();
 	addGhostButton(0,"Next",showCodex);
@@ -166,7 +166,7 @@ public function emmyBonusNotes():Boolean
 	if(flags["EMMY_BANNED"] == 1)
 	{
 		showBust("EMMY");
-		output("\n\nThe shopkeeper shoos you toward the door. She won't even look you in the eye, and one of her fingers is poised above a call button should you make trouble. It'd be best to leave.");
+		output("\n\nThe shopkeeper shoos you toward the door. She won’t even look you in the eye, and one of her fingers is poised above a call button should you make trouble. It’d be best to leave.");
 		return false;
 	}
 	//First time
@@ -259,7 +259,7 @@ public function emmyFirstTimeApproach():void
 		clearMenu();
 		//[Codex Proof]
 		addButton(0,"CodexProof",codexProofForEmmy,undefined,"CodexProof","You can probably prove your identity with your codex.");
-		addButton(14,"Leave",leaveThisShit,undefined,"Leave","Fuck it. You don't need to deal with this shit.");
+		addButton(14,"Leave",leaveThisShit,undefined,"Leave","Fuck it. You don’t need to deal with this shit.");
 		flags["APPROACHED_EMMY"] = 1;
 		return;
 	}
@@ -283,20 +283,20 @@ public function emmyMainMenu():void
 {
 	clearMenu();
 	addButton(0,"Buy",buyFromEmmy,undefined,"Buy","Buy some of the weaponry.");
-	addButton(1,"Trade",tradeWivEmmy,undefined,"Trade","See if she'll buy some of your old gear. You could use the extra credits.");
-	if(emmy.hasStatusEffect("Massaging") || emmy.hasStatusEffect("Slow Fucking")) addDisabledButton(2,"Talk","Talk","Emmy couldn't carry on much of a conversation right now.");
+	addButton(1,"Trade",tradeWivEmmy,undefined,"Trade","See if she’ll buy some of your old gear. You could use the extra credits.");
+	if(emmy.hasStatusEffect("Massaging") || emmy.hasStatusEffect("Slow Fucking")) addDisabledButton(2,"Talk","Talk","Emmy couldn’t carry on much of a conversation right now.");
 	else addButton(2,"Talk",talkToEmmy,undefined,"Talk","Ask her some questions about herself or the company.");
 	if(flags["MET_EMMY"] == undefined) addDisabledButton(3,"SexRequest","SexRequest","You should probably figure out her name before trying to get into her pants.");
-	else if(!pc.hasGenitals()) addDisabledButton(3,"SexRequest","SexRequest","You don't even have genitalia.");
+	else if(!pc.hasGenitals()) addDisabledButton(3,"SexRequest","SexRequest","You don’t even have genitalia.");
 	else if(flags["EMMY_EMAIL_TIMER"] != undefined && !MailManager.isEntryViewed("emmy_apology")) addDisabledButton(3,"SexRequest","SexRequest","You tried that, and she pushed you away. For a huge flirt, she sure is an ice queen.");
 	if(emmy.bellyRating() >= 40) addDisabledButton(3,"SexRequest","SexRequest","Emmy is wayyy too full for that.");
 	else if(flags["EMMY_QUEST"] != undefined && flags["EMMY_QUEST"] >= 1) 
 	{
 		if(pc.lust() >= 33) addButton(3,"SexRequest",sexAttemptStart,undefined,"Sex Request","See if Emmy is up for some sex.");
-		else addDisabledButton(3,"SexRequest","Sex Request","You aren't aroused enough for this.");
+		else addDisabledButton(3,"SexRequest","Sex Request","You aren’t aroused enough for this.");
 	}
 	else if(pc.lust() >= 33) addButton(3,"SexRequest",sexAttemptStart);
-	else addDisabledButton(3,"SexRequest","SexRequest","You aren't turned on enough for that.");
+	else addDisabledButton(3,"SexRequest","SexRequest","You aren’t turned on enough for that.");
 	//Flower overwrites
 	if(flags["EMMY_QUEST"] == 0 && pc.hasItem(new VenusBloom())) 
 	{
@@ -310,7 +310,7 @@ public function emmyMainMenu():void
 	//Didn’t Buy Harness At First - EMMY_QUEST == 4
 	//Add a button to her main menu [Herm Harness]
 	if(flags["EMMY_QUEST"] == 4) addButton(5,"Herm Harness",hermHarnessEmmyTalkUnbought,undefined,"Herm Harness","Talk to Emmy about the Herm Harness she wants to get again.");
-	if(emmy.bellyRating() >= 40) addButton(5,"Vent Cum?",pushOutTheCumDummy,undefined,"Vent Cum?","Ask Emmy why she doesn't just go push it out in the bathroom.");
+	if(emmy.bellyRating() >= 40) addButton(5,"Vent Cum?",pushOutTheCumDummy,undefined,"Vent Cum?","Ask Emmy why she doesn’t just go push it out in the bathroom.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -324,7 +324,7 @@ public function codexProofForEmmy():void
 	output("\n\nUgh. Looks like you’re not going to get anywhere with her so long as you look like a native.");
 	processTime(3);
 	clearMenu();
-	addButton(14,"Leave",leaveThisShit,undefined,"Leave","Fuck it. You don't need to deal with this shit.");
+	addButton(14,"Leave",leaveThisShit,undefined,"Leave","Fuck it. You don’t need to deal with this shit.");
 }
 
 //Fuck this store.
@@ -399,12 +399,12 @@ public function emmyRepeatGreetings():void
 		else
 		{
 			output("You walk up to Emmy, noting the way her eyes light up at the sight of you. Her hand drift beneath the bottommost edge of the counter, cupping balls that seem a touch too weighty for how often their owner must be draining them. She licks her lips, polishing the obsidian pillows to a mirror sheen and asks, <i>“What can I do for my");
-			if(pc.hasStatusEffect("Cum Soaked")) output(" spunk-dump of a [pc.boyGirl]friend? Want me to top you off? You'd look good with a fresh layer across that pretty face.”</i>");
+			if(pc.hasStatusEffect("Cum Soaked")) output(" spunk-dump of a [pc.boyGirl]friend? Want me to top you off? You’d look good with a fresh layer across that pretty face.”</i>");
 			else if(pc.isBimbo() && rand(4) == 0) output(" favorite intergalactic bimbo-slut? Did you need to stock up on vitamin E before you go on your next adventure?");
 			else if(pc.isBro() && pc.isTreated() && rand(4) == 0) output(" favorite [pc.boyGirl] friend? Have I ever told you how fucking good you smell?”</i> She sniffs. <i>“One whiff and my cunt practically starts creaming itself. Can I... can I sniff your crotch? If you don’t want to buy anything. Or after. Whatever.”</i>");
 			else if(pc.hasVagina() && rand(5) == 0) output(" dream date?”</i> She giggles as her cock climbs toward her tits like a python hunting its prey. <i>“I’ve been trying to get the Herm Harness to be more like you, but none of the options feel right. Could you let me fuck you before you leave? If you’re not too busy?”</i> She bites a lip idly strokes her nipple. <i>“And then fuck me again? Just to be sure?”</i>");
 			else if(pc.isNude() && rand(2) == 0) output(" favorite piece of eye-candy?”</i> Her cock thickens perceptibly, jutting angrily in your direction. <i>“One of these times I should get you to dance for me. Or dance with me... naked.”</i> She’s casually groping one tit as she vigorously eye-humps your nude form. <i>“So... did you come here to tease me, or did you want to buy something? You’ve got access to my buttons if you want to start pushing them, you know.”</i>");
-			else if(rand(3) == 0) output(" " + pc.mf("handsome","scrumptious-looking") + " [pc.boyGirl]friend? Did you want to fuck? I've been practicing trying to squeeze out bigger loads for you, just in case you wanted a model with a larger magazine.”</i>");
+			else if(rand(3) == 0) output(" " + pc.mf("handsome","scrumptious-looking") + " [pc.boyGirl]friend? Did you want to fuck? I’ve been practicing trying to squeeze out bigger loads for you, just in case you wanted a model with a larger magazine.”</i>");
 			else if(rand(2) == 0) output(" lovely [pc.boyGirl]? I made sure everything was in stock a little bit ago, and I mean everything.”</i> She crudely cups her balls through the too-thin jumpsuit and moans.");
 			else output(" amazing [pc.boyGirl]friend? I’m so glad you came back. I’ve missed you. Did you wanna snuggle or just check out my hardware? Or both? After the rush, we should see which one of us can shoot better mid-orgasm.”</i> A cocky grin spreads across her canine muzzle. <i>“Spoiler alert: me!”</i>");
 		}
@@ -445,7 +445,7 @@ public function emmyRepeatGreetings():void
 	{
 		clearOutput();
 		showEmmy();
-		output("You walk up to Emmy, openly ogling her this time - she did send you an email inviting you back for an 'oral apology.'");
+		output("You walk up to Emmy, openly ogling her this time - she did send you an email inviting you back for an ‘oral apology.’");
 		output("\n\nShe blushes, but her cock snakes a bit higher up her jumpsuit. It gleams like latex but hugs her body tighter than spandex. The poor herm’s legs quiver as she greets you. <i>“[pc.name]! You came back.”</i> She pauses, thinking over her next words very carefully. One of her hands comes very close to idly caressing a nipple. <i>“Did you come back to buy something... or did you want that apology?”</i> Her tongue sensuously strokes the curved angel bow of her upper lip, then circles over the plump, ebony surface of her lower one.");
 		if(flags["EMMY_QUEST"] == undefined) flags["EMMY_QUEST"] = 1;
 		//replace flirt button with [Apology] -> Goes to oral
@@ -477,7 +477,7 @@ public function backToEmmyMain():void
 	showEmmy();
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("The jackal-woman");
-	output(" smiles coyly and paces between holograms of a huge-barreled laser weapon and a hammer that crackles with phantom electricity. <i>\"Well, what now?\"</i>");
+	output(" smiles coyly and paces between holograms of a huge-barreled laser weapon and a hammer that crackles with phantom electricity. <i>“Well, what now?”</i>");
 	emmyMainMenu();
 }
 
@@ -579,12 +579,12 @@ public function emmyTalkMenu(arg:Function = undefined):void
 	else addDisabledButton(2,"Melees","Melees","You just asked about that.");
 	if(arg != askEmmyAboutShields) addButton(3,"Shields",askEmmyAboutShields,undefined,"Shields","Ask her about the shields they sell.");
 	else addDisabledButton(3,"Shields","Shields","You just asked that!");
-	if(arg != askEmmyAboutEmmy) addButton(4,"You",askEmmyAboutEmmy,undefined,"You","Ask her about herself. She's quite the mystery.");
+	if(arg != askEmmyAboutEmmy) addButton(4,"You",askEmmyAboutEmmy,undefined,"You","Ask her about herself. She’s quite the mystery.");
 	else addDisabledButton(4,"You","You","You just asked that!");
 	if(arg != emmyImplantFurtherDiscussion)
 	{
 		if(flags["EMMY_QUEST"] >= 5 && flags["EMMY_QUEST"] != undefined) addButton(5,"Implant",emmyImplantFurtherDiscussion,undefined,"Implant","She mentioned a libido-enhancing implant in her email. Maybe you could get some more information on it.");
-		else addDisabledGhostButton(5,"Locked","Locked","You don't know her well enough for this topic!");
+		else addDisabledGhostButton(5,"Locked","Locked","You don’t know her well enough for this topic!");
 	}
 	else addDisabledGhostButton(5,"Implant","Implant","You just asked her about her implant!");
 	addButton(14,"Back",backToEmmyMain);
@@ -604,8 +604,8 @@ public function talkToEmmyAboutKihaCorp():void
 	processTime(1);
 	clearMenu();
 	//[General] [Doing Well?][Owner]
-	addButton(0,"General",kihaCorpGeneral,undefined,"General","You'd like to know more about the company in general - the high points.");
-	addButton(1,"Doing Well?",askEmmyIfKihaCorpIsDoingWell,undefined,"Doing Well?","You'd like to know how the company is performing.");
+	addButton(0,"General",kihaCorpGeneral,undefined,"General","You’d like to know more about the company in general - the high points.");
+	addButton(1,"Doing Well?",askEmmyIfKihaCorpIsDoingWell,undefined,"Doing Well?","You’d like to know how the company is performing.");
 	addButton(2,"Owner",askAboutTheOwnerOfKihaCorp)
 	addButton(14,"Back",talkToEmmy);
 }
@@ -636,8 +636,8 @@ public function kihaCorpGeneral():void
 	processTime(4);
 	clearMenu();
 	//[Listen] [Enough]
-	addButton(1,"Enough",emmyEnough,undefined,"Enough","It's time for a change of topic.");
-	addButton(0,"Listen",listenToEmmyRamble,undefined,"Listen","You'd like to hear the rest of what she has to say.")
+	addButton(1,"Enough",emmyEnough,undefined,"Enough","It’s time for a change of topic.");
+	addButton(0,"Listen",listenToEmmyRamble,undefined,"Listen","You’d like to hear the rest of what she has to say.")
 }
 
 //Enough
@@ -757,8 +757,8 @@ public function askEmmyAboutGuns():void
 	clearMenu();
 	addButton(0,"Yep",buyFromEmmy);
 	addButton(1,"Nah",nahEmmyDontSeeShit);
-	if(flags["EMMY_EMAIL_TIMER"] != undefined && flags["EMMY_APOLOGIZED"] == undefined) addDisabledButton(2,"You","You know all too well that this won't go anywhere.");
-	else if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) addButton(2,"You",sexAttemptStart,undefined,"You","Try to get into her pants - not that it's all that hard any more.");
+	if(flags["EMMY_EMAIL_TIMER"] != undefined && flags["EMMY_APOLOGIZED"] == undefined) addDisabledButton(2,"You","You know all too well that this won’t go anywhere.");
+	else if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) addButton(2,"You",sexAttemptStart,undefined,"You","Try to get into her pants - not that it’s all that hard any more.");
 	else addButton(2,"You",sexAttemptStart,undefined,"You","Try to get into her pants.");
 	//[You] -> Go to first time flirt menu
 	//make sure to route appropriately if sex happened already
@@ -893,8 +893,8 @@ public function askEmmyAboutShields():void
 	clearMenu();
 	addButton(0,"Purchase",buyFromEmmy);
 	addButton(1,"Talk More",nahEmmyDontSeeShit);
-	if(flags["EMMY_EMAIL_TIMER"] != undefined && flags["EMMY_APOLOGIZED"] == undefined) addDisabledButton(2,"Demonstration","You know all too well that this won't go anywhere.");
-	else addButton(2,"Demonstration",sexAttemptStart,false,"Demonstration","If she's offering some hands-on sex... sure.");
+	if(flags["EMMY_EMAIL_TIMER"] != undefined && flags["EMMY_APOLOGIZED"] == undefined) addDisabledButton(2,"Demonstration","You know all too well that this won’t go anywhere.");
+	else addButton(2,"Demonstration",sexAttemptStart,false,"Demonstration","If she’s offering some hands-on sex... sure.");
 
 }
 
@@ -929,7 +929,7 @@ public function askEmmyAboutEmmy():void
 		output("\n\nYou do.");
 		output("\n\nThe shop-slut sighs and marvels at you. <i>“You really are something else. Well, you remember how I made you swear not to tell anyone about this?”</i>");
 		output("\n\nYou nod.");
-		output("\n\n<i>“I ditched it.”</i> Emmy casts a furtive glance in the direction of the automatic door, and satisfied that it’s still sealed, she explains. <i>“We’re not supposed to be working without a name tag, but I couldn’t stand sitting there, broadcasting my awful, awful name, letting everyone know that I'm really just some ausar.”</i>");
+		output("\n\n<i>“I ditched it.”</i> Emmy casts a furtive glance in the direction of the automatic door, and satisfied that it’s still sealed, she explains. <i>“We’re not supposed to be working without a name tag, but I couldn’t stand sitting there, broadcasting my awful, awful name, letting everyone know that I’m really just some ausar.”</i>");
 	}
 	else
 	{
@@ -948,7 +948,7 @@ public function askEmmyAboutEmmy():void
 	}
 	else
 	{
-		output("\n\n<i>“So what am I supposed to call you?”</i> you ask. <i>“'Hey you' doesn’t have a very good ring to it, and a name would make it a lot easier to talk. I’ll even tell you mine; I’m [pc.name].”</i>");
+		output("\n\n<i>“So what am I supposed to call you?”</i> you ask. <i>“‘Hey you’ doesn’t have a very good ring to it, and a name would make it a lot easier to talk. I’ll even tell you mine; I’m [pc.name].”</i>");
 		output("\n\nYou didn’t know it was possible for a jackal’s (or ausar’s) ears to sink so low. <i>“It’s Emmata, but please, just call me Emmy. It’s what all my friends call me.”</i>");
 	}
 	output("\n\nShaking your head, you explain that you still don’t understand why she doesn’t want to be known as a former ausar.");
@@ -969,13 +969,13 @@ public function askEmmyAboutEmmy():void
 	clearMenu();
 	if(flags["EMMY_QUEST"] != undefined || flags["EMMY_EMAIL_TIMER"] != undefined) 
 	{
-		addDisabledButton(0,"You","You","Looks like she's not fishing for compliments right now.");
-		addDisabledButton(1,"Your Dick","Your Dick","Looks like she's not fishing for compliments right now.");
-		addDisabledButton(2,"Your Tits","Your Tits","Looks like she's not fishing for compliments right now.");
+		addDisabledButton(0,"You","You","Looks like she’s not fishing for compliments right now.");
+		addDisabledButton(1,"Your Dick","Your Dick","Looks like she’s not fishing for compliments right now.");
+		addDisabledButton(2,"Your Tits","Your Tits","Looks like she’s not fishing for compliments right now.");
 	}
 	else
 	{
-		addButton(0,"You",tellEmmyShesTheBelleOfTheBalls,undefined,"You","Tell her that she's the prettiest by far.")
+		addButton(0,"You",tellEmmyShesTheBelleOfTheBalls,undefined,"You","Tell her that she’s the prettiest by far.")
 		addButton(1,"Your Dick",sexAttemptStart,true,"Your Dick","Screw subtlety.");
 		addButton(2,"Your Tits",sexAttemptStart,true,"Your Tits","Screw subtlety.");
 	}
@@ -1114,12 +1114,12 @@ public function sexAttemptStart(mainMenu:Boolean = true):void
 		output("\n\nShe crooks a finger, beckoning you closer. When you’re within a few inches of her face, she whispers, <i>“");
 		if(pc.hasCock()) output("It wouldn’t be too slutty to suck a [pc.boy]friend’s cock, especially after [pc.heShe] brought me flowers.");
 		else output("It wouldn’t be too slutty to take care of a [pc.boy]friend’s needs, even if it means showing [pc.himHer] just far my tongue can go inside of [pc.himHer]. [pc.HeShe]’s be bringing me exotic flowers, after all.");
-		output(" That’d be fair recompense for [pc.hisHer]'s efforts.”</i>");
+		output(" That’d be fair recompense for [pc.hisHer]’s efforts.”</i>");
 		if(flags["MET_EMMY"] == undefined)
 		{
 			output(" Emmy grins. <i>“But if I’m going to have a [pc.boy]friend, I should really know [pc.hisHer] name. Mine’s Emmy. What’s yours, hot stuff?”</i>");
 			output("\n\n<i>“[pc.fullName],”</i> you answer.");
-			output("\n\n<i>“Oooh, I like. See? I knew you were [pc.boy]friend material. Now just do me that one </i>little<i> favor, maybe we can have a celebration.”</i> Emmy's purr leaves very little the intended celebration to the imagination.");
+			output("\n\n<i>“Oooh, I like. See? I knew you were [pc.boy]friend material. Now just do me that one </i>little<i> favor, maybe we can have a celebration.”</i> Emmy’s purr leaves very little the intended celebration to the imagination.");
 			flags["MET_EMMY"] = 1;
 		}
 		output("\n\nHot damn... you better go find some flowers.");
@@ -1155,9 +1155,9 @@ public function sexAttemptStart(mainMenu:Boolean = true):void
 		}
 		else
 		{
-			output("Emmy's eyes flutter low once she realizes your intent. <i>\"Does someone need a little relief?\"</i>\n\nThe ");
+			output("Emmy’s eyes flutter low once she realizes your intent. <i>“Does someone need a little relief?”</i>\n\nThe ");
 			if(rand(2) == 0) output("bulge in her jumpsuit authoritatively declares her to be the one in need of relief.");
-			else output("way her nipples jut through the thin fabric of her jumpsuit, you wager she's referring to herself.");
+			else output("way her nipples jut through the thin fabric of her jumpsuit, you wager she’s referring to herself.");
 		}
 		emmySexMenu();
 	}
@@ -1194,7 +1194,7 @@ public function venusPitcherBonusFlower():void
 	}
 	else
 	{
-		output("Oh hey, there's a particularly pretty bloom left on the ground, dazzlingly purple and pink. Better yet, it smells delightful. Maybe Lys will");
+		output("Oh hey, there’s a particularly pretty bloom left on the ground, dazzlingly purple and pink. Better yet, it smells delightful. Maybe Lys will");
 		if(pc.isBimbo()) output(", like,");
 		output(" appreciate it.");
 	}
@@ -1229,9 +1229,9 @@ public function bringEmmyVenusBloom():void
 	processTime(5);
 	flags["EMMY_QUEST"] = 1;
 	clearMenu();
-	addButton(2,"Negative",negativeEmmy,undefined,"Negative","You just did this for a little oral - you didn't want any strings attached. You'll sound a bit like a dick...");
+	addButton(2,"Negative",negativeEmmy,undefined,"Negative","You just did this for a little oral - you didn’t want any strings attached. You’ll sound a bit like a dick...");
 	addButton(1,"Polyamorous",polyamorousEmmy,undefined,"Polyamorous","Let her know that you tend to have more than one lover - you hope she can handle it.");
-	addButton(0,"Pleased",emmyPleased,undefined,"Pleased","Let her know that you're pleased to be her [pc.boy]friend.");
+	addButton(0,"Pleased",emmyPleased,undefined,"Pleased","Let her know that you’re pleased to be her [pc.boy]friend.");
 }
 
 //Negative
@@ -1380,21 +1380,21 @@ public function giveEmmyAnItemMenu():void
 	output("What will you give her?");
 	clearMenu();
 	if(pc.hasItem(new Kirkite())) addButton(0,"Kirkite",giveEmmyAnItem,"Kirkite","Kirkite","Give Emmy a piece of Kirkite.");
-	else addDisabledButton(0,"Kirkite","Kirkite","You don't have any Kirkite.");
+	else addDisabledButton(0,"Kirkite","Kirkite","You don’t have any Kirkite.");
 	if(pc.hasItem(new Satyrite())) addButton(1,"Satyrite",giveEmmyAnItem,"Satyrite","Satyrite","Give Emmy a piece of Satyrite.");
-	else addDisabledButton(1,"Satyrite","Satyrite","You don't have any Kirkite.");
+	else addDisabledButton(1,"Satyrite","Satyrite","You don’t have any Kirkite.");
 	if(pc.hasItem(new Picardine())) addButton(2,"Picardine",giveEmmyAnItem,"Picardine","Picardine","Give Emmy a piece of Picardine.");
-	else addDisabledButton(2,"Picardine","Picardine","You don't have any Picardine.");
+	else addDisabledButton(2,"Picardine","Picardine","You don’t have any Picardine.");
 	if(pc.hasItem(new CrystalShard()))
 	{
 		if(flags["EMMY_GIVEN_SHARD"] == 1)
 		{
-			if(!pc.hasItem(new CrystalShard(),10)) addDisabledButton(3,"C.Shard x10","Crystal Shard x10","Emmy requested you bring her ten of these. You'd better go hunting for more.");
+			if(!pc.hasItem(new CrystalShard(),10)) addDisabledButton(3,"C.Shard x10","Crystal Shard x10","Emmy requested you bring her ten of these. You’d better go hunting for more.");
 			else addButton(3,"C.Shard x10",giveEmmyAnItem,"Crystal Shard","Crystal Shard x10","Give Emmy the ten Crystal Shards she requested.");
 		}
-		else addButton(3,"C.Shard",giveEmmyAnItem,"Crystal Shard","Crystal Shard","Give Emmy a Crystal Shard. It's not quite the kind of gemstone she's looking for, but it might be fun to watch...");
+		else addButton(3,"C.Shard",giveEmmyAnItem,"Crystal Shard","Crystal Shard","Give Emmy a Crystal Shard. It’s not quite the kind of gemstone she’s looking for, but it might be fun to watch...");
 	}
-	else addDisabledButton(3,"C.Shard","Crystal Shard","You don't have any Crystal Shards.");
+	else addDisabledButton(3,"C.Shard","Crystal Shard","You don’t have any Crystal Shards.");
 	addButton(14,"Back",backToEmmyMain);
 }
 
@@ -1485,7 +1485,7 @@ public function giveEmmyAnItem(item:String):void
 		else
 		{
 			output("\n\nEmmy carefully accepts the shards from you two at a time, packing them into a container. When you’ve passed over the last, you lean in for a look inside. The shards are spaced apart and cradled by a form-fitting packing foam that neatly sets atop a familiar white-and-red jumpsuit covered with dusty green crystals and residue... as well as a long, blackened gash, like it was cut off its wearer with a laser. Ouch.");
-			output("\n\nShe shoos you away kindly and snaps a lid onto the package, then sighs like a bomb has been disarmed. With the shipment prepared, the weapon seller turns to a drawer and opens it up. <i>“Crazy how no matter how much we know, there's always something else out there waiting to surprise us. If I hadn't met you, I never would've gotten tipped off to the gold mine just below Myrellion's surface, and I damn sure wouldn't be so happy about the idea of parting with this beaut. Here it is!”</i>\n\nShe slams the drawer closed with a heavy ‘thunk’ and straightens, balancing an expensive-looking weapon in front of the bullets of her nipples. <i>“");
+			output("\n\nShe shoos you away kindly and snaps a lid onto the package, then sighs like a bomb has been disarmed. With the shipment prepared, the weapon seller turns to a drawer and opens it up. <i>“Crazy how no matter how much we know, there’s always something else out there waiting to surprise us. If I hadn’t met you, I never would’ve gotten tipped off to the gold mine just below Myrellion’s surface, and I damn sure wouldn’t be so happy about the idea of parting with this beaut. Here it is!”</i>\n\nShe slams the drawer closed with a heavy ‘thunk’ and straightens, balancing an expensive-looking weapon in front of the bullets of her nipples. <i>“");
 			//{insert weapon collecting blurb here once weapons are chosen}
 			//go to ‘merge’
 			//reward weapon should reflect a total cost of 4950 credits (1 demo shard plus 10 shards for the mail @ 450 ea)
@@ -1644,7 +1644,7 @@ public function seeEmmyAfterImplantConfessionEmail():void
 	//Herms get shorted!
 	if(!pc.hasGenitals())
 	{
-		output("Emmy looks you up and down, about to speak, but her face screws up at the last second. <i>“You know what... maybe we can have this conversation after you get ahold of some proper genitals. No point in figuring out how to fuck if you don't got the equipment for it, huh?”</i> She sticks her tongue out then adds, <i>“Wanna buy something that'll fuck your enemies?”</i>");
+		output("Emmy looks you up and down, about to speak, but her face screws up at the last second. <i>“You know what... maybe we can have this conversation after you get ahold of some proper genitals. No point in figuring out how to fuck if you don’t got the equipment for it, huh?”</i> She sticks her tongue out then adds, <i>“Wanna buy something that’ll fuck your enemies?”</i>");
 		emmyMainMenu();
 		return;
 	}
@@ -1764,16 +1764,16 @@ public function giveEmmyTheDoshForHerHermHarnessssss():void
 	//Fuck Her or Get Fucked options.
 	clearMenu();
 	if(pc.hasCock() && pc.cockThatFits(emmy.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",fuckEmmyProper);
-	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fuck her properly.");
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You don't have a cock to fuck her with.");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You’re too big to fuck her properly.");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You don’t have a cock to fuck her with.");
 	if(pc.hasVagina()) addButton(1,"Get Fucked",getFuckedByEmmyEmmyEms);
-	else addDisabledButton(1,"Get Fucked","Get Fucked","You don't have a vagina for Emmy to fuck.");
+	else addDisabledButton(1,"Get Fucked","Get Fucked","You don’t have a vagina for Emmy to fuck.");
 	if(pc.hasCock())
 	{
 		if(pc.biggestCockVolume() >= emmy.vaginalCapacity(0)) addButton(7,"Hyper Fun",emmyHyperFucksIntro,undefined,"Hyper Fun","Put your outsized equipment to use, and see what Emmy can do with it.");
-		else addDisabledButton(7,"Hyper Fun","Hyper Fun","You aren't big enough for this.");
+		else addDisabledButton(7,"Hyper Fun","Hyper Fun","You aren’t big enough for this.");
 	}
-	else addDisabledButton(0,"Hyper Fun","Hyper Fun","You don't have a giant cock to fuck her with.");
+	else addDisabledButton(0,"Hyper Fun","Hyper Fun","You don’t have a giant cock to fuck her with.");
 }
 
 //No
@@ -1819,11 +1819,11 @@ public function emmyHarnessPurchaseMenu():void
 {
 	clearMenu();
 	if(pc.credits >= 15000) addButton(0,"Yes",giveEmmyTheDoshForHerHermHarnessssss,undefined,"Yes","Give her the 15,000 credits for the toy.");
-	else addDisabledButton(0,"Yes","Yes","You can't afford to say that.");
-	if(pc.credits < 15000) addButton(1,"No",refuse2buySexToy4Ems,undefined,"No","Tell Emmy that you can't afford it.");
-	else addButton(1,"No",refuse2buySexToy4Ems,undefined,"No","Tell Emmy that you can't afford it - even if you can.");
+	else addDisabledButton(0,"Yes","Yes","You can’t afford to say that.");
+	if(pc.credits < 15000) addButton(1,"No",refuse2buySexToy4Ems,undefined,"No","Tell Emmy that you can’t afford it.");
+	else addButton(1,"No",refuse2buySexToy4Ems,undefined,"No","Tell Emmy that you can’t afford it - even if you can.");
 
-	if(flags["GET_ME_ONE"] == 1) addDisabledButton(2,"Get Me One","Get Me One","You already suggested that - but it wouldn't be a good idea while you're out there, potentially screwing up your measurements.");
+	if(flags["GET_ME_ONE"] == 1) addDisabledButton(2,"Get Me One","Get Me One","You already suggested that - but it wouldn’t be a good idea while you’re out there, potentially screwing up your measurements.");
 	else addButton(2,"Get Me One",getMeOneEms,undefined,"Get Me One","That sounds awesome. You want one of these!");
 	if(flags["EMMY_CREW_REQUESTED"] == undefined) addButton(3,"Crew Invite",inviteEmmyToJoinCrew,undefined,"Crew Invite","Invite Emmy to join your crew. Who needs a toy when she can have direct access to you?");
 	else addDisabledButton(3,"Crew Invite","Crew Invite","You already offered that, and buying her out of her contract would be a lot more expensive than this toy.");
@@ -1894,7 +1894,7 @@ public function emmyGotHarnessReaction():void
 	output("\n\nEmmy pulls back, looking almost offended. <i>“Just because you can make me howl like a wolf in the night doesn’t mean I’m screaming like a banshee every time.”</i> She quietly adds, <i>“I can moan quietly too. Wanna push the button and find out?”</i>");
 	output("\n\nDo you? It might be fun to watch her blow like a volcano, but she’d surely be down for a fuck if you wanted.");
 	//Push button or sex scenes.
-	output("\n\n<b>Emmy's Herm Harness controls have been added to your Codex!</b>");
+	output("\n\n<b>Emmy’s Herm Harness controls have been added to your Codex!</b>");
 	processTime(4);
 	pc.lust(5);
 	pc.createStatusEffect("Emmy Special Delay", 0, 0, 0, 0, true, "", "", false, (3 * 60));
@@ -1949,7 +1949,7 @@ public function emmyImplantTalk2():void
 	output("\n\nEmmy nods in agreement with the look on your face. <i>“Yeah. I’m basically primed for some unscrupulous asshole to come up and skulljack me. Fortunately, it wasn’t hard to build a jammer for that frequency. The only time anyone is going to be making any adjustments to it is when I go back in for the study. I guess I could turn it down myself, but evidence of the tampering might turn up at the end of the study. I don’t have the money to even try to pay </i>that<i> penalty.”</i>");
 	output("\n\n<i>“");
 	if(pc.isNice()) output("You’ve thought of everything, haven’t you, Ems?");
-	else if(pc.isMischievous()) output("I'm kind of surprised you have enough blood left over to power your brain with your dick hard all the time.");
+	else if(pc.isMischievous()) output("I’m kind of surprised you have enough blood left over to power your brain with your dick hard all the time.");
 	else output("You do pretty good for a slut, Ems.");
 	output("”</i>");
 	output("\n\nEmmy’s mouth spreads into a toothy smile. <i>“I try, when I’m not in the bathroom, humping my hands.”</i> She looks down at her dick, then starts idly stroking it, not enough to come anywhere near orgasm, but enough to fill her with pleasure. <i>“So, did you want to have some fun, or did you have more questions?”</i>");
@@ -1960,44 +1960,44 @@ public function emmySexMenu():void
 {
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Get BJ",getBlownByEmmy);
-	else addDisabledButton(0,"Get BJ","Get BJ","You don't have a dick to get blown.");
+	else addDisabledButton(0,"Get BJ","Get BJ","You don’t have a dick to get blown.");
 	if(pc.hasVagina()) addButton(1,"Get Licked",muzzlefuckingCunnilingus);
-	else addDisabledButton(1,"Get Licked","Get Licked","You don't have a vagina to lick.");
+	else addDisabledButton(1,"Get Licked","Get Licked","You don’t have a vagina to lick.");
 	if(flags["EMMY_QUEST"] >= 3 && flags["EMMY_QUEST"] != undefined)
 	{
-		addButton(2,"Lick Her",eatOutEmmysVagYouPoorPussyAddictedSod,undefined,"Lick Her","Eat Emmy's pussy out. It could use some attention.");
-		addButton(3,"Blow Her",emmyCockSlobber,undefined,"Blow Her","Suck Emmy's dick fairly submissively.");
+		addButton(2,"Lick Her",eatOutEmmysVagYouPoorPussyAddictedSod,undefined,"Lick Her","Eat Emmy’s pussy out. It could use some attention.");
+		addButton(3,"Blow Her",emmyCockSlobber,undefined,"Blow Her","Suck Emmy’s dick fairly submissively.");
 		if(pc.hasGenitals()) addButton(4,"69",emmySixtyNine,undefined,"69","69 with Emmy.");
 		else addDisabledButton(4,"69","69","You need genitalia to 69 with Emmy.");
 	}
 	else
 	{
-		addDisabledButton(2,"Locked","Locked","Emmy isn't willing to consent to anything lewder at the moment.");
-		addDisabledButton(3,"Locked","Locked","Emmy isn't willing to consent to anything lewder at the moment.");
-		addDisabledButton(4,"Locked","Locked","Emmy isn't willing to consent to anything lewder at the moment.");
+		addDisabledButton(2,"Locked","Locked","Emmy isn’t willing to consent to anything lewder at the moment.");
+		addDisabledButton(3,"Locked","Locked","Emmy isn’t willing to consent to anything lewder at the moment.");
+		addDisabledButton(4,"Locked","Locked","Emmy isn’t willing to consent to anything lewder at the moment.");
 	}
 	if(flags["EMMY_QUEST"] >= 5 && flags["EMMY_QUEST"] != undefined)
 	{
 		if(pc.hasCock()) 
 		{
 			if(pc.cockThatFits(emmy.vaginalCapacity(0)) >= 0) addButton(5,"Fuck Her",fuckEmmyProper,undefined,"Fuck Her","Put your dick in her vagina.");
-			else addDisabledButton(5,"Fuck Her","Fuck Her","You're too big to fit inside her!");
+			else addDisabledButton(5,"Fuck Her","Fuck Her","You’re too big to fit inside her!");
 		}
-		else addDisabledButton(5,"Fuck Her","Fuck Her","You don't have a cock to fuck her with.");
+		else addDisabledButton(5,"Fuck Her","Fuck Her","You don’t have a cock to fuck her with.");
 		if(pc.hasVagina()) addButton(6,"Get Fucked",getFuckedByEmmyEmmyEms,undefined,"Get Fucked","Have her fuck your vagina.");
-		else addDisabledButton(6,"Get Fucked","Get Fucked","You don't have a vagina for Emmy to fuck.");
+		else addDisabledButton(6,"Get Fucked","Get Fucked","You don’t have a vagina for Emmy to fuck.");
 		if(pc.biggestCockVolume() >= emmy.vaginalCapacity(0)) addButton(7,"Hyper Fun",emmyHyperFucksIntro,undefined,"Hyper Fun","Put your outsized equipment to use, and see what Emmy can do with it.");
-		else addDisabledButton(7,"Hyper Fun","Hyper Fun","You aren't big enough for this.");
-		//(requires HL dildo, that's it) 
+		else addDisabledButton(7,"Hyper Fun","Hyper Fun","You aren’t big enough for this.");
+		//(requires HL dildo, that’s it) 
 		if(pc.hasHardLightEquipped()) addButton(8,"HL. Anal",emmyHardLightProstateFillerUp,undefined,"Hardlight Anal",emmyHardlightProstateFillToolTip());
-		else addDisabledButton(8,"HL. Anal","Hardlight Anal","You don't have any hardlight dildo-equipped panties to stimulate Emmy's prostate with.");
+		else addDisabledButton(8,"HL. Anal","Hardlight Anal","You don’t have any hardlight dildo-equipped panties to stimulate Emmy’s prostate with.");
 	}
 	else
 	{
-		addDisabledButton(5,"Locked","Locked","Emmy isn't willing to consent to anything lewder at the moment.");
-		addDisabledButton(6,"Locked","Locked","Emmy isn't willing to consent to anything lewder at the moment.");
-		addDisabledButton(7,"Locked","Locked","Emmy isn't willing to consent to anything lewder at the moment.");
-		addDisabledButton(8,"Locked","Locked","Emmy isn't willing to consent to anything lewder at the moment.");
+		addDisabledButton(5,"Locked","Locked","Emmy isn’t willing to consent to anything lewder at the moment.");
+		addDisabledButton(6,"Locked","Locked","Emmy isn’t willing to consent to anything lewder at the moment.");
+		addDisabledButton(7,"Locked","Locked","Emmy isn’t willing to consent to anything lewder at the moment.");
+		addDisabledButton(8,"Locked","Locked","Emmy isn’t willing to consent to anything lewder at the moment.");
 	}
 	addButton(14,"Back",backToEmmyMain);
 }
@@ -2127,7 +2127,7 @@ public function emmyCunnilingusFinale():void
 	output("\n\nEmmy giggles and helps you up, though not without a few slips. The suit shrouding her fingertips is slick with your spent passion. Pussy-scent clings to her like perfume, twice as strong and far more enjoyable. It summons up pangs of remembered pleasure to flutter across your belly.");
 	output("\n\n<i>“Damn,”</i> you exhale, <i>“... that was good.”</i>");
 	output("\n\nEmmy smiles, though her tongue still slips out in a feeble attempt to groom her cunt-soiled face. <i>“Great. Now while you cool down, I’ve got to freshen up.");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(".. on the outside. I'm going to be daydreaming about your cunt the rest of my shift.");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(".. on the outside. I’m going to be daydreaming about your cunt the rest of my shift.");
 	else output(" Some of us still have a store to run.");
 	output("”</i> The jackaless makes for the ‘Employees Only’ door, her knees pressed together. Every step is accompanied by the sound of liquid sloshing inside her one-piece suit. Her hips sway pendulously from side to side, the byproduct of her body’s desire for every ounce of friction upon her own unsated folds.");
 	output("\n\nYou gather your things, and by the time you’re ready to go, the jackaless has returned, wearing a fresh white jumpsuit and a smile. Damn, she’s fast.");
@@ -2232,7 +2232,7 @@ public function getBlownByEmmy():void
 	else if(pc.hasSheath(pc.biggestCockIndex())) output("gleefully fondle your sheath, even slipping a few fingers inside to caress you where the nerves won’t be on guard for the pleasure she offers");
 	else output("happily rove across your [pc.belly] and taint, spreading the good vibes around the whole of your lower body");
 	output(". She sucks particularly deeply, feathering her tongue along your underside, her cheeks hollowed from the effort, then pulls off, panting. <i>“");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Don't you hold out on me for a second, [pc.name]. Just cum, and let me suck it down. If you need to cum twice, or three times, or whatever, just keep nutting in my mouth, okay?");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Don’t you hold out on me for a second, [pc.name]. Just cum, and let me suck it down. If you need to cum twice, or three times, or whatever, just keep nutting in my mouth, okay?");
 	else output("Don’t hold back for a second, [pc.name]. If you need to cum, just do it, okay?");
 	output("”</i> Smiling and licking her lips, the inflamed vixen adds, <i>“");
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Sluts like me ");
@@ -2303,7 +2303,7 @@ public function emmyBJFinale(jizzbomb:Boolean = false):void
 	if(jizzbomb) output(", and grates in the floor open up to allow your libidinous excesses to drain away");
 	output(".");
 	output("\n\nA moment later, Emmy returns - wrapped in a fresh suit. Her face looks to have been washed clean, but she still smells vaguely of your essence. She claps her hands nonchalantly. <i>“");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("So, now that we're both thinking a little more clearly, maybe you want to take a look around the store, and give your amazing girlfriend a nice, fat commission to go with that thick load?”</i>\n\nNot a bad idea...");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("So, now that we’re both thinking a little more clearly, maybe you want to take a look around the store, and give your amazing girlfriend a nice, fat commission to go with that thick load?”</i>\n\nNot a bad idea...");
 	else output("So, now that you’ve got that taken care of, how about we get your hands on a big gun?”</i> Despite her wolfish grin, it’s clear she doesn’t want you to grab hold of her dick - at least not yet.");
 	output("");
 	processTime(4);
@@ -2392,7 +2392,7 @@ public function suckEmmysCockDuring69():void
 
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("\n\nEmmy groans and stirs from beneath you. Her hands gently caress your [pc.butt], and her warm breath glides over your crotch as she pulls closer. <i>“I won’t.”</i> She whimpers a little and adds, <i>“I hope you brought a crowbar, because you’re going to have to pry me off your crotch.”</i>");
 	else output("\n\nEmmy whimpers and stirs from beneath you. Her hands gently caress your [pc.butt], and her warm breath glides over your crotch as she pulls closer. <i>“D-d-don’t stop!”</i>");
-	output(" A shock of moisture brushes your skin - her nose. <i>\"");
+	output(" A shock of moisture brushes your skin - her nose. <i>“");
 	if(pc.cockTotal() + pc.vaginaTotal() >= 3) output("Mmmm, so many choices.");
 	else if(pc.cockTotal() + pc.vaginaTotal() >= 2) output("Mmmm, which one?");
 	else output("Mmmm, o-kay...");
@@ -2540,7 +2540,7 @@ public function emmy69OrgasmTime(args:Array):void
 	if(emmySucks == 2) output("[pc.girlCum]");
 	else output("[pc.cum]");
 	output(" from the edges of her muzzle, but her tongue seems more intent on hanging from her mouth like a dog’s on a hot day. <i>“Wow...”</i> She looks at your face, still stained with the evidence of her orgasm, and visibly shudders, her cock abruptly swelling back to full hardness. Dazed, she mumbles, <i>“");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Wow... that's a good look for you. Be right back!");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Wow... that’s a good look for you. Be right back!");
 	else output("I umm... I’ll be uh... gotta go clean up.");
 	output("”</i> Jizz trickles from the tip of her member as she staggers into a back room.");
 	processTime(15);
@@ -2609,7 +2609,7 @@ public function emmyCockSlobber():void
 	output("\n\nEmmy’s gaze is almost a physical force, full of desire and an almost astounding amount of need half-concealed behind her pride. Her smile sends a thrill of delight down your spine, and you run your palms up her thighs, feeling her heat against your hands, the subtle buck of hips against you. The catch of her form-fitting suit practically releases itself, but you keep it from sliding down too quickly once it reaches crotch level, freeing the soaked slab of girlmeat with deliberate slowness.");
 
 	output("\n\nThe jackaless’s thickness throbs under your fingertips, its veins pulsing and flexing in appreciation. ");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(" Having to remove the Herm Harness spoils a bit of the fun, but then it's gone, and you have her cock right there, in your hands.");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(" Having to remove the Herm Harness spoils a bit of the fun, but then it’s gone, and you have her cock right there, in your hands.");
 	output("Her sable shaft is slick and musky from bathing in its own pre-cum for so long, the latest addition a heady frosting on an already perverse feast. Just a whiff of it leaves you briefly dizzy and aroused.");
 	if(pc.hasCock() && pc.hasVagina())
 	{
@@ -2668,7 +2668,7 @@ public function emmyCockSlobber():void
 	output("\n\nEmmy pulls out of your mouth, wincing when your teeth scrape past her swollen knot. Popping her thick dick out, she leaves a wet trail of her cum behind. Your aching jaw leaves you with your mouth feeling stretched and oddly slack, adding to the dazed look already on your face. She runs her hand gently over your head as a bead of cum rolls off your glazed lips and splashes down on your [pc.chest].");
 
 	output("\n\n<i>“");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Any time you get a craving for cum, I'll be here for you. You don't even have to knock or ask, just pin me down and fish it out.");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Any time you get a craving for cum, I’ll be here for you. You don’t even have to knock or ask, just pin me down and fish it out.");
 	else output("How am I going to live without one of those every half hour?");
 	output("”</i> Emmy purrs in approval, halfheartedly packing her mostly-hard member back away. ");
 
@@ -2715,13 +2715,13 @@ public function eatOutEmmysVagYouPoorPussyAddictedSod():void
 	output("\n\nYou flash a predatory grin and put your hands on her thighs. <i>“I’m damn sure gonna try.”</i> The suit’s seal is surprisingly easy to locate and pop open, revealing a basic, zipper-type fastener. You give it a tug, admiring the way the jackal’s compressed curves slowly spill free of the constricting fabric, revealing lush tawny fur and inky nipples that would be hard enough to cut glass were they not so void-blasted pudgy. Rubbing your way up the inside of her thigh with your other hand, you enjoy the lewd little squeeks she makes as you reveal more and more of her body.");
 	output("\n\nThe zipper accelerates the closer it gets to her waist, pried open by the force of her ramrod-stiff cock thrusting its way out of confinement. Progress briefly hitches at the outlandish curves of her hips, but a sharp tug carries you through to your goal, allowing you to roll the jumpsuit the rest of the way down to her paws and reveal the jackal-woman’s full, naked form. Unsurprisingly, you still can’t see her pussy.");
 	output("\n\nTime to fix that. Her balls are almost too large to hold one-handed; you have to cradle one with your wrist just to keep it from slipping down and giving you a black eye. At last, you’re able to view the inky lips of Emmy’s pussy");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(", spread wide around the Herm Harness's intruding dildo");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(", spread wide around the Herm Harness’s intruding dildo");
 	output(". It shines, even shaded by your arms. She’s dripping wet, so juicy that even the underside of her ballsack is sodden with her fluids, but your attention is firmly rooted on the source of that ambrosial liquid.");
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined)
 	{
 		output("\n\nYou grab hold and try to pull it out, but the damn knot is terribly inflated, stretching her wider and wider the closer you get it to her entrance. Emmy wriggles and moans, dripping slick goo all over your fingertips. You nearly lose your grip, but then, with a lewd pop, the knot slips free.");
 		if(emmy.bellyRating() >= 10) output(" Backed up jackal jizz spurts out the moment the obstruction is freed, sliding out of her in thick waves. Ribbons of the gunk paint your arms before you can toss the dildo to the side.");
-		else output(" Mixed juices slide out of her the moment the obstruction is free: a mix of pre-cum, Emmy's jizz, and lots of vaginal secretions.");
+		else output(" Mixed juices slide out of her the moment the obstruction is free: a mix of pre-cum, Emmy’s jizz, and lots of vaginal secretions.");
 	}
 	output("\n\nLicking your lips, you lean closer, washing your heated exhalations over her sable mons, delighting in the sight of her clitoris engorging, pushing out of her clitoral hood at the very first hint of attention, plumping up until it looks shiny and distended, easily the size of a large gumball. You hold back from it for now, extending your tongue to sample to Emmy’s warm juices. She’s a little tangy and salty, perhaps from being so pent up in her jumpsuit for so long. Her stout prick twitches indignantly, but you answer with a slow press between her lips, snaking your tongue into the jackaless’s clenching box.");
 	output("\n\nEmmy moans like a porn star, full-throated and hungry. Most girls need practice to pitch their voices so lewdly, to give the perfect vocal encouragements for their partner’s arousal. She does it naturally. With every twist");
@@ -3076,7 +3076,7 @@ public function emmyCumtrolMenu():void
 	clearGhostMenu();
 	addGhostButton(4,"Back", showCodex);
 	if(!emmy.hasStatusEffect("Massaging") && !emmy.hasStatusEffect("Slow Fucking")) addGhostButton(0,"Massage",pushEmmyMassage);
-	else addDisabledGhostButton(0,"Massage","Massage","Emmy's already being slowly teased.");
+	else addDisabledGhostButton(0,"Massage","Massage","Emmy’s already being slowly teased.");
 	if(!emmy.hasStatusEffect("Slow Fucking")) addGhostButton(1,"Slow Fuck",emmySlowFuckHermHarness);
 	else addDisabledGhostButton(1,"Slow Fuck","Slow Fuck","She is already being slowly fucked.");
 	addGhostButton(2,"Hard Fuck",emmyHermHarnessHardFuck);
@@ -3426,7 +3426,7 @@ public function getFuckedByEmmyEmmyEms():void
 	output(" Arching your back");
 	if(pc.hasToes()) output(" and curling your toes");
 	if(pc.bellyRating() >= 10) output(" and pressing your [pc.belly] to the floor");
-	output(", your lift [pc.butt] to give the panting jackal an even better angle to violate you from. Instinct is driving you now, and it will accept nothing less than thorough insemination");
+	output(", you lift your [pc.butt] to give the panting jackal an even better angle to violate you from. Instinct is driving you now, and it will accept nothing less than thorough insemination");
 	if(pc.isPregnant()) output(", regardless of how pregnant you may be");
 	output(".");
 
@@ -3486,7 +3486,7 @@ public function emmysPantiesGet():void
 	output("\n\n\t\tI can’t seem to stop thinking of you, especially since you’ve got your finger on the buttons to my new favorite toy, and I thought you could use something to remind you of me while you’re out in space. It sure must be lonely! So I got you one of my favorite pair of panties. Silly things, they seem so POINTLESS now. I mean who needs panties anyway? They just get in the way or get sticky or bunched up. But then I remembered all the dirty things we did together, and I thought, ‘what else would my beau want from [pc.hisHer] personal slut?’");
 	output("\n\n\t\tYou can do whatever you want with ‘em. Frame them and hang them on the wall or whatever your naughty little mind can think of. I’m sure you have some ideas.");
 	output("\n\n\t\t:3 Emmy</i>");
-	output("\n\n<b>You’ve acquired Emmy's panties!</b>");
+	output("\n\n<b>You’ve acquired Emmy’s panties!</b>");
 	pc.createKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.");
 	processTime(10);
 	pc.lust(5);
@@ -3891,7 +3891,7 @@ public function emmyHyperButtfuckCumLiteEnd():void
 public function emmyHardlightProstateFillToolTip():String
 {
 	var eBuffer:String = "Push Emmy upside-down, take hold of your hardlight sextoy, and use it to stimulate her prostate until she cums on her face. ";
-	if(pc.isTaur() && !pc.hasCock()) eBuffer += "She won't be able to reach your backside to reciprocate, though.";
+	if(pc.isTaur() && !pc.hasCock()) eBuffer += "She won’t be able to reach your backside to reciprocate, though.";
 	else eBuffer += "She might even be able to reach you with that long tongue of hers....";
 	return eBuffer;
 }
@@ -3931,7 +3931,7 @@ public function emmyHardLightProstateFillerUp():void
 		output("\n\n<i>“Stop.”</i>");
 		output("\n\nEmmy looks up from her zipper, hand hovering over her cock-tip.");
 		output("\n\n<i>“Turn around and get on your hands and knees before you finish,”</i> you ");
-		if(pc.isNice() || pc.isBimbo())  output("request.");
+		if(pc.isNice() || pc.isBimbo()) output("request.");
 		else output("demand.");
 
 		output("\n\nEmmy lowers her eyes - you’d swear she was blushing under her fur - and shyly drops herself to the ground. She turns about and stops with her big, round ass pointed at you. Wiggling it a bit, she pushes toward you, close enough that you can see her juicy balls in sharp relief, below the damp shadow of her pussy.");
@@ -3986,7 +3986,7 @@ public function emmyHardLightProstateFillerUp():void
 
 		output("\n\nEmmy swallows hard, and begins to open her suit while you slide off your underwear. Her zip slides down, exposing her cleavage and stomach; her stored-up scent spills into the air like the musk of a breeding animal. She’s clearly been waiting for you. Before she’s cleared the navel her excited cock is already visible through the deepening gap, pulsing with veins, erect and waiting for love, so eager to put itself out there that she has to steady it with her free hand to keep it off the zipper.");
 		output("\n\nShe finishes exposing her stomach, but now wants for hands to help hold her leg up while she passes the zip over her sensitive sack. ");
-		if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("No longer hidden by her clothing, you can make out the lewd form of Emmy's favorite sex-toy: the Herm Harness. You yank it out of the way, freeing her penis to flop forward,");
+		if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("No longer hidden by her clothing, you can make out the lewd form of Emmy’s favorite sex-toy: the Herm Harness. You yank it out of the way, freeing her penis to flop forward,");
 		else output("No longer restrained by her busy-elsewhere fingers, her penis flops forward,");
 		output(" presenting in all its swollen, veiny glory and dribbling with Emmy’s anticipation. Her dark balls spill from her wrapper like melted chocolate, sticky and heavy. Once she’s exposed her asshole, she awkwardly gets down on the floor and pushes herself into the air - which allows her heavy breasts to escape her top and bounce against her neck. You steady her by catching a leg, and she relaxes.");
 		output("\n\nAt least, until you push the dildo right under her cock to catch a drop of lube. Her expression betrays insanity as you turn the toy beneath her tap, tickling her slit and drawing rings of pre around it that grow thicker as she gets more excited. When you’ve teased her so much that you think she might undertake to suck herself off any minute now, you raise the dildo and press it to her ring.");

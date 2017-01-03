@@ -3354,7 +3354,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesII():void
 
 	output("Anno did a fine job getting her ready! Marina’s ass opens for you, already nice and wet from Anno’s oral attentions. Slow and steady, you sink yourself in inch by inch, loving the way she squeezes and kneads your meat. Rather than fighting, it feels like her asshole’s trying to draw you in, desperate for more. That toy in her twat must be driving her wild, the way she’s panting and gasping and shaking her hips for you already.");
 	
-	output("\n\nYour crotch butts up against the flat head of the toy on the in-thrust, and the moment you do, a shockwave of pleasure hits you like a truck. Before you can blink, you cum, jerking your hips forward and pumping a load of [pc.cum] into the ausar’s waiting rectum. Marina yelps when she feels your seed painting her walls [pc.cumColor], and you’re sure you’ve set off another orgasm in the cock-stuffed slut. Femcum drools down her thighs, squirting around the thick shaft, and her ass clenches around your [pc.cock] until you’ve got no choice but to keep still, just rocking your hips against her plush behind.");
+	output("\n\nYour crotch butts up against the flat head of the toy on the in-thrust, and the moment you do, a shockwave of pleasure hits you like a truck. Before you can blink, you cum, jerking your hips forward and pumping a load of [pc.cum] into the ausar’s waiting rectum. Marina yelps when she feels your seed painting her walls [pc.cumColor], and you’re sure you’ve set off another orgasm in the cock-stuffed slut. Femcum drools down her thighs, squirting around the thick shaft, and her ass clenches around your [pc.cockOrStrapon] until you’ve got no choice but to keep still, just rocking your hips against her plush behind.");
 	
 	output("\n\nThe waves of shuddering pleasure radiating from the toy’s merest touch don’t let up. You almost end up doubling over on Marina’s back, squirting more cum than you’d thought possible from a single load. It takes a concentrated force of will to pull back, pulling out of her behind with a wet <i>pop!</i> You stagger back, almost falling over from a sudden crushing fatigue. Blinking, you catch yourself on something fluffy and soft, and get a yelp of pleasure in response. A look shows you that Anno’s behind you, wet and randy and flushed a dark pink. Galina’s propped up on her shoulders, a musky smear of fem-cum splattered on her cheeks - guess Anno’s been going for a ride while you were distracted.");
 	
@@ -3382,7 +3382,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesII():void
 	
 	output("\n\nYou give her a questioning look, and Gal flashes you a grin. She crawls up onto the desk, straddling Anno’s crotch, and twists the dildo out enough that she’s able to rub the base between her own puffy pussy-lips. She shivers and grabs her tits in both hands, biting her lip to stifle a lustful moan. Still, her hips start moving, grinding on the rounded shaft - which has the added side effect of making it wiggle around inside Anno.");
 	
-	output("\n\nWatching to two ausar share the green cock-rock - all the while squishing a third cum-slathered slut underneath them - finishes what the stone’s touch started. Your [pc.cock] throbs with resumed desire, and with the girls all stacked on top of each other and sharing that dildo between them, you’re going to have to find somewhere better to slake your lusts.");
+	output("\n\nWatching to two ausar share the green cock-rock - all the while squishing a third cum-slathered slut underneath them - finishes what the stone’s touch started. Your [pc.cockOrStrapon] " + (pc.hasCock() ? "throbs" : "hums") + " with resumed desire, and with the girls all stacked on top of each other and sharing that dildo between them, you’re going to have to find somewhere better to slake your lusts.");
 	
 	output("\n\nAnd you know just where to go...");
 
@@ -3426,7 +3426,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII():void
 	output(" and let");
 	if (pc.cocks.length > 1) output(" them");
 	else output(" her");
-	output(" take care of the rest. Squeezing wetness around every inch of cockflesh is enough to send you roaring into climax.");
+	output(" take care of the rest. Squeezing wetness around every inch of " + (pc.hasCock() ? "cockflesh" : "hardlight") + " is enough to send you roaring into climax.");
 	if (pc.hasCock())
 	{
 		output(" Your [pc.multiCocks] throb");
@@ -3468,7 +3468,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIV():void
 	output("\n\nWith a final gasp, you flop back into your chair, shuddering from head to");
 	if (pc.hasToes()) output(" toe");
 	else output(" the tip of your tail");
-	output(". The huskar twins are resting heavily against you, one on either thigh, with their tongues lolled out and breasts swaying hypnotically. Anno’s still going to town on Marina from behind, thrusting the alien dildo into the twin you’re not busy filling with cream. When she’s done, the dildo finally slides out of Mari’s abused pussy, dropping to the floor in a wash of your cum, her excitement, and an awful lot of lube.");
+	output(". The huskar twins are resting heavily against you, one on either thigh, with their tongues lolled out and breasts swaying hypnotically. Anno’s still going to town on Marina from behind, thrusting the alien dildo into the twin you’re not busy filling with " + (pc.hasCock() ? "cream" : "your strap-on") + ". When she’s done, the dildo finally slides out of Mari’s abused pussy, dropping to the floor in a wash of your cum, her excitement, and an awful lot of lube.");
 	
 	output("\n\n<i>“Oh, wow,”</i> Galina purrs, flicking her tongue across the gaping hole where the dildo was.");
 	//output(" Compared to that sensation, her lick is nothing but a dull pressure, barely worth noting.");
@@ -3482,7 +3482,7 @@ public function annoUvetoHuskarFoursomePoundPuppiesIV():void
 	
 	output("\n\nWith a great deal of effort, you manage to lift your hands up and plop them back on the sisters’ heads, giving them scratches between the ears and earning happy little moans in return. The three of you are much too exhausted from the endeavour to do much more than enjoy each others’ company - and the occasional grope and tender caress.");
 	
-	output("\n\nFinally, after a few minutes’ quiet recovery, you figure you need to go. Preferably before one of the huskars catches a sexual second wind. You don’t have a single drop of cum left for them to suck out at this point!");
+	output("\n\nFinally, after a few minutes’ quiet recovery, you figure you need to go. Preferably before one of the huskars catches a sexual second wind. You don’t have " + (pc.hasCock() ? "a single drop of cum left for them to suck" : "enough energy for them to ride") + " out at this point!");
 	
 	output("\n\n<i>“Yeah, I think I could use a nap,”</i> Anno says, unsteadily rising to her feet. <i>“You girls be good and put that big meaty... artifact... somewhere we can get at it again, mkay?”</i>");
 	

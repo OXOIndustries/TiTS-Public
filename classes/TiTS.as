@@ -169,6 +169,7 @@
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
 		include "../includes/tavros/reaha.cured_expansion.as";
+		include "../includes/tavros/riya.as";
 		include "../includes/tavros/rooms.as";
 		include "../includes/tavros/roomFunctions.as";
 		include "../includes/tavros/saendraXPack1.as";
@@ -445,7 +446,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.07";
+			version = "0.7.08";
 
 			//temporary nonsense variables.
 			temp = 0;

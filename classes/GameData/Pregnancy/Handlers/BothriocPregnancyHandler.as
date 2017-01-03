@@ -112,6 +112,8 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
+			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
+			
 			StatTracking.track("pregnancy/infertile bothrioc eggs", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			

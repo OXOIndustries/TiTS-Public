@@ -16,6 +16,7 @@
 			originalRace = "kui-tan";
 			
 			femininity = 85;
+			tallness = 67; //Kiro: 66
 			createCock();
 			cocks[0].cType = GLOBAL.TYPE_INHUMAN;
 			cocks[0].cLengthRaw = 13;

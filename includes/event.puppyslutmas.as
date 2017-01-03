@@ -1249,7 +1249,7 @@ public function puppyslutmasDornasArrive():void
 	output("\n\n<i>“Steele,”</i> you add, shaking her hand, then Mr. Dorna’s. <i>“[pc.name] Steele.”</i>");
 	
 	output("\n\nMrs. Dorna cocks an eye at that. <i>“Steele, is it?”</i> she muses, looking between you and Anno. <i>“How interesting.");
-	if (annoIsCrew()) output(" Didn’t you work for Steele Tech until just recently, darling?");
+	if (flags["ANNO_MISSION_OFFER"] != undefined && flags["ANNO_MISSION_OFFER"] != 3) output(" Didn’t you work for Steele Tech until just recently, darling?");
 	else output(" Don’t you work for Steele Tech, darling?");
 	output("”</i>");
 	
