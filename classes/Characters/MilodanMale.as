@@ -10,6 +10,7 @@
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
+	import classes.Items.Transformatives.OmegaOil;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
 	import classes.Util.RandomInCollection;
@@ -223,7 +224,7 @@
 				changeWeapon("claw");
 			}
 			//Placeholder for loot setup
-			//if(rand(8) <= 6) inventory.push(new Ruskvel());
+			if(rand(10) <= 3) inventory.push(new OmegaOil());
 		}
 		private function changeWeapon(weaponName:String = "claw"):void 
 		{

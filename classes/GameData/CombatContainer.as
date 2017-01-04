@@ -406,7 +406,7 @@ package classes.GameData
 				pc.shields(Math.round(pc.shieldsMax()/4));
 				pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 			}
-			
+
 			if (target.hasStatusEffect("Riposting")) target.removeStatusEffect("Riposting");
 			if (target.hasStatusEffect("Bloodthirsted")) target.removeStatusEffect("Bloodthirsted");
 	
@@ -535,7 +535,7 @@ package classes.GameData
 				}
 				applyDamage(damageRand(new TypeCollection( { kinetic: target.statusEffectv1("Bleeding") * target.statusEffectv3("Bleeding") } ), 15), null, target);
 			}
-	
+		
 			if (target.hasStatusEffect("Staggered"))
 			{
 				if (target.statusEffectv1("Staggered"))
@@ -1162,6 +1162,19 @@ package classes.GameData
 				return;
 			}
 			
+			//Combat Notes :
+			//PC has status Strangely Warm or Blood Fevered :
+			if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
+			{
+				if(pc.lust() < pc.lustMax())
+				{
+					output("\n\nOh, something smells <i>divine</i>... like pure sex in vapor form. It makes your [pc.asshole] clench, hungry for cock. <b>Looks like you’re not gonna be able to ");
+					if(pc.canFly()) output("fly");
+					else output("weasel");
+					output(" your way out of this encounter!</b>");
+				}
+			}
+
 			// attack
 			if (hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso"))
 			{
@@ -1359,6 +1372,14 @@ package classes.GameData
 			}
 			else if (isFleeDisabled()) {
 				output("<b>You cannot escape from this fight!</b>");
+				processCombat();
+			}
+			else if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
+			{
+				output("<b>");
+				if(pc.hasStatusEffect("Flushed")) output("The warmth in your lower body");
+				else output("The Fuck Fever");
+				output(" won’t let you get away from a potential dicking !</b>");
 				processCombat();
 			}
 			else if (kGAMECLASS.debug)
@@ -4504,7 +4525,16 @@ package classes.GameData
 			}
 			return false;
 		}
-		
+
+		public function hasDickedEnemy():Boolean
+		{
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				if (_hostiles[i].hasCock()) return true;
+			}
+			return false;
+		}
+
 		public function hasFriendlyOfClass(classT:Class):Boolean
 		{
 			for (var i:int = 0; i < _friendlies.length; i++)
