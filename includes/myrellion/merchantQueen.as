@@ -73,11 +73,11 @@ public function merchantQueenMenu():void
 	addButton(1,"Talk",talkToAntQueenButt);
 	if(flags["MERCHANT_QUEEN_SEX_UNLOCKED"]!= undefined)
 	{
-		if(pc.lust() >= 33 && (pc.hasCock() || pc.hasVagina())) addButton(2,"Flirt",flirtSexWithAnAntQueenMerchantButt,undefined,"Flirt","If she's spending that much time fucking, maybe you can get in on the fun...");
-		else if(pc.lust() >= 33) addDisabledButton(2,"Flirt","Flirt","You don't have any parts that the queen could interact with.");
+		if(pc.lust() >= 33 && (pc.hasCock() || pc.hasVagina())) addButton(2,"Flirt",flirtSexWithAnAntQueenMerchantButt,undefined,"Flirt","If she’s spending that much time fucking, maybe you can get in on the fun...");
+		else if(pc.lust() >= 33) addDisabledButton(2,"Flirt","Flirt","You don’t have any parts that the queen could interact with.");
 		else addDisabledButton(2,"Flirt","Flirt","Your libido is far too sated for you to be interested in flirting at the moment.");
 	}
-	else addDisabledButton(2,"Flirt","Flirt","You don't know her well enough for that!");
+	else addDisabledButton(2,"Flirt","Flirt","You don’t know her well enough for that!");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -251,7 +251,7 @@ public function soWhatsTheDealWithAllTheseCommies():void
 	output("\n\n<i>“Food is probably a more pressing thing than trigger-happy guards, though. The Reds have to ship it through a war-torn hellhole to get here, so delays are pretty frequent. Rationing spurs up unrest much more than some strict rules backed by bullets... it’s all about food. Now, of course, </i>I<i> have people in my pocket. I’m practically exempt! That fact has allowed me to keep running things despite the occupation - that and you off-worlders, of course. The military cabinet is rather terrified of you. Like I said, though, the difference between a myr with and without a pistol is just a few meters, so it’s not worth the effort to police.”</i>");
 	output("\n\nHm. Aren’t the queens pretty important, though? No one keeping an eye on her is pretty weird.");
 	output("\n\n<i>“We are! Glad you noticed. We’re so important that if the army so much as touched us inappropriately the entire city would be up in arms in bloody rebellion. If much of anyone, let alone a soldier, started to give me trouble... even myr that aren’t my children would go into a frenzy about it... they’re all rather protective.”</i> She chuckles darkly. <i>“If anything, the Reds are stuck holding massive hand-fans and waiting on our every need. Not that I abuse such a thing, of </i>course<i>! It’s far too much of a bother.”</i>");
-	output("\n\n<i>“Although. They </i>do<i> steal away the drones. No one cares as much about them; it’s not like they’re getting mistreated. Just breed. It is pretty amusing to see an oh-so-holier-than-thou Red book it with some flailing sap over her shoulder while being chased by some half naked Gold, though.”</i>");
+	output("\n\n<i>“Although. They </i>do<i> steal away the drones. No one cares as much about them; it’s not like they’re getting mistreated. Just bred. It is pretty amusing to see an oh-so-holier-than-thou Red book it with some flailing sap over her shoulder while being chased by some half naked Gold, though.”</i>");
 	output("\n\nRude.");
 	output("\n\n<i>“Quite.”</i>");
 	processTime(6);

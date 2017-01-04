@@ -1189,7 +1189,7 @@ public function puppyslutmasDornasArrive():void
 	
 	output("\n\n<i>“Um, your attention please,”</i> he says, tapping the mic again. His voice fills through the room with surprising evenness, from speakers that must completely encircle the dance floor. The chatter of the collected ausar dies down, replaced with respectful silence. <i>“Ah, thank you. Our hosts will be arriving any moment now. Please, give a round of applause for the people who put this evening’s festivities together. The heads of the Dorna Foundation, ladies and gentlemen, Rylon and Aserra Dorna!”</i>");
 	
-	output("\n\nThe chorus of quiet golf claps echo through the room and a stage light flickers on, beaming down on the podium as the old man slips off, and the curtains behind him open up. A pair of well dressed, middle aged ausar step out onto the stage, waving and smiling to the crowd. The lights focus in on them, giving you your first clear glimpse of the Dorna twins’ parents. Rylon, their father, is a tall and fairly fit man with short, snow-white hair and dark blue eyes just like Anno’s, dressed to the nines in a tailored black suit and a christmas tie. Aserra, his wife, has a head of long, blue-gray hair pulled back into a tight ponytail. She’s wearing a tight, red cocktail dress fringed with white fluff, like a provocative fem-Santa. With all that pale, supple flesh on display, she’s easily the most evocatively-dressed woman in the room");
+	output("\n\nThe chorus of quiet golf claps echo through the room and a stage light flickers on, beaming down on the podium as the old man slips off, and the curtains behind him open up. A pair of well dressed, middle aged ausar step out onto the stage, waving and smiling to the crowd. The lights focus in on them, giving you your first clear glimpse of the Dorna twins’ parents. Rylon, their father, is a tall and fairly fit man with short, snow-white hair and dark blue eyes just like Anno’s, dressed to the nines in a tailored black suit and a christmas tie. Aserra, his wife, has a head of long, blue-gray hair pulled back into a tight ponytail. She’s wearing a tight, red cocktail dress fringed with white fluff, like a provocative fem-Santa. With all that pale, supple flesh on display, she’s easily the most evocatively-dressed " + (pc.mf("m", "f") == "m" ? "person" : "woman") + " in the room");
 	if (pc.isNude() || pc.sexiness() > 4) output("... aside from you, of course");
 	output(".");
 	
@@ -1249,7 +1249,7 @@ public function puppyslutmasDornasArrive():void
 	output("\n\n<i>“Steele,”</i> you add, shaking her hand, then Mr. Dorna’s. <i>“[pc.name] Steele.”</i>");
 	
 	output("\n\nMrs. Dorna cocks an eye at that. <i>“Steele, is it?”</i> she muses, looking between you and Anno. <i>“How interesting.");
-	if (annoIsCrew()) output(" Didn’t you work for Steele Tech until just recently, darling?");
+	if (flags["ANNO_MISSION_OFFER"] != undefined && flags["ANNO_MISSION_OFFER"] != 3) output(" Didn’t you work for Steele Tech until just recently, darling?");
 	else output(" Don’t you work for Steele Tech, darling?");
 	output("”</i>");
 	

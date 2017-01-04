@@ -125,23 +125,40 @@ public function buyFromCeria():void
 	{
 		if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 		{
-			if(!chars["CERIA"].hasItem(new Hornitol())) chars["CERIA"].inventory.push(new Hornitol());
 			chars["CERIA"].keeperBuy += " Off to the side, there is a clear jar that contains a number of white gumball-like pills.";
+			if(!chars["CERIA"].hasItem(new Hornitol())) chars["CERIA"].inventory.push(new Hornitol());
 		}
 		else chars["CERIA"].destroyItem(new Hornitol());
 		
-		if(flags["PLANET_3_UNLOCKED"] != undefined)
+		if(flags["PLANET_3_UNLOCKED"] != undefined || CodexManager.entryViewed("Rubber-Made"))
 		{
-			if(!chars["CERIA"].hasItem(new DoveBalm())) chars["CERIA"].inventory.push(new DoveBalm());
-			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin balms.";
+			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin";
+			if(flags["PLANET_3_UNLOCKED"] != undefined)
+			{
+				if(!chars["CERIA"].hasItem(new DoveBalm())) chars["CERIA"].inventory.push(new DoveBalm());
+				chars["CERIA"].keeperBuy += " balms";
+			}
+			else chars["CERIA"].destroyItem(new DoveBalm());
+			if(flags["PLANET_3_UNLOCKED"] != undefined && CodexManager.entryViewed("Rubber-Made")) chars["CERIA"].keeperBuy += " and";
+			if(CodexManager.entryViewed("Rubber-Made"))
+			{
+				if(!chars["CERIA"].hasItem(new SkinClear())) chars["CERIA"].inventory.push(new SkinClear());
+				chars["CERIA"].keeperBuy += " lotions";
+			}
+			else chars["CERIA"].destroyItem(new SkinClear());
+			chars["CERIA"].keeperBuy += ".";
 		}
-		else chars["CERIA"].destroyItem(new DoveBalm());
+		else
+		{
+			chars["CERIA"].destroyItem(new DoveBalm());
+			chars["CERIA"].destroyItem(new SkinClear());
+		}
 		
 		// 9999 - Temporary placement until Aislinn is implemented!
 		if(9999 == 9999)
 		{
-			if(!chars["CERIA"].hasItem(new LipTease())) chars["CERIA"].inventory.push(new LipTease());
 			chars["CERIA"].keeperBuy += " Next to a small holo-mirror is a display holding an array of lip balms.";
+			if(!chars["CERIA"].hasItem(new LipTease())) chars["CERIA"].inventory.push(new LipTease());
 		}
 		else chars["CERIA"].destroyItem(new LipTease());
 	}
@@ -1054,7 +1071,7 @@ public function getOralFromCeria():void
 		output(". <i>“... This one.”</i>");
 	}
 	
-	var x:int = 0;
+	var x:int = -1;
 	if(dick) 
 	{
 		x = pc.cockThatFits(400);
@@ -1082,7 +1099,7 @@ public function getOralFromCeria():void
 	else
 	{
 		output("\n\nCeria starts off by licking two of her own fingers, showing off her glittering fairy gloves in the process. <i>“Mmm... totally worth not having nails, these are way better.”</i> Once the metallic blue is glistening with a thin layer of saliva, she slips her fingers into your pussy, gently working them around to help loosen you up a bit and give her a feel for your snatch’s shape. She also takes a moment to rub ");
-		x = rand(pc.vaginas.length - 1);
+		x = rand(pc.vaginas.length);
 		if(pc.vaginas[x].clits < 1) output("your labia");
 		else if(pc.vaginas[x].clits == 1) output("your clit");
 		else output("each of your clits, with a level of familiarity that suggests she’s no stranger to alien pussy");
@@ -1383,8 +1400,11 @@ public function earFuckCeriaPart2():void
 {
 	clearOutput();
 	showCeria(true);
+	
+	var x:int = rand(pc.vaginas.length);
+	
 	output("Ceria is like dough in your hands, heavy and pliant. If you weren’t holding her up, she’d probably slump down into her own puddled juices. Holding her forehead, you guide the tip of her ear up to the lips of your [pc.vagina " + x + "], rubbing it gently against your lips. It’s cooler than you expected, nowhere as hot and urgent as a penis might be, but the contact with your sordidly-soaked snatch soon has it warming. You ease it in and moan in delight, matched by Ceria’s answering cry.");
-	output("\n\n<i>“Ahh!”</i> The elf’s hips buck, and you have to hold her tight to keep her from slipping away. In the process, her slender ear dips further into your [pc.vagina " + x + "], it’s narrow tip seemingly designed to perfectly spread your canal. Now that the process has started, you see no point in slowing and push her ear in further, sliding inch after inch of quivering elven bliss into your deepest depths. You had no idea that she could make it quiver so pleasurably! Ceria’s ear twitches with every thrust, rubbing on your most sensitive places, making you wet enough to mat her hair to the side of her head as you slide home.");
+	output("\n\n<i>“Ahh!”</i> The elf’s hips buck, and you have to hold her tight to keep her from slipping away. In the process, her slender ear dips further into your [pc.vaginaNoun " + x + "], it’s narrow tip seemingly designed to perfectly spread your canal. Now that the process has started, you see no point in slowing and push her ear in further, sliding inch after inch of quivering elven bliss into your deepest depths. You had no idea that she could make it quiver so pleasurably! Ceria’s ear twitches with every thrust, rubbing on your most sensitive places, making you wet enough to mat her hair to the side of her head as you slide home.");
 	if(pc.clitLength >= 4)
 	{
 		output("\n\nYour oversized clit");
@@ -1398,7 +1418,7 @@ public function earFuckCeriaPart2():void
 		output(" against Ceria’s silken locks, pressed between your body and hers. The human clitoris was never designed to be so big or so phallic, and you have to yank the elf back immediately lest you be overwhelmed by sensation. There’s so much that you could get off in a moment if you stayed there, impaled on her ear and grinding against her head, yet you know all too well that rushing to the peak so early would be ultimately unsatisfying.");
 	}
 	output("\n\nThe trembling stylist appears to be handling herself a little better now that you’re confining your attentions to a single point of contact. Her eyes are half open, and she’s moaning words again, things like <i>“yes,”</i> <i>“fuck,”</i> and <i>“faster!”</i> Looking down at her, you smile when you see her hands on her breasts. She’s handling herself roughly, making the pliant titflesh wobble and bounce, her rigid nipples slightly crinkled as fingers slide around their areolae.");
-	output("\n\nAny attempt at conversation is abandoned, replaced by the heavy bump and grind of one sweaty body against another. Your [pc.vagina " + x + "] squelches lewdly with each back-and-forth movement, splattering more [pc.girlCumNoun] into Ceria’s hair with each passing second. The scent of your pussy fills the air, tinted with the strawberry flavor of the elf’s fruity ejaculations. You moan with her, tangling your fingers in her sodden locks, curling them around your knuckles as you slap her cheek with your cunt.");
+	output("\n\nAny attempt at conversation is abandoned, replaced by the heavy bump and grind of one sweaty body against another. Your [pc.vaginaNoun " + x + "] squelches lewdly with each back-and-forth movement, splattering more [pc.girlCumNoun] into Ceria’s hair with each passing second. The scent of your pussy fills the air, tinted with the strawberry flavor of the elf’s fruity ejaculations. You moan with her, tangling your fingers in her sodden locks, curling them around your knuckles as you slap her cheek with your cunt.");
 	output("\n\nHot, liquid twinges roll through your belly and into your [pc.vaginas], making your passage");
 	if(pc.totalVaginas() > 1) output("s");
 	output(" clench and squeeze. Your [pc.legOrLegs] tremble");

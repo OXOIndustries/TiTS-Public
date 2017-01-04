@@ -916,4 +916,127 @@ public function initNewTexasRooms():void
 	rooms["574"].addFlag(GLOBAL.INDOOR);
 	rooms["574"].addFlag(GLOBAL.PUBLIC);
 	rooms["574"].addFlag(GLOBAL.POOL);
+	
+	
+	// Temp Room: Bunkhouse
+	rooms["NT BUNKHOUSE"] = new RoomClass(this);
+	rooms["NT BUNKHOUSE"].roomName = "STUD\nBUNKHOUSE";
+	rooms["NT BUNKHOUSE"].description = "";
+	rooms["NT BUNKHOUSE"].runOnEnter = undefined;
+	rooms["NT BUNKHOUSE"].eastExit = "513";
+	rooms["NT BUNKHOUSE"].moveMinutes = 1;
+	rooms["NT BUNKHOUSE"].planet = "PLANET: NEW TEXAS";
+	rooms["NT BUNKHOUSE"].system = "SYSTEM: NYE";
+	rooms["NT BUNKHOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["NT BUNKHOUSE"].addFlag(GLOBAL.PUBLIC);
+	// Temp Room: Outside Barn
+	rooms["NT OUTSIDE BARN"] = new RoomClass(this);
+	rooms["NT OUTSIDE BARN"].roomName = "OUTDOOR\nTRAIL";
+	rooms["NT OUTSIDE BARN"].description = "";
+	rooms["NT OUTSIDE BARN"].runOnEnter = undefined;
+	rooms["NT OUTSIDE BARN"].westExit = "510";
+	rooms["NT OUTSIDE BARN"].eastExit = "NT BOTTLE TRAIL";
+	rooms["NT OUTSIDE BARN"].southExit = "NT SHOWER HOUSE";
+	rooms["NT OUTSIDE BARN"].moveMinutes = 1;
+	rooms["NT OUTSIDE BARN"].planet = "PLANET: NEW TEXAS";
+	rooms["NT OUTSIDE BARN"].system = "SYSTEM: NYE";
+	rooms["NT OUTSIDE BARN"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NT OUTSIDE BARN"].addFlag(GLOBAL.PUBLIC);
+	// Temp Room: Showers
+	rooms["NT SHOWER HOUSE"] = new RoomClass(this);
+	rooms["NT SHOWER HOUSE"].roomName = "SHOWER\nBLOCK";
+	rooms["NT SHOWER HOUSE"].description = "";
+	rooms["NT SHOWER HOUSE"].runOnEnter = undefined;
+	rooms["NT SHOWER HOUSE"].northExit = "NT OUTSIDE BARN";
+	rooms["NT SHOWER HOUSE"].moveMinutes = 1;
+	rooms["NT SHOWER HOUSE"].planet = "PLANET: NEW TEXAS";
+	rooms["NT SHOWER HOUSE"].system = "SYSTEM: NYE";
+	rooms["NT SHOWER HOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["NT SHOWER HOUSE"].addFlag(GLOBAL.PUBLIC);
+	// Temp Room: Trail
+	rooms["NT BOTTLE TRAIL"] = new RoomClass(this);
+	rooms["NT BOTTLE TRAIL"].roomName = "OUTDOOR\nTRAIL";
+	rooms["NT BOTTLE TRAIL"].description = "";
+	rooms["NT BOTTLE TRAIL"].runOnEnter = undefined;
+	rooms["NT BOTTLE TRAIL"].westExit = "NT OUTSIDE BARN";
+	rooms["NT BOTTLE TRAIL"].eastExit = "NT BOTTLE PLANT";
+	rooms["NT BOTTLE TRAIL"].moveMinutes = 1;
+	rooms["NT BOTTLE TRAIL"].planet = "PLANET: NEW TEXAS";
+	rooms["NT BOTTLE TRAIL"].system = "SYSTEM: NYE";
+	rooms["NT BOTTLE TRAIL"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NT BOTTLE TRAIL"].addFlag(GLOBAL.PUBLIC);
+	// Temp Room: Bottle Plant
+	rooms["NT BOTTLE PLANT"] = new RoomClass(this);
+	rooms["NT BOTTLE PLANT"].roomName = "BOTTLING\nFACTORY";
+	rooms["NT BOTTLE PLANT"].description = "";
+	rooms["NT BOTTLE PLANT"].runOnEnter = undefined;
+	rooms["NT BOTTLE PLANT"].westExit = "NT BOTTLE TRAIL";
+	rooms["NT BOTTLE PLANT"].moveMinutes = 1;
+	rooms["NT BOTTLE PLANT"].planet = "PLANET: NEW TEXAS";
+	rooms["NT BOTTLE PLANT"].system = "SYSTEM: NYE";
+	rooms["NT BOTTLE PLANT"].addFlag(GLOBAL.INDOOR);
+	rooms["NT BOTTLE PLANT"].addFlag(GLOBAL.PUBLIC);
+	// Temp Room: Bottle Plant North
+	rooms["NT BOTTLE PLANT NORTH"] = new RoomClass(this);
+	rooms["NT BOTTLE PLANT NORTH"].roomName = "BOTTLING\nFACTORY";
+	rooms["NT BOTTLE PLANT NORTH"].description = "";
+	rooms["NT BOTTLE PLANT NORTH"].runOnEnter = undefined;
+	rooms["NT BOTTLE PLANT NORTH"].eastExit = "NT BOTTLE PLANT NE";
+	rooms["NT BOTTLE PLANT NORTH"].southExit = "NT BOTTLE PLANT";
+	rooms["NT BOTTLE PLANT NORTH"].moveMinutes = 1;
+	rooms["NT BOTTLE PLANT NORTH"].planet = "PLANET: NEW TEXAS";
+	rooms["NT BOTTLE PLANT NORTH"].system = "SYSTEM: NYE";
+	rooms["NT BOTTLE PLANT NORTH"].addFlag(GLOBAL.INDOOR);
+	rooms["NT BOTTLE PLANT NORTH"].addFlag(GLOBAL.PUBLIC);
+	// Temp Room: Bottle Plant Northeast
+	rooms["NT BOTTLE PLANT NE"] = new RoomClass(this);
+	rooms["NT BOTTLE PLANT NE"].roomName = "PRIVATE\nROOM";
+	rooms["NT BOTTLE PLANT NE"].description = "";
+	rooms["NT BOTTLE PLANT NE"].runOnEnter = undefined;
+	rooms["NT BOTTLE PLANT NE"].westExit = "NT BOTTLE PLANT NORTH";
+	rooms["NT BOTTLE PLANT NE"].southExit = "NT BOTTLE PLANT EAST";
+	rooms["NT BOTTLE PLANT NE"].moveMinutes = 1;
+	rooms["NT BOTTLE PLANT NE"].planet = "PLANET: NEW TEXAS";
+	rooms["NT BOTTLE PLANT NE"].system = "SYSTEM: NYE";
+	rooms["NT BOTTLE PLANT NE"].addFlag(GLOBAL.INDOOR);
+	rooms["NT BOTTLE PLANT NE"].addFlag(GLOBAL.PUBLIC);
+	rooms["NT BOTTLE PLANT NE"].addFlag(GLOBAL.OBJECTIVE);
+	// Temp Room: Bottle Plant East
+	rooms["NT BOTTLE PLANT EAST"] = new RoomClass(this);
+	rooms["NT BOTTLE PLANT EAST"].roomName = "BOTTLING\nFACTORY";
+	rooms["NT BOTTLE PLANT EAST"].description = "";
+	rooms["NT BOTTLE PLANT EAST"].runOnEnter = undefined;
+	rooms["NT BOTTLE PLANT EAST"].northExit = "NT BOTTLE PLANT NE";
+	rooms["NT BOTTLE PLANT EAST"].southExit = "NT BOTTLE PLANT SE";
+	rooms["NT BOTTLE PLANT EAST"].westExit = "NT BOTTLE PLANT";
+	rooms["NT BOTTLE PLANT EAST"].moveMinutes = 1;
+	rooms["NT BOTTLE PLANT EAST"].planet = "PLANET: NEW TEXAS";
+	rooms["NT BOTTLE PLANT EAST"].system = "SYSTEM: NYE";
+	rooms["NT BOTTLE PLANT EAST"].addFlag(GLOBAL.INDOOR);
+	rooms["NT BOTTLE PLANT EAST"].addFlag(GLOBAL.PUBLIC);
+	// Temp Room: Bottle Plant Southeast
+	rooms["NT BOTTLE PLANT SE"] = new RoomClass(this);
+	rooms["NT BOTTLE PLANT SE"].roomName = "BOTTLING\nFACTORY";
+	rooms["NT BOTTLE PLANT SE"].description = "";
+	rooms["NT BOTTLE PLANT SE"].runOnEnter = undefined;
+	rooms["NT BOTTLE PLANT SE"].northExit = "NT BOTTLE PLANT EAST";
+	rooms["NT BOTTLE PLANT SE"].westExit = "NT BOTTLE PLANT SOUTH";
+	rooms["NT BOTTLE PLANT SE"].moveMinutes = 1;
+	rooms["NT BOTTLE PLANT SE"].planet = "PLANET: NEW TEXAS";
+	rooms["NT BOTTLE PLANT SE"].system = "SYSTEM: NYE";
+	rooms["NT BOTTLE PLANT SE"].addFlag(GLOBAL.INDOOR);
+	rooms["NT BOTTLE PLANT SE"].addFlag(GLOBAL.PUBLIC);
+	// Temp Room: Bottle Plant South
+	rooms["NT BOTTLE PLANT SOUTH"] = new RoomClass(this);
+	rooms["NT BOTTLE PLANT SOUTH"].roomName = "BOTTLING\nFACTORY";
+	rooms["NT BOTTLE PLANT SOUTH"].description = "";
+	rooms["NT BOTTLE PLANT SOUTH"].runOnEnter = undefined;
+	rooms["NT BOTTLE PLANT SOUTH"].northExit = "NT BOTTLE PLANT";
+	rooms["NT BOTTLE PLANT SOUTH"].eastExit = "NT BOTTLE PLANT SE";
+	rooms["NT BOTTLE PLANT SOUTH"].moveMinutes = 1;
+	rooms["NT BOTTLE PLANT SOUTH"].planet = "PLANET: NEW TEXAS";
+	rooms["NT BOTTLE PLANT SOUTH"].system = "SYSTEM: NYE";
+	rooms["NT BOTTLE PLANT SOUTH"].addFlag(GLOBAL.INDOOR);
+	rooms["NT BOTTLE PLANT SOUTH"].addFlag(GLOBAL.PUBLIC);
+	rooms["NT BOTTLE PLANT SOUTH"].addFlag(GLOBAL.LIFTDOWN);
 }

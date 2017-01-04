@@ -3,6 +3,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.Items.Miscellaneous.ZilRation;
 	import classes.Resources.StatusIcons;
+	import classes.Engine.Interfaces.*;
 	
 	/**
 	 * ...
@@ -135,9 +136,11 @@
 			
 			kGAMECLASS.output("\nGive a target scene function name to execute.");
 			kGAMECLASS.displayInput();
+			kGAMECLASS.userInterface.textInput.text = "";
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0, "Execute", Cheats.TrySceneExecute);
-			kGAMECLASS.addButton(1, "Nah", Cheats.BackOutFromTeleport);
+			kGAMECLASS.addButton(1, "Args", Cheats.SceneExecuteArgs);
+			kGAMECLASS.addButton(2, "Nah", Cheats.BackOutFromTeleport);
 		}
 		
 		public static function TrySceneExecute():void
@@ -171,6 +174,72 @@
 			{
 				kGAMECLASS.output("\n\n\n\nNot a valid function name, welp.");
 				return;
+			}
+		}
+		
+		public static function SceneExecuteArgs():void
+		{
+			if (kGAMECLASS.userInterface.textInput.text == "")
+			{
+				Cheats.SceneExecute();
+				kGAMECLASS.output("\n\n\n\nYou gots to gimme a scene name yo.");
+				return;
+			}
+			
+			var func:String = kGAMECLASS.userInterface.textInput.text;
+			
+			if (!kGAMECLASS.IsFunction(func))
+			{
+				kGAMECLASS.output("\n\n\n\nNot a valid function name, welp.");
+				return;
+			}
+			
+			OutputStuff(true);
+			output("\nSmash in a JSON formatted string of arguments.\n\nYou will have to quote string arguments \"like so\".\n\nIf you want more than a single argument, you will have to wrap them in \\\[ \\\] like this:\n\\\[\"mystringarg\", 123456\\\].");
+			kGAMECLASS.removeInput();
+			kGAMECLASS.displayInput();
+			kGAMECLASS.userInterface.textInput.text = "";
+			
+			clearMenu();
+			addButton(0, "Execute", GoSceneExecuteArgs, func);
+			addButton(1, "Nah", BackOutFromTeleport);
+		}
+		
+		public static function GoSceneExecuteArgs(func:String):void
+		{
+			if (kGAMECLASS.userInterface.textInput.text == "")
+			{
+				try
+				{
+					kGAMECLASS.ExecuteFunction(func);
+					kGAMECLASS.removeInput();
+					kGAMECLASS.flags["USED SCENE EXECUTE FUNCTION"] = 1;
+				}
+				catch (e:Error)
+				{
+					kGAMECLASS.output("\n\n\n\nERROR: ");
+					kGAMECLASS.output("\n\n" + e.name);
+					kGAMECLASS.output("\n" + e.message);
+				}
+				
+				return;
+			}
+			
+			var input:String = kGAMECLASS.userInterface.textInput.text;
+			var json:String = "{\"r\":" + input + "}";
+			var jObject:Object = JSON.parse(json);
+			
+			try
+			{
+				kGAMECLASS.ExecuteFunctionArgs(func, jObject.r);
+				kGAMECLASS.removeInput();
+				kGAMECLASS.flags["USED SCENE EXECUTE FUNCTION"] = 1;
+			}
+			catch (e:Error)
+			{
+				kGAMECLASS.output("\n\n\n\nERROR: ");
+				kGAMECLASS.output("\n\n" + e.name);
+				kGAMECLASS.output("\n" + e.message);
 			}
 		}
 		

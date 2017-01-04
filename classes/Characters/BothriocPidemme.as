@@ -156,6 +156,7 @@ package classes.Characters
 			this.balls = 2;
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+			this.impregnationType = "BothriocPregnancy";
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 1.5;
@@ -185,7 +186,8 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "B.Pidemme";
 			
-			createStatusEffect("Force Fem Gender");
+			createStatusEffect("Force It Gender");
+			sexualPreferences.setRandomPrefs(2 + rand(3));
 			
 			this._isLoading = false;
 		}
@@ -262,8 +264,9 @@ package classes.Characters
 			else
 			{
 				output("The bothrioc’s warm oil has seeped into your [pc.skinFurScales] around your groin. It seems to radiate heat through you, making you feel helplessly aroused, a sensation enhanced by your tight binds. Meanwhile, the bothrioc continues to mold their lithe body against yours, one pair of hands massaging your [pc.chest] whilst the other caresses your face. Their thin, hard lips are glossy and incredibly smooth when they press against yours. While alien, it feels remarkable.");
-				applyDamage(new TypeCollection( { tease: 2, drug: 3 } ), this, target, "minimal");
 			}
+			
+			applyDamage(new TypeCollection( { tease: 2, drug: 3 } ), this, target, "minimal");
 		}
 		
 		private function rapierThrust(target:Creature):void
@@ -321,7 +324,7 @@ package classes.Characters
 		{
 			output("One of the bothrioc’s lower hands reaches into the collection of belts around their hips and pulls out a bolo. After passing it to the upper set of hands, a few quick swings has it spun up.");
 			_preppedBolo = true;
-			createStatusEffect("Bolo CD", 3, 0, 0, 0, true); // Not using builtin CD system to avoid back to back potential grapples
+			createStatusEffect("Bolo CD", 5, 0, 0, 0, true); // Not using builtin CD system to avoid back to back potential grapples
 		}
 		
 		private function boloShot(target:Creature, lastAttack:Function):void
@@ -349,7 +352,7 @@ package classes.Characters
 			{
 				output(" The whirling trap hits you right in the middle, heavy ropes wrapping themselves around your limbs and weights thumping into you with hard momentum.\n\nYou try and tear yourself loose of the tangle, but before you can the bothrioc pounces on you, pinning you to the ground under them.\n\n<i>“Now then, precious,”</i> they whisper, caressing your face. <i>“Let’s have no more silly struggling, hmm?”</i>");
 				
-				target.createStatusEffect("Grappled", 0, 66, 0, 0, false, "Constrict", "The bolos is still tangled around your limbs!", true, 0);
+				target.createStatusEffect("Grappled", 0, 50, 0, 0, false, "Constrict", "The bolos is still tangled around your limbs!", true, 0);
 				_grappleRound = 0;
 			}
 		}

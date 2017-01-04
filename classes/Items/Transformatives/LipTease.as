@@ -110,7 +110,12 @@
 			author("MistyBirb");
 			
 			output("You put the lip balm back into your inventory.\n\n");
-			kGAMECLASS.itemCollect([new LipTease()]);
+			if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new LipTease()]);
+			else
+			{
+				clearMenu();
+				addButton(0,"Next",kGAMECLASS.useItemFunction);
+			}
 		}
 		
 		private function rbgSelColor(arg:Array):void

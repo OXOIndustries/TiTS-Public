@@ -102,7 +102,6 @@
 	prepChar(justUpdate, "LIRIEL", Liriel);
 	prepChar(justUpdate, "LERRIS", Lerris);
 	prepChar(justUpdate, "NERRASA", Nerrasa);
-	//prepChar(justUpdate, "DRYAD", Dryad);
 	prepChar(justUpdate, "JEROME", Jerome);
 	prepChar(justUpdate, "KIRILA", Kirila);
 	prepChar(justUpdate, "EDAN", Edan);
@@ -117,6 +116,7 @@
 	prepChar(justUpdate, "MILODAN_MALE", MilodanMale);
 	prepChar(justUpdate, "VESPERIANVENDINGMACHINE", VesperianVendingMachine);
 	prepChar(justUpdate, "ARAKEI", AraKei);
+	prepChar(justUpdate, "GWEN", Gwen);
 	
 	
 	// Check all characters have version information set
@@ -128,7 +128,7 @@
 		}
 		else
 		{
-			trace("Creature '" + prop + "' Game Version " + chars[prop].version);
+			//trace("Creature '" + prop + "' Game Version " + chars[prop].version);
 		}
 	}
 }

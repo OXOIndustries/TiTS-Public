@@ -599,7 +599,7 @@ public function buskySexGetBlown():void {
 	output("\n\nWhether it’s from the humiliation of being called a");
 	if(pc.isTreated()) output(" Faux");
 	else output(" cumslut");
-	output(", or his own perversion, Busky’s ministrations double in speed and force, almost making you fall over from sheer pleasure, however your solution is to grab onto his horns, giving you a pair of steady handlebars to hold on to while your [pc.cockLargest] gets the sucking of a lifetime. Within a few seconds you find yourself moaning in pleasure, reaching your zenith. Before nutting you force out two words.");
+	output(", or his own perversion, Busky’s ministrations double in speed and force, almost making you fall over from sheer pleasure, however your solution is to grab onto his horns, giving you a pair of steady handlebars to hold on to while your [pc.biggestCock] gets the sucking of a lifetime. Within a few seconds you find yourself moaning in pleasure, reaching your zenith. Before nutting you force out two words.");
 
 	output("\n\n<i>“Every... drop,”</i> you manage, thrusting as much as of your cock into Busky’s mouth as you can.");
 	
@@ -664,7 +664,7 @@ public function buskySexAnalPitch():void {
 	output(" feverishly grope the bull’s muscular ass as his tail slaps you, swishing back and forth in excitement.");
 	
 	output("\n\nYou slowly probe a finger against his hole without attempting to penetrate, just playing with his anus. But when this gets no reaction from Busky, you choose to slip your finger in, feeling his warmth. Despite how many bulls must have been in his ass, he is still incredibly tight. You decide to change that. You slide a second, and then a third finger inside him.");
-	output("\n\n<i>“C’mon, get to the main course. You know why we’re both here,”</i> Busky chuckles, his hearty laugh making you feel comfortable and at peace. You get up off your knees, and move up behind him, your [pc.cock" + cockIndex + "] pressing against his ass, and your hands groping his taut, firm cheeks.");
+	output("\n\n<i>“C’mon, get to the main course. You know why we’re both here,”</i> Busky chuckles, his hearty laugh making you feel comfortable and at peace. You get up off your knees, and move up behind him, your [pc.cock " + cockIndex + "] pressing against his ass, and your hands groping his taut, firm cheeks.");
 
 	output(" You");
 	if (pc.isTaur()) output(" maneuver your taur body and put your front legs up on the counter, pressing your lower body against his.");
@@ -687,9 +687,9 @@ public function buskySexAnalPitch():void {
 	
 	if (!pc.isTaur()) output(" You lean forward over his body, your hands stroking his hands, before gliding over to his arms and gripping his biceps, and finally working your fingers to his nipples, tweaking and playing with them. All the while,");
 	else output(" You push the side of Busky’s face to the glass, pinning him to the counter while");
-	output(" prodding your [pc.largestCockHead] against his willing asshole. You know you can slip in at any time and begin fucking him raw, but instead you wait, teasing him.");
+	output(" prodding your [pc.biggestCockHead] against his willing asshole. You know you can slip in at any time and begin fucking him raw, but instead you wait, teasing him.");
 
-	output("\n\nYou continue to rub your [pc.cockHead" + cockIndex + "] over his anus, which is now coated with your pre. All you’re waiting for is a signal, and you finally get it when you hear a whimper of need emanate from Busky. It wasn’t over the top, but it was one of submission and pleading. You’re depriving the bull of the [pc.cockLight" + cockIndex + "] he craves, so you choose to end his torture. With one strong thrust, you shove your cock into his warm hole.");
+	output("\n\nYou continue to rub your [pc.cockHead " + cockIndex + "] over his anus, which is now coated with your pre. All you’re waiting for is a signal, and you finally get it when you hear a whimper of need emanate from Busky. It wasn’t over the top, but it was one of submission and pleading. You’re depriving the bull of the [pc.cockLight " + cockIndex + "] he craves, so you choose to end his torture. With one strong thrust, you shove your cock into his warm hole.");
 	
 	if (pc.cocks[cockIndex].cLength() > 20) output("\n\n<i>“Oh... god”</i> you hear him gasp, desperately trying to catch his breath <i>“Gi...gimmie a sec... too... too... big.”</i> Busky exhales deeply as he adjusts to your cock.");
 	else if (pc.cocks[cockIndex].cLength() < 5) output("\n\n<i>“That feels really nice, you really know how to use your tool, Steele.”</i> He says, letting out a little moan of acceptance as he backs his ass up against you.");
@@ -1638,7 +1638,7 @@ public function buskySexHotTubFuckFollowUp():void {
 	
 	output("\n\nYou continue like that for a while, adding to the waves of the pool. Looking over to the corner of the pool where the young bulls were, you see the brunette cow getting gangbanged by the group. Your eyes linger for a while, until Busky turns your head back to face him. He leans up to your ear and whispers.");
 	
-	output("\n\n<i>“You’re my fuck, not hers,”</i> he says as his hand slips to your [pc.largestCock], playing with it as he begins to thrust in time with your bounces. The numb pleasure of having your");
+	output("\n\n<i>“You’re my fuck, not hers,”</i> he says as his hand slips to your [pc.biggestCock], playing with it as he begins to thrust in time with your bounces. The numb pleasure of having your");
 	if (pc.hasCock()) output(" prostate");
 	else if (pc.hasVagina()) output(" [pc.vagina]");
 	else output(" [pc.ass]");

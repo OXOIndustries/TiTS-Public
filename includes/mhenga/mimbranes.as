@@ -163,7 +163,7 @@ public var regularFeedMimbranes:Array =
 	"Mimbrane Face",
 ];
 
-public var mimbraneDebug:Boolean = true;
+public var mimbraneDebug:Boolean = false;
 
 // Figure out the total number of attached mimbranes
 public function attachedMimbranes():int

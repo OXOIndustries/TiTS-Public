@@ -149,6 +149,7 @@ public function newTexasTrackBonus():Boolean
 {
 	clearOutput();
 	author("Slab Bulkhead");
+	if(passDetector()) return true;
 	output("The whirr of air conditioners greets you as you enter the track room. It’s longer than you expected, taken up largely by an extended oval loop of running track, with lights hanging from bars that crisscross the ceiling. The track itself is some sort of brown synthetic, and bounces slightly under the runners’ feet. White lines designate the track’s five lanes.");
 	output("\n\nA few young bulls are running the track in perfect synch, calling out their steps in time. One group of cows runs together in a loose cluster, some of them quite sweaty; another group of cows sits along the wall, calling out encouragement and lewd comments to the runners. A few other New Texans run at their own pace or catch their breath against the wall.");
 	output("\n\nAt the center of the track, some sort of aerobics class is in progress, with an older cow calling out exercises and counting down numbers for the group she leads. The sight of a group of bulls and cows all moving and bending in synch like that is oddly hypnotizing, for quite a few reasons.");
@@ -207,11 +208,24 @@ public function swimmingPoolBonus():Boolean
 {
 	clearOutput();
 	author("Slab Bulkhead");
+	
+	var isSwimChanged:Boolean = (pc.hasStatusEffect("Temporary Nudity Cheat") || pc.hasStatusEffect("Temporary Swimwear Cheat"));
+	
+	if (passDetector())
+	{
+		if (isSwimChanged)
+		{
+			output("\n\nA quick word buys you enough freedom to take a hasty rinse and the showers and the opportunity to don your gear once more before being ousted from the gym.");
+			pc.removeStatusEffect("Temporary Swimwear Cheat");
+			pc.removeStatusEffect("Temporary Nudity Cheat");
+		}
+		return true;
+	}
 	output("Tile covers the floor in this long room, and the whole place has a pleasant yet unfamiliar smell. A pool stretches nearly the entire length of the room, with black lines crossing its floor to designate swimming lanes. A sloping ramp leads down into the shallow end.");
 	output("\n\nThis place seems more popular with the local cows than the other rooms, as there are groups of them swimming together. Many are clad in holstein-print swimsuits, while others – cow and bull alike – go naked. One naked cowgirl floats on her back, pink nipples pointing toward the ceiling, pushing herself along in a lazy backstroke.");
 	output("\n\nYou wonder why it doesn’t smell like chlorine; surely they can’t go without something to keep the pool clean, with this many people in it. You dip two fingers into the pool water to test it, and find it smooth, almost slippery, the sign of a synthetic decontaminant. That explains the unfamiliar smell, and it’s probably a safer choice here, as you’re sure more than a few people have had sex in this pool.");
 	output("\n\nA bubbling spa sits in one corner, big enough to hold fifteen to twenty people. It looks to be very popular; about a dozen cows and bulls sit in it, some on each others’ laps. You’re not sure if the motion in the water is entirely from the jets, or if there’s something going on beneath the bubbles. Probably both.");
-	var isSwimChanged:Boolean = (pc.hasStatusEffect("Temporary Nudity Cheat") || pc.hasStatusEffect("Temporary Swimwear Cheat"));
+	
 	if(pc.inSwimwear(true) || pc.isNude())
 	{
 		if(isSwimChanged) flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
@@ -359,6 +373,7 @@ public function lockerRoomAndShowersBonus():Boolean
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("LOCKER\nROOM");
+	if (passDetector()) return true;
 	output("Tall metal lockers cover the tiled walls of this room, with benches bolted to the floor between them. The air is moist and smells of sweat and soap. You hear showers running nearby, along with lockers slamming closed and the rustle of clothing.");
 	output("\n\nThe shower room is an open area with showerheads and knobs on the walls, as well as a long line of pipes featuring more of the same down the center. It’s a little crowded, as most everyone who uses the gym ends up here at some point. Dispensers by the shower knobs provide shampoo and body wash.");
 	output("\n\nBulls and cows mingle freely in here, chatting and flirting as they change into and out of their workout clothes with the typical New Texas lack of modesty. There’s the occasional smack of flesh on flesh among the lockers, and moans come here and there from the showers.");

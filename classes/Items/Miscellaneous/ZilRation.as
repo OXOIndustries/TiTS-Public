@@ -33,7 +33,7 @@
 			this.description = "a tasty-smelling zil ration";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "These are dried rations appear to be made from local fruits and plant nectars. There's a good chance that something in it would make you sick if you didn't have a microsurgeon-boosted immune system. In your case, you'll probably just undergo a mutation or two.";
+			this.tooltip = "These are dried rations appear to be made from local fruits and plant nectars. There’s a good chance that something in it would make you sick if you didn’t have a microsurgeon-boosted immune system. In your case, you’ll probably just undergo a mutation or two.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -66,7 +66,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//Consume:
-				kGAMECLASS.output("You unwrap the dried fruits and find them to be surprisingly tasty. They're both sweet and a touch spicy to your tongue at the some time. Some of the rations even have a nectar glaze applied to them to make them even more delicious. Before you know it, they're gone.");
+				kGAMECLASS.output("You unwrap the dried fruits and find them to be surprisingly tasty. They’re both sweet and a touch spicy to your tongue at the some time. Some of the rations even have a nectar glaze applied to them to make them even more delicious. Before you know it, they’re gone.");
 				
 				//Stat TFs before everything!
 				if(rand(3) == 0 && changes < changeLimit && target.libido() < 40) {
@@ -74,23 +74,23 @@
 					else if(target.libido() < 30) {
 						kGAMECLASS.output("\n\nYou idly rub at your crotch");
 						if(!target.isCrotchExposed()) kGAMECLASS.output(" through your [pc.lowerGarment]");
-						kGAMECLASS.output(" while entertaining a daydream about an encounter with a zil in the jungle. " + (rand(2) == 0 ? "She" : "He") + " comes upon you before you're ready and instead of fighting, you offer not to resist... in exchange for more rations.\n\nShaking your head to clear away the increasingly lustful fantasy, you can't help but wonder if this stuff is effecting you somehow... spiking your libido to match the aliens' own.");
+						kGAMECLASS.output(" while entertaining a daydream about an encounter with a zil in the jungle. " + (rand(2) == 0 ? "She" : "He") + " comes upon you before you’re ready and instead of fighting, you offer not to resist... in exchange for more rations.\n\nShaking your head to clear away the increasingly lustful fantasy, you can’t help but wonder if this stuff is effecting you somehow... spiking your libido to match the aliens’ own.");
 						target.lust(5);
 					}
 					else {
-						kGAMECLASS.output("\n\nA wicked thought surfaces in your mind: what if the zil are just misunderstood? What if they live a freer, happier existence by strutting around like they do, seducing any new person they meet into a pleasure-filled coupling. You start heating up the more you think about it until you're almost overwhelmed by desire. You fan at your neck to cool off, turning your attention back to the taste in your mouth. This stuff is definitely boosting your libido.");
+						kGAMECLASS.output("\n\nA wicked thought surfaces in your mind: what if the zil are just misunderstood? What if they live a freer, happier existence by strutting around like they do, seducing any new person they meet into a pleasure-filled coupling. You start heating up the more you think about it until you’re almost overwhelmed by desire. You fan at your neck to cool off, turning your attention back to the taste in your mouth. This stuff is definitely boosting your libido.");
 						target.lust(10);
 					}
 					target.slowStatGain("libido",1+rand(2));
 					changes++;
 				}
 				if(rand(3) == 0 && changes < changeLimit && target.reflexes() < 5) {
-					kGAMECLASS.output("\n\nYou feel... twitchy - agitated. If a mosquito or similar creature tried landing on you right now, you'd probably swat it away before it got anywhere near biting you. Your reflexes feel sharpened... honed.");
+					kGAMECLASS.output("\n\nYou feel... twitchy - agitated. If a mosquito or similar creature tried landing on you right now, you’d probably swat it away before it got anywhere near biting you. Your reflexes feel sharpened... honed.");
 					target.slowStatGain("reflexes",.5);
 					changes++;
 				}
 				if(rand(3) == 0 && changes < changeLimit && target.physique() < 4) {
-					kGAMECLASS.output("\n\nThe alien food does more than make you feel full, though. It leaves you full of vim and vigor, suffused with more vitality than you're used to experience. It reminds you of the high you get from a good workout.");
+					kGAMECLASS.output("\n\nThe alien food does more than make you feel full, though. It leaves you full of vim and vigor, suffused with more vitality than you’re used to experience. It reminds you of the high you get from a good workout.");
 					target.slowStatGain("physique",.5);
 					changes++;
 				}
@@ -113,10 +113,10 @@
 				if(target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN) && target.skinType != GLOBAL.SKIN_TYPE_FUR && target.faceType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0) {
 					//Has muzzle
 					if(target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) {
-						kGAMECLASS.output("\n\nYour snout compresses, your bones flowing like butter, reforming your jaw into a much more compact package. Surprisingly, it doesn't really hurt. It's more disconcerting than anything, making you dizzy as the change completes. You use the camera on your codex to check on the results and discover <b>you have a face shaped much like a human's!</b>");
+						kGAMECLASS.output("\n\nYour snout compresses, your bones flowing like butter, reforming your jaw into a much more compact package. Surprisingly, it doesn’t really hurt. It’s more disconcerting than anything, making you dizzy as the change completes. You use the camera on your codex to check on the results and discover <b>you have a face shaped much like a human’s!</b>");
 					}
 					//Otherwise
-					else kGAMECLASS.output("\n\nA strange numbness spreads out across your face, starting at your lips before penetrating deeper, into your very bones. There's a transient sense of dizziness that leaves you grabbing your head to steady yourself, and when you do, <b>you find that your [pc.face] has shifted into a human-shaped visage!</b>");
+					else kGAMECLASS.output("\n\nA strange numbness spreads out across your face, starting at your lips before penetrating deeper, into your very bones. There’s a transient sense of dizziness that leaves you grabbing your head to steady yourself, and when you do, <b>you find that your [pc.face] has shifted into a human-shaped visage!</b>");
 					target.clearFaceFlags();
 					target.faceType = GLOBAL.TYPE_HUMAN;
 					changes++;
@@ -135,13 +135,13 @@
 						kGAMECLASS.output("\n\nStrangely, you find yourself dumped on your ass out of the blue. Your [pc.legs] are thrashing on the ground, the flesh writhing, squirming and reshaping. ");
 						if(target.legCount > 3) kGAMECLASS.output("All but two of your [pc.legs] begin to dwindle");
 						else kGAMECLASS.output("Your extra [pc.leg] begins to dwindle");
-						kGAMECLASS.output(", and the supporting muscles diminish along with it. The longer it goes on, the faster the transformation goes. Before you know it, you're down to two [pc.legs], and they're changing even further.");
+						kGAMECLASS.output(", and the supporting muscles diminish along with it. The longer it goes on, the faster the transformation goes. Before you know it, you’re down to two [pc.legs], and they’re changing even further.");
 					}
 					//Else intro
-					else kGAMECLASS.output("\n\nYou're dumped on your ass when your [pc.legs] turn to jelly, going numb as they start to change.");
+					else kGAMECLASS.output("\n\nYou’re dumped on your ass when your [pc.legs] turn to jelly, going numb as they start to change.");
 					//Not plantigrade!
 					if(!target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) kGAMECLASS.output(" They quickly form into a plantigrade shape and resolve further into a very humanoid look, complete with five toes.");
-					kGAMECLASS.output(" A black encasement forms around the tip, then divides into an armored incasement for your toes. Each tiny digit gleams shiny black, covered in chitinous armor.  Maneuverable joints appear wherever you would need to bend or flex. Then, the blackness travels up like a wave of slippery oil. Every inch of your body below the thigh is swiftly encased in the gleaming, ebony armor, and there, the transformation stops. While you take a few experimental steps to get used to <b>your new zil-like legs</b>, a tuft of yellow fluff grows out into a soft border between you and your new legs.");
+					kGAMECLASS.output(" A black encasement forms around the tip, then divides into an armored incasement for your toes. Each tiny digit gleams shiny black, covered in chitinous armor. Maneuverable joints appear wherever you would need to bend or flex. Then, the blackness travels up like a wave of slippery oil. Every inch of your body below the thigh is swiftly encased in the gleaming, ebony armor, and there, the transformation stops. While you take a few experimental steps to get used to <b>your new zil-like legs</b>, a tuft of yellow fluff grows out into a soft border between you and your new legs.");
 					target.clearLegFlags();
 					target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 					target.addLegFlag(GLOBAL.FLAG_SMOOTH);
@@ -162,7 +162,7 @@
 				
 				//Arms to chitin-armored.
 				if(target.armTypeUnlocked(GLOBAL.TYPE_BEE) && target.armType != GLOBAL.TYPE_BEE && changes < changeLimit && rand(3) == 0) {
-					kGAMECLASS.output("\n\nStarting at your fingertips, you feel your [pc.skinFurScales] tightening, slowly shaping into a smooth, black expanse. The inky, chitinous darkness expands to cover the whole of your hand, forming joints to allow the hardening flesh to allow you movement. It doesn't stop there. Your wrists and your forearms are encased in ebony armor, followed shortly after by about half of your upper arms. The border between your [pc.skinFurScales] and the growth fluffs up with a tuft of yellowish fuzz, similar to that of a zil. <b>You have chitin-armored arms now.</b>");
+					kGAMECLASS.output("\n\nStarting at your fingertips, you feel your [pc.skinFurScales] tightening, slowly shaping into a smooth, black expanse. The inky, chitinous darkness expands to cover the whole of your hand, forming joints to allow the hardening flesh to allow you movement. It doesn’t stop there. Your wrists and your forearms are encased in ebony armor, followed shortly after by about half of your upper arms. The border between your [pc.skinFurScales] and the growth fluffs up with a tuft of yellowish fuzz, similar to that of a zil. <b>You have chitin-armored arms now.</b>");
 					target.armType = GLOBAL.TYPE_BEE;
 					target.clearArmFlags();
 					target.addArmFlag(GLOBAL.FLAG_CHITINOUS);
@@ -175,7 +175,7 @@
 				
 				//Removal of fur
 				if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN) && target.skinType == GLOBAL.SKIN_TYPE_FUR && changes < changeLimit && rand(3) == 0) {
-					kGAMECLASS.output("\n\nYou idly itch at your [pc.belly]. When you finish, there's a patch of bare [pc.skin] there, and the itch is spreading! You scratch madly, shedding [pc.skinFurScales] everywhere. There's no relief from the itch until you've scrubbed every bit of hair from a particular spot. Needless to say, it takes a solid fifteen minutes to get rid of it and leave you with ");
+					kGAMECLASS.output("\n\nYou idly itch at your [pc.belly]. When you finish, there’s a patch of bare [pc.skin] there, and the itch is spreading! You scratch madly, shedding [pc.skinFurScales] everywhere. There’s no relief from the itch until you’ve scrubbed every bit of hair from a particular spot. Needless to say, it takes a solid fifteen minutes to get rid of it and leave you with ");
 					target.skinType = GLOBAL.SKIN_TYPE_SKIN;
 					target.clearSkinFlags();
 					kGAMECLASS.output("[pc.skin].")
@@ -205,7 +205,7 @@
 					// Colors: usually black, rare for gold
 					if(rand(5) != 0) target.eyeColor = "black";
 					else target.eyeColor = "gold";
-					kGAMECLASS.output("\n\nA sudden flash of amber fills your vision. You give a few experimental blinks, but all you can see is pure yellow. It doesn't last very long as the color gradually dissolves away in a brilliant honey-combed pattern until your vision fully returns and your eyes refocus, leaving you wondering what just happened. You flip on your Codex to see what changed. <b>You now have " + target.eyeColor + "-colored zil eyes!</b>");
+					kGAMECLASS.output("\n\nA sudden flash of amber fills your vision. You give a few experimental blinks, but all you can see is pure yellow. It doesn’t last very long as the color gradually dissolves away in a brilliant honey-combed pattern until your vision fully returns and your eyes refocus, leaving you wondering what just happened. You flip on your Codex to see what changed. <b>You now have " + target.eyeColor + "-colored zil eyes!</b>");
 					target.eyeType = GLOBAL.TYPE_BEE;
 					changes++;
 				}
@@ -233,15 +233,15 @@
 				{
 					kGAMECLASS.output("\n\nYou nearly miss your [pc.nipples] turning black");
 					if(!target.isChestExposed()) kGAMECLASS.output(" underneath your [pc.upperGarment]");
-					kGAMECLASS.output(", but there's no ignoring the almost glossy shine that your chest has gained. It certainly draws the eye....");
+					kGAMECLASS.output(", but there’s no ignoring the almost glossy shine that your chest has gained. It certainly draws the eye....");
 					target.nippleColor = "black";
 					changes++;
 				}
 				if(target.skinTone != "yellow" && changes < changeLimit && changes < changeLimit && rand(3) == 0)
 				{
-					if(target.hasFur() || target.hasFeathers()) kGAMECLASS.output("\n\nLike water flowing through reeds, an amber hue spreads across the skin beneath your [pc.skinFurScales], racing outward along your limbs toward your fingertips. It doesn't feel any different, <b>but your skin has turned quite yellow.</b>");
-					else if(target.hasScales()) kGAMECLASS.output("\n\nYou nearly miss what would've been an obvious change: yellow skin pigmentation. Your [pc.skinFurScales] do a fine job of covering up your new, wasp-like coloration in most places, but here and <b>there is an unmistakable glint of goldenrod.</b>");
-					else kGAMECLASS.output("\n\nYour [pc.skin] begins to change color before your eyes. There's no tingling or sudden pain from your once-" + target.skinTone + " skin turning goldenrod, just the sweeping march of amber pigment across your dermis. In no time at all, <b>you're a wasp-like yellow!</b>");
+					if(target.hasFur() || target.hasFeathers()) kGAMECLASS.output("\n\nLike water flowing through reeds, an amber hue spreads across the skin beneath your [pc.skinFurScales], racing outward along your limbs toward your fingertips. It doesn’t feel any different, <b>but your skin has turned quite yellow.</b>");
+					else if(target.hasScales()) kGAMECLASS.output("\n\nYou nearly miss what would’ve been an obvious change: yellow skin pigmentation. Your [pc.skinFurScales] do a fine job of covering up your new, wasp-like coloration in most places, but here and <b>there is an unmistakable glint of goldenrod.</b>");
+					else kGAMECLASS.output("\n\nYour [pc.skin] begins to change color before your eyes. There’s no tingling or sudden pain from your once-" + target.skinTone + " skin turning goldenrod, just the sweeping march of amber pigment across your dermis. In no time at all, <b>you’re a wasp-like yellow!</b>");
 					target.skinTone = "yellow";
 					changes++;
 				}
@@ -249,7 +249,7 @@
 				if(!InCollection(target.hairColor, hairColors) && changes < changeLimit && rand(3) == 0 && target.hasHair())
 				{
 					var newColor:String = hairColors[rand(2)];
-					kGAMECLASS.output("\n\nNo more than a few seconds pass before you feel your scalp tingling. Fearing something has gone wrong, you yank out your Codex, worried that you'll be shedding every single lock of [pc.hair]. Instead, you discover that <b>your pigmentation has changed to " + newColor + "</b>. You can always dye it back if you don't want to look like some sort of waspy native.");
+					kGAMECLASS.output("\n\nNo more than a few seconds pass before you feel your scalp tingling. Fearing something has gone wrong, you yank out your Codex, worried that you’ll be shedding every single lock of [pc.hair]. Instead, you discover that <b>your pigmentation has changed to " + newColor + "</b>. You can always dye it back if you don’t want to look like some sort of waspy native.");
 					target.hairColor = newColor;
 					changes++;
 				}			
@@ -284,10 +284,10 @@
 				x = choices[rand(choices.length)];
 				kGAMECLASS.output("\n\nA ticklish feeling in your groin alerts you to a coming change, and you rapidly");
 				if(target.isNude()) kGAMECLASS.output(" bend over to check it out");
-				else kGAMECLASS.output(" strip out of your [pc.gear] to see what's going on");
+				else kGAMECLASS.output(" strip out of your [pc.gear] to see what’s going on");
 				kGAMECLASS.output(". Your [pc.vagina " + x+ "] is rapidly engorging");
 				if(target.vaginaTotal() == 2) kGAMECLASS.output(" along with your other entrance");
-				else if(target.vaginaTotal()  > 2) kGAMECLASS.output(" along with your other entrances");
+				else if(target.vaginaTotal() > 2) kGAMECLASS.output(" along with your other entrances");
 				if(target.vaginaTotal() == 1) kGAMECLASS.output(". It starts ");
 				else kGAMECLASS.output(". They start ");
 				kGAMECLASS.output("leaking lubricant as you watch the lips plump and reshape slightly, blotches of yellow and black rolling across your skin as your body adapts to the foreign foods. The shifting hues settle into a shiny, almost lightless black, leaving the exterior of your [pc.vaginas] dusky. You pry ");
@@ -353,17 +353,17 @@
 			x = choices[rand(choices.length)];
 			if(target.wetness(x) < 2 && target.wetnessUnlocked(x, 2) && rand(3) == 0 && changes < changeLimit) {
 				//No wetness
-				if(target.wetness(x) == 0) kGAMECLASS.output("\n\nWhile you digest the snack, you become increasingly aware of a slippery feeling down below, much different than the dry emptiness you've become accustomed to. You tentative slip a finger into [pc.oneVagina] and discover that <b>you've started naturally lubricating yourself.</b>");
+				if(target.wetness(x) == 0) kGAMECLASS.output("\n\nWhile you digest the snack, you become increasingly aware of a slippery feeling down below, much different than the dry emptiness you’ve become accustomed to. You tentative slip a finger into [pc.oneVagina] and discover that <b>you’ve started naturally lubricating yourself.</b>");
 				//Less than 2 wetness
 				else {
 					kGAMECLASS.output("\n\nWhile you digest the snack, you become more and more of a burgeoning wetness ");
 					if(target.legCount > 1) kGAMECLASS.output("between your [pc.legs]");
 					else kGAMECLASS.output("above your [pc.leg]");
-					kGAMECLASS.output(". It's almost as slippery as when you're really, really turned, but you aren't even ");
+					kGAMECLASS.output(". It’s almost as slippery as when you’re really, really turned, but you aren’t even ");
 					if(target.lust() <= 33) kGAMECLASS.output("thinking about sex right now");
 					else if(target.lust() <= 66) kGAMECLASS.output("that focused on sex right now");
 					else kGAMECLASS.output("anticipating getting laid right now");
-					kGAMECLASS.output("! You guess that <b>you're just getting more slippery ");
+					kGAMECLASS.output("! You guess that <b>you’re just getting more slippery ");
 					if(target.hasCock()) kGAMECLASS.output("female ");
 					kGAMECLASS.output("genitals, like a zil woman.</b>");
 				}
@@ -411,11 +411,11 @@
 					kGAMECLASS.output(" Your A-cups slowly blossom into a burgeoning pair of B-cups");
 					if(target.bRows() > 1) {
 						kGAMECLASS.output(", though the additional ");
-						if(target.bRows() == 2) kGAMECLASS.output("row does't change");
-						else kGAMECLASS.output("rows don't change");
+						if(target.bRows() == 2) kGAMECLASS.output("row does’t change");
+						else kGAMECLASS.output("rows don’t change");
 						kGAMECLASS.output(" - just the top one");
 					}
-					kGAMECLASS.output(". Cupping them in your hands, you tentatively hold your newly expanded chest. It's quite sensitive and is just big enough to have a little bit of jiggle.");
+					kGAMECLASS.output(". Cupping them in your hands, you tentatively hold your newly expanded chest. It’s quite sensitive and is just big enough to have a little bit of jiggle.");
 				}
 				//B cups
 				else {
@@ -435,7 +435,7 @@
 				kGAMECLASS.output("\n\nYou adjust idly adjust your posture only to have to do it again a second later. ");
 				if(target.armor.shortName != "") kGAMECLASS.output("Your [pc.armor.longName] creaks ominously. Your [pc.hips] are getting bigger!");
 				else kGAMECLASS.output("You look down and watch, and then you spot it: your [pc.hips] are getting bigger!");
-				kGAMECLASS.output(" The change is slow enough to you almost missed it, but <b>there's definitely a little extra thickness to your waist.</b>");
+				kGAMECLASS.output(" The change is slow enough to you almost missed it, but <b>there’s definitely a little extra thickness to your waist.</b>");
 				target.hipRatingRaw++;
 				changes++;
 			}
@@ -468,10 +468,10 @@
 				kGAMECLASS.output("\n\nYou stumble as an unexpected wetness builds ");
 				if(target.legCount > 1) kGAMECLASS.output("between your [pc.legs]");
 				else kGAMECLASS.output("at the joint between your [pc.leg] and your [pc.hips]");
-				kGAMECLASS.output(". Not that it's unwelcome. It feels quite pleasant, but you weren't really planning on dealing with having such ");
+				kGAMECLASS.output(". Not that it’s unwelcome. It feels quite pleasant, but you weren’t really planning on dealing with having such ");
 				if(target.vaginaTotal() == 1) kGAMECLASS.output("a wet pussy");
 				else kGAMECLASS.output("wet pussies");
-				kGAMECLASS.output(". You gingerly touch your folds and shudder with excitement before drawing away. You'll need to get yourself off soon. Catching your nose, a sweet smell lingers on your fingertips. You look closer at the stained digits and realize that <b>your [pc.girlCum] has been replaced by a honey-like substitute!</b>");
+				kGAMECLASS.output(". You gingerly touch your folds and shudder with excitement before drawing away. You’ll need to get yourself off soon. Catching your nose, a sweet smell lingers on your fingertips. You look closer at the stained digits and realize that <b>your [pc.girlCum] has been replaced by a honey-like substitute!</b>");
 				//Raise lust!
 				target.lust(50);
 				target.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
@@ -486,16 +486,16 @@
 			if(target.armType == GLOBAL.TYPE_BEE && target.legType == GLOBAL.TYPE_BEE && target.tailType != GLOBAL.TYPE_BEE && target.tailTypeUnlocked(GLOBAL.TYPE_BEE) && changes < changeLimit && rand(3) == 0) {
 				//Has tails!
 				if(target.tailType != GLOBAL.TYPE_HUMAN && target.tailCount > 1) {
-					kGAMECLASS.output("\n\nYour [pc.tails] twitch, compulsively squeezing together. Beating faster, your heart hammers with sudden excitement, and you can feel it heating warmer and warmer back there. The flesh of your tails feels so hot and so strange. Nerves are firing nonsensically, leaving you confused about what's happening back there. You turn for a look in time to see them moulding together into one bloated lump, vaguely reminiscent of an insectile abdomen. The surface of it turns black and hard, like chitin, and a strange pressure is building near the very tip of it.");
-					kGAMECLASS.output("\n\nAn audible 'snick' fills the air as a stinger forces its way out of the very back, full of potent, arousing venom. <b>Your [pc.tails] have been replaced by a fully functional zil tail.</b>");
+					kGAMECLASS.output("\n\nYour [pc.tails] twitch, compulsively squeezing together. Beating faster, your heart hammers with sudden excitement, and you can feel it heating warmer and warmer back there. The flesh of your tails feels so hot and so strange. Nerves are firing nonsensically, leaving you confused about what’s happening back there. You turn for a look in time to see them molding together into one bloated lump, vaguely reminiscent of an insectile abdomen. The surface of it turns black and hard, like chitin, and a strange pressure is building near the very tip of it.");
+					kGAMECLASS.output("\n\nAn audible ‘snick’ fills the air as a stinger forces its way out of the very back, full of potent, arousing venom. <b>Your [pc.tails] have been replaced by a fully functional zil tail.</b>");
 				}
 				//Just one tail
 				else if(target.tailType != GLOBAL.TYPE_HUMAN && target.tailCount > 0) {
-					kGAMECLASS.output("\n\nYour [pc.tail] twitches, compulsively flexing and contracting down into a knotted ball of pain. Beating faster, your heart accelerates in sudden excitement, and you can feel it getting warmer and warmer back there. It feels so strange. Nerves are firing off-kilter, leaving you confused about just what's happening back there. You turn for a look in time to see that your [pc.tail] has turned into a large lump of flesh, vaguely reminiscent of an insectile abdomen. The surface blackens rapidly, picking up a polished shine as it does, like chitin, and a strange pressure builds near the very tip of it.");
-					kGAMECLASS.output("\n\nAn audible 'snick' meets your [pc.ears] as a stinger forces its way out of the back, full of potent, arousing venom. <b>Your [pc.tail] has been replaced by a fully functional zil tail.</b>");
+					kGAMECLASS.output("\n\nYour [pc.tail] twitches, compulsively flexing and contracting down into a knotted ball of pain. Beating faster, your heart accelerates in sudden excitement, and you can feel it getting warmer and warmer back there. It feels so strange. Nerves are firing off-kilter, leaving you confused about just what’s happening back there. You turn for a look in time to see that your [pc.tail] has turned into a large lump of flesh, vaguely reminiscent of an insectile abdomen. The surface blackens rapidly, picking up a polished shine as it does, like chitin, and a strange pressure builds near the very tip of it.");
+					kGAMECLASS.output("\n\nAn audible ‘snick’ meets your [pc.ears] as a stinger forces its way out of the back, full of potent, arousing venom. <b>Your [pc.tail] has been replaced by a fully functional zil tail.</b>");
 				}
 				//No tail!
-				else kGAMECLASS.output("\n\nJust at the bottom of your spine, right above your [pc.butt], a knot of heat blooms into existence. At first, it's not much of a bother, but the sensation gets less and less bearable over time. You even seem to be swelling back there! Suddenly, a wave of relief rolls over you, and out of the corner of your eye, you're treated to the sight of an insectile abdomen, black as night and slick with fluid, settling into place above your [pc.butt]. It bobs heavily, stinger in all. <b>It seems you have a fully functional zil tail!</b>");
+				else kGAMECLASS.output("\n\nJust at the bottom of your spine, right above your [pc.butt], a knot of heat blooms into existence. At first, it’s not much of a bother, but the sensation gets less and less bearable over time. You even seem to be swelling back there! Suddenly, a wave of relief rolls over you, and out of the corner of your eye, you’re treated to the sight of an insectile abdomen, black as night and slick with fluid, settling into place above your [pc.butt]. It bobs heavily, stinger in all. <b>It seems you have a fully functional zil tail!</b>");
 				target.clearTailFlags();
 				target.addTailFlag(GLOBAL.FLAG_SMOOTH);
 				target.addTailFlag(GLOBAL.FLAG_STINGER_TIPPED);
@@ -540,11 +540,11 @@
 						if(target.cockTotal() == 2) kGAMECLASS.output("your other flaccid dick");
 						else kGAMECLASS.output("the rest of your [pc.cocks]");
 					}
-					kGAMECLASS.output(". You look down, wide-eyed at the tumescent penis. You didn't do anything particularly arousing. Is it swelling up from an allergic reaction? Before you can posit any other theories, the changes start. ");
+					kGAMECLASS.output(". You look down, wide-eyed at the tumescent penis. You didn’t do anything particularly arousing. Is it swelling up from an allergic reaction? Before you can posit any other theories, the changes start. ");
 					if(target.hasSheath(x)) {
-						kGAMECLASS.output(" Your sheath expands out, flowing over your length with the inevitability of a wave. You fumble to try and hold it back, but it's so sensitive that you lose your grip almost immediately.");
+						kGAMECLASS.output(" Your sheath expands out, flowing over your length with the inevitability of a wave. You fumble to try and hold it back, but it’s so sensitive that you lose your grip almost immediately.");
 						if(target.hasKnot(x)) kGAMECLASS.output(" It quickly envelops your knot. The rounded distention flattens almost as soon as its covered.");
-						kGAMECLASS.output(" Watching it happen, you realize that the skin isn't expanding so much stretching out, lengthening to give your entire penis a sensitive shroud. It's soon wrapped around your [pc.cockHead " + x + "]");
+						kGAMECLASS.output(" Watching it happen, you realize that the skin isn’t expanding so much stretching out, lengthening to give your entire penis a sensitive shroud. It’s soon wrapped around your [pc.cockHead " + x + "]");
 						if(target.hasCockFlag(GLOBAL.FLAG_BLUNT) || target.hasCockFlag(GLOBAL.FLAG_FLARED) || target.hasCockFlag(GLOBAL.FLAG_TAPERED)) kGAMECLASS.output(", rounding it out into a rather human-like shape under its new wrapping");
 						kGAMECLASS.output(".");
 					}
@@ -552,11 +552,11 @@
 					else 
 					{
 						kGAMECLASS.output(" The skin of your [pc.cock " + x + "] is thickening perceptibly.");
-						if(target.hasKnot(x)) kGAMECLASS.output(" It's definitely worst on your knot, which is shrinking away before your eyes. Soon your familiar bulge is reduced to just another part of your smoothing shaft. Higher,");
+						if(target.hasKnot(x)) kGAMECLASS.output(" It’s definitely worst on your knot, which is shrinking away before your eyes. Soon your familiar bulge is reduced to just another part of your smoothing shaft. Higher,");
 						else kGAMECLASS.output(" Up");
-						kGAMECLASS.output(" at the [pc.cockHead " + x+ "], the skin separates into two layers, an inner and outer layer. You're growing a long, stretchy foreskin");
+						kGAMECLASS.output(" at the [pc.cockHead " + x+ "], the skin separates into two layers, an inner and outer layer. You’re growing a long, stretchy foreskin");
 						if(target.hasCockFlag(GLOBAL.FLAG_BLUNT) || target.hasCockFlag(GLOBAL.FLAG_FLARED) || target.hasCockFlag(GLOBAL.FLAG_TAPERED)) 
-							kGAMECLASS.output(", moulding your phallus into a more human-like shape as it develops");
+							kGAMECLASS.output(", molding your phallus into a more human-like shape as it develops");
 						kGAMECLASS.output("! All traces of its old appearance long gone, <b>you find yourself with a gently-wilting zil-cock</b> packed with enough foreskin to stay covered - even when hard.");
 					}
 					
@@ -597,13 +597,13 @@
 					else if(y > 11) y = 11;
 					if(y >= target.cocks[x].cLengthRaw) y = target.cocks[x].cLengthRaw - 1;
 
-					if(y >= 13) kGAMECLASS.output(" Inch after inch, it shortens rapidly until you've lost well over a foot of cock flesh.");
-					else if(y >= 9) kGAMECLASS.output(" An inch at a time, it shortens until you've lost the better part of a foot.");
-					else if(y >= 2) kGAMECLASS.output(" It recedes until you've lost " + kGAMECLASS.num2Text(Math.round(y)) + " inches from your length.");
+					if(y >= 13) kGAMECLASS.output(" Inch after inch, it shortens rapidly until you’ve lost well over a foot of cock flesh.");
+					else if(y >= 9) kGAMECLASS.output(" An inch at a time, it shortens until you’ve lost the better part of a foot.");
+					else if(y >= 2) kGAMECLASS.output(" It recedes until you’ve lost " + kGAMECLASS.num2Text(Math.round(y)) + " inches from your length.");
 					else if(y >= 1.1) kGAMECLASS.output(" Gradually, you lose well over an inch.");
 					else kGAMECLASS.output(" Gradually, you lose about an inch.");
 					target.cocks[x].cLengthRaw -= y;
-					kGAMECLASS.output(" Your girth thins to match your new proportions more appropriately. It's still pretty thick, all things considered.");
+					kGAMECLASS.output(" Your girth thins to match your new proportions more appropriately. It’s still pretty thick, all things considered.");
 					changes++;
 				}
 				else if (blockedChoices.length > 0)
@@ -635,7 +635,7 @@
 					if(target.cockTotal() == 1) kGAMECLASS.output("in your hand");
 					else if(target.cockTotal() == 2) kGAMECLASS.output("out from next to its less excited brother");
 					else kGAMECLASS.output("out from next to its less excited brethren");
-					kGAMECLASS.output(". Almost immediately, you feel it pulsate and thicken, hardening with alarming rapidity. Soon, you're holding a full-sized rager, but it doesn't stop there. The shaft continues to thicken, slowly spreading your fingers wider and wider as it gains about a quarter inch of additional girth.");
+					kGAMECLASS.output(". Almost immediately, you feel it pulsate and thicken, hardening with alarming rapidity. Soon, you’re holding a full-sized rager, but it doesn’t stop there. The shaft continues to thicken, slowly spreading your fingers wider and wider as it gains about a quarter inch of additional girth.");
 					target.cocks[x].cThicknessRatioRaw += .1;
 					changes++;
 				}
@@ -695,22 +695,22 @@
 			//Requires legs!
 			if(target.legType == GLOBAL.TYPE_BEE && target.wingType != GLOBAL.TYPE_BEE && target.wingTypeUnlocked(GLOBAL.TYPE_BEE) && rand(3) == 0 && changes < changeLimit) {
 				if(!target.hasWings()) {
-					kGAMECLASS.output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there's the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
+					kGAMECLASS.output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there’s the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
 					if(target.armor.shortName != "") kGAMECLASS.output(" and pull back your [pc.armor.longName]");
-					kGAMECLASS.output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They're too small to allow you to fly, but you're definitely getting more zil-like.");
+					kGAMECLASS.output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They’re too small to allow you to fly, but you’re definitely getting more zil-like.");
 					target.shiftWings(GLOBAL.TYPE_SMALLBEE, 2);
 				}
 				//Grow small zil wings to full size!
 				else if(target.wingType == GLOBAL.TYPE_SMALLBEE) {
 					kGAMECLASS.output("\n\nA small cramp tugs at the muscles of your back, but a quick stretch evens it out.");
 					if(target.armor.shortName != "") kGAMECLASS.output(" You pull off the top of your [pc.armor.longName] to get a look, just in case.");
-					kGAMECLASS.output(" Those muscles feel like they're getting bigger, bulkier, and your wings are growing bigger to match. A quick flex sends them flapping, kicking up a gust of wind, nearly lifting you off the ground. <b>You have wings just like a male zil, big enough to fly!</b>");
+					kGAMECLASS.output(" Those muscles feel like they’re getting bigger, bulkier, and your wings are growing bigger to match. A quick flex sends them flapping, kicking up a gust of wind, nearly lifting you off the ground. <b>You have wings just like a male zil, big enough to fly!</b>");
 					target.wingType = GLOBAL.TYPE_BEE;
 					if(target.wingCount < 2) target.wingCount = 2;
 				}
 				//TF other wings!
 				else {
-					kGAMECLASS.output("\n\nA cramp ruffles your [pc.wings], making them flutter wildly as they contort and twist. You can feel them changing as they flail around, and with each gasp of air you drag into your lungs, you feel them thinning. They never stop kicking up a hell of a breeze, though. A few seconds later, your body calms, and you're able to look behind you. <b>You've grown transparent, zil-like wings, big enough to fly with!</b>");
+					kGAMECLASS.output("\n\nA cramp ruffles your [pc.wings], making them flutter wildly as they contort and twist. You can feel them changing as they flail around, and with each gasp of air you drag into your lungs, you feel them thinning. They never stop kicking up a hell of a breeze, though. A few seconds later, your body calms, and you’re able to look behind you. <b>You’ve grown transparent, zil-like wings, big enough to fly with!</b>");
 					target.wingType = GLOBAL.TYPE_BEE;
 					if(target.wingCount < 2) target.wingCount = 2;
 				}
@@ -727,10 +727,10 @@
 				kGAMECLASS.output("\n\nThere is a sudden pinch in your ");
 				if(target.balls > 0) kGAMECLASS.output("[pc.balls]");
 				else kGAMECLASS.output("middle");
-				kGAMECLASS.output(" that's painful enough to make you jump! It leaves behind a very, very intense soreness. ");
+				kGAMECLASS.output(" that’s painful enough to make you jump! It leaves behind a very, very intense soreness. ");
 				if(target.balls > 0) kGAMECLASS.output("You cradle your [pc.sack] in your hand, regarding the poor thing warily as you try to find the source of the hurt. Then, you notice it contract up against you tightly, like it does when you cum. Only, there is no blissful release here.");
-				else kGAMECLASS.output("You give yourself a thorough once-over but can't find the source of the hurt. Then, you feel your abdominal muscles clenching, like when you orgasm, but there is no accompanying pleasure.");
-				kGAMECLASS.output(" [pc.Cum] starts drizzling out of your [pc.cocks]. This strange, pleasureless release continues on much longer than a normal orgasm, and it doesn't stop until you feel... well, emptied. The last few drops are chased out by sticky strands of honey-like goo. It's clear to you that <b>your [pc.cum] has been replaced by honey.</b> The codex verifies that there are still sperm in the new fluid, so you haven't lost your ability to knock someone up.");
+				else kGAMECLASS.output("You give yourself a thorough once-over but can’t find the source of the hurt. Then, you feel your abdominal muscles clenching, like when you orgasm, but there is no accompanying pleasure.");
+				kGAMECLASS.output(" [pc.Cum] starts drizzling out of your [pc.cocks]. This strange, pleasureless release continues on much longer than a normal orgasm, and it doesn’t stop until you feel... well, emptied. The last few drops are chased out by sticky strands of honey-like goo. It’s clear to you that <b>your [pc.cum] has been replaced by honey.</b> The codex verifies that there are still sperm in the new fluid, so you haven’t lost your ability to knock someone up.");
 				target.cumType = GLOBAL.FLUID_TYPE_HONEY;
 				changes++;
 			}

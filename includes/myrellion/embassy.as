@@ -7,9 +7,6 @@ public function theEmbassyBonusFunc():Boolean
 	if(flags["MYRELLION_EMBASSY_VISITED"] == undefined)
 	{
 		output(" To the south are some offices, probably from where the day-to-day business of the airport was run before it was repurposed.");
-		if (!CodexManager.entryUnlocked("Bothrioc")) output(" Some somberly-colored creatures");
-		else output(" Some bothrioc");
-		output(" are intently dusting and polishing the doors.");
 		
 		flags["MYRELLION_EMBASSY_VISITED"] = 1;
 		output("\n\nAs you enter the \"embassy\" - really a glorified aircraft hangar stuffed with desks, maps, and several disgruntled pioneers looking for entrance to the cities below - a tanuki-like kui-tan dressed in the familiar suit and tie of a U.G.C. government worker waves you over to his desk.");
@@ -20,9 +17,20 @@ public function theEmbassyBonusFunc():Boolean
 	}
 	else
 	{
-		output(" To the south are the offices in which the Bothrioc Embassy has installed itself.");
+		
 		
 		addButton(0, "Juro", talkToAmbassadorJuro, undefined, "Juro", "Speak with Juro, the kui-tan diplomat who greeted you when you first arrived.");
+	}
+	
+	if (flags["BOTHRIOC_EMBASSY_ENTERED"] == undefined)
+	{
+		if (!CodexManager.entryUnlocked("Bothrioc")) output(" Some somberly-colored creatures");
+		else output(" Some bothrioc");
+		output(" are intently dusting and polishing the doors.");
+	}
+	else
+	{
+		output(" To the south are the offices in which the Bothrioc Embassy has installed itself.");
 	}
 	
 	//=========================

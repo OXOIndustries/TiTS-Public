@@ -6,28 +6,15 @@
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
-	import classes.Items.Accessories.Allure;
-	import classes.Items.Accessories.FlashGoggles;
-	import classes.Items.Accessories.SiegwulfeItem;
-	import classes.Items.Accessories.TamWolf;
-	import classes.Items.Accessories.TamWolfDamaged;
-	import classes.Items.Accessories.TamWolfII;
+	import classes.Items.Accessories.*;
 	import classes.Items.Armor.GooArmor;
 	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
-	import classes.Items.Miscellaneous.EmptySlot;
-	import classes.Items.Miscellaneous.HorsePill;
-	import classes.Items.Miscellaneous.Priapin;
-	import classes.Items.Miscellaneous.Cargobot;
-	import classes.Items.Transformatives.AmberSeed;
-	import classes.Items.Transformatives.Cerespirin;
-	import classes.Items.Transformatives.Clippex;
-	import classes.Items.Transformatives.Foxfire;
-	import classes.Items.Transformatives.Goblinola;
-	import classes.Items.Transformatives.SemensFriend;
+	import classes.Items.Miscellaneous.*;
+	import classes.Items.Transformatives.*;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
@@ -2870,7 +2857,7 @@
 				//Biomass vent
 				if(statusEffectv1("Goo Vent") == 1)
 				{
-					kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+					flags["GOO_BIOMASS"] = 0;
 				}
 				if(this is PlayerCharacter)
 				{
@@ -2972,7 +2959,7 @@
 				}
 				// 50% sweatiness and combat-ready description
 				if (rand(2) == 0) {
-					if(kGAMECLASS.flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1 && statusEffectv1(mimType) >= 3) {
+					if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1 && statusEffectv1(mimType) >= 3) {
 						if (descripted > 0) desc += ", ";
 						rando = rand(10);
 						if (rando == 0) desc += "glistening";
@@ -2987,7 +2974,7 @@
 						else desc += "sweating";
 						descripted++;
 					}
-					if (kGAMECLASS.flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == 1 && statusEffectv1(mimType) >= 4) {
+					if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == 1 && statusEffectv1(mimType) >= 4) {
 						if (descripted > 0) desc += " and ";
 						rando = rand(4);
 						if (rando == 0) desc += "lust-inducing";
@@ -3335,8 +3322,15 @@
 		public function hasPheromones():Boolean
 		{
 			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent")) return true;
-			if(hasPerk("Pheromone Sweat") && statusEffectv1("Sweaty") > 0) return true;
+			if(hasPerk("Pheromone Sweat") && (statusEffectv1("Sweaty") > 0 || skinIsSoaked())) return true;
 			if(accessory is Allure) return true;
+			return false;	
+		}
+		public function skinIsSoaked():Boolean
+		{
+			if(this is PlayerCharacter && flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined) return true;
+			if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) return true;
+			if(statusEffectv1("Sweaty") > 2) return true;
 			return false;	
 		}
 		//Mild exhib scene: arg = +1;
@@ -3878,6 +3872,7 @@
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
 			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
+			bonus += statusEffectv1("Omega Oil");
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
@@ -3886,6 +3881,7 @@
 			//Venom brings minimum up to 35.
 			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
 			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
+			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
 			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {
@@ -3939,6 +3935,10 @@
 			if(hasStatusEffect("Psi Slave Collar")) bonus += statusEffectv3("Psi Slave Collar");
 			return (0 + bonus);
 		}
+		public function slowStatLoss(stat:String, arg:Number = 0):Number
+		{
+			return slowStatGain(stat, arg > 0 ? 0 - arg : arg);
+		}
 		public function slowStatGain(stat:String, arg:Number = 0):Number {
 			var statCurrent: Number = 0;
 			var statPercent: Number = 0;
@@ -3983,22 +3983,52 @@
 				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
 				return 0;
 			}
-			while (arg > 0) {
-				arg--;
-				if (statPercent < 30) change++;
-				else if (statPercent < 40) change += .9;
-				else if (statPercent < 50) change += .8;
-				else if (statPercent < 60) change += .7;
-				else if (statPercent < 65) change += .6;
-				else if (statPercent < 70) change += .5;
-				else if (statPercent < 75) change += .4;
-				else if (statPercent < 80) change += .3;
-				else if (statPercent < 85) change += .25;
-				else if (statPercent < 90) change += .2;
-				else if (statPercent < 95) change += .15;
-				else change += .1;
-				if(arg < 0) arg = 0;
+			
+			var isGain:Boolean = arg > 0;
+			arg = Math.abs(arg);
+			
+			if (isGain)
+			{
+				while (arg > 0) {
+					arg--;
+					if (statPercent < 30) change++;
+					else if (statPercent < 40) change += .9;
+					else if (statPercent < 50) change += .8;
+					else if (statPercent < 60) change += .7;
+					else if (statPercent < 65) change += .6;
+					else if (statPercent < 70) change += .5;
+					else if (statPercent < 75) change += .4;
+					else if (statPercent < 80) change += .3;
+					else if (statPercent < 85) change += .25;
+					else if (statPercent < 90) change += .2;
+					else if (statPercent < 95) change += .15;
+					else change += .1;
+					if(arg < 0) arg = 0;
+				}
 			}
+			else
+			{
+				while (arg > 0)
+				{
+					arg--;
+					
+					if (statPercent >= 95) change++;
+					else if (statPercent >= 90) change += .9;
+					else if (statPercent >= 85) change += .8;
+					else if (statPercent >= 80) change += .7;
+					else if (statPercent >= 75) change += .6;
+					else if (statPercent >= 70) change += .5;
+					else if (statPercent >= 65) change += .4;
+					else if (statPercent >= 60) change += .3;
+					else if (statPercent >= 50) change += .25;
+					else if (statPercent >= 40) change += .2;
+					else if (statPercent >= 30) change += .15;
+					else change += .1;					
+				}
+				
+				change = 0 - change;
+			}
+			
 			if (stat == "physique") return physique(change);
 			else if (stat == "reflexes") return reflexes(change);
 			else if (stat == "aim") return aim(change);
@@ -4075,7 +4105,7 @@
 			if(!accessoryOnly)
 			{
 				if(hasPerk("Attack Drone")) return true;
-		}
+			}
 			return (accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE));
 		}
 		public function hasActiveCombatDrone(robotOnly:Boolean = false, accessoryOnly:Boolean = false):Boolean
@@ -4721,6 +4751,11 @@
 				adjectives.push("sticky", "glutinous", "viscous");
 			if(hasTongueFlag(GLOBAL.FLAG_NUBBY))
 				adjectives.push("textured", "rough", "abrasive", "raspy");
+			if(hasTongueFlag(GLOBAL.FLAG_LUBRICATED))
+			{
+				adjectives.push("lubricated", "wet", "slippery");
+				if(tongueType != GLOBAL.TYPE_GOOEY) adjectives.push("slimy", "slick");
+			}
 			
 			//Show adjective 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) 
@@ -4942,9 +4977,9 @@
 			if (this is PlayerCharacter && hasStatusEffect("Mimbrane Face"))
 			{
 				//Birthmark
-				if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 1) facemim = " adorned with beauty marks just above them";
+				if (flags["MIMBRANE_FACE_APPEARANCE"] == 1) facemim = " adorned with beauty marks just above them";
 				//Lip piercings
-				else if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 2) facemim = " decorated with a pair of lip piercings";
+				else if (flags["MIMBRANE_FACE_APPEARANCE"] == 2) facemim = " decorated with a pair of lip piercings";
 			}
 			
 			return facemim;
@@ -5345,6 +5380,13 @@
 					{
 						if (skinType == GLOBAL.SKIN_TYPE_FUR) adjectives.push("fluffy");
 						if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push("downy");
+					}
+					if (hasSkinFlag(GLOBAL.FLAG_LUBRICATED))
+					{
+						if (skinType == GLOBAL.SKIN_TYPE_SKIN) adjectives.push(RandomInCollection(["glistening", "shining", "sparkling", "shimmering"]));
+						if (skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push(RandomInCollection(["shining", "sparkling", "shimmering"]));
+						if (skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN || skinType == GLOBAL.SKIN_TYPE_LATEX) adjectives.push(RandomInCollection(["glossy", "glistening", "slick"]));
+						if (skinType == GLOBAL.SKIN_TYPE_PLANT || skinType == GLOBAL.SKIN_TYPE_BARK) adjectives.push(RandomInCollection(["dewy", "damp", "moist"]));
 					}
 					if(adjectives.length > 0) output += RandomInCollection(adjectives);
 				}
@@ -6688,6 +6730,7 @@
 					else if (storageValueNum == 3) array[counter].value3 = newValue;
 					else if (storageValueNum == 4) array[counter].value4 = newValue;
 					else if (storageValueNum == 5) array[counter].description = newValue;
+					else throw new Error("setStorageValue called with an invalid index.");
 					return;
 				}
 			}
@@ -7367,15 +7410,29 @@
 			}
 			return index;
 		}
-		public function longestCockLength(): Number {
+		public function longestCockLength(raw:Boolean = false): Number {
 			if (cocks.length == 0) return 0;
 			var counter: Number = cocks.length;
 			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (cocks[index].cLength() < cocks[counter].cLength()) index = counter;
+			
+			if (!raw)
+			{
+				while (counter > 0) 
+				{
+					counter--;
+					if (cocks[index].cLength() < cocks[counter].cLength()) index = counter;
+				}
+				return cocks[index].cLength();
 			}
-			return cocks[index].cLength();
+			else
+			{
+				while (counter > 0) 
+				{
+					counter--;
+					if (cocks[index].cLengthRaw < cocks[counter].cLengthRaw) index = counter;
+				}
+				return cocks[index].cLengthRaw;
+			}
 		}
 		public function longestHorsecockLength(): Number {
 			if (cocks.length == 0) return 0;
@@ -7539,7 +7596,7 @@
 			return cocks[index].cLength();
 		}
 		//Find the biggest cock that fits inside a given value
-		public function cockThatFits(fits: Number = 0, type: String = "area"): Number {
+		public function cockThatFits(fits: Number = 0, type: String = "volume",excludedIndexes: Array = null): Number {
 			trace("Fits value: " + fits);
 			if (cocks.length <= 0) return -1;
 			var counter: Number = cocks.length;
@@ -7547,7 +7604,12 @@
 			var index: Number = -1;
 			while (counter > 0) {
 				counter--;
-				if (type == "area") {
+				//Check if this index location is excluded
+				if(excludedIndexes != null && excludedIndexes.indexOf(counter) != -1)
+				{
+					trace("Excluded index from \"cockThatFits\" check: " + counter);
+				}
+				else if (type == "volume") {
 					if (cockVolume(counter, true) <= fits) {
 						//If one already fits
 						if (index >= 0) {
@@ -7857,15 +7919,23 @@
 			}
 			return vaginas[index].wetness();
 		}
-		public function driestVaginalWetness(): Number {
+		public function driestVaginalWetness(raw:Boolean = false): Number {
 			if(!hasVagina()) return -1;
-			var counter: Number = vaginas.length;
-			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (vaginas[index].wetness() > vaginas[counter].wetness()) index = counter;
+			
+			var idx:int = 0;
+			
+			if (vaginas.length > 1)
+			{
+				for (var i:int = 1; i < vaginas.length; i++)
+				{
+					var cw:Number = raw ? vaginas[idx].wetnessRaw : vaginas[idx].wetness();
+					var nw:Number = raw ? vaginas[i].wetnessRaw : vaginas[i].wetness();
+					
+					if (nw < cw) idx = i;
+				}
 			}
-			return vaginas[index].wetness();
+			
+			return (raw ? vaginas[idx].wetnessRaw : vaginas[idx].wetness());
 		}
 		public function biggestVaginaIndex(): int {
 			if (vaginas.length == 0) return 0;
@@ -8500,8 +8570,8 @@
 			//BIOMASS ADDED LAST!
 			if(statusEffectv1("Goo Vent") == 1) 
 			{
-				if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-				quantity += kGAMECLASS.flags["GOO_BIOMASS"];
+				if(flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+				quantity += flags["GOO_BIOMASS"];
 			}
 			trace("Total produced: " + quantity);
 			return quantity;
@@ -8642,8 +8712,8 @@
 			//GOO VENT BONUS!
 			if(statusEffectv1("Goo Vent") == 1) 
 			{
-				if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-				quantity += kGAMECLASS.flags["GOO_BIOMASS"];
+				if(flags["GOO_BIOMASS"] == undefined) flags["GOO_BIOMASS"] = 0;
+				quantity += flags["GOO_BIOMASS"];
 			}
 			// Round values.
 			quantity = Math.round(quantity / 10) * 10;
@@ -8771,8 +8841,11 @@
 			tailGenitalArg = 0;
 			tailGenitalColor = "";
 			clearTailFlags();
-			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-			flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+			if(this is PlayerCharacter)
+			{
+				flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+				flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+			}
 			return;
 		}
 		public function hasParasiteTail(typeOnly:Boolean = false): Boolean {
@@ -10213,7 +10286,7 @@
 		public function orangeMyrScore():int
 		{
 			var counter:int = myrScore();
-			if (kGAMECLASS.flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+			if (flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
 			{
 				if (hasPerk("Honeypot") && hasPerk("Myr Venom")) counter += 4;
 				if (tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;
@@ -10659,7 +10732,7 @@
 			if (descripted) desc += " ";
 			rando = rand(9);
 			if (rando < 4) {
-				if (balls == 4 && rand(2) == 0) desc += "quad ";
+				if (!forceCount && balls == 4 && rand(2) == 0) desc += "quad ";
 				desc += "ball";
 			}
 			if (rando >= 4 && rando < 6) desc += "testicle";
@@ -17271,6 +17344,7 @@
 			if (!(this is PlayerCharacter) && !statusSimulate) return;
 			
 			var deferredEvents:Array = null;
+			var stringBuffer:String = "";
 			
 			for (var i:int = 0; i < statusEffects.length; i++)
 			{
@@ -17294,6 +17368,7 @@
 				// Effects created with a 0 or less duration aren't handled by this code ever.
 				if (thisStatus.minutesLeft <= 0) continue;
 				
+				var startEffectLength:uint = thisStatus.minutesLeft;
 				var maxEffectLength:uint = Math.min(deltaT, thisStatus.minutesLeft);
 				thisStatus.minutesLeft -= maxEffectLength;
 				
@@ -17303,13 +17378,72 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "Curdsonwhey": 
+						
+						if (startEffectLength >= 180 && thisStatus.minutesLeft < 180)
+						{
+							Curdsonwhey.effectProc(this, startEffectLength, 180);
+						}
+						
+						if (startEffectLength >= 120 && thisStatus.minutesLeft < 120)
+						{
+							Curdsonwhey.effectProc(this, startEffectLength, 120);
+						}
+						
+						if (startEffectLength >= 60 && thisStatus.minutesLeft < 60)
+						{
+							Curdsonwhey.effectProc(this, startEffectLength, 60);
+						}
+						
+						if (requiresRemoval)
+						{
+							Curdsonwhey.effectProc(this, startEffectLength, 0);
+							
+							AddLogEvent("You swallow, and nod with approval as the bitterness of the Curdsonwhey at the back of your throat finally washes away.", "passive", maxEffectLength);
+						}
+						
+						break;
 					case "IQBGoneTimer":
 						if(requiresRemoval)
 						{
 							kGAMECLASS.IQBeGoneCashOut();
 						}
 						break;
-
+					case "Fuck Fever":
+					case "Flushed":
+					case "Strangely Warm":
+						//Wears off
+						if(requiresRemoval)
+						{
+							AddLogEvent("The heat in your body finally recedes after an exhausting couple of days. <b>You are no longer feeling so unnaturally aroused.</b>");
+						}
+						//Pregnancy clears - gotta cheat to get the Omega Oil status clear.
+						else if(isPregnant())
+						{
+							AddLogEvent("You feel calmer and more clear-headed. Has the heat already faded?");
+							requiresRemoval = true;
+							if (deferredEvents == null) deferredEvents = [analHeatCleanup];
+							else deferredEvents.push(analHeatCleanup);
+						}
+						//Random notices for top 2 status tiers
+						else if(rand(100) == 0 && thisStatus.storageName != "Strangely Warm")
+						{
+							if(rand(4) == 0) 
+							{
+								stringBuffer = "Bolts of want zap down your spine as the irrational need to ";
+								if(!isTaur() && !isGoo() && !isNaga()) stringBuffer += "kneel";
+								else stringBuffer += "bow down";
+								stringBuffer += " and submit to an alien " + RandomInCollection(["stranger","beauty"]) + " as you pass by them stops you in your tracks. They do not notice you. The urge fades pretty soon.\n\nWeird.";
+							}
+							else if(rand(3) == 0)
+							{
+								stringBuffer = "You suddenly really, <i>really</i> want to get knotted " + RandomInCollection(["like a bitch in heat","by a nice dildo or a well-endowed stud","and pumped full of cum"]) + ". Your [pc.asshole] " + RandomInCollection(["spams","clenches around nothing"]) + ", desperately empty.";
+							}
+							else if(rand(2) == 0) stringBuffer = "You find yourself idly wondering how much a breeding stand custom-made to your measurements would cost, and if it would really be worth the investment.";
+							else stringBuffer = "You feel oddly serene, for someone who’s supposed to crave being fucked all the time.";
+							AddLogEvent(stringBuffer);
+						}
+						break;
 					case "Kally Cummed Out":
 						if(requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
 						{
@@ -17442,6 +17576,7 @@
 							{
 								AddLogEvent(ParseText("You feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>." + (isBimbo() ? " Nothing’s gonna to stop you from being, like, a totally hot sex doll!" : "")), "passive", maxEffectLength);
 								
+								if (skinType == GLOBAL.SKIN_TYPE_GOO && !hasSkinFlag(GLOBAL.FLAG_GOOEY)) addSkinFlag(GLOBAL.FLAG_GOOEY);
 								skinType = GLOBAL.SKIN_TYPE_LATEX;
 							}
 						}
@@ -17631,7 +17766,10 @@
 				}
 			}
 		}
-		
+		public function analHeatCleanup():void
+		{
+			removeStatusEffect("Omega Oil");
+		}
 		public function updateAlcoholState(deltaT:uint, doOut:Boolean):void
 		{		
 			var thisStatus:StorageClass = getStatusEffect("Alcohol");

@@ -184,7 +184,7 @@ public function approachMyrDesertersCombatBlurb(gold:Boolean = false):void
 		if(pc.meleeWeapon is EmptySlot && pc.rangedWeapon is EmptySlot) output("grab a nearby rock.");
 		else output("tighten your grip on your [pc.weapon].");
 
-		output("\n\nA deafening boom fills the air. The ground trembles, and dirt and stalagmites fall from the cavern ceiling. Heart racing in your chest, you throw yourself to the ground.");
+		output("\n\nA deafening boom fills the air. The ground trembles, and dirt and stalactites fall from the cavern ceiling. Heart racing in your chest, you throw yourself to the ground.");
 		output("\n\nWhen the tremors subside, you tentatively glance about – the explosion wasn’t close. The shock wave must have carried through the cave network.");
 		output("\n\nVoid, what kind of crazy race uses explosives in closed caverns? You dust yourself off and ");
 		if(pc.isBiped() || pc.isTaur()) output("stand up");

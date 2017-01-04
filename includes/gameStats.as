@@ -1835,6 +1835,16 @@ public function displayQuestLog(showID:String = "All"):void
 				if(siliconeTotal >= 4) output2(", Completed");
 				sideCount++;
 			}
+			// Semen Bottling Facility
+			if(flags["NT_BUILD_BOTTLE_PLANT"] > 0)
+			{
+				output2("\n<b><u>Semen Milking Factory</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["NT_BUILD_BOTTLE_PLANT"] >= 3) output2(" Fully built, Expanded, Employed as manager, Completed");
+				else if(flags["NT_BUILD_BOTTLE_PLANT"] >= 2) output2(" Half-way built");
+				else output2(" Partially built");
+				sideCount++;
+			}
 		}
 
 		if(showID == "Mhen'ga" || showID == "All")
@@ -2107,6 +2117,22 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b>");
 				if(9999 == 0) output2(" ???");
 				else output2(" <i>In progress... STILL IN DEVELOPMENT</i>");
+				sideCount++;
+			}
+			// Bothrioc Addiction
+			if(flags["BOTHRIOC_ADDICTION"] != undefined && flags["BOTHRIOC_ADDICTION"] != 0)
+			{
+				output2("\n<b><u>Bothrioc Oil</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(bothriocAddiction() >= 100) output2(" Completely addicted to it");
+				else if(bothriocAddiction() >= 50)
+				{
+					output2(" Permanently aroused by it");
+					if(bothriocAddiction() >= 75) output2(", Accepting of it");
+				}
+				else if(bothriocAddiction() >= 25) output2(" Curious about it");
+				else output2(" Exposed to it");
+				output2("\n<b>* Bothrioc Hormone Level:</b> " + bothriocAddiction() + " %");
 				sideCount++;
 			}
 			// EmmyQuest
@@ -4351,9 +4377,23 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(showID == "Myrellion" || showID == "All")
 		{
 			// Embassy
-			if(flags["MET_JURO"] != undefined || flags["MET_LYRALLA"] != undefined || flags["MET_NEHZARA"] != undefined)
+			if(flags["MET_ARAKEI"] != undefined || flags["MET_CHARLES"] != undefined || flags["MET_JURO"] != undefined || flags["MET_LYRALLA"] != undefined || flags["MET_NEHZARA"] != undefined)
 			{
 				output2("\n<b><u>The Embassy</u></b>");
+				// Ara Kei
+				if(flags["MET_ARAKEI"] != undefined)
+				{
+					output2("\n<b>* Ara Kei:</b> Met [ara.him]");
+					if(flags["ARAKEI_POLISHED_BOOTIES"] != undefined) output2(", Prostrated yourself to [ara.him]");
+					else if(flags["ARAKEI_REFUSED_BOOTIES"] != undefined) output2(", Refused to prostrate yourself to [ara.him]");
+				}
+				// Charles
+				if(flags["MET_CHARLES"] != undefined)
+				{
+					output2("\n<b>* Charles:</b> Met him");
+					if(flags["CHARLES_DISABLED_FIX"] != undefined) output2(", You no longer want Curdsonwhey from him");
+					else if(flags["CHARLES_TALKED_FIX"] != undefined) output2(", Spoke of bothrioc addiction fix");
+				}
 				// Juro
 				if(flags["MET_JURO"] != undefined) output2("\n<b>* Juro:</b> Met him");
 				// Lyralla
