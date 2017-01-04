@@ -1010,7 +1010,9 @@ public function cfsGoMassageEimear():void
 
 	output("\n\nWhat comes is a happy disappointment. Her hands are a perfect lukewarm temperature, spreading the nice smelling oil over your body. They compass your back like a map, prodding and lightly squeezing, searching your musculature for tense spots. Once she’s profiled the areas that feel tight or stiff she sets in, working them with a master’s firm precision.");
 
-	output("\n\nA sigh escapes your lips as her fingers undo the built-up strain of your adventures, all the way from your lower back to your shoulder blades.{ She pays careful attention to the base of your [pc.wings], gently rubbing them as she passes by.} Upon finishing with your shoulders for the moment, she transitions to your [pc.butt], giving each [pc.buttcheek] a firm rubdown.");
+	output("\n\nA sigh escapes your lips as her fingers undo the built-up strain of your adventures, all the way from your lower back to your shoulder blades.");
+	if (pc.hasWings()) output(" She pays careful attention to the base of your [pc.wings], gently rubbing them as she passes by."); 
+	output(" Upon finishing with your shoulders for the moment, she transitions to your [pc.butt], giving each cheek a firm rubdown.");
 
 	if (flags["HUNGOUT_CFS"] != undefined && pc.buttRating() >= 10)
 	{
