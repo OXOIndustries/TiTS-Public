@@ -325,6 +325,7 @@
 		
 		// Uveto
 		include "../includes/uveto/drlessau.as";
+		include "../includes/uveto/carbonado.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
@@ -446,7 +447,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.08";
+			version = "0.7.09";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1292,6 +1293,10 @@
 		public function get ara():AraKei
 		{
 			return chars["ARAKEI"];
+		}
+		public function get gwen():Gwen
+		{
+			return chars["GWEN"];
 		}
 		
 		private var _dbgtestvar:int = 0;

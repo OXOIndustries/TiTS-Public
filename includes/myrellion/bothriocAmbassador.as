@@ -78,6 +78,7 @@ public function approachAraKei():void
 	{
 		araKeiTalk();
 		specialMenu = true;
+		return;
 	}
 	if (bothriocAddiction() <= 0 /*&& flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined*/)
 	{
@@ -418,7 +419,7 @@ public function araKeiMenu(lastF:Function = null):void
 				? "Debase yourself in front of this perfect being. (You probably don’t want to be anywhere anytime soon if you’re choosing this.)"
 				: bothriocAddiction() >= 50
 					? "Perhaps if you displayed your devotion enough..."
-					: "Hey, it’s worth a short."
+					: "Hey, it’s worth a shot."
 	});
 	
 	addButton(10, "Appearance", araKeiAppearance);
@@ -640,7 +641,7 @@ public function araKeiTalkHistory():void
 	clearOutput();
 	showAraKei();
 
-	output("<i>“History? You ask for history from a species with no written records, no architecture, only the technology required to trap, eat and breed?”</i> Ara Kei sneers in apparent disbelief - however, the way [ara.his] eight limbs tremble slightly with restless energy telegraph "+ ara.mfn("he’s", "she’s", "they’re")+ "pleased you’ve brought this topic up.");
+	output("<i>“History? You ask for history from a species with no written records, no architecture, only the technology required to trap, eat and breed?”</i> Ara Kei sneers in apparent disbelief - however, the way [ara.his] eight limbs tremble slightly with restless energy telegraph "+ ara.mfn("he’s", "she’s", "they’re")+ " pleased you’ve brought this topic up.");
 	
 	output("\n\n<i>“We have history, Steele, but not as you understand it. Imagine that the only unspoken descriptions that existed of you were written by someone else - someone who was at best ambivalent to you, at worst an enemy.”</i> "+ ara.mfn("He watches", "She watches", "They watch") +" your expression closely with those big, black eyes of "+ ara.mfn("his", "hers", "theirs") +". <i>“Yes, there is someone, isn’t there? Not such a pleasant thought, is it. That is why I am here - to fight against my race being a scribbled footnote in somebody else’s tragedy. In order to apply for legal protection within the U.G.C.”</i>");
 	

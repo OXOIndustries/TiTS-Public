@@ -26,12 +26,12 @@
 			this.shortName = "Exp. Cloak";
 			
 			//Regular name
-			this.longName = "Explorers Cloak";
+			this.longName = "explorers cloak";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an Explorers Cloak";
+			this.description = "an explorers cloak";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A cloak made of what looks like glass with the texture of cloth. When a button on the clasp is pressed it blends in with the surrounding environment. The blend is far from perfect, creating a dazzling array of colors when moved. It wouldn't totally hide anyone, but it might make distant viewers doubt what they saw.";

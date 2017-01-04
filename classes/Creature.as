@@ -3872,6 +3872,7 @@
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
 			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
+			bonus += statusEffectv1("Omega Oil");
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
@@ -17343,6 +17344,7 @@
 			if (!(this is PlayerCharacter) && !statusSimulate) return;
 			
 			var deferredEvents:Array = null;
+			var stringBuffer:String = "";
 			
 			for (var i:int = 0; i < statusEffects.length; i++)
 			{
@@ -17407,7 +17409,41 @@
 							kGAMECLASS.IQBeGoneCashOut();
 						}
 						break;
-
+					case "Fuck Fever":
+					case "Flushed":
+					case "Strangely Warm":
+						//Wears off
+						if(requiresRemoval)
+						{
+							AddLogEvent("The heat in your body finally recedes after an exhausting couple of days. <b>You are no longer feeling so unnaturally aroused.</b>");
+						}
+						//Pregnancy clears - gotta cheat to get the Omega Oil status clear.
+						else if(isPregnant())
+						{
+							AddLogEvent("You feel calmer and more clear-headed. Has the heat already faded?");
+							requiresRemoval = true;
+							if (deferredEvents == null) deferredEvents = [analHeatCleanup];
+							else deferredEvents.push(analHeatCleanup);
+						}
+						//Random notices for top 2 status tiers
+						else if(rand(100) == 0 && thisStatus.storageName != "Strangely Warm")
+						{
+							if(rand(4) == 0) 
+							{
+								stringBuffer = "Bolts of want zap down your spine as the irrational need to ";
+								if(!isTaur() && !isGoo() && !isNaga()) stringBuffer += "kneel";
+								else stringBuffer += "bow down";
+								stringBuffer += " and submit to an alien " + RandomInCollection(["stranger","beauty"]) + " as you pass by them stops you in your tracks. They do not notice you. The urge fades pretty soon.\n\nWeird.";
+							}
+							else if(rand(3) == 0)
+							{
+								stringBuffer = "You suddenly really, <i>really</i> want to get knotted " + RandomInCollection(["like a bitch in heat","by a nice dildo or a well-endowed stud","and pumped full of cum"]) + ". Your [pc.asshole] " + RandomInCollection(["spams","clenches around nothing"]) + ", desperately empty.";
+							}
+							else if(rand(2) == 0) stringBuffer = "You find yourself idly wondering how much a breeding stand custom-made to your measurements would cost, and if it would really be worth the investment.";
+							else stringBuffer = "You feel oddly serene, for someone who’s supposed to crave being fucked all the time.";
+							AddLogEvent(stringBuffer);
+						}
+						break;
 					case "Kally Cummed Out":
 						if(requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
 						{
@@ -17730,7 +17766,10 @@
 				}
 			}
 		}
-		
+		public function analHeatCleanup():void
+		{
+			removeStatusEffect("Omega Oil");
+		}
 		public function updateAlcoholState(deltaT:uint, doOut:Boolean):void
 		{		
 			var thisStatus:StorageClass = getStatusEffect("Alcohol");
