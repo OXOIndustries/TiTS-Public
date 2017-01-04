@@ -5,6 +5,7 @@ import classes.DataManager.Errors.VersionUpgraderError;
 import classes.DataManager.Serialization.ItemSaveable;
 import classes.GameData.CombatManager;
 import classes.ItemSlotClass;
+import classes.Items.Armor.GooArmor;
 import classes.StorageClass;
 import classes.StringUtil;
 import classes.TiTS;
@@ -38,6 +39,11 @@ public function useItem(item:ItemSlotClass):Boolean
 {
 	showName("");
 	
+	if (shiftKeyDown)
+	{
+		deleteItemPrompt(item);
+		return false;
+	}
 	if (item.isUsable == false)
 	{
 		//trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
@@ -217,6 +223,28 @@ public function backToCombatInventory(item:ItemSlotClass):void
 	{
 		CombatManager.processCombat();
 	}
+}
+
+private function deleteItemPrompt(item:ItemSlotClass):void {
+	clearOutput();
+	if (item is GooArmor) {
+		output("You monster! You can't throw away [goo.name].");
+		clearMenu();
+		addButton(0,"Next",inventory);
+		return;
+	}
+	output("Are you sure you want to destroy " + item.quantity + "x " + item.shortName + "?  You won't be able to retrieve " + (item.quantity == 1 ? "it": "them") + "!");
+	clearMenu();
+	addButton(0, "Yes", deleteItem, item);
+	addButton(1, "No", inventory);
+}
+
+private function deleteItem(item:ItemSlotClass):void {
+	clearOutput();
+	output(item.quantity + "x " + item.shortName + " " + (item.quantity == 1 ? "has": "have") + " been destroyed.");
+	pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	clearMenu();
+	addButton(0, "Next", inventory);
 }
 
 public var shopkeepBackFunctor:Function = null;
@@ -780,7 +808,7 @@ public function generalInventoryMenu():void
 	itemScreen = inventory;
 	useItemFunction = inventory;
 	
-	output("What item would you like to use?");
+	output("What item would you like to use? (To discard unwanted items, hold Shift then click the item.)");
 	output("\n\n");
 	inventoryDisplay();
 	clearMenu();
