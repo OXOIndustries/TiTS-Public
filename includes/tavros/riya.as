@@ -81,6 +81,7 @@ public function riyaMenu():void
 
 	if((!pc.hasVagina() || pc.isTaur() || pc.femininity <= 40 || pc.hasCock()) && flags["RIYA_BLOCKED"] != undefined) addDisabledButton(3,"Sex","Sex","You need to a normal female to pique her interest - with less than four legs.");
 	else addButton(3,"Sex",sexRiyaCauseYerDumbAndDeserveToBePunished);
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //(ausar:’mutt’ leithan/centaur:’mule’ kathrit:’alley cat’ else:’creep’)
