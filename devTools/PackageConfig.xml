@@ -50,9 +50,12 @@
       </iPhone>
     <icon>
         <image29x29>icons/icon_29.png</image29x29>
+        <image36x36>icons/icon_36.png</image36x36>
+        <image48x48>icons/icon_46.png</image48x48>
         <image57x57>icons/icon_57.png</image57x57>
         <image72x72>icons/icon_72.png</image72x72>
         <image144x144>icons/icon_144.png</image144x144>
+        <image192x192>icons/icon_192.png</image192x192>
         <image512x512>icons/icon_512.png</image512x512>
     </icon>
     <extensions>
