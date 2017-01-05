@@ -34,9 +34,6 @@ public function approachKirila(back:Boolean = false):void
 	author("Kinathis");
 	if(back)
 	{
-		clearOutput();
-		showKirila();
-		author("Kinathis");
 		output("Kirila looks over her shoulder at her shop. <i>“Is there something else I can help you with?”</i> she asks with a smile on her copper-skinned lips.");
 	}
 	else
