@@ -3,6 +3,34 @@ import classes.GameData.Pregnancy.Child;
 import classes.GameData.Pregnancy.UniqueChild;
 import classes.GameData.Pregnancy.Containers.Genders;
 
+/* Briget functions */
+public function showBriget(nude:Boolean = false):void
+{
+	showName("\nBRIGET");
+	showBust(brigetBustDisplay(nude));
+}
+public function brigetBustDisplay(nude:Boolean = false):String
+{
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["BRIGET"] != "ADJATHA") return "BRIGET";
+	
+	var str:String = "BRIGET";
+	
+	if(brigetIsBusty()) str += "_TITS";
+	if(brigetIsPregnant()) str += "_PREG";
+	if(nude) str += "_NUDE";
+	
+	return str;
+}
+public function brigetIsBusty():Boolean
+{
+	return false;
+}
+public function brigetIsPregnant():Boolean
+{
+	return false;
+}
+
 // General support shit
 public function hasNurseryUpgrades():Boolean
 {
@@ -1247,7 +1275,8 @@ public function nurseryMeetBriget():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("BRIGET");
+	showName("\nWOMAN");
+	showBust(brigetBustDisplay());
 
 	output("The woman at the desk seems to be the person to talk to here, so you make your way over and clear your throat to get her attention. She glances up from her Codex, immediately adopting a welcoming, matronly smile on her plump pink lips. There certainly is a <i>lot</i> of woman there, too, now that you’re paying closer attention to her: her hips and thighs are thick and fertile-figured to an almost exaggerated degree, as is the shapely bust hefting up the front of her crisp suit-jacket. Combine those ample assets with the square hardlight glasses and the neat bun binding back thick locks of reddish-pink hair, and the woman cuts a figure you can only describe as");
 	if (pc.isBro() || pc.LQ() >= 75) output(" <i>absolute MILF</i>");
@@ -1280,7 +1309,7 @@ public function nurseryMeetBrigetII(acceptedHug:Boolean):void
 {
 	clearOutput();
 	author("Savin");
-	showBust("BRIGET");
+	showBriget();
 
 	if (acceptedHug == false)
 	{
@@ -1331,7 +1360,7 @@ public function nurseryApproachBriget():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("BRIGET");
+	showBriget();
 
 	output("You");
 	if (flags["BRIGET_FUCKED"] != undefined) output(" wander up and grab a handful of Briget’s plump derriere. Your lovely nurse giggles in a girlish way reserved just for you, pressing herself back against your hand. <i>“Hello, sweet thing. What can momma do for you?”</i>");
@@ -1356,7 +1385,7 @@ public function nurseryBrigetNurseryTalk():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("BRIGET");
+	showBriget();
 
 	output("<i>“Let’s talk about the nursery,”</i> you prompt.");
 	
@@ -1381,8 +1410,8 @@ public function nurseryBrigetNurseryTalkMenu(lastFunc:Function = null):void
 public function nurseryBrigetNurseryStatus():void
 {
 	clearOutput();
-	showBust("BRIGET");
 	author("Savin");
+	showBriget();
 
 	output("<i>“How are things at the nursery?”</i> you ask. Briget tuts at you, saying that you’re quite capable of looking at the holoscreen’s readouts yourself, but you simply say that you’d like to hear it from her. The head nurse doubtless can paint a more vivid picture than a few stale stat-displays.");
 	
@@ -1434,7 +1463,7 @@ public function nurseryBrigetNurseryStaff():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("BRIGET");
+	showBriget();
 
 	//{Has no special staff:
 	if (!hasNurseryStaff())
