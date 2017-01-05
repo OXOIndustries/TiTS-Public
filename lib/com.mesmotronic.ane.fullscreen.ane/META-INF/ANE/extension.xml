@@ -1,0 +1,21 @@
+<extension xmlns="http://ns.adobe.com/air/extension/19.0">
+	<id>com.mesmotronic.ane.fullscreen</id>
+	<versionNumber>1.4.3</versionNumber>
+	<platforms>
+		<platform name="Android-ARM">
+			<applicationDeployment>
+				<nativeLibrary>fullscreen-ane-jar.jar</nativeLibrary>
+				<initializer>com.mesmotronic.ane.fullscreen.FullScreenExtension</initializer>
+			</applicationDeployment>
+		</platform>
+		<platform name="Android-x86">
+			<applicationDeployment>
+				<nativeLibrary>fullscreen-ane-jar.jar</nativeLibrary>
+				<initializer>com.mesmotronic.ane.fullscreen.FullScreenExtension</initializer>
+			</applicationDeployment>
+		</platform>
+		<platform name="default">
+			<applicationDeployment />
+		</platform>
+	</platforms>
+</extension>

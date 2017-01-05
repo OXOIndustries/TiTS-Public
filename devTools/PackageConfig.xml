@@ -9,7 +9,7 @@
     <allowBrowserInvocation>false</allowBrowserInvocation>
         <initialWindow> 
         <content>TiTS_AIR.swf</content> 
-        <fullScreen>true</fullScreen>
+        <fullScreen>false</fullScreen>
         <aspectRatio>any</aspectRatio>
         <autoOrients>true</autoOrients>
         <visible>true</visible>
@@ -55,4 +55,7 @@
         <image144x144>icons/icon_144.png</image144x144>
         <image512x512>icons/icon_512.png</image512x512>
     </icon>
+    <extensions>
+      <extensionID>com.mesmotronic.ane.fullscreen</extensionID>
+    </extensions>
 </application>

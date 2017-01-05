@@ -54,6 +54,7 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="style_uiscroll.swc" />
+    <element path="lib\AndroidFullScreen.ane" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

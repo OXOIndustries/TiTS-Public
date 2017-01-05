@@ -83,10 +83,17 @@
 	import flash.events.UncaughtErrorEvents;
 	import flash.display.LoaderInfo;
 	import flash.system.Security;
+	
+	import flash.display.StageScaleMode;
+	
+	CONFIG::AIR
+	{
+		import com.mesmotronic.ane.AndroidFullScreen;
+	}
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
-	{
+	{		
 		// Smoosh all the included stuff into the TiTS class
 		// this is a HORRIBLE way of architecting the system, but it's better then not
 		// using classes at all
@@ -433,6 +440,13 @@
 		
 		private function init(e:Event):void
 		{	
+			CONFIG::AIR
+			{
+				AndroidFullScreen.stage = stage;
+				AndroidFullScreen.fullScreen();
+				AndroidFullScreen.immersiveMode();
+			}
+			
 			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
 			
 			stage.quality = StageQuality.BEST;
