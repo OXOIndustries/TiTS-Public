@@ -122,7 +122,7 @@ public function bothriocEggnancySub50Effects(deltaT:uint, opt:int, doOut:Boolean
 			}
 			else if (pc.ballDiameter() > 1 || !pc.hasStatusEffect("Uniball"))
 			{
-				ExtendLogEvent(" You shiver as you realise your [pc.balls] are compressing further in on themselves; becoming little more than a tender, needy boy-package, only good for being teased by some dominant as they do as they please with your body. You have to bite your finger at the thought.");
+				ExtendLogEvent(" You shiver as you realize your [pc.balls] are compressing further in on themselves; becoming little more than a tender, needy boy-package, only good for being teased by some dominant as they do as they please with your body. You have to bite your finger at the thought.");
 
 				pc.ballSizeRaw -= 1;
 				if (pc.ballSizeRaw < 1) pc.ballSizeRaw = 1;
@@ -183,7 +183,7 @@ public function bothriocEggnancySub50Effects(deltaT:uint, opt:int, doOut:Boolean
 			if (effect && effect.value3 == 0)
 			{
 				effect.value3 = 1;
-				ExtendLogEvent(ParseText(" You notice a few moments after the euphoric rush that the distribution of weight on your frame has shifted a bit - your [pc.boobs] have increased in size. It’s impossible to separate the sensation of euphoria from this change. Being a bit more jiggly and bouncy and pleasing to the eye is intrinsically linked to being happy and soft-centred."));
+				ExtendLogEvent(ParseText(" You notice a few moments after the euphoric rush that the distribution of weight on your frame has shifted a bit - your [pc.boobs] have increased in size. It’s impossible to separate the sensation of euphoria from this change. Being a bit more jiggly and bouncy and pleasing to the eye is intrinsically linked to being happy and soft-centered."));
 			}
 			else
 			{
@@ -230,7 +230,7 @@ public function bothriocEggnancySub100Effects(deltaT:uint, opt:int, doOut:Boolea
 
 		bothriocEggnancySub50Effects(deltaT, opt, false);
 	}
-	else if (opt == 1)
+	else if (opt == 1 && pc.hasVagina())
 	{
 		if (doOut) AddLogEvent(ParseText("The warm glow is not consigned entirely to your swollen stomach; as time wears on it seems to radiate outwards, permeating every inch of your body, making your [pc.skinFurScales] feel like it’s swaddled in shifting cotton wool. You are grateful, because once it has spread throughout you it’s as if you’re walking on violet clouds. Why would you reject this sensation? Why would you reject the wonderful changes the dense clutch inside you are causing?"), "passive", deltaT);
 
@@ -257,18 +257,18 @@ public function bothriocEggnancySub100Effects(deltaT:uint, opt:int, doOut:Boolea
 
 			if (!didHigh)
 			{
-				ExtendLogEvent(ParseText(" Your [pc.vagina] feels very wet, the fuzzy sensation sinking into your crotch seeming to increase the volume of [pc.femcum] that you can produce - and how easy it is to turn you on. You shiver at the implication."));
+				ExtendLogEvent(ParseText(" Your [pc.vaginas] feel" + (pc.vaginas.length == 1 ? "s" : "") + " very wet, the fuzzy sensation sinking into your crotch seeming to increase the volume of [pc.femcum] that you can produce - and how easy it is to turn you on. You shiver at the implication."));
 			}
 			else
 			{
-				ExtendLogEvent(ParseText(" Your [pc.vagina] is utterly soaked with arousal, dripping"+ (pc.hasLowerGarment() ? " out of your [pc.lowerUndergarment]" : (pc.hasLegs() ? " down your inner thigh" : " down your [pc.leg]")) +". It lubes itself up to the point now where you will never not be ready to take a hard breeding from whichever beautiful night-creature wishes to bend you over, regardless of the size of their bulging egg-cock. You cannot help but dribble [pc.femcum] freely at the thought."));
+				ExtendLogEvent(ParseText(" Your [pc.vaginas] " + (pc.vaginas.length == 1 ? "is" : "are") + " utterly soaked with arousal, dripping"+ (pc.hasLowerGarment() ? " out of your [pc.lowerUndergarment]" : (pc.hasLegs() ? " down your inner thigh" : " down your [pc.leg]")) +". " + (pc.vaginas.length == 1 ? "It lubes itself" : "They lube themselves") + " up to the point now where you will never not be ready to take a hard breeding from whichever beautiful night-creature wishes to bend you over, regardless of the size of their bulging egg-cock. You cannot help but dribble [pc.femcum] freely at the thought."));
 			}
 		}
 
 		if (rand(2) == 0 && pc.fertilityRaw < 2)
 		{
 			pc.fertilityRaw += 0.1;
-			ExtendLogEvent(ParseText(" Quite a lot of the heat seems to centre on your"+ (pc.hasWombPregnancy() ? " packed" : "") +" womb, your inner female sex throbbing gently. A pass of your hand over your [pc.belly] reveals you have become more tender around the sides. Your ovaries have increased in size, and innately you know you are ovulating more frequently."))
+			ExtendLogEvent(ParseText(" Quite a lot of the heat seems to center on your"+ (pc.hasWombPregnancy() ? " packed" : "") +" womb, your inner female sex throbbing gently. A pass of your hand over your [pc.belly] reveals you have become more tender around the sides. Your ovaries have increased in size, and innately you know you are ovulating more frequently."))
 		}
 	}
 	else if (opt == 2)
