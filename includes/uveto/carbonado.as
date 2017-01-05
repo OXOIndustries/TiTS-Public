@@ -114,7 +114,7 @@ public function uvetoCarbonadoMenu():void
 
 	if (flags["HUNGOUT_CFS"] != undefined && (hours >= 20 || hours <= 4))
 	{
-		addButton(2, "Hangout", cfsGoHangoutTime);
+		if (flags["CFS_HANGOUT_EVENT_PENDING"] == 1) addButton(2, "Hangout", cfsGoHangoutTime);
 
 		if (pc.hasCock() || pc.hasVagina())
 		{
