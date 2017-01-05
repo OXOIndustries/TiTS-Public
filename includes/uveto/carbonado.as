@@ -47,14 +47,14 @@ public function uvetoCarbonadoStore():Boolean
 			output(" She gives you a wave when she sees you, mood brightening instantly.");
 			if (flags["FUCKED_CFS_GWEN"] != undefined)
 			{
-				output(" She pantomimes a growl, throwing a lusty grin in your direction. The dress she's wearing flaunts her heart shaped coloration for all to see, but she makes a point to make sure you see some extra cleavage.");
+				output(" She pantomimes a growl, throwing a lusty grin in your direction. The dress she’s wearing flaunts her heart shaped coloration for all to see, but she makes a point to make sure you see some extra cleavage.");
 			}
 		}
 		else if (flags["MET_CFS_GWEN"] != undefined) output(" When she sees you at the door she gives a dreamy sigh, leaning her chin on both palms and staring.");
 
 		if (flags["MET_CFS_EIMEAR"] == undefined)
 		{
-			output("\n\nThe other counter is manned by a variety of staff, one of whom stands a head and shoulder's height above the rest. Your codex identifies her as half-ausar, half-bruchandus.");
+			output("\n\nThe other counter is manned by a variety of staff, one of whom stands a head and shoulder’s height above the rest. Your codex identifies her as half-ausar, half-bruchandus.");
 		}
 		else
 		{
@@ -985,7 +985,7 @@ public function cfsGoMassage():void
 	processTime(2+rand(2));
 	clearMenu();
 	if (pc.credits >= 1000) addButton(0, "Eimear", cfsGoMassageEimear, undefined, "Ask the co-owner for a one-on-one massage. 1000 credits.");
-	else addDisabledButton(0, "Eimear", "Eimear", "Ask the co-owner for a one-on-one massage. 1000 credits. Shame you can't afford it.");
+	else addDisabledButton(0, "Eimear", "Eimear", "Ask the co-owner for a one-on-one massage. 1000 credits. Shame you can’t afford it.");
 
 	addButton(14, "Back", uvetoCarbonadoMenu);
 }
