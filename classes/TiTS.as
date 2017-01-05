@@ -85,15 +85,18 @@
 	import flash.system.Security;
 	
 	import flash.display.StageScaleMode;
-	
-	CONFIG::AIR
-	{
-		import com.mesmotronic.ane.AndroidFullScreen;
-	}
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
-	{		
+	{	
+		// Apparantly this is what was breaking AIR optimization- using a static bool compiler switch
+		// fails when done outside of class scope.
+		
+		CONFIG::AIR
+		{
+			import com.mesmotronic.ane.AndroidFullScreen;
+		}
+	
 		// Smoosh all the included stuff into the TiTS class
 		// this is a HORRIBLE way of architecting the system, but it's better then not
 		// using classes at all
