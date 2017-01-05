@@ -430,8 +430,20 @@ public function initUvetoRooms():void
 	rooms["UVI N40"].system = "SYSTEM: SIRETTA";
 	rooms["UVI N40"].northExit = "UVI N38";
 	rooms["UVI N40"].southExit = "UVI N42";
+	rooms["UVI N40"].westExit = "PIPPA HOUSE";
 	rooms["UVI N40"].moveMinutes = 3;
+	rooms["UVI N40"].runOnEnter = southernResidentialBonus;
 	rooms["UVI N40"].addFlag(GLOBAL.OUTDOOR);
+
+	rooms["PIPPA HOUSE"] = new RoomClass(this);
+	rooms["PIPPA HOUSE"].roomName = "PIPPA\nRESIDENCE"
+	rooms["PIPPA HOUSE"].description = "";
+	rooms["PIPPA HOUSE"].planet = "PLANET: UVETO VII";
+	rooms["PIPPA HOUSE"].system = "SYSTEM: SIRETTA";
+	rooms["PIPPA HOUSE"].eastExit = "UVI N40";
+	rooms["PIPPA HOUSE"].moveMinutes = 3;
+	rooms["PIPPA HOUSE"].runOnEnter = pippaHouseBonus;
+	rooms["PIPPA HOUSE"].addFlag(GLOBAL.INDOOR);
 
 	rooms["UVI N42"] = new RoomClass(this);
 	rooms["UVI N42"].roomName = "SOUTHERN\nCOMMERCE";

@@ -116,6 +116,7 @@
 	prepChar(justUpdate, "PEXIGA", Pexiga);
 	prepChar(justUpdate, "MILODAN_MALE", MilodanMale);
 	prepChar(justUpdate, "VESPERIANVENDINGMACHINE", VesperianVendingMachine);
+	prepChar(justUpdate, "PIPPA", Pippa);
 	
 	
 	// Check all characters have version information set

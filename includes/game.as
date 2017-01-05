@@ -1828,6 +1828,16 @@ public function variableRoomUpdateCheck():void
 		rooms["UVI P30"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["UVI P30"].removeFlag(GLOBAL.NPC);
 	}
+
+	// Pippa's house
+	if (flags["PIPPA_RECRUITED"] == 1)
+	{
+		rooms["PIPPA HOUSE"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["PIPPA HOUSE"].addFlag(GLOBAL.NPC);
+	}
 	
 	
 	/* MISC */
