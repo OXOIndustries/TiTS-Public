@@ -614,7 +614,7 @@
 		}
 		public function tongueTypeLockedMessage():String
 		{
-			return "Your [pc.tongue] feels odd in your mouth but doesn't change.";
+			return "Your [pc.tongue] feels odd in your mouth but doesn’t change.";
 		}
 
 		public var tongueFlags: Array = new Array();
@@ -624,7 +624,7 @@
 		}
 		public function tongueFlagsLockedMessage():String
 		{
-			return "Your [pc.tongue] feels odd in your mouth but doesn't change.";
+			return "Your [pc.tongue] feels odd in your mouth but doesn’t change.";
 		}
 
 		public var lipMod:Number = 0;
@@ -833,8 +833,8 @@
 			if (tailType == GLOBAL.TYPE_CUNTSNAKE || tailType == GLOBAL.TYPE_COCKVINE)
 			{
 				msg = "The creature masquerading as a tail seems pretty spooked about something all of a sudden;";
-				if (isBiped()) msg += " it's wrapped itself around your [pc.thigh], clinging on tightly and chirping to itself quietly...."
-				else msg += " it's busy chirping away to itself and thrashing around, almost as if it were trying to seek out a predator....";
+				if (isBiped()) msg += " it’s wrapped itself around your [pc.thigh], clinging on tightly and chirping to itself quietly...."
+				else msg += " it’s busy chirping away to itself and thrashing around, almost as if it were trying to seek out a predator....";
 				return msg;
 			}
 			return "Despite the heat at the base of your spine, nothing changes back there.";
@@ -3369,12 +3369,12 @@
 						else exhibitionismRaw += arg;
 					}
 				}
-				if(originalExhibtionism < 10 && exhibitionismRaw >= 10) AddLogEvent("Maybe having sex in front of an audience wouldn't be that bad.", "passive");
-				else if(originalExhibtionism < 20 && exhibitionismRaw >= 20) AddLogEvent("You're still feeling a little bit of residual thrill. Who knew audiences could be so... intriguing.", "passive");
-				else if(originalExhibtionism < 33 && exhibitionismRaw >= 33) AddLogEvent("You've got to admit to yourself that you're developing a bit of an <b>exhibitionism fetish</b>. Sure, you get nervous as hell about the idea of showing yourself off, but you get horny as hell too. At least it's a pretty common, socially accepted fetish... in most places.", "passive");
-				else if(originalExhibtionism < 50 && exhibitionismRaw >= 50) AddLogEvent(ParseText("Your mind keeps supplying you with excuses to bare a little [pc.skinFurScales] around others, or ways to risk getting caught mid-coitus. <b>If you don't stop caving into those thoughts you're going to wind up being a hard-core exhibitionist!</b>"), "passive");
-				else if(originalExhibtionism < 66 && exhibitionismRaw >= 66) AddLogEvent("Maybe you could buy a stand for your Codex and rig up a live holostream for when you're getting naughty. It'd probably be too bulky to carry around all the time, but once you win your inheritance, you could probably turn a pretty penny banging ultraporn stars in front of a broadcasting prism. It's telling that <b>you've almost completely obliterated your inhibitions about exhibitionism.</b>", "passive");
-				else if(originalExhibtionism < 100 && exhibitionismRaw >= 100) AddLogEvent("Fuck, you love getting naked, particularly in front of an audience - the bigger the better. If you could, you'd bone in front of a full house at the TerraDome (brought to you by JoyCo). Maybe you'll be able to rent it out someday? <b>You're as much of an exhibitionist as anyone can be.</b>", "passive");
+				if(originalExhibtionism < 10 && exhibitionismRaw >= 10) AddLogEvent("Maybe having sex in front of an audience wouldn’t be that bad.", "passive");
+				else if(originalExhibtionism < 20 && exhibitionismRaw >= 20) AddLogEvent("You’re still feeling a little bit of residual thrill. Who knew audiences could be so... intriguing.", "passive");
+				else if(originalExhibtionism < 33 && exhibitionismRaw >= 33) AddLogEvent("You’ve got to admit to yourself that you’re developing a bit of an <b>exhibitionism fetish</b>. Sure, you get nervous as hell about the idea of showing yourself off, but you get horny as hell too. At least it’s a pretty common, socially accepted fetish... in most places.", "passive");
+				else if(originalExhibtionism < 50 && exhibitionismRaw >= 50) AddLogEvent(ParseText("Your mind keeps supplying you with excuses to bare a little [pc.skinFurScales] around others, or ways to risk getting caught mid-coitus. <b>If you don’t stop caving into those thoughts you’re going to wind up being a hard-core exhibitionist!</b>"), "passive");
+				else if(originalExhibtionism < 66 && exhibitionismRaw >= 66) AddLogEvent("Maybe you could buy a stand for your Codex and rig up a live holostream for when you’re getting naughty. It’d probably be too bulky to carry around all the time, but once you win your inheritance, you could probably turn a pretty penny banging ultraporn stars in front of a broadcasting prism. It’s telling that <b>you’ve almost completely obliterated your inhibitions about exhibitionism.</b>", "passive");
+				else if(originalExhibtionism < 100 && exhibitionismRaw >= 100) AddLogEvent("Fuck, you love getting naked, particularly in front of an audience - the bigger the better. If you could, you’d bone in front of a full house at the TerraDome (brought to you by JoyCo). Maybe you’ll be able to rent it out someday? <b>You’re as much of an exhibitionist as anyone can be.</b>", "passive");
 			}
 			//Negative points
 			else if(arg < 0) 
@@ -3980,7 +3980,7 @@
 				statPercent = statCurrent / libidoMax() * 100;
 			}
 			else {
-				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
+				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn’t a real stat!");
 				return 0;
 			}
 			
@@ -4036,7 +4036,7 @@
 			else if (stat == "willpower") return willpower(change);
 			else if (stat == "libido") return libido(change);
 			else {
-				trace("ERROR: slowStatGain got to the end with a stat that should've called the earlier error. Looks like the function has been changed, added to, or bugged. Make sure top stat list matches bottom!");
+				trace("ERROR: slowStatGain got to the end with a stat that should’ve called the earlier error. Looks like the function has been changed, added to, or bugged. Make sure top stat list matches bottom!");
 				return 0;
 			}
 		}
@@ -4463,7 +4463,7 @@
 		}
 		public function displayTallness(): String {
 			var buffer: String = "";
-			buffer = Math.floor(tallness / 12) + "'";
+			buffer = Math.floor(tallness / 12) + "\'";
 			if (Math.round(tallness % 12) != 0) buffer += Math.round(tallness % 12) + "\"";
 			return buffer;
 		}
@@ -4899,7 +4899,7 @@
 				faceo = "a rugged looking " + face() + " ";
 				if (hasBeard()) faceo += "and " + beard() + " that are";
 				else if (lipRating() > 2) faceo += "and " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
-				else faceo += "that's";
+				else faceo += "that’s";
 				faceo += " surely handsome";
 			}
 			//21-28
@@ -4946,7 +4946,7 @@
 			//72+-80
 			else if (femininity <= 80)
 			{
-				faceo = "a beautiful, feminine shapeliness that's sure to draw attention";
+				faceo = "a beautiful, feminine shapeliness that’s sure to draw attention";
 				if (hasBeard()) faceo += ", despite your " + beard() + ",";
 				faceo += " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
@@ -5011,8 +5011,8 @@
 			}
 			//Barely noticable change!
 			else {
-				if (change > 0) output = "\n\nThere's a tingling in your " + old + " as it changes imperceptibly towards being more feminine. (+" + Math.round(change * 10) / 10 + ")";
-				else if (change < 0) output = "\n\nThere's a tingling in your " + old + " as it changes imperciptibly towards being more masculine. (" + Math.round(change * 10) / 10 + ")";
+				if (change > 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperceptibly towards being more feminine. (+" + Math.round(change * 10) / 10 + ")";
+				else if (change < 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperciptibly towards being more masculine. (" + Math.round(change * 10) / 10 + ")";
 			}
 			return output;
 		}
@@ -5054,9 +5054,9 @@
 			var output: String = "";
 			//BELOW MINIMUM! GET MORE GIRLY!
 			if (femininity < femininityMin()) {
-				output += "<b>Your incredibly masculine, chiseled features become a little bit softer from your body's changing hormones.";
+				output += "<b>Your incredibly masculine, chiseled features become a little bit softer from your body’s changing hormones.";
 				if (hasBeard()) {
-					output += " As if that wasn't bad enough, your " + beard() + " falls out too!";
+					output += " As if that wasn’t bad enough, your " + beard() + " falls out too!";
 					removeBeard();
 				}
 				output += "</b>";
@@ -5064,7 +5064,7 @@
 			}
 			//ABOVE MAX! GET LESS GIRLY!
 			else if (femininity > femininityMax()) {
-				output += "\n\n<b>You find your overly feminine face loses a little bit of its former female beauty due to your body's changing hormones.</b>";
+				output += "\n\n<b>You find your overly feminine face loses a little bit of its former female beauty due to your body’s changing hormones.</b>";
 				femininity = femininityMax();
 			}
 			//LOSE DICK OR HAVE VAGINA? NO BEARD 4 U!
@@ -5270,7 +5270,7 @@
 				// Display BITCH I WORK OUT
 				if (change > 0) return "\n\nYour body feels a little more solid as you move, and your muscles look slightly more visible. (+" + Math.round(change * 10) / 10 + " muscle tone)";
 				// Display DERP I HAVE GIRL MUSCLES
-				if (change < 0) return "\n\nMoving brings with it a little more jiggle than you're used to. You don't seem to have gained weight, but your muscles look less visible. (" + Math.round(change * 10) / 10 + " muscle tone)";
+				if (change < 0) return "\n\nMoving brings with it a little more jiggle than you’re used to. You don’t seem to have gained weight, but your muscles look less visible. (" + Math.round(change * 10) / 10 + " muscle tone)";
 			}
 			return "";
 		}
@@ -6641,7 +6641,7 @@
 					return;
 				}
 			}
-			trace("ERROR: Looking for status '" + storageName + "' to change tooltip but couldn't find it.");
+			trace("ERROR: Looking for status '" + storageName + "' to change tooltip but couldn’t find it.");
 			return;
 		}
 		public function getStatusTooltip(storageName: String):String
@@ -7260,7 +7260,7 @@
 		public function hasKnot(arg: int = 0): Boolean {
 			if (arg > cockTotal() - 1 || arg < 0) 
 			{
-				trace("ERROR: tried to check for a knot on a penis (#" + arg + ") that doesn't exist.");
+				trace("ERROR: tried to check for a knot on a penis (#" + arg + ") that doesn’t exist.");
 				return false;
 			}
 			return (cocks[arg].hasFlag(GLOBAL.FLAG_KNOTTED));
@@ -8493,8 +8493,8 @@
 				else if (tone > 25) desc += "an average body and soft, unremarkable flesh";
 				else desc += "an average frame and soft, untoned flesh with a tendency for jiggle";
 			} else if (thickness < 75) {
-				if (tone > 90) desc += "a somewhat thick body that's covered in slabs of muscle";
-				else if (tone > 75) desc += "a body that's a little bit wide and has some highly-visible muscles";
+				if (tone > 90) desc += "a somewhat thick body that’s covered in slabs of muscle";
+				else if (tone > 75) desc += "a body that’s a little bit wide and has some highly-visible muscles";
 				else if (tone > 50) desc += "a solid build that displays a decent amount of muscle";
 				else if (tone > 25) desc += "a slightly wide frame that displays your curves and has hints of muscle underneath";
 				else desc += "a soft, plush body with plenty of jiggle";
@@ -8637,7 +8637,7 @@
 				if(hasPerk("'Nuki Nuts") && balls >= 1)
 				{
 					if(balls == 1) m += " Of course, your kui-tan physiology will let your sack swell with additional seed. It’s already started to swell. Just make sure to empty it before it gets too big!";
-					else m += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
+					else m += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They’ve already started to swell. Just make sure to empty them before they get too big!";
 				}
 				AddLogEvent(m, "words", minutes);
 				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
@@ -9681,7 +9681,7 @@
 		public function removeBreastRow(arraySpot:int, totalRemoved:int): void {
 			if (hasStatusEffect("Boobswell Pads") && statusEffectv1("Boobswell Pads") == arraySpot)
 			{
-				AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(arraySpot + 1) + " row of breast" + (breastRows[arraySpot].breasts != 1 ? "s" : "") + " disintegrate as the row was removed. <b>You're no longer under the effects of the Boobswell Pads!</b>");
+				AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(arraySpot + 1) + " row of breast" + (breastRows[arraySpot].breasts != 1 ? "s" : "") + " disintegrate as the row was removed. <b>You’re no longer under the effects of the Boobswell Pads!</b>");
 				removeStatusEffect("Boobswell Pads");
 			}
 			removeJunk(breastRows, arraySpot, totalRemoved);
@@ -12293,7 +12293,7 @@
 					if (!simple)
 						desc += RandomInCollection(["heart-shaped box","alien pussy","inhuman pussy","heart-shaped pussy","kui-tan pussy","tanuki twat","heart-shaped cunt","kui-tan cunt","heart-framed slit","kui-tan quim","heart-shaped snatch"]);
 					else
-						desc += RandomInCollection(["'nuki-pussy","shapely-slit","pussy","'nuki-pussy","pussy","'nuki-cunt","cunt","slit","kui-cunt","shapely-snatch","twat","xeno-pussy"]);
+						desc += RandomInCollection(["‘nuki-pussy","shapely-slit","pussy","‘nuki-pussy","pussy","‘nuki-cunt","cunt","slit","kui-cunt","shapely-snatch","twat","xeno-pussy"]);
 				}
 				else if (type == GLOBAL.TYPE_FLOWER)
 				{
@@ -13227,7 +13227,7 @@
 							break;
 						case GLOBAL.TYPE_KUITAN:
 							//adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");
-							desc += RandomInCollection(["'nuki-cock","kui-cock","'nuki-cock","xeno-dick","'nuki-dick","knotty-cock","prick","phallus","member","'nuki-member","shaft","tool"]);
+							desc += RandomInCollection(["‘nuki-cock","kui-cock","‘nuki-cock","xeno-dick","‘nuki-dick","knotty-cock","prick","phallus","member","‘nuki-member","shaft","tool"]);
 							break;
 						case GLOBAL.TYPE_SIMII:
 							//adjectives.push("simian");
@@ -13343,7 +13343,7 @@
 							break;
 						case GLOBAL.TYPE_KUITAN:
 							//adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");
-							desc += RandomInCollection(["bulgy 'nuki-cock", "knot-lined kui-cock", "bestial cock", "exotic kui-cock", "exotic cock", "knotted 'nuki-cock", "knot-lined dick","knot-covered dick","bulgy 'nuki-dick","kui-tan cock","kui-tan dick","extra-knotty dick","bulgy dick","knot-lined prick","bulgy prick","knot-lined tool","bulgy shaft","knotted member","kui-tan member","bulgy shaft","alien shaft"]);
+							desc += RandomInCollection(["bulgy ‘nuki-cock", "knot-lined kui-cock", "bestial cock", "exotic kui-cock", "exotic cock", "knotted ‘nuki-cock", "knot-lined dick","knot-covered dick","bulgy ‘nuki-dick","kui-tan cock","kui-tan dick","extra-knotty dick","bulgy dick","knot-lined prick","bulgy prick","knot-lined tool","bulgy shaft","knotted member","kui-tan member","bulgy shaft","alien shaft"]);
 
 							break;
 						case GLOBAL.TYPE_SIMII:
@@ -15196,7 +15196,7 @@
 			}
 			else
 			{
-				trace("WARNING: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
+				trace("WARNING: Attempting to call knockUp on a Creature class that isn’t serialized to save data. Better check this shit yo.");
 			}
 			return false;
 		}
@@ -15209,7 +15209,7 @@
 			}
 			else
 			{
-				trace("WARNING: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
+				trace("WARNING: Attempting to call knockUp on a Creature class that isn’t serialized to save data. Better check this shit yo.");
 			}
 			return false;
 		}
@@ -15239,7 +15239,7 @@
 			}
 			else
 			{
-				trace("Warning: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
+				trace("Warning: Attempting to call knockUp on a Creature class that isn’t serialized to save data. Better check this shit yo.");
 			}
 			return false;
 		}
@@ -15706,7 +15706,7 @@
 				return PregnancyManager.getPregBellyFragment(this, tarSlot);
 			}
 			
-			return "ERROR: Couldn't find a valid pregnancy slot but the creature is defined as being pregnant. SHITS FUCKED YO.";
+			return "ERROR: Couldn’t find a valid pregnancy slot but the creature is defined as being pregnant. SHITS FUCKED YO.";
 		}
 		
 		public function addPregnancyBellyMod(pregSlot:int, value:Number, perOffspring:Boolean = true):void
@@ -16745,23 +16745,23 @@
 						notice = upperCase(fluidViscosity(statusEffects[z].value3)) + " " + fluidNoun(statusEffects[z].value3) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
 						else notice += "of you ";
-						notice += "in a seemingly endless tide. You can't even move without wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
-						if(!isCrotchExposed()) notice += ParseText(" It wouldn't be so bad if most of it didn't wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.");
+						notice += "in a seemingly endless tide. You can’t even move without wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
+						if(!isCrotchExposed()) notice += ParseText(" It wouldn’t be so bad if most of it didn’t wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.");
 					}
 					else if(amountVented >= 10000)
 					{
-						notice = "Trailing " + fluidNoun(statusEffects[z].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There's nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
+						notice = "Trailing " + fluidNoun(statusEffects[z].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There’s nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
 					}
 					else if(amountVented >= 5000)
 					{
-						notice = "There's so much " + fluidNoun(statusEffects[z].value3) + " sliding out of you. You can't ";
+						notice = "There’s so much " + fluidNoun(statusEffects[z].value3) + " sliding out of you. You can’t ";
 						if(isNaga() || isGoo()) notice += "slither a few feet";
 						else notice += "take a step";
 						notice += ParseText(" without thick blobs of goo rolling down your [pc.leg] to the floor, advertising your sexual adventures to anyone close to enough to see, or smell, you.");
 					}
 					else if(amountVented >= 2500)
 					{
-						notice = upperCase(fluidNoun(statusEffects[z].value3)) + " is everywhere. It just won't stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[z].value3) + " goop leaks out, the tighter your belly becomes, but it's just so damn messy! You're pretty sure you could've filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
+						notice = upperCase(fluidNoun(statusEffects[z].value3)) + " is everywhere. It just won’t stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[z].value3) + " goop leaks out, the tighter your belly becomes, but it’s just so damn messy! You’re pretty sure you could’ve filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
 					}
 					else if(amountVented >= 1000)
 					{
@@ -16771,7 +16771,7 @@
 					}
 					else if(amountVented >= 500)
 					{
-						notice = "There's no lack of " + fluidNoun(statusEffects[z].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
+						notice = "There’s no lack of " + fluidNoun(statusEffects[z].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
 					
 					if (!omitNotice && notice != "")
@@ -16805,23 +16805,23 @@
 						notice = upperCase(fluidViscosity(statusEffects[a].value3)) + " " + fluidNoun(statusEffects[a].value3) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
 						else notice += "of you ";
-						notice += "in a seemingly endless tide. You can't even move with wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
-						if (!isCrotchExposed()) notice += ParseText(" It wouldn't be so bad if most of it didn't wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.");
+						notice += "in a seemingly endless tide. You can’t even move with wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
+						if (!isCrotchExposed()) notice += ParseText(" It wouldn’t be so bad if most of it didn’t wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.");
 					}
 					else if(amountVented >= 10000)
 					{
-						notice = "Trailing " + fluidNoun(statusEffects[a].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There's nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
+						notice = "Trailing " + fluidNoun(statusEffects[a].value3) + " behind you like slime from a slug, clearly marking your passage more effectively than any tracking bug ever could. There’s nothing you can do about it either, save for waiting for the boundless sexual effluvia to finish spilling from your soiled body.";
 					}
 					else if(amountVented >= 5000)
 					{
-						notice = "There's so much " + fluidNoun(statusEffects[a].value3) + " sliding out of you. You can't ";
+						notice = "There’s so much " + fluidNoun(statusEffects[a].value3) + " sliding out of you. You can’t ";
 						if(isNaga() || isGoo()) notice += "slither a few feet";
 						else notice += "take a step";
 						notice += ParseText(" without thick blobs of goo rolling down your [pc.leg] to the floor, advertising your sexual adventures to anyone close to enough to see, or smell, you.");
 					}
 					else if(amountVented >= 2500)
 					{
-						notice = upperCase(fluidNoun(statusEffects[a].value3)) + " is everywhere. It just won't stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[a].value3) + " goop leaks out, the tighter your belly becomes, but it's just so damn messy! You're pretty sure you could've filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
+						notice = upperCase(fluidNoun(statusEffects[a].value3)) + " is everywhere. It just won’t stop coming out of you. Sure, the more " + fluidViscosity(statusEffects[a].value3) + " goop leaks out, the tighter your belly becomes, but it’s just so damn messy! You’re pretty sure you could’ve filled up a two liter bottle and then some if you were so inclined. Just how thoroughly did you get stuffed?";
 					}
 					else if(amountVented >= 1000)
 					{
@@ -16831,7 +16831,7 @@
 					}
 					else if(amountVented >= 500)
 					{
-						notice = "There's no lack of " + fluidNoun(statusEffects[a].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
+						notice = "There’s no lack of " + fluidNoun(statusEffects[a].value3) + ParseText(" dripping down your [pc.thighs], evidence of your recent and all-too sloppy encounter.");
 					}
 					
 					if (!omitNotice && notice != "")
@@ -16935,8 +16935,8 @@
 					delta = Math.round((100 - ballFullness) * maxCum() / 100);
 					
 					if (this is PlayerCharacter) { //blue ball notices
-						if (balls == 1) AddLogEvent(ParseText(" Your [pc.ballsNoun] has filled so much from your cum cascade that it's started to swell. It won't take much to excite you so long as your [pc.balls] is this full."), "passive");
-						else AddLogEvent(ParseText(" Your [pc.ballsNoun] have filled so much from your cum cascade that they've started to swell. It won't take much to excite you so long as your [pc.balls] are this full."), "passive");
+						if (balls == 1) AddLogEvent(ParseText(" Your [pc.ballsNoun] has filled so much from your cum cascade that it’s started to swell. It won’t take much to excite you so long as your [pc.balls] is this full."), "passive");
+						else AddLogEvent(ParseText(" Your [pc.ballsNoun] have filled so much from your cum cascade that they’ve started to swell. It won’t take much to excite you so long as your [pc.balls] are this full."), "passive");
 					}
 					
 					createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4); //add blue balls status effect
@@ -17020,7 +17020,7 @@
 		
 		public function onLeaveBuyMenu():void
 		{
-			throw new Error("Vendor doesn't have a buy-menu leave functor specified.");
+			throw new Error("Vendor doesn’t have a buy-menu leave functor specified.");
 		}
 		
 		// Item Slot Shenanigans
@@ -17418,7 +17418,7 @@
 							AddLogEvent("The heat in your body finally recedes after an exhausting couple of days. <b>You are no longer feeling so unnaturally aroused.</b>");
 						}
 						//Pregnancy clears - gotta cheat to get the Omega Oil status clear.
-						else if(isPregnant())
+						else if(hasAnalPregnancy())
 						{
 							AddLogEvent("You feel calmer and more clear-headed. Has the heat already faded?");
 							requiresRemoval = true;
@@ -17791,11 +17791,11 @@
 				
 				if (thisStatus.value2 >= 25 && !hasStatusEffect("Buzzed"))
 				{
-					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You’re a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					physiqueMod += 2;
 					willpowerMod -= 1;
 					intelligenceMod -= 1;
-					AddLogEvent("Damn, that stuff you were drinking was awesome. <b>You're feeling pretty good right now. You must be buzzed.</b>", "passive", deltaT);
+					AddLogEvent("Damn, that stuff you were drinking was awesome. <b>You’re feeling pretty good right now. You must be buzzed.</b>", "passive", deltaT);
 				}
 				
 				if (thisStatus.value2 >= 50 && !hasStatusEffect("Drunk"))
@@ -17807,7 +17807,7 @@
 					
 					physiqueMod += 2;
 					reflexesMod -= 1;
-					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You’re feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					AddLogEvent("Your sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>", "passive", deltaT);
 				}
 				
@@ -17822,8 +17822,8 @@
 					reflexesMod -= 1;
 					willpowerMod -= 1;
 					intelligenceMod -= 1;
-					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
-					AddLogEvent(ParseText("[pc.Walking] is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>"), "passive", deltaT);
+					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You’re three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+					AddLogEvent(ParseText("[pc.Walking] is increasingly difficult, but you’ll be damned if you don’t feel like you can do anything. <b>You’re smashed!</b>"), "passive", deltaT);
 				}
 			}
 			
@@ -17846,7 +17846,7 @@
 					}
 					else
 					{
-						createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+						createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You’re feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					}
 					
 					physiqueMod -= 1;
@@ -17856,7 +17856,7 @@
 					
 					removeStatusEffect("Smashed");
 					
-					AddLogEvent("Your head is starting to clear a little, but <b>you're still pretty drunk.</b>", "passive", deltaT);
+					AddLogEvent("Your head is starting to clear a little, but <b>you’re still pretty drunk.</b>", "passive", deltaT);
 				}
 				
 				if (thisStatus.value2 < 50 && hasStatusEffect("Drunk"))
@@ -17867,7 +17867,7 @@
 					}
 					else
 					{
-						createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+						createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You’re a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
 					}
 					
 					physiqueMod -= 2;
@@ -17875,7 +17875,7 @@
 					
 					removeStatusEffect("Drunk");
 					
-					AddLogEvent("The more time passes, the more nimble you feel. Your reflexes are sharpening as the alcohol fades from your system. <b>You're only buzzed.</b>", "passive", deltaT);
+					AddLogEvent("The more time passes, the more nimble you feel. Your reflexes are sharpening as the alcohol fades from your system. <b>You’re only buzzed.</b>", "passive", deltaT);
 				}
 				
 				if (thisStatus.value2 < 25 && hasStatusEffect("Buzzed"))
@@ -17887,7 +17887,7 @@
 					
 					removeStatusEffect("Buzzed");
 					
-					AddLogEvent("Blinking, you realize that the alcohol has faded from your system. <b>You're no longer buzzed.</b>", "passive", deltaT);
+					AddLogEvent("Blinking, you realize that the alcohol has faded from your system. <b>You’re no longer buzzed.</b>", "passive", deltaT);
 				}
 			}
 			

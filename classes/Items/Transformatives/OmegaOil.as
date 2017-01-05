@@ -201,7 +201,7 @@ package classes.Items.Transformatives
 				//Effect: min lust raised by 15 (for the duration of the status)
 				if(!pc.hasStatusEffect("Strangely Warm"))
 				{
-					output("\n\nYou fantasize about submitting and presenting your needy [pc.asshole] to a faceless, well-endowed stranger, having them ram your ass like it’s going out of style. <b>You feel like you'll stay hornier than normal... at least for a while!</b>");
+					output("\n\nYou fantasize about submitting and presenting your needy [pc.asshole] to a faceless, well-endowed stranger, having them ram your ass like it’s going out of style. <b>You feel like you’ll stay hornier than normal... at least for a while!</b>");
 					pc.createStatusEffect("Strangely Warm",0,0,0,0,false,"Icon_LustUp","You are more passively lusty than before.\n\n(+15 minimum lust)",false,4320,0xB793C4);
 					pc.createStatusEffect("Omega Oil",15,0,0,0,true,"","Hidden status that actually tracks the lust mod so we only gotta check 1.",false,4320);
 					changes++;
