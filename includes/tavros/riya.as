@@ -32,8 +32,8 @@ public function riyaBonus():Boolean
 	else output("\n\nThere’s a woman in a U.G.C. uniform loitering about, watching the passing shoppers keenly. There is a rather conspicuous bulge down her left pant leg - It seems this officer is packing something extra between her legs.");
 
 	//[U.G.C. Officer]
-	if(flags["RIYA_PUNCHED"] == 2) addDisabledButton(0,"UGC Officer","UGC Officer","After puncher her, it’s probably best to avoid Riya.");
-	else addButton(0,"UGC Officer",approachRiya);
+	if(flags["RIYA_PUNCHED"] == 2) addDisabledButton(0,"Riya","Riya","After punching her, it’s probably best to avoid Riya.");
+	else addButton(0,(flags["MET_RIYA"] == undefined ? "UGC Officer" : "Riya"),approachRiya);
 	return false;
 }
 
