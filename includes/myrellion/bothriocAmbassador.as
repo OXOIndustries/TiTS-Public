@@ -283,6 +283,8 @@ public function araKeiPotentialMasterBlurbs():void
 
 		output("\n\n<i>“Good,”</i> says the quadomme slowly, still eyeing you closely. <i>“Once we have weaned you off this individual, we can talk about more suitable candidates for keeping a steady hand on you. For now... I suggest you find a close friend, to help you through the process of withdrawal. People like Lane very rarely let free meals out of their grasp easily.”</i>");
 
+		// Basically the way I saw it working was, when a Permanently Hypnotised PC reaches this bit they get bumped back down to Partially Hypnotised, and are thus able to detox and confront Lane. What Nik suggests in the comment seems wise, if what he's saying is the case; give the PC a 75% boost to their Willpower for the confront Lane scene only.
+		if(flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) flags["LANE_FULLY_HYPNOTISED_FOREVER"] = undefined;
 		flags["ARAKEI_RESOLVED_MASTER_LANE"] = 1;
 	}
 	// Sera
