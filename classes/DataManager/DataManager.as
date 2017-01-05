@@ -29,7 +29,6 @@
 	import flash.events.IOErrorEvent;
 	import classes.GameData.CombatManager;
 	import classes.GameData.ChildManager;
-	
 	import classes.Engine.Interfaces.*;
 	
 	/**
