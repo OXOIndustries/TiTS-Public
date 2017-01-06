@@ -2260,7 +2260,6 @@ public function zheniyaInAppt():void
 	}
 	else
 	{
-
 		output("You walk over to Zheniya and slip an arm around her supple waist, pulling your lover into warm embrace. She purrs a wordless murmur of affection, tracing kisses up your neck. Her "+zilCallGirlBellyFragment()+" presses against you, and her heavy, honey-filled breasts quake with her every husky breath.");
 
 		output("\n\n<i>“Hello, sweet thing,”</i> she breathes into your [pc.ear], running her chitinous digits down your back. So close to your zil lover, now, your senses are assailed by her sensual scent: honey and perfume and bare female sex: an alluring vapor that has you");
