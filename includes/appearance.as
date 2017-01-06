@@ -957,10 +957,10 @@ public function appearance(forTarget:Creature):void
 		//Body Markings
 		if(target.hasStatusEffect("Shark Markings"))
 		{
-			output2(" You have ")
+			output2(" You have")
 			if(target.statusEffectv1("Shark Markings") == 1) output2(target.skinAccent + " stripes running all across your body, your back, arms, legs and tail.");
 			else if(target.statusEffectv1("Shark Markings") == 2) output2("" + target.skinAccent + " spots dotting every part of your body, your back, arms, legs and tail.");
-			else output2("an off color blotch on the frontal part of your body, covering your chin, [pc.chest], belly and inner thighs in " + target.skinAccent + ".");
+			else output2(" an off color blotch on the frontal part of your body, covering your chin, [pc.chest], belly and inner thighs in " + target.skinAccent + ".");
 		}
 		// Mimbrane sweat
 		if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined)
@@ -1825,7 +1825,7 @@ public function appearance(forTarget:Creature):void
 		else if(target.legType == GLOBAL.TYPE_SHARK)
 		{
 			if(target.legCount == 2) output2(" Your plantigrade legs are powerful, with small fins protruding from your ankles and webbed toes, perfect for swimming.");
-			else  output2(" Your " + num2Text(target.legCount) + " plantigrade legs come with webbing and small fins to better propel you through water.");
+			else output2(" Your " + num2Text(target.legCount) + " plantigrade legs come with webbing and small fins to better propel you through water.");
 		}
 		//Catch all
 		else
@@ -2950,7 +2950,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	//Shark Cock:
 	else if (target.cocks[x].cType == GLOBAL.TYPE_SHARK)
 	{
-		output2( "The aquatic phallus is tapered but still quite tubular in appearance. It glistens like you've lubed it up not too long ago and has two pelvic fins framing its base.");
+		output2( "The aquatic phallus is tapered but still quite tubular in appearance. It glistens like you’ve lubed it up not too long ago and has two pelvic fins framing its base.");
 	}
 	//Nubby or Ribbed
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
@@ -3152,7 +3152,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	else if(target.vaginas[x].type == GLOBAL.TYPE_SHARK)
 	{
 		if(!eachOne) output2(" The exterior lips are puffy and framed by fin-like flaps, while the interior of your vaginal canal is filled with tiny cilia that massage and pull any invaders deeper in.");
-		else output2("\nEach vagina's exterior lips are puffy and framed by fin-like flaps, while their interiors are filled with tiny cilia that massage and pull any invaders deeper in.");
+		else output2("\nEach vagina’s exterior lips are puffy and framed by fin-like flaps, while their interiors are filled with tiny cilia that massage and pull any invaders deeper in.");
 	}	
 	//Nubby
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.vaginas[x].type != GLOBAL.TYPE_SIREN) {

@@ -31,13 +31,13 @@ package classes.Items.Transformatives
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a satchet of Omega Oil";
+			this.description = "a sachet of Omega Oil";
 			
-			this.tooltip = "A small sachet of clear ointment with a greek Omega symbol on it. The label reads: <i>“You love being plowed, but can’t afford to buy gallons of lube? You just want to mate all day like a mindless beast, but can’t let go? You want the fun of an estrus cycle without having to worry about pregnancies and contraception? Then our brand new Omega OilTM is for you ! Based on years of research by ABO Corp on the exotic natives of Omega IV, Omega Oil(tm) will make your back entrance perfectly suitable for some anal excitement!”</i> Lower on the packaging are tiny characters you barely decipher: <i>“Use with caution; MAY cause permanent changes to the user’s body.”</i>";
+			this.tooltip = "A small sachet of clear ointment with a greek Omega symbol on it. The label reads: <i>“You love being plowed, but can’t afford to buy gallons of lube? You just want to mate all day like a mindless beast, but can’t let go? You want the fun of an estrus cycle without having to worry about pregnancies and contraception? Then our brand new Omega Oil™ is for you! Based on years of research by ABO Corp on the exotic natives of Omega IV, Omega Oil™ will make your back entrance perfectly suitable for some anal excitement!”</i> Lower on the packaging are tiny characters you barely decipher: <i>“Use with caution; MAY cause permanent changes to the user’s body.”</i>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
-			this.basePrice = 9999;
+			this.basePrice = 520;
 			
 			this.version = this._latestVersion;
 		}
@@ -64,7 +64,7 @@ package classes.Items.Transformatives
 				output(" The oil is blissfully cool to your overheated body.");
 
 				output("\n\nYou don’t feel particularly different from before, but... the heat in your body feels <i>denser</i>, somehow.");
-				output(" <b>The Blood Fever has been extended.</b>");
+				output(" <b>The Fuck Fever has been extended.</b>");
 				pc.addStatusMinutes("Omega Oil",7000);
 				pc.addStatusMinutes("Fuck Fever",7000);
 				changes++;
@@ -110,8 +110,8 @@ package classes.Items.Transformatives
 				else output("tantalizing");
 				output(" scent and wanton behavior.");
 				output("\n\nPerhaps you could even entice them into fighting for you, letting only the strongest Alpha");
-				if(pc.analVirgin) output("claim your virginity");
-				else output("breed your [pc.asshole]");
+				if(pc.analVirgin) output(" claim your virginity");
+				else output(" breed your [pc.asshole]");
 				output(", mating you over and over again until the burning fades.");
 				output("\n\nOr maybe - little shivers of");
 				if(pc.analVirgin) output(" nerves and");
@@ -214,7 +214,7 @@ package classes.Items.Transformatives
 			if(pc.ass.wetness() < 5 && rand(4) != 0 && changes == 0)
 			{
 				output("\n\nYour eyes widen in shock as you feel oily moisture bead out of your [pc.asshole]");
-				if(pc.ass.wetness() > 3 && !pc.isAssExposed()) output(", staining your pc.lowerGarment");
+				if(pc.ass.wetness() > 3 && !pc.isAssExposed()) output(", staining your [pc.lowerGarment]");
 				output(". <b>Your anal wetness has been increased !</b>");
 				pc.ass.wetness(1);
 

@@ -107,7 +107,7 @@
 				// If no markings, give markings.
 				// Medium chance of occurring.
 				// Apply set color (Marking color)
-				if(!pc.hasStatusEffect("Vanae Markings") && changes < changeLimit && rand(4) == 0)
+				if(!pc.hasAccentMarkings() && changes < changeLimit && rand(4) == 0)
 				{
 					pc.skinAccent = getVanaeAccentColor(pc);
 					outputB("\n\nAcross your " + pc.skin() + ", " + pc.skinAccent + " markings suddenly begin to blossom and bloom. You watch in wonderment as the swiftly growing tattoo tree spreads across every inch of your body. It's like dozens of fingers are tracing across your form and using your body as a living canvas.");

@@ -181,9 +181,15 @@
 				}
 				
 				// Remove Markings
-				if (pc.hasStatusEffect("Vanae Markings") && changes < changeLimit && rand(6) == 0)
+				if (pc.hasAccentMarkings() && changes < changeLimit && rand(6) == 0)
 				{
-					kGAMECLASS.output("\n\nYou feel your [pc.skinNoun] tingle and notice the " + pc.skinAccent + " swirls decorating your form starting to dissolve and fade. It doesn't take long until your");
+					kGAMECLASS.output("\n\nYou feel your [pc.skinNoun] tingle and notice the " + pc.skinAccent);
+					if (pc.hasStatusEffect("Vanae Markings")) kGAMECLASS.output(" swirls");
+					else if (pc.statusEffectv1("Shark Markings") == 1) kGAMECLASS.output(" stripes");
+					else if (pc.statusEffectv1("Shark Markings") == 2) kGAMECLASS.output(" spots");
+					else if (pc.statusEffectv1("Shark Markings") == 3) kGAMECLASS.output(" blotch");
+					else kGAMECLASS.output(" marks");
+					kGAMECLASS.output(" decorating your form starting to dissolve and fade. It doesn't take long until your");
 					
 					var ss:String = pc.skinFurScales();
 					
@@ -191,7 +197,7 @@
 					else kGAMECLASS.output(" " + ss + " is");
 					
 					kGAMECLASS.output(" bare of the intricate designs. <b>You have lost your body markings!</b>");
-					pc.removeStatusEffect("Vanae Markings");
+					pc.clearAccentMarkings();
 					changes++;
 				}
 

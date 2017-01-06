@@ -566,6 +566,17 @@
 
 		public var skinTone: String = "albino";
 		public var skinAccent: String = "";
+		public function hasAccentMarkings():Boolean
+		{
+			if(skinAccent == "") return false;
+			return (hasStatusEffect("Vanae Markings") || hasStatusEffect("Shark Markings"));
+		}
+		public function clearAccentMarkings():void
+		{
+			removeStatusEffect("Vanae Markings");
+			removeStatusEffect("Shark Markings");
+			skinAccent = "";
+		}
 		public function skinToneUnlocked(newSkinTone:String):Boolean
 		{
 			if (hasStatusEffect("Gel Body")) return false;
@@ -5205,17 +5216,20 @@
 			var nouns:Array = ["gill"];
 			var description:String = "";
 			
-			if (9999 == 9999) adjectives.push("feathery");
-			if (9999 == 0) adjectives.push("slit-like");
-			if (9999 == 0) adjectives.push("fish-like");
-			if (9999 == 0) adjectives.push("bulbous");
-			if (9999 == 0) adjectives.push("dotted");
-			if (9999 == 0) adjectives.push("slimy", "gooey");
-			if (9999 == 0) adjectives.push("chitinous", "armored");
-			if (9999 == 0) adjectives.push("scaly", "scaled");
-			if (9999 == 0) adjectives.push("furry", "furred");
-			if (9999 == 0) adjectives.push("smooth", "sleek");
-			if (9999 == 0) adjectives.push("alien");
+			// Shark-like
+			if (sharkScore() >= 3) adjectives.push("slit-like", "slit-like", "slit-like", "fish-like", "scaly", "scaled");
+			/*
+			else if (9999 == 0) adjectives.push("fish-like");
+			else if (9999 == 0) adjectives.push("bulbous");
+			else if (9999 == 0) adjectives.push("dotted");
+			else if (9999 == 0) adjectives.push("slimy", "gooey");
+			else if (9999 == 0) adjectives.push("chitinous", "armored");
+			else if (9999 == 0) adjectives.push("scaly", "scaled");
+			else if (9999 == 0) adjectives.push("furry", "furred");
+			else if (9999 == 0) adjectives.push("smooth", "sleek");
+			*/
+			// Other
+			else adjectives.push("feathery", "feathery", "alien");
 			
 			if(rand(2) == 0 && adjectives.length > 0) description += adjectives[rand(adjectives.length)] + " ";
 			
@@ -9788,19 +9802,7 @@
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
 			if (nyreaScore() >= 5) race = "nyrea";
-			if (sharkScore() >= 5)
-			{
-				//If has perk (Stripes) 
-				if(statusEffectv1("Shark Markings") == 1) race = "tiger shark-morph";
-				else if(statusEffectv1("Shark Markings") == 2) race = "leopard shark-morph";
-				//If galbilaniScore () = 2
-				else if(gabilaniScore() >= 2) race = "goblin shark-morph";
-				else if(bovineScore () >= 2) race = "bull shark-morph"
-				else if(wingCount > 1 && (wingType == GLOBAL.TYPE_AVIAN || wingType == GLOBAL.TYPE_DOVE)) race = "angel-shark";
-				else if(tallness >= 9) race = "megalodon-morph";
-				else if(tallness < 60) race = "pygmy shark-morph";
-				else race = "shark-morph"
-			}
+			if (sharkScore() >= 5) race = sharkRace();
 			if (plantScore() >= 5) race = plantRace();
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
@@ -9902,9 +9904,22 @@
 		public function plantRace():String
 		{
 			if (wingType == GLOBAL.TYPE_COCKVINE && wingCount > 0 && hasTail(GLOBAL.TYPE_COCKVINE) && cockTotal(GLOBAL.TYPE_TENTACLE) == cockTotal()) return "cockvine-morph";
-			else if (skinType == GLOBAL.SKIN_TYPE_BARK && hasHorns(GLOBAL.TYPE_DRYAD)) return "treant";
-			else if (skinType == GLOBAL.SKIN_TYPE_PLANT && (hasHorns(GLOBAL.TYPE_DRYAD) || hasStatusEffect("Hair Flower"))) return "dryad";
+			if (skinType == GLOBAL.SKIN_TYPE_BARK && hasHorns(GLOBAL.TYPE_DRYAD)) return "treant";
+			if (skinType == GLOBAL.SKIN_TYPE_PLANT && (hasHorns(GLOBAL.TYPE_DRYAD) || hasStatusEffect("Hair Flower"))) return "dryad";
 			return "plant-morph";
+		}
+		public function sharkRace():String
+		{
+			//If has perk (Stripes) 
+			if(statusEffectv1("Shark Markings") == 1) return "tiger shark-morph";
+			if(statusEffectv1("Shark Markings") == 2) return "leopard shark-morph";
+			//If galbilaniScore () = 2
+			if(gabilaniScore() >= 2) return "goblin shark-morph";
+			if(bovineScore () >= 2) return "bull shark-morph"
+			if(wingCount > 1 && (wingType == GLOBAL.TYPE_AVIAN || wingType == GLOBAL.TYPE_DOVE)) return "angel-shark";
+			if(tallness >= 9) return "megalodon-morph";
+			if(tallness < 60) return "pygmy shark-morph";
+			return "shark-morph";
 		}
 		public function taurRace(race:String = ""):String
 		{

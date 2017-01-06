@@ -197,7 +197,7 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		output2(" " + GLOBAL.SKIN_TYPE_NAMES[pc.skinType]);
 		output2("\n<b>* Skin Tone:</b> " + StringUtil.toDisplayCase(pc.skinTone));
-		if(pc.hasStatusEffect("Vanae Markings")) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
+		if(pc.hasAccentMarkings()) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
 		if(pc.hasPartFur() || pc.hasPartFeathers()) output2("\n<b>* Fur Color:</b> " + StringUtil.toDisplayCase(pc.furColor));
 		if(pc.hasPartScales()) output2("\n<b>* Scale Color:</b> " + StringUtil.toDisplayCase(pc.scaleColor));
 		if(pc.hasPartChitin()) output2("\n<b>* Chitin Color:</b> " + StringUtil.toDisplayCase(pc.chitinColor()));
@@ -5718,6 +5718,11 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["ORGASMENDER"] != undefined)
 			{
 				output2("\n<b>* Orgasmender, Times Used:</b> " + flags["ORGASMENDER"]);
+			}
+			// Omega Oil
+			if(flags["OMEGA_OILED"] != undefined)
+			{
+				output2("\n<b>* Omega Oil™, Times Used:</b> " + flags["OMEGA_OILED"]);
 			}
 			// Big like Cock-Box!
 			if(flags["LOOTED_COCKBOX"] != undefined)
