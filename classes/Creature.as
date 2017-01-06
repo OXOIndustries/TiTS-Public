@@ -4678,6 +4678,9 @@
 				case GLOBAL.TYPE_FROG:
 					adjectives = ["amphibian", "frog-like", "dot", "hidden"];
 					break;
+				case GLOBAL.TYPE_SHARK:
+					adjectives = ["pointed","sail-like","finned"];
+					break;
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
 			if (skinType == GLOBAL.SKIN_TYPE_GOO && rand(5) == 0) adjectives.push("gooey", "slimy", "slick");
@@ -5572,6 +5575,7 @@
 					case GLOBAL.TYPE_KANGAROO: adjectives.push("kangaroo", "‘roo-like"); break;
 					case GLOBAL.TYPE_FROG: adjectives.push("flat", "frog-like"); break;
 					case GLOBAL.TYPE_AVIAN: adjectives.push("avian", "bird-like"); break;
+					case GLOBAL.TYPE_SHARK: adjectives.push("shark-like","shark-like","shark-like","piscine"); break;
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -5919,6 +5923,7 @@
 				if (hasArmFlag(GLOBAL.FLAG_PAWS)) adjective.push("paw-like");
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
+				if (armType == GLOBAL.TYPE_SHARK) adjective.push("webbed","slick");
 			}
 			// Build
 			if (rand(2) == 0 && adjective.length > 0) output += RandomInCollection(adjective);
@@ -5952,7 +5957,7 @@
 		}
 		public function hasClawedHands(): Boolean {
 			if(armType == GLOBAL.TYPE_AVIAN && hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
-			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN);
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK);
 		}
 		public function hasPaddedHands(): Boolean {
 			if (hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
@@ -6016,6 +6021,7 @@
 						case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-armored", "chitinous"]; break;
 						case GLOBAL.TYPE_FROG: adjectives = ["frog", "amphibious", "frog-like", "powerful"]; break;
 						case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+						case GLOBAL.TYPE_SHARK: adjectives = ["finned","shark-like","aquatic","claw-footed"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -6087,6 +6093,7 @@
 					case GLOBAL.TYPE_OVIR: adjectives = ["human-like"]; break;
 					case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-chitin"]; break;
 					case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+					case GLOBAL.TYPE_SHARK: adjectives = ["shark-like","clawed","webbed"]; break;
 				}
 			}
 			//ADJECTIVE!
@@ -6137,6 +6144,7 @@
 			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tails";
 			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tips";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed feet";
+			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["footclaws", "webbed feet"]);
 			else output += "feet";
 			return output;
 		}
@@ -6155,6 +6163,7 @@
 			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tail";
 			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tip";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed foot";
+			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["footclaw","webbed foot"]);
 			else output += "foot";
 			return output;
 		}
@@ -6168,6 +6177,7 @@
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "pointed toes";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "claws";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed toes";
+			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["claws","webbed toes"]);
 			else output += "toes";
 			return output;
 		}
@@ -9077,6 +9087,14 @@
 					vaginas[slot].wetnessRaw = 1;
 					vaginas[slot].minLooseness = 1;
 					break;
+				case GLOBAL.TYPE_SHARK:
+					vaginas[slot].clits = 2;
+					vaginas[slot].vaginaColor = "gray";
+					vaginas[slot].wetnessRaw = 1;
+					vaginas[slot].minLooseness = 1;
+					vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+					vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
+					break;
 			}
 		}
 		//Change cock type
@@ -9246,6 +9264,15 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					break;
+				case GLOBAL.TYPE_SHARK:
+					cocks[slot].cThicknessRatioRaw = 1;
+					cocks[slot].cockColor = skinTone;
+					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+					cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+					break;
+
 			}
 		}
 		//PC can fly?
@@ -9761,6 +9788,19 @@
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
 			if (nyreaScore() >= 5) race = "nyrea";
+			if (sharkScore() >= 5)
+			{
+				//If has perk (Stripes) 
+				if(statusEffectv1("Shark Markings") == 1) race = "tiger shark-morph";
+				else if(statusEffectv1("Shark Markings") == 2) race = "leopard shark-morph";
+				//If galbilaniScore () = 2
+				else if(gabilaniScore() >= 2) race = "goblin shark-morph";
+				else if(bovineScore () >= 2) race = "bull shark-morph"
+				else if(wingCount > 1 && (wingType == GLOBAL.TYPE_AVIAN || wingType == GLOBAL.TYPE_DOVE)) race = "angel-shark";
+				else if(tallness >= 9) race = "megalodon-morph";
+				else if(tallness < 60) race = "pygmy shark-morph";
+				else race = "shark-morph"
+			}
 			if (plantScore() >= 5) race = plantRace();
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
@@ -10383,6 +10423,23 @@
 			if (counter > 1 && hasVagina() && totalClits()/totalVaginas() == 2) counter++;
 			if (counter > 2 && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
 			if (counter > 4 && hasTongueFlag(GLOBAL.FLAG_LONG) && hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) counter++;
+			return counter;
+		}
+		public function sharkScore(): int
+		{
+			var counter:int = 0;
+			//Shark Face +1
+			if(faceType == GLOBAL.TYPE_SHARK) counter++;
+			if(eyeType == GLOBAL.TYPE_SHARK) counter++;
+			if(earType == GLOBAL.TYPE_SHARK) counter++;
+			if(armType == GLOBAL.TYPE_SHARK) counter++;
+			if(legType == GLOBAL.TYPE_SHARK) counter++;
+			if(wingType == GLOBAL.TYPE_SHARK) counter++;
+			if(hasScales() && hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) counter++;
+			if(totalCocks(GLOBAL.TYPE_SHARK) > 0) counter++;
+			if(totalVaginas(GLOBAL.TYPE_SHARK) > 0) counter++;
+			if(balls > 0 && counter > 0) counter--;
+			if(biggestTitSize() > 2 && counter > 0) counter--;
 			return counter;
 		}
 		public function suulaScore(): int
@@ -12163,6 +12220,7 @@
 				else if (type == GLOBAL.TYPE_KUITAN) desc += "kui-tan ";
 				else if (type == GLOBAL.TYPE_FLOWER) desc += "orchid ";
 				else if (type == GLOBAL.TYPE_DEER) desc += "deer ";
+				else if (type == GLOBAL.TYPE_SHARK) desc += "shark ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
@@ -12308,6 +12366,12 @@
 						desc += RandomInCollection(["animalistic pussy", "animalistic cunt", "deer slit", "deer pussy", "deer vagina", "animalistic vagina", "deer cunny", "deer-like pussy", "doe pussy", "musky deer-pussy", "musky deer-cunt", "musky doe-pussy", "musky doe-cunt"]);
 					else
 						desc += RandomInCollection(["deer-pussy", "doe-pussy", "animal-pussy", "deer-cunt", "doe-cunt", "animal-cunt", "deer-twat", "doe-twat", "deer-slit", "doe-slit", "cunt", "gash"]);
+				}
+				else if (type == GLOBAL.TYPE_SHARK)
+				{
+					if(!simple)
+						desc+= RandomInCollection(["wriggling pussy", "cilia-wringed vagina", "shark-like honeypot", "cilla-filled honeypot", "cilla-filled vagina", "shark-like vagina", "tentacle filled gash", "cilla-lined cunt", "tentacled vagina", "tentacled pussy", "tentacled twat", "cilia-filled gash", "tentacled quim", "piscine snatch", "piscine twat","aquatic twat","fishy pussy"]);
+					else desc+= RandomInCollection(["shark-cunt", "shark-twat", "shark-gash", "shark-pussy", "tentacle-pussy", "tentacle-gash", "shark-pussy","pussy","pussy"]);
 				}
 				else
 				{
@@ -13118,7 +13182,9 @@
 				case GLOBAL.TYPE_INHUMAN:
 					collection = ["inhuman", "human-like", "alien"];
 					break;
-			
+				case GLOBAL.TYPE_SHARK:
+					collection = ["tubular", "shark-like", "finned"];
+					break;			
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -13261,6 +13327,9 @@
 							//adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
 							desc += RandomInCollection(["vanae-cock","vanae-dick","vanae-prick","cock","cock","member","xeno-dick","phallus"]);
 							break;
+						case GLOBAL.TYPE_SHARK:
+							desc += RandomInCollection(["shark-cock", "cock", "shark-dick", "clasper", "shark-shaft", "shaft", "shark-prong", "shark-tool", "shark-phallus", "phallus"]);
+							break;
 						//Basic dicks names:  "cock",
 						case GLOBAL.TYPE_HUMAN:
 						//Nothing special for these two.
@@ -13377,6 +13446,9 @@
 						case GLOBAL.TYPE_VANAE:
 							//adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
 							desc += RandomInCollection(["alien cock","sucker-tipped cock","sucker-tipped dick","sucker-tipped prick","sucker-tipped cock","sucker-crowned cock","sucker-crowned dick","sucker-capped member","sucker-capped phallus","alien dick","exotic vanae-cock","exotic vanae-dick","sucker-topped prick"]);
+							break;
+						case GLOBAL.TYPE_SHARK:
+							desc += RandomInCollection(["tubular shark-dong", "finned pseudopenis", "finned shark-dick", "tubular shark-penis", "finned shark-penis", "finned, tubular tool", "finned shark-dong", "finned shark-cock", "tubular, finned penis", "finned shark-phallus", "tubular phallus", "finned shark-cock", "finned, tubular shark-cock"]);
 							break;
 						//Basic dicks names:  "cock",
 						case GLOBAL.TYPE_HUMAN:
@@ -15154,6 +15226,9 @@
 					break;
 				case GLOBAL.TYPE_HRAD:
 					names = ["bullet-shaped tip", "angry cock-head", "foreskin-covered crown", "foreskin-covered tip", "bullet-shaped head"];
+					break;
+				case GLOBAL.TYPE_SHARK:
+					names = ["pointed head", "tapered tip", "piscine glans", "piscine crown", "piscine cock-head"];
 					break;
 				default:
 					names = ["crown", "head", "glans", "tip", "cock-head"];
@@ -17900,3 +17975,4 @@
 		}
 	}
 }
+
