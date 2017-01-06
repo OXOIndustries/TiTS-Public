@@ -108,6 +108,7 @@ public function viMenu():void
 	addButton(4,"S.Relief",viSexualRelief,undefined,"S.Relief","Have Vi provide sexual relief.");
 	addButton(5,"Buy",viShop);
 	addButton(6,"Sell",viShop,false);
+	if(pc.hasItem(new DamagedVIChip())) addButton(7,"Give VI Chip",nurseDroidChipTurnIn,"Vi","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.")
 	//[Modify]
 	// ‘Pleasure’ talk topic must have been watched, to learn that she’s been tampered with already.
 	if(flags["VI_PLEASURE_TALKED"] != undefined) addButton(7,"Modify",modifyViMenu,undefined,"Modify","Modify Vi’s specs to suit your tastes!");
