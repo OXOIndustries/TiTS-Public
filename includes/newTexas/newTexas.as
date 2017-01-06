@@ -1198,7 +1198,7 @@ public function orderUp(order:String = ""):void
 	author("Savin");
 	showHerman();
 	output("You give Herman your order, which he punches in on the register. He hands you a numbered ticket: <i>“Be right up, " + pc.mf("buddy","missy") + ".”</i>");
-	output("\n\nYou take your ticket and head over to one of the benches to wait. Before you can even sit down, though, you hear Chef Herman calling out your number. Damn, that’s fast! You return to the chef, pick up your order, complete with a side of fries and a big ol’ soda, and take your seat. A few bites is all it takes to convince you that Chef Herman’s cookin is finger-licking good!");
+	output("\n\nYou take your ticket and head over to one of the benches to wait. Before you can even sit down, though, you hear Chef Herman calling out your number. Damn, that’s fast! You return to the chef, pick up your order, complete with a side of fries and a big ol’ soda, and take your seat. A few bites is all it takes to convince you that Chef Herman’s cooking is finger-licking good!");
 	//{Energy Restored. Slight gain to thickness; salads slightly reduce thickness}. 
 	if(order == "Ribs")
 	{
@@ -1269,8 +1269,8 @@ public function specialOrdersForTreatedGals():void
 	clearOutput();
 	output("You lean over the counter, looking the chef up and down, your eyes drawn toward the thick, heavy bulge tenting the chef’s greasy apron. <i>“Uh, is there something I can get you, miss...?”</i> he starts to ask, before his gaze follows you down.");
 	output("\n\nGrinning lasciviously, you point down to the suddenly-larger bulge and say, <i>“I’ll take a great big helping of that, Chef.”</i>");
-	output("\n\nHe seems to think for a moment before nodding toward the little door behind the grill. You quickly hop out of line and through the door, scooting down onto your [pc.knees] beneath the counter. Your hands run up Herman’s tree-trunk legs, brushing across his jean-clad thighs as you push the hem of his apron aside, giving yourself access to the chef’s fly. Even as you’re getting busy, though, Chef Herman doesn’t stop working; he dutifully turns back to the grill after grabbing the next order up, starting to cook just a surely as if there wasn’t a cum-hungry whore trying to free his cock.");
-	output("\n\nYour deft fingers lock around his zipper, carefully tugging it down and grabbing the meaty shaft of Herman’s cock. You roll his apron up to get a look at your prize: it’s as big as you’d hope, more than a foot and a half of turgid meat expanding at your touch, filling out to its full length at your tender touches. It’s bear-like in shape, thicker around than you can wrap your fingers over and blunted at the tip, its thick gash of a urethra sitting in a basin-like depression between the flat mass of cockhead.");
+	output("\n\nHe seems to think for a moment before nodding toward the little door behind the grill. You quickly hop out of line and through the door, scooting down onto your [pc.knees] beneath the counter. Your hands run up Herman’s tree-trunk legs, brushing across his jean-clad thighs as you push the hem of his apron aside, giving yourself access to the chef’s fly. Even as you’re getting busy, though, Chef Herman doesn’t stop working; he dutifully turns back to the grill after grabbing the next order up, starting to cook just as surely as if there wasn’t a cum-hungry whore trying to free his cock.");
+	output("\n\nYour deft fingers lock around his zipper, carefully tugging it down and grabbing the meaty shaft of Herman’s cock. You roll his apron up to get a look at your prize: it’s as big as you’d hoped, more than a foot and a half of turgid meat expanding at your touch, filling out to its full length at your tender touches. It’s bear-like in shape, thicker around than you can wrap your fingers over and blunted at the tip, its thick gash of a urethra sitting in a basin-like depression between the flat mass of cockhead.");
 	output("\n\nUnbeckoned, your hungry tongue slips out and laps along the underside of Herman’s rod. That finally gets a reaction out of the hard-working stud; he shudders, teeth gritting. He turns from the grill to the register, and you move with him, taking the opportunity to draw your tongue along the side of his freed willy. The taste is unbelievable, so good... musky, thick, manly. Like every male on this wonderful world, Herman seems to exude an aura of unwavering masculinity, the kind of men that spend their days breeding bitches, to whom sex is life itself. The flavor of his cock is electrifying, only spurring on your rampant, instinctual need for his cum. When Herman turns again, your lips lock around his flared, bearish cockhead, jaw straining to take the sheer girth of his blunted mast.");
 	output("\n\n<i>“Eager, aren’t ya?”</i> Herman grunts under his breath, reaching down to ");
 	if(pc.horns == 0) output("pat your head");
@@ -1402,7 +1402,7 @@ public function carrieFinishedMilking(amount:Number = 0):void
 	
 	output("\n\nIt takes a minute for Carrie to help you out of the harness and onto your [pc.feet]. You’re a bit wobbly at first, but your bovine attendant steadies you and helps you collect and don your [pc.gear]. As you’re getting kitted up, Carrie wanders over to the spooge-collecting machine on the wall and punches a button labeled <i>“RESULTS.”</i> The display immediately lights up with the amount you produced: <b>" + cumTotal + "mLs</b>");
 	
-	output("\n\n<i>“Oh, hey, before you go: since we’ve collected your sperm properly, would you mind if we sold it? Plenty of people out there are real choosey about what genes they want, and you look like a " + pc.mf("prize winning stud","a cute lil’ thing any girl would want to father their children") + "! I can even give you some money for it up front!”</i>");
+	output("\n\n<i>“Oh, hey, before you go: since we’ve collected your sperm properly, would you mind if we sold it? Plenty of people out there are real choosy about what genes they want, and you look like a " + pc.mf("prize winning stud","cute lil’ thing any girl would want to father their children") + "! I can even give you some money for it up front!”</i>");
 	
 	processTime(2);
 	
@@ -1461,7 +1461,7 @@ public function yesGoMilkarGo(amount:Number = 0):void
 
 	output("\n\nHearing the loud boom, clanking machinery, and the blaring alarm, Carrie quickly jumps out of her stool, brightens the lights, and rushes over to the scene. The auburn-haired cow-girl looks at the milker, its tubes split open, with globs of [pc.cum] flowing out of them. <i>“What in tarnation?!”</i> she exclaims. <i>“Are you okay?”</i>");
 
-	output("\n\nYou can only nod slightly as the dildo continues to ream your anus and prod your prostate, forcing your to arch your back and stiffen your limbs.");
+	output("\n\nYou can only nod slightly as the dildo continues to ream your anus and prod your prostate, forcing you to arch your back and stiffen your limbs.");
 	if(pc.isTreated()) output(" You can feel yourself mindlessly drooling in the moment, your [pc.tongue] lolling out from the corner of your mouth. This is just too good!");
 
 	output("\n\nSeeing that you were not immediately hurt in the commotion, she instantly turns to the milker to see if she can stop it from completely breaking down. Turning the knobs to equalize the pressure, pumping levers to drop the excess back-flow, and pressing buttons to shut off the power supply sources in a systematical order. You can hear the milker’s engines slow to a halt, but the pressure around [pc.eachCock] is unabated. The machine lets out an angry internal thud right before its engines are completely silenced. <i>“Oh, no,”</i> Carrie mewls, and with graceful aptitude, the cow-girl presses the emergency release button on a panel. Releasing a hiss, the connected tubes unlatch and fall off your [pc.cocks].");
@@ -1544,7 +1544,7 @@ public function noStahpMilkarStahp(amount:Number = 0):void
 
 	output("\n\nYou strain to to get the words out of your mouth, but a sudden creak in the milker and a blaring alarm with flashing lights make your situation apparent.");
 
-	output("\n\n<i>“Oh, heaven’s to Betsy!”</i> Carrie jumps up and immediately turns the dials down, relieving you of the pressure on [pc.eachCock].");
+	output("\n\n<i>“Oh, heavens to Betsy!”</i> Carrie jumps up and immediately turns the dials down, relieving you of the pressure on [pc.eachCock].");
 
 	output("\n\nWhen the alarm subsides and the milking machine powers down, Carrie pats your [pc.butt] and your rectum reflexively launches the dildo from your ass. Like a lewd pendulum, it pivots up and swings back, giving you a big, wet slap on your ass cheeks. The impact triggers you to");
 	if(pc.cumQ() <= 0) output(" shoot blanks into the empty air.");
@@ -1780,7 +1780,7 @@ public function carrieBlowjobIntro():void
 		//Time is 17:05-08:55
 		else
 		{
-			output("\n\n<i>“Maybe,”</i> Carrie murmurs. She looks slightly torn, turning her head away from you at the same time as pushing her warm, ample breast into your side. <i>“But I gotta job, big " + pc.mf("guy","girl") + ". Even though it’s really dead at... this time...”</i> You slide your hand down further, over the soft rise of her butt, slipping your fingers beneath her spandex costume and across the parting of her plump, over-juiced pussy, tracing it slowly. <i>“Ahh! Alright, ok,”</i> she half laughs, half gasps. <i>“We can do the off-peak special to get at that sperm of yours, if you like. Since you’re obviously very pent up.”</i>");
+			output("\n\n<i>“Maybe,”</i> Carrie murmurs. She looks slightly torn, turning her head away from you at the same time as she pushes her warm, ample breast into your side. <i>“But I gotta job, big " + pc.mf("guy","girl") + ". Even though it’s really dead at... this time...”</i> You slide your hand down further, over the soft rise of her butt, slipping your fingers beneath her spandex costume and across the parting of her plump, over-juiced pussy, tracing it slowly. <i>“Ahh! Alright, ok,”</i> she half laughs, half gasps. <i>“We can do the off-peak special to get at that sperm of yours, if you like. Since you’re obviously very pent up.”</i>");
 			output("\n\nShe pulls away, retrieves a large glass jar from underneath the milking machine and then walks past it into the barn’s back lot, with her come-hither eyes, swishing tail and bouncing, heart-shaped ass beckoning you to follow. [pc.OneCock] eagerly leads the way.");
 			processTime(4);
 			clearMenu();
@@ -1953,7 +1953,7 @@ public function carrieBlowjobsGo():void
 			output("\n\n<i>“Not at this time of ");
 			if(hours > 6 && hours < 20) output("day ");
 			else output("night ");
-			output(", no,”</i> Cora replies with a light bite of the lip, eyes traveling downward. You consider teasing them a little more, make them admit how much they look forward to this, but - drinking in their milky curves and flushed, eager faces, [pc.eachCock] hardening inexorably - you reflect that life is too damn short.");
+			output(", no,”</i> Cora replies with a light bite of the lip, eyes traveling downward. You consider teasing them a little more, making them admit how much they look forward to this, but - drinking in their milky curves and flushed, eager faces, [pc.eachCock] hardening inexorably - you reflect that life is too damn short.");
 		}
 		//Into the meat of the scene
 		//Big cock
@@ -1975,7 +1975,7 @@ public function carrieBlowjobsGo():void
 				else output("base with attention");
 			}
 			else output("licks and suckles your [pc.balls], making them thrum and swell with heat");
-			output(". Carrie stays on the longer, forcing more and more of your mega-cock into her maw and into the incredible tightness her throat, gazing up at you proudly as she does it. You groan lowly and award her with a long drizzle of pre, delivered straight to her gut.");
+			output(". Carrie stays on the longer, forcing more and more of your mega-cock into her maw and into the incredible tightness of her throat, gazing up at you proudly as she does it. You groan lowly and award her with a long drizzle of pre, delivered straight to her gut.");
 			output("\n\n<i>“Hey,”</i> murmurs Cora, pulling away ");
 			if(pc.balls > 1) output("from polishing your balls ");
 			output("and looking up hazily, <i>“don’t hog all of that. Swap.”</i>");
@@ -2034,7 +2034,7 @@ public function carrieBlowjobsGo():void
 			else
 			{
 				output("\n\nYou exhale hoarsely as [pc.cock " + x + "] and [pc.cock " + y + "] swell up with a heavily stoked, unstoppable orgasm, each mired deep once again in a wet, rhythmic suck. They bulge up and release, blowing a simultaneous surge of [pc.cum] into two horny, hungry mouths that coax you on with drags of the lips and slides of the tongue. You are forced into overdrive, heart pounding as you hose a massive amount of thick, gooey seed down each throat. Cora copes poorly, cum spurting out of her nose as she coughs. She gets the next blast from your [pc.cock " + y + "] in the face as a result. Carrie is better prepared; eyes closed, pussy dripping, she swallows her stomach-swelling share of musky slut-feed down like a hero.");
-				output("\n\nThe next moment she pulls off and quickly grabbing one of the glass jars between her knees. Cora follows suit. Clutching your cocks, you growl and gasp as you unload again and again into the containers which are whisked in front of you. It’s a remarkably efficient operation, all things considered; they both slap down lids and grab the next empty as soon as one is full.");
+				output("\n\nThe next moment she pulls off and quickly grabs one of the glass jars between her knees. Cora follows suit. Clutching your cocks, you growl and gasp as you unload again and again into the containers which are whisked in front of you. It’s a remarkably efficient operation, all things considered; they both slap down lids and grab the next empty as soon as one is full.");
 				output("\n\nYou’ve got more, plenty more coming by the time half a dozen jars have been filled with your virile seed, and there’s only one way to use it. The two cow-girls at your [pc.footOrFeet] flinch, gasp and giggle as you give them a heavy, well-deserved pasting each. Cora presents her plush tits, closes her eyes and opens her mouth and Carrie swiftly following suit, providing you with plenty of enjoyable targets. You generously make sure Cora gets more having missed out to begin with, and her midriff has taken on a noticeable swell by the end as well. When their milky skin and red hair is absolutely dripping with [pc.cum], you sink back against the tree and wheeze, [pc.cocks] swinging, finally and utterly satiated.");
 				output("\n\n<i>“Whew!”</i> says Carrie, wiping cum out of her eyes and stroking her slightly swollen belly. <i>“Well, we didn’t get it all. But, um, we did better.”</i> She clinks the full jars together happily. <i>“We should definitely try again sometime.”</i>");
 				output("\n\n<i>“Beats repairing refrigerators,”</i> agrees Cora, sucking her finger. <i>“Very messy, but... productive.”</i>");
@@ -2127,7 +2127,7 @@ public function carrieBlowjobsGo():void
 		if(pc.cumQ() >= 500) output("and her full, gloopy jar ");
 		output("up.");
 		//Not big cock, small output:
-		if(pc.cocks[x].cLength() < 12 && pc.cumQ() < 500) output(" <i>“I don’t mind y’all don’t cum like Moby Dick. A working gal always needs a snack, y’know?”</i>");
+		if(pc.cocks[x].cLength() < 12 && pc.cumQ() < 500) output(" <i>“I don’t mind if y’all don’t cum like Moby Dick. A working gal always needs a snack, y’know?”</i>");
 		//Big cock/1 < cock first time:
 		else if((pc.cocks[x].cLength() >= 12 || doubleDickEnough) && flags["CORA_QUEUED"] == undefined) 
 		{

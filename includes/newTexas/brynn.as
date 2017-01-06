@@ -102,7 +102,7 @@ public function brynnRandomBarnEventFunc():Boolean
 				output(" sensitive to the scent of a powerful, virile male wanting for a tight cunt to fill.");
 			}
 
-			output("\n\nDeep, guttural groans of encouragement emanate from one of the stalls in your proximity, simply adding further confirmation that there's somebody getting hot and heavy nearby.");
+			output("\n\nDeep, guttural groans of encouragement emanate from one of the stalls in your proximity, simply adding further confirmation that there’s somebody getting hot and heavy nearby.");
 
 			return true;
 		}
@@ -225,7 +225,7 @@ public function brynnLeave():void
 	brynnHeader(true);
 	if (!brynnIntroduced())
 	{
-		output("Between the two girls slurping noisily along the length of cock, and the owner of said mass of sensitive flesh, nobody has yet noticed that they've garnered themselves a peeping tom.");
+		output("Between the two girls slurping noisily along the length of cock, and the owner of said mass of sensitive flesh, nobody has yet noticed that they’ve garnered themselves a peeping tom.");
 
 		if (!pc.isTreated())
 		{
@@ -299,7 +299,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	output("Before you have a chance to realize which way is up, you’re down on your [pc.knees] and shuffling your way between the two curvaceous cowgirls already servicing");
 	if (!brynnIntroduced()) output(" the bull-stud");
 	else output(" Brynn");
-	output("’s magnificent cock. As you settle into position at just the perfect spot, the girls close in around you, their wide, luscious frames brushing against your [pc.hips] to ensure that their new-found help doesn’t have opportunity to make a last-second departure before the stud has been sated.");
+	output("’s magnificent cock. As you settle into position at just the perfect spot, the girls close in around you, their wide, luscious frames brushing against your [pc.hips] to ensure that their new-found help doesn’t have an opportunity to make a last-second departure before the stud has been sated.");
 	
 	output("\n\nNow that you’re safely tucked between");
 	if (!brynnIntroduced()) output(" the stud");
@@ -322,17 +322,17 @@ public function suckThatMassiveStudlyBrynnDick():void
 
 	if (pc.isTreated())
 	{
-		output("\n\nThe needy fire deep within your loins burns all the hotter now that you're this close to the source of raw masculinity your Treated mind demanded you seek out; enclosed between the luscious girls to the rear, the stud’s powerful legs to either side, and the magnificent cock in front, the heady musk must be a dozen times more powerful. Seeping from every square millimeter of skin, every single pore, from every direction, all at once... your muscles weaken for a split second, fluttering in time with your");
+		output("\n\nThe needy fire deep within your loins burns all the hotter now that you’re this close to the source of raw masculinity your Treated mind demanded you seek out; enclosed between the luscious girls to the rear, the stud’s powerful legs to either side, and the magnificent cock in front, the heady musk must be a dozen times more powerful. Seeping from every square millimeter of skin, every single pore, from every direction, all at once... your muscles weaken for a split second, fluttering in time with your");
 		if (pc.hasVagina()) output(" [pc.cunts]");
 		else output(" [pc.asshole]");
 		output(", and you fall back against your sisters-in-arms behind you.");
 	}
 	else
 	{
-		output("\n\nThe needy fire deep within your loins burns all the hotter now that you're this close to such a powerful source of raw virility. Enclosed between the luscious girls to the rear, the stud’s powerful legs to either side, and the magnificent cock in front, the heady");
+		output("\n\nThe needy fire deep within your loins burns all the hotter now that you’re this close to such a powerful source of raw virility. Enclosed between the luscious girls to the rear, the stud’s powerful legs to either side, and the magnificent cock in front, the heady");
 		if (!CodexManager.entryViewed("The Treatment")) output(" musk laces");
 		else output(" pheromones lace");
-		output(" the air all the more thoroughly, amplifying the effect by an order of magnitude. It's all you can do to stay upright, weakly grasping at");
+		output(" the air all the more thoroughly, amplifying the effect by an order of magnitude. It’s all you can do to stay upright, weakly grasping at");
 		if (!brynnIntroduced()) output(" the stud");
 		else output(" Brynn");
 		output("’s thighs to stay upright as your body acclimatizes to the stuffy environment.");
@@ -346,11 +346,11 @@ public function suckThatMassiveStudlyBrynnDick():void
 	output("\n\nA glimmer of something right in the crux of the stud’s hefty sack shines in the dim light making it past the mass of bodies enclosing you. Your gentle jouncing of his balls disturbs a small amount of it, a trail of fluid escaping from the captive volume, running between the weighty orbs to dab the faintest trace of wetness on your hand. You somewhat reluctantly slide your hand out from under the comfortable warmth of soft skin, and bring it up to your [pc.face].");
 	if (pc.isTreated()) output(" Your hand smells heavenly, of absolute paradise, distilled into liquid form and dappled over your palm;");
 	else output(" One whiff of the precum coating your hand and");
-	output(" before you know it, you're licking every last trace of the watery goodness from your fingers.");
+	output(" before you know it, you’re licking every last trace of the watery goodness from your fingers.");
 
 	output("\n\nThe");
 	if (pc.isTreated()) output(" delicious");
-	output(" tang of pre-cum coating your digits only lasts a few scant seconds; in no time at all, the majority of it is gone, and you're sucking the last traces of its flavor from your skin. Your very next breath reminds you of where you are, and that the source of that delicious taste is only inches away. You lean forward and bring your");
+	output(" tang of pre-cum coating your digits only lasts a few scant seconds; in no time at all, the majority of it is gone, and you’re sucking the last traces of its flavor from your skin. Your very next breath reminds you of where you are, and that the source of that delicious taste is only inches away. You lean forward and bring your");
 	if (!pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(" mouth");
 	else output(" maw");
 	output(" to within millimeters of");
@@ -368,7 +368,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	if (pc.isTreated()) output("; you’re getting what you want, and giving his big ol’ balls a sloppy wet kiss in appreciation for their tireless work");
 	output(".");
 	
-	output("\n\nIn only a matter of seconds, you’ve suckled every drop of pre from the little pool nestled within his balls; so you go in search of more. Gradually, you work across the surface of the silky-smooth skin, licking and slurping every last trace of tangy, musky fluid you can find. You pull away before too long, cupping his balls with a hand in reverence and giving each globe one last final, gentle kiss, to take in the sight of a pair of saliva-shone balls");
+	output("\n\nIn only a matter of seconds, you’ve suckled every drop of pre from the little pool nestled within his balls, so you go in search of more. Gradually, you work across the surface of the silky-smooth skin, licking and slurping every last trace of tangy, musky fluid you can find. You pull away before too long, cupping his balls with a hand in reverence and giving each globe one last final, gentle kiss, to take in the sight of a pair of saliva-shone balls");
 	if (pc.isTreated()) output(" some part tucked away in your mind profoundly proud of such a job well done");
 	output(".");
 
@@ -413,7 +413,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	else
 	{
 		// Treated
-		output("\n\nNo longer having to dedicate precious thinking power to the task of figuring out just how best to bring pleasure to the virile stud with his cock lodged between your lips, you've finally got chance to realize just how needy your own");
+		output("\n\nNo longer having to dedicate precious thinking power to the task of figuring out just how best to bring pleasure to the virile stud with his cock lodged between your lips, you’ve finally got a chance to realize just how needy your own");
 		if (pc.hasVagina()) output(" [pc.cunts]");
 		else if (pc.hasCock()) output(" [pc.cocks]");
 		else output(" loins");
