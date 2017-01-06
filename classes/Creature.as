@@ -4508,7 +4508,7 @@
 				else if(lips <= 3)
 				{
 					if(rand(4) == 0) result += "full";
-					else if(rand(3) == 0) result += "pouting";
+					else if(rand(3) == 0) result += "pouty";
 					else if(rand(2) == 0) result += "shapely";
 					else result += "plump";
 				}
@@ -11352,7 +11352,7 @@
 			var description: String = "";
 			var rando: Number = 0;
 			//Size descriptors 25% chance
-			if (rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED) {
+			if (rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES) {
 				//TINAHHHH
 				if (nippleLength(rowNum) < .25) {
 					rando = rand(4);
@@ -11403,7 +11403,7 @@
 				//Fuckable chance first!
 				if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
 					if (descripted > 0) description += ", ";
-					//Fuckable and lactating?
+					//Fuckable and lactating? 50%
 					if (isLactating()) {
 						rando = rand(5);
 						if (rando <= 3) description += "lactating";
@@ -11427,18 +11427,24 @@
 				//Lipples
 				else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
 					if (descripted > 0) description += ", ";
-					if (isLactating()) {
+					if (isLactating() && rand(3) == 0) {
 						rando = rand(5);
 						if (rando <= 3) description += "drooling";
 						else description += "lactation-slicked";
 					}
 					//Just fuckable
 					else {
-						rando = rand(4);
-						if (rando == 0) description += "puffy";
-						else if (rando == 1) description += "pouty";
-						else if (rando == 2) description += "parted";
-						else if (rando == 3) description += "luscious";
+						//Petite - 0.8 and below
+						if (nippleWidth(rowNum) < 0.8) description += RandomInCollection(["slender","petite","small"]);
+						//Nice/Supple
+						else if (nippleWidth(rowNum) < 1.5) description += RandomInCollection(["full","shapely","pouty","kissable"])
+						//Puffy 
+						else if (nippleWidth(rowNum) < 2.5) description += RandomInCollection(["plump","puffy","bee-stung","perfectly pouty"]);
+						//Juicy
+						else if (nippleWidth(rowNum) < 5) description += RandomInCollection(["juicy","luscious","succulent","cushy-looking"]);
+						//Obscene
+						else if (nippleWidth(rowNum) < 12) description += RandomInCollection(["hypnotic","dazzling","plush","whorish","pornographic","salaciously swollen","obscene"]);
+						else description += RandomInCollection(["Scylla-tier","impossibly large","game-breaking","crotch-consuming","jacquesian","universe-shaming","ultraporn-banned"]);
 					}
 					descripted++;
 				}
@@ -11495,25 +11501,34 @@
 				}
 			}
 			//Possible arousal descriptors
-			else if (rand(3) == 0 && descripted < 2 && !InCollection(breastRows[rowNum].nippleType, GLOBAL.NIPPLE_TYPE_FLAT, GLOBAL.NIPPLE_TYPE_INVERTED, GLOBAL.NIPPLE_TYPE_LIPPLES, GLOBAL.NIPPLE_TYPE_FUCKABLE)) {
-				if (lust() > 50 && lust() < 75) {
+			else if (rand(3) == 0 && descripted < 2 && !InCollection(breastRows[rowNum].nippleType, GLOBAL.NIPPLE_TYPE_FLAT, GLOBAL.NIPPLE_TYPE_INVERTED, GLOBAL.NIPPLE_TYPE_FUCKABLE)) {
+				if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES && lust() >= 75)
+				{
 					if (descripted > 0) description += ", ";
-					rando = rand(5);
-					if (rando == 0) description += "erect";
-					else if (rando == 1) description += "perky";
-					else if (rando == 2) description += "erect";
-					else if (rando == 3) description += "firm";
-					else if (rando == 4) description += "tender";
+					description += RandomInCollection(["clenching","quivering","trembling","hyper-sensitive","tender","needy"]);
 					descripted++;
 				}
-				if (lust() >= 75) {
-					if (descripted > 0) description += ", ";
-					rando = rand(4);
-					if (rando == 0) description += "throbbing";
-					else if (rando == 1) description += "trembling";
-					else if (rando == 2) description += "needy";
-					else if (rando == 3) description += "throbbing";
-					descripted++;
+				else
+				{
+					if (lust() > 50 && lust() < 75) {
+						if (descripted > 0) description += ", ";
+						rando = rand(5);
+						if (rando == 0) description += "erect";
+						else if (rando == 1) description += "perky";
+						else if (rando == 2) description += "erect";
+						else if (rando == 3) description += "firm";
+						else if (rando == 4) description += "tender";
+						descripted++;
+					}
+					if (lust() >= 75) {
+						if (descripted > 0) description += ", ";
+						rando = rand(4);
+						if (rando == 0) description += "throbbing";
+						else if (rando == 1) description += "trembling";
+						else if (rando == 2) description += "needy";
+						else if (rando == 3) description += "throbbing";
+						descripted++;
+					}
 				}
 			}
 			if(hasStatusEffect("Rubber Wrapped") && descripted < 2 && rand(6) == 0)
@@ -11560,10 +11575,8 @@
 					if (rando > 2) description += ", ";
 					else description += " ";
 				}
-				if (rando <= 1) description += "lipple";
-				else if (rando == 2) description += "lip-nipple";
-				else if (rando == 3) description += "kissable nipple";
-				else if (rando == 4) description += "mouth-like nipple";
+				if(rando > 2) description += RandomInCollection(["lip-like nipple","kissable nipple","misplaced mouth","fuckable nipple"]);
+				else description += RandomInCollection(["lipple","lipple","titty-lip","boob-mouth","lip-nipple"]);
 			}
 			//Normals
 			else {
