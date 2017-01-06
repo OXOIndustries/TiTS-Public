@@ -566,6 +566,17 @@
 
 		public var skinTone: String = "albino";
 		public var skinAccent: String = "";
+		public function hasAccentMarkings():Boolean
+		{
+			if(skinAccent == "") return false;
+			return (hasStatusEffect("Vanae Markings") || hasStatusEffect("Shark Markings"));
+		}
+		public function clearAccentMarkings():void
+		{
+			removeStatusEffect("Vanae Markings");
+			removeStatusEffect("Shark Markings");
+			skinAccent = "";
+		}
 		public function skinToneUnlocked(newSkinTone:String):Boolean
 		{
 			if (hasStatusEffect("Gel Body")) return false;
@@ -4497,7 +4508,7 @@
 				else if(lips <= 3)
 				{
 					if(rand(4) == 0) result += "full";
-					else if(rand(3) == 0) result += "pouting";
+					else if(rand(3) == 0) result += "pouty";
 					else if(rand(2) == 0) result += "shapely";
 					else result += "plump";
 				}
@@ -5205,17 +5216,20 @@
 			var nouns:Array = ["gill"];
 			var description:String = "";
 			
-			if (9999 == 9999) adjectives.push("feathery");
-			if (9999 == 0) adjectives.push("slit-like");
-			if (9999 == 0) adjectives.push("fish-like");
-			if (9999 == 0) adjectives.push("bulbous");
-			if (9999 == 0) adjectives.push("dotted");
-			if (9999 == 0) adjectives.push("slimy", "gooey");
-			if (9999 == 0) adjectives.push("chitinous", "armored");
-			if (9999 == 0) adjectives.push("scaly", "scaled");
-			if (9999 == 0) adjectives.push("furry", "furred");
-			if (9999 == 0) adjectives.push("smooth", "sleek");
-			if (9999 == 0) adjectives.push("alien");
+			// Shark-like
+			if (sharkScore() >= 3) adjectives.push("slit-like", "slit-like", "slit-like", "fish-like", "scaly", "scaled");
+			/*
+			else if (9999 == 0) adjectives.push("fish-like");
+			else if (9999 == 0) adjectives.push("bulbous");
+			else if (9999 == 0) adjectives.push("dotted");
+			else if (9999 == 0) adjectives.push("slimy", "gooey");
+			else if (9999 == 0) adjectives.push("chitinous", "armored");
+			else if (9999 == 0) adjectives.push("scaly", "scaled");
+			else if (9999 == 0) adjectives.push("furry", "furred");
+			else if (9999 == 0) adjectives.push("smooth", "sleek");
+			*/
+			// Other
+			else adjectives.push("feathery", "feathery", "alien");
 			
 			if(rand(2) == 0 && adjectives.length > 0) description += adjectives[rand(adjectives.length)] + " ";
 			
@@ -9788,19 +9802,7 @@
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
 			if (nyreaScore() >= 5) race = "nyrea";
-			if (sharkScore() >= 5)
-			{
-				//If has perk (Stripes) 
-				if(statusEffectv1("Shark Markings") == 1) race = "tiger shark-morph";
-				else if(statusEffectv1("Shark Markings") == 2) race = "leopard shark-morph";
-				//If galbilaniScore () = 2
-				else if(gabilaniScore() >= 2) race = "goblin shark-morph";
-				else if(bovineScore () >= 2) race = "bull shark-morph"
-				else if(wingCount > 1 && (wingType == GLOBAL.TYPE_AVIAN || wingType == GLOBAL.TYPE_DOVE)) race = "angel-shark";
-				else if(tallness >= 9) race = "megalodon-morph";
-				else if(tallness < 60) race = "pygmy shark-morph";
-				else race = "shark-morph"
-			}
+			if (sharkScore() >= 5) race = sharkRace();
 			if (plantScore() >= 5) race = plantRace();
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
@@ -9902,9 +9904,22 @@
 		public function plantRace():String
 		{
 			if (wingType == GLOBAL.TYPE_COCKVINE && wingCount > 0 && hasTail(GLOBAL.TYPE_COCKVINE) && cockTotal(GLOBAL.TYPE_TENTACLE) == cockTotal()) return "cockvine-morph";
-			else if (skinType == GLOBAL.SKIN_TYPE_BARK && hasHorns(GLOBAL.TYPE_DRYAD)) return "treant";
-			else if (skinType == GLOBAL.SKIN_TYPE_PLANT && (hasHorns(GLOBAL.TYPE_DRYAD) || hasStatusEffect("Hair Flower"))) return "dryad";
+			if (skinType == GLOBAL.SKIN_TYPE_BARK && hasHorns(GLOBAL.TYPE_DRYAD)) return "treant";
+			if (skinType == GLOBAL.SKIN_TYPE_PLANT && (hasHorns(GLOBAL.TYPE_DRYAD) || hasStatusEffect("Hair Flower"))) return "dryad";
 			return "plant-morph";
+		}
+		public function sharkRace():String
+		{
+			//If has perk (Stripes) 
+			if(statusEffectv1("Shark Markings") == 1) return "tiger shark-morph";
+			if(statusEffectv1("Shark Markings") == 2) return "leopard shark-morph";
+			//If galbilaniScore () = 2
+			if(gabilaniScore() >= 2) return "goblin shark-morph";
+			if(bovineScore () >= 2) return "bull shark-morph"
+			if(wingCount > 1 && (wingType == GLOBAL.TYPE_AVIAN || wingType == GLOBAL.TYPE_DOVE)) return "angel-shark";
+			if(tallness >= 9) return "megalodon-morph";
+			if(tallness < 60) return "pygmy shark-morph";
+			return "shark-morph";
 		}
 		public function taurRace(race:String = ""):String
 		{
@@ -11337,7 +11352,7 @@
 			var description: String = "";
 			var rando: Number = 0;
 			//Size descriptors 25% chance
-			if (rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED) {
+			if (rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES) {
 				//TINAHHHH
 				if (nippleLength(rowNum) < .25) {
 					rando = rand(4);
@@ -11388,7 +11403,7 @@
 				//Fuckable chance first!
 				if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
 					if (descripted > 0) description += ", ";
-					//Fuckable and lactating?
+					//Fuckable and lactating? 50%
 					if (isLactating()) {
 						rando = rand(5);
 						if (rando <= 3) description += "lactating";
@@ -11412,18 +11427,24 @@
 				//Lipples
 				else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
 					if (descripted > 0) description += ", ";
-					if (isLactating()) {
+					if (isLactating() && rand(3) == 0) {
 						rando = rand(5);
 						if (rando <= 3) description += "drooling";
 						else description += "lactation-slicked";
 					}
 					//Just fuckable
 					else {
-						rando = rand(4);
-						if (rando == 0) description += "puffy";
-						else if (rando == 1) description += "pouty";
-						else if (rando == 2) description += "parted";
-						else if (rando == 3) description += "luscious";
+						//Petite - 0.8 and below
+						if (nippleWidth(rowNum) < 0.8) description += RandomInCollection(["slender","petite","small"]);
+						//Nice/Supple
+						else if (nippleWidth(rowNum) < 1.5) description += RandomInCollection(["full","shapely","pouty","kissable"])
+						//Puffy 
+						else if (nippleWidth(rowNum) < 2.5) description += RandomInCollection(["plump","puffy","bee-stung","perfectly pouty"]);
+						//Juicy
+						else if (nippleWidth(rowNum) < 5) description += RandomInCollection(["juicy","luscious","succulent","cushy-looking"]);
+						//Obscene
+						else if (nippleWidth(rowNum) < 12) description += RandomInCollection(["hypnotic","dazzling","plush","whorish","pornographic","salaciously swollen","obscene"]);
+						else description += RandomInCollection(["Scylla-tier","impossibly large","game-breaking","crotch-consuming","jacquesian","universe-shaming","ultraporn-banned"]);
 					}
 					descripted++;
 				}
@@ -11480,25 +11501,34 @@
 				}
 			}
 			//Possible arousal descriptors
-			else if (rand(3) == 0 && descripted < 2 && !InCollection(breastRows[rowNum].nippleType, GLOBAL.NIPPLE_TYPE_FLAT, GLOBAL.NIPPLE_TYPE_INVERTED, GLOBAL.NIPPLE_TYPE_LIPPLES, GLOBAL.NIPPLE_TYPE_FUCKABLE)) {
-				if (lust() > 50 && lust() < 75) {
+			else if (rand(3) == 0 && descripted < 2 && !InCollection(breastRows[rowNum].nippleType, GLOBAL.NIPPLE_TYPE_FLAT, GLOBAL.NIPPLE_TYPE_INVERTED, GLOBAL.NIPPLE_TYPE_FUCKABLE)) {
+				if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES && lust() >= 75)
+				{
 					if (descripted > 0) description += ", ";
-					rando = rand(5);
-					if (rando == 0) description += "erect";
-					else if (rando == 1) description += "perky";
-					else if (rando == 2) description += "erect";
-					else if (rando == 3) description += "firm";
-					else if (rando == 4) description += "tender";
+					description += RandomInCollection(["clenching","quivering","trembling","hyper-sensitive","tender","needy"]);
 					descripted++;
 				}
-				if (lust() >= 75) {
-					if (descripted > 0) description += ", ";
-					rando = rand(4);
-					if (rando == 0) description += "throbbing";
-					else if (rando == 1) description += "trembling";
-					else if (rando == 2) description += "needy";
-					else if (rando == 3) description += "throbbing";
-					descripted++;
+				else
+				{
+					if (lust() > 50 && lust() < 75) {
+						if (descripted > 0) description += ", ";
+						rando = rand(5);
+						if (rando == 0) description += "erect";
+						else if (rando == 1) description += "perky";
+						else if (rando == 2) description += "erect";
+						else if (rando == 3) description += "firm";
+						else if (rando == 4) description += "tender";
+						descripted++;
+					}
+					if (lust() >= 75) {
+						if (descripted > 0) description += ", ";
+						rando = rand(4);
+						if (rando == 0) description += "throbbing";
+						else if (rando == 1) description += "trembling";
+						else if (rando == 2) description += "needy";
+						else if (rando == 3) description += "throbbing";
+						descripted++;
+					}
 				}
 			}
 			if(hasStatusEffect("Rubber Wrapped") && descripted < 2 && rand(6) == 0)
@@ -11545,10 +11575,8 @@
 					if (rando > 2) description += ", ";
 					else description += " ";
 				}
-				if (rando <= 1) description += "lipple";
-				else if (rando == 2) description += "lip-nipple";
-				else if (rando == 3) description += "kissable nipple";
-				else if (rando == 4) description += "mouth-like nipple";
+				if(rando > 2) description += RandomInCollection(["lip-like nipple","kissable nipple","misplaced mouth","fuckable nipple"]);
+				else description += RandomInCollection(["lipple","lipple","titty-lip","boob-mouth","lip-nipple"]);
 			}
 			//Normals
 			else {

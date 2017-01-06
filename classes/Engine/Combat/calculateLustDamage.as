@@ -68,8 +68,8 @@ package classes.Engine.Combat
 		//New status: "Red Myr Venom" replaces this.
 		//if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;
 		if (target.hasPerk("Easy")) damMulti += 0.2;
-		if (target.hasStatusEffect("Fuck Fever") && attacker.hasCock()) damMulti += 0.4;
-		if (target.hasStatusEffect("Flushed") && attacker.hasCock()) damMulti += 0.2;
+		if (target != null && target.hasStatusEffect("Fuck Fever") && attacker != null && attacker.hasCock()) damMulti += 0.4;
+		if (target != null && target.hasStatusEffect("Flushed") && attacker != null && attacker.hasCock()) damMulti += 0.2;
 		if (damMulti != 1) lustDamage.multiply(damMulti);
 		
 		// Apply resistances

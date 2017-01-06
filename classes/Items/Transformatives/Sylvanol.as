@@ -349,7 +349,7 @@
 			//Gain glittering black, glowing red, glowing violet, or luminous silver vanae markings.
 			var vanaeColors:Array = ["glittering black", "glowing red", "glowing violet","luminous silver"];
 			tarColor = RandomInCollection(vanaeColors);
-			if(!pc.hasStatusEffect("Vanae Markings")) 
+			if(!pc.hasAccentMarkings()) 
 			{
 				lowEvents.push(sylvanolVanaeMarkings);
 				lowEventsArgs.push([pc,tarColor]);
@@ -470,7 +470,7 @@
 			//Gain vanae-style markings:
 			var vanaeColors:Array = ["luminous blue", "luminous green", "luminous pink","luminous silver","glowing gold"];
 			tarColor = RandomInCollection(vanaeColors);
-			if(!pc.hasStatusEffect("Vanae Markings")) 
+			if(!pc.hasAccentMarkings()) 
 			{
 				lowEvents.push(sylvanolVanaeMarkings);
 				lowEventsArgs.push([pc,tarColor]);
