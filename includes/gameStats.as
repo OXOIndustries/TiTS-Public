@@ -2082,7 +2082,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["LANE_DETOX_COUNTER"] != undefined) output2(" Detoxifying");
 					else if(flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DISABLED"] == undefined)
 					{
-						output2(" Fully Hypnotized");
+						output2(" Fully hypnotized");
 						if(flags["LANE_FULLY_HYPNOTISED_DAY"] != undefined)
 						{
 							output2(" for " + (days - flags["LANE_FULLY_HYPNOTISED_DAY"]) + " day");

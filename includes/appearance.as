@@ -957,10 +957,13 @@ public function appearance(forTarget:Creature):void
 		//Body Markings
 		if(target.hasStatusEffect("Shark Markings"))
 		{
+			var bodyPts:Array = [" back", " arms", (" " + (target.legCount == 1 ? target.legNoun() : target.legsNoun()))];
+			if(target.hasTail()) bodyPts.push((" " + target.tailDescript(true)));
+			
 			output2(" You have")
-			if(target.statusEffectv1("Shark Markings") == 1) output2(target.skinAccent + " stripes running all across your body, your back, arms, legs and tail.");
-			else if(target.statusEffectv1("Shark Markings") == 2) output2("" + target.skinAccent + " spots dotting every part of your body, your back, arms, legs and tail.");
-			else output2(" an off color blotch on the frontal part of your body, covering your chin, [pc.chest], belly and inner thighs in " + target.skinAccent + ".");
+			if(target.statusEffectv1("Shark Markings") == 1) output2(" " + target.skinAccent + " stripes running all across your body; your" + CompressToList(bodyPts) + ".");
+			else if(target.statusEffectv1("Shark Markings") == 2) output2(" " + target.skinAccent + " spots dotting every part of your body; your" + CompressToList(bodyPts) + ".");
+			else output2(" an off-color blotch on the frontal part of your body, covering your chin, " + target.chestDesc() + ", belly and inner thighs in " + target.skinAccent + ".");
 		}
 		// Mimbrane sweat
 		if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined)
@@ -2491,25 +2494,25 @@ public function crotchStuff(forTarget:Creature = null):void
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your fuzzy " + target.sackDescript(true,true) + " hugs your " + sTesticleDesc + " tightly against your body.";
 				else if(target.cockTotal() == 0) sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under where a penis would normally grow.";
 				else sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under your " + target.multiCockDescript() + ".";
-				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in plush, " + (ballsackColor != "" ? ballsackColor : pc.furColor) + " fluff, makes it absolutely squeezable!";
+				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in plush, " + (ballsackColor != "" ? ballsackColor : target.furColor) + " fluff, makes it absolutely squeezable!";
 				break;
 			case GLOBAL.FLAG_SCALED:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your scaly " + target.sackDescript(true,true) + " hugs your " + sTesticleDesc + " tightly against your body.";
 				else if(target.cockTotal() == 0) sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under where a penis would normally grow.";
 				else sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under your " + target.multiCockDescript() + ".";
-				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in sleek, " + (ballsackColor != "" ? ballsackColor : pc.scaleColor) + " scales, makes it smooth to the touch.";
+				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in sleek, " + (ballsackColor != "" ? ballsackColor : target.scaleColor) + " scales, makes it smooth to the touch.";
 				break;
 			case GLOBAL.FLAG_GOOEY:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your " + target.sackDescript(true,true) + " clings tightly to your groin, dripping ooze and holding " + sTesticleDesc + " snugly against you.";
 				else if(target.cockTotal() == 0) sBallsackDesc += "An oozing, semi-solid sack with " + sTesticleDesc + " swings heavily under where a penis would normally grow.";
 				else sBallsackDesc += "An oozing, semi-solid sack with " + sTesticleDesc + " swings heavily beneath your " + target.multiCockDescript() + ".";
-				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Its gelatinous, " + (ballsackColor != "" ? ballsackColor : pc.skinTone) + " mass can allow it to jiggle and flop with ease.";
+				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Its gelatinous, " + (ballsackColor != "" ? ballsackColor : target.skinTone) + " mass can allow it to jiggle and flop with ease.";
 				break;
 			default:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your " + target.sackDescript(true,true) + " clings tightly to your groin, holding your " + sTesticleDesc + " snugly against you.";
 				else if(target.cockTotal() == 0) sBallsackDesc += StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + sTesticleDesc + " swings heavily under where a penis would normally grow.";
 				else sBallsackDesc += StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + sTesticleDesc + " swings heavily beneath your " + target.multiCockDescript() + ".";
-				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " It is covered in smooth " + (ballsackColor != "" ? ballsackColor : pc.skinTone) + " skin, allowing anyone to see it blush whenever you’re aroused.";
+				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " It is covered in smooth " + (ballsackColor != "" ? ballsackColor : target.skinTone) + " skin, allowing anyone to see it blush whenever you’re aroused.";
 				break;
 		}
 		//Does it mention the dick at the end of the sentence? If so, dont use pronoun here:

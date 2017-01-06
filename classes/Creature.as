@@ -1729,6 +1729,9 @@
 				case "tail":
 					buffer = tailDescript();
 					break;
+				case "tailNoun":
+					buffer = tailDescript(true);
+					break;
 				case "onetail":
 				case "oneTail":
 					buffer = oneTailDescript();
@@ -5654,7 +5657,7 @@
 			if (legCount == 1) return leg(forceType, forceAdjective);
 			return legs(forceType, forceAdjective);
 		}
-		public function tailDescript(): String {
+		public function tailDescript(nounOnly:Boolean = false): String {
 			var adjectives:Array = new Array();
 			var nouns:Array = ["tail"];
 			var description:String = "";
@@ -5797,7 +5800,7 @@
 				adjectives.push("sticky");
 			
 			//Show adjective 50% of the time
-			if (rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			if (!nounOnly && rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
 			description += nouns[rand(nouns.length)];
 			return description;
