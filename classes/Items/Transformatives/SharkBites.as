@@ -373,7 +373,7 @@
 				if(pc.totalVaginas(GLOBAL.TYPE_SHARK) < pc.totalVaginas() && rand(3) == 0 && changes < changeLimit)
 				{
 					var cuntPix:Array = new Array();
-					for(var ii:int = 0; ii < pc.totalCocks(); ii++)
+					for(var ii:int = 0; ii < pc.totalVaginas(); ii++)
 					{
 						if(pc.vaginas[ii].type != GLOBAL.TYPE_SHARK) cuntPix.push(ii);
 					}
