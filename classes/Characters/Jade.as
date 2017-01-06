@@ -57,7 +57,16 @@
 			this.HPMod = 15;
 			this.HPRaw = this.HPMax();
 
-			//Inventory handled in includes/tavros/jade.as - jadeStoreSetup
+			inventory.push(new Pandaneen());
+			inventory.push(new PandaPro());
+			inventory.push(new KnotAProblem());
+			inventory.push(new HorsePill());
+			inventory.push(new Furball());
+			inventory.push(new AusarTreats());
+			inventory.push(new NukiCookies());
+			inventory.push(new DracoGuard());
+			inventory.push(new OvirAce());
+			inventory.push(new OvirPositive());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;

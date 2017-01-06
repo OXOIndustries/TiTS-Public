@@ -108,7 +108,7 @@ public function appearance(forTarget:Creature):void
 			else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN) output2("Your face is mostly human in shape, decorated with " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) output2("Your face is mostly human in shape, with hints of " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
 			// Special addons
-			if(target.faceType == GLOBAL.TYPE_SIREN) output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance.");
+			if(target.faceType == GLOBAL.TYPE_SHARK || target.faceType == GLOBAL.TYPE_SIREN) output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_LAPINE) output2(" The constant twitches of your nose and the length of your incisors gives your visage a hint of bunny-like cuteness.");
 			else if(target.faceType == GLOBAL.TYPE_NALEEN_FACE) output2(" A set of retractable, needle-like fangs sit in place of your canines, just like a naleen.");
 			if(target.hasStatusEffect("Mimbrane Face"))
@@ -250,17 +250,6 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" Your face is covered in " + target.skin(true,true,true) + ".");
 			else output2(" Strangely enough, your face is also covered with " + target.skin(true,true,true) + ".");
 		}
-		//SharkMorph Face:
-		else if(target.faceType == GLOBAL.TYPE_SHARK)
-		{
-			output2("Your face is shark-like in shape, with a snout and an upper jaw that pushes past your lower one, and at the very tip, there are two nasal holes.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES && target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) output2(" The glistening surface is slick to the touch, as if you just lubed up not to long ago.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" The surface is covered in fine scales.");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" The surface is covered with " + target.skinFurScales(true,true,false,true) + " , making you look like a rather odd hybrid.");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK) && silly) output2(" Hard" + target.skinFurScales(true,true,false,true) + " covers the surface, making you look like Boaty McBoatface.");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK)) output2(" Hard" + target.skinFurScales(true,true,false,true) + " covers the surface giving you a tough, hydrodynamic look.");
-			else output2(" Even without scales, the surface is smooth and hairless, perfect for underwater exploration.");
-		}
 		// Special face additions
 		if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
 		//M/F stuff!
@@ -276,15 +265,6 @@ public function appearance(forTarget:Creature):void
 			else if (hasGemstoneEyes) output2(", all of which shimmer " + target.eyeColor + " in the light like jewels.");
 			else if (hasLuminousEyes) output2(", all of which beam " + target.eyeColor + " in the darkness.");
 			else output2(", all of which are " + target.eyeColor + ".");
-		}
-		else if (target.eyeType == GLOBAL.TYPE_SHARK)
-		{
-			output2("Your eyes are a curious mix of piscine and feline features; a pair of black vertical slits instead of rounded pupils,");
-			if (hasMetallicEyes) output2(" sat amongst metallically glistening pools of " + target.eyeColor + " irises.");
-			else if (hasGemstoneEyes) output2(" each nestled in a shimmering gemstone-like " + target.eyeColor + " iris.");
-			else if (hasLuminousEyes) output2(" each nestled within " + indefiniteArticle(target.eyeColor) + " iris.");
-			else output2(" each sat within " + indefiniteArticle(target.eyeColor) + " iris.");
-			output2(" A thick black ring lines your eye and your eyelids close from the side."); 
 		}
 		else if (target.eyeType == GLOBAL.TYPE_GRYVAIN)
 		{
@@ -540,12 +520,6 @@ public function appearance(forTarget:Creature):void
 				if (target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches");
 				output2(" from your " + headNoun + ".");
 			}
-			//Shark Ears:
-			else if(target.earType == GLOBAL.TYPE_SHARK)
-			{
-				//pc is bald
-				output2(" A pair of triple-parted, sail-like ears protrude from the sides of your " + headNoun + ". The topmost sail points straight up while the other more smaller ones curve down.");
-			}
 			if(target.hasAntennae())
 			{
 				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
@@ -637,7 +611,6 @@ public function appearance(forTarget:Creature):void
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long,");
 				output2(" feather-tipped ears.");
 			}
-			else if(target.earType == GLOBAL.TYPE_SHARK) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of triple-parted, sail-like ears. The topmost sail points straight up while the other more smaller ones curve down.");
 			if(target.hasAntennae())
 			{
 				if(target.earType == GLOBAL.TYPE_LAPINE)
@@ -880,15 +853,6 @@ public function appearance(forTarget:Creature):void
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
 				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition. From afar, they may look like innocent vines, but up close, each tentacle contains a bulbous head with a leaking cum-slit, perfect for mass breeding.");
 			}
-			//Shark Wings/Dorsal Fin:
-			else if(target.wingType == GLOBAL.TYPE_SHARK)
-			{
-				if (target.wingCount == 2) output2(" a pair of ");
-				else if (target.wingCount == 4) output2(" a quartet of ");
-				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				if (target.wingCount > 1) output2(" large shark-like fins have sprouted between your shoulder blades. With them you have far more control over swimming underwater.");
-				else output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
-			}
 		}
 		else output2(".");
 		// Neck mane stuff
@@ -954,14 +918,6 @@ public function appearance(forTarget:Creature):void
 		}
 		//Vanaebutt Skin
 		if(target.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + target.skinAccent + " trace brighter accents across much of your form.");
-		//Body Markings
-		if(target.hasStatusEffect("Shark Markings"))
-		{
-			output2(" You have ")
-			if(target.statusEffectv1("Shark Markings") == 1) output2(target.skinAccent + " stripes running all across your body, your back, arms, legs and tail.");
-			else if(target.statusEffectv1("Shark Markings") == 2) output2("" + target.skinAccent + " spots dotting every part of your body, your back, arms, legs and tail.");
-			else output2("an off color blotch on the frontal part of your body, covering your chin, [pc.chest], belly and inner thighs in " + target.skinAccent + ".");
-		}
 		// Mimbrane sweat
 		if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined)
 		{
@@ -1130,18 +1086,6 @@ public function appearance(forTarget:Creature):void
 			}
 			output2(".");
 		}
-		else if(target.armType == GLOBAL.TYPE_SHARK)
-		{
-			output2(" From the elbows of your ");
-			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2("gooey arms there are small, piscine fins that are constantly drip with ooze.");
-			else
-			{
-				if(target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) output2("slick, ");
-				if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(target.furColor + " furred arms there are small, piscine fins.");
-				else output2(target.scaleColor + " scaled arms there are small, piscine fins.");
-			}
-			output2(" Your fingers are tipped with sharp black claws and are connected by webbing, perfect for giving you extra momentum while swimming.");
-		}
 		if (target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
 		{
 			var bothHands:Boolean = false;
@@ -1217,8 +1161,6 @@ public function appearance(forTarget:Creature):void
 						output2("n amphibian"); break;
 					case GLOBAL.TYPE_LIZAN:
 						output2(" lizard"); break;
-					case GLOBAL.TYPE_SHARK:
-						output2(" shark"); break;
 					default:
 						output2(" horse"); break;
 				}
@@ -1596,14 +1538,6 @@ public function appearance(forTarget:Creature):void
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_FROG) output2(" Your stubby frog tail wiggles around at the back of your waist, just asking to be squeezed.");
-		//Shark Tail:
-		else if(target.tailType == GLOBAL.TYPE_SHARK)
-		{
-			output2(" A long, shark-tail trails down from your backside, swaying to and fro while ");
-			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("dripping goo everywhere.");
-			else output2("giving you a dangerous air.");
-			output2(" Halfway across it grows a smaller dorsal fin.");
-		}
 		//Tail cunts
 		if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
 		{
@@ -1820,12 +1754,6 @@ public function appearance(forTarget:Creature):void
 				if(target.isTaur()) output2(" Your " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "scaled") + ", plantigrade legs end in human-like feet.");
 				else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "scaled") + ", plantigrade legs extend below your waist, ending in human-like feet.");
 			}
-		}
-		//Shark Legs:
-		else if(target.legType == GLOBAL.TYPE_SHARK)
-		{
-			if(target.legCount == 2) output2(" Your plantigrade legs are powerful, with small fins protruding from your ankles and webbed toes, perfect for swimming.");
-			else  output2(" Your " + num2Text(target.legCount) + " plantigrade legs come with webbing and small fins to better propel you through water.");
 		}
 		//Catch all
 		else
@@ -2947,11 +2875,6 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		else output2(" has a");
 		output2(" pronounced bullet-shaped tip.");
 	}
-	//Shark Cock:
-	else if (target.cocks[x].cType == GLOBAL.TYPE_SHARK)
-	{
-		output2( "The aquatic phallus is tapered but still quite tubular in appearance. It glistens like you've lubed it up not too long ago and has two pelvic fins framing its base.");
-	}
 	//Nubby or Ribbed
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
 	{
@@ -3148,12 +3071,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		if(!eachOne) output2(" Your labia are swollen and fat, outlining your vagina, and often shine with a wet sheen regardless of your arousal. You’re told that they wink when you’re aroused.");
 		else output2("\nEach vagina’s labia are swollen and fat, often shining with a wet sheen regardless of your arousal. You’re told that they wink when you’re aroused.");
 	}
-	//Shark Vagina:
-	else if(target.vaginas[x].type == GLOBAL.TYPE_SHARK)
-	{
-		if(!eachOne) output2(" The exterior lips are puffy and framed by fin-like flaps, while the interior of your vaginal canal is filled with tiny cilia that massage and pull any invaders deeper in.");
-		else output2("\nEach vagina's exterior lips are puffy and framed by fin-like flaps, while their interiors are filled with tiny cilia that massage and pull any invaders deeper in.");
-	}	
+	
 	//Nubby
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.vaginas[x].type != GLOBAL.TYPE_SIREN) {
 		if(!eachOne) output2(" The lips and insides are covered in numerous nub-like protrusions.");
