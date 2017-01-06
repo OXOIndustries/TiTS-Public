@@ -283,6 +283,8 @@ public function araKeiPotentialMasterBlurbs():void
 
 		output("\n\n<i>“Good,”</i> says the quadomme slowly, still eyeing you closely. <i>“Once we have weaned you off this individual, we can talk about more suitable candidates for keeping a steady hand on you. For now... I suggest you find a close friend, to help you through the process of withdrawal. People like Lane very rarely let free meals out of their grasp easily.”</i>");
 
+		// Basically the way I saw it working was, when a Permanently Hypnotised PC reaches this bit they get bumped back down to Partially Hypnotised, and are thus able to detox and confront Lane. What Nik suggests in the comment seems wise, if what he's saying is the case; give the PC a 75% boost to their Willpower for the confront Lane scene only.
+		if(flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) flags["LANE_FULLY_HYPNOTISED_FOREVER"] = undefined;
 		flags["ARAKEI_RESOLVED_MASTER_LANE"] = 1;
 	}
 	// Sera
@@ -737,7 +739,7 @@ public function araKeiFlirt():void
 		
 		output("\n\n<i>“Hmm,”</i> murmurs Ara Kei, the sound trailing off into a whispery, silky susurration. <i>“A little reward, perhaps? For taking a step towards true understanding?”</i>");
 		
-		output("\n\n<i>“Yeah!”</i> you say eagerly. The big quadomme gazes at you, and again you have that sense of being the centre of something incredibly powerful’s attention - a thrilling fright tightening up your chest.");
+		output("\n\n<i>“Yeah!”</i> you say eagerly. The big quadomme gazes at you, and again you have that sense of being the center of something incredibly powerful’s attention - a thrilling fright tightening up your chest.");
 		
 		output("\n\n<i>“Let me be crystal clear about this, Steele,”</i> "+ ara.mfn("he says", "she says", "they say") +" briskly, breaking the spell by turning [ara.his] face back to the maid fervently polishing [ara.his] chitin. <i>“So you do not feel led on. I will never be your master. Forty is a challenge to manage, particularly with the amount of work that I have undertaken, and I will not deny my loved ones by taking on board more submissives than I can manage. So the things you really crave - being controlled, the bliss of submission, a loving boot pressing your face to the floor - are not things I can give you. I am sorry.”</i>");
 		
@@ -844,7 +846,7 @@ public function araKeiFlirt():void
 
 			if (flags["ARAKEI_THE_REAMENING"] == undefined)
 			{
-				output("\n\n<i>“So here we are at last, [pc.name] Steele,”</i> says the bothrioc ambassador. The big, pupil-less eyes are focused on you, and this time they don’t turn away; you are at the centre of Ara Kei’s attention, and it feels like being at the very bottom of a black, silk-lined pit. <i>“In the clearing at the end of the path. True understanding. And now I am to present you a small taste of the fruits available from achieving this state of being. I said that I would, and so it shall be. There is no need to rise.”</i>");
+				output("\n\n<i>“So here we are at last, [pc.name] Steele,”</i> says the bothrioc ambassador. The big, pupil-less eyes are focused on you, and this time they don’t turn away; you are at the center of Ara Kei’s attention, and it feels like being at the very bottom of a black, silk-lined pit. <i>“In the clearing at the end of the path. True understanding. And now I am to present you a small taste of the fruits available from achieving this state of being. I said that I would, and so it shall be. There is no need to rise.”</i>");
 			}
 			else
 			{
@@ -884,7 +886,7 @@ public function araKeiTheReamening():void
 
 	output("\n\n<i>“I must say, I’m very impressed with the siel’s work,”</i> the quadomme says, leaving you kneeling on the wooden floor to stride around the room, touching and stroking various large, white bundles securely tied to the ceiling. Between [ara.him] and the hanging sheeted object, you don’t immediately realize what they are. <i>“Made exactly to my specifications and then some,”</i> [ara.he] murmur"+ ara.mfn("s", "s", "") +", sinking [ara.his] long fingers into one of the webbed submissives with surgical precision, eliciting a hoarse gasp of pleasure from the uncovered mouth. <i>“If my people are ever uplifted, there is a very rich relationship to be had there. You will stand at the bottom of my bed, Steele.”</i>");
 
-	output("\n\nTremulously you do so, carefully pulling aside a silk sheet so that you can stand at the centre of the cylinder of hanging sheets and ropes. There’s a light on at the top of it. You try and control your breathing when the clack of four stilettoed feet comes steadily closer and the rays are blotted out by a tall shape behind you, but it’s impossible. Even when you’re not looking directly at [ara.him], the mere presence of Ara Kei makes your heart thump and your skin feel incredibly sensitive, begging to be touched.");
+	output("\n\nTremulously you do so, carefully pulling aside a silk sheet so that you can stand at the center of the cylinder of hanging sheets and ropes. There’s a light on at the top of it. You try and control your breathing when the clack of four stilettoed feet comes steadily closer and the rays are blotted out by a tall shape behind you, but it’s impossible. Even when you’re not looking directly at [ara.him], the mere presence of Ara Kei makes your heart thump and your skin feel incredibly sensitive, begging to be touched.");
 
 	if (flags["ARAKEI_THE_REAMENING"] == undefined)
 	{
@@ -1139,7 +1141,7 @@ public function araKeiTheReameningIV():void
 	clearOutput();
 	showAraKei();
 
-	output("Time drifts by as you dangle there, a mummified ornament in a spider’s boudoir. Perhaps the old you would have gotten bored after about two minutes of this, but that could not be further from the case where the new you is concerned. The frazzling, mind-blowing sex you just endured has scattered your sense of self and pushed you into a state of Zen, happy simply to be the creature of total submission you have been molded into. Everything centres around the big, warm, contented glow in your tautened stomach, utter engorgement on a dominant’s lusts. As the moments slip by you can feel that reaching out and permeating every cell in your body, changing you to be even more suited to being an egg slut, softness piling on upon your [pc.chest] and [pc.hips]. It is true contentment, and hard, sharp thoughts - like your mission and whether your crew are wondering where you are - cannot pierce the all-encompassing fuzz.");
+	output("Time drifts by as you dangle there, a mummified ornament in a spider’s boudoir. Perhaps the old you would have gotten bored after about two minutes of this, but that could not be further from the case where the new you is concerned. The frazzling, mind-blowing sex you just endured has scattered your sense of self and pushed you into a state of Zen, happy simply to be the creature of total submission you have been molded into. Everything centers around the big, warm, contented glow in your tautened stomach, utter engorgement on a dominant’s lusts. As the moments slip by you can feel that reaching out and permeating every cell in your body, changing you to be even more suited to being an egg slut, softness piling on upon your [pc.chest] and [pc.hips]. It is true contentment, and hard, sharp thoughts - like your mission and whether your crew are wondering where you are - cannot pierce the all-encompassing fuzz.");
 
 	//Time forward 4 hours, normal Lust increase
 	output("\n\nOccasionally a door opens, a slight breeze touches your lower face. A single pair of armored feet will click-clack busily around and swiftly depart, or two pairs come in and you hear Ara Kei issue some brisk orders to the underlings around [ara.him] - or tend to the harem already here. Slithery, sticky sounds and murmurs as [ara.he] unbind"+ ara.mfn("s", "s", "") +" morsels attached to the ceiling and trusses up others; gasps, coos and moans as [ara.he] deliver"+ ara.mfn("s", "s", "") +" soft love, tough love, and hard  oil-drainings to those who remain here. You are given an insight into the sheer level of duty and engagement required to maintain the quadomme’s life: Constantly rotating [ara.his] attention"+ ara.mfn("s", "s", "") +" around 40 other people, [ara.his] never-ending awareness of where every submissive is at any one time, the docility, cooperative spirit and total investment of each haremling to make it all work like a well-oiled machine. It takes a while for your brood-slowed mind to think of this, but it eventually occurs that Ara Kei deliberately put you here so that you could observe all of this. A lesson within a lesson, imparted to a farlander who can carry the memory of these sights, sounds and feelings to the stars above, a willing vector of bothrioc love. Certainly [ara.his] cunning and lust are multi-layered enough.");
@@ -1166,7 +1168,7 @@ public function araKeiTheReameningIV():void
 		// Regular bothrioc preggers
 		pc.loadInCunt(ara, unfilledVag);
 
-		output("\n\nAfter a short time relaxing against you, their whispering breath in your [pc.ears] and [pc.hair] and their flat chest moulded against your back, Ara Kei withdraws - each bump of their ovipositor sending little tingles through your tenderised cunt - draws you up into a kneeling position, and then stalks around to face you.");
+		output("\n\nAfter a short time relaxing against you, their whispering breath in your [pc.ears] and [pc.hair] and their flat chest moulded against your back, Ara Kei withdraws - each bump of their ovipositor sending little tingles through your tenderized cunt - draws you up into a kneeling position, and then stalks around to face you.");
 	}
 	else if (pc.hasCock())
 	{

@@ -48,8 +48,8 @@ public function nozzleShowFirstTime():void
 
 	clearMenu();
 	if (pc.credits >= 160) addButton(0, "Pay", payForNozzleShow);
-	else addDisabledButton(0, "Pay", "Pay", "You don't have enough credits.");
-	addButton(1, "Don't", mainGameMenu);
+	else addDisabledButton(0, "Pay", "Pay", "You don’t have enough credits.");
+	addButton(1, "Don’t", mainGameMenu);
 }
 
 public function nozzleShowRepeat():void
@@ -91,8 +91,8 @@ public function nozzleShowRepeat():void
 	
 	clearMenu();
 	if (pc.credits >= 160) addButton(0, "Pay", payForNozzleShow);
-	else addDisabledButton(0, "Pay", "Pay", "You don't have enough credits.");
-	addButton(1, "Don't", mainGameMenu);
+	else addDisabledButton(0, "Pay", "Pay", "You don’t have enough credits.");
+	addButton(1, "Don’t", mainGameMenu);
 }
 
 public function hasSeenNozzleShow():Boolean
@@ -179,7 +179,7 @@ public function nozzlePerformanceParadise():void
 
 	if (!pc.hasStatusEffect("Paradise!"))
 	{
-		pc.createStatusEffect("Paradise!", 0, 0, 0, 0, false, "LustUp", "Fazian's Paradise performance has left a fire in your loins!\nMinimum lust increased by 20.", false, 480, 0xFFFFFF);
+		pc.createStatusEffect("Paradise!", 0, 0, 0, 0, false, "LustUp", "Fazian’s Paradise performance has left a fire in your loins!\nMinimum lust increased by 20.", false, 480, 0xFFFFFF);
 	}
 	else pc.setStatusMinutes("Paradise!", 480);
 
@@ -222,7 +222,7 @@ public function nozzlePerformanceShrike():void
 
 	if (!pc.hasStatusEffect("Shrike!"))
 	{
-		pc.createStatusEffect("Shrike!", 0, 0, 0, 0, false, "Icon_Haste", "Fazian's Shrike performance has inspired you!\nExperience gains increased by 20%.", false, 480, 0xFFFFFF);
+		pc.createStatusEffect("Shrike!", 0, 0, 0, 0, false, "Icon_Haste", "Fazian’s Shrike performance has inspired you!\nExperience gains increased by 20%.", false, 480, 0xFFFFFF);
 	}
 	else pc.setStatusMinutes("Shrike!", 480);
 
@@ -270,7 +270,7 @@ public function nozzlePerformanceQuaramarta():void
 
 	if (!pc.hasStatusEffect("Quaramarta!"))
 	{
-		pc.createStatusEffect("Quaramarta!", 0, 0, 0, 0, false, "OffenseUp", "Fazian's Quaramarta performance has sharpened your senses!\nCritical chance increased by 15%.", false, 480, 0xFFFFFF);
+		pc.createStatusEffect("Quaramarta!", 0, 0, 0, 0, false, "OffenseUp", "Fazian’s Quaramarta performance has sharpened your senses!\nCritical chance increased by 15%.", false, 480, 0xFFFFFF);
 	}
 	else pc.setStatusMinutes("Quaramarta!", 480);
 
@@ -304,7 +304,7 @@ public function fazianApproach():void
 		//[Liked It] [Eh]
 		clearMenu();
 		addButton(0, "Liked It", fazianLikedIt, undefined, "Liked It", "Tell him you liked the performance.");
-		addButton(1, "Eh", fazianEh, undefined, "Eh", "Tell him you didn't like the performance.");
+		addButton(1, "Eh", fazianEh, undefined, "Eh", "Tell him you didn’t like the performance.");
 		return;
 	}
 	else
@@ -459,7 +459,7 @@ public function fazianAnatae():void
 	processTime(5+rand(3));
 	clearMenu();
 	addButton(0, "“Per”", fazianAnataePer, undefined, "“Per?”", "Ask him what he means by that.");
-	//addButton(1, "TouchFeather", fazianAnataeTouchFeather, undefined, "Touch Feather", "You've been wanting to do this for a while....");
+	//addButton(1, "TouchFeather", fazianAnataeTouchFeather, undefined, "Touch Feather", "You’ve been wanting to do this for a while....");
 	addButton(14, "Back", fazianMenu, fazianAnatae);
 }
 
@@ -497,8 +497,8 @@ public function fazianDancing():void
 	
 	//[Teach me?] [Back]
 	clearMenu();
-	if (pc.isWornOut()) addDisabledButton(0, "TeachMe", "Teach Me?", "You could ask if he's willing to teach you some dance moves, but you are too sore to do any actual dancing...");
-	else addButton(0, "TeachMe", fazianDancingTeachMe, undefined, "Teach Me?", "Ask if he's willing to teach you some dance moves.");
+	if (pc.isWornOut()) addDisabledButton(0, "TeachMe", "Teach Me?", "You could ask if he’s willing to teach you some dance moves, but you are too sore to do any actual dancing...");
+	else addButton(0, "TeachMe", fazianDancingTeachMe, undefined, "Teach Me?", "Ask if he’s willing to teach you some dance moves.");
 	addButton(14, "Back", fazianMenu, fazianDancing);
 }
 
@@ -533,7 +533,7 @@ public function fazianDancingTeachMe():void
 
 		clearMenu();
 		addButton(0, "Dance", fazianDance, undefined, "Dance", "Go backstage and do some dance training with the anat.");
-		addButton(1, "Later", fazianDanceTeachMeLater, undefined, "Later", "Don't start learning dance moves right now.");
+		addButton(1, "Later", fazianDanceTeachMeLater, undefined, "Later", "Don’t start learning dance moves right now.");
 	}
 }
 
@@ -903,9 +903,9 @@ public function fazianQuestOpening():void
 	if (flags["FAZIAN_QUEST_FAILURES"] == undefined) flags["FAZIAN_QUEST_FAILURES"] = 0;
 		
 	clearMenu();
-	addButton(0, "Help", fazianQuestHelp, undefined, "Help Out", "Your intuition tells you to be careful here. It's possible you could muck this up.");
+	addButton(0, "Help", fazianQuestHelp, undefined, "Help Out", "Your intuition tells you to be careful here. It’s possible you could muck this up.");
 	addButton(1, "Delay", fazianQuestDelay, undefined, "Delay", "Perhaps you could help. A bit later, though.");
-	addButton(2, "NotMyProb", fazianQuestNotMyProblem, undefined, "Not My Problem", "If you choose this, it's likely you'll never see Fazian again.");
+	addButton(2, "NotMyProb", fazianQuestNotMyProblem, undefined, "Not My Problem", "If you choose this, it’s likely you’ll never see Fazian again.");
 }
 
 public function fazianQuestNotMyProblem():void
@@ -988,7 +988,7 @@ public function fazianQuestGoldMyr():void
 	
 	output("\n\n<i>“Ooh yes,”</i> replies one immediately. <i>“He’s a nice piece of honeycomb, isn’t he? Shame you have to pay to go see him.”</i>");
 	
-	output("\n\n<i>“W's up with that, anyway?”</i> slurs another, trying to reach up and pinch the passing legs of a myr stripper. <i>“Starwalker charging us. What - why - how could they need our money? Pointing their stalag-cannons at us all the while. S’isn’t right.”</i>");
+	output("\n\n<i>“W’s up with that, anyway?”</i> slurs another, trying to reach up and pinch the passing legs of a myr stripper. <i>“Starwalker charging us. What - why - how could they need our money? Pointing their stalag-cannons at us all the while. S’isn’t right.”</i>");
 	
 	output("\n\n<i>“It’s to keep cheap, pinching wetra-wives like you away from the prime stock!”</i> shrills another. They all dissolve into laughter.");
 	
@@ -1004,7 +1004,7 @@ public function fazianQuestGoldMyr():void
 	
 	//[Good Cop] [Bad Cop]
 	clearMenu();
-	addButton(0, "Good Cop", fazianQuestGoldMyrGood, undefined, "Good Cop", "Encourage them to keep talking. Maybe they'll reveal something interesting.");
+	addButton(0, "Good Cop", fazianQuestGoldMyrGood, undefined, "Good Cop", "Encourage them to keep talking. Maybe they’ll reveal something interesting.");
 	addButton(1, "Bad Cop", fazianQuestGoldMyrBad, undefined, "Bad Cop", "Insist they get back to the point, emphasizing how important this is.");
 }
 
@@ -1149,8 +1149,8 @@ public function fazianQuestDally():void
 	//[Pay 250 credits] [Don't]
 	clearMenu();
 	if (pc.credits >= 250) addButton(0, "Pay 250c", fazianQuestDallyPay, undefined, "Pay 250 credits", "");
-	else addDisabledButton(0, "Pay 250c", "Pay 250 credits", "You don't have enough credits.");
-	addButton(1, "Don't Pay", fazianQuestDallyNoPay);
+	else addDisabledButton(0, "Pay 250c", "Pay 250 credits", "You don’t have enough credits.");
+	addButton(1, "Don’t Pay", fazianQuestDallyNoPay);
 	addButton(14,"Back", dallyMenu);
 }
 
@@ -1302,7 +1302,7 @@ public function fazianQuestJuro():void
 	clearMenu();
 	addButton(0, "Make Scene", fazianQuestJuroScene, undefined, "Juro", "Try and fluster the kui-tan into giving you what you want.");
 	addButton(1, "Anatae", fazianQuestJuroAnatae, undefined, "Anatae", "Threaten Juro with his own advice.");
-	addButton(14, "Leave", fazianQuestJuroLeave, undefined, "Leave", "He's right, this is pointless. Leave him be.");
+	addButton(14, "Leave", fazianQuestJuroLeave, undefined, "Leave", "He’s right, this is pointless. Leave him be.");
 }
 
 public function fazianQuestJuroLeave():void
@@ -1514,14 +1514,14 @@ public function fazianQuestApproachMenu():void
 	if (flags["GUARD_BRIBE"] == undefined)
 	{
 		if (pc.credits >= 500) addButton(1, "Bribe", fazianQuestApproachBribe, undefined, "Bribe", "Try and bribe the woman to let you in.");
-		else addDisabledButton(1, "Bribe", "Bribe", "You probably don't have enough credits to make it worth the guards while.");
+		else addDisabledButton(1, "Bribe", "Bribe", "You probably don’t have enough credits to make it worth the guards while.");
 	}
 	else
 	{
-		addDisabledButton(1, "Bribe", "Bribe", "You've already attempted to bribe the guard, and it didn't exactly go your way!");
+		addDisabledButton(1, "Bribe", "Bribe", "You’ve already attempted to bribe the guard, and it didn’t exactly go your way!");
 	}
 	
-	addButton(2, "Fight", fazianQuestApproachFight, undefined, "Fight", "This probably isn't a good idea.");
+	addButton(2, "Fight", fazianQuestApproachFight, undefined, "Fight", "This probably isn’t a good idea.");
 
 	addButton(14, "Leave", mainGameMenu);
 }
@@ -1555,17 +1555,17 @@ public function fazianQuestApproachBackMenu():void
 	}
 	else
 	{
-		addDisabledButton(0, "Door", "The Door", "You don't think you can make it through the door without alerting the guards to your presence... like last time.");
+		addDisabledButton(0, "Door", "The Door", "You don’t think you can make it through the door without alerting the guards to your presence... like last time.");
 	}
 
 	if (flags["FAZIAN_BACK_WINDOW"] == undefined)
 	{
 		if (pc.canFly() || (pc.accessory is Hoverboard) || pc.hasItemByType(Hoverboard)) addButton(1, "Window", fazianQuestApproachBackWindow, undefined, "The Window", "Perhaps you have something that will enable you to get up there...");
-		else addDisabledButton(1, "Window", "The Window", "You can't possibly reach that.");
+		else addDisabledButton(1, "Window", "The Window", "You can’t possibly reach that.");
 	}
 	else
 	{
-		addDisabledButton(1, "Window", "The Window", "You've already tried that, and it didn't work out for you.");
+		addDisabledButton(1, "Window", "The Window", "You’ve already tried that, and it didn’t work out for you.");
 	}
 
 	addButton(3, "Wait", fazianQuestApproachBackWait);
@@ -1644,8 +1644,8 @@ public function fazianQuestApproachBackDoor():void
 
 	//[Keep trying] [Get back]
 	clearMenu();
-	addButton(0, "Keep Trying", fazianQuestApproachBackDoorForce, undefined, "Keep Trying", "It's bound to give eventually.");
-	addButton(14, "Get Back", fazianQuestApproachBackDoorBack, undefined, "Get Back", "Maybe forcing the door isn't such a good idea.");
+	addButton(0, "Keep Trying", fazianQuestApproachBackDoorForce, undefined, "Keep Trying", "It’s bound to give eventually.");
+	addButton(14, "Get Back", fazianQuestApproachBackDoorBack, undefined, "Get Back", "Maybe forcing the door isn’t such a good idea.");
 }
 
 public function fazianQuestApproachBackDoorForce():void
@@ -1762,10 +1762,10 @@ public function fazianQuestApproachBribe():void
 	addButton(0, "500c", fazianQuestBribeGo, 500, "500 Credits", "Try and bribe the woman to let you in.");
 	
 	if (pc.credits >= 1000) addButton(1, "1000c", fazianQuestBribeGo, 1000, "1000 Credits", "Try and bribe the woman to let you in.");
-	else addDisabledButton(1, "1000c", "1000 Credits", "You don't have enough credits.");
+	else addDisabledButton(1, "1000c", "1000 Credits", "You don’t have enough credits.");
 
 	if (pc.credits >= 3000) addButton(2, "3000c", fazianQuestBribeGo, 3000, "3000 Credits", "Try and bribe the woman to let you in.");
-	else addDisabledButton(2, "3000c", "3000 Credits", "You don't have enough credits.");
+	else addDisabledButton(2, "3000c", "3000 Credits", "You don’t have enough credits.");
 }
 
 public function fazianQuestBribeGo(amt:int):void
@@ -1872,7 +1872,7 @@ public function fazianQuestOutdoorGuardLoss():void
 {
 	author("Nonesuch");
 	
-	output("You can try fighting the entire red myr garrison, in which case your bullet-riddled corpse will fall to the ground in short order. You can try surrendering and arguing your case that another starwalker is being held in the warehouse, and you were just trying to rescue them. This will fall on unfavorable ears, both on the red myr and the U.G.C.'s side, given you assaulted a soldier in occupied territory during a fragile ceasefire. It will be many years before Steele Corp manage to wrangle a release for you from Kressia's military prison. Whichever the case, your adventure is over.");
+	output("You can try fighting the entire red myr garrison, in which case your bullet-riddled corpse will fall to the ground in short order. You can try surrendering and arguing your case that another starwalker is being held in the warehouse, and you were just trying to rescue them. This will fall on unfavorable ears, both on the red myr and the U.G.C.’s side, given you assaulted a soldier in occupied territory during a fragile ceasefire. It will be many years before Steele Corp manage to wrangle a release for you from Kressia’s military prison. Whichever the case, your adventure is over.");
 	
 	CombatManager.genericLoss();
 	
@@ -1990,7 +1990,7 @@ public function fazianQuestWarehouseMainChamber():void
 	
 	// [Rescue.] [Hands up]
 	clearMenu();
-	addButton(0, "Rescue", fazianQuestDoRescue, undefined, "Rescue", "You're here to rescue Fazian. And anyone else that is in need of it.");
+	addButton(0, "Rescue", fazianQuestDoRescue, undefined, "Rescue", "You’re here to rescue Fazian. And anyone else that is in need of it.");
 	addButton(1, "Hands Up", fazianQuestHandsUp, undefined, "Hands Up!", "You are the space police! This is a bust!");
 }
 
@@ -2060,7 +2060,7 @@ public function fazianQuestChamberMergeII():void
 	// [Take it] [Don't]
 	clearMenu();
 	addButton(0, "Take It", fazianQuestGetBribed, undefined, "Take It", "20,000 credits. Not insubstantial.");
-	addButton(1, "Don't", fazianQuestDontGetBribed, undefined, "Don't", "Refuse his (her?) bribe.");
+	addButton(1, "Don’t", fazianQuestDontGetBribed, undefined, "Don’t", "Refuse his (her?) bribe.");
 }
 
 public function fazianQuestGetBribed():void
@@ -2114,7 +2114,7 @@ public function fazianQuestDontGetBribed():void
 	CombatManager.lossScene(fazianQuestEhstraffeLoss);
 	CombatManager.setHostileCharacters([new Ehstraffe(), new RedMyrGuard(), new RedMyrGuard(), new RedMyrGuard()]);
 	CombatManager.displayLocation("EHSTRAFFES\nDETAIL");
-	CombatManager.encounterText("You are fighting <b>Ehstraffe's detail</b>: Fully a dozen trained, chitin-armored red myr soldier women, all dressed in Federation standard trench-coats and berets, armed with semi-automatic slug-launchers and axes. Fortunately, you do not have to fight them all at once; a couple of them are keeping watch on the prisoners, and as long as you keep moving in close to at least one of them, the others cannot simply stand back and riddle you with bullets. Still, against their crude but effective machine guns, their heavy, well-aimed blows and the saliva they keep trying to forcibly introduce you to, you aren't going to last forever against all of them.")
+	CombatManager.encounterText("You are fighting <b>Ehstraffe’s detail</b>: Fully a dozen trained, chitin-armored red myr soldier women, all dressed in Federation standard trench-coats and berets, armed with semi-automatic slug-launchers and axes. Fortunately, you do not have to fight them all at once; a couple of them are keeping watch on the prisoners, and as long as you keep moving in close to at least one of them, the others cannot simply stand back and riddle you with bullets. Still, against their crude but effective machine guns, their heavy, well-aimed blows and the saliva they keep trying to forcibly introduce you to, you aren’t going to last forever against all of them.")
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 4);
 
 	clearMenu();
@@ -2290,6 +2290,7 @@ public function fazianQuestEhstraffeVictory():void
 	userInterface.leftBarDefaults();
 	
 	showBust("GOLDMYR","GOLDMYR","GOLDMYR");
+	showName("VICTORY:\nEHSTRAFFE");
 	author("Nonesuch");
 	
 	output("One moment you are desperately fending off a clutch of armed guards - the next they are overwhelmed in a tidal wave of furious gold myr prisoners, who kick, bite and trample them to the ground. The red myr desperately fight back, more soldiers hurry in from the front to help, but they are hopelessly outnumbered.");
@@ -2352,7 +2353,7 @@ public function fazianQuestCompleteBlurbs():void
 	}
 	else
 	{
-		output("\n\n<i>“Hello again! I’m so happy you've come,”</i> she says, her fair-sized bosom pressed into your [pc.chest].");
+		output("\n\n<i>“Hello again! I’m so happy you’ve come,”</i> she says, her fair-sized bosom pressed into your [pc.chest].");
 		
 		output("\n\nAfter a moment, you ask her if there is a show playing soon. The gold myr smiles toothily.");
 		

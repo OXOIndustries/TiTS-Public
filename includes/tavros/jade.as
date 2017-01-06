@@ -126,7 +126,10 @@ public function jadeStoreSetup():void
 	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
 	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
 	
-	//Unlockables
+	chars["JADE"].inventory = new Array();
+	
+	//Inventory sorta alphabetically, because I'm a boss.
+	chars["JADE"].inventory.push(new AusarTreats());
 	if(pc.level >= 2)
 	{
 		if(!chars["JADE"].hasItemByType(AmberSeed)) chars["JADE"].inventory.push(new AmberSeed());
@@ -137,11 +140,24 @@ public function jadeStoreSetup():void
 		if(!chars["JADE"].hasItemByType(Catnip)) chars["JADE"].inventory.push(new Catnip());
 	}
 	else chars["JADE"].destroyItem(new Catnip());
+	
+	chars["JADE"].inventory.push(new DracoGuard());
+
 	if(pc.level >= 4)
 	{
 		if(!chars["JADE"].hasItemByType(Foxfire)) chars["JADE"].inventory.push(new Foxfire());
 	}
 	else chars["JADE"].destroyItem(new Foxfire());
+	chars["JADE"].inventory.push(new Furball());
+	chars["JADE"].inventory.push(new HorsePill());
+	chars["JADE"].inventory.push(new KnotAProblem());
+	chars["JADE"].inventory.push(new NukiCookies());
+	chars["JADE"].inventory.push(new OvirAce());
+	chars["JADE"].inventory.push(new OvirPositive());
+	chars["JADE"].inventory.push(new Pandaneen());
+	chars["JADE"].inventory.push(new PandaPro());
+	chars["JADE"].inventory.push(new SharkBites());
+	//Nice, neat inventory complete :3
 	
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
