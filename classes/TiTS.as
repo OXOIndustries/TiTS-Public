@@ -395,6 +395,7 @@
 		public var shipLocation:String;
 		public var inSceneBlockSaving:Boolean;
 		public var gameOverEvent:Boolean;
+		public var shiftKeyDown:Boolean;
 
 		public var parser:ParseEngine;
 

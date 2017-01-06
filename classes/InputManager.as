@@ -84,6 +84,7 @@
 			_availableCheatControlMethods = 0;
 			
 			_stage.addEventListener(KeyboardEvent.KEY_DOWN, this.KeyHandler);
+			_stage.addEventListener(KeyboardEvent.KEY_UP, this.UnpressShiftKey); //Needed to unstick Shift key after pressing.
 			
 			// _mainView = _stage.getChildByName("mainView") as MainView;
 			// _mainText = (_stage.getChildByName("mainView") as MovieClip).mainText as TextField;
@@ -247,6 +248,11 @@
 			{
 				_cheatControlMethods[i].InputKey(keyCode);
 			}
+			
+			if (keyCode == Keyboard.SHIFT)
+			{
+				kGAMECLASS.shiftKeyDown = true;
+			}
 		}
 		
 		/**
@@ -393,6 +399,14 @@
 			}
 			
 			return controls;
+		}
+		
+		/**
+		 * For now until there's a better place for this function.
+		 */
+		public function UnpressShiftKey(e:KeyboardEvent):void
+		{
+			if (e.keyCode == Keyboard.SHIFT) { kGAMECLASS.shiftKeyDown = false; }
 		}
 	}
 	
