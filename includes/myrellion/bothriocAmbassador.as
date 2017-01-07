@@ -1157,7 +1157,7 @@ public function araKeiTheReameningIV():void
 	if (!pc.hasCock() && !pc.hasVagina()) output(" seeking the slightest touch to bring pleasure to yourself")
 	output(". The sharp, certain sound of four chitinous heels return to you just as it’s starting to get unbearable.");
 
-	var unfilledVag:uint = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
+	var unfilledVag:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 	if (unfilledVag >= 0)
 	{
 		output("\n\nAra Kei reaches up and undoes you from the ceiling, carefully drawing you downwards, laying you between [ara.his] four legs before peeling the silk away from your [pc.skinFurScales]. [ara.He] leave"+ ara.mfn("s", "s", "") +" your arms bound, however, forcing you to raise your [pc.ass] up with a telling stroke and press of a finger, and then unceremoniously thrusting [ara.his] ovipositor deep into your wet, spread pussy.");
