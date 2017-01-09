@@ -705,7 +705,7 @@ public function fuckThePexiga():void
 public function pexigaSexMenu():void
 {
 	clearMenu();
-	if(pc.hasCock() && !pc.isTaur()) addButton(0,"Facefuck",faceFuckDatPexigaFaceRingGagThingMaybe,undefined,"Facefuck","Feed your pexiga a little extra protein.");
+	if(pc.hasCock() && !pc.isTaur()) addButton(0,"Facefuck",pexigaFacefuckRouter,undefined,"Facefuck","Feed your pexiga a little extra protein.");
 	else if(pc.isTaur()) addDisabledButton(0,"Facefuck","Facefuck","There’s not an easy way to do this and keep control of the situation with your body type.");
 	else addDisabledButton(0,"Facefuck","Facefuck","You need a penis for this.");
 	if(pc.cockThatFits(yammiPlaceholderCapacity()) >= 0 || pc.hasHardLightStrapOn()) addButton(1,"Sandwich",sandwichSceneGogogogogogogogogogog,undefined,"Sandwich","Get Yammi and [pexiga.name] to make a girl sandwich of your cock or strapon.");
@@ -722,7 +722,7 @@ public function pexigaSexMenu():void
 
 //[Facefuck]
 //has dick, non-taur
-public function faceFuckDatPexigaFaceRingGagThingMaybe():void
+public function faceFuckDatPexigaFaceRingGagThingMaybe(x:int):void
 {
 	clearOutput();
 	showPexiga();
@@ -739,15 +739,15 @@ public function faceFuckDatPexigaFaceRingGagThingMaybe():void
 	else if(pc.isNice()) output("\n\n<i>“No, this is for a different kind of hunger,”</i>");
 	else if(pc.isMischievous()) output("\n\n<i>“Nah, this time it’s a full meal,”</i>");
 	else output("\n\n<i>“Only if you do a good job and suck like you mean it,”</i>");
-	output(" you respond, lifting your slowly stiffening [pc.cockBiggest] to her gaping mouth and thrusting the semi-flaccid meat across her saliva-soaked tongue. Eagerly, she drives her head forward, swallowing your inches greedily. Her ring-gag makes the penetration all too easily, the beast girl’s soft cheeks ");
-	var length:Number = pc.biggestCockLength();
+	output(" you respond, lifting your slowly stiffening [pc.cock " + x+ "] to her gaping mouth and thrusting the semi-flaccid meat across her saliva-soaked tongue. Eagerly, she drives her head forward, swallowing your inches greedily. Her ring-gag makes the penetration all too easily, the beast girl’s soft cheeks ");
+	var length:Number = pc.cocks[x].cLength();
 	if(length >= 6) output(" and pliant throat");
 	output(" filling with your cockmeat until her nose is pressed firmly against your abdomen. The wet tightness of [pexiga.name]’s hungry mouth is made even more incredible by the huge, muscled tongue curling around the underside of your shaft. You buck in and out a few times, but she doesn’t so much as flinch, gulping down your length happily.");
 
-	output("\n\nStiffening inside her softness, you pull back to rest your [pc.cockHeadBiggest] against the curve of her salivating gob, almost completely stiff from a few thrusts into her ever-open fuckhole. ");
+	output("\n\nStiffening inside her softness, you pull back to rest your [pc.cockHead " + x+ "] against the curve of her salivating gob, almost completely stiff from a few thrusts into her ever-open fuckhole. ");
 	if(pc.cockTotal() > 1) output("You give each shaft a turn, giving her more than a few pumps, letting her taste the fruit of your turgid loins, one by one. ");
 	output("She leaves her hands pressed against the floor and relies on her tendril-like tongue, tilting her head back and forth to lap at your hardness as her sugary drool polishes your meat and drips across her heavy chest. Resting a hand atop the soft spines of her shoulder-length “hair,” you lightly guide her motions as she zealously services you.");
-	output("\n\nThe over-developed taste buds on [pexiga.name]’s tongue are bumpy and slightly rough, even with a thick coating of oozing slaver. The muscled organ curls and whorls around your [pc.cockBiggest], spiralling and squeezing with each contraction.");
+	output("\n\nThe over-developed taste buds on [pexiga.name]’s tongue are bumpy and slightly rough, even with a thick coating of oozing slaver. The muscled organ curls and whorls around your [pc.cock " + x+ "], spiralling and squeezing with each contraction.");
 	if(length < 12) output(" Fully engulfed");
 	else output(" With much of your cock engulfed");
 	output(" in the pexiga’s coiled tongue, you bring your other hand around to hold her head firmly behind her ear-trills. ");
@@ -768,11 +768,11 @@ public function faceFuckDatPexigaFaceRingGagThingMaybe():void
 		if(pc.cockTotal() > 1) output("s");
 		output(", but ");
 	}
-	output("[pexiga.name]’s tongue on you your [pc.cockBiggest] acts like a cockring, the warm, suffocating pressure denying even the slightest release.");
+	output("[pexiga.name]’s tongue on you your [pc.cock " + x+ "] acts like a cockring, the warm, suffocating pressure denying even the slightest release.");
 	output(" And yet, she still maintains her blue-eyed gaze, looking up at you with a mixture of delight and adoration.");
 
 	output("\n\nBetween the muscled coils of her massive tongue and the gulping contractions of her narrow throat, your throbbing girth is brought as close to its peak as you can bear. You manage to pull out, fighting against the ravenous grip of her maw with each reluctant inch and slowly uncoil her saliva-soak organ from your swollen member. Confused and disappointed, the white girl nuzzles your straining length with the sides of her face, soaking herself with her own frothy drool in the process. ");
-	if(pc.balls > 0 && length <= 12) output("With a few playful bats of your [pc.cockHeadBiggest] against her cheeks, you press your [pc.balls] against the base of her tongue until she gets the hint and puts her sticky organ to work polishing your [pc.ballSack].");
+	if(pc.balls > 0 && length <= 12) output("With a few playful bats of your [pc.cockHead " + x+ "] against her cheeks, you press your [pc.balls] against the base of her tongue until she gets the hint and puts her sticky organ to work polishing your [pc.ballSack].");
 
 	output("\n\nCock twitching and [pc.cumColor] pre-cum bubbling at your tip, you figure it’s about time to see how much this girl can take. You push her shoulders down until she’s got to tilt her head nearly all the way up to keep you in her sight. Placing your hands across her ear frills, you seize the sides of her head and lower your swollen shaft once more into her well-lubricated mouth. Holding her still, you pump in and out easily, manhood breaching her ring-gag all the way until your ");
 	if(pc.balls > 1) output("tongue-bathed balls");
@@ -790,15 +790,15 @@ public function faceFuckDatPexigaFaceRingGagThingMaybe():void
 	output(" before circling around like a serpent hunting for a burrow.");
 	if(pc.hasVagina()) output(" Lapping and licking, with a blind eagerness, she finds your [pc.vaginas].");
 	else output(" Lapping and licking with a blind eagerness, she finds your [pc.asshole].");
-	output(" The drool-greased organ slips in just as you hit your stride, a tremor of cold bliss radiating out from the back of your spine. You jam your [pc.cockBiggest] as deep as you can into the girl’s face, her throat bulging and spasming as it tries to swallow you in one gulp.");
+	output(" The drool-greased organ slips in just as you hit your stride, a tremor of cold bliss radiating out from the back of your spine. You jam your [pc.cock " + x+ "] as deep as you can into the girl’s face, her throat bulging and spasming as it tries to swallow you in one gulp.");
 
 	output("\n\nYour orgasm starts with a tight, clenching chill in your loins before the rest of your body catches up. Muscles pulled taut, [pexiga.name]’s head held tightly between your hands, you descend into a rapid series of extremely shallow thrusts that leaves her tail flicking wildly about. The silver-scaled girl draws her knees tightly together, toeless feet curled in tense focus. Even her hands give up their planted station, wrapping around your [pc.legs] to brace herself. Her eyes, however, never lose their laser-focus, watching every second of your climax with fawning gratification.");
 	output("\n\nYou pull her head against your groin, burying every last inch in your pexiga’s salivating maw. You grip her so tightly, it feels like she’ll be leaving an imprint of her face against your abdomen. When, at last, the climax hits, you empty the liquid heat of your gushing bliss directly down her cock-stuffed esophagus. Gasping and panting with the trembling pleasure of your orgasm, ");
 	if(pc.cumQ() < 200) output("you tweak her ears at every [pc.cumVisc] hot jet spurting down her throat. Just like when you milk her, the steady pulses activate her drool reflex and in no time both of your lower bodies are utterly soaked with saccharine saliva.");
 	//large cum volume:
-	else if(pc.cumQ() < 4000) output("you keep her head perfectly stationary as load after load geysers from your [pc.cockBiggest] directly into her belly. [pexiga.name]’s body shudders at the heavy heat filling her. She reaches up an unsteady hand to stroke her distended neck, marvelling at the girth inside her.");
+	else if(pc.cumQ() < 4000) output("you keep her head perfectly stationary as load after load geysers from your [pc.cock " + x+ "] directly into her belly. [pexiga.name]’s body shudders at the heavy heat filling her. She reaches up an unsteady hand to stroke her distended neck, marvelling at the girth inside her.");
 	else output("you simply lean forward with relieved exhaustion as the endless reservoir of sticky seed flows in a torrential river past her gag, down her throat, and into her fattening gut. Her lean, curvy form swells as her stomach reaches capacity, the excess spunk flowing right back upwards to spill out of her O-ring and nostrils, utterly soaking the squirming girl in your [pc.cumNoun].");
-	output("\n\nYou give her one last deep thrust, just to be sure she’s milked every drop, before finally pulling out. She lets out a satisfied <i>“muah!”</i> as your [pc.cockBiggest] comes free. [pexiga.name] lets out a long, deep gasp, like a whale breaching the surface, before tilting her head. <i>“Yummy! Can we do all snacks like that?”</i>");
+	output("\n\nYou give her one last deep thrust, just to be sure she’s milked every drop, before finally pulling out. She lets out a satisfied <i>“muah!”</i> as your [pc.cock " + x+ "] comes free. [pexiga.name] lets out a long, deep gasp, like a whale breaching the surface, before tilting her head. <i>“Yummy! Can we do all snacks like that?”</i>");
 	output("\n\nSomehow, you doubt Yammi would appreciate you turning the kitchen into [pexiga.name]’s personal fuck flat, but it’s a thought. Gathering up your [pc.gear] and giving the silver girl one more head pat, you elect to take your leave before somebody notices the dripping, sticky mess you’ve made of the place. <i>“Bai bai! More snacks soon please,”</i> she coos, swirling her tongue across bimbo-bloated tits, gathering the sugary slaver to better rub it all over her body.");
 	if(silly) output(" It’s a good thing your ship can’t get ants, because this is how you get ants.");
 	processTime(35);
@@ -1110,4 +1110,158 @@ public function bubbleBuddyPexiga3():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function pexigaFacefuckRouter():void
+{
+	if(pc.cockTotal() == 1) 
+	{
+		if(pc.cocks[y].thickness() <= 4) faceFuckDatPexigaFaceRingGagThingMaybe(0);
+		else tooBigPexigaFacefuck(0);
+	}
+	else if(pc.cockTotal() == 0)
+	{
+		clearOutput();
+		showName("\nERROR");
+		output("ERROR: NO DIX");
+	}
+	else
+	{
+		clearOutput();
+		showName("WHICH\nCOCK?");
+		output("Which cock would you like to offer her?\n\n");
+		//Build dis menu
+		for(var y:int = 0; y < pc.totalCocks(); y++)
+		{
+			output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[y].cockColor + " [pc.accurateCockName " + y + "]\n")
+			if(pc.cocks[y].thickness() <= 4) addButton(y,"#" + (y+1),faceFuckDatPexigaFaceRingGagThingMaybe,y,"#"+(y+1),"Get [pexiga.name] to blow [pc.cockNoun " + y + "].");
+			else addButton(y,"#" + (y+1),tooBigPexigaFacefuck,y,"#"+(y+1),"Get [pexiga.name] to blow [pc.cockNoun " + y + "].");
+		}
+		addButton(14,"Back",fuckThePexiga);
+	}
+}
+
+//Too Large To Face Fuck
+//bimbo Pexiga repeatable sex scene variation for players with smallest dick over 4" diameter
+//[Facefuck]
+//has dick, non-taur
+public function tooBigPexigaFacefuck(x:int):void
+{
+	clearOutput();
+	showPexiga();
+	author("Adjatha");
+	if(pc.isBimbo()) output("Adorable! She thinks she’s hunting. But, like, there’s a very important difference between hunting and fucking. A teacher’s job is never done!");
+	else if(pc.isNice()) output("It’s good to see her eager and raring to go, but you should probably take responsibility for her heat, rather than leave her to jump an unsuspecting Yammi.");
+	else if(pc.isMischievous()) output("You know, it seems a waste to let that perfectly good ring-gag go unused. Surely you can think of some use for it...");
+	else output("Best show this predator who’s the alpha around here.");
+	output(" Without breaking eye contact, you ");
+	if(!pc.isCrotchExposed()) output("strip out of your [pc.lowerGarments] in silence.");
+	else output("run your hand down your [pc.cocks].");
+	output(" [pexiga.name] watches, panting, while her tail waves back and forth in excitement. She scoots closer, sitting up and bracing her back against the solid, stainless steel table in the center of the kitchen. She sniffs the air to better get your scent and a low, rumbling purr vibrates through her silver scaled body.");
+	output("\n\nBare and looming over the recumbent pexiga, you move forward until her face is level with your bulging loins. The pexiga’s full, blue eyes don’t stray from yours, but her O-ringed head tilts back just slightly all the same. Huge tongue hanging limply from her maw, the beast girl’s hot, wet breath mists across your [pc.skinFurScales]. With both hands pressed flat against floor and her swollen F-cup breasts rising and falling with every quickening breath, [pexiga.name]’s translator chirps a single, teasing question: <i>“Snacks?”</i>");
+	if(pc.isBimbo()) output("\n\n<i>“You bet! And it’s my favorite kind too,”</i>");
+	else if(pc.isNice()) output("\n\n<i>“No, this is for a different kind of hunger,”</i>");
+	else if(pc.isMischievous()) output("\n\n<i>“Nah, this time it’s a full meal,”</i>");
+	else output("\n\n<i>“Only if you do a good job and suck like you mean it,”</i>");
+	output(" you respond, lifting your slowly stiffening [pc.cockNoun " + x + "] to her gaping mouth and slapping the semi-flaccid meat across her saliva-soaked tongue. The pale scaled girl presses her gag-widened mouth against your [pc.cockHead " + x + "], but try as she might, your thick inches are just too big for the beast girl to take.");
+	output("\n\nWhining with disappointment, she sets her tongue to the task of lubricating your swelling shaft with impatient whorls of her long oral organ. The huge, moist muscle curls eagerly around the [pc.sheath " + x + "] of your shaft, hauling her forward until her slight snout is smooshed against your bulging cum-vein. From there, the two-foot drool-tool winds sinuously up your [pc.cock " + x + "] like a python circling its prey. A thick curtain of translucent saliva oozes down your meat, washing you with the heat of her frustrated hunger. You reach down and give her a sympathetic scratch behind one of her ear fins as she snakes her tongue along your bobbing girth, dragging her head along for the ride.");
+	output("\n\nThe wet coils bring you to full hardness in moments, her grip tightening and loosening in milking waves of pressure. Left like this, she could surely squeeze out her creamy prize with time, but you’ve got another idea. Reaching down, you grab her under her arms and hoist the girl to her knees. Leaning forward, you push the tongue-bound mass of your [pc.cock " + x + "] against the bimbo’s overheated body. <i>“You can’t count on your mouth for everything,”</i> you explain, bracing your hands on your hips.");
+
+	processTime(10);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",tooBigPexigaFacefuck2,x);
+}
+
+public function tooBigPexigaFacefuck2(x:int):void
+{
+	clearOutput();
+	showPexiga();
+	author("Adjatha");
+	//cock is under 3’ long
+	if(pc.cocks[x].cLength() < 36)
+	{
+		if(flags["PEX_2BIG_BJ"] == undefined) output("Your pale bimbo pet practically gurgles with pleasure at the rough handling, but manages to pull her gaze back from your [pc.cock " + x + "] long enough to look over the fullness of the task before her. <i>“Woah,”</i> her piercing sighs. <i>“Big cock. But... small mouth?”</i> She touches her gag-outfitted lips gingerly. <i>“But... big titties?”</i> She moves her hands down the the wobbling bulk of her F-cups. You can practically see the gear turning as she puts one and two together.\n\n");
+		output("<i>“Titties!”</i> she announces with a sparkle in her eyes as she bounces up and down on her knees. She leans into you, hands on the sides of her inflated chest and enwraps your drool-slick length in her pillowy embrace. The jiggling weight of her bimbo-bloated bust sucks in your hard inches while her tongue migrates up to the very top of your [pc.cockHead " + x + "]. Strands of gossamer pre-cum have begun bubbling out of your mast and [pexiga.name] seems all too happy to claim her appetizers with a big, messy, slobbering kiss right on your cum-slit.");
+		output("\n\nHer heaving tits squished around your manhood, you rest a hand on her shoulder and begin rocking into the girl’s wobbling mammaries. The soft, pliant expanse of her ivory udders jiggles with the ripple-like waves of your impact at every thrust. Her seemingly endless saliva pours down your crest and into her cleavage like a slimy, glistening lacquer, leaving both your throbbing pole and her wobbling breasts glinting with a fresh coat of lusty polish.");
+		output("\n\n<i>“So hungry,”</i> she whines with a playful smile. Clenching her breasts tightly, she begins rocking up and down on her knees, feeding your cockflesh up and down her greedy cleavage. The wet, slurping, slapping of her overfilled orbs is nothing next to the whimpering moans that bubble up in her chest.");
+		if(flags["PEX_2BIG_BJ"] == undefined) output("\n\n<i>“New breasts still tender from the operation? Let me help,”</i> you offer, smoothing the stray locks of her soft-spined hair.");
+		else output("\n\n<i>“Just addicted to the attention, aren’t ya?”</i> you tease.");
+		output(" Resting your palms lightly on her alabaster peaks, you sink your fingers into the girl’s mammoth F-cups. The excess of her yielding bosom spills between your fingers, sending a tremble through her body. She drops down to your [pc.sheath " + x + "] and begins rolling her endowments in massaging circles, slapping them against your sopping meat.");
+		output("\n\nHer tongue, meanwhile, has had enough of teasing your cockhead and moves to claim the prize her tits are working to harvest. The very tip of her tongue traces impatient circles around your tip before wiggling against your yawning urethra. Lubricated from her drool and your steady stream of pre, she parts the thin lips of your shaft and feeds a wiggling inch of her thirsty organ into you.");
+		if(flags["PEX_2BIG_BJ"] == undefined) output("\n\nHips shuddering from the push, you raise a hand to pull her tongue away, but stop mid-reach. Though you anticipated pain or discomfort, her tongue just leaves an exhilarating tension that feels like somebody left a vibrator going deep in your abdomen. She pushes more in and you can feel your body swaying.");
+		else output("\n\nThe warm, buzzing bliss of her tongue-fucking surges up in you once more. Slightly numbing, nearly-vibrating euphoria threatens to overtake you like a shot of ten-year-old, triple-distilled Gargle Banger’s Finest.");
+		output(" You head rolls back, your fingers lose their strength, and ragged, panting gasps tear their way past clenched teeth.");
+		output("\n\nSensing your weakened state, the impish pexiga presses her breasts in a velvet vice around your shaft and pumps with every pound of force  her ballooned tits can muster. The tit-fucking pace is frantic, her fervid mounds squeezing hard enough to stroke every bulging vein in your overwrought phallus. You can feel a cascading, predatory roar echoing in her chest as she chases after the long-sought prey, but by the time it hits her lips, the electronic voice translates it as a string of lusty gibberish. <i>“Yes! Yes! Oh fuck fuck fuck oh ah ah hrrrrrnng f-f-fuuuuck!”</i>");
+		output("\n\nThough you don’t articulate it, the feeling is mutual. With a wince, you let your endurance drop and your orgasm gushes upward. As the climactic heat rushes through your [pc.cock " + x + "], it finds the passage blocked by the voracious girl’s tongue.");
+		if(pc.cockTotal() > 1) output(" Your unplugged meat, meanwhile, lets the [pc.cumVisc] shower geyser forth, spilling [pc.cumColor]-colored arcs across your pexiga’s white canvas.");
+		output(" With a delighted chirp, she pulls her tongue away just as her ring-bound mouth slaps down onto your [pc.cockHead " + x + "]. He throat ripples in spunk-bloated mouthfuls as she swallows every ounce of seed you have to give.");
+		if(pc.cumQ() >= 3000) 
+		{
+			output("\n\nOnce you really get going, however, [pexiga.name] finds her cock-sucking talents put to the test. Your body-shaking bliss pours out in loads too large for her puffed cheeks to contain and stray strands of bubbling jizz begin leaking past her lips and down your shaft. With a look of the utmost concentration, she keeps up her gurgling, gulping consumption while her tongue coils at the vale of her cleavage and lifts upward, rescuing the wayward blobs. Just as it seems she’ll make a flawless go of it, however, she hiccups, sending a mouth-filling load up and out of her nostrils instead of down her throat. The sticky spoo splatters over her face and against your chest.");
+			output("\n\nWhen the final, quivering pump spurts into her mouth, the pexiga pulls back and lets it ooze out of her ever-open lips and down her dripping tongue. She looks up at you with big, azure eyes and slurps the cum-and-drool melange across your body in an affectionate - though messy - gesture of devotion. You give her snoot a little boop and roll her floppy fin-ears between your hands as she purrs with the intensity of a chainsaw. <i>“Such a messy eater,”</i> you chide while she beams happily.");
+			output("\n\nYou can’t help but notice that the taut embrace of her oiled breasts hasn’t let up on your tender member, despite the recent feeding. Well, what’s the harm in another go? Nobody ever claimed you didn’t spoil your pets rotten.");
+		}
+	}
+	//cock is over 3’ long
+	else
+	{
+		if(flags["PEX_2BIG_BJ"] == undefined) output("[pexiga.name] looks up from her tongue-milking and, tilting her head to one side, gazes into your eyes. <i>“No mouth?”</i> her piercing inquires. As if to check, she tries to press her O-ring gag against the girth of your [pc.cockHead " + x + "] again. When that fails, she furrows her brow and puts her brand new bimbo-brain to work. You can practically see the gears turning as she wiggles and squirms, doing her best to solve the riddle.");
+		else output("Your pexiga stares blankly at you, before remembering last time. Giggling and clapping her hands together, she sits attentively while her tail wags back and forth, gleefully awaits your next move.");
+		if(flags["PEX_2BIG_BJ"] == undefined)
+		{
+			if(pc.isBimbo()) output("\n\nThis girl must really need more training, if she doesn’t know what to do when a big ole cock is just waiting for her! Maybe you’ll help her, like, just this once. ");
+			else output("\n\nWith a shrug, you decide to give the beast-girl a helping hand. ");
+		}
+		else output("\n\n");
+		output("Using both hands, you apply just enough pressure to the top of your [pc.cock " + x + "], pressing the fleshy length against your pale, silver pet. She leans against the turgid mast but is gradually pushed to her back as the weight of your monstrous dick squishes against her cheek and between her thick breasts. You slowly lower yourself atop her until the pillar of your masculinity has [pexiga.name] pinned to the ground.\n\n");
+		if(flags["PEX_2BIG_BJ"] == undefined) output("Peeking around one side, her eyes light up as she finally gets it.");
+		output(" The prone pexiga hoists her knees up, squeezing her muscled thighs around your throbbing phallus while her toeless feet slide their soft soles along your [pc.knot " + x + "]. Thin, lean arms make a circuit further along while her tail winds its way up latch on too, leaving her tongue nowhere left to grab but the bulging bulk of your cockhead. With every available appendage clinging to your mammoth member like it’s a life raft, the uplifted girl nuzzles her head up against your fat cumvein with a contented sigh.");
+		output("\n\nYou don’t doubt she’d love nothing more than cuddling your cock all day long, but you do have places to be and things to do. Plus, the wiggling, tightening pressure of her body around your cyclopean organ isn’t exactly something you can just ignore. Your swollen veins thrill with the growing pace of your heartbeat as her body heat flows into your ");
+		if(pc.balls > 0) output("[pc.balls] like she’s fattening you up for a feast.");
+		else output("body like it’s a helium tank hooked directly to your libido.");
+		output(" Blobs of pre-cum trickle up, only to be greedily scooped up by the pexiga’s agile tongue. With every little taste of your [pc.cumFlavor] discharge, she hugs a little tighter and fidgets a little more impatiently.");
+		output("\n\nYou take a moment to steady your breathing and focus on the sensation of having the ivory girl wrapped around you. The softness of [pexiga.name]’s voluptous curves is only complimented by the firmness of the bestial muscles beneath. Like a living cock sleeve, she strokes her limbs along your over-sized organ and grinds her moist pussy along the swell of your spongy cumvein. Even the lightly cool firmness of the chitinous bands across her torso just serves to add texture to her lively grip.");
+		output("\n\nWith a groan, you brace yourself and begin rocking back and forth, sliding thick feet of spunk-shaft across the pexiga’s purring body. She loosens her hold just enough to let you slide more easily, while setting all 24 inches of her tongue to the task of lubing you up. Between her sticky sweet saliva and the thin polish of her drooling pussy, your member is glistening in no time. Your strokes grow more aggressive, running nearly the full length of the alabaster girl as you buck your hips in an aerobic full-body fucking workout.");
+		output("\n\nTen, twenty, thirty minutes go by as you grind against the clenching softness of [pexiga.name]’s body. Beads of perspiration drip from your forehead and run in rivulets down your [pc.chest], but the sheer organ pleasure of your pistoning phallus numbs any muscle aches. A steady stream of [pc.cumVisc] dribbles from your tip, drenching the alien girl with enough pre to put a galotian to shame. Her eyes are unfocused and her tongue flops lazily against your thrusting meat, but her instincts keep her limbs as tight as ever. She looks so out of it, that for a moment you’re afraid she’s relapsed.");
+		output("\n\nThe fear vanishes when her tail circles around your waist and, with a jerk, yanks you onto your back, pulling her on top. The beast girl crosses her legs around your [pc.sheath" + x + "] and, with a whimpering sigh, pulls your cock straight up into a throbbing totempole. She rises and falls in desperate, eager bounces, using your her taut embrace  as much to jill herself off as to worship the meat miracle she’s wrapped around. The pexiga’s ample booty bumps against your ");
+		if(pc.balls > 0) output("[pc.balls] with coaxing, passionate wiggles");
+		else output("[pc.thighs] with rich, weighty slaps");
+		output(", leaving you groaning with ");
+		if(pc.hasToes()) output("toe-curling");
+		else output("teeth-clenching");
+		output(" heat.");
+		output("\n\nDespite her half-lidded eyes and limp, drooling tongue, [pexiga.name] moves with the speed and and force one would expect of an apex predator. She rides the swollen mast of your manhood with purpose and zeal, her breasts squeezing your tender underside while her toeless feet massage the swell of your [pc.knot" + x + "]. Astride your [pc.cockNounComplex " + x + "] like a love-drunk junkie, [pexiga.name]’s glossy silver scales scintilate in the  glow of the kitchen lights with a lustrous, lusty beauty.");
+		output("\n\nUnable to hold back any longer, your climax rises with all the ceremony of an erupting volcano. The tightness in your gut clenches to almost painful levels as a rush of warmth spreads through your body. Your [pc.cock " + x + "] throbs and trembles before bloating in the pexiga’s grasp as your climax fills your veins with overflowing fervor. The liquid cascade reaches your urethra like a geyser and thick streams of [pc.cumNoun] spray into the open air. The wild, unguided release splatters down across the kitchen with heavy splashes before your woozy pet regains her sense of self and slams her O-ringed mouth down onto your frothing spout.");
+		if(pc.cumQ() >= 3000) 
+		{
+			output("\n\nCurling her tongue in loose loops around the ");
+			if(pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) output("thickening flare");
+			else output("tender peak");
+			output(" of your cockhead, your pexiga closes her eyes in ecstatic bliss. The albino cumsucker fills her cheeks with the [pc.cumVisc] spunk flowing out of you in slow spurts while her drool-slick organ tightens and pulls its ring upward in a milking motion. With deliberate languor, she swallows the contents of one cheek, pausing for a long beat before swallowing the other. Her throat ripples as the [pc.cumFlavor] seed trickles down into the predator’s stomach, giving her the hot protein she so avidly thirsts for.");
+		}
+		else
+		{
+			output("\n\nThe pexiga’s eyes go wide as the sheer volume of your discharge blasts its way right past her cheeks and directly into her throat. She tries to slow down the surging jets by tightening her tongue around your crest, but it’s not even close to enough. The next blast sends as much spunk back out through her lips as past her uvula while the third ends up spraying seed out of her nostrils in twin, bubbling streams. Giving her a hand, you grab onto her ear frills and mush her face against the pliant surface of your [pc.cockHead " + x + "], holding her tightly so your sloppy loads won’t knock her head back. With wet, gurgling gulps, she noisily swallows as much as she can, while the excess flows in slimy waves down, across her body and pools in the hot hollow of her quivering quim. The stomach-bloating [pc.CumNoun] rushes into and across her until the shiny-scaled bimbo is practically lost under the [pc.cumVisc], [pc.cumColor] curtain of your copious bounty.");
+		}
+	}
+	//merge
+	//[Next]
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",tooBigPexigaFacefuck3,x);
+}
+public function tooBigPexigaFacefuck3(x:int):void
+{
+	clearOutput();
+	showPexiga();
+	author("Adjatha");
+	output("You give her one last pump, just to be sure she’s milked every drop, before finally relenting. Your pet lets out a satisfied <i>“muah!”</i> as your [pc.cock " + x + "] comes free. [pexiga.name] gasps with a long, deep sigh, like a whale breaching the surface, before tilting her head. <i>“Yummy! Can we do all snacks like this?”</i>");
+	output("\n\nSomehow, you doubt Yammi would appreciate you turning the kitchen into [pexiga.name]’s personal fuck flat, but it’s a thought. Gathering up your stuff and giving the silver girl one more head pat, you elect to take your leave before somebody notices the dripping, sticky mess you’ve made of the place. <i>“Bai bai! More snacks soon please,”</i> she coos, swirling her tongue across bimbo-bloated tits, gathering the sugary slaver to better rub it all over her body.");
+	if(silly) output(" It’s a good thing your ship can’t get ants, because this is how you get ants.");
+	//[End]
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu)
 }
