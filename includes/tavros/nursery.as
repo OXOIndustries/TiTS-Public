@@ -1195,7 +1195,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 		parentName = parentList[p];
 		var babies:Array = listBabiesOfParent(parentName);
 		
-		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : parentName) + "</b></u>");
+		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName.toLowerCase())) + "</b></u>");
 		if(StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") > 0) output(" - Total: " + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids"));
 		if(babies.length > 0)
 		{
