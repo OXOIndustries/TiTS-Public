@@ -1,5 +1,4 @@
-/*
-Riya, by Franks
+/*                                                                   Riya, by Franks
 Riya, UGC officer stationed on Tavros
 
 - Should appear on Tavros station merchant deck immediately, no requirements
@@ -20,7 +19,7 @@ public function riyaAppearance():void
 	clearOutput();
 	showRiya();
 	author("Franks");
-	output("Riya is very tall for a human woman, standing 6\'2\" by ancient Imperial measurements. She has midnight-black hair in a crew cut, smooth, dusky skin and deep, intense brown eyes. She is in remarkable shape, her rolled-up sleeves showing forearms corded with muscles that flex powerfully with every slight movement she makes. She has two heavy, round, firm D-cup breasts, a flat, hard stomach, and slender, powerful thighs that propel her forward with panther-like grace. She has one tattoo, a lone black wing on the left side of her neck just under her jaw.");
+	output("Riya is very tall for a human woman, standing 6’2 by ancient Imperial measurements. She has midnight-black hair in a crew cut, smooth, dusky skin and deep, intense brown eyes. She is in remarkable shape, her rolled-up sleeves showing forearms corded with muscles that flex powerfully with every slight movement she makes. She has two heavy, round, firm D-cup breasts, a flat, hard stomach, and slender, powerful thighs that propel her forward with panther-like grace. She has one tattoo, a lone black wing on the left side of her neck just under her jaw.");
 	output("\n\nShe is clad in a U.G.C. Peacekeeper uniform and dark blue beret. As you gaze on her form, you notice a rather conspicuous bulge down the left leg of her pants... it seems officer Batra is packing a little something extra.");
 	riyaMenu();
 }
@@ -32,8 +31,8 @@ public function riyaBonus():Boolean
 	else output("\n\nThere’s a woman in a U.G.C. uniform loitering about, watching the passing shoppers keenly. There is a rather conspicuous bulge down her left pant leg - It seems this officer is packing something extra between her legs.");
 
 	//[U.G.C. Officer]
-	if(flags["RIYA_PUNCHED"] == 2) addDisabledButton(0,"Riya","Riya","After punching her, it’s probably best to avoid Riya.");
-	else addButton(0,(flags["MET_RIYA"] == undefined ? "UGC Officer" : "Riya"),approachRiya);
+	if(flags["RIYA_PUNCHED"] == 2) addDisabledButton(0,"UGC Officer","UGC Officer","After puncher her, it's probably best to avoid Riya.");
+	else addButton(0,"UGC Officer",approachRiya);
 	return false;
 }
 
@@ -48,7 +47,7 @@ public function approachRiya():void
 		return;
 	}
 	var inhuman:Boolean = (pc.race() != "human" && pc.race() != "terran");
-	if(flags["MET_RIYA"] == undefined)
+	if(flags["MET_RIYA"] == undefined) 
 	{
 		output("You decide to approach the officer, glancing at her nametag as you do. <i>Batra, Riya</i>.");
 		if(inhuman) 
@@ -58,8 +57,6 @@ public function approachRiya():void
 		}
 		output("\n\n<i>“Need help with anything, " + pc.mf("sir","ma’am") + "?”</i> She inquires cordially.");
 		if(inhuman) output(" You notice, though, that her hand is still hovering near her taser.");
-		
-		flags["MET_RIYA"] = 1;
 	}
 	else output("You walk up to Officer Batra, who is patrolling the merchant deck as usual. Her watchful gaze turns to you as you approach.");
 	processTime(1);
@@ -205,7 +202,7 @@ public function riyaRacismTalk():void
 	addButton(0,"Nah",nahNoRacismShit);
 	//[Report]
 	if(flags["RIYA_REPORTED"] != 2) addButton(1,"Report",reportRiyaIfYouWant);
-	else addDisabledButton(1,"Report","Report","You doubt you’ll get a chance to report her again.");
+	else addDisabledButton(1,"Report","Report","You doubt you'll get a chance to report her again.");
 	//[Confront]
 	addButton(2,"Confront",confrontRiyasCommandingOfficer);
 }
@@ -226,7 +223,6 @@ public function nahNoRacismShit():void
 public function reportRiyaIfYouWant():void
 {
 	clearOutput();
-	showBust("");
 	showName("THE\nCOMMANDER");
 	author("Franks");
 	output("You figure the best thing to do is go to her superior officer. After all, they might just legitimately not know about her. Maybe she’s a new transfer?");
@@ -256,14 +252,13 @@ public function reportRiyaIfYouWant():void
 	//[Snap](+5 points towards ‘Hard’ personality)((Tooltip: Give the fluffy Commander a piece of your mind. Kind of a dick move, considering that she seems every bit as angry as you do.))
 	addButton(0,"Snap",snapAtRiyasComm,undefined,"Snap","Give the fluffy Commander a piece of your mind. Kind of a dick move, considering that she seems every bit as angry as you do.");
 	//[Leave]
-	addButton(14,"Leave",reportRiyaAndLeave);
+	addButton(4,"Leave",mainGameMenu);
 }
 
 //[Snap]
 public function snapAtRiyasComm():void
 {
 	clearOutput();
-	showBust("");
 	showName("THE\nCOMMANDER");
 	author("Franks");
 	output("You point a finger at the Commander accusingly - what is the meaning of this? She’s Riya’s commanding officer, damn it, and you’d appreciate it if she acted like it instead of literally tucking her tail between her legs and letting the woman do whatever she wants. You give her a tongue lashing that lasts a good twenty seconds or so, through which the senior officer sits wordlessly. After you finish, though, you see that she looks... hurt.");
@@ -272,16 +267,6 @@ public function snapAtRiyasComm():void
 	flags["RIYA_REPORTED"] = 2;
 	pc.addHard(5);
 	processTime(5);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-}
-public function reportRiyaAndLeave():void
-{
-	clearOutput();
-	showName("THE\nCOMMANDER");
-	author("Franks");
-	output("You nod, fuming silently as you rise and depart the Commander’s office. It sucks, but if Riya really is that well connected, you’re going to have to find another avenue.");
-	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -298,7 +283,7 @@ public function confrontRiyasCommandingOfficer():void
 	processTime(5);
 	clearMenu();
 	addButton(0,"Sock Her",sockRiya);
-	addButton(14,"Leave",leaveRiyaAvoidPaunch);
+	addButton(4,"Leave",leaveRiyaAvoidPaunch);
 }
 
 //[Sock her]
@@ -311,7 +296,7 @@ public function sockRiya():void
 	if(pc.reflexes() >= 40)
 	{
 		output("Enough is enough, you decide. Well... not decide, so much as give in to the rage boiling up inside you and let it find it’s way down your arm and into your fist as it rockets up towards her jaw. You connect, the feeling of your fist moving her face out of the way entirely too satisfying. You note as you pull your fist back that her hand instantly, reflexively went to her side to draw her taser. She jabs it at your stomach but you manage to dodge... just before being dogpiled by Tavros security.");
-		output("\n\nRiya is quick to jump on you and cuff you then, pinning your arms behind your back as several more station security officers run up to the two of you. <i>“Bad idea, Steele,”</i> she hisses, roughly hauling you up and in the direction of the elevator with the help of the station’s security officers. It takes the better part of a standard day, but eventually you are released, somehow, with no charges filed. Turns out your dad knew some pretty impressive lawyers.");
+		output("\n\nRiya is quick to jump on you and cuff you then,  pinning your arms behind your back as several more station security officers run up to the two of you. <i>“Bad idea, Steele,”</i> she hisses, roughly hauling you up and in the direction of the elevator with the help of the station’s security officers. It takes the better part of a standard day, but eventually you are released, somehow, with no charges filed. Turns out your dad knew some pretty impressive lawyers.");
 	}
 	//Otherwise:
 	else
@@ -349,7 +334,6 @@ public function sockHerEpilogue():void
 public function leaveRiyaAvoidPaunch():void
 {
 	clearOutput();
-	showRiya();
 	author("Franks");
 	output("Sighing, you decide it’s not worth it. Sure, as prominent and rich as you are, dad probably has something set up for you in case of legal troubles, but why give this bitch the satisfaction of filing charges against you?");
 	output("\n\nYou shake your head at Riya, turning and walking away.");

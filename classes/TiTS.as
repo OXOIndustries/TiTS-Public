@@ -84,12 +84,10 @@
 	import flash.events.UncaughtErrorEvents;
 	import flash.display.LoaderInfo;
 	import flash.system.Security;
-	
-	import flash.display.StageScaleMode;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
-	{		
+	{
 		// Smoosh all the included stuff into the TiTS class
 		// this is a HORRIBLE way of architecting the system, but it's better then not
 		// using classes at all
@@ -436,7 +434,7 @@
 		}
 		
 		private function init(e:Event):void
-		{				
+		{	
 			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
 			
 			stage.quality = StageQuality.BEST;
@@ -451,7 +449,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.10";
+			version = "0.7.09";
 
 			//temporary nonsense variables.
 			temp = 0;

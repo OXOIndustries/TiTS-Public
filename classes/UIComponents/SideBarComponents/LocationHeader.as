@@ -3,6 +3,10 @@ package classes.UIComponents.SideBarComponents
 	import classes.GameData.GameOptions;
 	import classes.Items.Armor.VoidPlateArmor;
 	import classes.Resources.Busts.CharacterBustOverrideSelector;
+	CONFIG::IMAGEPACK
+	{
+		import classes.Resources.ImagePackAssets.BigImageContainer;
+	}
 	import classes.Resources.StatusIcons;
 	import fl.transitions.Tween;
 	import flash.display.Bitmap;
@@ -23,11 +27,6 @@ package classes.UIComponents.SideBarComponents
 	 */
 	public class LocationHeader extends Sprite
 	{
-		CONFIG::IMAGEPACK
-		{
-			import classes.Resources.ImagePackAssets.BigImageContainer;
-		}
-	
 		private var _roomBlock:Sprite;
 		private var _roomText:TextField;
 		

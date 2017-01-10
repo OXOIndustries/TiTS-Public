@@ -64,25 +64,6 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/bess.png", mimeType = "image/png")]
 		public var Bust_BESS:Class;
 
-		[Embed(source = "../../../assets/images/npcs/adjatha/briget.png", mimeType = "image/png")]
-		public var Bust_BRIGET:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/briget_nude.png", mimeType = "image/png")]
-		public var Bust_BRIGET_NUDE:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/briget_busty.png", mimeType = "image/png")]
-		public var Bust_BRIGET_TITS:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/briget_topless_busty.png", mimeType = "image/png")]
-		public var Bust_BRIGET_TITS_TOPLESS:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/briget_nude_busty.png", mimeType = "image/png")]
-		public var Bust_BRIGET_TITS_NUDE:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/briget_preg.png", mimeType = "image/png")]
-		public var Bust_BRIGET_PREG:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/briget_nude_preg.png", mimeType = "image/png")]
-		public var Bust_BRIGET_PREG_NUDE:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/briget_busty_preg.png", mimeType = "image/png")]
-		public var Bust_BRIGET_TITS_PREG:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/briget_nude_busty_preg.png", mimeType = "image/png")]
-		public var Bust_BRIGET_TITS_PREG_NUDE:Class;
-
 		[Embed(source = "../../../assets/images/npcs/adjatha/briha.png", mimeType = "image/png")]
 		public var Bust_BRIHA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/briha_nude.png", mimeType = "image/png")]
@@ -269,10 +250,6 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/miko_mai.png", mimeType = "image/png")]
 		public var Bust_MIKO_AND_MAI:Class;
-
-		[Embed(source = "../../../assets/images/npcs/adjatha/priestess.png", mimeType = "image/png")]
-		public var Bust_MILODAN_PRIESTESS:Class;
-		public var Bounds_MILODAN_PRIESTESS:Rectangle = new Rectangle(60, 3, 65, 63);
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/mirian.png", mimeType = "image/png")]
 		public var Bust_MIRIAN:Class;
@@ -494,25 +471,6 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/bess.png", mimeType = "image/png")]
 			public var Full_BESS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget.png", mimeType = "image/png")]
-			public var Full_BRIGET:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_nude.png", mimeType = "image/png")]
-			public var Full_BRIGET_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_busty.png", mimeType = "image/png")]
-			public var Full_BRIGET_TITS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_topless_busty.png", mimeType = "image/png")]
-			public var Full_BRIGET_TITS_TOPLESS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_nude_busty.png", mimeType = "image/png")]
-			public var Full_BRIGET_TITS_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_preg.png", mimeType = "image/png")]
-			public var Full_BRIGET_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_nude_preg.png", mimeType = "image/png")]
-			public var Full_BRIGET_PREG_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_busty_preg.png", mimeType = "image/png")]
-			public var Full_BRIGET_TITS_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_nude_busty_preg.png", mimeType = "image/png")]
-			public var Full_BRIGET_TITS_PREG_NUDE:Class;
-
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briha.png", mimeType = "image/png")]
 			public var Full_BRIHA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briha_nude.png", mimeType = "image/png")]
@@ -692,9 +650,6 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/miko_mai.png", mimeType = "image/png")]
 			public var Full_MIKO_AND_MAI:Class;
-
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/priestess.png", mimeType = "image/png")]
-			public var Full_MILODAN_PRIESTESS:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;

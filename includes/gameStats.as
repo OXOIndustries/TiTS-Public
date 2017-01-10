@@ -2964,23 +2964,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			// Merch Deck
-			if(flags["MET_RIYA"] != undefined || flags["RIYA_PUNCHED"] != undefined)
-			{
-				output2("\n<b><u>Merchant Deck</u></b>");
-				if(flags["MET_RIYA"] != undefined || flags["RIYA_PUNCHED"] != undefined)
-				{
-					output2("\n<b>* Riya:</b> Met her");
-					if(flags["RIYA_PUNCHED"] != undefined) output2(", Punched her");
-					if(flags["RIYA_REPORTED"] != undefined)
-					{
-						output2(", Reported her");
-						if(flags["RIYA_REPORTED"] == 2) output2(" and snapped at Commander Lorna Grence");
-					}
-					if(flags["RIYA_FUCKED_YA"] != undefined) output2("\n<b>* Riya, Times Fucked by:</b> " + flags["RIYA_FUCKED_YA"]);
-				}
-				variousCount++;
-			}
 			// Anon's Bar!
 			if(flags["MET_ALEX"] != undefined || flags["SEEN_SELLESY"] != undefined || flags["APPROACHED_SHELLY"] != undefined || flags["RAMIS_MET"] != undefined)
 			{
@@ -5169,21 +5152,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			// Carbonado
-			if(flags["MET_CFS"] != undefined)
-			{
-				output2("\n<b><u>Carbonado</u></b>");
-				if(flags["MET_CFS_GWEN"] != undefined) output2("\n<b>* Gwen:</b> Met her");
-				if(flags["FUCKED_GWEN"] != undefined) output2(", Sexed her");
-				if(flags["MET_CFS_EIMEAR"] != undefined) output2("\n<b>* Eimeer:</b> Met her");
-				if(flags["HUNGOUT_CFS"] != undefined) output2("\n<b>* Gwen and Eimeer:</b> Hung out with them");
-				variousCount++;
-			}
 			// Nerrasa
 			if(flags["MET_NERRASA"] != undefined)
 			{
 				output2("\n<b><u>The Last Chance</u></b>");
-				
+				output2("\n<b>* Nerrasa:</b> Met her");
 				if(flags["NERRASAS_PET"] != undefined) output2(", You’re her pet");
 				if(flags["NERRASA_FUCKED"] != undefined) output2("\n<b>* Nerrasa, Times Sexed:</b> " + flags["NERRASA_FUCKED"]);
 				variousCount++;

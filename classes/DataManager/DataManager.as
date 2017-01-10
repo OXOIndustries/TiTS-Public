@@ -29,7 +29,16 @@
 	import flash.events.IOErrorEvent;
 	import classes.GameData.CombatManager;
 	import classes.GameData.ChildManager;
+	
 	import classes.Engine.Interfaces.*;
+	
+	CONFIG::AIR 
+	{
+		import flash.filesystem.File;
+		import flash.filesystem.FileMode;
+		import flash.filesystem.FileStream;
+		import flash.events.ProgressEvent;
+	}
 	
 	/**
 	 * Data Manager to handle the processing of player data files.
@@ -37,14 +46,6 @@
 	 */
 	public class DataManager 
 	{
-		CONFIG::AIR 
-		{
-			import flash.filesystem.File;
-			import flash.filesystem.FileMode;
-			import flash.filesystem.FileStream;
-			import flash.events.ProgressEvent;
-		}
-	
 		// Define the current version of save games.
 		public static const LATEST_SAVE_VERSION:int = 30;
 		public static const MINIMUM_SAVE_VERSION:int = 30;

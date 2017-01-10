@@ -3,34 +3,6 @@ import classes.GameData.Pregnancy.Child;
 import classes.GameData.Pregnancy.UniqueChild;
 import classes.GameData.Pregnancy.Containers.Genders;
 
-/* Briget functions */
-public function showBriget(nude:Boolean = false):void
-{
-	showName("\nBRIGET");
-	showBust(brigetBustDisplay(nude));
-}
-public function brigetBustDisplay(nude:Boolean = false):String
-{
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["BRIGET"] != "ADJATHA") return "BRIGET";
-	
-	var str:String = "BRIGET";
-	
-	if(brigetIsBusty()) str += "_TITS";
-	if(brigetIsPregnant()) str += "_PREG";
-	if(nude) str += "_NUDE";
-	
-	return str;
-}
-public function brigetIsBusty():Boolean
-{
-	return false;
-}
-public function brigetIsPregnant():Boolean
-{
-	return false;
-}
-
 // General support shit
 public function hasNurseryUpgrades():Boolean
 {
@@ -125,7 +97,7 @@ public function milodanPlayOptions(button:Number):Number
 	}
 	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 17, 9001) > 0)
 	{
-		addDisabledButton(button,"Milodan","Milodan","You don’t have any kits young enough to play with. Maybe when you finish the quest, you’ll have time to be a real parent.");
+		addDisabledButton(button,"Milodan","Milodan","You don't have any kits young enough to play with. Maybe when you finish the quest, you'll have time to be a real parent.");
 		button++;
 	}
 	else output("Dafuq is dis shit");
@@ -162,12 +134,12 @@ public function playWithMilodan(choice:Number = -1):void
 		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 0, 2);
 		if(boy && girl) boy = (rand(2) == 0);		
 
-		if(boy) output("He’s");
-		else output("She’s");
+		if(boy) output("He's");
+		else output("She's");
 		output(" too young to play yet, but you reach into the cot where a kit is swaddled in cloth and gently boop ");
 		if(boy) output("him");
 		else output("her");
-		output(" on the nose. Milodan kits are blind for several weeks, so the kit can’t see you, but ");
+		output(" on the nose. Milodan kits are blind for several weeks, so the kit can't see you, but ");
 		if(boy) output("he");
 		else output("she");
 		output(" can smell you. ");
@@ -191,7 +163,7 @@ public function playWithMilodan(choice:Number = -1):void
 		output(" arms around your fingers and falls asleep. You stroke ");
 		if(boy) output("his");
 		else output("her");
-		output(" hair with a smile, stealthily extricating your hand from the tiny kit’s grip and watching ");
+		output(" hair with a smile, stealthily extricating your hand from the tiny kit's grip and watching ");
 		if(boy) output("him");
 		else output("her");
 		output(" snoozing in the cot.");
@@ -220,8 +192,8 @@ public function playWithMilodan(choice:Number = -1):void
 		if(boy) output("his");
 		else output("her");
 		output(" little bed. Woof! ");
-		if(boy) output("He’s");
-		else output("She’s");
+		if(boy) output("He's");
+		else output("She's");
 		output(" a lot heavier than ");
 		if(boy) output("he");
 		else output("she");
@@ -321,8 +293,8 @@ public function playWithMilodan(choice:Number = -1):void
 			//2 kits: 
 			if(youngMilos <= 2) output("\n\nYou spend some time with the two fluffy kits, playing with them and their little set of blocks.");
 			//3-9 kits:
-			else if(youngMilos < 10) output("\n\nYou’re quickly joined by the rest of your fluffy kits. You spend some time playing with them and their little set of blocks, making sure they play nice.");
-			else output("\n\nYou’re soon surrounded by a fluffy horde of kits, crawling all around (and over) you. You spend some time playing with them and their little set of blocks, making sure they play nice.");
+			else if(youngMilos < 10) output("\n\nYou're quickly joined by the rest of your fluffy kits. You spend some time playing with them and their little set of blocks, making sure they play nice.");
+			else output("\n\nYou're soon surrounded by a fluffy horde of kits, crawling all around (and over) you. You spend some time playing with them and their little set of blocks, making sure they play nice.");
 		}
 	}
 	clearMenu();
@@ -1275,8 +1247,7 @@ public function nurseryMeetBriget():void
 {
 	clearOutput();
 	author("Savin");
-	showName("\nWOMAN");
-	showBust(brigetBustDisplay());
+	showBust("BRIGET");
 
 	output("The woman at the desk seems to be the person to talk to here, so you make your way over and clear your throat to get her attention. She glances up from her Codex, immediately adopting a welcoming, matronly smile on her plump pink lips. There certainly is a <i>lot</i> of woman there, too, now that you’re paying closer attention to her: her hips and thighs are thick and fertile-figured to an almost exaggerated degree, as is the shapely bust hefting up the front of her crisp suit-jacket. Combine those ample assets with the square hardlight glasses and the neat bun binding back thick locks of reddish-pink hair, and the woman cuts a figure you can only describe as");
 	if (pc.isBro() || pc.LQ() >= 75) output(" <i>absolute MILF</i>");
@@ -1309,7 +1280,7 @@ public function nurseryMeetBrigetII(acceptedHug:Boolean):void
 {
 	clearOutput();
 	author("Savin");
-	showBriget();
+	showBust("BRIGET");
 
 	if (acceptedHug == false)
 	{
@@ -1360,7 +1331,7 @@ public function nurseryApproachBriget():void
 {
 	clearOutput();
 	author("Savin");
-	showBriget();
+	showBust("BRIGET");
 
 	output("You");
 	if (flags["BRIGET_FUCKED"] != undefined) output(" wander up and grab a handful of Briget’s plump derriere. Your lovely nurse giggles in a girlish way reserved just for you, pressing herself back against your hand. <i>“Hello, sweet thing. What can momma do for you?”</i>");
@@ -1385,7 +1356,7 @@ public function nurseryBrigetNurseryTalk():void
 {
 	clearOutput();
 	author("Savin");
-	showBriget();
+	showBust("BRIGET");
 
 	output("<i>“Let’s talk about the nursery,”</i> you prompt.");
 	
@@ -1410,8 +1381,8 @@ public function nurseryBrigetNurseryTalkMenu(lastFunc:Function = null):void
 public function nurseryBrigetNurseryStatus():void
 {
 	clearOutput();
+	showBust("BRIGET");
 	author("Savin");
-	showBriget();
 
 	output("<i>“How are things at the nursery?”</i> you ask. Briget tuts at you, saying that you’re quite capable of looking at the holoscreen’s readouts yourself, but you simply say that you’d like to hear it from her. The head nurse doubtless can paint a more vivid picture than a few stale stat-displays.");
 	
@@ -1463,7 +1434,7 @@ public function nurseryBrigetNurseryStaff():void
 {
 	clearOutput();
 	author("Savin");
-	showBriget();
+	showBust("BRIGET");
 
 	//{Has no special staff:
 	if (!hasNurseryStaff())
