@@ -900,6 +900,7 @@ public function manUpReahaYouDumbCumsuckingSlut():void
 	output("\n\n<i>“At least I got paid for it. They just gave it away!”</i> she huffs.");
 	flags["CURED_REAHA_NT_TALK"] = 3;
 	pc.addHard(5);
+	reahaConfidence(-10);
 	combinePostCuredReahaTexasTalk();
 }
 

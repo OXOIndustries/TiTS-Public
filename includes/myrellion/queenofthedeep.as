@@ -76,7 +76,7 @@ public function queenOfTheDeepGoFite():void
 
 public function queenOfTheDeepInitFight():void
 {
-	pc.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
+	pc.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You’re submerged in water, and your movements are dramatically slowed because of it. While you’re fighting in the lake, your Reflex is reduced!", true, 0);
 
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
@@ -129,7 +129,7 @@ public function queenOfTheDeepPCLoss():void
 	output(". Whatever shall I do with you now?”</i>");
 
 	if (pc.HP() <= 0) output("\n\nYou consider begging her to let you go");
-	else output("\n\nYou consider begging her to fuck you, to relieve the tension she's brought to such a catastrophic head");
+	else output("\n\nYou consider begging her to fuck you, to relieve the tension she’s brought to such a catastrophic head");
 	output(". Something tells you the monster already has her intentions for you, however, and as you feel your back crack against the furthest reaches of the cave wall, you realize that you have very little hope of swaying her.");
 
 	output("\n\n<i>“Not strong enough to fight, nor wise enough to submit,”</i> the woman says in a sing-song voice, stalking closer until her tremendous claws are under your chin, the threat obvious. <i>“What a waste... I had thought you might be different, star-walker. Worthy of me.”</i>");
@@ -156,7 +156,7 @@ public function queenOfTheDeepPCLoss():void
 	if (pc.hasCock())
 	{
 		output(" Your [pc.cocks] grow");
-		if (pc.cocks.length > 1) output("s");
+		if (pc.cocks.length == 1) output("s");
 		output(" rigid, pressing into the queen’s belly. She coos delightedly and reaches down to stroke");
 		if (pc.cocks.length == 1) output(" it");
 		else output(" one of them");
@@ -164,9 +164,7 @@ public function queenOfTheDeepPCLoss():void
 	}
 	if (pc.hasVagina())
 	{
-		output(" Trickles of moisture stain your thighs as the venomous arousal snakes its way down to your sex, and the lips of your [pc.cunts] attract");
-		if (pc.vaginas.length == 1) output("s");
-		output(" more and more attention from the queen’s tendrils. She gives you a playful smile as one almost penetrates you, instead squirting a thick covering of pink poison across your pussy. Your [pc.legOrLegs] just about give");
+		output(" Trickles of moisture stain your thighs as the venomous arousal snakes its way down to your sex, and the lips of your [pc.cunts] attract more and more attention from the queen’s tendrils. She gives you a playful smile as one almost penetrates you, instead squirting a thick covering of pink poison across your pussy. Your [pc.legOrLegs] just about give");
 		if(pc.legCount == 1) output("s");
 		output(" out, though the creature holds you fast, refusing to let you fall.");
 	}
@@ -396,7 +394,10 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 	{
 		output(" Your [pc.cocks] grow");
 		if (pc.cocks.length == 1) output("s");
-		output(" rigid, pressing into the queen’s belly. She coos delightedly and reaches down to stroke it, sending shivers of pleasure through you as her blued fingers wrap around your length.");
+		output(" rigid, pressing into the queen’s belly. She coos delightedly and reaches down to stroke");
+		if (pc.cocks.length == 1) output(" it");
+		else output(" one of them");
+		output(", sending shivers of pleasure through you as her blued fingers wrap around your length.");
 	}
 	if (pc.hasVagina())
 	{
@@ -655,12 +656,12 @@ public function queenOfTheDeepPCVictory():void
 	if (pc.hasCock()) addButton(0, "Cloaca Fuck", queenOfTheDeepCloacaFuck, undefined, "Cloaca Fuck", "Take the queen up on her offer. Climb up on that giant lower body of hers and find somewhere to sheathe your cock. ");
 	else addDisabledButton(0, "Cloaca Fuck", "Cloaca Fuck", "Requires a dick.");
 
-	if (pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) != -1) addButton(1, "Get Egged", queenOfTheDeepGetEgged, undefined, "Get Egged", "You’ll let the queen fill you with her young, as she wanted, though she'll do it your way.");
+	if (pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) != -1) addButton(1, "Get Egged", queenOfTheDeepGetEgged, undefined, "Get Egged", "You’ll let the queen fill you with her young, as she wanted, though she’ll do it your way.");
 	else addDisabledButton(1, "Get Egged", "Get Egged", "You’d need to have a viable orifice for the Queen to stuff full of eggs.")
 
-	addButton(2, "Take Bow", queenOfTheDeepTakeBow, undefined, "Take her bow", "Take the queen's bow as payment for her assault on you. The strange crystal weapon looks damn swanky.");
+	addButton(2, "Take Bow", queenOfTheDeepTakeBow, undefined, "Take her bow", "Take the queen’s bow as payment for her assault on you. The strange crystal weapon looks damn swanky.");
 
-	addButton(3, "Her Story", queenOfTheDeepHerStory, undefined, "Listen to her Story", "What you desire is to learn who, and what, she is. Even your Codex can't seem to figure out what she's supposed to be.");
+	addButton(3, "Her Story", queenOfTheDeepHerStory, undefined, "Listen to her Story", "What you desire is to learn who, and what, she is. Even your Codex can’t seem to figure out what she’s supposed to be.");
 
 	addButton(14, "Leave", queenOfTheDeepLeave);
 }
@@ -1052,9 +1053,9 @@ public function queenLactationEvent():void
 		output(" When you move your hand around, you suddenly feel your chest starting to... starting to grow! You watch with amazement as your previously flat chest expands outward, creating a pair of small, but perfectly formed breasts! <b>You stare at your new tits</b> for a few moments, gingerly rubbing a hand around the newly sensitive flesh.");
 		pc.breastRows[0].breastRatingRaw = 2;
 	}
-	output(" After a moment, you feel an altogether pleasant pressure building up behind your [pc.nipples], and quickly find that they're beading with moisture!");
+	output(" After a moment, you feel an altogether pleasant pressure building up behind your [pc.nipples], and quickly find that they’re beading with moisture!");
 
-	output("\n\nYou give your tits a tentative squeeze, and sure enough a jet of [pc.milkNoun] squirts out, splattering over the ground. <b>You're lactating!</b> It looks like your body is preparing itself for the inevitable birth of the Queen of the Deep Lake's offspring....");
+	output("\n\nYou give your tits a tentative squeeze, and sure enough a jet of [pc.milkNoun] squirts out, splattering over the ground. <b>You’re lactating!</b> It looks like your body is preparing itself for the inevitable birth of the Queen of the Deep Lake’s offspring....");
 	
 	if (pc.milkMultiplier < 75) pc.milkMultiplier = 75;
 	if (pc.milkFullness < 75) pc.milkFullness = 75;
@@ -1069,7 +1070,7 @@ public function queenLactationIncreaseEvent():void
 	clearOutput();
 	author("Savin");
 	
-	output("Lately you've been feeling your lactating tits get fuller and fuller, like they're swollen with more and more [pc.milkNoun] every hour. <b>You're definitely lactating more now</b>.");
+	output("Lately you’ve been feeling your lactating tits get fuller and fuller, like they’re swollen with more and more [pc.milkNoun] every hour. <b>You’re definitely lactating more now</b>.");
 	
 	pc.milkRate += 2.5;
 	
@@ -1082,9 +1083,9 @@ public function queenBellyMovementEvent():void
 	clearOutput();
 	author("Savin");
 	
-	output("You find your hands idly drifting down to your [pc.belly], caressing the taut bulge of pregnant flesh. As if responding to your touch, you feel the queen's spawn inside you moving, squirming around just beneath the surface. One seems to find its way directly to your hand, brushing against your palm through the thin barrier of your [pc.skinFurScales].");
+	output("You find your hands idly drifting down to your [pc.belly], caressing the taut bulge of pregnant flesh. As if responding to your touch, you feel the queen’s spawn inside you moving, squirming around just beneath the surface. One seems to find its way directly to your hand, brushing against your palm through the thin barrier of your [pc.skinFurScales].");
 
-	output("\n\nYou smile to yourself and rub back, assuring the spawn inside you that you're here, and that they're safe and loved. A feeling of happiness floods through you at that, and you find yourself smiling dumbly as you proceed.");
+	output("\n\nYou smile to yourself and rub back, assuring the spawn inside you that you’re here, and that they’re safe and loved. A feeling of happiness floods through you at that, and you find yourself smiling dumbly as you proceed.");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1095,7 +1096,7 @@ public function queenBellyrubEvent():void
 	clearOutput();
 	author("Savin");
 	
-	output("As you're walking along, you find that a few people stop you on the street to ask you about your pregnancy: how far along are you, when are they due, can they feel your belly? You can't find the heart to tell them that your belly was filled with the spawn of a deep-dwelling monster, and squirm out of their questions as best you can.");
+	output("As you’re walking along, you find that a few people stop you on the street to ask you about your pregnancy: how far along are you, when are they due, can they feel your belly? You can’t find the heart to tell them that your belly was filled with the spawn of a deep-dwelling monster, and squirm out of their questions as best you can.");
 
 	output("\n\nThough you do find yourself guiltily enjoying the belly pats that come your way.");
 	
@@ -1109,14 +1110,14 @@ public function queenMorningSickness():void
 	author("Savin");
 	
 	output("A wave of nausea hits you out of nowhere, all but toppling you over. You stumble");
-	if (InShipInterior(pc)) output(" over to your vessel's restroom");
+	if (InShipInterior(pc)) output(" over to your vessel’s restroom");
 	else if (InPublicSpace(pc)) output(" to the nearest bathroom");
 	else output(" to the ground");
 	output(" and puke, retching until your eyes and throat burn.");
 
 	output("\n\nYou recover a few minutes later, grumbling about the queen and her spawn. The feeling of your [pc.belly] shifting quiets you, though, and you find your hands protectively circling around your pregnant gut. The creatures growing inside you squirm slightly, seeming to rub against your hands with startling affection.");
 
-	output("\n\nIt's not <i>all</i> bad, you suppose...");
+	output("\n\nIt’s not <i>all</i> bad, you suppose...");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1139,7 +1140,7 @@ public function queenDreamEvent():void
 
 	output("\n\n<i>“Who...?”</i> you start to ask, though the answer is self-evident, flooding your mind with images of a life spent together, of raising dozens of Water Queens and growing old amid a horde of loving daughters.");
 
-	output("\n\nHappiness overwhelms you, and you return the girl's affectionate kiss, holding onto her back as she leads you into the deepest caves of her homeworld.");
+	output("\n\nHappiness overwhelms you, and you return the girl’s affectionate kiss, holding onto her back as she leads you into the deepest caves of her homeworld.");
 
 	output("\n\nAround you, you can hear the movements of dozens... hundreds, even... of legs moving through the water as your brood comes home to roost.");
 
@@ -1152,7 +1153,7 @@ public function queenAlmostDueMessage():void
 	clearOutput();
 	author("Savin");
 	
-	output("You note that your swollen belly is shifting awkwardly. The many water-spawn inside you are shifting more and more lately, and your body has been feeling even more wet and hot the last little while. You doubt you'll be carrying these creatures around with you much longer.");
+	output("You note that your swollen belly is shifting awkwardly. The many water-spawn inside you are shifting more and more lately, and your body has been feeling even more wet and hot the last little while. You doubt you’ll be carrying these creatures around with you much longer.");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1242,7 +1243,7 @@ public function queenPregnancyEndsIII():void
 	output("\n\n<b>New key item added!</b>");
 
 	QueenOfTheDeepPregnancy.queenCleanupData();
-	(pc as Creature).createKeyItem("Water Princess Note", 0, 0, 0, 0, "This receipt by a child-recovery drone was doodled all over by the tiny water princesses you gave birth to. They've scrawled several affectionate drawings all over it, and written thank-yous for taking care of them. Looking at it gives you a warm, fuzzy feeling...");
+	(pc as Creature).createKeyItem("Water Princess Note", 0, 0, 0, 0, "This receipt by a child-recovery drone was doodled all over by the tiny water princesses you gave birth to. They’ve scrawled several affectionate drawings all over it, and written thank-yous for taking care of them. Looking at it gives you a warm, fuzzy feeling...");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

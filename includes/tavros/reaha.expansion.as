@@ -427,8 +427,8 @@ public function reahaTalkNewTexasManUp():void
 	if (flags["REAHA_TALK_NEWTEXAS_CHOICE"] == undefined)
 	{
 		flags["REAHA_TALK_NEWTEXAS_CHOICE"] = 2;
-		pc.addHard(5);
 		reahaConfidence(-10);
+		pc.addHard(5);
 	}
 
 	output("<i>“So you saw some unpleasant shit,”</i> you say, scowling at the whiny cow. <i>“Deal with it. The girl I bought out of a cheapo whorehouse doesn’t have a lot of room to judge.”</i> ");

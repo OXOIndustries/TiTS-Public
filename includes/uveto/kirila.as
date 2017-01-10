@@ -34,9 +34,6 @@ public function approachKirila(back:Boolean = false):void
 	author("Kinathis");
 	if(back)
 	{
-		clearOutput();
-		showKirila();
-		author("Kinathis");
 		output("Kirila looks over her shoulder at her shop. <i>“Is there something else I can help you with?”</i> she asks with a smile on her copper-skinned lips.");
 	}
 	else
@@ -55,7 +52,7 @@ public function silkAndSteelMenu():void
 
 	addButton(0,"Talk",talkToKirila,undefined,"Talk","Talk to Kirila.");
 	addDisabledButton(1,"Shop","Shop","Not yet in!");
-	addButton(2,"Appearance",kirilaAppearance,undefined,"Appearance","Take a gander at Kirila's appearance.");
+	addButton(2,"Appearance",kirilaAppearance,undefined,"Appearance","Take a gander at Kirila’s appearance.");
 	addButton(5,"Shop: Steel",kirilaShop,0,"Shop: Steel","Shop for weaponry!");
 	addButton(6,"Shop: Armor",kirilaShop,1,"Shop: Steel","Shop for armor!");
 	addButton(7,"Shop: Silk",kirilaShop,2,"Shop: Steel","Shop for clothing items!");
@@ -320,7 +317,7 @@ public function itemDemos():void
 	showKirila();
 	output("Kirila would be happy to tell you more about her wares. Which items do you want to know more about?");
 	clearMenu();
-	addButton(0,"\"Steel\"",kirilaSteelItemDemos,undefined,"\"Steel\"","Ask Kirila to demo her weaponry.");
+	addButton(0,"“Steel”",kirilaSteelItemDemos,undefined,"“Steel”","Ask Kirila to demo her weaponry.");
 	addButton(1,"Armor",kirilaArmorItemDemos,undefined,"Armor","Ask Kirila to demo her armors.");
 	addButton(2,"Silk",kirilaSilkItemDemos,undefined,"Silk","Ask Kirila to demo her clothing.");
 	addButton(14,"Back",approachKirila,true);

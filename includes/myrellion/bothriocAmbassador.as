@@ -220,7 +220,7 @@ public function approachAraKei():void
 			output("\n\n<i>“Very pleasing,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +", smiling widely. <i>“What can the bothrioc do for you today, little one?”</i>");
 		}
 		// not found a master, but lane is currently top of the list
-		else if (flags["ARAKEI_RESOLVED_MASTER"] == undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_COUNTER"] != undefined && flags["LANE_DETOX_STATUS"] == undefined)
+		else if (flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_COUNTER"] != undefined && flags["LANE_DETOX_STATUS"] == undefined)
 		{
 			output("You kneel in front of Ara Kei, and shudder with pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
 			
@@ -233,16 +233,19 @@ public function approachAraKei():void
 			
 			output("\n\nYou do.");
 		}
-		else if (flags["ARAKEI_RESOLVED_MASTER"] == undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_STATUS"] == 1)
+		else if (flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_STATUS"] == 1)
 		{
 			output("You kneel in front of Ara Kei, and shudder with pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
 
 			output("\n\n<i>“Tell me about Lane,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +" after a moment’s pause.");
-			if (silly) output(" <i>“Why does "+ lane.mf("he","she") +" wear the mask?”</i>}");
+			if (silly) output(" <i>“Why does "+ lane.mf("he","she") +" wear the mask?”</i>");
 			
-			output("\n\nConfidently, you tell the quadomme that the daynar’s hypnotic compulsion has finally been flushed out of your system. A bright dawn of relief spreads across you as you verbalise it without a shred of doubt, without a single twinge of pain or hollowness. You share Ara Kei’s wide grin - at long last, it is over.");
+			output("\n\nConfidently, you tell the quadomme that the daynar’s hypnotic compulsion has finally been flushed out of your system. A bright dawn of relief spreads across you as you verbalize it without a shred of doubt, without a single twinge of pain or hollowness. You share Ara Kei’s wide grin - at long last, it is over.");
 			
 			output("\n\n<i>“There is nothing that incubators cannot do, if they are given the necessary focus and drive by a dominant,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +". <i>“I’m very proud of you, Steele. Take a while to rest, and then come see me again - there is still your future to discuss.”</i>");
+			
+			flags["ARAKEI_RESOLVED_MASTER_LANE"] = undefined;
+			flags["ARAKEI_RESOLVED_MASTER"] = "lane";
 		}
 		else
 		{
@@ -260,7 +263,7 @@ public function approachAraKei():void
 public function araKeiPotentialMasterBlurbs():void
 {
 	// Lane, prio 1
-	if (flags["LANE_FULLY_HYPNOTISED"] != undefined)
+	if (flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_STATUS"] == undefined)
 	{
 		output("\n\nA picture immediately forms in your head. It’s lithe, scaly and has... such fabulous, mesmeric patterns.");
 
@@ -272,7 +275,7 @@ public function araKeiPotentialMasterBlurbs():void
 
 		output("\n\n<i>“That’s enough,”</i> says Ara Kei at length, and your flow immediately freezes. There’s a hardness to [ara.his] tone that slices straight through your blissful little cloud. <i>“Amongst my people Steele, there are those who use the gift for more than shared happiness. Inveigle others into their harem before forcing them into mines, or prostitute them to nyrea. Such dommes, if they are discovered by other dommes, are killed, or driven far away. Far away, to a shack on the fringes of a failed world, perhaps. I do not know exactly how this Lane individual has developed a hold on you, Steele, but they bear you nothing but ill-will.”</i>");
 
-		output("\n\nLane? Ill-will? That’s nonsense. You love Lane and Lane loves you... but if the bothrioc dominant is saying something different, and with such emphasis... your brain feels like it’s going to burst. A small, animal sound of distress reaches your ears, and it takes you a groggy moment to realise it came from your own lips.");
+		output("\n\nLane? Ill-will? That’s nonsense. You love Lane and Lane loves you... but if the bothrioc dominant is saying something different, and with such emphasis... your brain feels like it’s going to burst. A small, animal sound of distress reaches your ears, and it takes you a groggy moment to realize it came from your own lips.");
 
 		output("\n\n<i>“Yes Steele,”</i> Ara Kei insists, and more agony knives into your skull. <i>“I know it hurts, but sometimes pain is essential. I will not have you give yourself to this insidious, self-enriching parasite anymore. I DEMAND that, as your better and mentor. Do you understand?”</i>");
 
@@ -280,7 +283,7 @@ public function araKeiPotentialMasterBlurbs():void
 
 		output("\n\n<i>“Good,”</i> says the quadomme slowly, still eyeing you closely. <i>“Once we have weaned you off this individual, we can talk about more suitable candidates for keeping a steady hand on you. For now... I suggest you find a close friend, to help you through the process of withdrawal. People like Lane very rarely let free meals out of their grasp easily.”</i>");
 
-		flags["ARAKEI_RESOLVED_MASTER"] = "lane";
+		flags["ARAKEI_RESOLVED_MASTER_LANE"] = 1;
 	}
 	// Sera
 	else if (fuckedSeraAsMistress())
@@ -293,7 +296,7 @@ public function araKeiPotentialMasterBlurbs():void
 		
 		output("\n\nWords pour out of your mouth as you describe Sera with gusto. It never crosses your mind to spare any detail about the relationship you and the demonic shopkeeper share - you could no more lie or omit truth to the quadomme than you could turn into sand.");
 		
-		output("\n\n<i>“Hmm,”</i> says Ara Kei at length, when your flow finally gives out. [ara.he] "+ ara.mfn("is", "is", "are") +" having to exercise all of [ara.his] diplomatic talents not to grin. <i>“Certainly a rather, um... crude individual to have as a master, and I am not particularly happy about the fact she is not an egg-giver. However - I do detect a lot of shared fondness between you and this... person, and she certainly has the forcefulness required. Alright then, Steele - you may consider your obligation towards me annulled. Well done.”</i>");
+		output("\n\n<i>“Hmm,”</i> says Ara Kei at length, when your flow finally gives out. [ara.He] "+ ara.mfn("is", "is", "are") +" having to exercise all of [ara.his] diplomatic talents not to grin. <i>“Certainly a rather, um... crude individual to have as a master, and I am not particularly happy about the fact she is not an egg-giver. However - I do detect a lot of shared fondness between you and this... person, and she certainly has the forcefulness required. Alright then, Steele - you may consider your obligation towards me annulled. Well done.”</i>");
 		
 		output("\n\nYou feel a wonderful feeling of relief and joy. You had no idea of the onus that had been laid upon you until the dominant chose to lift it away - it dissipating feels like a genuine weight off your shoulders.");
 		flags["ARAKEI_RESOLVED_MASTER"] = "sera";
@@ -827,7 +830,7 @@ public function araKeiFlirt():void
 			if (flags["ARAKEI_REFUSED_BOOTIES"] != undefined) output(" Given you refused my wish earlier, it is all the more important for you to grasp this.");
 			output(" You have done everything I’ve asked though, and I honor my promises. Meditate on this lesson, and then come see me again, if you are still interested in... learning more.”</i>");
 			
-			output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realise that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mfn("has", "has", "have") +" given you... leading you inexorably on...");
+			output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realize that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mfn("has", "has", "have") +" given you... leading you inexorably on...");
 
 			processTime(20+rand(10));
 			pc.lust(15);
@@ -879,7 +882,7 @@ public function araKeiTheReamening():void
 
 	output("Ara Kei leads you into a large, shaded room, maybe a former office space that has been cleared of its former accoutrements and hung with tall, thin tapestries and banners. When [ara.he] close"+ ara.mfn("s", "s", "") +" the door with a firm click behind you all the noise and bustle from the embassy is hushed down to a quiet drone; it’s as if it’s coming from a distant street outside. The room is dominated by a huge, cylindrical object that hangs from the ceiling all the way down to the floor, so odd-looking it almost breaks the spell of all that lithe, white flesh and plump, gleaming chitin in front of you. It’s like a massive mosquito net, or a drooping chandelier made entirely out of sheets; layer upon layer of white silk flowing downward and strung with an intricate pattern of ropes and pulleys.");
 
-	output("\n\n<i>“I must say, I’m very impressed with the siel’s work,”</i> the quadomme says, leaving you kneeling on the wooden floor to stride around the room, touching and stroking various large, white bundles securely tied to the ceiling. Between [ara.him] and the hanging sheeted object, you don’t immediately realise what they are. <i>“Made exactly to my specifications and then some,”</i> [ara.he] murmur"+ ara.mfn("s", "s", "") +", sinking [ara.his] long fingers into one of the webbed submissives with surgical precision, eliciting a hoarse gasp of pleasure from the uncovered mouth. <i>“If my people are ever uplifted, there is a very rich relationship to be had there. You will stand at the bottom of my bed, Steele.”</i>");
+	output("\n\n<i>“I must say, I’m very impressed with the siel’s work,”</i> the quadomme says, leaving you kneeling on the wooden floor to stride around the room, touching and stroking various large, white bundles securely tied to the ceiling. Between [ara.him] and the hanging sheeted object, you don’t immediately realize what they are. <i>“Made exactly to my specifications and then some,”</i> [ara.he] murmur"+ ara.mfn("s", "s", "") +", sinking [ara.his] long fingers into one of the webbed submissives with surgical precision, eliciting a hoarse gasp of pleasure from the uncovered mouth. <i>“If my people are ever uplifted, there is a very rich relationship to be had there. You will stand at the bottom of my bed, Steele.”</i>");
 
 	output("\n\nTremulously you do so, carefully pulling aside a silk sheet so that you can stand at the centre of the cylinder of hanging sheets and ropes. There’s a light on at the top of it. You try and control your breathing when the clack of four stilettoed feet comes steadily closer and the rays are blotted out by a tall shape behind you, but it’s impossible. Even when you’re not looking directly at [ara.him], the mere presence of Ara Kei makes your heart thump and your skin feel incredibly sensitive, begging to be touched.");
 
@@ -1117,7 +1120,7 @@ public function araKeiTheReameningIII():void
 	output("\n\n<i>“Now then,”</i> says the monstrous bothrioc thoughtfully. You feel yourself being moved around, being brought downwards, dangled from above. How "+ ara.mfn("is", "is", "are") +" [ara.he] doing this? Where does [ara.his] physical strength come from? You don’t know. You don’t really care. You are [ara.his] pawn, the towering "+ ara.mfn("king", "queen", "king-queen") +" of this dark sensual hole you’ve tumbled down, and it doesn’t seem unreasonable that [ara.he] can turn your whole world this way and that however [ara.he] please"+ ara.mfn("s", "s", "") +". You are hoisted upwards again, you hear sticky wet sounds above you - and then finally you are left where you are. Dangling, bound and blind from the ceiling, utterly stuffed with the eggs of the being that’s done this to you. Thin, smooth lips meet yours, and for a moment Ara Kei’s tongue tangles with yours.");
 
 	output("\n\n<i>“You sit there and ruminate for a bit, little one,”</i> [ara.he] husk"+ ara.mfn("s", "s", "") +". <i>“Bask in the feeling of my spawn growing within you. I will be back to set you on your way in due course. Probably.”</i>");
-	if (pc.hasLowerGarment()) output(" You feel something soft being pushed past your [pc.lips], and you emit a muffled whimper when you realise what it is. The taste and smell of your own intense arousal inundates your senses as your [pc.lowerUndergarment] are stuffed into your mouth.");
+	if (pc.hasLowerGarment()) output(" You feel something soft being pushed past your [pc.lips], and you emit a muffled whimper when you realize what it is. The taste and smell of your own intense arousal inundates your senses as your [pc.lowerUndergarment] are stuffed into your mouth.");
 	if (pc.cumQ() <= 1000 && pc.wettestVaginalWetness() <= 5 && pc.milkQ() <= 1000) output(" Four stilettoes clack their way away from you, a door opens and shuts... and then you’re on your own.");
 	else
 	{
@@ -1178,7 +1181,7 @@ public function araKeiTheReameningIV():void
 		output(" back straight, [pc.chest] out and hands behind your back.");
 	}
 
-	output("\n\n<i>“Did we enjoy our reward, little one?”</i> [ara.he] ask"+ ara.mfn("s", "s", "") +", raising a thin, immaculate eyebrow. The quadomme looks exactly the same as [ara.he] always "+ ara.mfn("has", "has", "have") +" - [ara.he] could have just finished delivering a seminar to you, rather than stuffing you utterly full of [ara.his] fertilised eggs and then keeping you bound for half a day, for all the difference it makes to [ara.his] snow-white facade. You have now experienced the depthless sexual despotism which underlies [ara.his] verbosity and apparent calm, however. A lake of tar that you could drown in for weeks, without ever touching its bottom.");
+	output("\n\n<i>“Did we enjoy our reward, little one?”</i> [ara.he] ask"+ ara.mfn("s", "s", "") +", raising a thin, immaculate eyebrow. The quadomme looks exactly the same as [ara.he] always "+ ara.mfn("has", "has", "have") +" - [ara.he] could have just finished delivering a seminar to you, rather than stuffing you utterly full of [ara.his] fertilized eggs and then keeping you bound for half a day, for all the difference it makes to [ara.his] snow-white facade. You have now experienced the depthless sexual despotism which underlies [ara.his] verbosity and apparent calm, however. A lake of tar that you could drown in for weeks, without ever touching its bottom.");
 
 	output("\n\n<i>“Yes, Ara Kei. Thank you,”</i> you manage. You receive a rub");
 	if (pc.hairLength > 0) output(" through your [pc.hair]");
@@ -1243,7 +1246,7 @@ public function araKeiPolishBooties():void
 
 	output("\n\n<i>“Hmm,”</i> replies Ara Kei thoughtfully. [ara.he] withdraw"+ ara.mfn("s", "s", "") +" [ara.his] hand to touch the pit of your throat with a single finger, drawing it slowly up your neck. You shiver with bliss. <i>“No. For two reasons. Firstly, you must learn that worshipping a domme is a reward in and of itself. You can perhaps feel that for yourself now, but still, connecting the absolutely essential tasks of an incubator to getting packed with eggs - no, I will not do your future owner that disservice. Secondly: I can sense that you aren’t quite all the way there yet. Once you are - when I can see the beauty all the way through you, when the thought of disobeying me doesn’t even occur to you, when you will move the stars in order to lick the very tip of my boot - then. I promise you that sincerely, little one.”</i>");
 
-	output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realise that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mfn("has", "has", "have") +" given you... leading you inexorably on...");
+	output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realize that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mfn("has", "has", "have") +" given you... leading you inexorably on...");
 
 	processTime(15);
 	pc.lust(15);

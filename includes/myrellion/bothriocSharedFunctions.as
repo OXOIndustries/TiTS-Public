@@ -15,6 +15,8 @@ public function bothriocAddiction(val:Number = 0):Number
 		if (n < s && s >= 50 && n < 50) flags["BOTHRIOC_ADDICTION"] = 50;
 		// If increasing clamp to 100
 		else if (n > 100) flags["BOTHRIOC_ADDICTION"] = 100;
+		// If decreasing clamp to 0
+		else if (n < 0) flags["BOTHRIOC_ADDICTION"] = 0;
 		// Otherwise set new value
 		else flags["BOTHRIOC_ADDICTION"] = n;
 	}
@@ -483,7 +485,8 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 		if (numFertile > 1) output("s");
 		output(" that you have birthed.");
 		if (bothriocAddiction() < 50) output(" It’s hard not to feel a glow of achievement.");
-		else output(" 50-100: You feel a great glow of achievement and contentment.");
+		// 50-100:
+		else output(" You feel a great glow of achievement and contentment.");
 
 		output("\n\nThe violet shells of the eggs are solid, so it’s hard to tell the state of the infant bothrioc inside. Still - given the time spent incubating away inside of you,");
 		if (numFertile == 1) output(" it");
