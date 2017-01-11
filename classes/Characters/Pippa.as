@@ -49,9 +49,9 @@ package classes.Characters
 			this.tallness = 66;
 			this.thickness = 100;
 			this.tone = 0;
-			this.hairColor = "blonde";
+			this.hairColor = "white";
 			this.scaleColor = "pink";
-			this.furColor = "tawny";
+			this.furColor = "white";
 			this.hairLength = 18;
 			this.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 			this.hairStyle = "pigtails";
@@ -114,7 +114,7 @@ package classes.Characters
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 16;
-			this.bellyRatingRaw = 14;
+			this.bellyRatingRaw = 15;
 			//No dicks here!
 			this.cocks = new Array();
 			//balls
@@ -139,29 +139,26 @@ package classes.Characters
 			this.vaginas[0].hymen = false;
 			this.vaginas[0].clits = 1;
 			this.vaginas[0].wetnessRaw = 4;
-			this.vaginas[0].loosenessRaw = 4;
+			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].bonusCapacity = 300;
 			this.vaginas[0].type = GLOBAL.TYPE_SWINE;
 			this.vaginas[0].addFlag(GLOBAL.FLAG_CORKSCREWED);
 			this.clitLength = 2;
-			//Goo is hyper friendly!
 			this.elasticity = 1;
 			//Fertility is a % out of 100. 
 			this.fertilityRaw = 1.05;
-			this.clitLength = .25;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 30;
+			this.breastRows[0].breastRatingRaw = 29;
 			this.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
-			this.nippleColor = "brownish pink";
+			this.nippleColor = "brown-pink";
 			this.nippleLengthRatio = 1;
-			this.nippleLengthRatio = 1.5;
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
-			this.ass.wetnessRaw = 0;
-			this.ass.loosenessRaw = 4;
+			this.ass.wetnessRaw = 2;
+			this.ass.loosenessRaw = 2;
 			this.ass.bonusCapacity = 150;
 		}
 	}

@@ -283,7 +283,7 @@
 			"Water Queen",
 			"Bothrioc",
 			"Milodan",
-			"Swine",
+			"Swine"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

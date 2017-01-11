@@ -5217,9 +5217,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + "%");
 					output2("\n<b>* Pippa, Dominance:</b> " + pippaDominance() + "%");
 					
-					if (pippaFed(0) > 0) output2("\n<b>* Pippa, Times Fed:</b> " + pippaFed(0));
-					if (pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given:</b> " + pippaStandardMassagesGiven(0));
-					if (pippaSpecialMassagesGiven(0) > 0) output2("\n<b>* Pippa, Nuru Massages Given:</b> " + pippaSpecialMassagesGiven(0));
+					if (pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
+					if (pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
+					if (pippaHappyEndingsGiven(0) > 0) output2("\n<b>* Pippa, Happy Endings Given to You:</b> " + pippaHappyEndingsGiven(0));
+					if (pippaSpecialMassagesGiven(0) > 0) output2("\n<b>* Pippa, Nuru Massages Given to You:</b> " + pippaSpecialMassagesGiven(0));
 					if (pippaSexed(0) > 0) output2("\n<b>* Pippa, Times Sexed:</b> " + pippaSexed(0));
 				}
 				variousCount++;

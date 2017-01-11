@@ -9783,6 +9783,7 @@
 			if (orangeMyrScore() >= 9) race = "orange myr";
 			if (nyreaScore() >= 5) race = "nyrea";
 			if (plantScore() >= 5) race = plantRace();
+			if (pigScore() >= 4) race = "pig-morph";
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			if (race == "human" && hradScore() >= 4) race = "hrad";
@@ -9799,7 +9800,6 @@
 			if (gooScore() >= 8) race = "galotian";
 			// MLP-morphs
 			if (legType == GLOBAL.TYPE_MLP) race = mlpRace();
-			if (pigScore() >= 4) race = "pig-morph";
 			// Amalgamations
 			if (race == "human" && humanScore() < 4) race = "alien hybrid";
 			
@@ -10509,7 +10509,7 @@
 			if (vaginaTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
 			if (tailType == GLOBAL.TYPE_SWINE) counter++;
 			if (thickness >= 80) counter++;
-			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pink", "brown-pink", "red-pink", "white", "black", "grey", "brown")) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pink", "brown-pink", "red-pink", "white", "black", "gray", "brown")) counter++;
 			if (hasSheath()) counter++;
 			
 			return counter;

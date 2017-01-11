@@ -355,7 +355,7 @@ package classes.Items.Transformatives
 				//}
 				
 				//{ Increase thickness
-				if (pc.thickness < 100 && changes < changeLimit && rand(2) == 0)
+				if (pc.thickness < pc.thicknessMax() && changes < changeLimit && rand(2) == 0)
 				{
 					var thicknessIncrease:int = 2 + rand(2);
 					
@@ -398,9 +398,9 @@ package classes.Items.Transformatives
 				//}
 				
 				//{ Change skin tone if normal skin (and maybe change nipples to match)
-				if (!InCollection(pc.skinTone, "pink", "light pink", "brown-pink", "red-pink", "white", "black", "grey", "brown") && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && changes < changeLimit && rand(2) == 0)
+				if (!InCollection(pc.skinTone, "pink", "light pink", "brown-pink", "red-pink", "white", "black", "gray", "brown") && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && changes < changeLimit && rand(2) == 0)
 				{
-					var newSkinTone:String = RandomInCollection("pink", "brown-pink", "red-pink", "white", "black", "grey", "brown");
+					var newSkinTone:String = RandomInCollection("pink", "brown-pink", "red-pink", "white", "black", "gray", "brown");
 					
 					if (pc.skinToneUnlocked(newSkinTone))
 					{
@@ -409,14 +409,21 @@ package classes.Items.Transformatives
 						pc.skinTone = newSkinTone;
 						changes++;
 						
-						if (!InCollection(pc.nippleColor, "brown-pink", "pink", "light pink", "dark grey"))
+						if (!InCollection(pc.nippleColor, "brown-pink", "pink", "light pink", "dark gray"))
 						{
 							var newNippleColor:String = "";
 							
-							if (InCollection(newSkinTone, "pink", "red-pink", "brown")) newNippleColor = "brown-pink";
+							// Some random nipple chances
+							if (InCollection(newSkinTone, "pink", "light pink", "red-pink", "black", "gray", "brown") && rand(2) == 0) newNippleColor = "brown-pink";
+							else if (InCollection(newSkinTone, "light pink", "brown-pink", "red-pink", "white", "black", "gray", "brown") && rand(2) == 0) newNippleColor = "pink";
+							else if (InCollection(newSkinTone, "pink", "brown-pink", "red-pink", "white", "gray", "brown") && rand(2) == 0) newNippleColor = "light pink";
+							else if (InCollection(newSkinTone, "black", "gray", "white") && rand(2) == 0) newNippleColor = "dark gray";
+							else if (InCollection(newSkinTone, "pink", "brown-pink", "red-pink") && rand(2) == 0) newNippleColor = "brown";
+							// Fall back onto default nipple colors if all the random is passed up
+							else if (InCollection(newSkinTone, "pink", "red-pink", "brown")) newNippleColor = "brown-pink";
 							else if (InCollection(newSkinTone, "light pink", "brown-pink")) newNippleColor = "pink";
 							else if (newSkinTone == "white") newNippleColor = "light pink";
-							else if (InCollection(newSkinTone, "black", "grey")) newNippleColor = "dark grey";
+							else if (InCollection(newSkinTone, "black", "gray")) newNippleColor = "dark gray";
 							
 							if (pc.nippleColorUnlocked(newNippleColor))
 							{
