@@ -285,7 +285,7 @@ package classes.GameData
 			
 			if(!pc.hasShields() || pc.shields() <= 0)
 			{
-				if(pc.hasCombatDrone(true) && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER))
+				if(pc.hasCombatDrone(true) && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER) && !pc.hasStatusEffect("Varmint Buddy"))
 				{
 					output("\n\n<b>Without your shields to sustain it, your drone collapses. It won’t be doing any more damage until you bring your shields back up!</b>");
 					pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
@@ -406,7 +406,7 @@ package classes.GameData
 				pc.shields(Math.round(pc.shieldsMax()/4));
 				pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 			}
-			
+
 			if (target.hasStatusEffect("Riposting")) target.removeStatusEffect("Riposting");
 			if (target.hasStatusEffect("Bloodthirsted")) target.removeStatusEffect("Bloodthirsted");
 	
@@ -535,7 +535,7 @@ package classes.GameData
 				}
 				applyDamage(damageRand(new TypeCollection( { kinetic: target.statusEffectv1("Bleeding") * target.statusEffectv3("Bleeding") } ), 15), null, target);
 			}
-	
+		
 			if (target.hasStatusEffect("Staggered"))
 			{
 				if (target.statusEffectv1("Staggered"))
@@ -1034,7 +1034,6 @@ package classes.GameData
 					
 					target.aimMod += 5
 					target.reflexesMod += 5
-					
 				}
 			}
 		}
@@ -1163,6 +1162,19 @@ package classes.GameData
 				return;
 			}
 			
+			//Combat Notes :
+			//PC has status Strangely Warm or Blood Fevered :
+			if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
+			{
+				if(pc.lust() < pc.lustMax())
+				{
+					output("\n\nOh, something smells <i>divine</i>... like pure sex in vapor form. It makes your [pc.asshole] clench, hungry for cock. <b>Looks like you’re not gonna be able to ");
+					if(pc.canFly()) output("fly");
+					else output("weasel");
+					output(" your way out of this encounter!</b>");
+				}
+			}
+
 			// attack
 			if (hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso"))
 			{
@@ -1360,6 +1372,14 @@ package classes.GameData
 			}
 			else if (isFleeDisabled()) {
 				output("<b>You cannot escape from this fight!</b>");
+				processCombat();
+			}
+			else if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
+			{
+				output("<b>");
+				if(pc.hasStatusEffect("Flushed")) output("The warmth in your lower body");
+				else output("The Fuck Fever");
+				output(" won’t let you get away from a potential dicking !</b>");
 				processCombat();
 			}
 			else if (kGAMECLASS.debug)
@@ -1664,7 +1684,6 @@ package classes.GameData
 				// Failure to escape
 				if (target.hasStatusEffect("Mimbrane Smother"))
 				{
-					// lust tick
 					target.lust(10 + target.libido()/10);
 
 					//{fail to escape 1} 
@@ -1701,6 +1720,10 @@ package classes.GameData
 					{
 						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple("Escape Artist");
+						else if (hasEnemyOfClass(BothriocPidemme))
+						{
+							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. Shooting the bothrioc atop you a winning smile, you wriggle your way out from under them back between their legs, squirming out of your bindings as you take to your feet.");
+						}
 						else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
 						if(panicJack)
 						{
@@ -1730,6 +1753,10 @@ package classes.GameData
 							output("You manage to tear yourself out of the goo’s grasp, wrenching your limbs free one by one. She squeals as you pop yourself out of her, eyes crossing as her whole body quakes with the aftershocks.");
 							output("\n\n<i>“Aww, why do you have to be that way?”</i> she pouts, wiggling away from you.");
 						}
+						else if (hasEnemyOfClass(BothriocPidemme))
+						{
+							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the bolo.");
+						}
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
 						{
@@ -1748,6 +1775,10 @@ package classes.GameData
 					else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
 					else if (hasEnemyOfClass(GrayPrime) && target is PlayerCharacter) kGAMECLASS.grayPrimeFailEscape();
 					else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("Try as you might, struggling against the heavy ropes of the nyrea huntresses net, you just can’t find a way out of the net that has you restrained.");
+					else if (hasEnemyOfClass(BothriocPidemme))
+					{
+						output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. The bindings loosen a little, but your freedom is still out of reach... for now.");
+					}
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 					if(panicJack)
@@ -1801,6 +1832,7 @@ package classes.GameData
 					if(pc.hasStatusEffect("Varmint Buddy")) addButton(bOff, "Varmint", selectDroneTarget, undefined, "Varmint, Go!", ("Have your varmint target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.hasTamWolf()) addButton(bOff, "TamWolf", selectDroneTarget, undefined, "Tam-wolf, Go!", ("Have Tam-wolf target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory is SiegwulfeItem) addButton(bOff, "Siegwulfe", selectDroneTarget, undefined, "Siegwulfe, Go!", ("Have [wulfe.name] target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addButton(bOff, pc.accessory.shortName, selectDroneTarget, undefined, "Accessory Target", ("Have your " + pc.accessory.longName + " target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else addButton(bOff, "Drone Target", selectDroneTarget, undefined, "Drone Target", ("Have your drone target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 				}
 				else
@@ -1808,6 +1840,7 @@ package classes.GameData
 					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate with your varmint right now!");
 					else if(pc.hasTamWolf()) addDisabledButton(bOff, "TamWolf", "Tam-wolf, Go!", "You can’t communicate with Tam-wolf right now!");
 					else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You can’t communicate with [wulfe.name] right now!");
+					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addDisabledButton(bOff, pc.accessory.shortName, "Accessory Target", ("You can’t access your " + pc.accessory.longName + " right now!"));
 					else addDisabledButton(bOff, "Drone Target", "Drone Target", "You can’t access your combat drone right now!");
 				}
 				bOff++;
@@ -3145,7 +3178,7 @@ package classes.GameData
 					msg = "\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false);
 					if(target.isPlural) msg += " don’t";
 					else msg += " doesn’t";
-					msg += " seem to care to care for your erotically-charged display.</b>";
+					msg += " seem to care for your erotically-charged display.</b>";
 					output(msg);
 				}
 				else if(teaseType == "SQUIRT") 
@@ -4157,7 +4190,7 @@ package classes.GameData
 		private function doCombatDrone(droneUser:Creature):void
 		{
 			//TAMWULF DOESNT NEED POWAAAAAHHHHH
-			if (droneUser.hasCombatDrone(true))
+			if (droneUser.hasCombatDrone(true) && !droneUser.hasStatusEffect("Varmint Buddy"))
 			{
 				if(((droneUser.hasShields() && droneUser.shields() > 0) || droneUser.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER)) && droneUser.hasStatusEffect("Drone Disabled"))
 				{
@@ -4492,7 +4525,16 @@ package classes.GameData
 			}
 			return false;
 		}
-		
+
+		public function hasDickedEnemy():Boolean
+		{
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				if (_hostiles[i].hasCock()) return true;
+			}
+			return false;
+		}
+
 		public function hasFriendlyOfClass(classT:Class):Boolean
 		{
 			for (var i:int = 0; i < _friendlies.length; i++)

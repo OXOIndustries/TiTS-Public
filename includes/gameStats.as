@@ -574,6 +574,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "PsychicTentacles": output2(" Psychic Tentacle Beast"); break;
 						case "SydianPregnancy": output2(" Sydian"); break;
 						case "SeraSpawnPregnancy": output2(" Sera"); break;
+						case "MilodanPregnancy": output2(" Milodan"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -647,6 +648,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["PC_SELF_SUCKED_STANDARD"] != undefined) selfSuck += flags["PC_SELF_SUCKED_STANDARD"];
 		if(pc.hasPerk("Auto-Autofellatio")) selfSuck += pc.perkv1("Auto-Autofellatio");
 		if(selfSuck > 0) output2("\n<b>* Masturbation, Times Autofellatio:</b> " + selfSuck);
+		if(flags["HL_STRAPON_FAP_ADJUSTABLE"] != undefined) output2("\n<b>* Masturbation, Times Used Upgraded Hardlight Strap-On:</b> " + flags["HL_STRAPON_FAP_ADJUSTABLE"]);
 	}
 	
 	// Other
@@ -1833,6 +1835,16 @@ public function displayQuestLog(showID:String = "All"):void
 				if(siliconeTotal >= 4) output2(", Completed");
 				sideCount++;
 			}
+			// Semen Bottling Facility
+			if(flags["NT_BUILD_BOTTLE_PLANT"] > 0)
+			{
+				output2("\n<b><u>Semen Milking Factory</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["NT_BUILD_BOTTLE_PLANT"] >= 3) output2(" Fully built, Expanded, Employed as manager, Completed");
+				else if(flags["NT_BUILD_BOTTLE_PLANT"] >= 2) output2(" Half-way built");
+				else output2(" Partially built");
+				sideCount++;
+			}
 		}
 
 		if(showID == "Mhen'ga" || showID == "All")
@@ -2105,6 +2117,22 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b>");
 				if(9999 == 0) output2(" ???");
 				else output2(" <i>In progress... STILL IN DEVELOPMENT</i>");
+				sideCount++;
+			}
+			// Bothrioc Addiction
+			if(flags["BOTHRIOC_ADDICTION"] != undefined && flags["BOTHRIOC_ADDICTION"] != 0)
+			{
+				output2("\n<b><u>Bothrioc Oil</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(bothriocAddiction() >= 100) output2(" Completely addicted to it");
+				else if(bothriocAddiction() >= 50)
+				{
+					output2(" Permanently aroused by it");
+					if(bothriocAddiction() >= 75) output2(", Accepting of it");
+				}
+				else if(bothriocAddiction() >= 25) output2(" Curious about it");
+				else output2(" Exposed to it");
+				output2("\n<b>* Bothrioc Hormone Level:</b> " + bothriocAddiction() + " %");
 				sideCount++;
 			}
 			// EmmyQuest
@@ -3660,17 +3688,18 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Betsy and Victoria:</b> Met them");
 					if(flags["SHOWER_SANDWICH"] != undefined) output2("\n<b>* Betsy and Victoria, Times Had Shower Sex With:</b> " + flags["SHOWER_SANDWICH"]);
 				}
-				if(flags["MET_LOLA"])
+				if(flags["MET_LOLA"] != undefined)
 				{
 					output2("\n<b>* Lola:</b> Met her");
 					if(flags["SEXED_LOLA"] != undefined) output2("\n<b>* Lola, Times Sexed:</b> " + flags["SEXED_LOLA"]);
 				}
-				if(flags["MET_SIMONE"])
+				if(flags["MET_SIMONE"] != undefined)
 				{
 					output2("\n<b>* Simone:</b> Met her");
 					if(StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins") > 0) output2("\n<b>* Simone, Weight Lift Challenge, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/simone challenge wins") + "/" + StatTracking.getStat("contests/simone challenge losses") + ", of " + (StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins")) + " games");
 					if(flags["SEXED_SIMONE"] != undefined) output2("\n<b>* Simone, Times Sexed:</b> " + flags["SEXED_SIMONE"]);
 				}
+				if(flags["WATCHED_LEE"] != undefined && flags["WATCHED_NICO"] != undefined) output2("\n<b>* Lee and Nico:</b> Watched them fuck");
 				variousCount++;
 			}
 		}
@@ -4348,9 +4377,23 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(showID == "Myrellion" || showID == "All")
 		{
 			// Embassy
-			if(flags["MET_JURO"] != undefined || flags["MET_LYRALLA"] != undefined || flags["MET_NEHZARA"] != undefined)
+			if(flags["MET_ARAKEI"] != undefined || flags["MET_CHARLES"] != undefined || flags["MET_JURO"] != undefined || flags["MET_LYRALLA"] != undefined || flags["MET_NEHZARA"] != undefined)
 			{
 				output2("\n<b><u>The Embassy</u></b>");
+				// Ara Kei
+				if(flags["MET_ARAKEI"] != undefined)
+				{
+					output2("\n<b>* Ara Kei:</b> Met [ara.him]");
+					if(flags["ARAKEI_POLISHED_BOOTIES"] != undefined) output2(", Prostrated yourself to [ara.him]");
+					else if(flags["ARAKEI_REFUSED_BOOTIES"] != undefined) output2(", Refused to prostrate yourself to [ara.him]");
+				}
+				// Charles
+				if(flags["MET_CHARLES"] != undefined)
+				{
+					output2("\n<b>* Charles:</b> Met him");
+					if(flags["CHARLES_DISABLED_FIX"] != undefined) output2(", You no longer want Curdsonwhey from him");
+					else if(flags["CHARLES_TALKED_FIX"] != undefined) output2(", Spoke of bothrioc addiction fix");
+				}
 				// Juro
 				if(flags["MET_JURO"] != undefined) output2("\n<b>* Juro:</b> Met him");
 				// Lyralla
@@ -4499,6 +4542,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["LILIANA_ARMS"] == 2) output2(" Regenerated");
 						if(flags["LILIANA_ARMS"] > 2) output2(" <i>Unknown</i>");
 					}
+					if(flags["LILIANA_HOLODONGED"] != undefined) output2("\n<b>Liliana, Times Fucked Her With Hardlight Strap-On:</b> " + flags["LILIANA_HOLODONGED"]);
 				}
 				variousCount++;
 			}
@@ -4765,6 +4809,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2("\n<b><u>Bath House</u></b>");
 				output2("\n<b>* Matron Oserre:</b> Met her");
 				if(flags["OSERRE_BATHED"] != undefined) output2(", Bathed with her");
+				if(flags["OSERRE_HARDLIGHTED"] != undefined) output2("\n<b>Matron Oserre, Times Fucked Her With Hardlight Strap-On:</b> " + flags["OSERRE_HARDLIGHTED"]);
 				variousCount++;
 			}
 			// Renvraaa
@@ -5054,9 +5099,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Deep Caverns
-			if(flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined || flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined )
+			if(flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] != undefined || flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined || flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined )
 			{
 				output2("\n<b><u>The Deep Caverns</u></b>");
+				if(flags["BOTHRIOC_PIDEMME_ENCOUNTERED"] != undefined)
+				{
+					output2("\n<b>* Bothrioc Pidemme, Times Encountered:</b> " + flags["BOTHRIOC_PIDEMME_ENCOUNTERED"]);
+					if(flags["BOTHRIOC_PIDEMME_FUCKED"] != undefined) output2("\n<b>* Bothrioc Pidemme, Times Sexed:</b> " + flags["BOTHRIOC_PIDEMME_FUCKED"]);
+				}
 				if(flags["CRYSTALGOO_T1_ENCOUNTERS"] != undefined) output2("\n<b>* Ganrael Ambusher, Times Encountered:</b> " + flags["CRYSTALGOO_T1_ENCOUNTERS"]);
 				if(flags["CRYSTALGOO_T2_ENCOUNTERS"] != undefined) output2("\n<b>* Ganrael Deadeye, Times Encountered:</b> " + flags["CRYSTALGOO_T2_ENCOUNTERS"]);
 				if(flags["MET_GOO_KNIGHT"] != undefined) output2("\n<b>* Ganraen Knight, Times Encountered:</b> " + flags["MET_GOO_KNIGHT"]);
@@ -5248,10 +5298,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Ice Plains
-			if(flags["MET_FEMKORGONNE"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
+			if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
 				if(flags["MET_FEMKORGONNE"] != undefined) output2("\n<b>* Female Korgonne, Times Encountered:</b> " + flags["MET_FEMKORGONNE"]);
+				if(flags["MET_MILODAN_MALE"] != undefined) output2("\n<b>* Male Milodan, Times Encountered:</b> " + flags["MET_MILODAN_MALE"]);
 				if(flags["9999"] != undefined) output2("\n<b>* Stormguard Lancer, Times Encountered:</b> " + flags["9999"]);
 				// Abandoned Outpost
 				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");
@@ -5261,9 +5312,13 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_FROSTWYRM"] != undefined)
 			{
 				output2("\n<b><u>Frostwyrm</u></b>");
-				if(flags["FROSTWYRMSLAIN"] != undefined) output2("\n* You have slain the Frostwyrm!");
-				if(flags["FROSTWYRMWARNING"] != undefined) output2("\n* You were defeated by the Frostwyrm and warned never to return.");			
 				if(flags["MET_FROSTWYRM"] != undefined) output2("\n<b>* Frostwyrm, Times Encountered:</b> " + flags["MET_FROSTWYRM"]);
+				if(flags["FROSTWYRMWARNING"] != undefined || flags["FROSTWYRMSLAIN"] != undefined)
+				{
+					output2("\n<b>* Frostwyrm, Status:</b>");
+					if(flags["FROSTWYRMWARNING"] != undefined) output2(" You were defeated by the Frostwyrm and warned never to return.");
+					if(flags["FROSTWYRMSLAIN"] != undefined) output2(" You have slain the Frostwyrm!");
+				}
 				variousCount++;
 			}
 			
@@ -5315,6 +5370,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(" Active");
 					if(flags["KIRO_MET_KALLY"] >= 4) output2(", Met her with Kiro");
 					if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) output2(", Know of her secret ingredient");
+					if(kiroKallyThreesomeUnlockPoints() > 0) output2("\n<b>* Kally, Times Seen Her Sexually Interested in Kiro:</b> " + kiroKallyThreesomeUnlockPoints());
 					if(drinkFromTapKally() > 0)
 					{
 						output2("\n<b>* Kally, Times Sucked Her Cock:</b> " + drinkFromTapKally());
@@ -5334,6 +5390,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						}
 					}
 					if(flags["KALLY_BROED"] != undefined) output2("\n<b>* Kally, Times Licked Her Out:</b> " + flags["KALLY_BROED"]);
+					if(flags["KIRO_KALLY_THREESOMES"] != undefined) output2("\n<b>* Kally, Times Sexed in Threesome with Kiro:</b> " + flags["KIRO_KALLY_THREESOMES"]);
 				}
 				variousCount++;
 			}

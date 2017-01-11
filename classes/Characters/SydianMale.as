@@ -140,7 +140,7 @@
 			this.cumQualityRaw = 3;
 			this.cumType = GLOBAL.FLUID_TYPE_SYDIAN_CUM;
 			this.ballSizeRaw = 3;
-			this.ballFullness = 1;
+			this.ballFullness = 50;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 100;
 			//Scales from 0 (never produce more) to infinity.

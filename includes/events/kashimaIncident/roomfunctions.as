@@ -116,7 +116,7 @@ public function kiGoUseCargoLift():void
 	
 	output("\n\nSomething else falls down amid the rain of white, smashing down onto the deck just beside you. You stumble out of the way as what looks like some kind of heavy grating clatters away in a shower of sparks and fluids. It bounces straight into one of the Nova troopers, barreling him down to the ground with a nasty crunch of buckling armor plates.");
 	
-	output("\n\nSomething screams above you, drawing all eyes from the wounded man up to the shadowy shaft. Your first thought is that it’s the screech of straining machinery - a break on the elevator trying desperately to grind to a halt. But then it happens again, reverberating through the shaft from above. Then the rain of white stops, completely cut off the moment the screeching stops.");
+	output("\n\nSomething screams above you, drawing all eyes from the wounded man up to the shadowy shaft. Your first thought is that it’s the screech of straining machinery - a brake on the elevator trying desperately to grind to a halt. But then it happens again, reverberating through the shaft from above. Then the rain of white stops, completely cut off the moment the screeching stops.");
 	
 	output("\n\n<i>“That... that wasn’t human.”</i> one of the mercenaries next to you breathes, shouldering his laser rifle and shining its flashlight upwards, piercing the darkness.");
 	
@@ -371,6 +371,7 @@ public function kiMedbayVent():void
 {
 	currentLocation = "KI-H16";
 	generateLocation(currentLocation);
+	processTime(3);
 	mainGameMenu();
 }
 
@@ -378,6 +379,7 @@ public function kiEngineeringGoAccessRoom():void
 {
 	currentLocation = "KI-EngineeringVent";
 	generateLocation(currentLocation);
+	processTime(3);
 	mainGameMenu();
 }
 
@@ -402,6 +404,7 @@ public function kiOfficersDeckVent():void
 {
 	currentLocation = "KI-OfficersAccessRoom";
 	generateLocation(currentLocation);
+	processTime(3);
 	mainGameMenu();
 }
 
@@ -877,7 +880,7 @@ public function kiBridgeContinued():void
 
 	output("The door’s barely managed to slide open before the erstwhile silence is sundered by an ear-piercing scream of terror from inside. The Chief curses and shoulder-checks the door aside, rushing in before you’ve had time to blink.");
 
-	output("\n\nBeyond the doors, the bridge is illuminated by flickered red lights, casting long shadows across the abandoned deck. Sparks shower from wrent wires hanging from shattered ceiling plates and damaged consoles, giving you enough momentary flashes of brightness to resolve the image of the screaming woman on her back, scrambling back away from a towering human man stomping towards her. Your companion bellows for them both to freeze, and the man spins around with a savage howl. His eyes have gone a solid pink, and his hair is gone, replaced by throbbing, pulsating tentacles growing wildly from his dusky scalp. Four bigger, arm-thick tendrils hang down from his crotch through what little remains of his pants, and another pair flail out behind him, protruding from his back.");
+	output("\n\nBeyond the doors, the bridge is illuminated by flickering red lights, casting long shadows across the abandoned deck. Sparks shower from wrent wires hanging from shattered ceiling plates and damaged consoles, giving you enough momentary flashes of brightness to resolve the image of the screaming woman on her back, scrambling back away from a towering human man stomping towards her. Your companion bellows for them both to freeze, and the man spins around with a savage howl. His eyes have gone a solid pink, and his hair is gone, replaced by throbbing, pulsating tentacles growing wildly from his dusky scalp. Four bigger, arm-thick tendrils hang down from his crotch through what little remains of his pants, and another pair flail out behind him, protruding from his back.");
 
 	output("\n\nIn a brief moment of bright light, you manage to see the name tag somehow still clipped to his chest: Captain Holmes.");
 	if (silly || pc.isMisc()) output(" Talk about going down with the ship...");
@@ -900,7 +903,7 @@ public function kiBridgeContinued():void
 	CombatManager.victoryScene(kiHolmesVictory);
 	CombatManager.lossScene(kiHolmesLoss);
 
-	CombatManager.encounterText("You’re fighting Captain Holmes!\n\nOr what’s become of him, anyway. There doesn’t appear to be much of the man left now: just a dark-skinned husk and a long, scraggly beard to hint at his former appearance. The creature he’s become is a pink-eyed tentacle abomination, with a head of writhing tentacle hair, four dangling tenta-cocks, and a pair of limb-like appendages growing from his back. The tattered remnants of a Steele Tech jumpsuit hang loosely from his muscular body, its yellow stripes catching the light in ways that make him seem to glow.\n\nThe Captain’s gone wild with lust, thrashing about and trying to grab at you and Chief Nyekkar. Pink-hued jizz drools from the tips of every tentacle, spurting onto the deck in wild arcs of viscous cream that surrounds you in ever-present musk.");
+	CombatManager.encounterText("You’re fighting Captain Holmes!\n\nOr what’s become of him, anyway. There doesn’t appear to be much of the man left now: just a dark-skinned husk and a long, scraggly beard to hint at his former appearance. The creature he’s become is a pink-eyed tentacle abomination, with a head of writhing tentacle hair, four dangling tenta-cocks, and a pair of limb-like appendages growing from his back. The tattered remnants of a Steele Tech jumpsuit hang loosely from his muscular body, its yellow stripes catching the light in ways that make him seem to glow.\n\nThe Captain’s gone wild with lust, thrashing about and trying to grab at you and Chief Neykkar. Pink-hued jizz drools from the tips of every tentacle, spurting onto the deck in wild arcs of viscous cream that surrounds you in ever-present musk.");
 
 	
 	clearMenu();
@@ -1058,7 +1061,7 @@ public function kiHolmesVictory():void
 	
 	output("\n\nAt least not with the Chief in tow. Something tells you a big leithan girl’s not going to be fitting in the emergency Geoffries tubes any time soon.");
 	
-	output("\n\nAlongside the lockdown and status displays, you soon find that there’s holo-log paused mid-recording on the captain’s terminal. He really was right in the middle of things when... whatever happened. Maybe now you can figure out what’s going on!");
+	output("\n\nAlongside the lockdown and status displays, you soon find that there’s a holo-log paused mid-recording on the captain’s terminal. He really was right in the middle of things when... whatever happened. Maybe now you can figure out what’s going on!");
 	
 	output("\n\nYou press the replay button");
 	if (pc.isMisc()) output(" and swing yourself into the captain’s seat.");
@@ -1138,6 +1141,11 @@ public function kiL18RoomFunction():Boolean
 		kiRipChief();
 		return true;
 	}
+	
+	if(flags["CHIEF_NEYKKAR_WITH_PC"] == 2)
+	{
+		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
+	}
 
 	return commandDeckRandomEncounter();
 }
@@ -1153,7 +1161,7 @@ public function kiRipChief():void
 	
 	output("\n\nThere’s too many to fight, so you take the Chief’s advice and leg it.");
 	
-	output("\n\nThe horde’s right on your heels, moving with inhuman speed and lashing at your back with their monstrous appendages. Chief’s clawed legs clatter on the deck beside, you, propelling her forward. For a moment, she overtakes you, charging ahead... until suddenly she screams, and goes screeching back. You turn and see that two of the mutant crewmen have managed to grab her by the tail, pulling her back just long enough for the rest of the horde to jump her. A dozen mutants are grabbing at Neykkar’s ass and legs by the time you skid to a halt, training your [pc.rangedWeapon] at them.");
+	output("\n\nThe horde’s right on your heels, moving with inhuman speed and lashing at your back with their monstrous appendages. Chief’s clawed legs clatter on the deck beside you, propelling her forward. For a moment, she overtakes you, charging ahead... until suddenly she screams, and goes screeching back. You turn and see that two of the mutant crewmen have managed to grab her by the tail, pulling her back just long enough for the rest of the horde to jump her. A dozen mutants are grabbing at Neykkar’s ass and legs by the time you skid to a halt, training your [pc.rangedWeapon] at them.");
 	
 	output("\n\nAll thirty or forty of them. Fuck.");
 	
@@ -1194,7 +1202,7 @@ public function kiMeetingVanderbilt():void
 	clearOutput();
 	author("Savin");
 
-	output("You skid to a stop at the doors of the medical bay, sealed shut and bathed in shadows brought to life by the flickering emergency lights. A glance over our shoulder shows dozens of mutant crewmen rushing towards you, eager to force you to join in Chief Neykkar and the other Nova troops’ fates. Shit. You grab the emergency panel, trying in vain to force the door open. It stands stoically shut, refusing to budge even as you resort to pounding on it.");
+	output("You skid to a stop at the doors of the medical bay, sealed shut and bathed in shadows brought to life by the flickering emergency lights. A glance over your shoulder shows dozens of mutant crewmen rushing towards you, eager to force you to join in Chief Neykkar and the other Nova troops’ fates. Shit. You grab the emergency panel, trying in vain to force the door open. It stands stoically shut, refusing to budge even as you resort to pounding on it.");
 
 	output("\n\nThe creatures surge closer, ready to steamroll you and fuck you into oblivion!");
 
@@ -1355,7 +1363,7 @@ public function kiDoctorDestruct():void
 	showBust("ELENORA");
 	showName("DOCTOR\nVANDERBILT");
 
-	output("<i>“W-what?”</i> Elenora gasps as you explain your intentions. <i>“No, we can’t... I mean, I could, but all those people. They’re still alive, even if something hurting them. Changing them. We can’t kill everyone aboard the </i>Kashima<i>. That’s monstrous!”</i>");
+	output("<i>“W-what?”</i> Elenora gasps as you explain your intentions. <i>“No, we can’t... I mean, I could, but all those people. They’re still alive, even if something’s hurting them. Changing them. We can’t kill everyone aboard the </i>Kashima<i>. That’s monstrous!”</i>");
 	
 	output("\n\n<i>“More monstrous than letting this spread?”</i> you ask.");
 	
@@ -1363,7 +1371,7 @@ public function kiDoctorDestruct():void
 	
 	output("\n\n<i>“And if we can’t?”</i> you prompt.");
 	
-	output("\n\n<i>“Then...”</i> she sighs, wrapping her arms around herself. <i>“If there’s no way to save the crew, we won’t have much choice, will we? I don’t think the company’s going to send more help, are they? No, not quick enough to save us. I... no, I’m not going to be responsble for that, [pc.name]. No way.”</i>");
+	output("\n\n<i>“Then...”</i> she sighs, wrapping her arms around herself. <i>“If there’s no way to save the crew, we won’t have much choice, will we? I don’t think the company’s going to send more help, are they? No, not quick enough to save us. I... no, I’m not going to be responsible for that, [pc.name]. No way.”</i>");
 	
 	output("\n\nYou cross you arms, looking the doctor up and down. She’s not going to do the deed unless there’s no choice left to her. Probably smart, but you tell yourself you’ll have to be ready to force the issue if the time comes. You cannot risk this infection spreading to Steele Tech itself");
 	if (!pc.isAss()) output(", much less the planet below");

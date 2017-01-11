@@ -6,21 +6,21 @@ public function kressiaSurvivalShopEntryFunc():Boolean
 	output("\n\n");
 	if (flags["MET_ANARRIE"] == undefined) output("A red myr woman in a long coat");
 	else output("Anarrie");
-	output(" is sitting behind the counter, alternating between helping customers who're interested in some of the shop's more militant wares and reading passages from an oversized, leather - bound tome whenever she can catch a moment's respite.");
+	output(" is sitting behind the counter, alternating between helping customers who’re interested in some of the shop’s more militant wares and reading passages from an oversized, leather - bound tome whenever she can catch a moment’s respite.");
 	if (flags["MET_ANARRIE"] != undefined)
 	{
 		if (flags["FUCKED_ANARRIE"] == undefined) output(" Seeing you browsing through the shop, Anarrie gives you a friendly nod.");
-		else output(" Seeing you looking her way, Anarrie's cheeks flush with a hint of crimson. She gives you a slight smile and a nod.");
+		else output(" Seeing you looking her way, Anarrie’s cheeks flush with a hint of crimson. She gives you a slight smile and a nod.");
 	}
 
 	output("\n\n");
 	if (flags["MET_SHIARE"] == undefined) output("An extraordinarily busty gold myr girl");
 	else output("Shiare");
-	output(" is working behind the register, usually handling small silver and gold coins unless the occasional offworlder wanders through, forcing her to switch over to an oddly out-of-place electronic chit-reader sitting to her side. With every motion, the buxom ant's enormous rack jiggles and bounces, barely constrained by her simple tank-top and the straining bra underneath.");
+	output(" is working behind the register, usually handling small silver and gold coins unless the occasional offworlder wanders through, forcing her to switch over to an oddly out-of-place electronic chit-reader sitting to her side. With every motion, the buxom ant’s enormous rack jiggles and bounces, barely constrained by her simple tank-top and the straining bra underneath.");
 	if (flags["MET_SHIARE"] != undefined)
 	{
 		if (flags["FUCKED_SHIARE"] == undefined) output(" Shiare flashes you an oddly flirtatious wink while she works. The longer you look her way, the more her movements seem to favor making her oversized bust move suggestively.");
-		else output(" Catching your eye, the busty ant-babe wiggles her hips and curls one of her sets of arms under her bust to heft it up for your inspection. Her saucer-like nipples press against her clothing, tenting out her tank top in the most inviting way. Shiare gives you a sultry wink as your gaze wanders over all she's got on display for you.");
+		else output(" Catching your eye, the busty ant-babe wiggles her hips and curls one of her sets of arms under her bust to heft it up for your inspection. Her saucer-like nipples press against her clothing, tenting out her tank top in the most inviting way. Shiare gives you a sultry wink as your gaze wanders over all she’s got on display for you.");
 	}
 
 	addButton(0, "Ant Girls", kressiaSurvivalShopAntGirls);
@@ -227,9 +227,10 @@ public function kressiaSurvivalShopTalkVenomVials():void
 public function discountFlirtsFromPolyants():void
 {
 	clearOutput();
+	kressiaSurvivalShopHeader();
 	author("Gardeford");
 	if(silly) author("Gardenforks");
-	kressiaSurvivalShopHeader();
+	
 	if(flags["DISCOUNT_SEXED_SURVIVAL_SHOP"] == undefined)
 	{
 		output("<i>“What would you say to showing me some of your more, </i>personal<i> equipment?”</i> you ask, leaning over the counter and giving Anarrie a coy smile. She raises an eyebrow, regarding you with a not insignificant amount of confusion.");
@@ -241,7 +242,7 @@ public function discountFlirtsFromPolyants():void
 		output("\n\n<i>“");
 		if(pc.isBimbo()) output("Oh definitely! I wouldn’t want her to, like, be uncomfortable");
 		else if(pc.isNice()) output("Sure! Anything that would make her more comfortable");
-		else if(pc.isMischievous()) output("I suppose, if you don't mind spoilers");
+		else if(pc.isMischievous()) output("I suppose, if you don’t mind spoilers");
 		else output("Works for me");
 		output(",”</i> you reply in earnest. A familiar smile returns to Shiare’s face upon hearing your response.");
 
@@ -297,9 +298,9 @@ public function survivalShopSexDiscount():void
 public function milkingShiareCuckoldBullshit():void
 {
 	clearOutput();
+	kressiaSurvivalShopHeader(true);
 	author("Gardeford");
 	if(silly) author("Gerbil Ford");
-	kressiaSurvivalShopHeader(true);
 
 	var x:int = pc.cockThatFits(chars["ANARRIE"].vaginalCapacity(0));
 	
@@ -430,9 +431,10 @@ public function milkingShiareCuckoldBullshit():void
 public function anarrieAmbush():void
 {
 	clearOutput();
+	kressiaSurvivalShopHeader(true);
 	author("Gardeford");
 	if(silly) author("Gargledorks");
-	kressiaSurvivalShopHeader(true);
+	
 	output("You ask Shiare how she feels about turning the tables on Anarrie, since she doesn’t seem like the type to enjoy submission. The gilded woman raises an eyebrow, looking you over as she thinks about your proposal.");
 	output("\n\n<i>“Firstly, I can enjoy a lot of things if it means Ana is happy, but... I suppose she has been pretty stressed lately. I think she could use a little relaxation,”</i> she agrees, crossing both pairs of arms over her chest.");
 	output("\n\n<i>“She’ll be waiting for us back there, butt naked and naive, so it shouldn’t be too tough to get the jump on her.”</i> The lamplight reflects in her dark eyes as quite easily imaginable fantasies run through her head. Snapping out of her thoughts, she pulls you toward the back room. Shiare bounces on her heels, all but humming as you approach the bedroom. Anarrie looks up as you enter, body bared atop a comfy leather chair.");
@@ -532,6 +534,7 @@ public function itsMineALLMINEYOUCANTHAVEIT():void
 	kressiaSurvivalShopHeader();
 	author("Gardeford");
 	if(silly) author("Gartenfjord");
+	
 	output("<i>“Sorry, but I’d rather not. It’s attached to my undergarments, and I’d rather not share them,”</i> you reply. You’d rather be the one using the strapon, and seeing it on someone else doesn’t really interest you. Shiare looks disappointed, but nods.");
 	output("\n\n<i>“That’s ok, I thought you might not want to, but hey, I had to ask. Maybe I can hook myself up with one from a trader. You wanna do anything else in the meantime?”</i>");
 	//(back to sex menu, voyeur scene removed)

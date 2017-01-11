@@ -101,7 +101,7 @@
 					kGAMECLASS.output(", drooling a sticky [pc.cumColor] river from its engorged slit.");
 					if(pc.balls > 0) kGAMECLASS.output(" Just over your [pc.balls]");
 					else kGAMECLASS.output(" Just ahead of the base");
-					kGAMECLASS.output(", your member's flesh engorges exponentially, swelling into a thick, cum-engorged knot. With a cry, you fall to the ground as the new doggy-cock discharges its heady load, shooting a thick rope of [pc.cum] through the swollen knot and onto the ground.");
+					kGAMECLASS.output(", your member’s flesh engorges exponentially, swelling into a thick, cum-engorged knot. With a cry, you fall to the ground as the new doggy-cock discharges its heady load, shooting a thick rope of [pc.cum] through the swollen knot and onto the ground.");
 					kGAMECLASS.output("\n\nYou spend a few moments collecting yourself, cleaning the spunk off your new puppy pecker and adjusting to the heft and weight of the knot.");
 					pc.lust(20+rand(20));
 					pc.libido(2);
@@ -146,7 +146,7 @@
 			else x = -1;
 			if(changes < changeLimit && x >= 0 && rand(3) == 0)
 			{
-				kGAMECLASS.output("\n\nYou feel something swelling on your [pc.cock " + x + "]'s base, straining against your sensitive flesh. Alarmed, you ");
+				kGAMECLASS.output("\n\nYou feel something swelling on your [pc.cock " + x + "]’s base, straining against your sensitive flesh. Alarmed, you ");
 				if(!pc.isCrotchExposed()) kGAMECLASS.output("strip");
 				else kGAMECLASS.output("spread your [pc.legOrLegs]");
 				kGAMECLASS.output(" and grab your knotty cock. Your bitch-breaking knot is swelling even larger, engorging with cum and blood as your own arousal peaks. You feverishly grab your wang, stroking it as quick as you can as your knot grows larger than it ever has before!");
@@ -174,7 +174,7 @@
 			else x = -1;
 			if(changes < changeLimit && x >= 0 && rand(3) == 0)
 			{
-				kGAMECLASS.output("\n\nYou shudder violently as waves of pleasure suddenly shoot up through your loins. A flush of wetness pours down your [pc.legOrLegs] as your cunt contracts rhythmically, drooling a steady river of [pc.girlCum] - more than you're used to producing. You shudder and sigh as your cunny nearly orgasms, just cresting the peaks of pleasure before the excess lube finally dissipates. Still, you feel a whole lot wetter than usual. You could definitely handle bigger cocks and toys now.");
+				kGAMECLASS.output("\n\nYou shudder violently as waves of pleasure suddenly shoot up through your loins. A flush of wetness pours down your [pc.legOrLegs] as your cunt contracts rhythmically, drooling a steady river of [pc.girlCum] - more than you’re used to producing. You shudder and sigh as your cunny nearly orgasms, just cresting the peaks of pleasure before the excess lube finally dissipates. Still, you feel a whole lot wetter than usual. You could definitely handle bigger cocks and toys now.");
 				pc.lust(20+rand(20));
 				pc.vaginas[x].wetness(1);
 				changes++;
@@ -191,7 +191,7 @@
 			else x = -1;
 			if(changes < changeLimit && x >= 0 && rand(3) == 0)
 			{
-				kGAMECLASS.output("\n\nYou feel a rumbling in your gut and a strange half-pleasure sensation spreading up from your cunt. Giving your muff an experimental poke, your fingers practically fall into the chasm of your femininity. It's way looser than it was before!");
+				kGAMECLASS.output("\n\nYou feel a rumbling in your gut and a strange half-pleasure sensation spreading up from your cunt. Giving your muff an experimental poke, your fingers practically fall into the chasm of your femininity. It’s way looser than it was before!");
 				pc.vaginas[x].minLooseness++;
 				if(pc.looseness(x) < pc.vaginas[x].minLooseness) pc.vaginas[x].looseness(pc.vaginas[x].minLooseness,true);
 				pc.lust(10+rand(4));
@@ -212,24 +212,24 @@
 						//Covered
 						if(!pc.isChestExposed()) kGAMECLASS.output("\n\nOut of nowhere, you can feel your [pc.nipples] pressing against your [pc.upperGarment]. You squirm uncomfortably in a self-imposed prison as your chest expands, swelling new, soft flesh into a pair of budding breasts where once you had nothing but pectorals. <b>You have A-cup breasts.</b>");
 						//Unclothed
-						else kGAMECLASS.output("\n\nYou involuntarily gasp when your chest warms out of nowhere. One second, you're normal. The next, it's like you've been sunbathing with only your pecs exposed for a few hours. Your [pc.skin] tingles as its pulled tight by something expanding underneath it, and you're treated to the sight of <b>your new A-cup breasts.</b>");
+						else kGAMECLASS.output("\n\nYou involuntarily gasp when your chest warms out of nowhere. One second, you’re normal. The next, it’s like you’ve been sunbathing with only your pecs exposed for a few hours. Your [pc.skin] tingles as its pulled tight by something expanding underneath it, and you’re treated to the sight of <b>your new A-cup breasts.</b>");
 					}
 					//->B/C/D
 					else if(pc.breastRows[0].breastRatingRaw < 5)
 					{
-						kGAMECLASS.output("\n\nPinpricks of sensation on your [pc.chest] draws your attention, and the way your chest is bubbling up with new flesh keeps it. Grabbing hold of your swelling bustline, you heft the brazenly expanding globes as they finish their transformation. <b>You estimate you've grown up to " + pc.breastCup(0) + ".</b>");
+						kGAMECLASS.output("\n\nPinpricks of sensation on your [pc.chest] draws your attention, and the way your chest is bubbling up with new flesh keeps it. Grabbing hold of your swelling bustline, you heft the brazenly expanding globes as they finish their transformation. <b>You estimate you’ve grown up to " + pc.breastCup(0) + ".</b>");
 						if(pc.bRows() > 1)
 						{
 							kGAMECLASS.output(" Your other breast row");
-							if(pc.bRows() == 2) kGAMECLASS.output(" doesn't");
-							else kGAMECLASS.output("s didn't");
+							if(pc.bRows() == 2) kGAMECLASS.output(" doesn’t");
+							else kGAMECLASS.output("s didn’t");
 							kGAMECLASS.output(" change.");
 						}
 					}
 					//->DD
 					else
 					{
-						kGAMECLASS.output("\n\nYou feel electric shocks of pleasure spread out from your core and into your [pc.chest], gathering into hot, powerful pulses on your [pc.nipples]. Taking hold of yourself, you feel your flesh pulsing to an unknown rhythm, swelling out and then shrinking in a little, each time getting a little bigger - a little jigglier and more expansive. <b>You have big, DD-cup breasts now; that's about as big as an ausar would get.");
+						kGAMECLASS.output("\n\nYou feel electric shocks of pleasure spread out from your core and into your [pc.chest], gathering into hot, powerful pulses on your [pc.nipples]. Taking hold of yourself, you feel your flesh pulsing to an unknown rhythm, swelling out and then shrinking in a little, each time getting a little bigger - a little jigglier and more expansive. <b>You have big, DD-cup breasts now; that’s about as big as an ausar would get.");
 					}
 				}
 				else kGAMECLASS.output("\n\n" + pc.breastRatingLockedMessage());
@@ -275,7 +275,7 @@
 			{
 				if (target.armTypeUnlocked(GLOBAL.TYPE_CANINE))
 				{
-					kGAMECLASS.output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as your hair grows and thickens, spreading out into a dark mat across your [pc.skin]. Within a few minutes, your arms are utterly covered in a thick, silky-smooth " + pc.furColor + " fur! At least you'll keep a little warmer, now....");
+					kGAMECLASS.output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as your hair grows and thickens, spreading out into a dark mat across your [pc.skin]. Within a few minutes, your arms are utterly covered in a thick, silky-smooth " + pc.furColor + " fur! At least you’ll keep a little warmer, now....");
 					pc.armType = GLOBAL.TYPE_CANINE;
 					pc.clearArmFlags();
 					pc.addArmFlag(GLOBAL.FLAG_FURRED);
@@ -288,7 +288,7 @@
 			{
 				if (target.legTypeUnlocked(GLOBAL.TYPE_CANINE))
 				{
-					kGAMECLASS.output("\n\nYou feel a powerful itch spread across your [pc.legs]. You clutch at them, scratching violently as your hair grows and thickens, spreading out into a dark mat across your [pc.skin]. Within a few minutes, your legs are utterly covered in a thick, silky-smooth " + pc.furColor + " fur! At least you'll keep a little warmer <b>with your ausar legs.</b>");
+					kGAMECLASS.output("\n\nYou feel a powerful itch spread across your [pc.legs]. You clutch at them, scratching violently as your hair grows and thickens, spreading out into a dark mat across your [pc.skin]. Within a few minutes, your legs are utterly covered in a thick, silky-smooth " + pc.furColor + " fur! At least you’ll keep a little warmer <b>with your ausar legs.</b>");
 					pc.legType = GLOBAL.TYPE_CANINE;
 					pc.clearLegFlags();
 					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
@@ -305,12 +305,12 @@
 				{
 					if(pc.legCount < 2)
 					{
-						kGAMECLASS.output("\n\nYour [pc.leg] wobbles then folds, dropping you onto your [pc.butt]. It thrashes wildly around, uncontrolled and spasmatic. Something inside is changing, and you're helpless to do anything but clench your fists and hold on for the ride. A seam appears in your [pc.leg] a moment before it divides into two leg-like shapes. Fur springs up all over them, and after a few seconds, you're left with two fur-covered thighs, knees, and feet. <b>You have two ausar legs!</b>");
+						kGAMECLASS.output("\n\nYour [pc.leg] wobbles then folds, dropping you onto your [pc.butt]. It thrashes wildly around, uncontrolled and spasmatic. Something inside is changing, and you’re helpless to do anything but clench your fists and hold on for the ride. A seam appears in your [pc.leg] a moment before it divides into two leg-like shapes. Fur springs up all over them, and after a few seconds, you’re left with two fur-covered thighs, knees, and feet. <b>You have two ausar legs!</b>");
 					}
 					//More than biped
 					else
 					{
-						kGAMECLASS.output("\n\nYour [pc.legs] wobble and then fold, dropping you flat on your [pc.butt]. They thrash wildly, so fast you can barely track them, then collide. This time, they stick together, reshaping into two distinct, bipedal legs. Fur springs up over the new limbs, and by the time it finishes, <b>you've grown ausar-like legs.</b>");
+						kGAMECLASS.output("\n\nYour [pc.legs] wobble and then fold, dropping you flat on your [pc.butt]. They thrash wildly, so fast you can barely track them, then collide. This time, they stick together, reshaping into two distinct, bipedal legs. Fur springs up over the new limbs, and by the time it finishes, <b>you’ve grown ausar-like legs.</b>");
 					}
 					pc.legCount = 2;
 					pc.genitalSpot = 0;
@@ -329,15 +329,15 @@
 				if (target.tailTypeUnlocked(GLOBAL.TYPE_CANINE))
 				{
 					//{If PC had a tail before: }
-					if(pc.tailCount == 1) kGAMECLASS.output("\n\nYou feel something itching on your [pc.tail]. Twisting around, you watch in a mix of horror and excitement as " + pc.furColor + " bristles, the beginnings of a thick coat of fur, sprout up across the length of your reforming posterior appendage. It starts wagging as the change completes, <b>leaving you with an ausar's dog-like tail.</b>");
+					if(pc.tailCount == 1) kGAMECLASS.output("\n\nYou feel something itching on your [pc.tail]. Twisting around, you watch in a mix of horror and excitement as " + pc.furColor + " bristles, the beginnings of a thick coat of fur, sprout up across the length of your reforming posterior appendage. It starts wagging as the change completes, <b>leaving you with an ausar’s dog-like tail.</b>");
 					//Multitails
-					else if(pc.tailCount == 2) kGAMECLASS.output("\n\nYour [pc.tails] knot together, torturing you with brief convulsions. A kind of numb heat spreads through them, forcing you to twist about for a visual inspection. They're merging together into a single, narrow entity. The flesh crawls eerily as it assume its new shape. Hairs sprout out of it while you watch, thickening into a coat of fur. <b>Your [pc.tails] have combined into a single ausar tail.</b>");
+					else if(pc.tailCount == 2) kGAMECLASS.output("\n\nYour [pc.tails] knot together, torturing you with brief convulsions. A kind of numb heat spreads through them, forcing you to twist about for a visual inspection. They’re merging together into a single, narrow entity. The flesh crawls eerily as it assume its new shape. Hairs sprout out of it while you watch, thickening into a coat of fur. <b>Your [pc.tails] have combined into a single ausar tail.</b>");
 					//{If PC is tailless peasant: }
 					else
 					{
 						kGAMECLASS.output("\n\nOuch! A knot of discomfort forms just above your [pc.butt] as if it had suffered a nasty sting or bite, but no such injury occured. You twist for a look at it");
 						if(!pc.isCrotchExposed()) kGAMECLASS.output(", peeling back your [pc.underGarments]");
-						kGAMECLASS.output(". There's a raised, irritated lump there, and it's getting bigger. Wiggling slightly, it extends as new bones form within it, gently wagging as it lengthens. You're growing a tail! Fine hairs sprout on its [pc.skin], giving it a distinctly canine cast. When it finishes growing, it's long enough to lazily swish back and forth; <b>you've obviously gained an ausar's tail.</b>");
+						kGAMECLASS.output(". There’s a raised, irritated lump there, and it’s getting bigger. Wiggling slightly, it extends as new bones form within it, gently wagging as it lengthens. You’re growing a tail! Fine hairs sprout on its [pc.skin], giving it a distinctly canine cast. When it finishes growing, it’s long enough to lazily swish back and forth; <b>you’ve obviously gained an ausar’s tail.</b>");
 					}
 					pc.tailCount = 1;
 					pc.tailType = GLOBAL.TYPE_CANINE;
@@ -354,7 +354,7 @@
 			{
 				if (target.earTypeUnlocked(GLOBAL.TYPE_CANINE))
 				{
-					kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of perky points, towering over your head. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have an ausar's wolf-ears!</b>");
+					kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of perky points, towering over your head. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have an ausar’s wolf-ears!</b>");
 					pc.earType = GLOBAL.TYPE_CANINE;
 					changes++;
 				}
@@ -388,7 +388,7 @@
 			
 			if (target.hasArmFlag(GLOBAL.FLAG_FURRED) && !target.hasArmFlag(GLOBAL.FLAG_FLUFFY) && changes < changeLimit && rand(2) == 0)
 			{
-				output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as the fur covering your arms lengthens dramatically. Within a few minutes, your arms are utterly covered in a thick, fluffy layer of " + target.furColor + " fur! At least you'll keep even warmer, now....");
+				output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as the fur covering your arms lengthens dramatically. Within a few minutes, your arms are utterly covered in a thick, fluffy layer of " + target.furColor + " fur! At least you’ll keep even warmer, now....");
 				
 				target.addArmFlag(GLOBAL.FLAG_FLUFFY);
 				changes++;
@@ -412,7 +412,7 @@
 				else output(" You rub at your inflamed flesh trying in vain to push the dull throb out of your chest");
 				if (target.skinType == GLOBAL.SKIN_TYPE_FUR)
 				{
-					output(". The dull ache makes way to a tickle of rapidly growing fur, your [pc.chest]'s fuzzy covering quickly poofing out into a fluffy ball of fur");
+					output(". The dull ache makes way to a tickle of rapidly growing fur, your [pc.chest]’s fuzzy covering quickly poofing out into a fluffy ball of fur");
 					if (target.biggestTitSize() > 2) output(" nestled between your [pc.breasts]!");
 					else output(" poofing out your chest!");
 				}
@@ -429,7 +429,7 @@
 			
 			if (target.thickness < 75 && target.thicknessUnlocked(target.thickness + 5) && changes < changeLimit && rand(2) == 0)
 			{
-				output("\n\nA certain heaviness sets into your limbs, a growing sense of slugishness slowing your movements. Your [pc.gear] suddenly feels a little tighter too, you realize. You give yourself a proper once-over and realize you're a little... thicker all around!");
+				output("\n\nA certain heaviness sets into your limbs, a growing sense of slugishness slowing your movements. Your [pc.gear] suddenly feels a little tighter too, you realize. You give yourself a proper once-over and realize you’re a little... thicker all around!");
 				
 				target.thickness += 5;
 				if (target.thickness > 75) target.thickness = 75;
@@ -495,7 +495,7 @@
 			
 			if(target is PlayerCharacter) {
 				//Usage text:
-				kGAMECLASS.output("You pop the bone-shaped cookie into your mouth. It's pleasantly chewy and chocolatey, though as you swallow it, you find yourself panting and scratching at your ears. Weird.");
+				kGAMECLASS.output("You pop the bone-shaped cookie into your mouth. It’s pleasantly chewy and chocolatey, though as you swallow it, you find yourself panting and scratching at your ears. Weird.");
 				
 				if (((target.race() == "half-ausar" && !target.hasLegFlag(GLOBAL.FLAG_FURRED) && !target.hasArmFlag(GLOBAL.FLAG_FURRED)) || target.race().indexOf("ausar") == -1) && target.race().indexOf("huskar") == -1)
 				{

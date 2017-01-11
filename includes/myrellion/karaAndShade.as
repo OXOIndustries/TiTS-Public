@@ -217,7 +217,7 @@ public function notInterestedSavinYourOCsCreepMeOut():void
 	output(" eyes. <i>“Come on. Please. I don’t want to get into a fight here, but that bitch isn’t going to let me get out of here without one. You’re " + pc.mf("the toughest looking son of a bitch here","the most bad-ass looking babe here") + ". Somebody who can handle themselves. And I need help.”</i>");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Alright",helpDisKaraSlut,true,"Alright","Accede to her request. The girl's obviously in trouble.");
+	addButton(0,"Alright",helpDisKaraSlut,true,"Alright","Accede to her request. The girl’s obviously in trouble.");
 	addButton(1,"Still No",stillSayNoToKaraYouGiganticFuckingAsshole,undefined,"Still No","Leave.");
 }
 
@@ -297,7 +297,7 @@ public function tellAboutKara():void
 	pc.addHard(5);
 	processTime(2);
 	clearMenu();
-	addButton(0,"Deal",itsADealToBetrayKaraSloots,undefined,"It's a Deal","Take Shade up on her offer and go after Kara.");
+	addButton(0,"Deal",itsADealToBetrayKaraSloots,undefined,"It’s a Deal","Take Shade up on her offer and go after Kara.");
 	addButton(1,"No Thanks",turnDownAChanceToCaptureKara,undefined,"No Thanks","Refuse the bounty hunter’s offer. You’re out of here.");
 }
 
@@ -436,8 +436,8 @@ public function shadeSexMenu(intro:Boolean = false):void
 		if (pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
 		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
 	}
-	else if (flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
-	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
+	else if (flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade’s hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
+	else addDisabledButton(2,"Wank?","Wank?","You aren’t enough of a girlyboy to get wanked off like some kind of femboy.");
 	
 	//Shade Tailcock v. Tailcunt Scene
 	//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
@@ -445,11 +445,11 @@ public function shadeSexMenu(intro:Boolean = false):void
 	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
 	
 	//PC + Shade Double Titfuck. Add to Shade's sex menu. PC must have a dick of at least 18 inches, and breasts of at least D-cup.
-	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(4, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock's already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
-	else addDisabledButton(4,"DoubleTitfuck","DoubleTitfuck","You'd need big tits and a bigger cock to coax Shade into a double titfucking!");
+	if (pc.hasCock() && pc.biggestCockLength() >= 20 && pc.biggestTitSize() > 4) addButton(4, "DoubleTitfuck", shadeDoubleTitfuck, undefined, "DoubleTitfuck","You and Shade are both pretty stacked, and your cock’s already so hard against your belly... maybe the two of you could put your tits to use to give you some relief.");
+	else addDisabledButton(4,"DoubleTitfuck","DoubleTitfuck","You’d need big tits and a bigger cock to coax Shade into a double titfucking!");
 	
 	if (!intro && pc.hasGenitals()) addButton(5, "Boobship", shadeBoobWorship, undefined, "Boob Worship", "Get hands on with Shades glorious chestpillows.");
-	else if (!intro) addDisabledButton(5, "Boobship", "Boob Worship", "You need genitalia to properly worship Shade's chestpillows.");
+	else if (!intro) addDisabledButton(5, "Boobship", "Boob Worship", "You need genitalia to properly worship Shade’s chestpillows.");
 	else addDisabledButton(5, "Locked", "Locked", "Maybe if you got to know her a little better...");
 	
 	if(!intro) addButton(14,"Back",shouldIShadeOrShouldIGo);
@@ -476,7 +476,7 @@ public function tripAndFallOnShade():void
 	flags["TRIPPED_ON_SHADE"] = 1;
 	clearMenu();
 	addButton(0,"Yes",karaAndPCVersusShadeFightIntroduction,undefined,"Yes","Help Kara against Shade.");
-	addButton(1,"No",fuckThisShiiitImNotGettingInACatNDogFight,undefined,"No","Fuck this. She's on her own.");
+	addButton(1,"No",fuckThisShiiitImNotGettingInACatNDogFight,undefined,"No","Fuck this. She’s on her own.");
 }
 
 //[Yes]
@@ -838,7 +838,7 @@ public function takeShadesHardlightPenisInYerBoot():void
 	if(pc.hasCock()) output("Trapped between your belly and Shade’s, [pc.eachCock] strains against its confines, growing turgid with cum and ready to burst. Pre drools out of your [pc.cockHeads], turning the space between your bellies into a swamp of sticky [pc.cumNoun].");
 	output("You let out a quiet mewl to announce your orgasm, a soft squeal of pleasure pumped out of you by Shade’s relentless fucking.");
 	output("\n\nYour [pc.vagOrAss " + x + "] contracts hard around the hardlight cock buried in it, trying to squeeze out a load of cum that will never come. Under pressure, her hardlight prick tingles and buzzes, sending electric waves of pleasure through your spasming hole. You clutch at your lover with arm and [pc.leg], drawing her deeper into the kiss as you ride out your climax.");
-	if(pc.hasCock()) output("[pc.Cum] bursts out of your [pc.cocks], plastering your [pc.belly] with [pc.cumNoun]. Shade gasps as the hot, sticky spurt of seed splatters onto her, but makes no complaint.");
+	if(pc.hasCock()) output(" [pc.Cum] bursts out of your [pc.cocks], plastering your [pc.belly] with [pc.cumNoun]. Shade gasps as the hot, sticky spurt of seed splatters onto her, but makes no complaint.");
 
 	output("\n\n<i>“Not done... yet,”</i> Shade moans, barely audible over your own gasps of pleasure. Her hips move faster, hammering into your backside and driving your orgasm on. She races to follow you over the edge, and you’re all too eager to help her: your [pc.vagOrAss " + x + "] writhes around her, sending tactile feedback up the tingling hardlight shaft and into the kaithrit’s loins. She’s in for a mindblowing male orgasm, starting with a back-arching scream as she thrusts herself crotch-deep into you, slamming her panty-clad groin into your [pc.butt]. She holds still after that, panting and gasping and trailing kisses up your neck, letting your [pc.vagOrAss " + x + "] shepherd her through her climax.");
 
@@ -948,7 +948,7 @@ public function shadeTailSex():void
 	
 	output("<i>“I’ve got a few ideas,”</i> you answer the buxom kaithrit overtop you, playing your hands up her ample thighs and over her smooth, flared hips. She smiles down at you, gently rocking in your embrace and letting you watch those huge, perfect tits of hers sway hypnotically over your face. You shiver in anticipation at the thought of burying your face between those titans of titflesh, just losing yourself in them... worshipping them with your mouth. Gently, you start to urge Shade down, bringing the smoking hot kitty lower until you can lick your tongue along one of her hefty orbs, teasing the tip across what must be a very sensitive teat. She gasps and arches her back into you, laying her taut belly flat against your [pc.belly] and easing her cleavage down around your face.");
 	output("\n\nThough your world goes dark, completely obscured by soft, sensual flesh, your body only seems all the more sensitive for it. Every subtle movement of your lover overtop you, every brush of skin or movement of her sultry tail around your [pc.legs] sends electric currents of sensation tearing through you.");
-	if(flags["SHADE_BOOBWORSHIP"] != undefined && flags["SHADE_TALKED_ABOUT_MODS"] != undefined && shade.isLactating()) output("\n\nAnother sensation then hits you and rolls down your boob-sandwiched face... a warm, wet stream flowing along your cheeks - This MILF's milk no doubt! <i>“I should invest in more milk mods,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you love my big, milky tits. Don't you want to snack on them while I fuck you silly?");
+	if(flags["SHADE_BOOBWORSHIP"] != undefined && flags["SHADE_TALKED_ABOUT_MODS"] != undefined && shade.isLactating()) output("\n\nAnother sensation then hits you and rolls down your boob-sandwiched face... a warm, wet stream flowing along your cheeks - This MILF’s milk no doubt! <i>“I should invest in more milk mods,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you love my big, milky tits. Don’t you want to snack on them while I fuck you silly?");
 	else output("\n\n<i>“Maybe I should invest in milk mods one of these days,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you’d love it if I did... get a pair of big, milky tits for you to snack on while I fuck you.");
 	output(" You’d let momma Shade have her way with you all day like that, wouldn’t you?”</i>");
 	output("\n\nYou murmur something like <i>“God, yes,”</i> from between her tits, kissing and licking at the insides of her fleshy mounds, loving the perfumed taste of her skin on your [pc.tongue].");
@@ -1000,7 +1000,7 @@ public function shadeTailSex():void
 	output("\n\nShade tsks her tongue down at you, but reaches down beneath her and grabs your");
 	if(pc.hasParasiteTail()) output(" writhing parasite");
 	else output(" [pc.tail]");
-	output(" by its tip, dragging it all the way up your body until it's stretching flat against your belly and up to your [pc.chest]. When it is, Shade lies back down, pressing herself tight against you, and putting all of her heat and weight around your over-sensitive cock-tail. You suck in a sharp breath when those beautiful tits of hers wrap around your prick-like tip, just low enough that the tip peeks out. Still drooling the aftershocks of your orgasm, you note, which quickly forms a little puddle of heat ");
+	output(" by its tip, dragging it all the way up your body until it’s stretching flat against your belly and up to your [pc.chest]. When it is, Shade lies back down, pressing herself tight against you, and putting all of her heat and weight around your over-sensitive cock-tail. You suck in a sharp breath when those beautiful tits of hers wrap around your prick-like tip, just low enough that the tip peeks out. Still drooling the aftershocks of your orgasm, you note, which quickly forms a little puddle of heat ");
 	if(pc.biggestTitSize() < 1) output("on your chest.");
 	else output("between your tits. You note gleefully that your tits and Shade’s make a perfect sheathe for your tail-cock.");
 
@@ -1316,7 +1316,7 @@ public function shadeMenu():void
 	clearMenu();
 	addButton(0,"Talk",talkToShadeAbootStuff,undefined,"Talk","Chat up Shade.");
 	if(pc.lust() >= 33) addButton(1,"Sex",askShade4Sex,undefined,"Sex","Get into some mischief under the covers.");
-	else addDisabledButton(1,"Sex","Sex","You aren't aroused enough for that.");
+	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for that.");
 	addButton(2,"Appearance",shadeAppearance,undefined,"Appearance","Take a good look at the cat-girl bounty hunter.");
 	addButton(14,"Leave",mainGameMenu);	
 }
@@ -1331,7 +1331,7 @@ public function shadeAppearance():void
 	if(flags["SHADE_ON_UVETO"] != undefined) output(" and a tan-colored sweater that hugs her curves nicely, subtly straining with every breath");
 	else output(", a shirt, and a low-cut ballistic vest loaded with body armor plates. Slung low on her hip is a bulky white hand cannon, loaded with an oversized JoyCo battery and a barrel almost long enough to reach Shade’s leg. A second gun, a compact little holdout pistol, is barely visible on the back of her belt.");
 	output("\n\nBehind her, Shade’s sporting something a little different than the normal pair of kitty-tails her race possesses. A green-scaled reptilian tail coils out behind her,");
-	if(flags["SHADE_ON_UVETO"] != undefined) output(" but it's been stuffed into a full-body wool sock to protect it from the cold. You can just barely make out its shape.");
+	if(flags["SHADE_ON_UVETO"] != undefined) output(" but it’s been stuffed into a full-body wool sock to protect it from the cold. You can just barely make out its shape.");
 	else output(" tipped with a rosy pink slit that perfectly mimics a terran vagina, drooling with moisture as its lips spread and flick through the air.");
 	if(flags["SEXED_SHADE"] != undefined) output("\n\nShe has a pussy of her own, wet and nicely accommodating, tucked between her legs. She has a single, tight little asshole between her taut buttcheeks, right where it belongs.");
 	shadeMenu();
@@ -1391,7 +1391,7 @@ public function shadeTalkMenu(arg:Function):void
 		if(arg == talkAboutShadesShip) addDisabledButton(1,"Her Ship","Her Ship","You just talked about that.");
 		else addButton(1,"Her Ship",talkAboutShadesShip,undefined,"Her Ship","Ask her about her ship.");
 	}
-	else addDisabledButton(1,"Her Ship","Her Ship","You don't know enough about Shade to broach this topic yet.");
+	else addDisabledButton(1,"Her Ship","Her Ship","You don’t know enough about Shade to broach this topic yet.");
 	//Family
 	if(arg == talkToShadeAboutHerFamily) addDisabledButton(2,"Family","Family","You just talked about that.");
 	else
@@ -1406,16 +1406,16 @@ public function shadeTalkMenu(arg:Function):void
 	if(flags["SHADE_TALKED_ABOUT_LIGHTNING"] != undefined && flags["SHADE_TALKED_ABOUT_FAMILY"] != undefined)
 	{
 		if(arg == runesYouTurdShade) addDisabledButton(4,"Runes","Runes","You just talked about that.");
-		else addButton(4,"Runes",runesYouTurdShade,undefined,"Runes","Ask her about the runes she's got all over.")
+		else addButton(4,"Runes",runesYouTurdShade,undefined,"Runes","Ask her about the runes she’s got all over.")
 	}
-	else addDisabledButton(4,"Runes","Runes","You don't know enough about Shade to broach this topic yet.");
+	else addDisabledButton(4,"Runes","Runes","You don’t know enough about Shade to broach this topic yet.");
 
 	if (flags["SHADE_BOOBWORSHIP"] != undefined)
 	{
 		if (flags["SHADE_TALKED_ABOUT_MODS"] == undefined)
 		{
 			if (arg == talkToShadeAboutMods) addDisabledButton(5, "Mods", "You just talked about that.");
-			else addButton(5, "Mods", talkToShadeAboutMods, undefined, "Mods", "Ask Shade if she's ever thought about getting some mod work done... especially for those rockin' tits of hers. You can only imagine suckling some rich, creamy milk from them...");
+			else addButton(5, "Mods", talkToShadeAboutMods, undefined, "Mods", "Ask Shade if she’s ever thought about getting some mod work done... especially for those rockin’ tits of hers. You can only imagine suckling some rich, creamy milk from them...");
 		}
 		else
 		{
@@ -1433,13 +1433,13 @@ public function shadeTalkMenu(arg:Function):void
 			}
 			else
 			{
-				addDisabledButton(5, "Mods", "Mods", "You don't have anything to give Shade.");
+				addDisabledButton(5, "Mods", "Mods", "You don’t have anything to give Shade.");
 			}
 		}
 	}
 	else
 	{
-		addDisabledButton(5, "Mods", "Mods", "You need to get hands on with Shades chestpillows before talking to her about modding 'em up some.");
+		addDisabledButton(5, "Mods", "Mods", "You need to get hands on with Shades chestpillows before talking to her about modding ‘em up some.");
 	}
 
 	addButton(14, "Back", shadeApproach);
@@ -2123,10 +2123,10 @@ public function gibShadeModItems():void
 	if (!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK)
 	{
 		if (pc.hasItem(new Lactaid(), 1)) addButton(0, "1x Lactaid", gibShadeModItemsII, "lactaid");
-		else addDisabledButton(0, "1x Lactaid", "Lactaid", "You don't have any Lactaid.");
+		else addDisabledButton(0, "1x Lactaid", "Lactaid", "You don’t have any Lactaid.");
 
 		if (pc.hasItem(new MilkCaramelGushers(), 5)) addButton(1, "5x M.Gush", gibShadeModItemsII, "gushers");
-		else addDisabledButton(1, "5x M.Gush", "Milk Gushers", "You don't have enough Milk Gushers.");
+		else addDisabledButton(1, "5x M.Gush", "Milk Gushers", "You don’t have enough Milk Gushers.");
 	}
 	
 	if (!shade.canLactate())
@@ -2138,13 +2138,13 @@ public function gibShadeModItems():void
 	else
 	{
 		if (pc.hasItem(new Honeyizer())) addButton(2, "1x Hnyizr", gibShadeModItemsII, "honeyizer");
-		else addDisabledButton(2, "1x Hnyizr", "Honeyizer", "You don't have any Honeyizer.");
+		else addDisabledButton(2, "1x Hnyizr", "Honeyizer", "You don’t have any Honeyizer.");
 
 		if (pc.hasItem(new Chocolac())) addButton(3, "1x Chclac", gibShadeModItemsII, "chocolac");
-		else addDisabledButton(3, "1x Chclac", "Chocolac", "You don't have any Chocolac.");
+		else addDisabledButton(3, "1x Chclac", "Chocolac", "You don’t have any Chocolac.");
 
 		if (pc.hasItem(new Honeydew())) addButton(4, "1x Hnydew", gibShadeModItemsII, "honeydew");
-		else addDisabledButton(4, "1x Hnydew", "Honeydew", "You don't have any Honeydew");
+		else addDisabledButton(4, "1x Hnydew", "Honeydew", "You don’t have any Honeydew");
 	}
 
 	addButton(14, "Back", talkToShadeAboutMods);

@@ -282,10 +282,20 @@
 		},
 		true);
 		
+	inputManager.AddBindableControl(
+		"100K Credits",
+		"Grants 100K credits.",
+		function():void 
+		{
+			pc.credits += 100000;
+		},
+		true);
+		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
 	inputManager.BindCheatSequence("Scene Execute", "impulse");
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
+	inputManager.BindCheatSequence("100K Credits", "anotherbrickinthewall");
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
 	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
 	inputManager.BindCheatSequence("Force Amazon Treatment", "amazon");

@@ -218,6 +218,7 @@ pip-log.txt
 /devTools/roomEd/main.spec
 includes/NPCTemplates.as
 RECOVER_*
-devTools/scripts/Packages/User/Package Control.sublime-settings
-TiTS.sublime-workspace
-TiTS.sublime-project
+**.sublime-settings
+**.sublime-workspace
+**.sublime-project
+

@@ -10,11 +10,11 @@
 
 public function findStrangeEgg():void 
 {
-	output("\n\nOh hey, there's a strange looking egg on the ground! Do you take it?");
+	output("\n\nOh hey, there’s a strange looking egg on the ground! Do you take it?");
 	output("\n\n");
 	clearMenu();
 	addButton(0, "Take It", quickLoot, new StrangeEgg());
-	addButton(1, "Don't", mainGameMenu);
+	addButton(1, "Don’t", mainGameMenu);
 }
 
 public function fuckingEggHatchOhFuck(destination:String):void 

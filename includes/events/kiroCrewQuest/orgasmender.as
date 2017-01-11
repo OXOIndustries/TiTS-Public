@@ -23,9 +23,9 @@ public function showOrgasmender():void
 }
 public function healingConsentacleTankBonus():Boolean
 {
-	if(flags["ORGASMENDER"] == undefined) output("\n\nA sterile-looking, white-rimmed tank sits in the back corner of the room, its transparent aluminum surface stamped with two bright red hearts. In between the cartoonish organs is an airtight door stenciled with a stylized logo reading, <i>“Orgasmender.”</i>  You suppose it must be some kind of healing tank.");
-	else output("\n\nYou spot the Orgasmender's sterile-looking, white-rimmed tank in a back corner of the room. You know from an experience that it's far more full of life than its charming exterior indicates, but it certainly does its job well enough.");
-	output(" <b>It seems out of place, like it doesn't truly belong in this place. Perhaps this is a <i>placeholder</i> location for it?</b>")
+	if(flags["ORGASMENDER"] == undefined) output("\n\nA sterile-looking, white-rimmed tank sits in the back corner of the room, its transparent aluminum surface stamped with two bright red hearts. In between the cartoonish organs is an airtight door stenciled with a stylized logo reading, <i>“Orgasmender.”</i> You suppose it must be some kind of healing tank.");
+	else output("\n\nYou spot the Orgasmender’s sterile-looking, white-rimmed tank in a back corner of the room. You know from an experience that it’s far more full of life than its charming exterior indicates, but it certainly does its job well enough.");
+	output(" <b>It seems out of place, like it doesn’t truly belong in this place. Perhaps this is a <i>placeholder</i> location for it?</b>")
 	//[Look Closer] [Climb In]
 	addButton(0,"Look Closer",lookCloserAtOrgasmender,undefined,"Look Closer","Take a better look at the device before doing anything rash.");
 	addButton(1, "Climb In", climbIntoTheDamnedTank, undefined, "Climb In", "Climb inside and activate the device. What could go wrong?");
@@ -50,7 +50,7 @@ public function lookCloserAtOrgasmender():void
 	}
 	else
 	{
-		output("house the tentacles that provided you so much pleasure last time, all while the machine made sure that your wounds were perfectly healed. It's name, Orgasmender, could not be more appropriate.");
+		output("house the tentacles that provided you so much pleasure last time, all while the machine made sure that your wounds were perfectly healed. It’s name, Orgasmender, could not be more appropriate.");
 	}
 	clearMenu();
 	addDisabledButton(0,"Look Closer");
@@ -106,10 +106,10 @@ public function climbIntoTheDamnedTank():void
 	}
 	else
 	{
-		output(" Smiling to yourself, you watch the tendrils rise higher, accompanied by the viscous pink stuff. It's already ");
+		output(" Smiling to yourself, you watch the tendrils rise higher, accompanied by the viscous pink stuff. It’s already ");
 		if(pc.hasKnees()) output("up to your knees");
 		else output("halfway up your [pc.legOrLegs]");
-		output(", making your movements sluggish. Good thing you aren't really trying to avoid the tentacles at this point. You know what's coming.");
+		output(", making your movements sluggish. Good thing you aren’t really trying to avoid the tentacles at this point. You know what’s coming.");
 	}
 	output("\n\nThe tentacles, however, have no problem moving through the thick sludge. " + StringUtil.upperCase(num2Text(pc.legCount)) + " of them circle around your legs, gripping you tight in spite of the liquid lubrication, flexing powerfully against your thighs to root you in place. There’s no escaping ");
 	if(pc.legCount == 1) output("it");

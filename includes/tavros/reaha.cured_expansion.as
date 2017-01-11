@@ -181,7 +181,7 @@ public function reahaAppearanceCured():void
 	// if underwear, no armor:
 	else if(reaha.armor is EmptySlot) 
 	{
-		output("Reaha’s wearing nothing but [reaha.gear], leaving much of her body on display for you. Her tits ");
+		output("Reaha’s wearing nothing but her [reaha.gear], leaving much of her body on display for you. Her tits ");
 		if(!(reaha.upperUndergarment is EmptySlot)) output("jiggle in their confines");
 		else output("bounce enticingly");
 		output(" with every step, and her ");
@@ -191,7 +191,7 @@ public function reahaAppearanceCured():void
 	// if armor:
 	else 
 	{
-		output("Reaha’s wearing [reaha.armor], finally having trained her body’s sensitivity down enough to wear clothes again. She looks infinitely happier than when you first met her. The longer you look at her, though, the more sway she puts into her step as she walks about.");
+		output("Reaha’s wearing " + indefiniteArticle(reaha.armor.longName) + ", finally having trained her body’s sensitivity down enough to wear clothes again. She looks infinitely happier than when you first met her. The longer you look at her, though, the more sway she puts into her step as she walks about.");
 		if(reaha.hasLowerGarment() || reaha.hasUpperGarment())
 		{
 			output(" Under her clothes, you catch hints of her ");
@@ -206,7 +206,7 @@ public function reahaAppearanceCured():void
 	output(" whenever you get near enough. You’d estimate your bovine companion’s packing a pair of hefty FF-cups, each tipped with a big, pink nipple that’ll leak a trickle of [reaha.milk] at the slightest touch.");
 	output("\n\nShe has a loose, wet pussy tucked between her legs and a [reaha.asshole] between the cheeks of her [reaha.ass], right where it belongs.");
 	curedReahaMenu();
-	addDisabledButton(1,"Appearance","Appearance","You're looking at her right now.");
+	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
 }
 
 //Reaha Selling Milk
@@ -337,7 +337,7 @@ public function reahaFinishesPayingPC(credits:int = 0):void
 	clearMenu();
 	addButton(0,"Go Away",goAwayYouMilkyMilkSlut,undefined,"Go Away","It’ll be better for you and for Reaha if she takes her newfound freedom and leaves. Who knows if you’ll see her again...");
 	addButton(1,"Stay With Me",stayWithMeCureCow,undefined,"Stay With Me","Offer to let Reaha stick around the ship. As long as she can pay for room and board, you’re happy to have your bovine companion along for the ride.");
-	addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
+	addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha’s Wants?","Ask Reaha what it is that SHE wants to do.");
 	addButton(6,"Her Talents",herTalentsReaha,undefined,"Her Talents","If you want to figure out what Reaha should do next, maybe she needs to think about what it is she’s capable of.");
 }
 
@@ -360,7 +360,7 @@ public function herTalentsReaha():void
 	clearMenu();
 	addButton(0,"Go Away",goAwayYouMilkyMilkSlut,undefined,"Go Away","It’ll be better for you and for Reaha if she takes her newfound freedom and leaves. Who knows if you’ll see her again...");
 	addButton(1,"Stay With Me",stayWithMeCureCow,undefined,"Stay With Me","Offer to let Reaha stick around the ship. As long as she can pay for room and board, you’re happy to have your bovine companion along for the ride.");
-	addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
+	addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha’s Wants?","Ask Reaha what it is that SHE wants to do.");
 	//addButton(6,"Her Talents",herTalentsReaha,undefined,"Her Talents","If you want to figure out what Reaha should do next, maybe she needs to think about what it is she’s capable of.");
 	addDisabledButton(6,"Her Talents","Her Talents","You just wrapped that discussion up.");
 }
@@ -385,9 +385,9 @@ public function reahasCuredWants():void
 	clearMenu();
 	addButton(0,"Go Away",goAwayYouMilkyMilkSlut,undefined,"Go Away","It’ll be better for you and for Reaha if she takes her newfound freedom and leaves. Who knows if you’ll see her again...");
 	addButton(1,"Stay With Me",stayWithMeCureCow,undefined,"Stay With Me","Offer to let Reaha stick around the ship. As long as she can pay for room and board, you’re happy to have your bovine companion along for the ride.");
-	//addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha's Wants?","Ask Reaha what it is that SHE wants to do.");
+	//addButton(5,"Her Wants?",reahasCuredWants,undefined,"Reaha’s Wants?","Ask Reaha what it is that SHE wants to do.");
 	addButton(6,"Her Talents",herTalentsReaha,undefined,"Her Talents","If you want to figure out what Reaha should do next, maybe she needs to think about what it is she’s capable of.");
-	addDisabledButton(5,"Her Wants?","Reaha's Wants?","You just wrapped that discussion up.");
+	addDisabledButton(5,"Her Wants?","Reaha’s Wants?","You just wrapped that discussion up.");
 
 }
 
@@ -557,7 +557,7 @@ public function curedReahaMenu():void
 	addButton(0,"Milk Reaha",milkCuredReaha,undefined,"Milk Reaha","Time to milk your resident cow.");
 	addButton(1,"Appearance",reahaAppearanceCured,undefined,"Appearance","Take a look at your favorite cow.");
 	if(pc.lust() >= 33) addButton(2,"Sex",curedReahaSexApproach,undefined,"Have some bedroom fun with the bovine member of your crew.");
-	else addDisabledButton(2,"Sex","Sex","You aren't aroused enough for this.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
 	addButton(3,"Talk",curedReahaTalkShit,undefined,"Talk","Sit and chat with your busty bovine.");
 	//Hug Reaha
 	addButton(4,"Hug",giveYourCuredCowAHug,undefined,"Hug","Give your cow a hug.");
@@ -569,7 +569,7 @@ public function curedReahaMenu():void
 	//WearOutfit
 	addButton(7,"Wear Outfit",whatOutfitWillCuredReahaWear,undefined,"Wear Outfit","Choose an outfit for Reaha to wear.");
 	addButton(8,"Give Item",giveReahaTFItemPresents,undefined,"Give Item","Give Reaha a little present.");
-	if (shipLocation == "500") addButton(9, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. Dropping her off on the homeworld might not be in her best interest, but hey. She's your property, anyway.");
+	if (shipLocation == "500") addButton(9, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. Dropping her off on the homeworld might not be in her best interest, but hey. She’s your property, anyway.");
 	else addButton(9, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. You can send her to hang out on Tavros Station");
 	
 	addButton(11, "Take Clothes", whatOutfitWillCuredReahaReturn, undefined, "Take Clothes", "Take back some clothes from Reaha.");
@@ -687,14 +687,14 @@ public function reahaTalkMenu(arg:Function):void
 	if(arg != reahasNewTexasOpinion) addButton(1,"New Texas",reahasNewTexasOpinion,undefined,"New Texas","What’s Reaha’s opinion on New Texas.");
 	else addDisabledButton(1,"New Texas","New Texas","You just did that!");
 	//[Her Mods]
-	if(flags["C_REAHA_MODS_TALK_DISABLE"] != undefined) addDisabledButton(2,"Her Mods","Her Mods","She doesn't want to talk about that any more.");
+	if(flags["C_REAHA_MODS_TALK_DISABLE"] != undefined) addDisabledButton(2,"Her Mods","Her Mods","She doesn’t want to talk about that any more.");
 	else if(arg != askReahaAboutHerMods) addButton(2,"Her Mods",askReahaAboutHerMods,undefined,"Her Mods","Ask Reaha to explain here modification work in a little more detail.");
 	else addDisabledButton(2,"Her Mods","Her Mods","You just did that!");
 	//[Her Past]
 	if(arg != askReahaAboutHerPast) addButton(3,"Her Past",askReahaAboutHerPast,undefined,"Her Past","Have Reaha regale you with her life’s story.");
 	else addDisabledButton(3,"Her Past","Her Past","You just did that!");
 	//[Prostitution]
-	if(flags["REAHA_WHORING_UNLOCKED"] == 2) addDisabledButton(4,"Whoring","Whoring","She's a little too busy being a whore to get all cerebral about her time as one.");
+	if(flags["REAHA_WHORING_UNLOCKED"] == 2) addDisabledButton(4,"Whoring","Whoring","She’s a little too busy being a whore to get all cerebral about her time as one.");
 	else if(arg != curedReahaProstitution) addButton(4,"Whoring",curedReahaProstitution,undefined,"Whoring","Talk to Reaha about her views on whoring.");
 	else addDisabledButton(4,"Whoring","Whoring","You just did that!");	//[Her Job]
 	if(arg != talkToReahaAboutHerJob) addButton(5,"Her Job",talkToReahaAboutHerJob,undefined,"Her Job","Job selection go here. Defaults to selling milk; unlock other jobs through talking.");
@@ -837,7 +837,7 @@ public function reahasNewTexasOpinion():void
 	{
 		clearMenu();
 		addButton(0,"Ew",ewReahaTreatmentIsLikeSuperGrossAndShit,undefined,"Ew","Sympathize with the mentally-scarred cow.");
-		addButton(1,"It's Natural",treatmentShitBeNaturalOnNewTexasSloot,undefined,"It's Natural","Remind Reaha that that’s just how Treated folk do.");
+		addButton(1,"It’s Natural",treatmentShitBeNaturalOnNewTexasSloot,undefined,"It’s Natural","Remind Reaha that that’s just how Treated folk do.");
 		addButton(2,"Man Up",manUpReahaYouDumbCumsuckingSlut,undefined,"Man Up","Tell Reaha off - and to suck it up.");
 	}
 	else reahaTalkMenu(reahasNewTexasOpinion);
@@ -928,7 +928,7 @@ public function askReahaAboutHerMods():void
 		if(flags["REAHA_MILK_CHANGED"] != undefined) output("<i>“You mean aside from the stuff you’ve given me, right?”</i> she teases, hefting up her tits in both hands.\n\n");
 		output("<i>“First off, I was born with these,”</i> she says, running a couple fingers along her nubby white horns. <i>“Yeah, I’m a full-blood human, but after so many generations of the Treatment... I guess it’s started to change us New Texans on a genetic level. Or something, I dunno. I’m a cow, not a scientist!”</i> Reaha giggles.");
 		output("\n\nAnd aside from that?");
-		output("\n\n<i>“Aside from that, everything I had done was designer work. See, the cow transformatives on the market weren't quite what I was looking for, so... I ended up spending every credit I made in the army, and taking out a bunch of loans... all so I could convince a specialist to make me what I wanted. It’s dumb, I know, but I never felt </i>right<i> in my body until I started modding. Like I was this big, curvy cow trapped in a little beanstalk of a girl. I was actually really fit back then, too - more amazon than squishy lil’ cow. If amazons can be like, five foot nothing. Mini-zon? I dunno!”</i> She giggles, wrapping her arms around you a little tighter. She’s still fairly strong, about squeezing the life out of you until you gasp. <i>“But I’m a lot happier being all soft and curvy. Way more than I ever was as soldier material.”</i>");
+		output("\n\n<i>“Aside from that, everything I had done was designer work. See, the cow transformatives on the market weren’t quite what I was looking for, so... I ended up spending every credit I made in the army, and taking out a bunch of loans... all so I could convince a specialist to make me what I wanted. It’s dumb, I know, but I never felt </i>right<i> in my body until I started modding. Like I was this big, curvy cow trapped in a little beanstalk of a girl. I was actually really fit back then, too - more amazon than squishy lil’ cow. If amazons can be like, five foot nothing. Mini-zon? I dunno!”</i> She giggles, wrapping her arms around you a little tighter. She’s still fairly strong, about squeezing the life out of you until you gasp. <i>“But I’m a lot happier being all soft and curvy. Way more than I ever was as soldier material.”</i>");
 		output("\n\nCurious, you ask how Reaha got in touch with a gene-mod designer. That seems a little out of her social league.");
 		output("\n\nShe gives you a light-hearted shrug. <i>“I actually found her on an extranet forum. A support group for New Texan girls that go out early, un-Treated. She was this absolutely amazing blonde bombshell, looked more like a cow-girl than most New Texans with all those majestic curves and tits that make mine look small even now. All natural, all kaithrit. I didn’t even know kaithrit lived on New Texas! She said after she got out, she went to some big Terran school on a scholarship, specialized in gene therapy. You’d never know it, the way she purred and jiggled like she was constantly in heat.”</i>");
 		output("\n\n<i>“So I got in touch with her, asked her to do the mod work for me. She agreed, but didn’t really understand why I wanted to. Said she wished she had my physique - but then, I wanted hers! I think we would have traded in a heartbeat.”</i>");
@@ -1208,8 +1208,8 @@ public function curedReahaSexMenu():void
 {
 	clearMenu();
 	if(pcCanButtfuckReaha()) addButton(0,"Buttfuck",buttFuckReahaSlooot,undefined,"Buttfuck","Buttfuck your cow.");
-	else if(pc.hasCock()) addDisabledButton(0,"Buttfuck","Buttfuck","Your dick definitely won't fit inside her ass, no matter how spacious it looks on the outside.");
-	else addDisabledButton(0,"Buttfuck","Buttfuck","You need a penis or hardlight strapon that'll fit in her ass for this.");
+	else if(pc.hasCock()) addDisabledButton(0,"Buttfuck","Buttfuck","Your dick definitely won’t fit inside her ass, no matter how spacious it looks on the outside.");
+	else addDisabledButton(0,"Buttfuck","Buttfuck","You need a penis or hardlight strapon that’ll fit in her ass for this.");
 	//Titjob
 	if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(1,"Titjob",getATitjobFromCuredReaha,undefined,"Titjob","Have Reaha use those huge, full breasts of her to get you off.");
 	else addDisabledButton(1,"Titjob","Titjob","You need a hardlight strapon or a penis in order to do this.");
@@ -1780,7 +1780,7 @@ public function displayReahaInventory():void
 	output("<b>Armor:</b> [reaha.Armor]\n");
 	output("<b>Upper Undergarment:</b> [reaha.UpperUndergarment]\n");
 	output("<b>Lower Undergarment:</b> [reaha.LowerUndergarment]" + (reaha.hasHardLightEquipped() ? " (with hardlight strap-on)" : "") + "\n\n");
-	output("<b><u>Reaha's Available Clothing:</u></b>\n");
+	output("<b><u>Reaha’s Available Clothing:</u></b>\n");
 	for(var x:int = 0; x < reaha.inventory.length; x++)
 	{
 		if(x >= REAHA_INV_SLOT_MAX) output("<span class='bad'>" + StringUtil.upperCase(reaha.inventory[x].description) + "</span>\n");
@@ -1833,7 +1833,7 @@ public function giveReahaClothes():void
 			}
 		}
 	}
-	if(buttons == 0) output("\nOh right... You don't have anything to give her.");
+	if(buttons == 0) output("\nOh right... You don’t have anything to give her.");
 	addButton(14,"Back",curedReahaApproach);
 }
 
@@ -2158,7 +2158,7 @@ public function giveReahaTFItemPresents():void
 			buttons++;
 		}
 	}
-	if(buttons == 0) output(" <b>On second thought, you don't have anything she'd like.</b>");
+	if(buttons == 0) output(" <b>On second thought, you don’t have anything she’d like.</b>");
 	addButton(14,"Back",curedReahaApproach);
 }
 

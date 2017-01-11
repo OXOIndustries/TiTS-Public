@@ -46,7 +46,7 @@ public function gigaCeliseMenu():void
 	this.clearMenu();
 	if(pc.hasCock() || pc.hasVagina()) {
 		if(pc.lust() < 33) {
-			output("\n\n<b>You aren't aroused enough to consider any sort of sexual situation with Celise.</b>");
+			output("\n\n<b>You aren’t aroused enough to consider any sort of sexual situation with Celise.</b>");
 			this.addDisabledButton(0,"Feed");
 		}
 		else 
@@ -57,7 +57,7 @@ public function gigaCeliseMenu():void
 	}
 	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
 	addButton(1,"Shrink",shrinkBackToNormalCelise);
-	addButton(4,"Send Away",sendCeliseAway,undefined,"Send Away","Send Celise off the ship to wait for you. She'll be at the hangar in Tavros if you ever want her back.");
+	addButton(4,"Send Away",sendCeliseAway,undefined,"Send Away","Send Celise off the ship to wait for you. She’ll be at the hangar in Tavros if you ever want her back.");
 	this.addButton(14,"Back",crew);
 }
 public function shrinkBackToNormalCelise():void
@@ -83,11 +83,11 @@ public function gigaCeliseFeedRouter():void
 	if(pc.hasCock()) addButton(0,"Cock Feed",malePartsTentacruelFun,undefined,"Cock Feed","Feed your tentacle-heavy Celise with a penis.");
 	else addDisabledButton(0,"Cock Feed","Cock Feed","You need a penis for this scene.");
 	//female parts tentacle fun
-	if(pc.hasVagina()) addButton(1,"Cunt Feed",celiseFemalePartsTentacleFun,undefined,"Cunt Feed","Feed your tentacle-heavy Celise with a tentacle's best friend - [pc.oneVagina].");
+	if(pc.hasVagina()) addButton(1,"Cunt Feed",celiseFemalePartsTentacleFun,undefined,"Cunt Feed","Feed your tentacle-heavy Celise with a tentacle’s best friend - [pc.oneVagina].");
 	else addDisabledButton(1,"Cunt Feed","Cunt Feed","You need a vagina for this scene.");	
 	//Goo pc’s fun
 	//(requires pc to have goo body) && genitals
-	if(pc.isGoo() && pc.hasGenitals()) addButton(2,"Goo Fun",gooPCsAreFun,undefined,"Goo Fun","Have some gooey fun with Celise. Since you're both goo-creatures, it should be a slippery-wet mess!");
+	if(pc.isGoo() && pc.hasGenitals()) addButton(2,"Goo Fun",gooPCsAreFun,undefined,"Goo Fun","Have some gooey fun with Celise. Since you’re both goo-creatures, it should be a slippery-wet mess!");
 	else if(pc.hasGenitals()) addDisabledButton(2,"Goo Fun","Goo Fun","You have to be some kind of goo creature, like Celise, for this scene.");
 	else addDisabledButton(2,"Goo Fun","Goo Fun","You have to have genitals for this scene.");
 	if(hasACumBubble()) addButton(5,"Cum Bubble",giveCeliseATreatSetup,undefined,"Cum Bubble","Celise loves cum right from the tap, but she’d probably enjoy a stored sample too.");
@@ -197,7 +197,7 @@ public function malePartsTentacruelFun():void
 	//Now if the PC ran dry and eligible, enhance!
 	if(pc.currentCum() <= 1 && cumImproveChange)
 	{
-		output("\n\n<b>She's left you utterly drained, but an answering throb deep in your spent loins promises your body will give a better showing next time. If only it didn't leave you so tired...</b>");
+		output("\n\n<b>She’s left you utterly drained, but an answering throb deep in your spent loins promises your body will give a better showing next time. If only it didn’t leave you so tired...</b>");
 		if(pc.balls > 0 && pc.ballSize() < 5) pc.ballSizeRaw++;
 		if(pc.ballEfficiency < 400) pc.ballEfficiency++;
 		if(pc.cumMultiplier() < 150) pc.cumMultiplierRaw++;
@@ -332,7 +332,7 @@ public function celiseFemalePartsTentacleFun():void
 	//Now if the PC is kinda dry
 	if(pc.driestVaginalWetness() < 3)
 	{
-		output("\n\n<b>She's left you utterly drained and a little sore, but you seem a little more... moist down there than before.</b>");
+		output("\n\n<b>She’s left you utterly drained and a little sore, but you seem a little more... moist down there than before.</b>");
 		for(var x:int = 0; x < pc.totalVaginas(); x++)
 		{
 			if(pc.vaginas[x].wetnessRaw < 3) pc.vaginas[x].wetnessRaw += 1;
@@ -361,7 +361,7 @@ public function celiseKiroFunSekritShit():void
 		output("\n\n<i>“Who is it? ‘Perfect’ sounds a little too good to be true,”</i> Kiro says with an incredulous tone. <i>“The last time someone offered me something perfect I nearly wound up in a cell!”</i>");
 		//[tell] [dont tell]
 		clearMenu();
-		addButton(1,"Don't Tell",dontTellKiroShit,undefined,"Don't Tell","Don’t give away the surprise.");
+		addButton(1,"Don’t Tell",dontTellKiroShit,undefined,"Don’t Tell","Don’t give away the surprise.");
 		addButton(0,"Tell",tellKiroShit,undefined,"Tell","Tell Kiro!");
 	}
 	//repeat
@@ -466,7 +466,7 @@ public function tentacleMassageFunShit():void
 	else if(pc.hasClit()) output("throbbing [pc.clits]");
 	else output("naked and aroused sex");
 	output(". You kindly ask if she wouldn’t mind giving you a massage. Her attention snaps back to your face and she replies that she would very much like it. You hold up a finger before she begins, telling her to be careful not to hurt your overworked muscles.");
-	output("\n\n<i>\"Don’t worry. I can be careful,”</i> she says with a lusty smile before gently lifting you and placing you on your stomach. You see hands forming at the ends of her tentacles within your vision and close your eyes as lukewarm goo begins to caress your body.");
+	output("\n\n<i>“Don’t worry. I can be careful,”</i> she says with a lusty smile before gently lifting you and placing you on your stomach. You see hands forming at the ends of her tentacles within your vision and close your eyes as lukewarm goo begins to caress your body.");
 
 	//Taur legs:
 	if(pc.isTaur())
@@ -497,7 +497,7 @@ public function tentacleMassageFunShit():void
 		{
 			if(pc.cumQ() < 6) 
 			{
-				output("squirting a few paltry drops into the goo-girl's sucking tentacle");
+				output("squirting a few paltry drops into the goo-girl’s sucking tentacle");
 				if(pc.cockTotal() > 1) output("s");
 			}
 			else 
@@ -580,7 +580,7 @@ public function tentacleMassageFunShit():void
 		{
 			if(pc.cumQ() < 6) 
 			{
-				output("squirting a few paltry drops into the goo-girl's sucking tentacle");
+				output("squirting a few paltry drops into the goo-girl’s sucking tentacle");
 				if(pc.cockTotal() > 1) output("s");
 			}
 			else 
@@ -607,7 +607,7 @@ public function tentacleMassageFunShit():void
 	if(pc.tone >= 50) output("run across your muscled physique, working out knots in a comfortable manner");
 	else output("run across your smooth body, pressing various relaxing points that help you loosen up from your day");
 	output(". You plunge into a chasm of unequaled repose until you feel totally relaxed under the emerald girl’s expert chirapsia. She continues upwards, spreading her reach to cover both of your arms. She massages your shoulders, rubbing deeply to release the tension. The action is repeated with your elbows, forearms, and wrists, ending when she locks fingers with you for a moment and leans down to kiss the nape of your neck. She presses her upper body lightly against yours and begins to vibrate lightly to give your whole back a comfortable massage.");
-	output("\n\nThis continues until you feel yourself drifting slowly out of consciousness. When you wake, Celise is using herself as your pillow while gently brushing your hair and looking at you lovingly... or perhaps hungrily. You stretch, noticing that you feel much better than before, and thank Celise for the wonderful massage. <i>\"Any feeding time is fun with you, [pc.name],”</i> she says with a beaming smile. You stand, recovering your gear, and return to your adventures.");
+	output("\n\nThis continues until you feel yourself drifting slowly out of consciousness. When you wake, Celise is using herself as your pillow while gently brushing your hair and looking at you lovingly... or perhaps hungrily. You stretch, noticing that you feel much better than before, and thank Celise for the wonderful massage. <i>“Any feeding time is fun with you, [pc.name],”</i> she says with a beaming smile. You stand, recovering your gear, and return to your adventures.");
 	//(pass 3 hours)(pc.orgasm)(restore health equal to rest option.)
 	restHeal();
 	processTime(160+rand(20));
@@ -630,7 +630,7 @@ public function gooPCsAreFun():void
 	output(" You can still hear her voice vibrating in her tendrils as you swim through them, and the shuddering travels through your body as well. The pleasure you’re creating for her is reflected twofold back into you.");
 
 	output("\n\nAfter slipping through her you manage to pull back from the pleasure, reforming yourself inside the tangle of viridian tendrils. You relax in the softness of her body, idly stroking the many extremities of her lower half as you listen to the music of her pleasure noises. They twitch as you touch them, but don’t shy away from your lavish attentions. You could get used to this.");
-	output("\n\nYou hear a liquid sounding splurch before Celise's upper body forms above you in the mass of tentacles. She smiles lustfully at you and leans in for a kiss, falling along the wall until her short upper frame lies atop you. You can feel her almost fully solid evergreen nipples rubbing against your gooey flesh, and you reach through your sides to pinch and pull them deeper. Their owner moans in response and gives you a sloppy kiss, slipping her tongue inside you to play. You trade yours for hers, exploring her body with a tendril of your own.");
+	output("\n\nYou hear a liquid sounding splurch before Celise’s upper body forms above you in the mass of tentacles. She smiles lustfully at you and leans in for a kiss, falling along the wall until her short upper frame lies atop you. You can feel her almost fully solid evergreen nipples rubbing against your gooey flesh, and you reach through your sides to pinch and pull them deeper. Their owner moans in response and gives you a sloppy kiss, slipping her tongue inside you to play. You trade yours for hers, exploring her body with a tendril of your own.");
 	output("\n\nShe pulls closer to you, and you unsheathe your hands to drape them around her back and lock her in place atop you. Your kissing intensifies so greatly that the two of you begin to sink together, feeling each others pleasure mixing in the process. The feeling of it overwhelms every sense your goo-formed body can emulate, and it responds in the only way it knows how. By coming hard.");
 	output("\n\nYou had nearly forgotten about your genitals, so when they decide to fill Celise’s upper half with a flood of ");
 	if(pc.cumType != pc.girlCumType)

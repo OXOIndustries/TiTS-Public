@@ -170,6 +170,7 @@
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
 		include "../includes/tavros/reaha.cured_expansion.as";
+		include "../includes/tavros/riya.as";
 		include "../includes/tavros/rooms.as";
 		include "../includes/tavros/roomFunctions.as";
 		include "../includes/tavros/saendraXPack1.as";
@@ -268,6 +269,9 @@
 		include "../includes/myrellion/anzhelaRedMyrMedic.as";
 		include "../includes/myrellion/asennia.as";
 		include "../includes/myrellion/bathHouse.as";
+		include "../includes/myrellion/bothriocAmbassador.as";
+		include "../includes/myrellion/bothriocSharedFunctions.as";
+		include "../includes/myrellion/bothriocCombatMobs.as";
 		include "../includes/myrellion/cockvines.as";
 		include "../includes/myrellion/cockvineseedling.as";
 		include "../includes/myrellion/crystalGoo.as";
@@ -322,6 +326,7 @@
 		
 		// Uveto
 		include "../includes/uveto/drlessau.as";
+		include "../includes/uveto/carbonado.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
@@ -444,7 +449,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.99";
+			version = "0.7.09";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -912,6 +917,11 @@
 			this[name]();
 		}
 		
+		public function ExecuteFunctionArgs(name:String, args:*):void
+		{
+			this[name](args);
+		}
+		
 		// This is hacky as fuck, but it's the ONLY way I can think of pinning down exactly where this issue happens
 		public function jackJillDetector(btnName:String, tFunc:Function, tArg:*):void
 		{
@@ -1282,6 +1292,14 @@
 		{
 			return chars["PEXIGA"];
 		}
+		public function get ara():AraKei
+		{
+			return chars["ARAKEI"];
+		}
+		public function get gwen():Gwen
+		{
+			return chars["GWEN"];
+		}
 		public function get pippa():Pippa
 		{
 			return chars["PIPPA"];
@@ -1317,3 +1335,4 @@
 		*/
 	}
 }
+

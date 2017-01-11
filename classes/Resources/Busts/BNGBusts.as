@@ -9,7 +9,7 @@ package classes.Resources.Busts
 		public function get PREVIEW():Class { return Bust_NEVRIE; }
 		public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/bng/hr/sig.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/bng/HR/sig.png", mimeType = "image/png")]
 		public var SigEmbed:Class;
 
 		[Embed(source = "../../../assets/images/npcs/bng/nevrie.png", mimeType = "image/png")]
@@ -23,13 +23,13 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/bng/hr/nevrie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/bng/HR/nevrie.png", mimeType = "image/png")]
 			public var Full_NEVRIE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/bng/hr/nuka_a.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/bng/HR/nuka_a.png", mimeType = "image/png")]
 			public var Full_NUKA_A:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/bng/hr/nuka_b.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/bng/HR/nuka_b.png", mimeType = "image/png")]
 			public var Full_NUKA_B:Class;
 		}
 	}

@@ -660,7 +660,7 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 		if(flags["SHADE_IS_YER_SIS"] == 0)
 			{
 				response = "lover sibling decision";
-				tooltip = "This is Shade's house. Time to make a decision about where you want the pair of you to go.";
+				tooltip = "This is Shade’s house. Time to make a decision about where you want the pair of you to go.";
 			}
 		else return;
 	}
@@ -819,7 +819,7 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			addButton(0, "Want Shade", approachShadeAtHouse, "lover sibling shade", "Want Shade", "No matter what revelations you two have had about each other, your desire for Shade remains unabated. You want her, now more than ever...");
 			addButton(1, "Want Sister", approachShadeAtHouse, "lover sibling sister", "Want Sister", "If Shade wants your take on things, well... you want your sister more than your lover. Cut this sexual nature of your relationship off, try and put it behind you, and grow a deeper bond as siblings.");
 			addButton(2, "Distance", approachShadeAtHouse, "lover sibling distance", "Keep Distance", "No, you and Shade need to keep your distance after what you’ve done. For both your sakes.");
-			addButton(3, "Don't Know", approachShadeAtHouse, "lover sibling dunno", "Don't Know", "You don’t know what you feel. Not yet, anyway.");
+			addButton(3, "Don’t Know", approachShadeAtHouse, "lover sibling dunno", "Don’t Know", "You don’t know what you feel. Not yet, anyway.");
 			break;
 		case "lover sibling dunno":
 			showBust(shadeBustDisplay());

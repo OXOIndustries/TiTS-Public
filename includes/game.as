@@ -422,7 +422,7 @@ public function showMailsHandler(e:Event = null):void
 		{
 			userInterface.showSecondaryOutput();
 			clearOutput2();
-			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something’s messed up with it’s quantuum comms. device... or it’s getting some serious interference. You’ll not be able to use the function until you get back to your ship and tinker with it.");
+			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something’s messed up with it’s quantum comms. device... or it’s getting some serious interference. You’ll not be able to use the function until you get back to your ship and tinker with it.");
 			return;
 		}
 		else
@@ -1468,6 +1468,12 @@ public function variableRoomUpdateCheck():void
 	//Place/remove Semith's NPC flag from his apartment based on time.
 	if (hours > 17) rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].addFlag(GLOBAL.NPC);
 	else rooms["RESIDENTIAL DECK SEMITHS APARTMENT"].removeFlag(GLOBAL.NPC);
+	//Zheniya's schedule
+	if (zilCallgirlAtNursery())
+	{
+		if (hours >= 8 && hours <= 16) rooms["RESIDENTIAL DECK ZHENIYA"].removeFlag(GLOBAL.NPC);
+		else rooms["RESIDENTIAL DECK ZHENIYA"].addFlag(GLOBAL.NPC);
+	}
 	//Nursery
 	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16))
 	{
@@ -1839,7 +1845,14 @@ public function variableRoomUpdateCheck():void
 		rooms["PIPPA HOUSE"].addFlag(GLOBAL.NPC);
 	}
 	
-	
+	/* VESPERIA / CANADIA STATION */
+	if(flags["KALLY_FAP_2_KIRO"] != undefined)
+	{
+		rooms["CANADA7"].eastExit = "CANADA8";
+	}
+	else rooms["CANADA7"].eastExit = "";
+
+
 	/* MISC */
 	
 	// Kiro's Airlock
@@ -1849,7 +1862,7 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["KI-E23"].removeFlag(GLOBAL.LIFTDOWN);
 		rooms["KI-E23"].addFlag(GLOBAL.HAZARD);
-}
+	}
 	else
 	{
 		rooms["KI-E23"].addFlag(GLOBAL.LIFTDOWN);
@@ -1917,6 +1930,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processMyrPregEvents(deltaT, doOut, totalDays);
 		thollumYardMushroomGrow();
 		laneHandleCredits(totalDays);
+		updateBothriocAddiction(totalDays);
 	}
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
@@ -1977,7 +1991,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//Anno Mail
 		if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
 		//KIRO FUCKMEET
-		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined) { goMailGet("kirofucknet"); }
+		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", -1, kiroFuckNetBonus()); }
 		//KIRO DATEMEET
 		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && rand(10) == 0) { goMailGet("kirodatemeet"); }
 		trySendStephMail();

@@ -7,7 +7,7 @@
 		author("Savin");
 		flags["PUPPYSLUTMAS_2014_ANNO_OFFER"] = 1;
 
-		output("As you're hanging around your quarters, you hear a knock on your door. You bid whoever it was enter, and find Anno stepping in, smiling from ear to ear.");
+		output("As you’re hanging around your quarters, you hear a knock on your door. You bid whoever it was enter, and find Anno stepping in, smiling from ear to ear.");
 
 		output("\n\n<i>“Hey, babe,”</i> she purrs, slipping into your lap and hooking her arms around your neck. Anno squeezes herself in close to you, her white tail swishing against your [pc.leg]. You’re starting to think that your affectionate ausar lover just needed a cuddle before she finally gets to why she came by:");
 		
@@ -27,7 +27,7 @@
 
 		clearMenu();
 		addButton(0, "Sure", annoPuppyslutmasYe, undefined, "Sure", "That sounds like fun. Take Anno to Ausaril and meet the Dorna family.");
-		addButton(1, "Nope", annoPuppyslutmasNope, undefined, "Nope", "You've got better things to do.");
+		addButton(1, "Nope", annoPuppyslutmasNope, undefined, "Nope", "You’ve got better things to do.");
 		
 		processTime(10);
 		return true;
@@ -145,7 +145,7 @@ public function syriPuppyslutmasEntry():Boolean
 		output("\n\nIt doesn’t take a genius to pick up on Syri’s akwardly-voiced request: she wants you to come as her date.");
 
 		clearMenu();
-		addButton(0, "Sure", syriPuppyslutmasYe, undefined, "Sure", "Accompany Syri to her parent's Christmas gala. You might even be able to heal old wounds. Or at least keep Syri from getting too drunk.");
+		addButton(0, "Sure", syriPuppyslutmasYe, undefined, "Sure", "Accompany Syri to her parent’s Christmas gala. You might even be able to heal old wounds. Or at least keep Syri from getting too drunk.");
 		addButton(1, "Nope", syriPuppyslutmasNope, undefined, "Nope", "Syri should stay away. No need to re-open old wounds.");
 
 		processTime(10);
@@ -381,7 +381,7 @@ public function pPartyLocation():void
 	rooms["PUPPYSLUTMAS"].roomName = "OFFICE\nCOMPLEX";
 	rooms["PUPPYSLUTMAS"].description = "";
 	rooms["PUPPYSLUTMAS"].planet = "PLANET: AUSARIL";
-	rooms["PUPPYSLUTMAS"].system = "SYSTEM: " + (silly ? "SNOUP DU'OGG" : "EKYRA");
+	rooms["PUPPYSLUTMAS"].system = "SYSTEM: " + (silly ? "SNOUP DU’OGG" : "EKYRA");
 	rooms["PUPPYSLUTMAS"].moveMinutes = 1;
 	rooms["PUPPYSLUTMAS"].runOnEnter = puntToShip;
 	rooms["PUPPYSLUTMAS"].addFlag(GLOBAL.OUTDOOR);
@@ -572,7 +572,7 @@ public function puppyslutmasMeetSyri():void
 		output("\n\nSyri gives you an approving look and claps her sister on the shoulder. <i>“Good for you two.”</i>");
 	}
 	
-	output("\n\nAfter a moment, Syri adds, <i>“Hey, look, I’m flying solo tonight. Would you mind if I tag around with you guys for a while? At least 'til we go meet Mom and Dad? I don’t want to run into them solo.”</i>");
+	output("\n\nAfter a moment, Syri adds, <i>“Hey, look, I’m flying solo tonight. Would you mind if I tag around with you guys for a while? At least ‘til we go meet Mom and Dad? I don’t want to run into them solo.”</i>");
 	
 	output("\n\n<i>“Sure!”</i> Anno beams. <i>“Ah, it’s gonna be like a real family reunion now!”</i>");
 	
@@ -605,7 +605,7 @@ public function puppyslutmasPostGreets():void
 	showBust("ANNO", "SYRI", "KAEDE");
 	author("Savin");
 
-	output("The Dorna family christmas party is about what you'd expect from a wealthy black-tie event. A few dozen older ausar are mingling around the terrace, voices muffled by the cheery music wafting out from the main floor inside. A large fountain dominates the center of the terrace, tipped with a strange winged creature you can't identify. A big, stuffed Santa sits next to the door with an electronic device in its hand, allowing the guests to anonymously donate to the charities the Dorna family is supporting. A big punch bowl is set out near the railing, which has attracted the attention of many other guests.");
+	output("The Dorna family christmas party is about what you’d expect from a wealthy black-tie event. A few dozen older ausar are mingling around the terrace, voices muffled by the cheery music wafting out from the main floor inside. A large fountain dominates the center of the terrace, tipped with a strange winged creature you can’t identify. A big, stuffed Santa sits next to the door with an electronic device in its hand, allowing the guests to anonymously donate to the charities the Dorna family is supporting. A big punch bowl is set out near the railing, which has attracted the attention of many other guests.");
 
 	output("\n\nAnno, Kaede, and Syri are happily following you about");
 	if (pPartner() == "Syri" && pSyriClothes() == "Dress") output(", their handsome dresses and curvaceous figures drawing admiring gazes from the other ausar milling about");
@@ -625,7 +625,7 @@ public function puppyslutmasPartyMenu():void
 
 	addButton(3, "Talk: Kaede", puppyslutmasChatKaede, undefined, "Talk with Kaede", "Chat with Kaede for a bit.");
 
-	addButton(4, "Dance", puppyslutmasDance, undefined, "Dance", "Take the girls onto the dance floor. Won't be much reason to come back out to the Terrace once you're there.");
+	addButton(4, "Dance", puppyslutmasDance, undefined, "Dance", "Take the girls onto the dance floor. Won’t be much reason to come back out to the Terrace once you’re there.");
 }
 
 public function puppyslutmasDrinks():void
@@ -635,13 +635,13 @@ public function puppyslutmasDrinks():void
 	showBust("ANNO", "SYRI", "KAEDE");
 	author("Savin");
 
-	output("You motion your train of ausar babes over towards the punch bowl. They follow you eagerly, and you quickly find yourself pouring glasses of a dark red punch that smells much more boozy than what you're used to from your father's functions. Even if that's not your scene, there's champagne and wine in easy access from a few tux-wearing attendants manning a portable bar. ");
+	output("You motion your train of ausar babes over towards the punch bowl. They follow you eagerly, and you quickly find yourself pouring glasses of a dark red punch that smells much more boozy than what you’re used to from your father’s functions. Even if that’s not your scene, there’s champagne and wine in easy access from a few tux-wearing attendants manning a portable bar. ");
 
 	if (pSmashed())
 	{
 		output("\n\n<i>“SHOTS!”</i> you cheer, ordering one of the waiters to bring out the good stuff. It takes some encouragement, but he eventually delivers a platter of shot glasses full of a clear, amber liquor.");
 
-		output("\n\n<i>“SHOTS SHOT SHOTS!”</i> the girls cheer back as you pass the drinks out. You're drawing more than a few gazes by now, but fuck it: it's party time! You and your friends all knock back your drinks, grinning and laughing as the burning booze goes down. <i>“WHOO!”</i>");
+		output("\n\n<i>“SHOTS SHOT SHOTS!”</i> the girls cheer back as you pass the drinks out. You’re drawing more than a few gazes by now, but fuck it: it’s party time! You and your friends all knock back your drinks, grinning and laughing as the burning booze goes down. <i>“WHOO!”</i>");
 	}
 	else if (pDrunk()) output("\n\n<i>“Bottoms up, girls!”</i> you cheer, knocking your glass back. Your gaggle of inebriated ausar giggle and drink up. Almost in unison, you and the girls finish your glasses and find your cheeks all flushing red.");
 	else output("\n\n<i>“Cheers,”</i> you say, raising your glass to the girls. They answer the toast in turn, all smiles and wagging tails. You drink deep, knocking back your glass with relish, and ending with a sharp intake of breath. Whew, that was stronger than you were expecting!");
@@ -735,7 +735,7 @@ public function puppyslutmasDoDonate():void
 	else if (dVal > pc.credits)
 	{
 		clearOutput();
-		output("Your codex warns you that the value you've indicated to donate is actually <i>more</i> than your account contains.");
+		output("Your codex warns you that the value you’ve indicated to donate is actually <i>more</i> than your account contains.");
 
 		this.removeInput();
 		this.displayInput();
@@ -797,11 +797,11 @@ public function puppyslutmasChatSyri():void
 	}
 	else if (pSmashed())
 	{
-		output(" thunderous <i>“Fuck yeah! I'm ready for this shit. C'mon, let's go!”</i>");
+		output(" thunderous <i>“Fuck yeah! I’m ready for this shit. C’mon, let’s go!”</i>");
 	}
 	else
 	{
-		output(" resigned <i>“I guess... Not sure what I'm gonna tell them, but I think I've got enough liquid courage in me for it now.”</i>");
+		output(" resigned <i>“I guess... Not sure what I’m gonna tell them, but I think I’ve got enough liquid courage in me for it now.”</i>");
 	}
 
 	processTime(10);
@@ -1189,7 +1189,7 @@ public function puppyslutmasDornasArrive():void
 	
 	output("\n\n<i>“Um, your attention please,”</i> he says, tapping the mic again. His voice fills through the room with surprising evenness, from speakers that must completely encircle the dance floor. The chatter of the collected ausar dies down, replaced with respectful silence. <i>“Ah, thank you. Our hosts will be arriving any moment now. Please, give a round of applause for the people who put this evening’s festivities together. The heads of the Dorna Foundation, ladies and gentlemen, Rylon and Aserra Dorna!”</i>");
 	
-	output("\n\nThe chorus of quiet golf claps echo through the room and a stage light flickers on, beaming down on the podium as the old man slips off, and the curtains behind him open up. A pair of well dressed, middle aged ausar step out onto the stage, waving and smiling to the crowd. The lights focus in on them, giving you your first clear glimpse of the Dorna twins’ parents. Rylon, their father, is a tall and fairly fit man with short, snow-white hair and dark blue eyes just like Anno’s, dressed to the nines in a tailored black suit and a christmas tie. Aserra, his wife, has a head of long, blue-gray hair pulled back into a tight ponytail. She’s wearing a tight, red cocktail dress fringed with white fluff, like a provocative fem-Santa. With all that pale, supple flesh on display, she’s easily the most evocatively-dressed woman in the room");
+	output("\n\nThe chorus of quiet golf claps echo through the room and a stage light flickers on, beaming down on the podium as the old man slips off, and the curtains behind him open up. A pair of well dressed, middle aged ausar step out onto the stage, waving and smiling to the crowd. The lights focus in on them, giving you your first clear glimpse of the Dorna twins’ parents. Rylon, their father, is a tall and fairly fit man with short, snow-white hair and dark blue eyes just like Anno’s, dressed to the nines in a tailored black suit and a christmas tie. Aserra, his wife, has a head of long, blue-gray hair pulled back into a tight ponytail. She’s wearing a tight, red cocktail dress fringed with white fluff, like a provocative fem-Santa. With all that pale, supple flesh on display, she’s easily the most evocatively-dressed " + (pc.mf("m", "f") == "m" ? "person" : "woman") + " in the room");
 	if (pc.isNude() || pc.sexiness() > 4) output("... aside from you, of course");
 	output(".");
 	
@@ -1249,7 +1249,7 @@ public function puppyslutmasDornasArrive():void
 	output("\n\n<i>“Steele,”</i> you add, shaking her hand, then Mr. Dorna’s. <i>“[pc.name] Steele.”</i>");
 	
 	output("\n\nMrs. Dorna cocks an eye at that. <i>“Steele, is it?”</i> she muses, looking between you and Anno. <i>“How interesting.");
-	if (annoIsCrew()) output(" Didn’t you work for Steele Tech until just recently, darling?");
+	if (flags["ANNO_MISSION_OFFER"] != undefined && flags["ANNO_MISSION_OFFER"] != 3) output(" Didn’t you work for Steele Tech until just recently, darling?");
 	else output(" Don’t you work for Steele Tech, darling?");
 	output("”</i>");
 	

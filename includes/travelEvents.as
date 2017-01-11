@@ -4,7 +4,7 @@
 public function incomingMessage(travelEvent:Function, originalDestination:String):void
 {
 	clearOutput();
-	output("Mid-flight, you see an alert pop up on your main console. The computer reports that you're picking up a message on open channels.");
+	output("Mid-flight, you see an alert pop up on your main console. The computer reports that you’re picking up a message on open channels.");
 	
 	clearMenu();
 	addButton(0, "Read Message", travelEvent, originalDestination);
@@ -55,14 +55,14 @@ public function tryProcTravelEvent(destination:String):Function
 public function fallOfThePhoenixMessage(destination:String):void
 {
 	clearOutput();
-	output("You hit the display button. A message appears on your ship's console:");
+	output("You hit the display button. A message appears on your ship’s console:");
 
 	output("\n\n<i><b>Distress call detected! Message follows:</b></i>");
-	output("\nYou hear a woman’s voice, filled with desperation as something explodes behind her... is that gunfire? <i>“Mayday, mayday, this is the </i>Phoenix<i>! To anyone who can hear me: I’m under attack! They've boarded... cut the controls. I’m pinned down, running out of ammo. For gods’ sakes, send help!”</i>");
+	output("\nYou hear a woman’s voice, filled with desperation as something explodes behind her... is that gunfire? <i>“Mayday, mayday, this is the </i>Phoenix<i>! To anyone who can hear me: I’m under attack! They’ve boarded... cut the controls. I’m pinned down, running out of ammo. For gods’ sakes, send help!”</i>");
 
 	output("\n\n<i><b>Message repeats.</b></i>");
 	
-	output("\n\nPirates, probably. Your computer blips that the ship isn't too far out of your way; you could be there in a matter of minutes... Do you respond to the distress call?");
+	output("\n\nPirates, probably. Your computer blips that the ship isn’t too far out of your way; you could be there in a matter of minutes... Do you respond to the distress call?");
 	
 	//[Yes] [No]
 	clearMenu();
@@ -75,7 +75,7 @@ public function ignoreFallOfThePhoenix(destination:String):void
 	flags["FALL OF THE PHOENIX STATUS"] = -1;
 	
 	clearOutput();
-	output("You turn the message off. There's nothing you can do.");
+	output("You turn the message off. There’s nothing you can do.");
 	
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, destination);
@@ -85,14 +85,14 @@ public function rescueKiroMessage(destination:String):void
 {
 	clearOutput();
 	
-	output("You hit the display button. A message appears on your ship's console:");
+	output("You hit the display button. A message appears on your ship’s console:");
 
 	output("\n\n<i><b>Distress call detected! Message text follows:</b>");
 	output("\nIf anyone is receiving this, please help. Onboard systems are failing, and I can no longer reach navigation controls. Emergency power is in the red. Help me, please!");
 	
 	output("\n\n<b>Message repeats.</b></i>");
 	
-	output("\n\nAnswering it wouldn't take you that far out of the way. Do you respond to the distress call?");
+	output("\n\nAnswering it wouldn’t take you that far out of the way. Do you respond to the distress call?");
 	//[Yes] [No]
 	clearMenu();
 	addButton(0, "Yes", answerKiroDistressCall, destination);
@@ -151,7 +151,7 @@ public function iceQueenMessageIgnore(destination:String):void
 {
 	clearOutput();
 
-	output("You think about it a few moments, then shake your head. Kandar and his crew will have to manage on their own. You've got more important fish to fry.");
+	output("You think about it a few moments, then shake your head. Kandar and his crew will have to manage on their own. You’ve got more important fish to fry.");
 	flags["ICEQUEEN COMPLETE"] = -1;
 
 	clearMenu();

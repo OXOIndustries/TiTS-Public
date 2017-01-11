@@ -10,6 +10,7 @@
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
+	import classes.Items.Transformatives.OmegaOil;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
 	import classes.Util.RandomInCollection;
@@ -163,12 +164,13 @@
 			this.balls = 2;
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 1;
+			this.impregnationType = "MilodanPregnancy";
+			this.cumQualityRaw = 3;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 8;
-			this.ballFullness = 1;
+			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
-			this.ballEfficiency = 10;
+			this.ballEfficiency = 7;
 			//Scales from 0 (never produce more) to infinity.
 			this.refractoryRate = 6;
 			this.minutesSinceCum = 420;
@@ -211,39 +213,56 @@
 
 			if(rand(3) == 0)
 			{
-				this.meleeWeapon.attack = 3;
-				this.meleeWeapon.baseDamage.kinetic.damageValue = 15;
-				this.meleeWeapon.longName = "heavy club";
-				this.meleeWeapon.description = "a heavy club";
-				this.meleeWeapon.attackVerb = "smash";
-				this.meleeWeapon.attackNoun = "smash";
+				changeWeapon("heavy club");
 			}
 			else if(rand(2) == 0)
 			{
-				this.meleeWeapon.attack = 3;
-				this.meleeWeapon.baseDamage.kinetic.damageValue = 13;
-				this.meleeWeapon.longName = "axe";
-				this.meleeWeapon.description = "an axe";
-				this.meleeWeapon.attackVerb = "slash";
-				this.meleeWeapon.attackNoun = "cleave";	
+				changeWeapon("axe");	
 			}
 			else
 			{
-				this.meleeWeapon.attack = 3;
-				this.meleeWeapon.baseDamage.kinetic.damageValue = 10;
-				this.meleeWeapon.longName = "claw";
-				this.meleeWeapon.description = "a claw";
-				this.meleeWeapon.attackVerb = "claw";
-				this.meleeWeapon.attackNoun = "claw";
+				changeWeapon("claw");
 			}
 			//Placeholder for loot setup
-			//if(rand(8) <= 6) inventory.push(new Ruskvel());
+			if(rand(10) <= 3) inventory.push(new OmegaOil());
+		}
+		private function changeWeapon(weaponName:String = "claw"):void 
+		{
+			switch(weaponName)
+			{
+				case "heavy club":
+					this.meleeWeapon.attack = 3;
+					this.meleeWeapon.baseDamage.kinetic.damageValue = 15;
+					this.meleeWeapon.longName = "heavy club";
+					this.meleeWeapon.description = "a heavy club";
+					this.meleeWeapon.attackVerb = "smash";
+					this.meleeWeapon.attackNoun = "smash";
+					break;
+				case "axe":
+					this.meleeWeapon.attack = 3;
+					this.meleeWeapon.baseDamage.kinetic.damageValue = 13;
+					this.meleeWeapon.longName = "axe";
+					this.meleeWeapon.description = "an axe";
+					this.meleeWeapon.attackVerb = "slash";
+					this.meleeWeapon.attackNoun = "cleave";	
+					break;
+				case "claw":
+					this.meleeWeapon.attack = 3;
+					this.meleeWeapon.baseDamage.kinetic.damageValue = 10;
+					this.meleeWeapon.longName = "claw";
+					this.meleeWeapon.description = "a claw";
+					this.meleeWeapon.attackVerb = "claw";
+					this.meleeWeapon.attackNoun = "claw";
+					break;
+				}
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			
+			if(this.hasStatusEffect("Disarmed") && this.meleeWeapon.longName != "claw") this.changeWeapon("claw");
 			
 			var attackChoices:Array = new Array();
 			if(this.hasStatusEffect("Blind") || this.hasStatusEffect("Blindness") || this.hasStatusEffect("Blinded")) 
@@ -282,10 +301,10 @@
 					damageRand(d, 15);
 					applyDamage(d, this, target, "melee");
 					if (!target.hasStatusEffect("Staggered") && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
-		  			{
-		  				output("<b> You've been staggered!</b>");
-		  				target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced by 20%!", true, 0);
-		  			}
+					{
+						output("<b> You’ve been staggered!</b>");
+						target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You’re staggered, and your Aim and Reflexes have been reduced by 20%!", true, 0);
+					}
 				}
 				
 			}
@@ -332,7 +351,7 @@
 						if (!target.hasStatusEffect("Bleeding"))
 						{
 							output(" <b>You’re bleeding!</b>");
-							target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You're bleeding! (1x)", true, 0);
+							target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You’re bleeding! (1x)", true, 0);
 						}
 						else
 						{
@@ -344,7 +363,7 @@
 						var stacks:int = target.statusEffectv1("Bleeding");
 						var rounds:int = target.statusEffectv2("Bleeding");
 						var damage:int = target.statusEffectv3("Bleeding");
-						target.setStatusTooltip("Bleeding","You're bleeding!\n" + damage + " bleed strength.\n" + stacks + " stack" + ((stacks > 1) ? "s":"") + ".\n" + rounds + " round" + ((rounds > 1) ? "s":"") + " remaining.");
+						target.setStatusTooltip("Bleeding","You’re bleeding!\n" + damage + " bleed strength.\n" + stacks + " stack" + ((stacks > 1) ? "s":"") + ".\n" + rounds + " round" + ((rounds > 1) ? "s":"") + " remaining.");
 					}
 				}
 			}
@@ -364,7 +383,7 @@
 			//Hit
 			else
 			{
-				output("Not expecting the angle of attack and having already taken a step back, you're caught off guard and his fist slams against the side of your face!");
+				output(" Not expecting the angle of attack and having already taken a step back, you’re caught off guard and his fist slams against the side of your face!");
 				//Just fist, no extra.
 				var oldVal:Number = this.meleeWeapon.baseDamage.kinetic.damageValue;
 				this.meleeWeapon.baseDamage.kinetic.damageValue = 0;
@@ -393,7 +412,7 @@
 			}
 			else output(" He appears stronger than ever!");
 			this.physiqueMod += 35;
-			this.createStatusEffect("Berserk",1,0,0,0,false,"Icon_Bull","Physique is greatly enhanced. (+20)",true,0);
+			this.createStatusEffect("Berserk",1,0,0,0,false,"Icon_Bull","Physique is greatly enhanced. (+35)",true,0);
 		}
 		public function scentOfThePrey(target:Creature):void
 		{

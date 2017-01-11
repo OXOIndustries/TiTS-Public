@@ -31,7 +31,7 @@ public function initializeMyrellionRooms():void
 	//600 - Airfield South (Ship LZ)
 	rooms["600"] = new RoomClass(this);
 	rooms["600"].roomName = "AIRFIELD\nSOUTH";
-	rooms["600"].description = "The landing zone your ship's been assigned is a busy affair, cram-packed with freighters, stripped-down civilian starfighters, and even a light frigate dominating one of the runways. Several pioneers are milling around, loading cargo or repairing their vessels. A few of the braver planet rushers try flirting with the myrmedion guards on the tarmac, though they don't have much luck.";
+	rooms["600"].description = "The landing zone your ship’s been assigned is a busy affair, cram-packed with freighters, stripped-down civilian starfighters, and even a light frigate dominating one of the runways. Several pioneers are milling around, loading cargo or repairing their vessels. A few of the braver planet rushers try flirting with the myrmedion guards on the tarmac, though they don’t have much luck.";
 	rooms["600"].planet = "PLANET: MYRELLION";
 	rooms["600"].system = "SYSTEM: SINDATHU";
 	rooms["600"].northExit = "601";
@@ -44,7 +44,7 @@ public function initializeMyrellionRooms():void
 	//601 - Airfield Central
 	rooms["601"] = new RoomClass(this);
 	rooms["601"].roomName = "AIRFIELD\nCENTRAL";
-	rooms["601"].description = "The central part of the airfield is just as crowded as the rest, with ships vying for tarmac space to land. One of the runways here has been cleared off, though, allowing the locals at least some ability to launch their own aircraft still. To the west, you can see the largest hangar has been left open, with several pioneers and U.G.C. troops coming in and out. A sign reading \"EMBASSY\" has been nailed over the door.";
+	rooms["601"].description = "The central part of the airfield is just as crowded as the rest, with ships vying for tarmac space to land. One of the runways here has been cleared off, though, allowing the locals at least some ability to launch their own aircraft still. To the west, you can see the largest hangar has been left open, with several pioneers and U.G.C. troops coming in and out. A sign reading “EMBASSY” has been nailed over the door.";
 	rooms["601"].planet = "PLANET: MYRELLION";
 	rooms["601"].system = "SYSTEM: SINDATHU";
 	rooms["601"].southExit = "600";
@@ -76,16 +76,29 @@ public function initializeMyrellionRooms():void
 	rooms["603"].eastExit = "601";
 	rooms["603"].northExit = "613";
 	rooms["603"].westExit = "604";
+	rooms["603"].southExit = "BOTHRIOC EMBASSAY";
 	rooms["603"].moveMinutes = 2;
 	rooms["603"].runOnEnter = theEmbassyBonusFunc;
 	rooms["603"].addFlag(GLOBAL.INDOOR);
 	rooms["603"].addFlag(GLOBAL.NPC);
 	rooms["603"].addFlag(GLOBAL.PUBLIC);
-
+	
+	rooms["BOTHRIOC EMBASSAY"] = new RoomClass(this);
+	rooms["BOTHRIOC EMBASSAY"].roomName = "BOTHRIOC\nEMBASSY";
+	rooms["BOTHRIOC EMBASSAY"].description = "";
+	rooms["BOTHRIOC EMBASSAY"].planet = "PLANET: MYRELLION";
+	rooms["BOTHRIOC EMBASSAY"].system = "SYSTEM: SINDATHU";
+	rooms["BOTHRIOC EMBASSAY"].northExit = "603";
+	rooms["BOTHRIOC EMBASSAY"].moveMinutes = 2;
+	rooms["BOTHRIOC EMBASSAY"].runOnEnter = bothriocEmbassyFunc;
+	rooms["BOTHRIOC EMBASSAY"].addFlag(GLOBAL.INDOOR);
+	rooms["BOTHRIOC EMBASSAY"].addFlag(GLOBAL.NPC);
+	rooms["BOTHRIOC EMBASSAY"].addFlag(GLOBAL.PUBLIC);
+	
 	//604 Security Checkpoint
 	rooms["604"] = new RoomClass(this);
 	rooms["604"].roomName = "SECURITY\nCHECKPOINT";
-	rooms["604"].description = "The security here is tight and well organized, with both red and gold-armored myr standing at attention at every door. A passage to the north is marked \"Airstrip: Kressia.\" The western door is labeled \"The Great Elevator.\" To the south, you can see a long row of wide, squat buildings. A sign designates the street between them as \"Spacer's Row.\" The nearest building looks like one of the airfield's barracks has been turned into a tavern, where several pioneers and off-duty myr have gathered.";
+	rooms["604"].description = "The security here is tight and well organized, with both red and gold-armored myr standing at attention at every door. A passage to the north is marked “Airstrip: Kressia.” The western door is labeled “The Great Elevator.” To the south, you can see a long row of wide, squat buildings. A sign designates the street between them as “Spacer’s Row.” The nearest building looks like one of the airfield’s barracks has been turned into a tavern, where several pioneers and off-duty myr have gathered.";
 	rooms["604"].planet = "PLANET: MYRELLION";
 	rooms["604"].system = "SYSTEM: SINDATHU";
 	rooms["604"].eastExit = "603";
@@ -99,7 +112,7 @@ public function initializeMyrellionRooms():void
 
 	//605 Spacer's Row, S0 (Just south of the crossroads)
 	rooms["605"] = new RoomClass(this);
-	rooms["605"].roomName = "SPACER'S\nROW";
+	rooms["605"].roomName = "SPACER’S\nROW";
 	rooms["605"].description = "This path leads off from the bustling crossing to the north, away from the airstrip and the elevators into Gildenmere, and towards a number of buildings crawling with spacers.";
 	rooms["605"].planet = "PLANET: MYRELLION";
 	rooms["605"].system = "SYSTEM: SINDATHU";
@@ -112,8 +125,8 @@ public function initializeMyrellionRooms():void
 
 	//606 Spacer's Row, S1 (Outside the Tavern)
 	rooms["606"] = new RoomClass(this);
-	rooms["606"].roomName = "SPACER'S\nROW";
-	rooms["606"].description = "One of the airfield's barracks has been hastily converted into a standard watering hole, the same type you see in every spaceport on every damn planet. A rough sign declares it to be \"The Golden Peak.\" The sounds of music, revelry, and the smell of booze waft out of the open batwing doors.\n\nAcross the road from the Golden Peak is a small office bearing the logo of the Xenogen Biotech corporation. It's a sleek, white building probably brought in prefabricated from the core, with all the modern conveniences that entails.";
+	rooms["606"].roomName = "SPACER’S\nROW";
+	rooms["606"].description = "One of the airfield’s barracks has been hastily converted into a standard watering hole, the same type you see in every spaceport on every damn planet. A rough sign declares it to be “The Golden Peak.” The sounds of music, revelry, and the smell of booze waft out of the open batwing doors.\n\nAcross the road from the Golden Peak is a small office bearing the logo of the Xenogen Biotech corporation. It’s a sleek, white building probably brought in prefabricated from the core, with all the modern conveniences that entails.";
 	rooms["606"].planet = "PLANET: MYRELLION";
 	rooms["606"].system = "SYSTEM: SINDATHU";
 	rooms["606"].northExit = "605";
@@ -140,7 +153,7 @@ public function initializeMyrellionRooms():void
 	
 	rooms["XBMYRELLIONLAB"] = new RoomClass(this);
 	rooms["XBMYRELLIONLAB"].roomName = "XENOGEN\nLAB";
-	rooms["XBMYRELLIONLAB"].description = "The Xenogen lab is sleek, large, and ultra-modern. Several research assistants -- all women, you note, and rather attractive -- are working, all clad in white lab coats over form-fitting Xenogen jumpsuits. Every spare wall and counter space is covered with digital readouts and holo-projectors displaying all manner of data, doubtless related to whatever project's underway nearest them. You can't make heads or tails of any of them.";
+	rooms["XBMYRELLIONLAB"].description = "The Xenogen lab is sleek, large, and ultra-modern. Several research assistants -- all women, you note, and rather attractive -- are working, all clad in white lab coats over form-fitting Xenogen jumpsuits. Every spare wall and counter space is covered with digital readouts and holo-projectors displaying all manner of data, doubtless related to whatever project’s underway nearest them. You can’t make heads or tails of any of them.";
 	rooms["XBMYRELLIONLAB"].planet = "PLANET: MYRELLION";
 	rooms["XBMYRELLIONLAB"].system = "SYSTEM: SINDATHU";
 	rooms["XBMYRELLIONLAB"].eastExit = "XBMYRELLIONFRONT";
@@ -151,8 +164,8 @@ public function initializeMyrellionRooms():void
  
 	//607 Spacer's Row, S2 (Outside the Scout Authority)
 	rooms["607"] = new RoomClass(this);
-	rooms["607"].roomName = "SPACER'S\nROW";
-	rooms["607"].description = "The familiar emblem of the U.G.C. Scout Authority is bolted onto the door of the building to the east. Several pioneers are gathered around just in the doors, and there's a constant stream of people coming and going. On the other side of the alleyway stands the graceful curves of a modern, coreward structure. A street heads north and south from here: north back to the airfield, and south towards a dank alleyway";
+	rooms["607"].roomName = "SPACER’S\nROW";
+	rooms["607"].description = "The familiar emblem of the U.G.C. Scout Authority is bolted onto the door of the building to the east. Several pioneers are gathered around just in the doors, and there’s a constant stream of people coming and going. On the other side of the alleyway stands the graceful curves of a modern, coreward structure. A street heads north and south from here: north back to the airfield, and south towards a dank alleyway";
 	rooms["607"].planet = "PLANET: MYRELLION";
 	rooms["607"].system = "SYSTEM: SINDATHU";
 	rooms["607"].northExit = "606";
@@ -178,8 +191,8 @@ public function initializeMyrellionRooms():void
 
 	//608 Spacer's Row, S3 (Back Alley)
 	rooms["608"] = new RoomClass(this);
-	rooms["608"].roomName = "SPACER'S\nROW";
-	rooms["608"].description = "This is a dank, dark alleyway at the end of Spacer's Row. The only way out is either over a fence topped with concertina wire that surrounds the active military parts of the airfield, or else back north towards the embassies.";
+	rooms["608"].roomName = "SPACER’S\nROW";
+	rooms["608"].description = "This is a dank, dark alleyway at the end of Spacer’s Row. The only way out is either over a fence topped with concertina wire that surrounds the active military parts of the airfield, or else back north towards the embassies.";
 	rooms["608"].planet = "PLANET: MYRELLION";
 	rooms["608"].system = "SYSTEM: SINDATHU";
 	rooms["608"].northExit = "607";
@@ -190,7 +203,7 @@ public function initializeMyrellionRooms():void
 	//609 The Tavern
 	rooms["609"] = new RoomClass(this);
 	rooms["609"].roomName = "THE\nGOLDEN PEAK";
-	rooms["609"].description = "What might have once been a myr barracks has been cleared out by the pioneers who've taken over this airfield and turned it into an almost respectable establishment. A long wooden bar and stools have been set up along one wall, and several makeshift tables are scattered through the wide room. Batwing doors swing creakily as spacers come and go; several dozen of them cluster around the table and bar in thick throngs. Several waitresses of various races and genders move around the place, and a half-ausar bartender is desperately trying to keep up with demand.";
+	rooms["609"].description = "What might have once been a myr barracks has been cleared out by the pioneers who’ve taken over this airfield and turned it into an almost respectable establishment. A long wooden bar and stools have been set up along one wall, and several makeshift tables are scattered through the wide room. Batwing doors swing creakily as spacers come and go; several dozen of them cluster around the table and bar in thick throngs. Several waitresses of various races and genders move around the place, and a half-ausar bartender is desperately trying to keep up with demand.";
 	rooms["609"].planet = "PLANET: MYRELLION";
 	rooms["609"].system = "SYSTEM: SINDATHU";
 	rooms["609"].westExit = "606";
@@ -203,7 +216,7 @@ public function initializeMyrellionRooms():void
 	//610 Scout Authority
 	rooms["610"] = new RoomClass(this);
 	rooms["610"].roomName = "SCOUT\nAUTHORITY";
-	rooms["610"].description = "The U.G.C. Scout base on Myr is bigger than most, but frankly spartan compared the nearly hunting-lodge feel of many you've seen in the past. Several pioneers and spacers are checking out maps, mineral scans, and species indices. A bored-looking human sits behind the desk.";
+	rooms["610"].description = "The U.G.C. Scout base on Myr is bigger than most, but frankly spartan compared the nearly hunting-lodge feel of many you’ve seen in the past. Several pioneers and spacers are checking out maps, mineral scans, and species indices. A bored-looking human sits behind the desk.";
 	rooms["610"].planet = "PLANET: MYRELLION";
 	rooms["610"].system = "SYSTEM: SINDATHU";
 	rooms["610"].westExit = "607";
@@ -216,7 +229,7 @@ public function initializeMyrellionRooms():void
 	//611 The Great Elevator
 	rooms["611"] = new RoomClass(this);
 	rooms["611"].roomName = "GREAT\nELEVATOR";
-	rooms["611"].description = "They weren't kidding when they labeled this the Great Elevator. The car's nearly fifty feet wide, loaded down with crates, myr, and pioneers looking to get into or out of Gildenmere. While the doors remain open, people and cargo busily stream on and off the elevator.";
+	rooms["611"].description = "They weren’t kidding when they labeled this the Great Elevator. The car’s nearly fifty feet wide, loaded down with crates, myr, and pioneers looking to get into or out of Gildenmere. While the doors remain open, people and cargo busily stream on and off the elevator.";
 	rooms["611"].planet = "PLANET: MYRELLION";
 	rooms["611"].system = "SYSTEM: SINDATHU";
 	rooms["611"].eastExit = "604";
@@ -258,7 +271,7 @@ public function initializeMyrellionRooms():void
 	//=========================================//
 	rooms["700"] = new RoomClass(this);
 	rooms["700"].roomName = "GREAT\nELEVATOR";
-	rooms["700"].description = "The elevator isn’t an enclosed chamber like those you’d encounter in a ship, skyscraper, or space station. Instead, it’s a simple platform with hinged rails that are mechanically raised just before the car begins to move. A control panel on the west side of the platform houses the big, obvious command buttons. Most are gold, but there is a large red one. It’s purpose is obvious, even with indecipherable alien script. You hope you won't have to hit the emergency stop.";
+	rooms["700"].description = "The elevator isn’t an enclosed chamber like those you’d encounter in a ship, skyscraper, or space station. Instead, it’s a simple platform with hinged rails that are mechanically raised just before the car begins to move. A control panel on the west side of the platform houses the big, obvious command buttons. Most are gold, but there is a large red one. It’s purpose is obvious, even with indecipherable alien script. You hope you won’t have to hit the emergency stop.";
 	rooms["700"].planet = "PLANET: MYRELLION";
 	rooms["700"].system = "SYSTEM: SINDATHU";
 	rooms["700"].eastExit = "703";
@@ -409,7 +422,7 @@ public function initializeMyrellionRooms():void
 
 	//710 - Irellia’s Way
 	rooms["710"] = new RoomClass(this);
-	rooms["710"].roomName = "IRELLIA'S\nWAY";
+	rooms["710"].roomName = "IRELLIA’S\nWAY";
 	rooms["710"].description = "Polished granite stones provide the surface for this east-west thoroughfare. A few rumbling, primitive vehicles trundle by, but most of the traffic on the subterranean highway is done by bare, chitinous feet. An impressive palace stands a ways down to the road to the west, the dwelling place of Queen Irellia. Other, more mundane homes occupy the rest of the street’s south side.";
 	rooms["710"].planet = "PLANET: MYRELLION";
 	rooms["710"].system = "SYSTEM: SINDATHU";
@@ -424,7 +437,7 @@ public function initializeMyrellionRooms():void
 	
 	//711 Irellia’s Way
 	rooms["711"] = new RoomClass(this);
-	rooms["711"].roomName = "IRELLIA'S\nWAY";
+	rooms["711"].roomName = "IRELLIA’S\nWAY";
 	rooms["711"].description = "A carefully tended-to garden of various mushrooms lines the way north to a pair of crystalline double doors. A newly-installed holo-projector reads, “Hospital.” The gold myr aren’t wasting any time in picking up technology from the rest of the universe. More mundane dwellings line the south side of the street, carved from hollowed out stalagmites or stone that has somehow been molded into smoothly rounded domes.";
 	rooms["711"].planet = "PLANET: MYRELLION";
 	rooms["711"].system = "SYSTEM: SINDATHU";
@@ -451,7 +464,7 @@ public function initializeMyrellionRooms():void
 	
 	//712 Irellia’s\nWay
 	rooms["712"] = new RoomClass(this);
-	rooms["712"].roomName = "IRELLIA'S\nWAY";
+	rooms["712"].roomName = "IRELLIA’S\nWAY";
 	rooms["712"].description = "Foot traffic along this east-west thoroughfare is impressively dense, perhaps due to the hostpital located just to the north. You do seem to be in a particularly nice part of the city. Many of the dwellings on the south side of the road are decorated with well-tended fungii or elaborate paintwork. Even the hostpital structure to the north is painted a matte white. If it were not so obviously rough and porous, you could almost mistake it for the kind of composite buildings favored in the core.";
 	rooms["712"].planet = "PLANET: MYRELLION";
 	rooms["712"].system = "SYSTEM: SINDATHU";
@@ -539,7 +552,7 @@ public function initializeMyrellionRooms():void
 
 	//Gene's Mods`
 	rooms["GENES MODS"] = new RoomClass(this);
-	rooms["GENES MODS"].roomName = "GENE'S\nMODS";
+	rooms["GENES MODS"].roomName = "GENE’S\nMODS";
 	rooms["GENES MODS"].description = "";
 	rooms["GENES MODS"].planet = "PLANET: MYRELLION";
 	rooms["GENES MODS"].system = "SYSTEM: SINDATHU";
@@ -554,7 +567,7 @@ public function initializeMyrellionRooms():void
 	//East checkpoint
 	rooms["718"] = new RoomClass(this);
 	rooms["718"].roomName = "CRYSTAMERE\nROAD";
-	rooms["718"].description = "A interborough boulevard forks off from Crystamere Road toward a barricade to the east. You’d have to get closer to make out the details, but it looks like the local military forces have a checkpoint erected for some reason or another. There’s no shortage of shops along the glittering thoroughfare, but there's a serious lack of shopping in your immediate area. You do see an open store a little ways to the south, though it doesn’t match the local architecture in the slightest.";
+	rooms["718"].description = "A interborough boulevard forks off from Crystamere Road toward a barricade to the east. You’d have to get closer to make out the details, but it looks like the local military forces have a checkpoint erected for some reason or another. There’s no shortage of shops along the glittering thoroughfare, but there’s a serious lack of shopping in your immediate area. You do see an open store a little ways to the south, though it doesn’t match the local architecture in the slightest.";
 	rooms["718"].planet = "PLANET: MYRELLION";
 	rooms["718"].system = "SYSTEM: SINDATHU";
 	rooms["718"].southExit = "717";
@@ -687,8 +700,8 @@ public function initializeMyrellionRooms():void
 
 	//727 Girella’s Avenue
 	rooms["727"] = new RoomClass(this);
-	rooms["727"].roomName = "GIRELLA'S\nAVENUE";
-	rooms["727"].description = "More streetlamps burn here than anywhere else in the city, bathing the region in so much yellowish-white glow that you can almost forget the luminescent blue that’s so common everywhere else. You have to blink a few times to adjust to the brightness. Once you do, you realize why there are so many lights set up here - a club of some sort is positioned to the west. A sign labels it \"The Honey Nozzle\". Maybe the lights attract myr like moths to a flame, or perhaps they’ve been set up to make surface races more comfortable.";
+	rooms["727"].roomName = "GIRELLA’S\nAVENUE";
+	rooms["727"].description = "More streetlamps burn here than anywhere else in the city, bathing the region in so much yellowish-white glow that you can almost forget the luminescent blue that’s so common everywhere else. You have to blink a few times to adjust to the brightness. Once you do, you realize why there are so many lights set up here - a club of some sort is positioned to the west. A sign labels it “The Honey Nozzle”. Maybe the lights attract myr like moths to a flame, or perhaps they’ve been set up to make surface races more comfortable.";
 	rooms["727"].planet = "PLANET: MYRELLION";
 	rooms["727"].system = "SYSTEM: SINDATHU";
 	rooms["727"].northExit = "726";
@@ -702,7 +715,7 @@ public function initializeMyrellionRooms():void
 	
 	//728 Girella’s Avenue
 	rooms["728"] = new RoomClass(this);
-	rooms["728"].roomName = "GIRELLA'S\nAVENUE";
+	rooms["728"].roomName = "GIRELLA’S\nAVENUE";
 	rooms["728"].description = "A great number of streetlamps have been set up to the north to draw attention to a club of some sort. There’s also a black-paved road to the east, leading towards a mushroom garden and the towering elevator at the center of it. A residential stalactite blocks travel west. It’s a huge, almost palatial thing, but so many voices come from the open windows that it must be used as some kind of communal dwelling.";
 	rooms["728"].planet = "PLANET: MYRELLION";
 	rooms["728"].system = "SYSTEM: SINDATHU";
@@ -717,7 +730,7 @@ public function initializeMyrellionRooms():void
 	
 	//729
 	rooms["729"] = new RoomClass(this);
-	rooms["729"].roomName = "GIRELLA'S\nAVENUE";
+	rooms["729"].roomName = "GIRELLA’S\nAVENUE";
 	rooms["729"].description = "A rigid fence of crystal blocks off an open field to the east. A number of unusual posts and strange markings marr the area. You think it might be used for some kind of sport. The adjoining structure is a massive affair - one of the largest in the city. It too hides behind a fence. The entrance must be elsewhere. Girella’s Avenue continues north and south.";
 	rooms["729"].planet = "PLANET: MYRELLION";
 	rooms["729"].system = "SYSTEM: SINDATHU";
@@ -731,7 +744,7 @@ public function initializeMyrellionRooms():void
 	
 	//730
 	rooms["730"] = new RoomClass(this);
-	rooms["730"].roomName = "GIRELLA'S\nAVENUE";
+	rooms["730"].roomName = "GIRELLA’S\nAVENUE";
 	rooms["730"].description = "A score of military ants, obvious in their uniforms, march past to the west, toward a military checkpoint that’s been set up to gate off another section of the city. Nearby civilians look on with a mixture of respect and fear, the horrors of war a long ways from forgotten. A crystal fence blocks off the building to the east. Girella’s Avenue ends a little ways to the south where it intersects with another road.";
 	rooms["730"].planet = "PLANET: MYRELLION";
 	rooms["730"].system = "SYSTEM: SINDATHU";
@@ -760,7 +773,7 @@ public function initializeMyrellionRooms():void
 
 	//732 IRELLIA’S\nWAY
 	rooms["732"] = new RoomClass(this);
-	rooms["732"].roomName = "IRELLIA'S\nWAY";
+	rooms["732"].roomName = "IRELLIA’S\nWAY";
 	rooms["732"].description = "The street is incredibly crowded here. Myr of every age, shape, and size push past you on their way to the buildings on either side of the road. The one to the south is the more important of the two, a grand facade of polished white and handworked architecture. There’s no sign or placard, but it’s obvious that the place is home to one of the queens. A pair of guards stand by the entrance, looking coolly in your direction. On the north, there’s a wide-open crystal gate with the word “thollum” inscibed on the sides.";
 	rooms["732"].planet = "PLANET: MYRELLION";
 	rooms["732"].system = "SYSTEM: SINDATHU";
@@ -776,7 +789,7 @@ public function initializeMyrellionRooms():void
 
 	//733 IRELLIA’S\nWAY
 	rooms["733"] = new RoomClass(this);
-	rooms["733"].roomName = "IRELLIA'S\nWAY";
+	rooms["733"].roomName = "IRELLIA’S\nWAY";
 	rooms["733"].description = "A palace for Queen Irellia rises up to the south, but there’s no entrance to it from where you’re standing now. You’d have to follow the road west towards the severe looking guards if you wanted to get in. North, behind a fence of glittering crystal, is a similarly large structure, though this one is far more plain. Young myr run about in front of it or read from old-style books, like the cavemen on Terra must have.";
 	rooms["733"].planet = "PLANET: MYRELLION";
 	rooms["733"].system = "SYSTEM: SINDATHU";
@@ -1013,7 +1026,7 @@ public function initializeMyrellionRooms():void
 	//801 Airport (Checkpoint), 2F
 	rooms["801"] = new RoomClass(this);
 	rooms["801"].roomName = "AIRPORT\n2F";
-	rooms["801"].description = "The inside of the airfield terminal is more of the same from the outside: armed guards standing around, passively watching the crowd going in and out. You're shuffled into a line and your documents examined, treated just like any other myr coming through. After a short check, you're cleared to come and go from the city.\n\nTo the west lie several long elevator shafts down to the city proper. Stepping a little closer, you can see the dizzying drop down to the hollowed-out depths that support the myr city. Dozens of tiny lights flicker in the darkness, a field of tiny yellow specks in the distance.\n\nThe tarmac doors are to the east, opening and closing in quick succession as uniformed myr soldiers and wealthy-looking civilians of both colors come and go.";
+	rooms["801"].description = "The inside of the airfield terminal is more of the same from the outside: armed guards standing around, passively watching the crowd going in and out. You’re shuffled into a line and your documents examined, treated just like any other myr coming through. After a short check, you’re cleared to come and go from the city.\n\nTo the west lie several long elevator shafts down to the city proper. Stepping a little closer, you can see the dizzying drop down to the hollowed-out depths that support the myr city. Dozens of tiny lights flicker in the darkness, a field of tiny yellow specks in the distance.\n\nThe tarmac doors are to the east, opening and closing in quick succession as uniformed myr soldiers and wealthy-looking civilians of both colors come and go.";
 	rooms["801"].planet = "PLANET: MYRELLION";
 	rooms["801"].system = "SYSTEM: SINDATHU";
 	rooms["801"].eastExit = "800";
@@ -1027,7 +1040,7 @@ public function initializeMyrellionRooms():void
 	//Airport (Lobby), 1F
 	rooms["802"] = new RoomClass(this);
 	rooms["802"].roomName = "AIRPORT\n1F";
-	rooms["802"].description = "This building is a wide open, gorgeously adorned terminal that looks like it might belong more in Old Earth's roaring twenties than the spartan alien city deep underground. Light streams down from huge chandeliers, and the few armed guards around are vastly overwhelmed by streams of both red and gold myr coming and going from the surface, plus more than a few U.G.C. scouts and pioneers lounging around in cafes and on benches.\n\nA huge glass dome makes up the ceiling, giving anyone with the desire to look a particularly impressive view of the huge, hollowed-out shaft that connects Kressia to the surface. You can see many elevators coming down and going up and going down, all packed with people.";
+	rooms["802"].description = "This building is a wide open, gorgeously adorned terminal that looks like it might belong more in Old Earth’s roaring twenties than the spartan alien city deep underground. Light streams down from huge chandeliers, and the few armed guards around are vastly overwhelmed by streams of both red and gold myr coming and going from the surface, plus more than a few U.G.C. scouts and pioneers lounging around in cafes and on benches.\n\nA huge glass dome makes up the ceiling, giving anyone with the desire to look a particularly impressive view of the huge, hollowed-out shaft that connects Kressia to the surface. You can see many elevators coming down and going up and going down, all packed with people.";
 	rooms["802"].planet = "PLANET: MYRELLION";
 	rooms["802"].system = "SYSTEM: SINDATHU";
 	rooms["802"].westExit = "804";
@@ -1056,7 +1069,7 @@ public function initializeMyrellionRooms():void
 	
 	rooms["LIEVE BUNKER"] = new RoomClass(this);
 	rooms["LIEVE BUNKER"].roomName = "KRESSIA\nBUNKER";
-	rooms["LIEVE BUNKER"].description = "The pillbox guarding the gates of Kressia is a small but surprisingly cozy accommodation. The central chamber's got several carpets and cushions spread out, and some chairs lining the walls. A viewport gives a wide view of the craggy approach to Kressia, interrupted by a trio of heavy machine-guns bolted to the concrete.";
+	rooms["LIEVE BUNKER"].description = "The pillbox guarding the gates of Kressia is a small but surprisingly cozy accommodation. The central chamber’s got several carpets and cushions spread out, and some chairs lining the walls. A viewport gives a wide view of the craggy approach to Kressia, interrupted by a trio of heavy machine-guns bolted to the concrete.";
 	rooms["LIEVE BUNKER"].planet = "PLANET: MYRELLION";
 	rooms["LIEVE BUNKER"].system = "SYSTEM: SINDATHU";
 	rooms["LIEVE BUNKER"].westExit = "803";
@@ -1157,7 +1170,7 @@ public function initializeMyrellionRooms():void
 	//Street H14
 	rooms["810"] = new RoomClass(this);
 	rooms["810"].roomName = "\nSTREET";
-	rooms["810"].description = "The street here is lined with shops, varying from \"expensive\" to \"decadent.\"";
+	rooms["810"].description = "The street here is lined with shops, varying from “expensive” to “decadent.”";
 	rooms["810"].planet = "PLANET: MYRELLION";
 	rooms["810"].system = "SYSTEM: SINDATHU";
 	//rooms["810"].westExit = "";
@@ -1173,7 +1186,7 @@ public function initializeMyrellionRooms():void
 	//Street H16
 	rooms["811"] = new RoomClass(this);
 	rooms["811"].roomName = "\nSTREET";
-	rooms["811"].description = "The storefronts here are largely abandoned. The reason's obvious: some huge explosion caved in a part of the cavern ceiling, and a light beam shoots down onto the floor, and several destroyed stores.\n\nA footpath off to the east leads into the city park, called \"Queen's Solace.\"";
+	rooms["811"].description = "The storefronts here are largely abandoned. The reason’s obvious: some huge explosion caved in a part of the cavern ceiling, and a light beam shoots down onto the floor, and several destroyed stores.\n\nA footpath off to the east leads into the city park, called “Queen’s Solace.”";
 	rooms["811"].planet = "PLANET: MYRELLION";
 	rooms["811"].system = "SYSTEM: SINDATHU";
 	rooms["811"].eastExit = "824";
@@ -1188,7 +1201,7 @@ public function initializeMyrellionRooms():void
 	//Street H18
 	rooms["812"] = new RoomClass(this);
 	rooms["812"].roomName = "\nSTREET";
-	rooms["812"].description = "More Federation soldiers are standing around here, perhaps a squad's worth, all armed. They seem fairly relaxed, though, and give you friendly nods as you pass by. Still, most gold myr who come by avoid the guards here, scurrying by with eyes down at their feet.";
+	rooms["812"].description = "More Federation soldiers are standing around here, perhaps a squad’s worth, all armed. They seem fairly relaxed, though, and give you friendly nods as you pass by. Still, most gold myr who come by avoid the guards here, scurrying by with eyes down at their feet.";
 	rooms["812"].planet = "PLANET: MYRELLION";
 	rooms["812"].system = "SYSTEM: SINDATHU";
 	//rooms["812"].westExit = "9999";
@@ -1234,7 +1247,7 @@ public function initializeMyrellionRooms():void
 	//Street L20
 	rooms["815"] = new RoomClass(this);
 	rooms["815"].roomName = "\nSTREET";
-	rooms["815"].description = "A four-way intersection leads south to the city gates, north to the Queen's Solace city park, and east towards Kressia's airfield. A large series of dirt-filled trenches decorate the corners just off the sidewalks, filled with some very pretty, pink-glowing funguses.";
+	rooms["815"].description = "A four-way intersection leads south to the city gates, north to the Queen’s Solace city park, and east towards Kressia’s airfield. A large series of dirt-filled trenches decorate the corners just off the sidewalks, filled with some very pretty, pink-glowing funguses.";
 	rooms["815"].system = "SYSTEM: SINDATHU";
 	rooms["815"].planet = "PLANET: MYRELLION";
 	rooms["815"].eastExit = "816";
@@ -1291,7 +1304,7 @@ public function initializeMyrellionRooms():void
 	//Street P18
 	rooms["818"] = new RoomClass(this);
 	rooms["818"].roomName = "\nSTREET";
-	rooms["818"].description = "A large building to the east advertises a \"thollum,\" a titanic domed structure that reaches several stories high, almost half way up to the ceiling of the great cavern. Several marble statues stand proudly along the steps up to the doors, many carrying books or scrolls.";
+	rooms["818"].description = "A large building to the east advertises a “thollum,” a titanic domed structure that reaches several stories high, almost half way up to the ceiling of the great cavern. Several marble statues stand proudly along the steps up to the doors, many carrying books or scrolls.";
 	rooms["818"].system = "SYSTEM: SINDATHU";
 	rooms["818"].planet = "PLANET: MYRELLION";
 	rooms["818"].northExit = "819";
@@ -1305,7 +1318,7 @@ public function initializeMyrellionRooms():void
 	//Street P16
 	rooms["819"] = new RoomClass(this);
 	rooms["819"].roomName = "\nSTREET";
-	rooms["819"].description = "This street has a small footpath branching off towards a city park, labeled \"Queen's Solace.\" A lot of gold myr are hanging around here, coming and going from several housing blocks off to the east and north.";
+	rooms["819"].description = "This street has a small footpath branching off towards a city park, labeled “Queen’s Solace.” A lot of gold myr are hanging around here, coming and going from several housing blocks off to the east and north.";
 	rooms["819"].system = "SYSTEM: SINDATHU";
 	rooms["819"].planet = "PLANET: MYRELLION";
 	rooms["819"].northExit = "820";
@@ -1322,7 +1335,7 @@ public function initializeMyrellionRooms():void
 	//Street P14
 	rooms["820"] = new RoomClass(this);
 	rooms["820"].roomName = "\nSTREET";
-	rooms["820"].description = "This street connects the main thoroughfare in the north with the road to the city gates down south. A sign indicates Kressia's airfield lies to the northeast, and the city park to the southwest.";
+	rooms["820"].description = "This street connects the main thoroughfare in the north with the road to the city gates down south. A sign indicates Kressia’s airfield lies to the northeast, and the city park to the southwest.";
 	rooms["820"].system = "SYSTEM: SINDATHU";
 	rooms["820"].planet = "PLANET: MYRELLION";
 	rooms["820"].northExit = "805";
@@ -1336,7 +1349,7 @@ public function initializeMyrellionRooms():void
 	//Street L22
 	rooms["821"] = new RoomClass(this);
 	rooms["821"].roomName = "\nSTREET";
-	rooms["821"].description = "The edge of the bowl-like cavern that Kressia lies in approaches, culminating in a long, windling tunnel leading south. A pair of a large, wrought-iron gates covered in concertina wire have been erected south of you, and several Scarlet Federation soldiers patrol the road. While they've gone to great lengths to disguise them, you can see a few pillboxes tucked into nearby alleyways, or sandbagged machinegun nests in the windows of an abandoned apartment building.";
+	rooms["821"].description = "The edge of the bowl-like cavern that Kressia lies in approaches, culminating in a long, windling tunnel leading south. A pair of a large, wrought-iron gates covered in concertina wire have been erected south of you, and several Scarlet Federation soldiers patrol the road. While they’ve gone to great lengths to disguise them, you can see a few pillboxes tucked into nearby alleyways, or sandbagged machinegun nests in the windows of an abandoned apartment building.";
 	rooms["821"].system = "SYSTEM: SINDATHU";
 	rooms["821"].planet = "PLANET: MYRELLION";
 	rooms["821"].northExit = "815";
@@ -1350,7 +1363,7 @@ public function initializeMyrellionRooms():void
 	//Park Path N16
 	rooms["822"] = new RoomClass(this);
 	rooms["822"].roomName = "\nSTREET";
-	rooms["822"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. A busker is playing some strange wind instrument to herself, and several small children are traipsing about under a caregiver's supervision.";// {9999Red Myr TF'd: Seeing you coming, the women gather up the children and scoot them off before you get too close.}
+	rooms["822"].description = "The Queen’s Solace park is quiet and relaxing, much less crowded than the rest of the city you’ve seen so far. A busker is playing some strange wind instrument to herself, and several small children are traipsing about under a caregiver’s supervision.";
 	rooms["822"].system = "SYSTEM: SINDATHU";
 	rooms["822"].planet = "PLANET: MYRELLION";
 	rooms["822"].northExit = "825";
@@ -1358,7 +1371,11 @@ public function initializeMyrellionRooms():void
 	rooms["822"].eastExit = "826";
 	rooms["822"].westExit = "824";
 	rooms["822"].moveMinutes = 2;
-	rooms["822"].runOnEnter = kressiaBasicBonusBitches;
+	rooms["822"].runOnEnter = function():Boolean {
+		// Red Myr TF'd:
+		if(pc.race().indexOf("red myr") != -1) output(" Seeing you coming, the women gather up the children and scoot them off before you get too close.");
+		return kressiaBasicBonusBitches();
+	};
 	rooms["822"].addFlag(GLOBAL.INDOOR);
 	rooms["822"].addFlag(GLOBAL.PUBLIC);
 	rooms["822"].addFlag(GLOBAL.CAVE);
@@ -1366,7 +1383,7 @@ public function initializeMyrellionRooms():void
 	//Part Path L18
 	rooms["823"] = new RoomClass(this);
 	rooms["823"].roomName = "\nSTREET";
-	rooms["823"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. A large fountain stands here, depicting several gold myr women with huge breasts spraying arcs of water rather than nectar. A few off-duty Federation soldiers are standing near it, giggling to each other and pointing at the statues' tits.";
+	rooms["823"].description = "The Queen’s Solace park is quiet and relaxing, much less crowded than the rest of the city you’ve seen so far. A large fountain stands here, depicting several gold myr women with huge breasts spraying arcs of water rather than nectar. A few off-duty Federation soldiers are standing near it, giggling to each other and pointing at the statues’ tits.";
 	rooms["823"].system = "SYSTEM: SINDATHU";
 	rooms["823"].planet = "PLANET: MYRELLION";
 	rooms["823"].northExit = "822";
@@ -1380,7 +1397,7 @@ public function initializeMyrellionRooms():void
 	//Park Path J16
 	rooms["824"] = new RoomClass(this);
 	rooms["824"].roomName = "\nSTREET";
-	rooms["824"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. Several myr of both gold and red persuasions are lounging around, clearly avoiding each other but all making the most of the fungal gardens and quiet ambiance.";
+	rooms["824"].description = "The Queen’s Solace park is quiet and relaxing, much less crowded than the rest of the city you’ve seen so far. Several myr of both gold and red persuasions are lounging around, clearly avoiding each other but all making the most of the fungal gardens and quiet ambiance.";
 	rooms["824"].system = "SYSTEM: SINDATHU";
 	rooms["824"].planet = "PLANET: MYRELLION";
 	rooms["824"].westExit = "811";
@@ -1394,7 +1411,7 @@ public function initializeMyrellionRooms():void
 	//Park Path L14
 	rooms["825"] = new RoomClass(this);
 	rooms["825"].roomName = "\nSTREET";
-	rooms["825"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. Several gold myr are gathered around, reading a variety of books and taking turns reading passages aloud.";
+	rooms["825"].description = "The Queen’s Solace park is quiet and relaxing, much less crowded than the rest of the city you’ve seen so far. Several gold myr are gathered around, reading a variety of books and taking turns reading passages aloud.";
 	rooms["825"].system = "SYSTEM: SINDATHU";
 	rooms["825"].planet = "PLANET: MYRELLION";
 	rooms["825"].northExit = "807";
@@ -1408,7 +1425,7 @@ public function initializeMyrellionRooms():void
 	//Fallen Statue
 	rooms["826"] = new RoomClass(this);
 	rooms["826"].roomName = "\nSTREET";
-	rooms["826"].description = "You can see that a statue once stood here, some sort of towering marble monument that stretched up to the heights of the cavern. A pair of stone hands still grasp the craggy top of the cavern, chiseled off from the wrists down. Its feet still stand on a wide pedestal, surrounded by rubble and what you assume to be some sort of police line, cordoning it off. Graffiti has been sprayed over the marble in spite of the warnings, which your translator quickly shifts to messages like \"Fuck the Reds!\" and \"Go home Federation!\"\n\nSeveral gold myr are milling around, sitting in benches and reading. A few military police stand in the background, mostly out of sight but keeping an eye on the statue for possible vandalism.";
+	rooms["826"].description = "You can see that a statue once stood here, some sort of towering marble monument that stretched up to the heights of the cavern. A pair of stone hands still grasp the craggy top of the cavern, chiseled off from the wrists down. Its feet still stand on a wide pedestal, surrounded by rubble and what you assume to be some sort of police line, cordoning it off. Graffiti has been sprayed over the marble in spite of the warnings, which your translator quickly shifts to messages like “Fuck the Reds!” and “Go home Federation!”\n\nSeveral gold myr are milling around, sitting in benches and reading. A few military police stand in the background, mostly out of sight but keeping an eye on the statue for possible vandalism.";
 	rooms["826"].system = "SYSTEM: SINDATHU";
 	rooms["826"].planet = "PLANET: MYRELLION";
 	rooms["826"].westExit = "822";
@@ -1463,7 +1480,7 @@ public function initializeMyrellionRooms():void
 	// Kressia Survival Shop
 	rooms["829"] = new RoomClass(this);
 	rooms["829"].roomName = "KRESSIA\nSURVIVAL SHOP";
-	rooms["829"].description = "The shop's interior is rather small, but surprisingly cozy compared to the uncomfortably cool city outside. A fire crackles in a hearth against the west wall, just beside a staircase that leads up to another floor. The shop's main show floor is a haphazard array of display cases and clothing racks laden with military-style jackets and coats. A few primitive firearms are on offer under a glass case, though there's plenty of knives, hatchets, and swords for you to peruse. ";
+	rooms["829"].description = "The shop’s interior is rather small, but surprisingly cozy compared to the uncomfortably cool city outside. A fire crackles in a hearth against the west wall, just beside a staircase that leads up to another floor. The shop’s main show floor is a haphazard array of display cases and clothing racks laden with military-style jackets and coats. A few primitive firearms are on offer under a glass case, though there’s plenty of knives, hatchets, and swords for you to peruse. ";
 	rooms["829"].system = "SYSTEM: SINDATHU";
 	rooms["829"].planet = "PLANET: MYRELLION";
 	rooms["829"].eastExit = "813";
@@ -1489,7 +1506,7 @@ public function initializeMyrellionRooms():void
 	// Bathen Hausen F10
 	rooms["831"] = new RoomClass(this);
 	rooms["831"].roomName = "BATH HOUSE\nFOYER";
-	rooms["831"].description = "The main room of the bath house is as opulent as you might have expected from a gold myr palace of pleasure: the structure seems to be made entirely of polished marble, gleaming white in the flicker of the electric lights mounted in the chandeliers. Despite the technological apparatus illuminating the hall, several sconces full of candles burn in alcoves set in regular intervals along the walls. The air is heavy with the luxurious smells of burning incense, bath salts, and just a hint of rich honey.\n\nMyr of both colorations are lounging around the lobby, either waiting their turns for the baths or wrapped up in toasty bathrobes after a dip. While most are keeping themselves discreetly segregated, there are a few red myr enjoying the attentions of their golden trench wives, or free golds flirtatiously teasing unsuspecting Federation soldiers.\n\nA matronly gold myr woman in a revealing white robe stands behind a simple stone desk near the front door, her pillowy lips turned up into an ever-present smile. The hood of her robe is drawn up, and a veil covers her eyes down to the ridge of her nose, effectively blinding her. She seems to be the person you'd talk to about using the facilities here.";
+	rooms["831"].description = "The main room of the bath house is as opulent as you might have expected from a gold myr palace of pleasure: the structure seems to be made entirely of polished marble, gleaming white in the flicker of the electric lights mounted in the chandeliers. Despite the technological apparatus illuminating the hall, several sconces full of candles burn in alcoves set in regular intervals along the walls. The air is heavy with the luxurious smells of burning incense, bath salts, and just a hint of rich honey.\n\nMyr of both colorations are lounging around the lobby, either waiting their turns for the baths or wrapped up in toasty bathrobes after a dip. While most are keeping themselves discreetly segregated, there are a few red myr enjoying the attentions of their golden trench wives, or free golds flirtatiously teasing unsuspecting Federation soldiers.\n\nA matronly gold myr woman in a revealing white robe stands behind a simple stone desk near the front door, her pillowy lips turned up into an ever-present smile. The hood of her robe is drawn up, and a veil covers her eyes down to the ridge of her nose, effectively blinding her. She seems to be the person you’d talk to about using the facilities here.";
 	rooms["831"].system = "SYSTEM: SINDATHU";
 	rooms["831"].planet = "PLANET: MYRELLION";
 	rooms["831"].eastExit = "830";
@@ -1501,7 +1518,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["832"] = new RoomClass(this);
 	rooms["832"].roomName = "PATH TO\nMANOR";
-	rooms["832"].description = "You find a major road that leads away from the rest of the city, to an open part of the cavern where you can clearly see an impressive manor illuminated by countless lights around and above it. The façade clearly once bore all manner of decorations and expressions of architectural cleverness, but much of that was blasted away in the invasion. The occupying forces have made an effort to clean up the mess and shore up the building's integrity, but it does not look as though restoring the more gaudy elements of its design is a priority.\n\nThe Federation presence is much stronger here, and only thickens farther up the path. Something tells you that while the ostentatious abode was likely built for a queen, whoever is residing there now has far different affiliations. You'll likely encounter at least one security check if you continue north toward the manor."
+	rooms["832"].description = "You find a major road that leads away from the rest of the city, to an open part of the cavern where you can clearly see an impressive manor illuminated by countless lights around and above it. The façade clearly once bore all manner of decorations and expressions of architectural cleverness, but much of that was blasted away in the invasion. The occupying forces have made an effort to clean up the mess and shore up the building’s integrity, but it does not look as though restoring the more gaudy elements of its design is a priority.\n\nThe Federation presence is much stronger here, and only thickens farther up the path. Something tells you that while the ostentatious abode was likely built for a queen, whoever is residing there now has far different affiliations. You’ll likely encounter at least one security check if you continue north toward the manor."
 	rooms["832"].system = "SYSTEM: SINDATHU";
 	rooms["832"].planet = "PLANET: MYRELLION";
 	rooms["832"].northExit = "833";
@@ -1525,7 +1542,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["834"] = new RoomClass(this);
 	rooms["834"].roomName = "MANOR\nINTERIOR";
-	rooms["834"].description = "You enter the manor's main hall, flanked on all sides by corridors and stairways that lead every which way. Servants make their way through, and you can see the occasional soldier passing by on whatever duties they're up to.\n\nThe front door is to your south, and the main hall continues on northward. Most of the soldiers seem to be filtering in and out of a passage to the west, so you assume something important is that way. Additionally, a large stairway to the east clearly leads down into the cellar.";
+	rooms["834"].description = "You enter the manor’s main hall, flanked on all sides by corridors and stairways that lead every which way. Servants make their way through, and you can see the occasional soldier passing by on whatever duties they’re up to.\n\nThe front door is to your south, and the main hall continues on northward. Most of the soldiers seem to be filtering in and out of a passage to the west, so you assume something important is that way. Additionally, a large stairway to the east clearly leads down into the cellar.";
 	rooms["834"].system = "SYSTEM: SINDATHU";
 	rooms["834"].planet = "PLANET: MYRELLION";
 	rooms["834"].northExit = "835";
@@ -1539,7 +1556,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["835"] = new RoomClass(this);
 	rooms["835"].roomName = "MANOR\nINTERIOR";
-	rooms["835"].description = "Continuing along, you find yourself in an absolutely breathtaking high-ceilinged section of the main hall, with doors and rooms along the sides and sweeping arches above that serve as both decoration and architectural support. Small, dim lightbulbs dangle from strings that criss-cross the ceiling like an intricate web, which you find an ironic design choice considering the Terran insect which springs to your mind upon thinking of myr. The effect is profound and impressive, however: it's like walking through a twilit valley, with the faint stars just appearing above your head. You imagine this level of lighting is more comfortable for the subterranean myr.\n\nThe corridor continues along in both directions, with the main rooms to the south of you and the more private sections in the back.";
+	rooms["835"].description = "Continuing along, you find yourself in an absolutely breathtaking high-ceilinged section of the main hall, with doors and rooms along the sides and sweeping arches above that serve as both decoration and architectural support. Small, dim lightbulbs dangle from strings that criss-cross the ceiling like an intricate web, which you find an ironic design choice considering the Terran insect which springs to your mind upon thinking of myr. The effect is profound and impressive, however: it’s like walking through a twilit valley, with the faint stars just appearing above your head. You imagine this level of lighting is more comfortable for the subterranean myr.\n\nThe corridor continues along in both directions, with the main rooms to the south of you and the more private sections in the back.";
 	rooms["835"].system = "SYSTEM: SINDATHU";
 	rooms["835"].planet = "PLANET: MYRELLION";
 	rooms["835"].northExit = "836";
@@ -1552,7 +1569,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["836"] = new RoomClass(this);
 	rooms["836"].roomName = "MANOR\nINTERIOR";
-	rooms["836"].description = "You're in the far end of the manor's main hall, at the back of the building. This section is where the larger, more opulent private rooms are located. It's far quieter here than in the other areas of the building. You see a few maids and servants flittering about, cleaning or straightening things which already seemed impeccably neat to you. Perhaps they just find it prudent to look busy.\n\nThe master bedroom is to the east. If you go south, you can head back down to the rest of the manor.";
+	rooms["836"].description = "You’re in the far end of the manor’s main hall, at the back of the building. This section is where the larger, more opulent private rooms are located. It’s far quieter here than in the other areas of the building. You see a few maids and servants flittering about, cleaning or straightening things which already seemed impeccably neat to you. Perhaps they just find it prudent to look busy.\n\nThe master bedroom is to the east. If you go south, you can head back down to the rest of the manor.";
 	rooms["836"].system = "SYSTEM: SINDATHU";
 	rooms["836"].planet = "PLANET: MYRELLION";
 	rooms["836"].eastExit = "837";
@@ -1564,7 +1581,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["837"] = new RoomClass(this);
 	rooms["837"].roomName = "MASTER\nBEDROOM";
-	rooms["837"].description = "The manor's master bedroom is as opulent as you might expect from the former abode of a gold myr queen: the bed is massive, more than 12 feet long, and set beneath a tremendous canopy. The bedsheets are a luxurious silk, cream white with gemstone patterns inlaid through them. Small statues make up the bedposts, each of a hugely buxom gold myr queen. The walls are inlaid with gold, flickering brilliantly in the light of a crystal chandelier.";
+	rooms["837"].description = "The manor’s master bedroom is as opulent as you might expect from the former abode of a gold myr queen: the bed is massive, more than 12 feet long, and set beneath a tremendous canopy. The bedsheets are a luxurious silk, cream white with gemstone patterns inlaid through them. Small statues make up the bedposts, each of a hugely buxom gold myr queen. The walls are inlaid with gold, flickering brilliantly in the light of a crystal chandelier.";
 	rooms["837"].system = "SYSTEM: SINDATHU";
 	rooms["837"].planet = "PLANET: MYRELLION";
 	rooms["837"].westExit = "836";
@@ -1577,7 +1594,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["838"] = new RoomClass(this);
 	rooms["838"].roomName = "MANOR\nKITCHEN";
-	rooms["838"].description = "A small kitchen is set up here, equipped with several polished steel utensils, grills, even an electric icebox. There doesn't appear to be a staff working at present, or any guards for that matter. Still, you can see evidence of several boxes of food stored away.";
+	rooms["838"].description = "A small kitchen is set up here, equipped with several polished steel utensils, grills, even an electric icebox. There doesn’t appear to be a staff working at present, or any guards for that matter. Still, you can see evidence of several boxes of food stored away.";
 	rooms["838"].system = "SYSTEM: SINDATHU";
 	rooms["838"].planet = "PLANET: MYRELLION";
 	rooms["838"].westExit = "835";
@@ -1588,7 +1605,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["839"] = new RoomClass(this);
 	rooms["839"].roomName = "MANOR\nCELLAR";
-	rooms["839"].description = "At the bottom of the large stairway is a cramped cellar. It might be sort of cheeky to call it a basement, since the entire city is underground, but this area certainly <i>feels</i> more chthonic than everywhere else. The walls, ceiling, and floor are all the same bare stone the place was carved out of. At least the stone seems to have been smoothed over and polished, though the last touch-up was likely decades ago. Lamps are scattered about on wall-mounted sconces every few meters, meaning you can at least see where you're going.\n\nThe passages here are more winding and tunnel-like than those upstairs, and many of them have been sealed off. From what you can gather, this cellar runs beneath the entire manor, connecting various rooms with underground accesses and hidden pathways. However, you can only access a small portion of the entire basement, as most of it is sealed off and guarded.\n\nThis section still sees use as a storage space, however. The manor's wine cellar is still accessible, although much of its stock was either destroyed or raided by Federation troops during the invasion.";
+	rooms["839"].description = "At the bottom of the large stairway is a cramped cellar. It might be sort of cheeky to call it a basement, since the entire city is underground, but this area certainly <i>feels</i> more chthonic than everywhere else. The walls, ceiling, and floor are all the same bare stone the place was carved out of. At least the stone seems to have been smoothed over and polished, though the last touch-up was likely decades ago. Lamps are scattered about on wall-mounted sconces every few meters, meaning you can at least see where you’re going.\n\nThe passages here are more winding and tunnel-like than those upstairs, and many of them have been sealed off. From what you can gather, this cellar runs beneath the entire manor, connecting various rooms with underground accesses and hidden pathways. However, you can only access a small portion of the entire basement, as most of it is sealed off and guarded.\n\nThis section still sees use as a storage space, however. The manor’s wine cellar is still accessible, although much of its stock was either destroyed or raided by Federation troops during the invasion.";
 	rooms["839"].system = "SYSTEM: SINDATHU";
 	rooms["839"].planet = "PLANET: MYRELLION";
 	rooms["839"].westExit = "834";
@@ -1600,7 +1617,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["840"] = new RoomClass(this);
 	rooms["840"].roomName = "MANOR\nWAR ROOM";
-	rooms["840"].description = "840";
+	rooms["840"].description = "";
 	rooms["840"].system = "SYSTEM: SINDATHU";
 	rooms["840"].planet = "PLANET: MYRELLION";
 	rooms["840"].eastExit = "834";
@@ -1610,10 +1627,11 @@ public function initializeMyrellionRooms():void
 	rooms["840"].runOnEnter = myrellionManorEnterWarroom;
 	rooms["840"].addFlag(GLOBAL.PUBLIC);
 	rooms["840"].addFlag(GLOBAL.INDOOR);
+	rooms["840"].addFlag(GLOBAL.LIFTDOWN);
 
 	rooms["841"] = new RoomClass(this);
 	rooms["841"].roomName = "MANOR\nWAR ROOM";
-	rooms["841"].description = "You approach the bustling, busy doorway that you know leads to the manor's administration office. A familiar-looking soldier is standing sentry, and you could swear you catch a quick glimpse of a smile on her face once she's seen you.\n\nOnce you're close enough to face her, the sentry asks if you're going inside to see Field Marshal Sellera.\n\nDo you have business with the Marshal, or are you just passing through?";
+	rooms["841"].description = "";
 	rooms["841"].system = "SYSTEM: SINDATHU";
 	rooms["841"].planet = "PLANET: MYRELLION";
 	rooms["841"].inExit = "840";
@@ -1621,8 +1639,8 @@ public function initializeMyrellionRooms():void
 	rooms["841"].moveMinutes = 1;
 	rooms["841"].runOnEnter = myrellionManorAdminRoom;
 	rooms["841"].addFlag(GLOBAL.PUBLIC);
-	rooms["840"].addFlag(GLOBAL.INDOOR);
-	rooms["840"].addFlag(GLOBAL.NPC);
+	rooms["841"].addFlag(GLOBAL.INDOOR);
+	rooms["841"].addFlag(GLOBAL.NPC);
 
 	//=========================================//
 	// NO MANZ LAND ROOMS. 1A0 to 1Z99 Reserved//
@@ -1645,7 +1663,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1H8"] = new RoomClass(this);
 	rooms["1H8"].roomName = "NARROW\nPASSAGE";
-	rooms["1H8"].description = "The cave here narrows down to a pinch size, barely wide enough for two people to walk through abreast. This isn't a natural phenomenon, you think: the sides of the cavern look to have been collapsed by high explosives, then dug out again to make a very narrow passage. You can see several machine guns to the north, all aimed straight for the narrow opening. It would be murder to try and march an army through here!";
+	rooms["1H8"].description = "The cave here narrows down to a pinch size, barely wide enough for two people to walk through abreast. This isn’t a natural phenomenon, you think: the sides of the cavern look to have been collapsed by high explosives, then dug out again to make a very narrow passage. You can see several machine guns to the north, all aimed straight for the narrow opening. It would be murder to try and march an army through here!";
 	rooms["1H8"].planet = "PLANET: MYRELLION";
 	rooms["1H8"].system = "SYSTEM: SINDATHU";
 	rooms["1H8"].northExit = "1H6";
@@ -1672,7 +1690,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1L8"] = new RoomClass(this);
 	rooms["1L8"].roomName = "NARROW\nPASSAGE";
-	rooms["1L8"].description = "A fairly narrow passage connects the road to Kressia to a small foot-path, advertised by a rusty sign as the \"scenic route to our lovely capitol,\" heading off to the east. You can see evidence of fairly recent traversal, and the foot-path the sign touts has been widened out by pickaxes to make room for armored vehicles to slip through. Several red myr propaganda posters have been plastered to the cavern walls, as well as a large bounty sign for a particularly lethal gold myr sniper whose name is indecipherable.";
+	rooms["1L8"].description = "A fairly narrow passage connects the road to Kressia to a small foot-path, advertised by a rusty sign as the “scenic route to our lovely capitol,” heading off to the east. You can see evidence of fairly recent traversal, and the foot-path the sign touts has been widened out by pickaxes to make room for armored vehicles to slip through. Several red myr propaganda posters have been plastered to the cavern walls, as well as a large bounty sign for a particularly lethal gold myr sniper whose name is indecipherable.";
 	rooms["1L8"].planet = "PLANET: MYRELLION";
 	rooms["1L8"].system = "SYSTEM: SINDATHU";
 	rooms["1L8"].westExit = "1J8";
@@ -1685,7 +1703,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1N8"] = new RoomClass(this);
 	rooms["1N8"].roomName = "NEAR\nKRESSIA";
-	rooms["1N8"].description = "To the south, you can see the beginnings of the Scarlet Federation military presence in the dark depths of \"no myr's land\": vehicles and bunkers, all abandoned during the cease-fire your government caused. The passage to the west grows smaller and thinner, barely wide enough for a single vehicle to pass through. A sign bolted to the cavern wall reads \"Nearing Kressia, the friendliest city near the surface!\" followed by the picture of a particularly voluptuous gold ant advertising a famous bath house.";
+	rooms["1N8"].description = "To the south, you can see the beginnings of the Scarlet Federation military presence in the dark depths of “no myr’s land”: vehicles and bunkers, all abandoned during the cease-fire your government caused. The passage to the west grows smaller and thinner, barely wide enough for a single vehicle to pass through. A sign bolted to the cavern wall reads “Nearing Kressia, the friendliest city near the surface!” followed by the picture of a particularly voluptuous gold ant advertising a famous bath house.";
 	rooms["1N8"].planet = "PLANET: MYRELLION";
 	rooms["1N8"].system = "SYSTEM: SINDATHU";
 	rooms["1N8"].westExit = "1L8";
@@ -1711,7 +1729,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1N12"] = new RoomClass(this);
 	rooms["1N12"].roomName = "COMMAND\nBUNKER";
-	rooms["1N12"].description = "The heart of the Federation line begins here: a command bunker has been built as near to the surface as they could get it, elevated on a rise of rock and sporting several radio antennas that go all the way up to a small crack in the surface stone. Looks like most of the actual equipment's been packed up and taken home, but tables and a few electrical generators remain, giving power to the base.\n\nThe trenches begin in earnest here, connecting the command bunker to the front lines with a network of serpentine dug-outs and shallow trenches. Looks like the fighting never reached this far north.";
+	rooms["1N12"].description = "The heart of the Federation line begins here: a command bunker has been built as near to the surface as they could get it, elevated on a rise of rock and sporting several radio antennas that go all the way up to a small crack in the surface stone. Looks like most of the actual equipment’s been packed up and taken home, but tables and a few electrical generators remain, giving power to the base.\n\nThe trenches begin in earnest here, connecting the command bunker to the front lines with a network of serpentine dug-outs and shallow trenches. Looks like the fighting never reached this far north.";
 	rooms["1N12"].planet = "PLANET: MYRELLION";
 	rooms["1N12"].system = "SYSTEM: SINDATHU";
 	rooms["1N12"].northExit = "1N10";
@@ -1737,7 +1755,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1P14"] = new RoomClass(this);
 	rooms["1P14"].roomName = "WRECKED\nTRENCH";
-	rooms["1P14"].description = "The trench here is dominated by the presence of a huge, horribly damaged armored vehicle - some kind of motorized cannon, maybe, judging by the tremendous size of the gun its sporting. The cannon barrel's been destroyed, though, and it looks like the vehicle took a direct hit to the flank. You're forced to shimmey under it to get anywhere.";
+	rooms["1P14"].description = "The trench here is dominated by the presence of a huge, horribly damaged armored vehicle - some kind of motorized cannon, maybe, judging by the tremendous size of the gun its sporting. The cannon barrel’s been destroyed, though, and it looks like the vehicle took a direct hit to the flank. You’re forced to shimmey under it to get anywhere.";
 	rooms["1P14"].planet = "PLANET: MYRELLION";
 	rooms["1P14"].system = "SYSTEM: SINDATHU";
 	rooms["1P14"].northExit = "1P12";
@@ -1750,7 +1768,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1P16"] = new RoomClass(this);
 	rooms["1P16"].roomName = "SLOPING\nCAVERN";
-	rooms["1P16"].description = "Trenches run along a sloping cavern, running higher north and deeper to the west. While most of the trenches have been covered with boards and stone slabs to allow you and other explorers to move over them, it's still slow and difficult to pick your way across the defensive line.";
+	rooms["1P16"].description = "Trenches run along a sloping cavern, running higher north and deeper to the west. While most of the trenches have been covered with boards and stone slabs to allow you and other explorers to move over them, it’s still slow and difficult to pick your way across the defensive line.";
 	rooms["1P16"].planet = "PLANET: MYRELLION";
 	rooms["1P16"].system = "SYSTEM: SINDATHU";
 	rooms["1P16"].northExit = "1P14";
@@ -1763,7 +1781,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1N16"] = new RoomClass(this);
 	rooms["1N16"].roomName = "OLD\nTRENCHES";
-	rooms["1N16"].description = "The southern tip of the Federation trenches begins here, with bunkers and machineguns pointed dead south along the long, open passage. While the trenches have been abandoned now, you can see plenty of evidence of long occupation: food cans and ammunition crates lying about in the second line, intermixed with spotter's posts and the closest of the cannon emplacements, surrounded by thin concrete walls.";
+	rooms["1N16"].description = "The southern tip of the Federation trenches begins here, with bunkers and machineguns pointed dead south along the long, open passage. While the trenches have been abandoned now, you can see plenty of evidence of long occupation: food cans and ammunition crates lying about in the second line, intermixed with spotter’s posts and the closest of the cannon emplacements, surrounded by thin concrete walls.";
 	rooms["1N16"].planet = "PLANET: MYRELLION";
 	rooms["1N16"].system = "SYSTEM: SINDATHU";
 	rooms["1N16"].eastExit = "1P16";
@@ -1803,7 +1821,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1N22"] = new RoomClass(this);
 	rooms["1N22"].roomName = "\nCAVERN";
-	rooms["1N22"].description = "No myr's land is the only phrase to describe this long, barren stretch of cavern. While the passage is wide open and high-vaulted, there's nothing but devastation to be found wherever you look. It's difficult to pick your way through the mass of barbed wire and piled sandbags, but at least the fungus on the top of the cavern makes it easy to see.";
+	rooms["1N22"].description = "No myr’s land is the only phrase to describe this long, barren stretch of cavern. While the passage is wide open and high-vaulted, there’s nothing but devastation to be found wherever you look. It’s difficult to pick your way through the mass of barbed wire and piled sandbags, but at least the fungus on the top of the cavern makes it easy to see.";
 	rooms["1N22"].planet = "PLANET: MYRELLION";
 	rooms["1N22"].system = "SYSTEM: SINDATHU";
 	rooms["1N22"].northExit = "1N20";
@@ -1868,7 +1886,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1L30"] = new RoomClass(this);
 	rooms["1L30"].roomName = "\nCAVERNS";
-	rooms["1L30"].description = "The caverns are wide open and a bit rough around your [pc.feet] here, slowing your progress. It's a steep incline to the north, sloping down to the west. The path is worn in places, evidence of thousands upon thousands of footfalls over the years.";
+	rooms["1L30"].description = "The caverns are wide open and a bit rough around your [pc.feet] here, slowing your progress. It’s a steep incline to the north, sloping down to the west. The path is worn in places, evidence of thousands upon thousands of footfalls over the years.";
 	rooms["1L30"].planet = "PLANET: MYRELLION";
 	rooms["1L30"].system = "SYSTEM: SINDATHU";
 	rooms["1L30"].northExit = "1L28";
@@ -1881,7 +1899,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1J30"] = new RoomClass(this);
 	rooms["1J30"].roomName = "UNDERGROUND\nROAD";
-	rooms["1J30"].description = "A very large sign dominates the curving cavern around you, saying in big friendly letters \"NOW LEAVING GILDENMERE.\" In smaller letters, it gives directions and distance to the \"friendliest city near the surface\" of Kressia, a long walk to the northeast, or a short drive to the northwest along the highway.\n\nIt looks like you're at the very start of a long and winding footpath leading between the two cities. It might have been nice once, with the cultivated gardens of glowing fungus mixing with electrical lights around you. The view's only ruined by the total lack of sun and stars, and the array of sandbags encircling a pair of pillboxes hewn out of the rock, firing ports pointed northwards. The fortifications have been abandoned in the ceasefire, it appears.";
+	rooms["1J30"].description = "A very large sign dominates the curving cavern around you, saying in big friendly letters “NOW LEAVING GILDENMERE.” In smaller letters, it gives directions and distance to the “friendliest city near the surface” of Kressia, a long walk to the northeast, or a short drive to the northwest along the highway.\n\nIt looks like you’re at the very start of a long and winding footpath leading between the two cities. It might have been nice once, with the cultivated gardens of glowing fungus mixing with electrical lights around you. The view’s only ruined by the total lack of sun and stars, and the array of sandbags encircling a pair of pillboxes hewn out of the rock, firing ports pointed northwards. The fortifications have been abandoned in the ceasefire, it appears.";
 	rooms["1J30"].planet = "PLANET: MYRELLION";
 	rooms["1J30"].system = "SYSTEM: SINDATHU";
 	rooms["1J30"].eastExit = "1L30";
@@ -1894,7 +1912,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1J32"] = new RoomClass(this);
 	rooms["1J32"].roomName = "UNDERGROUND\nROAD";
-	rooms["1J32"].description = "A road has been built through these caverns, which are wide open and well-illuminated by electrical lights whose wires lead south. The road is in good shape, well maintained and repaired. You can see some damage, likely from bombs, but its been covered over with new pavement.\n\nThere obviously used to be a large tunnel leading south, evidenced by a concrete structure labeled \"Welcome to Gildenmere.\" The tunnel's collapsed, however, completely barring passage this way. Probably smart - a tank column could have rolled right through.";
+	rooms["1J32"].description = "A road has been built through these caverns, which are wide open and well-illuminated by electrical lights whose wires lead south. The road is in good shape, well maintained and repaired. You can see some damage, likely from bombs, but its been covered over with new pavement.\n\nThere obviously used to be a large tunnel leading south, evidenced by a concrete structure labeled “Welcome to Gildenmere.” The tunnel’s collapsed, however, completely barring passage this way. Probably smart - a tank column could have rolled right through.";
 	rooms["1J32"].planet = "PLANET: MYRELLION";
 	rooms["1J32"].system = "SYSTEM: SINDATHU";
 	rooms["1J32"].northExit = "1J30";
@@ -1973,7 +1991,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1F32"] = new RoomClass(this);
 	rooms["1F32"].roomName = "UNDERGROUND\nROAD";
-	rooms["1F32"].description = "A road has been built through these caverns, which are wide open and well-illuminated by electrical lights whose wires lead south. The road itself is in disrepair, and in places is covered with tank obstacles and sandbags. A last-ditch defense against an overwhelming war machine.\n\nThe road curves here, north to east. A billboard rests against the cave wall, illuminated by several small lamps. Your automatic translators help you suss out that it's advertising a particularly potent brand of honey-wine, manufactured exclusively by virginal gold myr.";
+	rooms["1F32"].description = "A road has been built through these caverns, which are wide open and well-illuminated by electrical lights whose wires lead south. The road itself is in disrepair, and in places is covered with tank obstacles and sandbags. A last-ditch defense against an overwhelming war machine.\n\nThe road curves here, north to east. A billboard rests against the cave wall, illuminated by several small lamps. Your automatic translators help you suss out that it’s advertising a particularly potent brand of honey-wine, manufactured exclusively by virginal gold myr.";
 	rooms["1F32"].planet = "PLANET: MYRELLION";
 	rooms["1F32"].system = "SYSTEM: SINDATHU";
 	rooms["1F32"].northExit = "1F30";
@@ -1986,7 +2004,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1F30"] = new RoomClass(this);
 	rooms["1F30"].roomName = "UNDERGROUND\nROAD";
-	rooms["1F30"].description = "A road has been built through these caverns, which are wide open and well-illuminated by electrical lights whose wires lead south. The road itself is in disrepair, and in places is covered with tank obstacles and sandbags. A last-ditch defense against an overwhelming war machine.\n\nThere's a gas station here - or what you assume to be one, based on the big pumps coming from a small terminal building. The place looks to have been completely abandoned and ransacked. You doubt there's a drop of fuel left to be found here.";
+	rooms["1F30"].description = "A road has been built through these caverns, which are wide open and well-illuminated by electrical lights whose wires lead south. The road itself is in disrepair, and in places is covered with tank obstacles and sandbags. A last-ditch defense against an overwhelming war machine.\n\nThere’s a gas station here - or what you assume to be one, based on the big pumps coming from a small terminal building. The place looks to have been completely abandoned and ransacked. You doubt there’s a drop of fuel left to be found here.";
 	rooms["1F30"].planet = "PLANET: MYRELLION";
 	rooms["1F30"].system = "SYSTEM: SINDATHU";
 	rooms["1F30"].northExit = "1F28";
@@ -2040,7 +2058,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1F22"] = new RoomClass(this);
 	rooms["1F22"].roomName = "A\nCAVERN";
-	rooms["1F22"].description = "A dark maw of a cavern opens up on the side of the road. The collapse of the wall looks fairly recent, and admits entry into a large, dark, dank cavern. It smells awful in here - there's a horrid smell wafting up from a crack in the floor, not unlike sulfur. Yuck.";
+	rooms["1F22"].description = "A dark maw of a cavern opens up on the side of the road. The collapse of the wall looks fairly recent, and admits entry into a large, dark, dank cavern. It smells awful in here - there’s a horrid smell wafting up from a crack in the floor, not unlike sulfur. Yuck.";
 	rooms["1F22"].planet = "PLANET: MYRELLION";
 	rooms["1F22"].system = "SYSTEM: SINDATHU";
 	rooms["1F22"].southExit = "1F24";
@@ -2199,7 +2217,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1F12"] = new RoomClass(this);
 	rooms["1F12"].roomName = "A\nWRECK";
-	rooms["1F12"].description = "This curving U-section of cave is sharply angled, going deeper the further south you go. A large, armored vehicle that looks like the local equivalent of a tank is bailed out here. Looks like it's been here for a while: most of the hull is rusted, and the cannon's been ruptured by an explosion. Thousands of shell casings surround the wreckage, making it hard to move anywhere without slipping on them.";
+	rooms["1F12"].description = "This curving U-section of cave is sharply angled, going deeper the further south you go. A large, armored vehicle that looks like the local equivalent of a tank is bailed out here. Looks like it’s been here for a while: most of the hull is rusted, and the cannon’s been ruptured by an explosion. Thousands of shell casings surround the wreckage, making it hard to move anywhere without slipping on them.";
 	rooms["1F12"].planet = "PLANET: MYRELLION";
 	rooms["1F12"].system = "SYSTEM: SINDATHU";
 	rooms["1F12"].eastExit = "1H12";
@@ -2238,7 +2256,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1J10"] = new RoomClass(this);
 	rooms["1J10"].roomName = "\nTUNNELS";
-	rooms["1J10"].description = "To the north, you can see a wide-open intersection covered in bits of battlefield equipment. A sign points north \"To Kressia.\" To the south, though, it's nothing but trenches and battlefield ahead. You can see evidence of months' of fighting partially hidden in the dust, trodden into the ground by thousands of boots.";
+	rooms["1J10"].description = "To the north, you can see a wide-open intersection covered in bits of battlefield equipment. A sign points north “To Kressia.” To the south, though, it’s nothing but trenches and battlefield ahead. You can see evidence of months’ of fighting partially hidden in the dust, trodden into the ground by thousands of boots.";
 	rooms["1J10"].planet = "PLANET: MYRELLION";
 	rooms["1J10"].system = "SYSTEM: SINDATHU";
 	rooms["1J10"].northExit = "1J8";
@@ -2290,7 +2308,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1D20"] = new RoomClass(this);
 	rooms["1D20"].roomName = "GLOWING\nLAKE";
-	rooms["1D20"].description = "The caverns are wide and open, connecting the long passage stretching out to the east. To the north, you can see a shelf of rock overlooking a black precipice, down into the deepest depths of the bug planet. A large pool of water sits in a basin nearby - it's nearly crystal clear, and illuminated by a ceiling covered in glowing moss. Water pours down from a crack in the cavern, a small rivulet of liquid that burbles pleasantly.";
+	rooms["1D20"].description = "The caverns are wide and open, connecting the long passage stretching out to the east. To the north, you can see a shelf of rock overlooking a black precipice, down into the deepest depths of the bug planet. A large pool of water sits in a basin nearby - it’s nearly crystal clear, and illuminated by a ceiling covered in glowing moss. Water pours down from a crack in the cavern, a small rivulet of liquid that burbles pleasantly.";
 	rooms["1D20"].planet = "PLANET: MYRELLION";
 	rooms["1D20"].system = "SYSTEM: SINDATHU";
 	rooms["1D20"].northExit = "1D18";
@@ -2304,7 +2322,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1D18"] = new RoomClass(this);
 	rooms["1D18"].roomName = "CAVES\nDESCENT";
-	rooms["1D18"].description = "A shelf of rock looms precariously over what seems like a bottomless pit to the west. The abyss ahead of you is black, lightless, an all-consuming void. Several pitons have been hammered into the rock near the cliff's edge, dangling ropes down into the depths. You could climb down into the deepest recesses of Myrellion's caves from here.";
+	rooms["1D18"].description = "A shelf of rock looms precariously over what seems like a bottomless pit to the west. The abyss ahead of you is black, lightless, an all-consuming void. Several pitons have been hammered into the rock near the cliff’s edge, dangling ropes down into the depths. You could climb down into the deepest recesses of Myrellion’s caves from here.";
 	rooms["1D18"].planet = "PLANET: MYRELLION";
 	rooms["1D18"].system = "SYSTEM: SINDATHU";
 	rooms["1D18"].southExit = "1D20";
@@ -2335,7 +2353,7 @@ public function initializeMyrellionRooms():void
 	*************************/
 	rooms["1X11"] = new RoomClass(this);
 	rooms["1X11"].roomName = "WETRAXXEL\nDEN";
-	rooms["1X11"].description = "This cave branches off from the main passage you've been following. This side branch doesn't seem to be nearly as well-maintained as the myr caves, much more crudely mined out and rougher-hewed. The dark passage leads westward, deeper into these rougher caverns.";
+	rooms["1X11"].description = "This cave branches off from the main passage you’ve been following. This side branch doesn’t seem to be nearly as well-maintained as the myr caves, much more crudely mined out and rougher-hewed. The dark passage leads westward, deeper into these rougher caverns.";
 	rooms["1X11"].planet = "PLANET: MYRELLION";
 	rooms["1X11"].system = "SYSTEM: SINDATHU";
 	rooms["1X11"].eastExit = "1F28";
@@ -2549,7 +2567,7 @@ public function initializeMyrellionRooms():void
 	//Y19 -- Ascension Point
 	rooms["2Y19"] = new RoomClass(this);
 	rooms["2Y19"].roomName = "ASCENSION\nPOINT";
-	rooms["2Y19"].description = "You stand at the foot of a towering cliff face. Above you, you can vaguely make out the shelf of rock you came down from against the black backdrop of the dark caves. A wide, stony passage leads westward from here, flanked by columns of stone that look almost like Greek pillars, leading you deeper into the planet's heart.\n\nStrange, blurred colors smear the walls of the cavern. On closer inspection, it looks as if centuries of pictographs and writing have been written and rewritten on the black stone. The result is a formless, but aesthetically pleasing fresco on all sides.";
+	rooms["2Y19"].description = "You stand at the foot of a towering cliff face. Above you, you can vaguely make out the shelf of rock you came down from against the black backdrop of the dark caves. A wide, stony passage leads westward from here, flanked by columns of stone that look almost like Greek pillars, leading you deeper into the planet’s heart.\n\nStrange, blurred colors smear the walls of the cavern. On closer inspection, it looks as if centuries of pictographs and writing have been written and rewritten on the black stone. The result is a formless, but aesthetically pleasing fresco on all sides.";
 	rooms["2Y19"].planet = "PLANET: MYRELLION";
 	rooms["2Y19"].system = "SYSTEM: SINDATHU";
 	rooms["2Y19"].northExit = "";
@@ -2581,7 +2599,7 @@ public function initializeMyrellionRooms():void
 	//U19 -- Armored Husk
 	rooms["2U19"] = new RoomClass(this);
 	rooms["2U19"].roomName = "ARMORED\nHUSK";
-	rooms["2U19"].description = "An abandoned armored car sits here, rusting with the passage of time. It's not a tank per se, just a four-wheel motor car with heavy plates bolted to it. You can see evidence of a weapons mount on it, though the gun's long since been looted. There's no indication left as to which side of the war the derelict fought on, or how it got all the way down here.\n\nOn closer inspection, you can see the car's interior is all but flooded with empty shell casings.";
+	rooms["2U19"].description = "An abandoned armored car sits here, rusting with the passage of time. It’s not a tank per se, just a four-wheel motor car with heavy plates bolted to it. You can see evidence of a weapons mount on it, though the gun’s long since been looted. There’s no indication left as to which side of the war the derelict fought on, or how it got all the way down here.\n\nOn closer inspection, you can see the car’s interior is all but flooded with empty shell casings.";
 	rooms["2U19"].planet = "PLANET: MYRELLION";
 	rooms["2U19"].system = "SYSTEM: SINDATHU";
 	rooms["2U19"].northExit = "";
@@ -2629,7 +2647,7 @@ public function initializeMyrellionRooms():void
 	//U25 -- Fungal Depths
 	rooms["2U25"] = new RoomClass(this);
 	rooms["2U25"].roomName = "FUNGAL\nDEPTHS";
-	rooms["2U25"].description = "A papery rasp fills this section of tunnel and as you walk through, you happen to glance up halfway through the cavern and realize that the ceiling is moving. A moment of peering at it reveals the horrifying truth--it's covered in segmented coils, wound over each other in countless, slithering layers, all bristling with spiny, twitching legs. You don’t see a head or even an end, so it's unclear if it's a colony of something or just one monstrous organism. You’d rather not find out and hurry your way through the otherwise empty cave.";
+	rooms["2U25"].description = "A papery rasp fills this section of tunnel and as you walk through, you happen to glance up halfway through the cavern and realize that the ceiling is moving. A moment of peering at it reveals the horrifying truth--it’s covered in segmented coils, wound over each other in countless, slithering layers, all bristling with spiny, twitching legs. You don’t see a head or even an end, so it’s unclear if it’s a colony of something or just one monstrous organism. You’d rather not find out and hurry your way through the otherwise empty cave.";
 	rooms["2U25"].planet = "PLANET: MYRELLION";
 	rooms["2U25"].system = "SYSTEM: SINDATHU";
 	rooms["2U25"].northExit = "2U23";
@@ -2645,7 +2663,7 @@ public function initializeMyrellionRooms():void
 	//W17 -- Pillar Arch
 	rooms["2W17"] = new RoomClass(this);
 	rooms["2W17"].roomName = "PILLAR\nARCH";
-	rooms["2W17"].description = "The stone pillars that line the passage from here to the ascent point begin to grow more and more bent, until at the northernmost edge of the cavern several of them have formed a towering archway that is covered with a healthy coat of glowing blue fungus. Whether this is a naturally-wrought wonder or made by the hands of the creatures the dwell down here, you can't say.";
+	rooms["2W17"].description = "The stone pillars that line the passage from here to the ascent point begin to grow more and more bent, until at the northernmost edge of the cavern several of them have formed a towering archway that is covered with a healthy coat of glowing blue fungus. Whether this is a naturally-wrought wonder or made by the hands of the creatures the dwell down here, you can’t say.";
 	rooms["2W17"].planet = "PLANET: MYRELLION";
 	rooms["2W17"].system = "SYSTEM: SINDATHU";
 	rooms["2W17"].northExit = "2W15";
@@ -2661,7 +2679,7 @@ public function initializeMyrellionRooms():void
 	//W15 -- Collapsed Passage
 	rooms["2W15"] = new RoomClass(this);
 	rooms["2W15"].roomName = "PILLAR\nARCH";
-	rooms["2W15"].description = "You can see the remnants of a very large tunnel stretching north, though a cave-in has blocked your passage in that direction. Several cave-drawings adorn the stonework nearby, depicting what kind of looks like a tribe of stick figures, all of whom are drawn with a very impressive third leg.\n\nThe remaining passages curve south, back towards the ascent, or westwards down a sharp incline. And here you thought you couldn't get any deeper...";
+	rooms["2W15"].description = "You can see the remnants of a very large tunnel stretching north, though a cave-in has blocked your passage in that direction. Several cave-drawings adorn the stonework nearby, depicting what kind of looks like a tribe of stick figures, all of whom are drawn with a very impressive third leg.\n\nThe remaining passages curve south, back towards the ascent, or westwards down a sharp incline. And here you thought you couldn’t get any deeper...";
 	rooms["2W15"].planet = "PLANET: MYRELLION";
 	rooms["2W15"].system = "SYSTEM: SINDATHU";
 	rooms["2W15"].northExit = "";
@@ -2742,7 +2760,7 @@ public function initializeMyrellionRooms():void
 	//Garde Here
 	rooms["2S9"] = new RoomClass(this);
 	rooms["2S9"].roomName = "DENSE\nPASSAGE";
-	rooms["2S9"].description = "Spongy toadstools strobe with pulses of yellow as you're forced to step on them to pass by. You can see an open area at the end of the short hallway, but it still takes you a while to maneuver through the dense fungus.";
+	rooms["2S9"].description = "Spongy toadstools strobe with pulses of yellow as you’re forced to step on them to pass by. You can see an open area at the end of the short hallway, but it still takes you a while to maneuver through the dense fungus.";
 	rooms["2S9"].planet = "PLANET: MYRELLION";
 	rooms["2S9"].system = "SYSTEM: SINDATHU";
 	rooms["2S9"].northExit = "2S7";
@@ -2839,7 +2857,7 @@ public function initializeMyrellionRooms():void
 	//M7 -- Pillar of Light
 	rooms["2M7"] = new RoomClass(this);
 	rooms["2M7"].roomName = "PILLAR\nOF LIGHT";
-	rooms["2M7"].description = "You're standing directly under a tremendous crack in the ceiling of the cavern, some hundred feet above you. It looks like the ground above was shattered by some great impact, barreling down to the west.";
+	rooms["2M7"].description = "You’re standing directly under a tremendous crack in the ceiling of the cavern, some hundred feet above you. It looks like the ground above was shattered by some great impact, barreling down to the west.";
 	rooms["2M7"].planet = "PLANET: MYRELLION";
 	rooms["2M7"].system = "SYSTEM: SINDATHU";
 	rooms["2M7"].northExit = "";
@@ -2855,7 +2873,7 @@ public function initializeMyrellionRooms():void
 	//K7 -- Derelict Approach
 	rooms["2K7"] = new RoomClass(this);
 	rooms["2K7"].roomName = "DERELICT\nAPPROACH";
-	rooms["2K7"].description = "You're standing between a crack in the cavern ceiling, from which shines down a beam of light from on high, and a huge impact crater blasted into the stone to the west. You can see bits of metal debris scattered across the stone floor already, and you carefully tread around them.";
+	rooms["2K7"].description = "You’re standing between a crack in the cavern ceiling, from which shines down a beam of light from on high, and a huge impact crater blasted into the stone to the west. You can see bits of metal debris scattered across the stone floor already, and you carefully tread around them.";
 	rooms["2K7"].planet = "PLANET: MYRELLION";
 	rooms["2K7"].system = "SYSTEM: SINDATHU";
 	rooms["2K7"].northExit = "";
@@ -2936,7 +2954,7 @@ public function initializeMyrellionRooms():void
 	//I11 -- Queen's Road North
 	//No random encounters here! 
 	rooms["2I11"] = new RoomClass(this);
-	rooms["2I11"].roomName = "QUEEN'S\nROAD NORTH";
+	rooms["2I11"].roomName = "QUEEN’S\nROAD NORTH";
 	rooms["2I11"].description = "Several stone pillars line the passage on either side, clearly hand-carved and polished to a shine. Rather than glowing fungus coating the walls, several small clay sconces have been bolted onto the pillars, filled with colonies of the glowing fungus that sheds a soft, warm light across the tunnel. To the west, you can see what looks like a pair of heavy gates, flanked by a pair of large sconces filled with pulsing, glowing fungus.";
 	rooms["2I11"].planet = "PLANET: MYRELLION";
 	rooms["2I11"].system = "SYSTEM: SINDATHU";
@@ -3053,7 +3071,7 @@ public function initializeMyrellionRooms():void
 	rooms["2E17"].addFlag(GLOBAL.NPC);
 	
 	rooms["2C13"] = new RoomClass(this);
-	rooms["2C13"].roomName = "QUEEN'S\nFOUNTAIN";
+	rooms["2C13"].roomName = "QUEEN’S\nFOUNTAIN";
 	rooms["2C13"].description = "";
 	rooms["2C13"].planet = "PLANET: MYRELLION";
 	rooms["2C13"].system = "SYSTEM: SINDATHU";
@@ -3067,7 +3085,7 @@ public function initializeMyrellionRooms():void
 	rooms["2C13"].addFlag(GLOBAL.INDOOR);
 
 	rooms["2C15"] = new RoomClass(this);
-	rooms["2C15"].roomName = "QUEEN'S\nCHAMBERS";
+	rooms["2C15"].roomName = "QUEEN’S\nCHAMBERS";
 	rooms["2C15"].description = "";
 	rooms["2C15"].planet = "PLANET: MYRELLION";
 	rooms["2C15"].system = "SYSTEM: SINDATHU";
@@ -3161,7 +3179,7 @@ public function initializeMyrellionRooms():void
 	//K17 -- Twisting Passage, North
 	rooms["2K17"] = new RoomClass(this);
 	rooms["2K17"].roomName = "TWISTING\nPASSAGE";
-	rooms["2K17"].description = "A twisting passage leads from the south to a wide open chamber, centered around a pillar. The southern passage is dark, almost blindingly so, with no hint of the bioluminescent entities you've grown accustomed to here in the depths.";
+	rooms["2K17"].description = "A twisting passage leads from the south to a wide open chamber, centered around a pillar. The southern passage is dark, almost blindingly so, with no hint of the bioluminescent entities you’ve grown accustomed to here in the depths.";
 	rooms["2K17"].planet = "PLANET: MYRELLION";
 	rooms["2K17"].system = "SYSTEM: SINDATHU";
 	rooms["2K17"].northExit = "2K15";
@@ -3177,7 +3195,7 @@ public function initializeMyrellionRooms():void
 	//K19 -- Twisting Corridor
 	rooms["2K19"] = new RoomClass(this);
 	rooms["2K19"].roomName = "TWISTING\nCORRIDOR";
-	rooms["2K19"].description = "The twisting passage you're traveling through is dark, and the going is slow. You occasionally trip over stalagmites and potholes in the path, forced to all but feel your way along the walls. You can hear skittering sounds, tiny movements along the stone floor, but never quite manage to lay eyes on the sources...";
+	rooms["2K19"].description = "The twisting passage you’re traveling through is dark, and the going is slow. You occasionally trip over stalagmites and potholes in the path, forced to all but feel your way along the walls. You can hear skittering sounds, tiny movements along the stone floor, but never quite manage to lay eyes on the sources...";
 	rooms["2K19"].planet = "PLANET: MYRELLION";
 	rooms["2K19"].system = "SYSTEM: SINDATHU";
 	rooms["2K19"].northExit = "2K17";
@@ -3209,7 +3227,7 @@ public function initializeMyrellionRooms():void
 	//I21 -- Twisting Passage
 	rooms["2I21"] = new RoomClass(this);
 	rooms["2I21"].roomName = "TWISTING\nPASSAGE";
-	rooms["2I21"].description = "The tunnels here snake back and forth, almost serpentine in the way it winds around. The darkness here is abated by legions of small, glowing rodents scurrying around. They're almost cute, if you like six-eyed creatures with large reptilian tails.";
+	rooms["2I21"].description = "The tunnels here snake back and forth, almost serpentine in the way it winds around. The darkness here is abated by legions of small, glowing rodents scurrying around. They’re almost cute, if you like six-eyed creatures with large reptilian tails.";
 	rooms["2I21"].planet = "PLANET: MYRELLION";
 	rooms["2I21"].system = "SYSTEM: SINDATHU";
 	rooms["2I21"].northExit = "2I19";
@@ -3225,7 +3243,7 @@ public function initializeMyrellionRooms():void
 	//I23 -- Twisting Depths
 	rooms["2I23"] = new RoomClass(this);
 	rooms["2I23"].roomName = "TWISTING\nDEPTHS";
-	rooms["2I23"].description = "This \"L\"-shaped tunnel dives deep down near the elbow, making you walk down a steep incline, and back up again to get out. Twisting, vine-like fungal growths cling to the depths of the ditch, soaking up water that's pooling there from a crack in the ceiling above.";
+	rooms["2I23"].description = "This “L”-shaped tunnel dives deep down near the elbow, making you walk down a steep incline, and back up again to get out. Twisting, vine-like fungal growths cling to the depths of the ditch, soaking up water that’s pooling there from a crack in the ceiling above.";
 	rooms["2I23"].planet = "PLANET: MYRELLION";
 	rooms["2I23"].system = "SYSTEM: SINDATHU";
 	rooms["2I23"].northExit = "2I21";
@@ -3241,7 +3259,7 @@ public function initializeMyrellionRooms():void
 	//K23 -- Twisting Passage, South
 	rooms["2K23"] = new RoomClass(this);
 	rooms["2K23"].roomName = "TWISTING\nPASSAGE";
-	rooms["2K23"].description = "A particularly dark passage westward spills out into a brightly-lit cavern to the south. Murky rivulets of water run down the walls here, thick and polluted. Something tells you you're underneath a myr city high above...";
+	rooms["2K23"].description = "A particularly dark passage westward spills out into a brightly-lit cavern to the south. Murky rivulets of water run down the walls here, thick and polluted. Something tells you you’re underneath a myr city high above...";
 	rooms["2K23"].planet = "PLANET: MYRELLION";
 	rooms["2K23"].system = "SYSTEM: SINDATHU";
 	rooms["2K23"].northExit = "";
@@ -3258,7 +3276,7 @@ public function initializeMyrellionRooms():void
 	//No random encounters at the lake! 
 	rooms["2K25"] = new RoomClass(this);
 	rooms["2K25"].roomName = "LAKE\nPASSAGE";
-	rooms["2K25"].description = "The tunnel twists here, going north to east. Part of the wall has collapsed, however, revealing the shores of an underground river which quickly spills out into a lake. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they're almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
+	rooms["2K25"].description = "The tunnel twists here, going north to east. Part of the wall has collapsed, however, revealing the shores of an underground river which quickly spills out into a lake. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they’re almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
 	rooms["2K25"].planet = "PLANET: MYRELLION";
 	rooms["2K25"].system = "SYSTEM: SINDATHU";
 	rooms["2K25"].northExit = "2K23";
@@ -3275,7 +3293,7 @@ public function initializeMyrellionRooms():void
 	//No random encounters at the lake! 
 	rooms["2K27"] = new RoomClass(this);
 	rooms["2K27"].roomName = "LAKE\nSHORE";
-	rooms["2K27"].description = "You stand at the shore of an underground lake, wide and deep. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they're almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
+	rooms["2K27"].description = "You stand at the shore of an underground lake, wide and deep. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they’re almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
 	rooms["2K27"].planet = "PLANET: MYRELLION";
 	rooms["2K27"].system = "SYSTEM: SINDATHU";
 	rooms["2K27"].northExit = "2K25";
@@ -3292,7 +3310,7 @@ public function initializeMyrellionRooms():void
 	//No random encounters at the lake! 
 	rooms["2I27"] = new RoomClass(this);
 	rooms["2I27"].roomName = "SHALLOW\nLAKE";
-	rooms["2I27"].description = "You've waded out into the shallow portions of the subterranean lake, admiring the hanging fangs of sharpened stone that drip clear water down into the lake. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they're almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
+	rooms["2I27"].description = "You’ve waded out into the shallow portions of the subterranean lake, admiring the hanging fangs of sharpened stone that drip clear water down into the lake. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they’re almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
 	rooms["2I27"].planet = "PLANET: MYRELLION";
 	rooms["2I27"].system = "SYSTEM: SINDATHU";
 	rooms["2I27"].northExit = "";
@@ -3309,7 +3327,7 @@ public function initializeMyrellionRooms():void
 	//No random encounters at the lake! 
 	rooms["2G27"] = new RoomClass(this);
 	rooms["2G27"].roomName = "DEEP\nLAKE";
-	rooms["2G27"].description = "The deepest parts of the lake stretch out before you, a wide-open and circular cavern with a vaulted ceiling reaching high above. The ceiling glitters with crystals, but the coat of glowing fungus that you've waded through thus far is fairly sparse here, making the cavern dark and foreboding. Even the water, clear as it is, is black and opaque now.";
+	rooms["2G27"].description = "The deepest parts of the lake stretch out before you, a wide-open and circular cavern with a vaulted ceiling reaching high above. The ceiling glitters with crystals, but the coat of glowing fungus that you’ve waded through thus far is fairly sparse here, making the cavern dark and foreboding. Even the water, clear as it is, is black and opaque now.";
 	rooms["2G27"].planet = "PLANET: MYRELLION";
 	rooms["2G27"].system = "SYSTEM: SINDATHU";
 	rooms["2G27"].northExit = "";

@@ -94,10 +94,10 @@ public function doFreedomBeefEncounter():void
 	processTime(10+rand(5));
 
 	clearMenu();
-	addButton(0, "Statuesque", freedomBeefGoSelection, FREEDOM_BEEF_STATUESQUE, "Statuesque", "The woman's well-built but smooth and feminine, with just a hint of musculature beneath supple curves and soft flesh.");
-	addButton(1, "Toned", freedomBeefGoSelection, FREEDOM_BEEF_TONED, "Toned", "This chick's clearly spent some time at the gym, or doing hard labor with that oversized body of hers. She's athletically built, strong enough to give a Thraggen blade lord a run for her money.");
-	addButton(2, "Amazonian", freedomBeefGoSelection, FREEDOM_BEEF_AMAZONIAN, "Amazonian", "The woman's built like a bodybuilder, with sculpted muscles rippling beneath well-toned, hardened flesh. You can't tell if she's spent a lifetime of hard labor, or if she's been swinging a grav-hammer on some distant battlefield.");
-	addButton(3, "Ripped", freedomBeefGoSelection, FREEDOM_BEEF_RIPPED, "Fuckin’ Ripped", "She's ripped as shit! The bison-babe's sculpted like Ms. Galaxy on contest day and then some, with rippling muscles barely contained beneath tree-trunk limbs and a sculpted chest and six-pack. She looks like she could rip you in half bare-handed.");
+	addButton(0, "Statuesque", freedomBeefGoSelection, FREEDOM_BEEF_STATUESQUE, "Statuesque", "The woman’s well-built but smooth and feminine, with just a hint of musculature beneath supple curves and soft flesh.");
+	addButton(1, "Toned", freedomBeefGoSelection, FREEDOM_BEEF_TONED, "Toned", "This chick’s clearly spent some time at the gym, or doing hard labor with that oversized body of hers. She’s athletically built, strong enough to give a Thraggen blade lord a run for her money.");
+	addButton(2, "Amazonian", freedomBeefGoSelection, FREEDOM_BEEF_AMAZONIAN, "Amazonian", "The woman’s built like a bodybuilder, with sculpted muscles rippling beneath well-toned, hardened flesh. You can’t tell if she’s spent a lifetime of hard labor, or if she’s been swinging a grav-hammer on some distant battlefield.");
+	addButton(3, "Ripped", freedomBeefGoSelection, FREEDOM_BEEF_RIPPED, "Fuckin’ Ripped", "She’s ripped as shit! The bison-babe’s sculpted like Ms. Galaxy on contest day and then some, with rippling muscles barely contained beneath tree-trunk limbs and a sculpted chest and six-pack. She looks like she could rip you in half bare-handed.");
 }
 
 public function freedomBeefGoSelection(beefType:uint):void
@@ -142,8 +142,8 @@ public function freedomBeefGoSelection(beefType:uint):void
 
 	//[Join Her] [No Thanks]
 	clearMenu();
-	addButton(0, "Join Her", freedomBeefJoinHer, beefType, "Join Her", "What's the harm? Take a seat, eat a burg and grab a beer with the busty bison.");
-	addButton(1, "No Thanks", freedomBeefNoThanks, beefType, "No Thanks", "Excuse yourself. You've got other things to do.");
+	addButton(0, "Join Her", freedomBeefJoinHer, beefType, "Join Her", "What’s the harm? Take a seat, eat a burg and grab a beer with the busty bison.");
+	addButton(1, "No Thanks", freedomBeefNoThanks, beefType, "No Thanks", "Excuse yourself. You’ve got other things to do.");
 }
 
 public function freedomBeefNoThanks(beefType:uint):void
@@ -262,8 +262,8 @@ public function freedomBeefJoinHerII(beefType:uint):void
 	//[Chaste Help] [Flirty Help] [Nope Out]
 
 	clearMenu();
-	addButton(0, "Chaste Help", freedomBeefChasteHelp, beefType, "Chaste Help", "Try and extricate this knot of leather from the bison's pussy without letting things get too hot and heavy...");
-	addButton(1, "Flirty Help", freedomBeefFlirtyHelp, beefType, "Flirty Help", "You'll get that knot out of her, alright, but " + (pc.hasKnot() ? "you've got a different one to feed her after!" : "you think you can find something better to slide into that drooling bison-twat!"));
+	addButton(0, "Chaste Help", freedomBeefChasteHelp, beefType, "Chaste Help", "Try and extricate this knot of leather from the bison’s pussy without letting things get too hot and heavy...");
+	addButton(1, "Flirty Help", freedomBeefFlirtyHelp, beefType, "Flirty Help", "You’ll get that knot out of her, alright, but " + (pc.hasKnot() ? "you’ve got a different one to feed her after!" : "you think you can find something better to slide into that drooling bison-twat!"));
 	addButton(2, "Nope Out", freedomBeefNopeOut, beefType, "Nope Out", "This is a little more than you bargained for! Just cut the strap and get out.");
 }
 
@@ -414,8 +414,8 @@ public function freedomBeefChasteHelpII(beefType:uint):void
 
 	// [You Did] [No Thanks]
 	clearMenu();
-	addButton(0, "You Did", freedomBeefLikedIt, beefType, "You Did", "Now that you've had a few more beers in you... yeah, you're starting to think you missed your chance.");
-	addButton(1, "No Thanks", freedomBeefNoneForMe, beefType, "No Thanks", "You still want to keep things chaste. She'll have to party alone; time to get going now that the fun's over.");
+	addButton(0, "You Did", freedomBeefLikedIt, beefType, "You Did", "Now that you’ve had a few more beers in you... yeah, you’re starting to think you missed your chance.");
+	addButton(1, "No Thanks", freedomBeefNoneForMe, beefType, "No Thanks", "You still want to keep things chaste. She’ll have to party alone; time to get going now that the fun’s over.");
 }
 
 public function freedomBeefNoneForMe(beefType:uint):void
@@ -472,7 +472,7 @@ public function freedomBeefSexMenu(beefType:uint):void
 	clearMenu();
 	if (pc.isTaur() && (pc.hasCock() || pc.hasHardLightEquipped()))
 	{
-		addButton(0, "Mounting", freedomBeefTauricMounting, beefType, "Tauric Mounting", "Get up on Riley's back and breed the randy bison's pussy.");
+		addButton(0, "Mounting", freedomBeefTauricMounting, beefType, "Tauric Mounting", "Get up on Riley’s back and breed the randy bison’s pussy.");
 	}
 	else if (!pc.isTaur())
 	{
@@ -492,7 +492,7 @@ public function freedomBeefSexMenu(beefType:uint):void
 		addDisabledButton(1, "Snu Snu", "Hip-Crushing Snu Snu", "You need a cock for the amazonian beef-chick to pound you into the ground!");
 	}
 
-	addButton(2, "Eaten Out", freedomBeefLesboLicks, beefType, "Eaten Out", "Play with Riley's tits while she eats you out.");
+	addButton(2, "Eaten Out", freedomBeefLesboLicks, beefType, "Eaten Out", "Play with Riley’s tits while she eats you out.");
 }
 
 public function freedomBeefTauricMounting(beefType:uint):void
@@ -510,7 +510,7 @@ public function freedomBeefTauricMounting(beefType:uint):void
 	output(" of your prick butts against the slutty, sodden mound of her quim. The dark hole seems to suck you in, kissing at your crown until your [pc.hips] push it past Riley’s lips and into the sultry heat of her fuck-hole’s embrace.");
 	pc.cockChange();
 	
-	output("\n\nYour lover moans, knees buckling under the sudden surge of weight and pleasure on her body. You steady her as best you can for that first blissful moment - which comes down to pressing your chest into her back and reaching around to grab those huge tits of hers, sinking your fingers into the bison’s jiggling titflesh. One good yank tears her star-spangled bikini open, sending the holopin flying and letting the mammoth mounds spill free into your hands. Her nipples are as big and as stiff as you’d expect, saucer-like peaks that press into your palms. One good pinch and tug makes the buffalo babe squeal... and makes her gaping bovine pussy  clench wonderfully hard around your [pc.cockOrStrapon].");
+	output("\n\nYour lover moans, knees buckling under the sudden surge of weight and pleasure on her body. You steady her as best you can for that first blissful moment - which comes down to pressing your chest into her back and reaching around to grab those huge tits of hers, sinking your fingers into the bison’s jiggling titflesh. One good yank tears her star-spangled bikini open, sending the holopin flying and letting the mammoth mounds spill free into your hands. Her nipples are as big and as stiff as you’d expect, saucer-like peaks that press into your palms. One good pinch and tug makes the buffalo babe squeal... and makes her gaping bovine pussy clench wonderfully hard around your [pc.cockOrStrapon].");
 	
 	output("\n\nThough your first thrust slammed you straight to the hilt, her greedy pussy makes dragging it back out an agonizingly-pleasurable struggle for every inch. <i>“Ah! Aw yeah!”</i> Riley moans, bucking her muscular ass back against your crotch before you can even get halfway out. Her");
 	if (beefType == FREEDOM_BEEF_STATUESQUE) output(" strong");

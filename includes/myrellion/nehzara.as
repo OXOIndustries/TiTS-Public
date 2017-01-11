@@ -431,7 +431,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	output("\n\n<i>“Ah. Lieutenant-Commander Yehade. I wasn’t expecting a visit from you at this hour.”</i> Nehzara’s voice comes out level and controlled above you. Unsure of whether you should continue while she’s not alone, you make to slow down your oral attentions... and promptly receive a forceful hand-press on the back of your head for the consideration. Chastised so, you get back to work, nuzzling your face against her sopping-wet snatch. So ungrateful.\n\nWell, at least her cunt can’t lie, and it’s growing hotter and sloppier by the second, so surely some part of her appreciates your efforts. Unless, hold on: you listen closely, and can clearly hear a male voice responding to Nehzara’s greeting. It must be some UGC officer who’s meeting with her now, not one of her people. Knowing the cock-starved nature of the myr women, her loins are probably screaming at her to mount him right now.");
 	output("\n\nYour suspicions are confirmed when you hear the visitor leave and Nehzara pushes down on your head with both hands, almost smothering you in ant-pussy. She’s not even trying to act cool anymore, and bucks her hips up against you as your tongue lashes about within her and presses every one of her buttons. You’ve been down here for a good few minutes now, and you’re starting to become quite familiar with her honeypot. The lust-filled myr gives a low, quiet moan while you go at her with abandon, and it’s not hard to tell she’s close. You press the attack, capitalizing on your forward momentum by repeatedly thrusting your [pc.tongue] back and forth into her even as your [pc.lips] brush against her puffed-up labia. It won’t be long now.");
 
-	output("\n\nIt isn’t long at all. Within seconds of your redoubled assault on her yearning pussy, Nehzara gives a suppressed squeak and lifts her ass out of her chair, crotch pressed firmly against you for her grand finish. Eager for your reward at last, you let out a delighted little moan at her blatant cue. The scarlet-skinned alien woman arches her back and climaxes, and to your delight, her orgasm is both sweet and bountiful. A small flood of myrmidion fem-spunk wettens your [pc.face], and you’re sure to ");
+	output("\n\nIt isn’t long at all. Within seconds of your redoubled assault on her yearning pussy, Nehzara gives a suppressed squeak and lifts her ass out of her chair, crotch pressed firmly against you for her grand finish. Eager for your reward at last, you let out a delighted little moan at her blatant cue. The scarlet-skinned alien woman arches her back and climaxes, and to your delight, her orgasm is both sweet and bountiful. A small flood of myrmedion fem-spunk wettens your [pc.face], and you’re sure to ");
 	if(!pc.isGoo()) output("lap up as much as possible with your [pc.tongue]");
 	else output("slurp up as much as possible and add it to your goopy mass");
 	output(", mindful of her earlier statement about making a mess.");
@@ -499,7 +499,7 @@ public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):vo
 	if(flags["NEHZARA_CLOSET_FUCKED"] != undefined) output(" even though you’d been expecting it");
 	output(". Her surprisingly strong hands feel their way down your sides, her fingers running over your [pc.hips] to give your [pc.butt] a firm squeeze. The myr woman’s tongue forces its way past your lips, wrestling your own [pc.tongue] and pinning it down with a hold as forceful as the one pushing you up against the wall. Your entire mouth tingles oddly, and you begin to feel unbearably warm and lightheaded. You briefly recall something about Reds having a potent aphrodisiac venom in their saliva, but the thought is quickly buried under need as Nehzara’s tongue continues to violate your mouth. Several seconds of this pass before she pulls away, reluctantly letting you go so she can concentrate on making preparations for the main event.");
 	if(!pc.isCrotchExposed()) output("\n\nYour [pc.gear] is stripped off you in record time");
-	else output("\n\nYou both reach for your gear before it becomes obvious that there isn't anything between the red myr and your rigid loins");
+	else output("\n\nYou both reach for your gear before it becomes obvious that there isn’t anything between the red myr and your rigid loins");
 	output(", and you watch in fascination while Nehzara finally clicks on the light, unbuttons her uniform blouse, and unclasps something – you assume it’s a built-in brassiere – so that you finally get a look at her generous breasts. You’d already noticed she’s a good bit bustier than the other Reds you’ve seen; now that she’s displaying her tits openly, you guess they’re somewhere in the vicinity of a D-cup. They look to have been sculpted by some masterful hand: they’re just the right fullness and perkiness for their size, and the shape couldn’t have been more perfect if she’d paid top-dollar for mods. You only get a second to marvel at them, however, because Nehzara has ideas of her own.");
 	output("\n\nThe colonel reaches forward to cup the back of your head with one hand");
 	if(pc.hasHair() || pc.isGoo()) 
@@ -662,7 +662,7 @@ public function nehzeraMenu(arg:Function = null):void
 	if(arg == talkToNehzaraAboutHerMission || arg == refuseToLickAntPussayOrClosetFuxx) addDisabledButton(2,"YourMission","YourMission","You just finished talking about that. Maybe a new topic?");
 	else addButton(2,"YourMission",talkToNehzaraAboutHerMission,undefined,"YourMission","You came here for a reason, and there’s a chance that having access to Red Myr territory could help you find the probe and fulfill your mission. This diplomat is the one who can get you access.");
 	
-	if(arg == nehzarasAppearance) addDisabledButton(3,"Appearance","Appearance","You're looking at her right now!");
+	if(arg == nehzarasAppearance) addDisabledButton(3,"Appearance","Appearance","You’re looking at her right now!");
 	else addButton(3,"Appearance",nehzarasAppearance,undefined,"Appearance","Take a closer look at the red myr Ambassador.");
 	
 	//[Her History] [Under Desk] [Storage Closet] [Breeder Play]
@@ -679,14 +679,14 @@ public function nehzeraMenu(arg:Function = null):void
 		}
 		else 
 		{
-			addDisabledButton(5,"Under Desk","Under Desk","You're not aroused enough for sexual hijinx at the moment.");
+			addDisabledButton(5,"Under Desk","Under Desk","You’re not aroused enough for sexual hijinx at the moment.");
 			addDisabledButton(6,"StorageCloset","StorageCloset","You are not presently aroused enough for sexual hijinx.");
 		}
 		if(arg == talkToNehzaraAboutHistory) addButton(9,"Trench Wives?",trenchWives,undefined,"Trench Wives?","Wait... trench wives? There’s an unusual term, and she said something about <i>“war trophies.”</i> You could ask her to elaborate on that.");
 		if(arg == trenchWives) addDisabledButton(9,"Trench Wives","You just finished that discussion.");
 	}
 
-	if (flags["NEVRIE_QUEST"] == 1 && flags["NEHZARA_BLOOD_SAMPLE"] == undefined && !pc.hasKeyItem("Red Myr Blood")) addButton(10, "BloodSample", nehzaraBloodSample, undefined, "Blood Sample", "Ask Colonel Nehzara if she'd be interested in providing a sample of her blood for the purpose of myr gene-mod development.");
+	if (flags["NEVRIE_QUEST"] == 1 && flags["NEHZARA_BLOOD_SAMPLE"] == undefined && !pc.hasKeyItem("Red Myr Blood")) addButton(10, "BloodSample", nehzaraBloodSample, undefined, "Blood Sample", "Ask Colonel Nehzara if she’d be interested in providing a sample of her blood for the purpose of myr gene-mod development.");
 
 	addButton(14,"Leave",leaveNehzara);
 }
@@ -757,7 +757,7 @@ public function nehzarasWarriorHonor():void
 	output("\n\nYou notice that Nehzara is standing by the door of her office and talking with a younger myr that your codex informs you is adorned with the trappings and insignia of a lieutenant. She looks to have calmed down somewhat, though the junior officer is still fuming. You could go talk to them, or you could decide to come back later.");
 	processTime(3);
 	//[Nehzara & Lt.] (Going back to the hangar and coming back would meet with the normal screen)
-	addButton(0,"Nehzara & Lt.",nehzaraAndLTFollowupToHonor,undefined,"Nehzara & Lt.","Go see what's up.");
+	addButton(0,"Nehzara & Lt.",nehzaraAndLTFollowupToHonor,undefined,"Nehzara & Lt.","Go see what’s up.");
 }
 
 //[Nehzara & Lt.]

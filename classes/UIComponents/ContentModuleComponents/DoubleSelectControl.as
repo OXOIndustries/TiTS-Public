@@ -13,7 +13,7 @@ package classes.UIComponents.ContentModuleComponents
 	import classes.kGAMECLASS;
 	import classes.Resources.NPCBustImages;
 	import classes.GLOBAL;
-	
+	import flash.display.DisplayObjectContainer;
 	/**
 	 * ...
 	 * @author Gedan
@@ -50,6 +50,14 @@ package classes.UIComponents.ContentModuleComponents
 		override public function get height():Number
 		{
 			return _optionA.y + 30;
+		}
+		
+		private function removeChildrenFrom(o:DisplayObjectContainer):void
+		{
+			for (var i:int = 0; i < o.numChildren; i++)
+			{
+				o.removeChildAt(0);
+			}
 		}
 		
 		private function Build():void
@@ -242,7 +250,7 @@ package classes.UIComponents.ContentModuleComponents
 			{
 				var optsValA:* = kGAMECLASS.gameOptions[_optsPropertyA];
 				setSelectedItem(_optionA, optsValA);
-				_previewACont.removeChildren();
+				removeChildrenFrom(_previewACont);
 				
 				if (optsValA != "NONE")
 				{
@@ -261,7 +269,7 @@ package classes.UIComponents.ContentModuleComponents
 			{
 				var optsValB:* = kGAMECLASS.gameOptions[_optsPropertyB];
 				setSelectedItem(_optionB, optsValB);
-				_previewBCont.removeChildren();
+				removeChildrenFrom(_previewBCont);
 				
 				if (optsValB != "NONE")
 				{

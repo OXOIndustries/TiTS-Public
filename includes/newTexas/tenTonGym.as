@@ -87,7 +87,7 @@ public function weightRoomBonusFunction():Boolean
 	output("The sounds of grunts and clanking metal greet you as you walk into the weight room. Half the room is taken up with machines for working every possible muscle, all of them with stacks of heavy plates over a meter high, to account for the brute strength the Treatment bestows upon some of its users. The room’s other half is filled with various types of weight benches and racks of free weights, for those who want to pump iron without mechanical assistance. The gym’s front windows make up most of one wall, and the opposite wall is all mirrors.");
 	output("\n\nMost of the room’s occupants are bulls, focusing largely on their chests and arms, with a few of them pressing hard on the leg machines. A few cows are scattered around the room, working on their arms and legs or doing ab exercises on mats. Bulls and cows both ogle and catcall each other as they work, often stopping in the middle of a set to do so. A dark-skinned cowgirl is lifting heavier weights on a machine, and offers a challenging smirk to anyone who approaches her.");
 	//if met Busky, and time is between 5pm and midnight
-	if(flags["MET_BUSKY"] == true && hours >= 17 && hours <= 24) output("\n\nYou see another familiar face, Busky, hidden under a bench press. Whenever he takes a break, he stares dreamily at the bulging crotches of other bulls. He seems to be in the middle of an extensive workout, lifting around 300 imperial pounds. It's a rather low amount compared to the other bulls lifting twice, some thrice that much weight. However his endurance is astonishing, doing longer reps than any other bull. Compensating for weight, he's doing a much harder workout, and his body is showing it. His heaving chest is sweating profusely, being soaked up by his sodden undershirt and gym shorts.");
+	if(flags["MET_BUSKY"] == true && hours >= 17 && hours <= 24) output("\n\nYou see another familiar face, Busky, hidden under a bench press. Whenever he takes a break, he stares dreamily at the bulging crotches of other bulls. He seems to be in the middle of an extensive workout, lifting around 300 imperial pounds. It’s a rather low amount compared to the other bulls lifting twice, some thrice that much weight. However his endurance is astonishing, doing longer reps than any other bull. Compensating for weight, he’s doing a much harder workout, and his body is showing it. His heaving chest is sweating profusely, being soaked up by his sodden undershirt and gym shorts.");
 	//[Light Workout] Go to Light Workout {locked if PC has [Sore] debuff or doesn’t have 30 energy}
 	if(pc.energy() >= 30 && !pc.isWornOut()) addButton(0,"Light Workout",lightWorkout,undefined,"Light Workout","A light workout that’ll help you build a little bit of muscle.");
 	else addDisabledButton(0,"Light Workout","Light Workout","You’re too tired for that workout.");
@@ -119,7 +119,8 @@ public function lightWorkout():void
 	sweatyDebuff(1);
 	soreDebuff(1);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(!pc.hasStatusEffect("Lift Voyeur CD") && rand(5) == 0) addButton(0,"Next",liftVoyeurism);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 public function hardWorkout():void
@@ -139,7 +140,8 @@ public function hardWorkout():void
 	pc.modTone(3, false);
 	pc.slowStatGain("physique",1);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(!pc.hasStatusEffect("Lift Voyeur CD") && rand(5) == 0) addButton(0,"Next",liftVoyeurism);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 //Track
@@ -147,6 +149,7 @@ public function newTexasTrackBonus():Boolean
 {
 	clearOutput();
 	author("Slab Bulkhead");
+	if(passDetector()) return true;
 	output("The whirr of air conditioners greets you as you enter the track room. It’s longer than you expected, taken up largely by an extended oval loop of running track, with lights hanging from bars that crisscross the ceiling. The track itself is some sort of brown synthetic, and bounces slightly under the runners’ feet. White lines designate the track’s five lanes.");
 	output("\n\nA few young bulls are running the track in perfect synch, calling out their steps in time. One group of cows runs together in a loose cluster, some of them quite sweaty; another group of cows sits along the wall, calling out encouragement and lewd comments to the runners. A few other New Texans run at their own pace or catch their breath against the wall.");
 	output("\n\nAt the center of the track, some sort of aerobics class is in progress, with an older cow calling out exercises and counting down numbers for the group she leads. The sight of a group of bulls and cows all moving and bending in synch like that is oddly hypnotizing, for quite a few reasons.");
@@ -205,11 +208,24 @@ public function swimmingPoolBonus():Boolean
 {
 	clearOutput();
 	author("Slab Bulkhead");
+	
+	var isSwimChanged:Boolean = (pc.hasStatusEffect("Temporary Nudity Cheat") || pc.hasStatusEffect("Temporary Swimwear Cheat"));
+	
+	if (passDetector())
+	{
+		if (isSwimChanged)
+		{
+			output("\n\nA quick word buys you enough freedom to take a hasty rinse and the showers and the opportunity to don your gear once more before being ousted from the gym.");
+			pc.removeStatusEffect("Temporary Swimwear Cheat");
+			pc.removeStatusEffect("Temporary Nudity Cheat");
+		}
+		return true;
+	}
 	output("Tile covers the floor in this long room, and the whole place has a pleasant yet unfamiliar smell. A pool stretches nearly the entire length of the room, with black lines crossing its floor to designate swimming lanes. A sloping ramp leads down into the shallow end.");
 	output("\n\nThis place seems more popular with the local cows than the other rooms, as there are groups of them swimming together. Many are clad in holstein-print swimsuits, while others – cow and bull alike – go naked. One naked cowgirl floats on her back, pink nipples pointing toward the ceiling, pushing herself along in a lazy backstroke.");
 	output("\n\nYou wonder why it doesn’t smell like chlorine; surely they can’t go without something to keep the pool clean, with this many people in it. You dip two fingers into the pool water to test it, and find it smooth, almost slippery, the sign of a synthetic decontaminant. That explains the unfamiliar smell, and it’s probably a safer choice here, as you’re sure more than a few people have had sex in this pool.");
 	output("\n\nA bubbling spa sits in one corner, big enough to hold fifteen to twenty people. It looks to be very popular; about a dozen cows and bulls sit in it, some on each others’ laps. You’re not sure if the motion in the water is entirely from the jets, or if there’s something going on beneath the bubbles. Probably both.");
-	var isSwimChanged:Boolean = (pc.hasStatusEffect("Temporary Nudity Cheat") || pc.hasStatusEffect("Temporary Swimwear Cheat"));
+	
 	if(pc.inSwimwear(true) || pc.isNude())
 	{
 		if(isSwimChanged) flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
@@ -357,6 +373,7 @@ public function lockerRoomAndShowersBonus():Boolean
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("LOCKER\nROOM");
+	if (passDetector()) return true;
 	output("Tall metal lockers cover the tiled walls of this room, with benches bolted to the floor between them. The air is moist and smells of sweat and soap. You hear showers running nearby, along with lockers slamming closed and the rustle of clothing.");
 	output("\n\nThe shower room is an open area with showerheads and knobs on the walls, as well as a long line of pipes featuring more of the same down the center. It’s a little crowded, as most everyone who uses the gym ends up here at some point. Dispensers by the shower knobs provide shampoo and body wash.");
 	output("\n\nBulls and cows mingle freely in here, chatting and flirting as they change into and out of their workout clothes with the typical New Texas lack of modesty. There’s the occasional smack of flesh on flesh among the lockers, and moans come here and there from the showers.");
@@ -1618,13 +1635,169 @@ public function sweatyDebuff(arg:int = 0):Number
 	return pc.statusEffectv1("Sweaty");
 }
 
-/*
-output("\n\nNew Flags");
-output("\n\nGym Member Day");
-output("\n\nAllows PC access to the Ten Ton Gym. Limited to 24 hours.");
-output("\n\nGym Member Life");
-output("\n\nAllows PC access to the Ten Ton Gym.");
+//This scene takes place after lifting weights at any intensity. Non repeatable. Also random.
+public function liftVoyeurism():void
+{
+	clearOutput();
+	showName("\nLIFTING!");
+	author("Altair Hayes");
 
-output("\n\nLikes_Sweaty"); - PERK}
-output("\n\nNPC tag only. Treats the negative to Sexiness applied by the [Sweaty] debuff as a positive to Sexiness.");
-*/
+	var watchedNico:Boolean = (flags["WATCHED_NICO"] != undefined);
+	var watchedLee:Boolean = (flags["WATCHED_LEE"] != undefined);
+
+	if(watchedNico && watchedLee) showName("LEE\n& NICO");
+
+	var sore:Boolean = pc.hasStatusEffect("Sore");
+	var verySore:Boolean = pc.hasStatusEffect("Very Sore");
+	var wornOut:Boolean = pc.hasStatusEffect("Worn Out");
+
+	output("After your workout, you stretch ");
+	//if PC is Sore:
+	if(sore) output("and rub some of your more exhausted muscles");
+	else if(verySore) output("and try to relax, your whole body having taken a bit of a toll from your last workout");
+	else if(wornOut) output("and chuckle as the endorphins in your system mask your aching pain with a light euphoria");
+	else output("and do a little jog in place, full of energy and ready to work your ass off again");
+	output(". But instead of ");
+	if(!sore && !verySore && !wornOut) output("heading to the track for a light jog");
+	else output("heading back to your ship for a shower and a nap");
+	output(", you decide to take a moment to sit down and enjoy the ambient grunts and clanking of metal. You find an empty bench and sit on it, just relaxing as you lazily scan the room around you. Your gaze eventually fixes itself on a ");
+	//if PC has watched Lee:
+	if(watchedLee) output("familiar");
+	else output("particularly");
+	output(" bottom heavy cow doing back squats right next to you. Her attire consists of a form fitting tank top and a pair of yoga pants, which not only accentuates her delectable rear end, but also shows off her cameltoe. Chances are, she’s probably not even wearing underpants.");
+
+	output("\n\n");
+	if(watchedLee) output("Lee");
+	else output("She");
+	output(" goes about her own business, working her body and yoga pants to their limits, her ass extending backwards every time she does a rep. You watch for a few minutes, the rhythmic up and down motion of her ass drawing out a ");
+	if(pc.isTreated()) output("particular primal urge");
+	else output("certain perverted interest");
+	output(". She works out for quite a while, around half an hour of non stop squatting. Sadly though, all good things must come to an end, and she puts the bar back on the rack and takes a moment’s rest, she leans on the bar, so exhausted even her tail droops lamely. She reaches for a water bottle and douses her face with ice cold water before taking a moment to fix her hair, the a decent amount of hair strands sticking out of her black ponytail.");
+
+	output("\n\nFrom the corner of your eye you notice ");
+	if(watchedNico) output("Nico, shirtless and heading toward the showers");
+	else output("a shirtless bull heading to the showers");
+	output(", and judging from the damp towel hanging around his neck along with the residual moisture condensing on his bare chest, he’s just gone through a heavy workout. He runs a hand through his chestnut hair, pushing it upwards to reform the cowlick his workout had most likely ruined. And just like you, his gaze is drawn to ");
+	if(watchedLee) output("Lee’s");
+	else output("the cow’s");
+	output(" massive rear. His mouth shifts to a faint smile as he walks by, his path gravitating a bit towards her as he gets close enough to smack her ass, which bounces in response to the force of his hand.");
+	if(watchedNico) output("Nico");
+	else output("The bull");
+	output(" continues on his merry way, failing to notice that the cow hasn’t quite ignored his gesture. It’s only after her hand grasps his wrist that he turns around.");
+	output("\n\n<i>“Hey there,”</i> ");
+	if(watchedLee) output("Lee");
+	else output("the cow");
+	output(" says, pressing her chest against his, guiding his hand into her pants as she leads him back to the squat rack, <i>“don’t go around teasing girls like that.”</i>");
+
+	output("\n\n");
+	if(watchedNico) output("Nico");
+	else output("The bull");
+	output(" feigns ignorance, putting on a smirk as pulls down her yoga pants. <i>“Whaddya mean?”</i>");
+
+	output("\n\n<i>“Oh c’mon. One day you’re gonna leave a cow all wet and lonely, aching for a big strong bull,”</i> by this point her pants are around her ankles and she’s blushing profusely, the pheromones radiating off of ");
+	if(watchedNico) output("Nico");
+	else output("the bull");
+	output(" must be intoxicating. She looks at him, hoping he’ll make the first move, but he’s just standing there, his fingers slipping in and out of her vagina with the simplest of ease. She shudders in pleasure.");
+	output("\n\n<i>“Sorry, was just going out to get a bite to eat, something I can really dig into. Probably a taco with a milkshake or two,”</i> ");
+	if(watchedNico) output("Nico’s");
+	else output("the bull’s");
+	output(" eyes are utterly fixated on her breasts, and she does a little half hop when she hears the word “milkshakes”.");
+
+	output("\n\n<i>“Well, you don’t have to go out to eat out,”</i> ");
+	if(watchedLee) output("Lee");
+	else output("the black haired cow");
+	output(" looks up at the bull, who only has a few inches of height on her, trying to fast forward through his little charade. Her intentions are quite clear, yet ");
+	if(watchedNico) output("Nico");
+	else output("the bull");
+	output(" continues to feign ignorance, shrugging his shoulders.");
+	output("\n\n<i>“I guess I can get delivery and eat at home.”</i>");
+	output("\n\nHer patience finally snaps and she grabs him by the horns and pulls him down to his knees, pressing his nose into her dripping cunt. <i>“Jeez, just eat me out already!”</i>");
+
+	if(watchedNico) output("\n\nNico");
+	else output("\n\nThe bull tries");
+	output(" and fails to stifle a laugh. <i>“Hah, finally you get to the fun part. Two words would have done it for me. ‘Eat me’”</i> And while he would have most likely gone on teasing her, his words were quickly muffled by her sopping wet cunny as she finally forces herself onto him.");
+
+	output("\n\nAs if by instinct, his tongue immediately starts assaulting her vagina, his intensity quickly going from gently teasing her clit to flat out tongue fucking her. Her mouth silently hangs open, screaming out moans of pleasure that no one will hear. Her grip around the his horns tightens as she gets more and more into it, her eyes shut tight from the sheer pleasure of his tongue. And judging by how he pays no attention to her cunt liquor drooling down his mouth, chin, and chest, instead tonguefucking her pussy like it’s the last thing he’ll ever eat. Whatever he doesn’t lap up takes the form of a <i>“milk mustache”</i> which he’ll wear with pride for the few moments before inevitably he goes to wipe or lick it off. But for now, none of that matters, his entire world has condensed into the sight and taste of the woman before him, accompanied by the audio of her now audible moans.");
+	if(pc.isTreated()) 
+	{
+		output("\n\nYou take a moment to look around and as you’ve expected, you can see most if not all spectators are profusely pleasuring themselves to the lewd acts on display before them. Not one to ignore your own impulses, you");
+		if(!pc.isCrotchExposed()) output(" quickly take off your gear and");
+		output(" start to play with your ");
+		if(pc.hasCock()) output("[pc.cockLargest]");
+		else if(pc.hasVagina()) output("[pc.pussy]");
+		else output("[pc.nipples]");
+		output(" satisfied that you can take a load off, watch some hot cow on bull action, and ");
+		if(pc.hasCock()) output("blow your load");
+		else if(pc.hasVagina()) output("cream yourself");
+		else output("get off");
+		output(" in public.");
+	}
+	output("\n\nAfter a minute or so of nonstop tongue lashing, her knees give in and she collapses onto ");
+	if(watchedNico) output("Nico");
+	else output("the bull");
+	output(", who falls backwards onto the gym floor. He however, takes no notice, as he’s completely focused on the taste of ");
+	if(watchedLee) output("Lee’s");
+	else output("the cow’s");
+	output(" squirting cunny. Before much longer, she starts to grind into his face, her breath getting shorter and her moans growing in volume until she’s biting a knuckle to keep from flat out screaming like the matriarch of all cows getting the dicking of a lifetime. It’s obvious that she’s close, and ");
+	if(watchedNico) output("Nico");
+	else output("the bull");
+	output(" decides to switch things up. Right before she climaxes, he stops, picks her up, and turns her around so she’s facing the snake trapped in his pants.");
+	output("\n\n<i>“Oh!”</i> is all she says before she goes to work on ");
+	if(watchedNico) output("Nico’s");
+	else output("the bull’s");
+	output(" length, pulling it out of his gym shorts and jockstrap, taking a brief moment to gaze at it like a kid in a candy store. ");
+	if(silly) output("Only the candy is dick... and she’s a fully grown woman. ");
+	output("As soon as she takes a whiff of his pre-coated cock, a bit of drool escapes her mouth. She fishes for some words but nothing quite escapes, she she decides to use actions instead of words. With her drooling mouth she engulfs the mast within an instant. She takes a moment to get used to his mast, before beginning to deepthroat the beefstick before her. And judging from ");
+	if(watchedNico) output("Nico’s");
+	else output("the bull’s");
+	output(" moans, he seems to enjoy it.");
+
+	output("\n\nBut before long the slutty shivering mess of a cow starts to find herself approaching orgasm yet again, and this time the bull’s not going to stop her, he keeps tonguefucking her cunny, her juices now streaming out of her pussy. She bucks against ");
+	if(watchedNico) output("Nico’s");
+	else output("the bull’s");
+	output(" mouth, her muffled moans begging for more. She clenches her fists and pulls herself off of the bulls mast, letting out a bellowing moo as she cums, her cunny squirting the last of her fem-lube onto the lucky bull’s face.");
+	output("\n\nShe takes a moment to compose herself, slowly standing on her shaky legs. Almost falling if it weren’t for ");
+	if(watchedNico) output("Nico");
+	else output("the bull");
+	output(" catching her. He holds her close until she catches her breath, her face pressed between the bulls pecs. She fails to notice that the bull’s raging erection is between her thighs, coated in saliva, pre, and growing amounts of her own girl-cum.");
+	output("\n\nAfter a while she finally gets control of herself and looks up, giving his chin a brief kiss before thanking him.");
+	output("\n\n<i>“Aren’t you forgetting something?”</i> he says jokingly.");
+	output("\n\n<i>“No... I don’t think s-OH!”</i> she jumps a little in surprise when he starts to slowly thrust between her thighs.");
+	output("\n\n<i>“Don’t go around teasing guys like that. One day you’re gonna leave a bull alone all hard and lonely, aching for a beautiful soft cow.”</i> He reaches around her and grabs her monumental ass. <i>“I think you owe me a little something.”</i> He starts fucking her thighs as she blushes, tracing her finger in circles on his pectoral.");
+	output("\n\n<i>“Well, how about I spend a couple of hours at your place, see if I can repay you, maybe cook something up for you,”</i> she pulls herself away and grabs her duffle bag, not bothering to pull up her yoga pants, instead choosing to take them off and stuff them into said bag.");
+
+	if(!watchedNico || !watchedLee)
+	{
+		output("\n\n<i>“I’d like that, uh.”</i>");
+		output("\n\n<i>“Lee.”</i>");
+		output("\n\n<i>“Lee, nice. Name’s Nico,”</i> and without another word he scoops her up, much to her surprise, and walks out with her giggling like a schoolgirl.");
+	}
+	else
+	{
+		output("\n\n<i>“Sure thing. You know what I like, after all.”</i>");
+		output("\n\n<i>“I’m still not sure which you like more - my ass or my cooking.”</i>");
+		output("\n\n<i>“Only one way to find out, right?”</i> and without another word he scoops her up, much to her surprise, and walks out with her giggling like a schoolgirl.");
+	}
+
+	if(pc.isTreated()) output("\n\nYou start to wonder what they’ll get up to when they arrive at Nico’s house. Your Treated mind scans thousands of perverted possibilities, but eventually settles on the assumption that they’ll end up sitting on a couch, Nico flipping through channels on his holoscreen fingering Lee with his spare hand as she sucks his cock for hours on end. Next to Nico would be a plate stacked tall with homemade Tacos, slowly being chipped away at as the sunlight hours dwindle away. A good way to spend the rest of your day after a hard workout.");
+	else output("\n\nYou wonder what they’ll get up to when they arrive back at Nico’s house. Stars only knows what kinky exploits they’ll have.");
+
+	processTime(40);
+	if(pc.isTreated())
+	{
+		pc.orgasm();
+	}
+	else pc.lust(25);
+
+	//processTime(40);
+	//+25 lust, another 25 to Treated PC
+	//Has watched Nico
+	//Has watched Lee
+	flags["WATCHED_NICO"] = 1;
+	flags["WATCHED_LEE"] = 1;
+	pc.createStatusEffect("Lift Voyeur CD");
+	pc.setStatusMinutes("Lift Voyeur CD",1440);
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

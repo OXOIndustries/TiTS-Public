@@ -46,7 +46,7 @@ public function encounterAMilodan():void
 	var milodan_color:String = milodan.furColor;
 	showMilodanMale();
 	author("Wsan");
-	output("\n\nA hulking, shaggy-furred shape appears out of Uveto’s unforgiving landscapes. ");
+	output("A hulking, shaggy-furred shape appears out of Uveto’s unforgiving landscapes. ");
 	//PC tallness < 85: 
 	if(pc.tallness < 85) output("He’s markedly taller than you are, and his musculature is intense.");
 	//Pc tallness >= 85 to 89:
@@ -68,7 +68,10 @@ public function encounterAMilodan():void
 		output("\n\nYour Codex beeps a warning: <i>“New species detected. Milodan. Conflict aversion measures are recommended.”</i>\n\nYeah. Right. At least you’ll have a new Codex entry to read if you live...");
 		CodexManager.unlockEntry("Milodan");
 	}
-	output("\n\n<b>It’s a fight!</b>");	
+	output("\n\n<b>It’s a fight!</b>");
+	
+	IncrementFlag("MET_MILODAN_MALE");
+	
 	clearMenu();
 	addButton(0,"Next", CombatManager.beginCombat);
 }
@@ -159,7 +162,7 @@ public function doggieStyleDatSaberDoggie():void
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You indicate he should get on all fours and given no choice in the matter, he shakily obeys your command. The furred barbarian looks back at you with some trepidation, clearly not too eager to be penetrated. Too bad for him that’s exactly what you have in mind.");
 	if(pc.isTaur()) output(" Standing above him and casually");
-	else output("Casually");
+	else output(" Casually");
 	output(" aligning yourself, you begin to slide into his tight little asshole.");
 
 	output("\n\nThe milodan wriggles on the end of your [pc.cock " + x + "], trying to acclimate himself to the feeling of penetration. Whether he knows it or not, it’s a nice feeling around your [pc.cockHead " + x + "]. The further you push in, the better it feels! Void, he’s so <i>warm</i> and <i>tight</i>! His insides are like a furnace, a sweltering wet heat wrapped around your dick.");
@@ -197,7 +200,7 @@ public function dontLetTheMilodanGetOffHesADork(x:int):void
 	if(!pc.isTaur()) 
 	{
 		output("\n\nYou work him up to being able to take your ever-increasing pace, your ");
-		if(pc.balls >= 0) output("[pc.balls]");
+		if(pc.balls > 0) output("[pc.balls]");
 		else output("thighs");
 		output(" thudding against his ass, the slapping sound of ");
 		if(!pc.isGoo()) output("flesh");
@@ -297,7 +300,7 @@ public function yesGetTheMilodanOff(x:int):void
 
 	output("\n\nHe pants, his cock abnormally swollen. His knot is bulging outwards, you realize, and you can’t help but " + pc.mf("snicker","giggle") + ".");
 
-	output("\n\n<i>“Probably the first time you’ve ever had </i>that<i> out without it being in a bitch, huh? You must be so confused. <i>“");
+	output("\n\n<i>“Probably the first time you’ve ever had </i>that<i> out without it being in a bitch, huh? You must be so confused. ");
 	//PC’s current dick has a knot: 
 	if(pc.hasKnot(x)) output("Don’t worry though, I’ll show you what it’s like to be on the receiving end.");
 	else output("Don’t worry, that’s only the beginning.");
@@ -362,7 +365,9 @@ public function rideVaginalMilodanMaleBecauseTHEYIFFENING():void
 	clearOutput();
 	showMilodanMale();
 	author("Wsan");
-	output("Pushing him onto his back{non-nude: and casually disrobing}, you clamber atop the furry barbarian and smile down at him.");
+	output("Pushing him onto his back");
+	if(!pc.isNude()) output(" and casually disrobing");
+	output(", you clamber atop the furry barbarian and smile down at him.");
 	output("\n\n<i>“I hope you fuck better than you fight,”</i> you remark, softly stroking his chest. He rumbles at your touch, and you feel his cock stiffening against your ass. <i>“This must be for me, huh?”</i>");
 	output("\n\nYou’re content to tease him a little, slowly rubbing his length with your [pc.butt] until his prick begins to slowly drip pre-cum between your cheeks. Satisfied the both of you are wet enough, you lift your hips and slide backwards until your slick pussy is poised right over his throbbing cock. Slowly dropping your hips downwards, you moan in satisfaction as you feel his crown spread your folds apart.");
 	output("\n\n<i>“That’s a good boy,”</i> you say breathlessly, feeling his inches slowly filling your cunt.");
@@ -389,7 +394,7 @@ public function rideVaginalMilodanMaleBecauseTHEYIFFENING():void
 	pc.lust(9001);
 	clearMenu();
 	addButton(0,"Yes",takeALootInYerCooterFromMildan,x,"Yes","Take a load in the pussy.");
-	addButton(1,"No",noPuppyPoppersForYou,"No","In the far future, the pull-out method has a 100% success rate.");
+	addButton(1,"No",noPuppyPoppersForYou,undefined,"No","In the far future, the pull-out method has a 100% success rate.");
 }
 
 //[Yes]
@@ -408,6 +413,7 @@ public function takeALootInYerCooterFromMildan(x:int):void
 	output("\n\nYou ");
 	if(!pc.isCrotchExposed()) output("throw your clothes back on and ");
 	output("head out, leaving the milodan lying in the snow with orders to <i>“Stay”</i> until you’re gone.\n\n");
+
 	pc.loadInCunt(enemy,x);
 	processTime(5);
 	pc.orgasm();
@@ -427,7 +433,9 @@ public function noPuppyPoppersForYou():void
 	output("\n\nYou cry out in triumph as you feel yourself cumming again, and slip his sizeable cock out of you right as he begins to spurt jizz across your ass.");
 	output("\n\n<i>“But you don’t get to do any of that,”</i> you murmur, lying on his chest and looking down at him with hooded eyes. You wiggle your butt, feeling the warmth of his seed rain down on your buttcheeks and lower back with a moan. <i>“Oh, what a waste...”</i>");
 	output("\n\nThe barbarian growls in dissatisfaction, but you only laugh it off. <i>“That’s what you get for losing, pup.”</i>");
-	output("\n\nYou scratch his chest fluff and dismount, standing to {non-nude: throw your clothes back on and} head out, leaving the still-hard milodan lying in the snow with orders to <i>“Stay”</i> until you’re gone.\n\n");
+	output("\n\nYou scratch his chest fluff and dismount, standing to");
+	if(!pc.isNude()) output(" throw your clothes back on and");
+	output(" head out, leaving the still-hard milodan lying in the snow with orders to <i>“Stay”</i> until you’re gone.\n\n");
 	processTime(7);
 	pc.orgasm();
 	CombatManager.genericVictory();
@@ -470,17 +478,17 @@ public function takeMaleMilodanForAnAnalRide():void
 	else output("pucker quivering");
 	output(" as you get closer to the finish line. Clutching at his shoulderblades, you gasp and shudder as it overtakes you, the rush of endorphins making your lower body jerk erratically on his cock.");
 
-	output("\n\nThe milodan grunts as you cum all over him, ");
+	output("\n\nThe milodan grunts as you cum all over him, your");
 	//cock+noPussy:
 	if(pc.hasCock() && !pc.hasVagina()) 
 	{
-		output("your prick");
+		output(" prick");
 		if(pc.cockTotal() > 1) output("s");
 		output(" pumping seed all over his stomach every time his nubbed dick stimulates your prostate");
 	}
 	else if(pc.isHerm())
 	{
-		output("your cunt");
+		output(" cunt");
 		if(pc.totalVaginas() > 1) output("s");
 		output(" covering his thighs in femcum and your prick");
 		if(pc.cockTotal() > 1) output("s");
@@ -488,11 +496,12 @@ public function takeMaleMilodanForAnAnalRide():void
 	}
 	else if(pc.hasVagina())
 	{
-		output("cunt");
+		output(" cunt");
 		if(pc.totalVaginas() > 1) output("s");
 		output(" covering his thighs in femcum. He begins to thrust from below as you bathe in the afterglow, and you’re more than content to let him.");
 	}
-	else output("anus quivering in sublime pleasure.");
+	else output(" anus quivering in sublime pleasure");
+	output(".");
 
 	output("\n\nIt’s not long before he has you cumming a second time, your head tucked under his chin as he pummels you from underneath. Then a panting, groaning third. Realizing he’s going to keep this up until you tell him to cum, you grab onto his hair and force him to look down at you.");
 
@@ -615,7 +624,7 @@ public function giveMilodanMalesStinkyButtholeALick():void
 	output("\n\n...");
 	output("\n\nBy the time you let him go, you’ve made him paint both the ice and his stomach in pearlescent white jizz. His cock is still drooling pre-cum even now, but you’ve had your fun. Leaving the still-shaking barbarian on the ground, you walk away with a smile. Maybe you should do this more often.");
 	processTime(60);
-	pc.orgasm();
+	pc.lust(30);
 	output("\n\n");
 	CombatManager.genericVictory();
 }
@@ -685,7 +694,7 @@ public function lossSceneToMaleMilodan():void
 			output(", already eager to be taken");
 		}
 		//non-bimbo:
-		else if(pc.isBimbo())
+		else
 		{
 			output("\n\nYou can’t help but get wet, the scent hanging around your head like a haze. You unconsciously spread your");
 			if(pc.isTaur()) output(" hindlegs");
@@ -980,4 +989,82 @@ public function dontWrestleTheMilodanBecauseHisCockIsBetterThanYours():void
 	}
 	output("\n\n");
 	CombatManager.genericLoss();
+}
+
+public function milodanPregnancyEnds():void
+{
+	clearOutput();
+	author("Wsan");
+	showName("\nBIRTHING!");
+
+	var se:StorageClass = pc.getStatusEffect("Milodan Pregnancy Ends");
+	
+	var numChildren:int = se.value1;
+	var bRatingContrib:int = se.value2;
+	var pregSlot:int = se.value3;
+	var babym:Boolean = (se.value4 == 1 ? false : true);
+
+	if(currentLocation != "SHIP INTERIOR") 
+	{
+		output("Oh, jeez! You can feel a stirring in your stomach; it feels like the kit");
+		if(numChildren > 1) output("s");
+		output(" want");
+		if(numChildren == 1) output("s");
+		output(" out. Time to get back to your ship!");
+		output("\n\nYou stumble aboard your ship, shutting yourself in your room and lying down on a blanket.");
+	}
+	else
+	{
+		output("Oh, jeez! The kit");
+		if(numChildren > 1) output("s");
+		output(" want");
+		if(numChildren == 1) output("s");
+		output(" out, and ");
+		if(numChildren == 1) output("it wants");
+		else output("they want");
+		output(" out <i>now</i>. You shut yourself in your room and lie down on a blanket.");
+	}
+	//Hour passes
+	output("\n\nBy the time you’re finished, there’s ");
+	if(numChildren == 1) output("a lone kit");
+	else
+	{
+		output(num2Text(numChildren) + " healthy kits");
+	}
+	output(" on your blanket, waving ");
+	if(numChildren == 1)
+	{
+		if( babym ) output("his");
+		else output("her");
+	}
+	else output("their");
+	output(" little arms and feet about. Oddly enough, none of them are crying. That Milodan toughness at work, you suspect. With a tired smile, you gently wash ");
+	if(numChildren > 1) output("each one");
+	if( babym ) output("him");
+	else output("her");
+	output(" off with some warm water and bundle your ");
+	if(numChildren == 1) output("child");
+	else output("children");
+	output(" up in some comfortable sheets before calling for the nursery pods. Watching the kit");
+	if(numChildren > 1) output("s");
+	output(" disappear makes you forlorn for a while, but you remind yourself that it’d be wildly irresponsible to take your kids along on your incredibly dangerous space journey. This is for the best, really. You can see them on Tavros any time you want to.");
+	output("\n\nAs for you, you quickly wash yourself off in the shower and practically crawl into your bed looking and feeling like some kind of half-dead sea slug. Giving birth is tiring work, and it’s definitely time for a nap.");
+
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	pc.removeStatusEffect("Milodan Pregnancy Ends");
+	//14 hours pass
+
+	processTime(14*60);
+	clearMenu();
+	addButton(0,"Next",milodanPreggoEpilogue);
+}
+
+public function milodanPreggoEpilogue():void
+{
+	clearOutput();
+	showName("MORNING\nAFTER");
+	output("You wake up with a slight headache and a dry mouth, both of which dissipate when you rouse yourself from your well-deserved slumber and wash yourself. Time to get back to adventuring!");
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

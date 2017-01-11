@@ -504,7 +504,9 @@ public function getGloryholePregContainer():PregnancyPlaceholder
 
 public function gloryholeWait():void
 {
-	if(rand(3) == 0)
+	if(kiroKallyThreesomeUnlockPoints() >= 3 && flags["KIRO_KALLY_PICARDINE_QUEST"] == 3 && flags["KALLY_FAP_2_KIRO"] != undefined && kiroKallyThreesomes() == 0)
+		kallyAndKiroGloryholeThreesomeMeeting();
+	else if(rand(3) == 0)
 	{
 		clearOutput();
 		showName("\nWAITING");
@@ -601,7 +603,7 @@ public function yesSuckSomeTruckerCawk():void
 		else if(pc.hasCock()) output("[pc.cocks].");
 		else output("[pc.asshole].");
 	}
-	output("\n\nThis monstrous dong fills your mouth so fully that you’re not sure if you could manage to get it inside again once pull back, so you flare your nose, breathing rapidly. His musk is so potent, so virile, that it makes you feel a little dazed, maybe a touch dizzy, but you press on. You slide your head forward, at the same time changing up your strokes to match. One hand at a time, you grab hold of him, just in front of your lips, and drag your palms down to his pubic bush. To him, it must feel like he’s endlessly sliding deeper into lustily caressing flesh. To you, it’s a challenge; coordinating your hands and tongue while trying to push past the ridge of his tip is no easy feat.");
+	output("\n\nThis monstrous dong fills your mouth so fully that you’re not sure if you could manage to get it inside again once you pull back, so you flare your nose, breathing rapidly. His musk is so potent, so virile, that it makes you feel a little dazed, maybe a touch dizzy, but you press on. You slide your head forward, at the same time changing up your strokes to match. One hand at a time, you grab hold of him, just in front of your lips, and drag your palms down to his pubic bush. To him, it must feel like he’s endlessly sliding deeper into lustily caressing flesh. To you, it’s a challenge; coordinating your hands and tongue while trying to push past the ridge of his tip is no easy feat.");
 	output("\n\n<i>“Oh yeah,”</i> the bass voice groans. <i>“F-fuck it’s been too long. Hope you’re ready for a big load. I been savin’ this one for a slut like you for a week.”</i>");
 	output("\n\nYou swirl your tongue against him in a quick figure eight");
 	if(pc.isBimbo()) output(" to show your appreciation for bringing you such a lovely treat");
@@ -644,7 +646,7 @@ public function yesSuckSomeTruckerCawk():void
 		else if(pc.libido() < 66) output(", doing your best to hold onto the jerking rod as it unloads into your face.");
 		else output(", but not even that could stop you from properly stroking the jerking dick, milking it for the biggest load possible.");
 		output(" Cum pumps out in huge gouts, each big enough to fill a whiskey glass. It splashes over your hair and across your [pc.skinFurScales]. Sperm cascades down your shoulders");
-		if(pc.biggestTitSize() >= 1) output(" and over the swells of your [pc.biggestTitSize]");
+		if(pc.biggestTitSize() >= 1) output(" and over the swells of your [pc.biggestBreastDescript]");
 		output(". It’s every bit as warm and sticky as it is sexy.");
 		
 		processTime(16);

@@ -59,7 +59,7 @@ public function silkenSerenityExteriorShitz():Boolean
 		else if(rand(3) == 0) output("human");
 		else if(rand(2) == 0) output("ausar");
 		else output("kaithrit");
-		output(" girl waves to you, cutely showing off her little black dress. It hugs her curves beautifully. <i>“Come on in! We've got something for everybody, no matter your tastes!”</i>");
+		output(" girl waves to you, cutely showing off her little black dress. It hugs her curves beautifully. <i>“Come on in! We’ve got something for everybody, no matter your tastes!”</i>");
 	}
 	// Message 2
 	else if(choice == 1)
@@ -69,7 +69,7 @@ public function silkenSerenityExteriorShitz():Boolean
 		else if(rand(3) == 0) output("human");
 		else if(rand(2) == 0) output("ausar");
 		else output("kaithrit");
-		output(" woman winks at you, showing off a string-tie bikini. She stretches her body, and her cleavage threatens to spill out of her bra. <i>“Come on in, honey. Don't be shy.”</i>");
+		output(" woman winks at you, showing off a string-tie bikini. She stretches her body, and her cleavage threatens to spill out of her bra. <i>“Come on in, honey. Don’t be shy.”</i>");
 	}
 	// Message 3
 	else if(choice == 2)
@@ -79,7 +79,7 @@ public function silkenSerenityExteriorShitz():Boolean
 		else if(rand(3) == 0) output("human");
 		else if(rand(2) == 0) output("ausar");
 		else output("kaithrit");
-		output(" woman grins at you, showing off her ripped biceps. She's wearing nothing but a furry bra and panties. <i>“Envious? A great body's no good unless you've got the right clothes to flaunt it!”</i>");
+		output(" woman grins at you, showing off her ripped biceps. She’s wearing nothing but a furry bra and panties. <i>“Envious? A great body’s no good unless you’ve got the right clothes to flaunt it!”</i>");
 	}
 	// Message 4
 	else if(choice == 3)
@@ -89,7 +89,7 @@ public function silkenSerenityExteriorShitz():Boolean
 		else if(rand(3) == 0) output("human");
 		else if(rand(2) == 0) output("ausar");
 		else output("kaithrit");
-		output(" maid whistles at you. When you stare her way, she lifts her frilly skirt, and reveals her throbbing cock! <i>“Want to hide your bits? Come inside, we've got clothes for every shape and size!”</i>");
+		output(" maid whistles at you. When you stare her way, she lifts her frilly skirt, and reveals her throbbing cock! <i>“Want to hide your bits? Come inside, we’ve got clothes for every shape and size!”</i>");
 	}
 	// Message 5
 	else if(choice == 4)
@@ -99,7 +99,7 @@ public function silkenSerenityExteriorShitz():Boolean
 		else if(rand(3) == 0) output("human");
 		else if(rand(2) == 0) output("ausar");
 		else output("kaithrit");
-		output(" man smiles handsomely at you. He's standing there, wearing nothing but a pair of silky black boxers and a sports singlet. <i>“Looking for some good kit? You've come to the right place...”</i>");
+		output(" man smiles handsomely at you. He’s standing there, wearing nothing but a pair of silky black boxers and a sports singlet. <i>“Looking for some good kit? You’ve come to the right place...”</i>");
 	}
 	// Message 6
 	else if(choice == 5)
@@ -109,7 +109,7 @@ public function silkenSerenityExteriorShitz():Boolean
 		else if(rand(3) == 0) output("human");
 		else if(rand(2) == 0) output("ausar");
 		else output("kaithrit");
-		output(" grunts at you. He's wearing military pants and a singlet, looking stern and unimpressed. <i>“If you want clothes, go on in. We've got what you need.”</i>");
+		output(" grunts at you. He’s wearing military pants and a singlet, looking stern and unimpressed. <i>“If you want clothes, go on in. We’ve got what you need.”</i>");
 	}
 	// Message 7
 	else
@@ -119,7 +119,7 @@ public function silkenSerenityExteriorShitz():Boolean
 		else if(rand(3) == 0) output("human");
 		else if(rand(2) == 0) output("ausar");
 		else output("kaithrit");
-		output(" grins at you. He's wearing a pair of star-shaped nipple tassels and a zip-pouch jock strap. <i>“A great body's half the journey. The other half--? Accessorizing.”</i>");
+		output(" grins at you. He’s wearing a pair of star-shaped nipple tassels and a zip-pouch jock strap. <i>“A great body’s half the journey. The other half--? Accessorizing.”</i>");
 	}
 	return false;
 }
@@ -239,7 +239,7 @@ public function xantheShopInitialization():void
 	chars["XANTHE"].keeperBuy = "<i>“What kind of clothing were you interested in buying";
 	if(xantheIsDommingPC()) chars["XANTHE"].keeperBuy += ", my pet";
 	chars["XANTHE"].keeperBuy += "? I’ve got quite the selection.”</i>\n";
-	chars["XANTHE"].keeperSell = "<i>“I don't usually buy garments, but for you, I can make an exception.”</i>\n";
+	chars["XANTHE"].keeperSell = "<i>“I don’t usually buy garments, but for you, I can make an exception.”</i>\n";
 	chars["XANTHE"].keeperGreeting = "THIS SHOULD NEVER DISPRAY. GREAT DISHONOR UPON FAMIRY.";
 }
 
@@ -372,7 +372,7 @@ public function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 		else
 		{
 			addButton(0,"Stare",stareAtXantheYaSloot);
-			addButton(1,"Don't Stare",dontStareAtZatBitch);
+			addButton(1,"Don’t Stare",dontStareAtZatBitch);
 		}
 	}
 	//Storefront Room Description
@@ -437,7 +437,7 @@ public function xantheMenu():void
 	addButton(2,"Buy",buySomethingFromXanthe);
 	addButton(3,"Sell",sellSomethingToXanthe);
 	if(flags["XANTHE_TALKED_ABOUT_SEX"] != undefined) addButton(4,"Mating",letsDoAlienBondageMating);
-	else addDisabledButton(4,"Mating","Mating","You don't know her nearly well enough for that.");
+	else addDisabledButton(4,"Mating","Mating","You don’t know her nearly well enough for that.");
 	//[Hallway]
 	addButton(5,"Hallway",tryToGoToHallway);
 	addButton(14,"Leave",move,rooms[currentLocation].northExit)
@@ -475,7 +475,7 @@ public function stareDontStareEpilogue():void
 		output("\n\nNoticing your puzzlement, realization dawns on the alien woman. <i>“Oh! It’s your first time meeting a siel. And here I was thinking you were just that interested... what a shame.</i>”");
 		output("\n\nThe siel woman then moves past you, making sure to brush against your side. There, right near your ear, she stops for a brief moment and leans in to whisper. <i>“... If you </i>are<i>, though, I’ll just have to do something about that. I really do excel at ‘customer service’.”</i>");
 		CodexManager.unlockEntry("Siel");
-		output("\n\n<b>('Siel' Codex entry unlocked!)</b>");
+		output("\n\n<b>(‘Siel’ Codex entry unlocked!)</b>");
 	}
 	// else (met Siel before
 	else
@@ -586,28 +586,28 @@ public function xantheTalkMenu():void
 	addButton(1,"Xanthe",xantheTalksAbootXanthe);
 	addButton(2,"SilkenSerenity",askXantheWhyFoxCancelledFirefly);
 	if(flags["XANTHE_TALKED_ABOUT_HERSELF"] != undefined) addButton(3,"Zyi",talkToXantheAboutSpaceJesus);
-	else addDisabledButton(3,"Zyi","Zyi","You don't know her well enough to ask about this.");
+	else addDisabledButton(3,"Zyi","Zyi","You don’t know her well enough to ask about this.");
 	//INESSA EXPANSION
 	if(flags["MET_INESSA"] == undefined) addDisabledButton(4,"Locked");
 	else if(flags["INESSA_BELTED"] == 1 && flags["INESSA_FAMILYED"] == 1 && flags["INESSA_EXP"] == undefined) addButton(4,"Inessa",xanTalkAboutInessa,undefined,"Inessa","Talk to Xanthe about her sister.");
-	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(4,"Inessa","Inessa","You've already talked about Inessa.");
+	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(4,"Inessa","Inessa","You’ve already talked about Inessa.");
 	else addDisabledButton(4,"Inessa","Inessa","You need to talk to Inessa first.");
 	addButton(5,"The War",theWarTalkXanthe);
 	// Lock wieners until the Codex entry is read.
 	if(CodexManager.entryViewed("Siel")) addButton(6,"Her Sex",askXantheAboutHerDonger);
-	else addDisabledButton(6,"Her Sex","Her Sex","You should probably read about the Siel's sex from the Codex first.");
+	else addDisabledButton(6,"Her Sex","Her Sex","You should probably read about the Siel’s sex from the Codex first.");
 	// ** Locked until ‘Her Sex’ topic is viewed.
 	if(flags["XANTHE_TALKED_ABOUT_HER_SEX"] != undefined) addButton(7,"Use Mods",useModsYouSlut);
-	else addDisabledButton(7,"Use Mods","Use Mods","You don't know her well enough to ask about this.");
+	else addDisabledButton(7,"Use Mods","Use Mods","You don’t know her well enough to ask about this.");
 	addButton(8,"Mating",sexChatWithXanthe);
 	// * Locked until ‘Xanthe’ topic is viewed
 	// ** Locked until ‘Her Sex’ topic is viewed.
 	//INESSA EXPANSION
 	if(flags["MET_INESSA"] == undefined) addDisabledButton(9,"Locked");
-	else if(flags["XANTHE_INESSA"] == 1 && flags["INESSA_EXP"] == undefined && flags["INESSA_BEING_DOMMED"] != undefined) addButton(9,"Key",xanTalkAboutKey,undefined,"Key","Talk to Xanthe about Inessa's belt key.");
+	else if(flags["XANTHE_INESSA"] == 1 && flags["INESSA_EXP"] == undefined && flags["INESSA_BEING_DOMMED"] != undefined) addButton(9,"Key",xanTalkAboutKey,undefined,"Key","Talk to Xanthe about Inessa’s belt key.");
 	else if(flags["INESSA_EXP"] >= 1) addDisabledButton(9,"Key","Key","You need to give Inessa the message from her sister.");
 	else if(flags["INESSA_BEING_DOMMED"] == undefined) addDisabledButton(9,"Key","Key","You have to be domming Inessa for this.");
-	else addDisabledButton(9,"Key","Key","You don't know about the key yet.");
+	else addDisabledButton(9,"Key","Key","You don’t know about the key yet.");
 	addButton(14,"Back",enterTheSilkenSerenityWhyDidWashHaveToDie);
 }
 
@@ -653,7 +653,7 @@ public function talkAbootSiel():void
 		output("\n\n<i>“Oh wow, so like, all this stuff is made from your butt or whatever? That’s so cool!”</i> you genuinely exclaim. You wish you could make stuff out of your ass. Not that your butt doesn’t make people happy in other ways. You look back at it and let out a giggle.");
 		output("\n\n<i>“So does that mean all your cities are kind of, y’know, bouncy? Like boobs?”</i> You imagine it’s kind of like a trampoline, and trampolines are fun. They make boobs bounce even more.");
 	}
-	output("\n\n<i>“The silk that makes up our cities is different. This stuff is thin, whereas that silk is packed tightly together and interwoven until it's hard as rock. It’s actually rather beautiful.</i>");
+	output("\n\n<i>“The silk that makes up our cities is different. This stuff is thin, whereas that silk is packed tightly together and interwoven until it’s hard as rock. It’s actually rather beautiful.</i>");
 	output("\n\n<i>“I’ve yet to see any non-siel city that is as colorful as those on Xhixia. Gildenmere is lovely, but nowhere near as aesthetically pleasing.”</i>");
 	processTime(6);
 	//[Sounds Beautiful] [Sounds Flammable] [Sounds Boring] [Can You Build?] [Say Nothing]
@@ -947,20 +947,20 @@ public function useModsYouSlut():void
 	clearMenu();
 	//[Front Cock, Rear Pussy] [Front Pussy, Rear Cock] [Two Pussies] [Two Cocks]
 	if(xantheHasFrontCock() && xantheHasBackCunt()) addDisabledButton(0,"Cock/Cunt","Cock/Cunt","Xanthe already has a cock in the front and a pussy in the back.");
-	else if(pc.credits < 500) addDisabledButton(0,"Cock/Cunt","Cock/Cunt","You can't afford this treatment.");
+	else if(pc.credits < 500) addDisabledButton(0,"Cock/Cunt","Cock/Cunt","You can’t afford this treatment.");
 	else addButton(0,"Cock/Cunt",giveDatBitchSomeHams,12,"Cock/Cunt","Pay for her to have a dick up front and a vagina in the back.");
 
 	if(xantheHasFrontCunt() && xantheHasBackCock()) addDisabledButton(1,"Cunt/Cock","Cunt/Cock","Xanthe already has a vagina in the front and a dick in the back.");
-	else if(pc.credits < 500) addDisabledButton(1,"Cunt/Cock","Cunt/Cock","You can't afford this treatment.");
+	else if(pc.credits < 500) addDisabledButton(1,"Cunt/Cock","Cunt/Cock","You can’t afford this treatment.");
 	else addButton(1,"Cunt/Cock",giveDatBitchSomeHams,21,"Cunt/Cock","Pay for her to have a vagina up front and a dick in the back.");
 	// Cannot pick what she already has. Starts with Front Cock, Rear Pussy.
 	// Costs 500 credits to change each time.
 	if(xantheHasFrontCunt() && xantheHasBackCunt()) addDisabledButton(2,"TwoCunts","TwoCunts","Xanthe already has two vaginas.");
-	else if(pc.credits < 500) addDisabledButton(2,"TwoCunts","TwoCunts","You can't afford this treatment.");
+	else if(pc.credits < 500) addDisabledButton(2,"TwoCunts","TwoCunts","You can’t afford this treatment.");
 	else addButton(2,"TwoCunts",giveDatBitchSomeHams,22,"TwoCunts","Pay for her to have two vaginas.");
 
 	if(xantheHasFrontCock() && xantheHasBackCock()) addDisabledButton(3,"TwoCocks","TwoCocks","Xanthe already has two dicks.");
-	else if(pc.credits < 500) addDisabledButton(3,"TwoCocks","TwoCocks","You can't afford this treatment.");
+	else if(pc.credits < 500) addDisabledButton(3,"TwoCocks","TwoCocks","You can’t afford this treatment.");
 	else addButton(3,"TwoCocks",giveDatBitchSomeHams,11,"TwoCocks","Pay for her to have two cocks.");
 	addButton(14,"Back",enterTheSilkenSerenityWhyDidWashHaveToDie);
 }
@@ -1251,7 +1251,7 @@ public function letsDoAlienBondageMating():void
 	// First Time
 	if(flags["XANTHE_MATED"] == undefined)
 	{
-		output("After talking and flirting with Xanthe, you feel like it's the right moment to bring up mating with her. Unfortunately, she beats you to the punch.");
+		output("After talking and flirting with Xanthe, you feel like it’s the right moment to bring up mating with her. Unfortunately, she beats you to the punch.");
 		output("\n\nWhen you least expect it, the blue-skinned Siel woman leans in and strokes your cheek. It catches you completely off guard.");
 		output("\n\n<i>“It’s fun flirting with you, my dear, truly wonderful. But I think we both know why you keep hanging around my store, and it has nothing to do with the clothes.”</i> she proclaims, all the while looking at you with those powerful, electric blue eyes.");
 		output("\n\n<i>“I’d say it’s because you sense an Alpha female and you’re longing to submit to me. Am I right?</i>");
@@ -1645,7 +1645,7 @@ public function shePaysAttentionToYouSlut():void
 
 	output("\n\nYou tell your Mistress as much, and she gives you a rewarding little bite on your earlobe. <i>“Indeed, I take care of my pets. Each mark I leave on your [pc.skin] is a sign that I love you, dearest, don’t you forget it.”</i>");
 	//if (pc.hasBreasts = true || pc.hasCock = true} or (pc.hasLegs > 1 && pc.hasPussy = true)
-	if(pc.biggestTitSize() >= 1 || pc.hasCock() || (pc.legCount > 1 && pc.hasVagina))
+	if(pc.biggestTitSize() >= 1 || pc.hasCock() || (pc.legCount > 1 && pc.hasVagina()))
 	{
 		output("\n\nYour Mistress then begins weaving some of her special silk and forming soft ropes in her multi-fingered hands. You watch on as she makes ample amounts of twine in front of you.");
 		output("\n\n<i>“Are you wondering what this is for, my pet?”</i> She asks in her husky voice. There’s a glimmering in her bright blue eyes as she holds you captive and in delicious anticipation.");
@@ -3127,17 +3127,17 @@ public function xanTalkAboutInessa():void
 	author("Sen Kanashimi");
 	showXanthe();
 	
-	output("You nod to Xanthe and rest yourself against the counter in front of the Siel woman, looking up into her electric blue eyes. <i>“I'd like to talk about Inessa.”</i>");
-	output("\n\nXanthe's expression turns from a soft smile to a wide grin in an instant, memories coming back to her. <i>“Ah my little sister, it has been so long since I last saw her... Such a delicate little flower, so sweet and naive, and oh so easy to tease...”</i> Her breasts quiver as a pleasurable shiver runs down the length of her caterpillar-like body.");
+	output("You nod to Xanthe and rest yourself against the counter in front of the Siel woman, looking up into her electric blue eyes. <i>“I’d like to talk about Inessa.”</i>");
+	output("\n\nXanthe’s expression turns from a soft smile to a wide grin in an instant, memories coming back to her. <i>“Ah my little sister, it has been so long since I last saw her... Such a delicate little flower, so sweet and naive, and oh so easy to tease...”</i> Her breasts quiver as a pleasurable shiver runs down the length of her caterpillar-like body.");
 	output("\n\nYou find yourself staring for a moment before shaking your head, quirking an eyebrow. You query about their relationship, curious to know why she enjoys her sisters submissive nature.");
 	output("\n\n<i>“Oh, Inessa and I are <b>just</b> sisters.”</i> She replies, giving you a coy smile that makes no attempt to hide her sarcasm. <i>“Perhaps from time to time I have... taken advantage of her submissive attitude, some binding, a bit of teasing here and there, but nothing more.”</i>");
 	
-	output("\n\nA soft chuckle escapes your [pc.lipsChaste] as your mind wanders off on the thought of Xanthe tying and teasing her sister. A prominent cough jogs you back to reality, Xanthe is staring down at you with an amused expression, her blue eyes sparkling in the light of the shopfront. <i>“So you've taken an interest in my sister, " + (xantheIsDommingPC() ? "my pet?" : (pc.mf("Mister","Miss") +" Steele?")) + "”</i> the Siel woman asks.");
-	output("\n\nYou admit to be here for a reason and inform Xanthe about her sister's predicament, explaining what Inessa had explained to you in Happy Tails. <i>“She lost the key and hasn't been able to find it.”</i> You explain, Xanthe wears an amused expression with a near cheshire-grin. <i>“Good.”</i> She remarks.");
+	output("\n\nA soft chuckle escapes your [pc.lipsChaste] as your mind wanders off on the thought of Xanthe tying and teasing her sister. A prominent cough jogs you back to reality, Xanthe is staring down at you with an amused expression, her blue eyes sparkling in the light of the shopfront. <i>“So you’ve taken an interest in my sister, " + (xantheIsDommingPC() ? "my pet?" : (pc.mf("Mister","Miss") +" Steele?")) + "”</i> the Siel woman asks.");
+	output("\n\nYou admit to be here for a reason and inform Xanthe about her sister’s predicament, explaining what Inessa had explained to you in Happy Tails. <i>“She lost the key and hasn’t been able to find it.”</i> You explain, Xanthe wears an amused expression with a near cheshire-grin. <i>“Good.”</i> She remarks.");
 	output("\n\nYour [pc.eyes] must give away your confusion as Xanthe lets out an amused sigh, leaning back from the counter as if contemplating something. <i>“Is is no surprise to me that Inessa is wearing a chastity belt.”</i> Xanthe says. <i>“Truth is the key is not lost, I have it right here.”</i> She reaches down below the counter to open up a drawer, retrieving a small golden key, the bow is shaped into a stylish curve reminiscent of a lock. <i>“I had it taken by a... Mutual friend, who also ensured the belt was locked.”</i>");
-	output("\n\nYou tilt your head slightly and ask why she has the key to her sister's belt all the way out here, eyeing the golden key with a tinge of want.");
+	output("\n\nYou tilt your head slightly and ask why she has the key to her sister’s belt all the way out here, eyeing the golden key with a tinge of want.");
 	output("\n\nXanthes expression changes drastically, no longer any trace of her usually teasing demeanor, replaced entirely by a serious stare, her eyes almost piercing. <i>“To protect her, she is so naive that she would throw herself at any Dominant who walked through the door if they so much as whisper her to do so.”</i> She huffs and takes a breath, fiercely protective eyes giving way to a caring glow. <i>“I do not wish her harm, and so I protect her virginity from others until I deem someone worthy.”</i>");
-	output("\n\nYou quip that she doesn't seem to mind the idea of keeping her sister in chastity, to which she lets out a soft chuckle. <i>“This is true, I do so enjoy the teasing aspect, but that is not my main concern with Inessa.”</i> She places the key back into the drawer and straightens herself up against the counter once more.");
+	output("\n\nYou quip that she doesn’t seem to mind the idea of keeping her sister in chastity, to which she lets out a soft chuckle. <i>“This is true, I do so enjoy the teasing aspect, but that is not my main concern with Inessa.”</i> She places the key back into the drawer and straightens herself up against the counter once more.");
 	output("\n\nYou thank Xanthe for the discussion and take your leave, a multitude of ideas running through your head by the time you leave the store.");
 	
 	flags["XANTHE_INESSA"] = 1;
@@ -3155,20 +3155,20 @@ public function xanTalkAboutKey():void
 	showXanthe();
 
 	output("You stand there for a few moments with the previous conversation running rampant in your mind before shaking your head, setting it aside for now as you step up to the counter.");
-	output("\n\nXanthe must notice your difficulty focusing as the corners of her mouth turn up to a slight smile. <i>“Something on your mind "+ pc.mf("Mister","Miss") +" Steele?”</i> The mocking tone is almost palpable and you scrunch your nose up in response, she knows exactly what's on your mind.");
+	output("\n\nXanthe must notice your difficulty focusing as the corners of her mouth turn up to a slight smile. <i>“Something on your mind "+ pc.mf("Mister","Miss") +" Steele?”</i> The mocking tone is almost palpable and you scrunch your nose up in response, she knows exactly what’s on your mind.");
 
 	if(xantheIsDommingPC())
 	{
-		output("\n\n<i>“You said that you were keeping Inessa's belt key until you found someone worthy.”</i> You recount, thinking back again to the previous conversation. <i>“How would I go about proving myself worthy of taking that key?”</i> Xanthe's expression turns serious once more, her eyes looking you up and down, causing you to squirm beneath her domineering gaze.");
+		output("\n\n<i>“You said that you were keeping Inessa’s belt key until you found someone worthy.”</i> You recount, thinking back again to the previous conversation. <i>“How would I go about proving myself worthy of taking that key?”</i> Xanthe’s expression turns serious once more, her eyes looking you up and down, causing you to squirm beneath her domineering gaze.");
 		output("\n\n<i>“My pet, you wish to become my sisters "+ pc.mf("Master","Mistress") +"? And what makes you think I would allow you to?”</i> You shiver and look up at your Mistress, giving the most pleading eyes you can, channeling your inner terran puppy. It seems to work as Xanthes stare devolves into an amused snicker and she leans forwards, planting a hand upon your head and tousling your [pc.hair].");
 		output("\n\n<i>“Very well my dear, I will consider allowing it, on one condition.”</i> Your breath catches in your throat as she leans down closer, her face mere inches from your own. <i>“You must prove yourself capable of caring for my sister, as I do for you, then, and only then, will I give you the key, is that clear?”</i> You nod quickly and resume your breathing pattern, your [pc.skinColor] cheeks a bit more flushed from holding your breath.");
 	}
 	
 	else 
 	{
-		output("\n\n<i>“You said that you were keeping Inessa's belt key until you found someone worthy.”</i> You recount, thinking back again to the previous conversation. <i>“How would I go about proving myself worthy of taking that key?”</i> Xanthes expression turns serious once more, her eyes looking you up and down, examining your features.");
+		output("\n\n<i>“You said that you were keeping Inessa’s belt key until you found someone worthy.”</i> You recount, thinking back again to the previous conversation. <i>“How would I go about proving myself worthy of taking that key?”</i> Xanthes expression turns serious once more, her eyes looking you up and down, examining your features.");
 		output("\n\n<i>“You wish to become my sisters "+ pc.mf("Master","Mistress") +"? Interesting...”</i> You nod your confirmation and Xanthe ponders for a moment, seemingly mulling over ideas in her head. <i>“Before I decide, tell me something... What do you intend to do with my sister once she is free of her belt?”</i>");
-		output("\n\n<i>“As you said before, she's naive and vulnerable, she needs someone to protect her, and as it is you're far too busy out here to help her all of the time.”</i>");
+		output("\n\n<i>“As you said before, she’s naive and vulnerable, she needs someone to protect her, and as it is you’re far too busy out here to help her all of the time.”</i>");
 		output("\n\nXanthe seems to think over this even harder before raising her eyes to look into your own. <i>“I suppose you are right, although it will come with one catch, you must prove yourself a capable Dominant, and you must prove to me you know how to care for a submissive before I will allow it.”</i> Her tone remains serious, and you nod, prepared for the challenge to which Xanthe replies. <i>“Excellent.”</i>");
 	}
 	
@@ -3176,8 +3176,8 @@ public function xanTalkAboutKey():void
 	output("\n\nYou shake your head and turn to actually leave this time, placing the silk panel in your pouch.");
 	
 	flags["INESSA_EXP"] = 1;
-	pc.createKeyItem("Xanthe's Silk", 0, 0, 0, 0, "You're supposed to give this to Inessa. She'll supposedly know what it means.");
-	output("\n\n<b>(Key Item Gained: Xanthe's Silk -</b> You're supposed to give this to Inessa. She'll supposedly know what it means.<b>)</b>");
+	pc.createKeyItem("Xanthe's Silk", 0, 0, 0, 0, "You’re supposed to give this to Inessa. She’ll supposedly know what it means.");
+	output("\n\n<b>(Key Item Gained: Xanthe's Silk -</b> You’re supposed to give this to Inessa. She’ll supposedly know what it means.<b>)</b>");
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

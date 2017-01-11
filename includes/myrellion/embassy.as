@@ -6,6 +6,8 @@ public function theEmbassyBonusFunc():Boolean
 	//First Time
 	if(flags["MYRELLION_EMBASSY_VISITED"] == undefined)
 	{
+		output(" To the south are some offices, probably from where the day-to-day business of the airport was run before it was repurposed.");
+		
 		flags["MYRELLION_EMBASSY_VISITED"] = 1;
 		output("\n\nAs you enter the \"embassy\" - really a glorified aircraft hangar stuffed with desks, maps, and several disgruntled pioneers looking for entrance to the cities below - a tanuki-like kui-tan dressed in the familiar suit and tie of a U.G.C. government worker waves you over to his desk.");
 		//[Kui-tan]
@@ -13,7 +15,24 @@ public function theEmbassyBonusFunc():Boolean
 		addButton(0,"Kui-tan",approachUGCRepOnMyrel,undefined,"Kui-tan","The kui-tan at the desk seems to be in charge here. You'll need to talk to him to clear security, you reckon.");
 		return true;
 	}
-	else addButton(0,"Juro",talkToAmbassadorJuro,undefined,"Juro","Speak with Juro, the kui-tan diplomat who greeted you when you first arrived.");
+	else
+	{
+		
+		
+		addButton(0, "Juro", talkToAmbassadorJuro, undefined, "Juro", "Speak with Juro, the kui-tan diplomat who greeted you when you first arrived.");
+	}
+	
+	if (flags["BOTHRIOC_EMBASSY_ENTERED"] == undefined)
+	{
+		if (!CodexManager.entryUnlocked("Bothrioc")) output(" Some somberly-colored creatures");
+		else output(" Some bothrioc");
+		output(" are intently dusting and polishing the doors.");
+	}
+	else
+	{
+		output(" To the south are the offices in which the Bothrioc Embassy has installed itself.");
+	}
+	
 	//=========================
 	//LYRALLA
 	//=========================
@@ -49,6 +68,7 @@ public function theEmbassyBonusFunc():Boolean
 			addButton(1,"Lyralla",approachingLyralla,undefined,"Lyralla","Approach the diplomat from Gildenmere.");
 		}
 	}
+	
 	return false;
 }
 public function lyrallaAndJuroInCloset():Boolean
@@ -92,6 +112,10 @@ public function approachUGCRepOnMyrel():void
 
 	output("\n\nHe sighs, a long-suffering escape of breath. <i>“If you want to get down to the myrmedion cities, you’ll need to talk to their ambassadors here to get the proper paperwork done: Lyralla with the gold myr,”</i> he points to a golden-plated myr female sitting at the desk beside his: she looks like she’s made of more chrome than chitin, with several cybernetic parts awkwardly bolted onto her natural armor. Quite out of place compared to the rest of the tech here. <i>“And Colonel Nehzara for the red myr,”</i> he points across the thoroughfare to an open side door, leading out to what looks to be a warehouse. A pair of armed, red-chitined myr women stand on either side of the entrance, clad in heavy trench coats and gas masks.");
 
+	output("\n\n<i>“And those guys?”</i> you query, pointing at the flat-chested, four-armed, black-chitined creatures that are busily scrubbing and polishing a marble doorway a short distance behind him.");
+
+	output("\n\n<i>“Ara Kei Enya’s mob. You have no reason to talk to them,”</i> Juro returns, scribbling away. <i>“I don’t strongly recommend it, either.”</i>");
+	
 	output("\n\nThe ambassador returns your credentials and tells you that you’re clear to go. <i>“Is there anything else I can do for you, " + pc.mf("Mister","Miss") + " Steele?”</i>");
 
 	//Unlock Lyralla and Nehz from Embassy menu. - done automatically via flags["MYRELLION_EMBASSY_VISITED"] = 1; in theEmbassyBonusFunc()

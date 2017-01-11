@@ -72,7 +72,7 @@ public function supGobbles2014CanadaEdition():void
 	// add tit milker check
 	if (StatTracking.getStat("milkers/breast milker uses") > 0)
 	{
-		output("  You’re not used to cows coming right up and asking for help. There’s attendants for that, after all.");
+		output(" You’re not used to cows coming right up and asking for help. There’s attendants for that, after all.");
 		if (StatTracking.getStat("milkers/breast milker uses") > 0) output(" Not that you wouldn’t mind a little hands-on time with the cute little redhead.");
 	}
 	
@@ -333,17 +333,17 @@ public function canadaTheTurkeyRepeats():void
 {
 	clearOutput();
 	gobblesHeader();
-	output("As you're making your way through the milk barn's door, you feel a gentle tug on your arm from amid the herd of cowgirls streaming past you. You turn around, ");
+	output("As you’re making your way through the milk barn’s door, you feel a gentle tug on your arm from amid the herd of cowgirls streaming past you. You turn around, ");
 	if(pc.tallness < 60) output("almost planting your face into a pair of ludicrously big breasts attached to an all-around voluptuous cow");
 	else if(pc.tallness < 72) output("coming eye to eye with a familiar cow");
 	else output("and find yourself looking around over the herd heads until another tug brings your attention down to a small but very, very buxom cow");
-	output(". Well, maybe <i>cow</i> isn't entirely right: rather than a tail, she's got a great big plumage of reddish-brown feathers jutting up behind her from her lacy white panties, nearly as tall as she is. You grin as you recognize the canadian turkey-cow-girl clutching your arm");
+	output(". Well, maybe <i>cow</i> isn’t entirely right: rather than a tail, she’s got a great big plumage of reddish-brown feathers jutting up behind her from her lacy white panties, nearly as tall as she is. You grin as you recognize the canadian turkey-cow-girl clutching your arm");
 	//if first time: 
 	if(flags["REPEAT_GOBBLES_MILKED"] == undefined)
 	{
 		output(", though she certainly looks a bit different from last time you saw her");
 	}
-	output(". Her big, blue eyes are outlined with glittering navy eyeliner, and she's wearing a dark brown maternity-style bra, so sheer its practically transparent, covered with long leather tassels that hang down almost to her waist. Together, her little red nose ring, big tail-feathers, and huge breasts give her a playfully festive, suggestive look.");
+	output(". Her big, blue eyes are outlined with glittering navy eyeliner, and she’s wearing a dark brown maternity-style bra, so sheer its practically transparent, covered with long leather tassels that hang down almost to her waist. Together, her little red nose ring, big tail-feathers, and huge breasts give her a playfully festive, suggestive look.");
 	output("\n\n<i>“Hi,”</i> she says simply, pressing herself up against you, letting you feel those big, full breasts hot against your [pc.skinFurScales]. Her blue eyes flutter ");
 	if(pc.tallness >= 72) output("up ");
 	else output("down ");
@@ -429,7 +429,7 @@ public function milkGobblesRepeat():void
 	output("\n\nSlowly, you guide the avian-adorned cow-girl over to the stools and ease her down onto her knees, resting her belly on a stool-top with her tits propped up on the edge of the bucket. With her settled in, you ");
 	if(pc.isTaur() && pc.isNaga()) output("push the other stool out of the way and seat yourself on your animalistic hind-quarters");
 	else output("pull the other stool up and take a seat behind her. Excitedly, Canada wiggles her backside at you, making a little dance of waving feathers tickling your nose until you give her a firm spank to calm her down. She makes a startled little squeal and stretches out to move the feathered tail out of your way.");
-	output("\n\nOnce she’s done, you reach Around Canada’s small body and run your hands down the soft mounds of her breasts, from under her arms down to the big, puffy pink nipples at their tips. She shivers as your fingers tease her, uttering a soft <i>“moo,”</i> when you wrap them around her teats and give them a gentle tug. It takes a little work to get her started, more than the average cow, but with a few caresses and squeezes you’re soon rewarded by a quivering turkey-cow and a trickle of thick, viscous syrup. The amber liquid drools in tiny beads around your fingers, dripping languidly into the bucket.");
+	output("\n\nOnce she’s done, you reach around Canada’s small body and run your hands down the soft mounds of her breasts, from under her arms down to the big, puffy pink nipples at their tips. She shivers as your fingers tease her, uttering a soft <i>“moo,”</i> when you wrap them around her teats and give them a gentle tug. It takes a little work to get her started, more than the average cow, but with a few caresses and squeezes you’re soon rewarded by a quivering turkey-cow and a trickle of thick, viscous syrup. The amber liquid drools in tiny beads around your fingers, dripping languidly into the bucket.");
 	output("\n\nAll the tension fades out of Canada’s body after the first few spoonfuls of syrup leave her. She sighs and relaxes, like putty in your hands, utterly surrendering to your massaging hands. You can feel her body shiver and quake as you touch her most sensitive spots or elicit a particularly thick trickle of syrup from her, and you’re quickly aware of radiant wet heat against your [pc.leg] where her crotch is pushing up against you, desperately soaked with her growing excitement.");
 	output("\n\nYou shift slightly ");
 	if(!pc.isTaur() && !pc.isNaga()) output("in your seat");

@@ -276,7 +276,7 @@
 			}
 			else
 			{
-				output(" Thankfully, it doesn't manage to hit anything.");
+				output(" Thankfully, it doesn’t manage to hit anything.");
 			}
 
 		}
@@ -284,13 +284,17 @@
 		public function faceHug(target:Creature):void
 		{
 			//Moderate lust attack, high success chance. Basic lust attack.
-			output("[attacker.CombatName] leaps forward, lunging towards [target.combatName] with an inhuman banshee's wail. It slams into [target.combatHimHer], barreling [target.combatHimHer] to the deck and pinning [target.combatHimHer] down with its knees. The several tentacles growing from the mutant's crotch lash out, groping and thrusting at");
+			output("[attacker.CombatName] leaps forward, lunging towards [target.combatName] with an inhuman banshee’s wail. It slams into [target.combatHimHer], barreling [target.combatHimHer] to the deck and pinning [target.combatHimHer] down with its knees. The several tentacles growing from the mutant’s crotch lash out, groping and thrusting at");
 			if (target is PlayerCharacter) output(" your");
 			else output(" [target.combatName]’s");
 			output(" face, trying to penetrate.");
 			
-			if (!combatMiss(this, target))
-			{			
+			if(target.hasAirtightSuit())
+			{
+				output(" Fortunately, [target.combatHisHer] airtight suit makes it difficult for the attack to be effective.");
+			}
+			else if (combatMiss(this, target))
+			{
 				output(" [target.CombatHeShe] manage");
 				if (!(target is PlayerCharacter)) output("s");
 				output(" to keep");
@@ -324,9 +328,9 @@
 			CombatManager.addCombatEffect(new StorageClass("Lust Spores Used"));
 			
 			//Rare action. Creates a light Lust DOT on all PC-aligned creatures for 2-4 turns.
-			output("[attacker.CombatName] rears its reddened head back and vomits forth a rush of dark red... mist!? Gas seeps out of the creature's mouth, billowing out around you. You flail your hands out at the growing cloud, trying to wave it away from you... but to no avail. A heavy cloud of red mutant-gunk settles over you");
+			output("[attacker.CombatName] rears its reddened head back and vomits forth a rush of dark red... mist!? Gas seeps out of the creature’s mouth, billowing out around you. You flail your hands out at the growing cloud, trying to wave it away from you... but to no avail. A heavy cloud of red mutant-gunk settles over you");
 			
-			var bothUp:Boolean = true;
+			var bothUp:Boolean = (kGAMECLASS.flags["CHIEF_NEYKKAR_WITH_PC"] == 1);
 			var airtight:Boolean = false;
 			for (var i:int = 0; i < hostileCreatures.length; i++)
 			{
@@ -360,7 +364,7 @@
 			else
 			{
 				output(". Your air-tight suit serves you well, keeping you safe from any effect");
-				if (bothUp) output(", though the same can't be said for your compatriot...");
+				if (bothUp) output(", though the same can’t be said for your compatriot...");
 				output(".");
 			}
 		}

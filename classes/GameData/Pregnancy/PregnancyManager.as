@@ -3,10 +3,12 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.GameData.ChildManager;
+	import classes.GameData.Pregnancy.Handlers.BothriocPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.PsychicTentacles;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerCarryTraining;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerFauxPreg;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
+	import classes.GameData.Pregnancy.Handlers.MilodanPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OviliumEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
@@ -32,6 +34,7 @@
 			PregnancyManager.insertNewHandler(new RenvraEggPregnancy());
 			PregnancyManager.insertNewHandler(new RenvraFullPregnancy());
 			PregnancyManager.insertNewHandler(new CockvinePregnancy());
+			PregnancyManager.insertNewHandler(new MilodanPregnancyHandler());
 			PregnancyManager.insertNewHandler(new NyreaHuntressPregnancy());
 			PregnancyManager.insertNewHandler(new QueenOfTheDeepPregnancy());
 			PregnancyManager.insertNewHandler(new RoyalEggPregnancy());
@@ -41,6 +44,7 @@
 			PregnancyManager.insertNewHandler(new PsychicTentacles());
 			PregnancyManager.insertNewHandler(new SydianPregnancyHandler());
 			PregnancyManager.insertNewHandler(new SeraSpawnPregnancyHandler());
+			PregnancyManager.insertNewHandler(new BothriocPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.

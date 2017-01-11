@@ -17,7 +17,7 @@ public function kiInitRooms():void
 
 	rooms["KI-E27"] = new RoomClass(this);
 	rooms["KI-E27"].roomName = "HANGAR\nDECK";
-	rooms["KI-E27"].description = "The <i>Kashima</i>'s hangar deck is huge and wide open, meant for heavy cargo haulers to be coming and going from it day in and day out, ferrying its minerals out into the galaxy. Aside from the shuttle you came in on, though, the deck is completely devoid of ships. Not even the vessel's emergency lander is here. What the hell happened to everything?";
+	rooms["KI-E27"].description = "The <i>Kashima</i>’s hangar deck is huge and wide open, meant for heavy cargo haulers to be coming and going from it day in and day out, ferrying its minerals out into the galaxy. Aside from the shuttle you came in on, though, the deck is completely devoid of ships. Not even the vessel’s emergency lander is here. What the hell happened to everything?";
 	rooms["KI-E27"].runOnEnter = kiApproachingEscapeShuttle;
 	rooms["KI-E27"].planet = planetName;
 	rooms["KI-E27"].system = systemName;
@@ -57,7 +57,7 @@ public function kiInitRooms():void
 	// Command Deck -> Medbay
 	rooms["KI-H16"] = new RoomClass(this);
 	rooms["KI-H16"].roomName = "\nMEDBAY";
-	rooms["KI-H16"].description = "The <i>Kashima</i>'s medical bay is about what you'd expect for a large-crew, long-mission ship: spacious, high-tech, and well-equipped. It's been ransacked by the creatures that now call the vessel home, with equipment toppled and chemicals spilled every which way. A single viewport gives you a marvelous overlook of the rocky ball the <i>Kashima</i>'s attached to: lifeless, gray and rocky. The med-bay reeks of sex, like you just missed an orgy in here.\n\nThe place looks secure enough for you to take a load off and rest up.";
+	rooms["KI-H16"].description = "The <i>Kashima</i>’s medical bay is about what you’d expect for a large-crew, long-mission ship: spacious, high-tech, and well-equipped. It’s been ransacked by the creatures that now call the vessel home, with equipment toppled and chemicals spilled every which way. A single viewport gives you a marvelous overlook of the rocky ball the <i>Kashima</i>’s attached to: lifeless, gray and rocky. The med-bay reeks of sex, like you just missed an orgy in here.\n\nThe place looks secure enough for you to take a load off and rest up.";
 	rooms["KI-H16"].runOnEnter = kiEnterMedbay;
 	rooms["KI-H16"].planet = planetName;
 	rooms["KI-H16"].system = systemName;
@@ -68,7 +68,7 @@ public function kiInitRooms():void
 
 	rooms["KI-H18"] = new RoomClass(this);
 	rooms["KI-H18"].roomName = "COMMAND\nDECK";
-	rooms["KI-H18"].description = "A single long corridor runs from the <i>Kashima</i>'s bridge to the rear of the ship's body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nThere's a semi-transparent window to the north with the words ‘MEDBAY’ stenciled in white across it, overtop the galactical med-corp symbol. ";
+	rooms["KI-H18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.\n\nThere’s a semi-transparent window to the north with the words ‘MEDBAY’ stenciled in white across it, overtop the galactic med-corp symbol. ";
 	rooms["KI-H18"].runOnEnter = kiH18RoomFunction;
 	rooms["KI-H18"].planet = planetName;
 	rooms["KI-H18"].system = systemName;
@@ -79,7 +79,7 @@ public function kiInitRooms():void
 
 	rooms["KI-J18"] = new RoomClass(this);
 	rooms["KI-J18"].roomName = "COMMAND\nDECK";
-	rooms["KI-J18"].description = "A single long corridor runs from the <i>Kashima</i>'s bridge to the rear of the ship's body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nThere's a restroom on either side of the corridor here. From the sounds coming from inside them both, you figure entering will only get you into another fight with the mutant crewmen.";
+	rooms["KI-J18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.\n\nThere’s a restroom on either side of the corridor here. From the sounds coming from inside them both, you figure entering will only get you into another fight with the mutant crewmen.";
 	rooms["KI-J18"].runOnEnter = commandDeckRandomEncounter;
 	rooms["KI-J18"].planet = planetName;
 	rooms["KI-J18"].system = systemName;
@@ -90,7 +90,7 @@ public function kiInitRooms():void
 
 	rooms["KI-L18"] = new RoomClass(this);
 	rooms["KI-L18"].roomName = "COMMAND\nDECK";
-	rooms["KI-L18"].description = "A single long corridor runs from the <i>Kashima</i>'s bridge to the rear of the ship's body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nTo the south is a bank of elevators. One set for crew, another meant for handling heavy cargo. Both sets of elevators have been disabled... you don't think you could stand up to another ambush like that again.";
+	rooms["KI-L18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.\n\nTo the south is a bank of elevators. One set for crew, another meant for handling heavy cargo. Both sets of elevators have been disabled... you don’t think you could stand up to another ambush like that again.";
 	rooms["KI-L18"].runOnEnter = kiL18RoomFunction;
 	rooms["KI-L18"].planet = planetName;
 	rooms["KI-L18"].system = systemName;
@@ -102,7 +102,7 @@ public function kiInitRooms():void
 
 	rooms["KI-L20"] = new RoomClass(this);
 	rooms["KI-L20"].roomName = "ELEVATOR\nBANK";
-	rooms["KI-L20"].description = "You're standing in the elevator terminal that connects the handful of decks on the long, slender vessel. Bright purple and pink letters on the bulkhead read ‘COMMAND DECK’. The cargo shaft reeks of cum and other sex-fluids, and the other elevators are sealed under emergency lockdown. Looks like you're not going anywhere here!";
+	rooms["KI-L20"].description = "You’re standing in the elevator terminal that connects the handful of decks on the long, slender vessel. Bright purple and pink letters on the bulkhead read ‘COMMAND DECK’. The cargo shaft reeks of cum and other sex-fluids, and the other elevators are sealed under emergency lockdown. Looks like you’re not going anywhere here!";
 	rooms["KI-L20"].runOnEnter = function():Boolean
 	{
 		flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
@@ -127,7 +127,7 @@ public function kiInitRooms():void
 
 	rooms["KI-N18"] = new RoomClass(this);
 	rooms["KI-N18"].roomName = "COMMAND\nDECK";
-	rooms["KI-N18"].description = "A single long corridor runs from the <i>Kashima</i>'s bridge to the rear of the ship's body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.\n\nAn airlock door sits on the north bulkhead, though the control panel has been ripped out. The wires inside are slathered in spooge, making sure nobody's operating it without a serious deep cleaning.";
+	rooms["KI-N18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.\n\nAn airlock door sits on the north bulkhead, though the control panel has been ripped out. The wires inside are slathered in spooge, making sure nobody’s operating it without a serious deep cleaning.";
 	rooms["KI-N18"].runOnEnter = commandDeckRandomEncounter;
 	rooms["KI-N18"].planet = planetName;
 	rooms["KI-N18"].system = systemName;
@@ -138,7 +138,7 @@ public function kiInitRooms():void
 
 	rooms["KI-R18"] = new RoomClass(this);
 	rooms["KI-R18"].roomName = "KASHIMA’S\nBRIDGE";
-	rooms["KI-R18"].description = "The bridge of the <i>Kashima</i> is a sweeping, curved affair with banks of holo-consoles along the rear bulkheads and the helm and conn positions near a towering forward viewscreen. A captain's chair sits in the center of the room, high above the other stations and all but radiating authority. Flickering lights from the still-active computer banks illuminate an otherwise dark chamber, suffering from critical battle damage. Wires and shards of metal hang from the ceiling and break from shattered bulkhead panels. Cum oozes from above, and slathers the deck pretty much everywhere.\n\nThe fallen Captain Holmes is slumped against his chair, right where you left him.";
+	rooms["KI-R18"].description = "The bridge of the <i>Kashima</i> is a sweeping, curved affair with banks of holo-consoles along the rear bulkheads and the helm and conn positions near a towering forward viewscreen. A captain’s chair sits in the center of the room, high above the other stations and all but radiating authority. Flickering lights from the still-active computer banks illuminate an otherwise dark chamber, suffering from critical battle damage. Wires and shards of metal hang from the ceiling and break from shattered bulkhead panels. Cum oozes from above, and slathers the deck pretty much everywhere.\n\nThe fallen Captain Holmes is slumped against his chair, right where you left him.";
 	rooms["KI-R18"].runOnEnter = kiEnterTheBridge;
 	rooms["KI-R18"].planet = planetName;
 	rooms["KI-R18"].system = systemName;
@@ -148,7 +148,7 @@ public function kiInitRooms():void
 
 	rooms["KI-P18"] = new RoomClass(this);
 	rooms["KI-P18"].roomName = "COMMAND\nDECK";
-	rooms["KI-P18"].description = "A single long corridor runs from the <i>Kashima</i>'s bridge to the rear of the ship's body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozens races, intermingled into an overwhelmingly sexual aroma.";
+	rooms["KI-P18"].description = "A single long corridor runs from the <i>Kashima</i>’s bridge to the rear of the ship’s body. The corridor is dark, barely illuminated by damaged, flickering red emergency lights. Smooth bulkheads are marred by evidence of monstrous debauchery, splattered with the cum of a dozen races, intermingled into an overwhelmingly sexual aroma.";
 	rooms["KI-P18"].runOnEnter = kiP18CommandDeck;
 	rooms["KI-P18"].planet = planetName;
 	rooms["KI-P18"].system = systemName;
@@ -160,7 +160,7 @@ public function kiInitRooms():void
 
 	rooms["KI-P16"] = new RoomClass(this);
 	rooms["KI-P16"].roomName = "CAPTAIN’S\nREADY ROOM";
-	rooms["KI-P16"].description = "The captain of the <i>Kashima</i> has his ready room in good array, with a bookshelf along one bulkhead and a huge holoscreen on the other. His desk has a terminal, several dataslates marked from the ship's departments, and a plate with a half-eaten sandwich and a glass of stale orange juice on it. Looks like he got interrupted during lunch.";
+	rooms["KI-P16"].description = "The captain of the <i>Kashima</i> has his ready room in good array, with a bookshelf along one bulkhead and a huge holoscreen on the other. His desk has a terminal, several dataslates marked from the ship’s departments, and a plate with a half-eaten sandwich and a glass of stale orange juice on it. Looks like he got interrupted during lunch.";
 	rooms["KI-P16"].runOnEnter = kiP16CaptainsReadyRoom;
 	rooms["KI-P16"].planet = planetName;
 	rooms["KI-P16"].system = systemName;
@@ -183,7 +183,7 @@ public function kiInitRooms():void
 	
 	rooms["KI-E9"] = new RoomClass(this);
 	rooms["KI-E9"].roomName = "OFFICER’S\nQUARTERS";
-	rooms["KI-E9"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nThe access room, and the vent that brought you to this deck, is just off to the east, offering at least some semblance of a place you could consider safe enough to catch a breather.";
+	rooms["KI-E9"].description = "One of the big draws of working for Steele Tech’s always been the lush accommodations, and the <i>Kashima</i>’s no exception to the rule. The officer’s quarters are arrayed along a winding corridor that’s got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nThe access room, and the vent that brought you to this deck, is just off to the west, offering at least some semblance of a place you could consider safe enough to catch a breather.";
 	rooms["KI-E9"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-E9"].planet = planetName;
 	rooms["KI-E9"].system = systemName;
@@ -194,7 +194,7 @@ public function kiInitRooms():void
 
 	rooms["KI-G9"] = new RoomClass(this);
 	rooms["KI-G9"].roomName = "OFFICER’S\nQUARTERS";
-	rooms["KI-G9"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nThe corridor twists north to west here, with an access in the corner leading to a public restroom.";
+	rooms["KI-G9"].description = "One of the big draws of working for Steele Tech’s always been the lush accommodations, and the <i>Kashima</i>’s no exception to the rule. The officer’s quarters are arrayed along a winding corridor that’s got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nThe corridor twists north to west here, with an access in the corner leading to a public restroom.";
 	rooms["KI-G9"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-G9"].planet = planetName;
 	rooms["KI-G9"].system = systemName;
@@ -205,7 +205,7 @@ public function kiInitRooms():void
 
 	rooms["KI-G7"] = new RoomClass(this);
 	rooms["KI-G7"].roomName = "OFFICER’S\nQUARTERS";
-	rooms["KI-G7"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nA matter replicator displaying Steele-brand synth-coffee sits in the wall. Not surprisingly at this point, it's been blasted with spooge. Cum drips out of the spigot, even. How'd that even happen?";
+	rooms["KI-G7"].description = "One of the big draws of working for Steele Tech’s always been the lush accommodations, and the <i>Kashima</i>’s no exception to the rule. The officer’s quarters are arrayed along a winding corridor that’s got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nA matter replicator displaying Steele-brand synth-coffee sits in the wall. Not surprisingly at this point, it’s been blasted with spooge. Cum drips out of the spigot, even. How’d that even happen?";
 	rooms["KI-G7"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-G7"].planet = planetName;
 	rooms["KI-G7"].system = systemName;
@@ -216,7 +216,7 @@ public function kiInitRooms():void
 
 	rooms["KI-G5"] = new RoomClass(this);
 	rooms["KI-G5"].roomName = "OFFICER’S\nQUARTERS";
-	rooms["KI-G5"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nTo the west is the Chief Engineer's quarters. North is the Executive Officer's quarters. Eastward are more rooms.";
+	rooms["KI-G5"].description = "One of the big draws of working for Steele Tech’s always been the lush accommodations, and the <i>Kashima</i>’s no exception to the rule. The officer’s quarters are arrayed along a winding corridor that’s got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nTo the west is the Chief Engineer’s quarters. North is the Executive Officer’s quarters. Eastward are more rooms.";
 	rooms["KI-G5"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-G5"].planet = planetName;
 	rooms["KI-G5"].system = systemName;
@@ -229,7 +229,7 @@ public function kiInitRooms():void
 
 	rooms["KI-E5"] = new RoomClass(this);
 	rooms["KI-E5"].roomName = "CHIEF ENG.\nQUARTERS";
-	rooms["KI-E5"].description = "The chief engineer's abode is fairly cramped compared to the luxury outside -- though that may be largely due to the huge computer bank against the far wall, and the crates of computer and robotics parts scattered about. The room's a mess, though it doesn't show any sign of struggle. Looks like whoever lived here was just a slob. Half a robot's been disassembled on the desk, a male-form chassis with its electronic guts exposed. The exterior reminds you of synth-skin, a little too advanced for a work drone. Looks more like a sexbot to you.";
+	rooms["KI-E5"].description = "The chief engineer’s abode is fairly cramped compared to the luxury outside -- though that may be largely due to the huge computer bank against the far wall, and the crates of computer and robotics parts scattered about. The room’s a mess, though it doesn’t show any sign of struggle. Looks like whoever lived here was just a slob. Half a robot’s been disassembled on the desk, a male-form chassis with its electronic guts exposed. The exterior reminds you of synth-skin, a little too advanced for a work drone. Looks more like a sexbot to you.";
 	rooms["KI-E5"].runOnEnter = kiE5EngineersQuarters;
 	rooms["KI-E5"].planet = planetName;
 	rooms["KI-E5"].system = systemName;
@@ -238,7 +238,7 @@ public function kiInitRooms():void
 
 	rooms["KI-G3"] = new RoomClass(this);
 	rooms["KI-G3"].roomName = "EXECUTIVE\nQUARTERS";
-	rooms["KI-G3"].description = "This room belonged to the <i>Kashima</i>'s XO, and it's been all but completely destroyed. Wall panels are torn out, furniture tossed aside, and what looks like streaks of cum both white and pink are all over the walls. The only thing left mostly intact is the disarrayed, stained bed. The room reeks of sex, almost making you gag.";
+	rooms["KI-G3"].description = "This room belonged to the <i>Kashima</i>’s XO, and it’s been all but completely destroyed. Wall panels are torn out, furniture tossed aside, and what looks like streaks of cum both white and pink are all over the walls. The only thing left mostly intact is the disarrayed, stained bed. The room reeks of sex, almost making you gag.";
 	rooms["KI-G3"].runOnEnter = kiG3Exec;
 	rooms["KI-G3"].planet = planetName;
 	rooms["KI-G3"].system = systemName;
@@ -247,7 +247,7 @@ public function kiInitRooms():void
 
 	rooms["KI-I5"] = new RoomClass(this);
 	rooms["KI-I5"].roomName = "OFFICER’S\nQUARTERS";
-	rooms["KI-I5"].description = "One of the big draws of working for Steele Tech's always been the lush accommodations, and the <i>Kashima</i>'s no exception to the rule. The officer's quarters are arrayed along a winding corridor that's got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nNorth is the Chief Science Officer's quarters. East is the doctor's quarters, marked with the name ‘C.M.O. Elenora Vanderbilt, M.D.’\n\nA passage leading south to a communal kitchen has been crushed in by some sort of explosion, completely blocking your access. Several of the mutant crewmen can be seen beyond the wreckage, vigorously fucking.";
+	rooms["KI-I5"].description = "One of the big draws of working for Steele Tech’s always been the lush accommodations, and the <i>Kashima</i>’s no exception to the rule. The officer’s quarters are arrayed along a winding corridor that’s got lush, thick carpeting and padded bulkheads alight with holoscreens displaying company adverts.\n\nNorth is the Chief Science Officer’s quarters. East is the doctor’s quarters, marked with the name ‘C.M.O. Elenora Vanderbilt, M.D.’\n\nA passage leading south to a communal kitchen has been crushed in by some sort of explosion, completely blocking your access. Several of the mutant crewmen can be seen beyond the wreckage, vigorously fucking.";
 	rooms["KI-I5"].runOnEnter = officersDeckRandomEncounter;
 	rooms["KI-I5"].planet = planetName;
 	rooms["KI-I5"].system = systemName;
@@ -259,7 +259,7 @@ public function kiInitRooms():void
 
 	rooms["KI-K5"] = new RoomClass(this);
 	rooms["KI-K5"].roomName = "C.M.O’s\nQUARTERS";
-	rooms["KI-K5"].description = "Elenora's quarters are surprisingly tidy, given the state of the rest of the ship. A medical kit is on the wall, hanging open, and a holo-terminal is on the desk below it, still active and showing a flickering image of an extranet dating service with a half-filled profile. A dresser full of clothes stands against one wall, and several degrees and honors are hanging above it.";
+	rooms["KI-K5"].description = "Elenora’s quarters are surprisingly tidy, given the state of the rest of the ship. A medical kit is on the wall, hanging open, and a holo-terminal is on the desk below it, still active and showing a flickering image of an extranet dating service with a half-filled profile. A dresser full of clothes stands against one wall, and several degrees and honors are hanging above it.";
 	rooms["KI-K5"].runOnEnter = kiK5CMOQuarters;
 	rooms["KI-K5"].planet = planetName;
 	rooms["KI-K5"].system = systemName;
@@ -287,7 +287,7 @@ public function kiInitRooms():void
 	
 	rooms["KI-EngineeringVent"] = new RoomClass(this);
 	rooms["KI-EngineeringVent"].roomName = "ACCESS\nROOM";
-	rooms["KI-EngineeringVent"].description = "A near-claustrophbic room full of random odds and ends, obviously used as a makeshift place for storage rather than its clearly intended purpose as a means of accessing an array of maintenance shafts around the ship.";
+	rooms["KI-EngineeringVent"].description = "A near-claustrophobic room full of random odds and ends, obviously used as a makeshift place for storage rather than its clearly intended purpose as a means of accessing an array of maintenance shafts around the ship.";
 	rooms["KI-EngineeringVent"].eastExit = "KI-Engineering";
 	rooms["KI-EngineeringVent"].runOnEnter = kiEngineeringAccessRoom;
 	rooms["KI-EngineeringVent"].planet = planetName;
