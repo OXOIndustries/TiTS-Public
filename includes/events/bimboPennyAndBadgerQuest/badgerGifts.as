@@ -1405,7 +1405,7 @@ public function postBadgerBimboSexSceneShit(orgasmDenialed:Boolean = false):void
 	output("\n\n<i>“Well hey!”</i> she giggles. <i>“I wondered where you’d gotten to!”</i>");
 	output("\n\n<i>“Hey there...”</i> you answer cautiously. You’re a little worried about her trying to go all mad scientist on you again, given how she was when you first met, so just to check there won’t be any problems you ask, <i>“So, how are you feeling?”</i>");
 	output("\n\nShe thumps her hands down flat against the table in front of her as she eagerly replies. <i>“Oh. Man. Wow [pc.name], this is like, </i>amazing<i>. I mean, I always knew it was good, but like, finally just letting go and going all the way myself? </i>Super<i> fun.”</i>");
-	output("\n\nLooks like you don’t have to worry about her trying to fight you or anything, she’s clearly far too happy with how she is now to even the slightest bit mad.");
+	output("\n\nLooks like you don’t have to worry about her trying to fight you or anything, she’s clearly far too happy with how she is now to even be the slightest bit mad.");
 	output("\n\nBefore you can say anything though, she adds quickly, <i>“Oh! That’s right!”</i> Looking around for a few moments, she eventually manages to find a tablet. After giving it a few careful taps - her tongue stuck out the side of her mouth as she concentrates - she looks up at you again. <i>“I promised to pay you for zapping someone and you did, so, there you go!”</i>");
 	output("\n\nYour codex beeps, and looking down you see an incoming funds transfer. <b>She just sent you 3,000 credits. Nice!</b>");
 	pc.credits += 3000;

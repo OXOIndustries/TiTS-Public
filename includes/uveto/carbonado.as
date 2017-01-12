@@ -1114,10 +1114,9 @@ public function cfsGoLewdMassage():void
 	else
 	{
 		output("\n\n");
-		if (pc.hasCock()) output("You didn’t think I’d forget about this, did you?”</i> she teases");
-		else if (pc.vaginas.length == 1) output("There’s always stress to be worked out down here,”</i> she jokes");
-		else output("I’m always surprised by the variety of body types we get here,”</i> she marvels");
-		output("”</i> she");
+		if (pc.hasCock()) output("<i>“You didn’t think I’d forget about this, did you?”</i> she teases");
+		else if (pc.vaginas.length == 1) output("<i>“There’s always stress to be worked out down here,”</i> she jokes");
+		else output("<i>“I’m always surprised by the variety of body types we get here,”</i> she marvels");
 		output(", methodically squeezing your inner thighs. She lets two fingers slip between your folds, slowly circling the hole. You gasp as she slips inside, the penetration made all too easy by her natural lubricant.");
 
 		output("\n\nShe wastes no time, plugging your [pc.cunt] with");

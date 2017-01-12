@@ -119,14 +119,16 @@ package classes.Items.Transformatives {
 		}
 		
 		private function _growFirstCock(target:Creature):void {
-			output("\n\nYour heart starts beating much faster as your body heats up, and you begin to sweat. After a few moments, your entire body is drenched, and your veins are visibly throbbing; almost like they are going to burst. You're both exhausted and uncomfortable as a new rippling sensation manifests in your loins. You decide it's best to sit down.");
+			output("\n\nYour heart starts beating much faster as your body heats up, and you begin to sweat. After a few moments, your entire body is drenched, and your veins are visibly throbbing; almost like they are going to burst. You’re both exhausted and uncomfortable as a new rippling sensation manifests in your loins. You decide it’s best to sit down.");
 			output("\n\nSlowly, you can feel the palpitations all over your body dissipating, except for those on your crotch, which is turning reddish with the excess blood pooling there. Seems like the microsurgeons were collecting blood from the rest of your body. The throbbing continues until a tiny lump begins to form");
 			if(target.hasVagina()) output(" just above your vagina");
 			else output(" on your crotch");
-			output(". You touch the ever-expanding length and feel a wave of ecstasy assault your body. You can't help but to start masturbating midway through the transformation. After the cockhead twists into shape, a sudden dribble of pre-cum emerges from the newly-formed urethra, slipping between your fingers, slicking your length and making the masturbation far easier. It doesn't take long after to reach your peak, ejaculating a few meager, pathetic strings onto your [pc.belly]. You take a few breaths as you revel in your afterglow.");
+			output(". You touch the ever-expanding length and feel a wave of ecstasy assault your body. You can’t help but to start masturbating midway through the transformation. After the cockhead twists into shape, a sudden dribble of pre-cum emerges from the newly-formed urethra, slipping between your fingers, slicking your length and making the masturbation far easier. It doesn’t take long after to reach your peak, ejaculating a few meager, pathetic strings onto your [pc.belly]. You take a few breaths as you revel in your afterglow.");
 			
 			//grow new cock
 			target.cocks[0] = new CockClass();
+			var prevLength:Number = target.cocks[0].cLengthRaw;
+			var prevThickness:Number = target.cocks[0].cThicknessRatioRaw;
 			//set type dependent on race
 			target.setNewCockValues(0);
 			//set length to 4 inches
@@ -147,97 +149,87 @@ package classes.Items.Transformatives {
 			output("<b>");
 			
 			var pcRace:String = target.race();
-			
-			//if some kind of horse, rabbit, ovir, minotaur variant
-			if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", target.mlpRace())) {
-				output(" Your [pc.cockColor] cock has a medial ring and flares like a horse's");
-			
-			//if some kind of ausaur, canine, fox, kitsune variant
-			} else if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph", "canine-taur", "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) {
-				output(" Your [pc.cockColor], veiny cock has a tapered head and a knot like");
-				if (InCollection(pcRace, "ausar", "half-ausar")) output(" an ausar's");
-				else if (InCollection(pcRace, "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) output(" a fox's");
-				else output(" canine's");
-			
-			//if some kind of keirith, feline, neko, chakat variant
-			} else if (InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph", "feline-taur", "nekomata", "nekomata-taur", "chakat")) {
-				output(" Your [pc.cockColor] cock is ringed in soft, nubby 'barbs,' like a kaithrit");
-			
-			//if some kind of leithan, naleen, naga, snake variant
-			} else if(InCollection(pcRace, "leithan", "half-leithan", "naleen", "naga", "snake-morph")) {
-				output(" Your [pc.cockColor] cock is glossy smooth and tapers towards the tip");
-			
-			//if a zill
-			} else if (pcRace == "zil") {
-				output(" Your glossy [pc.cockColor] dick is much like the one of a human, but with a longer, stretchier foreskin");
-			
-			//if some kinf of Kui-tan variant
-			} else if(InCollection(pcRace, "kui-tan", "half kui-tan")) {
-				output(" Your [pc.cockColor] dick has one large knot at the base followed by two smaller ones");
-			
-			//if some kind of raskvel variant
-			} else if(InCollection(pcRace, "raskvel", "raskvel-morph", "rask-morph")) {
-				output(" Your [pc.cockColor] cock is pointed and hides inside a sheath most of the time");
-			
-			// some kind of dragon, fafnir variant
-			} if(InCollection(pcRace, "fanfir", "dragon-morph", "dragon-taur", "dragonne", "dragonne-taur")) {
-				output(" Your [pc.cockColor] dick is tapered with a knot like bulb at its base");
-			
-			//if syndian
-			} else if(pcRace == "sydian") {
-				output(" Your [pc.cockColor] cock is covered in tiny brushes");
-			
-			//if demon
-			} else if(pcRace == "demon-morph") {
-				output(" Your [pc.cockColor] cock is shiny, covered in sensitive nodules and the head has rubbery protrusions, like the one of a demon");
-			
-			//if some kind of tentacke or cock-vine variant
-			} else if(InCollection(pcRace, "tentacle beast", "cockvine-morph", "plant-morph", "treant")) {
-				output(" Your [pc.cockColor] cock is constantly moist and moving with a slightly over-sized mushroom-like head");
-			
-			//future variant if some kind of anemone or siren cock is added to the game
-			} else if(InCollection(pcRace, "anemone", "siren")) {
-				output(" Your [pc.cockColor]-colored cock is covered in tentacles riddled with poisonous aphrodisiac");
-			
-			//if kangaroo
-			} else if(pcRace == "kangaroo-morph") {
-				output(" Your [pc.cockColor] dick is much like a taproot that undulates gently and tapers to a point when erect");
-			
-			//if daynar
-			} else if(pcRace == "daynar") {
-				output(" Your [pc.cockColor] cock has thick enough skin to obscure the veins and a tapered tip");
-				
-			//if some kind of gabilani or goblin
-			} else if(InCollection(pcRace, "gabilani", "goblin")) {
-				output(" Your [pc.cockColor] cock is much like a human's with the exception of having an extra cockhead stacked on top of the other");
-			
-			//future variant for sionachs
-			} else if(InCollection(pcRace, "sionach", "sionach-morph")) {
-				output(" Your [pc.cockColor] cock has a pyramid-shaped head and the curved shaft is covered in reptilian bulbs");
-			
-			//future variant for siels
-			} else if(pcRace == "siel") {
-				output(" Your cock looks like a lumpy caterpillar with a small [pc.cockColor] tip");
-			
-			//if race is simii
-			} else if(pcRace == "simii") {
-				output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
-			
-			//if race is saurian
-			} else if(pcRace == "saurian") {
-				output("Your [pc.cockColor]-colored dick is gigantic and massively thick, like that of a prehistoric thunder lizard");
-			
-			//if race is venus pitcher
-			} else if(pcRace == "venus pitcher") {
-				output("Your [pc.cockColor] cock appears very vine-like, moving to and fro like some kind of sentient plant");
-			
-			//if some form of gryvain variant
-			} else if(InCollection(pcRace, "gryvain", "half-gryvain")) {
-				output("Your dick is knotted at the base, ribbed along the shaft, and covered in [pc.cockColor] scales");
-				
-			//for humans
-			} else {
-				output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.cockColor] [pc.skinNoun]");
+			switch(target.cocks[0].cType)
+			{
+				case GLOBAL.TYPE_EQUINE:
+					output("Your [pc.cockColor] cock has a medial ring and flares like a horse’s");
+					break;
+				case GLOBAL.TYPE_CANINE:
+					output("Your [pc.cockColor], veiny cock has a tapered head and a knot");
+					if(pcRace.indexOf("ausar") != -1) output(" like an ausar’s");
+					else if (InCollection(pcRace, "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) output(" a fox’s");
+					else output(" like a canine’s");
+					break;
+				case GLOBAL.TYPE_FELINE:
+					output("Your [pc.cockColor] cock is very much like a spike and is covered in soft barbs");
+					break;
+				case GLOBAL.TYPE_AVIAN:
+					output("Your [pc.cockColor] cock is slightly wavy shaped and tapered at the tip");
+					break;
+				case GLOBAL.TYPE_NAGA:
+					output("Your [pc.cockColor] cock is glossy smooth and tapers towards the tip");
+					break;
+				case GLOBAL.TYPE_BEE:
+					output("Your glossy [pc.cockColor] dick is much like the one of a human, but with a longer, stretchier foreskin");
+					break;
+				case GLOBAL.TYPE_KUITAN:
+					output("Your [pc.cockColor] dick has one large knot at the base followed by two smaller ones");
+					break;
+				case GLOBAL.TYPE_GRYVAIN:
+					output("Your dick is knoted at the base, ribbed along the shaft, and covered in [pc.cockColor] scales");
+					break;
+				case GLOBAL.TYPE_VULPINE:
+					output("Your [pc.cockColor], veiny cock has a tapered head and a knot like a fox");
+					break;
+				case GLOBAL.TYPE_RASKVEL:
+					output("Your [pc.cockColor] cock is pointed and hides inside a sheath most of the time");
+					break;
+				case GLOBAL.TYPE_DRACONIC:
+					output("Your [pc.cockColor] dick is tapered with a knot like bulb at its base");
+					break;
+				case GLOBAL.TYPE_DEMONIC:
+					output("Your [pc.cockColor] cock is shiny, covered in sensitive nodules and the head has rubbery protrusions, like the one of a demon");
+					break;
+				case GLOBAL.TYPE_KANGAROO:
+					output("Your [pc.cockColor] dick is much like a taproot that undulates gently and tapers to a point when erect");
+					break;
+				case GLOBAL.TYPE_SIMII:
+					output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
+					break;
+				case GLOBAL.TYPE_SAURIAN:
+					if(prevLength < 20 || prevThickness < 3) output("The throbbing sensation hits you again and your new phallus continues to grow bigger... ");
+					output("Your [pc.cockColor]-colored dick is gigantic and massively thick, like that of a prehistoric thunder lizard");
+					break;
+				case GLOBAL.TYPE_VENUSPITCHER:
+					output("Your [pc.cockColor] cock appears very vine-like, moving to and fro like some kind of sentient plant");
+					break;
+				case GLOBAL.TYPE_SYDIAN:
+					output("Your [pc.cockColor] cock is covered in tiny brushes");
+					break;
+				case GLOBAL.TYPE_DAYNAR:
+					output("Your [pc.cockColor] cock has thick enough skin to obscure the veins and a tapered tip");
+					break;
+				case GLOBAL.TYPE_GABILANI:
+					output("Your [pc.cockColor] cock is much like a human with the exception of having an extra cockhead adjacent to the other");
+					break;
+				case GLOBAL.TYPE_TENTACLE:
+					output("Your [pc.cockColor] cock is constantly moist and moving with a slightly oversized mushroom-like head");
+					break;
+				case GLOBAL.TYPE_ANEMONE:
+				case GLOBAL.TYPE_SIREN:
+					output("Your [pc.cockColor]-colored cock is covered in tentacles riddled with poisonous aphrodisiac");
+					break;
+				case GLOBAL.TYPE_SYNTHETIC:
+					output("Your new appendage changes into a more [pc.cockColor] color at its tip, making it appear very synthetic");
+					break;
+				case GLOBAL.TYPE_INHUMAN:
+					if(pcRace.indexOf("sionach") != -1) output("Your [pc.cockColor] cock has a pyramid-shaped head and the curved shaft is covered in reptilian bulbs");
+					if(pcRace.indexOf("siel") != -1) output("Your cock looks like a lumpy caterpillar with a small [pc.cockColor] tip");
+					else output("Your [pc.cockColor] cock appears very inhuman in shape");
+					break;
+				default:
+					output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
+					break;
 			}
 			output("!</b>");
 			
@@ -252,7 +244,7 @@ package classes.Items.Transformatives {
 			//not sure if this is ever important, but... make this new cock virginal again
 			target.cocks[1].virgin = true;
 			
-			output("\n\nStrange ripples begin to crawl up your [pc.cock], slowly stimulating its flaccid length into full mast. As your arousal grows, so does your lightheadedness. Feeling faint, you try to sit down but end up falling on your ass instead, your. Gently, you rub your sore bum, only stopping when you realize you're already stroking your rock-hard member with the other hand.");
+			output("\n\nStrange ripples begin to crawl up your [pc.cock], slowly stimulating its flaccid length into full mast. As your arousal grows, so does your lightheadedness. Feeling faint, you try to sit down but end up falling on your ass instead, your. Gently, you rub your sore bum, only stopping when you realize you’re already stroking your rock-hard member with the other hand.");
 			output("\n\nYou follow suit by wrapping your other hand around its growing girth and resume stroking. The prickly ripples feel amazing, specially when pressed against the shaft by your firm grip. Your [pc.cockHead] grows hotter as the ripples intensify there. Pre-cum begins to copiously stream down from its slits... its two slits?");
 			output("\n\nBut before you can pay any mind to your swollen [pc.cockHead], the waves of lust climbing through your shaft grow stronger. Your hands can barely contain its newfound girth, already twice its original size. A tiny gap forms between the cumslits, before splitting into two cockheads on top of an extremely engorged shaft. The undulations slow down as the gap grows wider, then your sole cock divides into two. With one on each hand, you languidly pump them up and down until you orgasm, coating your hands in [pc.cum]. You wipe your fingers clean, finishing <b>just as they fully separate into two identical [pc.cocks]!</b>");
 			
@@ -326,9 +318,9 @@ package classes.Items.Transformatives {
 				//if no valid options, print virection failed text
 				if(options.length == 0) {
 					output("\n\nAfter waiting a long while, you realize that your [pc.cocks]");
-					if(target.cocks.length == 1) output(" isn't");
-					else output(" aren't");
-					output(" going to transform. Virection probably can't grow");
+					if(target.cocks.length == 1) output(" isn’t");
+					else output(" aren’t");
+					output(" going to transform. Virection probably can’t grow");
 					if(target.cocks.length == 1) output(" it");
 					else output(" them");
 					output(" any further.");
@@ -403,7 +395,7 @@ package classes.Items.Transformatives {
 			
 			if(target.cocks[randomCockIndex].thickness() < 7) output(" Your hand easily wraps around it, <b>but it definitely feels thicker than before.</b>");
 			else if(target.cocks[randomCockIndex].thickness() >= 7 && target.cocks[randomCockIndex].thickness() < 13) output(" You need two hands to fully measure its girth, and after a few strokes, <b>you realize it’s even thicker than before.</b>");
-			else output(" Even with both your hands, you can't fully encompass its monstrous girth. <b>You can hardly believe it, but it's even thicker than before!</b>");
+			else output(" Even with both your hands, you can’t fully encompass its monstrous girth. <b>You can hardly believe it, but it’s even thicker than before!</b>");
 		}
 		
 		public function _increaseCumQuality(target:Creature):void {
@@ -412,7 +404,7 @@ package classes.Items.Transformatives {
 			
 			output("\n\nYour [pc.balls] quickly warm");
 			if (target.balls <= 1) output("s");
-			output(" up, before gradually cooling down. You pass a finger through your sweaty crotch and sniff it. Your man musk is much stronger than before, alerting you of the changes happening to your body. A quick check with your codex confirms it. <b>You've gotten much more virile!</b>");
+			output(" up, before gradually cooling down. You pass a finger through your sweaty crotch and sniff it. Your man musk is much stronger than before, alerting you of the changes happening to your body. A quick check with your codex confirms it. <b>You’ve gotten much more virile!</b>");
 		}
 	}
 }

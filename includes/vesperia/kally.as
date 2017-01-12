@@ -1562,7 +1562,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 		output(" Her breath is hot in your ear as she wrestles you into place, pressing your nose into sheets that smell ");
 		if(pc.isBimbo()) output("delightfully like cum. Mmm... you wish your sheets smelled half this wonderful.");
 		else if(kiroRoughButtfucks() >= 2) output("vaguely of sweat and stale cum. Exactly like you expect to smell by the time she’s done with you.");
-		else output("a little more like stale cum than you’d prefer, but you know from experience your opinion can change one Kiro starts to have her way with you.");
+		else output("a little more like stale cum than you’d prefer, but you know from experience your opinion can change once Kiro starts to have her way with you.");
 	}
 	//Repeat Intro
 	else if(kiroRoughButtfucks() > 0)
@@ -1598,7 +1598,7 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 		output(" Her breath is hot in your ear as she wrestles you into place, pressing your nose into sheets that smell ");
 		if(pc.isBimbo()) output("delightfully like cum. Mmm... you wish your sheets smelled half this wonderful.");
 		else if(kiroRoughButtfucks() >= 2) output("vaguely of sweat and stale cum. Exactly like you expect to smell by the time she’s done with you.");
-		else output("a little more like stale cum than you’d prefer, but you know from experience your opinion can change one Kiro starts to have her way with you.");
+		else output("a little more like stale cum than you’d prefer, but you know from experience your opinion can change once Kiro starts to have her way with you.");
 	}
 	//Merge Intros
 	output("\n\n<i>“You think you’re so clever, don’t you slut?”</i> Kiro grabs you by the neck, tight enough for you to feel the points of her claws ");
