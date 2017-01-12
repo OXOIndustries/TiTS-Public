@@ -49,7 +49,7 @@ package classes.Characters
 			this.tallness = 66;
 			this.thickness = 100;
 			this.tone = 0;
-			this.hairColor = "white";
+			this.hairColor = "platinum blonde";
 			this.scaleColor = "pink";
 			this.furColor = "white";
 			this.hairLength = 18;

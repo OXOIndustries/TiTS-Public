@@ -105,7 +105,7 @@ public function pippaAffection(addAffection:int = 0):int
 	if (flags["PIPPA_AFFECTION"] > PIPPA_AFFECTION_MAX) flags["PIPPA_AFFECTION"] = PIPPA_AFFECTION_MAX;
 	else if (flags["PIPPA_AFFECTION"] < PIPPA_AFFECTION_MIN) flags["PIPPA_AFFECTION"] = PIPPA_AFFECTION_MIN;
 	
-	if (flags["PIPPA_AFFECTION"] >= PIPPA_AFFECTION_MASSAGE && flags["PIPPA_NURU_TIMER"] == undefined) flags["PIPPA_NURU_TIMER"] = GetGameTimestamp();
+	if (flags["PIPPA_AFFECTION"] >= PIPPA_AFFECTION_MASSAGE && flags["PIPPA_NURU_TIMER"] == undefined && !pc.isTaur()) flags["PIPPA_NURU_TIMER"] = GetGameTimestamp();
 	
 	return flags["PIPPA_AFFECTION"];
 }
@@ -346,7 +346,7 @@ public function meetPippa(itemGiven:String = ""):void
 		processTime(3);
 		showPippa();
 		
-		output("Your finger's hardly left the buzzer when the door swings open.  Standing on the other side of the door is a young woman who seems to have modded herself into a pig-morph.  Most notably, she has a pig's nose despite an otherwise human face.  She also has pig's ears and light pink skin.  You barely notice, but she also has a soft layer of sparse, white hair covering her body.  It matches the color of her shoulder-length hair, which is, perhaps appropriately, partially tied into fluffy pigtails that frame the sides of her face.  She's a decent height, about five and a half feet tall.  She has a chubby body, her stomach poking out over tight, gray yoga pants, so stretched as to be almost transparent in the right light.  Despite her pudgy stomach, she maintains a curvy figure, with hips and an ass that are larger still.  Her thick, digitigrade legs end in cloven hoofs.  She has huge, J-cup breasts, barely contained in a tight, white tanktop that ends just above her belly button.  She has an excited look on her face, but upon taking you in, it quickly turns to disappointment.");
+		output("Your finger's hardly left the buzzer when the door swings open.  Standing on the other side of the door is a young woman who seems to have modded herself into a pig-morph.  Most notably, she has a pig's nose despite an otherwise human face.  She also has pig's ears and light pink skin.  You barely notice, but she also has a soft layer of sparse, [pippa.hairColor] hair covering her body.  It matches the color of her shoulder-length hair, which is, perhaps appropriately, partially tied into bun pigtails in the back.  She's a decent height, about five and a half feet tall.  She has a chubby body, her stomach poking out over tight, gray yoga pants, so stretched as to be almost transparent in the right light.  Despite her pudgy stomach, she maintains a curvy figure, with hips and an ass that are larger still.  Her thick, digitigrade legs end in cloven hoofs.  She has [pippa.breastCupSize] breasts, barely contained in a tight, white tanktop that ends just above her belly button.  She has an excited look on her face, but upon taking you in, it quickly turns to disappointment.");
 		
 		output("\n\n<i>“Oh.  I'd been expecting someone bringing me food.  You are not here to bring me food.”</i>");
 		
@@ -1033,8 +1033,8 @@ public function pippaMainMenu(arg:String = ""):void
 	
 	addButton(5, "Massage", pippaStandardMassage, undefined, "Standard Massage", "Get a massage from Pippa\n\nCost: " + pippaStandardMassageCost() + " Credits");
 	
-	if (MailManager.isEntryViewed("pippa_nuru")) addButton(6, "Nuru Massage", pippaSpecialMassage, undefined, "Nuru Massage", "Get a full, body-to-body massage from Pippa\n\nCost: " + pippaSpecialMassageCost() + " Credits");
-	else addDisabledButton(6, "Locked", "Locked", "You'll have to get to know Pippa better for this.");
+	if (MailManager.isEntryViewed("pippa_nuru") && !pc.isTaur()) addButton(6, "Nuru Massage", pippaSpecialMassage, undefined, "Nuru Massage", "Get a full, body-to-body massage from Pippa\n\nCost: " + pippaSpecialMassageCost() + " Credits");
+	else addDisabledButton(6, "Locked", "Locked", "You'll have to get to know Pippa better for this and not be a taur.");
 	
 	addButton(14, "Leave", mainGameMenu);
 }
@@ -1277,7 +1277,7 @@ public function pippaFuckPussy(cockOrStraponIndex:int):void
 	if(pc.isCrotchGarbed()) output("clothes.");
 	else output("gear.");
 	
-	output("\n\nWhile you get comfortably settled into Pippa's bed, she puts on a little show, slowly stripping out of her tight clothes.  First, facing toward you, she pulls her tanktop up over her head, letting her [pippa.tits] and [pippa.belly] fall free.  She crosses her arms under her tits, cradling them.  Her big nipples are already erect, standing in the middle of her wide, brown-pink areola.  Next, still facing you, she bends over, and pulls down her yoga pants.  She shakes back and forth a bit, setting her giant boobs swinging.  Finally, she turns around while spreading her legs, treating you to an eyeful of her [pippa.ass] and her spread [pippa.pussyNoun], adorned with a tuft of white hair.");
+	output("\n\nWhile you get comfortably settled into Pippa's bed, she puts on a little show, slowly stripping out of her tight clothes.  First, facing toward you, she pulls her tanktop up over her head, letting her [pippa.tits] and [pippa.belly] fall free.  She crosses her arms under her tits, cradling them.  Her big nipples are already erect, standing in the middle of her wide, brown-pink areola.  Next, still facing you, she bends over, and pulls down her yoga pants.  She shakes back and forth a bit, setting her giant boobs swinging.  Finally, she turns around while spreading her legs, treating you to an eyeful of her [pippa.ass] and her spread [pippa.pussyNoun], adorned with a tuft of platinum blonde hair.");
 	
 	output("\n\nFinished with her show, Pippa climbs into bed after you, straddling you, before kissing you down your body.  She starts with a passionate kiss on your [pc.lips], followed by your neck, your [pc.chest], your navel, your inner thigh, and finally, ");
 	
@@ -1849,7 +1849,7 @@ public function pippaAppearance():void
 	
 	output(".");
 	
-	output("\n\nPippa's face, coverd in light pink skin, is mostly human in shape and structure, but where a human's nose would be, she has a pig-like snout.  She has full lips and hazel colored eyes.  Her shoulder-length hair is white, and tied into two fluffy pigtails that frame her face.  Her body is covered in sparse, barely visible hair of the same color.  The hair on her head is parted by two floppy pig ears.");
+	output("\n\nPippa's face, coverd in light pink skin, is mostly human in shape and structure, but where a human's nose would be, she has a pig-like snout.  She has full lips and hazel colored eyes.  Her shoulder-length hair is platinum blonde, and partially tied into two bun pigtails in the back.  Her body is covered in sparse, barely visible hair of the same color.  The hair on her head is parted by two floppy pig ears.");
 	
 	output("\n\nShe has a humanoid upper body, with normal human arms and torso.  She has [pippa.hips] that sexily sway as she walks, and a [pippa.ass] that's only barely contained by her tight pants.  Above her ass is a curly, little pig's tail.  Growing down from her hips are two thick-thighed, digitigrade pig legs, capped in black, cloven hooves.  She has a " + pippa.bellyDescript(true) + ", unsurprising considering her love of food.");
 	
