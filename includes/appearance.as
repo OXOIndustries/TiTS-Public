@@ -788,7 +788,7 @@ public function appearance(forTarget:Creature):void
 			output2(", covered in " + (rand(2) == 0 ? "patches" : "a layer") + " of " + target.skinFurScales(true, true));
 			if (target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(" above the waist and similarly colored fur below");
 		}
-		else if(target.skinType == GLOBAL.SKIN_TYPE_LATEX)
+		else if(target.skinType == GLOBAL.SKIN_TYPE_LATEX || target.hasStatusEffect("Rubber Wrapped"))
 		{
 			output2(", sensually wrapped in a layer of");
 			if(target.statusEffectv1("Latex Skin") > 0)
