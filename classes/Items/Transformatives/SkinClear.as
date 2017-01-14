@@ -402,7 +402,7 @@ package classes.Items.Transformatives
 				case 4:
 					author("Jacques00");
 					
-					var canReachBooty:Boolean = (target.armType == GLOBAL.TYPE_GOOEY || target.isGoo() || (!target.isTaur() && !target.isDrider()));
+					var canReachBooty:Boolean = (target.hasPartGoo("arm") || target.isGoo() || (!target.isTaur() && !target.isDrider()));
 					
 					output("Something strange happens as your [pc.asshole] throbs quite forcefully. Your ass is definitely causing quite a ruckus. If it is trying to get your attention, it definitely has it. You try to bend your torso to get a good look at what is going on but to no avail. The orgasmic spasm of your anus increases in intensity as you begin to feel several sensations in sequence: First a light tingling, then an itching feeling, and finally a burning irritation. What is going on?!");
 					output("\n\nYou lose control of your lower body as your hands hit the floor and your [pc.butt] sticks straight up in the air, bobbing and bouncing in some kind of strange erotic dance. Your head follows soon after, laying against the floor as your ass stands as tall atop your [pc.legOrLegs] as possible.");
