@@ -105,6 +105,8 @@ public function angelFutaBukkakePart3():void
 		else if(pc.hasCock()) output("[pc.cum]");
 		else output("[pc.girlCum]");
 		output(". You’ll need a shower for sure.");
+		if(pc.hasCock() && pc.cumQ() >= 30) applyCumSoaked(pc);
+		if(pc.hasVagina() && pc.isSquirter()) applyPussyDrenched(pc);
 	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
