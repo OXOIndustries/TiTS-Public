@@ -2854,7 +2854,7 @@ public function bubbBuddyCodex():void
 	showBust("9999");
 	outputCodex(header("Bubble Buddy"))
 	outputCodex("<b>Manufactured By:</b> TamaniCorp");
-	outputCodex("\n<i>“Hi. I’m Tamani, founder and CEO of Tamani Corp. I spend all day thinking about YOUR cum. Let me assure you, the Bubble Buddy will keep that baby batter fresh and potent until the heat death of the universe!”</i>");
+	outputCodex("\n<i>“Hi. I’m Tamani, founder and CEO of TamaniCorp. I spend all day thinking about YOUR cum. Let me assure you, the Bubble Buddy will keep that baby batter fresh and potent until the heat death of the universe!”</i>");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("TamaniCorp stands by the saying <i>“There’s no testing like public testing!”</i> Their wide variety of fertility and virility enhancing products undergo extensive trials and it’s not always easy to get a diverse array of subjects into their corporate offices. For that matter, it’s not easy to get their employees out to the testing facilities, considering how many tend to be pregnant at any given time. The Bubble Buddy was an invention of necessity. They chiefly needed a device that could store semen samples safely, maintaining their heat and potency in a sustained, self-sealing container.");

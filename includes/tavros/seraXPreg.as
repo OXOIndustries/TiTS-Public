@@ -309,7 +309,7 @@ public function seraBreedingApproach():Boolean
 		
 		output("<i>“Hello slut,”</i> Sera coos when you enter the Dark Chrysalis, rising off her stool to walk out around her counter, shop facade remote swinging off a finger.");
 		output("\n\n<i>“Are you off... are things different, Mistress?”</i> you ask.");
-		output("\n\n<i>“Have I binned my current dose of Sterilex? Yes,”</i> she replies, taking you into her arms and squeezing your [pc.ass] intently, soft breasts pressing into your " + (pc.tallness <= 71 ? "[pc.face]" : "[pc.chest]") + ". <i>“But you should know by now that your owner doesn’t do things by half measures. I went by Tamani Corp yesterday evening, and in-between turning their kitty whore inside out I picked up... something.”</i> The hot bludgeon of her dick is digging into your [pc.belly], and her face looks red, as if she had spent the last hour doing circuits around Tavros. <i>“And now I’m ready to breed,”</i> she growls. <i>“Not fuck, breed, do you understand? My balls feel like charged batteries right now, and they’re telling me there’s a difference - and how important that difference is now you’ve walked that ass in here.”</i> Still clinching you with one hand, she raises the shop remote with the other. <i>“So you aren’t doing anything for the next few hours, are you?”</i>");
+		output("\n\n<i>“Have I binned my current dose of Sterilex? Yes,”</i> she replies, taking you into her arms and squeezing your [pc.ass] intently, soft breasts pressing into your " + (pc.tallness <= 71 ? "[pc.face]" : "[pc.chest]") + ". <i>“But you should know by now that your owner doesn’t do things by half measures. I went by TamaniCorp yesterday evening, and in-between turning their kitty whore inside out I picked up... something.”</i> The hot bludgeon of her dick is digging into your [pc.belly], and her face looks red, as if she had spent the last hour doing circuits around Tavros. <i>“And now I’m ready to breed,”</i> she growls. <i>“Not fuck, breed, do you understand? My balls feel like charged batteries right now, and they’re telling me there’s a difference - and how important that difference is now you’ve walked that ass in here.”</i> Still clinching you with one hand, she raises the shop remote with the other. <i>“So you aren’t doing anything for the next few hours, are you?”</i>");
 		
 		processTime(1);
 		
@@ -633,7 +633,7 @@ public function seraSpawnPregnancyEnds():void
 	// {vag hymen/stretch check here}
 	pc.cuntChange(pregSlot, 3000);
 	
-	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It’s a " + (babym  ? "boy" : "girl") + "! A fuzz of hazel hair coats " + (babym ? "his" : "her") + " pate and chubby pink hands grasp for yours. Your new baby is a picture-perfect human child.");
+	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It’s a " + (babym ? "boy" : "girl") + "! A fuzz of hazel hair coats " + (babym ? "his" : "her") + " pate and chubby pink hands grasp for yours. Your new baby is a picture-perfect human child.");
 	
 	if(numChildren > 1)
 	{
@@ -762,7 +762,7 @@ public function displaySeraBabies():void
 {
 	var babies:Array = listSeraBabies();
 	
-	output("<u><b>Sera's Offspring</b></u>");
+	output("<u><b>Sera’s Offspring</b></u>");
 	if(StatTracking.getStat("pregnancy/sera kids") > 0) output("\n<b>* Sera’s Children, Total:</b> " + StatTracking.getStat("pregnancy/sera kids"));
 	if(babies.length > 0)
 	{

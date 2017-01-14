@@ -27,13 +27,13 @@ package classes.Items.Transformatives {
 			this.type = GLOBAL.DRUG;
 			
 			this.shortName = "Virection";
-			this.longName = "virection pill";
+			this.longName = "Virection pill";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			this.description = "a small box containing a single Virection pill";
 			
-			this.tooltip = "Virection was originally developed and marketed by a small company as a phalic enlargement and virility enhancer, but due to a glitch in production it caused some of its consumers to spontaneously grow disfigured penises. In order to survive the subsequent legal action by disgruntled customers it sold the patent to Tamami Corp. They reworked the product and stabilized the glitch so that penile growth became a feature rather than an error. This product is in constant high demand, suffering through many changes in price and name, like CockUp, Penismightier and the BigD.\n\n The microsurgeons and chemicals in this blue pill are advertised to solve a myriad of problems related to male genitalia or lack of thereof. This product will always grow a penis if its consumer lacks one, a feature so potent that it can cause supernumary penis. Otherwise it will increase the length, thickness, or virility.";
+			this.tooltip = "Virection was originally developed and marketed by a small company as a phallic enlargement and virility enhancer, but due to a glitch in production it caused some of its consumers to spontaneously grow disfigured penises. In order to survive the subsequent legal action by disgruntled customers it sold the patent to TamaniCorp. They reworked the product and stabilized the glitch so that penile growth became a feature rather than an error. This product is in constant high demand, suffering through many changes in price and name, like CockUp, Penismightier and the BigD.\n\n The microsurgeons and chemicals in this blue pill are advertised to solve a myriad of problems related to male genitalia or lack of thereof. This product will always grow a penis if its consumer lacks one, a feature so potent that it can cause supernumary penis. Otherwise it will increase the length, thickness, or virility.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -60,7 +60,7 @@ package classes.Items.Transformatives {
 					
 					//target has already at least 1 cock -try grow one more
 					} else {
-						var random:int = rand(9);
+						var random:int = rand(10);
 						//10% chance to grow a new dick
 						if(random == 0) {
 							//grow second dick
@@ -127,16 +127,14 @@ package classes.Items.Transformatives {
 			
 			//grow new cock
 			target.cocks[0] = new CockClass();
-			var prevLength:Number = target.cocks[0].cLengthRaw;
-			var prevThickness:Number = target.cocks[0].cThicknessRatioRaw;
 			//set type dependent on race
 			target.setNewCockValues(0);
 			//set length to 4 inches
 			target.cocks[0].cLengthRaw = 4;
 			
 			//do some adjusting for hung/mini
-			if(target.hasPerk("Hung")) target.cocks[0].cLengthRaw += 2 + rand(4);
-			if (target.hasPerk("Mini")) target.cocks[0].cLengthRaw -= 1 + rand(1);
+			if(target.hasPerk("Hung")) target.cocks[0].cLengthRaw += 2 + rand(5);
+			if (target.hasPerk("Mini")) target.cocks[0].cLengthRaw -= 1 + rand(2);
 			
 			//set a cThicknessRatio of a value resulting in 1 inch thickness
 			target.cocks[0].cThicknessRatioRaw = _calculateThicknessRatio(target.cocks[0].cLengthRaw, 1);
@@ -144,6 +142,9 @@ package classes.Items.Transformatives {
 			//set a slightly higher/lower value if target has perk hung/mini
 			if (target.hasPerk("Hung")) target.cocks[0].cThicknessRatioRaw = _calculateThicknessRatio(target.cocks[0].cLengthRaw, 1.2);
 			if (target.hasPerk("Mini")) target.cocks[0].cThicknessRatioRaw = _calculateThicknessRatio(target.cocks[0].cLengthRaw, 0.8);
+			
+			var prevLength:Number = target.cocks[0].cLengthRaw;
+			var prevThickness:Number = target.cocks[0].cThicknessRatioRaw;
 			
 			output("\n\nYou almost fall into a post-orgasmic slumber, but you keep yourself focused enough to stave the fatigue off. Cleaning your sweat and [pc.cumNoun]-coated hands proves to be a more difficult task than you thought it would be, and after you’re done, you carefully examine your new phallus.");
 			output("<b>");
@@ -355,7 +356,7 @@ package classes.Items.Transformatives {
 			if(target.hasKnees() && target.hasToes()) output(", your knees giving in and your toes curling in pleasure.");
 			
 			//increase by 2-3 inches, and store change for use in text
-			var increase:int = 2 + rand(1);
+			var increase:int = 2 + rand(2);
 			
 			//do some adapting for hung/mini perked pcs
 			if(target.hasPerk("Hung")) increase += 1 + rand(2);

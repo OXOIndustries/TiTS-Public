@@ -34,7 +34,7 @@
 			this.description = "an explorers cloak";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A cloak made of what looks like glass with the texture of cloth. When a button on the clasp is pressed it blends in with the surrounding environment. The blend is far from perfect, creating a dazzling array of colors when moved. It wouldn't totally hide anyone, but it might make distant viewers doubt what they saw.";
+			this.tooltip = "A cloak made of what looks like glass with the texture of cloth. When a button on the clasp is pressed it blends in with the surrounding environment. The blend is far from perfect, creating a dazzling array of colors when moved. It wouldn’t totally hide anyone, but it might make distant viewers doubt what they saw.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

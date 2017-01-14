@@ -27,14 +27,14 @@ package classes.Items.Miscellaneous
 			//Used on inventory buttons
 			this.shortName = "LactaidO";
 			//Regular name
-			this.longName = "bottle labeled \"Lactaid Overdrive\"";
+			this.longName = "bottle labeled “Lactaid Overdrive”";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a bottle labeled \"Lactaid Overdrive\"";
+			this.description = "a bottle labeled “Lactaid Overdrive”";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This is the newest in Tamani Corp’s Lactaid-brand series of milk enhancement products. The bottle is similar to a nutrient drink, and it indeed contains a liquefied nutrient paste together with microsurgeons that will increase the rate at which a lactating drinker will refill their supply of milk. It’s popular as a lunchtime supplement with those wanting to recreate the inhuman milk production of a New Texan girl without being Treated.";
+			this.tooltip = "This is the newest in TamaniCorp’s Lactaid-brand series of milk enhancement products. The bottle is similar to a nutrient drink, and it indeed contains a liquefied nutrient paste together with microsurgeons that will increase the rate at which a lactating drinker will refill their supply of milk. It’s popular as a lunchtime supplement with those wanting to recreate the inhuman milk production of a New Texan girl without being Treated.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
