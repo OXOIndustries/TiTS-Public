@@ -10897,14 +10897,14 @@
 				descripted++;
 			}
 			// Puffy butt - 50% addition of no other descs - doesn't stack well with loose/wet.
-			if(descripted == 0 && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(2) == 0)
+			if(!simple && descripted == 0 && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(2) == 0)
 			{
 				if (descripted > 0) desc += ", ";
 				if (!ass.hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
 				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "pumped", "pillowy"]);
 				descripted++;
 			}
-			if(descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
+			if(!simple && descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
 			{
 				if (descripted > 0) desc += ", ";
 				desc += RandomInCollection("slutty","fuck-hungry","cock-hungry","fuckable","puckered","eager","greedy","ravenous","insatiable");
@@ -17521,12 +17521,13 @@
 						//Wears off
 						if(requiresRemoval)
 						{
-							AddLogEvent("The heat in your body finally recedes after an exhausting couple of days. <b>You are no longer feeling so unnaturally aroused.</b>");
+							AddLogEvent("The heat in your body finally recedes after an exhausting couple of days. <b>You are no longer feeling so unnaturally aroused.</b>", "passive");
+							if(hasPerk("Omega Fever")) createStatusEffect("Omega Fever Delay", 0, 0, 0, 0, true, "", "", false, 1440);
 						}
 						//Pregnancy clears - gotta cheat to get the Omega Oil status clear.
 						else if(hasAnalPregnancy())
 						{
-							AddLogEvent("You feel calmer and more clear-headed. Has the heat already faded?");
+							AddLogEvent("You feel calmer and more clear-headed. Has the heat already faded?", "passive");
 							requiresRemoval = true;
 							if (deferredEvents == null) deferredEvents = [analHeatCleanup];
 							else deferredEvents.push(analHeatCleanup);
@@ -17543,11 +17544,11 @@
 							}
 							else if(rand(3) == 0)
 							{
-								stringBuffer = "You suddenly really, <i>really</i> want to get knotted " + RandomInCollection(["like a bitch in heat","by a nice dildo or a well-endowed stud","and pumped full of cum"]) + ". Your [pc.asshole] " + RandomInCollection(["spams","clenches around nothing"]) + ", desperately empty.";
+								stringBuffer = "You suddenly really, <i>really</i> want to get knotted " + RandomInCollection(["like a bitch in heat","by a nice dildo or a well-endowed stud","and pumped full of cum"]) + ". Your [pc.asshole] " + RandomInCollection(["spasms","clenches around nothing"]) + ", desperately empty.";
 							}
 							else if(rand(2) == 0) stringBuffer = "You find yourself idly wondering how much a breeding stand custom-made to your measurements would cost, and if it would really be worth the investment.";
 							else stringBuffer = "You feel oddly serene, for someone who’s supposed to crave being fucked all the time.";
-							AddLogEvent(stringBuffer);
+							AddLogEvent(stringBuffer, "passive");
 						}
 						break;
 					case "Kally Cummed Out":

@@ -14,6 +14,8 @@ package classes.Items.Transformatives
 	import classes.Util.RandomInCollection;
 	import classes.Engine.Utility.IncrementFlag;
 	import classes.Engine.Utility.num2Text;
+	import classes.Engine.Interfaces.ParseText;
+	import classes.Engine.Interfaces.AddLogEvent;
 	
 	public class OmegaOil extends ItemSlotClass
 	{
@@ -68,8 +70,21 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou don’t feel particularly different from before, but... the heat in your body feels <i>denser</i>, somehow.");
 					output(" <b>The Fuck Fever has been extended.</b>");
-					pc.addStatusMinutes("Omega Oil",7000);
-					pc.addStatusMinutes("Fuck Fever",7000);
+					updateOmega(4);
+					changes++;
+				}
+				else if(!pc.hasPerk("Omega Fever") && pc.getStatusMinutes("Fuck Fever") >= 7000 && pc.ass.wetnessRaw >= 5 && pc.ass.bonusCapacity >= 200 && pc.elasticity >= 3 && rand(5) == 0)
+				{
+					author("Jacques00");
+					output("\n\nLike last time, you don’t feel any radical changes, but--");
+					output("\n\nSuddenly, the heat hits your body like a ton of bricks, forcing you to orgasm on the spot! What was that?!");
+					
+					pc.orgasm();
+					
+					output("\n\nAs quickly as it hit you, the feeling subsides, leaving a glowy reverberating sensation between your [pc.butts]. Your [pc.asshole] pulses with hunger, leaking its lube in response to the sudden drive-by orgasm. Wiping the sweat from your brow, you do feel a little strange this time... a bit different--or, at least your capacious butt does anyway. It feels more... <i>insatiable</i> and <i>demanding</i> now.");
+					output("\n\nWhatever that rush was, it definitely worked with your microsurgeons and changed something within you... Checking your codex only confirms your suspicions. Well, it looks like the effects of the Omega Oil has, more or less, left its permanent mark on you!");
+					output("\n\n(<b>Perk Gained: Omega Fever</b> - The use of Omega Oil has permanently changed your body to cycle through the stages of heat whenever your ass is not incubating.)");
+					pc.createPerk("Omega Fever", 0, 0, 0, 0, "Your body will cycle through the stages of heat whenever your ass is not incubating.");
 					changes++;
 				}
 			}
@@ -97,11 +112,6 @@ package classes.Items.Transformatives
 				//PC gains a small amount of lust every turn when fighting dicked NPCs ?
 				if(!pc.hasStatusEffect("Fuck Fever") && rand(2) == 0)
 				{
-					pc.removeStatusEffect("Flushed");
-					pc.createStatusEffect("Fuck Fever",0,0,0,0,false,"Icon_LustUp","You are significantly more passively lusty than before.\n\n(+33 minimum lust)\n(Extremely vulnerable to phallus-bearing foes.)",false,5760,0xB793C4);
-					pc.setStatusValue("Omega Oil",1,33);
-					pc.setStatusMinutes("Omega Oil",5760);
-
 					output("\n\nYour mind clouds as your ");
 					if(!pc.hasVagina() || pc.ass.wetness() > 0) output("[pc.asshole] moistens");
 					else
@@ -126,8 +136,8 @@ package classes.Items.Transformatives
 					output("fantasy from your mind. There’s a dull throbbing in your [pc.asshole] that demands to be satisfied. Somehow you have a feeling mere fingers won’t be nearly enough to find relief, and you aren’t quite sure how far you would go to ease this craving. The next few days are certainly going to be... <i>interesting</i>.");
 					output("\n\n<b>You have Fuck Fever, and will suffer from it for the next 72 hours.</b>");
 					
+					updateOmega(3);
 					if(kGAMECLASS.flags["OMEGA_FEVERED"] == undefined) kGAMECLASS.flags["OMEGA_FEVERED"] = 1;
-					
 					changes++;
 				}
 			}
@@ -161,11 +171,6 @@ package classes.Items.Transformatives
 				//Removes Status “Strangely Warm”, Gives status “Flushed” (72 hours)
 				if(!pc.hasStatusEffect("Flushed") && rand(2) == 0)
 				{
-					pc.removeStatusEffect("Strangely Warm");
-					pc.createStatusEffect("Flushed",0,0,0,0,false,"Icon_LustUp","You are significantly more passively lusty than before.\n\n(+25 minimum lust)\n(Vulnerable to phallus-bearing foes.)",false,4320,0xB793C4);
-					pc.setStatusValue("Omega Oil",1,25);
-					pc.setStatusMinutes("Omega Oil",4320);
-
 					//Effect: min lust raised by 15, pc more vulnerable to (cock) tease/ lust attack
 					pc.lust(25);
 					output("\n\nYou feel quite apathetic all of a sudden, as if your brain were wrapped in a thick wooly duvet. A haze of lust clouds your mind as your");
@@ -180,7 +185,7 @@ package classes.Items.Transformatives
 					else output(" your [pc.cocks] flushed with need");
 					output(", until they reach your sensitive entrance. You aren’t quite tired, but don’t have the motivation to do anything but stay right there, finger");
 					if(pc.analCapacity() > 100) output("s");
-					output(" lazily playing with your [pc.asshole]. Fantasies about bending over and presenting your needy [pc.asshole] to a virile ");
+					output(" lazily playing with your [pc.asshole]. Fantasies about bending over and presenting your needy [pc.assholeNoun] to a virile ");
 					if(rand(3) == 0) output("male");
 					else if(rand(2) == 0) output("herm");
 					else output("alpha");
@@ -189,6 +194,8 @@ package classes.Items.Transformatives
 					if(pc.WQ() < 50) output(", without that pesky inheritance your Dad wanted you to find.");
 					else output(", waiting for a well-endowed mate to claim you for their own. ");
 					output("\n\nEventually the haze begins to lift and the world rights itself. As you pull yourself together however, it feels like <b>you are a bit hornier than before!</b>");
+					
+					updateOmega(2);
 					changes++;
 				}
 			}
@@ -213,8 +220,8 @@ package classes.Items.Transformatives
 				if(!pc.hasStatusEffect("Strangely Warm") && rand(2) == 0)
 				{
 					output("\n\nYou fantasize about submitting and presenting your needy [pc.asshole] to a faceless, well-endowed stranger, having them ram your ass like it’s going out of style. <b>You feel like you’ll stay hornier than normal... at least for a while!</b>");
-					pc.createStatusEffect("Strangely Warm",0,0,0,0,false,"Icon_LustUp","You are more passively lusty than before.\n\n(+15 minimum lust)",false,4320,0xB793C4);
-					pc.createStatusEffect("Omega Oil",15,0,0,0,true,"","Hidden status that actually tracks the lust mod so we only gotta check 1.",false,4320);
+					
+					updateOmega(1);
 					changes++;
 				}
 				pc.lust(15);
@@ -226,20 +233,20 @@ package classes.Items.Transformatives
 			
 			//Wetness
 			//Effect: 75% chance of raising wetness by 0,75 ; if PC genderless, raises wetness by 1
-			if(pc.ass.wetness() < 5 && rand(4) != 0)
-				TFlist.push(0);
+			if(pc.ass.wetnessRaw < 5)
+				TFlist.push(0, 0, 0);
 			//Capacity
 			//Effect: 25% chance of increasing bonus capacity by 25
-			if(pc.ass.bonusCapacity < 200 && rand(4) == 0)
+			if(pc.ass.bonusCapacity < 200)
 				TFlist.push(1);
 			//Elasticity
 			//Effect: 25% chance of increasing elasticity by 0,25
-			if(pc.elasticity < 3 && rand(4) == 0)
+			if(pc.elasticity < 3)
 				TFlist.push(2);
 			//Adds lust
 			//Effect: 75% chance of raising pc lust by 10
 			if(rand(4) != 0)
-				TFlist.push(3);
+				TFlist.push(3, 3, 3);
 			//Nothing
 			//Effect: nothing happens
 			if(changes == 0)
@@ -256,7 +263,7 @@ package classes.Items.Transformatives
 					pc.ass.wetness(1);
 
 					//upon reaching max wetness :
-					if(pc.ass.wetness() >= 5)
+					if(pc.ass.wetnessRaw >= 5)
 					{
 						output("\n\nYou moan as slick lubricant dribbles out of your [pc.asshole], this time in enough quantity to");
 						if(!pc.isAssExposed()) output(" stain your [pc.lowerGarments]");
@@ -289,6 +296,86 @@ package classes.Items.Transformatives
 			
 			IncrementFlag("OMEGA_OILED");
 			return false;
+		}
+		private function updateOmega(phase:int = -1):void
+		{
+			var pc:Creature = kGAMECLASS.pc;
+			switch(phase)
+			{
+				case 1:
+					pc.createStatusEffect("Strangely Warm",0,0,0,0,false,"Icon_LustUp","You are more passively lusty than before.\n\n(+15 minimum lust)",false,4320,0xB793C4);
+					pc.createStatusEffect("Omega Oil",15,0,0,0,true,"","Hidden status that actually tracks the lust mod so we only gotta check 1.",false,4320);
+					break;
+				case 2:
+					pc.removeStatusEffect("Strangely Warm");
+					pc.createStatusEffect("Flushed",0,0,0,0,false,"Icon_LustUp","You are significantly more passively lusty than before.\n\n(+25 minimum lust)\n(Vulnerable to phallus-bearing foes.)",false,4320,0xB793C4);
+					pc.setStatusValue("Omega Oil",1,25);
+					pc.setStatusMinutes("Omega Oil",4320);
+					break;
+				case 3:
+					pc.removeStatusEffect("Flushed");
+					pc.createStatusEffect("Fuck Fever",0,0,0,0,false,"Icon_LustUp","You are significantly more passively lusty than before.\n\n(+33 minimum lust)\n(Extremely vulnerable to phallus-bearing foes.)",false,5760,0xB793C4);
+					pc.setStatusValue("Omega Oil",1,33);
+					pc.setStatusMinutes("Omega Oil",5760);
+					break;
+				case 4:
+					pc.addStatusMinutes("Omega Oil",7000);
+					pc.addStatusMinutes("Fuck Fever",7000);
+					break;
+			}
+		}
+		public function checkOmegaFever():void
+		{
+			var pc:Creature = kGAMECLASS.pc;
+			
+			if(pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Omega Fever Delay") || pc.hasAnalPregnancy())
+			{
+				/* Nada! */
+				return;
+			}
+			
+			var msg:String = "";
+			
+			if(pc.hasStatusEffect("Flushed") && !pc.hasStatusEffect("Fuck Fever"))
+			{
+				msg += "Your mind clouds as your ";
+				if(!pc.hasVagina() || pc.ass.wetness() > 0) msg += "[pc.asshole] moistens";
+				else
+				{
+					msg += "[pc.pussies] moisten";
+					if(pc.totalVaginas() == 1) msg += "s";
+				}
+				msg += ". Despite already being hornier than usual, the desire to be claimed constantly burns even stronger in your blood. There’s a dull throbbing in your [pc.asshole] that demands to be satisfied. You have a feeling mere fingers won’t be nearly enough to find relief, and you aren’t quite sure how far you would go to ease this craving. <b>You now have Fuck Fever!</b>";
+				pc.lust(15);
+				msg = ParseText(msg);
+				updateOmega(3);
+			}
+			else if(pc.hasStatusEffect("Strangely Warm") && !pc.hasStatusEffect("Flushed"))
+			{
+				msg += "You feel quite apathetic all of a sudden, as if your brain were wrapped in a thick wooly duvet. A haze of lust clouds your mind as your";
+				if(!pc.hasVagina()) msg += " [pc.asshole] moistens";
+				else 
+				{
+					msg += " [pc.vaginas] moisten";
+					if(pc.totalVaginas() == 1) msg += "s";
+				}
+				msg += ". Your hands begin stroking your body from top to bottom,";
+				if(!pc.hasCock()) msg += " your sensitive [pc.skin] burning with desire";
+				else msg += " your [pc.cocks] flushed with need";
+				msg += "... Eventually the haze lifts and the world rights itself. As you pull yourself together however, it feels like <b>you are now a bit hornier than before!</b>";
+				pc.lust(35);
+				msg = ParseText(msg);
+				updateOmega(2);
+			}
+			else
+			{
+				msg += "You fantasize about submitting and presenting your needy [pc.assholeNoun] to a stranger and having them vigorously penetrate your ass. <b>It feels like you’ll stay hornier than normal now... at least for a while!</b>";
+				pc.lust(15);
+				msg = ParseText(msg);
+				updateOmega(1);
+			}
+			
+			if(msg.length > 0) AddLogEvent(msg, "passive");
 		}
 		//Codex - not presently enabled because it's completely unneeded and unremarkable.
 		//History

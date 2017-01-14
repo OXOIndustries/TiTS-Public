@@ -1921,6 +1921,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		thollumYardMushroomGrow();
 		laneHandleCredits(totalDays);
 		updateBothriocAddiction(totalDays);
+		processOmegaFever();
 	}
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
@@ -2044,6 +2045,14 @@ public function processLeithaCharmTime(deltaT:uint, doOut:Boolean):void
 	if (pc.hasStatusEffect("Leitha Charm"))
 	{
 		pc.addStatusValue("Leitha Charm", 1, deltaT * 20);
+	}
+}
+
+public function processOmegaFever():void
+{
+	if (pc.hasPerk("Omega Fever"))
+	{
+		(new OmegaOil()).checkOmegaFever();
 	}
 }
 
