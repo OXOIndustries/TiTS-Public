@@ -2760,7 +2760,10 @@ public function synthSheathCodex():void
 {
 	clearOutputCodex();
 	showBust("9999");
-	outputCodex(header("Item: Xenogen Biotech SynthSheath"));
+	outputCodex(header("SynthSheath"));
+	outputCodex("<b>Manufactured By:</b> Xenogen Biotech");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
 	outputCodex("The XenoGen Biotech SynthSheath was a prototypical effort in their genital modification program. The device consists of a depopulated cellular matrix which functions by microsyringes on the lip and inside the shaft injecting a potent cocktail of specialized microsurgeons, equine genetic material, and a powerful cell division stimulant. In the case of a male or hermaphroditic subject, the sheath takes the cells of the existing genitals, treats them with their new genetic makeup and migrates them to their place in the cellular matrix of the sheath.");
 	outputCodex("\n\nFemale subjects attaching this device have their blood cells used to populate their new penis and testicles. The microsurgeons also insert a prostate near the device; genetic manipulation of the subject’s brain chemistry links the device to the subjects nervous, circulatory, and immune systems to prevent phantom limb disorder and tissue rejection.");
 	outputCodex("\n\n");
@@ -2771,7 +2774,10 @@ public function bionaholeCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("BionaHoles"));
-	outputCodex("<i>For thousands of years, sapients have concealed their dicks in boxes. Now, with the TamaniCorp Bionahole, the reverse is just as possible.</i>\n\n");
+	outputCodex("<b>Manufactured By:</b> TamaniCorp");
+	outputCodex("\n<i>For thousands of years, sapients have concealed their dicks in boxes. Now, with the TamaniCorp Bionahole, the reverse is just as possible.</i>");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
 	outputCodex("Perhaps the most controversial of TamaniCorp’s wide range of products, the BionaHole came about after a failed venture into all-natural artificial wombs. Though the main project went grossly over budget due to the insistence of the company CEO personally sampling a huge number of paid male test candidates, the scientists working on the artificial wombs managed to salvage some of the tech behind it and turn it into a high-end sex toy: the BionaHole.");
 	outputCodex("\n\nAt its core, the BionaHole is a cloned vagina - complete with lips, clitoris, and channel... and the ability to become excited when played with - suspended in a thick black tube laden with life-support tech to keep the sex organ alive, wet, and warm. The vaginal passage is designed with greatly increased sensitivity compared to its natural base, and will actually achieve orgasm through vigorous use. All BionaHoles are equipped with self-cleaning abilities and the capacity for minor self-repair thanks to a healthy dose of microsurgeons. So long as the owner regularly changes out the proprietary nutrient packs and keeps the flask charged (either through a small solar battery or a conventional electrical port), the cloned pussy can remain healthy and enjoyable for decades.");
 	outputCodex("\n\nBionaHoles reached their peak popularity shortly after launch with their modelled line, featuring cloned vaginas of recognizable sex symbols; like the galaxy’s number one hyperporn actress Nivas Oxonef to TamaniCorp’s own lascivious CEO. Since the product line’s introduction, several additional models have come out, modelled after mouths, anuses, and several exotic alien sexual organs.");
@@ -2786,6 +2792,7 @@ public function gravCuffsCodex():void
 	outputCodex(header("Grav Cuffs"));
 	outputCodex("<b>Manufactured By:</b> Humphard Inc.");
 	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
 	outputCodex("Grav-cuffs are the latest in space age bondage gear designed by Humphard Inc. The cuffs are packed full of features; nearly as many as some mainstream androids.");
 	outputCodex("\n\nThe most notable quality of the cuffs is that they are mass adjustable. Once attached, one can make the cuffs (and the cuffed individual) weigh as much or as little as they want. They are also uni-directional, so they can be used to attach the cuffed person to a roof, wall, or other surface with little effort.");
 	outputCodex("\n\nPremium cuffs come with several special features, such as a magni lock feature for fastening different cuffs together, voice activation, and a vocal locking system.");
@@ -2800,8 +2807,8 @@ public function holodomCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Holodom"));
-	outputCodex("<b>Description:</b> Hard light holographic condom, or “holodom.”");
-	outputCodex("\n<b>Manufactured By:</b> Humphard Inc.");
+	outputCodex("<b>Manufactured By:</b> Humphard Inc.");
+	outputCodex("\n<b>Description:</b> Hard light holographic condom, or “holodom.”");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("Holodoms were one of Humphard’s first adult products and largely considered their “first big break” in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.");
@@ -2817,7 +2824,7 @@ public function sumaCreamCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Suma Cream"));
-	outputCodex("\n<b>Manufactured By:</b> J’ejune Pharmaceuticals");
+	outputCodex("<b>Manufactured By:</b> J’ejune Pharmaceuticals");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("J’ejune Pharmaceuticals are not known for their originality, though they’re quite adept at making the best of a bad situation. The “Suma Cream” line of beauty products is no different. Originally intended as a facial cream to bring out plump, rosy cheeks, it was discovered that the plumping agent in the salve had almost no effect on female test subjects, but produced testicular swelling in hermaphrodites and males. When the balm was actually applied directly to the balls, the effect was even more pronounced.");
@@ -2832,7 +2839,7 @@ public function clearYuCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("ClearYu"));
-	outputCodex("\n<b>Manufactured By:</b> Xenogen Biotech");
+	outputCodex("<b>Manufactured By:</b> Xenogen Biotech");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("Never one to completely abandon a product line, when Xenogen discontinued work on Dumbfuck for its unexpected mind-altering side effects, they transferred much of the research to another department, who came up with ClearYu. The candied lollipop vastly increases one’s hand-eye coordination, physical reflexes, and bodily responsiveness by hindering the higher brain functions that would normally obstruct these instincts. It’s found surprising popularity among mercenaries and adventure seekers who don’t mind losing a few points of IQ for a more steady gun hand.");
@@ -2859,7 +2866,7 @@ public function rubberMadeCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Rubber-Made"));
-	outputCodex("\n<b>Manufactured By:</b> J’ejune Pharmaceuticals");
+	outputCodex("<b>Manufactured By:</b> J’ejune Pharmaceuticals");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("Rubber-Made was originally intended as a body hair removal paste by the overworked and undersupervised folks at J’ejune Pharmaceuticals. They were somewhat taken aback when their product responded vigorously to high levels of moisture, such as is typically found on the inside of one’s mouth. The specific incident that lead to this discovery is not recorded, but the company’s reputation for lax testing protocols may be responsible.");

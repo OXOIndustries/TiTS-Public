@@ -2247,11 +2247,15 @@ public function boobStuff(forTarget:Creature = null):void
 			// Default
 			else
 			{
-				if(temp == 0) output2(" Your uppermost row houses ");
-				if(temp == 1) output2(" The second group holds ");
-				if(temp == 2) output2(" Your third batch contains ");
-				if(temp == 3) output2(" Your fourth set cradles ");
-				if(temp == 4) output2(" Your fifth has ");
+				switch(temp)
+				{
+					case 0: output2(" Your uppermost row houses "); break;
+					case 1: output2(" The second group holds "); break;
+					case 2: output2(" Your third batch contains "); break;
+					case 3: output2(" Your fourth set cradles "); break;
+					case 4: output2(" Your fifth has "); break;
+					default: output2(" Your " + num2Ordinal(temp + 1) + " row has "); break;
+				}
 				if(target.breastRows[temp].breastRating() >= 1) output2(num2Text(target.breastRows[temp].breasts) + " " + target.breastDescript(temp) + ", capped with ");
 			}
 			//DESCRIBE NIPPLE NAU!
