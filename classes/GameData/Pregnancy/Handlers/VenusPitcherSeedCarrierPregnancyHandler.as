@@ -212,7 +212,7 @@ package classes.GameData.Pregnancy.Handlers
 				}
 				else if (pData.pregnancyIncubation <= 120)
 				{
-					retString += "A veritable waterfall of birthing slime is oozing from your [pc.vagina " + slot + "]. Your body must be preparing itself to birth another of the venus pitchers' gifts.";
+					retString += "A veritable waterfall of birthing slime is oozing from your [pc.vagina " + slot + "]. Your body must be preparing itself to birth another of the venus pitchers’ gifts.";
 				}
 				else if (pData.pregnancyIncubation <= 600)
 				{
@@ -224,11 +224,11 @@ package classes.GameData.Pregnancy.Handlers
 				// Eggs still incubating
 				if (pData.pregnancyIncubation <= 60)
 				{
-					retString += "You'll be laying soon, you're sure of it. Your [pc.vagina " + slot + "] has grown wetter and eager, birth-slime practically dripping out of you.";
+					retString += "You’ll be laying soon, you’re sure of it. Your [pc.vagina " + slot + "] has grown wetter and eager, birth-slime practically dripping out of you.";
 				}
 				else if (pData.pregnancyIncubation <= 120)
 				{
-					retString += "A veritable waterfall of birthing slime is oozing from your [pc.vagina " + slot + "]. Your body must be preparing itself to birth another of the venus pitchers' gifts.";
+					retString += "A veritable waterfall of birthing slime is oozing from your [pc.vagina " + slot + "]. Your body must be preparing itself to birth another of the venus pitchers’ gifts.";
 				}
 				else if (pData.pregnancyIncubation <= 600)
 				{

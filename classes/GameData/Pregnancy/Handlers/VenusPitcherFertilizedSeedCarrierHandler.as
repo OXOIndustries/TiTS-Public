@@ -81,7 +81,7 @@
 			}
 			
 			// Do some outpootis.
-			AddLogEvent(ParseText("Your womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells." + (kGAMECLASS.flags["LAID VENUS PITCHER SEEDS"] != undefined ? " Mmmm, another batch of pods are growing inside you, fertilized by your latest tryst." : " The stuff the venus pitcher put inside you... it's growing! The latest pitcher must have done something to it... fertilized it, perhaps.") + " A few droplets of pale-green slime leak from your lips" + (mother.isCrotchGarbed() ? " into your " + mother.lowerUndergarment.longName + ".": ".")), "passive");
+			AddLogEvent(ParseText("Your womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells." + (kGAMECLASS.flags["LAID VENUS PITCHER SEEDS"] != undefined ? " Mmmm, another batch of pods are growing inside you, fertilized by your latest tryst." : " The stuff the venus pitcher put inside you... it’s growing! The latest pitcher must have done something to it... fertilized it, perhaps.") + " A few droplets of pale-green slime leak from your lips" + (mother.isCrotchGarbed() ? " into your " + mother.lowerUndergarment.longName + ".": ".")), "passive");
 
 			// Change bellyMod
 			mother.bellyRatingMod += 4 * pData.pregnancyQuantity;
@@ -225,7 +225,7 @@
 				// Eggs still incubating
 				if (pData.pregnancyIncubation <= 60)
 				{
-					retString += "You'll be laying soon, you're sure of it. Your [pc.vagina " + slot + "] has grown wetter and eager, birth-slime practically dripping out of you.";
+					retString += "You’ll be laying soon, you’re sure of it. Your [pc.vagina " + slot + "] has grown wetter and eager, birth-slime practically dripping out of you.";
 				}
 				else if (pData.pregnancyIncubation <= 120)
 				{

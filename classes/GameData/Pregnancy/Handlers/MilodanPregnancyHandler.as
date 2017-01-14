@@ -44,11 +44,11 @@ package classes.GameData.Pregnancy.Handlers
 			_onDurationEnd = milodanOnDurationEnd;
 			
 			addStageProgression(_basePregnancyIncubationTime - (14 * 24 * 60), function(pregSlot:int):void {
-				AddLogEvent(ParseText("You feel slightly nauseous as you're walking, light-headedness suddenly washing over you before passing every bit as quickly, leaving you with a slight stirring in your [pc.stomach]. Your codex chirps a notification at you - <b>you're pregnant!</b>\n\nA rapidly-scrolling text informs you that the pregnancy is Milodan, and you briefly remember the time you spent in the snow under the barbarian. It looks like his effort to breed you did pay off in the end.  You wonder, just for a moment, if he had any inkling that his kits would have a better life than he has… if he knows that you'll care for them, away from the harshness of Uveto's glacial wastes. They'll get a fair shot at life in the safety of your nursery on Tavros when the time comes."), "passive");
+				AddLogEvent(ParseText("You feel slightly nauseous as you’re walking, light-headedness suddenly washing over you before passing every bit as quickly, leaving you with a slight stirring in your [pc.stomach]. Your codex chirps a notification at you - <b>you’re pregnant!</b>\n\nA rapidly-scrolling text informs you that the pregnancy is Milodan, and you briefly remember the time you spent in the snow under the barbarian. It looks like his effort to breed you did pay off in the end. You wonder, just for a moment, if he had any inkling that his kits would have a better life than he has… if he knows that you’ll care for them, away from the harshness of Uveto’s glacial wastes. They’ll get a fair shot at life in the safety of your nursery on Tavros when the time comes."), "passive");
 			}, true);
 			
 			addStageProgression(_basePregnancyIncubationTime - (35 * 24 * 60), function(pregSlot:int):void {
-				AddLogEvent("Walking along, you slowly become aware that your gait is changing. The added weight of your pregnancy, while only detectable by the most perceptive, has altered your body's centre of gravity. Not to mention that every so often, you feel little movements - maybe tiny hands or feet waving around. Just another reminder that there's life growing inside you, and rapidly at that. You find yourself wondering how many kits you'll deliver - it'd be nice if they had playmates their own age in the nursery.", "passive");
+				AddLogEvent("Walking along, you slowly become aware that your gait is changing. The added weight of your pregnancy, while only detectable by the most perceptive, has altered your body’s centre of gravity. Not to mention that every so often, you feel little movements - maybe tiny hands or feet waving around. Just another reminder that there’s life growing inside you, and rapidly at that. You find yourself wondering how many kits you’ll deliver - it’d be nice if they had playmates their own age in the nursery.", "passive");
 				kGAMECLASS.pc.bellyRatingMod += 15;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 15;
@@ -59,10 +59,10 @@ package classes.GameData.Pregnancy.Handlers
 				var kids:Number = kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyQuantity;;
 
 				if(kids <= 2) buffer = " it feels like at least a couple, or one particularly rambunctious kit.";
-				else if(kids <= 3) buffer = " it feels like there's at least a few in there!";
-				else buffer = " it feels like there's an entire litter in there!";
+				else if(kids <= 3) buffer = " it feels like there’s at least a few in there!";
+				else buffer = " it feels like there’s an entire litter in there!";
 
-				AddLogEvent(ParseText("The bump in your tummy is definitely noticeable now, announcing your fertility to everyone. Getting around is a little bit of a hassle, but at the same time you feel a kind of pride in it. Every glance at your baby-bump and smile directed your way is like a reminder you're full of life. Very <i>active</i> life, if the little punches and kicks are a reliable indicator. You can't help but wonder how many of the fuzzy little furballs you've got inside you;" + buffer),"passive");
+				AddLogEvent(ParseText("The bump in your tummy is definitely noticeable now, announcing your fertility to everyone. Getting around is a little bit of a hassle, but at the same time you feel a kind of pride in it. Every glance at your baby-bump and smile directed your way is like a reminder you’re full of life. Very <i>active</i> life, if the little punches and kicks are a reliable indicator. You can’t help but wonder how many of the fuzzy little furballs you’ve got inside you;" + buffer),"passive");
 				
 				kGAMECLASS.pc.bellyRatingMod += 15;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
@@ -72,10 +72,10 @@ package classes.GameData.Pregnancy.Handlers
 			
 			//Fourth notification - 85 days
 			addStageProgression(_basePregnancyIncubationTime - (85 * 24 * 60), function(pregSlot:int):void {
-				var m:String = "You must be getting close to delivering by now. You've swollen to uncomfortably large proportions, your pregnancy readily evident to everyone around you. ";
+				var m:String = "You must be getting close to delivering by now. You’ve swollen to uncomfortably large proportions, your pregnancy readily evident to everyone around you. ";
 				if(kGAMECLASS.pc.isTaur()) m += "Your tummy hangs low to the ground";
 				else m += "Your tummy protrudes forward";
-				m += ", full of Milodan kits waiting to be unleashed on the toys in the nursery. You wind up thinking as you walk, wondering what your children will go on to do. The luxury of having Steele Tech's backing is that the potential for your offspring is effectively limitless; if nothing else, they can be brought up in comfort.";
+				m += ", full of Milodan kits waiting to be unleashed on the toys in the nursery. You wind up thinking as you walk, wondering what your children will go on to do. The luxury of having Steele Tech’s backing is that the potential for your offspring is effectively limitless; if nothing else, they can be brought up in comfort.";
 
 				AddLogEvent(m, "passive");
 				
@@ -87,10 +87,10 @@ package classes.GameData.Pregnancy.Handlers
 			//Fifth notification - 110 days
 			addStageProgression(_basePregnancyIncubationTime - (110 * 24 * 60), function(pregSlot:int):void {
 				var m:String = "";
-				m = "Giving birth must be right around the corner - if you get any bigger, you're going to pop! Getting around is proving to be somewhat difficult, your mobility hindered by ";
+				m = "Giving birth must be right around the corner - if you get any bigger, you’re going to pop! Getting around is proving to be somewhat difficult, your mobility hindered by ";
 				if(kGAMECLASS.pc.isTaur()) m += "your stomach almost touching the ground";
 				else m += "Your tummy protruding forward";
-				m += ". On the bright side, your babies have been a little less active than usual. No doubt they're getting ready for their grand debut. You have to wonder if babies of other races are this physical, or if it's just the Milodan...";
+				m += ". On the bright side, your babies have been a little less active than usual. No doubt they’re getting ready for their grand debut. You have to wonder if babies of other races are this physical, or if it’s just the Milodan...";
 				
 				AddLogEvent(m, "passive");
 				
