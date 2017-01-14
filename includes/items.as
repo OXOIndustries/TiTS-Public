@@ -106,9 +106,10 @@ public function useItem(item:ItemSlotClass):Boolean
 				}
 			}
 			
-			return false;
+			return true;
 		}
 	}
+	return false;
 }
 
 // A call with just an item will 
