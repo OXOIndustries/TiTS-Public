@@ -18,13 +18,13 @@ package classes.Items.Armor.Unique
 			
 			shortName = "O.Collar";
 			
-			longName = "omnisuit's metal storage collar";
+			longName = "omnisuit’s metal storage collar";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "an omnisuit's metal storage collar";
+			description = "an omnisuit’s metal storage collar";
 			
-			tooltip = "This shining metal collar is the container for a prototype omnisuit - a high tech garment that flows out to cover one's body in a shining black covering - genitalia and all. The resulting suit provides a modest amount of physical protection - and enhanced sensations for the bedroom.";
+			tooltip = "This shining metal collar is the container for a prototype omnisuit - a high tech garment that flows out to cover one’s body in a shining black covering - genitalia and all. The resulting suit provides a modest amount of physical protection - and enhanced sensations for the bedroom.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

@@ -32,7 +32,7 @@
 			this.description = "a bag of android-grade silicone";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This thick plastic bag contains a squishy, clear substance that feels almost gel-like. Further investigation reveals a few bite marks that didn't penetrate the membrane and a stamp that marks it as android-grade silicone.";
+			this.tooltip = "This thick plastic bag contains a squishy, clear substance that feels almost gel-like. Further investigation reveals a few bite marks that didn’t penetrate the membrane and a stamp that marks it as android-grade silicone.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

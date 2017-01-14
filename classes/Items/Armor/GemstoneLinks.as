@@ -4,7 +4,6 @@ package classes.Items.Armor
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class GemstoneLinks extends ItemSlotClass
 	{

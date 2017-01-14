@@ -35,7 +35,7 @@
 			this.description = "an electrogun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A fairly simple device, it takes the base-design laser pistol and instead uses to shoot out a lightning-inspired shock at your opponents! It leaves them with a fat burnt mark all the same, too. It's best used against shields.";
+			this.tooltip = "A fairly simple device, it takes the base-design laser pistol and instead uses to shoot out a lightning-inspired shock at your opponents! It leaves them with a fat burnt mark all the same, too. It’s best used against shields.";
 			this.attackVerb = "shock";
 			attackNoun = "lightning bolt";
 			

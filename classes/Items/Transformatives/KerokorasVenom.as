@@ -715,7 +715,7 @@ package classes.Items.Transformatives
 						changes++;
 					}
 					// anal capacity up to 4
-					if(changes < changeLimit && target.ass.bonusCapacity < 100  && rand(3) == 0)
+					if(changes < changeLimit && target.ass.bonusCapacity < 100 && rand(3) == 0)
 					{
 						output("\n\nYou grasp your [pc.butt] as a shudder runs through it, feeling as if your insides have become looser than they were before. You’ll probably be able to fit larger insertions now.");
 						

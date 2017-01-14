@@ -33,7 +33,7 @@
 			this.description = "a pheromonal body-spray";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A shining can of 'Allure' brand body spray. It's a pheromonal agent, designed from the mating smells of some of the most alluring species in the galaxy. Branded for men, women, and anything inbetween, its slogan reads <i>The Power of Allure</i>. A warning label informs you the wearer is not immune from the intoxicating effects of the pheromones. That probably explains why it sells so well.";
+			this.tooltip = "A shining can of ‘Allure’ brand body spray. It’s a pheromonal agent, designed from the mating smells of some of the most alluring species in the galaxy. Branded for men, women, and anything inbetween, its slogan reads <i>The Power of Allure</i>. A warning label informs you the wearer is not immune from the intoxicating effects of the pheromones. That probably explains why it sells so well.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

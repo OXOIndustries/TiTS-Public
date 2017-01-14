@@ -45,9 +45,9 @@
 			
 			if(target is PlayerCharacter)
 			{
-				output("You pull the bright pink Fertite pill out and peel it out of its packaging. It looks harmless enough, about the size of your thumbnail and smooth as can be. After a moment's consideration, you pop the pill into your mouth and wash it down with your canteen."); 
+				output("You pull the bright pink Fertite pill out and peel it out of its packaging. It looks harmless enough, about the size of your thumbnail and smooth as can be. After a moment’s consideration, you pop the pill into your mouth and wash it down with your canteen."); 
 
-				output("\n\nA few minutes pass, and you don't really feel any different. Your stomach is a little tight, but otherwise the pill doesn't seem to be altering you in any perceptible way.");
+				output("\n\nA few minutes pass, and you don’t really feel any different. Your stomach is a little tight, but otherwise the pill doesn’t seem to be altering you in any perceptible way.");
 				
 				if(target.hasPerk("Infertile"))
 				{
@@ -57,7 +57,7 @@
 				
 				if (target.hasCock() || target.hasVagina() || target.hasTailCock() || target.hasTailCunt())
 				{
-					output(" Your Codex beeps, though, informing you that it's detecting a change in your reproductive genes: <b>you're more");
+					output(" Your Codex beeps, though, informing you that it’s detecting a change in your reproductive genes: <b>you’re more");
 					if (target.hasVagina() || target.hasTailCunt())
 					{
 						output(" fertile");
@@ -83,14 +83,14 @@
 						{
 							removedBlanks = true;
 							target.removePerk("Firing Blanks");
-							if (target.balls > 0) output(" Your [pc.balls] feel as though they're churning- something gives you the impression <b>you won't be having any more trouble knocking up any floozy that comes your way</b>.");
+							if (target.balls > 0) output(" Your [pc.balls] feel as though they’re churning- something gives you the impression <b>you won’t be having any more trouble knocking up any floozy that comes your way</b>.");
 						}
 						if (target.hasPerk("Sterile"))
 						{
 							target.removePerk("Sterile");
 							if (removedBlanks) output(" The boiling warmth shifts deeper into your being");
 							else output(" The boiling warmth focuses deep in your [pc.belly]");
-							output(", spreading through your womb. The heat refocuses itself into a barely present itch, a suggestion that <b>you're fertile once again</b>.");
+							output(", spreading through your womb. The heat refocuses itself into a barely present itch, a suggestion that <b>you’re fertile once again</b>.");
 						}
 					}
 				}

@@ -31,10 +31,10 @@ package classes.Items.Guns
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a rifle salvaged from the Nova's deck 13";
+			this.description = "a rifle salvaged from the Nova’s deck 13";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Proudly stamped with the Bell-Isle/Grunmann logo, this rifle bears a vague similarity to the modern Reaper rifles which are a common sight on galactic front lines. It lacks any of the safety and accuracy updates today's laser rifles have, but it packs a heavier punch.";
+			this.tooltip = "Proudly stamped with the Bell-Isle/Grunmann logo, this rifle bears a vague similarity to the modern Reaper rifles which are a common sight on galactic front lines. It lacks any of the safety and accuracy updates today’s laser rifles have, but it packs a heavier punch.";
 			this.attackVerb = "shoot";
 			attackNoun = "laser beam";
 			

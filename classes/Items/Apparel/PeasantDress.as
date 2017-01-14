@@ -29,7 +29,7 @@
 			this.description = "a frilly, peasant-style dress";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This is a peasant style dress.  It's white with black trimming and frills. From the waist to the hem, the dress is rippled, giving it a very traditional look.";
+			this.tooltip = "This is a peasant style dress.  It’s white with black trimming and frills. From the waist to the hem, the dress is rippled, giving it a very traditional look.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

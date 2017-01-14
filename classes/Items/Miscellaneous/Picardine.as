@@ -31,7 +31,7 @@
 			this.description = "a picardine crystal";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Few gems are prized for scientific purposes quite as much as picardine. Used for everything from intelligence-boosting supplements to artificial intelligence cores, this plain-looking crystal fetches quite a high price on the open market. When it comes to research, nothing \"makes it so\" quite like picardine.";
+			this.tooltip = "Few gems are prized for scientific purposes quite as much as picardine. Used for everything from intelligence-boosting supplements to artificial intelligence cores, this plain-looking crystal fetches quite a high price on the open market. When it comes to research, nothing “makes it so” quite like picardine.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

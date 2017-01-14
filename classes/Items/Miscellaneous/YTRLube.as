@@ -33,7 +33,7 @@
 			this.description = "a Yibb-Tstll’s Reflexive Lubricant suppository";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This Camarilla-brand lubricant is applied as a suppository and is supposedly \"Good for What Rails You!\" The small, green capsule bears a picture of a tove with four thumbs up and an unsettling grin across his face. It will help you accommodate larger insertions at your backdoor.";
+			this.tooltip = "This Camarilla-brand lubricant is applied as a suppository and is supposedly “Good for What Rails You!” The small, green capsule bears a picture of a tove with four thumbs up and an unsettling grin across his face. It will help you accommodate larger insertions at your backdoor.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -29,7 +29,7 @@
 			this.description = "an undershirt";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This undershirt is a relatively standard affair. It breathes well, it's soft to the touch, and made of chameleon silk and ultralastic. ";
+			this.tooltip = "This undershirt is a relatively standard affair. It breathes well, it’s soft to the touch, and made of chameleon silk and ultralastic.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

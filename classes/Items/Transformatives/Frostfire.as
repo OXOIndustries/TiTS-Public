@@ -74,7 +74,7 @@ package classes.Items.Transformatives
 			//Not player!
 			else
 			{
-				output(target.capitalA + target.short + " doesn't seem interested in using this item....");
+				output(target.capitalA + target.short + " doesn’t seem interested in using this item....");
 			}
 			return false;
 		}

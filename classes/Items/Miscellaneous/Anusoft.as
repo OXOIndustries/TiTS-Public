@@ -54,7 +54,7 @@
 				kGAMECLASS.output("You unscrew the cap on the tube, a bit of ivory cream emerging from within with the pressure from your fingers. You shed your gear so that it doesn’t get in the way for the moment and spread your [pc.ass] with one hand to bring the tube to your tailhole with the other, applying the cream directly to your anal ring. The cream melts into your body as quickly as you can squeeze it out, and within seconds it’s all gone. You discard the tube and stand up straight, waiting for the results.");
 				
 				// Anus doesn’t have the Slightly Pumped flag or the Pumped flag:
-				// Anus gains the Slightly Pumped flag.  Increase bonusCapacity towards 100.
+				// Anus gains the Slightly Pumped flag. Increase bonusCapacity towards 100.
 				if(!pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_PUMPED))
 				{
 					kGAMECLASS.output("\n\nYou feel your [pc.asshole] quiver, twitching as if being prodded with a vibrator. You can’t help but lick your lips in anticipation of what’s about to happen,");
@@ -78,7 +78,7 @@
 					pc.lust(50);
 				}
 				// Anus has the Slightly Pumped flag but not the Pumped flag:
-				// Anus loses the Slightly Pumped flag and gains the Pumped flag.  Increase bonusCapacity towards 100.
+				// Anus loses the Slightly Pumped flag and gains the Pumped flag. Increase bonusCapacity towards 100.
 				else if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_PUMPED))
 				{
 					kGAMECLASS.output("\n\nYou");

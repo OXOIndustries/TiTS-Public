@@ -29,7 +29,7 @@
 			this.description = "a suit of platemail polished to a mirror sheen";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This suit of platemail would look right at home on a knight of terran myth, but there's no doubting the protection it provides. Crafted from something stronger than traditional steel, it can stand up to many of the more deadly weapons the galaxy has to offer. Just watch out for warhammers - a dented chestplate can make quite it hard to breathe.";
+			this.tooltip = "This suit of platemail would look right at home on a knight of terran myth, but there’s no doubting the protection it provides. Crafted from something stronger than traditional steel, it can stand up to many of the more deadly weapons the galaxy has to offer. Just watch out for warhammers - a dented chestplate can make quite it hard to breathe.";
 
 			//An alright upgrade. Stronk against kinetic, slashing and thermal, practically worthless against piercing.
 		

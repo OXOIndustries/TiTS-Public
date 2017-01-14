@@ -42,7 +42,7 @@ package classes.Items.Miscellaneous
 			
 			this.description = "an EMP grenade";
 			
-			this.tooltip = "Used by soldiers and police officers to quickly neutralize shielded or robotic opponents, modern EMP grenades temporarily fry electronics. Though individually expensive, these little babies pretty much pay for themselves when you're up against a heavily shielded enemy or an assassin droid!";
+			this.tooltip = "Used by soldiers and police officers to quickly neutralize shielded or robotic opponents, modern EMP grenades temporarily fry electronics. Though individually expensive, these little babies pretty much pay for themselves when you’re up against a heavily shielded enemy or an assassin droid!";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -76,7 +76,7 @@ package classes.Items.Miscellaneous
 				if (targetCreature is PlayerCharacter)
 				{
 					clearOutput();
-					output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?\n");
+					output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn’t it?\n");
 				}
 				else
 				{

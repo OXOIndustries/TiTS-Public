@@ -27,7 +27,7 @@
 			this.description = "a pair of cow-print shorts";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "These cow print shorts are made from a firm fabric that tightly grips the rump. A large bulge pouch emphasizes the wearer's package for any would-be admirers.";
+			this.tooltip = "These cow print shorts are made from a firm fabric that tightly grips the rump. A large bulge pouch emphasizes the wearer’s package for any would-be admirers.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

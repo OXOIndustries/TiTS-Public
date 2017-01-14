@@ -28,7 +28,7 @@ package classes.Items.Miscellaneous
 			
 			this.description = "a specialised placeholder item";
 			
-			this.tooltip = "This item should never be given to any character or player. It's used to set all of the baseline stats for tooltip comparison purposes, when comparing a slot against null.";
+			this.tooltip = "This item should never be given to any character or player. It’s used to set all of the baseline stats for tooltip comparison purposes, when comparing a slot against null.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

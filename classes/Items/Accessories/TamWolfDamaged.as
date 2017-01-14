@@ -34,7 +34,7 @@
 			this.description = "a Fenris-class assault drone";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Tam-wolf is a badly damaged Fenris-class attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal to a fault, the patched-up cyber-pup follows you around wherever you go -- just equip him in your Accessory slot, and he'll leap into battle with you. Or fall flat on his face and explode trying to, anyway.";
+			this.tooltip = "Tam-wolf is a badly damaged Fenris-class attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal to a fault, the patched-up cyber-pup follows you around wherever you go -- just equip him in your Accessory slot, and he’ll leap into battle with you. Or fall flat on his face and explode trying to, anyway.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

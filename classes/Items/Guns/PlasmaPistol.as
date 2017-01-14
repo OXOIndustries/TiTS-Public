@@ -31,7 +31,7 @@
 			this.description = "a plasma pistol";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This black-market plasma pistol has so many modifications that it's almost unrecognizable.";
+			this.tooltip = "This black-market plasma pistol has so many modifications that it’s almost unrecognizable.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

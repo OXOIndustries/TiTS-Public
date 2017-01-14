@@ -28,7 +28,7 @@ package classes.Items.Melee
 			this.description = "a whip";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This simple, single-tailed bullwhip is made from black, braided leather. It's length, flexibility, and tapered design allows it to be thrown in such a way that part of the whip can exceed the speed of sound, letting out a small sonic boom in the form of a satisfying 'crack'. Very accurate, but deals very little real damage compared to modern weapons. Still favored among adventuring archeologists.";
+			this.tooltip = "This simple, single-tailed bullwhip is made from black, braided leather. It’s length, flexibility, and tapered design allows it to be thrown in such a way that part of the whip can exceed the speed of sound, letting out a small sonic boom in the form of a satisfying ‘crack’. Very accurate, but deals very little real damage compared to modern weapons. Still favored among adventuring archeologists.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

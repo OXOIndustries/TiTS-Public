@@ -27,7 +27,7 @@ package classes.Items.Melee
 			
 			this.description = "a two-handed combat spear";
 			
-			this.tooltip = "A two-handed spear crafted by the vanae huntresses of Mhen'ga. It has an ironwood tip with a sharp spike made for piercing and two 'lugs' or 'wings' on the spear socket behind the blade. The wings stop speared prey from working their way up the shaft and attacking the wielder.\n\nThe shaft is made of Varina birch and is light yet sturdy. It makes it easy to wield for those who don't have a lot of muscle.";
+			this.tooltip = "A two-handed spear crafted by the vanae huntresses of Mhen’ga. It has an ironwood tip with a sharp spike made for piercing and two ‘lugs’ or ‘wings’ on the spear socket behind the blade. The wings stop speared prey from working their way up the shaft and attacking the wielder.\n\nThe shaft is made of Varina birch and is light yet sturdy. It makes it easy to wield for those who don’t have a lot of muscle.";
 			this.attackVerb = "stab";
 			attackNoun = "stab";
 			

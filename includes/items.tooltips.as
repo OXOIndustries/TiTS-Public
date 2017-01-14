@@ -6,6 +6,21 @@ public function altTooltip(itemName:String = "none"):String
 	
 	switch(itemName)
 	{
+		// Weapons
+		case "HoldOutPistol":
+			tooltip = "A simple black-powder pistol. It is easy to conceal but does not pack a particularly strong punch";
+			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) tooltip += ", the perfect weapon for a smuggler";
+			tooltip += ".";
+			break;
+		case "EagleHandgun":
+			tooltip = "A large barreled fifty caliber handgun. This particular pistol packs a wallop for such a compact weapon.";
+			if(pc.characterClass == GLOBAL.CLASS_MERCENARY) tooltip += " It’s the perfect weapon for a mercenary on the go.";
+			break;
+		case "LaserPistol":
+			tooltip += "The mark III laser pistol carries many refinements over previous models that make it far less likely to explode than its predecessors.";
+			if(pc.characterClass == GLOBAL.CLASS_ENGINEER) tooltip += " It’s the perfect weapon for a tech specialist to start with.";
+			break;
+		
 		// Consumables
 		case "KerokorasVenom":
 			tooltip += "A vial of ";
@@ -37,6 +52,9 @@ public function altTooltip(itemName:String = "none"):String
 			if(itemName == "SumaCreamBlack") tooltip += " onyx";
 			tooltip += " bead, roughly the size of a pearl. The exterior is a flexible plastic that protects the cream inside from getting everywhere.";
 			if(!CodexManager.entryViewed("Suma Cream")) tooltip += "\n\n<i>(Be sure to check your codex for more information.)</i>";
+			break;
+		case "SynthSap":
+			tooltip += "A silvery, sleek canister with a sticky, synthetic sap inside. It’s a variation on Sky Sap engineered by " + (flags["SYNTHSAP_UNLOCKED"] != undefined ? "Xenogen Biotech" : "Steele Tech") + ". It has a pleasant smell. You’re certain it’ll transform you if you drink it.";
 			break;
 		
 		// Accessories

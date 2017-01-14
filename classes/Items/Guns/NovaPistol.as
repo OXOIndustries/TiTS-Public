@@ -31,7 +31,7 @@ package classes.Items.Guns
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a pistol salvaged from the Nova's deck 13";
+			this.description = "a pistol salvaged from the Nova’s deck 13";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This primitive laser pistol was a favorite among starbound colonists in the early days of the planet rush scheme. It lacks the safety features and onboard lockouts that make modern commercial pistols reliable, but weak. This baby packs a punch, but it lacks the finesse and precision of more modern builds.";

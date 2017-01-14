@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a sexy zip pouch jock strap";
 			
-			this.tooltip = "This jock strap is all kinds of alluring, made of black fabric and designed to hug one's junk and show it off. Running along the groin is a zip designed to entice potential onlookers. When wearing this garment the wearer's ass is brazenly exposed.";
+			this.tooltip = "This jock strap is all kinds of alluring, made of black fabric and designed to hug one’s junk and show it off. Running along the groin is a zip designed to entice potential onlookers. When wearing this garment the wearer’s ass is brazenly exposed.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

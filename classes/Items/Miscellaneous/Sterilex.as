@@ -41,7 +41,7 @@
 		{
 			kGAMECLASS.output("You gulp down the pill, feeling a throbbing sensation in your [pc.crotch]...");
 			kGAMECLASS.output("\n\n... and nothing happens.");
-			kGAMECLASS.output("\n\nWell that was a waste, now wasn't it?");
+			kGAMECLASS.output("\n\nWell that was a waste, now wasn’t it?");
 		}
 		private function useAddDose(target:Creature):void
 		{
@@ -89,7 +89,7 @@
 					target.HP(-5);
 					target.energy(-20);
 					
-					kGAMECLASS.output("\n\nAfter your stomach settles and your fever subsides, your codex gives a few affirming beeps. You tap the screen and find that your body has rejected the drug due to your pending motherhood. Maybe it isn't such a good idea to take this stuff when you're already pregnant...");
+					kGAMECLASS.output("\n\nAfter your stomach settles and your fever subsides, your codex gives a few affirming beeps. You tap the screen and find that your body has rejected the drug due to your pending motherhood. Maybe it isn’t such a good idea to take this stuff when you’re already pregnant...");
 					
 					return false;
 				}

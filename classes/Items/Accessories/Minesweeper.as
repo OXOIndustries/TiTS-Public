@@ -33,7 +33,7 @@
 			this.description = "a minesweeper";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A fairly primitive, but nonetheless effective, Scarlet Federation device used to detect the presence and location of landmines and other hidden explosives. As long as you keep it equipped, you'll be able to automatically avoid insidiously concealed explosive devices.";
+			this.tooltip = "A fairly primitive, but nonetheless effective, Scarlet Federation device used to detect the presence and location of landmines and other hidden explosives. As long as you keep it equipped, you’ll be able to automatically avoid insidiously concealed explosive devices.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

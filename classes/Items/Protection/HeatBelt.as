@@ -30,7 +30,7 @@
 			this.description = "a basic heat belt";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "An Akkadi-brand personal heating device, worn as a belt to generate a field of warmth around the user. While it won't protect from the elements per se, it will allow you to traverse extremely cold environments without too much discomfort.\n\nNote: <b>Heat Belts are worn in the same slot as personal shields.</b>";
+			this.tooltip = "An Akkadi-brand personal heating device, worn as a belt to generate a field of warmth around the user. While it won’t protect from the elements per se, it will allow you to traverse extremely cold environments without too much discomfort.\n\nNote: <b>Heat Belts are worn in the same slot as personal shields.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

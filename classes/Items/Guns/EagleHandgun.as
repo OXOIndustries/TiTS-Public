@@ -6,7 +6,6 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	import classes.kGAMECLASS;
 	
 	public class EagleHandgun extends ItemSlotClass
 	{
@@ -31,8 +30,7 @@
 			this.description = "an eagle handgun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A large barreled fifty caliber handgun. This particular pistol packs a wallop for such a compact weapon.";
-			//if(kGAMECLASS.chars["PC"].characterClass == GLOBAL.CLASS_MERCENARY) this.tooltip += " It's the perfect weapon for a mercenary on the go.";
+			this.tooltip = "[altTooltip EagleHandgun]";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

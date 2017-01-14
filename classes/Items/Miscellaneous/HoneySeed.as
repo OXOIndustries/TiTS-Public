@@ -27,7 +27,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a suppository labeled 'Honeyseed'";
+			this.description = "a suppository labeled ‘Honeyseed’";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A brand new Xenogen product released thanks to your... contributions, Honeyseed is a localized transformation that affects male semen production, rewriting the body to produce a sweet, thick honey. The first release of the new product comes in a handy, single-use <b>suppository</b> form.";
 			
@@ -74,12 +74,12 @@
 				//Cum TF
 				if(target.cumType != GLOBAL.FLUID_TYPE_HONEY && target.hasCock())
 				{
-					kGAMECLASS.output("\n\nYou have only to wait a few moments before a sudden tightness clenches in your [pc.balls], making your [pc.cocks] jump to attention. You grimace as the sensation intensifies, making you nearly double over as the Honeydew's changes wrack your body, altering the very fabric of your being, radiating out from the [pc.balls] to your manhood. You grab ");
+					kGAMECLASS.output("\n\nYou have only to wait a few moments before a sudden tightness clenches in your [pc.balls], making your [pc.cocks] jump to attention. You grimace as the sensation intensifies, making you nearly double over as the HoneySeed’s changes wrack your body, altering the very fabric of your being, radiating out from the [pc.balls] to your manhood. You grab ");
 					if(target.cockTotal() > 1) kGAMECLASS.output("one of your rods");
 					else kGAMECLASS.output("your [pc.cock]");
 					kGAMECLASS.output(", instinctively stroking the rapidly hardening shaft as you feel... something... coming. Your breath quickens, turgid shaft quaking with effort as you pump your prick, working up what must be a load of cum, but immeasurably thicker than your previous spunk.");
 					kGAMECLASS.output("\n\nWith a cry of pleasure, your [pc.hips] buck into your hand, ramming out a thick streak of amber spooge that spatters across your thighs and crotch, glazing your groin in a creamy yellow. Your back arches instinctively, thrusting your crotch out as you continue to fap and cum, spraying yourself in sweet cock-nectar for what seems like an eternity, until all that pressure in your [pc.balls] finally fades away.");
-					kGAMECLASS.output("\n\n<b>It looks like you'll be cumming honey from here on out.</b>");
+					kGAMECLASS.output("\n\n<b>It looks like you’ll be cumming honey from here on out.</b>");
 					target.orgasm();
 					kGAMECLASS.output("\n\nPanting and gasping for breath, your orgasmic transformation leaves you plastered in spooge and smelling like a beehive.");
 					target.cumType = GLOBAL.FLUID_TYPE_HONEY;

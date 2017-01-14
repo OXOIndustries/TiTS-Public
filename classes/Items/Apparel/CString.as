@@ -28,7 +28,7 @@
 			
 			this.description = "a skimpy C-string";
 			
-			this.tooltip = "This C-string underwear covers almost nothing at all! It is as narrow as a G-string, but without the supporting \"string\" around the wearer's hips line. All that is left is a sideways C-shaped piece between the legs. This \"underwear\" is often worn with pasties or nipple tassels.";
+			this.tooltip = "This C-string underwear covers almost nothing at all! It is as narrow as a G-string, but without the supporting “string” around the wearer’s hips line. All that is left is a sideways C-shaped piece between the legs. This “underwear” is often worn with pasties or nipple tassels.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -33,7 +33,7 @@ package classes.Items.Guns
 			this.description = "a tacyhon beam laser gun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "An ultra-heavy beam laser designed for medium to long range engagements. Due to the power requirements of the laser emitters used by the weapon, it's commonly found mounted to various forms of mechanized exoskeletal combat suits-- if not directly attached to the hull of a starship.\n\nBy introducing modulated tachyon pulses into the focusing chamber, the laser can impart some finite quantity of mass to photons directed towards the target aperature.";
+			this.tooltip = "An ultra-heavy beam laser designed for medium to long range engagements. Due to the power requirements of the laser emitters used by the weapon, it’s commonly found mounted to various forms of mechanized exoskeletal combat suits-- if not directly attached to the hull of a starship.\n\nBy introducing modulated tachyon pulses into the focusing chamber, the laser can impart some finite quantity of mass to photons directed towards the target aperature.";
 			this.attackVerb = "shoot";
 			attackNoun = "beam laser";
 			

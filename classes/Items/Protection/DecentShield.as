@@ -30,7 +30,7 @@
 			this.description = "a decent JoyCo shield generator";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A moderately priced JoyCo shield generator that's generally only available for order over the extranet.";
+			this.tooltip = "A moderately priced JoyCo shield generator that’s generally only available for order over the extranet.";
 			this.attackVerb = "null";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);

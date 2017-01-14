@@ -30,7 +30,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a small, brightly-colored egg";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "As a result of genetic engineering and biological experimentation, these eggs can be produced by almost any species. Sweet and nourishing, they're quite good for when you're feeling down.\n\n(Small HP recovery.)";
+			this.tooltip = "As a result of genetic engineering and biological experimentation, these eggs can be produced by almost any species. Sweet and nourishing, they’re quite good for when you’re feeling down.\n\n(Small HP recovery.)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

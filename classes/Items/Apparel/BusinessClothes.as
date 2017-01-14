@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a set of high-powered business clothes";
 			
-			this.tooltip = "These business clothes are perfect for any high-powered corporate function. They're also perfect for someone aiming to make their way up the food chain.";
+			this.tooltip = "These business clothes are perfect for any high-powered corporate function. They’re also perfect for someone aiming to make their way up the food chain.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -22,9 +22,9 @@ package classes.Items.Apparel
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a tight-fitting nurse's outfit";
+			this.description = "a tight-fitting nurse’s outfit";
 			
-			this.tooltip = "A sexy white and red nurse outfit. It hugs the body and barely covers the crotch, designed to emphasise any natural assets a wearer may have. It comes complete with a nurse's cap, stethoscope, and frilly stockings. Made from siel silk.";
+			this.tooltip = "A sexy white and red nurse outfit. It hugs the body and barely covers the crotch, designed to emphasise any natural assets a wearer may have. It comes complete with a nurse’s cap, stethoscope, and frilly stockings. Made from siel silk.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

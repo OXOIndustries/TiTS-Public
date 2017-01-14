@@ -55,11 +55,11 @@ package classes.Items.Miscellaneous
 				if (kGAMECLASS.flags["CONSUMED_UTHRA_SAP"] == undefined)
 				{
 					kGAMECLASS.flags["CONSUMED_UTHRA_SAP"] = 1;
-					kGAMECLASS.output(" According to the Codex, it's not safe for consumption - you're going to have to smear it on your naked [pc.skinFurScales] if you want to see the effects.");
+					kGAMECLASS.output(" According to the Codex, it’s not safe for consumption - you’re going to have to smear it on your naked [pc.skinFurScales] if you want to see the effects.");
 				}
-				else kGAMECLASS.output(" You know from last time that you've got to smear it on your naked [pc.skinFurScales] to see the effects.");
+				else kGAMECLASS.output(" You know from last time that you’ve got to smear it on your naked [pc.skinFurScales] to see the effects.");
 
-				kGAMECLASS.output("\n\nYou strip off your [pc.gear] and then thoroughly smear the sticky substance all over your [pc.chest] and loins. The entire experience feels very naughty as you rub the surprisingly cool sap all over your genitals. It's almost as if you're lubing yourself up for");
+				kGAMECLASS.output("\n\nYou strip off your [pc.gear] and then thoroughly smear the sticky substance all over your [pc.chest] and loins. The entire experience feels very naughty as you rub the surprisingly cool sap all over your genitals. It’s almost as if you’re lubing yourself up for");
 				if (target.hasCock()) kGAMECLASS.output(" a quick fap");
 				else kGAMECLASS.output(" a quick frig");
 				kGAMECLASS.output(".");
@@ -122,7 +122,7 @@ package classes.Items.Miscellaneous
 						
 						if (moddedAnyTits > 1)
 						{
-							kGAMECLASS.output(" You cum from your [pc.nipples] again and again, each time spraying more of your [pc.milk] all over yourself. With each explosive release, your [pc.chest] steadily shrinks as if you're spurting out their contents. By the time you finish orgasming they've diminished in size to a [pc.breastCupSize]. <b>Your breasts have shrunk dramatically!</b>");
+							kGAMECLASS.output(" You cum from your [pc.nipples] again and again, each time spraying more of your [pc.milk] all over yourself. With each explosive release, your [pc.chest] steadily shrinks as if you’re spurting out their contents. By the time you finish orgasming they’ve diminished in size to a [pc.breastCupSize]. <b>Your breasts have shrunk dramatically!</b>");
 						}
 						else
 						{
@@ -145,9 +145,9 @@ package classes.Items.Miscellaneous
 					if (target.cocks.length > 1) kGAMECLASS.output(" one of");
 					kGAMECLASS.output(" your slickened [pc.sheath]");
 					if (target.cocks.length > 1) kGAMECLASS.output("s");
-					kGAMECLASS.output(" with one hand and fondle your [pc.balls] with the other. It's so easy to stroke yourself off with this sap; it feels as if it would be wrong <i>not</i> to. Your [pc.cumVisc] pre boils out from the tip of your [pc.cockHead] and mixes with the murky liquid. It forms glorious little spunk bubbles that explode and spill out your [pc.cumColor] love juice.");
+					kGAMECLASS.output(" with one hand and fondle your [pc.balls] with the other. It’s so easy to stroke yourself off with this sap; it feels as if it would be wrong <i>not</i> to. Your [pc.cumVisc] pre boils out from the tip of your [pc.cockHead] and mixes with the murky liquid. It forms glorious little spunk bubbles that explode and spill out your [pc.cumColor] love juice.");
 
-					kGAMECLASS.output("\n\nYou spread your [pc.thighs] and fiercely work your [pc.cock], now grabbing it with two hands. Fapping like there's no tomorrow, your senses are shamelessly seized in the rapturous heights of self pleasure. In a truly blissful instant you spill your [pc.cum] all around shooting [pc.cumVisc] ropes of [pc.cumColor] everywhere.");
+					kGAMECLASS.output("\n\nYou spread your [pc.thighs] and fiercely work your [pc.cock], now grabbing it with two hands. Fapping like there’s no tomorrow, your senses are shamelessly seized in the rapturous heights of self pleasure. In a truly blissful instant you spill your [pc.cum] all around shooting [pc.cumVisc] ropes of [pc.cumColor] everywhere.");
 
 					target.orgasm();
 					
@@ -160,9 +160,9 @@ package classes.Items.Miscellaneous
 					
 					if (target.ballSizeUnlocked(newBallSize))
 					{
-						kGAMECLASS.output("\n\nInstead of immediate release, your [pc.cock] keeps relentlessly spurting your spunk like an out-of-control hose. You moan and arch your back - you're paralyzed with pleasure and unable to do anything about it. A tiny part of you panics at the thought it may <i>never</i> stop cumming, though the rest of you happily trembles at the thought.");
+						kGAMECLASS.output("\n\nInstead of immediate release, your [pc.cock] keeps relentlessly spurting your spunk like an out-of-control hose. You moan and arch your back - you’re paralyzed with pleasure and unable to do anything about it. A tiny part of you panics at the thought it may <i>never</i> stop cumming, though the rest of you happily trembles at the thought.");
 						
-						kGAMECLASS.output("\n\nWith each and every spurt the size of your [pc.balls] diminish. As your balls tighten it feels as if you're utterly cumming them out of existence.");
+						kGAMECLASS.output("\n\nWith each and every spurt the size of your [pc.balls] diminish. As your balls tighten it feels as if you’re utterly cumming them out of existence.");
 						
 						changes++;
 						
@@ -180,7 +180,7 @@ package classes.Items.Miscellaneous
 						}
 						else
 						{
-							kGAMECLASS.output(" In the end you actually do, your [pc.sack] shrinking away until you're left with a smooth patch of [pc.skinFurScales] in its place. <b>You no longer have balls!</b>");
+							kGAMECLASS.output(" In the end you actually do, your [pc.sack] shrinking away until you’re left with a smooth patch of [pc.skinFurScales] in its place. <b>You no longer have balls!</b>");
 							
 							target.balls = 0;
 							target.ballSizeRaw = 0;
@@ -194,7 +194,7 @@ package classes.Items.Miscellaneous
 				if (target.hasCock() && moddedAnyTits > 0) kGAMECLASS.output(" and");
 				if (target.hasCock()) kGAMECLASS.output(" [pc.cum]");
 				kGAMECLASS.output(" soaked body for changes.");
-				if (changes == 0) kGAMECLASS.output(" In the end, you didn't change at all. But what a rush!");
+				if (changes == 0) kGAMECLASS.output(" In the end, you didn’t change at all. But what a rush!");
 				else kGAMECLASS.output(" What a rush!");
 			}
 			

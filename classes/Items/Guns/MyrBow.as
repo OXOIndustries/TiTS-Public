@@ -30,7 +30,7 @@
 			this.description = "a myr hunting bow";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A large, heavy composite bow made for small game hunting by Red Myr elite, but repurposed for commando action in the Seven Years' War. The bow's arrows are tipped with darts that deliver a potent cocktail of red venom, sedatives, and aphrodisiacs to quickly and quietly debilitate its targets."
+			this.tooltip = "A large, heavy composite bow made for small game hunting by Red Myr elite, but repurposed for commando action in the Seven Years’ War. The bow’s arrows are tipped with darts that deliver a potent cocktail of red venom, sedatives, and aphrodisiacs to quickly and quietly debilitate its targets."
 			this.attackVerb = "shoot";
 			attackNoun = "arrow";
 			

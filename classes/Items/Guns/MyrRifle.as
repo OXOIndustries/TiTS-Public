@@ -22,15 +22,15 @@
 			this.shortName = "M.Rifle";
 			
 			//Regular name
-			this.longName = "myr's leg rifle";
+			this.longName = "myr’s leg rifle";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a myr's leg rifle";
+			this.description = "a myr’s leg rifle";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This beat up old gun looks something like an old-earth lever action rifle, chambered in a magnum pistol cartridge meant for close range blasting through the armored chitin of the myr races. The stock and barrel have been cut down significantly compared to the similar rifles you've seen in the hands of myr soldiers, but it still packs a punch and is dead accurate in close quarters.";
+			this.tooltip = "This beat up old gun looks something like an old-earth lever action rifle, chambered in a magnum pistol cartridge meant for close range blasting through the armored chitin of the myr races. The stock and barrel have been cut down significantly compared to the similar rifles you’ve seen in the hands of myr soldiers, but it still packs a punch and is dead accurate in close quarters.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot";
 			

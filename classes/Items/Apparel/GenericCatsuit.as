@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a form-fitting smartcloth catsuit with an optional skirt";
 			
-			this.tooltip = "These catsuits are common on the frontier where dealing with multiple articles of clothing can be bothersome. Their sleek design also makes them excellent garments for revealing one's body, allowing a degree of sensuality depending on how tightly they are configured to be. This one comes complete with an optional skirt.";
+			this.tooltip = "These catsuits are common on the frontier where dealing with multiple articles of clothing can be bothersome. Their sleek design also makes them excellent garments for revealing one’s body, allowing a degree of sensuality depending on how tightly they are configured to be. This one comes complete with an optional skirt.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

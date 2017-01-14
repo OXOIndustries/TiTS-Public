@@ -31,7 +31,7 @@
 			this.description = "a laser carbine";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The Reaper Mk.5 Laser Carbine once served as the Terran-Space Coalition's service rifle, and remains very popular with paramilitaries and security forces on the frontier. Produced with an integrated holographic scope and digital heads-up display, the Reaper Mk.5 is a sturdy, balanced rifle suitable for a variety of combat scenarios.";
+			this.tooltip = "The Reaper Mk.5 Laser Carbine once served as the Terran-Space Coalition’s service rifle, and remains very popular with paramilitaries and security forces on the frontier. Produced with an integrated holographic scope and digital heads-up display, the Reaper Mk.5 is a sturdy, balanced rifle suitable for a variety of combat scenarios.";
 			this.attackVerb = "shoot";
 			attackNoun = "laser beam";
 			

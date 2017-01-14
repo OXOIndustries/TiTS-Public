@@ -24,7 +24,7 @@
 			this.description = "nothing";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "You aren't wearing anything in this equipment slot... at all.";
+			this.tooltip = "You aren’t wearing anything in this equipment slot... at all.";
 			this.attackVerb = "";
 			
 			//Information

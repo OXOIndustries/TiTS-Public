@@ -89,17 +89,17 @@
 			kGAMECLASS.flags["TIMES_THROBB_USED"]++;
 			//First Use: 
 			if(kGAMECLASS.flags["TIMES_THROBB_USED"] == 1) {
-				kGAMECLASS.output("Well, here goes nothing. You twist the little plastic cap off one end of the vial to reveal the needle. It gleams menacingly in the light as you consider it. There's no backing out now. You reverse your grip, align the needle with your ");
+				kGAMECLASS.output("Well, here goes nothing. You twist the little plastic cap off one end of the vial to reveal the needle. It gleams menacingly in the light as you consider it. There’s no backing out now. You reverse your grip, align the needle with your ");
 				if(!pc.hasCock()) kGAMECLASS.output("groin");
 				else kGAMECLASS.output("[pc.cock " + arg + "]");
-				kGAMECLASS.output(" and jam it in.\n\nIt doesn't do anything at all! Not at first anyway. You discard the spent needle and look around, wondering if you got a dud when the effects finally hit.");
+				kGAMECLASS.output(" and jam it in.\n\nIt doesn’t do anything at all! Not at first anyway. You discard the spent needle and look around, wondering if you got a dud when the effects finally hit.");
 			}
 			//Repeat Use: 
-			else kGAMECLASS.output("Already feeling a familiar, anxious lust, you uncap the throbb and look down at your crotch. There's barely any hesitation when you plunge it in and depress the plunger, flooding your system with the libido-spiking mutagen. You don't feel anything at first, but then again, you didn't the first time either. You smile and rub yourself, calmly awaiting the effects.");
+			else kGAMECLASS.output("Already feeling a familiar, anxious lust, you uncap the throbb and look down at your crotch. There’s barely any hesitation when you plunge it in and depress the plunger, flooding your system with the libido-spiking mutagen. You don’t feel anything at first, but then again, you didn’t the first time either. You smile and rub yourself, calmly awaiting the effects.");
 
 			//<= 25 libido get boosted by 10!
 			if(pc.libido() <= 25) {
-				kGAMECLASS.output("\n\nThe room tilts slightly on its axis, and you move your head to compensate, aware that the Throbb must be doing this but bound by your body's traitorous senses to experience it all the same. Your [pc.skin] flushes hotly a moment later, fed by the rapid-fire hammering of your accelerating heartbeat. A slow moan slips out between your lips as your thoughts invariably slip into sexual musings, wondering how horny this is going to make you or if you'll need to fuck six times a day just to function. That idea has more and more appeal; you briefly consider injecting yourself with more when your better sense asserts itself. This stuff has you panting with lust and has undoubtedly supercharged your libido!");
+				kGAMECLASS.output("\n\nThe room tilts slightly on its axis, and you move your head to compensate, aware that the Throbb must be doing this but bound by your body’s traitorous senses to experience it all the same. Your [pc.skin] flushes hotly a moment later, fed by the rapid-fire hammering of your accelerating heartbeat. A slow moan slips out between your lips as your thoughts invariably slip into sexual musings, wondering how horny this is going to make you or if you’ll need to fuck six times a day just to function. That idea has more and more appeal; you briefly consider injecting yourself with more when your better sense asserts itself. This stuff has you panting with lust and has undoubtedly supercharged your libido!");
 				pc.libido(10);
 				pc.lust(50+rand(10));
 				changes++;
@@ -107,7 +107,7 @@
 			//<= 50 libido get boosted by 7
 			else if(pc.libido() <= 50)
 			{
-				kGAMECLASS.output("\n\nA slutty, whorish sounding moan slips out of your [pc.lips] before you can stop it. You didn't even feel it coming, but you can tell why you made it now. Your whole body is burning up with lust, carried aloft on a wave of crimson, pulsating desire that pumps through your very veins, making your eyes cross and your tongue loll from you from your mouth. A simpering, needful whimper follows on the heels of the moan as you become completely, irrevocably aroused, too turned on to function in any sane manner. You're certain it's given your libido a bump, not that you mind. It's just another excuse to fuck, after all.");
+				kGAMECLASS.output("\n\nA slutty, whorish sounding moan slips out of your [pc.lips] before you can stop it. You didn’t even feel it coming, but you can tell why you made it now. Your whole body is burning up with lust, carried aloft on a wave of crimson, pulsating desire that pumps through your very veins, making your eyes cross and your tongue loll from you from your mouth. A simpering, needful whimper follows on the heels of the moan as you become completely, irrevocably aroused, too turned on to function in any sane manner. You’re certain it’s given your libido a bump, not that you mind. It’s just another excuse to fuck, after all.");
 				pc.libido(7);
 				pc.lust(75+rand(10));
 				changes++;
@@ -115,10 +115,10 @@
 			//<= 75 libido get boosted by 5!
 			else if(pc.libido() <= 75) 
 			{
-				kGAMECLASS.output("\n\nSuddenly, you realize you need to fuck - right now. You want sex like a starving man wants food: fast and in as great a quantity as possible. Lolling out of your mouth, your [pc.tongue] hangs limply as you begin to pant, dripping saliva over your [pc.chest]. Your [pc.skin] is hot and flushed, so sensitive to the touch that you can't help but rub your hands along over yourself and quietly moan out your enjoyment. As soon as you can get your bearings straight, you're going to bend someone over and give them a good, hard fucking.");
-				if(!pc.hasCock()) kGAMECLASS.output(" Where did that thought come from? You don't even have a dick yet!");
+				kGAMECLASS.output("\n\nSuddenly, you realize you need to fuck - right now. You want sex like a starving man wants food: fast and in as great a quantity as possible. Lolling out of your mouth, your [pc.tongue] hangs limply as you begin to pant, dripping saliva over your [pc.chest]. Your [pc.skin] is hot and flushed, so sensitive to the touch that you can’t help but rub your hands along over yourself and quietly moan out your enjoyment. As soon as you can get your bearings straight, you’re going to bend someone over and give them a good, hard fucking.");
+				if(!pc.hasCock()) kGAMECLASS.output(" Where did that thought come from? You don’t even have a dick yet!");
 				kGAMECLASS.output(" Maybe two or three fucks, actually. That way you can use your cum as lube and give a proper, thorough creampie.");
-				if(!pc.hasCock()) kGAMECLASS.output(" There's no banishing the strange thoughts.");
+				if(!pc.hasCock()) kGAMECLASS.output(" There’s no banishing the strange thoughts.");
 				//+100+rand(10) lust
 				pc.libido(5);
 				pc.lust(100);
@@ -132,7 +132,7 @@
 				if(pc.hasCock() && pc.hasVagina()) kGAMECLASS.output(" and ");
 				if(pc.hasVagina()) kGAMECLASS.output("[pc.vaginas]");
 				if(!pc.hasCock() && !pc.hasVagina()) kGAMECLASS.output("groin");
-				kGAMECLASS.output(". Every single inch of your [pc.skin] feels tingly and sensitive, and you break out into a sweat regardless of the ambient temperature. You're hot, inside and out, fiendishly aroused by the Throbb. You wonder just how much fucking hornier it can get you. It's kind of hard to think straight with how turned on you are right now, but you have a hard time caring. It feels so good, and you're going to get so big and sexy!");
+				kGAMECLASS.output(". Every single inch of your [pc.skin] feels tingly and sensitive, and you break out into a sweat regardless of the ambient temperature. You’re hot, inside and out, fiendishly aroused by the Throbb. You wonder just how much fucking hornier it can get you. It’s kind of hard to think straight with how turned on you are right now, but you have a hard time caring. It feels so good, and you’re going to get so big and sexy!");
 				pc.libido(3);
 				pc.lust(100);
 				changes++;
@@ -145,23 +145,23 @@
 					temp = Math.round(23 + rand(30))/10;
 					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
-					kGAMECLASS.output("\n\nThis is way more pleasurable than any normal masturbation! You don't really recall being able to take such long strokes along your length or having it fill your hand so powerfully, throbbing just like the drug's namesake. Looking down, you gasp. Your [pc.cock " + arg + "] is at least two inches longer and still growing! You tug it to help it on its way, moaning as it slops big ropes of pre onto your knuckles. <b>You've gained " + kGAMECLASS.num2Text(temp) + " inches of length!</b>");
+					kGAMECLASS.output("\n\nThis is way more pleasurable than any normal masturbation! You don’t really recall being able to take such long strokes along your length or having it fill your hand so powerfully, throbbing just like the drug’s namesake. Looking down, you gasp. Your [pc.cock " + arg + "] is at least two inches longer and still growing! You tug it to help it on its way, moaning as it slops big ropes of pre onto your knuckles. <b>You’ve gained " + kGAMECLASS.num2Text(temp) + " inches of length!</b>");
 					changes++;
 				}
 				//Make a kinda big dick bigger!
 				else if(pc.cockLengthUnlocked(arg, 21) && pc.cocks[arg].cLengthRaw <= 20)
 				{
-					kGAMECLASS.output("\n\nYou couldn't stop yourself from grabbing onto your [pc.cock " + arg + "] if you wanted to. It's burning with need, throbbing and bouncing against you as it weakly shoots out ropes of pre-cum as thick as your normal ejaculate. You tug it, feeling lengthing in your hand, thickening to match its expanded size, and groan. Your [pc.hips] lurch into the air as you start fistfucking yourself, dick lengthening all the while. ");
+					kGAMECLASS.output("\n\nYou couldn’t stop yourself from grabbing onto your [pc.cock " + arg + "] if you wanted to. It’s burning with need, throbbing and bouncing against you as it weakly shoots out ropes of pre-cum as thick as your normal ejaculate. You tug it, feeling lengthing in your hand, thickening to match its expanded size, and groan. Your [pc.hips] lurch into the air as you start fistfucking yourself, dick lengthening all the while. ");
 					temp = Math.round(15 + rand(30))/10;
 					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
-					kGAMECLASS.output("<b>It doesn't stop until you've gained " + kGAMECLASS.num2Text(temp) + " inches of length.</b>");
+					kGAMECLASS.output("<b>It doesn’t stop until you’ve gained " + kGAMECLASS.num2Text(temp) + " inches of length.</b>");
 					changes++;
 				}
 				//Make a hyper dick bigger!
 				else if (pc.cockLengthUnlocked(arg, 30))
 				{
-					kGAMECLASS.output("\n\nDespite its immensity, your [pc.cock " + arg + "] has become painfully hard. You idly wonder how you have enough blood to make a dong this size this rigid before another wave of excitement washes that away. Pre-cum is practically pissing out of your slit as you start pumping your expanding length, rolling down the [pc.cockHead " + arg + "] in waves of cream that are sure to be outshone by your inevitable, massive orgasm. You're throbbing so hard, thickening with each beat of your heart. It feels so good that you can't fathom why you haven't cum yet. It's like you're drowning in an ocean of burning, oozing lust, and the only thing exposed is the steadily growing tip of your length. <b>Your [pc.cock " + arg + "] has gotten even bigger!</b>");
+					kGAMECLASS.output("\n\nDespite its immensity, your [pc.cock " + arg + "] has become painfully hard. You idly wonder how you have enough blood to make a dong this size this rigid before another wave of excitement washes that away. Pre-cum is practically pissing out of your slit as you start pumping your expanding length, rolling down the [pc.cockHead " + arg + "] in waves of cream that are sure to be outshone by your inevitable, massive orgasm. You’re throbbing so hard, thickening with each beat of your heart. It feels so good that you can’t fathom why you haven’t cum yet. It’s like you’re drowning in an ocean of burning, oozing lust, and the only thing exposed is the steadily growing tip of your length. <b>Your [pc.cock " + arg + "] has gotten even bigger!</b>");
 					temp = Math.round(10 + rand(30))/10;
 					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
@@ -175,7 +175,7 @@
 			
 			//Grow balls from nothing!
 			if(pc.ballsUnlocked(2) && pc.balls == 0 && pc.hasCock() && pc.longestCockLength() >= 10 && changes < changeLimit) {
-				kGAMECLASS.output("\n\nJust when you're getting into the chemical arousal that's coursing through you, your gut twists, and nausea threatens to overwhelm you. Something is squeezing down on you painfully hard! You check, but there's nothing there aside from your hand massaging your embiggened phallus. Closing your eyes, you try to identify the source of your discomfort. The tightness shifts lower, sliding down and granting you relief at last. You open your eyes to see something entirely unexpected - a small scrotum with two lumps inside. <b>You have grown testicles!</b>");
+				kGAMECLASS.output("\n\nJust when you’re getting into the chemical arousal that’s coursing through you, your gut twists, and nausea threatens to overwhelm you. Something is squeezing down on you painfully hard! You check, but there’s nothing there aside from your hand massaging your embiggened phallus. Closing your eyes, you try to identify the source of your discomfort. The tightness shifts lower, sliding down and granting you relief at last. You open your eyes to see something entirely unexpected - a small scrotum with two lumps inside. <b>You have grown testicles!</b>");
 				pc.balls = 2;
 				pc.ballSizeRaw = 3;
 				if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 3;
@@ -200,7 +200,7 @@
 				kGAMECLASS.output("\n\nA churning, swelling tightness stretches the skin of your [pc.sack] tight for a moment as the omnipresent heat travels into your [pc.balls]. ");
 				if(pc.balls == 1) kGAMECLASS.output("You can feel it");
 				else kGAMECLASS.output("You can feel them");
-				kGAMECLASS.output(" churning up a huge load of [pc.cum], swelling just to hold all the [pc.cumColor] goodness that's waiting to burst out in a blissful explosion. You gently palm ");
+				kGAMECLASS.output(" churning up a huge load of [pc.cum], swelling just to hold all the [pc.cumColor] goodness that’s waiting to burst out in a blissful explosion. You gently palm ");
 				if(pc.balls == 1) kGAMECLASS.output("it");
 				else kGAMECLASS.output("one");
 
@@ -216,26 +216,26 @@
 			
 			//Increase cum capacity if can hold less than 3 shots a day!
 			if(pc.cumMultiplierRaw / 3 >= pc.ballEfficiency && pc.hasCock() && changes < changeLimit) {
-				kGAMECLASS.output("\n\nYou whimper and ooze a strand of [pc.cum] onto yourself when a strange but pleasurable sensation rolls over your [pc.balls]. It isn't necessarily growth, nor is it some kind overly erotic, orgasm-inducing surge. The feeling could best be described as a budding capacitance. <b>Somehow, you know your body can hold even more [pc.cum] in its reserves.</b>");
+				kGAMECLASS.output("\n\nYou whimper and ooze a strand of [pc.cum] onto yourself when a strange but pleasurable sensation rolls over your [pc.balls]. It isn’t necessarily growth, nor is it some kind overly erotic, orgasm-inducing surge. The feeling could best be described as a budding capacitance. <b>Somehow, you know your body can hold even more [pc.cum] in its reserves.</b>");
 				changes++;
 				pc.ballEfficiency += 3 + rand(6);
 			}
 			//Increase cum multiplier to a max of x50!
 			if(pc.cumMultiplierRaw < 50 && pc.hasCock() && rand(2) == 0 && changes < changeLimit) {
-				kGAMECLASS.output("\n\nMuscles in your abdomen lock and release, rhythmically clenching with the pulsing pleasure that's running through your [pc.cocks], pushing more and more pre out each time. <b>You can force out even more ejaculate during orgasm!</b>");
+				kGAMECLASS.output("\n\nMuscles in your abdomen lock and release, rhythmically clenching with the pulsing pleasure that’s running through your [pc.cocks], pushing more and more pre out each time. <b>You can force out even more ejaculate during orgasm!</b>");
 				pc.cumMultiplierRaw += 2 + rand(3);
 				pc.ballEfficiency++;
 				changes++;
 			}
 			//Increase cum quality by 25%
 			if(pc.cumQualityRaw < 2 && pc.hasCock() && rand(3) == 0 && changes < changeLimit) {
-				kGAMECLASS.output("\n\nAs heavy as loins are feeling right now, you're not sure you could drag yourself anywhere, but at the same time, your body is demanding you get up and stuff yourself inside the closest pussy - not just any pussy either: the wettest, most fertile twat you can find. You find yourself fantasizing about dozens of round-bellied women riding you one after the other, all carrying your offspring, when you become aware of that heavy feeling settling in your [pc.balls]. There's no doubt about it; <b>you've gotten more virile.</b>");
+				kGAMECLASS.output("\n\nAs heavy as loins are feeling right now, you’re not sure you could drag yourself anywhere, but at the same time, your body is demanding you get up and stuff yourself inside the closest pussy - not just any pussy either: the wettest, most fertile twat you can find. You find yourself fantasizing about dozens of round-bellied women riding you one after the other, all carrying your offspring, when you become aware of that heavy feeling settling in your [pc.balls]. There’s no doubt about it; <b>you’ve gotten more virile.</b>");
 				pc.cumQualityRaw += .25;
 				changes++;
 			}
 			//Increase refractory rate!
 			if(pc.refractoryRate < 100 && pc.hasCock() && changes < changeLimit) {
-				kGAMECLASS.output("\n\nEven though you're practically dripping liquid from your crotch, you feel like you're never going to run out. Your body is producing it more than fast enough, and if the growing tightness in your [pc.balls] is any indication, <b>you're producing [pc.cum] even faster than before, allowing you to refill more quickly between orgasms.</b>");
+				kGAMECLASS.output("\n\nEven though you’re practically dripping liquid from your crotch, you feel like you’re never going to run out. Your body is producing it more than fast enough, and if the growing tightness in your [pc.balls] is any indication, <b>you’re producing [pc.cum] even faster than before, allowing you to refill more quickly between orgasms.</b>");
 				changes++;
 				pc.refractoryRate++;
 			}
@@ -245,7 +245,7 @@
 				kGAMECLASS.output("\n\nA swollen lump of flesh appears ");
 				if(pc.hasVagina()) kGAMECLASS.output("right above your [pc.vaginas]");
 				else kGAMECLASS.output("in the center of your crotch");
-				kGAMECLASS.output(". It feels achy and a little painful but very very sensitive, and it's getting bigger with alarming ridity. The little knot is sticking an inch out past your [pc.skinFurScales], turning glossy and red as it does. You touch its tip and moan, assaulted by pleasure you barely understand, watching the bulge stretch out another inch in eager response. In seconds, you're rubbing and fondling it, coaxing more and more length from your crotch until ");
+				kGAMECLASS.output(". It feels achy and a little painful but very very sensitive, and it’s getting bigger with alarming ridity. The little knot is sticking an inch out past your [pc.skinFurScales], turning glossy and red as it does. You touch its tip and moan, assaulted by pleasure you barely understand, watching the bulge stretch out another inch in eager response. In seconds, you’re rubbing and fondling it, coaxing more and more length from your crotch until ");
 				pc.createCock();
 				pc.setNewCockValues(arg);
 				
@@ -260,7 +260,7 @@
 			//Bad end: Occurs if libido hits 100 and cock is bigger than 30" long and balls are at least 10"
 			if(pc.libido() >= 100 && pc.biggestCockLength() >= 30 && pc.balls > 0 && pc.ballDiameter() >= 10)
 			{
-				kGAMECLASS.output("\n\nEven after the transformation ends, you just can't stop yourself....");
+				kGAMECLASS.output("\n\nEven after the transformation ends, you just can’t stop yourself....");
 				kGAMECLASS.clearMenu();
 				kGAMECLASS.addButton(0,"Next",throbbBadEnd);
 				return true;
@@ -283,14 +283,14 @@
 			var pc:Creature = kGAMECLASS.chars["PC"];
 			
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.output("You masturbate on the spot, rubbing your [pc.cockBiggest] again and again while thick rivulets of [pc.cum] spil out of your distended [pc.cockHeadBiggest]. Even though you aren't orgasming, your swollen sack has become so productive that your pre-cum has been replaced by the real deal. You heft and squeeze ");
+			kGAMECLASS.output("You masturbate on the spot, rubbing your [pc.cockBiggest] again and again while thick rivulets of [pc.cum] spil out of your distended [pc.cockHeadBiggest]. Even though you aren’t orgasming, your swollen sack has become so productive that your pre-cum has been replaced by the real deal. You heft and squeeze ");
 			if(kGAMECLASS.pc.balls > 1) kGAMECLASS.output("one ");
 			kGAMECLASS.output("ball. The tightness against the sloshing orb is enough to make your length bloat and lurch, throwing a thick rope at least three meters into the air before it splatters down across your face.");
 			kGAMECLASS.output("\n\nThe sensation of ejaculation is too irresistible not to indulge. You run your hands up and down your drooling shaft to coax out another lurid deluge, letting loose a low moan when your member immediately and voluminously responds with spontaneous orgasm, pumping out a glob of [pc.cumNoun] bigger than your head. A second follows before the first hits the ground. Your fourth shot is weaker; it mostly resembles one of those fountains that shoots laminar stream of water up to cascade back over itself. The feeling of being slicked in your own steaming hot [pc.cumNoun] mid-orgasm nearly makes you pass out from raw pleasure.");
-			kGAMECLASS.output("\n\nYou lose yourself in the growing [pc.cumColor] lake, rolling your [pc.hips] with each muscle-clenching burst of ecstasy, letting your hands slide and stream wherever their lusty whims carry them. The lust hammering through every fiber of your being demands no less, and you couldn't resist if you wanted to. It's too damn strong. Your [pc.cockBiggest] is a pillar of pleasure that may as well be magnetically bound to your palms, because the only way you're going stop touching yourself is if your life depends on it.");
-			kGAMECLASS.output("\n\nPanting as you finish draining your [pc.balls], you try to remember what you were up to before you fell into another drug-fueled fap session. You were exploring or something, but everything was so sexy. Just thinking about some of the aliens you've encountered has your flagging phallus pumping up beautifully. Damn if you think about one more juicy, pliant pussy or pillowy bosom, you're going to have to... ahhh, fuck it. You grab hold of yourself and start jacking off again. You'll figure it out after another cum.");
-			kGAMECLASS.output("\n\nOf course, you don't. You wind up blowing a load all over your face and wondering why anyone would complain about it, and then you start thinking about coating other people's faces with your [pc.cum]. Then, you're right back where you started, letting yourself sink into another self-indulgent rut.");
-			kGAMECLASS.output("\n\nAfter a few dozen cyclic attempts to resume normal life, you give up. It's better to just wrap your hands around your cock and give in to the feelings it provides....");
+			kGAMECLASS.output("\n\nYou lose yourself in the growing [pc.cumColor] lake, rolling your [pc.hips] with each muscle-clenching burst of ecstasy, letting your hands slide and stream wherever their lusty whims carry them. The lust hammering through every fiber of your being demands no less, and you couldn’t resist if you wanted to. It’s too damn strong. Your [pc.cockBiggest] is a pillar of pleasure that may as well be magnetically bound to your palms, because the only way you’re going stop touching yourself is if your life depends on it.");
+			kGAMECLASS.output("\n\nPanting as you finish draining your [pc.balls], you try to remember what you were up to before you fell into another drug-fueled fap session. You were exploring or something, but everything was so sexy. Just thinking about some of the aliens you’ve encountered has your flagging phallus pumping up beautifully. Damn if you think about one more juicy, pliant pussy or pillowy bosom, you’re going to have to... ahhh, fuck it. You grab hold of yourself and start jacking off again. You’ll figure it out after another cum.");
+			kGAMECLASS.output("\n\nOf course, you don’t. You wind up blowing a load all over your face and wondering why anyone would complain about it, and then you start thinking about coating other people’s faces with your [pc.cum]. Then, you’re right back where you started, letting yourself sink into another self-indulgent rut.");
+			kGAMECLASS.output("\n\nAfter a few dozen cyclic attempts to resume normal life, you give up. It’s better to just wrap your hands around your cock and give in to the feelings it provides....");
 			
 			kGAMECLASS.processTime(60 + rand(30));
 			
@@ -312,8 +312,8 @@
 			
 			kGAMECLASS.clearOutput();
 			//[Next]
-			kGAMECLASS.output("At some point, you realized that your dreams of following in your Dad's footsteps had died. There was no way you were going to be able to focus long enough to find the probes he left scattered around the universe. You made the best of a rough situation, though, by managing to set up an online holo-show.");
-			kGAMECLASS.output("\n\nOne of your fans was even nice enough to cart you off to a studio with drains and proper recording equipment. You let them worry about the money, of course. It's too much work to keep up with all that garbage when you could be using your time to queue up a hot new porno.");
+			kGAMECLASS.output("At some point, you realized that your dreams of following in your Dad’s footsteps had died. There was no way you were going to be able to focus long enough to find the probes he left scattered around the universe. You made the best of a rough situation, though, by managing to set up an online holo-show.");
+			kGAMECLASS.output("\n\nOne of your fans was even nice enough to cart you off to a studio with drains and proper recording equipment. You let them worry about the money, of course. It’s too much work to keep up with all that garbage when you could be using your time to queue up a hot new porno.");
 			
 			kGAMECLASS.days += 30 + rand(6);
 			kGAMECLASS.hours = rand(24);

@@ -20,7 +20,7 @@
 			this.shortName = "BullStrap";
 			
 			//Regular name
-			this.longName = "bull's jockstrap";
+			this.longName = "bull’s jockstrap";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

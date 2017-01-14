@@ -17,7 +17,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 5;
-			this.type = GLOBAL.ACCESSORY;
+			this.type = GLOBAL.GADGET;
 			
 			//Used on inventory buttons
 			this.shortName = "W.Drone";

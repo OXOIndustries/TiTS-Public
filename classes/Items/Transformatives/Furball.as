@@ -100,7 +100,7 @@
 					
 					if(target.ballSizeUnlocked(newBallSize))
 					{
-						output("\n\nThere is a brief swelling sensation in your [pc.balls]. A quick inspection of your " + (target.balls == 0 ? "family jewel" : "jewels") + " confirms your suspicions. " + (target.balls == 0 ? "It is" : "They are") + " definitely bigger!");
+						output("\n\nThere is a brief swelling sensation in your [pc.balls]. A quick inspection of your family jewel" + (target.balls == 0 ? "" : "s") + " confirms your suspicions. " + (target.balls == 0 ? "It is" : "They are") + " definitely bigger!");
 						
 						target.ballSizeRaw = newBallSize;
 						// ++ lust!
