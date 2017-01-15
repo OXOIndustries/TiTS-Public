@@ -5183,7 +5183,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_NERRASA"] != undefined)
 			{
 				output2("\n<b><u>The Last Chance</u></b>");
-				
+				output2("\n<b>* Nerrasa:</b> Met her");
 				if(flags["NERRASAS_PET"] != undefined) output2(", You’re her pet");
 				if(flags["NERRASA_FUCKED"] != undefined) output2("\n<b>* Nerrasa, Times Sexed:</b> " + flags["NERRASA_FUCKED"]);
 				variousCount++;
