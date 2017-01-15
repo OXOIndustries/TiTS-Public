@@ -7984,6 +7984,56 @@
 			}
 			return index;
 		}
+		public function vaginalPuffiness(arg: int = 0): Number {
+			if (vaginas.length == 0) return 0;
+			var puffScore:Number = 0;
+			if(arg == 0 && hasStatusEffect("Mimbrane Pussy"))
+			{
+				if(statusEffectv3("Mimbrane Pussy") > 3) puffScore += 1;
+				if(statusEffectv3("Mimbrane Pussy") >= 8) puffScore += 1;
+				if(statusEffectv3("Mimbrane Pussy") >= 13) puffScore += 1;
+			}
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
+			
+			return puffScore;
+		}
+		public function puffiestVaginaIndex(): int {
+			if (vaginas.length <= 1) return 0;
+			var index: Number = 0;
+			for(var i:int = 0; i < vaginas.length; i++)
+			{
+				if (vaginalPuffiness(index) < vaginalPuffiness(i)) index = i;
+			}
+			return index;
+		}
+		public function flattestVaginaIndex(): int {
+			if (vaginas.length <= 1) return 0;
+			var index: Number = 0;
+			for(var i:int = 0; i < vaginas.length; i++)
+			{
+				if (vaginalPuffiness(index) > vaginalPuffiness(i)) index = i;
+			}
+			return index;
+		}
+		public function puffiestVaginalPuffiness(): Number {
+			if(!hasVagina()) return -1;
+			var puffScore:Number = vaginalPuffiness(0);
+			for(var i:int = 0; i < vaginas.length; i++)
+			{
+				if (puffScore < vaginalPuffiness(i)) puffScore = vaginalPuffiness(i);
+			}
+			return puffScore;
+		}
+		public function flattestVaginalPuffiness(): Number {
+			if(!hasVagina()) return -1;
+			var puffScore:Number = vaginalPuffiness(0);
+			for(var i:int = 0; i < vaginas.length; i++)
+			{
+				if (puffScore > vaginalPuffiness(i)) puffScore = vaginalPuffiness(i);
+			}
+			return puffScore;
+		}
 		//Find the biggest cock that fits inside a given value
 		public function cuntThatFits(fits: Number = 0): Number {
 			if (vaginas.length <= 0) return -1;
