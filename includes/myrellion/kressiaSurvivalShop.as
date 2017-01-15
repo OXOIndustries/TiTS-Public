@@ -238,7 +238,7 @@ public function discountFlirtsFromPolyants():void
 		output("\n\nYou shake your head, and the veteran ant gives an understanding nod. She looks around awkwardly, trying to speak but unable to find the right words. For a second you worry that you may have crossed a boundary a bit too early, but you notice Shiare coming over from the other register. The curvy honeypot hugs her wife from behind, stopping her fumbling with a firm grip.");
 		output("\n\n<i>“Come on, it’ll be fine. [pc.HeShe]’s a cutie anyway. Isn’t that exactly what you’ve been looking for? I’ll get [pc.himHer] ready, you just go back and make yourself comfortable,”</i> she says calmly, tracing a finger around the smooth skin beneath Anarrie’s shoulder. The red myr’s nervousness melts away, and she gives the two of you a determined look before standing.");
 		output("\n\n<i>“S-sure. I’ll see you both shortly,”</i> she states awkwardly, taking her cane and disappearing into the back of the store. Once she’s out of sight, Shiare turns to face you, a serious gaze replacing her usual kind smile. When she speaks, it’s with a much sharper edge than you’ve ever heard from her.");
-		output("\n\n<i>“Look, Ana has a hard time with this kind of stuff. I had to all but carry her to the bedroom and pry her legs open with a crowbar the first time we had sex. She’s expressed interest in having another person involved, but unfortunately the poor thing has no idea how to make that happen. It seems like she’s perfectly ok with you, but I’d appreciate any requests you have going through me, ok?”</i> she explains, waiting patiently for your answer.");
+		output("\n\n<i>“Look, Ana has a hard time with this kind of stuff. I had to all but carry her to the bedroom and pry her legs open with a crowbar the first time we had sex. She’s expressed interest in having another person involved, but unfortunately the poor thing has no idea how to make that happen. It seems like she’s perfectly okay with you, but I’d appreciate any requests you have going through me, okay?”</i> she explains, waiting patiently for your answer.");
 		output("\n\n<i>“");
 		if(pc.isBimbo()) output("Oh definitely! I wouldn’t want her to, like, be uncomfortable");
 		else if(pc.isNice()) output("Sure! Anything that would make her more comfortable");
@@ -312,7 +312,7 @@ public function milkingShiareCuckoldBullshit():void
 	else output("mumbling the last bit under her breath");
 	output(". You follow closely as she leads you to the back of the shop, admiring the small house they have behind the storefront. At least, the few parts of it you get to see before you arrive at the couple’s shared bedroom. Anarrie is seated in a comfortable looking leather chair next to their soft looking queen bed, already completely naked save the natural corset formed by her chitin.");
 
-	if(flags["MILKED_SHIARE"] == undefined) output("\n\n<i>“O-ok, I’m ready,”</i> the red myr utters in a quiet voice, still nervously hiding her body. This is the first time you’ve seen her prosthetic leg uncovered, and it looks outright bulky tacked onto the rest of her slender frame.");
+	if(flags["MILKED_SHIARE"] == undefined) output("\n\n<i>“O-okay, I’m ready,”</i> the red myr utters in a quiet voice, still nervously hiding her body. This is the first time you’ve seen her prosthetic leg uncovered, and it looks outright bulky tacked onto the rest of her slender frame.");
 	else output("\n\nThe red myr brims with anticipation, eyeing the two of you expectantly as she prepares to masturbate. Compared to the first time you did this, she is much more brazen, fully baring her nude body to you.");
 	output(" You wait patiently while Shiare fishes through a box in the corner to find the right equipment, eventually coming up with a variety of bondage gear.");
 
@@ -439,7 +439,7 @@ public function anarrieAmbush():void
 	output("\n\n<i>“Firstly, I can enjoy a lot of things if it means Ana is happy, but... I suppose she has been pretty stressed lately. I think she could use a little relaxation,”</i> she agrees, crossing both pairs of arms over her chest.");
 	output("\n\n<i>“She’ll be waiting for us back there, butt naked and naive, so it shouldn’t be too tough to get the jump on her.”</i> The lamplight reflects in her dark eyes as quite easily imaginable fantasies run through her head. Snapping out of her thoughts, she pulls you toward the back room. Shiare bounces on her heels, all but humming as you approach the bedroom. Anarrie looks up as you enter, body bared atop a comfy leather chair.");
 	output("\n\n");
-	if(flags["ANARRIE_AMBUSH"] == undefined) output("<i>“Ok, I’m ready whenever you are,”</i> the red myr says nervously. Her fingers fiddle nervously around the link between her hip and the prosthetic leg, tapping on the metallic attachments to stay calm.");
+	if(flags["ANARRIE_AMBUSH"] == undefined) output("<i>“Okay, I’m ready whenever you are,”</i> the red myr says nervously. Her fingers fiddle nervously around the link between her hip and the prosthetic leg, tapping on the metallic attachments to stay calm.");
 	else output("The red myr is bright with anticipation, brimming with fervor and ready for a show. Her excitement turns to alarmed surprise when she sees her wife’s hungry grin.");
 	output(" Shiare grasps the smaller woman firmly around both her hips and midsection, lifting with a grunt of effort and tossing her onto the queen-sized bed.");
 
@@ -536,7 +536,7 @@ public function itsMineALLMINEYOUCANTHAVEIT():void
 	if(silly) author("Gartenfjord");
 	
 	output("<i>“Sorry, but I’d rather not. It’s attached to my undergarments, and I’d rather not share them,”</i> you reply. You’d rather be the one using the strapon, and seeing it on someone else doesn’t really interest you. Shiare looks disappointed, but nods.");
-	output("\n\n<i>“That’s ok, I thought you might not want to, but hey, I had to ask. Maybe I can hook myself up with one from a trader. You wanna do anything else in the meantime?”</i>");
+	output("\n\n<i>“That’s okay, I thought you might not want to, but hey, I had to ask. Maybe I can hook myself up with one from a trader. You wanna do anything else in the meantime?”</i>");
 	//(back to sex menu, voyeur scene removed)
 	processTime(1);
 	flags["HARDLIGHT_ANT_PROC"] = -1;
@@ -585,8 +585,8 @@ public function antPowerOverwhelming():void
 	{
 		output("You pull out the hardlight strapon, handing it over to Shiare. She accepts it with a giddy smile, using her lower pair of hands to strip below the waist. As soon as she gets it on, she dashes to the bedroom, arms over her bust to keep it from bouncing too harshly. You follow close behind, catching up with her at the door, where Annarie looks nervously from her chair.");
 		output("\n\n<i>“Uhm. Baby, W-wait a sec, I-I need to take my pill this time. I d-don’t wanna-”</i> she starts, words stunted by shaky breathing. Shiare puts a finger to her lips near the end, pulling her face into a comforting embrace.");
-		output("\n\n<i>“Shh. It’s ok, I was gonna wait. I got a little carried away last time, but it’s hard to resist sometimes when you’re so cute and helpless. I’m sure just a little bit is ok,”</i> she says, giving the red myr’s hair some reassuring brushes.");
-		output("\n\n<i>“No amount is ok. Ever. Leave that stuff for selling to the offworlders,”</i> Ana replies, looking up from the cushiony boob pillow. Her words are harsh, but she seems a little more relaxed in the arms of her lover. She reaches over to the end table, no longer shaking, and picks up a small bottle of pills, taking one of them with a drink of water before turning back with a grin.");
+		output("\n\n<i>“Shh. It’s okay, I was gonna wait. I got a little carried away last time, but it’s hard to resist sometimes when you’re so cute and helpless. I’m sure just a little bit is okay,”</i> she says, giving the red myr’s hair some reassuring brushes.");
+		output("\n\n<i>“No amount is okay. Ever. Leave that stuff for selling to the offworlders,”</i> Ana replies, looking up from the cushiony boob pillow. Her words are harsh, but she seems a little more relaxed in the arms of her lover. She reaches over to the end table, no longer shaking, and picks up a small bottle of pills, taking one of them with a drink of water before turning back with a grin.");
 		output("\n\n<i>“Alright, I’m ready,”</i> she says, collecting herself into a more subservient mood.");
 	}
 	//newgame++(repeat 2 and onward)

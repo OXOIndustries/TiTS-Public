@@ -711,7 +711,7 @@ public function seraSpawnPregnancyApproach(pregDays:Number = 0):Boolean
 	{
 		msg = "<i>“C’mere,”</i> Sera demands as soon as you walk in. <i>“I want feels.”</i> She sits you down on her stool before stroking your swollen belly. On cue, her offspring gives a kick, making you coo.";
 		msg += "\n\n<i>“Whoa,”</i> breathes the demon-morph, her expression soft and unguarded for a moment. She reasserts her authoritativeness with a stern pat on your taunt, rounded skin.";
-		msg += "\n\n<i>“No more sex now until you drop it, ok slut? As fun as it is screwing an overripe piece of fruit, we can’t do it like we do when you’re like this.”</i> She grins at you toothily. <i>“So you keep all that hormonal-ness locked up until then. If you’re REALLY good, I might just knock you up the spout again. Won’t that be nice?”</i>";
+		msg += "\n\n<i>“No more sex now until you drop it, okay slut? As fun as it is screwing an overripe piece of fruit, we can’t do it like we do when you’re like this.”</i> She grins at you toothily. <i>“So you keep all that hormonal-ness locked up until then. If you’re REALLY good, I might just knock you up the spout again. Won’t that be nice?”</i>";
 		msgList.push(msg);
 	}
 	// Plays after >180 days
@@ -1150,7 +1150,7 @@ public function seraNurseryActions(arg:Array):void
 				output("You spend a few more minutes interacting with " + babyName + " and then head back out to the corridor. You’re always wary of... you are startled out of your thoughts by something that sounds like a pig that’s been made to run too fast.");
 				output("\n\n<i>“Onedammit son of a bitch,”</i> sniffs Sera, furiously wiping away her tears and then blowing her nose. <i>“That stupid bundle of fucking joy... I was always warned this would happen. Eventually, the sub breaks YOU.”</i>");
 				output("\n\nYou give her a hug, and after a moment, she squeezes you back tightly. You go back to the cafeteria arm in arm.");
-				output("\n\n<i>“None of my other sluts find out about this, ok?”</i> she says, settling herself down again. <i>“This place is a...”</i>");
+				output("\n\n<i>“None of my other sluts find out about this, okay?”</i> she says, settling herself down again. <i>“This place is a...”</i>");
 				output("\n\n<i>“Safe spot,”</i> you suggest.");
 				output("\n\n<i>“Yeah. Where I can let all my emotions go and shit, so I can be a callous bitch the rest of the time. Understood?”</i>");
 				output("\n\nYou lean over and plant a kiss on her forehead. You receive a glower and two navy cheeks in response.");

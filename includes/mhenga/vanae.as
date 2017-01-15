@@ -2587,7 +2587,7 @@ public function cockvineTailPlusVanaeVictory():void
 	if(pc.isTaur()) output("shoulder");
 	else output("ass");
 	output(" trembles under your fingers, and she grunts out permission, ");
-	if(enemy is MaidenVanae) output("<i>“Ok... I’m ready... go ahead.”</i>");
+	if(enemy is MaidenVanae) output("<i>“Okay... I’m ready... go ahead.”</i>");
 	else output("<i>“Ohh, yes! Fuck me!”</i>");
 
 	output("\n\nYou obey, drawing back to the [pc.tailCockHead] ");

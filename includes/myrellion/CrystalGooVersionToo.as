@@ -352,7 +352,7 @@ public function crystalGooLeaveAfterWin():void
 	clearOutput();
 	showCrystalGooToo();
 	
-	output("You give the ganrael's offer a momentary thought, but ultimately opt to leave.");
+	output("You give the ganrael’s offer a momentary thought, but ultimately opt to leave.");
 	output("\n\n");
 	
 	addCrystalGooBallLoot();
@@ -1258,7 +1258,7 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		output(", until the stone-faced beauty can insert it no farther.");
 		if(pc.hasKnot(cockIdx)) 
 		{
-			output(" The ganrael's touch lingers on your fleshy ");
+			output(" The ganrael’s touch lingers on your fleshy ");
 			if(pc.cocks[cockIdx].cType != GLOBAL.TYPE_NYREA) output("knot");
 			else output("egg-knot");
 			output(" a bit too long, and the bulge begins to stiffen. She releases it to extend your pleasure, or torment, further.");
@@ -1545,7 +1545,7 @@ public function crystalGooUnsexedLoss():void
 		output("\n\nYour lust is too much for the low-level lovemaking the ganrael offers, even with its perverted tongue mods; every time its flesh touches your body, another wave of desire breaks over you. Your frustration expresses itself suddenly: the ganrael pulls back from a smooch to let you breathe and you fall on it, tackling it to the cave floor. It smiles when you suck on its neck, and its arms go still. You kiss all over its chest and shoulders - needy, suckling busses - abusing your lover’s skin so much that you cover it in raised ‘hickeys’. The ganrael only laughs as you deform it with tens of tiny bumps.");
 	}
 
-	output("\n\nThe alien’s efforts become tamer and tamer as your arousal runs wild until soon, "+ cgender("she", "it") +" just stops. <i>“Ok, all done,”</i> "+ cgender("she", "it") +" says, wiping the most recent saliva with a finger and storing it. <i>“You were so good, sexy.”</i>");
+	output("\n\nThe alien’s efforts become tamer and tamer as your arousal runs wild until soon, "+ cgender("she", "it") +" just stops. <i>“Okay, all done,”</i> "+ cgender("she", "it") +" says, wiping the most recent saliva with a finger and storing it. <i>“You were so good, sexy.”</i>");
 	
 	output("\n\nYou stare at "+ cgender("her", "it") +", jaw flapping as you try to turn an outgoing kiss into a demand.");
 	

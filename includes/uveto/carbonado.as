@@ -1,6 +1,6 @@
 public function outsideCarbonado():Boolean
 {
-	output(" Finally to the west is a combination clothing-store-come-spa. The window rather cheerily offers a cozy experience for potential patrons to warm themselves within after having experienced the bitter chill of the moons surface.");
+	output(" Finally, to the west, is a combination clothing-store-come-spa. The window rather cheerily offers a cozy experience for potential patrons to warm themselves within after having experienced the bitter chill of the moons surface.");
 
 	if (hours >= 21 || hours < 8)
 	{
@@ -185,13 +185,13 @@ public function uvetoCarbonadoFirstTime():void
 
 	output("\n\n<i>“Hi there! Welcome to Carbonado! Is... is there anything I can do to help you-ooo?”</i> she begins. Halfway through the words, her demeanor slackens. Her once alert gaze fades to a dreamy stare, glazed with impure thoughts. Before you can ask her what’s wrong, or do much of anything really, you hear a shout from the other end of the store.");
 
-	output("\n\n<i>“Hang on! Don’t get closer, you’ll only make it worse,”</i> shouts the tall, dark-skinned girl from the far counter. She sprints over, clearing the counter’s distance in a matter of seconds. After making sure the puazi is ok, she gives you a stern look-over. A glistening name-tag on her suit labels her as ‘Eimear’.");
+	output("\n\n<i>“Hang on! Don’t get closer, you’ll only make it worse,”</i> shouts the tall, dark-skinned girl from the far counter. She sprints over, clearing the counter’s distance in a matter of seconds. After making sure the puazi is okay, she gives you a stern look-over. A glistening name-tag on her suit labels her as ‘Eimear’.");
 
 	output("\n\n<i>“You’re not one of the regulars, so I’ll give you the benefit of the doubt. I don’t know if you knew this, but puazi can go into crazy bouts of heat when humans are nearby. There are a couple people who come in every once in a while just to harass poor Gwen here, so forgive me if I sound harsh.");
 	if (pc.humanScore() <= 2) output(" You don’t look human, but there must be some in your genes.");
 	output("”</i> she says, attempting to push the determined saleswoman away from the counter. Her efforts are impeded by the latter’s batting arms.");
 
-	output("\n\n<i>“It’s ok Eemee, it’s really not a really bad one this time. I can still run the ship. Now, what can I help for you today, "+pc.mf("sir", "mam") +",”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
+	output("\n\n<i>“It’s okay Eemee, it’s really not a really bad one this time. I can still run the ship. Now, what can I help for you today, "+pc.mf("sir", "mam") +",”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
 
 	clearMenu();
 	addButton(0, "Talk", uvetoCarbonadoIntroTalk);
@@ -226,7 +226,7 @@ public function uvetoCarbonadoIntroMerge():void
 {
 	output("\n\n<i>“O-K, that’s enough front work for you right now. This is why we got the automated register, remember? Let’s go in back and get you taken care of,”</i> the taller woman says, picking her stocky friend up under the arms and then over her shoulder before she can embarrass herself further. The goat-like alien giggles as she’s hefted into the air, nigh oblivious to the situation.");
 
-	output("\n\n<i>“Sorry about this, I’m sure you’re a great "+ pc.mf("guy", "gal") +". Come back in a bit, ok? We’ll have this all fixed up and you can have some actually meaningful conversation,”</i> she apologizes, flashing the first smile you’ve seen since she came over. <i>“Eemee”</i> carts her tipsy friend into the back room, leaving you alone with the self running register.");
+	output("\n\n<i>“Sorry about this, I’m sure you’re a great "+ pc.mf("guy", "gal") +". Come back in a bit, okay? We’ll have this all fixed up and you can have some actually meaningful conversation,”</i> she apologizes, flashing the first smile you’ve seen since she came over. “Eemee” carts her tipsy friend into the back room, leaving you alone with the self running register.");
 
 	pc.createStatusEffect("Gwen In Back", 0, 0, 0, 0, true, "", "", false, 60);
 	
@@ -397,7 +397,7 @@ public function uvetoCarbonadoHelpGwen():void
 	{
 		output("\n\n<i>“No dick?");
 		if (!pc.hasCock() && !pc.hasHardLightEquipped()) output(" I couldn’t if I wanted to")
-		else if (pc.isBimbo()) output(" Aww, ok");
+		else if (pc.isBimbo()) output(" Aww, okay");
 		else if (pc.isNice()) output(" No problem");
 		else if (pc.isMisc()) output(" I don’t need one for this");
 		else output(" If you insist");
@@ -745,7 +745,7 @@ public function cfsGoHangoutTimeIII(resp:uint = 0):void
 		case 1:
 			output("\n\n<i>“That was...");
 			if (!pc.isBimbo()) output(" not my kind of show");
-			else output(" ok I guess, but like, it needs more boobs");
+			else output(" okay, I guess, but like, it needs more boobs");
 			output(",”</i> you express, prompting an understanding shrug from the excitable puazi.");
 
 			output("\n\n<i>“Oh well, it’s not for everyone. If you ever think about giving it a second chance we could watch one of the movies. They were all made after the initial rough period, so they aren’t quite as cheesy and shoddily written. The first few still have some cheese, but definitely not that bad. If you come over some other time I’m sure we can find something you can have more fun with,”</i> she says as she shuts off the movie player. You rise from the couch, helping the pair with cleaning up snacks.");
@@ -763,7 +763,7 @@ public function cfsGoHangoutTimeIII(resp:uint = 0):void
 
 	output("\n\n<i>“Just ask either of us around closing time if you want to hang out again, we’re free most nights,”</i> Gwen explains, bringing you to the door. As you leave the house, Eimear steps out with you and taps you on the shoulder to get your attention.");
 
-	output("\n\n<i>“Hey Steele! One more thing before you go. If Gwen ever has an episode while you’re around, I’d be ok if you, you know, helped her out with it. I already know she’d be up for it, but I just wanted you to know its good with me in case that would be a trouble spot,”</i> she declares, growing more flustered with every word. You can see a blush even through her ebon cheeks, but she grows suddenly somber. <i>“Just don’t fuck her up. If I see her with any kind of drugs or anything that screws up her head I’ll sooner crack yours than call the authorities.”</i>");
+	output("\n\n<i>“Hey Steele! One more thing before you go. If Gwen ever has an episode while you’re around, I’d be okay if you, you know, helped her out with it. I already know she’d be up for it, but I just wanted you to know its good with me in case that would be a trouble spot,”</i> she declares, growing more flustered with every word. You can see a blush even through her ebon cheeks, but she grows suddenly somber. <i>“Just don’t fuck her up. If I see her with any kind of drugs or anything that screws up her head I’ll sooner crack yours than call the authorities.”</i>");
 
 	output("\n\nYou gulp, nodding confirmation. At your answer she smiles again, patting you on the shoulder before hopping back.");
 
@@ -823,7 +823,7 @@ public function cfsGoSleepover():void
 		
 		output("\n\nYou pull away from her mouth with a pop, still connected by a line of strings that break and drop to her chest. A similar web of juices splatters between your hips, steadily increased by the alien beauties seemingly unending stream of mini orgasms. With every thrust her grip on both your body and her consciousness slips, spiraling slowly towards blazing euphoria. You steady one bouncing breast with a tight grip, extracting a delighted yelp with a tug on its dusky nipple.");
 		
-		output("\n\n<i>“Cumming! Inside ok... C-can’t pregnant! Inside good!”</i> she shouts out amidst her frenzy of delightful feelings. You can feel your own lusts building, and let yourself lose control, mindlessly bucking into her as your climax builds. It feels as if all the heat in your body is focused through [pc.eachCock], pumped into");
+		output("\n\n<i>“Cumming! Inside, okay... C-can’t pregnant! Inside, good!”</i> she shouts out amidst her frenzy of delightful feelings. You can feel your own lusts building, and let yourself lose control, mindlessly bucking into her as your climax builds. It feels as if all the heat in your body is focused through [pc.eachCock], pumped into");
 		if (pc.cocks.length > 1) output(" and onto");
 		output(" her desire bridled body. The prurient puazi gives a satisfied sigh, accepting every drop with an exhausted embrace. You pull slowly out of her cum-soaked cunt, gasping at the cool air on your tender privates as you flop to your side next to her.");
 		
@@ -955,7 +955,7 @@ public function cfsGoVidjaII():void
 	if (pc.isBimbo()) output("Oh yeah! Maybe we can do it shirtless next time!");
 	else if (pc.isNice()) output("This was a lot of fun, I can’t wait,");
 	else if (pc.isMisc()) output("It was fun, next time we can spice it up. Strip gaming maybe?");
-	else output("Yeah ok, it was pretty fun,");
+	else output("Yeah okay, it was pretty fun,");
 	output("”</i> you");
 	if (pc.isBimbo() || pc.isMisc()) output(" suggest slyly");
 	else if (pc.isNice()) output(" say, meaning every word");
@@ -1052,7 +1052,7 @@ public function cfsGoLewdMassage():void
 
 	output("\n\n<i>“Can I take you up on that after hours massage offer,”</i> you ask, tossing her a hopeful grin. She nods in understanding, powering down the various workplace computers on her counter.");
 
-	output("\n\n<i>“Gwen, I’m gonna give Steele a massage quick before we leave, is that ok with you?”</i> she shouts across the store.");
+	output("\n\n<i>“Gwen, I’m gonna give Steele a massage quick before we leave, is that okay with you?”</i> she shouts across the store.");
 
 	output("\n\n<i>“Mhmm! I can do some design work while I wait!”</i> comes her puazi lover’s reply. She smiles, opening the counter gate for you and heading back to the massage rooms. You strip in the waiting room, growing a little aroused at the prospects of what’s coming. Eimear is waiting by the table as you enter the room, hands already dripping with extra lotion.");
 

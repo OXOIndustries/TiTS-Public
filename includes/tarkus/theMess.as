@@ -714,7 +714,7 @@ public function disarmDelsTrap():void
 			//(mean)
 			else output("<i>“Isn’t it obvious? You fuck this. If you’re scared someone will tell on you, I’ll get on top and fuck your ass.”</i>");
 
-			output("\n\nDel is nearly salivating over your cunt; she nods eagerly. <i>“Oh man... it’s been so long since... um, be patient with me, ok?”</i>");
+			output("\n\nDel is nearly salivating over your cunt; she nods eagerly. <i>“Oh man... it’s been so long since... um, be patient with me, okay?”</i>");
 		}
 		//first time if Del full submissive
 		else

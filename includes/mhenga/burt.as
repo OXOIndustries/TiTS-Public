@@ -21,7 +21,7 @@ public function burtsBarFunc():void {
 		//{Has bet against Syri}
 		else {
 			output("\n\nThe cocksure ausar girl, Syri, is standing across from the game screens, deep into a match as she nurses a stiff Terran beer. Seeing you standing around, she waves you over, clearly looking for a rematch. ");
-			if(flags["FUCKED_SYRI_COUNT"] != undefined) output("She's certainly got that lusty look in her eyes...");
+			if(flags["FUCKED_SYRI_COUNT"] != undefined) output("She’s certainly got that lusty look in her eyes...");
 			//[!Syri]
 			addButton(2,"Syri",syriGamesStart);
 		}
@@ -31,11 +31,11 @@ public function burtsBarFunc():void {
 		if(flags["FUCKED_SYRI_COUNT"] != undefined) {
 			//(First time; must have fucked Syri at least once)
 			if(flags["SEEN_SYRI_IN_THE_MORNING"] == undefined) {
-				output("\n\nYou see Syri the ausar gamer sitting in a stool at the bar, scanning a data slate as she absently pokes at a hearty looking breakfast that looks like it's been there for ages. Doesn't look like she's gaming yet, though with the place practically deserted in the wee hours, she might be up for just talking...");
+				output("\n\nYou see Syri the ausar gamer sitting in a stool at the bar, scanning a data slate as she absently pokes at a hearty looking breakfast that looks like it’s been there for ages. Doesn’t look like she’s gaming yet, though with the place practically deserted in the wee hours, she might be up for just talking...");
 			}
 			//(Repeat)
 			else {
-				output("\n\nSyri's at her usual place, reading and munching on some nuts Burt's left for her. Seeing you looking her way, she flashes you a grin and indicates the empty seat beside her.");
+				output("\n\nSyri’s at her usual place, reading and munching on some nuts Burt’s left for her. Seeing you looking her way, she flashes you a grin and indicates the empty seat beside her.");
 			}
 			//[Syri]
 			addButton(2,"Syri",approachSyriIntheMorning);
@@ -63,7 +63,7 @@ public function approachBurtFirstTime():void {
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT");
 	output("You approach the bar and get your first good look at the owner and namesake of Burt’s Badass Mead Hall, Burt himself. At first glance one can easily see that the term ‘Badass’ doesn’t just refer to his mead hall, but himself as well. He is every bit the stereotype of a rough and tough spacer on the edge of civilization.");
-	output("\n\nHe stands just shy of seven feet tall, and has a frame that speaks of big bones and muscles earned through hard work and not vanity. His head is shaved bald, but his chiseled jaw bears a healthy five-o'clock shadow no matter what time of day it is. He has a healthy tan and a scar over his left ear. His dark brown eyes watch the room, flicking from patron to patron alert for any problems.");
+	output("\n\nHe stands just shy of seven feet tall, and has a frame that speaks of big bones and muscles earned through hard work and not vanity. His head is shaved bald, but his chiseled jaw bears a healthy five-o’clock shadow no matter what time of day it is. He has a healthy tan and a scar over his left ear. His dark brown eyes watch the room, flicking from patron to patron alert for any problems.");
 	output("\n\nHe is dressed in a yellow and black checkered flannel, left open over a white tank-top that clings to the muscles of his chest. The pocket of the flannel has an old model Codex in it, as well as a grease pencil, with the Codex having more than a few black greasy marks on it, hinting that the bartender goes for the pencil more often than the technology. He has a bar apron wrapped around his waist, the black cloth having more pockets, one stuffed with an A.B.Curse credit tabulator, and the other holding a variety of bottle openers. Below the apron he wears a pair of combat pants, marked with the gray and tan square patches of various hues that implies that it was intended for urban use. You can’t see his shoes while he stands behind the bar, but the occasional thumps you hear as he moves about imply biker or combat boots.");
 	output("\n\nHe glances up at you as he washes a tumbler out with one of the tails of his flannel shirt, raising a brow at you, <i>“Welcome to Burt’s Badass Mead Hall, stranger. I’m Burt, the owner and bartender. Ya need anything to wet your whistle, just let me know.”</i> He sets down the glass and grins at you, half leaning against the bar as he adds, <i>“I’ve got drinks on tap, gossip to share, and a keen interest in certain... collectables.”</i>");
 	burtBarMenu();
@@ -89,10 +89,10 @@ public function burtBarMenu():void {
 	this.clearMenu();
 	this.addButton(0,"Drink",burtDrinkMenu,undefined,"Drink","Check out the drink menu.");
 	this.addButton(1,"Talk",talkToDisBurtGuey,undefined,"Talk","Talk to Burt.");
-	if(pc.lust() >= 33) this.addButton(2,"Sex",burtSex,undefined,"Sex","See if you can get in the bartender's pants.");
-	else this.addDisabledButton(2,"Sex","Sex","You aren't turned on enough for sex.");
-	if(flags["BURT_COLLECTABLE_SHOP"] == undefined) this.addButton(3,"Collectables?",BurtShopCollectables,undefined,"Collectables?","Ask Burt by what he meant by \"collectables.\"");
-	else this.addButton(3,"Shop",BurtShopCollectables,undefined,"Shop","Look into selling Burt some of the stuff you've found out on Mhen'ga.");
+	if(pc.lust() >= 33) this.addButton(2,"Sex",burtSex,undefined,"Sex","See if you can get in the bartender’s pants.");
+	else this.addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for sex.");
+	if(flags["BURT_COLLECTABLE_SHOP"] == undefined) this.addButton(3,"Collectables?",BurtShopCollectables,undefined,"Collectables?","Ask Burt by what he meant by “collectables.”");
+	else this.addButton(3,"Shop",BurtShopCollectables,undefined,"Shop","Look into selling Burt some of the stuff you’ve found out on Mhen’ga.");
 	this.addButton(14,"Leave",mainGameMenu);
 }
 
@@ -108,9 +108,9 @@ public function burtDrinkMenu():void {
 	
 	this.clearMenu();
 	if(pc.credits >= 1) this.addButton(0,"Crabbst",crabbstBlueRibbonPurchase,undefined,"Crabbst","Shitty beer.");
-	else this.addDisabledButton(0,"Crabbst","Crabbst","You can't afford this. Damn, you're poor.");
+	else this.addDisabledButton(0,"Crabbst","Crabbst","You can’t afford this. Damn, you’re poor.");
 	if(pc.credits >= 10) this.addButton(1,"Mead",buyMeadFromBurt,undefined,"Mead","Honey-based mead.");
-	else this.addDisabledButton(1,"Mead","Mead","You can't afford this.");
+	else this.addDisabledButton(1,"Mead","Mead","You can’t afford this.");
 	if(pc.credits >= 50) this.addButton(2,"X-Zil-rate",burtXilErAte,undefined,"X-Zil-rate","Some kind of exotic, expensive brew.");
 	else this.addDisabledButton(2,"X-Zil-rate","Z-Zil-rate","You cannot afford this.");
 	//[Crabbst Blue Ribbon]		[Mead]		[X-Zil-rate]		[Back]
@@ -209,7 +209,7 @@ public function burtSexMenu():void {
 	//[Give a BJ]	[Get Oral]		[Anal]		[Vaginal]*	[Back]
 	this.addButton(0,"Give BJ",giveBurtABJ,undefined,"Give BJ","Give Burt a blowjob.");
 	if(pc.hasVagina() || pc.hasCock()) this.addButton(1,"ReceiveOral",getOralFromBurt,undefined,"ReceiveOral","Have Burt perform oral on you.");
-	else this.addDisabledButton(1,"ReceiveOral","ReceiveOral","How can Burt give you oral if you don't have a dick or a pussy?");
+	else this.addDisabledButton(1,"ReceiveOral","ReceiveOral","How can Burt give you oral if you don’t have a dick or a pussy?");
 	this.addButton(2,"Anal",burtsWeinerInYourButt,undefined,"Anal","Let Burt fuck your asshole.");
 	if(pc.hasVagina()) this.addButton(3,"Vagina",burtSticksItInThePCsVajayjay,undefined,"Vagina","Let Burt fuck your vagina.");
 	else this.addDisabledButton(3,"Vagina","Vagina","You need a vagina in order for Burt to fuck it.");
@@ -218,7 +218,7 @@ public function burtSexMenu():void {
 	this.addButton(5,"Rimjob",lickBurtsAssholeYouFilthyButtlicker,undefined,"Rimjob","Give Burt a rimjob.");
 	if(pc.biggestTitSize() >= 7) this.addButton(6,"Titfuck",titFuckBurtBecauseYoureAFilthyFatChestedHo,undefined,"Titfuck","Titfuck Burt.");
 	else addDisabledButton(7,"Titfuck","Titfuck","You need some big tits to titfuck Burt with.");
-	if(pc.hasCuntTail()) this.addButton(7,"Tailfuck",tailFuckBurtBecauseWhyNot,undefined,"Tailfuck","Use your tail-mounted vagina on Burt's dick.");
+	if(pc.hasCuntTail()) this.addButton(7,"Tailfuck",tailFuckBurtBecauseWhyNot,undefined,"Tailfuck","Use your tail-mounted vagina on Burt’s dick.");
 	else addDisabledButton(7,"Tailfuck","Tailfuck","You need a tail-mounted vagina in order to fuck Burt with it.");
 	this.addButton(14,"Back",burtapproach);
 	//* Requires requisite part, vagina or tailpussy.
@@ -351,7 +351,7 @@ public function crabbstBlueRibbonPurchase():void {
 			pc.willpowerMod--;
 			pc.lust(5);
 		}
-		else output("\n\nYou've gotten everything from Crabbst you're going to get.");
+		else output("\n\nYou’ve gotten everything from Crabbst you’re going to get.");
 	}
 	else {
 		pc.createStatusEffect("Crabbst",0,1,0,0,false,"Icon_DizzyDrunk","Makes you stronger but at what cost?",false,180);
@@ -395,10 +395,10 @@ public function buyMeadFromBurt():void {
 			pc.willpowerMod-= .5;
 			pc.lust(5);
 		}
-		else output("\n\nYou've gotten as much from the mead as you're going to get.");
+		else output("\n\nYou’ve gotten as much from the mead as you’re going to get.");
 	}
 	else {
-		pc.createStatusEffect("Mead",0,1,0,0,false,"Icon_DizzyDrunk","Alcohol isn't good for you, but you do feel a little stronger and more confident.",false,180);
+		pc.createStatusEffect("Mead",0,1,0,0,false,"Icon_DizzyDrunk","Alcohol isn’t good for you, but you do feel a little stronger and more confident.",false,180);
 		pc.physiqueMod++;
 		pc.reflexesMod-= .5;
 		pc.aimMod-= .5;
@@ -425,7 +425,7 @@ public function burtXilErAte():void {
 	userInterface.showBust("BURT");
 	output("Burt grins at you and says softly, <i>“Ah, a connoisseur. This stuff is the finest mead you can buy.”</i> He turns from you and grabs a gold bottle from the top shelf behind the bar, bringing it over and drawing the cork before letting you smell the pungent and rich flavors that have gathered on the plug during the time the bottle has been on the shelf.");
 	output("\n\nBurt reaches under the counter and brings up a fluted wine glass before pouring it half full of the crystal clear golden wine, filling the usually stale and smoky air of the bar around you with the scent of wildflowers in full bloom and rich notes of honey and sex. He sets the glass down before you and says, <i>“Do enjoy, [pc.name].”</i>");
-	output("\n\nThis clearly isn’t the kind of drink you can just slam down, so you relax at the bar as you slowly roll the drink around in the glass and take the occasional sip from it, savoring every drop of the majestic alcohol. It is honestly hard to imagine why this drink isn’t far more expensive than it is, but it lets you get a taste of what it must be like to be a CEO with money to burn on life's finest things.");
+	output("\n\nThis clearly isn’t the kind of drink you can just slam down, so you relax at the bar as you slowly roll the drink around in the glass and take the occasional sip from it, savoring every drop of the majestic alcohol. It is honestly hard to imagine why this drink isn’t far more expensive than it is, but it lets you get a taste of what it must be like to be a CEO with money to burn on life’s finest things.");
 	//[pg]
 	//+10 Physique, +1 Lust per action, for the next 5 hours; Galotian PCs become Acidic*.
 	if(pc.hasStatusEffect("X-Zil-rate")) {
@@ -434,7 +434,7 @@ public function burtXilErAte():void {
 			pc.physiqueMod+=5;
 			pc.lust(5);
 		}
-		else output("\n\nYou're as hopped up on X-Zil-rate as you're going to get.");
+		else output("\n\nYou’re as hopped up on X-Zil-rate as you’re going to get.");
 	}
 	else {
 		pc.createStatusEffect("X-Zil-rate",0,5,0,0,false,"Icon_DizzyDrunk","This top-shelf booze makes you feel strong... and horny.",false,180);
@@ -483,7 +483,7 @@ public function askBurtAboutHimself():void {
 			}
 		}
 		else {
-			pc.createStatusEffect("Mead",0,1,0,0,false,"Icon_DizzyDrunk","Alcohol isn't good for you, but you do feel a little stronger and more confident.",false,180);
+			pc.createStatusEffect("Mead",0,1,0,0,false,"Icon_DizzyDrunk","Alcohol isn’t good for you, but you do feel a little stronger and more confident.",false,180);
 			pc.physiqueMod++;
 			pc.reflexesMod-= .5;
 			pc.aimMod-= .5;
@@ -494,7 +494,7 @@ public function askBurtAboutHimself():void {
 	}
 	//Scene 4 (Won’t happen until PC has experienced Three-Dee Rape sex ending)
 	else {
-		output("Burt mutters, <i>“Damnit... Ok, I’ll tell you everything, but only to make up for Three-Dee going off on you like that. I had a fiancee, a head researcher at Xenogen, she was brilliant and beautiful, the whole package. Henrietta was her name, had a doctorate in xenobiology before she was even out of puberty.</i> He gives a wistful sigh and seems to drift off in his memories for a moment before getting back to his story.");
+		output("Burt mutters, <i>“Damnit... Okay, I’ll tell you everything, but only to make up for Three-Dee going off on you like that. I had a fiancee, a head researcher at Xenogen, she was brilliant and beautiful, the whole package. Henrietta was her name, had a doctorate in xenobiology before she was even out of puberty.</i> He gives a wistful sigh and seems to drift off in his memories for a moment before getting back to his story.");
 		output("\n\n“She was researching genetic predispositions towards mental disease and criminal behavior. I doubt you’ve heard of her work, it’s a dead end...”</i> he shakes his head and sighs, <i>“I swear, as long as there have been people who could tell the difference between right and wrong, someone has hoped to cure it. Anyway, she made this drug, called </i>H1d3<i>, that she had hoped would work. It modified the person’s genetic code. It was supposed to make their bodies physically ill at the attempt to commit crimes, but it was never exact enough. Instead it just stripped all the test subjects of any semblance of free will, and jacked their libido through the roof. They would do anything you asked them to do without even putting up a fight. It was horrible. So Xenogen canceled the project.”</i>");
 		output("\n\nBurt props his elbows on the bartop and drops his head into his hands, <i>“That should have been the end of it... but somehow, the Black Void got their hands on the serum, and on my fiancee. She wouldn’t tell them how to make it, so they injected her with it, but the sample they had was old, </i>H1d3<i> degrades over time. It left her a near brainless bimbo. She couldn’t tell them how to manufacture it after that.”</i>");
 		output("\n\n“So they dumped her in our apartment, and hid the hypo in my kit locker. They called the T.S.C. domestic security and told them that I had been selling lab rats to slavers, and had turned Henrietta into one and was about to sell her off as well. I was working security for Xenogen at the time, so I was an easy target. They had raided my place before I got home, and I saw them bringing her out. I ran, and I never looked back. I’m still on the T.S.C.’s most wanted list, but they don’t have a lot of reach here yet, so....”</i> Burt shrugs, <i>“That’s my story.”</i>");
@@ -1283,7 +1283,7 @@ public function stephIrsonBountHunterEpisodeOne():void {
 	else output(" dark night sky ");
 	output("to an athletic young woman in an almost comically skimpy ranger outfit, with khaki hotpants and low-cut shirt rolled up to expose her midriff and ample cleavage both. Her blonde ponytail bounces excitedly as she jogs along through a jungle underbrush, the camera-drone struggling to keep pace with her.");
 	
-	output("\n\n<i>“We're here on newly-colonized Mhen'ga, a world of lush jungles and deadly predators,”</i> the host begins in a thick New Brisbane accent, <i>“and we're on the hunt for the naleen, the apex predator on this planet. Now, imagine a great big lion right out of Africa, a strong, lightning-fast beauty of a huntress, and combine that with the stealth and venom of a deadly adder, and you've got the naleen in a nutshell. I'll have to be so, so careful dealing with these predators, or I'm dead for sure.”</i>");
+	output("\n\n<i>“We’re here on newly-colonized Mhen’ga, a world of lush jungles and deadly predators,”</i> the host begins in a thick New Brisbane accent, <i>“and we’re on the hunt for the naleen, the apex predator on this planet. Now, imagine a great big lion right out of Africa, a strong, lightning-fast beauty of a huntress, and combine that with the stealth and venom of a deadly adder, and you’ve got the naleen in a nutshell. I’ll have to be so, so careful dealing with these predators, or I’m dead for sure.”</i>");
 	
 	output("\n\nFor someone supposedly tracking down a lethal hunter, she seems oddly cheerful about it. She crests a hill, tumbles through a thick bush, and eventually comes to a clearing in the jungle, one of the few places where the sun actually gets through to the ground. Resting atop a large boulder in the center is ");
 	//if PC's met the naleen:
@@ -1291,41 +1291,41 @@ public function stephIrsonBountHunterEpisodeOne():void {
 	else output("what looks like a giant snake coiled around the rocks at first, but as the camera draws in, is clearly half-serpent and half-catgirl, a woman with deliciously large breasts on a feline torso, long orange hair draped around her half-furred body");
 	output(".");
 	
-	output("\n\n<i>“Holy smokes!”</i> Steph whispers to the camera, angling it at the slumbering predator. Insanely, the host approaches, creeping along the ground almost at a crawl. Lazily, the kitty-naga opens a single emerald eye, watching her approach. <i>“Lookit this, a NALEEN! They're the deadliest predators on this planet, with tails so strong they'd crush me dead in a heartbeat. Lemme see if I can stick mah hand up 'er cloaca!”</i>");
+	output("\n\n<i>“Holy smokes!”</i> Steph whispers to the camera, angling it at the slumbering predator. Insanely, the host approaches, creeping along the ground almost at a crawl. Lazily, the kitty-naga opens a single emerald eye, watching her approach. <i>“Lookit this, a NALEEN! They’re the deadliest predators on this planet, with tails so strong they’d crush me dead in a heartbeat. Lemme see if I can stick mah hand up ‘er cloaca!”</i>");
 
 	output("\n\nIs she insane?");
 	
-	output("\n\n<i>“W-what are you doing, strange little girl?”</i> the naleen hisses as Steph creeps up. The snake-girl rises off the rock, her feline half looming over the show's hostess menacingly.");
+	output("\n\n<i>“W-what are you doing, strange little girl?”</i> the naleen hisses as Steph creeps up. The snake-girl rises off the rock, her feline half looming over the show’s hostess menacingly.");
 	
-	output("\n\n<i>“Uh-oh, she's noticed me! If I try to run, she'll hunt me down in an instant! All I can do is lie perfectly still and hope she backs off! As a predator, the naleen shouldn't bother me if I'm dead still.”</i>");
+	output("\n\n<i>“Uh-oh, she’s noticed me! If I try to run, she’ll hunt me down in an instant! All I can do is lie perfectly still and hope she backs off! As a predator, the naleen shouldn’t bother me if I’m dead still.”</i>");
 	
 	output("\n\n<i>“... I can hear you,”</i> the busty monster sighs, cocking an eyebrow at Steph as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
 	
-	output("\n\n<i>“Crikey! Looks like she's coming in for the kill! All I can do now is try to overpower her!”</i> Steph shouts, leaping to her feet and tackling the naleen, throwing the two of them over the boulder and into the brush. The camera drone speedily follows the brawl as Steph and the naleen tumble around in the dirt, eventually rolling into a wet mud-pit at the edge of the clearing.");
+	output("\n\n<i>“Crikey! Looks like she’s coming in for the kill! All I can do now is try to overpower her!”</i> Steph shouts, leaping to her feet and tackling the naleen, throwing the two of them over the boulder and into the brush. The camera drone speedily follows the brawl as Steph and the naleen tumble around in the dirt, eventually rolling into a wet mud-pit at the edge of the clearing.");
 	
-	output("\n\n<i>“W-WHAT ARE YOU DOING!? GET OFF ME!”</i> the naleen howls as Stepth straddles her wide hips victoriously, pinning the huntress down and grabbing her massive tail's slender tip.");
+	output("\n\n<i>“W-WHAT ARE YOU DOING!? GET OFF ME!”</i> the naleen howls as Stepth straddles her wide hips victoriously, pinning the huntress down and grabbing her massive tail’s slender tip.");
 	
-	output("\n\n<i>“There we go, got 'er by the tail! Now let's take a look at this beauty! Oh, she's the real deal: lookit these scales. She's seen some battles, too, see the dents and scars here?”</i> she says, pointing out the various cuts and old wounds on the naleen's scales, a history of battle engraved in her body. <i>“Ah, 'ere we go, see the cloaca engorging? When you hold 'em, naleen can't decide if you're trying to kill 'em or mate with 'em! Let's get a closer look!”</i>");
+	output("\n\n<i>“There we go, got ‘er by the tail! Now let’s take a look at this beauty! Oh, she’s the real deal: lookit these scales. She’s seen some battles, too, see the dents and scars here?”</i> she says, pointing out the various cuts and old wounds on the naleen’s scales, a history of battle engraved in her body. <i>“Ah, ‘ere we go, see the cloaca engorging? When you hold ‘em, naleen can’t decide if you’re trying to kill ‘em or mate with ‘em! Let’s get a closer look!”</i>");
 	
-	output("\n\nSome of the bar's patrons ooh and aah as the camera zooms in on the naleen's pussy as it visibly engorges, drooling a clear lubricant as Steph pokes a pair of fingers in, stretching the hole several inches wide.");
+	output("\n\nSome of the bar’s patrons ooh and aah as the camera zooms in on the naleen’s pussy as it visibly engorges, drooling a clear lubricant as Steph pokes a pair of fingers in, stretching the hole several inches wide.");
 	
-	output("\n\n<i>“D-don't touch meeeee”</i> the naleen cries, writhing violently under Steph as the show's host practically shoves her arm into the alien's sodden box. <i>“...Ooh! Ooohhhh... mmm, yessss, stick your arm riiiiight in, little girl.”</i>");
+	output("\n\n<i>“D-don’t touch meeeee”</i> the naleen cries, writhing violently under Steph as the show’s host practically shoves her arm into the alien’s sodden box. <i>“...Ooh! Ooohhhh... mmm, yessss, stick your arm riiiiight in, little girl.”</i>");
 	
-	output("\n\n<i>“There we go!”</i> Steph announces victoriously to the camera, <i>“Elbow-deep in 'er cloaca. Oh, this is a dream come true! Lookit the way she moves, writhing so gracefully. She's a real beauty, innit she?”</i>");
+	output("\n\n<i>“There we go!”</i> Steph announces victoriously to the camera, <i>“Elbow-deep in ‘er cloaca. Oh, this is a dream come true! Lookit the way she moves, writhing so gracefully. She’s a real beauty, innit she?”</i>");
 	
-	output("\n\n<i>“Mmm, you are not so bad yourself,”</i> the naleen coos as Steph's arm vanishes up to the elbow inside her.");
+	output("\n\n<i>“Mmm, you are not so bad yourself,”</i> the naleen coos as Steph’s arm vanishes up to the elbow inside her.");
 	
-	output("\n\n<i>“One of the most amazing things about these predators is the way they mate. Like some snakes from ol' Earth, they congregate in huge 'mating balls,' just like a great big animal orgy that can last for hours, or even days. I'd give anything to see one of those up close and personal!”</i>");
+	output("\n\n<i>“One of the most amazing things about these predators is the way they mate. Like some snakes from ol’ Earth, they congregate in huge ‘mating balls,’ just like a great big animal orgy that can last for hours, or even days. I’d give anything to see one of those up close and personal!”</i>");
 	
 	output("\n\n<i>“Is that so?”</i> the naleen grins, and suddenly her long tail is wrapped around Steph, encircling the hostess from shoulder to toes, leaving nothing but her head visible.");
 	
-	output("\n\n<i>“Holy smokes! Looks like I forgot the most deadly attack the naleen have: a crushing vice-like grip of the tail. I'll be dead in seconds if I don't think of a way out of this; she'll crush the air right from my lungs.”</i>");
+	output("\n\n<i>“Holy smokes! Looks like I forgot the most deadly attack the naleen have: a crushing vice-like grip of the tail. I’ll be dead in seconds if I don’t think of a way out of this; she’ll crush the air right from my lungs.”</i>");
 	
-	output("\n\n<i>“You are very strange,”</i> the naleen sighs, her feline half rising up to grab Steph's cheeks, turning her head aside to expose her neck.");
+	output("\n\n<i>“You are very strange,”</i> the naleen sighs, her feline half rising up to grab Steph’s cheeks, turning her head aside to expose her neck.");
 	
-	output("\n\n<i>“Uh-oh, looks like I'm a goner! This paralytic venom could spell the end if she bites me!”</i> For someone convinced she's about to die, Steph's awfully calm about this.");
+	output("\n\n<i>“Uh-oh, looks like I’m a goner! This paralytic venom could spell the end if she bites me!”</i> For someone convinced she’s about to die, Steph’s awfully calm about this.");
 	
-	output("\n\nThe naleen sighs and bites down, injecting a dose of paralytic venom into the show's host. Much of the crowd gasps as the host limply falls into the huntress's waiting arms. Giggling, the naleen tosses Steph over her shoulder and carries her off, slithering into the forest - and the camera drone dutifully follows, tracking the pair of them for several minutes in the brush until they come to a cave mouth. The naleen slithers in, and the camera switches to nightvision as it follows her through a network of caves and into a large, natural pit in the ground.");
+	output("\n\nThe naleen sighs and bites down, injecting a dose of paralytic venom into the show’s host. Much of the crowd gasps as the host limply falls into the huntress’s waiting arms. Giggling, the naleen tosses Steph over her shoulder and carries her off, slithering into the forest - and the camera drone dutifully follows, tracking the pair of them for several minutes in the brush until they come to a cave mouth. The naleen slithers in, and the camera switches to nightvision as it follows her through a network of caves and into a large, natural pit in the ground.");
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",stephIrsonEpisodeOnePartTwo);
@@ -1335,11 +1335,11 @@ public function stephIrsonEpisodeOnePartTwo():void
 	clearOutput();
 	stephHeader(1, true);
 	
-	output("<i>“Ugh, mah head!”</i> Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she's dragged me back to her nest! Oh, but look here! Before she eats me, I'm getting to witness the ultimate alien curiosity: the naleen mating ball!”</i> The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
+	output("<i>“Ugh, mah head!”</i> Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she’s dragged me back to her nest! Oh, but look here! Before she eats me, I’m getting to witness the ultimate alien curiosity: the naleen mating ball!”</i> The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
 
-	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she's bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn't waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
+	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she’s bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn’t waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
 	
-	output("\n\nSteph writhes and cries out as she's double-penetrated by the twin-cocked naleen, just in time to have her open mouth filled with a juicy pussy. The camera pans up to reveal the busty huntress from before, fingers mashing Steph's head into her groin as another male slithers behind <i>her</i>, a pair of cocks vanishing into the naleen's ass. She coos with delight, vocalizations almost masking Steph's screams as she's violated. You can't hide an unmistakable warmth spreading through your body as you watch the hostess getting fucked");
+	output("\n\nSteph writhes and cries out as she’s double-penetrated by the twin-cocked naleen, just in time to have her open mouth filled with a juicy pussy. The camera pans up to reveal the busty huntress from before, fingers mashing Steph’s head into her groin as another male slithers behind <i>her</i>, a pair of cocks vanishing into the naleen’s ass. She coos with delight, vocalizations almost masking Steph’s screams as she’s violated. You can’t hide an unmistakable warmth spreading through your body as you watch the hostess getting fucked");
 	if(pc.hasCock()) {
 		output(", and you try");
 		if(pc.legCount == 1) output(" displacing your [pc.leg]");
@@ -1350,14 +1350,14 @@ public function stephIrsonEpisodeOnePartTwo():void
 		else output("ies");
 	}
 	output(". With a grunt, the male naleen finishes inside Steph, pulling out just in time for the camera to zoom in on her backside, the NV-mode making the spooge drooling out of her two stretched holes practically glow.");
-	output("\n\nA giddy female, less busty that the first but with an almost inhumanly wide set of hips and a jiggling ass, slithers in under Steph's ass, slender reptilian tongue lapping up the alien spunk dripping from her cunt as another male lines up his shot, sliding in with the last's cum as lube. Powerful thrusts send Steph's bubble butt jiggling as the kitty-naga hammers her holes, squirting the last's cum out with each mighty blow, right onto the waiting face of the female. The bustier huntress gives an orgasmic cry as the male finishes in her ass, pushing Steph's face as hard into her groin as she can before tumbling aside, pushed down by another horny male who immediately crams his dual cocks into Steph's fem-cum slathered gob.");
+	output("\n\nA giddy female, less busty that the first but with an almost inhumanly wide set of hips and a jiggling ass, slithers in under Steph’s ass, slender reptilian tongue lapping up the alien spunk dripping from her cunt as another male lines up his shot, sliding in with the last’s cum as lube. Powerful thrusts send Steph’s bubble butt jiggling as the kitty-naga hammers her holes, squirting the last’s cum out with each mighty blow, right onto the waiting face of the female. The bustier huntress gives an orgasmic cry as the male finishes in her ass, pushing Steph’s face as hard into her groin as she can before tumbling aside, pushed down by another horny male who immediately crams his dual cocks into Steph’s fem-cum slathered gob.");
 	
 	//If Friend!Syri:
-	if(flags["SYRI_TALKS"] != undefined) output("\n\nAs you're watching the orgy unfold, you feel a pair of familiar hands on your shoulder, and a pair of big, soft tits resting on your head. <i>“Holy shit, Steele, watching a porno in public? Ballsy!”</i> Syri chuckles, hopping over the back of the couch to watch. You try to tell her it's a nature show, but she just rolls her eyes and shamelessly unzips her pants. <i>“If you do mine, I'll do yours!”</i> she says with a slight giggle, a hand drifting to your crotch.");
+	if(flags["SYRI_TALKS"] != undefined) output("\n\nAs you’re watching the orgy unfold, you feel a pair of familiar hands on your shoulder, and a pair of big, soft tits resting on your head. <i>“Holy shit, Steele, watching a porno in public? Ballsy!”</i> Syri chuckles, hopping over the back of the couch to watch. You try to tell her it’s a nature show, but she just rolls her eyes and shamelessly unzips her pants. <i>“If you do mine, I’ll do yours!”</i> she says with a slight giggle, a hand drifting to your crotch.");
 	
-	output("\n\nMales and females both takes turns force-fucking the half-conscious hostess, smearing her with gallons of alien spunk until her gaping holes are a constant waterfall of creamy spooge, glowing in the camera's eye. The show's runtime is almost up by the time the huge naleen orgy is winding down; a final male has pulled Steph into his lap, both cocks shoved up her ass as the busty naleen that brought her idly fingers the human girl's pussy, cooing, <i>“Was it everything you hoped it would be, dear?”</i>");
+	output("\n\nMales and females both takes turns force-fucking the half-conscious hostess, smearing her with gallons of alien spunk until her gaping holes are a constant waterfall of creamy spooge, glowing in the camera’s eye. The show’s runtime is almost up by the time the huge naleen orgy is winding down; a final male has pulled Steph into his lap, both cocks shoved up her ass as the busty naleen that brought her idly fingers the human girl’s pussy, cooing, <i>“Was it everything you hoped it would be, dear?”</i>");
 	
-	output("\n\nSteph's head lolls haplessly, her voice breaking as she orgasms for the... hell, you lost count twenty males ago. Blowing his wad, the male pushes her off his rods, letting Steph flop down atop the coils of slumbering naleen. The camera flies down for a final closeup, showing her spunk-slathered body in its full high-definition beauty; where she should be delivering a final monologue about her exploits, Steph only manages to gurgle weakly, cum drooling down her cheeks.");
+	output("\n\nSteph’s head lolls haplessly, her voice breaking as she orgasms for the... hell, you lost count twenty males ago. Blowing his wad, the male pushes her off his rods, letting Steph flop down atop the coils of slumbering naleen. The camera flies down for a final closeup, showing her spunk-slathered body in its full high-definition beauty; where she should be delivering a final monologue about her exploits, Steph only manages to gurgle weakly, cum drooling down her cheeks.");
 	
 	output("\n\n<i>“This show brought to you by the Xenogen Biotech firm. Xenogen reminds you that galactic exploration is dangerous, and that natural wildlife is not to be approached without assistance from your friendly local rangers. Xenogen is not responsible for any graphic content witnessed on live galactic broadcasts or the safety of its personnel.”</i>");
 	
