@@ -890,6 +890,9 @@ public function drinkingContestGo(cheated:Boolean = false):void{
 //Girls and Unsexed Turned Into a Drunken Cocksleeve
 public function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 {
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
+	
 	clearOutput();
 	showKiro(true);
 	output("The <i>“snap-hiss”</i> of a ship door sealing behind you shatters the drunken, groping stupor you slipped into, and you rouse yourself from your prison of breasts. Kiro had been dragging you along, your face pulled down into her sizeable chest, letting you drunkenly motorboat her on the way to her quarters. The closer you got, the slower the two of you were forced to travel, but you were in no condition to mind - not until now, anyway.");
@@ -940,6 +943,9 @@ public function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 //Unisex Loser Handjob
 public function unisexLostToKiroAndGaveHerAHandJobBecauseDrunkenSluttery():void
 {
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
+	
 	clearOutput();
 	showKiro(true);
 	output("Hissing pneumatics fill your ears with the sharp sound of an airtight door sealing behind you. Pulling your face out from between Kiro’s pillowy tits, you let your drunkenly wavering attention sway across the metal deck plates and up the wood-paneled walls. The realization that this is <i>her</i> ship and not your own takes its sweet time swimming through your booze-saturated consciousness. Remembering that you lost over being a cocksleeve for a day... That takes a little longer - about the same amount of time it takes Kiro to push you");
@@ -1031,6 +1037,9 @@ public function lostDrankinContestToKiroz():void
 //Drunken Kiro Blowjobs - Slobbery Jaw-Filling Goodness
 public function wonKirosContestLikeAChampAndGotBlown():void
 {
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
+	
 	clearOutput();
 	showKiro(true);
 	output("<i>“Now,</i>” you say, leaning against the wood-paneled interior of her ship, <i>“I believe I was promised a hermaphrodite fuck-pet in exchange for winning our little wager....</i>”");
@@ -1098,6 +1107,9 @@ public function wonKirosContestLikeAChampAndGotBlown():void
 //Drunken Kiro Twat Oral
 public function youWinAContestAndKiroSlobbersYerPussy():void
 {
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
+	
 	clearOutput();
 	showKiro(true);
 	output("<i>“Now,</i>” you say, leaning against the wood-paneled interior of her ship, <i>“I believe I was promised a hermaphrodite fuck-pet in exchange for winning our little wager....</i>”");
@@ -1487,7 +1499,7 @@ public function letsFuckKiro():void
 		else output(", rubbing down the bare, sensitive flesh");
 		output(" as you pull your kit off, tossing your [pc.gear] aside. When the airlock’s done processing you, the two of you tumble into the hallway, barely making it to Kiro’s cabin before her great big cock spills out of her undergarments as she tears them off, letting her massive horsemeat swing free. With a push, you’re thrown down onto her bed, surrounded by dirty mags and condom packs. Looming over you, Kiro idly strokes her cock, already fucking you with her eyes as you roll over, facing her and her huge endowment.");
 		
-		generateMapForLocation("KIROS SHIP QUARTERS");
+		//generateMapForLocation("KIROS SHIP QUARTERS");
 		
 		//[OPTIONS BITCH]
 		kiroSexMenu();
@@ -1524,6 +1536,9 @@ public function letsFuckKiro():void
 		output("\n\nHer weighty balls throb as she considers her action, growing heavier by the second. They look almost as big as soccer balls now. <b>If you speak up, you can likely goad her into taking you a certain way...</b>");
 		kiroBallsSexMenu();
 	}
+	
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
 }
 
 public function kiroBallsSexMenu():void
@@ -2215,7 +2230,9 @@ public function repeatFillingKirosCuntEpilogue():void
 //Milker Doubletime, By Savin
 public function kiroMilkerDoubleTimeBySavin():void
 {
-	generateMapForLocation("KIROS SPUNK CHAMBER");
+	//generateMapForLocation("KIROS SPUNK CHAMBER");
+	currentLocation = "KIROS SPUNK CHAMBER";
+	generateMap();
 	
 	clearOutput();
 	showKiro(true);
@@ -2232,7 +2249,7 @@ public function kiroMilkerDoubleTimeBySavin():void
 	output(". You go back to work, but with a grin she slaps your hand away, taking the sucker from you.");
 	output("\n\n<i>“Hey, what gives?”</i> you growl, but the sultry look in the tanuki’s eyes says it all. She gives you a little push back against the steel cum-silo as she drops to her knees, taking your [pc.cockBiggest] in one hand, stroking it with her oh-so-soft, furry fingers. You stifle a low moan, eyes rolling back as the sexy vixen slowly strokes you off, thumb rolling around your [pc.cockHeadBiggest] as her mouth inches sinfully close, hot breath boiling across your sensitive flesh. Her tongue slips out, lapping across the engorged slit of your throbbing dick, her voice rising to a sexy purr as she tastes you, lips thrumming as they slip around your hard shaft, taking your cock into the warm, silky-wet sheath of her mouth. You lean back against the steel wall of the gigantic milker, basking in the sultry heat of Kiro’s mouth as she sucks you off. Your fingers go to her long, cinnamon hair, gently guiding the tanuki’s lips down your shaft. She grins up around your [pc.cockBiggest] with eyes full of lust, easily taking inch after inch of your prick. As she fellates you, though, you can see her hands deftly unfurling the straps and suckers on the milking tube, getting you nice and ready.");
 	output("\n\nShe carries on longer than you’d have expected, and minutes pass by with your lust building, hips bucking gently against Kiro’s dark lips as she sucks and sucks. With eyes rolled back in pleasure, you barely notice the split second of transition as your [pc.cockBiggest] pops from Kiro’s mouth and into the tight, suckling embrace of the cock milker. That feels... nice... You let slip a groan of pleasure as the milker’s pressure builds, tugging on your spit-slick shaft with mind-numbing insistence, its force unrelenting. Your [pc.knees] practically buckle under the milker’s suction, forcing you to grab hold of the great big silo to steady yourself. Between pneumatic sucks, you watch as Kiro clambers over to her own berth, easily sliding her own sucker on; the face she makes when it activates is priceless, pure ecstasy that nearly barrels her over.\n\nShe catches herself on a pair of iron bars nearby, unable to stifle a lewd groan as the milker goes to work on her massive erection; her over-sized prick immediately responds by twitching and jumping to attention, still for the slightest moment before it erupts in a massive load of cum, whitewashing the transparent sucker with a flood of seed. Kiro throws her head back with a roar of sexual release, grabbing her big, soft tits and squeezing them as hard as she can. You slump back, [pc.knees] suddenly weak as you see your friend blast a massive load so easily; a moment later, you feel your prick twitching, cum rushing up your length. You grab the nearest bar and cry out, teeth gritting as you cum, painting the plastic [pc.cumColor] as the milker drains your [pc.cockBiggest] - and not for the last time.");
-	output("\n\nYou stumble back as orgasm rocks your body, cock spasming as it’s utterly drained of seed faster than you can blink, [pc.balls] withering as cum pours from your [pc.cockBiggest]. Across from you, Kiro yelps and moans, squeezing her dark nipples as her cock’s seemingly unending flood of sperm continues, backing up the throbbing veins of the milker until she’s finally given a moment to relax, slumping against the wall of the silo. You glance up, watching through transparent tubes as her cum and yours is sucked up by the powerful current, dumped into the great big silo that’s already half-full of the leftovers from Kiro’s morning wood. When you look back, you nearly scream as your vision is flooded with horny tanuki stalking up on you, barely able to make a waddle with the milker working her enormous horsecock. She grabs your shoulders, pushing you down to your [pc.knees] with your mouth hovering just over one of her black nipples.");
+	output("\n\nYou stumble back as an orgasm rocks your body, cock spasming as it’s utterly drained of seed faster than you can blink, [pc.balls] withering as cum pours from your [pc.cockBiggest]. Across from you, Kiro yelps and moans, squeezing her dark nipples as her cock’s seemingly unending flood of sperm continues, backing up the throbbing veins of the milker until she’s finally given a moment to relax, slumping against the wall of the silo. You glance up, watching through transparent tubes as her cum and yours is sucked up by the powerful current, dumped into the great big silo that’s already half-full of the leftovers from Kiro’s morning wood. When you look back, you nearly scream as your vision is flooded with horny tanuki stalking up on you, barely able to make a waddle with the milker working her enormous horsecock. She grabs your shoulders, pushing you down to your [pc.knees] with your mouth hovering just over one of her black nipples.");
 	output("\n\nYou don’t have the chance to protest, as the milker suddenly turns it up a notch. You yell out, mouth locked in a ring of pleasure; Kiro takes that as submission and rams her tit in. You reflexively suckle, sucking on her puffy teat until you force a gasp of pleasure out of your tanuki lover. She groans, fingers slipping through your [pc.hair] to guide you further onto her breast as she bucks her pump-laden hips against the air, trying to get some modicum of friction from the merciless suckers. You groan and bare it, trying hard not to cum again as the milker works your [pc.cockBiggest] with rhythmically pulsing bursts of pressure that’s sure to have you cumming again. While you still have your faculties in control, though, you flash the pleasure-wracked tanuki a sly grin and slip a hand beneath her swollen, swinging sack to the slim, cum-slick slit of her sex.");
 	output("\n\nShe stifles a gasp as you slip a finger into the tight channel of her cunt. Her muscles squeeze reflexively, clamping hard around your probing digit as another two of your fingers slip further back to the puckered hole of her ass. Kiro can’t help but cry out as you push into her asshole, spreading the much looser hole wide until you can feel the pulsing orb of her engorged cum-vein. She throws her head back and cums again at the slightest touch, her huge cock spasming as white-hot spunk floods the miker yet again, adding to your own orgasm that follows moments later. You cry out around the tit in your mouth, voice muffled by a mouthful of brown fur as your [pc.cockBiggest] lets loose another explosive orgasm, squirting seed right into the sucking vortex of the milker’s tube.");
 	output("\n\nKiro flops back and cums again seconds after the first time, screaming as her muscles crush down on your delving digits as her prostate bulges, balls visibly deflating while she cums and cums, humping desperately against your hand and the pulsing milker. A moment later, you feel the pressure welling in your own prick and with a gasp and moan, flop overtop your lover, crying aloud into her soft bosom as your hips buck into hers, squirting and squirting your next load into the seemingly infinite vortex of the milker’s silo. Your hand works harder, pushing deep into Kiro’s bowels and cunt, as your orgasm and hers nearly sync, cum splashing into the veins of the towering milker overtop you both. Your other arm wraps around her waist, holding your tanuki lover close, her massive cock pinned between your bodies as you feel as if every last drop of semen is sucked from your [pc.balls].");
@@ -2702,7 +2719,7 @@ public function inviteAFriendForKiroPlays():void
 	{
 		if(!celiseIsCrew()) addDisabledButton(nFriends,"Celise","Celise","Celise isn’t aboard your ship for this to work.");
 		else if(flags["GIGACELISE"] == undefined) addDisabledButton(nFriends,"Celise","Celise","Celise should probably be in her giga-goo form for this.");
-		else if(kiroTrust() < 80) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn’t trust you enough to try this.");
+		else if(flags["KIRO_CELISE_3SOME_REJECT"] != undefined && kiroTrust() < 80) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn’t trust you enough to try this.");
 		else if(kiro.ballDiameter() <= 7) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn’t look bloated enough. You should probably wait until she’s really backed up before trying this.");
 		else addButton(nFriends,"Celise",celiseKiroFunSekritShit,undefined,"Celise","Invite Kiro to meet with Celise.");
 		nFriends++;
@@ -2712,7 +2729,7 @@ public function inviteAFriendForKiroPlays():void
 	{
 		if(flags["SAEN MET AT THE BAR"] != undefined)
 		{
-			if(rooms[currentLocation].planet != "TAVROS STATION") addDisabledButton(nFriends,"Saendra","Saendra","Saendra isn’t anywhere near this location. You’d have to catch Kiro on Tavros Station to have Saendra within easy reach.");
+			if(rooms[shipLocation].planet != "TAVROS STATION") addDisabledButton(nFriends,"Saendra","Saendra","Saendra isn’t anywhere near this location. You’d have to catch Kiro on Tavros Station to have Saendra within easy reach.");
 			else if(pc.hasCock()) addButton(nFriends,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
 			else addDisabledButton(nFriends,"Saendra","Saendra","This scene requires a penis to participate in.");
 		}
@@ -2770,6 +2787,7 @@ public function inviteSaenForKiroFilling():void
 	kiro.orgasm();
 	saendra.orgasm();
 	processTime(55);
+	sleepHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3481,6 +3499,7 @@ public function kiroFuckOrgyFuntimes7():void
 	pc.removeStatusEffect("RefractBoost");
 	pc.shower();
 	processTime(600+rand(50));
+	sleepHeal();
 	//50L in every hole
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasCock()) pp.createCock();
@@ -3587,10 +3606,11 @@ public function kiroIncestReactionGood():void
 
 public function kiroKallyThreesomesApproach():void
 {
-	clearOutput();
-	showKallyAndKiro();
 	currentLocation = "KIROS SHIP QUARTERS";
 	generateMap();
+	
+	clearOutput();
+	showKallyAndKiro();
 	//Threesomes Intro
 	//Bimbo
 	if(pc.isBimbo()) output("<i>“Know what would be tons of fun?”</i> you ask, so bubbly you’re almost effervescent. <i>“Your sister.”</i>");
@@ -3669,10 +3689,11 @@ public function kiroKallyDoubleMilkingThreesome():void
 
 public function kiroKallyDoubleMilkingThreesome2():void
 {
-	clearOutput();
-	showKallyAndKiro(true);
 	currentLocation = "KIROS SPUNK CHAMBER";
 	generateMap();
+	
+	clearOutput();
+	showKallyAndKiro(true);
 	output("The milker is much as you remember it: an industrial pump buried behind an array of thumping holographic projections, each more pornographic than the last. Transparent hoses dangle from the central, cum-pumping core, each tipped with molded sleeves. Some resemble vaginas, others are simple textured sleeves designed to stimulate in unearthly ways as they suck. Behind are what can only be described as spunk silos, recently emptied to make room for fresh debauchery.");
 	//First Time
 	if(flags["SISTER_MILK_ACT"] == undefined)

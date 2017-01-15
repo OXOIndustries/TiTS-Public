@@ -1847,6 +1847,8 @@ public function variableRoomUpdateCheck():void
 	
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
+	// Phoenix's Rec Room
+	phoenixRecRoomUpdate();
 	// Kashima
 	if(flags["KI_ESCAPE_UNCURED"] != undefined)
 	{

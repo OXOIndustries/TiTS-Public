@@ -3680,6 +3680,7 @@ public function annoGonnaGitDragonBOOOTAYYYYY():void //Hi geddy
 {
 	clearOutput();
 	showBust(annoBustDisplay(), "GRYVAIN");
+	showName("ANNO &\nGRYVAIN");
 	author("Savin");
 	output("You figure you might as well check in with Anno while you’re both here, and start heading over. You get to her at the same time as another woman does - a tall, sensuously curvy gryvain with dark green scales and wings, and horns growing from her brow decorated with jeweled silver chains.");
 	output("\n\n<i>“Oh, hey boss,”</i> Anno grins as you wander up. <i>“What’s up?”</i>");
@@ -3803,6 +3804,7 @@ public function annoXGedanThreesomeEpilogue():void
 	author("Savin");
 	showAnno();
 	//Pass 6-10 hours. Move PC back to ship.
+	showLocationName();
 	output("When you come to, the green gryvain babe is nowhere to be seen. Anno’s lying face-down against you, covered in cool cum and snoring into your armpit. Graceful. You yawn, roll your lover off, and hit the shower.");
 	output("\n\nBy the time you’re out, Anno’s woken up enough to stagger up and ");
 	if(celiseIsCrew()) output("drag Celise into your quarters. She’s dumped the giggly goo onto the bed and is sat on the side of it, letting your resident cum-vacuum clean the spoogy mess up.");

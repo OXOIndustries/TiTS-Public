@@ -127,7 +127,7 @@ public function kirosShipInterior2():Boolean
 
 public function kirosShipAirlockUpdate():void
 {
-	if(rooms[shipLocation].planet == "CANADIA STATION")
+	if(shipLocation != "KIROS SHIP AIRLOCK")
 	{
 		rooms["KIROS SHIP AIRLOCK"].removeFlag(GLOBAL.SHIPHANGAR);
 		rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.LIFTDOWN);
@@ -140,12 +140,18 @@ public function kirosShipAirlockUpdate():void
 }
 public function kirosShipAirlock():Boolean
 {
+	output("This is the oddly-shaped ship airlock");
 	if (currentLocation != shipLocation)
 	{
 		addButton(7, "Exit", move, shipLocation);
 	}
+	else
+	{
+		output(", currently connecting it to your ship and allowing you to move between the two freely");
+	}
+	output(". You’re hard pressed to even call such a small space a room, but the massive doors at either end of it - strong enough to survive the rigors of space - reinforce how important even tiny areas such as this can be.");
 	
-	return phoenixLocationSetter();
+	return kirosShipLocationSetter();
 }
 
 public function kirosShipQuarters():Boolean
@@ -159,12 +165,16 @@ public function kirosShipQuarters():Boolean
 		if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined) output(" a hefty-looking sword, looking an awful lot like an old-school cutlass");
 		if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined && flags["RESCUE KIRO TOOK PISTOL"] == undefined) output(" and");
 		if (flags["RESCUE KIRO TOOK PISTOL"] == undefined) output(" a shiny laser pistol with a mounted scope. Clearly a custom job");
-		output(".");
 	}
-	output(" The owner’s put a lot of work - and credits - into this arsenal. They’re ripe for the taking, but then again, that’d earn you a good slapping if you meet the captain. On the desk opposite the bed is a single little bonsai tree, surrounded by stacks of gardening books. It looks about on the verge of death, utterly wilted like it hasn’t been watered in ages. Poor thing.");
-
-	if (flags["RESCUE KIRO TOOK PISTOL"] == undefined) addButton(0, "Take Pistol", kirosShipPistol);
-	if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined) addButton(1, "Take Cutlass", kirosShipCutlass);
+	output(". The owner’s put a lot of work - and credits - into this arsenal.");
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) output(" They’re ripe for the taking, but then again, that’d earn you a good slapping if you meet the captain.");
+	output(" On the desk opposite the bed is a single little bonsai tree, surrounded by stacks of gardening books. It looks about on the verge of death, utterly wilted like it hasn’t been watered in ages. Poor thing.");
+	
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] == undefined)
+	{
+		if (flags["RESCUE KIRO TOOK PISTOL"] == undefined) addButton(0, "Take Pistol", kirosShipPistol);
+		if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined) addButton(1, "Take Cutlass", kirosShipCutlass);
+	}
 	
 	return kirosShipLocationSetter();
 }
