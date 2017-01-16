@@ -798,7 +798,7 @@ public function kq2rfBreakRoom():Boolean
 {
 	output("The staff room beyond the welcome desk is a small, cozy affair with a card table, a fridge, and a big, fat vending machine advertising JoyCo potion-brand energy drinks.");
 
-	addButton(0, "V.Machine", vendingMachineMenu, undefined, "Vending Machine", "See what these energy drinks are all about.");
+	addButton(0, "V.Machine", buyAPowahPotionMenu, undefined, "Vending Machine", "See what these energy drinks are all about.");
 	return false;
 }
 

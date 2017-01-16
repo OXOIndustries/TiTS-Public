@@ -143,7 +143,7 @@
 		public var typesBought: Array = new Array();
 		public var sellMarkup: Number = 1;
 		public var buyMarkdown: Number = 1;
-		public var keeperGreeting: String = "<i>“Hello and welcome to my shop. Take a gander and let me know if you see anything you like,”</i> " + a + short + " says with a smile.";
+		public var keeperGreeting: String = "<i>“Hello and welcome to my shop. Take a gander and let me know if you see anything you like,”</i> " + a + short + " says with a smile.\n";
 		public var keeperBuy: String = "What would you like to buy?\n";
 		public var keeperSell: String = "What would you like to sell?\n";
 

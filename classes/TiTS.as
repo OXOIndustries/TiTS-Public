@@ -146,6 +146,7 @@
 		include "../includes/travelEvents.fallOfThePhoenix.as";
 		include "../includes/travelEvents.kiroRescue.as";
 		include "../includes/travelEvents.kiro.as";
+		include "../includes/vendingMachine.as";
 		
 		// Misc Events
 		include "../includes/events/atha_lets_fapper.as";
@@ -191,7 +192,6 @@
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
-		include "../includes/vesperia/vendingMachine.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
