@@ -450,7 +450,10 @@ public function sellItem():void {
 		if(pc.inventory[x].quantity > 0) {
 			trace("PC inventory being checked for possible sale.");
 			//Does the shopkeep buy this type?
-			if(shopkeep.buysType(pc.inventory[x].type)) {
+			if(pc.inventory[x].type == GLOBAL.QUEST_ITEM) {
+				addDisabledButton(btnSlot, pc.inventory[x].shortName + " x" + pc.inventory[x].quantity, StringUtil.toDisplayCase(pc.inventory[x].longName), "This item is too important to sell.");
+			}
+			else if(shopkeep.buysType(pc.inventory[x].type)) {
 				output("\n" + StringUtil.upperCase(pc.inventory[x].description, false) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
 				if(sellOptions)
 				{
@@ -630,6 +633,182 @@ public function getBuyPrice(keeper:Creature,basePrice:Number):Number {
 	return buyPrice;
 }
 
+public function dropItem():void {
+	clearOutput();
+	var dropOptions:Boolean = kGAMECLASS.gameOptions.vendorToggle;
+	var btnSlot:int = 0;
+	clearMenu();
+	addButton(14, "Back", inventory);
+	
+	if(pc.inventory.length <= 0)
+	{
+		output("You do not have any items to drop.\n");
+		return;
+	}
+	
+	output("What item would you like to drop?");
+	output("\n\n");
+	output("<b><u>Inventory:</u></b>");
+	for(var x:int = 0; x < pc.inventory.length; x++) {
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", inventory);
+			btnSlot++;
+		}
+		
+		if(pc.inventory[x].quantity > 0) {
+			if(pc.inventory[x].type != GLOBAL.QUEST_ITEM) {
+				output("\n");
+				if(pc.inventory[x].stackSize > 1) output(pc.inventory[x].quantity + "x ");
+				output(StringUtil.toDisplayCase(pc.inventory[x].longName) + " - " + pc.inventory[x].basePrice + " credits.");
+				if(dropOptions)
+				{
+					addItemButton(btnSlot, pc.inventory[x], dropItemQuantity, pc.inventory[x], null, null, pc, null);
+				}
+				else
+				{
+					addItemButton(btnSlot, pc.inventory[x], dropItemGo, pc.inventory[x], null, null, pc, null);
+				}
+			}
+			else {
+				output("\n");
+				if(pc.inventory[x].stackSize > 1) output(pc.inventory[x].quantity + "x ");
+				output(StringUtil.toDisplayCase(pc.inventory[x].longName) + " - <i>Not droppable</i>.");
+				addDisabledButton(btnSlot, pc.inventory[x].shortName + " x" + pc.inventory[x].quantity, StringUtil.toDisplayCase(pc.inventory[x].longName), "You cannot drop this item.");
+			}
+			btnSlot++;
+		}
+		
+		if(pc.inventory.length > 14 && (x + 1) == pc.inventory.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", inventory);
+		}
+	}
+	output("\n\n<i>Note that dropping the item will remove it from your inventory and cannot be reclaimed.</i>\n\n");
+}
+
+public function dropItemQuantity(arg:ItemSlotClass):void
+{
+	clearOutput();
+	clearMenu();
+	
+	if(arg.quantity > 1)
+	{
+		output("How many of your " + arg.longName + " do you want to drop?");
+		
+		if(arg.quantity >= 1) addButton(0, "x1", dropItemMultiOK, [arg, 1]);
+		if(arg.quantity >= 2) addButton(1, "x2", dropItemMultiOK, [arg, 2]);
+		if(arg.quantity >= 3) addButton(2, "x3", dropItemMultiOK, [arg, 3]);
+		if(arg.quantity >= 4) addButton(3, "x4", dropItemMultiOK, [arg, 4]);
+		if(arg.quantity >= 5) addButton(4, "x5", dropItemMultiOK, [arg, 5]);
+		
+		if(arg.quantity >= 10) addButton(5, "x10", dropItemMultiOK, [arg, 10]);
+		if(arg.quantity >= 20) addButton(6, "x20", dropItemMultiOK, [arg, 20]);
+		if(arg.quantity >= 30) addButton(7, "x30", dropItemMultiOK, [arg, 30]);
+		if(arg.quantity >= 40) addButton(8, "x40", dropItemMultiOK, [arg, 40]);
+		if(arg.quantity >= 50) addButton(9, "x50", dropItemMultiOK, [arg, 50]);
+		
+		addButton(12, "Custom", dropItemMultiCustom, arg);
+		addButton(13, "All (x" + arg.quantity + ")", dropItemMultiOK, [arg, arg.quantity]);
+		addButton(14, "Cancel", dropItem);
+	}
+	else
+	{
+		output("Are you sure you want to drop " + arg.description + "?");
+		output("\n\n<i>Note that dropping the item will remove it from your inventory and cannot be reclaimed.</i>\n\n");
+		
+		addButton(0, "Yes", dropItemGo, arg);
+		addButton(1, "No", dropItem);
+	}
+}
+public function dropItemMultiCustom(arg:ItemSlotClass):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	clearOutput();
+	
+	output("How many of your " + arg.longName + " do you want to drop? (x" + arg.quantity + " maximum.)");
+	output("\n");
+	displayInput();
+	output("\n\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", dropItemMultiCustomOK, arg);
+	addButton(14, "Back", dropItemMultiCustomNo, arg);
+}
+public function dropItemMultiCustomOK(arg:ItemSlotClass):void
+{
+	if(isNaN(Number(userInterface.textInput.text))) {
+		dropItemMultiCustom(arg);
+		output("Choose a quantity that is a positive integer, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) < 1) {
+		dropItemMultiCustom(arg);
+		output("Choose a quantity that is 1 or more, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) > arg.quantity) {
+		dropItemMultiCustom(arg);
+		output("Choose a quantity that is " + arg.quantity + " or below, please.");
+		return;
+	}
+	var soldNumber:int = Math.floor(Number(userInterface.textInput.text));
+	dropItemMultiCustomGo([arg, soldNumber]);
+}
+public function dropItemMultiCustomNo(arg:ItemSlotClass):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	dropItemQuantity(arg);
+}
+public function dropItemMultiCustomGo(arg:Array):void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	dropItemMultiOK(arg);
+}
+public function dropItemMultiOK(arg:Array):void
+{
+	clearOutput();
+	
+	var dumpItem:ItemSlotClass = arg[0];
+	var dumpNumber:int = arg[1];
+	
+	output("Are you sure you want to drop " + dumpItem.description + " (x" + dumpNumber + ")?");
+	output("\n\n<i>Note that dropping the item will remove it from your inventory and cannot be reclaimed.</i>\n\n");
+	
+	clearMenu();
+	addButton(0, "Yes", dropItemMulti, [dumpItem, dumpNumber]);
+	addButton(1, "No", dropItemQuantity, dumpItem);
+}
+public function dropItemMulti(arg:Array):void
+{
+	clearOutput();
+	
+	var dumpItem:ItemSlotClass = arg[0];
+	var dumpNumber:int = arg[1];
+	
+	output("You drop " + dumpItem.description + " (x" + dumpNumber + ").");
+	
+	dumpItem.quantity -= dumpNumber;
+	if (dumpItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(dumpItem), 1);
+	
+	clearMenu();
+	addButton(0, "Next", dropItem);
+}
+
+public function dropItemGo(arg:ItemSlotClass):void {
+	clearOutput();
+	
+	output("You drop " + arg.description + ".");
+	arg.quantity--;
+	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
+	{
+		pc.inventory.splice(pc.inventory.indexOf(arg), 1);
+	}
+	clearMenu();
+	addButton(0, "Next", dropItem);
+}
+
 public function unequipMenu(inCombat:Boolean = false):void
 {
 	clearOutput();
@@ -791,7 +970,7 @@ public function generalInventoryMenu():void
 		//special slot 1
 		if(btnSlot >= 10 && (btnSlot + 5) % 15 == 0)
 		{
-			/* Nothing yet! */
+			addButton(btnSlot, "Drop", dropItem, undefined, "Drop Item", "Drop an item to make room in your inventory.");
 			btnSlot++;
 		}
 		//interaction menu
@@ -829,7 +1008,7 @@ public function generalInventoryMenu():void
 		if(pc.inventory.length > 10 && (i + 1) == pc.inventory.length)
 		{
 			while((btnSlot + 5) % 15 != 0) { btnSlot++; }
-			//addButton(btnSlot + 0, "", null, undefined, "", "");
+			addButton(btnSlot + 0, "Drop", dropItem, undefined, "Drop Item", "Drop an item to make room in your inventory.");
 			addButton(btnSlot + 1, "Interact", itemInteractMenu, undefined, "Interact", "Interact with some of your items.");
 			addButton(btnSlot + 2, "Key Item", keyItemDisplay, undefined, "Key Items", "View your list of key items.");
 			addButton(btnSlot + 3, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
@@ -839,7 +1018,7 @@ public function generalInventoryMenu():void
 	
 	//Set user and target.
 	itemUser = pc;
-	//addButton(10, "", null, undefined, "", "");
+	addButton(10, "Drop", dropItem, undefined, "Drop Item", "Drop an item to make room in your inventory.");
 	addButton(11, "Interact", itemInteractMenu, undefined, "Interact", "Interact with some of your items.");
 	addButton(12, "Key Item", keyItemDisplay, undefined, "Key Items", "View your list of key items.");
 	addButton(13, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
@@ -1623,7 +1802,7 @@ public function getListOfType(from:Array, type:String):Array
 				break;
 				
 			case "VALUABLES":
-				if (InCollection(item.type, GLOBAL.GEM, GLOBAL.QUESTITEM))
+				if (InCollection(item.type, GLOBAL.GEM, GLOBAL.SPECIAL_ITEM, GLOBAL.QUEST_ITEM))
 				{
 					items.push(item);
 				}
