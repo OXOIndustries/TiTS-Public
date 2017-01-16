@@ -398,7 +398,7 @@ public function getFuckedByZephyrII():void
 		else output("what if you could get her something to make her bigger?");
 	}
 	output("\n\nZephyr grunts in raw, animal pleasure and stops in an effort to adjust to the touch of your tunnel, huffing excitedly. <i>“Damn, you got an ass on you. You ready for the rest of it?”</i>");
-	output("\n\nBetween revelling in the pulsing of her rod and trying to think, you lose track of her question halfway through. <i>“Huh?”</i>");
+	output("\n\nBetween reveling in the pulsing of her rod and trying to think, you lose track of her question halfway through. <i>“Huh?”</i>");
 	output("\n\nA hand crashes down on your reddened derriere like a meteor, shocking you out of your dick-induced haze. You swallow some escaping drool and grasp for the right answer. <i>“...Yes?”</i>");
 	output("\n\nZephyr shakes her head and resumes threading her rigid boner deeper into your [pc.vagOrAss]. <i>“Dunno why I bother even involving you in the conversation. ");
 	if(pc.isTreated() && pc.isBro()) output("How bulls like you wound up running this planet, I’ll never understand.");

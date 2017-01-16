@@ -569,7 +569,7 @@ public function genesModsTalkOtherAliens():void
 	{
 		output("\n\n<i>“I have no idea who you’re talking about,”</i> you say. Gene stares at you as if you’d just denied existence of the sun.");
 		
-		output("\n\n<i>“Xanthe,”</i> he says, drawing out the syllables. <i>“That is her name - although undoubtedly an alias in reference to something as surely as mine is, she of all people will know the power of names. She is a siel, a wondrous and utterly infuriating folk I was happily unaware of until she arrived here not a month ago.”</i> He shakes his head mournfully at your ignorance, revelling in his own misery. <i>“Go find her shop, here in this very city. Approach and talk to her, bask in her presence. Then, perhaps, you shall understand a small part of my pain.”</i>");
+		output("\n\n<i>“Xanthe,”</i> he says, drawing out the syllables. <i>“That is her name - although undoubtedly an alias in reference to something as surely as mine is, she of all people will know the power of names. She is a siel, a wondrous and utterly infuriating folk I was happily unaware of until she arrived here not a month ago.”</i> He shakes his head mournfully at your ignorance, reveling in his own misery. <i>“Go find her shop, here in this very city. Approach and talk to her, bask in her presence. Then, perhaps, you shall understand a small part of my pain.”</i>");
 	}
 	processTime(5);
 	geneSubmissionLevel(1);

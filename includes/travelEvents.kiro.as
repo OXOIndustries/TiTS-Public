@@ -185,9 +185,9 @@ public function kiroMenu():void
 
 		//Incest 3sums
 		if(kiroKallyThreesomesAvailable()) addButton(4,"Sister3Some",kiroKallyThreesomesApproach,undefined,"Sister Threesome","See if you can get the sisters together for a threesome.");
-		else if(kiroKallyThreesomes() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","You ought to do some talking with them before trying to rush them into any more incestual fun.");
-		else if(kiroKallyThreesomeUnlockPoints() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally haven’t made the kind of breakthrough that would let you just walk up and ask this.");
-		else addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally don’t really like each other that way...");
+		else if(kiroKallyThreesomes() > 0) addDisabledButton(4,"Sister3Some","Sister Threesome","You ought to do some talking with them before trying to rush them into any more incestual fun.");
+		else if(kiroKallyThreesomeUnlockPoints() > 0) addDisabledButton(4,"Sister3Some","Sister Threesome","Kiro and Kally haven’t made the kind of breakthrough that would let you just walk up and ask this.");
+		else addDisabledButton(4,"Sister3Some","Sister Threesome","Kiro and Kally don’t really like each other that way...");
 		addButton(14,"Leave",mainGameMenu);
 		return;
 	}
@@ -426,6 +426,7 @@ public function youCanButtfuckMeYouSkank():void
 	//[Next]
 	processTime(2);
 	kiroTrust(25);
+	flags["BF_STORAGE"] = currentLocation;
 	clearMenu();
 	addButton(0,"Next",roughButtfuckFromKiroGo,false);
 }
@@ -1499,15 +1500,13 @@ public function letsFuckKiro():void
 		else output(", rubbing down the bare, sensitive flesh");
 		output(" as you pull your kit off, tossing your [pc.gear] aside. When the airlock’s done processing you, the two of you tumble into the hallway, barely making it to Kiro’s cabin before her great big cock spills out of her undergarments as she tears them off, letting her massive horsemeat swing free. With a push, you’re thrown down onto her bed, surrounded by dirty mags and condom packs. Looming over you, Kiro idly strokes her cock, already fucking you with her eyes as you roll over, facing her and her huge endowment.");
 		
-		//generateMapForLocation("KIROS SHIP QUARTERS");
-		
 		//[OPTIONS BITCH]
 		kiroSexMenu();
 	}
 	//Big Ball Kiro Sex Menu
 	else
 	{
-		output("At your first murmur of assent, Kiro’s body slides into yours, moulding around it as she encircles you in a tight, groping hug. Her hands rove across your [pc.chest] and [pc.butt], squeezing both with eager gropes. She grinds her crotch against your [pc.thigh], dragging her turgid length up and down your ");
+		output("At your first murmur of assent, Kiro’s body slides into yours, molding around it as she encircles you in a tight, groping hug. Her hands rove across your [pc.chest] and [pc.butt], squeezing both with eager gropes. She grinds her crotch against your [pc.thigh], dragging her turgid length up and down your ");
 		if(pc.isCrotchGarbed()) output("[pc.lowerGarments]");
 		else output("[pc.skinFurScales]");
 		output(" with quick little humps, her balls so big and heavy that they feel like a pair of seam-ripping cantaloupes that have been trapped in the hermaphrodite’s poor, disintegrating panties. She reaches ");
@@ -1537,6 +1536,8 @@ public function letsFuckKiro():void
 		kiroBallsSexMenu();
 	}
 	
+	if(kiroRoughButtfucks() > 0) flags["BF_STORAGE"] = currentLocation;
+	//generateMapForLocation("KIROS SHIP QUARTERS");
 	currentLocation = "KIROS SHIP QUARTERS";
 	generateMap();
 }

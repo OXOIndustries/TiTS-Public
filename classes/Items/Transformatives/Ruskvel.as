@@ -84,7 +84,7 @@
 				//Rask-morphed
 				else
 				{
-					kGAMECLASS.output("You eagerly tear the dumpling out of its tin foil and rip off a big, chewy hunk of it with your teeth enthusiastically. The fact that you started off not liking this stuff seems bizarre to you now. It’s exactly what your body craves, and a glow of intense satisfaction sinks into you as you gobble the rich starch up. You sigh and allow yourself a fruity belch once you’re done, revelling in the feeling of energy coursing through your hot, dense form, feeling ready to do anything – or anyone.");
+					kGAMECLASS.output("You eagerly tear the dumpling out of its tin foil and rip off a big, chewy hunk of it with your teeth enthusiastically. The fact that you started off not liking this stuff seems bizarre to you now. It’s exactly what your body craves, and a glow of intense satisfaction sinks into you as you gobble the rich starch up. You sigh and allow yourself a fruity belch once you’re done, reveling in the feeling of energy coursing through your hot, dense form, feeling ready to do anything – or anyone.");
 					//70% chance of 10% HP gain, 100% chance of 20 energy gain if raskvel morph
 					//HP GAINS
 					//No, that's dumb. We do it Fen's way. Out of combat healing item, soz always helps.
