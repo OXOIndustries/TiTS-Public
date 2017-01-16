@@ -156,7 +156,7 @@ package classes.Items.Transformatives
 				var newColor:String = RandomInCollection(skinColorList);
 				
 				if(changes > 0) output("\n\n");
-				output("Without warning, your [pc.skin] starts to change color, shifting form its normal [pc.skinColor] to a radically different coloration. Once it finishes, your new skin color is a");
+				output("Without warning, your [pc.skin] starts to change color, shifting from its normal [pc.skinColor] to a radically different coloration. Once it finishes, your new skin color is a");
 				switch(newColor)
 				{
 					case "pale": output(" blinding pale"); break;
