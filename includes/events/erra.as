@@ -89,9 +89,9 @@ public function erraAppearance():void
 	clearOutput();
 	showErra();
 	author("Hugs Alright");
-	output("Erra is a 5\' 9\" ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the colour of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance.");
+	output("Erra is a 5\' 9\" ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the color of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance.");
 	output("\n\nShe’s dressed casually: jeans and a t-shirt, both hugging her athletic frame, making the dim light of the bar hit her curves and the swell of her C-cups just right. Sitting the way she is, she looks relaxed and just a bit full of herself.");
-	output("\n\nOne pretty pink ausar pussy and a nice, tight tailhole sit between her legs.");
+	if(flags["ERRA_SEXED"] != undefined) output("\n\nOne pretty pink ausar pussy and a nice, tight tailhole sit between her legs.");
 	erraMenu();
 	addDisabledButton(0,"Appearance","Appearance","You’re doing that right now!");
 }
@@ -117,7 +117,7 @@ public function talkToErraAboutErra():void
 	showErra();
 	author("Hugs Alright");
 	output("<i>“Me?”</i> Erra begins, <i>“I’m a pilot - Reaper Armaments, ‘Anomalous Materials Transportation.’”</i> The ausar scoffs at her own words, <i>“Really wish they’d just call me a fucking delivery girl if they’re gonna pay me like one.”</i>");
-	output("\n\n<i>“Is it that bad?”</i> You ask.");
+	output("\n\n<i>“Is it that bad?”</i> you ask.");
 	output("\n\nErra shrugs, <i>“Can’t complain, really. I like the work, flying through the infinite void, meeting new people and the occasional cute " + pc.mf("guy","girl") + ",”</i> she says, winking your way. <i>“It’s just,”</i> she pauses, <i>“You expect to make a bit more for, you know, flying through the infinite void with crates full of gods know what.”</i>");
 	output("\n\nTelling her that’s understandable, you ask Erra a bit more about herself.");
 	output("\n\n<i>“Well, when I’m not flying I usually like to hit the bar and find some... ‘company’,”</i> she says, giggling as she finishes her sentence. The ausar knocks back another drink before she continues, <i>“Other than that, I just sort’ve... hangout. Nice to get out of that stuffy uniform, you know? Chat with people I’ve already met, work out, listen to some music; gods, you wouldn’t believe how many good bands you find on the edge of nowhere.”</i>");
@@ -148,7 +148,7 @@ public function erraSexGOOO():void
 		else output("<i>“I guess we’ll find out.”</i>");
 
 		output("\n\n<i>“Well then,”</i> Erra begins to respond, standing up and looking at you over her shoulder, longing in her gaze, <i>“Let’s get going, </i>tough " + pc.mf("guy","girl") + "<i>.”</i>");
-		output("\n\nYou get up from your stool and begin to follow Erra as she walks out of the bar, watching her tail’s hypnotic motions as she leads you to her ship. When you enter the docks, you look for the ship that belongs to your ausar companion, and there it is: painted with Reaper Armament’s colours. It’s pretty damn big, incredibly beefy for a transport ship, and you spot a couple mean-looking turrets on the behemoth, probably installed by Reaper themselves.");
+		output("\n\nYou get up from your stool and begin to follow Erra as she walks out of the bar, watching her tail’s hypnotic motions as she leads you to her ship. When you enter the docks, you look for the ship that belongs to your ausar companion, and there it is: painted with Reaper Armament’s colors. It’s pretty damn big, incredibly beefy for a transport ship, and you spot a couple mean-looking turrets on the behemoth, probably installed by Reaper themselves.");
 		output("\n\nFollowing Erra forward, you take in the sight of the ship until the airlock opens, and your ausar friend extends an arm, inviting you in. <i>“Welcome to my humble abode,”</i> she proclaims as you both enter the ship. Humble, yeah right; the interior of the ship seems a bit small compared to the outside, although most of the interior space is probably storage. All the furniture is very rounded and sleek, giving the interior a very modern feel.");
 		output("\n\nYour inspection is broken by a booming, almost robotic voice coming from what seems to be the very walls of the ship, <i>“Welcome back captain. I see you’ve brought a guest.”</i>");
 		output("\n\nErra groans, <i>“Dammit, Dee, I told you to stop doing that when I bring someone home.”</i>");
@@ -159,7 +159,7 @@ public function erraSexGOOO():void
 		output("\n\nConfused by the sudden addition of an AI to this little adventure, all you can manage to say is: <i>“Uh, thanks, Dee.”</i>");
 		output("\n\n<i>“New friends, all around,”</i> Erra announces, holding out her arms and turning towards a nearby door before stopping and looking over her shoulder, <i>“Coming, [pc.name]?”</i> You roll your eyes and follow her to the next room. The door hisses open, revealing a big, round bed with a Reaper Armaments jumpsuit lying strewn across it; must be Erra’s. You step forward towards the edge of the bed while your ausar friend dims the lights.");
 		output("\n\nA pair of fuzzy hands grip your shoulders and turn you around before you’re pulled into a passionate kiss and pushed down onto the mattress. Erra straddles you and straightens herself, pulling back from the kiss. She smiles down at you as she removes her shirt, revealing her cuppable breasts. You grin deviously and grab at her hips, your hands running up and down her firm sides until Erra loses a bit of her composure. A quivering breath escapes her lips as your hands reach the swell of her tits. She quickly returns herself to the kiss, her mouth opening to let your [pc.tongue] explore it.");
-		if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("\n\nThe two of you work your way out of your clothes, discarded garments falling on the bed until you’re both naked as a couple of lovers can get, rolling around on the mattress.");
+		if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("\n\nThe two of you work your way out of your clothes, discarded garments falling on the bed until you’re both naked as a couple of lovers can get, rolling around on the mattress.");
 		else output("\n\nYou help Erra work her way out of her clothes until you’re both naked as a couple of lovers can get, rolling around on the mattress.");
 		output(" Kissing quickly turns to groping and fondling as Erra makes her way atop you again, pulling herself back as her velveteen hands have their way with your body. <i>“Hold on, gotta get something quick,”</i> she says, rolling off you and reaching for a nearby drawer. You roll over on your side and take a good look at Erra’s ass as she grabs whatever it is she needs, licking your lips at the sight of those gropable cheeks.");
 		output("\n\nWhen she turns around, you’re expecting to be handed a ");
@@ -171,7 +171,7 @@ public function erraSexGOOO():void
 
 		if(InCollection(pc.race(), ["ausar","half-ausar"])) output("\n\nYou cross your arms, making sure you give your [pc.tail] an emphasizing flick so your canine friend sees it, ");
 		else output("\n\nYou cock an eyebrow, ");
-		output("resulting in a sigh from Erra as she brings herself to sit down on the mattress. <i>“Well, honestly, I didn’t really get into, or know much about this kind of stuff until I started hanging out with humans.”</i> The ausar smiles up at you, bringing herself down on all fours and crawling towards you. <i>“Ended up really liking it, getting treated like a puppy and all that stuff: the petting, the collars and leashes, all the ‘good girls’ and praise.”</i> She visibly shudders at her own words.");
+		output("resulting in a sigh from Erra as she brings herself to sit down on the mattress. <i>“Well, honestly, I didn’t really get into, or know much about, this kind of stuff until I started hanging out with humans.”</i> The ausar smiles up at you, bringing herself down on all fours and crawling towards you. <i>“Ended up really liking it, getting treated like a puppy and all that stuff: the petting, the collars and leashes, all the ‘good girls’ and praise.”</i> She visibly shudders at her own words.");
 		output("\n\n<i>“But, you can treat me like a bad girl if you really want,”</i> the ausar whispers, smile turning to a lustful grin as her tail begins to sway back and forth.");
 		processTime(15);
 		pc.lust(15);
@@ -186,12 +186,16 @@ public function erraSexGOOO():void
 		output("\n\n<i>“Hey, Dee,”</i> you say, walking to the bedroom with your ausar companion.");
 		output("\n\n<i>“I trust you and captain Erra are here to conduct more ‘business,’”</i> the AI quips, making her captain groan with disdain as the bedroom door closes behind you.");
 		output("\n\nErra’s already removing her clothes by the time the door closes, her breasts coming free of her shirt and jiggling as they come to a rest.");
-		if(!pc.isCrotchExposed() && !pc.isChestExposed()) output(" You figure you better do the same and start to remove your [pc.gear]. As you’re making yourself bare, a crumpled up pair of jeans hit you, causing you to move your gaze, only to be granted a fantastic view of Erra’s firm puppy-butt, tail lifted straight up as she bends over to search for her collar. You grin at the lusty ausar’s little scheme as the last of your gear comes off. Sitting yourself down on her bed, you watch Erra straighten herself and flex her semi-muscular back before she turns around with a familiar, smug look on her face.");
+		if(!pc.isCrotchExposed() || !pc.isChestExposed()) output(" You figure you better do the same and start to remove your [pc.gear]. As you’re making yourself bare, a crumpled up pair of jeans hit you, causing you to move your gaze, only to be granted a fantastic view of Erra’s firm puppy-butt, tail lifted straight up as she bends over to search for her collar. You grin at the lusty ausar’s little scheme as the last of your gear comes off. Sitting yourself down on her bed, you watch Erra straighten herself and flex her semi-muscular back before she turns around with a familiar, smug look on her face.");
 		else output(" You decide to make yourself comfortable and sit down on the bed. While you’re waiting for your lover to get herself ready, you treat yourself to a fantastic view of Erra’s firm puppy-butt, tail lifted straight up as she bends over to search for her collar. You watch Erra straighten herself and flex her semi-muscular back before she turns around with a familiar, smug look on her face.");
 		output("\n\nYour soon-to-be pet lunges onto the bed, landing on all fours and tossing her collar to you. <i>“So,”</i> she begins, <i>“What do you have planned for your puppy today?”</i> Her smugness turns to lust, tail swishing left to right, left to right as she patiently awaits your next move.");
 		processTime(4);
 		pc.lust(15);
 	}
+	
+	currentLocation = "ERRAS SHIP";
+	generateMap();
+	
 	clearMenu();
 	//[Good girl] Reward your puppy with some vaginal lovin’.
 	//[Bad girl] Punish your disobedient pet via her tight little tailhole. //Requires cock or hardlight strapon.
@@ -225,7 +229,7 @@ public function goodGirlSexForErra():void
 	output("\n\nKneeling down, you get yourself level with your puppy’s butt, gaze fixed on her lube-leaking pussy. You lick your lips and grab Erra’s ass with both hands, spreading her lower cheeks, giving you unrestricted access to her sex. While your pet wiggles with anticipation, you spread her velvety folds with your thumbs, drawing a shuddering breath from the leash-bound ausar. Not needing any encouragement other than Erra’s trembling figure, you dig in, [pc.tongue] already penetrating your puppy’s quim, delving deep to seek out her g-spot. She starts to moan and whimper as you have your way with her, sounds of pleasure turning to squeals as you knead and squeeze her ass in your hands.");
 	output("\n\nYou happily lap up your puppy’s girlcum while her moans fill the room, driving you to probe her pussy deeper with your agile tongue. Once you’ve gotten Erra’s sex nice and juicy with your oral affections, you pull out of her, licking up the last of her arousal coating your lips before you stand up again. The room is silent except for the sound of your pet’s breathing, heavy and labored, still recovering from near-orgasm. Nudging her slightly, you get Erra to crawl forward a bit, enough so that you can make your own way onto the bed and kneel behind her.");
 	//hasCock:
-	if(pc.hasCock() && x >= 0)
+	if(x >= 0)
 	{
 		output("\n\nGrinning, you bend yourself over Erra, [pc.chest] pressing into her back, making the puppy squirm while the [pc.cockHead " + x + "] of your stiffening shaft brushes against the folds of her sex. She shudders, body quivering, as you bring yourself closer to one of her raised wolf-ears and ask, <i>“Does puppy want a bone?”</i> She most certainly does, nodding hurriedly as you lift a hand to scratch between her ears. Not wanting to keep such a good girl waiting, you start to push into her, spreading her nether lips lips with ease, already loosened from your oral pleasures. Her love tunnel hugs at your [pc.cock " + x + "] as you slide it into her, keeping your tool nice and warm until ");
 		if(pc.hasKnot(x)) output("your penetration is halted by your [pc.knot " + x + "].");
@@ -279,19 +283,20 @@ public function erraGoodGirl2():void
 	output("A familiar feeling of fur-on-skin wakes you; your vision is hazy with post-coital bliss, but you look down to see that Erra has moved a bit in her sleep, and is now nuzzling her head into your [pc.chest]. You grin at the sight of the smug ausar’s soft-side put on display and give her a pat on the back to wake her.");
 	output("\n\nShe lets out a little yawn and moves her head to look up at you, <i>“Hey, [pc.name],”</i> she says, <i>“Stick around for seconds or... ?”</i>");
 	output("\n\nYou roll your eyes at her and pull ");
-	if(pc.hasCock() && x >= 0 && pc.hasKnot(x)) output("your [pc.cock " + x + "] out of her quim, eliciting a little whimper from the girl before you go to stand up");
+	if(x >= 0 && pc.hasKnot(x)) output("your [pc.cock " + x + "] out of her quim, eliciting a little whimper from the girl before you go to stand up");
 	else output("yourself out out of her grasp and go to stand up");
 	output(". Erra stretches and sits up, taking her collar off and going to put her clothes back on, ");
-	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("and you figure you should do that same.");
+	if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("and you figure you should do that same.");
 	else output("and you get up to give your limbs a stretch.");
 
 	output("\n\nOnce you’re both ");
-	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("dressed and ");
+	if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dressed and ");
 	output("ready, you head out back into the ship’s atrium and make your way to the airlock. <i>“You seem happy captain,”</i> Dee’s voice booms. <i>“I trust that means you and [pc.name] enjoyed yourselves.”</i> Erra’s eyes widen with an emotion akin to anger as you start to walk out of the ship. She quickly regains control of her emotions before saying, <i>“Later, [pc.name], stop by some time.”</i>");
 	output("\n\nDee chimes in as well, calling out <i>“Farewell, [pc.name].”</i>");
 	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks.’”</i>");
 	IncrementFlag("ERRA_SEXED");
 	processTime(35);
+	restHeal();
 	currentLocation = shipLocation;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -335,7 +340,7 @@ public function badGirlAnalErraStuff():void
 			output("\n\nWaking with a yawn, you realize you’re still in Erra’s bed, the leash bound ausar still held in your arms. You give her a little tap on the shoulder and go to remove her collar as she gives her legs a stretch. <i>“Hey, [pc.name],”</i> she says, collar coming off, <i>“Still here?”</i>");
 			output("\n\nYou tell her that neither of you could exactly leave and promptly remove your flaccid [pc.cockNoun " + x + "] from her ass, [pc.knot " + x + "] coming out with a pop, allowing [pc.cumNoun] to dribble onto the mattress.");
 			output("\n\nShe chuckles, sitting herself up and wincing, rubbing her sore bottom, <i>“Gods, when I say ‘bad girl’ I don’t exactly mean ‘leave me walking funny.’”</i> Giving her a slap on a firm asscheek, you tell her you think she can handle it. You stand up and start to ");
-			if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("dress yourself.");
+			if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dress yourself.");
 			else output("get ready to head out.");
 		}
 		//noKnot:
@@ -351,7 +356,7 @@ public function badGirlAnalErraStuff():void
 			output("\n\nWaking with a yawn, you realize you’re still in Erra’s bed, the leash bound ausar still held in your arms. You give her a little tap on the shoulder and go to remove her collar as she gives her legs a stretch. <i>“Hey, [pc.name],”</i> she says, collar coming off, <i>“Still here?”</i>");
 			output("\n\nYou tell her you thought it better to stick around, or else your puppy might’ve missed you when she woke up.");
 			output("\n\nShe chuckles, sitting herself up and wincing, rubbing her sore bottom, <i>“Gods, when I say ‘bad girl’ I don’t exactly mean ‘leave me walking funny.’”</i> Giving her a slap on a firm asscheek, you tell her you think she can handle it. Standing up, you start to ");
-			if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("dress yourself.");
+			if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dress yourself.");
 			else output("get ready to head out.");
 		}
 	}
@@ -364,7 +369,7 @@ public function badGirlAnalErraStuff():void
 		output("\n\nTightening your grip on your ausar’s hips, you pull her down, holding her still on your hardlight as you hump her ass. Erra screams with delight as you pound at her gaping hole, her pleasured crying turning into whimpering as you jackhammer her ass and keep her pinned against the wall. It isn’t much longer before a burning feeling of pleasure builds in your loins until the bliss of release washes over you, climax rocking your body as you ride-out your simulated orgasm.");
 		output("\n\nYou’re panting as hard as your pretty little pet is after that, trying to keep your balance on the mattress as your orgasm wanes. <i>“Good girl,”</i> you coo, reaching a hand up to your thoroughly-punished puppy’s ears and giving them a pet. You wrap your arms around Erra’s flat six-pack and slowly pull yourself out of her. Your light-bright dick flicks off as you pull her down onto the bed with you, ready to sleep away the afterglow of your orgasm.");
 		output("\n\nWaking with a yawn, you realize you’re still in Erra’s bed, the leash bound ausar still held in your arms. You give her a little tap on the shoulder and go to remove her collar as she gives her legs a stretch. <i>“Hey, [pc.name],”</i> she says, collar coming off, <i>“Still here?”</i> You tell her you thought it better to stick around, or else your puppy might’ve missed you when she woke up. She chuckles, sitting herself up and wincing, rubbing her sore bottom, <i>“Gods, when I say ‘bad girl’ I don’t exactly mean ‘leave me walking funny’.”</i> Giving her a slap on one of her firm asscheek, you tell the puppy you think she can handle it. Standing up, you start to ");
-		if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("dress yourself.");
+		if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dress yourself.");
 		else output("get ready to head out.");
 	}
 	processTime(24);
@@ -379,7 +384,7 @@ public function erraBadPupper2():void
 	showErra();
 	author("Hugs Alright");
 	output("Once you’re both ");
-	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("dressed and ");
+	if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dressed and ");
 	output("ready, you exit the bedroom and walk into the atrium. You’re just about out the airlock when Dee speaks up, <i>“Leaving, [pc.name]? I trust you and the captain enjoyed yourselves. Speaking of, are you alright, captain? You seem to be... limping.”</i>");
 	output("\n\n<i>“Can it, diodes-for-brains,”</i> barks Erra, before looking back at you with a smile, <i>“See ya around, [pc.name], don’t be afraid to pick me up if I’m in town.”</i> You bid her farewell and make your way out the airlock, the sound of Erra arguing with Dee fading as you walk away.");
 	processTime(60);

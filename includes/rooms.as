@@ -242,6 +242,15 @@ public function initializeRooms():void
 	rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.INDOOR);
 	//rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.SHIPHANGAR);
 	rooms["KIROS SHIP AIRLOCK"].moveMinutes = 5;
+	
+	//Erra's Ship
+	rooms["ERRAS SHIP"] = new RoomClass(this);
+	rooms["ERRAS SHIP"].roomName = "ERRA’S SHIP\nINTERIOR";
+	rooms["ERRAS SHIP"].description = "";
+	rooms["ERRAS SHIP"].planet = "SHIP: ERRA’S";
+	rooms["ERRAS SHIP"].system = "SYSTEM: REDACTED";
+	rooms["ERRAS SHIP"].moveMinutes = 1;
+	rooms["ERRAS SHIP"].addFlag(GLOBAL.INDOOR);
 
 	// DEBUG SHIT ---------------------------------------------------
 	rooms["DEBUG1"] = new RoomClass(this);

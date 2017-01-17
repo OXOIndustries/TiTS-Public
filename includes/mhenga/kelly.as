@@ -118,7 +118,7 @@ public function kellysOfficeBonusFunction():Boolean
 	{
 		output("\n\n<b>Xenogen Biotech is currently closed. You’ll have to come back later.</b>");
 		clearMenu();
-		addButton(0,"Next",leaveKellyNext);
+		addButton(0,"Next",leaveKellyNext, true);
 		return true;
 	}
 	return false;
@@ -201,7 +201,7 @@ public function dontRegisterInKellysOffice():void {
 	//Leave the area and redo everything in case the PC comes back.
 	
 	clearMenu();
-	addButton(0,"Next",leaveKellyNext);
+	addButton(0,"Next",leaveKellyNext, true);
 }
 
 //[=Yes=]
@@ -386,7 +386,7 @@ public function flirtWithKellyAnywayPartII():void {
 	pc.exhibitionism(2);
 	processTime(10+rand(5));
 	clearMenu();
-	addButton(0,"Next",leaveKellyNext);
+	addButton(0,"Next",leaveKellyNext, true);
 }
 
 //Sky Sap talks
@@ -763,6 +763,7 @@ public function kellyBarTalkOptions():void
 	addButton(1,"Her Mods",talkToKellyAboutHerMods,undefined,"Her Mods","Ask Kelly about what kind of mods she’s picked up working for Xenogen.");
 	addButton(2,"ZilFetish?",askKellyAboutHerZilFetish,undefined,"Zil Fetish?","Ask her if she has a zil fetish.");
 	addButton(3,"ShareMeal",shareAMealWithKelly,undefined,"Share a Meal","Hang out with Kelly and have some dinner together.");
+	addButton(14,"Back",kellyBarMenu);
 }
 
 //About Her
@@ -922,6 +923,9 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 		showKelly(true);
 		output("At your answer, her eyes light up. <i>“Good choice, honey; I much prefer a hands on sort of demonstration,”</i> she smirks, pushing herself up from her seat. <i>“Come on; I’d rather do this sort of testing in my own ‘secret lab’,”</i> she informs you, waiting for you to rise as well.");
 		output("\n\nYou rise yourself and follow after her.");
+		
+		goToKellysHouse();
+		
 		output("\n\nSince Esbeth is a young frontier town, Kelly’s current choice of home, a cheap little rental unit, doesn’t take too long for you to reach. She opens the door quickly and leads the way inside, closing the door after you’ve followed.");
 		output("\n\nKelly’s home may be small and cheap, but she’s done it up quite nicely. A pair of handy shelves groan on the weight of myriad books and magazines - ranging in topics from fashion and cooking magazines to scientific newsletters and textbooks on engineering and genetics. A number of bee and flower-themed ornaments are scattered around, pride of place being given to several incense holders that fill the room with a sweet, floral scent. Her bed is the most ornate of all, being structured to actually look like a huge flower.");
 		output("\n\nKelly grins as she enthusiastically seats herself atop her bed, bouncing as she settles, kicking her legs in glee. <i>“So... you want that hands on demonstration, honey? Well...”</i> she crooks a finger in invitation, a mischievous light in her eyes.");
@@ -1006,7 +1010,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 				//[Confident][LeaveIt]
 				addButton(0,"Confident",confidentLoppeWillLetYouPoundHerShitTillShesLoose);
 				//[=LeaveIt=] (No text, straight to next paragraph.)
-				addButton(1,"Leave It",noJackingKellyOffToTestMods);
+				addButton(1,"Leave It", getKellyOff, true);
 			}
 			else
 			{
@@ -1016,7 +1020,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 				//[Confident][LeaveIt]
 				addButton(0,"Confident",beConfidentAboutNailingKellySheDoOOOOOO);
 				//[=LeaveIt=] (No text, straight to next paragraph.)
-				addButton(1,"Leave It",noJackingKellyOffToTestMods);
+				addButton(1,"Leave It", getKellyOff, true);
 			}
 		}
 		else
@@ -1024,7 +1028,6 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 			clearMenu();
 			// This is what it LOOKS like the scene intended to do in the doc to me
 			addButton(0, "Next", getKellyOff, true);
-			//addButton(0,"Next",noJackingKellyOffToTestMods);
 		}
 	}
 }
@@ -1266,8 +1269,6 @@ public function kellyModsEpilogue(clearScreen:Boolean = false):void
 	processTime(4);
 	//Display Kelly at Bar options//
 	kellyBarMenu();
-	removeButton(1);
-	addDisabledButton(1,"Her Mods");
 }
 
 //Zil Fetish
@@ -1436,6 +1437,9 @@ public function kellyShopping():void
 	output("\n\n<i>“Much better,”</i> she announces. <i>“Always so much more comfortable like this; it’s nice to let the girls breathe.”</i> She stops and giggles to herself. <i>“My moms would spank my cute little bunny-butt until it glowed red for doing this... but that’s half the fun, isn’t it?”</i> she asks; you’re not sure if she’s being hypothetical or not. <i>“Oh, please, don’t be shy on my account; my home is your home. Go on and make yourself comfortable, too,”</i> she adds, almost as an afterthought.");
 	processTime(7);
 	//[GetComfy][No]
+	
+	goToKellysHouse();
+	
 	clearMenu();
 	addButton(0,"GetComfy",getComfyAfterKellyShopping);
 	addButton(1,"No",noToChoiceAtEndOfKellyShopping);
@@ -1503,7 +1507,6 @@ public function noToChoiceAtEndOfKellyShopping():void
 
 	output("\n\n<i>“Suit yourself,”</i> she declares; if she feels at all disappointed, she’s doing a great job hiding that fact.");
 	kellyDinnerPrepGogo();
-
 }
 
 //[=GetComfy=]
@@ -2198,6 +2201,9 @@ public function kellyBarFlirtContinuation():void
 	output("\n\nShe smiles back and steps in closer to remove your [pc.gear]; she doesn’t rip it off of you, like you might have expected, but she visibly savors everything that is revealed, tongue darting out to caress your [pc.nipple] as she makes her way down your chest, loudly inhaling your musk as she exposes your loins. <i>“Mmm... much better,”</i> she declares, standing up again. <i>“So, honey, had anything in particular in mind, now that we’re here...?”</i>");
 	processTime(20);
 	pc.lust(10+rand(3));
+	
+	goToKellysHouse();
+	
 	//Display sex options//
 	kellyBarSexMenu();
 }
@@ -3389,10 +3395,25 @@ public function noDrinksForKelly(genderless:Boolean = false):void
 	addButton(0,"Next",leaveKellyNext);
 }
 
-public function leaveKellyNext():void
+public function goToKellysHouse():void
+{
+	rooms["NORTH ESBETH 1"].northExit = "KELLY'S HOUSE";
+	currentLocation = "KELLY'S HOUSE";
+	rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
+	generateMap();
+}
+public function leaveKellyNext(fromOffice:Boolean = false):void
 {
 	if(pc.hasStatusEffect("Temporary Nudity Cheat")) tempNudeOff();
-	move("SOUTH ESBETH 2");
+	if(fromOffice)
+	{
+		move("SOUTH ESBETH 2");
+	}
+	else
+	{
+		rooms["NORTH ESBETH 1"].northExit = "";
+		move("NORTH ESBETH 1");
+	}
 }
 
 //Kelly's Cunny
@@ -3662,7 +3683,7 @@ public function takeANapAfterNiceCunnilingus():void
 		output("\n\nChuckling you pat her on the arm. Hey, it’s not like she has anything to worry about. You’ll be back for more later.");
 		output("\n\n<i>“Of course you will,”</i> she states matter of factly, smiling even as she offers you an arm to help you get out of the couch.");
 		output("\n\nA few moments later and you’re fully geared up and ready to go.");
-		output("\n\nThe laquine smiles and steps forward to embrace you, kissing you with surprising daintiness on the lips. <i>“Come back anytime, my little sugar-flower. You know I’m always happy to see you,”</i> she tells you, releasing you so that you can head back to the ship.");
+		output("\n\nThe laquine smiles and steps forward to embrace you, kissing you with surprising daintiness on the lips. <i>“Come back anytime, my little sugar-flower. You know I’m always happy to see you,”</i> she tells you, releasing you so that you can head out and maybe go back to the ship.");
 	}
 	else
 	{
@@ -3994,6 +4015,7 @@ public function taurKellyDPCumInside(x:int):void
 		feedCuntSnake();
 	}
 	flags["KELLY_HAD_SPECIAL_TAUR_DP"] = 1;
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",leaveKellyNext);
 }
@@ -4051,6 +4073,7 @@ public function getCummedOnByKellyDuringTaurDPs(x:int):void
 		feedCuntSnake();
 	}
 	pc.orgasm();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",leaveKellyNext);
 }
@@ -4276,7 +4299,7 @@ public function getDPedByKelly():void
 		output(".");
 		output(" Kelly smiles once you’re ready and playfully pets your slightly bulging stomach. <i>“Good thing I take contraception seriously, or you’d be pregnant twice over,”</i> she giggles, then steps in to kiss you affectionately. <i>“Mmm... don’t be a stranger, hear?”</i> she purrs once she’s released your lips, tongue darting out to affectionately flick the tip of your nose before she steps away.");
 
-		output("\n\nSaying your goodbyes, you return to the ship.");
+		output("\n\nSaying your goodbyes, you head out to possibly return to the ship.");
 	}
 	pc.loadInCunt(chars["KELLY"],x);
 	pc.loadInCunt(chars["KELLY"],x);
