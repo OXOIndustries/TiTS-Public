@@ -996,6 +996,7 @@ public function milodanPregnancyEnds():void
 	clearOutput();
 	author("Wsan");
 	showName("\nBIRTHING!");
+	showBust("");
 
 	var se:StorageClass = pc.getStatusEffect("Milodan Pregnancy Ends");
 	
