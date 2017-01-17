@@ -5452,6 +5452,13 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			roamCount++;
 		}
+		// Erra
+		if(flags["MET_ERRA"] != undefined)
+		{
+			output2("\n<b>* Erra:</b> Met her");
+			if(flags["ERRA_SEXED"] > 0) output2("\n<b>* Erra, Times Sexed:</b> " + flags["ERRA_SEXED"]);
+			roamCount++;
+		}
 		// Kaede
 		if(hasMetKaede())
 		{

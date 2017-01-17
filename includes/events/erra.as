@@ -79,7 +79,7 @@ public function erraMenu():void
 	addButton(0,"Appearance",erraAppearance,undefined,"Appearance","Take a good look at the ausar.");
 	addButton(1,"Talk",talkToErra,undefined,"Talk","Talk to Erra about something.");
 	if(pc.lust() >= 33) addButton(2,"Sex",erraSexGOOO,undefined,"Sex","Well, she was certainly open to the idea before, why wouldn’t she be now?");
-	else addDisabledButton(2,"Sex","Sex","You aren't aroused enough for that.")
+	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.")
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -89,11 +89,11 @@ public function erraAppearance():void
 	clearOutput();
 	showErra();
 	author("Hugs Alright");
-	output("Erra is a 5’9” ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the colour of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance.");
+	output("Erra is a 5\' 9\" ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the colour of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance.");
 	output("\n\nShe’s dressed casually: jeans and a t-shirt, both hugging her athletic frame, making the dim light of the bar hit her curves and the swell of her C-cups just right. Sitting the way she is, she looks relaxed and just a bit full of herself.");
 	output("\n\nOne pretty pink ausar pussy and a nice, tight tailhole sit between her legs.");
 	erraMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're doing that right now!");
+	addDisabledButton(0,"Appearance","Appearance","You’re doing that right now!");
 }
 
 //Talk
