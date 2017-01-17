@@ -35,6 +35,7 @@ public function roamingBarEncounter(button:int = 0):void
 	||	!InCollection(currentLocation, ["ANON'S BAR AND BOARD", "BURT'S MAIN HALL"])
 	)
 	&&	annoIsCrew() && !pc.hasStatusEffect("Anno Bar Busy") && rand(2) == 0) NPCs.push(annoRandoBarBonus);
+	NPCs.push(erraBarText);
 	//Pick available NPC, run setup func
 	if(NPCs.length > 0)
 	{

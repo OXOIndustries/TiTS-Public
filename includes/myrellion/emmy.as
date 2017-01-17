@@ -33,6 +33,10 @@ public function showEmmy(nude:Boolean = false):void
 	if(!nude) showBust("EMMY");
 	else showBust("EMMY_NUDE");
 }
+public function emmyIsCrew():Boolean
+{
+	return false;
+}
 public function applyCumSoaked(arg:Creature):void
 {
 	var desc:String = "";

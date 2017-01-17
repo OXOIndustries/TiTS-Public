@@ -150,12 +150,13 @@
 		
 		// Misc Events
 		include "../includes/events/atha_lets_fapper.as";
-		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
-		include "../includes/events/tentacle_psychic_hatchling.as";
+		include "../includes/events/erra.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
+		include "../includes/events/steph_on_demand.as";
+		include "../includes/events/tentacle_psychic_hatchling.as";
 
 		//Tavros Station
 		include "../includes/tavros/aina.as";
@@ -449,7 +450,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.12";
+			version = "0.7.13";
 
 			//temporary nonsense variables.
 			temp = 0;
