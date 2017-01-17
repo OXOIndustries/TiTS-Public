@@ -983,10 +983,9 @@
 		public static const ALL:int                                    = 12; //Used for pawn shops!
 		public static const GADGET:int 								   = 13;
 		public static const EXPLOSIVECONSUMABLE:int					   = 14;
-		public static const SPECIAL_ITEM:int						   = 15; // Used for droppable quest-related items.
+		public static const QUEST_ITEM:int							   = 15; // Used for quest-related items.
 		public static const GEM:int 								   = 16;
 		public static const SEXTOY:int 								   = 17; // Used for any portable sexual relief devices.
-		public static const QUEST_ITEM:int							   = 18; // Used for undroppable quest-related items.
 
 		//CHARACTERS
 		public static const CELISE:int                                 = 1;
@@ -1027,6 +1026,7 @@
 		public static const ITEM_FLAG_REDUCED_ACCURACY:int				= 14;
 		public static const ITEM_FLAG_COMBAT_DRONE:int					= 15; // For combat drones
 		public static const ITEM_FLAG_INTERNAL_POWER:int				= 16; // For drones that do not require shields in order to function.
+		public static const ITEM_FLAG_UNDROPPABLE:int					= 17; // For items that cannot be dropped.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1046,6 +1046,7 @@
 			"Reduces Accuracy",
 			"Combat Drone",
 			"Self-Powered",
+			"Undroppable",
 		];
 		
 		/**

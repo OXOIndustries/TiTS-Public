@@ -450,7 +450,7 @@ public function sellItem():void {
 		if(pc.inventory[x].quantity > 0) {
 			trace("PC inventory being checked for possible sale.");
 			//Does the shopkeep buy this type?
-			if(pc.inventory[x].type == GLOBAL.QUEST_ITEM) {
+			if(pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) {
 				addDisabledButton(btnSlot, pc.inventory[x].shortName + " x" + pc.inventory[x].quantity, StringUtil.toDisplayCase(pc.inventory[x].longName), "This item is too important to sell.");
 			}
 			else if(shopkeep.buysType(pc.inventory[x].type)) {
@@ -657,7 +657,7 @@ public function dropItem():void {
 		}
 		
 		if(pc.inventory[x].quantity > 0) {
-			if(pc.inventory[x].type != GLOBAL.QUEST_ITEM) {
+			if(!pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) {
 				output("\n");
 				if(pc.inventory[x].stackSize > 1) output(pc.inventory[x].quantity + "x ");
 				output(StringUtil.toDisplayCase(pc.inventory[x].longName) + " - " + pc.inventory[x].basePrice + " credits.");
@@ -1802,7 +1802,7 @@ public function getListOfType(from:Array, type:String):Array
 				break;
 				
 			case "VALUABLES":
-				if (InCollection(item.type, GLOBAL.GEM, GLOBAL.SPECIAL_ITEM, GLOBAL.QUEST_ITEM))
+				if (InCollection(item.type, GLOBAL.GEM, GLOBAL.QUEST_ITEM))
 				{
 					items.push(item);
 				}
