@@ -114,7 +114,7 @@
 	prepChar(justUpdate, "DOLLMAKER", Dollmaker);
 	prepChar(justUpdate, "PEXIGA", Pexiga);
 	prepChar(justUpdate, "MILODAN_MALE", MilodanMale);
-	prepChar(justUpdate, "VESPERIANVENDINGMACHINE", VesperianVendingMachine);
+	prepChar(justUpdate, "VENDINGMACHINE", VendingMachine);
 	prepChar(justUpdate, "ARAKEI", AraKei);
 	prepChar(justUpdate, "GWEN", Gwen);
 	

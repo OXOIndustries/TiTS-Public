@@ -33,7 +33,7 @@
 			this.description = "a silver-wrapped Kalocrunch";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This Camarilla-brand high-calorie snack food might be delicious, but is probably terrible for you. The silver packet displays a picture of a happy kui-tan stuffing her cheeks with tiny shapes. The \"crunch\" comes from the fact that it's a blend of salt, solidified fat, and crystallized sugar. <b>Now in Teriyaki!</b>";
+			this.tooltip = "This Camarilla-brand high-calorie snack food might be delicious, but is probably terrible for you. The silver packet displays a picture of a happy kui-tan stuffing her cheeks with tiny shapes. The “crunch” comes from the fact that it’s a blend of salt, solidified fat, and crystallized sugar. <b>Now in Teriyaki!</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -68,7 +68,7 @@
 			{
 				kGAMECLASS.clearOutput();
 				//Consume:
-				kGAMECLASS.output("You crunch down on a mouthful of geometrically-shaped Kalocrunch, moderately surprised at the burst of flavor across your tongue. You wouldn't say it's delicious - it's salty and sweet and crunchy at the same time. But despite that, you keep eating until you've finished the bag. You're not particularly proud of yourself, and that probably wasn't good for you, but you are immensely satisfied.");
+				kGAMECLASS.output("You crunch down on a mouthful of geometrically-shaped Kalocrunch, moderately surprised at the burst of flavor across your tongue. You wouldn’t say it’s delicious - it’s salty and sweet and crunchy at the same time. But despite that, you keep eating until you’ve finished the bag. You’re not particularly proud of yourself, and that probably wasn’t good for you, but you are immensely satisfied.");
 				if(healing > 0) kGAMECLASS.output("\n\nYou even feel like you could go longer before needing to sleep. Is there caffeine in this stuff? (<b>+" + healing + " Energy</b>)");
 				//[+2 thickness, -2 tone +30 Energy.]");
 				kGAMECLASS.output(target.modTone(-2, true));

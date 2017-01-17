@@ -33,7 +33,7 @@
 			this.description = "a sonic jungle repellent";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This single canister is purported to repel the nastier wildlife and natives of Mhen'ga with a mixture of inaudible whistles and low-pitched vibrations.";
+			this.tooltip = "This single canister is purported to repel the nastier wildlife and natives of Mhen’ga with a mixture of inaudible whistles and low-pitched vibrations.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

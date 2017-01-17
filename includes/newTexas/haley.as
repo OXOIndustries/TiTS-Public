@@ -1422,7 +1422,7 @@ public function haleyEllieThreesome():void
 	if (pc.isLactating()) output(" Your breasts start dripping milk out of pure lusty excitement, [pc.milk] running down your chest in rivulets.");
 	if (pc.isBimbo()) 
 	{
-		output("\n\n<i>“Oh my gawd, you’re so goooood,”</i> you sigh in pure bliss, revelling in the feeling of her helpless contractions. <i>“I’m gonna dump aaaall my cum in your womb");
+		output("\n\n<i>“Oh my gawd, you’re so goooood,”</i> you sigh in pure bliss, reveling in the feeling of her helpless contractions. <i>“I’m gonna dump aaaall my cum in your womb");
 		if (subCockIdx >= 0) output("and stomach");
 		output(", ‘kay? Just like you’ve always wanted!”</i>");
 	}

@@ -33,6 +33,10 @@ public function showEmmy(nude:Boolean = false):void
 	if(!nude) showBust("EMMY");
 	else showBust("EMMY_NUDE");
 }
+public function emmyIsCrew():Boolean
+{
+	return false;
+}
 public function applyCumSoaked(arg:Creature):void
 {
 	var desc:String = "";
@@ -1187,6 +1191,7 @@ public function venusPitcherBonusFlower():void
 {
 	clearOutput();
 	showName("AN EXOTIC\nFLOWER!");
+	showBust("");
 	if(flags["EMMY_QUEST"] == 0)
 	{
 		output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure to dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
@@ -2417,7 +2422,7 @@ public function lickEmmysPussyDuring69():void
 	if(!pc.isNude()) output("strip and ");
 	output("climb atop her with rapturous, eager eyes. <i>“Sometimes it’s easy to forget my pussy when I’ve got a crotch-mounted bazooka.”</i> She giggles.");
 
-	output("\n\nDipping a finger inside, you gently explore the interior of her dusky folds, revelling in the slick, velvety texture of her labia against your knuckle, making soft squelches with every playful intrusion. <i>“You’re wet,”</i> you observe with a smile, adding a second digit. <i>“So wet.”</i> Hooking your finger upward as you draw it out, you squeeze a lewd-sounding moan from the herm, pressing on her most sensitive areas. She wriggles like a caught fish, babbling and groaning, streaming rivers of her slippy cunt-juice onto her mat. <i>“Not wet... drenched,”</i> you observe.");
+	output("\n\nDipping a finger inside, you gently explore the interior of her dusky folds, reveling in the slick, velvety texture of her labia against your knuckle, making soft squelches with every playful intrusion. <i>“You’re wet,”</i> you observe with a smile, adding a second digit. <i>“So wet.”</i> Hooking your finger upward as you draw it out, you squeeze a lewd-sounding moan from the herm, pressing on her most sensitive areas. She wriggles like a caught fish, babbling and groaning, streaming rivers of her slippy cunt-juice onto her mat. <i>“Not wet... drenched,”</i> you observe.");
 	output("\n\nStill groaning, Emmy nods into your [pc.thighs], dragging her twitching ears along your [pc.skinFurScales]. She’s already acting like your puppet, quivering with every twist and rub, moaning when you pause your none-to-gentle undulations, and arching her hips to present her clit for examination. And what a clit it is! The bulbous little pleasure bead is wet and glistening, thick enough that its hood may as well be made of ill-fitting spandex. It pulsates demurely, begging to be touched.");
 	output("\n\nWhat a cute little button. You touch it.");
 	output("\n\n<i>“Ooooooh,”</i> Emmy pants, closing her eyes and groping tits, too lost in her own ecstasy to return the favor. Her hips roll back against your palm, forcing the swollen nub harder into your fingertip. Veins pulse and throb along her cock’s length, and you can hear the muffled splatter of jism on fur. Did she get off already? Did this horny, furry slut fucking paint her tits already?");
@@ -2795,6 +2800,7 @@ public function pushEmmysButtonsMenu():void
 {
 	clearOutputCodex();
 	showName("REMOTE\nCUMTROL");
+	showBust("");
 	outputCodex("Welcome to the Remote Cumtrol application for your herm harness!");
 	outputCodex("\n<i>The most exciting app on the extranet!</i>");
 	outputCodex("\n\nPlease make a selection.");
@@ -2812,6 +2818,7 @@ public function pushEmmyMassage():void
 	}
 	clearOutputCodex();
 	showName("\nMASSAGE");
+	showBust("");
 	outputCodex("Sending command...");
 	outputCodex("\nCommand received...");
 	outputCodex("\nGenital massage in progress...");
@@ -2866,6 +2873,7 @@ public function emmySlowFuckHermHarness():void
 	}
 	clearOutputCodex();
 	showName("SLOW\nFUCK");
+	showBust("");
 	outputCodex("Sending command...");
 	outputCodex("\nCommand received...");
 	outputCodex("\nNow simulating a slow fuck...");
@@ -2959,6 +2967,7 @@ public function emmyHermHarnessHardFuck():void
 	}
 	clearOutputCodex();
 	showName("HARD\nFUCK");
+	showBust("");
 	outputCodex("Sending command...");
 	outputCodex("\nCommand received...");
 	outputCodex("\nConfirm setting: Hard Fuck, Y/N? Y");
@@ -3477,6 +3486,7 @@ public function emmyGetFuckedEppie(x:int):void
 public function emmysPantiesGet():void
 {
 	showName("MYSTERIOUS\nPACKAGE");
+	showBust("");
 	output("\n\nSomeone left a package against your ship! Wrapped up in brown paper, its only visible marking is a small white tag with your name roughly scrawled across it. You briefly consider that it could be a trick or a trap, planted by your cousin to slow you down, but [rival.heShe] seems more interested in rubbing your face in the dirt while [rival.heShe]’s there to see it.");
 	output("\n\nShrugging, you tear it open, anxious to get at whatever prize is inside. You smell a dash of perfume as soon as the paper comes off, partly covering an earthier, almost nutty scent. It’s familiar, but you can’t quite place it.");
 	output("\n\nThen you open the box, revealing exactly what you were smelling - a pair of silky, purple panties with a sorely stretched-out gusset, still soaked from what looks like a night of fun. Off-white splotches mar and clear gloss war for control of the slippery surface, a look (and smell) you’re all too intimately familiar with. These can only belong to your horny jackal girlfriend: Emmy.");

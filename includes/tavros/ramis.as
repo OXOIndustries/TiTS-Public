@@ -613,7 +613,7 @@ public function ramisFuck(response:String = "none"):void
 		// Trap Fuck
 		case "trap":
 			output("<i>“We could go back to my ship - ”</i> you offer haltingly.");
-			output("\n\n<i>“No,”</i> Ramis replies thickly. She stands and wraps a warm, rough hand around your [pc.hip]. <i>“Too far. Lemme handle this, ok knickers?”</i> She gives your [pc.ass] a comforting squeeze.");
+			output("\n\n<i>“No,”</i> Ramis replies thickly. She stands and wraps a warm, rough hand around your [pc.hip]. <i>“Too far. Lemme handle this, okay knickers?”</i> She gives your [pc.ass] a comforting squeeze.");
 			output("\n\nShe grips you tightly as she whisks you out of Anon’s - possibly so you don’t get away.");
 			// PC < 5'11" :
 			if(pc.tallness < 71) output(" It’s all you can do to keep up with her - the kaithrit’s legs are long, powerful and extremely purposeful. Her big, hard, denim-clad thigh bumps into your [pc.chest] as you go.");
@@ -763,7 +763,7 @@ public function ramisFuck(response:String = "none"):void
 				output("\n\nShe frowns slightly, still grinning, as you lead your undulating lower body onto the sheets, as if trying to make sense of what she’s looking at.");
 				output("\n\n<i>“Don’t see boyos who are... umm... wiggly very often,”</i> she slurs. <i>“Told there were aliens discovered this rush which are sortuv kaithrit with bottom halves like that.”</i> She gazes up at you. <i>“You one of ‘em?”</i>");
 				output("\n\nYou do nothing but smile, undulating more and more of your [pc.legOrLegs] onto the bed, allowing you the leverage to sinuously rise, slowly and sensuously writhing your naga form, [pc.skinFurScalesColor] scales flowing slowly up the river of your body. Ramis’s grin widens - but her dilated pupils are transfixed, the thick tips of her two tails gently twitching. You move the tip of your own snake tail onto the sheets, flicking it from side to side; you can’t help but laugh when she rears, breasts bouncing, raising her hands to bat at it reflexively.");
-				output("\n\n<i>“Alright, ok,”</i> she snorts, breaking the spell with a shake of her ponytail. <i>“So what can you do for me, string?”</i>");
+				output("\n\n<i>“Alright, okay,”</i> she snorts, breaking the spell with a shake of her ponytail. <i>“So what can you do for me, string?”</i>");
 				if(pc.hasStatusEffect("Genital Slit") || pc.hasSheath(x)) output("\n\nAs way of answer, you extend your fiercely erect cock out of your " + (pc.hasStatusEffect("Genital Slit") ? "genital slit" : "sheath") + ".");
 				if(pc.cLength(x) > 5)
 				{

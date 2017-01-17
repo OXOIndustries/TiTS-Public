@@ -64,7 +64,7 @@ package classes.GameData.Pregnancy.Handlers
 			this.addStageProgression(240, function(pregSlot:int):void {
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 10;
-				AddLogEvent("You note that your swollen belly is shifting awkwardly. The eggs clinging inside you rumble and move, and you feel distinctly... wet. You doubt you'll be carrying these eggs around with you much longer.", "passive");
+				AddLogEvent("You note that your swollen belly is shifting awkwardly. The eggs clinging inside you rumble and move, and you feel distinctly... wet. You doubt you’ll be carrying these eggs around with you much longer.", "passive");
 			}, true);
 			
 			_onTryImpregnate = royalEggsGooTryImpreg;
@@ -113,11 +113,11 @@ package classes.GameData.Pregnancy.Handlers
 					var pSlot:int = kGAMECLASS.pc.findPregnancyOfType("RoyalEggPregnancy");
 					if (pSlot == 4) m += " stomach rumble";
 					else m += " belly tremble";
-					m += ". It's surprisingly nice to just rub your belly, enjoying the fullness of it.";
+					m += ". It’s surprisingly nice to just rub your belly, enjoying the fullness of it.";
 				}
 				else
 				{
-					m = "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
+					m = "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don’t have the heart to tell them you’re full of alien eggs.";
 					if (kGAMECLASS.pc.isBimbo() || kGAMECLASS.pc.isTreated() || kGAMECLASS.pc.race().indexOf("ausar") != -1 || kGAMECLASS.pc.race().indexOf("") != -1 ) m += " Besides, people rubbing all over you feels super good!";
 				}
 				
@@ -132,7 +132,7 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function royalEggsOnFailedImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		{
-			AddLogEvent("You feel a rumbling in your gut, and your belly starts to deflate a bit. Looks like you're absorbing those eggs, slowly but surely...\n\nMaybe you'll stop feeling so full in a while.", "passive");
+			AddLogEvent("You feel a rumbling in your gut, and your belly starts to deflate a bit. Looks like you’re absorbing those eggs, slowly but surely...\n\nMaybe you’ll stop feeling so full in a while.", "passive");
 		}
 		
 		public static function royalEggsOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
@@ -203,7 +203,7 @@ package classes.GameData.Pregnancy.Handlers
 		
 		override public function pregBellyFragment(target:Creature, slot:int):String
 		{
-			return "Your belly is bulging heavily. At first glance, people might be mistaken for thinking you're properly pregnant, but closer inspection reveals your belly to be lumpy and slightly misshapen, bulging with eggs as you are.";
+			return "Your belly is bulging heavily. At first glance, people might be mistaken for thinking you’re properly pregnant, but closer inspection reveals your belly to be lumpy and slightly misshapen, bulging with eggs as you are.";
 		}
 	}
 

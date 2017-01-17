@@ -30,7 +30,7 @@
 			
 			description = "a silvery container of synthetic sap";
 			
-			tooltip = "A silvery, sleek canister with a sticky, synthetic sap inside. It’s a variation on Sky Sap engineered by Xenogen Biotech. It has a pleasant smell. You’re certain it’ll transform you if you drink it.";
+			tooltip = "[altTooltip SynthSap]";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -56,7 +56,7 @@
 				buff = "";
 				author("JimThermic");
 				
-				kGAMECLASS.output("You take a deep breath and bring the silvery container to your lips. The synthetic sap spills onto your tongue, and you're surprised how thick and rich it is. For a while you roll it around on your tongue, savouring the taste, before you finally swallow it.");
+				kGAMECLASS.output("You take a deep breath and bring the silvery container to your lips. The synthetic sap spills onto your tongue, and you’re surprised how thick and rich it is. For a while you roll it around on your tongue, savouring the taste, before you finally swallow it.");
 				
 				kGAMECLASS.processTime(2);
 				
@@ -67,7 +67,7 @@
 				// Apply Vanae set color
 				if(!hasVanaeSkinColor(pc) && changes < changeLimit && changes < changeLimit && rand(3) == 0)
 				{
-					outputB("\n\nAll across your body, you begin to shed your " + pc.skinNoun(false) + ". You watch on in amazement as clumps of " + pc.skinNoun(false) + " fall from your body. It doesn't feel uncomfortable in the least - rather, it tickles! Replacing it is ");
+					outputB("\n\nAll across your body, you begin to shed your " + pc.skinNoun(false) + ". You watch on in amazement as clumps of " + pc.skinNoun(false) + " fall from your body. It doesn’t feel uncomfortable in the least - rather, it tickles! Replacing it is ");
 					setSkinColorVanae(pc);
 					outputB(pc.skinTone + " flesh, soft and supple like a newborn child.");
 					outputB("\n\nYou run your hand along your freshly formed skin and shiver a little with delight. <b>You now have " + pc.skinTone + " skin!</b>");
@@ -97,7 +97,7 @@
 				if(!pc.hasAccentMarkings() && changes < changeLimit && rand(4) == 0)
 				{
 					pc.skinAccent = getVanaeAccentColor(pc);
-					outputB("\n\nAcross your " + pc.skin() + ", " + pc.skinAccent + " markings suddenly begin blossom and bloom. You watch in wonderment as the swiftly growing tattoo tree spreads across every inch of your body. It's like dozens of fingers are tracing across your form and using your body as a living canvas.");
+					outputB("\n\nAcross your " + pc.skin() + ", " + pc.skinAccent + " markings suddenly begin blossom and bloom. You watch in wonderment as the swiftly growing tattoo tree spreads across every inch of your body. It’s like dozens of fingers are tracing across your form and using your body as a living canvas.");
 					outputB("\n\nWhen the sensations subside, you shiver a little and look at your reflection in your codex. Luminous lines now break up your " + pc.skin() + ". <b>You now have " + pc.skinAccent + " body markings!</b>");
 					pc.createStatusEffect("Vanae Markings");
 					
@@ -113,7 +113,7 @@
 				if((pc.PQ() > 40 || pc.RQ() < 100) && changes < changeLimit && rand(3) == 0)
 				{
 					outputB("\n\nEvery single one of your muscles begin to throb and pulse. You gasp out loud as the strange sensation wracks your entire body. What is going on--?");
-					outputB("\n\nWhen it finally subsides, you look down at your lower body. You've shed some muscle and every inch of you has become more lean and taut. <b>Your ");
+					outputB("\n\nWhen it finally subsides, you look down at your lower body. You’ve shed some muscle and every inch of you has become more lean and taut. <b>Your ");
 					if(pc.PQ() > 40)
 					{
 						pc.physique(-1);
@@ -137,8 +137,8 @@
 				{
 					if(target.tailTypeUnlocked(GLOBAL.TYPE_VANAE))
 					{
-						if(pc.tailCount == 1) outputB("\n\nYou hear a 'whumph' behind you, and realize that your " + pc.tailsDescript() + " has fallen off!");
-						else if(pc.tailCount > 1) outputB("\n\nYou hear a 'whumph' behind you, and realize that your " + pc.tailsDescript() + " have fallen off!");
+						if(pc.tailCount == 1) outputB("\n\nYou hear a ‘whumph’ behind you, and realize that your " + pc.tailsDescript() + " has fallen off!");
+						else if(pc.tailCount > 1) outputB("\n\nYou hear a ‘whumph’ behind you, and realize that your " + pc.tailsDescript() + " have fallen off!");
 						outputB(" From just above your [pc.butt], a protrusion forms and snakes outwards. After growing a few metres out, it falls to the ground from its own weight.");
 						outputB("\n\nWhen it finally stops growing, you tentatively wiggle it about. It seems to be a prehensile tail with octopus-like suckers on the bottom. It feels quite powerful, too, like you could knock someone over with a single sweep. <b>You now have a Vanae tail!</b>");
 						pc.tailCount = 1;
@@ -157,7 +157,7 @@
 				// Apply set color, if any
 				if((!pc.hasHair() || pc.hairType != GLOBAL.HAIR_TYPE_TENTACLES || (pc.hairType == GLOBAL.HAIR_TYPE_GOO && pc.hairStyle != "tentacle")) && changes < changeLimit && hasVanaeSkinColor(pc) && rand(4) == 0)
 				{
-					outputB("\n\nThere's a tingling on your scalp and you reach up to touch it. ");
+					outputB("\n\nThere’s a tingling on your scalp and you reach up to touch it. ");
 					if(pc.hasHair()) outputB("Suddenly, your " + pc.hairDescript() + " begins to fall out and fall to the ground around you! ");
 					outputB("Something slides out of your scalp ");
 					if(pc.hasHair()) outputB("in its place");
@@ -173,7 +173,7 @@
 					pc.hairColor = getVanaeAccentColor(pc);
 					if(!pc.hasHair()) pc.hairLength = 2;
 
-					outputB("\n\nRealization hits you as your new locks fall in front of your eyes - you've sprouted [pc.hairColor] tentacle hair! What's even stranger is you can lift and move around each length as easily as your arms; they're prehensile!  Twisting them about, you realize they have little octopus-like suckers facing inward. <b>You now have [pc.hairColor] tentacle hair!</b>");
+					outputB("\n\nRealization hits you as your new locks fall in front of your eyes - you’ve sprouted [pc.hairColor] tentacle hair! What’s even stranger is you can lift and move around each length as easily as your arms; they’re prehensile! Twisting them about, you realize they have little octopus-like suckers facing inward. <b>You now have [pc.hairColor] tentacle hair!</b>");
 					changes++;
 				}
 				//Finned Ears 
@@ -181,7 +181,7 @@
 				// Medium chance of occurring .
 				if(pc.earType != GLOBAL.TYPE_VANAE && rand(4) == 0 && changes < changeLimit)
 				{
-					outputB("\n\nA sharp sensation strikes the sides of your head and you instinctively clutch your ears. Beneath your palms you can feel them wriggling and shifting. What's going on? When it stops, you run your fingers along them. There are strange new contours -- are your ears <i>finned</i> now?\n\nSomething else is different. The sound of your brushing fingers, while small, is very detailed and distinct. In fact, every noise around you is more audible; you're being bombarded by a sea of sonorous sensations. This is going to take some getting used to. <b>You now have a pair of finned Vanae ears!</b>");
+					outputB("\n\nA sharp sensation strikes the sides of your head and you instinctively clutch your ears. Beneath your palms you can feel them wriggling and shifting. What’s going on? When it stops, you run your fingers along them. There are strange new contours -- are your ears <i>finned</i> now?\n\nSomething else is different. The sound of your brushing fingers, while small, is very detailed and distinct. In fact, every noise around you is more audible; you’re being bombarded by a sea of sonorous sensations. This is going to take some getting used to. <b>You now have a pair of finned Vanae ears!</b>");
 					pc.earType = GLOBAL.TYPE_VANAE;
 					changes++;
 				}
@@ -207,7 +207,7 @@
 				if(pc.eyeColor != getVanaeAccentColor(pc) && changes < changeLimit && rand(4) == 0 && hasVanaeSkinColor(pc))
 				{
 					pc.eyeColor = getVanaeAccentColor(pc);
-					outputB("\n\nYour vision goes a little fuzzy. A few seconds later, you regain your eyesight. When you check to see if there's anything in them, you realize your eyes have changed color. <b>Your eyes are now [pc.eyeColor]!</b>");
+					outputB("\n\nYour vision goes a little fuzzy. A few seconds later, you regain your eyesight. When you check to see if there’s anything in them, you realize your eyes have changed color. <b>Your eyes are now [pc.eyeColor]!</b>");
 				}
 				// Cock Type Change
 				// Must not be a vanae cock type already
@@ -224,7 +224,7 @@
 				{
 					outputB("\n\nInside and along your [pc.cock " + x + "], you feel a delicious ache growing and spreading from tip to base. You rub your [pc.sheath " + x + "], moaning as it steadily intensifies. Soon you’re on the ground and feverishly jerking yourself off, unable to help yourself. Inside your fingery grip, you feel as if things are moving about and rearranging. Instead of being unpleasant, it feels as if your dick is being milked by some almighty force reaching down from on high. I-I-It feels so damn good!");
 					outputB("\n\nWith a shrill cry, your [pc.hips] madly buck the air and you squirt a stream of [pc.cum] up into the air, violently climaxing all over the place. Unlike a normal orgasm, you feel as if you’re cumming out of every pore in your cock! You’re not half wrong - something <i>is</i> coming out of every inch of your dick, though you’re not sure <i>what</i>! After you’re finally finished, a thin sheen of sweat coats [pc.skinFurScales]. That - that was something else! When you look down, you notice your dick has been transformed!");
-					outputB("\n\nYou gaze upon the shape of your new staff, literally sizing it up. It’s completely smooth from tip to base, though it certainly doesn’t lack girth, sharing the same thickness of a human cock. Unlike a terran cock, though, it seems to be coated in some kind of natural lube that is emanating from your very pores, keeping it perpetually prepared for action. The most distinctive feature, however, is the cephalopod-like suckler that now crowns your tip, replete with a circular cock-hole in the middle. You press your hand against it and flex, feeling it tug and suckle upon it, and let out a low moan.  When you rock your hips back and forth, it pulls deliciously at your palm, and you figure it out - the suckler is designed to latch and tug on the female cervix, shooting your semen into her womb <i>directly</i>! You wonder if it could latch on to the g-spot or prostate as well, tugging at and then buffering them with your point-blank cum blasts?");
+					outputB("\n\nYou gaze upon the shape of your new staff, literally sizing it up. It’s completely smooth from tip to base, though it certainly doesn’t lack girth, sharing the same thickness of a human cock. Unlike a terran cock, though, it seems to be coated in some kind of natural lube that is emanating from your very pores, keeping it perpetually prepared for action. The most distinctive feature, however, is the cephalopod-like suckler that now crowns your tip, replete with a circular cock-hole in the middle. You press your hand against it and flex, feeling it tug and suckle upon it, and let out a low moan. When you rock your hips back and forth, it pulls deliciously at your palm, and you figure it out - the suckler is designed to latch and tug on the female cervix, shooting your semen into her womb <i>directly</i>! You wonder if it could latch on to the g-spot or prostate as well, tugging at and then buffering them with your point-blank cum blasts?");
 					outputB("\n\n<b>You now have a vanae cock!</b>");
 					// Changes PC cock type to Vanae
 					// Revirginates
@@ -341,7 +341,7 @@
 					outputB(". Soon you feel an incredible pooling pressure in your loins becoming heavier and heavier and just aching to come out. You");
 					if(pc.balls > 1) outputB("r [pc.balls] swell with incredible weight as you");
 					outputB(" let out a deep guttural groan.");
-					outputB("\n\nWhen you can't hold it any longer, you cry out as");
+					outputB("\n\nWhen you can’t hold it any longer, you cry out as");
 					if(pc.cockTotal() == 1) outputB(" a small fountain of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurts");
 					else outputB(" small fountains of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurt");
 					outputB(" uncontrollably from your [pc.cockHeads]. <b>Your cum production has increased!</b>");
@@ -355,7 +355,7 @@
 				// One or more TF occurs
 				if(changes > 0)
 				{
-					kGAMECLASS.output("\n\nIt doesn't take long at all for your unique biology to respond. A swift tingling sensation spreads out across your [pc.skinFurScales]. You feel light headed, and your heart madly races within your chest. A hot flush runs through your body, and you strip off your [pc.gear].");
+					kGAMECLASS.output("\n\nIt doesn’t take long at all for your unique biology to respond. A swift tingling sensation spreads out across your [pc.skinFurScales]. You feel light headed, and your heart madly races within your chest. A hot flush runs through your body, and you strip off your [pc.gear].");
 					kGAMECLASS.output(buff);
 				}
 				// else No TFs

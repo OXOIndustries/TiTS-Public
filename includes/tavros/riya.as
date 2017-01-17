@@ -20,7 +20,7 @@ public function riyaAppearance():void
 	clearOutput();
 	showRiya();
 	author("Franks");
-	output("Riya is very tall for a human woman, standing 6\'2\" by ancient Imperial measurements. She has midnight-black hair in a crew cut, smooth, dusky skin and deep, intense brown eyes. She is in remarkable shape, her rolled-up sleeves showing forearms corded with muscles that flex powerfully with every slight movement she makes. She has two heavy, round, firm D-cup breasts, a flat, hard stomach, and slender, powerful thighs that propel her forward with panther-like grace. She has one tattoo, a lone black wing on the left side of her neck just under her jaw.");
+	output("Riya is very tall for a human woman, standing 6\' 2\" by ancient Imperial measurements. She has midnight-black hair in a crew cut, smooth, dusky skin and deep, intense brown eyes. She is in remarkable shape, her rolled-up sleeves showing forearms corded with muscles that flex powerfully with every slight movement she makes. She has two heavy, round, firm D-cup breasts, a flat, hard stomach, and slender, powerful thighs that propel her forward with panther-like grace. She has one tattoo, a lone black wing on the left side of her neck just under her jaw.");
 	output("\n\nShe is clad in a U.G.C. Peacekeeper uniform and dark blue beret. As you gaze on her form, you notice a rather conspicuous bulge down the left leg of her pants... it seems officer Batra is packing a little something extra.");
 	riyaMenu();
 }

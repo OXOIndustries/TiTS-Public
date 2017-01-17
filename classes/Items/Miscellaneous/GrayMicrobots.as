@@ -30,7 +30,7 @@
 			
 			this.description = "a vial of gray microbots";
 			
-			this.tooltip = "This vial of a sloshing, semi-viscous gray liquid was taken from the body of a reprogrammed gray goo, one of the artificial creatures native to Tarkus. Thanks to your tech-savviness, it should be safe to handle. It shouldn't do anything unless you drink it. You're going to drink it, aren't you?";
+			this.tooltip = "This vial of a sloshing, semi-viscous gray liquid was taken from the body of a reprogrammed gray goo, one of the artificial creatures native to Tarkus. Thanks to your tech-savviness, it should be safe to handle. It shouldn’t do anything unless you drink it. You’re going to drink it, aren’t you?";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -86,7 +86,7 @@
 				}
 				else
 				{
-					throw new Error("Don't know how we got here. Exception for debugging.");
+					throw new Error("Don’t know how we got here. Exception for debugging.");
 				}
 			}			
 			return false;

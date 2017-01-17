@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "an aegis light machinegun";
 			
 			//Displayed on tooltips during mouseovers
-			tooltip = "A streamlined, clean-looking machine gun. No fancy bells or whistles, designed expressly to shoot a man dead, and shoot him very dead. There's just the slight issue that the thing looks about four times larger than it should be, what with it having been designed to be wielded by an operator encased in a suit of tank-like power armor. Large enough, almost, to act as a defensive tool.";
+			tooltip = "A streamlined, clean-looking machine gun. No fancy bells or whistles, designed expressly to shoot a man dead, and shoot him very dead. There’s just the slight issue that the thing looks about four times larger than it should be, what with it having been designed to be wielded by an operator encased in a suit of tank-like power armor. Large enough, almost, to act as a defensive tool.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot"
 			

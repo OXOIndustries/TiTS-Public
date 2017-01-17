@@ -21,13 +21,13 @@ package classes.Items.Apparel
 			
 			this.shortName = "F. Doctor";
 			
-			this.longName = "doctor's coat and skirt";
+			this.longName = "doctor’s coat and skirt";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a white doctor's coat, tank top, and skirt";
+			this.description = "a white doctor’s coat, tank top, and skirt";
 			
-			this.tooltip = "The only part of this outfit that isn't revealing is the long white doctor's jacket. Underneath is a tight fitting tank top, short skirt, and stockings. It also comes with a stethoscope and name badge."; 
+			this.tooltip = "The only part of this outfit that isn’t revealing is the long white doctor’s jacket. Underneath is a tight fitting tank top, short skirt, and stockings. It also comes with a stethoscope and name badge."; 
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

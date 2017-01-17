@@ -788,7 +788,7 @@ public function appearance(forTarget:Creature):void
 			output2(", covered in " + (rand(2) == 0 ? "patches" : "a layer") + " of " + target.skinFurScales(true, true));
 			if (target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(" above the waist and similarly colored fur below");
 		}
-		else if(target.skinType == GLOBAL.SKIN_TYPE_LATEX)
+		else if(target.skinType == GLOBAL.SKIN_TYPE_LATEX || target.hasStatusEffect("Rubber Wrapped"))
 		{
 			output2(", sensually wrapped in a layer of");
 			if(target.statusEffectv1("Latex Skin") > 0)
@@ -2247,11 +2247,15 @@ public function boobStuff(forTarget:Creature = null):void
 			// Default
 			else
 			{
-				if(temp == 0) output2(" Your uppermost row houses ");
-				if(temp == 1) output2(" The second group holds ");
-				if(temp == 2) output2(" Your third batch contains ");
-				if(temp == 3) output2(" Your fourth set cradles ");
-				if(temp == 4) output2(" Your fifth has ");
+				switch(temp)
+				{
+					case 0: output2(" Your uppermost row houses "); break;
+					case 1: output2(" The second group holds "); break;
+					case 2: output2(" Your third batch contains "); break;
+					case 3: output2(" Your fourth set cradles "); break;
+					case 4: output2(" Your fifth has "); break;
+					default: output2(" Your " + num2Ordinal(temp + 1) + " row has "); break;
+				}
 				if(target.breastRows[temp].breastRating() >= 1) output2(num2Text(target.breastRows[temp].breasts) + " " + target.breastDescript(temp) + ", capped with ");
 			}
 			//DESCRIBE NIPPLE NAU!

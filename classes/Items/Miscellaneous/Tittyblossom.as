@@ -25,15 +25,15 @@
 			this.shortName = "Tittyblossom";
 			
 			//Regular name
-			this.longName = "popsicle labeled 'Tittyblossom'";
+			this.longName = "popsicle labeled ‘Tittyblossom’";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a popsicle labeled 'Tittyblossom'";
+			this.description = "a popsicle labeled ‘Tittyblossom’";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Marketed as \"Estrobloom Plus\" but better known colloquially as \"Tittyblossom,\" this hormone package is an enhanced version of the popular feminizing product Estrobloom. Packed with micromachines and stimulants to promote rapid breast growth in addition to standard feminization, Tittyblossom is a smash hit among those looking to enhance their feminine side.";
+			this.tooltip = "Marketed as “Estrobloom Plus” but better known colloquially as “Tittyblossom,” this hormone package is an enhanced version of the popular feminizing product Estrobloom. Packed with micromachines and stimulants to promote rapid breast growth in addition to standard feminization, Tittyblossom is a smash hit among those looking to enhance their feminine side.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -104,15 +104,15 @@
 				//Feminity at max:
 				if(target.femininity >= target.femininityMax())
 				{
-					kGAMECLASS.output("\n\nWarmth spreads to your face but vanishes with such suddenness that you have to wonder if it was ever there at all. You suppose your [pc.face] can't get any more feminine-looking.");
+					kGAMECLASS.output("\n\nWarmth spreads to your face but vanishes with such suddenness that you have to wonder if it was ever there at all. You suppose your [pc.face] can’t get any more feminine-looking.");
 					if(!target.hasVagina()) kGAMECLASS.output(" Maybe if you grew a vagina, your body could go a little further down that road....");
 					else if(target.hasCock()) kGAMECLASS.output(" Maybe if you got rid of your [pc.cocks], your body could go a little further down that road....");
-					else kGAMECLASS.output(" It's already virtually perfect!");
+					else kGAMECLASS.output(" It’s already virtually perfect!");
 				}
 				//1 - 3-5 points
 				else if(rand(3) == 0)
 				{
-					kGAMECLASS.output("\n\nA shiver of warmth tingles on your lips in spite of the Tittyblossom's coolness. It radiates out into your jawbones as you sit there licking the spent stick, undoubtedly feminizing you.");
+					kGAMECLASS.output("\n\nA shiver of warmth tingles on your lips in spite of the Tittyblossom’s coolness. It radiates out into your jawbones as you sit there licking the spent stick, undoubtedly feminizing you.");
 					x = 3+rand(3);
 					target.modFem(x);
 				}
@@ -129,7 +129,7 @@
 				//3 - 8 - 11 points
 				else if(rand(3) == 0)
 				{
-					kGAMECLASS.output("\n\nA whole body shudder works through you as you feel the transformative cocktail kick in. You can feel it in your cheeks and mouth, so warm you wonder if you're glowing, spreading slowly across your [pc.face] as it feminizes it.");
+					kGAMECLASS.output("\n\nA whole body shudder works through you as you feel the transformative cocktail kick in. You can feel it in your cheeks and mouth, so warm you wonder if you’re glowing, spreading slowly across your [pc.face] as it feminizes it.");
 					x = 8+rand(4);
 					target.modFem(x);
 				}
@@ -149,21 +149,21 @@
 				}
 				//Announce when passing a threshold:
 				//<= 90
-				if(y <= 90 && target.femininity > 90) kGAMECLASS.output(" <b>You can't help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It's jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>");
+				if(y <= 90 && target.femininity > 90) kGAMECLASS.output(" <b>You can’t help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It’s jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>");
 				//<= 80
-				else if(y <= 80 && target.femininity > 80) kGAMECLASS.output(" <b>Your eyelashes have gotten long and luxurious, your lips have gotten fuller, and even your nose looks cuter. You're gorgeous.</b>");
+				else if(y <= 80 && target.femininity > 80) kGAMECLASS.output(" <b>Your eyelashes have gotten long and luxurious, your lips have gotten fuller, and even your nose looks cuter. You’re gorgeous.</b>");
 				//<= 72
-				else if(y <= 72 && target.femininity > 72) kGAMECLASS.output(" <b>There's no doubt about it. You're definitely getting hotter. Your [pc.face] looks feminine and shapely, sure to draw attention.</b>");
+				else if(y <= 72 && target.femininity > 72) kGAMECLASS.output(" <b>There’s no doubt about it. You’re definitely getting hotter. Your [pc.face] looks feminine and shapely, sure to draw attention.</b>");
 				//<= 65
-				else if(y <= 65 && target.femininity > 65) kGAMECLASS.output(" <b>Checking yourself with your codex, you're delighted to find that your cheekbones look positively pretty. You're looking a lot cuter after that last dose!</b>");
+				else if(y <= 65 && target.femininity > 65) kGAMECLASS.output(" <b>Checking yourself with your codex, you’re delighted to find that your cheekbones look positively pretty. You’re looking a lot cuter after that last dose!</b>");
 				//<= 55
 				else if(y <= 55 && target.femininity > 55) kGAMECLASS.output(" <b>Your face is definitely starting to show touches of femininity at this point. Even your lips are a little fuller.</b>");
 				//< 45
-				else if(y < 45 && target.femininity >= 45) kGAMECLASS.output(" <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn't going to tell anybody what gender you are, but if you take another couple Tittyblossoms....</b>");
+				else if(y < 45 && target.femininity >= 45) kGAMECLASS.output(" <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn’t going to tell anybody what gender you are, but if you take another couple Tittyblossoms....</b>");
 				//< 35
-				else if(y < 35 && target.femininity >= 35) kGAMECLASS.output(" <b>After looking at your [pc.face] in your codex's holocam, you can only find a few hints of your masculinity left.</b>");
-				else if(y < 28 && target.femininity >= 28) kGAMECLASS.output(" <b>The profile of your face is getting less obviously masculine, but there's still the matter of your somewhat angular jawline to contend with.</b>");
-				else if(y < 20 && target.femininity >= 20) kGAMECLASS.output(" <b>You're definitely getting a little less handsome from this stuff, but you're still a long way from pretty.</b>");
+				else if(y < 35 && target.femininity >= 35) kGAMECLASS.output(" <b>After looking at your [pc.face] in your codex’s holocam, you can only find a few hints of your masculinity left.</b>");
+				else if(y < 28 && target.femininity >= 28) kGAMECLASS.output(" <b>The profile of your face is getting less obviously masculine, but there’s still the matter of your somewhat angular jawline to contend with.</b>");
+				else if(y < 20 && target.femininity >= 20) kGAMECLASS.output(" <b>You’re definitely getting a little less handsome from this stuff, but you’re still a long way from pretty.</b>");
 				else if(y < 10 && target.femininity >= 10) kGAMECLASS.output(" <b>A check with your codex confirms your jaw is getting noticeably less square.</b>");
 				
 				//Rare lip stuff!
@@ -253,7 +253,7 @@
 				//(RARE) Slowly boosts lip mod to 1
 				if(select == 1)
 				{
-					kGAMECLASS.output("\n\nA resurgence of fiery tingles in your " + target.lipsDescript() + " alerts you that the popsicle isn't done with your face yet! You shudder as your tongue probes your swelling, molten-hot mouth, feeling it bloom with plush fullness, the change making your nerves feel twice as sensitive as your [pc.tongue] rolls across them. You have to stifle yourself lest you cry out from the pleasure. It's twice as good as licking your own nipples ");
+					kGAMECLASS.output("\n\nA resurgence of fiery tingles in your " + target.lipsDescript() + " alerts you that the popsicle isn’t done with your face yet! You shudder as your tongue probes your swelling, molten-hot mouth, feeling it bloom with plush fullness, the change making your nerves feel twice as sensitive as your [pc.tongue] rolls across them. You have to stifle yourself lest you cry out from the pleasure. It’s twice as good as licking your own nipples ");
 					if(target.biggestTitSize() < 10) kGAMECLASS.output("would feel");
 					else kGAMECLASS.output("feels");
 					kGAMECLASS.output("! Unfortunately, the feeling fades before you get anywhere near an oral orgasm, leaving you with " + target.lipsDescript() + " and a slight increase in sensitivity.");
@@ -264,7 +264,7 @@
 				//(RARE) Boost lip mod to 2!
 				else if(select == 2)
 				{
-					kGAMECLASS.output("\n\nThe nerves in your [pc.lips] light up like a fireworks display of sensation, suddenly and immensely the focus of your entire consciousness. You can feel the nerves switching on as they struggle to deal with the sensation of... growth. They're swelling up as they get even larger and puffier, so big and inviting that they beg to be kissed... or penetrated. Its going to be impossible not to draw attention with [pc.lips] like these. <b>Your system calms down after a few seconds, leaving with a bigger, more sensitive mouth to enjoy.</b>");
+					kGAMECLASS.output("\n\nThe nerves in your [pc.lips] light up like a fireworks display of sensation, suddenly and immensely the focus of your entire consciousness. You can feel the nerves switching on as they struggle to deal with the sensation of... growth. They’re swelling up as they get even larger and puffier, so big and inviting that they beg to be kissed... or penetrated. Its going to be impossible not to draw attention with [pc.lips] like these. <b>Your system calms down after a few seconds, leaving with a bigger, more sensitive mouth to enjoy.</b>");
 					//raise libido and lipmod
 					target.libido(3);
 					target.lipMod = 2;
@@ -297,14 +297,14 @@
 					//Bald -> 3"
 					if(!target.hasHair())
 					{
-						kGAMECLASS.output("\n\nThe [pc.skin] of your head tingles at first, then itches. Finally, it transforms into a maddening need to scratch. You cannot help but give in, working your fingertips across your scalp as you feel [pc.hair] growing in a half-inch at a time. The longer it gets, the less it itches, and by the time the feeling fades, you're left with three inches of the stuff.");
+						kGAMECLASS.output("\n\nThe [pc.skin] of your head tingles at first, then itches. Finally, it transforms into a maddening need to scratch. You cannot help but give in, working your fingertips across your scalp as you feel [pc.hair] growing in a half-inch at a time. The longer it gets, the less it itches, and by the time the feeling fades, you’re left with three inches of the stuff.");
 						target.hairLength = 3;
 					}
 					//Elsewise grow 2-5" until ass-length.
 					else
 					{
 						x = 2 + rand(4);
-						kGAMECLASS.output("\n\nYour [pc.hair] tickles your scalp as it grows longer. You grab a strand and hold it taut, feeling each additional inch of new length. After you've gained " + kGAMECLASS.num2Text(x) + " inches, your expanded locks stop their frenzied expansion.");
+						kGAMECLASS.output("\n\nYour [pc.hair] tickles your scalp as it grows longer. You grab a strand and hold it taut, feeling each additional inch of new length. After you’ve gained " + kGAMECLASS.num2Text(x) + " inches, your expanded locks stop their frenzied expansion.");
 						target.hairLength += x;
 					}
 				}
@@ -316,11 +316,11 @@
 					if(target.cocks[x].cLengthRaw > 20)
 					{
 
-						kGAMECLASS.output("\n\nThe teltale heat of Tittyblossom's changes flares up in your expansive groin, specifically in your [pc.cock " + x + "]. Just as you look at it, the fleshy mass begins to shrink, and not from going flaccid either. It's getting smaller, and fast! It doesn't stop until its lost about a quarter of its former length, leaving you with only ");
+						kGAMECLASS.output("\n\nThe teltale heat of Tittyblossom’s changes flares up in your expansive groin, specifically in your [pc.cock " + x + "]. Just as you look at it, the fleshy mass begins to shrink, and not from going flaccid either. It’s getting smaller, and fast! It doesn’t stop until its lost about a quarter of its former length, leaving you with only ");
 						target.cocks[x].cLengthRaw *= .75;
 						if(target.hasPerk("Mini")) target.cocks[x].cLengthRaw *= .75;
 						if(target.cocks[x].cLengthRaw < 1) target.cocks[x].cLengthRaw = 1;
-						kGAMECLASS.output(kGAMECLASS.num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you're going to have a lot less dick to play with.");
+						kGAMECLASS.output(kGAMECLASS.num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you’re going to have a lot less dick to play with.");
 					}
 					//Otherwise lose 2-3", minimum 4.5/8"
 					else
@@ -336,7 +336,7 @@
 						if(y >= target.cocks[x].cLengthRaw) y = target.cocks[x].cLengthRaw - 1;
 						//round it
 						y = Math.round(y*10)/10;
-						kGAMECLASS.output(" warns you that something is about to happen down south. As it intensifies, you can't stop yourself from moaning. It feels good, but at the same time your penis is getting smaller. Losing a half inch feels almost as good as cumming. Losing the whole inch brings you to your [pc.knees]. The next one makes your eyes cross and your [pc.hips] jerk, but no ejaculate emerges. When you recover, you're missing " + y + " inch");
+						kGAMECLASS.output(" warns you that something is about to happen down south. As it intensifies, you can’t stop yourself from moaning. It feels good, but at the same time your penis is getting smaller. Losing a half inch feels almost as good as cumming. Losing the whole inch brings you to your [pc.knees]. The next one makes your eyes cross and your [pc.hips] jerk, but no ejaculate emerges. When you recover, you’re missing " + y + " inch");
 						if(y > 1) kGAMECLASS.output("es");
 						kGAMECLASS.output(" of length from the exquisitely pleased cock.");
 						target.cocks[x].cLengthRaw -= y;
@@ -345,7 +345,7 @@
 				//Shrink balls UNLESS balls have trap pouch tf.
 				else if(select == 8)
 				{
-					kGAMECLASS.output("\n\nSomething pinches your [pc.balls] through your [pc.sack], but you can't seem to see anything that could possibly be hurting you down there. That riddle is solved when ");
+					kGAMECLASS.output("\n\nSomething pinches your [pc.balls] through your [pc.sack], but you can’t seem to see anything that could possibly be hurting you down there. That riddle is solved when ");
 					if(target.balls > 1) kGAMECLASS.output("they start");
 					else kGAMECLASS.output("it starts");
 					kGAMECLASS.output(" to diminish before your very eyes, losing mass while your [pc.sack] ");
@@ -368,12 +368,12 @@
 					if(target.ballSizeRaw > 35) target.ballSizeRaw -= 2 + rand(3);
 					if(target.hasStatusEffect("Uniball")) kGAMECLASS.output(" like a vacuum-sealed bag");
 					if(target.ballSizeRaw < 1) target.ballSizeRaw = 1;
-					kGAMECLASS.output(". <b>You've got " + target.ballsDescript(false,true) + " now.</b>");
+					kGAMECLASS.output(". <b>You’ve got " + target.ballsDescript(false,true) + " now.</b>");
 				}
 				//Lose beard!
 				else if(select == 12)
 				{
-					kGAMECLASS.output("\n\nAn irritating sensation centers on your chin and you can't help but to scratch the itch with your [pc.fingers]. You notice that pieces of what was once your [pc.beard] are now littering your hands and falling to your [pc.feet]. It seems that the facial feminization also causes beard loss... <b>");
+					kGAMECLASS.output("\n\nAn irritating sensation centers on your chin and you can’t help but to scratch the itch with your [pc.fingers]. You notice that pieces of what was once your [pc.beard] are now littering your hands and falling to your [pc.feet]. It seems that the facial feminization also causes beard loss... <b>");
 					if(kGAMECLASS.silly) kGAMECLASS.output("No matter how much of a viking you once were, now y");
 					else kGAMECLASS.output("Y");
 					kGAMECLASS.output("ou no longer have a beard!</b>");
@@ -383,12 +383,12 @@
 				//{PC has a flat chest / tiny lil' moobs; always append as the last TF}
 				else if(select == 10)
 				{
-					kGAMECLASS.output("\n\nMinutes pass. You fidget around expectantly, awaiting the appearance of your new boobs. The label insisted there was a \"good chance\" of growth, right? You start pacing, ");
+					kGAMECLASS.output("\n\nMinutes pass. You fidget around expectantly, awaiting the appearance of your new boobs. The label insisted there was a “good chance” of growth, right? You start pacing, ");
 					if(target.armor.shortName != "") kGAMECLASS.output("adjusting your " + target.armor.longName + " and ");
 					kGAMECLASS.output("feeling around your chest, looking for any sign of swelling. Finally after what seems like an eternity of anxious anticipation, you feel a tightness in your chest.");
 					if(target.isChestGarbed()) kGAMECLASS.output(" You claw at your [pc.upperGarments], pulling it off to make room for your incoming expansion!");
 					target.breastRows[0].breastRatingRaw += 1 + rand(3);
-					kGAMECLASS.output(" You only just suppress a moan as the tightness turns into pleasure. The [pc.skin] of your once-small chest burgeons, filling out with balloon-like speed. You cup your new tits, shuddering at the suddenly sensitive flesh around your [pc.nipples]. Oh, that's nice.... You now have [pc.breastCupSize]s!");
+					kGAMECLASS.output(" You only just suppress a moan as the tightness turns into pleasure. The [pc.skin] of your once-small chest burgeons, filling out with balloon-like speed. You cup your new tits, shuddering at the suddenly sensitive flesh around your [pc.nipples]. Oh, that’s nice.... You now have [pc.breastCupSize]s!");
 					target.lust(19+rand(5));
 				}
 				//Growing tits not first time
@@ -408,9 +408,9 @@
 					{
 						kGAMECLASS.output("\n\nA sudden tightness clenches behind your buxom breasts, making you wince in pain before it turns into a delightful pleasure. You sigh");
 						if(!target.isNude()) kGAMECLASS.output(", shrugging out of your [pc.gear]");
-						kGAMECLASS.output(" as your tits swell in size, urged to even greater size by the hormone and nanomachine combination. You can't stop yourself from cupping one and playing with it as it grows, pinching your [pc.nipple] as it grows even more sensitive. It takes every bit of willpower you have not to start masturbating on the spot, to find some release for the sexual tension coursing through your veins as the medicine does its work.");
+						kGAMECLASS.output(" as your tits swell in size, urged to even greater size by the hormone and nanomachine combination. You can’t stop yourself from cupping one and playing with it as it grows, pinching your [pc.nipple] as it grows even more sensitive. It takes every bit of willpower you have not to start masturbating on the spot, to find some release for the sexual tension coursing through your veins as the medicine does its work.");
 						kGAMECLASS.output("\n\nFinally, the growth in your - now very sizable - tits subsides, leaving them bouncing with your every breath, nice and huge.");
-						if(target.upperUndergarment.shortName == "") kGAMECLASS.output(" You're probably going to want to invest in a bra, now... <i>or not</i> you think, giving yourself another squeeze.");
+						if(target.upperUndergarment.shortName == "") kGAMECLASS.output(" You’re probably going to want to invest in a bra, now... <i>or not</i> you think, giving yourself another squeeze.");
 						kGAMECLASS.output(" You now have a hefty pair of [pc.breastCupSize]s!");
 						target.lust(9+rand(5));
 					}
@@ -419,10 +419,10 @@
 					if(target.lust() >= 75)
 					{
 						author("Savin");
-						kGAMECLASS.output("\n\nThe sight of your gorgeous new bosom, combined with the still-burning heat radiating through your [pc.nipples] and loins soon lulls you into a daze, leaving your moaning and teasing yourself, fingers working away at your stiff teats. Oh, that's nice. Your [pc.knees] wobble");
+						kGAMECLASS.output("\n\nThe sight of your gorgeous new bosom, combined with the still-burning heat radiating through your [pc.nipples] and loins soon lulls you into a daze, leaving your moaning and teasing yourself, fingers working away at your stiff teats. Oh, that’s nice. Your [pc.knees] wobble");
 						if(target.legCount == 1) kGAMECLASS.output("s");
 						kGAMECLASS.output(" as you expand your play, hands roaming down the sheer swell of your nanomachine-enhanced bosom, kneading and caressing every new inch of boobflesh as you go.");
-						kGAMECLASS.output("\n\nA particularly pleasant pinch of your [pc.nipple] sends enough of a shock through you that you give out a little moan, back arching as your teats stiffen under the sudden assault. Once the floodgate opens, you're soon moaning and whimpering with every roaming touch. Your fingers go exploring, teasing and groping your [pc.chest]. Every pinch or squeeze elicits a gasp of pleasure from your lips as your lust rises, spreading like a heatwave from your tits through your chest and your");
+						kGAMECLASS.output("\n\nA particularly pleasant pinch of your [pc.nipple] sends enough of a shock through you that you give out a little moan, back arching as your teats stiffen under the sudden assault. Once the floodgate opens, you’re soon moaning and whimpering with every roaming touch. Your fingers go exploring, teasing and groping your [pc.chest]. Every pinch or squeeze elicits a gasp of pleasure from your lips as your lust rises, spreading like a heatwave from your tits through your chest and your");
 						if(target.hasCock()) 
 						{
 							kGAMECLASS.output(" rapidly hardening cock");
@@ -435,10 +435,10 @@
 						}
 						else kGAMECLASS.output(" tinging, faceless groin");
 						kGAMECLASS.output(". With a shudder, you sink down to your [pc.knees]");
-						if(target.legCount > 1) kGAMECLASS.output(", spreading 'em wide");
+						if(target.legCount > 1) kGAMECLASS.output(", spreading ‘em wide");
 						kGAMECLASS.output(" as you lose yourself to your lust.");
 
-						kGAMECLASS.output("\n\nYour eyes flutter closed, mind slowly shutting down, overwhelmed by all the wonderful new boobflesh it has to play with. And play with it you do: minutes pass in blissful lust, exploring your [pc.chest] with increasing vigor, until you're panting and gasping, chest heaving as you find yourself building an intensive pressure behind your chest. You only have time to think the word <i>boobgasm</i> before it hits you like a brick. With a scream of ecstasy, you throw your head back and cum, harder than you would ever have imagined");
+						kGAMECLASS.output("\n\nYour eyes flutter closed, mind slowly shutting down, overwhelmed by all the wonderful new boobflesh it has to play with. And play with it you do: minutes pass in blissful lust, exploring your [pc.chest] with increasing vigor, until you’re panting and gasping, chest heaving as you find yourself building an intensive pressure behind your chest. You only have time to think the word <i>boobgasm</i> before it hits you like a brick. With a scream of ecstasy, you throw your head back and cum, harder than you would ever have imagined");
 						if(target.hasCock()) 
 						{
 							kGAMECLASS.output(". [pc.EachCock] sprays a thick load, hands-free as your grope yourself, splattered the ground with wasted seed");

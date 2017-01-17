@@ -31,7 +31,7 @@
 			this.description = "a Vamp Blade";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This Kiha-brand melee weapon resembles an old-time arming sword, though the blade is made of ultra-tough modern materials, and covered in a series of small ports and recessed power amps. With a flip of a button, the blade coats itself in crackling electricity. When the blade strikes a shielded opponent, not only does it do damage, but it leeches power from the target's shield belt and creates a secondary kinetic barrier around the user.";
+			this.tooltip = "This Kiha-brand melee weapon resembles an old-time arming sword, though the blade is made of ultra-tough modern materials, and covered in a series of small ports and recessed power amps. With a flip of a button, the blade coats itself in crackling electricity. When the blade strikes a shielded opponent, not only does it do damage, but it leeches power from the target’s shield belt and creates a secondary kinetic barrier around the user.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

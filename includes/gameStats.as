@@ -5175,15 +5175,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Carbonado</u></b>");
 				if(flags["MET_CFS_GWEN"] != undefined) output2("\n<b>* Gwen:</b> Met her");
 				if(flags["FUCKED_GWEN"] != undefined) output2(", Sexed her");
-				if(flags["MET_CFS_EIMEAR"] != undefined) output2("\n<b>* Eimeer:</b> Met her");
-				if(flags["HUNGOUT_CFS"] != undefined) output2("\n<b>* Gwen and Eimeer:</b> Hung out with them");
+				if(flags["MET_CFS_EIMEAR"] != undefined) output2("\n<b>* Eimear:</b> Met her");
+				if(flags["HUNGOUT_CFS"] != undefined) output2("\n<b>* Gwen and Eimear:</b> Hung out with them");
 				variousCount++;
 			}
 			// Nerrasa
 			if(flags["MET_NERRASA"] != undefined)
 			{
 				output2("\n<b><u>The Last Chance</u></b>");
-				
+				output2("\n<b>* Nerrasa:</b> Met her");
 				if(flags["NERRASAS_PET"] != undefined) output2(", You’re her pet");
 				if(flags["NERRASA_FUCKED"] != undefined) output2("\n<b>* Nerrasa, Times Sexed:</b> " + flags["NERRASA_FUCKED"]);
 				variousCount++;
@@ -5396,7 +5396,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						}
 					}
 					if(flags["KALLY_BROED"] != undefined) output2("\n<b>* Kally, Times Licked Her Out:</b> " + flags["KALLY_BROED"]);
-					if(flags["KIRO_KALLY_THREESOMES"] != undefined) output2("\n<b>* Kally, Times Sexed in Threesome with Kiro:</b> " + flags["KIRO_KALLY_THREESOMES"]);
+					if(flags["KIRO_KALLY_THREESOMES"] > 0) output2("\n<b>* Kally, Times Sexed in Threesome with Kiro:</b> " + flags["KIRO_KALLY_THREESOMES"]);
 				}
 				variousCount++;
 			}

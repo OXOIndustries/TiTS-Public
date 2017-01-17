@@ -169,7 +169,7 @@ public function drByronMcallisterProfessionalPexigaAnus():void
 }
 
 //Dr Lash
-//On Tarkus, ex-Tamani Corp
+//On Tarkus, ex-TamaniCorp
 public function drLashTalkAboutPexiga():void
 {
 	clearOutput();
@@ -916,7 +916,7 @@ public function stayForBimboBadgersWork():void
 		if(pc.hasVagina()) 
 		{
 			output("\n\nDespite the mouth-watering satisfaction you’re getting from your savage throat-fucking, your [pc.vaginas] drool");
-			if(pc.totalVaginas()  == 1) output("s");
+			if(pc.totalVaginas() == 1) output("s");
 			output(" in jealousy. Your own inner heat eclipses Badger’s, leaving your body tingling with an untended ache. Pulling a hand down to work shuddering fingers into your velvet box seems the most obvious solution. Even as distracted as you are, the fumbling, kneading circles you trace across your puffed lower lips and [pc.clits] brings a tense relief that leaves you moaning into the doctor’s dick. Putting the doctor’s nipple-milking technique to work on your joy buzzer leaves you breathless in a way that has nothing to do with the fat cock jammed into your windpipe. Gushing girl-cum floods your inner depths and overflows in drooling torrents down your [pc.thighs]. Swaying back and forth on your [pc.ass], your muscles clench with wet, wanton need. You sure hope Badger’s machine gives your pexiga a dick, ‘cause you need something long and hard stuffed inside your pussy and you need it now!");
 		}
 		//if penis
@@ -1279,7 +1279,7 @@ public function afterDollmakerFightForAbsentBadger():void
 	//Tech Specialist
 	else
 	{
-		output("\n\nIn all your years of dealing with the latest, most innovative technology, you’ve never seen the kinds of things Doctor Badger specialized in. She was a genius, to be certain, but that special kind of demented that thinks at lateral angles to the rest of civilization. It’s not merely that she specialized in sexualizing tech - heck, Tamani Corp does much the same and they’re as big as you get! No, it’s more that the Doc engineered in pretzels rather than straight lines.");
+		output("\n\nIn all your years of dealing with the latest, most innovative technology, you’ve never seen the kinds of things Doctor Badger specialized in. She was a genius, to be certain, but that special kind of demented that thinks at lateral angles to the rest of civilization. It’s not merely that she specialized in sexualizing tech - heck, TamaniCorp does much the same and they’re as big as you get! No, it’s more that the Doc engineered in pretzels rather than straight lines.");
 		output("\n\nAttempting to put yourself in her headspace seems like a good way to get an aneurysm, so instead you take a figurative step back and look at the whole body of her works. No one has been able to duplicate Doctor Badger’s weapons both due to the secrecy of her operations and also the ‘black box’ approach she took to the inner workings of her inventions.");
 		output("\n\nBlack box... hrm...");
 		output("\n\nIf her design philosophy holds for her lab’s devices, it’s entirely possible that she over-engineered the internal protections. Maybe her last minute house cleaning wasn’t as thorough as she would’ve hoped. If that’s true, you just have to look for the device with un undamaged core module, make a few repairs on the external components, and you’ll be in business.");

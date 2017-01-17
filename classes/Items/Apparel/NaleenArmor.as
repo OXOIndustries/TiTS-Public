@@ -28,7 +28,7 @@
 			this.description = "a suit of naleenscale armor";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This crude but effective looking armor is made in the style of ancient armors from days long past. Instead of using pounded metal to fashion the protective plates, the maker of this armor gathered discarded scales from Mhen'ga's native Naleen species.";
+			this.tooltip = "This crude but effective looking armor is made in the style of ancient armors from days long past. Instead of using pounded metal to fashion the protective plates, the maker of this armor gathered discarded scales from Mhen’ga’s native Naleen species.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

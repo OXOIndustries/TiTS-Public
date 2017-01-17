@@ -78,10 +78,10 @@
 			kGAMECLASS.clearOutput();
 			if(target == kGAMECLASS.pc)
 			{
-				///When using without a cock:
+				//When using without a cock:
 				if(!pc.hasCock())
 				{
-					kGAMECLASS.output("Yeah, you don’t have a dick, but directions are for chumps. You swallow one of the dick-shrinking pills and shudder as its payload swims throughout your body, confused by the absence of its usual target. Finally the tingling fades as the Condensol expires. Apparently it doesn't do anything if you don't have a cock.");
+					kGAMECLASS.output("Yeah, you don’t have a dick, but directions are for chumps. You swallow one of the dick-shrinking pills and shudder as its payload swims throughout your body, confused by the absence of its usual target. Finally the tingling fades as the Condensol expires. Apparently it doesn’t do anything if you don’t have a cock.");
 				}
 				else if(pc.shortestCockLength() <= 4)
 				{

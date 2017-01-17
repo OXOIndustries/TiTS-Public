@@ -31,7 +31,7 @@
 			this.description = "a smart jacket and pants";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "These clothes are stuffed full of more features than insulation, allowing them to do everything from drying themselves to dynamically adjusting their thermal profile to match current temperatures. They don't provide much in the way of physical defense, but they're a great insulator for thermal and electrical energies. The internal power supply can provide a slight boost to a defensive shield.";
+			this.tooltip = "These clothes are stuffed full of more features than insulation, allowing them to do everything from drying themselves to dynamically adjusting their thermal profile to match current temperatures. They don’t provide much in the way of physical defense, but they’re a great insulator for thermal and electrical energies. The internal power supply can provide a slight boost to a defensive shield.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

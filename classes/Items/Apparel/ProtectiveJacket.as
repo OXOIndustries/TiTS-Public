@@ -28,7 +28,7 @@
 			this.description = "an armored leather jacket";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Revelling in the sort of stylish fashion and utter swagger only a deprecated wasteland environment could provide, this auburn brown jacket could woo the folks at home and make anyone look good rocking a pompadour. It jingles faintly with each shake though, betraying the armored plates inside of it. Of course, no protective equipment would be complete without a matching set of pants and comfortable undershirt.";
+			this.tooltip = "Reveling in the sort of stylish fashion and utter swagger only a deprecated wasteland environment could provide, this auburn brown jacket could woo the folks at home and make anyone look good rocking a pompadour. It jingles faintly with each shake though, betraying the armored plates inside of it. Of course, no protective equipment would be complete without a matching set of pants and comfortable undershirt.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -29,7 +29,7 @@
 			this.description = "a pair of girly pink panties";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "You couldn't get panties much more girly than these. They're pink, lace frilled, and littered with cute little bows.";
+			this.tooltip = "You couldn’t get panties much more girly than these. They’re pink, lace frilled, and littered with cute little bows.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

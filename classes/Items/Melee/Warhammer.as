@@ -30,7 +30,7 @@
 			this.description = "a warhammer";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This hammer is clearly designed for battle and not for pounding in nails or troublesome machinery. Its heavy, but the weight only lends to deadly inertia when swung. It won't be the most accurate choice, but it will hit hard.";
+			this.tooltip = "This hammer is clearly designed for battle and not for pounding in nails or troublesome machinery. Its heavy, but the weight only lends to deadly inertia when swung. It won’t be the most accurate choice, but it will hit hard.";
 			this.attackVerb = "smash";
 			attackNoun = "smash";
 			

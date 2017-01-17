@@ -52,7 +52,6 @@ public function processEventBuffer():Boolean
 		
 		
 		output("<b>" + possessive(pc.short) + " log:</b>");
-		showLocationName();
 		
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
@@ -151,6 +150,10 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 		flags["CELISE_BEDSTUFF_HAPPENED"] = undefined;
 	}
 	
+	variableRoomUpdateCheck();
+	generateMap();
+	showLocationName();
+	
 	//Display shit that happened during time passage.
 	if (processEventBuffer()) return;
 	
@@ -181,14 +184,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	// Update the state of the players mails -- we don't want to do this all the time (ie in process time), and we're only going to care about it at the menu root soooooo...
 	updateMailStatus();
 	
-	variableRoomUpdateCheck();
-	
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
 	if(debug) output("<b>\\\[ <span class='lust'>DEBUG MODE IS ON</span> \\\]</b>\n\n");
 	output(rooms[currentLocation].description);
-	showLocationName();
 	
 	// Time passing effects
 	if(passiveTimeEffects(minutesMoved)) return;
@@ -329,7 +329,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	
 	// Show the minimap too!
 	userInterface.showMinimap();
-	generateMap();
 	userInterface.perkDisplayButton.Activate();
 }
 
@@ -1847,6 +1846,8 @@ public function variableRoomUpdateCheck():void
 	
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
+	// Phoenix's Rec Room
+	phoenixRecRoomUpdate();
 	// Kashima
 	if(flags["KI_ESCAPE_UNCURED"] != undefined)
 	{
@@ -1921,6 +1922,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		thollumYardMushroomGrow();
 		laneHandleCredits(totalDays);
 		updateBothriocAddiction(totalDays);
+		processOmegaFever();
 	}
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
@@ -2044,6 +2046,14 @@ public function processLeithaCharmTime(deltaT:uint, doOut:Boolean):void
 	if (pc.hasStatusEffect("Leitha Charm"))
 	{
 		pc.addStatusValue("Leitha Charm", 1, deltaT * 20);
+	}
+}
+
+public function processOmegaFever():void
+{
+	if (pc.hasPerk("Omega Fever"))
+	{
+		(new OmegaOil()).checkOmegaFever();
 	}
 }
 

@@ -29,7 +29,7 @@
 			this.description = "a black leather harness";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A black leather harness with 5 straps, 4 of which go around the wearer’s chest and back, while the fifth one is connected to a cock ring. The harness is extremely strong and can be used to hoist wearers onto the ceiling for certain ‘activities’.";
+			this.tooltip = "A black leather harness with five straps, four of which go around the wearer’s chest and back, while the fifth one is connected to a cock ring. The harness is extremely strong and can be used to hoist wearers onto the ceiling for certain ‘activities’.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -34,7 +34,7 @@
 			this.description = "a vial of fungal extract";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This sludgy cocktail of Myrellion deep funguses, local venoms, and plant matter has a potent smell, and glows a faint red color. Supposedly, this \"potion\" should restore vigor and vitality in battle and in bed.";
+			this.tooltip = "This sludgy cocktail of Myrellion deep funguses, local venoms, and plant matter has a potent smell, and glows a faint red color. Supposedly, this “potion” should restore vigor and vitality in battle and in bed.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -76,7 +76,7 @@
 			}
 			else
 			{
-				throw new Error("Don't know how we got here. Exception for debugging.");
+				throw new Error("Don’t know how we got here. Exception for debugging.");
 			}
 			return false;
 		}

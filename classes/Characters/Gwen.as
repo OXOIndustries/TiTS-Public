@@ -7,18 +7,7 @@
 	import classes.Items.Apparel.SlepraDownBra;
 	import classes.Items.Armor.GemstoneLinks;
 	import classes.Items.Armor.SleekParka;
-	import classes.Items.Miscellaneous.AusarTreats;
-	import classes.Items.Miscellaneous.HorsePill;
-	import classes.Items.Miscellaneous.KnotAProblem;
-	import classes.Items.Miscellaneous.NukiCookies;
-	import classes.Items.Miscellaneous.Pandaneen;
-	import classes.Items.Miscellaneous.PandaPro;
-	import classes.Items.Transformatives.DracoGuard;
-	import classes.Items.Transformatives.Furball;
-	import classes.Items.Transformatives.OvirAce;
-	import classes.Items.Transformatives.OvirPositive;
 	import classes.kGAMECLASS;
-	import classes.Engine.Utility.rand;
 	
 	public class Gwen extends Creature
 	{
@@ -27,7 +16,7 @@
 		{
 			this._latestVersion = 11;
 			this.version = _latestVersion;
-			this._neverSerialize = false;
+			this._neverSerialize = true;
 			
 			this.short = "Gwen";
 			this.originalRace = "puzai";
@@ -186,75 +175,10 @@
 			
 			this.createStatusEffect("Disarm Immune");
 		}
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			dataObject.inventory.push(new HorsePill().getSaveObject());
-		}
-		public function UpgradeVersion2(dataObject:Object):void
-		{
-			dataObject.inventory.push(new AusarTreats().getSaveObject());
-		}
-		public function UpgradeVersion3(dataObject:Object):void
-		{
-			dataObject.inventory.push(new KnotAProblem().getSaveObject());
-		}
-		public function UpgradeVersion4(dataObject:Object):void
-		{
-			dataObject.inventory.push(new NukiCookies().getSaveObject());
-		}
-		public function UpgradeVersion5(dataObject:Object):void
-		{
-			delete dataObject.resistances;
-			delete dataObject.bonusResistances;
-			delete dataObject.armor;
-			delete dataObject.meleeWeapon;
-			delete dataObject.lustVuln;
-			delete dataObject.bonusLustVuln;
-		}
-		public function UpgradeVersion6(d:Object):void
-		{
-			d.inventory.push(new OvirAce().getSaveObject());
-			d.inventory.push(new OvirPositive().getSaveObject());
-		}
-		public function UpgradeVersion7(d:Object):void
-		{
-			//d.inventory.push(new Catnip().getSaveObject());
-		}
-		public function UpgradeVersion8(dataObject:Object):void
-		{
-			dataObject.inventory.push(new DracoGuard().getSaveObject());
-		}
-		public function UpgradeVersion9(d:Object):void
-		{
-			//d.inventory.push(new Foxfire().getSaveObject());
-		}
-		public function UpgradeVersion10(dataObject:Object):void
-		{
-			dataObject.inventory = UpdateInventory();
-		}
-		
-		private function UpdateInventory():Array
-		{
-			// Renew/Reorganize inventory
-			var newInventory:Array = [];
-			
-			newInventory.push(new Pandaneen().getSaveObject());
-			newInventory.push(new PandaPro().getSaveObject());
-			newInventory.push(new KnotAProblem().getSaveObject());
-			newInventory.push(new HorsePill().getSaveObject());
-			newInventory.push(new Furball().getSaveObject());
-			newInventory.push(new AusarTreats().getSaveObject());
-			newInventory.push(new NukiCookies().getSaveObject());
-			newInventory.push(new DracoGuard().getSaveObject());
-			newInventory.push(new OvirAce().getSaveObject());
-			newInventory.push(new OvirPositive().getSaveObject());
-			
-			return newInventory;
-		}
 		
 		override public function onLeaveBuyMenu():void
 		{
-			kGAMECLASS.approachJade();
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }

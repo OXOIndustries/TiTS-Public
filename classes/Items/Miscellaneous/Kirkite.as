@@ -31,7 +31,7 @@
 			this.description = "a kirkite crystal";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "An uncommon crystal formation that is rarely found in the galactic core, kirkite deposits seem to increase in size and quantity the farther one gets from Terra. Some scientists have also found a correlation between kirkite density and the color of a planet's dominant sapient. Planets rich in greenskins always seem to have denser deposits of this curious gem. No suitable explanation for this phenomenon has yet been postulated.";
+			this.tooltip = "An uncommon crystal formation that is rarely found in the galactic core, kirkite deposits seem to increase in size and quantity the farther one gets from Terra. Some scientists have also found a correlation between kirkite density and the color of a planet’s dominant sapient. Planets rich in greenskins always seem to have denser deposits of this curious gem. No suitable explanation for this phenomenon has yet been postulated.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

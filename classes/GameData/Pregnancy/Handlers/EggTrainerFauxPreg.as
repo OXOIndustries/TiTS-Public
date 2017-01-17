@@ -107,7 +107,7 @@ package classes.GameData.Pregnancy.Handlers
 				pData.pregnancyBellyRatingContribution += 5;
 				kGAMECLASS.pc.bellyRatingMod += 5;
 								
-				AddLogEvent("The egg inside you has swollen to massive proportions, stretching your body out as if you're carrying a pair of twins inside you. Every slight motion you make causes the tremendous weight inside you to shift and churn, sending shockwaves of ecstatic pleasure through you. <b>It's more arousing than ever, and if you aren't careful, you'll become dangerously distracted.</b>", "passive");
+				AddLogEvent("The egg inside you has swollen to massive proportions, stretching your body out as if you’re carrying a pair of twins inside you. Every slight motion you make causes the tremendous weight inside you to shift and churn, sending shockwaves of ecstatic pleasure through you. <b>It’s more arousing than ever, and if you aren’t careful, you’ll become dangerously distracted.</b>", "passive");
 				//Modest lust gain
 				kGAMECLASS.pc.createStatusEffect("Egg Addled 2",0,0,0,0,false,"Icon_DrugPill","Your lust will increase over time to the maximum - leading to instant combat loss, should you blunder into a fight while distracted by your egg.",false,0);
 			}, true);
@@ -119,7 +119,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 15;
 				
 				//MASSIVE LUST GAIN
-				AddLogEvent(ParseText("Your egg has grown truly, unnaturally, enormously massive inside you. Your belly is swollen beyond anything you'd have thought possible, stretching out ahead of you in swollen majesty. Every step, every slight motion you make, is nearly orgasmic now. You can't help but play with yourself constantly: not sexually, but simply rubbing your hands on your [pc.belly]. Sometimes, you find yourself spending minutes just enjoying the feeling of fullness, of your fingers brushing across your taut flesh."), "passive");
+				AddLogEvent(ParseText("Your egg has grown truly, unnaturally, enormously massive inside you. Your belly is swollen beyond anything you’d have thought possible, stretching out ahead of you in swollen majesty. Every step, every slight motion you make, is nearly orgasmic now. You can’t help but play with yourself constantly: not sexually, but simply rubbing your hands on your [pc.belly]. Sometimes, you find yourself spending minutes just enjoying the feeling of fullness, of your fingers brushing across your taut flesh."), "passive");
 				kGAMECLASS.pc.createStatusEffect("Egg Addled 3",0,0,0,0,false,"Icon_DrugPill","The endless stimulation of your internal faux egg is driving you mad with lust. Even the simple act of walking has become hellishly distracting.",false,0);
 			}, true);
 

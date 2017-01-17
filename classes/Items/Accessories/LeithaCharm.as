@@ -213,18 +213,18 @@
 			
 			if (target.tailType != 0 && target.tailCount > 0)
 			{
-				output("You feel a strange pressure building in your [pc.tails], and a distinct itchiness to boot. You grunt and look behind yourself, desperately reaching for [pc.oneTail] -- only to realize that it's changing. Your tail");
+				output("You feel a strange pressure building in your [pc.tails], and a distinct itchiness to boot. You grunt and look behind yourself, desperately reaching for [pc.oneTail] -- only to realize that it’s changing. Your tail");
 				if (target.tailCount > 1) output("s are");
 				else output(" is");
 				output(" hardening, gaining chitinous plates and scales");
 				if (target.tailCount > 1) output(", the bulk of the appendages merging into a singular form");
-				output(", and starting to glow yellow in places. By the time it settles into its new form, you realize that <b>you've got yourself a long, thick, reptilian tail -- just like a leithan's!</b>");
+				output(", and starting to glow yellow in places. By the time it settles into its new form, you realize that <b>you’ve got yourself a long, thick, reptilian tail -- just like a leithan’s!</b>");
 			}
 			else
 			{
 				output("You feel an intense, somewhat pleasurable sensation of pressure building up just above your ass. You reach back, just in time to feel a bulge forming in your skin. Oh, boy. You put a hand on your Leitha Charm to steady yourself and brace for the worst.");
 
-				output("\n\nInstead of hurting, though, the growing tail bursts out in a wave of pleasure. You moan as the lengthy reptilian appendage sprouts out, growing longer and thicker as it does so. Though it starts out as a soft, fleshy mass, the tail quickly begins to harden, gaining chitinous plates and scales, and starting to glow yellow in places. By the time it settles into its new form, you realize that <b>you've got yourself a long, thick, reptilian tail -- just like a leithan's!</b>");
+				output("\n\nInstead of hurting, though, the growing tail bursts out in a wave of pleasure. You moan as the lengthy reptilian appendage sprouts out, growing longer and thicker as it does so. Though it starts out as a soft, fleshy mass, the tail quickly begins to harden, gaining chitinous plates and scales, and starting to glow yellow in places. By the time it settles into its new form, you realize that <b>you’ve got yourself a long, thick, reptilian tail -- just like a leithan’s!</b>");
 			}
 
 			if (target.tailCount == 0 || (target.tailCount > 1 && target.tailCountUnlocked(1)))
@@ -248,8 +248,8 @@
 			//Change skinColor to gray. Gain scales.
 			// NOTE: Leithan at creation get /scales/ not skin.
 			output("You feel an itch start to spread across you, starting at your [pc.chest] near where your Leitha Charm is hanging and creeping out across your entire body. You start to scratch yourself... only to see splotches of gray starting to spread across your body.");
-			if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output(" Your body's furry covering starts to fall off, giving way to the growing spread of gray scales underneath.");
-			else if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" Your gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the leithan you're striving to become! Before long, your body is covered with scales!");
+			if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output(" Your body’s furry covering starts to fall off, giving way to the growing spread of gray scales underneath.");
+			else if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" Your gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the leithan you’re striving to become! Before long, your body is covered with scales!");
 			else output(" The patches stretch across your dermis erratically, the flesh left in the wake of the expanding areas visibly hardening.")
 			output(" <b>You now have scales with a gray, leithan palette!</b>");
 
@@ -304,7 +304,7 @@
 			else if (wrongLegType && target.isTaur())
 			{
 				nl = true;
-				output("Your already equine body starts to itch and ache, starting to mutate at the behest of your Leitha Charm. Slowly, your horse-side's skin starts to harden, becoming dark and plate-like. Luminescant veins begin to form between the plates, giving you a sensuous glow on top of your newfound armored hide. The transformation is quick, and surprisingly pleasant feeling. <b>Your legs are now that of a leithan!</b>");
+				output("Your already equine body starts to itch and ache, starting to mutate at the behest of your Leitha Charm. Slowly, your horse-side’s skin starts to harden, becoming dark and plate-like. Luminescant veins begin to form between the plates, giving you a sensuous glow on top of your newfound armored hide. The transformation is quick, and surprisingly pleasant feeling. <b>Your legs are now that of a leithan!</b>");
 				
 				target.legType = GLOBAL.TYPE_LIZAN;
 				target.legFlags = [];
@@ -319,9 +319,9 @@
 				output("Suddenly, your whole body is assailed by a sensation of stretching. Your body contorts and strains, growing");
 				if (target.legCount < 4) output(" larger");
 				else output(" smaller");
-				output(" by the second... and more equine in shape. All you can do is endure it, trying to get used to the stretching feeling that's gripping your entire form. Slowly but surely, your rear end expands into the familiar shape of a leithan's horse-like backside, bulking up and hardening as plates and glowing veins form on you.");
-				if (target.legCount < 4) output(" New legs begin to bud out of your changing body, growing down to support your alien frame. You've got four of them now, just enough to be able to carry your massive, heavy equine backside.");
-				output(" After a few minutes, you're able to scrabble up onto your hybrid legs and give your tauric body a bit of a test. You quickly end up cantering about, just like a show pony. <b>You've definitely got a leithan's body now</b>, complete with chitin plates and horsey shape.");
+				output(" by the second... and more equine in shape. All you can do is endure it, trying to get used to the stretching feeling that’s gripping your entire form. Slowly but surely, your rear end expands into the familiar shape of a leithan’s horse-like backside, bulking up and hardening as plates and glowing veins form on you.");
+				if (target.legCount < 4) output(" New legs begin to bud out of your changing body, growing down to support your alien frame. You’ve got four of them now, just enough to be able to carry your massive, heavy equine backside.");
+				output(" After a few minutes, you’re able to scrabble up onto your hybrid legs and give your tauric body a bit of a test. You quickly end up cantering about, just like a show pony. <b>You’ve definitely got a leithan’s body now</b>, complete with chitin plates and horsey shape.");
 				if (kGAMECLASS.silly) output(" Giddyup!");
 
 				target.legCount = 4;
@@ -335,7 +335,7 @@
 				if (target.legCount < 6) output(" your two sets of");
 				else output(" two of your sets of");
 				output(" legs. You grunt and stagger around as");
-				if (target.legCount < 6) output(" a new pair of legs begins to grow out of the center of your body, twisting muscles beginning to take shape before being covered by scaly skin, and then a coating of chitinous plates. After a few minutes, they solidify into <b>a pair of powerful, long leithan legs. You've got six of them in total now!</b>");
+				if (target.legCount < 6) output(" a new pair of legs begins to grow out of the center of your body, twisting muscles beginning to take shape before being covered by scaly skin, and then a coating of chitinous plates. After a few minutes, they solidify into <b>a pair of powerful, long leithan legs. You’ve got six of them in total now!</b>");
 				else output(" some of your extra legs begin to diminish, the muscle and scales wasting away as the nanomachines lacing your bloodstream seek to recover the extra appendages. After a few minutes, you find yourself stood simply <b>on a set of six powerful, long leithan legs.</b>");
 
 				target.legCount = 6;
@@ -365,7 +365,7 @@
 				if ((buttInc && vagIncs == 0) || (!buttInc && vagIncs == 1)) output("s");
 				output(" to grow deeper, much more cavernous. You feel like you could take much longer, thicker insertions now.");
 				if (target.isTaur()) output(" Your tauric body certainly has room for it!");
-				if (target.isBimbo()) output(" You can't wait to find a hung leithan boy to pound his mammoth lizard-dick deep into your deep, hungry hole.");
+				if (target.isBimbo()) output(" You can’t wait to find a hung leithan boy to pound his mammoth lizard-dick deep into your deep, hungry hole.");
 
 				if (target.ass.bonusCapacity < 500)
 				{
@@ -397,7 +397,7 @@
 			output("You feel your [pc.face] start to strain, becoming");
 			if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" harder and firmer, taking on a more defined shape");
 			else output(" softer and more malleable");
-			output(". You run a hand along your mutating features, and find that your face is taking on an altogether more human shape. You're soon left with a solidifying visage:");
+			output(". You run a hand along your mutating features, and find that your face is taking on an altogether more human shape. You’re soon left with a solidifying visage:");
 			if (target.isMasculine()) output(" you’ve got a manly jaw and sharp features,");
 			else output(" you have a cute little nose and delicate features,");
 			output(" <b>an altogether human face</b>.");
@@ -412,7 +412,7 @@
 		{
 			clearOutput();
 			
-			output("Your mouth is starting to feel a little... strange. Numb perhaps, but that's not just it. It feels a little more... cramped? It definitely seems more full than usual. Maybe you've eaten something recently that hasn't been all that agreeable? Before you can think much more about what the cause might be a sudden shooting pain along the underside of your jaw strikes, and you open your mouth reflexively -- allowing a long, forked tongue to roll free from your mouth.");
+			output("Your mouth is starting to feel a little... strange. Numb perhaps, but that’s not just it. It feels a little more... cramped? It definitely seems more full than usual. Maybe you’ve eaten something recently that hasn’t been all that agreeable? Before you can think much more about what the cause might be a sudden shooting pain along the underside of your jaw strikes, and you open your mouth reflexively -- allowing a long, forked tongue to roll free from your mouth.");
 
 			output("\n\nYou lash it around experimentally as the feeling in your mouth gradually returns to normal. Slurping it back home with a wet pop, you realize <b>you now have a forked leithan tongue!<b>");
 			
@@ -428,7 +428,7 @@
 			
 			output("A strange itch tickles at the tips of your fingers, slowly building in intensity until it feels as though your hands are throbbing in time to the beat of your heart. You flex your digits to the beat, the activity helping to mask the discomfort, and slowly fall into an automatic pattern -- until the throbbing seems to skip a beat.");
 
-			output("\n\nAs the next throb hits the sensation doubles down, far more intense, and you look toward your fingertips -- they seem thicker, and marginally more difficult to articulate. A thick layer of chitinous plates is growing around your fingers, pulsing its way higher and higher up your arms every few seconds! When slight cracks begin to form in the tough surface, luminous streaks breaking apart the large plates, that's when you realize <b>you now have leithan-like arms!</b>");
+			output("\n\nAs the next throb hits the sensation doubles down, far more intense, and you look toward your fingertips -- they seem thicker, and marginally more difficult to articulate. A thick layer of chitinous plates is growing around your fingers, pulsing its way higher and higher up your arms every few seconds! When slight cracks begin to form in the tough surface, luminous streaks breaking apart the large plates, that’s when you realize <b>you now have leithan-like arms!</b>");
 			
 			target.armType = GLOBAL.TYPE_LEITHAN;
 			target.clearArmFlags();
@@ -445,7 +445,7 @@
 			//Massive Lust spike. 
 			output("You feel a sudden rush of arousal building up in your prick");
 			if (target.cocks.length > 1) output("s");
-			output(" -- in the blink of an eye, you're popping a");
+			output(" -- in the blink of an eye, you’re popping a");
 			if (target.cocks.length > 1) output(" gaggle of");
 			output(" monumental boner");
 			if (target.cocks.length > 1) output("s");
@@ -505,7 +505,7 @@
 				output(" to grow, straining and stretching, gaining in length. Pleasure hammers through you, half-orgasmic as your prick");
 				if (tfSize == 1) output(" expands");
 				else output("s expand");
-				output(". You can't help but jack yourself off through it, groaning and moaning and finally cumming from your [pc.cocks]. As you sit back and catch your breath, you eye your newly-enlarged member");
+				output(". You can’t help but jack yourself off through it, groaning and moaning and finally cumming from your [pc.cocks]. As you sit back and catch your breath, you eye your newly-enlarged member");
 				if (tfSize > 1) output("s");
 				output(". <b>You must be a couple of inches longer now!</b>");
 			}
@@ -564,10 +564,10 @@
 
 			if (tfType > 0)
 			{
-				output("\n\nYou cum, hard, drenching yourself in girl-cum. Rather than clamping down more, though, your sex seems to stretch out as it orgasms, growing larger, thicker, darker... by the time it's done, you feel like you're rocking a marecunt");
+				output("\n\nYou cum, hard, drenching yourself in girl-cum. Rather than clamping down more, though, your sex seems to stretch out as it orgasms, growing larger, thicker, darker... by the time it’s done, you feel like you’re rocking a marecunt");
 				if (!target.hasLegs()) output(" between your [pc.legs]");
 				else output(" on the face of your naga body");
-				output(". A quick touch and feel tells you that that's exactly the case: <b>your feminine sex is now just like a horse's</b>.");
+				output(". A quick touch and feel tells you that that’s exactly the case: <b>your feminine sex is now just like a horse’s</b>.");
 				target.orgasm();
 				output("\n\nNow to find a nice, long leithan cock to break your new marecunt in...");
 			}
@@ -580,7 +580,7 @@
 			clearOutput();
 			
 			//Change PC eye type to Leithan.
-			output("You feel an aching burn start to crop up in your eyes, just enough to make your blink rapidly and rub at them. Between groans and gasps, you feel your eyes... changing, shifting under the weight of the Leitha Charm's nanomachine magic. For an instant, you're completely blinded, then after a grunt of agony, your vision returns -- though you can see a slightly wider angle than you did before. You pull your Codex out to act as a mirror, looking your reflection in its blue, star-struck eyes. <b>You now have leithan eyes!</b>");
+			output("You feel an aching burn start to crop up in your eyes, just enough to make your blink rapidly and rub at them. Between groans and gasps, you feel your eyes... changing, shifting under the weight of the Leitha Charm’s nanomachine magic. For an instant, you’re completely blinded, then after a grunt of agony, your vision returns -- though you can see a slightly wider angle than you did before. You pull your Codex out to act as a mirror, looking your reflection in its blue, star-struck eyes. <b>You now have leithan eyes!</b>");
 
 			target.eyeType = GLOBAL.TYPE_LEITHAN;
 			target.eyeColor = "blue";
@@ -596,7 +596,7 @@
 			target.tallness += 6;
 			if (target.tallness > 108) target.tallness = 108;
 
-			output("You feel your center of gravity seem to shift, making you stumble around. Your limbs and torso stretch out, swelling in size as the Leitha Charm works its chemical magic. You feel taller, faster, stronger after the drug's done its work. A quick glance at your Codex's monitor program tells you that <b>you're about "+target.displayTallness()+" now!</b>");
+			output("You feel your center of gravity seem to shift, making you stumble around. Your limbs and torso stretch out, swelling in size as the Leitha Charm works its chemical magic. You feel taller, faster, stronger after the drug’s done its work. A quick glance at your Codex’s monitor program tells you that <b>you’re about "+target.displayTallness()+" now!</b>");
 
 			return true;
 		}

@@ -28,7 +28,7 @@
 			this.description = "a thermal jacket";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A thick, fur-lined jacket reinforced with the most advanced lightweight elemental protections. It won't protect you from the worst of extreme colds, but it'll make you more comfortable in cold weather for sure.";
+			this.tooltip = "A thick, fur-lined jacket reinforced with the most advanced lightweight elemental protections. It won’t protect you from the worst of extreme colds, but it’ll make you more comfortable in cold weather for sure.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -2829,7 +2829,7 @@ public function annoFollowerTailcockSex(asFollower:Boolean = true):void
 	output("\n\n<i>“Oh wait. Hold on, Boss,”</i> Anno says before reaching over to her bedside table drawer, opening it, rummaging around for a few seconds and taking out a condom. <i>“Don’t wanna get pregnant yet,”</i> she chuckles. Scooching over to the edge of the bed, she rips open the condom packet and throws it into the dustbin. She places the condom in her mouth, and then lowers her head to your [pc.cocks]. You groan as you feel the dual sensations of the latex and Anno’s wet, warm mouth wrapping around your [pc.cock] . She starts fellating you, her tongue teasing the glans and tip of your cock, sending electric waves of pleasure to your brain.");
 
 	if(pc.cockTotal() > 1) output(" She reaches down and wraps her soft-furred fingers around your second cock, jacking you off.");
-	output(" You start panting, your mind hazed with lust and your heart racing, revelling in the pleasure Anno is inflicting on you. Feeling your loins start to throb, you push her off before you can cum.");
+	output(" You start panting, your mind hazed with lust and your heart racing, reveling in the pleasure Anno is inflicting on you. Feeling your loins start to throb, you push her off before you can cum.");
 
 	output("\n\n<i>“Ah- ah! Not that fast, girl!”</i> you say, wagging a finger at her. Anno grins and bats your thigh with her fluffy tail. You hold your index finger up in the air and revolve it. Obediantly, Anno turns around and presents her ass to you, wiggling it slightly. Slapping her ass, you ask if she happens to have any lube lying around. She jerks up and gasps when you slap her ass, then reaches over to the same drawer, pulling it open and tossing a bottle of clear lube back to you. You make sure to apply a liberal coating of lube to your [pc.tailCock] ");
 
@@ -3680,6 +3680,7 @@ public function annoGonnaGitDragonBOOOTAYYYYY():void //Hi geddy
 {
 	clearOutput();
 	showBust(annoBustDisplay(), "GRYVAIN");
+	showName("ANNO &\nGRYVAIN");
 	author("Savin");
 	output("You figure you might as well check in with Anno while you’re both here, and start heading over. You get to her at the same time as another woman does - a tall, sensuously curvy gryvain with dark green scales and wings, and horns growing from her brow decorated with jeweled silver chains.");
 	output("\n\n<i>“Oh, hey boss,”</i> Anno grins as you wander up. <i>“What’s up?”</i>");
@@ -3793,6 +3794,7 @@ public function dragonGurlAnnoThreesome():void
 
 	processTime(20);
 	pc.orgasm();
+	applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",annoXGedanThreesomeEpilogue);
 }
@@ -3803,6 +3805,7 @@ public function annoXGedanThreesomeEpilogue():void
 	author("Savin");
 	showAnno();
 	//Pass 6-10 hours. Move PC back to ship.
+	showLocationName();
 	output("When you come to, the green gryvain babe is nowhere to be seen. Anno’s lying face-down against you, covered in cool cum and snoring into your armpit. Graceful. You yawn, roll your lover off, and hit the shower.");
 	output("\n\nBy the time you’re out, Anno’s woken up enough to stagger up and ");
 	if(celiseIsCrew()) output("drag Celise into your quarters. She’s dumped the giggly goo onto the bed and is sat on the side of it, letting your resident cum-vacuum clean the spoogy mess up.");
@@ -3813,7 +3816,8 @@ public function annoXGedanThreesomeEpilogue():void
 	else output("T");
 	output("otally.");
 	processTime(600+rand(400));
-	restHeal();
+	sleepHeal();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

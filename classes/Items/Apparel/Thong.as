@@ -28,7 +28,7 @@
 			this.description = "a thong";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A simple set of underwear that barely qualifies as clothing on many planets. It's made of ultralastic and chameleon silk, and is completely hydrophobic, making it useful as a swimsuit.";
+			this.tooltip = "A simple set of underwear that barely qualifies as clothing on many planets. It’s made of ultralastic and chameleon silk, and is completely hydrophobic, making it useful as a swimsuit.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -83,7 +83,7 @@
 				//Already waiting on effects
 				else if(target.hasStatusEffect("GaloMax"))
 				{
-					output("Nope. You're still waiting for the effects of the last one to kick in. You're not going to risk turning into a puddle.");
+					output("Nope. You’re still waiting for the effects of the last one to kick in. You’re not going to risk turning into a puddle.");
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 					return false;
 				}

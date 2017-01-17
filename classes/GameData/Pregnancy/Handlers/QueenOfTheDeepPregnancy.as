@@ -300,7 +300,7 @@ package classes.GameData.Pregnancy.Handlers
 		
 		override public function pregBellyFragment(target:Creature, slot:int):String
 		{
-			return "At first glance, people might be mistaken for thinking you're properly pregnant, but closer inspection reveals your belly to be lumpy and slightly misshapen, full of several individual, moving creatures as you are.";
+			return "At first glance, people might be mistaken for thinking you’re properly pregnant, but closer inspection reveals your belly to be lumpy and slightly misshapen, full of several individual, moving creatures as you are.";
 		}
 		
 	}

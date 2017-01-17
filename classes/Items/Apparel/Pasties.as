@@ -29,7 +29,7 @@
 			this.description = "some pasties";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A set of simple plastic discs that cover the wearer's nipples. Using geckoglue they adhere to any surface, and can be painlessly applied or removed.";
+			this.tooltip = "A set of simple plastic discs that cover the wearer’s nipples. Using geckoglue they adhere to any surface, and can be painlessly applied or removed.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

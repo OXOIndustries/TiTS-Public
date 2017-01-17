@@ -933,7 +933,7 @@ public function fazianQuestDelay():void
 	if (flags["FAZIAN_QUEST_DELAY"] == undefined)
 	{
 		flags["FAZIAN_QUEST_DELAY"] = 1;
-		output("<i>“I might be able to look for him,”</i> you say. <i>“Just give me some time, ok?”</i>");
+		output("<i>“I might be able to look for him,”</i> you say. <i>“Just give me some time, okay?”</i>");
 		
 		output("\n\n<i>“It would be wonderful if you could,”</i> says Hepane, focusing on you at last. She reaches out to grasp your hand tightly. <i>“Another starwalker might be able to... please hurry.”</i>");
 	}
@@ -1092,7 +1092,7 @@ public function fazianQuestBarkeepGood():void
 	showName("\nBARKEEP");
 	author("Nonesuch");
 
-	output("<i>“Ok. You got me right,”</i> you say, quietly. <i>“I am an outsider, looking for another outsider. You know what my interest is? Knowing how much it would suck to be lost and alone on an alien planet, without anyone looking for me. I don’t want to incriminate anyone. I just want to know where to look.”</i>");
+	output("<i>“Okay. You got me right,”</i> you say, quietly. <i>“I am an outsider, looking for another outsider. You know what my interest is? Knowing how much it would suck to be lost and alone on an alien planet, without anyone looking for me. I don’t want to incriminate anyone. I just want to know where to look.”</i>");
 	
 	output("\n\nThe barkeep is silent for a time, turning the glass around and around in her hands. Her pupil-less eyes are unreadable.");
 	
@@ -2073,7 +2073,7 @@ public function fazianQuestGetBribed():void
 	
 	output("\n\n<i>“You’re just going to let [pc.himHer] walk out of here?”</i> queries Ehstraffe reluctantly. <i>“I don’t think--”</i>");
 	
-	output("\n\n<i>“Please, major!”</i> says the tarratch, smiling the cold, bright beam of a neutron star. <i>“By taking this payment " + pc.mf("Mr.","Ms.") + " Steele has shown themselves to be a reasonable, rational individual. Rational individuals can be trusted. Business can be done with rational individuals.”</i> She (he?) claps you on the shoulder and leads you to the front door. <i>“And I very much hope to do business with you again in the future, Steele, earn some of those credits back. Our brothers and sisters offer the finest indentured servants in the galaxy, exactly because of rational individuals like yourself. Just don’t go chasing after every lost lamb you hear about on the frontier in future, ok? There’s a good rue collar.”</i>");
+	output("\n\n<i>“Please, major!”</i> says the tarratch, smiling the cold, bright beam of a neutron star. <i>“By taking this payment " + pc.mf("Mr.","Ms.") + " Steele has shown themselves to be a reasonable, rational individual. Rational individuals can be trusted. Business can be done with rational individuals.”</i> She (he?) claps you on the shoulder and leads you to the front door. <i>“And I very much hope to do business with you again in the future, Steele, earn some of those credits back. Our brothers and sisters offer the finest indentured servants in the galaxy, exactly because of rational individuals like yourself. Just don’t go chasing after every lost lamb you hear about on the frontier in future, okay? There’s a good rue collar.”</i>");
 	
 	output("\n\nThe door clicks shut behind you, and two red myr lead you out onto the road.");
 	

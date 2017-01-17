@@ -29,7 +29,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a pill labeled 'Focus'";
+			this.description = "a pill labeled ‘Focus’";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Created in joint venture between JoyCo and Xenogen to help their scientists on important projects, Focus Pills give you a momentary sense of calm and emotionless insight. Reduces active lust, and grants a short-term bonus to Intelligence.";
 			
@@ -71,7 +71,7 @@
 				}
 				clearOutput();
 				if(inCombat()) output("You pop a Focus Pill into your mouth. As it dissolves, you start to feel a little calmer and more focused in on the task at hand.");
-				else output("You pop a Focus Pill out of your pack and into your mouth. It’s completely tasteless, and all but dissolves in your mouth.\n\nAfter a moment’s wait, you start to feel a little calmer. You let out a breath you didn't know you were holding, and focus in on the task at hand.");
+				else output("You pop a Focus Pill out of your pack and into your mouth. It’s completely tasteless, and all but dissolves in your mouth.\n\nAfter a moment’s wait, you start to feel a little calmer. You let out a breath you didn’t know you were holding, and focus in on the task at hand.");
 			}
 			//Not player!
 			else

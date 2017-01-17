@@ -65,7 +65,7 @@
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("Any more crystals and you'd be lucky to move, let alone fight.");
+					kGAMECLASS.output("Any more crystals and you’d be lucky to move, let alone fight.");
 				}
 				else
 				{
@@ -92,7 +92,7 @@
 				}
 				else
 				{
-					throw new Error("Don't know how we got here. Exception for debugging.");
+					throw new Error("Don’t know how we got here. Exception for debugging.");
 				}
 			}			
 			return false;
@@ -106,7 +106,7 @@
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " breaks open a crystal shard, soaking " + usingCreature.mfn("him","her","it") + "self in a greenish goo that rapidly hardens into crystal! You'll have a hard time hurting " + usingCreature.mfn("him","her","it") + "!");
+			kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " breaks open a crystal shard, soaking " + usingCreature.mfn("him","her","it") + "self in a greenish goo that rapidly hardens into crystal! You’ll have a hard time hurting " + usingCreature.mfn("him","her","it") + "!");
 			targetCreature.createStatusEffect("Crystal Coated",2,0,0,0,false,"Icon_DefUp","Defense is raised by 4 points thanks to a coating of rock-hard crystals!",true,0);
 		}
 	}

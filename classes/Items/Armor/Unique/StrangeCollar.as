@@ -24,7 +24,7 @@ package classes.Items.Armor.Unique
 			
 			description = "a strange metal collar";
 			
-			tooltip = "This unusual metal collar gives no clues as to its manufacture - or its purpose. You could try it on, if you're feeling daring.";
+			tooltip = "This unusual metal collar gives no clues as to its manufacture - or its purpose. You could try it on, if you’re feeling daring.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

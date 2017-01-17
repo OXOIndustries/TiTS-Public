@@ -54,7 +54,7 @@
 				if((pc.isBimbo() || pc.isBro()) && (pc.IQ() < 95 || rand(2) == 0))
 				{
 					//{If a player with bimbo brains tries to use Rubber-Made, they receive the following warning}
-					output("You playfully turn the funny gum in your fingers, admiring the shiny, striped packaging. There's some kind of writing on one side, but it seems boring. Something about eating the gum. That'd be kinda icky! Doesn't that stuff stay in your stomach forever? You're pretty sure you heard that somewhere before.");
+					output("You playfully turn the funny gum in your fingers, admiring the shiny, striped packaging. There’s some kind of writing on one side, but it seems boring. Something about eating the gum. That’d be kinda icky! Doesn’t that stuff stay in your stomach forever? You’re pretty sure you heard that somewhere before.");
 					output("\n\nWould you like to chew the gum anyway?");
 					clearMenu();
 					addButton(0,"Put It Away",putAwayRubberMade);
@@ -157,7 +157,7 @@
 		{
 			clearOutput();
 			author("Adjatha");
-			output("Nah, you decide, chewing gum's a bad habit anyway. Plus, you don't wanna fill your mouth just in case somebody tasty happens to walk by. Ooo, wouldn't that be fun? You plop the wrapped square back in your pocket, mouth watering even without the candy.");
+			output("Nah, you decide, chewing gum’s a bad habit anyway. Plus, you don’t wanna fill your mouth just in case somebody tasty happens to walk by. Ooo, wouldn’t that be fun? You plop the wrapped square back in your pocket, mouth watering even without the candy.");
 			output("\n\n");
 			
 			if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new RubberMade()]);
@@ -169,11 +169,11 @@
 		{
 			clearOutput();
 			author("Adjatha");
-			output("It's fine, you figure, rules were made to be broken! You pop the gum past your [pc.lips] and onto your [pc.tongue]. See, no problems at all! You start chewing away, opening your mouth with every chomping motion. Noisily smacking away at the gum, you begin blowing little bubbles. You bite down and pull the elastic treat back into your mouth each time, before the bubble can pop, a simple smile on your face.");
+			output("It’s fine, you figure, rules were made to be broken! You pop the gum past your [pc.lips] and onto your [pc.tongue]. See, no problems at all! You start chewing away, opening your mouth with every chomping motion. Noisily smacking away at the gum, you begin blowing little bubbles. You bite down and pull the elastic treat back into your mouth each time, before the bubble can pop, a simple smile on your face.");
 			//if the player is in a public place:
 			if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC)) 
 			{
-				output("\n\nThe people around you glance your way, annoyed expressions on their faces. What's their problem, you wonder as you continue your noisome munching. ");
+				output("\n\nThe people around you glance your way, annoyed expressions on their faces. What’s their problem, you wonder as you continue your noisome munching. ");
 				if(kGAMECLASS.pc.isBimbo()) output("<i>“Um, like, take a holo vid? It’ll last longer,”</i> you offer, between your wet munching.");
 				//bro: 
 				else output("<i>“What’s up?”</i> you shout in defiance. <i>“You want to get that ass kicked, bro? Bring it!”</i>");

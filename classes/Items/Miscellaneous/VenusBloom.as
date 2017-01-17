@@ -18,7 +18,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.QUESTITEM;
+			this.type = GLOBAL.SPECIAL_ITEM;
 			
 			//Used on inventory buttons
 			this.shortName = "V.Bloom";

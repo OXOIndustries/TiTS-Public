@@ -29,10 +29,10 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a KihaCorp-branded synth-phallus modelled after a mythological dragon's";
+			this.description = "a KihaCorp-branded synth-phallus modelled after a mythological dragon’s";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "KihaCorp’s popular companion droid line has numerous accessories and addons available for purchase across the galaxy. Some of the most popular are the hot-swappable genitals they’re equipped with, in particular variant phalli and vaginas.\n\nThis one is a hefty, brightly colored wang with a shaft that's a psychedelic mix of blues and purples. Fundamentally reptilian in shape, the tapered crown is covered with animatable tendrils for maximum pleasure. The synth-phallus measures about ten inches when fully inflated, but retracts down into a compact sheath when not. It includes its own silicone reservoir and pumps to minimize impact on the android’s body shape during erections.";
+			this.tooltip = "KihaCorp’s popular companion droid line has numerous accessories and addons available for purchase across the galaxy. Some of the most popular are the hot-swappable genitals they’re equipped with, in particular variant phalli and vaginas.\n\nThis one is a hefty, brightly colored wang with a shaft that’s a psychedelic mix of blues and purples. Fundamentally reptilian in shape, the tapered crown is covered with animatable tendrils for maximum pleasure. The synth-phallus measures about ten inches when fully inflated, but retracts down into a compact sheath when not. It includes its own silicone reservoir and pumps to minimize impact on the android’s body shape during erections.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

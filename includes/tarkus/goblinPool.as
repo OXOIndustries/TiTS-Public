@@ -1379,7 +1379,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 		output(" <i>“Veeeeery nice,”</i> she coos, squeezing her thick thighs together. <i>“");
 		// PC has talked to her:
 		if (flags["UNA_TALKED"] != undefined) output("You need to get out of frontier hustling Steele, look into professional fuck boying. You’ll break my heart by getting all that lean beef burnt to a laser crisp, one of these days... ");
-		output("Alright then; I guess you can use the pool. Towels are in the locker and Petr can sell you swim gear if you need it. Make sure to wear plenty of suntan, ok? The only reason your flesh should be red and tender is if I had something to do with it.”</i>");
+		output("Alright then; I guess you can use the pool. Towels are in the locker and Petr can sell you swim gear if you need it. Make sure to wear plenty of suntan, okay? The only reason your flesh should be red and tender is if I had something to do with it.”</i>");
 	}
 	// Female
 	if (sex == 0)
@@ -1393,7 +1393,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 		output(" <i>“Veeeeery nice,”</i> she coos, squeezing her thick thighs together. <i>“");
 		// PC has talked to her:
 		if (flags["UNA_TALKED"] != undefined) output("You need to get out of frontier hustling Steele, look into professional slutting. You’ll break a great number of hearts by getting all that chicken burnt to a laser crisp, one of these days... ");
-		output("Alright then; I guess you can use the pool. Towels are in the locker and Petr can sell you swim gear if you need it. Make sure to wear plenty of suntan, ok? Boobs aren’t nearly as attractive when they’re all red and flaky.”</i>");
+		output("Alright then; I guess you can use the pool. Towels are in the locker and Petr can sell you swim gear if you need it. Make sure to wear plenty of suntan, okay? Boobs aren’t nearly as attractive when they’re all red and flaky.”</i>");
 	}
 	
 	output("\n\nYou feel distinctly degraded");

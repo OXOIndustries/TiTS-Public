@@ -202,7 +202,7 @@ package classes.Items.Transformatives
 				if(target.cocks[i].hasFlag(GLOBAL.FLAG_FORESKINNED)) output("with a comforting foreskin around it. With no distinct line dividing the [pc.skinColor] of your cock from the skin of your crotch");
 				else output("bare of any loose skin, with your [pc.cockHead " + i + "] fully exposed");
 			}
-			output(". There must have been a weird anaphrodisiac somewhere in there because you're rapidly losing your erection, but unlike before it now hangs completely flaccid against your [pc.sack]. <b>Your [pc.cock " + i + "] has lost its sheath!</b>");
+			output(". There must have been a weird anaphrodisiac somewhere in there because you’re rapidly losing your erection, but unlike before it now hangs completely flaccid against your [pc.sack]. <b>Your [pc.cock " + i + "] has lost its sheath!</b>");
 			
 			target.cocks[i].delFlag(GLOBAL.FLAG_SHEATHED);
 			target.lust(-10);
@@ -217,7 +217,7 @@ package classes.Items.Transformatives
 			var i:int = arg[1];
 
 			//Target penis gains 0.1 of length.
-			output("The gray ooze is unable to complete its programming and promptly falls off your prick, yet you still feel <i>something</i> going on down there. The tell-tale sensation of nanomachines in action and your aphrodisiac-powered boner helps you figure out what's happening. To your chagrin, it seems <b>that your [pc.cock " + i + "] has lost a bit of its length.</b>");
+			output("The gray ooze is unable to complete its programming and promptly falls off your prick, yet you still feel <i>something</i> going on down there. The tell-tale sensation of nanomachines in action and your aphrodisiac-powered boner helps you figure out what’s happening. To your chagrin, it seems <b>that your [pc.cock " + i + "] has lost a bit of its length.</b>");
 			
 			target.cocks[i].cLengthRaw -= 0.1;
 			if(target.hasPerk("Mini")) target.cocks[i].cLengthRaw -= 0.1;

@@ -30,7 +30,7 @@ public function initializeRooms():void
 	//99. Ship Interior
 	rooms["SHIP INTERIOR"] = new RoomClass(this);
 	rooms["SHIP INTERIOR"].roomName = "SHIP\nINTERIOR";
-	rooms["SHIP INTERIOR"].description = "The inside of your father's old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.";
+	rooms["SHIP INTERIOR"].description = "The inside of your father’s old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.";
 	rooms["SHIP INTERIOR"].planet = "PLANET: NONE";
 	rooms["SHIP INTERIOR"].system = "SYSTEM: UNKNOWN";
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
@@ -200,7 +200,7 @@ public function initializeRooms():void
 
 	rooms["KIROS SHIP QUARTERS"] = new RoomClass(this);
 	rooms["KIROS SHIP QUARTERS"].roomName = "LEAF SHIP\nINTERIOR";
-	rooms["KIROS SHIP QUARTERS"].description = "The ship's more than big enough to accommodate a crew of a few dozen, but most of the rooms are stripped bare; nothing left but spaces in the dust where furniture once was. The largest of the rooms -- the captain's quarters -- is still furnished. An overly large king-sized bed is pushed up against one wall, surrounded by a sea of dirty magazines and holo-vid boxes for a variety of big-booty porn. You see a bin beside the bed, full of tied-off condoms in a whole slew of colors, all filled to bursting with spooge. Nasty.";
+	rooms["KIROS SHIP QUARTERS"].description = "The ship’s more than big enough to accommodate a crew of a few dozen, but most of the rooms are stripped bare; nothing left but spaces in the dust where furniture once was. The largest of the rooms -- the captain’s quarters -- is still furnished. An overly large king-sized bed is pushed up against one wall, surrounded by a sea of dirty magazines and holo-vid boxes for a variety of big-booty porn. You see a bin beside the bed, full of tied-off condoms in a whole slew of colors, all filled to bursting with spooge. Nasty.";
 	rooms["KIROS SHIP QUARTERS"].runOnEnter = kirosShipQuarters;
 	rooms["KIROS SHIP QUARTERS"].westExit = "KIROS SHIP INTERIOR2";
 	rooms["KIROS SHIP QUARTERS"].moveMinutes = 1;
@@ -211,7 +211,7 @@ public function initializeRooms():void
 
 	rooms["KIROS SHIP ENGINEERING"] = new RoomClass(this);
 	rooms["KIROS SHIP ENGINEERING"].roomName = "LEAF SHIP\nINTERIOR";
-	rooms["KIROS SHIP ENGINEERING"].description = "Thrumming powerfully, the ship's power core seems to be operating within normal parameters. This room is large enough to be staffed by a crew of a dozen, perhaps, but the only staff you see are a few sets of mechanized arms that move along tracks on the ceiling, adjusting the computer systems to keep everything running fine. You thread your way through the equipment, ducking here and there to avoid the arms as they flit between whatever tasks their robotic brain assigns them to. Everything seems built to accommodate this automation, and you catch a glimpse of 'KihaCorp' stamped across some of the polished metal armatures. There are no other exits or items of note here.";
+	rooms["KIROS SHIP ENGINEERING"].description = "Thrumming powerfully, the ship’s power core seems to be operating within normal parameters. This room is large enough to be staffed by a crew of a dozen, perhaps, but the only staff you see are a few sets of mechanized arms that move along tracks on the ceiling, adjusting the computer systems to keep everything running fine. You thread your way through the equipment, ducking here and there to avoid the arms as they flit between whatever tasks their robotic brain assigns them to. Everything seems built to accommodate this automation, and you catch a glimpse of ‘KihaCorp’ stamped across some of the polished metal armatures. There are no other exits or items of note here.";
 	rooms["KIROS SHIP ENGINEERING"].runOnEnter = kirosShipLocationSetter;
 	rooms["KIROS SHIP ENGINEERING"].westExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP ENGINEERING"].moveMinutes = 1;
@@ -222,7 +222,7 @@ public function initializeRooms():void
 
 	rooms["KIROS SHIP TROPHYROOM"] = new RoomClass(this);
 	rooms["KIROS SHIP TROPHYROOM"].roomName = "LEAF SHIP\nINTERIOR";
-	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled 'Trophy Room.' Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i>, the captain's hung or fancies stallions.";
+	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled ‘Trophy Room.’ Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature’s flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i>, the captain’s hung or fancies stallions.";
 	rooms["KIROS SHIP TROPHYROOM"].runOnEnter = kirosShipLocationSetter;
 	rooms["KIROS SHIP TROPHYROOM"].eastExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP TROPHYROOM"].moveMinutes = 1;
@@ -233,14 +233,14 @@ public function initializeRooms():void
 	
 	rooms["KIROS SHIP AIRLOCK"] = new RoomClass(this);
 	rooms["KIROS SHIP AIRLOCK"].roomName = "LEAF SHIP\nINTERIOR";
-	rooms["KIROS SHIP AIRLOCK"].description = "This is the oddly-shaped ship airlock, currently connecting it to your ship and allowing you to move between the two freely. You're hard pressed to even call such a small space a room, but the massive doors at either end of it - strong enough to survive the rigors of space - reinforce how important even tiny areas such as this can be.";
+	rooms["KIROS SHIP AIRLOCK"].description = "";
 	rooms["KIROS SHIP AIRLOCK"].runOnEnter = kirosShipAirlock;
 	rooms["KIROS SHIP AIRLOCK"].northExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP AIRLOCK"].planet = "SHIP: LEAF";
 	rooms["KIROS SHIP AIRLOCK"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP AIRLOCK"].moveMinutes = 1;
 	rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.INDOOR);
-	rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.SHIPHANGAR);
+	//rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.SHIPHANGAR);
 	rooms["KIROS SHIP AIRLOCK"].moveMinutes = 5;
 
 	// DEBUG SHIT ---------------------------------------------------

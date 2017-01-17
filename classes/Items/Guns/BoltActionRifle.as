@@ -30,7 +30,7 @@
 			this.description = "a bolt-action rifle";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "An ancient design by terran standards, this rifle actually packs a surprising wallop. Built by myr and designed to kill the tank-ish, resilient troopers, too, this weapon is a bit terrifying - to use. Using rounds designed for heavy steel guns to poke holes in tanks, it generates more recoil than two limbs can handle. You might be able to carry it around and crack off a few shots, but there's a good chance you won't hit anything.";
+			this.tooltip = "An ancient design by terran standards, this rifle actually packs a surprising wallop. Built by myr and designed to kill the tank-ish, resilient troopers, too, this weapon is a bit terrifying - to use. Using rounds designed for heavy steel guns to poke holes in tanks, it generates more recoil than two limbs can handle. You might be able to carry it around and crack off a few shots, but there’s a good chance you won’t hit anything.";
 			//Possibly breaks whatever tradition we had going for rifles; high piercing damage, but incredibly shitty accuracy. A gimmick gun.
 			this.attackVerb = "shoot";
 			attackNoun = "shot";

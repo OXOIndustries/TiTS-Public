@@ -29,7 +29,7 @@
 			this.description = "a pink, girly bra";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "You couldn't get a bra much more girly than this. It's pink, lace frilled, and littered with cute little bows.";
+			this.tooltip = "You couldn’t get a bra much more girly than this. It’s pink, lace frilled, and littered with cute little bows.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

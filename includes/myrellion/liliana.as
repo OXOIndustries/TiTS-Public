@@ -167,7 +167,7 @@ public function talkToLilianaYouBafoooooon():void
 	{
 		flags["LILIANA_TALKS"] = 1;
 		output("You tell Liliana you’d like to hear about her time in the army and why she deserted. She looks earnest but hugs herself tightly. She seems happy to have someone to talk to, but apprehensive about the subject. You put one of your hands over hers, calming their erratic movements for the moment.");
-		output("\n\n<i>“Ok. I got drafted just a short time ago. At first I was scared. Who wouldn’t be going into war with a pretty low survival rating? I didn’t want to get chopped up into little pieces because I couldn’t hold the swords and axes they use. I got through training because the other girls were drafted too, and they were nice. I didn’t know any of them going into training, but I got so close to some of them that I didn’t want to be separated when it came to assignment time,”</i> she says calmly. When the topic of her assignment comes up she pauses uncomfortably.");
+		output("\n\n<i>“Okay. I got drafted just a short time ago. At first I was scared. Who wouldn’t be going into war with a pretty low survival rating? I didn’t want to get chopped up into little pieces because I couldn’t hold the swords and axes they use. I got through training because the other girls were drafted too, and they were nice. I didn’t know any of them going into training, but I got so close to some of them that I didn’t want to be separated when it came to assignment time,”</i> she says calmly. When the topic of her assignment comes up she pauses uncomfortably.");
 		output("\n\n<i>“So... even after training I still couldn’t use axes effectively, and to make it worse I can’t shoot very well. The army is desperate nowadays though, so they found me a position. I got a field promotion to chemical division less than a week after I got to the battlefield. The girls I was deployed with told me not to worry, because it’s really easy and they usually go in when there isn’t any shooting going on,”</i> she continues, pointing to the emblem on her shoulder as if to elaborate before she pulls her blanket tighter around herself.");
 		output("\n\n<i>“I met one of the scientists that head the division on my first day there. She really made me feel at home, and told me some things about my equipment and duties in my new position. The chemical division wear these bulky air-tight suits hooked up to large oxygen and gas tanks. When we weren’t on the field we pretty much got to have free time in whatever cities were nearest to our deployment area, but when we went out we would clear the path for the other soldiers. Without us they would have had a much tougher time fighting the entrenched red soldiers.”</i> she says. At the end of this portion of speech she clenches her fists so hard her knuckles turn white.");
 		output("\n\n<i>“I got my first actual mission maybe two weeks after that. I had to go out in the middle of the night and gas a trench, that’s all. It was an area that had been deadlocked for months. The transport dropped me off at our trench, and I had to walk to the red side in my suit. It was very dark and the fog was thick, so I couldn’t see much of anything. The red trench wasn’t too far away. It felt like an eternity because of the darkness, but I suppose it helped when they couldn’t see me either. I got right up to the lookout’s post before they saw anything, and by then it was too late. They taught us in practice to start the gas going just before we reached the target, that way the enemy wouldn’t hear the mechanisms startup. The lookout took the gas first, and was out by the time she gasped to sound the alarm,”</i> she says shakily. You’re afraid for a moment that she’ll hurt herself with how tense she is, but she notices her tightness and relaxes a little.");
@@ -202,8 +202,8 @@ public function talkToLilianaYouBafoooooon():void
 		else addDisabledButton(0,"Get An Arm","Get An Arm","You don’t have enough credits to help Liliana get a new arm.");
 		//[Encourage-arm](requires at least 2k credits to start)
 		//tooltip: Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.
-		//Tooltip: encourage Liliana that she’ll be ok even without the arm.
-		addButton(1,"Encourage",encourageWhatsHerButtNotToBeRobocop,undefined,"Encourage","Encourage Liliana that she’ll be ok even without the arm.");
+		//Tooltip: encourage Liliana that she’ll be okay even without the arm.
+		addButton(1,"Encourage",encourageWhatsHerButtNotToBeRobocop,undefined,"Encourage","Encourage Liliana that she’ll be okay even without the arm.");
 		if(pc.hasHardLightEquipped()) addButton(2,"TechIsSexy",lilianaSexyholocawk,true,"TechIsSexy","Use your hardlight-equipped [pc.lowerGarments] to show Liliana how much fun integrated technology can be.");
 		else addDisabledButton(2,"TechIsSexy","TechIsSexy","You need undergarments equipped with a hardlight dildo to do this.");
 	}
@@ -213,7 +213,7 @@ public function talkToLilianaYouBafoooooon():void
 	{
 		flags["LILIANA_TALKS"] = 3;
 		output("You ask Liliana about the doctor you met, and smile when she nearly chokes on her drink. You ask her if she’s talked to her since she got her new arm.");
-		output("\n\n<i>“W-well, I kinda... I’m not... I don’t know if I should,”</i> she says nervously, shrugging her shoulders and shrinking into her blanket. She looks somewhat down and unsure of herself. You ask her why she shouldn’t. After all, the doc told her it was ok to contact her.");
+		output("\n\n<i>“W-well, I kinda... I’m not... I don’t know if I should,”</i> she says nervously, shrugging her shoulders and shrinking into her blanket. She looks somewhat down and unsure of herself. You ask her why she shouldn’t. After all, the doc told her it was okay to contact her.");
 		output("\n\n<i>“Yeah, but that was for emergencies. It’s not like she’s waiting for me to come see her,”</i> she continues. You tell her she doesn’t need to be. Even on an edge world relief mission she still has to have some time off, and that’s when she should ask.");
 		output("\n\n<i>“I don’t know, do you think she’d like me? I don’t know if her race is into people of the same gender, let alone different races,”</i> she says, still sounding discouraged. You tell her you know for a fact that most leithan aren’t opposed to relationships with other species, and as for gender she’ll have to ask her in person. You mention that even if it’s tough getting up the nerve to ask her, it’ll be worth it even if she gets turned down.");
 		output("\n\n<i>“Because it’s good practice? That sounds kinda dumb,”</i> she replies skeptically. You tell her that’s part of it, but she’ll have gotten over some of her shyness, making it easier for her to ask other people. All of which is only hypothetical if Anilla accepts her offer. You remind her that she doesn’t have to ask about a relationship right away, she could just ask her out to lunch or dinner first.");
@@ -226,7 +226,7 @@ public function talkToLilianaYouBafoooooon():void
 }
 
 //[Encourage-stay]
-//Tooltip: encourage Liliana that she’ll be ok even without the arm.
+//Tooltip: encourage Liliana that she’ll be okay even without the arm.
 public function encourageWhatsHerButtNotToBeRobocop():void
 {
 	clearOutput();
@@ -813,8 +813,8 @@ public function lilianaSexyholocawk(talked:Boolean = false):void
 		else addDisabledButton(0,"Get An Arm","Get An Arm","You don’t have enough credits to help Liliana get a new arm.");
 		//[Encourage-arm](requires at least 2k credits to start)
 		//tooltip: Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.
-		//Tooltip: encourage Liliana that she’ll be ok even without the arm.
-		addButton(1,"Encourage",encourageWhatsHerButtNotToBeRobocop,undefined,"Encourage","Encourage Liliana that she’ll be ok even without the arm.");
+		//Tooltip: encourage Liliana that she’ll be okay even without the arm.
+		addButton(1,"Encourage",encourageWhatsHerButtNotToBeRobocop,undefined,"Encourage","Encourage Liliana that she’ll be okay even without the arm.");
 	}
 	//else if did not come from talk scene
 	else

@@ -27,14 +27,14 @@ package classes.Items.Miscellaneous
 			//Used on inventory buttons
 			this.shortName = "Lactaid";
 			//Regular name
-			this.longName = "medipen labeled \"Lactaid\"";
+			this.longName = "medipen labeled “Lactaid”";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a medipen labeled \"Lactaid\"";
+			this.description = "a medipen labeled “Lactaid”";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "TamaniCorp's last ditch effort to recover their losses from the Gush fiasco, Lactaid is a simplistic one-use medipen that will cause the user to begin a natural lactation cycle. Unlike its predecessor, Lactaid has few side effects and a low risk of addiction.";
+			this.tooltip = "TamaniCorp’s last ditch effort to recover their losses from the Gush fiasco, Lactaid is a simplistic one-use medipen that will cause the user to begin a natural lactation cycle. Unlike its predecessor, Lactaid has few side effects and a low risk of addiction.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

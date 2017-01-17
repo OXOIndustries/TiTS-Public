@@ -28,7 +28,7 @@
 			this.description = "a pair of boyshorts";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A lacy set of undergarments, these boyshorts are meant to replicate the appearance of more masculine underwear, while still accentuating the wearer's feminine curves.";
+			this.tooltip = "A lacy set of undergarments, these boyshorts are meant to replicate the appearance of more masculine underwear, while still accentuating the wearer’s feminine curves.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

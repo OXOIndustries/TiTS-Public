@@ -156,7 +156,7 @@ package classes.Items.Transformatives
 				var newColor:String = RandomInCollection(skinColorList);
 				
 				if(changes > 0) output("\n\n");
-				output("Without warning, your [pc.skin] starts to change color, shifting form its normal [pc.skinColor] to a radically different coloration. Once it finishes, your new skin color is a");
+				output("Without warning, your [pc.skin] starts to change color, shifting from its normal [pc.skinColor] to a radically different coloration. Once it finishes, your new skin color is a");
 				switch(newColor)
 				{
 					case "pale": output(" blinding pale"); break;
@@ -191,7 +191,7 @@ package classes.Items.Transformatives
 			author("Owens");
 			
 			// if not brute/bimbo:
-			if(!target.isBro() && !target.isBimbo()) output("It seems a little silly that they would list a warning on what is clearly a skin product. Overcome by curiosity, you squeeze a small dollop onto a fingertip, hesitantly licking the clear drop. The taste of peaches and cream explodes in your mouth, a delightfully sweet combination. No wonder they had to put the warning! Well, might as well finish what you’ve started: unscrewing the top of the bottle, you place the opening to your [pc.lips] and tilt your head back, dumping the viscous liquid down your throat. It’s like a shot of the stickiest yogurt you’ve ever had, oozing down your throat and leaving a thick, creamy trail behind. As the last of the liquid leaves the bottle, you feel a rumbling in your belly. Setting the bottle down, yyou cover your mouth as your gut gurgles, feeling something working its way back up your throat. As if beyond your control, a hiccup forces your jaw open, releasing a smattering of small bubbles. They float gently upwards, drifting away from you as your upset tummy quiets. Smacking your lips after the strange experience, you settle down, waiting to see what happens..");
+			if(!target.isBro() && !target.isBimbo()) output("It seems a little silly that they would list a warning on what is clearly a skin product. Overcome by curiosity, you squeeze a small dollop onto a fingertip, hesitantly licking the clear drop. The taste of peaches and cream explodes in your mouth, a delightfully sweet combination. No wonder they had to put the warning! Well, might as well finish what you’ve started: unscrewing the top of the bottle, you place the opening to your [pc.lips] and tilt your head back, dumping the viscous liquid down your throat. It’s like a shot of the stickiest yogurt you’ve ever had, oozing down your throat and leaving a thick, creamy trail behind. As the last of the liquid leaves the bottle, you feel a rumbling in your belly. Setting the bottle down, yyou cover your mouth as your gut gurgles, feeling something working its way back up your throat. As if beyond your control, a hiccup forces your jaw open, releasing a smattering of small bubbles. They float gently upwards, drifting away from you as your upset tummy quiets. Smacking your lips after the strange experience, you settle down, waiting to see what happens.");
 			// If brute:
 			else if(target.isBro()) output("No stupid label tells you what to do! Ripping the cap off the bottle, you chug the liquid inside like a pro. No, like a bro! YEAH! Tossing the bottle aside, you swallow the last of the thick, clear stuff, feeling it clog your throat. Tastes like a fruity girly drink, not something you’d usually go for. A loud belch works it way up from your gut, letting a slew of bubbles escape from your mouth. Weird as shit, bro. Now bored, you wait, wondering what’s going to happen next.");
 			// if bimbo:
@@ -238,7 +238,7 @@ package classes.Items.Transformatives
 						TFList.push(3);
 				}
 			}
-			//9999 if(!target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED)) TFList.push(4);
+			if(!target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED)) TFList.push(4);
 			
 			if(TFList.length > 0) selTF = TFList[rand(TFList.length)];
 			
@@ -379,7 +379,7 @@ package classes.Items.Transformatives
 					else
 					{
 						output("There’s a familiar sensation as your " + (uniVag ? "cunny begins" : "cunnies begin") + " to drool hungrily. You giggle, " + (!target.isCrotchExposed() ? "stripping off your [pc.gear]" : "adjusting yourself") + " so you can get at " + (uniVag ? "your dripping twat" : "one of your dripping twats") + ". Ooh, it’s positively gushing in anticipation as you stick a finger inside, feeling your [pc.vagina " + vagIdx + "] clench around the intruder. Fishing the digit out, you pop it into your mouth, intending to savor the flavor of your [pc.girlCum]. Instead, you get a mouthful of peaches. With cream. Oh, right, that weird liquid you drank. You totally forgot about that. As you suck on the finger, wondering just why your girl juice tastes like the strange not-drink, you notice that your [pc.vagina " + vagIdx + "] is still gushing. Odd.");
-						output("\n\nToo weirded out by your dribbling lower mouth" + (uniVag ? "" : "s") + " to continue playing with yourself, you settle down to watch as what looks like a gallon of liquid seep out of you. The cream must be doing something inside of your tummy, since it doesn’t feel icky despite losing so much liquid. In fact, you begin to enjoy the feeling, slapping your hand against the " + ((target.vaginas[vagIdx].hasFlag(GLOBAL.FLAG_PUMPED) || target.vaginas[vagIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))  ? "puffy pussy" : "dainty nether") + " lips and watching as thick streams of clear, gooey liquid stretch from your fingers to the surface of your twat. However, the deluge only lasts for a little while, and soon it all but stops. You pout, watching as your soaked pussy lets out a few half hearted dribbles, before patting it gingerly.");
+						output("\n\nToo weirded out by your dribbling lower mouth" + (uniVag ? "" : "s") + " to continue playing with yourself, you settle down to watch as what looks like a gallon of liquid seep out of you. The cream must be doing something inside of your tummy, since it doesn’t feel icky despite losing so much liquid. In fact, you begin to enjoy the feeling, slapping your hand against the " + ((target.vaginas[vagIdx].hasFlag(GLOBAL.FLAG_PUMPED) || target.vaginas[vagIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) ? "puffy pussy" : "dainty nether") + " lips and watching as thick streams of clear, gooey liquid stretch from your fingers to the surface of your twat. However, the deluge only lasts for a little while, and soon it all but stops. You pout, watching as your soaked pussy lets out a few half hearted dribbles, before patting it gingerly.");
 						if(libidoGain) output(" While your were playing around, the lotion jacked up your sensitivity down there, making it feel so much better when you...");
 						output("\n\nYou moan unintentionally, having snuck a finger or two back into your [pc.vagina " + vagIdx + "]");
 						if(libidoGain) output(", enjoying the increased sensitivity more than you should");
@@ -400,15 +400,29 @@ package classes.Items.Transformatives
 					break;
 				// Asshole
 				case 4:
-					output("");
-					output("\n\n");
-					output("\n\n");
-					output("\n\n");
-					output("\n\n");
-					output("\n\n");
+					author("Jacques00");
 					
-					// 9999
+					var canReachBooty:Boolean = (target.hasPartGoo("arm") || target.isGoo() || (!target.isTaur() && !target.isDrider()));
+					
+					output("Something strange happens as your [pc.asshole] throbs quite forcefully. Your ass is definitely causing quite a ruckus. If it is trying to get your attention, it definitely has it. You try to bend your torso to get a good look at what is going on but to no avail. The orgasmic spasm of your anus increases in intensity as you begin to feel several sensations in sequence: First a light tingling, then an itching feeling, and finally a burning irritation. What is going on?!");
+					output("\n\nYou lose control of your lower body as your hands hit the floor and your [pc.butt] sticks straight up in the air, bobbing and bouncing in some kind of strange erotic dance. Your head follows soon after, laying against the floor as your ass stands as tall atop your [pc.legOrLegs] as possible.");
+					output("\n\nThe burning sensation turns into an intense inferno that builds higher and higher. Your [pc.asshole] tenses tighter and tighter. Your face flushes red as the internal pressure fills you more and more that you might want to explode. Then, as soon as you’ve reached the peak, the fire is suddenly doused with an extremely cool liquid. Relief... You almost coo at the feeling. The liquid spooge pouring out from between your [pc.butts] continues to trickle down your");
+					if(target.hasGenitals()) output(" [pc.crotch] and");
+					output(" [pc.legOrLegs], giving you goosebumps from the trail it leaves behind.");
+					output("\n\nWith your butt still in the air, you attempt to explore your rectum with your hands");
+					if(!canReachBooty) output(" but you can’t seem to reach it, no matter how much you want to. Regardless, y");
+					else output(". Y");
+					output("ou can feel your asshole become a lot more slick than usual, drooling a constant stream of thick lube. You try to");
+					if(!canReachBooty) output(" move your rectal muscles to cut the flow");
+					else output(" wipe it away with your fingers");
+					output(", but it will not cease. You even retry it a few times, but it is a futile effort. <b>It seems the lotion has worked with the microsurgeons in your system to permanently lubricate your backdoor...</b>");
+					output("\n\nWhen you think your butt has finally calmed, you get yourself up off the floor and on your [pc.feet]. As you do, however, you notice a strong, sweet scent of peaches and cream flow from your ass.");
+					if(kGAMECLASS.silly) output(" Great, now your butt smells lovely.");
+					output(" You dust yourself off and rub your backside tenderly. Your cheeks and hips tingle as your asshole throbs in response, making sure the trail of lube continues to flow down your [pc.thigh]... well, now you have something new to get used to!");
+					
+					target.lust(30);
 					target.ass.addFlag(GLOBAL.FLAG_LUBRICATED);
+					if(libidoGain) target.libido(1 + rand(5));
 					break;
 				// Dud effect
 				default:
@@ -445,7 +459,7 @@ package classes.Items.Transformatives
 					if(!target.vaginas[i].hasFlag(GLOBAL.FLAG_LUBRICATED)) return false;
 				}
 			}
-			//9999 if(!target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED)) return false;
+			if(!target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED)) return false;
 			
 			return true;
 		}

@@ -67,7 +67,7 @@ package classes.Items.Miscellaneous
 				if (targetCreature is PlayerCharacter)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?");
+					kGAMECLASS.output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn’t it?");
 				}
 				else
 				{
@@ -116,7 +116,7 @@ package classes.Items.Miscellaneous
 				{
 					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 					
-					if (cTarget is PlayerCharacter) output("\n<b>You're blinded by the luminous flashes.</b>");
+					if (cTarget is PlayerCharacter) output("\n<b>You’re blinded by the luminous flashes.</b>");
 					else output("\n<b>" + StringUtil.capitalize(cTarget.getCombatName(), false) + " is blinded by the luminous flashes.</b>");
 				}
 				else

@@ -520,7 +520,7 @@ public function buskySexChestWorship(modelingItem:*):void {
 	output("\n\nBut you can’t keep your hands contained to such a small area when there’s so much more to cover, you explore the rest of his body, lats, traps, deltoids, and a bunch of other muscles that you recognize, their definitions being lost in the haze of musk. Busky lets a out deep groan, clearly enjoying your worship. He closes his eyes as his head falls back.");
 	output("\n\nYou stay like that for a few more minutes, playing with the musclebound bull’s strapped body. Eventually, Busky pushes you off of himself, a playful smile on his lips.");
 	
-	output("\n\n<i>“Ok, that’s enough for now. I’ve got to...”</i> he pauses, not out of confusion, but out of a relaxed and lustful bliss, fishing for the words out of a swamp of ecstasy, <i>“get back to work.");
+	output("\n\n<i>“Okay, that’s enough for now. I’ve got to...”</i> he pauses, not out of confusion, but out of a relaxed and lustful bliss, fishing for the words out of a swamp of ecstasy, <i>“get back to work.");
 	if(pc.femininity <= 40 && !pc.hasBreasts()) output(" Unless... you want to have a more, <b>thorough-out</b> tour of my body. How about it?");
 	output("”</i>");
 	
@@ -1570,7 +1570,7 @@ public function buskySexHotTubFuck():void {
 	else output(" You rest your head on Busky’s shoulder, his arm sneaks it’s way over yours, as you rest under the embrace of Busky’s pique physical condition.");
 	
 	output("\n\nWith your eyes closed, you can finally enjoy the water, once a tad too hot, now perfect. The conversations of the other people in the hot tub fade into soft murmurs, accompanying the light splashed of the small waves hitting the walls. The waves, probably coming from a mixture of water jets and bovine fervor. A smile crawls across your face as you finally find peace, in a hot tub, away from all the hassle from the probes, your cousin, and Steele Co.");
-	output("\n\nYou stay in a state of relaxation for an hour or so, you might have come here for a romp with Busky, but it seems like both of you are content with relaxing. Not that you’re not already painfully aroused right now, but, you’re ok with it. That is until a giddy voice breaks your mediation.");
+	output("\n\nYou stay in a state of relaxation for an hour or so, you might have come here for a romp with Busky, but it seems like both of you are content with relaxing. Not that you’re not already painfully aroused right now, but, you’re okay with it. That is until a giddy voice breaks your mediation.");
 	output("\n\n<i>“Hey there cutie! Wanna have a good time?”</i> the voice giggled with the glee only a Treated cow could have.");
 	output("\n\nYou look around for the voice, still in a haze of relaxation, but it’s quickly broken as you’re shoved to the side, away from Busky. You reflexively look to who pushed you, only to find an extremely busty cowgirl swimming onto Busky’s lap, shoving her bosom into his face.");
 	output("\n\nHe clearly isn’t enjoying it, but the cow can’t tell. She reaches for his now flaccid cock, trying to rub it to life.");

@@ -29,7 +29,7 @@
 			this.description = "a hardlight, anti-gravity bra";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A sleek metallic necklace fitted with a hard light projector. Upon activation it coats the wearer's bust in dazzling sapphire light, leaving the breasts in full view as they press against the transparent glow. Guaranteed to fit all sizes, and to help prevent heftier chests from sagging on high gravity planets.";
+			this.tooltip = "A sleek metallic necklace fitted with a hard light projector. Upon activation it coats the wearer’s bust in dazzling sapphire light, leaving the breasts in full view as they press against the transparent glow. Guaranteed to fit all sizes, and to help prevent heftier chests from sagging on high gravity planets.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -68,7 +68,7 @@ package classes.Items.Toys
 				}
 				else if(kGAMECLASS.pumpedCunts() >= target.totalVaginas())
 				{
-					kGAMECLASS.output("You've already gotten as pumped as possible.");
+					kGAMECLASS.output("You’ve already gotten as pumped as possible.");
 				}
 				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NOFAP))
 				{

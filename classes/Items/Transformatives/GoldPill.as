@@ -108,7 +108,7 @@ package classes.Items.Transformatives
 					{
 						if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 						{
-							output("\n\nYour gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the myr you're striving to become! Before long, your body is covered with solid flesh! <b>You now have normal skin!</b>");
+							output("\n\nYour gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the myr you’re striving to become! Before long, your body is covered with solid flesh! <b>You now have normal skin!</b>");
 							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 							pc.clearSkinFlags();
 							changes++;
@@ -130,11 +130,11 @@ package classes.Items.Transformatives
 								output("\n\nYour [pc.legOrLegs] ");
 								if(pc.legCount > 1) output("are");
 								else output("is");
-								output(" suddenly overcome by aching, and you're overcome with the realization that myr don't exactly have the same body shape you do. You whimper");
+								output(" suddenly overcome by aching, and you’re overcome with the realization that myr don’t exactly have the same body shape you do. You whimper");
 								if(pc.legCount != 2) output(" and kiss your [pc.legOrLegs] goodbye");
-								output(", stumbling onto the ground as McAllister's concoction works its genetic magic on you.");
+								output(", stumbling onto the ground as McAllister’s concoction works its genetic magic on you.");
 								if(pc.isTaur() || pc.legCount > 3) output(" Your rear legs start to pull into your body, and your front legs begin to change shape, becoming more and more human-like. You bestial body slowly compresses, becoming as bipedal as the myr you seek to become.");
-								else if(pc.isNaga()) output(" Your bestial lower body is wracked with a mix of pleasure and pain, and you watch with wide eyes as it splits apart, shedding its outer layers as it does so. Before long, you've got a pair of bare, bipedal legs!");
+								else if(pc.isNaga()) output(" Your bestial lower body is wracked with a mix of pleasure and pain, and you watch with wide eyes as it splits apart, shedding its outer layers as it does so. Before long, you’ve got a pair of bare, bipedal legs!");
 								output(" <b>You have terran-like legs now!</b>");
 								pc.legType = GLOBAL.TYPE_HUMAN;
 								pc.clearLegFlags();
@@ -160,7 +160,7 @@ package classes.Items.Transformatives
 								}
 								if(legs) output("[pc.legs]");
 								var black:Boolean = (rand(2) == 0);
-								output(". They're giving way to a growing ");
+								output(". They’re giving way to a growing ");
 								if(black) output("black");
 								else output("red");
 								output(" layer of hardened flesh - no, chitin! You watch with glee as <b>your");
@@ -170,7 +170,7 @@ package classes.Items.Transformatives
 									if(legs) output(" and ");
 								}
 								if(legs) output("legs");
-								output(" cover themselves with plates of gold, insectile chitin</b>, just like a myr's!");
+								output(" cover themselves with plates of gold, insectile chitin</b>, just like a myr’s!");
 								pc.armType = GLOBAL.TYPE_MYR;
 								pc.legType = GLOBAL.TYPE_MYR;
 								pc.legCount = 2;
@@ -191,7 +191,7 @@ package classes.Items.Transformatives
 						{
 							if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 							{
-								output("\n\nAs you adjust your chitinous limbs, you're also forced to watch your body-covering ");
+								output("\n\nAs you adjust your chitinous limbs, you’re also forced to watch your body-covering ");
 								if(pc.hasFur()) output("fur");
 								else output("scales");
 								output(" shed off, slowly wilting and then falling to the ground, revealing the [pc.skinTone] flesh beneath. <b>Most of your body is covered in bare skin now.</b>");
@@ -211,8 +211,8 @@ package classes.Items.Transformatives
 						if(pc.hairColorUnlocked("gold"))
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
-							if(pc.hasHair()) output("through your [pc.hair], you realize it's changed color - <b>you're now sporting a head of brilliant gold hair!</b>");
-							else output("\n\nacross your bald head across your head, you don't feel any differences. A quick look in your Codex's reflective backplate, though, shows that <b>your eyebrows and lashes have changed to a rich, dark gold - your hair color's different!</b>");
+							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - <b>you’re now sporting a head of brilliant gold hair!</b>");
+							else output("\n\nacross your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to a rich, dark gold - your hair color’s different!</b>");
 							pc.hairColor = "gold";
 							changes++;
 						}
@@ -223,8 +223,8 @@ package classes.Items.Transformatives
 						if(pc.hairColorUnlocked("black"))
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
-							if(pc.hasHair()) output("through your [pc.hair], you realize it's changed color - <b>you're now sporting a head of hair that's black as night!</b>");
-							else output("across your bald head across your head, you don't feel any differences. A quick look in your Codex's reflective backplate, though, shows that <b>your eyebrows and lashes have changed to pitch black - your hair color's different!</b>");
+							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - <b>you’re now sporting a head of hair that’s black as night!</b>");
+							else output("across your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to pitch black - your hair color’s different!</b>");
 							pc.hairColor = "black";
 							changes++;
 						}
@@ -239,7 +239,7 @@ package classes.Items.Transformatives
 						output("\n\nYou feel your [pc.face] start to strain, becoming ");
 						if(pc.isGoo()) output("harder and firmer, taking on a more defined shape");
 						else output("softer and more malleable");
-						output(". You run a hand along your mutating features, and find that your face is taking on an altogether more human shape. You're soon left with a solidifying visage: " + pc.mf("a manly jaw and sharp features,","a cute little nose and delicate features,") + " <b>an altogether human face</b>.");
+						output(". You run a hand along your mutating features, and find that your face is taking on an altogether more human shape. You’re soon left with a solidifying visage: " + pc.mf("a manly jaw and sharp features,","a cute little nose and delicate features,") + " <b>an altogether human face</b>.");
 						pc.faceType = GLOBAL.TYPE_HUMAN;
 						pc.clearFaceFlags();
 						changes++;
@@ -289,12 +289,12 @@ package classes.Items.Transformatives
 							output("\n\nYou feel a tightness in your [pc.chest], following by a squirt of [pc.milkNoun] that gushes out of your [pc.nipples]. Your eyes go wide, and your hands grab your tits as they discharge all over your ");
 							if(!pc.isNude()) output("clothes");
 							else output("nude body");
-							output(". You blink, barely able to stay standing as waves of pleasure twist through your laden chest. As your burst of lactation winds down, though, you notice that what your tits are leaking isn't [pc.milkNoun] anymore... it looks kinda like honey, now. <b>It looks like you're lactating the honey-like nectar of a myr girl now!</b>");
+							output(". You blink, barely able to stay standing as waves of pleasure twist through your laden chest. As your burst of lactation winds down, though, you notice that what your tits are leaking isn’t [pc.milkNoun] anymore... it looks kinda like honey, now. <b>It looks like you’re lactating the honey-like nectar of a myr girl now!</b>");
 						}
 						//if PC isn't lactating
 						else
 						{
-							output("\n\nYou feel a strange tightness in your chest - not painful, really, but a little alarming. After a few moments, your Codex alerts you that <b>were you to ever begin lactating in the future, you'd now produce a honey-like nectar of the same variety that myr do.</b>");
+							output("\n\nYou feel a strange tightness in your chest - not painful, really, but a little alarming. After a few moments, your Codex alerts you that <b>were you to ever begin lactating in the future, you’d now produce a honey-like nectar of the same variety that myr do.</b>");
 						}
 						pc.milkType = GLOBAL.FLUID_TYPE_HONEY;
 						changes++;
@@ -325,7 +325,7 @@ package classes.Items.Transformatives
 								//Grow other too-small rows.
 								if(pc.breastRows[b].breastRating() < 18 && b != smallestBoobRow) pc.breastRows[b].breastRatingRaw++;
 							}
-							output("\n\nBy the time the growth begins to abate, you're sure <b>you're up to " + pc.breastCup(smallestBoobRow) + "s by now!</b>");
+							output("\n\nBy the time the growth begins to abate, you’re sure <b>you’re up to " + pc.breastCup(smallestBoobRow) + "s by now!</b>");
 							changes++;
 							pc.lust(20+rand(10));
 						}
@@ -339,7 +339,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.eyeTypeUnlocked(GLOBAL.TYPE_MYR))
 					{
-						output("\n\nYour eyes feel strange after a few moments, and your vision starts to swim. You clutch at them and find them... different... as you run your fingers near them. Larger, fuller... darker. Your vision completely blanks, leaving you momentarily blinded. When your vision returns, you feel like everything looks a little fuzzy, especially at long ranges. A quick glance at your Codex's reflective back shows you that <b>your eyes are now black and featureless like a myr's!</b>");
+						output("\n\nYour eyes feel strange after a few moments, and your vision starts to swim. You clutch at them and find them... different... as you run your fingers near them. Larger, fuller... darker. Your vision completely blanks, leaving you momentarily blinded. When your vision returns, you feel like everything looks a little fuzzy, especially at long ranges. A quick glance at your Codex’s reflective back shows you that <b>your eyes are now black and featureless like a myr’s!</b>");
 						pc.eyeType = GLOBAL.TYPE_MYR;
 						pc.eyeColor = "black";
 						changes++;
@@ -364,7 +364,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.cumTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
 					{
-						output("\n\nA sudden tightness clenches in your [pc.balls], making your [pc.cocks] jump to attention. You grimace as the sensation intensifies, making you nearly double over as the myr pill's changes wrack your body, altering the very fabric of your being");
+						output("\n\nA sudden tightness clenches in your [pc.balls], making your [pc.cocks] jump to attention. You grimace as the sensation intensifies, making you nearly double over as the myr pill’s changes wrack your body, altering the very fabric of your being");
 						if(pc.balls > 0) output(", radiating out from your [pc.balls] to your manhood");
 						output(". You grab ");
 						if(pc.cockTotal() > 1) output("one of your rods");
@@ -376,7 +376,7 @@ package classes.Items.Transformatives
 						output("\n\nWith a cry of pleasure, your [pc.hips] buck into your hand, ramming out a thick streak of amber spooge that spatters across your thighs and crotch, glazing your groin in a creamy yellow. Your back arches instinctively, thrusting your crotch out as you continue to fap and cum, spraying yourself in sweet cock-nectar for what seems like an eternity, until all that pressure in your ");
 						if(pc.balls > 0) output("[pc.balls]");
 						else output("body");
-						output(" finally fades away.\n\n<b>It looks like you'll be cumming honey from here on out.</b>");
+						output(" finally fades away.\n\n<b>It looks like you’ll be cumming honey from here on out.</b>");
 						pc.cumType = GLOBAL.FLUID_TYPE_HONEY;
 						changes++;
 					}
@@ -409,14 +409,14 @@ package classes.Items.Transformatives
 				//Grow wings once! Requires legs!
 				if(changes < changeLimit && target.hasCock() && target.legType == GLOBAL.TYPE_MYR && (target.wingType != GLOBAL.TYPE_SMALLBEE && target.wingType != GLOBAL.TYPE_MYR) && target.wingTypeUnlocked(GLOBAL.TYPE_MYR) && rand(4) == 0) {
 					if(!target.hasWings()) {
-						output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there's the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
+						output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there’s the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
 						if(target.armor.shortName != "") output(" and pull back your [pc.armor.longName]");
-						output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They're too small to allow you to fly, but you're definitely getting more myr-like.");
+						output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They’re too small to allow you to fly, but you’re definitely getting more myr-like.");
 						target.shiftWings(GLOBAL.TYPE_MYR, 2);
 					}
 					//TF other wings!
 					else {
-						output("\n\nA cramp ruffles your [pc.wings], making them flutter wildly as they contort and twist. You can feel them changing as they flail around, thinning, shrinking, and warping with each gasp of air you drag into your lungs. A few seconds later, your body calms, and you're able to look behind you. <b>You've grown small, transparent, myr-like wings!</b>");
+						output("\n\nA cramp ruffles your [pc.wings], making them flutter wildly as they contort and twist. You can feel them changing as they flail around, thinning, shrinking, and warping with each gasp of air you drag into your lungs. A few seconds later, your body calms, and you’re able to look behind you. <b>You’ve grown small, transparent, myr-like wings!</b>");
 						target.wingType = GLOBAL.TYPE_MYR;
 						if(target.wingCount < 2) target.wingCount = 2;
 					}
@@ -430,14 +430,14 @@ package classes.Items.Transformatives
 				//Slight reduction to thickness. 
 				if(pc.thickness > 15 && changes < changeLimit && rand(3) == 0)
 				{
-					output("\n\nAs the pill works its magic, you find yourself feeling a little slimmer. Your [pc.belly] seems a little flatter and firmer, and you feel lighter overall. You guess you've gotten thinner!");
+					output("\n\nAs the pill works its magic, you find yourself feeling a little slimmer. Your [pc.belly] seems a little flatter and firmer, and you feel lighter overall. You guess you’ve gotten thinner!");
 					pc.thickness-=(5+rand(5));
 					changes++;
 				}
 				//+Femininity (if PC has cunt)
 				if(pc.femininity < 85 && pc.hasVagina() && changes < changeLimit && rand(3) == 0)
 				{
-					output("\n\nAs the ant pill works its magic, you find that your cheeks feel softer, your chin gentler... you've got an overall more feminine profile, completely with longer lashes and poutier lips. Definitely cuter now!");
+					output("\n\nAs the ant pill works its magic, you find that your cheeks feel softer, your chin gentler... you’ve got an overall more feminine profile, completely with longer lashes and poutier lips. Definitely cuter now!");
 					pc.femininity += 5 + rand(3);
 					changes++;
 				}
@@ -448,7 +448,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou feel a pressure welling up in your [pc.fullChest], like your tits are swelling up");
 					if(pc.isChestGarbed()) output(" under your [pc.upperGarment]");
-					output(". You don't think too much of it... until you feel an unnatural wetness on your [pc.nipples]. You reach down and grab one of your tits, and the moment you squeeze it, you feel a shock of pleasure rip through you and liquid squirts out of your tit in a thin trickle. With a blink, you realize <b>you're lactating!</b>");
+					output(". You don’t think too much of it... until you feel an unnatural wetness on your [pc.nipples]. You reach down and grab one of your tits, and the moment you squeeze it, you feel a shock of pleasure rip through you and liquid squirts out of your tit in a thin trickle. With a blink, you realize <b>you’re lactating!</b>");
 					changes++;
 					pc.milkMultiplier = 60;
 				}
@@ -456,7 +456,7 @@ package classes.Items.Transformatives
 				//Max 60. Gain +30 Lust
 				if(changes < changeLimit && pc.libido() < 60 && rand(3) == 0)
 				{
-					output("\n\nYou're definitely starting to feel a little hornier now, with the familiar heat of arousal coursing through you. Man, what you wouldn't give for a cute little myr girl between your legs about now...");
+					output("\n\nYou’re definitely starting to feel a little hornier now, with the familiar heat of arousal coursing through you. Man, what you wouldn’t give for a cute little myr girl between your legs about now...");
 					pc.slowStatGain("libido",5);
 					pc.lust(30);
 					changes++;
@@ -469,7 +469,7 @@ package classes.Items.Transformatives
 					if(pc.thickness >= 50)
 					{
 						output("\n\nYour entire body starts to tingle, an odd feeling just under the [pc.skin] that has you itching and scratching at yourself. Your arms, belly, and [pc.legOrLegs] all feel particularly strange... and oddly light. You watch as your body seems to tighten, losing its thickness. At the same time, your [pc.chest] tightens and stretches, seeming to gain every bit of thickness the rest of your body is losing.");
-						output("\n\nAs pleasure overwhelms every other feeling, you recall the reason why gold myr are called honeypots so much: the more they eat, the bigger their tits and abdomens get, swelling with honey instead of fat. The way your body's reacting now, <b>you think that you have the honeypot gene now!</b> Instead of gaining thickness, you'll just become more and more curvaceous.");
+						output("\n\nAs pleasure overwhelms every other feeling, you recall the reason why gold myr are called honeypots so much: the more they eat, the bigger their tits and abdomens get, swelling with honey instead of fat. The way your body’s reacting now, <b>you think that you have the honeypot gene now!</b> Instead of gaining thickness, you’ll just become more and more curvaceous.");
 						//Drop thickness to 20 and put remainder into boobs!
 						boobDiff = pc.thickness - 20;
 						boobDiff /= 10;
@@ -478,8 +478,8 @@ package classes.Items.Transformatives
 					//if PC has low thickness:
 					else
 					{
-						output("\n\nYou feel a little tingly all over, and your [pc.chest] starts to feel warm and tight. Looking yourself over, you could swear you look thinner... and that your tits look a little bigger. You run a hand over your chest, and feel a shiver of pleasure as you cup your breast. After a moment, you're sure: <b>your tits are definitely bigger now, full of [pc.milkNoun]</b>. If only a little.");
-						output("\n\nAs pleasure overwhelms every other feeling, you recall the reason why gold myr are called honeypots so much: the more they eat, the bigger their tits and abdomens get, swelling with honey instead of fat. The way your body's reacting now, <b>you think that you have the honeypot gene now!</b> Instead of gaining thickness, you'll just become more and more curvaceous.");
+						output("\n\nYou feel a little tingly all over, and your [pc.chest] starts to feel warm and tight. Looking yourself over, you could swear you look thinner... and that your tits look a little bigger. You run a hand over your chest, and feel a shiver of pleasure as you cup your breast. After a moment, you’re sure: <b>your tits are definitely bigger now, full of [pc.milkNoun]</b>. If only a little.");
+						output("\n\nAs pleasure overwhelms every other feeling, you recall the reason why gold myr are called honeypots so much: the more they eat, the bigger their tits and abdomens get, swelling with honey instead of fat. The way your body’s reacting now, <b>you think that you have the honeypot gene now!</b> Instead of gaining thickness, you’ll just become more and more curvaceous.");
 						boobDiff = 1;
 						pc.thickness -= 10;
 						if(pc.thickness < 1) pc.thickness = 1;
@@ -495,7 +495,7 @@ package classes.Items.Transformatives
 					if(pc.hasPerk("Myr Venom"))
 					{
 						output("\n\nWith your new genes attained, your jaw begins to shiver all over and you feel your canines tingle. You rub your [pc.tongueNoun] along the roof of your mouth and across the back of your front teeth. As you do this, a pool of pink myr venom rapidly collects and a stream of the stuff dribbles down your [pc.lip]. Surprised, you reflexively swollow it before any more can come out. You almost instantly regret the action as an overwhelming feeling of desire and anticipation skyrockets in your [pc.groin], giving way to the lust-laden effects of the venom!");
-						output("\n\nComposing yourself, you expect the venom to replenish itself after discharging so much at once, but instead it's just regular, watery spit. After noticing the change in your saliva, you double check your Codex and confirm that <b>you have lost your lust-inducing venom from your previous transformation</b>. It seems the ability is not compatible with this drug...");
+						output("\n\nComposing yourself, you expect the venom to replenish itself after discharging so much at once, but instead it’s just regular, watery spit. After noticing the change in your saliva, you double check your Codex and confirm that <b>you have lost your lust-inducing venom from your previous transformation</b>. It seems the ability is not compatible with this drug...");
 						// Lusty!
 						pc.lust(9000);
 						// Remove perk!
@@ -507,7 +507,7 @@ package classes.Items.Transformatives
 				if(changes < changeLimit && pc.hasPerk("Myr Venom") && rand(4) == 0)
 				{
 					output("\n\nSuddenly, your jaw begins to shiver all over and you feel your canines tingle. You rub your [pc.tongueNoun] along the roof of your mouth and across the back of your front teeth. As you do this, a pool of pink myr venom rapidly collects and a stream of the stuff dribbles down your [pc.lip]. Surprised, you reflexively swollow it before any more can come out. You almost instantly regret the action as an overwhelming feeling of desire and anticipation skyrockets in your [pc.groin], giving way to the lust-laden effects of the venom!");
-					output("\n\nComposing yourself, you expect the venom to replenish itself after discharging so much at once, but instead it's just regular, watery spit. After noticing the change in your saliva, you double check your Codex and confirm that <b>you have lost your lust-inducing venom from your previous transformation</b>. It seems the ability is not compatible with this drug...");
+					output("\n\nComposing yourself, you expect the venom to replenish itself after discharging so much at once, but instead it’s just regular, watery spit. After noticing the change in your saliva, you double check your Codex and confirm that <b>you have lost your lust-inducing venom from your previous transformation</b>. It seems the ability is not compatible with this drug...");
 					// Lusty!
 					pc.lust(9000);
 					// Remove perk!
@@ -523,17 +523,17 @@ package classes.Items.Transformatives
 						{
 							if(pc.tailCount == 0) 
 							{
-								output("\n\nSomething feels... strange in your backside, like your spine is trying to curl up out of your back and out of your body. Pain hits you, making you stagger down onto the ground as something sprouts from your back. You reach back, feeling your body up... and realize that something bulbous and plated is growing from you. Minutes pass in a mix of agony and alien pleasure before your transformation seems to have completed, and <b>you're left with a thick, insectile abdomen growing from your back</b>.");
+								output("\n\nSomething feels... strange in your backside, like your spine is trying to curl up out of your back and out of your body. Pain hits you, making you stagger down onto the ground as something sprouts from your back. You reach back, feeling your body up... and realize that something bulbous and plated is growing from you. Minutes pass in a mix of agony and alien pleasure before your transformation seems to have completed, and <b>you’re left with a thick, insectile abdomen growing from your back</b>.");
 							}
 							else
 							{
 								output("\n\nSomething feels... strange in your [pc.tails], like ");
 								if(pc.tailCount == 1) output("its trying to curl up into itself.");
-								else output("they're trying to curl into one another.");
+								else output("they’re trying to curl into one another.");
 								output(" Pain hits you, making you stagger down onto the ground as ");
 								if(pc.tailCount == 1) output("your [pc.tail] becomes something else");
 								else output("your [pc.tails] become something else");
-								output(". You reach back, feeling your body up... and realize that something bulbous and plated is growing from you. Minutes pass in a mix of agony and alien pleasure before your transformation seems to have completed, and <b>you're left with a thick, insectile abdomen growing from your back</b>.");
+								output(". You reach back, feeling your body up... and realize that something bulbous and plated is growing from you. Minutes pass in a mix of agony and alien pleasure before your transformation seems to have completed, and <b>you’re left with a thick, insectile abdomen growing from your back</b>.");
 							}
 							pc.tailCount = 1;
 							pc.clearTailFlags();
@@ -555,7 +555,7 @@ package classes.Items.Transformatives
 						output("\n\nYou feel something poking out of your [pc.skin], just below your [pc.chest]. With a discomforted grunt, you slip a hand ");
 						if(pc.isChestGarbed()) output("under your clothes");
 						else output("to your chest");
-						output(" and run your fingers across your [pc.skinFurScales]. You quickly find a pair of small spots, little more than nubs of flesh, growing out of you, getting thicker and larger. The skin around them starts to bud up, forming into a pair of small, and <i>very</i> sensitive little mounds. You blink in surprise, ogling your body as you realize that <b>you've grown a second pair of breasts</b>!");
+						output(" and run your fingers across your [pc.skinFurScales]. You quickly find a pair of small spots, little more than nubs of flesh, growing out of you, getting thicker and larger. The skin around them starts to bud up, forming into a pair of small, and <i>very</i> sensitive little mounds. You blink in surprise, ogling your body as you realize that <b>you’ve grown a second pair of breasts</b>!");
 						changes++;
 						pc.createBreastRow();
 						pc.breastRows[1].breastRatingRaw = 1;

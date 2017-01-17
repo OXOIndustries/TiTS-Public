@@ -29,7 +29,7 @@ package classes.Items.Transformatives {
 			
 			description = "a salty Jaw-Breaker";
 			
-			tooltip = "This obnoxiously large jaw-breaker contains a hard mixture of sugar, hormones, and microsurgeons that will refill the consumer's masculine reproductive organs nigh-instantly.";
+			tooltip = "This obnoxiously large jaw-breaker contains a hard mixture of sugar, hormones, and microsurgeons that will refill the consumer’s masculine reproductive organs nigh-instantly.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -45,11 +45,11 @@ package classes.Items.Transformatives {
 			if (target is PlayerCharacter) {
 				output("You unwrap the candy from its package and carefully pop it in your mouth, bracing for the harsh flavor. To your surprise, it’s much more sweet than you imagined! The salty name must refer to its effects, not the flavor");
 				//where there is a cock, there is cum - jaw breaker is only effective on peeps with (internal) balls
-				if (!target.hasCock() && target.balls == 0) output(" - but whatever it ought to do, you only feel a slight itching around your crotch. <b>Seems you don't package the sort of goods affected by this treat.</b>");
+				if (!target.hasCock() && target.balls == 0) output(" - but whatever it ought to do, you only feel a slight itching around your crotch. <b>Seems you don’t package the sort of goods affected by this treat.</b>");
 				else output(".");
 				if (!target.hasCock() && target.balls == 0) output(" Still, you")
 				else output(" You"); 
-				output(" suck on it for several minutes, savoring the flavor while it slowly melts into a small bit. When it's dissolved into a manageable size, you promptly swallow it, and it quickly settles in your stomach.");
+				output(" suck on it for several minutes, savoring the flavor while it slowly melts into a small bit. When it’s dissolved into a manageable size, you promptly swallow it, and it quickly settles in your stomach.");
 				
 				target.energy(5);
 				
@@ -74,10 +74,10 @@ package classes.Items.Transformatives {
 						output(" to expand in your grip, your [pc.sack] hanging lower with its new-found weight. Your ball");
 						if(target.balls > 1) output("s are");
 						else output(" is");
-						output(" brimming with [pc.cum], which you'll happily unload into the next hole you can find.");
+						output(" brimming with [pc.cum], which you’ll happily unload into the next hole you can find.");
 					//if above 75% print text about already full balls
 					} else {
-						output(" you can feel your potent [pc.cumNoun] churn beneath your fingertips. Nothing besides that happens. <b>These candies would definitely be more useful to someone who isn't so full of [pc.cumNoun] already!</b>");
+						output(" you can feel your potent [pc.cumNoun] churn beneath your fingertips. Nothing besides that happens. <b>These candies would definitely be more useful to someone who isn’t so full of [pc.cumNoun] already!</b>");
 					}
 				//if player has internal balls
 				} else if(target.balls == 0 && target.hasCock()) {
@@ -88,7 +88,7 @@ package classes.Items.Transformatives {
 						output(", and you start to feel a bit fuller from your prostate ballooning with a whole new load of [pc.cum] to dump in the next hole you can find.");
 					//if above 75% print text about already full balls
 					} else {
-						output(", but besides that, nothing else happens. <b>These candies would definitely be more useful to someone who isn't so full of [pc.cumNoun] already!</b>");
+						output(", but besides that, nothing else happens. <b>These candies would definitely be more useful to someone who isn’t so full of [pc.cumNoun] already!</b>");
 					}
 				}
 				//fill up balls to 75% if below that amount.

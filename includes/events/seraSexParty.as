@@ -1568,7 +1568,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			if(flags["SERA_PARTY_STAGE4"] == "stay") {
 				output(" <i>“You know I’m - I’m very angry with you. Why didja spend all night sitting with Jarvis like some - some sitting thing? I wanted you to come and have fun with me.”</i>");
 				output("\n\n<i>“You told me to go over to him,”</i> you reply calmly. <i>“Present myself as a gift.”</i>");
-				output("\n\n<i>“I - ? Yeah, I did, didn’t I,”</i> Sera agrees confidently. <i>“Just – don’t spend all night gifting yourself to old guys next time, ok? I wanna do some unwrapping too.”</i>");
+				output("\n\n<i>“I - ? Yeah, I did, didn’t I,”</i> Sera agrees confidently. <i>“Just – don’t spend all night gifting yourself to old guys next time, okay? I wanna do some unwrapping too.”</i>");
 			}
 			// Went to Vedice:
 			if(flags["SERA_PARTY_STAGE4"] == "vedice") {

@@ -33,7 +33,7 @@
 			this.description = "a Thermal Pack";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This disposable device is roughly the size of an egg. Upon activation, it emits a microwave field around you to protect you from some of the negative effects of the cold. It probably can't handle the deep freezes of a snowstorm, though.";
+			this.tooltip = "This disposable device is roughly the size of an egg. Upon activation, it emits a microwave field around you to protect you from some of the negative effects of the cold. It probably can’t handle the deep freezes of a snowstorm, though.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -64,13 +64,13 @@
 				kGAMECLASS.clearOutput();
 				//Consume:
 				kGAMECLASS.output("You squeeze the top and bottom of the silver egg together. With a soft hum, it begins to float slowly around you, orbiting you like a tiny moon. Around its center, a red ring glows brightly, bathing you with a mild heat.");
-				if(!target.hasStatusEffect("T.Pack")) target.createStatusEffect("T.Pack",0,0,0,0,false,"Icon_Smelly","You are protected from Uveto's harsh cold... for now!",false,1440);
+				if(!target.hasStatusEffect("T.Pack")) target.createStatusEffect("T.Pack",0,0,0,0,false,"Icon_Smelly","You are protected from Uveto’s harsh cold... for now!",false,1440);
 			}
 			else
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " activates the Thermal Pack.");
-				if(!target.hasStatusEffect("T.Pack")) target.createStatusEffect("T.Pack",0,0,0,0,false,"Icon_Smelly","Currently being protected from Uveto's harsh cold... for now!",false,1440);
+				if(!target.hasStatusEffect("T.Pack")) target.createStatusEffect("T.Pack",0,0,0,0,false,"Icon_Smelly","Currently being protected from Uveto’s harsh cold... for now!",false,1440);
 			}
 			return false;
 		}

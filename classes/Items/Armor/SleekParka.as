@@ -4,7 +4,6 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class SleekParka extends ItemSlotClass
 	{

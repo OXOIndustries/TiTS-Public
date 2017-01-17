@@ -29,7 +29,7 @@
 			this.description = "a suit of armor incorporating ablative chitin plates";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This sexy, form-fitting armor combines synthetic plates that strongly resemble insectile chitin with sleek chainmail and leather. Wearing this gives you protection and maneuverability where you need it most. It's about as low-tech as you can really get these days, but don't underestimate old classics.";
+			this.tooltip = "This sexy, form-fitting armor combines synthetic plates that strongly resemble insectile chitin with sleek chainmail and leather. Wearing this gives you protection and maneuverability where you need it most. It’s about as low-tech as you can really get these days, but don’t underestimate old classics.";
 
 			//An alright upgrade. Stronk against kinetic, slashing and thermal, practically worthless against piercing.
 		

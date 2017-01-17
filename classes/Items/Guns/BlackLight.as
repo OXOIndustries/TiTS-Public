@@ -26,12 +26,12 @@ package classes.Items.Guns
 			this.shortName = "B.Light";
 			
 			//Regular name
-			this.longName = "\"Black Light\" ultraviolet laser rifle";
+			this.longName = "“Black Light” ultraviolet laser rifle";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a \"Black Light\" ultraviolet laser rifle";
+			this.description = "a “Black Light” ultraviolet laser rifle";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A newer piece of spinarran thermal weapons technology. This military grade weapon packs an incendiary blast of ultraviolet light that will give someone a whole lot more than a sunburn.";

@@ -32,7 +32,7 @@ package classes.Items.Toys
 			this.description = "a TamaniCorp Bubble Buddy";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This purplish onahole is considerably thinner than most sex toys of its type. The wobbling, gelatinous surface is semi-transparent and perpetually beads with its own internal lubrication. While one end is open, the other appears to be sealed over by a very thin membrane.\n\nA fat sticker has been slapped on its side: \"Contain and Sustain with the Bubble Buddy! Keeping your loads warm, fresh, and potent in detachable bubbles!\" A second, slightly larger sticker proclaims a corporate guarantee: if you are dissatisfied, send a bubble of your cum to TamaniCorp for inspection. If your seed isn't perfectly preserved and potent, they promise to send you a full refund.";
+			this.tooltip = "This purplish onahole is considerably thinner than most sex toys of its type. The wobbling, gelatinous surface is semi-transparent and perpetually beads with its own internal lubrication. While one end is open, the other appears to be sealed over by a very thin membrane.\n\nA fat sticker has been slapped on its side: “Contain and Sustain with the Bubble Buddy! Keeping your loads warm, fresh, and potent in detachable bubbles!” A second, slightly larger sticker proclaims a corporate guarantee: if you are dissatisfied, send a bubble of your cum to TamaniCorp for inspection. If your seed isn’t perfectly preserved and potent, they promise to send you a full refund.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

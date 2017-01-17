@@ -63,7 +63,7 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += 5;
 				pData.pregnancyBellyRatingContribution += 5;
-				AddLogEvent("You realize that you've been rubbing your belly whenever you nervous, or excited... or bored. Anytime, really. It's a very soothing feeling, nurturing a creature within yourself, <i>letting it hijack your body for its own ends.</i> Fuck, now you're getting turned on again. Maybe this thing feeds off of sexual pleasure?", "passive");
+				AddLogEvent("You realize that you’ve been rubbing your belly whenever you nervous, or excited... or bored. Anytime, really. It’s a very soothing feeling, nurturing a creature within yourself, <i>letting it hijack your body for its own ends.</i> Fuck, now you’re getting turned on again. Maybe this thing feeds off of sexual pleasure?", "passive");
 				kGAMECLASS.pc.lust(25);
 			}, true);
 
@@ -79,7 +79,7 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
-				AddLogEvent("Sometimes, you wonder if you'll be pregnant with this creature forever. Then, <i>you realize how great that would be.</i> You rub your belly and smile.", "passive");
+				AddLogEvent("Sometimes, you wonder if you’ll be pregnant with this creature forever. Then, <i>you realize how great that would be.</i> You rub your belly and smile.", "passive");
 				kGAMECLASS.pc.lust(25);
 			}, true);
 			
@@ -88,7 +88,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
 				
-				AddLogEvent("You're so swollen, so big... so perfectly gravid. <i>It's perfectly normal to be so incredibly distended.</i> Sometimes, other people will look like they're about to comment on your pregnant belly, but then they'll shake their head and smile at you.", "passive");
+				AddLogEvent("You’re so swollen, so big... so perfectly gravid. <i>It’s perfectly normal to be so incredibly distended.</i> Sometimes, other people will look like they’re about to comment on your pregnant belly, but then they’ll shake their head and smile at you.", "passive");
 			}, true);
 			
 			this.addStageProgression(5000, function(pregSlot:int):void {
@@ -96,7 +96,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 5;
 				pData.pregnancyBellyRatingContribution += 5;
 				
-				AddLogEvent(ParseText("A tentacle slips out of you and wiggles, making you gasp and pant as it slimes your [pc.legOrLegs]. It withdraws, then slips out, stroking your most sensitive places, driving you to distraction. By the time it stops, you're nearly inensate with lust."), "passive");
+				AddLogEvent(ParseText("A tentacle slips out of you and wiggles, making you gasp and pant as it slimes your [pc.legOrLegs]. It withdraws, then slips out, stroking your most sensitive places, driving you to distraction. By the time it stops, you’re nearly inensate with lust."), "passive");
 				kGAMECLASS.pc.lust(3000);
 			}, true);
 			
@@ -105,7 +105,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				pData.pregnancyBellyRatingContribution += 10;
 				
-				AddLogEvent(ParseText("Walking around is hard with such a huge middle, but you manage. <i>You don't mind.</i> Really."), "passive");
+				AddLogEvent(ParseText("Walking around is hard with such a huge middle, but you manage. <i>You don’t mind.</i> Really."), "passive");
 			}, true);
 			
 			_onSuccessfulImpregnation = psychicTentacleSuccessfulImpregnantion;

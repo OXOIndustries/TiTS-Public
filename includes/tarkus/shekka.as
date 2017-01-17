@@ -631,7 +631,7 @@ public function talkToShekkaAboutHerself():void
 	output("\n\nYour ");
 	if(pc.lust() >= 70) output("lust");
 	else output("discomfort");
-	output(" must show, because Shekka smirks. <i>\"I laid three whole eggs that time! You should've seen it; I almost got as big as some of my sisters, and the laying... oh the laying!\"</i> Her whole body shivers, and her nipples are as big as you've seen them, wholly engorged. Shekka fans herself to try and cool off. <i>\"The point is that most of you rushers don't care whether I produce eggs or not. It's just two of us together, revelling in the pleasures of each others' bodies.\"</i> The diminutive handywoman pitchers her voice into a low whisper, <i>\"Besides, I get a naughty thrill in knowing that big, strong aliens");
+	output(" must show, because Shekka smirks. <i>\"I laid three whole eggs that time! You should've seen it; I almost got as big as some of my sisters, and the laying... oh the laying!\"</i> Her whole body shivers, and her nipples are as big as you've seen them, wholly engorged. Shekka fans herself to try and cool off. <i>\"The point is that most of you rushers don't care whether I produce eggs or not. It's just two of us together, reveling in the pleasures of each others' bodies.\"</i> The diminutive handywoman pitchers her voice into a low whisper, <i>\"Besides, I get a naughty thrill in knowing that big, strong aliens");
 	if(pc.PQ() >= .75 && pc.tallness >= 60) output(" like you");
 	output(" choose me over the fertile ones. To ");
 	if(pc.PQ() >= .75 && pc.tallness >= 60) output("you");

@@ -23,12 +23,12 @@
 			//Used on inventory buttons
 			this.shortName = "Ruskvel";
 			//Regular name
-			this.longName = "greasy treat commonly called 'Ruskvel'";
+			this.longName = "greasy treat commonly called ‘Ruskvel’";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a greasy treat commonly called 'Ruskvel'";
+			this.description = "a greasy treat commonly called ‘Ruskvel’";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "The staple of the raskvel’s diet takes the form of a round, doughy, oatmeal-coloured dumpling the size of a cauliflower, wrapped in tinfoil, dense and greasy to touch. Aerodynamic it is not but everything about it has speed in mind: How fast it takes to bake, how quickly it can be eaten, and the number of calories it contains to keep a short-legged, high-libido’d rabbit-reptile running around from dawn until dusk. Your codex warns you that eating it may well cause your microbots to physically alter you.";
 			
@@ -84,7 +84,7 @@
 				//Rask-morphed
 				else
 				{
-					kGAMECLASS.output("You eagerly tear the dumpling out of its tin foil and rip off a big, chewy hunk of it with your teeth enthusiastically. The fact that you started off not liking this stuff seems bizarre to you now. It’s exactly what your body craves, and a glow of intense satisfaction sinks into you as you gobble the rich starch up. You sigh and allow yourself a fruity belch once you’re done, revelling in the feeling of energy coursing through your hot, dense form, feeling ready to do anything – or anyone.");
+					kGAMECLASS.output("You eagerly tear the dumpling out of its tin foil and rip off a big, chewy hunk of it with your teeth enthusiastically. The fact that you started off not liking this stuff seems bizarre to you now. It’s exactly what your body craves, and a glow of intense satisfaction sinks into you as you gobble the rich starch up. You sigh and allow yourself a fruity belch once you’re done, reveling in the feeling of energy coursing through your hot, dense form, feeling ready to do anything – or anyone.");
 					//70% chance of 10% HP gain, 100% chance of 20 energy gain if raskvel morph
 					//HP GAINS
 					//No, that's dumb. We do it Fen's way. Out of combat healing item, soz always helps.
@@ -240,7 +240,7 @@
 							if(pc.breastRows[x].breastRatingRaw >= 7) pc.breastRows[x].breastRatingRaw--;
 							if(pc.breastRows[x].breastRatingRaw >= 3) pc.breastRows[x].breastRatingRaw--;
 						}
-						kGAMECLASS.output(" By your estimate, you're [pc.breastCupSize] now.");
+						kGAMECLASS.output(" By your estimate, you’re [pc.breastCupSize] now.");
 					}
 					changes++;
 				}

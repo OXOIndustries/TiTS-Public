@@ -33,7 +33,7 @@
 			this.description = "a few milk caramel gushers";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "These caramel-flavored candies are laced with a creamy mixture of sugar, hormones, and nanomachines that can give you a sudden burst of lactic fullness - even if you aren't already lactating. A warning label indicates that repeated use could cause you to lactate even without the candies.";
+			this.tooltip = "These caramel-flavored candies are laced with a creamy mixture of sugar, hormones, and nanomachines that can give you a sudden burst of lactic fullness - even if you aren’t already lactating. A warning label indicates that repeated use could cause you to lactate even without the candies.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -64,7 +64,7 @@
 				//First use
 				author("Savin");
 				kGAMECLASS.output("You greedily unwrap the creamy brown candies and pop them into your mouth. It’s as sweet as you imagined, the taste thick and rich and... well, caramelly. You suck and lick at the thick, round candies, enjoying the taste and texture over several minutes as they slowly dissolve. As they do, the first trickles of nanomachines and hormone-laced sugar glide down your eager throat, and begin to work their magic inside of you.");
-				if(target.milkFullness >= 75) kGAMECLASS.output("\n\nYou feel a mild tingle in your already full chest and little else. Perhaps these things aren't very useful to someone already so full of [pc.milk].");
+				if(target.milkFullness >= 75) kGAMECLASS.output("\n\nYou feel a mild tingle in your already full chest and little else. Perhaps these things aren’t very useful to someone already so full of [pc.milk].");
 				else
 				{
 					target.milkFullness = 75;
@@ -76,7 +76,7 @@
 						else target.breastRows[x].breastRatingLactationMod = 1;
 					}
 					kGAMECLASS.output(" <b>You now have [pc.breastCupSize]s!</b>");
-					kGAMECLASS.output(" You're very nearly full of [pc.milk], and your mind keeps insisting that you’re in need of a good, hard milking");
+					kGAMECLASS.output(" You’re very nearly full of [pc.milk], and your mind keeps insisting that you’re in need of a good, hard milking");
 					if(target.libido() > 50) kGAMECLASS.output("<i> -- or was it fucking? --</i>");
 					kGAMECLASS.output(" now.");
 					target.boostLactation(10);

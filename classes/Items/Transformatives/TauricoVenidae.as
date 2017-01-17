@@ -329,7 +329,8 @@ package classes.Items.Transformatives
 
 				for(var x:int = 0; x < pc.totalVaginas(); x++)
 				{
-					pc.vaginas[x].type = GLOBAL.TYPE_DEER;
+					//pc.vaginas[x].type = GLOBAL.TYPE_DEER;
+					pc.shiftVagina(x,GLOBAL.TYPE_DEER);
 				}
 				pc.orgasm();
 				pc.libido(2);
@@ -377,7 +378,7 @@ package classes.Items.Transformatives
 				//Antlers for males
 				if(pc.horns > 0) output("\n\nYour [pc.horns] crack, then flake away like little more than dust. In their place, you");
 				else output("\n\nYou");
-				output("feel a scratchy sensation just above your ears, and the moment you reach up to check it out you’re struck by a sharp pain. Cringing, you scrunch your eyes shut as the pain passes, an odd sensation persisting in its wake. You gingerly reach up to feel it out, and your hand strikes bone! You grip it, feeling a velvety covering spread across its length. When all is said and done, <b>you have an impressive set of antlers!</b>");
+				output(" feel a scratchy sensation just above your ears, and the moment you reach up to check it out you’re struck by a sharp pain. Cringing, you scrunch your eyes shut as the pain passes, an odd sensation persisting in its wake. You gingerly reach up to feel it out, and your hand strikes bone! You grip it, feeling a velvety covering spread across its length. When all is said and done, <b>you have an impressive set of antlers!</b>");
 				
 				pc.removeHorns();
 				pc.hornType = GLOBAL.TYPE_DEER;

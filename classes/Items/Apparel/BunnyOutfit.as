@@ -27,7 +27,7 @@ package classes.Items.Apparel
 			
 			this.description = "a one-piece bunny outfit";
 			
-			this.tooltip = "This is a ‘Humphard Bunny’ outfit. It's not a full bunny outfit - there's only satin ears and a fluffy tail. The rest of the outfit is hardly furry; a strapless one-piece bikini, black pantyhose, high heels, a collar with bow tie, and cuffs with cuff links.  Wear it and be a Humphard Bunny!";
+			this.tooltip = "This is a ‘Humphard Bunny’ outfit. It’s not a full bunny outfit - there’s only satin ears and a fluffy tail. The rest of the outfit is hardly furry; a strapless one-piece bikini, black pantyhose, high heels, a collar with bow tie, and cuffs with cuff links. Wear it and be a Humphard Bunny!";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

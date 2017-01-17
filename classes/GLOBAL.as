@@ -983,9 +983,10 @@
 		public static const ALL:int                                    = 12; //Used for pawn shops!
 		public static const GADGET:int 								   = 13;
 		public static const EXPLOSIVECONSUMABLE:int					   = 14;
-		public static const QUESTITEM:int							   = 15;
+		public static const SPECIAL_ITEM:int						   = 15; // Used for droppable quest-related items.
 		public static const GEM:int 								   = 16;
-		public static const SEXTOY:int 								   = 17; // Used for any portable sexual relief devices. 
+		public static const SEXTOY:int 								   = 17; // Used for any portable sexual relief devices.
+		public static const QUEST_ITEM:int							   = 18; // Used for undroppable quest-related items.
 
 		//CHARACTERS
 		public static const CELISE:int                                 = 1;

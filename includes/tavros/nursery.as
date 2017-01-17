@@ -128,7 +128,7 @@ public function milodanPlayOptions(button:Number):Number
 		addDisabledButton(button,"Milodan","Milodan","You don’t have any kits young enough to play with. Maybe when you finish the quest, you’ll have time to be a real parent.");
 		button++;
 	}
-	else output("Dafuq is dis shit");
+	//else output("\n\nDafuq is dis shit?");
 	return button;
 }
 public function playWithMilodan(choice:Number = -1):void

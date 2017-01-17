@@ -39,7 +39,7 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.showName("'NUKI\nNUTBUTTER");
+			kGAMECLASS.showName("‘NUKI\nNUTBUTTER");
 			author("Savin");
 			
 			// Get Where: Lerriss Tamani shop.
@@ -129,7 +129,7 @@
 					
 					output("\n\nYou keep squeezing and kneading your sack well after the nanomachine paste has run its course, just enjoying the sensation of it. Your [pc.balls] feel" + (target.balls == 1 ? "s" : "") + " so much more malleable, like working your fingers through putty, or the outside of a beanbag. Ooohh, that’s nice...");
 					
-					output("\n\n(<b>Perk Gained: 'Nuki Nuts</b> - Your gonads can now swell up with excess semen, allowing for excessively large orgasms. Beware of immobilization!)");
+					output("\n\n(<b>Perk Gained: ‘Nuki Nuts</b> - Your gonads can now swell up with excess semen, allowing for excessively large orgasms. Beware of immobilization!)");
 				}
 				// On Use, PC has balls and already has Nuki Nuts
 				else

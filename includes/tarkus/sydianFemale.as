@@ -41,7 +41,7 @@ public function encounterFemaleSydian():void
 		output("\n\nA hiss and scuttle follows you again. You pick up a hefty chunk of metal and throw it hard at the sound; it impacts with an echoing");
 		if (rand(pc.aim() + pc.reflexes()) > rand(tEnemy.aim() + tEnemy.reflexes()))
 		{
-			output(" 'thwack'");
+			output(" ‘thwack’");
 			tEnemy.shieldsRaw -= rand(5) + 1;
 		}
 		else output(" ‘clank’");
@@ -232,7 +232,7 @@ public function sydianFemalePCLossHasCock():void
 		output("\n\n<i>“You’re getting off from just my hand,”</i> she chides. <i>“How do you hope to serve a woman?”</i>");
 		
 		output("\n\n");
-		if (pc.isBimbo() || pc.isBro()) output("<i>“It’s ok,”</i> you grunt. <i>“I can come lots.”</i>");
+		if (pc.isBimbo() || pc.isBro()) output("<i>“It’s okay,”</i> you grunt. <i>“I can come lots.”</i>");
 		else if (pc.isNice() && rival.isFeminine()) output("<i>“With a subpoena,”</i> you grunt, suddenly thinking of your cousin.");
 		else if (pc.isNice() && !rival.isFeminine()) output("<i>“I can use my hands...”</i> you hazard.");
 		else output("<i>“On the dance floor,”</i> you snap.");
@@ -395,11 +395,11 @@ public function sydianFemalePCVictory():void
 			if (pc.hasItem(new Throbb())) output(" There’s an item you’re carrying that might adjust her bad attitude, too.");
 		}
 
-		if (!pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don't have a wiener!");
+		if (!pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don’t have a wiener!");
 		else
 		{
-			if (pc.cockThatFits(enemy.vaginalCapacity()) == -1) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It's a jumbo wiener!");
-			else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored")) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren't in the way...");
+			if (pc.cockThatFits(enemy.vaginalCapacity()) == -1) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It’s a jumbo wiener!");
+			else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored")) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren’t in the way...");
 			else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
 		}
 
@@ -1526,7 +1526,7 @@ public function sydianPregnancyEnds():void
 	//on ship with auto-medbay (commented until one is available)
 	if (InShipInterior() && 9999 == 0)
 	{
-		output("\n\nYou head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you're");
+		output("\n\nYou head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you’re");
 		if (!pc.isNude()) output(" disrobed but");
 		output(" no longer able to speak between breaths.");
 	}
@@ -1542,7 +1542,7 @@ public function sydianPregnancyEnds():void
 	}
 	else if (InRoomWithFlag(GLOBAL.JUNGLE))
 	{
-		output("\n\nGroaning at the timing, you shed your [pc.gear] and seat yourself among the inhospitable and non-hospital-able terrain. The wish that you'd stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there's no help for it -- you'll have to deliver the baby on your own.");
+		output("\n\nGroaning at the timing, you shed your [pc.gear] and seat yourself among the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no help for it -- you’ll have to deliver the baby on your own.");
 	}
 
 	output("\n\nSpasms wrack your pregnant body for the next hour as it works the baby free. During the frenzy you operate mostly on biological autopilot, but glimpse a few details of your new little miracle. The baby drops " + (rand(10) == 0 ? " head" : " feet") + "-first, noodling its way out");
@@ -1550,7 +1550,7 @@ public function sydianPregnancyEnds():void
 	else output(" in a protracted battle with your tight vagina");
 	output(", and the placenta follows.");
 
-	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It's a " + (babym  ? "boy" : "girl") + "! A fuzz of");
+	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It’s a " + (babym ? "boy" : "girl") + "! A fuzz of");
 	if (rand(10) == 0) output(" green");
 	else if (rand(10) == 0) output(" reddish-orange");
 	else output(" brown ");
@@ -1566,12 +1566,12 @@ public function sydianPregnancyEnds():void
 	
 	if(numChildren > 1)
 	{
-		output("\n\nThe birthing doesn't stop there. After a brief moment, you take a few huffs as another movement applies pressure to your womb and your vision hazes again. Your [pc.vagina " + pregSlot + "] spreads and a new head crowns. With some effort, you gently push with your lower muscles, aiding the child out to finally join its " + (babym ? "brother" : "sister") + ".");
+		output("\n\nThe birthing doesn’t stop there. After a brief moment, you take a few huffs as another movement applies pressure to your womb and your vision hazes again. Your [pc.vagina " + pregSlot + "] spreads and a new head crowns. With some effort, you gently push with your lower muscles, aiding the child out to finally join its " + (babym ? "brother" : "sister") + ".");
 		if(numChildren > 2) output(" The process continues until you have a total of " + num2Text(numChildren) + " children born.");
 		output(" You take a good look at your beautiful babies while the fuzzy fog fades from your senses.");
 	}
 
-	output("\n\n" + (numChildren == 1 ? "A soft touch" : "Soft touches") + " on your hand bring" + (numChildren == 1 ? "s" : "") + " you out of your reverie -- your bab" + (numChildren == 1 ? "y seems" : "ies seem") + " to know there's more work to do. Sighing, you clean up and cut the cord" + (numChildren == 1 ? "" : "s") + ", then prepare to send " + (numChildren == 1 ? (babym ? "him":"her") : "the newborns") + " off. While the shuttle is in transit, you spend some time playing, letting your little one" + (numChildren == 1 ? "" : "s") + " squeeze your fingers and giggle while you meditate on " + (numChildren == 1 ? ("a name that suits" + (babym ? "him":"her")) : "names that suit them") + ". You even hold up the shuttle, ignoring the drone's automated requests until you can't wait any longer. With a pang in your heart, you bundle your child" + (numChildren == 1 ? "" : "ren") + " into the climate-controlled device and watch it return to the shuttle.");
+	output("\n\n" + (numChildren == 1 ? "A soft touch" : "Soft touches") + " on your hand bring" + (numChildren == 1 ? "s" : "") + " you out of your reverie -- your bab" + (numChildren == 1 ? "y seems" : "ies seem") + " to know there’s more work to do. Sighing, you clean up and cut the cord" + (numChildren == 1 ? "" : "s") + ", then prepare to send " + (numChildren == 1 ? (babym ? "him":"her") : "the newborns") + " off. While the shuttle is in transit, you spend some time playing, letting your little one" + (numChildren == 1 ? "" : "s") + " squeeze your fingers and giggle while you meditate on " + (numChildren == 1 ? ("a name that suits" + (babym ? "him":"her")) : "names that suit them") + ". You even hold up the shuttle, ignoring the drone’s automated requests until you can’t wait any longer. With a pang in your heart, you bundle your child" + (numChildren == 1 ? "" : "ren") + " into the climate-controlled device and watch it return to the shuttle.");
 	
 	processTime(49 + (13 * numChildren));
 	

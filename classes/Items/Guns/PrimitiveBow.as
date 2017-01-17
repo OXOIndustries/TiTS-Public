@@ -30,7 +30,7 @@
 			this.description = "a primitive bow";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This basic bow is created and used by the natives of Mhen'ga for hunting. It comes with a quiver of stone-tipped arrows. The draw is high enough to do some real damage to an unlucky alien."
+			this.tooltip = "This basic bow is created and used by the natives of Mhen’ga for hunting. It comes with a quiver of stone-tipped arrows. The draw is high enough to do some real damage to an unlucky alien."
 			this.attackVerb = "shoot";
 			attackNoun = "arrow";
 			
