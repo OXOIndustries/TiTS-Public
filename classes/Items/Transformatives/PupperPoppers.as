@@ -200,13 +200,13 @@ package classes.Items.Transformatives
 				}
 				//Add Breast Row
 				//Effect: Has less than 5 breast rows - add 1 breast row, copy from lowest pair.
-				if(pc.bRows() >= 1 && pc.bRows() < 4 && rand(4) == 0 && changes < changeLimit)
+				if(pc.bRows() >= 1 && pc.bRows() < 5 && rand(4) == 0 && changes < changeLimit)
 				{
 					output("\n\nYour [pc.fullChest] begin to feel very itchy, and you try to scratch them as the sensation moves lower. It stops right below the ");
 					if(pc.bRows() > 1) output("lowest ");
 					if(pc.breastsPerRow(pc.bRows()-1) == 2) output("pair");
 					else output("group");
-					output(", and you feel a tiny pair of [pc.nipples] sprouting off from the flesh between your fingers. New breasts begin to grow behind them, swelling with fat and muscle. Once the transformation ends, you bring you hands to them and feel the <b>new row of ");
+					output(", and you feel a " + ((pc.breastsPerRow(pc.bRows()-1) == 2) ? "pair" : "row") + " of tiny [pc.nipplesNoun] sprouting off from the flesh between your fingers. New breasts begin to grow behind them, swelling with fat and muscle. Once the transformation ends, you bring your hands to them and feel the <b>new row of ");
 					//PC has large breasts:
 					if(pc.biggestTitSize() >= 6) output("luscious tits");
 					else if(pc.biggestTitSize() >= 1) output("perky tits");
