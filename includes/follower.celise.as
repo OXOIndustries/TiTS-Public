@@ -846,18 +846,18 @@ public function celiseSleezeLactation():void {
 			if(pc.hasFuckableNipples()) output("slide two fingers into them");
 			else output("jerk and pull on them");
 			output(". Though Celise’s artisanal caresses are replaced with the workman-like efforts of your own pleasured stupor, it’s enough to tug another climax from you; your [pc.nipples] spurt [pc.milk] onto the prone woman");
-			output("as ");
+			if(pc.hasGenitals()) output(" as");
 			if(pc.hasVagina())
 			{
-				output("your pussy twitches and ");
+				output(" [pc.eachVagina] twitches and ");
 				if(pc.isSquirter()) output("squirts");
 				else output("dribbles");
 				output(" a new, fitful orgasm into the slowly-expanding puddle at Celise’s base");
 			}
-			if(pc.hasVagina() && pc.hasCock()) output(" and ");
+			if(pc.hasVagina() && pc.hasCock()) output(" and");
 			if(pc.hasCock())
 			{
-				output("your [pc.cocks] deliver another, weaker");
+				output(" [pc.eachCock] delivers another, weaker");
 				if(pc.cumQ() <= 600) output(", but still massive");
 				output(" load of semen that coats her body and seeps through her jellified skin");
 			}
@@ -1587,8 +1587,11 @@ public function zDomCeliseGo():void
 		if(pc.hasTailCock() && !pc.hasCock()) output("now-unfolding tail-");
 		output("prick. Her open-mouthed smile widens even further as she slides up the tumescent shaft, moving her wet slit into position.");
 	}
-	else output("the hot, wet skin of her groin grinds against you");
-	if(pc.hasClit()) output("r [pc.clits]");
+	else
+	{
+		output("the hot, wet skin of her groin grinds against you");
+		if(pc.hasClit()) output("r [pc.clits]");
+	}
 	output(". The ravenous woman’s mouth opens slightly as her crotch contacts the heat of your own.");
 
 	//females with no cocks anywhere split

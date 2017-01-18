@@ -1527,7 +1527,7 @@ public function normalZilgirlCockfuck():void
 	}
 	else
 	{
-		output("\n\nShe hisses as your [pc.oneCockHead] brushes against her honeyed sex, the dusky folds already saturated with nectar. <i>“Don’t worry,”</i> you whisper, <i>“I’ll take it slow.”</i> True to your word, you slide your [pc.cock " + x + "] against her, moving back and forth to coat it with her juices.");
+		output("\n\nShe hisses as [pc.oneCockHead] brushes against her honeyed sex, the dusky folds already saturated with nectar. <i>“Don’t worry,”</i> you whisper, <i>“I’ll take it slow.”</i> True to your word, you slide your [pc.cock " + x + "] against her, moving back and forth to coat it with her juices.");
 		
 		output("\n\nYou drag your shaft across her crotch, angling your [pc.hips] as you pull back to send your cock across her tiny black button. The alien woman shudders and clenches her jaw, her reactions serving as nonverbal praise of your splendid technique. You continue to grind against her aromatic nethers, but find it increasingly difficult to concentrate, mind clouded by the zil’s lust-sparking pheromones.");
 		
