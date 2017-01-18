@@ -139,7 +139,7 @@
 					{
 						pc.skinAccent = RandomInCollection(["beige","white"]);
 						if(pc.skinAccent == pc.skinTone) pc.skinAccent = "neon green";
-						output("\n\nYou idly look down at your [pc.chest] and notice that a large off color blotch forming over your chest, belly and inner thighs. <b>It seems you have " + indefiniteArticle(target.skinAccent) + " blotch on your frontal body now!</b>");
+						output("\n\nYou idly look down at your [pc.chest] and notice a large off-color patch forming over your chest, belly and inner thighs. <b>It seems you have " + indefiniteArticle(target.skinAccent) + " blotch on your frontal body now!</b>");
 						//Chance to occur at 2%
 						//Pc gains "Frontal Blotch" perk.
 						pc.createStatusEffect("Shark Markings",3,0,0,0);

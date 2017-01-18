@@ -1672,7 +1672,7 @@ public function liftVoyeurism():void
 	output(" goes about her own business, working her body and yoga pants to their limits, her ass extending backwards every time she does a rep. You watch for a few minutes, the rhythmic up and down motion of her ass drawing out a ");
 	if(pc.isTreated()) output("particular primal urge");
 	else output("certain perverted interest");
-	output(". She works out for quite a while, around half an hour of non stop squatting. Sadly though, all good things must come to an end, and she puts the bar back on the rack and takes a moment’s rest, she leans on the bar, so exhausted even her tail droops lamely. She reaches for a water bottle and douses her face with ice cold water before taking a moment to fix her hair, the a decent amount of hair strands sticking out of her black ponytail.");
+	output(". She works out for quite a while, around half an hour of non stop squatting. Sadly though, all good things must come to an end, and she puts the bar back on the rack and takes a moment’s rest, she leans on the bar, so exhausted even her tail droops lamely. She reaches for a water bottle and douses her face with ice cold water before taking a moment to fix her hair, a decent amount of hair strands sticking out of her black ponytail.");
 
 	output("\n\nFrom the corner of your eye you notice ");
 	if(watchedNico) output("Nico, shirtless and heading toward the showers");
