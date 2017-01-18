@@ -966,6 +966,7 @@ public function generalInventoryMenu():void
 	useItemFunction = inventory;
 	
 	output("What item would you like to use?");
+	if(pc.inventory.length >= 11) output("\n(<b>Multiple pages of items are available. Please be aware of the page forward/back buttons in the lower right corner of the user interface when making your selections.</b>)");
 	output("\n\n");
 	inventoryDisplay();
 	clearMenu();
