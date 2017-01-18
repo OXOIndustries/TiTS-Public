@@ -207,6 +207,7 @@
 		public static const TYPE_WATERQUEEN:int								= 68;
 		public static const TYPE_BOTHRIOC:int								= 69;
 		public static const TYPE_MILODAN:int								= 70;
+		public static const TYPE_WORG:int								= 71;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -279,7 +280,8 @@
 			"Flower",
 			"Water Queen",
 			"Bothrioc",
-			"Milodan"
+			"Milodan",
+			"Worg"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -305,6 +307,7 @@
 			TYPE_KANGAROO,
 			TYPE_GABILANI,
 			TYPE_FROG,
+			TYPE_WORG
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [

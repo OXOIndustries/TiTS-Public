@@ -186,6 +186,25 @@ public function appearance(forTarget:Creature):void
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("You have the facial structure of a dog, wet nose and all, but overlaid with " + target.skinFurScales(true,true,false,true) + ".");
 			else output2("You have a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
 		}
+		//Knock-off dog-face
+		else if(target.faceType == GLOBAL.TYPE_CANINE)
+		{
+			//Fur/Feather:
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) 
+			{
+				output2(" You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. You've got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skinFurScales(true,true,true,true) + " underneath your ");
+				if(target.hasFur()) output2("furry");
+				else output2("feathered");
+				output(" visage.");
+			}
+			//Scales:
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES)
+			{
+				output2(" You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. Its overlaid with " + target.skinFurScales(true,true,false,true) + ".");
+			}
+			//Others:
+			else output2(" You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. The odd visage is hairless and covered with " + target.skinFurScales(true,true,true,true) + ".");
+		}
 		//cat-face
 		else if(target.faceType == GLOBAL.TYPE_FELINE) {
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a cat-like face, complete with moist nose and whiskers. Your " + target.skinFurScales(true,true,false,true) + " hides " + target.skin(true,true,true) + " underneath.");
@@ -302,6 +321,15 @@ public function appearance(forTarget:Creature):void
 			else if (target.eyeColor != "black") output2(" Your eyes are pitch black with " + target.eyeColor + " irises.");
 			else output2(" The black sclera and iris of both of your eyes make them appear as solid black and very alien.");
 			output2(" Their structure allows you to have a larger angle of vision as well as detecting the fastest of movements.");
+		}
+		else if (target.eyeType == GLOBAL.TYPE_CANINE || target.eyeType == GLOBAL.TYPE_WORG)
+		{
+			output2(" Your canine eyes have large irises occupying most of their surface when the pupils are not dilated, ");
+			if (hasMetallicEyes) output2("surrounded by a metallically glistening " + target.eyeColor + " iris");
+			else if (hasGemstoneEyes) output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris");
+			else if (hasLuminousEyes) output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris");
+			else output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris");
+			output2(" and a menacingly glowing sclera.");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE || target.eyeType == GLOBAL.TYPE_DEMONIC || target.eyeType == GLOBAL.TYPE_VULPINE)
 		{
@@ -679,6 +707,7 @@ public function appearance(forTarget:Creature):void
 			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a long and stretchy frog tongue, capable of reaching much longer distances than most races.");
 			else output2(" Your mouth contains a stretchy frog-like tongue.");
 		}
+		else if(target.tongueType == GLOBAL.TYPE_CANINE) output2(" Your mouth contains a flat tongue that constantly drips with slobber.");
 		else if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
 		else output2(" Your mouth contains " + indefiniteArticle(target.tongueDescript()) + ".");
 		if(target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) output2(" Because it constantly produces a steady stream of wet lube, the inside of your mouth stays well lubricated.");
@@ -1329,10 +1358,20 @@ public function appearance(forTarget:Creature):void
 		if(target.tailType == GLOBAL.TYPE_EQUINE) output2(" A long " + target.hairColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
 		else if(target.tailType == GLOBAL.TYPE_CANINE)
 		{
-			output2(" A");
-			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
-			else output2(" fuzzy");
-			output2(" " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+			if(target.tailCount == 1)
+			{
+				output2(" A");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+				else output2(" fuzzy");
+				output2(" " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+			}
+			else
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)));
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+				else output2(" fuzzy");
+				output2(" " + target.furColor + " dogtails sprout just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_DEMONIC) output2(" A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
 		else if(target.tailType == GLOBAL.TYPE_BOVINE) 

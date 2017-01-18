@@ -306,6 +306,7 @@ public function buyItem():void {
 			addButton(btnSlot, "Back", shop, shopkeep);
 		}
 	}
+	if(btnSlot >= 15) output("\n\n(<b>Multiple pages of items available. Please be aware of the menu page buttons in the lower right corner!</b>)");
 	addButton(14, "Back", shop, shopkeep);
 }
 

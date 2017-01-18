@@ -4712,8 +4712,8 @@
 			var nouns:Array = ["eye"];
 			var description:String = "";
 			
-			adjectives[adjectives.length] = eyeColor;
-
+			adjectives.push(eyeColor);
+			if(eyeType == GLOBAL.TYPE_WORG) adjectives.push("glowing");
 			//Show color 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
@@ -9835,6 +9835,13 @@
 				if (huskarScore() < 3) race = "ausar";
 				else race = "huskar";
 			}
+			if (doggoOverrideAusar() && dogScore() >= 4) 
+			{
+				if(kGAMECLASS.silly && isTaur()) race = "doge-taur";
+				if(isTaur()) race = "dog-taur";
+				else if(isBimbo() || (femininity >= 75 && biggestTitSize() >= 7 && hasVagina())) race = "bitch-morph";
+				else race = "canine-morph";
+			}
 			if (demonScore() >= 5) race = "demon-morph";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
@@ -10022,6 +10029,21 @@
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED)) counter -= 2;
 			return counter;
+		}
+		public function dogScore(): int {
+			var counter: int = 0;
+			if (InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE)) counter++;
+			if (hasTail(GLOBAL.TYPE_CANINE) && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (armType == GLOBAL.TYPE_CANINE) counter++;
+			if (legType == GLOBAL.TYPE_CANINE && legCount >= 2 && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
+			if (faceType == GLOBAL.TYPE_CANINE) counter++;
+			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED)) counter += 2;
+			if (counter > 0 && hasFur()) counter++;
+			return counter;
+		}
+		public function doggoOverrideAusar():Boolean
+		{
+			return (dogScore() > ausarScore() && (hasFaceFlag(GLOBAL.FLAG_MUZZLED) || hasFur()));
 		}
 		public function huskarScore():int
 		{
