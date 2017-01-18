@@ -204,18 +204,17 @@ public function drBadgerChristmasYay():void
 	showDrBadger();
 	author("Adjatha");
 	
-	var bimboBadger:Boolean = (flags["BADGER_QUEST"] == -3);
-	
-	if(!pc.isBimbo()) output("No sense beating around the bush. You lay out your request very plainly and watch the " + (bimboBadger ? "bimbofied doctor" : "dangerous woman") + " to see how she’ll react. She listens as you explain the pexiga’s biological off-switch, her eyes narrowing as you reach the compassionate conclusion of your petition. Her hand twitches, fingers reaching for something and you tense up, equally motivated to run for safety as to lunge at the scientist before she can ready her weapon. Drawn in both directions, you’re momentarily paralyzed and the indecision allows the strained moment to pass without event.");
-	else output("A blush on your face and warm excitement bubbling in your tummy, you " + (bimboBadger ? "gleefully" : "bashfully") + " explain the blue girl you’ve got in your ship. Badger makes " + (bimboBadger ? "intrigued" : "dismissive") + " affirmations as she slides up beside you. <i>“Mmhrm? Oh" + (bimboBadger ? " yeah? She sounds like such a cutie!" : "? Very interesting,") + "”</i> she " + (bimboBadger ? "exclaims" : "mumbles") + " as her clawed hands reach across your [pc.upperGarment] to play across your [pc.chest]. You squirm in her grasp, tempted to just jump her bone, but somehow you find the strength to press on. You explain how it’s, like, totally not fair that the pexiga can’t enjoy herself and since Badger’s so good at making people dumb, maybe she could make a super dumb person just regular dumb?");
-	output("\n\nDoctor Badger takes a step back and produces a hard, pink ball of gum. Popping it into her mouth, she studies you with clinical scrutiny. <i>“You want me to make somebody... smarter? " + (bimboBadger ? "I think I can, but it might be a little tricky..." : "Feels a bit like going against the grain, to be honest,") + "”</i> she remarks, gnashing and smacking her gum loudly. <i>“" + (bimboBadger ? "Maybe I can like, make her super sexy and stuff--wouldn’t that be so much fun?" : "What’s the fun in building somebody up when you could be tearing them down?") + "”</i>");
-	if(!pc.isBimbo()) output("\n\nAppealing to her " + (bimboBadger ? "inner desires seems to be working. To better boost her confidence, you decide to stroke her ego a bit." : "better nature was a long shot, to be honest. Looks like you’ll have to go after her ego if you want to get anywhere.") + " You explain that the pexiga wasn’t reduced to what she is now by some brilliant scheme or technological triumph, but by nature taking its course. And since when is nature more powerful than science?");
-	else output("\n\nYour eyes widen with " + (bimboBadger ? "happiness" : "surprise") + ". <i>“Ooooh" + (bimboBadger ? ", can you, can you?" : ". I understand,") + "”</i> you " + (bimboBadger ? "bounce with curiosity" : "confirm with a sagely nod") + ". <i>“" + (bimboBadger ? "But, if you can’t do it.." : "You can’t do it") + ". Like, that’s okay. I couldn’t think of any way to help her either.”</i> You shrug. You reach over and pull another gumball out of her pocket, chewing and smacking it in sympathy for the villain.");
-	output("\n\nDoctor Badger " + (bimboBadger ? "grins approvingly" : "looks offended") + ". She " + (bimboBadger ? "puckers her fat lips" : "scowls") + " and snaps her pink-tinted goggles over her eyes. Bracing her fists on her curvaceous hips, she spits out her gum. <i>“" + (bimboBadger ? "Hmph! No problem is too big and hard for my smarts! Besides, it’s my job!" : "Woah now. That’s quite a little assumption you’re making. I didn’t say I COULDN’T do it.") + " I can make anything into a bimbo. Give me a little time and I’ll make a rock into a total slut.”</i>");
+	if(!pc.isBimbo()) output("No sense beating around the bush. You lay out your request very plainly and watch the dangerous woman to see how she’ll react. She listens as you explain the pexiga’s biological off-switch, her eyes narrowing as you reach the compassionate conclusion of your petition. Her hand twitches, fingers reaching for something and you tense up, equally motivated to run for safety as to lunge at the scientist before she can ready her weapon. Drawn in both directions, you’re momentarily paralyzed and the indecision allows the strained moment to pass without event.");
+	else output("A blush on your face and warm excitement bubbling in your tummy, you bashfully explain the blue girl you’ve got in your ship. Badger makes dismissive affirmations as she slides up beside you. <i>“Mmhrm? Oh? Very interesting,”</i> she mumbles as her clawed hands reach across your [pc.upperGarment] to play across your [pc.chest]. You squirm in her grasp, tempted to just jump her bone, but somehow you find the strength to press on. You explain how it’s, like, totally not fair that the pexiga can’t enjoy herself and since Badger’s so good at making people dumb, maybe she could make a super dumb person just regular dumb?");
+	output("\n\nDoctor Badger takes a step back and produces a hard, pink ball of gum. Popping it into her mouth, she studies you with clinical scrutiny. <i>“You want me to make somebody... smarter? Feels a bit like going against the grain, to be honest,”</i> she remarks, gnashing and smacking her gum loudly. <i>“What’s the fun in building somebody up when you could be tearing them down?”</i>");
+	if(!pc.isBimbo()) output("\n\nAppealing to her better nature was a long shot, to be honest. Looks like you’ll have to go after her ego if you want to get anywhere. You explain that the pexiga wasn’t reduced to what she is now by some brilliant scheme or technological triumph, but by nature taking its course. And since when is nature more powerful than science?");
+	else output("\n\nYour eyes widen with surprise. <i>“Ooooh. I understand,”</i> you confirm with a sagely nod. <i>“You can’t do it. Like, that’s okay. I couldn’t think of any way to help her either.”</i> You shrug. You reach over and pull another gumball out of her pocket, chewing and smacking it in sympathy for the villain.");
+	output("\n\nDoctor Badger looks offended. She scowls and snaps her pink-tinted goggles over her eyes. Bracing her fists on her curvaceous hips, she spits out her gum. <i>“Woah now. That’s quite a little assumption you’re making. I didn’t say I COULDN’T do it. I can make anything into a bimbo. Give me a little time and I’ll make a rock into a total slut.”</i>");
 	if(!pc.isBimbo()) output("\n\nIt seems she’s getting quite riled up. Time to close the deal. You marvel at the theoretical accomplishment. To overcome biological programming and turn a vicious beast into a thinking person? Does she really have the technology to do such a thing? Can she, dare you say it, play god?");
 	else output("\n\nYou clap excitedly. <i>“Oooo! Do it, do it, do it! Make the blue girl into the smartest bimbo ever! We’ll be best friends and, like, be sooooooooooo appreci- apprec- like we’ll be so thankful!”</i> Badger eyes your [pc.hips] and [pc.ass] with an intensity that leaves your [pc.skinFurScales] feeling well-used. You bounce up and down in delight. <i>“You can do it! I believe in Badger!”</i>");
-	output("\n\n<i>“You’re " + (bimboBadger ? "totes" : "damed") + " right I can!”</i> she responds with a suitably self-satisfied grin on her face. Her whole body trembles, with what you hope is excitement. <i>“Go get your little " + (bimboBadger ? "cutie" : "friend") + " and by the time you get back, I should have something ready for the two of you,”</i> she grins, her pink-tinted goggles casting a distorted reflection back at you.");
+	output("\n\n<i>“You’re damed right I can!”</i> she responds with a suitably self-satisfied grin on her face. Her whole body trembles, with what you hope is excitement. <i>“Go get your little friend and by the time you get back, I should have something ready for the two of you,”</i> she grins, her pink-tinted goggles casting a distorted reflection back at you.");
 	output("\n\nAre you really going to trust Dr. Badger to do what’s right?");
+	
 	//{Disable Badger until the quest is complete}
 	flags["PEXIGA_TREATMENT"] = 0;
 	//[Get Pexiga] [Just Leave]
@@ -234,8 +233,10 @@ public function justLeaveBadger():void
 	clearOutput();
 	showBust("");
 	author("Adjatha");
+	
 	if(!pc.isBimbo()) output("You step out and release a breath you hadn’t realized you’d been holding. Maybe Yammi was right. Dealing with people like Badger just isn’t worth the risk. Maybe somebody else in the galaxy can help the pexiga. You’ll just have to keep looking.");
 	else output("Doctor Badger is so funny sometimes. She seemed really excited about that thing she was going to do. You place your finger to your [pc.lipsChaste] and stand still in thought. Now what was it she wanted you to do? Oh pooh. You’ve forgotten it. Oh well! You’ll remember eventually!");
+	
 	//End
 	processTime(1);
 	clearMenu();
@@ -248,8 +249,9 @@ public function bringBadgerPexibork():void
 	showPexiga();
 	author("Adjatha");
 	showName("\nWALKIES");
+	
 	//Normal
-	if(!pc.isBimbo()) output("Tentatively, you return, leading the pexiga on a leash. Most of the residents of Tarkus don’t give the two of you a second look, but a few seem to recognize the dangers posed by the blue girl and go diving for cover. The subdued beast pays no attention to the fear or contempt or lust of the onlookers, however. She simply follows on hands and knees for as long as you apply pressure to her collar. Leading her into Doctor Badger’s lab, you cast your gaze about, looking for the " + (rand(2) == 0 ? "slutty" : "sinister") + " scientist. There’s noise coming from her back room, so you cautiously lead your pet towards her disreputable savoir.");
+	if(!pc.isBimbo()) output("Tentatively, you return, leading the pexiga on a leash. Most of the residents of Tarkus don’t give the two of you a second look, but a few seem to recognize the dangers posed by the blue girl and go diving for cover. The subdued beast pays no attention to the fear or contempt or lust of the onlookers, however. She simply follows on hands and knees for as long as you apply pressure to her collar. Leading her into Doctor Badger’s lab, you cast your gaze about, looking for the " + (flags["BADGER_QUEST"] == -3 ? "slutty" : "sinister") + " scientist. There’s noise coming from her back room, so you cautiously lead your pet towards her disreputable savoir.");
 	//Bimbo
 	else output("Choosing a light pink collar that goes with your pexiga’s blue scales, you proudly puff out your [pc.chest] and stroll through Tarkus with your super cute pet. Lots of people stare and point, which is awesome. Some others drop their jaws, and that’s the best. Everybody knows you’re, like, a million times cuter with a pet, so you flash big smiles and wave to the crowds. You can feel their eyes all over your body, the lust so strong it’s almost like their hands are all over you. A glance at the pexiga, however, and the wonderful feeling flickers with distress. It’s not right that she can’t enjoy a stroll like this! You’ve just got to help her! Cutting your walk short, you head right to Doc Badger’s kinda icky shack. She’s not around, but that’s okay. You don’t mind looking. Hey, how about that back room? You haven’t been there before.");
 
@@ -755,7 +757,7 @@ public function talkToBimboBadgerAboutPexiga():void
 	processTime(3);
 	//[Get Pexiga] [Just Leave]
 	clearMenu();
-	addButton(0,"Get Pexiga",getPexiga);
+	addButton(0,"Get Pexiga",bringBadgerPexibork);
 	addButton(1,"Just Leave",justLeaveBimboBadgerQuestBlech);
 }
 
@@ -774,14 +776,6 @@ public function justLeaveBimboBadgerQuestBlech():void
 	processTime(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-}
-
-
-//[Get Pexiga]
-//{Disables normal Pexiga interactions with Yammi on your ship}
-public function getPexiga():void
-{
-	bringBadgerPexibork();
 }
 
 //After Fight
