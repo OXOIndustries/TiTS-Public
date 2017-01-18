@@ -29,7 +29,7 @@ public function tryProcTravelEvent(destination:String):Function
 	if (flags["ICEQUEEN COMPLETE"] == undefined && pc.level > 5) possibleMessages.push(iceQueenMessage);
 	
 	// Should only be available a week either side of hallowiener
-	if (checkDate(31, 10, 7) || debug)
+	if (checkDate(31, 10, 7) || debug || rand(100) == 0)
 	{
 		if (!MailManager.isEntryUnlocked("KashimaMail") && pc.level >= 7 && (shipLocation == "600" || shipLocation == "2I7" || destination == "Myrellion" || destination == "MyrellionDeepCaves"))
 		{

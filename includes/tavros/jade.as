@@ -140,6 +140,8 @@ public function jadeStoreSetup():void
 		if(!chars["JADE"].hasItemByType(Catnip)) chars["JADE"].inventory.push(new Catnip());
 	}
 	else chars["JADE"].destroyItem(new Catnip());
+
+	chars["JADE"].inventory.push(new CaninePoppers());
 	
 	chars["JADE"].inventory.push(new DracoGuard());
 
@@ -156,6 +158,7 @@ public function jadeStoreSetup():void
 	chars["JADE"].inventory.push(new OvirPositive());
 	chars["JADE"].inventory.push(new Pandaneen());
 	chars["JADE"].inventory.push(new PandaPro());
+	chars["JADE"].inventory.push(new PupperPoppers());
 	chars["JADE"].inventory.push(new SharkBites());
 	//Nice, neat inventory complete :3
 	
