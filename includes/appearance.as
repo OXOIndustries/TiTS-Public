@@ -187,7 +187,7 @@ public function appearance(forTarget:Creature):void
 			else output2("You have a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
 		}
 		//Knock-off dog-face
-		else if(target.faceType == GLOBAL.TYPE_CANINE)
+		else if(target.faceType == GLOBAL.TYPE_WORG)
 		{
 			//Fur/Feather:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) 
@@ -324,12 +324,14 @@ public function appearance(forTarget:Creature):void
 		}
 		else if (target.eyeType == GLOBAL.TYPE_CANINE || target.eyeType == GLOBAL.TYPE_WORG)
 		{
-			output2(" Your canine eyes have large irises occupying most of their surface when the pupils are not dilated, ");
-			if (hasMetallicEyes) output2("surrounded by a metallically glistening " + target.eyeColor + " iris");
-			else if (hasGemstoneEyes) output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris");
-			else if (hasLuminousEyes) output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris");
-			else output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris");
-			output2(" and a menacingly glowing sclera.");
+			output2(" Your canine eyes have large");
+			if (hasMetallicEyes) output2(", metallically glistening " + target.eyeColor + " irises");
+			else if (hasGemstoneEyes) output2(", shimmering " + target.eyeColor + " irises");
+			else if (hasLuminousEyes) output2(" " + indefiniteArticle(target.eyeColor) + " irises");
+			else output2(" " + indefiniteArticle(target.eyeColor) + " irises");
+			output2(" occupying most of their surface when the pupils are not dilated");
+			if(target.eyeType == GLOBAL.TYPE_WORG) output2(", each surrounded by a menacingly glowing sclera");
+			output2(".");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE || target.eyeType == GLOBAL.TYPE_DEMONIC || target.eyeType == GLOBAL.TYPE_VULPINE)
 		{
