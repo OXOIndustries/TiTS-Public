@@ -915,7 +915,7 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYK14"] = new RoomClass(this);
 	rooms["NURSERYK14"].roomName = "NURSERY:\nEDU. CENTER";
-	rooms["NURSERYK14"].description = "The nursery’s education center greets you with a sprawling, circular chamber dominated by a rounded desk and several holoscreens along the walls, displaying curriculums and after-school opportunities. Several doors branch off from the main chamber, into an individual sets of classrooms for each grade -- from preschool all the way to 12th grade, and even including a few technical and shop classes.";
+	rooms["NURSERYK14"].description = "The nursery’s education center greets you with a sprawling, circular chamber dominated by a rounded desk and several holoscreens along the walls, displaying curriculums and after-school opportunities. Several doors branch off from the main chamber, into individual sets of classrooms for each grade -- from preschool all the way to 12th grade, and even including a few technical and shop classes.";
 	rooms["NURSERYK14"].runOnEnter = nurseryEducationCenterFunc;
 	rooms["NURSERYK14"].westExit = "NURSERYI14";
 	rooms["NURSERYK14"].planet = "TAVROS STATION";
