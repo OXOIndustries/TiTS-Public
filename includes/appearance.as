@@ -903,13 +903,17 @@ public function appearance(forTarget:Creature):void
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
 				output2(" magnificent wings sprout from your shoulders" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
 			}
-			else if (target.wingType == GLOBAL.TYPE_COCKVINE)
+			else if (target.wingType == GLOBAL.TYPE_COCKVINE || target.wingType == GLOBAL.TYPE_TENTACLE)
 			{
 				if (target.wingCount == 3) output2(" a trio of");
 				else if (target.wingCount == 4) output2(" a quartet of");
 				else if (target.wingCount == 12) output2(" a dozen");
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition. From afar, they may look like innocent vines, but up close, each tentacle contains a bulbous head with a leaking cum-slit, perfect for mass breeding.");
+				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition.");
+				if(target.wingType == GLOBAL.TYPE_COCKVINE) output2(" From afar, they may look like innocent vines, but up close, each tentacle contains a bulbous head with a leaking cum-slit");
+				else if(target.wingType == GLOBAL.TYPE_TENTACLE) output2(" Each tentacle contains a hefty knot with a long, nub-lined shaft and tipped with a cum-drooling slit");
+				else output2(" Each tentacle contains a bulbous head with a cum-leaking slit");
+				output2(", perfect for mass breeding.");
 			}
 			//Shark Wings/Dorsal Fin:
 			else if(target.wingType == GLOBAL.TYPE_SHARK)

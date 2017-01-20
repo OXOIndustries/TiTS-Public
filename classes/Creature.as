@@ -5877,9 +5877,17 @@
 					adjectives.push("large", "bird-like", "dove-like", "soft", "feathery");
 					break;
 				case GLOBAL.TYPE_COCKVINE:
-					adjectives.push("wriggling", "squirming", "undulating", "oily", "prehensile", "lithe", "snaky", "smooth", "plant-like", "slithery");
+				case GLOBAL.TYPE_TENTACLE:
+					adjectives.push("wriggling", "squirming", "undulating", "oily", "prehensile", "lithe", "snaky", "smooth", "slithery");
+					if(wingType == GLOBAL.TYPE_COCKVINE) adjectives.push("plant-like", "vine-like");
+					if(wingType == GLOBAL.TYPE_TENTACLE) adjectives.push("alien-like", "demon-like");
 					nouns = ["tentacle"];
-					if(!nounOnly) nouns.push("dorsal cock", "cockvine", "back penis");
+					if(!nounOnly)
+					{
+						nouns.push("dorsal cock", "back penis");
+						if(wingType == GLOBAL.TYPE_COCKVINE) nouns.push("cockvine");
+						if(wingType == GLOBAL.TYPE_TENTACLE) nouns.push("tentacle");
+					}
 					break;
 			}
 
@@ -9348,7 +9356,7 @@
 		public function canFly(): Boolean {
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
-			if (InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN)) return true;
+			if (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN])) return true;
 			return false;
 		}
 		//PC can swim?
@@ -9359,7 +9367,7 @@
 			return true;
 		}
 		public function hasWings(wType:Number = 0): Boolean {
-			if(InCollection(wingType, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_COCKVINE)) return false;
+			if(InCollection(wingType, [GLOBAL.TYPE_SHARK, GLOBAL.TYPE_COCKVINE, GLOBAL.TYPE_TENTACLE])) return false;
 			if (wingType != 0)
 			{
 				// Specific type
@@ -9374,6 +9382,11 @@
 		{
 			if(!hasWings()) return false;
 			return InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN]);
+		}
+		// Wing types that double as back genitals (tentacle-like)
+		public function hasBackGenitals(): Boolean {
+			if(InCollection(wingType, [GLOBAL.TYPE_COCKVINE, GLOBAL.TYPE_TENTACLE])) return true;
+			return false;
 		}
 		public function removeWings():void
 		{
@@ -10193,7 +10206,7 @@
 			if (earType == GLOBAL.TYPE_DEMONIC) counter++;
 			if (armType == GLOBAL.TYPE_DEMONIC) counter++;
 			if (hasTail(GLOBAL.TYPE_DEMONIC) || hasTailCock(GLOBAL.TYPE_DEMONIC)) counter++;
-			if (wingType == GLOBAL.TYPE_DEMONIC || wingType == GLOBAL.TYPE_SMALLDEMONIC) counter++;
+			if (InCollection(wingType, [GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_SMALLDEMONIC, GLOBAL.TYPE_TENTACLE])) counter++;
 			if (counter > 1 && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_SUCCUBUS || legType == GLOBAL.TYPE_BOVINE)) counter++;
 			if (counter > 2 && eyeType == GLOBAL.TYPE_DEMONIC && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			if (counter > 3 && hasCock(GLOBAL.TYPE_DEMONIC)) counter++;
