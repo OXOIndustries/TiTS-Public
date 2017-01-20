@@ -47,9 +47,9 @@ package classes.Characters
 			this.eyeType = 0;
 			this.eyeColor = "hazel";
 			this.tallness = 66;
-			this.thickness = 100;
-			this.tone = 0;
-			this.hairColor = "platinum blonde";
+			this.thickness = 75;
+			this.tone = 25;
+			this.hairColor = "dirty blonde";
 			this.scaleColor = "pink";
 			this.furColor = "white";
 			this.hairLength = 18;
@@ -114,7 +114,7 @@ package classes.Characters
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 16;
-			this.bellyRatingRaw = 15;
+			this.bellyRatingRaw = 10;
 			//No dicks here!
 			this.cocks = new Array();
 			//balls
@@ -149,7 +149,7 @@ package classes.Characters
 			this.fertilityRaw = 1.05;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 29;
+			this.breastRows[0].breastRatingRaw = 30;
 			this.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
 			this.nippleColor = "brown-pink";
 			this.nippleLengthRatio = 1;

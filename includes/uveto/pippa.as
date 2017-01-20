@@ -346,7 +346,7 @@ public function meetPippa(itemGiven:String = ""):void
 		processTime(3);
 		showPippa();
 		
-		output("Your finger's hardly left the buzzer when the door swings open.  Standing on the other side of the door is a young woman who seems to have modded herself into a pig-morph.  Most notably, she has a pig's nose despite an otherwise human face.  She also has pig's ears and light pink skin.  You barely notice, but she also has a soft layer of sparse, [pippa.hairColor] hair covering her body.  It matches the color of her shoulder-length hair, which is, perhaps appropriately, partially tied into bun pigtails in the back.  She's a decent height, about five and a half feet tall.  She has a chubby body, her stomach poking out over tight, gray yoga pants, so stretched as to be almost transparent in the right light.  Despite her pudgy stomach, she maintains a curvy figure, with hips and an ass that are larger still.  Her thick, digitigrade legs end in cloven hoofs.  She has [pippa.breastCupSize] breasts, barely contained in a tight, white tanktop that ends just above her belly button.  She has an excited look on her face, but upon taking you in, it quickly turns to disappointment.");
+		output("Your finger's hardly left the buzzer when the door swings open.  Standing on the other side of the door is a young woman who seems to have modded herself into a pig-morph.  Most notably, she has a pig's nose despite an otherwise human face.  She also has pig's ears and light pink skin.  You barely notice, but she also has a soft layer of sparse, [pippa.hairColor] hair covering her body.  It matches the color of her shoulder-length hair, which is, perhaps appropriately, partially tied into bun pigtails in the back.  She's a decent height, about five and a half feet tall.  She has a chubby body, her stomach poking out over tight, gray yoga pants, so stretched as to be almost transparent in the right light.  Despite her pudgy stomach, she maintains a curvy figure, with hips and an ass that are larger still.  Her thick, digitigrade legs end in cloven hoofs.  She has [pippa.breastCupSize] breasts, barely contained in a tight, white tank top that ends just above her belly button.  She has an excited look on her face, but upon taking you in, it quickly turns to disappointment.");
 		
 		output("\n\n<i>“Oh.  I'd been expecting someone bringing me food.  You are not here to bring me food.”</i>");
 		
@@ -388,11 +388,11 @@ public function meetPippa(itemGiven:String = ""):void
 		
 		output("\n\n<i>“I'm [pc.name] Steele.”</i>");
 		
-		output("\n\nUpon hearing your name, she has a knowing look on her face, but doesn't say much, <i>“That so? Well, " + pc.mf("Mister", "Miss") + " Steele, about the massage.  I use a special oil that will help keep you warm in my massages.  My cost is " + pippaStandardMassageCost() + " credits. ”</i> ");
+		output("\n\nUpon hearing your name, she has a knowing look on her face, but doesn't say much, <i>“That so? Well, " + pc.mf("Mister", "Miss") + " Steele, about the massage.  I use a special oil that will help keep you warm in my massages.  My cost is " + pippaStandardMassageCost() + " credits.”</i> ");
 		
 		if (pc.isTreated())
 		{
-			output("  Before you can answer, she continues, <i>“But actually...you're treated, aren't you?”</i>");
+			output("  Before you can answer, she continues, <i>“But actually...you're Treated, aren't you?”</i>");
 			
 			if (pc.isBimbo() || pc.isBro())
 			{
@@ -407,7 +407,7 @@ public function meetPippa(itemGiven:String = ""):void
 				output("\n\nA lusty look begins to form on her face and she responds, <i>“Not at all.”</i>");
 			}
 			
-			output("  She stands up and begins to move toward you.  <i>“How about we forget the massage for now, and instead, we fuck.  It's been too long since I got to have some fun with a sexy, treated slut.");
+			output("  She stands up and begins to move toward you.  <i>“How about we forget the massage for now, and instead, we fuck.  It's been too long since I got to have some fun with a sexy, treated slut.”</i>");
 			
 			pc.lust(10);
 			pippaDominance(1);
@@ -1113,7 +1113,7 @@ public function pippaFuckAss():void
 	if (pc.cocks[longestCockIndex].cLength() < 12) output("less than half of your length is actually in her asshole.");
 	else if (pc.cocks[longestCockIndex].cLength() <= 15) output("hardly over half of your length is actually in her asshole.");
 	else if (pc.cocks[longestCockIndex].cLength() <= 30) output("a large stretch of your length isn't even actually in her asshole.");
-	else output("a noticable stretch of your length isn't even actually in her asshole.");
+	else output("a noticeable stretch of your length isn't even actually in her asshole.");
 	pc.cockChange();
 	
 	output("\n\nYou begin to move, pulling out till just your [pc.cockhead] remains in her asshole, before thrusting back in on repeat.  The substantial valley that is her ass crack provides a unique sensation, almost like getting a titjob and fucking an ass at the same time.  Meanwhile, Pippa is moaning and panting heavily.  You're pretty sure you even heard a few snorts.  ");
@@ -1151,7 +1151,7 @@ public function pippaFuckAss():void
 	
 	if (pippaSexed() == 1)
 	{
-		output("<i>“You're really something, " + pippaCallsSteele() + ".  I hope that you'll stop by again some time.  But for now, I need to get cleaned up.  Bye bye, for now.”</i>");
+		output("<i>“You're really something, " + pippaCallsSteele() + ".  I hope that you'll stop by again sometime.  But for now, I need to get cleaned up.  Bye bye, for now.”</i>");
 	}
 	else
 	{
@@ -1277,7 +1277,7 @@ public function pippaFuckPussy(cockOrStraponIndex:int):void
 	if(pc.isCrotchGarbed()) output("clothes.");
 	else output("gear.");
 	
-	output("\n\nWhile you get comfortably settled into Pippa's bed, she puts on a little show, slowly stripping out of her tight clothes.  First, facing toward you, she pulls her tanktop up over her head, letting her [pippa.tits] and [pippa.belly] fall free.  She crosses her arms under her tits, cradling them.  Her big nipples are already erect, standing in the middle of her wide, brown-pink areola.  Next, still facing you, she bends over, and pulls down her yoga pants.  She shakes back and forth a bit, setting her giant boobs swinging.  Finally, she turns around while spreading her legs, treating you to an eyeful of her [pippa.ass] and her spread [pippa.pussyNoun], adorned with a tuft of platinum blonde hair.");
+	output("\n\nWhile you get comfortably settled into Pippa's bed, she puts on a little show, slowly stripping out of her tight clothes.  First, facing toward you, she pulls her tank top up over her head, letting her [pippa.tits] and [pippa.belly] fall free.  She crosses her arms under her tits, cradling them.  Her big nipples are already erect, standing in the middle of her wide, brown-pink areola.  Next, still facing you, she bends over, and pulls down her yoga pants.  She shakes back and forth a bit, setting her giant boobs swinging.  Finally, she turns around while spreading her legs, treating you to an eyeful of her [pippa.ass] and her spread [pippa.pussyNoun], adorned with a tuft of blonde hair.");
 	
 	output("\n\nFinished with her show, Pippa climbs into bed after you, straddling you, before kissing you down your body.  She starts with a passionate kiss on your [pc.lips], followed by your neck, your [pc.chest], your navel, your inner thigh, and finally, ");
 	
@@ -1342,7 +1342,7 @@ public function pippaFuckPussy(cockOrStraponIndex:int):void
 			output("Despite Pippa's weight, you don't have much trouble helping to hold her up");
 		}
 		
-		output(".  She immeditely begins moving up and down, slowly at first.  She runs her wet, corkscrew-ridged pussy up and down all 10 inches that she can fit inside her, just barely keeping your [pc.cockhead " + cockOrStraponIndex + "] inside at the peak of her movement before sliding back down.  As she slides, she squeezes and milks your [pc.cock " + cockOrStraponIndex + "] with her vaginal walls with skills befitting one who would call herself a masseuse.  As she slides along, massasing your shaft, she also massage her [pippa.tits], squeezing and twisting her pippa.nipples.  At the peak of one of her motions, she suddenly shudders and nearly falls on you, squeezing your [pc.cock " + cockOrStraponIndex + "] so hard that it pops out.  You almost lose it right there.  Did she just orgasm?");
+		output(".  She immeditely begins moving up and down, slowly at first.  She runs her wet, corkscrew-ridged pussy up and down all 10 inches that she can fit inside her, just barely keeping your [pc.cockhead " + cockOrStraponIndex + "] inside at the peak of her movement before sliding back down.  As she slides, she squeezes and milks your [pc.cock " + cockOrStraponIndex + "] with her vaginal walls with skills befitting one who would call herself a masseuse.  As she slides along, massaging your shaft, she also massage her [pippa.tits], squeezing and twisting her pippa.nipples.  At the peak of one of her motions, she suddenly shudders and nearly falls on you, squeezing your [pc.cock " + cockOrStraponIndex + "] so hard that it pops out.  You almost lose it right there.  Did she just orgasm?");
 		
 		output("\n\n<i>“I did,”</i> she answers your question, <i>“but I'm sure glad you didn't.  I want to go again, " + pippaCallsSteele() + ".”</i>  She lifts herself back up and again impales herself on your [pc.cock " + cockOrStraponIndex + "].  She slides up and down even faster this time, leaving her slick pussy juice running down your shaft.  She takes advantage of her own juices, reaching beneath her to the portion of your cock not inside her, and massaging it with her hands.  Her surprising flexibility makes you think she's been putting those yoga pants of hers to good use.  With your hands occupied with holding her thighs for support, there's nothing you can do but sit back and enjoy the feeling, and sink your fingers further into her soft, plentiful thigh flesh.  The combination of both her hands and pussy stroking and massaging your shaft  brings you to the brink of climax, and you can tell that Pippa is nearing her second orgasm by her heavy breathing and her flushed, sweating chest.  Sure enough, she pushes herself down on your [pc.cock " + cockOrStraponIndex + "] as far as she can, releasing it from her grip, and barely placing her hands over yours for support before she climaxes again.  Her hot pussy rippling over 10, or perhaps more, inches of your cock pushes you over the edge and you join her, orgasm hitting you like a train.");
 	}
@@ -1836,7 +1836,7 @@ public function pippaAppearance():void
 	clearMenu();
 	showPippa();
 	
-	output("Pippa was born a human, but has currently modded herself into a pig-morph.  She stands about 5.5 feet tall, 1.68 meters in the common metric system.  She's typically clothed in a tight, white tanktop that ends just above her belly buton and a pair of tight, gray yoga pants that end midway down her calves.  ");
+	output("Pippa was born a human, but has currently modded herself into a pig-morph.  She stands about 5.5 feet tall, 1.68 meters in the common metric system.  She's typically clothed in a tight, white tank top that ends just above her belly button and a pair of tight, gray yoga pants that end midway down her calves.  ");
 	
 	var seenPippaNaked:Boolean = pippaSexed(0) > 0 || pippaSpecialMassagesGiven(0) > 0 ? true : false;
 	
@@ -1849,9 +1849,9 @@ public function pippaAppearance():void
 	
 	output(".");
 	
-	output("\n\nPippa's face, coverd in light pink skin, is mostly human in shape and structure, but where a human's nose would be, she has a pig-like snout.  She has full lips and hazel colored eyes.  Her shoulder-length hair is platinum blonde, and partially tied into two bun pigtails in the back.  Her body is covered in sparse, barely visible hair of the same color.  The hair on her head is parted by two floppy pig ears.");
+	output("\n\nPippa's face, covered in light pink skin, is mostly human in shape and structure, but where a human's nose would be, she has a pig-like snout.  She has full lips and hazel colored eyes.  Her shoulder-length hair is [pippa.hairColor], and partially tied into two bun pigtails in the back.  Her body is covered in sparse, barely visible hair of the same color.  The hair on her head is parted by two floppy pig ears.");
 	
-	output("\n\nShe has a humanoid upper body, with normal human arms and torso.  She has [pippa.hips] that sexily sway as she walks, and a [pippa.ass] that's only barely contained by her tight pants.  Above her ass is a curly, little pig's tail.  Growing down from her hips are two thick-thighed, digitigrade pig legs, capped in black, cloven hooves.  She has a " + pippa.bellyDescript(true) + ", unsurprising considering her love of food.");
+	output("\n\nShe has a humanoid upper body, with normal human arms and torso.  She has [pippa.hips] that sexily sway as she walks, and a [pippa.ass] that's only barely contained by her tight pants.  Above her ass is a curly, little pig's tail.  Growing down from her hips are two thick-thighed, digitigrade pig legs, capped in black, cloven hooves.  She has a " + pippa.bellyDescript(true) + ", unsurprising considering her love of food.  Despite her thick figure, she maintains a curvy body.");
 	
 	output("\n\nShe has two " + pippa.breastSize(pippa.breastRows[0].breastRatingRaw) + " [pippa.breastsNoun]");
 	
