@@ -363,7 +363,7 @@ public function ramisDrink(response:String = "drink"):void
 			break;
 		case "next":
 			output("<i>“Alright, we gotta move,”</i> says the human guy, standing up as a game of never-ever comes to a lively conclusion. <i>“Nice meeting you, Steele.”</i>");
-			output("\n\n<i>“We’re just getting started though!”</i> cries Ramis. He " + (pc.hasVagina() ? "flaps his" : "waves") + " hand at her exasperatedly and the others do nothing but chuckle as they file out. <i>“Lightweights!”</i> the kaithrit hurls at their backs. She clambers back to her feet and grins at you. <i>“You aren’t gonna bail on me like those dickheads, are you? Night’s still young. We could hit a club after this...”</i>");
+			output("\n\n<i>“We’re just getting started though!”</i> cries Ramis. He " + (pc.hasVagina() ? "flaps" : "waves") + " his hand at her exasperatedly and the others do nothing but chuckle as they file out. <i>“Lightweights!”</i> the kaithrit hurls at their backs. She clambers back to her feet and grins at you. <i>“You aren’t gonna bail on me like those dickheads, are you? Night’s still young. We could hit a club after this...”</i>");
 			
 			processTime(2);
 			IncrementFlag("RAMIS_TIMES_DRINK");

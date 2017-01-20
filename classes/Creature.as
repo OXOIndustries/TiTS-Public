@@ -16985,7 +16985,7 @@
 						notice = upperCase(fluidViscosity(statusEffects[a].value3)) + " " + fluidNoun(statusEffects[a].value3) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
 						else notice += "of you ";
-						notice += "in a seemingly endless tide. You can’t even move with wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
+						notice += "in a seemingly endless tide. You can’t even move without wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
 						if (!isCrotchExposed()) notice += ParseText(" It wouldn’t be so bad if most of it didn’t wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.");
 					}
 					else if(amountVented >= 10000)
