@@ -503,7 +503,7 @@ public function hanaSexBackroomII():void
 	
 	output("\n\nThe moment doesn’t last. She recovers composure and gently");
 	if (pc.hasCock() && pc.hasKnot()) output(", after your [pc.knot] deflates,");
-	output(" pushes you off herself  and back up right, still suffering under her baggage. Still, she certainly enjoyed herself and you’re proud to have helped someone, especially after she ‘revived’ you. There’s no lingering regret as you gather your things again and Hana exchanges you a warm smile as you slip out, leaving her to come to terms with your quickie");
+	output(" pushes you off herself and back up right, still suffering under her baggage. Still, she certainly enjoyed herself and you’re proud to have helped someone, especially after she ‘revived’ you. There’s no lingering regret as you gather your things again and Hana exchanges you a warm smile as you slip out, leaving her to come to terms with your quickie");
 	if (silly) output(" - and, more importantly, clean up!");
 	else output(".");
 

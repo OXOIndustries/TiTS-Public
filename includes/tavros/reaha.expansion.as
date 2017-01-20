@@ -1232,6 +1232,7 @@ public function reahaBreastMilkIceCreamShare():void
 
 public function tryProcDommyReahaTime(tMinutes:Number):Boolean
 {
+	if (flags["REAHA_ADDICTION_CURED"] != undefined) return false; // Reaha cured.
 	if (!reahaIsCrew()) return false;
 	if (!InShipInterior()) return false; // Only care about processTime calls onboard the ship
 	if (!reahaFree()) return false; // Free only

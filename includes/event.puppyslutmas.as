@@ -195,7 +195,7 @@ public function syriPuppyslutmasYe():void
 	
 	output("\n\n<i>“Seriously? I honestly didn’t think you’d say yes... but I appreciate it, Steele,”</i> she says, scooting over to put her head on your shoulder. <i>“So the party starts in less than a day, and I don’t have a ship. Or, uh, any cash for a space taxi. Think I could hitch a ride with you?”</i>");
 	
-	output("\n\nYou nod and, after finished your drinks, pull Syri to her feet. She excuses herself to her apartment, and returns a few minutes later with a small suitcase. <i>“Just a change of clothes,”</i> she says. " + pc.mf("You take her suitcase", "You nod") + " and head for the spaceport. On the way, you find your companion’s fingers lacing through yours, holding your hand tight. When you look her way, Syri gives you a little wink and walks a little closer, just enough to let the tip of her tail brush your [pc.legOrLegs] and [pc.butt] as you walk. It isn’t far to the spaceport, and then a quick elevator jaunt up to your ship.");
+	output("\n\nYou nod and, after finishing your drinks, you pull Syri to her feet. She excuses herself to her apartment, and returns a few minutes later with a small suitcase. <i>“Just a change of clothes,”</i> she says. " + pc.mf("You take her suitcase", "You nod") + " and head for the spaceport. On the way, you find your companion’s fingers lacing through yours, holding your hand tight. When you look her way, Syri gives you a little wink and walks a little closer, just enough to let the tip of her tail brush your [pc.legOrLegs] and [pc.butt] as you walk. It isn’t far to the spaceport, and then a quick elevator jaunt up to your ship.");
 	
 	output("\n\n");
 	if (flags["SYRI_SEEN_PCS_SHIP_CABIN"] == undefined) output("<i>“Nice digs,”</i> Syri says, following you aboard and");
@@ -223,7 +223,7 @@ public function syriPuppyslutmasUnderway():void
 
 	output("<b>A few hours pass</b>...");
 	
-	output("\n\nYou finally hear the shower turn off. Blinkingly lazily, you roll over on your bed to face the bathroom door and, a few minutes later, give Syri a slight smile as she steps out. A towel’s draped over her shoulder, hiding her bare breasts from view, and sporting a pair of tighty whities that loosely hang from her hips, bulging with her hefty package.");
+	output("\n\nYou finally hear the shower turn off. Blinking lazily, you roll over on your bed to face the bathroom door and, a few minutes later, give Syri a slight smile as she steps out. A towel’s draped over her shoulder, hiding her bare breasts from view, and sporting a pair of tighty whities that loosely hang from her hips, bulging with her hefty package.");
 	
 	output("\n\n<i>“What’re you staring at?”</i> Syri teases, sticking her tongue out at you and walking over to her suitcase. You scrunch your nose as the smell of wet ausar wafts by you.");
 	
@@ -415,7 +415,7 @@ public function puppyslutmasStairs():void
 	showName("OFFICE\nCOMPLEX");
 	author("Savin");
 
-	output("You take " + pPartner() + "’s hand and makes your ascent.");
+	output("You take " + pPartner() + "’s hand and make your ascent.");
 	if (pPartner() == "Anno") output(" Anno pulls up her long skirt with practiced grace, easily following you up despite her trail of silky garments and high heels.");
 	else if (pSyriClothes() == "Dress") output(" Syri curses under her breath and clutches the hem of her skirt, teetering on every step thanks to her high heels. <i>“Fuck this and fuck you and fuck everything,”</i> she mumbles, squeezing your hand painfully hard to steady herself on her ascent.");
 	else output(" Syri gives your hand an affectionate squeeze and follows you up, trying to hide her nervousness behind a smile.");
@@ -609,7 +609,8 @@ public function puppyslutmasPostGreets():void
 
 	output("\n\nAnno, Kaede, and Syri are happily following you about");
 	if (pPartner() == "Syri" && pSyriClothes() == "Dress") output(", their handsome dresses and curvaceous figures drawing admiring gazes from the other ausar milling about");
-	else output(", with Anno and Kaede both drawing appreciative looks from the crowd, admiring the two beautiful girls in their gorgeous dresses. Syri hangs back from them, letting the well-dressed girls take the limelight. Though, you notice, more than a few men and women let their eyes linger on your raven-haired companion, too.");
+	else output(", with Anno and Kaede both drawing appreciative looks from the crowd, admiring the two beautiful girls in their gorgeous dresses. Syri hangs back from them, letting the well-dressed girls take the limelight. Though, you notice, more than a few men and women let their eyes linger on your raven-haired companion, too");
+	output(".");
 
 	puppyslutmasPartyMenu();
 }
@@ -871,7 +872,7 @@ public function puppyslutmasDance():void
 	output("\n\n<i>“Sounds like a plan,”</i> your date answers, pulling tight against you. As you’re walking, Anno reaches out and snatches Kaede’s wrist, pulling the svelte red-head along behind you.");
 	if (pPartner() == "Anno") output(" Syri follows along at the trail of your little group, tail swishing a little faster than before as you near the dancefloor.");
 	
-	output("\n\nThe interior of the high rise has been made wide open, with a solid wooden platform in the center of a circular room. A huge, fake tree sits in the middles, surrounded by stereotypical present boxes wrapped in all manner of festive colors. Green banners and wreaths dot all the doors and windows. A great many more people are gathered here, mingling around a few tables full of snacks and drinks. A quartet of musicians are sat at the head of the room on a raised stage, wrapped around a podium and playing a soft medley of old-earth christmas tunes, and a few more modern, ausar holiday songs as well.");
+	output("\n\nThe interior of the high rise has been made wide open, with a solid wooden platform in the center of a circular room. A huge, fake tree sits in the middle, surrounded by stereotypical present boxes wrapped in all manner of festive colors. Green banners and wreaths dot all the doors and windows. A great many more people are gathered here, mingling around a few tables full of snacks and drinks. A quartet of musicians are sat at the head of the room on a raised stage, wrapped around a podium and playing a soft medley of old-earth christmas tunes, and a few more modern, ausar holiday songs as well.");
 	
 	output("\n\nPeople are just starting to gather on the dance floor, pairing off into each other’s arms, gently swaying to the music. You take a long look around the floor before turning to Anno and asking where her parents are.");
 	
@@ -953,7 +954,7 @@ public function puppyslutmasDanceWithAnno():void
 	
 	output("\n\nAnno smiles radiantly at you, murmuring <i>“I’ll let you take the lead, boss.”</i>");
 	
-	output("\n\nYou start to move, following the band’s lilting tune, turning around and around in synchronous with the many wealthy ausar around you. Anno follows you with a royal grace, moving fluidly to follow you even with her high heels and flowing skirts. Slowly but surely, the music builds up, swelling louder and ever so slightly faster, letting you and your partner dance a little quicker, going from idle swaying to proper ballroom maneuvering. Given your partner’s agility on her feet, you’re confident enough to set her spinning, twirling her under your arm the sending her spiraling away, only to pull her back into your arms.");
+	output("\n\nYou start to move, following the band’s lilting tune, turning around and around in synchronization with the many wealthy ausar around you. Anno follows you with a royal grace, moving fluidly to follow you even with her high heels and flowing skirts. Slowly but surely, the music builds up, swelling louder and ever so slightly faster, letting you and your partner dance a little quicker, going from idle swaying to proper ballroom maneuvering. Given your partner’s agility on her feet, you’re confident enough to set her spinning, twirling her under your arm and sending her spiraling away, only to pull her back into your arms.");
 	
 	output("\n\nAnno giggles like a little girl, laughing all the way until she’s pulled tight against you as the first song comes to an end. She comes to rest with her hands pressed against your chest, her body close enough that her breasts squeeze in against your [pc.chest]. It takes her a moment to realize where she’s ended up, and then she laughs and quickly withdraws her errant hands. They settle back on your [pc.hips] just as the next song starts, ushering the pair of you into the next dance.");
 	
@@ -982,12 +983,12 @@ public function puppyslutmasDanceWithAnno():void
 		if (pSyriClothes() == "Dress") output(" in their beautiful dresses");
 		output(" might make a lovely couple, the way they hold onto each other and nervously try to avoid stepping on each others’ toes.");
 	}
-	output(" They’re quite cute together, and seeing where your gaze has gone, Anno flashes you a little smile");
+	output(" They’re quite cute together, and seeing where your gaze has gone, Anno flashes you a little smile.");
 	
 	output("\n\nThings move a bit faster for the next dance, letting you and Anno strut your stuff, spinning and twirling about in ways that make your");
 	if (haveFuckedAnno() && annoIsCrew()) output(" lover");
 	else output(" partner");
-	output("’s hair and skirts twirl around her in a wild storm or snowy hair and purple silks. By the time the song ends, you’re both breathing hard, arms tight around each other. You can feel plenty of eyes on you - or more accurately, your stunning partner. You have to admit, Anno’s stealing the show: her movements are graceful and flowing, and her dress is immaculate. She’s carrying herself more like a princess than a scientist tonight. She smiles at some of the onlookers, her tail swishing excitedly beneath her skirts.");
+	output("’s hair and skirts twirl around her in a wild storm of snowy hair and purple silks. By the time the song ends, you’re both breathing hard, arms tight around each other. You can feel plenty of eyes on you - or more accurately, your stunning partner. You have to admit, Anno’s stealing the show: her movements are graceful and flowing, and her dress is immaculate. She’s carrying herself more like a princess than a scientist tonight. She smiles at some of the onlookers, her tail swishing excitedly beneath her skirts.");
 	
 	output("\n\n");
 	if (pPartner() == "Anno") output("<i>“Told you you’d be the queen of the ball,”</i> you say, reaching in to kiss her.");
@@ -1212,7 +1213,7 @@ public function puppyslutmasDornasArrive():void
 	if (pDrunk()) output("<i>“Fine, fine,”</i> Syri groans. <i>“Ugh. Let’s get this over with before I pussy out.”</i>");
 	else output("<i>“Ugh, I don’t think I’m drunk enough for this,”</i> Syri complains - though she nevertheless follows her twin’s lead.");
 	
-	output("\n\nYou fall in step behind the ausar girls, following them through the dispersing crowd towards a door marked <i>“Staff”</i> in English, Ausari, and Kaithrin. An ausar in a penguin suit nods politely to Anno and pulls the door open for her, admitting your little group to the back of stage. You’ve barely walked a dozen paces before you see Mr. and Mrs. Dorna again, walking towards your group from a side hall. Anno grabs her dress and takes off running towards her parents, who welcome her with open arms and smiles from ear to canid ear.");
+	output("\n\nYou fall in step behind the ausar girls, following them through the dispersing crowd towards a door marked “Staff” in English, Ausari, and Kaithrin. An ausar in a penguin suit nods politely to Anno and pulls the door open for her, admitting your little group to the backstage area. You’ve barely walked a dozen paces before you see Mr. and Mrs. Dorna again, walking towards your group from a side hall. Anno grabs her dress and takes off running towards her parents, who welcome her with open arms and smiles from ear to canid ear.");
 	
 	output("\n\n<i>“Anno, darling!”</i> Aserra laughs, pulling her radiant daughter into her arms. <i>“I’m so glad to see you!”</i> Neither ausar can hide their jubilance, of course: their tails are going full bore, wagging faster than you can see.");
 	
@@ -1304,7 +1305,7 @@ public function puppyslutmasMeetTheDornasHue():void
 	
 	output("\n\nThe driver pulls up, and one of the men outside the restaurant opens the limo’s door. <i>“Mr. and Mrs. Dorna. A pleasure to see you again,”</i> the valet says with a bow, stepping out of the way as the elder Dornas step out into the hot, dry air of the surface.");
 	
-	output("\n\nMr. Dorna stops to say something into the valet’s ear as his wife leads the rest of you into the dark and smoky restaurant. The restaurant’s pretty big, and pretty empty. A single long, circular table surrounds the restaurant, facing in towards a central kitchen open to the customers’ eyes. A couple of waiters welcome you and lead your group to a large, candle-lit section to the table already set with wine glasses and bread.");
+	output("\n\nMr. Dorna stops to say something into the valet’s ear as his wife leads the rest of you into the dark and smoky restaurant. The restaurant’s pretty big, and pretty empty. A single long, circular table surrounds the restaurant, facing in towards a central kitchen open to the customers’ eyes. A couple of waiters welcome you and lead your group to a large, candle-lit section of the table already set with wine glasses and bread.");
 	
 	output("\n\nAs you’re sitting down, Syri whispers to you, <i>“Don’t be too impressed. They own the place. Cleared it out for us, I bet.”</i>");
 	
@@ -1363,7 +1364,7 @@ public function puppyslutmasMeetTheDornasHue():void
 	
 	output("\n\nYour food comes in short order, accompanied by more wine and some cheeses that, Mrs. Dorna informs you, come from a gene-modded reptile - for whatever sense <i>that</i> makes - and is a local delicacy. They all have a laugh when you try it, and your face scrunches up in disgust. Nobody else fares much better, but they assure you it’s <i>all the rage</i> this year. The rest of the food, however, is exceptional: succulent meats and creamy vegetables, paired with a variety of breads all straight out of the oven. The cooking’s easily worthy of a five-star restaurant, and the cooks bow with tails wagging at your compliments.");
 	
-	output("\n\nDinner passes quietly after that, interrupted on occasion by Mrs. Dorna laughing like a lark or the twins starting to squabble over some meaningless remark before somebody breaks them up. All told, though, everyone seems to be having fun, laughing and teasing more like old friends than family. You find yourself drawn into their stories and jokes, made to feel just like part of the family in no time at all. If you had any doubts about impressing yourself upon your date’s parents, they’re erased by the time desert’s come and gone, and a fairly drunk Mrs. Dorna is trying to marry her daughter off to you, and Mr. Dorna has a holoprojector out, showing Kaede his impressive collection of scatter lasers and hunting trophies.");
+	output("\n\nDinner passes quietly after that, interrupted on occasion by Mrs. Dorna laughing like a lark or the twins starting to squabble over some meaningless remark before somebody breaks them up. All told, though, everyone seems to be having fun, laughing and teasing more like old friends than family. You find yourself drawn into their stories and jokes, made to feel just like part of the family in no time at all. If you had any doubts about impressing yourself upon your date’s parents, they’re erased by the time dessert’s come and gone, and a fairly drunk Mrs. Dorna is trying to marry her daughter off to you, and Mr. Dorna has a holoprojector out, showing Kaede his impressive collection of scatter lasers and hunting trophies.");
 	
 	output("\n\nAfter an hour or so of sitting and talk and picking teeth clean, the collective Dorna family arrives at the conclusion that it’s time to leave, and you all stumble drunkenly out of the restaurant. Night’s fallen, bathing the desert world in black, lit by two moons and the glowing radiance of the towering skyscrapers. The Dorna hover-limo is brought around, but your date insists that the two of you can just get a cab back to the ship.");
 	

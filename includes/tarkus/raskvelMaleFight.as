@@ -98,8 +98,8 @@ public function raskvelGangEncounter():void
 		//[Buy It] [Don’t]
 		clearMenu();
 		if (pc.credits >= gudDealPrice) addButton(0, "Buy It", buySomeJankJunkJunk, [raskLootType, gudDealPrice], "Buy It", "Buy the offered prize.");
-		else addDisabledButton(0, "Buy It", "Buy It", "You can't afford the asking price.");
-		addButton(1,"Don't",dontBuyScrapShit,undefined,"Don't","Don't buy that hunk o' junk.");
+		else addDisabledButton(0, "Buy It", "Buy It", "You can’t afford the asking price.");
+		addButton(1,"Don’t",dontBuyScrapShit,undefined,"Don’t","Don’t buy that hunk o’ junk.");
 	}
 	//Offers Fun
 	//40% chance
@@ -110,8 +110,8 @@ public function raskvelGangEncounter():void
 		//Yes Tooltip: You suspect by “fun” they mean “sex”.
 		//No Tooltip: They can’t make you have fun.
 		clearMenu();
-		addButton(1,"No",noIDontWantFunRaskGang,undefined,"No","They can't make you have fun.");
-		if(pc.hasGenitals()) addButton(0,"Yes",sureRaskLetsHaveFun,undefined,"Yes","You suspect by 'fun' they mean sex.");
+		addButton(1,"No",noIDontWantFunRaskGang,undefined,"No","They can’t make you have fun.");
+		if(pc.hasGenitals()) addButton(0,"Yes",sureRaskLetsHaveFun,undefined,"Yes","You suspect by ‘fun’ they mean sex.");
 		else addDisabledButton(0,"Yes","Yes","You need genitals to have fun!");
 	}
 	//Wants a Bribe
@@ -131,8 +131,8 @@ public function raskvelGangEncounter():void
 		//[Pay] [Don’t Pay] [Pay with Sex]
 		clearMenu();
 		if(pc.credits >= bribeAmount) addButton(0,"Pay",payRaskGangForSafePassage,bribeAmount,"Pay","Pay them the money.");
-		else addDisabledButton(0,"Pay","Pay","You can't afford that!");
-		addButton(1,"Don't Pay",dontPayForSafePassageSlut,undefined,"Don't Pay","It's clobberin' time!");
+		else addDisabledButton(0,"Pay","Pay","You can’t afford that!");
+		addButton(1,"Don’t Pay",dontPayForSafePassageSlut,undefined,"Don’t Pay","It’s clobberin’ time!");
 		if(pc.hasGenitals()) addButton(2,"PayWithSex",pay4SafetyWivSmex,undefined,"Pay With Sex","Maybe you can pay them off with some sex.");
 		else addDisabledButton(2,"PayWithSex","Pay With Sex","You need genitals to pay them off with sex!");
 	}
@@ -330,8 +330,8 @@ public function shekkaGetsSoldRaskShitz():void
 	//Spaceship part
 	if(raskLootType == 1)
 	{
-		output("\n\n<i>“That looks like something one of the technicians could use, sure, but I'm not much of a scrapper. I don't... think...”</i> The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn't anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.");
-		output("\n\n<i>“Fine, fine. How does " + Math.round(getRaskLootPrice()*1.75) + " sound? C'mon, it might just be junk metal.”</i>");
+		output("\n\n<i>“That looks like something one of the technicians could use, sure, but I’m not much of a scrapper. I don’t... think...”</i> The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn’t anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.");
+		output("\n\n<i>“Fine, fine. How does " + Math.round(getRaskLootPrice()*1.75) + " sound? C’mon, it might just be junk metal.”</i>");
 		processTime(2);
 		clearMenu();
 		addButton(0,"Deal",dealOnShipPartWithShekka);
@@ -356,7 +356,7 @@ public function shekkaGetsSoldRaskShitz():void
 		//[Give] [Don’t]
 		clearMenu();
 		addButton(0,"Give",giveStupidShitRaskPartsToShekkaFree);
-		addButton(1,"Don't",dontGiveShitToShekka);
+		addButton(1,"Don’t",dontGiveShitToShekka);
 	}
 }
 
@@ -418,10 +418,10 @@ public function dealOnShipPartWithShekka():void
 	showShekka();
 	output("You stop yourself from going to help stow the machinery away when Shekka merely flops back down in her seat, crossing her arms with a surly expression on her face. Before you can ask why, someone comes bursting into the room above you and yanks the part up in her hands like an expert thief.");
 	//If you haven't met Aurora, you swine:
-	if(flags["MET_AURORA"] == undefined) output("\n\nThe child's haphazard");
-	else output("\n\nAurora's haphazard");
+	if(flags["MET_AURORA"] == undefined) output("\n\nThe child’s haphazard");
+	else output("\n\nAurora’s haphazard");
 	output(" motions are like a dangerous pendulum, a heavy wrecking ball that threatens to sprawl you across the floor with a blow to the head. You can only watch in surprise as she skitters along the ceiling, grasping her dexterous claws into exposed piping, perforated tiles, lights, and whatever else happens to be around to get back into the hall and, you assume, her workshop, all the while giggling with glee at her new toy.");
-	output("\n\n<i>“I'm sure she's behaved...”</i> grumbles the woman behind you as she transfers the credits to your account. Well, you've made someone happy.");
+	output("\n\n<i>“I’m sure she’s behaved...”</i> grumbles the woman behind you as she transfers the credits to your account. Well, you’ve made someone happy.");
 	processTime(3);
 	pc.credits += Math.round(getRaskLootPrice()*1.75);
 	removeRaskLoot();
@@ -434,8 +434,8 @@ public function noDealOnShipPartWivShekka():void
 {
 	clearOutput();
 	showShekka();
-	output("<i>“For this thing? That's practically the amount I'd pay for someone to lug it around in the first place!”</i>");
-	output("\n\n<i>“Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.”</i> Shekka crosses her arms, looking up to you with a stern expression. <i>“That's was my only offer. Go chuck it at the gabilani, then.”</i>");
+	output("<i>“For this thing? That’s practically the amount I’d pay for someone to lug it around in the first place!”</i>");
+	output("\n\n<i>“Hey! Watch it, you. Credits don’t spawn on trees around here, there’s plenty of trash to go around. You just made someone </i>very<i> unhappy, though.”</i> Shekka crosses her arms, looking up to you with a stern expression. <i>“That’s was my only offer. Go chuck it at the gabilani, then.”</i>");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
 	flags["SHEKKA_SCRAP_DISABLED"] = 1;
 	clearMenu();
@@ -633,7 +633,7 @@ public function tryToHawkRaskShitToAurora():void
 	output(" from your back and plonk it down on the bat kid’s floor as grandly as you can, <i>“...this?”</i>");
 
 	//(Anything at all) 
-	output("\n\n<i>“Huh? Hey! I've seen that before! It always looked like trash to me, up above... but I'm not allowed to buy anything, they don't let me 'hold the wallet'.”</i> In some show of childish indignation, the pint-sized girl puffs her cheeks out adorably. <i>“Shekka is, though! She's... probably an adult! Go ask her! And hurry, too, I wanna look at it!”</i>");
+	output("\n\n<i>“Huh? Hey! I’ve seen that before! It always looked like trash to me, up above... but I’m not allowed to buy anything, they don’t let me ‘hold the wallet’.”</i> In some show of childish indignation, the pint-sized girl puffs her cheeks out adorably. <i>“Shekka is, though! She’s... probably an adult! Go ask her! And hurry, too, I wanna look at it!”</i>");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -691,12 +691,12 @@ public function victoryVsRaskGang():void
 	addButton(14,"Leave",CombatManager.genericVictory);
 	//Red Riding
 	//Requires: Vagina
-	if(pc.hasVagina()) addButton(0,"Ride 'Em",redRidingRaskvel,undefined,"Ride 'Em","Put their dicks to use in your slit, where they belong. The foolish little creatures should've let you take the lead all along!");
-	else addDisabledButton(0,"Ride 'Em","Ride 'Em","You need a vagina to ride 'em!");
+	if(pc.hasVagina()) addButton(0,"Ride ‘Em",redRidingRaskvel,undefined,"Ride ‘Em","Put their dicks to use in your slit, where they belong. The foolish little creatures should’ve let you take the lead all along!");
+	else addDisabledButton(0,"Ride ‘Em","Ride ‘Em","You need a vagina to ride ‘em!");
 	//Buttfuckery
 	//Req: Cock that fits
 	if(pc.cockThatFits(enemy.analCapacity()) >= 0 && pc.hasCock()) addButton(1,"Butt Fuck",raskMaleButtfuckery,undefined,"Butt Fuck","Give them a good reaming for inconveniencing you with their cute little butts.");
-	else addDisabledButton(1,"Butt Fuck","Butt Fuck","You need a dick that'll fit inside the raskvel in order to fuck their butts.");
+	else addDisabledButton(1,"Butt Fuck","Butt Fuck","You need a dick that’ll fit inside the raskvel in order to fuck their butts.");
 }
 public function lossVsRaskGang():void
 {
@@ -1123,7 +1123,7 @@ public function redRidingRaskvel():void
 	if(!pc.hasCockTail() && !pc.hasCuntTail() && !pc.lowerUndergarment.hardLightEquipped) addButton(0,"Next",feedRaskGangMalk,args);
 	else
 	{
-		if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"HardlightPeg",raskvelHardlightPegEdition,args,"Hardlight Peg","Peg one of them with the hardlight strap-on you've got.");
+		if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"HardlightPeg",raskvelHardlightPegEdition,args,"Hardlight Peg","Peg one of them with the hardlight strap-on you’ve got.");
 		else addDisabledButton(0,"HardlightPeg","Hardlight Peg","You need a hardlight strap-on for this scene.");
 		addButton(1,"Tittysuckle",feedRaskGangMalk,args,"Tittysuckle","Invite him to suck on your [pc.nipple], whether or not you have any milk to give.");
 		if(pc.hasCuntTail()) addButton(2,"Tail Milk",cuntTailRaskPlay,args,"Tail Milk","Use your symbiotic tail to wring pleasure from the pint-sized alien.");
@@ -1530,7 +1530,7 @@ public function nopeGonnaFightCapn():void
 	clearOutput();
 	showRaskGang();
 	pc.createStatusEffect("Seduction Declined",0,0,0,0);
-	output("You'd rather show these brutes what you're made of than titillate them any further.");
+	output("You’d rather show these brutes what you’re made of than titillate them any further.");
 	CombatManager.continueCombat();
 }
 
