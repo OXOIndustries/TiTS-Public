@@ -338,7 +338,7 @@ public function nurseryZilCallgirlRandomEvents():Boolean
 
 		var numZilCInfants:Genders = ChildManager.gendersOfUniqueTypeInRange(ZilCallgirlUniqueChild, 0, 12);
 
-		options.push("You catch a glimpse of Zheniya, wearing a slinkier version of the Steele Tech uniform top paired with a frilled skirt that leaves her waspy abdomen and long legs bare. She’s quietly working away at scrubbing down the walls"+ (flags["ANNO_MISSION_OFFER"] == 3 ? " with a small, silvery-grey goo that covers her arm like a glove": "") + ". Seeing you watching, she gives her rump a little wiggle for you, working with a sultry spring in her step.");
+		options.push("You catch a glimpse of Zheniya, wearing a slinkier version of the Steele Tech uniform top paired with a frilled skirt that leaves her waspy abdomen and long legs bare. She’s quietly working away at scrubbing down the walls"+ (flags["ANNO_MISSION_OFFER"] == 3 ? " with a small, silvery-gray goo that covers her arm like a glove": "") + ". Seeing you watching, she gives her rump a little wiggle for you, working with a sultry spring in her step.");
 
 		// At least one infant
 		if (numZilCInfants.total >= 1)
@@ -511,7 +511,7 @@ private const NURSERY_STAIRS_NAMES:Array = [
 
 public function nurseryStairsShared(activeFloor:int):void
 {
-	output("A gunmetal-grey stairwell connects the children’s floor with the second, dedicated to the nursery’s staff and support facilities. You’re currently on the "+ NURSERY_STAIRS_NAMES[activeFloor - 1] +" floor.");
+	output("A gunmetal-gray stairwell connects the children’s floor with the second, dedicated to the nursery’s staff and support facilities. You’re currently on the "+ NURSERY_STAIRS_NAMES[activeFloor - 1] +" floor.");
 }
 
 public function nurseryStairs1F():Boolean

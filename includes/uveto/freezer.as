@@ -27,7 +27,7 @@ public function approachHanaNotMet():void
 	output("You’re in a tavern; what’s there to do but bum up the barkeep for a drink and a chat? Making your way over, you sidle up");
 	if (pc.isTaur()) output(" beside");
 	else output(" onto");
-	output(" a stool and give the working barkeeper a cordial nod while looking her over. The fluffy fur on her tastefully curvy body gives her away as one of the local color immediately, not that you expect otherwise, while the few strands of grey besmirching her hairdo is an obvious outlier of her age.");
+	output(" a stool and give the working barkeeper a cordial nod while looking her over. The fluffy fur on her tastefully curvy body gives her away as one of the local color immediately, not that you expect otherwise, while the few strands of gray besmirching her hairdo is an obvious outlier of her age.");
 	
 	output("\n\nThe raven haired woman is drying a mug with a thick looking cloth, an expression of thinly veiled dour apathy hanging on her face as you approach. Ouch. It takes her a moment to realize she doesn’t quite recognize you, leading to the two of you giving each other a once over - and allowing you to realize she has an eyepatch, mostly covered up by a dangling bang. Huh. Finally, the cold-acting woman grunts.");
 	
@@ -48,7 +48,7 @@ public function approachHanaMet():void
 
 	output("You’re standing before Hana, whom is working the bar. A huskar like most of the locals, she’s surprisingly tall and willowy in stature despite her older, maternal appearance, making her curvy waist line and immodest bosom subtle in her silhouette. Beyond her mere figure the woman is raven haired, the black strands framing her head in a bob cut with a bang hanging across the side of her face, concealing the black, simplistic eyepatch over her right eye in the process. The usual ausar fur lines her arms and, you presume, her legs - though you can’t see the latter through the bar.");
 	
-	output("\n\nUnlike typical ausar, though, she also has furr puffing up around her neckline as if she is wearing a particularly fluffy scarf or shawl, given her huskar nature. All of the fur is black, but you can see a few aging grey strands stand out both in her hair and fuzzier fur. To accentuate this, or simply to avoid being <i>too</i> warm, the beige, cozy and body hugging wool sweater she wears opens in the chest, though where there’d be cleavage on any other woman lies a massive puff of fur overshadowing it");
+	output("\n\nUnlike typical ausar, though, she also has furr puffing up around her neckline as if she is wearing a particularly fluffy scarf or shawl, given her huskar nature. All of the fur is black, but you can see a few aging gray strands stand out both in her hair and fuzzier fur. To accentuate this, or simply to avoid being <i>too</i> warm, the beige, cozy and body hugging wool sweater she wears opens in the chest, though where there’d be cleavage on any other woman lies a massive puff of fur overshadowing it");
 	if (pc.isBimbo() || pc.isBro() || pc.LQ() >= 75 || (pc.lust() > pc.lustMax() * 0.75)) output(", disappointingly");
 	output(".");
 	
@@ -89,10 +89,10 @@ public function hanaDrinkMenu():void
 	if (HANA_DRINKS == null)
 	{
 		HANA_DRINKS = [
-			{ id: "mead",   btn: "Mead", th: "Mead", tt: "Why wouldn't you have mead in a meadhall?", cost: 5, f: hanaDrinkMead, imbibe: 10 + rand(5) },
+			{ id: "mead",   btn: "Mead", th: "Mead", tt: "Why wouldn’t you have mead in a meadhall?", cost: 5, f: hanaDrinkMead, imbibe: 10 + rand(5) },
 			{ id: "pblast", btn: "P. Blast", th: "Psionic Blaster", tt: "The local tourist flavor!", cost: 15, f: hanaDrinkPBlaster, imbibe: 20 + rand(5) },
-			{ id: "dingo",  btn: "F. Dingo", th: "Frisky Dingo", tt: "It's a pretty popular brand drink in ausar affiliated areas.", cost: 7, f: hanaDrinkDingo, imbibe: 5 + rand(3) },
-			{ id: "pgame",  btn:" P. Game", th: "The Party Game", tt: "There's a special ‘challenge’ at the bottom, some sort of party favor.", cost: 30, f: hanaDrinkPartyGame, imbibe: 30 + rand(5) }
+			{ id: "dingo",  btn: "F. Dingo", th: "Frisky Dingo", tt: "It’s a pretty popular brand drink in ausar affiliated areas.", cost: 7, f: hanaDrinkDingo, imbibe: 5 + rand(3) },
+			{ id: "pgame",  btn:" P. Game", th: "The Party Game", tt: "There’s a special ‘challenge’ at the bottom, some sort of party favor.", cost: 30, f: hanaDrinkPartyGame, imbibe: 30 + rand(5) }
 		];
 	}
 	
@@ -102,7 +102,7 @@ public function hanaDrinkMenu():void
 
 		if (o.cost > pc.credits)
 		{
-			addDisabledButton(i, o.btn, o.btn, "You don't have enough credits for this drink.");
+			addDisabledButton(i, o.btn, o.btn, "You don’t have enough credits for this drink.");
 		}
 		else
 		{
@@ -246,7 +246,7 @@ public function hanaTalkMenu(lastF:Function = null):void
 	}
 	else
 	{
-		if (flags["HANA_TALKED_IRESTEAD"] != undefined && 9999 == 0) addButton(1, "Rumors", hanaTalkRumors, undefined, "Rumors", "The stories always have the intrepid hero go to the tavern for odd jobs and the lay of the land. You're heroic enough.");
+		if (flags["HANA_TALKED_IRESTEAD"] != undefined && 9999 == 0) addButton(1, "Rumors", hanaTalkRumors, undefined, "Rumors", "The stories always have the intrepid hero go to the tavern for odd jobs and the lay of the land. You’re heroic enough.");
 		else addDisabledButton(1, "Rumors");
 	}
 
