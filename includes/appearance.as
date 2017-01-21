@@ -1316,21 +1316,23 @@ public function appearance(forTarget:Creature):void
 			if(target.tone < 65 || target.hasPerk("Buttslut")) {
 				output2(" Your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" is lean, from what you can see of it.");
-				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" looks fairly average.");
-				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" is fairly plump and healthy.");
-				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" jiggles a bit as you trot around.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" jiggles and wobbles as you trot about.");
-				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, even for a tauric being.");
+				else if(target.buttRating() < 6) output2(" looks fairly average.");
+				else if(target.buttRating() < 10) output2(" is fairly plump and healthy.");
+				else if(target.buttRating() < 15) output2(" jiggles a bit as you trot around.");
+				else if(target.buttRating() < 20) output2(" jiggles and wobbles as you trot about.");
+				else if(target.buttRating() < 25) output2(" is eye-drawing in the extreme, particularly when it keeps wobbling long after you stop trotting around.");
+				else output2(" is obscenely large, bordering freakish, even for a tauric being.");
 			}
 			//GIRL LOOK AT DAT BOOTY
 			else {
 				output2(" Your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" is barely noticable, showing off the muscles of your haunches.");
-				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" matches your toned, tauric frame quite well.");
-				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" gives hints of just how much muscle you could put into a kick.");
-				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" surges with muscle whenever you trot about.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" flexes its considerable mass as you move.");
-				if(target.buttRating() >= 20) output2(" is stacked with layers of muscle, huge even for a tauric being.");
+				else if(target.buttRating() < 6) output2(" matches your toned, tauric frame quite well.");
+				else if(target.buttRating() < 10) output2(" gives hints of just how much muscle you could put into a kick.");
+				else if(target.buttRating() < 15) output2(" surges with muscle whenever you trot about.");
+				else if(target.buttRating() < 20) output2(" flexes its considerable mass as you move.");
+				else if(target.buttRating() < 25) output(" is stacked with layers of muscle, huge even for a tauric being.") 
+				else output2(" is stacked with freakish amounts of muscle, so much so that it bulges and flexes obscenely while trotting around.");
 			}
 		}
 		//Non-horse PCs
@@ -1339,21 +1341,35 @@ public function appearance(forTarget:Creature):void
 			if(target.tone < 60 || target.hasPerk("Buttslut")) {
 				output2(" your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" looks great under your gear.");
-				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
-				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" fills out your clothing nicely.");
-				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" wobbles enticingly with every step.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you [target.walk].");
-				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
+				else if(target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
+				else if(target.buttRating() < 10) output2(" fills out your clothing nicely.");
+				else if(target.buttRating() < 15) output2(" wobbles enticingly with every step.");
+				else if(target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you [target.walk].");
+				else if(target.buttRating() < 25) output(" is eye-catching in the extreme, wobbling hypnotically long after you stop moving.");
+				else output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
 			}
 			//FITBUTT
 			else {
 				output2(" your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" molds closely against your form.");
-				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" contracts with every motion, displaying the detailed curves of its lean musculature.");
-				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" fills out your clothing nicely.");
-				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" stretches your gear, flexing it with each step.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" threatens to bust out from under your kit each time you clench it.");
-				if(target.buttRating() >= 20) output2(" is marvelously large, but completely stacked with muscle.");
+				else if(target.buttRating() < 6) output2(" contracts with every motion, displaying the detailed curves of its lean musculature.");
+				else if(target.buttRating() < 10) 
+				{
+					if(!target.isAssExposed()) output2(" fills out your clothing nicely.");
+					else output2(" is a nice, big canvas for displaying your well-developed musculature.");
+				}
+				else if(target.buttRating() < 15) 
+				{
+					if(!target.isAssExposed()) output2(" stretches your gear, flexing it with each step.");
+					else output2(" is big enough to draw the eye and strong enough to crush any hand daring enough to try for a grope.");
+				}
+				else if(target.buttRating() < 20) 
+				{
+					if(!target.isAssExposed()) output2(" threatens to bust out from under your kit each time you clench it.");
+					else output2(" flexes delightfully with every move you make. Any clothing you put over it would be in immediately danger of splitting in half.");
+				}
+				else if(target.buttRating() < 25) output2(" is obscenely large and completely stacked with muscle.");
+				else output2(" strains your ability to comprehend its size and near-freakish levels of muscular development.")
 			}
 		}
 		
