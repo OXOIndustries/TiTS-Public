@@ -36,6 +36,15 @@ PIPPA_DOMINANCE - Tracks Pippa's dominance
 PIPPA_TALKED_HER - Check if Steele has talked to Pippa about herself
 	undefined/0 - Have not talked to Pippa about herself
 	1 - Have talked to Pippa about herself
+PIPPA_TALKED_YOU - Check if you've talked with Pippa about yourself
+	undefined/0 - Have not
+	1 - Have
+PIPPA_TALKED_CARBONADO - Check if Steele has talked to Pippa about Carbonado
+	undefined/0 - Have not
+	1 - Have
+PIPPA_TALKED_MONEY - Check if Steele has talked to Pippa about money
+	undefined/0 - Have not
+	1 - Have
 PIPPA_TALKED_YAMMI - Check if Steele has talked to Pippa about Yammi
 	undefined/0 - Have not talked to Pippa about Yammi
 	1 - Have talked to Pippa about Yammi
@@ -1889,11 +1898,19 @@ public function pippaTalkMenu(from:Function = undefined):void
 	if (from != pippaTalkYou) addButton(1, "You", pippaTalkYou, undefined, "You", "Talk to Pippa about yourself.");
 	else addDisabledButton(1, "You", "You", "You just talked to her about that.");
 	
+	if (flags["MET_CFS"] == undefined) addDisabledButton(2, "Carbonado", "Carbonado", "You'll have to have visited Carbonado to talk to her about this.");
+	else if (from == pippaTalkCarbonado) addDisabledButton(2, "Carbonado", "Carbonado", "You just talked to her about that.");
+	else addButton(2, "Carbonado", pippaTalkCarbonado, undefined, "Carbonado", "Talk to Pippa about Carbonado.");
+	
+	if (flags["PIPPA_TALKED_HER"] != 1 || flags["PIPPA_TALKED_CARBONADO"] != 1 || flags["PIPPA_TALKED_YOU"] != 1) addDisabledButton(3, "Money", "Money", "Maybe you should get to know Pippa better before questioning her finances.");
+	else if (from == pippaTalkMoney) addDisabledButton(3, "Money", "Money", "You just talked to her about that.");
+	else addButton(3, "Money", pippaTalkMoney, undefined, "Money", "Talk to Pippa about money.");
+	
 	// Talk to her about Yammi (if you have recruited Yammi and talked to her about herself)
-	if (!yammiRecruited()) addDisabledButton(2, "Locked", "Locked", "You'll need to recruit a certain crew member to talk to her about this.");
-	else if (flags["PIPPA_TALKED_HER"] != 1 || !yammiIsCrew()) addDisabledButton(2, "Yammi", "Yammi", "You'll need to talk to her about herself and have Yammi as a crew member.");
-	else if (from == pippaTalkYammi) addDisabledButton(2, "Yammi", "Yammi", "You just talked to her about that.");
-	else addButton(2, "Yammi", pippaTalkYammi, undefined, "Yammi", "Talk to Pippa about Yammi.");
+	if (!yammiRecruited()) addDisabledButton(4, "Locked", "Locked", "You'll need to recruit a certain crew member to talk to her about this.");
+	else if (flags["PIPPA_TALKED_HER"] != 1 || !yammiIsCrew()) addDisabledButton(4, "Yammi", "Yammi", "You'll need to talk to her about herself and have Yammi as a crew member.");
+	else if (from == pippaTalkYammi) addDisabledButton(4, "Yammi", "Yammi", "You just talked to her about that.");
+	else addButton(4, "Yammi", pippaTalkYammi, undefined, "Yammi", "Talk to Pippa about Yammi.");
 	
 	// Talk to her about Reaha (if Reaha is a treated crew member and you've talked to her about herself)
 	/*if (!reahaRecruited()) addDisabledButton(3, "Locked", "Locked", "You'll need to recruit a certain crew member to talk to her about this.");
@@ -1989,9 +2006,82 @@ public function pippaTalkYou():void
 	
 	output("I didn't know exactly who you were, but I'd have to be living in quite some bubble to not have some idea.  There's a Steele Tech office right near here, after all.  You're the first rich, famous person I've gotten to know.  Or is it future rich, famous person?  Sounds like it's not a sure thing.”</i>  You tell her about your adventure to reclaim the probes, and about your cousin.  <i>“Victor seems like my kind of guy, being sure you actually know what you're doing and making you earn your place.  Your cousin sounds like a real asshole though, so I hope you're successful.  Maybe keep me in mind when the time comes; free massages would be a great employee benefit, huh?”</i>  She smiles and winks at you.");
 	
+	flags["PIPPA_TALKED_YOU"] = 1;
+	
 	processTime(5);
 	
 	addButton(0, "Next", pippaTalkMenu, pippaTalkYou);
+}
+
+public function pippaTalkCarbonado():void
+{
+	clearOutput();
+	clearMenu();
+	showPippa();
+	
+	output("It seems strange to you that Pippa would be on the surface working from her home when Carbonado exists.  <i>“");
+	
+	if (pc.isBimbo() || pc.isBro()) output("So like, why aren't you with the other massagers?”</i>");
+	else output("You know there's a spa with massage services on the station?”</i>");
+	
+	output("\n\n<i>“You mean Carbonado.  I know it.”</i>");
+	
+	output("\n\n<i>“So why not work there?”</i>");
+	
+	output("\n\nPippa pauses and places a finger on her lower lip, thinking briefly, and answers, <i>“Well, it's a nice place, and they're nice people, I'm sure, but...I guess I just like working for myself.  Not to mention, working from home is great.  If I worked there, I'd have to venture through the cold, and spend an hour and a half of my day riding a space  elevator.”</i>  As she speaks the last part, her face twists into a grimace, somewhere between annoyance and fear.  <i>“I'm happy to just stay here on the surface, when I can.”</i>");
+	
+	if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“But wouldn't it be the best workin' together?”</i>");
+	else output("\n\n<i>“Maybe you'd be more successful if you worked there instead of trying to freelance.”</i>");
+	
+	output("\n\nShe smiles, a bit ruefully.  <i>“Maybe a huskar aversion to oil isn't the reason for my business performance on Uveto.  Don't get me wrong; I'm not completely opposed to working with or for someone else, but it'd have to be a pretty unique opportunity.  It's not like I'm in financial trouble.  And a little competition's fun, don't you think?  I've got my advantages down here, but maybe that beautiful amazon's too much to overcome.”</i>  She smiles at you.  <i>“At least I've got one customer.”</i>"); 
+	
+	flags["PIPPA_TALKED_CARBONADO"] = 1;
+	
+	processTime(5);
+	
+	addButton(0, "Next", pippaTalkMenu, pippaTalkCarbonado);
+}
+
+public function pippaTalkMoney():void
+{
+	clearOutput();
+	clearMenu();
+	showPippa();
+	
+	if (pc.isBimbo() || pc.isBro()) output("<i>“So you fly all over the place and can't give massages.  How do you have money?”</i>");
+	else output("<i>“So you've a planet hopping lifestyle, and you've mentioned your lack of customers multiple times.  Yet, you don't seem too concerned with your financial situation.”</i>");
+	
+	output("\n\nPippa looks around like she doesn't really want to talk about it.  Maybe you shouldn't have asked; money can be a sensitive topic.  Finally, she sighs before speaking, <i>“Well, here's the thing.  She was no Victor Steele, but I had a grandmother who managed to make quite a bit of money during the last Planet Rush.  I never met her, unfortunately, but she was very generous with her money.”</i>");
+	
+	output("\n\nYou're surprised to hear that.  You wouldn't guess she was a rich girl, but it does explain a lot.  <i>“Is this grandmother anybody I'd recognize?”</i>");
+	
+	output("\n\n<i>“No.  She was all money, no fame.  Anyway, my parents don't fully approve of my life right now.  They don't understand why I'd mod myself like I have and run around from planet to planet working a job like this.  Still, they support me.”</i>  She looks down, a slightly sad smile forming on her face, and looks back up.  <i>“You know, " + pippaCallsSteele() + ", I actually envy you a bit.  I appreciate my parents' support, and I like not having to worry about money, but it must be nice to set out into the unknown, prove yourself, and earn what's yours.  Not that you started with nothing, I'm sure.  As much as the idea appeals to me though, I'll admit it's a bit scary.”</i>");
+	
+	output("\n\n<i>“")
+	
+	if (pc.isBimbo() || pc.isBro()) output("You can totally do it!");
+	else if (pc.isNice()) output("I think you could do it.  You're smart and driven.");
+	else if (pc.isMischievous()) output("Well you'll never know if you could do it unless you try.");
+	else output("You know sitting around whining isn't going to get you anywhere.");
+	
+	output("”</i>");
+	
+	output("\n\nShe perks up a bit and smiles at you.  ");
+	
+	if (pc.isAss() || pc.isMischievous()) output("<i>“Yeah, I suppose you're right.");
+	else output("<i>“I appreciate the vote of confidence.");
+	
+	output("  It's something to think about at least.  Maybe it's about time I cut my parents off.  Thanks for the talk, " + pippaCallsSteele() + ".”</i>");
+	
+	if (flags["PIPPA_TALKED_MONEY"] != 1)
+	{
+		flags["PIPPA_TALKED_MONEY"] = 1;
+		pippaAffection(5);
+	}
+	
+	processTime(5);
+	
+	addButton(0, "Next", pippaTalkMenu, pippaTalkMoney);
 }
 
 public function pippaTalkYammi():void

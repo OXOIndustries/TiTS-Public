@@ -113,7 +113,7 @@ package classes.Characters
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 16;
+			this.buttRatingRaw = 18;
 			this.bellyRatingRaw = 10;
 			//No dicks here!
 			this.cocks = new Array();
@@ -143,7 +143,7 @@ package classes.Characters
 			this.vaginas[0].bonusCapacity = 300;
 			this.vaginas[0].type = GLOBAL.TYPE_SWINE;
 			this.vaginas[0].addFlag(GLOBAL.FLAG_CORKSCREWED);
-			this.clitLength = 2;
+			this.clitLength = 1;
 			this.elasticity = 1;
 			//Fertility is a % out of 100. 
 			this.fertilityRaw = 1.05;
@@ -153,6 +153,7 @@ package classes.Characters
 			this.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
 			this.nippleColor = "brown-pink";
 			this.nippleLengthRatio = 1;
+			this.nippleWidthRatio = 1;
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
