@@ -250,6 +250,12 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" Your face is covered in " + target.skin(true,true,true) + ".");
 			else output2(" Strangely enough, your face is also covered with " + target.skin(true,true,true) + ".");
 		}
+		else if(target.faceType == GLOBAL.TYPE_SWINE) {
+			//appearance
+			output2("Your face is mostly human in shape and structure, with " + target.skin(true,true,true));
+			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" under your " + target.skinFurScales(true,true,false,true));
+			output2("but it's adorned with a flat, pig-like nose.");
+		}
 		// Special face additions
 		if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
 		//M/F stuff!
@@ -520,6 +526,10 @@ public function appearance(forTarget:Creature):void
 				if (target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches");
 				output2(" from your " + headNoun + ".");
 			}
+			else if (target.earType == GLOBAL.TYPE_SWINE)
+			{
+				output2(" A pair of pointed, floppy pig ears protrude from your " + headNoun + ".");
+			}
 			if(target.hasAntennae())
 			{
 				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
@@ -611,6 +621,7 @@ public function appearance(forTarget:Creature):void
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long,");
 				output2(" feather-tipped ears.");
 			}
+			else if(target.earType == GLOBAL.TYPE_SWINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of pointed, floppy pig ears.");
 			if(target.hasAntennae())
 			{
 				if(target.earType == GLOBAL.TYPE_LAPINE)
@@ -1537,7 +1548,8 @@ public function appearance(forTarget:Creature):void
 				output2(" a series of noticeable ridges that gradually thin as they appear closer to the tip.");
 			}
 		}
-		else if(target.tailType == GLOBAL.TYPE_FROG) output2(" Your stubby frog tail wiggles around at the back of your waist, just asking to be squeezed.");
+		else if (target.tailType == GLOBAL.TYPE_FROG) output2(" Your stubby frog tail wiggles around at the back of your waist, just asking to be squeezed.");
+		else if(target.tailType == GLOBAL.TYPE_SWINE) output2(" A curly, little pig tail sticks out above your " + target.buttDescript() + ", twirling when you're happy.");
 		//Tail cunts
 		if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
 		{
@@ -2875,6 +2887,17 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		else output2(" has a");
 		output2(" pronounced bullet-shaped tip.");
 	}
+	// pig dick
+	else if (target.cocks[x].cType == GLOBAL.TYPE_SWINE) {
+		output2(" The end twists in a corkscrew pattern, ");
+		
+		if (target.cocks[x].cLength() >= 18 && target.cocks[x].cThicknessRatio() <= 0.4) output2("and it is long and thin, like");
+		else if (target.cocks[x].cLength() < 18 && target.cocks[x].cThicknessRatio() > 0.4) output2("but its length and width ratio is unlike that of");
+		else if (target.cocks[x].cLength() < 18) output2("but it's not lengthy like");
+		else output2("but it's wider than");
+		
+		output2(" a pig's.");
+	}
 	//Nubby or Ribbed
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
 	{
@@ -3070,6 +3093,12 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	else if(target.vaginas[x].type == GLOBAL.TYPE_DEER) {
 		if(!eachOne) output2(" Your labia are swollen and fat, outlining your vagina, and often shine with a wet sheen regardless of your arousal. You’re told that they wink when you’re aroused.");
 		else output2("\nEach vagina’s labia are swollen and fat, often shining with a wet sheen regardless of your arousal. You’re told that they wink when you’re aroused.");
+	}
+	else if(target.vaginas[x].type == GLOBAL.TYPE_SWINE) {
+		if(!eachOne) output2(" The");
+		else output2("\nEach vagina’s");
+		
+		output2(" exterior lips are typically featureless, except for when you're aroused and they swell outward.");
 	}
 	
 	//Nubby

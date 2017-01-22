@@ -956,3 +956,12 @@ public function uvetoMaglevStation():Boolean
 
 	return false;
 }
+
+public function southernResidentialBonus():Boolean
+{
+	addUvetoCold(true);
+	// Pippa's house buzzer and/or description
+	approachingPippasHouse(0);
+
+	return false;
+}

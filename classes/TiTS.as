@@ -4,6 +4,7 @@
 	import classes.GameData.Perks;
 	import classes.TiTS_Settings;
 	import classes.UIComponents.MainButton;
+	import classes.UIComponents.SideBarComponents.CompressedLocationHeader;
 	import fl.transitions.Tween;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -344,6 +345,7 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uveto
+		include "../includes/uveto/pippa.as"
 		
 		include "../includes/chargendata.as";
 		
@@ -1299,6 +1301,10 @@
 		public function get gwen():Gwen
 		{
 			return chars["GWEN"];
+		}
+		public function get pippa():Pippa
+		{
+			return chars["PIPPA"];
 		}
 		
 		private var _dbgtestvar:int = 0;

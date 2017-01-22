@@ -44,6 +44,7 @@
 	import classes.GameData.CodexManager;
 	import classes.Engine.Interfaces.AddLogEvent;
 	import classes.Engine.Interfaces.ExtendLogEvent;
+	import classes.Engine.Utility.MathUtil;
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -330,6 +331,11 @@
 				r.burning.damageValue -= 35;
 				r.kinetic.damageValue += 10;
 				r.corrosive.damageValue += 10;
+			}
+			
+			if (hasStatusEffect("Oil Warmed"))
+			{
+				r.freezing.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440));
 			}
 			
 			return r;
@@ -2824,6 +2830,7 @@
 			removeStatusEffect("Mare Musk");
 			removeStatusEffect("Cum Soaked");
 			removeStatusEffect("Pussy Drenched");
+			removeStatusEffect("Oil Warmed");
 		}
 		public function canMasturbate():Boolean
 		{
@@ -4678,6 +4685,10 @@
 				case GLOBAL.TYPE_FROG:
 					adjectives = ["amphibian", "frog-like", "dot", "hidden"];
 					break;
+				case GLOBAL.TYPE_SWINE:
+					adjectives = ["swine", "pig-like", "floppy"];
+					if(isBimbo()) adjectives.push("piggy");
+					break;
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
 			if (skinType == GLOBAL.SKIN_TYPE_GOO && rand(5) == 0) adjectives.push("gooey", "slimy", "slick");
@@ -5410,6 +5421,10 @@
 		{
 			return (hasFaceFlag(GLOBAL.FLAG_MUZZLED));
 		}
+		public function hasBeak():Boolean
+		{
+			return (hasFaceFlag(GLOBAL.FLAG_BEAK));
+		}
 		public function hasFur():Boolean
 		{
 			return (skinType == GLOBAL.SKIN_TYPE_FUR);
@@ -5572,6 +5587,7 @@
 					case GLOBAL.TYPE_KANGAROO: adjectives.push("kangaroo", "‘roo-like"); break;
 					case GLOBAL.TYPE_FROG: adjectives.push("flat", "frog-like"); break;
 					case GLOBAL.TYPE_AVIAN: adjectives.push("avian", "bird-like"); break;
+					case GLOBAL.TYPE_SWINE: adjectives.push("pig-nosed"); break;
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -5734,6 +5750,8 @@
 				case GLOBAL.TYPE_FROG:
 					adjectives = ["frog", "tadpole-like", "short", "nubby", "nubbed"];
 					break;
+				case GLOBAL.TYPE_SWINE:
+					adjectives = ["swine", "pig-like"];
 			}
 			// Flags
 			if (hasTailCock())
@@ -5777,6 +5795,8 @@
 				adjectives.push("slimy", "slick", "gooey");
 			if (hasTailFlag(GLOBAL.FLAG_STICKY))
 				adjectives.push("sticky");
+			if (hasTailFlag(GLOBAL.FLAG_CORKSCREWED))
+				adjectives.push("curled", "curly");
 			
 			//Show adjective 50% of the time
 			if (rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
@@ -6016,6 +6036,7 @@
 						case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-armored", "chitinous"]; break;
 						case GLOBAL.TYPE_FROG: adjectives = ["frog", "amphibious", "frog-like", "powerful"]; break;
 						case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like", "hoof-capped"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -9762,6 +9783,7 @@
 			if (orangeMyrScore() >= 9) race = "orange myr";
 			if (nyreaScore() >= 5) race = "nyrea";
 			if (plantScore() >= 5) race = plantRace();
+			if (pigScore() >= 4) race = "pig-morph";
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			if (race == "human" && hradScore() >= 4) race = "hrad";
@@ -10476,6 +10498,21 @@
 		{
 			if(cyborgScore() >= numParts) return true;
 			return false;
+		}
+		public function pigScore():int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_SWINE) counter++;
+			if (faceType == GLOBAL.TYPE_SWINE) counter++;
+			if (legType == GLOBAL.TYPE_SWINE) counter++;
+			if (cockTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
+			if (vaginaTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
+			if (tailType == GLOBAL.TYPE_SWINE) counter++;
+			if (thickness >= 80) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pink", "brown-pink", "red-pink", "white", "black", "gray", "brown")) counter++;
+			if (hasSheath()) counter++;
+			
+			return counter;
 		}
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			var desc: String = "";
@@ -12163,6 +12200,7 @@
 				else if (type == GLOBAL.TYPE_KUITAN) desc += "kui-tan ";
 				else if (type == GLOBAL.TYPE_FLOWER) desc += "orchid ";
 				else if (type == GLOBAL.TYPE_DEER) desc += "deer ";
+				else if (type == GLOBAL.TYPE_SWINE) desc += "swine ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
@@ -12308,6 +12346,13 @@
 						desc += RandomInCollection(["animalistic pussy", "animalistic cunt", "deer slit", "deer pussy", "deer vagina", "animalistic vagina", "deer cunny", "deer-like pussy", "doe pussy", "musky deer-pussy", "musky deer-cunt", "musky doe-pussy", "musky doe-cunt"]);
 					else
 						desc += RandomInCollection(["deer-pussy", "doe-pussy", "animal-pussy", "deer-cunt", "doe-cunt", "animal-cunt", "deer-twat", "doe-twat", "deer-slit", "doe-slit", "cunt", "gash"]);
+				}
+				else if (type == GLOBAL.TYPE_SWINE)
+				{
+					if (!simple)
+						desc += RandomInCollection(["pig pussy","swine slit","animalistic pussy","pig cunt","sow pussy","hog hole","hog honeypot", "ridge-lined animal pussy", "corkscrewed pig vagina","swine vagina"]);
+					else
+						desc += RandomInCollection(["pig-pussy","swine-pussy","sow-pussy","animal-pussy","swine-slit","sow-slit","pig-cunt"]);
 				}
 				else
 				{
@@ -13261,6 +13306,9 @@
 							//adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
 							desc += RandomInCollection(["vanae-cock","vanae-dick","vanae-prick","cock","cock","member","xeno-dick","phallus"]);
 							break;
+						case GLOBAL.TYPE_SWINE:
+							desc += RandomInCollection(["swine-cock","swine-schlong","pig-cock","pig-prick","hog-dick","cock","boar-dick",mf("sow-seeder","sow-schlong")]);
+							break;
 						//Basic dicks names:  "cock",
 						case GLOBAL.TYPE_HUMAN:
 						//Nothing special for these two.
@@ -13377,6 +13425,9 @@
 						case GLOBAL.TYPE_VANAE:
 							//adjectives.push("vanae", "alien", "suckler-tipped", "vanae", "cephalopod-like", "inhuman", "exotic");
 							desc += RandomInCollection(["alien cock","sucker-tipped cock","sucker-tipped dick","sucker-tipped prick","sucker-tipped cock","sucker-crowned cock","sucker-crowned dick","sucker-capped member","sucker-capped phallus","alien dick","exotic vanae-cock","exotic vanae-dick","sucker-topped prick"]);
+							break;
+						case GLOBAL.TYPE_SWINE:
+							desc += RandomInCollection(["swine cock","swine schlong","pig prick","corkscrew-shaped pig cock","twisted swine dick","animalistic dick","twisted prick","animalistic shaft"]);
 							break;
 						//Basic dicks names:  "cock",
 						case GLOBAL.TYPE_HUMAN:
@@ -17748,6 +17799,13 @@
 						{
 							if(thisStatus.minutesLeft < 1) thisStatus.minutesLeft = 1;
 						}
+						break;
+					case "Oil Warmed":
+						var desc:String = "";
+						if(this is PlayerCharacter) desc = "You're covered in warm, protective oil!";
+						else desc = capitalA + short + " is covered in warm, protective oil!";
+						desc += "\nFreeze Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
+						setStatusTooltip("Oil Warmed", desc);
 						break;
 				}
 				
