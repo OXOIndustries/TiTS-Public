@@ -1902,7 +1902,7 @@ public function pippaTalkMenu(from:Function = undefined):void
 	else if (from == pippaTalkCarbonado) addDisabledButton(2, "Carbonado", "Carbonado", "You just talked to her about that.");
 	else addButton(2, "Carbonado", pippaTalkCarbonado, undefined, "Carbonado", "Talk to Pippa about Carbonado.");
 	
-	if (flags["PIPPA_TALKED_HER"] != 1 || flags["PIPPA_TALKED_CARBONADO"] != 1 || flags["PIPPA_TALKED_YOU"] != 1) addDisabledButton(3, "Money", "Money", "Maybe you should get to know Pippa better before questioning her finances.");
+	if (flags["PIPPA_TALKED_HER"] != 1 || flags["PIPPA_TALKED_CARBONADO"] != 1 || flags["PIPPA_TALKED_YOU"] != 1 || pippaAffection(0) < PIPPA_AFFECTION_MASSAGE) addDisabledButton(3, "Money", "Money", "Maybe you should get to know Pippa better before questioning her finances.");
 	else if (from == pippaTalkMoney) addDisabledButton(3, "Money", "Money", "You just talked to her about that.");
 	else addButton(3, "Money", pippaTalkMoney, undefined, "Money", "Talk to Pippa about money.");
 	
