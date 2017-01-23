@@ -479,7 +479,7 @@ package classes.Characters
 			{
 				if (unflaggedVagNum == vaginas.length)
 				{
-					m = "You're getting incredibly wet";
+					m = "You’re getting incredibly wet";
 					if(legCount > 1) m += " between the [pc.legs]";
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";
