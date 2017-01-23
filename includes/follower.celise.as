@@ -1585,7 +1585,7 @@ public function zDomCeliseGo():void
 	{
 		output("the warm, wet skin of her stomach is pressed against the underside of your ");
 		if(pc.hasTailCock() && !pc.hasCock()) output("now-unfolding tail-");
-		output("prick. Her open-mouthed smile widens even further as she slides up the tumescent shaft, moving her wet slit into position.");
+		output("prick. Her open-mouthed smile widens even further as she slides up the tumescent shaft, moving her wet slit into position");
 	}
 	else
 	{
