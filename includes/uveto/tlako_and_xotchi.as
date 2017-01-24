@@ -225,6 +225,7 @@ public function tlakoHerselfTopic():void
 	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_PAMPERED) output(" You run your thumb across your fingernails, remembering the spa days you and your father would schedule. You remember the long hours of talking about nothing in particular over massages, saunas, and manicures.");
 	//pc Nature=Austere:
 	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_AUSTERE) output(" You remember the cabin by the purple lake on Dorlin IV, the long hours spent with your father, enjoying the silence of the woods around you, and all those times he fished you out of the lake.");
+	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_SLUTTY) output(" You remember blushing as your father coached you on how to score the perfect date. It seemed awkward at the time, but it turned out to be the most useful advice you got.");
 	//pc.Nature=Balanced:
 	else output(" Unbidden, your fingers touch a small spot on your midsection. You remember a year spent building a treehouse under the twin suns of a garden planet. You fell, hitting several branches on your way down. Your father was there in a flash, picking you up and carrying you to the nearest med station.");
 	output(" You try to imagine life without that memory, and you wince.");

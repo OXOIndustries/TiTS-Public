@@ -1271,6 +1271,7 @@ public function chooseHowPCIsRaised():void {
 	output("\n\nThe mining magnate could make his heir work for everything. An austere upbringing would certainly result in a strong will, but less of a financial, helping hand. It would be tough on both of them, but it might just pay off.");
 	output("\n\nIf his " + pc.mf("son","daughter") + " spend too much time working or playing, however, [pc.heShe] would have no time for extracurricular activities. If Victor encouraged [pc.himHer] to nurture [pc.hisHer] physical skills, [pc.heShe] would probably grow up strong and well rounded, but not so book-smart. The opposite was also true - if he pushed his child towards study, [pc.heShe] would come out mentally strong, but perhaps physically weaker.");
 	output("\n\nPerhaps the best approach was to practice moderation, and give a little time to everything. Favoring nothing in particular would mean his child wouldn’t specialize in anything, but it would also mean [pc.heShe] wasn’t lacking in anything, either.");
+	output("\n\nHowever, you could always encourage them to follow in your footsteps more than average, and really get to be intimate with those [pc.heShe] knows. Maybe even a little too intimate.");
 	output("\n\n<b>What kind of upbringing does your character have?</b>");
 	
 	//[Pampered][Athletic][Bookworm][Austere][Balanced]
@@ -1280,6 +1281,7 @@ public function chooseHowPCIsRaised():void {
 	addButton(2,"Bookworm",applyUpbringing,2,"Bookworm","You begin with higher mental skills but lower physical ones.");
 	addButton(3,"Austere",applyUpbringing,3,"Austere","You begin with less starting money, but higher willpower.");
 	addButton(4,"Balanced",applyUpbringing,4,"Balanced","You begin well rounded, not specialized or lacking in anything.");
+	addButton(5,"Slutty",applyUpbringing,5,"Slutty","You begin with more starting money and reflexes, but a much higher libido.");
 	addButton(14,"Back",chooseAPhysicalAffinity);
 }
 
@@ -1316,6 +1318,14 @@ public function applyUpbringing(arg:int = 0):void {
 	//Balanced
 	else if(arg == 4) {
 		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_BALANCED;
+	}
+	//Slutty
+	else if (arg == 5) {
+		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_SLUTTY;
+		pc.reflexesRaw++;
+		pc.intelligenceRaw--;
+		pc.libidoRaw += 5;
+		pc.credits += 500;
 	}
 
 	chooseAlignment();
@@ -1356,6 +1366,10 @@ public function chooseAlignment():void {
 	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BALANCED)
 	{
 		output("’re always trying a bit of everything and anything. In the end, you come out quite balanced for it, just as your father had hoped you would.");
+	}
+	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_SLUTTY)
+	{
+		output("’re always sleeping around, indulging in the pleasures of life. Your suitors greatly enjoyed your abilities in the bedroom, and you found yourself heavily compensated for your work.");
 	}
 	else
 	{
@@ -1960,6 +1974,7 @@ public function fixPcUpbringing():void
 	addButton(2,"Bookworm",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BOOKWORM);
 	addButton(3,"Austere",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_AUSTERE);
 	addButton(4,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
+	addButton(5,"Slutty",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_SLUTTY);
 }
 
 public function fixPcUpbringingSetNew(upType:uint):void

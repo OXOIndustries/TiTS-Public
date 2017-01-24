@@ -1344,6 +1344,10 @@ public function nurseryMeetBrigetII(acceptedHug:Boolean):void
 			output("\n\nEducation, you know, Briget can handle in spades. She looks every bit the sexy teacher, and has the cyber-brain to match.");
 			break;
 
+		case GLOBAL.UPBRINGING_SLUTTY:
+			output("\n\nBriget must not have realized exactly what you were up to all those years, but you feel that she won't let them get up to anything naughty for a long while.");
+			break;
+			
 		default:
 		case GLOBAL.UPBRINGING_BALANCED:
 			output("\n\nYou turned out better than average under her care, and that was in Dad’s estate, not that much different from your average kid. With a staff of experts and a top of the line facility under her direction, you can’t wait to see what Briget can do.");
