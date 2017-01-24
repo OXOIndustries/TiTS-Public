@@ -2157,9 +2157,9 @@ public function getBlownByEmmy():void
 
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) 
 	{
-		output("Mmmm, I thought you’d never ask. I’ve wanted another load in my mouth so badly.”</i> She prowls closer, opening wide and letting her length tongue hang low. <i>“It’s so fucking hot, feeling your cum sliding all over my teeth and down my throat, making me smell like your cock whenever I though. F-f-fuck, how did I ever do this without jacking off?”</i> She nuzzles against your neck and presses your hand into the throbbing length between her legs. <i>“How about we both cum. I want it in both holes.”</i>");
+		output("Mmmm, I thought you’d never ask. I’ve wanted another load in my mouth so badly.”</i> She prowls closer, opening wide and letting her lengthy tongue hang low. <i>“It’s so fucking hot, feeling your cum sliding all over my teeth and down my throat, making me smell like your cock whenever I cough. F-f-fuck, how did I ever do this without jacking off?”</i> She nuzzles against your neck and presses your hand into the throbbing length between her legs. <i>“How about we both cum. I want it in both holes.”</i>");
 		output("\n\n<i>“You sure you can handle that?”</i> You probe her with a look while trying to ignore how hot her prick feels against your palm.");
-		output("\n\nEmmy presses a button, sealing the door behind her, but her eyes are shining feverishly. <i>“I’m sure, [pc.name]. If there’s one thing I’m comfortable with, thanks to you, it’s cumming... and your [pc.cumNoun]. In me, on me, filling me, whatever. Not cumming is the hard thing...”</i> She favors you with a wry smile. <i>“Now get");
+		output("\n\nEmmy presses a button, sealing the door behind her, but her eyes are shining feverishly. <i>“I’m sure, [pc.name]. If there’s one thing I’m comfortable with, thanks to you, it’s cumming... and your [pc.cumNoun]. In me, on me, filling me, whatever. Not cumming is the hard thing...”</i> She favors you with a wry smile. <i>“Now get ");
 		if(!pc.isNude()) output("naked and hop ");
 		output("up on the countertop. Let me see that dick.”</i>");
 		output(" Licking her lips, the jackal-girl adds, <i>“Give me that cock.”</i>");
@@ -2205,7 +2205,7 @@ public function getBlownByEmmy():void
 	else output(", and the pre-cum that always seems to pour from your cockslit becomes thick enough to wash away the bulk of her spit");
 	output(".");
 	output("\n\nNuzzling back against it, the jackaless allows your liquid ardor to soak into the fur of her muzzle. She giggles, <i>“I’m going to smell like your cock for the rest of today, you know that, right?”</i> She swaps sides, inadvertently collecting a droplet of spunky enthusiasm just above her nose. Joining both her hands to your [pc.cockBiggest], ");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Emmy leaves you to handle her spasming meat and picks of the pace of her supplementary handjob, ");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("Emmy leaves you to handle her spasming meat and picks up the pace of her supplementary handjob, ");
 	else output("Emmy picks up the pace of her stroking, ");
 	output("working you to a fever pitch with powerful strokes. Her eyes stare up at you from under her obsidian locks, watching your reaction as she milks your ambrosia onto herself. Her tongue slithers, snake-like, around the circumference of your [pc.cockHeadBiggest], and you nearly ");
 	if(pc.balls > 0) output("nut");

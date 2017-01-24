@@ -5,6 +5,7 @@ package classes.Characters
 	import classes.Engine.Interfaces.GetGameTimestamp;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
+	import classes.Items.Transformatives.OmegaOil;
 	import classes.RoomClass;
 	import classes.StorageClass;
 	import classes.kGAMECLASS;
@@ -83,11 +84,18 @@ package classes.Characters
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
+			// Buttslut heal
 			if(hasPerk("Buttslut"))
 			{
 				HP(level);
 				if(cumFrom != null) HP(Math.round(cumFrom.cumQ()/1000));
 			}
+			// Anal Heat dampen
+			if(hasStatusEffect("Strangely Warm") || hasStatusEffect("Flushed") || hasStatusEffect("Fuck Fever"))
+			{
+				(new OmegaOil()).reduceOmegaEffect();
+			}
+			// Cumflation
 			if (cumFrom != null)
 			{
 				if(cumflationEnabled()) cumflationHappens(cumFrom,3);

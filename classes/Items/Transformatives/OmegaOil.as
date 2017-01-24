@@ -302,17 +302,28 @@ package classes.Items.Transformatives
 			var pc:Creature = kGAMECLASS.pc;
 			switch(phase)
 			{
+				case 0:
+					pc.removeStatusEffect("Strangely Warm");
+					pc.removeStatusEffect("Flushed");
+					pc.removeStatusEffect("Fuck Fever");
+					pc.removeStatusEffect("Omega Oil");
+					if(pc.hasPerk("Omega Fever")) pc.createStatusEffect("Omega Fever Delay", 0, 0, 0, 0, true, "", "", false, 1440);
+					break;
 				case 1:
 					pc.createStatusEffect("Strangely Warm",0,0,0,0,false,"Icon_LustUp","You are more passively lusty than before.\n\n(+15 minimum lust)",false,4320,0xB793C4);
+					pc.removeStatusEffect("Flushed");
+					pc.removeStatusEffect("Fuck Fever");
 					pc.createStatusEffect("Omega Oil",15,0,0,0,true,"","Hidden status that actually tracks the lust mod so we only gotta check 1.",false,4320);
 					break;
 				case 2:
 					pc.removeStatusEffect("Strangely Warm");
 					pc.createStatusEffect("Flushed",0,0,0,0,false,"Icon_LustUp","You are significantly more passively lusty than before.\n\n(+25 minimum lust)\n(Vulnerable to phallus-bearing foes.)",false,4320,0xB793C4);
+					pc.removeStatusEffect("Fuck Fever");
 					pc.setStatusValue("Omega Oil",1,25);
 					pc.setStatusMinutes("Omega Oil",4320);
 					break;
 				case 3:
+					pc.removeStatusEffect("Strangely Warm");
 					pc.removeStatusEffect("Flushed");
 					pc.createStatusEffect("Fuck Fever",0,0,0,0,false,"Icon_LustUp","You are significantly more passively lusty than before.\n\n(+33 minimum lust)\n(Extremely vulnerable to phallus-bearing foes.)",false,5760,0xB793C4);
 					pc.setStatusValue("Omega Oil",1,33);
@@ -323,6 +334,34 @@ package classes.Items.Transformatives
 					pc.addStatusMinutes("Fuck Fever",7000);
 					break;
 			}
+		}
+		public function reduceOmegaEffect():void
+		{
+			var pc:Creature = kGAMECLASS.pc;
+			var msg:String = "";
+			
+			if(pc.hasStatusEffect("Fuck Fever"))
+			{
+				msg += "Relieved, your mind clears a bit as the Fuck Fever subsides... however, your [pc.asshole] continues to twitch in anticipation. <b>You now feel Flushed!</b>";
+				msg = ParseText(msg);
+				updateOmega(2);
+			}
+			else if(pc.hasStatusEffect("Flushed"))
+			{
+				msg += "Your [pc.asshole] doesn’t seem as hungry for penetration as it did before, though you can still feel the excited warmth it continues to glow. <b>You now feel Strangely Warm!</b>";
+				msg = ParseText(msg);
+				updateOmega(1);
+			}
+			else
+			{
+				msg += "The warmth between your [pc.butts] fades and you feel your senses calm. <b>Your anus is no longer in heat";
+				if(pc.hasPerk("Omega Fever")) msg += "... at least for now";
+				msg += "!</b>";
+				msg = ParseText(msg);
+				updateOmega(0);
+			}
+			
+			if(msg.length > 0) AddLogEvent(msg, "passive");
 		}
 		public function checkOmegaFever():void
 		{
