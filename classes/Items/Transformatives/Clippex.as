@@ -100,7 +100,7 @@
 			{
 				if (rand(5) < 2)
 				{
-					AddLogEvent(ParseText("<u>The Clippex drug has an effect....</u>\n\nYour breath catches in your throat as" + (!target.isChestExposed() ? " your [pc.nipples] rub against your [pc.upperGarment]" : " sensation twinges and nibbles through your [pc.nipple]") + "They really are very tender right now..."), "passive", firstProcOffset + (30 * i));
+					AddLogEvent(ParseText("<u>The Clippex drug has an effect....</u>\n\nYour breath catches in your throat as" + (!target.isChestExposed() ? " your [pc.nipples] rub against your [pc.upperGarment]" : " sensation twinges and nibbles through your [pc.nipple]") + ". They really are very tender right now..."), "passive", firstProcOffset + (30 * i));
 					
 					target.lust(5);
 				}
