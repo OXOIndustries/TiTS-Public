@@ -57,6 +57,7 @@ public function burtsBarFunc():Boolean {
 
 public function oilyButt():void
 {
+	output("\n\n");
 	quickLoot(new OmegaOil());
 }
 
