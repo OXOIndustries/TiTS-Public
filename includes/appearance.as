@@ -195,7 +195,7 @@ public function appearance(forTarget:Creature):void
 				output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. You've got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skinFurScales(true,true,true,true) + " underneath your ");
 				if(target.hasFur()) output2("furry");
 				else output2("feathered");
-				output(" visage.");
+				output2(" visage.");
 			}
 			//Scales:
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES)
@@ -1331,7 +1331,7 @@ public function appearance(forTarget:Creature):void
 				else if(target.buttRating() < 10) output2(" gives hints of just how much muscle you could put into a kick.");
 				else if(target.buttRating() < 15) output2(" surges with muscle whenever you trot about.");
 				else if(target.buttRating() < 20) output2(" flexes its considerable mass as you move.");
-				else if(target.buttRating() < 25) output(" is stacked with layers of muscle, huge even for a tauric being.") 
+				else if(target.buttRating() < 25) output2(" is stacked with layers of muscle, huge even for a tauric being.");
 				else output2(" is stacked with freakish amounts of muscle, so much so that it bulges and flexes obscenely while trotting around.");
 			}
 		}
@@ -1345,7 +1345,7 @@ public function appearance(forTarget:Creature):void
 				else if(target.buttRating() < 10) output2(" fills out your clothing nicely.");
 				else if(target.buttRating() < 15) output2(" wobbles enticingly with every step.");
 				else if(target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you [target.walk].");
-				else if(target.buttRating() < 25) output(" is eye-catching in the extreme, wobbling hypnotically long after you stop moving.");
+				else if(target.buttRating() < 25) output2(" is eye-catching in the extreme, wobbling hypnotically long after you stop moving.");
 				else output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
 			}
 			//FITBUTT
@@ -1369,7 +1369,7 @@ public function appearance(forTarget:Creature):void
 					else output2(" flexes delightfully with every move you make. Any clothing you put over it would be in immediately danger of splitting in half.");
 				}
 				else if(target.buttRating() < 25) output2(" is obscenely large and completely stacked with muscle.");
-				else output2(" strains your ability to comprehend its size and near-freakish levels of muscular development.")
+				else output2(" strains your ability to comprehend its size and near-freakish levels of muscular development.");
 			}
 		}
 		
