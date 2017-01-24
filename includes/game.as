@@ -1470,8 +1470,13 @@ public function variableRoomUpdateCheck():void
 	//Zheniya's schedule
 	if (zilCallgirlAtNursery())
 	{
+		rooms["ANON'S BOARD HALL"].removeFlag(GLOBAL.OBJECTIVE);
 		if (hours >= 8 && hours <= 16) rooms["RESIDENTIAL DECK ZHENIYA"].removeFlag(GLOBAL.NPC);
 		else rooms["RESIDENTIAL DECK ZHENIYA"].addFlag(GLOBAL.NPC);
+	}
+	else if(flags["SAENDRA_XPACK1_STATUS"] >= 8 && zilCallgirlAvailable())
+	{
+		rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.OBJECTIVE);
 	}
 	//Nursery
 	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16))
@@ -2588,7 +2593,7 @@ public function processVenusPitcherEvents(deltaT:uint, doOut:Boolean, totalDays:
 {
 	if(currentLocation != "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
 	if(currentLocation != "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
-	if (currentLocation != "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
+	if(currentLocation != "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
 	
 	venusSubmission( -(totalDays));
 }

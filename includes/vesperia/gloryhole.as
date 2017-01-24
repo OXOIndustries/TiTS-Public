@@ -506,6 +506,11 @@ public function gloryholeWait():void
 {
 	if(kiroKallyThreesomeUnlockPoints() >= 3 && flags["KIRO_KALLY_PICARDINE_QUEST"] == 3 && flags["KALLY_FAP_2_KIRO"] != undefined && kiroKallyThreesomes() == 0)
 		kallyAndKiroGloryholeThreesomeMeeting();
+	else if(flags["GLORYHOLED_KAEDE"] == undefined && flags["KAEDE_FUCKED"] != undefined && flags["KAEDE_FUCKED"] > 0 && flags["KAEDE_NT_ENCOUNTER"] != undefined && flags["KAEDE_CS_COUNTDOWN"] != -1)
+	{
+		processTime(2);
+		kaedePopsIntoZeGloryHole();
+	}
 	else if(rand(3) == 0)
 	{
 		clearOutput();

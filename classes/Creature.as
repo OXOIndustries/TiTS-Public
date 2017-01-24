@@ -4712,8 +4712,10 @@
 			var nouns:Array = ["eye"];
 			var description:String = "";
 			
+			var hasLuminousEyes:Boolean = (eyeColor.indexOf("luminous") != -1 || eyeColor.indexOf("glowing") != -1);
+			
 			adjectives.push(eyeColor);
-			if(eyeType == GLOBAL.TYPE_WORG) adjectives.push("glowing");
+			if(eyeType == GLOBAL.TYPE_WORG && !hasLuminousEyes) adjectives.push("glowing");
 			//Show color 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
@@ -5875,9 +5877,17 @@
 					adjectives.push("large", "bird-like", "dove-like", "soft", "feathery");
 					break;
 				case GLOBAL.TYPE_COCKVINE:
-					adjectives.push("wriggling", "squirming", "undulating", "oily", "prehensile", "lithe", "snaky", "smooth", "plant-like", "slithery");
+				case GLOBAL.TYPE_TENTACLE:
+					adjectives.push("wriggling", "squirming", "undulating", "oily", "prehensile", "lithe", "snaky", "smooth", "slithery");
+					if(wingType == GLOBAL.TYPE_COCKVINE) adjectives.push("plant-like", "vine-like");
+					if(wingType == GLOBAL.TYPE_TENTACLE) adjectives.push("alien-like", "demon-like");
 					nouns = ["tentacle"];
-					if(!nounOnly) nouns.push("dorsal cock", "cockvine", "back penis");
+					if(!nounOnly)
+					{
+						nouns.push("dorsal cock", "back penis");
+						if(wingType == GLOBAL.TYPE_COCKVINE) nouns.push("cockvine");
+						if(wingType == GLOBAL.TYPE_TENTACLE) nouns.push("tentacle");
+					}
 					break;
 			}
 
@@ -9346,7 +9356,7 @@
 		public function canFly(): Boolean {
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
-			if (InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN)) return true;
+			if (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN])) return true;
 			return false;
 		}
 		//PC can swim?
@@ -9357,7 +9367,7 @@
 			return true;
 		}
 		public function hasWings(wType:Number = 0): Boolean {
-			if(InCollection(wingType, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_COCKVINE)) return false;
+			if(InCollection(wingType, [GLOBAL.TYPE_SHARK, GLOBAL.TYPE_COCKVINE, GLOBAL.TYPE_TENTACLE])) return false;
 			if (wingType != 0)
 			{
 				// Specific type
@@ -9372,6 +9382,11 @@
 		{
 			if(!hasWings()) return false;
 			return InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN]);
+		}
+		// Wing types that double as back genitals (tentacle-like)
+		public function hasBackGenitals(): Boolean {
+			if(InCollection(wingType, [GLOBAL.TYPE_COCKVINE, GLOBAL.TYPE_TENTACLE])) return true;
+			return false;
 		}
 		public function removeWings():void
 		{
@@ -9835,13 +9850,6 @@
 				if (huskarScore() < 3) race = "ausar";
 				else race = "huskar";
 			}
-			if (doggoOverrideAusar() && dogScore() >= 4) 
-			{
-				if(kGAMECLASS.silly && isTaur()) race = "doge-taur";
-				if(isTaur()) race = "dog-taur";
-				else if(isBimbo() || (femininity >= 75 && biggestTitSize() >= 7 && hasVagina())) race = "bitch-morph";
-				else race = "canine-morph";
-			}
 			if (demonScore() >= 5) race = "demon-morph";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
@@ -9933,6 +9941,9 @@
 		{
 			if (demonScore() >= 3) return "hellhound-morph";
 			else if (huskarScore() >= 3)  return "husky-morph";
+			if(isBimbo() || (femininity >= 75 && biggestTitSize() >= 7 && hasVagina())) return "bitch-morph";
+			if(faceType == GLOBAL.TYPE_WORG) return "worg-morph";
+			if(kGAMECLASS.silly) return "doge-morph";
 			return "canine-morph";
 		}
 		public function felineRace():String
@@ -10028,22 +10039,8 @@
 			if (legType == GLOBAL.TYPE_CANINE && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED)) counter -= 2;
+			if (hasFur()) counter -= 2;
 			return counter;
-		}
-		public function dogScore(): int {
-			var counter: int = 0;
-			if (InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE)) counter++;
-			if (hasTail(GLOBAL.TYPE_CANINE) && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
-			if (armType == GLOBAL.TYPE_CANINE) counter++;
-			if (legType == GLOBAL.TYPE_CANINE && legCount >= 2 && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
-			if (faceType == GLOBAL.TYPE_CANINE) counter++;
-			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED)) counter += 2;
-			if (counter > 0 && hasFur()) counter++;
-			return counter;
-		}
-		public function doggoOverrideAusar():Boolean
-		{
-			return (dogScore() > ausarScore() && (hasFaceFlag(GLOBAL.FLAG_MUZZLED) || hasFur()));
 		}
 		public function huskarScore():int
 		{
@@ -10067,6 +10064,8 @@
 			if (counter > 5 && hasCock(GLOBAL.TYPE_FELINE)) counter++;
 			if (femininity < 75) counter--;
 			if (femininity < 50 && !hasBreasts()) counter--;
+			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED)) counter -= 2;
+			if (hasFur()) counter -= 2;
 			return counter;
 		}
 		public function leithanScore():int {
@@ -10184,8 +10183,10 @@
 			if (armType == GLOBAL.TYPE_CANINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (legType == GLOBAL.TYPE_CANINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
 			if (faceType == GLOBAL.TYPE_CANINE) counter++;
+			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED)) counter += 2;
 			if (counter > 1 && hasCock() && cockTotal(GLOBAL.TYPE_CANINE) == cockTotal() && totalKnots() == cockTotal()) counter++;
 			if (counter > 1 && hasVagina() && vaginaTotal(GLOBAL.TYPE_CANINE) == vaginaTotal()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function deerScore(): int
@@ -10205,7 +10206,7 @@
 			if (earType == GLOBAL.TYPE_DEMONIC) counter++;
 			if (armType == GLOBAL.TYPE_DEMONIC) counter++;
 			if (hasTail(GLOBAL.TYPE_DEMONIC) || hasTailCock(GLOBAL.TYPE_DEMONIC)) counter++;
-			if (wingType == GLOBAL.TYPE_DEMONIC || wingType == GLOBAL.TYPE_SMALLDEMONIC) counter++;
+			if (InCollection(wingType, [GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_SMALLDEMONIC, GLOBAL.TYPE_TENTACLE])) counter++;
 			if (counter > 1 && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_SUCCUBUS || legType == GLOBAL.TYPE_BOVINE)) counter++;
 			if (counter > 2 && eyeType == GLOBAL.TYPE_DEMONIC && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			if (counter > 3 && hasCock(GLOBAL.TYPE_DEMONIC)) counter++;
@@ -10235,6 +10236,7 @@
 			if (legType == GLOBAL.TYPE_FELINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
 			if (eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_FELINE) counter++;
 			if (counter > 1 && cockTotal(GLOBAL.TYPE_FELINE) == cockTotal()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function frogScore(): int
@@ -16983,7 +16985,7 @@
 						notice = upperCase(fluidViscosity(statusEffects[a].value3)) + " " + fluidNoun(statusEffects[a].value3) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
 						else notice += "of you ";
-						notice += "in a seemingly endless tide. You can’t even move with wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
+						notice += "in a seemingly endless tide. You can’t even move without wet gushes splattering onto the ground, marking a slut-shaming trail wherever you move.";
 						if (!isCrotchExposed()) notice += ParseText(" It wouldn’t be so bad if most of it didn’t wind up inside your [pc.lowerGarments], leaving you slick and musky with residual love.");
 					}
 					else if(amountVented >= 10000)

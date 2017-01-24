@@ -81,7 +81,7 @@ public function encounterPidemmeBothrioc():void
 
 			if (pc.reflexes() + rand(30) + 1 > 30)
 			{
-				output("\n\nStill, you have enough about you to sidestep the bolos hurled at you, grab your [pc.meleeWeapon] and stab it upwards, parrying their rapier strike with a judder. You stagger backwards, taking in your assailant as they circle you.");
+				output("\n\nStill, you have enough wits about you to sidestep the bolos hurled at you, grab your [pc.meleeWeapon] and stab it upwards, parrying their rapier strike with a judder. You stagger backwards, taking in your assailant as they circle you.");
 				output("\n\n<i>“Clever prey,”</i> croons the bothrioc, sword tense in their burnished hand, plump abdomen swaying behind them. <i>“Or should I say - fast prey. Clever prey wouldn’t prance into my territory when I have so many eggs that need bearing!”</i>");
 
 				fightBothriocPidemme(false);
@@ -258,7 +258,7 @@ public function bothriocPidemmePCVictory():void
 
 	if (enemy.HP() <= 0)
 	{
-		output("The pale creature falls a knee before you, her (his?) chest heaving with the effort of sucking down air in the face of the onslaught you have wrought on them. Her head hangs low, averting her gaze from falling on the more dominant member of the exchange...");
+		output("The pale creature falls to a knee before you, her (his?) chest heaving with the effort of sucking down air in the face of the onslaught you have wrought on them. Her head hangs low, averting her gaze from falling on the more dominant member of the exchange...");
 	}
 	else
 	{

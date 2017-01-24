@@ -20,7 +20,7 @@ import classes.Items.Junk.DamagedVIChip;
 
 public function showDrBadgerAndPexiga(nude:Boolean = false):void
 {
-	var nameDisplay:String = "DR BADGER &\n";
+	var nameDisplay:String = "DR.BADGER &\n";
 	nameDisplay += pexiga.short.toUpperCase();
 	showName(nameDisplay);
 
@@ -137,7 +137,7 @@ public function drHaswellPexigaTalk():void
 	if(!pc.isBimbo()) output("But what about helping the creatures, you push. Uplifting them?");
 	else output("You blink and giggle nervously. You point out that he’s a doctor. Doctors are supposed to help people.");
 	output("\n\nThe doctor’s intensity flutters into boredom almost immediately. <i>“While I certainly don’t care to speak for Xenogen as a whole, it is my professional opinion that science is most certainly NOT a field oriented towards improving lives.”</i> He lets out an airy puff that almost sounds like a single, withered laugh. <i>“Science serves but two masters: curiosity and the almighty credit. Your cannibalistic pexiga friends are neither interesting nor profitable,”</i> he explains dismissively. <i>“I’m sure you can show yourself out.”</i>");
-	if(!pc.isBimbo()) output("\n\nYou’re tempted to mention the marketability of their sugary drool, realize frankly you’re a little angry at the aloof man’s greed. You’re not about to offer any help to this ass. If he’s so clever, he can figure it out on his own.");
+	if(!pc.isBimbo()) output("\n\nYou’re tempted to mention the marketability of their sugary drool, but realize that, frankly, you’re a little angry at the aloof man’s greed. You’re not about to offer any help to this ass. If he’s so clever, he can figure it out on his own.");
 	else output("\n\nWhat a nerd! This guy is, like, so totally uncool. If you pushed him out of an airlock, all of space would get a lot warmer - he’s THAT uncool! You hold up your nose as you leave his stinky old office. There’s probably a thousand smarter people anyway. Dozens of them!");
 	processTime(4);
 	clearMenu();
@@ -152,7 +152,7 @@ public function drByronMcallisterProfessionalPexigaAnus():void
 	mcallisterHeader();
 	author("Adjatha");
 	if(!pc.isBimbo()) output("You mention the pitiful plight of the pexiga to Dr. McAllister and the burly man runs his fingers through his bushy beard in thought.");
-	else output("Leaning against the big, burly man and running your fingers through his bushy beard, you mention your poor little pexiga. <i>“Surely somebody as smart and handsome as the big Dr Byron can help,”</i> you murmur into his ear.");
+	else output("Leaning against the big, burly man and running your fingers through his bushy beard, you mention your poor little pexiga. <i>“Surely somebody as smart and handsome as the big Dr. Byron can help,”</i> you murmur into his ear.");
 	output("\n\n<i>“Hrm! Yes, yes I see what you mean. A nasty hand fate dealt those poor creatures. I suppose once my affairs have concluded on Myrellion, I could certainly petition my superiors to take a look at these pexiga.”</i>");
 	output("\n\nYou mention that you have one onboard your ship. Would it be possible for him to do some tests right now?");
 	output("\n\nThe normally jolly man now wears a look of concern. He rests a mitt-sized hand on your shoulder in sympathy and sadly shakes his head. <i>“My " + pc.mf("boy","girl") + ", if you’re looking for treatment, I’m not the man you want. Not only do I need to conduct numerous preliminary tests and review my findings with colleges and superiors, but there are also ethical questions to consider.”</i>");
@@ -203,6 +203,7 @@ public function drBadgerChristmasYay():void
 	clearOutput();
 	showDrBadger();
 	author("Adjatha");
+	
 	if(!pc.isBimbo()) output("No sense beating around the bush. You lay out your request very plainly and watch the dangerous woman to see how she’ll react. She listens as you explain the pexiga’s biological off-switch, her eyes narrowing as you reach the compassionate conclusion of your petition. Her hand twitches, fingers reaching for something and you tense up, equally motivated to run for safety as to lunge at the scientist before she can ready her weapon. Drawn in both directions, you’re momentarily paralyzed and the indecision allows the strained moment to pass without event.");
 	else output("A blush on your face and warm excitement bubbling in your tummy, you bashfully explain the blue girl you’ve got in your ship. Badger makes dismissive affirmations as she slides up beside you. <i>“Mmhrm? Oh? Very interesting,”</i> she mumbles as her clawed hands reach across your [pc.upperGarment] to play across your [pc.chest]. You squirm in her grasp, tempted to just jump her bone, but somehow you find the strength to press on. You explain how it’s, like, totally not fair that the pexiga can’t enjoy herself and since Badger’s so good at making people dumb, maybe she could make a super dumb person just regular dumb?");
 	output("\n\nDoctor Badger takes a step back and produces a hard, pink ball of gum. Popping it into her mouth, she studies you with clinical scrutiny. <i>“You want me to make somebody... smarter? Feels a bit like going against the grain, to be honest,”</i> she remarks, gnashing and smacking her gum loudly. <i>“What’s the fun in building somebody up when you could be tearing them down?”</i>");
@@ -211,8 +212,9 @@ public function drBadgerChristmasYay():void
 	output("\n\nDoctor Badger looks offended. She scowls and snaps her pink-tinted goggles over her eyes. Bracing her fists on her curvaceous hips, she spits out her gum. <i>“Woah now. That’s quite a little assumption you’re making. I didn’t say I COULDN’T do it. I can make anything into a bimbo. Give me a little time and I’ll make a rock into a total slut.”</i>");
 	if(!pc.isBimbo()) output("\n\nIt seems she’s getting quite riled up. Time to close the deal. You marvel at the theoretical accomplishment. To overcome biological programming and turn a vicious beast into a thinking person? Does she really have the technology to do such a thing? Can she, dare you say it, play god?");
 	else output("\n\nYou clap excitedly. <i>“Oooo! Do it, do it, do it! Make the blue girl into the smartest bimbo ever! We’ll be best friends and, like, be sooooooooooo appreci- apprec- like we’ll be so thankful!”</i> Badger eyes your [pc.hips] and [pc.ass] with an intensity that leaves your [pc.skinFurScales] feeling well-used. You bounce up and down in delight. <i>“You can do it! I believe in Badger!”</i>");
-	output("\n\n<i>“You’re damed right I can!”</i> she responds with a suitably self-satisfied grin on her face. Her whole body trembles, with what you hope is excitement. <i>“Go get your little friend and by the time you get back, I should have something ready for the two of you,”</i> she grins, her pink-tinted goggles casting a distorted reflection back at you..");
-	output("\n\nAre you really going to trust Dr Badger to do what’s right?");
+	output("\n\n<i>“You’re damed right I can!”</i> she responds with a suitably self-satisfied grin on her face. Her whole body trembles, with what you hope is excitement. <i>“Go get your little friend and by the time you get back, I should have something ready for the two of you,”</i> she grins, her pink-tinted goggles casting a distorted reflection back at you.");
+	output("\n\nAre you really going to trust Dr. Badger to do what’s right?");
+	
 	//{Disable Badger until the quest is complete}
 	flags["PEXIGA_TREATMENT"] = 0;
 	//[Get Pexiga] [Just Leave]
@@ -231,8 +233,10 @@ public function justLeaveBadger():void
 	clearOutput();
 	showBust("");
 	author("Adjatha");
+	
 	if(!pc.isBimbo()) output("You step out and release a breath you hadn’t realized you’d been holding. Maybe Yammi was right. Dealing with people like Badger just isn’t worth the risk. Maybe somebody else in the galaxy can help the pexiga. You’ll just have to keep looking.");
 	else output("Doctor Badger is so funny sometimes. She seemed really excited about that thing she was going to do. You place your finger to your [pc.lipsChaste] and stand still in thought. Now what was it she wanted you to do? Oh pooh. You’ve forgotten it. Oh well! You’ll remember eventually!");
+	
 	//End
 	processTime(1);
 	clearMenu();
@@ -245,8 +249,9 @@ public function bringBadgerPexibork():void
 	showPexiga();
 	author("Adjatha");
 	showName("\nWALKIES");
+	
 	//Normal
-	if(!pc.isBimbo()) output("Tentatively, you return, leading the pexiga on a leash. Most of the residents of Tarkus don’t give the two of you a second look, but a few seem to recognize the dangers posed by the blue girl and go diving for cover. The subdued beast pays no attention to the fear or contempt or lust of the onlookers, however. She simply follows on hands and knees for as long as you apply pressure to her collar. Leading her into Doctor Badger’s lab, you cast your gaze about, looking for the " + (rand(2) == 0 ? "slutty" : "sinister") + " scientist. There’s noise coming from her back room, so you cautiously lead your pet towards her disreputable savoir.");
+	if(!pc.isBimbo()) output("Tentatively, you return, leading the pexiga on a leash. Most of the residents of Tarkus don’t give the two of you a second look, but a few seem to recognize the dangers posed by the blue girl and go diving for cover. The subdued beast pays no attention to the fear or contempt or lust of the onlookers, however. She simply follows on hands and knees for as long as you apply pressure to her collar. Leading her into Doctor Badger’s lab, you cast your gaze about, looking for the " + (flags["BADGER_QUEST"] == -3 ? "slutty" : "sinister") + " scientist. There’s noise coming from her back room, so you cautiously lead your pet towards her disreputable savoir.");
 	//Bimbo
 	else output("Choosing a light pink collar that goes with your pexiga’s blue scales, you proudly puff out your [pc.chest] and stroll through Tarkus with your super cute pet. Lots of people stare and point, which is awesome. Some others drop their jaws, and that’s the best. Everybody knows you’re, like, a million times cuter with a pet, so you flash big smiles and wave to the crowds. You can feel their eyes all over your body, the lust so strong it’s almost like their hands are all over you. A glance at the pexiga, however, and the wonderful feeling flickers with distress. It’s not right that she can’t enjoy a stroll like this! You’ve just got to help her! Cutting your walk short, you head right to Doc Badger’s kinda icky shack. She’s not around, but that’s okay. You don’t mind looking. Hey, how about that back room? You haven’t been there before.");
 
@@ -303,7 +308,7 @@ public function afterDollmakerFight():void
 	clearOutput();
 	showDrBadgerAndPexiga();
 	author("Adjatha");
-	output("You locate the doctor before long, finding her putting a final turn of the screw on a large, padded chair. <i>“What kept you?”</i> She asks, lifting her goggles up. <i>“Any longer and I was going to send out a search party.”</i>");
+	output("You locate the doctor before long, finding her putting a final turn of the screw on a large, padded chair. <i>“What kept you?”</i> she asks, lifting her goggles up. <i>“Any longer and I was going to send out a search party.”</i>");
 	if(!pc.isBimbo()) output("\n\nYou’re tempted to mention the guards you had to fight your way through, but swallow back the vitriol. She’s probably just antagonizing you to get a reaction. Instead, you give her a big smile and explain that you took the scenic route.");
 	else output("\n\n<i>“Oh, well, we would’ve been here sooner, but there were all kinds of weird, cool things to check out,”</i> you gush. Relating every little thing, using expansive gestures and sound effects, you catch her up on your little adventure through Doc Badger’s world. She grins and gives you an affectionate head pat.");
 	output("\n\n<i>“Well, I’m all done here, so let’s strap in the patient and get started!”</i> You can practically see her shoulders bobbing with silent cackles. Badger throws open the arm and leg restraints and hoists the pexiga into the chair as easily as if she’d been handling a cat.");
@@ -752,7 +757,7 @@ public function talkToBimboBadgerAboutPexiga():void
 	processTime(3);
 	//[Get Pexiga] [Just Leave]
 	clearMenu();
-	addButton(0,"Get Pexiga",getPexiga);
+	addButton(0,"Get Pexiga",bringBadgerPexibork);
 	addButton(1,"Just Leave",justLeaveBimboBadgerQuestBlech);
 }
 
@@ -771,14 +776,6 @@ public function justLeaveBimboBadgerQuestBlech():void
 	processTime(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-}
-
-
-//[Get Pexiga]
-//{Disables normal Pexiga interactions with Yammi on your ship}
-public function getPexiga():void
-{
-	bringBadgerPexibork();
 }
 
 //After Fight

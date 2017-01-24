@@ -3082,7 +3082,7 @@ public function displayEncounterLog(showID:String = "All"):void
 							else output2(", Ongoing");
 						}
 						if(flags["REAHA_BOVINIUMED"] != undefined) output2("\n<b>* Reaha, Times Given Bovinium:</b> " + flags["REAHA_BOVINIUMED"]);
-						if(reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt:</b> " + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
+						if(flags["REAHA_ADDICTION_CURED"] == undefined && reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt:</b> " + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
 					}
 				}
 				// Ovir Gurrrl
@@ -5450,6 +5450,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output2(", He fucked your ass");
 				if(flags["TAURFUCKED_DANE"] != undefined) output2(", Fucked him as a centaur");
 			}
+			roamCount++;
+		}
+		// Erra
+		if(flags["MET_ERRA"] != undefined)
+		{
+			output2("\n<b>* Erra:</b> Met her");
+			if(flags["ERRA_SEXED"] > 0) output2("\n<b>* Erra, Times Sexed:</b> " + flags["ERRA_SEXED"]);
 			roamCount++;
 		}
 		// Kaede

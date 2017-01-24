@@ -187,12 +187,12 @@ public function appearance(forTarget:Creature):void
 			else output2("You have a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
 		}
 		//Knock-off dog-face
-		else if(target.faceType == GLOBAL.TYPE_CANINE)
+		else if(target.faceType == GLOBAL.TYPE_WORG)
 		{
 			//Fur/Feather:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) 
 			{
-				output2(" You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. You've got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skinFurScales(true,true,true,true) + " underneath your ");
+				output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. You've got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skinFurScales(true,true,true,true) + " underneath your ");
 				if(target.hasFur()) output2("furry");
 				else output2("feathered");
 				output(" visage.");
@@ -200,10 +200,10 @@ public function appearance(forTarget:Creature):void
 			//Scales:
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES)
 			{
-				output2(" You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. Its overlaid with " + target.skinFurScales(true,true,false,true) + ".");
+				output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. Its overlaid with " + target.skinFurScales(true,true,false,true) + ".");
 			}
 			//Others:
-			else output2(" You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. The odd visage is hairless and covered with " + target.skinFurScales(true,true,true,true) + ".");
+			else output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. The odd visage is hairless and covered with " + target.skinFurScales(true,true,true,true) + ".");
 		}
 		//cat-face
 		else if(target.faceType == GLOBAL.TYPE_FELINE) {
@@ -324,12 +324,14 @@ public function appearance(forTarget:Creature):void
 		}
 		else if (target.eyeType == GLOBAL.TYPE_CANINE || target.eyeType == GLOBAL.TYPE_WORG)
 		{
-			output2(" Your canine eyes have large irises occupying most of their surface when the pupils are not dilated, ");
-			if (hasMetallicEyes) output2("surrounded by a metallically glistening " + target.eyeColor + " iris");
-			else if (hasGemstoneEyes) output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris");
-			else if (hasLuminousEyes) output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris");
-			else output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris");
-			output2(" and a menacingly glowing sclera.");
+			output2(" Your canine eyes have large");
+			if (hasMetallicEyes) output2(", metallically glistening " + target.eyeColor + " irises");
+			else if (hasGemstoneEyes) output2(", shimmering " + target.eyeColor + " irises");
+			else if (hasLuminousEyes) output2(" " + indefiniteArticle(target.eyeColor) + " irises");
+			else output2(" " + indefiniteArticle(target.eyeColor) + " irises");
+			output2(" occupying most of their surface when the pupils are not dilated");
+			if(target.eyeType == GLOBAL.TYPE_WORG) output2(", each surrounded by a menacingly glowing sclera");
+			output2(".");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE || target.eyeType == GLOBAL.TYPE_DEMONIC || target.eyeType == GLOBAL.TYPE_VULPINE)
 		{
@@ -901,13 +903,17 @@ public function appearance(forTarget:Creature):void
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
 				output2(" magnificent wings sprout from your shoulders" + (target.statusEffectv1("Wing Position") == 1 ? " and fold over your body" : "") + ". When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky. They look a bit like bat’s wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
 			}
-			else if (target.wingType == GLOBAL.TYPE_COCKVINE)
+			else if (target.wingType == GLOBAL.TYPE_COCKVINE || target.wingType == GLOBAL.TYPE_TENTACLE)
 			{
 				if (target.wingCount == 3) output2(" a trio of");
 				else if (target.wingCount == 4) output2(" a quartet of");
 				else if (target.wingCount == 12) output2(" a dozen");
 				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition. From afar, they may look like innocent vines, but up close, each tentacle contains a bulbous head with a leaking cum-slit, perfect for mass breeding.");
+				output2(" oily, prehensile phalluses sprout from your shoulders and back. They are retractable at will and can move on their own volition.");
+				if(target.wingType == GLOBAL.TYPE_COCKVINE) output2(" From afar, they may look like innocent vines, but up close, each tentacle contains a bulbous head with a leaking cum-slit");
+				else if(target.wingType == GLOBAL.TYPE_TENTACLE) output2(" Each tentacle contains a hefty knot with a long, nub-lined shaft and tipped with a cum-drooling slit");
+				else output2(" Each tentacle contains a bulbous head with a cum-leaking slit");
+				output2(", perfect for mass breeding.");
 			}
 			//Shark Wings/Dorsal Fin:
 			else if(target.wingType == GLOBAL.TYPE_SHARK)
@@ -1310,21 +1316,23 @@ public function appearance(forTarget:Creature):void
 			if(target.tone < 65 || target.hasPerk("Buttslut")) {
 				output2(" Your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" is lean, from what you can see of it.");
-				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" looks fairly average.");
-				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" is fairly plump and healthy.");
-				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" jiggles a bit as you trot around.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" jiggles and wobbles as you trot about.");
-				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, even for a tauric being.");
+				else if(target.buttRating() < 6) output2(" looks fairly average.");
+				else if(target.buttRating() < 10) output2(" is fairly plump and healthy.");
+				else if(target.buttRating() < 15) output2(" jiggles a bit as you trot around.");
+				else if(target.buttRating() < 20) output2(" jiggles and wobbles as you trot about.");
+				else if(target.buttRating() < 25) output2(" is eye-drawing in the extreme, particularly when it keeps wobbling long after you stop trotting around.");
+				else output2(" is obscenely large, bordering freakish, even for a tauric being.");
 			}
 			//GIRL LOOK AT DAT BOOTY
 			else {
 				output2(" Your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" is barely noticable, showing off the muscles of your haunches.");
-				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" matches your toned, tauric frame quite well.");
-				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" gives hints of just how much muscle you could put into a kick.");
-				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" surges with muscle whenever you trot about.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" flexes its considerable mass as you move.");
-				if(target.buttRating() >= 20) output2(" is stacked with layers of muscle, huge even for a tauric being.");
+				else if(target.buttRating() < 6) output2(" matches your toned, tauric frame quite well.");
+				else if(target.buttRating() < 10) output2(" gives hints of just how much muscle you could put into a kick.");
+				else if(target.buttRating() < 15) output2(" surges with muscle whenever you trot about.");
+				else if(target.buttRating() < 20) output2(" flexes its considerable mass as you move.");
+				else if(target.buttRating() < 25) output(" is stacked with layers of muscle, huge even for a tauric being.") 
+				else output2(" is stacked with freakish amounts of muscle, so much so that it bulges and flexes obscenely while trotting around.");
 			}
 		}
 		//Non-horse PCs
@@ -1333,21 +1341,35 @@ public function appearance(forTarget:Creature):void
 			if(target.tone < 60 || target.hasPerk("Buttslut")) {
 				output2(" your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" looks great under your gear.");
-				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
-				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" fills out your clothing nicely.");
-				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" wobbles enticingly with every step.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you [target.walk].");
-				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
+				else if(target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
+				else if(target.buttRating() < 10) output2(" fills out your clothing nicely.");
+				else if(target.buttRating() < 15) output2(" wobbles enticingly with every step.");
+				else if(target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you [target.walk].");
+				else if(target.buttRating() < 25) output(" is eye-catching in the extreme, wobbling hypnotically long after you stop moving.");
+				else output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
 			}
 			//FITBUTT
 			else {
 				output2(" your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" molds closely against your form.");
-				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" contracts with every motion, displaying the detailed curves of its lean musculature.");
-				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" fills out your clothing nicely.");
-				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" stretches your gear, flexing it with each step.");
-				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" threatens to bust out from under your kit each time you clench it.");
-				if(target.buttRating() >= 20) output2(" is marvelously large, but completely stacked with muscle.");
+				else if(target.buttRating() < 6) output2(" contracts with every motion, displaying the detailed curves of its lean musculature.");
+				else if(target.buttRating() < 10) 
+				{
+					if(!target.isAssExposed()) output2(" fills out your clothing nicely.");
+					else output2(" is a nice, big canvas for displaying your well-developed musculature.");
+				}
+				else if(target.buttRating() < 15) 
+				{
+					if(!target.isAssExposed()) output2(" stretches your gear, flexing it with each step.");
+					else output2(" is big enough to draw the eye and strong enough to crush any hand daring enough to try for a grope.");
+				}
+				else if(target.buttRating() < 20) 
+				{
+					if(!target.isAssExposed()) output2(" threatens to bust out from under your kit each time you clench it.");
+					else output2(" flexes delightfully with every move you make. Any clothing you put over it would be in immediately danger of splitting in half.");
+				}
+				else if(target.buttRating() < 25) output2(" is obscenely large and completely stacked with muscle.");
+				else output2(" strains your ability to comprehend its size and near-freakish levels of muscular development.")
 			}
 		}
 		

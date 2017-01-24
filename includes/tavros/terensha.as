@@ -111,7 +111,7 @@ public function meetingTerensha():void
 		output("Terensha’s apparently working at the moment. Why not go over and see if you can snag a dragon-girl quicky? You guess you’ll end up 100 credits in the hole for a little fun.");
 		if(pc.exhibitionism() < 33 && !pc.isBimbo() && !pc.isBro()) 
 		{
-			output("... Nah. You're not <b>that</b> much of an exhibitionist.");
+			output("... Nah. You’re not <b>that</b> much of an exhibitionist.");
 			clearMenu();
 			addButton(14,"Leave",mainGameMenu);
 		}
@@ -121,9 +121,9 @@ public function meetingTerensha():void
 			if(pc.credits >= 100)
 			{
 				if(pc.hasCock()) addButton(0,"Quick Fuck",meetingTerenshaDancing,undefined,"Quick Fuck","Pay Terensha to give you a quick fuck on the spot.\n\nCosts 100 Credits.");
-				else addDisabledButton(0,"Quick Fuck","Quick Fuck","You'll probably need a penis for that though...\n\nCosts 100 Credits.");
+				else addDisabledButton(0,"Quick Fuck","Quick Fuck","You’ll probably need a penis for that though...\n\nCosts 100 Credits.");
 			}
-			else addDisabledButton(0,"Quick Fuck","Quick Fuck","You don't have enough credits for that.\n\nCosts 100 Credits.");
+			else addDisabledButton(0,"Quick Fuck","Quick Fuck","You don’t have enough credits for that.\n\nCosts 100 Credits.");
 			addButton(14,"Back",mainGameMenu);
 		}
 		return;
@@ -146,15 +146,15 @@ public function rensMainMenu():void
 	if(pc.exhibitionism() >= 33 || pc.isBimbo() || pc.isBro()) 
 	{
 		if(pc.credits >= 75) addButton(0,"Table Service",renTableServe,undefined,"Table Service","Purchase some quick and dirty service here at Ren’s table. Should run you about 75 Credits.");
-		else addDisabledButton(0,"Table Service","Table Service","You can't afford that.\n\nCosts 75 Credits.");
+		else addDisabledButton(0,"Table Service","Table Service","You can’t afford that.\n\nCosts 75 Credits.");
 	}
-	else addDisabledButton(0,"Table Service","Table Service","This place is a little public for that sort of thing... You'd need to be a lot sluttier for something like that.");
+	else addDisabledButton(0,"Table Service","Table Service","This place is a little public for that sort of thing... You’d need to be a lot sluttier for something like that.");
 	
 	if(pc.credits >= 100) addButton(1,"Room Service",roomServiceFromRensa,undefined,"Room Service","Pay Terensha to take you down to her room and give you intimate attention.\n\nCosts 100 Credits.");
-	else addDisabledButton(1,"Room Service","Room Service","You don't have enough credits for that.\n\nCosts 100 Credits.");
+	else addDisabledButton(1,"Room Service","Room Service","You don’t have enough credits for that.\n\nCosts 100 Credits.");
 
 	if(flags["REQUEST_REN_HOME"] == undefined) addButton(2,"My Place?",tryToGoToHerPlace,undefined,"My Place?","Ask if the two of you could maybe get out of here and head back to your place... a much more intimate setting.");
-	else addDisabledButton(2,"My Place?","My Place?","You tried that. It didn't work.");
+	else addDisabledButton(2,"My Place?","My Place?","You tried that. It didn’t work.");
 	if(flags["RENSA_FUCKED"] != undefined) addButton(3,"Her Suit",askAboutRensSuit,undefined,"Her Suit","Ask Ren about that very unique bodysuit of hers.");
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -952,7 +952,7 @@ public function meetingTerenshaDancing():void
 	if(!pc.isCrotchExposed()) output("With practiced ease, Ren fishes your cock out of your clothing and gives it an experimental tug - just enough to get you diamond hard. ");
 	output("<i>“There we are!”</i> she purrs, rubbing your length up and down with her latex-wrapped digits. Her suit feels just like one big, slick condom around your girth, massaging you in all the right ways. <i>“Oooh, nice and hard for me already. Now, don’t feel compelled to hold back, lover,”</i> she adds, squirting a healthy helping of lube into her hand between strokes. <i>“I’ve cum so many times already today, you don’t have to worry about me. This is all about <b>you</b>!”</i>");
 
-	output("\n\nWithout another word, Ren drops her hand down to the base of your [pc.cock] and angles it into the crack of her ass. She shudders, biting her lip as your [pc.cockHead] passes over where you imagine her backdoor must be, and finally ends up aligned perfectly in the gulf between her pussy and the fat sack hanging below her own member. For its part, Ren’s reptilian dick is half-hard and visibly throbbing, lying heavily on your [pc.belly] Smiling up at her, you give it a gentle stroke - and are immediately rewarded by a muffled cry. The working girl only barely gets her hands over her mouth in time to silence herself, and has little choice but to keep them there as you return the favor she’s been giving you.");
+	output("\n\nWithout another word, Ren drops her hand down to the base of your [pc.cock] and angles it into the crack of her ass. She shudders, biting her lip as your [pc.cockHead] passes over where you imagine her backdoor must be, and finally ends up aligned perfectly in the gulf between her pussy and the fat sack hanging below her own member. For its part, Ren’s reptilian dick is half-hard and visibly throbbing, lying heavily on your [pc.belly]. Smiling up at her, you give it a gentle stroke - and are immediately rewarded by a muffled cry. The working girl only barely gets her hands over her mouth in time to silence herself, and has little choice but to keep them there as you return the favor she’s been giving you.");
 
 	output("\n\nIt takes all of five strokes to get her as stiff as you are. Five more, and the half-dragoness is rolling her head back with a lurid moan. Her cock pulses urgently in your hand, and you’re suddenly overwhelmed by a warm, running heat underneath the latex suit! She just came!");
 
@@ -1052,8 +1052,8 @@ public function askAboutRensSuit():void
 	output("\n\n<i>“Gonna warn you now, though. There’s a story involved, and it’s not a sexy one. Up to you.”</i>");
 
 	clearMenu();
-	if(pc.credits >= 10) addButton(0, "Okay", tellMeYourStoryRen,undefined, "Okay", "That's a cheap price for what promises to be an interesting story. Why not?\n\nCosts 10 Credits.");
-	else addDisabledButton(0, "Okay", "Okay", "That's a cheap price... but it's not one you can afford.\n\nCosts 10 Credits.");
+	if(pc.credits >= 10) addButton(0, "Okay", tellMeYourStoryRen,undefined, "Okay", "That’s a cheap price for what promises to be an interesting story. Why not?\n\nCosts 10 Credits.");
+	else addDisabledButton(0, "Okay", "Okay", "That’s a cheap price... but it’s not one you can afford.\n\nCosts 10 Credits.");
 	addButton(1,"Nevermind", jkNevermindRen);
 }
 
@@ -1081,7 +1081,7 @@ public function tellMeYourStoryRen():void
 
 	output("\n\nRen finishes off what must be half the bottle before she finally sets it aside, planting her hands on her knees and looking you in the eye.");
 
-	output("\n\n<i>“So... the short version is that my parents made this suit. They work for TamaniCorp, and it was supposed to be a sensory enhancement product. Make sex feel better, clean itself up inside and out... turn your spunk into more material for the suit to fix itself. It’s actually pretty amazing. Except this one’s tuned way too high: five hundred percent tactile sensation. Enough that, yeah, I can barely touch myself without blowing a load. I think the production models are just at one-fifty: enough to melt your brains when you fuck, but not keep you perpetually edging every waking moment like I do. But I'm kinda stuck with this one. Custom job, you might say.”</i>");
+	output("\n\n<i>“So... the short version is that my parents made this suit. They work for TamaniCorp, and it was supposed to be a sensory enhancement product. Make sex feel better, clean itself up inside and out... turn your spunk into more material for the suit to fix itself. It’s actually pretty amazing. Except this one’s tuned way too high: five hundred percent tactile sensation. Enough that, yeah, I can barely touch myself without blowing a load. I think the production models are just at one-fifty: enough to melt your brains when you fuck, but not keep you perpetually edging every waking moment like I do. But I’m kinda stuck with this one. Custom job, you might say.”</i>");
 
 	output("\n\nWait, woah, rewind a second. Her parents made her a sex suit?");
 

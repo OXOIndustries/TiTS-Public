@@ -1332,7 +1332,7 @@ public function fazianQuestJuroAnatae():void
 
 	output("\n\nYou turn and begin to head eastwards towards your ship.");
 	
-	output("\n\n<i>“Wait!”</i> cries Juro after you’ve gotten ten feet. <i>“Wait. Alright. You can look at the spaceport’s security footage. Just... don’t tell anyone, okay?”</i> He gets up, heads into a back room, and comes back ten minutes later with a small, grey box. <i>“And make it worthwhile, okay Steele?”</i> he parts gruffly.");
+	output("\n\n<i>“Wait!”</i> cries Juro after you’ve gotten ten feet. <i>“Wait. Alright. You can look at the spaceport’s security footage. Just... don’t tell anyone, okay?”</i> He gets up, heads into a back room, and comes back ten minutes later with a small, gray box. <i>“And make it worthwhile, okay Steele?”</i> he parts gruffly.");
 	
 	output("\n\nYou settle yourself down in a quiet corner and fiddle around with the holographic projector, flicking moving images of the spaceport, captured by a flotilla of U.G.C. microbots, into the air around you. As you had guessed, Juro was being an ass; it doesn’t take five minutes to get the AI inside to provide you with the most recent footage of Fazian.");
 	
@@ -2410,7 +2410,7 @@ public function fazianMyrQuestComplete():void
 	
 	output("\n\n<i>“You still perform for them, though?”</i> you say.");
 	
-	output("\n\n<i>“Yes. The red myr too, if they asked, and the offer was genuine. It is wrong to take away from the masses because of an individual’s crimes. I am just... more cautious now.”</i> He sighs wearily. <i>“It is so difficult to live in a world with shades of grey, y’know? I long to be that poor fool who </i>knew<i> all ant women meant well again.”</i>");
+	output("\n\n<i>“Yes. The red myr too, if they asked, and the offer was genuine. It is wrong to take away from the masses because of an individual’s crimes. I am just... more cautious now.”</i> He sighs wearily. <i>“It is so difficult to live in a world with shades of gray, y’know? I long to be that poor fool who </i>knew<i> all ant women meant well again.”</i>");
 	
 	output("\n\n<i>“You told the authorities about what was going on there?”</i> Fazian’s blue eyes turn flinty.");
 	

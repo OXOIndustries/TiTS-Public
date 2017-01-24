@@ -1694,7 +1694,7 @@ public function kiApproachElenora():void
 	
 	output("\n\n<i>“That’s all fascinating, but do we have a cure?”</i>");
 	
-	output("\n\nShe blinks. <i>“Oh! Yes, yes, of course. Here,”</i> Elenora says, grabbing a small aerosol spray bottle from the desk beside her and plugging it into the side of the glovebox. She reaches in through a glove, grabs the worm-like parasite, and drags it up to face the spray nozzle. It makes a little shrieking sound, struggling violently until the doctor pulls the trigger, spraying a thin grey mist all over it.");
+	output("\n\nShe blinks. <i>“Oh! Yes, yes, of course. Here,”</i> Elenora says, grabbing a small aerosol spray bottle from the desk beside her and plugging it into the side of the glovebox. She reaches in through a glove, grabs the worm-like parasite, and drags it up to face the spray nozzle. It makes a little shrieking sound, struggling violently until the doctor pulls the trigger, spraying a thin gray mist all over it.");
 	
 	output("\n\nThe parasite seizes up, shudders, and goes limp.");
 	
@@ -1744,7 +1744,7 @@ public function kiEngineeringBossFight():void
 	
 	output("\n\nAnd one big, throbbing, slime-slathered red tentacle has plunged itself right into her crotch through the sundered remains of her armor. It goes deep inside, so deep that her belly is bloating between her splayed legs, swollen out far beyond even what a leithan’s gravid pregnancy could ever be.");
 	if (silly) output(" She might as well have swallowed a beach ball!");
-	output(" Despite that, her skin’s still the same dark grey, and her eyes are the starry blue you’d expect from a leithan. Is she actually infected, or are they... are they using her for something else? She groans as the tentacle thrusts into her, swelling as <b>something</b> passes through it into her bloated body. Her tremendous F-cup tits bounce with the aftershocks, drooling golden milk down the heavy orbs.");
+	output(" Despite that, her skin’s still the same dark gray, and her eyes are the starry blue you’d expect from a leithan. Is she actually infected, or are they... are they using her for something else? She groans as the tentacle thrusts into her, swelling as <b>something</b> passes through it into her bloated body. Her tremendous F-cup tits bounce with the aftershocks, drooling golden milk down the heavy orbs.");
 	
 	output("\n\n<i>“Steele! Help!”</i> she shrieks, squirming helplessly in the tentacles’ grasp. You start running her way, beating aside more hap-hazard tentacles until you’re at the Chief’s side, pulling at the tentacles binding her arms. <i>“Get... ah! Get... out! Get-”</i> she cries, barely able to form words as the tentacle pumps her ruined pussy.");
 	

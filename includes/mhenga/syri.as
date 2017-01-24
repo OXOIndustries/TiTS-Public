@@ -1972,3 +1972,126 @@ public function syriPantySceneEpilogue():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+//This scene will automatically occur upon walking into Burt’s mead hall during the morning if the PC is under the effects of Omega Oil (probably “Fuck Fever”). Requires Syri’s fuckbuddy status.
+public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET():void
+{
+	showSyri(true);
+	author("HugsAlright");
+	output("\n\n<b>This is terrible.</b>");
+	output("\n\nThe ache you’re feeling for a good reaming is unbearable. The heat flushing your body is inescapable. Luckily, you’re in just the right place to find what you need to sate your desires, because right there, sitting at the bar is the answer to all your problems: Syri. ");
+	if(silly) output("Well, her pants hold the answer to all your problems, at least. ");
+	output("You take a deep breath and start to walk towards the wolfy shemale, time seeming to slow as thoughts of her fucking your ass for hours on end cloud your mind. Pulling yourself from your lust-induced trance, you find yourself but a few steps from Syri, rivulets of sweat tickling your [pc.skinFurScales].");
+	output("\n\nYou greet the ausar with a <i>“Hey”</i> and she’s quick to turn around, the gentle smile on her face letting you know she’s happy to see you. ");
+	output("\n\n<i>“What’s up, [pc.name]?”</i>");
+	output("\n\nYou grab her furry wrist and tell the butt-lover you need her help with something. She takes a good look at your flushed face and hungry gaze and grins. <i>“I don’t know, Steele,”</i> she begins, taking a drink, <i>“I’m pretty busy here, if you couldn’t tell.”</i> You roll your eyes and groan in response before giving Syri’s fuzzy arm a rough yank, pulling her up off her stool.");
+	if(pc.isAss()) output(" She’s coming with you, whether she and her knotty dick like it or not.");
+	output(" <i>“Hey, easy, [pc.name],”</i> the temptress protests, <i>“I was gonna go with you anyway.”</i> No time for small talk; you walk as fast as you can out the bar with Syri in tow.");
+	processTime(10);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET2);
+}
+
+public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET2():void
+{
+	clearOutput();
+	showSyri(true);
+	author("HugsAlright");
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	output("All the way back to your ship the burning desire to have Syri spread your pucker wide open, to feel her throbbing knot take you, pushes you to move fast. ");
+	if(pc.hasCock() && !pc.isCrotchExposed()) output("You can already feel your [pc.cocks] straining against your [pc.undergarment]. ");
+	output("Holy shit, when did it get so hot in this jungle? Your goal is so close, the sanctity of your bed just a minute away. Lustful thoughts continue to batter your mind as you make your way through the airlock, letting go of Syri’s wrist as you hurry over towards your bed. Holy hell, it’s even hotter on your own ship.");
+	output("\n\n<i>“So, captain, now that you’ve got me, how do you want me?”</i> your ausar companion asks, her sultry voice causing you to turn around to face her. Her hip is cocked against a furry hand, a smirk on her face, clearly awaiting any proposal from you. You don’t really have an answer for her, all you can think about is this unbearable heat.");
+	//notNude:
+	if(!pc.isAssExposed()) output("\n\nBarely thinking, you start to pull your [pc.gear] off, Syri happily watching you while you do so, her tail wagging faster than it was when you got to the ship. As soon as you’re bare, you throw yourself onto the bed, putting your face into your pillows and sticking your [pc.ass] up in the air for your lover to see.");
+	else output("\n\nBarely thinking, you throw yourself onto the bed, putting your face into your pillows and sticking your [pc.ass] up in the air for your lover to see.");
+	output(" You turn back to see Syri licking her lips at what you’ve presented her with, ready to get her clawed hands all over your butt.");
+	output("\n\nThere’s a problem though: she isn’t fucking you yet, and you need her to, <i>now</i>. <i>“FUCK ME!”</i> you scream, trying to get the she-wolf to mount you as soon as possible. She doesn’t do anything though, she just stand there stroking her chin and staring at your butt.");
+	output("\n\n<i>“Sorry, what was that? I couldn’t hear you,”</i> she says, drawing closer and angling one of her big, fluffy ears towards you.");
+	output("\n\nLooks like you’re going to have to play her game to get what you want. You scream even louder this time, <i>“FUCK ME!”</i>");
+	output("\n\nShe smiles at you and steps closer. Not too long after, you feel a furry hand caress one of your lower cheeks, making you wince for a moment, expecting something to penetrate you. Instead, you’re greeted by the 'whap' of clothes hitting the ground, followed by a rather tender voice from your raven-haired lover, <i>“You really need this, huh Steele?”</i> You feel the mattress shift as Syri steps onto the bed, kneeling behind you while another furry hand gropes your more neglected ass cheek. Little whimpers escape your lips as your [pc.butt] is kneaded in the ausar girl’s dextrous grip, like dough in her hands. <i>“You didn’t go and put yourself into a heat just for me, did you?”</i> she questions, spreading your needy ass so she can gaze upon your [pc.asshole]. You feel a furry thumb brush across your pucker. The sensation of her downy digit on your asshole makes your breath shudder, your [pc.chest] starting to heave as pressure builds on your pucker.");
+	output("\n\nNot more than a moment later her digit pops into you, easily wriggling around inside your [pc.asshole]. You’re unable to find any words and can only moan softly under the immense and sudden pleasure of Syri’s prodding thumb. <i>“I guess it doesn’t matter whether you did or not,”</i> she says, gently thrusting her finger in and out of you, <i>“I’m just glad you came to me.”</i> With that, the ausar removes her digit from your supple hole, leaving you to whimper at the inescapable emptiness she’s left you with. Syri giggles at your desperation and reaches down to give her [syri.cockNoun] a few strokes before plopping it down into the crack of your ass. You instinctively start to roll your hips, trying to get her cock to enter your slightly-gaping pucker, whining as you do so. She quickly moves her hands, grabbing at your [pc.hips] to keep you still.");
+	output("\n\nYour lover chuckles again, <i>“C’mon, Steele, tell me you </i>need<i> it.”</i>");
+	output("\n\nAt this point, you’re willing to do anything to feed your perversions. <i>“I need it,”</i> you manage to whimper.");
+	output("\n\n<i>“You’re gonna have to say it louder than that,”</i> the dommy-wolf responds as she starts to rock her hips back and forth, dragging her [syri.cock] through the valley of your lower cheeks, <i>“Beg for it.”</i>");
+	output("\n\nYour fists clench in response to her motions. <i>“I NEED YOUR COCK!”</i> you scream, drool beginning to soak into your pillows as your lust for dick overtakes any sort of control you had.");
+	output("\n\nSyri smirks and pulls back, just enough that her [syri.cockHead] presses againt your [pc.asshole], apparently pleased with your declaration. You start to whimper as your lover pushes into you, pressure slowly building against your pucker. Your eyes roll back and a long, satisfied groan forces its way out of your lungs as her pointed cockhead spreads your [pc.asshole] wide, her crown slipping into you. You cry out in pleasure; it all feels too good, but you need more. With the intent of getting this wolf-dick into you faster, you start to push back against her [syri.hips], moaning all the louder as her deep-red cock is sheathed inside you.");
+	if(pc.hasCock()) 
+	{
+		output(" Your own [pc.cocks] jump");
+		if(pc.cockTotal() == 1) output("s");
+		output(" in response when Syri’s member brushes over your prostate, a small pool of pre forming on your sheets.");
+	}
+	pc.buttChange(syri.cockVolume(0));
+	output("\n\nSyri’s [syri.cock] pulses inside you as you lie there panting from her relentless penetration, still craving more, but unable to move yourself. Your lover knows what you want; she tightens her grip on your hips and start to pull herself out of you, setting you moaning again. Veiny ausar dick glides along your inner walls, an experience that is only made more pleasurable by the burning heat you’re in. You even hear Syri’s breath start to stutter as she succumbs to her own lust. The glans of Syri’s cock reach your pucker once more, holding open for less than a second before she starts to thrust back into you. You don’t think it’s possible, but her [syri.cockNounSimple] feels even better going in the second time. Something about having your hungers sated, giving into such base needs just feels so wonderful, and you want more.");
+	output("\n\n<i>“F-faster,”</i> you manage to blurt out under under the weight of Syri’s steady reaming.");
+	output("\n\nA second later you feel a furry hand slap against your [pc.butt], <i>“I’m getting to it.”</i> The pang of pain from her rough spank meshes strangely with the pleasure you're experiencing, but makes you moan all the same.");
+	output("\n\nTrue to her word, Syri gets to it: her hips start rolling at a faster pace, [syri.cock] moving in and out of your [pc.asshole] until you’re clawing at the sheets and screaming with delight into your pillows. Her velveteen hands slide their way from your hips to your sides in an attempt to get a better grip on you as she speeds up. Syri’s forceful grunting is becoming loud enough to overpower your moaning at this point, her once slow reaming turning into a series of unending thrusts, long and hard. Your body rocks back and forth with each movement of your lover’s hips, each inward thrust eliciting spine-tingling cries of joy from the both of you.");
+	output("\n\nYour mind is all but lost to your desires, drool pooling onto the fabric your head lies on, your eyes shut in bliss, and your [pc.butt] ");
+	if(pc.buttRating() > 3) output("quaking");
+	else output("jiggling");
+	output(" every time Syri rams her cock into you. You’re almost at the point where you wouldn’t notice if the ausar were to knot you... almost; a particularly loud grunt from the wolfy mistress accentuates the sudden pressure placed on your already punished behind. All you can do is let out a silent scream of delight and discomfort as Syri’s [syri.knot] starts to force its way into you, spreading your gaping pucker even wider until the fist-sized bulb of cockflesh pops into you, its sheer size leaving you babbling incoherently. Your body goes limp as Syri has her way with your ass, battering your [pc.asshole], raining down on your poor hole with an endless barrage of jackhammering-thrusts. You can do nothing but sit there and take it with a wanton smile, kept in place by Syri’s knot.");
+	output("\n\nSyri tries to speak, but <i>“H-how do you l-like tha-”</i> is as far as she gets before her voice breaks into a moan. She grabs your sides and pulls you back, holding you down on her [syri.cock] as it pulses and spasms inside of you, her [syri.balls] emptying. Her hips give a few last jerky thrusts as her creamy load is pumped into you while orgasm overtakes her body, grunting and groaning. The sudden heat of her [syri.cumNoun] flooding your depths makes you gasp and whimper; it’s a completely different feeling than the heat you were already experiencing, and all too much for your pleasure-ridden mind. Your body tenses and you let out a groan of relief, [pc.asshole] clamping down tight around Syri’s cum-leaking cock while she’s still filling you.");
+	if(pc.hasCock()) 
+	{
+		output(" Along with Syri’s, your [pc.cocks] cum");
+		if(pc.cockTotal() == 1) output("s");
+		output(", spasming as ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("they");
+		output(" soak");
+		if(pc.cockTotal() == 1) output("s");
+		output(" your sheets with [pc.cum].");
+	}
+	if(pc.hasVagina())
+	{
+		output(" Your [pc.vaginas] tighten");
+		if(pc.cockTotal() == 1) output("s");
+		output(" around the cock that isn’t there, already spilling [pc.girlcum] onto your bed.");
+	}
+	output(" The mind-blowing ecstasy of your climax leaves you awash with pleasure, seeming to abate your heat as you lie there in bliss, waiting for your lover to finish.");
+	output("\n\nYou pant heavily as you come down from your orgasm, ");
+	if(pc.hasCock()) output("[pc.cocks] still twitching");
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina()) output("beads of fem-lube still dripping from your nether lips");
+	output(", gut churning and gurgling full of [syri.cum]. Summoning the strength to turn your head, you see Syri, a wide smile on her face, [syri.ears] drooping lazily as her [syri.chest] heaves with each breath she takes. Between labored breaths you manage to tell the ausar you might need her to stick around for a bit.");
+	output("\n\nShe looks down and gives your knotted ass an affectionate slap, <i>“Yeah, I guess I could hang around if you need me that bad, buttslut.”</i>");
+	output("\n\nYou smirk and return your head to rest on some less drool-covered pillows. The heat flushing your body is already making its return, but for now all you can do is wait for her breeder’s knob to deflate, though you’re too eager for another good reaming to sleep at all.");
+	processTime(25);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET3);
+}
+
+public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET3():void
+{
+	clearOutput();
+	showSyri(true);
+	author("HugsAlright");
+	output("Syri fucks your ass all morning long. Her [syri.cock] spreads your pucker like it’s her only purpose, leaving you sore as she fucks your [pc.asshole] raw. The quenching of your rather specific thirst comes at a price though: she makes you beg for it, taunting you until you scream for her cock. Sometime she request a blowjob, making you lavish her ausar dong with oral affections until she’s decided she’s ready to give you what you want.");
+	pc.buttChange(syri.cockVolume(0));
+	output("\n\nYou have to give it to her though, the reward more than makes up for the payment. Maybe it’s just the heat, but the feeling of that wolfy shemale fucking your [pc.butt] is incredible. No matter how sore you get she makes sure you feel good, one way or another.");
+	output("\n\nThe time comes again and again where Syri knots you, tying the two of you together as she fills you with thick, alabaster ausar-spunk. You honestly don’t think you can go on, your stamina drained from one-too-many reamings. It’s almost impossible to keep yourself awake, the afterglow of your orgasm whisking you away to a happily knotted slumber.");
+	processTime(100);
+	for(var x:int = 0; x < 20; x++) { pc.orgasm(); }
+	clearMenu();
+	addButton(0,"Next",syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET4);
+}
+
+public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET4():void
+{
+	clearOutput();
+	author("HugsAlright");
+	output("When you wake, Syri is nowhere to be found, though your tender asshole and the potent smell of ausar cum let you know she was most definitely here. At least the place seems relatively clean.");
+	output("\n\nYou pick yourself up of the bed, knees still a bit wobbly from a long morning of buttfucking. Managing to balance yourself, you stretch, hoping to bring some feeling back to your [pc.legs].");
+	output("\n\nAfter a few moments of making sure you’re still completely intact, you decide it’d be best to get moving again.");
+	output("\n\nYou feel sated, at least for now.");
+	processTime(125);
+	//[Next] //Should return the PC to Mhen’ga docks.
+	currentLocation = shipLocation;
+	generateMap();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

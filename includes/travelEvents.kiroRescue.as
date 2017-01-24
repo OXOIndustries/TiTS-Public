@@ -799,7 +799,7 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	else output(" [pc.chest]");
 	output(" enthusiastically to add another sensation to the symphony of ecstasy. They roll your [pc.nipples] and sometimes tug, rocking every single erogenous zone they can get at. Loving little nips bite at your neck, not hard enough to break your [pc.skinFurScales], but enough to be felt digging in, possessively clamping down near your neck.");
 
-	output("\n\nLocked together like that, you serve as the tanuki-woman’s willing cum-sleeve, milking pressurized waves of spunk from her until she you feel warmth wrapping your [pc.feet], [pc.legOrLegs] and eventually [pc.hips]. You’re slowly sinking down into a puddle of spent cum, the very same alabaster cream that was pumped into your");
+	output("\n\nLocked together like that, you serve as the tanuki-woman’s willing cum-sleeve, milking pressurized waves of spunk from her until you feel warmth wrapping your [pc.feet], [pc.legOrLegs] and eventually [pc.hips]. You’re slowly sinking down into a puddle of spent cum, the very same alabaster cream that was pumped into your");
 	if (!anal) output(" [pc.vagina]");
 	else output(" [pc.asshole]");
 	output(" only to be sprayed back out later. It’s getting so high, and you can actually feel your [pc.feet] touching the ground!");

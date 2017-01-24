@@ -130,6 +130,7 @@ public function kallyBonusRoomTexts():Boolean
 		}
 	}
 	roamingBarEncounter(1);
+	if(kaedeBlurb4KuiCountryBarAndGrilllll(2)) return true;
 	return false;
 }
 

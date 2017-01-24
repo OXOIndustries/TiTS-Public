@@ -2222,7 +2222,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 			output("<i>“Someone bought a whole load of Clippex,”</i> she grunts. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Grows your tits and particularly your nipples out, does crazy things with them if you keep taking it. Turns them into cunts, then mouths...</i> “ You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
 			output("<i>“...pretty specialist transformation, expensive. Lucky to find someone willing to... ungh... buy so much.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
 			if(vagIndex >= 0) output(" Your stuffed [pc.vagina " + vagIndex + "] seeps juices around her cock deliriously.");
-			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] one strains helplessly against your abdomen as she rides over your prostate again and again.");
+			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] strains helplessly against your abdomen as she rides over your prostate again and again.");
 			else
 			{
 				output(" Your [pc.anus]");
@@ -2237,7 +2237,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 			output("<i>“This guy bought a whole packet of Semen’s Friends,”</i> she says thickly. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Increases the size of your balls, makes them more productive but does all sorts of other crazy stuff with your cum, too. Can turn it black. Can make it look and taste like chocolate.”</i> You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
 			output("<i>“I regretted ordering it almost as soon as I clicked “OK”. Who wants four testicles? Well... someone, obviously. So – goddamn – glad to have shifted it.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
 			if(vagIndex >= 0) output(" Your stuffed [pc.vagina " + vagIndex + "] seeps juices around her cock deliriously.");
-			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] one strains helplessly against your abdomen as she rides over your prostate again and again.");
+			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] strains helplessly against your abdomen as she rides over your prostate again and again.");
 			else
 			{
 				output(" Your [pc.anus]");
@@ -2251,7 +2251,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 			output("<i>“I managed to sell almost my entire stock of Lucifier,”</i> she grunts. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Wondered what I used to make me look like this? Does almost everything – the skin, the horns, the eyes... ”</i> You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
 			output("<i>“...it’s popular on human colonies. Out here though – well, you try explaining to an alien its cultural significance. And frontier explorers steer clear of it because it... ungh... does things to your libido. Big things.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
 			if(vagIndex >= 0) output(" Your stuffed [pc.vagina " + vagIndex + "] seeps juices around her cock deliriously.");
-			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] one strains helplessly against your abdomen as she rides over your prostate again and again.");
+			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] strains helplessly against your abdomen as she rides over your prostate again and again.");
 			else
 			{
 				output(" Your [pc.anus]");

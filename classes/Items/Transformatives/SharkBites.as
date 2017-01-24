@@ -75,7 +75,8 @@
 				if(rand(2) == 0) changeLimit++;
 
 				output("You bite the pack of jerky bits open and pour them into your mouth. They have a strong fishy taste that ");
-				if(pc.sharkScore() < 3) output("shark score low: makes your face scrunch up in displeasure");
+				// shark score low: 
+				if(pc.sharkScore() < 3) output("makes your face scrunch up in displeasure");
 				else output("makes you give a low growl in predatory pleasure");
 				output(". You chew the bits up before swallowing them whole and waiting for them to take effect. Almost immediately, a warm, tingling sensation spreads out over your whole body.");
 
@@ -138,7 +139,7 @@
 					{
 						pc.skinAccent = RandomInCollection(["beige","white"]);
 						if(pc.skinAccent == pc.skinTone) pc.skinAccent = "neon green";
-						output("\n\nYou idly look down at your [pc.chest] and notice that a large off color blotch forming over your chest, belly and inner thighs. <b>It seems you have " + indefiniteArticle(target.skinAccent) + " blotch on your frontal body now!</b>");
+						output("\n\nYou idly look down at your [pc.chest] and notice a large off-color patch forming over your chest, belly and inner thighs. <b>It seems you have " + indefiniteArticle(target.skinAccent) + " blotch on your frontal body now!</b>");
 						//Chance to occur at 2%
 						//Pc gains "Frontal Blotch" perk.
 						pc.createStatusEffect("Shark Markings",3,0,0,0);

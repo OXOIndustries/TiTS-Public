@@ -152,6 +152,9 @@ package classes.Items.Transformatives
 			// *Grow longer horns
 			if(target.hasHorns(GLOBAL.TYPE_DEMONIC) && target.hornLength < 60)
 				TFList.push(19);
+			// *If cockvine wings, change to demonic tentacles
+			if(target.wingType == GLOBAL.TYPE_COCKVINE)
+				TFList.push(20);
 			
 			// TF texts
 			while(totalTFs > 0)
@@ -515,6 +518,18 @@ package classes.Items.Transformatives
 						target.hornLength = newHornLength;
 					}
 					else output(target.hornLengthLockedMessage());
+				}
+				// *If cockvine wings, change to demonic tentacles
+				else if(select == 20)
+				{
+					if(target.wingTypeUnlocked(GLOBAL.TYPE_TENTACLE))
+					{
+						output("Thrashing about, your cockvine tentacles along your back wriggle and spasm, reacting to a sudden change! Grabbing one of them and wrestling it in your hand, you notice it warp and shift: Still slick, its coloration transforms with an alien-like murkiness and its phallus produces a thick bulge at the base. From that bulge, nodules appear along the shaft until it reaches the very tip, where an excess of precum ejects and drools to the floor. Finally calmed, your now demonic tentacles retract back into your torso, settling to appear more like sinister spikes than bulging bumps.");
+						
+						target.wingType = GLOBAL.TYPE_TENTACLE;
+						if(target.wingCount < 3) target.wingCount = 3;
+					}
+					else output(target.wingTypeLockedMessage());
 				}
 				
 				totalTFs--;

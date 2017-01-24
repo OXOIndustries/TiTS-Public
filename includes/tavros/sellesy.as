@@ -584,8 +584,8 @@ public function sellesyTribadismIsBadYoByZ():void
 		else output("fill");
 		output(" with blood again,");
 		//(tightass)
-		if(pc.analCapacity() < 100) output("dribbling the slightest bit of pre-cum, not yet ready for another round.");
-		else output("already squirting into the air from prostate stimulation. It’s enough to be mistaken for a full orgasm, and Sellesy watches wistfully.");
+		if(pc.analCapacity() < 100) output(" dribbling the slightest bit of pre-cum, not yet ready for another round.");
+		else output(" already squirting into the air from prostate stimulation. It’s enough to be mistaken for a full orgasm, and Sellesy watches wistfully.");
 	}
 	output("\n\n<i>“");
 	if(pc.libido() < 50) output("S-stop");

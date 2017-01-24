@@ -133,7 +133,7 @@ public function initMhengaRooms():void
 	//10. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 3"] = new RoomClass(this);
 	rooms["SOUTH ESBETH 3"].roomName = "SOUTH\nESBETH";
-	rooms["SOUTH ESBETH 3"].description = "A gust of pollen tickles a sneeze out of your nose as you traverse the southern edge of the town of Esbeth. The structures to the north and south are simple and plain, guarded with closed, locked doors that make it obvious there’s nothing to be done inside. Townspeople give you respectful nods as they pass but otherwise want nothing to do with you. While the road goes east and west, just east of here it doglegs north.";
+	rooms["SOUTH ESBETH 3"].description = "A gust of pollen tickles a sneeze out of your nose as you traverse the southern edge of the town of Esbeth. To the north is an obvious U.G.C. Peacekeeper office building, while to the south is a U.G.C. Scout Authority transport station. The minor structures to the north and south are simple and plain, guarded with closed, locked doors that make it obvious there’s nothing to be done inside. Townspeople give you respectful nods as they pass but otherwise want nothing to do with you. While the road goes east and west, just east of here it doglegs north.";
 	rooms["SOUTH ESBETH 3"].planet = "PLANET: MHEN'GA";
 	rooms["SOUTH ESBETH 3"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTH ESBETH 3"].westExit = "SOUTH ESBETH 2";
@@ -1180,7 +1180,7 @@ public function initMhengaRooms():void
 	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.INDOOR);
 	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.COMMERCE);
 
-	//89. Penny's Office. See Penny.as for more info. - see scrapyard.as for more info!
+	//89. Penny's Office. See Penny.as for more info.
 	rooms["PENNY'S OFFICE"] = new RoomClass(this);
 	rooms["PENNY'S OFFICE"].roomName = "U.G.C. PEACE-\nKEEPERS";
 	rooms["PENNY'S OFFICE"].description = "The interior of this office is painted a cool, soothing blue, but even that can’t hide the fact that nobody wants to have to spend much time here. The whole place looks stout and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they’re on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind which you’d expect to see on top of a hovercar or police cruiser.";
@@ -1235,6 +1235,16 @@ public function initMhengaRooms():void
 	rooms["ESBETH MEDICAL OFFICE"].westExit = "EAST ESBETH";
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.MEDICAL);
+	
+	// Kelly's House
+	rooms["KELLY'S HOUSE"] = new RoomClass(this);
+	rooms["KELLY'S HOUSE"].roomName = "KELLY’S\nHOUSE";
+	rooms["KELLY'S HOUSE"].description = "";
+	rooms["KELLY'S HOUSE"].planet = "PLANET: MHEN'GA";
+	rooms["KELLY'S HOUSE"].system = "SYSTEM: ARA ARA";
+	rooms["KELLY'S HOUSE"].southExit = "NORTH ESBETH 1";
+	rooms["KELLY'S HOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["KELLY'S HOUSE"].addFlag(GLOBAL.NPC);
 
 	// Thare Plantation
 	rooms["THARE PATHWAY"] = new RoomClass(this);

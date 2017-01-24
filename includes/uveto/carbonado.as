@@ -72,7 +72,7 @@ public function uvetoCarbonadoStore():Boolean
 	}
 	else
 	{
-		output("Gwen and Eimear are nowhere to be seen, the automated terminal still spun around as a prominent invitation toward self-service...");
+		output(" Gwen and Eimear are nowhere to be seen, the automated terminal still spun around as a prominent invitation toward self-service...");
 	}
 
 	if (flags["MET_CFS"] == undefined)

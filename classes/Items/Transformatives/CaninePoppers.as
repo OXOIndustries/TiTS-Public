@@ -33,7 +33,7 @@ package classes.Items.Transformatives
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a canine popper";
+			this.description = "a Canine Popper";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This single use item is a remake of one of the first furry transformatives sold commercially, the rights to which were bought by Xenogen Biotech from the winners of several excessively costly lawsuits over its patent. The labeling tells you that each package has a single \"Canine Popper\" - a meat-flavored snack packed full of potent microsurgeons and hormones.";
 			
@@ -233,7 +233,7 @@ package classes.Items.Transformatives
 					{
 						if(pc.tailCountUnlocked(1))
 						{
-							output("\n\nYou feel a painful pinch right on the tip of your tailbone and instinctively reach for it, finding a small bump that wasn't there earlier. ");
+							output("\n\nYou feel a painful pinch right on the tip of your tailbone and instinctively reach for it, finding a small bump that wasn’t there earlier. ");
 							if(!pc.isAssExposed()) output("You pull down your [pc.lowerGarments] to take a better look at it. ");
 							output("The bump grows larger, slowly and painfully extending your spine with new flesh and bone into a long, naked tail. The growth pains are quickly replaced by an intense itch all around your new tail as new fine hairs sprout from your [pc.skinColor]. They become thicker, covering it in a beautiful coat of fur. You enthusiastically wiggle <b>your [pc.furColor] canine tail back and forth.</b>");
 							pc.tailCount = 1;
@@ -300,6 +300,7 @@ package classes.Items.Transformatives
 							if(!pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output("Your feet twist into a pair of dog-like paws with pads on the soles and claws in their toe tips. ");
 							output("<b>You have a pair of canine legs!</b>");
 							pc.legCount = 2;
+							pc.genitalSpot = 0;
 						}
 						//Non-canine omnileg into Canine omnileg
 						//Effect: Has non-canine omnileg - turn into canine omnileg.
@@ -323,8 +324,9 @@ package classes.Items.Transformatives
 							output(".");
 							if(!pc.hasLegFlag(GLOBAL.FLAG_FURRED)) output(" The discomfort is replaced by an itch as hairs starts to grow. Soon your leg is completely covered in a beautiful coat of [pc.furColor] fur.");
 							output(" Seconds later, a seam forms in the middle, and your leg splits into two. ");
-							output(" When it's all over, you stand up on <b>your single canine leg.</b>");
+							output(" When it’s all over, you stand up on <b>your single canine leg.</b>");
 							pc.legCount = 2;
+							pc.genitalSpot = 0;
 						}
 						//Non-canine bipedal into Canine bipedal legs
 						else if(pc.legCount == 2)
@@ -369,7 +371,7 @@ package classes.Items.Transformatives
 				//Fur Color Change
 				//Effect: PC has fur - Fur color changes sometimes, usually when there's nothing else to change.
 				var newColor:String = RandomInCollection(["grey","cream","white","golden","brown","silver","orange","black"]);
-				if(pc.hasFur() && !InCollection(pc.furColor,["grey","cream","white","golden","brown","silver","orange","black"]) && rand(5) == 0 && changes < changeLimit)
+				if(pc.hasFur() && pc.furColor != newColor && rand(5) == 0 && changes < changeLimit)
 				{
 					if(pc.furColorUnlocked(newColor))
 					{
@@ -388,7 +390,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
 					{
-						if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output("\n\nThe surface of your goo body feels strange and tingly. Looking at it, you see that it's slowly shifting into skin, losing its translucence and becoming much more solid. The transformation continues until you are left with only [pc.skinColor] skin. The tingling sensation turns into an itch as new hair sprouts all over your body, completely covering it in a coat of beautiful fur. <b>You’ve grown [pc.furColor] fur!</b>");
+						if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output("\n\nThe surface of your goo body feels strange and tingly. Looking at it, you see that it’s slowly shifting into skin, losing its translucence and becoming much more solid. The transformation continues until you are left with only [pc.skinColor] skin. The tingling sensation turns into an itch as new hair sprouts all over your body, completely covering it in a coat of beautiful fur. <b>You’ve grown [pc.furColor] fur!</b>");
 						//Scales/Feathers skin:
 						else if(pc.skinType != GLOBAL.SKIN_TYPE_FUR) 
 						{
@@ -398,13 +400,13 @@ package classes.Items.Transformatives
 							output(" on the ground. More ");
 							if(pc.hasScales()) output("scales");
 							else output("feathers");
-							output(" gather at your [pc.feet], prompting you to stop scratching for a moment out of worry. Your concerns are soon drowned out by the overwhelming itchiness, though, leading you to scratch yourself like you've never scratched before. From beneath every ");
+							output(" gather at your [pc.feet], prompting you to stop scratching for a moment out of worry. Your concerns are soon drowned out by the overwhelming itchiness, though, leading you to scratch yourself like you’ve never scratched before. From beneath every ");
 							if(pc.hasScales()) output("scale that flakes");
 							else output("feather that falls");
 							output(" off, a patch of thin hair grows. Only when the thin hairs grow thicker, completely covering your entire body in a beautiful coat of fur, does the itching stop. <b>Your body is now covered in [pc.furColor] fur!</b>");
 						}
 						//Bare Skin:
-						else output("\n\nYou feel an itch starting on your back, and you reach to scratch it. Unfortunately, you can't quite get at it, but the itch continues to grow stronger, forcing you to strain still harder in an attempt to reach the elusive spot. You do manage to get a few good scratches in before you realize that particular spot is now covered in a patch of fur. Similar itches begin all over your body, followed by more patches of fur. When the itching stops, you find that <b>your body is completely covered in [pc.furColor] fur!</b>");
+						else output("\n\nYou feel an itch starting on your back, and you reach to scratch it. Unfortunately, you can’t quite get at it, but the itch continues to grow stronger, forcing you to strain still harder in an attempt to reach the elusive spot. You do manage to get a few good scratches in before you realize that particular spot is now covered in a patch of fur. Similar itches begin all over your body, followed by more patches of fur. When the itching stops, you find that <b>your body is completely covered in [pc.furColor] fur!</b>");
 						pc.clearSkinFlags();
 						pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 						pc.addSkinFlag(GLOBAL.FLAG_FURRED);
@@ -413,7 +415,7 @@ package classes.Items.Transformatives
 					changes++;
 				}
 				//Dud
-				if(changes == 0) output("\n\nAfter waiting a long while, you realize that this one is a dud. That or you're as dog-like as you're going to get. One of the two.");
+				if(changes == 0) output("\n\nAfter waiting a long while, you realize that this one is a dud. That or you’re as dog-like as you’re going to get. One of the two.");
 				return false;
 			}
 			else {

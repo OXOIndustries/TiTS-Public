@@ -254,6 +254,11 @@ public function buyItem():void {
 	var buyOptions:Boolean = kGAMECLASS.gameOptions.vendorToggle;
 	var temp:Number = 0;
 	var btnSlot:int = 0;
+	
+	//Multi page notice.
+	if(shopkeep.inventory.length >= 15) output("\n(<b>Multiple pages of items are available. Please be aware of the page forward/back buttons in the lower right corner of the user interface when making your purchase.</b>)\n");
+
+	//Build menu
 	clearMenu();
 	for(var x:int = 0; x < shopkeep.inventory.length; x++) {
 		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
@@ -306,7 +311,6 @@ public function buyItem():void {
 			addButton(btnSlot, "Back", shop, shopkeep);
 		}
 	}
-	if(btnSlot >= 15) output("\n\n(<b>Multiple pages of items available. Please be aware of the menu page buttons in the lower right corner!</b>)");
 	addButton(14, "Back", shop, shopkeep);
 }
 
@@ -962,6 +966,7 @@ public function generalInventoryMenu():void
 	useItemFunction = inventory;
 	
 	output("What item would you like to use?");
+	if(pc.inventory.length >= 11) output("\n(<b>Multiple pages of items are available. Please be aware of the page forward/back buttons in the lower right corner of the user interface when making your selections.</b>)");
 	output("\n\n");
 	inventoryDisplay();
 	clearMenu();

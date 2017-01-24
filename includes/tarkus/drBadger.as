@@ -105,19 +105,20 @@ public function drBadgerBonusShit():Boolean
 	}
 	else
 	{
-		if(flags["BADGER_QUEST"] == -3) 
+		if(flags["BADGER_QUEST"] == -3)
 		{
 			bimboBadgerShopStuff();
 			return false;
 		}
 		//Room desc
-		output("The inside of the “good” doctor’s shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don’t even want to hazard. She’s every bit the mad scientist you’d expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.\n\n");
+		output("The inside of the “good” doctor’s shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don’t even want to hazard. She’s every bit the mad scientist you’d expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.");
 		//If the player visits Dr. Badger’s after starting the quest but leaving before getting their pexiga, the bimbotorium is empty:
 		if(flags["PEXIGA_TREATMENT"] == 0)
 		{
 			if(flags["NYM-FOE"] == undefined)
 			{
-				output("Dr. Badger is nowhere to be seen. Maybe she’s working on that pexiga treatment? Should you see what she’s come up with or leave it be?\n\n");
+				output("\n\nDr. Badger is nowhere to be seen. Maybe she’s working on that pexiga treatment? Should you see what she’s come up with or leave it be?");
+				
 				//[Get Pexiga][Just Leave]
 				addButton(0,"Bring Pexiga",bringBadgerPexibork);
 			}

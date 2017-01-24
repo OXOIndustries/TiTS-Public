@@ -1375,7 +1375,7 @@ package classes.GameData
 				if (attacker is PlayerCharacter) output("You try to hack " + possessive(target.getCombatName()) + " weapon but [target.combatHeShe] has no energy weapons to shut down!");
 				else if (target is PlayerCharacter) output("[attacker.CombatName] tries to hack your weapon but you don’t have an energy weapon for them to shut down!");
 				else output("[attacker.CombatName] tries to hack " + possessive(target.getCombatName()) + " weapon but [target.combatHeShe] has no energy weapons to shut down!");
-				return;				
+				return;
 			}
 			
 			if (rand(20) + 1 + attacker.intelligence() / 2 < target.intelligence() / 2 + 10)

@@ -1148,7 +1148,7 @@ package classes.GameData
 				
 				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
 				{
-					if(!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
+					if(!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","Static Burst","You need shields available to overload in order for static burst to function.");
 					else if(pc.energy() >= 5) addButton(3,"StaticBurst", doStaticBurst);
 					else addDisabledButton(3,"StaticBurst");
 				}
@@ -1219,9 +1219,9 @@ package classes.GameData
 			{
 				if (pc.hasPerk("Static Burst"))
 				{
-					if (!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
-					else if (pc.energy() >= 5) addButton(3, "Static Burst", doStaticBurst);
-					else addDisabledButton(3, "Static Burst");
+					if (!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","Static Burst","You need shields available to overload in order for static burst to function.");
+					else if (pc.energy() >= 5) addButton(3, "StaticBurst", doStaticBurst);
+					else addDisabledButton(3, "StaticBurst");
 				}
 				
 				addButton(14, "Struggle", kGAMECLASS.adultCockvineStruggleOverride, undefined, "Struggle", "Struggle free of the Cockvines crushing grip.");
@@ -1531,6 +1531,11 @@ package classes.GameData
 			{
 				pc.removeStatusEffect("Naleen Coiled");
 				output("\nThe naleen’s tail spasms as you easily slip out of its coils.");
+			}
+			if (pc.hasStatusEffect("Mimbrane Smother"))
+			{
+				pc.removeStatusEffect("Mimbrane Smother");
+				output("\nYou manage to force your fingers under the edge of the Mimbrane smothering you, and easily pluck it off from your face.");
 			}
 			if(pc.hasStatusEffect("Grappled"))
 			{
