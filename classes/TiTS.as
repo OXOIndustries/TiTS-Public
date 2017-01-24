@@ -1308,28 +1308,6 @@
 			_dbgtestvar++;
 			return "This tag has been parsed " + _dbgtestvar + " time" + (_dbgtestvar == 1 ? "" : "s") +".";
 		}
-		
-		/*
-		// Embed(source = "../Silence.swf")
-		public var Silence:Class;
-		
-		public function YouThinkThisIsAGame():void
-		{
-			var s = new this.Silence();
-			s.addEventListener(Event.COMPLETE, GameGo);
-		}
-		
-		public function GameGo(e:Event):void
-		{
-			trace("loaded");
-			var b:Sprite = new Sprite();
-			b.graphics.beginFill(0x636363);
-			b.graphics.drawRect(0, 0, 1200, 800);
-			b.graphics.endFill();
-			stage.addChild(b);
-			stage.addChild(e.target.getChildAt(0).content);
-		}
-		*/
 	}
 }
 
