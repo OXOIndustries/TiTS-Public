@@ -190,6 +190,7 @@
 
 		//Vesperia/Canadia Station
 		include "../includes/vesperia/gloryhole.as";
+		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
@@ -1301,7 +1302,6 @@
 		{
 			return chars["GWEN"];
 		}
-		
 		private var _dbgtestvar:int = 0;
 		public function dbgshieldparsertag():String
 		{
