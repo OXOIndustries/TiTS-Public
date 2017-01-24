@@ -1765,7 +1765,7 @@ public function sleepWithCuredReaha():void
 {
 	clearOutput();
 	reahaHeader();
-	output("As you’re getting ready for bed, you hear the pneumatic hiss of your quarters’ door hiss. Reaha steps in, buck naked, an arm wrapped under her heavy breasts for support.");
+	output("As you’re getting ready for bed, you hear the pneumatic hiss of your quarters’ door opening. Reaha steps in, buck naked, an arm wrapped under her heavy breasts for support.");
 	output("\n\n<i>“Hey, [pc.name],”</i> she says, padding over with a suggestive swish in her hips. She slips in under the covers, shivering a little as the sheets caress her breasts and butt, her body still obviously over-sensitive.");
 	output("\n\nNow with a soft, warm companion to join you, you eagerly hop into bed and wrap your arms around Reaha, nesting your head into that magnificent bosom of hers. You’re pretty sure Reaha’s gene mods were tailor-made to make her into the best pillows in the galaxy, and you can’t help but smile as you nestle into her ample cleavage.");
 	output("\n\nWith your cow-girl pillow, it doesn’t take you long to fall asleep...");
