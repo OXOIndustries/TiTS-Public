@@ -9,7 +9,7 @@
 // BURT_ZIL_TALK                : Number of times PC has asked burt about the zil. Currently undefined -through- 3
 // TIMES_THREE_D_SURPRISE_SEXED : TODO - FIXME
 
-public function burtsBarFunc():void {
+public function burtsBarFunc():Boolean {
 	//Add to Jungle Planet Bar Descriptor, Afternoon -> Closing
 	if(hours >= 12) {
 		//{Hasn't bet against Syri yet}
@@ -42,10 +42,22 @@ public function burtsBarFunc():void {
 		}
 
 	}
+	if(pc.hasStatusEffect("Fuck Fever") && syriIsAFuckbuddy()) 
+	{
+		syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET();
+		return true;
+	}
 	if(flags["MET_BURT"] == undefined) this.addButton(0,"Bar",burtapproach);
 	else this.addButton(0,"Burt",burtapproach);
 	roamingBarEncounter(3);
+	addButton(4,"Oil Cheat",oilyButt);
 	this.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
+	return false;
+}
+
+public function oilyButt():void
+{
+	quickLoot(new OmegaOil());
 }
 
 public function burtapproach():void {
