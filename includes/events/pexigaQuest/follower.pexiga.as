@@ -653,13 +653,13 @@ public function milkedPexigaCollect(withYammi:Boolean = false):void
 {
 	if(pc.hasItem(new PexigaSaliva()) || pc.hasItemInStorage(new PexigaSaliva()))
 	{
-		output("\n\nNot letting the sweets go to waste, you bottle up some of the excess saliva and stick it in your pack.\n\n");
-		quickLoot(new PexigaSaliva());
-		if(!withYammi) eventQueue.push(pexigaMenu);
+		pexigaMenu();
 	}
 	else if(!withYammi)
 	{
-		pexigaMenu();
+		output("\n\nNot letting the sweets go to waste, you bottle up some of the excess saliva and stick it in your pack.\n\n");
+		quickLoot(new PexigaSaliva());
+		if(!withYammi) eventQueue.push(pexigaMenu);
 	}
 	else
 	{
