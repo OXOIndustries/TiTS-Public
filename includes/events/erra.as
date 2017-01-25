@@ -203,7 +203,7 @@ public function erraSexGOOO():void
 	addButton(0,"Good Girl",goodGirlSexForErra,undefined,"Good Girl","Reward your puppy with some vaginal lovin’.");
 	if((pc.hasCock() && pc.cockThatFits(erraAnalCapacity()) >= 0) || pc.hasHardLightEquipped()) addButton(1,"Bad Girl",badGirlAnalErraStuff,undefined,"Bad Girl","Punish your disobedient pet via her tight little tailhole.");
 	else addDisabledButton(1,"Bad Girl","Bad Girl","You need a penis that will fit inside Erra for this - or some underwear equipped with a hardlight phallus.");
-	addButton(14,"Back",approachErra,true);
+	//addButton(14,"Back",approachErra,true);
 }
 
 public function erraVaginalCapacity():Number
