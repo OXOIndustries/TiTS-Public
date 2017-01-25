@@ -621,7 +621,7 @@ public function giveMilodanMalesStinkyButtholeALick():void
 		output("\n\nHe gasps like a girl, wriggling in your grip and unable to escape the insane pleasure of having your tongue inside him. Thrusting into him, you revel in his girly moans while he drips in your hand like a faucet. With your face buried between his cheeks, you bring him to yet another strained orgasm, the milodan unable to help himself. He <i>really</i> bucks when you snake your tongue through his spasming walls during his orgasm, trying to prevent his voice rising a couple of octaves.");
 	}
 	output("\n\nWhen his ass finally stops seizing around you and allows your tongue to slip free, he slumps onto the ice under the assumption you’re done. You don’t think he was quite ready for that particular sexual technique. His cock is still hard in your hand, though, and his knot hasn’t deflated; there’s no reason you couldn’t just keep him cumming his brains out from being tongue-fucked...");
-	output("\n\n...");
+	output("\n\n....");
 	output("\n\nBy the time you let him go, you’ve made him paint both the ice and his stomach in pearlescent white jizz. His cock is still drooling pre-cum even now, but you’ve had your fun. Leaving the still-shaking barbarian on the ground, you walk away with a smile. Maybe you should do this more often.");
 	processTime(60);
 	pc.lust(30);
@@ -797,7 +797,7 @@ public function pussyWrasslin():void
 
 		output("\n\nHe’s still raging hard, a fact he’s only too eager to demonstrate when he thrusts right back into your gaped-wide hole. Slamming his hips against your rump, your voice comes out in sharp little cries of bliss. He begins to work himself back up to the same intensity you were just subjected to, and you begin to realize you’re going to be under him for quite some time...");
 
-		output("\n\n...");
+		output("\n\n....");
 
 		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
 		if(!pc.isCrotchExposed()) output("chuck your clothes on and ");
@@ -822,7 +822,7 @@ public function pussyWrasslin():void
 
 		output("\n\nHe’s still raging hard, a fact he’s only too eager to demonstrate when he thrusts right back into your gaped-wide hole. Slamming his hips against your rump, your voice comes out in sharp little cries of bliss. He begins to work himself back up to the same intensity you were just subjected to, and you begin to realize you’re going to be under him for quite some time...");
 
-		output("\n\n...");
+		output("\n\n....");
 
 		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
 		if(!pc.isCrotchExposed()) output("chuck your clothes on and ");
@@ -866,7 +866,7 @@ public function dontWrassleBecauseWrasslinIsDumbAndYourPussyNeedsFucked():void
 	output("\n\nA few minutes of feeling his jizz spurt into you in ropes passes by quickly, and soon enough you feel his knot begin to deflate. You’re forced to admit you’re almost disappointed, but as you go to rise you notice the milodan hasn’t loosened his grip on you at all. Pulling his knot free, your pussy finally lets go of the loads it was holding, running down your legs and onto the ground. You’re granted a few moments of reprieve before you gasp in shock, feeling his dick rub along your still-sensitive pussy.");
 	output("\n\nHe’s still raging hard, a fact he’s only too eager to demonstrate when he thrusts right back into your gaped-wide hole. Slamming his hips against your rump, your voice comes out in sharp little cries of bliss. He begins to work himself back up to the same intensity you were just subjected to, and you begin to realize you’re going to be under him for quite some time...");
 
-	output("\n\n...");
+	output("\n\n....");
 
 	output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt smarting. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
 	if(!pc.isCrotchExposed()) output("chuck your clothes on and ");
@@ -921,7 +921,7 @@ public function cockwrassleTheMilodanMale():void
 		output("\n\nWhen he grunts and you begin to feel the warmth of his seed jetting inside you, you actually feel a surge of gratefulness that he’s finally going to stop toying with you. You’d much rather be his subservient cumdump than try to fuck his knotted cock again - your legs are so shaky you doubt you’ll even be able to get up when he lets you go. Panting, he thrusts forward and buries himself as far into your hindquarters as he can get. You can feel jizz beginning to fill your anal passage, the gigantic knot preventing any cum from escaping.");
 		output("\n\nA few minutes of feeling his jizz spurt into you in ropes passes by quickly, and soon enough you feel his knot begin to deflate. You’re forced to admit you’re almost disappointed, but as you go to rise you notice the milodan hasn’t loosened his grip on you at all. Pulling his knot free, your asshole finally lets go of the loads it was holding, running down your legs and onto the ground. You’re granted a few moments of reprieve before you gasp in shock, feeling his dick rub along your still-sensitive butt.");
 		output("\n\nHe’s still raging hard, a fact he’s only too eager to demonstrate when he thrusts right back into your gaped-wide hole. Slamming his hips against your rump, your voice comes out in sharp little cries of bliss. He begins to work himself back up to the same intensity you were just subjected to, and you begin to realize you’re going to be under him for quite some time...");
-		output("\n\n...");
+		output("\n\n....");
 		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
 		if(!pc.isAssExposed()) output("chuck your clothes on and ");
 		output("get moving again.");
@@ -939,7 +939,7 @@ public function cockwrassleTheMilodanMale():void
 		output("\n\nWhen he grunts and you begin to feel the warmth of his seed jetting inside you, you actually feel a surge of gratefulness that he’s finally going to stop toying with you. You’d much rather be his subservient cumdump than try to fuck his knotted cock again - your legs are so shaky you doubt you’ll even be able to get up when he lets you go. Panting, he thrusts forward and buries himself as far into your hindquarters as he can get. You can feel jizz beginning to fill your anal passage, the gigantic knot preventing any cum from escaping.");
 		output("\n\nA few minutes of feeling his jizz spurt into you in ropes passes by quickly, and soon enough you feel his knot begin to deflate. You’re forced to admit you’re almost disappointed, but as you go to rise you notice the milodan hasn’t loosened his grip on you at all. Pulling his knot free, your asshole finally lets go of the loads it was holding, running down your legs and onto the ground. You’re granted a few moments of reprieve before you gasp in shock, feeling his dick rub along your still-sensitive butt.");
 		output("\n\nHe’s still raging hard, a fact he’s only too eager to demonstrate when he thrusts right back into your gaped-wide hole. Slamming his hips against your rump, your voice comes out in sharp little cries of bliss. He begins to work himself back up to the same intensity you were just subjected to, and you begin to realize you’re going to be under him for quite some time...");
-		output("\n\n...");
+		output("\n\n....");
 		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
 		if(!pc.isAssExposed()) output("chuck your clothes on and ");
 		output("get moving again.");
@@ -976,7 +976,7 @@ public function dontWrestleTheMilodanBecauseHisCockIsBetterThanYours():void
 
 	output("\n\nA few minutes of feeling his jizz spurt into you in ropes passes by quickly, and soon enough you feel his knot begin to deflate. You’re forced to admit you’re almost disappointed, but as you go to rise you notice the milodan hasn’t loosened his grip on you at all. Pulling his knot free, your asshole finally lets go of the loads it was holding, running down your legs and onto the ground. You’re granted a few moments of reprieve before you gasp in shock, feeling his dick rub along your still-sensitive butt.");
 	output("\n\nHe’s still raging hard, a fact he’s only too eager to demonstrate when he thrusts right back into your gaped-wide hole. Slamming his hips against your rump, your voice comes out in sharp little cries of bliss. He begins to work himself back up to the same intensity you were just subjected to, and you begin to realize you’re going to be under him for quite some time...");
-	output("\n\n...");
+	output("\n\n....");
 	output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt smarting. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
 	if(!pc.isCrotchExposed()) output("chuck your clothes on and ");
 	output("get moving again.");
