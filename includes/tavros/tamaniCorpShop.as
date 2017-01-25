@@ -118,7 +118,8 @@ public function lerrisProducts():void
 		if(!chars["LERRIS"].hasItem(new Priapin())) chars["LERRIS"].inventory.push(new Priapin());
 	}
 	else chars["LERRIS"].destroyItem(new Priapin());
-	
+	if (!chars["LERRIS"].hasItem(new FrontRackCream())) chars["LERRIS"].inventory.push(new FrontRackCream());
+
 	CodexManager.unlockEntry("Bubble Buddy");
 	shopkeep = lerris;
 	buyItem();
