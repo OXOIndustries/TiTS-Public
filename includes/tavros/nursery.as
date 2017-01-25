@@ -1969,7 +1969,7 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 	{
 		default:
 		case "physique":
-			output("\n\n<i>“But some of us are gonna be big, tough warriors instead!”</i> one of the tallest princesses boasts, flexing her impressive muscles. Several of her sisters ooh and ahh, scuttling over to grope at her biceps or poke at her chiseled abs. Definitely takes after you, that one.");
+			output("\n\n<i>“But some of us are gonna be big, tough warriors instead!”</i> one of the tallest princesses boasts, flexing her impressive muscles. Several of her sisters ooh and ahh, scuttling over to grope at her biceps or poke at her chiseled abs. " + (pc.affinity == "physique" ? "Definitely takes after you" : "Such determination") + ", that one.");
 			break;
 
 		case "reflexes":
