@@ -340,6 +340,7 @@
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nerrasa.as";
+		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
@@ -451,7 +452,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.16";
+			version = "0.7.17";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1301,6 +1302,10 @@
 		public function get gwen():Gwen
 		{
 			return chars["GWEN"];
+		}
+		public function get bea():Bea
+		{
+			return chars["BEA"];
 		}
 		private var _dbgtestvar:int = 0;
 		public function dbgshieldparsertag():String

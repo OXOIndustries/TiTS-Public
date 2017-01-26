@@ -725,6 +725,10 @@ public function uvetoBarBonus():Boolean
 	natalieFreezerAddendum(4);
 	// Randoms
 	roamingBarEncounter(5);
+	if(flags["BEA_QUEST"] != 4) 
+	{
+		if(beatriceBonusButts(7)) return true;
+	}
 
 	return false;
 }

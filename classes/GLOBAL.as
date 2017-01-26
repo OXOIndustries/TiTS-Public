@@ -812,6 +812,7 @@
 		
 		// HAIRTYPES
 		public static const HAIR_TYPE_REGULAR:int						= 0;
+		public static const HAIR_TYPE_HAIR:int							= 0;
 		public static const HAIR_TYPE_FEATHERS:int						= 1;
 		public static const HAIR_TYPE_TRANSPARENT:int					= 2;
 		public static const HAIR_TYPE_GOO:int							= 3;
