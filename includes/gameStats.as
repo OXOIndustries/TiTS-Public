@@ -2523,6 +2523,23 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("\n<b>* Weather Drones Turned In:</b> " + flags["NAYNA_DRONES_TURNED_IN"]);
 				sideCount++;
 			}
+			// Mrs. Reasner
+			if(flags["BEA_QUEST"] != undefined)
+			{
+				output2("\n<b>Refuel the <i>S.S. Inexorable</i></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["BEA_QUEST"])
+				{
+					case 1: output2(" Volunteered to help attain savicite,"); break;
+					case 2: output2(" Volunteered, Received scarf for savicite,"); break;
+					case 3: output2(" Volunteered, Received scarf, Sold enough savicite,"); break;
+					case 4: output2(" Volunteered, Received scarf, Sold savicite, Received coin,"); break;
+				}
+				if(flags["BEA_QUEST"] >= 4) output2(" Completed");
+				else output2(" <i>In progress...</i>");
+				if(flags["BEA_SAVCOUNT"] != undefined) output2("\n<b>* Savicite Sold to Her, Total:</b> " + flags["BEA_SAVCOUNT"]);
+				sideCount++;
+			}
 		}
 		
 		if(showID == "Canadia" || showID == "All")
@@ -5242,7 +5259,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				
 			}
 			// The Freezer
-			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["NATALIE_MET"] != undefined)
+			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined)
 			{
 				output2("\n<b><u>The Freezer</u></b>");
 				// Hanananana, hawt MILF
@@ -5271,6 +5288,23 @@ public function displayEncounterLog(showID:String = "All"):void
 							else output2(", Have silicone, <i>Return to her!</i>");
 						}
 					}
+				}
+				// Beatrice Reasner
+				if(flags["BEA_TITLE"] != undefined)
+				{
+					output2("\n<b>* Beatrice Reasner:</b> Met her");
+					output2("\n<b>* Beatrice Reasner, Title:</b> " + flags["BEA_TITLE"]);
+					if(flags["BEA_RELATIONSHIP"] != undefined)
+					{
+						output2("\n<b>* Beatrice Reasner, Relationship:</b>");
+						switch(flags["BEA_RELATIONSHIP"])
+						{
+							default: output2(" Strangers"); break;
+							case 1: output2(" Friends"); break;
+							case 2: output2(" Lovers"); break;
+						}
+					}
+					if(flags["MET_BEA_HUBBY"] != undefined) output2("\n<b>* Traven Reasner:</b> Met him");
 				}
 				variousCount++;
 			}

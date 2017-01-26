@@ -2,9 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Transformatives.Sylvanol;
 	import classes.kGAMECLASS;
-	import classes.Engine.Utility.rand;
 	
 	public class Bea extends Creature
 	{
@@ -60,12 +58,13 @@
 			vaginas[0].wetnessRaw = 2;
 			clitLength = 0.8;
 			vaginalVirgin = false;
-
-			hipRatingRaw = 12
+			
+			hipRatingRaw = 12;
+			buttRatingRaw = 8;
 		}
 		override public function onLeaveBuyMenu():void
 		{
-			kGAMECLASS.ceriaMenu();
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }

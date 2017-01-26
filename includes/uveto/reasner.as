@@ -1,7 +1,7 @@
 import classes.Items.Treasures.Savicite;
 import classes.Items.Accessories.BeatricesScarf;
 
-/**** Flags  ****
+/**** Flags ****
 MET_BEA_HUBBY		1 when ya meet 'im
 BEA_GIFT			bea_gift
 BEA_PANTIES			bea_panties
@@ -55,21 +55,21 @@ level = 15
 
 femininity = 100
 hairType = GLOBAL.HAIR_TYPE_HAIR
-hairColor = <i>“brown”</i>
+hairColor = "brown"
 hairLength = 16
 tallness = 70
 
 tone = 30
 thickness = 60
 
-eyeColor = <i>“brown”</i>
-skinTone = <i>“fair”</i>
+eyeColor = "brown"
+skinTone = "fair"
 skinFlags = [GLOBAL.FLAG_SMOOTH]
 skinType = GLOBAL.SKIN_TYPE_SKIN
 earType = GLOBAL.TYPE_HUMAN
 eyeType = GLOBAL.TYPE_HUMAN
 lipMod = 1
-lipColor = <i>“red”</i>
+lipColor = "red"
 tongueType = GLOBAL.TYPE_HUMAN
 armType = GLOBAL.TYPE_HUMAN
 faceType = GLOBAL.TYPE_HUMAN
@@ -81,7 +81,7 @@ breastRows = [new BreastRowClass()]
 (breastRows[0] as BreastRowClass).breastRatingRaw = 12
 (breastRows[0] as BreastRowClass).nippleType = GLOBAL.NIPPLE_TYPE_INVERTED
 nipplesPerBreast = 1
-nippleColor = <i>“brown”</i>
+nippleColor = "brown"
 
 milkMultiplier = 15
 milkRate = 10
@@ -90,7 +90,7 @@ milkType = GLOBAL.FLUID_TYPE_MILK
 girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM
 
 vaginas = [new VaginaClass()]
-(vaginas[0] as VaginaClass).vaginaColor = <i>“pink”</i>
+(vaginas[0] as VaginaClass).vaginaColor = "pink"
 (vaginas[0] as VaginaClass).clits = 1
 (vaginas[0] as VaginaClass).type = GLOBAL.TYPE_HUMAN
 (vaginas[0] as VaginaClass).loosenessRaw = 3
@@ -164,7 +164,7 @@ public function approachBeatrice():void
 		else if(pc.isMischievous()) output("Have we met before");
 		else output("Do you need me for something");
 		output("?”</i>");
-		output("\n\n<i>“No, sweetie, but I thought you might want some company, since you were standing there all by yourself.”</i> She sits very ladylike in her chair and extends a fair skinned hand. <i>“My name’s Beatrice Reasner, Captain of </i>Inexorable<i>,”</i>  her tone is cordial, <i>“but you may call me Mrs. Reasner... or Beatrice if you want.”</i>");
+		output("\n\n<i>“No, sweetie, but I thought you might want some company, since you were standing there all by yourself.”</i> She sits very ladylike in her chair and extends a fair skinned hand. <i>“My name’s Beatrice Reasner, Captain of </i>Inexorable<i>,”</i> her tone is cordial, <i>“but you may call me Mrs. Reasner... or Beatrice if you want.”</i>");
 		output("\n\nSounds like she’s giving you the choice, so how do you want to address her from now on?");
 		processTime(5);
 		clearMenu();
@@ -199,11 +199,11 @@ public function reasnerMenu():void
 	else addDisabledButton(2,"Sell","Sell","You have no idea what you would even sell to this sweet woman.");
 	
 	if(flags["BEATRICE_HERSELF_TALKED"] != undefined && flags["BEATRICE_FAMILY_TALKED"] != undefined && flags["BEATRICE_SHIP_TALKED"] != undefined && flags["BEA_QUEST"] != undefined) addButton(3,"Rest",restWithMommaBeatrice);
-	else addDisabledButton(3,"Rest","Rest","You don't know her well enough for this.");
+	else addDisabledButton(3,"Rest","Rest","You don’t know her well enough for this.");
 
-	if(flags["BEA_RESTS"] == undefined) addDisabledButton(4,"Make Love","Make Love","You definitely don't know her well enough for that.");
+	if(flags["BEA_RESTS"] == undefined) addDisabledButton(4,"Make Love","Make Love","You definitely don’t know her well enough for that.");
 	else if((flags["BEA_RELATIONSHIP"] != 2 && pc.lust() >= 66) || (flags["BEA_RELATIONSHIP"] == 2 && pc.lust() >= 50)) addButton(4,"Make Love",makeLoveToBeatrice);
-	else addDisabledButton(4,"Make Love","Make Love","You aren't turned on enough for that.");
+	else addDisabledButton(4,"Make Love","Make Love","You aren’t turned on enough for that.");
 	addButton(14,"Leave",leaveAfterBeatrice);
 }
 
@@ -229,7 +229,7 @@ public function setBeatriceName(arg:String):void
 	output("\n\n<i>“So, sweetie,”</i> she sets her snifter down and laces her fingers together, <i>“why don’t you tell me a bit about yourself. I’m sure you have many interesting stories to share.”</i>");
 	output("\n\nYou indulge her, recounting for her the details of your current quest and of your late father’s wish, leaving out certain need-to-know information. She hangs on your every word.");
 	output("\n\n<i>“That’s quite impressive,”</i> she says, <i>“I hope you don’t mind if I congratulate you early, since I know you’ll succeed.”</i>");
-	output("\n\nIt becomes quiet, and the two of you enjoy the the fire. It seems that " + flags["BEA_TITLE"] + " is the type of woman who simply  likes the company of others, even if there isn’t anything to talk about at the moment.");
+	output("\n\nIt becomes quiet, and the two of you enjoy the the fire. It seems that " + flags["BEA_TITLE"] + " is the type of woman who simply likes the company of others, even if there isn’t anything to talk about at the moment.");
 	output("\n\nBut what do you want?");
 	processTime(6);
 	//[Appearance] [Talk] [Leave]
@@ -279,11 +279,11 @@ public function beatriceTalkMenu(arg:*):void
 	if(arg != talkToBeatriceAboutHerself) addButton(0,"Herself",talkToBeatriceAboutHerself);
 	else addDisabledButton(0,"Herself","Herself","You just talked about this.");
 
-	if(flags["BEATRICE_HERSELF_TALKED"] == undefined) addDisabledButton(1,"Family","Family","You don't know her well enough to ask this.");
+	if(flags["BEATRICE_HERSELF_TALKED"] == undefined) addDisabledButton(1,"Family","Family","You don’t know her well enough to ask this.");
 	else if(arg != talkToBeatriceAboutFamiry) addButton(1,"Family",talkToBeatriceAboutFamiry);
 	else addDisabledButton(1,"Family","Family","You just talked about this.");
 
-	if(flags["BEATRICE_HERSELF_TALKED"] == undefined) addDisabledButton(2,"Ship & Crew","Ship & Crew","You don't know her well enough to ask this.");
+	if(flags["BEATRICE_HERSELF_TALKED"] == undefined) addDisabledButton(2,"Ship & Crew","Ship & Crew","You don’t know her well enough to ask this.");
 	else if(arg != beatriceShipAndCrewTalk) addButton(2,"Ship & Crew",beatriceShipAndCrewTalk);
 	else addDisabledButton(2,"Ship & Crew","Ship & Crew","You just talked about this.");
 
@@ -434,11 +434,11 @@ public function sellSaviciteToBeatrice():void
 	clearMenu();
 	var sav:ItemSlotClass = new Savicite();
 	if(pc.hasItem(sav)) addButton(0,"1",actuallySellSaviciteToBeatrice,1);
-	else addDisabledButton(0,"1","1","You don't have that much savicite.");
+	else addDisabledButton(0,"1","1","You don’t have that much savicite.");
 	if(pc.hasItem(sav,5)) addButton(1,"5",actuallySellSaviciteToBeatrice,5);
-	else addDisabledButton(1,"5","5","You don't have that much savicite.");
+	else addDisabledButton(1,"5","5","You don’t have that much savicite.");
 	if(pc.hasItem(sav,10)) addButton(2,"10",actuallySellSaviciteToBeatrice,10);
-	else addDisabledButton(2,"10","10","You don't have that much savicite.");
+	else addDisabledButton(2,"10","10","You don’t have that much savicite.");
 	addButton(3,"Nevermind",nevermindSaviciteBeatrice);
 }
 
@@ -623,7 +623,7 @@ public function encounterMisterTrentReasner():void
 	output("\n\nYou ask him what he does for a living.");
 	output("\n\n<i>“Oh, right now I’m a simple carpenter and the XO on </i>Inexorable<i>.”</i> He sets his pipe down. <i>“But before that I was an adventurer, much like yourself. That is,”</i> he lifts his wife’s hand up and puts a gentlemanly kiss atop it, <i>“until I put a ring on this finger.”</i>");
 	output("\n\nA slight blush spreads across " + flags["BEA_TITLE"] + "’s cheeks. <i>“Oh, hush, dear.”</i> She withdraws her hand and caresses it for a moment. <i>“How about I go get us something to drink.”</i>");
-	output("\n\n<i>“Whiskey for me. How about you, " + pc.mf("son","miss") + "'?”</i> Traven and you tell her what you both want. " + flags["BEA_TITLE"] + " leaves the two of you alone and makes her way to the bar, with her husband blatantly ogling the sensual sway of her wide hips and shapely derriere. The spectacle also catches the attention of others in the tavern; you can clearly see the desire in their eyes.");
+	output("\n\n<i>“Whiskey for me. How about you, " + pc.mf("son","miss") + "?”</i> Traven and you tell her what you both want. " + flags["BEA_TITLE"] + " leaves the two of you alone and makes her way to the bar, with her husband blatantly ogling the sensual sway of her wide hips and shapely derriere. The spectacle also catches the attention of others in the tavern; you can clearly see the desire in their eyes.");
 	output("\n\n<i>“So,”</i> you speak up before it gets awkward, <i>“I heard you’re here for savicite.”</i>");
 	output("\n\nTraven has to wrest his eyes away from his wife’s backside before responding. <i>“Yeah, shit happens.”</i> He start smoking his pipe again. <i>“We just got our asses handed to us in the Rush, burnt through the rest of our fuel getting the hell out of there.”</i> There’s a bitterness to his voice; you get the impression that Traven’s not the kind of man who runs away easily. <i>“We’ve already got a good amount of D and H-3, but still need some savicite to make it to Tavros. Our machine shops can only repair the ship so much.”</i>");
 	output("\n\nYou mention how " + flags["BEA_TITLE"] + " knows who you are, even though she never brings it up, and about their ongoing problem with Steele Tech; so why didn’t she ask for you to do anything to help?");

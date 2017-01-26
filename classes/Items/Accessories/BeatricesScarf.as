@@ -34,7 +34,7 @@
 			this.description = "a knitted scarf";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Knitted with love and care, this handmade scarf is perfect for protecting your neck from icy winds.\n\n+3 Willpower.";
+			this.tooltip = "Knitted with love and care, this handmade scarf is perfect for protecting your neck from icy winds.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
