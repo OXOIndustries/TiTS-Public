@@ -1,4 +1,4 @@
-// Custom vending machine button
+// Custom vending machine buttons
 public function vendingMachineButton(btnSlot:int = 0, machine:String = "energy"):Boolean
 {
 	switch(machine)
