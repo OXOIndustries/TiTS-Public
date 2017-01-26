@@ -728,7 +728,7 @@ public function tailPegStuffTimes():void
 	//Repeat:
 	else output("\n\n<i>“First of many,”</i> Ren promises with a firm slap of your ass, making you grip down on her even tighter.");
 
-	output("\n\nYou mewl, feeling her hips thrust against your [pc.butt] with renewed vigor. Guess she’s never heard of a refractory period! Ren barely skips a beat, pounding you even as cum pours out out of her cockhead.");
+	output("\n\nYou mewl, feeling her hips thrust against your [pc.butt] with renewed vigor. Guess she’s never heard of a refractory period! Ren barely skips a beat, pounding you even as cum pours out of her cockhead.");
 	if(x >= 0) output(" You’re half convinced Ren’s going to end up forming a knot of spunk inside you before her first orgasm’s even passed!");
 
 	output("\n\nBetween her dexterous tail, throbbing cock, and groping hands, you’re bathed in a mire of pleasure. The vigorous ass-fuck alone is enough to make you squeal and moan with every thrust, forcing yourself to bite the pillow rather than reward her with your loudest cries. Ren grins, thrusting her hips just that much faster. Your whole body shudders with the impacts");
