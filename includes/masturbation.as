@@ -2144,8 +2144,7 @@ public function futaBabePantyfapsRouter():void
 		{
 			addButton(button,flags["BEA_TITLE"]+"’s",jackOffWithLadyPantiesYouSicko,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
 			button++;
-
-			} ("Mrs. Reasner");
+		}
 		addButton(14,"Back",masturbateMenu);
 	}
 }
@@ -2164,12 +2163,13 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) pureLadyWaifuPussyRubFap("Aina");
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) pureLadyWaifuPussyRubFap("Briha");
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) pureLadyWaifuPussyRubFap("Lys");
-	}	
+		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) pureLadyWaifuPussyRubFap(flags["BEA_TITLE"]);
+	}
 	//More than one pair? Build a menu.
 	else
 	{
 		clearOutput();
-		output("You’ve collected " + pantyFapCount() + " of 10 possible pairs of ladies’ underwear. Which will you use?");
+		output("You’ve collected " + pantyFapCount() + " of " + pantyFapCount(true) + " possible pairs of ladies’ underwear. Which will you use?");
 		clearMenu();
 		var button:int = 0;
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) 
@@ -2222,40 +2222,49 @@ public function futaBabePantySchlicksRouter():void
 			addButton(button,"Lys’s",pureLadyWaifuPussyRubFap,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
+		{
+			addButton(button,flags["BEA_TITLE"]+"’s",pureLadyWaifuPussyRubFap,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
+			button++;
+		}
 		addButton(14,"Back",masturbateMenu);
 	}
 }
-public function pantyFapCount():Number
+public function pantyFapCount(total:Boolean = false):Number
 {
 	var count:int = 0;
-	if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) count++;
-	if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) count++;
-	if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) count++;
-	if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) count++;
-	if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) count++;
-	if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) count++;
-	if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) count++;
-	if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) count++;
-	if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) count++;
-	if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) count++;
-	if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) count++;
+	if(total || pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) count++;
+	if(total || pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) count++;
+	if(total || pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) count++;
+	if(total || pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) count++;
+	if(total || pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) count++;
+	if(total || pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) count++;
+	if(total || pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) count++;
+	if(total || pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) count++;
+	if(total || pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) count++;
+	if(total || pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) count++;
+	if(total || pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) count++;
 	return count;
 }
 
 public function getPantyColor(waifu:String = ""):String
 {
 	var pantyColor:String = "CODERS DUN GOOFED";
-	if(waifu == "Kiro") pantyColor = "black";
-	else if(waifu == "Penny") pantyColor = "blue";
-	else if(waifu == "Syri") pantyColor = "blue";
-	else if(waifu == "Saendra") pantyColor = "bright pink";
-	else if(waifu == "Emmy") pantyColor = "purple";
-	else if(waifu == "[embry.name]") pantyColor = "pink";
-	else if(waifu == "Xanthe") pantyColor = "black";
-	else if(waifu == "Aina") pantyColor = "striped green";
-	else if(waifu == "Briha") pantyColor = "camo-pattern";
-	else if(waifu == "Lys") pantyColor = "black";
-	else if(waifu == "Mrs. Reasner" || waifu == "Beatrice") pantyColor = "black";
+	switch(waifu)
+	{
+		case "Kiro": pantyColor = "black"; break;
+		case "Penny": pantyColor = "blue"; break;
+		case "Syri": pantyColor = "blue"; break;
+		case "Saendra": pantyColor = "bright pink"; break;
+		case "Emmy": pantyColor = "purple"; break;
+		case "[embry.name]": pantyColor = "pink"; break;
+		case "Xanthe": pantyColor = "black"; break;
+		case "Aina": pantyColor = "striped green"; break;
+		case "Briha": pantyColor = "camo-pattern"; break;
+		case "Lys": pantyColor = "black"; break;
+		case "Mrs. Reasner":
+		case "Beatrice": pantyColor = "black"; break;
+	}
 	return pantyColor;
 }
 
@@ -2263,12 +2272,21 @@ public function getPantyColor(waifu:String = ""):String
 public function getPantyTexture(waifu:String = ""):String
 {
 	var pantyTexture:String = "CODERS DUN GOOFED";
-	if(waifu == "[embry.name]") pantyTexture = "soft cotton";
-	else if(waifu == "Xanthe") pantyTexture = "smooth siel-silk";
-	else if(waifu == "Aina") pantyTexture = "stretchy cotton";
-	else if(waifu == "Briha") pantyTexture = "thin nylon";
-	else if(waifu == "Lys") pantyTexture = "sheer";
-	else if(waifu == "Mrs. Reasner" || waifu == "Beatrice") pantyTexture = "silky";
+	switch(waifu)
+	{
+		case "Kiro": pantyTexture = "lace"; break;
+		case "Penny": pantyTexture = "cotton"; break;
+		case "Syri": pantyTexture = "silky cotton"; break;
+		case "Saendra": pantyTexture = "taut nylon"; break;
+		case "Emmy": pantyTexture = "silky nylon"; break;
+		case "[embry.name]": pantyTexture = "soft cotton"; break;
+		case "Xanthe": pantyTexture = "smooth siel-silk"; break;
+		case "Aina": pantyTexture = "stretchy cotton"; break;
+		case "Briha": pantyTexture = "thin nylon"; break;
+		case "Lys": pantyTexture = "sheer"; break;
+		case "Mrs. Reasner":
+		case "Beatrice": pantyTexture = "silky lace"; break;
+	}
 	return pantyTexture;
 }
 

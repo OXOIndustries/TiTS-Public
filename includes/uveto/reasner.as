@@ -245,7 +245,7 @@ public function reasnerAppearance():void
 	clearOutput();
 	showBeatrice();
 	author("Tacit");
-	output("Captain Beatrice Reasner is a kind, gentle-mannered terran woman and happily married. With 2” heels, she stands six feet tall and carries herself with ladylike composure. Her face is very feminine; with fair skin, high cheekbones, long lashes and a loving smile upon her full, rosy lips. Voluminous chestnut hair cascades down her back in a loose braid and sweet, vanilla-scented perfume tickles your nose. The way she welcomes you with her warm, russet eyes makes you feel wanted and important, like you’re the only one in the room.");
+	output("Captain Beatrice Reasner is a kind, gentle-mannered terran woman and happily married. With 2\" heels, she stands six feet tall and carries herself with ladylike composure. Her face is very feminine; with fair skin, high cheekbones, long lashes and a loving smile upon her full, rosy lips. Voluminous chestnut hair cascades down her back in a loose braid and sweet, vanilla-scented perfume tickles your nose. The way she welcomes you with her warm, russet eyes makes you feel wanted and important, like you’re the only one in the room.");
 	output("\n\nOn her left hand she wears a simple gold wedding ring - the sign of a loving wife and a doting mother. It’d be rude to ask a lady for her age, but the few lines by her eyes and mouth hint that she’s well older than you, at least old enough to be your mother. Her complexion is fair but a little pale, reflecting a lifestyle spent mostly indoors or out in space.");
 	output("\n\nHer attire is enticingly modest and professional: a suit-like uniform hugs her narrow waist and large breasts just right, yet leaves plenty to the imagination. You can almost make out a black bra behind her prim dress shirt and necktie. Four gold stripes adorn her shoulder boards. A long business skirt wraps around her wide hips and smooth, stocking-clad legs that go all the way up, elongated even further by a pair of high heels. The slit running up the side gives a nice glimpse of thigh and garter strap as she slowly crosses and uncrosses her legs every now and then. Her shapely derriere fills out the back nicely, jiggling whenever she moves.");
 	if(flags["BEA_RELATIONSHIP"] == 2) output("\n\nUnderneath that conservative outer layer, she’s wearing some sexy panties and matching bra, along with sheer stockings and garter belt; all of it black and lacy with floral patterns, which you find quite ostentatious for a married woman.");
@@ -326,7 +326,7 @@ public function talkToBeatriceAboutFamiry():void
 	author("Tacit");
 	output("You ask " + flags["BEA_TITLE"] + " to tell you about the family she’s made for herself and about her husband and daughter.");
 	output("\n\nHer expression lightens. She brushes a lock of chestnut hair away from her face, unintentionally drawing your attention to her wedding ring. <i>“My best friend introduced us to each other on Ausaril, back when I was a junior officer. We settled down on Earth to live a simple life and raise a family. For the next couple of years I taught at the College while Hubby took care of the house and homeschooled our daughter.”</i>");
-	output("\n\n<i>“He’s a wonderful man: handsome, reliable, hardworking, faithful, strong and...so manly,”</i> she bites her lip, <i>“with those broad shoulders, chiseled pecs, and his soft beard that tickles just right...mmm, those times when he’d suddenly pick me up and carry me to the bedroom...”</i> " + flags["BEA_TITLE"] + " stops herself, realizing where she was going with that. A blush spreads across her cheeks and she covers her mouth with a hand, like a proper lady. <i>“Oh my, I must have gotten a little distracted there.”</i>");
+	output("\n\n<i>“He’s a wonderful man: handsome, reliable, hardworking, faithful, strong and...so manly,”</i> she bites her lip, <i>“with those broad shoulders, chiseled pecs, and his soft beard that tickles just right... mmm, those times when he’d suddenly pick me up and carry me to the bedroom...”</i> " + flags["BEA_TITLE"] + " stops herself, realizing where she was going with that. A blush spreads across her cheeks and she covers her mouth with a hand, like a proper lady. <i>“Oh my, I must have gotten a little distracted there.”</i>");
 	if(pc.isNice()) output("\n\nYou tell her that it’s no problem and she can continue.");
 	else if(pc.isMischievous()) output("\n\n<i>“No, please,”</i> you smirk, <i>“do tell me about your sex life.”</i>");
 	else output("\n\n<i>“Go on.”</i>");
@@ -392,8 +392,8 @@ public function uvetoTalkWithBeatrice():void
 	clearMenu();
 	if(flags["BEA_QUEST"] == undefined)
 	{
-		addButton(0,"VolunteerHelp",volunteerToHelpbeatrice);
-		addButton(1,"Say Nothing",backToBeatriceMain);
+		addButton(0,"Volunteer",volunteerToHelpbeatrice, undefined, "Volunteer to Help", "Help her get some savicite.");
+		addButton(1,"Say Nothing",backToBeatriceMain, undefined, "Say Nothing", "Maybe do something else.");
 	}
 	else beatriceTalkMenu(uvetoTalkWithBeatrice);
 }
@@ -627,7 +627,7 @@ public function encounterMisterTrentReasner():void
 	output("\n\n<i>“So,”</i> you speak up before it gets awkward, <i>“I heard you’re here for savicite.”</i>");
 	output("\n\nTraven has to wrest his eyes away from his wife’s backside before responding. <i>“Yeah, shit happens.”</i> He start smoking his pipe again. <i>“We just got our asses handed to us in the Rush, burnt through the rest of our fuel getting the hell out of there.”</i> There’s a bitterness to his voice; you get the impression that Traven’s not the kind of man who runs away easily. <i>“We’ve already got a good amount of D and H-3, but still need some savicite to make it to Tavros. Our machine shops can only repair the ship so much.”</i>");
 	output("\n\nYou mention how " + flags["BEA_TITLE"] + " knows who you are, even though she never brings it up, and about their ongoing problem with Steele Tech; so why didn’t she ask for you to do anything to help?");
-	output("\n\n<i>“You aren’t in charge of your company yet, right? So there’s nothing you could’ve done anyway, I assume.”</i> You don’t contest what he says since it’s pretty much true. <i>“Besides, she’s not the type of woman to ask for special favors or treat people differently based on their wealth or connections. She loves everyone equally, whether they be beggars or billionaire play" + pc.mf("boys","girls") + "”</i>");
+	output("\n\n<i>“You aren’t in charge of your company yet, right? So there’s nothing you could’ve done anyway, I assume.”</i> You don’t contest what he says since it’s pretty much true. <i>“Besides, she’s not the type of woman to ask for special favors or treat people differently based on their wealth or connections. She loves everyone equally, whether they be beggars or billionaire play" + pc.mf("boys","girls") + ".”</i>");
 	output("\n\n<i>“And she’s not only capable but also fiercely independent, so it’s hard for her to ask for help. That doesn’t mean she’ll refuse any; she’d simply prefer others to depend on her rather than the other way around.”</i> He looks around to make sure his wife’s not right behind him. <i>“I know I really shouldn’t be saying this - so don’t tell her I did - but she can also hold her own in a fight.”</i>");
 	output("\n\n<i>“Really?”</i>");
 	output("\n\nTraven taps the scar on his cheek. <i>“Really. Before we married, believe it or not, the missus was quite the hardass.”</i> He pauses and strokes his beard thoughtfully. <i>“Nah, that’s a bit too harsh. She was always a nice person, just way too serious and career focused. That made her a great officer, but she didn’t know how to relax.”</i> He crosses his arms as a fond expression spreads across his face. <i>“Just some of the many reasons I fell in love with her.”</i>");
@@ -681,7 +681,7 @@ public function makeLoveToBeatrice():void
 		}
 		else output("\n\nYou know it’s wrong to desire someone else’s wife; but you don’t care, you want this woman <i>now</i>!");
 
-		output("\n\nYou start to lean in, slowly enough to giver her the opportunity to resist. Closer and closer you edge toward " + flags["BEA_TITLE"] + "’s mouth, closing your eyes in anticipation. Just before they shut, you see her do the same. Luscious full lips meet yours and linger for a while in a chaste kiss." + pc.mf(""," Even though she’s married to a man, and is attracted to men, she’s apparently ok with kissing a woman.") + " Locked together at the lips, she doesn’t seem to mind your hand sliding down her back to fondle her delectable butt, feeling her panties under her skirt. But this isn’t enough; you need more.");
+		output("\n\nYou start to lean in, slowly enough to give her the opportunity to resist. Closer and closer you edge toward " + flags["BEA_TITLE"] + "’s mouth, closing your eyes in anticipation. Just before they shut, you see her do the same. Luscious full lips meet yours and linger for a while in a chaste kiss." + pc.mf(""," Even though she’s married to a man, and is attracted to men, she’s apparently ok with kissing a woman.") + " Locked together at the lips, she doesn’t seem to mind your hand sliding down her back to fondle her delectable butt, feeling her panties under her skirt. But this isn’t enough; you need more.");
 
 		output("\n\nIn your ");
 		if(pc.hasCock()) output("rutting");
@@ -752,7 +752,7 @@ public function makeLoveToBeatrice():void
 	if(pc.hasCock() && pc.cockThatFits(bea.vaginalCapacity(0)) >= 0) addButton(0,"Cowgirl",cowgirlMissReasner,undefined,"Cowgirl","Let " + flags["BEA_TITLE"] + " sit on your lap and ride you");
 	else addDisabledButton(0,"Cowgirl","Cowgirl","You need a penis that would fit inside her in order to do this.");
 	//Suckle
-	addButton(1,"Suckle",suckleBeatriceTitttttaaaaaays,undefined,"Suckle","Drink from her bosom");
+	addButton(1,"Suckle",suckleBeatriceTitttttaaaaaays,undefined,"Suckle","Drink from her bosom.");
 	//Reach-Around
 	if(pc.hasGenitals()) addButton(2,"Reach Around",reachAroooooooooogalaBeatrice,undefined,"Reach Around","Let " + flags["BEA_TITLE"] + " pleasure you with her hands.");
 	else addDisabledButton(2,"Reach Around","Reach Around","You need a penis or a vagina for this.");
@@ -946,6 +946,7 @@ public function cowgirlMissReasner():void
 	}
 	//merge
 	output("\n\nYou get up and gather your things, more than refreshed and ready for the day ahead.");
+	IncrementFlag("BEA_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -971,6 +972,7 @@ public function suckleBeatriceTitttttaaaaaays():void
 	processTime(30);
 	pc.milkInMouth(bea);	
 	pc.lust(4);
+	IncrementFlag("BEA_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1088,6 +1090,7 @@ public function reachAroooooooooogalaBeatrice():void
 		//repeat: 
 		if(flags["BEA_FINGERED_U"] != undefined) output("still ");
 		output("not the most comfortable jilling " + pc.mf("someone else’s","another woman’s") + " vagina, so she’s doing it swiftly. " + flags["BEA_TITLE"] + " is pretty much straight from what you’ve gathered - y’know, having a husband and all that. The way she’s stimulating you is probably just her doing the same as when she masturbates. Even so, it warms your heart that " + flags["BEA_TITLE"] + " cares about you so much that she’s willing to do this for you despite her reservations. The pressure mounts as she vigorously fingers [pc.vagina " + selVag + "] until your muscles clamp down on her digits and [pc.girlCum] soaks her palm.");
+		IncrementFlag("BEA_FINGERED_U");
 	}
 	output("\n\nAfter such an intense orgasm, strength leaves your body; still, " + flags["BEA_TITLE"] + " continues to gently pump her drenched ");
 	//has cock:
@@ -1104,8 +1107,8 @@ public function reachAroooooooooogalaBeatrice():void
 	output(" as shocks run up your spine. <i>“Good [pc.girlBoy],”</i> " + flags["BEA_TITLE"] + " coos, holding your spent body against herself until you recover, <i>“you let out so much.”</i> All you can do is look into her eyes with a smile. She really seems to enjoy seeing the happiness and satisfaction on your face.");
 	output("\n\nAfterwards, you get cleaned up and gather your gear. You volunteer to help your graceful hostess clean up the mess on the floor, but she insists that she can do it herself.");
 	processTime(20);
-	IncrementFlag("BEA_FINGERED_U");
 	pc.orgasm();
+	IncrementFlag("BEA_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1145,9 +1148,9 @@ public function beatriceLeavesYOUFORANOTHERMANOHSHIT():void
 	processTime(4);
 	//[A Kiss] [Your Panties] [Credits]
 	clearMenu();
-	addButton(0,"A Kiss",kissForARewardBeatrice);
-	addButton(1,"Your Panties",getDatMilfsPANTIESYOOOO);
-	addButton(2,"Credits",beatriceCredsReward);
+	addButton(0,"A Kiss",kissForARewardBeatrice, undefined, "A Kiss", "Ask her for a kiss.");
+	addButton(1,"Your Panties",getDatMilfsPANTIESYOOOO, undefined, "Her Panties", "Ask her for her panties.");
+	addButton(2,"Credits",beatriceCredsReward, undefined, "Credits", "Ask her for monetary compensation.");
 }
 
 //[Kiss]:
@@ -1181,15 +1184,17 @@ public function kissForARewardBeatrice():void
 	{
 		output("\n\nYour breath catches when what you thought would remain a simple peck suddenly turns into a passionate open mouthed kiss, keenly aware that her ministrations have caught the attention of others in the tavern.");
 		output("\n\nThe tip of her tongue probingly traces the outline of your [pc.lips]. When you don’t object, she slides the wet muscle deep inside your mouth, tasting you and swirling it around your [pc.tongue]. She sucks your bottom lip into her mouth and pulls on it until the kiss breaks, leaving only a trail of spit connecting you two.");
+		pc.lust(50);
 	}
 	//BEA_RELATIONSHIP=1:
 	else
 	{
 		output("\n\nYou know this is what you asked for, but didn’t think she’d actually do it. Your heart palpitates; feeling her pouty, full lips against yours really hammers in the fact that you’re kissing someone’s wife.");
+		pc.lust(25);
 	}
 	output("\n\n<i>“Did you enjoy that, sweetie?”</i>");
 	output("\n\nThe kui-tan officer looks stunned.");
-
+	
 	beatriceLeaves2();
 }
 
@@ -1207,9 +1212,12 @@ public function getDatMilfsPANTIESYOOOO():void
 	else output("flirty");
 	output(" grin");
 	if(silly) output(". <i>“Bro, gimme your undies!”</i>");
-	else output(", telling the milfy wife that ");
-	if(pc.isMischievous()) output("what you want can be found betwixt her magnificent legs.");
-	else output("what you want is her panties.");
+	else
+	{
+		output(", telling the milfy wife that ");
+		if(pc.isMischievous()) output("what you want can be found betwixt her magnificent legs.");
+		else output("what you want is her panties.");
+	}
 
 	output("\n\n<i>“Oh, my!”</i> She covers her mouth with her hands, unintentionally displaying her wedding ring. The kui-tan officer looks shocked. Her hand can’t hide the rising corners of her cheeks; she’s smiling. <i>“That’s quite a bold request to make of a married woman");
 	if(flags["BEA_RELATIONSHIP"] == 2) output(", but I should have known you’d want something like that");
@@ -1243,7 +1251,7 @@ public function beatriceCredsReward():void
 	if(flags["BEA_RELATIONSHIP"] == 1) output("very respectable.”</i>");
 	else output("though you could have asked for more.”</i> She punctuates that last word with a wink.");
 	output("\n\nShe whips out her Codex and punches in some data, readying the transaction. The kui-tan officer sees what she’s typing in and lean over to her. <i>“Captain,”</i> he tries to whisper, but you’re close enough to hear it anyway, <i>“remember, we’re still on a tight budget.”</i>");
-	output("\n\n" + flags["BEA_TITLE"] + " sighs and makes an adjustment. Your codex beeps and informs you that eight thousand credits have been transferred to your account.");
+	output("\n\n" + flags["BEA_TITLE"] + " sighs and makes an adjustment. <b>Your codex beeps and informs you that eight thousand credits have been transferred to your account.</b>");
 	// + 8000 credits
 	pc.credits += 8000;
 
@@ -1267,9 +1275,13 @@ public function beatriceLeaves2():void
 	output("and in control of your fate - the ultimate agent of your destiny. In this way we are the same, you and I.”</i>");
 	output("\n\nThe kui-tan stands a respectful distance behind his captain, observing.");
 	output("\n\n<i>“To give up your adventure in order to serve aboard my vessel would be a demotion for you. Even knowing that you wouldn’t accept, I still wanted to at least present the opportunity before we part ways.”</i> She ");
-	if(pc.tallness < 65) output("bends down.");
-	else if(pc.tallness < 72) output("leans in.");
-	else if(pc.tallness < 77) output("stands on her tiptoes to put a chaste kiss on your cheek, leaving behind a red lipstick mark.");
+	if(flags["BEA_RELATIONSHIP"] == 2)
+	{
+		if(pc.tallness < 65) output("bends down");
+		else if(pc.tallness < 72) output("leans in");
+		else if(pc.tallness < 77) output("stands on her tiptoes");
+		output(" to put a chaste kiss on your cheek, leaving behind a red lipstick mark.");
+	}
 	else output("extends her hand and you shake it.");
 
 	output("\n\nYou feel something cold being slipped into your hand. <i>“Take this with you. Hopefully our paths will cross again.”</i> A small, gleaming medallion rests in you palm, emblazoned with a coat of arms along with the name <i>S.S. Inexorable</i>. <i>“Until then, I’ll have to say goodbye.”</i>");

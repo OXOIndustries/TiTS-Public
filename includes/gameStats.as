@@ -835,11 +835,12 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["ANALED_YAMMI"] != undefined) totalVirginitiesTaken++;
 		if(flags["INESSA_VIRGINITY"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
-		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
+		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
 			if(sleepingPartner != "") output2("\n<b>* Sleeping With:</b> " + sleepingPartner);
 			if(totalVirginitiesTaken > 0) output2("\n<b>* Virginities Claimed:</b> " + totalVirginitiesTaken);
+			if(pantyFapCount() > 0) output2("\n<b>* Panties Owned:</b> " + pantyFapCount());
 		}
 		
 		//Births header!
@@ -2526,7 +2527,7 @@ public function displayQuestLog(showID:String = "All"):void
 			// Mrs. Reasner
 			if(flags["BEA_QUEST"] != undefined)
 			{
-				output2("\n<b><u>Refuelling the <i>S.S. Inexorable</i></u></b>");
+				output2("\n<b><u>Refueling the <i>S.S. Inexorable</i></u></b>");
 				output2("\n<b>* Status:</b>");
 				switch(flags["BEA_QUEST"])
 				{
@@ -2537,7 +2538,7 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				if(flags["BEA_QUEST"] >= 4) output2(" Completed");
 				else output2(" <i>In progress...</i>");
-				if(flags["BEA_SAVCOUNT"] != undefined) output2("\n<b>* Savicite Sold to Her, Total:</b> " + flags["BEA_SAVCOUNT"]);
+				if(flags["BEA_SAVCOUNT"] != undefined) output2("\n<b>* Savicite Sold to " + flags["BEA_TITLE"] + ", Total:</b> " + flags["BEA_SAVCOUNT"]);
 				sideCount++;
 			}
 		}
@@ -5304,6 +5305,8 @@ public function displayEncounterLog(showID:String = "All"):void
 							case 2: output2(" Lovers"); break;
 						}
 					}
+					if(flags["BEA_RESTS"] != undefined) output2("\n<b>* Beatrice Reasner, Times Rested with Her:</b> " + flags["BEA_RESTS"]);
+					if(flags["BEA_SEXED"] != undefined) output2("\n<b>* Beatrice Reasner, Times Sexed:</b> " + flags["BEA_SEXED"]);
 					if(flags["MET_BEA_HUBBY"] != undefined) output2("\n<b>* Traven Reasner:</b> Met him");
 				}
 				variousCount++;
