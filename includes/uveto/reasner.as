@@ -142,6 +142,7 @@ public function approachBeatrice():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	if(flags["BEA_RESTS"] != undefined && flags["MET_BEA_HUBBY"] == undefined && rand(4) == 0)
 	{
 		encounterMisterTrentReasner();
@@ -210,6 +211,7 @@ public function setBeatriceName(arg:String):void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	// sets " + flags["BEA_TITLE"] + " to the selected title
 	flags["BEA_TITLE"] = arg;
 	output("<i>“[pc.name] Steele,”</i> you introduce yourself.");
@@ -242,6 +244,7 @@ public function reasnerAppearance():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("Captain Beatrice Reasner is a kind, gentle-mannered terran woman and happily married. With 2” heels, she stands six feet tall and carries herself with ladylike composure. Her face is very feminine; with fair skin, high cheekbones, long lashes and a loving smile upon her full, rosy lips. Voluminous chestnut hair cascades down her back in a loose braid and sweet, vanilla-scented perfume tickles your nose. The way she welcomes you with her warm, russet eyes makes you feel wanted and important, like you’re the only one in the room.");
 	output("\n\nOn her left hand she wears a simple gold wedding ring - the sign of a loving wife and a doting mother. It’d be rude to ask a lady for her age, but the few lines by her eyes and mouth hint that she’s well older than you, at least old enough to be your mother. Her complexion is fair but a little pale, reflecting a lifestyle spent mostly indoors or out in space.");
 	output("\n\nHer attire is enticingly modest and professional: a suit-like uniform hugs her narrow waist and large breasts just right, yet leaves plenty to the imagination. You can almost make out a black bra behind her prim dress shirt and necktie. Four gold stripes adorn her shoulder boards. A long business skirt wraps around her wide hips and smooth, stocking-clad legs that go all the way up, elongated even further by a pair of high heels. The slit running up the side gives a nice glimpse of thigh and garter strap as she slowly crosses and uncrosses her legs every now and then. Her shapely derriere fills out the back nicely, jiggling whenever she moves.");
@@ -260,6 +263,7 @@ public function talkToMrsReasner():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("<i>“Do you mind if we talk for a bit?”</i>");
 	output("\n\nA warm, motherly smile spreads across her scarlet lips. She sets her drink down and gives you her full, undivided attention. <i>“Of course, sweetie, you can talk to me about anything.”</i>");
 
@@ -293,6 +297,7 @@ public function backToBeatriceMain():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("Instead of talking, what did you want to do?");
 	reasnerMenu();
 }
@@ -303,6 +308,7 @@ public function talkToBeatriceAboutHerself():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("You ask " + flags["BEA_TITLE"] + " to tell you about herself. She takes a sip from her snifter, leaving a red lipstick mark that draws your attention.");
 	output("\n\n<i>“Well,”</i> she starts, <i>“I’m the younger of two, born on the fourth planet in the Sol system to a respected Admiral and a successful businesswoman. And for the last seven years, my husband and I have been operating a starship in order to explore the new frontier. Previously I was a teacher back on Earth and before that I was in the Navy.”</i> She finishes her statement, content that she covered all the basics.");
 	output("\n\nYou raise an eyebrow, admitting that you wouldn’t have thought of her as a military woman. She seems far too kind and compassionate for such a career.");
@@ -317,6 +323,7 @@ public function talkToBeatriceAboutFamiry():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("You ask " + flags["BEA_TITLE"] + " to tell you about the family she’s made for herself and about her husband and daughter.");
 	output("\n\nHer expression lightens. She brushes a lock of chestnut hair away from her face, unintentionally drawing your attention to her wedding ring. <i>“My best friend introduced us to each other on Ausaril, back when I was a junior officer. We settled down on Earth to live a simple life and raise a family. For the next couple of years I taught at the College while Hubby took care of the house and homeschooled our daughter.”</i>");
 	output("\n\n<i>“He’s a wonderful man: handsome, reliable, hardworking, faithful, strong and...so manly,”</i> she bites her lip, <i>“with those broad shoulders, chiseled pecs, and his soft beard that tickles just right...mmm, those times when he’d suddenly pick me up and carry me to the bedroom...”</i> " + flags["BEA_TITLE"] + " stops herself, realizing where she was going with that. A blush spreads across her cheeks and she covers her mouth with a hand, like a proper lady. <i>“Oh my, I must have gotten a little distracted there.”</i>");
@@ -348,6 +355,7 @@ public function beatriceShipAndCrewTalk():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("You ask " + flags["BEA_TITLE"] + " to tell you about her ship");
 	if(pc.characterClass == GLOBAL.CLASS_ENGINEER || flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM) output(" - you always love hearing about starships -");
 	output(" as well as her crew, and her job as skipper of her own ship.");
@@ -374,6 +382,7 @@ public function uvetoTalkWithBeatrice():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("You lean over, resting your elbows on the table, and ask her why she’s on this backwater ice ball.");
 	output("\n\nShe sets her drink down and smiles, appreciative of your interest. <i>“This is where we replenish our savicite every few months of travel. Actually, this is the first time we’ve been back since we set out on the Planet Rush.”</i>");
 	output("\n\nYou chime in, asking why come all the way here when she could refuel at most other stations.");
@@ -394,6 +403,7 @@ public function volunteerToHelpbeatrice():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	//[Volunteer to Help]
 	//once off talk unlocks <i>“Sell”</i>
 	output(flags["BEA_TITLE"] + " mentioning the name of your company catches your attention. <i>“Anything I can do?”</i>");
@@ -413,6 +423,7 @@ public function sellSaviciteToBeatrice():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("You tell " + flags["BEA_TITLE"] + " that you’ve got some ");
 	//repeat:
 	if(flags["BEA_SAVCOUNT"] != undefined) output("more ");
@@ -436,6 +447,7 @@ public function actuallySellSaviciteToBeatrice(quantity:Number):void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("She smiles and taps on her Codex. Soon, one of her crewmen shows up to take the savicite back to her ship.");
 	output("\n\n<i>“Thank you for your help");
 	if(silly) output(". You’re a really useful engine");
@@ -470,6 +482,7 @@ public function nevermindSaviciteBeatrice():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	if(!pc.hasItem(new Savicite())) output("Actually, you tell her you don’t have any on you at the moment.");
 	else output("On second thought, you plan on holding on to what you’ve got, for now.");
 	output("\n\n<i>“It’s quite alright, sweetie,”</i> she says honestly, <i>“take your time. I just don’t want you to get hurt.”</i>");
@@ -485,6 +498,7 @@ public function giftFromSkankMom():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("After the credits are secure in your account, you’re about to leave but " + flags["BEA_TITLE"] + " stops you.");
 	output("\n\n<i>“Could you wait for a moment, sweetie? I have something for you.”</i> You turn to face her. In her hands is a folded piece of cloth that she quickly wraps around your neck before you can react. Made of wool, it’s soft and warm like a hug, with decorative embroidery and tassels. Though good, the weave isn’t as professional as you’d find from a store or a replicator, as if...");
 	output("\n\n<i>“Did you make this yourself?”</i>");
@@ -500,6 +514,7 @@ public function leaveAfterBeatrice():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("You look at the time and tell " + flags["BEA_TITLE"] + " that you’d better be on your way.");
 	output("\n\n<i>“Thank you for your company, sweetie,”</i> she gives you a little wave, <i>“clear space and safe landings to you.”</i>");
 	processTime(2);
@@ -514,6 +529,7 @@ public function restWithMommaBeatrice():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("After such a long day, you can’t help but let out a yawn.");
 	output("\n\n<i>“My, are you feeling tired?”</i> " + flags["BEA_TITLE"] + " asks, <i>“Do you want to lie down?”</i>");
 	output("\n\nNow that you think about it, your eyelids do feel quite heavy. Another yawn escapes your mouth and she smiles.");
@@ -546,6 +562,7 @@ public function missReasnerRest2():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("Eventually you awake, slowly, to an unfamiliar ceiling and a beautiful woman. " + flags["BEA_TITLE"] + " is still humming her tune, but when she sees your eyelids ajar, she stops.");
 	output("\n\n<i>“My,”</i> she whispers affectionately, <i>“are you awake now?”</i> Her fingers run lightly ");
 	if(pc.hasHair()) output("through your [pc.hair]");
@@ -574,6 +591,7 @@ public function encounterMisterTrentReasner():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	showName("MR. & MRS.\nREASNER");
 	output("You make your way over to her table again. <i>“");
 	if(pc.isAss() || pc.isBro()) output("I’m sitting here.");
@@ -640,6 +658,7 @@ public function makeLoveToBeatrice():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	//first time:
 	if(flags["BEA_RELATIONSHIP"] < 2)
 	{
@@ -747,6 +766,7 @@ public function cowgirlMissReasner():void
 {
 	clearOutput();
 	showBeatrice(true);
+	author("Tacit");
 	var virgin:Boolean = pc.cockVirgin;
 	output(flags["BEA_TITLE"] + " takes you in her arms, slowly bringing her beautiful visage closer to your [pc.face] and lightly kissing you, tenderly catching your upper [pc.lipChaste] between hers. You eagerly return her ministrations while exploring her body and lifting her hefty bust, feeling the firm cups of her bra through her blouse. Her tongue traces the outline of your lips before slipping deeper into your mouth.");
 	output("\n\nYour [pc.tongue] swirls around hers, moaning into each other’s mouth and inhaling her smoky breath until you get a little dizzy. [pc.SkinFurScalesColor] hands unbutton the the front of " + flags["BEA_TITLE"] + "’s blouse, slip inside around her narrow waist and unhook her bra. She sucks your bottom [pc.lipChaste] into her mouth and pulls on it until the kiss breaks, leaving only a trail of spit connecting your mouths.");
@@ -936,6 +956,7 @@ public function suckleBeatriceTitttttaaaaaays():void
 {
 	clearOutput();
 	showBeatrice(true);
+	author("Tacit");
 	output("Now that you think about it, you can almost smell the sweet scent of milk coming from " + flags["BEA_TITLE"] + "’s bosom. Your stomach rumbles and, instinctively, your hands grope her [bea.breasts], driven by a certain hunger for her.");
 	output("\n\n" + flags["BEA_TITLE"] + " smiles. <i>“Oh, do you want me to feed you, like my daughter?”</i>");
 	output("\n\nYou nod and she removes her jacket and sits on the edge of the bed. <i>“Come here,”</i> she pats her lap like she does when it’s time for a nap, <i>“lay down.”</i> You do as she says, laying your head upon her soft, inviting thighs. Their warmth can be felt through her skirt and stockings.");
@@ -961,6 +982,7 @@ public function reachAroooooooooogalaBeatrice():void
 {
 	clearOutput();
 	showBeatrice(true);
+	author("Tacit");
 	output(flags["BEA_TITLE"] + " takes off her jacket and high heels and sits on the side of the bed, pushing herself back until only her lower legs hang off the edge. She coquettishly lifts her skirt all the way up her long, stocking-clad legs and spreads them, giving you a full view of her inner thighs and daring black panties that hide her sex. A wide band of floral patterned lace hugs her thighs with garter straps going up further. <i>“");
 	//PC wears clothes: 
 	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("Why don’t you take that off and come");
@@ -1093,6 +1115,7 @@ public function nevermindLetsNotFuckBecauseImTerrible():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("Even though you were the one who asked for this, you’ve suddenly changed your mind.");
 	output("\n\n" + flags["BEA_TITLE"] + " doesn’t seem to be upset by your declination. <i>“It’s alright if you’re not in the mood right now,”</i> she holds your hands, <i>“maybe next time, when you’re ready.”</i>");
 	output("\n\nTogether you head back out and go your separate ways, but not before " + flags["BEA_TITLE"] + " gives you a light parting kiss on the cheek.");
@@ -1108,6 +1131,7 @@ public function beatriceLeavesYOUFORANOTHERMANOHSHIT():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	output("When you come back, you notice someone else sitting at the table with " + flags["BEA_TITLE"] + ": a kui-tan male. As you approach, both of them stand up.");
 	output("\n\n<i>“[pc.name],”</i> " + flags["BEA_TITLE"] + " says, <i>“I’d like to introduce you to my Chief Supply Officer.”</i> The kui-tan nods to you; he’s wearing a uniform very similar to " + flags["BEA_TITLE"] + "’s, except his shoulder boards only have three stripes compared to her four.");
 	output("\n\nThe two of you exchange pleasantries and " + flags["BEA_TITLE"] + " has you both sit down. <i>“It’s thanks to you,”</i> she says, <i>“that our new contract with Steele Technologies was successful; we managed to received about four hundred tonnes of savicite");
@@ -1131,6 +1155,7 @@ public function kissForARewardBeatrice():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	// + Kind
 	pc.addNice(6);
 	output("You tell her that you wouldn’t mind a kiss from such a beautiful lady.");
@@ -1174,6 +1199,7 @@ public function getDatMilfsPANTIESYOOOO():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	pc.addMischievous(6);
 	output("You flash her a ");
 	//bea_realation=2:
@@ -1210,6 +1236,7 @@ public function beatriceCredsReward():void
 {
 	clearOutput();
 	showBeatrice();
+	author("Tacit");
 	pc.addHard(6);
 	output("You tell her that you’re not interested in anything but cold, hard credits.");
 	output("\n\n<i>“I see, a true professional,”</i> she says, <i>“");
