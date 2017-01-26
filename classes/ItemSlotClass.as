@@ -267,7 +267,11 @@
 				var aprilFools:Boolean = false;
 				var valueString:String = "";
 				
-				if(!short) valueString += ("Quantity: " + quantity + "\n");
+				if(!short)
+				{
+					valueString += ("Item Type: " + GLOBAL.ITEM_TYPE_NAMES[type] + "\n");
+					valueString += ("Quantity: " + quantity + "\n");
+				}
 				
 				if (discount)
 				{

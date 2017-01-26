@@ -990,6 +990,27 @@
 		public static const QUEST_ITEM:int							   = 15; // Used for quest-related items.
 		public static const GEM:int 								   = 16;
 		public static const SEXTOY:int 								   = 17; // Used for any portable sexual relief devices.
+		
+		public static const ITEM_TYPE_NAMES:Array = [
+			"Pill",
+			"Food",
+			"Potion",
+			"Melee Weapon",
+			"Ranged Weapon",
+			"Armor",
+			"Shield",
+			"Upper Undergarment",
+			"Lower Undergarment",
+			"Accessory",
+			"Drug",
+			"Clothing",
+			"All",
+			"Gadget",
+			"Explosive",
+			"Quest Item",
+			"Gem",
+			"Sex Toy",
+		];
 
 		//CHARACTERS
 		public static const CELISE:int                                 = 1;
