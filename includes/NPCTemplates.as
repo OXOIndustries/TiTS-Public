@@ -117,6 +117,7 @@
 	prepChar(justUpdate, "VENDINGMACHINE", VendingMachine);
 	prepChar(justUpdate, "ARAKEI", AraKei);
 	prepChar(justUpdate, "GWEN", Gwen);
+	prepChar(justUpdate, "BEA", Bea);
 	
 	
 	// Check all characters have version information set

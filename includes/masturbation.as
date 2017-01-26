@@ -2081,6 +2081,7 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) jackOffWithLadyPantiesYouSicko("Aina");
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) jackOffWithLadyPantiesYouSicko("Briha");
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) jackOffWithLadyPantiesYouSicko("Lys");
+		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]);
 	}	
 	//More than one pair? Build a menu.
 	else
@@ -2139,6 +2140,12 @@ public function futaBabePantyfapsRouter():void
 			addButton(button,"Lys’s",jackOffWithLadyPantiesYouSicko,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
+		{
+			addButton(button,flags["BEA_TITLE"]+"’s",jackOffWithLadyPantiesYouSicko,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
+			button++;
+
+			} ("Mrs. Reasner");
 		addButton(14,"Back",masturbateMenu);
 	}
 }
@@ -2231,6 +2238,7 @@ public function pantyFapCount():Number
 	if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) count++;
 	if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) count++;
 	if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) count++;
+	if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) count++;
 	return count;
 }
 
@@ -2247,6 +2255,7 @@ public function getPantyColor(waifu:String = ""):String
 	else if(waifu == "Aina") pantyColor = "striped green";
 	else if(waifu == "Briha") pantyColor = "camo-pattern";
 	else if(waifu == "Lys") pantyColor = "black";
+	else if(waifu == "Mrs. Reasner" || waifu == "Beatrice") pantyColor = "black";
 	return pantyColor;
 }
 
@@ -2259,6 +2268,7 @@ public function getPantyTexture(waifu:String = ""):String
 	else if(waifu == "Aina") pantyTexture = "stretchy cotton";
 	else if(waifu == "Briha") pantyTexture = "thin nylon";
 	else if(waifu == "Lys") pantyTexture = "sheer";
+	else if(waifu == "Mrs. Reasner" || waifu == "Beatrice") pantyTexture = "silky";
 	return pantyTexture;
 }
 

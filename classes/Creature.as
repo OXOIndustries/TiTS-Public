@@ -3794,6 +3794,7 @@
 			}
 
 			var bonus:Number = 0;
+			if(accessory is BeatricesScarf) bonus += 3;
 
 			var currWill:int = willpowerRaw + willpowerMod + bonus;
 
