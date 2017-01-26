@@ -2526,7 +2526,7 @@ public function displayQuestLog(showID:String = "All"):void
 			// Mrs. Reasner
 			if(flags["BEA_QUEST"] != undefined)
 			{
-				output2("\n<b>Refuel the <i>S.S. Inexorable</i></b>");
+				output2("\n<b><u>Refuelling the <i>S.S. Inexorable</i></u></b>");
 				output2("\n<b>* Status:</b>");
 				switch(flags["BEA_QUEST"])
 				{
