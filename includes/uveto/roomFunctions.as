@@ -960,3 +960,181 @@ public function uvetoMaglevStation():Boolean
 
 	return false;
 }
+
+public function GlacialRiftPlateauCamp():Boolean
+{
+	output("\n\nThe eastern half of the area is dominated by what looks to be a pre-fab metal bunker, covered in tarps and reinforced with sandbags pressed against the walls. Radio antennae peek out from the roof around a solid, smoking chimney. There are no windows you can see, and the door is solid metal covered by a thick curtain of tanned hides. Unsurprisingly,");
+	if (flags["MET_KRYM"] != undefined) output(" Krym");
+	else output(" whoever lives here");
+	output(" is desperate to keep as warm as possible.");
+
+	output("\n\nSeveral colonial turrets have been set up around the perimeter, watching over the plains of ice stretching out in every direction.");
+	if (flags["MET_KRYM"] != undefined && hours >= 6 && hours <= 20)
+	{
+		output(" Krymhilde is patrolling the turret gun-line, making sure each one is functional despite the cold and wear from the constant storms. She");
+		//if {Respect have: 
+		//gives you a flirty grin over her shoulder as she works, and you see a little more spring make its way into her step as she works
+		output(" gives you a slight nod of acknowledgement as you wander.");
+	}
+	else if (hours <= 6 && hours <= 20) output(" A woman in white ceramic armor is patrolling the gun line, carrying a spear almost as tall as she is over one shoulder. She’s clearly human, if the head of blond hair and cream-pale skin are anything to go by. The lightningbolt patterns on her armor tell you she’s probably a member of the local Stormguard.");
+	
+	return false;
+}
+
+public function GlacialRiftS40():Boolean
+{
+	if (pc.canFly()) addButton(0, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", "Since you have {wings // a jetpack}, you can bypass the rope and head down at your leisure.");
+	return false;
+}
+
+public function GlacialRiftS40FlyDown():void
+{
+	clearOutput();
+	output("You take flight, smirking at the sad little groundlings that must have struggled down that precarious rope. Instead, you're able to soar down the side of the glacial cliff, right down to where the rope ends at a gaping hole in the cliff-face. A cave! You swoop in and land, ready to see what's in store.");
+	currentLocation = "UVGR O42";
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function GlacialRiftQ40():Boolean
+{
+	if (flags["UVGR_CLIMB_ATTEMPTED"] != 2)
+	{
+		addButton(0, "Climb Down", GlacialRiftQ40ClimbDown, undefined, "Climb Down", "Climb down the rope and see where it goes...");
+	}
+	if (pc.canFly())
+	{
+		addButton(1, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", "Since you have {wings // a jetpack}, you can bypass the rope and head down at your leisure.");
+	}
+	return false;
+}
+
+public function GlacialRiftQ40ClimbDown():void
+{
+	clearOutput();
+	
+	output("This can’t be smart, can it? After all, whoever put this down obviously never came back for their supplies. Still, the temptation is too much to just ignore: you've got to see where this rappelling line goes. You secure yourself to the line with a clip and belt from inside one of the half-frozen crates and prepare to descend.");
+
+	output("\n\nHere goes nothing. You take a running jump off the edge of the glacier and hurtle off into the vast abyss. The rope, thankfully, catches you just a few feet later, and your [pc.feet] crunch into the ice, bracing you against the vertical ice plain. After a moment to catch your breath, you start to climb. Down and down you go, sliding and clambering down the rappelling line for what seems like an eternity.");
+
+	if (pc.PQ() >= 75)
+	{
+		output("\n\nThough it’s hard going, you eventually scramble down to what turns out to be a rather large cleft in the ice -- a cave maybe fifty feet above the water, leading into the heart of the glacier. You make sure the rope is secure and swing yourself into the hole...");
+	}
+	else
+	{
+		//Fail: gain Sore & sweaty conditions, lose major Energy
+		soreDebuff(5);
+		sweatyDebuff(1);
+		pc.energy( -(pc.energyMax() * 0.5));
+		output("\n\nYou really weren’t in shape for this, you realize after just a couple of minutes. You’re huffing and puffing, muscles burning as you slowly lower yourself towards the rope's end -- what appears to be a small hole in the ice, about man-height, some fifty feet from the water's surface. Wheezing with effort, you scramble into the hole and flop onto the icy floor.");
+	}
+}
+
+public function GlacialRiftLonesomeTent():Boolean
+{
+	if (flags["MET_KAZRA_AND_LORRE"] == undefined)
+	{ 
+		output(" A pair of tall, heavyset women with pale skin and lustrous pink hair are sitting around the fire, talking quietly amongst themselves. When you enter, they turn to you with easygoing smiles and beckon you over. You notice one of them, the taller of the two, is quite pregnant.");
+	}
+	else
+	{
+		output(" Kazra and Lorre turn to greet you with familiar smiles.");
+	}
+
+	if (!CodexManager.entryUnlocked("Essyra"))
+	{
+		output("\nYour Codex beeps out that these are Essyra, natives of Uveto who are by and large friendly to off-worlders.");
+		CodexManager.unlockEntry("Essyra");
+	}
+	
+	addButton(0, "Trade", approachKazraAndLorre);
+	return false;
+}
+
+public function approachKazraAndLorre():void
+{
+	
+}
+
+public function GlacialRiftO42():Boolean
+{
+	addButton(0, "Ascend", GlacialRiftO42Ascend);
+	return false;
+}
+
+public function GlacialRiftO42Ascend():void
+{
+	clearOutput();
+	
+	if (pc.canFly())
+	{
+		output("You lift off and soar out of the hidden cave, back up to the surface of the Rift.");
+		currentLocation = "UVGR S40";
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	if (flags["UVGR_CLIMB_ATTEMPTED"] == undefined)
+	{
+		flags["UVGR_CLIMB_ATTEMPTED"] = 1;
+		output("You grasp the rope and give it an experimental tug -- now that you're down here, it doesn't seem so secure... it might break if you try and climb up. Better take care of any business you have down here before you leave.");
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	else
+	{
+		flags["UVGR_CLIMB_ATTEMPTED"] = 2;
+		output("Time to leave. You grab the rope and haul yourself out of the cave, bracing your [pc.feet] on the ice. It's a slow, laborious journey upwards that leaves you gasping for breath and shivering in the oppressive cold by the time you near the top.");
+
+		output("\n\nAnd then you hear a <b>snap</b> from above. Oh, shit.");
+
+		output("\n\nYou have just enough time to grab a handhold in the ice before a rain of snow, ice, and rope comes crashing down on your head. Fuck! You hug the cliffside tight until the deluge passes by you, crashing down into the water below. Luckily, you're near enough to the top that it's easy to climb the rest of the way yourself, but there's no going back down there unless you");
+		if (pc.hasWings()) output(" use your");
+		else output(" sprout");
+		output(" wings.");
+		
+		currentLocation = "UVGR Q40";
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+}
+
+public function GlacialRiftO44():Boolean
+{
+	if (flags["UVGR_IDOL_TRIGGERED"] == undefined)
+	{
+		output(" You can hear voices ahead, too... somebody's here!");
+	}
+	return false;
+}
+
+public function GlacialRiftM44():Boolean
+{
+	if (flags["UVGR_SAVICITE_IDOL"] == undefined)
+	{
+		// 9999
+		return true;
+	}
+	if (flags["UVGR_IDOL_TRIGGERED"] == undefined)
+	{
+		output(" or the idol they had with them.");
+	}
+	return false;
+}
+
+public function GlacialRiftEncounterBonus():Boolean
+{
+	// 9999
+	return false;
+}
+
+public function GlacialRiftCoast():Boolean
+{
+	// 9999
+	return false;
+}
