@@ -228,7 +228,7 @@ public function jeromePeggingIIITaur():void
 	if (cIdx == -1) output("faux");
 	output("cock nestled right up against his asshole.");
 
-	output("\n\n" + (pc as PlayerCharacter).short.substring(0, 1) + "-[pc.name].");
+	output("\n\n<i>“" + (pc as PlayerCharacter).short.substring(0, 1) + "-[pc.name].”</i>");
 
 	output("\n\n<i>“Then </i>ask<i> me for it.”</i> You grind against his ass in emphasis, reminding your strapping bear exactly what he’s requesting.");
 
