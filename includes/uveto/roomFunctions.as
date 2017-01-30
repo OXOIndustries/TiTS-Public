@@ -1030,6 +1030,10 @@ public function GlacialRiftQ40ClimbDown():void
 		pc.energy( -(pc.energyMax() * 0.5));
 		output("\n\nYou really weren’t in shape for this, you realize after just a couple of minutes. You’re huffing and puffing, muscles burning as you slowly lower yourself towards the rope's end -- what appears to be a small hole in the ice, about man-height, some fifty feet from the water's surface. Wheezing with effort, you scramble into the hole and flop onto the icy floor.");
 	}
+	
+	currentLocation = "UVGR O42";
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function GlacialRiftLonesomeTent():Boolean
@@ -1115,16 +1119,134 @@ public function GlacialRiftO44():Boolean
 
 public function GlacialRiftM44():Boolean
 {
+	/* Flagdef:
+		undef, not triggered
+		1, player got idol
+		-1, triggered, player didn't get idol
+	*/
 	if (flags["UVGR_SAVICITE_IDOL"] == undefined)
 	{
-		// 9999
+		flags["UVGR_SAVICITE_IDOL"] = -1;
+
+		showBust("MILODANFEMALE", "MILODANMALE", "MILODANMALE");
+		
+		output("\n\nYou slowly make your way around the bend in the icy tunnel, following the natural curves of the frigid glacier's heart until you find yourself stepping into a small, almost perfectly circular chamber at the tunnel's end. The indistinct voices you heard before echoing throughout the place solidify into those of three figures standing here, chanting and swaying before a solid block of ice, maybe four feet high and perfectly smooth on the top.");
+
+		output("\n\nThe figures are");
+		if (CodexManager.entryUnlocked("Mildoan")) output(" milodans");
+		else if (flags["ICEQUEEN COMPLETE"] != undefined) output(" the same race as Zaalt");
+		output(" tall, white-furred feline humanoids standing naked despite the intense chill. Two are men -- bigger, broad-shouldered, and muscular -- and the other a woman with broad hips and a shock of ice blue hair, cut into a mohawk that runs down to her shoulders. She's carrying a staff that looks like something out of a fantasy holo, black as obsidian and tipped with a green savicite stone surrounded by a metal halo. With every refrain of their chant, she cracks the butt of the staff against the cavern floor, and the stone within the halo glows for a moment, as if with some inner light.");
+
+		output("\n\nThankfully, they're looking away from you when you enter, giving you that moment to get your bearings. They haven't noticed you for the moment, too absorbed by their strange ritual...");
+		
+		clearMenu();
+		addButton(0, "Watch", GRM44Watch, undefined, "Watch", "No sense endangering yourself. Let's see what they're up to down here.");
+		addButton(1, "Interrupt", GRM44Interrupt, undefined, "Interrupt", "");
+		addButton(2, "Leave", GRM44Leave, undefined, "Leave", "");
+		
 		return true;
 	}
-	if (flags["UVGR_IDOL_TRIGGERED"] == undefined)
+	if (flags["UVGR_IDOL_TRIGGERED"] != 1)
 	{
 		output(" or the idol they had with them.");
 	}
 	return false;
+}
+
+public function GRM44Watch():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("MILODANFEMALE", "MILODANMALE", "MILODANMALE");
+	
+	pc.lust(25);
+	
+	output("You hide yourself as best you can in the shadows of the tunnel entrance, content to observe the natives’ ritual from afar.");
+	if (!CodexManager.entryUnlocked("Milodan")) output(" From inside your pack, you hear your Codex beeping. You hush it as best you can and take a look once it’s quieted down. Apparently, these creatures are called milodans: a native race that has partially resisted upliftment, causing problems for the locals. Considering where you are and what they’re doing, it doesn’t take much of a leap to figure these are some of those malcontents.");
+	
+	output("\n\nThe three cat-folk continue chanting for a minute or so more, too fast and echoing too much for your microbes to get a translation. Suddenly, seemingly without climax, the chant ends and the cave goes silent. The two men look at the woman standing between them, grin, and grab her by the backs of her legs and shoulders, hefting her into the air. She gasps but doesn’t struggle, instead putting her hands on the men’s shoulders for support as they maneuver her over the altar.");
+	
+	output("\n\nFor the first time, you notice something on the altar: a shaft of green stone, just like the stone on her staff, about a foot long and as thick as your fist. It’s thicker at the base, and tapers to a slender point at the tip.");
+	// 9999
+	//" {has threesome’d Marina & Galina: Wait, isn’t that the same sort of idol that the huskar twins back on the station found...?}
+	output(" The men lift their female counterpart up, only to spear her down on the thick green icon atop the ice brick.");
+	
+	output("\n\nThe cat-woman yelps, a sharp cry of pleasure that bounces off the walls until she’s slid all the way down the rocky rod, completely filling her asshole. Panting from the carnal descent, she glances up at her two males and grins, spreading her legs wide and bracing her heels on the altar’s corners.");
+	
+	output("\n\nOne of the males immediately steps up, grabbing the woman’s hips and thrusting himself into the sodden slit between her legs. His mate throws her head back and howls in pleasure, digging her claws into the flat plane of the ice beneath her. From where you’re at, you can only catch glimpses of the long, black feline member pumping in and out of her pussy, but that of the other milodan is fully in view: he stands beside the coupling pair, and the female reaches out to grab his dark manhood, stroking it off while she’s pumped full of the other man’s dick.");
+	
+	output("\n\nThe sounds of the three cat-folks’ coupling echo throughout the strange chamber, a mix of grunts, growls, howls, and the heavy beats of flesh and fur slapping against each other. it isn’t all that long before the first male grunts and lunges forward, digging his teeth into the woman’s shoulder and his claws into her flanks, harsh enough to draw blood. She gasps, locking her legs behind his ass and pulling him closer, forcing him to the hilt inside her. A second later and he staggers back, a slimey bridge of steaming white goo connecting the crown of his tapered prick to the female’s slit.");
+	
+	output("\n\nThe second male shoves the first aside and takes his place. thrusting himself into the cat-woman’s cum-stuffed quim. She just smiles and strokes his cheek, inviting him inside herself with easy, lustful desire.");
+	
+	output("\n\nWhile they mate, just as hard and forceful as before, the male who’s just expended himself faces the altar and raises his hands, starting to chant again. With only a single voice to contend with, your translators start going to work:");
+	
+	output("\n\n<i>“Spirits bless us, empower us, fill our seed with might! Come back, fallen heroes, let your spirits find root inside the holy one’s womb. Return to flesh, and be born anew!”</i>");
+	
+	output("\n\nHe speaks the words again and again, though as the other two keep going at it, he’s almost drowned out by the rising tempo of moans and growls. At the end of one of the refrains, the milodan female screams and clutches at her paramour, wrapping him in her arms and legs and thrusting his face down into her tits. The man shudders, sighs, and slowly pulls his hips back until his softening cock falls free of her embrace.");
+	
+	output("\n\n<i>“I can feel the Lost Ones blessing my body already,”</i> the woman purrs, putting a hand on her belly and the other on her staff.");
+	
+	output("\n\nThe men bow to her and then left her up, freeing her from the anchor of savicite in her ass. She moans, drooling seed from her black lips. Once they set her down, she slips down to her knees and plants a kiss on the crown of each man’s penis, licking them clean of any excess. Once done, the three turn towards the tunnel’s exit... and your hiding place.");
+	
+	output("\n\nYou scramble back, looking for some hollow or side-passage to hide yourself in, and find none. Oh, shit.");
+	
+	output("\n\nThe trio round the first corner of the tunnel, and all but smack into you, sending all four of you reeling backwards in surprise and alarm. The men recover and start to growl, bearing their tusk-like fangs and claws, stepping protectively between you and their mate. Before they can lunge for your throat, though, the female puts a hand on each sabertooth’s shoulder and pushes them apart, eyeing you with a mix of interest and disgust.");
+	
+	output("\n\n<i>“What have we here?”</i> she wonders aloud, planting the butt of her staff in the ice beside her. <i>“A dirty little voyeur?”</i>");
+
+	processTime(15);
+	clearMenu();
+	addButton(0, "Apologize");
+	addButton(1, "Flirt", GRM44Flirt, undefined, "Flirt", "Let’s see if you can turn this around...");
+	addButton(2, "Fight", GRM44Fight, undefined, "Fight!", "You’ll show them what you are alright...");
+	addButton(3, "Run", GRM44Run, undefined, "Run!", "Fuck this shit, you’re out!");
+}
+
+public function GRM44Run():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("MILODANFEMALE", "MILODANMALE", "MILODANMALE");
+
+	output("You look between the naked males, the cum-stuffed woman, and the strange cock-like stone on the altar... and decide that discretion is the better part of valor. You turn and book it down the tunnel, back the way you came. There's no time to look over your shoulder, but you hear uproarious laughter echoing behind you, and the scraping of claws on the ice.");
+
+	flags["UVGR_CLIMB_ATTEMPTED"] = 2;
+	output("\n\nTime to leave. You grab the rope and haul yourself out of the cave, bracing your [pc.feet] on the ice. It's a slow, laborious journey upwards that leaves you gasping for breath and shivering in the oppressive cold by the time you near the top.");
+
+	output("\n\nAnd then you hear a <b>snap</b> from above. Oh, shit.");
+
+	output("\n\nYou have just enough time to grab a handhold in the ice before a rain of snow, ice, and rope comes crashing down on your head. Fuck! You hug the cliffside tight until the deluge passes by you, crashing down into the water below. Luckily, you're near enough to the top that it's easy to climb the rest of the way yourself, but there's no going back down there unless you");
+	if (pc.hasWings()) output(" use your");
+	else output(" sprout");
+	output(" wings.");
+	
+	currentLocation = "UVGR Q40";
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function GRM44Fight():void
+{
+	// 9999 do fight
+}
+
+public function GRM44Flirt():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("MILODANFEMALE", "MILODANMALE", "MILODANMALE");
+
+	output("Flashing your best Steele smile, you put your hands up in a sign of peace and say that sure, you were watching. How could you not, with so much beauty and passion on display just a few minutes ago. That was quite the show they put on, you add - you enjoyed it quite a bit.");
+	
+	output("\n\n<i>“Is that right?”</i> the female milodan coos, brushing her snowy fingers across your chin.");
+	if (pc.hasCock()) output(" <i>“You should have joined in, then. All seed is welcome, even that of an alien, in restoring the Lost Ones. Perhaps next time.”</i>");
+	
+	output("\n\nShe smiles and slips past you, followed by her mates. They march out of the cavern, back the way you first came from. One of them, you note, has the green stone curled up in his tail, carrying it off with them.");
+
+	processTime(3);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function GlacialRiftEncounterBonus():Boolean
