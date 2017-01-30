@@ -1072,7 +1072,7 @@ public function edanSexSixth():void
 	output("legs <i>wide</i> and give him a good look at what sucking his cock has done to you. He’s in no mood to keep you waiting, rearing up and mounting you like a stallion. The familiar feeling of his weight on your back just serves as a reminder of how hard you’re going to be fucked, and you can’t help but weakly wiggle your hips under his bulk.");
 	output("\n\n<i>“Calm down,”</i> Edan murmurs, <i>“you’ll get it soon.”</i>");
 	if (pc.isTaur()) output("\n\nHe places his hands on your shoulders, holding your upper half ");
-	else output("\n\nHe bends his knees slightly, bringing his weight down on you to hold your ");
+	else output("\n\nHe bends his knees slightly, bringing his weight down on you to hold you ");
 	output("still before you feel the blunted head of his dick pressing against your [pc.pussy " + x + "], your labia spreading apart deliciously slowly. Then, all at once, he savagely spears you all the way to the hilt. Your scream of mixed lust and discomfort dies in your throat as the head of his cock touches your cervix, setting off waves of pleasure and making you burn with need. You <i>need</i> him to fill your womb with cum - the pheromones in the air are making accepting anything less an impossibility.");
 	
 	pc.cuntChange(x, chars["EDAN"].cockVolume(0));

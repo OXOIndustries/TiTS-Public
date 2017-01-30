@@ -487,7 +487,7 @@ public function whoseMilkIsAdoraholKally():void
 	output("\n\n");
 	if(pc.isBimbo()) output("You lick your lips.");
 	else output("You rock back in your seat.");
-	output("\n\n<i>“Well, I can make way than anyone short of a gush-addicted cow, so why not? I got all the tests and licensing for distributing it as food-grade so long as I’m open about it. Haven’t failed an inspection once.”</i> She straightens up, tail thwacking against the floor behind her. <i>“It actually tastes pretty great now, even straight from the tap. Only downside is that I can’t serve it to other kui-tan without setting them off.");
+	output("\n\n<i>“Well, I can make way more than anyone short of a gush-addicted cow, so why not? I got all the tests and licensing for distributing it as food-grade so long as I’m open about it. Haven’t failed an inspection once.”</i> She straightens up, tail thwacking against the floor behind her. <i>“It actually tastes pretty great now, even straight from the tap. Only downside is that I can’t serve it to other kui-tan without setting them off.");
 	if(flags["KIRO_MET_KALLY"] != undefined) output(" You ever see how Kiro’s balls swell up after she gives a blowjob? It’s nuts!");
 	else output(" See, swallowing ejaculate tends to make us overproduce our own for a short time.");
 	output(" If I gave them any, I’d need a crew of dedicated moppers just to clean up the mess.”</i>");
