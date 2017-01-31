@@ -1141,7 +1141,7 @@ public function GlacialRiftM44():Boolean
 		
 		clearMenu();
 		addButton(0, "Watch", GRM44Watch, undefined, "Watch", "No sense endangering yourself. Let's see what they're up to down here.");
-		addButton(1, "Interrupt", GRM44Interrupt, undefined, "Interrupt", "");
+		addButton(1, "Interrupt", GRM44Interrupt, undefined, "Interrupt", "Though you doubt they'll appreciate the interruption, you've got your eye on that idol of theirs... if that's actually pure savicite, it could be worth a fortune.");
 		addButton(2, "Leave", GRM44Leave, undefined, "Leave", "");
 		
 		return true;
@@ -1151,6 +1151,22 @@ public function GlacialRiftM44():Boolean
 		output(" or the idol they had with them.");
 	}
 	return false;
+}
+
+public function GRM44Interrupt():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("MILODANFEMALE", "MILODANMALE", "MILODANMALE");
+
+	output("You step out of the shadows and whistle, drawing your [pc.weapon] as you do so. The sharp sound ricochets off the icy walls, mixing with the milodans’ chant until it’s cut off. The trio turn around to face you, scowling, and the woman cracks the butt of her staff down on the ice.");
+	
+	output("\n\n<i>“What is this?”</i> she barks. The tip of her staff flashes with some inner energy. <i>“An offworlder? Another damn fool treasure hunter, I bet! The ritual is too important to be interrupted... get [pc.himHer] boys!”</i>");
+	
+	output("\n\nThe males growl and bare their claws and tusk-like fangs. Oh yeah, they’re not happy about you interrupting them...");
+
+	clearMenu();
+	addButton(0, "Fight!", GRM44Fight);
 }
 
 public function GRM44Watch():void
@@ -1197,7 +1213,7 @@ public function GRM44Watch():void
 
 	processTime(15);
 	clearMenu();
-	addButton(0, "Apologize");
+	addButton(0, "Apologize", GRM44Apologize, undefined, "Apologize", "Sorry about the peeping, miss.");
 	addButton(1, "Flirt", GRM44Flirt, undefined, "Flirt", "Let’s see if you can turn this around...");
 	addButton(2, "Fight", GRM44Fight, undefined, "Fight!", "You’ll show them what you are alright...");
 	addButton(3, "Run", GRM44Run, undefined, "Run!", "Fuck this shit, you’re out!");
@@ -1228,7 +1244,58 @@ public function GRM44Run():void
 
 public function GRM44Fight():void
 {
-	// 9999 do fight
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters([new MilodanFertilityPriestess(), new MilodanMale(), new MilodanMale()]);
+	CombatManager.displayLocation("INFECTED CREW");
+	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
+	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
+	CombatManager.encounterTextGenerator(function():String {
+		var s:String = "You're fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a tall black staff tipped with a glowing green crystal. She's got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
+
+		var en:Array = CombatManager.getHostileCharacters();
+		
+		var fem:MilodanFertilityPriestess;
+		var m1:MilodanMale;
+		var m2:MilodanMale;
+
+		for (var i:int = 0; i < en.length; i++)
+		{
+			if (en[i] is MilodanFertilityPriestess)
+			{
+				fem = en[i];
+			}
+			else if (m1 == null)
+			{
+				m1 = en[i];
+			}
+			else
+			{
+				m2 = en[i];
+			}
+		}
+		
+		if (fem.hasStatusEffect("Males Escaped"))
+		{
+			s += "\n\nThe male milodans have booked it, leaving the priestess alone!";
+		}
+		else if (!m1.isDefeated() || !m2.isDefeated())
+		{
+			s += "\n\nStanding defensively between you and the female";
+			if (!ma.isDefeated() && !m2.isDefeated())
+			{
+				s += " are a pair of male milodans, bearing their claws at you.";
+			}
+			else
+			{
+				s += " is the last milodan male left standing."
+			}
+		}
+
+		return s;
+	});
+	CombatManager.victoryScene();
+	CombatManager.lossScene();
 }
 
 public function GRM44Flirt():void
@@ -1245,6 +1312,22 @@ public function GRM44Flirt():void
 	output("\n\nShe smiles and slips past you, followed by her mates. They march out of the cavern, back the way you first came from. One of them, you note, has the green stone curled up in his tail, carrying it off with them.");
 
 	processTime(3);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function GRM44Apologize():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("MILODANFEMALE", "MILODANMALE", "MILODANMALE");
+
+	output("You blush and apologize, saying you hadn’t come here intending to peep on her and... whatever it was they were doing.");
+	
+	output("\n\nShe smiles and puts a hand on her hip. <i>“You’re lucky our rituals are not some closely guarded secret... nor is my modesty. Be careful next time, off-worlder... or I might make you join in!”</i>");
+	
+	output("\n\nThe woman gives your cheek something between a pat and a slap, and beckons her menfolk to follow her out. hey march out of the cavern, back the way you first came from. One of them, you note, has the green stone curled up in his tail, carrying it off with them.");
+
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

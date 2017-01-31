@@ -3612,7 +3612,8 @@
 
 			var currPhys:int = physiqueRaw + physiqueMod;
 
-			if(hasStatusEffect("Tripped")) currPhys -= 4;
+			if (hasStatusEffect("Tripped")) currPhys -= 4;
+			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
 
 			if (currPhys > physiqueMax()) 
 			{
@@ -3656,6 +3657,7 @@
 			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
+			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
 
 			if (currReflexes > reflexesMax())
 			{
@@ -4331,6 +4333,7 @@
 			if (hasStatusEffect("Resolve")) temp += 50;
 			if (hasStatusEffect("Water Veil")) temp += statusEffectv2("Water Veil");
 			if (hasStatusEffect("Spear Wall")) temp += 50;
+			if (hasStatusEffect("Leech Empowerment")) temp += 50;
 			//Nonspecific evasion boost status effect enemies can use.
 			temp += statusEffectv1("Evasion Boost");
 			//Now reduced by restraints - 25% per point
@@ -6870,6 +6873,15 @@
 			}
 			
 			return null;
+		}
+		
+		public function removeStatusByRef(ref:StorageClass):void
+		{
+			var idx:int = statusEffects.indexOf(ref);
+			if (idx >= 0)
+			{
+				statusEffects.splice(idx, 1);
+			}
 		}
 
 		public function getPerkEffect(perkName:String):StorageClass
@@ -16847,6 +16859,21 @@
 		public function getCombatDescriptionExtension():void
 		{
 			// noop
+		}
+		
+		// These functions override the "creature is down" messages in group fights.
+		// If they are null, the standard descriptions are used.
+		// If they return a 0-length string ("") _no_ description is output.
+		// Anything else is output. There is no baked in formatting to the output, but new lines are created.
+		// f.ex do: return "<b>She ded!</b>"
+		public function downedViaLust():String
+		{
+			return null;
+		}
+		
+		public function downedViaHP():String
+		{
+			return null;
 		}
 		
 		public var btnTargetText:String // Base text used for buttons

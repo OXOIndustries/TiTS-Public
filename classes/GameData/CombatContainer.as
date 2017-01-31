@@ -384,6 +384,63 @@ package classes.GameData
 		{
 			if (target.isDefeated()) return;
 			
+			var ew:StorageClass = target.getStatusEffect("Empowering Word");
+			if (ew != null)
+			{
+				ew.value1--;
+				if (ew.value1 < 0)
+				{
+					// Only do output if not stunned and v3 is not 1
+					// v3 stops multiple outputs from happening on different creatures in the same round but still allows the effect to be removed
+					if (!target.hasStatusEffect("Stunned") && ew.value3 != 1)
+					{
+						var numMales:int = 0;
+						for (var i:int = 0; i < _hostiles.length; i++)
+						{
+							var tC:Creature = _hostiles[i] as Creature;
+							if (tC is MilodanMale && !tC.isDefeated())
+							{
+								numMales++;
+								var ewT:StorageClass = tC.getStatusEffect("Empowering Word");
+								if (ewT != null) ewT.value3 = 1;
+							}
+						}
+						
+						output("\n\n<b>The male");
+						if (numMales == 1) output(" shakes his head");
+						else output(" shake their heads");
+						output(" as if coming out of a daze, blinking and looking around. The glow's gone now, thank goodness.");
+					}
+					
+					target.removeStatusByRef(ew);
+				}
+			}
+			
+			
+			var le:StorageClass = target.getStatusEffect("Leech Empowerment");
+			
+			if (le != null)
+			{
+				le.value1--;
+				if (le.value1 < 0)
+				{
+					target.removeStatusByRef(le);
+				}
+			}
+			
+			var pl:StorageClass = target.getStatusEffect("Psychic Leech");
+			
+			if (pl != null)
+			{
+				pl.value1--;
+				if (pl.value1 < 0)
+				{
+					output("\n\nYou feel a surge of regained strength -- <b>the witch's leeching power has worn off!</b>");
+					
+					target.removeStatusByRef(pl);
+				}
+			}
+			
 			if (target.hasStatusEffect("Pushed"))
 			{
 				target.setStatusValue("Pushed", 2, 0);
@@ -1556,18 +1613,38 @@ package classes.GameData
 		
 		private function doStunRecover(target:Creature):void
 		{
-			if (target.hasStatusEffect("Stunned"))
+			var stunEffect:StorageClass = target.getStatusEffect("Stunned");
+			
+			if (stunEffect != null)
 			{
 				if (target is PlayerCharacter) clearOutput();
 				
-				target.addStatusValue("Stunned", 1, -1);
+				stunEffect.value1--;
 				
-				if (target.statusEffectv1("Stunned") <= 0)
+				if (stunEffect.value1 <= 0)
 				{
-					target.removeStatusEffect("Stunned");
-					if (target is PlayerCharacter) output("You manage to recover your wits and adopt a fighting stance!");
-					else if (!target.isPlural) output(StringUtil.capitalize(target.getCombatName(), false) + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
-					else output(StringUtil.capitalize(target.getCombatName(), false) + " manage to recover their wits and adopt a fighting stance!");
+					target.removeStatusByRef(stunEffect); // removed from the creature
+					// but we still hold a ref to it for further processing!
+					if (target is PlayerCharacter)
+					{
+						if (stunEffect.value2 == 1)
+						{
+							output("You shake yourself off, blinking rapidly. Whatever mental influence had crept into your brain seems to have flushed out, leaving your mind a bit foggy, but ready to fight regardless.");
+						}
+						else
+						{
+							output("You manage to recover your wits and adopt a fighting stance!");
+						}
+					}
+					else if (!target.isPlural)
+					{
+						output(StringUtil.capitalize(target.getCombatName(), false) + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
+					}
+					else
+					{
+						output(StringUtil.capitalize(target.getCombatName(), false) + " manage to recover their wits and adopt a fighting stance!");
+					}
+					
 				}
 				else
 				{
@@ -4005,11 +4082,27 @@ package classes.GameData
 			
 			if (target.HP() <= 0)
 			{
-				output("\n\n<b>You’ve knocked the resistance out of " + target.getCombatName() + ".</b>");
+				var dvh:String = target.downedViaHP();
+				if (dvh != null)
+				{
+					if (dvh.length > 0) output("\n\n" + dvh);
+				}
+				else
+				{
+					output("\n\n<b>You’ve knocked the resistance out of " + target.getCombatName() + ".</b>");
+				}
 			}
 			else if (target.lust() >= target.lustMax())
 			{
-				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				var dvl:String = target.downedViaLust();
+				if (dvl != null)
+				{
+					if (dvl.length > 0) output("\n\n" + dvl);
+				}
+				else
+				{
+					output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				}
 			}
 			else
 			{				

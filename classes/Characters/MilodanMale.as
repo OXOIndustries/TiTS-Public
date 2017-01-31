@@ -3,6 +3,7 @@
 	import classes.Creature;
 	import classes.GameData.SingleCombatAttack;
 	import classes.GLOBAL;
+	import classes.StorageClass;
 	//import classes.Items.Guns.*
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -282,12 +283,20 @@
 
 			var selected:* = attackChoices[rand(attackChoices.length)];
 			selected(target);
+			
+			
 		}
-
+		
 		//Attacks
 		public function milodanAttack(target:Creature):void
 		{
 			var d:TypeCollection = this.meleeDamage();
+			
+			if (hasStatusEffect("Empowering Word"))
+			{
+				d.multiply(statusEffectv2("Empowering Word"));
+			}
+			
 			//Club swing
 			if(this.meleeWeapon.longName == "heavy club")
 			{
@@ -368,6 +377,7 @@
 				}
 			}
 		}
+		
 		//Spinning backfist
 		public function spinningBackfistAttack(target:Creature):void
 		{
@@ -389,6 +399,12 @@
 				this.meleeWeapon.baseDamage.kinetic.damageValue = 0;
 				var d:TypeCollection = this.meleeDamage();
 				this.meleeWeapon.baseDamage.kinetic.damageValue = oldVal;
+				
+				if (hasStatusEffect("Empowering Word"))
+				{
+					d.multiply(statusEffectv2("Empowering Word"));
+				}
+				
 				damageRand(d, 15);
 				applyDamage(d, this, target, "melee");
 				//Stun chance
