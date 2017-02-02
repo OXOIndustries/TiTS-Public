@@ -14845,6 +14845,10 @@
 			}
 			return false;
 		}
+		public function hasHardLightAvailable():Boolean
+		{
+			return hasHardLightUpgraded() || hasHardLightStrapOn();
+		}
 		public function hardLightVolume():Number
 		{
 			return 30;
@@ -14869,7 +14873,7 @@
 				//Have cock? Use it by default
 				if(hasCock()) idxOverride = 0;
 				//No dick? Use the hard light
-				else if(hasHardLightEquipped()) idxOverride = -1;
+				else if(hasHardLightAvailable()) idxOverride = -1;
 				//No hard light, use your clit.
 				else if(clitLength >= 4 && totalClits() > 0) idxOverride = -2;
 				//Nothing appropriate? Must be a strap-on

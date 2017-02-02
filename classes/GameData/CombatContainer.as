@@ -3872,6 +3872,12 @@ package classes.GameData
 			showCombatUI(); // force an update
 		}
 		
+		public function removeHostileCreature(remC:Creature):void
+		{
+			_hostiles.splice(remC);
+			showCombatUI();
+		}
+		
 		private function makeCharacterUnique(target:Creature, asGroup:String):void
 		{
 			var appends:Array = ["A", "B", "C", "D", "E"];
@@ -4622,6 +4628,15 @@ package classes.GameData
 				if (_hostiles[i] is classT) return true;
 			}
 			return false;
+		}
+		
+		public function getEnemyOfClass(classT:Class):Creature
+		{
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				if (_hostiles[i] is classT) return _hostiles[i];
+			}
+			return null;
 		}
 
 		public function hasDickedEnemy():Boolean

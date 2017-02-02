@@ -216,6 +216,9 @@
 			return "<b>The Fertility Priestess is lying face-down, ass-up on the floor of the cavern and moaning with pain.</b>";
 		}
 		
+		private var _malesRan:Boolean = false;
+		public function get malesRan():Boolean { return _malesRan; }
+		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
@@ -261,6 +264,10 @@
 						removeStatusByRef(ew);
 					}
 				}
+			}
+			else if (_malesRan == false)
+			{
+				malesRunAway(alliedCreatures);
 			}
 			
 			var attacks:Array = [];
@@ -396,6 +403,27 @@
 			{
 				output(" A burning in your loins signifies just how ready for that your body is...");
 				applyDamage(damageRand(new TypeCollection( { tease: 10 * (pc.LQ() / 100) } ), 15), this, target, "tease");
+			}
+		}
+		
+		private function malesRunAway(alliedCreatures:Array):void
+		{
+			_malesRan = true;
+			
+			output("The pair of males guarding the priestess are both looking worse for wear, panting up a steaming mist that clings to the air around them. Glancing between each other and then back at you, one of them yells, <i>“We’ll, uh, go get help!”</i>");
+
+			output("\n\nThey start running, shoving past you and each other before dashing into the tunnel.");
+
+			output("\n\n<i>“Cowards!”</i> the priestess shouts after them, snarling like a feral beast. The males don't so much as look over their shoulders, but disappear into the ice with their tails between their legs.");
+
+			output("\n\nShe grunts and stamps her staff on the ice, returning her attention fully to you. <i>“Fine! Then it’s just you and me, as it should be. I'll show you the might of the spirits all on my own!”<i>");
+
+			output("\n\nThe priestess bears her fangs and swings her staff around, levelling the glowing green tip at your [pc.chest].\n\n");
+			
+			for (var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				var tC:Creature = alliedCreatures[i] as Creature;
+				if (tC is MilodanMale) CombatManager.removeHostileCreature(tC);
 			}
 		}
 	}
