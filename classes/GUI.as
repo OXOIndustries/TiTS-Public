@@ -1539,5 +1539,10 @@
 		{
 			_leftSideBar.locationBlock.roomControlVisibility = _currentModule.moduleName == "PrimaryOutput";
 		}
+		
+		public function get activeModule():ContentModule
+		{
+			return _currentModule;
+		}
 	}
 }

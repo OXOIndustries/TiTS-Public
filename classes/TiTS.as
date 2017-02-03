@@ -2,6 +2,8 @@
 {
 	import classes.GameData.Perks;
 	import classes.TiTS_Settings;
+	import classes.UIComponents.ContentModule;
+	import classes.UIComponents.ContentModules.GameTextModule;
 	import classes.UIComponents.MainButton;
 	import fl.transitions.Tween;
 	import flash.display.DisplayObject;

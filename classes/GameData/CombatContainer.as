@@ -398,7 +398,7 @@ package classes.GameData
 						for (var i:int = 0; i < _hostiles.length; i++)
 						{
 							var tC:Creature = _hostiles[i] as Creature;
-							if (tC is MilodanMale && !tC.isDefeated())
+							if (tC is MilodanMaleGroup && !tC.isDefeated())
 							{
 								numMales++;
 								var ewT:StorageClass = tC.getStatusEffect("Empowering Word");
@@ -406,10 +406,7 @@ package classes.GameData
 							}
 						}
 						
-						output("\n\n<b>The male");
-						if (numMales == 1) output(" shakes his head");
-						else output(" shake their heads");
-						output(" as if coming out of a daze, blinking and looking around. The glow's gone now, thank goodness.");
+						output("\n\n<b>The male" + (numMales == 1 ? " shakes his head" : "s shake their heads") + " as if coming out of a daze, blinking and looking around. The glow's gone now, thank goodness.</b>");
 					}
 					
 					target.removeStatusByRef(ew);

@@ -306,6 +306,11 @@ package classes.Characters
 			return;
 		}
 		
+		override public function HPMax():Number
+		{
+			return (kGAMECLASS.debug ? super.HPMax() + 2500 : super.HPMax());
+		}
+		
 		public function UpgradeVersion1(d:Object):void
 		{
 			var res:Array = d.resistances;

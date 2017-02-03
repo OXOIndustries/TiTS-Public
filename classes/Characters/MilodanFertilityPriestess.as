@@ -203,7 +203,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "MILODANPRIESTESS";
+			return "MILODAN_PRIESTESS";
 		}
 		
 		override public function downedViaLust():String
@@ -231,7 +231,7 @@
 			for (var i:int = 0; i < alliedCreatures.length; i++)
 			{
 				var tC:Creature = alliedCreatures[i] as Creature;
-				if (tC is MilodanMale && !tC.isDefeated())
+				if (tC is MilodanMaleGroup && !tC.isDefeated())
 				{
 					numMales++;
 				}
@@ -314,7 +314,7 @@
 			for (var i:int = 0; i < alliedCreatures.length; i++)
 			{
 				var tC:Creature = alliedCreatures[i];
-				if (tC is MilodanMale && !tC.isDefeated())
+				if (tC is MilodanMaleGroup && !tC.isDefeated())
 				{
 					numAdded++;
 					tC.createStatusEffect("Empowering Word", duration, 1.25, 0, 0, false, "OffenseUp", "The priestess has riled the milodan up!", true, 0, 0xFFFFFF);
@@ -423,7 +423,7 @@
 			for (var i:int = 0; i < alliedCreatures.length; i++)
 			{
 				var tC:Creature = alliedCreatures[i] as Creature;
-				if (tC is MilodanMale) CombatManager.removeHostileCreature(tC);
+				if (tC is MilodanMaleGroup) CombatManager.removeHostileCreature(tC);
 			}
 		}
 	}
