@@ -321,6 +321,7 @@
 			
 			// Effect: Boosts max HP and poison resistance by 10% for 24 hours
 			if (hasStatusEffect("Heart Tea")) r.poison.damageValue = r.poison.damageValue * 1.1;
+			if (hasStatusEffect("Hot Meal")) r.burning.resistanceValue += 10.0;
 			
 			// Effect: Adds +10% Electric, -10% Burning, +10% Kinetic, +10% Corrosive
 			// Fen Nerf: -35% Burning

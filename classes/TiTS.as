@@ -1,6 +1,5 @@
 ﻿package classes
 {
-
 	import classes.GameData.Perks;
 	import classes.TiTS_Settings;
 	import classes.UIComponents.MainButton;
@@ -1307,6 +1306,11 @@
 		{
 			return chars["BEA"];
 		}
+		public function get kazra():Kazra
+		{
+			return chars["KAZRA"];
+		}
+		
 		private var _dbgtestvar:int = 0;
 		public function dbgshieldparsertag():String
 		{

@@ -402,7 +402,7 @@
 			else
 			{
 				output(" A burning in your loins signifies just how ready for that your body is...");
-				applyDamage(damageRand(new TypeCollection( { tease: 10 * (pc.LQ() / 100) } ), 15), this, target, "tease");
+				applyDamage(damageRand(new TypeCollection( { tease: 10 * (target.LQ() / 100) } ), 15), this, target, "tease");
 			}
 		}
 		

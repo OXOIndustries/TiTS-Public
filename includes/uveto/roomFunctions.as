@@ -1,5 +1,7 @@
+import classes.Characters.MilodanFertilityPriestess;
 import classes.Characters.Mimbrane;
 import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
@@ -1091,7 +1093,7 @@ public function approachKazraAndLorre():void
 
 	clearMenu();
 	addButton(0, "Buy", function():void {
-		shopkeeper = kazra;
+		shopkeep = kazra;
 		shopkeepBackFunctor = approachKazraAndLorre;
 		buyItem();
 	});
@@ -1179,7 +1181,15 @@ public function GlacialRiftM44():Boolean
 		clearMenu();
 		addButton(0, "Watch", GRM44Watch, undefined, "Watch", "No sense endangering yourself. Let's see what they're up to down here.");
 		addButton(1, "Interrupt", GRM44Interrupt, undefined, "Interrupt", "Though you doubt they'll appreciate the interruption, you've got your eye on that idol of theirs... if that's actually pure savicite, it could be worth a fortune.");
-		addButton(2, "Leave", GRM44Leave, undefined, "Leave", "");
+		addButton(2, "Leave", function():void {
+			currentLocation = "UVGR O44";
+			clearOutput();
+			
+			output("Despite how tempting a sight the milodan are putting on, you think it wise not to get involved. For now...");
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+		}, undefined, "Leave", "No point getting involved...");
 		
 		return true;
 	}
@@ -1318,7 +1328,7 @@ public function GRM44Fight():void
 		else if (!m1.isDefeated() || !m2.isDefeated())
 		{
 			s += "\n\nStanding defensively between you and the female";
-			if (!ma.isDefeated() && !m2.isDefeated())
+			if (!m1.isDefeated() && !m2.isDefeated())
 			{
 				s += " are a pair of male milodans, bearing their claws at you.";
 			}
@@ -1347,14 +1357,15 @@ public function pcDefeatsFertilityPriestess(isRepeat:Boolean = false):void
 	
 	output("\n\n<i>“You... you...”</i> she gasps, finally getting enough control of herself to look you in the eye. <i>“You’re even more powerful than you look. The spirits have spoken: I yield, off-worlder. Do with me as you wish.”</i>");
 	
-	if (!enemy.malesRan) output("\n\nWhile you’re distracted with the priestess, the pair of males make a break for it. YOu lunge after them, but slip on the ice and your grab comes off short. They scarper off down the cavern, shouting back that they’ll find help. Guess you’d better finish up here quickly...");
+	var mfem:MilodanFertilityPriestess = enemy is MilodanFertilityPriestess ? enemy as MilodanFertilityPriestess : null;
+	if (mfem != null && !mfem.malesRan) output("\n\nWhile you’re distracted with the priestess, the pair of males make a break for it. YOu lunge after them, but slip on the ice and your grab comes off short. They scarper off down the cavern, shouting back that they’ll find help. Guess you’d better finish up here quickly...");
 
 	//[Fuck her] [Get Licked] [Take Idol] [Leave]
 	clearMenu();
 	if (pc.hasCock() || pc.hasHardLightAvailable()) addButton(0, "Fuck Her", fertilityPriestessFuckHer, undefined, "Fuck Her", "This priestess seemed interested in one thing: rutting like an animal. Maybe you should give her what she wants.");
 	addButton(1, "Get Licked", fertilityPriestessGetLicked, undefined, "Get Licked", "Make the slutty priestess put that rough tongue of hers to use.");
 	addButton(2, "Take Idol", fertilityPriestessTakeIdol, undefined, "Take the Idol", "First thing's first: this savicite idol has to be worth a fortune.");
-	addButton(14, "Leave", );
+	addButton(14, "Leave", CombatManager.genericVictory);
 }
 
 public function fertilityPriestessGetLicked():void
@@ -1565,10 +1576,12 @@ public function fertilityPriestessFuckHerSwitch():void
 			if (pc.cumQ() >= 5000) output(" and t");
 		}
 		else output(" T");
-		if (pc.cumQ() >= 5000) output("he sheer volume of spunk you pour into her fills her belly in the blink of an eye. Before your orgasm passes, her belly’s bloated as if she were pregnant. Her fur drags along the ice underneath her, letting the ground handle some of the excess weight you’ve left her with.");
-		}
+		if (pc.cumQ() >= 5000)
+		{
+			output("he sheer volume of spunk you pour into her fills her belly in the blink of an eye. Before your orgasm passes, her belly’s bloated as if she were pregnant. Her fur drags along the ice underneath her, letting the ground handle some of the excess weight you’ve left her with.");
 
-		output("\n\n<i>“Too bad. You feel more virile than any male I’ve met,”</i> the priestess sighs, tweaking one of her nipples and shivering as your [pc.cock] shifts inside her.");
+			output("\n\n<i>“Too bad. You feel more virile than any male I’ve met,”</i> the priestess sighs, tweaking one of her nipples and shivering as your [pc.cock] shifts inside her.");
+		}
 	}
 	output(" The cat-woman goans underneath you, starting to lick her fingers clean of her pussy-juices.");
 	if (pc.hasCock() && pc.hasKnot())
@@ -1643,7 +1656,8 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 
 		output("\n\n<i>“So falls our interloper. How sad you aliens are, when your weapons and magics fail you!”</i> the cat-woman declares. She grabs your chin and forces your gaze up, making you look her in the eye. <i>“Now it’s time to fulfil this ritual... one way or another.”</i>");
 
-		var priestess:MilodanFertilityPriestess = CombatManager.getEnemyOfClass(MilodanFertilityPriestess);
+		var tEnemy:Creature = CombatManager.getEnemyOfClass(MilodanFertilityPriestess);
+		var priestess:MilodanFertilityPriestess = tEnemy is MilodanFertilityPriestess ? tEnemy as MilodanFertilityPriestess : null;
 		if (priestess.malesRan)
 		{
 			output("\n\nThe woman tsks her tongue, glancing around the barren chamber. Her male companions are nowhere to be seen. At least you managed that small victory before succumbing to her. Growling, the milodan woman grabs you throws you onto the altar, face-up and [pc.legs] flailing over the edge.");
@@ -1695,7 +1709,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		output("\n\nThe priestess leans down and runs her tongue across your cheek, grinning as she slips off of you.");
 		if (pc.hasKnot(cockIdx)) output(" Your thick tie comes free with an audible slurp, dislodging a small waterfall of your mixed juices onto your groin. The woman laughs, giving your cock and affectionate pat as it wilts.");
 		output(" Thigh-fur stained with your seed, the cat-like alien takes her idol and withdraws into the icy chill");
-		if (!priestess.maleRan) output(", taking her two minions with her");
+		if (!priestess.malesRan) output(", taking her two minions with her");
 		output(", seemingly contented by your dick’s offering. You’re left alone to recover your stamina... and your dignity.");
 
 		processTime(30+rand(15));
@@ -1894,14 +1908,14 @@ public function GlacialRiftCoast():Boolean
 
 public function soloFertilityPriestessFight():void
 {
-		output("\n\nAs you’re wandering through the snowy wastes of the Rift, you catch sight of a figure moving towards you across the plains. Whoever they are, they're wrapped up in a heavy, hooded fur coat that billows in the wind, and carry a staff that guides them through the shin-high banks of snow. You have just a moment to ready yourself before a familiar form saunters up through the snow, throwing aside her cloak to reveal the amazonian physique of a milodan woman, bearing her saber-tooth fangs... and so much more -- she was naked under that cloak, and now a pair of mammoth breasts, a set of hips made for mothering, and a pair of black pussylips glistening with her shameless desire.");
+	output("\n\nAs you’re wandering through the snowy wastes of the Rift, you catch sight of a figure moving towards you across the plains. Whoever they are, they're wrapped up in a heavy, hooded fur coat that billows in the wind, and carry a staff that guides them through the shin-high banks of snow. You have just a moment to ready yourself before a familiar form saunters up through the snow, throwing aside her cloak to reveal the amazonian physique of a milodan woman, bearing her saber-tooth fangs... and so much more -- she was naked under that cloak, and now a pair of mammoth breasts, a set of hips made for mothering, and a pair of black pussylips glistening with her shameless desire.");
 
-		output("\n\n<i>“I thought it might be you!”</i> she snarls, twirling her staff until its gemstone head is levelled at your [pc.chest]. <i>“My sister");
-		if (flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined && flags["FERTILITY_PRIESTESSES_FOUGHT"] > 1) output(" s have");
-		output(" mentioned you.");
-		if (flags["UVGR_SAVICITE_IDOL"] != undefined && flags["UVGR_SAVICITE_IDOL"] == 1) output(" This for stealing from our clan!”</i>");
-		else if (flags["FERTILITY_PRIESTESSES_FUCKED"] != undefined && flags["FERTILITY_PRIESTESSES_FUCKED"] >= 1) output(" I hear you’re a good fuck. And I’m not taking no for an answer.”</i>");
-		else output(" Let’s see what you've got, alien!”</i>";
+	output("\n\n<i>“I thought it might be you!”</i> she snarls, twirling her staff until its gemstone head is levelled at your [pc.chest]. <i>“My sister");
+	if (flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined && flags["FERTILITY_PRIESTESSES_FOUGHT"] > 1) output(" s have");
+	output(" mentioned you.");
+	if (flags["UVGR_SAVICITE_IDOL"] != undefined && flags["UVGR_SAVICITE_IDOL"] == 1) output(" This for stealing from our clan!”</i>");
+	else if (flags["FERTILITY_PRIESTESSES_FUCKED"] != undefined && flags["FERTILITY_PRIESTESSES_FUCKED"] >= 1) output(" I hear you’re a good fuck. And I’m not taking no for an answer.”</i>");
+	else output(" Let’s see what you've got, alien!”</i>");
 
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
